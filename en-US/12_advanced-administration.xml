@@ -2082,14 +2082,9 @@ iface br0 inet static
 	role="pkg">debootstrap</emphasis> package) will install a Debian
 	container:</para>
 
-        <screen>
-          <computeroutput>root@scouzmir:~# </computeroutput>
-          <userinput>mkdir /var/lib/lxc/testlxc/
-</userinput>
-          <computeroutput>root@scouzmir:~# </computeroutput>
-          <userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/
-</userinput>
-          <computeroutput>debootstrap is /usr/sbin/debootstrap
+        <screen><computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/
+</userinput><computeroutput>root@scouzmir:~# </computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/
+</userinput><computeroutput>debootstrap is /usr/sbin/debootstrap
 Checking cache download in /var/cache/lxc/debian/rootfs-i386 ... 
 Downloading debian minimal ...
 I: Retrieving Release
@@ -2145,7 +2140,7 @@ lxc.network.hwaddr = 4a:49:43:49:79:20
 	<para>Now that our virtual machine image is ready, let's start the
 	container:</para>
 
-        <screen role="scale" width="65"><computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc
+        <screen><computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc
 </userinput><computeroutput>INIT: version 2.86 booting
 Activating swap...done.
 Cleaning up ifupdown....
