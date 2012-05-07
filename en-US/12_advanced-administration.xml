@@ -2140,7 +2140,7 @@ lxc.network.hwaddr = 4a:49:43:49:79:20
 	<para>Now that our virtual machine image is ready, let's start the
 	container:</para>
 
-        <screen><computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc
+        <screen width="94" role="scale"><computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc
 </userinput><computeroutput>INIT: version 2.86 booting
 Activating swap...done.
 Cleaning up ifupdown....
@@ -3437,6 +3437,7 @@ define service{
     contact_groups        falcot-admins
     register              0
 }
+
 # Services to check on www-host
 define service{
     use                   falcot-service
@@ -3456,6 +3457,7 @@ define service{
     service_description   SMTP
     check_command         check_smtp
 }
+
 # Services to check on ftp-host
 define service{
     use                   falcot-service
