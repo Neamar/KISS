@@ -24,6 +24,8 @@ done
 #cd tmp/$lang/xml/
 cd en-US
 
+echo "RUN: dbtoepub -s ../epub/tdah-epub.xsl -c ../epub/tdah-plain.css -o debian-handbook-plain.epub $OPTS debian-handbook.xml"
+dbtoepub -s ../epub/tdah-epub.xsl -c ../epub/tdah-plain.css -o debian-handbook-plain.epub $OPTS debian-handbook.xml
 echo "RUN: dbtoepub -s ../epub/tdah-epub.xsl -c ../epub/tdah.css $OPTS debian-handbook.xml"
 if dbtoepub -s ../epub/tdah-epub.xsl -c ../epub/tdah.css $OPTS debian-handbook.xml; then
     echo "SUCCESS: en-US/debian-handbook.epub"
