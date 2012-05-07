@@ -1,0 +1,1138 @@
+%%
+%% This style is derivated from the db2latex one
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{librement}[2012/04/04 Style for Freexian publishing service]
+
+% The defined options
+\DeclareOption{hyperlink}{ \def\DBKhyperlink{yes} }
+\DeclareOption{nohyperlink}{ \def\DBKhyperlink{no} }
+
+% Default values
+\ExecuteOptions{nohyperlink}
+
+% If defined, process the options
+\ProcessOptions\relax
+
+% Packages required
+\usepackage{float}
+\usepackage{pifont}% Make listings able to handle some specific Unicode characters
+\usepackage[subfigure,titles]{tocloft}
+\usepackage{microtype}
+\usepackage{xunicode}
+\usepackage{listings}
+\usepackage{pifont}
+\usepackage{fancybox}
+\usepackage{fancyvrb}
+\usepackage{pstricks}
+\usepackage{framed}
+\usepackage{lipsum}
+\usepackage{longtable}
+\usepackage{ifpdf}% For draft watermark when PDF output
+
+%% Just use the original package and pass the options
+%\RequirePackageWithOptions{db2latex}
+%% Use only the basic dblatex LaTeX commands for more freedom
+\usepackage{dbk_core}
+
+% Default page setup if not already done by geometry
+\@ifpackageloaded{geometry}{}{
+\usepackage{geometry}[includeheadfoot,right=1.3cm,left=1.6cm,top=1.3cm,bottom=1.3cm,]
+}
+
+\newcommand\outermargin{\dimexpr 1in + \oddsidemargin \relax}
+\newcommand\innermargin{\dimexpr 1in + \evensidemargin \relax}
+
+%% Display ``DRAFT'' as a water mark:
+\newif\ifpdfengine
+\ifpdf\pdfenginetrue
+\else\ifxetex\pdfenginetrue
+\fi\fi
+
+\ifpdfengine
+\usepackage{pdfpages}
+\usepackage{color}
+\def\showwatermark#1{%
+  \AddToShipoutPicture{
+  \AtTextCenter{%
+  \makebox(0,0)[c]{\resizebox{\textwidth}{!}{%
+  \rotatebox{45}{\textsf{\textbf{\color[gray]{0.8}#1}}}}}%
+  }}
+}
+\else
+\def\showwatermark#1{}%
+\fi
+
+% --------------------------
+% Title and Bookinfo display
+% --------------------------
+\let\stdtitle=\title
+\def\title#1{
+  \def\DBKtitle{#1}
+  \stdtitle{\bfseries #1%
+    \ifthenelse{\equal{\DBKsubtitle}{}}{}{\\[12pt]\normalsize \DBKsubtitle}}
+}
+
+\let\stdauthor=\author
+\def\author#1{
+  \def\DBKauthor{#1}
+  \stdauthor{\begin{minipage}{10cm}\centering #1\end{minipage}}%
+}
+
+\let\stdmaketitle=\maketitle
+\def\maketitle{
+  \stdmaketitle
+  \noindent
+  \textbf{\DBKtitle \\}
+  \ifx\DBKauthor\empty\else{by \DBKauthor \\}\fi
+  \hspace{0pt}\\
+  %\ifthenelse{\equal{\DBKedition}{}}{}{Edition \DBKedition \\}
+  \ifthenelse{\equal{\DBKpubdate}{}}{}{Published \DBKpubdate \\}
+  \ifthenelse{\equal{\DBKcopyright}{}}{}{\DBKcopyright \\}
+  \hspace{0pt}\\
+  % Now the legalnotice block
+  \DBKlegalblock
+  \thispagestyle{empty}
+  \newpage
+}
+
+\newenvironment{DBKlegalnotice}{
+  \noindent\begin{center}\small\bfseries\DBKlegaltitle
+  \end{center}\small
+}{
+  \vspace{0.6em}\par
+}
+
+% Change the wrapping display in listings
+\lstset{%
+    prebreak={}, %
+    postbreak={\ding{229}\space}
+}
+
+% Page styling
+
+\usepackage{fancyhdr}
+\fancypagestyle{showlayout}{%
+  \fancyhead{}
+  \renewcommand\headrulewidth{0pt}
+  \fancyhead[L]{%
+    \rput(0,-1){\psframe(0,0)(\linewidth,\dimexpr-\the\textheight)}
+  }
+}
+\fancypagestyle{chapterendbook}{%
+  % identique à empty
+  \fancyhf{}
+  \renewcommand\headrulewidth{0pt}
+}
+\newcommand\pgnboffset{10mm}
+\newcommand\footertxtoffset{%
+  \ifdim\outermargin>12mm
+    \dimexpr\outermargin-\marginparpush
+  \else
+    12mm
+  \fi
+}
+\fancypagestyle{endbook}{%
+  % comme normal mais sans le mot « Chapter » ou « Appendix ».
+  \fancyhf{}
+  \renewcommand\headrulewidth{0pt}
+  \fancyfoot[LE]{%
+    \rput(-\outermargin,0){%
+      \psline[linewidth=0.4pt](-5mm,0)(\pgnboffset,0)
+      \psline[linewidth=0.4pt](-5mm,-0.3mm)(\pgnboffset,-0.3mm)
+      \Rput[r](\pgnboffset,-3mm){\foliofont\thepage}
+      \psline[linewidth=0.4pt](-5mm,-5mm)(\pgnboffset,-5mm)
+      \psline[linewidth=0.4pt](-5mm,-5.3mm)(\pgnboffset,-5.3mm)
+      \ifdefined\DBKtitle
+        \Rput[l](\footertxtoffset,-3mm){\footfont \DBKtitle}
+      \else
+        \Rput[l](\footertxtoffset,-3mm){\footfont Book title undefined!}
+      \fi
+    }
+  }
+  \fancyfoot[RO]{%
+    \rput(\outermargin,0){%
+      \psline[linewidth=0.4pt](5mm,0)(-\pgnboffset,0)
+      \psline[linewidth=0.4pt](5mm,-0.3mm)(-\pgnboffset,-0.3mm)
+      \Rput[l](-\pgnboffset,-3mm){\foliofont\thepage}
+      \psline[linewidth=0.4pt](5mm,-5mm)(-\pgnboffset,-5mm)
+      \psline[linewidth=0.4pt](5mm,-5.3mm)(-\pgnboffset,-5.3mm)
+      \Rput[r](-\footertxtoffset,-3mm){\footfont \chaptertitle{}}
+    }
+  }
+}
+\fancypagestyle{normal}{%
+  \fancyhf{}
+  \renewcommand\headrulewidth{0pt}
+  \fancyfoot[LE]{%
+    \rput(-\outermargin,0){%
+      \psline[linewidth=0.4pt](-5mm,0)(\pgnboffset,0)
+      \psline[linewidth=0.4pt](-5mm,-0.3mm)(\pgnboffset,-0.3mm)
+      \Rput[r](\pgnboffset,-3mm){\foliofont\thepage}
+      \psline[linewidth=0.4pt](-5mm,-5mm)(\pgnboffset,-5mm)
+      \psline[linewidth=0.4pt](-5mm,-5.3mm)(\pgnboffset,-5.3mm)
+      \ifdefined\DBKtitle
+        \Rput[l](\footertxtoffset,-3mm){\footfont \DBKtitle}
+      \else
+        \Rput[l](\footertxtoffset,-3mm){\footfont Book title undefined!}
+      \fi
+    }
+  }
+  \fancyfoot[RO]{%
+    \rput(\outermargin,0){%
+      \psline[linewidth=0.4pt](5mm,0)(-\pgnboffset,0)
+      \psline[linewidth=0.4pt](5mm,-0.3mm)(-\pgnboffset,-0.3mm)
+      \Rput[l](-\pgnboffset,-3mm){\foliofont\thepage}
+      \psline[linewidth=0.4pt](5mm,-5mm)(-\pgnboffset,-5mm)
+      \psline[linewidth=0.4pt](5mm,-5.3mm)(-\pgnboffset,-5.3mm)
+      \ifnum\c@chapter=0
+        \Rput[r](-\footertxtoffset,-3mm){\footfont \chaptertitle{}}
+      \else
+        \Rput[r](-\footertxtoffset,-3mm){\footfont \@chapapp{} \thechapter{} — \chaptertitle{}}
+      \fi
+    }
+  }
+}
+\fancypagestyle{special}{\fancyhead{}} % quasi vide, pour debuggage
+\pagestyle{normal}
+
+\lstset{fancyvrb=true, basicstyle=\ttfamily}
+
+\newbox\lstbox
+
+
+%%% Nouvelle clé pour listsing pour mettre à l'échelle ou non
+\lst@Key{scale}{true}[t]{\lstKV@SetIf{#1}\lst@ifscale}
+%%% Détournement de la lecture des paramètres
+\def\FREE@UseKeyValues{%
+  \def\KV@prefix{KV@lst@}%
+  \expandafter\KV@do\FV@KeyValues,\relax,%
+}
+%
+\def\code{\FV@Environment{}{lstcode}}
+\def\FVB@lstcode{%
+  \@bsphack
+  \begingroup
+    % Première lecture des paramètres pour l'envoie dans le fichier
+    % lst.tmp
+    \FREE@UseKeyValues
+    % Le reste est un code normal de FancyVrb
+    \FV@DefineWhiteSpace
+    \def\FV@Space{\space}%
+    \FV@DefineTabOut
+    \def\FV@ProcessLine{\immediate\write\FV@OutFile}%
+    \immediate\openout\FV@OutFile lst.tmp\relax
+    \let\FV@FontScanPrep\relax
+    \let\@noligs\relax
+    \FV@Scan}
+\def\FVE@lstcode{%
+  \immediate\closeout\FV@OutFile\endgroup\@esphack
+  % Lis les paramètres passés avant l'affichage
+  \FREE@UseKeyValues
+  % Y a-t-il une mise à l'échelle ?
+  \lst@ifscale
+    % Récupère le listing dans lstbox avec la largeur normale et en
+    % permettant les coupures de lignes à n'importe quel endroit.
+    % On ne permet pas des valeurs fantaisistes de \lstwidth
+    \unless\ifdim\lstwidth>1in
+      \lstwidth=\lst@linewidth
+    \fi
+    \begin{lrbox}{\lstbox}
+      \lstinputlisting[breaklines]{lst.tmp}%
+    \end{lrbox}
+    \ifdim\wd\lstbox>\linewidth
+      % Calcul du rapport de largeur
+      \edef\r@tio{\the\numexpr \lstwidth/(\wd\lstbox/1000)-1}%
+      \begingroup
+        % Redéfinition de la taille de fonte en cours.
+        % taille courante x rapport calculé
+        \@tempdima\f@size pt
+        \@tempdima 0.\r@tio\@tempdima
+        % interlignage = 1.2 x taille de fonte
+        \@tempdimb 1.2\@tempdima
+        % redéfinition effective
+        \fontsize{\@tempdima}{\@tempdimb}%
+        % Affichage du listing avec cette nouvelle taille
+        % toujours avec les coupures permises
+        \lstinputlisting[breaklines, linewidth=\linewidth]{lst.tmp}%
+      \endgroup
+    \else
+      % Le listing tient en largeur, on ne fait rien de spécial
+      \lstinputlisting[breaklines, linewidth=\lstwidth]{lst.tmp}%
+    \fi
+  \else
+    % Il n'y a pas de mise à l'échelle, on affiche de façon
+    % habituelle.
+    \lstinputlisting{lst.tmp}
+  \fi
+  %\strut
+}
+\DefineVerbatimEnvironment{lstcode}{lstcode}{}
+
+% Redéfinition de \lst@DeInit pour interdire (éventuellement)
+% la permission de coupure après un listing
+\def\lst@DeInit{%
+  \lst@XPrintToken
+  \lst@EOLUpdate
+  \global\advance\lst@newlines\m@ne
+  \lst@ifshowlines
+    \lst@DoNewLines
+  \else
+    \setbox\@tempboxa\vbox{\lst@DoNewLines}%
+  \fi
+  \lst@ifdisplaystyle
+    \par\nobreak
+    \removelastskip
+  \fi
+  \lsthk@ExitVars
+  \everypar{}%
+  \lsthk@DeInit
+  \normalbaselines
+  \normalcolor
+  \lst@MakeCaption b%
+  \lst@ifbox
+    \egroup
+    $%
+    \hss
+    \egroup
+    \vrule\@width\lst@maxwidth\@height\z@\@depth\z@
+  \else
+    \lst@ifdisplaystyle
+      \@tempdima\lst@belowskip
+      \ifdim\@tempdima<\z@
+        \par\nobreak
+        \vspace{-\@tempdima}%
+      \else
+        \par\penalty-50
+        \vspace\lst@belowskip
+      \fi
+    \fi
+  \fi
+  \ifx\lst@multicols\@empty\else
+    \def\lst@next{\global\let\@checkend\@gobble
+      \endmulticols
+      \global\let\@checkend\lst@@checkend
+    }%
+    \expandafter\lst@next
+  \fi
+  \ifx\lst@float\relax\else
+    \expandafter\lst@endfloat
+  \fi
+  \endgroup
+} %$
+
+
+%%%%%%%%% Encadre %%%%%%%%%%
+\def\optionframed{role=important}
+\definecolor{shadecolor}{gray}{0.85}
+
+\renewenvironment{shaded}{%
+  \def\FrameCommand{%
+    \hspace*{\@totalleftmargin}%
+    \colorbox{shadecolor}}%
+  \MakeFramed {%
+    \vspace*{-\baselineskip}%
+    \advance\hsize -\@totalleftmargin
+    \advance\linewidth \@totalleftmargin
+    \leftskip=\z@
+    \@totalleftmargin=\z@
+    \FrameRestore\@setminipage
+  }%
+}%
+{\par\addvspace{6pt}\endMakeFramed}
+
+\renewenvironment{framed}
+{%
+  \def\FrameCommand{\fboxsep=\FrameSep
+    \hspace*{\@totalleftmargin}\fbox}%
+  \MakeFramed{%
+    \vspace*{-\baselineskip}%
+    \advance\hsize-\fboxsep
+    \advance\hsize -\@totalleftmargin
+    \advance\linewidth \@totalleftmargin
+    \leftskip=\z@
+    \@totalleftmargin=\z@
+    \FrameRestore
+  }%
+}%
+{\endMakeFramed}
+
+\newdimen\sidebar@width
+\newbox\sidebar@box
+\def\string@shaded{shaded}
+\newenvironment{sidebar}[3][framed]
+{%
+  \gdef\arg{#1}%
+  \ifx\arg\optionframed
+    \gdef\envir@{framed}%
+  \else
+    \gdef\envir@{shaded}%
+  \fi
+  \expandafter\begin\expandafter{\envir@}
+    \sidebar@width=\dimexpr\linewidth+\fboxsep
+    \sbox\sidebar@box{%
+      \begin{minipage}[t]{4cm}
+        \ifx\relax#2\relax
+          \begin{tabular}[t]{@{}p{4cm}@{}}
+            \titreencadrefont\raggedleft#3\tabularnewline
+          \end{tabular}%
+        \else
+          \begin{tabular}[t]{@{}p{4cm}@{}}
+            \raggedleft\surtitreencadrefont\textsc{#2}\tabularnewline\hline
+            \titreencadrefont\raggedleft#3\tabularnewline
+          \end{tabular}%
+        \fi
+      \end{minipage}%
+    }%
+    \begin{list}{%
+        \ifx\envir@\string@shaded
+          \psframe[linewidth=0pt, linecolor= shadecolor,
+                   fillstyle=solid, fillcolor=shadecolor,
+                   dimen=outer]
+                  (-\fboxsep,0)(\sidebar@width,-\dp\sidebar@box)
+          \ht\sidebar@box=0.7\baselineskip
+          \dp\sidebar@box=0.3\baselineskip
+          \leavevmode\box\sidebar@box
+        \else
+          \ht\sidebar@box=0.7\baselineskip
+          \dp\sidebar@box=0.3\baselineskip
+          \box\sidebar@box
+        \fi
+      }
+      {%
+        \leftmargin=4.4cm
+        \labelsep=0.4cm
+        \labelwidth=4cm
+        \itemindent=0pt
+        \encadrefont
+      }
+      \item
+}
+{%
+  \end{list}%
+  \vspace{-\baselineskip}
+  \expandafter\end\expandafter{\envir@}
+}
+
+% ----------------------------------------------
+% Define a new LaTeX environment (adminipage)
+% ----------------------------------------------
+\newenvironment{admminipage}%
+{ % this code corresponds to the \begin{adminipage} command
+  \begin{Sbox}%
+  \begin{minipage}%
+} %done
+{ % this code corresponds to the \end{adminipage} command
+  \end{minipage}
+  \end{Sbox}
+  \fbox{\TheSbox}
+} %done
+
+% ----------------------------------------------
+% Define a new LaTeX length (admlength)
+% ----------------------------------------------
+\newlength{\admlength}
+
+% ----------------------------------------------
+% Define a new LaTeX environment (admonition)
+% With 2 parameters:
+% #1 The image (e.g. note.pdf)
+% #2 The caption
+% ----------------------------------------------
+\newenvironment{DBKadmonition}[2] {
+  % this code corresponds to the \begin{admonition} command
+  \hspace{0mm}\newline\hspace*\fill\newline
+  \noindent
+  \setlength{\fboxsep}{5pt}
+  \setlength{\admlength}{\linewidth}
+  \addtolength{\admlength}{-10\fboxsep}
+  \addtolength{\admlength}{-10\fboxrule}
+  \admminipage{\admlength}
+  {\bfseries \sc\large{#2}} \newline
+  ~\\[1mm]
+  \sffamily
+  \ifthenelse{\equal{#1}{}}{
+    \def\admgraph{false}
+  }{
+    \def\admgraph{true}
+    \includegraphics[width=1cm]{#1}
+    \addtolength{\admlength}{-1cm}
+    \addtolength{\admlength}{-20pt}
+    \begin{minipage}[lt]{\admlength}
+  }
+  \parskip=0.5\baselineskip \advance\parskip by 0pt plus 2pt
+} %done
+{ % this code corresponds to the \end{admonition} command
+  \vspace{5mm} 
+  \ifthenelse{\equal{\admgraph}{false}}{}{
+    \end{minipage}
+  }
+  \endadmminipage
+  \vspace{.5em}
+  \par
+}
+
+% Workaround pour un bogue de dblatex ?
+\newfloat{example}{ht}{loe}[chapter]
+\floatname{example}{\examplename}
+%%%\newenvironment{example}{}{}
+
+% retraits et séparation, texte courant
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex}
+
+% listes
+%%%\RequirePackage{enumitem}
+%%%\setlist[enumerate]{label=\arabic*., font={\footnotesize\sffamily\bfseries}}
+
+% légendes
+\RequirePackage[format=hang,
+                labelsep=quad,
+                justification=raggedright,
+                font={sf,it,scriptsize},
+                labelfont={up,bf}]{caption}
+
+% images
+\usepackage{graphicx}
+
+% couleur
+\usepackage{xcolor}
+\definecolor{textgray}{gray}{.6}
+
+% chapos
+\def\@highlights{}
+\newenvironment{highlight}{%
+  \begin{minipage}{.8\linewidth}
+    \itshape
+}{\end{minipage}}
+\newcommand\highlights[1]{%
+  \renewcommand\@highlights{%
+    \par\vspace{2.5cm}
+    \begin{minipage}{.8\linewidth}
+      \itshape #1
+    \end{minipage}%
+  }%
+}
+% Déclaration de longueur
+% Hauteur de l'interlignage de la fonte \chapterfont
+\newlength{\chapterbaseline}
+\setlength{\chapterbaseline}{44pt}
+% Largeur des images de chapitre
+\newlength{\PictureWidth}
+% Largeur du bandeau gris de début de chapitre
+\newlength{\FrameWidth}
+% Marge de débord
+\newlength{\overflowmargin}
+\setlength\overflowmargin{5mm}
+% Épaisseurs des double filets
+\newlength{\dblerulewidth}
+\setlength{\dblerulewidth}{1pt}
+% Espace pour les double filets
+\newlength{\dblerulesep}
+\setlength{\dblerulesep}{1pt}
+
+% Commande pour interlettrer
+\newcommand*\interletter[1]{%
+  \expandafter\@interletter#1\@nil
+}
+\newcommand\@interletter[1]{%
+  \def\arg{#1}%
+  \unless\ifx\arg\@nnil
+    #1\space
+    \expandafter\@interletter
+  \fi
+}
+% Déclaration de fontes
+\newcommand\titremotsclesfont{%
+\sffamily  \bfseries
+  \fontsize{10}{12}\selectfont
+}
+\newcommand\motsclesfont{%
+\sffamily  \fontsize{8}{10}\selectfont
+}
+\newcommand\chapternamefont{%
+\sffamily  \fontsize{12}{14}\selectfont
+}
+\newcommand\chapternumfont{%
+\sffamily  \bfseries \fontsize{72}{88}\selectfont
+}
+\newcommand\chapterfont{%
+\sffamily  \fontsize{36}{\chapterbaseline}\selectfont
+}
+\newcommand\chaptertocfont{%
+\sffamily \bfseries \fontsize{14}{14}\selectfont
+}
+\newcommand\minitocnamefont{%
+\sffamily  \fontsize{8}{10}\selectfont
+}
+\newcommand\minitocfont{%
+\sffamily  \fontsize{8}{10}\selectfont
+}
+\newcommand\foliominitocfont{%
+\sffamily  \fontsize{10}{12}\selectfont
+}
+\newcommand\chapitrenumfont{%
+\sffamily  \fontsize{28}{30}\selectfont
+}
+\newcommand\chapitretitrefont{%
+\sffamily  \fontsize{18}{20}\selectfont
+}
+\newcommand\sectionfont{%
+\sffamily  \bfseries
+  \fontsize{12}{14}\selectfont
+}
+\newcommand\sectiontocfont{%
+  \sffamily
+  \fontsize{10}{10}\selectfont
+}
+\newcommand\subsectionfont{%
+\sffamily  \fontsize{11}{13}\selectfont
+}
+\newcommand\subsectiontocfont{%
+  \sffamily  \fontsize{8}{8}\selectfont
+}
+\newcommand\subsubsectionfont{%
+\sffamily  \itshape
+  \fontsize{10}{12}\selectfont
+}
+\newcommand\subsubsectiontocfont{%
+\sffamily  \itshape
+  \fontsize{7}{7}\selectfont
+}
+\newcommand\paragraphfont{%
+\sffamily  \itshape
+  \fontsize{10}{12}\selectfont
+}
+\newcommand\paragraphtocfont{%
+\sffamily  \itshape
+  \fontsize{7}{7}\selectfont
+}
+\newcommand\surtitreencadrefont{%
+  \fontsize{9}{11}\selectfont
+\sffamily  \bfseries
+}
+\newcommand\titreencadrefont{%
+  \fontsize{9}{11}\selectfont
+\sffamily}
+\newcommand\encadrefont{%
+  \fontsize{9}{11}\selectfont
+\sffamily}
+\newcommand\urlfont{%
+  {% \relsize{-2}
+    % 
+  \fontspec[Mapping=tex-text]{DejaVu Sans}}%
+}
+\newcommand\foliofont{%
+\sffamily  \fontsize{6}{8}\selectfont%
+}
+\newcommand\footfont{%
+\sffamily  \fontsize{6}{8}\selectfont%
+}
+%
+\newcommand\literal[1]{%
+  \lstinline[basicstyle=% \relsize{-1}
+  \ttfamily]{#1}%
+}
+\newcommand\filename[1]{%
+  \nolinkurl{#1}%
+}
+\newcommand{\command}[1]{%
+  {% \relsize{-1}
+    \textsf{#1}}
+}
+\newcommand{\distrib}[1]{%
+  {% \relsize{-1}
+    \emph{\textsf{#1}}}
+}
+
+% Redéfinition of \tableofcontents in order to gain place
+\renewcommand\tableofcontents{%
+  \starchapter{\contentsname}
+  {%
+    \parskip=0pt
+    \@starttoc{toc}%
+  }%
+}
+\renewcommand\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \par
+    \vskip 0.5em \@plus\p@
+    \addpenalty{-\@highpenalty}
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      {%
+        \chaptertocfont
+        #1\nobreak\hfil \nobreak
+        \hb@xt@\@pnumwidth{\hfil\normalsize \normalfont \normalcolor #2}%
+        \par
+      }
+      \penalty\@highpenalty
+    \endgroup
+  \fi
+}
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{3.8em}{3.2em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{10.0em}{5.0em}}
+% Redéfinition de \@dottedtocline
+% On vire ce qui est inutile pour la collection
+\def\@dottedtocline#1#2#3#4#5{%
+  \vskip \z@ \@plus.2\p@
+  {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+    \parindent #2\relax\@afterindenttrue
+    \interlinepenalty\@M
+    \leavevmode
+    \@tempdima #3\relax
+    \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+    {%
+      \ifcase #1
+      \or
+        \sectiontocfont
+      \or
+        \subsectiontocfont
+      \or
+        \subsubsectiontocfont
+      \or
+        \paragraphtocfont
+      \fi
+      #4
+    }\nobreak
+    \leaders\hbox{\kern 2pt\hbox{.}\kern 2pt}\hfill
+    \nobreak
+    \hb@xt@\@pnumwidth{\hfil\normalsize \normalfont \normalcolor #5}%
+    \par
+  }%
+}
+
+
+\renewcommand{\@seccntformat}[1]{%
+  {\color{textgray}\csname the#1\endcsname.}~}
+
+\newif\if@backmatter
+\newif\if@mainmatter
+\newif\if@frontmatter
+\newcommand\mainmatter{%
+  \clearevendoublepage
+  \@frontmatterfalse
+  \@mainmattertrue
+  \@backmatterfalse
+  \pagenumbering{arabic}%
+  % Comme on commence sur une page paire, il faut remettre le compteur
+  % de page à jour !
+  \setcounter{page}{0}
+}
+\newcommand\frontmatter{%
+%%%  \clearemptydoublepage
+  \@frontmattertrue
+  \@mainmatterfalse
+  \@backmatterfalse
+  \pagenumbering{Roman}% was *r*oman
+}
+\newcommand\backmatter{%
+%%%  \clearemptydoublepage
+  \@frontmatterfalse
+  \@mainmatterfalse
+  \@backmattertrue
+}
+
+% commandes de sectionnement
+\newcommand\clearemptydoublepage{%
+  \clearpage
+  \unless\ifodd\c@page
+    \thispagestyle{empty}
+    \hbox{}
+    \newpage
+  \fi
+}
+\newcommand\clearevendoublepage{%
+  \clearpage
+  \ifodd\c@page
+    \thispagestyle{empty}
+    \ifdefined\DBKEmptyPagePicture
+      \noindent
+      \begin{minipage}[c][\textheight][c]{\textwidth}
+      \centering\includegraphics[width=0.3\textwidth]{\DBKEmptyPagePicture}
+      \end{minipage}
+    \else
+      \hbox{}
+    \fi
+    \newpage
+  \fi
+}
+
+\newbox\Freeb@xa
+\newcommand*\chaptertitle{}
+\renewcommand\chapter{%
+  \@ifstar
+  {\starchapter}%
+  {%
+    \if@mainmatter
+      \let\next\mainchapter
+    \else\if@frontmatter
+      \let\next\frontchapter
+    \else
+      \let\next\backchapter
+    \fi\fi
+    \next
+  }%
+}
+\newcommand\mainchapter[1]{%
+  % #1 = titre de chapitre
+  %
+  \pagestyle{normal}
+  \clearevendoublepage
+  \thispagestyle{empty}
+  % On sauvegarde le titre (pour les en-têtes)
+  \renewcommand*\chaptertitle{#1}%
+  % Traitement des keywords
+  \rput[t](\the\dimexpr -\outermargin+3cm,0){%
+    \begin{minipage}[t]{3cm}
+      \titremotsclesfont
+      \raggedleft\par
+      \@keywordsname\par
+      \hrulefill\par\vspace{-0.9\baselineskip}
+      \hrulefill\par
+      \motsclesfont
+      \count@ \z@
+      \loop
+        \@nameuse{KW\the\count@}\par
+        \advance\count@ \@ne
+      \unless\ifnum\count@>\nbkeywords
+      \repeat
+      \vspace{-0.3\baselineskip}
+      \hrulefill\par\vspace{-0.9\baselineskip}
+      \hrulefill\par
+    \end{minipage}
+  }
+  % traitement du bandeau gris avec l'image
+  % Largeur de l'image incluse
+  \setlength{\PictureWidth}{\dimexpr \paperwidth-5cm}
+  % On ajoute le débord pour le bandeau gris
+  \setlength{\FrameWidth}{\PictureWidth+\overflowmargin}
+  \rput(\the\dimexpr -\outermargin+5cm,0){%
+    % bandeau gris
+    \psframe*[linecolor=shadecolor]
+             (0,\the\dimexpr \headsep+\headheight+\topmargin+\topskip+1in+\overflowmargin)
+             (\FrameWidth,\the\dimexpr -\paperheight+\headsep+\headheight+\topmargin+\topskip+1in-\overflowmargin)
+    % Image
+    \rput[tl](0,0){\includegraphics[width=\PictureWidth,keepaspectratio]{\@chapterimage}}
+  }
+  \clearpage
+  % page impaire
+  \refstepcounter{chapter}
+  % Mise dans la toc seulement ici pour avoir le bon numéro de page
+  \addcontentsline{toc}{chapter}{\thechapter. #1}%
+  % Même bandeau en haut de page que la précédente. Les marges
+  % changent. On passe de 8cm à gauche à 1.5cm (6.5cm de différence)
+  \thispagestyle{empty}
+  \sbox\Freeb@xa{\chapternamefont \interletter{\@chapapp}\unskip}%
+  \hspace*{\stretch{1}}%
+  \makebox[\wd\Freeb@xa]{%
+    \begin{minipage}{\wd\Freeb@xa}
+      \chapternamefont \interletter{\@chapapp}\unskip\par
+      \kern3pt
+      \hrule height \dblerulewidth
+      \kern\dblerulesep
+      \hrule height \dblerulewidth
+      \kern24pt
+      \hbox to \wd\Freeb@xa{\hss\chapternumfont \thechapter}%
+      \kern24pt
+      \hrule height \dblerulewidth
+      \kern\dblerulesep
+      \hrule height \dblerulewidth
+    \end{minipage}\hss
+  }\par
+  \kern-59pt
+  \sbox\Freeb@xa{%
+    \begin{minipage}[t]{\dimexpr \linewidth-\wd\Freeb@xa-1cm}
+      \raggedleft\chapterfont\strut #1\strut
+    \end{minipage}
+  }
+  \ifdim\dp\Freeb@xa>\chapterbaseline
+    \box\Freeb@xa\par
+  \else
+    \box\Freeb@xa\par\vspace{\chapterbaseline}
+  \fi
+  \makebox[\linewidth]{%
+    \begin{minipage}{\linewidth}
+      \hspace*{\stretch{1}}{\minitocnamefont \minitocname\strut}\par
+      \hrule height \dblerulewidth
+      \kern\dblerulesep
+      \hrule height \dblerulewidth
+      \kern12pt
+      \displaytc\par
+      \kern12pt
+      \hrule height \dblerulewidth
+      \kern\dblerulesep
+      \hrule height \dblerulewidth
+    \end{minipage}\hss
+  }
+  \par
+  \@highlights
+  \clearpage
+}
+\newcommand\frontchapter[1]{%
+  % #1 = titre
+  %
+  \pagestyle{normal}
+  \clearemptydoublepage
+  \thispagestyle{empty}
+  \ifnum\value{tocdepth}>-1
+    \addcontentsline{toc}{chapter}{#1}%
+  \fi
+  % On sauvegarde le titre (pour les en-têtes)
+  \renewcommand*\chaptertitle{#1}%
+  \thispagestyle{empty}
+  \hrule height \dblerulewidth
+  \kern\dblerulesep
+  \hrule height \dblerulewidth
+  \kern12pt
+  {\chapterfont \raggedleft \strut #1\strut\par}
+  \kern12pt
+  \hrule height \dblerulewidth
+  \kern\dblerulesep
+  \hrule height \dblerulewidth
+  % On commence le texte après !
+  \par\vspace{1cm}
+}
+\newcommand\backchapter[1]{%
+  % #1 = titre de chapitre
+  %
+  \pagestyle{endbook}
+  \clearemptydoublepage
+  \thispagestyle{chapterendbook}
+  \refstepcounter{chapter}
+  \addcontentsline{toc}{chapter}{\thechapter. #1}%
+  \renewcommand*\chaptertitle{#1}%
+  \sbox\Freeb@xa{\chapternamefont \interletter{\@chapapp}\unskip}%
+  \hspace*{\stretch{1}}%
+  \makebox[\wd\Freeb@xa]{%
+    \begin{minipage}{\wd\Freeb@xa}
+      \chapternamefont \interletter{\@chapapp}\unskip\par
+      \kern3pt
+      \hrule height \dblerulewidth
+      \kern\dblerulesep
+      \hrule height \dblerulewidth
+      \kern24pt
+      \hbox to \wd\Freeb@xa{\hss\chapternumfont \thechapter}%
+      \kern24pt
+      \hrule height \dblerulewidth
+      \kern\dblerulesep
+      \hrule height \dblerulewidth
+    \end{minipage}\hss
+  }\par
+  \kern-59pt
+  \sbox\Freeb@xa{%
+    \begin{minipage}[t]{\dimexpr \linewidth-\wd\Freeb@xa-1cm}
+      \raggedleft \chapterfont \strut #1 \strut
+    \end{minipage}
+  }
+  \ifdim\dp\Freeb@xa>\chapterbaseline
+    \box\Freeb@xa\par
+  \else
+    \box\Freeb@xa\par\vspace{\chapterbaseline}
+  \fi
+  \makebox[\linewidth]{%
+    \begin{minipage}{\linewidth}
+      \hspace*{\stretch{1}}{\minitocnamefont \minitocname\strut}\par
+      \hrule height \dblerulewidth
+      \kern\dblerulesep
+      \hrule height \dblerulewidth
+      \kern12pt
+      \displaytc\par
+      \kern12pt
+      \hrule height \dblerulewidth
+      \kern\dblerulesep
+      \hrule height \dblerulewidth
+    \end{minipage}\hss
+  }
+  \par\vspace{1.5cm}
+}
+\newcommand\starchapter[1]{%
+  % #1 = titre
+  %
+  \pagestyle{special}
+  \clearemptydoublepage
+  \thispagestyle{empty}
+  % On sauvegarde le titre (pour les en-têtes)
+  \renewcommand*\chaptertitle{#1}%
+  \if@backmatter
+    % Mise dans la toc (on met tout le backmatter dans la TOC)
+    \addcontentsline{toc}{chapter}{#1}%
+  \fi
+  \thispagestyle{empty}
+  \hrule height \dblerulewidth
+  \kern\dblerulesep
+  \hrule height \dblerulewidth
+  \kern12pt
+  {\chapterfont \raggedleft \strut #1\strut\par}
+  \kern12pt
+  \hrule height \dblerulewidth
+  \kern\dblerulesep
+  \hrule height \dblerulewidth
+  % On commence le texte après !
+  \par\vspace{1cm}
+}
+
+% Macro pour composer les numéros de section dans la TDM
+\def\numberline#1{\textcolor{textgray}{#1}~}
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\bfseries\sffamily}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\large\sffamily}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\itshape\sffamily}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {3.25ex \@plus1ex \@minus.2ex}%
+                                    {-1em}%
+                                    {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                       {3.25ex \@plus1ex \@minus .2ex}%
+                                       {-1em}%
+                                      {\normalfont\normalsize\bfseries}}
+
+\newwrite\tc
+\newcommand\displaytc{%
+  \begingroup
+  \immediate\closeout\tc
+  \makeatletter
+  \par
+  {%
+    \raggedleft
+    \@input{\jobname.toc\thechapter}%
+    \unskip\par
+  }%
+  \immediate\openout\tc \jobname.toc\thechapter\relax
+  \@nobreakfalse
+  \endgroup
+}
+\long\def\addtotc#1{%
+  \protected@write\tc
+  {%
+    \let\label\@gobble
+    \let\index\@gobble
+    \let\glossary\@gobble
+    \let\\\space
+  }{#1}%
+}
+% On respecte tocdepth pour l'ajout des entrées dans la TDM
+% On incrémente les compteurs de sections même si le numéro n'est pas
+% affiché dans les titres.
+% TODO: intégrer la numérotation dans le titre affiché
+\def\@sect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \refstepcounter{#1}%
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+    \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #6{%
+        \@hangfrom{\hskip #3\relax\@svsec}%
+        \interlinepenalty \@M #8\@@par
+      }%
+    \endgroup
+    \csname #1mark\endcsname{#7}%
+    \ifnum#2>\value{tocdepth}\else
+      \addcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\csname the#1\endcsname}%
+        \fi
+        #7}%
+    \fi
+    \ifnum #2=1
+      % Ajout dans la minitoc de chapitre
+      \addtotc{%
+        \hspace{2em}%
+        \mbox{%
+          \minitocfont #7
+          \foliominitocfont \thepage
+        }%
+      }%
+    \fi
+  \else
+   \def\@svsechd{%
+      #6{\@svsec #8}%
+      \csname #1mark\endcsname{#7}%
+      \ifnum#2>\value{tocdepth}\else
+        \addcontentsline{toc}{#1}{
+          \ifnum #2>\c@secnumdepth \else
+            \protect\numberline{\csname the#1\endcsname}%
+          \fi
+          #7}%
+      \fi
+      \ifnum #2=1
+        \addtocontents{toc\thechapter}{#7\par\smallskip}%
+      \fi
+    }%
+  \fi
+  \@xsect{#5}%
+}
+
+\newcommand\setchapterimage{%
+  \begingroup
+  \catcode`\%=12
+  \setch@pterimage
+}
+\newcommand*\setch@pterimage[1]{%
+  \gdef\@chapterimage{#1}%
+  \endgroup
+}
+
+\newcount\nbkeywords
+\def\stop{\endkeywords}
+\def\keywords{%
+  \nbkeywords \z@
+  \keyw@rds
+}
+\def\keyw@rds#1{%
+  \def\arg{#1}%
+  \unless\ifx\arg\stop
+    \advance\nbkeywords \@ne
+    \@namedef{KW\the\nbkeywords}{#1}%
+    \expandafter\keyw@rds
+  \fi
+}
+\def\keywordsname#1{\def\@keywordsname{#1}}
+
+% Affichage de l'index
+\renewenvironment{theindex}
+{%
+  \if@twocolumn
+    \@restonecolfalse
+  \else
+    \@restonecoltrue
+  \fi
+  \twocolumn[\chapter*{\indexname}]%
+  \gdef\chaptertitle{\indexname}%
+  \thispagestyle{chapterendbook}%
+  \pagestyle{endbook}%
+  \@mkboth{\MakeUppercase\indexname}%
+  {\MakeUppercase\indexname}%
+  \parindent\z@
+  \parskip\z@ \@plus .3\p@\relax
+  \columnseprule \z@
+  \columnsep 35\p@
+  \let\item\@idxitem
+}
+{\if@restonecol\onecolumn\else\clearpage\fi}
+
+% remplissage/débuggage 
+\def\DBKedition#1{}
+\def\DBKreference#1{}
+\def\DBKindexation#1{}

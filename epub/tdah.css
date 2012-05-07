@@ -1,0 +1,29 @@
+/* Styles of sidebars */
+hr.delimit-sidebar {
+    /* Old readers with limited CSS knowledge will display them
+     * while modern readers will hide them but will show the improved
+     * CSS. */
+    display: none;
+}
+
+div.sidebar {
+    border: 2px solid #aaaaaa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 90%;
+    background-color: #eeeeee;
+}
+
+div.sidebar > div.titlepage {
+    border-bottom: 1px solid black;
+}
+
+/* Styles of block URLs */
+div.url {
+    margin-top: 0.5em;
+}
+div.url + div.url {
+    margin-top: 0;
+}
+
