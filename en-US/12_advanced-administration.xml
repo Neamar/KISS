@@ -2145,7 +2145,7 @@ lxc.network.hwaddr = 4a:49:43:49:79:20
 	<para>Now that our virtual machine image is ready, let's start the
 	container:</para>
 
-        <screen role="scale" width="65"><computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc
+        <screen><computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc
 </userinput><computeroutput>INIT: version 2.86 booting
 Activating swap...done.
 Cleaning up ifupdown....
@@ -3251,7 +3251,7 @@ load.info 5 minute load average
 	<filename>/var/cache/munin/www/</filename> are made available on a
 	website. Access to this website will often be restricted, using
 	either an authentication mechanism or IP-based access control. See
-	the <xref linkend="sect.http-web-server"/> for the relevant
+	<xref linkend="sect.http-web-server"/> for the relevant
 	details.</para>
       </section>
     </section>
@@ -3442,6 +3442,7 @@ define service{
     contact_groups        falcot-admins
     register              0
 }
+
 # Services to check on www-host
 define service{
     use                   falcot-service
@@ -3461,6 +3462,7 @@ define service{
     service_description   SMTP
     check_command         check_smtp
 }
+
 # Services to check on ftp-host
 define service{
     use                   falcot-service
