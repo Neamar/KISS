@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+DOCDIR=debian/debian-handbook/usr/share/doc/debian-handbook
+
+%:
+	dh $@ 
+
+override_dh_auto_build:
+	publican build --publish --formats=html --langs=en-US
+
+override_dh_auto_install:
+	mkdir -p $(DOCDIR)
+	mv publish/en-US/Debian/6.0/html/debian-handbook $(DOCDIR)/html
+
+override_dh_auto_clean:
+	publican clean

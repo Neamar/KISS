@@ -1,0 +1,14 @@
+Notes about the debian-handbook package
+---------------------------------------
+
+This package only provides the HTML version of the book to limit the
+package size. Providing other formats would double or triple its size.
+
+You can however download PDF and EPUB versions of this book on
+its website:
+http://debian-handbook.info/get/
+
+Alternatively you can build those files from sources. Download the source
+package with "apt-get source debian-handbook" and run dblatex/build.sh
+to build the PDF version or epub/build.sh to build the EPUB version.
+

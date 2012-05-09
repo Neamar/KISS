@@ -1,0 +1,28 @@
+Source: debian-handbook
+Section: doc
+Priority: optional
+Maintainer: Raphaël Hertzog <hertzog@debian.org>
+Build-Depends: debhelper (>= 9), publican, publican-debian, dbtoepub, dblatex
+Standards-Version: 3.9.3
+Homepage: http://debian-handbook.info
+Vcs-Git: git://anonscm.debian.org/debian-handbook/debian-handbook.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=debian-handbook/debian-handbook.git;a=summary
+
+Package: debian-handbook
+Architecture: all
+Depends: ${misc:Depends}
+Description: reference book for Debian users and system administrators
+ Accessible to all, the Debian Administrator's Handbook teaches the essentials
+ to anyone who wants to become an effective and independent Debian GNU/Linux
+ administrator.
+ .
+ It covers all the topics that a competent Linux administrator should master,
+ from the installation and the update of the system, up to the creation of
+ packages and the compilation of the kernel, but also monitoring, backup and
+ migration, without forgetting advanced topics like SELinux setup to secure
+ services, automated installations, or virtualization with Xen, KVM or LXC.
+ .
+ The Debian Administrator's Handbook has been written by two Debian
+ developers — Raphaël Hertzog and Roland Mas.
+ .
+ This package contains the English book covering Debian 6.0 “Squeeze”.
