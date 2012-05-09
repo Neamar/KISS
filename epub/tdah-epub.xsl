@@ -10,6 +10,11 @@
 <xsl:param name="section.autolabel">1</xsl:param>
 <xsl:param name="section.label.includes.component.label">1</xsl:param>
 <xsl:param name="section.autolabel.max.depth">4</xsl:param>
+<xsl:param name="ignore.image.scaling">1</xsl:param>
+<xsl:param name="toc.section.depth">1</xsl:param>
+
+<xsl:param name="make.clean.html">1</xsl:param>
+<xsl:param name="docbook.css.link">0</xsl:param>
 
 <!--
 Drop the first paragraph in a listitem because when converted to .mobi and
@@ -103,6 +108,16 @@ read on a Kindle, it introduces an unwanted empty line after the bullet.
       </xsl:element>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<!-- Drop subsections from preface -->
+
+<xsl:template match="preface" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+  <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
+    <xsl:with-param name="nodes" select="foo"/>
+  </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>

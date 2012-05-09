@@ -20,16 +20,19 @@ while true; do
     esac
 done
 
-#cp epub/tdah-epub.xsl epub/tdah.css tmp/$lang/xml/
-#cd tmp/$lang/xml/
 cd en-US
 
-echo "RUN: dbtoepub -s ../epub/tdah-epub.xsl -c ../epub/tdah-plain.css -o debian-handbook-plain.epub $OPTS debian-handbook.xml"
 dbtoepub -s ../epub/tdah-epub.xsl -c ../epub/tdah-plain.css -o debian-handbook-plain.epub $OPTS debian-handbook.xml
-echo "RUN: dbtoepub -s ../epub/tdah-epub.xsl -c ../epub/tdah.css $OPTS debian-handbook.xml"
-if dbtoepub -s ../epub/tdah-epub.xsl -c ../epub/tdah.css $OPTS debian-handbook.xml; then
-    echo "SUCCESS: en-US/debian-handbook.epub"
-else
-    echo "FAILURE"
-fi
+dbtoepub -s ../epub/tdah-epub.xsl -c ../epub/tdah.css $OPTS debian-handbook.xml
+ebook-convert debian-handbook-plain.epub debian-handbook.mobi \
+    --output-profile=kindle \
+    --chapter="/" \
+    --no-chapters-in-toc \
+    --isbn=979-10-91414-01-2 \
+    --tags=Debian,Linux,Computing,Administration \
+    --cover=images/cover.png \
+    --mobi-ignore-margins \
+    --margin-left=2 \
+    --margin-right=2
 
+echo "SUCCESS"
