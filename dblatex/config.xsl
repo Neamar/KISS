@@ -7,9 +7,6 @@
 ////// Update settings to customize the XSLT output to my taste //////
 -->
 
-<!-- Default values for us -->
-<xsl:param name="full.bleed">1</xsl:param>
-
 <!-- Disable annoying warnings -->
 <xsl:param name="output.quietly">1</xsl:param>
 <xsl:param name="keep.relative.image.uris" select="1"/>
