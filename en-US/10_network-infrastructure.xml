@@ -1257,9 +1257,9 @@ if_prefix=eth0
       <indexterm><primary>firewall</primary><secondary>IPv6</secondary></indexterm>
       <indexterm><primary><command>ip6tables</command></primary></indexterm>
 
-      <para>Native IPv6 (as opposed to a tunnel over IPv4) requires the
-      firewall to accept the traffic, which uses IP protocol number 41.
-      Connections can still be restricted, in the same fashion as for IPv4:
+      <para>IPv6 tunneling over IPv4 (as opposed to native IPv6) requires the
+      firewall to accept the traffic, which uses IPv4 protocol number 41.
+      IPv6 connections can be restricted, in the same fashion as for IPv4:
       the standard Debian kernels include an adaptation of
       <emphasis>netfilter</emphasis> for IPv6. This IPv6-enabled
       <emphasis>netfilter</emphasis> is configured in a similar fashion to
