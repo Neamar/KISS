@@ -74,18 +74,21 @@
     package. Details on configuring the keyboard layout are available in
     <xref linkend="section.config-clavier"/>.</para>
 
-    <para>The <emphasis role="pkg">xserver-xorg</emphasis> package provides
+    <para>The <emphasis role="pkg">xserver-xorg-core</emphasis> package provides
     a generic X server, as used by the 7.x versions of X.org. This server
     is modular and uses a set of independent drivers to handle the many
-    different kinds of video cards.</para>
+    different kinds of video cards. Installing <emphasis
+    role="pkg">xserver-xorg</emphasis> ensures that both the server and
+    at least one video driver are installed.</para>
     <indexterm><primary>server</primary><secondary>X</secondary></indexterm>
     <indexterm><primary><emphasis role="pkg">xserver-xorg</emphasis></primary></indexterm>
 
     <para>Note that if the detected video card is not handled by any of the
-    available drivers, X.org tries using the VESA driver. This is a generic
+    available drivers, X.org tries using the VESA and fbdev drivers. The former is a generic
     driver that should work everywhere, but with limited capabilities
     (fewer available resolutions, no hardware acceleration for games, and
-    so on). The X server writes its messages to the
+    so on) while the latter works on top of the kernel's framebuffer
+    device. The X server writes its messages to the
     <filename>/var/log/Xorg.0.log</filename> log file, which is where one
     would look to know what driver is currently in use. For example, the
     following snippet matches what the <literal>intel</literal> driver
@@ -132,7 +135,7 @@
       mention that the required information can only be gathered by reverse
       engineering, which makes things difficult. The free driver for ATI
       video cards, called “radeon”, is much better in that
-      regard.</para>
+      regard although it often requires a non-free firmware.</para>
       <indexterm><primary>ATI</primary></indexterm>
       <indexterm><primary>nVidia</primary></indexterm>
     </sidebar>
@@ -193,8 +196,8 @@
       choosing the former usually implies software selections from the
       latter. GNOME uses the <command>metacity</command> window manager,
       KDE uses <command>kwm</command> (<emphasis>KDE Window
-      Manager</emphasis>), and XFce (which we present later) has
-      <command>XFwm</command>. The Unix philosophy always allows using
+      Manager</emphasis>), and Xfce (which we present later) has
+      <command>xfwm</command>. The Unix philosophy always allows using
       one's window manager of choice, but following the recommendations
       allows an administrator to best take advantage of the integration
       efforts led by each project.</para>
