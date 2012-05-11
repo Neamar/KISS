@@ -1176,20 +1176,6 @@ iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-De
     network to be globally available, you must ensure that you have an
     IPv6-capable router relaying traffic to the global IPv6 network.</para>
 
-    <sidebar>
-      <title><emphasis>CULTURE</emphasis> The 6bone</title>
-      <indexterm><primary>6bone</primary></indexterm>
-
-      <para>During the experimental phase of the IPv6 protocol, a global
-      network infrastructure was set up to facilitate testing of the new
-      protocol. That network was known as the
-      <foreignphrase>6bone</foreignphrase>, a contraction of the 6 in IPv6
-      and the <emphasis>network backbone</emphasis>. This 6bone officially
-      disappeared on the 6th of June, 2006 (note the omnipresence of the
-      number 6), but the nickname is still used to refer to that part of
-      the Internet capable of handling IPv6.</para>
-    </sidebar>
-
     <example id="example.network-interfaces-ipv6">
       <title>Example of IPv6 configuration</title>
 
