@@ -1181,13 +1181,13 @@ iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-De
 
       <programlisting>
 iface eth0 inet6 static
-    address 3ffe:ffff:1234:5::1:1
+    address 2001:db8:1234:5::1:1
     netmask 64
     # Disabling auto-configuration
     # up echo 0 &gt;/proc/sys/net/ipv6/conf/all/autoconf
     # The router is auto-configured and has no fixed address
     # (/proc/sys/net/ipv6/conf/all/accept_ra). If it had:
-    # gateway 3ffe:ffff:1234:5::1
+    # gateway 2001:db8:1234:5::1
 </programlisting>
     </example>
 
