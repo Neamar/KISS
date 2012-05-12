@@ -5,11 +5,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-05-09T20:00:15\n"
-"PO-Revision-Date: 2012-05-09T20:00:15\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2012-05-12 18:57+0100\n"
+"Last-Translator: Isma <isma.deandres@gmail.com>\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
-"Content-Type: application/x-publican; charset=UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Tag: keyword
@@ -35,12 +35,12 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Boot Sector"
-msgstr ""
+msgstr "Sector de Arranque"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Hardware Detection"
-msgstr ""
+msgstr "Detección Hardware"
 
 #. Tag: para
 #, no-c-format
@@ -70,7 +70,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installer</primary>"
-msgstr ""
+msgstr "<primary>instalador</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -100,7 +100,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Installation Methods"
-msgstr ""
+msgstr "Métodos de Instalación"
 
 #. Tag: para
 #, no-c-format
@@ -115,7 +115,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>BIOS</primary>"
-msgstr ""
+msgstr "<primary>BIOS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -125,12 +125,12 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "BIOS (which stands for Basic Input/Output System) is a software that is included in the motherboard (the electronic board connecting all peripherals) and executed when the computer is booted, in order to load an operating system (via an adapted bootloader). It stays in the background to provide an interface between the hardware and the software (in our case, the Linux kernel)."
-msgstr ""
+msgstr "BIOS (que responde a las siglas de Sistema Básico de Entrada/Salida) es un software que se encuentra en la placa base (la placa electrónica que conecta todos los periféricos) y se ejecuta cuando el ordenador arranca, para poder cargar el sistema operativo (por medio de un cargador de arranque adaptado). Se mantiene en ejecución en segundo plano para proporcionar una interface entre el hardware y el software (en nuestro caso, el kernel de Linux)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing from a CD-ROM/DVD-ROM"
-msgstr ""
+msgstr "Instalación desde CD-ROM/DVD-ROM"
 
 #. Tag: para
 #, no-c-format
@@ -270,7 +270,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Other Installation Methods"
-msgstr ""
+msgstr "Otros Métodos de Instalación"
 
 #. Tag: para
 #, no-c-format
@@ -280,12 +280,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Installing, Step by Step"
-msgstr ""
+msgstr "Instalación, Paso a Paso"
 
 #. Tag: title
 #, no-c-format
 msgid "Booting and Starting the Installer"
-msgstr ""
+msgstr "Arranque e Inicio del Instalador"
 
 #. Tag: para
 #, no-c-format
@@ -305,12 +305,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PAE</primary>"
-msgstr ""
+msgstr "<primary>PAE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Physical Address Extension</primary>"
-msgstr ""
+msgstr "<primary>Extensión de las Direcciones Físicas</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -320,7 +320,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The fundamental difference between 32 and 64 bit systems is the size of memory addresses. In theory, a 32 bit system can not work with more than 4 GB of RAM (2<superscript>32</superscript> bytes). In practice, it is possible to work around this limitation by using the <literal>686-bigmem</literal> kernel variant, so long as the processor handles the PAE (Physical Address Extension) functionality. Using it does have a notable influence on system performance, however. This is why it is useful to use the 64 bit mode on a server with a large amount of RAM."
-msgstr ""
+msgstr "La diferencia fundamental entre los sistemas de 32 y 64 bits es el tamaño de las direcciones de memoria. En teoria, un sistema de 32 bits no puede direccionar más de 4 GB de RAM (2 <superscript>32</superscript> bytes). En la práctica, es posible superar esta limitación usando la variante del kernel <literal>686-bigmem</literal>, de esta forma el procesador se encarga de proporcionar la funcionalidad PAE (Extensión de Direcciones Físicas). Sin embargo, usar esta funcionalidad tiene un gran impacto en el performance del sistema. Por ello, es conveniente usar el modo de 64 bits en un servidor."
 
 #. Tag: para
 #, no-c-format
@@ -335,7 +335,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dual boot</primary>"
-msgstr ""
+msgstr "<primary>arranque dual</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -385,7 +385,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Boot screen"
-msgstr ""
+msgstr "Pantalla de arranque"
 
 #. Tag: para
 #, no-c-format
@@ -395,7 +395,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Selecting the language"
-msgstr ""
+msgstr "Selección del idioma"
 
 #. Tag: indexterm
 #, no-c-format
@@ -403,9 +403,9 @@ msgid "<primary>choice</primary><secondary>of language</secondary>"
 msgstr ""
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "The installation program begins in English, but the first step allows the user to choose the language that will be used in the rest of the process. Choosing French, for example, will provide an installation entirely translated into French (and a system configured in French as a result). This choice is also used to define more relevant default choices in subsequent stages (notably the keyboard layout)."
-msgstr ""
+msgstr "El programa de instalación comienza en inglés, pero en el primer paso del mismo se permite al usuario elegir el idioma que será usado durante el resto del proceso de instalación. Por ejemplo, al elegir el idioma francés el proceso de instalación será traducido a francés (y como resultado el sistema configurado en francés). Esta elección se utiliza para definir más opciones por defecto en las subsiguientes fases del proceso de instalación (la distribución del teclado). "
 
 #. Tag: title
 #, no-c-format
@@ -420,12 +420,12 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "In graphical mode, you can use the mouse."
-msgstr ""
+msgstr "En el modo gráfico, puede usar el ratón."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting the country"
-msgstr ""
+msgstr "Selección del país"
 
 #. Tag: indexterm
 #, no-c-format
@@ -550,7 +550,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Clock"
-msgstr ""
+msgstr "Configuración del Reloj"
 
 #. Tag: para
 #, no-c-format
@@ -560,7 +560,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Administrator Password"
-msgstr ""
+msgstr "Clave del Administrador"
 
 #. Tag: indexterm
 #, no-c-format
@@ -595,7 +595,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Creating the First User"
-msgstr ""
+msgstr "Creación del Primer Usuario"
 
 #. Tag: para
 #, no-c-format
@@ -605,12 +605,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Name of the first user"
-msgstr ""
+msgstr "Nombre del primer usuario"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Disks and Other Devices"
-msgstr ""
+msgstr "Detección de Discos y Otros Dispositivos"
 
 #. Tag: para
 #, no-c-format
@@ -740,7 +740,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Manual Partitioning"
-msgstr ""
+msgstr "Particionamiento Manual"
 
 #. Tag: indexterm
 #, no-c-format
@@ -785,7 +785,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "You can erase all partitions on a disk by selecting it."
-msgstr ""
+msgstr "Puede borrar todas las particiones en un disco al seleccionarlo."
 
 #. Tag: para
 #, no-c-format
@@ -800,7 +800,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mount point</primary>"
-msgstr ""
+msgstr "<primary>punto de montaje</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -825,7 +825,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>swap</primary>"
-msgstr ""
+msgstr "<primary>swap</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -835,7 +835,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>swap partition</primary>"
-msgstr ""
+msgstr "<primary>partición de swap</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -890,7 +890,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Software RAID</primary>"
-msgstr ""
+msgstr "<primary>Software RAID</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -925,7 +925,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Logical Volume Manager (LVM)"
-msgstr ""
+msgstr "Configuración del Gestor de Volúmenes Lógicos (LVM)"
 
 #. Tag: indexterm
 #, no-c-format
