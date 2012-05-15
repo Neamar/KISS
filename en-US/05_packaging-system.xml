@@ -717,7 +717,7 @@ Tag: admin::package-management, hardware::storage, hardware::storage:cd, interfa
           <listitem>
 	    <para>Still for an update, <command>dpkg</command> then
 	    executes <command>new-preinst
-	    upgrade<replaceable>old-version</replaceable></command>; for a
+	    upgrade <replaceable>old-version</replaceable></command>; for a
 	    first installation, it executes <command>new-preinst
 	    install</command>. It may add the old version in the last
 	    parameter, if the package has already been installed and
@@ -831,7 +831,7 @@ Tag: admin::package-management, hardware::storage, hardware::storage:cd, interfa
 	  recurring problem in Debian. All Debian packages unable to
 	  function without a minimum of configuration used to ask questions
 	  with calls to the <command>echo</command> and
-	  <command>read</command>commands in shell scripts such as
+	  <command>read</command> commands in shell scripts such as
 	  <filename>postinst</filename> and similar scripts. But this also
 	  means that during a large installation or update the user must
 	  stay with their computer to respond to various questions that may
