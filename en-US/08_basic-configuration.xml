@@ -350,7 +350,7 @@ $ </computeroutput><userinput>ls travail/</userinput>
       used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T
       depending on the throughput they can reliably provide (the T stands
       for “twisted pair”); those cables end in an RJ45 connector. There
-      are other cable types, used mostly for speeds in above
+      are other cable types, used mostly for speeds above
       1 Gb/s.</para>
       <indexterm><primary>IP address</primary></indexterm>
       <indexterm><primary>IP</primary><secondary>address</secondary></indexterm>
@@ -648,7 +648,7 @@ adsl:2345:respawn:/usr/sbin/pppd call dsl-provider
 
       <para>In order to do this, the program is structured in two parts: a
       daemon running as root handles activation and configuration of
-      network interfaces and a user interface controls this demon. Only
+      network interfaces and a user interface controls this daemon. Only
       members of the “netdev” group have permissions to control this
       program.</para>
 
@@ -1351,7 +1351,7 @@ nameserver 8.8.8.8
       <title><emphasis>TIP</emphasis> All shells configured identically</title>
 
       <para>Users often want to configure their login and interactive
-      shells in the same way. To do this, they choose to interpreter (or
+      shells in the same way. To do this, they choose to interpret (or
       “source”) the content from <filename>~/.bashrc</filename> in the
       <filename>~/.bash_profile</filename> file. It is possible to do the
       same with files common to all users (by calling
@@ -1479,7 +1479,7 @@ nameserver 8.8.8.8
 	<para>To take into account the characteristics of more and more
 	dynamic, modern computers, the kernel has, at some time, offered an
 	implementation of <filename>/dev/</filename> by a virtual
-	filesystem called <emphasis>defvs</emphasis>. In some cases, this
+	filesystem called <emphasis>devfs</emphasis>. In some cases, this
 	makes it easier to find files, since the naming convention uses a
 	hierarchal structure: the first partition of the master hard drive
 	on the first IDE bus was then represented by the file,
@@ -2504,7 +2504,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       <replaceable>target</replaceable> is one of the values described
       below.</para>
 
-      <para><command>make menuconfig</command> compiles and executes an
+      <para><command>make menuconfig</command> compiles and executes a
       text-mode interface (this is where the <emphasis
       role="pkg">libncurses5-dev</emphasis> package is required) which
       allows navigating the options available in a hierarchical structure.

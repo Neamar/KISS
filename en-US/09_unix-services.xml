@@ -82,7 +82,7 @@
       It includes all of the information necessary for the proper execution
       of the software (the code itself, but also the data that it has in
       memory, the list of files that it has opened, the network connections
-      it has established, etc.). A single program may be instanciated into
+      it has established, etc.). A single program may be instantiated into
       several processes, not necessarily running under different user
       IDs.</para>
     </sidebar>
@@ -977,7 +977,7 @@
       <para>The <literal>setgid</literal> bit also applies to directories.
       Any newly-created item in such directories is automaticallly assigned
       the owner group of the parent directory, instead of inheriting the
-      creator's main group as usual. This setup avoids the user to have to
+      creator's main group as usual. This setup avoids the user having to
       change its main group (with the <command>newgrp</command> command)
       when working in a file tree shared between several users of the same
       dedicated group.</para>
@@ -985,7 +985,7 @@
 
       <para>The “sticky” bit (symbolized by the letter “t”) is a
       permission that is only useful in directories. It is especially used
-      for temporary directories where everybody have write access (such as
+      for temporary directories where everybody has write access (such as
       <filename>/tmp/</filename>): it restricts deletion of files so that
       only their owner (or the owner of the parent directory) can do it.
       Lacking this, everyone could delete other users' files in
@@ -1957,7 +1957,7 @@ job 31 at Fri Jul 27 09:00:00 2012</computeroutput>
 
       <para><command>nice</command> works with levels of “niceness”:
       the positive levels (from 1 to 19) progressively lower the priority,
-      while the negative levels (from -1 to -20) will increate it — but
+      while the negative levels (from -1 to -20) will increase it — but
       only root can use these negative levels. Unless otherwise indicated
       (see the <citerefentry><refentrytitle>nice</refentrytitle>
       <manvolnum>1</manvolnum></citerefentry> manual page),
@@ -2067,7 +2067,7 @@ job 31 at Fri Jul 27 09:00:00 2012</computeroutput>
 
     <para>With the <command>edquota -t</command> command, you can define a
     maximum authorized “grace period” within which a soft limit may be
-    exceeded. After this period, the software limit will be treated like a
+    exceeded. After this period, the soft limit will be treated like a
     hard limit, and the user will have to reduce their disk space usage to
     within this limit in order to be able to write anything to the hard
     drive.</para>
@@ -2301,7 +2301,7 @@ exclude:
         <title><emphasis>GOING FURTHER</emphasis> Backing up SQL and LDAP services</title>
 
 	<para>Many services (such as SQL or LDAP databases) can not be
-	backed up by simply copying their files (unnless they are properly
+	backed up by simply copying their files (unless they are properly
 	interrupted during creation of the backups, which is frequently
 	problematic, since they are intended to be available at all times).
 	As such, it is necessary to use an “export” mechanism to create
