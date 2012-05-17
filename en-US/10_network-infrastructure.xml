@@ -590,7 +590,7 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
       <para>Both methods for creating a virtual private network over SSH
       are quite straightforward. However, the VPN they provide is not the
       most efficient available; in particular, it does not handle high
-      levels traffic very well.</para>
+      levels of traffic very well.</para>
 
       <para>The explanation is that when a TCP/IP stack is encapsulated
       within a TCP/IP connection (for SSH), the TCP protocol is used two
@@ -1620,7 +1620,7 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
 allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };
 </programlisting>
 
-      <para>Beware! An zone that can be modified <emphasis>will</emphasis>
+      <para>Beware! A zone that can be modified <emphasis>will</emphasis>
       be changed by <command>bind</command>, and the latter will overwrite
       its configuration files at regular intervals. Since this automated
       procedure produces files that are less human-readable than
