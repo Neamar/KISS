@@ -1659,7 +1659,7 @@ HostAliases="falcot.org"
         <title>The <filename>/etc/cron.d/awstats</filename> file</title>
 
         <programlisting>
-0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null 
+0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache2/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null 
 </programlisting>
       </example>
 
