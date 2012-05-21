@@ -430,7 +430,7 @@ smtpd_client_restrictions = permit_mynetworks,
 	last. Each rule can accept the message, reject it, or leave the
 	decision to a following rule. As a consequence, order matters, and
 	simply switching two rules can lead to a widely different
-	behaviour.</para>
+	behavior.</para>
 
 	<para>The <literal>permit_mynetworks</literal> directive, used as
 	the first rule, accepts all emails coming from a machine in the
@@ -988,7 +988,7 @@ SOCKET=inet:10002@127.0.0.1
       some important parameters can still be customized with
       <command>dpkg-reconfigure clamav-base</command>. Similarly, running
       <command>dpkg-reconfigure clamav-milter</command> allows defining the
-      mail filter's behaviour in some detail.</para>
+      mail filter's behavior in some detail.</para>
 
       <para>The last step involves telling Postfix to use the
       recently-configured filter. This is a simple matter of adding the
@@ -1007,7 +1007,7 @@ smtpd_milters = inet:[127.0.0.1]:10002
       <sidebar>
         <title><emphasis>IN PRACTICE</emphasis> Testing the antivirus</title>
 
-	<para>Once the antivirus is set up, its correct behaviour should be
+	<para>Once the antivirus is set up, its correct behavior should be
 	tested. The simplest way to do that is to send a test email with an
 	attachment containing the <filename>eicar.com</filename> (or
 	<filename>eicar.com.zip</filename>) file, which can be downloaded
@@ -1197,7 +1197,7 @@ relay_host = [mail.falcot.com]
 
 	<para>Another possibility is to use a dedicated MPM, such as the
 	one provided by <emphasis role="pkg">apache2-mpm-itk</emphasis>.
-	This particular one has a slightly different behaviour: it allows
+	This particular one has a slightly different behavior: it allows
 	“isolating” virtual hosts so that they each run as a different
 	user. A vulnerability in one website therefore cannot compromise
 	files belonging to the owner of another website.</para>
@@ -1259,7 +1259,7 @@ relay_host = [mail.falcot.com]
       (which only works in version 1.1 of the HTTP protocol — fortunately
       that version is old enough that all clients use it already).</para>
 
-      <para>The (increasing) scarcity of IPv4 addresses usually favours the
+      <para>The (increasing) scarcity of IPv4 addresses usually favors the
       second method; however, it is made more complex if the virtual hosts
       need to provide HTTPS too, since the SSL protocol hasn't always
       provided for name-based virtual hosting; the SNI extension
@@ -1963,7 +1963,7 @@ options lockd nlm_udpport=2045 nlm_tcpport=2045
       <para>In order to not give root access to the filesystem to any NFS
       client, all queries appearing to come from a root user are considered
       by the server as coming from the <literal>anonymous</literal> user.
-      This behaviour corresponds to the <literal>root_squash</literal>
+      This behavior corresponds to the <literal>root_squash</literal>
       option, and is enabled by default. The
       <literal>no_root_squash</literal> option, which disables this
       behavior, is risky and should only be used in controlled

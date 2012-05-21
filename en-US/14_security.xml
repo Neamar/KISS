@@ -281,7 +281,7 @@
       a packet, the firewall scans the appropriate chain, one rule after
       another; when the conditions for one rule are met, it “jumps”
       (hence the <literal>-j</literal> option in the commands) to the
-      specified action to continue processing. The most common behaviours
+      specified action to continue processing. The most common behaviors
       are standardized, and dedicated actions exist for them. Taking one of
       these standard actions interrupts the processing of the chain, since
       the packet's fate is already sealed (barring an exception mentioned
@@ -642,7 +642,7 @@ iface eth0 inet static
     restricted to guaranteeing data confidentiality, but it also includes
     ensuring availability of the services. It is therefore imperative to
     check that everything works as expected, and to detect in a timely
-    manner any deviant behaviour or change in quality of the service(s)
+    manner any deviant behavior or change in quality of the service(s)
     rendered. Monitoring activity can enable the detection of intrusion
     attempts and enable a swift reaction before they cause grave
     consequences. This section reviews some tools that can be used to
@@ -968,7 +968,7 @@ iface eth0 inet static
         </sidebar>
 
 	<para>Many options in <filename>/etc/default/aide</filename> can be
-	used to tweak the behaviour of the <emphasis
+	used to tweak the behavior of the <emphasis
 	role="pkg">aide</emphasis> package. The AIDE configuration proper
 	is stored in <filename>/etc/aide/aide.conf</filename> and
 	<filename>/etc/aide/aide.conf.d/</filename> (actually, these files
@@ -1468,7 +1468,7 @@ user_u          user       s0         s0               user_r
 	tcp 8080</command>.</para>
 
 	<para>Some SELinux modules export boolean options that you can
-	tweak to alter the behaviour of the default rules. The
+	tweak to alter the behavior of the default rules. The
 	<command>getsebool</command> utility can be used to inspect those
 	options (<command>getsebool
 	<replaceable>boolean</replaceable></command> displays one option,
@@ -1751,7 +1751,7 @@ files_tmp_filetrans(myapp_t,myapp_tmp_t,file)
 	<para>However, an empirical approach is possible. Once the
 	relevant objects are correctly labeled, you can use the
 	application in permissive mode: the operations that would be
-	forbidden are logged but still succeed. By analysing the logs, you
+	forbidden are logged but still succeed. By analyzing the logs, you
 	can now identify the operations to allow. Here is an example of
 	such a log entry:</para>
 
@@ -2011,7 +2011,7 @@ files_tmp_filetrans(myapp_t,myapp_tmp_t,file)
       of the active connections, and so on. Using the root permissions, the
       attacker was able to observe the whole system, but didn't find
       important data; so they will try accessing other machines in the
-      corporate network. Analysing the administrator's account and the
+      corporate network. Analyzing the administrator's account and the
       history files, the attacker finds what machines are routinely
       accessed. By replacing <command>sudo</command> or
       <command>ssh</command> with a subverted program, the attacker can
@@ -2276,7 +2276,7 @@ files_tmp_filetrans(myapp_t,myapp_tmp_t,file)
       <sidebar>
         <title><emphasis>CAUTION</emphasis> Hot analysis</title>
 
-	<para>While it may seem tempting to analyse the system as it runs,
+	<para>While it may seem tempting to analyze the system as it runs,
 	especially when the server is not physically reachable, this is
 	best avoided: quite simply you can't trust the programs currently
 	installed on the compromised system. It's quite possible for a
