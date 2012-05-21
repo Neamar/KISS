@@ -64,7 +64,7 @@
 
       <para>In some configurations, the BIOS may be configured not to
       execute the MBR, but to seek its equivalent on the network, making it
-      posssible to build computers without a hard drive, or which are
+      possible to build computers without a hard drive, or which are
       completely reinstalled on each boot. This option is not available on
       all hardware and it generally requires an appropriate combination of
       BIOS and network card.</para>
@@ -975,7 +975,7 @@
       <title><emphasis>SECURITY</emphasis> <literal>setgid</literal> directory and <emphasis>sticky bit</emphasis></title>
 
       <para>The <literal>setgid</literal> bit also applies to directories.
-      Any newly-created item in such directories is automaticallly assigned
+      Any newly-created item in such directories is automatically assigned
       the owner group of the parent directory, instead of inheriting the
       creator's main group as usual. This setup avoids the user having to
       change its main group (with the <command>newgrp</command> command)
@@ -1076,7 +1076,7 @@
       represents a right to execute which applies only to directories (and
       not to files lacking this right). Thus, <command>chmod -R a+X
       <replaceable>directory</replaceable></command> will only add execute
-      rights for all categoties of users (<literal>a</literal>) for all of
+      rights for all categories of users (<literal>a</literal>) for all of
       the sub-directories and files for which at least one category of user
       (even if their sole owner) already has execute rights.</para>
     </sidebar>
@@ -2395,7 +2395,7 @@ exclude:
 	manner; on first boot (and, more generally, each time that a new
 	network card appears) it uses the name of the network interface and
 	its MAC address to create new rules that will reassign the same
-	name on subsequents boots. These rules are stored in
+	name on subsequent boots. These rules are stored in
 	<filename>/etc/udev/rules.d/70-persistent-net.rules</filename>.</para>
 
 	<para>This mechanism has some side effects that you should know

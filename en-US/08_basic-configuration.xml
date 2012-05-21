@@ -84,7 +84,7 @@
 
 	<para>Historically, each locale has an associated “character
 	set” (group of known characters) and a preferred “encoding”
-	(internal representationfor characters within the computer).</para>
+	(internal representation for characters within the computer).</para>
 
 	<para>The <emphasis>ISO-8859-1</emphasis> (or “Latin 1”)
 	encoding, for instance, was used preferentially in France. But for
@@ -769,7 +769,7 @@ adsl:2345:respawn:/usr/sbin/pppd call dsl-provider
         <indexterm><primary>DNS</primary></indexterm>
         <indexterm><primary>Domain Name Service</primary></indexterm>
 
-	<para>DNS (Domain Name Service) is a distributed and hierarchal
+	<para>DNS (Domain Name Service) is a distributed and hierarchical
 	service mapping names to IP addresses, and vice-versa.
 	Specifically, it can turn a human-friendly name such as
 	<literal>www.eyrolles.com</literal> into the actual IP address,
@@ -1481,7 +1481,7 @@ nameserver 8.8.8.8
 	implementation of <filename>/dev/</filename> by a virtual
 	filesystem called <emphasis>devfs</emphasis>. In some cases, this
 	makes it easier to find files, since the naming convention uses a
-	hierarchal structure: the first partition of the master hard drive
+	hierarchical structure: the first partition of the master hard drive
 	on the first IDE bus was then represented by the file,
 	<filename>/dev/ide/host0/bus0/target0/lun0/part1</filename>. Not
 	only were these naming conventions not very intuitive, but they
@@ -1639,7 +1639,7 @@ mirexpress:/dev/disk/by-id# </computeroutput>
 boot=/dev/sda
 # the partition that contains Debian
 root=/dev/sda2
-# the item to be loaded by defaul
+# the item to be loaded by default
 default=Linux
 
 # the most recent kernel image
@@ -1927,7 +1927,7 @@ macosx=/dev/sda5
 	doesn't need access to hardware variables. However, since it only
 	exists in live memory, it is zeroed out every time the machine is
 	booted, contrary to the CMOS clock, which has a battery and
-	therefores “survives” rebooting or halting of the machine. The
+	therefore “survives” rebooting or halting of the machine. The
 	system clock is, thus, set from the CMOS clock during boot, and the
 	CMOS clock is updated on shutdown (to take into account possible
 	changes or corrections if it has been improperly adjusted).</para>

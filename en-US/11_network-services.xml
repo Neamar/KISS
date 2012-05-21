@@ -728,7 +728,7 @@ body_checks = regexp:/etc/postfix/body_checks
 
 	  <para>The <emphasis>regular expression</emphasis> term (shortened
 	  to <emphasis>regexp</emphasis> or <emphasis>regex</emphasis>)
-	  references a generic notation for expressing a descrition of the
+	  references a generic notation for expressing a description of the
 	  contents and/or structure of a string of characters. Certain
 	  special characters allow defining alternatives (for instance,
 	  <literal>foo|bar</literal> matches either “foo” or
@@ -1255,7 +1255,7 @@ relay_host = [mail.falcot.com]
       on the domain name of the web server. The first method requires
       allocating a different IP address (or port) for each site, whereas
       the second one can work on a single IP address (and port), and the
-      sites are differenciated by the hostname sent by the HTTP client
+      sites are differentiated by the hostname sent by the HTTP client
       (which only works in version 1.1 of the HTTP protocol — fortunately
       that version is old enough that all clients use it already).</para>
 
@@ -1265,7 +1265,7 @@ relay_host = [mail.falcot.com]
       provided for name-based virtual hosting; the SNI extension
       (<emphasis>Server Name Indication</emphasis>) that allows such a
       combination is not handled by all browsers. When several HTTPS sites
-      need to run on the same server, they will usually be differenciated
+      need to run on the same server, they will usually be differentiated
       either by running on a different port or on a different IP address
       (IPv6 can help there).</para>
 
@@ -1451,7 +1451,7 @@ DirectoryIndex index.php index.html index.htm
 	  directive</primary></indexterm></para>
         </listitem>
         <listitem>
-	  <para><literal>MultiViews</literal> enables content negociation;
+	  <para><literal>MultiViews</literal> enables content negotiation;
 	  this can be used by the server to return a web page matching the
 	  preferred language as configured in the browser.
 	  <indexterm><primary><literal>MultiViews</literal>, Apache
@@ -1955,7 +1955,7 @@ options lockd nlm_udpport=2045 nlm_tcpport=2045
       this can be disabled with the <literal>async</literal> option.
       Asynchronous writes increase performance a bit, but they decrease
       reliability since there's a data loss risk in case of the server
-      crashing between the acknowledgement of the write and the actual
+      crashing between the acknowledgment of the write and the actual
       write on disk. Since the default value changed recently (as compared
       to the historical value of NFS), an explicit setting is
       recommended.</para>

@@ -811,7 +811,7 @@ option /etc/ppp/pptpd-options
 #
 #       Specifies the local and remote IP address ranges.
 #
-#       You can specify single IP addresses seperated by commas or you can
+#       You can specify single IP addresses separated by commas or you can
 #       specify ranges, or both. For example:
 #
 #               192.168.0.234,192.168.0.245-249,192.168.0.254
@@ -1093,7 +1093,7 @@ iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-De
 
       <para>Dynamic routing allows routers to adjust, in real time, the
       paths used for transmitting IP packets. Each protocol involves its
-      own method of defining routes (shortest path, use routes advertized
+      own method of defining routes (shortest path, use routes advertised
       by peers, and so on).</para>
 
       <para>In the Linux kernel, a route links a network device to a set of
@@ -1379,7 +1379,7 @@ if_prefix=eth0
       of version, have the same structure.</para>
 
       <para>The Falcot administrators created a primary
-      <literal>falcot.com</literal> zone to store informations related to
+      <literal>falcot.com</literal> zone to store information related to
       this domain, and a <literal>168.192.in-addr.arpa</literal> zone for
       reverse mapping of IP addresses in the local networks.</para>
 
@@ -1848,7 +1848,7 @@ Nmap done: 1 IP address (1 host up) scanned in 21.32 seconds
         </mediaobject>
       </figure>
 
-      <para>In our example, the packets travelling over SSH are filtered
+      <para>In our example, the packets traveling over SSH are filtered
       out (with the <literal>!tcp.port == 22</literal> filter). The packet
       currently displayed was developed at the TCP and HTTP layers.</para>
 

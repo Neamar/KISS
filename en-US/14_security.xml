@@ -68,7 +68,7 @@
 
     <para>The term “risk” is customarily used to refer collectively to
     these three factors: what to protect, what needs to be prevented from
-    happening, and who will try to make it happen. Modelling the risk
+    happening, and who will try to make it happen. Modeling the risk
     requires answers to these three questions. From this risk model, a
     security policy can be constructed, and the policy can be implemented
     with concrete actions.</para>
@@ -94,7 +94,7 @@
     amount of inconvenience imposed on system users or performance
     degradation.</para>
 
-    <para>Once the risk has been modelled, one can start thinking about
+    <para>Once the risk has been modeled, one can start thinking about
     designing an actual security policy.</para>
 
     <sidebar>
@@ -465,11 +465,11 @@
 	to the <literal>-p</literal> option and it can be applied to all
 	other conditions too.</para>
 
-	<para>The <literal>-s <replaceable>adress</replaceable></literal>
+	<para>The <literal>-s <replaceable>address</replaceable></literal>
 	or <literal>-s <replaceable>network/mask</replaceable></literal>
 	condition matches the source address of the packet.
 	Correspondingly, <literal>-d
-	<replaceable>adress</replaceable></literal> or <literal>-d
+	<replaceable>address</replaceable></literal> or <literal>-d
 	<replaceable>network/mask</replaceable></literal> matches the
 	destination address.</para>
 
@@ -510,7 +510,7 @@
           </listitem>
           <listitem>
 	    <para><literal>--log-prefix</literal> allows specifying a text
-	    prefix to differenciate between logged messages;</para>
+	    prefix to differentiate between logged messages;</para>
           </listitem>
           <listitem>
 	    <para><literal>--log-tcp-sequence</literal>,
@@ -689,7 +689,7 @@ iface eth0 inet static
 	  directory);</para>
         </listitem>
         <listitem>
-	  <para>those cancelling such a qualification
+	  <para>those canceling such a qualification
 	  (<filename>/etc/logcheck/cracking.ignore.d/</filename>);</para>
         </listitem>
         <listitem>
@@ -697,7 +697,7 @@ iface eth0 inet static
 	  (<filename>/etc/logcheck/violations.d/</filename>);</para>
         </listitem>
         <listitem>
-	  <para>those cancelling this classification
+	  <para>those canceling this classification
 	  (<filename>/etc/logcheck/violations.ignore.d/</filename>);</para>
         </listitem>
         <listitem>
@@ -904,7 +904,7 @@ iface eth0 inet static
 	<para>The first drawback can be avoided by asking
 	<command>debsums</command> to base its checks on a
 	<filename>.deb</filename> package instead of relying on the
-	<filename>md5sums</filename> file. But that requires dowloading the
+	<filename>md5sums</filename> file. But that requires downloading the
 	matching <filename>.deb</filename> files first:</para>
 
         <screen>
@@ -1017,7 +1017,7 @@ iface eth0 inet static
 	  <para>The <emphasis role="pkg">chkrootkit</emphasis> and
 	  <emphasis role="pkg">rkhunter</emphasis> packages allow looking
 	  for <emphasis>rootkits</emphasis> potentially installed on the
-	  system. As a reminder, these are pieces of sofware designed to
+	  system. As a reminder, these are pieces of software designed to
 	  hide the compromise of a system while discreetly keeping control
 	  of the machine. The tests are not 100% reliable, but they can
 	  usually draw the administrator's attention to potential
@@ -1179,9 +1179,9 @@ iface eth0 inet static
       <emphasis>objects</emphasis> (files, directories, sockets, devices,
       etc.). They can vary from object to object. To achieve this, each
       object is associated to a <emphasis>type</emphasis> (this is known as
-      labelling). Domain's rights are thus expressed with sets of
+      labeling). Domain's rights are thus expressed with sets of
       (dis)allowed operations on those types (and, indirectly, on all
-      objects which are labelled with the given type).</para>
+      objects which are labeled with the given type).</para>
 
       <sidebar>
         <title><emphasis>EXTRA</emphasis> Domains and types are equivalent</title>
@@ -1194,8 +1194,8 @@ iface eth0 inet static
       <para>By default, a program inherits its domain for the user who
       started it but the standard SELinux policies expect many important
       programs to run in dedicated domains. To achieve this, those
-      executables are labelled with a dedicated type (for example
-      <command>ssh</command> is labelled with
+      executables are labeled with a dedicated type (for example
+      <command>ssh</command> is labeled with
       <literal>ssh_exec_t</literal>, and when the program starts, it
       automatically switches in the <literal>ssh_t</literal> domain). This
       automatic domain transition mechanism makes it possible to grant only
@@ -1294,9 +1294,9 @@ iface eth0 inet static
       reboot.</para>
 
       <para>It is worth noting that the <command>selinux-activate</command>
-      script automates those operations and forces a labelling on next boot
+      script automates those operations and forces a labeling on next boot
       (which avoids new non-labeled files created while SELinux was not yet
-      active and while the labelling was going on).</para>
+      active and while the labeling was going on).</para>
     </section>
     <section id="section.selinux-gestion">
       <title>Managing an SELinux System</title>
@@ -1516,7 +1516,7 @@ user_u          user       s0         s0               user_r
       defines the rules. The <filename>.fc</filename> file defines the
       “file contexts”, that is the types assigned to files related to
       this module. The data within the <filename>.fc</filename> file are
-      used during the file labelling step. Finally, the
+      used during the file labeling step. Finally, the
       <filename>.if</filename> file defines the interface of the module:
       it's a set of “public functions” that other modules can use to
       properly interact with the module that you're creating.</para>
@@ -1708,7 +1708,7 @@ files_tmp_filetrans(myapp_t,myapp_tmp_t,file)
           <callout arearefs="example.te.interface">
 	    <para><literal>logging_log_file</literal> is an interface
 	    provided by the reference policy. It indicates that files
-	    labelled with the given type are log files which ought to
+	    labeled with the given type are log files which ought to
 	    benefit from the associated rules (for example granting rights
 	    to <command>logrotate</command> so that it can manipulate
 	    them).</para>
@@ -1748,8 +1748,8 @@ files_tmp_filetrans(myapp_t,myapp_tmp_t,file)
 	application works and of what kind of data it manages and/or
 	generates.</para>
 
-	<para>Howevever, an empirical approach is possible. Once the
-	relevant objects are correctly labelled, you can use the
+	<para>However, an empirical approach is possible. Once the
+	relevant objects are correctly labeled, you can use the
 	application in permissive mode: the operations that would be
 	forbidden are logged but still succeed. By analysing the logs, you
 	can now identify the operations to allow. Here is an example of
@@ -1781,7 +1781,7 @@ files_tmp_filetrans(myapp_t,myapp_tmp_t,file)
                 <entry>
                   <computeroutput>{ read write }</computeroutput>
                 </entry>
-                <entry>This operation required the <literal>read</literal> and <literal>write</literal> permisions.</entry>
+                <entry>This operation required the <literal>read</literal> and <literal>write</literal> permissions.</entry>
               </row>
               <row>
                 <entry>
@@ -1842,7 +1842,7 @@ files_tmp_filetrans(myapp_t,myapp_tmp_t,file)
 	<command>audit2allow</command> command (of the <emphasis
 	role="pkg">policycoreutils</emphasis> package) offers. This
 	approach is only useful if the various objects are already
-	correctly labelled according to what must be confined. In any case,
+	correctly labeled according to what must be confined. In any case,
 	you will have to carefully review the generated rules and validate
 	them according to your knowledge of the application. Effectively,
 	this approach tends to grant more rights than are really required.
@@ -2076,7 +2076,7 @@ files_tmp_filetrans(myapp_t,myapp_tmp_t,file)
       used to get administrator privileges on the whole machine.</para>
 
       <para>By the same reasoning, firewalls will often be configured to
-      only allow access to services that are meant to be publically
+      only allow access to services that are meant to be publicly
       accessible.</para>
 
       <para>Current computers are powerful enough to allow hosting several
