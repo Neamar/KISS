@@ -47,7 +47,7 @@
     with new block devices, which can be used to create filesystems or swap
     space, without necessarily having them mapped to one physical disk.
     RAID and LVM come from quite different backgrounds, but their
-    functionality can overlap somewhat, which is why they are ofter
+    functionality can overlap somewhat, which is why they are often
     mentioned together.</para>
 
     <sidebar>
@@ -98,7 +98,7 @@
 	increase in data safety without requiring investing in expensive
 	high-end disks. Probably due to image concerns, however, it's now
 	more customarily considered to stand for
-	<emphasis>independent</emphasis>, which doesn't have the unsavoury
+	<emphasis>independent</emphasis>, which doesn't have the unsavory
 	flavour of cheapness.</para>
       </sidebar>
 
@@ -119,7 +119,7 @@
       <section id="niveaux-de-raid">
         <title>Different RAID Levels</title>
 
-	<para>RAID has actually several levels, differenciated by their
+	<para>RAID has actually several levels, differentiated by their
 	layout and the amount of redundancy they provide. The more
 	redundant, the more failure-proof, since the system will be able to
 	keep working with more failed disks. The counterpart is that the
@@ -282,7 +282,7 @@
           <varlistentry>
             <term>RAID-1+0</term>
             <listitem>
-	      <para>This isn't stricly speaking, a RAID level, but a
+	      <para>This isn't strictly speaking, a RAID level, but a
 	      stacking of two RAID groupings. Starting from 2×N disks, one
 	      first sets them up by pairs into N RAID-1 volumes; these N
 	      volumes are then aggregated into one, either by “linear
@@ -498,7 +498,7 @@ Working Devices : 2
 	state of a RAID mirror is that both disks have exactly the same
 	contents. However, nothing guarantees this is the case when the
 	volume is first created. The RAID subsystem will therefore provide
-	that guarantee itself, and there will be a synchronisation phase as
+	that guarantee itself, and there will be a synchronization phase as
 	soon as the RAID device is created. After some time (the exact
 	amount will depend on the actual size of the disks…), the RAID
 	array switches to the “active” state. Note that during this
@@ -506,7 +506,7 @@ Working Devices : 2
 	redundancy isn't assured. A disk failing during that risk window
 	could lead to losing all the data. Large amounts of critical data,
 	however, are rarely stored on a freshly created RAID array before
-	its initial synchronisation. Note that even in degraded mode, the
+	its initial synchronization. Note that even in degraded mode, the
 	<filename>/dev/md1</filename> is usable, and a filesystem can be
 	created on it, as well as some data copied on it.</para>
 
@@ -521,12 +521,12 @@ Working Devices : 2
 	  <filename>missing</filename> instead of a device file as one of
 	  the arguments to <command>mdadm</command>. Once the data have
 	  been copied to the “mirror”, the old disk can be added to the
-	  array. A synchronisation will then take place, giving us the
+	  array. A synchronization will then take place, giving us the
 	  redundancy that was wanted in the first place.</para>
         </sidebar>
 
         <sidebar>
-          <title><emphasis>TIP</emphasis> Setting up a mirror without synchronisation</title>
+          <title><emphasis>TIP</emphasis> Setting up a mirror without synchronization</title>
 
 	  <para>RAID-1 volumes are often created to be used as a new disk,
 	  often considered blank. The actual initial contents of the disk
@@ -534,12 +534,12 @@ Working Devices : 2
 	  the data written after the creation of the volume, in particular
 	  the filesystem, can be accessed later.</para>
 
-	  <para>One might therefore wonder about the point of synchronising
+	  <para>One might therefore wonder about the point of synchronizing
 	  both disks at creation time. Why care whether the contents are
 	  identical on zones of the volume that we know will only be read
 	  after we have written to them?</para>
 
-	  <para>Fortunately, this synchronisation phase can be avoided by
+	  <para>Fortunately, this synchronization phase can be avoided by
 	  passing the <literal>--assume-clean</literal> option to
 	  <command>mdadm</command>. However, this option can lead to
 	  surprises in cases where the initial data will be read (for
@@ -1032,7 +1032,7 @@ brw-rw---- 1 root disk 253,  2  5 oct.  18:14 /dev/dm-2</computeroutput>
 
 	  <para>When the computer boots, the
 	  <filename>/etc/init.d/lvm</filename> script scans the available
-	  devices; those that have been initialised as physical volumes for
+	  devices; those that have been initialized as physical volumes for
 	  LVM are registered into the LVM subsystem, those that belong to
 	  volume groups are assembled, and the relevant logical volumes are
 	  started and made available. There is therefore no need to edit
@@ -1211,7 +1211,7 @@ The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.
     <section id="raid-ou-lvm">
       <title>RAID or LVM?</title>
 
-      <para>RAID and LVM both bring undisputable advantages as soon as one
+      <para>RAID and LVM both bring indisputable advantages as soon as one
       leaves the simple case of a desktop computer with a single hard disk
       where the usage pattern doesn't change over time. However, RAID and
       LVM go in two different directions, with diverging goals, and it is
@@ -1256,7 +1256,7 @@ The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.
       <para>Let's take a concrete example: the public relations department
       at Falcot Corp needs a workstation for video editing, but the
       department's budget doesn't allow investing in high-end hardware from
-      the bottom up. A decision is made to favour the hardware that is
+      the bottom up. A decision is made to favor the hardware that is
       specific to the graphic nature of the work (monitor and video card),
       and to stay with generic hardware for storage. However, as is widely
       known, digital video does have some particular requirements for its
@@ -1502,7 +1502,7 @@ Disk identifier: 0x00039a9f
 	role="pkg">linux-image-2.6-xen-686</emphasis> and <emphasis
 	role="pkg">linux-image-2.6-xen-amd64</emphasis> packages. This
 	distribution-specific patching means that the available featureset
-	depends on the distibution; discrepancies in the versions of the
+	depends on the distribution; discrepancies in the versions of the
 	code, or even integration of code still under development into some
 	distributions also mean differences in the supported features. This
 	problem should be greatly reduced now that Xen has been officially
@@ -1580,7 +1580,7 @@ Disk identifier: 0x00039a9f
 </screen>
 
       <para>Once these prerequisites are installed, the next step is to
-      test the behaviour of the dom0 by itself; this involves a reboot to
+      test the behavior of the dom0 by itself; this involves a reboot to
       the hypervisor and the Xen kernel. The system should boot in its
       standard fashion, with a few extra messages on the console during the
       early initialization steps.</para>
@@ -1876,7 +1876,7 @@ testxen login: </computeroutput>
 	<para>Xen has many more features than we can describe in these few
 	paragraphs. In particular, the system is very dynamic, and many
 	parameters for one domain (such as the amount of allocated memory,
-	the visible hard drives, the behaviour of the task scheduler, and
+	the visible hard drives, the behavior of the task scheduler, and
 	so on) can be adjusted even when that domain is running. A domU can
 	even be migrated across servers without being shut down, and
 	without losing its network connections! For all these advanced
@@ -2388,7 +2388,7 @@ to the console to complete the installation process.
 	    left empty in the case of the local host). In addition to that,
 	    and in the QEMU/KVM case, each user can manage virtual machines
 	    working with restricted permissions, and the URL path allows
-	    differenciating “system” machines
+	    differentiating “system” machines
 	    (<literal>/system</literal>) from others
 	    (<literal>/session</literal>).</para>
           </callout>
@@ -2429,7 +2429,7 @@ to the console to complete the installation process.
           <callout arearefs="virtinst.network">
 	    <para>The <literal>--network</literal> specifies how the
 	    virtual network card integrates in the host's network
-	    configuration. The default behaviour (which we explicitly
+	    configuration. The default behavior (which we explicitly
 	    forced in our example) is to integrate it into any pre-existing
 	    network bridge. If no such bridge exists, the virtual machine
 	    will only reach the physical network through NAT, so it gets an
@@ -2438,7 +2438,7 @@ to the console to complete the installation process.
           <callout arearefs="virtinst.vnc">
 	    <para><literal>--vnc</literal> states that the graphical
 	    console should be made available using VNC. The default
-	    behaviour for the associated VNC server is no only listen on
+	    behavior for the associated VNC server is no only listen on
 	    the local interface; if the VNC client is to be run on a
 	    different host, establishing the connection will require
 	    setting up an SSH tunnel (see <xref
@@ -2566,7 +2566,7 @@ root@server's password: </computeroutput>
     not update any software on their own, or install any other software.
     Similarly, security updates must not be automated, because they have to
     go through the centralized reference image maintained by SystemImager.
-    This solution also requires the target machines to be homogenous,
+    This solution also requires the target machines to be homogeneous,
     otherwise many different images would have to be kept and managed (an
     i386 image won't fit on a powerpc machine, and so on).</para>
 
@@ -2886,7 +2886,7 @@ append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap
 	  <command>mkisofs</command> or <command>xorriso</command>. The
 	  image directory is finalized after debian-cd's <command>make
 	  image-trees</command> step. At that point, we insert the preseed
-	  file into the approriate directory (usually
+	  file into the appropriate directory (usually
 	  <filename>$TDIR/squeeze/CD1/</filename>, $TDIR being one of the
 	  parameters defined by the <filename>CONF.sh</filename>
 	  configuration file). The CD-ROM uses <command>isolinux</command>
@@ -3213,7 +3213,7 @@ load.info 5 minute load average
         <title>Configuring the Grapher</title>
 
 	<para>The “grapher” is simply the computer that aggregates the
-	data and generate the corresponding graphs. The required software
+	data and generates the corresponding graphs. The required software
 	is in the <emphasis role="pkg">munin</emphasis> package. The
 	standard configuration runs <command>munin-cron</command> (once
 	every 5 minutes), which gathers data from all the hosts listed in
@@ -3370,7 +3370,7 @@ load.info 5 minute load average
 	objects; in many cases, defining now hosts, services and contacts
 	is a simple matter of deriving from the provided generic objects.
 	The files in <filename>/etc/nagios3/conf.d/</filename> are a good
-	source of informaton on how they work.</para>
+	source of information on how they work.</para>
 
 	<para>The Falcot Corp administrators use the following
 	configuration:</para>

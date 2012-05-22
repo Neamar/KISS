@@ -95,14 +95,14 @@
       former is appropriate for a server that receives incoming email and
       sends outgoing email directly to its recipients, and is therefore
       well-adapted to the Falcot Corp case. The latter is appropriate for a
-      server receiving incoming email nomally, but that sends outgoing
+      server receiving incoming email normally, but that sends outgoing
       email through an intermediate SMTP server — the “smarthost” —
       rather than directly to the recipient's server. This is mostly useful
       for individuals with a dynamic IP address, since many email servers
       reject messages coming straight from such an IP address. In this
       case, the smarthost will usually be the ISP's SMTP server, which is
       always configured to accept email coming from the ISP's customers and
-      forward it apporpriately. This setup (with a smarthost) is also
+      forward it appropriately. This setup (with a smarthost) is also
       relevant for servers that are not permanently connected to the
       internet, since it avoids having to manage a queue of undeliverable
       messages that need to be retried later.</para>
@@ -378,7 +378,7 @@ sophie@falcot.org falcot.org/sophie
       <title>Restrictions for Receiving and Sending</title>
 
       <para>The growing number of unsolicited bulk emails
-      (<emphasis>spams</emphasis>) requires being increasingly strict when
+      (<emphasis>spam</emphasis>) requires being increasingly strict when
       deciding which emails a server should accept. This section presents
       some of the strategies included in Postfix.</para>
 
@@ -430,7 +430,7 @@ smtpd_client_restrictions = permit_mynetworks,
 	last. Each rule can accept the message, reject it, or leave the
 	decision to a following rule. As a consequence, order matters, and
 	simply switching two rules can lead to a widely different
-	behaviour.</para>
+	behavior.</para>
 
 	<para>The <literal>permit_mynetworks</literal> directive, used as
 	the first rule, accepts all emails coming from a machine in the
@@ -660,7 +660,7 @@ smtpd_data_restrictions = reject_unauth_pipelining
       <section>
         <title>Applying Restrictions</title>
 
-	<para>Although the above commands validate informations at various
+	<para>Although the above commands validate information at various
 	stages of the SMTP exchange, Postfix only sends the actual
 	rejection as a reply to the <literal>RCPT TO</literal>
 	command.</para>
@@ -695,7 +695,7 @@ smtpd_data_restrictions = reject_unauth_pipelining
 
 	<para>The validation and restriction system would not be complete
 	without a way to apply checks to the message contents. Postfix
-	differenciates the checks applying on the email headers from those
+	differentiates the checks applying on the email headers from those
 	applying to the email body.</para>
 
         <example>
@@ -728,7 +728,7 @@ body_checks = regexp:/etc/postfix/body_checks
 
 	  <para>The <emphasis>regular expression</emphasis> term (shortened
 	  to <emphasis>regexp</emphasis> or <emphasis>regex</emphasis>)
-	  references a generic notation for expressing a descrition of the
+	  references a generic notation for expressing a description of the
 	  contents and/or structure of a string of characters. Certain
 	  special characters allow defining alternatives (for instance,
 	  <literal>foo|bar</literal> matches either “foo” or
@@ -768,7 +768,7 @@ body_checks = regexp:/etc/postfix/body_checks
       <para>“Greylisting” is a filtering technique according to which a
       message is initially rejected with a temporary error code, and only
       accepted on a further try after some delay. This filtering is
-      particularly efficient against spams sent by the many machines
+      particularly efficient against spam sent by the many machines
       infected by worms and viruses, since these software rarely act as
       full SMTP agents (by checking the error code and retrying failed
       messages later), especially since many of the harvested addresses are
@@ -879,7 +879,7 @@ smtpd_recipient_restrictions = permit_mynetworks,
       therefore more and more common to customize the set of filters
       depending on the recipient. At Falcot Corp, greylisting is
       interesting for most users, but it hinders the work of some users who
-      need a low latency in their emails (such as the technical support
+      need low latency in their emails (such as the technical support
       service). Similarly, the commercial service sometimes has problems
       receiving emails from some Asian providers who may be listed in
       black-lists; this service asked for a non-filtered address so as to
@@ -988,7 +988,7 @@ SOCKET=inet:10002@127.0.0.1
       some important parameters can still be customized with
       <command>dpkg-reconfigure clamav-base</command>. Similarly, running
       <command>dpkg-reconfigure clamav-milter</command> allows defining the
-      mail filter's behaviour in some detail.</para>
+      mail filter's behavior in some detail.</para>
 
       <para>The last step involves telling Postfix to use the
       recently-configured filter. This is a simple matter of adding the
@@ -1007,7 +1007,7 @@ smtpd_milters = inet:[127.0.0.1]:10002
       <sidebar>
         <title><emphasis>IN PRACTICE</emphasis> Testing the antivirus</title>
 
-	<para>Once the antivirus is set up, its correct behaviour should be
+	<para>Once the antivirus is set up, its correct behavior should be
 	tested. The simplest way to do that is to send a test email with an
 	attachment containing the <filename>eicar.com</filename> (or
 	<filename>eicar.com.zip</filename>) file, which can be downloaded
@@ -1197,7 +1197,7 @@ relay_host = [mail.falcot.com]
 
 	<para>Another possibility is to use a dedicated MPM, such as the
 	one provided by <emphasis role="pkg">apache2-mpm-itk</emphasis>.
-	This particular one has a slightly different behaviour: it allows
+	This particular one has a slightly different behavior: it allows
 	“isolating” virtual hosts so that they each run as a different
 	user. A vulnerability in one website therefore cannot compromise
 	files belonging to the owner of another website.</para>
@@ -1255,17 +1255,17 @@ relay_host = [mail.falcot.com]
       on the domain name of the web server. The first method requires
       allocating a different IP address (or port) for each site, whereas
       the second one can work on a single IP address (and port), and the
-      sites are differenciated by the hostname sent by the HTTP client
+      sites are differentiated by the hostname sent by the HTTP client
       (which only works in version 1.1 of the HTTP protocol — fortunately
       that version is old enough that all clients use it already).</para>
 
-      <para>The (increasing) scarcity of IPv4 addresses usually favours the
+      <para>The (increasing) scarcity of IPv4 addresses usually favors the
       second method; however, it is made more complex if the virtual hosts
       need to provide HTTPS too, since the SSL protocol hasn't always
       provided for name-based virtual hosting; the SNI extension
       (<emphasis>Server Name Indication</emphasis>) that allows such a
       combination is not handled by all browsers. When several HTTPS sites
-      need to run on the same server, they will usually be differenciated
+      need to run on the same server, they will usually be differentiated
       either by running on a different port or on a different IP address
       (IPv6 can help there).</para>
 
@@ -1451,7 +1451,7 @@ DirectoryIndex index.php index.html index.htm
 	  directive</primary></indexterm></para>
         </listitem>
         <listitem>
-	  <para><literal>MultiViews</literal> enables content negociation;
+	  <para><literal>MultiViews</literal> enables content negotiation;
 	  this can be used by the server to return a web page matching the
 	  preferred language as configured in the browser.
 	  <indexterm><primary><literal>MultiViews</literal>, Apache
@@ -1483,7 +1483,7 @@ DirectoryIndex index.php index.html index.htm
       server's identity (the <literal>www-data</literal> user).</para>
       <indexterm><primary><literal>AllowOverride</literal>, Apache directive</primary></indexterm>
       <section>
-        <title>Requiring an Authentication</title>
+        <title>Requiring Authentication</title>
         <indexterm><primary>web authentication</primary></indexterm>
 
 	<para>In some circumstances, access to part of a website needs to
@@ -1491,7 +1491,7 @@ DirectoryIndex index.php index.html index.htm
 	a password are granted access to the contents.</para>
 
         <example>
-          <title><filename>.htaccess</filename> file requiring an authentication</title>
+          <title><filename>.htaccess</filename> file requiring authentication</title>
 
           <programlisting>
 Require valid-user
@@ -1659,7 +1659,7 @@ HostAliases="falcot.org"
         <title>The <filename>/etc/cron.d/awstats</filename> file</title>
 
         <programlisting>
-0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null 
+0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache2/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null 
 </programlisting>
       </example>
 
@@ -1955,7 +1955,7 @@ options lockd nlm_udpport=2045 nlm_tcpport=2045
       this can be disabled with the <literal>async</literal> option.
       Asynchronous writes increase performance a bit, but they decrease
       reliability since there's a data loss risk in case of the server
-      crashing between the acknowledgement of the write and the actual
+      crashing between the acknowledgment of the write and the actual
       write on disk. Since the default value changed recently (as compared
       to the historical value of NFS), an explicit setting is
       recommended.</para>
@@ -1963,7 +1963,7 @@ options lockd nlm_udpport=2045 nlm_tcpport=2045
       <para>In order to not give root access to the filesystem to any NFS
       client, all queries appearing to come from a root user are considered
       by the server as coming from the <literal>anonymous</literal> user.
-      This behaviour corresponds to the <literal>root_squash</literal>
+      This behavior corresponds to the <literal>root_squash</literal>
       option, and is enabled by default. The
       <literal>no_root_squash</literal> option, which disables this
       behavior, is risky and should only be used in controlled

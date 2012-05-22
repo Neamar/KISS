@@ -84,7 +84,7 @@
 
 	<para>Historically, each locale has an associated “character
 	set” (group of known characters) and a preferred “encoding”
-	(internal representationfor characters within the computer).</para>
+	(internal representation for characters within the computer).</para>
 
 	<para>The <emphasis>ISO-8859-1</emphasis> (or “Latin 1”)
 	encoding, for instance, was used preferentially in France. But for
@@ -350,7 +350,7 @@ $ </computeroutput><userinput>ls travail/</userinput>
       used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T
       depending on the throughput they can reliably provide (the T stands
       for “twisted pair”); those cables end in an RJ45 connector. There
-      are other cable types, used mostly for speeds in above
+      are other cable types, used mostly for speeds above
       1 Gb/s.</para>
       <indexterm><primary>IP address</primary></indexterm>
       <indexterm><primary>IP</primary><secondary>address</secondary></indexterm>
@@ -395,7 +395,7 @@ $ </computeroutput><userinput>ls travail/</userinput>
 
       <para>A router is a machine that connects several networks to each
       other. All traffic coming through a router is guided to the correct
-      network. To do this, the router analyses incoming packets and
+      network. To do this, the router analyzes incoming packets and
       redirects them according to the IP address of their destination. The
       router is often known as a gateway; in this configuration, it works
       as a machine that helps reach out beyond a local network (towards an
@@ -648,7 +648,7 @@ adsl:2345:respawn:/usr/sbin/pppd call dsl-provider
 
       <para>In order to do this, the program is structured in two parts: a
       daemon running as root handles activation and configuration of
-      network interfaces and a user interface controls this demon. Only
+      network interfaces and a user interface controls this daemon. Only
       members of the “netdev” group have permissions to control this
       program.</para>
 
@@ -769,7 +769,7 @@ adsl:2345:respawn:/usr/sbin/pppd call dsl-provider
         <indexterm><primary>DNS</primary></indexterm>
         <indexterm><primary>Domain Name Service</primary></indexterm>
 
-	<para>DNS (Domain Name Service) is a distributed and hierarchal
+	<para>DNS (Domain Name Service) is a distributed and hierarchical
 	service mapping names to IP addresses, and vice-versa.
 	Specifically, it can turn a human-friendly name such as
 	<literal>www.eyrolles.com</literal> into the actual IP address,
@@ -1351,7 +1351,7 @@ nameserver 8.8.8.8
       <title><emphasis>TIP</emphasis> All shells configured identically</title>
 
       <para>Users often want to configure their login and interactive
-      shells in the same way. To do this, they choose to interpreter (or
+      shells in the same way. To do this, they choose to interpret (or
       “source”) the content from <filename>~/.bashrc</filename> in the
       <filename>~/.bash_profile</filename> file. It is possible to do the
       same with files common to all users (by calling
@@ -1479,9 +1479,9 @@ nameserver 8.8.8.8
 	<para>To take into account the characteristics of more and more
 	dynamic, modern computers, the kernel has, at some time, offered an
 	implementation of <filename>/dev/</filename> by a virtual
-	filesystem called <emphasis>defvs</emphasis>. In some cases, this
+	filesystem called <emphasis>devfs</emphasis>. In some cases, this
 	makes it easier to find files, since the naming convention uses a
-	hierarchal structure: the first partition of the master hard drive
+	hierarchical structure: the first partition of the master hard drive
 	on the first IDE bus was then represented by the file,
 	<filename>/dev/ide/host0/bus0/target0/lun0/part1</filename>. Not
 	only were these naming conventions not very intuitive, but they
@@ -1639,7 +1639,7 @@ mirexpress:/dev/disk/by-id# </computeroutput>
 boot=/dev/sda
 # the partition that contains Debian
 root=/dev/sda2
-# the item to be loaded by defaul
+# the item to be loaded by default
 default=Linux
 
 # the most recent kernel image
@@ -1927,7 +1927,7 @@ macosx=/dev/sda5
 	doesn't need access to hardware variables. However, since it only
 	exists in live memory, it is zeroed out every time the machine is
 	booted, contrary to the CMOS clock, which has a battery and
-	therefores “survives” rebooting or halting of the machine. The
+	therefore “survives” rebooting or halting of the machine. The
 	system clock is, thus, set from the CMOS clock during boot, and the
 	CMOS clock is updated on shutdown (to take into account possible
 	changes or corrections if it has been improperly adjusted).</para>
@@ -2504,7 +2504,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       <replaceable>target</replaceable> is one of the values described
       below.</para>
 
-      <para><command>make menuconfig</command> compiles and executes an
+      <para><command>make menuconfig</command> compiles and executes a
       text-mode interface (this is where the <emphasis
       role="pkg">libncurses5-dev</emphasis> package is required) which
       allows navigating the options available in a hierarchical structure.
@@ -2580,10 +2580,10 @@ arrakis:/shared /shared         nfs     defaults        0       0
       </sidebar>
 
       <para>Once the kernel configuration is ready, the
-      <command>make-pkg</command> command provided by Debian compiles the
+      <command>make-kpkg</command> command provided by Debian compiles the
       kernel, then generates the corresponding Debian package (or
       packages). Just like <command>make</command>,
-      <command>make-pkg</command> takes the name of a target to execute as
+      <command>make-kpkg</command> takes the name of a target to execute as
       an argument: <literal>kernel-image</literal> generates a compiled
       kernel package, <literal>kernel-doc</literal> a package containing
       the documentation included with the kernel,
@@ -2687,7 +2687,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       variable (without this variable, it uses
       <filename>/usr/src/modules/</filename>, which won't work in our
       case). By default, it tries to create the packages for all the
-      external modules that can be found at this location extracted. The
+      external modules that you extracted at this location. The
       <literal>--added-modules</literal> option allows to explicitly choose
       the external modules to compile. To include more than one, separate
       them with a comma.</para>

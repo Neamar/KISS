@@ -115,8 +115,8 @@
       when the provided driver exists, it is usually not as polished as it
       should be; more importantly, it does not necessarily follow the X.org
       updates, which may prevent the latest available driver from loading
-      correctly (or at all). We cannot condone this behaviour, and we
-      recommend you avoid these makers and favour more cooperative
+      correctly (or at all). We cannot condone this behavior, and we
+      recommend you avoid these makers and favor more cooperative
       manufacturers.</para>
 
       <para>If you still end up with such a card, you will find the
@@ -195,14 +195,13 @@
       <para>Since each graphical desktop provides its own window manager,
       choosing the former usually implies software selections from the
       latter. GNOME uses the <command>metacity</command> window manager,
-      KDE uses <command>kwm</command> (<emphasis>KDE Window
-      Manager</emphasis>), and Xfce (which we present later) has
-      <command>xfwm</command>. The Unix philosophy always allows using
+      KDE uses <command>kwin</command>, and Xfce (which we present later)
+      has <command>xfwm</command>. The Unix philosophy always allows using
       one's window manager of choice, but following the recommendations
       allows an administrator to best take advantage of the integration
       efforts led by each project.</para>
       <indexterm><primary><command>metacity</command></primary></indexterm>
-      <indexterm><primary><command>kwm</command></primary></indexterm>
+      <indexterm><primary><command>kwin</command></primary></indexterm>
 
       <sidebar>
         <title><emphasis>BACK TO BASICS</emphasis> Window manager</title>
@@ -405,7 +404,7 @@
       interfacing to GNOME.</para>
 
       <para>It took quite some time for the GNOME project to build up this
-      infrastructure, which can account for a seeminly less mature desktop
+      infrastructure, which can account for a seemingly less mature desktop
       than KDE. The usability and accessibility efforts, in particular, are
       recent, and the benefits have only started to show in the latest
       versions of the environment.</para>
@@ -424,7 +423,7 @@
       kind of registry that can be queried and edited with the
       <command>gconftool-2</command> command-line tool. The administrator
       can therefore change users' configuration with a simple script. The
-      following webside lists all information of interest to an
+      following website lists all information of interest to an
       administrator tasked to manage GNOME workstations: <ulink
       type="block"
       url="http://library.gnome.org/admin/system-admin-guide/stable/"/><ulink
@@ -507,7 +506,7 @@
 	  project about the most popular packages. A script is run weekly
 	  by <command>cron</command> which sends (by HTTP or email) an
 	  anonymized list of the installed packages and the latest access
-	  date for the files they contain. This allows differenciating,
+	  date for the files they contain. This allows differentiating,
 	  among the installed packages, those that are actually
 	  used.</para>
           <indexterm><primary><emphasis role="pkg">popularity-contest</emphasis></primary></indexterm>
@@ -681,7 +680,7 @@
 	started reaching the masses, but it was progressively left behind
 	when Microsoft Internet Explorer came around. Faced with this
 	failure, Netscape (the company) decided to “free” its source
-	code, by realeasing it under a free license, to give it a second
+	code, by releasing it under a free license, to give it a second
 	life. This was the beginning of the Mozilla project. After many
 	years of development, the results are more than satisfying: the
 	Mozilla project brought forth an HTML rendering engine (called
@@ -710,7 +709,7 @@
         <title>Tools for GTK+ on GNOME</title>
 
 	<para>Anjuta (in the <emphasis role="pkg">anjuta</emphasis>
-	package) is a development environment optimised for creating GTK+
+	package) is a development environment optimized for creating GTK+
 	applications for GNOME. Glade (in the <emphasis
 	role="pkg">glade</emphasis> package) is an application designed to
 	create GTK+ graphical interfaces for GNOME and save them in an XML
@@ -788,11 +787,11 @@
 	standard (XMPP), and there is no shortage of features. The messages
 	can be encrypted, which can be a real bonus, and gateways can be
 	set up between a Jabber server and other instant messaging networks
-	such as ICQ, GAIM, Yahoo, MSN, and so on.</para>
+	such as ICQ, AIM, Yahoo, MSN, and so on.</para>
         <indexterm><primary>Jabber</primary></indexterm>
         <indexterm><primary>XMPP</primary></indexterm>
         <indexterm><primary>ICQ</primary></indexterm>
-        <indexterm><primary>GAIM</primary></indexterm>
+        <indexterm><primary>AIM</primary></indexterm>
         <indexterm><primary><emphasis>Messenger</emphasis></primary></indexterm>
 
         <sidebar role="fil">
@@ -802,7 +801,7 @@
 	  is more centered around the concept of channels, the name of
 	  which starts with a hash sign <literal>#</literal>. Each channel
 	  is usually targeted at a specific topic and any number of people
-	  can join a channel to discuss it (but users can still have in
+	  can join a channel to discuss it (but users can still have
 	  one-to-one private conversations if needed). The IRC protocol is
 	  older, and does not allow end-to-end encryption of the messages;
 	  it is still possible to encrypt the communications between the
@@ -892,8 +891,7 @@
 	  beyond Jabber.</para>
           <indexterm><primary>Empathy</primary></indexterm>
 
-	  <para>KDE provides Kopete (in the <emphasis
-	  role="pkg">openoffice.org</emphasis> package).</para>
+	  <para>KDE provides Kopete (in the package of the same name).</para>
           <indexterm><primary>Kopete</primary></indexterm>
         </section>
       </section>
@@ -1086,7 +1084,7 @@
     <para>Note that you should not rely on Wine (or similar solutions)
     without actually testing the particular software: only a real-use test
     will determine conclusively whether emulation is fully
-    fuctional.</para>
+    functional.</para>
 
     <sidebar role="fil">
       <title><emphasis>ALTERNATIVE</emphasis> Virtual machines</title>

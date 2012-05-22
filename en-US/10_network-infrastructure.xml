@@ -590,7 +590,7 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
       <para>Both methods for creating a virtual private network over SSH
       are quite straightforward. However, the VPN they provide is not the
       most efficient available; in particular, it does not handle high
-      levels traffic very well.</para>
+      levels of traffic very well.</para>
 
       <para>The explanation is that when a TCP/IP stack is encapsulated
       within a TCP/IP connection (for SSH), the TCP protocol is used two
@@ -811,7 +811,7 @@ option /etc/ppp/pptpd-options
 #
 #       Specifies the local and remote IP address ranges.
 #
-#       You can specify single IP addresses seperated by commas or you can
+#       You can specify single IP addresses separated by commas or you can
 #       specify ranges, or both. For example:
 #
 #               192.168.0.234,192.168.0.245-249,192.168.0.254
@@ -1093,7 +1093,7 @@ iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-De
 
       <para>Dynamic routing allows routers to adjust, in real time, the
       paths used for transmitting IP packets. Each protocol involves its
-      own method of defining routes (shortest path, use routes advertized
+      own method of defining routes (shortest path, use routes advertised
       by peers, and so on).</para>
 
       <para>In the Linux kernel, a route links a network device to a set of
@@ -1245,7 +1245,7 @@ if_prefix=eth0
       dedicated to software specially rebuilt for IPv6; this archive was
       decommissioned in March 2007, both for lack of time and for lack of
       interest (since most of the patches have been integrated into the
-      official packages). If your favourite package does not work with IPv6
+      official packages). If your favorite package does not work with IPv6
       yet, help can be found on the <emphasis>debian-ipv6</emphasis>
       mailing-list. <ulink type="block"
       url="http://lists.debian.org/debian-ipv6/"/></para>
@@ -1379,7 +1379,7 @@ if_prefix=eth0
       of version, have the same structure.</para>
 
       <para>The Falcot administrators created a primary
-      <literal>falcot.com</literal> zone to store informations related to
+      <literal>falcot.com</literal> zone to store information related to
       this domain, and a <literal>168.192.in-addr.arpa</literal> zone for
       reverse mapping of IP addresses in the local networks.</para>
 
@@ -1620,7 +1620,7 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
 allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };
 </programlisting>
 
-      <para>Beware! An zone that can be modified <emphasis>will</emphasis>
+      <para>Beware! A zone that can be modified <emphasis>will</emphasis>
       be changed by <command>bind</command>, and the latter will overwrite
       its configuration files at regular intervals. Since this automated
       procedure produces files that are less human-readable than
@@ -1848,7 +1848,7 @@ Nmap done: 1 IP address (1 host up) scanned in 21.32 seconds
         </mediaobject>
       </figure>
 
-      <para>In our example, the packets travelling over SSH are filtered
+      <para>In our example, the packets traveling over SSH are filtered
       out (with the <literal>!tcp.port == 22</literal> filter). The packet
       currently displayed was developed at the TCP and HTTP layers.</para>
 
