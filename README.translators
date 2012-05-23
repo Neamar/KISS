@@ -1,0 +1,92 @@
+Notes for translators
+=====================
+
+This book and its translations are managed with Publican [1]. It also uses
+a custom publican brand available in the Debian package publican-debian.
+
+$ sudo apt-get install publican publican-debian
+
+[1] https://fedorahosted.org/publican/
+
+Coordination mailing list
+-------------------------
+Please subscribe to this mailing list:
+http://lists.alioth.debian.org/mailman/listinfo/debian-handbook-translators
+
+It will be relatively low-volume and will be used to send important
+information about the book updates to the current translators.
+
+Git usage
+---------
+
+Read README.git first. 
+
+Please do not multiply commits uselessly. If you made several commits
+which only complete PO files, please squash them together before pushing
+(see man git-rebase for an explanation of how to squash commits together
+with interactive rebase).
+
+How to start a new translation
+------------------------------
+
+First you must find out the ISO code of your translation (it looks like
+"pt-BR" or "fr-FR"). See here for the list supported by Publican:
+http://jfearn.fedorapeople.org/en-US/Publican/2.7/html/Users_Guide/appe-Users_Guide-Language_codes.html
+
+(I'll use "pt-BR" as example in the rest of this section)
+
+Then if this Git repository doesn't have any directory of this name,
+you need to create the initial translation files:
+$ publican update_po --langs=pt-BR
+
+Now you have lots of PO files in pt-BR/*.po that you can translate.
+You should probably commit the empty PO files before going further.
+
+$ git add pt-BR/*.po
+$ git commit -m "Add initial files for pt-BR translation"
+
+Then add a pt-BR/README file where you put:
+- the name and email of the (current) translation coordinator
+- the name and email of the volunteers who contributed to the
+  translation
+- explanations (for new contributors) about the workflow that you use to
+  coordinate the work
+- translation choices that you made about the style to use, the
+  vocabulary, etc.
+
+$ vim pt-BR/README
+$ git add pt-BR/README
+$ git commit -m "Add README for pt-BR translation"
+
+Translating PO files
+--------------------
+
+You're free to use the tool of your choice to complete the PO files. Once
+you have done enough, you can commit your updated PO files:
+$ git add pt-BR/*.po
+$ git commit -m "Updated pt-BR translation"
+
+Depending on the workflow used by your translation team, you can either
+push your work directly or make it available to your translation
+coordinator that will integrate it for you.
+
+Translating pictures and schemas
+--------------------------------
+
+Some schemas contain texts that need to be translated. In those case,
+you should copy the relevant .dia files from en-US/images/ into the images
+directory within your own translations directory (eg. pt-BR/images/),
+update the dia file, and regenerate the corresponding PNG files (with the
+help of the "make foo.png" Makefile target).
+
+Some screenshots need to be remade to use a locale that matches your
+language. Do the screenshot and put them in the images directory of
+your translation (eg pt-BR/images/).
+
+Note: there's currently no automatic way to verify whether your translated
+schemas/pictures are up-to-date.
+
+Questions?
+----------
+
+Just ask on debian-handbook-translators@lists.alioth.debian.org.
