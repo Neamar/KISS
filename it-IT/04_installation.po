@@ -1,401 +1,643 @@
 # 
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Calogero Lo Leggio <kalos@nerdrug.org>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-05-09T20:00:15\n"
-"PO-Revision-Date: 2012-05-09T20:00:15\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2012-05-25 18:28+0200\n"
+"Last-Translator: Calogero Lo Leggio <kalos@nerdrug.org>\n"
 "Language-Team: None\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Installation"
-msgstr ""
+msgstr "Installazione"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Partitioning"
-msgstr ""
+msgstr "Partizionamento"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Formatting"
-msgstr ""
+msgstr "Formattazione"
 
 #. Tag: keyword
 #, no-c-format
 msgid "File System"
-msgstr ""
+msgstr "File system"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Boot Sector"
-msgstr ""
+msgstr "Boot Sector"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Hardware Detection"
-msgstr ""
+msgstr "Rilevamento dell'hardware"
 
 #. Tag: para
 #, no-c-format
 msgid "To use Debian, you need to install it on a computer; this task is taken care of by the <emphasis>debian-installer</emphasis> program. A proper installation involves many operations. This chapter reviews them in their chronological order."
 msgstr ""
+"Per poter utilizzare Debian, è necessario installarla in un computer. Questa "
+"operazione viene gestita dal programma <emphasis>debian-"
+"installer</emphasis>. Una corretta installazione coinvolge molte operazioni. "
+"In questo capitolo verranno esaminate in ordine cronologico."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>of the system</secondary>"
-msgstr ""
+msgstr "<primary>installazione</primary><secondary>del sistema</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> A catch-up course in the appendices"
 msgstr ""
+"<emphasis>BACK TO BASICS</emphasis> Un corso per rimettersi in pari "
+"sull'argomento è presente nell'appendice"
 
 #. Tag: para
 #, no-c-format
 msgid "Installing a computer is always simpler when you are familiar with the way it works. If you are not, make a quick detour to <xref linkend=\"short-remedial-course\" /> before reading this chapter."
 msgstr ""
+"L'installazione di un computer diventa sempre più semplice, se si ha "
+"familiarità con il modo in cui lavora. Altrimenti è consigliabile leggere il "
+"piccolo corso <xref linkend=\"short-remedial-course\" /> prima di continuare "
+"il capitolo."
 
 #. Tag: para
 #, no-c-format
 msgid "The installer for <emphasis role=\"distribution\">Squeeze</emphasis> is based on <command>debian-installer</command>. Its modular design enables it to work in various scenarios and allows it to evolve and adapt to changes. Despite the limitations implied by the need to support a large number of architectures, this installer is very accessible to beginners, since it assists users at each stage of the process. Automatic hardware detection, guided partitioning, and graphical user interfaces have solved most of the problems that newbies used to face."
 msgstr ""
+"Il programma di installazione per <emphasis "
+"role=\"distribution\">Squeeze</emphasis> è basato su <command>debian-"
+"installer</command>. La sua struttura modulare permette di lavorare in "
+"diversi scenari ed evolversi adattandosi facilmente ai cambiamenti. "
+"Nonostante le limitazioni date dalla necessità di supportare un numero "
+"elevato di architetture, il programma di installazione è molto semplice da "
+"utilizzare, anche per i principianti, dato che guida in ogni fase del "
+"processo d'installazione. Il riconoscimento automatico dell'hardware, il "
+"partizionamento del disco guidato e le interfacce grafiche hanno risolto la "
+"maggior parte dei problemi che affliggevano i neofiti."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installer</primary>"
-msgstr ""
+msgstr "<primary>il programma di installazione</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debian-installer</command></primary>"
-msgstr ""
+msgstr "<primary><command>debian-installer</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Installation requires 56 MB of RAM (Random Access Memory) and at least 650 MB of hard drive space. All Falcot computers meet these criteria. Note, however, that these figures apply to the installation of a very limited system without a graphical desktop. A minimum of 512 MB of RAM and 5 GB of hard drive space are really recommended for a basic office desktop workstation."
 msgstr ""
+"Per l'installazione sono richiesti 56 MB di RAM (Random Access Memory) e "
+"almeno 650 MB di spazio su disco. Tutti i computer della Falcot rispondono a "
+"questi criteri. È da notare, tuttavia, che tali valori valgono per "
+"l'installazione di un sistema molto limitato senza interfaccia grafica. Per "
+"una workstation desktop base da ufficio è consigliabile un minimo di 512 MB "
+"​​di RAM e 5 GB di spazio su disco."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Upgrading from Lenny"
-msgstr ""
+msgstr "<emphasis>BEWARE</emphasis> Aggiornamento da Lenny"
 
 #. Tag: para
 #, no-c-format
 msgid "If you already have Debian Lenny installed on your computer, this chapter is not for you! Unlike other distributions, Debian allows updating a system from one version to the next without having to reinstall the system. Reinstalling, in addition to being unnecessary, could even be dangerous, since it could remove already installed programs."
 msgstr ""
+"Se si ha già Debian Lenny installata nel proprio computer, questo capitolo "
+"non fa per voi! A differenza di altre distribuzione, Debian consente di "
+"aggiornare un sistema da una versione all'altra senza dover reinstallare "
+"l'intero sistema. La reinstallazione, oltre ad essere inutile, potrebbe "
+"anche essere pericolosa, in quanto potrebbe rimuovere i programmi già "
+"installati."
 
 #. Tag: para
 #, no-c-format
 msgid "The upgrade process will be described in <xref linkend=\"sect.dist-upgrade\" />."
 msgstr ""
+"Il processo di aggiornamento sarà descritto in <xref linkend=\"sect.dist-"
+"upgrade\" />."
 
 #. Tag: title
 #, no-c-format
 msgid "Installation Methods"
-msgstr ""
+msgstr "Modalità di installazione"
 
 #. Tag: para
 #, no-c-format
 msgid "A Debian system can be installed from several types of media, as long as the BIOS of the machine allows it. You can for instance boot with a CD-ROM, a USB key, or even through a network."
 msgstr ""
+"Un sistema Debian può essere installato da diversi tipi di media, fintanto "
+"che il BIOS della macchina lo permette. È possibile, ad esempio, l'avvio con "
+"un CD-ROM, una chiavetta USB, o anche attraverso la rete. "
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> BIOS, the hardware/software interface"
 msgstr ""
+"<emphasis>BACK TO BASICS</emphasis> BIOS, l'interfaccia hardware/software"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>BIOS</primary>"
-msgstr ""
+msgstr "<primary>BIOS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Basic Input/Output System</primary>"
-msgstr ""
+msgstr "<primary>Basic Input/Output System</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "BIOS (which stands for Basic Input/Output System) is a software that is included in the motherboard (the electronic board connecting all peripherals) and executed when the computer is booted, in order to load an operating system (via an adapted bootloader). It stays in the background to provide an interface between the hardware and the software (in our case, the Linux kernel)."
 msgstr ""
+"BIOS (acronimo di Basic Input/Output System) è un software che è incluso "
+"nella scheda madre (la scheda elettronica che collega tutte le periferiche), "
+"ed è eseguito quando il computer viene avviato, al fine di caricare il "
+"sistema operativo (tramite un bootloader adattato). Rimane attivo in "
+"background per fornire un'interfaccia tra l'hardware e il software (nel "
+"nostro caso, il kernel Linux)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing from a CD-ROM/DVD-ROM"
-msgstr ""
+msgstr "Installazione da un CD-ROM/DVD-ROM"
 
 #. Tag: para
 #, no-c-format
 msgid "The most widely used installation media is CD-ROM (or DVD-ROM, which behaves exactly the same way): the computer is booted from this media, and the installation program takes over."
 msgstr ""
+"Il supporto di installazione più utilizzato è il CD-ROM (o DVD-ROM, che si "
+"comporta esattamente allo stesso modo): il computer viene avviato da questo "
+"supporto, e viene eseguito il programma di installazione. "
 
 #. Tag: para
 #, no-c-format
 msgid "Various CD-ROMs have different purposes: <emphasis>netinst</emphasis> (network installation) contains the installer and the base Debian system; all other programs are then downloaded. Its “image”, that is the ISO-9660 filesystem that contains the exact contents of the disk, only takes up about 150 MB. Then we have the <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only provides the installer, and which requires all the Debian packages (including the base system) to be downloaded. Since its image only takes up 35 MB, it can be burnt on a “business card” type CD-ROM, from which it takes its name. Finally, the complete set offers all packages and allows for installation on a computer that has no Internet access; it requires around 50 CD-ROMs (or eight DVD-ROMs, or two Blu-ray disks). But the programs are divided among the disks according to their popularity and importance; the first three disks will be sufficient for most installations, since they contain the most used software."
 msgstr ""
+"Vengono distribuiti svariati CD-ROM che hanno scopi diversi: "
+"<emphasis>netinst</emphasis> (installazione via rete) contiene il programma "
+"di installazione e il sistema di base Debian; tutti gli altri programmi "
+"verranno scaricati in seguito. La sua “immagine” è un filesystem ISO-9660 "
+"con al suo interno l'esatto contenuto del disco, occupa solamente circa 150 "
+"MB. Poi abbiamo il CD-ROM <emphasis>businesscard</emphasis> o "
+"<emphasis>bizcard</emphasis>, che include solo il programma di "
+"installazione, e che richiede che tutti i pacchetti Debian (compreso il "
+"sistema di base) debbano essere scaricati. Dal momento che la sua immagine "
+"occupa solo 35 MB, può essere masterizzato su un “biglietto da visita” di "
+"tipo CD-ROM, da cui prende il nome. Infine, la serie completa include tutti "
+"i pacchetti e permette l'installazione su un computer che non ha accesso a "
+"Internet, ma richiede circa 50 CD-ROM (o otto DVD-ROM, o due dischi Blu-"
+"ray). I programmi sono divisi tra i dischi in base alla loro popolarità e "
+"importanza; i primi tre dischi saranno sufficienti per la maggior parte "
+"delle installazioni, in quanto contengono il software più utilizzato. "
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Multi-architecture disks"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> Dischi multi-architettura"
 
 #. Tag: para
 #, no-c-format
 msgid "Most installation CD- and DVD-ROMs work only with a specific hardware architecture. If you wish to download the complete images, you must take care to choose those which work on the hardware of the computer on which you wish to install them."
 msgstr ""
+"Molti CD- e DVD-ROM di installazione funzionano solo su un'architettura "
+"hardware specifica. Se si vogliono scaricare le immagini complete, è "
+"necessario fare attenzione a scegliere quelli che funziona sull'hardware del "
+"computer su cui si desidera installarle."
 
 #. Tag: para
 #, no-c-format
 msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a <emphasis>netinst</emphasis> CD-ROM image for the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
 msgstr ""
+"Alcune immagini CD/DVD-ROM possono funzionare su diverse architetture. "
+"Abbiamo così l'immagine CD-ROM <emphasis>netinst</emphasis> per le "
+"architetture <emphasis>i386</emphasis> e <emphasis>amd64</emphasis>. C'è "
+"anche un DVD-ROM che contiene l'immagine di installazione e di una selezione "
+"di pacchetti binari per <emphasis>i386</emphasis> e "
+"<emphasis>amd64</emphasis>, così come i pacchetti sorgenti corrispondenti."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary>installation CD-ROM</secondary>"
-msgstr ""
+msgstr "<primary>CD-ROM</primary><secondary>CD-ROM d'installazione</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary><emphasis>netinst CD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>CD-ROM</primary><secondary><emphasis>CD-ROM "
+"netinst</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary><emphasis>businesscard CD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>CD-ROM</primary><secondary><emphasis>CD-ROM "
+"businesscard</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary>installation DVD-ROM</secondary>"
 msgstr ""
+"<primary>DVD-ROM</primary><secondary>DVD-ROM d'installazione</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary><emphasis>netinst DVD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>DVD-ROM</primary><secondary><emphasis>DVD-ROM "
+"netinst</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary><emphasis>businesscard DVD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>DVD-ROM</primary><secondary><emphasis>DVD-ROM "
+"businesscard</emphasis></secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To acquire Debian CD-ROM images, you may of course download them and burn them to disk. You may also purchase them, and, thus, provide the project with a little financial support. Check the website to see the list of CD-ROM image vendors and download sites. <ulink type=\"block\" url=\"http://www.debian.org/CD/index.html\" />"
 msgstr ""
+"Le immagini dei CD-ROM di Debian, si possono naturalmente scaricare e "
+"masterizzarle su disco. È anche possibile acquistarle, contribuendo al "
+"progetto con un piccolo supporto finanziario. Si controlli il sito per "
+"vedere l'elenco dei distributori dei CD-ROM con Debian e siti per scaricare "
+"le immagini. <ulink type=\"block\" url=\"http://www.debian.org/CD/index.html\" "
+"/>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Debian on CD-ROM"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> Debian su CD-ROM"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary>CD-ROM vendor</primary></indexterm> Debian CD-/DVD-ROMs can also be purchased; Raphaël Hertzog proposes some on his blog, where 10% of the profit is donated to the Debian Project, the remainder of which allows him to devote more time to Debian. <ulink type=\"block\" url=\"http://www.debian.org/CD/vendors/\" /> <ulink type=\"block\" url=\"http://raphaelhertzog.com/go/debian-cd/\" />"
 msgstr ""
+"<indexterm><primary>distributori CD-ROM</primary></indexterm> I CD-/DVD-ROM "
+"di Debian possono anche essere acquistati; Raphaël Hertzog ne consiglia "
+"qualcuno nel suo blog, dove il 10% del profitto viene devoluto al progetto "
+"Debian, e il resto gli permette di dedicare più tempo allo sviluppo di "
+"Debian. <ulink type=\"block\" url=\"http://www.debian.org/CD/vendors/\" /> "
+"<ulink type=\"block\" url=\"http://raphaelhertzog.com/go/debian-cd/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Booting from a USB Key"
-msgstr ""
+msgstr "Fare il boot da una chiavetta USB"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>USB key</primary>"
-msgstr ""
+msgstr "<primary>chiavetta USB</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Since recent computers are able to boot from USB devices, you can also install Debian from a USB key (this is nothing more than a small flash-memory disk). Be aware, however, that not all BIOSes are the same; some are able to boot from USB 2.0 devices, while others only work with USB 1.1. Besides, the USB key must have 512-bytes sectors, and this feature, while common, is never documented on the packaging of the keys you find for sale."
 msgstr ""
+"Dato che i computer recenti sono in grado di fare il boot da dispositivi "
+"USB, è possibile installare Debian da una chiavetta USB (che non è altro che "
+"una piccola memoria flash disk). Tenete, tuttavia, presente che non tutti i "
+"BIOS sono uguali, alcuni sono in grado di fare il boot da dispositivi USB "
+"2.0, mentre altri funzionano solo con USB 1.1. Inoltre, la chiavetta USB "
+"deve avere settori da 512 byte, e questa caratteristica, anche se molto "
+"comune, non è mai documentata sulla confezione di chiavette che si trovano "
+"in vendita."
 
 #. Tag: para
 #, no-c-format
 msgid "The installation manual explains how to create a USB key that contains the <command>debian-installer</command>. The procedure has been significantly simplified with <emphasis role=\"distribution\">Squeeze</emphasis>, since the ISO images for i386 and amd64 architectures are hybrid images that can boot from a CD-ROM as as well as from a USB key."
 msgstr ""
+"Il manuale di installazione spiega come creare una chiavetta USB che "
+"contiene il <command>debian-installer</command>. Da <emphasis "
+"role=\"distribution\">Squeeze</emphasis>, la procedura è stata notevolmente "
+"semplificata, dal momento che le immagini ISO per le architetture i386 e "
+"amd64 sono immagini ibride, che permettono di fare il boot da CD-ROM, e da "
+"chiavetta USB. "
 
 #. Tag: para
 #, no-c-format
 msgid "You must first identify the peripheral name of the USB key (ex: <literal>/dev/sdb</literal>); the simplest means to do this is to check the messages issued by the kernel using the <command>dmesg</command> command. Then you must copy the previously downloaded ISO image (for example debian-6.0.0-amd64-i386-netinst.iso) with the command <command>cat debian-6.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command>. This command requires administrator rights, since it directly accesses the USB key peripheral and blindly erases its content."
 msgstr ""
+"È necessario, innanzitutto, identificare il nome periferica della chiavetta "
+"USB (es: <literal>/dev/sdb</literal>), il motodo più semplice per farlo è "
+"quello di controllare i messaggi emessi dal kernel utilizzando il comando "
+"<command>dmesg</command>. Poi bisogna copiare l'immagine ISO precedentemente "
+"scaricata (ad esempio debian-6.0.0-amd64-i386-netinst.iso) con il comando "
+"<command>cat debian-6.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; "
+"sync</command>. Questo comando richiede i permessi di amministratore, dato "
+"che accede direttamente alle periferiche USB e cancella il suo contenuto."
 
 #. Tag: para
 #, no-c-format
 msgid "A more detailed explanation is available in the installation manual. Among other things, it describes an alternative method of preparing a USB key that is more complex, but that allows to customize the installer's default options (those set in the kernel command line). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s03.html\" />"
 msgstr ""
+"Una spiegazione più dettagliata è disponibile nel manuale di installazione. "
+"Tra le altre cose, descrive un metodo alternativo di preparare una chiavetta "
+"USB, più complesso, ma che permette di personalizzare le opzioni "
+"predefinite d'installazione (quelli fissati nella riga di comando del "
+"kernel). <ulink type=\"block\" "
+"url=\"http://www.debian.org/releases/stable/i386/ch04s03.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing through Network Booting"
-msgstr ""
+msgstr "Installazione tramite il boot da rete"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary><emphasis>netboot installation</emphasis></secondary>"
 msgstr ""
+"<primary>installazione</primary><secondary><emphasis>installazione via "
+"netboot</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary><emphasis>PXE installation</emphasis></secondary>"
 msgstr ""
+"<primary>installazione</primary><secondary><emphasis>Installazione da "
+"PXE</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary><emphasis>TFTP installation</emphasis></secondary>"
 msgstr ""
+"<primary>installazione</primary><secondary><emphasis>installazione da "
+"TFTP</emphasis></secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Many BIOSes allow booting directly from the network by downloading the kernel to boot. This method (which has several names, such as <acronym>PXE</acronym> or <acronym>TFTP</acronym> boot) can be a life-saver if the computer does not have a CD-ROM reader, or if the BIOS can't boot from such media."
 msgstr ""
+"Molti BIOS permettono di fare il boot direttamente dalla rete, scaricando il "
+"kernel da avviare. Questo metodo (che ha diversi nomi, come avvio da "
+"<acronym>PXE</acronym> o <acronym>TFTP</acronym>) può essere un salvavita se "
+"il computer non dispone di un lettore CD-ROM, o se il BIOS non può fare il "
+"boot da tali supporti. "
 
 #. Tag: para
 #, no-c-format
 msgid "This installation method works in two steps. First, while booting the computer, the BIOS (or the network card) issues a BOOTP/DHCP request to automatically acquire an IP address. When a BOOTP or DHCP server returns a response, it includes a filename, as well as network settings. After having configured the network, the client computer then issues a TFPT (Trivial File Transfer Protocol) request for a file whose name was previously indicated. Once this file is acquired, it is executed as though it were a bootloader. This then launches the Debian installation program, which is executed as though it were running from the hard drive, a CD-ROM, or a USB key."
 msgstr ""
+"Questo metodo di installazione funziona in due fasi. In primo luogo, durante "
+"l'avvio il computer, il BIOS (o la scheda di rete) manda una richiesta "
+"BOOTP/DHCP per acquisire automaticamente un indirizzo IP. Quando un server "
+"BOOTP o DHCP restituisce una risposta, include il nome di file e le "
+"impostazioni di rete. Dopo aver configurato la rete, il computer client "
+"invia la richiesta TFPT (Trivial File Transfer Protocol) del file il cui "
+"nome è stato indicato in precedenza. Una volta che questo file viene "
+"acquisito, viene eseguito come se si trattasse di un bootloader. Questo "
+"lancia il programma di installazione di Debian, che viene eseguito come se "
+"fosse stato lanciato dal disco rigido, da un CD-ROM, o da una chiavetta USB."
 
 #. Tag: para
 #, no-c-format
 msgid "All the details of this method are available in the installation guide (“Preparing files for TFTP Net Booting” section). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch05s01.html#boot-tftp\" /><ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s05.html\" />"
 msgstr ""
+"Tutti i dettagli di questo metodo sono disponibili nella guida "
+"d'installazione (sezione “Preparazione dei file per l'avvio TFTP da rete”). "
+"<ulink type=\"block\" "
+"url=\"http://www.debian.org/releases/stable/i386/ch05s01.html#boot-tftp\" "
+"/><ulink type=\"block\" "
+"url=\"http://www.debian.org/releases/stable/i386/ch04s05.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Other Installation Methods"
-msgstr ""
+msgstr "Altri metodo d'installazione"
 
 #. Tag: para
 #, no-c-format
 msgid "When we have to deploy customized installations for a large number of computers, we generally choose an automated rather than a manual installation method. Depending on the situation and the complexity of the installations to be made, we can use FAI (Fully Automatic Installer, described in <xref linkend=\"fai\" />), or even a customized installation CD with preseeding (see <xref linkend=\"d-i-preseeding\" />)."
 msgstr ""
+"Quando si devono distribuire installazioni personalizzate per un gran numero "
+"di computer, in genere si sceglie un sistema automatico piuttosto che un "
+"metodo di installazione manuale. A seconda della situazione e della "
+"complessità delle installazioni da realizzare, si può usare FAI (Fully "
+"Automatic Installer, descritto in <xref linkend=\"fai\" />), o un CD "
+"d'installazione personalizzato con la preconfigurazione (si veda <xref "
+"linkend=\"d-i-preseeding\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing, Step by Step"
-msgstr ""
+msgstr "Installazione, passo passo"
 
 #. Tag: title
 #, no-c-format
 msgid "Booting and Starting the Installer"
-msgstr ""
+msgstr "Fare il boot e avviare il programma d'installazione"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the BIOS has begun booting from the CD- or DVD-ROM, the Isolinux bootloader menu appears. At this stage, the Linux kernel is not yet loaded; this menu allows you to choose the kernel to boot and enter possible parameters to be transferred to it in the process."
 msgstr ""
+"Una volta che il BIOS ha iniziato il boot dal CD- o DVD-ROM, compare il menu "
+"del bootloader Isolinux. In questa fase, il kernel Linux non è ancora "
+"caricato, questo menu consente di scegliere il kernel da avviare e i "
+"parametri possibili da passare al programma d'installazione."
 
 #. Tag: para
 #, no-c-format
 msgid "For a standard installation, you only need to choose “Install” or “Graphical install” (with the arrows), then press the <keycap>Enter</keycap> key to initiate the remainder of the installation process. If the DVD-ROM is a “Multi-arch” disk (such as the one included with this book), and the machine has an Intel or AMD 64 bit processor, the menu options “64 bit install” and “64 bit graphical install” enable the installation of the 64 bit variant (<emphasis>amd64</emphasis>) instead of the default 32 bit variant (<emphasis>i386</emphasis>). In practice, the 64 bit version is only relevant on a server rather than a desktop workstation, since it will cause difficulties with the use of certain non-free software that are released only as binaries."
 msgstr ""
+"Per un'installazione standard, è sufficiente scegliere “Install” o "
+"“Graphical install” (utilizzando le frecce), quindi premere il tasto "
+"<keycap>Invio</keycap> per avviare il processo d'installazione. Se il DVD-"
+"ROM è un disco “multi-architettura” (come quello incluso in questo libro), e "
+"la macchina ha un processore Intel o AMD a 64 bit, le opzioni del menu "
+"d'installazione “64 bit install” e “64 bit graphical install” abilita "
+"l'installazione della variante a 64 bit (<emphasis>amd64</emphasis>) al "
+"posto della variante predefinita a 32 bit (<emphasis>i386</emphasis>). In "
+"pratica, la versione a 64 bit è rilevante solo su un server, piuttosto che "
+"su una workstation desktop, dal momento che si potrebbero incontrare "
+"problemi con alcuni software non liberi che vengono rilasciati solo come "
+"file binari."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> 32 or 64 bits?"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 32 o 64 bit?"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PAE</primary>"
-msgstr ""
+msgstr "<primary>PAE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Physical Address Extension</primary>"
-msgstr ""
+msgstr "<primary>Physical Address Extension</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>32/64 bits, choice</primary>"
-msgstr ""
+msgstr "<primary>scegliere 32/64 bit</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The fundamental difference between 32 and 64 bit systems is the size of memory addresses. In theory, a 32 bit system can not work with more than 4 GB of RAM (2<superscript>32</superscript> bytes). In practice, it is possible to work around this limitation by using the <literal>686-bigmem</literal> kernel variant, so long as the processor handles the PAE (Physical Address Extension) functionality. Using it does have a notable influence on system performance, however. This is why it is useful to use the 64 bit mode on a server with a large amount of RAM."
 msgstr ""
+"La differenza fondamentale tra i sistemi a 32 ed a 64 bit è la dimensione "
+"degli indirizzi di memoria. In teoria, un sistema a 32 bit non può lavorare "
+"con più di 4 GB di RAM (2<superscript>32</superscript> bytes). In pratica, è "
+"possibile aggirare questa limitazione utilizzando la variante del kernel "
+"<literal>686-bigmem</literal>, fintanto che il processore gestisce il PAE "
+"(Physical Address Extension). Utilizzarlo, tuttavia, ha una notevole "
+"influenza sulle prestazioni del sistema. Per questo motivo è utile "
+"utilizzare la modalità a 64 bit su un server con una grande quantità di RAM."
 
 #. Tag: para
 #, no-c-format
 msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype and the plugin for handling Java applets in web browsers, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions with all the necessary libraries, and often to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. This is very demanding for a relatively small gain. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
 msgstr ""
+"Per un computer d'ufficio (dove una differenza di pochi punti percentuali in "
+"termini di prestazioni è trascurabile), è necessario tenere a mente che "
+"alcuni programmi proprietari non sono disponibili in versioni a 64 bit (come "
+"Skype e il plugin per la gestione delle applet Java nei browser web, per "
+"esempio) . È tecnicamente possibile farli lavorare su sistemi a 64 bit, ma è "
+"necessario installare le versioni a 32 bit di tutte le librerie necessarie, "
+"e spesso è necessario utilizzare i comandi <command>setarch</command> o "
+"<command>linux32</command> (nel pacchetto <emphasis role=\"pkg\">util-"
+"linux</emphasis>) per ingannare le applicazioni sulla natura del il sistema. "
+"Questo metodo è molto esoso in termini di risorse e il guadagno è "
+"relativamente piccolo. "
+"<indexterm><primary><command>setarch</command></primary></indexterm> "
+"<indexterm><primary><command>linux32</command></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Installation alongside an existing Windows system"
 msgstr ""
+"<emphasis>IN PRACTICE</emphasis> Installazione con un sistema Windows già "
+"esistente"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dual boot</primary>"
-msgstr ""
+msgstr "<primary>dual boot</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If the computer is already running Windows, it is not necessary to delete the system in order to install Debian. You can have both systems at once, each installed on a separate disk or partition, and choose which to start when booting the computer. This configuration is often called “dual boot”, and the Debian installation system can set it up. This is done during the hard drive partitioning stage of installation and while setting up the bootloader (see the sidebars in those sections)."
 msgstr ""
+"Se nel computer è già presente Windows, non è necessario eliminare il "
+"sistema per installare Debian. Si possono avere entrambi i sistemi "
+"contemporaneamente, ognuno installato su un disco o su una partizione "
+"differente, e scegliere quale avviare quando si fa il boot del computer. "
+"Questa configurazione è spesso chiamata “dual boot”, e il sistema di "
+"installazione di Debian può utilizzare quest'opzione. Questa operazione "
+"viene eseguita durante la fase di partizionamento del disco rigido e durante "
+"la configurazione del bootloader (vedi le sidebar in quelle sezioni)."
 
 #. Tag: para
 #, no-c-format
 msgid "If you already have a working Windows system, you can even do without the recovery CD-ROM; Debian offers a Windows program that will download a light Debian installer and set it up on the hard disk. You then only need to reboot the computer and choose between normal Windows boot or booting the installation program. You can also find it on a dedicated website with a rather explicit name... <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
 msgstr ""
+"Se si ha già un sistema Windows funzionante, si può anche fare a meno del "
+"CD-ROM di ripristino, Debian offre un programma Windows che scarica un "
+"installer di Debian leggero e lo configura sul disco rigido. In questo modo "
+"è sufficiente riavviare il computer e scegliere tra il normale avvio di "
+"Windows o l'avvio del programma di installazione. È inoltre possibile "
+"trovare su un sito web dedicato con un nome piuttosto esplicito... <ulink "
+"type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" "
+"/> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Boot loader"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> Boot loader"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>loader</primary><secondary>bootloader</secondary>"
-msgstr ""
+msgstr "<primary>loader</primary><secondary>bootloader</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bootloader</primary>"
-msgstr ""
+msgstr "<primary>bootloader</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>boot</primary><secondary>loader</secondary>"
-msgstr ""
+msgstr "<primary>boot</primary><secondary>loader</secondary>"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "The bootloader is a low-level program that is responsible for booting the Linux kernel just after the BIOS passes off its control. To handle this task, it must be able to locate the Linux kernel to boot on the disk. On i386/amd64 architectures, the two most used programs to perform this task are LILO, the older of the two, and GRUB, a more modern challenger. Isolinux and Syslinux are alternatives frequently used to boot from removable media."
 msgstr ""
+"Il bootloader è un programma a basso livello che è responsabile dell'avvio "
+"del kernel Linux, subito dopo che il BIOS gli ha passato il controllo. Per "
+"gestire questo compito, deve essere in grado di individuare il kernel Linux "
+"per l'avvio dal disco. Sulle architetture i386/amd64, i due programmi più "
+"utilizzati per eseguire questa operazione sono LILO, il più vecchio dei due, "
+"e GRUB, un'alternativa più moderna. Isolinux e syslinux sono alternative "
+"frequentemente usate per l'avvio da un supporto rimovibile."
 
 #. Tag: para
 #, no-c-format
 msgid "Each menu entry hides a specific boot command line, which can be configured as needed by pressing the <keycap>TAB</keycap> key before validating the entry and booting. The “Help” menu entry displays the old command line interface, where the <keycap>F1</keycap> to <keycap>F10</keycap> keys display different help screens detailing the various options available at the prompt. You will rarely need to use this option except in very specific cases."
 msgstr ""
+"Ogni voce di menu nasconde una specifica linea di comando di avvio, che può "
+"essere configurata in base alle esigenze premendo il tasto "
+"<keycap>TAB</keycap> prima di convalidare l'avvio. La voce del menu “Help” "
+"visualizza la vecchia interfaccia a riga di comando, dove i tasti da "
+"<keycap>F1</keycap> a <keycap>F10</keycap> visualizzano diverse schermate di "
+"aiuto, andando nel dettaglio delle varie opzioni disponibili al prompt. Si "
+"avrà raramente la necessità di utilizzare queste opzioni, se non in casi "
+"molto specifici."
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "The “expert” mode (accessible in the “Advanced Options” menu) details all possible options in the process of installation, and allows navigation between the various steps without them happening automatically in sequence. Be careful, this very verbose mode can be confusing due to the multitude of configuration choices that it offers."
 msgstr ""
+"La modalità “expert” (accessibile dal menu “Advanced Options”) abilita, nel "
+"dettaglio, tutte le opzioni possibili nel processo d'installazione e "
+"consente la navigazione tra le varie fasi senza che questa venga fatta "
+"automaticamente in sequenza. Attenzione, questa modalità molto dettagliata "
+"può essere fonte di confusione a causa della moltitudine di opzioni di "
+"configurazione che offre."
 
 #. Tag: title
 #, no-c-format
 msgid "Boot screen"
-msgstr ""
+msgstr "Schermata di avvio"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Once booted, the installation program guides you step by step throughout the process. This section presents each of these steps in detail. Here we follow the process of an installation from a Multi-Arch DVD-ROM; other types of installlations, (<emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis>) may be slightly different. We will also address installation in graphical mode, but this differs from “classic” installation only in appearance."
 msgstr ""
+"Una volta avviato, il programma d'installazione guida passo passo lungo "
+"tutto il processo. Questa sezione presenta ognuno di queste fasi in "
+"dettaglio. Qui seguiamo il processo di installazione da un DVD multi-"
+"architettura-ROM; altri tipi di impianti, (netinst o businesscard) potrebbe "
+"essere leggermente diversa. Si affronterà anche l'installazione in modalità "
+"grafica, ma questo si differenzia da installazione \"classico\" solo in "
+"apparenza."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting the language"
-msgstr ""
+msgstr "Selezionare la lingua"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1356,4 +1598,3 @@ msgstr ""
 #, no-c-format
 msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"section.apt-mise-a-jour\" />."
 msgstr ""
-
