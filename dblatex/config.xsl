@@ -11,17 +11,6 @@
 <xsl:param name="output.quietly">1</xsl:param>
 <xsl:param name="keep.relative.image.uris" select="1"/>
 
-<!-- Draft mode for now -->
-<!--<xsl:param name="draft.mode">yes</xsl:param>
-<xsl:param name="draft.watermark">1</xsl:param>-->
-
-<!-- Options passed to xelatex. Here build PDF1.3 and ask for font
-     embedding
-<xsl:param name="latex.engine.options">
-   <xsl:text>-output-driver='xdvipdfmx -V3 -E'</xsl:text>
-</xsl:param>
--->
-
 <!-- Ensure usage of UTF-8 & unicode -->
 <xsl:param name="latex.encoding">utf8</xsl:param>
 <xsl:param name="latex.unicode.use">1</xsl:param>
@@ -34,7 +23,11 @@
 <xsl:param name="insert.link.page.number">yes</xsl:param>
 
 <!-- Misc rendering options -->
-<!--<xsl:param name="filename.as.url">1</xsl:param>-->
+<!-- Avoid line overflows when hyphenations are missing -->
+<xsl:param name="hyphenation.setup">sloppy</xsl:param>
+
+<!-- Support scaling of listings -->
+<xsl:param name="literal.extensions">scale.by.width</xsl:param>
 
 <!-- Don't include any list of tables/figures/etc. -->
 <xsl:param name="doc.lot.show"></xsl:param>
@@ -99,24 +92,7 @@ actual page. By default the page is centered as required in this mode.
 ////// Extend the stylesheets to better suit my needs //////
 -->
 <xsl:param name="figure.emptypage">images/debian.png</xsl:param>
-<xsl:param name="hyphenation.custom">
-proj-ect
-Arm-in
-Dum-e-rain
-Du-bé-dat
-</xsl:param>
 <xsl:param name="ulink.block.symbol">\ding{232}</xsl:param>
-
-<xsl:template name="inline.sansseq">
-  <xsl:param name="content">
-    <xsl:apply-templates/>
-  </xsl:param>
-  <xsl:text>\textsf{</xsl:text>
-  <xsl:call-template name="hyphen-encode">
-    <xsl:with-param name="string" select="$content"/>
-  </xsl:call-template>
-  <xsl:text>}</xsl:text>
-</xsl:template>
 
 <xsl:template match="command|parameter|option">
   <xsl:call-template name="inline.monoseq"/>
@@ -132,14 +108,6 @@ Du-bé-dat
 
 <!-- Disable abstract page -->
 <xsl:template match="abstract">
-</xsl:template>
-
-<!-- Add \backmatter before appendices -->
-<xsl:template match="appendix">
-  <xsl:if test="not (preceding-sibling::appendix)">
-   <xsl:text>&#10;\backmatter&#10;</xsl:text>
-  </xsl:if>
-  <xsl:apply-imports />
 </xsl:template>
 
 <!-- Extend/override generated texts:

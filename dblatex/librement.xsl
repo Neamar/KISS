@@ -5,12 +5,10 @@
 
 <xsl:import href="config.xsl"/>
 
+<!-- Add backmatter to the default layout -->
+<xsl:param name="doc.layout">coverpage toc frontmatter mainmatter backmatter index </xsl:param>
+
 <xsl:param name="latex.class.options">twoside,11pt</xsl:param>
-<xsl:param name="latex.begindocument">
-  <!-- Allow sloppy line breaks -->
-  <xsl:text>&#10;\begin{document}&#10;</xsl:text>
-  <xsl:text>\sloppy&#10;</xsl:text>
-</xsl:param>
 <xsl:param name="latex.enddocument">
   <!-- Force empty page at the end, required by lulu for distribution -->
   <xsl:text>&#10;\clearpage&#10;</xsl:text>
@@ -19,10 +17,7 @@
   <xsl:text>\end{document}&#10;</xsl:text>
 </xsl:param>
 <xsl:param name="geometry.options">headheight=0cm,headsep=0cm</xsl:param>
-
-<!-- temporarily here until integration in dblatex proper -->
-<xsl:param name="literal.environment">lstcode</xsl:param>
-<xsl:param name="literal.extensions">1</xsl:param>
+<xsl:param name="hyphenation.custom"/>
 
 <xsl:template name="user.params.set">
   <xsl:apply-imports />
