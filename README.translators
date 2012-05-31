@@ -19,16 +19,31 @@ information about the book updates to the current translators.
 Git usage
 ---------
 
-Read README.git first. 
+Read README.git first. Really.
 
 Please do not multiply commits uselessly. If you made several commits
 which only complete PO files, please squash them together before pushing
 (see man git-rebase for an explanation of how to squash commits together
 with interactive rebase).
 
+Write meaningful commit messages. Always start with the language
+code of the affected translations. Some examples of good commit
+messages:
+* it-IT: Add initial README file
+* es-ES: Complete translation of chapter 4
+* zh-CN: Review of chapter 3
+
 Take care to work on the most appropriate branch too. Currently
 it's "squeeze/master" since that's the stable maintenance branch
-for the current release of the book.
+for the current release of the book. If you already have downloaded the
+repository, use "git checkout squeeze/master" to change the current
+branch. Otherwise you can use one of those commands to clone the
+repository and start on the correct branch:
+
+Read-only anonymous access:
+$ git clone git://anonscm.debian.org/debian-handbook/debian-handbook.git -b squeeze/master
+SSH access for contributors with Write access:
+$ git clone git+ssh://git.debian.org/git/debian-handbook/debian-handbook.git -b squeeze/master
 
 How to start a new translation
 ------------------------------
