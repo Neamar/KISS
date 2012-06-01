@@ -1,13 +1,14 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-05-09T20:00:21\n"
+"POT-Creation-Date: 2012-06-01T20:23:58\n"
 "PO-Revision-Date: 2012-05-09T20:00:21\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,7 +75,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "RAID and LVM are both techniques to abstract the mounted volumes from their physical counterparts (actual hard-disk drives or partitions thereof); the former secures the data by introducing redundancy, the latter makes data management more flexible and independent of the actual size of the underlying disks. In both cases, the system ends up with new block devices, which can be used to create filesystems or swap space, without necessarily having them mapped to one physical disk. RAID and LVM come from quite different backgrounds, but their functionality can overlap somewhat, which is why they are ofter mentioned together."
+msgid "RAID and LVM are both techniques to abstract the mounted volumes from their physical counterparts (actual hard-disk drives or partitions thereof); the former secures the data by introducing redundancy, the latter makes data management more flexible and independent of the actual size of the underlying disks. In both cases, the system ends up with new block devices, which can be used to create filesystems or swap space, without necessarily having them mapped to one physical disk. RAID and LVM come from quite different backgrounds, but their functionality can overlap somewhat, which is why they are often mentioned together."
 msgstr ""
 
 #. Tag: title
@@ -114,7 +115,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it's now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavoury flavour of cheapness."
+msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it's now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavory flavour of cheapness."
 msgstr ""
 
 #. Tag: para
@@ -129,7 +130,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "RAID has actually several levels, differenciated by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks; seen the other way, more disks will be needed to store the same amount of data."
+msgid "RAID has actually several levels, differentiated by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks; seen the other way, more disks will be needed to store the same amount of data."
 msgstr ""
 
 #. Tag: term
@@ -254,7 +255,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "This isn't stricly speaking, a RAID level, but a stacking of two RAID groupings. Starting from 2×N disks, one first sets them up by pairs into N RAID-1 volumes; these N volumes are then aggregated into one, either by “linear RAID” or (increasingly) by LVM. This last case goes farther than pure RAID, but there's no problem with that."
+msgid "This isn't strictly speaking, a RAID level, but a stacking of two RAID groupings. Starting from 2×N disks, one first sets them up by pairs into N RAID-1 volumes; these N volumes are then aggregated into one, either by “linear RAID” or (increasingly) by LVM. This last case goes farther than pure RAID, but there's no problem with that."
 msgstr ""
 
 #. Tag: para
@@ -334,7 +335,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>\n"
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
 "mdadm: array /dev/md0 started.\n"
 "# </computeroutput><userinput>mdadm --query /dev/md0</userinput>\n"
@@ -394,7 +396,6 @@ msgid "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --l
 "<computeroutput># </computeroutput><userinput>df -h /srv/raid-0</userinput>\n"
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
 "/dev/md0              8.0G  249M  7.4G   4% /srv/raid-0</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -409,7 +410,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdg2 /dev/sdh</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdg2 /dev/sdh</userinput>\n"
 "<computeroutput>mdadm: largest drive (/dev/sdg2) exceed size (4194240K) by more than 1%\n"
 "Continue creating array? </computeroutput><userinput>y</userinput>\n"
 "<computeroutput>mdadm: array /dev/md1 started.\n"
@@ -448,7 +450,6 @@ msgid "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --l
 "          State : active\n"
 "[...]\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -468,7 +469,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "More importantly, note the state of the mirror. The normal state of a RAID mirror is that both disks have exactly the same contents. However, nothing guarantees this is the case when the volume is first created. The RAID subsystem will therefore provide that guarantee itself, and there will be a synchronisation phase as soon as the RAID device is created. After some time (the exact amount will depend on the actual size of the disks…), the RAID array switches to the “active” state. Note that during this reconstruction phase, the mirror is in a degraded mode, and redundancy isn't assured. A disk failing during that risk window could lead to losing all the data. Large amounts of critical data, however, are rarely stored on a freshly created RAID array before its initial synchronisation. Note that even in degraded mode, the <filename>/dev/md1</filename> is usable, and a filesystem can be created on it, as well as some data copied on it."
+msgid "More importantly, note the state of the mirror. The normal state of a RAID mirror is that both disks have exactly the same contents. However, nothing guarantees this is the case when the volume is first created. The RAID subsystem will therefore provide that guarantee itself, and there will be a synchronization phase as soon as the RAID device is created. After some time (the exact amount will depend on the actual size of the disks…), the RAID array switches to the “active” state. Note that during this reconstruction phase, the mirror is in a degraded mode, and redundancy isn't assured. A disk failing during that risk window could lead to losing all the data. Large amounts of critical data, however, are rarely stored on a freshly created RAID array before its initial synchronization. Note that even in degraded mode, the <filename>/dev/md1</filename> is usable, and a filesystem can be created on it, as well as some data copied on it."
 msgstr ""
 
 #. Tag: title
@@ -478,12 +479,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Sometimes two disks are not immediately available when one wants to start a RAID-1 mirror, for instance because one of the disks one plans to include is already used to store the data one wants to move to the array. In such circumstances, it is possible to deliberately create a degraded RAID-1 array by passing <filename>missing</filename> instead of a device file as one of the arguments to <command>mdadm</command>. Once the data have been copied to the “mirror”, the old disk can be added to the array. A synchronisation will then take place, giving us the redundancy that was wanted in the first place."
+msgid "Sometimes two disks are not immediately available when one wants to start a RAID-1 mirror, for instance because one of the disks one plans to include is already used to store the data one wants to move to the array. In such circumstances, it is possible to deliberately create a degraded RAID-1 array by passing <filename>missing</filename> instead of a device file as one of the arguments to <command>mdadm</command>. Once the data have been copied to the “mirror”, the old disk can be added to the array. A synchronization will then take place, giving us the redundancy that was wanted in the first place."
 msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis>TIP</emphasis> Setting up a mirror without synchronisation"
+msgid "<emphasis>TIP</emphasis> Setting up a mirror without synchronization"
 msgstr ""
 
 #. Tag: para
@@ -493,12 +494,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "One might therefore wonder about the point of synchronising both disks at creation time. Why care whether the contents are identical on zones of the volume that we know will only be read after we have written to them?"
+msgid "One might therefore wonder about the point of synchronizing both disks at creation time. Why care whether the contents are identical on zones of the volume that we know will only be read after we have written to them?"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Fortunately, this synchronisation phase can be avoided by passing the <literal>--assume-clean</literal> option to <command>mdadm</command>. However, this option can lead to surprises in cases where the initial data will be read (for instance if a filesystem is already present on the physical disks), which is why it isn't enabled by default."
+msgid "Fortunately, this synchronization phase can be avoided by passing the <literal>--assume-clean</literal> option to <command>mdadm</command>. However, this option can lead to surprises in cases where the initial data will be read (for instance if a filesystem is already present on the physical disks), which is why it isn't enabled by default."
 msgstr ""
 
 #. Tag: para
@@ -508,7 +509,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sdh</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sdh</userinput>\n"
 "<computeroutput>mdadm: set /dev/sdh faulty in /dev/md1\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
@@ -529,7 +531,6 @@ msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/
 "       1       0        0        1      removed\n"
 "\n"
 "       2       8      112        -      faulty spare  /dev/sdh</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -539,7 +540,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdi</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdi</userinput>\n"
 "<computeroutput>mdadm: added /dev/sdi\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
@@ -587,7 +589,6 @@ msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/s
 "       1       8      128        1      active sync   /dev/sdi\n"
 "\n"
 "       2       8      112        -      faulty spare   /dev/sdh</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -597,7 +598,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sdh</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sdh</userinput>\n"
 "<computeroutput>mdadm: hot removed /dev/sdh from /dev/md1\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
@@ -605,7 +607,6 @@ msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /de
 "    Number   Major   Minor   RaidDevice State\n"
 "       0       8       98        0      active sync   /dev/sdg2\n"
 "       1       8      128        1      active sync   /dev/sdi</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -635,7 +636,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# mdadm.conf\n"
+msgid ""
+"# mdadm.conf\n"
 "#\n"
 "# Please refer to mdadm.conf(5) for information about this file.\n"
 "#\n"
@@ -655,7 +657,6 @@ msgid "# mdadm.conf\n"
 "\n"
 "ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
 "ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -675,10 +676,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
 "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
 "ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -783,7 +784,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
 "<computeroutput>  Physical volume \"/dev/sdb2\" successfully created\n"
 "# </computeroutput><userinput>pvdisplay</userinput>\n"
@@ -812,7 +814,6 @@ msgid "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 "  /dev/sdd        lvm2 a-   4.00g 4.00g\n"
 "  /dev/sdf1       lvm2 a-   4.10g 4.10g\n"
 "  /dev/sdf2       lvm2 a-   5.22g 5.22g</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -827,7 +828,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 /dev/sdf1</userinput>\n"
 "<computeroutput>  Volume group \"vg_critical\" successfully created\n"
 "# </computeroutput><userinput>vgdisplay</userinput>\n"
@@ -858,7 +860,6 @@ msgid "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree\n"
 "  vg_critical   2   0   0 wz--n-  8.14g  8.14g\n"
 "  vg_normal     3   0   0 wz--n- 12.30g 12.30g</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -873,7 +874,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
 "<computeroutput>  Logical volume \"lv_files\" created\n"
 "# </computeroutput><userinput>lvdisplay</userinput>\n"
@@ -901,7 +903,6 @@ msgid "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 "  lv_base    vg_critical -wi-a-  1.00G\n"
 "  lv_files   vg_critical -wi-a-  5.00G\n"
 "  lv_backups vg_normal   -wi-a- 12.00G</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -936,7 +937,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 "<computeroutput>total 0\n"
 "crw-rw---- 1 root root  10, 59  5 oct.  17:40 control\n"
 "lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_critical-lv_base -&gt; ../dm-1\n"
@@ -946,7 +948,6 @@ msgid "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinpu
 "<computeroutput>brw-rw---- 1 root disk 253,  0  5 oct.  18:14 /dev/dm-0\n"
 "brw-rw---- 1 root disk 253,  1  5 oct.  18:14 /dev/dm-1\n"
 "brw-rw---- 1 root disk 253,  2  5 oct.  18:14 /dev/dm-2</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -956,7 +957,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "When the computer boots, the <filename>/etc/init.d/lvm</filename> script scans the available devices; those that have been initialised as physical volumes for LVM are registered into the LVM subsystem, those that belong to volume groups are assembled, and the relevant logical volumes are started and made available. There is therefore no need to edit configuration files when creating or modifying LVM volumes."
+msgid "When the computer boots, the <filename>/etc/init.d/lvm</filename> script scans the available devices; those that have been initialized as physical volumes for LVM are registered into the LVM subsystem, those that belong to volume groups are assembled, and the relevant logical volumes are started and made available. There is therefore no need to edit configuration files when creating or modifying LVM volumes."
 msgstr ""
 
 #. Tag: para
@@ -971,14 +972,14 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
 "<computeroutput>total 0\n"
 "lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_base -&gt; ../dm-1\n"
 "lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_files -&gt; ../dm-0\n"
 "# </computeroutput><userinput>ls -l /dev/vg_normal</userinput>\n"
 "<computeroutput>total 0\n"
 "lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_backups -&gt; ../dm-2</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -988,7 +989,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
 "<computeroutput>mke2fs 1.41.12 (17-May-2010)\n"
 "Filesystem label=\n"
 "OS type: Linux\n"
@@ -1009,7 +1011,6 @@ msgid "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv
 "/dev/vg_critical/lv_base    /srv/base       ext4\n"
 "/dev/vg_critical/lv_files   /srv/files      ext4\n"
 "/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1029,7 +1030,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on/dev/mapper/vg_critical-lv_files                      5.0G  4.6G  142M  98% /srv/files\n"
 "# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
 "<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert\n"
@@ -1054,7 +1056,6 @@ msgid "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinpu
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_files\n"
 "                      6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1079,14 +1080,14 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_base\n"
 "                     1008M  835M  123M  88% /srv/base\n"
 "# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
 "  vg_critical   2   2   0 wz--n- 8.14g 144.00m</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1096,7 +1097,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
 "<computeroutput>  Physical volume \"/dev/sdb1\" successfully created\n"
 "# </computeroutput><userinput>vgextend vg_critical /dev/sdb1</userinput>\n"
 "<computeroutput>  Volume group \"vg_critical\" successfully extended\n"
@@ -1109,7 +1111,6 @@ msgid "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinp
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_base\n"
 "                      2.0G  835M  1.1G  44% /srv/base</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1129,7 +1130,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "RAID and LVM both bring undisputable advantages as soon as one leaves the simple case of a desktop computer with a single hard disk where the usage pattern doesn't change over time. However, RAID and LVM go in two different directions, with diverging goals, and it is legitimate to wonder which one should be adopted. The most appropriate answer will of course depend on current and foreseeable requirements."
+msgid "RAID and LVM both bring indisputable advantages as soon as one leaves the simple case of a desktop computer with a single hard disk where the usage pattern doesn't change over time. However, RAID and LVM go in two different directions, with diverging goals, and it is legitimate to wonder which one should be adopted. The most appropriate answer will of course depend on current and foreseeable requirements."
 msgstr ""
 
 #. Tag: para
@@ -1149,7 +1150,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Let's take a concrete example: the public relations department at Falcot Corp needs a workstation for video editing, but the department's budget doesn't allow investing in high-end hardware from the bottom up. A decision is made to favour the hardware that is specific to the graphic nature of the work (monitor and video card), and to stay with generic hardware for storage. However, as is widely known, digital video does have some particular requirements for its storage: the amount of data to store is large, and the throughput rate for reading and writing this data is important for the overall system performance (more than typical access time, for instance). These constraints need to be fulfilled with generic hardware, in this case two 300 GB SATA hard disk drives; the system data must also be made resistant to hardware failure, as well as some of the user data. Edited videoclips must indeed be safe, but video rushes pending editing are less critical, since they're still on the videotapes."
+msgid "Let's take a concrete example: the public relations department at Falcot Corp needs a workstation for video editing, but the department's budget doesn't allow investing in high-end hardware from the bottom up. A decision is made to favor the hardware that is specific to the graphic nature of the work (monitor and video card), and to stay with generic hardware for storage. However, as is widely known, digital video does have some particular requirements for its storage: the amount of data to store is large, and the throughput rate for reading and writing this data is important for the overall system performance (more than typical access time, for instance). These constraints need to be fulfilled with generic hardware, in this case two 300 GB SATA hard disk drives; the system data must also be made resistant to hardware failure, as well as some of the user data. Edited videoclips must indeed be safe, but video rushes pending editing are less critical, since they're still on the videotapes."
 msgstr ""
 
 #. Tag: para
@@ -1159,7 +1160,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinput>\n"
 "<computeroutput>\n"
 "Disk /dev/hda: 300.0 GB, 300090728448 bytes\n"
 "255 heads, 63 sectors/track, 36483 cylinders\n"
@@ -1175,7 +1177,6 @@ msgid "<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinpu
 "/dev/sda5             249    12697    99996561   fd  Linux raid autodetect\n"
 "/dev/sda6           12698    25146    99996561   fd  Linux raid autodetect\n"
 "/dev/sda7           25147    36483    91064421   8e  Linux LVM</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1315,7 +1316,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Although <emphasis role=\"distribution\">Squeeze</emphasis> is based on version 2.6.32 of the Linux kernel, a version including the Xen patches from Xensource is also available in the <emphasis role=\"pkg\">linux-image-2.6-xen-686</emphasis> and <emphasis role=\"pkg\">linux-image-2.6-xen-amd64</emphasis> packages. This distribution-specific patching means that the available featureset depends on the distibution; discrepancies in the versions of the code, or even integration of code still under development into some distributions also mean differences in the supported features. This problem should be greatly reduced now that Xen has been officially merged into Linux. <ulink type=\"block\" url=\"http://wiki.xen.org/xenwiki/XenKernelFeatures\" />"
+msgid "Although <emphasis role=\"distribution\">Squeeze</emphasis> is based on version 2.6.32 of the Linux kernel, a version including the Xen patches from Xensource is also available in the <emphasis role=\"pkg\">linux-image-2.6-xen-686</emphasis> and <emphasis role=\"pkg\">linux-image-2.6-xen-amd64</emphasis> packages. This distribution-specific patching means that the available featureset depends on the distribution; discrepancies in the versions of the code, or even integration of code still under development into some distributions also mean differences in the supported features. This problem should be greatly reduced now that Xen has been officially merged into Linux. <ulink type=\"block\" url=\"http://wiki.xen.org/xenwiki/XenKernelFeatures\" />"
 msgstr ""
 
 #. Tag: para
@@ -1370,15 +1371,15 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen /etc/grub.d/09_linux_xen\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen /etc/grub.d/09_linux_xen\n"
 "</userinput><computeroutput># </computeroutput><userinput>update-grub\n"
 "</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once these prerequisites are installed, the next step is to test the behaviour of the dom0 by itself; this involves a reboot to the hypervisor and the Xen kernel. The system should boot in its standard fashion, with a few extra messages on the console during the early initialization steps."
+msgid "Once these prerequisites are installed, the next step is to test the behavior of the dom0 by itself; this involves a reboot to the hypervisor and the Xen kernel. The system should boot in its standard fashion, with a few extra messages on the console during the early initialization steps."
 msgstr ""
 
 #. Tag: para
@@ -1443,7 +1444,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>xen-create-image --hostname=testxen</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>xen-create-image --hostname=testxen</userinput>\n"
 "<computeroutput>\n"
 "General Information\n"
 "--------------------\n"
@@ -1468,7 +1470,6 @@ msgid "<computeroutput># </computeroutput><userinput>xen-create-image --hostname
 "RSA Fingerprint :  25:6b:6b:c7:84:03:9e:8b:82:da:84:c0:08:cd:29:94\n"
 "Root Password   :  52emxRmM\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1508,7 +1509,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "auto xenbr0\n"
+msgid ""
+"auto xenbr0\n"
 "iface xenbr0 inet dhcp\n"
 "    bridge_ports eth0\n"
 "    bridge_maxwait 0\n"
@@ -1522,7 +1524,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
 "<computeroutput>Name                            ID Mem VCPUs  State   Time(s)\n"
 "Domain-0                         0 940     1 r-----   3896.9\n"
 "# </computeroutput><userinput>xm create testxen.cfg</userinput>\n"
@@ -1532,7 +1535,6 @@ msgid "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
 "<computeroutput>Name                            ID Mem VCPUs  State   Time(s)\n"
 "Domain-0                         0 873     1 r-----   3917.1\n"
 "testxen                          1 128     1 -b----      3.7</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1557,7 +1559,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
 "<computeroutput>[...]\n"
 "Starting enhanced syslogd: rsyslogd.\n"
 "Starting periodic command scheduler: cron.\n"
@@ -1566,7 +1569,6 @@ msgid "<computeroutput># </computeroutput><userinput>xm console testxen</userinp
 "Debian GNU/Linux 6.0 testxen hvc0\n"
 "\n"
 "testxen login: </computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1621,7 +1623,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Xen has many more features than we can describe in these few paragraphs. In particular, the system is very dynamic, and many parameters for one domain (such as the amount of allocated memory, the visible hard drives, the behaviour of the task scheduler, and so on) can be adjusted even when that domain is running. A domU can even be migrated across servers without being shut down, and without losing its network connections! For all these advanced aspects, the primary source of information is the official Xen documentation. <ulink type=\"block\" url=\"http://www.xen.org/support/documentation.html\" />"
+msgid "Xen has many more features than we can describe in these few paragraphs. In particular, the system is very dynamic, and many parameters for one domain (such as the amount of allocated memory, the visible hard drives, the behavior of the task scheduler, and so on) can be adjusted even when that domain is running. A domU can even be migrated across servers without being shut down, and without losing its network connections! For all these advanced aspects, the primary source of information is the official Xen documentation. <ulink type=\"block\" url=\"http://www.xen.org/support/documentation.html\" />"
 msgstr ""
 
 #. Tag: para
@@ -1686,10 +1688,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# /etc/fstab: static file system information.\n"
+msgid ""
+"# /etc/fstab: static file system information.\n"
 "[...]\n"
 "cgroup            /sys/fs/cgroup           cgroup    defaults        0       0\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1714,7 +1716,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "auto eth0\n"
+msgid ""
+"auto eth0\n"
 "iface eth0 inet dhcp"
 msgstr ""
 
@@ -1725,7 +1728,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "#auto eth0\n"
+msgid ""
+"#auto eth0\n"
 "#iface eth0 inet dhcp\n"
 "\n"
 "auto br0\n"
@@ -1750,7 +1754,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# Interface eth0 is unchanged\n"
+msgid ""
+"# Interface eth0 is unchanged\n"
 "auto eth0\n"
 "iface eth0 inet dhcp\n"
 "\n"
@@ -1765,7 +1770,6 @@ msgid "# Interface eth0 is unchanged\n"
 "  bridge-ports tap0\n"
 "  address 10.0.0.1\n"
 "  netmask 255.255.255.0\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1785,7 +1789,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
+msgid ""
+"<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
 "</userinput><computeroutput>root@scouzmir:~# </computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/\n"
 "</userinput><computeroutput>debootstrap is /usr/sbin/debootstrap\n"
 "Checking cache download in /var/cache/lxc/debian/rootfs-i386 ... \n"
@@ -1817,11 +1822,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "lxc.network.type = veth\n"
+msgid ""
+"lxc.network.type = veth\n"
 "lxc.network.flags = up\n"
 "lxc.network.link = br0\n"
 "lxc.network.hwaddr = 4a:49:43:49:79:20\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1841,7 +1846,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc\n"
+msgid ""
+"<computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc\n"
 "</userinput><computeroutput>INIT: version 2.86 booting\n"
 "Activating swap...done.\n"
 "Cleaning up ifupdown....\n"
@@ -2032,7 +2038,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>virsh pool-create-as srv-kvm dir --target /srv/kvm</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2042,7 +2047,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
 "               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
 "               --name testkvm            <co id=\"virtinst.name\"></co>\n"
 "               --ram 1024                <co id=\"virtinst.ram\"></co>\n"
@@ -2061,12 +2067,11 @@ msgid "<computeroutput># </computeroutput><userinput>virt-install --connect qemu
 "Domain installation still in progress. You can reconnect\n"
 "to the console to complete the installation process.\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>--connect</literal> option specifies the “hypervisor” to use. Its form is that of an URL containing a virtualization system (<literal>xen://</literal>, <literal>qemu://</literal>, <literal>lxc://</literal>, <literal>openvz://</literal>, <literal>vbox://</literal>, and so on) and the machine that should host the VM (this can be left empty in the case of the local host). In addition to that, and in the QEMU/KVM case, each user can manage virtual machines working with restricted permissions, and the URL path allows differenciating “system” machines (<literal>/system</literal>) from others (<literal>/session</literal>)."
+msgid "The <literal>--connect</literal> option specifies the “hypervisor” to use. Its form is that of an URL containing a virtualization system (<literal>xen://</literal>, <literal>qemu://</literal>, <literal>lxc://</literal>, <literal>openvz://</literal>, <literal>vbox://</literal>, and so on) and the machine that should host the VM (this can be left empty in the case of the local host). In addition to that, and in the QEMU/KVM case, each user can manage virtual machines working with restricted permissions, and the URL path allows differentiating “system” machines (<literal>/system</literal>) from others (<literal>/session</literal>)."
 msgstr ""
 
 #. Tag: para
@@ -2096,12 +2101,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>--network</literal> specifies how the virtual network card integrates in the host's network configuration. The default behaviour (which we explicitly forced in our example) is to integrate it into any pre-existing network bridge. If no such bridge exists, the virtual machine will only reach the physical network through NAT, so it gets an address in a private subnet range (192.168.122.0/24)."
+msgid "The <literal>--network</literal> specifies how the virtual network card integrates in the host's network configuration. The default behavior (which we explicitly forced in our example) is to integrate it into any pre-existing network bridge. If no such bridge exists, the virtual machine will only reach the physical network through NAT, so it gets an address in a private subnet range (192.168.122.0/24)."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>--vnc</literal> states that the graphical console should be made available using VNC. The default behaviour for the associated VNC server is no only listen on the local interface; if the VNC client is to be run on a different host, establishing the connection will require setting up an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). Alternatively, the <literal>--vnclisten=0.0.0.0</literal> can be used so that the VNC server is accessible from all interfaces; note that if you do that, you really should design your firewall accordingly."
+msgid "<literal>--vnc</literal> states that the graphical console should be made available using VNC. The default behavior for the associated VNC server is no only listen on the local interface; if the VNC client is to be run on a different host, establishing the connection will require setting up an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). Alternatively, the <literal>--vnclisten=0.0.0.0</literal> can be used so that the VNC server is accessible from all interfaces; note that if you do that, you really should design your firewall accordingly."
 msgstr ""
 
 #. Tag: para
@@ -2116,10 +2121,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@server/system\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@server/system\n"
 "</userinput><computeroutput>root@server's password: \n"
 "root@server's password: </computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2144,12 +2149,12 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all\n"
 " Id Name                 State\n"
 "----------------------------------\n"
 "  - testkvm              shut off\n"
 "</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2159,9 +2164,9 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
 "</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2171,9 +2176,9 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system vncdisplay testkvm\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system vncdisplay testkvm\n"
 "</userinput><computeroutput>:0</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2248,7 +2253,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Each of these solutions has its pros and cons: SystemImager works independently from any particular packaging system, which allows it to manage large sets of machines using several distinct Linux distributions. It also includes an update system that doesn't require a reinstallation, but this update system can only be reliable if the machines are not modified independently; in other words, the user must not update any software on their own, or install any other software. Similarly, security updates must not be automated, because they have to go through the centralized reference image maintained by SystemImager. This solution also requires the target machines to be homogenous, otherwise many different images would have to be kept and managed (an i386 image won't fit on a powerpc machine, and so on)."
+msgid "Each of these solutions has its pros and cons: SystemImager works independently from any particular packaging system, which allows it to manage large sets of machines using several distinct Linux distributions. It also includes an update system that doesn't require a reinstallation, but this update system can only be reliable if the machines are not modified independently; in other words, the user must not update any software on their own, or install any other software. Similarly, security updates must not be automated, because they have to go through the centralized reference image maintained by SystemImager. This solution also requires the target machines to be homogeneous, otherwise many different images would have to be kept and managed (an i386 image won't fit on a powerpc machine, and so on)."
 msgstr ""
 
 #. Tag: para
@@ -2523,9 +2528,9 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "default vmlinuz\n"
+msgid ""
+"default vmlinuz\n"
 "append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap=us languagechooser/language-name=English countrychooser/shortlist=US vga=normal initrd=initrd.gz  --\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2545,7 +2550,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Having said that, debian-cd always operates in a similar way: an “image” directory with the exact contents of the CD-ROM is generated, then converted to an ISO file with a tool such as <command>genisoimage</command>, <command>mkisofs</command> or <command>xorriso</command>. The image directory is finalized after debian-cd's <command>make image-trees</command> step. At that point, we insert the preseed file into the approriate directory (usually <filename>$TDIR/squeeze/CD1/</filename>, $TDIR being one of the parameters defined by the <filename>CONF.sh</filename> configuration file). The CD-ROM uses <command>isolinux</command> as its bootloader, and its configuration file must be adapted from what debian-cd generated, in order to insert the required boot parameters (the specific file is <filename>$TDIR/squeeze/boot1/isolinux/isolinux.cfg</filename>). Then the “normal” process can be resumed, and we can go on to generating the ISO image with <command>make image CD=1</command> (or <command>make images</command> if several CD-ROMs are generated)."
+msgid "Having said that, debian-cd always operates in a similar way: an “image” directory with the exact contents of the CD-ROM is generated, then converted to an ISO file with a tool such as <command>genisoimage</command>, <command>mkisofs</command> or <command>xorriso</command>. The image directory is finalized after debian-cd's <command>make image-trees</command> step. At that point, we insert the preseed file into the appropriate directory (usually <filename>$TDIR/squeeze/CD1/</filename>, $TDIR being one of the parameters defined by the <filename>CONF.sh</filename> configuration file). The CD-ROM uses <command>isolinux</command> as its bootloader, and its configuration file must be adapted from what debian-cd generated, in order to insert the required boot parameters (the specific file is <filename>$TDIR/squeeze/boot1/isolinux/isolinux.cfg</filename>). Then the “normal” process can be resumed, and we can go on to generating the ISO image with <command>make image CD=1</command> (or <command>make images</command> if several CD-ROMs are generated)."
 msgstr ""
 
 #. Tag: title
@@ -2800,7 +2805,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>sudo munin-run load config\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>sudo munin-run load config\n"
 "</userinput><computeroutput>graph_title Load average\n"
 "graph_args --base 1000 -l 0\n"
 "graph_vlabel load\n"
@@ -2810,7 +2816,6 @@ msgid "<computeroutput>$ </computeroutput><userinput>sudo munin-run load config\
 "graph_info The load average of the machine describes how many processes are in the run-queue (scheduled to run \"immediately\").\n"
 "load.info 5 minute load average\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2835,7 +2840,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The “grapher” is simply the computer that aggregates the data and generate the corresponding graphs. The required software is in the <emphasis role=\"pkg\">munin</emphasis> package. The standard configuration runs <command>munin-cron</command> (once every 5 minutes), which gathers data from all the hosts listed in <filename>/etc/munin/munin.conf</filename> (only the local host is listed by default), saves the historical data in RRD files (<emphasis>Round Robin Database</emphasis>, a file format designed to store data varying in time) stored under <filename>/var/lib/munin/</filename> and generates an HTML page with the graphs in <filename>/var/cache/munin/www/</filename>."
+msgid "The “grapher” is simply the computer that aggregates the data and generates the corresponding graphs. The required software is in the <emphasis role=\"pkg\">munin</emphasis> package. The standard configuration runs <command>munin-cron</command> (once every 5 minutes), which gathers data from all the hosts listed in <filename>/etc/munin/munin.conf</filename> (only the local host is listed by default), saves the historical data in RRD files (<emphasis>Round Robin Database</emphasis>, a file format designed to store data varying in time) stored under <filename>/var/lib/munin/</filename> and generates an HTML page with the graphs in <filename>/var/cache/munin/www/</filename>."
 msgstr ""
 
 #. Tag: para
@@ -2845,10 +2850,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "[ftp.falcot.com]\n"
+msgid ""
+"[ftp.falcot.com]\n"
 "    address 192.168.0.12\n"
 "    use_node_name yes\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2898,13 +2903,13 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 stop</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 stop</userinput>\n"
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>dpkg-statoverride --update --add nagios www-data 2710 /var/lib/nagios3/rw\n"
 "</userinput><computeroutput># </computeroutput><userinput>dpkg-statoverride --update --add nagios nagios 751 /var/lib/nagios3\n"
 "</userinput><computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 start</userinput>\n"
 "<computeroutput>[...]</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2974,7 +2979,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "An inheritance system allows easy sharing of a set of properties across many objects without duplicating information. Moreover, the initial configuration includes a number of standard objects; in many cases, defining now hosts, services and contacts is a simple matter of deriving from the provided generic objects. The files in <filename>/etc/nagios3/conf.d/</filename> are a good source of informaton on how they work."
+msgid "An inheritance system allows easy sharing of a set of properties across many objects without duplicating information. Moreover, the initial configuration includes a number of standard objects; in many cases, defining now hosts, services and contacts is a simple matter of deriving from the provided generic objects. The files in <filename>/etc/nagios3/conf.d/</filename> are a good source of information on how they work."
 msgstr ""
 
 #. Tag: para
@@ -2989,7 +2994,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "define contact{\n"
+msgid ""
+"define contact{\n"
 "    name                            generic-contact\n"
 "    service_notification_period     24x7\n"
 "    host_notification_period        24x7\n"
@@ -3076,7 +3082,6 @@ msgid "define contact{\n"
 "    service_description   FTP\n"
 "    check_command         check_ftp2\n"
 "}\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -3108,4 +3113,3 @@ msgstr ""
 #, no-c-format
 msgid "Many Nagios plugins allow checking some parameters local to a host; if many machines need these checks while a central installation gathers them, the NRPE (<emphasis>Nagios Remote Plugin Executor</emphasis>) plugin needs to be deployed. The <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> package needs to be installed on the Nagios server, and <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> on the hosts where local tests need to run. The latter gets its configuration from <filename>/etc/nagios/nrpe.cfg</filename>. This file should list the tests that can be started remotely, and the IP addresses of the machines allowed to trigger them. On the Nagios side, enabling these remote tests is a simple matter of adding matching services using the new <emphasis>check_nrpe</emphasis> command."
 msgstr ""
-
