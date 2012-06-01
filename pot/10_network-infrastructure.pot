@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-05-09T20:00:20\n"
-"PO-Revision-Date: 2012-05-09T20:00:20\n"
+"POT-Creation-Date: 2012-06-01T20:23:57\n"
+"PO-Revision-Date: 2012-06-01T20:23:57\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -629,7 +629,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Both methods for creating a virtual private network over SSH are quite straightforward. However, the VPN they provide is not the most efficient available; in particular, it does not handle high levels traffic very well."
+msgid "Both methods for creating a virtual private network over SSH are quite straightforward. However, the VPN they provide is not the most efficient available; in particular, it does not handle high levels of traffic very well."
 msgstr ""
 
 #. Tag: para
@@ -912,7 +912,7 @@ msgid "\n"
 "#\n"
 "#       Specifies the local and remote IP address ranges.\n"
 "#\n"
-"#       You can specify single IP addresses seperated by commas or you can\n"
+"#       You can specify single IP addresses separated by commas or you can\n"
 "#       specify ranges, or both. For example:\n"
 "#\n"
 "#               192.168.0.234,192.168.0.245-249,192.168.0.254\n"
@@ -1260,7 +1260,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Dynamic routing allows routers to adjust, in real time, the paths used for transmitting IP packets. Each protocol involves its own method of defining routes (shortest path, use routes advertized by peers, and so on)."
+msgid "Dynamic routing allows routers to adjust, in real time, the paths used for transmitting IP packets. Each protocol involves its own method of defining routes (shortest path, use routes advertised by peers, and so on)."
 msgstr ""
 
 #. Tag: para
@@ -1370,21 +1370,6 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis>CULTURE</emphasis> The 6bone"
-msgstr ""
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>6bone</primary>"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "During the experimental phase of the IPv6 protocol, a global network infrastructure was set up to facilitate testing of the new protocol. That network was known as the <foreignphrase>6bone</foreignphrase>, a contraction of the 6 in IPv6 and the <emphasis>network backbone</emphasis>. This 6bone officially disappeared on the 6th of June, 2006 (note the omnipresence of the number 6), but the nickname is still used to refer to that part of the Internet capable of handling IPv6."
-msgstr ""
-
-#. Tag: title
-#, no-c-format
 msgid "Example of IPv6 configuration"
 msgstr ""
 
@@ -1392,13 +1377,13 @@ msgstr ""
 #, no-c-format
 msgid "\n"
 "iface eth0 inet6 static\n"
-"    address 3ffe:ffff:1234:5::1:1\n"
+"    address 2001:db8:1234:5::1:1\n"
 "    netmask 64\n"
 "    # Disabling auto-configuration\n"
 "    # up echo 0 &gt;/proc/sys/net/ipv6/conf/all/autoconf\n"
 "    # The router is auto-configured and has no fixed address\n"
 "    # (/proc/sys/net/ipv6/conf/all/accept_ra). If it had:\n"
-"    # gateway 3ffe:ffff:1234:5::1\n"
+"    # gateway 2001:db8:1234:5::1\n"
 ""
 msgstr ""
 
@@ -1458,7 +1443,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Many pieces of software need to be adapted to handle IPv6. Most of the packages in Debian <emphasis role=\"distribution\">Squeeze</emphasis> have been adapted already, but not all. A few volunteers had previously created a package archive dedicated to software specially rebuilt for IPv6; this archive was decommissioned in March 2007, both for lack of time and for lack of interest (since most of the patches have been integrated into the official packages). If your favourite package does not work with IPv6 yet, help can be found on the <emphasis>debian-ipv6</emphasis> mailing-list. <ulink type=\"block\" url=\"http://lists.debian.org/debian-ipv6/\" />"
+msgid "Many pieces of software need to be adapted to handle IPv6. Most of the packages in Debian <emphasis role=\"distribution\">Squeeze</emphasis> have been adapted already, but not all. A few volunteers had previously created a package archive dedicated to software specially rebuilt for IPv6; this archive was decommissioned in March 2007, both for lack of time and for lack of interest (since most of the patches have been integrated into the official packages). If your favorite package does not work with IPv6 yet, help can be found on the <emphasis>debian-ipv6</emphasis> mailing-list. <ulink type=\"block\" url=\"http://lists.debian.org/debian-ipv6/\" />"
 msgstr ""
 
 #. Tag: title
@@ -1483,7 +1468,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Native IPv6 (as opposed to a tunnel over IPv4) requires the firewall to accept the traffic, which uses IP protocol number 41. Connections can still be restricted, in the same fashion as for IPv4: the standard Debian kernels include an adaptation of <emphasis>netfilter</emphasis> for IPv6. This IPv6-enabled <emphasis>netfilter</emphasis> is configured in a similar fashion to its IPv4 counterpart, except the program to use is <command>ip6tables</command> instead of <command>iptables</command>."
+msgid "IPv6 tunneling over IPv4 (as opposed to native IPv6) requires the firewall to accept the traffic, which uses IPv4 protocol number 41. IPv6 connections can be restricted, in the same fashion as for IPv4: the standard Debian kernels include an adaptation of <emphasis>netfilter</emphasis> for IPv6. This IPv6-enabled <emphasis>netfilter</emphasis> is configured in a similar fashion to its IPv4 counterpart, except the program to use is <command>ip6tables</command> instead of <command>iptables</command>."
 msgstr ""
 
 #. Tag: title
@@ -1613,7 +1598,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The Falcot administrators created a primary <literal>falcot.com</literal> zone to store informations related to this domain, and a <literal>168.192.in-addr.arpa</literal> zone for reverse mapping of IP addresses in the local networks."
+msgid "The Falcot administrators created a primary <literal>falcot.com</literal> zone to store information related to this domain, and a <literal>168.192.in-addr.arpa</literal> zone for reverse mapping of IP addresses in the local networks."
 msgstr ""
 
 #. Tag: title
@@ -1892,7 +1877,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Beware! An zone that can be modified <emphasis>will</emphasis> be changed by <command>bind</command>, and the latter will overwrite its configuration files at regular intervals. Since this automated procedure produces files that are less human-readable than manually-written ones, the Falcot administrators handle the <literal>internal.falcot.com</literal> domain with a delegated DNS server; this means the <literal>falcot.com</literal> zone file stays firmly under their manual control."
+msgid "Beware! A zone that can be modified <emphasis>will</emphasis> be changed by <command>bind</command>, and the latter will overwrite its configuration files at regular intervals. Since this automated procedure produces files that are less human-readable than manually-written ones, the Falcot administrators handle the <literal>internal.falcot.com</literal> domain with a delegated DNS server; this means the <literal>falcot.com</literal> zone file stays firmly under their manual control."
 msgstr ""
 
 #. Tag: para
@@ -2110,7 +2095,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In our example, the packets travelling over SSH are filtered out (with the <literal>!tcp.port == 22</literal> filter). The packet currently displayed was developed at the TCP and HTTP layers."
+msgid "In our example, the packets traveling over SSH are filtered out (with the <literal>!tcp.port == 22</literal> filter). The packet currently displayed was developed at the TCP and HTTP layers."
 msgstr ""
 
 #. Tag: title

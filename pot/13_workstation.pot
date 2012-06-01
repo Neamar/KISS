@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-05-09T20:00:21\n"
-"PO-Revision-Date: 2012-05-09T20:00:21\n"
+"POT-Creation-Date: 2012-06-01T20:23:58\n"
+"PO-Revision-Date: 2012-06-01T20:23:58\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -104,7 +104,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <emphasis role=\"pkg\">xserver-xorg</emphasis> package provides a generic X server, as used by the 7.x versions of X.org. This server is modular and uses a set of independent drivers to handle the many different kinds of video cards."
+msgid "The <emphasis role=\"pkg\">xserver-xorg-core</emphasis> package provides a generic X server, as used by the 7.x versions of X.org. This server is modular and uses a set of independent drivers to handle the many different kinds of video cards. Installing <emphasis role=\"pkg\">xserver-xorg</emphasis> ensures that both the server and at least one video driver are installed."
 msgstr ""
 
 #. Tag: indexterm
@@ -119,7 +119,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Note that if the detected video card is not handled by any of the available drivers, X.org tries using the VESA driver. This is a generic driver that should work everywhere, but with limited capabilities (fewer available resolutions, no hardware acceleration for games, and so on). The X server writes its messages to the <filename>/var/log/Xorg.0.log</filename> log file, which is where one would look to know what driver is currently in use. For example, the following snippet matches what the <literal>intel</literal> driver outputs when it is loaded:"
+msgid "Note that if the detected video card is not handled by any of the available drivers, X.org tries using the VESA and fbdev drivers. The former is a generic driver that should work everywhere, but with limited capabilities (fewer available resolutions, no hardware acceleration for games, and so on) while the latter works on top of the kernel's framebuffer device. The X server writes its messages to the <filename>/var/log/Xorg.0.log</filename> log file, which is where one would look to know what driver is currently in use. For example, the following snippet matches what the <literal>intel</literal> driver outputs when it is loaded:"
 msgstr ""
 
 #. Tag: programlisting
@@ -151,7 +151,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Some video card makers (most notably nVidia) refuse to publish the hardware specifications that would be required to implement good free drivers. They do, however, provide proprietary drivers that allow using their hardware. This policy is nefarious, because even when the provided driver exists, it is usually not as polished as it should be; more importantly, it does not necessarily follow the X.org updates, which may prevent the latest available driver from loading correctly (or at all). We cannot condone this behaviour, and we recommend you avoid these makers and favour more cooperative manufacturers."
+msgid "Some video card makers (most notably nVidia) refuse to publish the hardware specifications that would be required to implement good free drivers. They do, however, provide proprietary drivers that allow using their hardware. This policy is nefarious, because even when the provided driver exists, it is usually not as polished as it should be; more importantly, it does not necessarily follow the X.org updates, which may prevent the latest available driver from loading correctly (or at all). We cannot condone this behavior, and we recommend you avoid these makers and favor more cooperative manufacturers."
 msgstr ""
 
 #. Tag: para
@@ -161,7 +161,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The “nouveau” project aims to develop a free software driver for nVidia cards. As of <emphasis role=\"distribution\">Squeeze</emphasis>, its feature set does not match the proprietary driver. In the developers' defense, we should mention that the required information can only be gathered by reverse engineering, which makes things difficult. The free driver for ATI video cards, called “radeon”, is much better in that regard."
+msgid "The “nouveau” project aims to develop a free software driver for nVidia cards. As of <emphasis role=\"distribution\">Squeeze</emphasis>, its feature set does not match the proprietary driver. In the developers' defense, we should mention that the required information can only be gathered by reverse engineering, which makes things difficult. The free driver for ATI video cards, called “radeon”, is much better in that regard although it often requires a non-free firmware."
 msgstr ""
 
 #. Tag: indexterm
@@ -226,7 +226,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Since each graphical desktop provides its own window manager, choosing the former usually implies software selections from the latter. GNOME uses the <command>metacity</command> window manager, KDE uses <command>kwm</command> (<emphasis>KDE Window Manager</emphasis>), and XFce (which we present later) has <command>XFwm</command>. The Unix philosophy always allows using one's window manager of choice, but following the recommendations allows an administrator to best take advantage of the integration efforts led by each project."
+msgid "Since each graphical desktop provides its own window manager, choosing the former usually implies software selections from the latter. GNOME uses the <command>metacity</command> window manager, KDE uses <command>kwin</command>, and Xfce (which we present later) has <command>xfwm</command>. The Unix philosophy always allows using one's window manager of choice, but following the recommendations allows an administrator to best take advantage of the integration efforts led by each project."
 msgstr ""
 
 #. Tag: indexterm
@@ -236,7 +236,7 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary><command>kwm</command></primary>"
+msgid "<primary><command>kwin</command></primary>"
 msgstr ""
 
 #. Tag: title
@@ -481,7 +481,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "It took quite some time for the GNOME project to build up this infrastructure, which can account for a seeminly less mature desktop than KDE. The usability and accessibility efforts, in particular, are recent, and the benefits have only started to show in the latest versions of the environment."
+msgid "It took quite some time for the GNOME project to build up this infrastructure, which can account for a seemingly less mature desktop than KDE. The usability and accessibility efforts, in particular, are recent, and the benefits have only started to show in the latest versions of the environment."
 msgstr ""
 
 #. Tag: title
@@ -491,7 +491,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "For administrators, GNOME seems to be better prepared for massive deployments. Application configuration is handled by GConf, a kind of registry that can be queried and edited with the <command>gconftool-2</command> command-line tool. The administrator can therefore change users' configuration with a simple script. The following webside lists all information of interest to an administrator tasked to manage GNOME workstations: <ulink type=\"block\" url=\"http://library.gnome.org/admin/system-admin-guide/stable/\" /><ulink type=\"block\" url=\"http://library.gnome.org/admin/deployment-guide/\" />"
+msgid "For administrators, GNOME seems to be better prepared for massive deployments. Application configuration is handled by GConf, a kind of registry that can be queried and edited with the <command>gconftool-2</command> command-line tool. The administrator can therefore change users' configuration with a simple script. The following website lists all information of interest to an administrator tasked to manage GNOME workstations: <ulink type=\"block\" url=\"http://library.gnome.org/admin/system-admin-guide/stable/\" /><ulink type=\"block\" url=\"http://library.gnome.org/admin/deployment-guide/\" />"
 msgstr ""
 
 #. Tag: indexterm
@@ -586,7 +586,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Installing the <emphasis role=\"pkg\">popularity-contest</emphasis> package enables participation in an automated survey that informs the Debian project about the most popular packages. A script is run weekly by <command>cron</command> which sends (by HTTP or email) an anonymized list of the installed packages and the latest access date for the files they contain. This allows differenciating, among the installed packages, those that are actually used."
+msgid "Installing the <emphasis role=\"pkg\">popularity-contest</emphasis> package enables participation in an automated survey that informs the Debian project about the most popular packages. A script is run weekly by <command>cron</command> which sends (by HTTP or email) an anonymized list of the installed packages and the latest access date for the files they contain. This allows differentiating, among the installed packages, those that are actually used."
 msgstr ""
 
 #. Tag: indexterm
@@ -791,7 +791,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Netscape Navigator was the standard browser when the web started reaching the masses, but it was progressively left behind when Microsoft Internet Explorer came around. Faced with this failure, Netscape (the company) decided to “free” its source code, by realeasing it under a free license, to give it a second life. This was the beginning of the Mozilla project. After many years of development, the results are more than satisfying: the Mozilla project brought forth an HTML rendering engine (called Gecko) that is among the most standard-compliant. This rendering engine is in particular used by the Mozilla Firefox browser, which is one of the most successful browsers, with a fast-growing user base."
+msgid "Netscape Navigator was the standard browser when the web started reaching the masses, but it was progressively left behind when Microsoft Internet Explorer came around. Faced with this failure, Netscape (the company) decided to “free” its source code, by releasing it under a free license, to give it a second life. This was the beginning of the Mozilla project. After many years of development, the results are more than satisfying: the Mozilla project brought forth an HTML rendering engine (called Gecko) that is among the most standard-compliant. This rendering engine is in particular used by the Mozilla Firefox browser, which is one of the most successful browsers, with a fast-growing user base."
 msgstr ""
 
 #. Tag: indexterm
@@ -821,7 +821,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Anjuta (in the <emphasis role=\"pkg\">anjuta</emphasis> package) is a development environment optimised for creating GTK+ applications for GNOME. Glade (in the <emphasis role=\"pkg\">glade</emphasis> package) is an application designed to create GTK+ graphical interfaces for GNOME and save them in an XML file. These XML files can then be loaded by the <emphasis>libglade</emphasis> shared library, which can dynamically recreate the saved interfaces; such a feature can be interesting, for instance for for plugins that require dialogs."
+msgid "Anjuta (in the <emphasis role=\"pkg\">anjuta</emphasis> package) is a development environment optimized for creating GTK+ applications for GNOME. Glade (in the <emphasis role=\"pkg\">glade</emphasis> package) is an application designed to create GTK+ graphical interfaces for GNOME and save them in an XML file. These XML files can then be loaded by the <emphasis>libglade</emphasis> shared library, which can dynamically recreate the saved interfaces; such a feature can be interesting, for instance for for plugins that require dialogs."
 msgstr ""
 
 #. Tag: indexterm
@@ -926,7 +926,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "When setting up an internal instant messaging system for a company, the obvious choice is Jabber: its protocol is an open standard (XMPP), and there is no shortage of features. The messages can be encrypted, which can be a real bonus, and gateways can be set up between a Jabber server and other instant messaging networks such as ICQ, GAIM, Yahoo, MSN, and so on."
+msgid "When setting up an internal instant messaging system for a company, the obvious choice is Jabber: its protocol is an open standard (XMPP), and there is no shortage of features. The messages can be encrypted, which can be a real bonus, and gateways can be set up between a Jabber server and other instant messaging networks such as ICQ, AIM, Yahoo, MSN, and so on."
 msgstr ""
 
 #. Tag: indexterm
@@ -946,7 +946,7 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>GAIM</primary>"
+msgid "<primary>AIM</primary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -961,7 +961,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "IRC can also be considered, instead of Jabber. This system is more centered around the concept of channels, the name of which starts with a hash sign <literal>#</literal>. Each channel is usually targeted at a specific topic and any number of people can join a channel to discuss it (but users can still have in one-to-one private conversations if needed). The IRC protocol is older, and does not allow end-to-end encryption of the messages; it is still possible to encrypt the communications between the users and the server by tunneling the IRC protocol inside SSL."
+msgid "IRC can also be considered, instead of Jabber. This system is more centered around the concept of channels, the name of which starts with a hash sign <literal>#</literal>. Each channel is usually targeted at a specific topic and any number of people can join a channel to discuss it (but users can still have one-to-one private conversations if needed). The IRC protocol is older, and does not allow end-to-end encryption of the messages; it is still possible to encrypt the communications between the users and the server by tunneling the IRC protocol inside SSL."
 msgstr ""
 
 #. Tag: indexterm
@@ -1076,7 +1076,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "KDE provides Kopete (in the <emphasis role=\"pkg\">openoffice.org</emphasis> package)."
+msgid "KDE provides Kopete (in the package of the same name)."
 msgstr ""
 
 #. Tag: indexterm
@@ -1325,7 +1325,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Note that you should not rely on Wine (or similar solutions) without actually testing the particular software: only a real-use test will determine conclusively whether emulation is fully fuctional."
+msgid "Note that you should not rely on Wine (or similar solutions) without actually testing the particular software: only a real-use test will determine conclusively whether emulation is fully functional."
 msgstr ""
 
 #. Tag: title

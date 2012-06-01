@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-05-09T20:00:22\n"
-"PO-Revision-Date: 2012-05-09T20:00:22\n"
+"POT-Creation-Date: 2012-06-01T20:23:58\n"
+"PO-Revision-Date: 2012-06-01T20:23:58\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The term “risk” is customarily used to refer collectively to these three factors: what to protect, what needs to be prevented from happening, and who will try to make it happen. Modelling the risk requires answers to these three questions. From this risk model, a security policy can be constructed, and the policy can be implemented with concrete actions."
+msgid "The term “risk” is customarily used to refer collectively to these three factors: what to protect, what needs to be prevented from happening, and who will try to make it happen. Modeling the risk requires answers to these three questions. From this risk model, a security policy can be constructed, and the policy can be implemented with concrete actions."
 msgstr ""
 
 #. Tag: title
@@ -99,7 +99,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once the risk has been modelled, one can start thinking about designing an actual security policy."
+msgid "Once the risk has been modeled, one can start thinking about designing an actual security policy."
 msgstr ""
 
 #. Tag: title
@@ -294,7 +294,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Each chain is a list of rules; each rule is a set of conditions and an action to execute when the conditions are met. When processing a packet, the firewall scans the appropriate chain, one rule after another; when the conditions for one rule are met, it “jumps” (hence the <literal>-j</literal> option in the commands) to the specified action to continue processing. The most common behaviours are standardized, and dedicated actions exist for them. Taking one of these standard actions interrupts the processing of the chain, since the packet's fate is already sealed (barring an exception mentioned below):"
+msgid "Each chain is a list of rules; each rule is a set of conditions and an action to execute when the conditions are met. When processing a packet, the firewall scans the appropriate chain, one rule after another; when the conditions for one rule are met, it “jumps” (hence the <literal>-j</literal> option in the commands) to the specified action to continue processing. The most common behaviors are standardized, and dedicated actions exist for them. Taking one of these standard actions interrupts the processing of the chain, since the packet's fate is already sealed (barring an exception mentioned below):"
 msgstr ""
 
 #. Tag: title
@@ -439,7 +439,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>-s <replaceable>adress</replaceable></literal> or <literal>-s <replaceable>network/mask</replaceable></literal> condition matches the source address of the packet. Correspondingly, <literal>-d <replaceable>adress</replaceable></literal> or <literal>-d <replaceable>network/mask</replaceable></literal> matches the destination address."
+msgid "The <literal>-s <replaceable>address</replaceable></literal> or <literal>-s <replaceable>network/mask</replaceable></literal> condition matches the source address of the packet. Correspondingly, <literal>-d <replaceable>address</replaceable></literal> or <literal>-d <replaceable>network/mask</replaceable></literal> matches the destination address."
 msgstr ""
 
 #. Tag: para
@@ -469,7 +469,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>--log-prefix</literal> allows specifying a text prefix to differenciate between logged messages;"
+msgid "<literal>--log-prefix</literal> allows specifying a text prefix to differentiate between logged messages;"
 msgstr ""
 
 #. Tag: para
@@ -603,7 +603,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behaviour or change in quality of the service(s) rendered. Monitoring activity can enable the detection of intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
+msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can enable the detection of intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
 msgstr ""
 
 #. Tag: title
@@ -658,7 +658,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "those cancelling such a qualification (<filename>/etc/logcheck/cracking.ignore.d/</filename>);"
+msgid "those canceling such a qualification (<filename>/etc/logcheck/cracking.ignore.d/</filename>);"
 msgstr ""
 
 #. Tag: para
@@ -668,7 +668,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "those cancelling this classification (<filename>/etc/logcheck/violations.ignore.d/</filename>);"
+msgid "those canceling this classification (<filename>/etc/logcheck/violations.ignore.d/</filename>);"
 msgstr ""
 
 #. Tag: para
@@ -883,7 +883,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The first drawback can be avoided by asking <command>debsums</command> to base its checks on a <filename>.deb</filename> package instead of relying on the <filename>md5sums</filename> file. But that requires dowloading the matching <filename>.deb</filename> files first:"
+msgid "The first drawback can be avoided by asking <command>debsums</command> to base its checks on a <filename>.deb</filename> package instead of relying on the <filename>md5sums</filename> file. But that requires downloading the matching <filename>.deb</filename> files first:"
 msgstr ""
 
 #. Tag: screen
@@ -946,7 +946,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Many options in <filename>/etc/default/aide</filename> can be used to tweak the behaviour of the <emphasis role=\"pkg\">aide</emphasis> package. The AIDE configuration proper is stored in <filename>/etc/aide/aide.conf</filename> and <filename>/etc/aide/aide.conf.d/</filename> (actually, these files are only used by <command>update-aide.conf</command> to generate <filename>/var/lib/aide/aide.conf.autogenerated</filename>). Configuration indicates which properties of which files need to be checked. For instance, the contents of log files changes routinely, and such changes can be ignored as long as the permissions of these files stay the same, but both contents and permissions of executable programs must be constant. Although not very complex, the configuration syntax is not fully intuitive, and reading the <citerefentry><refentrytitle>aide.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page is therefore recommended."
+msgid "Many options in <filename>/etc/default/aide</filename> can be used to tweak the behavior of the <emphasis role=\"pkg\">aide</emphasis> package. The AIDE configuration proper is stored in <filename>/etc/aide/aide.conf</filename> and <filename>/etc/aide/aide.conf.d/</filename> (actually, these files are only used by <command>update-aide.conf</command> to generate <filename>/var/lib/aide/aide.conf.autogenerated</filename>). Configuration indicates which properties of which files need to be checked. For instance, the contents of log files changes routinely, and such changes can be ignored as long as the permissions of these files stay the same, but both contents and permissions of executable programs must be constant. Although not very complex, the configuration syntax is not fully intuitive, and reading the <citerefentry><refentrytitle>aide.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page is therefore recommended."
 msgstr ""
 
 #. Tag: para
@@ -986,7 +986,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis role=\"pkg\">rkhunter</emphasis> packages allow looking for <emphasis>rootkits</emphasis> potentially installed on the system. As a reminder, these are pieces of sofware designed to hide the compromise of a system while discreetly keeping control of the machine. The tests are not 100% reliable, but they can usually draw the administrator's attention to potential problems."
+msgid "The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis role=\"pkg\">rkhunter</emphasis> packages allow looking for <emphasis>rootkits</emphasis> potentially installed on the system. As a reminder, these are pieces of software designed to hide the compromise of a system while discreetly keeping control of the machine. The tests are not 100% reliable, but they can usually draw the administrator's attention to potential problems."
 msgstr ""
 
 #. Tag: title
@@ -1061,7 +1061,7 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis>Going Further</emphasis> Integration with <command>prelude</command>"
+msgid "<emphasis>GOING FURTHER</emphasis> Integration with <command>prelude</command>"
 msgstr ""
 
 #. Tag: para
@@ -1141,7 +1141,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labelling). Domain's rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labelled with the given type)."
+msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labeling). Domain's rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labeled with the given type)."
 msgstr ""
 
 #. Tag: title
@@ -1156,7 +1156,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "By default, a program inherits its domain for the user who started it but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labelled with a dedicated type (for example <command>ssh</command> is labelled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
+msgid "By default, a program inherits its domain for the user who started it but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
 msgstr ""
 
 #. Tag: title
@@ -1263,7 +1263,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "It is worth noting that the <command>selinux-activate</command> script automates those operations and forces a labelling on next boot (which avoids new non-labeled files created while SELinux was not yet active and while the labelling was going on)."
+msgid "It is worth noting that the <command>selinux-activate</command> script automates those operations and forces a labeling on next boot (which avoids new non-labeled files created while SELinux was not yet active and while the labeling was going on)."
 msgstr ""
 
 #. Tag: title
@@ -1418,7 +1418,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Some SELinux modules export boolean options that you can tweak to alter the behaviour of the default rules. The <command>getsebool</command> utility can be used to inspect those options (<command>getsebool <replaceable>boolean</replaceable></command> displays one option, and <command>getsebool -a</command> them all). The <command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> command changes the current value of a boolean option. The <literal>-P</literal> option makes the change permanent, it means that the new value becomes the default and will be kept across reboots. The example below grants web servers an access to home directories (this is useful when users have personal websites in <filename>~/public_html/</filename>)."
+msgid "Some SELinux modules export boolean options that you can tweak to alter the behavior of the default rules. The <command>getsebool</command> utility can be used to inspect those options (<command>getsebool <replaceable>boolean</replaceable></command> displays one option, and <command>getsebool -a</command> them all). The <command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> command changes the current value of a boolean option. The <literal>-P</literal> option makes the change permanent, it means that the new value becomes the default and will be kept across reboots. The example below grants web servers an access to home directories (this is useful when users have personal websites in <filename>~/public_html/</filename>)."
 msgstr ""
 
 #. Tag: screen
@@ -1457,7 +1457,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>.te</filename> file is the most important one. It defines the rules. The <filename>.fc</filename> file defines the “file contexts”, that is the types assigned to files related to this module. The data within the <filename>.fc</filename> file are used during the file labelling step. Finally, the <filename>.if</filename> file defines the interface of the module: it's a set of “public functions” that other modules can use to properly interact with the module that you're creating."
+msgid "The <filename>.te</filename> file is the most important one. It defines the rules. The <filename>.fc</filename> file defines the “file contexts”, that is the types assigned to files related to this module. The data within the <filename>.fc</filename> file are used during the file labeling step. Finally, the <filename>.if</filename> file defines the interface of the module: it's a set of “public functions” that other modules can use to properly interact with the module that you're creating."
 msgstr ""
 
 #. Tag: title
@@ -1650,7 +1650,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>logging_log_file</literal> is an interface provided by the reference policy. It indicates that files labelled with the given type are log files which ought to benefit from the associated rules (for example granting rights to <command>logrotate</command> so that it can manipulate them)."
+msgid "<literal>logging_log_file</literal> is an interface provided by the reference policy. It indicates that files labeled with the given type are log files which ought to benefit from the associated rules (for example granting rights to <command>logrotate</command> so that it can manipulate them)."
 msgstr ""
 
 #. Tag: para
@@ -1675,7 +1675,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Howevever, an empirical approach is possible. Once the relevant objects are correctly labelled, you can use the application in permissive mode: the operations that would be forbidden are logged but still succeed. By analysing the logs, you can now identify the operations to allow. Here is an example of such a log entry:"
+msgid "However, an empirical approach is possible. Once the relevant objects are correctly labeled, you can use the application in permissive mode: the operations that would be forbidden are logged but still succeed. By analyzing the logs, you can now identify the operations to allow. Here is an example of such a log entry:"
 msgstr ""
 
 #. Tag: programlisting
@@ -1721,7 +1721,7 @@ msgstr ""
 
 #. Tag: entry
 #, no-c-format
-msgid "This operation required the <literal>read</literal> and <literal>write</literal> permisions."
+msgid "This operation required the <literal>read</literal> and <literal>write</literal> permissions."
 msgstr ""
 
 #. Tag: entry
@@ -1806,7 +1806,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "By observing this log entry, it is possible to build a rule that would allow this operation. For example: <literal>allow syslogd_t device_t:fifo_file { read write }</literal>. This process can be automated, and it's exactly what the <command>audit2allow</command> command (of the <emphasis role=\"pkg\">policycoreutils</emphasis> package) offers. This approach is only useful if the various objects are already correctly labelled according to what must be confined. In any case, you will have to carefully review the generated rules and validate them according to your knowledge of the application. Effectively, this approach tends to grant more rights than are really required. The proper solution is often to create new types and to grant rights on those types only. It also happens that a denied operation isn't fatal to the application, in which case it might be better to just add a “<literal>dontaudit</literal>” rule to avoid the log entry despite the effective denial."
+msgid "By observing this log entry, it is possible to build a rule that would allow this operation. For example: <literal>allow syslogd_t device_t:fifo_file { read write }</literal>. This process can be automated, and it's exactly what the <command>audit2allow</command> command (of the <emphasis role=\"pkg\">policycoreutils</emphasis> package) offers. This approach is only useful if the various objects are already correctly labeled according to what must be confined. In any case, you will have to carefully review the generated rules and validate them according to your knowledge of the application. Effectively, this approach tends to grant more rights than are really required. The proper solution is often to create new types and to grant rights on those types only. It also happens that a denied operation isn't fatal to the application, in which case it might be better to just add a “<literal>dontaudit</literal>” rule to avoid the log entry despite the effective denial."
 msgstr ""
 
 #. Tag: title
@@ -1936,7 +1936,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Now the attacker owns the machine; they will usually try to keep this privileged access for as long as possible. This involves installing a <emphasis>rootkit</emphasis>, a program that will replace some components of the system so that the attacker will be able to obtain the administrator privileges again at a later time; the rootkit also tries hiding its own existence as well as any traces of the intrusion. A subverted <command>ps</command> program will omit to list some processes, <command>netstat</command> will not list some of the active connections, and so on. Using the root permissions, the attacker was able to observe the whole system, but didn't find important data; so they will try accessing other machines in the corporate network. Analysing the administrator's account and the history files, the attacker finds what machines are routinely accessed. By replacing <command>sudo</command> or <command>ssh</command> with a subverted program, the attacker can intercept some of the administrator's passwords, which they will use on the detected servers… and the intrusion can propagate from then on."
+msgid "Now the attacker owns the machine; they will usually try to keep this privileged access for as long as possible. This involves installing a <emphasis>rootkit</emphasis>, a program that will replace some components of the system so that the attacker will be able to obtain the administrator privileges again at a later time; the rootkit also tries hiding its own existence as well as any traces of the intrusion. A subverted <command>ps</command> program will omit to list some processes, <command>netstat</command> will not list some of the active connections, and so on. Using the root permissions, the attacker was able to observe the whole system, but didn't find important data; so they will try accessing other machines in the corporate network. Analyzing the administrator's account and the history files, the attacker finds what machines are routinely accessed. By replacing <command>sudo</command> or <command>ssh</command> with a subverted program, the attacker can intercept some of the administrator's passwords, which they will use on the detected servers… and the intrusion can propagate from then on."
 msgstr ""
 
 #. Tag: para
@@ -1991,7 +1991,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "By the same reasoning, firewalls will often be configured to only allow access to services that are meant to be publically accessible."
+msgid "By the same reasoning, firewalls will often be configured to only allow access to services that are meant to be publicly accessible."
 msgstr ""
 
 #. Tag: para
@@ -2159,7 +2159,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "While it may seem tempting to analyse the system as it runs, especially when the server is not physically reachable, this is best avoided: quite simply you can't trust the programs currently installed on the compromised system. It's quite possible for a subverted <command>ps</command> command to hide some processes, or for a subverted <command>ls</command> to hide files; sometimes even the kernel is compromised!"
+msgid "While it may seem tempting to analyze the system as it runs, especially when the server is not physically reachable, this is best avoided: quite simply you can't trust the programs currently installed on the compromised system. It's quite possible for a subverted <command>ps</command> command to hide some processes, or for a subverted <command>ls</command> to hide files; sometimes even the kernel is compromised!"
 msgstr ""
 
 #. Tag: para

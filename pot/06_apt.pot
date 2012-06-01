@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-05-09T20:00:16\n"
-"PO-Revision-Date: 2012-05-09T20:00:16\n"
+"POT-Creation-Date: 2012-06-01T20:23:56\n"
+"PO-Revision-Date: 2012-06-01T20:23:56\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -209,7 +209,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <foreignphrase>non-free</foreignphrase> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed freely. This archive, which is not officially part of Debian, is a service for users who could need those softwares — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
+msgid "The <foreignphrase>non-free</foreignphrase> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed freely. This archive, which is not officially part of Debian, is a service for users who could need those software — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
 msgstr ""
 
 #. Tag: para
@@ -739,7 +739,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "For more important upgrades, such as the change from one major Debian versionto the next, you need to use <command>aptitude full-upgrade</command> (the option used to be named <literal>dist-upgrade</literal>, for “distribution upgrade”). With this instruction, <command>aptitude</command> will complete the upgrade even if it has to remove some obsolete packages or install new dependencies. This is also the command used by users who work daily with the Debian <emphasis role=\"distribution\">Unstable</emphasis> release and follow its evolution day by day. It is so simple that it hardly needs explanation: APT's reputation is based on this great functionality."
+msgid "For more important upgrades, such as the change from one major Debian version to the next, you need to use <command>aptitude full-upgrade</command> (the option used to be named <literal>dist-upgrade</literal>, for “distribution upgrade”). With this instruction, <command>aptitude</command> will complete the upgrade even if it has to remove some obsolete packages or install new dependencies. This is also the command used by users who work daily with the Debian <emphasis role=\"distribution\">Unstable</emphasis> release and follow its evolution day by day. It is so simple that it hardly needs explanation: APT's reputation is based on this great functionality."
 msgstr ""
 
 #. Tag: para
@@ -982,12 +982,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<command>aptitude</command> being such a marvelous tool, it is tempting to pick packages coming from other distributions. For example, after having installed a <emphasis role=\"distribution\">Stable</emphasis> system, you might want to try out a software available in <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> without diverging too much from the system's initial state."
+msgid "<command>aptitude</command> being such a marvelous tool, it is tempting to pick packages coming from other distributions. For example, after having installed a <emphasis role=\"distribution\">Stable</emphasis> system, you might want to try out a software package available in <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> without diverging too much from the system's initial state."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Even if you will occasionnaly encounter problems while mixing packages from different distributions, <command>aptitude</command> manages such coexistence very well and limits risks very effectively. The best way to proceed is to list all distributions used in <filename>/etc/apt/sources.list</filename> (some people always put the three distributions, but remember that <emphasis role=\"distribution\">Unstable</emphasis> is reserved for experienced users) and to define your reference distribution with the <literal>APT::Default-Release</literal> parameter (see <xref linkend=\"section.apt-mise-a-jour\" />)."
+msgid "Even if you will occasionally encounter problems while mixing packages from different distributions, <command>aptitude</command> manages such coexistence very well and limits risks very effectively. The best way to proceed is to list all distributions used in <filename>/etc/apt/sources.list</filename> (some people always put the three distributions, but remember that <emphasis role=\"distribution\">Unstable</emphasis> is reserved for experienced users) and to define your reference distribution with the <literal>APT::Default-Release</literal> parameter (see <xref linkend=\"section.apt-mise-a-jour\" />)."
 msgstr ""
 
 #. Tag: para
@@ -1002,7 +1002,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Everything centers around the fact that APT only considers packages of higher or equal version than the installed one (assuming that <filename>/etc/apt/preferencs</filename> has not been used to force priorities higher than 1000 for some packages)."
+msgid "Everything centers around the fact that APT only considers packages of higher or equal version than the installed one (assuming that <filename>/etc/apt/preferences</filename> has not been used to force priorities higher than 1000 for some packages)."
 msgstr ""
 
 #. Tag: title
@@ -1155,7 +1155,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "One of the essential functionnalities of <command>aptitude</command> (which has also been integrated to <command>apt-get</command> since <emphasis role=\"distribution\">Lenny</emphasis>) is the tracking of packages installed only through dependencies. These packages are called “automatic” and are tagged with an “A” in the list of packages — they often include libraries for instance. When a package is removed, the corresponding automatic packages are also selected for removal unless another “manually installed” package depends on them. It is possible to mark a package as automatic (with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>) or to remove the mark (<keycombo><keycap>m</keycap></keycombo> key). When maintaining a system with <command>aptitude</command>, it is a good habit to mark as automatic any package that you don't need directly so that they are automatically removed when they aren't necessary anymore. You can either navigate the list of installed packages and play with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>, or apply the flag to entire sections (for example the <literal>libs</literal> section). This habit can help you to keep your system tidy and offers a simple way to visualize the packages in use on a machine, without all the libraries and dependencies that you don't really care about. The related pattern that can be used with <keycombo><keycap>l</keycap></keycombo> (to activate the filter mode) is <literal>~i!~M</literal>. It specifies that you only want to see installed packages (<literal>~i</literal>) not marked as automatic (<literal>!~M</literal>)."
+msgid "One of the essential functionalities of <command>aptitude</command> (which has also been integrated to <command>apt-get</command> since <emphasis role=\"distribution\">Lenny</emphasis>) is the tracking of packages installed only through dependencies. These packages are called “automatic” and are tagged with an “A” in the list of packages — they often include libraries for instance. When a package is removed, the corresponding automatic packages are also selected for removal unless another “manually installed” package depends on them. It is possible to mark a package as automatic (with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>) or to remove the mark (<keycombo><keycap>m</keycap></keycombo> key). When maintaining a system with <command>aptitude</command>, it is a good habit to mark as automatic any package that you don't need directly so that they are automatically removed when they aren't necessary anymore. You can either navigate the list of installed packages and play with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>, or apply the flag to entire sections (for example the <literal>libs</literal> section). This habit can help you to keep your system tidy and offers a simple way to visualize the packages in use on a machine, without all the libraries and dependencies that you don't really care about. The related pattern that can be used with <keycombo><keycap>l</keycap></keycombo> (to activate the filter mode) is <literal>~i!~M</literal>. It specifies that you only want to see installed packages (<literal>~i</literal>) not marked as automatic (<literal>!~M</literal>)."
 msgstr ""
 
 #. Tag: para
@@ -1254,7 +1254,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Note that this recommendation tracking feature does not apply to upgrades. For instance, if a new version of <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> recommends a package that it did not recommend formerly, the package won't be marked for installation. However, it will be listed on the upgrade screen so that the administrator can still select it for installaion."
+msgid "Note that this recommendation tracking feature does not apply to upgrades. For instance, if a new version of <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> recommends a package that it did not recommend formerly, the package won't be marked for installation. However, it will be listed on the upgrade screen so that the administrator can still select it for installation."
 msgstr ""
 
 #. Tag: para
@@ -1289,7 +1289,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Beware, this logfile only contains a summary of operations performed by <command>aptitude</command>. If other front-ends (or even <command>dpkg</command> itself) are occasionaly used, then <command>aptitude</command>'s log will only contain a partial view of the operations, so you can't rely on it to build a trustworthy history of the system."
+msgid "Beware, this logfile only contains a summary of operations performed by <command>aptitude</command>. If other front-ends (or even <command>dpkg</command> itself) are occasionally used, then <command>aptitude</command>'s log will only contain a partial view of the operations, so you can't rely on it to build a trustworthy history of the system."
 msgstr ""
 
 #. Tag: title
@@ -1418,7 +1418,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "One of the best-known features of Debian is its ability to upgrade an installed system from one stable release to the next: <foreignphrase>dist-upgrade</foreignphrase> — a well-known phrase — has largely contributed to the project's reputation. With a few precautions, upgrading a computer can take as little as a few or a few dozen minutes depending on the download speed from the package repositories."
+msgid "One of the best-known features of Debian is its ability to upgrade an installed system from one stable release to the next: <foreignphrase>dist-upgrade</foreignphrase> — a well-known phrase — has largely contributed to the project's reputation. With a few precautions, upgrading a computer can take as little as a few, or a few dozen, minutes depending on the download speed from the package repositories."
 msgstr ""
 
 #. Tag: title

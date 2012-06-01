@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-05-09T20:00:15\n"
-"PO-Revision-Date: 2012-05-09T20:00:15\n"
+"POT-Creation-Date: 2012-06-01T20:23:56\n"
+"PO-Revision-Date: 2012-06-01T20:23:56\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -259,7 +259,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "This installation method works in two steps. First, while booting the computer, the BIOS (or the network card) issues a BOOTP/DHCP request to automatically acquire an IP address. When a BOOTP or DHCP server returns a response, it includes a filename, as well as network settings. After having configured the network, the client computer then issues a TFPT (Trivial File Transfer Protocol) request for a file whose name was previously indicated. Once this file is acquired, it is executed as though it were a bootloader. This then launches the Debian installation program, which is executed as though it were running from the hard drive, a CD-ROM, or a USB key."
+msgid "This installation method works in two steps. First, while booting the computer, the BIOS (or the network card) issues a BOOTP/DHCP request to automatically acquire an IP address. When a BOOTP or DHCP server returns a response, it includes a filename, as well as network settings. After having configured the network, the client computer then issues a TFTP (Trivial File Transfer Protocol) request for a file whose name was previously indicated. Once this file is acquired, it is executed as though it were a bootloader. This then launches the Debian installation program, which is executed as though it were running from the hard drive, a CD-ROM, or a USB key."
 msgstr ""
 
 #. Tag: para
@@ -344,7 +344,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "If you already have a working Windows system, you can even do without the recovery CD-ROM; Debian offers a Windows program that will download a light Debian installer and set it up on the hard disk. You then only need to reboot the computer and choose between normal Windows boot or booting the installation program. You can also find it on a dedicated website with a rather explicit name... <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
+msgid "If you already have a working Windows system, you can even avoid using a CD-ROM; Debian offers a Windows program that will download a light Debian installer and set it up on the hard disk. You then only need to reboot the computer and choose between normal Windows boot or booting the installation program. You can also find it on a dedicated website with a rather explicit name... <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
 msgstr ""
 
 #. Tag: title
@@ -389,7 +389,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once booted, the installation program guides you step by step throughout the process. This section presents each of these steps in detail. Here we follow the process of an installation from a Multi-Arch DVD-ROM; other types of installlations, (<emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis>) may be slightly different. We will also address installation in graphical mode, but this differs from “classic” installation only in appearance."
+msgid "Once booted, the installation program guides you step by step throughout the process. This section presents each of these steps in detail. Here we follow the process of an installation from a Multi-Arch DVD-ROM; other types of installations, (<emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis>) may be slightly different. We will also address installation in graphical mode, but this differs from “classic” installation only in appearance."
 msgstr ""
 
 #. Tag: title
@@ -644,7 +644,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Fortunately, the partitioning software has an “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
+msgid "Fortunately, the partitioning software has a “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
 msgstr ""
 
 #. Tag: title
@@ -699,7 +699,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>, and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
+msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>), and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
 msgstr ""
 
 #. Tag: title
@@ -1099,7 +1099,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing successively a country and a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian server)."
+msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing successively a country and a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian master archive)."
 msgstr ""
 
 #. Tag: title
@@ -1279,7 +1279,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop enviroment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (<menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Synaptic Package Manager</guimenuitem></menuchoice>)."
+msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (<menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Synaptic Package Manager</guimenuitem></menuchoice>)."
 msgstr ""
 
 #. Tag: para
@@ -1304,7 +1304,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Several tasks are dedicated to the localization of the system in other languages beyond English. They include translated documentation, dictionaries, and various other packages useful for speakers speakers of different languages. The appropriate task is automatically selected if a non-English language was chosen during installation."
+msgid "Several tasks are dedicated to the localization of the system in other languages beyond English. They include translated documentation, dictionaries, and various other packages useful for speakers of different languages. The appropriate task is automatically selected if a non-English language was chosen during installation."
 msgstr ""
 
 #. Tag: title
