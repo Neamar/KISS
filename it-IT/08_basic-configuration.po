@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:57\n"
-"PO-Revision-Date: 2012-06-03 23:31+0200\n"
+"PO-Revision-Date: 2012-06-04 22:58+0200\n"
 "Last-Translator: Giuseppe Sacco <eppesuig@debian.org>\n"
 "Language-Team: it <tp@linux.it>\n"
 "Language: \n"
@@ -281,67 +281,69 @@ msgstr "<primary><filename>pam_env.so</filename></primary>"
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Keyboard"
-msgstr ""
+msgstr "Configurare la tastiera"
 
 #. Tag: indexterm
 #, no-c-format
+# DISPOSIZIONE DEI TASTI?
 msgid "<primary>keyboard</primary><secondary>layout</secondary>"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
+# DISPOSIZIONE DEI TASTI?
 msgid "<primary>keyboard layout</primary>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Until Debian <emphasis role=\"distribution\">Lenny</emphasis>, the keyboard layout was controlled by two different systems: for the console, <emphasis role=\"pkg\">console-tools</emphasis>/<emphasis role=\"pkg\">console-data</emphasis>; for graphical environments, <emphasis role=\"pkg\">keyboard-configuration</emphasis>. Since <emphasis role=\"distribution\">Squeeze</emphasis>, these two systems have been unified and <emphasis role=\"pkg\">keyboard-configuration</emphasis> controls the keyboard layout in both console and graphical mode. The <command>dpkg-reconfigure keyboard-configuration</command> command can be used at any time to reset the keyboard layout."
-msgstr ""
+msgstr "Fino alla Debian <emphasis role=\"distribution\">Lenny</emphasis>, la disposizione dei tasti era controllata da due diversi sistemi: per la console, <emphasis role=\"pkg\">console-tools</emphasis>/<emphasis role=\"pkg\">console-data</emphasis>; per l'ambiente grafico, <emphasis role=\"pkg\">keyboard-configuration</emphasis>. Da <emphasis role=\"distribution\">Squeeze</emphasis> questi due sistemi sono stati unificati e <emphasis role=\"pkg\">keyboard-configuration</emphasis> controlla la disposizione dei tasti sia per la console che per l'ambiente grafico. Il comando <command>dpkg-reconfigure keyboard-configuration</command> può essere utilizzato in qualunque momento per reimpostare la disposizione dei tasti."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>console-data</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>console-data</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>console-tools</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>console-tools</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>keyboard-configuration</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>keyboard-configuration</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><literal>azerty</literal></primary></indexterm>The questions are relevant to the physical keyboard layout (a standard PC keyboard in the US will be a “Generic 104 key”), then the layout to choose (generally “US”), and then the position of the AltGr key (right Alt). Finally comes the question of the key to use for the “Compose key”, which allows for entering special characters by combining keystrokes. Type successively <keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> and produce an e-acute (“é”). All these combinations are described in the <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> file (or another file, determined according to the current locale indicated by <filename>/usr/share/X11/locale/compose.dir</filename>). <indexterm><primary><literal>Compose</literal>, key</primary></indexterm> <indexterm><primary><literal>Meta</literal>, key</primary></indexterm> <indexterm><primary>key</primary><secondary><literal>Meta</literal></secondary></indexterm> <indexterm><primary>key</primary><secondary><literal>Compose</literal></secondary></indexterm>"
-msgstr ""
+msgstr "<indexterm><primary><literal>azerty</literal></primary></indexterm>Le domande riguardano la conformazione fisica della tastiera (una tastiera standard di un PC negli USA è una «Generica 104 tasti»), poi la disposizione da scegliere (normalmente «US») e inoltre la posizione del tasto AltGr (Alt di destra). Infine viene posta la domanda su quale tasto utilizzare come «compose» che permette di inserire caratteri speciali combinando sequenze di più tasti. Premendo in sequenza <keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> si produce una e accentata acuta («é»). Tutte queste combinazioni sono descritte nel file <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> (o altro file determinato dalla «locale» in uso e dal file <filename>/usr/share/X11/locale/compose.dir</filename>). <indexterm><primary><literal>Compose</literal>, tasto</primary></indexterm> <indexterm><primary><literal>Meta</literal>, tasto</primary></indexterm> <indexterm><primary>key</primary><secondary><literal>Meta</literal></secondary></indexterm> <indexterm><primary>tasto</primary><secondary><literal>Compose</literal></secondary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the keyboard configuration for graphical mode described here only affects the default layout; the GNOME and KDE environments, among others, provide a keyboard control panel in their preferences allowing each user to have their own configuration. Some additional options regarding the behavior of some particular keys are also available in these control panels."
-msgstr ""
+msgstr "Notare che la configurazione della tastiera descritta per l'ambiente grafico è solo quella prededfinita: gli ambienti GNOME e KDA, come anche altri, forniscono un pannello di controllo della tastiera all'interno delle loro impostazioni, che permettono ai singoli utenti di avere una propria configurazione. In questi pannelli vi sono anche alcune opzioni aggiuntive riguardo il comportamento di alcuni tasti particolari."
 
 #. Tag: title
 #, no-c-format
 msgid "Migrating to UTF-8"
-msgstr ""
+msgstr "Migrazione a UTF-8"
 
 #. Tag: para
 #, no-c-format
 msgid "The generalization of UTF-8 encoding has been a long awaited solution to numerous difficulties with interoperability, since it facilitates international exchange and removes the arbitrary limits on characters that can be used in a document. The one drawback is that it had to go through a rather difficult transition phase. Since it could not be completely transparent (that is, it could not happen at the same time all over the world over), two conversion operations were required: one on file contents, and the other on filenames. Fortunately, the bulk of this migration has been completed and we discuss it largely for reference."
-msgstr ""
+msgstr "La diffusione della codifica UTF-8 è stata molto attesa come soluzione per molti problemi di interoperabilità poiché facilita lo scambio internazionale e rimuove alcuni limiti arbitrari sui caratteri che possono essere utilizzati in un documento. Il rovescio della medaglia è una fase di transizione piuttosto complessa. Poiché non è stato possibile renderla completamente trasparente (vale a dire che non era possibile effettuarla in contemporanea in tutto il mondo), sono stati necessari due diversi momenti: uno sui contenuti dei file, l'altro sui nomi dei file. Per fortuna la maggior parte di questa migrazione è stata completata e quindi se ne riferisce qui solo come nota."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Mojibake</foreignphrase> and interpretation errors"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> <foreignphrase>Mojibake</foreignphrase> e l'interpretazione degli errori"
 
 #. Tag: para
 #, no-c-format
 msgid "When a text is sent (or stored) without encoding information, it is not always possible for the recipient to know with certainty what convention to use for determining the meaning of a set of bytes. You can usually get an idea by getting statistics on the distribution of values present in the text, but that doesn't always give a definite answer. When the encoding system chosen for reading differs from that used in writing the file, the bytes are mis-interpreted, and you get, at best, errors on some characters, or, at worst, something completely illegible."
-msgstr ""
+msgstr "Quando un testo è inviato (o memorizzato) senza le informazioni sulla sua codifica, non è sempre possibile, per il destinatario, capire quale convenzione utilizzare per trovare il significato della sequenza di byte. Si può sempre farsene un'idea in base alle statistiche di distribuzione dei valori presenti nel test, ma non è sempre una indicazione della direazione corretta. Quando il sistema di codifica scelto per la lettura differisce da quello usato per la scrittura, i byte posso essere male interpretati e si può ottenere, nella migliore delle ipotesi, qualche errore su alcuni caratteri, oppure, nel caso peggiore, qualcosa di completamente illegibile."
 
 #. Tag: para
 #, no-c-format
