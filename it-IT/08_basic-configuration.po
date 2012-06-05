@@ -1,13 +1,14 @@
-# 
+#
 # Giuseppe Sacco <eppesuig@debian.org>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-05-09T20:00:18\n"
-"PO-Revision-Date: 2012-05-27 00:50+0200\n"
+"POT-Creation-Date: 2012-06-01T20:23:57\n"
+"PO-Revision-Date: 2012-06-04 22:58+0200\n"
 "Last-Translator: Giuseppe Sacco <eppesuig@debian.org>\n"
 "Language-Team: it <tp@linux.it>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -140,207 +141,209 @@ msgstr "<primary><command>locale-gen</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "A locale is a group of regional settings. This includes not only the language for text, but also the format for displaying numbers, dates, times, and monetary sums, as well as the method for alphabetical comparison (for alphabetically ordering items, to include accented characters, where applicable). Although each of these parameters can be specified independently from the others, we generally will use one locale, which is a coherent set of values for these parameters corresponding to a “region” in the broadest sense. These locales are usually indicated under the form, <literal><replaceable>language-code</replaceable>_<replaceable>COUNTRY-CODE</replaceable></literal>, sometimes with a suffix to specify the character set and encoding to be used. This enables consideration of idiomatic or typographical differences between different regions with a common language."
-msgstr ""
+msgstr "Una «locale» è un gruppo di impostazioni regionali. Vi sono incluse non solo le lingue per il teso, ma anche il formato per mostrare i numeri, le date, gli orari, gli importi, nonché la modalità di confronto alfabetico (per estensioni al normale confronto, per includervi il confronto delle accetante, se applicabile). Nonostante ciascuno di questi parametri sia impostabile separatamente dagli altri, normalmente si una una sola «locale», vale a dire un insieme coerente di valori per questi parametri che corrispondono ad una «regione» nel senso più allargato. Queste «locale» sono di norma indicate nella forma <literal><replaceable>codice-lingua</replaceable>_<replaceable>CODICE-NAZIONE</replaceable></literal>, a volte con un suffisso per indicare la codifica dei caratteri da utilizzare. Questo permette di considerare tramite un linguaggio comune le differenze idiomatiche o tipografiche tra le varie regioni."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Character sets"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> Insiemi di caratteri"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>character set</primary>"
-msgstr ""
+msgstr "<primary>insiemi di caratteri</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>encoding</primary>"
-msgstr ""
+msgstr "<primary>codifica</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ISO-8859-1</primary>"
-msgstr ""
+msgstr "<primary>ISO-8859-1</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ISO-8859-15</primary>"
-msgstr ""
+msgstr "<primary>ISO-8859-15</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Latin 1</primary>"
-msgstr ""
+msgstr "<primary>Latin 1</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Latin 9</primary>"
-msgstr ""
+msgstr "<primary>Latin 9</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Latin 0</primary>"
-msgstr ""
+msgstr "<primary>Latin 0</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Historically, each locale has an associated “character set” (group of known characters) and a preferred “encoding” (internal representationfor characters within the computer)."
-msgstr ""
+msgid "Historically, each locale has an associated “character set” (group of known characters) and a preferred “encoding” (internal representation for characters within the computer)."
+msgstr "Storicamente ogni «locale» ha associati un «insieme di caratteri» (gruppo noto di caratteri) e una «codifica» preferita (rappresentazione dei caratteri interna al computer)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>ISO-8859-1</emphasis> (or “Latin 1”) encoding, for instance, was used preferentially in France. But for historical reasons, it did not include certain characters (such as œ, Ÿ, and €). This problem prompted the creation of <emphasis>ISO-8859-15</emphasis> (or “Latin 9”, or even “Latin 0”). Among others, it replaced respectively the former international currency symbol (a circle with four branches, ¤), “½”,“¼” and “¾” with the Euro symbol “€”, “œ”, “Œ” and “Ÿ”. Since the encoding for these two sets uses a single octet (8 bits) for each character, the sets only have room for 256 characters. Other languages use other character sets or other encodings, either from the “Latin” family, or otherwise."
-msgstr ""
+msgstr "La codifica <emphasis>ISO-8859-1</emphasis> (o «Latin 1»), per esempio, era usata in Francia come predefinita. Ma per ragioni storiche non include alcuni caratteri (quali œ, Ÿ e €). Questo problema ha fatto definire <emphasis>ISO-8859-15</emphasis> (conosciuta anche come «Latin 9», o anche «Latin 0»). Tra l'altro, ha sostituito rispettivamente il vecchio simbolo internazionale della divisa (un cerchio con quattro rami,  ¤), «½», «¼» e «¾» con i simboli dell'Euro «€», «œ», «Œ» e «Ÿ». Poiché la codifica per questi due insiemi usa un solo byte (8 bit) per ogni carattere, gli insiemi possono avere al massimo 256 caratteri. Altre lingue utilizzano altri insiemi di caratteri e altre codifiche, che siano della famiglia «Latin» o meno."
 
 #. Tag: para
 #, no-c-format
 msgid "Working with foreign languages often implied regular switches between various encodings and character sets. Furthermore, writing multilingual documents led to further, almost intractable problems. Unicode (a super-catalog of nearly all writing systems from all of the world's languages) was created to work around this problem. One of Unicode's encodings, UTF-8, retains all 128 ASCII symbols (7-bit codes), but handles other characters differently. The others are preceded by a sequence of “escape” characters with a variable length. This allows encoding all Unicode characters on a sequence of one or more octets."
-msgstr ""
+msgstr "Lavorare con lingue straniere richiede spesso di passare da una codifica all'altra o da un insieme di caratteri ad un altro. Inoltre, scrivere documenti multilingua porta ad affrontare problematiche a volta irrisolvibili. L'Unicode (un super catalogo di quasi tutti i sistemi di scrittura di tutte le lingue del mondo) è stato creato per superare questo problema. Una delle codifiche Unicode, UTF-8, ha tutti i 128 simboli dell'ASCII (sequenze di codici a 7 bit), ma gestisce altri caratteri in maniera diversa. Gli altri sono preceduti da caratteri di «escape» a lunghezza variabile. Questo permette di codificare tutti i caratteri Unicode in una sequenza di uno o più byte."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ASCII</primary>"
-msgstr ""
+msgstr "<primary>ASCII</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>UTF-8</primary>"
-msgstr ""
+msgstr "<primary>UTF-8</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Unicode</primary>"
-msgstr ""
+msgstr "<primary>Unicode</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Applications have slowly migrated, and use of UTF-8 is now wide spread. This was made easier by the fact that this encoding is the standard encoding for XML documents. Outside of specific circumstances, this is the encoding that should generally be used. It has become the default on new installations since <emphasis role=\"distribution\">Etch</emphasis>."
-msgstr ""
+msgstr "Le applicazioni sono state lentamente aggiornate, e l'utilizzo di UTF-8 è oramai largamente diffuso. Questo è stato semplificato dal fatto che questa codifica è quella standard per i documenti XML. Al di là di specifiche circostanze, questa è la codifica che andrebbe normalmente utilizzata. È diventata quella predefinita nelle nuove installazioni a partire da <emphasis role=\"distribution\">Etch</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">locales</emphasis> package includes all the elements required for proper functioning of “localization” for various applications. During installation, this package will ask a few questions in order to choose supported languages. This set of supported languages can be changed by running <command>dpkg-reconfigure locales</command>."
-msgstr ""
+msgstr "Il pacchetto <emphasis role=\"pkg\">locales</emphasis> include quanto necessario al funzionamento della «localizzazione» delle varie applicazioni. Durante l'installazione questao pacchetto pone alcune domande allo scopo di scegliere le lingue supportate. Questo gruppo di lingue supportate può essere modificato eseguendo <command>dpkg-reconfigure locales</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "You will be asked, first, to choose what “locales” to include. Selecting all English locales (meaning those beginning with“<literal>en_US</literal>”) is a reasonable choice. Do not hesitate to choose other locales if the machine will host foreign users. This list of known locales on the system is stored in the <filename>/etc/locale.gen</filename> file. It is possible to edit this file by hand, but you should run <command>locale-gen</command> after any modifications. It will generate the necessary files for the proper functioning of added locales and remove any obsolete files."
-msgstr ""
+msgstr "Per prima cosa viene chiesto di scegliere quale «locale» includere. Selezionare tutte quello inglesi (cioè quelle che iniziano con «<literal>en_US</literal>») è una scelta ragionevole, ma non si indugi nel sceglierne altre se la macchina ospiterà utenti di altre lingue. L'elenco delle «locale» conosciute al sistema è memorizzato nel file <filename>/etc/locale.gen</filename>. Lo si può modificare manualmente, ma poi ci si deve ricordare di eseguire il comando <command>locale-gen</command>, il quale genera tutti i file necessari a supportare il corretto funzionamento delle «locale» aggiunte, e rimuove quelli relativi alle «locale» eventualmente cancellate."
 
 #. Tag: para
 #, no-c-format
 msgid "The second question, entitled “Set default locale”, requests a default locale. The recommended choice in the U.S.A. is “<literal>en_US.UTF-8</literal>”. British English speakers will prefer “<literal>en_GB.UTF-8</literal>”, and Canadians will prefer either <literal>en_CA.UTF-8</literal>” or, for French, “<literal>fr_CA.UTF-8</literal>”. The <filename>/etc/default/locale</filename> file will then be modified to set the default locale for the environment variable, <varname>LANG</varname>."
-msgstr ""
+msgstr "La seconda domanda, chiamata «Imposta locale predefinita», definisce la «locale» predefinita. La scelta consigliata per gli U.S.A è «<literal>en_US.UTF-8</literal>». Gli inglesi del Regno Unito preferiranno «<literal>en_GB.UTF-8</literal>», i canadesi sceglieranno «<literal>en_CA.UTF-8</literal>» oppure, per il francese, «<literal>fr_CA.UTF-8</literal>». Il file <filename>/etc/default/locale</filename> viene modificato per inserirvi la «locale» scelta per la variabile d'ambiente <varname>LANG</varname>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>environment</primary>"
-msgstr ""
+msgstr "<primary>environment</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>locale</primary>"
-msgstr ""
+msgstr "<primary>locale</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><varname>LANG</varname></primary>"
-msgstr ""
+msgstr "<primary><varname>LANG</varname></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEHIND THE SCENES</emphasis> <filename>/etc/environment</filename> and <filename>/etc/default/locale</filename>"
-msgstr ""
+msgstr "<emphasis>DIETRO LE QUINTE</emphasis> <filename>/etc/environment</filename> e <filename>/etc/default/locale</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/environment</filename> file provides the <command>login</command>, <command>gdm</command>, or even <command>ssh</command> programs with the correct environment variables to be created."
-msgstr ""
+msgstr "Il file <filename>/etc/environment</filename> fornisce ai programmi <command>login</command>, <command>gdm</command> o anche <command>ssh</command> le variabili d'ambiente corrette da definire."
 
 #. Tag: para
 #, no-c-format
 msgid "These applications do not create these variables directly, but rather via a PAM (<filename>pam_env.so</filename>) module. PAM (Pluggable Authentication Module) is a modular library centralizing the mechanisms for authentication, session initialization, and password management. See <xref linkend=\"section.config-pam\" /> for an example of PAM configuration."
-msgstr ""
+msgstr "Queste applicazioni non creano direttamente le variabili, ma lo fanno invece tramite un modulo PAM (<filename>pam_env.so</filename>). PAM (Pluggable Authentication Module) è una libreria modulare che centralizza l'autenticazione, l'inizializzazione della sessione e la gestione delle password. Vedere <xref linkend=\"section.config-pam\"/> per un esempio di configurazione PAM."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/default/locale</filename> file works in a similar manner, but does not contain the <varname>LANG</varname> environment variable. This means some PAM users will inherit an environment without localization. Running server programs with regional parameters is generally discouraged; on the other hand, using the implicit regional settings is recommended for programs that open user sessions."
-msgstr ""
+msgstr "Il file <filename>/etc/default/locale</filename> funziona in maniera analoga, ma non contiene il nome della variabile d'ambiente <varname>LANG</varname>. Questo vuol dire che alcuni utenti PAM erediteranno un ambiente senza localizzazione. Eseguire programmi server con impostazioni regionali è generalmente discutibile; d'altra parte è meglio avere le impostazioni regionali per tutti quei programmi che aprono sessioni utente."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PAM</primary>"
-msgstr ""
+msgstr "<primary>PAM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>pam_env.so</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>pam_env.so</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Keyboard"
-msgstr ""
+msgstr "Configurare la tastiera"
 
 #. Tag: indexterm
 #, no-c-format
+# DISPOSIZIONE DEI TASTI?
 msgid "<primary>keyboard</primary><secondary>layout</secondary>"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
+# DISPOSIZIONE DEI TASTI?
 msgid "<primary>keyboard layout</primary>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Until Debian <emphasis role=\"distribution\">Lenny</emphasis>, the keyboard layout was controlled by two different systems: for the console, <emphasis role=\"pkg\">console-tools</emphasis>/<emphasis role=\"pkg\">console-data</emphasis>; for graphical environments, <emphasis role=\"pkg\">keyboard-configuration</emphasis>. Since <emphasis role=\"distribution\">Squeeze</emphasis>, these two systems have been unified and <emphasis role=\"pkg\">keyboard-configuration</emphasis> controls the keyboard layout in both console and graphical mode. The <command>dpkg-reconfigure keyboard-configuration</command> command can be used at any time to reset the keyboard layout."
-msgstr ""
+msgstr "Fino alla Debian <emphasis role=\"distribution\">Lenny</emphasis>, la disposizione dei tasti era controllata da due diversi sistemi: per la console, <emphasis role=\"pkg\">console-tools</emphasis>/<emphasis role=\"pkg\">console-data</emphasis>; per l'ambiente grafico, <emphasis role=\"pkg\">keyboard-configuration</emphasis>. Da <emphasis role=\"distribution\">Squeeze</emphasis> questi due sistemi sono stati unificati e <emphasis role=\"pkg\">keyboard-configuration</emphasis> controlla la disposizione dei tasti sia per la console che per l'ambiente grafico. Il comando <command>dpkg-reconfigure keyboard-configuration</command> può essere utilizzato in qualunque momento per reimpostare la disposizione dei tasti."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>console-data</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>console-data</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>console-tools</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>console-tools</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>keyboard-configuration</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>keyboard-configuration</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><literal>azerty</literal></primary></indexterm>The questions are relevant to the physical keyboard layout (a standard PC keyboard in the US will be a “Generic 104 key”), then the layout to choose (generally “US”), and then the position of the AltGr key (right Alt). Finally comes the question of the key to use for the “Compose key”, which allows for entering special characters by combining keystrokes. Type successively <keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> and produce an e-acute (“é”). All these combinations are described in the <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> file (or another file, determined according to the current locale indicated by <filename>/usr/share/X11/locale/compose.dir</filename>). <indexterm><primary><literal>Compose</literal>, key</primary></indexterm> <indexterm><primary><literal>Meta</literal>, key</primary></indexterm> <indexterm><primary>key</primary><secondary><literal>Meta</literal></secondary></indexterm> <indexterm><primary>key</primary><secondary><literal>Compose</literal></secondary></indexterm>"
-msgstr ""
+msgstr "<indexterm><primary><literal>azerty</literal></primary></indexterm>Le domande riguardano la conformazione fisica della tastiera (una tastiera standard di un PC negli USA è una «Generica 104 tasti»), poi la disposizione da scegliere (normalmente «US») e inoltre la posizione del tasto AltGr (Alt di destra). Infine viene posta la domanda su quale tasto utilizzare come «compose» che permette di inserire caratteri speciali combinando sequenze di più tasti. Premendo in sequenza <keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> si produce una e accentata acuta («é»). Tutte queste combinazioni sono descritte nel file <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> (o altro file determinato dalla «locale» in uso e dal file <filename>/usr/share/X11/locale/compose.dir</filename>). <indexterm><primary><literal>Compose</literal>, tasto</primary></indexterm> <indexterm><primary><literal>Meta</literal>, tasto</primary></indexterm> <indexterm><primary>key</primary><secondary><literal>Meta</literal></secondary></indexterm> <indexterm><primary>tasto</primary><secondary><literal>Compose</literal></secondary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the keyboard configuration for graphical mode described here only affects the default layout; the GNOME and KDE environments, among others, provide a keyboard control panel in their preferences allowing each user to have their own configuration. Some additional options regarding the behavior of some particular keys are also available in these control panels."
-msgstr ""
+msgstr "Notare che la configurazione della tastiera descritta per l'ambiente grafico è solo quella prededfinita: gli ambienti GNOME e KDA, come anche altri, forniscono un pannello di controllo della tastiera all'interno delle loro impostazioni, che permettono ai singoli utenti di avere una propria configurazione. In questi pannelli vi sono anche alcune opzioni aggiuntive riguardo il comportamento di alcuni tasti particolari."
 
 #. Tag: title
 #, no-c-format
 msgid "Migrating to UTF-8"
-msgstr ""
+msgstr "Migrazione a UTF-8"
 
 #. Tag: para
 #, no-c-format
 msgid "The generalization of UTF-8 encoding has been a long awaited solution to numerous difficulties with interoperability, since it facilitates international exchange and removes the arbitrary limits on characters that can be used in a document. The one drawback is that it had to go through a rather difficult transition phase. Since it could not be completely transparent (that is, it could not happen at the same time all over the world over), two conversion operations were required: one on file contents, and the other on filenames. Fortunately, the bulk of this migration has been completed and we discuss it largely for reference."
-msgstr ""
+msgstr "La diffusione della codifica UTF-8 è stata molto attesa come soluzione per molti problemi di interoperabilità poiché facilita lo scambio internazionale e rimuove alcuni limiti arbitrari sui caratteri che possono essere utilizzati in un documento. Il rovescio della medaglia è una fase di transizione piuttosto complessa. Poiché non è stato possibile renderla completamente trasparente (vale a dire che non era possibile effettuarla in contemporanea in tutto il mondo), sono stati necessari due diversi momenti: uno sui contenuti dei file, l'altro sui nomi dei file. Per fortuna la maggior parte di questa migrazione è stata completata e quindi se ne riferisce qui solo come nota."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Mojibake</foreignphrase> and interpretation errors"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> <foreignphrase>Mojibake</foreignphrase> e l'interpretazione degli errori"
 
 #. Tag: para
 #, no-c-format
 msgid "When a text is sent (or stored) without encoding information, it is not always possible for the recipient to know with certainty what convention to use for determining the meaning of a set of bytes. You can usually get an idea by getting statistics on the distribution of values present in the text, but that doesn't always give a definite answer. When the encoding system chosen for reading differs from that used in writing the file, the bytes are mis-interpreted, and you get, at best, errors on some characters, or, at worst, something completely illegible."
-msgstr ""
+msgstr "Quando un testo è inviato (o memorizzato) senza le informazioni sulla sua codifica, non è sempre possibile, per il destinatario, capire quale convenzione utilizzare per trovare il significato della sequenza di byte. Si può sempre farsene un'idea in base alle statistiche di distribuzione dei valori presenti nel test, ma non è sempre una indicazione della direazione corretta. Quando il sistema di codifica scelto per la lettura differisce da quello usato per la scrittura, i byte posso essere male interpretati e si può ottenere, nella migliore delle ipotesi, qualche errore su alcuni caratteri, oppure, nel caso peggiore, qualcosa di completamente illegibile."
 
 #. Tag: para
 #, no-c-format
@@ -364,7 +367,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
 "$ </computeroutput><userinput>convmv -r -f iso-8859-15 -t utf-8 travail/</userinput>\n"
 "<computeroutput>Starting a dry run without changes...\n"
@@ -377,7 +381,6 @@ msgid "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "Ready!\n"
 "$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -437,7 +440,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Most modern local networks use the Ethernet protocol, where data is split into small blocks called frames and transmitted on the wire one frame at a time. Data speeds vary from 10 Mb/s for older Ethernet cards to 10 Gb/s in the newest cards (with the most common rate currently growing from 100 Mb/s to 1 Gb/s). The most widely used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T depending on the throughput they can reliably provide (the T stands for “twisted pair”); those cables end in an RJ45 connector. There are other cable types, used mostly for speeds in above 1 Gb/s."
+msgid "Most modern local networks use the Ethernet protocol, where data is split into small blocks called frames and transmitted on the wire one frame at a time. Data speeds vary from 10 Mb/s for older Ethernet cards to 10 Gb/s in the newest cards (with the most common rate currently growing from 100 Mb/s to 1 Gb/s). The most widely used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T depending on the throughput they can reliably provide (the T stands for “twisted pair”); those cables end in an RJ45 connector. There are other cable types, used mostly for speeds above 1 Gb/s."
 msgstr ""
 
 #. Tag: indexterm
@@ -492,7 +495,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyses incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
+msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyzes incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
 msgstr ""
 
 #. Tag: indexterm
@@ -552,11 +555,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "auto eth0\n"
 "iface eth0 inet dhcp\n"
 "  hostname arrakis\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -571,7 +574,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "auto eth0\n"
 "iface eth0 inet static\n"
 "  address 192.168.0.3\n"
@@ -579,7 +583,6 @@ msgid "\n"
 "  broadcast 192.168.0.255\n"
 "  network 192.168.0.0\n"
 "  gateway 192.168.0.1\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -749,9 +752,9 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -846,7 +849,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this demon. Only members of the “netdev” group have permissions to control this program."
+msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this daemon. Only members of the “netdev” group have permissions to control this program."
 msgstr ""
 
 #. Tag: para
@@ -951,10 +954,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "127.0.0.1     localhost\n"
 "192.168.0.1   arrakis.falcot.com arrakis\n"
-""
 msgstr ""
 
 #. Tag: indexterm
@@ -1029,7 +1032,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "DNS (Domain Name Service) is a distributed and hierarchal service mapping names to IP addresses, and vice-versa. Specifically, it can turn a human-friendly name such as <literal>www.eyrolles.com</literal> into the actual IP address, <literal>213.244.11.247</literal>."
+msgid "DNS (Domain Name Service) is a distributed and hierarchical service mapping names to IP addresses, and vice-versa. Specifically, it can turn a human-friendly name such as <literal>www.eyrolles.com</literal> into the actual IP address, <literal>213.244.11.247</literal>."
 msgstr ""
 
 #. Tag: para
@@ -1054,11 +1057,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "nameserver 212.27.32.176\n"
 "nameserver 212.27.32.177\n"
 "nameserver 8.8.8.8\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1788,7 +1791,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Users often want to configure their login and interactive shells in the same way. To do this, they choose to interpreter (or “source”) the content from <filename>~/.bashrc</filename> in the <filename>~/.bash_profile</filename> file. It is possible to do the same with files common to all users (by calling <filename>/etc/bash.bashrc</filename> from <filename>/etc/profile</filename>)."
+msgid "Users often want to configure their login and interactive shells in the same way. To do this, they choose to interpret (or “source”) the content from <filename>~/.bashrc</filename> in the <filename>~/.bash_profile</filename> file. It is possible to do the same with files common to all users (by calling <filename>/etc/bash.bashrc</filename> from <filename>/etc/profile</filename>)."
 msgstr ""
 
 #. Tag: title
@@ -1958,7 +1961,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "To take into account the characteristics of more and more dynamic, modern computers, the kernel has, at some time, offered an implementation of <filename>/dev/</filename> by a virtual filesystem called <emphasis>defvs</emphasis>. In some cases, this makes it easier to find files, since the naming convention uses a hierarchal structure: the first partition of the master hard drive on the first IDE bus was then represented by the file, <filename>/dev/ide/host0/bus0/target0/lun0/part1</filename>. Not only were these naming conventions not very intuitive, but they were also hard-coded into the kernel which presented problems for hot-pluggable drives because the corresponding special file name would vary."
+msgid "To take into account the characteristics of more and more dynamic, modern computers, the kernel has, at some time, offered an implementation of <filename>/dev/</filename> by a virtual filesystem called <emphasis>devfs</emphasis>. In some cases, this makes it easier to find files, since the naming convention uses a hierarchical structure: the first partition of the master hard drive on the first IDE bus was then represented by the file, <filename>/dev/ide/host0/bus0/target0/lun0/part1</filename>. Not only were these naming conventions not very intuitive, but they were also hard-coded into the kernel which presented problems for hot-pluggable drives because the corresponding special file name would vary."
 msgstr ""
 
 #. Tag: para
@@ -2023,7 +2026,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
+msgid ""
+"mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
 "total 0\n"
 "lrwxrwxrwx 1 root root  9 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP -&gt; ../../sda\n"
 "lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP-part1 -&gt; ../../sda1\n"
@@ -2049,7 +2053,6 @@ msgid "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>l
 "lrwxrwxrwx 1 root root 10 23 jul. 08:58 wwn-0x5000c50015c4842f-part1 -&gt; ../../sda1\n"
 "[...]\n"
 "mirexpress:/dev/disk/by-id# </computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2094,14 +2097,15 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# The disk on which LILO should be installed.\n"
 "# By indicating the disk and not a partition.\n"
 "# you order LILO to be installed on the MBR.\n"
 "boot=/dev/sda\n"
 "# the partition that contains Debian\n"
 "root=/dev/sda2\n"
-"# the item to be loaded by defaul\n"
+"# the item to be loaded by default\n"
 "default=Linux\n"
 "\n"
 "# the most recent kernel image\n"
@@ -2120,7 +2124,6 @@ msgid "\n"
 "# only for Linux/Windows dual boot\n"
 "other=/dev/sda1\n"
 "  label=Windows\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2215,7 +2218,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Boot automatically after 30 seconds\n"
 "timeout 30\n"
 "# Boot first entry by default\n"
@@ -2240,7 +2244,6 @@ msgid "\n"
 "rootnoverify (hd0,0)\n"
 "makeactive\n"
 "chainloader +1\n"
-""
 msgstr ""
 
 #. Tag: indexterm
@@ -2280,7 +2283,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# bootstrap partition\n"
 "boot=/dev/sda2\n"
 "# the disk\n"
@@ -2313,7 +2317,6 @@ msgid "\n"
 "\n"
 "# bsd=/dev/sdaX and macos=/dev/sdaX\n"
 "# are also possible\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2423,7 +2426,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>date</userinput>\n"
 "<computeroutput>Wed Mar 28 15:51:19 CEST 2012</computeroutput>\n"
 "<computeroutput>$ </computeroutput><userinput>TZ=\"Pacific/Honolulu\" date</userinput>\n"
@@ -2437,7 +2441,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "There are two time sources in a computer. A computer's motherboard has a hardware clock, called the “CMOS clock”. This clock is not very precise, and provides rather slow access times. The operating system kernel has its own, the software clock, which it keeps up to date with its own means (possibly with the help of time servers, see the “Time Synchronization” section). This system clock is generally more accurate, especially since it doesn't need access to hardware variables. However, since it only exists in live memory, it is zeroed out every time the machine is booted, contrary to the CMOS clock, which has a battery and therefores “survives” rebooting or halting of the machine. The system clock is, thus, set from the CMOS clock during boot, and the CMOS clock is updated on shutdown (to take into account possible changes or corrections if it has been improperly adjusted)."
+msgid "There are two time sources in a computer. A computer's motherboard has a hardware clock, called the “CMOS clock”. This clock is not very precise, and provides rather slow access times. The operating system kernel has its own, the software clock, which it keeps up to date with its own means (possibly with the help of time servers, see the “Time Synchronization” section). This system clock is generally more accurate, especially since it doesn't need access to hardware variables. However, since it only exists in live memory, it is zeroed out every time the machine is booted, contrary to the CMOS clock, which has a battery and therefore “survives” rebooting or halting of the machine. The system clock is, thus, set from the CMOS clock during boot, and the CMOS clock is updated on shutdown (to take into account possible changes or corrections if it has been improperly adjusted)."
 msgstr ""
 
 #. Tag: para
@@ -2772,7 +2776,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# /etc/fstab: static file system information.\n"
 "#\n"
 "# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;\n"
@@ -2784,7 +2789,6 @@ msgid "\n"
 "/dev/scd0       /media/cdrom0   udf,iso9660 user,noauto 0       0\n"
 "/dev/fd0        /media/floppy   auto    rw,user,noauto  0       0\n"
 "arrakis:/shared /shared         nfs     defaults        0       0\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2823,9 +2827,9 @@ msgid "<primary><emphasis>autofs</emphasis></primary>"
 msgstr ""
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>auto-monteur</primary>"
-msgstr ""
+#, fuzzy, no-c-format
+msgid "<primary>automounter</primary>"
+msgstr "<primary>lingua</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2969,10 +2973,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-2.6.32.tar.bz2</userinput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3012,9 +3016,9 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>cp /boot/config-2.6.32-5-686 ~/kernel/linux-source-2.6.32/.config</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -3024,7 +3028,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<command>make menuconfig</command> compiles and executes an text-mode interface (this is where the <emphasis role=\"pkg\">libncurses5-dev</emphasis> package is required) which allows navigating the options available in a hierarchical structure. Pressing the <keycap>Space</keycap> key changes the value of the selected option, and <keycap>Enter</keycap> validates the button selected at the bottom of the screen; <guibutton>Select</guibutton> returns to the selected sub-menu; <guibutton>Exit</guibutton> closes the current screen and move back up in the hierarchy; <guibutton>Help</guibutton> will display more detailed information on the role of the selected option. The arrows allow moving within the list of options and buttons. To exit the configuration program, choose <guibutton>Exit</guibutton> from the main menu. The program then offers to save the changes you've made; accept if you are satisfied with your choices."
+msgid "<command>make menuconfig</command> compiles and executes a text-mode interface (this is where the <emphasis role=\"pkg\">libncurses5-dev</emphasis> package is required) which allows navigating the options available in a hierarchical structure. Pressing the <keycap>Space</keycap> key changes the value of the selected option, and <keycap>Enter</keycap> validates the button selected at the bottom of the screen; <guibutton>Select</guibutton> returns to the selected sub-menu; <guibutton>Exit</guibutton> closes the current screen and move back up in the hierarchy; <guibutton>Help</guibutton> will display more detailed information on the role of the selected option. The arrows allow moving within the list of options and buttons. To exit the configuration program, choose <guibutton>Exit</guibutton> from the main menu. The program then offers to save the changes you've made; accept if you are satisfied with your choices."
 msgstr ""
 
 #. Tag: para
@@ -3104,7 +3108,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once the kernel configuration is ready, the <command>make-pkg</command> command provided by Debian compiles the kernel, then generates the corresponding Debian package (or packages). Just like <command>make</command>, <command>make-pkg</command> takes the name of a target to execute as an argument: <literal>kernel-image</literal> generates a compiled kernel package, <literal>kernel-doc</literal> a package containing the documentation included with the kernel, <literal>kernel-headers</literal> a package of kernel header files (<filename>.h</filename> files for the kernel in the <filename>include/</filename> directory, which is useful for compilation of some external modules), and <literal>kernel-source</literal> creates a package containing the kernel sources."
+msgid "Once the kernel configuration is ready, the <command>make-kpkg</command> command provided by Debian compiles the kernel, then generates the corresponding Debian package (or packages). Just like <command>make</command>, <command>make-kpkg</command> takes the name of a target to execute as an argument: <literal>kernel-image</literal> generates a compiled kernel package, <literal>kernel-doc</literal> a package containing the documentation included with the kernel, <literal>kernel-headers</literal> a package of kernel header files (<filename>.h</filename> files for the kernel in the <filename>include/</filename> directory, which is useful for compilation of some external modules), and <literal>kernel-source</literal> creates a package containing the kernel sources."
 msgstr ""
 
 #. Tag: para
@@ -3119,12 +3123,12 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
 "[...]\n"
 "<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -3169,12 +3173,12 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/qc-usb.tar.bz2</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>ls modules/</userinput>\n"
 "<computeroutput>qc-usb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3194,12 +3198,13 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The module sources are now located in the <filename>~/kernel/modules/qc-usb/</filename> directory. To compile these modules and create a Debian package, we invoke <command>make-kpkg</command> with the <literal>modules-image</literal> target and indicate the location of the modules via the <varname>MODULE_LOC</varname> environment variable (without this variable, it uses <filename>/usr/src/modules/</filename>, which won't work in our case). By default, it tries to create the packages for all the external modules that can be found at this location extracted. The <literal>--added-modules</literal> option allows to explicitly choose the external modules to compile. To include more than one, separate them with a comma."
+msgid "The module sources are now located in the <filename>~/kernel/modules/qc-usb/</filename> directory. To compile these modules and create a Debian package, we invoke <command>make-kpkg</command> with the <literal>modules-image</literal> target and indicate the location of the modules via the <varname>MODULE_LOC</varname> environment variable (without this variable, it uses <filename>/usr/src/modules/</filename>, which won't work in our case). By default, it tries to create the packages for all the external modules that you extracted at this location. The <literal>--added-modules</literal> option allows to explicitly choose the external modules to compile. To include more than one, separate them with a comma."
 msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>export MODULE_LOC=~/kernel/modules</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-2.6.32</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot modules-image</userinput>\n"
@@ -3208,7 +3213,6 @@ msgid "\n"
 "$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
 "../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3268,7 +3272,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-2.6.32</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg clean</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-patches/diffs/grsecurity2/grsecurity-2.1.14-2.6.32.13-201005151340.patch.gz | patch -p1</userinput>\n"
@@ -3277,7 +3282,6 @@ msgid "\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
 "../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb\n"
 "../linux-image-2.6.32-grsec_1_i386.deb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3362,7 +3366,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "do_symlinks = yes\n"
 "relative_links = yes\n"
 "do_bootloader = no\n"
@@ -3371,7 +3376,6 @@ msgid "\n"
 "link_in_boot = no\n"
 "postinst_hook = update-grub\n"
 "postrm_hook = update-grub\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3388,4 +3392,3 @@ msgstr ""
 #, no-c-format
 msgid "The configuration steps described in this chapter are basic and can lead both to a server system or a workstation, and it can be massively duplicated in semi-automated ways. However, it is not enough by itself to provide a fully configured system. A few pieces are still in need of configuration, starting with low-level programs known as the “Unix services”."
 msgstr ""
-

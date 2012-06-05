@@ -1,13 +1,14 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-05-09T20:00:20\n"
-"PO-Revision-Date: 2012-05-13 10:21+0100\n"
+"POT-Creation-Date: 2012-06-01T20:23:57\n"
+"PO-Revision-Date: 2012-06-01 22:36+0200\n"
 "Last-Translator: Isma <isma.deandres@gmail.com>\n"
 "Language-Team: None\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -64,7 +65,7 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>mail</primary><secondary>electronc</secondary>"
+msgid "<primary>mail</primary><secondary>electronic</secondary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -139,7 +140,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The first question deals with the type of setup. Only two of the proposed answers are relevant in case of an Internet-connected server, “Internet site” and “Internet with smarthost”. The former is appropriate for a server that receives incoming email and sends outgoing email directly to its recipients, and is therefore well-adapted to the Falcot Corp case. The latter is appropriate for a server receiving incoming email nomally, but that sends outgoing email through an intermediate SMTP server — the “smarthost” — rather than directly to the recipient's server. This is mostly useful for individuals with a dynamic IP address, since many email servers reject messages coming straight from such an IP address. In this case, the smarthost will usually be the ISP's SMTP server, which is always configured to accept email coming from the ISP's customers and forward it apporpriately. This setup (with a smarthost) is also relevant for servers that are not permanently connected to the internet, since it avoids having to manage a queue of undeliverable messages that need to be retried later."
+msgid "The first question deals with the type of setup. Only two of the proposed answers are relevant in case of an Internet-connected server, “Internet site” and “Internet with smarthost”. The former is appropriate for a server that receives incoming email and sends outgoing email directly to its recipients, and is therefore well-adapted to the Falcot Corp case. The latter is appropriate for a server receiving incoming email normally, but that sends outgoing email through an intermediate SMTP server — the “smarthost” — rather than directly to the recipient's server. This is mostly useful for individuals with a dynamic IP address, since many email servers reject messages coming straight from such an IP address. In this case, the smarthost will usually be the ISP's SMTP server, which is always configured to accept email coming from the ISP's customers and forward it appropriately. This setup (with a smarthost) is also relevant for servers that are not permanently connected to the internet, since it avoids having to manage a queue of undeliverable messages that need to be retried later."
 msgstr ""
 
 #. Tag: title
@@ -445,7 +446,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The growing number of unsolicited bulk emails (<emphasis>spams</emphasis>) requires being increasingly strict when deciding which emails a server should accept. This section presents some of the strategies included in Postfix."
+msgid "The growing number of unsolicited bulk emails (<emphasis>spam</emphasis>) requires being increasingly strict when deciding which emails a server should accept. This section presents some of the strategies included in Postfix."
 msgstr ""
 
 #. Tag: title
@@ -507,7 +508,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "When a variable contains a list of rules, as in the example above, these rules are evaluated in order, from the first to the last. Each rule can accept the message, reject it, or leave the decision to a following rule. As a consequence, order matters, and simply switching two rules can lead to a widely different behaviour."
+msgid "When a variable contains a list of rules, as in the example above, these rules are evaluated in order, from the first to the last. Each rule can accept the message, reject it, or leave the decision to a following rule. As a consequence, order matters, and simply switching two rules can lead to a widely different behavior."
 msgstr "Cuando la variable contiene una lista de reglas, como en el ejemplo anterior, estas reglas son evaluadas ordenadamente, desde la primera hasta la última. Cada regla puede aceptar el mensaje, rechazarlo o dejar la decisión de qué hacer a posteriores reglas. Por lo tanto, el orden importa, cambiar el orden en el que están establecidas las reglas puede provocar un comportamiento completamente diferente."
 
 #. Tag: para
@@ -761,7 +762,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Although the above commands validate informations at various stages of the SMTP exchange, Postfix only sends the actual rejection as a reply to the <literal>RCPT TO</literal> command."
+msgid "Although the above commands validate information at various stages of the SMTP exchange, Postfix only sends the actual rejection as a reply to the <literal>RCPT TO</literal> command."
 msgstr ""
 
 #. Tag: para
@@ -791,7 +792,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The validation and restriction system would not be complete without a way to apply checks to the message contents. Postfix differenciates the checks applying on the email headers from those applying to the email body."
+msgid "The validation and restriction system would not be complete without a way to apply checks to the message contents. Postfix differentiates the checks applying on the email headers from those applying to the email body."
 msgstr ""
 
 #. Tag: title
@@ -837,7 +838,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <emphasis>regular expression</emphasis> term (shortened to <emphasis>regexp</emphasis> or <emphasis>regex</emphasis>) references a generic notation for expressing a descrition of the contents and/or structure of a string of characters. Certain special characters allow defining alternatives (for instance, <literal>foo|bar</literal> matches either “foo” or “bar”), sets of allowed characters (for instance, <literal>[0-9]</literal> means any digit, and <literal>.</literal> — a dot — means any character), quantifications (<literal>s?</literal> matches either <literal>s</literal> or the empty string, in other words 0 or 1 occurrence of <literal>s</literal>; <literal>s+</literal> matches one or more consecutive <literal>s</literal> characters; and so on). Parentheses allow grouping search results."
+msgid "The <emphasis>regular expression</emphasis> term (shortened to <emphasis>regexp</emphasis> or <emphasis>regex</emphasis>) references a generic notation for expressing a description of the contents and/or structure of a string of characters. Certain special characters allow defining alternatives (for instance, <literal>foo|bar</literal> matches either “foo” or “bar”), sets of allowed characters (for instance, <literal>[0-9]</literal> means any digit, and <literal>.</literal> — a dot — means any character), quantifications (<literal>s?</literal> matches either <literal>s</literal> or the empty string, in other words 0 or 1 occurrence of <literal>s</literal>; <literal>s+</literal> matches one or more consecutive <literal>s</literal> characters; and so on). Parentheses allow grouping search results."
 msgstr ""
 
 #. Tag: para
@@ -867,7 +868,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "“Greylisting” is a filtering technique according to which a message is initially rejected with a temporary error code, and only accepted on a further try after some delay. This filtering is particularly efficient against spams sent by the many machines infected by worms and viruses, since these software rarely act as full SMTP agents (by checking the error code and retrying failed messages later), especially since many of the harvested addresses are really invalid and retrying would only mean losing time."
+msgid "“Greylisting” is a filtering technique according to which a message is initially rejected with a temporary error code, and only accepted on a further try after some delay. This filtering is particularly efficient against spam sent by the many machines infected by worms and viruses, since these software rarely act as full SMTP agents (by checking the error code and retrying failed messages later), especially since many of the harvested addresses are really invalid and retrying would only mean losing time."
 msgstr ""
 
 #. Tag: para
@@ -951,7 +952,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The last two sections reviewed many of the possible restrictions. They all have their use in limiting the amount of received spam, but they also all have their drawbacks. It is therefore more and more common to customize the set of filters depending on the recipient. At Falcot Corp, greylisting is interesting for most users, but it hinders the work of some users who need a low latency in their emails (such as the technical support service). Similarly, the commercial service sometimes has problems receiving emails from some Asian providers who may be listed in black-lists; this service asked for a non-filtered address so as to be able to correspond."
+msgid "The last two sections reviewed many of the possible restrictions. They all have their use in limiting the amount of received spam, but they also all have their drawbacks. It is therefore more and more common to customize the set of filters depending on the recipient. At Falcot Corp, greylisting is interesting for most users, but it hinders the work of some users who need low latency in their emails (such as the technical support service). Similarly, the commercial service sometimes has problems receiving emails from some Asian providers who may be listed in black-lists; this service asked for a non-filtered address so as to be able to correspond."
 msgstr ""
 
 #. Tag: para
@@ -1073,7 +1074,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The standard ClamAV configuration fits most situations, but some important parameters can still be customized with <command>dpkg-reconfigure clamav-base</command>. Similarly, running <command>dpkg-reconfigure clamav-milter</command> allows defining the mail filter's behaviour in some detail."
+msgid "The standard ClamAV configuration fits most situations, but some important parameters can still be customized with <command>dpkg-reconfigure clamav-base</command>. Similarly, running <command>dpkg-reconfigure clamav-milter</command> allows defining the mail filter's behavior in some detail."
 msgstr ""
 
 #. Tag: para
@@ -1101,7 +1102,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once the antivirus is set up, its correct behaviour should be tested. The simplest way to do that is to send a test email with an attachment containing the <filename>eicar.com</filename> (or <filename>eicar.com.zip</filename>) file, which can be downloaded online: <ulink type=\"block\" url=\"http://www.eicar.org/anti_virus_test_file.htm\" />"
+msgid "Once the antivirus is set up, its correct behavior should be tested. The simplest way to do that is to send a test email with an attachment containing the <filename>eicar.com</filename> (or <filename>eicar.com.zip</filename>) file, which can be downloaded online: <ulink type=\"block\" url=\"http://www.eicar.org/anti_virus_test_file.htm\" />"
 msgstr ""
 
 #. Tag: para
@@ -1312,7 +1313,7 @@ msgstr "<primary><emphasis role=\"pkg\">apache2-mpm-itk</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Another possibility is to use a dedicated MPM, such as the one provided by <emphasis role=\"pkg\">apache2-mpm-itk</emphasis>. This particular one has a slightly different behaviour: it allows “isolating” virtual hosts so that they each run as a different user. A vulnerability in one website therefore cannot compromise files belonging to the owner of another website."
+msgid "Another possibility is to use a dedicated MPM, such as the one provided by <emphasis role=\"pkg\">apache2-mpm-itk</emphasis>. This particular one has a slightly different behavior: it allows “isolating” virtual hosts so that they each run as a different user. A vulnerability in one website therefore cannot compromise files belonging to the owner of another website."
 msgstr ""
 
 #. Tag: title
@@ -1372,12 +1373,12 @@ msgstr "<primary>host virtual</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Apache considers two different kinds of virtual hosts: those that are based on the IP address (or the port), and those that rely on the domain name of the web server. The first method requires allocating a different IP address (or port) for each site, whereas the second one can work on a single IP address (and port), and the sites are differenciated by the hostname sent by the HTTP client (which only works in version 1.1 of the HTTP protocol — fortunately that version is old enough that all clients use it already)."
+msgid "Apache considers two different kinds of virtual hosts: those that are based on the IP address (or the port), and those that rely on the domain name of the web server. The first method requires allocating a different IP address (or port) for each site, whereas the second one can work on a single IP address (and port), and the sites are differentiated by the hostname sent by the HTTP client (which only works in version 1.1 of the HTTP protocol — fortunately that version is old enough that all clients use it already)."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The (increasing) scarcity of IPv4 addresses usually favours the second method; however, it is made more complex if the virtual hosts need to provide HTTPS too, since the SSL protocol hasn't always provided for name-based virtual hosting; the SNI extension (<emphasis>Server Name Indication</emphasis>) that allows such a combination is not handled by all browsers. When several HTTPS sites need to run on the same server, they will usually be differenciated either by running on a different port or on a different IP address (IPv6 can help there)."
+msgid "The (increasing) scarcity of IPv4 addresses usually favors the second method; however, it is made more complex if the virtual hosts need to provide HTTPS too, since the SSL protocol hasn't always provided for name-based virtual hosting; the SNI extension (<emphasis>Server Name Indication</emphasis>) that allows such a combination is not handled by all browsers. When several HTTPS sites need to run on the same server, they will usually be differentiated either by running on a different port or on a different IP address (IPv6 can help there)."
 msgstr ""
 
 #. Tag: para
@@ -1550,7 +1551,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>MultiViews</literal> enables content negociation; this can be used by the server to return a web page matching the preferred language as configured in the browser. <indexterm><primary><literal>MultiViews</literal>, Apache directive</primary></indexterm>"
+msgid "<literal>MultiViews</literal> enables content negotiation; this can be used by the server to return a web page matching the preferred language as configured in the browser. <indexterm><primary><literal>MultiViews</literal>, Apache directive</primary></indexterm>"
 msgstr ""
 
 #. Tag: title
@@ -1580,7 +1581,7 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "Requiring an Authentication"
+msgid "Requiring Authentication"
 msgstr ""
 
 #. Tag: indexterm
@@ -1595,7 +1596,7 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "<filename>.htaccess</filename> file requiring an authentication"
+msgid "<filename>.htaccess</filename> file requiring authentication"
 msgstr ""
 
 #. Tag: programlisting
@@ -1781,10 +1782,10 @@ msgstr ""
 #, no-c-format
 msgid ""
 "\n"
-"0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null \n"
+"0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache2/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null \n"
 msgstr ""
 "\n"
-"0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null \n"
+"0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache2/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null \n"
 
 #. Tag: para
 #, no-c-format
@@ -2149,12 +2150,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "By default, the server only answers an NFS query when the current disk operation is complete (<literal>sync</literal> option); this can be disabled with the <literal>async</literal> option. Asynchronous writes increase performance a bit, but they decrease reliability since there's a data loss risk in case of the server crashing between the acknowledgement of the write and the actual write on disk. Since the default value changed recently (as compared to the historical value of NFS), an explicit setting is recommended."
+msgid "By default, the server only answers an NFS query when the current disk operation is complete (<literal>sync</literal> option); this can be disabled with the <literal>async</literal> option. Asynchronous writes increase performance a bit, but they decrease reliability since there's a data loss risk in case of the server crashing between the acknowledgment of the write and the actual write on disk. Since the default value changed recently (as compared to the historical value of NFS), an explicit setting is recommended."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In order to not give root access to the filesystem to any NFS client, all queries appearing to come from a root user are considered by the server as coming from the <literal>anonymous</literal> user. This behaviour corresponds to the <literal>root_squash</literal> option, and is enabled by default. The <literal>no_root_squash</literal> option, which disables this behavior, is risky and should only be used in controlled environments. The <literal>anonuid=<replaceable>uid</replaceable></literal> and <literal>anongid=<replaceable>gid</replaceable></literal> options allow specifying another fake user to be used instead of <literal>anonymous</literal>."
+msgid "In order to not give root access to the filesystem to any NFS client, all queries appearing to come from a root user are considered by the server as coming from the <literal>anonymous</literal> user. This behavior corresponds to the <literal>root_squash</literal> option, and is enabled by default. The <literal>no_root_squash</literal> option, which disables this behavior, is risky and should only be used in controlled environments. The <literal>anonuid=<replaceable>uid</replaceable></literal> and <literal>anongid=<replaceable>gid</replaceable></literal> options allow specifying another fake user to be used instead of <literal>anonymous</literal>."
 msgstr ""
 
 #. Tag: para
@@ -3682,4 +3683,3 @@ msgstr ""
 #, no-c-format
 msgid "This chapter sampled only a fraction of the available server software; however, most of the common network services were described. Now it is time for an even more technical chapter: we'll go into deeper detail for some concepts, describe massive deployments and virtualization."
 msgstr "Este capítulo solo analiza una parte de todo el software de servidor disponible; sin embargo, se han descrito la mayoría de los servicios de red. Es el momento de un capítulo aún más técnico: profundizaremos en los detalles de algunos conceptos, describiremos los despliegues masivos y la virtualización. "
-

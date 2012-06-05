@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-05-09T20:00:18\n"
-"PO-Revision-Date: 2012-05-09T20:00:18\n"
+"POT-Creation-Date: 2012-06-01T20:23:57\n"
+"PO-Revision-Date: 2012-06-01T20:23:57\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -184,7 +184,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Historically, each locale has an associated “character set” (group of known characters) and a preferred “encoding” (internal representationfor characters within the computer)."
+msgid "Historically, each locale has an associated “character set” (group of known characters) and a preferred “encoding” (internal representation for characters within the computer)."
 msgstr ""
 
 #. Tag: para
@@ -437,7 +437,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Most modern local networks use the Ethernet protocol, where data is split into small blocks called frames and transmitted on the wire one frame at a time. Data speeds vary from 10 Mb/s for older Ethernet cards to 10 Gb/s in the newest cards (with the most common rate currently growing from 100 Mb/s to 1 Gb/s). The most widely used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T depending on the throughput they can reliably provide (the T stands for “twisted pair”); those cables end in an RJ45 connector. There are other cable types, used mostly for speeds in above 1 Gb/s."
+msgid "Most modern local networks use the Ethernet protocol, where data is split into small blocks called frames and transmitted on the wire one frame at a time. Data speeds vary from 10 Mb/s for older Ethernet cards to 10 Gb/s in the newest cards (with the most common rate currently growing from 100 Mb/s to 1 Gb/s). The most widely used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T depending on the throughput they can reliably provide (the T stands for “twisted pair”); those cables end in an RJ45 connector. There are other cable types, used mostly for speeds above 1 Gb/s."
 msgstr ""
 
 #. Tag: indexterm
@@ -492,7 +492,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyses incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
+msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyzes incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
 msgstr ""
 
 #. Tag: indexterm
@@ -846,7 +846,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this demon. Only members of the “netdev” group have permissions to control this program."
+msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this daemon. Only members of the “netdev” group have permissions to control this program."
 msgstr ""
 
 #. Tag: para
@@ -1029,7 +1029,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "DNS (Domain Name Service) is a distributed and hierarchal service mapping names to IP addresses, and vice-versa. Specifically, it can turn a human-friendly name such as <literal>www.eyrolles.com</literal> into the actual IP address, <literal>213.244.11.247</literal>."
+msgid "DNS (Domain Name Service) is a distributed and hierarchical service mapping names to IP addresses, and vice-versa. Specifically, it can turn a human-friendly name such as <literal>www.eyrolles.com</literal> into the actual IP address, <literal>213.244.11.247</literal>."
 msgstr ""
 
 #. Tag: para
@@ -1788,7 +1788,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Users often want to configure their login and interactive shells in the same way. To do this, they choose to interpreter (or “source”) the content from <filename>~/.bashrc</filename> in the <filename>~/.bash_profile</filename> file. It is possible to do the same with files common to all users (by calling <filename>/etc/bash.bashrc</filename> from <filename>/etc/profile</filename>)."
+msgid "Users often want to configure their login and interactive shells in the same way. To do this, they choose to interpret (or “source”) the content from <filename>~/.bashrc</filename> in the <filename>~/.bash_profile</filename> file. It is possible to do the same with files common to all users (by calling <filename>/etc/bash.bashrc</filename> from <filename>/etc/profile</filename>)."
 msgstr ""
 
 #. Tag: title
@@ -1958,7 +1958,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "To take into account the characteristics of more and more dynamic, modern computers, the kernel has, at some time, offered an implementation of <filename>/dev/</filename> by a virtual filesystem called <emphasis>defvs</emphasis>. In some cases, this makes it easier to find files, since the naming convention uses a hierarchal structure: the first partition of the master hard drive on the first IDE bus was then represented by the file, <filename>/dev/ide/host0/bus0/target0/lun0/part1</filename>. Not only were these naming conventions not very intuitive, but they were also hard-coded into the kernel which presented problems for hot-pluggable drives because the corresponding special file name would vary."
+msgid "To take into account the characteristics of more and more dynamic, modern computers, the kernel has, at some time, offered an implementation of <filename>/dev/</filename> by a virtual filesystem called <emphasis>devfs</emphasis>. In some cases, this makes it easier to find files, since the naming convention uses a hierarchical structure: the first partition of the master hard drive on the first IDE bus was then represented by the file, <filename>/dev/ide/host0/bus0/target0/lun0/part1</filename>. Not only were these naming conventions not very intuitive, but they were also hard-coded into the kernel which presented problems for hot-pluggable drives because the corresponding special file name would vary."
 msgstr ""
 
 #. Tag: para
@@ -2101,7 +2101,7 @@ msgid "\n"
 "boot=/dev/sda\n"
 "# the partition that contains Debian\n"
 "root=/dev/sda2\n"
-"# the item to be loaded by defaul\n"
+"# the item to be loaded by default\n"
 "default=Linux\n"
 "\n"
 "# the most recent kernel image\n"
@@ -2437,7 +2437,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "There are two time sources in a computer. A computer's motherboard has a hardware clock, called the “CMOS clock”. This clock is not very precise, and provides rather slow access times. The operating system kernel has its own, the software clock, which it keeps up to date with its own means (possibly with the help of time servers, see the “Time Synchronization” section). This system clock is generally more accurate, especially since it doesn't need access to hardware variables. However, since it only exists in live memory, it is zeroed out every time the machine is booted, contrary to the CMOS clock, which has a battery and therefores “survives” rebooting or halting of the machine. The system clock is, thus, set from the CMOS clock during boot, and the CMOS clock is updated on shutdown (to take into account possible changes or corrections if it has been improperly adjusted)."
+msgid "There are two time sources in a computer. A computer's motherboard has a hardware clock, called the “CMOS clock”. This clock is not very precise, and provides rather slow access times. The operating system kernel has its own, the software clock, which it keeps up to date with its own means (possibly with the help of time servers, see the “Time Synchronization” section). This system clock is generally more accurate, especially since it doesn't need access to hardware variables. However, since it only exists in live memory, it is zeroed out every time the machine is booted, contrary to the CMOS clock, which has a battery and therefore “survives” rebooting or halting of the machine. The system clock is, thus, set from the CMOS clock during boot, and the CMOS clock is updated on shutdown (to take into account possible changes or corrections if it has been improperly adjusted)."
 msgstr ""
 
 #. Tag: para
@@ -2824,7 +2824,7 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>auto-monteur</primary>"
+msgid "<primary>automounter</primary>"
 msgstr ""
 
 #. Tag: para
@@ -3024,7 +3024,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<command>make menuconfig</command> compiles and executes an text-mode interface (this is where the <emphasis role=\"pkg\">libncurses5-dev</emphasis> package is required) which allows navigating the options available in a hierarchical structure. Pressing the <keycap>Space</keycap> key changes the value of the selected option, and <keycap>Enter</keycap> validates the button selected at the bottom of the screen; <guibutton>Select</guibutton> returns to the selected sub-menu; <guibutton>Exit</guibutton> closes the current screen and move back up in the hierarchy; <guibutton>Help</guibutton> will display more detailed information on the role of the selected option. The arrows allow moving within the list of options and buttons. To exit the configuration program, choose <guibutton>Exit</guibutton> from the main menu. The program then offers to save the changes you've made; accept if you are satisfied with your choices."
+msgid "<command>make menuconfig</command> compiles and executes a text-mode interface (this is where the <emphasis role=\"pkg\">libncurses5-dev</emphasis> package is required) which allows navigating the options available in a hierarchical structure. Pressing the <keycap>Space</keycap> key changes the value of the selected option, and <keycap>Enter</keycap> validates the button selected at the bottom of the screen; <guibutton>Select</guibutton> returns to the selected sub-menu; <guibutton>Exit</guibutton> closes the current screen and move back up in the hierarchy; <guibutton>Help</guibutton> will display more detailed information on the role of the selected option. The arrows allow moving within the list of options and buttons. To exit the configuration program, choose <guibutton>Exit</guibutton> from the main menu. The program then offers to save the changes you've made; accept if you are satisfied with your choices."
 msgstr ""
 
 #. Tag: para
@@ -3104,7 +3104,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once the kernel configuration is ready, the <command>make-pkg</command> command provided by Debian compiles the kernel, then generates the corresponding Debian package (or packages). Just like <command>make</command>, <command>make-pkg</command> takes the name of a target to execute as an argument: <literal>kernel-image</literal> generates a compiled kernel package, <literal>kernel-doc</literal> a package containing the documentation included with the kernel, <literal>kernel-headers</literal> a package of kernel header files (<filename>.h</filename> files for the kernel in the <filename>include/</filename> directory, which is useful for compilation of some external modules), and <literal>kernel-source</literal> creates a package containing the kernel sources."
+msgid "Once the kernel configuration is ready, the <command>make-kpkg</command> command provided by Debian compiles the kernel, then generates the corresponding Debian package (or packages). Just like <command>make</command>, <command>make-kpkg</command> takes the name of a target to execute as an argument: <literal>kernel-image</literal> generates a compiled kernel package, <literal>kernel-doc</literal> a package containing the documentation included with the kernel, <literal>kernel-headers</literal> a package of kernel header files (<filename>.h</filename> files for the kernel in the <filename>include/</filename> directory, which is useful for compilation of some external modules), and <literal>kernel-source</literal> creates a package containing the kernel sources."
 msgstr ""
 
 #. Tag: para
@@ -3194,7 +3194,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The module sources are now located in the <filename>~/kernel/modules/qc-usb/</filename> directory. To compile these modules and create a Debian package, we invoke <command>make-kpkg</command> with the <literal>modules-image</literal> target and indicate the location of the modules via the <varname>MODULE_LOC</varname> environment variable (without this variable, it uses <filename>/usr/src/modules/</filename>, which won't work in our case). By default, it tries to create the packages for all the external modules that can be found at this location extracted. The <literal>--added-modules</literal> option allows to explicitly choose the external modules to compile. To include more than one, separate them with a comma."
+msgid "The module sources are now located in the <filename>~/kernel/modules/qc-usb/</filename> directory. To compile these modules and create a Debian package, we invoke <command>make-kpkg</command> with the <literal>modules-image</literal> target and indicate the location of the modules via the <varname>MODULE_LOC</varname> environment variable (without this variable, it uses <filename>/usr/src/modules/</filename>, which won't work in our case). By default, it tries to create the packages for all the external modules that you extracted at this location. The <literal>--added-modules</literal> option allows to explicitly choose the external modules to compile. To include more than one, separate them with a comma."
 msgstr ""
 
 #. Tag: screen
