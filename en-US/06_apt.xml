@@ -129,7 +129,7 @@
       <indexterm><primary><foreignphrase>non-free</foreignphrase>, section</primary></indexterm>
 
       <para>Debian uses three sections to differentiate packages according
-      to the licenses chosen by the authors of each program.
+      to the licenses chosen by the authors of each work.
       <foreignphrase>Main</foreignphrase> (the main archive) gathers all
       packages which fully comply with the Debian Free Software
       Guidelines.</para>
@@ -137,8 +137,8 @@
       <para>The <foreignphrase>non-free</foreignphrase> archive is
       different because it contains software which does not (entirely)
       conform to these principles but which can nevertheless be distributed
-      freely. This archive, which is not officially part of Debian, is a
-      service for users who could need those software — however Debian
+      without restrictions. This archive, which is not officially part of Debian, is a
+      service for users who could need some of those programs — however Debian
       always recommends giving priority to free software. The existence of
       this section represents a considerable problem for Richard M.
       Stallman and keeps the Free Software Foundation from recommending
@@ -264,7 +264,7 @@ deb-src http://ftp.debian.org/debian stable main contrib non-free
 
 	<para>Unsurprisingly, the <literal>backports.debian.org</literal>
 	server hosts “package backports”. The term refers to a package
-	of a recent software which has been recompiled for an older
+	of some recent software which has been recompiled for an older
 	distribution, generally for <emphasis
 	role="distribution">Stable</emphasis>. When the distribution
 	becomes a little dated, numerous software projects have released
@@ -323,7 +323,7 @@ deb-src http://ftp.debian.org/debian stable main contrib non-free
       <indexterm><primary><literal>mentors.debian.net</literal></primary></indexterm>
 
       <para>There are numerous non-official sources of Debian packages set
-      up by advanced users who have recompiled some softwares, by
+      up by advanced users who have recompiled some software, by
       programmers who make their creation available to all, and even by
       Debian developers who offer pre-versions of their package online. A
       web site was set up to find these alternative sources more easily. It
@@ -528,7 +528,7 @@ deb-src http://ftp.debian.org/debian stable main contrib non-free
 	restore packages modified during an attack certainly cannot recover
 	the system as it was. <xref
 	linkend="sect.dealing-with-compromised-machine"/> details the
-	necessary steps to take with a hacked system.</para>
+	necessary steps to take with a compromised system.</para>
       </sidebar>
 
       <para>If the file <filename>sources.list</filename> mentions several
@@ -1352,7 +1352,7 @@ i A apt-xapian-index Depends    python-debian (&gt;= 0.1.15)</computeroutput>
 	<keycombo><keycap>Enter</keycap></keycombo>. If the selection of
 	one of these versions solves the problem, you should not hesitate
 	to use the function. When the number of broken packages gets down
-	to zero, you can safely go the summary screen of pending actions
+	to zero, you can safely go to the summary screen of pending actions
 	for a last check before you apply them.</para>
 
         <sidebar>
@@ -1613,7 +1613,7 @@ uid                  Debian Archive Automatic Signing Key (6.0/squeeze) &lt;ftpm
 	  different hardware will use other packages, most likely <emphasis
 	  role="pkg">linux-image-2.6-amd64</emphasis> for AMD64 or
 	  <emphasis role="pkg">linux-image-powerpc*</emphasis> for
-	  PowerPC).</para>
+	  PowerPC.</para>
         </listitem>
       </itemizedlist>
 

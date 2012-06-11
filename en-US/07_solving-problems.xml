@@ -30,7 +30,7 @@
     <para>Before you can understand what is really going on when there is a
     problem, you need to know the theoretical role played by each program
     involved in the problem. To do this, the best reflex to have is consult
-    their documentation; but since these documentations are many and widely
+    their documentation; but since these documentats are many and widely
     dispersed, you should know all the places where they can be
     found.</para>
     <section id="section.manuel">
@@ -343,12 +343,12 @@ install (1)          - copy files and set attributes
       The Debian maintainer generally indicates in this file where they got
       the program's source code, and this is likely to be the website that
       you need to find. If at this stage your search is still unfruitful,
-      consult a free software directory, such as Freshmeat.net or
+      consult a free software directory, such as Freecode.com (formerly Freshmeat.net) or
       Framasoft, or search directly with a search engine, such as Google or
-      Yahoo. <ulink type="block" url="http://freshmeat.net/"/> <ulink
+      Yahoo. <ulink type="block" url="http://freecode.com/"/> <ulink
       type="block" url="http://framasoft.org/"/></para>
       <indexterm><primary><filename>copyright</filename></primary></indexterm>
-      <indexterm><primary><foreignphrase>Freshmeat</foreignphrase></primary></indexterm>
+      <indexterm><primary><foreignphrase>Freecode</foreignphrase></primary></indexterm>
       <indexterm><primary><emphasis>wiki.debian.org</emphasis></primary></indexterm>
 
       <para>You might also want to check the Debian wiki, a collaborative
@@ -362,7 +362,7 @@ install (1)          - copy files and set attributes
       <title>Tutorials (<emphasis>HOWTO</emphasis>)</title>
       <indexterm><primary><emphasis>HOWTO</emphasis></primary></indexterm>
 
-      <para>A howto is a documentation that describes, in concrete terms
+      <para>A howto is a document that describes, in concrete terms
       and step by step, how to reach a predefined goal. The covered goals
       are relatively varied, but often technical in nature: for example,
       setting up IP Masquerading, configuring software RAID, installing a
@@ -374,12 +374,12 @@ install (1)          - copy files and set attributes
       Project (LDP), whose website hosts all of these documents:<ulink
       type="block" url="http://www.tldp.org/"/> </para>
 
+      <!-- TODO: wheezy dropped doc-linux-html, see #668078 -->
       <para>To view them locally, just install the <emphasis
       role="pkg">doc-linux-html</emphasis> package. Local HTML versions
       will then be available in the
       <filename>/usr/share/doc/HOWTO/</filename> directory.</para>
       <indexterm><primary><emphasis>doc-linux-html</emphasis></primary></indexterm>
-      <indexterm><primary><emphasis>doc-linux-fr-html</emphasis></primary></indexterm>
       <indexterm><primary>LDP</primary></indexterm>
       <indexterm><primary>Linux Documentation Project</primary></indexterm>
 
@@ -468,7 +468,7 @@ install (1)          - copy files and set attributes
 	initialize a database). If the example is specific to a particular
 	architecture, it should be installed in
 	<filename>/usr/lib/<replaceable>package</replaceable>/examples/</filename>
-	and you should create a link pointing to that file in the
+	and there should be a link pointing to that file in the
 	<filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename>
 	directory.</para>
       </sidebar>

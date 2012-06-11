@@ -26,7 +26,7 @@
   <para>This chapter describes the structure and contents of “binary”
   and “source” packages. The former are <filename>.deb</filename>
   files, directly usable by <command>dpkg</command>, while the latter
-  contain the program source code, as well as instructions for building
+  contain the source code, as well as instructions for building
   binary packages.</para>
   <section id="sect.binary-package-structure">
     <title>Structure of a Binary Package</title>
@@ -165,7 +165,7 @@ $ </computeroutput><userinput>cat debian-binary</userinput>
 	contains all of the available meta-information. In it, package
 	management tools find, among other things, the name and version of
 	the package. Some of this meta-information allows them to determine
-	if it is possible to install or uninstall the programs inside, for
+	if it is possible to install or uninstall it, for
 	example according to the list of packages already on the
 	machine.</para>
       </listitem>
@@ -262,7 +262,7 @@ Tag: admin::package-management, hardware::storage, hardware::storage:cd, interfa
 	list of conditions to be met for the package to work correctly —
 	this information is used by tools such as <command>apt</command> in
 	order to install the required libraries, in their appropriate
-	versions, that the program to be installed depends on. For each
+	versions, that the package to be installed depends on. For each
 	dependency, it is possible to restrict the range of versions that
 	meet that condition. In other words, it is possible to express the
 	fact that we need the package <emphasis role="pkg">libc6</emphasis>
@@ -395,7 +395,7 @@ Tag: admin::package-management, hardware::storage, hardware::storage:cd, interfa
 	<para><command>dpkg</command> will refuse to install a package if
 	it triggers a conflict with an already installed package, except if
 	the new package specifies that it will “replace” the installed
-	packages, in which case <command>dpkg</command> will choose to
+	package, in which case <command>dpkg</command> will choose to
 	replace the old package with the new one.
 	<command>apt-get</command> always follows your instructions: if you
 	choose to install a new package, it will automatically offer to
@@ -1109,8 +1109,8 @@ uV48hsT8cj0paqVXl5+P9Ww8XIE3clxNpE/45/tvKvkqGOeysc6OPAqsIw6HYFY9
       </sidebar>
 
       <para>The <filename>.orig.tar.gz</filename> is an archive containing
-      the program source code as provided by the original developer.
-      Developers are asked to not modify this archive in order to be able
+      the source code as provided by the original developer.
+      Debian package maintainers are asked to not modify this archive in order to be able
       to easily check the source and integrity of the file (by simple
       comparison with a checksum) and to respect the wishes of some
       authors.</para>
@@ -1644,7 +1644,7 @@ $ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>
 
     <para>Looking at the man page for the <command>alien</command> command,
     you will also note that this program also handles other packaging
-    formats, especially those from the Slackware distribution (they are a
+    formats, especially the one used by the Slackware distribution (it is made of a
     simple <filename>tar.gz</filename> archive).</para>
 
     <para>The stability of the software deployed using the
