@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2012-05-30 19:57+0800\n"
+"PO-Revision-Date: 2012-07-02 09:00+0800\n"
 "Last-Translator: Emfox Zhou <emfox@debian.org>\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -115,31 +115,34 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
 "<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
+"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Man page notation"
-msgstr ""
+msgstr "<emphasis>基础知识</emphasis> Man 手册注记"
 
 #. Tag: para
 #, no-c-format
 msgid "It can be confusing for beginners to find references to “<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>” in the literature. This is generally a convenient means of referring to the man page entitled <literal>ar</literal> in section 1."
-msgstr ""
+msgstr "初学者可能会在看到“<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>”这样的文字注记时感到疑惑。这通常是个简写，它表示指向 man 手册第一类中标题是 <literal>ar</literal> 的页面。"
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes this notation is also used to remove ambiguities, for example to distinguish between the <command>printf</command> command that can also be indicated by <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry> and the <function>printf</function> function in the C programming language, which can also be referred to as <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry>."
-msgstr ""
+msgstr "有时这种注记也用来避免歧义，比如要区分清楚是 <command>printf</command> 命令，可以用 <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry> 来指明，如果是 C 语言里的 <function>printf</function> 函数，就可以用 <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry> 来引用。"
 
 #. Tag: para
 #, no-c-format
 msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"section.manuel\" />)."
-msgstr ""
+msgstr "<xref linkend=\"solving-problems\" /> 更详细地讨论 man 手册系统 （参见 <xref linkend=\"section.manuel\" />）。"
 
 #. Tag: para
 #, no-c-format
 msgid "Have a look at the content of a <filename>.deb</filename> file:"
-msgstr ""
+msgstr "来看看 <filename>.deb</filename> 文件的内容："
 
 #. Tag: screen
 #, no-c-format
@@ -178,61 +181,94 @@ msgid ""
 "$ </computeroutput><userinput>cat debian-binary</userinput>\n"
 "<computeroutput>2.0</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.15.8.5_i386.deb</userinput>\n"
+"<computeroutput>debian-binary\n"
+"control.tar.gz\n"
+"data.tar.gz\n"
+"$ </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>control.tar.gz  data.tar.gz  debian-binary  dpkg_1.15.8.5_i386.deb\n"
+"$ </computeroutput><userinput>tar tzf data.tar.gz | head -15</userinput>\n"
+"<computeroutput>./\n"
+"./var/\n"
+"./var/lib/\n"
+"./var/lib/dpkg/\n"
+"./var/lib/dpkg/updates/\n"
+"./var/lib/dpkg/parts/\n"
+"./var/lib/dpkg/info/\n"
+"./var/lib/dpkg/alternatives/\n"
+"./sbin/\n"
+"./sbin/start-stop-daemon\n"
+"./usr/\n"
+"./usr/sbin/\n"
+"./usr/sbin/install-info\n"
+"./usr/bin/\n"
+"./usr/bin/dpkg-split\n"
+"$ </computeroutput><userinput>tar tzf control.tar.gz</userinput>\n"
+"<computeroutput>./\n"
+"./control\n"
+"./preinst\n"
+"./md5sums\n"
+"./conffiles\n"
+"./postrm\n"
+"./postinst\n"
+"$ </computeroutput><userinput>cat debian-binary</userinput>\n"
+"<computeroutput>2.0</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "As you can see, the <command>ar</command> archive of a Debian package is comprised of three files:"
-msgstr ""
+msgstr "如你所见， Debian 包的 <command>ar</command> 存档格式由三个文件组成："
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>debian-binary</filename>. This is a text file which simply indicates the version of the <filename>.deb</filename> file used (in 2011: version 2.0)."
-msgstr ""
+msgstr "<filename>debian-binary</filename>，这是一个文本文件，简单写明了该 <filename>.deb</filename> 文件使用的文件版本（2011年时是2.0版本）。"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information. In it, package management tools find, among other things, the name and version of the package. Some of this meta-information allows them to determine if it is possible to install or uninstall the programs inside, for example according to the list of packages already on the machine."
-msgstr ""
+msgstr "<filename>control.tar.gz</filename>，这个存档文件包含所有可用的元信息。包管理工具从它里面找到软件的名字、版本号及其它东西。有些包的元信息允许他们决定能否安装或卸载里面的程序，比如，根据已经安装在机器上的软件包的列表。"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>data.tar.gz</filename>. This archive contains all of the files to be extracted from the package; this is where the executable files, documentation, etc., are all stored. Some packages may use other compression formats, in which case the file will be named differently (<filename>data.tar.bz2</filename> for bzip2, <filename>data.tar.xz</filename> for XZ, <filename>data.tar.lzma</filename> for LZMA)."
-msgstr ""
+msgstr "<filename>data.tar.gz</filename>，这个存档文件包含所有要被从软件包里解压缩出来的文件；这是可执行文件、文档等存储的地方。有些软件包可能会使用其它压缩格式，那样的话文件名会有所不同（bzip2 是 <filename>data.tar.bz2</filename>，XZ 是 <filename>data.tar.xz</filename> for XZ，LZMA 是 <filename>data.tar.lzma</filename>）。"
 
 #. Tag: title
 #, no-c-format
 msgid "Package Meta-Information"
-msgstr ""
+msgstr "软件包元信息"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package meta-information</primary>"
-msgstr ""
+msgstr "<primary>软件包元信息</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>meta-information</secondary>"
-msgstr ""
+msgstr "<primary>package</primary><secondary>元信息</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian package is not only an archive of files intended for installation. It is part of a larger whole, and it describes its relationship with other Debian packages (dependencies, conflicts, suggestions). It also provides scripts that enable the execution of commands at different stages in the package's lifecycle (installation, removal, upgrades). These data used by the package management tools are not part of the packaged software, but are, within the package, what is called its “meta-information” (information about other information)."
-msgstr ""
+msgstr "Debian 软件包不仅仅只是一些待安装的文件的存档，它是一个更大的结构的一部分，它描述与其它 Debian 软件包的关系（依赖、冲突、建议）。它还提供脚本供软件包的生命周期的不同阶段（安装、删除、升级）使用。这些供包管理工具使用的数据不是被打包的软件的一部分，但它们存在于软件包里，被称作“元信息”（关于其它信息的信息）。"
 
 #. Tag: title
 #, no-c-format
 msgid "Description: the <filename>control</filename> File"
-msgstr ""
+msgstr "描述：<filename>control</filename> 文件"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>control</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>control</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This file uses a structure similar to email headers (as defined by RFC 2822). For example, for <emphasis role=\"pkg\">apt</emphasis>, the <filename>control</filename> file looks like the following:"
-msgstr ""
+msgstr "该文件使用一个类似电子邮件头（由 RFC 2822 定义）的结构。例如，<emphasis role=\"pkg\">apt</emphasis> 包的 <filename>control</filename> 文件看起来是这样的："
 
 #. Tag: screen
 #, no-c-format
@@ -265,81 +301,108 @@ msgid ""
 " and several other unique features, see the Users Guide in apt-doc.\n"
 "Tag: admin::package-management, hardware::storage, hardware::storage:cd, interface::commandline, network::client, protocol::{ftp,http,ipv6}, role::program, suite::debian, use::downloading, use::searching, works-with::software:package</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
+"<computeroutput>Package: apt\n"
+"Priority: important\n"
+"Section: admin\n"
+"Installed-Size: 5612\n"
+"Maintainer: APT Development Team &lt;deity@lists.debian.org&gt;\n"
+"Architecture: i386\n"
+"Version: 0.8.0\n"
+"Replaces: manpages-pl (&lt;&lt; 20060617-3~)\n"
+"Provides: libapt-pkg4.10\n"
+"Depends: libc6 (&gt;= 2.3.4), libgcc1 (&gt;= 1:4.1.1), libstdc++6 (&gt;= 4.4.0), zlib1g (&gt;= 1:1.1.4), debian-archive-keyring, gnupg\n"
+"Suggests: aptitude | synaptic | wajig, dpkg-dev, apt-doc, bzip2, lzma, python-apt\n"
+"Conflicts: python-apt (&lt;&lt; 0.7.93.2~)\n"
+"Filename: pool/main/a/apt/apt_0.8.0_i386.deb\n"
+"Size: 1965454\n"
+"MD5sum: 43364819b898e49b8175e88ec5787241\n"
+"SHA1: 350a8a7a43fe182d54f3b7d73b8032f85b5d7ddf\n"
+"SHA256: a593e7d7f9b3cffa37770201a3c13bd2c8bc588bafbf39b4aaa5e13b5fb00b8b\n"
+"Description: Advanced front-end for dpkg\n"
+" This is Debian's next generation front-end for the dpkg package manager.\n"
+" It provides the apt-get utility and APT dselect method that provides a\n"
+" simpler, safer way to install and upgrade packages.\n"
+" .\n"
+" APT features complete installation ordering, multiple source capability\n"
+" and several other unique features, see the Users Guide in apt-doc.\n"
+"Tag: admin::package-management, hardware::storage, hardware::storage:cd, interface::commandline, network::client, protocol::{ftp,http,ipv6}, role::program, suite::debian, use::downloading, use::searching, works-with::software:package</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> RFC — Internet standards"
-msgstr ""
+msgstr "<emphasis>基础知识</emphasis> RFC －－ 互联网标准"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RFC</primary>"
-msgstr ""
+msgstr "<primary>RFC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Request For Comments</primary>"
-msgstr ""
+msgstr "<primary>Request For Comments</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "RFC is the abbreviation of “Request For Comments”. An RFC is generally a technical document that describes what will become an Internet standard. Before becoming standardized and frozen, these standards are submitted for public review (hence their name). The IETF (Internet Engineering Task Force) decides on the evolution of the status of these documents (proposed standard, draft standard, or standard)."
-msgstr ""
+msgstr "RFC 是 “征求建议”的缩写。RFC通常是一份描述将要成为互联网的标准的技术文档。在成为标准并被冻结之前，这些标准被提交给大众评估（这就是名字的由来）。 IETF（互联网工程专家组）决定这些文档的演进更新（建议标准、草案或标准）。"
 
 #. Tag: para
 #, no-c-format
 msgid "RFC 2026 defines the process for standardization of Internet protocols. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
-msgstr ""
+msgstr "RFC 2026 定义了互联网协议标准化的程序。<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Dependencies: the <literal>Depends</literal> Field"
-msgstr ""
+msgstr "依赖：<literal>Depends</literal> 域"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dependency</primary>"
-msgstr ""
+msgstr "<primary>依赖</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Depends</literal>, 头部的域</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>dependency</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>依赖</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the program to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
-msgstr ""
+msgstr "依赖关系是在软件包头部的 <literal>Depends</literal> 域中定义的，它是软件包能够正常运行所需要满足的一系列条件。包管理工具诸如 <command>apt</command> 依靠这个信息来安装该软件所依赖的恰当版本的库。对于每一项依赖，可以限定依赖的版本范围来满足条件。换句话说，可以这样表达：我们需要版本号等于或者大于“2.3.4”的 <emphasis role=\"pkg\">libc6</emphasis> 软件包（写作 “<command>libc6 (&gt;= 2.3.4)</command>”）。版本比较操作符使用如下："
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;&lt;</command>: less than;"
-msgstr ""
+msgstr "<command>&lt;&lt;</command>：小于；"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;=</command>: less than or equal to;"
-msgstr ""
+msgstr "<command>&lt;=</command>：小于或等于；"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>=</command>: equal to (note, “<literal>2.6.1</literal>” is not equal to “<literal>2.6.1-1</literal>”);"
-msgstr ""
+msgstr "<command>=</command>：等于（注意， “<literal>2.6.1</literal>” 不等于 “<literal>2.6.1-1</literal>”）；"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;=</command>: greater than or equal to;"
-msgstr ""
+msgstr "<command>&gt;=</command>：大于或等于；"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;&gt;</command>: greater than."
-msgstr ""
+msgstr "<command>&gt;&gt;</command>：大于。"
 
 #. Tag: para
 #, no-c-format
