@@ -1,148 +1,162 @@
-# 
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Muhammad Saied <msaied93@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2012-06-01T20:23:56\n"
-"Last-Translator: Automatically generated\n"
+"POT-Creation-Date: 2012-06-20T21:00:49\n"
+"PO-Revision-Date: 2012-06-27 12:17+0300\n"
+"Last-Translator: Muhammad Saied <msaied93@gmail.com>\n"
 "Language-Team: None\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Virtaal 0.7.0\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Binary package"
-msgstr ""
+msgstr "حزمة ثنائية"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Source package"
-msgstr ""
+msgstr "حزمة مصدرية"
 
 #. Tag: keyword
 #, no-c-format
 msgid "dpkg"
-msgstr ""
+msgstr "dpkg"
 
 #. Tag: keyword
 #, no-c-format
 msgid "dependencies"
-msgstr ""
+msgstr "اعتماديات"
 
 #. Tag: keyword
 #, no-c-format
 msgid "conflict"
-msgstr ""
+msgstr "تضارب"
 
 #. Tag: title
 #, no-c-format
 msgid "Packaging System: Tools and Fundamental Principles"
-msgstr ""
+msgstr "نظام التحزيم: الأدوات والمبادئ الأساسية"
 
 #. Tag: para
 #, no-c-format
 msgid "As a Debian system administrator, you will routinely handle <filename>.deb</filename> packages, since they contain consistent functional units (applications, documentation, etc.), whose installation and maintenance they facilitate. It is therefore a good idea to know what they are and how to use them."
 msgstr ""
+"بصفتك مديرًا لديبيان، ستتعامل مع حزم <filename>.deb</filename> بشكل متكرر، "
+"نظرًا لأنها تحوي عناصر فعالة ضرورية (تطبيقات، وثائق، الخ)، التي تسهل هذه "
+"الحزم تثبيتها وصيانتها. فمن الجيد إذاً أن تعرف ما هي وكيف تستخدمها."
 
 #. Tag: para
 #, no-c-format
-msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the program source code, as well as instructions for building binary packages."
+msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the source code, as well as instructions for building binary packages."
 msgstr ""
+"يصف هذا الفصل بنية ومحتويات الحزم ”الثنائية“ و ”المصدرية“. الأولى هي ملفات "
+"<filename>.deb</filename>، يمكن الاستفادة منها مباشرة باستخدام "
+"<command>dpkg</command>، في حين تحتوي الأخيرة على شفرة البرنامج المصدرية، "
+"بالإضافة إلى تعليمات بناء حزم ثنائية."
 
 #. Tag: title
 #, no-c-format
 msgid "Structure of a Binary Package"
-msgstr ""
+msgstr "بنية الحزمة الثنائية"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>binary package</secondary>"
-msgstr ""
+msgstr "<primary>حزمة</primary><secondary>حزمة ثنائية</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ar</command></primary>"
-msgstr ""
+msgstr "<primary><command>ar</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command>. This seemingly trivial property is important for portability and disaster recovery."
-msgstr ""
+msgstr "صيغة حزم ديبيان مصممة بحيث يمكن استخراج محتوياتها على أي نظام يونكس يملك الأوامر الكلاسيكية <command>ar</command> ،<command>tar</command>، و <command>gzip</command>. هذه الخاصية التافهة ظاهريًا حاسمة بالنسبة للمحمولية والإنقاذ في حالات الكوارث."
 
 #. Tag: para
 #, no-c-format
 msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
-msgstr ""
+msgstr "تخيل، مثلا، أنك حذفت خطأً برنامج <command>dpkg</command>، وأنك لا تستطيع بالتالي تثبيت حزم ديبيان بعد ذلك. ولأن <command>dpkg</command> هو حزمة ديبيان بحد ذاته، يبدو أن نظامك قد انتهى أمره... لحسن الحظ، أنت تعرف صيغة الحزمة ويمكنك بالتالي تنزيل ملف <filename>.deb</filename> الخاص بحزمة <emphasis role=\"pkg\">dpkg</emphasis> ثم تثبته يدويًا (انظر الملاحظة الجانبية ”أدوات“). إذا اختفى واحد أو أكثر من البرامج <command>ar</command> ،<command>tar</command> أو <command>gzip</command> بسبب سوء الحظ، فكل ما تحتاج له هو نسخ البرنامج المفقود من نظام آخر (نظراً لأن كل واحد من هذه يعمل بطريقة مستقلة تمامًا، بدون اعتماديات، فالنسخ البسيط سيكفي)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOLS</emphasis> <command>dpkg</command>, <command>APT</command> and <command>ar</command>"
-msgstr ""
+msgstr "<emphasis>أدوات</emphasis> <command>dpkg</command> ،<command>APT</command> و <command>ar</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg</command></primary>"
-msgstr ""
+msgstr "<primary><command>dpkg</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary>"
-msgstr ""
+msgstr "<primary>APT</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is the program that handles <filename>.deb</filename> files, notably extracting, analyzing, and unpacking them."
-msgstr ""
+msgstr "<command>dpkg</command> هو البرنامج الذي يعالج ملفات <filename>.deb</filename>، بالأخص الاستخراج، والتحليل، وفك الضغط عنها."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>APT</command> is a group of programs that allows the execution of higher-level modifications to the system: installing or removing a package (while keeping dependencies satisfied), updating the system, listing the available packages, etc."
-msgstr ""
+msgstr "<command>APT</command> هي مجموعة من البرامج تسمح بتنفيذ تعديلات ذات مستوى أعلى على النظام: تثبيت أو إزالة حزمة (مع استيفاء الاعتماديات)، وتحديث النظام، سرد الحزم المتوفرة، الخ."
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents its many other operations. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the archive <filename>data.tar.gz</filename> in the system's root (<filename>/</filename>):"
-msgstr ""
+msgstr "<indexterm><primary><command>ar</command></primary></indexterm> أما بالنسبة للبرنامج <command>ar</command>، فهو يسمح بمعالجة الملفات ذات الاسم نفسه: يعرض الأمر <command>ar t <replaceable>archive</replaceable></command> قائمة بالملفات الموجودة في أرشيف ar، يستخرج الأمر <command>ar x <replaceable>archive</replaceable></command> الملفات من الأرشيف إلى مجلد العمل الحالي، يحذف الأمر <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> ملفًا من الأرشيف، الخ. توثق صفحة man الخاصة به (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) عملياته العديدة الأخرى. <command>ar</command> هي أداة بدائية جدًا يمكن أن يستخدمها مدير يونكس في مناسبات نادرة، لكن مدراء النظم يستخدمون <command>tar</command> كثيرًا، برنامج أرشفة وإدارة ملفات أكثر تطوراً. لهذا تكون استعادة <command>dpkg</command> سهلة في حال حذفه خطأً. كل ما عليك فعله هو تنزيل حزمة ديبيان واستخراج محتويات الأرشيف <filename>data.tar.gz</filename> في جذر النظام (<filename>/</filename>):"
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
 "<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
-""
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
+"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Man page notation"
-msgstr ""
+msgstr "<emphasis>أساسيات</emphasis> ترقيم صفحات man"
 
 #. Tag: para
 #, no-c-format
 msgid "It can be confusing for beginners to find references to “<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>” in the literature. This is generally a convenient means of referring to the man page entitled <literal>ar</literal> in section 1."
-msgstr ""
+msgstr "قد يُذهَل المبتدئون لوجود إشارة إلى ”<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>“ في النص. هذه عادة طريقة مناسبة للإشارة إلى صفحة man المعنونة <literal>ar</literal> في القسم 1."
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes this notation is also used to remove ambiguities, for example to distinguish between the <command>printf</command> command that can also be indicated by <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry> and the <function>printf</function> function in the C programming language, which can also be referred to as <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry>."
-msgstr ""
+msgstr "يستخدم هذا التدوين أحيانًا لرفع الالتباس، مثلاً للتفريق بين الأمر <command>printf</command> الذي يمكن الإشارة إليه بـ <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry> أيضًا وبين الدالة <function>printf</function> في لغة البرمجة C، التي يمكن الإشارة إليها بـ <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry>أيضًا."
 
 #. Tag: para
 #, no-c-format
 msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"section.manuel\" />)."
-msgstr ""
+msgstr "يناقش <xref linkend=\"solving-problems\" /> صفحات man بتفصيل أكثر (انظر <xref linkend=\"section.manuel\" />)."
 
 #. Tag: para
 #, no-c-format
 msgid "Have a look at the content of a <filename>.deb</filename> file:"
-msgstr ""
+msgstr "لنلقِ نظرة على محتويات ملف <filename>.deb</filename>:"
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.15.8.5_i386.deb</userinput>\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.15.8.5_i386.deb</userinput>\n"
 "<computeroutput>debian-binary\n"
 "control.tar.gz\n"
 "data.tar.gz\n"
@@ -175,28 +189,61 @@ msgid "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.15.8.5_i386.deb
 "./postinst\n"
 "$ </computeroutput><userinput>cat debian-binary</userinput>\n"
 "<computeroutput>2.0</computeroutput>\n"
-""
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.15.8.5_i386.deb</userinput>\n"
+"<computeroutput>debian-binary\n"
+"control.tar.gz\n"
+"data.tar.gz\n"
+"$ </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>control.tar.gz  data.tar.gz  debian-binary  dpkg_1.15.8.5_i386.deb\n"
+"$ </computeroutput><userinput>tar tzf data.tar.gz | head -15</userinput>\n"
+"<computeroutput>./\n"
+"./var/\n"
+"./var/lib/\n"
+"./var/lib/dpkg/\n"
+"./var/lib/dpkg/updates/\n"
+"./var/lib/dpkg/parts/\n"
+"./var/lib/dpkg/info/\n"
+"./var/lib/dpkg/alternatives/\n"
+"./sbin/\n"
+"./sbin/start-stop-daemon\n"
+"./usr/\n"
+"./usr/sbin/\n"
+"./usr/sbin/install-info\n"
+"./usr/bin/\n"
+"./usr/bin/dpkg-split\n"
+"$ </computeroutput><userinput>tar tzf control.tar.gz</userinput>\n"
+"<computeroutput>./\n"
+"./control\n"
+"./preinst\n"
+"./md5sums\n"
+"./conffiles\n"
+"./postrm\n"
+"./postinst\n"
+"$ </computeroutput><userinput>cat debian-binary</userinput>\n"
+"<computeroutput>2.0</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "As you can see, the <command>ar</command> archive of a Debian package is comprised of three files:"
-msgstr ""
+msgstr "كما ترى، يتألف أرشيف <command>ar</command> الخاص بحزمة ديبيان من ثلاثة ملفات:"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>debian-binary</filename>. This is a text file which simply indicates the version of the <filename>.deb</filename> file used (in 2011: version 2.0)."
-msgstr ""
+msgstr "<filename>debian-binary</filename>. هذا ملف نصي يشير ببساطة إلى نسخة ملف <filename>.deb</filename> المستخدم (في 2011: الإصدارة 2.0)."
 
 #. Tag: para
-#, no-c-format
-msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information. In it, package management tools find, among other things, the name and version of the package. Some of this meta-information allows them to determine if it is possible to install or uninstall the programs inside, for example according to the list of packages already on the machine."
+#, fuzzy, no-c-format
+msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information. In it, package management tools find, among other things, the name and version of the package. Some of this meta-information allows them to determine if it is possible to install or uninstall it, for example according to the list of packages already on the machine."
 msgstr ""
+"<filename>control.tar.gz</filename>. ملف الأرشيف هذا يحتوي جميع المعلومات"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>data.tar.gz</filename>. This archive contains all of the files to be extracted from the package; this is where the executable files, documentation, etc., are all stored. Some packages may use other compression formats, in which case the file will be named differently (<filename>data.tar.bz2</filename> for bzip2, <filename>data.tar.xz</filename> for XZ, <filename>data.tar.lzma</filename> for LZMA)."
-msgstr ""
+msgstr "<filename>data.tar.gz</filename>. يحوي هذا الأرشيف على جميع الملفات التي يجب استخراجها من الحزمة؛ هذا هو المكان حيث تخزن الملفات التنفيذية، الوثائق، الخ. قد تستخدم بعض الحزم صيغ ضغط مختلفة، حيث يتغير اسم الملف في تلك الحالة (<filename>data.tar.bz2</filename> بالنسبة لـ bzip2، <filename>data.tar.xz</filename> بالنسبة لـ XZ، <filename>data.tar.lzma</filename> بالنسبة لـ LZMA)."
 
 #. Tag: title
 #, no-c-format
@@ -221,21 +268,22 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Description: the <filename>control</filename> File"
-msgstr ""
+msgstr "وصف: ملف <filename>control</filename>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>control</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>control</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This file uses a structure similar to email headers (as defined by RFC 2822). For example, for <emphasis role=\"pkg\">apt</emphasis>, the <filename>control</filename> file looks like the following:"
-msgstr ""
+msgstr "يستعمل هذا الملف بنية مشابهة لترويسات البريد الإلكتروني (كما عرَّفها RFC 2822). مثلاً، يبدو ملف <filename>control</filename> بالنسبة لـ <emphasis role=\"pkg\">apt</emphasis> كالتالي:"
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
 "<computeroutput>Package: apt\n"
 "Priority: important\n"
@@ -262,88 +310,132 @@ msgid "\n"
 " APT features complete installation ordering, multiple source capability\n"
 " and several other unique features, see the Users Guide in apt-doc.\n"
 "Tag: admin::package-management, hardware::storage, hardware::storage:cd, interface::commandline, network::client, protocol::{ftp,http,ipv6}, role::program, suite::debian, use::downloading, use::searching, works-with::software:package</computeroutput>\n"
-""
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
+"<computeroutput>Package: apt\n"
+"Priority: important\n"
+"Section: admin\n"
+"Installed-Size: 5612\n"
+"Maintainer: APT Development Team &lt;deity@lists.debian.org&gt;\n"
+"Architecture: i386\n"
+"Version: 0.8.0\n"
+"Replaces: manpages-pl (&lt;&lt; 20060617-3~)\n"
+"Provides: libapt-pkg4.10\n"
+"Depends: libc6 (&gt;= 2.3.4)، libgcc1 (&gt;= 1:4.1.1)، libstdc++6 (&gt;= 4.4.0)، zlib1g (&gt;= 1:1.1.4)، debian-archive-keyring، gnupg\n"
+"Suggests: aptitude | synaptic | wajig، dpkg-dev، apt-doc، bzip2، lzma، python-apt\n"
+"Conflicts: python-apt (&lt;&lt; 0.7.93.2~)\n"
+"Filename: pool/main/a/apt/apt_0.8.0_i386.deb\n"
+"Size: 1965454\n"
+"MD5sum: 43364819b898e49b8175e88ec5787241\n"
+"SHA1: 350a8a7a43fe182d54f3b7d73b8032f85b5d7ddf\n"
+"SHA256: a593e7d7f9b3cffa37770201a3c13bd2c8bc588bafbf39b4aaa5e13b5fb00b8b\n"
+"Description: Advanced front-end for dpkg\n"
+" This is Debian's next generation front-end for the dpkg package manager.\n"
+" It provides the apt-get utility and APT dselect method that provides a\n"
+" simpler، safer way to install and upgrade packages.\n"
+" .\n"
+" APT features complete installation ordering، multiple source capability\n"
+" and several other unique features، see the Users Guide in apt-doc.\n"
+"Tag: admin::package-management، hardware::storage، hardware::storage:cd، interface::commandline، network::client، protocol::{ftp،http،ipv6}، role::program، suite::debian، use::downloading، use::searching، works-with::software:package</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> RFC — Internet standards"
-msgstr ""
+msgstr "<emphasis>أساسيات</emphasis> RFC — معايير الإنترنت"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RFC</primary>"
-msgstr ""
+msgstr "<primary>RFC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Request For Comments</primary>"
-msgstr ""
+msgstr "<primary>Request For Comments</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "RFC is the abbreviation of “Request For Comments”. An RFC is generally a technical document that describes what will become an Internet standard. Before becoming standardized and frozen, these standards are submitted for public review (hence their name). The IETF (Internet Engineering Task Force) decides on the evolution of the status of these documents (proposed standard, draft standard, or standard)."
-msgstr ""
+msgstr "RFC هو اختصار لـ ”Request For Comments“ أي طلب التعليقات. RFC عادة هو مستند تقني يصف ما سيصبح معيار إنترنت لاحقًا. قبل توحيد وتجميد هذه المعايير، ترسل للمراجعة العلنية (من هنا جاء الاسم). يقرر IETF (Internet Engineering Task Force) بناءً على تطور حالة هذه المستندات (معيار مقترح، مسودة معيار، أو معيار)."
 
 #. Tag: para
 #, no-c-format
 msgid "RFC 2026 defines the process for standardization of Internet protocols. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
-msgstr ""
+msgstr "يُعرِّف RFC 2026 عملية توحيد بروتوكولات الإنترنت. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Dependencies: the <literal>Depends</literal> Field"
-msgstr ""
+msgstr "الاعتماديات: حقل <literal>Depends</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dependency</primary>"
-msgstr ""
+msgstr "<primary>اعتمادية</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Depends</literal>، حقل ترويسة</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>dependency</secondary>"
-msgstr ""
+msgstr "<primary>حزمة</primary><secondary>اعتمادية</secondary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the program to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
+msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the package to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
 msgstr ""
+"تُعرَّف الاعتماديات في حقل <literal>Depends</literal> في ترويسة الحزمة. "
+"الاعتماديات هي لائحة بالشروط الواجب إيفاؤها حتى تعمل الحزمة بشكل صحيح — "
+"تستخدم بعض الأدوات هذه المعلومات مثل <command>apt</command> في سبيل تثبيت "
+"المكتبات المطلوبة، بإصداراتها المناسبة، التي يعتمد عليها البرنامج المثبت. "
+"بالنسبة لكل اعتمادية، يمكن تقييد نطاق إصداراتها التي تحقق الشرط. بكلمات "
+"أخرى، من الممكن التعبير عن حقيقة أننا نحتاج إصدارة أكبر أو تساوي ”2.3.4“ من "
+"الحزمة <emphasis role=\"pkg\">libc6</emphasis> (نكتب ذلك ”<command>libc6 "
+"(&gt;= 2.3.4)</command>“). عمليات مقارنة الإصدارات هي كالتالي:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;&lt;</command>: less than;"
-msgstr ""
+msgstr "<command>&lt;&lt;</command>: أقل من؛"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;=</command>: less than or equal to;"
-msgstr ""
+msgstr "<command>&lt;=</command>: أقل من أو يساوي؛"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>=</command>: equal to (note, “<literal>2.6.1</literal>” is not equal to “<literal>2.6.1-1</literal>”);"
-msgstr ""
+msgstr "<command>=</command>: يساوي (لاحظ أن ”<literal>2.6.1</literal>“ لا يساوي “<literal>2.6.1-1</literal>”)؛"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;=</command>: greater than or equal to;"
-msgstr ""
+msgstr "<command>&gt;=</command>: أكبر من أو يساوي؛"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;&gt;</command>: greater than."
-msgstr ""
+msgstr "<command>&gt;&gt;</command>: أكبر من؛"
 
 #. Tag: para
 #, no-c-format
 msgid "In a list of conditions to be met, the comma serves as a separator. In logic, its meaning would be interpreted as “and”. In conditions, the vertical bar (“|”) expresses “or” in logic (it is an inclusive “or”, as opposed to meaning “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 msgstr ""
+"تخدم الفاصلة كحرف فصل في لائحة الشروط الواجب تحقيقها. منطقيًا، يمكن تفسير "
+"معناها على أنها ”and“. وفي لائحة الشروط أيضًا، يعبِّر الخط الشاقولي (”|“) عن "
+"عملية ”or“ المنطقية (عملية ”inclusive or“ “وليس ”either/or“). ولأن أولويتها "
+"أكبر من أولوية ”and“، يمكن استخدامها قدر الحاجة. بالتالي، تُكتَب الاعتمادية "
+"”A or B) and C)“ بالشكل <command>A | B, C</command>. وفي المقابل، التعبير "
+"”(A or (B and C“ يجب كتابته بالشكل ”(A or B) and (A or C)“، نظراً لأن حقل "
+"<literal>Depends</literal> لا يسمح بالأقواس التي تُغيِّر ترتيب الأولويات بين "
+"العمليات المنطقية ”or“ و ”and“. سيُكتب إذاً كالتالي <command>A | B, A | "
+"C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-"
+"policy/ch-relationships.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -356,14 +448,14 @@ msgid "The dependencies system is a good mechanism for guaranteeing the operatio
 msgstr ""
 
 #. Tag: title
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, a more demanding <literal>Depends</literal>"
-msgstr ""
+msgstr "<emphasis>سياسة ديبيان</emphasis>  "
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pre-Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Pre-Depends</literal>، حقل ترويسة</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -384,31 +476,41 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Recommends</literal>, <literal>Suggests</literal>, and <literal>Enhances</literal> fields"
 msgstr ""
+"<emphasis>سياسة ديبيان</emphasis> حقول <literal>Recommends</literal> "
+"،<literal>Suggests</literal>، و <literal>Enhances</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Recommends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Recommends</literal>، حقل ترويسة</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Suggests</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Suggests</literal>، حقل ترويسة</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Recommends</literal> and <literal>Suggests</literal> fields describe dependencies that are not compulsory. The “recommended” dependencies, the most important, considerably improve the functionality offered by the package but are not indispensable to its operation. The “suggested” dependencies, of secondary importance, indicate that certain packages may complement and increase their respective utility, but it is perfectly reasonable to install one without the others."
 msgstr ""
+"يصف الحقلين <literal>Recommends</literal> و <literal>Suggests</literal> "
+"اعتماديات غير إلزامية. الاعتماديات في حقل ”recommended“ (المستحسنة أو الموصى "
+"بها)، أكثرها أهمية، تزيد وظائفية الحزمة بشكل واضح لكنها ليست ضرورية "
+"لتشغيلها. الاعتماديات في حقل ”suggested“ (المقترحة)، ذات أهمية ثانوية، وتشير "
+"إلى حزم معينة يمكن لها إكمال الأداة المثبتة وزيادة فائدتها، لكن من المنطقي "
+"تماماً تثبيت واحدة منها فقط دون البقية."
 
 #. Tag: para
 #, no-c-format
 msgid "You should always install the “recommended” packages, unless you know exactly why you do not need them. Conversely, it is not necessary to install “suggested” packages unless you know why you need them."
 msgstr ""
+"عليك تثبيت الحزم ”الموصى بها“ دائماً، إلا إذا كنت تعلم سبب عدم حاجتك لها "
+"بدقة. بالمقابل، لا حاجة بثبيت الحزم ”المقترحة“ ما لم تعلم سبب حاجتك لها."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Enhances</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Enhances</literal>، حقل ترويسة</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -418,22 +520,22 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Conflicts: the <literal>Conflicts</literal> field"
-msgstr ""
+msgstr "تضارب: حقل <literal>Conflicts</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>conflicts</primary>"
-msgstr ""
+msgstr "<primary>تضارب</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Conflicts</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Conflicts</literal>، حقل ترويسة</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>conflict</secondary>"
-msgstr ""
+msgstr "<primary>حزمة</primary><secondary>تضارب</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -442,28 +544,28 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<command>dpkg</command> will refuse to install a package if it triggers a conflict with an already installed package, except if the new package specifies that it will “replace” the installed packages, in which case <command>dpkg</command> will choose to replace the old package with the new one. <command>apt-get</command> always follows your instructions: if you choose to install a new package, it will automatically offer to uninstall the package that poses a problem."
+msgid "<command>dpkg</command> will refuse to install a package if it triggers a conflict with an already installed package, except if the new package specifies that it will “replace” the installed package, in which case <command>dpkg</command> will choose to replace the old package with the new one. <command>apt-get</command> always follows your instructions: if you choose to install a new package, it will automatically offer to uninstall the package that poses a problem."
 msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Incompatibilities: the <literal>Breaks</literal> Field"
-msgstr ""
+msgstr "عدم التوافق: حقل <literal>Breaks</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>incompatibilities</primary>"
-msgstr ""
+msgstr "<primary>عدم توافق</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Breaks</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Breaks</literal>، حقل ترويسة</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>incompatibility</secondary>"
-msgstr ""
+msgstr "<primary>حزمة</primary><secondary>عدم توافق</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -483,12 +585,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Provided Items: the <literal>Provides</literal> Field"
-msgstr ""
+msgstr "العناصر المقدَّمة: حقل <literal>Provides</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Provides</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Provides</literal>، حقل ترويسة</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -503,12 +605,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>virtual package</secondary>"
-msgstr ""
+msgstr "<primary>حزمة</primary><secondary>حزمة وهمية</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual package</primary>"
-msgstr ""
+msgstr "<primary>حزمة وهمية</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -568,27 +670,27 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Perl, a programming language"
-msgstr ""
+msgstr "<emphasis>أساسيات</emphasis> بيرل، لغة برمجة"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Perl</primary>"
-msgstr ""
+msgstr "<primary>بيرل</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CPAN</primary>"
-msgstr ""
+msgstr "<primary>CPAN</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Perl (Practical Extraction and Report Language) is a very popular programming language. It has many ready-to-use modules that cover a vast spectrum of applications, and that are distributed by the CPAN (Comprehensive Perl Archive Network) servers, an exhaustive network of Perl packages. <ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
-msgstr ""
+msgstr "بيرل (Perl = Practical Extraction and Report Language) هي لغة برمجة شهيرة جدًا. لديها الكثير من الوحدات الجاهزة للاستخدام التي تغطي طيفًا واسعًا من التطبيقات، والتي توزعها مخدمات CPAN (شبكة أرشيفات بيرل الشاملة، Comprehensive Perl Archive Network)، وهي شبكة عملاقة لحزم بيرل. <ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Since it is an interpreted language, a program written in Perl does not require compilation prior to execution. This is why they are called “Perl scripts”."
-msgstr ""
+msgstr "نظراً لأنها لغة مفسرة، فلا يحتاج البرنامج المكتوب بها لترجمة قبل تنفيذه. ولهذا تدعى البرامج المكتوبة بها ”سكريبتات بيرل“."
 
 #. Tag: title
 #, no-c-format
@@ -663,87 +765,92 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>postinst</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>postinst</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>preinst</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>preinst</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>postrm</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>postrm</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>prerm</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>prerm</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>control.tar.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>control.tar.gz</filename></primary>"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "In addition to the <filename>control</filename> file, the <filename>control.tar.gz</filename> archive for each Debian package may contain a number of scripts, called by <command>dpkg</command> at different stages in the processing of a package. The Debian Policy describes the possible cases in detail, specifying the scripts called and the arguments that they receive. These sequences may be complicated, since if one of the scripts fails, <command>dpkg</command> will try to return to a satisfactory state by canceling the installation or removal in progress (insofar as it is possible)."
 msgstr ""
+"بالإضافة إلى ملف <filename>control</filename>، قد يحتوي أرشيف "
+"<filename>control.tar.gz</filename> الموجود في كل حزمة ديبيان على عدد من "
+"السكريبتات، يستدعيها <command>dpkg</command> في مراحل مختلفة من معالجة "
+"الحزمة. تصف سياسة ديبيان الحالات المحتملة بالتفصيل، محددة السكريبت المستدعى "
+"والمتغيرات التي يستقبل. "
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command> data directory"
-msgstr ""
+msgstr "<emphasis>التعمق أكثر</emphasis> مجلد بيانات <command>dpkg</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/var/lib/dpkg/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/var/lib/dpkg/</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All of the configuration scripts for installed packages are stored in the <filename>/var/lib/dpkg/info/</filename> directory, in the form of a file prefixed with the package's name. This directory also includes a file with the <filename>.list</filename> extension for each package, containing the list of files that belong to that package."
-msgstr ""
+msgstr "تُخزَّن جميع سكريبتات الإعداد الخاصة بالحزم المثبتة في المجلد <filename>/var/lib/dpkg/info/</filename>، بشكل ملف مسبوق باسم الحزمة. يحوي هذا المجلد أيضًا على ملف امتداده <filename>.list</filename> لكل حزمة، يحوي قائمة بالملفات التي تنتمي لتلك الحزمة."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/var/lib/dpkg/status</filename> file contains a series of data blocks (in the format of the famous mail headers, RFC 2822) describing the status of each package. The information from the <filename>control</filename> file of the installed packages is also replicated there."
-msgstr ""
+msgstr "يحتوي الملف <filename>/var/lib/dpkg/status</filename> على سلسلة من كتل البيانات (بتنسيق ترويسات البريد الشهير، RFC 2822) تصف حالة كل حزمة. كما تُنسَخ المعلومات من ملف <filename>control</filename> الخاص بالحزمة المثبتة هناك أيضًا."
 
 #. Tag: para
 #, no-c-format
 msgid "In general, the <filename>preinst</filename> script is executed prior to installation of the package, while the <filename>postinst</filename> follows it. Likewise, <filename>prerm</filename> is invoked before removal of a package and <filename>postrm</filename> afterwards. An update of a package is equivalent to removal of the previous version and installation of the new one. It is not possible to describe in detail all the possible scenarios here, but we will discuss the most common two: an installation/update and a removal."
-msgstr ""
+msgstr "عموماً، يُنفَّذ السكريبت <filename>preinst</filename> قبل تثبيت الحزمة، في حين يتبعه <filename>postinst</filename>. كذلك، يُستدعى <filename>prerm</filename> قبل إزالة الحزمة و <filename>postrm</filename> بعد ذلك. تحديث الحزمة يكافئ إزالة النسخة القديمة وتثبيت الجديدة. لا يمكن وصف جميع الحالات الممكنة هنا، لكننا سنناقش الحالتين الأكثر شيوعاً: التثبيت أو التحديث، والإزالة."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Symbolic names of the scripts"
-msgstr ""
+msgstr "<emphasis>تنبيه</emphasis> أسماء السكريبتات الرمزية"
 
 #. Tag: para
 #, no-c-format
 msgid "The sequences described in this section call configuration scripts by specific names, such as <command>old-prerm</command> or <command>new-postinst</command>. They are, respectively, the <command>prerm</command> script contained in the old version of the package (installed before the update) and the <command>postinst</command> script contained in the new version (installed by the update)."
-msgstr ""
+msgstr "الأحداث الموصوفة في هذا القسم تدعو السكريبتات بأسماء خاصة، مثل <command>old-prerm</command> أو <command>new-postinst</command>. هذه تعني السكريبت <command>prerm</command> الموجود في النسخة القديمة من الحزمة (المثبتة قبل التحديث) والسكريبت <command>postinst</command> الموجود في النسخة الجديدة (المثبتة بعد التحديث)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> State diagrams"
-msgstr ""
+msgstr "<emphasis>تلميح</emphasis> مخططات الحالة"
 
 #. Tag: para
 #, no-c-format
 msgid "Manoj Srivastava made these diagrams explaining how the configuration scripts are called by <command>dpkg</command>. Similar diagrams have also been developed by the Debian Women project; they are a bit simpler to understand, but less complete. <ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
-msgstr ""
+msgstr "صنع Manoj Srivastava هذه المخططات لشرح كيف يستدعي <command>dpkg</command> سكريبتات الإعداد. طَوَّر مشروع نساء ديبيان (Debian Women) مخططات مشابهة أيضًا؛ وهي أيسر للفهم قليلاً، لكنها أقل كمالاً. <ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Installation and Upgrade"
-msgstr ""
+msgstr "التثبيت والتحديث"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is what happens during an installation (or an update):"
-msgstr ""
+msgstr "إليك ما يحدث خلال التثبيت (أو التحديث):"
 
 #. Tag: para
 #, no-c-format
@@ -878,22 +985,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>md5sums</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>md5sums</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>conffiles</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>conffiles</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>files</primary><secondary>configuration files</secondary>"
-msgstr ""
+msgstr "<primary>ملفات</primary><secondary>ملفات الإعدادات</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>files</secondary>"
-msgstr ""
+msgstr "<primary>إعدادات</primary><secondary>ملفات</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -927,9 +1034,9 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>apt-get -o DPkg::Options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -939,10 +1046,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "DPkg::Options { \"--force-confdef\"; \"--force-confold\"; }\n"
-""
 msgstr ""
+"\n"
+"DPkg::Options { \"--force-confdef\"؛ \"--force-confold\"؛ }\n"
 
 #. Tag: para
 #, no-c-format
@@ -1006,7 +1115,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "-----BEGIN PGP SIGNED MESSAGE-----\n"
 "Hash: SHA256\n"
 "\n"
@@ -1044,8 +1154,45 @@ msgid "\n"
 "0EnvMTfMpeQOA68ZqsNpUjomv5r/EGwdCbAWo5iJDsZzXQ1Feh6iSNrjv3yeRzg=\n"
 "=qnbh\n"
 "-----END PGP SIGNATURE-----\n"
-""
 msgstr ""
+"\n"
+"-----BEGIN PGP SIGNED MESSAGE-----\n"
+"Hash: SHA256\n"
+"\n"
+"Format: 3.0 (quilt)\n"
+"Source: zim\n"
+"Binary: zim\n"
+"Architecture: all\n"
+"Version: 0.48-1\n"
+"Maintainer: Emfox Zhou &lt;emfox@debian.org&gt;\n"
+"Uploaders: Raphaël Hertzog &lt;hertzog@debian.org&gt;\n"
+"Homepage: http://zim-wiki.org\n"
+"Standards-Version: 3.9.0\n"
+"Vcs-Browser: http://svn.debian.org/wsvn/collab-maint/deb-maint/zim/trunk؟op=log\n"
+"Vcs-Svn: svn://svn.debian.org/collab-maint/deb-maint/zim/trunk\n"
+"Build-Depends: debhelper (&gt;= 7.4.12)، python-support (&gt;= 0.8)، xdg-utils، python (&gt;= 2.5)، libgtk2.0-0 (&gt;= 2.6)، python-gtk2، python-xdg، python-simplejson | python (&gt;= 2.6)\n"
+"Checksums-Sha1: \n"
+" bd84fa5104de5ed85a49723d26b350856de93217 966899 zim_0.48.orig.tar.gz\n"
+" 352111ff372a20579664416c9abd4970839835b3 9615 zim_0.48-1.debian.tar.gz\n"
+"Checksums-Sha256: \n"
+" 77d8df7dc89b233fdc3aab1a8ad959c6888881ae160770f50bf880a56e02f895 966899 zim_0.48.orig.tar.gz\n"
+" 0fceab5d3b099075cd38c225fa4002d893c1cdf4bbcc51d1391a34248e1e1a22 9615 zim_0.48-1.debian.tar.gz\n"
+"Files: \n"
+" 88cfc18c0c7339528d5f5f463647bb5f 966899 zim_0.48.orig.tar.gz\n"
+" 608b6e74aa14252dfc6236ab184bdb0c 9615 zim_0.48-1.debian.tar.gz\n"
+"\n"
+"-----BEGIN PGP SIGNATURE-----\n"
+"Version: GnuPG v1.4.10 (GNU/Linux)\n"
+"Comment: Signed by Raphael Hertzog\n"
+"\n"
+"iQEcBAEBCAAGBQJMSUAfAAoJEAOIHavrwpq5qjUIAKmM8p86GcHYTxMmKENoBUoW\n"
+"UPi5R7DzrLMbFrUXKgXWLvEKQTXpmkJhh2aSWq2iY+5piBSHwMiITfaBTpdTRvzU\n"
+"5nT/n9MlF8sJFESet/NgZaMPFDzWUbIy5aYbuG1TXmn/7XiDrBaQGiVqKkVLPrqc\n"
+"yWhsotn3JNKIjbPDW/DjImYyKD5RZpXrbVjuIgDT1E6yxtNYwUyBlK0cx/GITNep\n"
+"uV48hsT8cj0paqVXl5+P9Ww8XIE3clxNpE/45/tvKvkqGOeysc6OPAqsIw6HYFY9\n"
+"0EnvMTfMpeQOA68ZqsNpUjomv5r/EGwdCbAWo5iJDsZzXQ1Feh6iSNrjv3yeRzg=\n"
+"=qnbh\n"
+"-----END PGP SIGNATURE-----\n"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1099,7 +1246,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>.orig.tar.gz</filename> is an archive containing the program source code as provided by the original developer. Developers are asked to not modify this archive in order to be able to easily check the source and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
+msgid "The <filename>.orig.tar.gz</filename> is an archive containing the source code as provided by the original developer. Debian package maintainers are asked to not modify this archive in order to be able to easily check the source and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
 msgstr ""
 
 #. Tag: para
@@ -1125,7 +1272,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1136,7 +1282,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1201,7 +1346,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.5.7-4_i386.deb</userinput>\n"
 "<computeroutput>(Reading database... 284247 files and directories currently installed.)\n"
 "Preparing replacement man-db 2.5.7-3 (using .../man-db_2.5.7-4_i386.deb) ...\n"
@@ -1211,8 +1357,17 @@ msgid "\n"
 "Processing triggers for “doc-base”...\n"
 "Processing 1 modified documentation file(s) \n"
 "Recording documents with scrollkeeper ... </computeroutput>\n"
-""
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.5.7-4_i386.deb</userinput>\n"
+"<computeroutput>(Reading database... 284247 files and directories currently installed.)\n"
+"Preparing replacement man-db 2.5.7-3 (using .../man-db_2.5.7-4_i386.deb) ...\n"
+"Unpacking the man-db update...\n"
+"Configuring man-db (2.5.7-4) ...\n"
+"Updating database of manual pages ...\n"
+"Processing triggers for ”doc-base“...\n"
+"Processing 1 modified documentation file(s) \n"
+"Recording documents with scrollkeeper ... </computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1226,7 +1381,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.5.7-4_i386.deb</userinput>\n"
 "<computeroutput>(Reading database... 284247 files already installed.)\n"
 "Preparing replacement of man-db 2.5.7-3 (using .../man-db_2.5.7-4_i386.deb) ...\n"
@@ -1237,13 +1393,23 @@ msgid "\n"
 "# </computeroutput><userinput> dpkg --configure man-db</userinput>\n"
 "<computeroutput>Configuring man-db (2.5.7-4) ...\n"
 "Updating database of manual pages ...</computeroutput>\n"
-""
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.5.7-4_i386.deb</userinput>\n"
+"<computeroutput>(Reading database... 284247 files already installed.)\n"
+"Preparing replacement of man-db 2.5.7-3 (using .../man-db_2.5.7-4_i386.deb) ...\n"
+"Unpacking the man-db update...\n"
+"Processing triggers for ”doc-base“...\n"
+"Treatment of a modified documentation file(s) \n"
+"Recording documents with scrollkeeper ... \n"
+"# </computeroutput><userinput> dpkg --configure man-db</userinput>\n"
+"<computeroutput>Configuring man-db (2.5.7-4) ...\n"
+"Updating database of manual pages ...</computeroutput>\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>unpacking</secondary>"
-msgstr ""
+msgstr "<primary>حزمة</primary><secondary>فك الضغط</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1252,12 +1418,16 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>Unpacking libisc52 (from .../libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb) ...\n"
 "dpkg : error processing /var/cache/apt/archives/libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb (--unpack) :\n"
 " trying to overwrite \"/usr/lib/libisc.so.50\", which is also in package libisc50 1:9.6.1.dfsg.P1-3</computeroutput>\n"
-""
 msgstr ""
+"\n"
+"<computeroutput>Unpacking libisc52 (from .../libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb) ...\n"
+"dpkg : error processing /var/cache/apt/archives/libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb (--unpack) :\n"
+" trying to overwrite \"/usr/lib/libisc.so.50\"، which is also in package libisc50 1:9.6.1.dfsg.P1-3</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1286,7 +1456,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# apt-get dist-upgrade\n"
+msgid ""
+"# apt-get dist-upgrade\n"
 "[...]\n"
 "You can run \"apt-get -f install\" to correct these problems.\n"
 "The following packages contain unmet dependencies:\n"
@@ -1294,6 +1465,13 @@ msgid "# apt-get dist-upgrade\n"
 "E: missing dependencies. Try to use the option -f.\n"
 "  "
 msgstr ""
+"# apt-get dist-upgrade\n"
+"[...]\n"
+"You can run \"apt-get -f install\" to correct these problems.\n"
+"The following packages contain unmet dependencies:\n"
+"  rdesktop: Depends on: libc6 (&gt;= 2.5) but 2.3.6.ds1-13etch7 is installed\n"
+"E: missing dependencies. Try to use the option -f.\n"
+"  "
 
 #. Tag: para
 #, no-c-format
@@ -1332,30 +1510,37 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
 "<computeroutput>(Reading database... 14170 files and directories already installed.)\n"
 "Removing debian-cd ...\n"
 "# </computeroutput><userinput>dpkg -P debian-cd</userinput>\n"
 "<computeroutput>(Reading database... 13794 files and directories already installed.)\n"
 "Removing debian-cd ...\n"
 "Removing debian-cd configuration files...</computeroutput>\n"
-""
 msgstr ""
+"<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
+"<computeroutput>(Reading database... 14170 files and directories already installed.)\n"
+"Removing debian-cd ...\n"
+"# </computeroutput><userinput>dpkg -P debian-cd</userinput>\n"
+"<computeroutput>(Reading database... 13794 files and directories already installed.)\n"
+"Removing debian-cd ...\n"
+"Removing debian-cd configuration files...</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Other <command>dpkg</command> Features"
-msgstr ""
+msgstr "مزايا <command>dpkg</command> الأخرى"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>status</secondary>"
-msgstr ""
+msgstr "<primary>حزمة</primary><secondary>حالة</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>file list</secondary>"
-msgstr ""
+msgstr "<primary>حزمة</primary><secondary>قائمة الملفات</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1365,12 +1550,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Option syntax"
-msgstr ""
+msgstr "<emphasis>أساسيات</emphasis> Option syntax"
 
 #. Tag: para
 #, no-c-format
 msgid "Most options are available in the “long” version (one or more relevant words, preceded by a double dash) or a “short” version (a single letter, often the initial of one word from the long version, and preceded by a single dash). This convention is so common that it is a POSIX standard. <indexterm><primary>POSIX</primary></indexterm> <indexterm><primary>option</primary><secondary>POSIX</secondary></indexterm>"
-msgstr ""
+msgstr "معظم الخيارات متوفرة بالنسخة ”الطويلة“ (كلمة أو أكثر، مسبوقة بشرطتين) أو نسخة ”قصيرة“ (حرف مفرد، غالبًا أول حرف من إحدى كلمات النسخة الطويلة، ويسبق بشرطة مفردة). هذا العرف منتشر جدًا لدرجة أنه معيار POSIX. <indexterm><primary>POSIX</primary></indexterm> <indexterm><primary>خَيَار</primary><secondary>POSIX</secondary></indexterm>"
 
 #. Tag: para
 #, no-c-format
@@ -1384,7 +1569,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
 "<computeroutput>/.\n"
 "/usr\n"
@@ -1505,8 +1691,128 @@ msgid "\n"
 "  modifications. Historically, this browser was previously known as\n"
 "  Firebird and Phoenix.\n"
 "</computeroutput>\n"
-""
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
+"<computeroutput>/.\n"
+"/usr\n"
+"/usr/sbin\n"
+"/usr/sbin/update-passwd\n"
+"/usr/share\n"
+"/usr/share/man\n"
+"/usr/share/man/ru\n"
+"/usr/share/man/ru/man8\n"
+"/usr/share/man/ru/man8/update-passwd.8.gz\n"
+"/usr/share/man/pl\n"
+"/usr/share/man/pl/man8\n"
+"/usr/share/man/pl/man8/update-passwd.8.gz\n"
+"/usr/share/man/man8\n"
+"/usr/share/man/man8/update-passwd.8.gz\n"
+"/usr/share/man/fr\n"
+"/usr/share/man/fr/man8\n"
+"/usr/share/man/fr/man8/update-passwd.8.gz\n"
+"/usr/share/doc-base\n"
+"/usr/share/doc-base/users-and-groups\n"
+"/usr/share/base-passwd\n"
+"/usr/share/base-passwd/passwd.master\n"
+"/usr/share/base-passwd/group.master\n"
+"/usr/share/lintian\n"
+"/usr/share/lintian/overrides\n"
+"/usr/share/lintian/overrides/base-passwd\n"
+"/usr/share/doc\n"
+"/usr/share/doc/base-passwd\n"
+"/usr/share/doc/base-passwd/copyright\n"
+"/usr/share/doc/base-passwd/users-and-groups.html\n"
+"/usr/share/doc/base-passwd/changelog.gz\n"
+"/usr/share/doc/base-passwd/users-and-groups.txt.gz\n"
+"/usr/share/doc/base-passwd/README\n"
+"$ </computeroutput><userinput>dpkg -S /bin/date</userinput>\n"
+"<computeroutput>coreutils: /bin/date\n"
+"$ </computeroutput><userinput>dpkg -s coreutils</userinput>\n"
+"<computeroutput>Package: coreutils\n"
+"Essential: yes\n"
+"Status: install ok installed\n"
+"Priority: required\n"
+"Section: utils\n"
+"Installed-Size: 12188\n"
+"Maintainer: Michael Stone &lt;mstone@debian.org&gt;\n"
+"Architecture: i386\n"
+"Version: 8.5-1\n"
+"Replaces: mktemp، timeout\n"
+"Pre-Depends: libacl1 (&gt;= 2.2.11-1)، libattr1 (&gt;= 2.4.41-1)، libc6 (&gt;= 2.6)، libselinux1 (&gt;= 1.32)\n"
+"Conflicts: timeout\n"
+"Description: GNU core utilities\n"
+" This package contains the basic file، shell and text manipulation\n"
+" utilities which are expected to exist on every operating system.\n"
+" .\n"
+" Specifically، this package includes:\n"
+" arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp\n"
+" csplit cut date dd df dir dircolors dirname du echo env expand expr\n"
+" factor false flock fmt fold groups head hostid id install join link ln\n"
+" logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup nproc od\n"
+" paste pathchk pinky pr printenv printf ptx pwd readlink rm rmdir runcon\n"
+" sha*sum seq shred sleep sort split stat stty sum sync tac tail tee test\n"
+" timeout touch tr true truncate tsort tty uname unexpand uniq unlink\n"
+" users vdir wc who whoami yes\n"
+"Homepage: http://gnu.org/software/coreutils\n"
+"$ </computeroutput><userinput>dpkg -l 'b*' | head</userinput>\n"
+"<computeroutput>Desired=Unknown/Install/Remove/Purge/Hold\n"
+"| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend\n"
+"|/ Err؟=(none)/Reinst-required (Status،Err: uppercase=bad)\n"
+"||/ Name                   Version    Description\n"
+"+++-===================-==========-============================================\n"
+"un  backupninja         &lt;none&gt;    (no description available)\n"
+"un  base                &lt;none&gt;    (no description available)\n"
+"un  base-config         &lt;none&gt;    (no description available)\n"
+"ii  base-files          4          Debian base system miscellaneous files\n"
+"ii  base-passwd         3.5.11     Debian base system master password and group\n"
+"$ </computeroutput><userinput>dpkg -c /var/cache/apt/archives/iceweasel_2.0.0.18-0etch1_i386.deb</userinput>\n"
+"<computeroutput>\n"
+"drwxr-xr-x root/root         0 2008-11-23 23:18 ./\n"
+"drwxr-xr-x root/root         0 2008-11-23 23:16 ./etc/\n"
+"drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/\n"
+"drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/profile/\n"
+"-rw-r--r-- root/root      7138 2006-08-19 08:04 ./etc/iceweasel/profile/bookmarks.html\n"
+"-rw-r--r-- root/root       153 2006-09-14 19:13 ./etc/iceweasel/profile/localstore.rdf\n"
+"-rw-r--r-- root/root      3287 2005-02-01 18:36 ./etc/iceweasel/profile/search.rdf\n"
+"-rw-r--r-- root/root       287 2004-11-30 22:26 ./etc/iceweasel/profile/mimeTypes.rdf\n"
+"drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/profile/chrome/\n"
+"-rw-r--r-- root/root      1078 2004-11-30 22:26 ./etc/iceweasel/profile/chrome/userChrome-example.css\n"
+"-rw-r--r-- root/root       663 2004-11-30 22:26 ./etc/iceweasel/profile/chrome/userContent-example.css\n"
+"-rw-r--r-- root/root       347 2004-07-28 23:20 ./etc/iceweasel/profile/prefs.js\n"
+"-rw-r--r-- root/root        53 2008-11-23 22:43 ./etc/iceweasel/iceweaselrc\n"
+"[...]\n"
+"$ </computeroutput><userinput>dpkg -I /var/cache/apt/archives/iceweasel_2.0.0.18-0etch1_i386.deb</userinput>\n"
+"<computeroutput> new Debian package، version 2.0.\n"
+" size 9126828 bytes : control file = 37297 bytes.\n"
+"     346 bytes،     9 lines      conffiles            \n"
+"    1255 bytes،    20 lines      control              \n"
+"  122920 bytes،  1249 lines      md5sums              \n"
+"    1267 bytes،    37 lines   *  postinst             #!/bin/sh\n"
+"     293 bytes،     8 lines   *  postrm               #!/bin/sh\n"
+"    2763 bytes،    70 lines   *  preinst              #!/bin/sh\n"
+"     274 bytes،    12 lines   *  prerm                #!/bin/sh\n"
+" Package: iceweasel\n"
+" Version: 2.0.0.18-0etch1\n"
+" Section: web\n"
+" Priority: optional\n"
+" Architecture: i386\n"
+" Depends: fontconfig، psmisc، debianutils (&gt;= 1.16)، libatk1.0-0 (&gt;= 1.12.2)، libc6 (&gt;= 2.3.6-6)...\n"
+" Suggests: iceweasel-gnome-support (= 2.0.0.18-0etch1)، latex-xft-fonts، xprint، mozplugger، libkrb53\n"
+" Conflicts: mozilla-firefox (&lt;&lt; 1.5.dfsg-1)، firefox (&lt;&lt; 2.0+dfsg-1)\n"
+" Replaces: mozilla-firefox، firefox (&lt;&lt; 2.0+dfsg-1)\n"
+" Provides: www-browser\n"
+" Installed-Size: 26364\n"
+" Maintainer: Eric Dorland &lt;eric@debian.org&gt;\n"
+" Description: lightweight web browser based on Mozilla\n"
+"  Iceweasel is a redesign of the Mozilla browser component، similar to\n"
+"  Galeon، K-Meleon and Camino، but written using the XUL user interface\n"
+"  language and designed to be lightweight and cross-platform.\n"
+"  .\n"
+"  This browser is based on the Firefox source-code، with minor\n"
+"  modifications. Historically، this browser was previously known as\n"
+"  Firebird and Phoenix.\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -1530,7 +1836,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 gt 1.1-4</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
 "<computeroutput>0\n"
@@ -1540,8 +1847,17 @@ msgid "\n"
 "$ </computeroutput><userinput>dpkg --compare-versions 2.6.0pre3-1 lt 2.6.0-1</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
 "<computeroutput>1</computeroutput>\n"
-""
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 gt 1.1-4</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $؟</userinput>\n"
+"<computeroutput>0\n"
+"$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 lt 1.1-4</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $؟</userinput>\n"
+"<computeroutput>1\n"
+"$ </computeroutput><userinput>dpkg --compare-versions 2.6.0pre3-1 lt 2.6.0-1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $؟</userinput>\n"
+"<computeroutput>1</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1550,17 +1866,21 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 2.6.0~pre3-1 lt 2.6.0-1</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
 "<computeroutput>0</computeroutput>\n"
-""
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 2.6.0~pre3-1 lt 2.6.0-1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $؟</userinput>\n"
+"<computeroutput>0</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<command>dpkg</command>'s Log File"
-msgstr ""
+msgstr "سجل <command>dpkg</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1575,17 +1895,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RPM</primary>"
-msgstr ""
+msgstr "<primary>RPM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Red Hat Package Manager</primary>"
-msgstr ""
+msgstr "<primary>مدير حزم ريدهات</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>alien</command></primary>"
-msgstr ""
+msgstr "<primary><command>alien</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1614,13 +1934,18 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot alien --to-deb phpMyAdmin-2.0.5-2.noarch.rpm</userinput> \n"
 "<computeroutput>phpmyadmin_2.0.5-2_all.deb generated\n"
 "$ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>\n"
 "<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
-""
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>fakeroot alien --to-deb phpMyAdmin-2.0.5-2.noarch.rpm</userinput> \n"
+"<computeroutput>phpmyadmin_2.0.5-2_all.deb generated\n"
+"$ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>\n"
+"<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1628,12 +1953,11 @@ msgid "You will find that this process is extremely simple. You must know, howev
 msgstr ""
 
 #. Tag: para
-#, no-c-format
-msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program also handles other packaging formats, especially those from the Slackware distribution (they are a simple <filename>tar.gz</filename> archive)."
-msgstr ""
+#, fuzzy, no-c-format
+msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program also handles other packaging formats, especially the one used by the Slackware distribution (it is made of a simple <filename>tar.gz</filename> archive)."
+msgstr "بالنظر إلى صفحة man الخاصة بالأمر <command>alien</command>، ستلاحظ أيضًا أن هذا البرنامج يعالج صيغ تحزيم أخرى، خاصة تلك الخاصة بتوزيعة سلاكوير (هي أرشيفات <filename>tar.gz</filename> بسيطة)."
 
 #. Tag: para
 #, no-c-format
 msgid "The stability of the software deployed using the <command>dpkg</command> tool contributes to Debian's fame. The APT suite of tools, described in the following chapter, preserves this advantage, while relieving the administrator from managing the status of packages, a necessary but difficult task."
 msgstr ""
-
