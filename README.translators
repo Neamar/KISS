@@ -16,10 +16,34 @@ http://lists.alioth.debian.org/mailman/listinfo/debian-handbook-translators
 It will be relatively low-volume and will be used to send important
 information about the book updates to the current translators.
 
-Git usage
----------
+Different translation workflows
+-------------------------------
+There are two ways to manage the translations:
+- using the weblate web application at
+  http://debian.weblate.org/projects/debian-handbook/
+- using the Git repository to grab and commit PO files
 
-Read README.git first. Really.
+Translation with weblate
+------------------------
+
+If you decide to use weblate, you don't have to learn Git usage.
+Get in touch with us on the above mailing list so that we can setup
+the initial translation files for you, and once they appear
+on weblate, you can start working! You should communicate us
+the ISO code of your translation (see "How to start a new translation" for
+more information on possible ISO codes).
+
+Note however that you can't translate pictures with weblate so someone
+must still commit those on the Git repository for you. If Git is too
+complicated for you, feel free to send the files to the mailing list and
+ask someone else to commit them for you.
+
+Translation without weblate
+---------------------------
+
+If you're not using weblate, you'll have to interact with the Git
+repository. So read README.git first. Really. And then please respect the
+guidelines below.
 
 Please do not multiply commits uselessly. If you made several commits
 which only complete PO files, please squash them together before pushing
@@ -62,7 +86,7 @@ Now you have lots of PO files in pt-BR/*.po that you can translate.
 You should probably commit the empty PO files before going further.
 
 $ git add pt-BR/*.po
-$ git commit -m "Add initial files for pt-BR translation"
+$ git commit -m "pt-BR: Start new translation"
 
 Then add a pt-BR/README file where you put:
 - the name and email of the (current) translation coordinator
@@ -75,7 +99,7 @@ Then add a pt-BR/README file where you put:
 
 $ vim pt-BR/README
 $ git add pt-BR/README
-$ git commit -m "Add README for pt-BR translation"
+$ git commit -m "pt-BR: Add initial README file"
 
 You can certainly write that README file in your native language if you
 want but it's highly recommended to also have an English translation of
@@ -88,7 +112,7 @@ Translating PO files
 You're free to use the tool of your choice to complete the PO files. Once
 you have done enough, you can commit your updated PO files:
 $ git add pt-BR/*.po
-$ git commit -m "Updated pt-BR translation"
+$ git commit -m "pt-BR: Updated translation"
 
 Depending on the workflow used by your translation team, you can either
 push your work directly or make it available to your translation
