@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-06-01T20:23:56\n"
+"POT-Creation-Date: 2012-07-29T20:56:34\n"
 "PO-Revision-Date: 2012-07-02 09:00+0800\n"
 "Last-Translator: Emfox Zhou <emfox@debian.org>\n"
 "Language-Team: None\n"
@@ -49,8 +49,8 @@ msgid "As a Debian system administrator, you will routinely handle <filename>.de
 msgstr "作为 Debian 系统管理员，你经常地要处理 <filename>.deb</filename> 包，因为它们包含一致的功能单元（应用程序、文档等），使得安装和维护更容易。所以了解它们是什么及如何使用它们是个好主意。"
 
 #. Tag: para
-#, no-c-format
-msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the program source code, as well as instructions for building binary packages."
+#, fuzzy, no-c-format
+msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the source code, as well as instructions for building binary packages."
 msgstr "本章介绍了“二进制”和“源码”包的结构和内容。前者是 <filename>.deb</filename> 文件，可以用 <command>dpkg</command> 命令直接处理；而后者则包含程序的源代码，以及创建二进制包的说明。"
 
 #. Tag: title
@@ -226,8 +226,8 @@ msgid "<filename>debian-binary</filename>. This is a text file which simply indi
 msgstr "<filename>debian-binary</filename>，这是一个文本文件，简单写明了该 <filename>.deb</filename> 文件使用的文件版本（2011年时是2.0版本）。"
 
 #. Tag: para
-#, no-c-format
-msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information. In it, package management tools find, among other things, the name and version of the package. Some of this meta-information allows them to determine if it is possible to install or uninstall the programs inside, for example according to the list of packages already on the machine."
+#, fuzzy, no-c-format
+msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information. In it, package management tools find, among other things, the name and version of the package. Some of this meta-information allows them to determine if it is possible to install or uninstall it, for example according to the list of packages already on the machine."
 msgstr "<filename>control.tar.gz</filename>，这个存档文件包含所有可用的元信息。包管理工具从它里面找到软件的名字、版本号及其它东西。有些包的元信息允许他们决定能否安装或卸载里面的程序，比如，根据已经安装在机器上的软件包的列表。"
 
 #. Tag: para
@@ -375,8 +375,8 @@ msgid "<primary>package</primary><secondary>dependency</secondary>"
 msgstr "<primary>软件包</primary><secondary>依赖</secondary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the program to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
+#, fuzzy, no-c-format
+msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the package to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
 msgstr "依赖关系是在软件包头部的 <literal>Depends</literal> 域中定义的，它是软件包能够正常运行所需要满足的一系列条件。包管理工具诸如 <command>apt</command> 依靠这个信息来安装该软件所依赖的恰当版本的库。对于每一项依赖，可以限定依赖的版本范围来满足条件。换句话说，可以这样表达：我们需要版本号等于或者大于“2.3.4”的 <emphasis role=\"pkg\">libc6</emphasis> 软件包（写作 “<command>libc6 (&gt;= 2.3.4)</command>”）。版本比较操作符使用如下："
 
 #. Tag: para
@@ -506,7 +506,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<command>dpkg</command> will refuse to install a package if it triggers a conflict with an already installed package, except if the new package specifies that it will “replace” the installed packages, in which case <command>dpkg</command> will choose to replace the old package with the new one. <command>apt-get</command> always follows your instructions: if you choose to install a new package, it will automatically offer to uninstall the package that poses a problem."
+msgid "<command>dpkg</command> will refuse to install a package if it triggers a conflict with an already installed package, except if the new package specifies that it will “replace” the installed package, in which case <command>dpkg</command> will choose to replace the old package with the new one. <command>apt-get</command> always follows your instructions: if you choose to install a new package, it will automatically offer to uninstall the package that poses a problem."
 msgstr ""
 
 #. Tag: title
@@ -1163,7 +1163,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>.orig.tar.gz</filename> is an archive containing the program source code as provided by the original developer. Developers are asked to not modify this archive in order to be able to easily check the source and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
+msgid "The <filename>.orig.tar.gz</filename> is an archive containing the source code as provided by the original developer. Debian package maintainers are asked to not modify this archive in order to be able to easily check the source and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
 msgstr ""
 
 #. Tag: para
@@ -1692,7 +1692,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program also handles other packaging formats, especially those from the Slackware distribution (they are a simple <filename>tar.gz</filename> archive)."
+msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program also handles other packaging formats, especially the one used by the Slackware distribution (it is made of a simple <filename>tar.gz</filename> archive)."
 msgstr ""
 
 #. Tag: para

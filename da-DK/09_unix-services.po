@@ -1,4 +1,4 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
@@ -8,6 +8,7 @@ msgstr ""
 "PO-Revision-Date: 2012-07-13 18:41-0200\n"
 "Last-Translator: Aputsiaq Niels Janussen <aj@isit.gl>\n"
 "Language-Team: Dansk <dansk@dansk-gruppen.dk>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -465,7 +466,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>apt-get remove telnetd</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -546,7 +546,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -892,7 +891,6 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1732,10 +1730,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
+msgid ""
+"talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
 "finger stream tcp nowait  nobody     /usr/sbin/tcpd     /usr/sbin/in.fingerd\n"
 "ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
-""
 msgstr ""
 
 #. Tag: indexterm
@@ -2005,7 +2003,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "#Format\n"
+msgid ""
+"#Format\n"
 "#min hour day mon dow  command\n"
 "\n"
 "# Download data every night at 7:25 pm\n"
@@ -2016,7 +2015,6 @@ msgid "#Format\n"
 "\n"
 "# Restart the IRC proxy after each reboot\n"
 "@reboot /usr/bin/dircproxy\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2046,14 +2044,14 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>echo \"Don't forget to wish a Happy Birthday to Raphaël!\" \\</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
 "<computeroutput>warning: commands will be executed using /bin/sh\n"
 "job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2348,7 +2346,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "bank:\n"
+msgid ""
+"bank:\n"
 "    /backup\n"
 "exclude:\n"
 "    lost+found/\n"
@@ -2362,7 +2361,6 @@ msgid "bank:\n"
 "    *   *     *   *         1    +3 months\n"
 "    *   *     1-7 *         1    +1 year\n"
 "    *   *     1-7 1,4,7,10  1\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2387,7 +2385,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "client: rivendell.falcot.com\n"
+msgid ""
+"client: rivendell.falcot.com\n"
 "tree: /\n"
 "xdev: 1\n"
 "index: gzip\n"
@@ -2398,7 +2397,6 @@ msgid "client: rivendell.falcot.com\n"
 "    /tmp/**\n"
 "    /var/tmp/**\n"
 "    *.bak\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2738,7 +2736,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>udevadm info -a -n /dev/sdc</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>udevadm info -a -n /dev/sdc</userinput>\n"
 "<computeroutput>[...]\n"
 "  looking at device '/devices/pci0000:00/0000:00:10.3/usb1/1-2/1-2.2/1-2.2:1.0/host9/target9:0:0/9:0:0:0/block/sdc':\n"
 "    KERNEL==\"sdc\"\n"
@@ -2787,7 +2786,6 @@ msgid "<computeroutput># </computeroutput><userinput>udevadm info -a -n /dev/sdc
 "    ATTRS{serial}==\"M004021000001\"\n"
 "[...]\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2797,9 +2795,9 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
+msgid ""
+"KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
 "KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\"\n"
-""
 msgstr ""
 
 #. Tag: para
