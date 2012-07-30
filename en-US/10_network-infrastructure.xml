@@ -1190,50 +1190,6 @@ iface eth0 inet6 static
 </programlisting>
     </example>
 
-    <para>If a native IPv6 connection is not available, the fallback method
-    is to use a tunnel over IPv4. Freenet6 is one (free) provider of such
-    tunnels: <ulink type="block" url="http://www.freenet6.net/"/></para>
-    <indexterm><primary>Freenet6</primary></indexterm>
-
-    <para>To use a Freenet6 tunnel, you need to register on the website,
-    then install the <emphasis role="pkg">tspc</emphasis> package and
-    configure the tunnel. This requires editing the
-    <filename>/etc/tsp/tspc.conf</filename> file: <literal>userid</literal>
-    and <literal>password</literal> lines received by e-mail should be
-    added, and <literal>server</literal> should be replaced with
-    <literal>broker.freenet6.net</literal>.</para>
-
-    <para>IPv6 connectivity is proposed to all machines on a local network
-    by adding the three following directives to the
-    <filename>/etc/tsp/tspc.conf</filename> file (assuming the local
-    network is connected to the eth0 interface):</para>
-
-    <programlisting>
-host_type=router
-prefix_len=48
-if_prefix=eth0
-</programlisting>
-
-    <para>The machine then becomes the access router for a subnet with a
-    48-bit prefix. Once the tunnel is aware of this change, the local
-    network must be told about it; this implies installing the
-    <command>radvd</command> daemon (from the similarly-named package).
-    This IPv6 configuration daemon has a role similar to
-    <command>dhcpd</command> in the IPv4 world.</para>
-
-    <para>The <filename>/etc/radvd.conf</filename> configuration file must
-    then be created (see
-    <filename>/usr/share/doc/radvd/examples/simple-radvd.conf</filename> as
-    a starting point). In our case, the only required change is the prefix,
-    which needs to be replaced with the one provided by Freenet6; it can be
-    found in the output of the <command>ifconfig</command> command, in the
-    block concerning the <literal>tun</literal> interface.</para>
-    <indexterm><primary><command>radvd</command></primary></indexterm>
-
-    <para>Then run <command>/etc/init.d/tspc restart</command> and
-    <command>/etc/init.d/radvd start</command>, and the IPv6 network should
-    work.</para>
-
     <sidebar role="fil">
       <title><emphasis>TIP</emphasis> Programs built with IPv6</title>
 
@@ -1250,22 +1206,72 @@ if_prefix=eth0
       url="http://lists.debian.org/debian-ipv6/"/></para>
     </sidebar>
 
-    <sidebar>
-      <title><emphasis>CAUTION</emphasis> IPv6 and firewalls</title>
-      <indexterm><primary>IPv6 firewall</primary></indexterm>
-      <indexterm><primary>firewall</primary><secondary>IPv6</secondary></indexterm>
-      <indexterm><primary><command>ip6tables</command></primary></indexterm>
+    <para><indexterm><primary>IPv6 firewall</primary></indexterm>
+    <indexterm><primary>IPv6 firewall</primary></indexterm>
+    <indexterm><primary>firewall</primary><secondary>IPv6</secondary></indexterm>
+    <indexterm><primary><command>ip6tables</command></primary></indexterm>
+    IPv6 connections can be restricted, in the same fashion as for IPv4:
+    the standard Debian kernels include an adaptation of
+    <emphasis>netfilter</emphasis> for IPv6. This IPv6-enabled
+    <emphasis>netfilter</emphasis> is configured in a similar fashion to
+    its IPv4 counterpart, except the program to use is
+    <command>ip6tables</command> instead of
+    <command>iptables</command>.</para>
 
-      <para>IPv6 tunneling over IPv4 (as opposed to native IPv6) requires the
-      firewall to accept the traffic, which uses IPv4 protocol number 41.
-      IPv6 connections can be restricted, in the same fashion as for IPv4:
-      the standard Debian kernels include an adaptation of
-      <emphasis>netfilter</emphasis> for IPv6. This IPv6-enabled
-      <emphasis>netfilter</emphasis> is configured in a similar fashion to
-      its IPv4 counterpart, except the program to use is
-      <command>ip6tables</command> instead of
-      <command>iptables</command>.</para>
-    </sidebar>
+    <section id="section.ipv6-tunneling">
+      <title>Tunneling</title>
+      <sidebar>
+        <title><emphasis>CAUTION</emphasis> IPv6 tunneling and firewalls</title>
+
+        <para>IPv6 tunneling over IPv4 (as opposed to native IPv6) requires the
+        firewall to accept the traffic, which uses IPv4 protocol number 41.</para>
+      </sidebar>
+
+      <para>If a native IPv6 connection is not available, the fallback method
+      is to use a tunnel over IPv4. Freenet6 is one (free) provider of such
+      tunnels: <ulink type="block" url="http://www.freenet6.net/"/></para>
+      <indexterm><primary>Freenet6</primary></indexterm>
+
+      <para>To use a Freenet6 tunnel, you need to register on the website,
+      then install the <emphasis role="pkg">tspc</emphasis> package and
+      configure the tunnel. This requires editing the
+      <filename>/etc/tsp/tspc.conf</filename> file: <literal>userid</literal>
+      and <literal>password</literal> lines received by e-mail should be
+      added, and <literal>server</literal> should be replaced with
+      <literal>broker.freenet6.net</literal>.</para>
+
+      <para>IPv6 connectivity is proposed to all machines on a local network
+      by adding the three following directives to the
+      <filename>/etc/tsp/tspc.conf</filename> file (assuming the local
+      network is connected to the eth0 interface):</para>
+
+      <programlisting>
+host_type=router
+prefix_len=48
+if_prefix=eth0
+</programlisting>
+
+      <para>The machine then becomes the access router for a subnet with a
+      48-bit prefix. Once the tunnel is aware of this change, the local
+      network must be told about it; this implies installing the
+      <command>radvd</command> daemon (from the similarly-named package).
+      This IPv6 configuration daemon has a role similar to
+      <command>dhcpd</command> in the IPv4 world.</para>
+
+      <para>The <filename>/etc/radvd.conf</filename> configuration file must
+      then be created (see
+      <filename>/usr/share/doc/radvd/examples/simple-radvd.conf</filename> as
+      a starting point). In our case, the only required change is the prefix,
+      which needs to be replaced with the one provided by Freenet6; it can be
+      found in the output of the <command>ifconfig</command> command, in the
+      block concerning the <literal>tun</literal> interface.</para>
+      <indexterm><primary><command>radvd</command></primary></indexterm>
+
+      <para>Then run <command>/etc/init.d/tspc restart</command> and
+      <command>/etc/init.d/radvd start</command>, and the IPv6 network should
+      work.</para>
+    </section>
+
   </section>
   <section id="sect.domain-name-servers">
     <title>Domain Name Servers (DNS)</title>
