@@ -1,13 +1,14 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-06-01T20:23:57\n"
-"PO-Revision-Date: 2012-06-01T20:23:57\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
+"POT-Creation-Date: 2012-07-29T21:48:51\n"
+"PO-Revision-Date: 2012-07-13 18:41-0200\n"
+"Last-Translator: Aputsiaq Niels Janussen <aj@isit.gl>\n"
+"Language-Team: Dansk <dansk@dansk-gruppen.dk>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -364,7 +365,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
 "$ </computeroutput><userinput>convmv -r -f iso-8859-15 -t utf-8 travail/</userinput>\n"
 "<computeroutput>Starting a dry run without changes...\n"
@@ -377,7 +379,6 @@ msgid "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "Ready!\n"
 "$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -452,7 +453,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2002:58bf:13bb:0002:0000:0000:0020, or 2002:58bf:13bb:2::20 for short)."
+msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2001:db8:13bb:0002:0000:0000:0020, or 2001:db8:13bb:2::20 for short)."
 msgstr ""
 
 #. Tag: indexterm
@@ -477,7 +478,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the name of the bits affected by the network part in an IP address. The example network would be written thus: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2002:58bf:13bb::/64</literal>."
+msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the name of the bits affected by the network part in an IP address. The example network would be written thus: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb::/64</literal>."
 msgstr ""
 
 #. Tag: indexterm
@@ -502,7 +503,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The special broadcast address connects all the stations in a network. Almost never “routed”, it only functions on the network in question. Specifically, it indicates that a data packet address to the broadcast never passes through the router."
+msgid "The special broadcast address connects all the stations in a network. Almost never “routed”, it only functions on the network in question. Specifically, it means that a data packet addressed to the broadcast never passes through the router."
 msgstr ""
 
 #. Tag: para
@@ -552,11 +553,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "auto eth0\n"
 "iface eth0 inet dhcp\n"
 "  hostname arrakis\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -571,7 +572,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "auto eth0\n"
 "iface eth0 inet static\n"
 "  address 192.168.0.3\n"
@@ -579,7 +581,6 @@ msgid "\n"
 "  broadcast 192.168.0.255\n"
 "  network 192.168.0.0\n"
 "  gateway 192.168.0.1\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -749,9 +750,9 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -851,7 +852,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Network Manager knows how to handle various types of connections (DHCP, manual configuration, local network), but only if the configuration is set with the program itself. This is why it will systematically ignore all network interfaces in <filename>/etc/network/interfaces</filename> for which it is not suited. The settings are very strict; details are available in the <filename>/usr/share/doc/network-manager/README.Debian</filename> file. Since Network Manager doesn't give details when no network connections are shown, the easy way is to delete from (<filename>/etc/network/interfaces</filename>) any configuration for all interfaces that must be managed by Network Manager."
+msgid "Network Manager knows how to handle various types of connections (DHCP, manual configuration, local network), but only if the configuration is set with the program itself. This is why it will systematically ignore all network interfaces in <filename>/etc/network/interfaces</filename> for which it is not suited. The settings are very strict; details are available in the <filename>/usr/share/doc/network-manager/README.Debian</filename> file. Since Network Manager doesn't give details when no network connections are shown, the easy way is to delete from <filename>/etc/network/interfaces</filename> any configuration for all interfaces that must be managed by Network Manager."
 msgstr ""
 
 #. Tag: para
@@ -951,10 +952,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "127.0.0.1     localhost\n"
 "192.168.0.1   arrakis.falcot.com arrakis\n"
-""
 msgstr ""
 
 #. Tag: indexterm
@@ -1054,11 +1055,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "nameserver 212.27.32.176\n"
 "nameserver 212.27.32.177\n"
 "nameserver 8.8.8.8\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2023,7 +2024,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
+msgid ""
+"mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
 "total 0\n"
 "lrwxrwxrwx 1 root root  9 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP -&gt; ../../sda\n"
 "lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP-part1 -&gt; ../../sda1\n"
@@ -2049,7 +2051,6 @@ msgid "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>l
 "lrwxrwxrwx 1 root root 10 23 jul. 08:58 wwn-0x5000c50015c4842f-part1 -&gt; ../../sda1\n"
 "[...]\n"
 "mirexpress:/dev/disk/by-id# </computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2094,7 +2095,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# The disk on which LILO should be installed.\n"
 "# By indicating the disk and not a partition.\n"
 "# you order LILO to be installed on the MBR.\n"
@@ -2120,7 +2122,6 @@ msgid "\n"
 "# only for Linux/Windows dual boot\n"
 "other=/dev/sda1\n"
 "  label=Windows\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2215,7 +2216,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Boot automatically after 30 seconds\n"
 "timeout 30\n"
 "# Boot first entry by default\n"
@@ -2240,7 +2242,6 @@ msgid "\n"
 "rootnoverify (hd0,0)\n"
 "makeactive\n"
 "chainloader +1\n"
-""
 msgstr ""
 
 #. Tag: indexterm
@@ -2280,7 +2281,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# bootstrap partition\n"
 "boot=/dev/sda2\n"
 "# the disk\n"
@@ -2313,7 +2315,6 @@ msgid "\n"
 "\n"
 "# bsd=/dev/sdaX and macos=/dev/sdaX\n"
 "# are also possible\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2423,7 +2424,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>date</userinput>\n"
 "<computeroutput>Wed Mar 28 15:51:19 CEST 2012</computeroutput>\n"
 "<computeroutput>$ </computeroutput><userinput>TZ=\"Pacific/Honolulu\" date</userinput>\n"
@@ -2772,7 +2774,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# /etc/fstab: static file system information.\n"
 "#\n"
 "# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;\n"
@@ -2784,7 +2787,6 @@ msgid "\n"
 "/dev/scd0       /media/cdrom0   udf,iso9660 user,noauto 0       0\n"
 "/dev/fd0        /media/floppy   auto    rw,user,noauto  0       0\n"
 "arrakis:/shared /shared         nfs     defaults        0       0\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2969,10 +2971,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-2.6.32.tar.bz2</userinput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3012,9 +3014,9 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>cp /boot/config-2.6.32-5-686 ~/kernel/linux-source-2.6.32/.config</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -3119,12 +3121,12 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
 "[...]\n"
 "<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -3169,12 +3171,12 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/qc-usb.tar.bz2</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>ls modules/</userinput>\n"
 "<computeroutput>qc-usb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3199,7 +3201,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>export MODULE_LOC=~/kernel/modules</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-2.6.32</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot modules-image</userinput>\n"
@@ -3208,7 +3211,6 @@ msgid "\n"
 "$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
 "../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3268,7 +3270,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-2.6.32</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg clean</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-patches/diffs/grsecurity2/grsecurity-2.1.14-2.6.32.13-201005151340.patch.gz | patch -p1</userinput>\n"
@@ -3277,7 +3280,6 @@ msgid "\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
 "../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb\n"
 "../linux-image-2.6.32-grsec_1_i386.deb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3362,7 +3364,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "do_symlinks = yes\n"
 "relative_links = yes\n"
 "do_bootloader = no\n"
@@ -3371,7 +3374,6 @@ msgid "\n"
 "link_in_boot = no\n"
 "postinst_hook = update-grub\n"
 "postrm_hook = update-grub\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3388,4 +3390,3 @@ msgstr ""
 #, no-c-format
 msgid "The configuration steps described in this chapter are basic and can lead both to a server system or a workstation, and it can be massively duplicated in semi-automated ways. However, it is not enough by itself to provide a fully configured system. A few pieces are still in need of configuration, starting with low-level programs known as the “Unix services”."
 msgstr ""
-
