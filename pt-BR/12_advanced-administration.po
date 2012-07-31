@@ -5,12 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:58\n"
-"PO-Revision-Date: 2012-06-01T20:23:58\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
+"PO-Revision-Date: 2012-07-31 21:32+0200\n"
+"Last-Translator: Daniel Lenharo <daniel@sombra.eti.br>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"/debian-handbook/12_advanced-administration/pt_BR/>\n"
+"Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 1.2\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -40,7 +44,7 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Virtualization"
-msgstr ""
+msgstr "Virtualização"
 
 #. Tag: keyword
 #, no-c-format
@@ -160,7 +164,7 @@ msgstr ""
 #. Tag: term
 #, no-c-format
 msgid "RAID-1"
-msgstr ""
+msgstr "RAID-1"
 
 #. Tag: para
 #, no-c-format
@@ -3108,4 +3112,3 @@ msgstr ""
 #, no-c-format
 msgid "Many Nagios plugins allow checking some parameters local to a host; if many machines need these checks while a central installation gathers them, the NRPE (<emphasis>Nagios Remote Plugin Executor</emphasis>) plugin needs to be deployed. The <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> package needs to be installed on the Nagios server, and <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> on the hosts where local tests need to run. The latter gets its configuration from <filename>/etc/nagios/nrpe.cfg</filename>. This file should list the tests that can be started remotely, and the IP addresses of the machines allowed to trigger them. On the Nagios side, enabling these remote tests is a simple matter of adding matching services using the new <emphasis>check_nrpe</emphasis> command."
 msgstr ""
-
