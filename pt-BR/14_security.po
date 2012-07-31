@@ -5,307 +5,479 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:58\n"
-"PO-Revision-Date: 2012-06-01T20:23:58\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
+"PO-Revision-Date: 2012-07-31 18:30+0200\n"
+"Last-Translator: Willer Gomes Junior <willer@ogomes.com>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"/debian-handbook/14_security/pt_BR/>\n"
+"Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 1.2\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Firewall"
-msgstr ""
+msgstr "Firewall"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Netfilter"
-msgstr ""
+msgstr "Netfilter"
 
 #. Tag: keyword
 #, no-c-format
 msgid "IDS/NIDS"
-msgstr ""
+msgstr "IDS/NIDS"
 
 #. Tag: title
 #, no-c-format
 msgid "Security"
-msgstr ""
+msgstr "Seguranca"
 
 #. Tag: para
 #, no-c-format
 msgid "An information system can have a varying level of importance depending on the environment. In some cases, it is vital to a company's survival. It must therefore be protected from various kinds of risks. The process of evaluating these risks, defining and implementing the protection is collectively known as the “security process”."
 msgstr ""
+"Um sistema de informação pode ter variados níveis de importância, dependendo "
+"do ambiente. Em alguns casos, é vital para a sobrevivência de uma empresa. "
+"Deve, portanto, ser protegido de vários tipos de riscos. O processo de "
+"avaliação desses riscos, definição e execução da proteção é coletivamente "
+"conhecida como o \"processo de segurança\"."
 
 #. Tag: title
 #, no-c-format
 msgid "Defining a Security Policy"
-msgstr ""
+msgstr "Definindo uma Politica de Segurança"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Scope of this chapter"
-msgstr ""
+msgstr "<emphasis>ATENÇÃO</emphasis> Escopo deste capítulo"
 
 #. Tag: para
 #, no-c-format
 msgid "Security is a vast and very sensitive subject, so we cannot claim to describe it in any kind of comprehensive manner in the course of a single chapter. We will only delineate a few important points and describe some of the tools and methods that can be of use in the security domain. For further reading, literature abounds, and entire books have been devoted to the subject. An excellent starting point would be <citetitle>Linux Server Security</citetitle> by Michael D. Bauer (published by O'Reilly)."
 msgstr ""
+"Segurança é um assunto vasto e muito delicado, por isso não podemos reclamar "
+"ao descrevê-lo de forma abrangente no curso de um único capítulo. Nós "
+"apenas delimitamos alguns pontos importantes e descrevemos algumas das "
+"ferramentas e métodos que podem ser úteis no domínio da segurança. Para ler "
+"mais, a literatura é abundante, e livros inteiros foram dedicados ao "
+"assunto. Um excelente ponto de partida seria <citetitle>Linux Server "
+"Security</citetitle> por Michael D. Bauer (publicado pela O'Reilly)."
 
 #. Tag: para
 #, no-c-format
 msgid "The word “security” itself covers a vast range of concepts, tools and procedures, none of which apply universally. Choosing among them requires a precise idea of what your goals are. Securing a system starts with answering a few questions. Rushing headlong into implementing an arbitrary set of tools runs the risk of focusing on the wrong aspects of security."
 msgstr ""
+"A palavra \"segurança\" em si abrange uma vasta gama de conceitos, ferramentas "
+"e procedimentos, nenhum dos quais se aplicam universalmente. Escolher entre "
+"eles requer uma idéia precisa de quais são seus objetivos. Garantir um "
+"sistema começa com respondendo a algumas perguntas. Apressando-se de cabeça "
+"na implementação de um conjunto arbitrário de ferramentas corre o risco de "
+"se concentrar nos aspectos errados de segurança."
 
 #. Tag: para
 #, no-c-format
 msgid "The very first thing to determine is therefore the goal. A good approach to help with that determination starts with the following questions:"
 msgstr ""
+"A primeira coisa a determinar é, portanto, o objetivo. Uma boa abordagem "
+"para ajudar com esta determinação começa com as seguintes perguntas:"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>What</emphasis> are we trying to protect? The security policy will be different depending on whether we want to protect computers or data. In the latter case, we also need to know which data."
 msgstr ""
+"<emphasis>O que</emphasis> estamos tentando proteger? A política de "
+"segurança vai ser diferente, dependendo se queremos proteger os computadores "
+"ou dados. Neste último caso, também precisamos saber quais os dados."
 
 #. Tag: para
 #, no-c-format
 msgid "What are we trying to protect <emphasis>against</emphasis>? Is it leakage of confidential data? Accidental data loss? Revenue loss caused by disruption of service?"
 msgstr ""
+"<emphasis>Contra</emphasis> o que estamos tentando proteger? Vazamento de "
+"dados confidenciais? Perda acidental de dados? Perda de receita causada pela "
+"interrupção do serviço?"
 
 #. Tag: para
 #, no-c-format
 msgid "Also, <emphasis>who</emphasis> are we trying to protect against? Security measures will be quite different for guarding against a typo by a regular user of the system than they would be when protecting against a determined attacker group."
 msgstr ""
+"Além disso, de <emphasis>quem</emphasis> estamos tentando proteger? As "
+"medidas de segurança vao ser muito diferentes para se proteger contra um "
+"erro de digitação por um usuário regular do sistema do que quando a "
+"protecção for contra um determinado grupo atacante."
 
 #. Tag: para
 #, no-c-format
 msgid "The term “risk” is customarily used to refer collectively to these three factors: what to protect, what needs to be prevented from happening, and who will try to make it happen. Modeling the risk requires answers to these three questions. From this risk model, a security policy can be constructed, and the policy can be implemented with concrete actions."
 msgstr ""
+"O termo \"risco\" é normalmente usado para se referir coletivamente a esses "
+"três fatores: o que proteger, o que precisa ser impedido de acontecer, e que "
+"vai tentar fazer isso acontecer. Modelagem do risco requer respostas a "
+"estas três perguntas. A partir deste modelo de risco, uma política de "
+"segurança pode ser construída, e a política pode ser implementada com acções "
+"concretas."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Permanent questioning"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Questionamento permanente"
 
 #. Tag: para
 #, no-c-format
 msgid "Bruce Schneier, a world expert in security matters (not only computer security) tries to counter one of security's most important myths with a motto: “Security is a process, not a product”. Assets to be protected change in time, and so do threats and the means available to potential attackers. Even if a security policy has initially been perfectly designed and implemented, one should never rest on one's laurels. The risk components evolve, and the response to that risk must evolve accordingly."
 msgstr ""
+"Bruce Schneier, um especialista mundial em matéria de segurança (e não "
+"apenas a segurança do computador) tenta combater um dos mitos mais "
+"importantes de segurança com um lema: \"Segurança é um processo, não um "
+"produto\". Ativos a serem protegidos mudam no tempo, etc. fazer ameaças e os "
+"meios disponíveis para potenciais agressores. Mesmo se uma política de "
+"segurança foi inicialmente perfeitamente desenhada e implementada, nunca se "
+"deve descansar sobre seus louros. Os componentes de risco evoluem, e a "
+"resposta a esse risco deve evoluir nesse sentido."
 
 #. Tag: para
 #, no-c-format
 msgid "Extra constraints are also worth taking into account, as they can restrict the range of available policies. How far are we are willing to go to secure a system? This question has a major impact on the policy to implement. The answer is too often only defined in terms of monetary costs, but the other elements should also be considered, such as the amount of inconvenience imposed on system users or performance degradation."
 msgstr ""
+"Restrições adicionais também vale a pena serem levadas em conta, uma vez que "
+"pode restringir o leque de políticas disponíveis. Até onde estamos "
+"dispostos a ir para proteger um sistema? Esta questão tem um grande impacto "
+"sobre a política a implementar. A resposta é muitas vezes apenas definida em "
+"termos de custos monetários, mas os outros elementos devem também ser "
+"considerados, tais como a quantidade de inconveniência imposta aos "
+"utilizadores do sistema ou degradação do desempenho."
 
 #. Tag: para
 #, no-c-format
 msgid "Once the risk has been modeled, one can start thinking about designing an actual security policy."
 msgstr ""
+"Uma vez que o risco foi modelado, pode-se começar a pensar sobre a criação "
+"de uma política de segurança real."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Extreme policies"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Políticas extremas"
 
 #. Tag: para
 #, no-c-format
 msgid "There are cases where the choice of actions required to secure a system is extremely simple."
 msgstr ""
+"Há casos em que a escolha das ações necessárias para garantir um sistema é "
+"extremamente simples."
 
 #. Tag: para
 #, no-c-format
 msgid "For instance, if the system to be protected only comprises a second-hand computer, the sole use of which is to add a few numbers at the end of the day, deciding not to do anything special to protect it would be quite reasonable. The intrinsic value of the system is low. The value of the data is zero since they are not stored on the computer. A potential attacker infiltrating this “system” would only gain an unwieldy calculator. The cost of securing such a system would probably be greater than the cost of a breach."
 msgstr ""
+"Por exemplo, se o sistema a ser protegido apenas compreende um computador de "
+"segunda mão, a unica utilização consiste em adicionar alguns números no "
+"final do dia, decidir não fazer nada especial para protegê-lo seria bastante "
+"razoável. O valor intrínseco do sistema é baixo. O valor dos dados é igual "
+"a zero, uma vez que não são armazenados no computador. Um atacante potencial "
+"infiltrando este \"sistema\" só teria a ganhar uma calculadora pesada. O "
+"custo de assegurar um tal sistema seria provavelmente maior do que o custo "
+"de uma violação."
 
 #. Tag: para
 #, no-c-format
 msgid "At the other end of the spectrum, we might want to protect the confidentiality of secret data in the most comprehensive way possible, trumping any other consideration. In this case, an appropriate response would be the total destruction of these data (securely erasing the files, shredding of the hard disks to bits, then dissolving these bits in acid, and so on). If there is an additional requirement that data must be kept in store for future use (although not necessarily readily available), and if cost still isn't a factor, then a starting point would be storing the data on iridium–platinum alloy plates stored in bomb-proof bunkers under various mountains in the world, each of which being (of course) both entirely secret and guarded by entire armies…"
 msgstr ""
+"No outro extremo do espectro, podemos querer proteger a confidencialidade "
+"dos dados secretos da forma mais abrangente possível, superando qualquer "
+"outra consideração. Neste caso, uma resposta apropriada seria a destruição "
+"total destes dados (de forma segura e apagar os arquivos, trituração dos "
+"discos rígidos aos bits, em seguida, dissolvendo estes bits em ácido, e "
+"assim por diante). Se houver um requisito adicional de que os dados devem "
+"ser mantidos guardados para uso futuro (embora não necessariamente "
+"prontamente disponível), e se o custo ainda não é um fator, então, um ponto "
+"de partida seria armazenar os dados sobre placas de liga leve de irídio-"
+"platina armazenados em depositos à prova de bomba em várias montanhas no "
+"mundo, cada uma das quais, é claro, inteiramente secreta e guardada por "
+"exércitos inteiros..."
 
 #. Tag: para
 #, no-c-format
 msgid "Extreme though these examples may seem, they would nevertheless be an adequate response to defined risks, insofar as they are the outcome of a thought process that takes into account the goals to reach and the constraints to fulfill. When coming from a reasoned decision, no security policy is less respectable than any other."
 msgstr ""
+"Esses exemplos podem parecer extremos, eles, no entanto, sao uma resposta "
+"adequada aos riscos definidos, na medida em que eles são o resultado de um "
+"processo de pensamento que leva em conta os objectivos a atingir e as "
+"limitações a cumprir. Ao vir de uma decisão fundamentada, nenhuma política "
+"de segurança é menos respeitável do que qualquer outra."
 
 #. Tag: para
 #, no-c-format
 msgid "In most cases, the information system can be segmented in consistent and mostly independent subsets. Each subsystem will have its own requirements and constraints, and so the risk assessment and the design of the security policy should be undertaken separately for each. A good principle to keep in mind is that a short and well-defined perimeter is easier to defend than a long and winding frontier. The network organization should also be designed accordingly: the sensitive services should be concentrated on a small number of machines, and these machines should only be accessible via a minimal number of check-points; securing these check-points will be easier than securing all the sensitive machines against the entirety of the outside world. It is at this point that the usefulness of network filtering (including by firewalls) becomes apparent. This filtering can be implemented with dedicated hardware, but a possibly simpler and more flexible solution is to use a software firewall such as the one integrated in the Linux kernel."
 msgstr ""
+"Na maioria dos casos, o sistema de informação pode ser segmentado em "
+"subconjuntos consistentes e na maior parte independente. Cada subsistema "
+"terá suas próprias exigências e restrições, e assim a avaliação do risco e "
+"do projeto da política de segurança deve ser realizada separadamente para "
+"cada um. Um bom princípio para se manter em mente é que um perímetro de "
+"curto e bem definido é mais fácil defender do que uma fronteira longa e "
+"sinuosa. A organização em rede também deve ser concebida: os serviços "
+"sensíveis devem ser concentrados em um pequeno número de máquinas, e estas "
+"máquinas só devem ser acessíveis através de um número mínimo de pontos de "
+"verificação; garantir estes pontos check-points será mais fácil do que "
+"garantir todos as máquinas sensíveis contra a totalidade do mundo exterior. "
+"É neste ponto que a utilidade de filtragem de rede (incluindo por firewalls) "
+"se torna aparente. Esta filtragem pode ser implementada com hardware "
+"dedicado, mas uma solução possivelmente mais simples e mais flexível é usar "
+"um firewall de software, como o integrado no kernel do Linux."
 
 #. Tag: title
 #, no-c-format
 msgid "Firewall or Packet Filtering"
-msgstr ""
+msgstr "Firewall ou Filtragem de pacotes"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>firewall</primary>"
-msgstr ""
+msgstr "<primary>firewall</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>packet filter</primary>"
-msgstr ""
+msgstr "<primary>Filtragem de pacotes</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Firewall"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BASICO</emphasis> Firewall"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>packet</primary><secondary>IP</secondary>"
-msgstr ""
+msgstr "<primary>pacote</primary><secondary>IP</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A <emphasis>firewall</emphasis> is a piece of computer equipment with hardware and/or software that sorts the incoming or outgoing network packets (coming to or from a local network) and only lets through those matching certain predefined conditions."
 msgstr ""
+"Um <emphasis>firewall</emphasis> é uma peça de equipamento de informática "
+"com hardware e/ou software que classifica os pacotes de entrada ou saída de "
+"rede (chegando ou de uma rede local) e só deixa passar aqueles combinando "
+"certas condições pré-definidas."
 
 #. Tag: para
 #, no-c-format
 msgid "A firewall is a filtering network gateway and is only effective on packets that must go through it. Therefore, it can only be effective when going through the firewall is the only route for these packets."
 msgstr ""
+"Um firewall é uma porta de filtragem da saida de rede e é efetiva apenas em "
+"pacotes que devem passar por isso. Portanto, só pode ser eficaz quando "
+"passar pelo firewall é a única rota para estes pacotes."
 
 #. Tag: para
 #, no-c-format
 msgid "The lack of a standard configuration (and the “process, not product” motto) explains the lack of a turn-key solution. There are, however, tools that make it simpler to configure the <emphasis>netfilter</emphasis> firewall, with a graphical representation of the filtering rules. <command>fwbuilder</command> is undoubtedly among the best of them."
 msgstr ""
+"A falta de uma configuração padrão (e do lema \"processo e não produto\") "
+"explica a falta de uma solução chave. Há, no entanto, as ferramentas que "
+"tornam mais simples configurar os firewall <emphasis>netfilter</emphasis>, "
+"com uma representação gráfica das regras de filtragem. "
+"<command>fwbuilder</command> está, sem dúvida entre os melhores delas."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>netfilter</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>netfilter</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Local Firewall"
-msgstr ""
+msgstr "<emphasis>CASO ESPECIFICO</emphasis> Firewall Local"
 
 #. Tag: para
 #, no-c-format
 msgid "A firewall can be restricted to one particular machine (as opposed to a complete network), in which case its role is to filter or limit access to some services, or possibly to prevent outgoing connections by rogue software that a user could, willingly or not, have installed."
 msgstr ""
+"Um firewall pode ser restrito a uma determinada máquina (em oposição a uma "
+"rede completa), caso em que seu papel é o de filtrar ou restringir o acesso "
+"a alguns serviços, ou possivelmente para evitar que as conexões de saída por "
+"softwares maliciosos que um usuário poderia, por vontade própria ou não, "
+"ter instalado."
 
 #. Tag: para
 #, no-c-format
 msgid "The Linux 2.6 kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
 msgstr ""
+"O kernel do Linux 2.6 incorpora os firewall <emphasis>netfilter</emphasis>. "
+"Ele pode ser controlado a partir do espaço do usuário com os comandos "
+"<comando>iptables</command> e <comando>ip6tables</command>. A diferença "
+"entre estes dois comandos é que o primeiro atua sobre rede IPv4, enquanto "
+"que o último sobre o IPv6. Uma vez que ambas as pilhas de protocolo de rede "
+"provavelmente estarão circulando por muitos anos, ambas as ferramentas serão "
+"utilizadas em paralelo."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>iptables</command></primary>"
-msgstr ""
+msgstr "<primary><command>iptables</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ip6tables</command></primary>"
-msgstr ""
+msgstr "<primary><command>ip6tables</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Netfilter Behavior"
-msgstr ""
+msgstr "Funcionamento do Netfilter"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>netfilter</emphasis> uses four distinct tables which store rules regulating three kinds of operations on packets:"
 msgstr ""
+"<emphasis>netfilter</emphasis> utiliza quatro tabelas distintas que "
+"armazenam regras que regulam três tipos de operações sobre pacotes:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>filter</literal> concerns filtering rules (accepting, refusing or ignoring a packet);"
 msgstr ""
+"<literal>filtro</literal> preocupa com as regras de filtragem (aceitando, "
+"recusando ou ignorando um pacote);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>nat</literal> concerns translation of source or destination addresses and ports of packages; note that this table only exists for IPv4;"
 msgstr ""
+"<literal>nat</literal> diz respeito a tradução de origem ou destino, "
+"endereços e portas de pacotes, observe que esta tabela existe apenas para "
+"IPv4;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>mangle</literal> concerns other changes to the IP packets (including the ToS — <emphasis>Type of Service</emphasis> — field and options);"
 msgstr ""
+"<literal>mangle</literal> diz respeito a outras alterações nos pacotes IP "
+"(incluindo os TOS - <emphasis>Tipo de Serviço</emphasis> - campo e opções);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>raw</literal> allows other manual modifications on packets before they reach the connection tracking system."
 msgstr ""
+"<literal>raw</literal> permite outras modificações manuais em pacotes antes "
+"de chegar ao sistema de rastreamento de conexões."
 
 #. Tag: para
 #, no-c-format
 msgid "Each table contains lists of rules called <emphasis>chains</emphasis>. The firewall uses standard chains to handle packets based on predefined circumstances. The administrator can create other chains, which will only be used when referred to by one of the standard chains."
 msgstr ""
+"Cada tabela contém listas das chamadas regras <emphasis>cadeias</ emphasis>. "
+"O firewall usa padrão para lidar com cadeias de pacotes com base em "
+"circunstâncias pré-definidas. O administrador pode criar outras cadeias, o "
+"que só será usado quando referido por uma das cadeias padrão."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>chain</primary>"
-msgstr ""
+msgstr "<primary>cadeia</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>filtering rule</primary>"
-msgstr ""
+msgstr "<primary>regra de filtragem</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>filter</literal> table has three standard chains:"
-msgstr ""
+msgstr "A tabela <literal>filter (filtro)</literal> possui tres cadeias padrao:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>INPUT</literal>: concerns packets whose destination is the firewall itself;"
 msgstr ""
+"<literal>INPUT (ENTRADA)</literal>: preocupa se com os pacotes cujo destino "
+"é o proprio firewall;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>OUTPUT</literal>: concerns packets emitted by the firewall;"
 msgstr ""
+"<literal>OUTPUT (SAIDA)</literal>: preocupa se com os pacotes emitidos pelo "
+"firewall;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>FORWARD</literal>: concerns packets transiting through the firewall (which is neither their source nor their destination)."
 msgstr ""
+"<literal>FORWARD (PASSAR PARA FRENTE)</literal>: preocupa se com os pacotes "
+"em trânsito através do firewall (que não é nem a sua origem nem o seu "
+"destino)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>nat</literal> table also has three standard chains:"
-msgstr ""
+msgstr "A tabela <literal>nat</literal> também tem três cadeias de padrão:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>PREROUTING</literal>: to modify packets as soon as they arrive;"
 msgstr ""
+"<literal>PREROUTING (PRE ROTEAMENTO)</literal>: altera pacotes assim que "
+"eles chegam;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>POSTROUTING</literal>: to modify packets when they are ready to go on their way;"
 msgstr ""
+"<literal>POSTROUTING (pos roteamento)</literal>: altera pacotes quando eles "
+"estão prontos para partir ao seu caminho;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>OUTPUT</literal>: to modify packets generated by the firewall itself."
 msgstr ""
+"<literal>OUTPUT (SAÍDA)</literal>: altera pacotes gerados pelo próprio "
+"firewall."
 
 #. Tag: title
 #, no-c-format
 msgid "How <emphasis>netfilter</emphasis> chains are called"
-msgstr ""
+msgstr "Como cadeias <emphasis>netfilter</emphasis> são chamadas"
 
 #. Tag: para
 #, no-c-format
 msgid "Each chain is a list of rules; each rule is a set of conditions and an action to execute when the conditions are met. When processing a packet, the firewall scans the appropriate chain, one rule after another; when the conditions for one rule are met, it “jumps” (hence the <literal>-j</literal> option in the commands) to the specified action to continue processing. The most common behaviors are standardized, and dedicated actions exist for them. Taking one of these standard actions interrupts the processing of the chain, since the packet's fate is already sealed (barring an exception mentioned below):"
 msgstr ""
+"Cada cadeia é uma lista de regras, cada regra é um conjunto de condições e "
+"uma ação a ser executada quando as condições forem satisfeitas. Ao processar "
+"um pacote, o firewall examina a cadeia se for o caso, uma regra após a "
+"outra, quando as condições para uma regra estão reunidas, \"pula\" (daí a "
+"opção <literal>-j </ literal> nos comandos) para a especificada ação para "
+"continuar o processamento. Os comportamentos mais comuns são padronizados, e "
+"existem ações específicas para eles. O processamento da cadeia toma uma "
+"destas ações de interrupções padrão, uma vez que o destino do pacote já está "
+"selado (salvo uma exceção mencionada a seguir):"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> ICMP"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BASICO</emphasis> ICMP"
 
 #. Tag: para
 #, no-c-format
 msgid "ICMP (<emphasis>Internet Control Message </emphasis>Protocol) is the protocol used to transmit complementary information on communications. It allows testing network connectivity with the <command>ping</command> command (which sends an ICMP <emphasis>echo request</emphasis> message, which the recipient is meant to answer with an ICMP <emphasis>echo reply</emphasis> message). It signals a firewall rejecting a packet, indicates an overflow in a receive buffer, proposes a better route for the next packets in the connection, and so on. This protocol is defined by several RFC documents; the initial RFC777 and RFC792 were soon completed and extended. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc777.html\" /><ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc792.html\" />"
 msgstr ""
+"ICMP (<emphasis>Internet Control Message</emphasis> Protocol) é o protocolo "
+"usado para transmitir informações complementares sobre as comunicações. "
+"Permite testar a conectividade de rede com o comando <command>ping</command> "
+"(que envia uma mensagem ICMP <emphasis>echo request</emphasis> (solicitação "
+"de eco), que o beneficiário se destina a responder com uma mensagem ICMP "
+"<emphasis>echo reply</emphasis>) (resposta echo). É sinal de um firewall "
+"rejeitando um pacote, indica um estouro de memoria no buffer de recebimento, "
+"propõe uma melhor rota para os pacotes seguintes na conexão, e assim por "
+"diante. Este protocolo é definido por vários documentos RFC, o inicial "
+"RFC777 e RFC792 logo foram concluídos e ampliados. <ulink type=\"block\" "
+"url=\"http://www.faqs.org/rfcs/rfc777.html\" /> <ulink tipo=\"block\" "
+"url=\"http://www.faqs.org/rfcs/rfc792.html \"/>"
 
 #. Tag: para
 #, no-c-format
@@ -614,7 +786,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>logcheck</command></primary>"
-msgstr ""
+msgstr "<primary><command>logcheck</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2311,4 +2483,3 @@ msgstr ""
 #, no-c-format
 msgid "In this example, the whole intrusion has been reconstructed, and it can be deduced that the attacker has been able to take advantage of the compromised system for about three days; but the most important element in the analysis is that the vulnerability has been identified, and the administrator can be sure that the new installation really does fix the vulnerability."
 msgstr ""
-
