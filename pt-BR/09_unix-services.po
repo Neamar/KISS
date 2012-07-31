@@ -5,17 +5,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:57\n"
-"PO-Revision-Date: 2012-06-01T20:23:57\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
+"PO-Revision-Date: 2012-07-31 14:33+0200\n"
+"Last-Translator: Francisco Aparecido da Silva <francisco@silva.eti.br>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"/debian-handbook/09_unix-services/pt_BR/>\n"
+"Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 1.2\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "System boot"
-msgstr ""
+msgstr "Inicialização do Sistema"
 
 #. Tag: keyword
 #, no-c-format
@@ -25,12 +29,12 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "SSH"
-msgstr ""
+msgstr "SSH"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Telnet"
-msgstr ""
+msgstr "Telnet"
 
 #. Tag: keyword
 #, no-c-format
@@ -40,7 +44,7 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Permissions"
-msgstr ""
+msgstr "Permissões"
 
 #. Tag: keyword
 #, no-c-format
@@ -50,37 +54,37 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Inetd"
-msgstr ""
+msgstr "Inetd"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Cron"
-msgstr ""
+msgstr "Cron"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Backup"
-msgstr ""
+msgstr "Backup"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Hotplug"
-msgstr ""
+msgstr "Hotplug"
 
 #. Tag: keyword
 #, no-c-format
 msgid "PCMCIA"
-msgstr ""
+msgstr "PCMCIA"
 
 #. Tag: keyword
 #, no-c-format
 msgid "APM"
-msgstr ""
+msgstr "APM"
 
 #. Tag: keyword
 #, no-c-format
 msgid "ACPI"
-msgstr ""
+msgstr "ACPI"
 
 #. Tag: title
 #, no-c-format
@@ -91,46 +95,79 @@ msgstr ""
 #, no-c-format
 msgid "This chapter covers a number of basic services that are common to many Unix systems. All administrators should be familiar with them."
 msgstr ""
+"Este capítulo abrange uma série de serviços básicos que são comuns a muitos "
+"sistemas Unix. Todos os administradores devem estar familiarizados com eles."
 
 #. Tag: title
 #, no-c-format
 msgid "System Boot"
-msgstr ""
+msgstr "Inicialização do Sistema"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>booting</primary><secondary>the system</secondary>"
-msgstr ""
+msgstr "<primary>inicializando</primary><secondary>o sistema</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When you boot the computer, the many messages scrolling by on the console display many automatic initializations and configurations that are being executed. Sometimes you may wish to slightly alter how this stage works, which means that you need to understand it well. That is the purpose of this section."
 msgstr ""
+"Quando você inicializar o computador, algumas mensagens rolarão pelo console "
+"automaticamente inicializando e as configurações são automaticamente "
+"executadas. Algumas vezes você pode desejar alterar como este estágio "
+"funciona, de forma que possa entender isto muito bem.  Este é o propósito "
+"desta seção."
 
 #. Tag: para
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
-msgstr ""
+msgstr "Primeiro, a BIOS pega o controle sobre o computador, detectando discos, "
+"carregando a <emphasis>Master Boot Record</emphasis>, e executa o "
+"bootloader. O bootloader assume, localiza o kernel no disco, carrega e o "
+"executa. O kernel é então inicializado e começa a pesquisa pela partição e  "
+"monta a partição contendo o sistema raiz e finalmente o primeiro programa  — "
+"<command>init</command>. Frequentemente, esta \"partição raiz\" e este "
+"<command>init</command> são, de fato, localizado em um sistema de arquivos "
+"virtual que só existe na RAM (daí o seu nome, \"initramfs\", anteriormente "
+"chamado de \"initrd\" para \"initialization RAM disk\"). Este sistema de "
+"arquivos é carregado na memoria pelo bootloader, muitas vezes a partir de um "
+"arquivo em um disco rígido ou da rede. Ele contém o mínimo exigido pelo "
+"kernel para carregar o sistema de arquivos raiz \"verdadeiro\". Este pode ser "
+"módulos de driver para o disco rígido ou outros dispositivos sem o qual o "
+"sistema pode não carregar, ou, mais freqüentemente, scripts de inicialização "
+"e módulos para a montagem de arrays RAID, abrindo partições criptografadas, "
+"ativando volumes LVM, etc. Uma vez que a partição raiz é montada,  o "
+"initramfs libera o controle para o init real, e a máquina voltará para o "
+"processo de boot padrão.\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Booting from the network"
-msgstr ""
+msgstr "<emphasis>SPECIFIC CASE</emphasis> Inicializando pela rede"
 
 #. Tag: para
 #, no-c-format
 msgid "In some configurations, the BIOS may be configured not to execute the MBR, but to seek its equivalent on the network, making it possible to build computers without a hard drive, or which are completely reinstalled on each boot. This option is not available on all hardware and it generally requires an appropriate combination of BIOS and network card."
 msgstr ""
+"Em algumas configurações, o BIOS pode ser configurado para não executar o "
+"MBR, mas buscar o seu equivalente na rede, tornando possível a construção de "
+"computadores sem disco rígido, ou que são completamente reinstalado a cada "
+"boot. Esta opção não está disponível em todos os hardwares e geralmente "
+"requer uma combinação adequada de BIOS e placa de rede."
 
 #. Tag: para
 #, no-c-format
 msgid "Booting from the network can be used to launch the <command>debian-installer</command> or FAI (see <xref linkend=\"sect.installation-methods\" />)."
 msgstr ""
+"A inicialização através da rede pode ser usada para iniciar o <command"
+">debian-installer </command> ou FAI (ver <xref linkend=\"sect.installation-"
+"methods\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The process, a program instance"
 msgstr ""
+"<emphasis>BACK TO BASICS</emphasis> Um processo, uma instância do programa"
 
 #. Tag: indexterm
 #, no-c-format
@@ -141,11 +178,27 @@ msgstr ""
 #, no-c-format
 msgid "A process is the representation in memory of a running program. It includes all of the information necessary for the proper execution of the software (the code itself, but also the data that it has in memory, the list of files that it has opened, the network connections it has established, etc.). A single program may be instantiated into several processes, not necessarily running under different user IDs."
 msgstr ""
+"Um processo é a representação em memória de um programa em execução. Isto "
+"inclui todas as informações necessárias para a  execução adequada do "
+"software (o código própriamente dito, mas também os dados que tem na "
+"memória, a lista de arquivos que ele abriu, as conexões de rede que "
+"estabeleceu, etc.). Um único programa pode ser instanciado em muitos "
+"processos, não necessáriamente rodando sob diferentes IDs de usuários."
 
 #. Tag: para
 #, no-c-format
 msgid "Init executes several processes, following instructions from the <filename>/etc/inittab</filename> file. The first program that is executed (which corresponds to the <emphasis>sysinit</emphasis> step) is <command>/etc/init.d/rcS</command>, a script that executes all of the programs in the <filename>/etc/rcS.d/</filename> directory. <indexterm><primary><filename>/etc/init.d/rcS</filename></primary></indexterm> <indexterm><primary><filename>rcS</filename></primary></indexterm> <indexterm><primary><filename>/etc/init.d/rcS.d/</filename></primary></indexterm> <indexterm><primary><filename>rcS.d</filename></primary></indexterm>"
 msgstr ""
+"Init executa vários processos, seguindo as instruções do arquivo "
+"<filename>/etc/inittab</filename>. O primeiro programa que é executado (o "
+"que corresponde à sysinit uma chamada<emphasis>sysvinit</emphasis>) é "
+"<command>/etc/init.d/rcS </ command>, um script que executa todos os "
+"programas no nome do arquivo <filename>/etc/rcS.d /</filename> diretório. "
+"<indexterm> <primary> <filename>/etc/init.d/rcS </filename> </primary> "
+"</indexterm> <indexterm> <primary> <filename>rcS </filename> </primary> "
+"</indexterm > <indexterm> <primary> <filename>/etc/init.d/rcS.d/</filename> "
+"</primary> </ indexterm> <indexterm> <primary> <filename>rcS.d </filename> "
+"</primary> </indexterm>"
 
 #. Tag: para
 #, no-c-format
@@ -155,42 +208,51 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "configuring the console's keyboard;"
-msgstr ""
+msgstr "configurar o teclado do console;"
 
 #. Tag: para
 #, no-c-format
 msgid "loading drivers: most of the kernel modules are loaded by the kernel itself as the hardware is detected; extra drivers are then loaded automatically when the corresponding modules are listed in <filename>/etc/modules</filename>;"
 msgstr ""
+"carregando drivers: a maioria dos módulos do kernel serão carregados por si "
+"assim que o hardware seja detectado; drivers extra então são carregado "
+"automaticamente quando o modulo correspondente seja listado em "
+"<filename>/etc/modules</filename>;"
 
 #. Tag: para
 #, no-c-format
 msgid "checking the integrity of filesystems;"
-msgstr ""
+msgstr "checar a integridade do sistema de arquivos;"
 
 #. Tag: para
 #, no-c-format
 msgid "mounting local partitions;"
-msgstr ""
+msgstr "montar partições locais;"
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the network;"
-msgstr ""
+msgstr "configuração da rede;"
 
 #. Tag: para
 #, no-c-format
 msgid "mounting network filesystems (NFS)."
-msgstr ""
+msgstr "mountando sistemas de arquivos em rede (NFS).\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Using a shell as <command>init</command> to gain root rights"
 msgstr ""
+"<emphasis>SECURITY</emphasis> Usando Shell como <command>init</command> para "
+"ganhar privilégios de root"
 
 #. Tag: para
 #, no-c-format
 msgid "By convention, the first process that is booted is the <command>init</command> program. However, it is possible to pass an <literal>init</literal> option to the kernel indicating a different program."
 msgstr ""
+"Por convenção, o primeiro processo que é carregado é o programa "
+"<command>init</command>. Contudo, é possível passar uma opção <literal> init "
+"</literal> para o kernel indicando um programa diferente."
 
 #. Tag: indexterm
 #, no-c-format
@@ -201,11 +263,22 @@ msgstr ""
 #, no-c-format
 msgid "Any person who is able to access the computer can press the <keycap>Reset</keycap> button, and thus reboot it. Then, at the bootloader's prompt, it is possible to pass the <literal>init=/bin/sh</literal> option to the kernel to gain root access without knowing the administrator's password."
 msgstr ""
+"Qualquer pessoa que  é capaz de acessar o computador e poder  pressionar o "
+"botão  <keycap>Reset</keycap>, e, portanto reinicia-lo . Então, no prompt do "
+"inicializador do sistema, é possível passar  opção  "
+"<literal>init=/bin/sh</literal> para o kernel e ganhar acesso root sem no "
+"saber a senha de administrador"
 
 #. Tag: para
 #, no-c-format
 msgid "To prevent this, you can protect the bootloader itself with a password. You might also think about protecting access to the BIOS (a password protection mechanism is almost always available), without which a malicious intruder could still boot the machine on a removable media containing its own Linux system, which they could then use to access data on the computer's hard drives."
 msgstr ""
+"Para evitar isso, você pode proteger o bootloader com uma senha. Você também "
+"pode pensar em proteger o acesso ao BIOS (um mecanismo de proteção por "
+"senha geralmente é disponível), sem que um intruso mal-intencionado ainda "
+"possa iniciar a máquina por uma mídia removível que contém o seu próprio "
+"sistema Linux, que pode então usar para acessar dados sobre discos rígidos "
+"do computador."
 
 #. Tag: para
 #, no-c-format
@@ -3016,4 +3089,3 @@ msgstr ""
 #, no-c-format
 msgid "After this overview of basic services common to many Unix systems, we will focus on the environment of the administered machines: the network. Many services are required for the network to work properly. They will be discussed in the next chapter."
 msgstr ""
-
