@@ -5,12 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:58\n"
-"PO-Revision-Date: 2012-06-01T20:23:58\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
+"PO-Revision-Date: 2012-07-30 18:26+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"/debian-handbook/13_workstation/pt_BR/>\n"
+"Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 1.2\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -20,7 +24,7 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Graphical desktop"
-msgstr ""
+msgstr "área de trabalho gráfica"
 
 #. Tag: keyword
 #, no-c-format
@@ -30,22 +34,25 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "X.org"
-msgstr ""
+msgstr "X.org"
 
 #. Tag: para
 #, no-c-format
 msgid "Now that server deployments are done, the administrators can focus on installing the individual workstations and creating a typical configuration."
 msgstr ""
+"Agora que a publicação do servidor foi feita, os administradores podem se "
+"concentrar em instalar as estações individuais e criar uma configuração "
+"típica."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the X11 Server"
-msgstr ""
+msgstr "Configurando o servidor X11"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>XFree86</primary>"
-msgstr ""
+msgstr "<primary>XFree86</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -66,6 +73,9 @@ msgstr ""
 #, no-c-format
 msgid "The initial configuration for the graphical interface can be awkward at times; very recent video cards often don't work perfectly with the X.org version shipped in the Debian stable version."
 msgstr ""
+"A configuração inicial para a interface gráfica pode ser estranha às vezes; "
+"placas de vídeo recentes por vezes não funcionam perfeitamente na versão do "
+"X.org que vem com a versão stável do Debian."
 
 #. Tag: para
 #, no-c-format
@@ -95,7 +105,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>resolution</primary>"
-msgstr ""
+msgstr "<primary>resolução</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -133,6 +143,13 @@ msgid "\n"
 "(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
 ""
 msgstr ""
+"\n"
+"(==) Matched intel as autoconfigured driver 0\n"
+"(==) Matched vesa as autoconfigured driver 1\n"
+"(==) Matched fbdev as autoconfigured driver 2\n"
+"(==) Assigned the driver to the xf86ConfigLayout\n"
+"(II) LoadModule: \"intel\"\n"
+"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
 
 #. Tag: indexterm
 #, no-c-format
@@ -142,17 +159,26 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>video card</primary>"
-msgstr ""
+msgstr "<primary>placa de vídeo</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Proprietary drivers"
-msgstr ""
+msgstr "drivers proprietários <emphasis>EXTRA</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "Some video card makers (most notably nVidia) refuse to publish the hardware specifications that would be required to implement good free drivers. They do, however, provide proprietary drivers that allow using their hardware. This policy is nefarious, because even when the provided driver exists, it is usually not as polished as it should be; more importantly, it does not necessarily follow the X.org updates, which may prevent the latest available driver from loading correctly (or at all). We cannot condone this behavior, and we recommend you avoid these makers and favor more cooperative manufacturers."
 msgstr ""
+"Alguns fabricantes de placas de vídeo (em especial a nVidia) se recusam a "
+"publicar as especificações de hardware que serão necessárias para "
+"implementar drivers livres bons. Entretanto, eles fornecem drivers "
+"proprietários que permitem usar seus equipamentos. Esta política é maligna, "
+"por que mesmo que o driver exista, ele não é tão bem-cuidado quanto deveria; "
+"e mais, ele não necessariamente segue as atualizações do X.org, o que "
+"impede que as últimas atualizações disponíveis de drivers funcionem "
+"corretamente. Não podemos apoiar este comportamento, e recomendamos que se "
+"evite estes fabricantes, escolhendos outros mais colaborativos."
 
 #. Tag: para
 #, no-c-format
@@ -1367,4 +1393,3 @@ msgstr ""
 #, no-c-format
 msgid "The VNC software provides similar features, with the added benefit of also working with many operating systems. Linux VNC clients and servers are described in <xref linkend=\"sect.remote-login\" />."
 msgstr ""
-
