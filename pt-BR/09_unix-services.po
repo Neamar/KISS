@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:57\n"
-"PO-Revision-Date: 2012-07-31 14:33+0200\n"
-"Last-Translator: Francisco Aparecido da Silva <francisco@silva.eti.br>\n"
+"PO-Revision-Date: 2012-08-01 08:03+0200\n"
+"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -121,7 +121,8 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
-msgstr "Primeiro, a BIOS pega o controle sobre o computador, detectando discos, "
+msgstr ""
+"Primeiro, a BIOS pega o controle sobre o computador, detectando discos, "
 "carregando a <emphasis>Master Boot Record</emphasis>, e executa o "
 "bootloader. O bootloader assume, localiza o kernel no disco, carrega e o "
 "executa. O kernel é então inicializado e começa a pesquisa pela partição e  "
@@ -138,7 +139,7 @@ msgstr "Primeiro, a BIOS pega o controle sobre o computador, detectando discos, 
 "e módulos para a montagem de arrays RAID, abrindo partições criptografadas, "
 "ativando volumes LVM, etc. Uma vez que a partição raiz é montada,  o "
 "initramfs libera o controle para o init real, e a máquina voltará para o "
-"processo de boot padrão.\n"
+"processo de boot padrão."
 
 #. Tag: title
 #, no-c-format
@@ -237,7 +238,7 @@ msgstr "configuração da rede;"
 #. Tag: para
 #, no-c-format
 msgid "mounting network filesystems (NFS)."
-msgstr "mountando sistemas de arquivos em rede (NFS).\n"
+msgstr "mountando sistemas de arquivos em rede (NFS)."
 
 #. Tag: title
 #, no-c-format
@@ -257,7 +258,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>init</command></primary>"
-msgstr ""
+msgstr "<primary><command>init</command></primary>"
 
 #. Tag: para
 #, no-c-format
