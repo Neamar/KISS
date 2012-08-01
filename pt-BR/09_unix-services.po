@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:57\n"
-"PO-Revision-Date: 2012-08-01 08:03+0200\n"
-"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"PO-Revision-Date: 2012-08-01 18:10+0200\n"
+"Last-Translator: Francisco Aparecido da Silva <francisco@silva.eti.br>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -284,27 +284,47 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Finally, be aware that most BIOS have a generic password available. Initially intended for troubleshooting for those who have forgotten their password, these passwords are now public and available on the Internet (see for yourself by searching for “generic BIOS passwords” in a search engine). All of these protections will thus impede unauthorized access to the machine without being able to completely prevent it. There's no reliable way to protect a computer if the attacker can physically access it; they could dismount the hard drives to connect them to a computer under their own control anyway, or even steal the entire machine, or erase the BIOS memory to reset the password…"
-msgstr ""
+msgstr "Finalmente, esteja ciente que a maioria das BIOS tem uma senha genérica "
+"disponível. Inicialmente destinado a solução de problemas para aqueles que "
+"esqueceram sua senha, essas senhas são agora público e disponível na "
+"Internet (veja por si mesmo procurando por \"senhas genéricas\" do BIOS em um "
+"motor de busca). Todas estas proteções deverá impedir o acesso não "
+"autorizado para a máquina sem ser capaz de impedir completamente. Não há "
+"nenhuma maneira confiável para proteger um computador se o atacante pode "
+"acessar fisicamente ela, pois eles podem desmontar os discos rígidos para "
+"conectá-los a um computador sob seu próprio controle de qualquer maneira, ou "
+"até mesmo roubar a máquina inteira, ou apagar a memória do BIOS para "
+"redefinir a senha ...\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Kernel modules and options"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Kernel modules and options"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modules</primary><secondary>kernel modules</secondary>"
-msgstr ""
+msgstr "<primary>módulos</primary><secondary>módulos do kernel</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Kernel modules also have options that can be configured by putting some files in <filename>/etc/modprobe.d/</filename>. These options are defined with directives like this: <literal>options <replaceable>module-name</replaceable> <replaceable>option-name</replaceable>=<replaceable>option-value</replaceable></literal>. Several options can be specified with a single directive if necessary."
 msgstr ""
+"Os módulos do kernel também tem opções que podem ser configuradas colocando "
+"alguns arquivos em <filename>/etc/modprobe.d/ </filename>. Essas opções são "
+"definidas com as diretivas como esta: <literal>opções<replaceable>nome do "
+"módulo</replaceable><replaceable>nome da "
+"opção</replaceable>=<replaceable>valor da opção</replaceable> </literal>. "
+"Várias opções podem ser especificadas com uma única diretiva, se necessário."
 
 #. Tag: para
 #, no-c-format
 msgid "These configuration files are intended for <command>modprobe</command> — the program that loads a kernel module with its dependencies (modules can indeed call other modules). This program is provided by the <emphasis role=\"pkg\">module-init-tools</emphasis> package."
 msgstr ""
+"Estes arquivos de configuração são destinados para o <command> modprobe "
+"</command> - o programa que carrega um módulo do kernel com suas "
+"dependências (módulos podem realmente chamar outros módulos). Este programa "
+"é fornecido pelo pacote <emphasis role=\"pkg\">module-init-tools</emphasis>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -320,6 +340,26 @@ msgstr ""
 #, no-c-format
 msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started. In <emphasis role=\"distribution\">Squeeze</emphasis>, the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
 msgstr ""
+"Após este estágio, o <command>init</command> assume o controle e inicializa "
+"os programas habilitados no nível de execução padrão (que geralmente é no "
+"nível de execução 2). O comando <command>init</command> executa o "
+"<command>/etc/init.d/rc 2</command>, um script que inicia todos os serviços "
+"que estão listados em  <filename>/etc/rc2.d/</filename> e os quais tem o "
+"nome com a letra inicial \"S\". O número de duas casas que se segue tinha sido "
+"historicamente utilizado para definir a ordem em que os serviços teve de "
+"ser iniciado.  No <emphasis role=\"distribution\">Squeeze</emphasis>, o "
+"sistema de boot padrão usa <command>insserv</command>, o qual agenda "
+"automaticamente tudo, baseado nas dependencias dos scripts. Desta forma, "
+"Cada script de inicialização declara as condições que devem ser cumpridos "
+"para iniciar ou parar o serviço (por exemplo, se ele deve começar antes ou "
+"depois de outro serviço); <command>init</command> em seguida, lança-os na "
+"ordem que satisfaça estas condições. A numeração estática dos scripts, "
+"portanto, não são mais levados em consideração (mas eles sempre devem ter um "
+"nome começando por \"S\" seguido por dois digitos e o nome atual do script "
+"usado por suas dependências). Geralmente, serviços base (tal como registros "
+"com o <command>rsyslog</command>, ou numeração de portas com  "
+"<command>portmap</command>) são inicializados primeiro, seguidos por "
+"serviços padrões e a interface gráfica (<command>gdm</command>)."
 
 #. Tag: para
 #, no-c-format
