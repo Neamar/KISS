@@ -5,82 +5,95 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:57\n"
-"PO-Revision-Date: 2012-06-01T20:23:57\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
+"PO-Revision-Date: 2012-08-01 20:13+0200\n"
+"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"/debian-handbook/11_network-services/pt_BR/>\n"
+"Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 1.2\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Postfix"
-msgstr ""
+msgstr "Postfix"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Apache"
-msgstr ""
+msgstr "Apache"
 
 #. Tag: keyword
 #, no-c-format
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Samba"
-msgstr ""
+msgstr "Samba"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Squid"
-msgstr ""
+msgstr "Squid"
 
 #. Tag: keyword
 #, no-c-format
 msgid "OpenLDAP"
-msgstr ""
+msgstr "OpenLDAP"
 
 #. Tag: title
 #, no-c-format
 msgid "Network Services: Postfix, Apache, NFS, Samba, Squid, LDAP"
-msgstr ""
+msgstr "Serviços de Rede: Postfix, Apache, NFS, Samba, Squid, LDAP"
 
 #. Tag: para
 #, no-c-format
 msgid "Network services are the programs that users interact with directly in their daily work. They're the tip of the information system iceberg, and this chapter focuses on them; the hidden parts they rely on are the infrastructure we already described."
 msgstr ""
+"Serviços de rede são programas que os usuários interagem diretamente no seu "
+"dia-a-dia. Eles são a ponta do icebergue da informação, e este capítulo foca "
+"neles; as partes escondidas nas quais eles dependem são a infraestrutura "
+"que nós já descrevemos."
 
 #. Tag: title
 #, no-c-format
 msgid "Mail Server"
-msgstr ""
+msgstr "Servidor de Correio Eletrônico"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators selected Postfix for the electronic mail server, due to its reliability and its ease of configuration. Indeed, its design enforces that each task is implemented in a process with the minimum set of required permissions, which is a great mitigation measure against security problems."
 msgstr ""
+"Os administradores da Falcot Corp selecionaram o Postfiz como servidor de "
+"correio eletrônico, devido a sua confiabilidade e fácil configuração. De "
+"fato, seu projeto reforça que cada tarefa é implementada em um processo com "
+"um conjunto mínimo de permissões, que é uma medida de mitigação contra "
+"problemas de segurança."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mail</primary><secondary>electronic</secondary>"
-msgstr ""
+msgstr "<primary>correio</primary><secondary>eletrônico</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Postfix</primary>"
-msgstr ""
+msgstr "<primary>Postfix</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> The Exim4 server"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVA</emphasis> O servidor Exim4"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Exim</primary>"
-msgstr ""
+msgstr "<primary>Exim</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -100,7 +113,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Installing Postfix"
-msgstr ""
+msgstr "Instalando o Postfix"
 
 #. Tag: para
 #, no-c-format
@@ -110,22 +123,22 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> SMTP"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> SMTP"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SMTP</primary>"
-msgstr ""
+msgstr "<primary>SMTP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Simple Mail Transfer Protocol</primary>"
-msgstr ""
+msgstr "<primary>Protocolo Simples para Transferência de Correio</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>SMTP</secondary>"
-msgstr ""
+msgstr "<primary>server</primary><secondary>SMTP</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -145,12 +158,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> ISP"
-msgstr ""
+msgstr "<emphasis>VOCABULÁRIO</emphasis> ISP"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ISP, Internet Service Provider</primary>"
-msgstr ""
+msgstr "<primary>ISP, Provedor de Internet</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -170,12 +183,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>MX</secondary>"
-msgstr ""
+msgstr "<primary>servidor</primary><secondary>MX</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MX</primary><secondary>server</secondary>"
-msgstr ""
+msgstr "<primary>MX</primary><secondary>servidor</secondary>"
 
 #. Tag: title
 #, no-c-format
@@ -205,17 +218,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>procmail</command></primary>"
-msgstr ""
+msgstr "<primary><command>procmail</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>email</primary><secondary>filtering</secondary>"
-msgstr ""
+msgstr "<primary>e-mail</primary><secondary>filtrando</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>filtering email</primary>"
-msgstr ""
+msgstr "<primary>filtrando e-mails</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -284,17 +297,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring Virtual Domains"
-msgstr ""
+msgstr "Configurando Domínios Virtuais"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>domain</primary><secondary>virtual</secondary>"
-msgstr ""
+msgstr "<primary>domínio</primary><secondary>virtual</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual domain</primary>"
-msgstr ""
+msgstr "<primary>domínio virtual</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -304,7 +317,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Virtual domains and canonical domains"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> Domínios virtuais e domínios canônicos"
 
 #. Tag: para
 #, no-c-format
@@ -319,12 +332,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>alias</primary>"
-msgstr ""
+msgstr "<primary>aliás</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>alias</primary><secondary>virtual domain</secondary>"
-msgstr ""
+msgstr "<primary>aliás</primary><secondary>domínio virtual</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -3581,4 +3594,3 @@ msgstr ""
 #, no-c-format
 msgid "This chapter sampled only a fraction of the available server software; however, most of the common network services were described. Now it is time for an even more technical chapter: we'll go into deeper detail for some concepts, describe massive deployments and virtualization."
 msgstr ""
-

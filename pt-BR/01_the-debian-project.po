@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2012-07-31 14:56+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2012-08-02 20:07+0200\n"
+"Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/01_the-debian-project/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -420,7 +420,7 @@ msgstr ""
 "ramificações regionais"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>SPI</primary>"
 msgstr "<primary>SPI</primary>"
 
@@ -1252,12 +1252,13 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Debian has a database including all developers registered with the project, and their relevant information (address, telephone, geographical coordinates such as longitude and latitude, etc.). Some information (first and last name, country, username within the project, IRC username, GnuPG key, etc.) are public and available on the Web. <ulink type=\"block\" url=\"http://db.debian.org/\" />"
-msgstr "O Debian possui um banco de dados, incluindo todos os desenvolvedores "
+msgstr ""
+"O Debian possui um banco de dados, incluindo todos os desenvolvedores "
 "registrados com o projeto, e suas informações relevantes (endereço, "
 "telefone, coordenadas geográficas, como longitude e latitude, etc.) Algumas "
 "informações (nome e sobrenome, país, nome de usuário dentro do projeto, IRC "
 "username, a chave GnuPG, etc) são públicos e disponíveis na web. <ulink "
-"type=\"block\" url=\"http://db.debian.org/\" />\n"
+"type=\"block\" url=\"http://db.debian.org/\" />"
 
 #. Tag: para
 #, no-c-format
@@ -1422,1200 +1423,1917 @@ msgstr "<primary><filename>NEWS.Debian.gz</filename></primary>"
 #, no-c-format
 msgid "Documentation for each package is stored in <filename>/usr/share/doc/<replaceable>package</replaceable>/</filename>. This directory often contains a <filename>README.Debian</filename> file describing the Debian specific adjustments made by the package maintainer. It is, thus, wise to read this file prior to any configuration, in order to benefit from their experience. We also find a <filename>changelog.Debian.gz</filename> file describing the changes made from one version to the next by the Debian maintainer. This is not to be confused with the <filename>changelog.gz</filename> file (or equivalent), which describes the changes made by the upstream developers. The <filename>copyright</filename> file includes information about the authors and the license covering the software. Finally, we may also find a file named <filename>NEWS.Debian.gz</filename>, which allows the Debian developer to communicate important information regarding updates (if <emphasis>apt-listchanges</emphasis> is used, the messages are automatically shown by apt). All other files are specific to the software in question. We especially like to point out the <filename>examples</filename> sub-directory, which frequently contains examples of configuration files."
 msgstr ""
+"Documentação de cada pacote é armazenado em <filename> / usr / share / doc / "
+"<replaceable> pacote </ replaceable> / </ filename>. Este diretório "
+"normalmente contém um arquivo <filename> README.Debian </ filename> que "
+"descreve os ajustes específicos do Debian feitas pelo mantenedor do pacote. "
+"É, portanto, aconselhável ler este arquivo antes de qualquer configuração, a "
+"fim de beneficiar da sua experiência. Também encontramos um aquivo "
+"<filename> changelog.Debian.gz </ filename> que descreve as mudanças feitas "
+"a partir de uma versão para a próxima pelo mantenedor do Debian. Isto não é "
+"para ser confundido com o arquivo <filename>changelog.gz </ filename> (ou "
+"equivalente), que descreve as mudanças feitas pelos desenvolvedores "
+"originais. Os <filename>direitos autorais </ filename> incluem informações "
+"sobre os autores e cobrindo a licença do software. Finalmente, podemos "
+"também encontrar um arquivo chamado <filename> NEWS.Debian.gz </ filename>, "
+"que permite que o desenvolvedor Debian comunicar informações importantes a "
+"respeito de atualizações (se <emphasis> apt-listchanges </ emphasis> é "
+"utilizado, as mensagens são mostradas automaticamente pelo apt). Todos os "
+"outros arquivos são específicos para o software em questão. Gostamos "
+"especialmente de salientar o subdiretório <filename> examples </ filename> , "
+"que freqüentemente contém exemplos de arquivos de configuração."
 
 #. Tag: para
 #, no-c-format
 msgid "The Policy covers very well the technical aspects of packaging. The size of the project also raises organizational problems; these are dealt with by the Debian Constitution, which establishes a structure and means for decision making."
 msgstr ""
+"A política cobre muito bem os aspectos técnicos do empacotamento. O tamanho "
+"do projeto também levanta problemas de organização, estes são tratados pela "
+"Constituição Debian, que estabelece uma estrutura e meios para tomada de "
+"decisão."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>constitution</primary>"
-msgstr ""
+msgstr "<primary>constituição</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian Project Leader</primary>"
-msgstr ""
+msgstr "<primary>Líder de Projeto Debian</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DPL</primary>"
-msgstr ""
+msgstr "<primary>DPL</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>leader</primary><secondary>role</secondary>"
-msgstr ""
+msgstr "<primary>líder</primary><secondary>papel</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>leader</primary><secondary>election</secondary>"
-msgstr ""
+msgstr "<primary>líder</primary><secondary>eleição</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This constitution defines a certain number of roles and positions, plus responsibilities and authorities for each. It is particularly worth noting that Debian developers always have ultimate decision making authority by a vote of general resolution, wherein a qualified majority of three quarters (75%) of votes is required for significant alterations to be made (such as those with an impact on the Foundation Documents). However, developers annually elect a “leader” to represent them in meetings, and ensure internal coordination between varying teams. This election is always a period of intense discussions. This leader's role is not formally defined by any document: candidates for this post usually propose their own definition of the position. In practice, the leader's roles include serving as a representative to the media, coordinating between “internal” teams, and providing overall guidance to the project, within which the developers can relate: the views of the DPL are implicitly approved by the majority of project members."
 msgstr ""
+"Esta constituição define um certo número de papéis e posições, além de "
+"responsabilidades e autoridades para cada um. É particularmente interessante "
+"notar que os desenvolvedores do Debian sempre tem a decisão definitiva "
+"tomada autoridade por uma votação de resolução geral, em que uma maioria "
+"qualificada de três quartos (75%) de votos é necessária para as alterações "
+"significativas a serem feitas (como aquelas com um impacto sobre os "
+"Documentos de Fundação). No entanto, os desenvolvedores anualmente elegem um "
+"\"líder\" para representá-los em reuniões, e assegurar a coordenação interna "
+"entre equipes diferentes. Esta eleição é sempre um período de intensas "
+"discussões. Este papel do líder não é formalmente definido por qualquer "
+"documento: os candidatos para esse posto normalmente propõe sua própria "
+"definição da posição. Na prática, os papéis do líder incluem servir como um "
+"representante para os meios de comunicação, de coordenação entre equipes "
+"\"interno\" , e fornecer orientação geral para o projeto, dentro do qual os "
+"desenvolvedores podem se relacionar: as opiniões do DPL são implicitamente "
+"aprovado pela maioria dos membros do projeto ."
 
 #. Tag: para
 #, no-c-format
 msgid "Specifically, the leader has real authority; his vote resolves tie votes; he can make any decision which is not already under the authority of someone else and can delegate part of his responsibilities."
 msgstr ""
+"Especificamente, o líder tem autoridade real; seu voto resolve votações "
+"empatadas, ele pode tomar qualquer decisão que não esteja sob a autoridade "
+"de alguém e pode delegar parte das suas responsabilidades."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Jackson, Ian</primary>"
-msgstr ""
+msgstr "<primary>Jackson, Ian</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Akkerman, Wichert</primary>"
-msgstr ""
+msgstr "<primary>Akkerman, Wichert</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Collins, Ben</primary>"
-msgstr ""
+msgstr "<primary>Collins, Ben</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Garbee, Bdale</primary>"
-msgstr ""
+msgstr "<primary>Garbee, Bdale</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Michlmayr, Martin</primary>"
-msgstr ""
+msgstr "<primary>Michlmayr, Martin</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Robinson, Branden</primary>"
-msgstr ""
+msgstr "<primary>Robinson, Branden</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Towns, Anthony</primary>"
-msgstr ""
+msgstr "<primary>Towns, Anthony</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Hocevar, Sam</primary>"
-msgstr ""
+msgstr "<primary>Hocevar, Sam</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>McIntyre, Steve</primary>"
-msgstr ""
+msgstr "<primary>McIntyre, Steve</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Zacchiroli, Stefano</primary>"
-msgstr ""
+msgstr "<primary>Zacchiroli, Stefano</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Since its inception, the project has been successively led by Ian Murdock, Bruce Perens, Ian Jackson, Wichert Akkerman, Ben Collins, Bdale Garbee, Martin Michlmayr, Branden Robinson, Anthony Towns, Sam Hocevar, Steve McIntyre and Stefano Zacchiroli."
 msgstr ""
+"Desde a sua criação, o projeto foi sucessivamente liderado por Ian Murdock, "
+"Bruce Perens, Ian Jackson, Wichert Akkerman, Ben Collins, Bdale Garbee, "
+"Martin Michlmayr, Branden Robinson, Anthony Towns, Sam Hocevar, Steve "
+"McIntyre and Stefano Zacchiroli."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>technical committee</primary>"
-msgstr ""
+msgstr "<primary>comitê técnico</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The constitution also defines a “technical committee”. This committee's essential role is to decide on technical matters when the developers involved have not reached an agreement between themselves. Otherwise, this committee plays an advisory role for any developer who fails to make a decision for which they are responsible. It is important to note that they only get involved when invited to do so by one of the parties in question."
 msgstr ""
+"A Constituição também define uma \"comissão técnica\". O papel essencial desta "
+"comissão é o de decidir sobre questões técnicas, quando os desenvolvedores "
+"envolvidos não chegaram a um acordo entre si. Caso contrário, esta comissão "
+"tem um papel consultivo para qualquer desenvolvedor que não consegue tomar "
+"uma decisão para os quais são responsáveis. É importante notar que eles só "
+"se envolvem quando convidados a fazê-lo por uma das partes em questão."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>the project secretary</primary>"
-msgstr ""
+msgstr "<primary>secretário de projeto</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the constitution defines the position of “project secretary”, who is in charge of the organization of votes related to the various elections and general resolutions."
 msgstr ""
+"Finalmente, a Constituição define a posição de \" secretário de projeto\", que "
+"é responsável pela organização dos votos relacionados às várias eleições e "
+"resoluções gerais."
 
 #. Tag: para
 #, no-c-format
 msgid "The “general resolution” procedure is fully detailed in the constitution, from the initial discussion period to the final counting of votes. For further details see: <ulink type=\"block\" url=\"http://www.debian.org/devel/constitution.en.html\" />"
 msgstr ""
+"O \"resolução geral \" é o processo totalmente detalhado na Constituição, a "
+"partir do período de discussão inicial à contagem final de votos. Para mais "
+"detalhes ver: <ulink type=\"block\" "
+"url=\"http://www.debian.org/devel/constitution.en.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>general resolution</primary>"
 msgstr ""
+"A \"resolução geral \" é o processo totalmente detalhado na Constituição, a "
+"partir do período de discussão inicial à contagem final de votos. Para mais "
+"detalhes ver: <ulink type=\"block\" "
+"url=\"http://www.debian.org/devel/constitution.en.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>vote</primary>"
-msgstr ""
+msgstr "<primary>voto</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Flamewar, discussion that catches fire"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> Flamewar, discussão que incendeia"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>flamewar</primary>"
-msgstr ""
+msgstr "<primary>flamewar</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>heated debate</primary>"
-msgstr ""
+msgstr "<primary>debate aquecido</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A “flamewar” is an exceedingly impassioned debate, which frequently ends up with people attacking each other once all reasonable argumentation has been exhausted on both sides. Certain themes are more frequently subject to polemics than others (for example, the choice of text editor, “do you prefer <command>vi</command> or <command>emacs</command>?”). The matters often provoke very rapid e-mail exchanges due to the sheer number of people with an opinion on the matter (everyone) and the very personal nature of such questions."
 msgstr ""
+"A \"flamewar\" é um debate extremamente ardoroso, que muitas vezes acaba com "
+"pessoas atacando umas as outras uma vez que toda a argumentação razoável "
+"tenha sido esgotada em ambos os lados. Alguns temas são mais frequentemente "
+"sujeitos a polêmica do que outros (por exemplo, a escolha do editor de "
+"texto, \"você prefere <command> vi </ command> ou <command> emacs </ "
+"command>?\"). As questões muitas vezes provocam trocas de emails extremamente "
+"rápidas devido ao grande número de pessoas com uma opinião sobre o assunto "
+"(todas) e da natureza muito pessoal de tais questões."
 
 #. Tag: para
 #, no-c-format
 msgid "Nothing particularly useful generally comes from such discussions; stay out of such debates, and rapidly skim through their content. Full reading would be too time-consuming."
 msgstr ""
+"Nada de particularmente útil geralmente vem de tais discussões, fique fora "
+"de tais debates, e rapidamente percorra seu conteúdo. A leitura integral "
+"seria muito demorada."
 
 #. Tag: para
 #, no-c-format
 msgid "Even if this constitution establishes a semblance of democracy, the daily reality is quite different: Debian naturally follows the free software rules of the do-ocracy: it's the one who does, who gets to decide. A lot of time can be wasted debating the respective merits of various ways to approach a problem; the chosen solution will be the first functional and satisfying one... honoring the time that a competent person did put into it."
 msgstr ""
+"Mesmo se Esta Constituição estabelece uma aparência de democracia, a "
+"realidade cotidiana é muito diferente: O Debian naturalmente segue as regras "
+"de meritocracia do software livre: é aquele que faz, quem decide. Um monte "
+"de tempo pode ser desperdiçado debatendo os méritos de várias formas de "
+"abordar um problema, a solução escolhida será a primeira funcional e "
+"satisfatória ... honrando o tempo que uma pessoa competente colocou nele."
 
 #. Tag: para
 #, no-c-format
 msgid "This is the only way to earns one's stripes: do something useful and show that one has worked well. Many Debian “administrative” teams operate by appointment, preferring volunteers who have already effectively contributed and proved their competence. This method is practical, because the most of the work these teams do is public, therefore, accessible to any interested developer. This is why Debian is often described as a “meritocracy”."
 msgstr ""
+"Esta é a única maneira de receber as listras : fazer algo de útil e mostrar "
+"que se tem funcionado bem. Muitos equipes \"administrativas\" Debian operam "
+"por nomeação, preferindo voluntários que já efetivamente contribuíram e "
+"provaram sua competência. Este método é prático, porque a maior parte do "
+"trabalho feito por essas equipes é público, portanto, acessível a qualquer "
+"desenvolvedor interessado. É por isso que o Debian é frequentemente descrito "
+"como uma \"meritocracia\"."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Meritocracy, the reign of knowledge"
-msgstr ""
+msgstr "<emphasis>CULTURA/emphasis> Meritocracia, o reino do conhecimento"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>meritocracy</primary>"
-msgstr ""
+msgstr "<primary>meritocracia</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Meritocracy is a form of government in which authority is exercised by those with the greatest merit. For Debian, merit is a measure of competence, which is, itself, assessed by observation of past actions by one or more others within the project (Stefano Zacchiroli, the current project leader, speaks of “do-ocracy”, meaning “power to those who get things done”). Their simple existence proves a certain level of competence; their achievements generally being free software, with available source code, which can easily be reviewed by peers to assess their quality."
 msgstr ""
+"A meritocracia é uma forma de governo em que autoridade é exercida por "
+"aqueles com o maior mérito. Para o Debian, o mérito é uma medida de "
+"competência, que é, em si, avaliado pela observação das ações passadas por "
+"um ou mais dentro do projeto (Stefano Zacchiroli, o líder do projeto atual, "
+"fala de \"do-ocracy \", que significa \"poder para aqueles que fazem as coisas "
+"acontecerem \"). Sua simples existência demonstra um certo nível de "
+"competência; suas realizações sendo geralmente da existência de um software "
+"livre, com código fonte disponível, que pode facilmente ser revisto pelos "
+"seus pares para avaliar sua qualidade."
 
 #. Tag: para
 #, no-c-format
 msgid "This effective operational method guarantees the quality of contributors in the “key” Debian teams. This method is by no means perfect and occasionally there are those who do not accept this way of operating. The selection of developers accepted in the teams may appear a bit arbitrary, or even unfair. Furthermore, not everybody has the same definition of the service expected from these teams. For some, it is unacceptable to have to wait eight days for inclusion of a new Debian package, while others will wait patiently for three weeks without a problem. As such, there are regular complaints from the disgruntled about the “quality of service” from some teams."
 msgstr ""
+"Este efetivo método operacional garante a qualidade dos contribuintes "
+"\"chave\" Debian do Debian. Este método é de forma alguma perfeita e, "
+"ocasionalmente, há aqueles que não aceitam esta forma de operar. A seleção "
+"dos desenvolvedores aceitos nas equipes pode parecer um pouco arbitrária, ou "
+"mesmo injusta. Além disso, nem todo mundo tem a mesma definição do serviço "
+"esperado das equipes. Para alguns, é inaceitável ter que esperar oito dias "
+"para a inclusão de um pacote novo, enquanto outros vão esperar pacientemente "
+"por três semanas sem nenhum problema. Como tal, há queixas regulares a "
+"partir de descontentes com a \"qualidade de serviço\" de algumas equipes."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> Integration of new maintainers"
-msgstr ""
+msgstr "<emphasis>COMUNIDADE</emphasis> Integração de novos mantenedores"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>maintainer</primary><secondary>new maintainer</secondary>"
-msgstr ""
+msgstr "<primary>mantenedor</primary><secondary>novo mantenedor</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The team in charge of admitting new developers is the most regularly criticized. One must acknowledge that, throughout the years, the Debian project has become more and more demanding of the developers that it will accept. Some people may see some injustice in that, but we must confess that, what were only little challenges at the beginning have become much greater in a community of over 1,000 people, when it comes to ensuring the quality and integrity of everything that Debian produces for its users."
 msgstr ""
+"A equipe responsável pela admissão de novos desenvolvedores é a mais "
+"regularmente criticada. É preciso reconhecer que, ao longo dos anos, o "
+"projeto se tornou cada vez mais exigente dos desenvolvedores que aceita. "
+"Algumas pessoas podem ver alguma injustiça nisso, mas devemos confessar que, "
+"o que eram apenas pequenos desafios no início tornaram-se muito maiores em "
+"uma comunidade de mais de 1.000 pessoas, quando se trata de garantir a "
+"qualidade e integridade de tudo o que o Debian produz para seus usuários."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DAM</primary>"
-msgstr ""
+msgstr "<primary>DAM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian Account Managers</primary>"
-msgstr ""
+msgstr "<primary>Debian Account Managers</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Furthermore, the acceptance procedure is concluded by review of the candidacy by a small team, the Debian Account Managers. These managers are, thus, particularly exposed to criticism, since they have final say in the inclusion or rejection of a volunteer within the Debian developers community. In practice, sometimes they must delay the acceptance of a person until they have learned more about the operations of the project. One can, of course, contribute to Debian before being accepted as an official developer, by being sponsored by current developers."
 msgstr ""
+"Além disso, o processo de aceitação, conclui-se pela revisão da candidatura "
+"por uma equipe pequena, os Gerentes de Contas Debian (Debian Account "
+"Managers). Esses gerentes são, portanto, particularmente expostos à crítica, "
+"uma vez que tem a palavra final sobre a inclusão ou rejeição de um "
+"voluntário dentro da comunidade de desenvolvedores Debian. Na prática, às "
+"vezes, devem adiar a aceitação de uma pessoa até que tenha aprendido mais "
+"sobre as operações do projeto. Pode-se, naturalmente, contribuir para o "
+"Debian antes de ser aceito como um desenvolvedor oficial, por ter sido "
+"indicado por desenvolvedores atuais."
 
 #. Tag: title
 #, no-c-format
 msgid "The Active Role of Users"
-msgstr ""
+msgstr "The Papel Ativo dos Usuários"
 
 #. Tag: para
 #, no-c-format
 msgid "Is it relevant to mention the users among those who work within the Debian project? Yes: they play a critical role in the project. Far from being “passive”, some of our users run development versions of Debian and regularly file bug reports to indicate problems. Others go even further and submit improvements ideas, by filing a bug report with a severity level of “wishlist”, or even submit corrections to the source code, called “patches” (see sidebar <xref linkend=\"cadre.patch\" />)."
 msgstr ""
+"É relevante mencionar os usuários entre aqueles que trabalham dentro do "
+"projeto Debian? Sim: eles desempenham um papel fundamental no projeto. Longe "
+"de ser \"passivos\", alguns de nossos usuários executam versões de "
+"desenvolvimento do Debian e regularmente apresentam relatórios de bugs para "
+"indicar problemas. Outros vão ainda mais longe e apresentam idéias de "
+"melhorias, mediante a apresentação de um relatório de bug com um nível de "
+"gravidade \"wishlist\", ou mesmo apresentam correções no código fonte, "
+"chamadas de \"Patches\" (veja o quadro <xref linkend=\"cadre.patch\" /> )."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Bug tracking system"
-msgstr ""
+msgstr "<emphasis>FERRAMENTA</emphasis> Bug tracking system"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>system</primary><secondary>Bug Tracking System</secondary>"
-msgstr ""
+msgstr "<primary>system</primary><secondary>Bug Tracking System</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>BTS</primary>"
-msgstr ""
+msgstr "<primary>BTS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Bug Tracking System</primary>"
-msgstr ""
+msgstr "<primary>Bug Tracking System</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>bugs.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>bugs.debian.org</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian Bug Tracking System (Debian BTS) envelopes the project. The public part of the web interface allows users to view all bugs reported, with the option to display a sorted list of bugs selected according to various criteria, such as: affected package, severity, status, address of the reporter, address of the maintainer in charge of it, tag, etc. It is also possible to browse the complete historical listing of all discussions regarding each of the bugs."
 msgstr ""
+"O Sistema de Acompanhamento de Bugs (BTS) participa do projeto. A parte "
+"pública da interface web permite aos usuários visualizar todos os bugs "
+"reportados, com a opção para exibir uma lista ordenada de erros selecionados "
+"de acordo com vários critérios, tais como: pacote afetado, gravidade, "
+"estado, endereço do repórter, o endereço do mantenedor no comando de tudo, "
+"tag, etc também é possível navegar pela lista completa do histórico de todas "
+"as discussões sobre cada um dos bugs."
 
 #. Tag: para
 #, no-c-format
 msgid "Below the surface, the Debian BTS communicates via e-mail: all information that it stores come from messages sent by the various persons involved. Any e-mail sent to <email>12345@bugs.debian.org</email> will, thus, be assigned to the history for bug no. 12345. Authorized persons may “close” a bug by writing a message describing the reasons for the decision to close to <email>12345-done@bugs.debian.org</email> (a bug is closed when the indicated problem is resolved or no longer relevant). A new bug is reported by sending an e-mail to <email>submit@bugs.debian.org</email> according to a specific format which identifies the package in question. The address <email>control@bugs.debian.org</email> allows editing of all the “meta-information” related to a bug."
 msgstr ""
+"Sutilmente, a BTS Debian comunica via e-mail: todas as informações que "
+"armazena vêm de mensagens enviadas pelas pessoas envolvidas. Qualquer e-mail "
+"enviado para <email> 12345@bugs.debian.org </ email> irá, portanto, ser "
+"atribuída à história de bug número. 12345. Pessoas autorizadas podem "
+"\"fechar\" um erro ao escrever uma mensagem descrevendo as razões para a "
+"decisão de fechar o <email> 12345-done@bugs.debian.org </ email> (um bug é "
+"fechado quando o problema indicado foi resolvido ou não é mais relevante). "
+"Um novo bug é relatada através do envio de um e-mail para <email> "
+"submit@bugs.debian.org </ email> de acordo com um formato específico que "
+"identifica o pacote em questão. O endereço <email> control@bugs.debian.org "
+"</ email> permite a edição de todos as \"meta-informação\" relacionado a um "
+"bug."
 
 #. Tag: para
 #, no-c-format
 msgid "Debian BTS has other functional features, as well, such as the use of tags for labeling bugs. For more information, see <ulink type=\"block\" url=\"http://www.debian.org/Bugs/\" />"
 msgstr ""
+"O BTS Debian tem outras características funcionais, tais como o uso de tags "
+"para erros de rotulagem. Para mais informações, consulte <ulink type=\"block\" "
+"url=\"http://www.debian.org/Bugs/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Severity of a bug"
-msgstr ""
+msgstr "<emphasis>VOCABULÁRIO</emphasis> Severidade de um bug"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>severity</primary>"
-msgstr ""
+msgstr "<primary>severidade</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bug</primary><secondary>severity</secondary>"
-msgstr ""
+msgstr "<primary>bug</primary><secondary>severidade</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The severity of a bug formally assigns a degree of gravity to the problem indicated. Effectively, not all bugs have the same importance; for instance, a typing error in a man page is not comparable to a security vulnerability in server software."
 msgstr ""
+"A severidade de um bug formalmente atribui um grau de severidade para o "
+"problema indicado. Efetivamente, nem todos os bugs têm a mesma importância, "
+"por exemplo, um erro de digitação em uma página de alguém não é comparável a "
+"uma vulnerabilidade de segurança no software do servidor."
 
 #. Tag: para
 #, no-c-format
 msgid "Debian uses an extended severity scale to precisely indicate the severity of a bug. Each level is defined precisely in order to facilitate the selection thereof. <ulink type=\"block\" url=\"http://www.debian.org/Bugs/Developer#severities\" />"
 msgstr ""
+"O Debian usa uma escala de severidade estendida para indicar com precisão a "
+"severidade de um bug. Cada nível é definido com precisão, a fim de facilitar "
+"a seleção dos mesmos. <ulink type=\"block\" "
+"url=\"http://www.debian.org/Bugs/Developer#severities\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Additionally, numerous satisfied users of the service offered by Debian like to make a contribution of their own to the project. As not everyone has appropriate levels of expertise in programming, they choose, perhaps, to assist with the translation and review of documentation. There are language-specific mailing lists for various languages. For French, for instance, it is <email>debian-l10n-french@lists.debian.org</email>. <ulink type=\"block\" url=\"http://www.debian.org/intl/french/\" />"
 msgstr ""
+"Além disso, inúmeros usuários satisfeitos serviço oferecido pelo Debian "
+"gostariam de fazer uma contribuição própria para o projeto. Como nem todo "
+"mundo tem níveis apropriados de experiência em programação, eles escolhem, "
+"talvez, ajudar com a tradução e revisão de documentação. Há listas de "
+"discussão específicos de idioma para vários idiomas. Para francês, por "
+"exemplo, é <email> debian-l10n-french@lists.debian.org </ email>. <ulink "
+"type=\"block\" url=\"http://www.debian.org/intl/french/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> What are i18n and l10n?"
-msgstr ""
+msgstr "<emphasis>VOLTA PARA O BÁSICO</emphasis> O que são i18n e l10n?"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>internationalization</primary>"
-msgstr ""
+msgstr "<primary>internaciolização</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>localization</primary>"
-msgstr ""
+msgstr "<primary>localização</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>i18n</primary>"
-msgstr ""
+msgstr "<primary>i18n</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>l10n</primary>"
-msgstr ""
+msgstr "<primary>l10n</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "“i18n” and “l10n” are the abbreviations for the words “internationalization” and “localization”, respectively, preserving the initial and last letter of each word, and the number of letters in the middle."
 msgstr ""
+"\"I18n\" e \"l10n\" são as abreviaturas (em inglês) para as palavras "
+"\"internacionalização\" e \"regionalização\", respectivamente, preservando a "
+"letra inicial e final de cada palavra, e o número de letras no meio."
 
 #. Tag: para
 #, no-c-format
 msgid "To “internationalize” a program consists of modifying it so that it can be translated (localized). This involves partially rewriting a program initially written to work in one language in order to be able to open it to all languages."
 msgstr ""
+"\"Internacionalizar\" um programa consiste em modificá-lo para que ele possa "
+"ser traduzido (regionalizado). Isso envolve reescrever parcialmente um "
+"programa inicialmente escrito para trabalhar em uma língua, a fim de ser "
+"capaz de abri-lo para todos os idiomas."
 
 #. Tag: para
 #, no-c-format
 msgid "To “localize” a program consists of translating the original messages (frequently in English) to another language. For this, it must have already been internationalized."
 msgstr ""
+"\"Regionalizar\" um programa consiste em traduzir as mensagens originais "
+"(frequentemente em Inglês) para outro idioma. Para isso, já deve ter sido "
+"internacionalizado."
 
 #. Tag: para
 #, no-c-format
 msgid "In summary, internationalization prepares the software for translation, which is then executed by localization."
 msgstr ""
+"Em resumo, a internacionalização prepara o software para a tradução, que é "
+"então executada pela regionalização."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Patch, how to send a fix"
-msgstr ""
+msgstr "<emphasis>VOLTA PARA O BÁSICO</emphasis> como enviar uma correção"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>patch</command></primary>"
-msgstr ""
+msgstr "<primary><command>patch</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>patch</primary>"
-msgstr ""
+msgstr "<primary>patch</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>diff</command></primary>"
-msgstr ""
+msgstr "<primary><command>diff</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A patch is a file describing changes to be made to one or more reference files. Specifically, it will contain a list of lines to be removed or added to the code, as well as (sometimes) lines taken from the reference text, replacing the modifications in context (they allow identification of the placement of the changes if the line numbers have been changed)."
 msgstr ""
+"Um patch é um arquivo que descreve mudanças a serem feitas a um ou mais "
+"arquivos de referência. Especificamente, ele irá conter uma lista de linhas "
+"a serem removidos ou adicionado ao código, bem como (por vezes) linhas "
+"tomadas a partir do texto de referência, substituindo as modificações no "
+"contexto (que permitem identificar o posicionamento das alterações, se os "
+"números de linha foram alterados)."
 
 #. Tag: para
 #, no-c-format
 msgid "The tool used for applying the modifications given in such a file is simply called <command>patch</command>. The tool that creates it is called <command>diff</command>, and is used as follows:"
 msgstr ""
+"O instrumento utilizado para aplicar as modificações dadas em tal arquivo é "
+"simplesmente chamado de  <command> patch</ command>. A ferramenta que o cria "
+"é chamado <command> dif <comando />, e é utilizado como se segue:"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new &gt;file.patch</userinput>\n"
 ""
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new "
+"&gt;file.patch</userinput>↵"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>file.patch</filename> file contains the instructions for changing the content of <filename>file.old</filename> into <filename>file.new</filename>. We can send it to someone, who can then use it to recreate <filename>file.new</filename> from the two others, like this:"
 msgstr ""
+"O arquivo <filename> file.patch </ filename> contém as instruções para "
+"alterar o conteúdo do <filename> file.old </ filename> em <filename> "
+"File.new </ filename>. Podemos enviá-lo para alguém, que pode usá-lo para "
+"recriar <filename> File.new </ filename> a partir dos outros dois, como "
+"este:"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old &lt;file.patch</userinput>\n"
 ""
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old "
+"&lt;file.patch</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The file, <filename>file.old</filename>, is now identical to <filename>file.new</filename>."
 msgstr ""
+"O arquivo, <filename> file.old </ filename>, é agora idêntico ao <filename> "
+"File.new </ filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Report a bug with <command>reportbug</command>"
 msgstr ""
+"<emphasis> FERRAMENTA </ emphasis> Assinalar um bug com <command> reportbug "
+"</ command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>reportbug</command></primary>"
-msgstr ""
+msgstr "<primary><command>reportbug</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bug</primary><secondary>report a bug</secondary>"
-msgstr ""
+msgstr "<primary>bug</primary><secondary>relatar um bug</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>report a bug</primary>"
-msgstr "<primary>reportar um bug</primary>"
+msgstr "<primary>relatar um bug</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>reportbug</command> tool facilitates sending bug reports on a Debian package. It can check to make sure the bug in question hasn't already been filed, thus prevent redundancy in the system. It reminds the user of the definitions of the severity levels, for reporting to be as accurate as possible (the developer can always fine-tune these parameters later, if needed). It helps to write a complete bug report without the user needing to know the precise syntax, by writing it and allowing the user to edit it. This report will then be sent via an e-mail server (local, by default, but <command>reportbug</command> can also use a remote server)."
 msgstr ""
+"A ferramenta <command> reportbug </ command> facilita o envio de relatórios "
+"de bugs em um pacote Debian. Pode verificar para garantir que o bug em "
+"questão já não tenha sido arquivado, e assim, evitar redundância no sistema. "
+"Ela lembra o usuário da definição dos níveis de gravidade, para a "
+"comunicação ser tão precisa quanto possível (o desenvolvedor pode sempre "
+"afinar esses parâmetros mais tarde, se necessário). Ela ajuda a escrever um "
+"relatório de bug completo sem que o usuário precise conhecer a sintaxe "
+"precisa, escrevendo-o e permitindo que o usuário possa editá-lo. Este "
+"relatório será enviado através de um servidor de e-mail (local, por padrão, "
+"mas <command> reportbug </ command> também pode usar um servidor remoto)."
 
 #. Tag: para
 #, no-c-format
 msgid "This tool first targets the development versions, only concerned with the resolution of bugs. A stable version of Debian is, in effect, written in stone, with the exception of security updates or other important updates (if, for example, a package is not working at all). A correction of a minor bug in a Debian package must, thus, wait for the next stable version."
 msgstr ""
+"Esta ferramenta tem como primeiro alvo as versões de desenvolvimento, onde "
+"só se preocupa com a resolução de bugs. A versão estável do Debian é, de "
+"fato, escrita firmemente, com a exceção das atualizações de segurança ou "
+"outras atualizações importantes (se, por exemplo, um pacote não está "
+"funcionando em todos). A correção de um pequeno bug em um pacote Debian "
+"deve, portanto, esperar pela a próxima versão estável."
 
 #. Tag: para
 #, no-c-format
 msgid "All of these mechanisms are accentuated by user behavior. Far from being isolated, they are a true community within which numerous exchanges take place. We especially note that impressive activity on the user discussion mailing list, <email>debian-user@lists.debian.org</email> (<xref linkend=\"solving-problems\" /> discusses this in greater detail)."
 msgstr ""
+"Todos esses mecanismos são acentuadas pelo comportamento dos usuários. Longe "
+"de serem isolados, são uma verdadeira comunidade em que numerosas trocas "
+"acontecem. Nós observarmos principalmente a impressionante atividade na "
+"lista de discussão do usuário , <email> debian-user@lists.debian.org </ "
+"email> (<xref linkend=\"solving-problems\" /> discute isso em maior detalhe)."
 
 #. Tag: para
 #, no-c-format
 msgid "Not only do users help themselves on technical issues that directly affect them, but they also discuss the best ways to contribute to the Debian project and help it move forward — discussions that frequently result in suggestions for improvements."
 msgstr ""
+"Não só os usuários se ajudam em questões técnicas que afetam diretamente a "
+"eles, mas também discutem as melhores formas de contribuir para o projeto "
+"Debian e ajudá-lo a avançar - discussões que muitas vezes resultam em "
+"sugestões de melhorias."
 
 #. Tag: para
 #, no-c-format
 msgid "Since Debian does not expend funds on any self-promoting marketing campaigns, its users play an essential role in its diffusion, ensuring its notoriety via word-of-mouth."
 msgstr ""
+"Já que o Debian não gasta fundos em todas as campanhas de auto-promoção de "
+"marketing, seus usuários têm um papel essencial na sua difusão, assegurando "
+"a sua notoriedade através da propaganda boca a boca."
 
 #. Tag: para
 #, no-c-format
 msgid "This method functions quite well, since Debian fans are found at all levels of the free software community: from install parties (workshops where seasoned users assist newcomers to install the system) organized by local LUGs or “Linux User Groups”, to association booths at large tech conventions dealing with Linux, etc."
 msgstr ""
+"Este método funciona muito bem, uma vez que fãs do Debian são encontrados em "
+"todos os níveis da comunidade de software livre: a partir de festas de "
+"instalação (oficinas onde os usuários experientes ajudam os recém-chegados "
+"para instalar o sistema) organizados por LUGs locais ou Grupos de Usuários "
+"de Linux (Linux User Groups)\", para estandes de associação em grandes "
+"convenções que lidam com tecnologias como o Linux, etc"
 
 #. Tag: para
 #, no-c-format
 msgid "Volunteers make posters, brochures, and other useful promotional materials for the project, which they make available to everyone, and which Debian provides freely on its website: <ulink type=\"block\" url=\"http://www.debian.org/events/material\" />"
 msgstr ""
+"Voluntários fazem cartazes, brochuras e outros materiais promocionais úteis "
+"para o projeto, que colocam à disposição de todos, e que o Debian oferece "
+"gratuitamente em seu website: <ulink tipo = \"block\" url = "
+"\"http://www.debian.org / Eventos / materiais \"/><ulink type=\"block\" "
+"url=\"http://www.debian.org/events/material\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Teams and Sub-Projects"
-msgstr ""
+msgstr "Equipes e Sub-Projetos"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian is organized immediately around the concept of source packages, each with its maintainer or group of maintainers. Numerous work teams have slowly appeared, ensuring administration of the infrastructure, management of tasks not specific to any package in particular (quality assurance, Debian Policy, installer, etc.), with the latest teams growing up around sub-projects."
 msgstr ""
+"Debian é organizado inicialmente em torno do conceito dos pacotes de código "
+"fonte, cada um com seu mantenedor ou grupo de mantenedores. Numerosas "
+"equipes de trabalho lentamente apareceram, garantindo a administração da "
+"infra-estrutura, gestão de tarefas não específicas para qualquer pacote em "
+"particular (garantia de qualidade, Política Debian, instalador, etc), com as "
+"últimas equipes que crescem ao redor dos sub-projetos."
 
 #. Tag: title
 #, no-c-format
 msgid "Existing Debian Sub-Projects"
-msgstr ""
+msgstr "Sub-Projetos Debian Existentes"
 
 #. Tag: para
 #, no-c-format
 msgid "To each their own Debian! A sub-project is a group of volunteers interested in adapting Debian to specific needs. Beyond the selection of a sub-group of programs intended for a particular domain (education, medicine, multimedia creation, etc.), this also involves improving existing packages, packaging missing software, adapting the installer, creating specific documentation, and more."
 msgstr ""
+"Cada um com seu próprio Debian ! Um sub-projeto é um grupo de voluntários "
+"interessados em adaptar o Debian para necessidades específicas . Além da "
+"seleção de um sub-grupo de programas destinados a um domínio particular "
+"(educação, medicina, criação multimídia, etc), isto também envolve a "
+"melhoria dos pacotes existentes, empacotamento de software faltando, "
+"adaptando o programa de instalação, criação de documentação específica, e "
+"muito mais."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Sub-project and derivative distribution"
-msgstr ""
+msgstr "<emphasis>VOCABULÁRIO</emphasis> Sub-projeto e distribuição derivada"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>derivative distribution</primary>"
-msgstr ""
+msgstr "<primary>distruibuição derivada</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The development process for a derivative distribution consists in starting with a particular version of Debian and making a number of modifications to it. The infrastructure used for this work is completely external to the Debian project. There isn't necessarily a policy for contributing improvements. This difference explains how a derivative distribution may “diverge” from its origins, and why they have to regularly resynchronize with their source in order to benefit from improvements made upstream."
 msgstr ""
+"O processo de desenvolvimento para uma distribuição derivada consiste em "
+"começar com uma versão específica do Debian e fazer uma série de "
+"modificações nela. A infra-estrutura utilizada para este trabalho é "
+"completamente externa ao projeto Debian. Não há necessariamente uma política "
+"de contribuição de melhorias. Esta diferença explica como uma distribuição "
+"derivada pode \"divergir\" de  suas origens, e por que têm que sincronizar "
+"regularmente com sua fonte de modo a se beneficiar de melhorias feitas no "
+"upstream."
 
 #. Tag: para
 #, no-c-format
 msgid "On the other hand, a sub-project can not diverge, since all the work on it consists of directly improving Debian in order to adapt it to a specific goal."
 msgstr ""
+"Por outro lado, um sub-projeto pode não divergir, uma vez que todo o "
+"trabalho consiste em melhorar diretamente o Debian de modo a adaptá-lo para "
+"um objetivo específico."
 
 #. Tag: para
 #, no-c-format
 msgid "The most known distribution derived from Debian is, without a doubt, Ubuntu, but there are many. See <xref linkend=\"derivative-distributions\" /> to learn about their particularities and their positioning in relationship to Debian."
 msgstr ""
+"A distribuição derivada mais conhecida é, sem dúvida, o Ubuntu, mas existem "
+"muitas. Veja <xref linkend=\"derivative-distributions\" /> para aprender sobre "
+"suas particularidades e seu posicionamento em relação ao Debian."
 
 #. Tag: para
 #, no-c-format
 msgid "Here is a small selection of current sub-projects:"
-msgstr ""
+msgstr "Aqui está uma pequena seleção dos sub-projetos correntes:"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Junior, by Ben Armstrong, offering an appealing and easy to use Debian system for children;"
 msgstr ""
+"Debian-Junior, por Ben Armstrong, oferecendo um atraente e fácil de usar "
+"sistema Debian para crianças;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Edu, by Petter Reinholdtsen, focused on the creation of a specialized distribution for the academic world;"
 msgstr ""
+"Debian-Edu, por Petter Reinholdtsen, focada na criação de uma distribuição "
+"especializada para o mundo acadêmico;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian Med, by Andreas Tille, dedicated to the medical field;"
-msgstr ""
+msgstr "Debian Med, por Andreas Tille, dedicada para o campo medicinal;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Multimedia, from the creators of Agnula, which deals with multimedia creation;"
 msgstr ""
+"Debian-Multimedia, dos criadores do AGNULA, que trata da criação multimídia;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Desktop, by Colin Walters, focuses on the desktop;"
-msgstr ""
+msgstr "Debian-Desktop, por Colin Walters, focada no desktop;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Ham, created by Bruce Perens, targets ham radio enthusiasts;"
 msgstr ""
+"Debian-Ham, criado por Bruce Perens, tem como alvo os entusiastas de rádio "
+"amador;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-NP (Non-Profit) is for not-for-profit organizations;"
-msgstr ""
+msgstr "Debian-NP (Non-Profit) é para organizações sem fins lucrativos;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Lex, finally, is intended for work within the legal field."
 msgstr ""
+"Debian-Lex, finalmente, destina-se para o trabalho dentro do campo legal."
 
 #. Tag: para
 #, no-c-format
 msgid "This list will most likely continue to grow with time and improved perception of the advantages of Debian sub-projects. Fully supported by the existing Debian infrastructure, they can, in effect, focus on work with real added value, without worrying about remaining synchronized with Debian, since they are developed within the project."
 msgstr ""
+"Esta lista provavelmente irá continuar a crescer com o tempo e melhor "
+"percepção das vantagens dos sub-projetos. Totalmente suportados pela infra-"
+"estrutura Debian existente , eles podem, com efeito, se concentrar no "
+"trabalho com valor acrescentado real, sem se preocupar em permanecer "
+"sincronizado com o Debian, uma vez que são desenvolvidos dentro do projeto."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>PERSPECTIVE</emphasis> Debian in academia"
-msgstr ""
+msgstr "<emphasis> PERSPECTIVA </ emphasis> Debian na academia"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian-Edu</primary>"
-msgstr ""
+msgstr "<primary>Debian-Edu</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SkoleLinux</primary>"
-msgstr ""
+msgstr "<primary>SkoleLinux</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Edu was, initially, a French project, created by Stéphane Casset and Raphaël Hertzog, within the company, Logidée, on behalf of a pedagogical documentation departmental center. Raphaël then integrated it with Debian as a sub-project. Due to time constraints, it has not progressed further, as is often the case with free software projects lacking contributors."
 msgstr ""
+"Debian-Edu era, inicialmente, um projeto francês, criado por Stéphane Casset "
+"e Raphaël Hertzog, dentro da empresa Logidee, em nome de um centro de "
+"documentação pedagógica departamental. Raphaël então integrou-o com o Debian "
+"como um sub-projeto. Devido a limitações de tempo, não tem progredido mais, "
+"como é frequentemente no caso de projetos de software livre em que faltam "
+"colaboradores."
 
 #. Tag: para
 #, no-c-format
 msgid "Likewise, a team of Norwegians worked on a similar distribution, also based on the <command>debian-installer</command>. SkoleLinux's progress being significant, Raphaël suggested that it become part of the Debian family and to take over the Debian-Edu sub-project."
 msgstr ""
+"Da mesma forma, uma equipe de noruegueses trabalhou em uma distribuição "
+"semelhante, também com base no debian-installer <command> reportbug </ "
+"command>. Com o progresso do SkoleLinux sendo significativo, Raphaël sugeriu "
+"que ele se torne parte da família Debian e assuma o sub-projeto Debian-Edu."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>PERSPECTIVE</emphasis> Debian for multimedia"
-msgstr ""
+msgstr "<emphasis>PERSPECTIVA</emphasis> Debian para multimedia"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>64Studio</primary>"
-msgstr ""
+msgstr "<primary>64Studio</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DeMuDi</primary>"
-msgstr ""
+msgstr "<primary>DeMuDi</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>debian-multimedia</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>debian-multimedia</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Agnula</primary>"
-msgstr ""
+msgstr "<primary>Agnula</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Agnula was a European project, managed under the direction of an Italian team. It entailed, for the “DeMuDi” part, the development of a version of Debian dedicated to multimedia applications. Certain members of the project, especially Marco Trevisani, wanted to perpetuate it by integrating it within the Debian Project. The Debian-Multimedia sub-project was born. <ulink type=\"block\" url=\"http://wiki.debian.org/DebianMultimedia\" />"
 msgstr ""
+"AGNULA era um projeto europeu, gerido sob a direção de uma equipe italiana. "
+"Ela vinculou, para a parte \"DeMuDi\" , o desenvolvimento de uma versão do "
+"Debian dedicado a aplicações multimídia. Certos membros do projeto, "
+"especialmente Marco Trevisani, quis perpetuá-lo, integrando-o no âmbito do "
+"Projeto Debian. O sub-projeto Debian-Multimedia  nasceu. <ulink type=\"block\" "
+"url=\"http://wiki.debian.org/DebianMultimedia\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The project, however, had difficulty in forging an identity and taking off. Free Ekanayaka did the work within Debian, but offered the results under the form of a derivative distribution, which is now known as 64Studio. This distribution is affiliated with a new company that offers technical support. <ulink type=\"block\" url=\"http://www.64studio.com/\" />"
 msgstr ""
+"O projeto, no entanto, teve dificuldade na formação de uma identidade e "
+"decolar. Free Ekanayaka fez o trabalho dentro do Debian, mas ofereceu os "
+"resultados sob a forma de uma distribuição derivada, que hoje é conhecido "
+"como 64Studio. Esta distribuição é afiliada a uma nova empresa que oferece "
+"suporte técnico. <ulink type=\"block\" url=\"http://www.64studio.com/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Administrative Teams"
-msgstr ""
+msgstr "Times Administrativos"
 
 #. Tag: para
 #, no-c-format
 msgid "Most administrative teams are relatively closed and recruit only by cooptation. The best means to become a part of one is to intelligently assist the current members, demonstrating that you have understood their objectives and methods of operation."
 msgstr ""
+"A maioria das equipes administrativas são relativamente fechadas e recrutam "
+"só por cooptação. O melhor meio para se tornar parte de uma é "
+"inteligentemente auxiliar os atuais membros, demonstrando que você tenha "
+"entendido seus objetivos e métodos de operação."
 
 #. Tag: para
 #, no-c-format
 msgid "The ftpmasters are in charge of the official archive of Debian packages. They maintain the program that receives packages sent by developers and automatically stores them, after some checks, on the reference server (<literal>ftp-master.debian.org</literal>)."
 msgstr ""
+"O ftpmasters estão a cargo do repositório oficial dos pacotes Debian. Eles "
+"mantêm o programa que recebe pacotes enviados por desenvolvedores e "
+"automaticamente armazenam eles, depois de algumas verificações no servidor "
+"de referência (<literal> ftp-master.debian.org </ literal>)."
 
 #. Tag: para
 #, no-c-format
 msgid "They must also verify the licenses of all new packages, in order to ensure that Debian may distribute them, prior to including them in the corpus of existing packages. When a developer wishes to remove a package, they address this team through the bug tracking system and the “pseudo-package” <emphasis>ftp.debian.org</emphasis>."
 msgstr ""
+"Eles devem igualmente verificar as licenças de todos os novos pacotes, a fim "
+"de assegurar que o Debian pode distribuir-los, antes da sua inclusão no "
+"corpo de pacotes existentes. Quando um desenvolvedor deseja remover um "
+"pacote, aborda esta equipe através do sistema de acompanhamento de bugs e o "
+"\"pseudo-pacote\" <emphasis> ftp.debian.org </ emphasis>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ftpmaster</primary>"
-msgstr ""
+msgstr "<primary>ftpmaster</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> The pseudo-package, a monitoring tool"
 msgstr ""
+"<emphasis>VOCABULÁRIO</emphasis> O pseudo-pacote, uma ferramenta de "
+"monitoramento"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>pseudo-package</primary>"
-msgstr ""
+msgstr "<primary>pseudo-pacote</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The bug tracking system, initially designed to associate bug reports with a Debian package, has proved very practical to manage other matters: lists of problems to be resolved or tasks to manage without any link to a particular Debian package. The “pseudo-packages” allow, thus, certain teams to use the bug tracking system without associating a real package with their team. Everyone can, thus, report issues that needs to be dealt with. The BTS has an entry <emphasis>ftp.debian.org</emphasis> to report problems on the official package archive or simply to request removal of a package. Likewise, the pseudo-package <emphasis>www.debian.org</emphasis> refers to errors on the Debian website, and <emphasis>lists.debian.org</emphasis> gathers all the problems concerning the mailing lists."
 msgstr ""
+"O sistema de acompanhamento de bugs, inicialmente concebido para associar "
+"relatórios de erros com um pacote Debian, revelou-se muito prático para "
+"gerenciar outros assuntos: as listas de problemas a serem resolvidos ou "
+"tarefas para gerenciar, sem qualquer ligação a um pacote Debian particular. "
+"\"Pseudo-pacotes\" permitem, assim, algumas equipes a usar o sistema de "
+"acompanhamento de bugs sem associar um pacote real com sua equipe. Todo "
+"mundo pode, portanto, relatar problemas que precisam ser tratados. O BTS tem "
+"uma entrada <emphasis> ftp.debian.org </ emphasis> para relatar problemas "
+"no repositório de pacotes oficiais ou simplesmente para solicitar a remoção "
+"de um pacote. Da mesma forma, o pacote de pseudo-package<emphasis> "
+"www.debian.org </ emphasis> refere-se a erros no site do Debian, e "
+"<emphasis> lists.debian.org </ emphasis> reúne todos os problemas relativos "
+"às listas de discussão."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> FusionForge, the Swiss Army Knife of collaborative development"
 msgstr ""
+"<emphasis> FERRAMENTA </ emphasis> FusionForge, o canivete suíço do "
+"desenvolvimento colaborativo"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>alioth</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>alioth</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>FusionForge</primary>"
-msgstr ""
+msgstr "<primary>FusionForge</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "FusionForge is a program that enables creation of sites similar to <literal>www.sourceforge.net</literal>, <literal>alioth.debian.org</literal>, or even <literal>savannah.gnu.org</literal>. It hosts projects and provides a range of services that facilitate collaborative development. Each project will have a dedicated virtual space there, including a web site, bug tracking system, patch monitoring system, survey tool, file storage, forums, version control system repositories, mailing lists and various other related services."
 msgstr ""
+"FusionForge é um programa que permite a criação de sites semelhantes a "
+"<literal> www.sourceforge.net </ literal>, <literal> alioth.debian.org </ "
+"literal>, ou mesmo <literal> savannah.gnu.org </ literal >. Abriga projetos "
+"e fornece uma gama de serviços que facilitem o desenvolvimento colaborativo. "
+"Cada projeto terá um espaço virtual dedicado lá, incluindo um site, sistema "
+"de rastreamento de bugs, sistema de monitoramento de patch, ferramenta de "
+"pesquisa, armazenamento de arquivos, fóruns, repositórios de versão do "
+"sistema de controle, listas de discussão e diversos outros serviços "
+"relacionados."
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>alioth.debian.org</literal> is Debian's FusionForge server, administered by Roland Mas, Tollef Fog Heen, Stephen Gran, and Christian Bayle. Any project involving one or more Debian developers can be hosted there. <ulink type=\"block\" url=\"http://alioth.debian.org/\" />"
 msgstr ""
+"<literal> alioth.debian.org </ literal> é um servidor Debian FusionForge, "
+"administrado por Mas Roland, Tollef Fog Heen, Stephen Gran, e Christian "
+"Bayle. Qualquer projeto que envolve um ou mais desenvolvedores do Debian "
+"pode ser hospedado lá. <ulink type=\"block\" url=\"http://alioth.debian.org/\" "
+"/>"
 
 #. Tag: para
 #, no-c-format
 msgid "Very complex for the broad scope of services that it offers, FusionForge is otherwise relatively easy to install, thanks to the exceptional work of Roland Mas and Christian Bayle on the <emphasis role=\"pkg\">fusionforge</emphasis> Debian package."
 msgstr ""
+"Muito complexo para a ampla gama de serviços que oferece, FusionForge é por "
+"outro lado relativamente fácil de instalar, graças ao trabalho excepcional "
+"de Roland Mas e Christian Bayle no <emphasis role=\"pkg\"> fusionforge </ "
+"emphasis> pacote Debian."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>debian-admin</emphasis> team (<email>debian-admin@lists.debian.org</email>), as one might expect, is responsible for system administration of the many servers used by the project. They ensure optimal functioning of all base services (DNS, Web, e-mail, shell, etc.), install software requested by Debian developers, and take all precautions in regards to security."
 msgstr ""
+"A equipe <emphasis> debian-admin </ emphasis> (<email> debian-"
+"admin@lists.debian.org </ email>), como se poderia esperar, é responsável "
+"pela administração do sistema de muitos servidores usados ​​pelo projeto. "
+"Eles garantem o funcionamento ótimo de todos os serviços básicos (DNS, Web, "
+"e-mail, shell, etc), instalam o software solicitado por desenvolvedores da "
+"Debian, tomam todas as precauções no que diz respeito à segurança."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>debian-admin</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>debian-admin</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Package tracking system"
-msgstr ""
+msgstr "<emphasis>FERRAMENTA</emphasis> Sistema de rastreamento de pacotes"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package tracking system</primary>"
-msgstr ""
+msgstr "<primary>sistema de rastreamento de pacotes</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>system</primary><secondary>package tracking system</secondary>"
 msgstr ""
+"<primary>sistema</primary><secondary>sistema de rastreamento de "
+"pacotes</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PTS</primary>"
-msgstr ""
+msgstr "<primary>PTS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DDPO</primary>"
-msgstr ""
+msgstr "<primary>DDPO</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian Developer's Packages Overview</primary>"
-msgstr ""
+msgstr "<primary>Visão geral do Desenvolvedor de Pacostes Debian</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This is one of Raphaël's creations. The basic idea is, for a given package, to centralize as much information as possible on a single page. Thus, one can quickly check the status of a program, identify tasks to be completed, and offer one's assistance. This is why this page gathers all bug statistics, available versions in each distribution, progress of a package in the <emphasis role=\"distribution\">Testing</emphasis> distribution, the status of translations of descriptions and debconf templates, the eventual availability of a new upstream version, notices of noncompliance with the latest version of the Debian Policy, information on the maintainer, and any other information that said maintainer wishes to include. <ulink type=\"block\" url=\"http://packages.qa.debian.org/\" />"
 msgstr ""
+"Esta é uma das criações de Raphaël. A idéia básica é, para um determinado "
+"pacote, centralizar as informações sobre ele, tanto quanto possível em uma "
+"única página. Assim, pode-se rapidamente verificar o estado de um programa, "
+"identificar tarefas a serem realizadas, e oferecer assistência de alguém. É "
+"por isso que esta página reúne todas as estatísticas de erros, as versões "
+"disponíveis em cada distribuição, o progresso de um pacote na distribuição "
+"<emphasis role=\"distribution\"> Testing <emphasis </ emphasis> , o status das "
+"traduções de descrições e modelos debconf, a disponibilidade eventual de "
+"uma nova versão, avisos de descumprimento da mais recente versão da Política "
+"Debian, informações sobre o mantenedor, outras informações que o dito "
+"mantenedor deseja incluir. <ulink type=\"block\" "
+"url=\"http://packages.qa.debian.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "An e-mail subscription service completes this web interface. It automatically sends the following selected information to the list: bugs and related discussions, availability of a new version on the Debian servers, translations completed (for revision), etc."
 msgstr ""
+"Um serviço de assinatura de e-mail completo é esta interface web. Ela envia "
+"automaticamente as seguintes informações selecionadas para a lista: bugs e "
+"discussões relacionadas, a disponibilidade de uma nova versão sobre os "
+"servidores Debian, traduções concluídas (para revisão), etc"
 
 #. Tag: para
 #, no-c-format
 msgid "Advanced users can, thus, follow all of this information closely and even contribute to the project, once they've got a good enough understanding of how it works."
 msgstr ""
+"Os usuários avançados podem, assim, seguir toda esta informação de perto e "
+"até mesmo contribuir para o projeto, uma vez que tiver um suficiente bom "
+"conhecimento de como ele funciona."
 
 #. Tag: para
 #, no-c-format
 msgid "Another web interface, known as <emphasis>Debian Developer's Packages Overview</emphasis> (DDPO), provides each developer a synopsis of the status of all Debian packages placed under their charge. <ulink type=\"block\" url=\"http://qa.debian.org/developer.php\" />"
 msgstr ""
+"Outra interface web, conhecida como <emphasis> Supervisão de Pacotes do "
+"Desenvolvedor Debian (Debian Developer's Packages Overview) </ emphasis> "
+"(DDPO), fornece a cada desenvolvedor uma sinopse do estado de todos os "
+"pacotes Debian colocados sob a sua carga. <ulink type=\"block\" "
+"url=\"http://qa.debian.org/developer.php\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "These two websites comprise the tools for Debian QA (Quality Assurance), the group responsible for quality assurance within Debian."
 msgstr ""
+"Estes dois sites compreendem as ferramentas para o Debian QA (Quality "
+"Assurance), o grupo responsável pela garantia de qualidade no Debian."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>assurance</primary><secondary>quality assurance</secondary>"
-msgstr ""
+msgstr "<primary>garantia</primary><secondary>garantia de qualidade</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quality</primary><secondary>assurance</secondary>"
-msgstr ""
+msgstr "<primary>qualidade</primary><secondary>garantia</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>listmasters</emphasis> administer the e-mail server that manages the mailing lists. They create new lists, handle bounces (delivery failure notices), and maintain spam filters (unsolicited bulk e-mail)."
 msgstr ""
+"A equipe <emphasis>listmasters </ emphasis> administra o servidor de e-mail "
+"que gerencia as listas de discussão. Eles criam novas listas , tratam das "
+"quicadas (avisos de falha na entrega), e mantem os filtros de spam (massa "
+"não solicitada de e-mail)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>listmaster</primary>"
-msgstr ""
+msgstr "<primary>listmaster</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Traffic on the mailing lists: some figures"
 msgstr ""
+"<emphasis>CULTURA</emphasis> Tráfego nas listas de discussão: alguns números"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>lists</primary><secondary>mailing lists</secondary>"
-msgstr ""
+msgstr "<primary>lists</primary><secondary>mailing lists</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary>mailing lists</primary></indexterm>The mailing lists are, without a doubt, the best testimony to activity on a project, since they keep track of everything that happens. Some statistics (from 2007) regarding our mailing lists speak for themselves: Debian hosts more than 180 lists, totaling 175,000 individual subscriptions. The 45,000 messages sent each month generate 1 million e-mails daily."
 msgstr ""
+"<indexterm> <primary> listas de discussão </primary> </indexterm> As listas "
+"de discussão são, sem dúvida, o melhor testemunho para a atividade em um "
+"projeto, uma vez que mantem o controle de tudo o que acontece. Algumas "
+"estatísticas (de 2007) sobre nossas listas falam por si: Debian hospeda mais "
+"de 180 listas, totalizando 175.000 assinaturas individuais. As 45.000 "
+"mensagens enviadas a cada mês geram um milhão de e-mails diariamente."
 
 #. Tag: para
 #, no-c-format
 msgid "Each specific service has its own system administration team, generally composed of volunteers who have installed it (and also frequently programmed the corresponding tools themselves). This is the case of the bug tracking system (BTS), the package tracking system (PTS), <literal>alioth.debian.org</literal> (FusionForge server, see sidebar), the services available on <literal>qa.debian.org</literal>, <literal>lintian.debian.org</literal>, <literal>buildd.debian.org</literal>, <literal>cdimage.debian.org</literal>, etc."
 msgstr ""
+"Cada serviço específico tem sua própria equipe de administração do sistema, "
+"geralmente composta de voluntários que instalaram-lo (e também "
+"freqüentemente programam as ferramentas correspondentes eles mesmos). Este é "
+"o caso do sistema de acompanhamento de bugs (BTS), o sistema de "
+"rastreamento de pacotes (PTS), <literal> alioth.debian.org </ literal> "
+"(FusionForge servidor, consulte a barra lateral), os serviços disponíveis no "
+"<literal> qa. debian.org </ literal>, <literal> lintian.debian.org </ "
+"literal>, <literal> buildd.debian.org </ literal>, <literal> "
+"cdimage.debian.org </ literal>, etc"
 
 #. Tag: title
 #, no-c-format
 msgid "Development Teams, Transversal Teams"
-msgstr ""
+msgstr "Equipes de Desenvolvimento, Equipes Transversais"
 
 #. Tag: para
 #, no-c-format
 msgid "Unlike administrative teams, the development teams are rather widely open, even to outside contributors. Even if Debian does not have a vocation to create software, the project needs some specific programs to meet its goals. Of course, developed under a free software license, these tools make use of methods proven elsewhere in the free software world."
 msgstr ""
+"Diferente das equipes administrativas, as equipes de desenvolvimento são bem "
+"amplamente abertas, mesmo para os contribuintes de fora. Mesmo que se o "
+"Debian não tem vocação para criar um software, o projeto necessita de alguns "
+"programas específicos para atender seus objetivos. Claro, desenvolvido sob "
+"uma licença de software livre, essas ferramentas fazem uso de métodos "
+"comprovados em outras partes do mundo do software livre."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> CVS"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> CVS"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Concurrent Versions System</primary>"
-msgstr ""
+msgstr "<primary>Sistema de Versões Concorrentes</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CVS</primary>"
-msgstr ""
+msgstr "<primary>CVS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration management</primary>"
-msgstr ""
+msgstr "<primary>gerenciamento de configuração</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "CVS (Concurrent Versions System) is a tool for collaborative work on multiple files, while maintaining a history of modifications. The files in question are generally text files, such as a program's source code. If several people work together on the same file, <command>cvs</command> can only merge the alterations made if they were made to different portions of the file. Otherwise, these “conflicts” must be resolved by hand. This system manages modifications, line by line, by storing diff patches from one version to another."
 msgstr ""
+"CVS (Concurrent Versions System | Sistema de Versões Concorrentes) é uma "
+"ferramenta para o trabalho colaborativo em vários arquivos, mantendo um "
+"histórico de modificações. Os arquivos em questão são geralmente arquivos de "
+"texto, como o código de um programa fonte. Se várias pessoas trabalham "
+"juntas no mesmo arquivo, <command> cvs </ command> apenas podem mesclar as "
+"alterações feitas, se elas foram feitos para diferentes partes do arquivo. "
+"Caso contrário, esses \"Conflitos\" devem ser resolvidos com a mão. Este "
+"sistema gerencia as modificações, linha por linha, armazenando os patches "
+"diff de uma versão para outra."
 
 #. Tag: para
 #, no-c-format
 msgid "CVS uses a central archive (called a CVS repository) to store files and the history of their modifications (each revision is recorded in the form of a <emphasis>diff</emphasis> patch file, intended to be used on the prior version). Everyone checks out a particular version (working copy) to work on. The tool allows one to view the modifications made to the working copy (<command>cvs diff</command>), to record them in the central repository by creating a new entry in the versions history (<command>cvs commit</command>), to update the working copy to include modifications made in parallel by other uses (<command>cvs update</command>), and to record a particular configuration in the history in order to be able to easily extract it later on (<command>cvs tag</command>)."
 msgstr ""
+"CVS utiliza um arquivo central (chamado de repositório CVS) para armazenar "
+"arquivos e o histórico de suas modificações (cada revisão é registrada na "
+"forma de um patch de arquivo <emphasis>diff</ emphasis> , destinado a ser "
+"utilizado na versão anterior) . Todos verificam uma determinada versão "
+"(cópia de trabalho) para trabalhar. A ferramenta permite visualizar as "
+"modificações feitas na cópia de trabalho (<command> cvs diff </ command>), "
+"para gravá-los no repositório central através da criação de uma nova entrada "
+"no histórico das versões (<command> cvs commit </ command >), para "
+"atualizar a cópia de trabalho para incluir modificações feitas em paralelo "
+"por outros usos (<command> cvs update </ command>), para gravar uma "
+"configuração especial na história, a fim de ser capaz de facilmente "
+"extraí-lo mais tarde (<command> cvs tag </ command>)."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>CVS</command> experts will know how to handle multiple concurrent versions of a project in development without them interfering with each other. These versions are called <emphasis>branches</emphasis>. This metaphor of a tree is fairly accurate, since a program is initially developed on a common trunk. When a milestone has been reached (such as version 1.0), development continues on two branches: the development branch prepares the next major release, and the maintenance branch manages updates and fixes for version 1.0."
 msgstr ""
+"<command> CVS </ command> peritos sabem como lidar com várias versões "
+"simultâneas de um projeto em desenvolvimento sem que interfiram uns com os "
+"outros. Estas versões são chamados <emphasis> ramos </ emphasis>. Esta "
+"metáfora de uma árvore é bastante precisa, uma vez que um programa é "
+"desenvolvido inicialmente em um tronco comum. Quando um marco foi alcançado "
+"(como a versão 1.0), o desenvolvimento continua em dois ramos: o ramo de "
+"desenvolvimento prepara o próximo grande lançamento, e o ramo de manutenção "
+"gerencia as atualizações e correções para a versão 1.0."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>cvs</command>, however, does have some limitations. It is unable to manage symbolic links, changes in file or directory names, the deletion of directories, etc. It has contributed to the appearance of more modern, and free alternatives which have filled in most of these gaps. These include, especially, <command>subversion</command> (<command>svn</command>), <command>git</command>, <command>bazaar</command> (<command>bzr</command>), and <command>mercurial</command> (<command>hg</command>). <ulink type=\"block\" url=\"http://subversion.tigris.org/\" /> <ulink type=\"block\" url=\"http://git-scm.com/\" /> <ulink type=\"block\" url=\"http://bazaar-vcs.org/\" /> <ulink type=\"block\" url=\"http://mercurial.selenic.com/\" />"
 msgstr ""
+"<command> cvs </ command>, no entanto, tem algumas limitações. É incapaz de "
+"gerenciar links simbólicos, mudanças em nomes de arquivo ou diretório, a "
+"exclusão de diretórios, etc. Isto tem contribuído para o aparecimento de "
+"mais modernas, e livres, alternativas que preencheram a maioria dessas "
+"lacunas. Estas incluem, especialmente, <command> subversão </ command> "
+"(<command> svn </ command>), <command> git </ command>, <command> bazar </ "
+"command> (<command> bzr </ command> ), e <command> mercurial </ command> "
+"(<command> hg </ command>). <ulink type=\"block\" "
+"url=\"http://subversion.tigris.org/\" /> <ulink type=\"block\" url=\"http://git-"
+"scm.com/\" /> <ulink type = \"bloco\" url = \"http://bazaar-vcs.org/~~V\" /> "
+"<ulink type=\"block\" url=\"http://mercurial.selenic.com/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>subversion</command></primary>"
-msgstr ""
+msgstr "<primary><command>subversão</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>svn</command></primary>"
-msgstr ""
+msgstr "<primary><command>svn</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>git</command></primary>"
-msgstr ""
+msgstr "<primary><command>git</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bzr</command></primary>"
-msgstr ""
+msgstr "<primary><command>bzr</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>hg</command></primary>"
-msgstr ""
+msgstr "<primary><command>hg</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mercurial</command></primary>"
-msgstr ""
+msgstr "<primary><command>mercurial</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian has developed little software of its own, but certain programs have assumed a starring role, and their fame has spread beyond the scope of the project. Good examples are <command>dpkg</command>, the Debian package management program (it is, in fact, an abbreviation of Debian PacKaGe), and <command>apt</command>, a tool to automatically install any Debian package, and its dependencies, guaranteeing the cohesion of the system after upgrade (its name is an acronym for Advanced Package Tool). Their teams are, however, much smaller, since a rather high level of programming skill is required for overall understanding of the operations of these types of programs."
 msgstr ""
+"Debian desenvolveu poucos softwares para si , mas certos programas têm "
+"assumido um papel de protagonista, sua fama se espalhou para além escopo do "
+"projeto. Bons exemplos são <command> dpkg </ command>, o programa de "
+"gerenciamento de pacotes do Debian (é, na verdade, uma abreviatura de Debian "
+"PacKaGe (pacote do Debian)), e <command> apt </ command>, uma ferramenta "
+"para instalação automática de qualquer pacote Debian, e suas dependências, "
+"garantindo a coesão do sistema após a atualização (seu nome é uma sigla para "
+"Advanced Package Tool (Ferramenta Avançada de Pacotes)). Os seus times são, "
+"no entanto, muito menores, uma vez que um nível bastante elevado de "
+"habilidade de programação é necessária para a compreensão do conjunto de "
+"ações destes tipos de programas."
 
 #. Tag: para
 #, no-c-format
 msgid "The most important team is probably that for the Debian installation program, <command>debian-installer</command>, which has accomplished a work of momentous proportions since its conception in 2001. Numerous contributors were needed, since it is difficult to write a single program able to install Debian on a dozen different architectures. Each one has its own mechanism for booting and its own bootloader. All of this work is coordinated on the <email>debian-boot@lists.debian.org</email> mailing list, under the direction of Otavio Salvador and Joey Hess. <ulink type=\"block\" url=\"http://www.debian.org/devel/debian-installer/\" /> <ulink type=\"block\" url=\"http://kitenet.net/~joey/blog/entry/d-i_retrospective/\" />"
 msgstr ""
+"A equipe mais importante é provavelmente a do programa de instalação do "
+"Debian, <command> debian-installer </ command>, que realizou uma obra de "
+"proporções monumentais, desde a sua concepção em 2001. Vários colaboradores "
+"foram necessários, uma vez que é difícil escrever um único programa capaz de "
+"instalar o Debian em uma dúzia de diferentes arquiteturas. Cada um tem seu "
+"próprio mecanismo para inicialização e seu próprio bootloader. Todo este "
+"trabalho é coordenado no debian-boot@lists.debian.org <email> </ email> "
+"lista de discussão, sob a direção de Otávio Salvador Joey Hess. <ulink "
+"type=\"block\" url=\"http://www.debian.org/devel/debian-installer/\" /> <ulink "
+"tipo = \"block\" url = \"http://kitenet.net/ ~ joey / entrada do blog / / "
+"d-i_retrospective / \"/>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>debian-cd</command> program team, very small, has an even more modest objective. Many “small” contributors are responsible for their architecture, since the main developer can not know all the subtleties, nor the exact way to start the installer from the CD-ROM."
 msgstr ""
+"A equipe do programa <command> debian-cd </ command> , muito pequena, tem um "
+"objetivo ainda mais modesto. Muitos \"pequenos\" colaboradores são "
+"responsáveis ​​pela sua arquitetura, já que o principal desenvolvedor pode "
+"não saber todas as sutilezas, nem a forma exata para iniciar o instalador a "
+"partir do CD-ROM."
 
 #. Tag: para
 #, no-c-format
 msgid "Many teams must collaborate with others in the activity of packaging: <email>debian-qa@lists.debian.org</email> tries, for example, to ensure quality at all levels of the Debian project. The <email>debian-policy@lists.debian.org</email> list develops Debian Policy according to proposals from all over the place. The teams in charge of each architecture (<email>debian-<replaceable>architecture</replaceable>@lists.debian.org</email>) compile all packages, adapting them to their particular architecture, if needed."
 msgstr ""
+"Muitas equipes devem colaborar com outras na atividade de empacotamento: "
+"<email> debian-qa@lists.debian.org </ email> tenta, por exemplo, garantir a "
+"qualidade em todos os níveis do projeto Debian. A equipe do lista do "
+"programa <email>debian-policy@lists.debian.org </ email> desenvolve A "
+"Política do Debian de acordo com propostas de todo o lugar. A equipe "
+"encarregada de cada arquitetura (<email> debian-<replaceable> arquitetura </ "
+"replaceable> @ lists.debian.org </ email>) compila todos os pacotes, "
+"adaptando-os à sua arquitetura particular, se necessário."
 
 #. Tag: para
 #, no-c-format
 msgid "Other teams manage the most important packages in order to ensure maintenance without placing too heavy a load on a single pair of shoulders; this is the case with the C library and <email>debian-glibc@lists.debian.org</email>, the C compiler on the <email>debian-gcc@lists.debian.org</email> list, or Xorg on the <email>debian-x@lists.debian.org</email> (this group is also known as the X Strike Force, coordinated by Cyril Brulebois)."
 msgstr ""
+"Outras equipes gerenciam os pacotes mais importantes, a fim de garantir a "
+"manutenção sem colocar uma carga muito pesada sobre um único par de ombros, "
+"este é o caso com a biblioteca C <email>debian-policy@lists.debian.org "
+"debian-glibc@lists.debian.org </ e-mail> , e o compilador C no debian-"
+"gcc@lists.debian.org <email>debian-policy@lists.debian.org </ email> lista, "
+"ou Xorg no debian-x@lists.debian.org <email>debian-policy@lists.debian.org "
+"</ email> (este grupo também é conhecido como o Strike Force X, coordenado "
+"por Cyril Brulebois)."
 
 #. Tag: title
 #, no-c-format
 msgid "The Role of Distributions"
-msgstr ""
+msgstr "O Papel das Distribuições"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Linux distribution</primary><secondary>role</secondary>"
-msgstr ""
+msgstr "<primary>distribuição Linux</primary><secondary>papel</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A GNU/Linux distribution has two main objectives: install a free operating system on a computer (either with or without an existing system or systems), and provide a range of software covering all of the users' needs."
 msgstr ""
+"Uma distribuição GNU / Linux tem dois objetivos principais: instalar um "
+"sistema operacional livre em um computador (com ou sem um sistema existente "
+"ou sistemas), e fornecer uma gama de software que abrange todas as "
+"necessidades dos usuários."
 
 #. Tag: title
 #, no-c-format
 msgid "The Installer: <command>debian-installer</command>"
-msgstr ""
+msgstr "O Instalador: <command>debian-installer</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>debian-installer</command>, designed to be extremely modular in order to be as generic as possible, answers the first. It covers a broad range of installation situations and in general, greatly facilitates the creation of a derivative installer to correspond to a particular case."
 msgstr ""
+"O <command> debian-installer </ command>, projetado para ser extremamente "
+"modular, a fim de ser o mais genérico possível, responde de primeira. "
+"Abrange ampla gama de situações de instalação e, em geral, facilita "
+"grandemente a criação de um instalador derivado para corresponder a um caso "
+"particular."
 
 #. Tag: para
 #, no-c-format
 msgid "This modularity, which makes it also very complex, may annoy the developers discovering this tool. Whether used in graphical or text mode, the user's experience is still similar. Great efforts have been made to reduce the number of fields to fill; this explains the inclusion of automatic hardware detection software."
 msgstr ""
+"Esta modularidade, que o torna também muito complexo, pode incomodar os "
+"desenvolvedores que estão descobrindo esta ferramenta. Quer seja utilizado "
+"em modo gráfico ou texto, a experiência do usuário ainda é semelhante. "
+"Grandes esforços têm sido feitos para reduzir o número de campos para "
+"preencher, o que explica a inclusão de software de deteção automática de "
+"hardware."
 
 #. Tag: para
 #, no-c-format
 msgid "It is interesting to note that distributions derived from Debian differ greatly on this aspect, and provide a more limited installer (often confined to the i386 architecture), but more user-friendly for the uninitiated. On the other hand, they usually refrain from straying too far from package contents in order to benefit as much as possible from the vast range of software offered without causing compatibility problems."
 msgstr ""
+"É interessante notar que as distribuições derivadas do Debian diferem muito "
+"sobre este aspecto, fornecem um instalador mais limitado (muitas vezes "
+"confinado à arquitetura i386), mas mais user-friendly para os não iniciados. "
+"Por outro lado, eles costumam se abster de se afastar muito do conteúdo do "
+"pacote, a fim de se beneficiar tanto quanto possível da vasta gama de "
+"softwares oferecidos sem causar problemas de compatibilidade."
 
 #. Tag: title
 #, no-c-format
 msgid "The Software Library"
-msgstr ""
+msgstr "A Biblioteca de Software"
 
 #. Tag: para
 #, no-c-format
 msgid "Quantitatively, Debian is undeniably the leader in this respect, with over 14,500 source packages. Qualitatively, Debian’s policy and long testing period prior to releasing a new stable version, justify its reputation for cohesion and stability. As far as availability, everything is available on-line through numerous mirrors, updated every six hours."
 msgstr ""
+"Quantitativamente, o Debian é inegavelmente o líder nesse aspecto, com mais "
+"de 14.500 pacotes fonte. Qualitativamente, a política do Debian e o longo "
+"período de testes antes de liberar uma nova versão estável, justificam a sua "
+"reputação para a coesão e estabilidade. Quanto a disponibilidade, tudo está "
+"disponível on-line através de numerosos espelhos , atualizados a cada seis "
+"horas."
 
 #. Tag: para
 #, no-c-format
 msgid "Many retailers sell CD-ROMs on the Internet at a very low price (often at cost), the “images” for which are freely available for download. There is only one drawback: the low frequency of releases of new stable versions (their development sometimes takes more than two years), which delays the inclusion of new software."
 msgstr ""
+"Muitos varejistas vendem CD-ROMs na Internet a um preço muito baixo (muitas "
+"vezes a preço de custo), para as quais as \"imagens\" estão disponíveis "
+"gratuitamente para download. Há apenas um inconveniente: a baixa freqüência "
+"de lançamentos de novas versões estáveis ​​(o seu desenvolvimento, às vezes "
+"leva mais de dois anos), o que atrasa a inclusão de um novo software."
 
 #. Tag: para
 #, no-c-format
 msgid "Most new free software programs quickly find their way into the development version which allows them to be installed. If this requires too many updates due to their dependencies, the program can also be recompiled for the stable version of Debian (see <xref linkend=\"debian-packaging\" /> for more information on this topic)."
 msgstr ""
+"A maioria dos novos programas de software livre rapidamente encontra o "
+"caminho para a versão em desenvolvimento que lhes permite ser instalado. Se "
+"isso requer muitas atualizações, devido às suas dependências, o programa "
+"também pode ser recompilado para a versão estável do Debian (ver <xref "
+"linkend=\"debian-packaging\" /> para obter mais informações sobre este "
+"tópico)."
 
 #. Tag: title
 #, no-c-format
 msgid "Lifecycle of a Release"
-msgstr ""
+msgstr "Ciclo de vida de um Lançamento"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>lifecycle</primary>"
-msgstr ""
+msgstr "<primary>ciclo de vida</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"distribution\">Unstable</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"distribution\">Instável</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"distribution\">Testing</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"distribution\">Testing</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"distribution\">Stable</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"distribution\">Estável</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"distribution\">Experimental</emphasis></primary>"
 msgstr ""
+"<primary><emphasis role=\"distribution\">Experimental</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The project will simultaneously have three or four different versions of each program, named <emphasis role=\"distribution\">Experimental</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, and <emphasis role=\"distribution\">Stable</emphasis>. Each one corresponds to a different phase in development. For a good understanding, let us take a look at a program's journey, from its initial packaging to inclusion in a stable version of Debian."
 msgstr ""
+"O projeto vai ter simultaneamente três ou quatro versões diferentes de cada "
+"programa, chamado <emphasis role=\"distribution\"> Experimental </ emphasis>, "
+"<emphasis role=\"distribution\"> Instável </ emphasis>, <emphasis "
+"role=\"distribution\"> Teste </ emphasis>, <emphasis role=\"distribution\"> "
+"Estável </ emphasis>. Cada uma corresponde a uma fase diferente em "
+"desenvolvimento. Para um suficiente bom conhecimento, vamos dar uma olhada "
+"no caminho de um programa, de sua embalagem inicial à inclusão em uma versão "
+"estável do Debian."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Release"
-msgstr ""
+msgstr "<emphasis>VOCABULÁRIO</emphasis> Lançamento"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>release</primary>"
-msgstr ""
+msgstr "<primary>lançamento</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The term “release”, in the Debian project, indicates a particular version of a distribution (e.g., “unstable release” means “the unstable version”). It also indicates the public announcement of the launch of any new version (stable)."
 msgstr ""
+"O termo \"lançamento\" , no projeto do Debian, indica uma versão especial de "
+"uma distribuição (por exemplo, \"versão instável\" significa \"a versão "
+"instável\"). Ele também indica o anúncio público de lançamento de qualquer "
+"nova versão (estável)."
 
 #. Tag: title
 #, no-c-format
 msgid "The <emphasis role=\"distribution\">Experimental</emphasis> Status"
-msgstr ""
+msgstr "O Estado <emphasis role=\"distribution\">Experimental</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "First let us take a look at the particular case of the <emphasis role=\"distribution\">Experimental</emphasis> distribution: this is a group of Debian packages corresponding to the software currently in development, and not necessarily completed, explaining its name. Not everything passes through this step; some developers add packages here in order to get feedback from more experienced (or braver) users."
 msgstr ""
+"Primeiro vamos dar uma olhada no caso particular da distribuição <emphasis "
+"role=\"distribution\"> Experimental </ emphasis>: este é um grupo de pacotes "
+"Debian correspondente ao software atualmente em desenvolvimento, e não "
+"necessariamente concluído, explicando o seu nome . Nem tudo passa por esta "
+"etapa, alguns desenvolvedores adicionam aqui os pacotes a fim de obter o "
+"feedback dos mais experientes (ou mais valentes) usuários."
 
 #. Tag: para
 #, no-c-format
 msgid "Otherwise, this distribution frequently houses important modifications to base packages, whose integration into <emphasis role=\"distribution\">Unstable</emphasis> with serious bugs would have critical repercussions. It is, thus, a completely isolated distribution, its packages never migrate to another version (except by direct, express intervention of the maintainer or the ftpmasters)."
 msgstr ""
+"Caso contrário, essa distribuição freqüentemente abriga importantes "
+"modificações para pacotes básicos, cuja integração na <emphasis "
+"role=\"distribution\"> instável</ emphasis> com erros graves teria "
+"repercussões importantes. É, portanto, uma distribuição totalmente isolada, "
+"nunca os seus pacotes migram para outra versão (exceto pela intervenção "
+"direta expressa do mantenedor ou do ftpmasters)."
 
 #. Tag: title
 #, no-c-format
 msgid "The <emphasis role=\"distribution\">Unstable</emphasis> Status"
-msgstr ""
+msgstr "O Estado <emphasis role=\"distribution\">Instável</emphasis> Status"
 
 #. Tag: para
 #, no-c-format
 msgid "Let us turn back to the case of a typical package. The maintainer creates an initial package, which they compile for the <emphasis role=\"distribution\">Unstable</emphasis> version and place on the <literal>ftp-master.debian.org</literal> server. This first event involves inspection and validation from the ftpmasters. The software is then available in the <emphasis role=\"distribution\">Unstable</emphasis> distribution, which is risky, but chosen by users who are more concerned with staying close to the cutting edge, with more up to date packages, than they are worried about serious bugs. They discover the program and then test it."
 msgstr ""
+"Vamos voltar para o caso do pacote típico. O mantenedor cria um pacote "
+"inicial, que compila para versão <emphasis role=\"distribution\"> Instável </ "
+"emphasis> e coloca no servidor <literal>ftp-master.debian.org <literal> </ "
+"literal>. Este primeiro evento envolve a inspeção e validação dos "
+"ftpmasters. O software estará disponível na distribuição <emphasis "
+"role=\"distribution\"> Instável </ emphasis> , que é arriscada, mas escolhida "
+"pelos usuários que estão mais preocupados em permanecer perto da vanguarda, "
+"com pacotes de data até mais recente , do que eles estão preocupados com "
+"erros graves. Eles descobrem o programa e, em seguida, testam."
 
 #. Tag: para
 #, no-c-format
 msgid "If they encounter bugs, they report them to the package's maintainer. The maintainer then regularly prepares corrected versions, which they upload to the server."
 msgstr ""
+"Se encontrarem bugs, reportam para o mantenedor do pacote. O mantenedor "
+"então elabora regularmente versões corrigidas que envia (por upload) para o "
+"servidor."
 
 #. Tag: para
 #, no-c-format
 msgid "Every newly updated package is updated on all Debian mirrors around the world within less than six hours. The users then test the corrections and search for other problems resulting from the modifications. Several updates may then occur rapidly. During these times, autobuilder robots come into action. Most frequently, the maintainer has only one traditional PC and has compiled his package on i386 architecture (or amd64); the autobuilders take over and automatically compile versions for all the other architectures. Some compilations may fail; the maintainer will then receive a bug report indicating the problem, which is then to be corrected in the next versions. When the bug is discovered by a specialist for the architecture in question, the bug report may come with a patch ready to use."
 msgstr ""
+"Cada pacote recém-atualizado é atualizado em todos os espelhos do Debian ao "
+"redor do mundo em menos de seis horas. Os usuários então testam as correções "
+"e procuram outros problemas resultantes das modificações. Várias "
+"atualizações podem então ocorrer rapidamente. Durante estes tempos, os robôs "
+"autobuilder entram em ação. Na maioria das vezes, o mantenedor tem apenas "
+"um PC tradicional e compilou seu pacote na arquitetura i386 (ou amd64); os "
+"autobuilders assumem o comando e automaticamente compila versões para todas "
+"as outras arquiteturas. Algumas compilações poderão falhar; o mantenedor "
+"receberá um relatório de bug indicando o problema que é, então, para ser "
+"corrigido nas próximas versões. Quando o erro é descoberto por um "
+"especialista para a arquitetura em questão, o relatório de bug pode vir com "
+"um patch pronto para uso."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>autobuilder</primary>"
-msgstr ""
+msgstr "<primary>autobuilder</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Compilation of a package by the autobuilders"
-msgstr ""
+msgstr "Compilação de um pacote pelos autobuilders"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> <command>buildd</command>, the Debian package recompiler"
 msgstr ""
+"<emphasis>VISTA RÁPIDA</emphasis> <command>buildd</command>, O recompilador "
+"de pacotes do Debian"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>buildd</command></primary>"
-msgstr ""
+msgstr "<primary><command>buildd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>build daemon</primary>"
-msgstr ""
+msgstr "<primary>build daemon</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>buildd</emphasis> is the abbreviation of “build daemon”. This program automatically recompiles new versions of Debian packages on the architectures on which it is hosted (cross-compiling not always being sufficient) ."
 msgstr ""
+"<emphasis> buildd </ emphasis> é a abreviação de \"build daemon\". Este "
+"programa automaticamente recompila novas versões de pacotes Debian nas "
+"arquiteturas em que está hospedado (compilação cruzada nem sempre é "
+"suficiente)."
 
 #. Tag: para
 #, no-c-format
 msgid "Thus, to produce binaries for the <literal>sparc</literal> architecture, the project has <literal>sparc</literal> machines available (specifically, Sun brand). The program <emphasis>buildd</emphasis> runs on them continuously to create package binaries for <literal>sparc</literal> from source packages sent by Debian developers."
 msgstr ""
+"Assim, para produzir binários para a arquitetura <literal>sparc </ literal> "
+", o projeto tem máquinas <literal> sparc </ literal> disponíveis "
+"(especificamente, a marca Sun). O programa <emphasis> buildd </ emphasis> é "
+"executado nelas continuamente para criar os binários de pacotes para "
+"<literal> sparc </ literal> de pacotes fonte enviados por desenvolvedores da "
+"Debian."
 
 #. Tag: para
 #, no-c-format
 msgid "This software is used on all the computers serving autobuilders for Debian. By extension, the term <emphasis>buildd</emphasis> frequently is used to refer to these machines, which are generally reserved solely for this purpose."
 msgstr ""
+"Este software é usado em todos os computadores que servem os autobuilders "
+"para o Debian. Por extensão, o termo <emphasis> buildd </ emphasis> é "
+"freqüentemente usado para se referir a estas máquinas, que geralmente são "
+"reservados exclusivamente para esta finalidade."
 
 #. Tag: title
 #, no-c-format
 msgid "Migration to <emphasis role=\"distribution\">Testing</emphasis>"
-msgstr ""
+msgstr "Migração para <emphasis role=\"distribution\">Teste</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "A bit later, the package will have matured; compiled on all the architectures, it will not have undergone recent modifications. It is then a candidate for inclusion in the <emphasis role=\"distribution\">Testing</emphasis> distribution — a group of <emphasis role=\"distribution\">Unstable</emphasis> packages chosen according to some quantifiable criteria. Every day a program automatically selects the packages to include in <emphasis role=\"distribution\">Testing</emphasis>, according to elements guaranteeing a certain level of quality:"
 msgstr ""
+"Um pouco mais tarde, o pacote terá amadurecido; compilados em todas as "
+"arquiteturas, não vai ter sofrido modificações recentes. É então um "
+"candidato de inscrição na distribuição <emphasis role=\"distribution\"> Teste "
+"</ emphasis> - um grupo de pacotes <emphasis role=\"distribution\"> instáveis "
+"​​</ emphasis> escolhidos de acordo com alguns critérios quantificáveis​​. "
+"Todos os dias um programa seleciona automaticamente os pacotes para incluir "
+"em <emphasis role=\"distribution\">Teste </ emphasis>, de acordo com os "
+"elementos que garantem um certo nível de qualidade:"
 
 #. Tag: para
 #, no-c-format
 msgid "lack of critical bugs, or, at least fewer than the version currently included in <emphasis role=\"distribution\">Testing</emphasis>;"
 msgstr ""
+"carece de bugs críticos, ou, pelo menos, menos do que a versão atualmente "
+"incluído no <emphasis role=\"distribution\">Teste </ emphasis>;"
 
 #. Tag: para
 #, no-c-format
 msgid "at least 10 days spent in <emphasis role=\"distribution\">Unstable</emphasis>, which is sufficient time to find and report any serious problems;"
 msgstr ""
+"pelo menos 10 dias em <emphasis role=\"distribution\">Instável </ emphasis> , "
+"que é tempo suficiente para encontrar e relatar quaisquer problemas graves;"
 
 #. Tag: para
 #, no-c-format
 msgid "successful compilation on all officially supported architectures;"
 msgstr ""
+"compilação bem-sucedida em todas as arquiteturas suportadas oficialmente;"
 
 #. Tag: para
 #, no-c-format
 msgid "dependencies that can be satisfied in <emphasis role=\"distribution\">Testing</emphasis>, or that can at least be moved there together with the package in question."
 msgstr ""
+"dependências que podem ser satisfeitas em <emphasis "
+"role=\"distribution\">Instável </ emphasis>, ou que podem pelo menos ser "
+"mudadas para lá junto com o pacote em questão."
 
 #. Tag: para
 #, no-c-format
 msgid "This system is clearly not infallible; critical bugs are regularly found in packages included in <emphasis role=\"distribution\">Testing</emphasis>. Still, it is generally effective, and <emphasis role=\"distribution\">Testing</emphasis> poses far fewer problems than <emphasis role=\"distribution\">Unstable</emphasis>, being for many, a good compromise between stability and novelty."
 msgstr ""
+"É claro que este sistema não é infalível; bugs críticos são encontrados "
+"regularmente em pacotes incluídos na <emphasis role=\"distribution\">Teste </ "
+"emphasis>. Ainda assim, é geralmente eficaz, <emphasis "
+"role=\"distribution\">Teste </ emphasis> apresenta muito menos problemas do "
+"que a <emphasis role=\"distribution\">Instável </ emphasis> , sendo para "
+"muitos, um bom compromisso entre estabilidade e novidade."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Limitations of <emphasis role=\"distribution\">Testing</emphasis>"
 msgstr ""
+"<emphasis> NOTA </ emphasis> Limitações da <emphasis "
+"role=\"distribution\">Teste </ emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "Very interesting in principle, <emphasis role=\"distribution\">Testing</emphasis> poses some practical problems: the tangle of cross-dependencies between packages is such that a package can never move there completely on its own. With packages all depending upon each other, it is necessary to move a large number simultaneously, which is impossible when some are uploading updates regularly. On the other hand, the script identifying the families of related packages works hard to create them (this would be an NP-complete problem, for which, fortunately, we know some good heuristics). This is why we can manually interact with and guide this script by suggesting groups of packages, or imposing the inclusion of certain packages in a group, even if this temporarily breaks some dependencies. This functionality is accessible to the Release Managers and their assistants."
 msgstr ""
+"Muito interessante, em princípio, <emphasis role=\"distribution\">Teste </ "
+"emphasis> coloca alguns problemas práticos: o emaranhado de informações "
+"cruzadas das dependências entre os pacotes é tal que um pacote nunca pode "
+"mudar para lá totalmente por conta própria. Com todos os pacotes, dependendo "
+"uns dos outros, é necessário se mover um grande número simultaneamente, o "
+"que é impossível quando alguns são atualizações carregadas regularmente. Por "
+"outro lado, o script de identificação das famílias de pacotes relacionados "
+"trabalha duro para criá-los (isso seria um problema NP-completo, para o que, "
+"felizmente, sabemos de algumas boas heurísticas bons). É por isso que "
+"podemos interagir manualmente com e orientar esse script, sugerindo grupos "
+"de pacotes, ou impor a inclusão de certos pacotes em um grupo, mesmo que "
+"temporariamente quebre algumas dependências. Esta funcionalidade é acessível "
+"para os gerentes de lançamento e os seus assistentes."
 
 #. Tag: para
 #, no-c-format
 msgid "Recall that an NP-complete problem is of an exponential algorithmic complexity according to the size of the data, here being the length of the code (the number of figures) and the elements involved. The only way to resolve it is frequently to examine all possible configurations, which could require enormous means. A heuristic is an approximate, but satisfying, solution."
 msgstr ""
+"Recorde-se que um problema NP-completo é de uma complexidade exponencial "
+"algorítmica de acordo com o tamanho dos dados, sendo aqui o comprimento do "
+"código (o número de figuras) e os elementos envolvidos. A única maneira de "
+"resolver é freqüentemente examinar todas as configurações possíveis que "
+"podem exigir meios enormes. Uma heurística é uma aproximada, mas "
+"satisfatória, solução."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> The Release Manager"
-msgstr ""
+msgstr "<emphasis>COMUNIDADE</emphasis> O Gerente de Lançamento"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Release Manager</primary>"
-msgstr ""
+msgstr "<primary>Gerente de Lançamento</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Stable Release Manager</primary>"
-msgstr ""
+msgstr "<primary>Gerente de Lançamento Estável</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Release Manager is an important title, associated with heavy responsibilities. The bearer of this title must, in effect, manage the release of a new, stable version of Debian, and define the process for development of <emphasis role=\"distribution\">Testing</emphasis> until it meets the quality criteria for <emphasis role=\"distribution\">Stable</emphasis>. They also define a tentative schedule (not always followed)."
 msgstr ""
+"Gerente de lançamento é um título importante, associado com grandes "
+"responsabilidades. O portador deste título deve ter, de fato, de gerenciar a "
+"liberação de uma nova versão estável do Debian, definir o processo de de "
+"desenvolvimento do Debian <emphasis role=\"distribution\">Teste </ emphasis> "
+"até que ele atenda aos critérios de qualidade para <emphasis "
+"role=\"distribution\"> Estável</emphasis>. Eles também definir um cronograma "
+"preliminar (nem sempre seguido)."
 
 #. Tag: para
 #, no-c-format
 msgid "We also have Stable Release Managers, often abbreviated SRM, who manage and select updates for the current stable version of Debian. They systematically include security patches and examine all other proposals for inclusion, on a case by case basis, sent by Debian developers eager to update their package in the stable version."
 msgstr ""
+"Nós também temos Gerentes de versão estável (Stable Release Managers), "
+"muitas vezes abreviado SRM, que gerenciam e selecionam as atualizações para "
+"a atual versão estável do Debian. Eles sistematicamente incluem patches de "
+"segurança e examinam todas as outras propostas de inclusão, numa base caso a "
+"caso, enviados por desenvolvedores da Debian ansiosos para atualizar seu "
+"pacote na versão estável."
 
 #. Tag: title
 #, no-c-format
 msgid "The Promotion from <emphasis role=\"distribution\">Testing</emphasis> to <emphasis role=\"distribution\">Stable</emphasis>"
 msgstr ""
+"A Promoção de <emphasis role=\"distribution\">Teste </ emphasis> para "
+"<emphasis role=\"distribution\"> Estável </ emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "Let us suppose that our package is now included in <emphasis role=\"distribution\">Testing</emphasis>. While it has room for improvement, the maintainer thereof must continue to improve it and restart the process from <emphasis role=\"distribution\">Unstable</emphasis> (but its later inclusion in <emphasis role=\"distribution\">Testing</emphasis> is generally faster: If it has not changed significantly, all of its dependencies are already available). When it reaches perfection, the maintainer has completed their work. The next step is the inclusion in the <emphasis role=\"distribution\">Stable</emphasis> distribution, which is, in reality, a simple copy of <emphasis role=\"distribution\">Testing</emphasis> at a moment chosen by the Release Manager. Ideally this decision is made when the installer is ready, and when no program in <emphasis role=\"distribution\">Testing</emphasis> has any known critical bugs."
 msgstr ""
+"Vamos supor que o nosso pacote está agora incluído no <emphasis "
+"role=\"distribution\">Teste </ emphasis>. Embora tenha espaço para melhorias, "
+"o mantenedor do mesmo deve continuar a melhorá-lo e reiniciar o processo de "
+"<emphasis role=\"distribution\"> Instável </ emphasis> (mas a sua inclusão "
+"posterior no <emphasis role=\"distribution\">Teste </ > é geralmente mais "
+"rápido: Se ele não se alterou significativamente, todas as suas dependências "
+"já estão disponíveis). Quando se atinge a perfeição, o mantenedor tenha "
+"concluído seu trabalho. O próximo passo é a inclusão na distribuição "
+"<emphasis role=\"distribution\"> Estável </ emphasis> , que é, na realidade, "
+"uma simples cópia de <emphasis role=\"distribution\"> Teste</ emphasis> em um "
+"momento escolhido pelo gerente de lançamento. Idealmente, esta decisão é "
+"tomada quando o instalador está pronto, e quando nenhum programa em "
+"<emphasis role=\"distribution\">Teste </ emphasis> tem todos os bugs críticos "
+"conhecidos ."
 
 #. Tag: para
 #, no-c-format
 msgid "Since this moment never truly arrives, in practice, Debian must compromise: remove packages whose maintainer has failed to correct bugs on time, or agree to release a distribution with some bugs in the thousands of programs. The Release Manager will have previously announced a freeze period, during which each update to <emphasis role=\"distribution\">Testing</emphasis> must be approved. The goal here is to prevent any new version (and its new bugs), and to only approve updates fixing bugs."
 msgstr ""
+"Como esse momento nunca chega verdadeiramente, na prática, o Debian deve se "
+"comprometer a: remover pacotes cujo mantenedor não tiver corrigido bugs a "
+"tempo, ou concorda em publicar uma distribuição com alguns bugs nos milhares "
+"de programas. O Gerente de lançamento vai previamente anunciar um período "
+"de congelamento, durante o qual cada atualização para <emphasis "
+"role=\"distribution\"> Teste</ emphasis> deve ser aprovado. O objetivo aqui é "
+"evitar qualquer nova versão (e seus novos bugs), e só aprovar as "
+"atualizações com correção de bugs."
 
 #. Tag: title
 #, no-c-format
 msgid "A package's path through the various Debian versions"
-msgstr ""
+msgstr "Caminho de um pacote através das várias versões Debian"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Freeze: the home straight"
-msgstr ""
+msgstr "<emphasis> VOCABULÁRIO </ emphasis> Freeze: a casa arrumada"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>freeze</primary>"
-msgstr ""
+msgstr "<primary>freeze</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "During the freeze period, development of the <emphasis role=\"distribution\">Testing</emphasis> distribution is blocked; no more automatic updates are allowed. Only the Release Managers are then authorized to change packages, according to their own criteria. The purpose is to prevent the appearance of new bugs by introducing new versions; only thoroughly examined updates are authorized when they correct significant bugs."
 msgstr ""
+"Durante o período de congelamento, o desenvolvimento do <emphasis "
+"role=\"distribution\"> Teste </ emphasis> é bloqueado; nenhuma atualização "
+"mais recente é permitida. Apenas os gerentes de lançamento são, então, "
+"autorizado a alterar , de acordo com seus próprios critérios. O objetivo é "
+"prevenir o aparecimento de novos bugs através da introdução de novas "
+"versões; apenas atualizações minuciosamente examinadas são autorizadas "
+"quando corrigir bugs significativos."
 
 #. Tag: para
 #, no-c-format
 msgid "After the release of a new stable version, the Stable Release Manager manages all further development (called “revisions”, ex: 5.0.1, 5.0.2, 5.0.3 for version 5.0). These updates systematically include all security patches. They will also include the most important corrections (the maintainer of a package must prove the gravity of the problem that they wish to correct in order to have their updates included)."
 msgstr ""
+"Após o lançamento de uma nova versão estável, o gerente da distribuição "
+"estável gerencia todo o desenvolvimento posterior (chamado de \"revisões\", "
+"ex: 5.0.1, 5.0.2, 5.0.3 para a versão 5.0). Essas atualizações incluem "
+"sistematicamente todos os patches de segurança. Eles também incluem as "
+"correções mais importantes (o mantenedor de um pacote deve comprovar a "
+"gravidade do problema que deseja corrigir a fim de ter suas atualizações "
+"incluídas)."
 
 #. Tag: para
 #, no-c-format
 msgid "End of the journey: Our hypothetical package is now included in the stable distribution. This journey, not without its difficulties, explains the significant delays separating the Debian Stable releases. This contributes, over all, to its reputation for quality. Furthermore, the majority of users are satisfied using one of the three distributions simultaneously available. The system administrators, concerned above all, for the stability of their servers, mock the latest version of GNOME; They can choose Debian <emphasis role=\"distribution\">Stable</emphasis>, and they will be satisfied. End users, more interested in the latest versions of GNOME or KDE than in rock-solid stability, will find Debian <emphasis role=\"distribution\">Testing</emphasis> to be a good compromise between a lack of serious problems and relatively up to date software. Finally, developers and more experienced users may blaze the trail, testing all the latest developments in Debian <emphasis role=\"distribution\">Unstable</emphasis> right out of the gate, at the risk of suffering the headaches and bugs inherent in any new version of a program. To each their own Debian!"
 msgstr ""
+"Fim da viagem: Nosso pacote hipotético agora está incluído na distribuição "
+"estável. Esta viagem, não sem dificuldades, explica os atrasos "
+"significativos que separam os lançamentos do Debian . Isso contribui, "
+"sobretudo, para sua reputação de qualidade. Além disso, a maioria dos "
+"utilizadores é satisfeita usando uma das três distribuições simultaneamente "
+"disponíveis. O sistema de administradores, preocupado acima de tudo, para a "
+"estabilidade de seus servidores, desdenha da última versão do GNOME, pois "
+"eles podem escolher o Debian <emphasis role=\"distribution\">estável </ "
+"emphasis> , e eles serão saciados. Os usuários finais, mais interessados "
+"​​nas versões mais recentes do GNOME ou KDE do que em sólida estabilidade, "
+"encontrará o Debian <emphasis role=\"distribution\">Teste </ emphasis> para "
+"ter um bom compromisso entre a ausência de problemas graves e relativamente "
+", os softwares mais atuais . Finalmente, os desenvolvedores e usuários mais "
+"experientes podem desbravar a trilha, testando todos os últimos "
+"desenvolvimentos no Debian <emphasis role=\"distribution\"> Instável </ "
+"emphasis> direto da passagem, correndo o risco de sofrer as dores de cabeça "
+"e erros inerentes a qualquer nova versão de um programa. Cada um com seu "
+"Debian !"
 
 #. Tag: title
 #, no-c-format
 msgid "Chronological path of a program packaged by Debian"
-msgstr ""
+msgstr "Trilha Cronológica de um pacote de programas do Debian"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> GNOME and KDE, graphical desktop environments"
 msgstr ""
+"<emphasis>CULTURA</emphasis> GNOME and KDE, ambientes gráficos de desktop"
 
 #. Tag: para
 #, no-c-format
 msgid "GNOME (GNU Network Object Model Environment) and KDE (K Desktop Environment) are the two most popular graphical desktop environments in the free software world. A desktop environment is a set of programs grouped together to allow easy management of the most common operations through a graphical interface. They generally include a file manager, office suite, web browser, e-mail program, multimedia accessories, etc. The most visible difference resides in the choice of the graphical library used: GNOME has chosen GTK+ (free software licensed under the LGPL), and KDE has selected Qt (from the company, Trolltech, who released it under the GPL license). <ulink type=\"block\" url=\"http://www.gnome.org/\" /> <ulink type=\"block\" url=\"http://www.kde.org/\" />"
 msgstr ""
+"GNOME (GNU _Network Object Model Environment) e KDE (K Desktop Environment) "
+"são os dois mais populares ambientes gráficos de desktop no mundo do "
+"software livre . Um ambiente de desktop é um conjunto de programas agrupados "
+"para permitir o fácil gerenciamento das operações mais comuns através de "
+"uma interface gráfica. Eles geralmente incluem um gerenciador de arquivos, "
+"suíte de escritório, navegador web, programa de e-mail, acessórios "
+"multimídia, etc. A diferença mais visível reside na escolha da biblioteca "
+"gráfica utilizada: GNOME escolheu GTK + (software livre licenciado sob a "
+"LGPL), KDE selecionou Qt (de uma empresa, a Trolltech, que lançou-o sob a "
+"licença GPL). <ulink type=\"block\" url=\"http://www.gnome.org/\" /> <ulink "
+"type=\"block\" url=\"http://www.kde.org/\" />"
