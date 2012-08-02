@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:58\n"
-"PO-Revision-Date: 2012-07-31 22:03+0200\n"
-"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"PO-Revision-Date: 2012-08-02 15:26+0200\n"
+"Last-Translator: Willer Gomes Junior <willer@ogomes.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/14_security/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -483,116 +483,194 @@ msgstr ""
 #, no-c-format
 msgid "For reference, a receive buffer is a small memory zone storing data between the time it arrives from the network and the time the kernel handles it. If this zone is full, new data cannot be received, and ICMP signals the problem, so that the emitter can slow down its transfer rate (which should ideally reach an equilibrium after some time)."
 msgstr ""
+"Para referência, um buffer de recepção é uma pequena região de memória para "
+"armazenamento de dados entre o tempo que chega na rede e o tempo que o "
+"kernel o manipula. Se esta regiao está cheia, os novos dados não podem ser "
+"recebidos, e o ICMP sinaliza o problema, de modo que o emissor possa "
+"abrandar a sua taxa de transferência (que devem, idealmente, chegar a um "
+"equilíbrio após algum tempo)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ICMP</primary>"
-msgstr ""
+msgstr "<primary>ICMP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Internet Control Message Protocol</primary>"
-msgstr ""
+msgstr "<primary>Internet Control Message Protocol</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>receive buffer</primary>"
-msgstr ""
+msgstr "<primary>buffer de recepção</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>buffer</primary><secondary>receive buffer</secondary>"
-msgstr ""
+msgstr "<primary>buffer</primary><secondary>buffer de recepcao</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ping</command></primary>"
-msgstr ""
+msgstr "<primary><command>ping</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that although an IPv4 network can work without ICMP, ICMPv6 is strictly required for an IPv6 network, since it combines several functions that were, in the IPv4 world, spread across ICMPv4, IGMP (<emphasis>Internet Group Membership Protocol</emphasis>) and ARP (<emphasis>Address Resolution Protocol</emphasis>). ICMPv6 is defined in RFC4443. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc4443.html\" />"
 msgstr ""
+"Observe que, embora uma rede IPv4 possa funcionar sem ICMP, ICMPv6 é "
+"estritamente necessário para uma rede IPv6, uma vez que combina várias "
+"funções que eram, no mundo IPv4, espalhados por ICMPv4, IGMP "
+"(<emphasis>Internet Group Membership Protocol</emphasis>) e ARP "
+"(<emphasis>Address Resolution Protocol</emphasis>). ICMPv6 é definido na "
+"RFC4443. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc4443.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ACCEPT</literal>: allow the packet to go on its way;"
-msgstr ""
+msgstr "<literal>ACCEPT</literal>: permite que o pacote siga seu caminho;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>REJECT</literal>: reject the packet with an ICMP error packet (the <literal>--reject-with <replaceable>type</replaceable></literal> option to <command>iptables</command> allows selecting the type of error);"
 msgstr ""
+"<literal>REJECT</literal>:  rejeita o pacote com um erro ICMP (o <literal"
+">--reject-with <replaceable>tipo</replaceable></literal> opção para "
+"<comando>iptables</command> permite seleccionar o tipo de erro);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>DROP</literal>: delete (ignore) the packet;"
-msgstr ""
+msgstr "<literal>DROP</literal>: apaga (ignora) o pacote;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>LOG</literal>: log (via <command>syslogd</command>) a message with a description of the packet; note that this action does not interrupt processing, and the execution of the chain continues at the next rule, which is why logging refused packets requires both a LOG and a REJECT/DROP rule;"
 msgstr ""
+"<literal>LOG</literal>: log (via <command>syslogd</command>) uma mensagem "
+"com uma descrição do pacote, observe que esta ação não interrompe o "
+"processamento, e a execução da cadeia continua na próxima regra, razão pela "
+"qual recusou registro de pacotes, requer as regras tanto LOG quanto "
+"REJECT/DROP;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ULOG</literal>: log a message via <command>ulogd</command>, which can be better adapted and more efficient than <command>syslogd</command> for handling large numbers of messages; note that this action, like LOG, also returns processing to the next rule in the calling chain;"
 msgstr ""
+"<literal>ULOG</ literal>: registrar uma mensagem via "
+"<command>ulogd</command>, que pode ser melhor adaptada e mais eficiente do "
+"que <command>syslogd</command> para lidar com um grande número de mensagens, "
+"observe que esta ação, como LOG, também retorna o processamento para a "
+"próxima regra na cadeia chamada;"
 
 #. Tag: para
 #, no-c-format
 msgid "<replaceable>chain_name</replaceable>: jump to the given chain and evaluate its rules;"
 msgstr ""
+"<replaceable>chain_name</replaceable>: Vá para a cadeia e avalie as suas "
+"regras;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>RETURN</literal>: interrupt processing of the current chain, and return to the calling chain; in case the current chain is a standard one, there's no calling chain, so the default action (defined with the <literal>-P</literal> option to <command>iptables</command>) is executed instead;"
 msgstr ""
+"<literal>RETURN</literal>: interrompe o processamento da cadeia atual, e "
+"volta para a cadeia de chamada; no caso a cadeia atual é padrão, não há "
+"nenhuma cadeia de chamada, de modo que a ação padrão (definida com a opção "
+"<literal>- P</literal> para o <comando>iptables</command>) é executada em "
+"vez disto;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Source NAT</emphasis> (extra options describe the exact changes to apply);"
 msgstr ""
+"<literal>SNAT</literal> (apenas na tabela <literal>nat</literal>, portanto, "
+"somente em IPv4): aplica <emphasis>Fonte  NAT</emphasis> (opções extra "
+"descrevem as alterações exatas para aplicar);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>DNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Destination NAT</emphasis> (extra options describe the exact changes to apply);"
 msgstr ""
+"<literal>DNAT</literal> (apenas na tabela <literal>nat</literal>, portanto, "
+"somente em IPv4): aplica <emphasis>Destino da NAT</emphasis> (opções extra "
+"descrevem as alterações exatas para aplicar);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>masquerading</emphasis> (a special case of <emphasis>Source NAT</emphasis>);"
 msgstr ""
+"(apenas na tabela <literal>nat</literal>, portanto, somente em IPv4): aplica "
+"<emphasis>masquerading</emphasis> (um caso especial de <emphasis>Fonte "
+"NAT</emphasis>);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>REDIRECT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): redirect a packet to a given port of the firewall itself; this can be used to set up a transparent web proxy that works with no configuration on the client side, since the client thinks it connects to the recipient whereas the communications actually go through the proxy."
 msgstr ""
+"<literal>REDIRECT</literal> (apenas na  tabela <literal>nat</literal>, "
+"portanto, somente em IPv4): redireciona um pacote para uma determinada porta "
+"do firewall, isto pode ser usado para configurar um proxy web transparente "
+"que funciona sem nenhuma configuração no lado do cliente, uma vez que o "
+"cliente pensa que ele se conecta ao destinatário e as comunicações realmente "
+"passam pelo proxy."
 
 #. Tag: para
 #, no-c-format
 msgid "Other actions, particularly those concerning the <literal>mangle</literal> table, are outside the scope of this text. The <citerefentry><refentrytitle>iptables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>ip6tables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> have a comprehensive list."
 msgstr ""
+"Outras ações, particularmente as relativas à tabela "
+"<literal>mangle</literal>, estão fora do escopo deste texto. O "
+"<citerefentry><refentrytitle>iptables</refentrytitle> "
+"<manvolnum>8</manvolnum></citerefentry> e <citerefentry> "
+"<refentrytitle>ip6tables</refentrytitle> "
+"<manvolnum>8</manvolnum><citerefentry/> tem um lista completa."
 
 #. Tag: title
 #, no-c-format
 msgid "Syntax of <command>iptables</command> and <command>ip6tables</command>"
 msgstr ""
+"Sintaxe do <command>iptables</command> e do <command>ip6tables</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>iptables</command> and <command>ip6tables</command> commands allow manipulating tables, chains and rules. Their <literal>-t <replaceable>table</replaceable></literal> option indicates which table to operate on (by default, <literal>filter</literal>)."
 msgstr ""
+"Os comandos <comando>iptables</command> e <comando>ip6tables</command> "
+"permitem manipulação de tabelas, cadeias e regrass. Sua opção "
+"<literal><replaceable>tabela</replaceable> -t</literal> indica em qual "
+"tabela operar (por padrão, <literal>filtro</literal>)."
 
 #. Tag: title
 #, no-c-format
 msgid "Commands"
-msgstr ""
+msgstr "Comandos"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable><replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable><replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable><replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
 msgstr ""
+"A opção <literal><replaceable>cadeia</replaceable> -N</literal>  cria uma "
+"nova cadeia. A <replaceable>cadeia</replaceable><literal> -X</literal> "
+"exclui uma cadeia vazia e sem uso. A <literal><replaceable>regra de "
+"cadeia</replaceable> -A</ literal> adiciona uma regra no final da cadeia "
+"dada. A opcao <literal>-I <replaceable>cadeia</replaceable> <replaceable>rul"
+"e_num</replaceable><replaceable>regra</replaceable></literal> insere uma "
+"regra antes da regra número <replaceable>rule_num</replaceable>. A opcao "
+"<literal>-D <replaceable>cadeia</replaceable><replaceable>rule_num</replacea"
+"ble></literal> (ou a opção  <literal>-D cadeia <replaceable> "
+"</replaceable>regra<replaceable> </replaceable></literal>) exclui uma regra "
+"em uma cadeia, a primeira sintaxe identifica a regra a ser excluída pelo seu "
+"número, enquanto o segundo o identifica pelo seu conteúdo. A opcao  "
+"<literal>-F <replaceable>cadeia</replaceable></literal> libera uma cadeia "
+"(apaga todas as suas regras), se nenhuma cadeia é mencionada, todas as "
+"regras da tabela são excluídas. A opção <literal>-L "
+"<replaceable>cadeia</replaceable></literal> lista as regras na cadeia. "
+"Finalmente, a opcao <literal>-P "
+"<replaceable>cadeia</replaceable><replaceable> ação</replaceable></literal> "
+"define a ação padrão, ou \"política\", para uma dada cadeia; observe que "
+"apenas as cadeias padrão podem ter essa política."
 
 #. Tag: title
 #, no-c-format
@@ -603,126 +681,210 @@ msgstr "Regras"
 #, no-c-format
 msgid "Each rule is expressed as <literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable><replaceable>action_options</replaceable></literal>. If several conditions are described in the same rule, then the criterion is the conjunction (logical <emphasis>and</emphasis>) of the conditions, which is at least as restrictive as each individual condition."
 msgstr ""
+"Cada regra é expressa como <literal><replaceable>condições</replaceable> -j "
+"<replaceable>ação</replaceable> <replaceable> "
+"opcoes_acoes</replaceable></literal>. Se várias condições são descritas na "
+"mesma regra, entao o critério das condições é a conjugação (lógica "
+"<emphasis>e</emphasis>), que é pelo menos tão restritiva quanto cada "
+"condição individual."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-p <replaceable>protocol</replaceable></literal> condition matches the protocol field of the IP packet. The most common values are <literal>tcp</literal>, <literal>udp</literal>, <literal>icmp</literal>, and <literal>icmpv6</literal>. Prefixing the condition with an exclamation mark negates the condition, which then becomes a match for “any packets with a different protocol than the specified one”. This negation mechanism is not specific to the <literal>-p</literal> option and it can be applied to all other conditions too."
 msgstr ""
+"A condição <literal>-p <replaceable>protocolo</replaceable></literal> "
+"corresponde ao campo protocolo do pacote IP. Os valores mais comuns são "
+"<literal>tcp</literal>, <literal>udp</ literal>, <literal>icmp</literal>, e "
+"<literal>ICMPv6</literal>. Prefixando a condição com um ponto de exclamação "
+"nega a condição,  que se transforma numa correspondência para \"todos os "
+"pacotes com um protocolo diferente da especificada\". Este mecanismo de "
+"negação não é específico para a opção <literal>-p</ literal> e também pode "
+"ser aplicada a todas as outras condições."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-s <replaceable>address</replaceable></literal> or <literal>-s <replaceable>network/mask</replaceable></literal> condition matches the source address of the packet. Correspondingly, <literal>-d <replaceable>address</replaceable></literal> or <literal>-d <replaceable>network/mask</replaceable></literal> matches the destination address."
 msgstr ""
+"A condição <literal>-s <replaceable>endereço</replaceable></literal> ou "
+"<literal>-s <replaceable>rede/máscara</replaceable></literal> corresponde o "
+"endereço de origem do pacote. Do mesmo modo, <literal>-d "
+"<replaceable>endereço</replaceable></literal> ou <literal>-d "
+"<replaceable>rede/máscara</replaceable></literal> corresponde o endereço de "
+"destino."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-i <replaceable>interface</replaceable></literal> condition selects packets coming from the given network interface. <literal>-o <replaceable>interface</replaceable></literal> selects packets going out on a specific interface."
 msgstr ""
+"A condicao <literal>-i <replaceable>interface</replaceable></literal> "
+"seleciona os pacotes provenientes da interface de rede. <literal>-o "
+"<replaceable>interface</replaceable></literal> seleciona pacotes saindo em "
+"uma interface específica."
 
 #. Tag: para
 #, no-c-format
 msgid "There are more specific conditions, depending on the generic conditions described above. For instance, the <literal>-p tcp</literal> condition can be complemented with conditions on the TCP ports, with clauses such as <literal>--source-port <replaceable>port</replaceable></literal> and <literal>--destination-port <replaceable>port</replaceable></literal>."
 msgstr ""
+"Existem condições mais específicas, dependendo das condições genéricas acima "
+"descritas. Por exemplo, a condição <literal>-p TCP</literal> pode ser "
+"complementada com condições sobre as portas TCP, com cláusulas como "
+"<literal>-- porta-origem <replaceable>porta</replaceable></literal> e "
+"<literal>--porta-destino <replaceable>porta</replaceable></literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>--state <replaceable>state</replaceable></literal> condition matches the state of a packet in a connection (this requires the <command>ipt_conntrack</command> kernel module, for connection tracking). The <literal>NEW</literal> state describes a packet starting a new connection; <literal>ESTABLISHED</literal> matches packets belonging to an already existing connection, and <literal>RELATED</literal> matches packets initiating a new connection related to an existing one (which is useful for the <literal>ftp-data</literal> connections in the “active” mode of the FTP protocol)."
 msgstr ""
+"A condição <literal>--estado <replaceable>estado</replaceable></literal> "
+"corresponde ao estado de um pacote em uma conexão (isto requer o módulo "
+"<command>ipt_conntrack</command> do kernel, para rastreamento de conexões). "
+"O estado  <literal>NEW</literal> descreve um pacote iniciando uma nova "
+"conexão; O pacote <literal>ESTABLISHED</literal> corresponde aos pacotes "
+"pertencentes a uma conexão já existente, e <literal>RELATED</literal> "
+"correspondem aos pacotes iniciando uma nova conexão relacionada a um já "
+"existente (o que é útil para as conexões <literal>ftp-data</literal> no modo "
+"\"active\" do protocolo FTP)."
 
 #. Tag: para
 #, no-c-format
 msgid "The previous section lists available actions, but not their respective options. The <literal>LOG</literal> action, for instance, has the following options:"
 msgstr ""
+"A seção anterior lista as ações disponíveis, mas não suas respectivas "
+"opções. A ação <literal>LOG</literal>, por exemplo, tem as seguintes opções:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-priority</literal>, with default value <literal>warning</literal>, indicates the <command>syslog</command> message priority;"
 msgstr ""
+"<literal>--log-priority</literal>, com valor padrão "
+"<literal>aviso</literal>, indica a prioridade da mensagem "
+"<command>syslog</command>;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-prefix</literal> allows specifying a text prefix to differentiate between logged messages;"
 msgstr ""
+"<literal>--log-prefix</literal> permite especificar um prefixo de texto para "
+"diferenciar mensagens registradas;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-tcp-sequence</literal>, <literal>--log-tcp-options</literal> and <literal>--log-ip-options</literal> indicate extra data to be integrated into the message: respectively, the TCP sequence number, TCP options, and IP options."
 msgstr ""
+"<literal>--log-tcp-sequence</literal>, <literal>--log-tcp-options</literal> "
+"e <literal>--log-ip-options</literal> indicam dados extras a serem "
+"integrados na mensagem: respectivamente, o número de seqüência TCP, opções "
+"TCP, e as opções IP."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>DNAT</literal> action (only available for IPv4) provides the <literal>--to-destination <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> option to indicate the new destination IP address and/or port. Similarly, <literal>SNAT</literal> provides <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> to indicate the new source IP address and/or port."
 msgstr ""
+"A acao <literal>DNAT</literal> (disponível apenas para IPv4) fornece a "
+"<literal>--to-destination <replaceable>endereço</replaceable>: opcao "
+"<replaceable>port</replaceable></literal> para indicar o novo endereço IP de "
+"destino e/ou porta. Da mesma forma, <literal>SNAT</literal> fornece "
+"<literal>--to-source <replaceable>endereço</replaceable>:<replaceable>porta<"
+"/replaceable></literal> para indicar o novo endereço IP de origem e/ou "
+"porta."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>REDIRECT</literal> action (only available for IPv4) provides the <literal>--to-ports <replaceable>port(s)</replaceable></literal> option to indicate the port, or port range, where the packets should be redirected."
 msgstr ""
+"A opcao <literal>REDIRECT</literal> (disponível apenas para IPv4) fornece a "
+"opcao <literal>--to-ports <replaceable>porta (s)</replaceable></literal> "
+"para indicar a porta, ou uma lista de portas, onde os pacotes devem ser "
+"redirecionados."
 
 #. Tag: title
 #, no-c-format
 msgid "Creating Rules"
-msgstr ""
+msgstr "Criando Regras"
 
 #. Tag: para
 #, no-c-format
 msgid "Each rule creation requires one invocation of <command>iptables</command>/<command>ip6tables</command>. Typing these commands manually can be tedious, so the calls are usually stored in a script so that the same configuration is set up automatically every time the machine boots. This script can be written by hand, but it can also be interesting to prepare it with a high-level tool such as <command>fwbuilder</command>."
 msgstr ""
+"Cada criação de regra exige uma invocação de "
+"<comando>iptables</command>/<comando>ip6tables</command>. Digitando estes "
+"comandos manualmente pode ser tedioso, por isso as chamadas são normalmente "
+"armazenados em um script para que a mesma configuração seja criada "
+"automaticamente a cada vez que a máquina inicia. Este script pode ser "
+"escrito à mão, mas também pode ser interessante prepará lo com uma "
+"ferramenta de alto nível, tais como <command>fwbuilder</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "The principle is simple. In the first step, one needs to describe all the elements that will be involved in the actual rules:"
 msgstr ""
+"O princípio é simples. Na primeira etapa, é preciso descrever todos os "
+"elementos que estarão envolvidos nas atuais regras:"
 
 #. Tag: para
 #, no-c-format
 msgid "the firewall itself, with its network interfaces;"
-msgstr ""
+msgstr "o firewall, com suas interfaces de rede;"
 
 #. Tag: para
 #, no-c-format
 msgid "the networks, with their corresponding IP ranges;"
-msgstr ""
+msgstr "as redes, com suas faixas de IP correspondentes;"
 
 #. Tag: para
 #, no-c-format
 msgid "the servers;"
-msgstr ""
+msgstr "os servidores;"
 
 #. Tag: para
 #, no-c-format
 msgid "the ports belonging to the services hosted on the servers."
-msgstr ""
+msgstr "as portas que pertencem aos serviços hospedados nos servidores."
 
 #. Tag: para
 #, no-c-format
 msgid "The rules are then created with simple drag-and-drop actions on the objects. A few contextual menus can change the condition (negating it, for instance). Then the action needs to be chosen and configured."
 msgstr ""
+"As regras são então criadas com simples ações de arrastar-e-soltar nos "
+"objetos. Alguns menus contextuais podem alterar a condição (negando o, por "
+"exemplo). Em seguida, a ação deve ser escolhida e configurada."
 
 #. Tag: para
 #, no-c-format
 msgid "As far as IPv6 is concerned, one can either create two distinct rulesets for IPv4 and IPv6, or create only one and let <command>fwbuilder</command> translate the rules according to the addresses assigned to the objects."
 msgstr ""
+"Quanto IPv6 está ativo, pode se criar dois conjuntos de regras distintas "
+"para IPv4 e IPv6, ou criar uma só e deixar <command>fwbuilder</command> "
+"traduzir as regras de acordo com os endereços atribuídos aos objetos."
 
 #. Tag: title
 #, no-c-format
 msgid "Fwbuilder's main window"
-msgstr ""
+msgstr "janela principal do Fwbuilder"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>fwbuilder</command></primary>"
-msgstr ""
+msgstr "<primary><command>fwbuilder</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>fwbuilder</command> can then generate a script configuring the firewall according to the rules that have been defined. Its modular architecture gives it the ability to generate scripts targeting different systems (<command>iptables</command> for Linux 2.4/2.6, <command>ipf</command> for FreeBSD and <command>pf</command> for OpenBSD)."
 msgstr ""
+"<command>fwbuilder</command> pode gerar um script de configuração do "
+"firewall de acordo com as regras que foram definidas. Sua arquitetura "
+"modular lhe confere a capacidade de gerar scripts que visam diferentes "
+"sistemas (<comando>iptables</command> para Linux 2.4/2.6, "
+"<command>ipf</command> para o FreeBSD e <command>pf</command> para OpenBSD)."
 
 #. Tag: para
 #, no-c-format
 msgid "Versions of the <emphasis role=\"pkg\">fwbuilder</emphasis> package since <emphasis role=\"distribution\">Squeeze</emphasis> contain both the graphical interface and the modules for each firewall system (these were previously split over several packages, one for each target system):"
 msgstr ""
+"Versões do pacote <emphasis role=\"pkg\">fwbuilder</emphasis> desde <emphasis "
+"role=\"distribution\">Squeeze</emphasis> contém tanto a interface gráfica e os "
+"módulos de cada sistema de firewall (estes foram previamente divididos em "
+"vários pacotes, um para cada sistema de destino):"
 
 #. Tag: screen
 #, no-c-format
@@ -730,26 +892,38 @@ msgid "\n"
 "<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>\n"
 ""
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>aptitude install "
+"fwbuilder</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the Rules at Each Boot"
-msgstr ""
+msgstr "Instalando as Regras em cada inicializacao"
 
 #. Tag: para
 #, no-c-format
 msgid "If the firewall is meant to protect an intermittent PPP network connection, the simplest way to deploy the script is to install it as <filename>/etc/ppp/ip-up.d/0iptables</filename> (note that only files without a dot in their name are taken into account). The firewall will thus be reloaded every time a PPP connection is established."
 msgstr ""
+"Se o firewall serve para proteger uma conexão de rede intermitente PPP, a "
+"maneira mais simples de implantar o script é instalá lo como "
+"<filename>/etc/ppp/ip-up.d/0iptables</filename> (observe que apenas os "
+"arquivos sem um ponto em seu nome são levados em conta). O firewall irá "
+"assim ser recarregado a cada vez que uma conexão PPP for estabelecida."
 
 #. Tag: para
 #, no-c-format
 msgid "In other cases, the recommended way is to register the configuration script in an <literal>up</literal> directive of the <filename>/etc/network/interfaces</filename> file. In the following example, the script is stored under <filename>/usr/local/etc/arrakis.fw</filename>."
 msgstr ""
+"Em outros casos, a maneira recomendada é registrar o script de configuração "
+"em uma directiva <literal>up</literal> do "
+"<filename>/etc/network/interfaces</filename>. No exemplo a seguir, o script "
+"é armazenado em <filename>/usr/local/etc/arrakis.fw</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>interfaces</filename> file calling firewall script"
-msgstr ""
+msgstr "arquivo <filename>interfaces</filename> chamando script firewall"
 
 #. Tag: programlisting
 #, no-c-format
@@ -762,26 +936,45 @@ msgid "auto eth0\n"
 "    up /usr/local/etc/arrakis.fw\n"
 ""
 msgstr ""
+"auto eth0\n"
+"iface eth0 inet static\n"
+"    address 192.168.0.1\n"
+"    network 192.168.0.0\n"
+"    netmask 255.255.255.0\n"
+"    broadcast 192.168.0.255\n"
+"    up /usr/local/etc/arrakis.fw\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Supervision: Prevention, Detection, Deterrence"
-msgstr ""
+msgstr "Supervisão: Prevenção, Detecção, Desencorajamento"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary>"
-msgstr ""
+msgstr "<primary>Monitoramento</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can enable the detection of intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
 msgstr ""
+"O monitoramento é uma parte integrante de qualquer política de segurança por "
+"várias razões. Entre elas, que o objetivo da segurança não é normalmente "
+"restrito a garantir a confidencialidade dos dados, mas também inclui a "
+"disponibilidade assegurada dos serviços. Portanto, é imperativo para "
+"verificar se tudo funciona como esperado, e para detectar em tempo hábil "
+"qualquer comportamento desviante ou mudança na qualidade do serviço(s) "
+"processado. Atividade de controle pode permitir a detecção de tentativas de "
+"intrusão e permitir uma reação rápida antes que eles causem graves "
+"conseqüências. Esta seção analisa algumas ferramentas que podem ser usadas "
+"​​para monitorar vários aspectos de um sistema Debian. Como tal, conclui a "
+"seção dedicada ao monitoramento do sistema genérico em <xref linkend"
+"=\"advanced-administration\" />."
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Logs with <command>logcheck</command>"
-msgstr ""
+msgstr "Monitoramento de Logs com <command>logcheck</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -791,272 +984,431 @@ msgstr "<primary><command>logcheck</command></primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>monitoring</secondary>"
-msgstr ""
+msgstr "<secondary>monitorando</secondary><primary>logs</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary><secondary>log files</secondary>"
-msgstr ""
+msgstr "<primary>monitorando</primary><secondary>arquivos log</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>logcheck</command> program monitors log files every hour by default. It sends unusual log messages in emails to the administrator for further analysis."
 msgstr ""
+"O programa <command>logcheck</command> monitora arquivos de log a cada hora "
+"por padrão. Ele envia mensagens de log incomuns em e-mails para o "
+"administrador, para posterior análise."
 
 #. Tag: para
 #, no-c-format
 msgid "The list of monitored files is stored in <filename>/etc/logcheck/logcheck.logfiles</filename>; the default values work fine if the <filename>/etc/syslog.conf</filename> file has not been completely overhauled."
 msgstr ""
+"A lista de arquivos monitorados é armazenada em "
+"<filename>/etc/logcheck/logcheck.logfiles</filename>, os valores padrão "
+"funcionam bem se o arquivo <filename>/etc/syslog.conf</filename> não foi "
+"completamente refeito."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>logcheck</command> can work in one of three more or less detailed modes: <emphasis>paranoid</emphasis>, <emphasis>server</emphasis> and <emphasis>workstation</emphasis>. The first one is <emphasis>very</emphasis> verbose, and should probably be restricted to specific servers such as firewalls. The second (and default) mode is recommended for most servers. The last one is designed for workstations, and is even terser (it filters out more messages)."
 msgstr ""
+"<command>logcheck</command> pode trabalhar em um dos três modos mais ou "
+"menos detalhados: <emphasis>paranoid</emphasis>, <emphasis>server</emphasis> "
+"e <emphasis>workstation</emphasis>. O primeiro é <emphasis>muito</emphasis> "
+"verboso, e provavelmente deve ser restrito a servidores específicos, tais "
+"como firewalls. O segundo modo (e padrão) é recomendado para a maioria dos "
+"servidores. O último é projetado para estações de trabalho, e é ainda "
+"suscinto (que filtra mais mensagens)."
 
 #. Tag: para
 #, no-c-format
 msgid "In all three cases, <command>logcheck</command> should probably be customized to exclude some extra messages (depending on installed services), unless the admin really wishes to receive hourly batches of long uninteresting emails. Since the message selection mechanism is rather complex, <filename>/usr/share/doc/logcheck-database/README.logcheck-database.gz</filename> is a required — if challenging — read."
 msgstr ""
+"Nos três casos, <command>logcheck</command> provavelmente deve ser "
+"personalizado para excluir algumas mensagens extras (dependendo dos serviços "
+"instalados), a menos que o administrador realmente deseje receber lotes por "
+"hora de longos e-mails desinteressantes. Uma vez que o mecanismo de seleção "
+"de mensagem é bastante complexo, <filename>/usr/share/doc/logcheck-"
+"database/README.logcheck-database.gz</filename> é uma necessidade - se "
+"desafiador - leia."
 
 #. Tag: para
 #, no-c-format
 msgid "The applied rules can be split into several types:"
-msgstr ""
+msgstr "As regras aplicadas podem ser divididas em vários tipos:"
 
 #. Tag: para
 #, no-c-format
 msgid "those that qualify a message as a cracking attempt (stored in a file in the <filename>/etc/logcheck/cracking.d/</filename> directory);"
 msgstr ""
+"aqueles que qualificam uma mensagem como uma tentativa de invasao "
+"(armazenado em um arquivo no diretorio "
+"<filename>/etc/logcheck/cracking.d/</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "those canceling such a qualification (<filename>/etc/logcheck/cracking.ignore.d/</filename>);"
 msgstr ""
+"aqueles cancelando essas qualificaçoes "
+"(<filename>/etc/logcheck/cracking.ignore.d/</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "those classifying a message as a security alert (<filename>/etc/logcheck/violations.d/</filename>);"
 msgstr ""
+"aqueles classificando uma mensagem como um alerta de segurança "
+"(<filename>/etc/logcheck/violations.d/</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "those canceling this classification (<filename>/etc/logcheck/violations.ignore.d/</filename>);"
 msgstr ""
+"aqueles cancelando esta classificacao "
+"(<filename>/etc/logcheck/violations.ignore.d/</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "finally, those applying to the remaining messages (considered as <emphasis>system events</emphasis>)."
 msgstr ""
+"finalmente, as que se aplicam às mensagens restantes (consideradas como "
+"<emphasis>eventos de sistema</emphasis>)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Ignoring a message"
-msgstr ""
+msgstr "<emphasis>ATENCAO</emphasis> Ignorando uma mensagem"
 
 #. Tag: para
 #, no-c-format
 msgid "Any message tagged as a cracking attempt or a security alert (following a rule stored in a <filename>/etc/logcheck/violations.d/myfile</filename> file) can only be ignored by a rule in a <filename>/etc/logcheck/violations.ignore.d/myfile</filename> or <filename>/etc/logcheck/violations.ignore.d/myfile-<replaceable>extension</replaceable></filename> file."
 msgstr ""
+"Qualquer mensagem marcada como uma tentativa de invasao ou um alerta de "
+"segurança (seguindo uma regra armazenada num arquivo "
+"<filename>/etc/logcheck/violations.d/myfile</filename>) só pode ser ignorada "
+"por uma regra em "
+"<filename>/etc/logcheck/violations.ignore.d/myfile</filename> ou no arquivo <"
+"filename>/etc/logcheck/violations.ignore.d/myfile-<replaceable>extensão</rep"
+"laceable></filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "A system event is always signaled unless a rule in one of the <filename>/etc/logcheck/ignore.d.{paranoid,server,workstation}/</filename> directories states the event should be ignored. Of course, the only directories taken into account are those corresponding to verbosity levels equal or greater than the selected operation mode."
 msgstr ""
+"Um evento de sistema é sempre sinalizado a menos que uma regra em um dos "
+"diretorios <filename>/etc/logcheck/ignore.d. "
+"{paranoid,server,workstation}/</filename> indica que o evento deve ser "
+"ignorado. Naturalmente, apenas os directórios levados em consideração são "
+"aqueles que correspondem aos níveis de verbosidade iguais ou maiores que o "
+"modo de funcionamento seleccionado."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Your logs as screen background"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Seus logs como fundo de tela"
 
 #. Tag: para
 #, no-c-format
 msgid "Some administrators like seeing their log messages scroll by in real time; the <command>root-tail</command> command (in the <emphasis role=\"pkg\">root-tail</emphasis>) package can be used to integrate the logs into the background of their graphical desktop. The <command>xconsole</command> program (in the <emphasis>x11-apps</emphasis> package) can also have them scrolling in a small window. Messages are directly taken from <command>syslogd</command> via the <filename>/dev/xconsole</filename> named pipe."
 msgstr ""
+"Alguns administradores gostam de ver suas mensagens de log rolar em tempo "
+"real, o comando <command>root-tail</command> (no pacote <emphasis role=\"pkg"
+"\">root-tail</emphasis>) pode ser usado para integrar os logs para o fundo da "
+"sua área de trabalho gráfica. O programa <command>xconsole</command> (no "
+"pacote x11-apps) pode também tê los rolando em uma pequena janela. As "
+"mensagens são diretamente retiradas de syslogd através do "
+"<filename>/dev/xconsole</filename> chamado pipe."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>root-tail</command></primary>"
-msgstr ""
+msgstr "<primary><command>root-tail</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>display</secondary>"
-msgstr ""
+msgstr "<primary>logs</primary><secondary>exibir</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Activity"
-msgstr ""
+msgstr "Monitorando Atividades"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary><secondary>activity</secondary>"
-msgstr ""
+msgstr "<primary>monitorando</primary><secondary>atividades</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>activity, monitoring</primary>"
-msgstr ""
+msgstr "<primary>atividades, monitorando</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "In Real Time"
-msgstr ""
+msgstr "Em Tempo Real"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>top</command> is an interactive tool that displays a list of currently running processes. The default sorting is based on the current amount of processor use and can be obtained with the <keycap>P</keycap> key. Other sort orders include a sort by occupied memory (<keycap>M</keycap> key), by total processor time (<keycap>T</keycap> key) and by process identifier (<keycap>N</keycap> key). The <keycap>k</keycap> key allows killing a process by entering its process identifier. The <keycap>r</keycap> key allows <emphasis>renicing</emphasis> a process, i.e. changing its priority."
 msgstr ""
+"<command>top</command> é uma ferramenta interativa que exibe uma lista de "
+"processos em execução. A triagem padrão baseia se na quantidade atual de "
+"utilização do processador e pode ser obtida com a tecla <keycap>P</keycap>. "
+"Outras ordens de classificação incluem uma espécie de memória ocupada (tecla "
+"<keycap>M</keycap>), pelo tempo total do processador (tecla "
+"<keycap>T</keycap>) e pelo identificador de processo (tecla "
+"<keycap>N</keycap>). A tecla <keycap>k</keycap> permite matar um processo, "
+"digitando seu identificador de processo. O tecla <keycap>r</keycap> permite "
+"<emphasis>renicing</emphasis> um processo, ou seja, mudar sua prioridade."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>top</command></primary>"
-msgstr ""
+msgstr "<primary><command>top</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When the system seems to be overloaded, <command>top</command> is a great tool to see which processes are competing for processor time or consume too much memory. In particular, it is often interesting to check if the processes consuming resources match the real services that the machine is known to host. An unknown process running as the www-data user should really stand out and be investigated, since it's probably an instance of software installed and executed on the system through a vulnerability in a web application."
 msgstr ""
+"Quando o sistema parece estar sobrecarregado, <command>top</command> é uma "
+"ótima ferramenta para ver quais processos estão competindo por tempo de "
+"processador ou consumindo muita memória. Em particular, muitas vezes é "
+"interessante verificar se os recursos do processos que consomem coincidem "
+"com os serviços reais conhecidos que a máquina hospeda. Um processo "
+"desconhecido rodando como o usuário www-data deve realmente se destacar e "
+"ser investigado, já que é provavelmente uma instância do software instalado "
+"e executado no sistema através de uma vulnerabilidade em uma aplicação web."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>top</command> is a very flexible tool and its manual page gives details on how to customize its display and adapt it to one's personal needs and habits."
 msgstr ""
+"<command>top</command> é uma ferramenta muito flexível e sua página de "
+"manual dá detalhes sobre como personalizar a sua exibição e adaptá la às "
+"nossas necessidades pessoais e hábitos."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>gnome-system-monitor</command> and <command>qps</command> graphical tools are similar to <command>top</command> and they provide roughly the same features."
 msgstr ""
+"As ferramentas gráficas <command>gnome-system-monitor</command> e "
+"<command>qps</command> são semelhantes ao <command>top</command> e "
+"proporcionam mais ou menos as mesmas características."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Visual representations of activity"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Representação Visual das atividades"
 
 #. Tag: para
 #, no-c-format
 msgid "For more visual (and entertaining) representations of a computer's activity, one should investigate the <emphasis role=\"pkg\">lavaps</emphasis>, <emphasis role=\"pkg\">bubblemon</emphasis> and <emphasis role=\"pkg\">bubblefishymon</emphasis> packages. <command>lavaps</command> displays running processes as the wax bubbles in a lava-lamp. <emphasis>bubblemon</emphasis> is a desktop panel applet representing the amount of used memory and the processor usage as an aquarium with bubbles. <command>bubblefishymon</command> is rather similar, but it also adds fish representing network traffic (and even a duck)."
 msgstr ""
+"Para visuaualizar melhor (e divertir) representações da actividade de um "
+"computador, deve-se investigar <emphasis role=\"pkg\">Lavaps</emphasis>, "
+"<emphasis role=\"pkg\">bubblemon</emphasis> e pacotes <emphasis "
+"role=\"pkg\">bubblefishymon</emphasis>. <command>Lavaps</command> mostra os "
+"processos em execução, como as bolhas de cera em um lava-lamp. "
+"<emphasis>bubblemon</emphasis> é um applet do painel de área de trabalho que "
+"representa a quantidade de memória usada e o uso do processador como um "
+"aquário com bolhas. <command>bubblefishymon</command> é bastante semelhante, "
+"mas também acrescenta peixe representando tráfego de rede (e até mesmo um "
+"pato)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gnome-system-monitor</command></primary>"
-msgstr ""
+msgstr "<primary><command>gnome-system-monitor</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lavaps</command></primary>"
-msgstr ""
+msgstr "<primary><command>lavaps</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bubblefishymon</command></primary>"
-msgstr ""
+msgstr "<primary><command>bubblefishymon</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>bubblemon</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>bubblemon</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "History"
-msgstr ""
+msgstr "Historia"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>activity, history</primary>"
-msgstr ""
+msgstr "<primary>atividades, historico de</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Processor load, network traffic and free disk space are information that are constantly varying. Keeping a history of their evolution is often useful in determining exactly how the computer is used."
 msgstr ""
+"Carga do processador, o tráfego de rede e o espaço livre no disco são "
+"informações que variam constantemente. Manter um histórico de sua evolução é "
+"muitas vezes útil para determinar exatamente como o computador é usado."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SNMP</primary>"
-msgstr ""
+msgstr "<primary>SNMP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Simple Network Management Protocol</primary>"
-msgstr ""
+msgstr "<primary>Simple Network Management Protocol</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "There are many dedicated tools for this task. Most can fetch data via SNMP (<emphasis>Simple Network Management Protocol</emphasis>) in order to centralize this information. An added benefit is that this allows fetching data from network elements that may not be general-purpose computers, such as dedicated network routers or switches."
 msgstr ""
+"Existem muitas ferramentas dedicadas a esta tarefa. A maioria pode buscar "
+"dados via SNMP (<emphasis>Simple Network Management Protocol</emphasis>, a "
+"fim de centralizar esta informação. Um benefício adicional é que este "
+"permite buscar dados de elementos de rede que podem não ser de computadores "
+"de uso geral, tais como roteadores de rede dedicadas ou switches."
 
 #. Tag: para
 #, no-c-format
 msgid "This book deals with Munin in some detail (see <xref linkend=\"section.munin\" />) as part of <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />. Debian also provides a similar tool, <emphasis role=\"pkg\">cacti</emphasis>. Its deployment is slightly more complex, since it is based solely on SNMP. Despite having a web interface, grasping the concepts involved in configuration still requires some effort. Reading the HTML documentation (<filename>/usr/share/doc/cacti/html/index.html</filename>) should be considered a prerequisite."
 msgstr ""
+"Este livro trata Munin com algum detalhe (ver <xref linkend=\"section.munin\" "
+"/>) como parte de <xref linkend=\"advanced-administration\" xrefstyle=\"select: "
+"rótulo quotedtitle\" />. Debian também fornece uma ferramenta similar, "
+"<emphasis role=\"pkg\">cacti</ emphasis>. Sua implantação é um pouco mais "
+"complexa, pois se baseia apenas em SNMP. Apesar de ter uma interface web, "
+"compreender os conceitos envolvidos na configuração ainda requer algum "
+"esforço. Lendo a documentação HTML "
+"(<filename>/usr/share/doc/cacti/html/index.html</filename>) deve ser "
+"considerado um pré-requisito."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <command>mrtg</command>"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVO</emphasis> <command>mrtg</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mrtg</command></primary>"
-msgstr ""
+msgstr "<primary><command>mrtg</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>mrtg</command> (in the similarly-named package) is an older tool. Despite some rough edges, it can aggregate historical data and display them as graphs. It includes a number of scripts dedicated to collecting the most commonly monitored data such as processor load, network traffic, web page hits, and so on."
 msgstr ""
+"<command>mrtg</command> (do pacote com mesmo nome) é uma antiga ferramenta. "
+"Apesar de algumas arestas, ela pode agregar dados históricos e exibi-los na "
+"forma de gráficos. Ela inclui uma série de scripts dedicados à coleta de "
+"dados mais comumente monitorados, tais como a carga do processador, o "
+"tráfego de rede, acessos à página da web, e assim por diante."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">mrtg-contrib</emphasis> and <emphasis role=\"pkg\">mrtgutils</emphasis> packages contain example scripts that can be used directly."
 msgstr ""
+"Os pacotes <emphasis role=\"pkg\">mrtg-contrib</emphasis> e <emphasis "
+"role=\"pkg\">mrtgutils</emphasis> contem exemplos de scripts que podem ser "
+"utilizados diretamente."
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Changes"
-msgstr ""
+msgstr "Detectando Modificações"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the system is installed and configured, and barring security upgrades, there's usually no reason for most of the files and directories to evolve, data excepted. It is therefore interesting to make sure that files actually do not change: any unexpected change would therefore be worth investigating. This section presents a few tools able to monitor files and to warn the administrator when an unexpected change occurs (or simply to list such changes)."
 msgstr ""
+"Uma vez que o sistema esteja instalado e configurado, e impedindo "
+"atualizações de segurança, geralmente não há razão para a maioria dos "
+"arquivos e diretórios para evoluirem, exceeto os dados. É interessante, "
+"portanto, certificar se que os arquivos realmente não alteram: qualquer "
+"mudança seria, portanto, inesperada, valendo a pena investigar. Esta seção "
+"apresenta algumas ferramentas capazes de monitorar os arquivos e para avisar "
+"o administrador quando ocorrer uma mudança inesperada (ou simplesmente para "
+"listar tais mudanças)."
 
 #. Tag: title
 #, no-c-format
 msgid "Auditing Packages: <command>debsums</command> and its Limits"
-msgstr ""
+msgstr "Auditando Pacotes: <command>debsums</command> e seus limites"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debsums</command></primary>"
-msgstr ""
+msgstr "<primary><command>debsums</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Protecting against upstream changes"
 msgstr ""
+"<emphasis>INDO ALEM</emphasis> Protegendo se contra mudanças mais "
+"significativas"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is useful in detecting changes to files coming from a Debian package, but it will be useless if the package itself is compromised, for instance if the Debian mirror is compromised. Protecting against this class of attacks involves using APT's digital signature verification system (see <xref linkend=\"sect.package-authentication\" />), and taking care to only install packages from a certified origin."
 msgstr ""
+" \t<command>debsums</command> é útil na detecção de alterações em arquivos "
+"provenientes de um pacote Debian, mas será inútil se o pacote em si está "
+"comprometidO, por exemplo, se o espelho Debian está comprometida. "
+"Protegendo-se contra este tipo de ataques envolve a utilização de sistema "
+"APT de verificação de assinatura digital (veja <xref linkend=\"sect.package-"
+"authentication\" />), e tomando cuidado para só instalar pacotes a partir de "
+"uma origem certificada."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is an interesting tool since it allows finding what installed files have been modified (potentially by an attacker), but this should be taken with a grain of salt. First, because not all Debian packages provide the fingerprints required by this program (they can be found in <filename>/var/lib/dpkg/info/<replaceable>package</replaceable>.md5sums</filename> when they exist). <indexterm><primary>fingerprint</primary></indexterm> <indexterm><primary>control sum</primary></indexterm> <indexterm><primary>MD5</primary></indexterm> <indexterm><primary>SHA1</primary></indexterm> As a reminder: a fingerprint is a value, often a number (even though in hexadecimal notation), that contains a kind of signature for the contents of a file. This signature is calculated with an algorithm (MD5 or SHA1 being well-known examples) that more or less guarantee that even the tiniest change in the file contents implies a change in the fingerprint; this is known as the “avalanche effect”. This allows a simple numerical fingerprint to serve as a litmus test to check whether the contents of a file have been altered. These algorithms are not reversible; in other words, for most of them, knowing a fingerprint doesn't allow finding the corresponding contents. Recent mathematical advances seem to weaken the absoluteness of these principles, but their use is not called into question so far, since creating different contents yielding the same fingerprint still seems to be quite a difficult task."
 msgstr ""
+"<command>debsums</command> é uma ferramenta interessante, pois permite "
+"encontrar o que instalou arquivos que foram modificados (potencialmente por "
+"um atacante), mas isso deve ser tomado com certa reserva. Primeiro, porque "
+"nem todos os pacotes do Debian contém as impressões digitais exigidas por "
+"este programa (que pode ser encontrado em "
+"<filename>/var/lib/dpkg/info/<replaceable>pacote</replaceable>. Md5sums "
+"</filename> quando existir). "
+"<indexterm><primary>fingerprint</principal></indexterm> "
+"<indexterm><primary>control sum</principal></indexterm><indexterm><primary>M"
+"D5</principal></indexterm><indexterm><principal>SHA1</principal><indexterm/> "
+"Como um lembrete: a impressão digital é um valor, muitas vezes um número "
+"(mesmo que em notação hexadecimal), que contém uma espécie de assinatura "
+"para o conteúdo de um arquivo. Esta assinatura é calculada com um algoritmo "
+"(MD5 ou SHA1 sendo exemplos bem conhecidos) que garanta mais ou menos que, "
+"mesmo a mais ínfima mudança no conteúdo do arquivo implica uma mudança na "
+"impressão digital, o que é conhecido como o \"efeito avalanche\". Isto permite "
+"uma impressão digital numérica simples para servir como um teste para "
+"verificar se o conteúdo de um arquivo foram alterado. Estes algoritmos não "
+"são reversíveis, em outras palavras, para a maioria deles, sabendo a "
+"impressão digital não permite encontrar o conteúdo correspondente. Os "
+"recentes avanços matemáticos parecem enfraquecer o poder absoluto destes "
+"princípios, mas seu uso não é posto em causa, até agora, produzir a mesma "
+"impressão digital apartir de conteúdos diferentes ainda parece ser uma "
+"tarefa bastante difícil."
 
 #. Tag: para
 #, no-c-format
 msgid "In addition, the <filename>md5sums</filename> files are stored on the hard disk; a thorough attacker will therefore update these files so they contain the new control sums for the subverted files."
 msgstr ""
+"Além disso, os arquivos <filename>MD5sums</filename> estão armazenados no "
+"disco rígido, um atacante completo, portanto, atualizara esses arquivos para "
+"que eles contenham as novas somas de controle para os arquivos subvertidos."
 
 #. Tag: para
 #, no-c-format
 msgid "The first drawback can be avoided by asking <command>debsums</command> to base its checks on a <filename>.deb</filename> package instead of relying on the <filename>md5sums</filename> file. But that requires downloading the matching <filename>.deb</filename> files first:"
 msgstr ""
+"O primeiro inconveniente pode ser evitado, pedindo "
+"<comando>debsums</command> para basearsuas verificações em um pacote "
+"<filename>.deb</filename> em vez de depender dos arquivos "
+"<filename>md5sums</filename>. Mas que requer o download do arquivo "
+"<filename>.deb</filename> correspondente primeiro:"
 
 #. Tag: screen
 #, no-c-format
@@ -1066,16 +1418,33 @@ msgid "\n"
 "# </computeroutput><userinput>debsums -p /var/cache/apt/archives -g</userinput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get --reinstall -d install "
+"`debsums -l`</userinput>\n"
+"<computeroutput>[ ... ]\n"
+"# </computeroutput><userinput>debsums -p /var/cache/apt/archives "
+"-g</userinput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "It is also worth noting that, in its default configuration, <command>debsums</command> automatically generates the missing <filename>md5sums</filename> files whenever a package is installed using APT."
 msgstr ""
+"É importante notar também que, em sua configuração padrão, "
+"<comando>debsums</command> gera automaticamente os arquivos "
+"<filename>md5sums</filename> sempre que um pacote é instalado usando o APT."
 
 #. Tag: para
 #, no-c-format
 msgid "The other problem can be avoided in a similar fashion: the check must simply be based on a pristine <filename>.deb</filename> file. Since this implies having all the <filename>.deb</filename> files for all the installed packages, and being sure of their integrity, the simplest way is to grab them from a Debian mirror. This operation can be slow and tedious, and should therefore not be considered a proactive technique to be used on a regular basis."
 msgstr ""
+"O outro problema pode ser evitado de forma semelhante: o cheque deve "
+"simplesmente basear-se num puro arquivo <filename>.deb</filename>. Uma vez "
+"que esta implica em ter todos os arquivos <filename>.deb</filename> para "
+"todos os pacotes instalados, e ter certeza de sua integridade, a maneira "
+"mais simples é baixa los de um espelho Debian. Esta operação pode ser lenta "
+"e tediosa, e não deve, portanto, ser considerada uma técnica dinamica a ser "
+"utilizada numa base regular."
 
 #. Tag: screen
 #, no-c-format
@@ -1085,281 +1454,468 @@ msgid "\n"
 "# </computeroutput><userinput>debsums -p /var/cache/apt/archives --generate=all</userinput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get --reinstall -d install "
+"`grep-status -e 'Status: install ok installed' -n -s Pacote`</userinput>\n"
+"<computeroutput>[ ... ]\n"
+"# </computeroutput><userinput>debsums -p /var/cache/apt/archives "
+"--generate=all</userinput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "Note that this example uses the <command>grep-status</command> command from the <emphasis role=\"pkg\">grep-dctrl</emphasis> package, which is not installed by default."
 msgstr ""
+"Note que este exemplo usa o comando <command>grep status</command> a partir "
+"do pacote <emphasis role=\"pkg\">grep-dctrl</emphasis>, que não é instalado "
+"por padrão."
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Files: AIDE"
-msgstr ""
+msgstr "Monitorando Arquivos: AIDE"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">aide</emphasis> (Debian package)</primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">aide</emphasis> (Pacote Debian)</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The AIDE tool (<emphasis>Advanced Intrusion Detection Environment</emphasis>) allows checking file integrity, and detecting any change against a previously recorded image of the valid system. This image is stored as a database (<filename>/var/lib/aide/aide.db</filename>) containing the relevant information on all files of the system (fingerprints, permissions, timestamps and so on). This database is first initialized with <command>aideinit</command>; it is then used daily (by the <filename>/etc/cron.daily/aide</filename> script) to check that nothing relevant changed. When changes are detected, AIDE records them in log files (<filename>/var/log/aide/*.log</filename>) and sends its findings to the administrator by email."
 msgstr ""
+"A ferramenta AIDE (<emphasis>Advanced Intrusion Detection Environment - "
+"Ambiente Avançado de Deteccao Intrusao</emphasis>) permite verificar a "
+"integridade de arquivos, e detectar qualquer mudança em relacao a uma imagem "
+"gravada anteriormente do sistema válido. Esta imagem é armazenada como um "
+"banco de dados (<filename> /var/lib/aide/aide.db</filename>) que contém as "
+"informações relevantes de todos os arquivos do sistema (impressões digitais, "
+"permissões, timestamps e assim por diante). Este banco de dados é "
+"inicializado com <command>aideinit</command>, que é então usado diariamente "
+"(pelo script <filename>/etc/cron.daily/</filename> ) para verificar que nada "
+"de relevante mudou. Quando forem detectadas alterações, AIDE grava os em "
+"arquivos de log (<filename>/var/log/aide/*.log</filename>) e envia os seus "
+"resultados ao administrador por e-mail."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Protecting the database"
-msgstr ""
+msgstr "<emphasis>NA PRATICA</emphasis> Proteger o banco de dados"
 
 #. Tag: para
 #, no-c-format
 msgid "Since AIDE uses a local database to compare the states of the files, the validity of its results is directly linked to the validity of the database. If an attacker gets root permissions on a compromised system, they will be able to replace the database and cover their tracks. A possible workaround would be to store the reference data on read-only storage media."
 msgstr ""
+"Como AIDE usa um banco de dados local para comparar os estados dos arquivos, "
+"a validade de seus resultados está diretamente ligada à validade do banco "
+"de dados. Se um atacante obtém permissões de root em um sistema "
+"comprometido, eles serão capazes de substituir o banco de dados e cobrir "
+"seus rastros. Uma possível solução seria armazenar os dados de referência em "
+"mídia somente leitura de armazenamento."
 
 #. Tag: para
 #, no-c-format
 msgid "Many options in <filename>/etc/default/aide</filename> can be used to tweak the behavior of the <emphasis role=\"pkg\">aide</emphasis> package. The AIDE configuration proper is stored in <filename>/etc/aide/aide.conf</filename> and <filename>/etc/aide/aide.conf.d/</filename> (actually, these files are only used by <command>update-aide.conf</command> to generate <filename>/var/lib/aide/aide.conf.autogenerated</filename>). Configuration indicates which properties of which files need to be checked. For instance, the contents of log files changes routinely, and such changes can be ignored as long as the permissions of these files stay the same, but both contents and permissions of executable programs must be constant. Although not very complex, the configuration syntax is not fully intuitive, and reading the <citerefentry><refentrytitle>aide.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page is therefore recommended."
 msgstr ""
+"Muitas opções em <filename>/etc/default/aide</filename> pode ser usadas para "
+"ajustar o comportamento do pacote <emphasis role=\"pkg\">aide</emphasis>. A "
+"configuração AIDE adequada é armazenada em "
+"<filename>/etc/aide/aide.conf</filename> e "
+"<filename>/etc/aide/aide.conf.d/</filename> (na verdade, esses arquivos são "
+"usados <command>update-aide.conf</command> para gerar "
+"<filename>/var/lib/aide/aide.conf.autogenerated</filename>). Configuração "
+"indica quais propriedades de arquivos precisam ser verificadas. Por exemplo, "
+"o conteúdo de mudanças de arquivos log rotineiramente, e estas modificações "
+"podem ser ignoradas, desde que as permissões destes arquivos permanecam o "
+"mesmo, mas ambos os conteúdos e as permissões de programas executáveis "
+"​​devem ser constantes. Embora não seja muito complexo, a sintaxe de "
+"configuração não é totalmente intuitiva, e a leitura da página 5 do manual "
+"aide.conf, é recomendada."
 
 #. Tag: para
 #, no-c-format
 msgid "A new version of the database is generated daily in <filename>/var/lib/aide/aide.db.new</filename>; if all recorded changes were legitimate, it can be used to replace the reference database."
 msgstr ""
+"Uma nova versão do banco de dados é gerada diariamente em "
+"<filename>/var/lib/aide/aide.db.new</filename>, se todas as alterações "
+"registradas eram legítimas, ele pode ser usado para substituir o banco de "
+"dados de referência."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Tripwire and Samhain"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVO</emphasis> Tripwire and Samhain"
 
 #. Tag: para
 #, no-c-format
 msgid "Tripwire is very similar to AIDE; even the configuration file syntax is almost the same. The main addition provided by <emphasis role=\"pkg\">tripwire</emphasis> is a mechanism to sign the configuration file, so that an attacker cannot make it point at a different version of the reference database."
 msgstr ""
+"Tripwire é muito semelhante ao AIDE; mesmo a sintaxe arquivo de configuração "
+"é quase a mesma. A adição principal fornecida pelo <emphasis "
+"role=\"pkg\">tripwire</emphasis> é um mecanismo para assinar o arquivo de "
+"configuração, de modo que um atacante não pode torná lo ponto em uma versão "
+"diferente do banco de dados de referência."
 
 #. Tag: para
 #, no-c-format
 msgid "Samhain also offers similar features, as well as some functions to help detecting rootkits (see the QUICK LOOK sidebar). It can also be deployed globally on a network, and record its traces on a central server (with a signature)."
 msgstr ""
+"Samhain também oferece características semelhantes, bem como algumas funções "
+"ajudar a detectar rootkits (veja o quadro QUICK LOOK). Também pode ser "
+"implementado globalmente em uma rede, e gravar os seus vestigios em um "
+"servidor central (com uma assinatura)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> The <emphasis role=\"pkg\">checksecurity</emphasis> and <emphasis role=\"pkg\">chkrootkit</emphasis>/<emphasis role=\"pkg\">rkhunter</emphasis> packages"
 msgstr ""
+"<emphasis>BLOQUEIO RAPIDO</emphasis> os pacotes <emphasis "
+"role=\"pkg\">checksecurity</emphasis> e <emphasis "
+"role=\"pkg\">chkrootkit</emphasis>/<emphasis role=\"pkg\">rkhunter</emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">checksecurity</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">checksecurity</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The first of these packages contains several small scripts performing basic checks on the system (empty passwords, new setuid files, and so on) and warning the administrator if required. Despite its explicit name, an administrator should not rely solely on it to make sure a Linux system is secure."
 msgstr ""
+"O primeiro destes pacotes contém vários pequenos scripts que executam "
+"verificações básicas sobre o sistema (senhas vazias, arquivos setuid novos, "
+"e assim por diante) e alerta o administrador, se necessário. Apesar de seu "
+"nome expressar, um administrador não deve confiar somente nele para "
+"certificar se que um sistema Linux está seguro."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis role=\"pkg\">rkhunter</emphasis> packages allow looking for <emphasis>rootkits</emphasis> potentially installed on the system. As a reminder, these are pieces of software designed to hide the compromise of a system while discreetly keeping control of the machine. The tests are not 100% reliable, but they can usually draw the administrator's attention to potential problems."
 msgstr ""
+"The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis "
+"role=\"pkg\">rkhunter</emphasis> packages allow looking for "
+"<emphasis>rootkits</emphasis> potentially installed on the system. As a "
+"reminder, these are pieces of software designed to hide the compromise of a "
+"system while discreetly keeping control of the machine. The tests are not "
+"100% reliable, but they can usually draw the administrator's attention to "
+"potential problems.\n"
+"Os pacotes <emphasis role=\"pkg\">chkrootkit</emphasis> e <emphasis "
+"role=\"pkg\">rkhunter</emphasis> permitem que procura por  potenciais "
+"instalacoes de <emphasis>rootkits</emphasis> no sistema. Como um lembrete, "
+"estes são pedaços de software projetados para ocultar o comprometimento de "
+"um sistema, enquanto discretamente mantem o controle da máquina. Os testes "
+"não são 100% confiáveis​​, mas geralmente eles podem chamar a atenção do "
+"administrador a potenciais problemas."
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Intrusion (IDS/NIDS)"
-msgstr ""
+msgstr "Detectando Intrusoes (IDS/NIDS)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>detection, intrusion</primary>"
-msgstr ""
+msgstr "<primary>deteccao, intrusao</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>intrusion detection</primary>"
-msgstr ""
+msgstr "<primary>intrusao deteccao</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IDS</primary>"
-msgstr ""
+msgstr "<primary>IDS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>intrusion detection system</primary>"
-msgstr ""
+msgstr "<primary>sistema de deteccao de intrusao</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NIDS</primary>"
-msgstr ""
+msgstr "<primary>NIDS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Network</primary><secondary>IDS</secondary>"
-msgstr ""
+msgstr "<primary>Rede</primary><secondary>IDS</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Denial of service"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BASICO</emphasis> Negação de serviço"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>denial of service</primary>"
-msgstr ""
+msgstr "<primary>negacao de servico</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A “denial of service” attack has only one goal: to make a service unavailable. Whether such an attack involves overloading the server with queries or exploiting a bug, the end result is the same: the service is no longer operational. Regular users are unhappy, and the entity hosting the targeted network service suffers a loss in reputation (and possibly in revenue, for instance if the service was an e-commerce site)."
 msgstr ""
+"O ataque \"negação de serviço\" tem apenas um objetivo: tornar um serviço "
+"indisponível. Se tal ataque envolve a sobrecarrega do servidor com consultas "
+"ou explorar uma falha, o resultado final é o mesmo: o serviço não é mais "
+"operacional. Os usuários regulares estão infelizes, e a entidade que hospeda "
+"o serviço de rede alvo sofre uma perda de reputação (e, eventualmente, em "
+"receita, por exemplo, se o serviço era um site de comércio eletrônico)."
 
 #. Tag: para
 #, no-c-format
 msgid "Such an attack is sometimes “distributed”; this usually involves overloading the server with large numbers of queries coming from many different sources so that the server becomes unable to answer the legitimate queries. These types of attacks have gained well-known acronyms: <acronym>DoS</acronym> and <acronym>DDoS</acronym> (depending on whether the denial of service attack is distributed or not)."
 msgstr ""
+"Tal ataque é por vezes \"distribuído\", o que geralmente envolve sobrecarregar "
+"o servidor com um grande número de consultas provenientes de muitas fontes "
+"diferentes para que o servidor se torna incapaz de responder às perguntas "
+"legítimas. Estes tipos de ataques ganharam siglas bem conhecidas: "
+"<acronym>DoS</acronym> e <acronym>DDoS</acronym> (dependendo se o ataque de "
+"negação de serviço distribuído ou não)."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>snort</command> (in the Debian package of the same name) is a NIDS — a <emphasis>Network Intrusion Detection System</emphasis>. Its function is to listen to the network and try to detect infiltration attempts and/or hostile acts (including denial of service attacks). All these events are logged, and a daily email is sent to the administrator with a summary of the past 24 hours."
 msgstr ""
+"<command>snort</command> (no pacote Debian com o mesmo nome) é um NIDS - um "
+"<emphasis>Sistema de Detecção de Intrusão de Rede</emphasis>. Sua função é "
+"ouvir a rede e tentar detectar tentativas de infiltração e/ou atos hostis "
+"(incluindo ataques de negação de serviço). Todos esses eventos são "
+"registrados, e diariamente um e-mail é enviado para o administrador com um "
+"resumo das últimas 24 horas."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>snort</command></primary>"
-msgstr ""
+msgstr "<primary><command>snort</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Its configuration requires describing the range of addresses that the local network covers. In practice, this means the set of all potential attack targets. Other important parameters can be configured with <command>dpkg-reconfigure snort</command>, including the network interface to monitor. This will often be <literal>eth0</literal> for an Ethernet connection, but other possibilities exist such as <literal>ppp0</literal> for an ADSL or PSTN (<emphasis>Public Switched Telephone Network</emphasis>, or good old dialup modem), or even <literal>wlan0</literal> for some wireless network cards."
 msgstr ""
+"Sua configuração exige que descreva o intervalo de endereços que a rede "
+"local cobre. Na prática, isso significa que o conjunto de todos os alvos "
+"potenciais de ataque. Outros parâmetros importantes podem ser configurados "
+"com <command>dpkg-reconfigure snort</command>, incluindo a interface de rede "
+"para monitorar. Isto será muitas vezes <literal>eth0</literal> para uma "
+"conexão Ethernet, mas existem outras possibilidades, como "
+"<literal>ppp0</literal> para uma ADSL ou PSTN (<emphasis>Public Switched "
+"Telephone Network </emphasis> ou bom e antigo modem dial-up), ou mesmo "
+"<literal>wlan0</literal> para algumas placas de rede sem fio."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Integration with <command>prelude</command>"
 msgstr ""
+"<emphasis>INDO MAIS</emphasis> Integração com o <command>prelude</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "Prelude brings centralized monitoring of security information. Its modular architecture includes a server (the <emphasis>manager</emphasis> in <emphasis role=\"pkg\">prelude-manager</emphasis>) which gathers alerts generated by <emphasis>sensors</emphasis> of various types."
 msgstr ""
+"Prelude traz monitoramento centralizado de informações de segurança. Sua "
+"arquitetura modular inclui um servidor (o gerente "
+"<emphasis>manager</emphasis> em <emphasis role=\"pkg\">prelude-"
+"manager</emphasis>) que reúne os alertas gerados por "
+"<emphasis>sensores</emphasis> de vários tipos."
 
 #. Tag: para
 #, no-c-format
 msgid "Snort can be configured as such a sensor. Other possibilities include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) which monitors log files (in a manner similar to <command>logcheck</command>, described in <xref linkend=\"section.logcheck\" />)."
 msgstr ""
+"Snort pode ser configurado como tal sensor. Outras possibilidades incluem "
+"<emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey </ "
+"emphasis>), que monitora os arquivos de log (de forma semelhante ao "
+"<command>logcheck</command>, descrito em <xref linkend = \"section.logcheck\" "
+"/>)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>prelude</command></primary>"
-msgstr ""
+msgstr "<primary><command>prelude</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>snort</command> configuration file (<filename>/etc/snort/snort.conf</filename>) is very long, and the abundant comments describe each directive with much detail. Getting the most out of it requires reading it in full and adapting it to the local situation. For instance, indicating which machine hosts which service can limit the number of incidents <command>snort</command> will report, since a denial of service attack on a desktop machine is far from being as critical as one on a DNS server. Another interesting directive allows storing the mappings between IP addresses and MAC addresses (these uniquely identify a network card), so as to allow detecting <emphasis>ARP spoofing</emphasis> attacks by which a compromised machine attempts to masquerade as another such as a sensitive server."
 msgstr ""
+"O arquivo de configuração "
+"<command>snort</command>(<filename>/etc/snort/snort.conf</filename>) é muito "
+"longo, e os comentários abundantes descrever cada directiva com muito "
+"detalhe. Obtendo o máximo do que exige lendo o na íntegra e adaptando-o à "
+"situação local. Por exemplo, indicando quais máquinas e quais serviços pode "
+"limitar o número de incidentes o <command>snort</command> irá relatar, já "
+"que um ataque de negação de serviço em uma máquina desktop está longe de ser "
+"tão crítica como em um servidor DNS. Outra diretriz interessante permite "
+"armazenar os mapeamentos entre endereços IP e endereços MAC (estes "
+"identificam uma placa de rede), de modo a permitir a detecção de ataques "
+"<emphasis>ARP spoofing</emphasis> por que uma ou outra tentativas de "
+"máquinas comprometidas mascaram outra, como um servidor sensível."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Range of action"
-msgstr ""
+msgstr "<emphasis>ATENCAO</emphasis> Raio de ação"
 
 #. Tag: para
 #, no-c-format
 msgid "The effectiveness of <command>snort</command> is limited by the traffic seen on the monitored network interface. It will obviously not be able to detect anything if it cannot observe the real traffic. When plugged into a network switch, it will therefore only monitor attacks targeting the machine it runs on, which is probably not the intention. The machine hosting <command>snort</command> should therefore be plugged into the “mirror” port of the switch, which is usually dedicated to chaining switches and therefore gets all the traffic."
 msgstr ""
+"A eficácia do <command>snort</comando> é limitada pelo tráfego visto na "
+"interface de rede monitorada. Obviamente, não será capaz de detectar "
+"qualquer coisa se ​​não pode observar o tráfego real. Quando conectado a um "
+"switch de rede, ele irá, portanto, apenas monitorar ataques contra a máquina "
+"que ele roda, provavelmente não é a intenção. A máquina de hospedagem "
+"<command>snort</command> deve estar ligada ao \"espelho\" da porta do switch, "
+"que normalmente é dedicada aos interruptores de encadeamento e, portanto, "
+"recebe todo o tráfego."
 
 #. Tag: para
 #, no-c-format
 msgid "On a small network based around a network hub, there is no such problem, since all machines get all the traffic."
 msgstr ""
+"Em uma pequena rede em torno de um hub de rede, não existe esse problema, "
+"uma vez que todas as máquinas obtem todo o tráfego."
 
 #. Tag: title
 #, no-c-format
 msgid "Introduction to SELinux"
-msgstr ""
+msgstr "Introducao ao SELinux"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SELinux</primary>"
-msgstr ""
+msgstr "<primary>SELinux</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Principles"
-msgstr ""
+msgstr "Principios"
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux (<emphasis>Security Enhanced Linux</emphasis>) is a <emphasis>Mandatory Access Control</emphasis> system built on Linux's LSM (<emphasis>Linux Security Modules</emphasis> interface. In practice, the kernel queries SELinux before each system call to know whether the process is authorized to do the given operation."
 msgstr ""
+"SELinux (<emphasis>Security Enhanced Linux</emphasis>) é um sistema de "
+"<emphasis>controle de acesso obrigatório</emphasis> construído sobre a "
+"interface LSM (<emphasis>Linux Security Modules</emphasis>) do Linux. Na "
+"prática, o kernel consulta o SELinux antes de cada chamada do sistema para "
+"saber se o processo está autorizado a fazer a operação dada."
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux uses a set of rules — collectively known as a <emphasis>policy</emphasis> — to authorize or forbid operations. Those rules are difficult to create. Fortunately, two standard policies (<emphasis>targeted</emphasis> and <emphasis>strict</emphasis>) are provided to avoid the bulk of the configuration work."
 msgstr ""
+"SELinux utiliza um conjunto de regras - conhecidos coletivamente como uma "
+"<emphasis>política</emphasis> - para autorizar ou proibir as operações. "
+"Essas regras são difíceis de criar. Felizmente, duas diretivas padroes "
+"(<emphasis>targeted</emphasis> e <emphasis>strict</emphasis>) são fornecidas "
+"para evitar a maior parte do trabalho de configuração."
 
 #. Tag: para
 #, no-c-format
 msgid "With SELinux, the management of rights is completely different from traditional Unix systems. The rights of a process depend on its <emphasis>security context</emphasis>. The context is defined by the <emphasis>identity</emphasis> of the user who started the process, the <emphasis>role</emphasis> and the <emphasis>domain</emphasis> that the user carried at that time. The rights really depend on the domain, but the transitions between domains are controlled by the roles. Finally, the possible transitions between roles depend on the identity."
 msgstr ""
+"Com o SELinux, a gestão dos direitos é completamente diferente do sistema "
+"Unix tradicional. Os direitos de um processo depende de seu "
+"<emphasis>contexto de segurança</emphasis>. O contexto é definido pela "
+"<emphasis>identidade</emphasis> do usuário que iniciou o processo, o "
+"<emphasis>papel</emphasis> e o <emphasis>domínio</emphasis> que o usuário "
+"realizada naquele momento. Os direitos realmente dependem do domínio, mas as "
+"transições entre os domínios são controladas pelos papéis. Finalmente, as "
+"transições possíveis entre os papéis dependem da identidade."
 
 #. Tag: title
 #, no-c-format
 msgid "Security contexts and Unix users"
-msgstr ""
+msgstr "Contextos de segurança e usuários Unix"
 
 #. Tag: para
 #, no-c-format
 msgid "In practice, during login, the user gets assigned a default security context (depending on the roles that they should be able to endorse). This defines the current domain, and thus the domain that all new child processes will carry. If you want to change the current role and its associated domain, you must call <command>newrole -r <replaceable>role_r</replaceable> -t <replaceable>domain_t</replaceable></command> (there's usually only a single domain allowed for a given role, the <literal>-t</literal> parameter can thus often be left out). This command authenticates you by asking you to type your password. This feature forbids programs to automatically switch roles. Such changes can only happen if they are explicitly allowed in the SELinux policy."
 msgstr ""
+"Na prática, durante o login, ao usuário é atribuído um contexto de segurança "
+"padrão (dependendo das funções que eles devem ser capazes de endossar). "
+"Isto define o domínio corrente e, assim, o domínio que todos os novos "
+"processos filho irao transportar. Se você quiser alterar o papel atual e seu "
+"domínio associado, você deve chamar <command>newrole-r <replaceable> role_r "
+"</replaceable>-t <replaceable>domain_t</replaceable></command> (normalmente "
+"há apenas um único domínio permitido para uma determinada função, o "
+"parâmetro <literal>-t</literal> pode, assim, muitas vezes, ser deixado de "
+"fora). Este comando autentica você pedindo que você digite sua senha. Este "
+"recurso proíbe programas mudarem automaticamente os papéis. Tais mudanças só "
+"podem acontecer se forem expressamente permitidas pela política SELinux."
 
 #. Tag: para
 #, no-c-format
 msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labeling). Domain's rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labeled with the given type)."
 msgstr ""
+"Obviamente, os direitos não se aplicam a todos os "
+"<emphasis>objetos</emphasis> (arquivos, diretórios, soquetes, dispositivos, "
+"etc.). Eles podem variar de objeto para objeto. Para isso, cada objeto é "
+"associado a um <emphasis>tipo</emphasis> (isto é conhecido como rotulagem). "
+"Direitos de domínio são, portanto, expressos com conjuntos de operações "
+"(nao)permitidos sobre os tipos (e, indiretamente, em todos os objetos que "
+"são rotulados com o tipo de dado)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Domains and types are equivalent"
-msgstr ""
+msgstr "<emphasis>EXTRA</emphasis> Domínios e Tipos são equivalentes"
 
 #. Tag: para
 #, no-c-format
 msgid "Internally, a domain is just a type, but a type that only applies to processes. That's why domains are suffixed with <literal>_t</literal> just like object's types."
 msgstr ""
+"Internamente, um domínio é apenas um tipo, mas um tipo que só se aplica a "
+"processos. É por isso que são domínios com o sufixo <literal>_t</literal> "
+"como tipos de objeto."
 
 #. Tag: para
 #, no-c-format
 msgid "By default, a program inherits its domain for the user who started it but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
 msgstr ""
+"Por padrão, um programa herda seu domínio para o usuário que o iniciou, mas "
+"as políticas SELinux padroes esperam que muitos programas importantes sejam "
+"executados em domínios dedicados. Para conseguir isso, estes executáveis "
+"​​são marcados com um tipo específico (por exemplo <literal>ssh</literal>) é "
+"marcado com <literal>ssh_exec_t</literal>, e quando o programa é iniciado, "
+"ele muda automaticamente no dominio <literal>ssh_t</literal>)). Este "
+"mecanismo de transição automática de domínio torna possível conceder apenas "
+"os direitos necessários para cada programa. É um princípio fundamental do "
+"SELinux."
 
 #. Tag: title
 #, no-c-format
 msgid "Automatic transitions between domains"
-msgstr ""
+msgstr "Transicoes automaticas entre dominios"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Finding the security context"
-msgstr ""
+msgstr "<emphasis>NA PRATICA</emphasis> Encontrar o contexto de segunranca"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>security context</primary>"
-msgstr ""
+msgstr "<primary>contexto de seguranca</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>context, security context</primary>"
-msgstr ""
+msgstr "<primary>contexto, contexto de seguranca</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MCS (<emphasis>Multi-Category Security</emphasis>)</primary>"
-msgstr ""
+msgstr "<primary>MCS (<emphasis>Multi-Category Security</emphasis>)</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To find the security context of a given process, you should use the <literal>Z</literal> option of <command>ps</command>."
 msgstr ""
+"Para encontrar o contexto de segurança de um determinado processo, você deve "
+"usar a opção <literal>Z</literal> do <command>ps</command>."
 
 #. Tag: screen
 #, no-c-format
@@ -1367,16 +1923,28 @@ msgid "<computeroutput>$ </computeroutput><userinput>ps axZ | grep vstfpd</useri
 "<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>\n"
 ""
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ps axZ | grep "
+"vstfpd</userinput>\n"
+"<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 "
+"/usr/sbin/vsftpd</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The first field contains the identity, the role, the domain and the MCS level, separated by colons. The MCS level (<emphasis>Multi-Category Security</emphasis>) is a parameter that intervenes in the setup of a confidentiality protection policy, which regulates the access to files based on their sensitivity. This feature will not be explained in this book."
 msgstr ""
+"O primeiro campo contém a identidade, o papel, o domínio e o nível MCS, "
+"separados por vírgulas. O nível de MCS (<emphasis>Multi-Category "
+"Security</emphasis>) é um parâmetro que intervém na configuração de uma "
+"política de protecção da confidencialidade, que regula o acesso a arquivos "
+"com base em sua sensibilidade. Esta funcionalidade não será explicada neste "
+"livro."
 
 #. Tag: para
 #, no-c-format
 msgid "To find the current security context in a shell, you should call <command>id -Z</command>."
 msgstr ""
+"Para encontrar o contexto de segurança atual em um shell, você deve chamar "
+"<command>id-Z</command>."
 
 #. Tag: screen
 #, no-c-format
@@ -1384,11 +1952,16 @@ msgid "<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
 "<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>\n"
 ""
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
+"<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</compu"
+"teroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, to find the type assigned to a file, you can use <command>ls -Z</command>."
 msgstr ""
+"Finalmente, para encontrar o tipo atribuído a um arquivo, você pode usar o "
+"<command>ls -Z</command>."
 
 #. Tag: screen
 #, no-c-format
@@ -1397,26 +1970,40 @@ msgid "<computeroutput>$ </computeroutput><userinput>ls -Z test /usr/bin/ssh</us
 "     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
 ""
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ls -Z test "
+"/usr/bin/ssh</userinput>\n"
+"<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
+"     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that the identity and role assigned to a file bear no special importance (they are never used), but for the sake of uniformity, all objects get assigned a complete security context."
 msgstr ""
+"É interessante notar que a identidade e o papel atribuído a um arquivo não "
+"têm qualquer importância especial (eles nunca são usados), mas por uma "
+"questão de uniformidade, todos os objetos são atribuídos num contexto de "
+"segurança completo."
 
 #. Tag: title
 #, no-c-format
 msgid "Setting Up SELinux"
-msgstr ""
+msgstr "Configurando o SELinux"
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux support is built into the standard kernels provided by Debian. The core Unix tools support SELinux without any modifications. It is thus relatively easy to enable SELinux."
 msgstr ""
+"O suporte SELinux é construído nos kernels padroes fornecidos pelo Debian. "
+"As principais ferramentas de suporte Unix SELinux sem quaisquer "
+"modificações. É, assim, relativamente fácil, habilitar SELinux."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>aptitude install selinux-basics selinux-policy-default</command> command will automatically install the packages required to configure an SELinux system."
 msgstr ""
+"O comando  <command>aptitude install selinux-basics selinux-policy-"
+"default</command> irá instalar automaticamente os pacotes necessários para "
+"configurar um sistema SELinux."
 
 #. Tag: para
 #, no-c-format
