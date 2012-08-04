@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:58\n"
-"PO-Revision-Date: 2012-08-01 07:56+0200\n"
+"PO-Revision-Date: 2012-08-07 17:31+0200\n"
 "Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/15_debian-packaging/pt_BR/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Backport"
-msgstr ""
+msgstr "Backport"
 
 #. Tag: keyword
 #, no-c-format
@@ -29,12 +29,12 @@ msgstr "Reconstruir"
 #. Tag: keyword
 #, no-c-format
 msgid "Source package"
-msgstr ""
+msgstr "Pacote fonte"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Archive"
-msgstr ""
+msgstr "Arquivo"
 
 #. Tag: keyword
 #, no-c-format
@@ -103,6 +103,18 @@ msgstr "Pegando os Fontes"
 #, no-c-format
 msgid "Rebuilding a Debian package starts with getting its source code. The easiest way is to use the <command>apt-get source <replaceable>source-package-name</replaceable></command> command. This command requires a <literal>deb-src</literal> line in the <filename>/etc/apt/sources.list</filename> file, and up-to-date index files (i.e. <command>apt-get update</command>). These conditions should already be met if you followed the instructions from the chapter dealing with APT configuration (see <xref linkend=\"sect.apt-sources.list\" />). Note however, that you'll be downloading the source packages from the Debian version mentioned in the <literal>deb-src</literal> line. If you need another version, you may need to download it manually from a Debian mirror or from the web site. This involves fetching two or three files (with extensions <filename>*.dsc</filename> — for <emphasis>Debian Source Control</emphasis> — <filename>*.tar.<replaceable>comp</replaceable></filename>, and sometimes <filename>*.diff.gz</filename> or <filename>*.debian.tar.<replaceable>comp</replaceable></filename> — <replaceable>comp</replaceable> taking one value among <literal>gz</literal>, <literal>bz2</literal>, <literal>lzma</literal> or <literal>xz</literal> depending on the compression tool in use), then run the <command>dpkg-source -x <replaceable>file.dsc</replaceable></command> command. If the <filename>*.dsc</filename> file is directly accessible at a given URL, there's an even simpler way to fetch it all, with the <command>dget <replaceable>URL</replaceable></command> command. This command (which can be found in the <emphasis role=\"pkg\">devscripts</emphasis> package) fetches the <filename>*.dsc</filename> file at the given address, then analyzes its contents, and automatically fetches the file or files referenced within. With the <literal>-x</literal> option, the source package is even unpacked locally after download."
 msgstr ""
+"Reconstruir um pacote Debian começado pegando seu código fonte. A maneira "
+"mais fácil é utilizando o comando <command>apt-get source <replaceable>nome-"
+"do-pacote-fonte</replaceable></command>. Este comando precisa de uma linha "
+"<literal>deb-src</literal> no arquivo "
+"<filename>/etc/apt/sources.list</filename>, e um indexe de arquivos "
+"atualizado(i.e. <command>apt-get update</command>). Estas condições já devem "
+"estar corretas se você seguiu as instruções do capítulo que lidou com a "
+"configuração do APT (see <xref linkend=\"sect.apt-sources.list\" />). Note "
+"entretando, que você baixará o pacote fonte da versão do Debian mencionada "
+"na linha <literal>deb-src</literal>.\n"
+"Se você precisar de outra versão, você talvez precise baixá-la manualmente "
+"de um espelho Debian ou de seu site."
 
 #. Tag: title
 #, no-c-format
@@ -121,16 +133,54 @@ msgstr ""
 #, no-c-format
 msgid "The first thing to do is to change the package version number, so that the rebuilt packages can be distinguished from the original packages provided by Debian. Assuming the current version is <literal>3.0.24-6</literal>, we can create version <literal>3.0.24-6.falcot1</literal>, which clearly indicates the origin of the package. This makes the package version number higher than the one provided by Debian, so that the package will easily install as an update do the original package. Such a change is best effected with the <command>dch</command> command (<emphasis>Debian CHangelog</emphasis>) from the <emphasis role=\"pkg\">devscripts</emphasis> package, with an invocation such as <command>dch -v 3.0.24-6.falcot1</command>. This invocation invokes a text editor (<command>sensible-editor</command> — this should be your favorite editor if it's mentioned in the <varname>VISUAL</varname> or <varname>EDITOR</varname> environment variables, and default editor otherwise) to allow documenting the differences brought by this rebuild. This editor shows us that <command>dch</command> really did change the <filename>debian/changelog</filename> file."
 msgstr ""
+"A primeira coisa a se fazer é mudar o número de versão do pacote, para que a "
+"reconstrução possa ser distinguida do pacote original provido pelo Debian. "
+"Assumindo que a versão atual é <literal>3.0.24-6</literal>,, nós podemos "
+"criar uma versão <literal>3.0.24-6.falcot1</literal>, na qual claramente "
+"indica a origem do pacote. Isto faz com que a versão do pacote seja maior do "
+"que a provida pelo Debian, então o pacote facilmente instalará como se "
+"fosse uma atualização do pacte original. Tal mudança tem melhor feito com o "
+"comando <command>dch</command> (<emphasis>Debian CHangelog</emphasis>) do "
+"pacote <emphasis role=\"pkg\">devscripts</emphasis>, como invocação "
+"<command>dch -v 3.0.24-6.falcot1</command>. Está invocação executa um editor "
+"de textos (<command>sensible-editor</command> — este deveria ser seu editor "
+"de textos favorito se for mencionado na variável de ambiente "
+"<varname>VISUAL</varname> ou <varname>EDITOR</varname>, e se não o editor "
+"padrão será usado) para permitir a documentação das diferenças trazidas por "
+"esta reconstrução. Este editor nos mostra que <command>dch</command> "
+"realmente modificou o arquivo <filename>debian/changelog</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "When a change in build options is required, changes are made to <filename>debian/rules</filename>, which drives the steps in the package build process. In the simplest cases, the lines concerning the initial configuration (<literal>./configure …</literal>) or the actual build (<literal>$(MAKE) …</literal> or <literal>make …</literal>) are easy to spot. If these commands are not explicitly called, they are probably a side effect of another explicit command, in which case please refer to their documentation to learn more about how to change the default behavior."
 msgstr ""
+"Quando uma mudança nas opções de construção são necessárias, essas mudanças "
+"são feitas no <filename>debian/rules</filename>, o qual controla os passos "
+"para o processo de construção do pacote. Nos casos mais simples, as linhas "
+"relevantes as configurações iniciais (<literal>./configure …</literal>) ou a "
+"construção verdadeira (<literal>$(MAKE) …</literal> ou <literal>make "
+"…</literal>) são fáceis de marcar. Se eles comandos são explicitamente "
+"chamados, eles provavelmente são efeitos colaterais de outro comando "
+"explícito, em cada caso por favor verifique a documentação para aprender "
+"mais sobre como modificar o comportamento padrão."
 
 #. Tag: para
 #, no-c-format
 msgid "Depending on the local changes to the packages, an update may also be required in the <filename>debian/control</filename> file, which contains a description of the generated packages. In particular, this file contains <literal>Build-Depends</literal> lines controlling the list of dependencies that must be fulfilled at package build time. These often refer to versions of packages contained in the distribution the source package comes from, but which may not be available in the distribution used for the rebuild. There is no automated way to determine if a dependency is real or only specified to guarantee that the build should only be attempted with the latest version of a library — this is the only available way to force an <emphasis>autobuilder</emphasis> to use a given package version during build, which is why Debian maintainers frequently use strictly versioned build-dependencies."
 msgstr ""
+"Dependendo das mudanças locais nos pacotes, uma atualização talvez seja "
+"necessária no arquivo <filename>debian/control</filename> , o qual contém "
+"uma descrição dos pacotes gerados. Em particular, este arquivo contém linhas "
+"<literal>Build-Depends</literal> que controlam uma lista de dependências "
+"que devem ser satisfeitas durante a construção do pacote. Estas geralmente "
+"se referem a versões de pacotes contidos na distribuição da qual o pacote "
+"fonte veio, mas as quais talvez não estejam disponíveis na distribuição "
+"utilizada na reconstrução. Não há maneira automática para determinar se uma "
+"dependência é real ou apenas especificada para garantir que a construção "
+"seja apenas tentada com a última versão da biblioteca — esta é a única "
+"maneira de se forçar um <emphasis>construtor automático</emphasis> usar um "
+"pacote dado durante a construção, eis o porque dos mantenedores Debian "
+"frequentemente utilizarem versões restritas das dependências de construção."
 
 #. Tag: para
 #, no-c-format
@@ -146,6 +196,13 @@ msgstr "<emphasis>DICA</emphasis> Instalando <literal>Build-Depends</literal>"
 #, no-c-format
 msgid "<indexterm><primary><literal>Build-Depends</literal>, control field</primary></indexterm> <command>apt-get</command> allows installing all packages mentioned in the <literal>Build-Depends</literal> fields of a source package available in a distribution mentioned in a <literal>deb-src</literal> line of the <filename>/etc/apt/sources.list</filename> file. This is a simple matter of running the <command>apt-get build-dep <replaceable>source-package</replaceable></command> command."
 msgstr ""
+"<indexterm><primary><literal>Build-Depends</literal>, campo de "
+"controle</primary></indexterm> <command>apt-get</command> permite instalar "
+"todos os pacotes mencionados nos campos <literal>Build-Depends</literal> de "
+"um pacote fonte disponível em uma distribuição mencionada na linha <literal"
+">deb-src</literal> no arquivo <filename>/etc/apt/sources.list</filename>. "
+"Isto é uma questão de simplesmente executar o comando command>apt-get build-"
+"dep <replaceable>source-package</replaceable></command>."
 
 #. Tag: title
 #, no-c-format
@@ -216,11 +273,29 @@ msgstr ""
 #, no-c-format
 msgid "The previous command can fail if the <literal>Build-Depends</literal> fields have not been updated, or if the related packages are not installed. In such a case, it is possible to overrule this check by passing the <literal>-d</literal> option to <command>dpkg-buildpackage</command>. However, explicitly ignoring these dependencies runs the risk of the build process failing at a later stage. Worse, the package may seem to build correctly but fail to run properly: some programs automatically disable some of their features when a required library is not available at build time."
 msgstr ""
+"O comando anterior pode falhar se os campos <literal>Build-Depends</literal> "
+"não foram atualizados, ou se os pacotes relacionados não foram instalados. "
+"Neste caso, é possível anular esta verificação passando a opção "
+"<literal>-d</literal> para o <command>dpkg-buildpackage</command>. "
+"Entretanto, ignorando explicitamente essas dependências corre-se o risco do "
+"processo de construção falhar em um próximo estágio. Pior, o pacote pode "
+"parecer corretamente construído mas falhar ao ser executado: alguns "
+"programas automaticamente desabilitam algumas de suas funcionalidades quando "
+"uma biblioteca necessária não está disponível em tempo de construção."
 
 #. Tag: para
 #, no-c-format
 msgid "More often than not, Debian developers use a higher-level program such as <command>debuild</command>; this runs <command>dpkg-buildpackage</command> as usual, but it also adds an invocation of a program that runs many checks to validate the generated package against the Debian policy. This script also cleans up the environment so that local environment variables do not “pollute” the package build. The <command>debuild</command> command is one of the tools in the <emphasis>devscripts</emphasis> suite, which share some consistency and configuration to make the maintainers' task easier."
 msgstr ""
+"Mais frequentemente do que nunca, os desenvolvedores Debian usam programas "
+"de alto nível como o <command>debuild</command>; ele executa <command>dpkg-"
+"buildpackage</command> como de costume, mas ele também incluí a execução de "
+"um programa que executa diversas verificações para validar a geração dos "
+"pacotes contra a política do Debian. Este script também limpa o ambiente "
+"para que variáveis locais não \"poluam\" a construção do pacote. O comando "
+"<command>debuild</command> é umas das ferramentas da suíte "
+"<emphasis>devscripts</emphasis>, que divide alguma consistência e "
+"configuração para tornar as tarefa dos mantenedores mais fácil."
 
 #. Tag: title
 #, no-c-format
@@ -236,11 +311,29 @@ msgstr "<primary><command>pbuilder</command></primary>"
 #, no-c-format
 msgid "The <command>pbuilder</command> program (in the similarly named package) allows building a Debian package in a <emphasis>chrooted</emphasis> environment. It first creates a temporary directory containing the minimal system required for building the package (including the packages mentioned in the <emphasis>Build-Depends</emphasis> field). This directory is then used as the root directory (<filename>/</filename>), using the <command>chroot</command> command, during the build process."
 msgstr ""
+"O comando <command>pbuilder</command> (similarmente ao nome do pacote) "
+"permite a construção de um pacote Debian em um ambiente <emphasis>chrooted "
+"(enjaulado)</emphasis>. Ele primeiramente cria um diretório temporário "
+"contendo um sistema mínimo necessário para a construção do pacote (incluindo "
+"os pacotes mencionados no campo <emphasis>Build-Depends</emphasis>). Este "
+"diretório é então usado como diretório raiz (<filename>/</filename>), "
+"utilizando o comando <command>chroot</command>, durante a fase de construção "
+"do pacote."
 
 #. Tag: para
 #, no-c-format
 msgid "This tool allows the build process to happen in an environment that is not altered by users' manipulations. This also allows for quick detection of the missing build-dependencies (since the build will fail unless the appropriate dependencies are documented). Finally, it allows building a package for a Debian version that is not the one used by the system as a whole: the machine can be using <emphasis role=\"distribution\">Stable</emphasis> for its normal workload, and a <command>pbuilder</command> running on the same machine can be using <emphasis role=\"distribution\">Unstable</emphasis> for package builds."
 msgstr ""
+"Está ferramenta permite ao processo de construção acontecer em um ambiente "
+"que não foi alterado pelo usuário. Isto também permite uma detecção rápida "
+"de um dependência perdida (já que a construção irá falhar a não ser que as "
+"dependência estejam documentadas). Finalmente, ele permite a construção de "
+"um pacote para a versão do Debian que não está sendo usada pelo sistema por "
+"completo: a máquina pode estar utilizando <emphasis "
+"role=\"distribution\">Stable</emphasis> para seu trabalho normal, e um "
+"<command>pbuilder</command> rodando na mesma máquina pode estar utilizando "
+"<emphasis role=\"distribution\">Unstable</emphasis> para a construção dos "
+"pacotes."
 
 #. Tag: title
 #, no-c-format
@@ -264,6 +357,15 @@ msgstr ""
 #, no-c-format
 msgid "The purpose of a fake package is to trick <command>dpkg</command> and <command>apt</command> into believing that some package is installed even though it's only an empty shell. This allows satisfying dependencies on a package when the corresponding software was installed outside the scope of the packaging system. Such a method works, but it should still be avoided whenever possible, since there's no guarantee that the manually installed software behaves exactly like the corresponding package would and other packages depending on it would not work properly."
 msgstr ""
+"O propósito de um pacote falso é enganar o <command>dpkg</command> e o "
+"<command>apt</command> para acreditarem que algum pacote está instalado "
+"mesmo que em realidade seja apenas um shell vazio. Isto permite satisfazer "
+"dependências num pacote quando o programa correspondente foi instalado fora "
+"do escopo do sistema de pacotes. Este método funciona, porém deve mesmo "
+"assim ser evitado sempre que possível, já que não garantias de que o "
+"programa instalado manualmente se comportará exatamente como o pacote "
+"correspondente faria e outros pacotes dependentes dele poderiam não "
+"funcionar corretamente."
 
 #. Tag: para
 #, no-c-format
@@ -316,7 +418,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Simple File Archive"
-msgstr ""
+msgstr "Depósito Simples de Arquivos"
 
 #. Tag: para
 #, no-c-format
