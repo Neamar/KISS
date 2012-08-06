@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:34\n"
-"PO-Revision-Date: 2012-08-06 16:59+0200\n"
-"Last-Translator: Éverton Arruda <root@earruda.eti.br>\n"
+"PO-Revision-Date: 2012-09-30 15:02+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/03_existing-setup/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -291,101 +291,163 @@ msgstr "Fazendo Backup da Configuração"
 #, no-c-format
 msgid "It is wise to retain the configuration of every service identified in order to be able to install the equivalent on the updated server. The strict minimum is to print the configuration files and make a backup copy of them."
 msgstr ""
+"É sábio manter a configuração de cada serviço identificado para poder "
+"instalar o equivalente no servidor atualizado. O mínimo é imprimir os "
+"arquivos de configuração e fazer uma cópia de segurança deles."
 
 #. Tag: para
 #, no-c-format
 msgid "For Unix machines, the configuration files are usually found in <filename>/etc/</filename>, but they may be located in a sub-directory of <filename>/usr/local/</filename>. This is the case if a program has been installed from sources, rather than with a package. One may also find them, in some cases, under <filename>/opt/</filename>."
 msgstr ""
+"Para máquinas Unix, os arquivos de configuração são normalmente encontrados "
+"em <filename>/etc/</filename>, mas eles podem estar localizados em um sub-"
+"diretório de <filename>/usr/local/</filename>. Este é o caso se um programa "
+"foi instalado a partir dos fontes, ao invés de um pacote. Também podem ser "
+"encontrados, em alguns casos, em <filename>/opt/</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "For data managing services (such as databases), it is strongly recommended to export them to a standard format that will be easily imported by the new software. Such a format is usually in text mode and documented; it may be, for example, an SQL dump for a database, or an LDIF file for an LDAP server."
 msgstr ""
+"Para serviços de gestão de dados (como em bancos de dados), é fortemente "
+"recomendado exportar eles para um formato padrão que seja facilmente "
+"importado pelo novo software. Tal formato é usualmente em modo texto e "
+"documentado; ele pode ser, por exemplo, um dump SQL para um banco de dados, "
+"ou um arquivo LDIF para um servidor LDAP."
 
 #. Tag: title
 #, no-c-format
 msgid "Database backups"
-msgstr ""
+msgstr "Backups de bancos de dados"
 
 #. Tag: para
 #, no-c-format
 msgid "Each server software is different, and it is impossible to detail all existing cases. See the new and current software documentation to identify the exportable (thus, re-importable) portions and those which will require manual manipulation. Reading this book will clarify the configuration of the main Linux server programs."
 msgstr ""
+"Cada software de servidor é diferente, e é impossível detalhar todos os "
+"casos existentes. Veja a documentação do software nova e atual para "
+"identificar as porções exportáveis (portanto, re-importáveis) e as que "
+"requerem manipulação manual. A leitura deste livro vai clarear a "
+"configuração dos principais programas de servidor Linux."
 
 #. Tag: title
 #, no-c-format
 msgid "Taking Over an Existing Debian Server"
-msgstr ""
+msgstr "Assumindo um servidor Debian existente"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>recovering a Debian machine</primary>"
-msgstr ""
+msgstr "<primary>recuperando uma máquina Debian</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>exploring a Debian machine</primary>"
-msgstr ""
+msgstr "<primary>explorando uma máquina Debian</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>taking over a Debian server</primary>"
-msgstr ""
+msgstr "<primary>assumindo um servidor Debian</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To effectively take over its maintenance, one may analyze a machine already running with Debian."
 msgstr ""
+"Para assumir efetivamente sua manutenção, deve se analisar uma máquina que "
+"já esteja rodando o Debian."
 
 #. Tag: para
 #, no-c-format
 msgid "The first file to check is <filename>/etc/debian_version</filename>, which usually contains the version number for the installed Debian system (it is part of the <emphasis>base-files</emphasis> package). If it indicates <literal><replaceable>codename</replaceable>/sid</literal>, it means that the system was updated with packages coming from one of the development distributions (either testing or unstable)."
 msgstr ""
+"O primeiro arquivo a verificar é o <filename>/etc/debian_version</filename>, "
+"que usualmente contém o número de versão para o sistema Debian instalado "
+"(ele é parte do pacote <emphasis>base-files</emphasis>). Se ele indica "
+"<literal><replaceable>codenome</replaceable>/sid</literal>, significa que o "
+"sistema foi atualizado com pacotes vindos de uma das distribuições de "
+"desenvolvimento (tanto testing quanto unstable)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>apt-show-versions</command> program (from the Debian package of the same name) checks the list of packages installed and identifies the versions available. <command>aptitude</command> can also be used for these tasks, albeit in a less systematic manner."
 msgstr ""
+"O programa <command>apt-show-versions</command> (do pacote Debian de mesmo "
+"nome) verifica a lista de pacotes instalados e identifica as versões "
+"disponíveis. O <command>aptitude</command> pode também ser usado para estas "
+"tarefas, embora de uma maneira menos sistemática."
 
 #. Tag: para
 #, no-c-format
 msgid "A glance at the <filename>/etc/apt/sources.list</filename> file will show where the installed Debian packages likely came from. If many unknown sources appear, the administrator may choose to completely reinstall the computer's system to ensure optimal compatibility with the software provided by Debian."
 msgstr ""
+"Uma olhada no arquivo <filename>/etc/apt/sources.list</filename> mostrará de "
+"onde os pacotes debian instalados costumam vir. Se muitas fontes "
+"desconhecidas aparecem, o administrador pode escolher reinstalar o sistema "
+"do computador para garantir compatibilidade ótima com o software fornecido "
+"com o Debian."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sources.list</filename> file is often a good indicator: the majority of administrators keep, at least in comments, the list of prior APT sources used. But you should not forget that sources used in the past might have been deleted, and that some random packages grabbed on the Internet might have been manually installed (with the <command>dpkg</command> command). In this case, the machine is misleading in its appearance of “standard” Debian. This is why you should pay attention to any indication that will give away the presence of external packages (appearance of <filename>deb</filename> files in unusual directories, package version numbers with a special suffix indicating that it originated from outside the Debian project, such as <literal>ubuntu</literal> or <literal>ximian</literal>, etc.)"
 msgstr ""
+"O arquivo <filename>sources.list</filename> geralmente é um bom indicador: a "
+"maioria dos administradores mantẽm, pelo menos comentada, a lista de fontes "
+"APT anteriormente usadas. Mas você não deve esquecer que fontes usadas no "
+"passado podem ter sido apagadas, e que alguns pacotes podem ter sido "
+"baixados da internet e instalados manualmente (com o comando "
+"<command>dpkg</command>). Neste caso, a máquina não é tão \"Debian padrão\" "
+"quanto parece. É por isso que  você deve prestar atenção em indicações de "
+"presença de pacotes externos (surgimento de arquivos "
+"<filename>deb</filename> em diretórios estranhos, números de versão com um "
+"sufixo especial indicando que é originado de fora do projeto Debian, como um "
+"<literal>ubuntu</literal> ou <literal>ximian</literal>, etc.)"
 
 #. Tag: para
 #, no-c-format
 msgid "Likewise, it is interesting to analyze the contents of the directory <filename>/usr/local/</filename>, intended to contain programs compiled and installed manually. Listing software installed in this manner is instructive, since this raises questions on the reasons for not using the corresponding Debian package, if such a package exists."
 msgstr ""
+"Da mesma forma, é interessante analizar o conteúdo da diretório "
+"<filename>/usr/local/</filename>, que deve conter os programas compilados e "
+"instalados manualmente. Listar os programas instalados desta maneira é "
+"instrutivo, já que se questiona o porque de não se ter usado o pacote Debian "
+"correspondente, se este existir."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> <emphasis role=\"pkg\">cruft</emphasis>"
 msgstr ""
+"<emphasis>OLHADA RÁPIDA</emphasis> <emphasis role=\"pkg\">cruft</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">cruft</emphasis> package proposes to list the available files that are not owned by any package. It has some filters (more or less effective, and more or less up to date) to avoid reporting some legitimate files (files generated by Debian packages, or generated configuration files not managed by <command>dpkg</command>, etc.)."
 msgstr ""
+"O pacote <emphasis role=\"pkg\">cruft</emphasis> se propõe a lista os arquivos "
+"disponíveis que não são de propriedade de nenhum pacote. Ele tem alguns "
+"filtros (mais ou menos efetivos, e mais ou menos atualizados) para evitar "
+"botar no relatório alguns arquivos legítimos (arquivos gerados por pacotes "
+"Debian, ou arquivos de configuração gerados não-controlados pelo "
+"<command>dpkg</command>, etc.)."
 
 #. Tag: para
 #, no-c-format
 msgid "Be careful to not blindly delete everything that <command>cruft</command> might list!"
 msgstr ""
+"Cuidado para não apagar arbitrariamente tudo que o <command>cruft</command> "
+"venha a listar!"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing Debian"
-msgstr ""
+msgstr "Instalando o Debian"
 
 #. Tag: para
 #, no-c-format
 msgid "All information on the current server being now known, we can shut it down and begin to install Debian on it."
 msgstr ""
+"Com toda a informação no servidor atual agora conhecida, podemos desligá-lo "
+"e começar a instalar o Debian nele."
 
 #. Tag: indexterm
 #, no-c-format
@@ -396,188 +458,210 @@ msgstr "<primary>arquitetura</primary>"
 #, no-c-format
 msgid "To choose the appropriate version, we must know the computer's architecture. If it is a PC, it is most likely to be i386. In other cases, we can narrow down the possibilities according to the previously used system."
 msgstr ""
+"Para escolher a versão apropriada, devemos conhecer a arquitetura do "
+"computador. Se for um PC, é provável que seja um i386. Caso contrário, "
+"podemos restringir as possibilidades de acordo com o sistema usado."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the appropriate Debian version"
-msgstr ""
+msgstr "Instalando a versão apropriada do Debian"
 
 #. Tag: para
 #, no-c-format
 msgid "<xref linkend=\"tab-corresp\" xrefstyle=\"nopage\" /> is not intended to be exhaustive, but may be helpful. In any case, the original documentation for the computer is the most reliable source to find this information."
 msgstr ""
+"<xref linkend=\"tab-corresp\" xrefstyle=\"nopage\" /> não pretende ser "
+"exaustiva, mas útil. de qualquer forma, a documentação original do "
+"computador é a fonte mais confiável para encontrar esta informação."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>HARDWARE</emphasis> Next-generation PC"
-msgstr ""
+msgstr "o <emphasis>HARDWARE</emphasis> dos PCs de nova-geração"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Itanium</primary>"
-msgstr ""
+msgstr "<primary>Itanium</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>amd64</primary>"
-msgstr ""
+msgstr "<primary>amd64</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ia64</primary>"
-msgstr ""
+msgstr "<primary>ia64</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Most recent computers have 64 bit Intel or AMD processors, compatible with older 32 bit processors; the software compiled for “i386” architecture thus works. On the other hand, this compatibility mode does not fully exploit the capabilities of these new processors. This is why Debian provides software for “ia64” architecture for Intel Itanium chips and “amd64” for AMD chips. This last also works with Intel “em64t” processors, which are very similar to AMD64 processors."
 msgstr ""
+"Computadores mais novos tem processadores Intel ou AMD de 64 bits, "
+"compatíveis com os antigos processadores de 32 bits; o software compilado "
+"para arquitetura “i386” então funciona. Por outro lado, este modo de "
+"compatibilidade não explora completamente as capacidades destes novos "
+"processadores. É por isto que o Debian fornece software para arquitetura "
+"“ia64” para chips Itanium Intel e “amd64” para chips AMD. Este último também "
+"funciona com processadores “em64t” da Intel, que sã muito similares aos "
+"processadores AMD64."
 
 #. Tag: title
 #, no-c-format
 msgid "Matching operating system and architecture"
-msgstr ""
+msgstr "Arquitetura e respectivo sistema operacional"
 
 #. Tag: entry
 #, no-c-format
 msgid "Operating System"
-msgstr ""
+msgstr "Sistema Operacional"
 
 #. Tag: entry
 #, no-c-format
 msgid "Architecture(s)"
-msgstr ""
+msgstr "Arquitetura(s)"
 
 #. Tag: entry
 #, no-c-format
 msgid "DEC Unix (OSF/1)"
-msgstr ""
+msgstr "DEC Unix (OSF/1)"
 
 #. Tag: entry
 #, no-c-format
 msgid "alpha, mipsel"
-msgstr ""
+msgstr "alpha, mipsel"
 
 #. Tag: entry
 #, no-c-format
 msgid "HP Unix"
-msgstr ""
+msgstr "HP Unix"
 
 #. Tag: entry
 #, no-c-format
 msgid "hppa"
-msgstr ""
+msgstr "hppa"
 
 #. Tag: entry
 #, no-c-format
 msgid "IBM AIX"
-msgstr ""
+msgstr "IBM AIX"
 
 #. Tag: entry
 #, no-c-format
 msgid "powerpc"
-msgstr ""
+msgstr "powerpc"
 
 #. Tag: entry
 #, no-c-format
 msgid "Irix"
-msgstr ""
+msgstr "Irix"
 
 #. Tag: entry
 #, no-c-format
 msgid "mips"
-msgstr ""
+msgstr "mips"
 
 #. Tag: entry
 #, no-c-format
 msgid "MacOS"
-msgstr ""
+msgstr "MacOS"
 
 #. Tag: entry
 #, no-c-format
 msgid "powerpc, m68k, i386, amd64"
-msgstr ""
+msgstr "powerpc, m68k, i386, amd64"
 
 #. Tag: entry
 #, no-c-format
 msgid "MVS"
-msgstr ""
+msgstr "MVS"
 
 #. Tag: entry
 #, no-c-format
 msgid "s390"
-msgstr ""
+msgstr "s390"
 
 #. Tag: entry
 #, no-c-format
 msgid "Solaris, SunOS"
-msgstr ""
+msgstr "Solaris, SunOS"
 
 #. Tag: entry
 #, no-c-format
 msgid "sparc, m68k, i386"
-msgstr ""
+msgstr "sparc, m68k, i386"
 
 #. Tag: entry
 #, no-c-format
 msgid "Ultrix"
-msgstr ""
+msgstr "Ultrix"
 
 #. Tag: entry
 #, no-c-format
 msgid "VMS"
-msgstr ""
+msgstr "VMS"
 
 #. Tag: entry
 #, no-c-format
 msgid "alpha"
-msgstr ""
+msgstr "alpha"
 
 #. Tag: entry
 #, no-c-format
 msgid "Windows NT"
-msgstr ""
+msgstr "Windows NT"
 
 #. Tag: entry
 #, no-c-format
 msgid "i386, alpha, mipsel"
-msgstr ""
+msgstr "i386, alpha, mipsel"
 
 #. Tag: entry
 #, no-c-format
 msgid "Windows XP / Windows Server 2008"
-msgstr ""
+msgstr "Windows XP / Windows Server 2008"
 
 #. Tag: entry
 #, no-c-format
 msgid "i386, ia64, amd64"
-msgstr ""
+msgstr "i386, ia64, amd64"
 
 #. Tag: entry
 #, no-c-format
 msgid "Windows Vista / Windows 7"
-msgstr ""
+msgstr "Windows Vista / Windows 7"
 
 #. Tag: entry
 #, no-c-format
 msgid "i386, amd64"
-msgstr ""
+msgstr "i386, amd64"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing and Configuring the Selected Services"
-msgstr ""
+msgstr "Instalando e Configurando os Serviços Selecionados"
 
 #. Tag: para
 #, no-c-format
 msgid "Once Debian is installed, we must install and configure one by one all of the services that this computer must host. The new configuration must take into consideration the prior one in order to ensure a smooth transition. All the information collected in the first two steps are useful to successfully complete this part."
 msgstr ""
+"Depois do Debian instalado, devemos instalar e configurar um a um os "
+"serviços que o computador vai hospedar. A nova configuração deve levar em "
+"consideração a anterior para garantir uma transição suave. Toda a informação "
+"coletada nos primeiros dois passos são úteis para completar com sucesso "
+"esta parte."
 
 #. Tag: title
 #, no-c-format
 msgid "Install the selected services"
-msgstr ""
+msgstr "Instalar os serviços selecionados"
 
 #. Tag: para
 #, no-c-format
 msgid "Prior to jumping in to this exercise with both feet, it is strongly recommended that you read the remainder of this book. After that you will have a more precise understanding of how to configure the expected services."
 msgstr ""
+"Antes de pular de cabeça neste exercício, é fortemente recomendado quevocê "
+"leia o restante deste livro. Depois disto, você terá um conhecimento mais "
+"preciso de como configurar os serviços esperados."
