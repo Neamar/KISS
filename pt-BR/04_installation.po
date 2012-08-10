@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2012-07-30 18:43+0200\n"
-"Last-Translator: Maurício Tatsuya Fujino <mauriciotf2@gmail.com>\n"
+"PO-Revision-Date: 2012-08-10 15:40+0200\n"
+"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/04_installation/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -19,62 +19,78 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Installation"
-msgstr ""
+msgstr "Instalação"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Partitioning"
-msgstr ""
+msgstr "Particionamento"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Formatting"
-msgstr ""
+msgstr "Formatando"
 
 #. Tag: keyword
 #, no-c-format
 msgid "File System"
-msgstr ""
+msgstr "Sistema de Arquivos"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Boot Sector"
-msgstr ""
+msgstr "Setor de Inicialização"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Hardware Detection"
-msgstr ""
+msgstr "Detecção de Hardware"
 
 #. Tag: para
 #, no-c-format
 msgid "To use Debian, you need to install it on a computer; this task is taken care of by the <emphasis>debian-installer</emphasis> program. A proper installation involves many operations. This chapter reviews them in their chronological order."
 msgstr ""
+"Para utilizar o Debian, voc6e precisa instalá-lo em um computador; esta "
+"tarefa é feita pelo programa <emphasis>debian-installer</emphasis>. Uma "
+"instalação correta envolve muitas operações. Este capítulo revisa as mesmas "
+"em ordem cronológica."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>of the system</secondary>"
-msgstr ""
+msgstr "<primary>instalação</primary><secondary>do sistema</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> A catch-up course in the appendices"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Um curso rápido no apêndice"
 
 #. Tag: para
 #, no-c-format
 msgid "Installing a computer is always simpler when you are familiar with the way it works. If you are not, make a quick detour to <xref linkend=\"short-remedial-course\" /> before reading this chapter."
 msgstr ""
+"Instalar um computador é sempre mais fácil quando você está familiarizado "
+"com seu funcionamento. Se você não está, faça um retorno rápido para <xref "
+"linkend=\"short-remedial-course\" /> antes de ler este capítulo."
 
 #. Tag: para
 #, no-c-format
 msgid "The installer for <emphasis role=\"distribution\">Squeeze</emphasis> is based on <command>debian-installer</command>. Its modular design enables it to work in various scenarios and allows it to evolve and adapt to changes. Despite the limitations implied by the need to support a large number of architectures, this installer is very accessible to beginners, since it assists users at each stage of the process. Automatic hardware detection, guided partitioning, and graphical user interfaces have solved most of the problems that newbies used to face."
 msgstr ""
+"O instalador para o <emphasis role=\"distribution\">Squeeze</emphasis> é "
+"baseado no <command>debian-installer</command>. Este esquema modular permite "
+"que o mesmo trabalhe em diversos cenários e permite evoluir-se e adaptar-se "
+"a mudanças. Apesar das limitações implícitas devido a necessidade de "
+"suportar um grande número de arquiteturas, este instalador é muito acessível "
+"aos iniciantes, já que o mesmo ajuda o usuário em todos os estágios do "
+"processo. Detecção automática de hardware, particionamento guiado, e "
+"interfaces gráficas resolveram a maioria dos problemas que os novatos "
+"enfrentam."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installer</primary>"
-msgstr ""
+msgstr "<primary>instalador</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -85,46 +101,64 @@ msgstr "<primary><command>debian-installer</command></primary>"
 #, no-c-format
 msgid "Installation requires 56 MB of RAM (Random Access Memory) and at least 650 MB of hard drive space. All Falcot computers meet these criteria. Note, however, that these figures apply to the installation of a very limited system without a graphical desktop. A minimum of 512 MB of RAM and 5 GB of hard drive space are really recommended for a basic office desktop workstation."
 msgstr ""
+"A instalação precisa de 56 MB de RAM (Memória de Acesso Aleatório) e pelo "
+"menos 650MB de espaço no disco rígido. Todos os computadores da Falcot "
+"cumprem esses critérios. Note, entretanto, que esse cenário se aplica a uma "
+"instalação muito limitada do sistema sem nenhuma interface gráfica. Um "
+"mínimo de 512 MB de RAM e 5GB de disco rígido são recomendados para uma "
+"estação de trabalho."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Upgrading from Lenny"
-msgstr ""
+msgstr "<emphasis>ESTEJA CIENTE</emphasis> Atualizando a partir do Lenny"
 
 #. Tag: para
 #, no-c-format
 msgid "If you already have Debian Lenny installed on your computer, this chapter is not for you! Unlike other distributions, Debian allows updating a system from one version to the next without having to reinstall the system. Reinstalling, in addition to being unnecessary, could even be dangerous, since it could remove already installed programs."
 msgstr ""
+"Se você já tem o Debian Lenny instalado em seu computador, este capítulo não "
+"é para você! Ao contrário de outras distribuições, o Debian permite "
+"atualizar o sistema de uma versão para a próxima sem precisar reinstalar o "
+"sistema. Reinstalar, adicionado o fato de ser desnecessária, pode ser "
+"perigosa, já que pode remover programas já instalados."
 
 #. Tag: para
 #, no-c-format
 msgid "The upgrade process will be described in <xref linkend=\"sect.dist-upgrade\" />."
 msgstr ""
+"O processo de atualização será descrito em <xref linkend=\"sect.dist-upgrade\" "
+"/>."
 
 #. Tag: title
 #, no-c-format
 msgid "Installation Methods"
-msgstr ""
+msgstr "Métodos de Instalação"
 
 #. Tag: para
 #, no-c-format
 msgid "A Debian system can be installed from several types of media, as long as the BIOS of the machine allows it. You can for instance boot with a CD-ROM, a USB key, or even through a network."
 msgstr ""
+"Um sistema Debian pode ser instalado a partir de diversos tipos de mídia, "
+"desde que a BIOS da máquina permita. Você pode exemplo inicializar com um "
+"CD-ROM, um pendrive, ou até mesmo pela rede."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> BIOS, the hardware/software interface"
 msgstr ""
+"<emphasis>DE VOLTA AO BÁSICO</emphasis> BIOS, a interface do "
+"hardware/programa"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>BIOS</primary>"
-msgstr ""
+msgstr "<primary>BIOS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Basic Input/Output System</primary>"
-msgstr ""
+msgstr "<primary>Sistema Básico de Entrada/Saída (BIOS)</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -134,12 +168,15 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Installing from a CD-ROM/DVD-ROM"
-msgstr ""
+msgstr "Instalando a partir do CD-ROM/DVD-ROM"
 
 #. Tag: para
 #, no-c-format
 msgid "The most widely used installation media is CD-ROM (or DVD-ROM, which behaves exactly the same way): the computer is booted from this media, and the installation program takes over."
 msgstr ""
+"A mais amplamente mídia usada para a instalação é o CD-ROM (ou DVD-ROM, que "
+"se comporta exatamente igual): o computador é inicializado a partir desta "
+"mídia, e o programa de instalação toma o controle."
 
 #. Tag: para
 #, no-c-format
@@ -149,12 +186,16 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Multi-architecture disks"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Discos multi-arquiteturas"
 
 #. Tag: para
 #, no-c-format
 msgid "Most installation CD- and DVD-ROMs work only with a specific hardware architecture. If you wish to download the complete images, you must take care to choose those which work on the hardware of the computer on which you wish to install them."
 msgstr ""
+"A maioria dos CD- e DVD-ROMs trabalham somente com uma arquitetura "
+"específica. Se você deseja baixar a imagens completas, você deve se "
+"preocupar em escolher aquelas que funcionam com o hardware do computador no "
+"qual você pretende instalá-las."
 
 #. Tag: para
 #, no-c-format
@@ -164,42 +205,55 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary>installation CD-ROM</secondary>"
-msgstr ""
+msgstr "<primary>CD-ROM</primary><secondary>CD-ROM de instalação</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary><emphasis>netinst CD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>CD-ROM</primary><secondary><emphasis>netinst CD-"
+"ROM</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary><emphasis>businesscard CD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>CD-ROM</primary><secondary><emphasis>businesscard CD-"
+"ROM</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary>installation DVD-ROM</secondary>"
-msgstr ""
+msgstr "<primary>DVD-ROM</primary><secondary>DVD-ROM de instalação</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary><emphasis>netinst DVD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>DVD-ROM</primary><secondary><emphasis>netinst DVD-"
+"ROM</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary><emphasis>businesscard DVD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>DVD-ROM</primary><secondary><emphasis>businesscard DVD-"
+"ROM</emphasis></secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To acquire Debian CD-ROM images, you may of course download them and burn them to disk. You may also purchase them, and, thus, provide the project with a little financial support. Check the website to see the list of CD-ROM image vendors and download sites. <ulink type=\"block\" url=\"http://www.debian.org/CD/index.html\" />"
 msgstr ""
+"Para obter as imagens de CD-ROM do Debian, você precisa claramente baixá-las "
+"e queimar a mesma em um disco. Você poderia também comprá-la, e, assim, "
+"prover um pouco de suporte financeiro ao projeto. Verifique o site para ver "
+"a lista de imagens de CD-ROM e os sites de para baixá-las. <ulink "
+"type=\"block\" url=\"http://www.debian.org/CD/index.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Debian on CD-ROM"
-msgstr ""
+msgstr "<emphasis>NA PRÁTICA</emphasis> Debian no CD-ROM"
 
 #. Tag: para
 #, no-c-format
@@ -209,12 +263,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Booting from a USB Key"
-msgstr ""
+msgstr "Iniciando a partir de um pendrive"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>USB key</primary>"
-msgstr ""
+msgstr "<primary>Pendrive</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -449,12 +503,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard</primary><secondary>layout</secondary>"
-msgstr ""
+msgstr "<primary>teclado</primary><secondary>disposição</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard layout</primary>"
-msgstr ""
+msgstr "<primary>disposição do teclado</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -509,7 +563,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Network"
-msgstr ""
+msgstr "Configurando a Rede"
 
 #. Tag: indexterm
 #, no-c-format
