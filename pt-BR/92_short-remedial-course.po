@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:58\n"
-"PO-Revision-Date: 2012-08-04 09:33+0200\n"
-"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"PO-Revision-Date: 2012-08-10 14:34+0200\n"
+"Last-Translator: Francisco Aparecido da Silva <francisco@silva.eti.br>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/92_short-remedial-course/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -134,6 +134,13 @@ msgstr ""
 #, no-c-format
 msgid "A new directory can be created with <command>mkdir <replaceable>directory</replaceable></command>, and an existing (empty) directory can be removed with <command>rmdir <replaceable>directory</replaceable></command>. The <command>mv</command> command allows <emphasis>moving</emphasis> and/or renaming files and directories; <emphasis>removing</emphasis> a file involves <command>rm <replaceable>file</replaceable></command>."
 msgstr ""
+"Um novo diretório pode ser criado com "
+"o<command>mkdir<replaceable>diretório</replaceable></ command>, e um "
+"diretório (vazio) existente pode ser removido com "
+"<command>rmdir<replaceable>diretório</replaceable> </command >. O comando mv "
+"<command>mv</command> permite mover <emphasis> </emphasis> e / ou renomear "
+"arquivos e diretórios; <emphasis>remover</emphasis> um arquivo envolve "
+"<command> rm <replaceable>arquivo </replaceable> </command>."
 
 #. Tag: screen
 #, no-c-format
@@ -162,11 +169,26 @@ msgstr "Mostrando e Modificante Arquivos Texto"
 #, no-c-format
 msgid "The <command>cat <replaceable>file</replaceable></command> command (intended to <emphasis>concatenate</emphasis> files on its standard output) reads a file and displays its contents in the terminal. If the file is too big to fit on a screen, use a pager such as <command>less</command> (or <command>more</command>) to display it page by page."
 msgstr ""
+"O comando <command>cat<replaceable>arquivo</replaceable></command> (destina-"
+"se a <emphasis>concatenar </emphasis> arquivos em sua saída padrão) lê um "
+"arquivo e exibe seu conteúdo no terminal. Se o arquivo é muito grande para "
+"ser ajustado na tela, use um paginador como o <command>less</command> (ou "
+"<command>more</command> para exibir o conteúdo págiana a página. "
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>editor</command> command always points at a text editor (such as <command>vi</command> or <command>nano</command>) and allows creating, modifying and reading text files. The simplest files can sometimes be created directly from the command interpreter thanks to redirection: <command>echo \"<replaceable>text</replaceable>\" &gt;<replaceable>file</replaceable></command> creates a file named <replaceable>file</replaceable> with “<replaceable>text</replaceable>” as its contents. Adding a line at the end of this file is possible too, with a command such as <command>echo \"<replaceable>line</replaceable>\" &gt;&gt;<replaceable>file</replaceable></command>."
 msgstr ""
+"O editor <command>editor</command> sempre aponta para um editor de texto "
+"(como o<command>vi</command> ou o<command>nano</command>) e permite criar, "
+"modificar e ler arquivos de texto. Os arquivos mais simples às vezes podem "
+"ser criados diretamente a partir do interpretador de comandos graças ao "
+"redirecionamento: echo <command> \"<replaceable> texto</replaceable>\" >> "
+"<replaceable>arquivo</replaceable> </command> cria um arquivo chamado "
+"<replaceable> arquivo </replaceable> substituível com \"<replaceable>texto "
+"</replaceable>\" como o seu conteúdo. Adicionar uma linha no final deste "
+"arquivo também é possível, com um comando como echo  \"<replaceable> linha "
+"</replaceable>\" >> <replaceable> arquivo </replaceable> </command>."
 
 #. Tag: title
 #, no-c-format
@@ -177,11 +199,24 @@ msgstr "Procurando Arquivos e nos Arquivos"
 #, no-c-format
 msgid "The <command>find <replaceable>directory</replaceable> <replaceable>criteria</replaceable></command> command looks for files in the hierarchy under <replaceable>directory</replaceable> according to several criteria. The most commonly used criterion is <literal>-name <replaceable>name</replaceable></literal>: it allows looking for a file by its name."
 msgstr ""
+"O comando<command>find<replaceable>diretório</replaceable><replaceable>crité"
+"rios</replaceable></command> procura por arquivos embaixo da hierarquia de "
+"<replaceable>diretório</replaceable> de acordo com vários critérios. A "
+"maioria dos critérios mais comuns "
+"<literal>-name<replaceable>name</replaceable></literal>: permite procurar "
+"por um arquivos pelo seu nome."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> command searches the contents of the files and extracts the lines matching the regular expression (see sidebar <xref linkend=\"encadre.expression-rationnelle\" />). Adding the <literal>-r</literal> option enables a recursive search on all files contained in the directory passed as a parameter. This allows looking for a file when only a part of the contents are known."
 msgstr ""
+"O comando <command>grep<replaceable>expression</replaceable><repaceable>arqu"
+"ivos</replaceable</command> procura por conteudos nos arquivos e extrai as "
+"linhas correspondentes nas expressão regular (veja na barra lateral <xref "
+"linkend=\"encadre.expression-rationnelle\" />). Adicionando a opção "
+"<literal>-r</literal> habilita a procura recursiva em todos os arquivos "
+"contidos no diretório passado como um parâmetro. Isto permite procura por um "
+"arquivo quando somente um aparte do conteúdo é conhecido."
 
 #. Tag: title
 #, no-c-format
@@ -192,11 +227,34 @@ msgstr "Gerenciando Processos"
 #, no-c-format
 msgid "The <command>ps aux</command> command lists the processes currently running and allows identifying them by their <emphasis>pid</emphasis> (process id). Once the <emphasis>pid</emphasis> of a process is known, the <command>kill -<replaceable>signal</replaceable> <replaceable>pid</replaceable></command> command allows sending it a signal (if the process belongs to the current user). Several signals exist; most commonly used are <literal>TERM</literal> (a request to terminate) and <literal>KILL</literal> (a heavy-handed kill)."
 msgstr ""
+"O comando <command>ps aux </command> lista os processos rodando atualmente e "
+"permite identificá-los pelo <emphasis>pid</emphasis> (identificador do "
+"processo).Uma vez que o processo<emphasis>pid</emphasis> é conhecido, o "
+"comando  <command><kill "
+"-<replaceable>signal</replaceable><replaceable>pid</replaceable><command> "
+"permite enviar um sinal (este processo precisa pertencer ao usuário "
+"corrente). Existem muitos sinais; os mais usados comumente são "
+"<literal>TERM</literal> (uma requisição para terminar) e "
+"<literal>KILL</literal> (matar o processo à força)."
 
 #. Tag: para
 #, no-c-format
 msgid "The command interpreter can also run programs in the background if the command ends with “&amp;”. By using the ampersand, the user resumes control of the shell immediately even though the command is still running (hidden from the user; as a background process). The <command>jobs</command> command lists the processes running in the background; running <command>fg %<replaceable>job-number</replaceable></command> (for <emphasis>foreground</emphasis>) restores a job to the foreground. When a command is running in the foreground (either because it was started normally, or brought back to the foreground with <command>fg</command>), the <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> key pair pauses the process and resumes control of the command-line. The process can then be restarted in the background with <command>bg %<replaceable>job-number</replaceable></command> (for <foreignphrase>background</foreignphrase>)."
 msgstr ""
+"O interpretador de comando também pode rodar programas em segundo plano se o "
+"comando terminar com “&amp;”. Ao utilizar o  \"e comercial\", o usuário "
+"retorna o controle para o shell imediatamente desde que o comando continue "
+"rodando (oculto para o usuário; como um processo em segundo plano). O "
+"comando <command>jobs</command> lista os trabalhos rodando em segundo plano; "
+"executando <command>fg %<replaceable>número do "
+"trabalho</replaceable></command> (para <emphasis>foreground</emphasis>) "
+"restaura o trabalho para o primeiro plano. Quando um comando está rodando, "
+"estas teclas <keycombo "
+"action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> "
+"interrompe os processos  e retorna o controle para a linha de comando. Os "
+"processos também podem ser restartados em segundo plano com o comando "
+"<command>bg %<replaceable>numero do processo</replaceable></command> (para "
+"<foreignphrase>background</foreignphrase>."
 
 #. Tag: title
 #, no-c-format
@@ -207,6 +265,14 @@ msgstr "Informações do Sistema: Memória, Espaço em Disco, Identidade"
 #, no-c-format
 msgid "The <command>free</command> command displays information on memory; <command>df</command> (<emphasis>disk free</emphasis>) reports on the available disk space on each of the disks mounted in the filesystem. Its <literal>-h</literal> option (for <emphasis>human readable</emphasis>) converts the sizes into a more legible unit (usually megabytes or gigabytes). In a similar fashion, the <command>free</command> command understands the <literal>-m</literal> and <literal>-g</literal> options, and displays its data either in megabytes or in gigabytes, respectively."
 msgstr ""
+"O comando<command>free</command> exibe informações sobre a memória; o "
+"<command>df</command>(<emphasis>disk free</emphasis>) exibe relatórios sobre "
+"o espaço disponível no disco em cada um dos discos montados no sistema de "
+"arquivo. A opção <literal>-h</literal> (para <emphasis>leitura "
+"humana</emphasis> converte os tamanhos para uma unidade mais legível). De um "
+"modo semelhante, o <command>free</command> entende as opções "
+"<literal>-m</literal> e <literal>-g</literal>, e mostra estes dados tanto em "
+"megabytes ou em gigabytes, respectivamente. "
 
 #. Tag: screen
 #, no-c-format
@@ -231,6 +297,10 @@ msgstr ""
 #, no-c-format
 msgid "The <command>id</command> command displays the identity of the user running the session, along with the list of groups they belong to. Since access to some files or devices may be limited to group members, checking available group membership may be useful."
 msgstr ""
+"O comando <command>id</command> exibe a identidade do usuário em execução na "
+"seção, juntamente com a lista de grupos a que pertencem. Uma vez que o "
+"acesso a alguns arquivos ou dispositivos pode ser limitada aos membros do "
+"grupo, verificando os membros do grupo disponível pode ser útil."
 
 #. Tag: screen
 #, no-c-format
@@ -239,6 +309,12 @@ msgid "\n"
 "<computeroutput>uid=1000(rhertzog) gid=1000(rhertzog) groups=1000(rhertzog),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),108(netdev),109(bluetooth),115(scanner)</computeroutput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>id</userinput>\n"
+"<computeroutput>uid=1000(rhertzog) gid=1000(rhertzog) groups=1000(rhertzog),"
+"24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),108(ne"
+"tdev),109(bluetooth),115(scanner)</computeroutput>\n"
+"      "
 
 #. Tag: title
 #, no-c-format
@@ -259,6 +335,9 @@ msgstr "O Diretório Raiz"
 #, no-c-format
 msgid "A Debian system is organized along the <emphasis>File Hierarchy Standard</emphasis> (FHS). This standard defines the purpose of each directory. For instance, the top-level directories are described as follows:"
 msgstr ""
+"Um sistema Debian é organizado ao longo da <emphasis>File Hierarchy "
+"Standard</emphasis> (FHS). Esta norma define a finalidade de cada diretório. "
+"Por exemplo, as listas de nível superior são descritos como se segue:"
 
 #. Tag: para
 #, no-c-format
