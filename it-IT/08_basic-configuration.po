@@ -5,13 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T21:48:51\n"
-"PO-Revision-Date: 2012-06-04 22:58+0200\n"
-"Last-Translator: Giuseppe Sacco <eppesuig@debian.org>\n"
-"Language-Team: it <tp@linux.it>\n"
-"Language: \n"
+"PO-Revision-Date: 2012-09-13 00:34+0200\n"
+"Last-Translator: Innocenzo Ventre <el.diabl09@gmail.com>\n"
+"Language-Team: Italian <http://debian.weblate.org/projects/debian-handbook"
+"/08_basic-configuration/it-IT/>\n"
+"Language: it-IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 1.2\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -26,7 +29,7 @@ msgstr "Localizzazione"
 #. Tag: keyword
 #, no-c-format
 msgid "Locales"
-msgstr ""
+msgstr "Locales"
 
 #. Tag: keyword
 #, no-c-format
@@ -86,12 +89,20 @@ msgstr "Configurazione di base: rete, utenze, stampa, ..."
 #. Tag: para
 #, no-c-format
 msgid "A computer with a new installation created with <command>debian-installer</command> is intended to be as functional as possible, but many services still have to be configured. Furthermore, it is always good to know how to change certain configuration elements defined during the initial installation process."
-msgstr "Un computer installato da zero con <command>debian-installer</command> si intende funzionante al meglio, ma molte funzionalità devono ancora essere configurate. Inoltre è sempre meglio conoscere come modificare certi elementi di configurazione impostati durante il processo di installazione iniziale."
+msgstr ""
+"Un computer installato da zero con il <command>debian-installer</command> si "
+"intende funzionante al meglio, ma molte funzionalità devono ancora essere "
+"configurate. Inoltre è sempre meglio conoscere come modificare certi "
+"elementi di configurazione impostati durante il processo di installazione "
+"iniziale."
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter reviews everything included in what we could call the “basic configuration”: networking, language and locales, users and groups, printing, mount points, etc."
-msgstr "Questo capitolo copre tutto quanto viene normalmente considerato con la frase «configurazione di base»: rete, lingue e «locale», utenti e gruppi, stampa, punti i «mount», ecc."
+msgstr ""
+"Questo capitolo copre tutto quanto viene normalmente considerato con la "
+"frase «configurazione di base»: rete, lingue e «locale», utenti e gruppi, "
+"stampa, punti di «mount», ecc."
 
 #. Tag: title
 #, no-c-format
@@ -106,7 +117,11 @@ msgstr "<primary>Localizzazione italiana</primary>"
 #. Tag: para
 #, no-c-format
 msgid "If the system was installed using French, the machine will probably already have French set as the default language. But it is good to know what the installer does to set the language, so that later, if the need arises, you can change it."
-msgstr "Se il sistema è stato installato inizialmente in Italiano, la macchina avrà già probabilmente l'Italiano come lingue predefinita. È comunque meglio conoscere cosa l'installatore fa per impostare la lingua, cosicché, poi, se ne capita la necessità, la si possa cambiare."
+msgstr ""
+"Se il sistema è stato installato inizialmente in Italiano, probabilmente la "
+"macchina avrà già l'Italiano come lingua predefinita. È comunque meglio "
+"conoscere cosa fa l'installatore per impostare la lingua, cosicché, poi, se "
+"ne sentisse la necessità, la si possa cambiare."
 
 #. Tag: title
 #, no-c-format
@@ -116,7 +131,11 @@ msgstr "<emphasis>TOOL</emphasis> Il comando <command>locale</command> mostra la
 #. Tag: para
 #, no-c-format
 msgid "The <command>locale</command> command lists a summary of the current configuration of various locale parameters (date format, numbers format, etc.), presented in the form of a group of standard environment variables dedicated to the dynamic modification of these settings."
-msgstr "Il comando <command>locale</command> riepiloga la configurazione attuale di vari parametri della «locale» (formato della data, formato dei numeri, ecc.), sotto forma di gruppo di variabili d'ambiente standard dedicate alla modifica dinamica di queste impostazioni."
+msgstr ""
+"Il comando <command>locale</command> riepiloga la configurazione attuale di "
+"vari parametri della «locale» (formato della data, formato dei numeri, "
+"ecc.), sotto forma di gruppi di variabili d'ambiente standard dedicate alla "
+"modifica dinamica di queste impostazioni."
 
 #. Tag: title
 #, no-c-format
@@ -141,7 +160,20 @@ msgstr "<primary><command>locale-gen</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "A locale is a group of regional settings. This includes not only the language for text, but also the format for displaying numbers, dates, times, and monetary sums, as well as the method for alphabetical comparison (for alphabetically ordering items, to include accented characters, where applicable). Although each of these parameters can be specified independently from the others, we generally will use one locale, which is a coherent set of values for these parameters corresponding to a “region” in the broadest sense. These locales are usually indicated under the form, <literal><replaceable>language-code</replaceable>_<replaceable>COUNTRY-CODE</replaceable></literal>, sometimes with a suffix to specify the character set and encoding to be used. This enables consideration of idiomatic or typographical differences between different regions with a common language."
-msgstr "Una «locale» è un gruppo di impostazioni regionali. Vi sono incluse non solo le lingue per il teso, ma anche il formato per mostrare i numeri, le date, gli orari, gli importi, nonché la modalità di confronto alfabetico (per estensioni al normale confronto, per includervi il confronto delle accetante, se applicabile). Nonostante ciascuno di questi parametri sia impostabile separatamente dagli altri, normalmente si una una sola «locale», vale a dire un insieme coerente di valori per questi parametri che corrispondono ad una «regione» nel senso più allargato. Queste «locale» sono di norma indicate nella forma <literal><replaceable>codice-lingua</replaceable>_<replaceable>CODICE-NAZIONE</replaceable></literal>, a volte con un suffisso per indicare la codifica dei caratteri da utilizzare. Questo permette di considerare tramite un linguaggio comune le differenze idiomatiche o tipografiche tra le varie regioni."
+msgstr ""
+"Una «locale» è un gruppo di impostazioni regionali. Vi sono incluse non solo "
+"le lingue per il testo, ma anche il formato per mostrare i numeri, le date, "
+"gli orari, gli importi, nonché la modalità di confronto alfabetico (per "
+"estensione al normale confronto, per includere il confronto dei caratteri "
+"accentati, se applicabile). Nonostante ciascuno di questi parametri sia "
+"impostabile separatamente dagli altri, normalmente si una una sola «locale», "
+"vale a dire un insieme coerente di valori per questi parametri che "
+"corrispondono ad una «regione» nel senso più allargato. Questi «locale» sono "
+"di norma indicate nella forma <literal><replaceable>codice-"
+"lingua</replaceable>_<replaceable>CODICE-NAZIONE</replaceable></literal>, a "
+"volte con un suffisso per indicare la codifica dei caratteri da utilizzare. "
+"Questo permette di considerare tramite un linguaggio comune le differenze "
+"idiomatiche o tipografiche tra le varie regioni."
 
 #. Tag: title
 #, no-c-format
@@ -186,17 +218,41 @@ msgstr "<primary>Latin 0</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Historically, each locale has an associated “character set” (group of known characters) and a preferred “encoding” (internal representation for characters within the computer)."
-msgstr "Storicamente ogni «locale» ha associati un «insieme di caratteri» (gruppo noto di caratteri) e una «codifica» preferita (rappresentazione dei caratteri interna al computer)."
+msgstr ""
+"Storicamente ogni «locale» ha associato un «insieme di caratteri» (gruppo "
+"noto di caratteri) e una «codifica» preferita (rappresentazione dei "
+"caratteri interna al computer)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>ISO-8859-1</emphasis> (or “Latin 1”) encoding, for instance, was used preferentially in France. But for historical reasons, it did not include certain characters (such as œ, Ÿ, and €). This problem prompted the creation of <emphasis>ISO-8859-15</emphasis> (or “Latin 9”, or even “Latin 0”). Among others, it replaced respectively the former international currency symbol (a circle with four branches, ¤), “½”,“¼” and “¾” with the Euro symbol “€”, “œ”, “Œ” and “Ÿ”. Since the encoding for these two sets uses a single octet (8 bits) for each character, the sets only have room for 256 characters. Other languages use other character sets or other encodings, either from the “Latin” family, or otherwise."
-msgstr "La codifica <emphasis>ISO-8859-1</emphasis> (o «Latin 1»), per esempio, era usata in Francia come predefinita. Ma per ragioni storiche non include alcuni caratteri (quali œ, Ÿ e €). Questo problema ha fatto definire <emphasis>ISO-8859-15</emphasis> (conosciuta anche come «Latin 9», o anche «Latin 0»). Tra l'altro, ha sostituito rispettivamente il vecchio simbolo internazionale della divisa (un cerchio con quattro rami,  ¤), «½», «¼» e «¾» con i simboli dell'Euro «€», «œ», «Œ» e «Ÿ». Poiché la codifica per questi due insiemi usa un solo byte (8 bit) per ogni carattere, gli insiemi possono avere al massimo 256 caratteri. Altre lingue utilizzano altri insiemi di caratteri e altre codifiche, che siano della famiglia «Latin» o meno."
+msgstr ""
+"La codifica <emphasis>ISO-8859-1</emphasis> (o «Latin 1»), per esempio, era "
+"usata in Francia come predefinita. Ma per ragioni storiche non include "
+"alcuni caratteri (quali œ, Ÿ e €). Questo problema ha portato a definire "
+"<emphasis>ISO-8859-15</emphasis> (conosciuta anche come «Latin 9», o anche "
+"«Latin 0»). Tra l'altro, ha sostituito rispettivamente il vecchio simbolo "
+"internazionale della divisa (un cerchio con quattro rami,  ¤), «½», «¼» e "
+"«¾» con i simboli dell'Euro «€», «œ», «Œ» e «Ÿ». Poiché la codifica per "
+"questi due insiemi usa un solo byte (8 bit) per ogni carattere, gli insiemi "
+"possono avere al massimo 256 caratteri. Altre lingue utilizzano altri "
+"insiemi di caratteri e altre codifiche, che siano della famiglia «Latin» o "
+"meno."
 
 #. Tag: para
 #, no-c-format
 msgid "Working with foreign languages often implied regular switches between various encodings and character sets. Furthermore, writing multilingual documents led to further, almost intractable problems. Unicode (a super-catalog of nearly all writing systems from all of the world's languages) was created to work around this problem. One of Unicode's encodings, UTF-8, retains all 128 ASCII symbols (7-bit codes), but handles other characters differently. The others are preceded by a sequence of “escape” characters with a variable length. This allows encoding all Unicode characters on a sequence of one or more octets."
-msgstr "Lavorare con lingue straniere richiede spesso di passare da una codifica all'altra o da un insieme di caratteri ad un altro. Inoltre, scrivere documenti multilingua porta ad affrontare problematiche a volta irrisolvibili. L'Unicode (un super catalogo di quasi tutti i sistemi di scrittura di tutte le lingue del mondo) è stato creato per superare questo problema. Una delle codifiche Unicode, UTF-8, ha tutti i 128 simboli dell'ASCII (sequenze di codici a 7 bit), ma gestisce altri caratteri in maniera diversa. Gli altri sono preceduti da caratteri di «escape» a lunghezza variabile. Questo permette di codificare tutti i caratteri Unicode in una sequenza di uno o più byte."
+msgstr ""
+"Lavorare con lingue straniere richiede spesso di passare da una codifica "
+"all'altra o da un insieme di caratteri ad un altro. Inoltre, scrivere "
+"documenti multilingua porta ad affrontare problematiche a volte "
+"irrisolvibili. L'Unicode (un super catalogo di quasi tutti i sistemi di "
+"scrittura di tutte le lingue del mondo) è stato creato per superare questo "
+"problema. Una delle codifiche Unicode, UTF-8, ha tutti i 128 simboli "
+"dell'ASCII (sequenze di codici a 7 bit), ma gestisce altri caratteri in "
+"maniera diversa. Gli altri sono preceduti da caratteri di «escape» a "
+"lunghezza variabile. Questo permette di codificare tutti i caratteri Unicode "
+"in una sequenza di uno o più byte."
 
 #. Tag: indexterm
 #, no-c-format
@@ -221,7 +277,12 @@ msgstr "Le applicazioni sono state lentamente aggiornate, e l'utilizzo di UTF-8 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">locales</emphasis> package includes all the elements required for proper functioning of “localization” for various applications. During installation, this package will ask a few questions in order to choose supported languages. This set of supported languages can be changed by running <command>dpkg-reconfigure locales</command>."
-msgstr "Il pacchetto <emphasis role=\"pkg\">locales</emphasis> include quanto necessario al funzionamento della «localizzazione» delle varie applicazioni. Durante l'installazione questao pacchetto pone alcune domande allo scopo di scegliere le lingue supportate. Questo gruppo di lingue supportate può essere modificato eseguendo <command>dpkg-reconfigure locales</command>."
+msgstr ""
+"Il pacchetto <emphasis role=\"pkg\">locales</emphasis> include quanto "
+"necessario al funzionamento della «localizzazione» delle varie applicazioni. "
+"Durante l'installazione questo pacchetto pone alcune domande allo scopo di "
+"scegliere le lingue supportate. Questo gruppo di lingue supportate può "
+"essere modificato eseguendo <command>dpkg-reconfigure locales</command>."
 
 #. Tag: para
 #, no-c-format
@@ -287,18 +348,29 @@ msgstr "Configurare la tastiera"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard</primary><secondary>layout</secondary>"
-msgstr ""
+msgstr "<primary>disposizione</primary><secondary>dei tasti</secondary>"
 
 # DISPOSIZIONE DEI TASTI?
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard layout</primary>"
-msgstr ""
+msgstr "<primary>disposizione dei tasti</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Until Debian <emphasis role=\"distribution\">Lenny</emphasis>, the keyboard layout was controlled by two different systems: for the console, <emphasis role=\"pkg\">console-tools</emphasis>/<emphasis role=\"pkg\">console-data</emphasis>; for graphical environments, <emphasis role=\"pkg\">keyboard-configuration</emphasis>. Since <emphasis role=\"distribution\">Squeeze</emphasis>, these two systems have been unified and <emphasis role=\"pkg\">keyboard-configuration</emphasis> controls the keyboard layout in both console and graphical mode. The <command>dpkg-reconfigure keyboard-configuration</command> command can be used at any time to reset the keyboard layout."
-msgstr "Fino alla Debian <emphasis role=\"distribution\">Lenny</emphasis>, la disposizione dei tasti era controllata da due diversi sistemi: per la console, <emphasis role=\"pkg\">console-tools</emphasis>/<emphasis role=\"pkg\">console-data</emphasis>; per l'ambiente grafico, <emphasis role=\"pkg\">keyboard-configuration</emphasis>. Da <emphasis role=\"distribution\">Squeeze</emphasis> questi due sistemi sono stati unificati e <emphasis role=\"pkg\">keyboard-configuration</emphasis> controlla la disposizione dei tasti sia per la console che per l'ambiente grafico. Il comando <command>dpkg-reconfigure keyboard-configuration</command> può essere utilizzato in qualunque momento per reimpostare la disposizione dei tasti."
+msgstr ""
+"Fino a Debian <emphasis role=\"distribution\">Lenny</emphasis>, la "
+"disposizione dei tasti era controllata da due diversi sistemi: per la "
+"console, <emphasis role=\"pkg\">console-tools</emphasis>/<emphasis role=\"pkg"
+"\">console-data</emphasis>; per l'ambiente grafico, <emphasis role=\"pkg"
+"\">keyboard-configuration</emphasis>. Da <emphasis "
+"role=\"distribution\">Squeeze</emphasis> in poi questi due sistemi sono stati "
+"unificati e <emphasis role=\"pkg\">keyboard-configuration</emphasis> controlla "
+"la disposizione dei tasti sia per la console che per l'ambiente grafico. Il "
+"comando <command>dpkg-reconfigure keyboard-configuration</command> può "
+"essere utilizzato in qualunque momento per reimpostare la disposizione dei "
+"tasti."
 
 #. Tag: indexterm
 #, no-c-format
@@ -323,7 +395,13 @@ msgstr "<indexterm><primary><literal>azerty</literal></primary></indexterm>Le do
 #. Tag: para
 #, no-c-format
 msgid "Note that the keyboard configuration for graphical mode described here only affects the default layout; the GNOME and KDE environments, among others, provide a keyboard control panel in their preferences allowing each user to have their own configuration. Some additional options regarding the behavior of some particular keys are also available in these control panels."
-msgstr "Notare che la configurazione della tastiera descritta per l'ambiente grafico è solo quella prededfinita: gli ambienti GNOME e KDA, come anche altri, forniscono un pannello di controllo della tastiera all'interno delle loro impostazioni, che permettono ai singoli utenti di avere una propria configurazione. In questi pannelli vi sono anche alcune opzioni aggiuntive riguardo il comportamento di alcuni tasti particolari."
+msgstr ""
+"Notare che la configurazione della tastiera descritta per l'ambiente grafico "
+"è solo quella predefinita: gli ambienti GNOME e KDE, come anche altri, "
+"forniscono un pannello di controllo della tastiera all'interno delle loro "
+"impostazioni, che permettono ai singoli utenti di avere una propria "
+"configurazione. In questi pannelli vi sono anche alcune opzioni aggiuntive "
+"riguardo il comportamento di alcuni tasti particolari."
 
 #. Tag: title
 #, no-c-format
@@ -396,7 +474,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Network"
-msgstr ""
+msgstr "Configurazione della rete"
 
 #. Tag: title
 #, no-c-format
@@ -486,7 +564,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>router</primary>"
-msgstr ""
+msgstr "<primary> router </primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -608,7 +686,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPP</primary>"
-msgstr ""
+msgstr "<primary> PPP </primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -743,7 +821,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>init</command></primary>"
-msgstr ""
+msgstr "<primary><command> init </command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -770,7 +848,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPTP</primary>"
-msgstr ""
+msgstr "<primary> PPTP </primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1023,7 +1101,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNS</primary>"
-msgstr ""
+msgstr "<primary> DNS </primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1552,7 +1630,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quota</primary>"
-msgstr ""
+msgstr "<primary> quota </primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1662,7 +1740,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>shell</primary>"
-msgstr ""
+msgstr "<primary>shell</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1912,12 +1990,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>loader</primary><secondary>bootloader</secondary>"
-msgstr ""
+msgstr "<primary>loader</primary><secondary>bootloader</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bootloader</primary>"
-msgstr ""
+msgstr "<primary>bootloader</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2134,7 +2212,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB</primary>"
-msgstr ""
+msgstr "<primary>GRUB</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2613,6 +2691,7 @@ msgstr ""
 #, no-c-format
 msgid "<primary>account</primary><secondary>administrator account</secondary>"
 msgstr ""
+"<primary>account</primary><secondary>account dell'amministratore</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2667,7 +2746,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mount point</primary>"
-msgstr ""
+msgstr "<primary>punto di montaggio</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -2827,9 +2906,9 @@ msgid "<primary><emphasis>autofs</emphasis></primary>"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>automounter</primary>"
-msgstr "<primary>lingua</primary>"
+msgstr "<primary> automounter </primary>"
 
 #. Tag: para
 #, no-c-format
