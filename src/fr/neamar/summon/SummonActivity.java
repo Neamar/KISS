@@ -45,7 +45,7 @@ public class SummonActivity extends Activity {
 		ListView listView = (ListView) findViewById(R.id.resultListView);
 
 		//Initialize providers
-		providers.add(new AppProvider());
+		providers.add(new AppProvider(getApplicationContext()));
 		
 		//Create adapter for records
 		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,

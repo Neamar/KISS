@@ -35,16 +35,9 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		View v = convertView;
-		if (v == null) {
-			LayoutInflater vi = (LayoutInflater) getContext().getSystemService(
-					Context.LAYOUT_INFLATER_SERVICE);
-			v = vi.inflate(R.layout.item_app, null);
-		}
+		//Requires optimization ! View
+		//http://stackoverflow.com/questions/10270252/why-does-the-android-view-api-care-about-an-arrayadapters-getviewtypecount
 
-		Record record = records.get(position);
-		record.display(getContext());
-
-		return v;
+		return records.get(position).display(getContext());
 	}
 }
