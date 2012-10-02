@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import android.app.Activity;
-import android.content.pm.ResolveInfo;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -21,6 +22,8 @@ import fr.neamar.summon.record.RecordAdapter;
 import fr.neamar.summon.record.RecordComparator;
 
 public class SummonActivity extends Activity {
+
+	private static final int MENU_SETTINGS = Menu.FIRST;
 
 	/**
 	 * Adapter to display records
@@ -92,6 +95,18 @@ public class SummonActivity extends Activity {
 		super.onResume();
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+
+		menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
+				.setIcon(android.R.drawable.ic_menu_preferences)
+				.setIntent(
+						new Intent(android.provider.Settings.ACTION_SETTINGS));
+
+		return true;
+	}
+
 	/**
 	 * This function gets called on changes. It will ask all the providers for
 	 * datas
@@ -100,31 +115,26 @@ public class SummonActivity extends Activity {
 	 */
 	public void updateRecords(String query) {
 		adapter.clear();
-		
-		if(query.isEmpty())
-		{
-			//Searching for nothing...
+
+		if (query.isEmpty()) {
+			// Searching for nothing...
 			return;
 		}
-		
-		//Ask all providers for datas
+
+		// Ask all providers for datas
 		ArrayList<Record> allRecords = new ArrayList<Record>();
-		
-		for(int i = 0; i < providers.size(); i++)
-		{
+
+		for (int i = 0; i < providers.size(); i++) {
 			ArrayList<Record> records = providers.get(i).getRecords(query);
-			for(int j = 0; j < records.size(); j++)
-			{
+			for (int j = 0; j < records.size(); j++) {
 				allRecords.add(records.get(j));
 			}
 		}
-		
+
 		Collections.sort(allRecords, new RecordComparator());
-		
-		for(int i = 0; i < Math.min(15, allRecords.size()); i++)
-		{
+
+		for (int i = 0; i < Math.min(15, allRecords.size()); i++) {
 			adapter.add(allRecords.get(i));
 		}
 	}
 }
-
