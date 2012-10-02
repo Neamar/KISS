@@ -45,9 +45,22 @@ public class AppProvider extends Provider {
 	public ArrayList<Record> getRecords(String query) {
 		ArrayList<Record> records = new ArrayList<Record>();
 
+		int relevance;
+		String appName;
 		for (int i = 0; i < apps.size(); i++) {
-			if (apps.get(i).appName.startsWith(query)) {
+			relevance = 0;
+			appName = apps.get(i).appName;
+			if (appName.startsWith(query))
+				relevance = 100;
+			else if(appName.contains(" " + query))
+				relevance = 50;
+			else if(appName.contains(query))
+				relevance = 1;
+			
+			if(relevance > 0)
+			{
 				Record r = new AppRecord(apps.get(i));
+				r.relevance = relevance;
 				records.add(r);
 			}
 		}

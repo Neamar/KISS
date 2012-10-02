@@ -20,14 +20,6 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 		this.records = records;
 	}
 
-	public ArrayList<Record> getRecords() {
-		return records;
-	}
-
-	public void setRecords(ArrayList<Record> records) {
-		this.records = records;
-	}
-
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		//Requires optimization ! View

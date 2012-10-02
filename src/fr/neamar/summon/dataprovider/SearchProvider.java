@@ -27,6 +27,7 @@ public class SearchProvider extends Provider {
 		SearchHolder holder = new SearchHolder();
 		holder.query = query;
 		Record r = new SearchRecord(holder);
+		r.relevance = 10;
 		records.add(r);
 		return records;
 	}

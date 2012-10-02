@@ -1,8 +1,10 @@
 package fr.neamar.summon;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import android.app.Activity;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +18,7 @@ import fr.neamar.summon.dataprovider.Provider;
 import fr.neamar.summon.dataprovider.SearchProvider;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordAdapter;
+import fr.neamar.summon.record.RecordComparator;
 
 public class SummonActivity extends Activity {
 
@@ -23,7 +26,7 @@ public class SummonActivity extends Activity {
 	 * Adapter to display records
 	 */
 	private RecordAdapter adapter;
-	
+
 	/**
 	 * Pointer to current activity
 	 */
@@ -33,11 +36,11 @@ public class SummonActivity extends Activity {
 	 * List all knowns providers
 	 */
 	private ArrayList<Provider> providers = new ArrayList<Provider>();
-	
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		//Initialize UI
+		// Initialize UI
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
@@ -45,22 +48,22 @@ public class SummonActivity extends Activity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View arg1, int position,
-					long id) {
+			public void onItemClick(AdapterView<?> parent, View arg1,
+					int position, long id) {
 				adapter.onClick(position);
 			}
 		});
-		
-		//Initialize providers
+
+		// Initialize providers
 		providers.add(new AppProvider(getApplicationContext()));
 		providers.add(new SearchProvider(getApplicationContext()));
-		
-		//Create adapter for records
+
+		// Create adapter for records
 		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
 				new ArrayList<Record>());
 		listView.setAdapter(adapter);
 
-		//Listen to changes
+		// Listen to changes
 		EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
@@ -80,8 +83,19 @@ public class SummonActivity extends Activity {
 	}
 
 	/**
-	 * This function gets called on changes.
-	 * It will ask all the providers for datas
+	 * Empty text field on resume
+	 */
+	protected void onResume() {
+		EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
+		searchEditText.setText("");
+
+		super.onResume();
+	}
+
+	/**
+	 * This function gets called on changes. It will ask all the providers for
+	 * datas
+	 * 
 	 * @param s
 	 */
 	public void updateRecords(String query) {
@@ -93,15 +107,24 @@ public class SummonActivity extends Activity {
 			return;
 		}
 		
+		//Ask all providers for datas
+		ArrayList<Record> allRecords = new ArrayList<Record>();
 		
 		for(int i = 0; i < providers.size(); i++)
 		{
 			ArrayList<Record> records = providers.get(i).getRecords(query);
 			for(int j = 0; j < records.size(); j++)
 			{
-				adapter.add(records.get(j));
+				allRecords.add(records.get(j));
 			}
 		}
 		
+		Collections.sort(allRecords, new RecordComparator());
+		
+		for(int i = 0; i < Math.min(15, allRecords.size()); i++)
+		{
+			adapter.add(allRecords.get(i));
+		}
 	}
 }
+
