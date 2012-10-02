@@ -72,11 +72,7 @@ public class ContactProvider extends Provider {
 			relevance = 0;
 			contactNameLowerCased = contacts.get(i).contactNameLowerCased;
 			if (contactNameLowerCased.startsWith(query))
-				relevance = 100;
-			else if (contactNameLowerCased.contains(" " + query))
 				relevance = 50;
-			else if (contactNameLowerCased.contains(query))
-				relevance = 1;
 
 			if (relevance > 0) {
 				contacts.get(i).displayContactName = contacts.get(i).contactName
