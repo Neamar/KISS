@@ -19,10 +19,13 @@ public class ContactRecord extends Record {
 	public View display(Context context) {
 		View v = inflateFromId(context, R.layout.item_contact);
 		TextView contactName = (TextView) v.findViewById(R.id.item_contact_name);
-		contactName.setText(enrichText(contactHolder.contactName));
+		contactName.setText(enrichText(contactHolder.displayContactName));
 		
-		ImageView appIcon = (ImageView) v.findViewById(R.id.item_contact_icon);
-		appIcon.setImageDrawable(contactHolder.icon);
+		if(contactHolder.icon != null)
+		{
+			ImageView appIcon = (ImageView) v.findViewById(R.id.item_contact_icon);
+			appIcon.setImageURI(contactHolder.icon);
+		}
 		
 		return v;
 	}

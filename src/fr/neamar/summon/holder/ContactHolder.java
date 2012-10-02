@@ -1,6 +1,6 @@
 package fr.neamar.summon.holder;
 
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
 
 public class ContactHolder {
 	public String id = "";
@@ -9,5 +9,5 @@ public class ContactHolder {
 	public String displayContactName = "";
 	public String contactPhone = "";
 	public String contactMail = "";
-	public Drawable icon;
+	public Uri icon = null;
 }
