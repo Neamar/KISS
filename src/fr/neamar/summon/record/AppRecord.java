@@ -19,7 +19,7 @@ public class AppRecord extends Record {
 	public View display(Context context) {
 		View v = inflateFromId(context, R.layout.item_app);
 		TextView appName = (TextView) v.findViewById(R.id.item_app_name);
-		appName.setText(appHolder.appName);
+		appName.setText(enrichText(appHolder.displayAppName));
 		
 		ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
 		appIcon.setImageDrawable(appHolder.icon);

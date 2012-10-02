@@ -20,8 +20,8 @@ public class SearchRecord extends Record {
 	public View display(Context context) {
 		View v = inflateFromId(context, R.layout.item_search);
 		TextView appName = (TextView) v.findViewById(R.id.item_search_text);
-		appName.setText(context.getString(R.string.ui_item_search) + " \"" + searchHolder.query
-				+ '"');
+		appName.setText(enrichText(context.getString(R.string.ui_item_search) + " \"{" + searchHolder.query
+				+ "}\""));
 
 		return v;
 	}

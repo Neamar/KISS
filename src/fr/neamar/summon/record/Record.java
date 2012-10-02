@@ -1,8 +1,10 @@
 package fr.neamar.summon.record;
 
 import android.content.Context;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.text.Html;
 
 public abstract class Record {
 	/**
@@ -34,5 +36,16 @@ public abstract class Record {
 	{
 		LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		return vi.inflate(id, null);
+	}
+	
+	/**
+	 * Enrich text for display.
+	 * Put text requiring highlighting between {}
+	 * @param text
+	 * @return text displayable on a textview
+	 */
+	protected Spanned enrichText(String text)
+	{
+		return Html.fromHtml(text.replaceAll("\\{(.+)\\}", "<font color=#6e73e5>$1</font>"));
 	}
 }

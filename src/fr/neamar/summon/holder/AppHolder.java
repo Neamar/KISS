@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 
 public class AppHolder {
 	public String appName = "";
+	public String appNameLowerCased = "";
+	public String displayAppName = ""; //App name with markers to put query text in bold
 	public Intent intent;
 	public Drawable icon;
 

@@ -3,6 +3,7 @@ package fr.neamar.summon.dataprovider;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -33,6 +34,7 @@ public class AppProvider extends Provider {
 			ResolveInfo info = appsInfo.get(i);
 
 			app.appName = info.loadLabel(manager).toString();
+			app.appNameLowerCased = app.appName.toLowerCase();
 			app.icon = info.activityInfo.loadIcon(manager);
 			app.setActivity(new ComponentName(
 					info.activityInfo.applicationInfo.packageName,
@@ -43,22 +45,25 @@ public class AppProvider extends Provider {
 	}
 
 	public ArrayList<Record> getRecords(String query) {
+		query = query.toLowerCase();
+		
 		ArrayList<Record> records = new ArrayList<Record>();
 
 		int relevance;
-		String appName;
+		String appNameLowerCased;
 		for (int i = 0; i < apps.size(); i++) {
 			relevance = 0;
-			appName = apps.get(i).appName;
-			if (appName.startsWith(query))
+			appNameLowerCased = apps.get(i).appNameLowerCased;
+			if (appNameLowerCased.startsWith(query))
 				relevance = 100;
-			else if(appName.contains(" " + query))
+			else if(appNameLowerCased.contains(" " + query))
 				relevance = 50;
-			else if(appName.contains(query))
+			else if(appNameLowerCased.contains(query))
 				relevance = 1;
 			
 			if(relevance > 0)
 			{
+				apps.get(i).displayAppName = apps.get(i).appName.replaceFirst("(?i)(" + Pattern.quote(query) + ")", "{$1}");
 				Record r = new AppRecord(apps.get(i));
 				r.relevance = relevance;
 				records.add(r);
