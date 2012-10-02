@@ -6,20 +6,18 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.Provider;
-import fr.neamar.summon.record.AppRecord;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordAdapter;
 
 public class SummonActivity extends Activity {
-	/**
-	 * ArrayList of all records currently displayed
-	 */
-	private ArrayList<Record> records = new ArrayList<Record>();
-	
+
 	/**
 	 * Adapter to display records
 	 */
@@ -43,13 +41,21 @@ public class SummonActivity extends Activity {
 		setContentView(R.layout.main);
 
 		ListView listView = (ListView) findViewById(R.id.resultListView);
+		listView.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> parent, View arg1, int position,
+					long id) {
+				adapter.onClick(position);
+			}
+		});
+		
 		//Initialize providers
 		providers.add(new AppProvider(getApplicationContext()));
 		
 		//Create adapter for records
 		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
-				records);
+				new ArrayList<Record>());
 		listView.setAdapter(adapter);
 
 		//Listen to changes

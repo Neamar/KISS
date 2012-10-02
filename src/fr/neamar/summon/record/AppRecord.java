@@ -27,4 +27,9 @@ public class AppRecord extends Record {
 		return v;
 	}
 
+	@Override
+	public void launch(Context context) {
+		context.startActivity(appHolder.intent);
+	}
+
 }

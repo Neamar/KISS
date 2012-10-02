@@ -1,16 +1,11 @@
 package fr.neamar.summon.record;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import fr.neamar.summon.R;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 public class RecordAdapter extends ArrayAdapter<Record> {
 
@@ -39,5 +34,10 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 		//http://stackoverflow.com/questions/10270252/why-does-the-android-view-api-care-about-an-arrayadapters-getviewtypecount
 
 		return records.get(position).display(getContext());
+	}
+	
+	public void onClick(int position)
+	{
+		records.get(position).launch(getContext());
 	}
 }
