@@ -8,15 +8,33 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.ListView;
+import fr.neamar.summon.dataprovider.AppProvider;
+import fr.neamar.summon.dataprovider.Provider;
 import fr.neamar.summon.record.AppRecord;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordAdapter;
 
 public class SummonActivity extends Activity {
+	/**
+	 * ArrayList of all records currently displayed
+	 */
 	private ArrayList<Record> records = new ArrayList<Record>();
+	
+	/**
+	 * Adapter to display records
+	 */
 	private RecordAdapter adapter;
+	
+	/**
+	 * Pointer to current activity
+	 */
 	private SummonActivity summonActivity = this;
 
+	/**
+	 * List all knowns providers
+	 */
+	private ArrayList<Provider> providers = new ArrayList<Provider>();
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,6 +44,9 @@ public class SummonActivity extends Activity {
 
 		ListView listView = (ListView) findViewById(R.id.resultListView);
 
+		//Initialize providers
+		providers.add(new AppProvider());
+		
 		//Create adapter for records
 		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
 				records);
@@ -55,9 +76,17 @@ public class SummonActivity extends Activity {
 	 * It will ask all the providers for datas
 	 * @param s
 	 */
-	public void updateRecords(String s) {
+	public void updateRecords(String query) {
 		adapter.clear();
-		Record r = new AppRecord("fr.om");
-		adapter.add(r);
+		
+		for(int i = 0; i < providers.size(); i++)
+		{
+			ArrayList<Record> records = providers.get(i).getRecords(query);
+			for(int j = 0; j < records.size(); j++)
+			{
+				adapter.add(records.get(j));
+			}
+		}
+		
 	}
 }
