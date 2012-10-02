@@ -18,9 +18,8 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	 * Array list containing all the records currently displayed
 	 */
 	private ArrayList<Record> records = new ArrayList<Record>();
-	
-	
-	public RecordAdapter(Context context,  int textViewResourceId,
+
+	public RecordAdapter(Context context, int textViewResourceId,
 			ArrayList<Record> records) {
 		super(context, textViewResourceId, records);
 		this.records = records;
@@ -33,8 +32,6 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	public void setRecords(ArrayList<Record> records) {
 		this.records = records;
 	}
-
-
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
