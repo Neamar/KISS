@@ -42,15 +42,9 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 			v = vi.inflate(R.layout.item_app, null);
 		}
 
-		Record user = records.get(position);
-		if (user != null) {
-			TextView username = (TextView) v.findViewById(R.id.item_app_text);
+		Record record = records.get(position);
+		record.display(getContext());
 
-			if (username != null) {
-				username.setText(user.username);
-			}
-
-		}
 		return v;
 	}
 }

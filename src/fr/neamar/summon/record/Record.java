@@ -1,13 +1,23 @@
 package fr.neamar.summon.record;
 
-public class Record {
-	public String username;
-	public String email;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
 
-	public Record(String username, String email) {
+public abstract class Record {
+	/**
+	 * How relevant is this record ? The higher, the most probable it will be displayed
+	 */
+	public int relevance = 0;
 
-		this.username = username;
-		this.email = email;
-
+	public Record() {
+	}
+	
+	public abstract View display(Context context);
+	
+	protected View inflateFromId(Context context, int id)
+	{
+		LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		return vi.inflate(id, null);
 	}
 }
