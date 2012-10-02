@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.Provider;
+import fr.neamar.summon.dataprovider.SearchProvider;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordAdapter;
 
@@ -52,6 +53,7 @@ public class SummonActivity extends Activity {
 		
 		//Initialize providers
 		providers.add(new AppProvider(getApplicationContext()));
+		providers.add(new SearchProvider(getApplicationContext()));
 		
 		//Create adapter for records
 		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
