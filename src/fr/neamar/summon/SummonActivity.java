@@ -79,6 +79,13 @@ public class SummonActivity extends Activity {
 	public void updateRecords(String query) {
 		adapter.clear();
 		
+		if(query.isEmpty())
+		{
+			//Searching for nothing...
+			return;
+		}
+		
+		
 		for(int i = 0; i < providers.size(); i++)
 		{
 			ArrayList<Record> records = providers.get(i).getRecords(query);
