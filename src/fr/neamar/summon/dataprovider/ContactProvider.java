@@ -34,7 +34,7 @@ public class ContactProvider extends Provider {
 				ContactHolder contact = new ContactHolder();
 				
 				contact.id = cur.getString(cur
-						.getColumnIndex(ContactsContract.Contacts._ID));
+						.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
 				contact.timesContacted = Integer.parseInt(cur.getString(cur
 						.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
 				contact.name = cur

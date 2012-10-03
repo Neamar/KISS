@@ -1,7 +1,12 @@
 package fr.neamar.summon.record;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.neamar.summon.R;
@@ -34,12 +39,30 @@ public class ContactRecord extends Record {
 			appIcon.setImageURI(contactHolder.icon);
 		}
 		
+		//Phone action
+		Button phoneButton = (Button) v.findViewById(R.id.item_contact_action_phone);
+		phoneButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String url = "tel:" + contactHolder.phone;
+				Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				v.getContext().startActivity(i);
+			}
+		});
+		
 		return v;
 	}
 
 	@Override
 	public void launch(Context context) {
-		//context.startActivity(contactHolder.intent);
+		Intent viewContact = new Intent(Intent.ACTION_VIEW);
+
+		viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, String.valueOf(contactHolder.id)));
+		viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(viewContact);
+
 	}
 
 }
