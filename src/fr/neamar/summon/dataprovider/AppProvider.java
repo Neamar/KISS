@@ -22,7 +22,7 @@ public class AppProvider extends Provider {
 		super(context);
 
 		Thread thread = new Thread(null, initAppsList);
-		thread.setPriority(Thread.NORM_PRIORITY - 1);
+		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
 	}
 	

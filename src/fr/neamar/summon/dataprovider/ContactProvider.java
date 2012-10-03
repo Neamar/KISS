@@ -21,7 +21,7 @@ public class ContactProvider extends Provider {
 		super(context);
 		
 		Thread thread = new Thread(null, initContactsList);
-		thread.setPriority(Thread.NORM_PRIORITY - 1);
+		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
 	}
 
