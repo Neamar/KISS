@@ -43,6 +43,7 @@ public class AppProvider extends Provider {
 				AppHolder app = new AppHolder();
 				ResolveInfo info = appsInfo.get(i);
 
+				app.id = "app://" + info.activityInfo.applicationInfo.packageName;
 				app.name = info.loadLabel(manager).toString();
 				app.nameLowerCased = app.name.toLowerCase();
 				app.icon = info.activityInfo.loadIcon(manager);
@@ -85,5 +86,20 @@ public class AppProvider extends Provider {
 		}
 
 		return records;
+	}
+	
+	public Record findById(String id)
+	{
+		for(int i = 0; i < apps.size(); i++)
+		{
+			if(apps.get(i).id.equals(id))
+			{
+				apps.get(i).displayName = apps.get(i).name;
+				return new AppRecord(apps.get(i));
+			}
+				
+		}
+		
+		return null;
 	}
 }

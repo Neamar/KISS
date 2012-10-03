@@ -13,7 +13,7 @@ public class SearchRecord extends Record {
 
 	public SearchRecord(SearchHolder searchHolder) {
 		super();
-		this.searchHolder = searchHolder;
+		this.holder = this.searchHolder = searchHolder;
 	}
 
 	@Override

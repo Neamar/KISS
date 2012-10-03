@@ -1,16 +1,15 @@
 package fr.neamar.summon;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +28,8 @@ public class SummonActivity extends Activity {
 
 	private static final int MENU_SETTINGS = Menu.FIRST;
 
+	private final int MAX_RECORDS = 15;
+	
 	/**
 	 * Adapter to display records
 	 */
@@ -128,6 +129,7 @@ public class SummonActivity extends Activity {
 
 		if (query.isEmpty()) {
 			// Searching for nothing...
+			populateHistory();
 			return;
 		}
 
@@ -143,10 +145,41 @@ public class SummonActivity extends Activity {
 
 		Collections.sort(allRecords, new RecordComparator());
 
-		for (int i = 0; i < Math.min(15, allRecords.size()); i++) {
+		for (int i = 0; i < Math.min(MAX_RECORDS, allRecords.size()); i++) {
 			adapter.add(allRecords.get(i));
 		}
 
 		listView.setSelectionAfterHeaderView();
+	}
+
+	private void populateHistory() {
+		
+		//Read history
+		ArrayList<String> ids = new ArrayList<String>();
+		SharedPreferences prefs = getSharedPreferences("history", Context.MODE_PRIVATE);
+		
+		for(int k = 0; ids.size() < MAX_RECORDS; k++)
+		{
+			String id = prefs.getString(Integer.toString(k), "(none)");
+			
+			//Not enough history yet
+			if(id.equals("(none)"))
+				break;
+			
+			//No duplicates, only keep recent
+			if(!ids.contains(id))
+				ids.add(id);
+		}
+
+		//Find associated items
+		for (int i = 0; i < ids.size(); i++) {
+			for (int j = 0; j < providers.size(); j++) {
+				Record record = providers.get(j).findById(ids.get(i));
+				if (record != null) {
+					adapter.add(record);
+					break;
+				}
+			}
+		}
 	}
 }

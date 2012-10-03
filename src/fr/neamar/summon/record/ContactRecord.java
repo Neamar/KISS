@@ -18,7 +18,7 @@ public class ContactRecord extends Record {
 	
 	public ContactRecord(ContactHolder contactHolder) {
 		super();
-		this.contactHolder = contactHolder;
+		this.holder = this.contactHolder = contactHolder;
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class ContactRecord extends Record {
 	public void launch(Context context) {
 		Intent viewContact = new Intent(Intent.ACTION_VIEW);
 
-		viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, String.valueOf(contactHolder.id)));
+		viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, String.valueOf(contactHolder.lookupKey)));
 		viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(viewContact);
 

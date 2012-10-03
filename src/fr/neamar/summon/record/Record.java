@@ -1,16 +1,22 @@
 package fr.neamar.summon.record;
 
 import android.content.Context;
+import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.text.Html;
+import fr.neamar.summon.holder.Holder;
 
 public abstract class Record {
 	/**
 	 * How relevant is this record ? The higher, the most probable it will be displayed
 	 */
 	public int relevance = 0;
+	
+	/**
+	 * Current information holder
+	 */
+	public Holder holder = null;
 	
 	/**
 	 * How to display this record ?

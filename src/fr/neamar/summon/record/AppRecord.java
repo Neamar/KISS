@@ -12,7 +12,7 @@ public class AppRecord extends Record {
 	
 	public AppRecord(AppHolder appHolder) {
 		super();
-		this.appHolder = appHolder;
+		this.holder = this.appHolder = appHolder;
 	}
 
 	@Override

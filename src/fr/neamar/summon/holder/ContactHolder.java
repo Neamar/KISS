@@ -2,10 +2,10 @@ package fr.neamar.summon.holder;
 
 import android.net.Uri;
 
-public class ContactHolder {
-	public String id = "";
+public class ContactHolder extends Holder{
 	public int timesContacted = 0;
 	
+	public String lookupKey = "";
 	public String name = "";
 	public String nameLowerCased = "";
 	public String displayName = "";

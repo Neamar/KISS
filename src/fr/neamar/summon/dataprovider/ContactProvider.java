@@ -9,8 +9,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.util.SparseArray;
 import fr.neamar.summon.holder.ContactHolder;
+import fr.neamar.summon.record.AppRecord;
 import fr.neamar.summon.record.ContactRecord;
 import fr.neamar.summon.record.Record;
 
@@ -43,9 +43,10 @@ public class ContactProvider extends Provider {
 				while (cur.moveToNext()) {
 					ContactHolder contact = new ContactHolder();
 
-					contact.id = cur
+					contact.lookupKey = cur
 							.getString(cur
 									.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
+					contact.id = "contact://" + contact.lookupKey;
 					contact.timesContacted = Integer
 							.parseInt(cur.getString(cur
 									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
@@ -111,5 +112,20 @@ public class ContactProvider extends Provider {
 		}
 
 		return records;
+	}
+	
+	public Record findById(String id)
+	{
+		for(int i = 0; i < contacts.size(); i++)
+		{
+			if(contacts.get(i).id.equals(id))
+			{
+				contacts.get(i).displayName = contacts.get(i).name;
+				return new ContactRecord(contacts.get(i));
+			}
+				
+		}
+		
+		return null;
 	}
 }
