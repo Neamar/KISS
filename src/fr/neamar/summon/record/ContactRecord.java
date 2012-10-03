@@ -21,11 +21,11 @@ public class ContactRecord extends Record {
 		
 		//Contact name
 		TextView contactName = (TextView) v.findViewById(R.id.item_contact_name);
-		contactName.setText(enrichText(contactHolder.displayContactName));
+		contactName.setText(enrichText(contactHolder.displayName));
 		
 		//Contact phone
 		TextView contactPhone = (TextView) v.findViewById(R.id.item_contact_phone);
-		contactPhone.setText(contactHolder.contactPhone);
+		contactPhone.setText(contactHolder.phone);
 		
 		//Contact photo
 		if(contactHolder.icon != null)

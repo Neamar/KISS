@@ -35,10 +35,12 @@ public class ContactProvider extends Provider {
 				
 				contact.id = cur.getString(cur
 						.getColumnIndex(ContactsContract.Contacts._ID));
-				contact.contactName = cur
+				contact.timesContacted = Integer.parseInt(cur.getString(cur
+						.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
+				contact.name = cur
 						.getString(cur
 								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-				contact.contactPhone = cur
+				contact.phone = cur
 						.getString(cur
 								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
@@ -50,15 +52,15 @@ public class ContactProvider extends Provider {
 							Long.parseLong(photoId));
 				}
 
-				if (!phones.containsKey(contact.contactPhone + '|'
-						+ contact.contactName)
-						&& contact.contactName != null) {
-					contact.contactNameLowerCased = contact.contactName
+				if (!phones.containsKey(contact.phone + '|'
+						+ contact.name)
+						&& contact.name != null) {
+					contact.nameLowerCased = contact.name
 							.toLowerCase();
 					contacts.add(contact);
 
 					phones.put(
-							contact.contactPhone + '|' + contact.contactName,
+							contact.phone + '|' + contact.name,
 							true);
 				}
 			}
@@ -75,7 +77,7 @@ public class ContactProvider extends Provider {
 		String contactNameLowerCased;
 		for (int i = 0; i < contacts.size(); i++) {
 			relevance = 0;
-			contactNameLowerCased = contacts.get(i).contactNameLowerCased;
+			contactNameLowerCased = contacts.get(i).nameLowerCased;
 			
 			if (contactNameLowerCased.startsWith(query))
 				relevance = 50;
@@ -83,7 +85,9 @@ public class ContactProvider extends Provider {
 				relevance = 40;
 
 			if (relevance > 0) {
-				contacts.get(i).displayContactName = contacts.get(i).contactName
+				//Increase relevance according to number of times the contacts was phoned :
+				relevance += contacts.get(i).timesContacted;
+				contacts.get(i).displayName = contacts.get(i).name
 						.replaceFirst("(?i)(" + Pattern.quote(query) + ")",
 								"{$1}");
 				Record r = new ContactRecord(contacts.get(i));

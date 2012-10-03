@@ -4,10 +4,12 @@ import android.net.Uri;
 
 public class ContactHolder {
 	public String id = "";
-	public String contactName = "";
-	public String contactNameLowerCased = "";
-	public String displayContactName = "";
-	public String contactPhone = "";
-	public String contactMail = "";
+	public int timesContacted = 0;
+	
+	public String name = "";
+	public String nameLowerCased = "";
+	public String displayName = "";
+	public String phone = "";
+	public String mail = "";
 	public Uri icon = null;
 }

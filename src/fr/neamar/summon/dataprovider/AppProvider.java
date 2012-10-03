@@ -33,8 +33,8 @@ public class AppProvider extends Provider {
 			AppHolder app = new AppHolder();
 			ResolveInfo info = appsInfo.get(i);
 
-			app.appName = info.loadLabel(manager).toString();
-			app.appNameLowerCased = app.appName.toLowerCase();
+			app.name = info.loadLabel(manager).toString();
+			app.nameLowerCased = app.name.toLowerCase();
 			app.icon = info.activityInfo.loadIcon(manager);
 			app.setActivity(new ComponentName(
 					info.activityInfo.applicationInfo.packageName,
@@ -53,7 +53,7 @@ public class AppProvider extends Provider {
 		String appNameLowerCased;
 		for (int i = 0; i < apps.size(); i++) {
 			relevance = 0;
-			appNameLowerCased = apps.get(i).appNameLowerCased;
+			appNameLowerCased = apps.get(i).nameLowerCased;
 			if (appNameLowerCased.startsWith(query))
 				relevance = 100;
 			else if(appNameLowerCased.contains(" " + query))
@@ -63,7 +63,7 @@ public class AppProvider extends Provider {
 			
 			if(relevance > 0)
 			{
-				apps.get(i).displayAppName = apps.get(i).appName.replaceFirst("(?i)(" + Pattern.quote(query) + ")", "{$1}");
+				apps.get(i).displayName = apps.get(i).name.replaceFirst("(?i)(" + Pattern.quote(query) + ")", "{$1}");
 				Record r = new AppRecord(apps.get(i));
 				r.relevance = relevance;
 				records.add(r);
