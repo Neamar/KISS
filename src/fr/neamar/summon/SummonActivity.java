@@ -1,13 +1,16 @@
 package fr.neamar.summon;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,12 +43,11 @@ public class SummonActivity extends Activity {
 	 * List all knowns providers
 	 */
 	private ArrayList<Provider> providers = new ArrayList<Provider>();
-	
+
 	/**
 	 * List view displaying records
 	 */
 	private ListView listView;
-	
 
 	/** Called when the activity is first created. */
 	@Override
@@ -144,8 +146,7 @@ public class SummonActivity extends Activity {
 		for (int i = 0; i < Math.min(15, allRecords.size()); i++) {
 			adapter.add(allRecords.get(i));
 		}
-		
-		
+
 		listView.setSelectionAfterHeaderView();
 	}
 }

@@ -18,55 +18,63 @@ public class ContactProvider extends Provider {
 
 	public ContactProvider(Context context) {
 		super(context);
+		
+		Thread thread = new Thread(null, initContactsList);
+		thread.setPriority(Thread.NORM_PRIORITY - 1);
+		thread.start();
+	}
 
-		// Run query
-		Cursor cur = context.getContentResolver().query(
-				ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null,
-				null, null);
+	protected Runnable initContactsList = new Runnable() {
+		public void run() {
 
-		// Prevent duplicates by keeping in memory encountered phones.
-		// The string key is "phone" + "|" + "name" (so if two contacts with
-		// distincts name share same number, they both get displayed
-		HashMap<String, Boolean> phones = new HashMap<String, Boolean>();
+			// Run query
+			Cursor cur = context.getContentResolver().query(
+					ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+					null, null, null);
 
-		if (cur.getCount() > 0) {
-			while (cur.moveToNext()) {
-				ContactHolder contact = new ContactHolder();
-				
-				contact.id = cur.getString(cur
-						.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
-				contact.timesContacted = Integer.parseInt(cur.getString(cur
-						.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
-				contact.name = cur
-						.getString(cur
-								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-				contact.phone = cur
-						.getString(cur
-								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+			// Prevent duplicates by keeping in memory encountered phones.
+			// The string key is "phone" + "|" + "name" (so if two contacts with
+			// distincts name share same number, they both get displayed
+			HashMap<String, Boolean> phones = new HashMap<String, Boolean>();
 
-				String photoId = cur.getString(cur
-						.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
-				if (photoId != null) {
-					contact.icon = ContentUris.withAppendedId(
-							ContactsContract.Data.CONTENT_URI,
-							Long.parseLong(photoId));
-				}
+			if (cur.getCount() > 0) {
+				while (cur.moveToNext()) {
+					ContactHolder contact = new ContactHolder();
 
-				if (!phones.containsKey(contact.phone + '|'
-						+ contact.name)
-						&& contact.name != null) {
-					contact.nameLowerCased = contact.name
-							.toLowerCase();
-					contacts.add(contact);
+					contact.id = cur
+							.getString(cur
+									.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
+					contact.timesContacted = Integer
+							.parseInt(cur.getString(cur
+									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
+					contact.name = cur
+							.getString(cur
+									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+					contact.phone = cur
+							.getString(cur
+									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-					phones.put(
-							contact.phone + '|' + contact.name,
-							true);
+					String photoId = cur
+							.getString(cur
+									.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
+					if (photoId != null) {
+						contact.icon = ContentUris.withAppendedId(
+								ContactsContract.Data.CONTENT_URI,
+								Long.parseLong(photoId));
+					}
+
+					if (!phones.containsKey(contact.phone + '|' + contact.name)
+							&& contact.name != null) {
+						contact.nameLowerCased = contact.name.toLowerCase();
+						contacts.add(contact);
+
+						phones.put(contact.phone + '|' + contact.name, true);
+					}
 				}
 			}
+			cur.close();
 		}
-		cur.close();
-	}
+	};
 
 	public ArrayList<Record> getRecords(String query) {
 		query = query.toLowerCase();
@@ -78,14 +86,15 @@ public class ContactProvider extends Provider {
 		for (int i = 0; i < contacts.size(); i++) {
 			relevance = 0;
 			contactNameLowerCased = contacts.get(i).nameLowerCased;
-			
+
 			if (contactNameLowerCased.startsWith(query))
 				relevance = 50;
 			else if (contactNameLowerCased.contains(" " + query))
 				relevance = 40;
 
 			if (relevance > 0) {
-				//Increase relevance according to number of times the contacts was phoned :
+				// Increase relevance according to number of times the contacts
+				// was phoned :
 				relevance += contacts.get(i).timesContacted;
 				contacts.get(i).displayName = contacts.get(i).name
 						.replaceFirst("(?i)(" + Pattern.quote(query) + ")",

@@ -20,30 +20,38 @@ public class AppProvider extends Provider {
 	public AppProvider(Context context) {
 		super(context);
 
-		PackageManager manager = context.getPackageManager();
-
-		Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-		mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-		final List<ResolveInfo> appsInfo = manager.queryIntentActivities(
-				mainIntent, 0);
-		Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
-
-		for (int i = 0; i < appsInfo.size(); i++) {
-			AppHolder app = new AppHolder();
-			ResolveInfo info = appsInfo.get(i);
-
-			app.name = info.loadLabel(manager).toString();
-			app.nameLowerCased = app.name.toLowerCase();
-			app.icon = info.activityInfo.loadIcon(manager);
-			app.setActivity(new ComponentName(
-					info.activityInfo.applicationInfo.packageName,
-					info.activityInfo.name), Intent.FLAG_ACTIVITY_NEW_TASK
-					| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-			apps.add(app);
-		}
+		Thread thread = new Thread(null, initAppsList);
+		thread.setPriority(Thread.NORM_PRIORITY - 1);
+		thread.start();
 	}
+	
+	protected Runnable initAppsList = new Runnable() {
+		public void run() {
+			PackageManager manager = context.getPackageManager();
 
+			Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+			mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+			final List<ResolveInfo> appsInfo = manager.queryIntentActivities(
+					mainIntent, 0);
+			Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
+
+			for (int i = 0; i < appsInfo.size(); i++) {
+				AppHolder app = new AppHolder();
+				ResolveInfo info = appsInfo.get(i);
+
+				app.name = info.loadLabel(manager).toString();
+				app.nameLowerCased = app.name.toLowerCase();
+				app.icon = info.activityInfo.loadIcon(manager);
+				app.setActivity(new ComponentName(
+						info.activityInfo.applicationInfo.packageName,
+						info.activityInfo.name), Intent.FLAG_ACTIVITY_NEW_TASK
+						| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+				apps.add(app);
+			}
+		}
+	};
+	
 	public ArrayList<Record> getRecords(String query) {
 		query = query.toLowerCase();
 		
