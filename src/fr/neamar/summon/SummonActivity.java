@@ -40,6 +40,12 @@ public class SummonActivity extends Activity {
 	 * List all knowns providers
 	 */
 	private ArrayList<Provider> providers = new ArrayList<Provider>();
+	
+	/**
+	 * List view displaying records
+	 */
+	private ListView listView;
+	
 
 	/** Called when the activity is first created. */
 	@Override
@@ -48,7 +54,7 @@ public class SummonActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		ListView listView = (ListView) findViewById(R.id.resultListView);
+		listView = (ListView) findViewById(R.id.resultListView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -138,5 +144,8 @@ public class SummonActivity extends Activity {
 		for (int i = 0; i < Math.min(15, allRecords.size()); i++) {
 			adapter.add(allRecords.get(i));
 		}
+		
+		
+		listView.setSelectionAfterHeaderView();
 	}
 }
