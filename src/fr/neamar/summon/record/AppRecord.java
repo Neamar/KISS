@@ -16,8 +16,10 @@ public class AppRecord extends Record {
 	}
 
 	@Override
-	public View display(Context context) {
-		View v = inflateFromId(context, R.layout.item_app);
+	public View display(Context context, View v) {
+		if(v == null)
+			v = inflateFromId(context, R.layout.item_app);
+		
 		TextView appName = (TextView) v.findViewById(R.id.item_app_name);
 		appName.setText(enrichText(appHolder.displayName));
 		

@@ -15,9 +15,10 @@ public abstract class Record {
 	/**
 	 * How to display this record ?
 	 * @param context
+	 * @param convertView a view to be recycled
 	 * @return a view to display as item
 	 */
-	public abstract View display(Context context);
+	public abstract View display(Context context, View convertView);
 	
 	/**
 	 * How to launch this record ?

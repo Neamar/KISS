@@ -17,8 +17,10 @@ public class SearchRecord extends Record {
 	}
 
 	@Override
-	public View display(Context context) {
-		View v = inflateFromId(context, R.layout.item_search);
+	public View display(Context context, View v) {
+		if(v == null)
+			v = inflateFromId(context, R.layout.item_search);
+		
 		TextView appName = (TextView) v.findViewById(R.id.item_search_text);
 		appName.setText(enrichText(context.getString(R.string.ui_item_search) + " \"{" + searchHolder.query
 				+ "}\""));

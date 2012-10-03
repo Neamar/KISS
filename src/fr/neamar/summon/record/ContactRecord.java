@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,8 +22,9 @@ public class ContactRecord extends Record {
 	}
 
 	@Override
-	public View display(Context context) {
-		View v = inflateFromId(context, R.layout.item_contact);
+	public View display(Context context, View v) {
+		if(v == null)
+			v = inflateFromId(context, R.layout.item_contact);
 		
 		//Contact name
 		TextView contactName = (TextView) v.findViewById(R.id.item_contact_name);
@@ -33,11 +35,11 @@ public class ContactRecord extends Record {
 		contactPhone.setText(contactHolder.phone);
 		
 		//Contact photo
+		ImageView appIcon = (ImageView) v.findViewById(R.id.item_contact_icon);
 		if(contactHolder.icon != null)
-		{
-			ImageView appIcon = (ImageView) v.findViewById(R.id.item_contact_icon);
 			appIcon.setImageURI(contactHolder.icon);
-		}
+		else
+			appIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact));
 		
 		//Phone action
 		Button phoneButton = (Button) v.findViewById(R.id.item_contact_action_phone);

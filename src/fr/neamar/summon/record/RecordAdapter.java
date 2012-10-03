@@ -20,16 +20,30 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 		this.records = records;
 	}
 
+	public int getViewTypeCount() {
+		return 3;
+	}
+
+	public int getItemViewType(int position) {
+		if (records.get(position) instanceof AppRecord)
+			return 0;
+		else if (records.get(position) instanceof SearchRecord)
+			return 1;
+		else if (records.get(position) instanceof ContactRecord)
+			return 2;
+		else
+			return -1;
+	}
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		//Requires optimization ! View
-		//http://stackoverflow.com/questions/10270252/why-does-the-android-view-api-care-about-an-arrayadapters-getviewtypecount
+		// Requires optimization ! View
+		// http://stackoverflow.com/questions/10270252/why-does-the-android-view-api-care-about-an-arrayadapters-getviewtypecount
 
-		return records.get(position).display(getContext());
+		return records.get(position).display(getContext(), convertView);
 	}
-	
-	public void onClick(int position)
-	{
+
+	public void onClick(int position) {
 		records.get(position).launch(getContext());
 	}
 }
