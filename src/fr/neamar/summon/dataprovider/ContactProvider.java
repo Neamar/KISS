@@ -8,6 +8,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.util.SparseArray;
 import fr.neamar.summon.holder.ContactHolder;
 import fr.neamar.summon.record.ContactRecord;
@@ -26,7 +27,8 @@ public class ContactProvider extends Provider {
 
 	protected Runnable initContactsList = new Runnable() {
 		public void run() {
-
+			long start = System.nanoTime();
+			
 			// Run query
 			Cursor cur = context.getContentResolver().query(
 					ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
@@ -73,6 +75,9 @@ public class ContactProvider extends Provider {
 				}
 			}
 			cur.close();
+			
+			long end = System.nanoTime();
+			Log.i("time", Long.toString((end - start)/1000000) + " milliseconds to list contacts");
 		}
 	};
 

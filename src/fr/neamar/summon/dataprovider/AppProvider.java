@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.util.Log;
 import fr.neamar.summon.holder.AppHolder;
 import fr.neamar.summon.record.AppRecord;
 import fr.neamar.summon.record.Record;
@@ -27,6 +28,8 @@ public class AppProvider extends Provider {
 	
 	protected Runnable initAppsList = new Runnable() {
 		public void run() {
+			long start = System.nanoTime();
+			
 			PackageManager manager = context.getPackageManager();
 
 			Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
@@ -49,6 +52,9 @@ public class AppProvider extends Provider {
 						| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 				apps.add(app);
 			}
+			
+			long end = System.nanoTime();
+			Log.i("time", Long.toString((end - start)/1000000) + " milliseconds to list apps");
 		}
 	};
 	
