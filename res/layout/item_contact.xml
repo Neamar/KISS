@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="horizontal" >
 
+    <Button
+        android:id="@+id/item_contact_action_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/call"
+        android:paddingLeft="5dp" />
+
     <ImageView
         android:id="@+id/item_contact_icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/ic_contact" />
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_contact"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/item_contact_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/item_contact_icon"
+        android:layout_toRightOf="@+id/item_contact_icon"
         android:text="Contact name"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/item_contact_action_phone"
+        android:src="@drawable/dotted" />
+
+    <TextView
         android:id="@+id/item_contact_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/call" />
+        android:layout_alignBottom="@+id/item_contact_icon"
+        android:layout_alignLeft="@+id/item_contact_name"
+        android:text="+330 12 34 56 78" />
 
-</LinearLayout>
+</RelativeLayout>
