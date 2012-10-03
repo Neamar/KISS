@@ -18,9 +18,16 @@ public class ContactRecord extends Record {
 	@Override
 	public View display(Context context) {
 		View v = inflateFromId(context, R.layout.item_contact);
+		
+		//Contact name
 		TextView contactName = (TextView) v.findViewById(R.id.item_contact_name);
 		contactName.setText(enrichText(contactHolder.displayContactName));
 		
+		//Contact phone
+		TextView contactPhone = (TextView) v.findViewById(R.id.item_contact_phone);
+		contactPhone.setText(contactHolder.contactPhone);
+		
+		//Contact photo
 		if(contactHolder.icon != null)
 		{
 			ImageView appIcon = (ImageView) v.findViewById(R.id.item_contact_icon);
