@@ -127,6 +127,12 @@ public class SummonActivity extends Activity {
 	public void updateRecords(String query) {
 		adapter.clear();
 
+		//Save currentQuery
+		SharedPreferences prefs = getSharedPreferences("history", Context.MODE_PRIVATE);
+		SharedPreferences.Editor ed = prefs.edit();
+		ed.putString("currentQuery", query);
+		ed.commit();
+		
 		if (query.isEmpty()) {
 			// Searching for nothing...
 			populateHistory();
@@ -136,19 +142,28 @@ public class SummonActivity extends Activity {
 		// Ask all providers for datas
 		ArrayList<Record> allRecords = new ArrayList<Record>();
 
+		//Have we ever made the same query and selected something ?
+		String lastIdForQuery = prefs.getString("query://" + query, "(none)");
+		
 		for (int i = 0; i < providers.size(); i++) {
 			ArrayList<Record> records = providers.get(i).getRecords(query);
 			for (int j = 0; j < records.size(); j++) {
+				//Give a boost if item was previously selected for this query
+				if(records.get(j).holder.id.equals(lastIdForQuery))
+					records.get(j).relevance += 50;
 				allRecords.add(records.get(j));
 			}
 		}
 
+		
+		//Sort records according to relevance
 		Collections.sort(allRecords, new RecordComparator());
 
 		for (int i = 0; i < Math.min(MAX_RECORDS, allRecords.size()); i++) {
 			adapter.add(allRecords.get(i));
 		}
 
+		//Reset scrolling to top
 		listView.setSelectionAfterHeaderView();
 	}
 
