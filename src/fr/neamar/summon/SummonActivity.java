@@ -56,6 +56,7 @@ public class SummonActivity extends Activity {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.background_holo_dark));
 
 		listView = (ListView) findViewById(R.id.resultListView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
