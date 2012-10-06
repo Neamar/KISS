@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,7 +30,7 @@ public class SummonActivity extends Activity {
 	private static final int MENU_SETTINGS = Menu.FIRST;
 
 	private final int MAX_RECORDS = 15;
-	
+
 	/**
 	 * Adapter to display records
 	 */
@@ -56,7 +57,8 @@ public class SummonActivity extends Activity {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.background_holo_dark));
+		getWindow().setBackgroundDrawable(
+				getResources().getDrawable(R.drawable.background_holo_dark));
 
 		listView = (ListView) findViewById(R.id.resultListView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -97,6 +99,27 @@ public class SummonActivity extends Activity {
 		});
 	}
 
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		if (event.getAction() == KeyEvent.ACTION_DOWN) {
+			switch (event.getKeyCode()) {
+			case KeyEvent.KEYCODE_BACK:
+				return true;
+			case KeyEvent.KEYCODE_HOME:
+				return true;
+			}
+		} else if (event.getAction() == KeyEvent.ACTION_UP) {
+			switch (event.getKeyCode()) {
+			case KeyEvent.KEYCODE_BACK:
+				return true;
+			case KeyEvent.KEYCODE_HOME:
+				return true;
+			}
+		}
+
+		return super.dispatchKeyEvent(event);
+	}
+
 	/**
 	 * Empty text field on resume
 	 */
@@ -128,12 +151,13 @@ public class SummonActivity extends Activity {
 	public void updateRecords(String query) {
 		adapter.clear();
 
-		//Save currentQuery
-		SharedPreferences prefs = getSharedPreferences("history", Context.MODE_PRIVATE);
+		// Save currentQuery
+		SharedPreferences prefs = getSharedPreferences("history",
+				Context.MODE_PRIVATE);
 		SharedPreferences.Editor ed = prefs.edit();
 		ed.putString("currentQuery", query);
 		ed.commit();
-		
+
 		if (query.isEmpty()) {
 			// Searching for nothing...
 			populateHistory();
@@ -143,51 +167,50 @@ public class SummonActivity extends Activity {
 		// Ask all providers for datas
 		ArrayList<Record> allRecords = new ArrayList<Record>();
 
-		//Have we ever made the same query and selected something ?
+		// Have we ever made the same query and selected something ?
 		String lastIdForQuery = prefs.getString("query://" + query, "(none)");
-		
+
 		for (int i = 0; i < providers.size(); i++) {
 			ArrayList<Record> records = providers.get(i).getRecords(query);
 			for (int j = 0; j < records.size(); j++) {
-				//Give a boost if item was previously selected for this query
-				if(records.get(j).holder.id.equals(lastIdForQuery))
+				// Give a boost if item was previously selected for this query
+				if (records.get(j).holder.id.equals(lastIdForQuery))
 					records.get(j).relevance += 50;
 				allRecords.add(records.get(j));
 			}
 		}
 
-		
-		//Sort records according to relevance
+		// Sort records according to relevance
 		Collections.sort(allRecords, new RecordComparator());
 
 		for (int i = 0; i < Math.min(MAX_RECORDS, allRecords.size()); i++) {
 			adapter.add(allRecords.get(i));
 		}
 
-		//Reset scrolling to top
+		// Reset scrolling to top
 		listView.setSelectionAfterHeaderView();
 	}
 
 	private void populateHistory() {
-		
-		//Read history
+
+		// Read history
 		ArrayList<String> ids = new ArrayList<String>();
-		SharedPreferences prefs = getSharedPreferences("history", Context.MODE_PRIVATE);
-		
-		for(int k = 0; ids.size() < MAX_RECORDS; k++)
-		{
+		SharedPreferences prefs = getSharedPreferences("history",
+				Context.MODE_PRIVATE);
+
+		for (int k = 0; ids.size() < MAX_RECORDS; k++) {
 			String id = prefs.getString(Integer.toString(k), "(none)");
-			
-			//Not enough history yet
-			if(id.equals("(none)"))
+
+			// Not enough history yet
+			if (id.equals("(none)"))
 				break;
-			
-			//No duplicates, only keep recent
-			if(!ids.contains(id))
+
+			// No duplicates, only keep recent
+			if (!ids.contains(id))
 				ids.add(id);
 		}
 
-		//Find associated items
+		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
 			for (int j = 0; j < providers.size(); j++) {
 				Record record = providers.get(j).findById(ids.get(i));
