@@ -1,12 +1,9 @@
 package fr.neamar.summon;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,13 +14,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
-import fr.neamar.summon.dataprovider.AppProvider;
-import fr.neamar.summon.dataprovider.ContactProvider;
-import fr.neamar.summon.dataprovider.Provider;
-import fr.neamar.summon.dataprovider.SearchProvider;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordAdapter;
-import fr.neamar.summon.record.RecordComparator;
 
 public class SummonActivity extends Activity {
 
@@ -42,9 +34,9 @@ public class SummonActivity extends Activity {
 	private SummonActivity summonActivity = this;
 
 	/**
-	 * List all knowns providers
+	 * Object handling all data queries
 	 */
-	private ArrayList<Provider> providers = new ArrayList<Provider>();
+	private DataHandler dataHandler;
 
 	/**
 	 * List view displaying records
@@ -70,11 +62,9 @@ public class SummonActivity extends Activity {
 			}
 		});
 
-		// Initialize providers
-		providers.add(new AppProvider(getApplicationContext()));
-		providers.add(new ContactProvider(getApplicationContext()));
-		providers.add(new SearchProvider(getApplicationContext()));
-
+		// Initialize datas
+		dataHandler = new DataHandler(getApplicationContext());
+		
 		// Create adapter for records
 		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
 				new ArrayList<Record>());
@@ -151,74 +141,13 @@ public class SummonActivity extends Activity {
 	public void updateRecords(String query) {
 		adapter.clear();
 
-		// Save currentQuery
-		SharedPreferences prefs = getSharedPreferences("history",
-				Context.MODE_PRIVATE);
-		SharedPreferences.Editor ed = prefs.edit();
-		ed.putString("currentQuery", query);
-		ed.commit();
-
-		if (query.isEmpty()) {
-			// Searching for nothing...
-			populateHistory();
-			return;
-		}
-
-		// Ask all providers for datas
-		ArrayList<Record> allRecords = new ArrayList<Record>();
-
-		// Have we ever made the same query and selected something ?
-		String lastIdForQuery = prefs.getString("query://" + query, "(none)");
-
-		for (int i = 0; i < providers.size(); i++) {
-			ArrayList<Record> records = providers.get(i).getRecords(query);
-			for (int j = 0; j < records.size(); j++) {
-				// Give a boost if item was previously selected for this query
-				if (records.get(j).holder.id.equals(lastIdForQuery))
-					records.get(j).relevance += 50;
-				allRecords.add(records.get(j));
-			}
-		}
-
-		// Sort records according to relevance
-		Collections.sort(allRecords, new RecordComparator());
-
-		for (int i = 0; i < Math.min(MAX_RECORDS, allRecords.size()); i++) {
-			adapter.add(allRecords.get(i));
+		//Ask for records
+		ArrayList<Record> records = dataHandler.getRecords(query);
+		for (int i = 0; i < Math.min(MAX_RECORDS, records.size()); i++) {
+			adapter.add(records.get(i));
 		}
 
 		// Reset scrolling to top
 		listView.setSelectionAfterHeaderView();
-	}
-
-	private void populateHistory() {
-
-		// Read history
-		ArrayList<String> ids = new ArrayList<String>();
-		SharedPreferences prefs = getSharedPreferences("history",
-				Context.MODE_PRIVATE);
-
-		for (int k = 0; ids.size() < MAX_RECORDS; k++) {
-			String id = prefs.getString(Integer.toString(k), "(none)");
-
-			// Not enough history yet
-			if (id.equals("(none)"))
-				break;
-
-			// No duplicates, only keep recent
-			if (!ids.contains(id))
-				ids.add(id);
-		}
-
-		// Find associated items
-		for (int i = 0; i < ids.size(); i++) {
-			for (int j = 0; j < providers.size(); j++) {
-				Record record = providers.get(j).findById(ids.get(i));
-				if (record != null) {
-					adapter.add(record);
-					break;
-				}
-			}
-		}
 	}
 }
