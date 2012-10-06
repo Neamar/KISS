@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:paddingBottom="2dp"
+    android:paddingTop="2dp" >
 
     <Button
         android:id="@+id/item_contact_action_phone"
@@ -51,6 +53,7 @@
         android:id="@+id/item_contact_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#bebebe"
         android:layout_alignBottom="@+id/item_contact_icon"
         android:layout_alignLeft="@+id/item_contact_name"
         android:text="+330 12 34 56 78" />
