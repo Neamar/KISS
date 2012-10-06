@@ -54,6 +54,19 @@ public class ContactRecord extends Record {
 			}
 		});
 		
+		//Message action
+		Button messageButton = (Button) v.findViewById(R.id.item_contact_action_message);
+		messageButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String url = "sms:" + contactHolder.phone;
+				Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				v.getContext().startActivity(i);
+			}
+		});
+		
 		return v;
 	}
 

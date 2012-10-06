@@ -9,17 +9,6 @@
     android:paddingBottom="2dp"
     android:paddingTop="2dp" >
 
-    <Button
-        android:id="@+id/item_contact_action_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/call"
-        android:focusable="false"
-        android:paddingLeft="5dp" />
-
     <ImageView
         android:id="@+id/item_contact_icon"
         android:layout_width="48dp"
@@ -34,28 +23,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/item_contact_icon"
-        android:layout_toLeftOf="@+id/imageView1"
+        android:layout_toLeftOf="@+id/item_contact_action_message"
         android:layout_toRightOf="@+id/item_contact_icon"
         android:ellipsize="end"
         android:singleLine="true"
         android:text="Contact name"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/item_contact_action_phone"
-        android:src="@drawable/dotted" />
-
     <TextView
         android:id="@+id/item_contact_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#bebebe"
         android:layout_alignBottom="@+id/item_contact_icon"
         android:layout_alignLeft="@+id/item_contact_name"
         android:text="+330 12 34 56 78" />
+
+    <ImageView
+        android:id="@+id/separator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/item_contact_action_phone"
+        android:focusable="false"
+        android:src="@drawable/dotted" />
+
+    <Button
+        android:id="@+id/item_contact_action_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/separator"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/message"
+        android:focusable="false"
+        android:paddingRight="5dp" />
+
+    <Button
+        android:id="@+id/item_contact_action_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/call"
+        android:focusable="false"
+        android:paddingLeft="5dp" />
 
 </RelativeLayout>
