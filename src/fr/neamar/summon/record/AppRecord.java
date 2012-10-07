@@ -1,6 +1,8 @@
 package fr.neamar.summon.record;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,7 +33,17 @@ public class AppRecord extends Record {
 
 	@Override
 	public void doLaunch(Context context) {
-		context.startActivity(appHolder.intent);
+		ComponentName className = new ComponentName(
+				appHolder.packageName,
+				appHolder.activityName);
+		
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		intent.addCategory(Intent.CATEGORY_LAUNCHER);
+		intent.setComponent(className);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+				| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+		
+		context.startActivity(intent);
 	}
 
 }
