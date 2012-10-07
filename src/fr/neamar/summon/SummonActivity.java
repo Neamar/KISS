@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -27,11 +28,6 @@ public class SummonActivity extends Activity {
 	 * Adapter to display records
 	 */
 	private RecordAdapter adapter;
-
-	/**
-	 * Pointer to current activity
-	 */
-	private SummonActivity summonActivity = this;
 
 	/**
 	 * Object handling all data queries
@@ -64,14 +60,14 @@ public class SummonActivity extends Activity {
 
 		// Initialize datas
 		dataHandler = new DataHandler(getApplicationContext());
-		
+
 		// Create adapter for records
 		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
 				new ArrayList<Record>());
 		listView.setAdapter(adapter);
 
 		// Listen to changes
-		EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
+		final EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
 
@@ -84,9 +80,25 @@ public class SummonActivity extends Activity {
 
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				summonActivity.updateRecords(s.toString());
+				updateRecords(s.toString());
 			}
 		});
+
+		// Some providers take time to load. So, on startup, we rebuild results
+		// every 400ms to avoid missing records
+		CountDownTimer t = new CountDownTimer(2000, 400) {
+
+			@Override
+			public void onTick(long millisUntilFinished) {
+				updateRecords(searchEditText.getText().toString());
+			}
+
+			@Override
+			public void onFinish() {
+
+			}
+		};
+		t.start();
 	}
 
 	@Override
@@ -141,7 +153,7 @@ public class SummonActivity extends Activity {
 	public void updateRecords(String query) {
 		adapter.clear();
 
-		//Ask for records
+		// Ask for records
 		ArrayList<Record> records = dataHandler.getRecords(query);
 		for (int i = 0; i < Math.min(MAX_RECORDS, records.size()); i++) {
 			adapter.add(records.get(i));

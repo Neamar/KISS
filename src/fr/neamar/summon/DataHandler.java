@@ -73,9 +73,17 @@ public class DataHandler {
 		return allRecords;
 	}
 
+	/**
+	 * Return previously selected items.<br />
+	 * May return null if no items were ever selected (app first use)<br />
+	 * May return an empty set if the providers are not done building records,
+	 * in this case it is probably a good idea to call this function 500ms after
+	 * 
+	 * @return
+	 */
 	protected ArrayList<Record> getHistory() {
 		ArrayList<Record> history = new ArrayList<Record>();
-		
+
 		// Read history
 		ArrayList<String> ids = new ArrayList<String>();
 		SharedPreferences prefs = context.getSharedPreferences("history",
@@ -85,8 +93,14 @@ public class DataHandler {
 			String id = prefs.getString(Integer.toString(k), "(none)");
 
 			// Not enough history yet
-			if (id.equals("(none)"))
-				break;
+			if (id.equals("(none)")) {
+
+				if (k == 0)
+					return null;// App first use !
+				else
+					break;// Not enough item in history yet, we'll do with
+							// this.
+			}
 
 			// No duplicates, only keep recent
 			if (!ids.contains(id))
@@ -95,8 +109,8 @@ public class DataHandler {
 
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
-			
-			//Ask all providers if they know this id
+
+			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
 				Record record = providers.get(j).findById(ids.get(i));
 				if (record != null) {
@@ -105,7 +119,7 @@ public class DataHandler {
 				}
 			}
 		}
-		
+
 		return history;
 	}
 }
