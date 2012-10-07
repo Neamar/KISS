@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
 import fr.neamar.summon.holder.ContactHolder;
-import fr.neamar.summon.record.AppRecord;
 import fr.neamar.summon.record.ContactRecord;
 import fr.neamar.summon.record.Record;
 
@@ -19,7 +18,7 @@ public class ContactProvider extends Provider {
 
 	public ContactProvider(Context context) {
 		super(context);
-		
+
 		Thread thread = new Thread(null, initContactsList);
 		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
@@ -28,7 +27,7 @@ public class ContactProvider extends Provider {
 	protected Runnable initContactsList = new Runnable() {
 		public void run() {
 			long start = System.nanoTime();
-			
+
 			// Run query
 			Cursor cur = context.getContentResolver().query(
 					ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
@@ -76,9 +75,10 @@ public class ContactProvider extends Provider {
 				}
 			}
 			cur.close();
-			
+
 			long end = System.nanoTime();
-			Log.i("time", Long.toString((end - start)/1000000) + " milliseconds to list contacts");
+			Log.i("time", Long.toString((end - start) / 1000000)
+					+ " milliseconds to list contacts");
 		}
 	};
 
@@ -113,19 +113,16 @@ public class ContactProvider extends Provider {
 
 		return records;
 	}
-	
-	public Record findById(String id)
-	{
-		for(int i = 0; i < contacts.size(); i++)
-		{
-			if(contacts.get(i).id.equals(id))
-			{
+
+	public Record findById(String id) {
+		for (int i = 0; i < contacts.size(); i++) {
+			if (contacts.get(i).id.equals(id)) {
 				contacts.get(i).displayName = contacts.get(i).name;
 				return new ContactRecord(contacts.get(i));
 			}
-				
+
 		}
-		
+
 		return null;
 	}
 }
