@@ -48,7 +48,6 @@ public class AppProvider extends Provider {
 						+ info.activityInfo.name;
 				app.name = info.loadLabel(manager).toString();
 				app.nameLowerCased = app.name.toLowerCase();
-				app.icon = info.activityInfo.loadIcon(manager);
 
 				app.packageName = info.activityInfo.applicationInfo.packageName;
 				app.activityName = info.activityInfo.name;
