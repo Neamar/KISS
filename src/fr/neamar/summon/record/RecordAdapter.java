@@ -49,24 +49,6 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	}
 
 	public void onClick(int position) {
-		Log.i("log", "Launching " + records.get(position).holder.id);
-		
-		// Save in history
-		// Move every item one step down
-		SharedPreferences prefs = context.getSharedPreferences("history",
-				Context.MODE_PRIVATE);
-		SharedPreferences.Editor ed = prefs.edit();
-		for (int k = 50; k >= 0; k--) {
-			String id = prefs.getString(Integer.toString(k), "(none)");
-			if (!id.equals("(none)"))
-				ed.putString(Integer.toString(k + 1), id);
-		}
-		//Store current item
-		ed.putString("0", records.get(position).holder.id);
-		//Remember result for this query
-		ed.putString("query://" + prefs.getString("currentQuery", ""), records.get(position).holder.id);
-		ed.commit();
-		
 		records.get(position).launch(getContext());
 	}
 }

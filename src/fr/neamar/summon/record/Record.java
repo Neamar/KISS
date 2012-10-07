@@ -1,8 +1,10 @@
 package fr.neamar.summon.record;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import fr.neamar.summon.holder.Holder;
@@ -26,12 +28,23 @@ public abstract class Record {
 	 */
 	public abstract View display(Context context, View convertView);
 	
+	public final void launch(Context context)
+	{
+		Log.i("log", "Launching " + holder.id);
+		
+		recordLaunch(context);
+		
+		//Launch
+		doLaunch(context);
+	}
+	
 	/**
 	 * How to launch this record ?
-	 * Most probably, will fire an intent
+	 * Most probably, will fire an intent.
+	 * This function needs to call recordLaunch()
 	 * @param context
 	 */
-	public abstract void launch(Context context);
+	public abstract void doLaunch(Context context);
 	
 	/**
 	 * Helper function to get a view
@@ -54,5 +67,28 @@ public abstract class Record {
 	protected Spanned enrichText(String text)
 	{
 		return Html.fromHtml(text.replaceAll("\\{(.+)\\}", "<font color=#6e73e5>$1</font>"));
+	}
+	
+	/**
+	 * Put this item in application history
+	 * @param context
+	 */
+	protected void recordLaunch(Context context)
+	{
+		// Save in history
+		// Move every item one step down
+		SharedPreferences prefs = context.getSharedPreferences("history",
+				Context.MODE_PRIVATE);
+		SharedPreferences.Editor ed = prefs.edit();
+		for (int k = 50; k >= 0; k--) {
+			String id = prefs.getString(Integer.toString(k), "(none)");
+			if (!id.equals("(none)"))
+				ed.putString(Integer.toString(k + 1), id);
+		}
+		//Store current item
+		ed.putString("0", holder.id);
+		//Remember result for this query
+		ed.putString("query://" + prefs.getString("currentQuery", ""), holder.id);
+		ed.commit();
 	}
 }

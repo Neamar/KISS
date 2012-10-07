@@ -29,7 +29,7 @@ public class SearchRecord extends Record {
 	}
 
 	@Override
-	public void launch(Context context) {
+	public void doLaunch(Context context) {
 		Intent search = new Intent(Intent.ACTION_WEB_SEARCH);  
 		search.putExtra(SearchManager.QUERY, searchHolder.query);  
 		search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

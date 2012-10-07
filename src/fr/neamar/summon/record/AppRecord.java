@@ -30,7 +30,7 @@ public class AppRecord extends Record {
 	}
 
 	@Override
-	public void launch(Context context) {
+	public void doLaunch(Context context) {
 		context.startActivity(appHolder.intent);
 	}
 
