@@ -1,4 +1,4 @@
-package fr.neamar.summon;
+package fr.neamar.summon.lite;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -15,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import fr.neamar.summon.lite.R;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordAdapter;
 
@@ -57,6 +61,10 @@ public class SummonActivity extends Activity {
 				adapter.onClick(position);
 			}
 		});
+		TextView liteNotifier = new TextView(getApplicationContext());
+		liteNotifier.setText(Html.fromHtml("<b>BÊTA VERSION</b>. Please report bugs to summon@neamar.fr"));
+		liteNotifier.setGravity(Gravity.CENTER);
+		listView.addFooterView(liteNotifier);
 
 		// Initialize datas
 		dataHandler = new DataHandler(getApplicationContext());
@@ -155,9 +163,18 @@ public class SummonActivity extends Activity {
 
 		// Ask for records
 		ArrayList<Record> records = dataHandler.getRecords(query);
-		for (int i = 0; i < Math.min(MAX_RECORDS, records.size()); i++) {
-			adapter.add(records.get(i));
+		
+		if(records == null)
+		{
+			//First use of the app. Display something useful.
 		}
+		else
+		{
+			for (int i = 0; i < Math.min(MAX_RECORDS, records.size()); i++) {
+				adapter.add(records.get(i));
+			}
+		}
+		
 
 		// Reset scrolling to top
 		listView.setSelectionAfterHeaderView();

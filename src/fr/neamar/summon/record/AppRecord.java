@@ -7,7 +7,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import fr.neamar.summon.R;
+import fr.neamar.summon.lite.R;
 import fr.neamar.summon.holder.AppHolder;
 
 public class AppRecord extends Record {

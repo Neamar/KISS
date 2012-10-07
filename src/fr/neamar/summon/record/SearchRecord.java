@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
-import fr.neamar.summon.R;
+import fr.neamar.summon.lite.R;
 import fr.neamar.summon.holder.SearchHolder;
 
 public class SearchRecord extends Record {

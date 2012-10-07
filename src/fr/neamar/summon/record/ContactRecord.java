@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import fr.neamar.summon.R;
+import fr.neamar.summon.lite.R;
 import fr.neamar.summon.holder.ContactHolder;
 
 public class ContactRecord extends Record {
