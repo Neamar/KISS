@@ -3,6 +3,8 @@ package fr.neamar.summon.record;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -44,6 +46,17 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	}
 
 	public void onClick(int position) {
-		records.get(position).launch(getContext());
+		if(position < records.size())
+			records.get(position).launch(getContext());
+		else
+		{
+			//Click on "beta notification"
+			Intent i = new Intent(Intent.ACTION_SENDTO);
+			i.setType("text/plain");
+			i.setData(Uri.parse("mailto:summon@neamar.fr"));
+			i.putExtra(Intent.EXTRA_SUBJECT, "Summon");
+			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			getContext().startActivity(i);
+		}
 	}
 }

@@ -64,6 +64,7 @@ public class SummonActivity extends Activity {
 		TextView liteNotifier = new TextView(getApplicationContext());
 		liteNotifier.setText(Html.fromHtml("<b>BÊTA VERSION</b>. Please report bugs to summon@neamar.fr"));
 		liteNotifier.setGravity(Gravity.CENTER);
+		liteNotifier.setClickable(false);
 		listView.addFooterView(liteNotifier);
 
 		// Initialize datas
