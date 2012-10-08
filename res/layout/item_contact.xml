@@ -45,28 +45,29 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/item_contact_action_phone"
         android:focusable="false"
+        android:contentDescription="@string/ui_item_contact_hint_separator"
         android:src="@drawable/dotted" />
 
-    <Button
+    <ImageButton
         android:id="@+id/item_contact_action_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/separator"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/message"
+        android:contentDescription="@string/ui_item_contact_hint_message"
         android:focusable="false"
-        android:paddingRight="5dp" />
+        android:src="@drawable/message" />
 
-    <Button
+    <ImageButton
         android:id="@+id/item_contact_action_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/call"
+        android:contentDescription="@string/ui_item_contact_hint_call"
         android:focusable="false"
-        android:paddingLeft="5dp" />
+        android:src="@drawable/call" />
 
 </RelativeLayout>

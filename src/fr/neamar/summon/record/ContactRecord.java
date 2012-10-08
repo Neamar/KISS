@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.neamar.summon.lite.R;
@@ -44,7 +44,7 @@ public class ContactRecord extends Record {
 					R.drawable.ic_contact));
 
 		// Phone action
-		Button phoneButton = (Button) v
+		ImageButton phoneButton = (ImageButton) v
 				.findViewById(R.id.item_contact_action_phone);
 		phoneButton.setOnClickListener(new OnClickListener() {
 
@@ -61,7 +61,7 @@ public class ContactRecord extends Record {
 		});
 
 		// Message action
-		Button messageButton = (Button) v
+		ImageButton messageButton = (ImageButton) v
 				.findViewById(R.id.item_contact_action_message);
 		messageButton.setOnClickListener(new OnClickListener() {
 

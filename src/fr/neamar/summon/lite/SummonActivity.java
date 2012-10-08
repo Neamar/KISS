@@ -3,9 +3,11 @@ package fr.neamar.summon.lite;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -13,6 +15,8 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
@@ -43,14 +47,18 @@ public class SummonActivity extends Activity {
 	 */
 	private ListView listView;
 
+	/**
+	 * Store current query
+	 */
+	private String currentQuery;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
-		getWindow().setBackgroundDrawable(
-				getResources().getDrawable(R.drawable.background_holo_dark));
 
 		listView = (ListView) findViewById(R.id.resultListView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -62,7 +70,9 @@ public class SummonActivity extends Activity {
 			}
 		});
 		TextView liteNotifier = new TextView(getApplicationContext());
-		liteNotifier.setText(Html.fromHtml("<b>BÊTA VERSION</b>. Please report bugs to summon@neamar.fr"));
+		liteNotifier
+				.setText(Html
+						.fromHtml("<b>BÊTA VERSION</b>. Please report bugs to summon@neamar.fr"));
 		liteNotifier.setGravity(Gravity.CENTER);
 		liteNotifier.setClickable(false);
 		listView.addFooterView(liteNotifier);
@@ -132,11 +142,24 @@ public class SummonActivity extends Activity {
 	}
 
 	/**
-	 * Empty text field on resume
+	 * Empty text field on resume and show keyboard
 	 */
 	protected void onResume() {
-		EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
+		final EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
+
+		// Reset textfield (will display history)
 		searchEditText.setText("");
+
+		// Display keyboard
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				searchEditText.requestFocus();
+				InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				mgr.showSoftInput(searchEditText,
+						InputMethodManager.SHOW_IMPLICIT);
+			}
+		}, 50);
 
 		super.onResume();
 	}
@@ -160,24 +183,41 @@ public class SummonActivity extends Activity {
 	 * @param s
 	 */
 	public void updateRecords(String query) {
-		adapter.clear();
+		currentQuery = query;
+		Thread resultThread = new Thread(new Runnable() {
 
-		// Ask for records
-		ArrayList<Record> records = dataHandler.getRecords(query);
-		
-		if(records == null)
-		{
-			//First use of the app. Display something useful.
-		}
-		else
-		{
-			for (int i = 0; i < Math.min(MAX_RECORDS, records.size()); i++) {
-				adapter.add(records.get(i));
+			@Override
+			public void run() {
+				String workingOnQuery = currentQuery;
+
+				// Ask for records
+				final ArrayList<Record> records = dataHandler
+						.getRecords(workingOnQuery);
+
+				// Another search have already been made
+				if (workingOnQuery != currentQuery)
+					return;
+
+				if (records == null) {
+					// First use of the app. TODO : Display something useful.
+				} else {
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							adapter.clear();
+							for (int i = 0; i < Math.min(MAX_RECORDS,
+									records.size()); i++) {
+								adapter.add(records.get(i));
+							}
+							// Reset scrolling to top
+							listView.setSelectionAfterHeaderView();
+						}
+					});
+
+				}
 			}
-		}
-		
-
-		// Reset scrolling to top
-		listView.setSelectionAfterHeaderView();
+		});
+		resultThread.start();
 	}
 }
