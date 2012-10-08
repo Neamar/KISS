@@ -47,7 +47,7 @@ public class DataHandler {
 		ed.putString("currentQuery", query);
 		ed.commit();
 
-		if (query.isEmpty()) {
+		if (query.length() == 0) {
 			// Searching for nothing returns the history
 			return getHistory();
 		}

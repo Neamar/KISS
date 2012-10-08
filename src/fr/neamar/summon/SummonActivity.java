@@ -155,8 +155,13 @@ public class SummonActivity extends Activity {
 
 		// Ask for records
 		ArrayList<Record> records = dataHandler.getRecords(query);
-		for (int i = 0; i < Math.min(MAX_RECORDS, records.size()); i++) {
-			adapter.add(records.get(i));
+
+		if (records == null) {
+			// First use of the app. Display something useful.
+		} else {
+			for (int i = 0; i < Math.min(MAX_RECORDS, records.size()); i++) {
+				adapter.add(records.get(i));
+			}
 		}
 
 		// Reset scrolling to top
