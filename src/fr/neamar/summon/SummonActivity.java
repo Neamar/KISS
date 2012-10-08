@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -47,9 +48,8 @@ public class SummonActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
-		getWindow().setBackgroundDrawable(
-				getResources().getDrawable(R.drawable.background_holo_dark));
 
 		listView = (ListView) findViewById(R.id.resultListView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
