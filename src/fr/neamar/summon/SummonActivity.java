@@ -43,6 +43,11 @@ public class SummonActivity extends Activity {
 	 */
 	private ListView listView;
 
+	/**
+	 * Store current query
+	 */
+	private String currentQuery;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -167,20 +172,41 @@ public class SummonActivity extends Activity {
 	 * @param s
 	 */
 	public void updateRecords(String query) {
-		adapter.clear();
+		currentQuery = query;
+		Thread resultThread = new Thread(new Runnable() {
 
-		// Ask for records
-		ArrayList<Record> records = dataHandler.getRecords(query);
+			@Override
+			public void run() {
+				String workingOnQuery = currentQuery;
 
-		if (records == null) {
-			// First use of the app. Display something useful.
-		} else {
-			for (int i = 0; i < Math.min(MAX_RECORDS, records.size()); i++) {
-				adapter.add(records.get(i));
+				// Ask for records
+				final ArrayList<Record> records = dataHandler
+						.getRecords(workingOnQuery);
+
+				// Another search have already been made
+				if (workingOnQuery != currentQuery)
+					return;
+
+				if (records == null) {
+					// First use of the app. TODO : Display something useful.
+				} else {
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							adapter.clear();
+							for (int i = 0; i < Math.min(MAX_RECORDS,
+									records.size()); i++) {
+								adapter.add(records.get(i));
+							}
+							// Reset scrolling to top
+							listView.setSelectionAfterHeaderView();
+						}
+					});
+
+				}
 			}
-		}
-
-		// Reset scrolling to top
-		listView.setSelectionAfterHeaderView();
+		});
+		resultThread.start();
 	}
 }
