@@ -3,14 +3,17 @@ package fr.neamar.summon;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
@@ -123,11 +126,24 @@ public class SummonActivity extends Activity {
 	}
 
 	/**
-	 * Empty text field on resume
+	 * Empty text field on resume and show keyboard
 	 */
 	protected void onResume() {
-		EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
+		final EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
+
+		// Reset textfield (will display history)
 		searchEditText.setText("");
+
+		// Display keyboard
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				searchEditText.requestFocus();
+				InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				mgr.showSoftInput(searchEditText,
+						InputMethodManager.SHOW_IMPLICIT);
+			}
+		}, 50);
 
 		super.onResume();
 	}
