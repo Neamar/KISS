@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import fr.neamar.summon.R;
+import fr.neamar.summon.lite.R;
 import fr.neamar.summon.holder.ToggleHolder;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.ToggleRecord;
