@@ -3,6 +3,7 @@ package fr.neamar.summon.record;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -11,7 +12,7 @@ import fr.neamar.summon.holder.ToggleHolder;
 import fr.neamar.summon.toggles.TogglesHandler;
 
 public class ToggleRecord extends Record {
-	public ToggleHolder toggleHolder;
+	public final ToggleHolder toggleHolder;
 	public TogglesHandler togglesHandler = null;
 
 	public ToggleRecord(ToggleHolder toggleHolder) {
@@ -36,8 +37,18 @@ public class ToggleRecord extends Record {
 			toggleIcon.setImageDrawable(context.getResources().getDrawable(toggleHolder.icon));
 
 		//Use the handler to check or uncheck button
-		ToggleButton toggleButton = (ToggleButton) v.findViewById(R.id.item_toggle_action_toggle);
+		final ToggleButton toggleButton = (ToggleButton) v.findViewById(R.id.item_toggle_action_toggle);
 		toggleButton.setChecked(togglesHandler.getState(toggleHolder));
+		//And wait for changes
+		toggleButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				recordLaunch(v.getContext());
+				if(!togglesHandler.getState(toggleHolder).equals(toggleButton.isChecked()))
+					togglesHandler.setState(toggleHolder, toggleButton.isChecked());
+			}
+		});
 		
 		return v;
 	}

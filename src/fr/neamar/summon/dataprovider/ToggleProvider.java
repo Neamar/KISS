@@ -31,9 +31,9 @@ public class ToggleProvider extends Provider {
 	protected Runnable initTogglesList = new Runnable() {
 		public void run() {
 			toggles.add(createHolder("Wifi", "wifi", R.drawable.toggle_wifi));
-			toggles.add(createHolder("GPS", "gps", R.drawable.toggle_gps));
+			//toggles.add(createHolder("GPS", "gps", R.drawable.toggle_gps));
 			toggles.add(createHolder("Bluetooth", "bluetooth", R.drawable.toggle_bluetooth));
-			toggles.add(createHolder("Mobile network data", "data", R.drawable.toggle_data));
+			//toggles.add(createHolder("Mobile network data", "data", R.drawable.toggle_data));
 		}
 
 		private ToggleHolder createHolder(String name, String settingName, int resId) {
