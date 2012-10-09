@@ -21,7 +21,7 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	}
 
 	public int getViewTypeCount() {
-		return 3;
+		return 4;
 	}
 
 	public int getItemViewType(int position) {
@@ -31,6 +31,8 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 			return 1;
 		else if (records.get(position) instanceof ContactRecord)
 			return 2;
+		else if (records.get(position) instanceof ToggleRecord)
+			return 3;
 		else
 			return -1;
 	}
