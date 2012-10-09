@@ -67,7 +67,12 @@ public class ContactProvider extends Provider {
 
 					if (!phones.containsKey(contact.phone + '|' + contact.name)
 							&& contact.name != null) {
-						contact.nameLowerCased = contact.name.toLowerCase();
+						contact.nameLowerCased = contact.name.toLowerCase()
+								.replaceAll("[èéêë]", "e")
+								.replaceAll("[ûù]", "u")
+								.replaceAll("[ïî]", "i")
+								.replaceAll("[àâ]", "a").replaceAll("ô", "o")
+								.replaceAll("[ÈÉÊË]", "E");
 						contacts.add(contact);
 
 						phones.put(contact.phone + '|' + contact.name, true);

@@ -7,10 +7,10 @@ import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import fr.neamar.summon.lite.R;
 import fr.neamar.summon.holder.ContactHolder;
+import fr.neamar.summon.ui.ImprovedQuickContactBadge;
 
 public class ContactRecord extends Record {
 	public ContactHolder contactHolder;
@@ -36,12 +36,23 @@ public class ContactRecord extends Record {
 		contactPhone.setText(contactHolder.phone);
 
 		// Contact photo
-		ImageView appIcon = (ImageView) v.findViewById(R.id.item_contact_icon);
+		ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) v
+				.findViewById(R.id.item_contact_icon);
 		if (contactHolder.icon != null)
-			appIcon.setImageURI(contactHolder.icon);
+			contactIcon.setImageURI(contactHolder.icon);
 		else
-			appIcon.setImageDrawable(context.getResources().getDrawable(
+			contactIcon.setImageDrawable(context.getResources().getDrawable(
 					R.drawable.ic_contact));
+		contactIcon.assignContactUri(Uri.withAppendedPath(
+				ContactsContract.Contacts.CONTENT_LOOKUP_URI,
+				String.valueOf(contactHolder.lookupKey)));
+		contactIcon.setExtraOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				recordLaunch(v.getContext());
+			}
+		});
 
 		// Phone action
 		ImageButton phoneButton = (ImageButton) v
