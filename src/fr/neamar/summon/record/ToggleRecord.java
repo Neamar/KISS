@@ -1,18 +1,18 @@
 package fr.neamar.summon.record;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 import fr.neamar.summon.R;
-import fr.neamar.summon.holder.AppHolder;
 import fr.neamar.summon.holder.ToggleHolder;
+import fr.neamar.summon.toggles.TogglesHandler;
 
 public class ToggleRecord extends Record {
 	public ToggleHolder toggleHolder;
+	public TogglesHandler togglesHandler = null;
 
 	public ToggleRecord(ToggleHolder toggleHolder) {
 		super();
@@ -21,6 +21,10 @@ public class ToggleRecord extends Record {
 
 	@Override
 	public View display(Context context, View v) {
+		//On first run, initialize handler
+		if(togglesHandler == null)
+			togglesHandler = new TogglesHandler(context);
+		
 		if (v == null)
 			v = inflateFromId(context, R.layout.item_toggle);
 
@@ -31,6 +35,10 @@ public class ToggleRecord extends Record {
 		if(toggleHolder.icon != -1)
 			toggleIcon.setImageDrawable(context.getResources().getDrawable(toggleHolder.icon));
 
+		//Use the handler to check or uncheck button
+		ToggleButton toggleButton = (ToggleButton) v.findViewById(R.id.item_toggle_action_toggle);
+		toggleButton.setChecked(togglesHandler.getState(toggleHolder));
+		
 		return v;
 	}
 
@@ -38,5 +46,4 @@ public class ToggleRecord extends Record {
 	public void doLaunch(Context context) {
 
 	}
-
 }
