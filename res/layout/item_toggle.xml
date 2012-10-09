@@ -15,7 +15,7 @@
         android:layout_height="48dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/settings"
+        android:src="@drawable/toggle_settings"
         android:scaleType="centerInside"
         tools:ignore="ContentDescription" />
 
@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/item_toggle_icon"
+        android:layout_toLeftOf="@+id/item_toggle_action_toggle"
         android:ellipsize="end"
         android:singleLine="true"
         android:text="Setting to toggle"

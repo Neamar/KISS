@@ -27,8 +27,9 @@ public class ToggleRecord extends Record {
 		TextView toggleName = (TextView) v.findViewById(R.id.item_toggle_name);
 		toggleName.setText(enrichText(toggleHolder.displayName));
 
-		ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_app_icon);
-		//toggleIcon.setImageDrawable();
+		ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_toggle_icon);
+		if(toggleHolder.icon != -1)
+			toggleIcon.setImageDrawable(context.getResources().getDrawable(toggleHolder.icon));
 
 		return v;
 	}

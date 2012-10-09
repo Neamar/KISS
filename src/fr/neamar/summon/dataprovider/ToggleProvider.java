@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
+import fr.neamar.summon.R;
 import fr.neamar.summon.holder.AppHolder;
 import fr.neamar.summon.holder.ToggleHolder;
 import fr.neamar.summon.record.AppRecord;
@@ -29,12 +30,21 @@ public class ToggleProvider extends Provider {
 
 	protected Runnable initTogglesList = new Runnable() {
 		public void run() {
-			ToggleHolder wifiHolder = new ToggleHolder();
-			wifiHolder.id = "toggle://wifi";
-			wifiHolder.name = "Toggle Wifi";
-			wifiHolder.nameLowerCased = wifiHolder.name.toLowerCase();
-			wifiHolder.settingName = "wifi";
-			toggles.add(wifiHolder);
+			toggles.add(createHolder("Wifi", R.drawable.toggle_wifi));
+			toggles.add(createHolder("GPS", R.drawable.toggle_gps));
+			toggles.add(createHolder("Bluetooth", R.drawable.toggle_bluetooth));
+			toggles.add(createHolder("Mobile network", R.drawable.toggle_data));
+		}
+
+		private ToggleHolder createHolder(String name, int resId) {
+			ToggleHolder holder = new ToggleHolder();
+			holder.id = "toggle://" + name.toLowerCase();
+			holder.name = "Toggle: " + name;
+			holder.nameLowerCased = holder.name.toLowerCase();
+			holder.settingName = name.toLowerCase();
+			holder.icon = resId;
+			
+			return holder;
 		}
 	};
 
@@ -56,8 +66,10 @@ public class ToggleProvider extends Provider {
 				relevance = 1;
 
 			if (relevance > 0) {
-				toggles.get(i).displayName = toggles.get(i).name.replaceFirst("(?i)("
-						+ Pattern.quote(query) + ")", "{$1}");
+				toggles.get(i).displayName = toggles.get(i).name.replace(
+						"Toggle:", "<small><small>Toggle:</small></small>").replaceFirst(
+						"(?i)(" + Pattern.quote(query) + ")", "{$1}");
+
 				Record r = new ToggleRecord(toggles.get(i));
 				r.relevance = relevance;
 				records.add(r);

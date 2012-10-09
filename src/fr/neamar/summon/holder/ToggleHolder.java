@@ -7,4 +7,5 @@ public class ToggleHolder extends Holder {
 									// in bold
 
 	public String settingName;
+	public int icon = -1;
 }
