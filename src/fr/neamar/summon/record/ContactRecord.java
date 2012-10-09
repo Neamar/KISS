@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import fr.neamar.summon.R;
 import fr.neamar.summon.holder.ContactHolder;
@@ -36,12 +37,16 @@ public class ContactRecord extends Record {
 		contactPhone.setText(contactHolder.phone);
 
 		// Contact photo
-		ImageView appIcon = (ImageView) v.findViewById(R.id.item_contact_icon);
+		QuickContactBadge contactIcon = (QuickContactBadge) v
+				.findViewById(R.id.item_contact_icon);
 		if (contactHolder.icon != null)
-			appIcon.setImageURI(contactHolder.icon);
+			contactIcon.setImageURI(contactHolder.icon);
 		else
-			appIcon.setImageDrawable(context.getResources().getDrawable(
+			contactIcon.setImageDrawable(context.getResources().getDrawable(
 					R.drawable.ic_contact));
+		contactIcon.assignContactUri(Uri.withAppendedPath(
+				ContactsContract.Contacts.CONTENT_LOOKUP_URI,
+				String.valueOf(contactHolder.lookupKey)));
 
 		// Phone action
 		ImageButton phoneButton = (ImageButton) v
