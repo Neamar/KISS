@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
+import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
@@ -13,11 +14,12 @@ import android.widget.Toast;
 import fr.neamar.summon.holder.ToggleHolder;
 
 public class TogglesHandler {
-	Context context;
-	ConnectivityManager connectivityManager;
-	WifiManager wifiManager;
-	BluetoothAdapter bluetoothAdapter;
-	LocationManager locationManager;
+	protected Context context;
+	protected ConnectivityManager connectivityManager;
+	protected WifiManager wifiManager;
+	protected BluetoothAdapter bluetoothAdapter;
+	protected LocationManager locationManager;
+	protected AudioManager audioManager;
 
 	/**
 	 * Initialize managers
@@ -33,6 +35,8 @@ public class TogglesHandler {
 		this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		this.locationManager = (LocationManager) context
 				.getSystemService(Context.LOCATION_SERVICE);
+		this.audioManager = ((AudioManager) context
+				.getSystemService(Context.AUDIO_SERVICE));
 	}
 
 	/**
@@ -50,6 +54,8 @@ public class TogglesHandler {
 			return getBluetoothState();
 		else if (holder.settingName.equals("gps"))
 			return getGpsState();
+		else if (holder.settingName.equals("silent"))
+			return getSilentState();
 		else {
 			Log.e("wtf", "Unsupported toggle for reading: "
 					+ holder.settingName);
@@ -66,6 +72,8 @@ public class TogglesHandler {
 			setBluetoothState(state);
 		else if (holder.settingName.equals("gps"))
 			setGpsState(state);
+		else if (holder.settingName.equals("silent"))
+			setSilentState(state);
 		else {
 			Log.e("wtf", "Unsupported toggle for update: " + holder.settingName);
 		}
@@ -110,5 +118,29 @@ public class TogglesHandler {
 		Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 		myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(myIntent);
+	}
+
+	protected Boolean getSilentState() {
+		int state = audioManager.getRingerMode();
+		Log.e("state", "State : " + Integer.toString(state));
+		if (state == AudioManager.RINGER_MODE_SILENT
+				|| state == AudioManager.RINGER_MODE_VIBRATE)
+			return true;
+		else
+			return false;
+	}
+
+	protected void setSilentState(Boolean state) {
+
+		if (!state) {
+			audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+			audioManager.setStreamVolume(AudioManager.STREAM_RING,
+					audioManager.getStreamVolume(AudioManager.STREAM_RING),
+					AudioManager.FLAG_PLAY_SOUND);
+		} else {
+			audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+			audioManager.setStreamVolume(AudioManager.STREAM_RING, 0,
+					AudioManager.FLAG_VIBRATE);
+		}
 	}
 }

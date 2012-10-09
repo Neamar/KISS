@@ -1,7 +1,6 @@
 package fr.neamar.summon.record;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -47,14 +46,16 @@ public class ToggleRecord extends Record {
 
 			@Override
 			public void onClick(View v) {
-				recordLaunch(v.getContext());
-				Log.i("toggle",
-						toggleHolder.name + " state: "
-								+ Boolean.toString(toggleButton.isChecked()));
 				if (!togglesHandler.getState(toggleHolder).equals(
-						toggleButton.isChecked()))
+						toggleButton.isChecked())) {
+
+					// record launch manually
+					recordLaunch(v.getContext());
+
 					togglesHandler.setState(toggleHolder,
 							toggleButton.isChecked());
+				}
+
 			}
 		});
 
