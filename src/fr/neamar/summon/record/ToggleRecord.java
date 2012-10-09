@@ -22,39 +22,56 @@ public class ToggleRecord extends Record {
 
 	@Override
 	public View display(Context context, View v) {
-		//On first run, initialize handler
-		if(togglesHandler == null)
+		// On first run, initialize handler
+		if (togglesHandler == null)
 			togglesHandler = new TogglesHandler(context);
-		
+
 		if (v == null)
 			v = inflateFromId(context, R.layout.item_toggle);
 
 		TextView toggleName = (TextView) v.findViewById(R.id.item_toggle_name);
 		toggleName.setText(enrichText(toggleHolder.displayName));
 
-		ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_toggle_icon);
-		if(toggleHolder.icon != -1)
-			toggleIcon.setImageDrawable(context.getResources().getDrawable(toggleHolder.icon));
+		ImageView toggleIcon = (ImageView) v
+				.findViewById(R.id.item_toggle_icon);
+		if (toggleHolder.icon != -1)
+			toggleIcon.setImageDrawable(context.getResources().getDrawable(
+					toggleHolder.icon));
 
-		//Use the handler to check or uncheck button
-		final ToggleButton toggleButton = (ToggleButton) v.findViewById(R.id.item_toggle_action_toggle);
+		// Use the handler to check or uncheck button
+		final ToggleButton toggleButton = (ToggleButton) v
+				.findViewById(R.id.item_toggle_action_toggle);
 		toggleButton.setChecked(togglesHandler.getState(toggleHolder));
-		//And wait for changes
+		// And wait for changes
 		toggleButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				recordLaunch(v.getContext());
-				if(!togglesHandler.getState(toggleHolder).equals(toggleButton.isChecked()))
-					togglesHandler.setState(toggleHolder, toggleButton.isChecked());
+				Log.i("toggle",
+						toggleHolder.name + " state: "
+								+ Boolean.toString(toggleButton.isChecked()));
+				if (!togglesHandler.getState(toggleHolder).equals(
+						toggleButton.isChecked()))
+					togglesHandler.setState(toggleHolder,
+							toggleButton.isChecked());
 			}
 		});
-		
+
+		v.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				toggleButton.performClick();
+			}
+		});
+
 		return v;
 	}
 
 	@Override
 	public void doLaunch(Context context) {
-
+		// Emulated with v.setOnClickListener
+		// Allows access to toggleButton on the View
 	}
 }
