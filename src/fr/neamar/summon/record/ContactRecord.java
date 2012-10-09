@@ -12,6 +12,7 @@ import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import fr.neamar.summon.R;
 import fr.neamar.summon.holder.ContactHolder;
+import fr.neamar.summon.ui.ImprovedQuickContactBadge;
 
 public class ContactRecord extends Record {
 	public ContactHolder contactHolder;
@@ -37,7 +38,7 @@ public class ContactRecord extends Record {
 		contactPhone.setText(contactHolder.phone);
 
 		// Contact photo
-		QuickContactBadge contactIcon = (QuickContactBadge) v
+		ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) v
 				.findViewById(R.id.item_contact_icon);
 		if (contactHolder.icon != null)
 			contactIcon.setImageURI(contactHolder.icon);
@@ -47,6 +48,13 @@ public class ContactRecord extends Record {
 		contactIcon.assignContactUri(Uri.withAppendedPath(
 				ContactsContract.Contacts.CONTENT_LOOKUP_URI,
 				String.valueOf(contactHolder.lookupKey)));
+		contactIcon.setExtraOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				recordLaunch(v.getContext());
+			}
+		});
 
 		// Phone action
 		ImageButton phoneButton = (ImageButton) v
