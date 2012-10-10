@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2012-07-31 11:46+0200\n"
-"Last-Translator: Innocenzo Ventre <el.diabl09@gmail.com>\n"
+"PO-Revision-Date: 2012-10-10 12:12+0200\n"
+"Last-Translator: Alessio Dessi <alessio.dessi@gmail.com>\n"
 "Language-Team: Italian <http://debian.weblate.org/projects/debian-"
 "handbook/06_apt/it-IT/>\n"
 "Language: it-IT\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 1.2\n"
 
 #. Tag: keyword
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "apt-get"
 msgstr "apt-get"
 
@@ -55,11 +55,11 @@ msgstr "Manutenzione ed Aggiornamento: gli strumenti APT"
 #, no-c-format
 msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, the features of which Falcot Corp administrators studied with enthusiasm."
 msgstr ""
-"Ciò rende così popolare Debian tra gli amministratori è la facilità con cui "
-"il software può essere installato e quanto facilmente l'intero sistema può "
-"essere aggiornato. Questo vantaggio è dovuto in gran parte al programma "
-"<emphasis> APT </emphasis>, le cui caratteristiche vengono studiate dagli "
-"amministratori Falcot Corp con entusiasmo."
+"Ciò che rende così popolare Debian tra gli amministratori è la facilità con "
+"cui il software può essere installato e la facilità con cui l'intero sistema "
+"può essere aggiornato. Questo vantaggio è dovuto in gran parte al programma "
+"<emphasis> APT </emphasis>, le cui caratteristiche sono state studiate con "
+"entusiasmo dagli amministratori di Falcot Corp."
 
 #. Tag: para
 #, no-c-format
@@ -84,101 +84,145 @@ msgstr ""
 #, no-c-format
 msgid "The word <emphasis>source</emphasis> can be ambiguous. A source package — a package containing the source code of a program — should not be confused with a package source — a repository (website, FTP server, CD-ROM, local directory, etc.) which contains packages."
 msgstr ""
+"La parola <emphasis>sorgente</emphasis> può essere ambigua. Un pacchetto "
+"sorgente — un pacchetto contentente il codice sorgente di un programma — non "
+"dev'essere confuso con la sorgente di un pacchetto — un archivio (sito web, "
+"server FTP, CD-ROM, cartella locale, etc.) nel quale sono contenuti i "
+"pacchetti."
 
 #. Tag: para
 #, no-c-format
 msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.gz</filename> or <filename>Packages.bz2</filename> files (in case of a source of binary packages) and <filename>Sources.gz</filename> or <filename>Sources.bz2</filename> files (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"encadre.apt-pdiff\" />)."
 msgstr ""
+"APT necessità di una “lista di sorgenti”: il file "
+"<filename>/etc/apt/sources.list</filename> elencherà i var i archivi ( o "
+"“sorgenti”) che pubblicano i pacchetti Debian. APT importerà la lista dei  "
+"pacchetti pubblicati da ciascuna di queste sorgenti. Questa operazione "
+"avviene scaricando  i file  <filename>Packages.gz</filename> o "
+"<filename>Packages.bz2</filename> (nel caso di un archivio di pacchetti "
+"binari) e i file <filename>Sources.gz</filename> o "
+"<filename>Sources.bz2</filename> (nel caso di una archivio di pacchetti di "
+"sorgenti) e analizzandone il loro contenuto. Quando una vecchia copia di "
+"questi file è già presente, APT è in grado di aggiornarla scaricando "
+"soltanto le differenze(vedere la barra laterale <xref linkend=\"encadre.apt-"
+"pdiff\" />)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Packages.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Packages.gz</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Sources.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Sources.gz</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <command>gzip</command>, <command>bzip2</command>, <command>LZMA</command> and <command>XZ</command> Compression"
 msgstr ""
+"<emphasis>ELEMENTI DI BASE</emphasis> <command>gzip</command>, "
+"<command>bzip2</command>, Compressione <command>LZMA</command> e "
+"<command>XZ</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gzip</command></primary>"
-msgstr ""
+msgstr "<primary><command>gzip</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bzip2</command></primary>"
-msgstr ""
+msgstr "<primary><command>bzip2</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lzma</command></primary>"
-msgstr ""
+msgstr "<primary><command>lzma</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>xz</command></primary>"
-msgstr ""
+msgstr "<primary><command>xz</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A <filename>.gz</filename> extension refers to a file compressed with the <command>gzip</command> utility. <command>gzip</command> is the fast and efficient traditional Unix utility to compress files. Newer tools achieve better rates of compression but require more calculation time to compress a file. Among them, and by order of appearance, there are <command>bzip2</command> (generating files with a <filename>.bz2</filename> extension), <command>lzma</command> (generating <filename>.lzma</filename> files) and <command>xz</command> (generating <filename>.xz</filename> files)."
 msgstr ""
+"L'estensione <filename>.gz</filename> si riferisce a file compressi con il "
+"programma <command>gzip</command>. Il programma <command>gzip</command> "
+"strumento di sistema degli Unix tradizionali è il sistema più veloce e "
+"efficiente per comprimere file. Nuovi strumenti raggiungo tassi di "
+"compressione migliori ma richiedono piu tempo di calcolo per comprimere un "
+"file. Tra questi, in ordine di rilascio, ci sono <command>bzip2</command> "
+"(genera file con estensione <filename>.bz2</filename>), "
+"<command>lzma</command> (genera fiel con estensione "
+"<filename>.lzma</filename>) e <command>xz</command> (genera file con "
+"estensione <filename>.xz</filename>)."
 
 #. Tag: title
 #, no-c-format
 msgid "Filling in the <filename>sources.list</filename> File"
-msgstr ""
+msgstr "Preparazione del file <filename>sources.list</filename> in corso"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>sources.list</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>sources.list</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>source of packages</primary>"
-msgstr ""
+msgstr "<primary>sorgente di pacchetti</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>source of</secondary>"
-msgstr ""
+msgstr "<primary> pacchetto </primary><secondary> sorgente di </secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/sources.list</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/sources.list</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Each active line of the <filename>/etc/apt/sources.list</filename> file contains the description of a source, made of 3 parts separated by spaces."
 msgstr ""
+"Ogni linea attiva del file <filename>/etc/apt/sources.list</filename> "
+"contiene la descrizione di una sorgente, suddivisa in tre parti separate da "
+"spazi."
 
 #. Tag: para
 #, no-c-format
 msgid "The first field indicates the source type:"
-msgstr ""
+msgstr "Il primo campo indica il tipo di sorgente:"
 
 #. Tag: para
 #, no-c-format
 msgid "“<literal>deb</literal>” for binary packages,"
-msgstr ""
+msgstr "“<literal>deb</literal>” per i pacchetti binari,"
 
 #. Tag: para
 #, no-c-format
 msgid "“<literal>deb-src</literal>” for source packages."
-msgstr ""
+msgstr "“<literal>deb-src</literal>” per i pacchetti sorgente."
 
 #. Tag: para
 #, no-c-format
 msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM based installations, although this is less frequent, since network-based installation methods are more and more common."
 msgstr ""
+"Il secondo campo fornisce l'URL della sorgente (combinato con il nome dei "
+"file presente in <filename>Packages.gz</filename>, deve fornire un URL "
+"valido e completo): questo potrebbe essere un morrir Debian o qualunque "
+"altro archivio di pacchetti predisposto da una terza parte. L'URL potrebbe "
+"iniziare con <literal>file://</literal> per indicare una sorgente locale "
+"all'interno del file system, con <literal>http://</literal> per indicare una "
+"sorgente accessibile da un server web, o con <literal>ftp://</literal> per "
+"una sorgente disponibile su un server FTP. L'URL può anche iniziare con "
+"<literal>cdrom://</literal> per le installazioni basate su CD-ROM, sebbene "
+"questo sia meno frequente, dato che i metodi di installazione basati sulla "
+"rete sono sempre piu comuni."
 
 #. Tag: para
 #, no-c-format
