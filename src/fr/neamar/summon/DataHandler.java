@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import fr.neamar.summon.dataprovider.AliasProvider;
 import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.ContactProvider;
 import fr.neamar.summon.dataprovider.Provider;
@@ -36,6 +37,7 @@ public class DataHandler {
 		providers.add(new SearchProvider(context));
 		providers.add(new ToggleProvider(context));
 		providers.add(new SettingProvider(context));
+		providers.add(new AliasProvider(context, providers));
 	}
 
 	/**

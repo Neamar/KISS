@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="2dp"
-    android:paddingBottom="2dp"
     android:gravity="center_vertical"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:paddingBottom="2dp"
+    android:paddingTop="2dp" >
 
     <ImageView
         android:id="@+id/item_app_icon"
@@ -17,6 +17,8 @@
         android:id="@+id/item_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ellipsize="true"
+        android:singleLine="true"
         android:text="Application name"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
