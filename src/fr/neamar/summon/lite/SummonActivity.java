@@ -12,7 +12,6 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -86,7 +85,7 @@ public class SummonActivity extends Activity {
 						.fromHtml("<b>BÊTA VERSION</b>. Please report bugs to summon@neamar.fr"));
 		liteNotifier.setGravity(Gravity.CENTER);
 		liteNotifier.setClickable(false);
-		listView.addFooterView(liteNotifier);
+		listView.addHeaderView(liteNotifier);
 
 		// (re-)Initialize datas
 		dataHandler = (DataHandler) getLastNonConfigurationInstance();
@@ -210,8 +209,7 @@ public class SummonActivity extends Activity {
 						@Override
 						public void run() {
 							adapter.clear();
-							for (int i = Math.min(MAX_RECORDS,
-									records.size()) - 1; i >= 0; i--) {
+							for (int i = Math.min(MAX_RECORDS, records.size()) - 1; i >= 0; i--) {
 								adapter.add(records.get(i));
 							}
 							// Reset scrolling to top
