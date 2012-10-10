@@ -9,6 +9,7 @@ import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.ContactProvider;
 import fr.neamar.summon.dataprovider.Provider;
 import fr.neamar.summon.dataprovider.SearchProvider;
+import fr.neamar.summon.dataprovider.SettingProvider;
 import fr.neamar.summon.dataprovider.ToggleProvider;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordComparator;
@@ -34,6 +35,7 @@ public class DataHandler {
 		providers.add(new ContactProvider(context));
 		providers.add(new SearchProvider(context));
 		providers.add(new ToggleProvider(context));
+		providers.add(new SettingProvider(context));
 	}
 
 	/**

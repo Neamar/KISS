@@ -75,7 +75,8 @@ public class ToggleProvider extends Provider {
 	public Record findById(String id) {
 		for (int i = 0; i < toggles.size(); i++) {
 			if (toggles.get(i).id.equals(id)) {
-				toggles.get(i).displayName = toggles.get(i).name;
+				toggles.get(i).displayName = toggles.get(i).name.replace(
+						"Toggle:", "<small><small>Toggle:</small></small>");
 				return new ToggleRecord(toggles.get(i));
 			}
 
