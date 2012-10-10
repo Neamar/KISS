@@ -47,17 +47,6 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	}
 
 	public void onClick(int position, View v) {
-		if(position < records.size())
-			records.get(position).launch(getContext(), v);
-		else
-		{
-			//Click on "beta notification"
-			Intent i = new Intent(Intent.ACTION_SENDTO);
-			i.setType("text/plain");
-			i.setData(Uri.parse("mailto:summon@neamar.fr"));
-			i.putExtra(Intent.EXTRA_SUBJECT, "Summon");
-			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			getContext().startActivity(i);
-		}
+		records.get(position).launch(getContext(), v);
 	}
 }

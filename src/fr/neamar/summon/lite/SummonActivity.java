@@ -79,13 +79,6 @@ public class SummonActivity extends Activity {
 				adapter.onClick(position, arg1);
 			}
 		});
-		TextView liteNotifier = new TextView(getApplicationContext());
-		liteNotifier
-				.setText(Html
-						.fromHtml("<b>BÊTA VERSION</b>. Please report bugs to summon@neamar.fr"));
-		liteNotifier.setGravity(Gravity.CENTER);
-		liteNotifier.setClickable(false);
-		listView.addHeaderView(liteNotifier);
 
 		// (re-)Initialize datas
 		dataHandler = (DataHandler) getLastNonConfigurationInstance();
