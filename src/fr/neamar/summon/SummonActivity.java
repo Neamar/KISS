@@ -198,8 +198,8 @@ public class SummonActivity extends Activity {
 						@Override
 						public void run() {
 							adapter.clear();
-							for (int i = 0; i < Math.min(MAX_RECORDS,
-									records.size()); i++) {
+							for (int i = Math.min(MAX_RECORDS,
+									records.size()) - 1; i >= 0; i--) {
 								adapter.add(records.get(i));
 							}
 							// Reset scrolling to top
