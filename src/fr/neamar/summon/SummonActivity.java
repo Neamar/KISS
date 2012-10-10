@@ -10,7 +10,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -53,7 +52,7 @@ public class SummonActivity extends Activity {
 	 * changes. Allows not to empty textfield during onResume().
 	 */
 	private Boolean flagConfigurationChanged = false;
-	
+
 	/**
 	 * Search text in the view
 	 */
@@ -70,7 +69,6 @@ public class SummonActivity extends Activity {
 
 		listView = (ListView) findViewById(R.id.resultListView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View arg1,
 					int position, long id) {
@@ -152,7 +150,7 @@ public class SummonActivity extends Activity {
 	public Object onRetainNonConfigurationInstance() {
 		return dataHandler;
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		searchEditText.setText("");

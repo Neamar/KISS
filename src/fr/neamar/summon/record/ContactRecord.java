@@ -47,7 +47,7 @@ public class ContactRecord extends Record {
 				ContactsContract.Contacts.CONTENT_LOOKUP_URI,
 				String.valueOf(contactHolder.lookupKey)));
 		contactIcon.setExtraOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				recordLaunch(v.getContext());
@@ -104,7 +104,6 @@ public class ContactRecord extends Record {
 																	// if
 																	// working
 		context.startActivity(viewContact);
-
 	}
 
 }
