@@ -42,7 +42,7 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 		return records.get(position).display(getContext(), convertView);
 	}
 
-	public void onClick(int position) {
-		records.get(position).launch(getContext());
+	public void onClick(int position, View v) {
+		records.get(position).launch(getContext(), v);
 	}
 }

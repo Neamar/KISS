@@ -93,7 +93,7 @@ public class ContactRecord extends Record {
 	}
 
 	@Override
-	public void doLaunch(Context context) {
+	public void doLaunch(Context context, View v) {
 		Intent viewContact = new Intent(Intent.ACTION_VIEW);
 
 		viewContact.setData(Uri.withAppendedPath(

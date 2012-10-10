@@ -28,14 +28,14 @@ public abstract class Record {
 	 */
 	public abstract View display(Context context, View convertView);
 	
-	public final void launch(Context context)
+	public final void launch(Context context, View v)
 	{
 		Log.i("log", "Launching " + holder.id);
 		
 		recordLaunch(context);
 		
 		//Launch
-		doLaunch(context);
+		doLaunch(context, v);
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public abstract class Record {
 	 * This function needs to call recordLaunch()
 	 * @param context
 	 */
-	public abstract void doLaunch(Context context);
+	public abstract void doLaunch(Context context, View v);
 	
 	/**
 	 * Helper function to get a view

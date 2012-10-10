@@ -44,7 +44,7 @@ public class AppRecord extends Record {
 	}
 
 	@Override
-	public void doLaunch(Context context) {
+	public void doLaunch(Context context, View v) {
 		Intent intent = new Intent(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_LAUNCHER);
 		intent.setComponent(className);

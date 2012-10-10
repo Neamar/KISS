@@ -4,10 +4,10 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingBottom="2dp"
-    android:descendantFocusability="blocksDescendants" 
     android:paddingTop="2dp" >
 
     <fr.neamar.summon.ui.ImprovedQuickContactBadge
@@ -16,8 +16,8 @@
         android:layout_height="48dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_contact"
         android:focusable="false"
+        android:src="@drawable/ic_contact"
         tools:ignore="ContentDescription" />
 
     <TextView

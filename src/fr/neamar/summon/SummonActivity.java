@@ -72,7 +72,7 @@ public class SummonActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View arg1,
 					int position, long id) {
-				adapter.onClick(position);
+				adapter.onClick(position, arg1);
 			}
 		});
 
