@@ -47,12 +47,17 @@ public class SummonActivity extends Activity {
 	 * Store current query
 	 */
 	private String currentQuery;
-	
+
 	/**
-	 * Set to true if activity was just rebuilt because of configuration changes.
-	 * Allows not to empty textfield during onResume().
+	 * Set to true if activity was just rebuilt because of configuration
+	 * changes. Allows not to empty textfield during onResume().
 	 */
 	private Boolean flagConfigurationChanged = false;
+	
+	/**
+	 * Search text in the view
+	 */
+	private EditText searchEditText;
 
 	/** Called when the activity is first created. */
 	@SuppressWarnings("deprecation")
@@ -80,7 +85,6 @@ public class SummonActivity extends Activity {
 		} else {
 			dataHandler = new DataHandler(getApplicationContext());
 		}
-		
 
 		// Create adapter for records
 		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
@@ -88,7 +92,7 @@ public class SummonActivity extends Activity {
 		listView.setAdapter(adapter);
 
 		// Listen to changes
-		final EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
+		this.searchEditText = (EditText) findViewById(R.id.searchEditText);
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
 
@@ -122,35 +126,12 @@ public class SummonActivity extends Activity {
 		t.start();
 	}
 
-	@Override
-	public boolean dispatchKeyEvent(KeyEvent event) {
-		if (event.getAction() == KeyEvent.ACTION_DOWN) {
-			switch (event.getKeyCode()) {
-			case KeyEvent.KEYCODE_BACK:
-				return true;
-			case KeyEvent.KEYCODE_HOME:
-				return true;
-			}
-		} else if (event.getAction() == KeyEvent.ACTION_UP) {
-			switch (event.getKeyCode()) {
-			case KeyEvent.KEYCODE_BACK:
-				return true;
-			case KeyEvent.KEYCODE_HOME:
-				return true;
-			}
-		}
-
-		return super.dispatchKeyEvent(event);
-	}
-
 	/**
 	 * Empty text field on resume and show keyboard
 	 */
 	protected void onResume() {
-		final EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
-
 		// Reset textfield (will display history)
-		if(!flagConfigurationChanged)
+		if (!flagConfigurationChanged)
 			searchEditText.setText("");
 
 		// Display keyboard
@@ -170,6 +151,11 @@ public class SummonActivity extends Activity {
 	@Override
 	public Object onRetainNonConfigurationInstance() {
 		return dataHandler;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		searchEditText.setText("");
 	}
 
 	@Override
