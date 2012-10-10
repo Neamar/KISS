@@ -14,6 +14,8 @@ import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordComparator;
 
 public class DataHandler {
+	public String lastQuery = "";
+	
 	private Context context;
 
 	/**
@@ -42,6 +44,8 @@ public class DataHandler {
 	 * @return ordered list of records
 	 */
 	public ArrayList<Record> getRecords(String query) {
+		this.lastQuery = query;
+		
 		// Save currentQuery
 		SharedPreferences prefs = context.getSharedPreferences("history",
 				Context.MODE_PRIVATE);

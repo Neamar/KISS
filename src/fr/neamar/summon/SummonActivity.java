@@ -47,8 +47,15 @@ public class SummonActivity extends Activity {
 	 * Store current query
 	 */
 	private String currentQuery;
+	
+	/**
+	 * Set to true if activity was just rebuilt because of configuration changes.
+	 * Allows not to empty textfield during onResume().
+	 */
+	private Boolean flagConfigurationChanged = false;
 
 	/** Called when the activity is first created. */
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
@@ -66,8 +73,14 @@ public class SummonActivity extends Activity {
 			}
 		});
 
-		// Initialize datas
-		dataHandler = new DataHandler(getApplicationContext());
+		// (re-)Initialize datas
+		dataHandler = (DataHandler) getLastNonConfigurationInstance();
+		if (dataHandler != null) {
+			flagConfigurationChanged = true;
+		} else {
+			dataHandler = new DataHandler(getApplicationContext());
+		}
+		
 
 		// Create adapter for records
 		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
@@ -137,7 +150,8 @@ public class SummonActivity extends Activity {
 		final EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
 
 		// Reset textfield (will display history)
-		searchEditText.setText("");
+		if(!flagConfigurationChanged)
+			searchEditText.setText("");
 
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
@@ -151,6 +165,11 @@ public class SummonActivity extends Activity {
 		}, 50);
 
 		super.onResume();
+	}
+
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		return dataHandler;
 	}
 
 	@Override
