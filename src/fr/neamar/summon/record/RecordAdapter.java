@@ -23,7 +23,7 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	}
 
 	public int getViewTypeCount() {
-		return 4;
+		return 5;
 	}
 
 	public int getItemViewType(int position) {
@@ -35,6 +35,8 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 			return 2;
 		else if (records.get(position) instanceof ToggleRecord)
 			return 3;
+		else if (records.get(position) instanceof SettingRecord)
+			return 4;
 		else
 			return -1;
 	}
@@ -44,9 +46,9 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 		return records.get(position).display(getContext(), convertView);
 	}
 
-	public void onClick(int position) {
+	public void onClick(int position, View v) {
 		if(position < records.size())
-			records.get(position).launch(getContext());
+			records.get(position).launch(getContext(), v);
 		else
 		{
 			//Click on "beta notification"

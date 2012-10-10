@@ -52,7 +52,19 @@ public class SummonActivity extends Activity {
 	 */
 	private String currentQuery;
 
+	/**
+	 * Set to true if activity was just rebuilt because of configuration
+	 * changes. Allows not to empty textfield during onResume().
+	 */
+	private Boolean flagConfigurationChanged = false;
+
+	/**
+	 * Search text in the view
+	 */
+	private EditText searchEditText;
+
 	/** Called when the activity is first created. */
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
@@ -62,11 +74,10 @@ public class SummonActivity extends Activity {
 
 		listView = (ListView) findViewById(R.id.resultListView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View arg1,
 					int position, long id) {
-				adapter.onClick(position);
+				adapter.onClick(position, arg1);
 			}
 		});
 		TextView liteNotifier = new TextView(getApplicationContext());
@@ -77,8 +88,13 @@ public class SummonActivity extends Activity {
 		liteNotifier.setClickable(false);
 		listView.addFooterView(liteNotifier);
 
-		// Initialize datas
-		dataHandler = new DataHandler(getApplicationContext());
+		// (re-)Initialize datas
+		dataHandler = (DataHandler) getLastNonConfigurationInstance();
+		if (dataHandler != null) {
+			flagConfigurationChanged = true;
+		} else {
+			dataHandler = new DataHandler(getApplicationContext());
+		}
 
 		// Create adapter for records
 		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
@@ -86,7 +102,7 @@ public class SummonActivity extends Activity {
 		listView.setAdapter(adapter);
 
 		// Listen to changes
-		final EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
+		this.searchEditText = (EditText) findViewById(R.id.searchEditText);
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
 
@@ -105,7 +121,7 @@ public class SummonActivity extends Activity {
 
 		// Some providers take time to load. So, on startup, we rebuild results
 		// every 400ms to avoid missing records
-		CountDownTimer t = new CountDownTimer(2000, 400) {
+		CountDownTimer t = new CountDownTimer(3200, 400) {
 
 			@Override
 			public void onTick(long millisUntilFinished) {
@@ -120,35 +136,13 @@ public class SummonActivity extends Activity {
 		t.start();
 	}
 
-	@Override
-	public boolean dispatchKeyEvent(KeyEvent event) {
-		if (event.getAction() == KeyEvent.ACTION_DOWN) {
-			switch (event.getKeyCode()) {
-			case KeyEvent.KEYCODE_BACK:
-				return true;
-			case KeyEvent.KEYCODE_HOME:
-				return true;
-			}
-		} else if (event.getAction() == KeyEvent.ACTION_UP) {
-			switch (event.getKeyCode()) {
-			case KeyEvent.KEYCODE_BACK:
-				return true;
-			case KeyEvent.KEYCODE_HOME:
-				return true;
-			}
-		}
-
-		return super.dispatchKeyEvent(event);
-	}
-
 	/**
 	 * Empty text field on resume and show keyboard
 	 */
 	protected void onResume() {
-		final EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
-
 		// Reset textfield (will display history)
-		searchEditText.setText("");
+		if (!flagConfigurationChanged)
+			searchEditText.setText("");
 
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
@@ -162,6 +156,16 @@ public class SummonActivity extends Activity {
 		}, 50);
 
 		super.onResume();
+	}
+
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		return dataHandler;
+	}
+
+	@Override
+	public void onBackPressed() {
+		searchEditText.setText("");
 	}
 
 	@Override
@@ -206,8 +210,8 @@ public class SummonActivity extends Activity {
 						@Override
 						public void run() {
 							adapter.clear();
-							for (int i = 0; i < Math.min(MAX_RECORDS,
-									records.size()); i++) {
+							for (int i = Math.min(MAX_RECORDS,
+									records.size()) - 1; i >= 0; i--) {
 								adapter.add(records.get(i));
 							}
 							// Reset scrolling to top

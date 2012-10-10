@@ -16,3 +16,12 @@ Each data types uses three classes :
 * A *record*, which ensure the *holder* is properly displayed in the list
 
 Controlling the workflow is *SummonActivity*, intializing the UI, dispatching the query to the providers and ordering the results according to their relevance and user search history.
+
+---------------------
+
+Download bêta on the [https://play.google.com/store/apps/details?id=fr.neamar.summon.lite](Play Store).
+(https://lh4.ggpht.com/DI0efjo_g4Y8gy-7qeODOM8XG-r6aNdL389Kkmd6wayHT42kXrXDsBebsBCskxar6A)
+
+![Preview](https://lh4.ggpht.com/DI0efjo_g4Y8gy-7qeODOM8XG-r6aNdL389Kkmd6wayHT42kXrXDsBebsBCskxar6A)
+![Preview](https://lh4.ggpht.com/_fXNqsbJkVOuj1kToJyFEderQ8oJ50uduHiWQqB7ac-w5HNVm32fcomFhz7id1pKpQ)
+![Preview](https://lh4.ggpht.com/_B28M9qIOoUmrQZIrhN1V6iI8f9pTxF-843LOJWdMPidIYkeI9uyzjx1EMJWq5XvhPg)

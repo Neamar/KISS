@@ -12,7 +12,11 @@ import fr.neamar.summon.toggles.TogglesHandler;
 
 public class ToggleRecord extends Record {
 	public final ToggleHolder toggleHolder;
-	public TogglesHandler togglesHandler = null;
+	
+	/**
+	 * Handler for all toggle-related queries
+	 */
+	protected TogglesHandler togglesHandler = null;
 
 	public ToggleRecord(ToggleHolder toggleHolder) {
 		super();
@@ -58,21 +62,14 @@ public class ToggleRecord extends Record {
 
 			}
 		});
-
-		v.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				toggleButton.performClick();
-			}
-		});
-
 		return v;
 	}
 
 	@Override
-	public void doLaunch(Context context) {
-		// Emulated with v.setOnClickListener
-		// Allows access to toggleButton on the View
+	public void doLaunch(Context context, View v) {
+		// Use the handler to check or uncheck button
+		final ToggleButton toggleButton = (ToggleButton) v
+				.findViewById(R.id.item_toggle_action_toggle);
+		toggleButton.performClick();
 	}
 }

@@ -122,7 +122,6 @@ public class TogglesHandler {
 
 	protected Boolean getSilentState() {
 		int state = audioManager.getRingerMode();
-		Log.e("state", "State : " + Integer.toString(state));
 		if (state == AudioManager.RINGER_MODE_SILENT
 				|| state == AudioManager.RINGER_MODE_VIBRATE)
 			return true;
