@@ -109,7 +109,7 @@ public class SummonActivity extends Activity {
 
 		// Some providers take time to load. So, on startup, we rebuild results
 		// every 400ms to avoid missing records
-		CountDownTimer t = new CountDownTimer(2000, 400) {
+		CountDownTimer t = new CountDownTimer(3200, 400) {
 
 			@Override
 			public void onTick(long millisUntilFinished) {
