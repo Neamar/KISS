@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
 import fr.neamar.summon.holder.ContactHolder;
+import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.ContactRecord;
 import fr.neamar.summon.record.Record;
 
@@ -87,16 +88,17 @@ public class ContactProvider extends Provider {
 		}
 	};
 
-	public ArrayList<Record> getRecords(String query) {
+	public ArrayList<Holder> getResults(String query) {
 		query = query.toLowerCase();
 
-		ArrayList<Record> records = new ArrayList<Record>();
+		ArrayList<Holder> holders = new ArrayList<Holder>();
 
 		int relevance;
 		String contactNameLowerCased;
 		for (int i = 0; i < contacts.size(); i++) {
+			ContactHolder contact = contacts.get(i);
 			relevance = 0;
-			contactNameLowerCased = contacts.get(i).nameLowerCased;
+			contactNameLowerCased = contact.nameLowerCased;
 
 			if (contactNameLowerCased.startsWith(query))
 				relevance = 50;
@@ -106,17 +108,16 @@ public class ContactProvider extends Provider {
 			if (relevance > 0) {
 				// Increase relevance according to number of times the contacts
 				// was phoned :
-				relevance += contacts.get(i).timesContacted;
-				contacts.get(i).displayName = contacts.get(i).name
+				relevance += contact.timesContacted;
+				contact.displayName = contacts.get(i).name
 						.replaceFirst("(?i)(" + Pattern.quote(query) + ")",
 								"{$1}");
-				Record r = new ContactRecord(contacts.get(i));
-				r.relevance = relevance;
-				records.add(r);
+				contact.relevance = relevance;
+				holders.add(contact);
 			}
 		}
 
-		return records;
+		return holders;
 	}
 
 	public Record findById(String id) {

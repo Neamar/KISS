@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import fr.neamar.summon.holder.AppHolder;
+import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.Record;
 
 public class AliasProvider extends Provider {
@@ -79,9 +80,9 @@ public class AliasProvider extends Provider {
 		}
 	};
 
-	public ArrayList<Record> getRecords(String query) {
+	public ArrayList<Holder> getResults(String query) {
 		query = query.toLowerCase();
-		ArrayList<Record> records = new ArrayList<Record>();
+		ArrayList<Holder> holders = new ArrayList<Holder>();
 
 		for (Entry<String, String> entry : alias.entrySet()) {
 			if (entry.getKey().startsWith(query)) {
@@ -96,12 +97,13 @@ public class AliasProvider extends Provider {
 										"(?i)(" + Pattern.quote(query) + ")",
 										"{$1}") + ")</small>";
 						r.relevance = 10;
-						records.add(r);
+						//TODO : restore
+						//holders.add(r);
 					}
 				}
 			}
 		}
 
-		return records;
+		return holders;
 	}
 }

@@ -3,6 +3,7 @@ package fr.neamar.summon.dataprovider;
 import java.util.ArrayList;
 
 import android.content.Context;
+import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.Record;
 
 public abstract class Provider {	
@@ -12,7 +13,7 @@ public abstract class Provider {
 		this.context = context;
 	}
 
-	public abstract ArrayList<Record> getRecords(String s);
+	public abstract ArrayList<Holder> getResults(String s);
 	
 	/**
 	 * Try to find a record by its id

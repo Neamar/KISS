@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
 import fr.neamar.summon.holder.AppHolder;
+import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.AppRecord;
 import fr.neamar.summon.record.Record;
 
@@ -61,10 +62,10 @@ public class AppProvider extends Provider {
 		}
 	};
 
-	public ArrayList<Record> getRecords(String query) {
+	public ArrayList<Holder> getResults(String query) {
 		query = query.toLowerCase();
 
-		ArrayList<Record> records = new ArrayList<Record>();
+		ArrayList<Holder> records = new ArrayList<Holder>();
 
 		int relevance;
 		String appNameLowerCased;
@@ -81,9 +82,8 @@ public class AppProvider extends Provider {
 			if (relevance > 0) {
 				apps.get(i).displayName = apps.get(i).name.replaceFirst("(?i)("
 						+ Pattern.quote(query) + ")", "{$1}");
-				Record r = new AppRecord(apps.get(i));
-				r.relevance = relevance;
-				records.add(r);
+				apps.get(i).relevance = relevance;
+				records.add(apps.get(i));
 			}
 		}
 

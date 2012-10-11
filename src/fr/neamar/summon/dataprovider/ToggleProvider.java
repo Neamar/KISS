@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import android.content.Context;
 import fr.neamar.summon.R;
+import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.ToggleHolder;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.ToggleRecord;
@@ -41,16 +42,18 @@ public class ToggleProvider extends Provider {
 		}
 	};
 
-	public ArrayList<Record> getRecords(String query) {
+	public ArrayList<Holder> getResults(String query) {
 		query = query.toLowerCase();
 
-		ArrayList<Record> records = new ArrayList<Record>();
+		ArrayList<Holder> holders = new ArrayList<Holder>();
 
 		int relevance;
 		String toggleNameLowerCased;
 		for (int i = 0; i < toggles.size(); i++) {
+			ToggleHolder toggle = toggles.get(i);
+			
 			relevance = 0;
-			toggleNameLowerCased = toggles.get(i).nameLowerCased;
+			toggleNameLowerCased = toggle.nameLowerCased;
 			if (toggleNameLowerCased.startsWith(query))
 				relevance = 100;
 			else if (toggleNameLowerCased.contains(" " + query))
@@ -59,17 +62,15 @@ public class ToggleProvider extends Provider {
 				relevance = 1;
 
 			if (relevance > 0) {
-				toggles.get(i).displayName = toggles.get(i).name.replace(
+				toggle.displayName = toggle.name.replace(
 						"Toggle:", "<small><small>Toggle:</small></small>").replaceFirst(
 						"(?i)(" + Pattern.quote(query) + ")", "{$1}");
-
-				Record r = new ToggleRecord(toggles.get(i));
-				r.relevance = relevance;
-				records.add(r);
+				toggle.relevance = relevance;
+				holders.add(toggle);
 			}
 		}
 
-		return records;
+		return holders;
 	}
 
 	public Record findById(String id) {

@@ -7,7 +7,12 @@ import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import fr.neamar.summon.holder.AppHolder;
+import fr.neamar.summon.holder.ContactHolder;
 import fr.neamar.summon.holder.Holder;
+import fr.neamar.summon.holder.SearchHolder;
+import fr.neamar.summon.holder.SettingHolder;
+import fr.neamar.summon.holder.ToggleHolder;
 
 public abstract class Record {
 	/**
@@ -90,5 +95,22 @@ public abstract class Record {
 		//Remember result for this query
 		ed.putString("query://" + prefs.getString("currentQuery", ""), holder.id);
 		ed.commit();
+	}
+	
+	public static Record fromHolder(Holder holder)
+	{
+		if(holder instanceof AppHolder)
+			return new AppRecord((AppHolder) holder);
+		else if(holder instanceof ContactHolder)
+			return new ContactRecord((ContactHolder) holder);
+		else if(holder instanceof SearchHolder)
+			return new SearchRecord((SearchHolder) holder);
+		else if(holder instanceof SettingHolder)
+			return new SettingRecord((SettingHolder) holder);
+		else if(holder instanceof ToggleHolder)
+			return new ToggleRecord((ToggleHolder) holder);
+		
+		Log.e("log", "Unable to create record for specified holder.");
+		return null;
 	}
 }

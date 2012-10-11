@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import android.content.Context;
 import fr.neamar.summon.R;
+import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.SettingHolder;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.SettingRecord;
@@ -52,34 +53,33 @@ public class SettingProvider extends Provider {
 		}
 	};
 
-	public ArrayList<Record> getRecords(String query) {
+	public ArrayList<Holder> getResults(String query) {
 		query = query.toLowerCase();
 
-		ArrayList<Record> records = new ArrayList<Record>();
+		ArrayList<Holder> holders = new ArrayList<Holder>();
 
 		int relevance;
 		String settingNameLowerCased;
 		for (int i = 0; i < settings.size(); i++) {
+			SettingHolder setting = settings.get(i);
 			relevance = 0;
-			settingNameLowerCased = settings.get(i).nameLowerCased;
+			settingNameLowerCased = setting.nameLowerCased;
 			if (settingNameLowerCased.startsWith(query))
 				relevance = 10;
 			else if (settingNameLowerCased.contains(" " + query))
 				relevance = 5;
 
 			if (relevance > 0) {
-				settings.get(i).displayName = settings.get(i).name.replace(
+				setting.displayName = setting.name.replace(
 						"Setting:", "<small><small>Setting:</small></small>")
 						.replaceFirst("(?i)(" + Pattern.quote(query) + ")",
 								"{$1}");
-
-				Record r = new SettingRecord(settings.get(i));
-				r.relevance = relevance;
-				records.add(r);
+				setting.relevance = relevance;
+				holders.add(setting);
 			}
 		}
 
-		return records;
+		return holders;
 	}
 
 	public Record findById(String id) {

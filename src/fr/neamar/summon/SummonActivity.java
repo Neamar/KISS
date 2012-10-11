@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordAdapter;
 
@@ -185,14 +186,14 @@ public class SummonActivity extends Activity {
 				String workingOnQuery = currentQuery;
 
 				// Ask for records
-				final ArrayList<Record> records = dataHandler
-						.getRecords(workingOnQuery);
+				final ArrayList<Holder> holders = dataHandler
+						.getResults(workingOnQuery);
 
 				// Another search have already been made
 				if (workingOnQuery != currentQuery)
 					return;
 
-				if (records == null) {
+				if (holders == null) {
 					// First use of the app. TODO : Display something useful.
 				} else {
 					runOnUiThread(new Runnable() {
@@ -201,8 +202,8 @@ public class SummonActivity extends Activity {
 						public void run() {
 							adapter.clear();
 							for (int i = Math.min(MAX_RECORDS,
-									records.size()) - 1; i >= 0; i--) {
-								adapter.add(records.get(i));
+									holders.size()) - 1; i >= 0; i--) {
+								adapter.add(Record.fromHolder(holders.get(i)));
 							}
 							// Reset scrolling to top
 							listView.setSelectionAfterHeaderView();

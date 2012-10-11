@@ -12,8 +12,9 @@ import fr.neamar.summon.dataprovider.Provider;
 import fr.neamar.summon.dataprovider.SearchProvider;
 import fr.neamar.summon.dataprovider.SettingProvider;
 import fr.neamar.summon.dataprovider.ToggleProvider;
+import fr.neamar.summon.holder.Holder;
+import fr.neamar.summon.holder.HolderComparator;
 import fr.neamar.summon.record.Record;
-import fr.neamar.summon.record.RecordComparator;
 
 public class DataHandler {
 	public String lastQuery = "";
@@ -47,7 +48,9 @@ public class DataHandler {
 	 * 
 	 * @return ordered list of records
 	 */
-	public ArrayList<Record> getRecords(String query) {
+	public ArrayList<Holder> getResults(String query) {
+		//TODO : lowercase query here
+		
 		this.lastQuery = query;
 		
 		// Save currentQuery
@@ -59,28 +62,28 @@ public class DataHandler {
 
 		if (query.length() == 0) {
 			// Searching for nothing returns the history
-			return getHistory();
+			return new ArrayList<Holder>();// getHistory();
 		}
 
 		// Have we ever made the same query and selected something ?
 		String lastIdForQuery = prefs.getString("query://" + query, "(none)");
 		// Ask all providers for datas
-		ArrayList<Record> allRecords = new ArrayList<Record>();
+		ArrayList<Holder> allHolders = new ArrayList<Holder>();
 
 		for (int i = 0; i < providers.size(); i++) {
-			ArrayList<Record> records = providers.get(i).getRecords(query);
-			for (int j = 0; j < records.size(); j++) {
+			ArrayList<Holder> holders = providers.get(i).getResults(query);
+			for (int j = 0; j < holders.size(); j++) {
 				// Give a boost if item was previously selected for this query
-				if (records.get(j).holder.id.equals(lastIdForQuery))
-					records.get(j).relevance += 50;
-				allRecords.add(records.get(j));
+				if (holders.get(j).id.equals(lastIdForQuery))
+					holders.get(j).relevance += 50;
+				allHolders.add(holders.get(j));
 			}
 		}
 
 		// Sort records according to relevance
-		Collections.sort(allRecords, new RecordComparator());
+		Collections.sort(allHolders, new HolderComparator());
 
-		return allRecords;
+		return allHolders;
 	}
 
 	/**
