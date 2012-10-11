@@ -47,6 +47,11 @@ public class AliasProvider extends Provider {
 
 			String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
 			alias.put("market", marketApp);
+
+			String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
+			alias.put("text", messagingApp);
+			alias.put("sms", messagingApp);
+
 		}
 
 		private String getApp(PackageManager pm, String action)
