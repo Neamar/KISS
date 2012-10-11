@@ -94,7 +94,6 @@ public class AliasProvider extends Provider {
 										"(?i)(" + Pattern.quote(query) + ")",
 										"{$1}") + ")</small>";
 						holder.relevance = 10;
-						// TODO : restore
 						holders.add(holder);
 					}
 				}

@@ -100,9 +100,7 @@ public class ContactRecord extends Record {
 				ContactsContract.Contacts.CONTENT_LOOKUP_URI,
 				String.valueOf(contactHolder.lookupKey)));
 		viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);// TODO: check
-																	// if
-																	// working
+		viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 		context.startActivity(viewContact);
 	}
 
