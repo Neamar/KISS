@@ -48,7 +48,7 @@ public class DataHandler {
 	 * @return ordered list of records
 	 */
 	public ArrayList<Holder> getResults(String query) {
-		// TODO : lowercase query here
+		query = query.toLowerCase();
 
 		this.lastQuery = query;
 

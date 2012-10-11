@@ -80,7 +80,6 @@ public class AliasProvider extends Provider {
 	};
 
 	public ArrayList<Holder> getResults(String query) {
-		query = query.toLowerCase();
 		ArrayList<Holder> holders = new ArrayList<Holder>();
 
 		for (Entry<String, String> entry : alias.entrySet()) {

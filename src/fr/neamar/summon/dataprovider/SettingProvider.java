@@ -52,8 +52,6 @@ public class SettingProvider extends Provider {
 	};
 
 	public ArrayList<Holder> getResults(String query) {
-		query = query.toLowerCase();
-
 		ArrayList<Holder> holders = new ArrayList<Holder>();
 
 		int relevance;

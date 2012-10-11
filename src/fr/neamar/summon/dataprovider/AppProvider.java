@@ -61,8 +61,6 @@ public class AppProvider extends Provider {
 	};
 
 	public ArrayList<Holder> getResults(String query) {
-		query = query.toLowerCase();
-
 		ArrayList<Holder> records = new ArrayList<Holder>();
 
 		int relevance;
