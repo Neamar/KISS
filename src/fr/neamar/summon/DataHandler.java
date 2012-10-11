@@ -14,11 +14,10 @@ import fr.neamar.summon.dataprovider.SettingProvider;
 import fr.neamar.summon.dataprovider.ToggleProvider;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.HolderComparator;
-import fr.neamar.summon.record.Record;
 
 public class DataHandler {
 	public String lastQuery = "";
-	
+
 	private Context context;
 
 	/**
@@ -49,10 +48,10 @@ public class DataHandler {
 	 * @return ordered list of records
 	 */
 	public ArrayList<Holder> getResults(String query) {
-		//TODO : lowercase query here
-		
+		// TODO : lowercase query here
+
 		this.lastQuery = query;
-		
+
 		// Save currentQuery
 		SharedPreferences prefs = context.getSharedPreferences("history",
 				Context.MODE_PRIVATE);
@@ -62,7 +61,7 @@ public class DataHandler {
 
 		if (query.length() == 0) {
 			// Searching for nothing returns the history
-			return new ArrayList<Holder>();// getHistory();
+			return getHistory();
 		}
 
 		// Have we ever made the same query and selected something ?
@@ -94,8 +93,8 @@ public class DataHandler {
 	 * 
 	 * @return
 	 */
-	protected ArrayList<Record> getHistory() {
-		ArrayList<Record> history = new ArrayList<Record>();
+	protected ArrayList<Holder> getHistory() {
+		ArrayList<Holder> history = new ArrayList<Holder>();
 
 		// Read history
 		ArrayList<String> ids = new ArrayList<String>();
@@ -125,9 +124,9 @@ public class DataHandler {
 
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
-				Record record = providers.get(j).findById(ids.get(i));
-				if (record != null) {
-					history.add(record);
+				Holder holder = providers.get(j).findById(ids.get(i));
+				if (holder != null) {
+					history.add(holder);
 					break;
 				}
 			}

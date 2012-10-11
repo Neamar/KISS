@@ -11,8 +11,6 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import fr.neamar.summon.holder.ContactHolder;
 import fr.neamar.summon.holder.Holder;
-import fr.neamar.summon.record.ContactRecord;
-import fr.neamar.summon.record.Record;
 
 public class ContactProvider extends Provider {
 	private ArrayList<ContactHolder> contacts = new ArrayList<ContactHolder>();
@@ -109,9 +107,8 @@ public class ContactProvider extends Provider {
 				// Increase relevance according to number of times the contacts
 				// was phoned :
 				relevance += contact.timesContacted;
-				contact.displayName = contacts.get(i).name
-						.replaceFirst("(?i)(" + Pattern.quote(query) + ")",
-								"{$1}");
+				contact.displayName = contacts.get(i).name.replaceFirst("(?i)("
+						+ Pattern.quote(query) + ")", "{$1}");
 				contact.relevance = relevance;
 				holders.add(contact);
 			}
@@ -120,11 +117,11 @@ public class ContactProvider extends Provider {
 		return holders;
 	}
 
-	public Record findById(String id) {
+	public Holder findById(String id) {
 		for (int i = 0; i < contacts.size(); i++) {
 			if (contacts.get(i).id.equals(id)) {
 				contacts.get(i).displayName = contacts.get(i).name;
-				return new ContactRecord(contacts.get(i));
+				return contacts.get(i);
 			}
 
 		}

@@ -12,8 +12,6 @@ import android.content.pm.ResolveInfo;
 import android.util.Log;
 import fr.neamar.summon.holder.AppHolder;
 import fr.neamar.summon.holder.Holder;
-import fr.neamar.summon.record.AppRecord;
-import fr.neamar.summon.record.Record;
 
 public class AppProvider extends Provider {
 	private ArrayList<AppHolder> apps = new ArrayList<AppHolder>();
@@ -90,11 +88,11 @@ public class AppProvider extends Provider {
 		return records;
 	}
 
-	public Record findById(String id) {
+	public Holder findById(String id) {
 		for (int i = 0; i < apps.size(); i++) {
 			if (apps.get(i).id.equals(id)) {
 				apps.get(i).displayName = apps.get(i).name;
-				return new AppRecord(apps.get(i));
+				return apps.get(i);
 			}
 
 		}

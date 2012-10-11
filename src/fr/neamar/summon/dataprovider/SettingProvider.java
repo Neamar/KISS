@@ -7,8 +7,6 @@ import android.content.Context;
 import fr.neamar.summon.R;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.SettingHolder;
-import fr.neamar.summon.record.Record;
-import fr.neamar.summon.record.SettingRecord;
 
 public class SettingProvider extends Provider {
 	private ArrayList<SettingHolder> settings = new ArrayList<SettingHolder>();
@@ -70,10 +68,9 @@ public class SettingProvider extends Provider {
 				relevance = 5;
 
 			if (relevance > 0) {
-				setting.displayName = setting.name.replace(
-						"Setting:", "<small><small>Setting:</small></small>")
-						.replaceFirst("(?i)(" + Pattern.quote(query) + ")",
-								"{$1}");
+				setting.displayName = setting.name.replace("Setting:",
+						"<small><small>Setting:</small></small>").replaceFirst(
+						"(?i)(" + Pattern.quote(query) + ")", "{$1}");
 				setting.relevance = relevance;
 				holders.add(setting);
 			}
@@ -82,12 +79,12 @@ public class SettingProvider extends Provider {
 		return holders;
 	}
 
-	public Record findById(String id) {
+	public Holder findById(String id) {
 		for (int i = 0; i < settings.size(); i++) {
 			if (settings.get(i).id.equals(id)) {
 				settings.get(i).displayName = settings.get(i).name.replace(
 						"Setting:", "<small><small>Setting:</small></small>");
-				return new SettingRecord(settings.get(i));
+				return settings.get(i);
 			}
 
 		}
