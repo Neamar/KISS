@@ -17,7 +17,7 @@ public class ContactProvider extends Provider {
 
 	public ContactProvider(Context context) {
 		super(context);
-
+		holderScheme = "contact://";
 		Thread thread = new Thread(null, initContactsList);
 		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
@@ -44,7 +44,7 @@ public class ContactProvider extends Provider {
 					contact.lookupKey = cur
 							.getString(cur
 									.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
-					contact.id = "contact://" + contact.lookupKey;
+					contact.id = holderScheme + contact.lookupKey;
 					contact.timesContacted = Integer
 							.parseInt(cur.getString(cur
 									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));

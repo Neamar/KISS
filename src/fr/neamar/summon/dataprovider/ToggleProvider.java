@@ -13,7 +13,7 @@ public class ToggleProvider extends Provider {
 
 	public ToggleProvider(Context context) {
 		super(context);
-
+		holderScheme = "toggle://";
 		Thread thread = new Thread(null, initTogglesList);
 		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
@@ -34,7 +34,7 @@ public class ToggleProvider extends Provider {
 		private ToggleHolder createHolder(String name, String settingName,
 				int resId) {
 			ToggleHolder holder = new ToggleHolder();
-			holder.id = "toggle://" + name.toLowerCase();
+			holder.id = holderScheme + name.toLowerCase();
 			holder.name = "Toggle: " + name;
 			holder.nameLowerCased = holder.name.toLowerCase();
 			holder.settingName = settingName;

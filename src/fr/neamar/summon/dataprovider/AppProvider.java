@@ -18,7 +18,7 @@ public class AppProvider extends Provider {
 
 	public AppProvider(Context context) {
 		super(context);
-
+		holderScheme = "app://";
 		Thread thread = new Thread(null, initAppsList);
 		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
@@ -42,7 +42,7 @@ public class AppProvider extends Provider {
 				AppHolder app = new AppHolder();
 				ResolveInfo info = appsInfo.get(i);
 
-				app.id = "app://"
+				app.id = holderScheme
 						+ info.activityInfo.applicationInfo.packageName + "/"
 						+ info.activityInfo.name;
 				app.name = info.loadLabel(manager).toString();

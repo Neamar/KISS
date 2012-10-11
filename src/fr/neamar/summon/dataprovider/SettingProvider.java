@@ -13,7 +13,7 @@ public class SettingProvider extends Provider {
 
 	public SettingProvider(Context context) {
 		super(context);
-
+		holderScheme = "setting://";
 		Thread thread = new Thread(null, initSettingsList);
 		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
@@ -41,7 +41,7 @@ public class SettingProvider extends Provider {
 		private SettingHolder createHolder(String name, String settingName,
 				int resId) {
 			SettingHolder holder = new SettingHolder();
-			holder.id = "setting://" + settingName.toLowerCase();
+			holder.id = holderScheme + settingName.toLowerCase();
 			holder.name = "Setting: " + name;
 			holder.nameLowerCased = holder.name.toLowerCase();
 			holder.settingName = settingName;

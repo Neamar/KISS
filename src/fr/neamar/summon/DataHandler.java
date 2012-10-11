@@ -124,10 +124,13 @@ public class DataHandler {
 
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
-				Holder holder = providers.get(j).findById(ids.get(i));
-				if (holder != null) {
-					history.add(holder);
-					break;
+				if(providers.get(j).mayFindById(ids.get(i)))
+				{
+					Holder holder = providers.get(j).findById(ids.get(i));
+					if (holder != null) {
+						history.add(holder);
+						break;
+					}
 				}
 			}
 		}

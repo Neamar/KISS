@@ -85,16 +85,19 @@ public class AliasProvider extends Provider {
 		for (Entry<String, String> entry : alias.entrySet()) {
 			if (entry.getKey().startsWith(query)) {
 				for (int i = 0; i < providers.size(); i++) {
-					Holder holder = providers.get(i).findById(entry.getValue());
-
-					if (holder != null) {
-						holder.displayName = holder.name
-								+ " <small>("
-								+ entry.getKey().replaceFirst(
-										"(?i)(" + Pattern.quote(query) + ")",
-										"{$1}") + ")</small>";
-						holder.relevance = 10;
-						holders.add(holder);
+					if(providers.get(i).mayFindById(entry.getValue()))
+					{
+						Holder holder = providers.get(i).findById(entry.getValue());
+	
+						if (holder != null) {
+							holder.displayName = holder.name
+									+ " <small>("
+									+ entry.getKey().replaceFirst(
+											"(?i)(" + Pattern.quote(query) + ")",
+											"{$1}") + ")</small>";
+							holder.relevance = 10;
+							holders.add(holder);
+						}
 					}
 				}
 			}
