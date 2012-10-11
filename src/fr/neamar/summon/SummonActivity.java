@@ -131,6 +131,8 @@ public class SummonActivity extends Activity {
 		// Reset textfield (will display history)
 		if (!flagConfigurationChanged)
 			searchEditText.setText("");
+		else
+			flagConfigurationChanged = false; //Reset flag
 
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
