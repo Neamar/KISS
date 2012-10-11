@@ -9,13 +9,20 @@
         android:id="@+id/resultListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/searchEditText"
+        android:layout_above="@+id/separator"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:cacheColorHint="@android:color/transparent"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll" >
     </ListView>
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/searchEditText"
+        android:background="@android:color/darker_gray" />
 
     <EditText
         android:id="@+id/searchEditText"
@@ -27,7 +34,7 @@
         android:drawableLeft="@drawable/search"
         android:ems="10"
         android:hint="@string/ui_search_hint"
-        android:imeOptions="flagNoExtractUi"
+        android:imeOptions="flagNoExtractUi|actionSearch"
         android:inputType="text|textNoSuggestions"
         android:singleLine="true" />
 

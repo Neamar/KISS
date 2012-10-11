@@ -10,8 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import fr.neamar.summon.holder.AppHolder;
-import fr.neamar.summon.record.Record;
+import fr.neamar.summon.holder.Holder;
 
 public class AliasProvider extends Provider {
 	private HashMap<String, String> alias = new HashMap<String, String>();
@@ -30,14 +29,16 @@ public class AliasProvider extends Provider {
 		public void run() {
 			final PackageManager pm = context.getPackageManager();
 
-			String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
+			String contactApp = getAppByCategory(pm,
+					Intent.CATEGORY_APP_CONTACTS);
 			alias.put("contacts", contactApp);
-			
-			String phoneApp = getApp(pm, Intent.ACTION_DIAL );
+
+			String phoneApp = getApp(pm, Intent.ACTION_DIAL);
 			alias.put("dial", phoneApp);
 			alias.put("compose", phoneApp);
 
-			String browserApp = getAppByCategory(pm, Intent.CATEGORY_APP_BROWSER);
+			String browserApp = getAppByCategory(pm,
+					Intent.CATEGORY_APP_BROWSER);
 			alias.put("internet", browserApp);
 			alias.put("web", browserApp);
 
@@ -47,21 +48,25 @@ public class AliasProvider extends Provider {
 
 			String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
 			alias.put("market", marketApp);
+
+			String messagingApp = getAppByCategory(pm,
+					Intent.CATEGORY_APP_MESSAGING);
+			alias.put("text", messagingApp);
+			alias.put("sms", messagingApp);
+
 		}
 
-		private String getApp(PackageManager pm, String action)
-		{
+		private String getApp(PackageManager pm, String action) {
 			Intent lookingFor = new Intent(action, null);
 			return getApp(pm, lookingFor);
 		}
-		
-		private String getAppByCategory(PackageManager pm, String category)
-		{
+
+		private String getAppByCategory(PackageManager pm, String category) {
 			Intent lookingFor = new Intent(Intent.ACTION_MAIN, null);
 			lookingFor.addCategory(category);
 			return getApp(pm, lookingFor);
 		}
-		
+
 		private String getApp(PackageManager pm, Intent lookingFor) {
 			List<ResolveInfo> list = pm.queryIntentActivities(lookingFor, 0);
 			if (list.size() == 0)
@@ -74,29 +79,31 @@ public class AliasProvider extends Provider {
 		}
 	};
 
-	public ArrayList<Record> getRecords(String query) {
-		query = query.toLowerCase();
-		ArrayList<Record> records = new ArrayList<Record>();
+	public ArrayList<Holder> getResults(String query) {
+		ArrayList<Holder> holders = new ArrayList<Holder>();
 
 		for (Entry<String, String> entry : alias.entrySet()) {
 			if (entry.getKey().startsWith(query)) {
 				for (int i = 0; i < providers.size(); i++) {
-					Record r = providers.get(i).findById(entry.getValue());
+					if (providers.get(i).mayFindById(entry.getValue())) {
+						Holder holder = providers.get(i).findById(
+								entry.getValue());
 
-					if (r != null) {
-						AppHolder holder = ((AppHolder) r.holder);
-						holder.displayName = holder.name
-								+ " <small>("
-								+ entry.getKey().replaceFirst(
-										"(?i)(" + Pattern.quote(query) + ")",
-										"{$1}") + ")</small>";
-						r.relevance = 10;
-						records.add(r);
+						if (holder != null) {
+							holder.displayName = holder.name
+									+ " <small>("
+									+ entry.getKey().replaceFirst(
+											"(?i)(" + Pattern.quote(query)
+													+ ")", "{$1}")
+									+ ")</small>";
+							holder.relevance = 10;
+							holders.add(holder);
+						}
 					}
 				}
 			}
 		}
 
-		return records;
+		return holders;
 	}
 }

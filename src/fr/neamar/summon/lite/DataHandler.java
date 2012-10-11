@@ -12,12 +12,12 @@ import fr.neamar.summon.dataprovider.Provider;
 import fr.neamar.summon.dataprovider.SearchProvider;
 import fr.neamar.summon.dataprovider.SettingProvider;
 import fr.neamar.summon.dataprovider.ToggleProvider;
-import fr.neamar.summon.record.Record;
-import fr.neamar.summon.record.RecordComparator;
+import fr.neamar.summon.holder.Holder;
+import fr.neamar.summon.holder.HolderComparator;
 
 public class DataHandler {
 	public String lastQuery = "";
-	
+
 	private Context context;
 
 	/**
@@ -47,9 +47,11 @@ public class DataHandler {
 	 * 
 	 * @return ordered list of records
 	 */
-	public ArrayList<Record> getRecords(String query) {
+	public ArrayList<Holder> getResults(String query) {
+		query = query.toLowerCase();
+
 		this.lastQuery = query;
-		
+
 		// Save currentQuery
 		SharedPreferences prefs = context.getSharedPreferences("history",
 				Context.MODE_PRIVATE);
@@ -63,24 +65,25 @@ public class DataHandler {
 		}
 
 		// Have we ever made the same query and selected something ?
-		String lastIdForQuery = prefs.getString("query://" + query, "(none)");
+		String lastIdForQuery = prefs.getString("query://" + query,
+				"(none-nomatch)");
 		// Ask all providers for datas
-		ArrayList<Record> allRecords = new ArrayList<Record>();
+		ArrayList<Holder> allHolders = new ArrayList<Holder>();
 
 		for (int i = 0; i < providers.size(); i++) {
-			ArrayList<Record> records = providers.get(i).getRecords(query);
-			for (int j = 0; j < records.size(); j++) {
+			ArrayList<Holder> holders = providers.get(i).getResults(query);
+			for (int j = 0; j < holders.size(); j++) {
 				// Give a boost if item was previously selected for this query
-				if (records.get(j).holder.id.equals(lastIdForQuery))
-					records.get(j).relevance += 50;
-				allRecords.add(records.get(j));
+				if (holders.get(j).id.equals(lastIdForQuery))
+					holders.get(j).relevance += 50;
+				allHolders.add(holders.get(j));
 			}
 		}
 
 		// Sort records according to relevance
-		Collections.sort(allRecords, new RecordComparator());
+		Collections.sort(allHolders, new HolderComparator());
 
-		return allRecords;
+		return allHolders;
 	}
 
 	/**
@@ -91,8 +94,8 @@ public class DataHandler {
 	 * 
 	 * @return
 	 */
-	protected ArrayList<Record> getHistory() {
-		ArrayList<Record> history = new ArrayList<Record>();
+	protected ArrayList<Holder> getHistory() {
+		ArrayList<Holder> history = new ArrayList<Holder>();
 
 		// Read history
 		ArrayList<String> ids = new ArrayList<String>();
@@ -122,10 +125,12 @@ public class DataHandler {
 
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
-				Record record = providers.get(j).findById(ids.get(i));
-				if (record != null) {
-					history.add(record);
-					break;
+				if (providers.get(j).mayFindById(ids.get(i))) {
+					Holder holder = providers.get(j).findById(ids.get(i));
+					if (holder != null) {
+						history.add(holder);
+						break;
+					}
 				}
 			}
 		}

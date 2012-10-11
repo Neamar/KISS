@@ -12,7 +12,7 @@ import fr.neamar.summon.toggles.TogglesHandler;
 
 public class ToggleRecord extends Record {
 	public final ToggleHolder toggleHolder;
-	
+
 	/**
 	 * Handler for all toggle-related queries
 	 */

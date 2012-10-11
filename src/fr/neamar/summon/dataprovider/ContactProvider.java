@@ -10,15 +10,14 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
 import fr.neamar.summon.holder.ContactHolder;
-import fr.neamar.summon.record.ContactRecord;
-import fr.neamar.summon.record.Record;
+import fr.neamar.summon.holder.Holder;
 
 public class ContactProvider extends Provider {
 	private ArrayList<ContactHolder> contacts = new ArrayList<ContactHolder>();
 
 	public ContactProvider(Context context) {
 		super(context);
-
+		holderScheme = "contact://";
 		Thread thread = new Thread(null, initContactsList);
 		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
@@ -45,7 +44,7 @@ public class ContactProvider extends Provider {
 					contact.lookupKey = cur
 							.getString(cur
 									.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
-					contact.id = "contact://" + contact.lookupKey;
+					contact.id = holderScheme + contact.lookupKey;
 					contact.timesContacted = Integer
 							.parseInt(cur.getString(cur
 									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
@@ -55,7 +54,9 @@ public class ContactProvider extends Provider {
 					contact.phone = cur
 							.getString(cur
 									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-
+					contact.starred = cur
+							.getInt(cur
+									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED));
 					String photoId = cur
 							.getString(cur
 									.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
@@ -87,16 +88,15 @@ public class ContactProvider extends Provider {
 		}
 	};
 
-	public ArrayList<Record> getRecords(String query) {
-		query = query.toLowerCase();
-
-		ArrayList<Record> records = new ArrayList<Record>();
+	public ArrayList<Holder> getResults(String query) {
+		ArrayList<Holder> holders = new ArrayList<Holder>();
 
 		int relevance;
 		String contactNameLowerCased;
 		for (int i = 0; i < contacts.size(); i++) {
+			ContactHolder contact = contacts.get(i);
 			relevance = 0;
-			contactNameLowerCased = contacts.get(i).nameLowerCased;
+			contactNameLowerCased = contact.nameLowerCased;
 
 			if (contactNameLowerCased.startsWith(query))
 				relevance = 50;
@@ -106,24 +106,26 @@ public class ContactProvider extends Provider {
 			if (relevance > 0) {
 				// Increase relevance according to number of times the contacts
 				// was phoned :
-				relevance += contacts.get(i).timesContacted;
-				contacts.get(i).displayName = contacts.get(i).name
-						.replaceFirst("(?i)(" + Pattern.quote(query) + ")",
-								"{$1}");
-				Record r = new ContactRecord(contacts.get(i));
-				r.relevance = relevance;
-				records.add(r);
+				relevance += contact.timesContacted;
+				// Increase relevance for starred contacts :
+				if (contact.starred != 0)
+					relevance += 30;
+
+				contact.displayName = contacts.get(i).name.replaceFirst("(?i)("
+						+ Pattern.quote(query) + ")", "{$1}");
+				contact.relevance = relevance;
+				holders.add(contact);
 			}
 		}
 
-		return records;
+		return holders;
 	}
 
-	public Record findById(String id) {
+	public Holder findById(String id) {
 		for (int i = 0; i < contacts.size(); i++) {
 			if (contacts.get(i).id.equals(id)) {
 				contacts.get(i).displayName = contacts.get(i).name;
-				return new ContactRecord(contacts.get(i));
+				return contacts.get(i);
 			}
 
 		}

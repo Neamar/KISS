@@ -3,9 +3,8 @@ package fr.neamar.summon.dataprovider;
 import java.util.ArrayList;
 
 import android.content.Context;
+import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.SearchHolder;
-import fr.neamar.summon.record.Record;
-import fr.neamar.summon.record.SearchRecord;
 
 public class SearchProvider extends Provider {
 
@@ -13,14 +12,13 @@ public class SearchProvider extends Provider {
 		super(context);
 	}
 
-	public ArrayList<Record> getRecords(String query) {
-		ArrayList<Record> records = new ArrayList<Record>();
+	public ArrayList<Holder> getResults(String query) {
+		ArrayList<Holder> holders = new ArrayList<Holder>();
 
 		SearchHolder holder = new SearchHolder();
 		holder.query = query;
-		Record r = new SearchRecord(holder);
-		r.relevance = 10;
-		records.add(r);
-		return records;
+		holder.relevance = 10;
+		holders.add(holder);
+		return holders;
 	}
 }

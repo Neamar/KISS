@@ -21,7 +21,8 @@ public class SettingRecord extends Record {
 		if (v == null)
 			v = inflateFromId(context, R.layout.item_setting);
 
-		TextView settingName = (TextView) v.findViewById(R.id.item_setting_name);
+		TextView settingName = (TextView) v
+				.findViewById(R.id.item_setting_name);
 		settingName.setText(enrichText(settingHolder.displayName));
 
 		ImageView settingIcon = (ImageView) v

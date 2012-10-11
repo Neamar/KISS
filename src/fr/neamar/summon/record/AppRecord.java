@@ -36,7 +36,6 @@ public class AppRecord extends Record {
 			appIcon.setImageDrawable(context.getPackageManager()
 					.getActivityIcon(className));
 		} catch (NameNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

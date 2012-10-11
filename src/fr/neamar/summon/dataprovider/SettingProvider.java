@@ -5,16 +5,15 @@ import java.util.regex.Pattern;
 
 import android.content.Context;
 import fr.neamar.summon.lite.R;
+import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.SettingHolder;
-import fr.neamar.summon.record.Record;
-import fr.neamar.summon.record.SettingRecord;
 
 public class SettingProvider extends Provider {
 	private ArrayList<SettingHolder> settings = new ArrayList<SettingHolder>();
 
 	public SettingProvider(Context context) {
 		super(context);
-
+		holderScheme = "setting://";
 		Thread thread = new Thread(null, initSettingsList);
 		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
@@ -42,7 +41,7 @@ public class SettingProvider extends Provider {
 		private SettingHolder createHolder(String name, String settingName,
 				int resId) {
 			SettingHolder holder = new SettingHolder();
-			holder.id = "setting://" + settingName.toLowerCase();
+			holder.id = holderScheme + settingName.toLowerCase();
 			holder.name = "Setting: " + name;
 			holder.nameLowerCased = holder.name.toLowerCase();
 			holder.settingName = settingName;
@@ -52,42 +51,38 @@ public class SettingProvider extends Provider {
 		}
 	};
 
-	public ArrayList<Record> getRecords(String query) {
-		query = query.toLowerCase();
-
-		ArrayList<Record> records = new ArrayList<Record>();
+	public ArrayList<Holder> getResults(String query) {
+		ArrayList<Holder> holders = new ArrayList<Holder>();
 
 		int relevance;
 		String settingNameLowerCased;
 		for (int i = 0; i < settings.size(); i++) {
+			SettingHolder setting = settings.get(i);
 			relevance = 0;
-			settingNameLowerCased = settings.get(i).nameLowerCased;
+			settingNameLowerCased = setting.nameLowerCased;
 			if (settingNameLowerCased.startsWith(query))
 				relevance = 10;
 			else if (settingNameLowerCased.contains(" " + query))
 				relevance = 5;
 
 			if (relevance > 0) {
-				settings.get(i).displayName = settings.get(i).name.replace(
-						"Setting:", "<small><small>Setting:</small></small>")
-						.replaceFirst("(?i)(" + Pattern.quote(query) + ")",
-								"{$1}");
-
-				Record r = new SettingRecord(settings.get(i));
-				r.relevance = relevance;
-				records.add(r);
+				setting.displayName = setting.name.replace("Setting:",
+						"<small><small>Setting:</small></small>").replaceFirst(
+						"(?i)(" + Pattern.quote(query) + ")", "{$1}");
+				setting.relevance = relevance;
+				holders.add(setting);
 			}
 		}
 
-		return records;
+		return holders;
 	}
 
-	public Record findById(String id) {
+	public Holder findById(String id) {
 		for (int i = 0; i < settings.size(); i++) {
 			if (settings.get(i).id.equals(id)) {
 				settings.get(i).displayName = settings.get(i).name.replace(
 						"Setting:", "<small><small>Setting:</small></small>");
-				return new SettingRecord(settings.get(i));
+				return settings.get(i);
 			}
 
 		}

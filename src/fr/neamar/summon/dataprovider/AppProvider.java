@@ -11,15 +11,14 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
 import fr.neamar.summon.holder.AppHolder;
-import fr.neamar.summon.record.AppRecord;
-import fr.neamar.summon.record.Record;
+import fr.neamar.summon.holder.Holder;
 
 public class AppProvider extends Provider {
 	private ArrayList<AppHolder> apps = new ArrayList<AppHolder>();
 
 	public AppProvider(Context context) {
 		super(context);
-
+		holderScheme = "app://";
 		Thread thread = new Thread(null, initAppsList);
 		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
@@ -43,7 +42,7 @@ public class AppProvider extends Provider {
 				AppHolder app = new AppHolder();
 				ResolveInfo info = appsInfo.get(i);
 
-				app.id = "app://"
+				app.id = holderScheme
 						+ info.activityInfo.applicationInfo.packageName + "/"
 						+ info.activityInfo.name;
 				app.name = info.loadLabel(manager).toString();
@@ -61,10 +60,8 @@ public class AppProvider extends Provider {
 		}
 	};
 
-	public ArrayList<Record> getRecords(String query) {
-		query = query.toLowerCase();
-
-		ArrayList<Record> records = new ArrayList<Record>();
+	public ArrayList<Holder> getResults(String query) {
+		ArrayList<Holder> records = new ArrayList<Holder>();
 
 		int relevance;
 		String appNameLowerCased;
@@ -81,20 +78,19 @@ public class AppProvider extends Provider {
 			if (relevance > 0) {
 				apps.get(i).displayName = apps.get(i).name.replaceFirst("(?i)("
 						+ Pattern.quote(query) + ")", "{$1}");
-				Record r = new AppRecord(apps.get(i));
-				r.relevance = relevance;
-				records.add(r);
+				apps.get(i).relevance = relevance;
+				records.add(apps.get(i));
 			}
 		}
 
 		return records;
 	}
 
-	public Record findById(String id) {
+	public Holder findById(String id) {
 		for (int i = 0; i < apps.size(); i++) {
 			if (apps.get(i).id.equals(id)) {
 				apps.get(i).displayName = apps.get(i).name;
-				return new AppRecord(apps.get(i));
+				return apps.get(i);
 			}
 
 		}
