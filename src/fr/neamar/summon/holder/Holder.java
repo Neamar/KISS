@@ -15,7 +15,8 @@ public abstract class Holder extends Object {
 	// Name displayed on the screen, may contain HTML (for instance, to put
 	// query text in blue)
 	public String displayName = "";
-	
-	//How relevant is this record ? The higher, the most probable it will be displayed
+
+	// How relevant is this record ? The higher, the most probable it will be
+	// displayed
 	public int relevance = 0;
 }

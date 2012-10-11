@@ -133,7 +133,7 @@ public class SummonActivity extends Activity {
 		if (!flagConfigurationChanged)
 			searchEditText.setText("");
 		else
-			flagConfigurationChanged = false; //Reset flag
+			flagConfigurationChanged = false; // Reset flag
 
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
@@ -201,8 +201,7 @@ public class SummonActivity extends Activity {
 						@Override
 						public void run() {
 							adapter.clear();
-							for (int i = Math.min(MAX_RECORDS,
-									holders.size()) - 1; i >= 0; i--) {
+							for (int i = Math.min(MAX_RECORDS, holders.size()) - 1; i >= 0; i--) {
 								adapter.add(Record.fromHolder(holders.get(i)));
 							}
 							// Reset scrolling to top

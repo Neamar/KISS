@@ -65,7 +65,8 @@ public class DataHandler {
 		}
 
 		// Have we ever made the same query and selected something ?
-		String lastIdForQuery = prefs.getString("query://" + query, "(none-nomatch)");
+		String lastIdForQuery = prefs.getString("query://" + query,
+				"(none-nomatch)");
 		// Ask all providers for datas
 		ArrayList<Holder> allHolders = new ArrayList<Holder>();
 
@@ -124,8 +125,7 @@ public class DataHandler {
 
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
-				if(providers.get(j).mayFindById(ids.get(i)))
-				{
+				if (providers.get(j).mayFindById(ids.get(i))) {
 					Holder holder = providers.get(j).findById(ids.get(i));
 					if (holder != null) {
 						history.add(holder);

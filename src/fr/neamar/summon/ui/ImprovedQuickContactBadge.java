@@ -38,7 +38,8 @@ public class ImprovedQuickContactBadge extends QuickContactBadge {
 		super(context, attrs);
 	}
 
-	public ImprovedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
+	public ImprovedQuickContactBadge(Context context, AttributeSet attrs,
+			int defStyle) {
 		super(context, attrs, defStyle);
 	}
 

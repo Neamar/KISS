@@ -18,20 +18,20 @@ public class SearchRecord extends Record {
 
 	@Override
 	public View display(Context context, View v) {
-		if(v == null)
+		if (v == null)
 			v = inflateFromId(context, R.layout.item_search);
-		
+
 		TextView appName = (TextView) v.findViewById(R.id.item_search_text);
-		appName.setText(enrichText(context.getString(R.string.ui_item_search) + " \"{" + searchHolder.query
-				+ "}\""));
+		appName.setText(enrichText(context.getString(R.string.ui_item_search)
+				+ " \"{" + searchHolder.query + "}\""));
 
 		return v;
 	}
 
 	@Override
 	public void doLaunch(Context context, View v) {
-		Intent search = new Intent(Intent.ACTION_WEB_SEARCH);  
-		search.putExtra(SearchManager.QUERY, searchHolder.query);  
+		Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
+		search.putExtra(SearchManager.QUERY, searchHolder.query);
 		search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(search);
 	}
