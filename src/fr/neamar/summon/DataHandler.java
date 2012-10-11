@@ -65,7 +65,7 @@ public class DataHandler {
 		}
 
 		// Have we ever made the same query and selected something ?
-		String lastIdForQuery = prefs.getString("query://" + query, "(none)");
+		String lastIdForQuery = prefs.getString("query://" + query, "(none-nomatch)");
 		// Ask all providers for datas
 		ArrayList<Holder> allHolders = new ArrayList<Holder>();
 

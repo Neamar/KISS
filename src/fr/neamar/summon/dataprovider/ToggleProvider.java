@@ -55,9 +55,9 @@ public class ToggleProvider extends Provider {
 			relevance = 0;
 			toggleNameLowerCased = toggle.nameLowerCased;
 			if (toggleNameLowerCased.startsWith(query))
-				relevance = 100;
+				relevance = 75;
 			else if (toggleNameLowerCased.contains(" " + query))
-				relevance = 50;
+				relevance = 30;
 			else if (toggleNameLowerCased.contains(query))
 				relevance = 1;
 

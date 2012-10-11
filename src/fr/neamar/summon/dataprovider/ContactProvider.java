@@ -54,7 +54,9 @@ public class ContactProvider extends Provider {
 					contact.phone = cur
 							.getString(cur
 									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-
+					contact.starred = cur
+							.getInt(cur
+									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED));
 					String photoId = cur
 							.getString(cur
 									.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
@@ -105,6 +107,10 @@ public class ContactProvider extends Provider {
 				// Increase relevance according to number of times the contacts
 				// was phoned :
 				relevance += contact.timesContacted;
+				//Increase relevance for starred contacts :
+				if(contact.starred != 0)
+					relevance += 30;
+				
 				contact.displayName = contacts.get(i).name.replaceFirst("(?i)("
 						+ Pattern.quote(query) + ")", "{$1}");
 				contact.relevance = relevance;
