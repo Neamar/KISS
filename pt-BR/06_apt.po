@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2012-08-01 19:47+0200\n"
-"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"PO-Revision-Date: 2012-08-13 00:56+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -37,7 +37,7 @@ msgid "synaptic"
 msgstr "synaptic"
 
 #. Tag: keyword
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "sources.list"
 msgstr "sources.list"
 
@@ -65,11 +65,17 @@ msgstr ""
 #, no-c-format
 msgid "<indexterm><primary>APT</primary></indexterm> <indexterm><primary>Advanced Package Tool</primary></indexterm> APT is the abbreviation for Advanced Package Tool. What makes this program “advanced” is its approach to packages. It doesn't simply evaluate them individually, but it considers them as a whole and produces the best possible combination of packages depending on what is available and compatible (according to dependencies)."
 msgstr ""
+"<indexterm><primary>APT</primary></indexterm> <indexterm><primary>Advanced "
+"Package Tool</primary></indexterm> APT é a sigla de Advanced Package Tool "
+"(ferramenta de pacotes avançada). O que faz dele \"avançado\" é sua abordagem "
+"quanto a pacotes. Ele não os avalia individualmente, mas considera-os como "
+"um todo e produz as melhores combinações de pacotes possível dependendo do "
+"que está disponível e compatível (de acordo com as dependências)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Package source and source package"
-msgstr ""
+msgstr "<emphasis>VOCABULÁRIO</emphasis> fonte do pacote e pacote fonte"
 
 #. Tag: para
 #, no-c-format
@@ -85,6 +91,17 @@ msgstr ""
 #, no-c-format
 msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.gz</filename> or <filename>Packages.bz2</filename> files (in case of a source of binary packages) and <filename>Sources.gz</filename> or <filename>Sources.bz2</filename> files (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"encadre.apt-pdiff\" />)."
 msgstr ""
+"O APT precisa que lhe seja dada uma “lista de fontes de pacotes”: o arquivo "
+"<filename>/etc/apt/sources.list</filename> listará os diferentes "
+"repositórios (ou \"fontes\") que publicam pacotes Debian. O APT irá então "
+"importar a lista de pacotes publicados por cada uma destas fontes. Isto é "
+"feito baixando o arquivo <filename>Packages.gz</filename> ou o "
+"<filename>Packages.bz2</filename> (no caso de uma fonte de pacotes binários) "
+"e o arquivo <filename>Sources.gz</filename> ou "
+"<filename>Sources.bz2</filename> (no caso de uma fontes de pacotes código-"
+"fonte) e analizando seus conteúdos. Quando uma cópia antiga destes arquivos "
+"já estiver presente, o APT poderá atualizar ela baixando apenas as "
+"diferenças (veja a barra lateral <xref linkend=\"encadre.apt-pdiff\" />)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -128,6 +145,15 @@ msgstr "<primary><command>xz</command></primary>"
 #, no-c-format
 msgid "A <filename>.gz</filename> extension refers to a file compressed with the <command>gzip</command> utility. <command>gzip</command> is the fast and efficient traditional Unix utility to compress files. Newer tools achieve better rates of compression but require more calculation time to compress a file. Among them, and by order of appearance, there are <command>bzip2</command> (generating files with a <filename>.bz2</filename> extension), <command>lzma</command> (generating <filename>.lzma</filename> files) and <command>xz</command> (generating <filename>.xz</filename> files)."
 msgstr ""
+"Uma extensão <filename>.gz</filename> se refere a um arquivo comprimido com "
+"o utilitário <command>gzip</command>. <command>gzip</command> é o utilitário "
+"tradicional do Unix rápido e eficiente para comprimir arquivos. Ferramentas "
+"mais novas conseguem taxas de compressão melhores mas precisam de mais "
+"tempo de cálculo para comprimir um arquivo. Entre elas e por ordem de "
+"surgimento, estão <command>bzip2</command> (gerando arquivos com a extensão "
+"<filename>.bz2</filename>), <command>lzma</command> (gerando arquivos "
+"<filename>.lzma</filename>) e <command>xz</command> (gerando arquivos "
+"<filename>.xz</filename>)."
 
 #. Tag: title
 #, no-c-format
@@ -180,11 +206,33 @@ msgstr "“<literal>deb-src</literal>” para pacotes de código fonte."
 #, no-c-format
 msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM based installations, although this is less frequent, since network-based installation methods are more and more common."
 msgstr ""
+"O segundo campo dá a URL base da origem (combinado com os nomes de arquivo "
+"presentes nos arquivos <filename>Packages.gz</filename>, deve dar uma URL "
+"completa e válida): isto pode consistir no mirror Debian ou em qualquer "
+"outro archive de pacote configurado por terceiros. A URL pode começar com "
+"<literal>file://</literal> para indicar uma origem local instalada na "
+"hierarquia de arquivos do sistema, com <literal>http://</literal> para "
+"indicar uma origem acessível via um servidor web, ou com "
+"<literal>ftp://</literal> para uma origem disponível num servidor FTP. A URL "
+"pode começar com <literal>cdrom://</literal> para instalações baseadas em "
+"CD-ROM, embora isto seja menos frequente, já que métodos baseados em rede "
+"estão cada vez mas comuns."
 
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the last field depends on whether the source corresponds to a Debian mirror or not. In the case of a Debian mirror, name the chosen distribution (<literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal> or their current code names — see the list in sidebar <xref linkend=\"cadre.bruce-perens\" />), then the sections to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal>). In all other cases, simply indicate the subdirectory of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL)."
 msgstr ""
+"A sintaxe do último campo depende da origem corresponder a um espelho Debian "
+"ou não. No caso de ser um espelho Debian, coloque o nome da distribuição "
+"escolhida (<literal>stable</literal>, <literal>testing</literal>, "
+"<literal>unstable</literal> ou seus codinomes atuais — veja a lista na barra "
+"lateral <xref linkend=\"cadre.bruce-perens\" />), então as seções para "
+"habilitar (escolhidas entre <literal>main</literal>, "
+"<literal>contrib</literal> e <literal>non-free</literal>). Em todos ou "
+"outros casos, simplesmente indicar o subdiretório da origem desejada "
+"(Geralmente é um simples “<filename>./</filename>” que se refere à ausência "
+"de um subdiretório — os pacotes ficam então diretamente na URL "
+"especificada)."
 
 #. Tag: title
 #, no-c-format
