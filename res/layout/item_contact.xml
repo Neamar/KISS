@@ -54,8 +54,9 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/separator"
-        android:background="@android:color/transparent"
         android:contentDescription="@string/ui_item_contact_hint_message"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         android:src="@drawable/contact_message" />
 
     <ImageButton
@@ -64,9 +65,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:background="@android:color/transparent"
         android:contentDescription="@string/ui_item_contact_hint_call"
-        android:focusable="false"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         android:src="@drawable/contact_call" />
 
 </RelativeLayout>
