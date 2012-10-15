@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import fr.neamar.summon.R;
 import fr.neamar.summon.holder.ContactHolder;
-import fr.neamar.summon.ui.ImprovedQuickContactBadge;
+import fr.neamar.summon.misc.ImprovedQuickContactBadge;
 
 public class ContactRecord extends Record {
 	public ContactHolder contactHolder;
