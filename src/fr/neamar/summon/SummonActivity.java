@@ -25,6 +25,7 @@ import fr.neamar.summon.record.RecordAdapter;
 public class SummonActivity extends Activity {
 
 	private static final int MENU_SETTINGS = Menu.FIRST;
+	private static final int MENU_PREFERENCES = MENU_SETTINGS + 1;
 
 	private final int MAX_RECORDS = 15;
 
@@ -66,7 +67,7 @@ public class SummonActivity extends Activity {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.main);
+		setContentView(R.layout.main_inverted);
 
 		listView = (ListView) findViewById(R.id.resultListView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -167,6 +168,10 @@ public class SummonActivity extends Activity {
 				.setIcon(android.R.drawable.ic_menu_preferences)
 				.setIntent(
 						new Intent(android.provider.Settings.ACTION_SETTINGS));
+
+		menu.add(0, MENU_PREFERENCES, 0, R.string.menu_preferences)
+				.setIntent(
+						new Intent(this, SettingsActivity.class));
 
 		return true;
 	}
