@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -60,6 +63,11 @@ public class SummonActivity extends Activity {
 	 */
 	private EditText searchEditText;
 
+	/**
+	 * Store user preferences
+	 */
+	SharedPreferences prefs;
+
 	/** Called when the activity is first created. */
 	@SuppressWarnings("deprecation")
 	@Override
@@ -67,7 +75,15 @@ public class SummonActivity extends Activity {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.main_inverted);
+
+		// Initialize preferences
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+		if (prefs.getBoolean("invert-ui", false))
+			setContentView(R.layout.main_inverted);
+		else
+			setContentView(R.layout.main);
 
 		listView = (ListView) findViewById(R.id.resultListView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -130,6 +146,19 @@ public class SummonActivity extends Activity {
 	 * Empty text field on resume and show keyboard
 	 */
 	protected void onResume() {
+		if (prefs.getBoolean("preferences-updated", false)) {
+			
+			// Restart current activity to refresh view, since some preferences
+			// might require using a new UI
+			prefs.edit().putBoolean("preferences-updated", false).commit();
+			Intent intent = getIntent();
+			overridePendingTransition(0, 0);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+			finish();
+			overridePendingTransition(0, 0);
+			startActivity(intent);
+		}
+
 		// Reset textfield (will display history)
 		if (!flagConfigurationChanged)
 			searchEditText.setText("");
@@ -169,9 +198,8 @@ public class SummonActivity extends Activity {
 				.setIntent(
 						new Intent(android.provider.Settings.ACTION_SETTINGS));
 
-		menu.add(0, MENU_PREFERENCES, 0, R.string.menu_preferences)
-				.setIntent(
-						new Intent(this, SettingsActivity.class));
+		menu.add(0, MENU_PREFERENCES, 0, R.string.menu_preferences).setIntent(
+				new Intent(this, SettingsActivity.class));
 
 		return true;
 	}
@@ -198,23 +226,35 @@ public class SummonActivity extends Activity {
 				if (workingOnQuery != currentQuery)
 					return;
 
-				if (holders == null) {
-					// First use of the app. TODO : Display something useful.
-				} else {
-					runOnUiThread(new Runnable() {
+				runOnUiThread(new Runnable() {
 
-						@Override
-						public void run() {
-							adapter.clear();
-							for (int i = Math.min(MAX_RECORDS, holders.size()) - 1; i >= 0; i--) {
-								adapter.add(Record.fromHolder(holders.get(i)));
+					@Override
+					public void run() {
+						adapter.clear();
+
+						if (holders == null) {
+							// First use of the app. TODO : Display something
+							// useful.
+						} else {
+							if (prefs.getBoolean("invert-ui", false)) {
+								for (int i = 0; i < Math.min(MAX_RECORDS,
+										holders.size()); i++) {
+									adapter.add(Record.fromHolder(holders
+											.get(i)));
+								}
+							} else {
+								for (int i = Math.min(MAX_RECORDS,
+										holders.size()) - 1; i >= 0; i--) {
+									adapter.add(Record.fromHolder(holders
+											.get(i)));
+								}
 							}
 							// Reset scrolling to top
 							listView.setSelectionAfterHeaderView();
 						}
-					});
+					}
+				});
 
-				}
 			}
 		});
 		resultThread.start();
