@@ -46,36 +46,51 @@ public class TogglesHandler {
 	 * @return
 	 */
 	public Boolean getState(ToggleHolder holder) {
-		if (holder.settingName.equals("wifi"))
-			return getWifiState();
-		else if (holder.settingName.equals("data"))
-			return getDataState();
-		else if (holder.settingName.equals("bluetooth"))
-			return getBluetoothState();
-		else if (holder.settingName.equals("gps"))
-			return getGpsState();
-		else if (holder.settingName.equals("silent"))
-			return getSilentState();
-		else {
-			Log.e("wtf", "Unsupported toggle for reading: "
-					+ holder.settingName);
-			return false;
+		try
+		{
+			if (holder.settingName.equals("wifi"))
+				return getWifiState();
+			else if (holder.settingName.equals("data"))
+				return getDataState();
+			else if (holder.settingName.equals("bluetooth"))
+				return getBluetoothState();
+			else if (holder.settingName.equals("gps"))
+				return getGpsState();
+			else if (holder.settingName.equals("silent"))
+				return getSilentState();
+			else {
+				Log.e("wtf", "Unsupported toggle for reading: "
+						+ holder.settingName);
+				return false;
+			}
+		}
+		catch(Exception e)
+		{
+			Log.w("log", "Unsupported toggle for device: " + holder.settingName);
+			return null;
 		}
 	}
 
 	public void setState(ToggleHolder holder, Boolean state) {
-		if (holder.settingName.equals("wifi"))
-			setWifiState(state);
-		else if (holder.settingName.equals("data"))
-			setDataState(state);
-		else if (holder.settingName.equals("bluetooth"))
-			setBluetoothState(state);
-		else if (holder.settingName.equals("gps"))
-			setGpsState(state);
-		else if (holder.settingName.equals("silent"))
-			setSilentState(state);
-		else {
-			Log.e("wtf", "Unsupported toggle for update: " + holder.settingName);
+		try
+		{
+			if (holder.settingName.equals("wifi"))
+				setWifiState(state);
+			else if (holder.settingName.equals("data"))
+				setDataState(state);
+			else if (holder.settingName.equals("bluetooth"))
+				setBluetoothState(state);
+			else if (holder.settingName.equals("gps"))
+				setGpsState(state);
+			else if (holder.settingName.equals("silent"))
+				setSilentState(state);
+			else {
+				Log.e("wtf", "Unsupported toggle for update: " + holder.settingName);
+			}
+		}
+		catch(Exception e)
+		{
+			Log.w("log", "Unsupported toggle for device: " + holder.settingName);
 		}
 	}
 
