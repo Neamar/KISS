@@ -39,35 +39,22 @@
         android:layout_alignLeft="@+id/item_contact_name"
         android:text="+330 12 34 56 78" />
 
-    <ImageView
-        android:id="@+id/separator"
-        android:layout_width="wrap_content"
+    <ImageButton
+        android:id="@+id/item_contact_action_message"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/item_contact_action_phone"
-        android:contentDescription="@string/ui_item_contact_hint_separator"
-        android:src="@drawable/dotted" />
-
-    <ImageButton
-        android:id="@+id/item_contact_action_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/separator"
         android:contentDescription="@string/ui_item_contact_hint_message"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
         android:src="@drawable/contact_message" />
 
     <ImageButton
         android:id="@+id/item_contact_action_phone"
-        android:layout_width="wrap_content"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/ui_item_contact_hint_call"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
         android:src="@drawable/contact_call" />
 
 </RelativeLayout>
