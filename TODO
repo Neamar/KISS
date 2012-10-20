@@ -1,0 +1,56 @@
+Updates for Wheezy
+------------------
+
+* Fix all bugs: http://bugs.debian.org/debian-handbook
+
+* Update all chapters:
+  00a_preface.xml                 [Roland: todo]
+    - request a preface from someone else (like the DPL or a tech-ctte member)
+  00b_foreword.xml                [Roland: todo]
+  01_the-debian-project.xml       [Roland: todo]
+    - new section “Follow Debian News” with introduction and pointers to
+      interesting mailing lists, Debian Project News and other social
+      media (Identi.ca, Google+, Facebook, Twitter)
+  02_case-study.xml               [Roland: todo]
+  03_existing-setup.xml           [Roland: todo]
+    - #681399: appletalk is obsolete, no longer mention it, find what's
+      used nowadays on MacOS
+  04_installation.xml             [Roland: todo]
+    - #675458: update recommendation between 32 and 64 bits in light of
+      multiarch's availability
+  05_packaging-system.xml         [Raphael: todo]
+    - #675458: document multi-arch
+  06_apt.xml                      [Raphael: todo]
+    - #672488: do not recommend to use stable in sources.list but the
+      codename (wheezy)
+    - #675521: document sources.list for testing & unstable users
+    - document unattended-upgrades to install security updates
+    - document axi-cache to search packages
+    - present a package proxy/cache: approx/apt-cacher/apt-proxy
+  07_solving-problems.xml         [Roland: todo]
+  08_basic-configuration.xml      [Raphael: todo]
+    - #675943: update incorrect "locate and updatedb" section (mlocate is
+      the default, slocate is gone, etc.)
+    - document network-manager as alternative to ifupdown
+    - #686634: explain that windows can be told to behave wrt the clock too:
+      see http://www.mail-archive.com/debian-user@lists.debian.org/msg619708.html
+    - obsolete kernel-package in favor of make deb-pkg in upstream kernel?
+  09_unix-services.xml            [Raphael: todo]
+    - #681412: de-emphasize telnet & rsh and other obsolete protocols
+  10_network-infrastructure.xml   [Raphael: todo]
+  11_network-services.xml         [Raphael: todo]
+    - #672511: update the LDAP section to document the new cn=config
+      configuration style (instead of slapd.conf)
+    - whitelister has been dropped, find something else or don't mention it
+    - updates outdated references to Windows NT 
+  12_advanced-administration.xml  [Roland: todo]
+    - #673230: Document use of yum to install RPM based systems on a Debian host
+    - explain that the speed of SSD disks is interesting for small database
+      with complex queries requiring heavy I/O
+  13_workstation.xml              [Roland: todo]
+    - #674980: wine sections needs to be rewritten
+  14_security.xml                 [Roland: todo]
+  15_debian-packaging.xml         [Roland: todo]
+  70_conclusion.xml               [Raphael: todo]
+  90_derivative-distributions.xml [Raphael: todo]
+  92_short-remedial-course.xml    [Roland: todo]
