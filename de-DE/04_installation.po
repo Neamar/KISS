@@ -1,4 +1,4 @@
-#
+# 
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Georg Käsler <gkaesler@gmx.de>, 2012.
 # Georg Käsler <gkaesler<at>gmx.de>, 2012.
@@ -6,19 +6,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-<<<<<<< HEAD
 "POT-Creation-Date: 2012-05-09T20:00:15\n"
 "PO-Revision-Date: 2012-10-18 16:51+0200\n"
 "Last-Translator: Carsten Bachert <caba@bachert.info>\n"
 "Language-Team: www.debian-handbuch.de\n"
 "Language: de\n"
-=======
-"POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2012-05-09T20:00:15\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
-"Language: \n"
->>>>>>> cd066dff9ad3e4117bd3891c32c119dd9747eea7
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -356,12 +348,7 @@ msgstr ""
 "von derartigen Medien hochfahren kann."
 
 #. Tag: para
-<<<<<<< HEAD
 msgid "This installation method works in two steps. First, while booting the computer, the BIOS (or the network card) issues a BOOTP/DHCP request to automatically acquire an IP address. When a BOOTP or DHCP server returns a response, it includes a filename, as well as network settings. After having configured the network, the client computer then issues a TFPT (Trivial File Transfer Protocol) request for a file whose name was previously indicated. Once this file is acquired, it is executed as though it were a bootloader. This then launches the Debian installation program, which is executed as though it were running from the hard drive, a CD-ROM, or a USB key."
-=======
-#, no-c-format
-msgid "This installation method works in two steps. First, while booting the computer, the BIOS (or the network card) issues a BOOTP/DHCP request to automatically acquire an IP address. When a BOOTP or DHCP server returns a response, it includes a filename, as well as network settings. After having configured the network, the client computer then issues a TFTP (Trivial File Transfer Protocol) request for a file whose name was previously indicated. Once this file is acquired, it is executed as though it were a bootloader. This then launches the Debian installation program, which is executed as though it were running from the hard drive, a CD-ROM, or a USB key."
->>>>>>> cd066dff9ad3e4117bd3891c32c119dd9747eea7
 msgstr ""
 "Diese Installationsmethode verläuft in zwei Schritten. Während der Rechner "
 "hochfährt, verschickt das BIOS (oder die Netzwerkkarte) zunächst eine "
@@ -503,12 +490,7 @@ msgstr ""
 "Abschnitten)."
 
 #. Tag: para
-<<<<<<< HEAD
 msgid "If you already have a working Windows system, you can even do without the recovery CD-ROM; Debian offers a Windows program that will download a light Debian installer and set it up on the hard disk. You then only need to reboot the computer and choose between normal Windows boot or booting the installation program. You can also find it on a dedicated website with a rather explicit name... <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
-=======
-#, no-c-format
-msgid "If you already have a working Windows system, you can even avoid using a CD-ROM; Debian offers a Windows program that will download a light Debian installer and set it up on the hard disk. You then only need to reboot the computer and choose between normal Windows boot or booting the installation program. You can also find it on a dedicated website with a rather explicit name... <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
->>>>>>> cd066dff9ad3e4117bd3891c32c119dd9747eea7
 msgstr ""
 "Falls Sie bereits ein funktionierendes Windows-System haben, können Sie "
 "sogar auf die Wiederherstellungs-CD-ROM verzichten; Debian bietet ein "
@@ -576,12 +558,7 @@ msgid "Boot screen"
 msgstr "Startbildschirm"
 
 #. Tag: para
-<<<<<<< HEAD
 msgid "Once booted, the installation program guides you step by step throughout the process. This section presents each of these steps in detail. Here we follow the process of an installation from a Multi-Arch DVD-ROM; other types of installlations, (<emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis>) may be slightly different. We will also address installation in graphical mode, but this differs from “classic” installation only in appearance."
-=======
-#, no-c-format
-msgid "Once booted, the installation program guides you step by step throughout the process. This section presents each of these steps in detail. Here we follow the process of an installation from a Multi-Arch DVD-ROM; other types of installations, (<emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis>) may be slightly different. We will also address installation in graphical mode, but this differs from “classic” installation only in appearance."
->>>>>>> cd066dff9ad3e4117bd3891c32c119dd9747eea7
 msgstr ""
 "Sobald das Installationsprogramm hochgefahren ist, führt es Sie Schritt für "
 "Schritt durch den gesamten Prozess. Dieser Abschnitt zeigt jeden dieser "
@@ -921,14 +898,8 @@ msgstr ""
 "Schaden anzurichten)."
 
 #. Tag: para
-<<<<<<< HEAD
 msgid "Fortunately, the partitioning software has an “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
 msgstr "Glücklicherweise verfügt das Partitionierungsprogramm über einen „geführten“ Modus, der dem Nutzer die einzurichtenden Partitionen vorschlägt - in den meisten Fällen können Sie die Vorschläge des Programms einfach bestätigen."
-=======
-#, no-c-format
-msgid "Fortunately, the partitioning software has a “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
-msgstr ""
->>>>>>> cd066dff9ad3e4117bd3891c32c119dd9747eea7
 
 #. Tag: title
 msgid "Choice of partitioning mode"
@@ -1003,12 +974,7 @@ msgstr ""
 "Unterverzeichnissen unter <filename>/home/</filename>)."
 
 #. Tag: para
-<<<<<<< HEAD
 msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>, and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
-=======
-#, no-c-format
-msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>), and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
->>>>>>> cd066dff9ad3e4117bd3891c32c119dd9747eea7
 msgstr ""
 "Die letzte Partitionierungsmethode, „Separate <filename>/home</filename>-, "
 "<filename>/usr</filename>-, <filename>/var</filename>- und "
@@ -1563,12 +1529,7 @@ msgstr ""
 "„erkunden“, um so alle Pakete zu erfassen, die auf ihnen gespeichert sind."
 
 #. Tag: para
-<<<<<<< HEAD
 msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing successively a country and a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian server)."
-=======
-#, no-c-format
-msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing successively a country and a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian master archive)."
->>>>>>> cd066dff9ad3e4117bd3891c32c119dd9747eea7
 msgstr ""
 "Falls es erforderlich ist, Pakete aus einem Netzwerk anzufordern, "
 "ermöglichen die nächsten beiden Fragen es, einen Server auszuwählen, von dem "
@@ -1814,12 +1775,7 @@ msgid "Installing Additional Software"
 msgstr "Zusätzliche Software installieren"
 
 #. Tag: para
-<<<<<<< HEAD
 msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop enviroment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (<menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Synaptic Package Manager</guimenuitem></menuchoice>)."
-=======
-#, no-c-format
-msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (<menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Synaptic Package Manager</guimenuitem></menuchoice>)."
->>>>>>> cd066dff9ad3e4117bd3891c32c119dd9747eea7
 msgstr ""
 "Die installierten Pakete entsprechen den während der Installation "
 "ausgewählten Profilen, aber nicht notwendigerweise der tatsächlichen "
@@ -1873,14 +1829,8 @@ msgstr ""
 "Muttersprache nicht Englisch ist"
 
 #. Tag: para
-<<<<<<< HEAD
 msgid "Several tasks are dedicated to the localization of the system in other languages beyond English. They include translated documentation, dictionaries, and various other packages useful for speakers speakers of different languages. The appropriate task is automatically selected if a non-English language was chosen during installation."
 msgstr "Mehrere Aufgaben dienen der Lokalisierung des Systems in anderen Sprachen als Englisch. Sie umfassen übersetzte Unterlagen, Wörterbücher und verschiedene andere Pakete, die für Anderssprachige nützlich sind. Die passende Aufgabe wird automatisch ausgewählt, falls während der Installation eine nicht-englische Sprache ausgewählt wurde."
-=======
-#, no-c-format
-msgid "Several tasks are dedicated to the localization of the system in other languages beyond English. They include translated documentation, dictionaries, and various other packages useful for speakers of different languages. The appropriate task is automatically selected if a non-English language was chosen during installation."
-msgstr ""
->>>>>>> cd066dff9ad3e4117bd3891c32c119dd9747eea7
 
 #. Tag: title
 msgid "<emphasis>CULTURE</emphasis> <command>dselect</command>, the old interface to install packages"
@@ -1920,8 +1870,4 @@ msgstr "<primary>safe-upgrade</primary>"
 
 #. Tag: para
 msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"section.apt-mise-a-jour\" />."
-<<<<<<< HEAD
 msgstr "Ein erstes <command>aptitude safe-upgrade</command> (ein Befehl zur automatischen Aktualisierung der installierten Programme) ist normalerweise erforderlich, insbesondere für mögliche Sicherheitsaktualisierungen, die seit der Veröffentlichung der letzten stabilen Debian-Version herausgegeben wurden. Diese Aktualisierungen können einige zusätzliche Fragen durch <command>debconf</command>, Debians Standardkonfigurationsprogramm, stellen. Für weitere Informationen zu diesen von <command>aptitude</command> durchgeführten Aktualisierungen siehe <xref linkend=\"section.apt-mise-a-jour\"/>."
-=======
-msgstr ""
->>>>>>> cd066dff9ad3e4117bd3891c32c119dd9747eea7
