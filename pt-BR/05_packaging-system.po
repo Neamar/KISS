@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:34\n"
-"PO-Revision-Date: 2012-08-29 03:06+0200\n"
+"PO-Revision-Date: 2012-10-29 03:21+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/05_packaging-system/pt_BR/>\n"
@@ -144,6 +144,23 @@ msgstr ""
 #, no-c-format
 msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents its many other operations. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the archive <filename>data.tar.gz</filename> in the system's root (<filename>/</filename>):"
 msgstr ""
+"<indexterm><primary><command>ar</command></primary></indexterm> Assim como o "
+"programa <command>ar</command>, ele permite manipular arquivos do mesmo "
+"nome: <command>ar t <replaceable>arquivamento</replaceable></command> mostra "
+"a lista de arquivos contidos no arquivamento, <command>ar x "
+"<replaceable>arquivmento</replaceable></command> extrai os arquivos do "
+"arquivamento para a pasta de trabalho atual, <command>ar d "
+"<replaceable>arquivamento</replaceable> "
+"<replaceable>arquivo</replaceable></command> apaga um arquivo do "
+"arquivamento, etc. Sua página man (<citerefentry><refentrytitle>ar</refentry"
+"title><manvolnum>1</manvolnum></citerefentry>) documenta suas muitas outras "
+"operações. <command>ar</command> é uma ferramenta muito rudimentar que um "
+"administrador Unix usará muito pouco, mas os admins usarão com frequencia o "
+"<command>tar</command>, um programa de gerencia de arquivos e arquivamentos. "
+"É por isso que é fácil recuperar o <command>dpkg</command> no caso de uma "
+"remoção errada. Você terá apenas que baixar o pacote Debian e extrair o "
+"conteúdo do arquivamento <filename>data.tar.gz</filename> na raiz do sistema "
+"(<filename>/</filename>):"
 
 #. Tag: screen
 #, no-c-format
@@ -167,11 +184,21 @@ msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Notação de páginas de manual
 #, no-c-format
 msgid "It can be confusing for beginners to find references to “<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>” in the literature. This is generally a convenient means of referring to the man page entitled <literal>ar</literal> in section 1."
 msgstr ""
+"Pode ser confuso para iniciantes encontrar referências ao “<citerefentry><re"
+"fentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>” na "
+"literatura. Isto é geralmente uma forma conveniente de se referir à página "
+"man intitulada <literal>ar</literal> na seção 1."
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes this notation is also used to remove ambiguities, for example to distinguish between the <command>printf</command> command that can also be indicated by <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry> and the <function>printf</function> function in the C programming language, which can also be referred to as <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry>."
 msgstr ""
+"Algumas vezes esta notação é também usada para remover ambiguidades, por "
+"exemplo para distinguir entre o comando <command>printf</command> que pode "
+"ser indicado por <citerefentry><refentrytitle>printf</refentrytitle><manvoln"
+"um>1</manvolnum></citerefentry> e a função <function>printf</function> da "
+"linguagem de programação C, que pode ser indicada por <citerefentry><refentr"
+"ytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry>."
 
 #. Tag: para
 #, no-c-format
