@@ -459,7 +459,7 @@
       <indexterm><primary>SSH</primary></indexterm>
       <indexterm><primary>Secure Shell</primary></indexterm>
 
-      <para>The <emphasis>SSH</emphasis> (Secure Shell) protocol, contrary
+      <para>The <emphasis>SSH</emphasis> (Secure SHell) protocol, contrary
       to <emphasis>telnet</emphasis>, was designed with security and
       reliability in mind. Connections using SSH are secure: the partner is
       authenticated and all data exchanges are encrypted.</para>
@@ -898,7 +898,7 @@
     <indexterm><primary>owner</primary><secondary>user</secondary></indexterm>
     <indexterm><primary>owner</primary><secondary>group</secondary></indexterm>
 
-    <para>Each file or folder has specific permissions for three categories
+    <para>Each file or directory has specific permissions for three categories
     of users:</para>
     <itemizedlist>
       <listitem>
@@ -2020,7 +2020,7 @@ job 31 at Fri Jul 27 09:00:00 2012</computeroutput>
       <listitem>
 	<para>two limits (called “soft” and “hard”) refer to the
 	number of blocks consumed. If the filesystem was created with a
-	block-size of 1 kilobyte, a block contains 1024 bytes from the
+	block-size of 1 kibibyte, a block contains 1024 bytes from the
 	same file. Unsaturated blocks thus induce losses of disk space. A
 	quota of 100 blocks, which theoretically allows storage of 102,400
 	bytes, will however be saturated with just 100 files of 500 bytes
@@ -2049,7 +2049,7 @@ job 31 at Fri Jul 27 09:00:00 2012</computeroutput>
       <para>The filesystem divides the hard drive into blocks — small
       contiguous areas. The size of these blocks is defined during creation
       of the filesystem, and generally varies between 1 and 8
-      kilobytes.</para>
+      kibibytes.</para>
 
       <para>A block can be used either to store the real data of a file, or
       for meta-data used by the filesystem. Among this meta-data, you will
