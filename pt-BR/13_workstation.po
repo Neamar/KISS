@@ -1,14 +1,13 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-06-01T20:23:58\n"
+"POT-Creation-Date: 2012-10-31T14:54:18\n"
 "PO-Revision-Date: 2012-08-02 20:10+0200\n"
 "Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
-"/debian-handbook/13_workstation/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects/debian-handbook/13_workstation/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
@@ -39,10 +38,7 @@ msgstr "X.org"
 #. Tag: para
 #, no-c-format
 msgid "Now that server deployments are done, the administrators can focus on installing the individual workstations and creating a typical configuration."
-msgstr ""
-"Agora que a publicação do servidor foi feita, os administradores podem se "
-"concentrar em instalar as estações individuais e criar uma configuração "
-"típica."
+msgstr "Agora que a publicação do servidor foi feita, os administradores podem se concentrar em instalar as estações individuais e criar uma configuração típica."
 
 #. Tag: title
 #, no-c-format
@@ -72,10 +68,7 @@ msgstr "<primary>interface</primary><secondary>gráfica</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The initial configuration for the graphical interface can be awkward at times; very recent video cards often don't work perfectly with the X.org version shipped in the Debian stable version."
-msgstr ""
-"A configuração inicial para a interface gráfica pode ser estranha às vezes; "
-"placas de vídeo recentes por vezes não funcionam perfeitamente na versão do "
-"X.org que vem com a versão stável do Debian."
+msgstr "A configuração inicial para a interface gráfica pode ser estranha às vezes; placas de vídeo recentes por vezes não funcionam perfeitamente na versão do X.org que vem com a versão stável do Debian."
 
 #. Tag: para
 #, no-c-format
@@ -134,14 +127,14 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "(==) Matched intel as autoconfigured driver 0\n"
 "(==) Matched vesa as autoconfigured driver 1\n"
 "(==) Matched fbdev as autoconfigured driver 2\n"
 "(==) Assigned the driver to the xf86ConfigLayout\n"
 "(II) LoadModule: \"intel\"\n"
 "(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
-""
 msgstr ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -169,16 +162,7 @@ msgstr "drivers proprietários <emphasis>EXTRA</emphasis>"
 #. Tag: para
 #, no-c-format
 msgid "Some video card makers (most notably nVidia) refuse to publish the hardware specifications that would be required to implement good free drivers. They do, however, provide proprietary drivers that allow using their hardware. This policy is nefarious, because even when the provided driver exists, it is usually not as polished as it should be; more importantly, it does not necessarily follow the X.org updates, which may prevent the latest available driver from loading correctly (or at all). We cannot condone this behavior, and we recommend you avoid these makers and favor more cooperative manufacturers."
-msgstr ""
-"Alguns fabricantes de placas de vídeo (em especial a nVidia) se recusam a "
-"publicar as especificações de hardware que serão necessárias para "
-"implementar drivers livres bons. Entretanto, eles fornecem drivers "
-"proprietários que permitem usar seus equipamentos. Esta política é maligna, "
-"por que mesmo que o driver exista, ele não é tão bem-cuidado quanto deveria; "
-"e mais, ele não necessariamente segue as atualizações do X.org, o que "
-"impede que as últimas atualizações disponíveis de drivers funcionem "
-"corretamente. Não podemos apoiar este comportamento, e recomendamos que se "
-"evite estes fabricantes, escolhendos outros mais colaborativos."
+msgstr "Alguns fabricantes de placas de vídeo (em especial a nVidia) se recusam a publicar as especificações de hardware que serão necessárias para implementar drivers livres bons. Entretanto, eles fornecem drivers proprietários que permitem usar seus equipamentos. Esta política é maligna, por que mesmo que o driver exista, ele não é tão bem-cuidado quanto deveria; e mais, ele não necessariamente segue as atualizações do X.org, o que impede que as últimas atualizações disponíveis de drivers funcionem corretamente. Não podemos apoiar este comportamento, e recomendamos que se evite estes fabricantes, escolhendos outros mais colaborativos."
 
 #. Tag: para
 #, no-c-format
@@ -287,7 +271,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Older computers may, however, have a hard time running heavyweight graphical desktop environments. In these cases, a lighter configuration should be used. \"Light\" (or small footprint) window managers include WindowMaker (in the <emphasis role=\"pkg\">wmaker</emphasis> package), Afterstep, fvwm, icewm or blackbox. In these cases, the system should be configured so that the appropriate window manager gets precedence; the standard way is to change the <command>x-window-manager</command> alternative with the <command>update-alternatives --config x-window-manager</command> command."
+msgid "Older computers may, however, have a hard time running heavyweight graphical desktop environments. In these cases, a lighter configuration should be used. \"Light\" (or small footprint) window managers include WindowMaker (in the <emphasis role=\"pkg\">wmaker</emphasis> package), Afterstep, fvwm, icewm, blackbox, fluxbox, or openbox. In these cases, the system should be configured so that the appropriate window manager gets precedence; the standard way is to change the <command>x-window-manager</command> alternative with the <command>update-alternatives --config x-window-manager</command> command."
 msgstr ""
 
 #. Tag: indexterm
@@ -309,6 +293,16 @@ msgstr "<primary>Blackbox</primary>"
 #, no-c-format
 msgid "<primary>Icewm</primary>"
 msgstr "<primary>Icewm</primary>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+msgid "<primary>Fluxbox</primary>"
+msgstr "<primary>Blackbox</primary>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+msgid "<primary>Openbox</primary>"
+msgstr "<primary>Blackbox</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -847,7 +841,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Anjuta (in the <emphasis role=\"pkg\">anjuta</emphasis> package) is a development environment optimized for creating GTK+ applications for GNOME. Glade (in the <emphasis role=\"pkg\">glade</emphasis> package) is an application designed to create GTK+ graphical interfaces for GNOME and save them in an XML file. These XML files can then be loaded by the <emphasis>libglade</emphasis> shared library, which can dynamically recreate the saved interfaces; such a feature can be interesting, for instance for for plugins that require dialogs."
+msgid "Anjuta (in the <emphasis role=\"pkg\">anjuta</emphasis> package) is a development environment optimized for creating GTK+ applications for GNOME. Glade (in the <emphasis role=\"pkg\">glade</emphasis> package) is an application designed to create GTK+ graphical interfaces for GNOME and save them in an XML file. These XML files can then be loaded by the <emphasis>libglade</emphasis> shared library, which can dynamically recreate the saved interfaces; such a feature can be interesting, for instance for plugins that require dialogs."
 msgstr ""
 
 #. Tag: indexterm
@@ -1152,7 +1146,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Since FusionForge is largely targeting development projects, it also integrates many tools such as CVS, Subversion, Git, Bazaar, Darcs, Mercurial and Arch for source control management or “configuration management” or “version control” — this process has many names. These programs keep an history of all the revisions of all tracked files (often source code files), with all the changes they go through, and they can merge modifications when several developers work simultaneously on the same part of a project."
+msgid "Since FusionForge is largely targeting development projects, it also integrates many tools such as CVS, Subversion, Git, Bazaar, Darcs, Mercurial and Arch for source control management or “configuration management” or “version control” — this process has many names. These programs keep a history of all the revisions of all tracked files (often source code files), with all the changes they go through, and they can merge modifications when several developers work simultaneously on the same part of a project."
 msgstr ""
 
 #. Tag: para
@@ -1322,9 +1316,9 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "/dev/hda1 /windows fat defaults,uid=1000,gid=100,umask=002,nls=iso8859-1 0 0\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1334,9 +1328,9 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"
-""
 msgstr ""
 
 #. Tag: indexterm

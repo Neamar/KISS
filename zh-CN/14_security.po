@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-06-01T20:23:58\n"
+"POT-Creation-Date: 2012-10-31T14:54:18\n"
 "PO-Revision-Date: 2012-05-09T20:00:22\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
@@ -95,7 +95,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Extra constraints are also worth taking into account, as they can restrict the range of available policies. How far are we are willing to go to secure a system? This question has a major impact on the policy to implement. The answer is too often only defined in terms of monetary costs, but the other elements should also be considered, such as the amount of inconvenience imposed on system users or performance degradation."
+msgid "Extra constraints are also worth taking into account, as they can restrict the range of available policies. How far are we willing to go to secure a system? This question has a major impact on the policy to implement. The answer is too often only defined in terms of monetary costs, but the other elements should also be considered, such as the amount of inconvenience imposed on system users or performance degradation."
 msgstr ""
 
 #. Tag: para
@@ -235,7 +235,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Each table contains lists of rules called <emphasis>chains</emphasis>. The firewall uses standard chains to handle packets based on predefined circumstances. The administrator can create other chains, which will only be used when referred to by one of the standard chains."
+msgid "Each table contains lists of rules called <emphasis>chains</emphasis>. The firewall uses standard chains to handle packets based on predefined circumstances. The administrator can create other chains, which will only be used when referred to by one of the standard chains (either directly or indirectly)."
 msgstr ""
 
 #. Tag: indexterm
@@ -919,7 +919,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Note that this example uses the <command>grep-status</command> command from the <emphasis role=\"pkg\">grep-dctrl</emphasis> package, which is not installed by default."
+msgid "Note that this example uses the <command>grep-status</command> command from the <emphasis role=\"pkg\">dctrl-tools</emphasis> package, which is not installed by default."
 msgstr ""
 
 #. Tag: title
@@ -1119,7 +1119,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "SELinux (<emphasis>Security Enhanced Linux</emphasis>) is a <emphasis>Mandatory Access Control</emphasis> system built on Linux's LSM (<emphasis>Linux Security Modules</emphasis> interface. In practice, the kernel queries SELinux before each system call to know whether the process is authorized to do the given operation."
+msgid "SELinux (<emphasis>Security Enhanced Linux</emphasis>) is a <emphasis>Mandatory Access Control</emphasis> system built on Linux's LSM (<emphasis>Linux Security Modules</emphasis>) interface. In practice, the kernel queries SELinux before each system call to know whether the process is authorized to do the given operation."
 msgstr ""
 
 #. Tag: para
@@ -1159,7 +1159,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "By default, a program inherits its domain for the user who started it but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
+msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
 msgstr ""
 
 #. Tag: title
@@ -1968,7 +1968,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In the Free Software world, there is generally ample room for choice, and choosing one piece of software over another should be a decision based on the criteria that apply locally. More features imply a increased risk of a vulnerability hiding in the code; picking the most advanced program for a task may actually be counter-productive, and a better approach is usually to pick the simplest program that meets the requirements."
+msgid "In the Free Software world, there is generally ample room for choice, and choosing one piece of software over another should be a decision based on the criteria that apply locally. More features imply an increased risk of a vulnerability hiding in the code; picking the most advanced program for a task may actually be counter-productive, and a better approach is usually to pick the simplest program that meets the requirements."
 msgstr ""
 
 #. Tag: title

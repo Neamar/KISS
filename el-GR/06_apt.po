@@ -1,13 +1,14 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-07-29T20:56:35\n"
+"POT-Creation-Date: 2012-10-31T14:54:17\n"
 "PO-Revision-Date: 2012-07-29T20:56:35\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -229,14 +230,14 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# Security updates\n"
+msgid ""
+"# Security updates\n"
 "deb http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
 "\n"
 "# Debian mirror\n"
 "deb http://ftp.debian.org/debian stable main contrib non-free\n"
 "deb-src http://ftp.debian.org/debian stable main contrib non-free\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -317,7 +318,6 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian squeeze-proposed-updates main contrib non-free\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -328,7 +328,6 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian stable-updates main contrib non-free\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -359,7 +358,6 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -385,7 +383,6 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -576,7 +573,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -586,9 +582,9 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>dpkg --set-selections &lt;pkg-list</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>dpkg --set-selections &lt;pkg-list</userinput>\n"
 "<computeroutput># </computeroutput><userinput>apt-get dselect-upgrade</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -613,11 +609,11 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>aptitude install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>aptitude install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
 "[...]\n"
 "<computeroutput># </computeroutput><userinput>aptitude remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
 "[...]\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -638,7 +634,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -669,7 +664,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>aptitude install spamassassin/unstable</userinput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -894,10 +888,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: *\n"
+msgid ""
+"Package: *\n"
 "Pin: release a=experimental\n"
 "Pin-Priority: 500\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -907,14 +901,14 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: *\n"
+msgid ""
+"Package: *\n"
 "Pin: release a=stable\n"
 "Pin-Priority: 900\n"
 "\n"
 "Package: *\n"
 "Pin: release o=Debian\n"
 "Pin-Priority: -10\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -929,10 +923,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: perl\n"
+msgid ""
+"Package: perl\n"
 "Pin: version 5.10*\n"
 "Pin-Priority: 1001\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -967,12 +961,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Explanation: The package xserver-xorg-video-intel provided\n"
+msgid ""
+"Explanation: The package xserver-xorg-video-intel provided\n"
 "Explanation: in experimental can be used safely\n"
 "Package: xserver-xorg-video-intel\n"
 "Pin: release a=experimental\n"
 "Pin-Priority: 500\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1027,10 +1021,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: *\n"
+msgid ""
+"Package: *\n"
 "Pin: release a=unstable\n"
 "Pin-Priority: 490\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1165,7 +1159,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput> aptitude why python-debian</userinput>\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput> aptitude why python-debian</userinput>\n"
 "<computeroutput>i   aptitude         Recommends apt-xapian-index         \n"
 "i A apt-xapian-index Depends    python-debian (&gt;= 0.1.15)</computeroutput>\n"
 "      "
@@ -1209,7 +1204,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1354,7 +1348,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-key fingerprint</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>apt-key fingerprint</userinput>\n"
 "<computeroutput>/etc/apt/trusted.gpg\n"
 "--------------------\n"
 "pub   1024D/F42584E6 2008-04-06 [expires: 2012-05-15]\n"
@@ -1378,7 +1373,6 @@ msgid "<computeroutput># </computeroutput><userinput>apt-key fingerprint</userin
 "uid                  Debian Archive Automatic Signing Key (6.0/squeeze) &lt;ftpmaster@debian.org&gt;\n"
 "\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1459,7 +1453,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>deborphan | xargs aptitude remove</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1709,9 +1702,9 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "export DEBIAN_FRONTEND=noninteractive\n"
+msgid ""
+"export DEBIAN_FRONTEND=noninteractive\n"
 "yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1776,7 +1769,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "<computeroutput>p   kino  - Non-linear editor for Digital Video data\n"
 "$ </computeroutput><userinput>aptitude show kino</userinput>\n"
 "<computeroutput>Package: kino\n"
@@ -1808,7 +1802,6 @@ msgid "<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo
 "      interface::x11, role::program, scope::application,\n"
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
 "      works-with::video, x11::application</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1855,4 +1848,3 @@ msgstr ""
 #, no-c-format
 msgid "finally, when the searches involve complex expressions with logic operations, the tool of choice will be <command>aptitude</command>'s search pattern syntax, which is quite powerful despite being somewhat obscure; it works in both the command-line and the interactive modes."
 msgstr ""
-
