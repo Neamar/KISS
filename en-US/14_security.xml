@@ -87,7 +87,7 @@
     </sidebar>
 
     <para>Extra constraints are also worth taking into account, as they can
-    restrict the range of available policies. How far are we are willing to
+    restrict the range of available policies. How far are we willing to
     go to secure a system? This question has a major impact on the policy
     to implement. The answer is too often only defined in terms of monetary
     costs, but the other elements should also be considered, such as the
@@ -228,7 +228,7 @@
       <emphasis>chains</emphasis>. The firewall uses standard chains to
       handle packets based on predefined circumstances. The administrator
       can create other chains, which will only be used when referred to by
-      one of the standard chains.</para>
+      one of the standard chains (either directly or indirectly).</para>
       <indexterm><primary>chain</primary></indexterm>
       <indexterm><primary>filtering rule</primary></indexterm>
 
@@ -546,6 +546,9 @@
       written by hand, but it can also be interesting to prepare it with a
       high-level tool such as <command>fwbuilder</command>.</para>
 
+      <!-- TODO: add sidebar to present non-graphical helper tools like
+	   ferm: http://ferm.foo-projects.org -->
+
       <para>The principle is simple. In the first step, one needs to
       describe all the elements that will be involved in the actual
       rules:</para>
@@ -778,6 +781,11 @@ iface eth0 inet static
 	<command>top</command> and they provide roughly the same
 	features.</para>
 
+	<!-- TODO: drop this sidebar in the wheezy version since
+	     lavaps and bubblemon have been dropped and bubblefishymon is
+	     pretty much dead upstream.
+	     Or maybe mention conky and gkrellm instead...
+	-->
         <sidebar>
           <title><emphasis>TIP</emphasis> Visual representations of activity</title>
 
@@ -935,7 +943,7 @@ iface eth0 inet static
 
 	<para>Note that this example uses the
 	<command>grep-status</command> command from the <emphasis
-	role="pkg">grep-dctrl</emphasis> package, which is not installed by
+	role="pkg">dctrl-tools</emphasis> package, which is not installed by
 	default.</para>
       </section>
       <section>
@@ -1132,7 +1140,7 @@ iface eth0 inet static
 
       <para>SELinux (<emphasis>Security Enhanced Linux</emphasis>) is a
       <emphasis>Mandatory Access Control</emphasis> system built on Linux's
-      LSM (<emphasis>Linux Security Modules</emphasis> interface. In
+      LSM (<emphasis>Linux Security Modules</emphasis>) interface. In
       practice, the kernel queries SELinux before each system call to know
       whether the process is authorized to do the given operation.</para>
 
@@ -1191,8 +1199,8 @@ iface eth0 inet static
 	<literal>_t</literal> just like object's types.</para>
       </sidebar>
 
-      <para>By default, a program inherits its domain for the user who
-      started it but the standard SELinux policies expect many important
+      <para>By default, a program inherits its domain from the user who
+      started it, but the standard SELinux policies expect many important
       programs to run in dedicated domains. To achieve this, those
       executables are labeled with a dedicated type (for example
       <command>ssh</command> is labeled with
@@ -2051,7 +2059,7 @@ files_tmp_filetrans(myapp_t,myapp_tmp_t,file)
       <para>In the Free Software world, there is generally ample room for
       choice, and choosing one piece of software over another should be a
       decision based on the criteria that apply locally. More features
-      imply a increased risk of a vulnerability hiding in the code; picking
+      imply an increased risk of a vulnerability hiding in the code; picking
       the most advanced program for a task may actually be
       counter-productive, and a better approach is usually to pick the
       simplest program that meets the requirements.</para>

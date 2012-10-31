@@ -1103,7 +1103,9 @@ This filesystem will be automatically checked every 34 mounts or
 	accordingly:</para>
 
         <screen><computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>
-<computeroutput>Filesystem            Size  Used Avail Use% Mounted on/dev/mapper/vg_critical-lv_files                      5.0G  4.6G  142M  98% /srv/files
+<computeroutput>Filesystem            Size  Used Avail Use% Mounted on
+/dev/mapper/vg_critical-lv_files
+                      5.0G  4.6G  142M  98% /srv/files
 # </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>
 <computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert
   lv_files vg_critical -wi-ao 5.00g
@@ -1470,7 +1472,7 @@ Disk identifier: 0x00039a9f
       other domains. These other domains are known as
       <emphasis>domU</emphasis>. In other words, and from a user point of
       view, the <emphasis>dom0</emphasis> matches the “host” of other
-      virtualizaton systems, while a <emphasis>domU</emphasis> can be seen
+      virtualization systems, while a <emphasis>domU</emphasis> can be seen
       as a “guest”.</para>
 
       <sidebar>
@@ -1716,12 +1718,12 @@ Root Password   :  52emxRmM
 	  switch.</para>
         </listitem>
         <listitem>
-	  <para>Then comes the <emphasis>routing</emphasis> mode, where the
+	  <para>Then comes the <emphasis>routing</emphasis> model, where the
 	  dom0 behaves as a router that stands between the domU systems and
 	  the (physical) external network.</para>
         </listitem>
         <listitem>
-	  <para>Finally, in the <emphasis>NAT</emphasis> mode, the dom0 is
+	  <para>Finally, in the <emphasis>NAT</emphasis> model, the dom0 is
 	  again between the domU systems and the rest of the network, but
 	  the domU systems are not directly accessible from outside, and
 	  traffic goes through some network address translation on the
@@ -1734,7 +1736,7 @@ Root Password   :  52emxRmM
       <filename>veth*</filename>, <filename>peth*</filename> and
       <filename>xenbr0</filename>. The Xen hypervisor arranges them in
       whichever layout has been defined, under the control of the
-      user-space tools. Since the NAT and routing modes are only adapted to
+      user-space tools. Since the NAT and routing models are only adapted to
       particular cases, we will only address the bridging model.</para>
 
       <para>The standard configuration of the Xen packages does not change
@@ -1745,7 +1747,7 @@ Root Password   :  52emxRmM
       exist). We must therefore set up a bridge in
       <filename>/etc/network/interfaces</filename> (which requires
       installing the <emphasis role="pkg">bridge-utils</emphasis> package,
-      which is why the <emphasis role="pkg">xen-utils-4.0</emphasis>
+      which is why the <emphasis role="pkg">xen-utils-4.0</emphasis> package
       recommends it) to replace the existing eth0 entry:</para>
 
       <programlisting>auto xenbr0
@@ -1892,7 +1894,7 @@ testxen login: </computeroutput>
       <indexterm><primary>LXC</primary></indexterm> is not, strictly
       speaking, a virtualization system, but a system to isolate groups of
       processes from each other even though they all run on the same host.
-      It takes advantages of a set of recent evolutions in the Linux
+      It takes advantage of a set of recent evolutions in the Linux
       kernel, collectively known as <emphasis>control groups</emphasis>, by
       which different sets of processes called “groups” have different
       views of certain aspects of the overall system. Most notable among
@@ -2027,9 +2029,9 @@ iface br0 inet dhcp
 	<para>The effect of this configuration will be similar to what
 	would be obtained if the containers were machines plugged into the
 	same physical network as the host. The “bridge” configuration
-	makes the Ethernet frames on all the bridged interfaces, which
-	includes the physical <literal>eth0</literal> as well as the
-	interfaces defined for the containers.</para>
+	manages the transit of Ethernet frames between all the bridged
+	interfaces, which includes the physical <literal>eth0</literal> as
+	well as the interfaces defined for the containers.</para>
 
 	<para>In cases where this configuration cannot be used (for
 	instance if no public IP addresses can be assigned to the
@@ -2064,7 +2066,7 @@ iface br0 inet static
   netmask 255.255.255.0
 </programlisting>
 
-	<para>The network can then be either be set up statically in the
+	<para>The network can then be set up either statically in the
 	containers, or dynamically with DHCP server running on the host.
 	Such a DHCP server will need to be configured to answer queries on
 	the <literal>br0</literal> interface.</para>
@@ -2265,8 +2267,16 @@ scouzmir:~# </computeroutput></screen>
       advantage of the processor instruction sets dedicated to
       virtualization (Intel-VT and AMD-V), which keeps KVM lightweight,
       elegant and not resource-hungry. The counterpart, of course, is that
-      KVM only works on i386 and amd64 processors, and only those recent
-      enough to have these instruction sets.</para>
+      KVM mainly works on i386 and amd64 processors, and only those recent
+      enough to have these instruction sets. You can ensure that you have
+      such a processor if you have “vmx” or “svm” in the CPU flags
+      listed in <filename>/proc/cpuinfo</filename>.</para>
+
+      <!--
+      TODO: add sidebar explaining the status of PowerPC, S390 port?
+      http://www.linux-kvm.org/page/Processor_support
+      http://www.linux-kvm.org/page/Status
+      -->
 
       <para>With Red Hat actively supporting its development, KVM looks
       poised to become the reference for Linux virtualization.</para>
@@ -2281,12 +2291,12 @@ scouzmir:~# </computeroutput></screen>
 	initialization script that loads the appropriate kernel
 	modules.</para>
         <indexterm><primary>libvirt</primary></indexterm>
-        <indexterm><primary><emphasis role="pkg">virtual-manager</emphasis></primary></indexterm>
+        <indexterm><primary><emphasis role="pkg">virt-manager</emphasis></primary></indexterm>
 
 	<para>Fortunately, Red Hat also provides another set of tools to
 	address that problem, by developing the
 	<emphasis>libvirt</emphasis> library and the associated
-	<emphasis>virtual-manager</emphasis> tools. libvirt allows managing
+	<emphasis>virtual machine manager</emphasis> tools. libvirt allows managing
 	virtual machines in a uniform way, independently of the
 	virtualization system involved behind the scenes (it currently
 	supports QEMU, KVM, Xen, LXC, OpenVZ, VirtualBox, VMWare and UML).
@@ -2295,7 +2305,7 @@ scouzmir:~# </computeroutput></screen>
         <indexterm><primary><emphasis role="pkg">virtinst</emphasis></primary></indexterm>
 
 	<para>We first install the required packages, with <command>apt-get
-	install qemu-kvm libvirt-bin virtinst virtual-manager
+	install qemu-kvm libvirt-bin virtinst virt-manager
 	virt-viewer</command>. <emphasis role="pkg">libvirt-bin</emphasis>
 	provides the <command>libvirtd</command> daemon, which allows
 	(potentially remote) management of the virtual machines running of
@@ -2438,7 +2448,7 @@ to the console to complete the installation process.
           <callout arearefs="virtinst.vnc">
 	    <para><literal>--vnc</literal> states that the graphical
 	    console should be made available using VNC. The default
-	    behavior for the associated VNC server is no only listen on
+	    behavior for the associated VNC server is to only listen on
 	    the local interface; if the VNC client is to be run on a
 	    different host, establishing the connection will require
 	    setting up an SSH tunnel (see <xref
@@ -2461,9 +2471,11 @@ to the console to complete the installation process.
 	process. If the previous operation was run from a graphical desktop
 	environment, this connection should be automatically started. If
 	not, or if we operate remotely, <command>virt-viewer</command> can
-	be used to run it:</para>
+	be run from any graphical environment to open the graphical console
+	(note that the root password of the remote host is asked twice because
+	the operation requires 2 SSH connections):</para>
 
-        <screen><computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@server/system
+        <screen><computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@<replaceable>server</replaceable>/system testkvm
 </userinput><computeroutput>root@server's password: 
 root@server's password: </computeroutput>
 </screen>
@@ -2494,7 +2506,8 @@ root@server's password: </computeroutput>
 </screen>
 
 	<para>We can now get the connection instructions for the graphical
-	console:</para>
+	console (the returned VNC display can be given as parameter
+	to <command>vncviewer</command>):</para>
 
         <screen><computeroutput># </computeroutput><userinput>virsh -c qemu:///system vncdisplay testkvm
 </userinput><computeroutput>:0</computeroutput>

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-06-20T21:00:52\n"
+"POT-Creation-Date: 2012-10-31T14:54:18\n"
 "PO-Revision-Date: 2012-06-21 00:04+0300\n"
 "Last-Translator: Saied <m-saied@live.com>\n"
 "Language-Team: None\n"
@@ -11,8 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Virtaal 0.7.0\n"
 
 #. Tag: keyword
@@ -216,8 +215,8 @@ msgid "System Information: Memory, Disk Space, Identity"
 msgstr "معلومات النظام: الذاكرة، مساحة الأقراص، الهوية"
 
 #. Tag: para
-#, no-c-format
-msgid "The <command>free</command> command displays information on memory; <command>df</command> (<emphasis>disk free</emphasis>) reports on the available disk space on each of the disks mounted in the filesystem. Its <literal>-h</literal> option (for <emphasis>human readable</emphasis>) converts the sizes into a more legible unit (usually megabytes or gigabytes). In a similar fashion, the <command>free</command> command understands the <literal>-m</literal> and <literal>-g</literal> options, and displays its data either in megabytes or in gigabytes, respectively."
+#, fuzzy, no-c-format
+msgid "The <command>free</command> command displays information on memory; <command>df</command> (<emphasis>disk free</emphasis>) reports on the available disk space on each of the disks mounted in the filesystem. Its <literal>-h</literal> option (for <emphasis>human readable</emphasis>) converts the sizes into a more legible unit (usually mebibytes or gibibytes). In a similar fashion, the <command>free</command> command understands the <literal>-m</literal> and <literal>-g</literal> options, and displays its data either in mebibytes or in gibibytes, respectively."
 msgstr "يعرض الأمر <command>free</command> معلومات عن الذاكرة؛ يعطي الأمر <command>df</command> (<emphasis>disk free</emphasis>) تقاريراً عن المساحة المتوفرة على كل واحد من الأقراص المركبة على نظام الملفات. يحوّل خيار <literal>-h</literal> (اختصاراً لـ <emphasis>human readable</emphasis>) الخاص به الأحجام إلى وحدة أكثر وضوحاً (عادة ميغابايت أو غيغابايت). وبنفس الأسلوب، يفهم الأمر <command>free</command> الخيار <literal>-m</literal> والخيار <literal>-g</literal>، ويعرض بياناته إما بالميغابايت أو بالغيغابايت."
 
 #. Tag: screen
@@ -627,11 +626,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "These programs have a <literal>-v</literal> option, that lists much more detailed (but usually not necessary) information. Finally, the <command>lsdev</command> command (in the <emphasis role=\"pkg\">procinfo</emphasis> package) lists communication resources used by devices."
-msgstr ""
-"لهذه البرامج خيار <literal>-v</literal>، الذي يسرد معلومات مفصلة أكثر بكثير "
-"(لكن عادة غير ضرورية). أخيراً، يسرد الأمر <command>lsdev</command> (الموجود "
-"في الحزمة <emphasis role=\"pkg\">procinfo</emphasis>) موارد التواصل التي "
-"تستهلكها الأجهزة."
+msgstr "لهذه البرامج خيار <literal>-v</literal>، الذي يسرد معلومات مفصلة أكثر بكثير (لكن عادة غير ضرورية). أخيراً، يسرد الأمر <command>lsdev</command> (الموجود في الحزمة <emphasis role=\"pkg\">procinfo</emphasis>) موارد التواصل التي تستهلكها الأجهزة."
 
 #. Tag: para
 #, no-c-format
@@ -656,10 +651,7 @@ msgstr "<primary>نظام، نظام ملفات</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Filesystems are one of the most prominent aspects of the kernel. Unix systems merge all the file stores into a single hierarchy, which allows users (and applications) to access data simply by knowing its location within that hierarchy."
-msgstr ""
-"أنظمة الملفات هي إحدى أهم مظاهر النواة. تدمج النظم المشابهة لـ يونكس جميع "
-"أجهزة تخزين الملفات في شجرة واحدة، والتي تسمح للمستخدمين (والتطبيقات) "
-"بالوصول إلى البيانات ببساطة بمعرفة مكانها ضمن تلك الشجرة."
+msgstr "أنظمة الملفات هي إحدى أهم مظاهر النواة. تدمج النظم المشابهة لـ يونكس جميع أجهزة تخزين الملفات في شجرة واحدة، والتي تسمح للمستخدمين (والتطبيقات) بالوصول إلى البيانات ببساطة بمعرفة مكانها ضمن تلك الشجرة."
 
 #. Tag: para
 #, no-c-format
@@ -704,14 +696,7 @@ msgstr "<primary><emphasis>pid</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "A process is a running instance of a program. This requires memory to store both the program itself and its operating data. The kernel is in charge of creating and tracking them. When a program runs, first the kernel sets aside memory, then loads the executable code from the filesystem into it, and then starts the code running. It keeps information about this process, the most visible of which, is an identification number known as <emphasis>pid</emphasis> (<emphasis>process identifier</emphasis>)."
-msgstr ""
-"العملية هي نسخة فعالة من البرنامج. هذا يستهلك ذاكرة لكل من البرنامج نفسه "
-"والبيانات التي يعمل عليها. النواة مسؤولة عن إنشاء وتتبع العمليات. عند تشغيل "
-"برنامج، تخصص النواة جزءًا من الذاكرة، ثم تُحمِّل الشفرة التنفيذية من نظام "
-"الملفات إليه، بعدها تبدأ الشفرة بالعمل. تحتفظ النواة بمعلومات عن هذه "
-"العملية، أكثر هذه المعلومات بيانًا للعيان هو رقم تعريف العملية الذي يعرف بـ "
-"<emphasis>pid</emphasis> (<emphasis>مُعرِّف العملية process "
-"identifier</emphasis>)."
+msgstr "العملية هي نسخة فعالة من البرنامج. هذا يستهلك ذاكرة لكل من البرنامج نفسه والبيانات التي يعمل عليها. النواة مسؤولة عن إنشاء وتتبع العمليات. عند تشغيل برنامج، تخصص النواة جزءًا من الذاكرة، ثم تُحمِّل الشفرة التنفيذية من نظام الملفات إليه، بعدها تبدأ الشفرة بالعمل. تحتفظ النواة بمعلومات عن هذه العملية، أكثر هذه المعلومات بيانًا للعيان هو رقم تعريف العملية الذي يعرف بـ <emphasis>pid</emphasis> (<emphasis>مُعرِّف العملية process identifier</emphasis>)."
 
 #. Tag: para
 #, no-c-format
@@ -741,15 +726,7 @@ msgstr "إدارة الحقوق"
 #. Tag: para
 #, no-c-format
 msgid "Unix-like systems are also multi-user. They provide a rights management system that allows separate groups and users, and for choosing to permit or block actions based on permissions. The kernel manages, for each process, data allowing permission checking. Most of the time, this means the process' “identity” is the same as the user that started it. And, the process is only able to take user permitted actions. For instance, trying to open a file requires the kernel to check the process identity against access permissions (for more details on this particular example, see <xref linkend=\"sect.rights-management\" />)."
-msgstr ""
-"نظم التشغيل المشابهة لـيونكس متعددة المستخدمين أيضًا. فهي تقدم نظام إدارة "
-"صلاحيات يسمح بوجود مستخدمين ومجموعات منفصلة، وبالسماح بعمل ما أو منعه "
-"اعتماداً على الصلاحيات. تدير النواة بيانات تسمح بالتحقق من الصلاحيات، لكل "
-"عملية على حدة. هذا يعني، معظم الأوقات أن ”هوية“ العملية هي هوية المستخدم "
-"الذي بدأها نفسها. وأن العملية قادرة على تنفيذ الأفعال التي يُسْمَح لذلك "
-"المستخدم بها فقط. مثلاً، تحتاج محاولة فتح ملف من النواة التحقق من هوية "
-"العملية استناداً صلاحيات الوصول (لمزيد من التفاصيل عن هذا المثال بالذات، "
-"انظر <xref linkend=\"sect.rights-management\" />)."
+msgstr "نظم التشغيل المشابهة لـيونكس متعددة المستخدمين أيضًا. فهي تقدم نظام إدارة صلاحيات يسمح بوجود مستخدمين ومجموعات منفصلة، وبالسماح بعمل ما أو منعه اعتماداً على الصلاحيات. تدير النواة بيانات تسمح بالتحقق من الصلاحيات، لكل عملية على حدة. هذا يعني، معظم الأوقات أن ”هوية“ العملية هي هوية المستخدم الذي بدأها نفسها. وأن العملية قادرة على تنفيذ الأفعال التي يُسْمَح لذلك المستخدم بها فقط. مثلاً، تحتاج محاولة فتح ملف من النواة التحقق من هوية العملية استناداً صلاحيات الوصول (لمزيد من التفاصيل عن هذا المثال بالذات، انظر <xref linkend=\"sect.rights-management\" />)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -794,16 +771,7 @@ msgstr "أحيانًا تتابع العملية الابن قيادة حيات�
 #. Tag: para
 #, no-c-format
 msgid "When a process finishes the task for which it was started, it terminates. The kernel then recovers the memory assigned to this process, and stops giving it slices of running time. The parent process is told about its child process being terminated, which allows a process to wait for the completion of a task it delegated to a child process. This behavior is plainly visible in command-line interpreters (known as <emphasis>shells</emphasis>). When a command is typed into a shell, the prompt only comes back when the execution of the command is over. Most shells allow for running the command in the background, it is a simple matter of adding an <userinput>&amp;</userinput> to the end of the command. The prompt is displayed again right away, which can lead to problems if the command needs to display data of its own."
-msgstr ""
-"عندما تنهي العملية المهمة التي بدأت لأجلها، تنتهي العملية. بعدها تستعيد "
-"النواة الذاكرة المحددة لهذه العملية، وتقطع عنها شرائح التشغيل الزمنية. "
-"تُخبَر العملية الأم عن انتهاء عمليتها الابن، ما يسمح لعملية ما أن تنتظر "
-"إنهاء مهمة فوضت بها عملية ابن. هذا السلوك واضح للعين المجردة في مفسرات سطر "
-"الأوامر (تعرف باسم <emphasis>الأصداف</emphasis>). عند كتابة أمر في "
-"الصَدَفَة، لا تعود إشارة الإدخال قبل انتهاء تنفيذ الأمر. تسمح معظم الأصداف "
-"بتشغيل الأوامر في الخلفية، يكون ذلك بسهولة بإضافة "
-"<userinput>&amp;</userinput> إلى نهاية الأمر. ستظهر إشارة الإدخال مجددًا "
-"مباشرة، وهو ما قد يسبب مشاكل إذا كان الأمر يحتاج لإظهار بيانات خاصة به."
+msgstr "عندما تنهي العملية المهمة التي بدأت لأجلها، تنتهي العملية. بعدها تستعيد النواة الذاكرة المحددة لهذه العملية، وتقطع عنها شرائح التشغيل الزمنية. تُخبَر العملية الأم عن انتهاء عمليتها الابن، ما يسمح لعملية ما أن تنتظر إنهاء مهمة فوضت بها عملية ابن. هذا السلوك واضح للعين المجردة في مفسرات سطر الأوامر (تعرف باسم <emphasis>الأصداف</emphasis>). عند كتابة أمر في الصَدَفَة، لا تعود إشارة الإدخال قبل انتهاء تنفيذ الأمر. تسمح معظم الأصداف بتشغيل الأوامر في الخلفية، يكون ذلك بسهولة بإضافة <userinput>&amp;</userinput> إلى نهاية الأمر. ستظهر إشارة الإدخال مجددًا مباشرة، وهو ما قد يسبب مشاكل إذا كان الأمر يحتاج لإظهار بيانات خاصة به."
 
 #. Tag: title
 #, no-c-format
@@ -931,8 +899,8 @@ msgid "<primary>library (of functions)</primary>"
 msgstr "<primary>مكتبة (للدوال)</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Function libraries play a crucial role in a Unix-like operating system. They are not proper programs, since they cannot be executed on their own, but collections of code fragments that can be used by standard programs. Among the common libraries, the most noteworthy include:"
+#, fuzzy, no-c-format
+msgid "Function libraries play a crucial role in a Unix-like operating system. They are not proper programs, since they cannot be executed on their own, but collections of code fragments that can be used by standard programs. Among the common libraries, you can find:"
 msgstr "تلعب مكتبات الدوال دوراً حيويًا في نظم التشغيل المشابه لـ يونكس. ليست هذه المكتبات برامج تامة، نظرًا لعدم إمكانية تنفيذها منفردة، لكنها مجموعة من فتات الكود التي يمكن للبرامج القياسية استخدامه. من المكتبات الشائعة، نذكر ما يلي:"
 
 #. Tag: para
@@ -941,8 +909,8 @@ msgid "the standard C library (<emphasis>glibc</emphasis>), which contains basic
 msgstr "مكتبة C القياسية (<emphasis>glibc</emphasis>)، التي تحوي الوظائف الأساسية مثل دوال فتح الملفات أو الاتصالات الشبكية، وأخرى تسهل التفاعل مع النواة؛"
 
 #. Tag: para
-#, no-c-format
-msgid "graphical toolkits, Gtk+ and Qt, allowing many programs to reuse the graphical objects they provide;"
+#, fuzzy, no-c-format
+msgid "graphical toolkits, such as Gtk+ and Qt, allowing many programs to reuse the graphical objects they provide;"
 msgstr "المكتبات الرسومية، Gtk+ وQt، تسمح للعديد من البرامج بإعادة استخدام الكائنات الرسومية التي توفرها؛"
 
 #. Tag: para
@@ -963,17 +931,7 @@ msgstr "<emphasis>ثقافة</emphasis> أسلوب يونكس: مهمة واحد
 #. Tag: para
 #, no-c-format
 msgid "One of the fundamental concepts that underlies the Unix family of operating systems is that each tool should only do one thing, and do it well; applications can then reuse these tools to build more advanced logic on top. This Way can be seen in many incarnations. Shell scripts may be the best example: they assemble complex sequences of very simple tools (such as <command>grep</command>, <command>wc</command>, <command>sort</command>, <command>uniq</command> and so on). Another implementation of this philosophy can be seen in code libraries: the <emphasis>libpng</emphasis> library allows reading and writing PNG images, with different options and in different ways, but it does only that; no question of including functions that display or edit images."
-msgstr ""
-"أحد المفاهيم الأساسية التي تحدد عائلة نظم تشغيل يونكس هو أن كل أداة يجب أن "
-"تفعل شيئا واحدا فقط، وأن تتمه بشكل جيد؛ يمكن للتطبيقات بعد ذلك إعادة استخدام "
-"هذه الأدوات لبناء منطق أكثر تقدّما فوقها. يمكن أن نرى هذه الطريقة في العديد "
-"من تمثيلات يونكس. قد تكون سكريبتات الصدفة أفضل مثال: فهي تجمع متتاليات "
-"معقدة لأدوات بسيطة جدًا (مثل <command>grep</command>، <command>wc</command>، "
-"<command>sort</command>، و<command>uniq</command> وهكذا). يمكن أن نرى "
-"تطبيقًا آخر لهذه الفلسفة في مكتبات الكود: تسمح مكتبة "
-"<emphasis>libpng</emphasis> بقراءة وكتابة صور PNG، بخيارات مختلفة وبأساليب "
-"متنوعة، لكنها لا تفعل غير ذلك؛ لا توجد إمكانية لتضمين دوال تعرض الصور أو "
-"تحررها."
+msgstr "أحد المفاهيم الأساسية التي تحدد عائلة نظم تشغيل يونكس هو أن كل أداة يجب أن تفعل شيئا واحدا فقط، وأن تتمه بشكل جيد؛ يمكن للتطبيقات بعد ذلك إعادة استخدام هذه الأدوات لبناء منطق أكثر تقدّما فوقها. يمكن أن نرى هذه الطريقة في العديد من تمثيلات يونكس. قد تكون سكريبتات الصدفة أفضل مثال: فهي تجمع متتاليات معقدة لأدوات بسيطة جدًا (مثل <command>grep</command>، <command>wc</command>، <command>sort</command>، و<command>uniq</command> وهكذا). يمكن أن نرى تطبيقًا آخر لهذه الفلسفة في مكتبات الكود: تسمح مكتبة <emphasis>libpng</emphasis> بقراءة وكتابة صور PNG، بخيارات مختلفة وبأساليب متنوعة، لكنها لا تفعل غير ذلك؛ لا توجد إمكانية لتضمين دوال تعرض الصور أو تحررها."
 
 #. Tag: para
 #, no-c-format

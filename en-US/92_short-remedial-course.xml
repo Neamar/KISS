@@ -180,10 +180,10 @@ Documents  Music      Public    test</computeroutput>
       reports on the available disk space on each of the disks mounted in
       the filesystem. Its <literal>-h</literal> option (for <emphasis>human
       readable</emphasis>) converts the sizes into a more legible unit
-      (usually megabytes or gigabytes). In a similar fashion, the
+      (usually mebibytes or gibibytes). In a similar fashion, the
       <command>free</command> command understands the <literal>-m</literal>
       and <literal>-g</literal> options, and displays its data either in
-      megabytes or in gigabytes, respectively.</para>
+      mebibytes or in gibibytes, respectively.</para>
 
       <screen>
 <computeroutput>$ </computeroutput><userinput>free</userinput>
@@ -894,8 +894,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       <para>Function libraries play a crucial role in a Unix-like operating
       system. They are not proper programs, since they cannot be executed
       on their own, but collections of code fragments that can be used by
-      standard programs. Among the common libraries, the most noteworthy
-      include:</para>
+      standard programs. Among the common libraries, you can find:</para>
       <itemizedlist>
         <listitem>
 	  <para>the standard C library (<emphasis>glibc</emphasis>), which
@@ -904,7 +903,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
 	  kernel;</para>
         </listitem>
         <listitem>
-	  <para>graphical toolkits, Gtk+ and Qt, allowing many programs to
+	  <para>graphical toolkits, such as Gtk+ and Qt, allowing many programs to
 	  reuse the graphical objects they provide;</para>
         </listitem>
         <listitem>
@@ -913,7 +912,6 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
         </listitem>
       </itemizedlist>
 
-      
       <para>Thanks to those libraries, applications can reuse existing
       code. Their development is thus correspondingly simplified, in
       particular when many applications reuse the same functions. Since

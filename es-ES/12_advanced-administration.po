@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-06-01T20:23:58\n"
+"POT-Creation-Date: 2012-10-31T14:54:18\n"
 "PO-Revision-Date: 2012-05-09T20:00:21\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
@@ -1032,7 +1032,9 @@ msgstr ""
 #, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on/dev/mapper/vg_critical-lv_files                      5.0G  4.6G  142M  98% /srv/files\n"
+"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_files\n"
+"                      5.0G  4.6G  142M  98% /srv/files\n"
 "# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
 "<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert\n"
 "  lv_files vg_critical -wi-ao 5.00g\n"
@@ -1296,7 +1298,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Let's spend some time on terms. The hypervisor is the lowest layer, that runs directly on the hardware, even below the kernel. This hypervisor can split the rest of the software across several <emphasis>domains</emphasis>, which can be seen as so many virtual machines. One of these domains (the first one that gets started) is known as <emphasis>dom0</emphasis>, and has a special role, since only this domain can control the hypervisor and the execution of other domains. These other domains are known as <emphasis>domU</emphasis>. In other words, and from a user point of view, the <emphasis>dom0</emphasis> matches the “host” of other virtualizaton systems, while a <emphasis>domU</emphasis> can be seen as a “guest”."
+msgid "Let's spend some time on terms. The hypervisor is the lowest layer, that runs directly on the hardware, even below the kernel. This hypervisor can split the rest of the software across several <emphasis>domains</emphasis>, which can be seen as so many virtual machines. One of these domains (the first one that gets started) is known as <emphasis>dom0</emphasis>, and has a special role, since only this domain can control the hypervisor and the execution of other domains. These other domains are known as <emphasis>domU</emphasis>. In other words, and from a user point of view, the <emphasis>dom0</emphasis> matches the “host” of other virtualization systems, while a <emphasis>domU</emphasis> can be seen as a “guest”."
 msgstr ""
 
 #. Tag: title
@@ -1489,22 +1491,22 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Then comes the <emphasis>routing</emphasis> mode, where the dom0 behaves as a router that stands between the domU systems and the (physical) external network."
+msgid "Then comes the <emphasis>routing</emphasis> model, where the dom0 behaves as a router that stands between the domU systems and the (physical) external network."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Finally, in the <emphasis>NAT</emphasis> mode, the dom0 is again between the domU systems and the rest of the network, but the domU systems are not directly accessible from outside, and traffic goes through some network address translation on the dom0."
+msgid "Finally, in the <emphasis>NAT</emphasis> model, the dom0 is again between the domU systems and the rest of the network, but the domU systems are not directly accessible from outside, and traffic goes through some network address translation on the dom0."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "These three networking nodes involve a number of interfaces with unusual names, such as <filename>vif*</filename>, <filename>veth*</filename>, <filename>peth*</filename> and <filename>xenbr0</filename>. The Xen hypervisor arranges them in whichever layout has been defined, under the control of the user-space tools. Since the NAT and routing modes are only adapted to particular cases, we will only address the bridging model."
+msgid "These three networking nodes involve a number of interfaces with unusual names, such as <filename>vif*</filename>, <filename>veth*</filename>, <filename>peth*</filename> and <filename>xenbr0</filename>. The Xen hypervisor arranges them in whichever layout has been defined, under the control of the user-space tools. Since the NAT and routing models are only adapted to particular cases, we will only address the bridging model."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The standard configuration of the Xen packages does not change the system-wide network configuration. However, the <command>xend</command> daemon is configured to integrate virtual network interfaces into any pre-existing network bridge (with <filename>xenbr0</filename> taking precedence if several such bridges exist). We must therefore set up a bridge in <filename>/etc/network/interfaces</filename> (which requires installing the <emphasis role=\"pkg\">bridge-utils</emphasis> package, which is why the <emphasis role=\"pkg\">xen-utils-4.0</emphasis> recommends it) to replace the existing eth0 entry:"
+msgid "The standard configuration of the Xen packages does not change the system-wide network configuration. However, the <command>xend</command> daemon is configured to integrate virtual network interfaces into any pre-existing network bridge (with <filename>xenbr0</filename> taking precedence if several such bridges exist). We must therefore set up a bridge in <filename>/etc/network/interfaces</filename> (which requires installing the <emphasis role=\"pkg\">bridge-utils</emphasis> package, which is why the <emphasis role=\"pkg\">xen-utils-4.0</emphasis> package recommends it) to replace the existing eth0 entry:"
 msgstr ""
 
 #. Tag: programlisting
@@ -1628,7 +1630,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Even though it's used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantages of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
+msgid "Even though it's used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantage of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
 msgstr ""
 
 #. Tag: para
@@ -1739,7 +1741,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The effect of this configuration will be similar to what would be obtained if the containers were machines plugged into the same physical network as the host. The “bridge” configuration makes the Ethernet frames on all the bridged interfaces, which includes the physical <literal>eth0</literal> as well as the interfaces defined for the containers."
+msgid "The effect of this configuration will be similar to what would be obtained if the containers were machines plugged into the same physical network as the host. The “bridge” configuration manages the transit of Ethernet frames between all the bridged interfaces, which includes the physical <literal>eth0</literal> as well as the interfaces defined for the containers."
 msgstr ""
 
 #. Tag: para
@@ -1774,7 +1776,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The network can then be either be set up statically in the containers, or dynamically with DHCP server running on the host. Such a DHCP server will need to be configured to answer queries on the <literal>br0</literal> interface."
+msgid "The network can then be set up either statically in the containers, or dynamically with DHCP server running on the host. Such a DHCP server will need to be configured to answer queries on the <literal>br0</literal> interface."
 msgstr ""
 
 #. Tag: title
@@ -1952,7 +1954,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Unlike other virtualization systems, KVM was merged into the Linux kernel right from the start. Its developers chose to take advantage of the processor instruction sets dedicated to virtualization (Intel-VT and AMD-V), which keeps KVM lightweight, elegant and not resource-hungry. The counterpart, of course, is that KVM only works on i386 and amd64 processors, and only those recent enough to have these instruction sets."
+msgid "Unlike other virtualization systems, KVM was merged into the Linux kernel right from the start. Its developers chose to take advantage of the processor instruction sets dedicated to virtualization (Intel-VT and AMD-V), which keeps KVM lightweight, elegant and not resource-hungry. The counterpart, of course, is that KVM mainly works on i386 and amd64 processors, and only those recent enough to have these instruction sets. You can ensure that you have such a processor if you have “vmx” or “svm” in the CPU flags listed in <filename>/proc/cpuinfo</filename>."
 msgstr ""
 
 #. Tag: para
@@ -1977,12 +1979,12 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary><emphasis role=\"pkg\">virtual-manager</emphasis></primary>"
+msgid "<primary><emphasis role=\"pkg\">virt-manager</emphasis></primary>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Fortunately, Red Hat also provides another set of tools to address that problem, by developing the <emphasis>libvirt</emphasis> library and the associated <emphasis>virtual-manager</emphasis> tools. libvirt allows managing virtual machines in a uniform way, independently of the virtualization system involved behind the scenes (it currently supports QEMU, KVM, Xen, LXC, OpenVZ, VirtualBox, VMWare and UML). <command>virtual-manager</command> is a graphical interface that uses libvirt to create and manage virtual machines."
+msgid "Fortunately, Red Hat also provides another set of tools to address that problem, by developing the <emphasis>libvirt</emphasis> library and the associated <emphasis>virtual machine manager</emphasis> tools. libvirt allows managing virtual machines in a uniform way, independently of the virtualization system involved behind the scenes (it currently supports QEMU, KVM, Xen, LXC, OpenVZ, VirtualBox, VMWare and UML). <command>virtual-manager</command> is a graphical interface that uses libvirt to create and manage virtual machines."
 msgstr ""
 
 #. Tag: indexterm
@@ -1992,7 +1994,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "We first install the required packages, with <command>apt-get install qemu-kvm libvirt-bin virtinst virtual-manager virt-viewer</command>. <emphasis role=\"pkg\">libvirt-bin</emphasis> provides the <command>libvirtd</command> daemon, which allows (potentially remote) management of the virtual machines running of the host, and starts the required VMs when the host boots. In addition, this package provides the <command>virsh</command> command-line tool, which allows controlling the <command>libvirtd</command>-managed machines."
+msgid "We first install the required packages, with <command>apt-get install qemu-kvm libvirt-bin virtinst virt-manager virt-viewer</command>. <emphasis role=\"pkg\">libvirt-bin</emphasis> provides the <command>libvirtd</command> daemon, which allows (potentially remote) management of the virtual machines running of the host, and starts the required VMs when the host boots. In addition, this package provides the <command>virsh</command> command-line tool, which allows controlling the <command>libvirtd</command>-managed machines."
 msgstr ""
 
 #. Tag: para
@@ -2106,7 +2108,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>--vnc</literal> states that the graphical console should be made available using VNC. The default behavior for the associated VNC server is no only listen on the local interface; if the VNC client is to be run on a different host, establishing the connection will require setting up an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). Alternatively, the <literal>--vnclisten=0.0.0.0</literal> can be used so that the VNC server is accessible from all interfaces; note that if you do that, you really should design your firewall accordingly."
+msgid "<literal>--vnc</literal> states that the graphical console should be made available using VNC. The default behavior for the associated VNC server is to only listen on the local interface; if the VNC client is to be run on a different host, establishing the connection will require setting up an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). Alternatively, the <literal>--vnclisten=0.0.0.0</literal> can be used so that the VNC server is accessible from all interfaces; note that if you do that, you really should design your firewall accordingly."
 msgstr ""
 
 #. Tag: para
@@ -2116,13 +2118,13 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "At this point, the virtual machine is running, and we need to connect to the graphical console to proceed with the installation process. If the previous operation was run from a graphical desktop environment, this connection should be automatically started. If not, or if we operate remotely, <command>virt-viewer</command> can be used to run it:"
+msgid "At this point, the virtual machine is running, and we need to connect to the graphical console to proceed with the installation process. If the previous operation was run from a graphical desktop environment, this connection should be automatically started. If not, or if we operate remotely, <command>virt-viewer</command> can be run from any graphical environment to open the graphical console (note that the root password of the remote host is asked twice because the operation requires 2 SSH connections):"
 msgstr ""
 
 #. Tag: screen
 #, no-c-format
 msgid ""
-"<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@server/system\n"
+"<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@<replaceable>server</replaceable>/system testkvm\n"
 "</userinput><computeroutput>root@server's password: \n"
 "root@server's password: </computeroutput>\n"
 msgstr ""
@@ -2171,7 +2173,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "We can now get the connection instructions for the graphical console:"
+msgid "We can now get the connection instructions for the graphical console (the returned VNC display can be given as parameter to <command>vncviewer</command>):"
 msgstr ""
 
 #. Tag: screen

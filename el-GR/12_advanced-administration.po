@@ -1,13 +1,14 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-06-01T20:23:58\n"
+"POT-Creation-Date: 2012-10-31T14:54:18\n"
 "PO-Revision-Date: 2012-06-01T20:23:58\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -334,7 +335,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>\n"
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
 "mdadm: array /dev/md0 started.\n"
 "# </computeroutput><userinput>mdadm --query /dev/md0</userinput>\n"
@@ -394,7 +396,6 @@ msgid "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --l
 "<computeroutput># </computeroutput><userinput>df -h /srv/raid-0</userinput>\n"
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
 "/dev/md0              8.0G  249M  7.4G   4% /srv/raid-0</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -409,7 +410,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdg2 /dev/sdh</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdg2 /dev/sdh</userinput>\n"
 "<computeroutput>mdadm: largest drive (/dev/sdg2) exceed size (4194240K) by more than 1%\n"
 "Continue creating array? </computeroutput><userinput>y</userinput>\n"
 "<computeroutput>mdadm: array /dev/md1 started.\n"
@@ -448,7 +450,6 @@ msgid "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --l
 "          State : active\n"
 "[...]\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -508,7 +509,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sdh</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sdh</userinput>\n"
 "<computeroutput>mdadm: set /dev/sdh faulty in /dev/md1\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
@@ -529,7 +531,6 @@ msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/
 "       1       0        0        1      removed\n"
 "\n"
 "       2       8      112        -      faulty spare  /dev/sdh</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -539,7 +540,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdi</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdi</userinput>\n"
 "<computeroutput>mdadm: added /dev/sdi\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
@@ -587,7 +589,6 @@ msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/s
 "       1       8      128        1      active sync   /dev/sdi\n"
 "\n"
 "       2       8      112        -      faulty spare   /dev/sdh</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -597,7 +598,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sdh</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sdh</userinput>\n"
 "<computeroutput>mdadm: hot removed /dev/sdh from /dev/md1\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
@@ -605,7 +607,6 @@ msgid "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /de
 "    Number   Major   Minor   RaidDevice State\n"
 "       0       8       98        0      active sync   /dev/sdg2\n"
 "       1       8      128        1      active sync   /dev/sdi</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -635,7 +636,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# mdadm.conf\n"
+msgid ""
+"# mdadm.conf\n"
 "#\n"
 "# Please refer to mdadm.conf(5) for information about this file.\n"
 "#\n"
@@ -655,7 +657,6 @@ msgid "# mdadm.conf\n"
 "\n"
 "ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
 "ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -675,10 +676,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
 "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
 "ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -783,7 +784,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
 "<computeroutput>  Physical volume \"/dev/sdb2\" successfully created\n"
 "# </computeroutput><userinput>pvdisplay</userinput>\n"
@@ -812,7 +814,6 @@ msgid "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 "  /dev/sdd        lvm2 a-   4.00g 4.00g\n"
 "  /dev/sdf1       lvm2 a-   4.10g 4.10g\n"
 "  /dev/sdf2       lvm2 a-   5.22g 5.22g</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -827,7 +828,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 /dev/sdf1</userinput>\n"
 "<computeroutput>  Volume group \"vg_critical\" successfully created\n"
 "# </computeroutput><userinput>vgdisplay</userinput>\n"
@@ -858,7 +860,6 @@ msgid "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree\n"
 "  vg_critical   2   0   0 wz--n-  8.14g  8.14g\n"
 "  vg_normal     3   0   0 wz--n- 12.30g 12.30g</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -873,7 +874,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
 "<computeroutput>  Logical volume \"lv_files\" created\n"
 "# </computeroutput><userinput>lvdisplay</userinput>\n"
@@ -901,7 +903,6 @@ msgid "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 "  lv_base    vg_critical -wi-a-  1.00G\n"
 "  lv_files   vg_critical -wi-a-  5.00G\n"
 "  lv_backups vg_normal   -wi-a- 12.00G</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -936,7 +937,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 "<computeroutput>total 0\n"
 "crw-rw---- 1 root root  10, 59  5 oct.  17:40 control\n"
 "lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_critical-lv_base -&gt; ../dm-1\n"
@@ -946,7 +948,6 @@ msgid "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinpu
 "<computeroutput>brw-rw---- 1 root disk 253,  0  5 oct.  18:14 /dev/dm-0\n"
 "brw-rw---- 1 root disk 253,  1  5 oct.  18:14 /dev/dm-1\n"
 "brw-rw---- 1 root disk 253,  2  5 oct.  18:14 /dev/dm-2</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -971,14 +972,14 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
 "<computeroutput>total 0\n"
 "lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_base -&gt; ../dm-1\n"
 "lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_files -&gt; ../dm-0\n"
 "# </computeroutput><userinput>ls -l /dev/vg_normal</userinput>\n"
 "<computeroutput>total 0\n"
 "lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_backups -&gt; ../dm-2</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -988,7 +989,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
 "<computeroutput>mke2fs 1.41.12 (17-May-2010)\n"
 "Filesystem label=\n"
 "OS type: Linux\n"
@@ -1009,7 +1011,6 @@ msgid "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv
 "/dev/vg_critical/lv_base    /srv/base       ext4\n"
 "/dev/vg_critical/lv_files   /srv/files      ext4\n"
 "/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1029,8 +1030,11 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on/dev/mapper/vg_critical-lv_files                      5.0G  4.6G  142M  98% /srv/files\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
+"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_files\n"
+"                      5.0G  4.6G  142M  98% /srv/files\n"
 "# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
 "<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert\n"
 "  lv_files vg_critical -wi-ao 5.00g\n"
@@ -1054,7 +1058,6 @@ msgid "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinpu
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_files\n"
 "                      6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1079,14 +1082,14 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_base\n"
 "                     1008M  835M  123M  88% /srv/base\n"
 "# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
 "  vg_critical   2   2   0 wz--n- 8.14g 144.00m</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1096,7 +1099,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
 "<computeroutput>  Physical volume \"/dev/sdb1\" successfully created\n"
 "# </computeroutput><userinput>vgextend vg_critical /dev/sdb1</userinput>\n"
 "<computeroutput>  Volume group \"vg_critical\" successfully extended\n"
@@ -1109,7 +1113,6 @@ msgid "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinp
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_base\n"
 "                      2.0G  835M  1.1G  44% /srv/base</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1159,7 +1162,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinput>\n"
 "<computeroutput>\n"
 "Disk /dev/hda: 300.0 GB, 300090728448 bytes\n"
 "255 heads, 63 sectors/track, 36483 cylinders\n"
@@ -1175,7 +1179,6 @@ msgid "<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinpu
 "/dev/sda5             249    12697    99996561   fd  Linux raid autodetect\n"
 "/dev/sda6           12698    25146    99996561   fd  Linux raid autodetect\n"
 "/dev/sda7           25147    36483    91064421   8e  Linux LVM</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1295,7 +1298,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Let's spend some time on terms. The hypervisor is the lowest layer, that runs directly on the hardware, even below the kernel. This hypervisor can split the rest of the software across several <emphasis>domains</emphasis>, which can be seen as so many virtual machines. One of these domains (the first one that gets started) is known as <emphasis>dom0</emphasis>, and has a special role, since only this domain can control the hypervisor and the execution of other domains. These other domains are known as <emphasis>domU</emphasis>. In other words, and from a user point of view, the <emphasis>dom0</emphasis> matches the “host” of other virtualizaton systems, while a <emphasis>domU</emphasis> can be seen as a “guest”."
+msgid "Let's spend some time on terms. The hypervisor is the lowest layer, that runs directly on the hardware, even below the kernel. This hypervisor can split the rest of the software across several <emphasis>domains</emphasis>, which can be seen as so many virtual machines. One of these domains (the first one that gets started) is known as <emphasis>dom0</emphasis>, and has a special role, since only this domain can control the hypervisor and the execution of other domains. These other domains are known as <emphasis>domU</emphasis>. In other words, and from a user point of view, the <emphasis>dom0</emphasis> matches the “host” of other virtualization systems, while a <emphasis>domU</emphasis> can be seen as a “guest”."
 msgstr ""
 
 #. Tag: title
@@ -1370,10 +1373,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen /etc/grub.d/09_linux_xen\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen /etc/grub.d/09_linux_xen\n"
 "</userinput><computeroutput># </computeroutput><userinput>update-grub\n"
 "</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1443,7 +1446,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>xen-create-image --hostname=testxen</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>xen-create-image --hostname=testxen</userinput>\n"
 "<computeroutput>\n"
 "General Information\n"
 "--------------------\n"
@@ -1468,7 +1472,6 @@ msgid "<computeroutput># </computeroutput><userinput>xen-create-image --hostname
 "RSA Fingerprint :  25:6b:6b:c7:84:03:9e:8b:82:da:84:c0:08:cd:29:94\n"
 "Root Password   :  52emxRmM\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1488,27 +1491,28 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Then comes the <emphasis>routing</emphasis> mode, where the dom0 behaves as a router that stands between the domU systems and the (physical) external network."
+msgid "Then comes the <emphasis>routing</emphasis> model, where the dom0 behaves as a router that stands between the domU systems and the (physical) external network."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Finally, in the <emphasis>NAT</emphasis> mode, the dom0 is again between the domU systems and the rest of the network, but the domU systems are not directly accessible from outside, and traffic goes through some network address translation on the dom0."
+msgid "Finally, in the <emphasis>NAT</emphasis> model, the dom0 is again between the domU systems and the rest of the network, but the domU systems are not directly accessible from outside, and traffic goes through some network address translation on the dom0."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "These three networking nodes involve a number of interfaces with unusual names, such as <filename>vif*</filename>, <filename>veth*</filename>, <filename>peth*</filename> and <filename>xenbr0</filename>. The Xen hypervisor arranges them in whichever layout has been defined, under the control of the user-space tools. Since the NAT and routing modes are only adapted to particular cases, we will only address the bridging model."
+msgid "These three networking nodes involve a number of interfaces with unusual names, such as <filename>vif*</filename>, <filename>veth*</filename>, <filename>peth*</filename> and <filename>xenbr0</filename>. The Xen hypervisor arranges them in whichever layout has been defined, under the control of the user-space tools. Since the NAT and routing models are only adapted to particular cases, we will only address the bridging model."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The standard configuration of the Xen packages does not change the system-wide network configuration. However, the <command>xend</command> daemon is configured to integrate virtual network interfaces into any pre-existing network bridge (with <filename>xenbr0</filename> taking precedence if several such bridges exist). We must therefore set up a bridge in <filename>/etc/network/interfaces</filename> (which requires installing the <emphasis role=\"pkg\">bridge-utils</emphasis> package, which is why the <emphasis role=\"pkg\">xen-utils-4.0</emphasis> recommends it) to replace the existing eth0 entry:"
+msgid "The standard configuration of the Xen packages does not change the system-wide network configuration. However, the <command>xend</command> daemon is configured to integrate virtual network interfaces into any pre-existing network bridge (with <filename>xenbr0</filename> taking precedence if several such bridges exist). We must therefore set up a bridge in <filename>/etc/network/interfaces</filename> (which requires installing the <emphasis role=\"pkg\">bridge-utils</emphasis> package, which is why the <emphasis role=\"pkg\">xen-utils-4.0</emphasis> package recommends it) to replace the existing eth0 entry:"
 msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "auto xenbr0\n"
+msgid ""
+"auto xenbr0\n"
 "iface xenbr0 inet dhcp\n"
 "    bridge_ports eth0\n"
 "    bridge_maxwait 0\n"
@@ -1522,7 +1526,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
 "<computeroutput>Name                            ID Mem VCPUs  State   Time(s)\n"
 "Domain-0                         0 940     1 r-----   3896.9\n"
 "# </computeroutput><userinput>xm create testxen.cfg</userinput>\n"
@@ -1532,7 +1537,6 @@ msgid "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
 "<computeroutput>Name                            ID Mem VCPUs  State   Time(s)\n"
 "Domain-0                         0 873     1 r-----   3917.1\n"
 "testxen                          1 128     1 -b----      3.7</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1557,7 +1561,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
 "<computeroutput>[...]\n"
 "Starting enhanced syslogd: rsyslogd.\n"
 "Starting periodic command scheduler: cron.\n"
@@ -1566,7 +1571,6 @@ msgid "<computeroutput># </computeroutput><userinput>xm console testxen</userinp
 "Debian GNU/Linux 6.0 testxen hvc0\n"
 "\n"
 "testxen login: </computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1626,7 +1630,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Even though it's used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantages of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
+msgid "Even though it's used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantage of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
 msgstr ""
 
 #. Tag: para
@@ -1686,10 +1690,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# /etc/fstab: static file system information.\n"
+msgid ""
+"# /etc/fstab: static file system information.\n"
 "[...]\n"
 "cgroup            /sys/fs/cgroup           cgroup    defaults        0       0\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1714,7 +1718,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "auto eth0\n"
+msgid ""
+"auto eth0\n"
 "iface eth0 inet dhcp"
 msgstr ""
 
@@ -1725,7 +1730,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "#auto eth0\n"
+msgid ""
+"#auto eth0\n"
 "#iface eth0 inet dhcp\n"
 "\n"
 "auto br0\n"
@@ -1735,7 +1741,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The effect of this configuration will be similar to what would be obtained if the containers were machines plugged into the same physical network as the host. The “bridge” configuration makes the Ethernet frames on all the bridged interfaces, which includes the physical <literal>eth0</literal> as well as the interfaces defined for the containers."
+msgid "The effect of this configuration will be similar to what would be obtained if the containers were machines plugged into the same physical network as the host. The “bridge” configuration manages the transit of Ethernet frames between all the bridged interfaces, which includes the physical <literal>eth0</literal> as well as the interfaces defined for the containers."
 msgstr ""
 
 #. Tag: para
@@ -1750,7 +1756,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# Interface eth0 is unchanged\n"
+msgid ""
+"# Interface eth0 is unchanged\n"
 "auto eth0\n"
 "iface eth0 inet dhcp\n"
 "\n"
@@ -1765,12 +1772,11 @@ msgid "# Interface eth0 is unchanged\n"
 "  bridge-ports tap0\n"
 "  address 10.0.0.1\n"
 "  netmask 255.255.255.0\n"
-""
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The network can then be either be set up statically in the containers, or dynamically with DHCP server running on the host. Such a DHCP server will need to be configured to answer queries on the <literal>br0</literal> interface."
+msgid "The network can then be set up either statically in the containers, or dynamically with DHCP server running on the host. Such a DHCP server will need to be configured to answer queries on the <literal>br0</literal> interface."
 msgstr ""
 
 #. Tag: title
@@ -1785,7 +1791,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
+msgid ""
+"<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
 "</userinput><computeroutput>root@scouzmir:~# </computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/\n"
 "</userinput><computeroutput>debootstrap is /usr/sbin/debootstrap\n"
 "Checking cache download in /var/cache/lxc/debian/rootfs-i386 ... \n"
@@ -1817,11 +1824,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "lxc.network.type = veth\n"
+msgid ""
+"lxc.network.type = veth\n"
 "lxc.network.flags = up\n"
 "lxc.network.link = br0\n"
 "lxc.network.hwaddr = 4a:49:43:49:79:20\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1841,7 +1848,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc\n"
+msgid ""
+"<computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc\n"
 "</userinput><computeroutput>INIT: version 2.86 booting\n"
 "Activating swap...done.\n"
 "Cleaning up ifupdown....\n"
@@ -1946,7 +1954,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Unlike other virtualization systems, KVM was merged into the Linux kernel right from the start. Its developers chose to take advantage of the processor instruction sets dedicated to virtualization (Intel-VT and AMD-V), which keeps KVM lightweight, elegant and not resource-hungry. The counterpart, of course, is that KVM only works on i386 and amd64 processors, and only those recent enough to have these instruction sets."
+msgid "Unlike other virtualization systems, KVM was merged into the Linux kernel right from the start. Its developers chose to take advantage of the processor instruction sets dedicated to virtualization (Intel-VT and AMD-V), which keeps KVM lightweight, elegant and not resource-hungry. The counterpart, of course, is that KVM mainly works on i386 and amd64 processors, and only those recent enough to have these instruction sets. You can ensure that you have such a processor if you have “vmx” or “svm” in the CPU flags listed in <filename>/proc/cpuinfo</filename>."
 msgstr ""
 
 #. Tag: para
@@ -1971,12 +1979,12 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary><emphasis role=\"pkg\">virtual-manager</emphasis></primary>"
+msgid "<primary><emphasis role=\"pkg\">virt-manager</emphasis></primary>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Fortunately, Red Hat also provides another set of tools to address that problem, by developing the <emphasis>libvirt</emphasis> library and the associated <emphasis>virtual-manager</emphasis> tools. libvirt allows managing virtual machines in a uniform way, independently of the virtualization system involved behind the scenes (it currently supports QEMU, KVM, Xen, LXC, OpenVZ, VirtualBox, VMWare and UML). <command>virtual-manager</command> is a graphical interface that uses libvirt to create and manage virtual machines."
+msgid "Fortunately, Red Hat also provides another set of tools to address that problem, by developing the <emphasis>libvirt</emphasis> library and the associated <emphasis>virtual machine manager</emphasis> tools. libvirt allows managing virtual machines in a uniform way, independently of the virtualization system involved behind the scenes (it currently supports QEMU, KVM, Xen, LXC, OpenVZ, VirtualBox, VMWare and UML). <command>virtual-manager</command> is a graphical interface that uses libvirt to create and manage virtual machines."
 msgstr ""
 
 #. Tag: indexterm
@@ -1986,7 +1994,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "We first install the required packages, with <command>apt-get install qemu-kvm libvirt-bin virtinst virtual-manager virt-viewer</command>. <emphasis role=\"pkg\">libvirt-bin</emphasis> provides the <command>libvirtd</command> daemon, which allows (potentially remote) management of the virtual machines running of the host, and starts the required VMs when the host boots. In addition, this package provides the <command>virsh</command> command-line tool, which allows controlling the <command>libvirtd</command>-managed machines."
+msgid "We first install the required packages, with <command>apt-get install qemu-kvm libvirt-bin virtinst virt-manager virt-viewer</command>. <emphasis role=\"pkg\">libvirt-bin</emphasis> provides the <command>libvirtd</command> daemon, which allows (potentially remote) management of the virtual machines running of the host, and starts the required VMs when the host boots. In addition, this package provides the <command>virsh</command> command-line tool, which allows controlling the <command>libvirtd</command>-managed machines."
 msgstr ""
 
 #. Tag: para
@@ -2032,7 +2040,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>virsh pool-create-as srv-kvm dir --target /srv/kvm</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2042,7 +2049,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
 "               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
 "               --name testkvm            <co id=\"virtinst.name\"></co>\n"
 "               --ram 1024                <co id=\"virtinst.ram\"></co>\n"
@@ -2061,7 +2069,6 @@ msgid "<computeroutput># </computeroutput><userinput>virt-install --connect qemu
 "Domain installation still in progress. You can reconnect\n"
 "to the console to complete the installation process.\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2101,7 +2108,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>--vnc</literal> states that the graphical console should be made available using VNC. The default behavior for the associated VNC server is no only listen on the local interface; if the VNC client is to be run on a different host, establishing the connection will require setting up an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). Alternatively, the <literal>--vnclisten=0.0.0.0</literal> can be used so that the VNC server is accessible from all interfaces; note that if you do that, you really should design your firewall accordingly."
+msgid "<literal>--vnc</literal> states that the graphical console should be made available using VNC. The default behavior for the associated VNC server is to only listen on the local interface; if the VNC client is to be run on a different host, establishing the connection will require setting up an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). Alternatively, the <literal>--vnclisten=0.0.0.0</literal> can be used so that the VNC server is accessible from all interfaces; note that if you do that, you really should design your firewall accordingly."
 msgstr ""
 
 #. Tag: para
@@ -2111,15 +2118,15 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "At this point, the virtual machine is running, and we need to connect to the graphical console to proceed with the installation process. If the previous operation was run from a graphical desktop environment, this connection should be automatically started. If not, or if we operate remotely, <command>virt-viewer</command> can be used to run it:"
+msgid "At this point, the virtual machine is running, and we need to connect to the graphical console to proceed with the installation process. If the previous operation was run from a graphical desktop environment, this connection should be automatically started. If not, or if we operate remotely, <command>virt-viewer</command> can be run from any graphical environment to open the graphical console (note that the root password of the remote host is asked twice because the operation requires 2 SSH connections):"
 msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@server/system\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@<replaceable>server</replaceable>/system testkvm\n"
 "</userinput><computeroutput>root@server's password: \n"
 "root@server's password: </computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2144,12 +2151,12 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all\n"
 " Id Name                 State\n"
 "----------------------------------\n"
 "  - testkvm              shut off\n"
 "</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2159,21 +2166,21 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
 "</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "We can now get the connection instructions for the graphical console:"
+msgid "We can now get the connection instructions for the graphical console (the returned VNC display can be given as parameter to <command>vncviewer</command>):"
 msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system vncdisplay testkvm\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system vncdisplay testkvm\n"
 "</userinput><computeroutput>:0</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2523,9 +2530,9 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "default vmlinuz\n"
+msgid ""
+"default vmlinuz\n"
 "append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap=us languagechooser/language-name=English countrychooser/shortlist=US vga=normal initrd=initrd.gz  --\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2800,7 +2807,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>sudo munin-run load config\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>sudo munin-run load config\n"
 "</userinput><computeroutput>graph_title Load average\n"
 "graph_args --base 1000 -l 0\n"
 "graph_vlabel load\n"
@@ -2810,7 +2818,6 @@ msgid "<computeroutput>$ </computeroutput><userinput>sudo munin-run load config\
 "graph_info The load average of the machine describes how many processes are in the run-queue (scheduled to run \"immediately\").\n"
 "load.info 5 minute load average\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2845,10 +2852,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "[ftp.falcot.com]\n"
+msgid ""
+"[ftp.falcot.com]\n"
 "    address 192.168.0.12\n"
 "    use_node_name yes\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2898,13 +2905,13 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 stop</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 stop</userinput>\n"
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>dpkg-statoverride --update --add nagios www-data 2710 /var/lib/nagios3/rw\n"
 "</userinput><computeroutput># </computeroutput><userinput>dpkg-statoverride --update --add nagios nagios 751 /var/lib/nagios3\n"
 "</userinput><computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 start</userinput>\n"
 "<computeroutput>[...]</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2989,7 +2996,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "define contact{\n"
+msgid ""
+"define contact{\n"
 "    name                            generic-contact\n"
 "    service_notification_period     24x7\n"
 "    host_notification_period        24x7\n"
@@ -3076,7 +3084,6 @@ msgid "define contact{\n"
 "    service_description   FTP\n"
 "    check_command         check_ftp2\n"
 "}\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -3108,4 +3115,3 @@ msgstr ""
 #, no-c-format
 msgid "Many Nagios plugins allow checking some parameters local to a host; if many machines need these checks while a central installation gathers them, the NRPE (<emphasis>Nagios Remote Plugin Executor</emphasis>) plugin needs to be deployed. The <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> package needs to be installed on the Nagios server, and <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> on the hosts where local tests need to run. The latter gets its configuration from <filename>/etc/nagios/nrpe.cfg</filename>. This file should list the tests that can be started remotely, and the IP addresses of the machines allowed to trigger them. On the Nagios side, enabling these remote tests is a simple matter of adding matching services using the new <emphasis>check_nrpe</emphasis> command."
 msgstr ""
-

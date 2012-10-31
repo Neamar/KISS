@@ -1,13 +1,14 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-07-29T21:48:51\n"
+"POT-Creation-Date: 2012-10-31T14:54:17\n"
 "PO-Revision-Date: 2012-07-29T21:48:51\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -329,7 +330,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The generalization of UTF-8 encoding has been a long awaited solution to numerous difficulties with interoperability, since it facilitates international exchange and removes the arbitrary limits on characters that can be used in a document. The one drawback is that it had to go through a rather difficult transition phase. Since it could not be completely transparent (that is, it could not happen at the same time all over the world over), two conversion operations were required: one on file contents, and the other on filenames. Fortunately, the bulk of this migration has been completed and we discuss it largely for reference."
+msgid "The generalization of UTF-8 encoding has been a long awaited solution to numerous difficulties with interoperability, since it facilitates international exchange and removes the arbitrary limits on characters that can be used in a document. The one drawback is that it had to go through a rather difficult transition phase. Since it could not be completely transparent (that is, it could not happen at the same time all over the world), two conversion operations were required: one on file contents, and the other on filenames. Fortunately, the bulk of this migration has been completed and we discuss it largely for reference."
 msgstr ""
 
 #. Tag: title
@@ -364,7 +365,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
 "$ </computeroutput><userinput>convmv -r -f iso-8859-15 -t utf-8 travail/</userinput>\n"
 "<computeroutput>Starting a dry run without changes...\n"
@@ -377,7 +379,6 @@ msgid "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "Ready!\n"
 "$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -477,7 +478,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the name of the bits affected by the network part in an IP address. The example network would be written thus: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb::/64</literal>."
+msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the number of bits affected to the network part in an IP address. The example network would thus be written: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb::/64</literal>."
 msgstr ""
 
 #. Tag: indexterm
@@ -552,11 +553,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "auto eth0\n"
 "iface eth0 inet dhcp\n"
 "  hostname arrakis\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -571,7 +572,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "auto eth0\n"
 "iface eth0 inet static\n"
 "  address 192.168.0.3\n"
@@ -579,7 +581,6 @@ msgid "\n"
 "  broadcast 192.168.0.255\n"
 "  network 192.168.0.0\n"
 "  gateway 192.168.0.1\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -744,14 +745,14 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "PPP connections over ADSL are, by definition, intermittent. Since they are not billed according to time, there are few downsides to the temptation of keeping them always open; one simple means to do so is to use the <command>init</command> process to control the connection. All that's needed is to add a line such as the following at the end of the <filename>/etc/inittab</filename> file; then, any time the connection is disconnected, <command>init</command> will reconnect it."
+msgid "PPP connections over ADSL are, by definition, intermittent. Since they are usually not billed according to time, there are few downsides to the temptation of keeping them always open; one simple means to do so is to use the <command>init</command> process to control the connection. All that's needed is to add a line such as the following at the end of the <filename>/etc/inittab</filename> file; then, any time the connection is disconnected, <command>init</command> will reconnect it."
 msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -951,10 +952,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "127.0.0.1     localhost\n"
 "192.168.0.1   arrakis.falcot.com arrakis\n"
-""
 msgstr ""
 
 #. Tag: indexterm
@@ -1054,11 +1055,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "nameserver 212.27.32.176\n"
 "nameserver 212.27.32.177\n"
 "nameserver 8.8.8.8\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1458,17 +1459,17 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>groupadd</command> and <command>groupdel</command> commands add or delete a group, respectively. The <command>groupmod</command> command modifies a group's information (its <literal>gid</literal> or identifier). The command <command>passwd -g <replaceable>group</replaceable></command> changes the password for the group, while the <command>passwd -r -g <replaceable>group</replaceable></command> command deletes it."
+msgid "The <command>addgroup</command> and <command>delgroup</command> commands add or delete a group, respectively. The <command>groupmod</command> command modifies a group's information (its <literal>gid</literal> or identifier). The command <command>passwd -g <replaceable>group</replaceable></command> changes the password for the group, while the <command>passwd -r -g <replaceable>group</replaceable></command> command deletes it."
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary><command>groupadd</command></primary>"
+msgid "<primary><command>addgroup</command></primary>"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary><command>groupdel</command></primary>"
+msgid "<primary><command>delgroup</command></primary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -1483,7 +1484,7 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>creation</primary><secondary>of a group</secondary>"
+msgid "<primary>creation</primary><secondary>of groups</secondary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -1573,7 +1574,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In some cases, it will be useful to add a user to a group (other than their default “main” group) in order to grant them additional permissions. For example, a user who is included in the <emphasis>audio</emphasis> group can access audio devices (see sidebar “Peripheral access permissions”). This can be achieved with a command such as <command>adduser <replaceable>user</replaceable> <replaceable>group</replaceable></command>."
+msgid "In some cases, it will be useful to add a user to a group (other than their default “main” group) in order to grant them additional permissions. For example, a user who is included in the <emphasis>audio</emphasis> group can access audio devices (see sidebar “Device access permissions”). This can be achieved with a command such as <command>adduser <replaceable>user</replaceable> <replaceable>group</replaceable></command>."
 msgstr ""
 
 #. Tag: title
@@ -1953,7 +1954,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>/dev/</filename> directory traditionally houses so-called “special” files, intended to represent system peripherals (see sidebar <xref linkend=\"cadre.fichiers-speciaux\" />). <filename>/dev/hda1</filename> thus always corresponds to the first partition of the the first IDE hard drive. This static structure does not allow dynamic setting of “major” and “minor” numbers for these files, which forces kernel developers to limit their number, since a priori assignment of the identifiers prohibits adding more once these conventions are established."
+msgid "The <filename>/dev/</filename> directory traditionally houses so-called “special” files, intended to represent system peripherals (see sidebar <xref linkend=\"cadre.fichiers-speciaux\" />). <filename>/dev/hda1</filename> thus always corresponds to the first partition of the first IDE hard drive. This static structure does not allow dynamic setting of “major” and “minor” numbers for these files, which forces kernel developers to limit their number, since a priori assignment of the identifiers prohibits adding more once these conventions are established."
 msgstr ""
 
 #. Tag: para
@@ -2023,7 +2024,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
+msgid ""
+"mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
 "total 0\n"
 "lrwxrwxrwx 1 root root  9 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP -&gt; ../../sda\n"
 "lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP-part1 -&gt; ../../sda1\n"
@@ -2049,7 +2051,6 @@ msgid "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>l
 "lrwxrwxrwx 1 root root 10 23 jul. 08:58 wwn-0x5000c50015c4842f-part1 -&gt; ../../sda1\n"
 "[...]\n"
 "mirexpress:/dev/disk/by-id# </computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2094,7 +2095,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# The disk on which LILO should be installed.\n"
 "# By indicating the disk and not a partition.\n"
 "# you order LILO to be installed on the MBR.\n"
@@ -2120,7 +2122,6 @@ msgid "\n"
 "# only for Linux/Windows dual boot\n"
 "other=/dev/sda1\n"
 "  label=Windows\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2215,7 +2216,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Boot automatically after 30 seconds\n"
 "timeout 30\n"
 "# Boot first entry by default\n"
@@ -2240,7 +2242,6 @@ msgid "\n"
 "rootnoverify (hd0,0)\n"
 "makeactive\n"
 "chainloader +1\n"
-""
 msgstr ""
 
 #. Tag: indexterm
@@ -2280,7 +2281,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# bootstrap partition\n"
 "boot=/dev/sda2\n"
 "# the disk\n"
@@ -2313,7 +2315,6 @@ msgid "\n"
 "\n"
 "# bsd=/dev/sdaX and macos=/dev/sdaX\n"
 "# are also possible\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -2423,7 +2424,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>date</userinput>\n"
 "<computeroutput>Wed Mar 28 15:51:19 CEST 2012</computeroutput>\n"
 "<computeroutput>$ </computeroutput><userinput>TZ=\"Pacific/Honolulu\" date</userinput>\n"
@@ -2772,7 +2774,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# /etc/fstab: static file system information.\n"
 "#\n"
 "# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;\n"
@@ -2784,7 +2787,6 @@ msgid "\n"
 "/dev/scd0       /media/cdrom0   udf,iso9660 user,noauto 0       0\n"
 "/dev/fd0        /media/floppy   auto    rw,user,noauto  0       0\n"
 "arrakis:/shared /shared         nfs     defaults        0       0\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2969,10 +2971,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-2.6.32.tar.bz2</userinput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3012,9 +3014,9 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>cp /boot/config-2.6.32-5-686 ~/kernel/linux-source-2.6.32/.config</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -3119,12 +3121,12 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
 "[...]\n"
 "<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -3169,12 +3171,12 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/qc-usb.tar.bz2</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>ls modules/</userinput>\n"
 "<computeroutput>qc-usb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3199,7 +3201,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>export MODULE_LOC=~/kernel/modules</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-2.6.32</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot modules-image</userinput>\n"
@@ -3208,7 +3211,6 @@ msgid "\n"
 "$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
 "../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3268,7 +3270,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-2.6.32</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg clean</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-patches/diffs/grsecurity2/grsecurity-2.1.14-2.6.32.13-201005151340.patch.gz | patch -p1</userinput>\n"
@@ -3277,7 +3280,6 @@ msgid "\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
 "../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb\n"
 "../linux-image-2.6.32-grsec_1_i386.deb</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3337,7 +3339,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "A Debian kernel package installs the kernel image (<filename>vmlinuz-<replaceable>version</replaceable></filename>), its configuration (<filename>config-<replaceable>version</replaceable></filename>) and its symbols table (<filename>System.map-<replaceable>version</replaceable></filename>) in <filename>/boot/</filename>. The symbols table table helps developers understand the meaning of a kernel error message; without it, kernel “oopses” (an “oops” is the kernel equivalent in the kernel of a segmentation fault for user space programs, in other words messages generated following an invalid pointer dereference) only contain numeric memory addresses, which is useless information without the table mapping these addresses to symbols and function names. The modules are installed in the <filename>/lib/modules/<replaceable>version</replaceable>/</filename> directory."
+msgid "A Debian kernel package installs the kernel image (<filename>vmlinuz-<replaceable>version</replaceable></filename>), its configuration (<filename>config-<replaceable>version</replaceable></filename>) and its symbols table (<filename>System.map-<replaceable>version</replaceable></filename>) in <filename>/boot/</filename>. The symbols table helps developers understand the meaning of a kernel error message; without it, kernel “oopses” (an “oops” is the kernel equivalent of a segmentation fault for user space programs, in other words messages generated following an invalid pointer dereference) only contain numeric memory addresses, which is useless information without the table mapping these addresses to symbols and function names. The modules are installed in the <filename>/lib/modules/<replaceable>version</replaceable>/</filename> directory."
 msgstr ""
 
 #. Tag: para
@@ -3362,7 +3364,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "do_symlinks = yes\n"
 "relative_links = yes\n"
 "do_bootloader = no\n"
@@ -3371,7 +3374,6 @@ msgid "\n"
 "link_in_boot = no\n"
 "postinst_hook = update-grub\n"
 "postrm_hook = update-grub\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3388,4 +3390,3 @@ msgstr ""
 #, no-c-format
 msgid "The configuration steps described in this chapter are basic and can lead both to a server system or a workstation, and it can be massively duplicated in semi-automated ways. However, it is not enough by itself to provide a fully configured system. A few pieces are still in need of configuration, starting with low-level programs known as the “Unix services”."
 msgstr ""
-

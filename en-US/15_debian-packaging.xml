@@ -286,11 +286,11 @@
       <command>equivs-control <replaceable>file</replaceable></command>
       command creates a Debian package header file that should be edited to
       contain the name of the expected package, its version number, the
-      name and the maintainer, its dependencies and its description. Other
+      name of the maintainer, its dependencies, and its description. Other
       fields without a default value are optional and can be deleted. The
       <literal>Copyright</literal>, <literal>Changelog</literal>,
       <literal>Readme</literal> and <literal>Extra-Files</literal> fields
-      are not standard fields in a Debian packages; they only make sense
+      are not standard fields in Debian packages; they only make sense
       within the scope of <command>equivs-build</command>, and they will
       not be kept in the headers of the generated package.</para>
 
@@ -502,7 +502,7 @@ License:
 	<command>make</command> program; it describes rules for how to
 	build a set of files from each other in a tree of dependencies (for
 	instance, a program can be build from a set of source files). The
-	<filename>Makefile</filename> files describes these rules in the
+	<filename>Makefile</filename> file describes these rules in the
 	following format:</para>
 
         <programlisting>
@@ -971,7 +971,7 @@ release_label = Internal Packages
       matter. The process is made of several steps, and is as much an
       initiation as it is a selection process. In any case, it is
       formalized and well-documented, so anyone can track their progression
-      on the website dedicated to the new maintainer process. <ulink
+      on the website dedicated to the new member process. <ulink
       type="block" url="http://nm.debian.org/"/></para>
 
       <sidebar>
@@ -984,7 +984,6 @@ release_label = Internal Packages
 	initial upload, and issue a statement to the effect that they trust
 	the prospective maintainer with the ability to maintain the package
 	on their own.</para>
-        <indexterm><primary>Debian Maintainer</primary></indexterm>
         <indexterm><primary>Debian Maintainer</primary></indexterm>
       </sidebar>
       <section>
@@ -1078,7 +1077,7 @@ release_label = Internal Packages
 
 	<para>This step is usually known as the <emphasis>Philosophy &amp;
 	Procedures</emphasis> (P&amp;P for short) in the lingo of the
-	developers involved in the new maintainer process.
+	developers involved in the new member process.
 	<indexterm><primary><emphasis>Philosophy &amp;
 	Procedures</emphasis></primary></indexterm></para>
       </section>
@@ -1113,7 +1112,7 @@ release_label = Internal Packages
 	  someone else, meaning that they publish them in the official
 	  Debian repositories after having performed a careful review. This
 	  mechanism enables external persons, who have not yet gone
-	  through the new maintainer process, to contribute occasionally to
+	  through the new member process, to contribute occasionally to
 	  the project. At the same time, it ensures that all packages
 	  included in Debian have always been checked by an official
 	  member.</para>

@@ -593,8 +593,8 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
       levels of traffic very well.</para>
 
       <para>The explanation is that when a TCP/IP stack is encapsulated
-      within a TCP/IP connection (for SSH), the TCP protocol is used two
-      times, once for the SSH connection and once within the tunnel. This
+      within a TCP/IP connection (for SSH), the TCP protocol is used twice,
+      once for the SSH connection and once within the tunnel. This
       leads to problems, especially due to the way TCP adapts to network
       conditions by altering timeout delays. The following site describes
       the problem in more detail: <ulink type="block"
@@ -931,7 +931,7 @@ FALCOT\\vpn     pptp    f@Lc3au     *
       that guarantee or improve the quality of the service provided to
       applications. The most popular such technique involves classifying
       the network traffic into categories, and differentiating the handling
-      of traffic according to which category it belongs in. The main
+      of traffic according to which category it belongs to. The main
       application of this differentiated services concept is
       <emphasis>traffic shaping</emphasis>, which limits the data
       transmission rates for connections related to some services and/or
@@ -962,8 +962,7 @@ FALCOT\\vpn     pptp    f@Lc3au     *
 	<para>The <emphasis>Linux Advanced Routing &amp; Traffic
 	Control</emphasis> HOWTO is the reference document covering
 	everything there is to know about network quality of service.
-	<ulink type="block"
-	url="http://www.linux-france.org/prj/inetdoc/guides/lartc/lartc.html"/></para>
+	<ulink type="block" url="http://www.lartc.org/howto/"/></para>
         <indexterm><primary>routing</primary><secondary>advanced</secondary></indexterm>
         <indexterm><primary>traffic control</primary></indexterm>
         <indexterm><primary>control, of traffic</primary></indexterm>
