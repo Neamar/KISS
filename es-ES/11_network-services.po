@@ -5,13 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:57\n"
-"PO-Revision-Date: 2012-06-01 22:36+0200\n"
-"Last-Translator: Isma <isma.deandres@gmail.com>\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2012-11-07 00:51+0200\n"
+"Last-Translator: Marcos Mezo <mmezo@selexco.net>\n"
+"Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
+"/11_network-services/es-ES/>\n"
+"Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 1.2\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -46,12 +49,16 @@ msgstr "OpenLDAP"
 #. Tag: title
 #, no-c-format
 msgid "Network Services: Postfix, Apache, NFS, Samba, Squid, LDAP"
-msgstr ""
+msgstr "Servicios de red: Postfix, Apache, NFS, Samba, Squid, LDAP"
 
 #. Tag: para
 #, no-c-format
 msgid "Network services are the programs that users interact with directly in their daily work. They're the tip of the information system iceberg, and this chapter focuses on them; the hidden parts they rely on are the infrastructure we already described."
 msgstr ""
+"Los servicios de red son los programas con los que los usuarios interactúan "
+"en su trabajo diario. Son la punta del iceberg del sistema de información, y "
+"este capítulo se centra en ellos; las partes ocultas en las que se basan "
+"son la infraestructura que ya hemos descrito."
 
 #. Tag: title
 #, no-c-format
@@ -62,11 +69,16 @@ msgstr "Servidor de Correo"
 #, no-c-format
 msgid "The Falcot Corp administrators selected Postfix for the electronic mail server, due to its reliability and its ease of configuration. Indeed, its design enforces that each task is implemented in a process with the minimum set of required permissions, which is a great mitigation measure against security problems."
 msgstr ""
+"Los administradores de Falcot Corp elijieron Postfix como servidor de correo "
+"electrónico debido a su fiabilidad y su facilidad de configuración. De "
+"hecho, su diseño fuerza a que cada tarea sea implementada en un proceso con "
+"el mínimo conjunto de permisos, lo que es una gran medida contra problemas "
+"de seguridad."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mail</primary><secondary>electronic</secondary>"
-msgstr ""
+msgstr "<primary>correo</primary><secondary>electrónico</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -87,6 +99,12 @@ msgstr "<primary>Exim</primary>"
 #, no-c-format
 msgid "Debian uses Exim4 as the default email server (which is why the initial installation includes Exim4). The configuration is provided by a separate package, <emphasis role=\"pkg\">exim4-config</emphasis>, and automatically customized based on the answers to a set of Debconf questions very similar to the questions asked by the <emphasis role=\"pkg\">postfix</emphasis> package."
 msgstr ""
+"Debian utiliza Exim4 como servidor de correo por defecto (es por lo que la "
+"instalación inicial incluye Exim4). La configuración se obtiene de un "
+"paquete distinto, <emphasis role=\"pkg\">exim4-config<emphasis>, y se "
+"personaliza basándose en las respuestas que se dan a un conjunto de "
+"preguntas de Debconf, muy similares a las que pregunta el paquete <emphasis "
+"role=\"pkg\">postfix</emphasis>."
 
 #. Tag: para
 #, no-c-format
