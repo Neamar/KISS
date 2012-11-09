@@ -5,9 +5,8 @@ set -e
 . $(dirname $0)/common.sh
 
 check_cwd
-
-publican clean
-
+parse_options "$@"
+OPT_lang=${OPT_lang:-[a-z][a-z]-[A-Z][A-Z]}
 failures=""
 
 fail_build() {
@@ -17,8 +16,9 @@ fail_build() {
     fi
 }
 
+publican clean
 
-for lang in [a-z][a-z]-[A-Z][A-Z]; do
+for lang in $OPT_lang; do
     if ! build/build-html --lang=$lang; then
 	fail_build $lang html
     fi
