@@ -16,11 +16,7 @@ import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.HolderComparator;
 
 public class DataHandler {
-	/**
-	 * Store last query
-	 */
-	public String lastQuery = "";
-	
+
 	private Context context;
 
 	/**
@@ -52,8 +48,6 @@ public class DataHandler {
 	 */
 	public ArrayList<Holder> getResults(String query) {
 		query = query.toLowerCase();
-
-		this.lastQuery = query;
 
 		// Save currentQuery
 		SharedPreferences prefs = context.getSharedPreferences("history",
