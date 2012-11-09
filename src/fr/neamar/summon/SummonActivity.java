@@ -12,6 +12,8 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -20,6 +22,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordAdapter;
@@ -106,8 +110,9 @@ public class SummonActivity extends Activity {
 				new ArrayList<Record>());
 		listView.setAdapter(adapter);
 
-		// Listen to changes
 		this.searchEditText = (EditText) findViewById(R.id.searchEditText);
+		
+		// Listen to changes
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
 
@@ -121,6 +126,23 @@ public class SummonActivity extends Activity {
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				updateRecords(s.toString());
+			}
+		});
+		
+		// On validate, launch first record
+		searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
+			
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				RecordAdapter adapter = ((RecordAdapter) listView.getAdapter());
+				
+				if (prefs.getBoolean("invert-ui", false))
+					adapter.onClick(0, v);
+				else
+					adapter.onClick(adapter.getCount() - 1, v);
+				
+				
+				return true;
 			}
 		});
 
