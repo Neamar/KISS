@@ -1,0 +1,48 @@
+#!/bin/sh
+
+set -e
+
+. $(dirname $0)/common.sh
+
+check_cwd
+
+OPT_lang="en-US"
+version=$(get_product_version)
+topdir=$(pwd)
+
+parse_options "$@"
+
+if [ ! -e tmp/$OPT_lang/xml ] || [ -z "$OPT_skip" ]; then
+    publican build --formats=xml --langs=$OPT_lang
+fi
+
+cp -a build/epub tmp/$OPT_lang/xml/
+cd tmp/$OPT_lang/xml/
+
+targetdir="$topdir/publish/$OPT_lang/Debian/$version/epub/debian-handbook"
+if dbtoepub -s epub/tdah-epub.xsl -c epub/tdah.css $OPT_opts debian-handbook.xml; then
+    mkdir -p $targetdir
+    cp debian-handbook.epub $targetdir/
+    echo "SUCCESS: $targetdir/debian-handbook.epub"
+else
+    echo "ERROR: Failed to build EPUB for $OPT_lang"
+    exit 1
+fi
+
+if [ -x /usr/bin/ebook-convert ]; then
+    dbtoepub -s epub/tdah-epub.xsl -c epub/tdah-plain.css \
+        -o debian-handbook-plain.epub $OPT_opts debian-handbook.xml
+    ebook-convert debian-handbook-plain.epub debian-handbook.mobi \
+        --output-profile=kindle \
+        --chapter="/" \
+        --no-chapters-in-toc \
+        --isbn=979-10-91414-01-2 \
+        --tags=Debian,Linux,Computing,Administration \
+        --cover=images/cover.png \
+        --mobi-ignore-margins \
+        --margin-left=2 \
+        --margin-right=2
+    cp debian-handbook.mobi $targetdir/
+    echo "SUCCESS: $targetdir/debian-handbook.mobi"
+fi
+

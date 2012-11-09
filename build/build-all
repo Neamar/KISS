@@ -1,0 +1,34 @@
+#!/bin/sh
+
+set -e
+
+. $(dirname $0)/common.sh
+
+check_cwd
+
+publican clean
+
+failures=""
+
+fail_build() {
+    failures="$failures$1/$2 "
+    if [ "$1" = "en-US" ]; then
+	exit 1 # Only fatal for the main language...
+    fi
+}
+
+
+for lang in [a-z][a-z]-[A-Z][A-Z]; do
+    if ! build/build-html --lang=$lang; then
+	fail_build $lang html
+    fi
+    if ! build/build-epub --skip --lang=$lang; then
+	fail_build $lang epub
+    fi
+done
+
+if [ -n "$failures" ]; then
+    echo "ERROR: Some languages/formats failed to build:"
+    echo $failures
+fi
+
