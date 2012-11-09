@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Interestings options:
+# --opts="-P full.bleed=1" => add crop margins for print PDF for Lulu
+# --opts="-V" => verbose mode of dblatex
+# --lang=de-DE => build a translation
+
+set -e
+
+. $(dirname $0)/common.sh
+
+check_cwd
+
+OPT_lang="en-US"
+version=$(get_product_version)
+topdir=$(pwd)
+
+parse_options "$@"
+
+if [ ! -e tmp/$OPT_lang/xml ] || [ -z "$OPT_skip" ]; then
+    publican build --formats=xml --langs=$OPT_lang
+fi
+
+cp -a build/dblatex tmp/$OPT_lang/xml/
+cd tmp/$OPT_lang/xml/
+
+echo "RUN: dblatex -c dblatex/librement.conf $OPT_opts debian-handbook.xml"
+if dblatex -c dblatex/librement.conf $OPT_opts debian-handbook.xml; then
+    targetdir="$topdir/publish/$OPT_lang/Debian/$version/pdf/debian-handbook"
+    mkdir -p $targetdir
+    cp debian-handbook.pdf $targetdir/
+    echo "SUCCESS: $targetdir/debian-handbook.pdf"
+else
+    echo "ERROR: Failed to build PDF version for $OPT_lang"
+    exit 1
+fi
+
