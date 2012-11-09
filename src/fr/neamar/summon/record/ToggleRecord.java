@@ -6,7 +6,6 @@ import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 import fr.neamar.summon.R;
 import fr.neamar.summon.holder.ToggleHolder;
 import fr.neamar.summon.toggles.TogglesHandler;
