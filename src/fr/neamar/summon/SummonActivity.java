@@ -192,13 +192,13 @@ public class SummonActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 
+		menu.add(0, MENU_PREFERENCES, 0, R.string.menu_preferences).setIntent(
+				new Intent(this, SettingsActivity.class));
+		
 		menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
 				.setIcon(android.R.drawable.ic_menu_preferences)
 				.setIntent(
 						new Intent(android.provider.Settings.ACTION_SETTINGS));
-
-		menu.add(0, MENU_PREFERENCES, 0, R.string.menu_preferences).setIntent(
-				new Intent(this, SettingsActivity.class));
 
 		return true;
 	}
