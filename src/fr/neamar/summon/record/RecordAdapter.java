@@ -2,10 +2,10 @@ package fr.neamar.summon.record;
 
 import java.util.ArrayList;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import fr.neamar.summon.SummonActivity;
 
 public class RecordAdapter extends ArrayAdapter<Record> {
 
@@ -13,10 +13,14 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	 * Array list containing all the records currently displayed
 	 */
 	private ArrayList<Record> records = new ArrayList<Record>();
+	
+	private SummonActivity parent;
 
-	public RecordAdapter(Context context, int textViewResourceId,
+	public RecordAdapter(SummonActivity context, int textViewResourceId,
 			ArrayList<Record> records) {
 		super(context, textViewResourceId, records);
+		
+		this.parent = context;
 		this.records = records;
 	}
 
@@ -46,5 +50,7 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 
 	public void onClick(int position, View v) {
 		records.get(position).launch(getContext(), v);
+		
+		parent.launchOccured();
 	}
 }

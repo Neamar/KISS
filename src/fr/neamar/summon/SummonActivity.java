@@ -55,12 +55,6 @@ public class SummonActivity extends Activity {
 	private String currentQuery;
 
 	/**
-	 * Set to true if activity was just rebuilt because of configuration
-	 * changes. Allows not to empty textfield during onResume().
-	 */
-	private Boolean flagConfigurationChanged = false;
-
-	/**
 	 * Search text in the view
 	 */
 	private EditText searchEditText;
@@ -98,14 +92,12 @@ public class SummonActivity extends Activity {
 
 		// (re-)Initialize datas
 		dataHandler = (DataHandler) getLastNonConfigurationInstance();
-		if (dataHandler != null) {
-			flagConfigurationChanged = true;
-		} else {
+		if (dataHandler == null) {
 			dataHandler = new DataHandler(getApplicationContext());
 		}
 
 		// Create adapter for records
-		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
+		adapter = new RecordAdapter(this, R.layout.item_app,
 				new ArrayList<Record>());
 		listView.setAdapter(adapter);
 
@@ -179,12 +171,6 @@ public class SummonActivity extends Activity {
 			startActivity(intent);
 		}
 
-		// Reset textfield (will display history)
-		if (!flagConfigurationChanged)
-			searchEditText.setText("");
-		else
-			flagConfigurationChanged = false; // Reset flag
-
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
 			@Override
@@ -232,6 +218,7 @@ public class SummonActivity extends Activity {
 	 */
 	public void updateRecords(String query) {
 		currentQuery = query;
+		
 		Thread resultThread = new Thread(new Runnable() {
 
 			@Override
@@ -278,5 +265,16 @@ public class SummonActivity extends Activity {
 			}
 		});
 		resultThread.start();
+	}
+	
+	/**
+	 * Call this function when we're leaving the activity
+	 * We can't use onPause(), since it may be called for a configuration change
+	 */
+	public void launchOccured()
+	{
+		//We made a choice on the list,
+		//now we can cleanup the filter:
+		searchEditText.setText("");
 	}
 }
