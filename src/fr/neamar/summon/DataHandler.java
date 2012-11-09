@@ -16,8 +16,11 @@ import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.HolderComparator;
 
 public class DataHandler {
+	/**
+	 * Store last query
+	 */
 	public String lastQuery = "";
-
+	
 	private Context context;
 
 	/**

@@ -3,9 +3,9 @@ package fr.neamar.summon.record;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 import fr.neamar.summon.R;
 import fr.neamar.summon.holder.ToggleHolder;
 import fr.neamar.summon.toggles.TogglesHandler;
@@ -42,8 +42,9 @@ public class ToggleRecord extends Record {
 					toggleHolder.icon));
 
 		// Use the handler to check or uncheck button
-		final ToggleButton toggleButton = (ToggleButton) v
+		final CompoundButton toggleButton = (CompoundButton) v
 				.findViewById(R.id.item_toggle_action_toggle);
+
 		Boolean state = togglesHandler.getState(toggleHolder);
 		if(state != null)
 			toggleButton.setChecked(togglesHandler.getState(toggleHolder));
@@ -73,7 +74,7 @@ public class ToggleRecord extends Record {
 	@Override
 	public void doLaunch(Context context, View v) {
 		// Use the handler to check or uncheck button
-		final ToggleButton toggleButton = (ToggleButton) v
+		final CompoundButton toggleButton = (CompoundButton) v
 				.findViewById(R.id.item_toggle_action_toggle);
 		if(toggleButton.isEnabled())
 			toggleButton.performClick();

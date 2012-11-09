@@ -54,9 +54,10 @@ public class ContactProvider extends Provider {
 					contact.phone = cur
 							.getString(cur
 									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+					contact.homeNumber = contact.phone.matches("^(\\+33|0)[1-5].*");
 					contact.starred = cur
 							.getInt(cur
-									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED));
+									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
 					String photoId = cur
 							.getString(cur
 									.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
@@ -107,9 +108,12 @@ public class ContactProvider extends Provider {
 				// Increase relevance according to number of times the contacts
 				// was phoned :
 				relevance += contact.timesContacted;
-				// Increase relevance for starred contacts :
-				if (contact.starred != 0)
+				// Increase relevance for starred contacts:
+				if (contact.starred)
 					relevance += 30;
+				// Decrease for home numbers:
+				if (contact.homeNumber)
+					relevance -= 1;
 
 				contact.displayName = contacts.get(i).name.replaceFirst("(?i)("
 						+ Pattern.quote(query) + ")", "{$1}");

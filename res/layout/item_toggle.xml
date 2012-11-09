@@ -32,11 +32,5 @@
         android:text="Setting to toggle"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <ToggleButton
-        android:id="@+id/item_toggle_action_toggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true" />
-
+	<include android:id="@+id/item_toggle_action_toggle" layout="@layout/ui_togglebutton" />
 </RelativeLayout>

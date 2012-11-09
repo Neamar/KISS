@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -18,6 +21,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordAdapter;
@@ -25,6 +30,7 @@ import fr.neamar.summon.record.RecordAdapter;
 public class SummonActivity extends Activity {
 
 	private static final int MENU_SETTINGS = Menu.FIRST;
+	private static final int MENU_PREFERENCES = MENU_SETTINGS + 1;
 
 	private final int MAX_RECORDS = 15;
 
@@ -49,15 +55,14 @@ public class SummonActivity extends Activity {
 	private String currentQuery;
 
 	/**
-	 * Set to true if activity was just rebuilt because of configuration
-	 * changes. Allows not to empty textfield during onResume().
-	 */
-	private Boolean flagConfigurationChanged = false;
-
-	/**
 	 * Search text in the view
 	 */
 	private EditText searchEditText;
+
+	/**
+	 * Store user preferences
+	 */
+	SharedPreferences prefs;
 
 	/** Called when the activity is first created. */
 	@SuppressWarnings("deprecation")
@@ -66,7 +71,15 @@ public class SummonActivity extends Activity {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.main);
+
+		// Initialize preferences
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+		if (prefs.getBoolean("invert-ui", false))
+			setContentView(R.layout.main_inverted);
+		else
+			setContentView(R.layout.main);
 
 		listView = (ListView) findViewById(R.id.resultListView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -79,19 +92,18 @@ public class SummonActivity extends Activity {
 
 		// (re-)Initialize datas
 		dataHandler = (DataHandler) getLastNonConfigurationInstance();
-		if (dataHandler != null) {
-			flagConfigurationChanged = true;
-		} else {
+		if (dataHandler == null) {
 			dataHandler = new DataHandler(getApplicationContext());
 		}
 
 		// Create adapter for records
-		adapter = new RecordAdapter(getApplicationContext(), R.layout.item_app,
+		adapter = new RecordAdapter(this, R.layout.item_app,
 				new ArrayList<Record>());
 		listView.setAdapter(adapter);
 
-		// Listen to changes
 		this.searchEditText = (EditText) findViewById(R.id.searchEditText);
+		
+		// Listen to changes
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
 
@@ -105,6 +117,23 @@ public class SummonActivity extends Activity {
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				updateRecords(s.toString());
+			}
+		});
+		
+		// On validate, launch first record
+		searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
+			
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				RecordAdapter adapter = ((RecordAdapter) listView.getAdapter());
+				
+				if (prefs.getBoolean("invert-ui", false))
+					adapter.onClick(0, v);
+				else
+					adapter.onClick(adapter.getCount() - 1, v);
+				
+				
+				return true;
 			}
 		});
 
@@ -129,11 +158,18 @@ public class SummonActivity extends Activity {
 	 * Empty text field on resume and show keyboard
 	 */
 	protected void onResume() {
-		// Reset textfield (will display history)
-		if (!flagConfigurationChanged)
-			searchEditText.setText("");
-		else
-			flagConfigurationChanged = false; // Reset flag
+		if (prefs.getBoolean("preferences-updated", false)) {
+			
+			// Restart current activity to refresh view, since some preferences
+			// might require using a new UI
+			prefs.edit().putBoolean("preferences-updated", false).commit();
+			Intent intent = getIntent();
+			overridePendingTransition(0, 0);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+			finish();
+			overridePendingTransition(0, 0);
+			startActivity(intent);
+		}
 
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
@@ -163,6 +199,9 @@ public class SummonActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 
+		menu.add(0, MENU_PREFERENCES, 0, R.string.menu_preferences).setIntent(
+				new Intent(this, SettingsActivity.class));
+		
 		menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
 				.setIcon(android.R.drawable.ic_menu_preferences)
 				.setIntent(
@@ -179,6 +218,7 @@ public class SummonActivity extends Activity {
 	 */
 	public void updateRecords(String query) {
 		currentQuery = query;
+		
 		Thread resultThread = new Thread(new Runnable() {
 
 			@Override
@@ -193,25 +233,48 @@ public class SummonActivity extends Activity {
 				if (workingOnQuery != currentQuery)
 					return;
 
-				if (holders == null) {
-					// First use of the app. TODO : Display something useful.
-				} else {
-					runOnUiThread(new Runnable() {
+				runOnUiThread(new Runnable() {
 
-						@Override
-						public void run() {
-							adapter.clear();
-							for (int i = Math.min(MAX_RECORDS, holders.size()) - 1; i >= 0; i--) {
-								adapter.add(Record.fromHolder(holders.get(i)));
+					@Override
+					public void run() {
+						adapter.clear();
+
+						if (holders == null) {
+							// First use of the app. TODO : Display something
+							// useful.
+						} else {
+							if (prefs.getBoolean("invert-ui", false)) {
+								for (int i = 0; i < Math.min(MAX_RECORDS,
+										holders.size()); i++) {
+									adapter.add(Record.fromHolder(holders
+											.get(i)));
+								}
+							} else {
+								for (int i = Math.min(MAX_RECORDS,
+										holders.size()) - 1; i >= 0; i--) {
+									adapter.add(Record.fromHolder(holders
+											.get(i)));
+								}
 							}
 							// Reset scrolling to top
 							listView.setSelectionAfterHeaderView();
 						}
-					});
+					}
+				});
 
-				}
 			}
 		});
 		resultThread.start();
+	}
+	
+	/**
+	 * Call this function when we're leaving the activity
+	 * We can't use onPause(), since it may be called for a configuration change
+	 */
+	public void launchOccured()
+	{
+		//We made a choice on the list,
+		//now we can cleanup the filter:
+		searchEditText.setText("");
 	}
 }

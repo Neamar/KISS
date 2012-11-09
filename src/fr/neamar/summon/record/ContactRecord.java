@@ -88,6 +88,11 @@ public class ContactRecord extends Record {
 				v.getContext().startActivity(i);
 			}
 		});
+		
+		if(contactHolder.homeNumber)
+			messageButton.setVisibility(View.INVISIBLE);
+		else
+			messageButton.setVisibility(View.VISIBLE);
 
 		return v;
 	}
