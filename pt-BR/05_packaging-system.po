@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:34\n"
-"PO-Revision-Date: 2012-10-29 03:21+0200\n"
+"PO-Revision-Date: 2012-11-09 03:24+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/05_packaging-system/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 1.2\n"
+"X-Generator: Weblate 1.3-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -304,11 +304,24 @@ msgstr ""
 #, no-c-format
 msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information. In it, package management tools find, among other things, the name and version of the package. Some of this meta-information allows them to determine if it is possible to install or uninstall it, for example according to the list of packages already on the machine."
 msgstr ""
+"<filename>control.tar.gz</filename>. Este arquivamento contém todas as meta-"
+"informações disponíveis. Nele as ferramentas de gerencia de pacotes "
+"encontram, entre outras coisas, o nome e a versão do pacote. Algumas destas "
+"meta-informações permitem determinar se é possível instalar e desinstalar o "
+"pacote, por exemplo, de acordo com a lista de pacotes já instalados na "
+"máquina."
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>data.tar.gz</filename>. This archive contains all of the files to be extracted from the package; this is where the executable files, documentation, etc., are all stored. Some packages may use other compression formats, in which case the file will be named differently (<filename>data.tar.bz2</filename> for bzip2, <filename>data.tar.xz</filename> for XZ, <filename>data.tar.lzma</filename> for LZMA)."
 msgstr ""
+"<filename>data.tar.gz</filename>. Este arquivamento contém todos os arquivos "
+"para serem extraídos do pacote; é onde os arquivos executáveis, "
+"documentação, etc, estão todos estocados. Alguns pacotes podem usar outros "
+"formatos de compressão, e neste caso o arquivo terá um nome diferente "
+"(<filename>data.tar.bz2</filename> para bzip2, "
+"<filename>data.tar.xz</filename> para XZ, <filename>data.tar.lzma</filename> "
+"para LZMA)."
 
 #. Tag: title
 #, no-c-format
@@ -329,6 +342,14 @@ msgstr "<primary>pacote</primary><secondary>metainformação</secondary>"
 #, no-c-format
 msgid "The Debian package is not only an archive of files intended for installation. It is part of a larger whole, and it describes its relationship with other Debian packages (dependencies, conflicts, suggestions). It also provides scripts that enable the execution of commands at different stages in the package's lifecycle (installation, removal, upgrades). These data used by the package management tools are not part of the packaged software, but are, within the package, what is called its “meta-information” (information about other information)."
 msgstr ""
+"O pacote Debian não é apenas um arquivamento de arquivos prontos para serem "
+"instalados. Ele é parte de um todo, e descreve sua relação com outros "
+"pacotes Debian (dependências, conflitos, sugestões). Ele também fornece "
+"scripts que habilitam a execução de comandos em diferentes estágios do ciclo "
+"de vida do pacote (instalação, remoção, atualizações). Estes dados usados "
+"pelas ferramentas de gerencia de pacotes não são parte do programa "
+"empacotado, mas são, junto com o pacote, o que chamamos de sua “meta-"
+"informação” (informação sobre outras informações)."
 
 #. Tag: title
 #, no-c-format
@@ -344,6 +365,10 @@ msgstr "<primary><filename>control</filename></primary>"
 #, no-c-format
 msgid "This file uses a structure similar to email headers (as defined by RFC 2822). For example, for <emphasis role=\"pkg\">apt</emphasis>, the <filename>control</filename> file looks like the following:"
 msgstr ""
+"Este arquivo usa uma estrutura similar a cabeçalhos de email (como foi "
+"definido pela RFC 2822). Por exemplo, para <emphasis "
+"role=\"pkg\">apt</emphasis>, o arquivo <filename>control</filename> parece com "
+"algo como:"
 
 #. Tag: screen
 #, no-c-format
@@ -396,21 +421,30 @@ msgstr "<primary>Pedido de Comentários</primary>"
 #, no-c-format
 msgid "RFC is the abbreviation of “Request For Comments”. An RFC is generally a technical document that describes what will become an Internet standard. Before becoming standardized and frozen, these standards are submitted for public review (hence their name). The IETF (Internet Engineering Task Force) decides on the evolution of the status of these documents (proposed standard, draft standard, or standard)."
 msgstr ""
+"RFC é a sigla de “Request For Comments” (requisitando comentários). Um RFC é "
+"geralmente um documento técnico que descreve o que se tornará um padrão de "
+"Internet. Antes de se padronizar e congelar, estes padrões são submetidos "
+"para revisão pública (por isto o nome). O IETF (Internet Engineering Task "
+"Force - Força-tarefa de Engenharia da Internet) decide sobre a evolução do "
+"status destes documentos (proposed standard - padrão proposto, draft "
+"standard - padrão rascunho ou standard - padrão)."
 
 #. Tag: para
 #, no-c-format
 msgid "RFC 2026 defines the process for standardization of Internet protocols. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
 msgstr ""
+"RFC 2026 define o processo de padronização dos protocolos de Internet. "
+"<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Dependencies: the <literal>Depends</literal> Field"
-msgstr ""
+msgstr "Dependências: o campo <literal>Depends</literal> (depende de)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dependency</primary>"
-msgstr ""
+msgstr "<primary>dependência</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -420,7 +454,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>dependency</secondary>"
-msgstr ""
+msgstr "<secondary>dependência de</secondary><primary>pacote</primary>"
 
 #. Tag: para
 #, no-c-format
