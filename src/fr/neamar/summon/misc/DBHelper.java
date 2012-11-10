@@ -69,8 +69,8 @@ public class DBHelper {
 	 * @param query
 	 * @return
 	 */
-	public static ArrayList<ValuedHistoryRecord> getPreviousResultsForQuery(Context context,
-			String query) {
+	public static ArrayList<ValuedHistoryRecord> getPreviousResultsForQuery(
+			Context context, String query) {
 		SQLiteDatabase db = getDatabase(context);
 
 		// Cursor query (String table, String[] columns, String selection,
@@ -78,18 +78,53 @@ public class DBHelper {
 		// orderBy)
 		Cursor cursor = db.query("history",
 				new String[] { "record, COUNT(*) AS count" }, "query = ?",
-				new String[] { query }, "record", null, "_id DESC");
+				new String[] { query }, "record", null, "COUNT(*) DESC", "5");
 
 		ArrayList<ValuedHistoryRecord> records = new ArrayList<ValuedHistoryRecord>();
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			ValuedHistoryRecord entry = new ValuedHistoryRecord();
-			
+
 			entry.record = cursor.getString(0);
 			entry.value = cursor.getInt(1);
 			
-			Log.e("wtf", entry.record + " " + Integer.toString(entry.value));
+			records.add(entry);
+			cursor.moveToNext();
+		}
+		cursor.close();
+		db.close();
+
+		return records;
+	}
+
+	/**
+	 * Retrieve most used records. Warning : filter through applications only
+	 * 
+	 * @param context
+	 * @param int
+	 * @return
+	 */
+	public static ArrayList<ValuedHistoryRecord> getFavorites(Context context,
+			int limit) {
+		SQLiteDatabase db = getDatabase(context);
+
+		// Cursor query (String table, String[] columns, String selection,
+		// String[] selectionArgs, String groupBy, String having, String
+		// orderBy)
+		Cursor cursor = db.query("history",
+				new String[] { "record, COUNT(*) AS count" }, null, null,
+				"record", null, "COUNT(*) DESC", Integer.toString(limit));
+
+		ArrayList<ValuedHistoryRecord> records = new ArrayList<ValuedHistoryRecord>();
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			ValuedHistoryRecord entry = new ValuedHistoryRecord();
+
+			entry.record = cursor.getString(0);
+			entry.value = cursor.getInt(1);
+
 			records.add(entry);
 			cursor.moveToNext();
 		}
