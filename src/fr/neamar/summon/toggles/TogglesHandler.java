@@ -46,8 +46,7 @@ public class TogglesHandler {
 	 * @return
 	 */
 	public Boolean getState(ToggleHolder holder) {
-		try
-		{
+		try {
 			if (holder.settingName.equals("wifi"))
 				return getWifiState();
 			else if (holder.settingName.equals("data"))
@@ -63,17 +62,14 @@ public class TogglesHandler {
 						+ holder.settingName);
 				return false;
 			}
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			Log.w("log", "Unsupported toggle for device: " + holder.settingName);
 			return null;
 		}
 	}
 
 	public void setState(ToggleHolder holder, Boolean state) {
-		try
-		{
+		try {
 			if (holder.settingName.equals("wifi"))
 				setWifiState(state);
 			else if (holder.settingName.equals("data"))
@@ -85,11 +81,10 @@ public class TogglesHandler {
 			else if (holder.settingName.equals("silent"))
 				setSilentState(state);
 			else {
-				Log.e("wtf", "Unsupported toggle for update: " + holder.settingName);
+				Log.e("wtf", "Unsupported toggle for update: "
+						+ holder.settingName);
 			}
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			Log.w("log", "Unsupported toggle for device: " + holder.settingName);
 		}
 	}

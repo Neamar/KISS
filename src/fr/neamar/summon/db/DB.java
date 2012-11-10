@@ -1,4 +1,4 @@
-package fr.neamar.summon.misc;
+package fr.neamar.summon.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,6 +22,7 @@ public class DB extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
-		// See http://www.drdobbs.com/database/using-sqlite-on-android/232900584?pgno=2
+		// See
+		// http://www.drdobbs.com/database/using-sqlite-on-android/232900584?pgno=2
 	}
 }

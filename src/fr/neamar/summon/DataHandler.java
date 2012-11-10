@@ -11,10 +11,10 @@ import fr.neamar.summon.dataprovider.Provider;
 import fr.neamar.summon.dataprovider.SearchProvider;
 import fr.neamar.summon.dataprovider.SettingProvider;
 import fr.neamar.summon.dataprovider.ToggleProvider;
+import fr.neamar.summon.db.DBHelper;
+import fr.neamar.summon.db.ValuedHistoryRecord;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.HolderComparator;
-import fr.neamar.summon.misc.DBHelper;
-import fr.neamar.summon.misc.ValuedHistoryRecord;
 
 public class DataHandler {
 
@@ -57,7 +57,8 @@ public class DataHandler {
 		}
 
 		// Have we ever made the same query and selected something ?
-		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(context, query);
+		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper
+				.getPreviousResultsForQuery(context, query);
 
 		// Ask all providers for datas
 		ArrayList<Holder> allHolders = new ArrayList<Holder>();
@@ -66,11 +67,10 @@ public class DataHandler {
 			ArrayList<Holder> holders = providers.get(i).getResults(query);
 			for (int j = 0; j < holders.size(); j++) {
 				// Give a boost if item was previously selected for this query
-				for(int k = 0; k < lastIdsForQuery.size(); k++)
-				{
-					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record))
-					{
-						holders.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
+				for (int k = 0; k < lastIdsForQuery.size(); k++) {
+					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record)) {
+						holders.get(j).relevance += 25 * Math.min(5,
+								lastIdsForQuery.get(k).value);
 					}
 				}
 				allHolders.add(holders.get(j));
@@ -102,7 +102,8 @@ public class DataHandler {
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
 				if (providers.get(j).mayFindById(ids.get(i).record)) {
-					Holder holder = providers.get(j).findById(ids.get(i).record);
+					Holder holder = providers.get(j)
+							.findById(ids.get(i).record);
 					if (holder != null) {
 						history.add(holder);
 						break;

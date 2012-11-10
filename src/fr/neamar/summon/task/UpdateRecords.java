@@ -11,8 +11,9 @@ import fr.neamar.summon.record.Record;
 
 /**
  * AsyncTask retrieving data from the providers and updating the view
+ * 
  * @author dorvaryn
- *
+ * 
  */
 public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 
@@ -51,11 +52,13 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 			if (PreferenceManager.getDefaultSharedPreferences(activity)
 					.getBoolean("invert-ui", false)) {
 				for (int i = 0; i < Math.min(MAX_RECORDS, holders.size()); i++) {
-					activity.adapter.add(Record.fromHolder(activity, holders.get(i)));
+					activity.adapter.add(Record.fromHolder(activity,
+							holders.get(i)));
 				}
 			} else {
 				for (int i = Math.min(MAX_RECORDS, holders.size()) - 1; i >= 0; i--) {
-					activity.adapter.add(Record.fromHolder(activity, holders.get(i)));
+					activity.adapter.add(Record.fromHolder(activity,
+							holders.get(i)));
 				}
 			}
 			// Reset scrolling to top

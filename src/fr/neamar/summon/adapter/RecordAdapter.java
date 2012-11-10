@@ -1,4 +1,4 @@
-package fr.neamar.summon.record;
+package fr.neamar.summon.adapter;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import fr.neamar.summon.QueryInterface;
+import fr.neamar.summon.record.AppRecord;
+import fr.neamar.summon.record.ContactRecord;
+import fr.neamar.summon.record.Record;
+import fr.neamar.summon.record.SearchRecord;
+import fr.neamar.summon.record.SettingRecord;
+import fr.neamar.summon.record.ToggleRecord;
 
 public class RecordAdapter extends ArrayAdapter<Record> {
 
@@ -14,13 +20,13 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	 * Array list containing all the records currently displayed
 	 */
 	private ArrayList<Record> records = new ArrayList<Record>();
-	
+
 	private QueryInterface parent;
 
-	public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
-			ArrayList<Record> records) {
+	public RecordAdapter(Context context, QueryInterface parent,
+			int textViewResourceId, ArrayList<Record> records) {
 		super(context, textViewResourceId, records);
-		
+
 		this.parent = parent;
 		this.records = records;
 	}
@@ -51,7 +57,7 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 
 	public void onClick(int position, View v) {
 		records.get(position).launch(getContext(), v);
-		
+
 		parent.launchOccured();
 	}
 }

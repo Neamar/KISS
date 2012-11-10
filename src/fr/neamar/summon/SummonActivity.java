@@ -25,11 +25,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import fr.neamar.summon.adapter.RecordAdapter;
 import fr.neamar.summon.record.Record;
-import fr.neamar.summon.record.RecordAdapter;
 import fr.neamar.summon.task.UpdateRecords;
 
-public class SummonActivity extends ListActivity implements QueryInterface{
+public class SummonActivity extends ListActivity implements QueryInterface {
 
 	private static final int MENU_SETTINGS = Menu.FIRST;
 	private static final int MENU_PREFERENCES = MENU_SETTINGS + 1;
@@ -79,7 +79,7 @@ public class SummonActivity extends ListActivity implements QueryInterface{
 		setListAdapter(adapter);
 
 		this.searchEditText = (EditText) findViewById(R.id.searchEditText);
-		
+
 		// Listen to changes
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
@@ -96,20 +96,21 @@ public class SummonActivity extends ListActivity implements QueryInterface{
 				updateRecords(s.toString());
 			}
 		});
-		
+
 		// On validate, launch first record
 		searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
-			
+
 			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				RecordAdapter adapter = ((RecordAdapter) getListView().getAdapter());
-				
+			public boolean onEditorAction(TextView v, int actionId,
+					KeyEvent event) {
+				RecordAdapter adapter = ((RecordAdapter) getListView()
+						.getAdapter());
+
 				if (prefs.getBoolean("invert-ui", false))
 					adapter.onClick(0, v);
 				else
 					adapter.onClick(adapter.getCount() - 1, v);
-				
-				
+
 				return true;
 			}
 		});
@@ -136,7 +137,7 @@ public class SummonActivity extends ListActivity implements QueryInterface{
 	 */
 	protected void onResume() {
 		if (prefs.getBoolean("preferences-updated", false)) {
-			
+
 			// Restart current activity to refresh view, since some preferences
 			// might require using a new UI
 			prefs.edit().putBoolean("preferences-updated", false).commit();
@@ -164,16 +165,16 @@ public class SummonActivity extends ListActivity implements QueryInterface{
 
 	@Override
 	public void onBackPressed() {
-		Intent i = new Intent(); 
-        i.setAction(Intent.ACTION_MAIN); 
-        i.addCategory(Intent.CATEGORY_HOME); 
-        PackageManager pm = this.getPackageManager(); 
-        ResolveInfo ri = pm.resolveActivity(i, 0); 
-        ActivityInfo ai = ri.activityInfo; 
-        searchEditText.setText("");
-        if(!ai.packageName.equalsIgnoreCase(this.getPackageName())){
-        	super.onBackPressed();
-        }
+		Intent i = new Intent();
+		i.setAction(Intent.ACTION_MAIN);
+		i.addCategory(Intent.CATEGORY_HOME);
+		PackageManager pm = this.getPackageManager();
+		ResolveInfo ri = pm.resolveActivity(i, 0);
+		ActivityInfo ai = ri.activityInfo;
+		searchEditText.setText("");
+		if (!ai.packageName.equalsIgnoreCase(this.getPackageName())) {
+			super.onBackPressed();
+		}
 	}
 
 	@Override
@@ -182,7 +183,7 @@ public class SummonActivity extends ListActivity implements QueryInterface{
 
 		menu.add(0, MENU_PREFERENCES, 0, R.string.menu_preferences).setIntent(
 				new Intent(this, SettingsActivity.class));
-		
+
 		menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
 				.setIcon(android.R.drawable.ic_menu_preferences)
 				.setIntent(
@@ -200,15 +201,14 @@ public class SummonActivity extends ListActivity implements QueryInterface{
 	public void updateRecords(String query) {
 		new UpdateRecords(this).execute(query);
 	}
-	
+
 	/**
-	 * Call this function when we're leaving the activity
-	 * We can't use onPause(), since it may be called for a configuration change
+	 * Call this function when we're leaving the activity We can't use
+	 * onPause(), since it may be called for a configuration change
 	 */
-	public void launchOccured()
-	{
-		//We made a choice on the list,
-		//now we can cleanup the filter:
+	public void launchOccured() {
+		// We made a choice on the list,
+		// now we can cleanup the filter:
 		searchEditText.setText("");
 	}
 }
