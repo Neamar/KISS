@@ -8,13 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import fr.neamar.summon.QueryInterface;
 import fr.neamar.summon.SummonApplication;
+import fr.neamar.summon.db.DBHelper;
 import fr.neamar.summon.holder.AppHolder;
 import fr.neamar.summon.holder.ContactHolder;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.SearchHolder;
 import fr.neamar.summon.holder.SettingHolder;
 import fr.neamar.summon.holder.ToggleHolder;
-import fr.neamar.summon.misc.DBHelper;
 
 public abstract class Record {
 	/**
