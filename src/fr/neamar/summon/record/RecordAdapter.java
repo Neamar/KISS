@@ -14,13 +14,13 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	 * Array list containing all the records currently displayed
 	 */
 	private ArrayList<Record> records = new ArrayList<Record>();
-	
+
 	private QueryInterface parent;
 
-	public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
-			ArrayList<Record> records) {
+	public RecordAdapter(Context context, QueryInterface parent,
+			int textViewResourceId, ArrayList<Record> records) {
 		super(context, textViewResourceId, records);
-		
+
 		this.parent = parent;
 		this.records = records;
 	}
@@ -51,7 +51,7 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 
 	public void onClick(int position, View v) {
 		records.get(position).launch(getContext(), v);
-		
+
 		parent.launchOccured();
 	}
 }

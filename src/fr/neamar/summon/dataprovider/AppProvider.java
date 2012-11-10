@@ -28,18 +28,18 @@ public class AppProvider extends Provider {
 				Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
 				mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-				final List<ResolveInfo> appsInfo = manager.queryIntentActivities(
-						mainIntent, 0);
-				Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(
-						manager));
+				final List<ResolveInfo> appsInfo = manager
+						.queryIntentActivities(mainIntent, 0);
+				Collections.sort(appsInfo,
+						new ResolveInfo.DisplayNameComparator(manager));
 
 				for (int i = 0; i < appsInfo.size(); i++) {
 					AppHolder app = new AppHolder();
 					ResolveInfo info = appsInfo.get(i);
 
 					app.id = holderScheme
-							+ info.activityInfo.applicationInfo.packageName + "/"
-							+ info.activityInfo.name;
+							+ info.activityInfo.applicationInfo.packageName
+							+ "/" + info.activityInfo.name;
 					app.name = info.loadLabel(manager).toString();
 					app.nameLowerCased = app.name.toLowerCase();
 

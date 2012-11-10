@@ -17,7 +17,8 @@ public class ContactRecord extends Record {
 	public ContactHolder contactHolder;
 	private QueryInterface queryInterface;
 
-	public ContactRecord(QueryInterface queryInterface, ContactHolder contactHolder) {
+	public ContactRecord(QueryInterface queryInterface,
+			ContactHolder contactHolder) {
 		super();
 		this.holder = this.contactHolder = contactHolder;
 		this.queryInterface = queryInterface;
@@ -93,8 +94,8 @@ public class ContactRecord extends Record {
 				v.getContext().startActivity(i);
 			}
 		});
-		
-		if(contactHolder.homeNumber)
+
+		if (contactHolder.homeNumber)
 			messageButton.setVisibility(View.INVISIBLE);
 		else
 			messageButton.setVisibility(View.VISIBLE);

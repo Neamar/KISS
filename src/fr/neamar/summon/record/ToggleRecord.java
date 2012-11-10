@@ -46,11 +46,11 @@ public class ToggleRecord extends Record {
 				.findViewById(R.id.item_toggle_action_toggle);
 
 		Boolean state = togglesHandler.getState(toggleHolder);
-		if(state != null)
+		if (state != null)
 			toggleButton.setChecked(togglesHandler.getState(toggleHolder));
 		else
 			toggleButton.setEnabled(false);
-		
+
 		// And wait for changes
 		toggleButton.setOnClickListener(new OnClickListener() {
 
@@ -76,7 +76,7 @@ public class ToggleRecord extends Record {
 		// Use the handler to check or uncheck button
 		final CompoundButton toggleButton = (CompoundButton) v
 				.findViewById(R.id.item_toggle_action_toggle);
-		if(toggleButton.isEnabled())
+		if (toggleButton.isEnabled())
 			toggleButton.performClick();
 	}
 }
