@@ -45,10 +45,7 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 		super.onPostExecute(holders);
 		activity.adapter.clear();
 
-		if (holders == null) {
-			// First use of the app. TODO : Display something
-			// useful.
-		} else {
+		if (holders != null) {
 			if (PreferenceManager.getDefaultSharedPreferences(activity)
 					.getBoolean("invert-ui", false)) {
 				for (int i = 0; i < Math.min(MAX_RECORDS, holders.size()); i++) {
@@ -61,8 +58,6 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 							holders.get(i)));
 				}
 			}
-			// Reset scrolling to top
-			activity.getListView().setSelectionAfterHeaderView();
 		}
 	}
 }
