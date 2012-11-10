@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import fr.neamar.summon.dataprovider.AliasProvider;
 import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.ContactProvider;
@@ -14,11 +13,12 @@ import fr.neamar.summon.dataprovider.SettingProvider;
 import fr.neamar.summon.dataprovider.ToggleProvider;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.HolderComparator;
+import fr.neamar.summon.misc.DBHelper;
+import fr.neamar.summon.misc.ValuedHistoryRecord;
 
 public class DataHandler {
-	public String lastQuery = "";
 
-	private Context context;
+	public String currentQuery;
 
 	/**
 	 * List all knowns providers
@@ -29,7 +29,6 @@ public class DataHandler {
 	 * Initialize all providers
 	 */
 	public DataHandler(Context context) {
-		this.context = context;
 
 		// Initialize providers
 		providers.add(new AppProvider(context));
@@ -47,26 +46,19 @@ public class DataHandler {
 	 * 
 	 * @return ordered list of records
 	 */
-	public ArrayList<Holder> getResults(String query) {
+	public ArrayList<Holder> getResults(Context context, String query) {
 		query = query.toLowerCase();
 
-		this.lastQuery = query;
-
-		// Save currentQuery
-		SharedPreferences prefs = context.getSharedPreferences("history",
-				Context.MODE_PRIVATE);
-		SharedPreferences.Editor ed = prefs.edit();
-		ed.putString("currentQuery", query);
-		ed.commit();
+		currentQuery = query;
 
 		if (query.length() == 0) {
 			// Searching for nothing returns the history
-			return getHistory();
+			return getHistory(context);
 		}
 
 		// Have we ever made the same query and selected something ?
-		String lastIdForQuery = prefs.getString("query://" + query,
-				"(none-nomatch)");
+		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(context, query);
+
 		// Ask all providers for datas
 		ArrayList<Holder> allHolders = new ArrayList<Holder>();
 
@@ -74,8 +66,13 @@ public class DataHandler {
 			ArrayList<Holder> holders = providers.get(i).getResults(query);
 			for (int j = 0; j < holders.size(); j++) {
 				// Give a boost if item was previously selected for this query
-				if (holders.get(j).id.equals(lastIdForQuery))
-					holders.get(j).relevance += 50;
+				for(int k = 0; k < lastIdsForQuery.size(); k++)
+				{
+					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record))
+					{
+						holders.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
+					}
+				}
 				allHolders.add(holders.get(j));
 			}
 		}
@@ -94,39 +91,18 @@ public class DataHandler {
 	 * 
 	 * @return
 	 */
-	protected ArrayList<Holder> getHistory() {
+	protected ArrayList<Holder> getHistory(Context context) {
 		ArrayList<Holder> history = new ArrayList<Holder>();
 
 		// Read history
-		ArrayList<String> ids = new ArrayList<String>();
-		SharedPreferences prefs = context.getSharedPreferences("history",
-				Context.MODE_PRIVATE);
-
-		for (int k = 0; k < 50; k++) {
-			String id = prefs.getString(Integer.toString(k), "(none)");
-
-			// Not enough history yet
-			if (id.equals("(none)")) {
-
-				if (k == 0)
-					return null;// App first use !
-				else
-					break;// Not enough item in history yet, we'll do with
-							// this.
-			}
-
-			// No duplicates, only keep recent
-			if (!ids.contains(id))
-				ids.add(id);
-		}
+		ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, 50);
 
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
-
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
-				if (providers.get(j).mayFindById(ids.get(i))) {
-					Holder holder = providers.get(j).findById(ids.get(i));
+				if (providers.get(j).mayFindById(ids.get(i).record)) {
+					Holder holder = providers.get(j).findById(ids.get(i).record);
 					if (holder != null) {
 						history.add(holder);
 						break;

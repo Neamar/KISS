@@ -1,7 +1,6 @@
 package fr.neamar.summon.record;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -13,6 +12,9 @@ import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.SearchHolder;
 import fr.neamar.summon.holder.SettingHolder;
 import fr.neamar.summon.holder.ToggleHolder;
+import fr.neamar.summon.lite.QueryInterface;
+import fr.neamar.summon.lite.SummonApplication;
+import fr.neamar.summon.misc.DBHelper;
 
 public abstract class Record {
 	/**
@@ -84,28 +86,15 @@ public abstract class Record {
 	 */
 	protected void recordLaunch(Context context) {
 		// Save in history
-		// Move every item one step down
-		SharedPreferences prefs = context.getSharedPreferences("history",
-				Context.MODE_PRIVATE);
-		SharedPreferences.Editor ed = prefs.edit();
-		for (int k = 50; k >= 0; k--) {
-			String id = prefs.getString(Integer.toString(k), "(none)");
-			if (!id.equals("(none)"))
-				ed.putString(Integer.toString(k + 1), id);
-		}
-		// Store current item
-		ed.putString("0", holder.id);
-		// Remember result for this query
-		ed.putString("query://" + prefs.getString("currentQuery", ""),
-				holder.id);
-		ed.commit();
+		// TODO: move to datahandler
+		DBHelper.insertHistory(context, SummonApplication.getDataHandler(context).currentQuery, holder.id);
 	}
 
-	public static Record fromHolder(Holder holder) {
+	public static Record fromHolder(QueryInterface parent, Holder holder) {
 		if (holder instanceof AppHolder)
 			return new AppRecord((AppHolder) holder);
 		else if (holder instanceof ContactHolder)
-			return new ContactRecord((ContactHolder) holder);
+			return new ContactRecord(parent, (ContactHolder) holder);
 		else if (holder instanceof SearchHolder)
 			return new SearchRecord((SearchHolder) holder);
 		else if (holder instanceof SettingHolder)

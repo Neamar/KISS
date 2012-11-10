@@ -8,16 +8,19 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import fr.neamar.summon.lite.QueryInterface;
 import fr.neamar.summon.lite.R;
 import fr.neamar.summon.holder.ContactHolder;
-import fr.neamar.summon.ui.ImprovedQuickContactBadge;
+import fr.neamar.summon.misc.ImprovedQuickContactBadge;
 
 public class ContactRecord extends Record {
 	public ContactHolder contactHolder;
+	private QueryInterface queryInterface;
 
-	public ContactRecord(ContactHolder contactHolder) {
+	public ContactRecord(QueryInterface queryInterface, ContactHolder contactHolder) {
 		super();
 		this.holder = this.contactHolder = contactHolder;
+		this.queryInterface = queryInterface;
 	}
 
 	@Override
@@ -51,6 +54,7 @@ public class ContactRecord extends Record {
 			@Override
 			public void onClick(View v) {
 				recordLaunch(v.getContext());
+				queryInterface.launchOccured();
 			}
 		});
 
@@ -64,6 +68,7 @@ public class ContactRecord extends Record {
 				// We need to manually call this function to ensure the system
 				// store this contact in history
 				recordLaunch(v.getContext());
+				queryInterface.launchOccured();
 				String url = "tel:" + contactHolder.phone;
 				Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
 				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -81,13 +86,18 @@ public class ContactRecord extends Record {
 				// We need to manually call this function to ensure the system
 				// store this contact in history
 				recordLaunch(v.getContext());
-
+				queryInterface.launchOccured();
 				String url = "sms:" + contactHolder.phone;
 				Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
 				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				v.getContext().startActivity(i);
 			}
 		});
+		
+		if(contactHolder.homeNumber)
+			messageButton.setVisibility(View.INVISIBLE);
+		else
+			messageButton.setVisibility(View.VISIBLE);
 
 		return v;
 	}
