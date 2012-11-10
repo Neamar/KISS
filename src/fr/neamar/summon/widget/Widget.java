@@ -11,22 +11,23 @@ import android.widget.RemoteViews;
 import fr.neamar.summon.R;
 import fr.neamar.summon.SummonActivity;
 
-
 public class Widget extends AppWidgetProvider {
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 			int[] appWidgetIds) {
-		
-		RemoteViews remoteViews=  new RemoteViews(context.getPackageName(), R.layout.widget);
-		ComponentName watchWidget= new ComponentName(context, Widget.class);
-		
+
+		RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
+				R.layout.widget);
+		ComponentName watchWidget = new ComponentName(context, Widget.class);
+
 		Intent intent = new Intent(context, SummonActivity.class);
-		PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-		
+		PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent,
+				PendingIntent.FLAG_UPDATE_CURRENT);
+
 		remoteViews.setOnClickPendingIntent(R.id.widget_view, pIntent);
-		
+
 		appWidgetManager.updateAppWidget(watchWidget, remoteViews);
-		
+
 		Log.i("wtf", "onUpdate");
 	}
 }

@@ -13,9 +13,8 @@ public class DBHelper {
 		DB db = new DB(context);
 		return db.getReadableDatabase();
 	}
-	
-	private static ArrayList<ValuedHistoryRecord> readCursor(Cursor cursor)
-	{
+
+	private static ArrayList<ValuedHistoryRecord> readCursor(Cursor cursor) {
 		ArrayList<ValuedHistoryRecord> records = new ArrayList<ValuedHistoryRecord>();
 
 		cursor.moveToFirst();
@@ -24,12 +23,12 @@ public class DBHelper {
 
 			entry.record = cursor.getString(0);
 			entry.value = cursor.getInt(1);
-			
+
 			records.add(entry);
 			cursor.moveToNext();
 		}
 		cursor.close();
-		
+
 		return records;
 	}
 
@@ -50,8 +49,6 @@ public class DBHelper {
 		db.insert("history", null, values);
 		db.close();
 	}
-	
-	
 
 	/**
 	 * Retrieve previous query history
@@ -60,14 +57,16 @@ public class DBHelper {
 	 * @param limit
 	 * @return
 	 */
-	public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit) {
+	public static ArrayList<ValuedHistoryRecord> getHistory(Context context,
+			int limit) {
 		SQLiteDatabase db = getDatabase(context);
 
 		// Cursor query (boolean distinct, String table, String[] columns,
 		// String selection, String[] selectionArgs, String groupBy, String
 		// having, String orderBy, String limit)
-		Cursor cursor = db.query(true, "history", new String[] { "record", "1" },
-				null, null, null, null, "_id DESC", Integer.toString(limit));
+		Cursor cursor = db.query(true, "history",
+				new String[] { "record", "1" }, null, null, null, null,
+				"_id DESC", Integer.toString(limit));
 
 		ArrayList<ValuedHistoryRecord> records = readCursor(cursor);
 		db.close();
@@ -89,9 +88,9 @@ public class DBHelper {
 		// Cursor query (String table, String[] columns, String selection,
 		// String[] selectionArgs, String groupBy, String having, String
 		// orderBy)
-		Cursor cursor = db.query("history",
-				new String[] { "record", "COUNT(*) AS count" }, "query = ?",
-				new String[] { query }, "record", null, "COUNT(*) DESC", "5");
+		Cursor cursor = db.query("history", new String[] { "record",
+				"COUNT(*) AS count" }, "query = ?", new String[] { query },
+				"record", null, "COUNT(*) DESC", "5");
 
 		ArrayList<ValuedHistoryRecord> records = readCursor(cursor);
 		db.close();
@@ -113,9 +112,9 @@ public class DBHelper {
 		// Cursor query (String table, String[] columns, String selection,
 		// String[] selectionArgs, String groupBy, String having, String
 		// orderBy)
-		Cursor cursor = db.query("history",
-				new String[] { "record", "COUNT(*) AS count" }, null, null,
-				"record", null, "COUNT(*) DESC", Integer.toString(limit));
+		Cursor cursor = db.query("history", new String[] { "record",
+				"COUNT(*) AS count" }, null, null, "record", null,
+				"COUNT(*) DESC", Integer.toString(limit));
 
 		ArrayList<ValuedHistoryRecord> records = readCursor(cursor);
 		db.close();
