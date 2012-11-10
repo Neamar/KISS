@@ -199,7 +199,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 * @param s
 	 */
 	public void updateRecords(String query) {
-		new UpdateRecords(this).execute(query);
+		//new UpdateRecords(this).execute(query);
 	}
 
 	/**
