@@ -17,8 +17,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -31,9 +32,6 @@ import fr.neamar.summon.task.UpdateRecords;
 
 public class SummonActivity extends ListActivity implements QueryInterface {
 
-	private static final int MENU_SETTINGS = Menu.FIRST;
-	private static final int MENU_PREFERENCES = MENU_SETTINGS + 1;
-
 	/**
 	 * Adapter to display records
 	 */
@@ -43,7 +41,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 * Search text in the view
 	 */
 	private EditText searchEditText;
-	
+
 	/**
 	 * Task launched on text change
 	 */
@@ -59,12 +57,11 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		// Initialize preferences
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
+		
 		if (prefs.getBoolean("invert-ui", false))
 			setContentView(R.layout.main_inverted);
 		else
@@ -183,17 +180,27 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	}
 
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.settings:
+			startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
+			return true;
+		case R.id.preferences:
+			startActivity(new Intent(this, SettingsActivity.class));
+			return true;
+		case R.id.clear:
+			searchEditText.setText("");
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-
-		menu.add(0, MENU_PREFERENCES, 0, R.string.menu_preferences).setIntent(
-				new Intent(this, SettingsActivity.class));
-
-		menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
-				.setIcon(android.R.drawable.ic_menu_preferences)
-				.setIntent(
-						new Intent(android.provider.Settings.ACTION_SETTINGS));
-
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_settings, menu);
 		return true;
 	}
 
@@ -204,14 +211,14 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 * @param s
 	 */
 	public void updateRecords(String query) {
-		if(updateRecords != null){
+		if (updateRecords != null) {
 			updateRecords.cancel(true);
 		}
 		updateRecords = new UpdateRecords(this);
 		updateRecords.execute(query);
 	}
-	
-	public void resetTask(){
+
+	public void resetTask() {
 		updateRecords = null;
 	}
 
