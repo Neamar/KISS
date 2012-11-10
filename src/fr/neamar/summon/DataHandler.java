@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import fr.neamar.summon.dataprovider.AliasProvider;
 import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.ContactProvider;
@@ -19,7 +18,7 @@ import fr.neamar.summon.misc.ValuedHistoryRecord;
 
 public class DataHandler {
 
-	private Context context;
+	public String currentQuery;
 
 	/**
 	 * List all knowns providers
@@ -30,7 +29,6 @@ public class DataHandler {
 	 * Initialize all providers
 	 */
 	public DataHandler(Context context) {
-		this.context = context;
 
 		// Initialize providers
 		providers.add(new AppProvider(context));
@@ -48,19 +46,14 @@ public class DataHandler {
 	 * 
 	 * @return ordered list of records
 	 */
-	public ArrayList<Holder> getResults(String query) {
+	public ArrayList<Holder> getResults(Context context, String query) {
 		query = query.toLowerCase();
 
-		// Save currentQuery
-		SharedPreferences prefs = context.getSharedPreferences("history",
-				Context.MODE_PRIVATE);
-		SharedPreferences.Editor ed = prefs.edit();
-		ed.putString("currentQuery", query);
-		ed.commit();
+		currentQuery = query;
 
 		if (query.length() == 0) {
 			// Searching for nothing returns the history
-			return getHistory();
+			return getHistory(context);
 		}
 
 		// Have we ever made the same query and selected something ?
@@ -98,7 +91,7 @@ public class DataHandler {
 	 * 
 	 * @return
 	 */
-	protected ArrayList<Holder> getHistory() {
+	protected ArrayList<Holder> getHistory(Context context) {
 		ArrayList<Holder> history = new ArrayList<Holder>();
 
 		// Read history
