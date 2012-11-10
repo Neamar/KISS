@@ -43,6 +43,11 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 * Search text in the view
 	 */
 	private EditText searchEditText;
+	
+	/**
+	 * Task launched on text change
+	 */
+	private UpdateRecords updateRecords;
 
 	/**
 	 * Store user preferences
@@ -199,7 +204,15 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 * @param s
 	 */
 	public void updateRecords(String query) {
-		new UpdateRecords(this).execute(query);
+		if(updateRecords != null){
+			updateRecords.cancel(true);
+		}
+		updateRecords = new UpdateRecords(this);
+		updateRecords.execute(query);
+	}
+	
+	public void resetTask(){
+		updateRecords = null;
 	}
 
 	/**

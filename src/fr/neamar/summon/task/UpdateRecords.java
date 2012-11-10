@@ -33,18 +33,14 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 		final ArrayList<Holder> holders = SummonApplication.getDataHandler(
 				activity).getResults(activity, workingOnQuery);
 
-		// Check no other search have already been made
-		if (workingOnQuery == SummonApplication.getDataHandler(activity).currentQuery)
-			return holders;
-
-		return null;
+		return holders;
 	}
 
 	@Override
 	protected void onPostExecute(ArrayList<Holder> holders) {
 		super.onPostExecute(holders);
 		activity.adapter.clear();
-
+		
 		if (holders == null) {
 			// First use of the app. TODO : Display something
 			// useful.
@@ -64,5 +60,6 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 			// Reset scrolling to top
 			activity.getListView().setSelectionAfterHeaderView();
 		}
+		activity.resetTask();
 	}
 }
