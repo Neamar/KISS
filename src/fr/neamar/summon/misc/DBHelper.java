@@ -29,13 +29,14 @@ public class DBHelper {
 	public static ArrayList<String> getHistory(Context context, int limit) {
 		SQLiteDatabase db = getDatabase(context);
 
-		Cursor cursor = db.query("history", new String[] { "record" }, null, null,
-				null, null, "_id DESC");
+		// Cursor query (boolean distinct, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit)
+		Cursor cursor = db.query(true, "history", new String[] { "record" }, null, null,
+				null, null, "_id DESC", Integer.toString(limit));
 
 		ArrayList<String> records = new ArrayList<String>();
 		
 		cursor.moveToFirst();
-		while (!cursor.isAfterLast() && records.size() < limit) {
+		while (!cursor.isAfterLast()) {
 			records.add(cursor.getString(0));
 			cursor.moveToNext();
 		}
