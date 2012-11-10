@@ -11,10 +11,10 @@ import fr.neamar.summon.dataprovider.Provider;
 import fr.neamar.summon.dataprovider.SearchProvider;
 import fr.neamar.summon.dataprovider.SettingProvider;
 import fr.neamar.summon.dataprovider.ToggleProvider;
+import fr.neamar.summon.db.DBHelper;
+import fr.neamar.summon.db.ValuedHistoryRecord;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.HolderComparator;
-import fr.neamar.summon.misc.DBHelper;
-import fr.neamar.summon.misc.ValuedHistoryRecord;
 
 public class DataHandler {
 

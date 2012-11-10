@@ -25,8 +25,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import fr.neamar.summon.adapter.RecordAdapter;
 import fr.neamar.summon.record.Record;
-import fr.neamar.summon.record.RecordAdapter;
 import fr.neamar.summon.task.UpdateRecords;
 
 public class SummonActivity extends ListActivity implements QueryInterface {

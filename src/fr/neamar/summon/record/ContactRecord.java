@@ -11,7 +11,7 @@ import android.widget.TextView;
 import fr.neamar.summon.holder.ContactHolder;
 import fr.neamar.summon.lite.QueryInterface;
 import fr.neamar.summon.lite.R;
-import fr.neamar.summon.misc.ImprovedQuickContactBadge;
+import fr.neamar.summon.ui.ImprovedQuickContactBadge;
 
 public class ContactRecord extends Record {
 	public ContactHolder contactHolder;

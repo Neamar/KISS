@@ -1,4 +1,4 @@
-package fr.neamar.summon.misc;
+package fr.neamar.summon.db;
 
 public class ValuedHistoryRecord {
 	/**
