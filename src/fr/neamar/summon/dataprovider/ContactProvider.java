@@ -2,6 +2,8 @@ package fr.neamar.summon.dataprovider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import android.content.ContentUris;
@@ -31,6 +33,7 @@ public class ContactProvider extends Provider {
 										ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
 										ContactsContract.CommonDataKinds.Phone.NUMBER,
 										ContactsContract.CommonDataKinds.Phone.STARRED,
+										ContactsContract.CommonDataKinds.Phone.IS_SUPER_PRIMARY,
 										ContactsContract.Contacts.PHOTO_ID },
 								null, null, null);
 
@@ -38,7 +41,7 @@ public class ContactProvider extends Provider {
 				// The string key is "phone" + "|" + "name" (so if two contacts
 				// with
 				// distincts name share same number, they both get displayed
-				HashMap<String, Boolean> phones = new HashMap<String, Boolean>();
+				HashMap<String, ArrayList<ContactHolder>> mapContacts = new HashMap<String, ArrayList<ContactHolder>>();
 
 				if (cur.getCount() > 0) {
 					while (cur.moveToNext()) {
@@ -46,7 +49,6 @@ public class ContactProvider extends Provider {
 
 						contact.lookupKey = cur.getString(cur
 								.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
-						contact.id = holderScheme + contact.lookupKey;
 						contact.timesContacted = Integer.parseInt(cur.getString(cur
 								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
 						contact.name = cur.getString(cur
@@ -57,6 +59,8 @@ public class ContactProvider extends Provider {
 								.matches("^(\\+33|0)[1-5].*");
 						contact.starred = cur.getInt(cur
 								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
+						contact.primary = cur.getInt(cur
+								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_SUPER_PRIMARY)) != 0;
 						String photoId = cur.getString(cur
 								.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
 						if (photoId != null) {
@@ -65,9 +69,8 @@ public class ContactProvider extends Provider {
 									Long.parseLong(photoId));
 						}
 
-						if (!phones.containsKey(contact.phone + '|'
-								+ contact.name)
-								&& contact.name != null) {
+						contact.id = holderScheme + contact.lookupKey + contact.phone;
+						if (contact.name != null) {
 							contact.nameLowerCased = contact.name.toLowerCase()
 									.replaceAll("[èéêë]", "e")
 									.replaceAll("[ûù]", "u")
@@ -75,13 +78,40 @@ public class ContactProvider extends Provider {
 									.replaceAll("[àâ]", "a")
 									.replaceAll("ô", "o")
 									.replaceAll("[ÈÉÊË]", "E");
-							contacts.add(contact);
 
-							phones.put(contact.phone + '|' + contact.name, true);
+							if (mapContacts.containsKey(contact.lookupKey))
+								mapContacts.get(contact.lookupKey).add(contact);
+							else {
+								ArrayList<ContactHolder> phones = new ArrayList<ContactHolder>();
+								phones.add(contact);
+								mapContacts.put(contact.lookupKey, phones);
+							}
 						}
 					}
 				}
 				cur.close();
+
+				
+				
+				for (ArrayList<ContactHolder> phones : mapContacts.values()) {
+					// Find primary phone and add this one.
+					Boolean hasPrimary = false;
+					for (int j = 0; j < phones.size(); j++) {
+						ContactHolder contact = phones.get(j);
+						if (contact.primary) {
+							contacts.add(contact);
+							hasPrimary = true;
+							break;
+						}
+					}
+
+					// If not available, add all.
+					if (!hasPrimary) {
+						for (int j = 0; j < phones.size(); j++) {
+							contacts.add(phones.get(j));
+						}
+					}
+				}
 
 				long end = System.nanoTime();
 				Log.i("time", Long.toString((end - start) / 1000000)
