@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import fr.neamar.summon.lite.SummonActivity;
 import fr.neamar.summon.holder.Holder;
+import fr.neamar.summon.lite.SummonActivity;
 import fr.neamar.summon.lite.SummonApplication;
 import fr.neamar.summon.record.Record;
 

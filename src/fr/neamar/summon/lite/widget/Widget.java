@@ -1,4 +1,4 @@
-package fr.neamar.summon.widget;
+package fr.neamar.summon.lite.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
