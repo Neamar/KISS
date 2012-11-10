@@ -10,11 +10,7 @@ public class UpdateHandler extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context ctx, Intent intent) {
 		Log.w("wtf", "received something " + intent.getAction());
-		if(intent.getAction().equalsIgnoreCase("android.intent.action.PACKAGE_ADDED") || 
-				intent.getAction().equalsIgnoreCase("android.intent.action.PACKAGE_REMOVED")){
-			Log.w("wtf", "added or deleted");
-			SummonApplication.resetDataHandler(ctx);
-		}
+		SummonApplication.resetDataHandler(ctx);
 	}
 
 }
