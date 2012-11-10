@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import fr.neamar.summon.dataprovider.AliasProvider;
 import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.ContactProvider;
@@ -15,6 +16,7 @@ import fr.neamar.summon.dataprovider.ToggleProvider;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.HolderComparator;
 import fr.neamar.summon.misc.DBHelper;
+import fr.neamar.summon.misc.ValuedHistoryRecord;
 
 public class DataHandler {
 
@@ -63,8 +65,8 @@ public class DataHandler {
 		}
 
 		// Have we ever made the same query and selected something ?
-		String lastIdForQuery = prefs.getString("query://" + query,
-				"(none-nomatch)");
+		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(context, query);
+
 		// Ask all providers for datas
 		ArrayList<Holder> allHolders = new ArrayList<Holder>();
 
@@ -72,8 +74,13 @@ public class DataHandler {
 			ArrayList<Holder> holders = providers.get(i).getResults(query);
 			for (int j = 0; j < holders.size(); j++) {
 				// Give a boost if item was previously selected for this query
-				if (holders.get(j).id.equals(lastIdForQuery))
-					holders.get(j).relevance += 50;
+				for(int k = 0; k < lastIdsForQuery.size(); k++)
+				{
+					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record))
+					{
+						holders.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
+					}
+				}
 				allHolders.add(holders.get(j));
 			}
 		}
