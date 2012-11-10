@@ -14,6 +14,7 @@ import fr.neamar.summon.dataprovider.SettingProvider;
 import fr.neamar.summon.dataprovider.ToggleProvider;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.HolderComparator;
+import fr.neamar.summon.misc.DBHelper;
 
 public class DataHandler {
 
@@ -95,27 +96,7 @@ public class DataHandler {
 		ArrayList<Holder> history = new ArrayList<Holder>();
 
 		// Read history
-		ArrayList<String> ids = new ArrayList<String>();
-		SharedPreferences prefs = context.getSharedPreferences("history",
-				Context.MODE_PRIVATE);
-
-		for (int k = 0; k < 50; k++) {
-			String id = prefs.getString(Integer.toString(k), "(none)");
-
-			// Not enough history yet
-			if (id.equals("(none)")) {
-
-				if (k == 0)
-					return null;// App first use !
-				else
-					break;// Not enough item in history yet, we'll do with
-							// this.
-			}
-
-			// No duplicates, only keep recent
-			if (!ids.contains(id))
-				ids.add(id);
-		}
+		ArrayList<String> ids = DBHelper.getHistory(context, 50);
 
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
