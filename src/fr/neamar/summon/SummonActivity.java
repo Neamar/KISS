@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -64,7 +63,6 @@ public class SummonActivity extends Activity {
 	SharedPreferences prefs;
 
 	/** Called when the activity is first created. */
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
