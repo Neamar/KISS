@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public class DBHelper {
 
@@ -67,7 +66,7 @@ public class DBHelper {
 		// Cursor query (boolean distinct, String table, String[] columns,
 		// String selection, String[] selectionArgs, String groupBy, String
 		// having, String orderBy, String limit)
-		Cursor cursor = db.query(true, "history", new String[] { "record, 1" },
+		Cursor cursor = db.query(true, "history", new String[] { "record", "1" },
 				null, null, null, null, "_id DESC", Integer.toString(limit));
 
 		ArrayList<ValuedHistoryRecord> records = readCursor(cursor);
@@ -91,7 +90,7 @@ public class DBHelper {
 		// String[] selectionArgs, String groupBy, String having, String
 		// orderBy)
 		Cursor cursor = db.query("history",
-				new String[] { "record, COUNT(*) AS count" }, "query = ?",
+				new String[] { "record", "COUNT(*) AS count" }, "query = ?",
 				new String[] { query }, "record", null, "COUNT(*) DESC", "5");
 
 		ArrayList<ValuedHistoryRecord> records = readCursor(cursor);
@@ -115,7 +114,7 @@ public class DBHelper {
 		// String[] selectionArgs, String groupBy, String having, String
 		// orderBy)
 		Cursor cursor = db.query("history",
-				new String[] { "record, COUNT(*) AS count" }, null, null,
+				new String[] { "record", "COUNT(*) AS count" }, null, null,
 				"record", null, "COUNT(*) DESC", Integer.toString(limit));
 
 		ArrayList<ValuedHistoryRecord> records = readCursor(cursor);
