@@ -6,6 +6,7 @@ import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import fr.neamar.summon.QueryInterface;
 import fr.neamar.summon.SummonApplication;
 import fr.neamar.summon.holder.AppHolder;
 import fr.neamar.summon.holder.ContactHolder;
@@ -86,16 +87,14 @@ public abstract class Record {
 	protected void recordLaunch(Context context) {
 		// Save in history
 		// TODO: move to datahandler
-		DBHelper.insertHistory(context, SummonApplication.mainActivity.currentQuery, holder.id);
-		
-		SummonApplication.mainActivity.launchOccured();
+		DBHelper.insertHistory(context, SummonApplication.getDataHandler(context).currentQuery, holder.id);
 	}
 
-	public static Record fromHolder(Holder holder) {
+	public static Record fromHolder(QueryInterface parent, Holder holder) {
 		if (holder instanceof AppHolder)
 			return new AppRecord((AppHolder) holder);
 		else if (holder instanceof ContactHolder)
-			return new ContactRecord((ContactHolder) holder);
+			return new ContactRecord(parent, (ContactHolder) holder);
 		else if (holder instanceof SearchHolder)
 			return new SearchRecord((SearchHolder) holder);
 		else if (holder instanceof SettingHolder)

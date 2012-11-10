@@ -2,7 +2,7 @@ package fr.neamar.summon;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,34 +23,21 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.RecordAdapter;
+import fr.neamar.summon.task.UpdateRecords;
 
-public class SummonActivity extends Activity {
+public class SummonActivity extends ListActivity implements QueryInterface{
 
 	private static final int MENU_SETTINGS = Menu.FIRST;
 	private static final int MENU_PREFERENCES = MENU_SETTINGS + 1;
 
-	private final int MAX_RECORDS = 15;
-
 	/**
 	 * Adapter to display records
 	 */
-	private RecordAdapter adapter;
-
-	/**
-	 * List view displaying records
-	 */
-	private ListView listView;
-
-	/**
-	 * Store current query
-	 */
-	public String currentQuery;
+	public RecordAdapter adapter;
 
 	/**
 	 * Search text in the view
@@ -68,9 +55,6 @@ public class SummonActivity extends Activity {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
-		//Store instance on Application level:
-		SummonApplication.mainActivity = this;
 
 		// Initialize preferences
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -81,8 +65,7 @@ public class SummonActivity extends Activity {
 		else
 			setContentView(R.layout.main);
 
-		listView = (ListView) findViewById(R.id.resultListView);
-		listView.setOnItemClickListener(new OnItemClickListener() {
+		getListView().setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View arg1,
 					int position, long id) {
@@ -91,9 +74,9 @@ public class SummonActivity extends Activity {
 		});
 
 		// Create adapter for records
-		adapter = new RecordAdapter(this, R.layout.item_app,
+		adapter = new RecordAdapter(this, this, R.layout.item_app,
 				new ArrayList<Record>());
-		listView.setAdapter(adapter);
+		setListAdapter(adapter);
 
 		this.searchEditText = (EditText) findViewById(R.id.searchEditText);
 		
@@ -119,7 +102,7 @@ public class SummonActivity extends Activity {
 			
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				RecordAdapter adapter = ((RecordAdapter) listView.getAdapter());
+				RecordAdapter adapter = ((RecordAdapter) getListView().getAdapter());
 				
 				if (prefs.getBoolean("invert-ui", false))
 					adapter.onClick(0, v);
@@ -215,54 +198,7 @@ public class SummonActivity extends Activity {
 	 * @param s
 	 */
 	public void updateRecords(String query) {
-		currentQuery = query;
-		
-		Thread resultThread = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				String workingOnQuery = currentQuery;
-
-				// Ask for records
-				final ArrayList<Holder> holders = SummonApplication.getDataHandler(SummonActivity.this)
-						.getResults(workingOnQuery);
-
-				// Another search have already been made
-				if (workingOnQuery != currentQuery)
-					return;
-
-				runOnUiThread(new Runnable() {
-
-					@Override
-					public void run() {
-						adapter.clear();
-
-						if (holders == null) {
-							// First use of the app. TODO : Display something
-							// useful.
-						} else {
-							if (prefs.getBoolean("invert-ui", false)) {
-								for (int i = 0; i < Math.min(MAX_RECORDS,
-										holders.size()); i++) {
-									adapter.add(Record.fromHolder(holders
-											.get(i)));
-								}
-							} else {
-								for (int i = Math.min(MAX_RECORDS,
-										holders.size()) - 1; i >= 0; i--) {
-									adapter.add(Record.fromHolder(holders
-											.get(i)));
-								}
-							}
-							// Reset scrolling to top
-							listView.setSelectionAfterHeaderView();
-						}
-					}
-				});
-
-			}
-		});
-		resultThread.start();
+		new UpdateRecords(this).execute(query);
 	}
 	
 	/**
