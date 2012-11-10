@@ -33,7 +33,7 @@ public class DataHandler {
 		// Initialize providers
 		providers.add(new AppProvider(context));
 		providers.add(new ContactProvider(context));
-		providers.add(new SearchProvider(context));
+		providers.add(new SearchProvider());
 		providers.add(new ToggleProvider(context));
 		providers.add(new SettingProvider(context));
 		providers.add(new AliasProvider(context, providers));

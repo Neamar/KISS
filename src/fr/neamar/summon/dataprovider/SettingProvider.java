@@ -12,7 +12,7 @@ public class SettingProvider extends Provider {
 	private ArrayList<SettingHolder> settings = new ArrayList<SettingHolder>();
 
 	public SettingProvider(Context context) {
-		super(context);
+		super();
 		holderScheme = "setting://";
 		Thread thread = new Thread(null, initSettingsList);
 		thread.setPriority(Thread.NORM_PRIORITY + 1);

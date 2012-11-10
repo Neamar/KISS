@@ -2,7 +2,6 @@ package fr.neamar.summon.dataprovider;
 
 import java.util.ArrayList;
 
-import android.content.Context;
 import fr.neamar.summon.holder.Holder;
 
 public abstract class Provider {
@@ -10,12 +9,6 @@ public abstract class Provider {
 	 * Scheme used to build ids for the holders created by this provider
 	 */
 	public String holderScheme = "(none)://";
-
-	protected Context context;
-
-	public Provider(Context context) {
-		this.context = context;
-	}
 
 	public abstract ArrayList<Holder> getResults(String s);
 

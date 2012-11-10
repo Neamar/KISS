@@ -15,79 +15,77 @@ import fr.neamar.summon.holder.Holder;
 public class ContactProvider extends Provider {
 	private ArrayList<ContactHolder> contacts = new ArrayList<ContactHolder>();
 
-	public ContactProvider(Context context) {
-		super(context);
+	public ContactProvider(final Context context) {
+		super();
 		holderScheme = "contact://";
-		Thread thread = new Thread(null, initContactsList);
+		Thread thread = new Thread(null, new Runnable() {
+			public void run() {
+				long start = System.nanoTime();
+
+				// Run query
+				Cursor cur = context.getContentResolver().query(
+						ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+						null, null, null);
+
+				// Prevent duplicates by keeping in memory encountered phones.
+				// The string key is "phone" + "|" + "name" (so if two contacts with
+				// distincts name share same number, they both get displayed
+				HashMap<String, Boolean> phones = new HashMap<String, Boolean>();
+
+				if (cur.getCount() > 0) {
+					while (cur.moveToNext()) {
+						ContactHolder contact = new ContactHolder();
+
+						contact.lookupKey = cur
+								.getString(cur
+										.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
+						contact.id = holderScheme + contact.lookupKey;
+						contact.timesContacted = Integer
+								.parseInt(cur.getString(cur
+										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
+						contact.name = cur
+								.getString(cur
+										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+						contact.phone = cur
+								.getString(cur
+										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+						contact.homeNumber = contact.phone.matches("^(\\+33|0)[1-5].*");
+						contact.starred = cur
+								.getInt(cur
+										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
+						String photoId = cur
+								.getString(cur
+										.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
+						if (photoId != null) {
+							contact.icon = ContentUris.withAppendedId(
+									ContactsContract.Data.CONTENT_URI,
+									Long.parseLong(photoId));
+						}
+
+						if (!phones.containsKey(contact.phone + '|' + contact.name)
+								&& contact.name != null) {
+							contact.nameLowerCased = contact.name.toLowerCase()
+									.replaceAll("[èéêë]", "e")
+									.replaceAll("[ûù]", "u")
+									.replaceAll("[ïî]", "i")
+									.replaceAll("[àâ]", "a").replaceAll("ô", "o")
+									.replaceAll("[ÈÉÊË]", "E");
+							contacts.add(contact);
+
+							phones.put(contact.phone + '|' + contact.name, true);
+						}
+					}
+				}
+				cur.close();
+
+				long end = System.nanoTime();
+				Log.i("time", Long.toString((end - start) / 1000000)
+						+ " milliseconds to list contacts");
+			}
+		});
 		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
 	}
-
-	protected Runnable initContactsList = new Runnable() {
-		public void run() {
-			long start = System.nanoTime();
-
-			// Run query
-			Cursor cur = context.getContentResolver().query(
-					ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
-					null, null, null);
-
-			// Prevent duplicates by keeping in memory encountered phones.
-			// The string key is "phone" + "|" + "name" (so if two contacts with
-			// distincts name share same number, they both get displayed
-			HashMap<String, Boolean> phones = new HashMap<String, Boolean>();
-
-			if (cur.getCount() > 0) {
-				while (cur.moveToNext()) {
-					ContactHolder contact = new ContactHolder();
-
-					contact.lookupKey = cur
-							.getString(cur
-									.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
-					contact.id = holderScheme + contact.lookupKey;
-					contact.timesContacted = Integer
-							.parseInt(cur.getString(cur
-									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
-					contact.name = cur
-							.getString(cur
-									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-					contact.phone = cur
-							.getString(cur
-									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-					contact.homeNumber = contact.phone.matches("^(\\+33|0)[1-5].*");
-					contact.starred = cur
-							.getInt(cur
-									.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
-					String photoId = cur
-							.getString(cur
-									.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
-					if (photoId != null) {
-						contact.icon = ContentUris.withAppendedId(
-								ContactsContract.Data.CONTENT_URI,
-								Long.parseLong(photoId));
-					}
-
-					if (!phones.containsKey(contact.phone + '|' + contact.name)
-							&& contact.name != null) {
-						contact.nameLowerCased = contact.name.toLowerCase()
-								.replaceAll("[èéêë]", "e")
-								.replaceAll("[ûù]", "u")
-								.replaceAll("[ïî]", "i")
-								.replaceAll("[àâ]", "a").replaceAll("ô", "o")
-								.replaceAll("[ÈÉÊË]", "E");
-						contacts.add(contact);
-
-						phones.put(contact.phone + '|' + contact.name, true);
-					}
-				}
-			}
-			cur.close();
-
-			long end = System.nanoTime();
-			Log.i("time", Long.toString((end - start) / 1000000)
-					+ " milliseconds to list contacts");
-		}
-	};
 
 	public ArrayList<Holder> getResults(String query) {
 		ArrayList<Holder> holders = new ArrayList<Holder>();
