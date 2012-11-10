@@ -12,7 +12,7 @@ public class ToggleProvider extends Provider {
 	private ArrayList<ToggleHolder> toggles = new ArrayList<ToggleHolder>();
 
 	public ToggleProvider(Context context) {
-		super(context);
+		super();
 		holderScheme = "toggle://";
 		Thread thread = new Thread(null, initTogglesList);
 		thread.setPriority(Thread.NORM_PRIORITY + 1);

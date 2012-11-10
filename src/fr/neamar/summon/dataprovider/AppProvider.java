@@ -16,49 +16,47 @@ import fr.neamar.summon.holder.Holder;
 public class AppProvider extends Provider {
 	private ArrayList<AppHolder> apps = new ArrayList<AppHolder>();
 
-	public AppProvider(Context context) {
-		super(context);
+	public AppProvider(final Context context) {
+		super();
 		holderScheme = "app://";
-		Thread thread = new Thread(null, initAppsList);
+		Thread thread = new Thread(null, new Runnable() {
+			public void run() {
+				long start = System.nanoTime();
+
+				PackageManager manager = context.getPackageManager();
+
+				Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+				mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+				final List<ResolveInfo> appsInfo = manager
+						.queryIntentActivities(mainIntent, 0);
+				Collections.sort(appsInfo,
+						new ResolveInfo.DisplayNameComparator(manager));
+
+				for (int i = 0; i < appsInfo.size(); i++) {
+					AppHolder app = new AppHolder();
+					ResolveInfo info = appsInfo.get(i);
+
+					app.id = holderScheme
+							+ info.activityInfo.applicationInfo.packageName
+							+ "/" + info.activityInfo.name;
+					app.name = info.loadLabel(manager).toString();
+					app.nameLowerCased = app.name.toLowerCase();
+
+					app.packageName = info.activityInfo.applicationInfo.packageName;
+					app.activityName = info.activityInfo.name;
+
+					apps.add(app);
+				}
+
+				long end = System.nanoTime();
+				Log.i("time", Long.toString((end - start) / 1000000)
+						+ " milliseconds to list apps");
+			}
+		});
 		thread.setPriority(Thread.NORM_PRIORITY + 1);
 		thread.start();
 	}
-
-	protected Runnable initAppsList = new Runnable() {
-		public void run() {
-			long start = System.nanoTime();
-
-			PackageManager manager = context.getPackageManager();
-
-			Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-			mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-			final List<ResolveInfo> appsInfo = manager.queryIntentActivities(
-					mainIntent, 0);
-			Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(
-					manager));
-
-			for (int i = 0; i < appsInfo.size(); i++) {
-				AppHolder app = new AppHolder();
-				ResolveInfo info = appsInfo.get(i);
-
-				app.id = holderScheme
-						+ info.activityInfo.applicationInfo.packageName + "/"
-						+ info.activityInfo.name;
-				app.name = info.loadLabel(manager).toString();
-				app.nameLowerCased = app.name.toLowerCase();
-
-				app.packageName = info.activityInfo.applicationInfo.packageName;
-				app.activityName = info.activityInfo.name;
-
-				apps.add(app);
-			}
-
-			long end = System.nanoTime();
-			Log.i("time", Long.toString((end - start) / 1000000)
-					+ " milliseconds to list apps");
-		}
-	};
 
 	public ArrayList<Holder> getResults(String query) {
 		ArrayList<Holder> records = new ArrayList<Holder>();

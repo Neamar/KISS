@@ -87,7 +87,9 @@ public abstract class Record {
 	protected void recordLaunch(Context context) {
 		// Save in history
 		// TODO: move to datahandler
-		DBHelper.insertHistory(context, SummonApplication.getDataHandler(context).currentQuery, holder.id);
+		DBHelper.insertHistory(context,
+				SummonApplication.getDataHandler(context).currentQuery,
+				holder.id);
 	}
 
 	public static Record fromHolder(QueryInterface parent, Holder holder) {
