@@ -50,7 +50,7 @@ public class SummonActivity extends Activity {
 	/**
 	 * Store current query
 	 */
-	private String currentQuery;
+	public String currentQuery;
 
 	/**
 	 * Search text in the view
@@ -68,6 +68,9 @@ public class SummonActivity extends Activity {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
+		//Store instance on Application level:
+		SummonApplication.mainActivity = this;
 
 		// Initialize preferences
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
