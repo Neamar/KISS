@@ -21,14 +21,22 @@ public class ContactProvider extends Provider {
 		Thread thread = new Thread(null, new Runnable() {
 			public void run() {
 				long start = System.nanoTime();
-
 				// Run query
-				Cursor cur = context.getContentResolver().query(
-						ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
-						null, null, null);
+				Cursor cur = context
+						.getContentResolver()
+						.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+								new String[] {
+										ContactsContract.Contacts.LOOKUP_KEY,
+										ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED,
+										ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+										ContactsContract.CommonDataKinds.Phone.NUMBER,
+										ContactsContract.CommonDataKinds.Phone.STARRED,
+										ContactsContract.Contacts.PHOTO_ID },
+								null, null, null);
 
 				// Prevent duplicates by keeping in memory encountered phones.
-				// The string key is "phone" + "|" + "name" (so if two contacts with
+				// The string key is "phone" + "|" + "name" (so if two contacts
+				// with
 				// distincts name share same number, they both get displayed
 				HashMap<String, Boolean> phones = new HashMap<String, Boolean>();
 
@@ -36,39 +44,36 @@ public class ContactProvider extends Provider {
 					while (cur.moveToNext()) {
 						ContactHolder contact = new ContactHolder();
 
-						contact.lookupKey = cur
-								.getString(cur
-										.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
+						contact.lookupKey = cur.getString(cur
+								.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
 						contact.id = holderScheme + contact.lookupKey;
-						contact.timesContacted = Integer
-								.parseInt(cur.getString(cur
-										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
-						contact.name = cur
-								.getString(cur
-										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-						contact.phone = cur
-								.getString(cur
-										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-						contact.homeNumber = contact.phone.matches("^(\\+33|0)[1-5].*");
-						contact.starred = cur
-								.getInt(cur
-										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
-						String photoId = cur
-								.getString(cur
-										.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
+						contact.timesContacted = Integer.parseInt(cur.getString(cur
+								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
+						contact.name = cur.getString(cur
+								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+						contact.phone = cur.getString(cur
+								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+						contact.homeNumber = contact.phone
+								.matches("^(\\+33|0)[1-5].*");
+						contact.starred = cur.getInt(cur
+								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
+						String photoId = cur.getString(cur
+								.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
 						if (photoId != null) {
 							contact.icon = ContentUris.withAppendedId(
 									ContactsContract.Data.CONTENT_URI,
 									Long.parseLong(photoId));
 						}
 
-						if (!phones.containsKey(contact.phone + '|' + contact.name)
+						if (!phones.containsKey(contact.phone + '|'
+								+ contact.name)
 								&& contact.name != null) {
 							contact.nameLowerCased = contact.name.toLowerCase()
 									.replaceAll("[èéêë]", "e")
 									.replaceAll("[ûù]", "u")
 									.replaceAll("[ïî]", "i")
-									.replaceAll("[àâ]", "a").replaceAll("ô", "o")
+									.replaceAll("[àâ]", "a")
+									.replaceAll("ô", "o")
 									.replaceAll("[ÈÉÊË]", "E");
 							contacts.add(contact);
 
