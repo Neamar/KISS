@@ -13,6 +13,7 @@ import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.SearchHolder;
 import fr.neamar.summon.holder.SettingHolder;
 import fr.neamar.summon.holder.ToggleHolder;
+import fr.neamar.summon.misc.DBHelper;
 
 public abstract class Record {
 	/**
@@ -84,21 +85,10 @@ public abstract class Record {
 	 */
 	protected void recordLaunch(Context context) {
 		// Save in history
-		// Move every item one step down
+		// TODO: move to datahandler
 		SharedPreferences prefs = context.getSharedPreferences("history",
 				Context.MODE_PRIVATE);
-		SharedPreferences.Editor ed = prefs.edit();
-		for (int k = 50; k >= 0; k--) {
-			String id = prefs.getString(Integer.toString(k), "(none)");
-			if (!id.equals("(none)"))
-				ed.putString(Integer.toString(k + 1), id);
-		}
-		// Store current item
-		ed.putString("0", holder.id);
-		// Remember result for this query
-		ed.putString("query://" + prefs.getString("currentQuery", ""),
-				holder.id);
-		ed.commit();
+		DBHelper.insertHistory(context, prefs.getString("currentQuery", ""), holder.id);
 	}
 
 	public static Record fromHolder(Holder holder) {

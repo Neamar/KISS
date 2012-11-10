@@ -1,4 +1,4 @@
-package fr.neamar.summon.ui;
+package fr.neamar.summon.misc;
 
 /*
  * Copyright (C) 2010 The Android Open Source Project

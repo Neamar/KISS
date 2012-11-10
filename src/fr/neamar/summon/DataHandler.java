@@ -14,13 +14,11 @@ import fr.neamar.summon.dataprovider.SettingProvider;
 import fr.neamar.summon.dataprovider.ToggleProvider;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.HolderComparator;
+import fr.neamar.summon.misc.DBHelper;
+import fr.neamar.summon.misc.ValuedHistoryRecord;
 
 public class DataHandler {
-	/**
-	 * Store last query
-	 */
-	public String lastQuery = "";
-	
+
 	private Context context;
 
 	/**
@@ -53,8 +51,6 @@ public class DataHandler {
 	public ArrayList<Holder> getResults(String query) {
 		query = query.toLowerCase();
 
-		this.lastQuery = query;
-
 		// Save currentQuery
 		SharedPreferences prefs = context.getSharedPreferences("history",
 				Context.MODE_PRIVATE);
@@ -68,8 +64,8 @@ public class DataHandler {
 		}
 
 		// Have we ever made the same query and selected something ?
-		String lastIdForQuery = prefs.getString("query://" + query,
-				"(none-nomatch)");
+		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(context, query);
+
 		// Ask all providers for datas
 		ArrayList<Holder> allHolders = new ArrayList<Holder>();
 
@@ -77,8 +73,13 @@ public class DataHandler {
 			ArrayList<Holder> holders = providers.get(i).getResults(query);
 			for (int j = 0; j < holders.size(); j++) {
 				// Give a boost if item was previously selected for this query
-				if (holders.get(j).id.equals(lastIdForQuery))
-					holders.get(j).relevance += 50;
+				for(int k = 0; k < lastIdsForQuery.size(); k++)
+				{
+					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record))
+					{
+						holders.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
+					}
+				}
 				allHolders.add(holders.get(j));
 			}
 		}
@@ -101,35 +102,14 @@ public class DataHandler {
 		ArrayList<Holder> history = new ArrayList<Holder>();
 
 		// Read history
-		ArrayList<String> ids = new ArrayList<String>();
-		SharedPreferences prefs = context.getSharedPreferences("history",
-				Context.MODE_PRIVATE);
-
-		for (int k = 0; k < 50; k++) {
-			String id = prefs.getString(Integer.toString(k), "(none)");
-
-			// Not enough history yet
-			if (id.equals("(none)")) {
-
-				if (k == 0)
-					return null;// App first use !
-				else
-					break;// Not enough item in history yet, we'll do with
-							// this.
-			}
-
-			// No duplicates, only keep recent
-			if (!ids.contains(id))
-				ids.add(id);
-		}
+		ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, 50);
 
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
-
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
-				if (providers.get(j).mayFindById(ids.get(i))) {
-					Holder holder = providers.get(j).findById(ids.get(i));
+				if (providers.get(j).mayFindById(ids.get(i).record)) {
+					Holder holder = providers.get(j).findById(ids.get(i).record);
 					if (holder != null) {
 						history.add(holder);
 						break;
