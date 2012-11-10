@@ -103,15 +103,14 @@ public class DataHandler {
 		ArrayList<Holder> history = new ArrayList<Holder>();
 
 		// Read history
-		ArrayList<String> ids = DBHelper.getHistory(context, 50);
+		ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, 50);
 
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
-
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
-				if (providers.get(j).mayFindById(ids.get(i))) {
-					Holder holder = providers.get(j).findById(ids.get(i));
+				if (providers.get(j).mayFindById(ids.get(i).record)) {
+					Holder holder = providers.get(j).findById(ids.get(i).record);
 					if (holder != null) {
 						history.add(holder);
 						break;

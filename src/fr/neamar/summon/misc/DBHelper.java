@@ -14,6 +14,25 @@ public class DBHelper {
 		DB db = new DB(context);
 		return db.getReadableDatabase();
 	}
+	
+	private static ArrayList<ValuedHistoryRecord> readCursor(Cursor cursor)
+	{
+		ArrayList<ValuedHistoryRecord> records = new ArrayList<ValuedHistoryRecord>();
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			ValuedHistoryRecord entry = new ValuedHistoryRecord();
+
+			entry.record = cursor.getString(0);
+			entry.value = cursor.getInt(1);
+			
+			records.add(entry);
+			cursor.moveToNext();
+		}
+		cursor.close();
+		
+		return records;
+	}
 
 	/**
 	 * Insert new item into history
@@ -32,6 +51,8 @@ public class DBHelper {
 		db.insert("history", null, values);
 		db.close();
 	}
+	
+	
 
 	/**
 	 * Retrieve previous query history
@@ -40,23 +61,16 @@ public class DBHelper {
 	 * @param limit
 	 * @return
 	 */
-	public static ArrayList<String> getHistory(Context context, int limit) {
+	public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit) {
 		SQLiteDatabase db = getDatabase(context);
 
 		// Cursor query (boolean distinct, String table, String[] columns,
 		// String selection, String[] selectionArgs, String groupBy, String
 		// having, String orderBy, String limit)
-		Cursor cursor = db.query(true, "history", new String[] { "record" },
+		Cursor cursor = db.query(true, "history", new String[] { "record, 1" },
 				null, null, null, null, "_id DESC", Integer.toString(limit));
 
-		ArrayList<String> records = new ArrayList<String>();
-
-		cursor.moveToFirst();
-		while (!cursor.isAfterLast()) {
-			records.add(cursor.getString(0));
-			cursor.moveToNext();
-		}
-		cursor.close();
+		ArrayList<ValuedHistoryRecord> records = readCursor(cursor);
 		db.close();
 
 		return records;
@@ -80,19 +94,7 @@ public class DBHelper {
 				new String[] { "record, COUNT(*) AS count" }, "query = ?",
 				new String[] { query }, "record", null, "COUNT(*) DESC", "5");
 
-		ArrayList<ValuedHistoryRecord> records = new ArrayList<ValuedHistoryRecord>();
-
-		cursor.moveToFirst();
-		while (!cursor.isAfterLast()) {
-			ValuedHistoryRecord entry = new ValuedHistoryRecord();
-
-			entry.record = cursor.getString(0);
-			entry.value = cursor.getInt(1);
-			
-			records.add(entry);
-			cursor.moveToNext();
-		}
-		cursor.close();
+		ArrayList<ValuedHistoryRecord> records = readCursor(cursor);
 		db.close();
 
 		return records;
@@ -116,19 +118,7 @@ public class DBHelper {
 				new String[] { "record, COUNT(*) AS count" }, null, null,
 				"record", null, "COUNT(*) DESC", Integer.toString(limit));
 
-		ArrayList<ValuedHistoryRecord> records = new ArrayList<ValuedHistoryRecord>();
-
-		cursor.moveToFirst();
-		while (!cursor.isAfterLast()) {
-			ValuedHistoryRecord entry = new ValuedHistoryRecord();
-
-			entry.record = cursor.getString(0);
-			entry.value = cursor.getInt(1);
-
-			records.add(entry);
-			cursor.moveToNext();
-		}
-		cursor.close();
+		ArrayList<ValuedHistoryRecord> records = readCursor(cursor);
 		db.close();
 
 		return records;
