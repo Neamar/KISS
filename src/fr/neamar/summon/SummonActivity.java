@@ -43,11 +43,6 @@ public class SummonActivity extends Activity {
 	private RecordAdapter adapter;
 
 	/**
-	 * Object handling all data queries
-	 */
-	private DataHandler dataHandler;
-
-	/**
 	 * List view displaying records
 	 */
 	private ListView listView;
@@ -68,7 +63,6 @@ public class SummonActivity extends Activity {
 	SharedPreferences prefs;
 
 	/** Called when the activity is first created. */
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
@@ -92,12 +86,6 @@ public class SummonActivity extends Activity {
 				adapter.onClick(position, arg1);
 			}
 		});
-
-		// (re-)Initialize datas
-		dataHandler = (DataHandler) getLastNonConfigurationInstance();
-		if (dataHandler == null) {
-			dataHandler = new DataHandler(getApplicationContext());
-		}
 
 		// Create adapter for records
 		adapter = new RecordAdapter(this, R.layout.item_app,
@@ -189,11 +177,6 @@ public class SummonActivity extends Activity {
 	}
 
 	@Override
-	public Object onRetainNonConfigurationInstance() {
-		return dataHandler;
-	}
-
-	@Override
 	public void onBackPressed() {
 		Intent i = new Intent(); 
         i.setAction(Intent.ACTION_MAIN); 
@@ -238,7 +221,7 @@ public class SummonActivity extends Activity {
 				String workingOnQuery = currentQuery;
 
 				// Ask for records
-				final ArrayList<Holder> holders = dataHandler
+				final ArrayList<Holder> holders = SummonApplication.getDataHandler(SummonActivity.this)
 						.getResults(workingOnQuery);
 
 				// Another search have already been made
