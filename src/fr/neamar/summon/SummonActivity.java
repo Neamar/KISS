@@ -2,6 +2,7 @@ package fr.neamar.summon;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,8 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -53,6 +56,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	SharedPreferences prefs;
 
 	/** Called when the activity is first created. */
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
@@ -66,6 +70,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			setContentView(R.layout.main_inverted);
 		else
 			setContentView(R.layout.main);
+		
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
+				Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB &&
+				prefs.getBoolean("small-screen", false)){
+			getActionBar().hide();
+		}
+			
 
 		getListView().setOnItemClickListener(new OnItemClickListener() {
 			@Override
