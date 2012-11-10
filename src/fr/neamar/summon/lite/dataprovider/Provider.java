@@ -1,0 +1,36 @@
+package fr.neamar.summon.lite.dataprovider;
+
+import java.util.ArrayList;
+
+import fr.neamar.summon.lite.holder.Holder;
+
+public abstract class Provider {
+	/**
+	 * Scheme used to build ids for the holders created by this provider
+	 */
+	public String holderScheme = "(none)://";
+
+	public abstract ArrayList<Holder> getResults(String s);
+
+	/**
+	 * Tells whether or not this provider may be able to find the holder with
+	 * specified id
+	 * 
+	 * @param id
+	 * @return true if the provider can handle the query ; does not guarantee it
+	 *         will!
+	 */
+	public Boolean mayFindById(String id) {
+		return id.startsWith(holderScheme);
+	}
+
+	/**
+	 * Try to find a record by its id
+	 * 
+	 * @param id
+	 * @return null if not found
+	 */
+	public Holder findById(String id) {
+		return null;
+	}
+}

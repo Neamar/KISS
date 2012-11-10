@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import android.content.Context;
-import fr.neamar.summon.dataprovider.AliasProvider;
-import fr.neamar.summon.dataprovider.AppProvider;
-import fr.neamar.summon.dataprovider.ContactProvider;
-import fr.neamar.summon.dataprovider.Provider;
-import fr.neamar.summon.dataprovider.SearchProvider;
-import fr.neamar.summon.dataprovider.SettingProvider;
-import fr.neamar.summon.dataprovider.ToggleProvider;
-import fr.neamar.summon.db.DBHelper;
-import fr.neamar.summon.db.ValuedHistoryRecord;
-import fr.neamar.summon.holder.Holder;
-import fr.neamar.summon.holder.HolderComparator;
+import fr.neamar.summon.lite.dataprovider.AliasProvider;
+import fr.neamar.summon.lite.dataprovider.AppProvider;
+import fr.neamar.summon.lite.dataprovider.ContactProvider;
+import fr.neamar.summon.lite.dataprovider.Provider;
+import fr.neamar.summon.lite.dataprovider.SearchProvider;
+import fr.neamar.summon.lite.dataprovider.SettingProvider;
+import fr.neamar.summon.lite.dataprovider.ToggleProvider;
+import fr.neamar.summon.lite.db.DBHelper;
+import fr.neamar.summon.lite.db.ValuedHistoryRecord;
+import fr.neamar.summon.lite.holder.Holder;
+import fr.neamar.summon.lite.holder.HolderComparator;
 
 public class DataHandler {
 
