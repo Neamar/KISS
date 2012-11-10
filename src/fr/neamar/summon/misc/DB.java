@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-class DB extends SQLiteOpenHelper {
+public class DB extends SQLiteOpenHelper {
 
 	final static int DB_VERSION = 1;
 	final static String DB_NAME = "summon.s3db";
