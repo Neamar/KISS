@@ -18,6 +18,4 @@ public class SummonApplication extends Application {
 			dataHandler = new DataHandler(ctx);
 		}
 	}
-	
-	public static SummonActivity mainActivity;
 }

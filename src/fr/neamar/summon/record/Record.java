@@ -1,12 +1,12 @@
 package fr.neamar.summon.record;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import fr.neamar.summon.SummonApplication;
 import fr.neamar.summon.holder.AppHolder;
 import fr.neamar.summon.holder.ContactHolder;
 import fr.neamar.summon.holder.Holder;
@@ -86,9 +86,9 @@ public abstract class Record {
 	protected void recordLaunch(Context context) {
 		// Save in history
 		// TODO: move to datahandler
-		DBHelper.insertHistory(context, SummonApplication.mainActivity.currentQuery, holder.id);
-		
-		SummonApplication.mainActivity.launchOccured();
+		SharedPreferences prefs = context.getSharedPreferences("history",
+				Context.MODE_PRIVATE);
+		DBHelper.insertHistory(context, prefs.getString("currentQuery", ""), holder.id);
 	}
 
 	public static Record fromHolder(Holder holder) {
