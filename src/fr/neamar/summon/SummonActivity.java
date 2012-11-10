@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -41,11 +42,6 @@ public class SummonActivity extends Activity {
 	 * Adapter to display records
 	 */
 	private RecordAdapter adapter;
-
-	/**
-	 * Object handling all data queries
-	 */
-	//private DataHandler dataHandler;
 
 	/**
 	 * List view displaying records
