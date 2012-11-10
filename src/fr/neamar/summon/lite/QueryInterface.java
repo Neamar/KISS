@@ -1,4 +1,4 @@
-package fr.neamar.summon;
+package fr.neamar.summon.lite;
 
 public interface QueryInterface {
 	public void launchOccured();

@@ -1,4 +1,4 @@
-package fr.neamar.summon;
+package fr.neamar.summon.lite;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

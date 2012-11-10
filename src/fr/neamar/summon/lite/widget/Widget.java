@@ -1,4 +1,4 @@
-package fr.neamar.summon.widget;
+package fr.neamar.summon.lite.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -8,8 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
-import fr.neamar.summon.R;
-import fr.neamar.summon.SummonActivity;
+import fr.neamar.summon.lite.R;
+import fr.neamar.summon.lite.SummonActivity;
 
 
 public class Widget extends AppWidgetProvider {

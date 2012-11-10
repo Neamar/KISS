@@ -1,5 +1,6 @@
-package fr.neamar.summon;
+package fr.neamar.summon.lite;
 
+import fr.neamar.summon.lite.R;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

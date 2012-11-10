@@ -1,4 +1,4 @@
-package fr.neamar.summon;
+package fr.neamar.summon.lite;
 
 import android.app.Application;
 import android.content.Context;

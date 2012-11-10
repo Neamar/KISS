@@ -30,11 +30,23 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/betaNotification"
         android:drawableLeft="@drawable/search"
         android:ems="10"
         android:hint="@string/ui_search_hint"
         android:imeOptions="flagNoExtractUi|actionSearch"
         android:inputType="text|textNoSuggestions"
         android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/betaNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/searchEditText"
+        android:layout_alignBottom="@+id/searchEditText"
+        android:layout_alignParentRight="true"
+        android:text="ß"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#c63636" />
 
 </RelativeLayout>
