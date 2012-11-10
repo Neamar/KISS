@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -192,7 +195,16 @@ public class SummonActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		searchEditText.setText("");
+		Intent i = new Intent(); 
+        i.setAction(Intent.ACTION_MAIN); 
+        i.addCategory(Intent.CATEGORY_HOME); 
+        PackageManager pm = this.getPackageManager(); 
+        ResolveInfo ri = pm.resolveActivity(i, 0); 
+        ActivityInfo ai = ri.activityInfo; 
+        searchEditText.setText("");
+        if(!ai.packageName.equalsIgnoreCase(this.getPackageName())){
+        	super.onBackPressed();
+        }
 	}
 
 	@Override
