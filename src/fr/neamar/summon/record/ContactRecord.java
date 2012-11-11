@@ -17,11 +17,31 @@ public class ContactRecord extends Record {
 	public ContactHolder contactHolder;
 	private QueryInterface queryInterface;
 
+
 	public ContactRecord(QueryInterface queryInterface,
 			ContactHolder contactHolder) {
 		super();
 		this.holder = this.contactHolder = contactHolder;
 		this.queryInterface = queryInterface;
+		
+		// Try to pretty format phone number
+		if(this.contactHolder.phone.matches("(\\+3)?[0-9]{10}"))
+		{
+			// Mise en forme du numéro de téléphone
+			String formatted_phone = contactHolder.phone.replace(" ",
+					"");
+			int number_length = contactHolder.phone.length();
+			for (int i = 1; i < 5; i++) {
+				formatted_phone = formatted_phone.substring(0,
+						number_length - 2 * i)
+						+ " "
+						+ formatted_phone
+								.substring(number_length - 2
+										* i);
+			}
+
+			contactHolder.phone = formatted_phone;
+		}
 	}
 
 	@Override
