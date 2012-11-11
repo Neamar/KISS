@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import android.content.Context;
-import android.util.Log;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import fr.neamar.summon.dataprovider.AliasProvider;
 import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.ContactProvider;
@@ -30,14 +31,26 @@ public class DataHandler {
 	 * Initialize all providers
 	 */
 	public DataHandler(Context context) {
-
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		// Initialize providers
-		providers.add(new AppProvider(context));
-		providers.add(new ContactProvider(context));
-		providers.add(new SearchProvider());
-		providers.add(new ToggleProvider(context));
-		providers.add(new SettingProvider(context));
-		providers.add(new AliasProvider(context, providers));
+		if(prefs.getBoolean("enable-apps", true)){
+			providers.add(new AppProvider(context));
+		}
+		if(prefs.getBoolean("enable-contacts", true)){
+			providers.add(new ContactProvider(context));
+		}
+		if(prefs.getBoolean("enable-search", true)){
+			providers.add(new SearchProvider());
+		}
+		if(prefs.getBoolean("enable-toggles", true)){
+			providers.add(new ToggleProvider(context));
+		}
+		if(prefs.getBoolean("enable-settings", true)){
+			providers.add(new SettingProvider(context));
+		}
+		if(prefs.getBoolean("enable-aliases", true)){
+			providers.add(new AliasProvider(context, providers));
+		}
 	}
 
 	/**
