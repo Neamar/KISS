@@ -150,7 +150,9 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 */
 	protected void onResume() {
 		if (prefs.getBoolean("preferences-updated", false)) {
-
+			//Reload the DataHandler since Providers preferences might have changed
+			SummonApplication.resetDataHandler(this);
+			
 			// Restart current activity to refresh view, since some preferences
 			// might require using a new UI
 			prefs.edit().putBoolean("preferences-updated", false).commit();
