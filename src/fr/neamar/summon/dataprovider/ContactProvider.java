@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.content.ContentUris;
@@ -23,6 +24,9 @@ public class ContactProvider extends Provider {
 		Thread thread = new Thread(null, new Runnable() {
 			public void run() {
 				long start = System.nanoTime();
+				
+				Matcher frenchPhoneMatcher = Pattern.compile("(\\+3)?[0-9]{10}").matcher("");
+				
 				// Run query
 				Cursor cur = context
 						.getContentResolver()
@@ -69,7 +73,27 @@ public class ContactProvider extends Provider {
 									Long.parseLong(photoId));
 						}
 
-						contact.id = holderScheme + contact.lookupKey + contact.phone;
+						contact.id = holderScheme + contact.lookupKey
+								+ contact.phone;
+
+						frenchPhoneMatcher.reset(contact.phone);
+						if (frenchPhoneMatcher.matches()) {
+							// Mise en forme du numéro de téléphone
+							String formatted_phone = contact.phone.replace(" ",
+									"");
+							int number_length = contact.phone.length();
+							for (int i = 1; i < 5; i++) {
+								formatted_phone = formatted_phone.substring(0,
+										number_length - 2 * i)
+										+ " "
+										+ formatted_phone
+												.substring(number_length - 2
+														* i);
+							}
+
+							contact.phone = formatted_phone;
+						}
+
 						if (contact.name != null) {
 							contact.nameLowerCased = contact.name.toLowerCase()
 									.replaceAll("[èéêë]", "e")
@@ -91,8 +115,6 @@ public class ContactProvider extends Provider {
 				}
 				cur.close();
 
-				
-				
 				for (ArrayList<ContactHolder> phones : mapContacts.values()) {
 					// Find primary phone and add this one.
 					Boolean hasPrimary = false;
