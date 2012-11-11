@@ -56,7 +56,11 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	}
 
 	public void onClick(int position, View v) {
-		records.get(position).launch(getContext(), v);
+		try {
+			records.get(position).launch(getContext(), v);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			
+		}
 
 		parent.launchOccured();
 	}

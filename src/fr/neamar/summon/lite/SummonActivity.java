@@ -2,6 +2,7 @@ package fr.neamar.summon.lite;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,8 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -17,8 +20,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -31,9 +35,6 @@ import fr.neamar.summon.lite.task.UpdateRecords;
 
 public class SummonActivity extends ListActivity implements QueryInterface {
 
-	private static final int MENU_SETTINGS = Menu.FIRST;
-	private static final int MENU_PREFERENCES = MENU_SETTINGS + 1;
-
 	/**
 	 * Adapter to display records
 	 */
@@ -45,25 +46,37 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	private EditText searchEditText;
 
 	/**
+	 * Task launched on text change
+	 */
+	private UpdateRecords updateRecords;
+
+	/**
 	 * Store user preferences
 	 */
 	SharedPreferences prefs;
 
 	/** Called when the activity is first created. */
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		// Initialize preferences
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
+		
 		if (prefs.getBoolean("invert-ui", false))
 			setContentView(R.layout.main_inverted);
 		else
 			setContentView(R.layout.main);
+		
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
+				Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB &&
+				prefs.getBoolean("small-screen", false)){
+			getActionBar().hide();
+		}
+			
 
 		getListView().setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -137,7 +150,9 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 */
 	protected void onResume() {
 		if (prefs.getBoolean("preferences-updated", false)) {
-
+			//Reload the DataHandler since Providers preferences might have changed
+			SummonApplication.resetDataHandler(this);
+			
 			// Restart current activity to refresh view, since some preferences
 			// might require using a new UI
 			prefs.edit().putBoolean("preferences-updated", false).commit();
@@ -178,17 +193,27 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	}
 
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.settings:
+			startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
+			return true;
+		case R.id.preferences:
+			startActivity(new Intent(this, SettingsActivity.class));
+			return true;
+		case R.id.clear:
+			searchEditText.setText("");
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-
-		menu.add(0, MENU_PREFERENCES, 0, R.string.menu_preferences).setIntent(
-				new Intent(this, SettingsActivity.class));
-
-		menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
-				.setIcon(android.R.drawable.ic_menu_preferences)
-				.setIntent(
-						new Intent(android.provider.Settings.ACTION_SETTINGS));
-
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_settings, menu);
 		return true;
 	}
 
@@ -199,7 +224,15 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 * @param s
 	 */
 	public void updateRecords(String query) {
-		new UpdateRecords(this).execute(query);
+		if (updateRecords != null) {
+			updateRecords.cancel(true);
+		}
+		updateRecords = new UpdateRecords(this);
+		updateRecords.execute(query);
+	}
+
+	public void resetTask() {
+		updateRecords = null;
 	}
 
 	/**

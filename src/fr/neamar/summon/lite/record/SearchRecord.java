@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 import fr.neamar.summon.lite.R;
 import fr.neamar.summon.lite.holder.SearchHolder;
-import android.widget.Toast;
 
 public class SearchRecord extends Record {
 	public SearchHolder searchHolder;

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import fr.neamar.summon.lite.dataprovider.AliasProvider;
 import fr.neamar.summon.lite.dataprovider.AppProvider;
 import fr.neamar.summon.lite.dataprovider.ContactProvider;
@@ -29,14 +31,26 @@ public class DataHandler {
 	 * Initialize all providers
 	 */
 	public DataHandler(Context context) {
-
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		// Initialize providers
-		providers.add(new AppProvider(context));
-		providers.add(new ContactProvider(context));
-		providers.add(new SearchProvider());
-		providers.add(new ToggleProvider(context));
-		providers.add(new SettingProvider(context));
-		providers.add(new AliasProvider(context, providers));
+		if(prefs.getBoolean("enable-apps", true)){
+			providers.add(new AppProvider(context));
+		}
+		if(prefs.getBoolean("enable-contacts", true)){
+			providers.add(new ContactProvider(context));
+		}
+		if(prefs.getBoolean("enable-search", true)){
+			providers.add(new SearchProvider());
+		}
+		if(prefs.getBoolean("enable-toggles", true)){
+			providers.add(new ToggleProvider(context));
+		}
+		if(prefs.getBoolean("enable-settings", true)){
+			providers.add(new SettingProvider(context));
+		}
+		if(prefs.getBoolean("enable-aliases", true)){
+			providers.add(new AliasProvider(context, providers));
+		}
 	}
 
 	/**
@@ -64,8 +78,13 @@ public class DataHandler {
 		ArrayList<Holder> allHolders = new ArrayList<Holder>();
 
 		for (int i = 0; i < providers.size(); i++) {
+			
+			//Retrieve results for query:
 			ArrayList<Holder> holders = providers.get(i).getResults(query);
+			
+			//Add results to list
 			for (int j = 0; j < holders.size(); j++) {
+				
 				// Give a boost if item was previously selected for this query
 				for (int k = 0; k < lastIdsForQuery.size(); k++) {
 					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record)) {
@@ -73,6 +92,7 @@ public class DataHandler {
 								lastIdsForQuery.get(k).value);
 					}
 				}
+				
 				allHolders.add(holders.get(j));
 			}
 		}
