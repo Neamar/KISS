@@ -24,11 +24,16 @@
         android:layout_height="wrap_content"
         android:cacheColorHint="@android:color/transparent" >
     </ListView>
-
-    <TextView
+    
+     <ScrollView
         android:id="@android:id/empty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ui_first_launch" />
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ui_first_launch" />
+    </ScrollView>
 
 </LinearLayout>
