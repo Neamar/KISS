@@ -5,12 +5,6 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ui_first_launch" />
-
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
@@ -42,5 +36,17 @@
         android:imeOptions="flagNoExtractUi|actionSearch"
         android:inputType="text|textNoSuggestions"
         android:singleLine="true" />
+
+    <ScrollView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/separator" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ui_first_launch" />
+    </ScrollView>
 
 </RelativeLayout>
