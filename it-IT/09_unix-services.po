@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2012-11-12 16:54+0100\n"
+"PO-Revision-Date: 2012-11-12 22:47+0100\n"
 "Last-Translator: Innocenzo Ventre <el.diabl09@gmail.com>\n"
 "Language-Team: Italian <http://debian.weblate.org/projects/debian-handbook/09_unix-services/it-IT/>\n"
 "Language: it-IT\n"
@@ -913,7 +913,7 @@ msgstr "Gestione dei diritti"
 #. Tag: para
 #, no-c-format
 msgid "Linux is definitely a multi-user system, so it is necessary to provide a permission system to control the set of authorized operations on files and directories, which includes all the system resources and devices (on a Unix system, any device is represented by a file or directory). This principle is common to all Unix systems, but a reminder is always useful, especially as there are some interesting and relatively unknown advanced uses."
-msgstr "Linux è decisamente un sistema multi-utente, per cui è necessario prevedere un sistema di autorizzazione per il controllo delle operazioni autorizzate su file e directory, che comprende tutte le risorse di sistema e dispositivi in ​​un sistema Unix, qualsiasi dispositivo è rappresentato da un file o directory). Questo principio è comune a tutti i sistemi Unix, ma un promemoria è sempre utile, soprattutto perché ci sono alcuni utilizzi avanzate interessanti e relativamente sconosciuto."
+msgstr "Linux è decisamente un sistema multi-utente, per cui è necessario prevedere un sistema di autorizzazione per il controllo delle operazioni autorizzate su file e directory, che comprende tutte le risorse di sistema e dispositivi in un sistema Unix, qualsiasi dispositivo è rappresentato da un file o directory). Questo principio è comune a tutti i sistemi Unix, ma un promemoria è sempre utile, soprattutto perché ci sono alcuni utilizzi avanzate interessanti e relativamente sconosciuto."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1238,7 +1238,7 @@ msgstr "Purtroppo, <command>webmin</command> non fa più parte di Debian da <emp
 #. Tag: para
 #, no-c-format
 msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the packages included in <emphasis role=\"distribution\">Sarge</emphasis>, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
-msgstr "Esiste, comunque, un pacchetto ufficiale distribuito sul sito web <literal>webmin.com</literal>. Contrariamente ai pacchetti inclusi in <emphasis role=\"distribution\">Sarge</emphasis> , questo pacchetto è monolitico, tutti i suoi moduli di configurazione sono installati e attivati ​​di default, anche se il servizio corrispondente non è installato sulla macchina."
+msgstr "Esiste, comunque, un pacchetto ufficiale distribuito sul sito web <literal>webmin.com</literal>. Contrariamente ai pacchetti inclusi in <emphasis role=\"distribution\">Sarge</emphasis> , questo pacchetto è monolitico, tutti i suoi moduli di configurazione sono installati e attivati di default, anche se il servizio corrispondente non è installato sulla macchina."
 
 #. Tag: title
 #, no-c-format
@@ -1854,7 +1854,7 @@ msgstr "<emphasis>SICUREZZA</emphasis> Limitare <command>cron</command> o <comma
 #. Tag: para
 #, no-c-format
 msgid "You can restrict access to <command>cron</command> by creating an explicit authorization file (whitelist) in <filename>/etc/cron.allow</filename>, in which you indicate the only users authorized to schedule commands. All others will automatically be deprived of this feature. Conversely, to only block one or two troublemakers, you could write their username in the explicit prohibition file (blacklist), <filename>/etc/cron.deny</filename>. This same feature is available for <command>atd</command>, with the <filename>/etc/at.allow</filename> and <filename>/etc/at.deny</filename> files."
-msgstr "È possibile limitare l'accesso a <command>cron</command> creando un file con esplicita autorizzazione (whitelist) in <filename>/ etc / cron.allow</filename> , in cui si indicano i soli utenti autorizzati per pianificare i comandi. Tutti gli altri saranno automaticamente privati ​​di questa funzione. Al contrario, per bloccare solo uno o due facinorosi, si può scrivere il corrispondente nome utente per divieto esplicito (blacklist), nel file <filename>/ etc / cron.deny</filename> . Questa stessa caratteristica è disponibile per <command>atd</command> , con i file <filename>/ etc / at.allow</filename> e <filename>/ etc / at.deny</filename>."
+msgstr "È possibile limitare l'accesso a <command>cron</command> creando un file con esplicita autorizzazione (whitelist) in <filename>/ etc / cron.allow</filename> , in cui si indicano i soli utenti autorizzati per pianificare i comandi. Tutti gli altri saranno automaticamente privati di questa funzione. Al contrario, per bloccare solo uno o due facinorosi, si può scrivere il corrispondente nome utente per divieto esplicito (blacklist), nel file <filename>/ etc / cron.deny</filename> . Questa stessa caratteristica è disponibile per <command>atd</command> , con i file <filename>/ etc / at.allow</filename> e <filename>/ etc / at.deny</filename>."
 
 #. Tag: para
 #, no-c-format
@@ -2064,7 +2064,7 @@ msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>echo \"Don't forget to wish a Happy Birthday to Raphaël!\" \\</userinput>\n"
-"<computeroutput>&gt; </computeroutput><userinput> | mail lolando@debian.org</userinput>\n"
+"<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
 "<computeroutput>warning: commands will be executed using /bin/sh\n"
 "job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
@@ -2072,7 +2072,7 @@ msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>echo \"Non dimenticare dli auguri di compleanno per Raphaël!\"\\</userinput>\n"
-"<computeroutput>&gt; </computeroutput><userinput> | mail lolando@debian.org</userinput>\n"
+"<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
 "<computeroutput>warning: commands will be executed using /bin/sh\n"
 "job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
@@ -2685,7 +2685,7 @@ msgstr "<literal>KERNELS</literal> , <literal>SUBSYSTEMS</literal> e <literal>AT
 #. Tag: para
 #, no-c-format
 msgid "<literal>PROGRAM</literal>: delegates the test to the indicated program (true if it returns 0, false if not). The content of the program's standard output is stored so that it can be reused by the <literal>RESULT</literal> test;"
-msgstr "<literal>PROGRAM</literal> : delega il ​​test per il programma indicato (true se restituisce 0, false in caso contrario). Il contenuto dello standard output del programma è memorizzato in modo che possa essere riutilizzato dal test <literal>RESULT</literal>;"
+msgstr "<literal>PROGRAM</literal> : delega il test per il programma indicato (true se restituisce 0, false in caso contrario). Il contenuto dello standard output del programma è memorizzato in modo che possa essere riutilizzato dal test <literal>RESULT</literal>;"
 
 #. Tag: para
 #, no-c-format
