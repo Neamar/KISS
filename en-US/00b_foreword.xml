@@ -2,7 +2,7 @@
 <preface id="foreword">
   <title>Foreword</title>
 
-  <para>Linux has been garnering strength for the last few years, and its
+  <para>Linux has been garnering strength for a number of years now, and its
   growing popularity drives more and more users to make the jump. The first
   step on that path is to pick a distribution. This is an important
   decision, because each distribution has its own peculiarities, and future
@@ -16,12 +16,12 @@
     <indexterm><primary>distribution</primary><secondary>Linux distribution</secondary></indexterm>
 
     <para>Strictly speaking, Linux is only a kernel, the core piece of
-    software sitting between the hardware and the applications.</para>
+    software which sits between the hardware and the applications.</para>
 
     <para>A “Linux distribution” is a full operating system; it usually
     includes the Linux kernel, an installer program, and most importantly
-    applications and other software required to turn a computer into an
-    actually useful tool.</para>
+    applications and other software required to turn a computer into a
+    tool that is actually useful.</para>
   </sidebar>
 
   <para>Debian GNU/Linux is a “generic” Linux distribution that fits
@@ -46,12 +46,17 @@
       the Apache Software Foundation (which hosts the development for the
       Apache web server). Debian is above all a project in the Free
       Software world, implemented by volunteers working together through
-      the Internet.</para>
+      the Internet.  While some of them do work on Debian as part of
+      their paid job in various companies, the project as a whole is
+      not attached to any company in particular, nor does any one
+      company have a greater say in the project's affairs than
+      what purely volunteer contributors have.</para>
     </sidebar>
 
-    <para>Linux has gathered a fair amount of media coverage, which mostly
+    <para>Linux has gathered a fair amount of media coverage over the
+    years; it mostly
     benefits the distributions supported by a real marketing department —
-    in other words, to company-backed distributions (Ubuntu, Red Hat,
+    in other words, company-backed distributions (Ubuntu, Red Hat,
     Suse, Mandriva, and so on). But Debian is far from being a marginal
     distribution; according to a German study made in early 2009, Debian is
     the most widely used distribution on servers (with nearly half of the
@@ -66,14 +71,16 @@
     and 2000 (Roland). With any luck, our enthusiasm will be communicative,
     and maybe you'll join us sometime…</para>
 
-    <para>The first edition of this book (in 2004) served to fill a gaping
-    hole: it was the first French-language book that focused exclusively on
-    Debian. At that time, many other books were written on the topic both
-    for French-speaking and English-speaking readers. Unfortunately almost
-    none of them got updated, and today we again find ourselves in a
-    situation where there are very few good books on Debian. We truly hope
-    that this first English edition will fill this gap and help many
-    users.</para>
+    <para>The first edition of this book (in 2004) served to fill a
+    gaping hole: it was the first French-language book that focused
+    exclusively on Debian. At that time, many other books were written
+    on the topic both for French-speaking and English-speaking
+    readers. Unfortunately almost none of them got updated, and over
+    the years the situation slipped back to one where there were very
+    few good books on Debian. We hope that this book, which has
+    started a new life with its translation into English (and several
+    translations from English into various other languages), helps to
+    fill this gap and help many users.</para>
   </section>
   <section id="sect.who-is-this-book-for">
     <title>Who Is this Book For?</title>
@@ -99,7 +106,7 @@
     joining us as contributors.</para>
   </section>
   <section id="sect.selected-approach">
-    <title>Chosen Approach</title>
+    <title>General Approach</title>
 
     <para>All of the generic documentation you can find about GNU/Linux
     also applies to Debian, since Debian includes most common free
@@ -116,10 +123,10 @@
   <section id="sect.book-structure">
     <title>Book Structure</title>
 
-    <para>Following the structure and aims of Eyrolles' “Administrator's
-    Handbook” collection, this book revolves around a case study
-    providing both support and illustration for all topics being
-    addressed.</para>
+    <para>This book has its origins in French publisher Eyrolles'
+    “Administrator's Handbook” collection, and keeps the same approach
+    of revolving around a case study providing both support and
+    illustration for all topics being addressed.</para>
 
     <sidebar>
       <title><emphasis>NOTE</emphasis> Web site, authors' email</title>
@@ -193,23 +200,20 @@
       instructions required for building the binary package.</para>
     </sidebar>
 
-    <para>The present English version is based on the fifth edition of the
-    French book. This fifth edition was an important update, covering
-    version 6.0 of Debian, code-named <emphasis
-    role="distribution">Squeeze</emphasis>. Among the changes, Debian now
-    sports two new architectures — <emphasis>kfreebsd-i386</emphasis> and
-    <emphasis>kfreebsd-amd64</emphasis> — based on the FreeBSD kernel and
-    supporting the associated technologies (<emphasis>jails</emphasis>,
-    <emphasis>packet filter</emphasis> and so on). On Linux-based
-    architectures, the 2.6.32 kernel extends support to all the main
-    virtualization technologies (Xen/OpenVZ/LXC/KVM, see <xref
-    linkend="sect.virtualization"/>). All included packages have obviously
-    been updated. Many improvements specifically target package
-    maintainers, who can now use a simplified
-    <filename>debian/rules</filename> (with debhelper's
-    <command>dh</command> command); they also benefit from a standard patch
-    management system integrated to <command>dpkg-source</command> (by
-    using the <literal>3.0 (quilt)</literal> source package format).</para>
+    <para>The present version is the first written primarily for
+    English, and the second one available in English; the previous one
+    was based on the fifth edition of the French book.  This edition
+    covers version 7.0 of Debian, code-named <emphasis
+    role="distribution">Wheezy</emphasis>. Among the changes, Debian
+    now sports two new architectures — <emphasis>s390x</emphasis> as a
+    replacement for <emphasis>s390</emphasis>, for IBM System Z
+    mainframe computers, and <emphasis>armhf</emphasis> for ARM
+    processors with a hardware floating point arithmetic unit.
+    Speaking of architectures, Debian's package manager is now
+    multi-architecture, and can handle installation of different
+    architectures of the same package at the same time.  All included
+    packages have obviously been updated, including the Gnome desktop,
+    which is now included in its version 3.4.</para>
 
     <para>We have added some notes and remarks in sidebars. They have a
     variety of roles: they can draw attention to a difficult point,
@@ -259,18 +263,18 @@
     <section>
       <title>A Bit of History</title>
 
-      <para>In 2003, Nat Makarevitch contacted me (Raphaël) because he
-      wanted to publish a book on Debian in the <foreignphrase>Cahier de
-      l'Admin</foreignphrase> (Admin's Handbook) collection that he was
-      managing for Eyrolles, a leading French editor of technical books. I
-      immediately accepted to write it. The first edition came out on 14th
-      October 2004 and was a huge success — it was sold out barely four
-      months later.</para>
+      <para>In 2003, Nat Makarevitch contacted Raphaël because he
+      wanted to publish a book on Debian in the <foreignphrase>Cahier
+      de l'Admin</foreignphrase> (Admin's Handbook) collection that he
+      was managing for Eyrolles, a leading French editor of technical
+      books.  Raphaël immediately accepted to write it. The first
+      edition came out on 14th October 2004 and was a huge success —
+      it was sold out barely four months later.</para>
 
-      <para>Since then, we have released 4 other editions of the French
-      book, one for each subsequent Debian release. Roland Mas, who started
-      working on the book as my proofreader, gradually became its
-      co-author.</para>
+      <para>Since then, we have released 4 other editions of the
+      French book, one for each subsequent Debian release.  Roland,
+      who started working on the book as a proofreader, gradually
+      became its co-author.</para>
 
       <para>While we were obviously satisfied with the book's success, we
       always hoped that Eyrolles would convince an international editor to
@@ -288,11 +292,11 @@
     <section>
       <title>A Crowd-Funded Translation</title>
 
-      <para>Translating a book of 450 pages is a considerable effort that
-      requires several months of work. For self-employed people like Roland
-      and me, we had to ensure a minimum income to mobilize the time
-      necessary to complete the project. So we set up a crowd-funding
-      campaign on Ulule and asked people to pledge money towards the
+      <para>Translating a book of 450 pages is a considerable effort
+      that requires several months of work. Self-employed people like
+      us had to ensure a minimum income to mobilize the time necessary
+      to complete the project. So we set up a crowd-funding campaign
+      on Ulule and asked people to pledge money towards the
       project. <ulink type="block"
       url="http://www.ulule.com/debian-handbook/"/></para>
 
@@ -396,7 +400,8 @@
       <title>Special Thanks to Contributors</title>
 
       <para>This book would not be what it is without the contributions of
-      several persons who each played an important role. We would like to
+      several persons who each played an important role during the
+      translation phase and beyond. We would like to
       thank Marilyne Brun, who helped us to translate the sample chapter
       and who worked with us to define some common translation rules. She
       also revised several chapters which were desperately in need of
@@ -406,6 +411,11 @@
       <para>We benefited from the generous help of proofreaders: Daniel
       Phillips, Gerold Rupprecht, Gordon Dey, Jacob Owens, and Tom Syroid.
       They each reviewed many chapters. Thank you very much!</para>
+
+      <para>Then, once the English version was liberated, of course we
+      got plenty of feedback and suggestions and fixes from the
+      readers, and even more from the many teams who undertook to
+      translate this book into other languages.  Thanks!</para>
 
       <para>We would also like to thank the readers of the French book
       who provided us some nice quotes to confirm that the book was
@@ -501,10 +511,11 @@
 
       <para>And finally; I am sure they would be surprised by being
       mentioned here, but I would like to extend my gratitude to Terry
-      Pratchett, Jasper Fforde, Tom Holt, William Gibson, Neal Stephenson,
-      and of course the late Douglas Adams. The countless hours I spent
-      enjoying their books are directly responsible for my being able to
-      take part in translating this one.</para>
+      Pratchett, Jasper Fforde, Tom Holt, William Gibson, Neal
+      Stephenson, and of course the late Douglas Adams. The countless
+      hours I spent enjoying their books are directly responsible for
+      my being able to take part in translating one first and writing
+      new parts later.</para>
     </section>
   </section>
 </preface>
