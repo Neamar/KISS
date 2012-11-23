@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2012-11-06 23:51+0200\n"
+"PO-Revision-Date: 2012-12-06 17:19+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-"
 "handbook/04_installation/es-ES/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 1.2\n"
+"X-Generator: Weblate 1.4-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -24,7 +24,7 @@ msgstr "Instalación"
 #. Tag: keyword
 #, no-c-format
 msgid "Partitioning"
-msgstr "Particionamiento"
+msgstr "Particionado"
 
 #. Tag: keyword
 #, no-c-format
@@ -34,42 +34,59 @@ msgstr "Formateo"
 #. Tag: keyword
 #, no-c-format
 msgid "File System"
-msgstr ""
+msgstr "Sistema de archivos"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Boot Sector"
-msgstr "Sector de Arranque"
+msgstr "Sector de arranque"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Hardware Detection"
-msgstr "Detección Hardware"
+msgstr "Detección de hardware"
 
 #. Tag: para
 #, no-c-format
 msgid "To use Debian, you need to install it on a computer; this task is taken care of by the <emphasis>debian-installer</emphasis> program. A proper installation involves many operations. This chapter reviews them in their chronological order."
 msgstr ""
+"Para utilizar Debian necesita instalarlo en una máquina; el programa "
+"<emphasis>debian-installer</emphasis> se encarga de esta tarea. Una "
+"instalación apropiada incluye muchas tareas. Este capítulo las revisa en "
+"orden cronológico."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>of the system</secondary>"
-msgstr ""
+msgstr "<primary>instalación</primary><secondary>del sistema</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> A catch-up course in the appendices"
 msgstr ""
+"<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Un curso acelerado en los "
+"apéndices"
 
 #. Tag: para
 #, no-c-format
 msgid "Installing a computer is always simpler when you are familiar with the way it works. If you are not, make a quick detour to <xref linkend=\"short-remedial-course\" /> before reading this chapter."
 msgstr ""
+"Instalar un equipo siempre es más simple cuando uno conoce cómo funciona. Si "
+"no lo sabe, desvíese rápidamente a <xref linkend=\"short-remedial-course\" /> "
+"antes de leer este capítulo."
 
 #. Tag: para
 #, no-c-format
 msgid "The installer for <emphasis role=\"distribution\">Squeeze</emphasis> is based on <command>debian-installer</command>. Its modular design enables it to work in various scenarios and allows it to evolve and adapt to changes. Despite the limitations implied by the need to support a large number of architectures, this installer is very accessible to beginners, since it assists users at each stage of the process. Automatic hardware detection, guided partitioning, and graphical user interfaces have solved most of the problems that newbies used to face."
 msgstr ""
+"El instalador para <emphasis role=\"distribution\">Squeeze</emphasis> está "
+"basado en <command>debian-installer</command>. Su diseño modular le permite "
+"trabajar en varios escenarios y evolucionar y adaptarse a los cambios. A "
+"peasr de las limitaciones que implica la compatibilida con un gran número de "
+"arquitecturas, este instalador es muy accesible para principiantes ya que "
+"asiste a los usuarios en cada paso del proceso. La detección automática de "
+"hardware, el particionamiento guiado y la interfaz gráfica de usuario "
+"solucionaron la mayoría de los problemas que deben enfrentar los novatos."
 
 #. Tag: indexterm
 #, no-c-format
@@ -85,36 +102,54 @@ msgstr "<primary><command>debian-installer</command></primary>"
 #, no-c-format
 msgid "Installation requires 56 MB of RAM (Random Access Memory) and at least 650 MB of hard drive space. All Falcot computers meet these criteria. Note, however, that these figures apply to the installation of a very limited system without a graphical desktop. A minimum of 512 MB of RAM and 5 GB of hard drive space are really recommended for a basic office desktop workstation."
 msgstr ""
+"La instalación necesita 56 MB de RAM (siglas en inglés de «memoria de acceso "
+"aleatorio») y al menos 650 MB de espacio en disco duro. Todos los equipos "
+"de Falco cumplen con dicho criterio. Es de notar, sin embargo, que estos "
+"números son aplicables en la instalación de un sistema muy limitado sin un "
+"escritorio gráfico. Se recomienda un mínimo de 512 MB de RAM y 5 GB de disco "
+"duro en un equipo de escritorio para oficina."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Upgrading from Lenny"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> Actualizando desde Lenny"
 
 #. Tag: para
 #, no-c-format
 msgid "If you already have Debian Lenny installed on your computer, this chapter is not for you! Unlike other distributions, Debian allows updating a system from one version to the next without having to reinstall the system. Reinstalling, in addition to being unnecessary, could even be dangerous, since it could remove already installed programs."
 msgstr ""
+"Si ya tiene Debian Lenny instalado en su máquina ¡este capítulo no es para "
+"usted! A diferencia de otras distribuciones, Debian permite actualizar un "
+"sistema de una versión a la siguiente sin tener que reinstalarlo. Una "
+"reinstalación, además de innecesaria, podría ser peligrosa ya que puede "
+"elimiar programas ya instalados."
 
 #. Tag: para
 #, no-c-format
 msgid "The upgrade process will be described in <xref linkend=\"sect.dist-upgrade\" />."
 msgstr ""
+"Se describirá el proceso de actualización en <xref linkend=\"sect.dist-"
+"upgrade\" />."
 
 #. Tag: title
 #, no-c-format
 msgid "Installation Methods"
-msgstr "Métodos de Instalación"
+msgstr "Métodos de instalación"
 
 #. Tag: para
 #, no-c-format
 msgid "A Debian system can be installed from several types of media, as long as the BIOS of the machine allows it. You can for instance boot with a CD-ROM, a USB key, or even through a network."
 msgstr ""
+"Se puede instalar un sistema Debian desde diferentes medios siempre que lo "
+"permita la BIOS del equipo. Puede iniciar desde un CD-ROM, una llave USB o "
+"inclusive desde la red."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> BIOS, the hardware/software interface"
 msgstr ""
+"<emphasis>VOLVER A LOS CIMIENTOS</emphasis> BIOS, la interfaz "
+"hardware/software"
 
 #. Tag: indexterm
 #, no-c-format
@@ -124,12 +159,18 @@ msgstr "<primary>BIOS</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Basic Input/Output System</primary>"
-msgstr ""
+msgstr "<primary>sistema básico de entrada/salida</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "BIOS (which stands for Basic Input/Output System) is a software that is included in the motherboard (the electronic board connecting all peripherals) and executed when the computer is booted, in order to load an operating system (via an adapted bootloader). It stays in the background to provide an interface between the hardware and the software (in our case, the Linux kernel)."
-msgstr "BIOS (que responde a las siglas de Sistema Básico de Entrada/Salida) es un software que se encuentra en la placa base (la placa electrónica que conecta todos los periféricos) y se ejecuta cuando el ordenador arranca, para poder cargar el sistema operativo (por medio de un cargador de arranque adaptado). Se mantiene en ejecución en segundo plano para proporcionar una interface entre el hardware y el software (en nuestro caso, el kernel de Linux)."
+msgstr ""
+"BIOS (las siglas en inglés de «sistema básico de entrada/salida») es un "
+"software que se encuentra en la placa madre (la placa electrónica que "
+"conecta todos los periféricos) y se ejecuta cuando el arranca el equipo, "
+"para poder cargar el sistema operativo (por medio de un gestor de arranque "
+"adaptado). Se mantiene en ejecución en segundo plano para proporcionar una "
+"interfaz entre el hardware y el software (en nuestro caso, el núcleo Linux)."
 
 #. Tag: title
 #, no-c-format
@@ -140,171 +181,293 @@ msgstr "Instalación desde CD-ROM/DVD-ROM"
 #, no-c-format
 msgid "The most widely used installation media is CD-ROM (or DVD-ROM, which behaves exactly the same way): the computer is booted from this media, and the installation program takes over."
 msgstr ""
+"El medio de instalación más utilizado es el CD-ROM (o DVD-ROM, que se "
+"comporta exactamente de la misma forma): el equipo inicia desde este medio y "
+"el programa de instalación toma el control."
 
 #. Tag: para
 #, no-c-format
 msgid "Various CD-ROMs have different purposes: <emphasis>netinst</emphasis> (network installation) contains the installer and the base Debian system; all other programs are then downloaded. Its “image”, that is the ISO-9660 filesystem that contains the exact contents of the disk, only takes up about 150 MB. Then we have the <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only provides the installer, and which requires all the Debian packages (including the base system) to be downloaded. Since its image only takes up 35 MB, it can be burnt on a “business card” type CD-ROM, from which it takes its name. Finally, the complete set offers all packages and allows for installation on a computer that has no Internet access; it requires around 50 CD-ROMs (or eight DVD-ROMs, or two Blu-ray disks). But the programs are divided among the disks according to their popularity and importance; the first three disks will be sufficient for most installations, since they contain the most used software."
 msgstr ""
+"Diferentes CD-ROMs tienen distintos propósitos: <emphasis>netinst</emphasis> "
+"(«network installation»: instalación por red) contiene el instalador y el "
+"sistema base Debian, se descarán luego todos los otros programas. Su "
+"«imagen», el sistema de archivos ISO-9660 que contiene el contenido exacto "
+"del disco, sólo ocupa alrededor de 150 MB. Luego tenemos los CD-ROM "
+"<emphasis>«businesscard»</emphasis> o <emphasis>«bizcard»</emphasis> que "
+"sólo proveen el instalador y requieren que se descarguen todos los paquetes "
+"Debian (incluyendo el sistema base). Debido a que su imagen sólo ocupa 35 MB "
+"puede grabarse en un CD-ROM de tipo «business card» (tarjeta de negocios) "
+"del que obtuvo su nombre. Finalmente, el conjunto completo ofrece todos los "
+"paquetes y permite la instalación en un equipo sin acceso a internet; "
+"requiere alrededor de 50 CD-ROMs (u ocho DVD-ROMs, o dos dicos Blu-ray). "
+"Pero los programas se dividen entre los discos según popularidad e "
+"importancia; los primeros tres discos deberían ser suficientes para la "
+"mayoría de las instalaciones ya que contienen el software más utilizado."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Multi-architecture disks"
-msgstr ""
+msgstr "<emphasis>SUGERENCIA</emphasis> Discos multiarquitectura"
 
 #. Tag: para
 #, no-c-format
 msgid "Most installation CD- and DVD-ROMs work only with a specific hardware architecture. If you wish to download the complete images, you must take care to choose those which work on the hardware of the computer on which you wish to install them."
 msgstr ""
+"La mayoría de los CD-ROMs y DVD-ROMs de instalación sólo funcionan en una "
+"arquitectura de hardware específica. Si desea descargar las imágenes "
+"completas debe tener cuidado de elegir aquiella que funcione en el hardware "
+"del equipo en el que desea instalarlo."
 
 #. Tag: para
 #, no-c-format
 msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a <emphasis>netinst</emphasis> CD-ROM image for the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
 msgstr ""
+"Algunas imágenes de CD/DVD-ROM pueden funcionar en varias arquitecturas. "
+"Tenemos una imagen de CD-ROM <emphasis>netinst</emphasis> para las "
+"arquitecturas <emphasis>i386</emphasis> y <emphasis>amd64</emphasis>. "
+"También existe una imagen de DVD-ROM que contiene el instalador y una "
+"selección de paquetes binarios para <emphasis>i386</emphasis> y "
+"<emphasis>amd64</emphasis> así como también los paquetes fuente "
+"correspondientes."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary>installation CD-ROM</secondary>"
-msgstr ""
+msgstr "<primary>CD-ROM</primary><secondary>de instalación</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary><emphasis>netinst CD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>CD-ROM</primary><secondary><emphasis>netinst</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary><emphasis>businesscard CD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>CD-"
+"ROM</primary><secondary><emphasis>businesscard</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary>installation DVD-ROM</secondary>"
-msgstr ""
+msgstr "<primary>DVD-ROM</primary><secondary>de instalación</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary><emphasis>netinst DVD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>DVD-"
+"ROM</primary><secondary><emphasis>netinst</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary><emphasis>businesscard DVD-ROM</emphasis></secondary>"
 msgstr ""
+"<primary>DVD-"
+"ROM</primary><secondary><emphasis>businesscard</emphasis></secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To acquire Debian CD-ROM images, you may of course download them and burn them to disk. You may also purchase them, and, thus, provide the project with a little financial support. Check the website to see the list of CD-ROM image vendors and download sites. <ulink type=\"block\" url=\"http://www.debian.org/CD/index.html\" />"
 msgstr ""
+"Para adquirir imágenes de CD-ROM de Debian puede, por supuesto, descargarlas "
+"y grabarlas en un disco. Puede también comprarlas y, de esa forma, proveer "
+"un poco de ayuda financiera al proyecto. En el sitio web encontrará una "
+"lista de proveedores de imágenes de CD-ROM y sitios donde descargarlas. "
+"<ulink type=\"block\" url=\"http://www.debian.org/CD/index.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Debian on CD-ROM"
-msgstr ""
+msgstr "<emphasis>EN LA PRÁCTICA</emphasis> Debian en CD-ROM"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary>CD-ROM vendor</primary></indexterm> Debian CD-/DVD-ROMs can also be purchased; Raphaël Hertzog proposes some on his blog, where 10% of the profit is donated to the Debian Project, the remainder of which allows him to devote more time to Debian. <ulink type=\"block\" url=\"http://www.debian.org/CD/vendors/\" /> <ulink type=\"block\" url=\"http://raphaelhertzog.com/go/debian-cd/\" />"
 msgstr ""
+"<indexterm><primary>CD-"
+"ROM</primary><secondary>proveedor</secondary></indexterm> También se pueden "
+"comprar CD/DVD-ROMs de Debian; Raphäel Hertzog propone algunos en su blog, "
+"donde se dona al proyecto Debian el 10% de las ganancias y el resto le "
+"permite dedicarle más tiempo a Debian. <ulink type=\"block\" "
+"url=\"http://www.debian.org/CD/vendors/\" /> <ulink type=\"block\" "
+"url=\"http://raphaelhertzog.com/go/debian-cd/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Booting from a USB Key"
-msgstr ""
+msgstr "Arranque desde una llave USB"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>USB key</primary>"
-msgstr ""
+msgstr "<primary>llave USB</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Since recent computers are able to boot from USB devices, you can also install Debian from a USB key (this is nothing more than a small flash-memory disk). Be aware, however, that not all BIOSes are the same; some are able to boot from USB 2.0 devices, while others only work with USB 1.1. Besides, the USB key must have 512-bytes sectors, and this feature, while common, is never documented on the packaging of the keys you find for sale."
 msgstr ""
+"Como las máquinas recientes pueden arrancar desde dispositivos USB, también "
+"puede instalar Debian desde una llave USB (que no es mucho más que un "
+"pequeño disco de memoria flash). Tenga cuidado ya que no todos los BIOS son "
+"iguales, algunos pueden arrancar desde dispositivos USB 2.0 mientras que "
+"otros sólo funcionarán con USB 1.1. Además, la llave USB debe tener sectores "
+"de 512 sectores y esta característica — aunque común — nunca es documentado "
+"en el empaquetado de las llaves que encontrará a la venta."
 
 #. Tag: para
 #, no-c-format
 msgid "The installation manual explains how to create a USB key that contains the <command>debian-installer</command>. The procedure has been significantly simplified with <emphasis role=\"distribution\">Squeeze</emphasis>, since the ISO images for i386 and amd64 architectures are hybrid images that can boot from a CD-ROM as as well as from a USB key."
 msgstr ""
+"El manual de instalación explica cómo crear una llave USB que contenga "
+"<command>debian-installer</command>. Se simplificó el procedimiento "
+"significativamente desde <emphasis role=\"distribution\">Squeeze</emphasis>, "
+"ya que las imágenes ISO para arquitecturas i386 y amd64 son imágenes "
+"híbridas que pueden arrancar tanto desde un CD-ROM como desde una llave USB."
 
 #. Tag: para
 #, no-c-format
 msgid "You must first identify the peripheral name of the USB key (ex: <literal>/dev/sdb</literal>); the simplest means to do this is to check the messages issued by the kernel using the <command>dmesg</command> command. Then you must copy the previously downloaded ISO image (for example debian-6.0.0-amd64-i386-netinst.iso) with the command <command>cat debian-6.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command>. This command requires administrator rights, since it directly accesses the USB key peripheral and blindly erases its content."
 msgstr ""
+"Primero debe identificar el nombre de periférico de la llave USB (por "
+"ejemplo: <literal>/dev/sdb</literal>; el método más simple para hacerlo es "
+"revisar el mensaje generado por el núcleo con la orden "
+"<command>dmesg</command>. Luego debe copiar la imagen ISO ya descargada (por "
+"ejemplo debian-6.0.0-amd64-i386-netinst.iso) con la orden <command>cat "
+"debian-6.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command>. Esta orden "
+"necesita permisos de administrador ya que accede directamente a la llave "
+"USB y borra su contenido ciegamente."
 
 #. Tag: para
 #, no-c-format
 msgid "A more detailed explanation is available in the installation manual. Among other things, it describes an alternative method of preparing a USB key that is more complex, but that allows to customize the installer's default options (those set in the kernel command line). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s03.html\" />"
 msgstr ""
+"Podrá encontrar una explicación más detallada en el manual de instalación. "
+"Entre otras cosas, describe un método alternativo para prepara la llave USB "
+"que es más complejo pero permite modificar las opciones predeterminadas del "
+"instalador (aquellas definidas en la línea de órdenes del núcleo). <ulink "
+"type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s03.html\" "
+"/>"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing through Network Booting"
-msgstr ""
+msgstr "Instalando a través de arranque por red"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary><emphasis>netboot installation</emphasis></secondary>"
 msgstr ""
+"<primary>instalación</primary><secondary><emphasis>por "
+"red</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary><emphasis>PXE installation</emphasis></secondary>"
 msgstr ""
+"<primary>instalación</primary><secondary><emphasis>PXE</emphasis></secondary"
+">"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary><emphasis>TFTP installation</emphasis></secondary>"
 msgstr ""
+"<primary>instalación</primary><secondary><emphasis>por "
+"TFTP</emphasis></secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Many BIOSes allow booting directly from the network by downloading the kernel to boot. This method (which has several names, such as <acronym>PXE</acronym> or <acronym>TFTP</acronym> boot) can be a life-saver if the computer does not have a CD-ROM reader, or if the BIOS can't boot from such media."
 msgstr ""
+"Muchas BIOS permiten arrancar directamente desde la red descargando el "
+"núcleo a iniciar. Este método (que tiene varios nombres como arranque "
+"<acronym>PXE</acronym> o <acronym>TFTP</acronym>) puede ser un salvavidas si "
+"el equipo no tiene una lectora de CD-ROM o si su BIOS no puede arrancar por "
+"otros medios."
 
 #. Tag: para
 #, no-c-format
 msgid "This installation method works in two steps. First, while booting the computer, the BIOS (or the network card) issues a BOOTP/DHCP request to automatically acquire an IP address. When a BOOTP or DHCP server returns a response, it includes a filename, as well as network settings. After having configured the network, the client computer then issues a TFTP (Trivial File Transfer Protocol) request for a file whose name was previously indicated. Once this file is acquired, it is executed as though it were a bootloader. This then launches the Debian installation program, which is executed as though it were running from the hard drive, a CD-ROM, or a USB key."
 msgstr ""
+"Este método de instalación funciona en dos pasos. Primero, al arrancar el "
+"equipo, el BIOS (o la placa de red) hace un pedido BOOTP/DHCP para adquirir "
+"una dirección IP automáticamente. Cuando un servidor BOOTP o DHCP envía una "
+"respuesta, incluye un nombre de archivo además de la configuración de red. "
+"Luego de configurar la red, el equipo cliente hace un pedido TFTP (siglas en "
+"inglés de «protocolo trivial de transferencia de archivos») para el archivo "
+"cuyo nombre recibió. Una vez que adquiere dicho archivo, lo ejecuta como un "
+"gestor de arranque. Esto luego ejecuat el programa de instalación de Debian "
+"como si lo hubiese carga desde el disco duro, un CD-ROM o una llave USB."
 
 #. Tag: para
 #, no-c-format
 msgid "All the details of this method are available in the installation guide (“Preparing files for TFTP Net Booting” section). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch05s01.html#boot-tftp\" /><ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s05.html\" />"
 msgstr ""
+"Todos los detalles de este método están disponibles en la guía de "
+"instalación (sección «Preparando los archivos para arranque por red TFTP»). "
+"<ulink type=\"block\" "
+"url=\"http://www.debian.org/releases/stable/i386/ch05s01.html#boot-tftp\" "
+"/><ulink type=\"block\" "
+"url=\"http://www.debian.org/releases/stable/i386/ch04s05.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Other Installation Methods"
-msgstr "Otros Métodos de Instalación"
+msgstr "Otros métodos de instalación"
 
 #. Tag: para
 #, no-c-format
 msgid "When we have to deploy customized installations for a large number of computers, we generally choose an automated rather than a manual installation method. Depending on the situation and the complexity of the installations to be made, we can use FAI (Fully Automatic Installer, described in <xref linkend=\"fai\" />), or even a customized installation CD with preseeding (see <xref linkend=\"d-i-preseeding\" />)."
 msgstr ""
+"Cuando necesitamos desplegar instalaciones personalizadas para una gran "
+"cantidad de equipos generalmente elegimos un método de instalación "
+"automático en lugar de uno manual. Dependiendo de la situación y la "
+"complejidad de las instalaciones podemos utilizar FAI (siglas de «instalador "
+"completamente automático», descripto en <xref linkend=\"fai\" />) o un CD de "
+"instalación preconfigurado («preseeding», revise <xref "
+"linkend=\"d-i-preseeding\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing, Step by Step"
-msgstr "Instalación, Paso a Paso"
+msgstr "Instalación, paso a paso"
 
 #. Tag: title
 #, no-c-format
 msgid "Booting and Starting the Installer"
-msgstr "Arranque e Inicio del Instalador"
+msgstr "Arranque e inicio del instalador"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the BIOS has begun booting from the CD- or DVD-ROM, the Isolinux bootloader menu appears. At this stage, the Linux kernel is not yet loaded; this menu allows you to choose the kernel to boot and enter possible parameters to be transferred to it in the process."
 msgstr ""
+"Una vez que el BIOS comenzó el arranque desde el CD o DVD-ROM aparecerá el "
+"menú del gestor de arranque Isolinux. En esta etapa, el núcleo Linux no está "
+"cargado aún; este menú le permite elegir el núcleo a arrancar y "
+"posiblemente ingresar los parámetros a pasarle en el proceso."
 
 #. Tag: para
 #, no-c-format
 msgid "For a standard installation, you only need to choose “Install” or “Graphical install” (with the arrows), then press the <keycap>Enter</keycap> key to initiate the remainder of the installation process. If the DVD-ROM is a “Multi-arch” disk (such as the one included with this book), and the machine has an Intel or AMD 64 bit processor, the menu options “64 bit install” and “64 bit graphical install” enable the installation of the 64 bit variant (<emphasis>amd64</emphasis>) instead of the default 32 bit variant (<emphasis>i386</emphasis>). In practice, the 64 bit version is only relevant on a server rather than a desktop workstation, since it will cause difficulties with the use of certain non-free software that are released only as binaries."
 msgstr ""
+"Para una instalación estándar sólo necesita elegir «Instalación» o "
+"«Instalación gráfica» (con las flechas), luego presionar la tecla "
+"<keycap>Enter</keycap> para iniciar el resto del proceso de instalación. Si "
+"el DVD-ROM es un disco multiarquitectura (como el que viene incluído en este "
+"libro) y el equipo tiene un procesador Intel o AMD de 64 bits, las opciones "
+"«Instalación 64 bits» y «Instalación gráfica 64 bits» permiten instalar la "
+"variante de 64 bits (<emphasis>amd64</emphasis>) en lugar de la versión "
+"predeterminada de 32 bits (<emphasis>i386</emphasis>). En la práctica, la "
+"versión de 64 bits sólo es relevante en un servidor, no en una estación de "
+"escritorio, ya que suele causar dificultades al utilizar cierto software "
+"privativo que son publicados sólo en forma de binarios."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> 32 or 64 bits?"
-msgstr ""
+msgstr "<emphasis>YENDO MÁS ALLÁ</emphasis> ¿32 o 64 bits?"
 
 #. Tag: indexterm
 #, no-c-format
@@ -314,27 +477,50 @@ msgstr "<primary>PAE</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Physical Address Extension</primary>"
-msgstr "<primary>Extensión de las Direcciones Físicas</primary>"
+msgstr "<primary>Extensión de direcciones físicas</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>32/64 bits, choice</primary>"
-msgstr ""
+msgstr "<primary>32/64 bits, elección</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The fundamental difference between 32 and 64 bit systems is the size of memory addresses. In theory, a 32 bit system can not work with more than 4 GB of RAM (2<superscript>32</superscript> bytes). In practice, it is possible to work around this limitation by using the <literal>686-bigmem</literal> kernel variant, so long as the processor handles the PAE (Physical Address Extension) functionality. Using it does have a notable influence on system performance, however. This is why it is useful to use the 64 bit mode on a server with a large amount of RAM."
-msgstr "La diferencia fundamental entre los sistemas de 32 y 64 bits es el tamaño de las direcciones de memoria. En teoria, un sistema de 32 bits no puede direccionar más de 4 GB de RAM (2 <superscript>32</superscript> bytes). En la práctica, es posible superar esta limitación usando la variante del kernel <literal>686-bigmem</literal>, de esta forma el procesador se encarga de proporcionar la funcionalidad PAE (Extensión de Direcciones Físicas). Sin embargo, usar esta funcionalidad tiene un gran impacto en el performance del sistema. Por ello, es conveniente usar el modo de 64 bits en un servidor."
+msgstr ""
+"La diferencia fundamental entre los sistemas de 32 y 64 bits es el tamaño de "
+"las direcciones de memoria. En teoría, un sistema de 32 bits no puede "
+"direccionar más de 4 GB de RAM (2<superscript>32</superscript> bytes). En la "
+"práctica, es posible superar esta limitación usando la variante "
+"<literal>686-bigmem</literal> del núcleo siempre que el procesador sea "
+"compatible con PAE (siglas en inglés de «extensión de direcciones físicas»). "
+"Sin embargo, usar esta funcionalidad tiene un gran impacto en la "
+"performance del sistema. Por ello es conveniente usar el modo de 64 bits en "
+"un servidor con grandes cantidades de RAM."
 
 #. Tag: para
 #, no-c-format
 msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype and the plugin for handling Java applets in web browsers, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions with all the necessary libraries, and often to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. This is very demanding for a relatively small gain. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
 msgstr ""
+"Para un equipo de oficina (donde una diferencia en performance de un pequeño "
+"porcentaje es despreciable) debe tener en cuenta que algunos programas "
+"privativos no tienen disponible versiones de 64 bits (por ejemplo, Skype y "
+"el plugin para manejar applets Java en el navegador). Es técnicamente "
+"posible hacerlos funcionar en sistemas de 64 bits, pero tendrá que instalar "
+"las versiones de 32 bits con las bibliotecas necesarias y generalmente "
+"utilizar <command>setarch</command> o <command>linux32</command> (del "
+"paquete <emphasis role=\"pkg\">util-linux</emphasis>) o engañar a la "
+"aplicación sobre la naturaleza del sistema. Esto es mucho trabajo para una "
+"ganancia relativamente pequeña. "
+"<indexterm><primary><command>setarch</command></primary></indexterm> "
+"<indexterm><primary><command>linux32</command></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Installation alongside an existing Windows system"
 msgstr ""
+"<emphasis>EN LA PRÁCTICA</emphasis> Instalación junto a un sistema Windows "
+"existente"
 
 #. Tag: indexterm
 #, no-c-format
@@ -345,46 +531,81 @@ msgstr "<primary>arranque dual</primary>"
 #, no-c-format
 msgid "If the computer is already running Windows, it is not necessary to delete the system in order to install Debian. You can have both systems at once, each installed on a separate disk or partition, and choose which to start when booting the computer. This configuration is often called “dual boot”, and the Debian installation system can set it up. This is done during the hard drive partitioning stage of installation and while setting up the bootloader (see the sidebars in those sections)."
 msgstr ""
+"Si el equipo ya ejecuta Windows, no es necesario elimiar el sistema para "
+"poder instalar Debian. Puede tener ambos sistemas simultáneamente, cada uno "
+"instalado en un disco o partición separado, y elegir cuál iniciar al momento "
+"de arrancar el equipo. Generalmente esta configuración es llamada «arranque "
+"dual» y el sistema de instalación de Debian puede configurarla. Esto se "
+"realiza durante la etapa de particionado del disco duro de la instalación y "
+"durante la configuración del gestor de arranque (revise los recuadros en "
+"dichas secciones)."
 
 #. Tag: para
 #, no-c-format
 msgid "If you already have a working Windows system, you can even avoid using a CD-ROM; Debian offers a Windows program that will download a light Debian installer and set it up on the hard disk. You then only need to reboot the computer and choose between normal Windows boot or booting the installation program. You can also find it on a dedicated website with a rather explicit name... <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
 msgstr ""
+"Si ya tiene un sistema Windows funcionando puede inclusive evitar utilizar "
+"un CD-ROM; Debian ofrece un programa para Windows que descargará un "
+"instalador Debian ligero y lo configurará en el disco duro. Luego, sólo "
+"necesita reiniciar el equipo y seleccionar entre un arranque normal de "
+"Windows o iniciar el programa de instalación. También podrá encontrarlo en "
+"un sitio web dedicado con un nombre bastante explícito... <ulink "
+"type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" "
+"/> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Boot loader"
-msgstr ""
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Gestor de arranque"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>loader</primary><secondary>bootloader</secondary>"
-msgstr ""
+msgstr "<primary>arranque</primary><secondary>gestor de arranque</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bootloader</primary>"
-msgstr ""
+msgstr "<primary>gestor de arranque</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>boot</primary><secondary>loader</secondary>"
-msgstr ""
+msgstr "<primary>gestor</primary><secondary>de arranque</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The bootloader is a low-level program that is responsible for booting the Linux kernel just after the BIOS passes off its control. To handle this task, it must be able to locate the Linux kernel to boot on the disk. On i386/amd64 architectures, the two most used programs to perform this task are LILO, the older of the two, and GRUB, a more modern challenger. Isolinux and Syslinux are alternatives frequently used to boot from removable media."
 msgstr ""
+"El gestor de arranque es un programa de bajo nivel que es responsable de "
+"arrancar el núcleo Linux después que el BIOS le cede el control. Para "
+"encargarse de esta tarea debe poder ubicar en el disco al kernel Linux a "
+"arrancar. Los programas más utilizados en las arquitecturas i386/amd64 para "
+"esta tarea son LILO, el más antiguo de los dos, y GRUB, un contendiente "
+"moderno. Isolinux y Syslinux son alternativas utilizadas frecuentemente para "
+"arrancar desde medios removibles."
 
 #. Tag: para
 #, no-c-format
 msgid "Each menu entry hides a specific boot command line, which can be configured as needed by pressing the <keycap>TAB</keycap> key before validating the entry and booting. The “Help” menu entry displays the old command line interface, where the <keycap>F1</keycap> to <keycap>F10</keycap> keys display different help screens detailing the various options available at the prompt. You will rarely need to use this option except in very specific cases."
 msgstr ""
+"Cada elemento del menú esconde una línea de órdenes específica para el "
+"arraque que puede ser configurada según sea necesario presionando la tecla "
+"<keycap>TAB</keycap> antes de validarlo y arrancar. El menú «Ayuda» muestra "
+"la interfaz de línea de órdenes antigua, donde las teclas "
+"<keycap>F1</keycap> a <keycap>F10</keycap> muestran diferentes pantallas de "
+"ayuda que detallan las opciones disponibles. Rara vez necesitará utilizar "
+"esta opción salvo casos muy específicos."
 
 #. Tag: para
 #, no-c-format
 msgid "The “expert” mode (accessible in the “Advanced Options” menu) details all possible options in the process of installation, and allows navigation between the various steps without them happening automatically in sequence. Be careful, this very verbose mode can be confusing due to the multitude of configuration choices that it offers."
 msgstr ""
+"El modo «experto» (disponible en el menú «Opciones avanzadas») detalla todas "
+"las posibles opciones en el proceso de instalación y permite navegar entre "
+"los varios pasos en lugar de que éstos ocurran de forma automática y "
+"secuencial. Tenga cuidado, este modo puede ser confuso debido a la cantidad "
+"de opciones de configuración que ofrece."
 
 #. Tag: title
 #, no-c-format
@@ -395,6 +616,13 @@ msgstr "Pantalla de arranque"
 #, no-c-format
 msgid "Once booted, the installation program guides you step by step throughout the process. This section presents each of these steps in detail. Here we follow the process of an installation from a Multi-Arch DVD-ROM; other types of installations, (<emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis>) may be slightly different. We will also address installation in graphical mode, but this differs from “classic” installation only in appearance."
 msgstr ""
+"Una vez iniciado, el programa de instalación le guiará a través del proceso "
+"paso a paso. Esta sección presenta cada uno de estos pasos en detalle. "
+"Seguiremos aquí el proceso de una instalación desde un DVD-ROM "
+"multiarquitectura; otros tipos de instalación (<emphasis>netinst</emphasis> "
+"o <emphasis>businesscard</emphasis>) puede ser ligeramente distinto. También "
+"abordaremos la instalación en modo gráfico, pero sólo difiere de la "
+"instalación «clásica» en su apariencia."
 
 #. Tag: title
 #, no-c-format
@@ -404,22 +632,34 @@ msgstr "Selección del idioma"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>choice</primary><secondary>of language</secondary>"
-msgstr ""
+msgstr "<primary>selección</primary><secondary>de idioma</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The installation program begins in English, but the first step allows the user to choose the language that will be used in the rest of the process. Choosing French, for example, will provide an installation entirely translated into French (and a system configured in French as a result). This choice is also used to define more relevant default choices in subsequent stages (notably the keyboard layout)."
-msgstr "El programa de instalación comienza en inglés, pero en el primer paso del mismo se permite al usuario elegir el idioma que será usado durante el resto del proceso de instalación. Por ejemplo, al elegir el idioma francés el proceso de instalación será traducido a francés (y como resultado el sistema configurado en francés). Esta elección se utiliza para definir más opciones por defecto en las subsiguientes fases del proceso de instalación (la distribución del teclado). "
+msgstr ""
+"El programa de instalación comienza en inglés, pero en el primer paso del "
+"mismo se permite al usuario elegir el idioma que será utilizado durante el "
+"resto del proceso de instalación. Por ejemplo, al elegir el idioma francés "
+"el proceso de instalación será traducido a francés (y como resultado el "
+"sistema configurado en francés). Esta elección se utiliza para definir "
+"opciones predeterminadas más relevantes en las fases subsiguientes del "
+"proceso de instalación (como la distribución del teclado)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Navigating with the keyboard"
-msgstr ""
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Navegación mediante teclado"
 
 #. Tag: para
 #, no-c-format
 msgid "Some steps in the installation process require you to enter information. These screens have several areas that may “have focus” (text entry area, checkboxes, list of choices, OK and Cancel buttons), and the <keycap>TAB</keycap> key allows you to move from one to another."
 msgstr ""
+"Algunos pasos del proceso de instalación requieren que ingrese información. "
+"Estas pantallas tienen varias áreas que pueden «obtener el foco» (áreas de "
+"entrada de texto, cajas de confirmación, listas de opciones, botones para "
+"confirmar o cancelar) y la tecla <keycap>TAB</keycap> le permite moverse de "
+"una a otra."
 
 #. Tag: para
 #, no-c-format
@@ -434,177 +674,264 @@ msgstr "Selección del país"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>choice</primary><secondary>of country</secondary>"
-msgstr ""
+msgstr "<primary>selección</primary><secondary>del país</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The second step consists in choosing your country. Associated with the language, this information enables the program to offer the most appropriate keyboard layout. This will also influence the configuration of the time zone. In the United States, a standard QWERTY keyboard is suggested, and a choice of appropriate time zones is offered."
 msgstr ""
+"El segundo paso consiste en elegir su país. Asociada con el idioma, esta "
+"información le permite al programa ofrecer la distribución de teclado más "
+"apropiada. También tendrá influencia en la configuración de la zona horaria. "
+"En los Estados Unidos se sugerirá un teclado QWERTY estándar y las opciones "
+"de zonas horarias apropiadas."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting the keyboard layout"
-msgstr ""
+msgstr "Selección de la distribución de teclado"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard</primary><secondary>layout</secondary>"
-msgstr ""
+msgstr "<primary>teclado</primary><secondary>distribución</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard layout</primary>"
-msgstr ""
+msgstr "<primary>distribución del teclado</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The proposed “American English” keyboard corresponds to the usual QWERTY layout."
 msgstr ""
+"El teclado propuesto «American English» corresponde a la distribución QWERTY "
+"usual."
 
 #. Tag: title
 #, no-c-format
 msgid "Choice of keyboard"
-msgstr ""
+msgstr "Elección de teclado"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Hardware"
-msgstr ""
+msgstr "Detección de hardware"
 
 #. Tag: para
 #, no-c-format
 msgid "This step is completely automatic in the vast majority of cases. The installer detects your hardware, and tries to identify the CD-ROM drive used in order to access its content. It loads the modules corresponding to the various hardware components detected, and then “mounts” the CD-ROM in order to read it. The previous steps were completely contained in the boot image included on the CD, a file of limited size and loaded into memory by the BIOS when booting from the CD."
 msgstr ""
+"Este paso es completamente automático en la gran mayoría de los casos. El "
+"instalador detecta su hardware e intenta indentificar el dispositivo CD-ROM "
+"a utilizar para acceder a su contenido. Carga los módulos correspondientes a "
+"los componentes de hardware detectados y luego «monta» el CD-ROM para poder "
+"leerlo. Los pasos previos estaba completamente contenidos en la imagen "
+"incluída en el CD, un archivo de tamaño limitado y cargado en memoria por el "
+"BIOS al arrancar desde el CD."
 
 #. Tag: para
 #, no-c-format
 msgid "The installer can work with the vast majority of drives, especially standard ATAPI peripherals (sometimes called IDE and EIDE). However, if detection of the CD-ROM reader fails, the installer offers the choice to load a kernel module (for instance from a USB key) corresponding to the CD-ROM driver."
 msgstr ""
+"El instalador funciona con la gran mayoría de los dispositivos, "
+"especialmente periféricos estándar ATAPI (a veces llamados IDE y EIDE). Sin "
+"embargo, si falla la detección de la lectora de CD-ROM, el instalador "
+"ofrecerá la opción de cargar los módulos para el núcleo (por ejemplo desde "
+"una llave USB) que corresponden al controlador del CD-ROM."
 
 #. Tag: title
 #, no-c-format
 msgid "Loading Components"
-msgstr ""
+msgstr "Carga de componentes"
 
 #. Tag: para
 #, no-c-format
 msgid "With the contents of the CD now available, the installer downloads all the files necessary to continue with its work. This includes additional drivers for the remaining hardware (especially the network card), as well as all the components of the installation program."
 msgstr ""
+"Con los contenidos del CD disponibles, el instalador descarga todos los "
+"archivos necesarios para continuar con su trabajo. Esto incluye "
+"controladores adicionales para el resto del hardware (especialmente la placa "
+"de red) así como también todos los componentes del programa de instalación."
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Network Hardware"
-msgstr ""
+msgstr "Detección de hardware de red"
 
 #. Tag: para
 #, no-c-format
 msgid "This automatic step tries to identify the network card and load the corresponding module. If automatic detection fails, you can manually select the module to load. If no module works, it is possible to load a specific module from a removable peripheral. This last solution is usually only needed if the appropriate driver is not included in the standard Linux kernel, but available elsewhere, such as the manufacturer's website."
 msgstr ""
+"Este paso automático intenta identificar la placa de red y cargar el módulo "
+"correspondiente. Si falla la detección automática puede seleccionar el "
+"módulo a cargar manualmente. Si no funciona ningún módulo es posible cargar "
+"un módulo específico de periféricos removibles. Esta última solución "
+"generalmente sólo es necesaria cuando el controlador adecuado no está "
+"incluído en el núcleo Linux estándar pero está disponible en otro lado, como "
+"el sitio web del fabricante."
 
 #. Tag: para
 #, no-c-format
 msgid "This step must absolutely be successful for <emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis> installations, since the Debian packages must be loaded from the network."
 msgstr ""
+"Este paso tiene que ser exitoso obligatoriamente para las instalaciones "
+"<emphasis>netinst</emphasis> o <emphasis>businesscard</emphasis> ya que se "
+"deben cargar los paquetes Debian desde la red."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Network"
-msgstr ""
+msgstr "Configuración de red"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>network</secondary><tertiary>static</tertiary>"
 msgstr ""
+"<primary>red</primary><secondary>configuración</secondary><tertiary>estática"
+"</tertiary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>network</secondary><tertiary>DHCP</tertiary>"
 msgstr ""
+"<primary>red</primary><secondary>configuración</secondary><tertiary>DHCP</te"
+"rtiary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Eager to automate the process as much as possible, the installer attempts an automatic DHCP network configuration. If this fails, it offers more choices: try again with a normal DHCP configuration, attempt DHCP configuration by declaring the name of the machine, or set up a static network configuration."
 msgstr ""
+"El instalador, intentando automatizar el proceso tanto como sea posible, "
+"intenta configurar la red de forma automática con DHCP. Si eso falla ofrece "
+"más opciones: intentar nuevamente con una configuración DHCP normal, "
+"intentar una configuración DHCP declarando el nombre del equipo o configurar "
+"la red de forma estática."
 
 #. Tag: para
 #, no-c-format
 msgid "This last option requires an IP address, a subnet mask, an IP address for a potential gateway, a machine name, and a domain name."
 msgstr ""
+"La última opción necesita una dirección IP, una máscara de red, una "
+"dirección IP para una puerta de enlace potencia, un nombre de equipo y un "
+"nombre de dominio."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Configuration without DHCP"
-msgstr ""
+msgstr "<emphasis>SUGERENCIA</emphasis> Configuración sin DHCP"
 
 #. Tag: para
 #, no-c-format
 msgid "If the local network is equipped with a DHCP server that you do not wish to use because you prefer to define a static IP address for the machine during installation, you can add the <userinput>netcfg/use_dhcp=false</userinput> option when booting from the CD-ROM. You just need to go to the desired menu entry by pressing the <keycap>TAB</keycap> key and add the desired option before pressing the <keycap>Enter</keycap> key."
 msgstr ""
+"Si la red local tiene un servidor DHCP que no desea utilizar porque prefiere "
+"configurar una dirección IP estática para el equipo durante la instalación, "
+"puede agregar la opción <userinput>netcfg/use_dhcp=false</userinput> al "
+"arrancar desde el CD-ROM. Sólo necesita seleccionar el elemento del menú que "
+"desea utilizar, presionar la tecla <keycap>TAB</keycap> y agregar esta "
+"opción antes de presionar la tecla <keycap>Enter</keycap>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Do not improvise"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> No improvise"
 
 #. Tag: para
 #, no-c-format
 msgid "Many local area networks are based on an implicit assumption that all machines can be trusted, and inadequate configuration of a single computer will often perturb the whole network. As a result, do not connect your machine to a network without first agreeing with its administrator on the appropriate settings (for example, the IP address, netmask, and broadcast address)."
 msgstr ""
+"Muchas redes locales están basadas en la premisa implícita que se puede "
+"confiar en todos los equipos, la configuración inadecuada en un sólo equipo "
+"generalmente perturbará toda la red. Como resultado, no conecte su equipo a "
+"una red sin antes acordar las configuraciones adecuadas con el administrador "
+"(por ejemplo, la dirección IP, máscara de red y dirección de difusión)."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Clock"
-msgstr "Configuración del Reloj"
+msgstr "Configuración del reloj"
 
 #. Tag: para
 #, no-c-format
 msgid "If the network is available, the system's internal clock is updated (in a one-shot way) from an NTP server. This way the timestamps on logs will be correct from the first boot. For them to remain consistently precise over time, an NTP daemon needs to be set up after initial installation (see <xref linkend=\"section.synchronisation-horaire\" />)."
 msgstr ""
+"Si la red se encuentra disponible, el reloj interno del sistema es "
+"actualizado (por única vez) desde un servidor NTP. De esta forma, la marcas "
+"temporales en los registros serán correctas desde el primer arranque. Para "
+"que se mantengan consistentes en el tiempo es necesario configurar un "
+"demonio NTP luego de la instalación inicial (revise  <xref linkend=\"section"
+".synchronisation-horaire\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "Administrator Password"
-msgstr "Clave del Administrador"
+msgstr "Contraseña del administrador"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>account</primary><secondary>administrator account</secondary>"
-msgstr ""
+msgstr "<primary>cuenta</primary><secondary>de administrador</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The super-user root account, reserved for the machine's administrator, is automatically created during installation; this is why a password is requested. A confirmation (or two identical entries) will prevent any entry error which would later be difficult to amend."
 msgstr ""
+"La cuenta de súperusuario «root», reservada para el administrador del "
+"equipo, será creada automáticamente durante la instalación; por ello se "
+"solicita una constraseña. Una confirmación (o dos entradas idénticas) "
+"previenen cualquier error en la entrada que luego sería difícil de corregir."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Administrator password"
-msgstr ""
+msgstr "<emphasis>SEGURIDAD</emphasis> Contraseña del administrador"
 
 #. Tag: para
 #, no-c-format
 msgid "The root user's password should be long (6 characters or more) and impossible to guess. Indeed, any computer (and a fortiori any server) connected to the Internet is regularly targeted by automated connection attempts with the most obvious passwords. Sometimes it may even be subject to dictionary attacks, in which many combinations of words and numbers are tested as password. Avoid using the names of children or parents, dates of birth, etc.: many of your co-workers might know them, and you rarely want to give them free access to the computer in question."
 msgstr ""
+"La contraseña del usuario root debería ser larga (6 caracteres o más) e "
+"imposible de adivinar. De hecho, cualquier equipo (y cualquier servidor a "
+"fortiori) conectado a internet es objetivo regular de intentos automáticos "
+"de conexión con las contraseñas más obvias. A veces inclusive será sujeto a "
+"ataques de diccionario en el que se probarán como contrasñea muchas "
+"combinaciones de palabras y números. Evite utilizar nombres de hijos o "
+"padres, fechas de nacimiento, etc.: muchos de sus compañeros de trabajo "
+"podrían conocerlos y rara vez deseará proveerles acceso libre al equipo en "
+"cuestión."
 
 #. Tag: para
 #, no-c-format
 msgid "These remarks are equally applicable for other user passwords, but the consequences of a compromised account are less drastic for users without administrative rights."
 msgstr ""
+"Estos comentarios son igualmente aplicables para contraseñas de otros "
+"usuarios, pero las consecuencias de una cuenta comprometida son menos "
+"drásticos para usuarios sin permisos de administración."
 
 #. Tag: para
 #, no-c-format
 msgid "If inspiration is lacking, do not hesitate to use password generators, such as <command>pwgen</command> (in the package of the same name)."
 msgstr ""
+"Si le falta inspiración no dude en utilizar generadores de contraseñas como "
+"<command>pwgen</command> (en el paquete del mismo nombre)."
 
 #. Tag: title
 #, no-c-format
 msgid "Creating the First User"
-msgstr "Creación del Primer Usuario"
+msgstr "Creación del primer usuario"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian also imposes the creation of a standard user account so that the administrator doesn't get into the bad habit of working as root. The precautionary principle essentially means that each task is performed with the minimum required rights, in order to limit the damage caused by human error. This is why the installer will ask for the complete name of this first user, their username, and their password (twice, to prevent the risk of erroneous input)."
 msgstr ""
+"Debian también impone la creación de una cuenta de usuario estándar para que "
+"el administrador no adquirirá el mal hábito de trabajar como root. La norma "
+"básica de precaución significa esencialmente que se realiza cada tarea con "
+"los permisos mínimos necesarios para limitar el daño que pueda causar un "
+"error humano. Es por esto que el instalador pedirá el nombre completo de su "
+"primer usuario, su nombre de usuario y su contraseña (dos veces para evitar "
+"el riesgo de entradas erróneas)."
 
 #. Tag: title
 #, no-c-format
@@ -614,177 +941,291 @@ msgstr "Nombre del primer usuario"
 #. Tag: title
 #, no-c-format
 msgid "Detecting Disks and Other Devices"
-msgstr "Detección de Discos y Otros Dispositivos"
+msgstr "Detección de discos y otros dispositivos"
 
 #. Tag: para
 #, no-c-format
 msgid "This step automatically detects the hard drives on which Debian may be installed. They will be presented in the next step: partitioning."
 msgstr ""
+"Este paso detecta automáticamente los discos duros en los que se podría "
+"instalar Debian. Serán presentados en el próximo paso: particionado."
 
 #. Tag: title
 #, no-c-format
 msgid "Starting the Partitioning Tool"
-msgstr ""
+msgstr "Inicio de la herramienta de particionado"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partitioning</primary>"
-msgstr ""
+msgstr "<primary>particionado</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Uses of partitioning"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> Usos del particionado"
 
 #. Tag: para
 #, no-c-format
 msgid "Partitioning, an indispensable step in installation, consists in dividing the available space on the hard drives (each subdivision thereof being called a “partition”) according to the data to be stored on it and the use for which the computer is intended. This step also includes choosing the filesystems to be used. All of these decisions will have an influence on performance, data security, and the administration of the server."
 msgstr ""
+"El particionado, un paso indispensable en la instalación, consiste en "
+"dividir el espacio disponible en los discos duros (cada subdivisión de los "
+"mismos es llamada «partición») según los datos que serán almacenados en él y "
+"el uso propuesto para el equipo. Este paso también incluye elegir los "
+"sistemas de archivo que serán utilizados. Todas estas decisiones influirán "
+"en la perfomance, seguridad de los datos y el administrador del servidor."
 
 #. Tag: para
 #, no-c-format
 msgid "The partitioning step is traditionally difficult for new users. It is necessary to define the various portions of the disks (or “partitions”) on which the Linux filesystems and virtual memory (swap) will be stored. This task is complicated if another operating system that you want to keep is already on the machine. Indeed, you will then have to make sure that you do not alter its partitions (or that you resize them without causing damage)."
 msgstr ""
+"El paso de particionado es tradicionalmente difícil para usuarios nuevos. Se "
+"necesita definir la varias porciones del disco (o «particiones») en el que "
+"se almacenarán los sistemas de archivos Linux y la memoria virtual («swap»). "
+"Esta tarea es más complicada si el equipo ya posee otro sistema operativo "
+"que desea conservar. Efectivamente, tendrá que asegurarse de modificar sus "
+"particiones (o que las redimensione sin causar daños)."
 
 #. Tag: para
 #, no-c-format
 msgid "Fortunately, the partitioning software has a “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
 msgstr ""
+"Afortunadamente, el software de particionado tiene un modo «guiado» que "
+"recomienda las particiones que debe crear el usuario — en la matoría de los "
+"casos puede simplemente validar las sugerencias del software."
 
 #. Tag: title
 #, no-c-format
 msgid "Choice of partitioning mode"
-msgstr ""
+msgstr "Elección del modo de particionado"
 
 #. Tag: para
 #, no-c-format
 msgid "The first screen in the partitioning tool offers the choice of using an entire hard drive to create various partitions. For a (new) computer which will solely use Linux, this option is clearly the simplest, and you can choose the option “Guided - use entire disk”. If the computer has two hard drives for two operating systems, setting one drive for each is also a solution that can facilitate partitioning. In both of these cases, the next screen offers to choose the disk where Linux will be installed by selecting the corresponding entry (for example, “SCSI3 (0,0,0) (sda) - 12.9 GB ATA VBOX HARDDISK”). You then start guided partitioning."
 msgstr ""
+"La primer pantalla en la herramienta de particionado ofrece la opción de "
+"utilizar un disco duro completo para crear varias particiones. Para un "
+"equipo (nuevo) que sólamente utilizará Linux esta es claramente la más "
+"simple, y puede elegir la opción «Guiado - utilizar todo el disco». Si el "
+"equipo tiene dos discos duros para dos sistemas operativos, definir un disco "
+"para cada uno también es una solución que facilitará el particionado. En "
+"ambos casos, la pantalla siguiente le ofrecerá elegir el disco en el que "
+"instalar Linux seleccionando la opción correspondiente (por ejemplo «SCSI3 "
+"(0,0,0) (sda) - 12.9 GB ATA VBOX HARDDISK»). Luego comenzará el particionado "
+"guiado."
 
 #. Tag: title
 #, no-c-format
 msgid "Disk to use for guided partitioning"
-msgstr ""
+msgstr "Disco a utilizar para el particionado guiado"
 
 #. Tag: para
 #, no-c-format
 msgid "Guided partitioning can also set up LVM logical volumes instead of partitions (see below). Since the remainder of the operation is the same, we will not go over the option “Guided - use entire disk and set up LVM” (encrypted or not)."
 msgstr ""
+"El particionado guiado también puede configurar volúmenes lógicos LVN en "
+"lugar de particiones (revise más adelante). Ya que el resto del "
+"funcionamiento es el mismo, no entraremos en los detalles de la opción "
+"«Guiado - utilizar todo el disco duro y configurar LVM» (cifrado o no)."
 
 #. Tag: para
 #, no-c-format
 msgid "In other cases, when Linux must work alongside other already existing partitions, you need to choose manual partitioning."
 msgstr ""
+"En otros casos, cuando Linux deba trabajar junto a otras particiones "
+"preexistentes, necesitará seleccionar el particionado manual."
 
 #. Tag: title
 #, no-c-format
 msgid "Guided partitioning"
-msgstr ""
+msgstr "Particionado guiado"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partitioning</primary><secondary>guided partitioning</secondary>"
-msgstr ""
+msgstr "<primary>particionado</primary><secondary>guiado</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The guided partitioning tool offers three partitioning methods, which correspond to different usages."
 msgstr ""
+"La herramienta de particionado guiado ofrece tres métodos de particionado "
+"que corresponden a distintos usos."
 
 #. Tag: para
 #, no-c-format
 msgid "The first method is called “All in one partition”. The entire Linux system tree is stored in a single filesystem, corresponding to the root <filename>/</filename> directory. This simple and robust partitioning fits perfectly for personal or single-user systems. In fact, two partitions will be created: the first will house the complete system, the second the virtual memory (swap)."
 msgstr ""
+"El primer método es llamado «Todo en una partición». El árbol completo del "
+"sistema Linux será almacenado en un sólo sistema de archivos que corresponde "
+"con el directorio raíz <filename>/</filename>. Este particionado simple y "
+"robusto es adecuado para sistemas personales o con un sólo usuario. De "
+"hecho, se crearán dos particiones: la primera tendrá el sistema completo y "
+"la segunda la memoria virtual (swap)."
 
 #. Tag: para
 #, no-c-format
 msgid "The second method, “Separate <filename>/home/</filename> partition”, is similar, but splits the file hierarchy in two: one partition contains the Linux system (<filename>/</filename>), and the second contains “home directories” (meaning user data, in files and subdirectories available under <filename>/home/</filename>)."
 msgstr ""
+"El segundo método, «Partición <filename>/home/</filename> separada» es "
+"similar pero divide la jerarquía de archivos en dos: una partición contiene "
+"el sistema Linux (<filename>/</filename>) y la segunda contiene los "
+"«directorios de usuario» (es decir, los datos de usuarios, en archivos y "
+"subdirectorios disponibles en <filename>/home/</filename>)."
 
 #. Tag: para
 #, no-c-format
 msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>), and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
 msgstr ""
+"El último método de particionado, llamado «Particiones "
+"<filename>/home</filename>, <filename>/usr</filename>, "
+"<filename>/var</filename> y <filename>/tmp</filename> separadas» es "
+"apropiada para servidores y sistemas multiusuario. Divide el árbol de "
+"archivos en muchas particiones: además de las particiones para la raíz "
+"(<filename>/</filename>) y las cuentas de usuario "
+"(<filename>/home/</filename>), también creará particiones para aplicaciones "
+"(<filename>/usr/</filename>), datos de software de servidor "
+"(<filename>/var/</filename>) y archivos temporales "
+"(<filename>/tmp/</filename>). Estas divisiones tiene varias ventajas. Un "
+"usuario no podrá blqouear el servidor consumiendo todo el espacio disponible "
+"en el disco duro (sólo pueden llenar <filename>/tmp/</filename> y "
+"<filename>/home/</filename>). Los datos de demonios (especialmente "
+"registros) tampoco podrán trabar el resto del sistema."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Choosing a filesystem"
 msgstr ""
+"<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Elección de un sistema de "
+"archivos"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>system</primary><secondary>filesystem</secondary>"
-msgstr ""
+msgstr "<primary>sistema</primary><secondary>de archivos</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>system</secondary>"
-msgstr ""
+msgstr "<primary>archivo</primary><secondary>sistema de</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A filesystem defines the way in which data is organized on the hard drive. Each existing filesystem has its merits and limitations. Some are more robust, others more effective: if you know your needs well, choosing the most appropriate filesystem is possible. Various comparisons have already been made; it seems that ReiserFS is particularly efficient for reading many small files; <emphasis>XFS</emphasis>, in turn, works faster with large files. <emphasis>Ext3</emphasis>, the default filesystem for Debian, is a good compromise, based on the two previous versions of filesystems historically used in Linux (<emphasis>ext</emphasis> and <emphasis>ext2</emphasis>). You could also choose its successor <emphasis>ext4</emphasis>, which overcomes certain limitations of <emphasis>ext3</emphasis> and is particularly appropriate for very large capacity hard drives. If you are particularly brave, you could experiment with the very promising <emphasis>btrfs</emphasis>, which includes numerous features that require, to this day, the use of LVM and/or RAID."
 msgstr ""
+"Un sistema de archivos define la forma en la que se organizan los datos en "
+"el disco duro. Cada sistema de archivos existente tiene sus méritos y "
+"limitaciones. Algunos son más robustos, otros más efectivos: si conoce bien "
+"sus necesidades es posible elegir el sistema de archivos más apropiado. Ya "
+"se han realizado muchas comparaciones; parecería que ReiserFS es "
+"particularmente eficiente para leer muchos archivos pequeños; "
+"<emphasis>XFS</emphasis>, en cambio, trabaja más rápido con archivos "
+"grandes. <emphasis>Ext3</emphasis>, el sistema de archivos predeterminado "
+"para Debian, es un buen compromiso basado en las dos versiones anteriores de "
+"sistemas de archivos utilizados en Linux históricamente "
+"(<emphasis>ext</emphasis> y <emphasis>ext2</emphasis>). También puede elegir "
+"su sucesor <emphasis>ext4</emphasis>, que supera algunas limitaciones de "
+"<emphasis>ext3</emphasis> y es particularmente apropiado para discos duros "
+"de gran capacidad. Si es particularmente valiente podría experimentar con el "
+"prometedor <emphasis>btrfs</emphasis> que incluye muchas funcionalidades "
+"que requerirían, al día de hoy, utilizar LVM y/o RAID."
 
 #. Tag: para
 #, no-c-format
 msgid "A journalized filesystem (such as <emphasis>ext3</emphasis>, <emphasis>ext4</emphasis>, <emphasis>btrfs</emphasis>, <emphasis>reiserfs</emphasis>, or <emphasis>xfs</emphasis>) takes special measures to make it possible to return to a prior consistent state after an abrupt interruption without completely analyzing the entire disk (as was the case with the <emphasis>ext2</emphasis> system). This functionality is carried out by filling in a journal that describes the operations to conduct prior to actually executing them. If an operation is interrupted, it will be possible to “replay” it from the journal. Conversely, if an interruption occurs during an update of the journal, the last requested change is simply ignored; the data being written could be lost, but since the data on the disk has not changed, they have remained coherent. This is nothing more nor less than a transactional mechanism applied to the filesystem."
 msgstr ""
+"Un sistema de archivos con registros (como <emphasis>ext3</emphasis>, "
+"<emphasis>ext4</emphasis>, <emphasis>btrfs</emphasis>, "
+"<emphasis>reiserfs</emphasis> o <emphasis>xfs</emphasis>) toma medidas "
+"especiales que posibilitan volver a un estado consistente anterior luego de "
+"una interrupción abrupta sin analizar completamente el disco entero (como "
+"era el caso con el sistema <emphasis>ext2</emphasis>). Esta funcionalidad se "
+"lleva a cabo manteniendo un registro que describe las operaciones a "
+"realizar antes que sean ejecutadas. Si se interrumpe una operación será "
+"posible «reproducirla» desde el registro. Por el otro lado, si la "
+"interrupción ocurre durante una actualización del registro, simplemente se "
+"ignora el último cambio solicitado; los datos almacenados podrían perderse "
+"pero, como los datos en el disco no han cambiado, se mantuvieron coherentes. "
+"Esto es nada más y nada menos que el mecanismo transaccional aplicado al "
+"sistema de archivos."
 
 #. Tag: para
 #, no-c-format
 msgid "After choosing the type of partition, the software calculates a suggestion, and describes it on the screen; the user can then modify it if needed. You can, in particular, choose another filesystem if the standard choice (<emphasis>ext3</emphasis>) isn't appropriate. In most cases, however, the proposed partitioning is reasonable and it can be accepted by selecting the “Finish partitioning and write changes to disk” entry."
 msgstr ""
+"Luego de elegir el tipo de la partición, el software calculará una "
+"sugerencia y la describirá en la pantalla; el usuario podrá modificarla si "
+"es necesario. Puede, en particular, elegir otro sistema de archivos si la "
+"opción estándar (<emphasis>ext3</emphasis>) no es apropiada. En la mayoría "
+"de los casos, sin embargo, el particionado propuesto es razonable y se lo "
+"puede aceptar seleccionando la opción «Finalizar particionado y escribir "
+"cambios al disco»."
 
 #. Tag: title
 #, no-c-format
 msgid "Validating partitioning"
-msgstr ""
+msgstr "Validación del particionado"
 
 #. Tag: title
 #, no-c-format
 msgid "Manual Partitioning"
-msgstr "Particionamiento Manual"
+msgstr "Particionado manual"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partitioning</primary><secondary>manual partitioning</secondary>"
-msgstr ""
+msgstr "<primary>particionado</primary><secondary>manual</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Manual partitioning allows greater flexibility, allowing the user to choose the purpose and size of each partition. Furthermore, this mode is unavoidable if you wish to use software RAID."
 msgstr ""
+"El particionado manual provee mayor flexibilidad, permitiéndole al usuario "
+"seleccionar el propósito y tamaño de cada partición. Lo que es más, este "
+"modo es inevitable si desea utilizar RAID por software."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Shrinking a Windows partition."
-msgstr ""
+msgstr "<emphasis>EN LA PRÁCTICA</emphasis> Reduciendo una partición Windows."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>resize a partition</primary>"
-msgstr ""
+msgstr "<primary>redimiensionar una partición</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>shrink a partition</primary>"
-msgstr ""
+msgstr "<primary>reducir una partición</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To install Debian alongside an existing operating system (Windows or other), you must have some available hard drive space that is not being used by the other system in order to be able to create the partitions dedicated to Debian. In most cases, this means shrinking a Windows partition and reusing the freed space."
 msgstr ""
+"Para instalar Debian junto a un sistema operativo existente (Windows u "
+"otro), debe tener espacio disponible en el disco duro que no sea utilizador "
+"por el otro sistema para poder crear las particiones dedicadas a Debian. En "
+"la mayoría de los casos esto significa reducir una partición Windows y "
+"reutilizar el espacio liberado."
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian installer allows this operation when using the manual mode for partitioning. You only need to choose the Windows partition and enter its new size (this works the same with both FAT and NTFS partitions)."
 msgstr ""
+"El instalador Debian permite esta operación si utiliza el modo de "
+"particionado manual. Sólo necesitará elegir la partición Windows e ingresar "
+"su nuevo tamaño (esto funciona igual tanto en particiones FAT como NTFS)."
 
 #. Tag: para
 #, no-c-format
 msgid "The first screen displays the available disks, their partitions, and any possible free space that has not yet been partitioned. You can select each displayed element; pressing the <keycap>Enter</keycap> key then gives a list of possible actions."
 msgstr ""
+"La primer pantalla mostrará los discos disponibles, sus particiones y "
+"cualquier espacio libre posible que no haya sido particionado aún. Puede "
+"seleccionar cada elemento mostrado; presionar la tecla "
+"<keycap>Enter</keycap> mostrará una lista con las acciones posibles."
 
 #. Tag: para
 #, no-c-format
@@ -795,11 +1236,16 @@ msgstr "Puede borrar todas las particiones en un disco al seleccionarlo."
 #, no-c-format
 msgid "When selecting free space on a disk, you can manually create a new partition. You can also do this with guided partitioning, which is an interesting solution for a disk that already contains another operating system, but which you may wish to partition for Linux in a standard manner. See the previous section for more details on guided partitioning."
 msgstr ""
+"Al seleccionar el espacio libre en un disco puede crear una nueva partición "
+"manualmente. También puede hacerlo con el particionado guiado, que es uan "
+"solución interesante para un disco que ya contiene otro sistema operativo "
+"pero que podría desear particionar para Linux de forma estándar. Revisa la "
+"sección anterior para más detalles sobre el particionado guiado."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Mount point"
-msgstr ""
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Punto de montaje"
 
 #. Tag: indexterm
 #, no-c-format
@@ -810,21 +1256,28 @@ msgstr "<primary>punto de montaje</primary>"
 #, no-c-format
 msgid "The mount point is the directory tree that will house the contents of the filesystem on the selected partition. Thus, a partition mounted at <filename>/home/</filename> is traditionally intended to contain user data."
 msgstr ""
+"El punto de montaje es el árbol de directorios que albergará el contenido "
+"del sistema de archivos en la partición seleccionada. Por lo tanto, una "
+"partición montada en <filename>/home/</filename> generalmente está destinada "
+"a contener la información de los usuarios."
 
 #. Tag: para
 #, no-c-format
 msgid "When this directory is named “<filename>/</filename>”, it is known as the <emphasis>root</emphasis> of the file tree, and therefore the root of the partition that will actually host the Debian system."
 msgstr ""
+"Cuando el directorio se llama «<filename>/</filename>» es llamada "
+"«<emphasis>raíz</emphasis>» («root») del árbol de archivos y, por lo tanto, "
+"la raíz de la partición que contendrá el sistema Debian en sí."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Virtual memory, swap"
-msgstr ""
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Memoria virtual, «swap»"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual memory</primary>"
-msgstr ""
+msgstr "<primary>memoria virtual</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -834,529 +1287,814 @@ msgstr "<primary>swap</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>swap partition</secondary>"
-msgstr ""
+msgstr "<primary>swap</primary><secondary>partición</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>swap partition</primary>"
-msgstr "<primary>partición de swap</primary>"
+msgstr "<primary>partición swap</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Virtual memory allows the Linux kernel, when lacking sufficient memory (RAM), to free a bit of storage by storing the parts of the RAM that have been inactive for some time on the swap partition of the hard disk."
 msgstr ""
+"La memoria virtual le permite al núcleo Linux, cuando no tiene suficiente "
+"memoria (RAM), liberar parte de ella almacenando las parte de la RAM que han "
+"estado inactivas por un tiempo en la partición swap del disco duro."
 
 #. Tag: para
 #, no-c-format
 msgid "To simulate the additional memory, Windows uses a swap file that is directly contained in a filesystem. Conversely, Linux uses a partition dedicated to this purpose, hence the term “swap partition”."
 msgstr ""
+"Para simular la memoria adicional Windows utiliza un archivo swap que se "
+"encuentra directamente en el sistema de archivos. Por otro lado, Linux "
+"utiliza una partición dedicada a este propósito, de ahí el término "
+"«partición swap»."
 
 #. Tag: para
 #, no-c-format
 msgid "When choosing a partition, you can indicate the manner in which you are going to use it:"
 msgstr ""
+"Al elegir una partición puede elegir la forma en la que la va a utilizar:"
 
 #. Tag: para
 #, no-c-format
 msgid "format it and include it in the file tree by choosing a mount point;"
 msgstr ""
+"darle formato e incluirla en el árbol de archivos eligiendo un punto de "
+"montaje;"
 
 #. Tag: para
 #, no-c-format
 msgid "use it as a swap partition;"
-msgstr ""
+msgstr "utilizarla como partición swap;"
 
 #. Tag: para
 #, no-c-format
 msgid "make it into a “physical volume for encryption” (to protect the confidentiality of data on certain partitions, see below);"
 msgstr ""
+"convertirla en un «volúmen físico para cifrado» (para proteger la "
+"confidencialidad de los datos en ciertas particiones, revise abajo);"
 
 #. Tag: para
 #, no-c-format
 msgid "make it a “physical volume for LVM” (this concept is discussed in greater detail later in this chapter);"
 msgstr ""
+"convertirla en un «volúmen físico para LVM» (se discute este concepto en "
+"detalle más adelante en este capítulo);"
 
 #. Tag: para
 #, no-c-format
 msgid "use it as a RAID device (see later in this chapter);"
 msgstr ""
+"utilizarla como dispositivo RAID (revise más adelante en este capítulo);"
 
 #. Tag: para
 #, no-c-format
 msgid "or the choice not to use it, and therefore leave it unchanged."
-msgstr ""
+msgstr "o elegir no utilizarla y, por lo tanto, no modificarla."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring Multidisk Devices (Software RAID)"
-msgstr ""
+msgstr "Configuración de dispositivos multidisco (RAID por software)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Software RAID</primary>"
-msgstr "<primary>Software RAID</primary>"
+msgstr "<primary>RAID por software</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>device</primary><secondary>multi-disk device</secondary>"
-msgstr ""
+msgstr "<primary>dispositivo</primary><secondary>multidisco</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Some types of RAID allow the duplication of information stored on hard drives to prevent data loss in the event of a hardware problem affecting one of them. Level 1 RAID keeps a simple, identical copy (mirror) of a hard drive on another drive, while level 5 RAID splits redundant data over several disks, thus allowing the complete reconstruction of a failing drive."
 msgstr ""
+"Algunos tipos de RAID permiten duplicar la información almacenada en los "
+"discos duros para evitar la pérdida de datos en caso de que uno de ellos "
+"sufra algún problema de hardware. RAID nivel 1 mantiene una copia simple e "
+"idéntica (réplica, «mirror») de un disco duro en otro dispositivo mientras "
+"que RAID nivel 4 divide datos redundantes en varios discos permitiendo la "
+"reconstrucción completa de un dispositivo que falle."
 
 #. Tag: para
 #, no-c-format
 msgid "We will only describe level 1 RAID, which is the simplest to implement. The first step involves creating two partitions of identical size located on two different hard drives, and to label them “physical volume for RAID”."
 msgstr ""
+"Sólo describiremos RAID nivel 1 que es el más simple de implementar. El "
+"primer paso incluye crear dos particiones del mismo tamaño en dos discos "
+"duros distintos y utilizarlas como «volúmen físico para RAID»."
 
 #. Tag: para
 #, no-c-format
 msgid "You must then choose “Configure software RAID” in the partitioning tool to combine these two partitions into a new virtual disk and select “Create MD device” in the configuration screen. You then need to answer a series of questions about this new device. The first question asks about the RAID level to use, which in our case will be “RAID1”. The second question asks about the number of active devices — two in our case, which is the number of partitions that needs to be included in this MD device. The third question is about the number of spare devices — 0; we have not planned any additional disk to take over for a possible defective disk. The last question requires you to choose the partitions for the RAID peripheral — these would be the two that we have set aside for this purpose (make sure you only select the partitions that explicitly mention “raid”)."
 msgstr ""
+"Luego debe seleccionar «Configurar RAID por software» en la herramienta de "
+"particionado para combinar estas dos particiones en un nuevo disco virtual y "
+"seleccionar «Crear dispositivo MD» en la pantalla de configuración. Luego "
+"necesita responder una serie de preguntas sobre este nuevo dispositivo. La "
+"primera pregunta sobre el nivel de RAID a utilizar, que en nuestro caso será "
+"«RAID1». La segunda pregunta es sobre la cantidad de dispositivos activos — "
+"dos en nuestro caso, que es la cantidad de particiones que tienen que "
+"incluirse en este dispositivo MD. La tercera pregunta sobre la cantidad de "
+"dispositivos libres — 0; no tenemos planeado agregar discos adicionales de "
+"repuesto en caso que uno de los discos falle. La última pregunta requiere "
+"que seleccione las particiones para el periférico RAID — éstas serían las "
+"dos que separó para este propósito (asegúrese de seleccionar sólamente las "
+"particiones que mencionen «raid» específicamente)."
 
 #. Tag: para
 #, no-c-format
 msgid "Back to the main menu, a new virtual “RAID” disk appears. This disk is presented with a single partition which can not be deleted, but whose use we can choose (just like for any other partition)."
 msgstr ""
+"Nuevamente en el menú principal, aparecerá un nuevo disco «RAID». Este disco "
+"se presenta con sólo una partición que no puede ser eliminada pero a la que "
+"podemos especificar el uso que le daremos (como con cualquier otra "
+"partición)."
 
 #. Tag: para
 #, no-c-format
 msgid "For further details on RAID functions, please refer to <xref linkend=\"section.raid-soft\" />."
 msgstr ""
+"Para maś detalles sobre funciones RAID, revise <xref linkend=\"section.raid-"
+"soft\" />."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Logical Volume Manager (LVM)"
-msgstr "Configuración del Gestor de Volúmenes Lógicos (LVM)"
+msgstr "Configuración del gestor de volúmenes lógicos (LVM)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LVM</primary><secondary>during installation</secondary>"
-msgstr ""
+msgstr "<primary>LVM</primary><secondary>durante la instalación</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Logical Volume Manager</primary><secondary>during installation</secondary>"
 msgstr ""
+"<primary>Gestor de volúmenes lógicos</primary><secondary>durante la "
+"instalación</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "LVM allows you to create “virtual” partitions that span over several disks. The benefits are twofold: the size of the partitions are no longer limited by individual disks but by their cumulative volume, and you can at any time increase the size of an existing partition by adding an additional disk when needed."
 msgstr ""
+"LVM le permite crear particiones «virtuales» a través de varios discos. Los "
+"beneficios son dobles: el tamaño de las particiones no estará limitado por "
+"el tamaño de los discos individuales sino por el del conjunto completo y "
+"podrá, en cualquier momento, aumentar el tamaño de una partición existente "
+"agregando un disco adicional cuando lo necesite."
 
 #. Tag: para
 #, no-c-format
 msgid "LVM uses a particular terminology: a virtual partition is a “logical volume”, which is part of a “volume group”, or an association of several “physical volumes”. Each of these terms in fact corresponds to a “real” partition (or a software RAID device)."
 msgstr ""
+"LVM utiliza una terminología particular: una partición virtual es un "
+"«volúmen lógico», que es parte de un «grupo de volúmenes» o la asociación de "
+"varios «volúmenes físicos». De hecho, cada uno de esos términos se "
+"corresponde con una partición «real» (o dispositivo de RAID por software)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>volume</primary><secondary>logical volume</secondary>"
-msgstr ""
+msgstr "<primary>volúmen</primary><secondary>lógico</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>volume</primary><secondary>physical volume</secondary>"
-msgstr ""
+msgstr "<primary>volúmen</primary><secondary>físico</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>of volumes</secondary>"
-msgstr ""
+msgstr "<primary>grupo</primary><secondary>de volúmenes</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>volume</primary><secondary>group</secondary>"
-msgstr ""
+msgstr "<primary>volúmen</primary><secondary>grupo de volúmenes</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This technique works in a very simple way: each volume, whether physical or logical, is split into blocks of the same size, which are made to correspond by LVM. The addition of a new disk will cause the creation of a new physical volume, and these new blocks can be associated to any volume group. All of the partitions in the volume group that is thus expanded will have additional space into which they can extend."
 msgstr ""
+"Esta técnica funciona de una forma muy simple: se divide cada volúmen, sea "
+"lógico o físico, en bloques del mismo tamaño que LVM hace que coincidan. "
+"Agregar un nuevo disco causará la creación de un nuevo volúmen físico y sus "
+"nuevos bloques pueden ser asociados a cualquier grupo de volúmenes. Todas "
+"las particiones del grupo de volúmenes expandido tendrán espacio adicional "
+"sobre el que extenderse."
 
 #. Tag: para
 #, no-c-format
 msgid "The partitioning tool configures LVM in several steps. First you must create on the existing disks the partitions that will be “physical volumes for LVM”. To activate LVM, you need to choose “Configure the Logical Volume Manager (LVM)”, then on the same configuration screen “Create a volume group”, to which you will associate the existing physical volumes. Finally, you can create logical volumes within this volume group. Note that the automatic partitioning system is able to do all of this implementation."
 msgstr ""
+"La herramienta de particionado configura LVM en varios pasos. Primero debe "
+"crear las particiones en los discos existentes que serán «volúmenes físicos "
+"para LVM». Para activar LVM debe seleccionar «Configurar el gestor de "
+"volúmenes lógicos (LVM)» y luego, en la misma pantalla de configuración, "
+"«Crear grupo de volúmenes» al que le asociará los volúmenes físicos "
+"existentes. Finalmente podrá crear volúmenes lógicos dentro de este grupo de "
+"volúmenes. La herramienta de particionado automático es capaz de "
+"implementar todo esto."
 
 #. Tag: para
 #, no-c-format
 msgid "In the partitioning menu, each physical volume will appear as a disk with a single partition which can not be deleted, but that you can use as desired."
 msgstr ""
+"Cada volúmen físico aparecerá en el menú de particionado como un disco con "
+"sólo una partición que no puede ser eliminada pero que puede utilizar como "
+"desee."
 
 #. Tag: para
 #, no-c-format
 msgid "The usage of LVM is described in further detail in <xref linkend=\"section.lvm\" />."
 msgstr ""
+"Se describe el uso de LVM con más detalles en <xref linkend=\"section.lvm\" "
+"/>."
 
 #. Tag: title
 #, no-c-format
 msgid "Setting Up Encrypted Partitions"
-msgstr ""
+msgstr "Configuración de particiones cifradas"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LUKS</primary>"
-msgstr ""
+msgstr "<primary>LUKS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dm-crypt</primary>"
-msgstr ""
+msgstr "<primary>dm-crypt</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>encrypted</secondary>"
-msgstr ""
+msgstr "<primary>cifrada</primary><secondary>partición</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition encryption</primary>"
-msgstr ""
+msgstr "<primary>partición cifrada</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>confidentiality</primary><secondary>files</secondary>"
-msgstr ""
+msgstr "<primary>confidencialidad</primary><secondary>archivos</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>confidentiality</secondary>"
-msgstr ""
+msgstr "<primary>archivo</primary><secondary>confidencialidad</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To guarantee the confidentiality of your data, for instance in the event of the loss or theft of your computer or a hard drive, it is possible to encrypt the data on some partitions. This feature can be added underneath any filesystem, since, as for LVM, Linux (and more particularly the dm-crypt driver) uses the Device Mapper to create a virtual partition (whose content is protected) based on an underlying partition that will store the data in an encrypted form (thanks to LUKS, Linux Unified Key Setup, a standard format that enables the storage of encrypted data as well as meta-information that indicates the encryption algorithms used)."
 msgstr ""
+"Para garantizar la confidencialidad de sus datos, por ejemplo en el caso de "
+"pérdida o robo de su equipo o un disco duro, es posible cifrar los datos en "
+"algunas particiones. Se puede agregar esta funcionalidad bajo cualquier "
+"sistema de archivos ya que, como con LVM; Linux (en particular el "
+"controlador dm-crypt) utiliza el mapeador de dispositivos («Device Mapper») "
+"para crear una partición virtual (cuyo contenido es protegido) basándose en "
+"una partición subyacente que almacenará los datos en forma cifrada (gracias "
+"a LUKS, «configuración unificada de claves en Linux» por sus siglas en "
+"inglés, un formato estándar que permite almacenar tanto datos encriptados "
+"como también metainformación que indica los algoritmos de cifrado "
+"utilizados)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Encrypted swap partition"
-msgstr ""
+msgstr "<emphasis>SEGURIDAD</emphasis> Partición swap cifrada"
 
 #. Tag: para
 #, no-c-format
 msgid "When an encrypted partition is used, the encryption key is stored in memory (RAM). Since retrieving this key allows the decryption of the data, it is of utmost importance to avoid leaving a copy of this key that would be accessible to the possible thief of the computer or hard drive, or to a maintenance technician. This is however something that can easily occur with a laptop, since when hibernating the contents of RAM is stored on the swap partition. If this partition isn't encrypted, the thief may access the key and use it to decrypt the data from the encrypted partitions. This is why, when you use encrypted partitions, it is imperative to also encrypt the swap partition!"
 msgstr ""
+"Cuando se utiliza una partición cifrada, se almacena la clave de cifrado en "
+"memoria (RAM). Obtener esta clave permite descfirar los datos, por lo que es "
+"de mayor importante evitar dejar una copia de esta clave que pueda ser "
+"accedida por el potencial ladrón del equipo o disco duro o a un técnico de "
+"mantenimiento. Esto puede ocurrir fácilmente en un equipo portátil ya que al "
+"hibernar se almacenan los contenidos de la RAM en la partición SWAP. Si "
+"esta partición no se encuentra cifrada, el ladró podrá acceder a la clave y "
+"utilizarla para descifrar los datos de las particiones cifradas. Por esta "
+"razón, cuando utilice particiones cifradas ¡es imperativo también cifrar la "
+"partición swap!"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian installer will warn the user if they try to make an encrypted partition while the swap partition isn't encrypted."
 msgstr ""
+"El instalador de Debian advertirá al usuario si intenta crear una partición "
+"cifrada cuando la partición swap no sea cifrada también."
 
 #. Tag: para
 #, no-c-format
 msgid "To create an encrypted partition, you must first assign an available partition for this purpose. To do so, select a partition and indicate that it is to be used as a “physical volume for encryption”. After partitioning the disk containing the physical volume to be made, choose “Configure encrypted volumes”. The software will then propose to initialize the physical volume with random data (making the localization of the real data more difficult), and will ask you to enter an “encryption passphrase”, which you will have to enter every time you boot your computer in order to access the content of the encrypted partition. Once this step has been completed, and you have returned to the partitioning tool menu, a new partition will be available in an “encrypted volume”, which you can then configure just like any other partition. In most cases, this partition is used as a physical volume for LVM so as to protect several partitions (LVM logical volumes) with the same encryption key, including the swap partition (see sidebar)."
 msgstr ""
+"Para crear una partición cifrada primero debe asignar una partición "
+"disponible para este propósito. Lo logrará seleccionando una partición e "
+"indicando que sea utilizada como «volúmen físico para cifrado». Luego de "
+"particionar el disco que contenga el volúmen físico, seleccione «Configurar "
+"volúmenes cifrados». El software le propondrá inicializar el volúmen físico "
+"con datos aleatorios (dificultando aún más la localización de los datos "
+"reales) y le pedirá que ingrese una «frase de cifrado» que tendrá que "
+"ingresar cada vez que arranque el equipo para poder acceder al contenido de "
+"la partición cifrada. Una vez que complete este paso y haya vuelto al menú "
+"de la herramienta de particionado, tendrá disponible una nueva partición en "
+"un «volúmen cifrado» que puede configurar como cualquier otra partición. En "
+"la mayoría de los casos, utilizará esta partición como un volúmen físico de "
+"LVM para proteger varias particiones (volúmenes lógicos LVM) con la misma "
+"clave de cifrado, incluyendo la partición swap (revise el recuadro)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the Base System"
-msgstr ""
+msgstr "Instalando el sistema base"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>system</primary><secondary>base</secondary>"
-msgstr ""
+msgstr "<primary>sistema</primary><secondary>base</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This step, which doesn't require any user interaction, installs the Debian “base system” packages. This includes the <command>dpkg</command> and <command>apt</command> tools, which manage Debian packages, as well as the utilities necessary to boot the system and start using it. The Debian packages are read from the disk (if using a <emphasis>netinst</emphasis> CD or a complete CD-/DVD-ROM) or downloaded (when using a <emphasis>businesscard</emphasis> installation disk)."
 msgstr ""
+"Este paso, que no necesita interacción con el usuario, instala los paquetes "
+"del «sistema base» Debian. Esto incluye las herramientas "
+"<command>dpkg</command> y <command>apt</command> que administran los "
+"paquetes Debian, así como también los programas necesarios para iniciar el "
+"sistema y comenzar a utlizarlo. Los paquetes Debian se leen del disco (si se "
+"utiliza un CD <emphasis>netinst</emphasis> o un CD/DVD-ROM completo) o son "
+"descargados (cuando utiliza un disco de instalación "
+"«<emphasis>businesscard</emphasis>»)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installation of the base system"
-msgstr ""
+msgstr "Instalación del sistema base"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Package Manager (<command>apt</command>)"
-msgstr ""
+msgstr "Configurando el gestor de paquetes (<command>apt</command>)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>initial configuration of APT</secondary>"
-msgstr ""
+msgstr "<primary>configuración</primary><secondary>inicial de APT</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>initial configuration</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>configuración inicial</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In order to be able to install additional software, APT needs to be configured and told where to find Debian packages. This step is as automated as possible. It starts with a question asking if it must use a network source for packages, or if it should only look for packages on the CD-ROM."
 msgstr ""
+"Para poder instalar software adicional, necesita configurar APT para "
+"indicarle dónde encontrar paquetes Debian. Este paso es tan automático como "
+"es posible. Comienza preguntando si debe utilizar una fuente de paquetes en "
+"la red o si sólo debe buscar paquetes en el CD-ROM."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Debian CD-ROM in the drive"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> CD-ROM de Debian en el dispositivo"
 
 #. Tag: para
 #, no-c-format
 msgid "If the installer detects a Debian installation disk in the CD/DVD reader, it is not necessary to configure APT to go looking for packages on the network: APT is automatically configured to read packages from a removable media drive. If the disk is part of a set, the software will offer to “explore” other disks in order to reference all of the packages stored on them."
 msgstr ""
+"Si el instalador detecta un disco de instalación de Debian en el lector de "
+"CD/DVD, no es necesario configurar APT para que busque paquetes en la red: "
+"APT es configurado automáticamente para leer paquetes de un dispositivo "
+"removible. Si el disco es parte de un conjunto el software ofrecerá la "
+"opción de «explorar» otros discos para tener referencias a todos los "
+"paquetes en ellos."
 
 #. Tag: para
 #, no-c-format
 msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing successively a country and a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian master archive)."
 msgstr ""
+"Si se desea obtener paquets de la red, las siguientes dos preguntas le "
+"permitirán elegir un servidor del que descargar los paquetes seleccionando "
+"primero un país y luego una réplica disponible en dicho país (una réplica es "
+"un servidor público que alberga copias de todos los archivos del archivo "
+"principal de Debian)."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting a Debian mirror"
-msgstr ""
+msgstr "Selección de una réplica de Debian"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the program proposes to use an HTTP proxy. If there is no proxy, Internet access will be direct. If you type <literal>http://proxy.falcot.com:3128</literal>, APT will use the Falcot <foreignphrase>proxy/cache</foreignphrase>, a “Squid” program. You can find these settings by checking the configurations of a web browser on another machine connected to the same network."
 msgstr ""
+"Finalmente, el programa propone utilizar un proxy HTTP. Si no configura un "
+"proxy, accederá a internet directamente. Si ingresa "
+"<literal>http://proxy.falcot.com:3128</literal>, APT utilizará el "
+"<foreignphrase>proxy/caché</foreignphrase> de Falco, un programa «Squid». "
+"Puede encontrar estas configuraciones revisando la configuración de un "
+"navegador web en otro equipo conectado a la misma red."
 
 #. Tag: para
 #, no-c-format
 msgid "The files <filename>Packages.gz</filename> and <filename>Sources.gz</filename> are then automatically downloaded to update the list of packages recognized by APT."
 msgstr ""
+"Los archivos <filename>Packages.gz</filename> y "
+"<filename>Sources.gz</filename> son descargados automáticamente para "
+"actualizar la lista de paquetes reconocidos por APT."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> HTTP proxy"
-msgstr ""
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Proxy HTTP"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>proxy</primary>"
-msgstr ""
+msgstr "<primary>proxy</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>proxy cache</primary>"
-msgstr ""
+msgstr "<primary>caché proxy</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>cache, proxy</primary>"
-msgstr ""
+msgstr "<primary>proxy, caché</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Squid</primary>"
-msgstr ""
+msgstr "<primary>Squid</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "An HTTP proxy is a server that forwards an HTTP request for network users. It sometimes helps to speed up downloads by keeping a copy of files that have been transferred through it (we then speak of proxy/cache). In some cases, it is the only means of accessing an external web server; in such cases it is essential to answer the corresponding question during installation for the program to be able to download the Debian packages through it."
 msgstr ""
+"Un proxy HTTP es un servidor que redirige un pedido HTTP para usuarios de "
+"red. A veces ayuda a acelerar las descargas manteniendo una copia de los "
+"archivos transferidos a través de él (hablamos entonces de un "
+"«proxy/caché»). En algunos casos es el único modo de acceder un servicio web "
+"externo; en dichos casos es esencial responder la respuesta correspondiente "
+"durante la instalación para que el programa pueda descargar los paquetes "
+"Debian a través de él."
 
 #. Tag: para
 #, no-c-format
 msgid "Squid is the name of the server software used by Falcot Corp to offer this service."
 msgstr ""
+"Squid es el nombre del software de servidor utilizado por Falcot Corp que "
+"ofrece este servicio."
 
 #. Tag: title
 #, no-c-format
 msgid "Debian Package Popularity Contest"
-msgstr ""
+msgstr "Concurso de popularidad de paquetes Debian"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian system contains a package called <emphasis role=\"pkg\">popularity-contest</emphasis>, whose purpose is to compile package usage statistics. Each week, this program collects information on the packages installed and those used recently, and anonymously sends this information to the Debian project servers. The project can then use this information to determine the relative importance of each package, which influences the priority that will be granted to them. In particular, the most “popular” packages will be included in the installation CD-ROM, which will facilitate their access for users who do not wish to download them or to purchase a complete set."
 msgstr ""
+"El sistema Debian contiene un paquete llamado <emphasis role=\"pkg"
+"\">popularity-contest</emphasis> cuyo propósito es compilar estadísticas del "
+"uso de paquetes. Cada semana, este paquete recopila información de los "
+"paquetes instalados y aquellos utilizados recientemente y envía esta "
+"información de forma anónima a los servidores del proyecto Debian. El "
+"proyecto luego puede utilizar esta información para determinar la "
+"importancia relativa de cada paquete, lo que influencia la prioridad que se "
+"le dará a cada uno. En particular, los paquetes más «populares» serán "
+"incluídos en el CD-ROM de instalaciónm facilitando el acceso a los mismos a "
+"aquellos usuarios que no deseen descargarlos o adquirir un conjunto "
+"completo."
 
 #. Tag: para
 #, no-c-format
 msgid "This package is only activated on demand, out of respect for the confidentiality of users' usage."
 msgstr ""
+"Este paquete sólo se activa a pedido por respeto a la confidencialidad de "
+"los datos de uso de los usuarios."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting Packages for Installation"
-msgstr ""
+msgstr "Selección de paquetes para instalación"
 
 #. Tag: para
 #, no-c-format
 msgid "The following step allows you to choose the purpose of the machine in very broad terms; the ten suggested tasks correspond to lists of packages to be installed. The list of the packages that will actually be installed will be fine-tuned and completed later on, but this provides a good starting point in a simple manner."
 msgstr ""
+"El próximo paso le permite elegir el propósito del equipo en términos muy "
+"generales; las diez tareas sugeridas corresponden a listas de paquetes a "
+"instalar. La lista de paquetes que será instalada realmente será adaptada y "
+"completada más adelante, pero provee un buen punto de partida de forma "
+"simple."
 
 #. Tag: para
 #, no-c-format
 msgid "Some packages are also automatically installed according to the hardware detected (thanks to the program <command>discover-pkginstall</command> from the <emphasis role=\"pkg\">discover</emphasis> package). For instance, if a VirtualBox virtual machine is detected, the program will install the <emphasis role=\"pkg\">virtualbox-ose-guest-dkms</emphasis> package, allowing for better integration of the virtual machine with the host system."
 msgstr ""
+"Algunos paquetes también son instalados automáticamente según el hardware "
+"detectado (gracias al programa <command>discover-pkginstall</command> del "
+"paquete <emphasis role=\"pkg\">discover</emphasis>). Por ejemplo, si se "
+"detecta una máquina virtual VirtualBox el programa instalará el paquete "
+"<emphasis role=\"pkg\">virtualbox-ose-guest-dkms</emphasis> que permite una "
+"mejor integración de la máquina virtual con el sistema anfitrión."
 
 #. Tag: title
 #, no-c-format
 msgid "Task choices"
-msgstr ""
+msgstr "Elección de tareas"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the GRUB Bootloader"
-msgstr ""
+msgstr "Instalación del gestor de arranque GRUB"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB</primary>"
-msgstr ""
+msgstr "<primary>GRUB</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The bootloader is the first program started by the BIOS. This program loads the Linux kernel into memory and then executes it. It often offers a menu that allows the user to choose the kernel to load and/or the operating system to boot."
 msgstr ""
+"El gestor de arranque es el primer progama iniciado por el BIOS. Este "
+"programa carga el núcleo Linux a la memoria y luego lo ejecuta. Generalmente "
+"ofrece un menú que le permite al usuario seleccionar el núcleo y/o sistema "
+"operativo a iniciar."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Bootloader and dual boot"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> El gestor de arranque e inicio dual"
 
 #. Tag: para
 #, no-c-format
 msgid "This phase in the Debian installation process detects the operating systems that are already installed on the computer, and automatically adds corresponding entries in the boot menu, but not all installation programs do this."
 msgstr ""
+"Esta fase en el proceso de instalación de Debian detecta los sistemas "
+"operativos que ya se encuentran instalados en el equipo y agrega los "
+"elementos correspondientes al menú de arranque, pero no todos los programas "
+"de instalación lo hacen."
 
 #. Tag: para
 #, no-c-format
 msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
 msgstr ""
+"En particular, si luego instala (o reinstala) Windows borrará el gestor de "
+"arranque. Debian seguirá en el disco duro pero no podrá accederlo desde el "
+"menú de arranque. Necesitará inicar el sistema de instalación de Debian en "
+"modo «rescate» (<userinput>rescue</userinput>) para configurar un gestor de "
+"arranque menos exclusivo. El manual de instalación describe en detalle esta "
+"operación. <ulink type=\"block\" "
+"url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "By default, the menu proposed by GRUB contains all the installed Linux kernels, as well as any other detected operating systems. This is why you should accept the offer to install it in the Master Boot Record. Since keeping older kernel versions preserves the ability to boot the same system if the most recently installed kernel is defective or poorly adapted to the hardware, it is best to always keep at least three older versions."
 msgstr ""
+"De forma predeterminada, el menú propuesto por GRUB contiene todos los "
+"núcleos Linux instalados así como también todos los demás sistema operativos "
+"detectados. Es por esta razón que debería aceptar la oferta de instalarlo "
+"en el registro de arranque maestro («Master Boot Record»). Se recomienda "
+"mantener al menos tres versiones anteriores del núcleo ya que hacerlo "
+"mantiene su capacidad de iniciar el mismo sistema cuando el último núcleo "
+"instalado es defectuoso o no se adapta correctamente al hardware."
 
 #. Tag: para
 #, no-c-format
 msgid "GRUB is the default bootloader installed by Debian thanks to its technical superiority: it works with most filesystems and therefore doesn't require an update after each installation of a new kernel, since it reads its configuration during boot and finds the exact position of the new kernel. Version 1 of GRUB (now known as “Grub Legacy”) couldn't handle all combinations of LVM and software RAID; version 2, installed by default, is more complete. There may still be situations where it is more recommendable to install LILO (another bootloader); the installer will suggest it automatically."
 msgstr ""
+"GRUB es el gestor de arranque instalado por Debian de forma predeterminada "
+"gracias a su superioridad técnica: funciona con la mayoría de lso sistemas "
+"de archivo y no necesita actualizarlo luego de cada instalación de un nuevo "
+"núcleo ya que lee su configuración durante el inicio y encuentra la posición "
+"exacta del nuevo núcleo. La versión 1 de GRUB (ahora conocida como «Grub "
+"Legacy») no era compatible con todas las combinaciones de LVM y RAID por "
+"software; la versión 2, instalada de forma predeterminada, es más completa. "
+"Aún pueden existir situaciones donde es más recomendable instalar LILO (otro "
+"gestor de arranque); el instalador lo sugerirá automáticamente."
 
 #. Tag: para
 #, no-c-format
 msgid "For more information on configuring GRUB, please refer to <xref linkend=\"section.config-grub\" />."
 msgstr ""
+"Para más información sobre la configuración de GRUB, revise <xref "
+"linkend=\"section.config-grub\" />."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Bootloaders and architectures"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> Gestores de arranque y arquitecturas"
 
 #. Tag: para
 #, no-c-format
 msgid "LILO and GRUB, which are mentioned in this chapter, are bootloaders for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. If you install Debian on another architecture, you will need to use another bootloader. Among others, we can cite <command>yaboot</command> or <command>quik</command> for <emphasis>powerpc</emphasis>, <command>silo</command> for <emphasis>sparc</emphasis>, <command>elilo</command> for <emphasis>ia64</emphasis>, <command>aboot</command> for <emphasis>alpha</emphasis>, <command>arcboot</command> for <emphasis>mips</emphasis>, <command>atari-bootstrap</command> or <command>vme-lilo</command> for <emphasis>m68k</emphasis>."
 msgstr ""
+"LILO y GRUB, mencionados en este capítulo, son los gestores de arranque para "
+"las arquitecturas <emphasis>i386</emphasis> y <emphasis>amd64</emphasis>. "
+"Si instala Debian en otra arquitectura necesitará utilizar otro gestor de "
+"arranque. Entre ellos podemos citar <command>yaboot</command> o "
+"<command>quik</command> para <emphasis>powerpc</emphasis>, "
+"<command>silo</command> para <emphasis>sparc</emphasis>, "
+"<command>elilo</command> para <emphasis>ia64</emphasis>, "
+"<command>aboot</command> para <emphasis>alpha</emphasis>, "
+"<command>arcboot</command> para <emphasis>mips</emphasis>, <command>atari-"
+"bootstrap</command> o <command>vme-lilo</command> para "
+"<emphasis>m68k</emphasis>."
 
 #. Tag: title
 #, no-c-format
 msgid "Finishing the Installation and Rebooting"
-msgstr ""
+msgstr "Finalización de la instalación y reiniciado"
 
 #. Tag: para
 #, no-c-format
 msgid "The installation is now complete, the program invites you to remove the CD-ROM from the reader and to restart the computer."
 msgstr ""
+"La instalación ahora está completa, el programa le invita a quitar el CD-ROM "
+"y reiniciar el equipo."
 
 #. Tag: title
 #, no-c-format
 msgid "After the First Boot"
-msgstr ""
+msgstr "Luego del primer arranque"
 
 #. Tag: para
 #, no-c-format
 msgid "If you activated the task “Graphical desktop environment”, the computer will display the <command>gdm</command> login manager."
 msgstr ""
+"Si activó la tarea «Entorno gráfico de escritorio», el equipo mostrará el "
+"gestor de inicio de sesión <command>gdm</command>."
 
 #. Tag: title
 #, no-c-format
 msgid "First boot"
-msgstr ""
+msgstr "Primer arranque"
 
 #. Tag: para
 #, no-c-format
 msgid "The user that has already been created can then log in and begin working immediately."
 msgstr ""
+"El usuario que fue creado puede iniciar sesión y comenzar a trabajar "
+"inmediatamente."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing Additional Software"
-msgstr ""
+msgstr "Instalación de software adicional"
 
 #. Tag: para
 #, no-c-format
 msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (<menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Synaptic Package Manager</guimenuitem></menuchoice>)."
 msgstr ""
+"Los paquetes instalados corresponden a los perfiles seleccionados durante la "
+"instalación pero no necesariamente para el uso que se le dará realmente al "
+"equipo. Por lo tanto, podría desear utilizar una herramienta de gestión de "
+"paquetes para refinar la selección de paquetes instalados. Las dos "
+"herramientas utilizadas más frecuentemente (que son instaladas si se eligió "
+"el perfil «Entorno gráfico de escritorio») son <command>apt</command> "
+"(disponible desde la línea de órdenes) y <command>synaptic</command> "
+"(<menuchoice><guimenu>Sistema</guimenu> "
+"<guisubmenu>Administración</guisubmenu> <guimenuitem>Administrador de "
+"paquetes Synaptic</guimenuitem></menuchoice>)."
 
 #. Tag: para
 #, no-c-format
 msgid "To facilitate the installation of coherent groups of programs, Debian creates “tasks” that are dedicated to specific uses (mail server, file server, etc.). You already had the opportunity to select them during installation, and you can access them again thanks to package management tools such as <command>aptitude</command> (the tasks are listed in a distinct section) and <command>synaptic</command> (through the menu <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Mark Packages by Task…</guimenuitem> </menuchoice>)."
 msgstr ""
+"Para facilitar la instalación de grupos de programas coherentes, Debian crea "
+"«tareas» dedicadas a usos específicos (servidor de correo, servidor de "
+"archivos, etc.). Tuvo oportunidad de seleccionarlos durante la instalación y "
+"puede accederlos nuevamente gracias a herramientas de gestión de paquetes "
+"como <command>aptitude</command> (las tareas se encuentran en una sección "
+"particular) y <command>synaptic</command> (a través del menú "
+"<menuchoice><guimenu>Editar</guimenu> <guimenuitem>Marcar paquetes por "
+"tarea...</guimenuitem> </menuchoice>)."
 
 #. Tag: para
 #, no-c-format
 msgid "Aptitude is an interface to APT in full-screen text mode. It allows the user to browse the list of available packages according to various categories (installed or not-installed packages, by task, by section, etc.), and to view all of the information available on each of them (dependencies, conflicts, description, etc.). Each package can be marked “install” (to be installed, <keycap>+</keycap> key) or “remove” (to be removed, <keycap>-</keycap> key). All of these operations will be conducted simultaneously once you've confirmed them by pressing the <keycap>g</keycap> key (“g” for “go!”). If you have forgotten some programs, no worries; you will be able to run <command>aptitude</command> again once the initial installation has been completed."
 msgstr ""
+"Aptitude es una interfaz para APT de pantalla completa en modo texto. "
+"Permite al usuario navegar la lista de paquetes disponibles según varias "
+"categorías (paquetes instalados o no instalados, por tarea, por sección, "
+"etc.) y revisar toda la información disponible para cada uno de ellos "
+"(dependencias, conflictos, descripción, etc.). Cada paquete puede ser "
+"marcado «install» (para instalar, la tecla <keycap>+</keycap>) o «remove» "
+"(para eliminar, la tecla <keycap>-</keycap>), Se realizarán todas estas "
+"operaciones simultáneamente una vez que las confime presionando la tecla "
+"<keycap>g</keycap> (por «go!», «¡adelante!»). Si se olvidó algunos programas "
+"no se preocupe; podrá ejecutar <command>aptitude</command> nuevamente una "
+"vez que se completó la instalación inicial."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>aptitude</primary>"
-msgstr ""
+msgstr "<primary>aptitude</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Debian thinks of speakers of non-English languages"
 msgstr ""
+"<emphasis>SUGERENCIA</emphasis> Debian piensa en quienes no hablan inglés"
 
 #. Tag: para
 #, no-c-format
 msgid "Several tasks are dedicated to the localization of the system in other languages beyond English. They include translated documentation, dictionaries, and various other packages useful for speakers of different languages. The appropriate task is automatically selected if a non-English language was chosen during installation."
 msgstr ""
+"Muchas tareas están dedicadas a la localización del sistema a otros idiomas "
+"además del inglés. Incluyen documentación traducida, diccionarios y varios "
+"otros paquetes útiles a quienes hablen distintos idiomas. Se selecciona la "
+"tarea apropiada automáticamente si seleccionó un idioma distinto al inglés "
+"durante la instalación."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <command>dselect</command>, the old interface to install packages"
 msgstr ""
+"<emphasis>CULTURA</emphasis> <command>dselect</command>, la antigua interfaz "
+"para instalar paquetes"
 
 #. Tag: para
 #, no-c-format
 msgid "Before <command>aptitude</command>, the standard program to select packages to be installed was <command>dselect</command>, the old graphical interface associated with <command>dpkg</command>. A difficult program for beginners to use, it is not recommended."
 msgstr ""
+"Antes de <command>aptitude</command>, el programa estándar para seleccionar "
+"paquetes a instalar era <command>dselect</command>, la antigua interfaz "
+"gráfica asociada con <command>dpkg</command>. Es un programa difícil de "
+"utilizar para principiantes, no es recomendado."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dselect</command></primary>"
-msgstr ""
+msgstr "<primary><command>dselect</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Of course, it is possible not to select any task to be installed. In this case, you can manually install the desired software with the <command>apt-get</command> or <command>aptitude</command> command (which are both accessible from the command line)."
 msgstr ""
+"Por supuesto, se puede no seleccionar tarea alguna para instalar. En este "
+"caso, puede instalar manualmente el software deseado con <command>apt-"
+"get</command> o <command>aptitude</command> (ambos disponibles en la línea "
+"de órdenes)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Package dependencies, conflicts"
-msgstr ""
+msgstr "<emphasis>VOCABULARIO</emphasis> Dependecias de un paquete, conflictos"
 
 #. Tag: para
 #, no-c-format
 msgid "In the Debian packaging lingo, a “dependency” is another package necessary for the proper functioning of the package in question. Conversely, a “conflict” is a package that can not be installed side-by-side with another."
 msgstr ""
+"En la jerga de empaquetado de Debian, una «dependencia» es otro paquete "
+"necesario para que el paquete en cuestión funcione correctamente. A la "
+"inversa, un «conflicto» es un paquete que no puede ser instalado junto con "
+"otro."
 
 #. Tag: para
 #, no-c-format
 msgid "These concepts are discussed in greater detail in <xref linkend=\"packaging-system\" />."
 msgstr ""
+"Se discuten estos conceptos con más detalles en <xref linkend=\"packaging-"
+"system\" />."
 
 #. Tag: title
 #, no-c-format
 msgid "Upgrading the System"
-msgstr ""
+msgstr "Actualización del sistema"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>safe-upgrade</primary>"
-msgstr ""
+msgstr "<primary>safe-upgrade</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"section.apt-mise-a-jour\" />."
 msgstr ""
+"Al principio, generalmente se necesitaba <command>aptitude safe-"
+"upgrade</command> (una órden utilizada para actualizar automáticamente los "
+"programas instalados), especialmente debido a posibles actualizaciones de "
+"seguridad publicadas desde la entrega de la última versión estable de "
+"Debian. Estas actualizaciones podrían requerir preguntas adicionales a "
+"través de <command>debconf</command>, la herramienta estándar para "
+"configuración en Debian. Para más información sobre estas actualizaciones "
+"realizadas por <command>aptitude</command> revise <xref linkend=\"section"
+".apt-mise-a-jour\" />."
