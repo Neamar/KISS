@@ -1517,9 +1517,9 @@ nameserver 8.8.8.8
 	<filename>/dev/root-partition</filename> if you prefer, or even
 	both at the same time since <command>udevd</command> can be
 	configured to automatically create a symbolic link. Furthermore,
-	<filename>/dev/</filename> no longer contains useful files at this
-	time. Previously, some kernel modules did not automatically load
-	when you tried to access the corresponding peripheral; henceforth,
+	<filename>/dev/</filename> now only contains files which are relevant to the
+	current situation. Previously, some kernel modules did automatically load
+	when you tried to access the corresponding device; henceforth,
 	the peripheral's special file no longer exists prior to loading the
 	module, which is no big deal, since most modules are loaded on boot
 	thanks to automatic hardware detection. But for undetectable
