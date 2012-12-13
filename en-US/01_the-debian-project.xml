@@ -89,8 +89,8 @@
 	Ian took a less public role. He returned to working behind the
 	scenes of the free software community, creating the Progeny
 	company, with the intention of marketing a distribution derived
-	from Debian. This venture was a commercial failure, sadly, and
-	development abandoned. The company, after several years of scraping
+	from Debian. This venture was, sadly, a commercial failure, and
+	development was abandoned. The company, after several years of scraping
 	by, simply as a service provider, eventually filed for bankruptcy
 	in April of 2007. Of the various projects initiated by Progeny,
 	only <emphasis>discover</emphasis> still remains. It is an
@@ -99,44 +99,45 @@
 
       <para>Debian, remaining true to its initial principles, has had so
       much success that, today, it has reached a tremendous size. The
-      11 architectures offered cover 9 hardware architectures and 2
-      kernels (Linux and FreeBSD). Furthermore, with more than 14,500
+      13 architectures offered cover 11 hardware architectures and 2
+      kernels (Linux and FreeBSD). Furthermore, with more than 17,300
       source packages, the available software can meet almost any need that
       one could have, whether at home or in the enterprise.</para>
 
-      <para>This largess becomes, sometimes, an embarrassment of riches: it
-      is really unreasonable to distribute 50 CD-ROMs to install a complete
-      version on an Intel machine... This is why we think of Debian ever
-      increasingly as a “meta-distribution”, from which one extracts
+      <para>The sheer size of the distribution can be inconvenient: it
+      is really unreasonable to distribute 70 CD-ROMs to install a complete
+      version on a standard PC… This is why Debian is increasingly considered
+      as a “meta-distribution”, from which one extracts
       more specific distributions intended for a particular public:
       Debian-Desktop for traditional office use, Debian-Edu for education
       and pedagogical use in an academic environment, Debian-Med for
       medical applications, Debian-Junior for young children, etc. A more
-      complete list can be found in the section dedicated to that purpose,
+      complete list of the subprojects can be found in the section dedicated to that purpose,
       see <xref linkend="sous-projets"/>.</para>
 
-      <para>These divisions are organized in a well-defined framework, thus
+      <para>These partials views of Debian are organized in a well-defined framework, thus
       guaranteeing hassle-free compatibility between the various
       “sub-distributions”. All of them follow the general planning for
-      release of new versions. Built on the same foundation, they can be
+      release of new versions. And since they build on the same foundations, they can be
       easily extended, completed, and personalized with applications
       available in the Debian repositories.</para>
       <indexterm><primary>subproject</primary></indexterm>
 
-      <para>All of the Debian tools operate in this direction:
+      <para>All the Debian tools operate in this direction:
       <command>debian-cd</command> has for a long time now allowed the
-      creation of a set of CD-ROMs bearing only pre-selected packages;
+      creation of a set of CD-ROMs containing only a pre-selected set
+      of packages;
       <command>debian-installer</command> is also a modular installer,
       easily adapted to special needs. <command>APT</command> will install
       packages from various origins, while guaranteeing the overall
-      cohesion of the system.</para>
+      consistency of the system.</para>
 
       <sidebar role="important">
         <title><emphasis>TOOL</emphasis> Creating a Debian CD-ROM</title>
         <indexterm><primary><command>debian-cd</command></primary></indexterm>
 
-	<para><command>debian-cd</command> creates CD-ROM ISO installation
-	images ready for use. Raphaël Hertzog is the author of the latest
+	<para><command>debian-cd</command> creates ISO 
+	images of installation CD-ROMs ready for use. Raphaël Hertzog is the author of the latest
 	rewrite, but maintenance is essentially conducted by Steve
 	McIntyre. Any matter regarding this software is discussed (in
 	English) on the <email>debian-cd@lists.debian.org</email> mailing
@@ -156,7 +157,7 @@
         <indexterm><primary>processor</primary></indexterm>
 
 	<para>Most software available in Debian is written in portable
-	programming languages: the same source code can compile on various
+	programming languages: the same source code can be compiled for various
 	architectures. In effect, an executable binary, always compiled for
 	a specific architecture, will not usually function on the other
 	architectures.</para>
@@ -183,8 +184,8 @@
 	installation program. Its modular design allows it to be used in a
 	broad range of installation scenarios. The development work is
 	coordinated on the <email>debian-boot@lists.debian.org</email>
-	mailing list under the direction of Otavio Salvador and Joey
-	Hess.</para>
+	mailing list under the direction of Joey
+	Hess and Cyril Brulebois.</para>
       </sidebar>
     </section>
     <section>
@@ -202,20 +203,22 @@
       are resolved in any new version, even if this requires the initially
       forecast release date to be pushed back.</para>
 
-      <para>Debian does not exclude any category of users, however small
-      the minority. Its installation program has long been rough around the
-      edges, because it was the only one able to operate on all of the
-      architectures on which the Linux kernel runs. It wasn't possible to
-      simply replace it with a program that was more user-friendly, but
-      limited to only the PC (i386 architecture). Fortunately, since the
-      arrival of the <command>debian-installer</command>, those days are
-      over.</para>
+      <para>Debian does not exclude any category of users, however
+      small the minority. Its historical installation program, known
+      as <command>boot-floppies</command>, was known to be rough
+      around the edges, because it was the only one able to operate on
+      all of the architectures on which the Linux kernel runs, and the
+      project didn't want to simply replace it with a program that was
+      more user-friendly, but limited to only the PC (i386
+      architecture). Fortunately, those days are long gone, and
+      <command>debian-installer</command> is now a mature installer,
+      versatile enough for the extended needs of the project.</para>
     </section>
     <section>
       <title>The Legal Framework: A Non-Profit Organization</title>
 
       <para>Legally speaking, Debian is a project managed by an American
-      not-for-profit, volunteer association. The project has a thousand
+      not-for-profit, volunteer association. The project has around a thousand
       <emphasis>Debian developers</emphasis>, but brings together a far
       greater number of contributors (translators, bug reporters, artists,
       casual developers, etc.).</para>
@@ -231,45 +234,66 @@
         <indexterm><primary>Debian France</primary></indexterm>
         <indexterm><primary>Software in the Public Interest</primary></indexterm>
 
-	<para>Debian doesn't own any server in its own name, since it is
-	only a project within the association <emphasis>Software in the
-	Public Interest</emphasis> (SPI) which manages the hardware and
-	financial aspects (donations, purchase of hardware, etc.). While
-	initially created specifically for the Debian project, this
-	association now has a hand in other free software projects,
-	especially the PostgreSQL database, Freedesktop.org (project for
-	standardization of various parts of modern graphical desktop
-	environments, such as GNOME and KDE). The OpenOffice.org office
-	suite has also long been a part of SPI, as well. <ulink
-	type="block" url="http://www.spi-inc.org/"/></para>
+	<para>Debian doesn't own any server in its own name, since it
+	is only a project within the <emphasis>Software in the Public
+	Interest</emphasis> association, and SPI manages the hardware
+	and financial aspects (donations, purchase of hardware,
+	etc.). While initially created specifically for the Debian
+	project, this association now has a hand in other free
+	software projects, especially the PostgreSQL database,
+	Freedesktop.org (project for standardization of various parts
+	of modern graphical desktop environments, such as GNOME and
+	KDE), and the Libre Office office suite. <ulink type="block"
+	url="http://www.spi-inc.org/"/></para>
 
-	<para>In addition to SPI, various local associations collaborate
-	closely with Debian in order to generate funds for Debian, without
-	centralizing everything in the U.S.A. This setup avoids prohibitive
-	international transfer costs, and fits well with the decentralized
-	nature of the project. It is in this spirit that the
-	<emphasis>Debian France</emphasis> association was founded in the
-	summer of 2006. Do not hesitate to join and support the project!
-	<ulink type="block" url="http://france.debian.net/"/></para>
+	<para>In addition to SPI, various local associations
+	collaborate closely with Debian in order to generate funds for
+	Debian, without centralizing everything in the U.S.A. This
+	setup avoids prohibitive international transfer costs, and
+	fits well with the decentralized nature of the project. Such
+	associations include <emphasis>Debian France</emphasis>,
+	<emphasis>FFIS</emphasis> (in Germany), <emphasis>Associazione
+	per il Software Libero</emphasis> (in Italy),
+	<emphasis>Associação SoftwareLivre.org</emphasis> (in Brazil),
+	<emphasis>Debian-UK</emphasis>,
+	<emphasis>Debian-ES</emphasis>,
+	<emphasis>debian.ch</emphasis>, <emphasis>Linux
+	Aktivaattori</emphasis> (in Finland), and others around the
+	world. Do not hesitate to join your local association and
+	support the project!
+
+<ulink type="block" url="http://france.debian.net/"/>
+<ulink type="block" url="http://www.ffis.de/"/>
+<ulink type="block" url="http://www.softwarelibero.it/"/>
+<ulink type="block" url="http://associacao.softwarelivre.org/"/>
+<ulink type="block" url="http://wiki.earth.li/DebianUKSociety"/>
+<ulink type="block" url="http://www.debian-es.org/"/>
+<ulink type="block" url="http://debian.ch/"/>
+<ulink type="block" url="http://www.linux-aktivaattori.org/"/>
+
+	</para>
       </sidebar>
     </section>
   </section>
   <section id="sect.foundation-documents">
     <title>The Foundation Documents</title>
 
-    <para><indexterm><primary>Foundation Documents</primary></indexterm>
-    Some years after its initial launch, Debian formalized the principles
-    that it should follow as a free software project. This activist step
+    <para><indexterm><primary>Foundation
+    Documents</primary></indexterm> A few years after its initial
+    launch, Debian formalized the principles that it should follow as
+    a free software project. This deliberately activist decision
     allows orderly and peaceful growth by ensuring that all members
     progress in the same direction. To become a Debian developer, any
-    candidate must confirm and prove their support and adherence to the
-    principles established in the project's Foundation Documents.</para>
+    candidate must confirm and prove their support and adherence to
+    the principles established in the project's Foundation
+    Documents.</para>
 
     <para>The development process is constantly debated, but these
-    Foundation Documents are widely and consensually supported, thus rarely
-    change. The Debian constitution also offers other guarantees: a
-    qualified majority of three quarters is required to approve any
-    amendment.</para>
+    Foundation Documents are widely and consensually supported, thus
+    rarely change. The Debian constitution also offers other
+    guarantees for their stability: a three-quarters qualified
+    majority is required to approve any amendment.</para>
+
     <section id="section.contrat-social">
       <title>The Commitment towards Users</title>
       <indexterm><primary>social contract</primary></indexterm>
@@ -281,6 +305,7 @@
       and thus, by extension, for society. This contract summarizes the
       commitments that the project undertakes. Let us study them in greater
       detail:</para>
+
       <orderedlist>
         <listitem>
 	  <para>Debian will remain 100% free.</para>
@@ -302,12 +327,13 @@
 	    element that Debian wishes to provide within its operating
 	    system.</para>
 
-	    <para>This change, which was only intended as editorial, has,
-	    in reality, had numerous consequences, especially with the
-	    removal of some problematic documentation. Furthermore, the
-	    increasing use of firmware in drivers poses problems:
-	    frequently non-free, they are, nonetheless, necessary for
-	    proper operation of the corresponding hardware.</para>
+	    <para>This change, which was only intended as editorial,
+	    has, in reality, had numerous consequences, especially
+	    with the removal of some problematic documentation.
+	    Furthermore, the increasing use of firmware in drivers
+	    poses problems: despite often being non-free, they are,
+	    nonetheless, necessary for proper operation of the
+	    corresponding hardware.</para>
           </sidebar>
         </listitem>
         <listitem>
@@ -331,13 +357,13 @@
 	    an existing work to make it into a Debian package (the
 	    term “Debian maintainer” is better suited).</para>
 
-	    <para>Frequently, the line of demarcation is not clear. The
-	    Debian maintainer may write a patch, which benefits all users
-	    of the work. In general, Debian encourages those in charge
-	    of a package in Debian to get involved in “upstream”
-	    development as well (they become, then, contributors, without
-	    being confined to the simple role of users of a
-	    program).</para>
+	    <para>In practice, the distinction is often not as
+	    clear-cut.  The Debian maintainer may write a patch, which
+	    benefits all users of the work. In general, Debian
+	    encourages those in charge of a package in Debian to get
+	    involved in “upstream” development as well (they become,
+	    then, contributors, without being confined to the role of
+	    simple users of a program).</para>
           </sidebar>
         </listitem>
         <listitem>
@@ -364,7 +390,7 @@
         <listitem>
 	  <para>Works that do not meet our free software standards.</para>
 
-	  <para>Debian accepts and understands that users often want to use
+	  <para>Debian accepts and understands that users may want to use
 	  some non-free programs. That's why the project allows usage of parts
 	  of its infrastructure to distribute Debian packages of non-free
 	  software that can safely be redistributed.</para>
@@ -399,8 +425,9 @@
 	    case for certain software documentation files issued by the GNU
 	    project (in particular, Emacs and Make).</para>
 
-	    <para>The existence of the non-free section particularly annoys
-	    the Free Software Foundation, causing it, thus, to refuse to
+	    <para>The continued existence of the non-free section is a
+	    source of occasional friction with the Free Software
+	    Foundation, and is the main reason it refuses to
 	    officially recommend Debian as an operating system.</para>
           </sidebar>
         </listitem>
@@ -415,17 +442,17 @@
 
       <para>This reference document defines which software is “free
       enough” to be included in Debian. If a program's license is in
-      accord with these principles, it can be included in the main section;
+      accordance with these principles, it can be included in the main section;
       on the contrary, and provided that free distribution is permitted, it
       may be found in the non-free section. The non-free section is not
       officially part of Debian; it is an added service provided to
       users.</para>
 
-      <para>More than a selection criteria for Debian, this text has become
-      an authority on the subject of free software, and has served as the
-      basis for the “Open Source definition”. It is, thus, historically
-      one of the first formalizations of the concept of “free
-      software”.</para>
+      <para>More than a selection criteria for Debian, this text has
+      become an authority on the subject of free software, and has
+      served as the basis for the “Open Source
+      Definition”. Historically, it is therefore one of the first
+      formal definitions of the concept of “free software”.</para>
 
       <para>The GNU General Public License, the BSD License, and the
       Artistic License are examples of traditional free licenses that
@@ -593,12 +620,13 @@
 	    possible to distribute a program as proprietary software if it
 	    is derived from code from a copyleft released program.</para>
 
-	    <para>The copyleft license most known is, of course, the GNU
-	    GPL, and derivatives thereof, the GNU LGPL or GNU Lesser
-	    General Public License, and the GNU FDL or GNU Free
-	    Documentation License. Sadly, the copyleft licenses are
-	    generally incompatible with each other. Consequently, it is
-	    best to use only one of them.</para>
+	    <para>The most well-known family of copyleft licenses is,
+	    of course, the GNU GPL and its derivatives, the GNU LGPL
+	    or GNU Lesser General Public License, and the GNU FDL or
+	    GNU Free Documentation License. Sadly, the copyleft
+	    licenses are generally incompatible with each
+	    other. Consequently, it is best to use only one of
+	    them.</para>
           </sidebar>
         </listitem>
       </orderedlist>
@@ -609,8 +637,8 @@
         <indexterm><primary>Perens, Bruce</primary></indexterm>
         <indexterm><primary>Open Source</primary></indexterm>
 
-	<para>Bruce Perens, the second leader of the Debian project, just
-	after Ian Murdock, was very controversial in his dynamic and
+	<para>Bruce Perens was the second leader of the Debian project, just
+	after Ian Murdock.  He was very controversial in his dynamic and
 	authoritarian methods. He nevertheless remains an important
 	contributor to Debian, to whom Debian is especially indebted for
 	the editing of the famous “Debian Free Software Guidelines”
@@ -678,10 +706,11 @@
     <indexterm><primary>operations, internal</primary></indexterm>
     <indexterm><primary>organization, internal</primary></indexterm>
 
-    <para>The bounty produced by the Debian project results simultaneously
-    from the work on the infrastructure performed by experienced Debian
-    developers, individual or collective work of developers on Debian
-    packages, and user feedback.</para>
+    <para>The abundant end results produced by the Debian project
+    derive simultaneously from the work on the infrastructure
+    performed by experienced Debian developers, from the individual or
+    collective work of developers on Debian packages, and from user
+    feedback.</para>
     <section>
       <title>The Debian Developers</title>
       <indexterm><primary>developers</primary><secondary>Debian developers</secondary></indexterm>
@@ -704,15 +733,16 @@
 	<para>Debian has a database including all developers registered
 	with the project, and their relevant information (address,
 	telephone, geographical coordinates such as longitude and latitude,
-	etc.). Some information (first and last name, country, username
-	within the project, IRC username, GnuPG key, etc.) are public and
+	etc.). Some of the information (first and last name, country, username
+	within the project, IRC username, GnuPG key, etc.) is public and
 	available on the Web. <ulink type="block"
 	url="http://db.debian.org/"/></para>
 
 	<para>The geographical coordinates allow the creation of a map
-	locating all of the developers around the globe. Debian is truly an
-	international project: Its developers can be found an all
-	continents, although the majority are in the West.</para>
+	locating all of the developers around the globe. Debian is
+	truly an international project: its developers can be found an
+	all continents, although the majority are in “Western
+	countries”.</para>
 
         <figure>
           <title>World-wide distribution of Debian developers</title>
@@ -726,7 +756,7 @@
       </sidebar>
 
       <para>Package maintenance is a relatively regimented activity, very
-      documented or even regulated. It must, in effect, respect all of the
+      documented or even regulated. It must, in effect, comply with all the
       standards established by the <emphasis>Debian Policy</emphasis>.
       Fortunately, there are many tools that facilitate the maintainer's work.
       The developer can, thus, focus on the specifics of their package and
@@ -741,7 +771,7 @@
 	<para>Maintaining a package entails, first, “packaging” a
 	program. Specifically, this means to define the means of
 	installation so that, once installed, this program will operate and
-	comply with all of the rules the Debian project sets for itself.
+	comply with the rules the Debian project sets for itself.
 	The result of this operation is saved in a
 	<filename>.deb</filename> file. Effective installation of the
 	program will then require nothing more than extraction of this
@@ -749,12 +779,12 @@
 	post-installation scripts contained therein.</para>
 
 	<para>After this initial phase, the maintenance cycle truly begins:
-	preparation of updates to follow the latest version of the Debian
-	Policy, fixing bugs reported by users, inclusion of a new
-	“upstream” version of the program, which naturally continues to
-	develop simultaneously (e.g. at the time of the initial packaging,
+	preparing updates to follow the latest version of the Debian
+	Policy, fixing bugs reported by users, and including new
+	“upstream” versions of the program which naturally continues to
+	develop simultaneously.  For instance, at the time of the initial packaging,
 	the program was at version 1.2.3. After some months of development,
-	the original authors release a new stable version, numbered version
+	the original authors release a new stable version, numbered 
 	1.4.0. At this point, the Debian maintainer should update the
 	package, so that users can benefit from its latest stable
 	version).</para>
@@ -769,7 +799,7 @@
       Debian remains consistent despite its gigantic size. This Policy is
       not fixed in stone, but continuously evolves thanks to proposals
       formulated on the <email>debian-policy@lists.debian.org</email>
-      mailing list. Amendments that are approved by all are accepted and
+      mailing list. Amendments that are agreed upon by all interested parties are accepted and
       applied to the text by a small group of maintainers who have no
       editorial responsibility (they only include the modifications agreed
       upon by the Debian developers that are members of the above-mentioned
@@ -784,12 +814,12 @@
 	submitting a bug report with a severity level of “wishlist”
 	against the <emphasis role="pkg">debian-policy</emphasis> package.
 	The process that then starts is documented in
-	<filename>/usr/share/doc/debian-policy/Process.html</filename>: If
+	<filename>/usr/share/doc/debian-policy/Process.html</filename>: if
 	it is acknowledged that the problem revealed must be resolved by
-	creating a new rule in the Debian Policy, discussion thereof then
+	creating a new rule in the Debian Policy, a discussion 
 	begins on the <email>debian-policy@lists.debian.org</email> mailing
-	list until a consensus is reached and a proposal issued. Someone
-	then drafts the desired amendment and submits it for approval (in
+	list until consensus is reached and a proposal issued. Someone
+	then drafts a desired amendment and submits it for approval (in
 	the form of a patch to review). As soon as two other developers
 	approve the fact that the proposed amendment reflects the consensus
 	reached in the previous discussion (they “second” it), the
@@ -822,8 +852,8 @@
 	authors and the license covering the software. Finally, we may also
 	find a file named <filename>NEWS.Debian.gz</filename>, which allows
 	the Debian developer to communicate important information regarding
-	updates (if <emphasis>apt-listchanges</emphasis> is used, the
-	messages are automatically shown by apt). All other files are
+	updates; if <emphasis>apt-listchanges</emphasis> is installed, then
+	these messages are automatically displayed. All other files are
 	specific to the software in question. We especially like to point
 	out the <filename>examples</filename> sub-directory, which
 	frequently contains examples of configuration files.</para>
@@ -832,7 +862,8 @@
       <para>The Policy covers very well the technical aspects of packaging.
       The size of the project also raises organizational problems; these
       are dealt with by the Debian Constitution, which establishes a
-      structure and means for decision making.</para>
+      structure and means for decision making.  In other words, a
+      formal governance system.</para>
       <indexterm><primary>constitution</primary></indexterm>
       <indexterm><primary>Debian Project Leader</primary></indexterm>
       <indexterm><primary>DPL</primary></indexterm>
@@ -900,34 +931,37 @@
       <indexterm><primary>vote</primary></indexterm>
 
       <sidebar>
-        <title><emphasis>CULTURE</emphasis> Flamewar, discussion that catches fire</title>
+        <title><emphasis>CULTURE</emphasis> Flamewar, the discussion that catches fire</title>
         <indexterm><primary>flamewar</primary></indexterm>
         <indexterm><primary>heated debate</primary></indexterm>
 
 	<para>A “flamewar” is an exceedingly impassioned debate, which
 	frequently ends up with people attacking each other once all
-	reasonable argumentation has been exhausted on both sides. Certain
-	themes are more frequently subject to polemics than others (for
-	example, the choice of text editor, “do you prefer
-	<command>vi</command> or <command>emacs</command>?”). The matters
-	often provoke very rapid e-mail exchanges due to the sheer number
-	of people with an opinion on the matter (everyone) and the very
-	personal nature of such questions.</para>
+	reasonable argumentation has been exhausted on both
+	sides. Certain themes are more frequently subject to polemics
+	than others (the choice of text editor, “do you prefer
+	<command>vi</command> or <command>emacs</command>?”, is an old
+	favorite). The matters often provoke very rapid e-mail
+	exchanges due to the sheer number of people with an opinion on
+	the matter (everyone) and the very personal nature of such
+	questions.</para>
 
 	<para>Nothing particularly useful generally comes from such
-	discussions; stay out of such debates, and rapidly skim through
-	their content. Full reading would be too time-consuming.</para>
+	discussions; the general recommendation is to stay out of such
+	debates, and maybe rapidly skim through their content, since
+	reading them in full would be too time-consuming.</para>
       </sidebar>
 
-      <para>Even if this constitution establishes a semblance of democracy,
-      the daily reality is quite different: Debian naturally follows the
-      free software rules of the do-ocracy: it's the one who does, who gets
-      to decide. A lot of time can be wasted debating the respective merits
-      of various ways to approach a problem; the chosen solution will be
-      the first functional and satisfying one... honoring the time that a
-      competent person did put into it.</para>
+      <para>Even if this constitution establishes a semblance of
+      democracy, the daily reality is quite different: Debian
+      naturally follows the free software rules of the do-ocracy: the
+      one who does things gets to decide how to do them. A lot of time
+      can be wasted debating the respective merits of various ways to
+      approach a problem; the chosen solution will be the first one
+      that is both functional and satisfying… which will come out of
+      the time that a competent person did put into it.</para>
 
-      <para>This is the only way to earns one's stripes: do something
+      <para>This is the only way to earn one's stripes: do something
       useful and show that one has worked well. Many Debian
       “administrative” teams operate by appointment, preferring
       volunteers who have already effectively contributed and proved their
@@ -971,7 +1005,7 @@
 	regularly criticized. One must acknowledge that, throughout the
 	years, the Debian project has become more and more demanding of the
 	developers that it will accept. Some people may see some injustice
-	in that, but we must confess that, what were only little challenges
+	in that, but we must confess that what were only little challenges
 	at the beginning have become much greater in a community of over
 	1,000 people, when it comes to ensuring the quality and integrity
 	of everything that Debian produces for its users.</para>
@@ -993,14 +1027,16 @@
     <section>
       <title>The Active Role of Users</title>
 
-      <para>Is it relevant to mention the users among those who work within
-      the Debian project? Yes: they play a critical role in the project.
+      <para>One might wonder why it is relevant to mention the users
+      among those who work within the Debian project, but the answer
+      is a definite yes: they play a critical role in the project.
       Far from being “passive”, some of our users run development
       versions of Debian and regularly file bug reports to indicate
-      problems. Others go even further and submit improvements ideas, by
-      filing a bug report with a severity level of “wishlist”, or even
-      submit corrections to the source code, called “patches” (see
-      sidebar <xref linkend="cadre.patch"/>).</para>
+      problems. Others go even further and submit ideas for
+      improvements, by filing a bug report with a severity level of
+      “wishlist”, or even submit corrections to the source code,
+      called “patches” (see sidebar <xref
+      linkend="cadre.patch"/>).</para>
 
       <sidebar id="cadre.bts" role="important">
         <title><emphasis>TOOL</emphasis> Bug tracking system</title>
@@ -1009,8 +1045,9 @@
         <indexterm><primary>Bug Tracking System</primary></indexterm>
         <indexterm><primary><literal>bugs.debian.org</literal></primary></indexterm>
 
-	<para>The Debian Bug Tracking System (Debian BTS) envelopes the
-	project. The public part of the web interface allows users to view
+	<para>The Debian Bug Tracking System (Debian BTS) is used by
+	large parts of the
+	project. The public part (the web interface) allows users to view
 	all bugs reported, with the option to display a sorted list of bugs
 	selected according to various criteria, such as: affected package,
 	severity, status, address of the reporter, address of the
@@ -1044,13 +1081,14 @@
         <indexterm><primary>bug</primary><secondary>severity</secondary></indexterm>
         <indexterm><primary>bug</primary><secondary>severity</secondary></indexterm>
 
-	<para>The severity of a bug formally assigns a degree of gravity to
-	the problem indicated. Effectively, not all bugs have the same
-	importance; for instance, a typing error in a man page is not
-	comparable to a security vulnerability in server software.</para>
+	<para>The severity of a bug formally assigns a degree of
+	gravity to the reported problem. Effectively, not all bugs
+	have the same importance; for instance, a typo in a manual
+	page is not comparable to a security vulnerability in server
+	software.</para>
 
-	<para>Debian uses an extended severity scale to precisely indicate
-	the severity of a bug. Each level is defined precisely in order to
+	<para>Debian uses an extended scale to describe the severity
+	of a bug. Each level is defined precisely in order to
 	facilitate the selection thereof. <ulink type="block"
 	url="http://www.debian.org/Bugs/Developer#severities"/></para>
       </sidebar>
@@ -1058,7 +1096,7 @@
       <para>Additionally, numerous satisfied users of the service offered
       by Debian like to make a contribution of their own to the project. As
       not everyone has appropriate levels of expertise in programming, they
-      choose, perhaps, to assist with the translation and review of
+      may choose to assist with the translation and review of
       documentation. There are language-specific mailing lists for various
       languages. For French, for instance, it is
       <email>debian-l10n-french@lists.debian.org</email>. <ulink
@@ -1090,7 +1128,7 @@
       </sidebar>
 
       <sidebar id="cadre.patch">
-        <title><emphasis>BACK TO BASICS</emphasis> Patch, how to send a fix</title>
+        <title><emphasis>BACK TO BASICS</emphasis> Patch, the way to send a fix</title>
         <indexterm><primary><command>patch</command></primary></indexterm>
         <indexterm><primary>patch</primary></indexterm>
         <indexterm><primary><command>diff</command></primary></indexterm>
@@ -1131,38 +1169,40 @@
         <indexterm><primary>report a bug</primary></indexterm>
 
 	<para>The <command>reportbug</command> tool facilitates sending bug
-	reports on a Debian package. It can check to make sure the bug in
-	question hasn't already been filed, thus prevent redundancy in the
+	reports on a Debian package. It helps making sure the bug in
+	question hasn't already been filed, thus preventing redundancy in the
 	system. It reminds the user of the definitions of the severity
-	levels, for reporting to be as accurate as possible (the developer
+	levels, for the report to be as accurate as possible (the developer
 	can always fine-tune these parameters later, if needed). It helps
-	to write a complete bug report without the user needing to know the
+	writing a complete bug report without the user needing to know the
 	precise syntax, by writing it and allowing the user to edit it.
 	This report will then be sent via an e-mail server (local, by
 	default, but <command>reportbug</command> can also use a remote
 	server).</para>
 
-	<para>This tool first targets the development versions, only
-	concerned with the resolution of bugs. A stable version of Debian
-	is, in effect, written in stone, with the exception of security
+	<para>This tool first targets the development versions, which
+	is where the bugs will be fixed. A stable version of Debian
+	is almost as good as written in stone, with very few
+	exceptions for security
 	updates or other important updates (if, for example, a package is
 	not working at all). A correction of a minor bug in a Debian
 	package must, thus, wait for the next stable version.</para>
       </sidebar>
 
-      <para>All of these mechanisms are accentuated by user behavior. Far
-      from being isolated, they are a true community within which numerous
-      exchanges take place. We especially note that impressive activity on
-      the user discussion mailing list,
+      <para>All of these contribution mechanisms are made more
+      efficient by users' behavior. Far from being a collection of
+      isolated persons, users are a true community within which
+      numerous exchanges take place. We especially note the impressive
+      activity on the user discussion mailing list,
       <email>debian-user@lists.debian.org</email> (<xref
       linkend="solving-problems"/> discusses this in greater
       detail).</para>
 
-      <para>Not only do users help themselves on technical issues that
-      directly affect them, but they also discuss the best ways to
-      contribute to the Debian project and help it move forward —
-      discussions that frequently result in suggestions for
-      improvements.</para>
+      <para>Not only do users help themselves (and others) on
+      technical issues that directly affect them, but they also
+      discuss the best ways to contribute to the Debian project and
+      help it move forward — discussions that frequently result in
+      suggestions for improvements.</para>
 
       <para>Since Debian does not expend funds on any self-promoting
       marketing campaigns, its users play an essential role in its
@@ -1175,28 +1215,31 @@
       association booths at large tech conventions dealing with Linux,
       etc.</para>
 
-      <para>Volunteers make posters, brochures, and other useful
-      promotional materials for the project, which they make available to
-      everyone, and which Debian provides freely on its website: <ulink
-      type="block" url="http://www.debian.org/events/material"/></para>
+      <para>Volunteers make posters, brochures, stickers, and other
+      useful promotional materials for the project, which they make
+      available to everyone, and which Debian provides freely on its
+      website: <ulink type="block"
+      url="http://www.debian.org/events/material"/></para>
     </section>
     <section>
       <title>Teams and Sub-Projects</title>
 
-      <para>Debian is organized immediately around the concept of source
-      packages, each with its maintainer or group of maintainers. Numerous
-      work teams have slowly appeared, ensuring administration of the
-      infrastructure, management of tasks not specific to any package in
-      particular (quality assurance, Debian Policy, installer, etc.), with
-      the latest teams growing up around sub-projects.</para>
+      <para>Debian has been organized, right from the start, around
+      the concept of source packages, each with its maintainer or
+      group of maintainers. Many work teams have emerged over time,
+      ensuring administration of the infrastructure, management of
+      tasks not specific to any package in particular (quality
+      assurance, Debian Policy, installer, etc.), with the latest
+      series of teams growing up around sub-projects.</para>
       <section id="sous-projets">
         <title>Existing Debian Sub-Projects</title>
 
 	<para>To each their own Debian! A sub-project is a group of
-	volunteers interested in adapting Debian to specific needs. Beyond
-	the selection of a sub-group of programs intended for a particular
-	domain (education, medicine, multimedia creation, etc.), this also
-	involves improving existing packages, packaging missing software,
+	volunteers interested in adapting Debian to specific
+	needs. Beyond the selection of a sub-group of programs
+	intended for a particular domain (education, medicine,
+	multimedia creation, etc.), sub-projects are also involved in
+	improving existing packages, packaging missing software,
 	adapting the installer, creating specific documentation, and
 	more.</para>
 
@@ -1276,7 +1319,7 @@
           <indexterm><primary>SkoleLinux</primary></indexterm>
 
 	  <para>Debian-Edu was, initially, a French project, created by
-	  Stéphane Casset and Raphaël Hertzog, within the company,
+	  Stéphane Casset and Raphaël Hertzog as part of their jobs at
 	  Logidée, on behalf of a pedagogical documentation departmental
 	  center. Raphaël then integrated it with Debian as a sub-project.
 	  Due to time constraints, it has not progressed further, as is
@@ -1328,31 +1371,33 @@
 	checks, on the reference server
 	(<literal>ftp-master.debian.org</literal>).</para>
 
-	<para>They must also verify the licenses of all new packages, in
-	order to ensure that Debian may distribute them, prior to including
-	them in the corpus of existing packages. When a developer wishes to
-	remove a package, they address this team through the bug tracking
-	system and the
-	“pseudo-package” <emphasis>ftp.debian.org</emphasis>.</para>
+	<para>They must also verify the licenses of all new packages,
+	in order to ensure that Debian may distribute them, prior to
+	including them in the corpus of existing packages. When a
+	developer wishes to remove a package, they address this team
+	through the bug tracking system and the
+	<emphasis>ftp.debian.org</emphasis> “pseudo-package”.</para>
         <indexterm><primary>ftpmaster</primary></indexterm>
 
         <sidebar role="fil">
           <title><emphasis>VOCABULARY</emphasis> The pseudo-package, a monitoring tool</title>
           <indexterm><primary>pseudo-package</primary></indexterm>
 
-	  <para>The bug tracking system, initially designed to associate
-	  bug reports with a Debian package, has proved very practical to
-	  manage other matters: lists of problems to be resolved or tasks
-	  to manage without any link to a particular Debian package. The
-	  “pseudo-packages” allow, thus, certain teams to use the bug
-	  tracking system without associating a real package with their
-	  team. Everyone can, thus, report issues that needs to be dealt
-	  with. The BTS has an entry <emphasis>ftp.debian.org</emphasis> to
-	  report problems on the official package archive or simply to
-	  request removal of a package. Likewise, the pseudo-package
-	  <emphasis>www.debian.org</emphasis> refers to errors on the
-	  Debian website, and <emphasis>lists.debian.org</emphasis> gathers
-	  all the problems concerning the mailing lists.</para>
+	  <para>The bug tracking system, initially designed to
+	  associate bug reports with a Debian package, has proved very
+	  practical to manage other matters: lists of problems to be
+	  resolved or tasks to manage without any link to a particular
+	  Debian package. The “pseudo-packages” allow, thus, certain
+	  teams to use the bug tracking system without associating a
+	  real package with their team. Everyone can, thus, report
+	  issues that needs to be dealt with. For instance, the BTS
+	  has a <emphasis>ftp.debian.org</emphasis> entry that is used
+	  to report and track problems on the official package archive
+	  or simply to request removal of a package. Likewise, the
+	  <emphasis>www.debian.org</emphasis> pseudo-package refers to
+	  errors on the Debian website, and
+	  <emphasis>lists.debian.org</emphasis> gathers all the
+	  problems concerning the mailing lists.</para>
         </sidebar>
 
         <sidebar>
@@ -1360,28 +1405,29 @@
           <indexterm><primary><literal>alioth</literal></primary></indexterm>
           <indexterm><primary>FusionForge</primary></indexterm>
 
-	  <para>FusionForge is a program that enables creation of sites
-	  similar to <literal>www.sourceforge.net</literal>,
+	  <para>FusionForge is a program that enables creation of
+	  sites similar to <literal>www.sourceforge.net</literal>,
 	  <literal>alioth.debian.org</literal>, or even
 	  <literal>savannah.gnu.org</literal>. It hosts projects and
 	  provides a range of services that facilitate collaborative
-	  development. Each project will have a dedicated virtual space
-	  there, including a web site, bug tracking system, patch
-	  monitoring system, survey tool, file storage, forums, version
-	  control system repositories, mailing lists and various other
-	  related services.</para>
+	  development. Each project will have a dedicated virtual
+	  space there, including a web site, several “ticketing”
+	  systems to track such tickets as bugs and patches, a survey
+	  tool, file storage, forums, version control system
+	  repositories, mailing lists and various other related
+	  services.</para>
 
 	  <para><literal>alioth.debian.org</literal> is Debian's
-	  FusionForge server, administered by Roland Mas, Tollef Fog Heen,
-	  Stephen Gran, and Christian Bayle. Any project involving one or
-	  more Debian developers can be hosted there. <ulink type="block"
+	  FusionForge server, administered by Tollef Fog Heen, Stephen
+	  Gran, and Roland Mas. Any project involving one or more
+	  Debian developers can be hosted there. <ulink type="block"
 	  url="http://alioth.debian.org/"/></para>
 
-	  <para>Very complex for the broad scope of services that it
-	  offers, FusionForge is otherwise relatively easy to install,
-	  thanks to the exceptional work of Roland Mas and Christian Bayle
-	  on the <emphasis role="pkg">fusionforge</emphasis> Debian
-	  package.</para>
+	  <para>Although rather complex internally, due to the broad
+	  range of services that it provides, FusionForge is otherwise
+	  relatively easy to install, thanks to the exceptional work
+	  of Roland Mas and Christian Bayle on the <emphasis
+	  role="pkg">fusionforge</emphasis> Debian package.</para>
         </sidebar>
 
 	<para>The <emphasis>debian-admin</emphasis> team
@@ -1409,7 +1455,7 @@
 	  available versions in each distribution, progress of a package in
 	  the <emphasis role="distribution">Testing</emphasis>
 	  distribution, the status of translations of descriptions and
-	  debconf templates, the eventual availability of a new upstream
+	  debconf templates, the possible availability of a new upstream
 	  version, notices of noncompliance with the latest version of the
 	  Debian Policy, information on the maintainer, and any other
 	  information that said maintainer wishes to include. <ulink
@@ -1418,8 +1464,8 @@
 	  <para>An e-mail subscription service completes this web
 	  interface. It automatically sends the following selected
 	  information to the list: bugs and related discussions,
-	  availability of a new version on the Debian servers, translations
-	  completed (for revision), etc.</para>
+	  availability of a new version on the Debian servers, new
+	  translations available for proofreading, etc.</para>
 
 	  <para>Advanced users can, thus, follow all of this information
 	  closely and even contribute to the project, once they've got a
@@ -1431,9 +1477,9 @@
 	  under their charge. <ulink type="block"
 	  url="http://qa.debian.org/developer.php"/></para>
 
-	  <para>These two websites comprise the tools for Debian QA
-	  (Quality Assurance), the group responsible for quality assurance
-	  within Debian.</para>
+	  <para>These two websites are tools used by Debian QA
+	  (Quality Assurance), the group responsible for quality
+	  assurance within Debian.</para>
           <indexterm><primary>assurance</primary><secondary>quality assurance</secondary></indexterm>
           <indexterm><primary>quality</primary><secondary>assurance</secondary></indexterm>
         </sidebar>
@@ -1451,10 +1497,10 @@
 	  <para><indexterm><primary>mailing lists</primary></indexterm>The
 	  mailing lists are, without a doubt, the best testimony to
 	  activity on a project, since they keep track of everything that
-	  happens. Some statistics (from 2007) regarding our mailing lists
-	  speak for themselves: Debian hosts more than 180 lists, totaling
-	  175,000 individual subscriptions. The 45,000 messages sent each
-	  month generate 1 million e-mails daily.</para>
+	  happens. Some statistics (from 2012) regarding our mailing lists
+	  speak for themselves: Debian hosts more than 260 lists, totaling
+	  190,000 individual subscriptions. The 22,000 messages sent each
+	  month generate 600,000 e-mails daily.</para>
         </sidebar>
 
 	<para>Each specific service has its own system administration team,
@@ -1521,15 +1567,15 @@
 	  <para><command>cvs</command>, however, does have some
 	  limitations. It is unable to manage symbolic links, changes in
 	  file or directory names, the deletion of directories, etc. It has
-	  contributed to the appearance of more modern, and free
+	  contributed to the appearance of more modern free
 	  alternatives which have filled in most of these gaps. These
 	  include, especially, <command>subversion</command>
 	  (<command>svn</command>), <command>git</command>,
 	  <command>bazaar</command> (<command>bzr</command>), and
 	  <command>mercurial</command> (<command>hg</command>). <ulink
-	  type="block" url="http://subversion.tigris.org/"/> <ulink
+	  type="block" url="http://subversion.apache.org/"/> <ulink
 	  type="block" url="http://git-scm.com/"/> <ulink type="block"
-	  url="http://bazaar-vcs.org/"/> <ulink type="block"
+	  url="http://bazaar.canonical.com/"/> <ulink type="block"
 	  url="http://mercurial.selenic.com/"/></para>
           <indexterm><primary><command>subversion</command></primary></indexterm>
           <indexterm><primary><command>svn</command></primary></indexterm>
@@ -1543,12 +1589,13 @@
 	programs have assumed a starring role, and their fame has spread
 	beyond the scope of the project. Good examples are
 	<command>dpkg</command>, the Debian package management program (it
-	is, in fact, an abbreviation of Debian PacKaGe), and
+	is, in fact, an abbreviation of Debian PacKaGe, and generally
+	pronounced as “dee-package”), and
 	<command>apt</command>, a tool to automatically install any Debian
-	package, and its dependencies, guaranteeing the cohesion of the
-	system after upgrade (its name is an acronym for Advanced Package
+	package, and its dependencies, guaranteeing the consistency of the
+	system after an upgrade (its name is an acronym for Advanced Package
 	Tool). Their teams are, however, much smaller, since a rather high
-	level of programming skill is required for overall understanding of
+	level of programming skill is required to gain an overall understanding of
 	the operations of these types of programs.</para>
 
 	<para>The most important team is probably that for the Debian
@@ -1559,12 +1606,12 @@
 	dozen different architectures. Each one has its own mechanism for
 	booting and its own bootloader. All of this work is coordinated on
 	the <email>debian-boot@lists.debian.org</email> mailing list, under
-	the direction of Otavio Salvador and Joey Hess. <ulink type="block"
+	the direction of Joey Hess and Cyril Brulebois. <ulink type="block"
 	url="http://www.debian.org/devel/debian-installer/"/> <ulink
 	type="block"
 	url="http://kitenet.net/~joey/blog/entry/d-i_retrospective/"/></para>
 
-	<para>The <command>debian-cd</command> program team, very small,
+	<para>The (very small) <command>debian-cd</command> program team
 	has an even more modest objective. Many “small” contributors
 	are responsible for their architecture, since the main developer
 	can not know all the subtleties, nor the exact way to start the
@@ -1586,10 +1633,76 @@
 	<email>debian-glibc@lists.debian.org</email>, the C compiler on the
 	<email>debian-gcc@lists.debian.org</email> list, or Xorg on the
 	<email>debian-x@lists.debian.org</email> (this group is also known
-	as the X Strike Force, coordinated by Cyril Brulebois).</para>
+	as the X Strike Force, and coordinated by Cyril Brulebois).</para>
       </section>
     </section>
   </section>
+
+  <section id="sect.follow-debian-news">
+    <title>Follow Debian News</title>
+
+    <para>As arleady mentioned, the Debian project evolves in a very
+    distributed, very organic way.  As a consequence, it may be
+    difficult at times to stay in touch with what happens within the
+    project without being overwhelmed with a never-ending flood of
+    notifications.</para>
+
+    <para>If you only want the most important news about Debian, you
+    probably should subscribe to the
+    <email>debian-announce@lists.debian.org</email> list.  This is a
+    very low-traffic list (around a dozen messages a year), and only
+    gives the most important announcements, such as the availability
+    of a new stable release, the election of a new Project Leader, or
+    the yearly Debian Conference.</para>
+
+    <indexterm><primary>Debian Project News</primary></indexterm>
+    <para>More general (and regular) news about Debian are sent to the
+    <email>debian-news@lists.debian.org</email> list.  The traffic on
+    this list is quite reasonable too (usually around a handful of
+    messages a month), and it includes the semi-regular “Debian
+    Project News”, which is a compilation of various small bits of
+    information about what happens in the project.  Since all Debian
+    developers can contribute these news when they think they have
+    something noteworthy to make public, the DPN gives a valuable
+    insight while staying rather focused on the project as a whole.
+    </para>
+
+    <para>For more information about the evolution of Debian and
+    what is happening at some point in time in various teams,
+    there's also the
+    <email>debian-devel-announce@lists.debian.org</email> list.  As
+    its name implies, the announcements it carries will probably be
+    more interesting to developers, but it also allows interested
+    parties to keep an eye on what happens in more concrete terms
+    than just when a stable version is released.  While
+    <email>debian-announce</email> gives news about the user-visible
+    results, <email>debian-devel-announce</email> gives news about
+    how these results are produced.  As a side note, “d-d-a” (as it
+    is sometimes referred to) is one of the two mandatory lists that
+    Debian developers must be subscribed to.</para>
+
+    <indexterm><primary>Planet Debian</primary></indexterm>
+    <para>A more informal source of information can also be found on
+    Planet Debian, which aggregates articles posted by Debian
+    contributors on their respective blogs.  While the contents do not
+    deal exclusively with Debian development, they provide a view into
+    what is happening in the community and what its members are up to.
+    <ulink type="block" url="http://planet.debian.org/"/>
+    </para>
+
+    <indexterm><primary>microblog</primary></indexterm>
+    <indexterm><primary>Identi.ca</primary></indexterm>
+    <para>The microblogging world also carries news about Debian,
+    usually (and unsurprisingly) with a <emphasis>#debian</emphasis>
+    hashtag.  On federated microblogging servers such as Identi.ca,
+    there's also a <emphasis>!debian</emphasis> group gathering
+    members of the community.
+    <ulink type="block" url="https://identi.ca/tag/debian"/>
+    <ulink type="block" url="https://identi.ca/group/debian"/>
+    </para>
+
+  </section>
+
   <section id="sect.role-of-distributions">
     <title>The Role of Distributions</title>
     <indexterm><primary>Linux distribution</primary><secondary>role</secondary></indexterm>
@@ -1603,20 +1716,21 @@
 
       
       <para>The <command>debian-installer</command>, designed to be
-      extremely modular in order to be as generic as possible, answers the
-      first. It covers a broad range of installation situations and in
+      extremely modular in order to be as generic as possible, targets the
+      first objective. It covers a broad range of installation situations and in
       general, greatly facilitates the creation of a derivative installer
-      to correspond to a particular case.</para>
+      corresponding to a particular case.</para>
 
-      <para>This modularity, which makes it also very complex, may annoy
-      the developers discovering this tool. Whether used in graphical or
-      text mode, the user's experience is still similar. Great efforts have
-      been made to reduce the number of fields to fill; this explains the
-      inclusion of automatic hardware detection software.</para>
+      <para>This modularity, which also makes it very complex, may be
+      daunting for the developers discovering this tool; but whether
+      used in graphical or text mode, the user's experience is still
+      similar. Great efforts have been made to reduce the number of
+      questions asked at installation time, in particular thanks to
+      the inclusion of automatic hardware detection software.</para>
 
       <para>It is interesting to note that distributions derived from
       Debian differ greatly on this aspect, and provide a more limited
-      installer (often confined to the i386 architecture), but more
+      installer (often confined to the i386 or amd64 architectures), but more
       user-friendly for the uninitiated. On the other hand, they usually
       refrain from straying too far from package contents in order to
       benefit as much as possible from the vast range of software offered
@@ -1626,11 +1740,12 @@
       <title>The Software Library</title>
 
       <para>Quantitatively, Debian is undeniably the leader in this
-      respect, with over 14,500 source packages. Qualitatively, Debian’s
-      policy and long testing period prior to releasing a new stable
-      version, justify its reputation for cohesion and stability. As far as
-      availability, everything is available on-line through numerous
-      mirrors, updated every six hours.</para>
+      respect, with over 17,300 source packages. Qualitatively,
+      Debian’s policy and long testing period prior to releasing a new
+      stable version justify its reputation for stability and
+      consistency. As far as availability, everything is available
+      on-line through many mirrors worldwide, with updates pushed out
+      every six hours.</para>
 
       <para>Many retailers sell CD-ROMs on the Internet at a very low price
       (often at cost), the “images” for which are freely available for
@@ -1686,38 +1801,43 @@
 
       <para>Otherwise, this distribution frequently houses important
       modifications to base packages, whose integration into <emphasis
-      role="distribution">Unstable</emphasis> with serious bugs would have
-      critical repercussions. It is, thus, a completely isolated
-      distribution, its packages never migrate to another version (except
-      by direct, express intervention of the maintainer or the
-      ftpmasters).</para>
+      role="distribution">Unstable</emphasis> with serious bugs would
+      have critical repercussions. It is, thus, a completely isolated
+      distribution, its packages never migrate to another version
+      (except by direct, express intervention of the maintainer or the
+      ftpmasters).  It is also not self-contained: only a subset of
+      the existing packages are present in <emphasis
+      role="distribution">Experimental</emphasis>, and it generally
+      does not include the base system.  This distribution is
+      therefore mostly useful in combination with another,
+      self-contained, distribution such as <emphasis
+      role="distribution">Unstable</emphasis>.</para>
     </section>
     <section>
       <title>The <emphasis role="distribution">Unstable</emphasis> Status</title>
 
       <para>Let us turn back to the case of a typical package. The
-      maintainer creates an initial package, which they compile for the
-      <emphasis role="distribution">Unstable</emphasis> version and place
-      on the <literal>ftp-master.debian.org</literal> server. This first
-      event involves inspection and validation from the ftpmasters. The
-      software is then available in the <emphasis
-      role="distribution">Unstable</emphasis> distribution, which is risky,
-      but chosen by users who are more concerned with staying close to the
-      cutting edge, with more up to date packages, than they are worried
-      about serious bugs. They discover the program and then test
-      it.</para>
+      maintainer creates an initial package, which they compile for
+      the <emphasis role="distribution">Unstable</emphasis> version
+      and place on the <literal>ftp-master.debian.org</literal>
+      server. This first event involves inspection and validation from
+      the ftpmasters. The software is then available in the <emphasis
+      role="distribution">Unstable</emphasis> distribution, which is
+      the “cutting edge” distribution chosen by users who are more
+      concerned with having up to date packages than worried about
+      serious bugs. They discover the program and then test it.</para>
 
       <para>If they encounter bugs, they report them to the package's
       maintainer. The maintainer then regularly prepares corrected
       versions, which they upload to the server.</para>
 
       <para>Every newly updated package is updated on all Debian mirrors
-      around the world within less than six hours. The users then test the
+      around the world within six hours. The users then test the
       corrections and search for other problems resulting from the
       modifications. Several updates may then occur rapidly. During these
       times, autobuilder robots come into action. Most frequently, the
       maintainer has only one traditional PC and has compiled his package
-      on i386 architecture (or amd64); the autobuilders take over and
+      on the amd64 (or i386) architecture; the autobuilders take over and
       automatically compile versions for all the other architectures. Some
       compilations may fail; the maintainer will then receive a bug report
       indicating the problem, which is then to be corrected in the next
@@ -1747,12 +1867,12 @@
 
 	<para>Thus, to produce binaries for the <literal>sparc</literal>
 	architecture, the project has <literal>sparc</literal> machines
-	available (specifically, Sun brand). The program
-	<emphasis>buildd</emphasis> runs on them continuously to create
-	package binaries for <literal>sparc</literal> from source packages
+	available (specifically, Sun brand). The <emphasis>buildd</emphasis> program
+	runs on them continuously and creates
+	binary packages for <literal>sparc</literal> from source packages
 	sent by Debian developers.</para>
 
-	<para>This software is used on all the computers serving
+	<para>This software is used on all the computers serving as
 	autobuilders for Debian. By extension, the term
 	<emphasis>buildd</emphasis> frequently is used to refer to these
 	machines, which are generally reserved solely for this
@@ -1804,12 +1924,12 @@
       <sidebar>
         <title><emphasis>NOTE</emphasis> Limitations of <emphasis role="distribution">Testing</emphasis></title>
 
-	<para>Very interesting in principle, <emphasis
-	role="distribution">Testing</emphasis> poses some practical
+	<para>While very interesting in principle, <emphasis
+	role="distribution">Testing</emphasis> does have some practical
 	problems: the tangle of cross-dependencies between packages is such
-	that a package can never move there completely on its own. With
-	packages all depending upon each other, it is necessary to move a
-	large number simultaneously, which is impossible when some are
+	that a package can rarely move there completely on its own. With
+	packages all depending upon each other, it is sometimes necessary to migrate a
+	large number of packages simultaneously, which is impossible when some are
 	uploading updates regularly. On the other hand, the script
 	identifying the families of related packages works hard to create
 	them (this would be an NP-complete problem, for which, fortunately,
@@ -1853,12 +1973,12 @@
       <title>The Promotion from <emphasis role="distribution">Testing</emphasis> to <emphasis role="distribution">Stable</emphasis></title>
 
       <para>Let us suppose that our package is now included in <emphasis
-      role="distribution">Testing</emphasis>. While it has room for
-      improvement, the maintainer thereof must continue to improve it and
+      role="distribution">Testing</emphasis>. As long as it has room for
+      improvement, its maintainer must continue to improve it and
       restart the process from <emphasis
       role="distribution">Unstable</emphasis> (but its later inclusion in
       <emphasis role="distribution">Testing</emphasis> is generally faster:
-      If it has not changed significantly, all of its dependencies are
+      unless it changed significantly, all of its dependencies are
       already available). When it reaches perfection, the maintainer has
       completed their work. The next step is the inclusion in the <emphasis
       role="distribution">Stable</emphasis> distribution, which is, in
@@ -1909,14 +2029,14 @@
       gravity of the problem that they wish to correct in order to have
       their updates included).</para>
 
-      <para>End of the journey: Our hypothetical package is now included in
+      <para>At the end of the journey, our hypothetical package is now included in
       the stable distribution. This journey, not without its difficulties,
       explains the significant delays separating the Debian Stable
       releases. This contributes, over all, to its reputation for quality.
       Furthermore, the majority of users are satisfied using one of the
       three distributions simultaneously available. The system
-      administrators, concerned above all, for the stability of their
-      servers, mock the latest version of GNOME; They can choose Debian
+      administrators, concerned above all about for the stability of their
+      servers, don't need the latest and greatest version of GNOME; they can choose Debian
       <emphasis role="distribution">Stable</emphasis>, and they will be
       satisfied. End users, more interested in the latest versions of GNOME
       or KDE than in rock-solid stability, will find Debian <emphasis
