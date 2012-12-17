@@ -28,7 +28,7 @@
     and plays well with any other operating system. This near-perfect
     harmony comes from market pressure which demands that software
     publishers develop programs that follow standards. Compliance with
-    standards allow administrators to switch out programs: clients or
+    standards allows administrators to switch out programs: clients or
     servers, whether free or not.</para>
     <section>
       <title>Integration with Windows Machines</title>
@@ -43,22 +43,37 @@
         <indexterm><primary>Samba</primary></indexterm>
 
 	<para>Samba version 2 behaves like a Windows NT server
-	(authentication, files, print queues, downloading printer drivers,
-	DFS, etc.) Version 3 works with Active Directory, brings
-	interoperability with NT4 domain controllers, and supports RPCs
-	(Remote Procedure Calls). Version 4 is a rewrite (still
-	experimental), the purpose of which is to provide functionality of
-	a domain controller compatible with Active Directory.</para>
+	(authentication, files, print queues, downloading printer
+	drivers, DFS, etc.) Version 3 works with Active Directory,
+	brings interoperability with NT4 domain controllers, and
+	supports RPCs (Remote Procedure Calls). Version 4 is a rewrite
+	that can provide a domain controller compatible with Active
+	Directory.</para>
       </sidebar>
     </section>
     <section>
       <title>Integration with Mac OS machines</title>
 
-      <para>Netatalk is a program which uses the Appletalk protocol
-      (running on a Linux kernel) and allows Debian to interface with a Mac
-      OS network. It ensures the operation of the file server and print
-      queues, as well as time server (clock synchronization). Its router
-      function allows interconnection with Appletalk networks.</para>
+      <indexterm><primary>Zeroconf</primary></indexterm>
+      <indexterm><primary>Bonjour</primary></indexterm>
+      <indexterm><primary>Avahi</primary></indexterm>
+      <para>Mac OS machines provide, and are able to use, network
+      services such as file servers and printer sharing.  These
+      services are published on the local network, which allows other
+      machines to discover them and make use of them without any
+      manual configuration, using the Bonjour implementation of the
+      Zeroconf protocol suite.  Debian includes another
+      implementation, called Avahi, which provides the same
+      functionality.
+      </para>
+
+      <para>Older Mac OS networks (before Mac OSX) use a different
+      protocol called Appletalk.  For environments involving machines
+      using this protocol, Debian provides Netatalk, a program which
+      uses the Appletalk protocol. It ensures the operation of the
+      file server and print queues, as well as time server (clock
+      synchronization). Its router function allows interconnection
+      with Appletalk networks.</para>
     </section>
     <section>
       <title>Integration with Other Linux/Unix Machines</title>
@@ -82,9 +97,10 @@
     <title>How To Migrate</title>
     <indexterm><primary>migration</primary></indexterm>
 
-    <para>In order to guarantee continuity of the services, each computer
-    migration must be planned and executed according to the plan. Whatever
-    the operating system used, this principle never changes.</para>
+    <para>In order to guarantee continuity of the services, each
+    computer migration must be planned and executed according to the
+    plan.  This principle applies whatever the operating system
+    used.</para>
     <section>
       <title>Survey and Identify Services</title>
 
@@ -96,11 +112,11 @@
       haphazardly.</para>
 
       <para>For this purpose, it is wise to inform your users of the
-      project before migrating the server. To involve them in the project,
-      it may be useful to install the most common free software programs on
-      their desktops prior to migration, which they will come across again
-      after the migration to Debian; OpenOffice.org and the Mozilla suite
-      are the best examples here.</para>
+      project before migrating the server. To involve them in the
+      project, it may be useful to install the most common free
+      software programs on their desktops prior to migration, which
+      they will come across again after the migration to Debian; Libre
+      Office and the Mozilla suite are the best examples here.</para>
       <section>
         <title>Network and Processes</title>
 
@@ -113,16 +129,15 @@
 	network:</para>
 
         <screen>
-<computeroutput>$ </computeroutput><userinput>nmap mirlaine</userinput>
-<computeroutput>Starting Nmap 5.00 ( http://nmap.org ) at 2010-07-29 16:36 CET
-Interesting ports on mirlaine (192.168.1.99):
-Not shown: 1694 closed ports
-PORT    STATE SERVICE
-22/tcp  open  ssh
-79/tcp  open  finger
-111/tcp open  rpcbind
+<computeroutput>$ </computeroutput><userinput>nmap mirwiz</userinput>
+<computeroutput>Starting Nmap 6.00 ( http://nmap.org ) at 2012-12-17 11:34 CET
+Nmap scan report for mirwiz (192.168.1.104)
+Host is up (0.0037s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
 
-Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
+Nmap done: 1 IP address (1 host up) scanned in 0.13 seconds</computeroutput>
 </screen>
 
         <sidebar>
@@ -139,12 +154,12 @@ Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
           <title><emphasis>GOING FURTHER</emphasis> IPv6</title>
 
 	  <para>Some network commands may work either with IPv4 (the
-	  default usually) or with IPv6. This is especially the case with
-	  the <command>nmap</command> and <command>netstat</command>
-	  commands, but also others, such as <command>route</command> or
-	  <command>ip</command>. The convention is that this behavior is
-	  enabled by the <parameter>-6</parameter> command-line
-	  option.</para>
+	  default usually) or with IPv6.  These include the
+	  <command>nmap</command> and <command>netstat</command>
+	  commands, but also others, such as <command>route</command>
+	  or <command>ip</command>. The convention is that this
+	  behavior is enabled by the <parameter>-6</parameter>
+	  command-line option.</para>
         </sidebar>
 
 	<para>If the server is a Unix machine offering shell accounts to
@@ -153,7 +168,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
 	<command>ps auxw</command> displays a list of all processes with
 	their user identity. By checking this information against the
 	output of the <command>who</command> command, which gives a list of
-	logged in users, it is possible to identify wild servers or
+	logged in users, it is possible to identify rogue or undeclared servers or
 	programs running in the background. Looking at
 	<filename>crontabs</filename> (tables listing automatic actions
 	scheduled by users) will often provide interesting information on
@@ -169,20 +184,20 @@ Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
     <section>
       <title>Backing up the Configuration</title>
 
-      <para>It is wise to retain the configuration of every service
-      identified in order to be able to install the equivalent on the
-      updated server. The strict minimum is to print the configuration
-      files and make a backup copy of them.</para>
+      <para>It is wise to retain the configuration of every identified
+      service in order to be able to install the equivalent on the
+      updated server. The bare minimum is to make a backup copy of the
+      configuration files.</para>
 
-      <para>For Unix machines, the configuration files are usually found in
-      <filename>/etc/</filename>, but they may be located in a
-      sub-directory of <filename>/usr/local/</filename>. This is the case
-      if a program has been installed from sources, rather than with a
-      package. One may also find them, in some cases, under
+      <para>For Unix machines, the configuration files are usually
+      found in <filename>/etc/</filename>, but they may be located in
+      a sub-directory of <filename>/usr/local/</filename>. This is the
+      case if a program has been installed from sources, rather than
+      with a package. In some cases, one may also find them under
       <filename>/opt/</filename>.</para>
 
       <para>For data managing services (such as databases), it is strongly
-      recommended to export them to a standard format that will be easily
+      recommended to export the data to a standard format that will be easily
       imported by the new software. Such a format is usually in text mode
       and documented; it may be, for example, an SQL dump for a database,
       or an LDIF file for an LDAP server.</para>
@@ -197,11 +212,11 @@ Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
       </figure>
 
       <para>Each server software is different, and it is impossible to
-      detail all existing cases. See the new and current software
-      documentation to identify the exportable (thus, re-importable)
-      portions and those which will require manual manipulation. Reading
-      this book will clarify the configuration of the main Linux server
-      programs.</para>
+      describe all existing cases in detail. Compare the documentation
+      for the existing and the new software to identify the exportable
+      (thus, re-importable) portions and those which will require
+      manual handling. Reading this book will clarify the
+      configuration of the main Linux server programs.</para>
     </section>
     <section>
       <title>Taking Over an Existing Debian Server</title>
@@ -221,8 +236,8 @@ Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
       development distributions (either testing or unstable).</para>
 
       <para>The <command>apt-show-versions</command> program (from the
-      Debian package of the same name) checks the list of packages
-      installed and identifies the versions available.
+      Debian package of the same name) checks the list of installed
+      packages and identifies the available versions.
       <command>aptitude</command> can also be used for these tasks, albeit
       in a less systematic manner.</para>
 
@@ -234,7 +249,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
 
       <para>The <filename>sources.list</filename> file is often a good
       indicator: the majority of administrators keep, at least in comments,
-      the list of prior APT sources used. But you should not forget that
+      the list of APT sources that were previously used. But you should not forget that
       sources used in the past might have been deleted, and that some
       random packages grabbed on the Internet might have been manually
       installed (with the <command>dpkg</command> command). In this case,
@@ -244,10 +259,10 @@ Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
       <filename>deb</filename> files in unusual directories, package
       version numbers with a special suffix indicating that it originated
       from outside the Debian project, such as <literal>ubuntu</literal> or
-      <literal>ximian</literal>, etc.)</para>
+      <literal>lmde</literal>, etc.)</para>
 
       <para>Likewise, it is interesting to analyze the contents of the
-      directory <filename>/usr/local/</filename>, intended to contain
+      <filename>/usr/local/</filename> directory, which intended to contain
       programs compiled and installed manually. Listing software installed
       in this manner is instructive, since this raises questions on the
       reasons for not using the corresponding Debian package, if such a
@@ -270,12 +285,14 @@ Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
     <section>
       <title>Installing Debian</title>
 
-      <para>All information on the current server being now known, we can
-      shut it down and begin to install Debian on it.</para>
+      <para>Once all the required information on the current server is
+      known, we can shut it down and begin to install Debian on
+      it.</para>
       <indexterm><primary>architecture</primary></indexterm>
 
-      <para>To choose the appropriate version, we must know the computer's
-      architecture. If it is a PC, it is most likely to be i386. In other
+      <para>To choose the appropriate version, we must know the
+      computer's architecture. If it is a reasonably recent PC, it is
+      most likely to be amd64 (older PCs were usually i386). In other
       cases, we can narrow down the possibilities according to the
       previously used system.</para>
 
@@ -299,14 +316,15 @@ Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
         <indexterm><primary>amd64</primary></indexterm>
         <indexterm><primary>ia64</primary></indexterm>
 
-	<para>Most recent computers have 64 bit Intel or AMD processors,
-	compatible with older 32 bit processors; the software compiled for
-	“i386” architecture thus works. On the other hand, this
-	compatibility mode does not fully exploit the capabilities of these
-	new processors. This is why Debian provides software for “ia64”
-	architecture for Intel Itanium chips and “amd64” for AMD chips.
-	This last also works with Intel “em64t” processors, which are
-	very similar to AMD64 processors.</para>
+	<para>Most recent computers have 64 bit Intel or AMD
+	processors, compatible with older 32 bit processors; the
+	software compiled for “i386” architecture thus works. On the
+	other hand, this compatibility mode does not fully exploit the
+	capabilities of these new processors. This is why Debian
+	provides the “amd64” architecture, which works for recent AMD
+	chips as well as Intel “em64t” processors (including most of
+	the Core series), which are very similar to AMD64.  Debian
+	also provides the “ia64” architecture for Intel Itanium chips.</para>
       </sidebar>
 
       <table colsep="1" id="tab-corresp">
@@ -368,7 +386,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>
               <entry>i386, amd64, ia64</entry>
             </row>
             <row>
-              <entry>Windows Vista / Windows 7</entry>
+              <entry>Windows Vista / Windows 7 / Windows 8</entry>
               <entry>i386, amd64</entry>
             </row>
           </tbody>
