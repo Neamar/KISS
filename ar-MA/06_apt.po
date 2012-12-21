@@ -54,7 +54,7 @@ msgstr "الصيانة والتحديث: أدوات APT"
 #, no-c-format
 msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, the features of which Falcot Corp administrators studied with enthusiasm."
 msgstr ""
-"ما يجعل ديبيان مشهورة جدّا بين مدراء النظم هو سهولة تثبيت البرمجيات وسهولة "
+"ما يجعل دبيان مشهورة جدّا بين مدراء النظم هو سهولة تثبيت البرمجيات وسهولة "
 "تحديث النظام بالكامل البالغة. البرنامج <emphasis>APT</emphasis> هو صاحب "
 "الفضل الأكبر في هذه الميزة الفريدة، والذي بحث مدراء النظم في شركة فلكوت في "
 "خصائصه بتمعن."
@@ -86,7 +86,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.gz</filename> or <filename>Packages.bz2</filename> files (in case of a source of binary packages) and <filename>Sources.gz</filename> or <filename>Sources.bz2</filename> files (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"encadre.apt-pdiff\" />)."
-msgstr "تحتاج APT أن تعطيها ”لائحة بمصادر الحزم“: يسرد الملف <filename>/etc/apt/sources.list</filename> قائمة بالمستودعات المختلفة (أو ”المصادر“) التي توزع حزم ديبيان. سوف تستورد APT بعدها قائمة الحزم التي يوزعها كل من هذه المصادر. تتم هذه العملية بتنزيل الملف <filename>Packages.gz</filename> أو الملف <filename>Packages.bz2</filename> (في حال كان مصدرًا لحزم ثنائية) والملف <filename>Sources.gz</filename> أو الملف <filename>Sources.bz2</filename> (في حال كان مصدرًا للحزم المصدرية) وتحليل محتوياتها. عند وجود نسخة قديمة من هذه الملفات يمكن أن تحدثها APT بتنزيل الاختلافات فقط (انظر الملاحظة الجانبية <xref linkend=\"encadre.apt-pdiff\" />)."
+msgstr "تحتاج APT أن تعطيها ”لائحة بمصادر الحزم“: يسرد الملف <filename>/etc/apt/sources.list</filename> قائمة بالمستودعات المختلفة (أو ”المصادر“) التي توزع حزم دبيان. سوف تستورد APT بعدها قائمة الحزم التي يوزعها كل من هذه المصادر. تتم هذه العملية بتنزيل الملف <filename>Packages.gz</filename> أو الملف <filename>Packages.bz2</filename> (في حال كان مصدرًا لحزم ثنائية) والملف <filename>Sources.gz</filename> أو الملف <filename>Sources.bz2</filename> (في حال كان مصدرًا للحزم المصدرية) وتحليل محتوياتها. عند وجود نسخة قديمة من هذه الملفات يمكن أن تحدثها APT بتنزيل الاختلافات فقط (انظر الملاحظة الجانبية <xref linkend=\"encadre.apt-pdiff\" />)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -176,12 +176,12 @@ msgstr "”<literal>deb-src</literal>“ للحزم المصدرية."
 #. Tag: para
 #, no-c-format
 msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM based installations, although this is less frequent, since network-based installation methods are more and more common."
-msgstr "يعطي الحقل الثاني عنوان URL الأساسي للمصدر (وبجمعه مع أسماء الملفات الموجودة في ملفات <filename>Packages.gz</filename>، يجب أن يعطي عنوان URL كامل وصحيح): يمكن أن يكون هذا مرآة ديبيان أو أي أرشيف حزم تعده أطراف أخرى. يمكن أن يبدأ الـ URL بـ <literal>file://</literal> ليشير إلى مصدر محلي مركب على شجرة الملفات الخاصة بالنظام، أو بـ <literal>http://</literal> ليشير إلى مصدر متاح عبر مخدم وب، أو بـ <literal>ftp://</literal> لمصدر متوفر على مخدم FTP. يمكن أن يبدأ ال URL أيضًا بـ <literal>cdrom://</literal> بالنسبة للتثبيت عبر الأقراص الليزرية، بَيْدَ أن هذا أقل شيوعاً، نظرًا لانتشار طرق التثبيت عبر الشبكات أكثر وأكثر."
+msgstr "يعطي الحقل الثاني عنوان URL الأساسي للمصدر (وبجمعه مع أسماء الملفات الموجودة في ملفات <filename>Packages.gz</filename>، يجب أن يعطي عنوان URL كامل وصحيح): يمكن أن يكون هذا مرآة دبيان أو أي أرشيف حزم تعده أطراف أخرى. يمكن أن يبدأ الـ URL بـ <literal>file://</literal> ليشير إلى مصدر محلي مركب على شجرة الملفات الخاصة بالنظام، أو بـ <literal>http://</literal> ليشير إلى مصدر متاح عبر مخدم وب، أو بـ <literal>ftp://</literal> لمصدر متوفر على مخدم FTP. يمكن أن يبدأ ال URL أيضًا بـ <literal>cdrom://</literal> بالنسبة للتثبيت عبر الأقراص الليزرية، بَيْدَ أن هذا أقل شيوعاً، نظرًا لانتشار طرق التثبيت عبر الشبكات أكثر وأكثر."
 
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the last field depends on whether the source corresponds to a Debian mirror or not. In the case of a Debian mirror, name the chosen distribution (<literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal> or their current code names — see the list in sidebar <xref linkend=\"cadre.bruce-perens\" />), then the sections to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal>). In all other cases, simply indicate the subdirectory of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL)."
-msgstr "تعتمد تركيبة الحقل الأخير على كون المصدر يمثل مرآة ديبيان أم لا. في حال كونه مرآة ديبيان، فيحوي هذا القسم اسم التوزيعة المختارة ((<literal>stable</literal> ،<literal>testing</literal> ،<literal>unstable</literal> أو أسماؤها الرمزية — انظر القائمة في الملاحظة الجانبية <xref linkend=\"cadre.bruce-perens\" />)، ثم الأقسام المراد تمكينها (مختارة من بين <literal>main</literal> ،<literal>contrib</literal>، و <literal>non-free</literal>). أما في جميع الحالات الأخرى، فهو يشير ببساطة إلى المجلد الفرعي للمصدر المطلوب (غالبًا علامة ”<filename>./</filename>“ بسيطة تشير إلى عدم وجود مجلد فرعي — أي أن الحزم موجودة مباشرة عند عنوان URL المحدد)."
+msgstr "تعتمد تركيبة الحقل الأخير على كون المصدر يمثل مرآة دبيان أم لا. في حال كونه مرآة دبيان، فيحوي هذا القسم اسم التوزيعة المختارة ((<literal>stable</literal> ،<literal>testing</literal> ،<literal>unstable</literal> أو أسماؤها الرمزية — انظر القائمة في الملاحظة الجانبية <xref linkend=\"cadre.bruce-perens\" />)، ثم الأقسام المراد تمكينها (مختارة من بين <literal>main</literal> ،<literal>contrib</literal>، و <literal>non-free</literal>). أما في جميع الحالات الأخرى، فهو يشير ببساطة إلى المجلد الفرعي للمصدر المطلوب (غالبًا علامة ”<filename>./</filename>“ بسيطة تشير إلى عدم وجود مجلد فرعي — أي أن الحزم موجودة مباشرة عند عنوان URL المحدد)."
 
 #. Tag: title
 #, no-c-format
@@ -222,9 +222,9 @@ msgstr "<primary><foreignphrase>non-free</foreignphrase>، قسم</primary>"
 #, no-c-format
 msgid "Debian uses three sections to differentiate packages according to the licenses chosen by the authors of each work. <foreignphrase>Main</foreignphrase> (the main archive) gathers all packages which fully comply with the Debian Free Software Guidelines."
 msgstr ""
-"تستخدم ديبيان ثلاثة أقسام للتفريق بين الحزم وفقًا للرخص التي اختارها مؤلفو "
+"تستخدم دبيان ثلاثة أقسام للتفريق بين الحزم وفقًا للرخص التي اختارها مؤلفو "
 "كل عمل. يجمع <foreignphrase>Main</foreignphrase> (الأرشيف الرئيسي) جميع "
-"الحزم التي تتوافق تمامًا مع إرشادات ديبيان للبرمجيات الحرة."
+"الحزم التي تتوافق تمامًا مع إرشادات دبيان للبرمجيات الحرة."
 
 #. Tag: para
 #, no-c-format
@@ -232,10 +232,10 @@ msgid "The <foreignphrase>non-free</foreignphrase> archive is different because 
 msgstr ""
 "الأرشيف <foreignphrase>non-free</foreignphrase> مختلف لأنه يحوي برمجيات لا "
 "تتوافق (تمامًا) مع هذه المبادئ لكن يمكن توزيعها دون قيود بالرغم من ذلك. هذا "
-"الأرشيف ليس جزءًا رسميًا من ديبيان، بل هو خدمة للمستخدمين الذين قد يحتاجون "
-"بعضًا من هذه البرامج — مع ذلك تنصح ديبيان دائمًا بإعطاء الأولوية للبرمجيات "
+"الأرشيف ليس جزءًا رسميًا من دبيان، بل هو خدمة للمستخدمين الذين قد يحتاجون "
+"بعضًا من هذه البرامج — مع ذلك تنصح دبيان دائمًا بإعطاء الأولوية للبرمجيات "
 "الحرة. إن وجود هذا القسم يمثِّل مشكلة حقيقية من وجهة نظر ريتشارد م. ستولمن "
-"وهو سبب عدم تزكية مؤسسة البرمجيات الحرة لتوزيعة ديبيان للمستخدمين."
+"وهو سبب عدم تزكية مؤسسة البرمجيات الحرة لتوزيعة دبيان للمستخدمين."
 
 #. Tag: para
 #, no-c-format
@@ -275,7 +275,7 @@ msgstr ""
 #, no-c-format
 msgid "This file lists all sources of packages associated with the stable version of Debian. If you would like to use <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, you will of course have to add (or replace them with) the appropriate lines. When the desired version of a package is available on several mirrors, the first one listed in the <filename>sources.list</filename> file will be used. For this reason, non-official sources are usually added at the end of the file."
 msgstr ""
-"هذا الملف يسرد جميع مصادر حزم النسخة المستقرة من ديبيان. إذا أردت استخدام "
+"هذا الملف يسرد جميع مصادر حزم النسخة المستقرة من دبيان. إذا أردت استخدام "
 "<emphasis role=\"distribution\">الاختبارية</emphasis> أو <emphasis "
 "role=\"distribution\">غير المستقرة</emphasis>، عليك طبعاً إضافة (أو استبدال) "
 "السطور المناسبة. عند توفر الحزمة المرغوبة على عدة مرايا، ستستخدم أول واحدة "
@@ -305,7 +305,7 @@ msgstr "<primary><command>apt-spy</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "This software tests the download speed from several Debian mirrors and generates a <filename>sources.list</filename> file which points to the the fastest mirror."
-msgstr "يختبر هذا البرنامج سرعة التنزيل من عدة مرايا ديبيان ويولّد ملف <filename>sources.list</filename> يشير إلى أسرع مرآة."
+msgstr "يختبر هذا البرنامج سرعة التنزيل من عدة مرايا دبيان ويولّد ملف <filename>sources.list</filename> يشير إلى أسرع مرآة."
 
 #. Tag: para
 #, no-c-format
@@ -320,7 +320,7 @@ msgstr "<primary><command>apt-cdrom</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sources.list</filename> file contains several other entry types: some describe the Debian CD-ROMs you have. Contrary to other entries, a CD-ROM is not always available since it has to be inserted into the drive and since only one disc can be read at a time — consequently, these sources are managed in a slightly different way. These entries need to be added with the <command>apt-cdrom</command> program, usually executed with the <literal>add</literal> parameter. The latter will then request the disc to be inserted in the drive and will browse its contents looking for <filename>Packages</filename> files. It will use these files to update its database of available packages (this is usually done by the <command>aptitude update</command> command). From then on, APT can require the disc to be inserted if it needs one of its packages."
-msgstr "يحوي الملف <filename>sources.list</filename> أنواع مدخلات أخرى عديدة: بعضها تصف أقراص ديبيان الليزرية التي تملك. بعكس المدخلات الأخرى، القرص الليزري ليس متوفرًا دائمًا نظرًا لضرورة إدخاله في السواقة ولعدم القدرة على قراءة أكثر من قرص في الوقت الواحد — بالتالي، تتم إدارة هذه المصادر بطريقة مختلفة قليلاً. يجب إضافة هذه المصادر بالبرنامج <command>apt-cdrom</command>، عادة باستخدام المتغير <literal>add</literal>. سيطلب الأخير بعدها إدخال القرص في السَوَّاقة وسيستعرض محتوياته بحثًا عن ملفات <filename>Packages</filename>. سيَستَخدم هذه الملفات لتحديث قاعدة بياناته الخاصة بالحزم المتوفرة (يتم هذا عادة بالأمر <command>aptitude update</command>). بعد ذلك، يمكن أن تطلب APT إدخال القرص إذا احتاجت إحدى الحزم الموجودة عليه."
+msgstr "يحوي الملف <filename>sources.list</filename> أنواع مدخلات أخرى عديدة: بعضها تصف أقراص دبيان الليزرية التي تملك. بعكس المدخلات الأخرى، القرص الليزري ليس متوفرًا دائمًا نظرًا لضرورة إدخاله في السواقة ولعدم القدرة على قراءة أكثر من قرص في الوقت الواحد — بالتالي، تتم إدارة هذه المصادر بطريقة مختلفة قليلاً. يجب إضافة هذه المصادر بالبرنامج <command>apt-cdrom</command>، عادة باستخدام المتغير <literal>add</literal>. سيطلب الأخير بعدها إدخال القرص في السَوَّاقة وسيستعرض محتوياته بحثًا عن ملفات <filename>Packages</filename>. سيَستَخدم هذه الملفات لتحديث قاعدة بياناته الخاصة بالحزم المتوفرة (يتم هذا عادة بالأمر <command>aptitude update</command>). بعد ذلك، يمكن أن تطلب APT إدخال القرص إذا احتاجت إحدى الحزم الموجودة عليه."
 
 #. Tag: title
 #, no-c-format
@@ -360,7 +360,7 @@ msgstr "deb http://ftp.debian.org/debian squeeze-proposed-updates main contrib n
 #. Tag: para
 #, no-c-format
 msgid "Once ready, the most important updates — those which cannot wait for the next minor Debian release — are published in the <literal>stable-updates</literal> repository (which most systems are expected to use):"
-msgstr "بعد أن تجهز، تنشر التحديثات المهمة — التي لا يسعها الانتظار حتى إصدار ديبيان الثانوي التالي — في مستودع <literal>stable-updates</literal> (الذي يُتوَقَّع أن تستخدمه معظم الأنظمة):"
+msgstr "بعد أن تجهز، تنشر التحديثات المهمة — التي لا يسعها الانتظار حتى إصدار دبيان الثانوي التالي — في مستودع <literal>stable-updates</literal> (الذي يُتوَقَّع أن تستخدمه معظم الأنظمة):"
 
 #. Tag: programlisting
 #, no-c-format
@@ -424,7 +424,7 @@ msgstr "<primary><emphasis role=\"distribution\">التجريبية</emphasis></
 msgid "The archive of <emphasis role=\"distribution\">Experimental</emphasis> packages is present on all Debian mirrors, and contains packages which are not in the <emphasis role=\"distribution\">Unstable</emphasis> version yet because of their substandard quality — they are often software development versions or pre-versions (alpha, beta, release candidate…). A package can also be sent there after undergoing subsequent changes which can generate problems. The maintainer then tries to uncover them thanks to advanced users who can manage important issues. After this first stage, the package is moved into <emphasis role=\"distribution\">Unstable</emphasis>, where it reaches a much larger audience and where it will be tested in much more detail."
 msgstr ""
 "يتوفر أرشيف الحزم <emphasis role=\"distribution\">التجريبية</emphasis> على "
-"جميع مرايا ديبيان، ويحوي حزمًا غير موجودة في النسخة <emphasis "
+"جميع مرايا دبيان، ويحوي حزمًا غير موجودة في النسخة <emphasis "
 "role=\"distribution\">غير المستقرة</emphasis> بعد بسبب نوعيتها تحت المعيارية — "
 "هي غالبًا نسخ تطويرية من البرمجيات أو إصدارات سابقة لأوانها (ألفا، بيتا، "
 "مرشح للإصدار rc = release candidate…). يمكن إرسال الحزمة إلى هناك أيضًا بعد "
@@ -437,7 +437,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"distribution\">Experimental</emphasis> is generally used by users who do not mind breaking their system and then repairing it. This distribution gives the possibility to import a package which a user wants to try or use as the need arises. That is exactly how Debian approaches it, since adding it in APT's <filename>sources.list</filename> file does not lead to the systematic use of its packages. The line to be added is:"
-msgstr "يستخدم <emphasis role=\"distribution\">التجريبية</emphasis> عادة المستخدمون الذي لا يمانعون تعطل نظامهم ثم إصلاحه ثانية. تعطي هذه التوزيعة إمكانية استيراد حزمة يريد المستخدم تجربتها أو استخدامها عند الحاجة. تستخدم ديبيان هذه التوزيعة بهذه الطريقة بالضبط، نظرًا لأن إضافتها إلى ملف <filename>sources.list</filename> الخاص بـ APT لا يؤدي إلى استخدام حزمها آليًا. السطر الذي تجب إضافته هو:"
+msgstr "يستخدم <emphasis role=\"distribution\">التجريبية</emphasis> عادة المستخدمون الذي لا يمانعون تعطل نظامهم ثم إصلاحه ثانية. تعطي هذه التوزيعة إمكانية استيراد حزمة يريد المستخدم تجربتها أو استخدامها عند الحاجة. تستخدم دبيان هذه التوزيعة بهذه الطريقة بالضبط، نظرًا لأن إضافتها إلى ملف <filename>sources.list</filename> الخاص بـ APT لا يؤدي إلى استخدام حزمها آليًا. السطر الذي تجب إضافته هو:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -463,20 +463,20 @@ msgstr "<primary><literal>mentors.debian.net</literal></primary>"
 #, no-c-format
 msgid "There are numerous non-official sources of Debian packages set up by advanced users who have recompiled some software, by programmers who make their creation available to all, and even by Debian developers who offer pre-versions of their package online. A web site was set up to find these alternative sources more easily. It contains an impressive amount of Debian package sources which can immediately be integrated into <filename>sources.list</filename> files. However, be careful not to add random packages. Each source is designed for a particular version of Debian (the one used to compile the packages in question); each user should maintain a certain coherence in what they choose to install. <ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
 msgstr ""
-"توجد مصادر غير رسمية عديدة لحزم ديبيان يعدها مستخدمون متقدمون أعادوا ترجمة "
-"بعض البرمجيات، أو مبرمجون يوفرون إبداعاتهم للجميع، أو حتى مطورو ديبيان الذي "
+"توجد مصادر غير رسمية عديدة لحزم دبيان يعدها مستخدمون متقدمون أعادوا ترجمة "
+"بعض البرمجيات، أو مبرمجون يوفرون إبداعاتهم للجميع، أو حتى مطورو دبيان الذي "
 "يقدمون إصدارات سابقة لحزمهم على الخط. لقد أُعدَّ موقع وب خاص للبحث عن هذه "
-"المصادر البديلة بسهولة. وهو يحتوي على كمية مذهلة من مصادر حزم ديبيان التي "
+"المصادر البديلة بسهولة. وهو يحتوي على كمية مذهلة من مصادر حزم دبيان التي "
 "يمكن إضافتها مباشرة لملفات <filename>sources.list</filename>. لكن كن حذرًا "
 "على أية حال، حتى لا تضيف حزمًا عشوائية. كل مصدر مُصَمَّم لإصدارة محددة من "
-"ديبيان (تلك المستخدمة لترجمة الحزم التي نتكلم عنها)؛ على كل مستخدم المحافظة "
+"دبيان (تلك المستخدمة لترجمة الحزم التي نتكلم عنها)؛ على كل مستخدم المحافظة "
 "على تناغم معين بين ما يختارون تثبيته. <ulink type=\"block\" url=\"http://www"
 ".apt-get.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>mentors.debian.net</literal> site is also interesting, since it gathers packages created by candidates to the status of official Debian developer or by volunteers who wish to create Debian packages without going through that process of integration. These packages are made available without any guarantee regarding their quality; make sure that you check their origin and integrity and then test them before you consider using them in production."
-msgstr "موقع <literal>mentors.debian.net</literal> مثير أيضًا، نظرًا لأنه يجمع الحزم التي يصنعها المرشحون لمنصب مطور ديبيان رسمي أو المتطوعون الراغبين بصناعة حزم ديبيان دون الدخول في تفاصيل عملية دمجها في التوزيعة. هذه الحزم متوفرة دون أية ضمان لنوعيتها؛ تأكد من التحقق من مصدرها وسلامتها ثم اختبرها قبل أن تقرر الاعتماد عليها في الإنتاج."
+msgstr "موقع <literal>mentors.debian.net</literal> مثير أيضًا، نظرًا لأنه يجمع الحزم التي يصنعها المرشحون لمنصب مطور دبيان رسمي أو المتطوعون الراغبين بصناعة حزم دبيان دون الدخول في تفاصيل عملية دمجها في التوزيعة. هذه الحزم متوفرة دون أية ضمان لنوعيتها؛ تأكد من التحقق من مصدرها وسلامتها ثم اختبرها قبل أن تقرر الاعتماد عليها في الإنتاج."
 
 #. Tag: title
 #, no-c-format
@@ -491,17 +491,17 @@ msgstr "<primary><emphasis>debian.net</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>debian.net</emphasis> domain is not an official resource of the Debian project. Each Debian developer may use that domain name for their own use. These websites can contain unofficial services (sometimes personal sites) hosted on a machine which does not belong to the project and set up by Debian developers, or even prototypes about to be moved on to <emphasis>debian.org</emphasis>. Two reasons can explain why some of these prototypes remain on <emphasis>debian.net</emphasis>: either no one has made the necessary effort to transform it into an official service (hosted on the <emphasis>debian.org</emphasis> domain, and with a certain guarantee of maintenance), or the service is too controversial to be officialized."
-msgstr "إن النطاق <emphasis>debian.net</emphasis> ليس مصدرًا رسميًا لمشروع ديبيان. يمكن لأي مطور ديبيان استخدام اسم النطاق ذاك لأغراضه الخاصة. قد تحوي هذه المواقع خدمات غير رسمية (وأحيانًا مواقع شخصية) تستضيقها آلة أعدها مطورو ديبيان لكنها لا تنتمي للمشروع، أو ربما نماذج أولية على وشك نقلها إلى <emphasis>debian.org</emphasis>. يوجد سببين لتفسير بقاء بعض النماذج الأولية على <emphasis>debian.net</emphasis>: إما إنّ أحدهم لم يبذل الجهد اللازم لتحويلها إلى خدمة رسمية (مستضافة على <emphasis>debian.org</emphasis>، ولها درجة معينة من الصيانة)، أو أن الخدمة محل خلاف أكبر من أن تصبح رسمية."
+msgstr "إن النطاق <emphasis>debian.net</emphasis> ليس مصدرًا رسميًا لمشروع دبيان. يمكن لأي مطور دبيان استخدام اسم النطاق ذاك لأغراضه الخاصة. قد تحوي هذه المواقع خدمات غير رسمية (وأحيانًا مواقع شخصية) تستضيقها آلة أعدها مطورو دبيان لكنها لا تنتمي للمشروع، أو ربما نماذج أولية على وشك نقلها إلى <emphasis>debian.org</emphasis>. يوجد سببين لتفسير بقاء بعض النماذج الأولية على <emphasis>debian.net</emphasis>: إما إنّ أحدهم لم يبذل الجهد اللازم لتحويلها إلى خدمة رسمية (مستضافة على <emphasis>debian.org</emphasis>، ولها درجة معينة من الصيانة)، أو أن الخدمة محل خلاف أكبر من أن تصبح رسمية."
 
 #. Tag: para
 #, no-c-format
 msgid "Installing a package means giving root rights to its creator, because they decide on the contents of the initialization scripts which are run under that identity. Official Debian packages are created by volunteers who have been co-opted and reviewed and who can seal their packages so that their origin and integrity can be checked."
-msgstr "إن تثبيت حزمة يعني إعطاء صلاحيات root لصانعها، لأنه من يقرر محتويات سكريبتات التهيئة التي تعمل تحت تلك الصلاحيات. حزم ديبيان الرسمية يصنعها متطوعون عملنا معهم واختبرناهم ولديهم إمكانية ختم حزمهم بحيث يمكن التحقق من مصدرها وسلامتها."
+msgstr "إن تثبيت حزمة يعني إعطاء صلاحيات root لصانعها، لأنه من يقرر محتويات سكريبتات التهيئة التي تعمل تحت تلك الصلاحيات. حزم دبيان الرسمية يصنعها متطوعون عملنا معهم واختبرناهم ولديهم إمكانية ختم حزمهم بحيث يمكن التحقق من مصدرها وسلامتها."
 
 #. Tag: para
 #, no-c-format
 msgid "In general, be wary of a package whose origin you don't know and which isn't hosted on one of the official Debian servers: evaluate the degree to which you can trust the creator, and check the integrity of the package. <ulink type=\"block\" url=\"http://mentors.debian.net/\" />"
-msgstr "عمومًا، كن حذرًا من الحزم التي لا تعرف مصدرها والتي لا يستضيفها أحد مخدّمات ديبيان الرسمية: قيّم مدى ثقتك بصانعها، وتحقق من سلامة الحزمة. <ulink type=\"block\" url=\"http://mentors.debian.net/\" />"
+msgstr "عمومًا، كن حذرًا من الحزم التي لا تعرف مصدرها والتي لا يستضيفها أحد مخدّمات دبيان الرسمية: قيّم مدى ثقتك بصانعها، وتحقق من سلامة الحزمة. <ulink type=\"block\" url=\"http://mentors.debian.net/\" />"
 
 #. Tag: title
 #, no-c-format
@@ -541,7 +541,7 @@ msgstr "APT مشروع ضخم، تضمنت خططه الأصلية واجهة ر
 #. Tag: para
 #, no-c-format
 msgid "Numerous other graphical interfaces then appeared as external projects: <command>synaptic</command>, <command>aptitude</command> (which includes both a text mode interface and a graphical one — even if not complete yet), <command>wajig</command>, etc. The most recommended interface, <command>aptitude</command>, is the one used during the installation of Debian. Since its command-line syntax is very similar to <command>apt-get</command>'s, we will be focusing on <command>aptitude</command> in the examples given in this section. When there are major differences between <command>aptitude</command> and <command>apt-get</command>, these differences will be detailed."
-msgstr "ظهرت بعدها العديد من الواجهات الرسومية كمشاريع خارجية: <command>synaptic</command> و <command>aptitude</command> (الذي يحتوي على واجهة نصيّة وأخرى رسومية — وإنْ لم تكتمل بعد)، و <command>wajig</command>، الخ. أكثر واجهة ننصح بها، <command>aptitude</command>، هي المعتمدة أثناء تثبيت ديبيان. نظرًا لأن تركيب أوامرها النصية مشابه جداً لأوامر <command>apt-get</command>، سنركز على <command>aptitude</command> في الأمثلة المعطاة في هذا القسم. عند وجود اختلافات كبيرة بين <command>aptitude</command> و <command>apt-get</command>، سنفصّل هذه الاختلافات."
+msgstr "ظهرت بعدها العديد من الواجهات الرسومية كمشاريع خارجية: <command>synaptic</command> و <command>aptitude</command> (الذي يحتوي على واجهة نصيّة وأخرى رسومية — وإنْ لم تكتمل بعد)، و <command>wajig</command>، الخ. أكثر واجهة ننصح بها، <command>aptitude</command>، هي المعتمدة أثناء تثبيت دبيان. نظرًا لأن تركيب أوامرها النصية مشابه جداً لأوامر <command>apt-get</command>، سنركز على <command>aptitude</command> في الأمثلة المعطاة في هذا القسم. عند وجود اختلافات كبيرة بين <command>aptitude</command> و <command>apt-get</command>، سنفصّل هذه الاختلافات."
 
 #. Tag: title
 #, no-c-format
@@ -551,7 +551,7 @@ msgstr "التهيئة"
 #. Tag: para
 #, no-c-format
 msgid "For any work with APT, the list of available packages needs to be updated; this can be done simply through <command>aptitude update</command>. Depending on the speed of your connection, the operation can take a while since it involves downloading a certain number of <filename>Packages.(gz|bz2)</filename> files (or even <filename>Sources.(gz|bz2)</filename>), which have gradually become bigger and bigger as Debian has developed (more than 8 MB for the largest <filename>Packages.gz</filename> — from the <literal>main</literal> section). Of course, installing from a CD-ROM set does not require any downloading — in this case, the operation is very fast."
-msgstr "يجب تحديث قائمة الحزم المتوفرة من أجل أي عمل بـ APT؛ يمكن تنفيذ ذلك بسهولة من خلال <command>aptitude update</command>. اعتماداً على سرعة اتصالك، قد تستغرق العملية وقتًا نظرًا لأنها تحتاج لتنزيل عدد من ملفات <filename>Packages.(gz|bz2)</filename> (أو حتى <filename>Sources.(gz|bz2)</filename>)، والتي كبرت أكثر وأكثر تدريجيًا مع تطور ديبيان (أكثر من 8 م.ب. لأكبر ملف <filename>Packages.gz</filename> — من القسم <literal>main</literal>). طبعاً، لا يحتاج التثبيت من القرص الليزري أي تنزيل — لذلك تكون العملية سريعة جداً في هذه الحالة."
+msgstr "يجب تحديث قائمة الحزم المتوفرة من أجل أي عمل بـ APT؛ يمكن تنفيذ ذلك بسهولة من خلال <command>aptitude update</command>. اعتماداً على سرعة اتصالك، قد تستغرق العملية وقتًا نظرًا لأنها تحتاج لتنزيل عدد من ملفات <filename>Packages.(gz|bz2)</filename> (أو حتى <filename>Sources.(gz|bz2)</filename>)، والتي كبرت أكثر وأكثر تدريجيًا مع تطور دبيان (أكثر من 8 م.ب. لأكبر ملف <filename>Packages.gz</filename> — من القسم <literal>main</literal>). طبعاً، لا يحتاج التثبيت من القرص الليزري أي تنزيل — لذلك تكون العملية سريعة جداً في هذه الحالة."
 
 #. Tag: indexterm
 #, no-c-format
@@ -767,7 +767,7 @@ msgstr "<emphasis>التعمق أكثر</emphasis> مخبأ ملفات <filename
 #. Tag: para
 #, no-c-format
 msgid "APT keeps a copy of each downloaded <filename>.deb</filename> file in the directory <filename>/var/cache/apt/archives/</filename>. In case of frequent updates, this directory can quickly take a lot of disk space with several versions of each package; you should regularly sort through them. Two commands can be used: <command>aptitude clean</command> entirely empties the directory; <command>aptitude autoclean</command> only removes packages which cannot be downloaded (because they have disappeared from the Debian mirror) and are therefore clearly useless (the configuration parameter <literal>APT::Clean-Installed</literal> can prevent the removal of <filename>.deb</filename> files that are currently installed)."
-msgstr "تحتفظ APT بنسخة من كل ملف <filename>.deb</filename> منزّل في المجلد <filename>/var/cache/apt/archives/</filename>. في حالة التحديثات المتكررة، يمكن أن يستهلك هذا المجلد مساحة كبيرة من القرص بسبب وجود عدة إصدارات من كل حزمة؛ عليك إذن ترتيبها بانتظام. يمكن استخدام أمرين: <command>aptitude clean</command> الذي يفرغ المجلد بالكامل؛ و <command>aptitude autoclean</command> الذي يحذف الحزم التي لا يمكن تنزيلها ثانية (لأنها اختفت من مرآة ديبيان) وهي بالتالي عديمة النفع (يمكن لمتغير الإعداد <literal>APT::Clean-Installed</literal> أن يمنع إزالة ملفات <filename>.deb</filename> المثبتة حاليًا)."
+msgstr "تحتفظ APT بنسخة من كل ملف <filename>.deb</filename> منزّل في المجلد <filename>/var/cache/apt/archives/</filename>. في حالة التحديثات المتكررة، يمكن أن يستهلك هذا المجلد مساحة كبيرة من القرص بسبب وجود عدة إصدارات من كل حزمة؛ عليك إذن ترتيبها بانتظام. يمكن استخدام أمرين: <command>aptitude clean</command> الذي يفرغ المجلد بالكامل؛ و <command>aptitude autoclean</command> الذي يحذف الحزم التي لا يمكن تنزيلها ثانية (لأنها اختفت من مرآة دبيان) وهي بالتالي عديمة النفع (يمكن لمتغير الإعداد <literal>APT::Clean-Installed</literal> أن يمنع إزالة ملفات <filename>.deb</filename> المثبتة حاليًا)."
 
 #. Tag: title
 #, no-c-format
@@ -797,7 +797,7 @@ msgstr "كما شرحنا سابقًا، إن غرض الأمر <command>aptitud
 #. Tag: para
 #, no-c-format
 msgid "A “new feature” (available since <emphasis role=\"distribution\">Etch</emphasis>) is that APT can now download the changes since the previous update, as opposed to the entire file. To achieve this, official Debian mirrors distribute different files which list the differences between one version of the <filename>Packages</filename> file and the following version. They are generated at each update of the archives and a history of one week is kept. Each of these “diff” files only takes a few dozen kilobytes for <emphasis role=\"distribution\">Unstable</emphasis>, so that the amount of data downloaded by a weekly <command>aptitude update</command> is often divided by 10. For distributions like <emphasis role=\"distribution\">Stable</emphasis> and <emphasis role=\"distribution\">Testing</emphasis>, which change less, the gain is even more noticeable."
-msgstr "توجد ”ميزة جديدة“ (متوفرة منذ توزيعة <emphasis role=\"distribution\">إيتش</emphasis>) وهي أن APT تستطيع الآن تنزيل الاختلافات عن التحديث السابق، بدلاً من تنزيل الملف كاملاً. لتحقيق ذلك، توزع مرايا ديبيان الرسمية ملفات مختلفة تسرد الاختلافات بين كل نسخة من ملف <filename>Packages</filename> والنسخة التي تليها. تولّد هذه الملفات عند كل تحديث للأرشيفات ويتم إبقاء المحفوظات لأسبوع واحد. كل واحد من ملفات ”diff“ هذه يستهلك عدة عشرات من الكيلوبايتات فقط بالنسبة للتوزيعة <emphasis role=\"distribution\">غير المستقرة</emphasis>، لذا فإن كمية البيانات المُنزَّلة عند استدعاء <command>aptitude update</command> أسبوعيًا أصغر بعشر مرات غالبًا. بالنسبة للتوزيعات مثل <emphasis role=\"distribution\">المستقرة</emphasis> و <emphasis role=\"distribution\">الاختبارية</emphasis>، اللتان تتغيران بمعدل أقل، فإن التوفير ملحوظ بصورة أكبر."
+msgstr "توجد ”ميزة جديدة“ (متوفرة منذ توزيعة <emphasis role=\"distribution\">إيتش</emphasis>) وهي أن APT تستطيع الآن تنزيل الاختلافات عن التحديث السابق، بدلاً من تنزيل الملف كاملاً. لتحقيق ذلك، توزع مرايا دبيان الرسمية ملفات مختلفة تسرد الاختلافات بين كل نسخة من ملف <filename>Packages</filename> والنسخة التي تليها. تولّد هذه الملفات عند كل تحديث للأرشيفات ويتم إبقاء المحفوظات لأسبوع واحد. كل واحد من ملفات ”diff“ هذه يستهلك عدة عشرات من الكيلوبايتات فقط بالنسبة للتوزيعة <emphasis role=\"distribution\">غير المستقرة</emphasis>، لذا فإن كمية البيانات المُنزَّلة عند استدعاء <command>aptitude update</command> أسبوعيًا أصغر بعشر مرات غالبًا. بالنسبة للتوزيعات مثل <emphasis role=\"distribution\">المستقرة</emphasis> و <emphasis role=\"distribution\">الاختبارية</emphasis>، اللتان تتغيران بمعدل أقل، فإن التوفير ملحوظ بصورة أكبر."
 
 #. Tag: para
 #, no-c-format
@@ -828,12 +828,12 @@ msgstr "<primary><command>aptitude safe-upgrade</command></primary>"
 #, no-c-format
 msgid "For more important upgrades, such as the change from one major Debian version to the next, you need to use <command>aptitude full-upgrade</command> (the option used to be named <literal>dist-upgrade</literal>, for “distribution upgrade”). With this instruction, <command>aptitude</command> will complete the upgrade even if it has to remove some obsolete packages or install new dependencies. This is also the command used by users who work daily with the Debian <emphasis role=\"distribution\">Unstable</emphasis> release and follow its evolution day by day. It is so simple that it hardly needs explanation: APT's reputation is based on this great functionality."
 msgstr ""
-"لمزيد من التحديثات الهامة، مثل التغير من أحد إصدارات ديبيان الرئيسية إلى "
+"لمزيد من التحديثات الهامة، مثل التغير من أحد إصدارات دبيان الرئيسية إلى "
 "التالي، تحتاج لاستخدام <command>aptitude full-upgrade</command> (كان اسم هذا "
 "الأمر <literal>dist-upgrade</literal>، اختصاراً لـ ”distribution upgrade“ "
 "أي تحديث التوزيعة). مع هذه التعليمة، ستكمل <command>aptitude</command> "
 "التحديث حتى لو اضطرت لإزالة بعض الحزم الميتة أو تثبيت اعتماديات جديدة. هذا "
-"هو أيضًا الأمر الذي يستخدمه المستخدمون الذين يعملون يوميًا مع إصدارة ديبيان "
+"هو أيضًا الأمر الذي يستخدمه المستخدمون الذين يعملون يوميًا مع إصدارة دبيان "
 "<emphasis role=\"distribution\">غير المستقرة</emphasis> ويتابعون تطورها يومًا "
 "بيوم. إنها أبسط من أن تحتاج لشرح: سمعة APT مبنية على هذه الوظيفة العظيمة."
 
@@ -905,7 +905,7 @@ msgstr "المجلدات ذات اللاحقة <filename>.d</filename> أصبح�
 #. Tag: para
 #, no-c-format
 msgid "This structure brings some flexibility to the machine administrator and to the package maintainers. Indeed, the administrator can easily modify the configuration of the software by adding a ready-made file in the directory in question without having to change an existing file. Package maintainers use the same approach when they need to adapt the configuration of another software to ensure that it perfectly co-exists with theirs. However, the Debian policy explicitly forbids modifying configuration files of other packages — only users are allowed to do this. Remember that during a package upgrade, the user gets to choose the version of the configuration file that should be kept when a modification has been detected. Any external modification of the file would trigger that request, which would disturb the administrator, who is sure not to have changed anything."
-msgstr "هذه البنية تمنح بعض المرونة لمدير النظام وإلى مسؤولي صيانة الحزمة. بالفعل، يمكن أن يعدل مدير النظام إعدادات البرنامج بإضافة ملف جاهز في المجلد المطلوب بدون الاضطرار إلى تعديل ملف موجود مسبقًا. يستخدم مسؤولو صيانة الحزمة نفس الأسلوب عندما يحتاجون لتكييف إعدادات برنامج آخر للتأكد أنه ينسجم تمامًا مع برامجهم. على أية حال، تتحظر سياسة ديبيان بشكل صريح تعديل ملفات ضبط الحزم الأخرى — يُسمَح للمستخدمين فقط بعمل ذلك. تذكر أنه خلال تحديث الحزمة، على المستخدم اختيار نسخة ملف الإعداد التي يجب الاحتفاظ بها عند اكتشاف حدوث تغيرات. أي تغيير خارجي على الملف سوف ينشط ذلك الطلب، وهو ما سيزعج مدير النظام، خصوصًا أنه متأكد من أنه لم يغير شيئًا."
+msgstr "هذه البنية تمنح بعض المرونة لمدير النظام وإلى مسؤولي صيانة الحزمة. بالفعل، يمكن أن يعدل مدير النظام إعدادات البرنامج بإضافة ملف جاهز في المجلد المطلوب بدون الاضطرار إلى تعديل ملف موجود مسبقًا. يستخدم مسؤولو صيانة الحزمة نفس الأسلوب عندما يحتاجون لتكييف إعدادات برنامج آخر للتأكد أنه ينسجم تمامًا مع برامجهم. على أية حال، تتحظر سياسة دبيان بشكل صريح تعديل ملفات ضبط الحزم الأخرى — يُسمَح للمستخدمين فقط بعمل ذلك. تذكر أنه خلال تحديث الحزمة، على المستخدم اختيار نسخة ملف الإعداد التي يجب الاحتفاظ بها عند اكتشاف حدوث تغيرات. أي تغيير خارجي على الملف سوف ينشط ذلك الطلب، وهو ما سيزعج مدير النظام، خصوصًا أنه متأكد من أنه لم يغير شيئًا."
 
 #. Tag: para
 #, no-c-format
@@ -1004,7 +1004,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Let's suppose that you only want to use packages from the stable version of Debian. Those provided in other versions should not be installed except if explicitly requested. You could write the following entries in the <filename>/etc/apt/preferences</filename> file:"
-msgstr "لنفترض أنك تريد استعمال الحزم من النسخة المستقرة من ديبيان فقط. وأن تلك المتوفرة في الإصدارات الأخرى يجب ألا تثبت إلا إذا طلبت صراحة. يمكن كتابة المدخلات التالية في ملف <filename>/etc/apt/preferences</filename>:"
+msgstr "لنفترض أنك تريد استعمال الحزم من النسخة المستقرة من دبيان فقط. وأن تلك المتوفرة في الإصدارات الأخرى يجب ألا تثبت إلا إذا طلبت صراحة. يمكن كتابة المدخلات التالية في ملف <filename>/etc/apt/preferences</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1251,7 +1251,7 @@ msgstr ""
 msgid "In the case of APT, the reference <filename>Packages</filename> files are those located on Debian mirrors. That said, it would be very ineffective to go through the network for every search that we might want to do in the database of available packages. That is why APT stores a copy of those files (in <filename>/var/lib/apt/lists/</filename>) and searches are done within those local files. Similarly, <filename>/var/cache/apt/archives/</filename> contains a cache of already downloaded packages to avoid downloading them again if you need to reinstall them after a removal."
 msgstr ""
 "في حالة APT، المرجع هو ملفات <filename>Packages</filename> الموجودة على "
-"مرايا ديبيان. ومع ذلك، سوف يكون الذهاب إلى الشبكة لكل عملية بحث قد نرغب "
+"مرايا دبيان. ومع ذلك، سوف يكون الذهاب إلى الشبكة لكل عملية بحث قد نرغب "
 "بإجرائها في قاعدة بيانات الحزم المتوفرة غير فعال بالمرة. لهذا تخزّن APT نسخة "
 "من هذه الملفات (في <filename>/var/lib/apt/lists/</filename>) ويتم البحث ضمن "
 "هذه الملفات المحلية. أيضاً، يحتوي "
@@ -1655,7 +1655,7 @@ msgstr "<command>synaptic</command>"
 #, no-c-format
 msgid "<command>synaptic</command> is a graphical package manager for Debian which features a clean and efficient graphical interface based on GTK+/GNOME. Its many ready-to-use filters give fast access to newly available packages, installed packages, upgradable packages, obsolete packages and so on. If you browse through these lists, you can select the operations to be done on the packages (install, upgrade, remove, purge); these operations are not performed immediately, but put into a task list. A single click on a button then validates the operations, and they are performed in one go."
 msgstr ""
-"<command>synaptic</command> هو مدير حزم رسومي لديبيان، يقدّم واجهة رسومية "
+"<command>synaptic</command> هو مدير حزم رسومي لدبيان، يقدّم واجهة رسومية "
 "نظيفة وفعالة مبنية على أساس GTK+/GNOME. تمنح فلاتره العديدة الجاهزة "
 "للاستخدام وصولاً سريعاً للحزم المتوفرة حديثاً، أو الحزم المثبتة، أو الحزم "
 "القابلة للتحديث، والحزم الميتة وغيرها. إذا تجولت بين هذه القوائم، يمكنك "
@@ -1698,10 +1698,10 @@ msgstr "<primary>توقيع</primary><secondary>حزمة</secondary>"
 msgid "Security is very important for Falcot Corp administrators. Accordingly, they need to ensure that they only install packages which are guaranteed to come from Debian with no tampering on the way. A computer cracker could try to add malicious code to an otherwise legitimate package. Such a package, if installed, could do anything the cracker designed it to do, including for instance disclosing passwords or confidential information. To circumvent this risk, Debian provides a tamper-proof seal to guarantee — at install time — that a package really comes from its official maintainer and hasn't been modified by a third party."
 msgstr ""
 "الأمن هام جداً بالنسبة لمدراء النظم في شركة فلكوت. لذا، فهم يحتاجون للتأكد "
-"من تثبيت الحزم التي يوثق بأنها جاءت من ديبيان والتي لم تُعدّل على الطريق. "
+"من تثبيت الحزم التي يوثق بأنها جاءت من دبيان والتي لم تُعدّل على الطريق. "
 "يمكن أن يحاول المخرب الحاسوبي إضافة شفرة خبيثة إلى حزمة شرعية. إذا تم تثبيت "
 "مثل هذه الحزمة، فقد تنفذ أي شيء صممها المخرب لتنفيذه، بما في ذلك مثلا كشف "
-"كلمات المرور أو معلومات سريّة. لتفادي هذا الخطر، تقدّم ديبيان ختماً مقاوماً "
+"كلمات المرور أو معلومات سريّة. لتفادي هذا الخطر، تقدّم دبيان ختماً مقاوماً "
 "للعبث يضمن — وقت تثبيت الحزمة — ورود الحزمة من المسؤول الرسمي عن صيانتها وأن "
 "أية أطراف ثالثة لم تُعدِّلها."
 
@@ -1724,7 +1724,7 @@ msgstr ""
 "مفاتيح GnuPG عامة، تستخدم للتحقق من التواقيع في ملفات "
 "<filename>Release.gpg</filename> المتوفرة على المرايا. يمكن استخدامه لإضافة "
 "مفاتيح جديدة يدويًا (عند الحاجة لمرايا غير رسمية). على أية حال، ستحتاج "
-"مفاتيح ديبيان الرسمية فقط في العادة. تُحدّث هذه المفاتيح آليًا من خلال "
+"مفاتيح دبيان الرسمية فقط في العادة. تُحدّث هذه المفاتيح آليًا من خلال "
 "الحزمة <emphasis role=\"pkg\">debian-archive-keyring</emphasis> (التي تستدعي "
 "<command>apt-key</command> عند تثبيتها أو تحديثها). على أية حال، يتطلب تثبيت "
 "هذه الحزمة بذاتها أول مرة بعض الحذر: حتى لو كانت الحزمة موقّعة مثل غيرها، "
@@ -1848,7 +1848,7 @@ msgstr "الانتقال من توزيعة مستقرة إلى التالية"
 #, no-c-format
 msgid "One of the best-known features of Debian is its ability to upgrade an installed system from one stable release to the next: <foreignphrase>dist-upgrade</foreignphrase> — a well-known phrase — has largely contributed to the project's reputation. With a few precautions, upgrading a computer can take as little as a few, or a few dozen, minutes depending on the download speed from the package repositories."
 msgstr ""
-"إحدى أكثر مزايا ديبيان شهرة هي قدرتها على تحديث النظام المُنَصَّب من إصدارة "
+"إحدى أكثر مزايا دبيان شهرة هي قدرتها على تحديث النظام المُنَصَّب من إصدارة "
 "مستقرة إلى تاليتها: أضافت <foreignphrase>dist-upgrade</foreignphrase> — "
 "عبارة معروفة جداً — إلى سمعة المشروع كثيراً. مع الإجراءات الوقائية، يمكن "
 "لتحديث الحاسوب أن يستغرق عدة دقائق، أو عدة عشرات منها، حسب سرعة التنزيل من "
@@ -1863,7 +1863,7 @@ msgstr "إجراءات مستحسنة"
 #, no-c-format
 msgid "Since Debian has quite some time to evolve in-between stable releases, you should read the release notes before upgrading."
 msgstr ""
-"نظراًُ لأن ديبيان تستغرق زمناً طويلاً للتطور في مرحلة ما بين الإصدارات "
+"نظراًُ لأن دبيان تستغرق زمناً طويلاً للتطور في مرحلة ما بين الإصدارات "
 "المستقرة، عليك قراءة ملاحظات الإصدار قبل التحديث."
 
 #. Tag: title
@@ -1927,7 +1927,7 @@ msgstr ""
 "<emphasis role=\"distribution\">المستقرة</emphasis> بدلا من أسماء رمزية صريحة، "
 "فلا حاجة لتغيير أي شيء أصلاً، نظراً لأن <emphasis "
 "role=\"distribution\">المستقرة</emphasis> تشير دائماً إلى الإصدار الأخير "
-"لديبيان. في كلا الحالتين، يجب تحديث قاعدة بيانات الحزم المتوفرة (بالأمر "
+"لدبيان. في كلا الحالتين، يجب تحديث قاعدة بيانات الحزم المتوفرة (بالأمر "
 "<command>aptitude update</command> أو بزر التحديث في "
 "<command>synaptic</command>)."
 
@@ -2007,11 +2007,11 @@ msgstr "حل المشاكل بعد التحديث"
 #, no-c-format
 msgid "In spite of the Debian maintainers' best efforts, a major system upgrade isn't always as smooth as you could wish. New software versions may be incompatible with previous ones (for instance, their default behavior or their data format may have changed). Also, some bugs may slip through the cracks despite the testing phase which always precedes a Debian release."
 msgstr ""
-"بالرغم من أن مسؤولي صيانة ديبيان يبذلون أفضل ما لديهم، لا يجري تحديث النظام "
+"بالرغم من أن مسؤولي صيانة دبيان يبذلون أفضل ما لديهم، لا يجري تحديث النظام "
 "بالكامل بالسلاسة التي تتمناها دائمًا. قد لا تتوافق إصدارات البرمجيات الجديدة "
 "مع القديمة (مثلا، قد يتغير سلوكها الافتراضي أو الصيغة التي تحفظ فيها "
 "البيانات). أيضًا، قد تتسلل بعض العلل من هنا وهناك بالرغم من طور الاختبار "
-"الذي يسبق إطلاق ديبيان دائمًا."
+"الذي يسبق إطلاق دبيان دائمًا."
 
 #. Tag: para
 #, no-c-format
@@ -2063,7 +2063,7 @@ msgid "Depending on the severity of the bug, a new version of the package may be
 msgstr ""
 "تبعاً لخطورة العلة، قد يُحضَّر إصدار جديد من الحزمة خصيصاً لإحدى النسخ "
 "المنقحة من الإصدارة المستقرة. عند حدوث ذلك، تتوفر الحزمة المصححة في قسم "
-"<literal>proposed-updates</literal> في مرايا ديبيان (انظر <xref "
+"<literal>proposed-updates</literal> في مرايا دبيان (انظر <xref "
 "linkend=\"section.proposed-updates\" />). يمكن إضافة المدخلة المطلوبة مؤقتًا "
 "إلى ملف <filename>sources.list</filename>، ويمكن تثبيت الحزم المحدّثة "
 "باستخدام <command>apt-get</command> أو <command>aptitude</command>."
@@ -2087,11 +2087,11 @@ msgstr "إبقاء النظام محدّثاً"
 #, no-c-format
 msgid "The Debian distribution is dynamic and changes continually. Most of the changes are in the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> versions, but even <emphasis role=\"distribution\">Stable</emphasis> is updated from time to time, mostly for security-related fixes. Whatever version of Debian a system runs, it is generally a good idea to keep it up to date, so that you can get the benefit of recent evolutions and bug fixes."
 msgstr ""
-"توزيعة ديبيان ديناميكية وتتغير باستمرار. معظم التغيرات تجري في الإصدارة "
+"توزيعة دبيان ديناميكية وتتغير باستمرار. معظم التغيرات تجري في الإصدارة "
 "<emphasis role=\"distribution\">الاختبارية</emphasis> و <emphasis "
 "role=\"distribution\">غير المستقرة</emphasis>، لكن حتى <emphasis "
 "role=\"distribution\">المستقرة</emphasis> تُحدَّث من وقت إلى آخر، غالبًا لأجل "
-"إصلاحات أمنية. مهما كانت نسخة ديبيان التي يعمل بها النظام، من الجيد عمومًا "
+"إصلاحات أمنية. مهما كانت نسخة دبيان التي يعمل بها النظام، من الجيد عمومًا "
 "إبقاؤها محدّثة، حتى تستفيد من أحدث التطورات وإصلاحات العلل."
 
 #. Tag: para
@@ -2111,9 +2111,9 @@ msgstr ""
 "مهمتها الأساسية تشغيل سكريبت يوميًا (من خلال <command>cron</command>). يحدّث "
 "السكريبت قائمة الحزم المتوفرة، وفي حال وجود إصدارات أحدث لبعض الحزم "
 "المثبتة، سيرسل قائمة بهذه الحزم في بريد إلكتروني مرفقة بالتغيرات التي طرأت "
-"على الإصدارات الحديثة. من الوضح أن هذه الحزمة تستهدف مستخدمي ديبيان "
+"على الإصدارات الحديثة. من الوضح أن هذه الحزمة تستهدف مستخدمي دبيان "
 "<emphasis role=\"distribution\">المستقرة</emphasis>، نظراً لأن الرسائل اليومية "
-"ستكون طويلة جداً بالنسبة لنسخ ديبيان الأخرى الأكثر تقلبًا. عند وجود "
+"ستكون طويلة جداً بالنسبة لنسخ دبيان الأخرى الأكثر تقلبًا. عند وجود "
 "تحديثات، تنزلها <command>apticron</command> آليًا. لكنها لا تثبتها — لا يزال "
 "مدير النظام مسؤولاً عن تثبيتها — لكن بما أن الحزم قد نزلت مسبقًا و أصبحت "
 "متوفرة محليًا (في مخبأ APT) فإن العملية ستكون أسرع."
@@ -2385,8 +2385,8 @@ msgstr "البحث عن الحزم"
 #, no-c-format
 msgid "With the large and ever-growing amount of software in Debian, there emerges a paradox: Debian usually has a tool for most tasks, but that tool can be very difficult to find amongst the myriad other packages. The lack of appropriate ways to search for (and to find) the right tool has long been a problem. Fortunately, this problem has almost entirely been solved."
 msgstr ""
-"مع كمية البرمجيات الكبيرة في ديبيان والتي تنمو باستمرار، تظهر مفارقة: لدى "
-"ديبيان عادة أدوات لمعظم المهام، لكن العثور على تلك الأدوات من بين آلاف الحزم "
+"مع كمية البرمجيات الكبيرة في دبيان والتي تنمو باستمرار، تظهر مفارقة: لدى "
+"دبيان عادة أدوات لمعظم المهام، لكن العثور على تلك الأدوات من بين آلاف الحزم "
 "الأخرى قد يكون صعباً جداً. كان الافتقار للأساليب الملائمة للبحث عن (والعثور "
 "على) الأداة الصحيحة مشكلة منذ فترة طويلة. لحسن الحظ، لقد حُلّت هذه المشكلة "
 "بالكامل تقريباً."

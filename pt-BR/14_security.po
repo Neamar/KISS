@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2012-08-04 12:37+0200\n"
+"PO-Revision-Date: 2012-11-12 20:53+0100\n"
 "Last-Translator: Willer Gomes Junior <willer@ogomes.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects/debian-handbook/14_security/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -193,7 +193,7 @@ msgstr "Um firewall pode ser restrito a uma determinada máquina (em oposição 
 #. Tag: para
 #, no-c-format
 msgid "The Linux 2.6 kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
-msgstr "O kernel do Linux 2.6 incorpora os firewall <emphasis>netfilter</emphasis>. Ele pode ser controlado a partir do espaço do usuário com os comandos <comando>iptables</command> e <comando>ip6tables</command>. A diferença entre estes dois comandos é que o primeiro atua sobre rede IPv4, enquanto que o último sobre o IPv6. Uma vez que ambas as pilhas de protocolo de rede provavelmente estarão circulando por muitos anos, ambas as ferramentas serão utilizadas em paralelo."
+msgstr "O kernel do Linux 2.6 incorpora os firewall <emphasis>netfilter</emphasis>. Ele pode ser controlado a partir do espaço do usuário com os comandos <command>iptables</command> e <command>ip6tables</command>. A diferença entre estes dois comandos é que o primeiro atua sobre rede IPv4, enquanto que o último sobre o IPv6. Uma vez que ambas as pilhas de protocolo de rede provavelmente estarão circulando por muitos anos, ambas as ferramentas serão utilizadas em paralelo."
 
 #. Tag: indexterm
 #, no-c-format
@@ -238,7 +238,7 @@ msgstr "<literal>raw</literal> permite outras modificações manuais em pacotes 
 #. Tag: para
 #, fuzzy, no-c-format
 msgid "Each table contains lists of rules called <emphasis>chains</emphasis>. The firewall uses standard chains to handle packets based on predefined circumstances. The administrator can create other chains, which will only be used when referred to by one of the standard chains (either directly or indirectly)."
-msgstr "Cada tabela contém listas das chamadas regras <emphasis>cadeias</ emphasis>. O firewall usa padrão para lidar com cadeias de pacotes com base em circunstâncias pré-definidas. O administrador pode criar outras cadeias, o que só será usado quando referido por uma das cadeias padrão."
+msgstr "Cada tabela contém listas das chamadas regras <emphasis>cadeias</emphasis>. O firewall usa padrão para lidar com cadeias de pacotes com base em circunstâncias pré-definidas. O administrador pode criar outras cadeias, o que só será usado quando referido por uma das cadeias padrão."
 
 #. Tag: indexterm
 #, no-c-format
@@ -298,7 +298,7 @@ msgstr "Como cadeias <emphasis>netfilter</emphasis> são chamadas"
 #. Tag: para
 #, no-c-format
 msgid "Each chain is a list of rules; each rule is a set of conditions and an action to execute when the conditions are met. When processing a packet, the firewall scans the appropriate chain, one rule after another; when the conditions for one rule are met, it “jumps” (hence the <literal>-j</literal> option in the commands) to the specified action to continue processing. The most common behaviors are standardized, and dedicated actions exist for them. Taking one of these standard actions interrupts the processing of the chain, since the packet's fate is already sealed (barring an exception mentioned below):"
-msgstr "Cada cadeia é uma lista de regras, cada regra é um conjunto de condições e uma ação a ser executada quando as condições forem satisfeitas. Ao processar um pacote, o firewall examina a cadeia se for o caso, uma regra após a outra, quando as condições para uma regra estão reunidas, \"pula\" (daí a opção <literal>-j </ literal> nos comandos) para a especificada ação para continuar o processamento. Os comportamentos mais comuns são padronizados, e existem ações específicas para eles. O processamento da cadeia toma uma destas ações de interrupções padrão, uma vez que o destino do pacote já está selado (salvo uma exceção mencionada a seguir):"
+msgstr "Cada cadeia é uma lista de regras, cada regra é um conjunto de condições e uma ação a ser executada quando as condições forem satisfeitas. Ao processar um pacote, o firewall examina a cadeia se for o caso, uma regra após a outra, quando as condições para uma regra estão reunidas, \"pula\" (daí a opção <literal>-j </literal> nos comandos) para a especificada ação para continuar o processamento. Os comportamentos mais comuns são padronizados, e existem ações específicas para eles. O processamento da cadeia toma uma destas ações de interrupções padrão, uma vez que o destino do pacote já está selado (salvo uma exceção mencionada a seguir):"
 
 #. Tag: title
 #, no-c-format
@@ -308,7 +308,7 @@ msgstr "<emphasis>DE VOLTA AO BASICO</emphasis> ICMP"
 #. Tag: para
 #, no-c-format
 msgid "ICMP (<emphasis>Internet Control Message </emphasis>Protocol) is the protocol used to transmit complementary information on communications. It allows testing network connectivity with the <command>ping</command> command (which sends an ICMP <emphasis>echo request</emphasis> message, which the recipient is meant to answer with an ICMP <emphasis>echo reply</emphasis> message). It signals a firewall rejecting a packet, indicates an overflow in a receive buffer, proposes a better route for the next packets in the connection, and so on. This protocol is defined by several RFC documents; the initial RFC777 and RFC792 were soon completed and extended. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc777.html\" /><ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc792.html\" />"
-msgstr "ICMP (<emphasis>Internet Control Message</emphasis> Protocol) é o protocolo usado para transmitir informações complementares sobre as comunicações. Permite testar a conectividade de rede com o comando <command>ping</command> (que envia uma mensagem ICMP <emphasis>echo request</emphasis> (solicitação de eco), que o beneficiário se destina a responder com uma mensagem ICMP <emphasis>echo reply</emphasis>) (resposta echo). É sinal de um firewall rejeitando um pacote, indica um estouro de memoria no buffer de recebimento, propõe uma melhor rota para os pacotes seguintes na conexão, e assim por diante. Este protocolo é definido por vários documentos RFC, o inicial RFC777 e RFC792 logo foram concluídos e ampliados. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc777.html\" /> <ulink tipo=\"block\" url=\"http://www.faqs.org/rfcs/rfc792.html \"/>"
+msgstr "ICMP (<emphasis>Internet Control Message</emphasis> Protocol) é o protocolo usado para transmitir informações complementares sobre as comunicações. Permite testar a conectividade de rede com o comando <command>ping</command> (que envia uma mensagem ICMP <emphasis>echo request</emphasis> (solicitação de eco), que o beneficiário se destina a responder com uma mensagem ICMP <emphasis>echo reply</emphasis>) (resposta echo). É sinal de um firewall rejeitando um pacote, indica um estouro de memoria no buffer de recebimento, propõe uma melhor rota para os pacotes seguintes na conexão, e assim por diante. Este protocolo é definido por vários documentos RFC, o inicial RFC777 e RFC792 logo foram concluídos e ampliados. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc777.html\" /> <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc792.html\" />"
 
 #. Tag: para
 #, no-c-format
@@ -353,7 +353,7 @@ msgstr "<literal>ACCEPT</literal>: permite que o pacote siga seu caminho;"
 #. Tag: para
 #, no-c-format
 msgid "<literal>REJECT</literal>: reject the packet with an ICMP error packet (the <literal>--reject-with <replaceable>type</replaceable></literal> option to <command>iptables</command> allows selecting the type of error);"
-msgstr "<literal>REJECT</literal>:  rejeita o pacote com um erro ICMP (o <literal>--reject-with <replaceable>tipo</replaceable></literal> opção para <comando>iptables</command> permite seleccionar o tipo de erro);"
+msgstr "<literal>REJECT</literal>:  rejeita o pacote com um erro ICMP (o <literal>--reject-with <replaceable>tipo</replaceable></literal> opção para <command>iptables</command> permite seleccionar o tipo de erro);"
 
 #. Tag: para
 #, no-c-format
@@ -368,7 +368,7 @@ msgstr "<literal>LOG</literal>: log (via <command>syslogd</command>) uma mensage
 #. Tag: para
 #, no-c-format
 msgid "<literal>ULOG</literal>: log a message via <command>ulogd</command>, which can be better adapted and more efficient than <command>syslogd</command> for handling large numbers of messages; note that this action, like LOG, also returns processing to the next rule in the calling chain;"
-msgstr "<literal>ULOG</ literal>: registrar uma mensagem via <command>ulogd</command>, que pode ser melhor adaptada e mais eficiente do que <command>syslogd</command> para lidar com um grande número de mensagens, observe que esta ação, como LOG, também retorna o processamento para a próxima regra na cadeia chamada;"
+msgstr "<literal>ULOG</literal>: registrar uma mensagem via <command>ulogd</command>, que pode ser melhor adaptada e mais eficiente do que <command>syslogd</command> para lidar com um grande número de mensagens, observe que esta ação, como LOG, também retorna o processamento para a próxima regra na cadeia chamada;"
 
 #. Tag: para
 #, no-c-format
@@ -378,7 +378,7 @@ msgstr "<replaceable>chain_name</replaceable>: Vá para a cadeia e avalie as sua
 #. Tag: para
 #, no-c-format
 msgid "<literal>RETURN</literal>: interrupt processing of the current chain, and return to the calling chain; in case the current chain is a standard one, there's no calling chain, so the default action (defined with the <literal>-P</literal> option to <command>iptables</command>) is executed instead;"
-msgstr "<literal>RETURN</literal>: interrompe o processamento da cadeia atual, e volta para a cadeia de chamada; no caso a cadeia atual é padrão, não há nenhuma cadeia de chamada, de modo que a ação padrão (definida com a opção <literal>- P</literal> para o <comando>iptables</command>) é executada em vez disto;"
+msgstr "<literal>RETURN</literal>: interrompe o processamento da cadeia atual, e volta para a cadeia de chamada; no caso a cadeia atual é padrão, não há nenhuma cadeia de chamada, de modo que a ação padrão (definida com a opção <literal>- P</literal> para o <command>iptables</command>) é executada em vez disto;"
 
 #. Tag: para
 #, no-c-format
@@ -403,7 +403,7 @@ msgstr "<literal>REDIRECT</literal> (apenas na  tabela <literal>nat</literal>, p
 #. Tag: para
 #, no-c-format
 msgid "Other actions, particularly those concerning the <literal>mangle</literal> table, are outside the scope of this text. The <citerefentry><refentrytitle>iptables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>ip6tables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> have a comprehensive list."
-msgstr "Outras ações, particularmente as relativas à tabela <literal>mangle</literal>, estão fora do escopo deste texto. O <citerefentry><refentrytitle>iptables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> e <citerefentry> <refentrytitle>ip6tables</refentrytitle> <manvolnum>8</manvolnum><citerefentry/> tem um lista completa."
+msgstr "Outras ações, particularmente as relativas à tabela <literal>mangle</literal>, estão fora do escopo deste texto. O <citerefentry><refentrytitle>iptables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> e <citerefentry> <refentrytitle>ip6tables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> tem um lista completa."
 
 #. Tag: title
 #, no-c-format
@@ -413,7 +413,7 @@ msgstr "Sintaxe do <command>iptables</command> e do <command>ip6tables</command>
 #. Tag: para
 #, no-c-format
 msgid "The <command>iptables</command> and <command>ip6tables</command> commands allow manipulating tables, chains and rules. Their <literal>-t <replaceable>table</replaceable></literal> option indicates which table to operate on (by default, <literal>filter</literal>)."
-msgstr "Os comandos <comando>iptables</command> e <comando>ip6tables</command> permitem manipulação de tabelas, cadeias e regrass. Sua opção <literal><replaceable>tabela</replaceable> -t</literal> indica em qual tabela operar (por padrão, <literal>filtro</literal>)."
+msgstr "Os comandos <command>iptables</command> e <command>ip6tables</command> permitem manipulação de tabelas, cadeias e regrass. Sua opção <literal><replaceable>tabela</replaceable> -t</literal> indica em qual tabela operar (por padrão, <literal>filtro</literal>)."
 
 #. Tag: title
 #, no-c-format
@@ -423,7 +423,7 @@ msgstr "Comandos"
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable><replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable><replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable><replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
-msgstr "A opção <literal><replaceable>cadeia</replaceable> -N</literal>  cria uma nova cadeia. A <replaceable>cadeia</replaceable><literal> -X</literal> exclui uma cadeia vazia e sem uso. A <literal><replaceable>regra de cadeia</replaceable> -A</ literal> adiciona uma regra no final da cadeia dada. A opcao <literal>-I <replaceable>cadeia</replaceable> <replaceable>rule_num</replaceable><replaceable>regra</replaceable></literal> insere uma regra antes da regra número <replaceable>rule_num</replaceable>. A opcao <literal>-D <replaceable>cadeia</replaceable><replaceable>rule_num</replaceable></literal> (ou a opção  <literal>-D cadeia <replaceable> </replaceable>regra<replaceable> </replaceable></literal>) exclui uma regra em uma cadeia, a primeira sintaxe identifica a regra a ser excluída pelo seu número, enquanto o segundo o identifica pelo seu conteúdo. A opcao  <literal>-F <replaceable>cadeia</replaceable></literal> libera uma cadeia (apaga todas as suas regras), se nenhuma cadeia é mencionada, todas as regras da tabela são excluídas. A opção <literal>-L <replaceable>cadeia</replaceable></literal> lista as regras na cadeia. Finalmente, a opcao <literal>-P <replaceable>cadeia</replaceable><replaceable> ação</replaceable></literal> define a ação padrão, ou \"política\", para uma dada cadeia; observe que apenas as cadeias padrão podem ter essa política."
+msgstr "A opção <literal><replaceable>cadeia</replaceable> -N</literal>  cria uma nova cadeia. A <replaceable>cadeia</replaceable><literal> -X</literal> exclui uma cadeia vazia e sem uso. A <literal><replaceable>regra de cadeia</replaceable> -A</literal> adiciona uma regra no final da cadeia dada. A opcao <literal>-I <replaceable>cadeia</replaceable> <replaceable>rule_num</replaceable><replaceable>regra</replaceable></literal> insere uma regra antes da regra número <replaceable>rule_num</replaceable>. A opcao <literal>-D <replaceable>cadeia</replaceable><replaceable>rule_num</replaceable></literal> (ou a opção  <literal>-D cadeia <replaceable> </replaceable>regra<replaceable> </replaceable></literal>) exclui uma regra em uma cadeia, a primeira sintaxe identifica a regra a ser excluída pelo seu número, enquanto o segundo o identifica pelo seu conteúdo. A opcao  <literal>-F <replaceable>cadeia</replaceable></literal> libera uma cadeia (apaga todas as suas regras), se nenhuma cadeia é mencionada, todas as regras da tabela são excluídas. A opção <literal>-L <replaceable>cadeia</replaceable></literal> lista as regras na cadeia. Finalmente, a opcao <literal>-P <replaceable>cadeia</replaceable><replaceable> ação</replaceable></literal> define a ação padrão, ou \"política\", para uma dada cadeia; observe que apenas as cadeias padrão podem ter essa política."
 
 #. Tag: title
 #, no-c-format
@@ -438,7 +438,7 @@ msgstr "Cada regra é expressa como <literal><replaceable>condições</replaceab
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-p <replaceable>protocol</replaceable></literal> condition matches the protocol field of the IP packet. The most common values are <literal>tcp</literal>, <literal>udp</literal>, <literal>icmp</literal>, and <literal>icmpv6</literal>. Prefixing the condition with an exclamation mark negates the condition, which then becomes a match for “any packets with a different protocol than the specified one”. This negation mechanism is not specific to the <literal>-p</literal> option and it can be applied to all other conditions too."
-msgstr "A condição <literal>-p <replaceable>protocolo</replaceable></literal> corresponde ao campo protocolo do pacote IP. Os valores mais comuns são <literal>tcp</literal>, <literal>udp</ literal>, <literal>icmp</literal>, e <literal>ICMPv6</literal>. Prefixando a condição com um ponto de exclamação nega a condição,  que se transforma numa correspondência para \"todos os pacotes com um protocolo diferente da especificada\". Este mecanismo de negação não é específico para a opção <literal>-p</ literal> e também pode ser aplicada a todas as outras condições."
+msgstr "A condição <literal>-p <replaceable>protocolo</replaceable></literal> corresponde ao campo protocolo do pacote IP. Os valores mais comuns são <literal>tcp</literal>, <literal>udp</literal>, <literal>icmp</literal>, e <literal>ICMPv6</literal>. Prefixando a condição com um ponto de exclamação nega a condição,  que se transforma numa correspondência para \"todos os pacotes com um protocolo diferente da especificada\". Este mecanismo de negação não é específico para a opção <literal>-p</literal> e também pode ser aplicada a todas as outras condições."
 
 #. Tag: para
 #, no-c-format
@@ -498,7 +498,7 @@ msgstr "Criando Regras"
 #. Tag: para
 #, no-c-format
 msgid "Each rule creation requires one invocation of <command>iptables</command>/<command>ip6tables</command>. Typing these commands manually can be tedious, so the calls are usually stored in a script so that the same configuration is set up automatically every time the machine boots. This script can be written by hand, but it can also be interesting to prepare it with a high-level tool such as <command>fwbuilder</command>."
-msgstr "Cada criação de regra exige uma invocação de <comando>iptables</command>/<comando>ip6tables</command>. Digitando estes comandos manualmente pode ser tedioso, por isso as chamadas são normalmente armazenados em um script para que a mesma configuração seja criada automaticamente a cada vez que a máquina inicia. Este script pode ser escrito à mão, mas também pode ser interessante prepará lo com uma ferramenta de alto nível, tais como <command>fwbuilder</command>."
+msgstr "Cada criação de regra exige uma invocação de <command>iptables</command>/<command>ip6tables</command>. Digitando estes comandos manualmente pode ser tedioso, por isso as chamadas são normalmente armazenados em um script para que a mesma configuração seja criada automaticamente a cada vez que a máquina inicia. Este script pode ser escrito à mão, mas também pode ser interessante prepará lo com uma ferramenta de alto nível, tais como <command>fwbuilder</command>."
 
 #. Tag: para
 #, no-c-format
@@ -548,7 +548,7 @@ msgstr "<primary><command>fwbuilder</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>fwbuilder</command> can then generate a script configuring the firewall according to the rules that have been defined. Its modular architecture gives it the ability to generate scripts targeting different systems (<command>iptables</command> for Linux 2.4/2.6, <command>ipf</command> for FreeBSD and <command>pf</command> for OpenBSD)."
-msgstr "<command>fwbuilder</command> pode gerar um script de configuração do firewall de acordo com as regras que foram definidas. Sua arquitetura modular lhe confere a capacidade de gerar scripts que visam diferentes sistemas (<comando>iptables</command> para Linux 2.4/2.6, <command>ipf</command> para o FreeBSD e <command>pf</command> para OpenBSD)."
+msgstr "<command>fwbuilder</command> pode gerar um script de configuração do firewall de acordo com as regras que foram definidas. Sua arquitetura modular lhe confere a capacidade de gerar scripts que visam diferentes sistemas (<command>iptables</command> para Linux 2.4/2.6, <command>ipf</command> para o FreeBSD e <command>pf</command> para OpenBSD)."
 
 #. Tag: para
 #, no-c-format
@@ -616,7 +616,7 @@ msgstr "<primary>Monitoramento</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can enable the detection of intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
-msgstr "O monitoramento é uma parte integrante de qualquer política de segurança por várias razões. Entre elas, que o objetivo da segurança não é normalmente restrito a garantir a confidencialidade dos dados, mas também inclui a disponibilidade assegurada dos serviços. Portanto, é imperativo para verificar se tudo funciona como esperado, e para detectar em tempo hábil qualquer comportamento desviante ou mudança na qualidade do serviço(s) processado. Atividade de controle pode permitir a detecção de tentativas de intrusão e permitir uma reação rápida antes que eles causem graves conseqüências. Esta seção analisa algumas ferramentas que podem ser usadas ​​para monitorar vários aspectos de um sistema Debian. Como tal, conclui a seção dedicada ao monitoramento do sistema genérico em <xref linkend=\"advanced-administration\" />."
+msgstr "O monitoramento é uma parte integrante de qualquer política de segurança por várias razões. Entre elas, que o objetivo da segurança não é normalmente restrito a garantir a confidencialidade dos dados, mas também inclui a disponibilidade assegurada dos serviços. Portanto, é imperativo para verificar se tudo funciona como esperado, e para detectar em tempo hábil qualquer comportamento desviante ou mudança na qualidade do serviço(s) processado. Atividade de controle pode permitir a detecção de tentativas de intrusão e permitir uma reação rápida antes que eles causem graves conseqüências. Esta seção analisa algumas ferramentas que podem ser usadas para monitorar vários aspectos de um sistema Debian. Como tal, conclui a seção dedicada ao monitoramento do sistema genérico em <xref linkend=\"advanced-administration\" />."
 
 #. Tag: title
 #, no-c-format
@@ -631,7 +631,7 @@ msgstr "<primary><command>logcheck</command></primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>monitoring</secondary>"
-msgstr "<secondary>monitorando</secondary><primary>logs</primary>"
+msgstr "<primary>logs</primary><secondary>monitorando</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -831,7 +831,7 @@ msgstr "Existem muitas ferramentas dedicadas a esta tarefa. A maioria pode busca
 #. Tag: para
 #, no-c-format
 msgid "This book deals with Munin in some detail (see <xref linkend=\"section.munin\" />) as part of <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />. Debian also provides a similar tool, <emphasis role=\"pkg\">cacti</emphasis>. Its deployment is slightly more complex, since it is based solely on SNMP. Despite having a web interface, grasping the concepts involved in configuration still requires some effort. Reading the HTML documentation (<filename>/usr/share/doc/cacti/html/index.html</filename>) should be considered a prerequisite."
-msgstr "Este livro trata Munin com algum detalhe (ver <xref linkend=\"section.munin\" />) como parte de <xref linkend=\"advanced-administration\" xrefstyle=\"select: rótulo quotedtitle\" />. Debian também fornece uma ferramenta similar, <emphasis role=\"pkg\">cacti</ emphasis>. Sua implantação é um pouco mais complexa, pois se baseia apenas em SNMP. Apesar de ter uma interface web, compreender os conceitos envolvidos na configuração ainda requer algum esforço. Lendo a documentação HTML (<filename>/usr/share/doc/cacti/html/index.html</filename>) deve ser considerado um pré-requisito."
+msgstr "Este livro trata Munin com algum detalhe (ver <xref linkend=\"section.munin\" />) como parte de <xref linkend=\"advanced-administration\" xrefstyle=\"select: rótulo quotedtitle\" />. Debian também fornece uma ferramenta similar, <emphasis role=\"pkg\">cacti</emphasis>. Sua implantação é um pouco mais complexa, pois se baseia apenas em SNMP. Apesar de ter uma interface web, compreender os conceitos envolvidos na configuração ainda requer algum esforço. Lendo a documentação HTML (<filename>/usr/share/doc/cacti/html/index.html</filename>) deve ser considerado um pré-requisito."
 
 #. Tag: title
 #, no-c-format
@@ -886,7 +886,7 @@ msgstr " \t<command>debsums</command> é útil na detecção de alterações em 
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is an interesting tool since it allows finding what installed files have been modified (potentially by an attacker), but this should be taken with a grain of salt. First, because not all Debian packages provide the fingerprints required by this program (they can be found in <filename>/var/lib/dpkg/info/<replaceable>package</replaceable>.md5sums</filename> when they exist). <indexterm><primary>fingerprint</primary></indexterm> <indexterm><primary>control sum</primary></indexterm> <indexterm><primary>MD5</primary></indexterm> <indexterm><primary>SHA1</primary></indexterm> As a reminder: a fingerprint is a value, often a number (even though in hexadecimal notation), that contains a kind of signature for the contents of a file. This signature is calculated with an algorithm (MD5 or SHA1 being well-known examples) that more or less guarantee that even the tiniest change in the file contents implies a change in the fingerprint; this is known as the “avalanche effect”. This allows a simple numerical fingerprint to serve as a litmus test to check whether the contents of a file have been altered. These algorithms are not reversible; in other words, for most of them, knowing a fingerprint doesn't allow finding the corresponding contents. Recent mathematical advances seem to weaken the absoluteness of these principles, but their use is not called into question so far, since creating different contents yielding the same fingerprint still seems to be quite a difficult task."
-msgstr "<command>debsums</command> é uma ferramenta interessante, pois permite encontrar o que instalou arquivos que foram modificados (potencialmente por um atacante), mas isso deve ser tomado com certa reserva. Primeiro, porque nem todos os pacotes do Debian contém as impressões digitais exigidas por este programa (que pode ser encontrado em <filename>/var/lib/dpkg/info/<replaceable>pacote</replaceable>. Md5sums </filename> quando existir). <indexterm><primary>fingerprint</principal></indexterm> <indexterm><primary>control sum</principal></indexterm><indexterm><primary>MD5</principal></indexterm><indexterm><principal>SHA1</principal><indexterm/> Como um lembrete: a impressão digital é um valor, muitas vezes um número (mesmo que em notação hexadecimal), que contém uma espécie de assinatura para o conteúdo de um arquivo. Esta assinatura é calculada com um algoritmo (MD5 ou SHA1 sendo exemplos bem conhecidos) que garanta mais ou menos que, mesmo a mais ínfima mudança no conteúdo do arquivo implica uma mudança na impressão digital, o que é conhecido como o \"efeito avalanche\". Isto permite uma impressão digital numérica simples para servir como um teste para verificar se o conteúdo de um arquivo foram alterado. Estes algoritmos não são reversíveis, em outras palavras, para a maioria deles, sabendo a impressão digital não permite encontrar o conteúdo correspondente. Os recentes avanços matemáticos parecem enfraquecer o poder absoluto destes princípios, mas seu uso não é posto em causa, até agora, produzir a mesma impressão digital apartir de conteúdos diferentes ainda parece ser uma tarefa bastante difícil."
+msgstr "<command>debsums</command> é uma ferramenta interessante, pois permite encontrar o que instalou arquivos que foram modificados (potencialmente por um atacante), mas isso deve ser tomado com certa reserva. Primeiro, porque nem todos os pacotes do Debian contém as impressões digitais exigidas por este programa (que pode ser encontrado em <filename>/var/lib/dpkg/info/<replaceable>pacote</replaceable>. Md5sums </filename> quando existir). <indexterm><primary>fingerprint</primary></indexterm> <indexterm><primary>control sum</primary></indexterm><indexterm><primary>MD5</primary></indexterm><indexterm><primary>SHA1</primary></indexterm> Como um lembrete: a impressão digital é um valor, muitas vezes um número (mesmo que em notação hexadecimal), que contém uma espécie de assinatura para o conteúdo de um arquivo. Esta assinatura é calculada com um algoritmo (MD5 ou SHA1 sendo exemplos bem conhecidos) que garanta mais ou menos que, mesmo a mais ínfima mudança no conteúdo do arquivo implica uma mudança na impressão digital, o que é conhecido como o \"efeito avalanche\". Isto permite uma impressão digital numérica simples para servir como um teste para verificar se o conteúdo de um arquivo foram alterado. Estes algoritmos não são reversíveis, em outras palavras, para a maioria deles, sabendo a impressão digital não permite encontrar o conteúdo correspondente. Os recentes avanços matemáticos parecem enfraquecer o poder absoluto destes princípios, mas seu uso não é posto em causa, até agora, produzir a mesma impressão digital apartir de conteúdos diferentes ainda parece ser uma tarefa bastante difícil."
 
 #. Tag: para
 #, no-c-format
@@ -896,7 +896,7 @@ msgstr "Além disso, os arquivos <filename>MD5sums</filename> estão armazenados
 #. Tag: para
 #, no-c-format
 msgid "The first drawback can be avoided by asking <command>debsums</command> to base its checks on a <filename>.deb</filename> package instead of relying on the <filename>md5sums</filename> file. But that requires downloading the matching <filename>.deb</filename> files first:"
-msgstr "O primeiro inconveniente pode ser evitado, pedindo <comando>debsums</command> para basearsuas verificações em um pacote <filename>.deb</filename> em vez de depender dos arquivos <filename>md5sums</filename>. Mas que requer o download do arquivo <filename>.deb</filename> correspondente primeiro:"
+msgstr "O primeiro inconveniente pode ser evitado, pedindo <command>debsums</command> para basearsuas verificações em um pacote <filename>.deb</filename> em vez de depender dos arquivos <filename>md5sums</filename>. Mas que requer o download do arquivo <filename>.deb</filename> correspondente primeiro:"
 
 #. Tag: screen
 #, no-c-format
@@ -916,7 +916,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "It is also worth noting that, in its default configuration, <command>debsums</command> automatically generates the missing <filename>md5sums</filename> files whenever a package is installed using APT."
-msgstr "É importante notar também que, em sua configuração padrão, <comando>debsums</command> gera automaticamente os arquivos <filename>md5sums</filename> sempre que um pacote é instalado usando o APT."
+msgstr "É importante notar também que, em sua configuração padrão, <command>debsums</command> gera automaticamente os arquivos <filename>md5sums</filename> sempre que um pacote é instalado usando o APT."
 
 #. Tag: para
 #, no-c-format
@@ -971,7 +971,7 @@ msgstr "Como AIDE usa um banco de dados local para comparar os estados dos arqui
 #. Tag: para
 #, no-c-format
 msgid "Many options in <filename>/etc/default/aide</filename> can be used to tweak the behavior of the <emphasis role=\"pkg\">aide</emphasis> package. The AIDE configuration proper is stored in <filename>/etc/aide/aide.conf</filename> and <filename>/etc/aide/aide.conf.d/</filename> (actually, these files are only used by <command>update-aide.conf</command> to generate <filename>/var/lib/aide/aide.conf.autogenerated</filename>). Configuration indicates which properties of which files need to be checked. For instance, the contents of log files changes routinely, and such changes can be ignored as long as the permissions of these files stay the same, but both contents and permissions of executable programs must be constant. Although not very complex, the configuration syntax is not fully intuitive, and reading the <citerefentry><refentrytitle>aide.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page is therefore recommended."
-msgstr "Muitas opções em <filename>/etc/default/aide</filename> pode ser usadas para ajustar o comportamento do pacote <emphasis role=\"pkg\">aide</emphasis>. A configuração AIDE adequada é armazenada em <filename>/etc/aide/aide.conf</filename> e <filename>/etc/aide/aide.conf.d/</filename> (na verdade, esses arquivos são usados <command>update-aide.conf</command> para gerar <filename>/var/lib/aide/aide.conf.autogenerated</filename>). Configuração indica quais propriedades de arquivos precisam ser verificadas. Por exemplo, o conteúdo de mudanças de arquivos log rotineiramente, e estas modificações podem ser ignoradas, desde que as permissões destes arquivos permanecam o mesmo, mas ambos os conteúdos e as permissões de programas executáveis ​​devem ser constantes. Embora não seja muito complexo, a sintaxe de configuração não é totalmente intuitiva, e a leitura da página 5 do manual aide.conf, é recomendada."
+msgstr "Muitas opções em <filename>/etc/default/aide</filename> pode ser usadas para ajustar o comportamento do pacote <emphasis role=\"pkg\">aide</emphasis>. A configuração AIDE adequada é armazenada em <filename>/etc/aide/aide.conf</filename> e <filename>/etc/aide/aide.conf.d/</filename> (na verdade, esses arquivos são usados <command>update-aide.conf</command> para gerar <filename>/var/lib/aide/aide.conf.autogenerated</filename>). Configuração indica quais propriedades de arquivos precisam ser verificadas. Por exemplo, o conteúdo de mudanças de arquivos log rotineiramente, e estas modificações podem ser ignoradas, desde que as permissões destes arquivos permanecam o mesmo, mas ambos os conteúdos e as permissões de programas executáveis devem ser constantes. Embora não seja muito complexo, a sintaxe de configuração não é totalmente intuitiva, e a leitura da página 5 do manual aide.conf, é recomendada."
 
 #. Tag: para
 #, no-c-format
@@ -1013,7 +1013,7 @@ msgstr "O primeiro destes pacotes contém vários pequenos scripts que executam 
 msgid "The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis role=\"pkg\">rkhunter</emphasis> packages allow looking for <emphasis>rootkits</emphasis> potentially installed on the system. As a reminder, these are pieces of software designed to hide the compromise of a system while discreetly keeping control of the machine. The tests are not 100% reliable, but they can usually draw the administrator's attention to potential problems."
 msgstr ""
 "The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis role=\"pkg\">rkhunter</emphasis> packages allow looking for <emphasis>rootkits</emphasis> potentially installed on the system. As a reminder, these are pieces of software designed to hide the compromise of a system while discreetly keeping control of the machine. The tests are not 100% reliable, but they can usually draw the administrator's attention to potential problems.\n"
-"Os pacotes <emphasis role=\"pkg\">chkrootkit</emphasis> e <emphasis role=\"pkg\">rkhunter</emphasis> permitem que procura por  potenciais instalacoes de <emphasis>rootkits</emphasis> no sistema. Como um lembrete, estes são pedaços de software projetados para ocultar o comprometimento de um sistema, enquanto discretamente mantem o controle da máquina. Os testes não são 100% confiáveis​​, mas geralmente eles podem chamar a atenção do administrador a potenciais problemas."
+"Os pacotes <emphasis role=\"pkg\">chkrootkit</emphasis> e <emphasis role=\"pkg\">rkhunter</emphasis> permitem que procura por  potenciais instalacoes de <emphasis>rootkits</emphasis> no sistema. Como um lembrete, estes são pedaços de software projetados para ocultar o comprometimento de um sistema, enquanto discretamente mantem o controle da máquina. Os testes não são 100% confiáveis, mas geralmente eles podem chamar a atenção do administrador a potenciais problemas."
 
 #. Tag: title
 #, no-c-format
@@ -1098,7 +1098,7 @@ msgstr "Prelude traz monitoramento centralizado de informações de segurança. 
 #. Tag: para
 #, no-c-format
 msgid "Snort can be configured as such a sensor. Other possibilities include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) which monitors log files (in a manner similar to <command>logcheck</command>, described in <xref linkend=\"section.logcheck\" />)."
-msgstr "Snort pode ser configurado como tal sensor. Outras possibilidades incluem <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey </ emphasis>), que monitora os arquivos de log (de forma semelhante ao <command>logcheck</command>, descrito em <xref linkend = \"section.logcheck\" />)."
+msgstr "Snort pode ser configurado como tal sensor. Outras possibilidades incluem <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey </emphasis>), que monitora os arquivos de log (de forma semelhante ao <command>logcheck</command>, descrito em <xref linkend = \"section.logcheck\" />)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1118,7 +1118,7 @@ msgstr "<emphasis>ATENCAO</emphasis> Raio de ação"
 #. Tag: para
 #, no-c-format
 msgid "The effectiveness of <command>snort</command> is limited by the traffic seen on the monitored network interface. It will obviously not be able to detect anything if it cannot observe the real traffic. When plugged into a network switch, it will therefore only monitor attacks targeting the machine it runs on, which is probably not the intention. The machine hosting <command>snort</command> should therefore be plugged into the “mirror” port of the switch, which is usually dedicated to chaining switches and therefore gets all the traffic."
-msgstr "A eficácia do <command>snort</comando> é limitada pelo tráfego visto na interface de rede monitorada. Obviamente, não será capaz de detectar qualquer coisa se ​​não pode observar o tráfego real. Quando conectado a um switch de rede, ele irá, portanto, apenas monitorar ataques contra a máquina que ele roda, provavelmente não é a intenção. A máquina de hospedagem <command>snort</command> deve estar ligada ao \"espelho\" da porta do switch, que normalmente é dedicada aos interruptores de encadeamento e, portanto, recebe todo o tráfego."
+msgstr "A eficácia do <command>snort</command> é limitada pelo tráfego visto na interface de rede monitorada. Obviamente, não será capaz de detectar qualquer coisa se não pode observar o tráfego real. Quando conectado a um switch de rede, ele irá, portanto, apenas monitorar ataques contra a máquina que ele roda, provavelmente não é a intenção. A máquina de hospedagem <command>snort</command> deve estar ligada ao \"espelho\" da porta do switch, que normalmente é dedicada aos interruptores de encadeamento e, portanto, recebe todo o tráfego."
 
 #. Tag: para
 #, no-c-format
@@ -1183,7 +1183,7 @@ msgstr "Internamente, um domínio é apenas um tipo, mas um tipo que só se apli
 #. Tag: para
 #, fuzzy, no-c-format
 msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
-msgstr "Por padrão, um programa herda seu domínio para o usuário que o iniciou, mas as políticas SELinux padroes esperam que muitos programas importantes sejam executados em domínios dedicados. Para conseguir isso, estes executáveis ​​são marcados com um tipo específico (por exemplo <literal>ssh</literal>) é marcado com <literal>ssh_exec_t</literal>, e quando o programa é iniciado, ele muda automaticamente no dominio <literal>ssh_t</literal>)). Este mecanismo de transição automática de domínio torna possível conceder apenas os direitos necessários para cada programa. É um princípio fundamental do SELinux."
+msgstr "Por padrão, um programa herda seu domínio para o usuário que o iniciou, mas as políticas SELinux padroes esperam que muitos programas importantes sejam executados em domínios dedicados. Para conseguir isso, estes executáveis são marcados com um tipo específico (por exemplo <literal>ssh</literal>) é marcado com <literal>ssh_exec_t</literal>, e quando o programa é iniciado, ele muda automaticamente no dominio <literal>ssh_t</literal>)). Este mecanismo de transição automática de domínio torna possível conceder apenas os direitos necessários para cada programa. É um princípio fundamental do SELinux."
 
 #. Tag: title
 #, no-c-format
@@ -1322,7 +1322,7 @@ msgstr "A política do SELinux é um conjunto modular de regras, e sua instalaç
 #. Tag: para
 #, no-c-format
 msgid "Those two commands can thus be used to modify the current SELinux configuration, which is stored in <filename>/etc/selinux/default/</filename>. Unlike other configuration files that you can find in <filename>/etc/</filename>, all those files must not be changed by hand. You should use the programs designed for this purpose."
-msgstr "Estes dois comandos podem assim ser usados ​​para modificar a atual configuração do SELinux, que é armazenada em <filename>/etc/selinux/default/</filename>. Ao contrário de outros arquivos de configuração que você pode encontrar em <filename>/etc/</filename>, todos esses arquivos não devem ser alterados manualmente. Você deve usar os programas concebidos para este proposito."
+msgstr "Estes dois comandos podem assim ser usados para modificar a atual configuração do SELinux, que é armazenada em <filename>/etc/selinux/default/</filename>. Ao contrário de outros arquivos de configuração que você pode encontrar em <filename>/etc/</filename>, todos esses arquivos não devem ser alterados manualmente. Você deve usar os programas concebidos para este proposito."
 
 #. Tag: title
 #, no-c-format
@@ -1337,7 +1337,7 @@ msgstr "Uma vez que a NSA não fornece qualquer documentação oficial, a comuni
 #. Tag: para
 #, no-c-format
 msgid "You should also have a look at the dedicated Debian wiki page as well as Russel Coker's blog, who is one of the most active Debian developers working on SELinux support. <ulink type=\"block\" url=\"http://wiki.debian.org/SELinux\" /> <ulink type=\"block\" url=\"http://etbe.coker.com.au/tag/selinux/\" />"
-msgstr "Você também deve ter olhado para a página wiki dedicada ao Debian, bem como blog de Russel Coker, que é um dos desenvolvedores mais ativos do Debian trabalhando no suporte SELinux. <ulink type=\"block\" url=\"http://wiki.debian.org/SELinux\" /> <ulink tipo=\"block\" url = \"http://etbe.coker.com.au/tag/selinux/ \"/>"
+msgstr "Você também deve ter olhado para a página wiki dedicada ao Debian, bem como blog de Russel Coker, que é um dos desenvolvedores mais ativos do Debian trabalhando no suporte SELinux. <ulink type=\"block\" url=\"http://wiki.debian.org/SELinux\" /> <ulink type=\"block\" url=\"http://etbe.coker.com.au/tag/selinux/ \"/>"
 
 #. Tag: title
 #, no-c-format
@@ -1384,7 +1384,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "<command>semodule</command> immediately loads the new configuration unless you use its <literal>-n</literal> option. It is worth noting that the program acts by default on the current configuration (which is indicated by the <literal>SELINUXTYPE</literal> variable in <filename>/etc/selinux/config</filename>), but that you can modify another one by specifying it with the <literal>-s</literal> option."
-msgstr "<command>semodule</command> imediatamente carrega a nova configuração, a menos que você use sua opção <literal>-n </ literal>. É interessante notar que o programa atua por padrão na configuração atual (que é indicada pela variavel <literal>SELINUXTYPE</literal> em <filename>/etc/selinux/config</filename>), mas que você pode modificar outra, especificando-a com a opcao <literal>opção-s</literal>."
+msgstr "<command>semodule</command> imediatamente carrega a nova configuração, a menos que você use sua opção <literal>-n </literal>. É interessante notar que o programa atua por padrão na configuração atual (que é indicada pela variavel <literal>SELINUXTYPE</literal> em <filename>/etc/selinux/config</filename>), mas que você pode modificar outra, especificando-a com a opcao <literal>opção-s</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -1394,12 +1394,12 @@ msgstr "Gerenciando Identidades"
 #. Tag: para
 #, no-c-format
 msgid "Every time that a user logs in, they get assigned an SELinux identity. This identity defines the roles that they will be able to endorse. Those two mappings (from the user to the identity and from this identity to roles) are configurable with the <command>semanage</command> command."
-msgstr "Toda vez que um usuário faz logon, eles se atribui uma identidade SELinux. Esta identidade define os papéis que eles serão capazes de endossar. Estes dois mapeamentos (do usuário para a identidade e de esta identidade para papéis) são configuráveis ​​com o comando <command>semanage</command>."
+msgstr "Toda vez que um usuário faz logon, eles se atribui uma identidade SELinux. Esta identidade define os papéis que eles serão capazes de endossar. Estes dois mapeamentos (do usuário para a identidade e de esta identidade para papéis) são configuráveis com o comando <command>semanage</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "You should definitely read the <citerefentry><refentrytitle>semanage</refentrytitle><manvolnum>8</manvolnum></citerefentry> manual page, even if the command's syntax tends to be similar for all the concepts which are managed. You will find common options to all sub-commands: <literal>-a</literal> to add, <literal>-d</literal> to delete, <literal>-m</literal> to modify, <literal>-l</literal> to list, and <literal>-t</literal> to indicate a type (or domain)."
-msgstr "Você deve definitivamente ler a página de manual <citerefentry>semanage<refentrytitle></refentrytitle><manvolnum> 8 </manvolnum></citerefentry>, mesmo se a sintaxe do comando tende a ser semelhante para todos os conceitos que são geridos. Você vai encontrar opções comuns a todos os sub-comandos: <literal>-a</literal> para adicionar, <literal>-d</ literal> para excluir, <literal>-m</literal> para modificar, <literal>-l</literal> para listar, e <literal>-t</literal> para indicar um tipo (ou domínio)."
+msgstr "Você deve definitivamente ler a página de manual <citerefentry><refentrytitle>semanage</refentrytitle><manvolnum>8</manvolnum></citerefentry>, mesmo se a sintaxe do comando tende a ser semelhante para todos os conceitos que são geridos. Você vai encontrar opções comuns a todos os sub-comandos: <literal>-a</literal> para adicionar, <literal>-d</literal> para excluir, <literal>-m</literal> para modificar, <literal>-l</literal> para listar, e <literal>-t</literal> para indicar um tipo (ou domínio)."
 
 #. Tag: para
 #, no-c-format
@@ -1490,7 +1490,7 @@ msgstr "Da mesma forma, portas TCP/UDP são rotuladas de uma forma que garante q
 #. Tag: para
 #, no-c-format
 msgid "Some SELinux modules export boolean options that you can tweak to alter the behavior of the default rules. The <command>getsebool</command> utility can be used to inspect those options (<command>getsebool <replaceable>boolean</replaceable></command> displays one option, and <command>getsebool -a</command> them all). The <command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> command changes the current value of a boolean option. The <literal>-P</literal> option makes the change permanent, it means that the new value becomes the default and will be kept across reboots. The example below grants web servers an access to home directories (this is useful when users have personal websites in <filename>~/public_html/</filename>)."
-msgstr "Alguns módulos do SELinux exportar opções booleanas que você pode alterar para alterar o comportamento das regras padrão. O utilitário <command>getsebool</command> pode ser usado para inspecionar as opções (<command>getsebool<replaceable>boolean</replaceable></command> exibe uma opção, e <command>getsebool -a</command> todas elas). O comando <command>setsebool <replaceable>boolean</replaceable> <replaceable>value</ replaceable></command> muda o valor atual de uma opção booleana. A opcao <literal>-P</literal> faz a mudança permanente, isso significa que o novo valor passa a ser o padrão e será mantido entre as reinicializações. O exemplo abaixo servidores web concede acesso para diretórios home (isto é útil quando os usuários têm sites pessoais em <filename>~/public_html/</filename>)."
+msgstr "Alguns módulos do SELinux exportar opções booleanas que você pode alterar para alterar o comportamento das regras padrão. O utilitário <command>getsebool</command> pode ser usado para inspecionar as opções (<command>getsebool<replaceable>boolean</replaceable></command> exibe uma opção, e <command>getsebool -a</command> todas elas). O comando <command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> muda o valor atual de uma opção booleana. A opcao <literal>-P</literal> faz a mudança permanente, isso significa que o novo valor passa a ser o padrão e será mantido entre as reinicializações. O exemplo abaixo servidores web concede acesso para diretórios home (isto é útil quando os usuários têm sites pessoais em <filename>~/public_html/</filename>)."
 
 #. Tag: screen
 #, no-c-format
@@ -1520,7 +1520,7 @@ msgstr "Uma vez que a política do SELinux é modular, pode ser interessante par
 #. Tag: para
 #, no-c-format
 msgid "To create new modules, the <emphasis role=\"pkg\">selinux-policy-dev</emphasis> package is required, as well as <emphasis role=\"pkg\">selinux-policy-doc</emphasis>. The latter contains the documentation of the standard rules (<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) and sample files that can be used as templates to create new modules. Install those files and study them more closely:"
-msgstr "Para criar novos módulos, o pacote <emphasis role=\"pkg\">selinux-policy-dev</emphasis> é necessário, bem como  <emphasis role=\"pkg\">selinux-policy-doc</emphasis>. Este último contém a documentação das regras padrão (<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) da amostra e arquivos que podem ser usados ​​como modelos para criar novos módulos. Instale estes arquivos e os estude mais de perto:"
+msgstr "Para criar novos módulos, o pacote <emphasis role=\"pkg\">selinux-policy-dev</emphasis> é necessário, bem como  <emphasis role=\"pkg\">selinux-policy-doc</emphasis>. Este último contém a documentação das regras padrão (<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) da amostra e arquivos que podem ser usados como modelos para criar novos módulos. Instale estes arquivos e os estude mais de perto:"
 
 #. Tag: screen
 #, no-c-format
@@ -1538,7 +1538,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.te</filename> file is the most important one. It defines the rules. The <filename>.fc</filename> file defines the “file contexts”, that is the types assigned to files related to this module. The data within the <filename>.fc</filename> file are used during the file labeling step. Finally, the <filename>.if</filename> file defines the interface of the module: it's a set of “public functions” that other modules can use to properly interact with the module that you're creating."
-msgstr "O arquivo <filename>.te</filename> é o mais importante. Ele define as regras. O arquivo <filename>.fc</filename> define os arquivos de contextos\", isto é, os tipos atribuídos a arquivos relacionados a este módulo. Os dados dentro do arquivo <filename>.fc</filename> são utilizados durante a etapa de rotulagem do arquivo. Finalmente, o arquivo <filename>if</filename> define a interface do módulo:. É um conjunto de \"funções públicas\" que outros módulos podem usar ​​para interagir adequadamente com o módulo que você está criando."
+msgstr "O arquivo <filename>.te</filename> é o mais importante. Ele define as regras. O arquivo <filename>.fc</filename> define os arquivos de contextos\", isto é, os tipos atribuídos a arquivos relacionados a este módulo. Os dados dentro do arquivo <filename>.fc</filename> são utilizados durante a etapa de rotulagem do arquivo. Finalmente, o arquivo <filename>if</filename> define a interface do módulo:. É um conjunto de \"funções públicas\" que outros módulos podem usar para interagir adequadamente com o módulo que você está criando."
 
 #. Tag: title
 #, no-c-format
@@ -1979,7 +1979,7 @@ msgstr "<emphasis>COMPLEMENTOS</emphasis> Nao ha papeis nas regras de politicas"
 #. Tag: para
 #, no-c-format
 msgid "It might seem weird that roles do not appear at all when creating new rules. SELinux uses only the domains to find out which operations are allowed. The role intervenes only indirectly by allowing the user to switch to another domain. SELinux is based on a theory known as <emphasis>Type Enforcement</emphasis> and the type is the only element that matters when granting rights. <indexterm><primary>Type Enforcement</primary></indexterm> <indexterm><primary>Enforcement, Type Enforcement</primary></indexterm>"
-msgstr "Pode parecer estranho que os papéis não aparecem em tudo ao criar novas regras. SELinux utiliza apenas os domínios para descobrir quais operações são permitidas. A intervenção do papel apenas de forma indireta, permitindo ao usuário alternar para outro domínio. SELinux é baseado em uma teoria conhecida como <emphasis>Tipo de aplicacao</emphasis> e o tipo é o único elemento que importa na concessão de direitos. <indexterm><primary>Tipo de aplicacao</principal></indexterm><indexterm><primary>Aplicacao, Tipo de aplicacai</principal></indexterm>"
+msgstr "Pode parecer estranho que os papéis não aparecem em tudo ao criar novas regras. SELinux utiliza apenas os domínios para descobrir quais operações são permitidas. A intervenção do papel apenas de forma indireta, permitindo ao usuário alternar para outro domínio. SELinux é baseado em uma teoria conhecida como <emphasis>Tipo de aplicacao</emphasis> e o tipo é o único elemento que importa na concessão de direitos. <indexterm><primary>Tipo de aplicacao</primary></indexterm><indexterm><primary>Aplicacao, Tipo de aplicacai</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -1989,7 +1989,7 @@ msgstr "Compilando os Arquivos"
 #. Tag: para
 #, no-c-format
 msgid "Once the 3 files (<filename>example.if</filename>, <filename>example.fc</filename>, and <filename>example.te</filename>) match your expectations for the new rules, just run <command>make</command> to generate a module in the <filename>example.pp</filename> file (you can immediately load it with <command>semodule -i example.pp</command>). If several modules are defined, <command>make</command> will create all the corresponding <filename>.pp</filename> files."
-msgstr "Uma vez que os 3 arquivos (<filename>example.if</filename>, <filename>example.fc</filename>, e <filename>example.te</filename>) correspondem às suas expectativas para as novas regras, basta executar <comando>make</command> para gerar um módulo no arquivo <filename>example.pp file></filename> (você pode o carregar imediatamente com <command>semodule -i example.pp</command>). Se vários módulos são definidos, <command>make</command> irá criar todos os arquivos correspondentes <filename>.pp</ filename>."
+msgstr "Uma vez que os 3 arquivos (<filename>example.if</filename>, <filename>example.fc</filename>, e <filename>example.te</filename>) correspondem às suas expectativas para as novas regras, basta executar <command>make</command> para gerar um módulo no arquivo <filename>example.pp file></filename> (você pode o carregar imediatamente com <command>semodule -i example.pp</command>). Se vários módulos são definidos, <command>make</command> irá criar todos os arquivos correspondentes <filename>.pp</filename>."
 
 #. Tag: title
 #, no-c-format
@@ -2009,7 +2009,7 @@ msgstr "Riscos Inerentes a Aplicações Web"
 #. Tag: para
 #, no-c-format
 msgid "The universal character of web applications led to their proliferation. Several are often run in parallel: a webmail, a wiki, some groupware system, forums, a photo gallery, a blog, and so on. Many of those applications rely on the “LAMP” (<emphasis>Linux, Apache, MySQL, PHP</emphasis>) stack. Unfortunately, many of those applications were also written without much consideration for security problems. Data coming from outside is, too often, used with little or no validation. Providing specially-crafted values can be used to subvert a call to a command so that another one is executed instead. Many of the most obvious problems have been fixed as time has passed, but new security problems pop up regularly."
-msgstr "O caráter universal das aplicações web levou à sua proliferação. Diversas são freqüentemente executadas em paralelo: um webmail, um wiki, algum sistema de groupware, fóruns, uma galeria de fotos, um blog, e assim por diante. Muitas dessas aplicações dependem da pilha \"LAMP\" (<emphasis>Linux, Apache, MySQL, PHP</emphasis>). Infelizmente, muitas dessas aplicações também foram escritas sem considerar muito os problemas de segurança. Dados provenientes do exterior são, muitas vezes, utilizados com pouca ou nenhuma validação. Proporcionando valores criados especialmente para serem usados ​​para destruir uma chamada para um comando de modo que um outro seja executado em vez disso. Muitos dos problemas mais óbvios foram corrigidos com o parrar do tempo, mas novos problemas de segurança surgem regularmente."
+msgstr "O caráter universal das aplicações web levou à sua proliferação. Diversas são freqüentemente executadas em paralelo: um webmail, um wiki, algum sistema de groupware, fóruns, uma galeria de fotos, um blog, e assim por diante. Muitas dessas aplicações dependem da pilha \"LAMP\" (<emphasis>Linux, Apache, MySQL, PHP</emphasis>). Infelizmente, muitas dessas aplicações também foram escritas sem considerar muito os problemas de segurança. Dados provenientes do exterior são, muitas vezes, utilizados com pouca ou nenhuma validação. Proporcionando valores criados especialmente para serem usados para destruir uma chamada para um comando de modo que um outro seja executado em vez disso. Muitos dos problemas mais óbvios foram corrigidos com o parrar do tempo, mas novos problemas de segurança surgem regularmente."
 
 #. Tag: title
 #, no-c-format
@@ -2282,7 +2282,7 @@ msgstr "um prompt de comando ou uma sessão de saudação indicando que a últim
 #. Tag: para
 #, no-c-format
 msgid "errors caused by the <filename>/tmp/</filename> partition being full, which turned out to be full of illegal copies of movies;"
-msgstr "erros causados ​​pela partição <filename>/tmp/</filename> estar cheia, o que acabou por estar cheio de cópias ilegais de filmes;"
+msgstr "erros causados pela partição <filename>/tmp/</filename> estar cheia, o que acabou por estar cheio de cópias ilegais de filmes;"
 
 #. Tag: para
 #, no-c-format
@@ -2317,7 +2317,7 @@ msgstr "Compreender o ataque e/ou ação legal contra os atacantes envolvente re
 #. Tag: para
 #, no-c-format
 msgid "In the heat of action, administrators are often tempted to perform many checks on the compromised machine; this is usually not a good idea. Every command is potentially subverted and can erase pieces of evidence. The checks should be restricted to the minimal set (<command>netstat -tupan</command> for network connections, <command>ps auxf</command> for a list of processes, <command>ls -alR /proc/[0-9]*</command> for a little more information on running programs), and every performed check should carefully be written down."
-msgstr "No calor da ação, os administradores são muitas vezes tentados a realizar muitas verificações na máquina comprometida; esta geralmente não é uma boa idéia. Cada comando é potencialmente subvertido e pode apagar elementos de prova. Os cheques devem ser restritas ao conjunto mínimo (<command>netstat -tupan</ command> para conexões de rede, <command>ps auxf</command> para uma lista de processos, <command>ls -alR /proc/[0-9]*</command> para um pouco mais de informação sobre a execução de programas), e cada seleção realizada deve ser cuidadosamente anotada."
+msgstr "No calor da ação, os administradores são muitas vezes tentados a realizar muitas verificações na máquina comprometida; esta geralmente não é uma boa idéia. Cada comando é potencialmente subvertido e pode apagar elementos de prova. Os cheques devem ser restritas ao conjunto mínimo (<command>netstat -tupan</command> para conexões de rede, <command>ps auxf</command> para uma lista de processos, <command>ls -alR /proc/[0-9]*</command> para um pouco mais de informação sobre a execução de programas), e cada seleção realizada deve ser cuidadosamente anotada."
 
 #. Tag: title
 #, no-c-format
@@ -2337,7 +2337,7 @@ msgstr "Se uma análise tão quente ainda é necessária, deve ser tomado o cuid
 #. Tag: para
 #, no-c-format
 msgid "Once the “dynamic” elements have been saved, the next step is to store a complete image of the hard-disk. Making such an image is impossible if the filesystem is still evolving, which is why it must be remounted read-only. The simplest solution is often to halt the server brutally (after running <command>sync</command>) and reboot it on a rescue CD. Each partition should be copied with a tool such as <command>dd</command>; these images can be sent to another server (possibly with the very convenient <command>nc</command> tool). Another possibility may be even simpler: just get the disk out of the machine and replace it with a new one that can be reformatted and reinstalled."
-msgstr "Uma vez que os elementos \"dinâmicos\" foram salvos, o próximo passo é armazenar uma imagem completa do disco rígido. Fazer tal imagem é impossível se o sistema ainda está executando, é por isso que deve ser remontado somente para leitura. A solução mais simples é muitas vezes parar o servidor brutalmente (após a execucao de <command>sync</command>) e reiniciá-lo em um CD de recuperação. Cada partição deve ser copiada com uma ferramenta como o <command>dd</command>, estas imagens podem ser enviadas para outro servidor (possivelmente com a muito conveniente ferramenta <command>nc</ command>). Outra possibilidade pode ser ainda mais simples: é só pegar o disco da máquina e substituí-lo por um novo que pode ser reformatado e reinstalado."
+msgstr "Uma vez que os elementos \"dinâmicos\" foram salvos, o próximo passo é armazenar uma imagem completa do disco rígido. Fazer tal imagem é impossível se o sistema ainda está executando, é por isso que deve ser remontado somente para leitura. A solução mais simples é muitas vezes parar o servidor brutalmente (após a execucao de <command>sync</command>) e reiniciá-lo em um CD de recuperação. Cada partição deve ser copiada com uma ferramenta como o <command>dd</command>, estas imagens podem ser enviadas para outro servidor (possivelmente com a muito conveniente ferramenta <command>nc</command>). Outra possibilidade pode ser ainda mais simples: é só pegar o disco da máquina e substituí-lo por um novo que pode ser reformatado e reinstalado."
 
 #. Tag: title
 #, no-c-format
@@ -2382,7 +2382,7 @@ msgstr "arquivos <filename>.bash_history</filename> muitas vezes prevem uma leit
 #. Tag: para
 #, no-c-format
 msgid "so does listing files that were recently created, modified or accessed;"
-msgstr "o mesmo acontece listando arquivos que foram recentemente criados, modificados ou acessados​​;"
+msgstr "o mesmo acontece listando arquivos que foram recentemente criados, modificados ou acessados;"
 
 #. Tag: para
 #, no-c-format

@@ -128,7 +128,7 @@ msgstr "Überprüfen und Identifizieren der Dienste"
 #. Tag: para
 #, no-c-format
 msgid "As simple as it seems, this step is essential. A serious administrator truly knows the principal roles of each server, but such roles can change, and sometimes experienced users may have installed “wild” services. Knowing that they exist will at least allow you to decide what to do with them, rather than delete them haphazardly."
-msgstr "So einfach es auch scheint, dieser Schritt ist entscheidend. Ein professioneller Administrator kennt die primären Aufgaben jedes Servers genau. Solche Aufgaben können sich jedoch ändern, und manchmal haben erfahrene Nutzer vielleicht auch \\\"wilde\\\" Dienste installiert. Wenn man wenigstens über sie Bescheid weiß, kann man zumindest entscheiden, was man mit ihnen machen wird, anstatt sie planlos zu löschen. "
+msgstr "So einfach es auch scheint, dieser Schritt ist entscheidend. Ein professioneller Administrator kennt die primären Aufgaben jedes Servers genau. Solche Aufgaben können sich jedoch ändern, und manchmal haben erfahrene Nutzer vielleicht auch \"wilde\" Dienste installiert. Wenn man wenigstens über sie Bescheid weiß, kann man zumindest entscheiden, was man mit ihnen machen wird, anstatt sie planlos zu löschen. "
 
 #. Tag: para
 #, no-c-format
@@ -143,7 +143,7 @@ msgstr "Netzwerk und Prozesse"
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><command>nmap</command></primary></indexterm> The <command>nmap</command> tool (in the package with the same name) will quickly identify Internet services hosted by a network connected machine without even requiring to log in to it. Simply call the following command on another machine connected to the same network:"
-msgstr "</indexterm></primary>Das <command>nmap</command> Werkzeug </primary></indexterm> (im gleichnamigen Paket) identifiziert schnell Internetdienste, die auf einer Maschine laufen und die über das Netzwerk verbunden sind, ohne dass ein Login benötigt wird. Man braucht nur das folgende Kommando auf einem anderen Rechner aufzurufen, der mit demselben Netzwerk verbunden ist:"
+msgstr "<indexterm><primary>Das <command>nmap</command> Werkzeug </primary></indexterm> (im gleichnamigen Paket) identifiziert schnell Internetdienste, die auf einer Maschine laufen und die über das Netzwerk verbunden sind, ohne dass ein Login benötigt wird. Man braucht nur das folgende Kommando auf einem anderen Rechner aufzurufen, der mit demselben Netzwerk verbunden ist:"
 
 #. Tag: screen
 #, no-c-format
@@ -196,8 +196,8 @@ msgstr "Einige Netzwerkbefehle arbeiten entweder mit IPv4 (was normalerweise der
 #, no-c-format
 msgid "If the server is a Unix machine offering shell accounts to users, it is interesting to determine if processes are executed in the background in the absence of their owner. The command <command>ps auxw</command> displays a list of all processes with their user identity. By checking this information against the output of the <command>who</command> command, which gives a list of logged in users, it is possible to identify wild servers or programs running in the background. Looking at <filename>crontabs</filename> (tables listing automatic actions scheduled by users) will often provide interesting information on functions fulfilled by the server (a complete explanation of <command>cron</command> is available in <xref linkend=\"sect.task-scheduling-cron-atd\" />)."
 msgstr ""
-"Wenn auf einem Server Unix läuft und Anwendern eine Shell angeboten wird, ist es oftmals interessant, zu wissen, ob ein Prozess auch in Abwesenheit des Users im Hintergrund läuft. Das Dienstprogramm <command>ps auxw</command> zeigt alle laufende Prozesse mit der zugehörigen ID. Ein Gegenprüfen dieser Informationen mit der Ausgabe des <command>who</command>-Befehls, das eine Liste der angemeldeten User zeigt, kann helfen, verwaiste Prozesse aufzeigen.\\n\n"
-"Ein Blick auf <filename>crontab</filename> zeigt oftmals interessante Information über Funktionen und Prozesse, die der Server regelmäßig ausführt. Eine vollständige Erläuterung des <command>cron</command>-Befehls findet sich hier <xref linkend=\\\"sect.task-scheduling-cron-atd\\\" />"
+"Wenn auf einem Server Unix läuft und Anwendern eine Shell angeboten wird, ist es oftmals interessant, zu wissen, ob ein Prozess auch in Abwesenheit des Users im Hintergrund läuft. Das Dienstprogramm <command>ps auxw</command> zeigt alle laufende Prozesse mit der zugehörigen ID. Ein Gegenprüfen dieser Informationen mit der Ausgabe des <command>who</command>-Befehls, das eine Liste der angemeldeten User zeigt, kann helfen, verwaiste Prozesse aufzeigen.n\n"
+"Ein Blick auf <filename>crontab</filename> zeigt oftmals interessante Information über Funktionen und Prozesse, die der Server regelmäßig ausführt. Eine vollständige Erläuterung des <command>cron</command>-Befehls findet sich hier <xref linkend=\"sect.task-scheduling-cron-atd\" />"
 
 #. Tag: para
 #, no-c-format
@@ -277,7 +277,7 @@ msgstr "Ein kurzer Blick auf die Datei <filename>/etc/apt/sources.list</filename
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sources.list</filename> file is often a good indicator: the majority of administrators keep, at least in comments, the list of prior APT sources used. But you should not forget that sources used in the past might have been deleted, and that some random packages grabbed on the Internet might have been manually installed (with the <command>dpkg</command> command). In this case, the machine is misleading in its appearance of “standard” Debian. This is why you should pay attention to any indication that will give away the presence of external packages (appearance of <filename>deb</filename> files in unusual directories, package version numbers with a special suffix indicating that it originated from outside the Debian project, such as <literal>ubuntu</literal> or <literal>ximian</literal>, etc.)"
-msgstr "Die Datei <filename>sources.list</filename> ist oft ein guter Indikator: Die Mehrheit der Administratoren lassen Einträge zu früher genutzten APT-Quellen bestehen, oft auch auskommentiert. Dabei ist zu beachten, dass ehemalige Quellen inzwischen gelöscht und auch manuell zufällig aus dem Internet heruntergeladene Pakete installiert worden sein können (mithilfe des Kommandos <command>dpkg</command>). In diesem Fall trügt das Erscheinungsbild eines \\\"Standard\\\"-Debian. Darum sollte man auf jeden noch so kleinen Hinweis achten, der auf die Existenz externer Pakete hindeutet (Vorhandensein von <filename>deb</filename>-Dateien in unüblichen Verzeichnissen, Paketversionsnummern mit spezieller Endung, welche auf eine Herkunft außerhalb des Debian-Projekts hindeuten, so zum Beispiel <literal>ubuntu</literal>, <literal>ximian</literal> etc.)."
+msgstr "Die Datei <filename>sources.list</filename> ist oft ein guter Indikator: Die Mehrheit der Administratoren lassen Einträge zu früher genutzten APT-Quellen bestehen, oft auch auskommentiert. Dabei ist zu beachten, dass ehemalige Quellen inzwischen gelöscht und auch manuell zufällig aus dem Internet heruntergeladene Pakete installiert worden sein können (mithilfe des Kommandos <command>dpkg</command>). In diesem Fall trügt das Erscheinungsbild eines \"Standard\"-Debian. Darum sollte man auf jeden noch so kleinen Hinweis achten, der auf die Existenz externer Pakete hindeutet (Vorhandensein von <filename>deb</filename>-Dateien in unüblichen Verzeichnissen, Paketversionsnummern mit spezieller Endung, welche auf eine Herkunft außerhalb des Debian-Projekts hindeuten, so zum Beispiel <literal>ubuntu</literal>, <literal>ximian</literal> etc.)."
 
 #. Tag: para
 #, no-c-format
@@ -292,7 +292,7 @@ msgstr "<emphasis>Schnellansicht</emphasis> <emphasis role=\"pkg\">cruft</emphas
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">cruft</emphasis> package proposes to list the available files that are not owned by any package. It has some filters (more or less effective, and more or less up to date) to avoid reporting some legitimate files (files generated by Debian packages, or generated configuration files not managed by <command>dpkg</command>, etc.)."
-msgstr "Das <emphasis role=\\\"pkg\\\">cruft</emphasis>-Paket schlägt vor, die verfügbaren Dateien aufzulisten, die nicht zu einem Paket gehören. Es besitzt einige Filter (mehr oder weniger effektiv und mehr oder weniger aktuell), um zu vermeiden, dass legitime Dateien (solche, die von Debian-Paketen generiert werden, oder generierte Konfigurationsdateien, die nicht von <command>dpkg</command> usw. gemanagt werden) aufgeführt werden."
+msgstr "Das <emphasis role=\"pkg\">cruft</emphasis>-Paket schlägt vor, die verfügbaren Dateien aufzulisten, die nicht zu einem Paket gehören. Es besitzt einige Filter (mehr oder weniger effektiv und mehr oder weniger aktuell), um zu vermeiden, dass legitime Dateien (solche, die von Debian-Paketen generiert werden, oder generierte Konfigurationsdateien, die nicht von <command>dpkg</command> usw. gemanagt werden) aufgeführt werden."
 
 #. Tag: para
 #, no-c-format
@@ -327,7 +327,7 @@ msgstr "Installation der passenden Debian-Version"
 #. Tag: para
 #, no-c-format
 msgid "<xref linkend=\"tab-corresp\" xrefstyle=\"nopage\" /> is not intended to be exhaustive, but may be helpful. In any case, the original documentation for the computer is the most reliable source to find this information."
-msgstr "Es ist nicht vorgesehen, dass <xref linkend=\\\"tab-corresp\\\" xrefstyle=\\\"nopage\\\" /> vollständig ist, aber es kann hilfreich sein. In jedem Fall ist die Originaldokumentation die verlässlichste Quelle, um diese Informationen zu finden. "
+msgstr "Es ist nicht vorgesehen, dass <xref linkend=\"tab-corresp\" xrefstyle=\"nopage\" /> vollständig ist, aber es kann hilfreich sein. In jedem Fall ist die Originaldokumentation die verlässlichste Quelle, um diese Informationen zu finden. "
 
 #. Tag: title
 #, no-c-format
