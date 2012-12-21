@@ -32,28 +32,29 @@
     linkend="short-remedial-course"/> before reading this chapter.</para>
   </sidebar>
 
-  <para>The installer for <emphasis role="distribution">Squeeze</emphasis>
+  <para>The installer for <emphasis role="distribution">Wheezy</emphasis>
   is based on <command>debian-installer</command>. Its modular design
   enables it to work in various scenarios and allows it to evolve and adapt
   to changes. Despite the limitations implied by the need to support a
   large number of architectures, this installer is very accessible to
   beginners, since it assists users at each stage of the process. Automatic
   hardware detection, guided partitioning, and graphical user interfaces
-  have solved most of the problems that newbies used to face.</para>
+  have solved most of the problems that newbies used to face in the
+  early years of Debian.</para>
   <indexterm><primary>installer</primary></indexterm>
   <indexterm><primary><command>debian-installer</command></primary></indexterm>
 
-  <para>Installation requires 56 MB of RAM (Random Access Memory) and at
-  least 650 MB of hard drive space. All Falcot computers meet these
+  <para>Installation requires 80 MB of RAM (Random Access Memory) and at
+  least 700 MB of hard drive space. All Falcot computers meet these
   criteria. Note, however, that these figures apply to the installation of
   a very limited system without a graphical desktop. A minimum of 512 MB
   of RAM and 5 GB of hard drive space are really recommended for a basic
   office desktop workstation.</para>
 
   <sidebar role="fil">
-    <title><emphasis>BEWARE</emphasis> Upgrading from Lenny</title>
+    <title><emphasis>BEWARE</emphasis> Upgrading from Squeeze</title>
 
-    <para>If you already have Debian Lenny installed on your computer, this
+    <para>If you already have Debian Squeeze installed on your computer, this
     chapter is not for you! Unlike other distributions, Debian allows
     updating a system from one version to the next without having to
     reinstall the system. Reinstalling, in addition to being unnecessary,
@@ -85,27 +86,34 @@
     <section id="section.install-cd">
       <title>Installing from a CD-ROM/DVD-ROM</title>
 
-      <para>The most widely used installation media is CD-ROM (or DVD-ROM,
-      which behaves exactly the same way): the computer is booted from this
-      media, and the installation program takes over.</para>
+      <para>The most widely used installation method is from a CD-ROM
+      (or DVD-ROM, which behaves exactly the same way): the computer
+      is booted from this media, and the installation program takes
+      over.</para>
 
-      <para>Various CD-ROMs have different purposes:
+      <para>Various CD-ROM families have different purposes:
       <emphasis>netinst</emphasis> (network installation) contains the
-      installer and the base Debian system; all other programs are then
-      downloaded. Its “image”, that is the ISO-9660 filesystem that
-      contains the exact contents of the disk, only takes up about 150 MB.
-      Then we have the <emphasis>businesscard</emphasis> or
-      <emphasis>bizcard</emphasis> CD-ROM, which only provides the
-      installer, and which requires all the Debian packages (including the
-      base system) to be downloaded. Since its image only takes up 35 MB,
-      it can be burnt on a “business card” type CD-ROM, from which it
-      takes its name. Finally, the complete set offers all packages and
-      allows for installation on a computer that has no Internet access; it
-      requires around 50 CD-ROMs (or eight DVD-ROMs, or two Blu-ray disks).
-      But the programs are divided among the disks according to their
-      popularity and importance; the first three disks will be sufficient
-      for most installations, since they contain the most used
-      software.</para>
+      installer and the base Debian system; all other programs are
+      then downloaded. Its “image”, that is the ISO-9660 filesystem
+      that contains the exact contents of the disk, only takes up
+      about 150 to 250 MB (depending on architecture).
+      On the other hand, the complete set offers all packages and
+      allows for installation on a computer that has no Internet
+      access; it requires around 70 CD-ROMs (or 10 DVD-ROMs, or two
+      Blu-ray disks).  But the programs are divided among the disks
+      according to their popularity and importance; the first three
+      disks will be sufficient for most installations, since they
+      contain the most used software.</para>
+
+      <para>There used to also be a <emphasis>businesscard</emphasis>
+      or <emphasis>bizcard</emphasis> CD-ROM, which only provided the
+      installer, and which required all the Debian packages (including
+      the base system) to be downloaded. Since its image only took up
+      35 MB, it was meant to be burnt on a “business card” type
+      CD-ROM.  This CD-ROM is no longer provided for Wheezy: providing
+      it required extra work for the maintainers of the installer, for
+      very little actual use compared to the
+      <emphasis>netinst</emphasis> CD-ROMs.</para>
 
       <sidebar>
         <title><emphasis>TIP</emphasis> Multi-architecture disks</title>
@@ -115,13 +123,13 @@
 	you must take care to choose those which work on the hardware of
 	the computer on which you wish to install them.</para>
 
-	<para>Some CD/DVD-ROM images can work on several architectures. We
-	thus have a <emphasis>netinst</emphasis> CD-ROM image for the
+	<para>Some CD/DVD-ROM images can work on several
+	architectures. We thus have a CD-ROM image for the
 	<emphasis>i386</emphasis> and <emphasis>amd64</emphasis>
 	architectures. There is also a DVD-ROM image that contains the
 	installer and a selection of binary packages for
-	<emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well
-	as the corresponding source packages.</para>
+	<emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as
+	well as the corresponding source packages.</para>
       </sidebar>
       <indexterm><primary>CD-ROM</primary><secondary>installation CD-ROM</secondary></indexterm>
       <indexterm><primary>CD-ROM</primary><secondary><emphasis>netinst CD-ROM</emphasis></secondary></indexterm>
@@ -140,7 +148,6 @@
       <sidebar role="fil">
         <title><emphasis>IN PRACTICE</emphasis> Debian on CD-ROM</title>
 
-        
 	<para><indexterm><primary>CD-ROM vendor</primary></indexterm>
 	Debian CD-/DVD-ROMs can also be purchased; Raphaël Hertzog
 	proposes some on his blog, where 10% of the profit is donated to
@@ -162,22 +169,23 @@
       sectors, and this feature, while common, is never documented on the
       packaging of the keys you find for sale.</para>
 
-      <para>The installation manual explains how to create a USB key that
-      contains the <command>debian-installer</command>. The procedure has
-      been significantly simplified with <emphasis
-      role="distribution">Squeeze</emphasis>, since the ISO images for i386
-      and amd64 architectures are hybrid images that can boot from a CD-ROM
+      <para>The installation manual explains how to create a USB key
+      that contains the <command>debian-installer</command>. The
+      procedure has been significantly simplified for the <emphasis
+      role="distribution">Squeeze</emphasis> release compared to the
+      previous versions; the ISO images for i386 and amd64
+      architectures are now hybrid images that can boot from a CD-ROM
       as well as from a USB key.</para>
 
-      <para>You must first identify the peripheral name of the USB key (ex:
-      <literal>/dev/sdb</literal>); the simplest means to do this is to
-      check the messages issued by the kernel using the
-      <command>dmesg</command> command. Then you must copy the previously
-      downloaded ISO image (for example
-      debian-6.0.0-amd64-i386-netinst.iso) with the command <command>cat
-      debian-6.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command>.
-      This command requires administrator rights, since it directly
-      accesses the USB key peripheral and blindly erases its
+      <para>You must first identify the device name of the USB key
+      (ex: <literal>/dev/sdb</literal>); the simplest means to do this
+      is to check the messages issued by the kernel using the
+      <command>dmesg</command> command. Then you must copy the
+      previously downloaded ISO image (for example
+      debian-7.0.0-amd64-i386-netinst.iso) with the command
+      <command>cat debian-7.0.0-amd64-i386-netinst.iso &gt;/dev/sdb;
+      sync</command>.  This command requires administrator rights,
+      since it accesses the USB key directly and blindly erases its
       content.</para>
 
       <para>A more detailed explanation is available in the installation
@@ -185,7 +193,7 @@
       preparing a USB key that is more complex, but that allows to
       customize the installer's default options (those set in the kernel
       command line). <ulink type="block"
-      url="http://www.debian.org/releases/stable/i386/ch04s03.html"/></para>
+      url="http://www.debian.org/releases/stable/amd64/ch04s03.html"/></para>
     </section>
     <section id="section.install-net">
       <title>Installing through Network Booting</title>
@@ -194,10 +202,11 @@
       <indexterm><primary>installation</primary><secondary><emphasis>TFTP installation</emphasis></secondary></indexterm>
 
       <para>Many BIOSes allow booting directly from the network by
-      downloading the kernel to boot. This method (which has several names,
-      such as <acronym>PXE</acronym> or <acronym>TFTP</acronym> boot) can
-      be a life-saver if the computer does not have a CD-ROM reader, or if
-      the BIOS can't boot from such media.</para>
+      downloading a kernel and a minimal filesystem image. This method
+      (which has several names, such as <acronym>PXE</acronym> or
+      <acronym>TFTP</acronym> boot) can be a life-saver if the
+      computer does not have a CD-ROM reader, or if the BIOS can't
+      boot from such media.</para>
 
       <para>This installation method works in two steps. First, while
       booting the computer, the BIOS (or the network card) issues a
@@ -214,9 +223,9 @@
       <para>All the details of this method are available in the
       installation guide (“Preparing files for TFTP Net Booting”
       section). <ulink type="block"
-      url="http://www.debian.org/releases/stable/i386/ch05s01.html#boot-tftp"/><ulink
+      url="http://www.debian.org/releases/stable/amd64/ch05s01.html#boot-tftp"/><ulink
       type="block"
-      url="http://www.debian.org/releases/stable/i386/ch04s05.html"/></para>
+      url="http://www.debian.org/releases/stable/amd64/ch04s05.html"/></para>
     </section>
     <section id="section.install-auto">
       <title>Other Installation Methods</title>
@@ -242,17 +251,18 @@
       process.</para>
 
       <para>For a standard installation, you only need to choose
-      “Install” or “Graphical install” (with the arrows), then
-      press the <keycap>Enter</keycap> key to initiate the remainder of the
-      installation process. If the DVD-ROM is a “Multi-arch” disk (such
-      as the one included with this book), and the machine has an Intel or
-      AMD 64 bit processor, the menu options “64 bit install” and
-      “64 bit graphical install” enable the installation of the
-      64 bit variant (<emphasis>amd64</emphasis>) instead of the default
-      32 bit variant (<emphasis>i386</emphasis>). In practice, the 64 bit
-      version is only relevant on a server rather than a desktop
-      workstation, since it will cause difficulties with the use of certain
-      non-free software that are released only as binaries.</para>
+      “Install” or “Graphical install” (with the arrow keys), then
+      press the <keycap>Enter</keycap> key to initiate the remainder
+      of the installation process. If the DVD-ROM is a “Multi-arch”
+      disk (such as the one included with this book), and the machine
+      has an Intel or AMD 64 bit processor, the menu options “64 bit
+      install” and “64 bit graphical install” enable the installation
+      of the 64 bit variant (<emphasis>amd64</emphasis>) instead of
+      the default 32 bit variant (<emphasis>i386</emphasis>). In
+      practice, the 64 bit version may be more relevant on a server
+      than on a desktop workstation, since it may cause difficulties
+      with the use of certain non-free software that are released only
+      as binaries.</para>
 
       <sidebar>
         <title><emphasis>GOING FURTHER</emphasis> 32 or 64 bits?</title>
@@ -264,7 +274,7 @@
 	the size of memory addresses. In theory, a 32 bit system can not
 	work with more than 4 GB of RAM (2<superscript>32</superscript>
 	bytes). In practice, it is possible to work around this limitation
-	by using the <literal>686-bigmem</literal> kernel variant, so long
+	by using the <literal>686-pae</literal> kernel variant, so long
 	as the processor handles the PAE (Physical Address Extension)
 	functionality. Using it does have a notable influence on system
 	performance, however. This is why it is useful to use the 64 bit
@@ -303,7 +313,7 @@
 	will download a light Debian installer and set it up on the hard
 	disk. You then only need to reboot the computer and choose between
 	normal Windows boot or booting the installation program. You can
-	also find it on a dedicated website with a rather explicit name...
+	also find it on a dedicated website with a rather explicit name…
 	<ulink type="block"
 	url="http://ftp.debian.org/debian/tools/win32-loader/stable/"/>
 	<ulink type="block"
@@ -318,13 +328,14 @@
         <indexterm><primary>boot</primary><secondary>loader</secondary></indexterm>
         <indexterm><primary>bootloader</primary></indexterm>
 
-	<para>The bootloader is a low-level program that is responsible for
-	booting the Linux kernel just after the BIOS passes off its
-	control. To handle this task, it must be able to locate the Linux
-	kernel to boot on the disk. On i386/amd64 architectures, the two
-	most used programs to perform this task are LILO, the older of the
-	two, and GRUB, a more modern challenger. Isolinux and Syslinux are
-	alternatives frequently used to boot from removable media.</para>
+	<para>The bootloader is a low-level program that is
+	responsible for booting the Linux kernel just after the BIOS
+	passes off its control. To handle this task, it must be able
+	to locate the Linux kernel to boot on the disk. On the i386
+	and amd64 architectures, the two most used programs to perform
+	this task are LILO, the older of the two, and GRUB, its modern
+	replacement. Isolinux and Syslinux are alternatives frequently
+	used to boot from removable media.</para>
       </sidebar>
 
       <para>Each menu entry hides a specific boot command line, which can
@@ -352,14 +363,15 @@
         </mediaobject>
       </figure>
 
-      <para>Once booted, the installation program guides you step by step
-      throughout the process. This section presents each of these steps in
-      detail. Here we follow the process of an installation from a
-      Multi-Arch DVD-ROM; other types of installations,
-      (<emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis>)
-      may be slightly different. We will also address installation in
-      graphical mode, but this differs from “classic” installation only
-      in appearance.</para>
+      <para>Once booted, the installation program guides you step by
+      step throughout the process. This section presents each of these
+      steps in detail. Here we follow the process of an installation
+      from a Multi-Arch DVD-ROM (more specifically, the beta4 version
+      of the installer for Wheezy); <emphasis>netinst</emphasis>
+      installations, as well as the final release of the installer,
+      may look slightly different. We will also address installation
+      in graphical mode, but the only difference from “classic”
+      (text-mode) installation is in the visual appearance.</para>
     </section>
     <section id="section.install-lang">
       <title>Selecting the language</title>
@@ -382,7 +394,8 @@
 	Cancel buttons), and the <keycap>TAB</keycap> key allows you to
 	move from one to another.</para>
 
-	<para>In graphical mode, you can use the mouse.</para>
+	<para>In graphical mode, you can use the mouse as you would
+	normally on an installed graphical desktop.</para>
       </sidebar>
 
       <figure role="flow.inline">
@@ -403,23 +416,23 @@
       <title>Selecting the country</title>
       <indexterm><primary>choice</primary><secondary>of country</secondary></indexterm>
 
-      <para>The second step consists in choosing your country. Associated
-      with the language, this information enables the program to offer the
-      most appropriate keyboard layout. This will also influence the
-      configuration of the time zone. In the United States, a standard
-      QWERTY keyboard is suggested, and a choice of appropriate time zones
-      is offered.</para>
+      <para>The second step consists in choosing your country.
+      Combined with the language, this information enables the program
+      to offer the most appropriate keyboard layout.  This will also
+      influence the configuration of the time zone. In the United
+      States, a standard QWERTY keyboard is suggested, and a choice of
+      appropriate time zones is offered.</para>
 
       <figure role="flow.inline">
         <title>Selecting the country</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="images/inst-pays.png" scalefit="1" width="50%"/>
+            <imagedata fileref="images/inst-country.png" scalefit="1" width="50%"/>
           </imageobject>
         </mediaobject>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="images/inst-pays-txt.png" scalefit="1" width="50%"/>
+            <imagedata fileref="images/inst-country-txt.png" scalefit="1" width="50%"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -436,12 +449,12 @@
         <title>Choice of keyboard</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="images/inst-clavier.png" scalefit="1" width="50%"/>
+            <imagedata fileref="images/inst-keyboard.png" scalefit="1" width="50%"/>
           </imageobject>
         </mediaobject>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="images/inst-clavier-txt.png" scalefit="1" width="50%"/>
+            <imagedata fileref="images/inst-keyboard-txt.png" scalefit="1" width="50%"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -468,7 +481,7 @@
       <title>Loading Components</title>
 
       <para>With the contents of the CD now available, the installer
-      downloads all the files necessary to continue with its work. This
+      loads all the files necessary to continue with its work. This
       includes additional drivers for the remaining hardware (especially
       the network card), as well as all the components of the installation
       program.</para>
@@ -479,26 +492,26 @@
       <para>This automatic step tries to identify the network card and load
       the corresponding module. If automatic detection fails, you can
       manually select the module to load. If no module works, it is
-      possible to load a specific module from a removable peripheral. This
+      possible to load a specific module from a removable device. This
       last solution is usually only needed if the appropriate driver is not
       included in the standard Linux kernel, but available elsewhere, such
       as the manufacturer's website.</para>
 
       <para>This step must absolutely be successful for
-      <emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis>
-      installations, since the Debian packages must be loaded from the
-      network.</para>
+      <emphasis>netinst</emphasis> installations, since the Debian
+      packages must be loaded from the network.</para>
     </section>
     <section id="section.install-config-reseau">
       <title>Configuring the Network</title>
       <indexterm><primary>configuration</primary><secondary>network</secondary><tertiary>static</tertiary></indexterm>
       <indexterm><primary>configuration</primary><secondary>network</secondary><tertiary>DHCP</tertiary></indexterm>
 
-      <para>Eager to automate the process as much as possible, the
-      installer attempts an automatic DHCP network configuration. If this
-      fails, it offers more choices: try again with a normal DHCP
-      configuration, attempt DHCP configuration by declaring the name of
-      the machine, or set up a static network configuration.</para>
+      <para>In order to automate the process as much as possible, the
+      installer attempts an automatic network configuration by DHCP
+      (for IPv4) and by IPv6 network discovery. If this fails, it
+      offers more choices: try again with a normal DHCP configuration,
+      attempt DHCP configuration by declaring the name of the machine,
+      or set up a static network configuration.</para>
 
       <para>This last option requires an IP address, a subnet mask, an IP
       address for a potential gateway, a machine name, and a domain
@@ -650,14 +663,14 @@
       systems, setting one drive for each is also a solution that can
       facilitate partitioning. In both of these cases, the next screen
       offers to choose the disk where Linux will be installed by selecting
-      the corresponding entry (for example, “SCSI3 (0,0,0) (sda) - 12.9
+      the corresponding entry (for example, “SCSI1 (0,0,0) (sda) - 12.9
       GB ATA VBOX HARDDISK”). You then start guided partitioning.</para>
 
       <figure>
         <title>Disk to use for guided partitioning</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="images/inst-partman-choix-disque.png" scalefit="1" width="65%"/>
+            <imagedata fileref="images/inst-partman-disk.png" scalefit="1" width="65%"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -685,7 +698,7 @@
           </mediaobject>
         </figure>
 
-	<para>The first method is called “All in one partition”. The
+	<para>The first method is called “All files in one partition”. The
 	entire Linux system tree is stored in a single filesystem,
 	corresponding to the root <filename>/</filename> directory. This
 	simple and robust partitioning fits perfectly for personal or
@@ -721,24 +734,25 @@
           <indexterm><primary>system</primary><secondary>filesystem</secondary></indexterm>
           <indexterm><primary>file</primary><secondary>system</secondary></indexterm>
 
-	  <para>A filesystem defines the way in which data is organized on
-	  the hard drive. Each existing filesystem has its merits and
-	  limitations. Some are more robust, others more effective: if you
-	  know your needs well, choosing the most appropriate filesystem is
-	  possible. Various comparisons have already been made; it seems
-	  that ReiserFS is particularly efficient for reading many small
-	  files; <emphasis>XFS</emphasis>, in turn, works faster with large
-	  files. <emphasis>Ext3</emphasis>, the default filesystem for
-	  Debian, is a good compromise, based on the two previous versions
-	  of filesystems historically used in Linux
-	  (<emphasis>ext</emphasis> and <emphasis>ext2</emphasis>). You
-	  could also choose its successor <emphasis>ext4</emphasis>, which
-	  overcomes certain limitations of <emphasis>ext3</emphasis> and is
-	  particularly appropriate for very large capacity hard drives. If
-	  you are particularly brave, you could experiment with the very
-	  promising <emphasis>btrfs</emphasis>, which includes numerous
-	  features that require, to this day, the use of LVM and/or
-	  RAID.</para>
+	  <para>A filesystem defines the way in which data is
+	  organized on the hard drive. Each existing filesystem has
+	  its merits and limitations. Some are more robust, others
+	  more effective: if you know your needs well, choosing the
+	  most appropriate filesystem is possible. Various comparisons
+	  have already been made; it seems that ReiserFS is
+	  particularly efficient for reading many small files;
+	  <emphasis>XFS</emphasis>, in turn, works faster with large
+	  files. <emphasis>Ext4</emphasis>, the default filesystem for
+	  Debian, is a good compromise, based on the three previous
+	  versions of filesystems historically used in Linux
+	  (<emphasis>ext</emphasis>, <emphasis>ext2</emphasis> and
+	  <emphasis>ext3</emphasis>). <emphasis>Ext4</emphasis>
+	  overcomes certain limitations of <emphasis>ext3</emphasis>
+	  and is particularly appropriate for very large capacity hard
+	  drives.  Another option would be to experiment with the very
+	  promising <emphasis>btrfs</emphasis>, which includes
+	  numerous features that require, to this day, the use of LVM
+	  and/or RAID.</para>
 
 	  <para>A journalized filesystem (such as
 	  <emphasis>ext3</emphasis>, <emphasis>ext4</emphasis>,
@@ -761,7 +775,7 @@
 	<para>After choosing the type of partition, the software calculates
 	a suggestion, and describes it on the screen; the user can then
 	modify it if needed. You can, in particular, choose another
-	filesystem if the standard choice (<emphasis>ext3</emphasis>) isn't
+	filesystem if the standard choice (<emphasis>ext4</emphasis>) isn't
 	appropriate. In most cases, however, the proposed partitioning is
 	reasonable and it can be accepted by selecting the “Finish
 	partitioning and write changes to disk” entry.</para>
@@ -908,7 +922,7 @@
 	device. The third question is about the number of spare devices —
 	0; we have not planned any additional disk to take over for a
 	possible defective disk. The last question requires you to choose
-	the partitions for the RAID peripheral — these would be the two
+	the partitions for the RAID device — these would be the two
 	that we have set aside for this purpose (make sure you only select
 	the partitions that explicitly mention “raid”).</para>
 
@@ -927,9 +941,10 @@
 
 	<para>LVM allows you to create “virtual” partitions that span
 	over several disks. The benefits are twofold: the size of the
-	partitions are no longer limited by individual disks but by their
-	cumulative volume, and you can at any time increase the size of an
-	existing partition by adding an additional disk when needed.</para>
+	partitions are no longer limited by individual disks but by
+	their cumulative volume, and you can resize existing
+	partitions at any time, possibly after adding an additional
+	disk when needed.</para>
 
 	<para>LVM uses a particular terminology: a virtual partition is a
 	“logical volume”, which is part of a “volume group”, or an
@@ -949,15 +964,15 @@
 	in the volume group that is thus expanded will have additional
 	space into which they can extend.</para>
 
-	<para>The partitioning tool configures LVM in several steps. First
-	you must create on the existing disks the partitions that will be
-	“physical volumes for LVM”. To activate LVM, you need to choose
-	“Configure the Logical Volume Manager (LVM)”, then on the same
-	configuration screen “Create a volume group”, to which you will
-	associate the existing physical volumes. Finally, you can create
-	logical volumes within this volume group. Note that the automatic
-	partitioning system is able to do all of this
-	implementation.</para>
+	<para>The partitioning tool configures LVM in several
+	steps. First you must create on the existing disks the
+	partitions that will be “physical volumes for LVM”. To
+	activate LVM, you need to choose “Configure the Logical Volume
+	Manager (LVM)”, then on the same configuration screen “Create
+	a volume group”, to which you will associate the existing
+	physical volumes. Finally, you can create logical volumes
+	within this volume group. Note that the automatic partitioning
+	system can perform all these steps automatically.</para>
 
 	<para>In the partitioning menu, each physical volume will appear as
 	a disk with a single partition which can not be deleted, but that
@@ -1035,10 +1050,7 @@
       the Debian “base system” packages. This includes the
       <command>dpkg</command> and <command>apt</command> tools, which
       manage Debian packages, as well as the utilities necessary to boot
-      the system and start using it. The Debian packages are read from the
-      disk (if using a <emphasis>netinst</emphasis> CD or a complete
-      CD-/DVD-ROM) or downloaded (when using a
-      <emphasis>businesscard</emphasis> installation disk).</para>
+      the system and start using it.</para>
 
       <figure>
         <title>Installation of the base system</title>
@@ -1073,7 +1085,7 @@
 
       <para>If getting packages from the network is requested, the next two
       questions allow to choose a server from which to download these
-      packages, by choosing successively a country and a mirror available
+      packages, by choosing first a country, then a mirror available
       in that country (a mirror is a public server hosting copies of all
       the files of the Debian master archive).</para>
 
@@ -1081,7 +1093,7 @@
         <title>Selecting a Debian mirror</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="images/inst-choix-miroir.png" scalefit="1" width="65%"/>
+            <imagedata fileref="images/inst-mirror.png" scalefit="1" width="65%"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -1194,12 +1206,13 @@
       </sidebar>
 
       <para>By default, the menu proposed by GRUB contains all the
-      installed Linux kernels, as well as any other detected operating
-      systems. This is why you should accept the offer to install it in the
-      Master Boot Record. Since keeping older kernel versions preserves the
-      ability to boot the same system if the most recently installed kernel
-      is defective or poorly adapted to the hardware, it is best to always
-      keep at least three older versions.</para>
+      installed Linux kernels, as well as any other operating systems
+      that were detected. This is why you should accept the offer to
+      install it in the Master Boot Record. Since keeping older kernel
+      versions preserves the ability to boot the same system if the
+      most recently installed kernel is defective or poorly adapted to
+      the hardware, it often makes sense to keep a few older kernel
+      versions installed.</para>
 
       <para>GRUB is the default bootloader installed by Debian thanks to
       its technical superiority: it works with most filesystems and
@@ -1243,14 +1256,14 @@
     <title>After the First Boot</title>
 
     <para>If you activated the task “Graphical desktop environment”,
-    the computer will display the <command>gdm</command> login
+    the computer will display the <command>gdm3</command> login
     manager.</para>
 
     <figure>
       <title>First boot</title>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="images/inst-gdm1024.png" scalefit="1" width="65%"/>
+          <imagedata fileref="images/inst-gdm.png" scalefit="1" width="65%"/>
         </imageobject>
       </mediaobject>
     </figure>
