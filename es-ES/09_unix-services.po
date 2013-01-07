@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-01-07 23:33+0200\n"
-"Last-Translator: Tzihue Cisneros Perez <tzihue@yahoo.com.mx>\n"
+"PO-Revision-Date: 2013-01-08 00:45+0200\n"
+"Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
 "/09_unix-services/es-ES/>\n"
 "Language: es-ES\n"
@@ -19,22 +19,22 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "System boot"
-msgstr "Sistema de inicio"
+msgstr "Arranque del sistema"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Initscripts"
-msgstr "programas de inicio"
+msgstr "Scripts de inicio"
 
 #. Tag: keyword
 #, no-c-format
 msgid "SSH"
-msgstr "shell seguro: SSH"
+msgstr "SSH"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Telnet"
-msgstr "telecomunicación entre redes: telnet"
+msgstr "Telnet"
 
 #. Tag: keyword
 #, no-c-format
@@ -54,12 +54,12 @@ msgstr "Supervisión"
 #. Tag: keyword
 #, no-c-format
 msgid "Inetd"
-msgstr "gestor de comunicación entre demonios: Inetd"
+msgstr "Inetd"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Cron"
-msgstr "comando de procesamiento en segundo plano: cron"
+msgstr "Cron"
 
 #. Tag: keyword
 #, no-c-format
@@ -69,24 +69,22 @@ msgstr "Respaldo"
 #. Tag: keyword
 #, no-c-format
 msgid "Hotplug"
-msgstr "conector automático o hotplug"
+msgstr "Conexión en caliente («hotplug»)"
 
 #. Tag: keyword
 #, no-c-format
 msgid "PCMCIA"
-msgstr ""
-"Asociación Internacional de Tarjetas de Memoria para Computadoras "
-"Personales: PCMCIA"
+msgstr "PCMCIA"
 
 #. Tag: keyword
 #, no-c-format
 msgid "APM"
-msgstr "Manejo Avanzado de Encendido: APM"
+msgstr "APM"
 
 #. Tag: keyword
 #, no-c-format
 msgid "ACPI"
-msgstr "Configuración Avanzada e Interface de Encendido"
+msgstr "ACPI"
 
 #. Tag: title
 #, no-c-format
@@ -104,71 +102,81 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "System Boot"
-msgstr "Sistema de Inicio"
+msgstr "Arranque del sistema"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>booting</primary><secondary>the system</secondary>"
-msgstr "<primary>iniciando</primary><secondary>el sistema</secondary>"
+msgstr "<primary>inicio</primary><secondary>del sistema</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When you boot the computer, the many messages scrolling by on the console display many automatic initializations and configurations that are being executed. Sometimes you may wish to slightly alter how this stage works, which means that you need to understand it well. That is the purpose of this section."
 msgstr ""
-"Cuando inicia la computadora, los mensajes que aparecen en la pantalla "
-"despliegan varias inicializaciones y configuraciones automáticas que se "
-"están ejecutando. Algunas veces usted deseará alterar ligeramente la manera "
-"de trabajar de estas etapas, lo que significa que necesitará entenderlas "
-"bien. Este es el propósito de esta sección."
+"Cuando inicia el equipo, los muchos mensajes que aparecen en la pantalla "
+"muestran varias inicializaciones y configuraciones automáticas que se están "
+"ejecutando. Algunas veces deseará alterar ligeramente cómo funciona esta "
+"etapa, lo que significa que necesitará entenderlas bien. Éste es el "
+"propósito de esta sección."
 
 #. Tag: para
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
 msgstr ""
-"Primero, el BIOS toma el control de la computadora, detecta los discos, "
-"carga el <emphasis>Registro Maestro de Inicio</emphasis>, y ejecuta el "
-"cargador. Este toma el control, busca el kernel en el disco, lo carga y lo "
-"ejecuta. El kernel se inicializa y empieza la búsqueda y montaje de la "
-"partición que contiene el sistema de archivos raíz, y finalmente ejecuta el "
-"primer programa — <command>init</command>. Frecuentemente, esta \"partición "
-"raíz\" y su <command>init</command> están, de hecho, localizados en un "
-"archivo virtual del sistema que solo existe en la RAM (de aquí el nombre, "
-"\"initramfs\", primeramente llamado \"initd\" para \"disco RAM de "
-"inicialización\") Este archivo de sistema está cargado en la memoria por el "
-"cargador, muchas veces desde un archivo en el disco duro o desde la red. "
-"Este contiene solo el mínimo requerido por el kernel para cargar el "
-"\"verdadero\" sistema de archivos raíz: estos pueden ser módulos de "
-"controladores para el disco duro, u otros dispositivos sin los cuales el "
-"sistema no puede iniciar, o, con frecuencia, programas de inicialización y "
-"módulos para ensamblar arreglos RAID, abrir particiones encriptadas, activar "
-"volúmenes LVM, etc. Una vez que la partición raíz se ha montado, el "
-"initramfs entrega el control al verdadero init, y la máquina regresa al "
-"proceso ordinario de inicio."
+"Primero el BIOS toma el control del equipo, detecta los discos, carga el "
+"<emphasis>registro maestro de arranque</emphasis> («MBR») y ejecuta el "
+"gestor de arranque. Este toma el control, busca el núcleo en el disco, lo "
+"carga y lo ejecuta. Luego se inicializa el núcleo y empieza la búsqueda y "
+"montaje de la partición que contiene el sistema de archivos raíz y "
+"finalmente ejecuta el primer programa — <command>init</command>. "
+"Frecuentemente esta «partición raíz» y su <command>init</command> están, de "
+"hecho, ubicados en un archivo virtual del sistema que sólo existe en RAM (de "
+"aquí el nombre «initramfs», anteriormente llamado «initrd» por «disco RAM "
+"de inicialización»: «initialization RAM disk»). El gestor de arranque carga "
+"este sistema de archivos en memoria, muchas veces desde un archivo en el "
+"disco duro o desde la red. Contiene sólo lo mínimo requerido por el núcleo "
+"para cargar el «verdadero» sistema de archivos raíz: estos pueden ser "
+"módulos de controladores para el disco duro u otros dispositivos sin los "
+"cuales el sistema no puede iniciar o, más frecuentemente, scripts de "
+"inicialización y módulos para ensamblar arreglos RAID, abrir particiones "
+"cifradas, activar volúmenes LVM, etc. Una vez que se montó la partición raíz "
+"el initramfs entrega el control al verdadero init y la máquina regresa al "
+"proceso de inicio estándar."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Booting from the network"
-msgstr ""
+msgstr "<emphasis>CASO ESPECÍFICO</emphasis> Arranque desde la red"
 
 #. Tag: para
 #, no-c-format
 msgid "In some configurations, the BIOS may be configured not to execute the MBR, but to seek its equivalent on the network, making it possible to build computers without a hard drive, or which are completely reinstalled on each boot. This option is not available on all hardware and it generally requires an appropriate combination of BIOS and network card."
 msgstr ""
+"En algunas situaciones, se puede configurar el BIOS para que no ejecute el "
+"MBR sino que busque su equivalente en la red, haciendo posible construir "
+"equipos sin disco duro o que son completamente reinstalados en cada "
+"arranque. Esta opción no está disponible en todo el hardware y generalmente "
+"necesita una combinación apropiada de BIOS y placa de red."
 
 #. Tag: para
 #, no-c-format
 msgid "Booting from the network can be used to launch the <command>debian-installer</command> or FAI (see <xref linkend=\"sect.installation-methods\" />)."
 msgstr ""
+"El arranque desde la red puede utilizarse para ejecutar <command>debian-"
+"installer</command> o FAI (revise <xref linkend=\"sect.installation-methods\" "
+"/>)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The process, a program instance"
 msgstr ""
+"<emphasis>VOLVER A LOS CIMIENTOS</emphasis> El proceso, una instancia de un "
+"programa"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>process</primary>"
-msgstr ""
+msgstr "<primary>proceso</primary>"
 
 #. Tag: para
 #, no-c-format
