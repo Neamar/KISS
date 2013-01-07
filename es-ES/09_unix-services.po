@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-01-01 21:52+0200\n"
-"Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
+"PO-Revision-Date: 2013-01-07 23:33+0200\n"
+"Last-Translator: Tzihue Cisneros Perez <tzihue@yahoo.com.mx>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
 "/09_unix-services/es-ES/>\n"
 "Language: es-ES\n"
@@ -19,102 +19,131 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "System boot"
-msgstr ""
+msgstr "Sistema de inicio"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Initscripts"
-msgstr ""
+msgstr "programas de inicio"
 
 #. Tag: keyword
 #, no-c-format
 msgid "SSH"
-msgstr ""
+msgstr "shell seguro: SSH"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Telnet"
-msgstr ""
+msgstr "telecomunicación entre redes: telnet"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Rights"
-msgstr ""
+msgstr "Derechos"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Permissions"
-msgstr ""
+msgstr "Permisos"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Supervision"
-msgstr ""
+msgstr "Supervisión"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Inetd"
-msgstr ""
+msgstr "gestor de comunicación entre demonios: Inetd"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Cron"
-msgstr ""
+msgstr "comando de procesamiento en segundo plano: cron"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Backup"
-msgstr ""
+msgstr "Respaldo"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Hotplug"
-msgstr ""
+msgstr "conector automático o hotplug"
 
 #. Tag: keyword
 #, no-c-format
 msgid "PCMCIA"
 msgstr ""
+"Asociación Internacional de Tarjetas de Memoria para Computadoras "
+"Personales: PCMCIA"
 
 #. Tag: keyword
 #, no-c-format
 msgid "APM"
-msgstr ""
+msgstr "Manejo Avanzado de Encendido: APM"
 
 #. Tag: keyword
 #, no-c-format
 msgid "ACPI"
-msgstr ""
+msgstr "Configuración Avanzada e Interface de Encendido"
 
 #. Tag: title
 #, no-c-format
 msgid "Unix Services"
-msgstr ""
+msgstr "Servicios Unix"
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter covers a number of basic services that are common to many Unix systems. All administrators should be familiar with them."
 msgstr ""
+"Este capítulo cubre un número básico de servicios que son comunes a varios "
+"sistemas Unix. Todos los administradores deberían estar familiarizados con "
+"ellos."
 
 #. Tag: title
 #, no-c-format
 msgid "System Boot"
-msgstr ""
+msgstr "Sistema de Inicio"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>booting</primary><secondary>the system</secondary>"
-msgstr ""
+msgstr "<primary>iniciando</primary><secondary>el sistema</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When you boot the computer, the many messages scrolling by on the console display many automatic initializations and configurations that are being executed. Sometimes you may wish to slightly alter how this stage works, which means that you need to understand it well. That is the purpose of this section."
 msgstr ""
+"Cuando inicia la computadora, los mensajes que aparecen en la pantalla "
+"despliegan varias inicializaciones y configuraciones automáticas que se "
+"están ejecutando. Algunas veces usted deseará alterar ligeramente la manera "
+"de trabajar de estas etapas, lo que significa que necesitará entenderlas "
+"bien. Este es el propósito de esta sección."
 
 #. Tag: para
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
 msgstr ""
+"Primero, el BIOS toma el control de la computadora, detecta los discos, "
+"carga el <emphasis>Registro Maestro de Inicio</emphasis>, y ejecuta el "
+"cargador. Este toma el control, busca el kernel en el disco, lo carga y lo "
+"ejecuta. El kernel se inicializa y empieza la búsqueda y montaje de la "
+"partición que contiene el sistema de archivos raíz, y finalmente ejecuta el "
+"primer programa — <command>init</command>. Frecuentemente, esta \"partición "
+"raíz\" y su <command>init</command> están, de hecho, localizados en un "
+"archivo virtual del sistema que solo existe en la RAM (de aquí el nombre, "
+"\"initramfs\", primeramente llamado \"initd\" para \"disco RAM de "
+"inicialización\") Este archivo de sistema está cargado en la memoria por el "
+"cargador, muchas veces desde un archivo en el disco duro o desde la red. "
+"Este contiene solo el mínimo requerido por el kernel para cargar el "
+"\"verdadero\" sistema de archivos raíz: estos pueden ser módulos de "
+"controladores para el disco duro, u otros dispositivos sin los cuales el "
+"sistema no puede iniciar, o, con frecuencia, programas de inicialización y "
+"módulos para ensamblar arreglos RAID, abrir particiones encriptadas, activar "
+"volúmenes LVM, etc. Una vez que la partición raíz se ha montado, el "
+"initramfs entrega el control al verdadero init, y la máquina regresa al "
+"proceso ordinario de inicio."
 
 #. Tag: title
 #, no-c-format
