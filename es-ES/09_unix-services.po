@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-01-08 04:54+0200\n"
-"Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
+"PO-Revision-Date: 2013-01-08 17:49+0200\n"
+"Last-Translator: Tzihue Cisneros Perez <tzihue@yahoo.com.mx>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
 "/09_unix-services/es-ES/>\n"
 "Language: es-ES\n"
@@ -268,33 +268,55 @@ msgid "Any person who is able to access the computer can press the <keycap>Reset
 msgstr ""
 "Cualquier persona con acceso al equipo puede presionar el botón "
 "<keycap>Reset</keycap> y así reiniciarla. Entonces es posible, en el prompt "
-"del gestor de arranque, prveer la opción <literal>init=/bin/sh</literal> al "
+"del gestor de arranque, pasar la opción <literal>init=/bin/sh</literal> al "
 "núcleo para obtener acceso root sin conocer la contraseña del administrador."
 
 #. Tag: para
 #, no-c-format
 msgid "To prevent this, you can protect the bootloader itself with a password. You might also think about protecting access to the BIOS (a password protection mechanism is almost always available), without which a malicious intruder could still boot the machine on a removable media containing its own Linux system, which they could then use to access data on the computer's hard drives."
 msgstr ""
+"Para prevenir esto, usted puede proteger el cargador con una contraseña. "
+"También podrá pensar en proteger el acceso al BIOS (un mecanismo de "
+"protección por contraseña esta casi siempre disponible), sin el cual un "
+"intruso malicioso podría iniciar la máquina desde un medio removible que "
+"contiene su propio sistema Linux, el cual podrían usar para tener acceso a "
+"los datos del disco duro de la computadora."
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, be aware that most BIOS have a generic password available. Initially intended for troubleshooting for those who have forgotten their password, these passwords are now public and available on the Internet (see for yourself by searching for “generic BIOS passwords” in a search engine). All of these protections will thus impede unauthorized access to the machine without being able to completely prevent it. There's no reliable way to protect a computer if the attacker can physically access it; they could dismount the hard drives to connect them to a computer under their own control anyway, or even steal the entire machine, or erase the BIOS memory to reset the password…"
 msgstr ""
+"Finalmente, tenga en cuenta que la mayoría de los BIOS tiene disponible una "
+"contraseña genérica. Inicialmente destinado a resolver los problemas de "
+"quienes han olvidado su contraseña, estas ahora son públicas y están "
+"disponibles en internet (veálo usted mismo buscando \"contraseñas genéricas "
+"del BIOS\" en algún buscador). Todas estas protecciones impedirán acceso no "
+"autorizado a la máquina sin poder evitarlo por completo. No existe una forma "
+"segura de proteger una computadora si el atacante puede acceder físicamente "
+"a ella; el podría quitar el disco duro para conectarlo a una computadora "
+"bajo su control de cualquier manera, o aún robar la máquina completa, o "
+"borrar la memoria del BIOS para borrar la contraseña..."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Kernel modules and options"
-msgstr ""
+msgstr "<emphasis>REGRESO A LO BASICO</emphasis> Módulos y opciones del kernel"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modules</primary><secondary>kernel modules</secondary>"
-msgstr ""
+msgstr "<primary>módulos</primary><secondary>módulos del kernel</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Kernel modules also have options that can be configured by putting some files in <filename>/etc/modprobe.d/</filename>. These options are defined with directives like this: <literal>options <replaceable>module-name</replaceable> <replaceable>option-name</replaceable>=<replaceable>option-value</replaceable></literal>. Several options can be specified with a single directive if necessary."
 msgstr ""
+"Los módulos del kernel también tienen opciones que se pueden configurar "
+"agregando algunos archivos en <filename>/etc/modprobe.d/</filename>. Estas "
+"opciones se definen con directivas como: <literal>options <replaceable"
+">module-name</replaceable> <replaceable>option-"
+"name</replaceable>=<replaceable>option-value</replaceable></literal>. Varias "
+"opciones pueden especificarse con una sola directiva si es necesario."
 
 #. Tag: para
 #, no-c-format
