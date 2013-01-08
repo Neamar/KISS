@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-01-08 04:05+0200\n"
-"Last-Translator: Tzihue Cisneros Perez <tzihue@yahoo.com.mx>\n"
+"PO-Revision-Date: 2013-01-08 04:54+0200\n"
+"Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
 "/09_unix-services/es-ES/>\n"
 "Language: es-ES\n"
@@ -183,19 +183,19 @@ msgstr "<primary>proceso</primary>"
 msgid "A process is the representation in memory of a running program. It includes all of the information necessary for the proper execution of the software (the code itself, but also the data that it has in memory, the list of files that it has opened, the network connections it has established, etc.). A single program may be instantiated into several processes, not necessarily running under different user IDs."
 msgstr ""
 "Un proceso es la representación en memoria de un programa en ejecución. "
-"Incluye toda la información necesaria para la apropiada ejecución del "
-"programa (el código por si mismo, pero también los datos que tiene en "
-"memoria, la lista de archivos que ha abierto, las conexiones de red que ha "
-"establecido, etc). Un único programa puede ser instanciado en varios "
-"procesos, sin ejecutarse con IDs distintas del usuario."
+"Incluye toda la información necesaria para la ejecución apropiada del "
+"programa (el código en sí pero también los datos que tiene en memoria, la "
+"lista de archivos que ha abierto, las conexiones de red que ha establecido, "
+"etc.). Un único programa puede ser instanciado en varios procesos inclusive "
+"bajo el mismo ID de usuario."
 
 #. Tag: para
 #, no-c-format
 msgid "Init executes several processes, following instructions from the <filename>/etc/inittab</filename> file. The first program that is executed (which corresponds to the <emphasis>sysinit</emphasis> step) is <command>/etc/init.d/rcS</command>, a script that executes all of the programs in the <filename>/etc/rcS.d/</filename> directory. <indexterm><primary><filename>/etc/init.d/rcS</filename></primary></indexterm> <indexterm><primary><filename>rcS</filename></primary></indexterm> <indexterm><primary><filename>/etc/init.d/rcS.d/</filename></primary></indexterm> <indexterm><primary><filename>rcS.d</filename></primary></indexterm>"
 msgstr ""
-"Init pone en marcha varios procesos, siguiendo instrucciones desde el "
-"archivo <filename>/etc/inittab</filename>. El primer programa ejecutado (el "
-"cual corresponde al paso <emphasis>sysinit</emphasis>) es "
+"Init pone en marcha varios procesos, siguiendo instrucciones del archivo "
+"<filename>/etc/inittab</filename>. El primer programa ejecutado (el cual "
+"corresponde al paso <emphasis>sysinit</emphasis>) es "
 "<command>/etc/init.d/rcS</command>, un script que ejecuta todos los "
 "programas en el directorio <filename>/etc/rcS.d/</filename>. <indexterm><pri"
 "mary><filename>/etc/init.d/rcS</filename></primary></indexterm> "
@@ -206,56 +206,56 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Among these, you will find successively programs in charge of:"
-msgstr "Entre estos, usted encontrará sucesivamente programas a cargo de:"
+msgstr "Entre estos encontrará sucesivamente programas a cargo de:"
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the console's keyboard;"
-msgstr "configurar el teclado de la consola"
+msgstr "configurar el teclado de la consola;"
 
 #. Tag: para
 #, no-c-format
 msgid "loading drivers: most of the kernel modules are loaded by the kernel itself as the hardware is detected; extra drivers are then loaded automatically when the corresponding modules are listed in <filename>/etc/modules</filename>;"
 msgstr ""
-"cargando controladores: la mayoría de los módulos del kernel son cargados "
-"por el mismo kernel conforme es detectado el hardware; los controladores "
-"extras se cargan automáticamente cuando los módulos correspondientes son "
-"listados en <filename>/etc/modules</filename>;"
+"cargar controladores: el núcleo carga por sí mismo la mayoría de los módulos "
+"a medida que el hardware es detectado; los controladores extras se cargan "
+"automáticamente cuando los módulos correspondientes son listados en "
+"<filename>/etc/modules</filename>;"
 
 #. Tag: para
 #, no-c-format
 msgid "checking the integrity of filesystems;"
-msgstr "verificando la integridad del sistema de archivos;"
+msgstr "verificar la integridad de los sistemas de archivos;"
 
 #. Tag: para
 #, no-c-format
 msgid "mounting local partitions;"
-msgstr "montando particiones locales;"
+msgstr "montar particiones locales;"
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the network;"
-msgstr "configurando la red;"
+msgstr "configurar la red;"
 
 #. Tag: para
 #, no-c-format
 msgid "mounting network filesystems (NFS)."
-msgstr "montando el sistema de archivos de la red (NFS)."
+msgstr "montar sistemas de archivos de red (NFS)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Using a shell as <command>init</command> to gain root rights"
 msgstr ""
-"<emphasis>SEGURIDAD</emphasis> Usando un shell como <command>init</command> "
-"para obtener derechos de superusuario"
+"<emphasis>SEGURIDAD</emphasis> Usar una consola como <command>init</command> "
+"para obtener derechos de root"
 
 #. Tag: para
 #, no-c-format
 msgid "By convention, the first process that is booted is the <command>init</command> program. However, it is possible to pass an <literal>init</literal> option to the kernel indicating a different program."
 msgstr ""
-"Por convensión, el primer proceso que es iniciado es el programa "
-"<command>init</command>. Sin embargo, es posible pasar una opción del "
-"<literal>init</literal> al kernel indicando un programa diferente."
+"Por convención el primer proceso iniciado es el programa "
+"<command>init</command>. Sin embargo, es posible proveer una opción "
+"<literal>init</literal> al núcleo indicando un programa diferente."
 
 #. Tag: indexterm
 #, no-c-format
@@ -266,11 +266,10 @@ msgstr "<primary><command>init</command></primary>"
 #, no-c-format
 msgid "Any person who is able to access the computer can press the <keycap>Reset</keycap> button, and thus reboot it. Then, at the bootloader's prompt, it is possible to pass the <literal>init=/bin/sh</literal> option to the kernel to gain root access without knowing the administrator's password."
 msgstr ""
-"Cualquier persona con acceso a la computaddora puede presionar el botón "
-"<keycap>Reset</keycap>, y así reiniciarla. Entonces, en el prompt del "
-"cargador, es posible pasar la opción <literal>init=/bin/sh</literal> al "
-"kernel para obtener acceso como superusuario sin conocer la contraseña del "
-"administrador."
+"Cualquier persona con acceso al equipo puede presionar el botón "
+"<keycap>Reset</keycap> y así reiniciarla. Entonces es posible, en el prompt "
+"del gestor de arranque, prveer la opción <literal>init=/bin/sh</literal> al "
+"núcleo para obtener acceso root sin conocer la contraseña del administrador."
 
 #. Tag: para
 #, no-c-format
