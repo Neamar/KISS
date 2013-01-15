@@ -1,0 +1,3391 @@
+# 
+# AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0\n"
+"POT-Creation-Date: 2012-10-31T14:54:17\n"
+"PO-Revision-Date: 2012-10-31T14:54:17\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: None\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-publican; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: keyword
+#, no-c-format
+msgid "Configuration"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Localization"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Locales"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Network"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Name resolution"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Users"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Groups"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Accounts"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Command-line interpreter"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Shell"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Printing"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Bootloader"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Kernel compiling"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Basic Configuration: Network, Accounts, Printing..."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A computer with a new installation created with <command>debian-installer</command> is intended to be as functional as possible, but many services still have to be configured. Furthermore, it is always good to know how to change certain configuration elements defined during the initial installation process."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This chapter reviews everything included in what we could call the “basic configuration”: networking, language and locales, users and groups, printing, mount points, etc."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Configuring the System for Another Language"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>French localization</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If the system was installed using French, the machine will probably already have French set as the default language. But it is good to know what the installer does to set the language, so that later, if the need arises, you can change it."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TOOL</emphasis> The <command>locale</command> command to display the current configuration"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>locale</command> command lists a summary of the current configuration of various locale parameters (date format, numbers format, etc.), presented in the form of a group of standard environment variables dedicated to the dynamic modification of these settings."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Setting the Default Language"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>locales</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>language</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>locale-gen</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A locale is a group of regional settings. This includes not only the language for text, but also the format for displaying numbers, dates, times, and monetary sums, as well as the method for alphabetical comparison (for alphabetically ordering items, to include accented characters, where applicable). Although each of these parameters can be specified independently from the others, we generally will use one locale, which is a coherent set of values for these parameters corresponding to a “region” in the broadest sense. These locales are usually indicated under the form, <literal><replaceable>language-code</replaceable>_<replaceable>COUNTRY-CODE</replaceable></literal>, sometimes with a suffix to specify the character set and encoding to be used. This enables consideration of idiomatic or typographical differences between different regions with a common language."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>CULTURE</emphasis> Character sets"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>character set</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>encoding</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>ISO-8859-1</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>ISO-8859-15</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Latin 1</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Latin 9</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Latin 0</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Historically, each locale has an associated “character set” (group of known characters) and a preferred “encoding” (internal representation for characters within the computer)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <emphasis>ISO-8859-1</emphasis> (or “Latin 1”) encoding, for instance, was used preferentially in France. But for historical reasons, it did not include certain characters (such as œ, Ÿ, and €). This problem prompted the creation of <emphasis>ISO-8859-15</emphasis> (or “Latin 9”, or even “Latin 0”). Among others, it replaced respectively the former international currency symbol (a circle with four branches, ¤), “½”,“¼” and “¾” with the Euro symbol “€”, “œ”, “Œ” and “Ÿ”. Since the encoding for these two sets uses a single octet (8 bits) for each character, the sets only have room for 256 characters. Other languages use other character sets or other encodings, either from the “Latin” family, or otherwise."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Working with foreign languages often implied regular switches between various encodings and character sets. Furthermore, writing multilingual documents led to further, almost intractable problems. Unicode (a super-catalog of nearly all writing systems from all of the world's languages) was created to work around this problem. One of Unicode's encodings, UTF-8, retains all 128 ASCII symbols (7-bit codes), but handles other characters differently. The others are preceded by a sequence of “escape” characters with a variable length. This allows encoding all Unicode characters on a sequence of one or more octets."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>ASCII</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>UTF-8</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Unicode</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Applications have slowly migrated, and use of UTF-8 is now wide spread. This was made easier by the fact that this encoding is the standard encoding for XML documents. Outside of specific circumstances, this is the encoding that should generally be used. It has become the default on new installations since <emphasis role=\"distribution\">Etch</emphasis>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <emphasis role=\"pkg\">locales</emphasis> package includes all the elements required for proper functioning of “localization” for various applications. During installation, this package will ask a few questions in order to choose supported languages. This set of supported languages can be changed by running <command>dpkg-reconfigure locales</command>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "You will be asked, first, to choose what “locales” to include. Selecting all English locales (meaning those beginning with“<literal>en_US</literal>”) is a reasonable choice. Do not hesitate to choose other locales if the machine will host foreign users. This list of known locales on the system is stored in the <filename>/etc/locale.gen</filename> file. It is possible to edit this file by hand, but you should run <command>locale-gen</command> after any modifications. It will generate the necessary files for the proper functioning of added locales and remove any obsolete files."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The second question, entitled “Set default locale”, requests a default locale. The recommended choice in the U.S.A. is “<literal>en_US.UTF-8</literal>”. British English speakers will prefer “<literal>en_GB.UTF-8</literal>”, and Canadians will prefer either <literal>en_CA.UTF-8</literal>” or, for French, “<literal>fr_CA.UTF-8</literal>”. The <filename>/etc/default/locale</filename> file will then be modified to set the default locale for the environment variable, <varname>LANG</varname>."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>environment</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>locale</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><varname>LANG</varname></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BEHIND THE SCENES</emphasis> <filename>/etc/environment</filename> and <filename>/etc/default/locale</filename>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <filename>/etc/environment</filename> file provides the <command>login</command>, <command>gdm</command>, or even <command>ssh</command> programs with the correct environment variables to be created."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "These applications do not create these variables directly, but rather via a PAM (<filename>pam_env.so</filename>) module. PAM (Pluggable Authentication Module) is a modular library centralizing the mechanisms for authentication, session initialization, and password management. See <xref linkend=\"section.config-pam\" /> for an example of PAM configuration."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <filename>/etc/default/locale</filename> file works in a similar manner, but does not contain the <varname>LANG</varname> environment variable. This means some PAM users will inherit an environment without localization. Running server programs with regional parameters is generally discouraged; on the other hand, using the implicit regional settings is recommended for programs that open user sessions."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>PAM</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>pam_env.so</filename></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Configuring the Keyboard"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>keyboard</primary><secondary>layout</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>keyboard layout</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Until Debian <emphasis role=\"distribution\">Lenny</emphasis>, the keyboard layout was controlled by two different systems: for the console, <emphasis role=\"pkg\">console-tools</emphasis>/<emphasis role=\"pkg\">console-data</emphasis>; for graphical environments, <emphasis role=\"pkg\">keyboard-configuration</emphasis>. Since <emphasis role=\"distribution\">Squeeze</emphasis>, these two systems have been unified and <emphasis role=\"pkg\">keyboard-configuration</emphasis> controls the keyboard layout in both console and graphical mode. The <command>dpkg-reconfigure keyboard-configuration</command> command can be used at any time to reset the keyboard layout."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>console-data</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>console-tools</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>keyboard-configuration</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<indexterm><primary><literal>azerty</literal></primary></indexterm>The questions are relevant to the physical keyboard layout (a standard PC keyboard in the US will be a “Generic 104 key”), then the layout to choose (generally “US”), and then the position of the AltGr key (right Alt). Finally comes the question of the key to use for the “Compose key”, which allows for entering special characters by combining keystrokes. Type successively <keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> and produce an e-acute (“é”). All these combinations are described in the <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> file (or another file, determined according to the current locale indicated by <filename>/usr/share/X11/locale/compose.dir</filename>). <indexterm><primary><literal>Compose</literal>, key</primary></indexterm> <indexterm><primary><literal>Meta</literal>, key</primary></indexterm> <indexterm><primary>key</primary><secondary><literal>Meta</literal></secondary></indexterm> <indexterm><primary>key</primary><secondary><literal>Compose</literal></secondary></indexterm>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Note that the keyboard configuration for graphical mode described here only affects the default layout; the GNOME and KDE environments, among others, provide a keyboard control panel in their preferences allowing each user to have their own configuration. Some additional options regarding the behavior of some particular keys are also available in these control panels."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Migrating to UTF-8"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The generalization of UTF-8 encoding has been a long awaited solution to numerous difficulties with interoperability, since it facilitates international exchange and removes the arbitrary limits on characters that can be used in a document. The one drawback is that it had to go through a rather difficult transition phase. Since it could not be completely transparent (that is, it could not happen at the same time all over the world), two conversion operations were required: one on file contents, and the other on filenames. Fortunately, the bulk of this migration has been completed and we discuss it largely for reference."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Mojibake</foreignphrase> and interpretation errors"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When a text is sent (or stored) without encoding information, it is not always possible for the recipient to know with certainty what convention to use for determining the meaning of a set of bytes. You can usually get an idea by getting statistics on the distribution of values present in the text, but that doesn't always give a definite answer. When the encoding system chosen for reading differs from that used in writing the file, the bytes are mis-interpreted, and you get, at best, errors on some characters, or, at worst, something completely illegible."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Thus, if a French text appears normal with the exception of accented letters and certain symbols which appear to be replaced with sequences of characters like “Ã©” or Ã¨” or “Ã§”, it is probably a file encoded as UTF-8 but interpreted as ISO-8859-1 or ISO-8859-15. This is a sign of a local installation that has not yet been migrated to UTF-8. If, instead, you see question marks instead of accented letters — even if these question marks seem to also replace a character that should have followed the accented letter — it is likely that your installation is already configured for UTF-8 and that you have been sent a document encoded in Western ISO."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "So much for “simple” cases. These cases only appear in Western culture, since Unicode (and UTF-8) was designed to maximize the common points with historical encodings for Western languages based on the Latin alphabet, which allows recognition of parts of the text even when some characters are missing."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In more complex configurations, which, for example, involve two environments corresponding to two different languages that do not use the same alphabet, you often get completely illegible results — a series of abstract symbols that have nothing to do with each other. This is especially common with Asian languages due to their numerous languages and writing systems. The Japanese word <foreignphrase>mojibake</foreignphrase> has been adopted to describe this phenomenon. When it appears, diagnosis is more complex and the simplest solution is often to simply migrate to UTF-8 on both sides."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "As far as file names are concerned, the migration can be relatively simple. The <command>convmv</command> tool (in the package with the same name) was created specifically for this purpose; it allows renaming files from one encoding to another. The use of this tool is relatively simple, but we recommend doing it in two steps to avoid surprises. The following example illustrates a UTF-8 environment containing directory names encoded in ISO-8859-15, and the use of <command>convmv</command> to rename them."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
+"<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
+"$ </computeroutput><userinput>convmv -r -f iso-8859-15 -t utf-8 travail/</userinput>\n"
+"<computeroutput>Starting a dry run without changes...\n"
+"mv \"travail/�l�ments graphiques\"        \"travail/Éléments graphiques\"\n"
+"mv \"travail/Ic�nes\"     \"travail/Icônes\"\n"
+"No changes to your files done. Use --notest to finally rename the files.\n"
+"$ </computeroutput><userinput>convmv -r --notest -f iso-8859-15 -t utf-8 travail/</userinput>\n"
+"<computeroutput>mv \"travail/�l�ments graphiques\"        \"travail/Éléments graphiques\"\n"
+"mv \"travail/Ic�nes\"     \"travail/Icônes\"\n"
+"Ready!\n"
+"$ </computeroutput><userinput>ls travail/</userinput>\n"
+"<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
+""
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For the file content, conversion procedures are more complex due to the vast variety of existing file formats. Some file formats include encoding information that facilitates the tasks of the software used to treat them; it is sufficient, then, to open these files and re-save them specifying UTF-8 encoding. In other cases, you have to specify the original encoding (ISO-8859-1 or “Western”, or ISO-8859-15 or “Western (European)”, according to the formulations) when opening the file."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For simple text files, you can use <command>recode</command> (in the package of the same name) which allows automatic recoding. This tool has numerous options so you can play with its behavior. We recommend you consult the documentation, the <citerefentry> <refentrytitle>recode</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> man page, or the <citerefentry> <refentrytitle>recode</refentrytitle> </citerefentry> info page (more complete)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Configuring the Network"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Essential network concepts (Ethernet, IP address, subnet, broadcast)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Ethernet</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>10BASE-T</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>100BASE-T</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>1000BASE-T</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>10GBASE-T</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>RJ45, connector</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>RJ45 connector</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Most modern local networks use the Ethernet protocol, where data is split into small blocks called frames and transmitted on the wire one frame at a time. Data speeds vary from 10 Mb/s for older Ethernet cards to 10 Gb/s in the newest cards (with the most common rate currently growing from 100 Mb/s to 1 Gb/s). The most widely used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T depending on the throughput they can reliably provide (the T stands for “twisted pair”); those cables end in an RJ45 connector. There are other cable types, used mostly for speeds above 1 Gb/s."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>IP address</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>IP</primary><secondary>address</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2001:db8:13bb:0002:0000:0000:0020, or 2001:db8:13bb:2::20 for short)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>subnet</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>mask</primary><secondary>subnet mask</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>network</primary><secondary>address</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A subnet mask (netmask) defines in its binary code which portion of an IP address corresponds to the network, the remainder specifying the machine. In the example of configuring a static IPv4 address given here, the subnet mask, <literal>255.255.255.0</literal> (24 “1”s followed by 8 “0”s in binary representation) indicates that the first 24 bits of the IP address correspond to the network address, and the other 8 are specific to the machine. In IPv6, for readability, only the number of “1”s is expressed; the netmask for an IPv6 network could, thus, be <literal>64</literal>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the number of bits affected to the network part in an IP address. The example network would thus be written: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb::/64</literal>."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>router</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>bridge</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyzes incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>broadcast</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The special broadcast address connects all the stations in a network. Almost never “routed”, it only functions on the network in question. Specifically, it means that a data packet addressed to the broadcast never passes through the router."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This chapter focuses on IPv4 addresses, since they are currently the most commonly used. The details of the IPv6 protocol are approached in <xref linkend=\"sect.ipv6\" />, but the concepts remain the same."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Since the network is automatically configured during the initial installation, the <filename>/etc/network/interfaces</filename> file already contains a valid configuration. A line starting with <literal>auto</literal> gives a list of interfaces to be automatically configured on boot. This will often be <literal>eth0</literal>, which refers to the first Ethernet card."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>network</primary><secondary>configuration</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>configuration</primary><secondary>of the network</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>interface</primary><secondary>network</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>eth0</literal></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Ethernet Interface"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If the computer has an Ethernet card, the network that is associated with it must be configured by choosing from one of two methods. The simplest method is dynamic configuration with DHCP, and it requires a DHCP server on the local network. It may indicate a desired hostname, corresponding to the <literal>hostname</literal> setting in the example below. The DHCP server then sends configuration settings for the appropriate network. <indexterm><primary>Ethernet</primary></indexterm> <indexterm><primary>DHCP</primary></indexterm>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "DHCP configuration"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"auto eth0\n"
+"iface eth0 inet dhcp\n"
+"  hostname arrakis\n"
+""
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A “static” configuration must indicate network settings in a fixed manner. This includes at least the IP address and subnet mask; network and broadcast addresses are also sometimes listed. A router connecting to the exterior will be specified as a gateway."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Static configuration"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"auto eth0\n"
+"iface eth0 inet static\n"
+"  address 192.168.0.3\n"
+"  netmask 255.255.255.0\n"
+"  broadcast 192.168.0.255\n"
+"  network 192.168.0.0\n"
+"  gateway 192.168.0.1\n"
+""
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> Multiple addresses"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "It is possible not only to associate several interfaces to a single, physical network card, but also several IP addresses to a single interface. Remember also that an IP address may correspond to any number of names via DNS, and that a name may also correspond to any number of numerical IP addresses."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "As you can guess, the configurations can be rather complex, but these options are only used in very special cases. The examples cited here are typical of the usual configurations."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Connecting with PPP through a PSTN Modem"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>PPP</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>point to point</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>connection</primary><secondary>by PSTN modem</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>modem</primary><secondary>PSTN</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A point to point (PPP) connection establishes an intermittent connection; this is the most common solution for connections made with a telephone modem (“PSTN modem”, since the connection goes over the public switched telephone network)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A connection by telephone modem requires an account with an access provider, including a telephone number, username, password, and, sometimes the authentication protocol to be used. Such a connection is configured using the <command>pppconfig</command> tool in the Debian package of the same name. By default, it uses the access provider's connection. When in doubt about the authentication protocol, choose <emphasis>PAP</emphasis>: it is offered by the majority of Internet service providers."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>pppconfig</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>PAP</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "After configuration, it is possible to connect using the <command>pon</command> command (giving it the name of the connection as a parameter, when the default value of <literal>provider</literal> is not appropriate). The link is disconnected with the <command>poff</command> command. These two commands can be executed by the root user, or by any other user, provided they are in the <literal>dip</literal> group."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>pon</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>poff</command></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TOOL</emphasis> On-demand connection with <command>diald</command>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>diald</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>connection</primary><secondary>on demand</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>diald</command> is an on-demand connection service that automatically establishes a connection when needed, by detecting an outgoing IP packet and disconnecting after a period of inactivity."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Connecting through an ADSL Modem"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>connection</primary><secondary>by ADSL modem</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>modem</primary><secondary>ADSL</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>ADSL, modem</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The generic term “ADSL modem” covers a multitude of devices with very different functions. The modems that are simplest to use with Linux are those that have an Ethernet interface. These tend to be popular; ADSL Internet service providers lend (or lease) a “box” with Ethernet interfaces more and more frequently, instead of those with USB interfaces. According to the type of modem, the configuration required can vary widely."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Modems Supporting PPPOE"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>PPPOE</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>pppoeconf</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Some Ethernet modems work with the PPPOE protocol (Point to Point Protocol over Ethernet). The <command>pppoeconf</command> tool (from the package with the same name) will configure the connection. To do so, it modifies the <filename>/etc/ppp/peers/dsl-provider</filename> file with the settings provided and records the login information in the <filename>/etc/ppp/pap-secrets</filename> and <filename>/etc/ppp/chap-secrets</filename> files. It is recommended to accept all modifications that it proposes."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Once this configuration is complete, you can open the ADSL connection with the command, <command>pon dsl-provider</command> and disconnect with <command>poff dsl-provider</command>."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>dsl-provider</literal></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TIP</emphasis> Starting <command>ppp</command> via <command>init</command>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>init</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "PPP connections over ADSL are, by definition, intermittent. Since they are usually not billed according to time, there are few downsides to the temptation of keeping them always open; one simple means to do so is to use the <command>init</command> process to control the connection. All that's needed is to add a line such as the following at the end of the <filename>/etc/inittab</filename> file; then, any time the connection is disconnected, <command>init</command> will reconnect it."
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
+""
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Most ADSL connections disconnect on a daily basis, but this method reduces the duration of the interruption."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Modems Supporting PPTP"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>PPTP</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The PPTP (Point-to-Point Tunneling Protocol) protocol was created by Microsoft. Deployed at the beginning of ADSL, it was quickly replaced by PPPOE. If this protocol is forced on you, see <xref linkend=\"network-infrastructure\" /> in the section about virtual private networks detailing PPTP."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Modems Supporting DHCP"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When a modem is connected to the computer by an Ethernet cable (crossover cable) you typically configure a network connection by DHCP on the computer; the modem automatically acts as a gateway by default and takes care of routing (meaning that it manages the network traffic between the computer and the Internet)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Crossover cable for a direct Ethernet connection"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>crossover cable</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Computer network cards expect to receive data on specific wires in the cable, and send their data on others. When you connect a computer to a local network, you usually connect a cable (straight or crossover) between the network card and a repeater or switch. However, if you want to connect two computers directly (without an intermediary switch or repeater), you must route the signal sent by one card to the receiving side of the other card, and vice-versa. This is the purpose of a crossover cable, and the reason it is used."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In France, this method is used by Freebox, Neufbox, and Livebox, the ADSL modems provided by the Free, SFR/Neuf, and Wanadoo/Orange ISPs. It is also provided by most “ADSL routers” on the market."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Freebox</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Neufbox</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Livebox</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Automatic Network Configuration for Roaming Users"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">network-manager</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>network</primary><secondary>roaming configuration</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Many Falcot engineers have a laptop computer that, for professional purposes, they also use at home. The network configuration to use differs according to location. At home, it may be a wifi network (protected by a WEP key), while the workplace uses a wired network for greater security and more bandwidth."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "To avoid having to manually connect or disconnect the corresponding network interfaces, administrators installed the <emphasis role=\"pkg\">network-manager</emphasis> package on these roaming machines. This software enables a user to easily switch from one network to another using a small icon displayed in the notification area of their graphical desktop. Clicking on this icon displays a list of available networks (both wired and wireless), so they can simply choose the network they wish to use. The program saves the configuration for the networks to which the user has already connected, and automatically switches to the best available network when the current connection drops."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this daemon. Only members of the “netdev” group have permissions to control this program."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Network Manager knows how to handle various types of connections (DHCP, manual configuration, local network), but only if the configuration is set with the program itself. This is why it will systematically ignore all network interfaces in <filename>/etc/network/interfaces</filename> for which it is not suited. The settings are very strict; details are available in the <filename>/usr/share/doc/network-manager/README.Debian</filename> file. Since Network Manager doesn't give details when no network connections are shown, the easy way is to delete from <filename>/etc/network/interfaces</filename> any configuration for all interfaces that must be managed by Network Manager."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Note that this program is installed by default when the “Desktop Environment” task is chosen during initial installation."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>ALTERNATIVE</emphasis> Configuration by “network profile”"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">guessnet</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "More advanced users may want to try the <emphasis role=\"pkg\">guessnet</emphasis> package for automatic network configuration. A group of test scripts determine which network profile should be activated and configure it on the fly."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Users who prefer to manually select a network profile will prefer the <emphasis role=\"pkg\">netenv</emphasis> program, found in the package of the same name."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Setting the Hostname and Configuring the Name Service"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>name</primary><secondary>attribution and resolution</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>assignment of names</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The purpose of assigning names to IP numbers is to make them easier for people to remember. In reality, an IP address identifies a network interface associated with a device such as a network card. Since each machine can have several network cards, and several interfaces on each card, one single computer can have several names in the domain name system."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Each machine is, however, identified by a main (or “canonical”) name, stored in the <filename>/etc/hostname</filename> file and communicated to the Linux kernel by initialization scripts through the <command>hostname</command> command. The current value is available in a virtual filesystem, and you can get it with the <command>cat /proc/sys/kernel/hostname</command> command."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>hostname</command></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> <filename>/proc/</filename> and <filename>/sys/</filename>, virtual filesystems"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/proc/</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>proc</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/sys/</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>sys</filename></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <filename>/proc/</filename> and <filename>/sys/</filename> file trees are generated by “virtual” filesystems. This is a practical means of recovering information from the kernel (by listing virtual files) and communicating them to it (by writing to virtual files)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/sys/</filename> in particular is designed to provide access to internal kernel objects, especially those representing the various devices in the system. The kernel can, thus, share various pieces of information: the status of each device (for example, if it is in energy saving mode), whether it is a removable device, etc. Note that <filename>/sys/</filename> has only existed since kernel version 2.6."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Surprisingly, the domain name is not managed in the same way, but comes from the complete name of the machine, acquired through name resolution. You can change it in the <filename>/etc/hosts</filename> file; simply write a complete name for the machine there at the beginning of the list of names associated with the address of the machine, as in the following example:"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"127.0.0.1     localhost\n"
+"192.168.0.1   arrakis.falcot.com arrakis\n"
+""
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>hosts</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/etc/hosts</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>domain</primary><secondary>name</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>name</primary><secondary>domain</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>NSS</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Name Resolution"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>resolution</primary><secondary>name</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>name</primary><secondary>resolution</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The mechanism for name resolution in Linux is modular and can use various sources of information declared in the <filename>/etc/nsswitch.conf</filename> file. The entry that involves host name resolution is <literal>hosts</literal>. By default, it contains <literal>dns files</literal>, which means that the system consults the <filename>/etc/hosts</filename> file first, then DNS servers. NIS/NIS+ or LDAP servers are other possible sources."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> NSS and DNS"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Be aware that the commands specifically intended to query DNS (especially <command>host</command>) do not use the standard name resolution mechanism (NSS). As a consequence, they do not take into consideration <filename>/etc/nsswitch.conf</filename>, and thus, not <filename>/etc/hosts</filename> either."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Configuring DNS Servers"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>DNS</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Domain Name Service</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "DNS (Domain Name Service) is a distributed and hierarchical service mapping names to IP addresses, and vice-versa. Specifically, it can turn a human-friendly name such as <literal>www.eyrolles.com</literal> into the actual IP address, <literal>213.244.11.247</literal>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "To access DNS information, a DNS server must be available to relay requests. Falcot Corp has its own, but an individual user is more likely to use the DNS servers provided by their ISP."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>resolv.conf</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>nameserver</literal></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The DNS servers to be used are indicated in the <filename>/etc/resolv.conf</filename>, one per line, with the <literal>nameserver</literal> keyword preceding an IP address, as in the following example."
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"nameserver 212.27.32.176\n"
+"nameserver 212.27.32.177\n"
+"nameserver 8.8.8.8\n"
+""
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The <filename>/etc/hosts</filename> file"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If there is no name server on the local network, it is still possible to establish a small table mapping IP addresses and machine hostnames in the <filename>/etc/hosts</filename> file, usually reserved for local network stations. The syntax of this file is very simple: each line indicates a specific IP address followed by the list of any associated names (the first being “completely qualified”, meaning it includes the domain name)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This file is available even during network outages or when DNS servers are unreachable, but will only really be useful when duplicated on all the machines on the network. The slightest alteration in correspondence will require the file to be updated everywhere. This is why <filename>/etc/hosts</filename> generally only contains the most important entries."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This file will be sufficient for a small network not connected to the Internet, but with 5 machines or more, it is recommended to install a proper DNS server."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TIP</emphasis> Bypassing DNS"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Since applications check the <filename>/etc/hosts</filename> file before querying DNS, it is possible to include information in there that is different from what the DNS would return, and therefore to bypass normal DNS-based name resolution."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This allows, in the event of DNS changes not yet propagated, to test access to a website with the intended name even if this name is not properly mapped to the correct IP address yet."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Another possible use for DNS redirection is to bypass traffic intended for a specific host to another local machine. For example, if a name server was configured to send ad banners, you could divert traffic to a local host which would bypass these ads resulting in more fluid, less distracting, navigation."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "User and Group Databases"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>user</primary><secondary>database</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>group</primary><secondary>database</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>database</primary><secondary>of users</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>database</primary><secondary>of groups</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The list of users is usually stored in the <filename>/etc/passwd</filename> file, while the <filename>/etc/shadow</filename> file stores encrypted passwords. Both are text files, in a relatively simple format, which can be read and modified with a text editor. Each user is listed there on a line with several fields separated with a colon (“<literal>:</literal>”)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> Editing system files"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The system files mentioned in this chapter are all plain text files, and can be edited with a text editor. Considering their importance to core system functionality, it is always a good idea to take extra precautions when editing system files. First, always make a copy or backup of a system file before opening or altering it. Second, on servers or machines where more than one person could potentially access the same file at the same time, take extra steps to guard against file corruption."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For this purpose, it is enough to use the <command>vipw</command> command to edit the <filename>/etc/passwd</filename> file, or <command>vigr</command> to edit <filename>/etc/group</filename>. These commands lock the file in question prior to running the text editor, (<command>vi</command> by default, unless the <varname>EDITOR</varname> environment variable has been altered). The <literal>-s</literal> option in these commands allows editing the corresponding <foreignphrase>shadow</foreignphrase> file."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Crypt, a one-way function"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>crypt</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>crypt</command> is a one-way function that transforms a string <varname>(A)</varname> into another string <varname>(B)</varname> in a way that <varname>A</varname> cannot be derived from <varname>B</varname>. The only way to identify <varname>A</varname> is to test all possible values, checking each one to determine if transformation by the function will produce <varname>B</varname> or not. It uses up to 8 characters as input (string <varname>A</varname>) and generates a string of 13, printable, ASCII characters (string <varname>B</varname>)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "User List: <filename>/etc/passwd</filename>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Here is the list of fields in the <filename>/etc/passwd</filename> file:"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>passwd</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/etc/passwd</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>uid</literal></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>gid</literal></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>GECOS</literal></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>login</literal></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "login, for example <literal>rhertzog</literal>;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "password: this is a password encrypted by a one-way function, either <command>crypt</command> or <command>md5</command>. The special value “<literal>x</literal>” indicates that the encrypted password is stored in <filename>/etc/shadow</filename>;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<literal>uid</literal>: unique number identifying each user;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<literal>gid</literal>: unique number for the user's main group (Debian creates a specific group for each user by default);"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<literal>GECOS</literal>: data field usually containing the user's full name;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "login directory, assigned to the user for storage of their personal files (the environment variable <varname>$HOME</varname> generally points here);"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "program to execute upon login. This is usually a command interpreter (shell), giving the user free reign. If you specify <command>/bin/false</command> (which does nothing and returns control immediately), the user can not login."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Unix group"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>group</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A Unix group is an entity including several users so that they can easily share files using the integrated permission system (by having precisely the same rights). You can also restrict use of certain programs to a specific group."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The Hidden and Encrypted Password File: <filename>/etc/shadow</filename>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>shadow</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/etc/shadow</filename></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <filename>/etc/shadow</filename> file contains the following fields:"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "login"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "encrypted password;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "several fields managing password expiration."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>DOCUMENTATION</emphasis> <filename>/etc/passwd</filename>, <filename>/etc/shadow</filename> and <filename>/etc/group</filename> file formats"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "These formats are documented in the following man pages: <citerefentry><refentrytitle>passwd</refentrytitle><manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>shadow</refentrytitle><manvolnum>5</manvolnum></citerefentry>, and <citerefentry><refentrytitle>group</refentrytitle><manvolnum>5</manvolnum></citerefentry>."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>SECURITY</emphasis> <filename>/etc/shadow</filename> file security"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/etc/shadow</filename>, unlike its alter-ego, <filename>/etc/passwd</filename>, cannot be read by regular users. Any encrypted password stored in <filename>/etc/passwd</filename> is readable by anybody; a cracker could try to “break” (or reveal) a password by one of several “brute force” methods which, simply put, guess at commonly used combinations of characters. This attack — called a \"dictionary attack\" — is no longer possible on systems using <filename>/etc/shadow</filename>."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Modifying an Existing Account or Password"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>chsh</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>chfn</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>chage</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>password</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The following commands allow modification of the information stored in specific fields of the user databases: <command>passwd</command> permits a regular user to change their password, which in turn, updates the <filename>/etc/shadow</filename> file; <command>chfn</command> (CHange Full Name), reserved for the super-user (root), modifies the <literal>GECOS</literal> field. <command>chsh</command> (CHange SHell) allows the user to change their login shell, however available choices will be limited to those listed in <filename>/etc/shells</filename>; the administrator, on the other hand, is not bound by this restriction and can set the shell to any program of their choosing."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Finally, the <command>chage</command> (CHange AGE) command allows the administrator to change the password expiration settings (the <literal>-l <replaceable>user</replaceable></literal> option will list the current settings). You can also force the expiration of a password using the <command>passwd -e <replaceable>user</replaceable></command> command, which will require the user to change their password the next time they log in."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Disabling an Account"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Disable an account</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>account</primary><secondary>disable</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "You may find yourself needing to “disable an account” (lock out a user), as a disciplinary measure, for the purposes of an investigation, or simply in the event of a prolonged or definitive absence of a user. A disabled account means the user cannot login or gain access to the machine. The account remains intact on the machine and no files or data are deleted; it is simply inaccessible. This is accomplished by using the command <command>passwd -l <replaceable>user</replaceable></command> (lock). Re-enabling the account is done in similar fashion, with the <literal>-u</literal> option (unlock)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>GOING FURTHER</emphasis> NSS and system databases"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Name Service Switch</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Instead of using the usual files to manage lists of users and groups, you could use other types of databases, such as LDAP or <command>db</command>, by using an appropriate NSS (Name Service Switch) module. The modules used are listed in the <filename>/etc/nsswitch.conf</filename> file, under the <literal>passwd</literal>, <literal>shadow</literal> and <literal>group</literal> entries. See <xref linkend=\"section.config-nss\" /> for a specific example of the use of an NSS module by LDAP."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Group List: <filename>/etc/group</filename>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Groups are listed in the <filename>/etc/group</filename> file, a simple textual database in a format similar to that of the <filename>/etc/passwd</filename> file, with the following fields:"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "group name"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "password (optional): This is only used to join a group when one is not a usual member (with the <command>newgrp</command> or <command>sg</command> commands, see sidebar);"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<literal>gid</literal>: unique group identification number"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "list of members: list of names of users who are members of the group, separated by commas."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Working with several groups"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>newgrp</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>sg</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>id</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>group</primary><secondary>change</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Each user may be a member of many groups; one of them is their “main group”. A user's main group is, by default, created during initial user configuration. By default, each file that a user creates belongs to them, as well as to their main group. This is not always desirable; for example, when the user needs to work in a directory shared by a group other than their main group. In this case, the user needs to change their main group using one of the following commands: <command>newgrp</command>, which starts a new shell, or <command>sg</command>, which simply executes a command using the supplied alternate group. These commands also allow the user to join a group to which they do not belong. If the group is password protected, they will need to supply the appropriate password before the command is executed."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Alternatively, the user can set the <literal>setgid</literal> bit on the directory, which causes files created in that directory to automatically belong to the correct group. For more details, see sidebar <xref linkend=\"cadre.setgid-dir\" />."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>id</command> command displays the current state of a user, with their personal identifier (<varname>uid</varname> variable), current main group (<varname>gid</varname> variable), and the list of groups to which they belong (<varname>groups</varname> variable)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>group</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/etc/group</filename></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>addgroup</command> and <command>delgroup</command> commands add or delete a group, respectively. The <command>groupmod</command> command modifies a group's information (its <literal>gid</literal> or identifier). The command <command>passwd -g <replaceable>group</replaceable></command> changes the password for the group, while the <command>passwd -r -g <replaceable>group</replaceable></command> command deletes it."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>addgroup</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>delgroup</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>groupmod</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>group</primary><secondary>creation</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>creation</primary><secondary>of groups</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>group</primary><secondary>deletion</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>deletion of a group</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TIP</emphasis> <command>getent</command>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>getent</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>getent</command> (get entries) command checks the system databases the standard way, using the appropriate library functions, which in turn call the NSS modules configured in the <filename>/etc/nsswitch.conf</filename> file. The command takes one or two arguments: the name of the database to check, and a possible search key. Thus, the command <command>getent passwd rhertzog</command> will give the information from the user database regarding the user <literal>rhertzog</literal>."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Creating Accounts"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>account</primary><secondary>creation</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>creation</primary><secondary>of user accounts</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "One of the first actions an administrator needs to do when setting up a new machine is to create user accounts. This is typically done using the <command>adduser</command> command which takes a user-name for the new user to be created, as an argument."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>adduser</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>adduser</command> command asks a few questions before creating the account, but its usage is fairly straightforward. Its configuration file, <filename>/etc/adduser.conf</filename>, includes all the interesting settings: it can be used to automatically set a quota for each new user by creating a user template, or to change the location of user accounts; the latter is rarely useful, but it comes in handy when you have a large number of users and want to divide their accounts over several disks, for instance. You can also choose a different default shell."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Quota"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>quota</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The term “quota” refers to a limit on machine resources that a user is allowed to use. This frequently refers to disk space."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The creation of an account populates the user's home directory with the contents of the <filename>/etc/skel/</filename> template. This provides the user with a set of standard directories and configuration files."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>group</primary><secondary>add a user</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>add a user to a group</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In some cases, it will be useful to add a user to a group (other than their default “main” group) in order to grant them additional permissions. For example, a user who is included in the <emphasis>audio</emphasis> group can access audio devices (see sidebar “Device access permissions”). This can be achieved with a command such as <command>adduser <replaceable>user</replaceable> <replaceable>group</replaceable></command>."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Device access permissions"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>device</primary><secondary>access permissions</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>file</primary><secondary>special</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>mode</primary><secondary>character</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>mode</primary><secondary>block</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>block, mode</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>character, mode</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>special, file</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>mknod</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Each hardware peripheral device is represented under Unix with a special file, usually stored in the file tree under <filename>/dev/</filename> (DEVices). Two types of special files exist according to the nature of the device: “character mode” and “block mode” files, each mode allowing for only a limited number of operations. While character mode limits interaction with read/write operations, block mode also allows seeking within the available data. Finally, each special file is associated with two numbers (“major” and “minor”) that identify the device to the kernel in a unique manner. Such a file, created by the <command>mknod</command> command, simply contains a symbolic (and more human-friendly) name."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The permissions of a special file map to the permissions necessary to access the device itself. Thus, a file such as <filename>/dev/mixer</filename>, representing the audio mixer, only has read/write permissions for the root user and members of the <literal>audio</literal> group. Only these users can operate the audio mixer."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "It should be noted that the combination of <emphasis role=\"pkg\">udev</emphasis>, <emphasis role=\"pkg\">consolekit</emphasis> and <emphasis role=\"pkg\">policykit</emphasis> can add additional permissions to allow users physically connected to the console (and not through the network) to access to certain devices."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Shell Environment"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Command interpreters (or shells) are frequently a user's first point of contact with the computer, and they must therefore be rather friendly. Most of them use initialization scripts that allow configuration of their behavior (automatic completion, prompt text, etc.)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>command line interface</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>command, interpreter</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>shell</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>bash</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>bash</command>, the standard shell, uses the <filename>/etc/bash.bashrc</filename> initialization script for “interactive” shells, and <filename>/etc/profile</filename> for “login” shells."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Login shell and (non) interactive shell"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In simple terms, a login shell is invoked when you log in to the console using <command>telnet</command> or <command>ssh</command>, or through an explicit <command>bash --login</command> command. Regardless of whether it's a login shell or not, a shell can be interactive (in an <command>xterm</command>-type terminal for instance); or non-interactive (when executing a script)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>DISCOVERY</emphasis> Other shells, other scripts"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Each command interpreter has a specific syntax and its own configuration files. Thus, <command>zsh</command> uses <filename>/etc/zshrc</filename> and <filename>/etc/zshenv</filename>; <command>csh</command> uses <filename>/etc/csh.cshrc</filename>, <filename>/etc/csh.login</filename> and <filename>/etc/csh.logout</filename>. The man pages for these programs document which files they use."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>zsh</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>csh</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For <command>bash</command>, it is useful to activate “automatic completion” in the <filename>/etc/bash.bashrc</filename> file (simply uncomment a few lines)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Automatic completion"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>automatic completion</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Many command interpreters provide a completion feature, which allows the shell to automatically complete a partially typed command name or argument when the user hits the <keycap>Tab</keycap> key. This lets users work more efficiently and be less error-prone."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This function is very powerful and flexible. It is possible to configure its behavior according to each command. Thus, the first argument following <command>apt-get</command> will be proposed according to the syntax of this command, even if it does not match any file (in this case, the possible choices are <literal>install</literal>, <literal>remove</literal>, <literal>upgrade</literal>, etc.)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> The tilde, a shortcut to HOME"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>~</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>tilde</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The tilde is often used to indicate the directory to which the environment variable, <varname>HOME</varname>, points (being the user's home directory, such as <filename>/home/rhertzog/</filename>). Command interpreters automatically make the substitution: <filename>~/hello.txt</filename> becomes <filename>/home/rhertzog/hello.txt</filename>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The tilde also allows access to another user's home directory. Thus, <filename>~rmas/bonjour.txt</filename> is synonymous with <filename>/home/rmas/bonjour.txt</filename>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In addition to these common scripts, each user can create their own <filename>~/.bashrc</filename> and <filename>~/.bash_profile</filename> to configure their shell. The most common changes are the addition of aliases; these are words that are automatically replaced with the execution of a command, which makes it faster to invoke that command. For instance, you could create the <literal>la</literal> alias for the command <command>ls -la | less</command> command; then you only have to type <command>la</command> to inspect the contents of a directory in detail."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Environment variables"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>environment variable</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>environment</primary><secondary>variable</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Environment variables allow storage of global settings for the shell or various other programs called. They are contextual (each process has its own set of environment variables) but inheritable. This last characteristic offers the possibility for a login shell to declare variables which will be passed down to all programs it executes."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Setting default environment variables is an important element of shell configuration. Leaving aside the variables specific to a shell, it is preferable to place them in the <filename>/etc/environment</filename> file, since it is used by the various programs likely to initiate a shell session. Variables typically defined there include <varname>ORGANIZATION</varname>, which usually contains the name of the company or organization, and <varname>HTTP_PROXY</varname>, which indicates the existence and location of an HTTP proxy."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TIP</emphasis> All shells configured identically"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Users often want to configure their login and interactive shells in the same way. To do this, they choose to interpret (or “source”) the content from <filename>~/.bashrc</filename> in the <filename>~/.bash_profile</filename> file. It is possible to do the same with files common to all users (by calling <filename>/etc/bash.bashrc</filename> from <filename>/etc/profile</filename>)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Printer Configuration"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>configuration</primary><secondary>printing</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>printing</primary><secondary>configuration</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Printer configuration used to cause a great many headaches for administrators and users alike. These headaches are now mostly a thing of the past, thanks to the creation of <emphasis role=\"pkg\">cups</emphasis>, the free print server using the IPP protocol (Internet Printing Protocol)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>IPP</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Internet Printing Protocol</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>cups</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This program is divided over several Debian packages: <emphasis role=\"pkg\">cups</emphasis> is the central print server; <emphasis role=\"pkg\">cups-bsd</emphasis> is a compatibility layer allowing use of commands from the traditional BSD printing system (<command>lpd</command> daemon, <command>lpr</command> and <command>lpq</command> commands, etc.); <emphasis role=\"pkg\">cups-client</emphasis> contains a group of programs to interact with the server (block or unblock a printer, view or delete print jobs in progress, etc.); and finally, <emphasis role=\"pkg\">cups-driver-gutenprint</emphasis> contains a collection of additional printer drivers for <command>cups</command>."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>lpr</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>lpd</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>lpq</command></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>COMMUNITY</emphasis> CUPS"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>CUPS</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Common Unix Printing System</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "CUPS (Common Unix Printing System) is a trademark filed by the Easy Software Products company, when <command>cups</command> was created. <ulink type=\"block\" url=\"http://www.easysw.com/\" />"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> CUPS and CUPSYS"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The packages containing <command>cups</command> are currently called <emphasis role=\"pkg\">cups</emphasis>, <emphasis role=\"pkg\">cups-client</emphasis>, <emphasis role=\"pkg\">cups-bsd</emphasis>, etc. In the Debian versions before Lenny, the packages had names built on the basis of <emphasis role=\"pkg\">cupsys</emphasis>. You may still find transition packages installed on some relatively old machines that have been updated over time."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "After installation of these different packages, <command>cups</command> is administered easily through a web interface accessible at the local address: <literal>http://localhost:631/</literal>. There you can add printers (including network printers), remove, and administer them. You can also administer <emphasis>cups</emphasis> with the <command>system-config-printer</command> graphical interface (from the Debian package of the same name), which is installed by default if the “Desktop environment” task is chosen."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>cups</command></primary><secondary>administration</secondary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> Obsolescence of <filename>/etc/printcap</filename>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis>cups</emphasis> no longer uses the <filename>/etc/printcap</filename> file, which is now obsolete. Programs that rely upon this file to get a list of available printers will, thus, fail. To avoid this problem, delete this file and make it a symbolic link (see sidebar <xref linkend=\"cadre.lien-symbolique\" />) to <filename>/var/run/cups/printcap</filename>, which is maintained by <emphasis>cups</emphasis> to ensure compatibility."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>printcap</filename></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Configuring the Bootloader"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>loader</primary><secondary>bootloader</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>bootloader</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "It is probably already functional, but it is always good to know how to configure and install the bootloader in case it disappears from the Master Boot Record. This can occur after installation of another operating system, such as Windows. The following information can also help you to modify the bootloader configuration if needed."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Master boot record"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>MBR</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Master Boot Record</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The Master Boot Record (MBR) occupies the first 512 bytes of the first hard disk, and is the first thing loaded by the BIOS to hand over control to a program capable of booting the desired operating system. In general, a bootloader is installed in the MBR, removing its previous content."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Identifying the Disks"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis>, <emphasis>devfs</emphasis> and <filename>/dev/</filename>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <filename>/dev/</filename> directory traditionally houses so-called “special” files, intended to represent system peripherals (see sidebar <xref linkend=\"cadre.fichiers-speciaux\" />). <filename>/dev/hda1</filename> thus always corresponds to the first partition of the first IDE hard drive. This static structure does not allow dynamic setting of “major” and “minor” numbers for these files, which forces kernel developers to limit their number, since a priori assignment of the identifiers prohibits adding more once these conventions are established."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "To take into account the characteristics of more and more dynamic, modern computers, the kernel has, at some time, offered an implementation of <filename>/dev/</filename> by a virtual filesystem called <emphasis>devfs</emphasis>. In some cases, this makes it easier to find files, since the naming convention uses a hierarchical structure: the first partition of the master hard drive on the first IDE bus was then represented by the file, <filename>/dev/ide/host0/bus0/target0/lun0/part1</filename>. Not only were these naming conventions not very intuitive, but they were also hard-coded into the kernel which presented problems for hot-pluggable drives because the corresponding special file name would vary."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The current solution is the second incarnation of the process, <emphasis>udev</emphasis>, with which the kernel delegates the choice of the device file names to be created to a program in user space. This program (<command>udevd</command>) can then have all of the flexibility of user space to decide what actions to take, naming of peripherals, etc."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "With <command>udev</command> (user-space <filename>/dev/</filename>), a filesystem is stored in RAM and generated automatically by <command>udevd</command> (and it hides the content of any <filename>/dev/</filename> that may be stored on-disk). <command>udevd</command> collaborates with the kernel's <emphasis>hotplug</emphasis> sub-system (see <xref linkend=\"sect.hotplug\" />) to detect the appearance (hotplugging) of devices, then dynamically creates the corresponding special files in <filename>/dev/</filename>. The content of <filename>/dev/</filename> is, thus, lost on each reboot, but <command>udev</command> recreates it systematically."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This mechanism allows the machine to dynamically choose the file name. You can thus keep the same name for a given device, regardless of the connector used or the connection order, which is especially useful when you use various USB peripherals. The partition system on the first IDE hard drive can then be called <filename>/dev/hda1</filename> for backwards compatibility, or <filename>/dev/root-partition</filename> if you prefer, or even both at the same time since <command>udevd</command> can be configured to automatically create a symbolic link. Furthermore, <filename>/dev/</filename> no longer contains useful files at this time. Previously, some kernel modules did not automatically load when you tried to access the corresponding peripheral; henceforth, the peripheral's special file no longer exists prior to loading the module, which is no big deal, since most modules are loaded on boot thanks to automatic hardware detection. But for undetectable peripherals (such as older disk drives or PS/2 mice), this doesn't work. Consider adding the modules, <literal>floppy</literal>, <literal>psmouse</literal> and <literal>mousedev</literal> to <filename>/etc/modules</filename> in order to force loading them on boot."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>hard drive, names</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>names</primary><secondary>of hard drives</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Configuration of the bootloader must identify the different hard drives and their partitions. Linux uses a special filesystem (in “block” mode) stored in the <filename>/dev/</filename> directory, for this purpose. Historically, <filename>/dev/hda</filename> was the master disk on the first IDE controller, and <filename>/dev/hdb</filename> its first slave, <filename>/dev/hdc</filename> and <filename>/dev/hdd</filename> being, respectively, the master and slave disks on the second IDE controller, and so on down for any others. <filename>/dev/sda</filename> corresponded to the first SCSI drive, <filename>/dev/sdb</filename> being the second, etc. This naming scheme has been unified with the Linux kernel present in Squeeze, and all hard drives (IDE/PATA, SATA, SCSI, USB, IEEE 1394) are now represented by <filename>/dev/sd*</filename>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Each partition is represented by its number on the disk on which it resides: for instance, <filename>/dev/sda1</filename> is the first partition on the first disk, and <filename>/dev/sdb3</filename> is the third partition on the second disk."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The PC architecture (or “i386”) is limited to four “primary” partitions per disk. To go beyond this limitation, one of them must be created as an “extended” partition, and it can then contain additional “secondary” partitions. These secondary partitions must be numbered from 5. Thus the first secondary partition could be <filename>/dev/sda5</filename>, followed by <filename>/dev/sda6</filename>, etc."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>partition</primary><secondary>primary</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>partition</primary><secondary>extended</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>partition</primary><secondary>secondary</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "It is not always easy to remember what disk is connected to which SATA controller, or in third position in the SCSI chain, especially since the naming of hotplugged hard drives (which includes among others most SATA disks and external disks) can change from one boot to another. Fortunately, <command>udev</command> creates, in addition to <filename>/dev/sd*</filename>, symbolic links with a fixed name, which you could then use if you wished to identify a hard drive in a non-ambiguous manner. These symbolic links are stored in <filename>/dev/disk/by-id</filename>. On a machine with two physical disks, for example, one could find the following:"
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
+"total 0\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP -&gt; ../../sda\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP-part1 -&gt; ../../sda1\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP-part2 -&gt; ../../sda2\n"
+"[...]\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 08:58 ata-WDC_WD5001AALS-00L3B2_WD-WCAT00241697 -&gt; ../../sdb\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-WDC_WD5001AALS-00L3B2_WD-WCAT00241697-part1 -&gt; ../../sdb1\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-WDC_WD5001AALS-00L3B2_WD-WCAT00241697-part2 -&gt; ../../sdb2\n"
+"[...]\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 08:58 scsi-SATA_STM3500418AS_9VM3L3KP -&gt; ../../sda\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_STM3500418AS_9VM3L3KP-part1 -&gt; ../../sda1\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_STM3500418AS_9VM3L3KP-part2 -&gt; ../../sda2\n"
+"[...]\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 08:58 scsi-SATA_WDC_WD5001AALS-_WD-WCAT00241697 -&gt; ../../sdb\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_WDC_WD5001AALS-_WD-WCAT00241697-part1 -&gt; ../../sdb1\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_WDC_WD5001AALS-_WD-WCAT00241697-part2 -&gt; ../../sdb2\n"
+"[...]\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 16:48 usb-LaCie_iamaKey_3ed00e26ccc11a-0:0 -&gt; ../../sdc\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 16:48 usb-LaCie_iamaKey_3ed00e26ccc11a-0:0-part1 -&gt; ../../sdc1\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 16:48 usb-LaCie_iamaKey_3ed00e26ccc11a-0:0-part2 -&gt; ../../sdc2\n"
+"[...]\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 08:58 wwn-0x5000c50015c4842f -&gt; ../../sda\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 wwn-0x5000c50015c4842f-part1 -&gt; ../../sda1\n"
+"[...]\n"
+"mirexpress:/dev/disk/by-id# </computeroutput>\n"
+""
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Note that some disks are listed several times (because they behave simultaneously as ATA disks and SCSI disks), but the relevant information is mainly in the model and serial numbers of the disks, from which you can find the peripheral file."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The example configuration files given in the following sections are based on the same setup: a single master IDE disk, where the first partition is an old Windows installation and the second contains Debian GNU/Linux."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Configuring LILO"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>LILO</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Linux Loader</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis>LILO</emphasis> (LInux LOader) is the oldest bootloader — solid but rustic. It writes the physical address of the kernel to boot on the MBR, which is why each update to LILO (or its configuration file) must be followed by the command <command>lilo</command>. Forgetting to do so will render a system unable to boot if the old kernel was removed or replaced as the new one will not be in the same location on the disk."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "LILO's configuration file is <filename>/etc/lilo.conf</filename>; a simple file for standard configuration is illustrated in the example below."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "LILO configuration file"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"# The disk on which LILO should be installed.\n"
+"# By indicating the disk and not a partition.\n"
+"# you order LILO to be installed on the MBR.\n"
+"boot=/dev/sda\n"
+"# the partition that contains Debian\n"
+"root=/dev/sda2\n"
+"# the item to be loaded by default\n"
+"default=Linux\n"
+"\n"
+"# the most recent kernel image\n"
+"image=/vmlinuz\n"
+"  label=Linux\n"
+"  initrd=/initrd.img\n"
+"  read-only\n"
+"\n"
+"# Old kernel (if the newly installed kernel doesn't boot)\n"
+"image=/vmlinuz.old\n"
+"  label=LinuxOLD\n"
+"  initrd=/initrd.img.old\n"
+"  read-only\n"
+"  optional\n"
+"\n"
+"# only for Linux/Windows dual boot\n"
+"other=/dev/sda1\n"
+"  label=Windows\n"
+""
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "GRUB 2 Configuration"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>GRUB</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>GRUB 2</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis>GRUB</emphasis> (GRand Unified Bootloader) is more recent. It is not necessary to invoke it after each update of the kernel; <emphasis>GRUB</emphasis> knows how to read the filesystems and find the position of the kernel on the disk by itself. To install it on the MBR of the first disk, simply type <command>grub-install /dev/sda</command>. <indexterm><primary><command>grub-install</command></primary></indexterm>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> GRUB and GRUB 2"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis role=\"distribution\">Squeeze</emphasis> contains both GRUB version 2 and version 1 (also called “GRUB Legacy”). The <emphasis role=\"pkg\">grub</emphasis> package installs version 2 (through the package dependency system), and offers automatic migration during upgrades from <emphasis role=\"distribution\">Lenny</emphasis>. GRUB 1 is still available in the package <emphasis role=\"pkg\">grub-legacy</emphasis>."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> Disk names for GRUB"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "GRUB can only identify hard drives based on information provided by the BIOS. <literal>(hd0)</literal> corresponds to the first disk thus detected, <literal>(hd1)</literal> the second, etc. In most cases, this order corresponds exactly to the usual order of disks under Linux, but problems can occur when you associate SCSI and IDE disks. GRUB stores correspondences that it detects in the file <filename>/boot/grub/device.map</filename>. If you find errors there (because you know that your BIOS detects drives in a different order), correct them manually and run <command>grub-install</command> again."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Partitions also have a specific name in GRUB. When you use “classical” partitions in MS-DOS format, the first partition on the first disk is labeled, <literal>(hd0,msdos1)</literal>, the second <literal>(hd0,msdos2)</literal>, etc."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "GRUB 2 configuration is stored in <filename>/boot/grub/grub.cfg</filename>, but this file (in Debian) is generated from others. Be careful not to modify it by hand, since such local modifications will be lost the next time <command>update-grub</command> is run (which may occur upon update of various packages). The most common modifications of the <filename>/boot/grub/grub.cfg</filename> file (to add command line parameters to the kernel or change the duration that the menu is displayed, for example) are made through the variables in <filename>/etc/default/grub</filename>. To add entries to the menu, you can either create a <filename>/boot/grub/custom.cfg</filename> file or modify the <filename>/etc/grub.d/50_custom</filename> file. For more complex configurations, you can modify other files in <filename>/etc/grub.d</filename>, or add to them; these scripts should return configuration snippets, possibly by making use of external programs. These scripts are the ones that will update the list of kernels to boot: <filename>10_linux</filename> takes into consideration the installed Linux kernels; <filename>20_linux</filename> takes into account Xen virtual systems, and <filename>30_os-prober</filename> lists other operating systems (Windows, Mac OSX, Hurd)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "GRUB Legacy Configuration"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>GRUB 1</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>GRUB Legacy</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Version 1 of <emphasis>GRUB</emphasis> can also read filesystems. It is installed using the <command>grub-install /dev/sda</command> command. <indexterm><primary><command>grub-install</command></primary></indexterm>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> Disk names for GRUB Legacy"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "GRUB Legacy uses the same system for naming disks as GRUB 2, and the same <filename>/boot/grub/device.map</filename> file. On the other hand, it names partitions a little differently: the first partition on the first disk is labeled <literal>(hd0,0)</literal>, the second <literal>(hd0,1)</literal>, etc."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "GRUB's configuration is in the <filename>/boot/grub/menu.lst</filename> file (see example)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "GRUB configuration file"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"# Boot automatically after 30 seconds\n"
+"timeout 30\n"
+"# Boot first entry by default\n"
+"default 0\n"
+"# If that fails, try the second\n"
+"fallback 1\n"
+"\n"
+"# Last kernel installed\n"
+"title GNU/Linux\n"
+"root (hd0,1)\n"
+"kernel /vmlinuz root=/dev/sda2\n"
+"initrd /initrd.img\n"
+"\n"
+"# Old kernel (if the most recent doesn't boot)\n"
+"title GNU/Linux OLD\n"
+"root (hd0,1)\n"
+"kernel /vmlinuz.old root=/dev/sda2\n"
+"initrd /initrd.img.old\n"
+"\n"
+"# Only for dual boot, Linux/Windows\n"
+"title Microsoft Windows\n"
+"rootnoverify (hd0,0)\n"
+"makeactive\n"
+"chainloader +1\n"
+""
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>menu.lst</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/boot/grub/menu.lst</filename></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "For Macintosh Computers (PowerPC): Configuring Yaboot"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>yaboot</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Yaboot is the bootloader used by old Macintosh computers using PowerPC processors. They do not boot like PCs, but rely on a “bootstrap” partition, from which the BIOS (or OpenFirmware) executes the loader, and on which the <command>ybin</command> program installs <command>yaboot</command> and its configuration file. You will only need to run this command again if the <filename>/etc/yaboot.conf</filename> is modified (it is duplicated on the bootstrap partition, and <command>yaboot</command> knows how to find the position of the kernels on the disks)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Before executing <command>ybin</command>, you must first have a valid <filename>/etc/yaboot.conf</filename>. The following is an example of a minimal configuration. <indexterm><primary><command>ybin</command></primary></indexterm>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Yaboot configuration file"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"# bootstrap partition\n"
+"boot=/dev/sda2\n"
+"# the disk\n"
+"device=hd:\n"
+"# the Linux partition\n"
+"partition=3\n"
+"root=/dev/sda3\n"
+"# boot after 3 seconds of inactivity\n"
+"# (timeout is in tenths of seconds)\n"
+"timeout=30\n"
+"\n"
+"install=/usr/lib/yaboot/yaboot\n"
+"magicboot=/usr/lib/yaboot/ofboot\n"
+"enablecdboot\n"
+"\n"
+"# last kernel installed\n"
+"image=/vmlinux\n"
+"        label=linux\n"
+"        initrd=/initrd.img\n"
+"        read-only\n"
+"\n"
+"# old kernel\n"
+"image=/vmlinux.old\n"
+"        label=old\n"
+"        initrd=/initrd.img.old\n"
+"        read-only\n"
+"\n"
+"# only for Linux/Mac OSX dual-boot\n"
+"macosx=/dev/sda5\n"
+"\n"
+"# bsd=/dev/sdaX and macos=/dev/sdaX\n"
+"# are also possible\n"
+""
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Other Configurations: Time Synchronization, Logs, Sharing Access..."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The many elements listed in this section are good to know for anyone who wants to master all aspects of configuration of the GNU/Linux system. They are, however, treated briefly and frequently refer to the documentation."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Timezone"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>timezone</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Symbolic links"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>link</primary><secondary>symbolic</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>symbolic link</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>ln</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A symbolic link is a pointer to another file. When you access it, the file to which it points is opened. Removal of the link will not cause deletion of the file to which it points. Likewise, it does not have its own set of permissions, but rather retains the permissions of its target. Finally, it can point to any type of file: directories, special files (sockets, named pipes, device files, etc.), even other symbolic links."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>ln -s <replaceable>target</replaceable> <replaceable>link-name</replaceable></command> command creates a symbolic link, named <replaceable>link-name</replaceable>, pointing to <replaceable>target</replaceable>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If the target does not exist, then the link is “broken” and accessing it will result in an error indicating that the target file does not exist. If the link points to another link, you will have a “chain” of links that turns into a “cycle” if one of the targets points to one of its predecessors. In this case, accessing one of the links in the cycle will result in a specific error (“too many levels of symbolic links”); this means the kernel gave up after several rounds of the cycle."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The timezone, configured during initial installation, is a configuration item for the <emphasis role=\"pkg\">tzdata</emphasis> package. To modify it, use the <command>dpkg-reconfigure tzdata</command> command, which allows you to choose the timezone to be used in an interactive manner (until <emphasis role=\"distribution\">lenny</emphasis>, the command to use was <command>tzconfig</command>). Its configuration is stored in the <filename>/etc/timezone</filename> file. Additionally, the corresponding file in the <filename>/usr/share/zoneinfo</filename> directory is copied in <filename>/etc/localtime</filename>; this file contains the rules governing the dates where daylight saving time is active, for countries that use it."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>tzconfig</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>timezone</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/etc/timezone</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>zoneinfo</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/usr/share/zoneinfo/</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>DST</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>daylight saving time</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When you need to temporarily change the timezone, use the <varname>TZ</varname> environment variable, which takes priority over the configured system default:"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><varname>TZ</varname></primary>"
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>date</userinput>\n"
+"<computeroutput>Wed Mar 28 15:51:19 CEST 2012</computeroutput>\n"
+"<computeroutput>$ </computeroutput><userinput>TZ=\"Pacific/Honolulu\" date</userinput>\n"
+"<computeroutput>Wed Mar 28 03:51:21 HST 2012</computeroutput>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> System clock, hardware clock"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "There are two time sources in a computer. A computer's motherboard has a hardware clock, called the “CMOS clock”. This clock is not very precise, and provides rather slow access times. The operating system kernel has its own, the software clock, which it keeps up to date with its own means (possibly with the help of time servers, see the “Time Synchronization” section). This system clock is generally more accurate, especially since it doesn't need access to hardware variables. However, since it only exists in live memory, it is zeroed out every time the machine is booted, contrary to the CMOS clock, which has a battery and therefore “survives” rebooting or halting of the machine. The system clock is, thus, set from the CMOS clock during boot, and the CMOS clock is updated on shutdown (to take into account possible changes or corrections if it has been improperly adjusted)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In practice, there is a problem, since the CMOS clock is nothing more than a counter and contains no information regarding the time zone. There is a choice to make regarding its interpretation: either the system considers it runs in universal time (UTC, formerly GMT), or in local time. This choice could be a simple shift, but things are actually more complicated: as a result of daylight saving time, this offset is not constant. The result is that the system has no way to determine whether the offset is correct, especially around periods of time change. Since it is always possible to reconstruct local time from universal time and the timezone information, we strongly recommend using the CMOS clock in universal time."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Unfortunately, Windows systems in their default configuration ignore this recommendation; they keep the CMOS clock on local time, applying time changes when booting the computer by trying to guess during time changes if the change has already been applied or not. This works relatively well, as long as the system has only Windows running on it. But when a computer has several systems (whether it be a “dual-boot” configuration or running other systems via virtual machine), chaos ensues, with no means to determine if the time is correct. If you absolutely must retain Windows on a computer, you should either configure it to keep the CMOS clock as UTC, or deactivate <literal>UTC</literal> in the <filename>/etc/default/rcS</filename> file on the Debian system (and make sure to manually check your clock in spring and autumn)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Time Synchronization"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>time synchronization</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>clock</primary><secondary>synchronization</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Time synchronization, which may seem superfluous on a computer, is very important on a network. Since users do not have permissions allowing them to modify the date and time, it is important for this information to be precise to prevent confusion. Furthermore, having all of the computers on a network synchronized allows better cross-referencing of information from logs on different machines. Thus, in the event of an attack, it is easier to reconstruct the chronological sequence of actions on the various machines involved in the compromise. Data collected on several machines for statistical purposes won't make a great deal of sense if they are not synchronized."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> NTP"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>NTP</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Network</primary><secondary>Time Protocol</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "NTP (Network Time Protocol) allows a machine to synchronize with others fairly accurately, taking into consideration the delays induced by the transfer of information over the network and other possible offsets."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "While there are numerous NTP servers on the Internet, the more popular ones may be overloaded. This is why we recommend using the <emphasis>pool.ntp.org</emphasis> NTP server, which is, in reality, a group of machines that have agreed to serve as public NTP servers. You could even limit use to a sub-group specific to a country, with, for example, <emphasis>us.pool.ntp.org</emphasis> for the United States, or <emphasis>ca.pool.ntp.org</emphasis> for Canada, etc."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "However, if you manage a large network, it is recommended that you install your own NTP server, which will synchronize with the public servers. In this case, all the other machines on your network can use your internal NTP server instead of increasing the load on the public servers. You will also increase homogeneity with your clocks, since all the machines will be synchronized on the same source, and this source is very close in terms of network transfer times."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "For Workstations"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Since work stations are regularly rebooted (even if only to save energy), synchronizing them by NTP at boot is enough. To do so, simply install the <emphasis role=\"pkg\">ntpdate</emphasis> package. You can change the NTP server used if needed by modifying the <filename>/etc/default/ntpdate</filename> file."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>ntpdate</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/etc/default/ntpdate</filename></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "For Servers"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Servers are only rarely rebooted, and it is very important for their system time to be correct. To permanently maintain correct time, you would install a local NTP server, a service offered in the <emphasis role=\"pkg\">ntp</emphasis> package. In its default configuration, the server will synchronize with <emphasis>pool.ntp.org</emphasis> and provide time in response to requests coming from the local network. You can configure it by editing the <filename>/etc/ntp.conf</filename> file, the most significant alteration being the NTP server to which it refers. If the network has a lot of servers, it may be interesting to have one local time server which synchronizes with the public servers and is used as a time source by the other servers of the network."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">ntp</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>server</primary><secondary>NTP</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>NTP</primary><secondary>server</secondary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>GOING FURTHER</emphasis> GPS modules and other time sources"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>GPS</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>DCF-77</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If time synchronization is particularly crucial to your network, it is possible to equip a server with a GPS module (which will use the time from GPS satellites) or a DCF-77 module (which will sync time with the atomic clock near Frankfurt, Germany). In this case, the configuration of the NTP server is a little more complicated, and prior consultation of the documentation is an absolute necessity."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Rotating Log Files"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>file</primary><secondary>logs, rotation</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>logs</primary><secondary>files, rotation</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>rotation of log files</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>logrotate</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Log files can grow, fast, and it is necessary to archive them. The most common scheme is a rotating archive: the log file is regularly archived, and only the latest <replaceable>X</replaceable> archives are retained. <command>logrotate</command>, the program responsible for these rotations, follows directives given in the <filename>/etc/logrotate.conf</filename> file and all of the files in the <filename>/etc/logrotate.d/</filename> directory. The administrator may modify these files, if they wish to adapt the log rotation policy defined by Debian. The <citerefentry><refentrytitle>logrotate</refentrytitle> <manvolnum>1</manvolnum></citerefentry> man page describes all of the options available in these configuration files. You may want to increase the number of files retained in log rotation, or move the log files to a specific directory dedicated to archiving them rather than delete them. You could also send them by e-mail to archive them elsewhere."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>logrotate</command> program is executed daily by the <command>cron</command> scheduling program (described in <xref linkend=\"sect.task-scheduling-cron-atd\" />)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Sharing Administrator Rights"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>account</primary><secondary>administrator account</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>root</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>sudo</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Frequently, several administrators work on the same network. Sharing the root passwords is not very elegant, and opens the door for abuse due to the anonymity such sharing creates. The solution to this problem is the <command>sudo</command> program, which allows certain users to execute certain commands with special rights. In the most common use case, <command>sudo</command> allows a trusted user to execute any command as root. To do so, the user simply executes <command>sudo <replaceable>command</replaceable></command> and authenticates using their personal password."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When installed, the <emphasis role=\"pkg\">sudo</emphasis> package doesn't give anyone any rights. To delegate such rights, the administrator must use the <command>visudo</command> command, which allows them to modify the <filename>/etc/sudoers</filename> configuration file (here again, this will invoke the <command>vi</command> editor, or any other editor indicated in the <varname>EDITOR</varname> environment variable). Adding a line with <literal><replaceable>username</replaceable> ALL=(ALL) ALL</literal> allows the user in question to execute any command as root."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>visudo</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>sudoers</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/etc/sudoers</filename></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "More sophisticated configurations allow authorization of only specific commands to specific users. All the details of the various possibilities are given in the <citerefentry><refentrytitle>sudoers</refentrytitle> <manvolnum>5</manvolnum></citerefentry> man page."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "List of Mount Points"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>point, mount</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>mount point</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Mounting and unmounting"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In a Unix-like system such as Debian, files are organized in a single tree-like hierarchy of directories. The <filename>/</filename> directory is called the “root directory”; all additional directories are sub-directories within this root. “Mounting” is the action of including the content of a peripheral device (often a hard drive) into the system's general file tree. As a consequence, if you use a separate hard drive to store users' personal data, this disk will have to be “mounted” in the <filename>/home/</filename> directory. The root filesystem is always mounted at boot by the kernel; other devices are often mounted later during the startup sequence or manually with the <command>mount</command> command."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>mount</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Some removable devices are automatically mounted when connected, especially when using the GNOME, KDE or other graphical desktop environments. Others have to be mounted manually by the user. Likewise, they must be unmounted (removed from the file tree). Normal users do not usually have permission to execute the <command>mount</command> and <command>umount</command> commands. The administrator can, however, authorize these operations (independently for each mount point) by including the <literal>user</literal> option in the <filename>/etc/fstab</filename> file."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>mount</command> command can be used without arguments (it then lists all mounted filesystems). The following parameters are required to mount or unmount a device. For the complete list, please refer to the corresponding man pages, <citerefentry><refentrytitle>mount</refentrytitle> <manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>umount</refentrytitle> <manvolnum>8</manvolnum></citerefentry>. For simple cases, the syntax is simple too: for example, to mount the <filename>/dev/sdc1</filename> partition, which has an ext3 filesystem, into the <filename>/mnt/tmp/</filename> directory, you would simply run <command>mount -t ext3 /dev/sdc1 /mnt/tmp/</command>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <filename>/etc/fstab</filename> file gives a list of all possible mounts that happen either automatically on boot or manually for removable storage devices. Each mount point is described by a line with several space-separated fields: <indexterm><primary><filename>fstab</filename></primary></indexterm> <indexterm><primary><filename>/etc/fstab</filename></primary></indexterm>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "device to mount: this can be a local partition (hard drive, CD-ROM) or a remote filesystem (such as NFS)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This field is frequently replaced with the unique ID of the filesystem (which you can determine with <command>blkid <userinput>device</userinput></command>) prefixed with <literal>UUID=</literal>. This guards against a change in the name of the device in the event of addition or removal of disks, or if disks are detected in a different order."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "mount point: this is the location on the local filesystem where the device, remote system, or partition will be mounted."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "type: this field defines the filesystem used on the mounted device. <literal>ext3</literal>, <literal>vfat</literal>, <literal>ntfs</literal>, <literal>reiserfs</literal>, <literal>xfs</literal> are a few examples."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> NFS, a network filesystem"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "NFS is a network filesystem; under Linux, it allows transparent access to remote files by including them in the local filesystem."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A complete list of known filesystems is available in the <citerefentry><refentrytitle>mount</refentrytitle> <manvolnum>8</manvolnum></citerefentry> man page. The <literal>swap</literal> special value is for swap partitions; the <literal>auto</literal> special value tells the <command>mount</command> program to automatically detect the filesystem (which is especially useful for disk readers and USB keys, since each one might have a different filesystem);"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "options: there are many of them, depending on the filesystem, and they are documented in the <command>mount</command> man page. The most common are"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<literal>rw</literal> or <literal>ro</literal>, meaning, respectively, that the device will be mounted with read/write or read-only permissions."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<literal>noauto</literal> deactivates automatic mounting on boot."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<literal>user</literal> authorizes all users to mount this filesystem (an operation which would otherwise be restricted to the root user)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<literal>defaults</literal> means the group of default options: <literal>rw</literal>, <literal>suid</literal>, <literal>dev</literal>, <literal>exec</literal>, <literal>auto</literal>, <literal>nouser</literal> and <literal>async</literal>, each of which can be individually disabled after <literal>defaults</literal> by adding <literal>nosuid</literal>, <literal>nodev</literal> and so on to block <literal>suid</literal>, <literal>dev</literal> and so on. Adding the <literal>user</literal> option reactivates it, since <literal>defaults</literal> includes <literal>nouser</literal>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "backup: this field is almost always set to <literal>0</literal>. When it is <literal>1</literal>, it tells the <command>dump</command> tool that the partition contains data that is to be backed up."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "check order: this last field indicates whether the integrity of the filesystem should be checked on boot, and in which order this check should be executed. If it is <literal>0</literal>, no check is conducted. The root filesystem should have the value <literal>1</literal>, while other permanent filesystems get the value <literal>2</literal>."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Example <filename>/etc/fstab</filename> file:"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"# /etc/fstab: static file system information.\n"
+"#\n"
+"# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;\n"
+"proc            /proc           proc    defaults        0       0\n"
+"# / was on /dev/sda1 during installation\n"
+"UUID=c964222e-6af1-4985-be04-19d7c764d0a7 / ext3 errors=remount-ro 0 1\n"
+"# swap was on /dev/sda5 during installation\n"
+"UUID=ee880013-0f63-4251-b5c6-b771f53bd90e none swap sw  0       0\n"
+"/dev/scd0       /media/cdrom0   udf,iso9660 user,noauto 0       0\n"
+"/dev/fd0        /media/floppy   auto    rw,user,noauto  0       0\n"
+"arrakis:/shared /shared         nfs     defaults        0       0\n"
+""
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The last entry in this example corresponds to a network filesystem (NFS): the <filename>/shared/</filename> directory on the <emphasis>arrakis</emphasis> server is mounted at <filename>/shared/</filename> on the local machine. The format of the <filename>/etc/fstab</filename> file is documented on the <citerefentry><refentrytitle>fstab</refentrytitle><manvolnum>5</manvolnum></citerefentry> man page."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>GOING FURTHER</emphasis> Auto-mounting"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <emphasis>am-utils</emphasis> package provides the <command>amd</command> auto-mounting utility, able to mount removable media on demand when a user attempts to access their usual mount point. It will unmount these devices when no process is accessing them any longer."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>am-utils</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>amd</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>automount</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>autofs</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>automounter</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Other auto-mounting utilities exist, such as <command>automount</command> in the <emphasis>autofs</emphasis> package."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Note also that GNOME, KDE, and other graphical desktop environments work together with the <command>hal</command> (Hardware Abstraction Layer) system, and can automatically mount removable media when they are connected."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<command>locate</command> and <command>updatedb</command>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>locate</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>updatedb</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>locate</command> command can find the location of a file when you only know part of the name. It sends a result almost instantaneously, since it consults a database that stores the location of all the files on the system; this database is updated daily by the <command>updatedb</command> command (executed by the <filename>/etc/cron.daily/find</filename> script)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Since anybody can use <command>locate</command>, it is important to ensure hidden files are not revealed to the user. This is why the <command>updatedb</command> command runs with the limited permission of the <emphasis>nobody</emphasis> user, which is a classic pattern on Unix systems for this kind of task. Furthermore, the administrator can configure some directories to be skipped by simply listing them in the <varname>PRUNEDPATHS</varname> variable in <filename>/etc/updatedb.conf</filename>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <emphasis role=\"pkg\">slocate</emphasis> package goes even further, by replacing the <command>locate</command> command with a more secure version that only returns the names of files accessible to the user who employs it."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Compiling a Kernel"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>compilation</primary><secondary>of a kernel</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>kernel</primary><secondary>compilation</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>kernel</primary><see>kernel</see>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The kernels provided by Debian include the largest possible number of features, as well as the maximum of drivers, in order to cover the broadest spectrum of existing hardware configurations. This is why some users prefer to recompile the kernel in order to only include what they specifically need. There are two reasons for this choice. First, it may be to optimize memory consumption, since the kernel code, even if it is never used, occupies memory for nothing (and never “goes down” on the swap space, since it is actual RAM that it uses), which can decrease overall system performance. A locally compiled kernel can also limit the risk of security problems since only a fraction of the kernel code is compiled and run."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> Security updates"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If you choose to compile your own kernel, you must accept the consequences: Debian can not ensure security updates for your custom kernel. By keeping the kernel provided by Debian, you benefit from updates prepared by the Debian Project's security team."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Recompilation of the kernel is also necessary if you want to use certain features that are only available as patches (and not included in the standard kernel version)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Introduction and Prerequisites"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">kernel-package</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Debian manages the kernel in the form of a package, which is not how kernels have traditionally been compiled and installed. Specific tools have therefore been developed for this purpose. They allow easy creation of a Debian package from Linux kernel sources, possibly adding patches along the way. Since the kernel remains under the control of the packaging system, it can then be removed cleanly, or deployed on several machines. Furthermore, the scripts associated with these packages automate the interaction with the bootloader."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "To compile a Linux kernel the Debian way, you will need to use the tools included in the <emphasis role=\"pkg\">kernel-package</emphasis> package. Furthermore, the configuration step for the kernel requires the <emphasis>libncurses5-dev</emphasis> package. Finally, the <emphasis>fakeroot</emphasis> package will enable creation of the Debian package without using administrator's rights."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Getting the Sources"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Linux kernel sources</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>kernel</primary><secondary>sources</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Like anything that can be useful on a Debian system, the Linux kernel sources are available in a package. To retrieve them, just install the <emphasis role=\"pkg\">linux-source-<replaceable>version</replaceable></emphasis> package. The <command>apt-cache search ^linux-source</command> command lists the various kernel versions packaged by Debian. The latest version is available in the <emphasis role=\"distribution\">Unstable</emphasis> distribution: you can retrieve them without much risk (especially if your APT is configured according to the instructions of <xref linkend=\"section.apt-mix-distros\" />). Note that the source code contained in these packages does not correspond precisely with that published by Linus Torvalds and the kernel developers; like all distributions, Debian applies a number of patches. These modifications include patches (some relevant to security problems) that are waiting to be included in the next version of the kernel, as well as some features that are specific to Debian (like cramfs, a filesystem specifically for the <filename>initrd</filename> image)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>CULTURE</emphasis> Names of kernel packages"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Historically, packages containing the Debian kernel were called <emphasis role=\"pkg\">kernel-image-*</emphasis>, but they all actually contained a Linux kernel. Since Debian works with other kernels (Hurd or FreeBSD, for example), this was confusing. Nowadays, the packages are called “<emphasis role=\"pkg\">linux-image-*</emphasis>\"; the <emphasis role=\"pkg\">kernel-image-*</emphasis> packages are now empty shells and their only purpose is to facilitate the transition. Source packages for the Linux kernel are also called “<emphasis role=\"pkg\">linux-source-*</emphasis>”. As for packages containing patches, the transition is still in progress so both <emphasis role=\"pkg\">linux-patch-*</emphasis> packages and <emphasis role=\"pkg\">kernel-patch-*</emphasis> can still be found. <emphasis role=\"pkg\">kernel-package</emphasis> remains <emphasis role=\"pkg\">kernel-package</emphasis>, since it is not specific to Linux (it could, for example, prepare FreeBSD kernel packages)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The remainder of this section focuses on the 2.6.32 version of the Linux kernel, but the examples can, of course, be adapted to the particular version of the kernel that you want."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "We assume the <emphasis role=\"pkg\">linux-source-2.6.32</emphasis> package has been installed. It contains <filename>/usr/src/linux-source-2.6.32.tar.bz2</filename>, a compressed archive of the kernel sources. You must extract these files in a new directory (not directly under <filename>/usr/src/</filename>, since there is no need for special permissions to compile a Linux kernel): <filename>~/kernel/</filename> is appropriate."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-2.6.32.tar.bz2</userinput>\n"
+""
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>CULTURE</emphasis> Location of kernel sources"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Traditionally, Linux kernel sources would be placed in <filename>/usr/src/linux/</filename> thus requiring root permissions for compilation. However, working with administrator rights should be avoided when not needed. There is a <literal>src</literal> group that allows members to work in this directory, but working in <filename>/usr/src/</filename> should be avoided nevertheless. By keeping the kernel sources in a personal directory, you get security on all counts: no files in <filename>/usr/</filename> not known to the packaging system, and no risk of misleading programs that read <filename>/usr/src/linux</filename> when trying to gather information on the used kernel."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Configuring the Kernel"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>kernel</primary><secondary>configuration</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>configuration</primary><secondary>of the kernel</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The next step consists of configuring the kernel according to your needs. The exact procedure depends on the goals."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When recompiling a more recent version of the kernel (possibly with an additional patch), the configuration will most likely be kept as close as possible to that proposed by Debian. In this case, and rather than reconfiguring everything from scratch, it is sufficient to copy the <filename>/boot/config-<replaceable>version</replaceable></filename> file (the version is that of the kernel currently used, which can be found with the <command>uname -r</command> command) into a <filename>.config</filename> file in the directory containing the kernel sources."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>cp /boot/config-2.6.32-5-686 ~/kernel/linux-source-2.6.32/.config</userinput>\n"
+""
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Unless you need to change the configuration, you can stop here and skip to the next section. If you need to change it, on the other hand, or if you decide to reconfigure everything from scratch, you must take the time to configure your kernel. There are various dedicated interfaces in the kernel source directory that can be used by calling the <command>make <replaceable>target</replaceable></command> command, where <replaceable>target</replaceable> is one of the values described below."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>make menuconfig</command> compiles and executes a text-mode interface (this is where the <emphasis role=\"pkg\">libncurses5-dev</emphasis> package is required) which allows navigating the options available in a hierarchical structure. Pressing the <keycap>Space</keycap> key changes the value of the selected option, and <keycap>Enter</keycap> validates the button selected at the bottom of the screen; <guibutton>Select</guibutton> returns to the selected sub-menu; <guibutton>Exit</guibutton> closes the current screen and move back up in the hierarchy; <guibutton>Help</guibutton> will display more detailed information on the role of the selected option. The arrows allow moving within the list of options and buttons. To exit the configuration program, choose <guibutton>Exit</guibutton> from the main menu. The program then offers to save the changes you've made; accept if you are satisfied with your choices."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Other interfaces have similar features, but they work within more modern graphical interfaces; such as <command>make xconfig</command> which uses a Qt graphical interface, and <command>make gconfig</command> which uses GTK+. The former requires <emphasis role=\"pkg\">libqt3-mt-dev</emphasis>, while the latter depends on <emphasis role=\"pkg\">libglade2-dev</emphasis> and <emphasis role=\"pkg\">libgtk2.0-dev</emphasis>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>make-kpkg</command> command, presented in the next paragraph, runs <command>make oldconfig</command> automatically to ensure the presence of a kernel configuration. This configuration method simply reuses the choices saved in the <filename>.config</filename> file. If there is no such file, it behaves like <command>make config</command>, a text interface that asks all questions (hundreds of them) one a time. If the <filename>.config</filename> file already exists but doesn't mention all the existing options, then this method will only ask questions for which the file has no saved answer."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TIP</emphasis> <command>make-kpkg --config</command>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>make-kpkg</command> can be told to use configuration methods other than <command>make oldconfig</command>, by indicating the target (<literal>menuconfig</literal>, <literal>xconfig</literal> or <literal>gconfig</literal>) in the <command>make-kpkg</command> invocation with the <literal>--config</literal> option."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Compiling and Building the Package"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>make-kpkg</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>make-kpkg</command></primary><secondary><command>kernel-image</command></secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>make-kpkg</command></primary><secondary><command>kernel-source</command></secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>make-kpkg</command></primary><secondary><command>kernel-doc</command></secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>make-kpkg</command></primary><secondary><command>kernel-headers</command></secondary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> Clean up before rebuilding"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>make-kpkg</command></primary><secondary><command>clean</command></secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If you have already compiled once in the directory and wish to recompile with new sources, you must run <command>fakeroot make-kpkg clean</command>. Additionally, this allows generating a package with a new name (different <literal>--append-to-version</literal> setting)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TIP</emphasis> Kernel package headers"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>make-kpkg</command> uses information contained in the <filename>/etc/kernel-pkg.conf</filename> file to generate headers for the Debian kernel package. It is recommended to edit this file with correct information if you wish to publish your kernel package."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Once the kernel configuration is ready, the <command>make-kpkg</command> command provided by Debian compiles the kernel, then generates the corresponding Debian package (or packages). Just like <command>make</command>, <command>make-kpkg</command> takes the name of a target to execute as an argument: <literal>kernel-image</literal> generates a compiled kernel package, <literal>kernel-doc</literal> a package containing the documentation included with the kernel, <literal>kernel-headers</literal> a package of kernel header files (<filename>.h</filename> files for the kernel in the <filename>include/</filename> directory, which is useful for compilation of some external modules), and <literal>kernel-source</literal> creates a package containing the kernel sources."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>make-kpkg</command> also accepts several parameters: <literal>--append-to-version <replaceable>suffix</replaceable></literal> appends <replaceable>suffix</replaceable> to the name of the kernel; the suffix is also included in the package name. <literal>--revision <replaceable>revision</replaceable></literal> defines the version number of the package generated. Debian uses certain suffixes to identify standard kernels, compiled specifically for a given processor, or with certain options (<literal>-486</literal>, <literal>-686</literal>, <literal>-686-bigmem</literal>, <literal>-amd64</literal>, <literal>-vserver-686</literal>, <literal>-vserver-686-bigmem</literal>, <literal>-openvz-686</literal>, <literal>-xen-686</literal>). These suffixes are best avoided for local packages, so that they can be easily recognized from official packages issued by the Debian project."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>make-kpkg</command> program performs actions normally restricted to the root user when creating the Debian package; however, it can be tricked into working under a normal user's identity, with <command>fakeroot</command> (see sidebar <xref linkend=\"cadre.fakeroot\" />)."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
+"[...]\n"
+"<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
+"<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb</computeroutput>\n"
+""
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "As you can see, the package is created with the name “<filename>linux-image-2.6.32-falcot_1_i386.deb</filename>”."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Compiling External Modules"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>make-kpkg</command></primary><secondary><command>modules-image</command></secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>kernel</primary><secondary>external modules</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>modules</primary><secondary>external to the kernel</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Some modules are maintained outside of the official Linux kernel. To use them, they must be compiled alongside the matching kernel. A number of common third party modules are provided by Debian in dedicated packages: <emphasis role=\"pkg\">lustre-source</emphasis> for the Lustre filesystem, <emphasis role=\"pkg\">qc-usb-source</emphasis> for the drivers for some USB webcams (Logitech QuickCam Express), etc."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "These external packages are many and varied and we won't list them all here; the <command>apt-cache search source$</command> command can narrow down the search field. However, a complete list isn't particularly useful since there is no particular reason for compiling external modules except when you know you need it. In such cases, the device's documentation will typically detail the specific module(s) it needs to function under Linux."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For example, let's look at the <emphasis role=\"pkg\">qc-usb-source</emphasis> package: after installation, a <filename>.tar.gz</filename> of the module's sources is stored in <filename>/usr/src/</filename>. These sources must then be extracted to the working directory:"
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/qc-usb.tar.bz2</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls modules/</userinput>\n"
+"<computeroutput>qc-usb</computeroutput>\n"
+""
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> Save the settings"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When using the <command>make-kpkg modules-image</command> command, it is important to use the same <literal>--append-to-version</literal> setting used in the previous use of the command (probably <command>make-kpkg kernel-image</command>), since its value affects the name of the directory in which the modules are installed, which must correspond to the kernel version."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Note that <command>make-kpkg</command> must still be invoked from the kernel sources directory, even when compiling external modules located in other directories."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The module sources are now located in the <filename>~/kernel/modules/qc-usb/</filename> directory. To compile these modules and create a Debian package, we invoke <command>make-kpkg</command> with the <literal>modules-image</literal> target and indicate the location of the modules via the <varname>MODULE_LOC</varname> environment variable (without this variable, it uses <filename>/usr/src/modules/</filename>, which won't work in our case). By default, it tries to create the packages for all the external modules that you extracted at this location. The <literal>--added-modules</literal> option allows to explicitly choose the external modules to compile. To include more than one, separate them with a comma."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>export MODULE_LOC=~/kernel/modules</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-2.6.32</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot modules-image</userinput>\n"
+"<computeroutput>[...]\n"
+"Module /home/roland/kernel/modules/qc-usb processed fine\n"
+"$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
+"<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
+"../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb</computeroutput>\n"
+""
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TIP</emphasis> Automating the process"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">module-assistant</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">dkms</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The whole process can be automated with <emphasis role=\"pkg\">module-assistant</emphasis>. This package was specifically designed to install the required tools and packages, compile an external module, and install it. Thus, the <command>m-a a-i qc-usb-source</command> command compiles the driver for the current kernel and installs it on the fly."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The next step in automation is <emphasis role=\"pkg\">dkms</emphasis>, which automates the process from the time it is installed; the modules that use it (the <emphasis role=\"pkg\">*.dkms</emphasis> packages) are automatically compiled at the time of installation, for any kernel(s) currently installed; DKMS also takes into account the installation of new kernels, their updates, and removal of obsolete modules upon deletion of a kernel package. This system is more recent (it didn't exist in <emphasis role=\"distribution\">Lenny</emphasis>), and it has not yet been generalized, but some modules already use it. For instance, simply installing the <emphasis role=\"pkg\">virtualbox-ose-dkms</emphasis> package ensures that the modules necessary for the VirtualBox virtualization system are available for all installed kernels, with no manual intervention required. It is necessary, however, to install the <emphasis role=\"pkg\">linux-headers-*</emphasis> package that matches to the installed kernel. The easiest way to do so is to install the corresponding meta-package; for instance, if you use <emphasis role=\"pkg\">linux-images-2.6-686</emphasis>, you would install <emphasis role=\"pkg\">linux-headers-2.6-686</emphasis>."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Applying a Kernel Patch"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>kernel</primary><secondary>patch</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>patch kernel</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Some features are not included in the standard kernel due to a lack of maturity or to some disagreement between the maintainer of the source code and the kernel maintainers. Such features may be distributed as patches that anyone is free to apply to the kernel sources."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Debian distributes some of these patches in <emphasis role=\"pkg\">linux-patch-*</emphasis> or <emphasis role=\"pkg\">kernel-patch-*</emphasis> packages (for instance, <emphasis role=\"pkg\">linux-patch-grsecurity2</emphasis>, which tightens some of the kernel's security policies). These packages install files in the <filename>/usr/src/kernel-patches/</filename> directory."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "To apply one or more of these installed patches, use the <command>patch</command> command in the sources directory then start compilation of the kernel as described above."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-2.6.32</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg clean</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-patches/diffs/grsecurity2/grsecurity-2.1.14-2.6.32.13-201005151340.patch.gz | patch -p1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -grsec --revision 1 --initrd kernel-image</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
+"<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
+"../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb\n"
+"../linux-image-2.6.32-grsec_1_i386.deb</computeroutput>\n"
+""
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> <command>make-kpkg --added-patches</command>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Until <emphasis role=\"distribution\">Lenny</emphasis>, <command>make-kpkg</command> was able to apply one or more patches on the fly during compilation of the kernel, which allowed replacing the manual patching and unpatching with a command line option (in our example, <literal>--added-patches grsecurity2</literal>). This feature was removed from the current version in <emphasis role=\"distribution\">Squeeze</emphasis> since it was too fragile when faced with the huge variety of possible situations. In simple cases with a single patch, the patch can be applied manually; for situations involving complex combinations of patches, it is preferable to use a version tracking system such as Git, which will make the task easier (especially since patches are generally distributed by their authors in this form)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Note that a given patch may not necessarily work with every version of the kernel; it is possible for <command>patch</command> to fail when applying them to kernel sources. An error message will be displayed and give some details about the failure; in this case, refer to the documentation available in the Debian package of the patch (in the <filename>/usr/share/doc/linux-patch-*/</filename> directory). In most cases, the maintainer indicates for which kernel versions their patch is intended."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Installing a Kernel"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>installation</primary><secondary>of a kernel</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>kernel</primary><secondary>installation</secondary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Features of a Debian Kernel Package"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>GOING FURTHER</emphasis> Special configurations"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>kernel-img.conf</filename></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This section discusses the default behavior of a Debian Linux kernel package, but everything is configurable with the <filename>/etc/kernel-img.conf</filename> file. Consult the associated man page to learn more: <citerefentry><refentrytitle>kernel-img.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>vmlinuz</filename></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A Debian kernel package installs the kernel image (<filename>vmlinuz-<replaceable>version</replaceable></filename>), its configuration (<filename>config-<replaceable>version</replaceable></filename>) and its symbols table (<filename>System.map-<replaceable>version</replaceable></filename>) in <filename>/boot/</filename>. The symbols table helps developers understand the meaning of a kernel error message; without it, kernel “oopses” (an “oops” is the kernel equivalent of a segmentation fault for user space programs, in other words messages generated following an invalid pointer dereference) only contain numeric memory addresses, which is useless information without the table mapping these addresses to symbols and function names. The modules are installed in the <filename>/lib/modules/<replaceable>version</replaceable>/</filename> directory."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The package's configuration scripts automatically generate an initrd image, which is a mini-system designed to be loaded in memory (hence the name, which stands for “init ramdisk”) by the bootloader, and used by the Linux kernel solely for loading the modules needed to access the devices containing the complete Debian system (for example, the driver for IDE disks). Finally, the post-installation scripts update the symbolic links <filename>/vmlinuz</filename>, <filename>/vmlinuz.old</filename>, <filename>/initrd.img</filename> and <filename>/initrd.img.old</filename> so that they point to the latest two kernels installed, respectively, as well as the corresponding initrd images."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>lilo</command> can work with these symbolic links by automatically using the last kernel installed, while still allowing the machine to boot from the previous kernel if the last one installed doesn't work. This requires, however, that <command>lilo</command> be run after each kernel installation. This can be automated, by setting <literal>do_bootloader = yes</literal> in <filename>/etc/kernel-img.conf</filename>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In most cases, <command>grub</command> will be your bootloader, and the default configuration will execute <command>update-grub</command> after each installation or removal of a kernel in order for the <filename>/boot/grub/grub.cfg</filename> file (or <filename>/boot/grub/menu.lst</filename> with GRUB Legacy) to be updated. This allows all installed kernels to be displayed (and available) in the <emphasis>GRUB</emphasis> menu at boot time."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Kernel package configuration file"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"do_symlinks = yes\n"
+"relative_links = yes\n"
+"do_bootloader = no\n"
+"do_bootfloppy = no\n"
+"do_initrd = yes\n"
+"link_in_boot = no\n"
+"postinst_hook = update-grub\n"
+"postrm_hook = update-grub\n"
+""
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Installing with <command>dpkg</command>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Using <command>apt-get</command> is so convenient that it makes it easy to forget about the lower-level tools, but the easiest way of installing a compiled kernel is to use a command such as <command>dpkg -i <replaceable>package</replaceable>.deb</command>, where <literal><replaceable>package</replaceable>.deb</literal> is the name of a <emphasis role=\"pkg\">linux-image</emphasis> package such as <filename>linux-image-2.6.32-falcot_1_i386.deb</filename>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The configuration steps described in this chapter are basic and can lead both to a server system or a workstation, and it can be massively duplicated in semi-automated ways. However, it is not enough by itself to provide a fully configured system. A few pieces are still in need of configuration, starting with low-level programs known as the “Unix services”."
+msgstr ""
+
