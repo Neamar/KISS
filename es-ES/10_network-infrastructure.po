@@ -5,13 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2012-05-09T20:00:20\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2013-01-15 17:43+0200\n"
+"Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
+"Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
+"/10_network-infrastructure/es-ES/>\n"
+"Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 1.4-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -62,11 +65,19 @@ msgstr "Infraestructura de red"
 #, no-c-format
 msgid "Linux sports the whole Unix heritage for networking, and Debian provides a full set of tools to create and manage them. This chapter reviews these tools."
 msgstr ""
+"Linux goza de toda la herencia de Unix sobre redes, y Debian provee un "
+"conjunto completo de herramientas para crear y administrarlas. Este capítulo "
+"examina estas herramientas."
 
 #. Tag: para
 #, no-c-format
 msgid "A gateway is a system linking several networks. This term often refers to a local network's “exit point” on the mandatory path to all external IP addresses. The gateway is connected to each of the networks it links together, and acts as a router to convey IP packets between its various interfaces."
 msgstr ""
+"Una puerta de enlace es un sistema que enlaza varias redes. Este término "
+"usualmente se refiere al «punto de salida» de una red local en el camino "
+"obligatorio hacia las direcciones IP externas. La puerta de enlace está "
+"conectada a cada una de las redes que enlaza y actúa como router para "
+"transmitir paquetes IP entre sus varias interfaces."
 
 #. Tag: indexterm
 #, no-c-format
@@ -76,7 +87,7 @@ msgstr "<primary>puerta de enlace</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>gateway</secondary>"
-msgstr ""
+msgstr "<primary>red</primary><secondary>puerta de enlace</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -86,77 +97,127 @@ msgstr "<primary>router</primary>"
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> IP packet"
-msgstr ""
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Paquete IP"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>packet</primary><secondary>IP</secondary>"
-msgstr ""
+msgstr "<primary>paquete</primary><secondary>IP</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Most networks nowadays use the IP protocol (<emphasis>Internet Protocol</emphasis>). This protocol segments the transmitted data into limited-size packets. Each packet contains, in addition to its payload data, a number of details required for its proper routing."
 msgstr ""
+"La mayoría de las redes hoy en día utilizan el protocolo IP (protocolo de "
+"Internet: «<emphasis>Internet Protocol</emphasis>). Este protocolo segmenta "
+"los datos transmitidos en paquetes de tamaño limitado. Cada paquete "
+"contiene, además de sus datos como carga útil, algunos detalles necesarios "
+"para enrutarlos apropiadamente."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> TCP/UDP"
-msgstr ""
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> TCP/UDP"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>port</primary><secondary>TCP</secondary>"
-msgstr ""
+msgstr "<primary>puerto</primary><secondary>TCP</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>port</primary><secondary>UDP</secondary>"
-msgstr ""
+msgstr "<primary>puerto</primary><secondary>udp</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>TCP, port</primary>"
-msgstr ""
+msgstr "<primary>TCP, puerto</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>UDP, port</primary>"
-msgstr ""
+msgstr "<primary>UDP, puerto</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Many programs do not handle the individual packets themselves, even though the data they transmit does travel over IP; they often use TCP (<emphasis>Transmission Control Protocol</emphasis>). TCP is a layer over IP allowing the establishment of connections dedicated to data streams between two points. The programs then only see an entry point into which data can be fed with the guarantee that the same data exits without loss (and in the same sequence) at the exit point at the other end of the connection. Although many kinds of errors can happen in the lower layers, they are compensated by TCP: lost packets are retransmitted, and packets arriving out of order (for example, if they used different paths) are re-ordered appropriately."
 msgstr ""
+"Muchos programas no gestionan los paquetes individuales por sí mismos aunque "
+"los datos que transmiten viajan por IP; generalmente utilizan TCP "
+"(protocolo de control de transmisión: «<emphasis>Transmission Control "
+"Protocol</emphasis>»). TCP es una capa sobre IP que permite establecer "
+"conexiones dedicadas a flujos de datos entre dos puntos. Los programas sólo "
+"ven, entonces, un punto de entrada en el que pueden verter datos con la "
+"garantía que los mismos datos existirán sin pérdida (y en el mismo orden) en "
+"el punto de salida en el otro extremo de la conexión. Si bien pueden "
+"ocurrir muchos tipos de errores en las capas inferiores, TCP los compensa: "
+"retransmite paquetes perdidos y reordena apropiadamente los paquetes que "
+"lleguen fuera de orden (por ejemplo si utilizaron caminos diferentes)."
 
 #. Tag: para
 #, no-c-format
 msgid "Another protocol relying on IP is UDP (<emphasis>User Datagram Protocol</emphasis>). In contrast to TCP, it is packet-oriented. Its goals are different: the purpose of UDP is only to transmit one packet from an application to another. The protocol does not try to compensate for possible packet loss on the way, nor does it ensure that packets are received in the same order as were sent. The main advantage to this protocol is that the latency is greatly improved, since the loss of a single packet does not delay the receiving of all following packets until the lost one is retransmitted."
 msgstr ""
+"Otro protocolo sobre IP es UDP (protocolo de datagramas de usuario: "
+"«<emphasis>User Datagram Protocol</emphasis>). A diferencia de TCP, está "
+"orientado a paquetes. Sus objetivos son diferentes: el propósito de UDP sólo "
+"es transmitir un paquete de una aplicación a otra. El protocolo no intenta "
+"compensar la posible pérdida de paquetes en el camino, así como tampoco "
+"asegura que los paquetes sean recibidos en el mismo orden en el que se los "
+"envió. La principal ventaja de este protocolo es que mejora enormemente la "
+"latencia ya que la pérdida de un paquete no demora la recepción de todos los "
+"paquetes siguientes hasta que se retransmita aquél perdido."
 
 #. Tag: para
 #, no-c-format
 msgid "TCP and UDP both involve ports, which are “extension numbers” for establishing communication with a given application on a machine. This concept allows keeping several different communications in parallel with the same correspondent, since these communications can be distinguished by the port number."
 msgstr ""
+"Tanto TCP como UDP involucran puertos, que son «números de extensión» para "
+"establecer comunicaciones con una aplicación particular en una máquina. Este "
+"concepto permite mantener varias comunicaciones diferentes en paralelo con "
+"el mismo correspondiente debido a que se pueden diferenciar estas "
+"comunicaciones por el número de puerto."
 
 #. Tag: para
 #, no-c-format
 msgid "Some of these port numbers — standardized by the IANA (<emphasis>Internet Assigned Numbers Authority</emphasis>) — are “well-known” for being associated with network services. For instance, TCP port 25 is generally used by the email server. <ulink type=\"block\" url=\"http://www.iana.org/assignments/port-numbers\" />"
 msgstr ""
+"Algunos de estos números de puerto — estandarizados por IANA (autoridad de "
+"números asignados en Internet: «<emphasis>Internet Assigned Numbers "
+"Authority</emphasis>») — son «muy conocidos» por estar asociados con "
+"servicios de red. Por ejemplo, generalmente el servidor de correo utiliza el "
+"puerto TCP 25. <ulink type=\"block\" url=\"http://www.iana.org/assignments"
+"/port-numbers\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "When a local network uses a private address range (not routable on the Internet), the gateway needs to implement <emphasis>address masquerading</emphasis> so that the machines on the network can communicate with the outside world. The masquerading operation is a kind of proxy operating on the network level: each outgoing connection from an internal machine is replaced with a connection from the gateway itself (since the gateway does have an external, routable address), the data going through the masqueraded connection is sent to the new one, and the data coming back in reply is sent through to the masqueraded connection to the internal machine. The gateway uses a range of dedicated TCP ports for this purpose, usually with very high numbers (over 60000). Each connection coming from an internal machine then appears to the outside world as a connection coming from one of these reserved ports."
 msgstr ""
+"Cuando una red local utiliza un rango de direcciones privadas (no enrutables "
+"en Internet), la puerta de enlace necesita implementar "
+"<emphasis>enmascarado de dirección</emphasis> («address masquerading») para "
+"que los equipos en la red puedan comunicarse con el mundo exterior. La "
+"operación de enmascarado es un tipo de proxy que funciona a nivel de red: se "
+"reemplaza cada conexión saliente de una máquina interna con una conexión "
+"desde la puerta de enlace misma (ya que la puerta de enlace tiene una "
+"dirección externa y enrutable), los datos que pasan a través de la conexión "
+"enmascarada son enviados a la nueva conexión y los datos recibidos en "
+"respuesta son enviados a través de la conexión enmascarada a la máquina "
+"interna. La puerta de enlace utiliza un rango de puertos TCP dedicados para "
+"este propósito, generalmente con números muy altos (mayores a 60000). Cada "
+"conexión que proviene de una máquina interna parece, para el mundo exterior, "
+"una conexión que proviene de uno de esos puertos reservados."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>masquerading</primary>"
-msgstr ""
+msgstr "<primary>enmascaramiento</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Private address range"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> Rango de direcciones privadas"
 
 #. Tag: indexterm
 #, no-c-format
@@ -166,67 +227,107 @@ msgstr "<primary>Dirección IP</primary><secondary>privada</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>private, IP address</primary>"
-msgstr ""
+msgstr "<primary>privada, dirección IP</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "RFC 1918 defines three ranges of IPv4 addresses not meant to be routed on the Internet but only used in local networks. The first one, <literal>10.0.0.0/8</literal> (see sidebar <xref linkend=\"sidebar.rappels-reseau\" />), is a class-A range (with 2<superscript>24</superscript> IP addresses). The second one, <literal>172.16.0.0/12</literal>, gathers 16 class-B ranges (<literal>172.16.0.0/16</literal> to <literal>172.31.0.0/16</literal>), each containing 2<superscript>16</superscript> IP addresses. Finally, <literal>192.168.0.0/16</literal> is a class-B range (grouping 256 class-C ranges, <literal>192.168.0.0/24</literal> to <literal>192.168.255.0/24</literal>, with 256 IP addresses each). <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
 msgstr ""
+"El RFC 1918 define tres rangos de direcciones IPv4 que no deben ser enrutada "
+"en Internet sino sólo utilizadas en redes locales. El primero, "
+"<literal>10.0.0.0/8</literal> (revise el recuadro <xref linkend=\"sidebar"
+".rappels-reseau\" />) es un rango clase A (con 2<superscript>24</superscript> "
+"direcciones IP). El segundo, <literal>172.16.0.0/12</literal>, reúne 16 "
+"rangos clase B (<literal>172.16.0.0/16</literal> a "
+"<literal>172.31.0.0/16</literal>), cada uno de los cuales contiene "
+"2<superscript>16</superscript> direcciones IP. Finalmente, "
+"<literal>192.168.0.0/16</literal> es un rango clase B (agrupando 256 rangos "
+"clase C, <literal>192.168.0.0/24</literal> a "
+"<literal>192.168.255.0/24</literal>, con 256 direcciones IP cada uno). "
+"<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The gateway can also perform two kinds of <emphasis>network address translation</emphasis> (or NAT for short). The first kind, <emphasis>Destination NAT</emphasis> (DNAT) is a technique to alter the destination IP address (and/or the TCP or UDP port) for a (generally) incoming connection. The connection tracking mechanism also alters the following packets in the same connection to ensure continuity in the communication. The second kind of NAT is <emphasis>Source NAT</emphasis> (SNAT), of which <emphasis>masquerading</emphasis> is a particular case; SNAT alters the source IP address (and/or the TCP or UDP port) of a (generally) outgoing connection. As for DNAT, all the packets in the connection are appropriately handled by the connection tracking mechanism. Note that NAT is only relevant for IPv4 and its limited address space; in IPv6, the wide availability of addresses greatly reduces the usefulness of NAT by allowing all “internal” addresses to be directly routable on the Internet (this does not imply that internal machines are accessible, since intermediary firewalls can filter traffic)."
 msgstr ""
+"La puerta de enlace también puede realizar dos tipos de <emphasis>traducción "
+"de direcciones de red</emphasis> («Network Address Translation» o NAT). El "
+"primer tipo, <emphasis>NAT de destino</emphasis> (DNAT) es una técnica para "
+"alterar la dirección IP de destino (y/o el puerto TCP o UDP) para una "
+"conexión (generalmente) entrante. El mecanismo de seguimiento de conexiones "
+"también altera los paquetes siguientes en la misma conexión para asegurar "
+"continuidad en la comunicación. El segundo tipo de NAT es <emphasis>NAT de "
+"origen</emphasis> (SNAT), del que el <emphasis>enmascarado</emphasis> es un "
+"caso particular; SNAT modifica la dirección IP de origen (y/o el puerto TCP "
+"o UDP) de una conexión (generalmente) saliente. En lo que respecta a DNAT, "
+"todos los paquetes en la conexión son gestionados de forma apropiada por el "
+"mecanismo de seguimiento de conexiones. Sepa que NAT sólo es relevante para "
+"IPv4 y su espacio de direcciones limitado; en IPv6, la amplia disponibilidad "
+"de direcciones reduce enormemente la utilidad de NAT permitiendo que todas "
+"las direcciones «internas» sean enrutables directamente en Internet (esto no "
+"implica que se pueda acceder a las máquinas internas ya que los firewalls "
+"intermedios puede filtrar el tráfico)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NAT</primary>"
-msgstr ""
+msgstr "<primary>NAT</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Network</primary><secondary>Address Translation</secondary>"
 msgstr ""
+"<primary>red</primary><secondary>traducción de direcciones (NAT)</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SNAT</primary>"
-msgstr ""
+msgstr "<primary>SNAT</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNAT</primary>"
-msgstr ""
+msgstr "<primary>DNAT</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Destination NAT</primary>"
-msgstr ""
+msgstr "<primary>NAT, de destino</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Source NAT</primary>"
-msgstr ""
+msgstr "<primary>NAT, de origen</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Port forwarding"
-msgstr ""
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Redirección de puertos"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>port forwarding</primary>"
-msgstr ""
+msgstr "<primary>redirección de puertos</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A concrete application of DNAT is <emphasis>port forwarding</emphasis>. Incoming connections to a given port of a machine are forwarded to a port on another machine. Other solutions may exist for achieving a similar effect, though, especially at the application level with <command>ssh</command> (see <xref linkend=\"section.ssh-port-forwarding\" />) or <command>redir</command>."
 msgstr ""
+"Una aplicación concreta de DNAT es <emphasis>redirección de "
+"puertos</emphasis> («port forwarding»). Las conexiones entrantes a un puerto "
+"dado de una máquina son redireccionados a un puerto en otra máquina. Sin "
+"embargo, pueden existir otras soluciones para conseguir un efecto similar, "
+"especialmente a nivel de aplicación con <command>ssh</command> (revise <xref "
+"linkend=\"section.ssh-port-forwarding\" />) o <command>redir</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Enough theory, let's get practical. Turning a Debian system into a gateway is a simple matter of enabling the appropriate option in the Linux kernel, by way of the <filename>/proc/</filename> virtual filesystem:"
 msgstr ""
+"Suficiente teoría, pongámosnos prácticos. Convertir un sistema Debian en una "
+"puerta de enlace sólo es cuestión de activar la opción apropiada en el "
+"núcleo Linux a través del sistema de archivos virtual "
+"<filename>/proc/</filename>:"
 
 #. Tag: screen
 #, no-c-format
@@ -234,16 +335,23 @@ msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>echo 1 &gt; "
+"/proc/sys/net/ipv4/conf/default/forwarding</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "This option can also be automatically enabled on boot if <filename>/etc/sysctl.conf</filename> sets the <literal>net.ipv4.conf.default.forwarding</literal> option to <literal>1</literal>."
 msgstr ""
+"También se puede activar esta opción automáticamente durante el inicio si "
+"<filename>/etc/sysctl.conf</filename> define la opción "
+"<literal>net.ipv4.conf.default.forwarding</literal> como "
+"<literal>1</literal>."
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/sysctl.conf</filename> file"
-msgstr ""
+msgstr "El archivo <filename>/etc/sysctl.conf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -253,36 +361,56 @@ msgid ""
 "net.ipv4.conf.default.rp_filter = 1\n"
 "net.ipv4.tcp_syncookies = 1\n"
 msgstr ""
+"\n"
+"net.ipv4.conf.default.forwarding = 1\n"
+"net.ipv4.conf.default.rp_filter = 1\n"
+"net.ipv4.tcp_syncookies = 1\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The same effect can be obtained for IPv6 by simply replacing <literal>ipv4</literal> with <literal>ipv6</literal> in the manual command and using the <literal>net.ipv6.conf.all.forwarding</literal> line in <filename>/etc/sysctl.conf</filename>."
 msgstr ""
+"Puede conseguir el mismo efecto para IPv6 simplemente reemplazando "
+"<literal>ipv4</literal> con <literal>ipv6</literal> en la orden manual y "
+"utilizando la línea <literal>net.ipv6.conf.all.forwarding</literal> en "
+"<filename>/etc/sysctl.conf</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "Enabling IPv4 masquerading is a slightly more complex operation that involves configuring the <emphasis>netfilter</emphasis> firewall."
 msgstr ""
+"Activar enmascarado de IPv4 es una operación un poco más compleja que "
+"involucra configurar el firewall <emphasis>netfilter</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "Similarly, using NAT (for IPv4) requires configuring <emphasis>netfilter</emphasis>. Since the primary purpose of this component is packet filtering, the details are listed in <xref linkend=\"security\" xrefstyle=\"select: label quotedtitle nopage\" /> (see <xref linkend=\"sect.firewall-packet-filtering\" />)."
 msgstr ""
+"De forma similar, utilizar NAT (para IPv4) necesita configurar "
+"<emphasis>netfilter</emphasis>. Debido a que el propósito principal de este "
+"componente es filtrar paquetes, se enumeran los detalles en <xref "
+"linkend=\"security\" xrefstyle=\"select: label quotedtitle nopage\" /> (revise "
+"<xref linkend=\"sect.firewall-packet-filtering\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "Virtual Private Network"
-msgstr ""
+msgstr "Red virtual privada"
 
 #. Tag: para
 #, no-c-format
 msgid "A <emphasis>Virtual Private Network</emphasis> (VPN for short) is a way to link two different local networks through the Internet by way of a tunnel; the tunnel is usually encrypted for confidentiality. VPNs are often used to integrate a remote machine within a company's local network."
 msgstr ""
+"Una <emphasis>red virtual privada</emphasis> (VPN: «Virtual Private "
+"Network») es una forma de enlazar dos redes locales diferentes a través de "
+"Internet utilizando un túnel; el túnel generalmente está cifrado para "
+"confidencialidad. Usualmente se utilizan VPNs para integrar una máquina "
+"remota a la red local de una empresa."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>virtual private</secondary>"
-msgstr ""
+msgstr "<primary>red</primary><secondary>privada virtual (VPN)</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -292,112 +420,181 @@ msgstr "<primary>VPN</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual private network</primary>"
-msgstr "<primary>red privada virtual</primary>"
+msgstr "<primary>privada virtual, red</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Several tools provide this. OpenVPN is an efficient solution, easy to deploy and maintain, based on SSL/TLS. Another possibility is using IPsec to encrypt IP traffic between two machines; this encryption is transparent, which means that applications running on these hosts need not be modified to take the VPN into account. SSH can also be used to provide a VPN, in addition to its more conventional features. Finally, a VPN can be established using Microsoft's PPTP protocol. Other solutions exist, but are beyond the focus of this book."
 msgstr ""
+"Muchas herramientas lo proveen. OpenVPN es una solución eficiente, fácil de "
+"desplegar y mantener, basada en SSL/TLS. Otra posibilidad es utilizar IPsec "
+"para cifrar el tráfico IP entre dos máquinas; este cifrado es transparente, "
+"lo que significa que no necesita modificar las aplicaciones ejecutando en "
+"estos equipos para tener en cuenta la VPN. También puede utilizar SSH, "
+"además de para sus funcionalidades más convencionales, para proveer una VPN. "
+"Finalmente, puede establecer una VPN utilizando el protocolo PPTP de "
+"Microsoft. Existen otras soluciones, pero están más allá del alcance de este "
+"libro."
 
 #. Tag: title
 #, no-c-format
 msgid "OpenVPN"
-msgstr ""
+msgstr "OpenVPN"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>OpenVPN</primary>"
-msgstr ""
+msgstr "<primary>OpenVPN</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN is a piece of software dedicated to creating virtual private networks. Its setup involves creating virtual network interfaces on the VPN server and on the client(s); both <literal>tun</literal> (for IP-level tunnels) and <literal>tap</literal> (for Ethernet-level tunnels) interfaces are supported. In practice, <literal>tun</literal> interfaces will most often be used except when the VPN clients are meant to be integrated into the server's local network by way of an Ethernet bridge."
 msgstr ""
+"OpenVPN es un pedazo de software dedicado a crear redes privadas virtuales. "
+"Su configuración involucra crear interfaces de red virtuales en el servidor "
+"VPN y en los clientes; es compatible con interfaces <literal>tun</literal> "
+"(para túneles a nivel de IP) y <literal>tap</literal> (para túneles a nivel "
+"Ethernet). En la práctica, usualmente utilizará interfaces "
+"<literal>tun</literal> excepto cuando los clientes VPN deban intengrarse a "
+"la red local del servidor a través de un puente Ethernet."
 
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN relies on OpenSSL for all the SSL/TLS cryptography and associated features (confidentiality, authentication, integrity, non-repudiation). It can be configured either with a shared private key or using X.509 certificates based on a public key infrastructure. The latter configuration is strongly preferred since it allows greater flexibility when faced with a growing number of roaming users accessing the VPN."
 msgstr ""
+"OpenVPN se basa en OpenSSL para toda la criptografía SSL/TLS y "
+"funcionalidades asociadas (confidencialidad, autenticación, integridad, "
+"falta de repudio). Puede configurarlo con una llave privada compartida o con "
+"un certificado X.509 basado en la infraestructura de llave pública. Se "
+"prefiere fuertemente esta última configuración ya que permite más "
+"flexibilidad cuando se enfrenta a un número creciente de usuarios "
+"itinerantes que acceden a la VPN."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> SSL and TLS"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> SSL y TLS"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSL</primary>"
-msgstr ""
+msgstr "<primary>SSL</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>TLS</primary>"
-msgstr ""
+msgstr "<primary>TLS</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The SSL protocol (<emphasis>Secure Socket Layer</emphasis>) was invented by Netscape to secure connections to web servers. It was later standardized by IETF under the acronym TLS (<emphasis>Transport Layer Security</emphasis>); TLS is very similar to SSLv3 with only a few fixes and improvements."
 msgstr ""
+"Netscape inventó el protocolo SSL (<emphasis>capa de zócalos "
+"seguros</emphasis>: «Secure Socket Layer») para asegurar conexiones con "
+"servidores web. Luego fue estandarizado por el IETF bajo el acrónico TLS "
+"(<emphasis>seguridad de capa de transporte</emphasis>: «Transport Layer "
+"Security»); TLS es muy similar a SSLv3 con sólo unos pocos arreglos y "
+"mejoras."
 
 #. Tag: title
 #, no-c-format
 msgid "Public Key Infrastructure: <emphasis>easy-rsa</emphasis>"
-msgstr ""
+msgstr "Infraestructura de llave pública: <emphasis>easy-rsa</emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PKI (Public Key Infrastructure)</primary>"
-msgstr ""
+msgstr "<primary>PKI (infraestructura de llave pública)</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Public Key Infrastructure</primary>"
-msgstr ""
+msgstr "<primary>infraestructura de llave pública</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>X.509, certificate</primary>"
-msgstr ""
+msgstr "<primary>X.509, certificado</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>certificate</primary><secondary>X.509</secondary>"
-msgstr ""
+msgstr "<primary>certificado</primary><secondary>X.509</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>easy-rsa</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>easy-rsa</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RSA (algorithm)</primary>"
-msgstr ""
+msgstr "<primary>RSA (algoritmo)</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>key pair</primary>"
-msgstr ""
+msgstr "<primary>llave, par de</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The RSA algorithm is widely used in public-key cryptography. It involves a “key pair”, comprised of a private and a public key. The two keys are closely linked to each other, and their mathematical properties are such that a message encrypted with the public key can only be decrypted by someone knowing the private key, which ensures confidentiality. In the opposite direction, a message encrypted with the private key can be decrypted by anyone knowing the public key, which allows authenticating the origin of a message since only someone with access to the private key could generate it. When associated with a digital hash function (MD5, SHA1, or a more recent variant), this leads to a signature mechanism that can be applied to any message."
 msgstr ""
+"El algoritmo RSA es ampliamente utilizado en criptografía de llave pública. "
+"Involucra un «par de llaves», compuestas de una llave privada y una llave "
+"pública. Las dos llaves están fuertemente enlazadas entre ellas y sus "
+"propiedades matemáticas son tales que un mensaje cifrado con la llave "
+"pública sólo puede ser descifrado por alguien que conozca la llave privada, "
+"lo que asegura confidencialidad. En la dirección opuesta, un mensaje cifrado "
+"con la clave privada puede ser descifrado por cualquier que conozca la "
+"llave pública, lo que permite autenticar el origen del mensaje ya que sólo "
+"pudo haber sido generado por alguien con acceso a la llave privada. Cuando "
+"se asocie una función de hash digital (MD5, SHA1 o una variante más "
+"reciente), esto lleva a un mecanismo de firma que puede aplicarse a "
+"cualquier mensaje."
 
 #. Tag: para
 #, no-c-format
 msgid "However, anyone can create a key pair, store any identity on it, and pretend to be the identity of their choice. One solution involves the concept of a <emphasis>Certification Authority</emphasis> (CA), formalized by the X.509 standard. This term covers an entity that holds a trusted key pair known as a <emphasis>root certificate</emphasis>. This certificate is only used to sign other certificates (key pairs), after proper steps have been undertaken to check the identity stored on the key pair. Applications using X.509 can then check the certificates presented to them, if they know about the trusted root certificates."
 msgstr ""
+"Sin embargo, cualquiera puede crear un par de llaves, almacenar cualquier "
+"identidad en ella y pretender ser la identidad que elijan. Una solución "
+"involucra el concepto de una <emphasis>autoridad de certificación</emphasis> "
+"(CA: «Certification Authority») formalizado por el estándar X.509. Este "
+"término se refiere a una entidad que posee un par de llaves confiable "
+"conocido como <emphasis>certificado raíz</emphasis>. Sólo se utiliza este "
+"certificado para firmar otros certificados (pares de llaves), luego que se "
+"siguieron suficientes pasos para revisar la identidad almacenada en el par "
+"de llaves. Las aplicaciones que utilizan X.509 luego pueden verificar los "
+"certificados que se les presente si conocen los certificados raíz "
+"confiables."
 
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN follows this rule. Since public CAs only emit certificates in exchange for a (hefty) fee, it is also possible to create a private certification authority within the company. For that purpose, OpenVPN provides the <emphasis>easy-rsa</emphasis> tool which serves as an X.509 certification infrastructure. Its implementation is a set of scripts using the <command>openssl</command> command; these scripts can be found under <filename>/usr/share/doc/openvpn/examples/easy-rsa/2.0/</filename>."
 msgstr ""
+"OpenVPN sigue esta regla. Dado que los CA públicos sólo expiden certificados "
+"a cambio de un pago (importante), también es posible crear una autoridad de "
+"certificación privada dentro de la empresa. Para este propósito, OpenVPN "
+"provee la herramienta <emphasis>easy-rsa</emphasis> que funciona como "
+"infraestructura de certificación X.509. Su implementación es un conjunto de "
+"scripts que utilizan el programa <command>openssl</command>; puede encontrar "
+"estos scripts bajo <filename>/usr/share/doc/openvpn/examples/easy-"
+"rsa/2.0/</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators use this tool to create the required certificates, both for the server and the clients. This allows the configuration of all clients to be similar since they will only have to be set up so as to trust certificates coming from Falcot's local CA. This CA is the first certificate to create; to this end, the administrators copy the directory containing <emphasis>easy-rsa</emphasis> into a more appropriate location, preferably on a machine not connected to the network in order to mitigate the risk of the CA's private key being stolen."
 msgstr ""
+"Los administradores de Falcot Corp utilizan esta herramienta para crear los "
+"certificados necesarios, tanto para los servidores como para los clientes. "
+"Esto permite que la configuración de todos los clientes sea similar ya que "
+"sólo deberán configurarlos para confiar en certificados que provengan de la "
+"CA local de Falcot. Esta CA es el primer certificado a crear; para ello los "
+"administradores copian el directorio que contiene <emphasis>easy-"
+"rsa</emphasis> a una ubicación más apropiada, preferentemente a una máquina "
+"que no está conectada a la red para evitar el riesgo de que se roben la "
+"llave privada de la CA."
 
 #. Tag: screen
 #, no-c-format
@@ -406,11 +603,20 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 pki-falcot\n"
 "</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>cp -r "
+"/usr/share/doc/openvpn/examples/easy-rsa/2.0 pki-falcot\n"
+"</userinput><computeroutput>$ </computeroutput><userinput>cd pki-"
+"falcot</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "They then store the required parameters into the <filename>vars</filename> file, especially those named with a <literal>KEY_</literal> prefix; these variables are then integrated into the environment:"
 msgstr ""
+"Luego almacenan los parámetros necesarios en el archivo "
+"<filename>vars</filename>, especialmente aquellos cuyos nombres comienzan "
+"con <literal>KEY_</literal>; estas variables luego son integradas en el "
+"entorno:"
 
 #. Tag: screen
 #, no-c-format
@@ -433,11 +639,33 @@ msgid ""
 "$ </computeroutput><userinput>./clean-all\n"
 "</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>vim vars\n"
+"</userinput><computeroutput>$ </computeroutput><userinput>grep KEY_ vars\n"
+"</userinput><computeroutput>export KEY_CONFIG=`$EASY_RSA/whichopensslcnf "
+"$EASY_RSA`\n"
+"export KEY_DIR=\"$EASY_RSA/keys\"\n"
+"echo NOTE: If you run ./clean-all, I will be doing a rm -rf on $KEY_DIR\n"
+"export KEY_SIZE=1024\n"
+"export KEY_EXPIRE=3650\n"
+"export KEY_COUNTRY=\"FR\"\n"
+"export KEY_PROVINCE=\"Loire\"\n"
+"export KEY_CITY=\"Saint-Étienne\"\n"
+"export KEY_ORG=\"Falcot Corp\"\n"
+"export KEY_EMAIL=\"admin@falcot.com\"\n"
+"$ </computeroutput><userinput>. ./vars\n"
+"</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a "
+"rm -rf on /home/rhertzog/pki-falcot/keys\n"
+"$ </computeroutput><userinput>./clean-all\n"
+"</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The next step is the creation of the CA's key pair itself (the two parts of the key pair will be stored under <filename>keys/ca.crt</filename> and <filename>keys/ca.key</filename> during this step):"
 msgstr ""
+"El siguiente paso es crear el par de llaves en sí de la CA (durante este "
+"paso se almacenarán las dos partes del par de llaves en "
+"<filename>keys/ca.crt</filename> y <filename>keys/ca.key</filename>):"
 
 #. Tag: screen
 #, no-c-format
@@ -466,11 +694,41 @@ msgid ""
 "Email Address [admin@falcot.com]:\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>./build-ca</userinput>\n"
+"<computeroutput>Generating a 1024 bit RSA private key\n"
+"..............................................++++++\n"
+".......................++++++\n"
+"writing new private key to 'ca.key'\n"
+"-----\n"
+"You are about to be asked to enter information that will be incorporated\n"
+"into your certificate request.\n"
+"What you are about to enter is what is called a Distinguished Name or a DN.\n"
+"There are quite a few fields but you can leave some blank\n"
+"For some fields there will be a default value,\n"
+"If you enter '.', the field will be left blank.\n"
+"-----\n"
+"Country Name (2 letter code) [FR]:\n"
+"State or Province Name (full name) [Loire]:\n"
+"Locality Name (eg, city) [Saint-Étienne]:\n"
+"Organization Name (eg, company) [Falcot Corp]:\n"
+"Organizational Unit Name (eg, section) []:\n"
+"Common Name (eg, your name or your server's hostname) [Falcot Corp CA]:\n"
+"Name []:\n"
+"Email Address [admin@falcot.com]:\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The certificate for the VPN server can now be created, as well as the Diffie-Hellman parameters required for the server side of an SSL/TLS connection. The VPN server is identified by its DNS name <literal>vpn.falcot.com</literal>; this name is re-used for the generated key files (<filename>keys/vpn.falcot.com.crt</filename> for the public certificate, <filename>keys/vpn.falcot.com.key</filename>for the private key):"
 msgstr ""
+"Ahora puede crear el certificado para el servidor VPN, así como también los "
+"parámetros Diffie-Hellman necesarios en el servidor para la conexión "
+"SSL/TLS. Se identifica el servidor VPN por su nombre DNS "
+"<literal>vpn.falcot.com</literal>; se reutiliza este nombre para los "
+"archivos de llaves generados (<filename>keys/vpn.falcot.com.crt</filename> "
+"para el certificado público, <filename>keys/vpn.falcot.com.key</filename> "
+"para la llave privada):"
 
 #. Tag: screen
 #, no-c-format
@@ -525,11 +783,65 @@ msgid ""
 "..............+.......+.................................++*++*++*\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>./build-key-server "
+"vpn.falcot.com\n"
+"</userinput><computeroutput>Generating a 1024 bit RSA private key\n"
+"...............++++++\n"
+"...........++++++\n"
+"writing new private key to 'vpn.falcot.com.key'\n"
+"-----\n"
+"You are about to be asked to enter information that will be incorporated\n"
+"into your certificate request.\n"
+"What you are about to enter is what is called a Distinguished Name or a DN.\n"
+"There are quite a few fields but you can leave some blank\n"
+"For some fields there will be a default value,\n"
+"If you enter '.', the field will be left blank.\n"
+"-----\n"
+"Country Name (2 letter code) [FR]:\n"
+"State or Province Name (full name) [Loire]:\n"
+"Locality Name (eg, city) [Saint-Étienne]:\n"
+"Organization Name (eg, company) [Falcot Corp]:\n"
+"Organizational Unit Name (eg, section) []:\n"
+"Common Name (eg, your name or your server's hostname) [vpn.falcot.com]:\n"
+"Name []:\n"
+"Email Address [admin@falcot.com]:\n"
+"\n"
+"Please enter the following 'extra' attributes\n"
+"to be sent with your certificate request\n"
+"A challenge password []:\n"
+"An optional company name []:\n"
+"Using configuration from /home/rhertzog/pki-falcot/openssl.cnf\n"
+"Check that the request matches the signature\n"
+"Signature ok\n"
+"The Subject's Distinguished Name is as follows\n"
+"countryName           :PRINTABLE:'FR'\n"
+"stateOrProvinceName   :PRINTABLE:'Loire'\n"
+"localityName          :T61STRING:'Saint-\\0xFFFFFFC3\\0xFFFFFF89tienne'\n"
+"organizationName      :PRINTABLE:'Falcot Corp'\n"
+"commonName            :PRINTABLE:'vpn.falcot.com'\n"
+"emailAddress          :IA5STRING:'admin@falcot.com'\n"
+"Certificate is to be certified until Oct  9 13:57:42 2020 GMT (3650 days)\n"
+"Sign the certificate? [y/n]:</computeroutput><userinput>y\n"
+"</userinput><computeroutput>\n"
+"\n"
+"1 out of 1 certificate requests certified, commit? "
+"[y/n]</computeroutput><userinput>y\n"
+"</userinput><computeroutput>Write out database with 1 new entries\n"
+"Data Base Updated\n"
+"$ </computeroutput><userinput>./build-dh\n"
+"</userinput><computeroutput>Generating DH parameters, 1024 bit long safe "
+"prime, generator 2\n"
+"This is going to take a long time\n"
+"..............+.......+.................................++*++*++*\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The following step creates certificates for the VPN clients; one certificate is required for each computer or person allowed to use the VPN:"
 msgstr ""
+"El siguiente paso crea los certificados para los clientes VPN; necesita un "
+"certificado para cada equipo o persona autorizada para utilizar la VPN:"
 
 #. Tag: screen
 #, no-c-format
@@ -558,11 +870,50 @@ msgid ""
 "Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com\n"
 "</userinput><computeroutput>[…]</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>./build-key JoeSmith\n"
+"</userinput><computeroutput>Generating a 1024 bit RSA private key\n"
+"................++++++\n"
+".............................++++++\n"
+"writing new private key to 'JoeSmith.key'\n"
+"-----\n"
+"You are about to be asked to enter information that will be incorporated\n"
+"into your certificate request.\n"
+"What you are about to enter is what is called a Distinguished Name or a DN.\n"
+"There are quite a few fields but you can leave some blank\n"
+"For some fields there will be a default value,\n"
+"If you enter '.', the field will be left blank.\n"
+"-----\n"
+"Country Name (2 letter code) [FR]:\n"
+"State or Province Name (full name) [Loire]:\n"
+"Locality Name (eg, city) [Saint-Étienne]:\n"
+"Organization Name (eg, company) [Falcot Corp]:\n"
+"Organizational Unit Name (eg, section) []:\n"
+"Common Name (eg, your name or your server's hostname) "
+"[JoeSmith]:</computeroutput><userinput>Joe Smith\n"
+"</userinput><computeroutput>Name []:\n"
+"Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com\n"
+"</userinput><computeroutput>[…]</computeroutput>"
 
 #. Tag: para
 #, no-c-format
 msgid "Now all certificates have been created, they need to be copied where appropriate: the root certificate's public key (<filename>keys/ca.crt</filename>) will be stored on all machines (both server and clients) as <filename>/etc/ssl/certs/Falcot_CA.crt</filename>. The server's certificate is installed only on the server (<filename>keys/vpn.falcot.com.crt</filename> goes to <filename>/etc/ssl/vpn.falcot.com.crt</filename>, and <filename>keys/vpn.falcot.com.key</filename> goes to <filename>/etc/ssl/private/vpn.falcot.com.key</filename> with restricted permissions so that only the administrator can read it), with the corresponding Diffie-Hellman parameters (<filename>keys/dh1024.pem</filename>) installed to <filename>/etc/openvpn/dh1024.pem</filename>. Client certificates are installed on the corresponding VPN client in a similar fashion."
 msgstr ""
+"Ahora que se crearon todos los certificados, necesita copiarlos donde "
+"correspondan: la llave pública del certificado raíz "
+"(<filename>key/ca.crt</filename>) será almacenada en todas las máquinas "
+"(tanto el servidor como los clientes) como "
+"<filename>/etc/ssl/certs/Falcot_CA.crt</filename>. Sólo instalará el "
+"certificado del servidor en el servidor "
+"(<filename>key/vpn.falcot.com.crt</filename> en "
+"<filename>/etc/ssl/vpn.falcot.com.crt</filename> y "
+"<filename>key/vpn.falcot.com.key</filename> en "
+"<filename>/etc/ssl/private/vpn.falcot.com.key</filename> con permisos "
+"restringidos para que sólo el administrador pueda leerlo), con los "
+"parámetros Diffie-Hellman correspondientes "
+"(<filename>key/dh1024.pem</filename>) instalados en "
+"<filename>/etc/openvpn/dh1024.pem</filename>. Instale los certificados de "
+"clientes en el cliente de VPN correspondiente de forma similar."
 
 #. Tag: title
 #, no-c-format
@@ -573,36 +924,105 @@ msgstr "Configuración del servidor OpenVPN"
 #, no-c-format
 msgid "By default, the OpenVPN initialization script tries starting all virtual private networks defined in <filename>/etc/openvpn/*.conf</filename>. Setting up a VPN server is therefore a matter of storing a corresponding configuration file in this directory. A good starting point is <filename>/usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz</filename>, which leads to a rather standard server. Of course, some parameters need to be adapted: <literal>ca</literal>, <literal>cert</literal>, <literal>key</literal> and <literal>dh</literal> need to describe the selected locations (respectively, <literal>/etc/ssl/certs/Falcot_CA.crt</literal>, <literal>/etc/ssl/vpn.falcot.com.crt</literal>, <literal>/etc/ssl/private/vpn.falcot.com.key</literal> and <literal>/etc/openvpn/dh1024.pem</literal>). The <literal>server 10.8.0.0 255.255.255.0</literal> directive defines the subnet to be used by the VPN; the server uses the first IP address in that range (<literal>10.8.0.1</literal>) and the rest of the addresses are allocated to clients."
 msgstr ""
+"El script de inciialización de OpenVPN intenta, de forma predeterminada, "
+"iniciar todas las redes privadas virtuales definidas en "
+"<filename>/etc/openvpn/*.conf</filename>. Configurar un servidor VPN "
+"entonces es cuestión de almacenar el archivo de configuración "
+"correspondiente en este directorio. Un buen punto de partida es "
+"<filename>/usr/share/doc/openvpn/examples/sample-config-"
+"files/server.conf.gz</filename> que lleva a un servidor bastante estándar. "
+"Por supuesto necesitará adaptar algunos parámetros: <literal>ca</literal>, "
+"<literal>cert</literal>, <literal>key</literal> y <literal>dh</literal> "
+"describirán las ubicaciones seleccionadas para cada uo (respectivamente: "
+"<literal>/etc/ssl/certs/Falcot_CA.crt</literal>, "
+"<literal>/etc/ssl/vpn.falcot.com.crt</literal>, "
+"<literal>/etc/ssl/private/vpn.falcot.com.key</literal> y "
+"<literal>/etc/openvpn/dh1024.pem</literal>). La directiva <literal>server "
+"10.8.0.0 255.255.255.0</literal> define la subred utilizada por la VPN; el "
+"servidor utilizará la primer dirección IP en el rango "
+"(<literal>10.8.0.1</literal> y se asignarán a los clientes el resto de las "
+"direcciones."
 
 #. Tag: para
 #, no-c-format
 msgid "With this configuration, starting OpenVPN creates the virtual network interface, usually under the <literal>tun0</literal> name. However, firewalls are often configured at the same time as the real network interfaces, which happens before OpenVPN starts. Good practice therefore recommends creating a persistent virtual network interface, and configuring OpenVPN to use this pre-existing interface. This further allows choosing the name for this interface. To this end, <command>openvpn --mktun --dev vpn --dev-type tun</command> creates a virtual network interface named <literal>vpn</literal> with type <literal>tun</literal>; this command can easily be integrated in the firewall configuration script, or in an <literal>up</literal> directive of the <filename>/etc/network/interfaces</filename> file. The OpenVPN configuration file must also be updated accordingly, with the <literal>dev vpn</literal> and <literal>dev-type tun</literal> directives."
 msgstr ""
+"Con esta configuración, iniciar OpenVPN crea una interfaz de red virtual "
+"generalmente con el nombre <literal>tun0</literal>. Sin embargo, usualmente "
+"se configuran los firewalls al mismo tiempo que las interfaces de red "
+"reales, lo que ocurre antes que inicie OpenVPN. La creación de una interfaz "
+"de red virtual persistente, y configurar OpenVPN para que la utilice, es una "
+"buena práctica recomendada. Esto además permite elegir el nombre de esta "
+"interfaz. A tal efecto, <command>openvpn -mktun -dev vpn -dev-type "
+"tun</command> crea una interfaz de red virtual llamada "
+"<literal>vpn</literal> de tipo <literal>tun</literal>; puede integrar "
+"fácilmente esta orden en el script de configuración del firewall o en la "
+"directiva <literal>up</literal> del archivo "
+"<filename>/etc/network/interfaces</filename>. Debe actualizar también el "
+"archivo de configuración de OpenVPN de forma acorde, con las directivas "
+"<literal>dev vpn</literal> y <literal>dev-type tun</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "Barring further action, VPN clients can only access the VPN server itself by way of the <literal>10.8.0.1</literal> address. Granting the clients access to the local network (192.168.0.0/24), requires adding a <literal>push route 192.168.0.0 255.255.255.0</literal> directive to the OpenVPN configuration so that VPN clients automatically get a network route telling them that this network is reachable by way of the VPN. Furthermore, machines on the local network also need to be informed that the route to the VPN goes through the VPN server (this automatically works when the VPN server is installed on the gateway). Alternatively, the VPN server can be configured to perform IP masquerading so that connections coming from VPN clients appear as if they are coming from the VPN server instead (see <xref linkend=\"sect.gateway\" />)."
 msgstr ""
+"Sin más cambios, los clientes VPN sólo pueden acceder el servidor VPN en sí "
+"a través de la dirección <literal>10.8.0.1</literal>. Para permitir a los "
+"clientes que accedan la red local (192.168.0.0/24) necesitará agregar una "
+"directiva <literal>push route 192.168.0.0 255.255.255.0</literal> a la "
+"configuración de OpenVPN para que los clientes VPN automáticamente obtengan "
+"una ruta de red que les indique que esta red está disponible a través de la "
+"VPN. Lo que es más, los equipos en la red local también necesitarán ser "
+"informados que la ruta a la VPN es a través del servidor de VPN (esto "
+"funciona automáticamente cuando instala el servidor VPN en la puerta de "
+"enlace). Otra alternativa es configurar el servidor VPN para realizar "
+"enmascaramiento de IPs de forma que las conexiones que provengan de los "
+"clientes VPN parezcan provenir del servidor VPN en su lugar (revise <xref "
+"linkend=\"sect.gateway\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the OpenVPN Client"
-msgstr ""
+msgstr "Configuración del cliente OpenVPN"
 
 #. Tag: para
 #, no-c-format
 msgid "Setting up an OpenVPN client also requires creating a configuration file in <filename>/etc/openvpn/</filename>. A standard configuration can be obtained by using <filename>/usr/share/doc/openvpn/examples/sample-config-files/client.conf</filename> as a starting point. The <literal>remote vpn.falcot.com 1194</literal> directive describes the address and port of the OpenVPN server; the <literal>ca</literal>, <literal>cert</literal> and <literal>key</literal> also need to be adapted to describe the locations of the key files."
 msgstr ""
+"Para configurar un cliente OpenVPN también necesita crear un archivo de "
+"configuración en <filename>/etc/openvpn/</filename>. Puede conseguir una "
+"configuración estándar utilizando <filename>/usr/share/doc/openvpn/examples"
+"/sample-config-files/client.conf</filename> como punto de partida. La "
+"directiva <literal>remote vpn.falcot.com 1194</literal> describe la "
+"dirección y puerto del servidor OpenVPN; también necesita adaptar "
+"<literal>ca</literal>, <literal>cert</literal> y <literal>key</literal> para "
+"describir la ubicación de los archivos de llave."
 
 #. Tag: para
 #, no-c-format
 msgid "If the VPN should not be started automatically on boot, set the <literal>AUTOSTART</literal> directive to <literal>none</literal> in the <filename>/etc/default/openvpn</filename> file. Starting or stopping a given VPN connection is always possible with the commands <command>/etc/init.d/openpvn start <replaceable>name</replaceable></command> and <command>/etc/init.d/openpvn stop <replaceable>name</replaceable></command> (where the connection <replaceable>name</replaceable> matches the one defined in <filename>/etc/openvpn/<replaceable>name</replaceable>.conf</filename>)."
 msgstr ""
+"Si no se debe iniciar la VPN automáticamente durante el inicio, configure la "
+"directiva <literal>AUTOSTART</literal> como <literal>none</literal> en el "
+"archivo <filename>/etc/default/openvpn</filename>. Siempre es posible "
+"iniciar o detener una conexión VPN dada con <command>/etc/init.d/openvpn "
+"start <replaceable>nombre</replaceable></command> y "
+"<command>/etc/init.d/openvpn stop "
+"<replaceable>nombre</replaceable></command> (donde la conexión "
+"<replaceable>nombre</replaceable> coincide con aquella definida en "
+"<filename>/etc/openvpn/<replaceable>nombre</replaceable>.conf</filename>)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> package contains an extension to Network Manager (see <xref linkend=\"sect.config-reseau-itinerante\" />) that allows managing OpenVPN virtual private networks. This allows every user to configure OpenVPN connections graphically and to control them from the network management icon. <indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
 msgstr ""
+"El paquete <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> "
+"contiene una extensión para Network Manager (revise <xref linkend=\"sect"
+".config-reseau-itinerante\" />) que permite administrar redes privadas "
+"virtuales OpenVPN. Esto permite que cada usuario configure gráficamente sus "
+"conexiones OpenVPN y las controle desde el ícono del gestor de red. "
+"<indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-"
+"gnome</emphasis></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -612,32 +1032,60 @@ msgstr "Red privada virtual con SSH"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSH</primary>"
-msgstr ""
+msgstr "<primary>SSH</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPP</primary>"
-msgstr ""
+msgstr "<primary>PPP</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "There are actually two ways of creating a virtual private network with SSH. The historic one involves establishing a PPP layer over the SSH link. This method is described in a HOWTO document: <ulink type=\"block\" url=\"http://www.tldp.org/HOWTO/ppp-ssh/\" />"
 msgstr ""
+"En realidad existen dos formas de crear una red privada virtual con SSH. La "
+"histórica involucra establecer una capa PPP sobre el enlace SSH. Se describe "
+"este método en el siguiente «howto»: <ulink type=\"block\" "
+"url=\"http://www.tldp.org/HOWTO/ppp-ssh/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The second method is more recent, and was introduced with OpenSSH 4.3; it is now possible for OpenSSH to create virtual network interfaces (<literal>tun*</literal>) on both sides of an SSH connection, and these virtual interfaces can be configured exactly as if they were physical interfaces. The tunneling system must first be enabled by setting <literal>PermitTunnel</literal> to “yes” in the SSH server configuration file (<filename>/etc/ssh/sshd_config</filename>). When establishing the SSH connection, the creation of a tunnel must be explicitly requested with the <literal>-w any:any</literal> option (<literal>any</literal> can be replaced with the desired <literal>tun</literal> device number). This requires the user to have administrator privilege on both sides, so as to be able to create the network device (in other words, the connection must be established as root)."
 msgstr ""
+"El segundo método es más reciente y fue introducido con OpenSSH 4.3; ahora "
+"OpenSSH puede crear interfaces de red virtuales (<literal>tun*</literal>) en "
+"ambos extremos de una conexión SSH y puede configurar estas interfaces "
+"virtuales exactamente como si fueran interfaces físicas. Primero debe "
+"activar el sistema de túneles configurando <literal>PermitTunnel</literal> "
+"como «yes» en el archivo de configuración del servidor SSH "
+"(<filename>/etc/ssh/sshd_config</filename>). Cuando se establece la conexión "
+"SSH debe solicitar explícitamente la creación del túnel con la opción "
+"<literal>-w any:any</literal> (puede reemplaza <literal>any</literal> con el "
+"número de dispositivo <literal>tun</literal> deseado). Esto necesita que el "
+"usuario tenga permisos de administrador en ambos extremos para poder crear "
+"el dispositivo de red (en otras palabras, debe establecer la conexión como "
+"root)."
 
 #. Tag: para
 #, no-c-format
 msgid "Both methods for creating a virtual private network over SSH are quite straightforward. However, the VPN they provide is not the most efficient available; in particular, it does not handle high levels of traffic very well."
 msgstr ""
+"Ambos métodos para crear redes privadas virtuales sobre SSH son bastante "
+"directos. Sin embargo, la VPN que proveen no es la más eficiente disponible; "
+"en particular, no maneja muy bien altos niveles de tráfico."
 
 #. Tag: para
 #, no-c-format
 msgid "The explanation is that when a TCP/IP stack is encapsulated within a TCP/IP connection (for SSH), the TCP protocol is used twice, once for the SSH connection and once within the tunnel. This leads to problems, especially due to the way TCP adapts to network conditions by altering timeout delays. The following site describes the problem in more detail: <ulink type=\"block\" url=\"http://sites.inka.de/sites/bigred/devel/tcp-tcp.html\" /> VPNs over SSH should therefore be restricted to one-off tunnels with no performance constraints."
 msgstr ""
+"La explicación es que cuando se encapsula TCP/IP en una conexión TCP/IP "
+"(para SSH) se utiliza el protocolo TCP dos veces, una ves para la conexión "
+"SSH y una vez dentro del túnel. Esto genera problemas, especialmente debido "
+"a la forma en la que TCP se adapta a condiciones de red modificando los "
+"tiempo de espera. El siguiente sitio describe el problema en más detalle: "
+"<ulink type=\"block\" url=\"http://sites.inka.de/sites/bigred/devel/tcp-"
+"tcp.html\" /> Por lo tanto debe limitar el uso de VPNs sobre SSH a túneles "
+"esporádicos y de uno solo uso que no tengan requisitos de performance."
 
 #. Tag: title
 #, no-c-format
@@ -647,82 +1095,124 @@ msgstr "IPsec"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IPsec</primary>"
-msgstr ""
+msgstr "<primary>IPsec</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>openswan</command></primary>"
-msgstr ""
+msgstr "<primary><command>openswan</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>strongswan</command></primary>"
-msgstr ""
+msgstr "<primary><command>strongswan</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>racoon</command></primary>"
-msgstr ""
+msgstr "<primary><command>racoon</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "IPsec, despite being the standard in IP VPNs, is rather more involved in its implementation. The IPsec engine itself is integrated in the Linux kernel; the required user-space parts, the control and configuration tools, are provided by the <emphasis role=\"pkg\">ipsec-tools</emphasis> package. In concrete terms, each host's <filename>/etc/ipsec-tools.conf</filename> contains the parameters for <emphasis>IPsec tunnels</emphasis> (or <emphasis>Security Associations</emphasis>, in the IPsec terminology) that the host is concerned with; <command>/etc/init.d/setkey</command> script provides a way to start and stop a tunnel (each tunnel is a secure link to another host connected to the virtual private network). This file can be built by hand from the documentation provided by the <citerefentry><refentrytitle>setkey</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page. However, explicitly writing the parameters for all hosts in a non-trivial set of machines quickly becomes an arduous task, since the number of tunnels grows fast. Installing an IKE daemon (for <emphasis>IPsec Key Exchange</emphasis>) such as <emphasis role=\"pkg\">racoon</emphasis>, <emphasis role=\"pkg\">strongswan</emphasis> or <emphasis role=\"pkg\">openswan</emphasis> makes the process much simpler by bringing administration together at a central point, and more secure by rotating the keys periodically. <indexterm><primary>IKE</primary></indexterm> <indexterm><primary>IPsec</primary><secondary>IPsec Key Exchange</secondary></indexterm> <indexterm><primary>key pair</primary></indexterm> <indexterm><primary><command>setkey</command></primary></indexterm>"
 msgstr ""
+"IPsec, a pesar de ser el estándar en VPNs IP, es bastante más complejo en su "
+"implementación. El motor de IPsec está incorporado al núcleo Linux; el "
+"paquete <emphasis role=\"pkg\">ipsec-tools</emphasis> provee las partes "
+"necesarias en espacio de usuario, las herramientas de control y "
+"configuración. En términos concretos, el archivo <filename>/etc/ipsec-"
+"tools.conf</filename> de cada equipo contiene los parámetros de los "
+"<emphasis>túneles IPsec</emphasis> (en términos de IPsec: "
+"<emphasis>asociaciones de seguridad</emphasis>, «Security Associations») en "
+"los que el equipo está involucrado; el script "
+"<command>/etc/init.d/setkey</command> provee una forma de iniciar y detener "
+"el túnel (cada túnel es un enlace seguro a otra máquina conectada a la red "
+"privada virtual). Puede construir este archivo a mano desde la documentación "
+"que provee la página de manual "
+"<citerefentry><refentrytitle>setkey</refentrytitle> "
+"<manvolnum>8</manvolnum></citerefentry>. Sin embargo, escribir los "
+"parámetros para todos los equipos en un conjunto de máquinas no trivial se "
+"convierte fácilmente en una tarea ardua ya que la cantidad de túneles crece "
+"rápidamente. Instalar un demonio IKE (<emphasis>intercambio de llaves "
+"IPsec</emphasis>: «IPsec Key Exchange») como <emphasis "
+"role=\"pkg\">racoon</emphasis>, <emphasis role=\"pkg\">strongswan</emphasis> o "
+"<emphasis role=\"pkg\">openswan</emphasis> hace el proceso mucho más simple "
+"centralizando la administración y más seguro rotando las claves "
+"periódicamente. <indexterm><primary>IKE</primary></indexterm> "
+"<indexterm><primary>IPsec</primary><secondary>intercambio de llaves "
+"IPsec</secondary></indexterm> <indexterm><primary>par de "
+"llaves</primary></indexterm> "
+"<indexterm><primary><command>setkey</command></primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "In spite of its status as the reference, the complexity of setting up IPsec restricts its usage in practice. OpenVPN-based solutions will generally be preferred when the required tunnels are neither too many nor too dynamic."
 msgstr ""
+"A pesar de su estado como referencia, la complejidad de configuración de "
+"IPsec restringe su uso en la práctica. Generalmente se preferirán soluciones "
+"basadas en OpenVPN cuando los túneles necesarios no sean muchos ni "
+"demasiado dinámicos."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> IPsec and NAT"
-msgstr ""
+msgstr "<emphasis>PRECAUCIÓN</emphasis> IPsec y NAT"
 
 #. Tag: para
 #, no-c-format
 msgid "NATing firewalls and IPsec do not work well together: since IPsec signs the packets, any change on these packets that the firewall might perform will void the signature, and the packets will be rejected at their destination. Various IPsec implementations now include the <emphasis>NAT-T</emphasis> technique (for <emphasis>NAT Traversal</emphasis>), which basically encapsulates the IPsec packet within a standard UDP packet."
 msgstr ""
+"Los firewall con NAT y IPsec no funcionan bien juntos: IPsec firma los "
+"paquetes y cualquier cambio en estos paquetes que realice el firewall "
+"invalidará la firma y el destino rechazará los paquetes. Muchas "
+"implementaciones IPsec incluyen la técnica <emphasis>NAT-T</emphasis> "
+"(<emphasis>NAT Traversal</emphasis>), que básicamente encapsula un paquete "
+"IP en un paquete UDP estándar."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NAT-T</primary>"
-msgstr ""
+msgstr "<primary>NAT-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NAT Traversal</primary>"
-msgstr ""
+msgstr "<primary>NAT Traversal</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> IPsec and firewalls"
-msgstr ""
+msgstr "<emphasis>SEGURIDAD</emphasis> IPsec y firewalls"
 
 #. Tag: para
 #, no-c-format
 msgid "The standard mode of operation of IPsec involves data exchanges on UDP port 500 for key exchanges (also on UDP port 4500 if case NAT-T is in use). Moreover, IPsec packets use two dedicated IP protocols that the firewall must let through; reception of these packets is based on their protocol numbers, 50 (ESP) and 51 (AH)."
 msgstr ""
+"El modo de operación estándar de IPsec involucra intercambio de datos en el "
+"puerto UDP 500 para intercambio de llaves (también en el puerto UDP 4500 si "
+"utiliza NAT-T). Lo que es más, los paquetes IPsec utilizan dos protocolos IP "
+"dedicados que el firewall debe dejar pasar; la recepción de estos paquetes "
+"está basada en sus números de protocolo: 50 (ESP) y 51 (AH)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ESP, protocol</primary>"
-msgstr ""
+msgstr "<primary>ESP, protocolo</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>AH, protocol</primary>"
-msgstr ""
+msgstr "<primary>AH, protocolo</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>protocol</primary><secondary>AH</secondary>"
-msgstr ""
+msgstr "<primary>protocolo</primary><secondary>AH</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>protocol</primary><secondary>ESP</secondary>"
-msgstr ""
+msgstr "<primary>protocolo</primary><secondary>ESP</secondary>"
 
 #. Tag: title
 #, no-c-format
@@ -733,26 +1223,32 @@ msgstr "PPTP"
 #, no-c-format
 msgid "PPTP (for <emphasis>Point-to-Point Tunneling Protocol</emphasis>) uses two communication channels, one for control data and one for payload data; the latter uses the GRE protocol (<emphasis>Generic Routing Encapsulation</emphasis>). A standard PPP link is then set up over the data exchange channel."
 msgstr ""
+"PPTP (<emphasis>protocolo de túneles punto a punto</emphasis>: «Point-to-"
+"Point Tunneling Protocol») utiliza dos canales de comunicación, uno para "
+"datos de control y otro para los datos; este último utiliza el protocolo GRE "
+"(<emphasis>encapsulación genérica de enrutamiento</emphasis>: «Generic "
+"Routing Encapsulation»). Luego se establece un enlace PPP estándar sobre el "
+"canal de intercambio de datos."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPTP</primary>"
-msgstr ""
+msgstr "<primary>PPTP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Point-to-Point Tunneling Protocol</primary>"
-msgstr ""
+msgstr "<primary>túneles punto a punto, protocolo</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRE, protocol</primary>"
-msgstr ""
+msgstr "<primary>GRE, protocolo</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>protocol</primary><secondary>GRE</secondary>"
-msgstr ""
+msgstr "<primary>protocolo</primary><secondary>GRE</secondary>"
 
 #. Tag: title
 #, no-c-format
@@ -763,21 +1259,29 @@ msgstr "Configuración del cliente"
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">pptp-linux</emphasis> package contains an easily-configured PPTP client for Linux. The following instructions take their inspiration from the official documentation: <ulink type=\"block\" url=\"http://pptpclient.sourceforge.net/howto-debian.phtml\" />"
 msgstr ""
+"El paquete <emphasis role=\"pkg\">pptp-linux</emphasis> contiene un cliente "
+"PPTP para Linux fácil de configurar. Las instrucciones a continuación están "
+"inspiradas en la documentación oficial: <ulink type=\"block\" "
+"url=\"http://pptpclient.sourceforge.net/howto-debian.phtml\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">pptp-linux</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">pptp-linux</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot administrators created several files: <filename>/etc/ppp/options.pptp</filename>, <filename>/etc/ppp/peers/falcot</filename>, <filename>/etc/ppp/ip-up.d/falcot</filename>, and <filename>/etc/ppp/ip-down.d/falcot</filename>."
 msgstr ""
+"Los administradores de Falcot crearon varios archivos: "
+"<filename>/etc/ppp/options.pptp</filename>, "
+"<filename>/etc/ppp/peers/falcot</filename>, <filename>/etc/ppp/ip-"
+"up.d/falcot</filename> y <filename>/etc/ppp/ip-down.d/falcot</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/options.pptp</filename> file"
-msgstr ""
+msgstr "El archivo <filename>/etc/ppp/options.pptp</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -789,11 +1293,17 @@ msgid ""
 "nobsdcomp\n"
 "nodeflate\n"
 msgstr ""
+"\n"
+"# opciones PPP utilizadas en una conexión PPTP\n"
+"lock\n"
+"noauth\n"
+"nobsdcomp\n"
+"nodeflate\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/peers/falcot</filename> file"
-msgstr ""
+msgstr "El archivo <filename>/etc/ppp/peers/falcot</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -809,11 +1319,21 @@ msgid ""
 "file /etc/ppp/options.pptp\n"
 "ipparam falcot\n"
 msgstr ""
+"\n"
+"# vpn.falcot.com es el servidor PPTP\n"
+"pty \"pptp vpn.falcot.com --nolaunchpppd\"\n"
+"# el usuario «vpn» identificará a la conexión\n"
+"user vpn\n"
+"remotename pptp\n"
+"# necesita cifrado\n"
+"require-mppe-128\n"
+"file /etc/ppp/options.pptp\n"
+"ipparam falcot\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/ip-up.d/falcot</filename> file"
-msgstr ""
+msgstr "El archivo <filename>/etc/ppp/ip-up.d/falcot</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -825,11 +1345,17 @@ msgid ""
 "  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
 "fi\n"
 msgstr ""
+"\n"
+"# Crear la ruta a la red Falcot\n"
+"if [ \"$6\" = \"falcot\" ]; then\n"
+"  # 192.168.0.0/24 es la red Falcot (remota)\n"
+"  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
+"fi\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/ip-down.d/falcot</filename> file"
-msgstr ""
+msgstr "El archivo <filename>/etc/ppp/ip-down.d/falcot</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -841,26 +1367,36 @@ msgid ""
 "  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
 "fi\n"
 msgstr ""
+"\n"
+"# Eliminar la ruta a la red Falcot\n"
+"if [ \"$6\" = \"falcot\" ]; then\n"
+"  # 192.168.0.0/24 es la red Falcot (remota)\n"
+"  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
+"fi\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> MPPE"
-msgstr ""
+msgstr "<emphasis>SEGURIDAD</emphasis> MPPE"
 
 #. Tag: para
 #, no-c-format
 msgid "Securing PPTP involves using the MPPE feature (<emphasis>Microsoft Point-to-Point Encryption</emphasis>), which is available in official Debian kernels as a module."
 msgstr ""
+"Asegurar PPTP involucra utilizar la funcionalidad MPPE (<emphasis>cifrado "
+"punto a punto de Microsoft</emphasis>: «Microsoft Point-to-Point "
+"Encryption»), disponible como un módulo en los núcleos Debian oficiales."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MPPE</primary>"
-msgstr ""
+msgstr "<primary>MPPE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Microsoft</primary><secondary>Point-to-Point Encryption</secondary>"
 msgstr ""
+"<primary>Microsoft</primary><secondary>cifrado punto a punto</secondary>"
 
 #. Tag: title
 #, no-c-format
@@ -870,22 +1406,34 @@ msgstr "Configuración del servidor"
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> PPTP and firewalls"
-msgstr ""
+msgstr "<emphasis>PRECAUCIÓN</emphasis> PPTP y firewalls"
 
 #. Tag: para
 #, no-c-format
 msgid "Intermediate firewalls need to be configured to let through IP packets using protocol 47 (GRE). Moreover, the PPTP server's port 1723 needs to be open so that the communication channel can happen."
 msgstr ""
+"Necesita configurar los firewalls intermedios para que permitan pasar "
+"paquetes IP que utilizan el protocolo 47 (GRE). Lo que es más, necesita "
+"abrir el puerto 1723 del servidor PPTP para que pueda utilizar el canal de "
+"comunicación."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>pptpd</command> is the PPTP server for Linux. Its main configuration file, <filename>/etc/pptpd.conf</filename>, requires very few changes: <emphasis>localip</emphasis> (local IP address) and <emphasis>remoteip</emphasis> (remote IP address). In the example below, the PPTP server always uses the <literal>192.168.0.199</literal> address, and PPTP clients receive IP addresses from <literal>192.168.0.200</literal> to <literal>192.168.0.250</literal>."
 msgstr ""
+"<command>pptpd</command> es el servidor PPTP para Linux. Necesitará cambiar "
+"pocas cosas de su archivo de configuración principal, "
+"<filename>/etc/pptpd.conf</filename>: <emphasis>localip</emphasis> "
+"(dirección IP local) y <emphasis>remoteip</emphasis> (dirección IP remota). "
+"En el ejemplo a continuación el servidor PPTP siempre utiliza la dirección "
+"<literal>192.168.0.199</literal> y los clientes PPTP reciben una dirección "
+"IP desde <literal>192.168.0.200</literal> a "
+"<literal>192.168.0.250</literal>."
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/pptpd.conf</filename> file"
-msgstr ""
+msgstr "El archivo <filename>/etc/pptpd.conf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -942,16 +1490,72 @@ msgid ""
 "localip 192.168.0.199\n"
 "remoteip 192.168.0.200-250\n"
 msgstr ""
+"\n"
+"# ETIQUETA: speed\n"
+"#\n"
+"#       Especifica la velocidad a la que se comunica el demonio PPP.\n"
+"#\n"
+"speed 115200\n"
+"\n"
+"# ETIQUETA: option\n"
+"#\n"
+"#       Especifica la ubicación del archivo de opciones PPP\n"
+"#       De forma predeterminada, se lo busca en «/etc/ppp/options»\n"
+"#\n"
+"option /etc/ppp/pptpd-options\n"
+"\n"
+"# ETIQUETA: debug\n"
+"#\n"
+"#       Activa (más) depuración al registro del sistema\n"
+"#\n"
+"# debug\n"
+"\n"
+"# ETIQUETA: localip\n"
+"# ETIQUETA: remoteip\n"
+"#\n"
+"#       Especifica los rangos de direcciones IP local y remoto\n"
+"#\n"
+"#       Puede especificar direcciones IP individuales separadas por coma o\n"
+"#       rangos o ambos. Por ejemplo:\n"
+"#\n"
+"#               192.168.0.234,192.168.0.245-249,192.168.0.254\n"
+"#\n"
+"#       RESTRICCIONES IMPORTANTESIMPORTANT RESTRICTIONS:\n"
+"#\n"
+"#       1. No se permiten espacios entre las comas o en las direcciones.\n"
+"#\n"
+"#       2. Si provee más direcciones IP que MAX_CONNECTIONS, comenzará al\n"
+"#          principio de la lista y continuará hasta que obtenga\n"
+"#          MAX_CONNECTIONS direcciones IPs. De lo contrario será ignorado.\n"
+"#\n"
+"#       3. ¡Sin atajos en los rangos! Es decir que 234-8 no significa 234\n"
+"#          a 238, para esto debe tipear 234-238.\n"
+"#\n"
+"#       4. Está bien si provee sólo una IP local - se configurarán todas \n"
+"#          las IPs locales como la provista. DEBE proveer al menos una IP\n"
+"#          remota para cada cliente simultáneo.\n"
+"#\n"
+"#localip 192.168.0.234-238,192.168.0.245\n"
+"#remoteip 192.168.1.234-238,192.168.1.245\n"
+"#localip 10.0.1.1\n"
+"#remoteip 10.0.1.2-100\n"
+"localip 192.168.0.199\n"
+"remoteip 192.168.0.200-250\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The PPP configuration used by the PPTP server also requires a few changes in <filename>/etc/ppp/pptpd-options</filename>. The important parameters are the server name (<literal>pptp</literal>), the domain name (<literal>falcot.com</literal>), and the IP addresses for DNS and WINS servers."
 msgstr ""
+"La configuración PPP utilizada por el servidor PPTP también necesita algunos "
+"cambios en el archivo <filename>/etc/ppp/pptpd-options</filename>. Los "
+"parámetros importantes son el nombre del servidor (<literal>pptp</literal>), "
+"el nombre del dominio (<literal>falcot.com</literal> y la dirección IP para "
+"los servidores DNS y WINS."
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/pptpd-options</filename> file"
-msgstr ""
+msgstr "El archivo <filename>/etc/ppp/pptpd-options</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -987,16 +1591,59 @@ msgid ""
 "proxyarp\n"
 "lock\n"
 msgstr ""
+"\n"
+"## activar la depuración de pppd en el registro del sistema\n"
+"#debug\n"
+"\n"
+"## modifique «servername» a lo que sea que especific como su nombre de "
+"servidor en chap-secrets\n"
+"name pptp\n"
+"## modifique el nombre del dominio a su dominio local\n"
+"domain falcot.com\n"
+"\n"
+"## estos son valores predeterminados razonables para clientes WinXXXX\n"
+"## para las configuraciones relacionadas con seguridad\n"
+"# El paquete pppd de Debian ahora es compatible tanto con MSCHAP como con "
+"MPPE, actívelos aquí.\n"
+"# ¡Necesita tener también el módulo de núcleo para MPPE!\n"
+"auth\n"
+"require-chap\n"
+"require-mschap\n"
+"require-mschap-v2\n"
+"require-mppe-128\n"
+"\n"
+"## Complete co sus direcciones\n"
+"ms-dns 192.168.0.1\n"
+"ms-wins 192.168.0.1\n"
+"\n"
+"## Complete con su máscara de red\n"
+"netmask 255.255.255.0\n"
+"\n"
+"## algunos valores predeterminados\n"
+"nodefaultroute\n"
+"proxyarp\n"
+"lock\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The last step involves registering the <literal>vpn</literal> user (and the associated password) in the <filename>/etc/ppp/chap-secrets</filename> file. Contrary to other instances where an asterisk (<literal>*</literal>) would work, the server name must be filled explicitly here. Furthermore, Windows PPTP clients identify themselves under the <literal><replaceable>DOMAIN</replaceable>\\\\<replaceable>USER</replaceable></literal> form, instead of only providing a user name. This explains why the file also mentions the <literal>FALCOT\\\\vpn</literal> user. It is also possible to specify individual IP addresses for users; an asterisk in this field specifies that dynamic addressing should be used."
 msgstr ""
+"El último paso consiste en registrar el usuario <literal>vpn</literal> (y su "
+"contraseña asociada) en el archivo <filename>/etc/ppp/chap-"
+"secrets</filename>. A diferencia de otras instancias en las que un asterisco "
+"(«<literal>*</literal>») funcionaría, aquí debe proveer explícitamente el "
+"nombre del servidor. Lo que es más, los clientes PPTP Windows se identifican "
+"a sí mismo en la forma <literal><replaceable>DOMINIO</replaceable>\\\\<replac"
+"eable>USUARIO</replaceable></literal> en lugar de sólo proveer un nombre de "
+"usuario. Esto explica porqué el archivo también menciona el usuario "
+"<literal>FALCOT\\\\vpn</literal>. También es posible especificar una dirección "
+"IP individual para los usuarios; un asterisco en este campo especifica que "
+"debe utilizar direcciones dinámicas."
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/chap-secrets</filename> file"
-msgstr ""
+msgstr "El archivo <filename>/etc/ppp/chap-secrets</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1007,86 +1654,126 @@ msgid ""
 "vpn             pptp    f@Lc3au     *\n"
 "FALCOT\\\\vpn     pptp    f@Lc3au     *\n"
 msgstr ""
+"\n"
+"# Secretos para autenticación utilizando CHAP\n"
+"# cliente       servidor secreto     dirección IP\n"
+"vpn             pptp     f@Lc3au     *\n"
+"FALCOT\\\\vpn     pptp     f@Lc3au     *\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> PPTP vulnerabilities"
-msgstr ""
+msgstr "<emphasis>SEGURIDAD</emphasis> Vulnerabilidades PPTP"
 
 #. Tag: para
 #, no-c-format
 msgid "Microsoft's first PPTP implementation drew severe criticism because it had many security vulnerabilities; most have since then been fixed in more recent versions. The configuration documented in this section uses the latest version of the protocol. Be aware though that removing some options (such as <literal>require-mppe-128</literal> and <literal>require-mschap-v2</literal>) would make the service vulnerable again."
 msgstr ""
+"La primer implementación PPTP de Microsoft tuvo muchas críticas debido a su "
+"cantidad de vulnerabilidades de seguridad; la mayoría han sido solucionadas "
+"desde entonces en versiones más recientes. La configuración documentada en "
+"esta sección utiliza la última versión del protocolo. Sin embargo, debe "
+"saber que eliminar algunas opciones (como <literal>require-"
+"mppe-128</literal> y <literal>require-mschap-v2</literal>) podría hacer al "
+"servicio nuevamente vulnerable."
 
 #. Tag: title
 #, no-c-format
 msgid "Quality of Service"
-msgstr ""
+msgstr "Calidad del servicio"
 
 #. Tag: title
 #, no-c-format
 msgid "Principle and Mechanism"
-msgstr ""
+msgstr "Principio y mecanismo"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>Quality of Service</emphasis> (or <emphasis>QoS</emphasis> for short) refers to a set of techniques that guarantee or improve the quality of the service provided to applications. The most popular such technique involves classifying the network traffic into categories, and differentiating the handling of traffic according to which category it belongs to. The main application of this differentiated services concept is <emphasis>traffic shaping</emphasis>, which limits the data transmission rates for connections related to some services and/or hosts so as not to saturate the available bandwidth and starve important other services. Traffic shaping is a particularly good fit for TCP traffic, since this protocol automatically adapts to available bandwidth."
 msgstr ""
+"<emphasis>Calidad del servicio</emphasis> (<emphasis>QoS</emphasis>: "
+"«Quality of Service») se refiere a un conjunto de técnicas que garantizan o "
+"mejoran la calidad del servicio provisto a las aplicaciones. De éstas, la "
+"técnica más popular consiste en clasificar el tráfico de red en categorías y "
+"diferenciar la gestión del tráfico según la categoría a la que pertenezca. "
+"El uso principal de este concepto de servicios diferenciados es la "
+"<emphasis>manipulación de tráfico</emphasis> («traffic shaping»), que limita "
+"las tasas de transmisión de datos para conexiones relacionadas con algunos "
+"servicios y/o equipos para no saturar el ancho de banda disponible y privar "
+"a otros servicios importantes. Esta técnica es particularmente buena para "
+"tráfico TCP ya que el protocolo se adapta automáticamente al ancho de banda "
+"disponible."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>QoS</primary>"
-msgstr ""
+msgstr "<primary>QoS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quality of service</primary>"
-msgstr ""
+msgstr "<primary>calidad del servicio</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quality</primary><secondary>of service</secondary>"
-msgstr ""
+msgstr "<primary>calidad</primary><secondary>del servicio</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>service</primary><secondary>quality</secondary>"
-msgstr ""
+msgstr "<primary>servicio</primary><secondary>calidad</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "It is also possible to alter the priorities on traffic, which allows prioritizing packets related to interactive services (such as <command>ssh</command> and <command>telnet</command>) or to services that only deal with small blocks of data."
 msgstr ""
+"También es posible alterar las prioridades del tráfico, lo que permite "
+"priorizar paquetes relacionados con servicios interactivos (como "
+"<command>ssh</command> y <command>telnet</command>) o a servicios que sólo "
+"trabajan con bloques de datos pequeños."
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian kernels include the features required for QoS along with their associated modules. These modules are many, and each of them provides a different service, most notably by way of special schedulers for the queues of IP packets; the wide range of available scheduler behaviors spans the whole range of possible requirements."
 msgstr ""
+"Los núcleos Debian incluyen la funcionalidad necesaria para QoS así como "
+"también los módulos asociados. Estos módulos son muchos y cada uno de ellos "
+"provee un servicio diferente, los más notables como planificadores "
+"especiales para las colas de paquetes IP; el amplio rango de comportamientos "
+"de planificadores abarca todo el rango de requerimientos posibles."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> LARTC — <emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis>"
 msgstr ""
+"<emphasis>CULTURA</emphasis> LARTC — <emphasis>Enrutamiento avanzado y "
+"control de tráfico de Linux</emphasis> («Linux Advanced Routing &amp; "
+"Traffic Control»)"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis> HOWTO is the reference document covering everything there is to know about network quality of service. <ulink type=\"block\" url=\"http://www.lartc.org/howto/\" />"
 msgstr ""
+"El «howto» de <emphasis>Linux Advanced Routing &amp; Traffic "
+"Control</emphasis> es el documento de referencia que cubre todo lo que hace "
+"falta saber sobre calidad de servicio en una red. <ulink type=\"block\" "
+"url=\"http://www.lartc.org/howto/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>routing</primary><secondary>advanced</secondary>"
-msgstr ""
+msgstr "<primary>enrutamiento</primary><secondary>avanzado</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>traffic control</primary>"
-msgstr ""
+msgstr "<primary>control de tráfico</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>control, of traffic</primary>"
-msgstr ""
+msgstr "<primary>tráfico, control</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -1097,56 +1784,78 @@ msgstr "Configuración e implementación"
 #, no-c-format
 msgid "QoS parameters are set through the <command>tc</command> command (provided by the <emphasis role=\"pkg\">iproute</emphasis> package). Since its interface is quite complex, using higher-level tools is recommended."
 msgstr ""
+"Se configuran los parámetros de QoS mediante el programa "
+"<command>tc</command> (provisto por el paquete <emphasis "
+"role=\"pkg\">iproute</emphasis>). Se recomienda utilizar herramientas de más "
+"alto nivel ya que su interfaz es bastante compleja."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>iproute</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>iproute</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tc</command></primary>"
-msgstr ""
+msgstr "<primary><command>tc</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Reducing Latencies: <command>wondershaper</command>"
-msgstr "Reducir latencias: <command>wondershaper</command>"
+msgstr "Reducción de latencias: <command>wondershaper</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "The main purpose of <command>wondershaper</command> (in the similarly-named package) is to minimize latencies independent of network load. This is achieved by limiting total traffic to a value that falls just short of the link saturation value."
 msgstr ""
+"El propósito principal de <command>wondershaper</command> (en el paquete con "
+"nombre similar) es minimizar las latencias independientemente de la carga "
+"en la red. Consigue esto limitando el tráfico total a un valor que está "
+"justo por debajo del valor de saturación del enlace."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>wondershaper</command></primary>"
-msgstr ""
+msgstr "<primary><command>wondershaper</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>limitation, of traffic</primary>"
-msgstr ""
+msgstr "<primary>limitación de tráfico</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>traffic</primary><secondary>limitation</secondary>"
-msgstr ""
+msgstr "<primary>tráfico</primary><secondary>limitación</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Once a network interface is configured, setting up this traffic limitation is achieved by running <command>wondershaper <replaceable>interface</replaceable> <replaceable>download_rate</replaceable> <replaceable>upload_rate</replaceable></command>. The interface can be <literal>eth0</literal> or <literal>ppp0</literal> for example, and both rates are expressed in kilobits per second. The <command>wondershaper remove <replaceable>interface</replaceable></command> command disables traffic control on the specified interface."
 msgstr ""
+"Una vez que una interfaz de red está configurada puede definir sus "
+"limitaciones de tráfico ejecutando <command>wondershaper "
+"<replaceable>interfaz</replaceable> <replaceable>tasa_descarga</replaceable> "
+"<replaceable>tasa_subida</replaceable></command>. La interfaz puede ser, "
+"por ejemplo, <literal>eth0</literal> o <literal>ppp0</literal> y ambas tasas "
+"son en kilobits por segundo. Ejecutar <command>wondershaper remove "
+"<replaceable>interfaz</replaceable></command> desactiva el control de "
+"tráfico en la interfaz especificada."
 
 #. Tag: para
 #, no-c-format
 msgid "For an Ethernet connection, this script is best called right after the interface is configured. This is done by adding <literal>up</literal> and <literal>down</literal> directives to the <filename>/etc/network/interfaces</filename> file allowing declared commands to be run, respectively, after the interface is configured and before it is deconfigured. For example:"
 msgstr ""
+"Para una conexión Ethernet, lo mejor es ejecutar este script inmediatamente "
+"después de configurar la interfaz. Puede lograrlo agregando directivas "
+"<literal>up</literal> y <literal>down</literal> al archivo "
+"<filename>/etc/network/interfaces</filename> indicando las órdenes a "
+"ejecutar luego que se configure la interfaz y luego que sea desconfigurada, "
+"respectivamente. Por ejemplo:"
 
 #. Tag: title
 #, no-c-format
 msgid "Changes in the <filename>/etc/network/interfaces</filename> file"
-msgstr ""
+msgstr "Cambios en el archivo <filename>/etc/network/interfaces</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1156,21 +1865,33 @@ msgid ""
 "    up /sbin/wondershaper eth0 500 100\n"
 "    down /sbin/wondershaper remove eth0\n"
 msgstr ""
+"\n"
+"iface eth0 inet dhcp\n"
+"    up /sbin/wondershaper eth0 500 100\n"
+"    down /sbin/wondershaper remove eth0\n"
 
 #. Tag: para
 #, no-c-format
 msgid "In the PPP case, creating a script that calls <command>wondershaper</command> in <filename>/etc/ppp/ip-up.d/</filename> will enable traffic control as soon as the connection is up."
 msgstr ""
+"En el caso de PPP, crear un script que ejecute "
+"<command>wondershaper</command> en <filename>/etc/ppp/ip-up.d/</filename> "
+"activará el control de tráfico tan pronto como esté activa la conexión."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Optimal configuration"
-msgstr ""
+msgstr "<emphasis>YENDO MÁS ALLÁ</emphasis> Configuración óptima"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/usr/share/doc/wondershaper/README.Debian.gz</filename> file describes, in some detail, the configuration method recommended by the package maintainer. In particular, it advises measuring the download and upload speeds so as to best evaluate real limits."
 msgstr ""
+"El archivo <filename>/usr/share/doc/wondershaper/README.Debian.gz</filename> "
+"describe, con suficiente detalles, los métodos de configuración "
+"recomendados por el encargado del paquete. En particular, aconseja medir las "
+"velocidades de subida y bajad para evaluar de la mejor forma los límites "
+"reales."
 
 #. Tag: title
 #, no-c-format
@@ -1181,46 +1902,57 @@ msgstr "Configuración estándar"
 #, no-c-format
 msgid "Barring a specific QoS configuration, the Linux kernel uses the <literal>pfifo_fast</literal> queue scheduler, which provides a few interesting features by itself. The priority of each processed IP packet is based on the ToS field (<emphasis>Type of Service</emphasis>) of this packet; modifying this field is enough to take advantage of the scheduling features. There are five possible values:"
 msgstr ""
+"A menos que exista una configuración de QoS específica, el núcleo Linux "
+"utiliza el planificador de colas <literal>pfifo_fast</literal> el cual "
+"provee algunas características interestantes en sí mismo. La prioridad de "
+"cada paquete IP procesado está basada en el campoc ToS (<emphasis>tipo de "
+"servicio</emphasis>: «Type of Service») del mismo; modificar este campo es "
+"suficiente para tomarventaja de sus capacidades de planificación. Existen "
+"cinco valores posibles:"
 
 #. Tag: para
 #, no-c-format
 msgid "Normal-Service (0);"
-msgstr ""
+msgstr "Servicio normal: Normal-Service (0);"
 
 #. Tag: para
 #, no-c-format
 msgid "Minimize-Cost (2);"
-msgstr ""
+msgstr "Minimizar costo: Minimize-Cost (2);"
 
 #. Tag: para
 #, no-c-format
 msgid "Maximize-Reliability (4);"
-msgstr ""
+msgstr "Maximizar confiabilidad: Maximize-Reliability (4);"
 
 #. Tag: para
 #, no-c-format
 msgid "Maximize-Throughput (8);"
-msgstr ""
+msgstr "Maximizar rendimiento: Maximize-Throughput (8);"
 
 #. Tag: para
 #, no-c-format
 msgid "Minimize-Delay (16)."
-msgstr ""
+msgstr "Minimizar demora: Minimize-Delay (16)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ToS</primary>"
-msgstr ""
+msgstr "<primary>ToS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Type of Service</primary>"
-msgstr ""
+msgstr "<primary>tipo de servicio</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The ToS field can be set by applications that generate IP packets, or modified on the fly by <emphasis>netfilter</emphasis>. The following rules are sufficient to increase responsiveness for a server's SSH service:"
 msgstr ""
+"Las aplicaciones que generan paquetes IP pueden definir el campo ToS, "
+"también puede ser modificado al vuelo por <emphasis>netfilter</emphasis>. "
+"Las siguientes reglas son suficiente para aumentar la respuesta del servicio "
+"de un servidor SSH:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1229,151 +1961,215 @@ msgid ""
 "iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos Minimize-Delay\n"
 "iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay\n"
 msgstr ""
+"\n"
+"iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos "
+"Minimize-Delay\n"
+"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos "
+"Minimize-Delay\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Dynamic Routing"
-msgstr ""
+msgstr "Enrutamiento dinámico"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>routing</primary><secondary>dynamic</secondary>"
-msgstr ""
+msgstr "<primary>enrutamiento</primary><secondary>dinámico</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>quagga</command></primary>"
-msgstr ""
+msgstr "<primary><command>quagga</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>zebra</command></primary>"
-msgstr ""
+msgstr "<primary><command>zebra</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The reference tool for dynamic routing is currently <command>quagga</command>, from the similarly-named package; it used to be <command>zebra</command> until development of the latter stopped. However, <command>quagga</command> kept the names of the programs for compatibility reasons which explains the <command>zebra</command> commands below."
 msgstr ""
+"Actualmente, la herramienta de referencia para enrutamiento dinámico es "
+"<command>quagga</command>, del paquete con un nombre similar; solía ser "
+"<command>zebra</command> hasta que se detuvo el desarrollo de este último. "
+"Sin embargo, <command>quagga</command> mantuvo los nombres de los programas "
+"por cuestiones de compatibilidad, lo que explica el uso de "
+"<command>zebra</command> a continuación."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Dynamic routing"
-msgstr ""
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Enrutamiento dinámico"
 
 #. Tag: para
 #, no-c-format
 msgid "Dynamic routing allows routers to adjust, in real time, the paths used for transmitting IP packets. Each protocol involves its own method of defining routes (shortest path, use routes advertised by peers, and so on)."
 msgstr ""
+"El enrutamiento dinámico le permite a los routers ajustar, en tiempo real, "
+"los caminos utilizados para transmitir paquetes IP. Cada protocolo posee sus "
+"propios métodos para definir rutas (camino más corto, utilizar rutas "
+"publicadas por pares, etc.)."
 
 #. Tag: para
 #, no-c-format
 msgid "In the Linux kernel, a route links a network device to a set of machines that can be reached through this device. The <command>route</command> command defines new routes and displays existing ones."
 msgstr ""
+"En el núcleo Linux una ruta enlaza un dispositivo de red a un conjunto de "
+"máquinas que pueden ser alcanzadas a través de este dispositivo. El programa "
+"<command>route</command> define nuevas rutas y muestra las existentes."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>route</command></primary>"
-msgstr ""
+msgstr "<primary><command>route</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Quagga is a set of daemons cooperating to define the routing tables to be used by the Linux kernel; each routing protocol (most notably BGP, OSPF and RIP) provides its own daemon. The <command>zebra</command> daemon collects information from other daemons and handles static routing tables accordingly. The other daemons are known as <command>bgpd</command>, <command>ospfd</command>, <command>ospf6d</command>, <command>ripd</command>, and <command>ripngd</command>."
 msgstr ""
+"Quagga es un conjunto de demonios que cooperan entre sí para definir las "
+"tablas de enrutamiento utilizadas por el núcleo Linux; cada protocolo de "
+"enrutamiento (BGP, OSPF y RIP siendo los más notables) provee su propio "
+"demonio. El demonio <command>zebra</command> recolecta la información de los "
+"otros demonios y administra las tablas de enrutamiento estático de forma "
+"acorde. Los otros demonios son <command>bgpd</command>, "
+"<command>ospfd</command>, <command>ospf6d</command>, <command>ripd</command> "
+"y <command>ripngd</command>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>OSPF</primary>"
-msgstr ""
+msgstr "<primary>OSPF</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>BGP</primary>"
-msgstr ""
+msgstr "<primary>BGP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RIP</primary>"
-msgstr ""
+msgstr "<primary>RIP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bgpd</command></primary>"
-msgstr ""
+msgstr "<primary><command>bgpd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ospfd</command></primary>"
-msgstr ""
+msgstr "<primary><command>ospfd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ospf6d</command></primary>"
-msgstr ""
+msgstr "<primary><command>ospf6d</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ripd</command></primary>"
-msgstr ""
+msgstr "<primary><command>ripd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ripngd</command></primary>"
-msgstr ""
+msgstr "<primary><command>ripngd</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Daemons are enabled by editing the <filename>/etc/quagga/daemons</filename> file and creating the appropriate configuration file in <filename>/etc/quagga/</filename>; this configuration file must be named after the daemon, with a <filename>.conf</filename> extension, and belong to the <literal>quagga</literal> user and the <literal>quaggavty</literal> group, in order for the <filename>/etc/init.d/quagga</filename> script to invoke the daemon."
 msgstr ""
+"Puede activar demonios mediante la edición el archivo "
+"<filename>/etc/quagga/daemons</filename> y creando el archivo de "
+"configuración apropiado en <filename>/etc/quagga/</filename>; debe nombrar "
+"este archivo de configuración según el demonio, con una extensión "
+"<filename>.conf</filename> y debe pertenecer al usuario "
+"<literal>quagga</literal> y al grupo <literal>quaggavty</literal> para que "
+"el script <filename>/etc/init.d/quagga</filename> ejecute el demonio."
 
 #. Tag: para
 #, no-c-format
 msgid "The configuration of each of these daemons requires knowledge of the routing protocol in question. These protocols cannot be described in detail here, but the <emphasis role=\"pkg\">quagga-doc</emphasis> provides ample explanation in the form of an <command>info</command> file. The same contents may be more easily browsed as HTML on the Quagga website: <ulink type=\"block\" url=\"http://www.quagga.net/docs/docs-info.php\" /> In addition, the syntax is very close to a standard router's configuration interface, and network administrators will adapt quickly to <command>quagga</command>."
 msgstr ""
+"Para configurar cada uno de estos demonio necesita conocer el protocolo de "
+"enrutamiento en cuestión. No podemos describir en detalle aquí a estos "
+"protocolos, pero el paquete <emphasis role=\"pkg\">quagga-doc</emphasis> "
+"provee una explicación extensa en forma de archivos <command>info</command>. "
+"Puede navegar los mismos contenidos en formato HTML en el sitio web de "
+"Quagga: <ulink type=\"block\" url=\"http://www.quagga.net/docs/docs-info.php\" "
+"/> Además, la sintáxis es muy parecida a la interfaz de configuración "
+"estándar de un router y los administradores de red se adaptarán rápidamente "
+"a <command>quagga</command>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> OPSF, BGP or RIP?"
-msgstr ""
+msgstr "<emphasis>EN LA PRÁCTICA</emphasis> ¿OPSF, BGP o RIP?"
 
 #. Tag: para
 #, no-c-format
 msgid "OSPF is generally the best protocol to use for dynamic routing on private networks, but BGP is more common for Internet-wide routing. RIP is rather ancient, and hardly used anymore."
 msgstr ""
+"OSPF es generalmente el mejor protocolo a utiliza para enrutamiento dinámico "
+"en redes privadas pero BGP es maś común para enrutamiento en Internet. RIP "
+"es bastante arcaico y rara vez utilizado en la actualidad."
 
 #. Tag: para
 #, no-c-format
 msgid "IPv6, successor to IPv4, is a new version of the IP protocol designed to fix its flaws, most notably the scarcity of available IP addresses. This protocol handles the network layer; its purpose is to provide a way to address machines, to convey data to their intended destination, and to handle data fragmentation if needed (in other words, to split packets into chunks with a size that depends on the network links to be used on the path and to reassemble the chunks in their proper order on arrival)."
 msgstr ""
+"IPv6, sucesor de IPv4, es una nueva versión del protocolo IP diseñado para "
+"corregir sus fallas, especialmente la escasez de direcciones IP disponibles. "
+"Este protocolo gestion la capa de red; su propósito es proveer una forma de "
+"direccionar máquinas para transmitir los datos a donde fueron destinados y "
+"administrar la fragmentación de datos si es necesaria (en otras palabras, "
+"dividr los paquetes en trozos de un tamaño que dependa de los enlaces de red "
+"utilizados en el camino y unirlos nuevamente en el orden apropiado cuando "
+"lleguen)."
 
 #. Tag: para
 #, no-c-format
 msgid "Debian kernels include IPv6 handling in the core kernel (which was not always the case; the <literal>ipv6</literal> module used to be optional). Basic tools such as <command>ping</command> and <command>traceroute</command> have their IPv6 equivalents in <command>ping6</command> and <command>traceroute6</command>, available respectively in the <emphasis role=\"pkg\">iputils-ping</emphasis> and <emphasis role=\"pkg\">iputils-tracepath</emphasis> packages."
 msgstr ""
+"Los núcleos Debian incluyen la gestión de IPv6 en el corazón del núcleo (lo "
+"cual no siempre fue el caso; el módulo <literal>ipv6</literal> solía ser "
+"opcional). Las herramientas básicas como <command>ping</command> y "
+"<command>traceroute</command> tienen sus equivalentes IPv6, "
+"<command>ping6</command> y <command>traceroute6</command>, disponibles en "
+"los paquetes <emphasis role=\"pkg\">iputils-ping</emphasis> y <emphasis "
+"role=\"pkg\">iputils-tracepath</emphasis> respectivamente."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IPv6</primary>"
-msgstr ""
+msgstr "<primary>IPv6</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">iputils-ping</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">iputils-ping</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">iputils-tracepath</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">iputils-tracepath</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The IPv6 network is configured similarly to IPv4, in <filename>/etc/network/interfaces</filename>. But if you want that network to be globally available, you must ensure that you have an IPv6-capable router relaying traffic to the global IPv6 network."
 msgstr ""
+"Una red IPv6 se configura de forma similar a una IPv4, en el archivo "
+"<filename>/etc/network/interfaces</filename>. Pero si desea que se pueda "
+"acceder globalmente a la red debe asegurarse de tener un router compatible "
+"con IPv6 que retransmita datos a la red IPv6 global."
 
 #. Tag: title
 #, no-c-format
 msgid "Example of IPv6 configuration"
-msgstr ""
+msgstr "Ejemplo de configuración IPv6"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1388,26 +2184,49 @@ msgid ""
 "    # (/proc/sys/net/ipv6/conf/all/accept_ra). If it had:\n"
 "    # gateway 2001:db8:1234:5::1\n"
 msgstr ""
+"\n"
+"iface eth0 inet6 static\n"
+"    address 2001:db8:1234:5::1:1\n"
+"    netmask 64\n"
+"    # Desactivar autoconfiguración\n"
+"    # up echo 0 &gt;/proc/sys/net/ipv6/conf/all/autoconf\n"
+"    # En router se configura automáticamente y no tiene dirección fija\n"
+"    # (/proc/sys/net/ipv6/conf/all/accept_ra). Si la tuviera:\n"
+"    # gateway 2001:db8:1234:5::1\n"
 
 #. Tag: para
 #, no-c-format
 msgid "If a native IPv6 connection is not available, the fallback method is to use a tunnel over IPv4. Freenet6 is one (free) provider of such tunnels: <ulink type=\"block\" url=\"http://www.freenet6.net/\" />"
 msgstr ""
+"Si no existe una conexión IPv6 disponible, el método de respaldo es utilizar "
+"un túnel sobre IPv4. Freenet6 es un proveedor (gratuito) de dichos túneles: "
+"<ulink type=\"block\" url=\"http://www.freenet6.net/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Freenet6</primary>"
-msgstr ""
+msgstr "<primary>Freenet6</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To use a Freenet6 tunnel, you need to register on the website, then install the <emphasis role=\"pkg\">tspc</emphasis> package and configure the tunnel. This requires editing the <filename>/etc/tsp/tspc.conf</filename> file: <literal>userid</literal> and <literal>password</literal> lines received by e-mail should be added, and <literal>server</literal> should be replaced with <literal>broker.freenet6.net</literal>."
 msgstr ""
+"Para utilizar un túnel de Freenet6 necesita registrarse en el sitio web, "
+"instalar el paquete <emphasis role=\"pkh\">tspc</emphasis> y configurar el "
+"túnel. Para ello deberá editar el archivo "
+"<filename>/etc/tsp/tspc.conf</filename>: debe agregar las líneas "
+"<literal>userid</literal> y <literal>password</literal> que recibió por "
+"email y reemplazar <literal>server</literal> con "
+"<literal>broker.freenet6.net</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "IPv6 connectivity is proposed to all machines on a local network by adding the three following directives to the <filename>/etc/tsp/tspc.conf</filename> file (assuming the local network is connected to the eth0 interface):"
 msgstr ""
+"Puede agregar las siguientes tres directivas al archivo "
+"<filename>/etc/tsp/tspc.conf</filename> para proponer conectividad IPv6 a "
+"todas las máquinas en una red local (asumiendo que la red local está "
+"conectada a la interfaz eth0):"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1417,251 +2236,369 @@ msgid ""
 "prefix_len=48\n"
 "if_prefix=eth0\n"
 msgstr ""
+"\n"
+"host_type=router\n"
+"prefix_len=48\n"
+"if_prefix=eth0\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The machine then becomes the access router for a subnet with a 48-bit prefix. Once the tunnel is aware of this change, the local network must be told about it; this implies installing the <command>radvd</command> daemon (from the similarly-named package). This IPv6 configuration daemon has a role similar to <command>dhcpd</command> in the IPv4 world."
 msgstr ""
+"Luego la máquina se convertirá en el router de acceso para una subred con un "
+"prefijo de 48 bits. Una vez que el túnel sepa de este cambio, debe "
+"informarle a la red al respecto; esto implica instalar el demonio "
+"<command>radvd</command> (del paquete del mismo nombre). Este demonio de "
+"configuración IPv6 tiene un rol similar al de <command>dhcpd</command> en el "
+"mundo IPv4."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/radvd.conf</filename> configuration file must then be created (see <filename>/usr/share/doc/radvd/examples/simple-radvd.conf</filename> as a starting point). In our case, the only required change is the prefix, which needs to be replaced with the one provided by Freenet6; it can be found in the output of the <command>ifconfig</command> command, in the block concerning the <literal>tun</literal> interface."
 msgstr ""
+"Debe crear el archivo de configuración <filename>/etc/radvd.conf</filename> "
+"(revise el archivo <filename>/usr/share/doc/radvd/examples/simple-"
+"radvd.conf</filename> como punto de partida). En nuestro caso, el único "
+"cambio necesario es el prefijo que debe reemplazar con el provisto por "
+"Freenet6; puede encontrarlo en la salida de <command>ifconfig</command>, en "
+"el bloque sobre la interfaz <literal>tun</literal>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>radvd</command></primary>"
-msgstr ""
+msgstr "<primary><command>radvd</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Then run <command>/etc/init.d/tspc restart</command> and <command>/etc/init.d/radvd start</command>, and the IPv6 network should work."
 msgstr ""
+"Luego ejecute <command>/etc/init.d/tspc restart</command> y "
+"<command>/etc/init.d/radvd start</command>, y la red IPv6 debería funcionar."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Programs built with IPv6"
-msgstr ""
+msgstr "<emphasis>SUGERENCIA</emphasis> Programas desarrollados con IPv6"
 
 #. Tag: para
 #, no-c-format
 msgid "Many pieces of software need to be adapted to handle IPv6. Most of the packages in Debian <emphasis role=\"distribution\">Squeeze</emphasis> have been adapted already, but not all. A few volunteers had previously created a package archive dedicated to software specially rebuilt for IPv6; this archive was decommissioned in March 2007, both for lack of time and for lack of interest (since most of the patches have been integrated into the official packages). If your favorite package does not work with IPv6 yet, help can be found on the <emphasis>debian-ipv6</emphasis> mailing-list. <ulink type=\"block\" url=\"http://lists.debian.org/debian-ipv6/\" />"
 msgstr ""
+"Muchas porciones de software necesitan adaptación para utilizar IPv6. La "
+"mayoría de los paquetes en Debian <emphasis "
+"role=\"distribution\">Squeeze</emphasis> ya fueron adaptados, pero no todos. "
+"Unos pocos voluntarios habían creado un compendio de paquetes dedicado a "
+"software específicamente compilado para IPv6; este compendio fue "
+"desmantelado en Marzo de 2007, tanto por falta de tiempo como por falta de "
+"interés (ya que la mayoría de los parches habían sido integrados en los "
+"paquetes oficiales). Si su paquete favorito no funciona con IPv6 aún, puede "
+"encontrar ayuda en la lista de correo <emphasis>debian-ipv6</emphasis>. "
+"<ulink type=\"block\" url=\"http://lists.debian.org/debian-ipv6/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> IPv6 and firewalls"
-msgstr ""
+msgstr "<emphasis>PRECAUCIÓN</emphasis> IPv6 y firewalls"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IPv6 firewall</primary>"
-msgstr ""
+msgstr "<primary>IPv6, firewall</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>firewall</primary><secondary>IPv6</secondary>"
-msgstr ""
+msgstr "<primary>firewall</primary><secondary>IPv6</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ip6tables</command></primary>"
-msgstr ""
+msgstr "<primary><command>ip6tables</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "IPv6 tunneling over IPv4 (as opposed to native IPv6) requires the firewall to accept the traffic, which uses IPv4 protocol number 41. IPv6 connections can be restricted, in the same fashion as for IPv4: the standard Debian kernels include an adaptation of <emphasis>netfilter</emphasis> for IPv6. This IPv6-enabled <emphasis>netfilter</emphasis> is configured in a similar fashion to its IPv4 counterpart, except the program to use is <command>ip6tables</command> instead of <command>iptables</command>."
 msgstr ""
+"Los túneles IPv6 sobre IPv4 (a diferencia de IPv6 nativo) necesitan que el "
+"firewall acepte el tráfico, que utiliza el número de protocolo IPv4 41. "
+"Puede restringir las conexiones IPv6 de la misma forma que aquellas IPv4: el "
+"núcleo Debian estándar incluye una adaptación de "
+"<emphasis>netfilter</emphasis> para IPv6. Puede configurar esta versión de "
+"<emphasis>netfilter</emphasis> para IPv6 de forma similar a su contraparte "
+"IPv4 utilizando el programa <command>ip6tables</command> en lugar de "
+"<command>iptables</command>."
 
 #. Tag: title
 #, no-c-format
 msgid "Domain Name Servers (DNS)"
-msgstr ""
+msgstr "Servidores de nombres de dominio (DNS)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNS</primary>"
-msgstr ""
+msgstr "<primary>DNS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>name</secondary>"
-msgstr ""
+msgstr "<primary>servidor</primary><secondary>nombre</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>Domain Name Service</emphasis> (DNS) is a fundamental component of the Internet: it maps host names to IP addresses (and vice-versa), which allows the use of <literal>www.debian.org</literal> instead of <literal>82.195.75.97</literal>."
 msgstr ""
+"El <emphasis>servicio de nombres de dominio</emphasis> (DNS: «Domain Name "
+"Service») es un componente fundamental de Internet: asocia nombres de equipo "
+"con direcciones IP (y viceversa), lo que permite utilizar "
+"<literal>www.debian.org</literal> en lugar de "
+"<literal>82.195.75.97</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "DNS records are organized in zones; each zone matches either a domain (or a subdomain) or an IP address range (since IP addresses are generally allocated in consecutive ranges). A primary server is authoritative on the contents of a zone; secondary servers, usually hosted on separate machines, provide regularly refreshed copies of the primary zone."
 msgstr ""
+"Los registros DNS se organizan en zonas; cada zona coincide con un dominio "
+"(o subdominio) o un rango de direcciones IP (ya que generalmente se proveen "
+"direcciones IP en rangos consecutivos). Un servidor primario es autoridad "
+"sobre los contenidos de una zona; los servidores secundarios, generalmente "
+"en otras máquinas, proveen copias de la zona primaria actualizadas "
+"regularmente."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>zone</primary><secondary>DNS</secondary>"
-msgstr ""
+msgstr "<primary>zona</primary><secondary>DNS</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNS</primary><secondary>zone</secondary>"
-msgstr ""
+msgstr "<primary>DNS</primary><secondary>zona</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Each zone can contain records of various kinds (<emphasis>Resource Records</emphasis>):"
 msgstr ""
+"Cada zona puede contener registros de varios tipos (<emphasis>registros de "
+"recursos</emphasis>: «Resource Records»):"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>A</literal>: IPv4 address. <indexterm><primary>A, DNS record</primary></indexterm>"
 msgstr ""
+"<literal>A</literal>: dirección IPv4. <indexterm><primary>A, registro "
+"DNS</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>CNAME</literal>: alias (<emphasis>canonical name</emphasis>). <indexterm><primary>CNAME, DNS record</primary></indexterm>"
 msgstr ""
+"<literal>CNAME</literal>: alias (<emphasis>nombre canónico</emphasis>: "
+"«canonical name»). <indexterm><primary>CNAME, registro "
+"DNS</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>MX</literal>: <emphasis>mail exchange</emphasis>, an email server. This information is used by other email servers to find where to send email addressed to a given address. Each MX record has a priority. The highest-priority server (with the lowest number) is tried first (see sidebar <xref linkend=\"sidebar.smtp\" />); other servers are contacted in order of decreasing priority if the first one does not reply. <indexterm><primary>MX</primary><secondary>DNS record</secondary></indexterm>"
 msgstr ""
+"<literal>MX</literal>: <emphasis>intercambio de correo</emphasis> («mail "
+"exchange»), un servidor de correo. Los otros servidores de correo utilizan "
+"esta información para encontrar a dónde redirigir los emails enviados a una "
+"dirección particular. Cada registro MX tiene una prioridad. Primero se "
+"intenta el servidor con mayor prioridad, con el menor número (revise el "
+"recuadro <xref linkend=\"sidebar.smtp\" />); se contactan los demás servidores "
+"en orden decreciente de prioridad si el primero no responde. "
+"<indexterm><primary>MX</primary><secondary>registro "
+"DNS</secondary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>PTR</literal>: mapping of an IP address to a name. Such a record is stored in a “reverse DNS” zone named after the IP address range. For example, <literal>1.168.192.in-addr.arpa</literal> is the zone containing the reverse mapping for all addresses in the <literal>192.168.1.0/24</literal> range. <indexterm><primary>PTR, DNS record</primary></indexterm>"
 msgstr ""
+"<literal>PTR</literal>: asociación de una dirección IP con un nombre. Se "
+"almacenan estos registros en una zona de «DNS inverso» cuyo nombre está "
+"basado en el rango de direcciones IP. Por ejemplo, <literal>1.168.192.in-"
+"addr.arpa</literal> es la zona que contiene las asociaciones inversas de "
+"todas las direcciones en el rango <literal>192.168.1.0/24</literal>. "
+"<indexterm><primary>PTR, registro DNS</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>AAAA</literal>: IPv6 address. <indexterm><primary>AAAA, DNS record</primary></indexterm>"
 msgstr ""
+"<literal>AAAA</literal>: dirección IPv6. <indexterm><primary>AAAA, registro "
+"DNS</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>NS</literal>: maps a name to a name server. Each domain must have at least one NS record. These records point at a DNS server that can answer queries concerning this domain; they usually point at the primary and secondary servers for the domain. These records also allow DNS delegation; for instance, the <literal>falcot.com</literal> zone can include an NS record for <literal>internal.falcot.com</literal>, which means that the <literal>internal.falcot.com</literal> zone is handled by another server. Of course, this server must declare an <literal>internal.falcot.com</literal> zone. <indexterm><primary>NS, DNS record</primary></indexterm>"
 msgstr ""
+"<literal>NS</literal>: asocia un nombre con un servidor de nombres. Cada "
+"dominio debe tener al menos un registro NS. Estos registros apuntan al "
+"servidor DNS que puede responder consultas sobre este dominio; generalmente "
+"apuntan a los servidores primarios y secundarios del dominio. Estos "
+"registros también permiten delegaciones de DNS; por ejemplo, la zona "
+"<literal>falcot.com</literal> puede incluir un registro NS para "
+"<literal>internal.falcot.com</literal>, lo que significa que otro servidor "
+"administra la zona <literal>internal.falcot.com</literal>. Por supuesto, "
+"este servidor debe declarar una zona <literal>internal.falcot.com</literal>. "
+"<indexterm><primary>NS, registro DNS</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary>record</primary><secondary>DNS</secondary></indexterm> <indexterm><primary>DNS record</primary></indexterm>"
 msgstr ""
+"<indexterm><primary>registro</primary><secondary>DNS</secondary></indexterm> "
+"<indexterm><primary>DNS, registro</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "The reference name server, Bind, was developed and is maintained by ISC (<emphasis>Internet Software Consortium</emphasis>). It is provided in Debian by the <emphasis role=\"pkg\">bind9</emphasis> package. Version 9 brings two major changes compared to previous versions. First, the DNS server can now run under an unprivileged user, so that a security vulnerability in the server does not grant root privileges to the attacker (as was seen repeatedly with versions 8.x)."
 msgstr ""
+"El servidor de nombres de referencia, Bind, fue desarrollado y es mantenido "
+"por ISC (<emphasis>consorte de software de Internet</emphasis>: «Internet "
+"Software Consortium»). Está disponible en Debia en el paquete <emphasis "
+"role=\"pkg\">bind9</emphasis>. La versión 9 provee dos cambios importantes "
+"comparada con versiones anteriores. Primero, el servidor DNS ahora puede "
+"ejecutar como un usuario sin privilegios para que una vulnerabilidad de "
+"seguridad en el servidor no provea permisos de root al atacante (como pasaba "
+"frecuentemente con las versiones 8.X)."
 
 #. Tag: para
 #, no-c-format
 msgid "Furthermore, Bind supports the DNSSEC standard for signing (and therefore authenticating) DNS records, which allows blocking any spoofing of this data during man-in-the-middle attacks."
 msgstr ""
+"Lo que es más, Bind es compatible con el estándar DNSSEC para firmar (y, por "
+"lo tanto, autenticar) registros DNS, lo que permite bloquear datos "
+"apócrifos durante ataques con intermediarios («man-in-the-middle»)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">bind9</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">bind9</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ISC</primary>"
-msgstr ""
+msgstr "<primary>ISC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Internet Software Consortium</primary>"
-msgstr ""
+msgstr "<primary>Internet Software Consortium</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> DNSSEC"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> DNSSEC"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNSSEC</primary>"
-msgstr ""
+msgstr "<primary>DNSSEC</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The DNSSEC norm is quite complex; this partly explains why it's not in widespread usage yet (even if it perfectly coexists with DNS servers unaware of DNSSEC). To understand all the ins and outs, you should check the following article. <ulink type=\"block\" url=\"http://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions\" />"
 msgstr ""
+"La normativa DNSSEC es bastante compleja; esto explica parcialmente porqué "
+"no es utilizada ampliamente aún (aún si puede coexistir perfectamente con "
+"servidores DNS que no conozcan de DNSSEC). Para entender los recovecos "
+"debería revisar el siguiente artículo. <ulink type=\"block\" "
+"url=\"http://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring"
-msgstr ""
+msgstr "Configuración"
 
 #. Tag: para
 #, no-c-format
 msgid "Configuration files for <command>bind</command>, irrespective of version, have the same structure."
 msgstr ""
+"Archivos de configuración de <command>bind</command>, sin importar su "
+"versión, tienen la misma estructura."
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot administrators created a primary <literal>falcot.com</literal> zone to store information related to this domain, and a <literal>168.192.in-addr.arpa</literal> zone for reverse mapping of IP addresses in the local networks."
 msgstr ""
+"Los administradores de Falcot crearon una zona primaria "
+"<literal>falcot.com</literal> para almacenar información relacionada con "
+"este dominio y una zona <literal>168.192.in-addr.arpa</literal> para la "
+"asociación inversa de direcciones IP en las redes locales."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Names of reverse zones"
-msgstr ""
+msgstr "<emphasis>PRECAUCIÓN</emphasis> Nombres de zonas inversas"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>zone</primary><secondary>reverse</secondary>"
-msgstr ""
+msgstr "<primary>zona</primary><secondary>inversa</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>reverse zone</primary>"
-msgstr ""
+msgstr "<primary>inversa, zona</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>in-addr.arpa</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>in-addr.arpa</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Reverse zones have a particular name. The zone covering the <literal>192.168.0.0/16</literal> network need to be named <literal>168.192.in-addr.arpa</literal>: the IP address components are reversed, and followed by the <emphasis>in-addr.arpa</emphasis> suffix."
 msgstr ""
+"Las zonas inversas tiene un nombre particular. La zona que cubre la red "
+"<literal>192.168.0.0/16</literal> necesita llamarse <literal>168.192.in-"
+"addr.arpa</literal>: se invierten los componentes de la dirección IP "
+"seguidos del sufijo <emphasis>in-addr.arpa</emphasis>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Testing the DNS server"
-msgstr ""
+msgstr "<emphasis>SUGERENCIA</emphasis> Pruebas del servidor DNS"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>host</command> command (in the <emphasis role=\"pkg\">bind9-host</emphasis> package) queries a DNS server, and can be used to test the server configuration. For example, <command>host machine.falcot.com localhost</command> checks the local server's reply for the <literal>machine.falcot.com</literal> query. The <command>host <replaceable>ipaddress</replaceable> localhost</command> tests the reverse resolution."
 msgstr ""
+"El programa <command>host</command> (en el paquete <emphasis "
+"role=\"pkg\">bind9-host</emphasis>) consulta un servidor DNS y puede "
+"utilizarse para probar la configuración del servidor. Por ejemplo, "
+"<command>host maquina.falcot.com localhost</command> revisa la respuesta del "
+"servidor local a la consulta por <literal>maquina.falcot.com</literal>. "
+"<command>host <replaceable>direccion.ip</replaceable> localhost</command> "
+"prueba la resolución inversa."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>host</command></primary>"
-msgstr ""
+msgstr "<primary><command>host</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The following configuration excerpts, taken from the Falcot files, can serve as starting points to configure a DNS server:"
 msgstr ""
+"Los siguientes extractos de configuración, de los archivos de Falcot, pueden "
+"servirle como punto de partida para configurar un servidor DNS:"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>named.conf</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>named.conf</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/bind/named.conf</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/bind/named.conf</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Excerpt of <filename>/etc/bind/named.conf.local</filename>"
-msgstr ""
+msgstr "Extracto de <filename>/etc/bind/named.conf.local</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1689,11 +2626,33 @@ msgid ""
 "        allow-query { 192.168.0.0/16; };\n"
 "};\n"
 msgstr ""
+"\n"
+"zone \"falcot.com\" {\n"
+"        type master;\n"
+"        file \"/etc/bind/db.falcot.com\";\n"
+"        allow-query { any; };\n"
+"        allow-transfer {\n"
+"                195.20.105.149/32 ; // ns0.xname.org\n"
+"                193.23.158.13/32 ; // ns1.xname.org\n"
+"        };\n"
+"};\n"
+"\n"
+"zone \"internal.falcot.com\" {\n"
+"        type master;\n"
+"        file \"/etc/bind/db.internal.falcot.com\";\n"
+"        allow-query { 192.168.0.0/16; };\n"
+"};\n"
+"\n"
+"zone \"168.192.in-addr.arpa\" {\n"
+"        type master;\n"
+"        file \"/etc/bind/db.192.168\";\n"
+"        allow-query { 192.168.0.0/16; };\n"
+"};\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Excerpt of <filename>/etc/bind/db.falcot.com</filename>"
-msgstr ""
+msgstr "Extracto de <filename>/etc/bind/db.falcot.com</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1727,21 +2686,56 @@ msgid ""
 "\n"
 "dns     IN      CNAME   ns\n"
 msgstr ""
+"; Zona falcot.com \n"
+"; admin.falcot.com. =&gt; contacto de la zona: admin@falcot.com\n"
+"$TTL    604800\n"
+"@       IN      SOA     falcot.com. admin.falcot.com. (\n"
+"                        20040121        ; Serial\n"
+"                         604800         ; Refresco\n"
+"                          86400         ; Reintento\n"
+"                        2419200         ; Expiración\n"
+"                         604800 )       ; TTL de caché negativo\n"
+";\n"
+"; El @ hace referencia al nombre de la zona («falcot.com» aquí)\n"
+"; o a $ORIGIN (origen) si se utilizó esta directiva\n"
+";\n"
+"@       IN      NS      ns\n"
+"@       IN      NS      ns0.xname.org.\n"
+"\n"
+"interne IN      NS      192.168.0.2\n"
+"\n"
+"@       IN      A       212.94.201.10\n"
+"@       IN      MX      5 mail\n"
+"@       IN      MX      10 mail2\n"
+"\n"
+"ns      IN      A       212.94.201.10\n"
+"mail    IN      A       212.94.201.10\n"
+"mail2   IN      A       212.94.201.11\n"
+"www     IN      A       212.94.201.11\n"
+"\n"
+"dns     IN      CNAME   ns\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Syntax of a name"
-msgstr ""
+msgstr "<emphasis>PRECAUCIÓN</emphasis> Sintáxis de un nombre"
 
 #. Tag: para
 #, no-c-format
 msgid "The syntax of machine names follows strict rules. For instance, <literal>machine</literal> implies <literal>machine.<replaceable>domain</replaceable></literal>. If the domain name should not be appended to a name, said name must be written as <literal>machine.</literal> (with a dot as suffix). Indicating a DNS name outside the current domain therefore requires a syntax such as <literal>machine.otherdomain.com.</literal> (with the final dot)."
 msgstr ""
+"La sintáxis de los nombres de máquinas deben adherirse a reglas estrictas. "
+"Por ejemplo, <literal>maquina</literal> implica "
+"<literal>maquina.<replaceable>dominio</replaceable></literal>. Si no se debe "
+"agregar el nombre de dominio a un nombre, debe escribir dicho nombre como "
+"<literal>maquina.</literal> (con un punto de sufijo). Por lo tanto, indicar "
+"un nombre DNS fuera del dominio actual necesita una sintáxis como "
+"<literal>maquina.otrodominio.com.</literal> (con el punto final)."
 
 #. Tag: title
 #, no-c-format
 msgid "Excerpt of <filename>/etc/bind/db.192.168</filename>"
-msgstr ""
+msgstr "Extracto de <filename>/etc/bind/db.192.168</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1766,6 +2760,25 @@ msgid ""
 "; 192.168.3.1 -&gt; pau\n"
 "1.3     IN      PTR     pau.interne.falcot.com.\n"
 msgstr ""
+"; Zona inversa para 192.168.0.0/16\n"
+"; admin.falcot.com. =&gt; contacto de la zona: admin@falcot.com\n"
+"$TTL    604800\n"
+"@       IN      SOA     ns.interne.falcot.com. admin.falcot.com. (\n"
+"                        20040121        ; Serial\n"
+"                         604800         ; Refresco\n"
+"                          86400         ; Reintento\n"
+"                        2419200         ; Expiración\n"
+"                         604800 )       ; TTL de caché negativo\n"
+"\n"
+"        IN      NS      ns.interne.falcot.com.\n"
+"\n"
+"; 192.168.0.1 -&gt; arrakis\n"
+"1.0     IN      PTR     arrakis.interne.falcot.com.\n"
+"; 192.168.0.2 -&gt; neptune\n"
+"2.0     IN      PTR     neptune.interne.falcot.com.\n"
+"\n"
+"; 192.168.3.1 -&gt; pau\n"
+"1.3     IN      PTR     pau.interne.falcot.com.\n"
 
 #. Tag: title
 #, no-c-format
@@ -1776,41 +2789,65 @@ msgstr "Presentación"
 #, no-c-format
 msgid "DHCP (for <emphasis>Dynamic Host Configuration Protocol</emphasis>) is a protocol by which a machine can automatically get its network configuration when it boots. This allows centralizing the management of network configurations, and ensuring that all desktop machines get similar settings."
 msgstr ""
+"DHCP (<emphasis>procolo de configuración dinámica de equipos</emphasis>: "
+"«Dynamic Host Configuration Protocol») es un protocolo mediante el cual una "
+"máquina puede obtener su configuración de red automáticamente al iniciar. "
+"Esto permite centralizar la administración de las configuraciones de red y "
+"asegurar que todos los equipos de escritorio obtengan configuraciones "
+"similares."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DHCP</primary>"
-msgstr ""
+msgstr "<primary>DHCP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Dynamic Host Configuration Protocol</primary>"
-msgstr ""
+msgstr "<primary>Dynamic Host Configuration Protocol</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>DHCP configuration</secondary>"
-msgstr ""
+msgstr "<primary>red</primary><secondary>configuración DHCP</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A DHCP server provides many network-related parameters. The most common of these is an IP address and the network where the machine belongs, but it can also provide other information, such as DNS servers, WINS servers, NTP servers, and so on."
 msgstr ""
+"Un servidor DHCP provee muchos parámetros relacionados con la red. Los más "
+"comunes son una dirección IP y la red a la que pertenece el equipo, pero "
+"también puede proveer otra información como servidores DNS, servidores WINS, "
+"servidores NTP y más."
 
 #. Tag: para
 #, no-c-format
 msgid "The Internet Software Consortium (also involved in developing <command>bind</command>) is the main author of the DHCP server. The matching Debian package is <emphasis role=\"pkg\">isc-dhcp-server</emphasis>."
 msgstr ""
+"El Internet Software Consortium (involucrado también en el desarrollo de "
+"<command>bind</command>) es el autor principal del servidor DHCP. El paquete "
+"Debian correspondiente es <emphasis role=\"pkg\">isc-dhcp-server</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "The first elements that need to be edited in the DHCP server configuration file (<filename>/etc/dhcp/dhcpd.conf</filename>) are the domain name and the DNS servers. If this server is alone on the local network (as defined by the broadcast propagation), the <literal>authoritative</literal> directive must also be enabled (or uncommented). One also needs to create a <literal>subnet</literal> section describing the local network and the configuration information to be provided. The following example fits a <literal>192.168.0.0/24</literal> local network with a router at <literal>192.168.0.1</literal> serving as the gateway. Available IP addresses are in the range <literal>192.168.0.128</literal> to <literal>192.168.0.254</literal>."
 msgstr ""
+"El primer elemento que necesita editar en el archivo de configuración del "
+"servidor DHCP (<filename>/etc/dhcp/dhcpd.conf</filename>) son el nombre de "
+"dominio y servidores DNS. Si el servidor es el único en la red local "
+"(definido en la propagación de difusión), de activar (o descomentar) la "
+"directiva <literal>authoritative</literal>. También necesita crear una "
+"sección <literal>subnet</literal> (subred) describiendo la red local y la "
+"información de configuración que proveerá. El siguiente ejemplo define una "
+"red local <literal>192.168.0.0/24</literal> con un router en "
+"<literal>192.168.0.1</literal> como puerta de enlace. Las direcciones IP "
+"disponibles están en el rango <literal>192.168.0.128</literal> a "
+"<literal>192.168.0.254</literal>."
 
 #. Tag: title
 #, no-c-format
 msgid "Excerpt of <filename>/etc/dhcp/dhcpd.conf</filename>"
-msgstr ""
+msgstr "Extracto de <filename>/etc/dhcp/dhcpd.conf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1849,26 +2886,76 @@ msgid ""
 "    ddns-domainname \"internal.falcot.com\";\n"
 "}\n"
 msgstr ""
+"\n"
+"#\n"
+"# Archivo de configuración de ejemplo para el dhcpd ISC para Debian\n"
+"#\n"
+"\n"
+"# El parámetro ddns-updates-style controla si el servidor intentará o no\n"
+"# una actualización de DNS cuando se confirme la asignación. Utilizamos\n"
+"# el comportamiento predeterminado de la versión 2 de paquetes ('none', \n"
+"# ya que DHCP v2 no era compatible con DDNS).\n"
+"ddns-update-style interim;\n"
+"\n"
+"# definición de opciones comunes a todas las redes...\n"
+"option domain-name \"internal.falcot.com\";\n"
+"option domain-name-servers ns.internal.falcot.com;\n"
+"\n"
+"default-lease-time 600;\n"
+"max-lease-time 7200;\n"
+"\n"
+"# Si este servidor DHCP es el servidor DHCP oficial para la red local,\n"
+"# debe descomentar la directiva «authoritative».\n"
+"authoritative;\n"
+"\n"
+"# Utilice esto para enviar mensajes de registro dhcp a un archivo de\n"
+"# registro distinto (también deberá modificar syslog.conf para completar\n"
+"# la redirección).\n"
+"log-facility local7;\n"
+"\n"
+"# Mi subred\n"
+"subnet 192.168.0.0 netmask 255.255.255.0 {\n"
+"    option routers 192.168.0.1;\n"
+"    option broadcast-address 192.168.0.255;\n"
+"    range 192.168.0.128 192.168.0.254;\n"
+"    ddns-domainname \"internal.falcot.com\";\n"
+"}\n"
 
 #. Tag: title
 #, no-c-format
 msgid "DHCP and DNS"
-msgstr ""
+msgstr "DHCP y DNS"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNS</primary><secondary>automated updates</secondary>"
 msgstr ""
+"<primary>DNS</primary><secondary>actualizaciones automáticas</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A nice feature is the automated registering of DHCP clients in the DNS zone, so that each machine gets a significant name (rather than something impersonal such as <literal>machine-192-168-0-131.internal.falcot.com</literal>). Using this feature requires configuring the DNS server to accept updates to the <literal>internal.falcot.com</literal> DNS zone from the DHCP server, and configuring the latter to submit updates for each registration."
 msgstr ""
+"Una buena funcionalidad es el registro automatizado de clientes DHCP en la "
+"zona DNS para que cada máquina obtenga un nombre significativo (en lugar de "
+"algo impersonal como "
+"<literal>maquina-192-168-0-131.internal.falcot.com</literal>). Para utilizar "
+"esta funcionalidad necesita configurar el servidor DNS para que acepte "
+"actualizasiones de la zona DNS <literal>internal.falcot.com</literal> desde "
+"el servidor DHCP y configurar este último para que envíe actualizaciones "
+"para cada registración."
 
 #. Tag: para
 #, no-c-format
 msgid "In the <command>bind</command> case, the <literal>allow-update</literal> directive needs to be added to each of the zones that the DHCP server is to edit (the one for the <literal>internal.falcot.com</literal> domain, and the reverse zone). This directive lists the IP addresses allowed to perform these updates; it should therefore contain the possible addresses of the DHCP server (both the local address and the public address, if appropriate)."
 msgstr ""
+"En el caso de <command>bind</command>, necesita agregar la directiva "
+"<literal>allow-update</literal> a cada una de las zona que puede editar el "
+"servidor DHCP (sólo el dominio <literal>internal.falcot.com</literal> y su "
+"zona inversa). Esta directiva enumera las direcciones IP que pueden realizar "
+"estas actualizaciones; por lo tanto deberá incluir las posibles direcciones "
+"del servidor DHCP (tanto la dirección local como la dirección pública en "
+"caso que sea apropiado)."
 
 #. Tag: programlisting
 #, no-c-format
@@ -1876,81 +2963,134 @@ msgid ""
 "\n"
 "allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
 msgstr ""
+"\n"
+"allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Beware! A zone that can be modified <emphasis>will</emphasis> be changed by <command>bind</command>, and the latter will overwrite its configuration files at regular intervals. Since this automated procedure produces files that are less human-readable than manually-written ones, the Falcot administrators handle the <literal>internal.falcot.com</literal> domain with a delegated DNS server; this means the <literal>falcot.com</literal> zone file stays firmly under their manual control."
 msgstr ""
+"¡Tenga cuidado! Una zona que pueda ser modificada <emphasis>será</emphasis> "
+"modificada por <command>bind</command>, y éste último sobreescribirá sus "
+"archivos de configuración en intervalos regulares. Debido a que este "
+"procedimiento automatizado genera archivos que son menos legibles que "
+"aquellos escritos manualmente, los administradores de Falcot administran el "
+"dominio <literal>internal.falcot.com</literal> con un servidor DNS delegado; "
+"esto significa que el archivo de la zona <literal>falcot.com</literal> se "
+"mantiene firmemente bajo su control manual."
 
 #. Tag: para
 #, no-c-format
 msgid "The DHCP server configuration excerpt above already includes the directives required for DNS zone updates: they are the <literal>ddns-update-style interim;</literal> and <literal>ddns-domain-name \"internal.falcot.com\";</literal> lines in the block describing the subnet."
 msgstr ""
+"El extracto de la configuración del servidor DHCP anterior ya incluye las "
+"directivas necesarias para las actualizaciones de la zona DNS: son las "
+"líneas <literal>ddns-update-style interim;</literal> y <literal>ddns-domain-"
+"name \"internal.falcot.com\";</literal> en el bloque que describe la subred."
 
 #. Tag: title
 #, no-c-format
 msgid "Network Diagnosis Tools"
-msgstr ""
+msgstr "Herramientas de diagnóstico de red"
 
 #. Tag: para
 #, no-c-format
 msgid "When a network application does not run as expected, it is important to be able to look under the hood. Even when everything seems to run smoothly, running a network diagnosis can help ensure everything is working as it should. Several diagnosis tools exists for this purpose; each one operates on a different level."
 msgstr ""
+"Cuando una aplicación de red no funciona como esperamos es importante poder "
+"ver «bajo el capó». Aún cuando todo parezca estar funcionando, realizar un "
+"diagnóstico de red puede ayudar a asegurar que todo está funcionando como "
+"debe. Existen muchas herramientas de diagnóstico para este propósito, cada "
+"una de las cuales opera en un nivel diferente."
 
 #. Tag: title
 #, no-c-format
 msgid "Local Diagnosis: <command>netstat</command>"
-msgstr ""
+msgstr "Diagnóstico local: <command>netstat</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>netstat</command></primary>"
-msgstr ""
+msgstr "<primary><command>netstat</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's first mention the <command>netstat</command> command (in the <emphasis role=\"pkg\">net-tools</emphasis> package); it displays an instant summary of a machine's network activity. When invoked with no argument, this command lists all open connections; this list can be very verbose since it includes many Unix-domain sockets (widely used by daemons) which do not involve the network at all (for example, <literal>dbus</literal> communication, <literal>X11</literal> traffic, and communications between virtual filesystems and the desktop)."
 msgstr ""
+"Mencionemos primero el programa <command>netstat</command> (en el paquete "
+"<emphasis role=\"pkg\">net-tools</emphasis>); muestra un resumen instantáneo "
+"de la actividad de red de una máquina. Cuando lo ejecute sin parámetros, "
+"mostrará todas las conexiones abiertas; esta lista puede ser demasiado "
+"detallada ya que incluye muchos zócalos de dominio Unix (utilizados "
+"ampliamente por demonios) que no incluyen la red en absoluto (por ejemplo, "
+"la comunicación de <literal>dbus</literal>, tráfico <literal>X11</literal> y "
+"comunicaciones entre sistemas de archivos virtuales y el escritorio)."
 
 #. Tag: para
 #, no-c-format
 msgid "Common invocations therefore use options that alter <command>netstat</command>'s behavior. The most frequently used options include:"
 msgstr ""
+"Por lo tanto, invocaciones usuales utilizan opciones que modifican el "
+"comportamiento de <command>netstat</command>. Las opciones utilizadas más "
+"frecuentemente incluyen:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-t</literal>, which filters the results to only include TCP connections;"
 msgstr ""
+"<literal>-t</literal>, que filtra los resultados para incluir sólamente "
+"conexiones TCP;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-u</literal>, which works similarly for UDP connections; these options are not mutually exclusive, and one of them is enough to stop displaying Unix-domain connections;"
 msgstr ""
+"<literal>-u</literal>, que realiza algo similar por las conexiones UDP; "
+"estas opciones no son mutuamente excluyentes y una de ellas es suficiente "
+"para evitar mostrar información sobre conexiones de dominio Unix;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-a</literal>, to also list listening sockets (waiting for incoming connections);"
 msgstr ""
+"<literal>-a</literal>, para mostrar también los zócalos que están escuchando "
+"(que esperan conexiones entrantes);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-n</literal>, to display the results numerically: IP addresses (no DNS resolution), port numbers (no aliases as defined in <filename>/etc/services</filename>) and user ids (no login names);"
 msgstr ""
+"<literal>-n</literal>, para mostrar los resultados numéricamente: "
+"direcciones IP (sin resolución DNS), números de puerto (sin alias definidos "
+"en <filename>/etc/services</filename>) y IDs de usuario (sin nombres de "
+"usuario);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-p</literal>, to list the processes involved; this option is only useful when <command>netstat</command> is run as root, since normal users will only see their own processes;"
 msgstr ""
+"<literal>-p</literal>, enumerar los procesos involucrados; esta opción sólo "
+"es útil cuando ejecute <command>netstat</command> como root ya que los "
+"usuarios normales sólo verán sus propios procesos;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-c</literal>, to continuously refresh the list of connections."
 msgstr ""
+"<literal>-c</literal>, para actualizar continuamente la lista de conexiones."
 
 #. Tag: para
 #, no-c-format
 msgid "Other options, documented in the <citerefentry><refentrytitle>netstat</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page, provide an even finer control over the displayed results. In practice, the first five options are so often used together that systems and network administrators practically acquired <command>netstat -tupan</command> as a reflex. Typical results, on a lightly loaded machine, may look like the following:"
 msgstr ""
+"Otras opciones, documentadas en la página de manual "
+"<citerefentry><refentrytitle>netstat</refentrytitle> "
+"<manvolnum>8</manvolnum></citerefentry>, proveen un control más granular en "
+"los resultados mostrados. En la práctica,las primeras cinco opciones son "
+"utilizadas juntas tan seguido que los administradores de sistemas y red "
+"tiene el acto reflejo de ejecutar <command>netstat -tupan</command>. Los "
+"resultados típicos, en una máquina con poca carga, pueden parecerse a lo "
+"siguiente:"
 
 #. Tag: screen
 #, no-c-format
@@ -1975,31 +3115,86 @@ msgid ""
 "udp6       0      0 :::123                  :::*                                764/ntpd        \n"
 "</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>netstat -tupan</userinput>\n"
+"<computeroutput>Active Internet connections (servers and established)\n"
+"Proto Recv-Q Send-Q Local Address           Foreign Address         State "
+"      PID/Program name\n"
+"tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN "
+"     2224/sshd       \n"
+"tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN "
+"     994/exim4       \n"
+"tcp        0      0 192.168.1.241:22        192.168.1.128:47372     "
+"ESTABLISHED 2944/sshd: roland [\n"
+"tcp        0      0 192.168.1.241:22        192.168.1.128:32970     "
+"ESTABLISHED 2232/sshd: roland [\n"
+"tcp6       0      0 :::22                   :::*                    LISTEN "
+"     2224/sshd       \n"
+"tcp6       0      0 ::1:25                  :::*                    LISTEN "
+"     994/exim4       \n"
+"udp        0      0 0.0.0.0:68              0.0.0.0:* "
+"                          633/dhclient    \n"
+"udp        0      0 192.168.1.241:123       0.0.0.0:* "
+"                          764/ntpd        \n"
+"udp        0      0 127.0.0.1:123           0.0.0.0:* "
+"                          764/ntpd        \n"
+"udp        0      0 0.0.0.0:123             0.0.0.0:* "
+"                          764/ntpd        \n"
+"udp6       0      0 fe80::a00:27ff:fe6c:123 :::* "
+"                               764/ntpd        \n"
+"udp6       0      0 2002:52e0:87e4:0:a0:123 :::* "
+"                               764/ntpd        \n"
+"udp6       0      0 ::1:123                 :::* "
+"                               764/ntpd        \n"
+"udp6       0      0 :::123                  :::* "
+"                               764/ntpd        \n"
+"</computeroutput>"
 
 #. Tag: para
 #, no-c-format
 msgid "As expected, this lists established connections, two SSH connections in this case, and applications waiting for incoming connections (listed as <literal>LISTEN</literal>), notably the Exim4 email server listening on port 25."
 msgstr ""
+"Como es esperado, enumera las conexiones establecidas: dos conexiones SSH en "
+"este caso y las aplicaciones esperando conexiones entrantes (mostradas como "
+"<literal>LISTEN</literal>), notablemente el servidor de correo Exim4 está "
+"escuchando en el puerto 25."
 
 #. Tag: title
 #, no-c-format
 msgid "Remote Diagnosis: <command>nmap</command>"
-msgstr ""
+msgstr "Diagnóstico remoto: <command>nmap</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>nmap</command></primary>"
-msgstr ""
+msgstr "<primary><command>nmap</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>nmap</command> (in the similarly-named package) is, in a way, the remote equivalent for <command>netstat</command>. It can scan a set of “well-known” ports for one or several remote servers, and list the ports where an application is found to answer to incoming connections. Furthermore, <command>nmap</command> is able to identify some of these applications, sometimes even their version number. The counterpart of this tool is that, since it runs remotely, it cannot provide information on processes or users; however, it can operate on several targets at once."
 msgstr ""
+"<command>nmap</command> (en el paquete del mismo nombre) es, en cierta "
+"forma, el equivalente remoto de <command>netstat</command>. Puede escanear "
+"un conjunto de puertos «muy conocidos» de uno o más servidores remotos y "
+"enumerar los peurtos donde encontró una aplicación que responda conexiones "
+"entrantes. Lo que es más, <command>nmap</command> puede identificar alguna "
+"de estas aplicaciones, a veces inclusive también su número de versión. La "
+"desventaja de esta herramienta es que, debido a que ejecuta de forma remota, "
+"no puede proveer información sobre procesos o usuarios; sin embargo, puede "
+"trabajar con varios objetivos al mismo tiempo."
 
 #. Tag: para
 #, no-c-format
 msgid "A typical <command>nmap</command> invocation only uses the <literal>-A</literal> option (so that <command>nmap</command> attempts to identify the versions of the server software it finds) followed by one or more IP addresses or DNS names of machines to scan. Again, many more options exist to finely control the behavior of <command>nmap</command>; please refer to the documentation in the <citerefentry> <refentrytitle>nmap</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> manual page."
 msgstr ""
+"Una invocación de <command>nmap</command> típica utilizará la opción "
+"<literal>-A</literal> (para que <command>nmap</command> intente identificar "
+"las versiones del software de servidor que encuentre) seguido de una o más "
+"direcciones IP o nombres DNS de los equipos a escanear. Nuevamente, existen "
+"muchas más opciones que proveen un control detallado del comportamiento de "
+"<command>nmap</command>; revise la documentación en la página de manual "
+"<citerefentry> <refentrytitle>nmap</refentrytitle> <manvolnum>1</manvolnum> "
+"</citerefentry>."
 
 #. Tag: screen
 #, no-c-format
@@ -2055,83 +3250,189 @@ msgid ""
 "Nmap done: 1 IP address (1 host up) scanned in 21.32 seconds\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>nmap scouzmir</userinput>\n"
+"<computeroutput>\n"
+"Starting Nmap 5.00 ( http://nmap.org ) at 2010-10-12 18:52 CEST\n"
+"Interesting ports on 192.168.1.101:\n"
+"Not shown: 998 closed ports\n"
+"PORT    STATE SERVICE\n"
+"22/tcp  open  ssh\n"
+"111/tcp open  rpcbind\n"
+"MAC Address: 52:54:00:99:01:01 (QEMU Virtual NIC)\n"
+"\n"
+"Nmap done: 1 IP address (1 host up) scanned in 2.11 seconds\n"
+"# </computeroutput><userinput>nmap -A localhost</userinput>\n"
+"<computeroutput>\n"
+"Starting Nmap 5.00 ( http://nmap.org ) at 2010-10-12 18:59 CEST\n"
+"Warning: Hostname localhost resolves to 2 IPs. Using 127.0.0.1.\n"
+"Interesting ports on localhost (127.0.0.1):\n"
+"Not shown: 997 closed ports\n"
+"PORT    STATE SERVICE VERSION\n"
+"22/tcp  open  ssh     OpenSSH 5.5p1 Debian 4 (protocol 2.0)\n"
+"|  ssh-hostkey: 1024 af:07:60:17:16:64:6f:ee:c4:ca:b5:64:1e:4a:4c:22 (DSA)\n"
+"|_ 2048 25:b0:aa:6b:11:5a:56:b6:8d:2d:ed:b3:16:17:96:33 (RSA)\n"
+"25/tcp  open  smtp    Exim smtpd 4.72\n"
+"|  smtp-commands: EHLO scouzmir.internal.placard.fr.eu.org Hello localhost "
+"[127.0.0.1], SIZE 52428800, PIPELINING, HELP\n"
+"|_ HELP Commands supported: AUTH HELO EHLO MAIL RCPT DATA NOOP QUIT RSET "
+"HELP\n"
+"111/tcp open  rpcbind\n"
+"|  rpcinfo:  \n"
+"|  100000  2    111/udp  rpcbind  \n"
+"|  100024  1  53273/udp  status   \n"
+"|  100000  2    111/tcp  rpcbind  \n"
+"|_ 100024  1  41127/tcp  status   \n"
+"No exact OS matches for host (If you know what OS is running on it, see "
+"http://nmap.org/submit/ ).\n"
+"TCP/IP fingerprint:\n"
+"OS:SCAN(V=5.00%D=10/12%OT=22%CT=1%CU=34421%PV=N%DS=0%G=Y%TM=4CB4941A%P=i686\n"
+"OS:-pc-linux-gnu)SEQ(SP=BF%GCD=1%ISR=CC%TI=Z%CI=Z%II=I%TS=8)OPS(O1=M400CST1\n"
+"OS:1NW4%O2=M400CST11NW4%O3=M400CNNT11NW4%O4=M400CST11NW4%O5=M400CST11NW4%O6\n"
+"OS:=M400CST11)WIN(W1=8000%W2=8000%W3=8000%W4=8000%W5=8000%W6=8000)ECN(R=Y%D\n"
+"OS:F=Y%T=40%W=8018%O=M400CNNSNW4%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=\n"
+"OS:0%Q=)T2(R=N)T3(R=Y%DF=Y%T=40%W=8000%S=O%A=S+%F=AS%O=M400CST11NW4%RD=0%Q=\n"
+"OS:)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=Z%A=\n"
+"OS:S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y%DF\n"
+"OS:=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=\n"
+"OS:G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)\n"
+"\n"
+"Network Distance: 0 hops\n"
+"Service Info: Host: scouzmir.internal.placard.fr.eu.org; OS: Linux\n"
+"\n"
+"OS and Service detection performed. Please report any incorrect results at "
+"http://nmap.org/submit/ .\n"
+"Nmap done: 1 IP address (1 host up) scanned in 21.32 seconds\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "As expected, the SSH and Exim4 applications are listed. Note that not all applications listen on all IP addresses; since Exim4 is only accessible on the <literal>lo</literal> loopback interface, it only appears during an analysis of <literal>localhost</literal> and not when scanning <literal>scouzmir</literal> (which maps to the <literal>eth0</literal> interface on the same machine)."
 msgstr ""
+"Como es esperado, se muestran las aplicaciones SSH y Exim4. Sepa que no "
+"todas las aplicaciones escuchan en todas las direcciones IP; debido a que "
+"sólo se puede acceder a Exim4 mediante la interfaz de «loopback» "
+"<literal>lo</literal>, sólo aparecerá durante un análisis de "
+"<literal>localhost</literal> pero no cuando se escanea "
+"<literal>scouzmir</literal> (asociado con la interfaz "
+"<literal>eth0</literal> del mismo equipo)."
 
 #. Tag: title
 #, no-c-format
 msgid "Sniffers: <command>tcpdump</command> and <command>wireshark</command>"
-msgstr ""
+msgstr "«Sniffers»: <command>tcpdump</command> y <command>wireshark</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes, one needs to look at what actually goes on the wire, packet by packet. These cases call for a “frame analyzer”, more widely known as a <emphasis>sniffer</emphasis>. Such a tool observes all the packets that reach a given network interface, and displays them in a user-friendly way."
 msgstr ""
+"A veces uno necesita revisar lo que sucede literalmente en el cable, paquete "
+"por paqutee. Estos casos requieren un «analizador de marcos», más "
+"comúnmente conocidos como «<emphasis>sniffers</emphasis>». Estas "
+"herramientas observan todos los paquetes en una interfaz de red dada y los "
+"muestran en una forma más amigable."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tcpdump</command></primary>"
-msgstr ""
+msgstr "<primary><command>tcpdump</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The venerable tool in this domain is <command>tcpdump</command>, available as a standard tool on a wide range of platforms. It allows many kinds of network traffic capture, but the representation of this traffic stays rather obscure. We will therefore not describe it in further detail."
 msgstr ""
+"La herramienta de culto en este ámbito es <command>tcpdump</command>, "
+"disponible como una herramienta estándar en un amplio rango de plataformas. "
+"Permite muchos tipos de capturas de tráfico de red, pero la representación "
+"del mismo es bastante críptica. Por lo tanto no la describiremos en más "
+"detalle."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>wireshark</command></primary>"
-msgstr ""
+msgstr "<primary><command>wireshark</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A more recent (and more modern) tool, <command>wireshark</command> (in the <emphasis role=\"pkg\">wireshark</emphasis> package), is slowly becoming the new reference in network traffic analysis due to its many decoding modules that allow for a simplified analysis of the captured packets. The packets are displayed graphically with an organization based on the protocol layers. This allows a user to visualize all protocols involved in a packet. For example, given a packet containing an HTTP request, <command>wireshark</command> displays, separately, the information concerning the physical layer, the Ethernet layer, the IP packet information, the TCP connection parameters, and finally the HTTP request itself."
 msgstr ""
+"Una herramienta más reciente (y más moderna), <command>wireshark</command> "
+"(en el paquete <emphasis role=\"pkg\">wireshark</emphasis>), se está "
+"convirtiendo en la nueva referencia de análisis de tráfico de red debido a "
+"sus módulos de decodificación que permiten un análisis simplificado de los "
+"paquetes capturados. Muestra los paquetes gráficamente, organizados "
+"basándose en las capas de protocolos. Esto permite al usuario visualizar "
+"todos los protocolos involucrados en un paquete. Por ejemplo, en un paquete "
+"que contenga un pedido HTTP, <command>wireshark</command> mostrará por "
+"separado la información sobre la capa física, la capa Ethernet, la "
+"información IP del paquete, los parámetros de conexión TCP y finalmente el "
+"pedido HTTP mismo."
 
 #. Tag: title
 #, no-c-format
 msgid "The <command>wireshark</command> network traffic analyzer"
-msgstr ""
+msgstr "El analizador de tráfico de red <command>wireshark</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "In our example, the packets traveling over SSH are filtered out (with the <literal>!tcp.port == 22</literal> filter). The packet currently displayed was developed at the TCP and HTTP layers."
 msgstr ""
+"En nuestro ejemplo, filtramos los paquetes que viajan sobre SSH (con el "
+"filtro <literal>!tcp.port == 22</literal>). El paquete mostrado tiene "
+"expandidas las capas IP y TCP."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <command>wireshark</command> with no graphical interface: <command>tshark</command>"
 msgstr ""
+"<emphasis>SUGERENCIA</emphasis> <command>wireshark</command> sin interfaz "
+"gráfica: <command>tshark</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tshark</command></primary>"
-msgstr ""
+msgstr "<primary><command>tshark</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When one cannot run a graphical interface, or does not wish to do so for whatever reason, a text-only version of <command>wireshark</command> also exists under the name <command>tshark</command> (in a separate <emphasis role=\"pkg\">tshark</emphasis> package). Most of the capture and decoding features are still available, but the lack of a graphical interface necessarily limits the interactions with the program (filtering packets after they've been captured, tracking of a given TCP connection, and so on). It can still be used as a first approach. If further manipulations are intended and require the graphical interface, the packets can be saved to a file and this file can be loaded into a graphical <command>wireshark</command> running on another machine."
 msgstr ""
+"Cuando no podemos ejecutar una interfaz gráfica, o por cualquier razón no "
+"deseamos hacerlo, existe una versión sólo de texto de "
+"<command>wireshark</command> bajo el nombre <command>tshark</command> (en el "
+"paquete independiente <emphasis role=\"pkg\">tshark</emphasis>). La mayoría "
+"de la funcionalidad de captura y decodificación está también disponible, "
+"pero la falta de interfaz gráfica limita necesariamente la interacción con "
+"el programa (filtrar paquetes luego de capturarlos, rastrear una conexión "
+"TCP, etc.). Puede utilizarse, sin embargo, como primer intento. Si desea "
+"realizar manipulaciones y necesita la interfaz gráfica, puede guardar los "
+"paquetes en un archivo y cargarlo en un <command>wireshark</command> gráfico "
+"ejecutando en otra máquina."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <command>ethereal</command> and <command>wireshark</command>"
 msgstr ""
+"<emphasis>CULTURA</emphasis> <command>ethereal</command> y "
+"<command>wireshark</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ethereal</command></primary>"
-msgstr ""
+msgstr "<primary><command>ethereal</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tethereal</command></primary>"
-msgstr ""
+msgstr "<primary><command>tethereal</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>wireshark</command> seems to be relatively young; however, it is only the new name for a software application previously known as <command>ethereal</command>. When its main developer left the company where he was employed, he was not able to arrange for the transfer of the registered trademark. As an alternative he went for a name change; only the name and the icons for the software actually changed."
 msgstr ""
+"<command>wireshark</command> parece ser bastante joven; sin embargo, sólo es "
+"el nuevo nombre de una aplicación conocida anteriormente como "
+"<command>ethereal</command>. Cuando su desarrollador principal abandonó la "
+"compañía para la que trabajaba no logró coordinar la transferencia de la "
+"marca registrada. Como alternativa, cambió el nombre; sólo el nombre y los "
+"íconos del software cambiaron en realidad."
