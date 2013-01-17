@@ -36,31 +36,33 @@
     their deployment easy from the start. After the initial installation,
     an administrator must be able to handle evolving storage space needs
     without having to resort to an expensive reinstallation. They must
-    therefore master the required tools for manipulating RAID and LVM
+    therefore understand the required tools for manipulating RAID and LVM
     volumes.</para>
 
-    <para>RAID and LVM are both techniques to abstract the mounted volumes
-    from their physical counterparts (actual hard-disk drives or partitions
-    thereof); the former secures the data by introducing redundancy, the
-    latter makes data management more flexible and independent of the
-    actual size of the underlying disks. In both cases, the system ends up
-    with new block devices, which can be used to create filesystems or swap
-    space, without necessarily having them mapped to one physical disk.
-    RAID and LVM come from quite different backgrounds, but their
-    functionality can overlap somewhat, which is why they are often
-    mentioned together.</para>
+    <para>RAID and LVM are both techniques to abstract the mounted
+    volumes from their physical counterparts (actual hard-disk drives
+    or partitions thereof); the former secures the data against
+    hardware failure by introducing redundancy, the latter makes
+    volume management more flexible and independent of the actual size
+    of the underlying disks. In both cases, the system ends up with
+    new block devices, which can be used to create filesystems or swap
+    space, without necessarily having them mapped to one physical
+    disk.  RAID and LVM come from quite different backgrounds, but
+    their functionality can overlap somewhat, which is why they are
+    often mentioned together.</para>
 
     <sidebar>
       <title><emphasis>PERSPECTIVE</emphasis> Btrfs combines LVM and RAID</title>
 
-      <para>While LVM and RAID are two distinct kernel subsystems that come
-      between the disk block devices and their filesystems,
-      <emphasis>btrfs</emphasis> is a new filesystem, initially developed
-      at Oracle, that purports to combine the featuresets of LVM and RAID
-      and much more. It is mostly functional, although still tagged
-      “experimental” because its development is incomplete (some
-      features aren't implemented yet). <ulink type="block"
-      url="http://btrfs.wiki.kernel.org/"/></para>
+      <para>While LVM and RAID are two distinct kernel subsystems that
+      come between the disk block devices and their filesystems,
+      <emphasis>btrfs</emphasis> is a new filesystem, initially
+      developed at Oracle, that purports to combine the featuresets of
+      LVM and RAID and much more. It is mostly functional, and
+      although it's still tagged “experimental” because its
+      development is incomplete (some features aren't implemented
+      yet), it has already seen some use in production environments.
+      <ulink type="block" url="http://btrfs.wiki.kernel.org/"/></para>
 
       <para>Among the noteworthy features are the ability to take a
       snapshot of a filesystem tree at any point in time. This snapshot
@@ -116,15 +118,32 @@
       so as to return to a safe mode. The applications won't notice
       anything, apart from potentially reduced access speed, while the
       array is in degraded mode or during the reconstruction phase.</para>
+
+      <para>When RAID is implemented by hardware, its configuration
+      generally happens within the BIOS setup tool, and the kernel
+      will consider a RAID array as a single disk, which will work as
+      a standard physical disk, although the device name may be
+      different.  For instance, the kernel in <emphasis
+      role="distribution">Squeeze</emphasis> made some hardware RAID
+      arrays available as <filename>/dev/cciss/c0d0</filename>; the
+      kernel in <emphasis role="distribution">Wheezy</emphasis>
+      changed this name to the more natural
+      <filename>/dev/sda</filename>, but other RAID controllers may
+      still behave differently.</para>
+
+      <para>We only focus on software RAID in this book.</para>
+
       <section id="niveaux-de-raid">
         <title>Different RAID Levels</title>
 
-	<para>RAID has actually several levels, differentiated by their
-	layout and the amount of redundancy they provide. The more
-	redundant, the more failure-proof, since the system will be able to
-	keep working with more failed disks. The counterpart is that the
-	usable space shrinks; seen the other way, more disks will be needed
-	to store the same amount of data.</para>
+	<para>RAID is actually not a single system, but a range of
+	systems identified by their levels; the levels by their layout
+	and the amount of redundancy they provide. The more redundant,
+	the more failure-proof, since the system will be able to keep
+	working with more failed disks. The counterpart is that the
+	usable space shrinks for a given set of disks; seen the other
+	way, more disks will be needed to store a given amount of
+	data.</para>
         <variablelist>
           <varlistentry>
             <term>Linear RAID</term>
@@ -332,19 +351,19 @@
 	initially have the following disks and partitions:</para>
         <itemizedlist>
           <listitem>
-	    <para>the <filename>sda</filename> disk, 4 GB, is entirely
+	    <para>the <filename>sdb</filename> disk, 4 GB, is entirely
 	    available;</para>
           </listitem>
           <listitem>
-	    <para>the <filename>sde</filename> disk, 4 GB, is also
+	    <para>the <filename>sdc</filename> disk, 4 GB, is also
 	    entirely available;</para>
           </listitem>
           <listitem>
-	    <para>on the <filename>sdg</filename> disk, only partition
-	    <filename>sdg2</filename> (about 4 GB) is available;</para>
+	    <para>on the <filename>sdd</filename> disk, only partition
+	    <filename>sdd2</filename> (about 4 GB) is available;</para>
           </listitem>
           <listitem>
-	    <para>finally, a <filename>sdh</filename> disk, still 4 GB,
+	    <para>finally, a <filename>sde</filename> disk, still 4 GB,
 	    entirely available.</para>
           </listitem>
         </itemizedlist>
@@ -362,23 +381,23 @@
 	  volume.</para>
         </sidebar>
 
-        <screen><computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>
+        <screen><computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb /dev/sdc</userinput>
 <computeroutput>mdadm: Defaulting to version 1.2 metadata
 mdadm: array /dev/md0 started.
 # </computeroutput><userinput>mdadm --query /dev/md0</userinput>
-<computeroutput>/dev/md0: 8.00GiB raid0 2 devices, 0 spares. Use mdadm --detail for more detail.
+<computeroutput>/dev/md0: 7.100GiB raid0 2 devices, 0 spares. Use mdadm --detail for more detail.
 # </computeroutput><userinput>mdadm --detail /dev/md0</userinput>
 <computeroutput>/dev/md0:
         Version : 1.2
-  Creation Time : Thu Sep 30 15:21:15 2010
+  Creation Time : Thu Jan 17 15:56:55 2013
      Raid Level : raid0
-     Array Size : 8388480 (8.00 GiB 8.59 GB)
+     Array Size : 8387584 (8.00 GiB 8.59 GB)
    Raid Devices : 2
   Total Devices : 2
     Persistence : Superblock is persistent
 
-    Update Time : Thu Sep 30 15:21:15 2010
-          State : active
+    Update Time : Thu Jan 17 15:56:55 2013
+          State : clean 
  Active Devices : 2
 Working Devices : 2
  Failed Devices : 0
@@ -386,97 +405,103 @@ Working Devices : 2
 
      Chunk Size : 512K
 
-           Name : squeeze:0  (local to host squeeze)
-           UUID : 0012a273:cbdb8b83:0ee15f7f:aec5e3c3
+           Name : mirwiz:0  (local to host mirwiz)
+           UUID : bb085b35:28e821bd:20d697c9:650152bb
          Events : 0
 
     Number   Major   Minor   RaidDevice State
-       0       8        0        0      active sync   /dev/sda
-       1       8       64        1      active sync   /dev/sde
+       0       8       16        0      active sync   /dev/sdb
+       1       8       32        1      active sync   /dev/sdc
 # </computeroutput><userinput>mkfs.ext4 /dev/md0</userinput>
-<computeroutput>
-mke2fs 1.41.12 (17-May-2010)
+<computeroutput>mke2fs 1.42.5 (29-Jul-2012)
 Filesystem label=
 OS type: Linux
 Block size=4096 (log=2)
 Fragment size=4096 (log=2)
-Stride=0 blocks, Stripe width=0 blocks
-524288 inodes, 2097152 blocks
-104857 blocks (5.00%) reserved for the super user
+Stride=128 blocks, Stripe width=256 blocks
+524288 inodes, 2096896 blocks
+104844 blocks (5.00%) reserved for the super user
 First data block=0
 Maximum filesystem blocks=2147483648
-55 block groups
+64 block groups
 32768 blocks per group, 32768 fragments per group
-8160 inodes per group
+8192 inodes per group
 Superblock backups stored on blocks: 
-        32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632
 
-Writing inode tables: done
+Allocating group tables: done                            
+Writing inode tables: done                            
 Creating journal (32768 blocks): done
-Writing superblocks and filesystem accounting information: done
-
-This filesystem will be automatically checked every 26 mounts or
-180 days, whichever comes first.  Use tune2fs -c or -i to override.
+Writing superblocks and filesystem accounting information: done 
 # </computeroutput><userinput>mkdir /srv/raid-0</userinput>
 <computeroutput># </computeroutput><userinput>mount /dev/md0 /srv/raid-0</userinput>
 <computeroutput># </computeroutput><userinput>df -h /srv/raid-0</userinput>
-<computeroutput>Filesystem            Size  Used Avail Use% Mounted on
-/dev/md0              8.0G  249M  7.4G   4% /srv/raid-0</computeroutput>
+<computeroutput>Filesystem      Size  Used Avail Use% Mounted on
+/dev/md0        7.9G  146M  7.4G   2% /srv/raid-0
+</computeroutput>
 </screen>
 
 	<para>The <command>mdadm --create</command> command requires
 	several parameters: the name of the volume to create
 	(<filename>/dev/md*</filename>, with MD standing for
-	<foreignphrase>Multiple Device</foreignphrase>), the RAID level,
-	the number of disks (which is compulsory despite being mostly
-	meaningful only with RAID-1 and above), and the physical drives to
-	use. Once the device is created, we can use it like we'd use a
-	normal partition, create a filesystem on it, mount that filesystem,
-	and so on. Note that our creation of a RAID-0 volume on
-	<filename>md0</filename> is nothing but coincidence, and the
-	numbering of the array doesn't need to be correlated to the chosen
-	amount of redundancy.</para>
+	<foreignphrase>Multiple Device</foreignphrase>), the RAID
+	level, the number of disks (which is compulsory despite being
+	mostly meaningful only with RAID-1 and above), and the
+	physical drives to use. Once the device is created, we can use
+	it like we'd use a normal partition, create a filesystem on
+	it, mount that filesystem, and so on. Note that our creation
+	of a RAID-0 volume on <filename>md0</filename> is nothing but
+	coincidence, and the numbering of the array doesn't need to be
+	correlated to the chosen amount of redundancy.  It's also
+	possible to create named RAID arrays, by giving
+	<command>mdadm</command> parameters such as
+	<filename>/dev/md/linear</filename> instead of
+	<filename>/dev/md0</filename>.</para>
 
 	<para>Creation of a RAID-1 follows a similar fashion, the
 	differences only being noticeable after the creation:</para>
 
-        <screen><computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdg2 /dev/sdh</userinput>
-<computeroutput>mdadm: largest drive (/dev/sdg2) exceed size (4194240K) by more than 1%
+        <screen><computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdd2 /dev/sde</userinput>
+<computeroutput>mdadm: Note: this array has metadata at the start and
+    may not be suitable as a boot device.  If you plan to
+    store '/boot' on this device please ensure that
+    your boot-loader understands md/v1.x metadata, or use
+    --metadata=0.90
+mdadm: largest drive (/dev/sdd2) exceeds size (4192192K) by more than 1%
 Continue creating array? </computeroutput><userinput>y</userinput>
-<computeroutput>mdadm: array /dev/md1 started.
+<computeroutput>mdadm: Defaulting to version 1.2 metadata
+mdadm: array /dev/md1 started.
 # </computeroutput><userinput>mdadm --query /dev/md1</userinput>
-<computeroutput>/dev/md1: 4.00GiB raid1 2 devices, 0 spares. Use mdadm --detail for more detail.
+<computeroutput>/dev/md1: 3.100GiB raid1 2 devices, 0 spares. Use mdadm --detail for more detail.
 # </computeroutput><userinput>mdadm --detail /dev/md1</userinput>
 <computeroutput>/dev/md1:
         Version : 1.2
-  Creation Time : Thu Sep 30 15:39:13 2010
+  Creation Time : Thu Jan 17 16:13:04 2013
      Raid Level : raid1
-     Array Size : 4194240 (4.00 GiB 4.29 GB)
-  Used Dev Size : 4194240 (4.00 GiB 4.29 GB)
+     Array Size : 4192192 (4.00 GiB 4.29 GB)
+  Used Dev Size : 4192192 (4.00 GiB 4.29 GB)
    Raid Devices : 2
   Total Devices : 2
     Persistence : Superblock is persistent
 
-    Update Time : Thu Sep 30 15:39:26 2010
-          State : active, resyncing
+    Update Time : Thu Jan 17 16:13:04 2013
+          State : clean, resyncing (PENDING) 
  Active Devices : 2
 Working Devices : 2
  Failed Devices : 0
   Spare Devices : 0
 
- Rebuild Status : 10% complete
-
-           Name : squeeze:1  (local to host squeeze)
-           UUID : 20a8419b:41612750:b9171cfe:00d9a432
-         Events : 27
+           Name : mirwiz:1  (local to host mirwiz)
+           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464
+         Events : 0
 
     Number   Major   Minor   RaidDevice State
-       0       8       98        0      active sync   /dev/sdg2
-       1       8      112        1      active sync   /dev/sdh
+       0       8       50        0      active sync   /dev/sdd2
+       1       8       64        1      active sync   /dev/sde
 # </computeroutput><userinput>mdadm --detail /dev/md1</userinput>
 <computeroutput>/dev/md1:
 [...]
-          State : active
+          State : clean
 [...]
 </computeroutput>
 </screen>
@@ -552,38 +577,38 @@ Working Devices : 2
 	<literal>--fail</literal> option, allows simulating such a disk
 	failure:</para>
 
-        <screen><computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sdh</userinput>
-<computeroutput>mdadm: set /dev/sdh faulty in /dev/md1
+        <screen><computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sde</userinput>
+<computeroutput>mdadm: set /dev/sde faulty in /dev/md1
 # </computeroutput><userinput>mdadm --detail /dev/md1</userinput>
 <computeroutput>/dev/md1:
 [...]
-    Update Time : Thu Sep 30 15:45:50 2010
-          State : active, degraded
+    Update Time : Thu Jan 17 16:14:09 2013
+          State : active, degraded 
  Active Devices : 1
 Working Devices : 1
  Failed Devices : 1
   Spare Devices : 0
 
-           Name : squeeze:1  (local to host squeeze)
-           UUID : 20a8419b:41612750:b9171cfe:00d9a432
-         Events : 35
+           Name : mirwiz:1  (local to host mirwiz)
+           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464
+         Events : 19
 
     Number   Major   Minor   RaidDevice State
-       0       8       98        0      active sync   /dev/sdg2
+       0       8       50        0      active sync   /dev/sdd2
        1       0        0        1      removed
 
-       2       8      112        -      faulty spare  /dev/sdh</computeroutput>
+       1       8       64        -      faulty spare   /dev/sde</computeroutput>
 </screen>
 
 	<para>The contents of the volume are still accessible (and, if it's
 	mounted, the applications don't notice a thing), but the data
-	safety isn't assured anymore: should the <filename>sdg</filename>
+	safety isn't assured anymore: should the <filename>sdd</filename>
 	disk fail in turn, the data would be lost. We want to avoid that
 	risk, so we'll replace the failed disk with a new one,
-	<filename>sdi</filename>:</para>
+	<filename>sdf</filename>:</para>
 
-        <screen><computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdi</userinput>
-<computeroutput>mdadm: added /dev/sdi
+        <screen><computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdf</userinput>
+<computeroutput>mdadm: added /dev/sdf
 # </computeroutput><userinput>mdadm --detail /dev/md1</userinput>
 <computeroutput>/dev/md1:
 [...]
@@ -591,63 +616,63 @@ Working Devices : 1
   Total Devices : 3
     Persistence : Superblock is persistent
 
-    Update Time : Thu Sep 30 15:52:29 2010
-          State : active, degraded, recovering
+    Update Time : Thu Jan 17 16:15:32 2013
+          State : clean, degraded, recovering 
  Active Devices : 1
 Working Devices : 2
  Failed Devices : 1
   Spare Devices : 1
 
- Rebuild Status : 45% complete
+ Rebuild Status : 28% complete
 
-           Name : squeeze:1  (local to host squeeze)
-           UUID : 20a8419b:41612750:b9171cfe:00d9a432
-         Events : 53
+           Name : mirwiz:1  (local to host mirwiz)
+           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464
+         Events : 26
 
     Number   Major   Minor   RaidDevice State
-       0       8       98        0      active sync   /dev/sdg2
-       3       8      128        1      spare rebuilding   /dev/sdi
+       0       8       50        0      active sync   /dev/sdd2
+       2       8       80        1      spare rebuilding   /dev/sdf
 
-       2       8      112        -      faulty spare   /dev/sdh
+       1       8       64        -      faulty spare   /dev/sde
 # </computeroutput><userinput>[...]</userinput>
 <computeroutput>[...]
 # </computeroutput><userinput>mdadm --detail /dev/md1</userinput>
 <computeroutput>/dev/md1:
 [...]
-    Update Time : Thu Sep 30 15:52:35 2010
-          State : active
+    Update Time : Thu Jan 17 16:16:36 2013
+          State : clean 
  Active Devices : 2
 Working Devices : 2
  Failed Devices : 1
   Spare Devices : 0
 
-           Name : squeeze:1  (local to host squeeze)
-           UUID : 20a8419b:41612750:b9171cfe:00d9a432
-         Events : 71
+           Name : mirwiz:1  (local to host mirwiz)
+           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464
+         Events : 41
 
     Number   Major   Minor   RaidDevice State
-       0       8       98        0      active sync   /dev/sdg2
-       1       8      128        1      active sync   /dev/sdi
+       0       8       50        0      active sync   /dev/sdd2
+       2       8       80        1      active sync   /dev/sdf
 
-       2       8      112        -      faulty spare   /dev/sdh</computeroutput>
+       1       8       64        -      faulty spare   /dev/sde</computeroutput>
 </screen>
 
 	<para>Here again, the kernel automatically triggers a
 	reconstruction phase during which the volume, although still
 	accessible, is in a degraded mode. Once the reconstruction is over,
 	the RAID array is back to a normal state. One can then tell the
-	system that the <filename>sdh</filename> disk is about to be
+	system that the <filename>sde</filename> disk is about to be
 	removed from the array, so as to end up with a classical RAID
 	mirror on two disks:</para>
 
-        <screen><computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sdh</userinput>
-<computeroutput>mdadm: hot removed /dev/sdh from /dev/md1
+        <screen><computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sde</userinput>
+<computeroutput>mdadm: hot removed /dev/sde from /dev/md1
 # </computeroutput><userinput>mdadm --detail /dev/md1</userinput>
 <computeroutput>/dev/md1:
 [...]
     Number   Major   Minor   RaidDevice State
-       0       8       98        0      active sync   /dev/sdg2
-       1       8      128        1      active sync   /dev/sdi</computeroutput>
+       0       8       50        0      active sync   /dev/sdd2
+       2       8       80        1      active sync   /dev/sdf</computeroutput>
 </screen>
 
 	<para>From then on, the drive can be physically removed when the
@@ -666,9 +691,9 @@ Working Devices : 2
 	configuration is encouraged, because this detection isn't
 	fail-proof, and it's only expected that it will fail precisely in
 	sensitive circumstances. In our example, if the
-	<filename>sdh</filename> disk failure had been real (instead of
+	<filename>sde</filename> disk failure had been real (instead of
 	simulated) and the system had been restarted without removing this
-	<filename>sdh</filename> disk, this disk could start working again
+	<filename>sde</filename> disk, this disk could start working again
 	due to having been probed during the reboot. The kernel would then
 	have three physical elements, each claiming to contain half of the
 	same RAID volume. Another source of confusion can come when RAID
@@ -693,8 +718,9 @@ Working Devices : 2
 # Please refer to mdadm.conf(5) for information about this file.
 #
 
-# by default, scan all partitions (/proc/partitions) for MD superblocks.
-# alternatively, specify devices to scan, using wildcards if desired.
+# by default (built-in), scan all partitions (/proc/partitions) and all
+# containers for MD superblocks. alternatively, specify devices to scan, using
+# wildcards if desired.
 DEVICE /dev/sd*
 
 # auto-create devices with Debian standard permissions
@@ -706,32 +732,36 @@ HOMEHOST &lt;system&gt;
 # instruct the monitoring daemon where to send mail alerts
 MAILADDR root
 
-ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee
-ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432
+# definitions of existing MD arrays
+ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb
+ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464
+
+# This configuration was auto-generated on Thu, 17 Jan 2013 16:21:01 +0100
+# by mkconf 3.2.5-3
 </programlisting>
         </example>
 
 	<para>One of the most useful details is the
-	<literal>DEVICE</literal> option, which lists the devices where the
-	system will automatically look for components of RAID volumes at
-	start-up time. In our example, we replaced the default value,
-	<literal>partitions</literal>, with an explicit list of device
-	files, since we chose to use entire disks and not only partitions,
-	for some volumes.</para>
+	<literal>DEVICE</literal> option, which lists the devices
+	where the system will automatically look for components of
+	RAID volumes at start-up time. In our example, we replaced the
+	default value, <literal>partitions containers</literal>, with
+	an explicit list of device files, since we chose to use entire
+	disks and not only partitions, for some volumes.</para>
 
 	<para>The last two lines in our example are those allowing the
-	kernel to safely pick which volume number to assign to which array.
-	The metadata stored on the disks themselves are enough to
-	re-assemble the volumes, but not to determine the volume number
-	(and the matching <filename>/dev/md*</filename> device
+	kernel to safely pick which volume number to assign to which
+	array.  The metadata stored on the disks themselves are enough
+	to re-assemble the volumes, but not to determine the volume
+	number (and the matching <filename>/dev/md*</filename> device
 	name).</para>
 
 	<para>Fortunately, these lines can be generated
 	automatically:</para>
 
         <screen><computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>
-<computeroutput>ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee
-ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432</computeroutput>
+<computeroutput>ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb
+ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464</computeroutput>
 </screen>
 
 	<para>The contents of these last two lines doesn't depend on the
@@ -758,11 +788,13 @@ ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a
 	<para>This flexibility is attained by a level of abstraction
 	involving three concepts.</para>
 
-	<para>First, the PV (<emphasis>Physical Volume</emphasis>) is the
-	entity closest to the hardware: it can be partitions on a disk, or
-	a full disk, or even any other block device. Note that when a
-	physical element is set up to be a PV for LVM, it should only be
-	accessed via LVM, otherwise the system will get confused.</para>
+	<para>First, the PV (<emphasis>Physical Volume</emphasis>) is
+	the entity closest to the hardware: it can be partitions on a
+	disk, or a full disk, or even any other block device
+	(including, for instance, a RAID array). Note that when a
+	physical element is set up to be a PV for LVM, it should only
+	be accessed via LVM, otherwise the system will get
+	confused.</para>
 
 	<para>A number of PVs can be clustered in a VG (<emphasis>Volume
 	Group</emphasis>), which can be compared to disks both virtual and
@@ -772,19 +804,19 @@ ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a
 
 	<para>The third kind of object is the LV (<emphasis>Logical
 	Volume</emphasis>), which is a chunk of a VG; if we keep the
-	VG-as-disk analogy, the LV compares to a partition. The LV appear
-	as block device with an entry in <filename>/dev</filename>, and it
+	VG-as-disk analogy, the LV compares to a partition. The LV appears
+	as a block device with an entry in <filename>/dev</filename>, and it
 	can be used as any other physical partition can be (most commonly,
 	to host a filesystem or swap space).</para>
 
-	<para>The important thing is that the splitting of a VG into LVs is
-	entirely independent of its physical components (the PVs). A VG
-	with only a single physical component (a disk for instance) can be
-	split into a dozen logical volumes; similarly, a VG can use several
-	physical disks and appear as a single large logical volume. The
-	only constraint is that obviously the total size allocated to LVs
-	can't be bigger than the total capacity of the PVs in the volume
-	group.</para>
+	<para>The important thing is that the splitting of a VG into
+	LVs is entirely independent of its physical components (the
+	PVs). A VG with only a single physical component (a disk for
+	instance) can be split into a dozen logical volumes;
+	similarly, a VG can use several physical disks and appear as a
+	single large logical volume. The only constraint, obviously,
+	is that the total size allocated to LVs can't be bigger than
+	the total capacity of the PVs in the volume group.</para>
 
 	<para>It often makes sense, however, to have some kind of
 	homogeneity among the physical components of a VG, and to split the
@@ -825,7 +857,7 @@ ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a
 	    <filename>sdc3</filename> partition, 3 GB;</para>
           </listitem>
           <listitem>
-	    <para>the <filename>sdd</filename> disk, 4 GB, in fully
+	    <para>the <filename>sdd</filename> disk, 4 GB, is fully
 	    available;</para>
           </listitem>
           <listitem>
@@ -857,33 +889,40 @@ ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a
 
         <screen id="screen.pvcreate"><computeroutput># </computeroutput><userinput>pvdisplay</userinput>
 <computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>
-<computeroutput>  Physical volume "/dev/sdb2" successfully created
+<computeroutput>  Writing physical volume data to disk "/dev/sdb2"
+  Physical volume "/dev/sdb2" successfully created
 # </computeroutput><userinput>pvdisplay</userinput>
-<computeroutput>
-  "/dev/sdb2" is a new physical volume of "4,00 GiB"
+<computeroutput>pvdisplay 
+  "/dev/sdb2" is a new physical volume of "4.00 GiB"
   --- NEW Physical volume ---
   PV Name               /dev/sdb2
-  VG Name
+  VG Name               
   PV Size               4.00 GiB
   Allocatable           NO
-  PE Size (KByte)       0
+  PE Size               0   
   Total PE              0
   Free PE               0
   Allocated PE          0
-  PV UUID               9JuaGR-W7jc-pNgj-NU4l-2IX1-kUJ7-m8cRim
+  PV UUID               0zuiQQ-j1Oe-P593-4tsN-9FGy-TY0d-Quz31I
 
 # </computeroutput><userinput>for i in sdc3 sdd sdf1 sdf2 ; do pvcreate /dev/$i ; done</userinput>
-<computeroutput>  Physical volume "/dev/sdc3" successfully created
+<computeroutput>  Writing physical volume data to disk "/dev/sdc3"
+  Physical volume "/dev/sdc3" successfully created
+  Writing physical volume data to disk "/dev/sdd"
   Physical volume "/dev/sdd" successfully created
+  Writing physical volume data to disk "/dev/sdf1"
   Physical volume "/dev/sdf1" successfully created
+  Writing physical volume data to disk "/dev/sdf2"
   Physical volume "/dev/sdf2" successfully created
 # </computeroutput><userinput>pvdisplay -C</userinput>
-<computeroutput>  PV         VG   Fmt  Attr PSize PFree
-  /dev/sdb2       lvm2 a-   4.00g 4.00g
-  /dev/sdc3       lvm2 a-   3.09g 3.09g
-  /dev/sdd        lvm2 a-   4.00g 4.00g
-  /dev/sdf1       lvm2 a-   4.10g 4.10g
-  /dev/sdf2       lvm2 a-   5.22g 5.22g</computeroutput>
+<computeroutput>root@mirwiz:~# pvdisplay -C
+  PV         VG   Fmt  Attr PSize PFree
+  /dev/sdb2       lvm2 a--  4.00g 4.00g
+  /dev/sdc3       lvm2 a--  3.09g 3.09g
+  /dev/sdd        lvm2 a--  4.00g 4.00g
+  /dev/sdf1       lvm2 a--  4.10g 4.10g
+  /dev/sdf2       lvm2 a--  5.22g 5.22g
+</computeroutput>
 </screen>
 
 	<para>So far, so good; note that a PV can be set up on a full disk
@@ -898,12 +937,13 @@ ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a
 	elements.</para>
 
         <screen id="screen.vgcreate"><computeroutput># </computeroutput><userinput>vgdisplay</userinput>
-<computeroutput># </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 /dev/sdf1</userinput>
+<computeroutput>  No volume groups found
+# </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 /dev/sdf1</userinput>
 <computeroutput>  Volume group "vg_critical" successfully created
 # </computeroutput><userinput>vgdisplay</userinput>
 <computeroutput>  --- Volume group ---
   VG Name               vg_critical
-  System ID
+  System ID             
   Format                lvm2
   Metadata Areas        2
   Metadata Sequence No  1
@@ -915,19 +955,20 @@ ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a
   Max PV                0
   Cur PV                2
   Act PV                2
-  VG Size               8.14 GB
-  PE Size               4.00 MB
-  Total PE              2084
-  Alloc PE / Size       0 / 0
-  Free  PE / Size       2084 / 8.14 GB
-  VG UUID               6eG6BW-MmJE-KB0J-dsB2-52iL-N6eD-1paeo8
+  VG Size               8.09 GiB
+  PE Size               4.00 MiB
+  Total PE              2071
+  Alloc PE / Size       0 / 0   
+  Free  PE / Size       2071 / 8.09 GiB
+  VG UUID               bpq7zO-PzPD-R7HW-V8eN-c10c-S32h-f6rKqp
 
 # </computeroutput><userinput>vgcreate vg_normal /dev/sdc3 /dev/sdd /dev/sdf2</userinput>
 <computeroutput>  Volume group "vg_normal" successfully created
 # </computeroutput><userinput>vgdisplay -C</userinput>
-<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree
-  vg_critical   2   0   0 wz--n-  8.14g  8.14g
-  vg_normal     3   0   0 wz--n- 12.30g 12.30g</computeroutput>
+<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree 
+  vg_critical   2   0   0 wz--n-  8.09g  8.09g
+  vg_normal     3   0   0 wz--n- 12.30g 12.30g
+</computeroutput>
 </screen>
 
 	<para>Here again, commands are rather straightforward (and
@@ -947,13 +988,15 @@ ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a
 <computeroutput>  Logical volume "lv_files" created
 # </computeroutput><userinput>lvdisplay</userinput>
 <computeroutput>  --- Logical volume ---
-  LV Name                /dev/vg_critical/lv_files
+  LV Path                /dev/vg_critical/lv_files
+  LV Name                lv_files
   VG Name                vg_critical
-  LV UUID                4QLhl3-2cON-jRgQ-X4eT-93J4-6Ox9-GyRx3M
+  LV UUID                J3V0oE-cBYO-KyDe-5e0m-3f70-nv0S-kCWbpT
   LV Write Access        read/write
+  LV Creation host, time mirwiz, 2013-01-17 17:05:13 +0100
   LV Status              available
   # open                 0
-  LV Size                5.00 GB
+  LV Size                5.00 GiB
   Current LE             1280
   Segments               2
   Allocation             inherit
@@ -966,10 +1009,10 @@ ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a
 # </computeroutput><userinput>lvcreate -n lv_backups -L 12G vg_normal</userinput>
 <computeroutput>  Logical volume "lv_backups" created
 # </computeroutput><userinput>lvdisplay -C</userinput>
-<computeroutput>  LV         VG          Attr   LSize  Origin Snap%  Move Log Copy%  Convert
-  lv_base    vg_critical -wi-a-  1.00G
-  lv_files   vg_critical -wi-a-  5.00G
-  lv_backups vg_normal   -wi-a- 12.00G</computeroutput>
+<computeroutput>  LV         VG          Attr     LSize  Pool Origin Data%  Move Log Copy%  Convert
+  lv_base    vg_critical -wi-a---  1.00g                                           
+  lv_files   vg_critical -wi-a---  5.00g                                           
+  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>
 </screen>
 
 	<para>Two parameters are required when creating logical volumes;
@@ -1017,14 +1060,15 @@ ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a
 
         <screen><computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>
 <computeroutput>total 0
-crw-rw---- 1 root root  10, 59  5 oct.  17:40 control
-lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_critical-lv_base -&gt; ../dm-1
-lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_critical-lv_files -&gt; ../dm-0
-lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_normal-lv_backups -&gt; ../dm-2
+crw------T 1 root root 10, 236 Jan 17 16:52 control
+lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_critical-lv_base -&gt; ../dm-1
+lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_critical-lv_files -&gt; ../dm-0
+lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_normal-lv_backups -&gt; ../dm-2
 # </computeroutput><userinput>ls -l /dev/dm-*</userinput>
-<computeroutput>brw-rw---- 1 root disk 253,  0  5 oct.  18:14 /dev/dm-0
-brw-rw---- 1 root disk 253,  1  5 oct.  18:14 /dev/dm-1
-brw-rw---- 1 root disk 253,  2  5 oct.  18:14 /dev/dm-2</computeroutput>
+<computeroutput>brw-rw---T 1 root disk 253, 0 Jan 17 17:05 /dev/dm-0
+brw-rw---T 1 root disk 253, 1 Jan 17 17:05 /dev/dm-1
+brw-rw---T 1 root disk 253, 2 Jan 17 17:05 /dev/dm-2
+</computeroutput>
 </screen>
 
         <sidebar>
@@ -1050,30 +1094,29 @@ brw-rw---- 1 root disk 253,  2  5 oct.  18:14 /dev/dm-2</computeroutput>
 
         <screen><computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>
 <computeroutput>total 0
-lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_base -&gt; ../dm-1
-lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_files -&gt; ../dm-0
+lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_base -&gt; ../dm-1
+lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_files -&gt; ../dm-0
 # </computeroutput><userinput>ls -l /dev/vg_normal</userinput>
 <computeroutput>total 0
-lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_backups -&gt; ../dm-2</computeroutput>
+lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_backups -&gt; ../dm-2</computeroutput>
 </screen>
 
 	<para>The LVs can then be used exactly like standard
 	partitions:</para>
 
         <screen><computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>
-<computeroutput>mke2fs 1.41.12 (17-May-2010)
+<computeroutput>mke2fs 1.42.5 (29-Jul-2012)
 Filesystem label=
 OS type: Linux
 Block size=4096 (log=2)
 [...]
-This filesystem will be automatically checked every 34 mounts or
-180 days, whichever comes first.  Use tune2fs -c or -i to override.
+Creating journal (32768 blocks): done
+Writing superblocks and filesystem accounting information: done 
 # </computeroutput><userinput>mkdir /srv/backups</userinput>
 <computeroutput># </computeroutput><userinput>mount /dev/vg_normal/lv_backups /srv/backups</userinput>
 <computeroutput># </computeroutput><userinput>df -h /srv/backups</userinput>
-<computeroutput>Filesystem            Size  Used Avail Use% Mounted on
-/dev/mapper/vg_normal-lv_backups
-                       12G  159M   12G   2% /srv/backups
+<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on
+/dev/mapper/vg_normal-lv_backups   12G  158M   12G   2% /srv/backups
 # </computeroutput><userinput>[...]</userinput>
 <computeroutput>[...]
 # </computeroutput><userinput>cat /etc/fstab</userinput>
@@ -1103,32 +1146,30 @@ This filesystem will be automatically checked every 34 mounts or
 	accordingly:</para>
 
         <screen><computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>
-<computeroutput>Filesystem            Size  Used Avail Use% Mounted on
-/dev/mapper/vg_critical-lv_files
-                      5.0G  4.6G  142M  98% /srv/files
+<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on
+/dev/mapper/vg_critical-lv_files  5.0G  4.6G  146M  97% /srv/files
 # </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>
-<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert
-  lv_files vg_critical -wi-ao 5.00g
+<computeroutput>  LV       VG          Attr     LSize Pool Origin Data%  Move Log Copy%  Convert
+  lv_files vg_critical -wi-ao-- 5.00g
 # </computeroutput><userinput>vgdisplay -C vg_critical</userinput>
 <computeroutput>  VG          #PV #LV #SN Attr   VSize VFree
-  vg_critical   2   2   0 wz--n- 8.14g 2.14g
+  vg_critical   2   2   0 wz--n- 8.09g 2.09g
 # </computeroutput><userinput>lvresize -L 7G vg_critical/lv_files</userinput>
 <computeroutput>  Extending logical volume lv_files to 7.00 GB
   Logical volume lv_files successfully resized
 # </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>
-<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert
-  lv_files vg_critique -wi-ao 7.00g
+<computeroutput>  LV       VG          Attr     LSize Pool Origin Data%  Move Log Copy%  Convert
+  lv_files vg_critical -wi-ao-- 7.00g
 # </computeroutput><userinput>resize2fs /dev/vg_critical/lv_files</userinput>
-<computeroutput>resize2fs 1.41.12 (17-May-2010)
+<computeroutput>resize2fs 1.42.5 (29-Jul-2012)
 Filesystem at /dev/vg_critical/lv_files is mounted on /srv/files; on-line resizing required
-old desc_blocks = 1, new_desc_blocks = 1
+old_desc_blocks = 1, new_desc_blocks = 1
 Performing an on-line resize of /dev/vg_critical/lv_files to 1835008 (4k) blocks.
 The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.
 
 # </computeroutput><userinput>df -h /srv/files/</userinput>
-<computeroutput>Filesystem            Size  Used Avail Use% Mounted on
-/dev/mapper/vg_critical-lv_files
-                      6.9G  4.6G  2.1G  70% /srv/files</computeroutput>
+<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on
+/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% /srv/files</computeroutput>
 </screen>
 
         <sidebar role="important">
@@ -1157,12 +1198,11 @@ The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.
 	limit:</para>
 
         <screen><computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>
-<computeroutput>Filesystem            Size  Used Avail Use% Mounted on
-/dev/mapper/vg_critical-lv_base
-                     1008M  835M  123M  88% /srv/base
+<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on
+/dev/mapper/vg_critical-lv_base 1008M  854M  104M  90% /srv/base
 # </computeroutput><userinput>vgdisplay -C vg_critical</userinput>
-<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree
-  vg_critical   2   2   0 wz--n- 8.14g 144.00m</computeroutput>
+<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree 
+  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>
 </screen>
 
 	<para>No matter, since LVM allows adding physical volumes to
@@ -1178,7 +1218,8 @@ The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.
 	logical volume then the filesystem:</para>
 
         <screen><computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>
-<computeroutput>  Physical volume "/dev/sdb1" successfully created
+<computeroutput>  Writing physical volume data to disk "/dev/sdb1"
+  Physical volume "/dev/sdb1" successfully created
 # </computeroutput><userinput>vgextend vg_critical /dev/sdb1</userinput>
 <computeroutput>  Volume group "vg_critical" successfully extended
 # </computeroutput><userinput>vgdisplay -C vg_critical</userinput>
@@ -1187,9 +1228,8 @@ The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.
 # </computeroutput><userinput>[...]</userinput>
 <computeroutput>[...]
 # </computeroutput><userinput>df -h /srv/base/</userinput>
-<computeroutput>Filesystem            Size  Used Avail Use% Mounted on
-/dev/mapper/vg_critical-lv_base
-                      2.0G  835M  1.1G  44% /srv/base</computeroutput>
+<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on
+/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% /srv/base</computeroutput>
 </screen>
 
         <sidebar role="fil">
@@ -1229,14 +1269,15 @@ The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.
       volumes are made independent of the physical layout of the disks,
       RAID doesn't help much and LVM will be the natural choice.</para>
 
-      <para>The third notable use case is when one just wants to aggregate
-      two disks into one volume, either for performance reasons or to have
-      a single filesystem that is larger than any of the available disks.
-      This case can be addressed both by a RAID-0 (or even linear-RAID) and
-      by an LVM volume. When in this situation, and barring extra
-      constraints (keeping in line with the rest of the computers if they
-      only use RAID), the configuration of choice will often be LVM. The
-      initial set up is slightly more complex, but that slight increase in
+      <para>The third notable use case is when one just wants to
+      aggregate two disks into one volume, either for performance
+      reasons or to have a single filesystem that is larger than any
+      of the available disks.  This case can be addressed both by a
+      RAID-0 (or even linear-RAID) and by an LVM volume. When in this
+      situation, and barring extra constraints (for instance, keeping
+      in line with the rest of the computers if they only use RAID),
+      the configuration of choice will often be LVM. The initial set
+      up is barely more complex, and that slight increase in
       complexity more than makes up for the extra flexibility that LVM
       brings if the requirements change or if new disks need to be
       added.</para>
