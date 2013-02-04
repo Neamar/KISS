@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:34\n"
-"PO-Revision-Date: 2012-12-19 03:32+0200\n"
+"PO-Revision-Date: 2013-02-04 16:57+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/05_packaging-system/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 1.4-dev\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -550,7 +550,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>meta-package</primary>"
-msgstr "<primary>meta-package</primary>"
+msgstr "<primary>meta-pacote</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -570,8 +570,8 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, a more demanding <literal>Depends</literal>"
 msgstr ""
-"<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, a more "
-"demanding <literal>Depends</literal>"
+"<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, um "
+"<literal>Depends</literal> mais exigente"
 
 #. Tag: indexterm
 #, no-c-format
@@ -994,296 +994,498 @@ msgstr "<secondary>substituição</secondary> de <primary>pacote</primary>"
 #, no-c-format
 msgid "The <literal>Replaces</literal> field indicates that the package contains files that are also present in another package, but that the package is legitimately entitled to replace them. Without this specification, <command>dpkg</command> fails, stating that it can not overwrite the files of another package (in fact, it is possible to force it to do so with the <literal>--force-overwrite</literal> option). This allows identification of potential problems and requires the maintainer to study the matter prior to choosing whether to add such a field."
 msgstr ""
+"O campo <literal>Replaces</literal> indica que o pacote contém arquivos que "
+"tam\\\n"
+"bém estão presentes em outros pacotes, mas que o pacote foi designado "
+"legitimam\\\n"
+"ente para substituí-los. Sem esta especificação, o <command>dpkg</command> "
+"falh\\\n"
+"a, dizendo que não pode sobreescrever arquivos de outro pacote (na verdade, "
+"é p\\\n"
+"ossível força-lo a tal com a opção <literal>--force-overwrite</literal>). "
+"Isto \\\n"
+"permite a identificação de problemas potenciais e requer que o mantenedor "
+"estud\\\n"
+"e o assunto antes de escolher se adiciona tal campo.\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The use of this field is justified when package names change or when a package is included in another. This also happens when the maintainer decides to distribute files differently among various binary packages produced from the same source package: a replaced file no longer belongs to the old package, but only to the new one."
 msgstr ""
+"O uso deste campo é justificado quando os nomes dos pacotes mudam ou quando "
+"um pacote é incluído em outro. Também acontece quando o mantenedor decide "
+"distribuir arquivos diferentes entre vários pacotes binários produzidos a "
+"partir do mesmo fonte: um arquivo substituído não pertence mais ao pacote "
+"antigo, mas apenas ao novo."
 
 #. Tag: para
 #, no-c-format
 msgid "If all of the files in an installed package have been replaced, the package is considered to be removed. Finally, this field also encourages <command>dpkg</command> to remove the replaced package where there is a conflict."
 msgstr ""
+"Se todos os arquivos num pacote instalado foram substituídos, o pacote é "
+"considerado \"a ser removido\". Finalmente, este campo também encoraja o "
+"<command>dpkg</command> a remover o pacote substituido onde existir "
+"conflito."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> The <literal>Tag</literal> field"
-msgstr ""
+msgstr "<emphasis>INDO ALÉM</emphasis> O campo <literal>Tag</literal>"
 
 #. Tag: para
 #, no-c-format
 msgid "In the <emphasis role=\"pkg\">apt</emphasis> example above, we can see the presence of a field that we have not yet described, the <literal>Tag</literal> field. This field does not describe a relationship between packages, but is simply a way of categorizing a package in a thematic taxonomy. This classification of packages according to several criteria (type of interface, programming language, domain of application, etc.) is a recent development in Debian. For this purpose, it is not yet integrated in all of its tools; <command>aptitude</command> displays these tags, and allows them to be used as search criteria. For those who are repelled by <command>aptitude</command>'s search criteria, the following site allows navigation of the tag database:<ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
 msgstr ""
+"No exemplo do <emphasis role=\"pkg\">apt</emphasis> acima, vimos um campo que "
+"ainda não descrevemos, O campo <literal>Tag</literal> (\"etiqueta\"). Este "
+"campo não descreve uma relação entre pacotes, é simplesmente uma forma de "
+"categorizar um pacote numa taxonomia temática. Esta classificação de pacote "
+"de acordo com vários critérios (tipo de interface, linguagem de programação, "
+"domínio de aplicação, etc.) é um desenvolvimento recente no Debian. Por "
+"este motivo, ainda não está integrado em todas as ferramentas; o "
+"<command>aptitude</command> mostra estas tags, e permite que elas sejam "
+"usadas como critério de busca. Para os que fogem dos critérios de busca do "
+"<command>aptitude</command>, os seguinte sítio permite navegação no banco de "
+"dados de tags:<ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" "
+"/>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuration Scripts"
-msgstr ""
+msgstr "Scripts de Configuração"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>postinst</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>postinst</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>preinst</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>preinst</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>postrm</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>postrm</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>prerm</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>prerm</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>control.tar.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>control.tar.gz</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition to the <filename>control</filename> file, the <filename>control.tar.gz</filename> archive for each Debian package may contain a number of scripts, called by <command>dpkg</command> at different stages in the processing of a package. The Debian Policy describes the possible cases in detail, specifying the scripts called and the arguments that they receive. These sequences may be complicated, since if one of the scripts fails, <command>dpkg</command> will try to return to a satisfactory state by canceling the installation or removal in progress (insofar as it is possible)."
 msgstr ""
+"Além do arquivo <filename>control</filename>, o arquivamento "
+"<filename>control.tar.gz</filename> para cada pacote Debian pode conter "
+"vários scripts, chamados pelo <command>dpkg</command> em diferentes estágios "
+"do processamento de um pacote. A política Debian descreve os possíveis  "
+"casos em detalhes, especificando os scripts e os argumentos que eles "
+"recebem. Estas sequências podem se complicadas, já que se um dos scripts "
+"falha, o <command>dpkg</command> vai tentar retornar a um estado "
+"satisfatório cancelando a instalação ou a remoção em andamento (na medida do "
+"possível)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command> data directory"
 msgstr ""
+"<emphasis>INDO ALÉM</emphasis> diretório de dados do <command>dpkg</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/var/lib/dpkg/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/var/lib/dpkg/</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All of the configuration scripts for installed packages are stored in the <filename>/var/lib/dpkg/info/</filename> directory, in the form of a file prefixed with the package's name. This directory also includes a file with the <filename>.list</filename> extension for each package, containing the list of files that belong to that package."
 msgstr ""
+"Todos os scripts de configuração para pacotes instalados são armazenados no "
+"diretório <filename>/var/lib/dpkg/info/</filename>, na forma de um arquivo "
+"prefixado com o nome do pacote. Este diretório também inclui um arquivo com "
+"a extensão <filename>.list</filename> para cada pacote, contendo a lista de "
+"arquivos que pertencem a este pacote."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/var/lib/dpkg/status</filename> file contains a series of data blocks (in the format of the famous mail headers, RFC 2822) describing the status of each package. The information from the <filename>control</filename> file of the installed packages is also replicated there."
 msgstr ""
+"O arquivo <filename>/var/lib/dpkg/status</filename> contém uma série de "
+"blocos de dados (no formato dos famosos mail headers, RFC 2822) descrevendo "
+"o status de cada pacote. A informação do arquivo "
+"<filename>control</filename> dos pacotes instalados é duplicada aqui."
 
 #. Tag: para
 #, no-c-format
 msgid "In general, the <filename>preinst</filename> script is executed prior to installation of the package, while the <filename>postinst</filename> follows it. Likewise, <filename>prerm</filename> is invoked before removal of a package and <filename>postrm</filename> afterwards. An update of a package is equivalent to removal of the previous version and installation of the new one. It is not possible to describe in detail all the possible scenarios here, but we will discuss the most common two: an installation/update and a removal."
 msgstr ""
+"Em geral, o script <filename>preinst</filename> é executado antes da "
+"instalação do pacote, enquanto que o <filename>postinst</filename> é logo "
+"depois. Da mesma forma, o <filename>prerm</filename> é chamado antes da "
+"remoção de um pacote e o <filename>postrm</filename> depois. Uma atualização "
+"de um pacote é equivalente à remoção da versão anterior e a instalação do "
+"novo. Não é possível descrever em detalhes todos os cenários possíveis aqui, "
+"mas vamos discutir os dois mais comuns: uma instalação/atualização e uma "
+"remoção."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Symbolic names of the scripts"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> nomes simbólicos dos scripts"
 
 #. Tag: para
 #, no-c-format
 msgid "The sequences described in this section call configuration scripts by specific names, such as <command>old-prerm</command> or <command>new-postinst</command>. They are, respectively, the <command>prerm</command> script contained in the old version of the package (installed before the update) and the <command>postinst</command> script contained in the new version (installed by the update)."
 msgstr ""
+"As sequências descritas nesta seção chamam scripts de configuração por nomes "
+"específicos, como <command>old-prerm</command> ou <command>new-"
+"postinst</command>. Eles são, respectivamente, o script "
+"<command>prerm</command> contido na versão antiga do pacote (instalado antes "
+"da atualização) e o script <command>postinst</command> contido na nova "
+"versão (instalado pela atualização)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> State diagrams"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Diagramas de estado"
 
 #. Tag: para
 #, no-c-format
 msgid "Manoj Srivastava made these diagrams explaining how the configuration scripts are called by <command>dpkg</command>. Similar diagrams have also been developed by the Debian Women project; they are a bit simpler to understand, but less complete. <ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
 msgstr ""
+"Manoj Srivastava fez estes diagramas explicando como os scripts de "
+"configuração são chamados pelo <command>dpkg</command>. Diagramas similares "
+"também foram desenvolvidos pelo Projeto Debian Women; Eles são um pouco mais "
+"simples de entender, mas menos completos. <ulink type=\"block\" "
+"url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink "
+"type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Installation and Upgrade"
-msgstr ""
+msgstr "Instalação e upgrade (atualização)"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is what happens during an installation (or an update):"
-msgstr ""
+msgstr "Aqui está o que acontece durante uma instalação (ou uma atualização):"
 
 #. Tag: para
 #, no-c-format
 msgid "For an update, <command>dpkg</command> calls the <command>old-prerm upgrade <replaceable>new-version</replaceable></command>."
 msgstr ""
+"Para uma atualização (\"update\"), o <command>dpkg</command> chama o <command"
+">old-prerm upgrade <replaceable>new-version</replaceable></command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Still for an update, <command>dpkg</command> then executes <command>new-preinst upgrade <replaceable>old-version</replaceable></command>; for a first installation, it executes <command>new-preinst install</command>. It may add the old version in the last parameter, if the package has already been installed and removed since (but not purged, the configuration files having been retained)."
 msgstr ""
+"Ainda para uma atualização, o <command>dpkg</command> então executa <command"
+">new-preinst upgrade <replaceable>old-version</replaceable></command>; para "
+"uma primeira instalação, ele executa <command>new-preinst install</command>. "
+"Ele pode adicionar a versão antiga no último parâmetro, se o pacote já foi "
+"instalado e removido \"since\" (mas não \"purged\", os arquivos de configuração "
+"foram \"retained\")."
 
 #. Tag: para
 #, no-c-format
 msgid "The new package files are then unpacked. If a file already exists, it is replaced, but a backup copy is temporarily made."
 msgstr ""
+"Os arquivos do novo pacote são então desempacotados, se algum arquivo já "
+"existe, ele é substituído, mas uma cópia de backup é temporariamente feita."
 
 #. Tag: para
 #, no-c-format
 msgid "For an update, <command>dpkg</command> executes <command>old-postrm upgrade <replaceable>new-version</replaceable></command>."
 msgstr ""
+"Para uma atualização, o <command>dpkg</command> executa <command>old-postrm "
+"upgrade <replaceable>new-version</replaceable></command>."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> updates all of the internal data (file list, configuration scripts, etc.) and removes the backups of the replaced files. This is the point of no return: <command>dpkg</command> no longer has access to all of the elements necessary to return to the previous state."
 msgstr ""
+"<command>dpkg</command> atualiza todos os dados internos (lista de arquivos, "
+"scripts de configuração, etc.) e remove os backups dos arquivos "
+"substituídos. Este é o ponto sem volta: o <command>dpkg</command> não tem "
+"mais acesso a todos os elementos necessários para retornar ao estado "
+"anterior."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> will update the configuration files, asking the user to decide if it is unable to automatically manage this task. The details of this procedure are discussed in <xref linkend=\"section.conffiles\" />."
 msgstr ""
+"O <command>dpkg</command> vai atualizar os arquivos de configuração, pedindo "
+"ao usuário para decidir se ele não for capaz de decidir tudo sozinho. Os "
+"detalhes deste procedimento são discutidos em <xref "
+"linkend=\"section.conffiles\" />."
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, <command>dpkg</command> configures the package by executing <command>new-postinst configure <replaceable>last-version-configured</replaceable></command>."
 msgstr ""
+"Finalmente, o <command>dpkg</command> configura o pacote executando <command"
+">new-postinst configure <replaceable>last-version-"
+"configured</replaceable></command>."
 
 #. Tag: title
 #, no-c-format
 msgid "Package Removal"
-msgstr ""
+msgstr "Remoção de pacote"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is what happens during a package removal:"
-msgstr ""
+msgstr "Aqui temos o que acontece durante uma remoção de pacote:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> calls <command>prerm remove</command>."
-msgstr ""
+msgstr "o <command>dpkg</command> chama <command>prerm remove</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> removes all of the package's files, with the exception of the configuration files and configuration scripts."
 msgstr ""
+"O <command>dpkg</command> remove todos os arquivos do pacote, exceto os "
+"arquivos de configuração e os scripts de configuração."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> executes <command>postrm remove</command>. All of the configuration scripts, except <filename>postrm</filename>, are removed. If the user has not used the “purge” option, the operations are completed there."
 msgstr ""
+"O <command>dpkg</command> executa <command>postrm remove</command>. Todos os "
+"scripts de configuração, exceto <filename>postrm</filename>, são removidos. "
+"Se o usuário não usou a opção “purge\", as operações terminam aqui."
 
 #. Tag: para
 #, no-c-format
 msgid "For a complete purge of the package (command issued with <command>dpkg --purge</command> or <command>dpkg -P</command>), the configuration files are also deleted, as well as a certain number of copies (<filename>*.dpkg-tmp</filename>, <filename>*.dpkg-old</filename>, <filename>*.dpkg-new</filename>) and temporary files; <command>dpkg</command> then executes <command>postrm purge</command>."
 msgstr ""
+"Para um purge completo do pacote (comando lançado com <command>dpkg "
+"--purge</command> ou <command>dpkg -P</command>), os arquivos de "
+"configuração são também apagados, assim como uma certa quantidade de cópias "
+"(<filename>*.dpkg-tmp</filename>, <filename>*.dpkg-old</filename>, <filename"
+">*.dpkg-new</filename>) e arquivos temporários; então o "
+"<command>dpkg</command> executa um <command>postrm purge</command>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg</command>, internal operation</primary>"
-msgstr ""
+msgstr "<primary><command>dpkg</command>, operação interna</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>config</filename>, <filename>debconf</filename> script</primary>"
 msgstr ""
+"<primary><filename>config</filename>, script "
+"<filename>debconf</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Purge, complete removal"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> Purge, remoção completa"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>purge of a package</primary>"
-msgstr ""
+msgstr "<primary>\"purge\" de um pacote</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When a Debian package is removed, the configuration files are retained in order to facilitate possible re-installation. Likewise, the data generated by a daemon (such as the content of an LDAP server directory, or the content of a database for an SQL server) are usually retained."
 msgstr ""
+"Quando um pacote Debian é removido, os arquivos de configuração são mantidos "
+"para facilitar uma possível reinstalação. Do mesmo modo, dados gerados por "
+"um serviço (como o conteúdo de um servidor de diretórios LDAP ou o banco de "
+"dados de um servidor SQL) são normalmente mantidos."
 
 #. Tag: para
 #, no-c-format
 msgid "To remove all data associated with a package, it is necessary to “purge” the package with the command, <command>dpkg -P <replaceable>package</replaceable></command>, <command>apt-get remove --purge <replaceable>package</replaceable></command> or <command>aptitude purge <replaceable>package</replaceable></command>."
 msgstr ""
+"Para remover todos os dados associados a um pacote, é necessário fazer "
+"“purge” no pacote com o comando, <command>dpkg -P "
+"<replaceable>pacote</replaceable></command>, <command>apt-get remove --purge "
+"<replaceable>pacote</replaceable></command> ou <command>aptitude purge "
+"<replaceable>pacote</replaceable></command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Given the definitive nature of such data removal, purge should not be taken lightly."
 msgstr ""
+"Dada a natureza definitiva de tal remoção de dados, o 'purge' não deve ser "
+"tratado de forma leviana."
 
 #. Tag: para
 #, no-c-format
 msgid "The four scripts detailed below are complemented by a <filename>config</filename> script, provided by packages using <command>debconf</command> to acquire information from the user for configuration. During installation, this script defines in detail the questions asked by <command>debconf</command>. The responses are recorded in the <command>debconf</command> database for future reference. The script is generally executed by <command>apt</command> prior to installing packages one by one in order to group all the questions and ask them all to the user at the beginning of the process. The pre- and post-installation scripts can then use this information to operate according to the user's wishes."
 msgstr ""
+"Os quatro scripts detalhados abaixo são complementados por um script "
+"<filename>config</filename>, fornecido por pacotes usando "
+"<command>debconf</command> para adquirir informações do usuário para a "
+"configuração. Durante a instalação, este script define em detalhes as "
+"perguntas feitas pelo <command>debconf</command>. As respostas são gravadas "
+"no banco de dados do <command>debconf</command> para futura referência. O "
+"script é geralmente executado pelo <command>apt</command> antes de instalar "
+"pacotes, um a um para agrupar todas as perguntas e fazê-las todas ao usuário "
+"no começo do processo. Os scripts de pre- e pos-instalação podem então usar "
+"esta informação para operar de acordo com o que o usuário espera."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> <command>debconf</command>"
-msgstr ""
+msgstr "<emphasis>FERRAMENTA</emphasis> <command>debconf</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debconf</command></primary>"
-msgstr ""
+msgstr "<primary><command>debconf</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debconf</command> was created to resolve a recurring problem in Debian. All Debian packages unable to function without a minimum of configuration used to ask questions with calls to the <command>echo</command> and <command>read</command> commands in shell scripts such as <filename>postinst</filename> and similar scripts. But this also means that during a large installation or update the user must stay with their computer to respond to various questions that may arise at any time. These manual interactions have now been almost entirely dispensed with, thanks to the <command>debconf</command> tool."
 msgstr ""
+"O <command>debconf</command> foi criado para resolver um problema recorrente "
+"no Debian. Todos os pacotes Debian que não funcionavam sem um mínimo de "
+"configuração costumavam fazer perguntas através de chamadas aos comandos "
+"<command>echo</command> e <command>read</command> em scripts shell como o "
+"<filename>postinst</filename> ou similares. Mas acontecia que durante uma "
+"grande instalação ou atualização, o usuário tinha que ficar junto ao "
+"computador para responder a várias perguntas que apareciam a qualquer "
+"momento. Estas interações manuais agora voram quase que completamente "
+"dispensadas, graças à ferramenta <command>debconf</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debconf</command> has many interesting features: it requires the developer to specify user interaction; it allows localization of various strings of characters posted (all translations are stored in the <filename>templates</filename> file describing the interactions); it has different display models for presenting the questions to the user (text mode, graphical mode, non-interactive); and it allows creation of a central database of responses to share the same configuration with several computers... but the most important is that it is now possible to present all of the questions in a block to the user prior to starting a long installation or update process. The user can go about their business while the system handles the installation on its own, without having to stay there staring at the screen waiting for questions."
 msgstr ""
+"O <command>debconf</command> tem muitas funcionalidades interessantes: ele "
+"pede que o desenvolvedor especifique a interação com o usuário; Ele permite "
+"localização de várias strings de caracteres postadas (todas as traduções são "
+"guardadas no arquivo <filename>templates</filename> descrevendo as "
+"interações); tem modelos de visualização diferentes para apresentar as "
+"perguntas ao usuário (modo texto, modo gráfico, não-interativo); e permite "
+"criação de um banco de dados central de respostas para compartilhar a mesma "
+"configuração com vários computadores... mas o mais importante é que agora é "
+"possível aprensentar todas as perguntas num bloco para o usuário antes de "
+"começar uma longa instalação ou atualização. O usuário pode fazer outras "
+"coisas enquanto o sistema cuida da instalação sozinho, sem ter que ficar "
+"olhando para um tela a espera da próxima pergunta."
 
 #. Tag: title
 #, no-c-format
 msgid "Checksums, List of Configuration Files"
-msgstr ""
+msgstr "Checksums, Lista de arquivos de configuração"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>md5sums</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>md5sums</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>conffiles</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>conffiles</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>files</primary><secondary>configuration files</secondary>"
-msgstr ""
+msgstr "<primary>files</primary><secondary>arquivos de configuração</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>files</secondary>"
-msgstr ""
+msgstr "<secondary>arquivos</secondary> de <primary>configuração</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition to the configuration files mentioned in the previous sections, the <filename>control.tar.gz</filename> file in a Debian package contains others. The first, <filename>md5sums</filename>, contains the list of digital fingerprints for all of the package's files. Its main advantage is that it allows a tool such as <command>debsums</command> (which we will study in <xref linkend=\"section.debsums\" />) to check if these files have been modified since their installation."
 msgstr ""
+"além dos arquivos de configuração mencionados nas seções anteriores, o "
+"arquivo <filename>control.tar.gz</filename> contém outros arquivos. O "
+"primeiro, <filename>md5sums</filename>, contém a lista de impressões "
+"digitais (fingerprints) digitais de todos os pacotes Debian. Sua principal "
+"vantagem é que permite que uma ferramenta como o <command>debsums</command> "
+"(que vamos estudar em <xref linkend=\"section.debsums\" />) verifique se estes "
+"arquivos foram modificados desde a instalação deles."
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>conffiles</filename> lists package files that must be handled as configuration files. This involves a special handling, since configuration files can be modified by the administrator, and the changes are usually preserved during a package update."
 msgstr ""
+"<filename>conffiles</filename> lista arquivos de pacotes que devem ser "
+"manipulados como arquivos de configuração. Isto envolve um cuidado especial, "
+"já que arquivos de configuração podem ser modificados pelo administrador, e "
+"as mudanças são normalmente preservadas durante a atualização do pacote."
 
 #. Tag: para
 #, no-c-format
 msgid "In effect, in this situation, <command>dpkg</command> behaves as intelligently as possible: if the standard configuration file has not changed between the two versions, it does nothing. If, however, the file has changed, it will try to update this file. Two cases are possible: either the administrator has not touched this configuration file, in which case <command>dpkg</command> automatically installs the new version; or the file has been modified, in which case <command>dpkg</command> asks the administrator which version they wish to use (the old one with modifications, or the new one provided with the package). To assist in making this decision, <command>dpkg</command> offers to display a “<command>diff</command>” that shows the difference between the two versions. If the user chooses to retain the old version, the new one will be stored in the same location in a file with the <filename>.dpkg-dist</filename> suffix. If the user chooses the new version, the old one is retained in a file with the <filename>.dpkg-old</filename> suffix. Another available action consists of momentarily interrupting <command>dpkg</command> to edit the file and attempt to re-instate the relevant modifications (previously identified with <command>diff</command>)."
 msgstr ""
+"Com efeito, nesta situação, o <command>dpkg</command> se comporta o mais "
+"inteligente possível: se o arquivo de configuração padrão não mudou entre "
+"duas versões, ele não faz nada. Se, entretanto, o arquivo mudou, ele vai "
+"tentar atualizar o arquivo. Dos casos são possíveis: ou o administrador não "
+"tocou neste arquivo de configuração, e neste caso o  <command>dpkg</command> "
+"automaticamente instala a nova versão; ou o arquivo foi modificado, e neste "
+"caso o <command>dpkg</command> pergunta ao administrador qual versão ele "
+"quer usar (a antiga com modificações ou a nova que o pacote fornece). Para "
+"auxiliar nesta decisão, o <command>dpkg</command> se oferece para mostrar um "
+"“<command>diff</command>” que mostra a diferença entre as duas versões. Se "
+"o usuário escolhe manter a versão antiga, a nova vai ser armazenada na mesma "
+"localização em um arquivo com o sufixo <filename>.dpkg-dist</filename>. Se "
+"o usuário escolhe a nova versão, a antiga é mentida num arquivo com o sufixo "
+"<filename>.dpkg-old</filename>. Outra ação disponível consiste em "
+"interromper momentaneamente o <command>dpkg</command> para editar o arquivo "
+"e tentar reinstalar as modificações relevantes (previamente identificadas "
+"com o <command>diff</command>)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Avoiding the configuration file questions"
 msgstr ""
+"<emphasis>INDO ALÉM</emphasis> Evitando as perguntas do arquivo de "
+"configuração"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> handles configuration file updates, but regularly interrupts these operations to ask for input from the administrator. This makes it less than enjoyable for those who wish to run updates in a non-interactive manner. This is why this program offers options that allow the system to respond automatically according to the same logic: <command>--force-confold</command> retains the old version of the file; <command>--force-confnew</command> will use the new version of the file (these choices are respected, even if the file has not been changed by the administrator, which only rarely has the desired effect). Adding the <command>--force-confdef</command> option tells <command>dpkg</command> to use the default option when a choice is offered (in other words, when the original configuration file has not been touched), and only uses <command>--force-confnew</command> or <command>--force-confold</command> for other cases."
 msgstr ""
+"O <command>dpkg</command> cuida de atualizações de arquivos de configuração, "
+"mas regularmente interrompe estas operações para pedir uma entrada do "
+"administrador. Isto não é agradável para aqueles que desejam executar "
+"atualizações de uma forma não-iterativa. É por isto que este programa "
+"oferece opções para o sistema responder automaticamente de acordo com a "
+"mesma lógica: <command>--force-confold</command> retém a versão antiga do "
+"arquivo; <command>--force-confnew</command> vai usar a nova versão do "
+"arquivo (estas escolhas são respeitadas, mesmo se o arquivo não tiver sido "
+"mudado pelo administrador, o que apenas raramente tem o efeito desejado). "
+"Adicionando a opção <command>--force-confdef</command> diz ao "
+"<command>dpkg</command> para usar a opção padrão quando uma escolha é "
+"apresentada (em outras palavras, quando o arquivo de configuração original "
+"não foi alterado), e apenas usa <command>--force-confnew</command> ou "
+"<command>--force-confold</command> para outros casos."
 
 #. Tag: para
 #, no-c-format
 msgid "These options apply to <command>dpkg</command>, but most of the time the administrator will work directly with the <command>aptitude</command> or <command>apt-get</command> programs. It is, thus, necessary to know the syntax used to indicate the options to pass to the <command>dpkg</command> command (their command line interfaces are very similar)."
 msgstr ""
+"Estas opções se aplicam ao <command>dpkg</command>, mas na maioria das vezes "
+"o administrador vai trabalhar diretamente com os programas "
+"<command>aptitude</command> ou <command>apt-get</command>. É, então, "
+"necessário saber a sintaxe usada para indicar as opções passadas ao comando "
+"<command>dpkg</command> (suas interfaces em linha de comando são muito "
+"similares)."
 
 #. Tag: screen
 #, no-c-format
@@ -1291,11 +1493,19 @@ msgid "\n"
 "<computeroutput># </computeroutput><userinput>apt-get -o DPkg::Options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
 ""
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get -o DPkg::Options"
+"::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-"
+"upgrade</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "These options can be stored directly in the configuration for the <command>apt</command> program, rather than specified them each time on the command line. To do so, simply write the following line in the <filename>/etc/apt/apt.conf.d/local</filename> file:"
 msgstr ""
+"Estas opções podem ser armazenadas diretamente na configuração para o "
+"programa <command>apt</command>, ao invés de especificá-las toda vez na "
+"linha de comandos. Para isto, simplesmente escreva a seguinte linha no "
+"arquivo <filename>/etc/apt/apt.conf.d/local</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1303,26 +1513,42 @@ msgid "\n"
 "DPkg::Options { \"--force-confdef\"; \"--force-confold\"; }\n"
 ""
 msgstr ""
+"\n"
+"DPkg::Options { \"--force-confdef\"; \"--force-confold\"; }\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Including this option in the configuration file will allow it to also be used in a graphical interface such as <command>aptitude</command>."
 msgstr ""
+"Ao incluir esta opção no arquivo de configuração faz com que ela possa ser "
+"usada também numa interface gráfica, como o <command>aptitude</command>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Force dpkg to ask configuration file questions"
 msgstr ""
+"<emphasis>INDO ALÉM</emphasis> Forçar o dpkg a perguntar sobre arquivos de "
+"configuração"
 
 #. Tag: para
 #, no-c-format
 msgid "The option, <command>--force-confask</command> requires <command>dpkg</command> to display the questions about the configuration files, even in cases where they would not normally be necessary. Thus, when reinstalling a package with this option, <command>dpkg</command> will ask the questions again for all of the configuration files modified by the administrator. This is very convenient, especially for reinstalling the original configuration file if it has been deleted and no other copy is available: a normal re-installation won't work, because <command>dpkg</command> considers removal as a form of legitimate modification, and, thus, doesn't install the desired configuration file."
 msgstr ""
+"A opção <command>--force-confask</command> pede ao <command>dpkg</command> "
+"para mostrar as perguntas sobre os arquivos de configuração, mesmo nos casos "
+"onde eles normalmente não são necessários. Portanto, quando estiver "
+"resinstalando um pacote com esta opção, o <command>dpkg</command> vai "
+"refazer as perguntas para todos os arquivos de configuração modificados pelo "
+"administrador. Isto é bastante conveniente, especialmente para reinstalar o "
+"arquivo de configuração original se este foi apagado e nenhuma outra cópia "
+"estiver disponível: uma re-instalação normal não vai funcionar, já que o "
+"<command>dpkg</command> considera a remoção uma forma de modificação "
+"legítima, e, portanto, não instala o arquivo de configuração desejado."
 
 #. Tag: title
 #, no-c-format
 msgid "Structure of a Source Package"
-msgstr ""
+msgstr "Estrutura de um Pacote Fonte"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1332,37 +1558,50 @@ msgstr "<primary>pacote</primary><secondary>pacote fonte</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>source (package)</primary>"
-msgstr ""
+msgstr "<primary>fonte (pacote)</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Format"
-msgstr ""
+msgstr "Formato"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DSC file</primary>"
-msgstr ""
+msgstr "<primary>arquivo DSC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>diff.gz</filename> file</primary>"
-msgstr ""
+msgstr "<primary>arquivo <filename>diff.gz</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A source package is usually comprised of three files, a <filename>.dsc</filename>, a <filename>.orig.tar.gz</filename>, and a <filename>.debian.tar.gz</filename> or <filename>.diff.gz</filename>. They allow creation of binary packages (<filename>.deb</filename> files described above) for the program(s) from their source code, written in a programming language."
 msgstr ""
+"Um pacote fonte é normalmente composto de três arquivos, um "
+"<filename>.dsc</filename>, um <filename>.orig.tar.gz</filename> e um "
+"<filename>.debian.tar.gz</filename> ou <filename>.diff.gz</filename>. Eles "
+"permitem a criação de pacotes binários (arquivos <filename>.deb</filename> "
+"descritos acima) para o(s) programa(s) a partir dos fontes, escrito numa "
+"linguagem de programação."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.dsc</filename> (Debian Source Control) file is a short text file containing an RFC 2822 header (just like the <filename>control</filename> file studied in <xref linkend=\"section.control\" />) which describes the source package and indicates which other files are part thereof. It is signed by its maintainer, which guarantees authenticity. See <xref linkend=\"sect.package-authentication\" /> for further details on this subject."
 msgstr ""
+"O arquivo <filename>.dsc</filename> (Debian Source Control) é um arquivo com "
+"um texto curto contendo um cabeçalho RFC 2822 (assim como o arquivo "
+"<filename>control</filename> estudado no <xref linkend=\"section.control\" />) "
+"que descreve o pacote fonte e indica quais outros arquivos são partes "
+"\"thereof\". É assinado pelo mantenedor, que garante autenticidade. Veja <xref "
+"linkend=\"sect.package-authentication\" /> para mais detalhes sobre o "
+"assunto."
 
 #. Tag: title
 #, no-c-format
 msgid "A <filename>.dsc</filename> file"
-msgstr ""
+msgstr "Um arquivo <filename>.dsc</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1406,26 +1645,80 @@ msgid "\n"
 "-----END PGP SIGNATURE-----\n"
 ""
 msgstr ""
+"\n"
+"-----BEGIN PGP SIGNED MESSAGE-----\n"
+"Hash: SHA256\n"
+"\n"
+"Format: 3.0 (quilt)\n"
+"Source: zim\n"
+"Binary: zim\n"
+"Architecture: all\n"
+"Version: 0.48-1\n"
+"Maintainer: Emfox Zhou &lt;emfox@debian.org&gt;\n"
+"Uploaders: Raphaël Hertzog &lt;hertzog@debian.org&gt;\n"
+"Homepage: http://zim-wiki.org\n"
+"Standards-Version: 3.9.0\n"
+"Vcs-Browser: http://svn.debian.org/wsvn/collab-maint/deb-"
+"maint/zim/trunk?op=log\n"
+"Vcs-Svn: svn://svn.debian.org/collab-maint/deb-maint/zim/trunk\n"
+"Build-Depends: debhelper (&gt;= 7.4.12), python-support (&gt;= 0.8), xdg-"
+"utils, python (&gt;= 2.5), libgtk2.0-0 (&gt;= 2.6), python-gtk2, python-xdg, "
+"python-simplejson | python (&gt;= 2.6)\n"
+"Checksums-Sha1: \n"
+" bd84fa5104de5ed85a49723d26b350856de93217 966899 zim_0.48.orig.tar.gz\n"
+" 352111ff372a20579664416c9abd4970839835b3 9615 zim_0.48-1.debian.tar.gz\n"
+"Checksums-Sha256: \n"
+" 77d8df7dc89b233fdc3aab1a8ad959c6888881ae160770f50bf880a56e02f895 966899 "
+"zim_0.48.orig.tar.gz\n"
+" 0fceab5d3b099075cd38c225fa4002d893c1cdf4bbcc51d1391a34248e1e1a22 9615 "
+"zim_0.48-1.debian.tar.gz\n"
+"Files: \n"
+" 88cfc18c0c7339528d5f5f463647bb5f 966899 zim_0.48.orig.tar.gz\n"
+" 608b6e74aa14252dfc6236ab184bdb0c 9615 zim_0.48-1.debian.tar.gz\n"
+"\n"
+"-----BEGIN PGP SIGNATURE-----\n"
+"Version: GnuPG v1.4.10 (GNU/Linux)\n"
+"Comment: Signed by Raphael Hertzog\n"
+"\n"
+"iQEcBAEBCAAGBQJMSUAfAAoJEAOIHavrwpq5qjUIAKmM8p86GcHYTxMmKENoBUoW\n"
+"UPi5R7DzrLMbFrUXKgXWLvEKQTXpmkJhh2aSWq2iY+5piBSHwMiITfaBTpdTRvzU\n"
+"5nT/n9MlF8sJFESet/NgZaMPFDzWUbIy5aYbuG1TXmn/7XiDrBaQGiVqKkVLPrqc\n"
+"yWhsotn3JNKIjbPDW/DjImYyKD5RZpXrbVjuIgDT1E6yxtNYwUyBlK0cx/GITNep\n"
+"uV48hsT8cj0paqVXl5+P9Ww8XIE3clxNpE/45/tvKvkqGOeysc6OPAqsIw6HYFY9\n"
+"0EnvMTfMpeQOA68ZqsNpUjomv5r/EGwdCbAWo5iJDsZzXQ1Feh6iSNrjv3yeRzg=\n"
+"=qnbh\n"
+"-----END PGP SIGNATURE-----\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Build-Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Build-Depends</literal>, campo de cabeçalho</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the source package also has dependencies (<literal>Build-Depends</literal>) completely distinct from those of binary packages, since they indicate tools required to compile the software in question and construct its binary package."
 msgstr ""
+"Observe que o pacote fonte também tem dependências (<literal>Build-"
+"Depends</literal>) completamente diferentes dos pacotes fonte, já que ele "
+"indicam ferramentas necessárias para a compilação do programa em questão e "
+"da construção do pacote binário."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Distinct namespaces"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> espaço de nomes distinto"
 
 #. Tag: para
 #, no-c-format
 msgid "It is important to note here that there is no strong correspondence between the name of the source package and that of the binary packages that they generate. It is easy enough to understand if you know that each source package may generate several binary packages. This is why the <filename>.dsc</filename> file has fields for <literal>Source</literal> and <literal>Binary</literal> to explicitly name the source package and store the list of binary packages that it generates."
 msgstr ""
+"É importante notar aqui que não existe correspondência forte entre o nome do "
+"pacote fonte e o dos pacotes binários que eles geram. Isto é fácil de "
+"perceber se você sabe que cada pacote fonte pode gerar vários pacotes "
+"binários. É por isso que o arquivo <filename>.dsc</filename> tem campos para "
+"o <literal>Source</literal> e o <literal>Binary</literal> para "
+"explicitamente nomear o pacote fonte e armazenar a lista de pacotes binários "
+"que ele gera."
 
 #. Tag: title
 #, no-c-format
