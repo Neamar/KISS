@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2012-12-18 23:38+0200\n"
+"PO-Revision-Date: 2013-01-19 21:39+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-"
 "handbook/14_security/es-ES/>\n"
@@ -19,82 +19,127 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Firewall"
-msgstr ""
+msgstr "Firewall"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Netfilter"
-msgstr ""
+msgstr "Netfilter"
 
 #. Tag: keyword
 #, no-c-format
 msgid "IDS/NIDS"
-msgstr ""
+msgstr "IDS/NIDS"
 
 #. Tag: title
 #, no-c-format
 msgid "Security"
-msgstr ""
+msgstr "Seguridad"
 
 #. Tag: para
 #, no-c-format
 msgid "An information system can have a varying level of importance depending on the environment. In some cases, it is vital to a company's survival. It must therefore be protected from various kinds of risks. The process of evaluating these risks, defining and implementing the protection is collectively known as the “security process”."
 msgstr ""
+"Un sistema de información puede tener un nivel variable de importancia "
+"dependiendo del entorno. En algunos casos es vital para la superviviencia de "
+"una empresa. Por lo tanto, debe ser protegido de los diversos tipos de "
+"riesgos. El proceso de evaluación de estos riesgos y la definición e "
+"implementación de la protección se conocen colectivamente como «procesos de "
+"seguridad»."
 
 #. Tag: title
 #, no-c-format
 msgid "Defining a Security Policy"
-msgstr ""
+msgstr "Definición de una normativa de seguridad"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Scope of this chapter"
-msgstr ""
+msgstr "<emphasis>PRECAUCIÓN</emphasis> Alcance de este capítulo"
 
 #. Tag: para
 #, no-c-format
 msgid "Security is a vast and very sensitive subject, so we cannot claim to describe it in any kind of comprehensive manner in the course of a single chapter. We will only delineate a few important points and describe some of the tools and methods that can be of use in the security domain. For further reading, literature abounds, and entire books have been devoted to the subject. An excellent starting point would be <citetitle>Linux Server Security</citetitle> by Michael D. Bauer (published by O'Reilly)."
 msgstr ""
+"La seguridad es un tema muy amplio y muy sensible por lo que no podemos "
+"pretender describirlo de cualquier forma exhaustiva en el curso de un solo "
+"capítulo. Sólo delinearemos algunos puntos importantes y describiremos "
+"algunas de las herramientas y métodos que pueden ser de utilidad en el "
+"ámbito de la seguridad. Para leer más, la literatura abunda y libros entero "
+"se dedicaron al tema. Un excelente punto de partida sería <citetitle>Linux "
+"Server Security</citetitle> por Michael D. Bauer (publicado por O'Reilly)."
 
 #. Tag: para
 #, no-c-format
 msgid "The word “security” itself covers a vast range of concepts, tools and procedures, none of which apply universally. Choosing among them requires a precise idea of what your goals are. Securing a system starts with answering a few questions. Rushing headlong into implementing an arbitrary set of tools runs the risk of focusing on the wrong aspects of security."
 msgstr ""
+"La palabra «seguridad» en sí misma cubre un amplio rango de conceptos, "
+"herramientas y procedimientos, ninguno de los cuales es universal. "
+"Seleccionar entre ellos requiere una idea precisa de sus metas. Asegurar un "
+"sistema comienza con responder unas cuantas preguntas. Al precipitarse a "
+"implementar un conjunto arbitrario de herramientas corre el riesgo de "
+"enfocarse en los aspectos de seguridad equivocados."
 
 #. Tag: para
 #, no-c-format
 msgid "The very first thing to determine is therefore the goal. A good approach to help with that determination starts with the following questions:"
 msgstr ""
+"Lo primero a determinar es por lo tanto el objetivo. Un buen método para "
+"ayudar con esta determinación comienza con las siguientes preguntas:"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>What</emphasis> are we trying to protect? The security policy will be different depending on whether we want to protect computers or data. In the latter case, we also need to know which data."
 msgstr ""
+"¿<emphasis>Qué</emphasis> estamos tratando de proteger? La normativa de "
+"seguridad será diferente dependiendo de si queremos proteger los equipos o "
+"los datos. En este último caso, tambien es necesario saber qué datos."
 
 #. Tag: para
 #, no-c-format
 msgid "What are we trying to protect <emphasis>against</emphasis>? Is it leakage of confidential data? Accidental data loss? Revenue loss caused by disruption of service?"
 msgstr ""
+"¿<emphasis>Contra</emphasis> qué estamos tratando de protegernos? ¿Fuga de "
+"datos confidenciales? ¿Pérdida accidental de datos? ¿Perdida de ingresos por "
+"interrupción del servicio?"
 
 #. Tag: para
 #, no-c-format
 msgid "Also, <emphasis>who</emphasis> are we trying to protect against? Security measures will be quite different for guarding against a typo by a regular user of the system than they would be when protecting against a determined attacker group."
 msgstr ""
+"Tambien, contra <emphasis>Quién</emphasis> estamos tratando de protegernos? "
+"Las medidas de seguridad seran  diferentes para protegerse contra un usuario "
+"regular del sistema de lo que serian contra un grupo de atacantes "
+"determinado.    "
 
 #. Tag: para
 #, no-c-format
 msgid "The term “risk” is customarily used to refer collectively to these three factors: what to protect, what needs to be prevented from happening, and who will try to make it happen. Modeling the risk requires answers to these three questions. From this risk model, a security policy can be constructed, and the policy can be implemented with concrete actions."
 msgstr ""
+"El termino \"riesgo\" es habitualmente usado para referirse colectivamente ha "
+"estos tres factores: que proteger, que necesitamos prevenir antes que "
+"suceda, y quien intentará hacer que suceda. Modelar el riesgo requiere "
+"respuestas ha estas tres preguntas. A partir de este modelo de riesgo, una "
+"normativa de seguridad puede ser construida,  y la normativa puede ser "
+"implementada con acciones concretas."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Permanent questioning"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis>Preguntas permanentes"
 
 #. Tag: para
 #, no-c-format
 msgid "Bruce Schneier, a world expert in security matters (not only computer security) tries to counter one of security's most important myths with a motto: “Security is a process, not a product”. Assets to be protected change in time, and so do threats and the means available to potential attackers. Even if a security policy has initially been perfectly designed and implemented, one should never rest on one's laurels. The risk components evolve, and the response to that risk must evolve accordingly."
 msgstr ""
+"Bruce Schneier, un experto mundial en asuntos de seguridad (no sólo "
+"seguridad informática) intenta contrarestar uno de los más importantes mitos "
+"con una frase \"La Seguridad es un proceso, no un producto\". Los activos a "
+"ser protegidos cambian con el tiempo, y tambien lo hacen las amenazas y los "
+"medios a disposicion de los potenciales atacantes. Incluso si una normativa "
+"de seguridad ha sido inicialmente diseñada e  implementada perfectamente, "
+"uno nunca debe dormirse en los laureles, Los componentes del riesgo "
+"evolucionan,  y la respuesta a ese riesgo debe evolucionar acordemente."
 
 #. Tag: para
 #, no-c-format
@@ -159,7 +204,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>packet</primary><secondary>IP</secondary>"
-msgstr ""
+msgstr "<primary>paquete</primary><secondary>IP</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -204,7 +249,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ip6tables</command></primary>"
-msgstr ""
+msgstr "<primary><command>ip6tables</command></primary>"
 
 #. Tag: title
 #, no-c-format

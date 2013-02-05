@@ -10,7 +10,7 @@ version=$(get_product_version)
 OPT_lang="en-US"
 parse_options "$@"
 
-if publican build --publish --formats=html --langs=$OPT_lang $OPT_opts; then
+if publican build --publish --brand_dir=brand --formats=html --langs=$OPT_lang $OPT_opts; then
     echo "SUCCESS: publish/$OPT_lang/Debian/$version/html/debian-handbook/index.html"
 else
     echo "ERROR: failed to build HTML output for $OPT_lang"
