@@ -691,8 +691,7 @@ msgstr "<primary>Client-Server-Architektur</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>client/server architecture</secondary>"
-msgstr ""
-"<primary>Server</primary><secondary>Client-Server-Architektur</secondary>"
+msgstr "<primary>Server</primary><secondary>Client-Server-Architektur</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1482,7 +1481,7 @@ msgstr ""
 "sogar dazu verwendet werden, vollständige Arbeitsflächen für mobile Benutzer "
 "bereitzustellen (oder für weniger leistungsstarke Arbeitsplatzrechner, die "
 "als Thin Clients konfiguriert sind). Benutzer melden sich einfach mit "
-"<replaceable>server</replaceable>:50</command> beim Bildschirm des Servers "
+"<command>vncviewer <replaceable>server</replaceable>:50</command> beim Bildschirm des Servers "
 "an, da der verwendete Port 5950 ist."
 
 #. Tag: indexterm
@@ -1648,7 +1647,7 @@ msgstr "<primary><literal>setgid</literal>, Recht</primary>"
 #, no-c-format
 msgid "Since a <literal>setuid</literal> root program is systematically run under the super-user identity, it is very important to ensure it is secure and reliable. Indeed, a user who would manage to subvert it to call a command of their choice could then impersonate the root user and have all rights on the system."
 msgstr ""
-"Da ein Root-Programm mit <literal>setuid</literal durchgängig unter der "
+"Da ein Root-Programm mit <literal>setuid</literal> durchgängig unter der "
 "Identität des Super-Users läuft, ist es sehr wichtig sicherzustellen, dass "
 "es sicher und verlässlich ist. Ein Benutzer, dem es gelingt, es zu "
 "unterlaufen, um einen Befehl seiner Wahl aufzurufen, könnte sich "
@@ -2876,7 +2875,7 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Restricting <command>cron</command> or <command>atd</command>"
 msgstr ""
-"<emphasis>SICHERHEIT</emphasis <command>cron</command> und "
+"<emphasis>SICHERHEIT</emphasis> <command>cron</command> und "
 "<command>atd</command> einschränken"
 
 #. Tag: para
@@ -2946,7 +2945,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Format of a <filename>crontab</filename> File"
-msgstr "Aufbau der Datei <filename>crontab</filename"
+msgstr "Aufbau der Datei <filename>crontab</filename>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -4686,8 +4685,8 @@ msgstr ""
 "Wenn Sie wissen, dass Ihr BIOS das ACPI korrekt handhabt, sollten Sie es dem "
 "APM vorziehen (wird durch eine Aktualisierung des BIOS entfernt). Wenn Sie "
 "vom einen zum anderen wechseln, müssen Sie darauf achten, das Paket "
-"role=\"pkg\">apmd</emphasis> zu entfernen, da es Probleme verursachen könnte, "
-"wenn es neben <emphasis role=\"pkg\">acpid</emphasis> bestehen bleibt (und "
+"<emphasis role="pkg">apmd</emphasis> zu entfernen, da es Probleme verursachen könnte, "
+"wenn es neben <emphasis role="pkg">acpid</emphasis> bestehen bleibt (und "
 "umgekehrt)."
 
 #. Tag: indexterm
