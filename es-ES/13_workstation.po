@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2013-02-20 15:40+0200\n"
-"Last-Translator: Iván Alemán <aleman.ivan@gmail.com>\n"
-"Language-Team: Spanish <http://debian.weblate.org/projects/debian"
+"PO-Revision-Date: 2013-02-26 17:07+0200\n"
+"Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
+"Language-Team: Spanish <http://debian.weblate.org/projects/debian-"
 "handbook/13_workstation/es-ES/>\n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 1.4-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -39,96 +39,148 @@ msgstr "X.org"
 #. Tag: para
 #, no-c-format
 msgid "Now that server deployments are done, the administrators can focus on installing the individual workstations and creating a typical configuration."
-msgstr "Ahora que las implementaciones de servidores han concluido, los
-administradores pueden concentrarse en la instalación de estaciones de trabajo y
-crear una configuración típica."
+msgstr ""
+"Ahora que ya se desplegaron los servidores, los administradores pueden "
+"enfocarse en instalar las estaciones de trabajo individuales y crear una "
+"configuración típica."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the X11 Server"
-msgstr "Configurando el Servidor X11"
+msgstr "Configuración del servidor X11"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>XFree86</primary>"
-msgstr "XFree86"
+msgstr "<primary>XFree86</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>X.org</primary>"
-msgstr "X.org"
+msgstr "<primary>X.org</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>X11</primary>"
-msgstr "X11"
+msgstr "<primary>X11</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>interface</primary><secondary>graphical</secondary>" 
+msgid "<primary>interface</primary><secondary>graphical</secondary>"
 msgstr "<primary>interfaz</primary><secondary>gráfica</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The initial configuration for the graphical interface can be awkward at times; very recent video cards often don't work perfectly with the X.org version shipped in the Debian stable version."
-msgstr "La configuración inicial de la interfaz gráfica a veces puede ser
-difícil; las tarjetas de vídeo muy recientes no suelen funcionar a la perfección
-con la versión de X.org encontrada en la distribución estable de Debian."
+msgstr ""
+"La configuración inicial de la interfaz gráfica a veces puede ser extraña; "
+"tarjetas de video muy recientes muchas veces no funcionan perfectamente con "
+"la versión de X.org que se encuentra en la versión estable de Debian."
 
 #. Tag: para
 #, no-c-format
 msgid "A brief reminder: X.org is the software component that allows graphical applications to display windows on screen. It includes a driver that makes efficient use of the video card. The features offered to the graphical applications are exported through a standard interface, <emphasis>X11</emphasis> (<emphasis role=\"distribution\">Squeeze</emphasis> contains its <emphasis>X11R7.5</emphasis> version)."
 msgstr ""
+"Un breve recordatorio: X.org es el componente de software que permite que "
+"las aplicaciones gráficas muestren ventanas en la pantalla. Incluye un "
+"controlador que utiliza la tarjeta de video de forma eficiente. Se exporta "
+"la funcionalidad ofrecida a las aplicaciones gráficas a través de una "
+"interfaz estándar, <emphasis>X11</emphasis> (<emphasis "
+"role=\"distribution\">Squeeze</emphasis> contiene la versión "
+"<emphasis>X11R7.5</emphasis>)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>PERSPECTIVE</emphasis> X11, XFree86 and X.org"
-msgstr ""
+msgstr "<emphasis>PERSPECTIVA</emphasis> X11, XFree86 y X.org"
 
 #. Tag: para
 #, no-c-format
 msgid "X11 is the graphical system most widely used on Unix-like systems (also available, in addition to the native system, for Windows and Mac OS). Strictly speaking, the “X11” term only refers to a protocol specification, but it's also used to refer to the implementation in practice."
 msgstr ""
+"X11 es el sistema gráfico más utilizado en sistemas tipo Unix (también "
+"disponible en, ademàs del sistema nativo, Windows y Mac OS). Estrictamente "
+"hablando, el término «X11» sólo se refiere a la especificación del "
+"protocolo, pero en la práctica también se lo utiliza para referirse a la "
+"implementación."
 
 #. Tag: para
 #, no-c-format
 msgid "X11 had a rough start, but the 1990's saw XFree86 emerge as the reference implementation because it was free software, portable, and maintained by a collaborative community. However, the rate of evolution slowed down near the end when the software only gained new drivers. That situation, along with a very controversial license change, led to the X.org fork in 2004. This is now the reference implementation, and Debian <emphasis role=\"distribution\">Squeeze</emphasis> uses X.org version 7.5."
 msgstr ""
+"X11 tuvo un comienzo escabroso, pero XFree86 surgió en los 1990s como la "
+"implementación de referencia porque era software libre, portable y mantenido "
+"de forma colaborativa por su comunidad. Sin embargo, la velocidad de "
+"evolución se redujo hacia el final cuando el software sólo obtenía nuevos "
+"controladores. Dicha situación, junto con el controversial cambio de "
+"licencia llevó a la bifurcación en X.org en 2004. Esta es ahora la "
+"implementación de referencia y Debian <emphasis "
+"role=\"distribution\">Squeeze</emphasis> utiliza la versión 7.5 de X.org."
 
 #. Tag: para
 #, no-c-format
 msgid "Current versions of X.org are able to autodetect the available hardware: this applies to the video card and the monitor, as well as keyboards and mice; in fact, it's so convenient that the package no longer even creates a <filename>/etc/X11/xorg.conf</filename> configuration file. This is all made possible by features provided by the Linux 2.6 kernel (in particular for keyboards and mice), by having each driver list the video cards it supports, and by using the DDC protocol to fetch monitor characteristics."
 msgstr ""
+"Las versiones actuales de X.org pueden detectar automáticamente el hardware "
+"disponible: tanto la tarjeta de video y el monitor como el teclado y ratón; "
+"de hecho, es tan conveniente que el paquete ya no crea un archivo de "
+"configuración <filename>/etc/X11/xorg.conf</filename>. Todo esto es posible "
+"gracias a las funcionalidades que provee el núcleo Linux 2.6 (en particular "
+"para teclados y ratones), en el que cada controlador indica con qué tarjetas "
+"de video es compatible y utilizando el protocolo DDC para obtener las "
+"características del monitor."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>resolution</primary>"
-msgstr ""
+msgstr "<primary>resolución</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The keyboard configuration is currently set up in <filename>/etc/default/keyboard</filename>. This file is used both to configure the text console and the graphical interface, and it is handled by the <emphasis role=\"pkg\">keyboard-configuration</emphasis> package. Details on configuring the keyboard layout are available in <xref linkend=\"section.config-clavier\" />."
 msgstr ""
+"Actualmente, la configuración del teclado está definida en "
+"<filename>/etc/default/keyboard</filename>. Se utiliza este archivo tanto "
+"para configurar la consola de texto como la interfaz gráfica y es gestionado "
+"por el paquete <emphasis role=\"pkg\">keyboard-configuration</emphasis>. "
+"Puede encontrar detalles sobre la configuración del teclado en <xref "
+"linkend=\"section.config-clavier\" />."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">xserver-xorg-core</emphasis> package provides a generic X server, as used by the 7.x versions of X.org. This server is modular and uses a set of independent drivers to handle the many different kinds of video cards. Installing <emphasis role=\"pkg\">xserver-xorg</emphasis> ensures that both the server and at least one video driver are installed."
 msgstr ""
+"El paquete <emphasis role=\"pkg\">xserver-xorg-core</emphasis> provee un "
+"servidor X genérico, como el utilizado en las versiones 7.x de X.org. Este "
+"servidor es modular y utiliza un conjunto de controladores independientes "
+"para gestionar la gran variedad de tipos de tarjetas de video. Instalar "
+"<emphasis role=\"pkg\">xserver-xorg</emphasis> le asegurará que se instale "
+"tanto el servidor como al menos un controlador de video."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>X</secondary>"
-msgstr ""
+msgstr "<primary>servidor</primary><secondary>X</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">xserver-xorg</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">xserver-xorg</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that if the detected video card is not handled by any of the available drivers, X.org tries using the VESA and fbdev drivers. The former is a generic driver that should work everywhere, but with limited capabilities (fewer available resolutions, no hardware acceleration for games, and so on) while the latter works on top of the kernel's framebuffer device. The X server writes its messages to the <filename>/var/log/Xorg.0.log</filename> log file, which is where one would look to know what driver is currently in use. For example, the following snippet matches what the <literal>intel</literal> driver outputs when it is loaded:"
 msgstr ""
+"Sepa que si la tarjeta de video detectada no es compatible con ninguno de "
+"los controladores disponibles, X.org intentará utilizar los controladores "
+"VESA y fbdev. El primero es un controlador genérico que debería funcionar "
+"siempre, pero con capacidades limitadas (menos resoluciones disponibles, sin "
+"aceleración por hardware para juegos, etc.) mientras que el último funciona "
+"sobre el dispositivo «framebuffer» del núcleo. El servidor X escribe sus "
+"mensajes al archivo de registro <filename>/var/log/Xorg.0.log</filename>, "
+"donde uno buscaría para saber qué controlador está utilizando actualmente. "
+"Por ejemplo, el siguiente extracto coincide con la salida de cuando se carga "
+"el controlador <literal>intel</literal>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -141,61 +193,94 @@ msgid ""
 "(II) LoadModule: \"intel\"\n"
 "(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
 msgstr ""
+"\n"
+"(==) Matched intel as autoconfigured driver 0\n"
+"(==) Matched vesa as autoconfigured driver 1\n"
+"(==) Matched fbdev as autoconfigured driver 2\n"
+"(==) Assigned the driver to the xf86ConfigLayout\n"
+"(II) LoadModule: \"intel\"\n"
+"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>VESA</primary>"
-msgstr ""
+msgstr "<primary>VESA</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>video card</primary>"
-msgstr ""
+msgstr "<primary>tarjeta de video</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Proprietary drivers"
-msgstr ""
+msgstr "<emphasis>EXTRA</emphasis> Controladores privativos"
 
 #. Tag: para
 #, no-c-format
 msgid "Some video card makers (most notably nVidia) refuse to publish the hardware specifications that would be required to implement good free drivers. They do, however, provide proprietary drivers that allow using their hardware. This policy is nefarious, because even when the provided driver exists, it is usually not as polished as it should be; more importantly, it does not necessarily follow the X.org updates, which may prevent the latest available driver from loading correctly (or at all). We cannot condone this behavior, and we recommend you avoid these makers and favor more cooperative manufacturers."
 msgstr ""
+"Algunos fabricantes de tarjetas de video (más notablemente, nVidia) se "
+"niegan a publicar las especificaciones de hardware que son necesarias para "
+"implementar buenos controladores libres. Sí proveen, sin embargo, "
+"controladores privativos que permiten utilizar su hardware. Esta política es "
+"nefasta ya que aún cuando existen los controladores necesarios, "
+"generalmente no están tan pulidos como deberían; lo que es más importante, "
+"no siguen necesariamente las actualizaciones de X.org, lo que podría evitar "
+"que cargue correctamente (o por completo) el último controlador disponible. "
+"No podemos justificar este comportamiento y recomendamos que evite a estos "
+"fabricantes en favor de aquellos más cooperativos."
 
 #. Tag: para
 #, no-c-format
 msgid "If you still end up with such a card, you will find the required packages in the <emphasis>non-free</emphasis> section: <emphasis role=\"pkg\">nvidia-glx</emphasis> for nVidia cards, and <emphasis role=\"pkg\">fglrx-driver</emphasis> for some ATI cards. Both cases require matching kernel modules. Building these modules can be automated by installing the <emphasis role=\"pkg\">nvidia-kernel-dkms</emphasis> (for nVidia), or <emphasis role=\"pkg\">fglrx-modules-dkms</emphasis> (for ATI) packages."
 msgstr ""
+"Si aún así termina con una de estas tarjetas, encontrará los paquetes "
+"necesarios en la sección <emphasis>non-free</emphasis>: <emphasis role=\"pkg"
+"\">nvidia-glx</emphasis> para tarjetas nVidia y <emphasis role=\"pkg\">fglrx-"
+"driver</emphasis> para algunas tarjetas ATI. En ambos casos necesitará los "
+"módulos de núcleo correspondientes. Puede automatizar la compilación de "
+"estos módulos con la instalación de los paquetes <emphasis role=\"pkg"
+"\">nvidia-kernel-dkms</emphasis> (para nVidia) o <emphasis role=\"pkg\">fglrx-"
+"modules-dkms</emphasis> (para ATI)."
 
 #. Tag: para
 #, no-c-format
 msgid "The “nouveau” project aims to develop a free software driver for nVidia cards. As of <emphasis role=\"distribution\">Squeeze</emphasis>, its feature set does not match the proprietary driver. In the developers' defense, we should mention that the required information can only be gathered by reverse engineering, which makes things difficult. The free driver for ATI video cards, called “radeon”, is much better in that regard although it often requires a non-free firmware."
 msgstr ""
+"El proyecto «nouveau» intenta desarrollar un controlador que sea software "
+"libre para las tarjetas nVidia. Desde <emphasis "
+"role=\"distribution\">Squeeze</emphasis>, su conjunto de funcionalidad no "
+"alcanza al controlador privativo. En defensa de los desarrolladores debemos "
+"mencionar que sólo pueden conseguir la información necesaria con ingeniería "
+"inversa, lo que dificulta la cuestión. El controlador libre para las "
+"tarjetas de video ATI, llamado «radeon», es mucho mejor en dicho aspecto "
+"pero generalmente necesita firmware privativo."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ATI</primary>"
-msgstr ""
+msgstr "<primary>ATI</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>nVidia</primary>"
-msgstr ""
+msgstr "<primary>nVidia</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Customizing the Graphical Interface"
-msgstr ""
+msgstr "Personalización de la interfaz gráfica"
 
 #. Tag: title
 #, no-c-format
 msgid "Choosing a Display Manager"
-msgstr ""
+msgstr "Elección de un gestor de pantalla"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>manager</primary><secondary>display</secondary>"
-msgstr ""
+msgstr "<primary>gestor</primary><secondary>de pantalla</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -216,836 +301,1232 @@ msgstr "<primary><command>xdm</command></primary>"
 #, no-c-format
 msgid "The graphical interface only provides display space. Running the X server by itself only leads to an empty screen, which is why most installations use a <emphasis>display manager</emphasis> to display a user authentication screen and start the graphical desktop once the user has authenticated. The three most popular display managers in current use are <emphasis role=\"pkg\">gdm3</emphasis> (<foreignphrase>GNOME Display Manager</foreignphrase>), <emphasis role=\"pkg\">kdm</emphasis> (<foreignphrase>KDE Display Manager</foreignphrase>) and <emphasis role=\"pkg\">xdm</emphasis> (<foreignphrase>X Display Manager</foreignphrase>). Since the Falcot Corp administrators have opted to use the GNOME desktop environment, they logically picked <command>gdm3</command> as a display manager too. The <filename>/etc/gdm3/daemon.conf</filename> configuration file has many options, some of which can also be set by <command>gdmsetup</command>, a graphical interface for <command>gdm3</command> configuration that can be run from the <menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu> <guimenuitem>Display screen</guimenuitem></menuchoice> menu in the GNOME desktop."
 msgstr ""
+"La interfaz gráfica sólo provee un espacio en la pantalla. Ejecutar "
+"únicamente el servidor X sólo le llevará a una pantalla vacía, razón por la "
+"que la mayoría de las instalaciones utilizan un <emphasis>gestor de "
+"pantalla</emphasis> («Display Manager») para mostrar la pantalla de "
+"autenticación de usuarios e iniciar el escritorio gráfico una vez que se "
+"autenticó el usuario. Los tres gestores de pantalla más populares utilizados "
+"actualmente son <emphasis role=\"pkg\">gdm3</emphasis> (<foreignphrase>GNOME "
+"Display Manager</foreignphrase>), <emphasis role=\"pkg\">kdm</emphasis> "
+"(<foreignphrase>KDE Display Manager</foreignphrase>) y <emphasis "
+"role=\"pkg\">xdm</emphasis> (<foreignphrase>X Display "
+"Manager</foreignphrase>). Debido a que los administradores de Falcot Corp "
+"eligieron utilizar el entorno de escritorio GNOME, lógicamente seleccionaron "
+"<command>gdm3</command> como gestor de pantalla también. El archivo de "
+"configuración <filename>/etc/gdm3/daemon.conf</filename> tiene muchas "
+"opciones, algunas de las cuales también puede configurar con "
+"<command>gdmsetup</command>, una interfaz gráfica para la configuración de "
+"<command>gdm3</command> que puede ejecutar desde el menú <menuchoice><guimen"
+"u>Sistema</guimenu><guisubmenu>Administración</guisubmenu> "
+"<guimenuitem>Display screen</guimenuitem></menuchoice> en el escritorio "
+"GNOME."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> gdm vs. gdm3"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVA</emphasis> gdm vs. gdm3"
 
 #. Tag: para
 #, no-c-format
 msgid "A fresh installation of <emphasis role=\"distribution\">Squeeze</emphasis> sets up <emphasis role=\"pkg\">gdm3</emphasis>. On the other hand, a system upgraded to <emphasis role=\"distribution\">Squeeze</emphasis> from a previous version of Debian will usually have <emphasis role=\"pkg\">gdm</emphasis> (the 2.x version). Version 3 is a full rewrite, but it is still rather young: many of the options provided by previous versions have been removed, and the <command>gdmsetup</command> configuration interface is much more limited in scope. This explains why both versions are available in <emphasis role=\"distribution\">Squeeze</emphasis>. Note, however, the 2.x versions will be removed from the next stable Debian release. It makes sense to anticipate the migration and install <emphasis role=\"pkg\">gdm3</emphasis> straight away if the missing features are not important to you."
 msgstr ""
+"Una instalación nueva de <emphasis role=\"distribution\">Squeeze</emphasis> "
+"configura <emphasis role=\"pkg\">gdm3</emphasis>. Por el otro lado, un sistema "
+"actualizado a <emphasis role=\"distribution\">Squeeze</emphasis> desde una "
+"versión anterior de Debian generalmente tendrá <emphasis "
+"role=\"pkg\">gdm</emphasis> (la versión 2.x). La versión 3 es una reescritura "
+"completa, pero es todavía bastante joven: se eliminaron la mayoría de las "
+"opciones provistas por las versiones anteriores y la interfaz de "
+"configuración <command>gdmsetup</command> tiene un alcance mucho más "
+"limitado. Esto explica porqué ambas versiones están disponibles en <emphasis "
+"role=\"distribution\">Squeeze</emphasis>. Sepa, sin embargo, que se "
+"eliminarán las versiones 2.x en la próxima publicación estable de Debian. "
+"Tiene sentido anticiparse a la migración e instalar <emphasis "
+"role=\"pkg\">gdm3</emphasis> directamente si no considera importante las "
+"características faltantes."
 
 #. Tag: title
 #, no-c-format
 msgid "Choosing a Window Manager"
-msgstr ""
+msgstr "Elección de un gestor de ventanas"
 
 #. Tag: para
 #, no-c-format
 msgid "Since each graphical desktop provides its own window manager, choosing the former usually implies software selections from the latter. GNOME uses the <command>metacity</command> window manager, KDE uses <command>kwin</command>, and Xfce (which we present later) has <command>xfwm</command>. The Unix philosophy always allows using one's window manager of choice, but following the recommendations allows an administrator to best take advantage of the integration efforts led by each project."
 msgstr ""
+"Debido a que cada escritorio gráfico provee su propio gestor de ventanas, "
+"elegir el primero generalmente implica una elección de software para el "
+"último. GNOME utiliza el gestor de ventana <command>metacity</command>, KDE "
+"utiliza <command>kwin</command> y Xfce (que presentaremos más adelante) "
+"utiliza <command>xfwm</command>. La filosofía Unix siempre permitió utilizar "
+"el gestor de ventanas que uno prefiera, pero utilizar los recomendados "
+"permite que un administrador aproveche mejor los esfuerzos de integración "
+"que realiza cada proyecto."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>metacity</command></primary>"
-msgstr ""
+msgstr "<primary><command>metacity</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>kwin</command></primary>"
-msgstr ""
+msgstr "<primary><command>kwin</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Window manager"
-msgstr ""
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Gestor de ventanas"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>manager</primary><secondary>window</secondary>"
-msgstr ""
+msgstr "<primary>gestor</primary><secondary>de ventanas</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>window manager</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>ventanas, gestor</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "True to the Unix tradition of doing one thing only but doing it well, the window manager displays the “decorations” around the windows belonging to the currently running applications, which includes frames and the title bar. It also allows reducing, restoring, maximizing, and hiding windows. Most window managers also provide a menu that pops up when the desktop is clicked in a specific way. This menu provides the means to close the window manager session, starting new applications, and in some cases, change to another window manager (if installed)."
 msgstr ""
+"Continuando la tradición Unix de sólo hacer una cosa pero hacerla bien, el "
+"gestor de ventanas muestra las «decoraciones» alrededor de las ventanas que "
+"pertenecen a las aplicaciones que están ejecutando actualmente, lo que "
+"incluye marcos y la barra de título. También permite reducir, restaurar, "
+"maximizar y esconder ventanas. La mayoría de los gestores de ventanas "
+"también proveen un menú que aparece cuando se pulsa el escritorio de una "
+"forma específica. Este menú provee una forma de cerrar la sesión del gestor "
+"de ventanas, iniciar nuevas aplicaciones y, en algunos casos, cambiar a otro "
+"gestor de ventanas (si hay algún otro instalado)."
 
 #. Tag: para
 #, no-c-format
 msgid "Older computers may, however, have a hard time running heavyweight graphical desktop environments. In these cases, a lighter configuration should be used. \"Light\" (or small footprint) window managers include WindowMaker (in the <emphasis role=\"pkg\">wmaker</emphasis> package), Afterstep, fvwm, icewm, blackbox, fluxbox, or openbox. In these cases, the system should be configured so that the appropriate window manager gets precedence; the standard way is to change the <command>x-window-manager</command> alternative with the <command>update-alternatives --config x-window-manager</command> command."
 msgstr ""
+"Para los equipos más antiguos, sin embargo, es más complicado ejecutar "
+"entornos gráficos de escritorio pesados. En estos casos, debería utilizar "
+"una configuración más ligera. Gestores de ventanas «ligeros» (con una "
+"pequeña carga) incluyen: WindowMaker (en el paquete <emphasis "
+"role=\"pkg\">wmaker</emphasis>), Afterstep, fvwm, icewm, blackbox, fluxbox u "
+"openbox. En estos casos, deberá configurar el sistema para que el gestor de "
+"ventanas apropiado tenga precedencia; la forma estándar es cambiar la "
+"alternativa <command>x-window-manager</command> ejecutando <command>update-"
+"alternatives --config x-window-manager</command>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>WindowMaker</primary>"
-msgstr ""
+msgstr "<primary>WindowMaker</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Afterstep</primary>"
-msgstr ""
+msgstr "<primary>Afterstep</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Blackbox</primary>"
-msgstr ""
+msgstr "<primary>Blackbox</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Icewm</primary>"
-msgstr ""
+msgstr "<primary>Icewm</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Fluxbox</primary>"
-msgstr ""
+msgstr "<primary>Fluxbox</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Openbox</primary>"
-msgstr ""
+msgstr "<primary>Openbox</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>x-window-manager</command></primary>"
-msgstr ""
+msgstr "<primary><command>x-window-manager</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN SPECIFICITY</emphasis> Alternatives"
-msgstr ""
+msgstr "<emphasis>ESPECÍFICO EN DEBIAN</emphasis> Alternativas"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>alternative</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>alternativa</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>choice</primary>"
-msgstr ""
+msgstr "<primary>elección</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>update-alternatives</command></primary>"
-msgstr ""
+msgstr "<primary><command>update-alternatives</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian policy lists a number of standardized commands able to perform a particular action. For example, the <command>x-window-manager</command> command invokes a window manager. But Debian does not assign this command to a fixed window manager. The administrator can choose which manager it should invoke."
 msgstr ""
+"La normativa Debian enumera una cantidad de órdenes estandarizadas para "
+"ejecutar una acción particular. Por ejemplo, la orden <command>x-window-"
+"manager</command> ejecuta el gestor de ventanas. Pero Debian no asigna esta "
+"orden a un gestor de ventanas particular. El administrador puede elegir qué "
+"gestor de ventanas debe ejecutar."
 
 #. Tag: para
 #, no-c-format
 msgid "For each window manager, the relevant package therefore registers the appropriate command as a possible choice for <command>x-window-manager</command> along with an associated priority. Barring explicit configuration by the administrator, this priority allows picking the best installed window manager when the generic command is run."
 msgstr ""
+"Para cada gestor de ventanas, el paquete relevante registra el programa "
+"relevante como una opción posible para <command>x-window-manager</command> "
+"junto con la prioridad asociada. Siempre que no existan configuraciones "
+"explícitas por el administrador, esta prioridad permite seleccionar el mejor "
+"gestor de ventanas instalado cuando se ejecuta la orden genérica."
 
 #. Tag: para
 #, no-c-format
 msgid "Both the registration of commands and the explicit configuration involve the <command>update-alternatives</command> script. Choosing where a symbolic command points at is a simple matter of running <command>update-alternatives --config <replaceable>symbolic-command</replaceable></command>. The <command>update-alternatives</command> script creates (and maintains) symbolic links in the <filename>/etc/alternatives/</filename> directory, which in turn references the location of the executable. As time passes, packages are installed or removed, and/or the administrator makes explicit changes to the configuration. When a package providing an alternative is removed, the alternative automatically goes to the next best choice among the remaining possible commands."
 msgstr ""
+"Tanto registar un programa como configurarlo explíticamente involucran el "
+"script <command>update-alternatives</command>. Seleccionar a dónde apunta "
+"una orden simbólica es simplemente cuestión de ejecutar <command>update-"
+"alternatives --config <replaceable>orden-simbólica</replaceable></command>. "
+"El script <command>update-alternatives</command> crea (y administra) enlaces "
+"simbólicos en el directorio <filename>/etc/alternatives/</filename> que, a "
+"su vez, referencia la ubicación del ejecutable. Con el paso del tiempo, se "
+"instalarán o eliminarán paquetes y/o el administrador hará cambios "
+"explícitos a la configuración. Cuando se elimina el paquete que provee una "
+"alternativa, ésta automáticamente deriva en la siguiente mejor opción entre "
+"los programas disponibles que continúan instalados."
 
 #. Tag: para
 #, no-c-format
 msgid "Not all symbolic commands are explicitly listed by the Debian policy; some Debian package maintainers deliberately chose to use this mechanism in less straightforward cases where it still brings interesting flexibility (examples include <command>x-www-browser</command>, <command>www-browser</command>, <command>cc</command>, <command>c++</command>, <command>awk</command>, and so on)."
 msgstr ""
+"La normativa Debian no enumera explícitamente todas las órdenes simbólicas; "
+"algunos encargados de paquetes Debian deliberadamente eligieron utilizar "
+"este mecanismo en casos menos directos en los que provee una flexibilidad "
+"interesante (los ejemplos incluyen <command>x-www-browser</command>, "
+"<command>www-browser</command>, <command>cc</command>, "
+"<command>c++</command>, <command>awk</command>, etc.)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>x-www-browser</command></primary>"
-msgstr ""
+msgstr "<primary><command>x-www-browser</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>www-browser</command></primary>"
-msgstr ""
+msgstr "<primary><command>www-browser</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>cc</command></primary>"
-msgstr ""
+msgstr "<primary><command>cc</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>c++</command></primary>"
-msgstr ""
+msgstr "<primary><command>c++</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>awk</command></primary>"
-msgstr ""
+msgstr "<primary><command>awk</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Menu Management"
-msgstr ""
+msgstr "Gestión del menú"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>menu</command></primary>"
-msgstr ""
+msgstr "<primary><command>menu</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>update-menus</command></primary>"
-msgstr ""
+msgstr "<primary><command>update-menus</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Modern desktop environments and many window managers provide menus listing the available applications for the user. In order to keep menus up-to-date in relation to the actual set of available applications, Debian created a centralized database registering all installed applications. A newly installed package registers itself in that database, and tells the system to update the menus accordingly. This infrastructure is handled in the <emphasis role=\"pkg\">menu</emphasis> package."
 msgstr ""
+"Los entornos de escritorio modernos y muchos gestores de ventanas proveen "
+"menús que enumeran las aplicaciones disponibles al usuario. Para poder "
+"mantenerlos actualizados en relación al conjunto real de aplicaciones "
+"disponibles Debian creó una base de datos centralizada que registra todas "
+"las aplicaciones instaladas. Un paquete recién instalado se registra en "
+"dicha base de datos y le indica al sistema que actualice los menús "
+"correspondientes. El paquete <emphasis role=\"pkg\">menu</emphasis> gestiona "
+"esta infraestructura."
 
 #. Tag: para
 #, no-c-format
 msgid "When a package provides an application that should appear in the menu system, it stores a file in the <filename>/usr/share/menu/</filename> directory. That file describes some of the application features (including whether it's a graphical application or not), and the best location for it in the menu hierarchy. The post-installation script for this package then runs the <command>update-menus</command> command, which in turn updates all the required files. This command cannot know all the menu types used by installed applications. As a consequence, packages able to display a menu must provide an executable script that will be invoked with all the required information from the menu file; the script should then turn this information into elements that the application with the menu can use. These filter scripts are installed in the <filename>/etc/menu-methods/</filename> directory. <indexterm><primary><filename>/usr/share/menu/</filename></primary></indexterm> <indexterm><primary><filename>menu</filename></primary></indexterm> <indexterm><primary><filename>/etc/menu-methods/</filename></primary></indexterm> <indexterm><primary><filename>menu-methods</filename></primary></indexterm>"
 msgstr ""
+"Cuando un paquete provee una aplicación que debería aparecer en el menú del "
+"sistema, almacena una archivo en el directorio "
+"<filename>/usr/share/menu/</filename>. Dicho archivo describe alguna de las "
+"características de la aplicación (inluyendo si es una aplicación gráfica o "
+"no) y su mejor ubicación en la jerarquía de menús. El script postinstalación "
+"de este paquete luego ejecuta el programa <command>update-menus</command>, "
+"el cual actualiza los archivos necesarios. Este programa no puede saber "
+"todos los tipos de menú utilizados por las aplicaciones instaladas. Como "
+"consecuencia, los paquetes que pueden mostrar un menú deben proveer un "
+"scripts ejecutable para ejecutar con toda la información necesaria del "
+"archivo de menú; el script debe convertir esta información en elementos que "
+"la aplicación con el menú pueda utilizar. Estos scripts de filtro se "
+"encuentran instalados en el directorio <filename>/etc/menu-"
+"methods/</filename>. <indexterm><primary><filename>/usr/share/menu/</filenam"
+"e></primary></indexterm> "
+"<indexterm><primary><filename>menu</filename></primary></indexterm> "
+"<indexterm><primary><filename>/etc/menu-"
+"methods/</filename></primary></indexterm> <indexterm><primary><filename"
+">menu-methods</filename></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Menus standardization"
-msgstr ""
+msgstr "<emphasis>YENDO MÁS ALLÁ</emphasis> Estandarización de menús"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>.desktop</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>.desktop</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian provides its own menu system, but both GNOME and KDE developed their own menu management solutions as well. The two projects agreed on a format for these menus — more precisely, a common format for the <filename>.desktop</filename> files that represent menu elements — under the FreeDesktop.org umbrella project. <ulink type=\"block\" url=\"http://www.freedesktop.org/\" />"
 msgstr ""
+"Debian provee su propio sistema de menús, pero tanto GNOME como KDE "
+"desarrollaron sus propias soluciones también. Los dos proyectos acordaron un "
+"formato para estos menús — más precisamente, un formato común para los "
+"archivos <filename>.desktop</filename> que representan elementos de menú — "
+"bajo el proyecto de unificación FreeDesktop.org. <ulink type=\"block\" "
+"url=\"http://www.freedesktop.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian developers have kept a close eye on this project and <filename>.desktop</filename> files can be generated from the Debian menu system. However, neither GNOME nor KDE use the Debian menu. They both prefer keeping complete control over their menus. Still, it is possible to enable a “Debian” submenu containing the official menu as maintained by Debian: in GNOME, the menu editor (in the <emphasis role=\"pkg\">alacarte</emphasis> package) is available by right-clicking on the panel menu, then choosing “Edit menus”."
 msgstr ""
+"Los desarrolladores Debian siguieron de cerca este proyecto y el sistema de "
+"menú de Debian puede generar archivos <filename>.desktop</filename>. Sin "
+"embargo, ni GNOME ni KDE utilizan el menú de Debian. Ambos prefieren "
+"mantener el control completo de sus menús. Aún así, es posible activar un "
+"submenú «Debian» que contenga el menú oficial mantenido por Debian: en "
+"GNOME, el editor de menú (en el paquete <emphasis "
+"role=\"pkg\">alacarte</emphasis>) se encuentra disponible pulsando con el "
+"botón derecho en el menú del panel y seleccionando luego «Editar menús»."
 
 #. Tag: para
 #, no-c-format
 msgid "The administrator can also have a say in the process and in the resulting generated menus. First, they can delete a menu element even when the matching application is installed, by simply storing in <filename>/etc/menu/</filename> an empty file named according to the package providing the entries to be disabled. Second, the menu can be reorganized and sections renamed or grouped. The <filename>/etc/menu-methods/translate_menus</filename> file is where this reorganization is defined and contains commented examples. Last, new elements can be added to the menu, for example to start programs installed outside the packaging system, or to run a particular command such as starting a web browser on a particular page. These extra elements are specified in <filename>/etc/menu/local.<replaceable>element</replaceable></filename> files, which have the same format as other menu files available under <filename>/usr/share/menu/</filename>."
 msgstr ""
+"El administrador también tiene voz en el proceso y en los menús generados "
+"como resultado. Primero, pueden eliminar un elemento del menú aún cuando "
+"esté instalada la aplicación correspondiente simplemente almacenando un "
+"archivo vacía en <filename>/etc/menu/</filename> con el nombre según el "
+"paquete que provee los elementos a desactivar. Segundo, puede reorganizar el "
+"menú y cambiar el nombre o reagrupar las secciones. La definición de esta "
+"reorganización se encuentra en <filename>/etc/menu-"
+"methods/translate_menus</filename> y contiene ejemplos documentados. Por "
+"último, puede agregar nuevos elementos en el menú, por ejemplo para iniciar "
+"programas instalados fuera del sistema de paquetes o para ejecutar una orden "
+"particular como iniciar un navegador en una página particular. Especificará "
+"estos elementos adicionales en archivos "
+"<filename>/etc/menu/local.<replaceable>elemento</replaceable></filename>, "
+"que tienen el mismo formato que otros archivos de menú disponibles en "
+"<filename>/usr/share/menu/</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "Graphical Desktops"
-msgstr ""
+msgstr "Escritorios gráficos"
 
 #. Tag: para
 #, no-c-format
 msgid "The free graphical desktop field is dominated by two large software collections: GNOME and KDE. Both of them are very popular. This is rather a rare instance in the free software world; the Apache web server, for instance, has very few peers."
 msgstr ""
+"El campo de escritorios gráficos libres es dominado por dos grandes "
+"colecciones de software: GNOME y KDE. Ambos son muy populares. Esto es algo "
+"raro en el mundo del software libre; el servidor web Apache, por ejemplo, "
+"tiene pocos pares."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>graphical desktop</primary>"
-msgstr ""
+msgstr "<primary>escritorio gráfico</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GNOME</primary>"
-msgstr ""
+msgstr "<primary>GNOME</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>KDE</primary>"
-msgstr ""
+msgstr "<primary>KDE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GTK+</primary>"
-msgstr ""
+msgstr "<primary>GTK+</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Qt</primary>"
-msgstr ""
+msgstr "<primary>Qt</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This diversity is rooted in history. KDE was the first graphical desktop project, but it chose the Qt graphical toolkit and that choice wasn't acceptable for a large number of developers. Qt was not free software at the time, and GNOME was started based on the GTK+ toolkit. Qt became free software in the interval, but the projects haven't merged and evolved in parallel instead."
 msgstr ""
+"Esta diversidad tiene un origen histórico. KDE fue el primer proyecto de "
+"escritorio gráfico pero eligió las herramientas gráficas Qt, una elección "
+"que no era aceptable para una gran cantidad de desarrolladores. Qt no era "
+"software libre en aquél entonces y GNOME comenzó basándose en las "
+"herramientas GTK+. Qt se convirtió en software libre mientras tanto, pero "
+"los proyectos nunca se fusionaron y, en cambio, evolucionaron en paralelo."
 
 #. Tag: para
 #, no-c-format
 msgid "GNOME and KDE still work together: under the FreeDesktop.org umbrella, the projects collaborated in defining standards for interoperability across applications."
 msgstr ""
+"GNOME y KDE todavía trabajan juntos: bajo el ala de FreeDesktop.org, los "
+"proyectos colaboran en la definición de estándares de interoperatividad "
+"entre aplicaciones."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>FreeDesktop.org</primary>"
-msgstr ""
+msgstr "<primary>FreeDesktop.org</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Choosing “the best” graphical desktop is a sensitive topic which we prefer to steer clear of. We will merely describe the many possibilities and give a few pointers for further thoughts. The best choice will be the one you make after some experimentation."
 msgstr ""
+"Elegir «el mejor» escritorio gráfico es un tema sensible que preferimos "
+"evitar. Simplemente describiremos las muchas posibilidades y proveeremos "
+"algunas ideas para considerar. La mejor opción es aquella que tome por su "
+"cuenta luego de un poco de experimentación."
 
 #. Tag: title
 #, no-c-format
 msgid "GNOME"
-msgstr ""
+msgstr "GNOME"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian <emphasis role=\"distribution\">Squeeze</emphasis> includes GNOME version 2.30, which can be installed by a simple <command>apt-get install gnome</command> (it can also be installed by selecting the “Graphical desktop environment” task)."
 msgstr ""
+"Debian <emphasis role=\"distribution\">Squeeze</emphasis> incluye GNOME "
+"versión 2.30, que puede instalar con <command>apt-get install "
+"gnome</command> (también puede instalarlo si selecciona la tarea «Entorno "
+"gráfico de escritorio»)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">gnome</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">gnome</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "GNOME is noteworthy for its efforts in usability and accessibility. Design professionals have been involved in writing standards and recommendations. This has helped developers to create satisfying graphical user interfaces. The project also gets encouragement from the big players of computing, such as Intel, IBM, Oracle, Novell, and of course, various Linux distributions. Finally, many programming languages can be used in developing applications interfacing to GNOME."
 msgstr ""
+"GNOME es notable por sus esfuerzos en cuanto a usabilidad y accesibilidad. "
+"Profesionales de diseño estuvieron involucrados en la escritura de "
+"estándares y recomendaciones. Esto ayudó a los desarrolladores a crear "
+"interfaces gráficas de usuario satisfactorias. El proyecto también obtiene "
+"estímo de grandes miembros de la informática como Intel, IBM, Oracle, Novell "
+"y, por supuesto, varias distribuciones Linux. Finalmente, puede utilizar "
+"muchos lenguajes de programación para desarrollar aplicaciones que "
+"interactúen con GNOME."
 
 #. Tag: para
 #, no-c-format
 msgid "It took quite some time for the GNOME project to build up this infrastructure, which can account for a seemingly less mature desktop than KDE. The usability and accessibility efforts, in particular, are recent, and the benefits have only started to show in the latest versions of the environment."
 msgstr ""
+"A GNOME le tomó bastante tiempo construir esta infraestructura, lo que puede "
+"explicar lo que parecería un escritorio menos maduro que KDE. En "
+"particular, los esfuerzos de usabilidad y accesibilidad son recientes y sus "
+"beneficios sólo comenzaron a ver la luz en las últimas versiones del "
+"entorno."
 
 #. Tag: title
 #, no-c-format
 msgid "The GNOME desktop"
-msgstr ""
+msgstr "El escritorio GNOME"
 
 #. Tag: para
 #, no-c-format
 msgid "For administrators, GNOME seems to be better prepared for massive deployments. Application configuration is handled by GConf, a kind of registry that can be queried and edited with the <command>gconftool-2</command> command-line tool. The administrator can therefore change users' configuration with a simple script. The following website lists all information of interest to an administrator tasked to manage GNOME workstations: <ulink type=\"block\" url=\"http://library.gnome.org/admin/system-admin-guide/stable/\" /><ulink type=\"block\" url=\"http://library.gnome.org/admin/deployment-guide/\" />"
 msgstr ""
+"Para los administadores, GNOME parece estar mejor preparado para despliegues "
+"masivos. GConf gestiona la configuración de aplicaciones, un tipo de "
+"registro que puede consultar y editar con la herramienta de línea de órdenes "
+"<command>gconftool-2</command>. Por lo tanto, el administrador puede "
+"modificar la configuración de los usuarios con un simple script. El "
+"siguiente sitio web enumera toda la información interesante para un "
+"administrador que debe gestionar estaciones de trabajo GNOME: <ulink "
+"type=\"block\" url=\"http://library.gnome.org/admin/system-admin-guide/stable/\" "
+"/><ulink type=\"block\" url=\"http://library.gnome.org/admin/deployment-"
+"guide/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gconf</command></primary>"
-msgstr ""
+msgstr "<primary><command>gconf</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gconftool-2</command></primary>"
-msgstr ""
+msgstr "<primary><command>gconftool-2</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "KDE"
-msgstr ""
+msgstr "KDE"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian <emphasis role=\"distribution\">Squeeze</emphasis> includes version 4.4.5 of KDE, which can be installed with <command>apt-get install kde</command>."
 msgstr ""
+"Debian <emphasis role=\"distribution\">Squeeze</emphasis> incluye la versión "
+"4.4.5 de KDE, que puede instalar con <command>apt-get install kde</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "KDE has had a rapid evolution based on a very hands-on approach. Its authors quickly got very good results, which allowed them to grow a large user-base. These factors contributed to the overall project quality. KDE is a perfectly mature desktop environment with a wide range of applications."
 msgstr ""
+"KDE tuvo una evolución rápida basándose en un enfoce muy práctico. Sus "
+"autores obtuvieron muy buenos resultados rápidamente, lo que les permitió "
+"obtener una gran base de usuarios. Estos factores contribuyeron a la calidad "
+"general del proyecto. KDE es un entorno de escritorio perfectamente maduro "
+"con un amplio rango de aplicaciones."
 
 #. Tag: title
 #, no-c-format
 msgid "The KDE desktop"
-msgstr ""
+msgstr "El escritorio KDE"
 
 #. Tag: para
 #, no-c-format
 msgid "Since the Qt 4.0 release, the last remaining license problem with KDE is no more. This version was released under the GPL both for Linux and Windows (whereas the Windows version was previously released under a non-free license). Note that KDE applications must be developed using the C++ language."
 msgstr ""
+"Con la publicación de Qt 4.0 desapareció el último problema de licencias de "
+"KDE. Se publicó esta versión bajo la GPL tanto para Linux como para Windows "
+"(anteriormente, la versión de windows se encontraba bajo una licencia "
+"privativa). Sepa que se deben desarrollar las aplicaciones KDE con el "
+"lenguaje C++."
 
 #. Tag: title
 #, no-c-format
 msgid "Xfce and Others"
-msgstr ""
+msgstr "Xfce y otros"
 
 #. Tag: para
 #, no-c-format
 msgid "Xfce is a simple and lightweight graphical desktop, which is a perfect match for computers with limited resources. It can be installed with <command>apt-get install xfce4</command>. Like GNOME, Xfce is based on the GTK+ toolkit, and several components are common across both desktops."
 msgstr ""
+"XFce es un escritorio gráfico simple y liviano, ideal para equipos con "
+"recursos limitados. Puede instalarlo con <command>apt-get install "
+"xfce4</command>. Al igual que GNOME, Xfce está basado en las herramientas "
+"GTK+ y ambos escritorios comparten varios componentes."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Xfce</primary>"
-msgstr ""
+msgstr "<primary>Xfce</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Unlike GNOME and KDE, Xfce does not aim at being a vast project. Beyond the basic components of a modern desktop (file manager, window manager, session manager, a panel for application launchers and so on), it only provides a few specific applications: a very lightweight web browser (Midori), a terminal, a calendar, an image viewer, a CD/DVD burning tool, a media player (Parole) and a sound volume control."
 msgstr ""
+"A diferencia de GNOME y KDE, Xfce no tiene como objetivo ser un gran "
+"proyecto. Más allá de los componentes básicos de un escritorio moderno "
+"(gestor de archivos, gestor de ventanas, gestor de sesiones, panel para "
+"lanzadores de aplicaciones, etc.), sólo provee unas pocas aplicaciones "
+"específicas: un navegador web muy liviano (Midori), una terminal, un "
+"calendario, un visor de imágenes, una herramienta de grabación de CD/DVD, un "
+"reproductor de medios (Parole) y un control de volumen de sonido."
 
 #. Tag: title
 #, no-c-format
 msgid "The Xfce desktop"
-msgstr ""
+msgstr "El escritorio Xfce"
 
 #. Tag: title
 #, no-c-format
 msgid "Tools"
-msgstr ""
+msgstr "Herramientas"
 
 #. Tag: title
 #, no-c-format
 msgid "Email"
-msgstr ""
+msgstr "Correo"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>email</primary><secondary>software</secondary>"
-msgstr ""
+msgstr "<primary>correo</primary><secondary>software</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Evolution"
-msgstr ""
+msgstr "Evolution"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Evolution</primary>"
-msgstr ""
+msgstr "<primary>Evolution</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> <emphasis>Popular</emphasis> packages"
-msgstr ""
+msgstr "<emphasis>COMUNIDAD</emphasis> Paquetes <emphasis>populares</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "Installing the <emphasis role=\"pkg\">popularity-contest</emphasis> package enables participation in an automated survey that informs the Debian project about the most popular packages. A script is run weekly by <command>cron</command> which sends (by HTTP or email) an anonymized list of the installed packages and the latest access date for the files they contain. This allows differentiating, among the installed packages, those that are actually used."
 msgstr ""
+"Si instala el paquete <emphasis role=\"pkg\">popularity-contest</emphasis> "
+"puede participar en una encuesta automática que informa al proyecto Debian "
+"sobre los paquetes más populares. Semanalmente <command>cron</command> "
+"ejecutará un script que enviará (a través de HTTP o correo) una lista "
+"anónima de los paquetes instalados y la fecha del último acceso a los "
+"archivos que contienen. Esto permite diferenciar, entre aquellos paquetes "
+"instalados, a aquellos que realmente utiliza."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">popularity-contest</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">popularity-contest</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>popularity of packages</primary>"
-msgstr ""
+msgstr "<primary>popularidad de paquetes</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>popularity</secondary>"
-msgstr ""
+msgstr "<primary>paquete</primary><secondary>popularidad</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This information is a great help to the Debian project. It is used to determine which packages should go on the first installation disks. The installation data is also an important factor used to decide whether to remove a package with very few users from the distribution. We heartily recommend installing the <emphasis role=\"pkg\">popularity-contest</emphasis> package, and participating to the survey."
 msgstr ""
+"Esta información es de gran ayuda al proyecto Debian. La utiliza para "
+"determinar qué paquetes deben estar en el primer disco de instalación. Los "
+"datos de instalación también son un factor importante en la decisión sobre "
+"la eliminación de la distribución de un paquete con muy pocos usuarios. "
+"Recomendamos sinceramente instalar el paquete <emphasis role=\"pkg"
+"\">popularity-contest</emphasis> y participar en la encuesta."
 
 #. Tag: para
 #, no-c-format
 msgid "The collected data are made public every day. <ulink type=\"block\" url=\"http://popcon.debian.org/\" />"
 msgstr ""
+"Todos los días se publican los datos recolectados. <ulink type=\"block\" "
+"url=\"http://popcon.debian.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "These statistics can also help choose between two packages that would seem otherwise equivalent. Choosing the more popular package increases the probability of making a good choice."
 msgstr ""
+"Estas estadísticas también puede ayudar a elegir entre dos paquetes que, de "
+"otra forma, parecerían equivalentes. Elegir el paquete más popular aumenta "
+"la probabilidad de realizar una buena elección."
 
 #. Tag: para
 #, no-c-format
 msgid "Evolution is the GNOME email client and can be installed with <command>apt-get install evolution</command>. Evolution goes beyond a simple email client, and also provides a calendar, an address book, a task list, and a memo (free-form note) application. Its email component includes a powerful message indexing system, and allows for the creation of virtual folders based on search queries on all archived messages. In other words, all messages are stored the same way but displayed in a folder-based organization, each folder containing messages that match a set of filtering criteria."
 msgstr ""
+"Evolution es el cliente de correo de GNOME y lo puede instalar con <command"
+">apt-get install evolution</command>. Evolution es más que un simple cliente "
+"de correo, también provee un calendario, libreta de direcciones, lista de "
+"tareas y una aplicación de notas (de texto libre). Su componente de correo "
+"incluye un poderoso sistema de indexación que permite crear carpetas "
+"virtuales basadas en consultas de búsqueda sobre todos los mensajes "
+"archivados. En otras palabras, se almacenan todos los mensajes de la misma "
+"forma pero se los muestra organizados en carpetas, cada una de las cuales "
+"contiene los mensajes que coinciden con un filtro particular."
 
 #. Tag: title
 #, no-c-format
 msgid "The Evolution email software"
-msgstr ""
+msgstr "El software de correo Evolution"
 
 #. Tag: para
 #, no-c-format
 msgid "An extension to Evolution allows integration to a Microsoft Exchange email system; the required package is <emphasis role=\"pkg\">evolution-exchange</emphasis>."
 msgstr ""
+"Una extensión de Evolution permite integrarlo al sistema de correos "
+"Microsoft Exchange; el paquete necesari es <emphasis role=\"pkg\">evolution-"
+"exchange</emphasis>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">evolution-exchange</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">evolution-exchange</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "KMail"
-msgstr ""
+msgstr "KMail"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>KMail</primary>"
-msgstr ""
+msgstr "<primary>KMail</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The KDE email software can be installed with <command>apt-get install kmail</command>. KMail only handles email, but it belongs to a software suite called KDE-PIM (for <emphasis>Personal Information Manager</emphasis>) that includes features such as address books, a calendar component, and so on. KMail has all the features one would expect from an excellent email client."
 msgstr ""
+"Puede instalar el software de correo de KDE con <command>apt-get install "
+"kmail</command>. KMail sólo gestiona correo, pero pertenece a un conjunto de "
+"software llamado KDE-PIM (<emphasis>gestor de información "
+"personal</emphasis>: «Personal Information Manager») que incluye "
+"funcionalidades como libretas de direcciones, un componente de calendario, "
+"etc. KMail tiene toda la funcionalidad que uno podría esperar de un "
+"excelente cliente de correo."
 
 #. Tag: title
 #, no-c-format
 msgid "The KMail email software"
-msgstr ""
+msgstr "El software de correo KMail"
 
 #. Tag: title
 #, no-c-format
 msgid "Thunderbird and Icedove"
-msgstr ""
+msgstr "Thunderbird y Icedove"
 
 #. Tag: para
 #, no-c-format
 msgid "This email software, included in the <emphasis role=\"pkg\">icedove</emphasis> package, is part of the Mozilla software suite. Various localization sets are available in <emphasis role=\"pkg\">icedove-l10n-*</emphasis> packages; the <emphasis role=\"pkg\">enigmail</emphasis> extension handles message encrypting and signing (alas, it is not available in all languages)."
 msgstr ""
+"Este software de correo, incluído en el paquete <emphasis "
+"role=\"pkg\">icedove</emphasis>, es parte del conjunto de software de Mozilla. "
+"Se encuentran disponibles varios conjuntos de localización en los paquetes "
+"<emphasis role=\"pkg\">icedove-l10n-*</emphasis>; la extensión <emphasis "
+"role=\"pkg\">enigmail</emphasis> gestiona la firma y cifrado de mensajes (pero "
+"no está disponible en todos los idiomas)."
 
 #. Tag: title
 #, no-c-format
 msgid "The Icedove email software"
-msgstr ""
+msgstr "El software de correo Icedove"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Thunderbird, Mozilla</primary>"
-msgstr ""
+msgstr "<primary>Thunderbird, Mozilla</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Mozilla</primary><secondary>Thunderbird</secondary>"
-msgstr ""
+msgstr "<primary>Mozilla</primary><secondary>Thunderbird</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Thunderbird is one of the best email clients, and it seems to be a great success, just like Mozilla Firefox."
 msgstr ""
+"Thunderbird es uno de los mejores clientes de correo y parece ser un gran "
+"éxito, al igual que Mozilla Firefox."
 
 #. Tag: para
 #, no-c-format
 msgid "Strictly speaking, Debian <emphasis role=\"distribution\">Squeeze</emphasis> contains Icedove, and not Thunderbird, for legal reasons we will detail in the “Iceweasel, Firefox and others” section later on; but apart from their names (and icons), there are no real differences between them."
 msgstr ""
+"Estrictamente hablando, Debian <emphasis "
+"role=\"distribution\">Squeeze</emphasis> contiene Icedove, no Thunderbird, por "
+"cuestiones legales que detallaremos en la sección «Iceweasel, Firefox y "
+"otros» más adelante; pero, además del nombre (e íconos), no hay realmente "
+"diferencias entre ellos."
 
 #. Tag: title
 #, no-c-format
 msgid "Web Browsers"
-msgstr ""
+msgstr "Navegadores web"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Web browser</primary>"
-msgstr ""
+msgstr "<primary>Navegadores web</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>browser, Web</primary>"
-msgstr ""
+msgstr "<primary>web, navegador</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Epiphany, the web browser in the GNOME suite, uses the WebKit display engine developed by Apple for its Safari browser. The relevant package is <emphasis role=\"pkg\">epiphany-browser</emphasis>."
 msgstr ""
+"Epiphayny, el navegador web de GNOME, utiliza el motor de visualización "
+"Webkit desarrollado por Apple para su navegador Safari. El paquete relevante "
+"es <emphasis role=\"pkg\">epiphany-browser</emphasis>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>WebKit</primary>"
-msgstr ""
+msgstr "<primary>WebKit</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Epiphany</primary>"
-msgstr ""
+msgstr "<primary>Epiphany</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Konqueror, the KDE file manager, also behaves as a web browser. It uses the KDE-specific KHTML rendering engine; KHTML is an excellent engine, as witnessed by the fact that Apple's WebKit is based on KHTML. Konqueror is available in the <emphasis role=\"pkg\">konqueror</emphasis> package. <indexterm><primary>Konqueror</primary></indexterm>"
 msgstr ""
+"Konqueror, el gestor de archivos de KDE, también se comporta como un "
+"navegador web. Utiliza el motor de visualización KHTML, específico de KDE; "
+"KHTML es un motor excelente, como evidencia el hecho que WebKite de Apple "
+"está basado en KHTML. Konqueror está disponible en el paquete <emphasis "
+"role=\"pkg\">konqueror</emphasis>. "
+"<indexterm><primary>Konqueror</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Users not satisfied by either of the above can use Iceweasel. This browser, available in the <emphasis role=\"pkg\">iceweasel</emphasis> package, uses the Mozilla project's Gecko renderer, with a thin and extensible interface on top. <indexterm><primary>Gecko</primary></indexterm> <indexterm><primary>Mozilla</primary><secondary>Firefox</secondary></indexterm> <indexterm><primary>Firefox, Mozilla</primary></indexterm>"
 msgstr ""
+"Los usuarios que no estén satisfechos con ninguno de los anteriores pueden "
+"utilizar Iceweasel. Este navegador, disponible en el paquete <emphasis "
+"role=\"pkg\">iceweasel</emphasis>, utiliza el visualizador Gecko del proyecto "
+"Mozilla, con una interfaz delgada y extensible sobre él. "
+"<indexterm><primary>Gecko</primary></indexterm> <indexterm><primary>Mozilla<"
+"/primary><secondary>Firefox</secondary></indexterm> "
+"<indexterm><primary>Firefox, Mozilla</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "The Iceweasel web browser"
-msgstr ""
+msgstr "El navegador web Iceweasel"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Iceweasel, Firefox and others"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> Iceweasel, Firefox y otros"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Iceweasel</primary>"
-msgstr ""
+msgstr "<primary>Iceweasel</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Icedove</primary>"
-msgstr ""
+msgstr "<primary>Icedove</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Many users will no doubt be surprised by the absence of Mozilla Firefox in the Debian <emphasis role=\"distribution\">Squeeze</emphasis> menus. No need to panic: the <emphasis role=\"pkg\">iceweasel</emphasis> package contains Iceweasel, which is basically Firefox under another name."
 msgstr ""
+"Muchos usuarios, sin duda, estarán sorprendidos por la ausencia de Mozilla "
+"Firefox en los menús de Debian <emphasis "
+"role=\"distribution\">Squeeze</emphasis>. No hay necesidad de entrar en "
+"pánico: el paquete <emphasis role=\"pkg\">iceweasel</emphasis> contiene "
+"Iceweasel, que es básicamente Firefox bajo otro nombre."
 
 #. Tag: para
 #, no-c-format
 msgid "The rationale behind this renaming is a result of the usage rules imposed by the Mozilla Foundation on the <trademark>Firefox</trademark> registered trademark: any software named Firefox must use the official Firefox logo and icons. However, since these elements are not released under a free license, Debian cannot distribute them in its <emphasis>main</emphasis> section. Rather than moving the whole browser to <emphasis>non-free</emphasis>, the package maintainer chose to use a different name."
 msgstr ""
+"La razón detrás de este cambio de nombre es el resultado de las reglas de "
+"uso impuestas por la Mozilla Foundation en la marca registrada "
+"<trademark>Firefox</trademark>: cualquier software llamado Firefox debe "
+"utilizar el logo y los íconos oficiales de Firefox. Sin embargo, debido a "
+"que estos elementos no son publicados bajo una licencia libre, Debian no "
+"puede distribuirlos en su sección <emphasis>main</emphasis>. En lugar de "
+"mover todo el navegador a <emphasis>non-free</emphasis>, el encargado del "
+"paquete decidió utilizar un nombre diferente."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>firefox</command> command still exists in the <emphasis role=\"pkg\">iceweasel</emphasis> package, but only for compatibility with tools that would try to use it."
 msgstr ""
+"Todavía existe el programa <command>firefox</command> en el paquete "
+"<emphasis role=\"pkg\">iceweasel</emphasis>, pero sólo por compatibilidad con "
+"las herramientas que intenten utilizarlo."
 
 #. Tag: para
 #, no-c-format
 msgid "For similar reasons, the <trademark>Thunderbird</trademark> email client was renamed to Icedove in a similar fashion."
 msgstr ""
+"Por razones similares, se cambió el nombre del cliente de correo "
+"<trademark>Thunderbird</trademark> a Icedove de la misma forma."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Mozilla</primary><secondary>Firefox</secondary>"
-msgstr ""
+msgstr "<primary>Mozilla</primary><secondary>Firefox</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Firefox, Mozilla</primary>"
-msgstr ""
+msgstr "<primary>Firefox, Mozilla</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Mozilla"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> Mozilla"
 
 #. Tag: para
 #, no-c-format
 msgid "Netscape Navigator was the standard browser when the web started reaching the masses, but it was progressively left behind when Microsoft Internet Explorer came around. Faced with this failure, Netscape (the company) decided to “free” its source code, by releasing it under a free license, to give it a second life. This was the beginning of the Mozilla project. After many years of development, the results are more than satisfying: the Mozilla project brought forth an HTML rendering engine (called Gecko) that is among the most standard-compliant. This rendering engine is in particular used by the Mozilla Firefox browser, which is one of the most successful browsers, with a fast-growing user base."
 msgstr ""
+"Netscape Navigator era el navegador estándar cuando la web comenzó a llegar "
+"a las masas, pero fue dejado atrás progresivamente cuando surgió Microsoft "
+"Internet Explorer. Frente a este fracaso, Netscape (la empresa) decidió "
+"«liberar» su código fuente, publicándolo bajo una licencia libre, para darle "
+"una segunda vida. Este fue el comienzo del proyecto Mozilla. Luego de "
+"muchos años de desarrollo, los resultados son más que satisfactorios: el "
+"proyecto Mozilla llevó adelante un motor de visualización HTML (llamado "
+"Gecko) que se encuentra entre los más compatibles con estádares. En "
+"particular, este motor de visualización es utilizado por el navegador "
+"Mozilla Firefox, uno de los navegadores más existosos con una base de "
+"usuarios que crece rápidamente."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Mozilla</primary>"
-msgstr ""
+msgstr "<primary>Mozilla</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Netscape</primary>"
-msgstr ""
+msgstr "<primary>Netscape</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"distribution\">Squeeze</emphasis> also brings a relative newcomer on the web browser scene, Chromium (available in the <emphasis role=\"pkg\">chromium-browser</emphasis> package). This browser is developed by Google at such a fast pace that maintaining a single version of it across the whole lifespan of Debian <emphasis role=\"distribution\">Squeeze</emphasis> is unlikely to be possible. Its clear purpose is to make web services more attractive, both by optimizing the browser for performance and by increasing the user's security. The free code that powers Chromium is also used by its proprietary version called Google Chrome."
 msgstr ""
+"<emphasis role=\"distribution\">Squeeze</emphasis> también provee un "
+"relativamente recién llegado al escenario de los navegadores web, Chromium "
+"(disponible en el paquete <emphasis role=\"pkg\">chromium-browser</emphasis>). "
+"Google desarrolla este navegador a un ritmo tan rápido que probablemente no "
+"sea posible mantener sólo una versión del mismo durante todo el ciclo de "
+"vida de Debian <emphasis role=\"distribution\">Squeeze</emphasis>. Su "
+"propósito es hacer más atractivos a los servicios web, tanto optimizando la "
+"performance del navegador como aumentando la seguridad del usuario. El "
+"código libre que hace funcionar a Chromium también es utilizado por su "
+"versión privativa llamada Google Chrome."
 
 #. Tag: title
 #, no-c-format
 msgid "Development"
-msgstr ""
+msgstr "Desarrollo"
 
 #. Tag: title
 #, no-c-format
 msgid "Tools for GTK+ on GNOME"
-msgstr ""
+msgstr "Herramientas para GTK+ en GNOME"
 
 #. Tag: para
 #, no-c-format
 msgid "Anjuta (in the <emphasis role=\"pkg\">anjuta</emphasis> package) is a development environment optimized for creating GTK+ applications for GNOME. Glade (in the <emphasis role=\"pkg\">glade</emphasis> package) is an application designed to create GTK+ graphical interfaces for GNOME and save them in an XML file. These XML files can then be loaded by the <emphasis>libglade</emphasis> shared library, which can dynamically recreate the saved interfaces; such a feature can be interesting, for instance for plugins that require dialogs."
 msgstr ""
+"Anjuta (en el paquete <emphasis role=\"pkg\">anjuta</emphasis>) es un entorno "
+"de desarrollo optimizado para crear aplicación GTK+ para GNOME. Glade (en el "
+"paquete <emphasis role=\"pkg\">glade</emphasis>) es una aplicación diseñada "
+"para crear interfaces gráficas GTK+ para GNOME y guardarlas en una archivo "
+"XML. La biblioteca compartida <emphasis>libglade</emphasis> puede cargar "
+"estos archivos XML y recrear dinámicamente las interfaces guardadas; esta "
+"funcionalidad puede ser interesante, por ejemplo para los plugins que "
+"necesitan ventanas interactivas."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Anjuta</primary>"
-msgstr ""
+msgstr "<primary>Anjuta</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Glade</primary>"
-msgstr ""
+msgstr "<primary>Glade</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The scope of Anjuta is to combine, in a modular way, all the features one would expect from an integrated development environment."
 msgstr ""
+"El objetivo de Anjuta es combinar, de forma modular, todas las "
+"características que uno podría esperar de un entorno integrado de "
+"desarrollo."
 
 #. Tag: title
 #, no-c-format
 msgid "Tools for Qt on KDE"
-msgstr ""
+msgstr "Herramientas para Qt en KDE"
 
 #. Tag: para
 #, no-c-format
 msgid "The equivalent applications for KDE are KDevelop (in the <emphasis role=\"pkg\">kdevelop</emphasis> package) for the development environment, and Qt Designer (in the <emphasis role=\"pkg\">qt3-designer</emphasis> or <emphasis role=\"pkg\">qt4-designer</emphasis> packages) for the design of graphical interfaces for Qt applications on KDE."
 msgstr ""
+"Las aplicaciones equivalentes para KDE son KDevelop (en el paquete <emphasis "
+"role=\"pkg\">kdevelop</emphasis>) para el entorno de desarrollo y Qt Designer "
+"(en los paquetes <emphasis role=\"pkg\">qt3-designer</emphasis> o <emphasis "
+"role=\"pkg\">qt4-designer</emphasis>) para el diseño de interfaces gráficas de "
+"aplicaciones Qt en KDE."
 
 #. Tag: para
 #, no-c-format
 msgid "The next versions of these applications should be better integrated together, thanks to the KParts component system."
 msgstr ""
+"Las próximas versiones de estas aplicaciones deberían integrarse mejor entre "
+"ellas gracias al sistema de componentes KParts."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>KDevelop</primary>"
-msgstr ""
+msgstr "<primary>KDevelop</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Qt</primary><secondary>Designer</secondary>"
-msgstr ""
+msgstr "<primary>Qt</primary><secondary>Designer</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Collaborative Work"
-msgstr ""
+msgstr "Trabajo colaborativo"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Collaborative Work</primary>"
-msgstr ""
+msgstr "<primary>Trabajo colaborativo</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Working in Groups: <foreignphrase>groupware</foreignphrase>"
-msgstr ""
+msgstr "Trabajo en grupo: <foreignphrase>groupware</foreignphrase>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>groupware</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>groupware</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A previous edition of this book mentioned <emphasis>PHPGroupware</emphasis>, but this software is no longer in Debian… It is no longer actively maintained, and no existing version was compatible with the PHP version 5.3 included in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, which is why the Debian maintainer asked for the package to be removed. <ulink type=\"block\" url=\"http://www.phpgroupware.org/\" />"
 msgstr ""
+"Una edición anterior de este libro mencionaba a "
+"<emphasis>PHPGroupware</emphasis>, pero este software ya no se encuentra en "
+"Debian… no está siendo mantenido activamente y no existe una versión "
+"compatible con la versión 5.3 de PGP que se encuentra en Debian <emphasis "
+"role=\"distribution\">Squeeze</emphasis>, razón por la que el desarrollador "
+"Debian pidió que se eliminara el paquete. <ulink type=\"block\" "
+"url=\"http://www.phpgroupware.org/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PHPGroupware</primary>"
-msgstr ""
+msgstr "<primary>PHPGroupware</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>eGroupware</emphasis> was also mentioned, but it too went the way of PHPGroupware, but for different reasons. The software is still maintained by the company that develops it, but no volunteer has stepped up to ensure its maintenance within Debian. Should you still wish to use it, the project itself provides Debian packages. <ulink type=\"block\" url=\"http://www.egroupware.org/\" />"
 msgstr ""
+"También se mencionaba a <emphasis>eGroupware</emphasis>, el cual sigió los "
+"pasos de PHPGroupware también pero por razones diferentes. La empresa que lo "
+"desarrolla aún mantiene el software, pero ningún voluntario se ofreció para "
+"asegurar que sea mantenido en Debian. Si aún desea utilizarlo, el mismo "
+"proyecto provee paquetes Debian. <ulink type=\"block\" "
+"url=\"http://www.egroupware.org/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>eGroupware</primary>"
-msgstr ""
+msgstr "<primary>eGroupware</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All is not lost though. Many of the features traditionally provided by “groupware” software are increasingly integrated into “standard” software. This is reducing the requirement for specific, specialized groupware software. On the other hand, this usually requires a specific server. A good example for such a server is Kolab, that can integrate into KDE (Kontact, Kmail, and so on), the Horde webmail, Thunderbird (via a plugin) and even into Microsoft Outlook. Kolab is part of Debian <emphasis role=\"distribution\">Squeeze</emphasis> (<emphasis role=\"pkg\">kolab*</emphasis> packages). <ulink type=\"block\" url=\"http://www.kolab.org/\" />"
 msgstr ""
+"Sin embargo, no todo está perdido. Mucha de las características clásicas que "
+"provee el software «groupware» están siendo integradas al software "
+"«estándar». Esto reduce la necesidad de software groupware específico y "
+"especializado. Por el otro lado, esto generalmente necesita un servidor "
+"específico. Un buen ejemplo de tal servidor es Kolab, que puede integrarse "
+"con KDE (Kontact, Kmail, etc.), el correo web Horde, Thunderbird (a través "
+"de un plugin) e inclusive con Microsoft Outlook. Kolab es parte de Debian "
+"<emphasis role=\"distribution\">Squeeze</emphasis> (los paquetes <emphasis "
+"role=\"pkg\">kolab*</emphasis>). <ulink type=\"block\" "
+"url=\"http://www.kolab.org/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Kolab</primary>"
-msgstr ""
+msgstr "<primary>Kolab</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Instant Messaging Systems"
-msgstr ""
+msgstr "Sistemas de mensajería instantánea"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>messaging</primary><secondary>instant</secondary>"
-msgstr ""
+msgstr "<primary>mensajería</primary><secondary>instantánea</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When setting up an internal instant messaging system for a company, the obvious choice is Jabber: its protocol is an open standard (XMPP), and there is no shortage of features. The messages can be encrypted, which can be a real bonus, and gateways can be set up between a Jabber server and other instant messaging networks such as ICQ, AIM, Yahoo, MSN, and so on."
 msgstr ""
+"Cuando configuramos un sistema de mensajería instantánea interno para una "
+"empresa, la opción obvia es Jabber: su protocolo es un estándar abierto "
+"(XMPP) y no el faltan funcionalidades. Se pueden cifrar los mensajes, lo "
+"cual puede ser una gran ventaja, y se pueden configurar puertas de enlace "
+"entre un servidor Jabber y otras redes de mensajería instantánea como ICQ, "
+"AIM, Yahoo, MSN, etc."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Jabber</primary>"
-msgstr ""
+msgstr "<primary>Jabber</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>XMPP</primary>"
-msgstr ""
+msgstr "<primary>XMPP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ICQ</primary>"
-msgstr ""
+msgstr "<primary>ICQ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>AIM</primary>"
-msgstr ""
+msgstr "<primary>AIM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>Messenger</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>Messenger</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Internet Relay Chat"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVA</emphasis> IRC: «Internet Relay Chat»"
 
 #. Tag: para
 #, no-c-format
 msgid "IRC can also be considered, instead of Jabber. This system is more centered around the concept of channels, the name of which starts with a hash sign <literal>#</literal>. Each channel is usually targeted at a specific topic and any number of people can join a channel to discuss it (but users can still have one-to-one private conversations if needed). The IRC protocol is older, and does not allow end-to-end encryption of the messages; it is still possible to encrypt the communications between the users and the server by tunneling the IRC protocol inside SSL."
 msgstr ""
+"También podemos considerar a IRC en lugar de Jabber. Este sistema está más "
+"centrado alrededor del concepto de canales, cuyos nombres comienzan con un "
+"símbolo de numeral <literal>#</literal>. Frecuentemente, cada canal está "
+"dedicado a un tema específico y cualquier cantidad de personas pueden unirse "
+"a un canal para discutirlo (pero los usuarios también pueden tener "
+"conversaciones privadas sólo entre dos si es necesario). El protocolo IRC es "
+"más antiguo y no permite cifrado punta-a-punta de los mensajes; sí es "
+"posible cifrar la comunicación entre los usuarios y el servidor utilizando "
+"un túnel SSL para el tráfico del protocolo IRC."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IRC</primary>"
-msgstr ""
+msgstr "<primary>IRC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><foreignphrase>Internet Relay Chat</foreignphrase></primary>"
-msgstr ""
+msgstr "<primary><foreignphrase>Internet Relay Chat</foreignphrase></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "IRC clients are a bit more complex, and they usually provide many features that are of limited use in a corporate environment. For instance, channel “operators” are users endowed with the ability to kick other users from a channel, or even ban them permanently, when the normal discussion is disrupted."
 msgstr ""
+"Los clientes IRC son un poco más complejos y generalmente proveen muchas "
+"funcionalidades con un uso limitado en un entorno corporativo. Por ejemplo, "
+"los «operadores» de los canales son usuarios con capacidad de echar otros "
+"usuarios de un canal o inclusive bloquearlos permanentemente cuando "
+"interrumpan la discusión normal."
 
 #. Tag: para
 #, no-c-format
 msgid "Since the IRC protocol is very old, many clients are available to cater for many user groups; examples include XChat and Smuxi (graphical clients based on GTK+), Irssi (text mode), Erc (integrated to Emacs), Chatzilla (in the Mozilla software suite), and so on."
 msgstr ""
+"Debido a que el protocolo IRC es muy antiguo, hay disponibles muchos "
+"clientes que se adaptan a muchos grupos de usuario; los ejemplos incluyen "
+"XChat y Smuxi (clientes gráficos basados en GTK+), Irssi (modo texto), Erc "
+"(integrado a Emacs), Chatzilla (en el conjunto de software Mozilla), etc."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> Video conferencing with Ekiga"
-msgstr ""
+msgstr "<emphasis>VISTA RÁPIDA</emphasis> Conferencias de video con Ekiga"
 
 #. Tag: para
 #, no-c-format
 msgid "Ekiga (formerly GnomeMeeting) is the most prominent application for Linux video conferencing. It is both stable and functional, and is very easily used on a local network; setting up the service on a global network is much more complex when the firewalls involved lack explicit support for the H323 and/or SIP teleconferencing protocols with all their quirks."
 msgstr ""
+"Ekiga (anteriormente GnomeMeeting) es la aplicación más resaltada para "
+"conferencias de video en Linux. Es estable, funcional y muy sencilla de "
+"utilizar en una red local; configurar el servicio en una red global es mucho "
+"más complejo cuando los firewalls involucrados no son compatibles "
+"explícitamente con los protocolos de teleconferencias H323 y/o SIP y todas "
+"sus peculiaridades."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>video conference</primary>"
-msgstr ""
+msgstr "<primary>conferencia de video</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>H323</primary>"
-msgstr ""
+msgstr "<primary>H323</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If only one Ekiga client is to run behind the firewall, the configuration is rather straightforward, and only involves forwarding a few ports to the dedicated host: TCP port 1720 (listening for incoming connections), TCP port 5060 (for SIP), TCP ports 30000 to 30010 (for control of open connections) and UDP ports 5000 to 5013 (for audio and video data transmission and registration to an H323 proxy)."
 msgstr ""
+"Si sólo se ejecutará un cliente Ekiga destrás del firewall, la configuración "
+"es bastante directa ya que sólo involucra redirigir unos pocos puertos al "
+"equipo dedicado: el puerto TCP 1720 (que espera conexiones entrantes), el "
+"puerto TCP 5060 (para SIP), los puertos TCP 30000 a 30010 (para control de "
+"conexiones abiertas) y los puertos UDP 5000 a 5013 (para transmisión de "
+"datos de audio y video así como registración con un proxy H323)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GnomeMeeting</primary>"
-msgstr ""
+msgstr "<primary>GnomeMeeting</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Ekiga</primary>"
-msgstr ""
+msgstr "<primary>Ekiga</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When several Ekiga clients are to run behind the firewall, complexity increases notably. An H323 proxy (for instance the <emphasis role=\"pkg\">gnugk</emphasis> package) must be set up, and its configuration is far from simple."
 msgstr ""
+"Cuando se ejecuten varios clientes Ekiga detrás del firewall, la complejidad "
+"aumenta considerablemente. Deberá configurar un proxy H323 (por ejemplo el "
+"paquete <emphasis role=\"pkg\">gnugk</emphasis>), tarea que dista de ser "
+"sencilla."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">gnugk</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">gnugk</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -1056,56 +1537,79 @@ msgstr "Configuración del servidor"
 #, no-c-format
 msgid "Setting up a Jabber server is rather straightforward. After installing the <emphasis role=\"pkg\">ejabberd</emphasis> package, executing <command>dpkg-reconfigure ejabberd</command> will allow customizing the default domain, and create an administrator account. Note that the Jabber server needs a valid DNS name to point at it, so some network administration can be required beforehand. The Falcot Corp administrators picked <literal>jabber.falcot.com</literal> for that purpose."
 msgstr ""
+"Configurar un servidor Jabber es bastante directo. Luego de instalar el "
+"paquete <emphasis role=\"pkg\">ejabberd</emphasis>, ejecutar <command>dpkg-"
+"reconfigure ejabberd</command> le permitirá personalizar el dominio "
+"predeterminado y crear una cuenta de administración. Sepa que el servidor "
+"Jabber necesita un nombre DNS válido que apunte a él, por lo que necesitará "
+"algo de administración de red antes. Los administradores de Falcot Corp "
+"eligieron <literal>jabber.falcot.com</literal> para este propósito."
 
 #. Tag: para
 #, no-c-format
 msgid "Once this initial set up is over, the service configuration can be controlled through a web interface accessible at <literal>http://jabber.falcot.com:5280/admin/</literal>. The requested username and password are those that were given earlier during the initial configuration. Note that the username must be qualified with the configured domain: the <literal>admin</literal> account becomes <literal>admin@jabber.falcot.com</literal>."
 msgstr ""
+"Una vez que finalizó esta configuración inicial, puede controlar la "
+"configuración del servicio a través de una interfaz web disponible en "
+"<literal>http://jabber.falcot.com:5280/admin/</literal>. El nombre de "
+"usuario y contraseña solicitados son aquellos que ingresó durante la "
+"configuración inicial. Sepa que el nombre de usuario debe ser completo, "
+"incluyendo el dominio configurado: la cuenta <literal>admin</literal> será "
+"<literal>admin@jabber.falcot.com</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "The web interface removes the need to edit a configuration file, but does not always make the task easier, since many options have a peculiar syntax that needs to be known. <filename>/usr/share/doc/ejabberd/guide.html</filename> is therefore a recommended read."
 msgstr ""
+"La interfaz web elimina la necesidad de editar un archivo de configuración, "
+"pero no siempre hace la tarea más sencilla ya que necesita conocer la "
+"sintáxis particular que poseen muchas opciones. le recomendamos leer "
+"<filename>/usr/share/doc/ejabberd/guide.html</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "Jabber Clients"
-msgstr ""
+msgstr "Clientes Jabber"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>client</primary><secondary>Jabber</secondary>"
-msgstr ""
+msgstr "<primary>cliente</primary><secondary>Jabber</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Jabber</primary><secondary>clients</secondary>"
-msgstr ""
+msgstr "<primary>Jabber</primary><secondary>clientes</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "GNOME provides Empathy (in the similarly-named package), a minimalist client that integrates in the notification area of the desktop (on the top-right corner in the default GNOME configuration). It also supports many instant messaging protocols beyond Jabber."
 msgstr ""
+"GNOME provee Empathy (en el paquete del mismo nombre), un cliente "
+"minimalista que se integra con el área de notificación del escritorio (en la "
+"esquina superior derecha de la configuración predeterminada de GNOME). "
+"Tambiéne s compatible con muchos protocolos de mensajería instantánea además "
+"de Jabber."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Empathy</primary>"
-msgstr ""
+msgstr "<primary>Empathy</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "KDE provides Kopete (in the package of the same name)."
-msgstr ""
+msgstr "KDE provee Kopete (en el paquete del mismo nombre)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Kopete</primary>"
-msgstr ""
+msgstr "<primary>Kopete</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Collaborative Work With FusionForge"
-msgstr ""
+msgstr "Trabajo colaborativo con FusionForge"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1116,201 +1620,303 @@ msgstr "<primary>FusionForge</primary>"
 #, no-c-format
 msgid "FusionForge is a collaborative development tool with some ancestry in SourceForge, a hosting service for free software projects. It takes the same overall approach based on the standard development model for free software. The software itself has kept evolving after the SourceForge code went proprietary. Its initial authors, VA Software, decided not to release any more free versions. The same happened again when the first fork (GForge) followed the same path. Since various people and organizations have participated in development, the current FusionForge also includes features targeting a more traditional approach to development, as well as projects not purely concerned with software development."
 msgstr ""
+"FusionForge es una herramienta de desarrollo colaborativo derivado de "
+"SourceForge, un servicio de almacenamiento de proyectos de software libre. "
+"Tiene el mismo enfoque general basado en el modelo estándar de desarrollo de "
+"software libre. El software en sí continuó evolucionando luego que el "
+"código de SourceForge pasó a ser privativo. Sus autores iniciales, VA "
+"Software, decidieron no publicar más versiones libres. Lo mismo pasó cuando "
+"su primer bifurcación (GForge) siguió el mismo camino. Debido a que muchas "
+"personas y organizaciones participaron en su desarrollo, el FusionForge "
+"actual también incluye funcionalidad que apuntan a un enfoque más "
+"tradicional de desarrollo así como también proyectos que no están "
+"completamente enfocados en el desarrollo de software."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SourceForge</primary>"
-msgstr ""
+msgstr "<primary>SourceForge</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "FusionForge can be seen as an amalgamation of several tools dedicated to manage, track and coordinate projects. These tools can be roughly classified into three families:"
 msgstr ""
+"Se puede considerar a FusionForge como una amalgama de varias herramientas "
+"dedicadas a gestionar, seguir y coordinar proyectos. Podríamos clasificar "
+"estas herramientas, a grandes rasgos, en tres familias:"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>communication</emphasis>: web forums, mailing-list manager, announcement system allowing a project to publish news;"
 msgstr ""
+"<emphasis>comunicación</emphasis>: foros web, gestor de listas de correo, "
+"sistemas de anuncios que permiten que el proyecto publique noticias;"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>tracking</emphasis>: task tracker to control progress and schedule tasks, trackers for bugs (or patches or feature requests, or any other kind of “ticket”), surveys;"
 msgstr ""
+"<emphasis>seguimiento</emphasis>: gestor de tareas para controlar el "
+"progreso y programar tareas, seguimiento de errores (o parches, o pedidos de "
+"funcionalidad, o cualquier otro tipo de reporte ­— «ticket»), encuestas;"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>sharing</emphasis>: documentation manager to provide a single central point for documents related to a project, generic file release manager, dedicated website for each project."
 msgstr ""
+"<emphasis>compartir</emphasis>: gestor de documentación para proveer un "
+"único punto central para documentos relacionados a un proyecto, gestor "
+"genérico de publicación de archivos, sitio web dedicado a cada proyecto."
 
 #. Tag: para
 #, no-c-format
 msgid "Since FusionForge is largely targeting development projects, it also integrates many tools such as CVS, Subversion, Git, Bazaar, Darcs, Mercurial and Arch for source control management or “configuration management” or “version control” — this process has many names. These programs keep a history of all the revisions of all tracked files (often source code files), with all the changes they go through, and they can merge modifications when several developers work simultaneously on the same part of a project."
 msgstr ""
+"Debido a que, en gran parte, FusionForge está dedicado a desarrollo de "
+"proyectos, también integra muchas herramientas como CVS, Subversion, Git, "
+"Bazaar, Darcs, Mercurial y Arch para gestión de control de fuente o «gestión "
+"de configuración» o «control de versiones» — este proceso tiene muchos "
+"nombres. Estos programas mantienen un historial de todas las revisiones de "
+"todos los archivos seguidos (generalmente archivos de código fuente), con "
+"todos los cambios que atravesaron y pueden integrar modificaciones cuando "
+"varios desarrolladores trabajan simultáneamente en la misma porción de un "
+"proyecto."
 
 #. Tag: para
 #, no-c-format
 msgid "Most of these tools are accessible, or even managed, through a web interface, with a fine-grained permission system, and email notifications for some events."
 msgstr ""
+"Muchas de estas herramientas están disponible, o inclusive son "
+"administradas, en una interfaz web con un sistema de permisos muy detalladoy "
+"notificaciones por correo de algunos eventos."
 
 #. Tag: title
 #, no-c-format
 msgid "Office Suites"
-msgstr ""
+msgstr "Suites de oficina"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>office suite</primary>"
-msgstr ""
+msgstr "<primary>suite de oficina</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>suite, office</primary>"
-msgstr ""
+msgstr "<primary>oficina, suite de</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Office software has long been seen as lacking in the free software world. Users have long asked for replacements for Microsoft tools such as Word and Excel, but these are so complex that replacements were hard to develop. The situation changed when the OpenOffice.org project started (following Sun's release of the StarOffice code under a free license). The GNOME and KDE projects are still working on their offerings (GNOME Office and KOffice), and the friendly competition leads to interesting results. For instance, the Gnumeric spreadsheet (part of GNOME Office) is even better than OpenOffice.org in some domains, notably the precision of its calculations. On the word processing front, the OpenOffice.org suite still leads the way."
 msgstr ""
+"Durante mucho que el mundo del software libre es limitado en cuanto a "
+"software de oficina. Los usuarios pedían reemplazos de las herramientas de "
+"Microsoft como Word y Excel, pero éstas son tan complejas que el desarrollo "
+"de dichos reemplazos fue complejo. La situación cambió cuando comenzó el "
+"proyecto OpenOffice.org (luego de que Sun publicara el código de StarOffice "
+"bajo una licencia libre). Los proyectos GNOME y KDE continúan trabajando en "
+"sus ofertas (GNOME Office y KOffice) y la competencia amigable lleva a "
+"resultados interesantes. Por ejemplo, la hoja de cálculo Gnumeric (parte de "
+"GNOME Office) es inclusive mejor que OpenOffice.org en algunos aspectos, "
+"notablemente en la precisión de sus cálculos. En cuanto al procesamiento de "
+"texto, la suite OpenOffice.org todavía lleva la delantera."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>OpenOffice.org</primary>"
-msgstr ""
+msgstr "<primary>OpenOffice.org</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>StarOffice</primary>"
-msgstr ""
+msgstr "<primary>StarOffice</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Libre Office</primary>"
-msgstr ""
+msgstr "<primary>Libre Office</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GNOME Office</primary>"
-msgstr ""
+msgstr "<primary>GNOME Office</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>KOffice</primary>"
-msgstr ""
+msgstr "<primary>KOffice</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Gnumeric</primary>"
-msgstr ""
+msgstr "<primary>Gnumeric</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Another important feature for users is the ability to import Word and Excel documents received from contacts or found in archives. Even though all office suites have filters which allow working on these formats, only the ones found in OpenOffice.org are functional enough for daily use."
 msgstr ""
+"Otra característica importante para los usuarios es la capacidad de importar "
+"documentos Word y Excel que encuentran o reciben de contactos. Aún cuando "
+"todas las suites de oficina poseen filtros que permiten trabajar con estos "
+"formatos, sólo aquellos en OpenOffice.org son suficientemente funcionales "
+"para usar diariamente."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>THE BROADER VIEW</emphasis> Libre Office replaces OpenOffice.org"
 msgstr ""
+"<emphasis>UNA VISIÓN MÁS AMPLIA</emphasis> Libre Office reemplaza "
+"OpenOffice.org"
 
 #. Tag: para
 #, no-c-format
 msgid "OpenOffice.org contributors have set up a foundation (<emphasis>The Document Foundation</emphasis>) to foster project development. The idea had been discussed for some time, but the actual trigger was Oracle's acquisition of Sun. The new ownership made the future of OpenOffice under Oracle uncertain. Since Oracle declined to join the foundation, the developers had to give up on the OpenOffice.org name. The software is now known as <emphasis>Libre Office</emphasis>."
 msgstr ""
+"Los colaboradores de OpenOffice.org crearon una fundación (<emphasis>The "
+"Document Foundation</emphasis>) para abarcar el desarrollo del proyecto. Se "
+"discutió la idea por un tiempo, pero el disparador fue la adquisición de Sun "
+"por parte de Oracle. Los nuevos dueños hicieron incierto el futuro de "
+"OpenOffice bajo la mano de Oracle. Debido a que Oracle decidió no unirse a "
+"la fundación, los desarrolladores debieron abandonar el nombre "
+"OpenOffice.org. Ahora se conoce al software como <emphasis>Libre "
+"Office</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "These changes occurred after Debian <emphasis role=\"distribution\">Squeeze</emphasis> was frozen, which explains why the repositories still contain OpenOffice.org… but Libre Office is already available in the <literal>backports.debian.org</literal> package repository, as well as in more recent versions of Debian."
 msgstr ""
+"Estos cambios ocurrieron luego que comenzara el proceso de estabilización de "
+"Debian <emphasis role=\"distribution\">Squeeze</emphasis>, lo cual explica "
+"porqué los repositorios todavía contienen OpenOffice.org… pero ya se "
+"encuentra disponible Libre Office en el repositorio de paquetes "
+"<literal>backports.debian.org</literal> así como también en las versiones "
+"más recientes de Debian."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Word, Microsoft</primary>"
-msgstr ""
+msgstr "<primary>Word, Microsoft</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Excel, Microsoft</primary>"
-msgstr ""
+msgstr "<primary>Excel, Microsoft</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Microsoft</primary><secondary>Word</secondary>"
-msgstr ""
+msgstr "<primary>Microsoft</primary><secondary>Word</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Microsoft</primary><secondary>Excel</secondary>"
-msgstr ""
+msgstr "<primary>Microsoft</primary><secondary>Excel</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "OpenOffice.org, KOffice and GNOME Office are, respectively, available in the <emphasis role=\"pkg\">openoffice.org</emphasis>, <emphasis role=\"pkg\">koffice</emphasis> and <emphasis role=\"pkg\">gnome-office</emphasis> Debian packages. Language-specific packs for OpenOffice.org are distributed in separate packages: <emphasis role=\"pkg\">openoffice.org-l10n-*</emphasis>, <emphasis role=\"pkg\">openoffice.org-help-*</emphasis>, and <emphasis role=\"pkg\">openoffice.org-spellcheck-*</emphasis> (which can be a virtual package provided by <emphasis role=\"pkg\">myspell-*</emphasis>)."
 msgstr ""
+"OpenOffice.org, KOffice y GNOME Office se encuentran disponibles, "
+"respectivamente, en los paquetes Debian <emphasis "
+"role=\"pkg\">openoffice.org</emphasis>, <emphasis "
+"role=\"pkg\">koffice</emphasis> y <emphasis role=\"pkg\">gnome-"
+"office</emphasis>. Los paquetes específicos de idioma para OpenOffice.org "
+"son distribuídos en paquetes independientes: <emphasis role=\"pkg\">openoffice"
+".org-l10n-*</emphasis>, <emphasis role=\"pkg\">openoffice.org-"
+"help-*</emphasis> y <emphasis role=\"pkg\">openoffice.org-"
+"spellcheck-*</emphasis> (que pueden ser paquetes virtuales provistos por "
+"<emphasis role=\"pkg\">myspell-*</emphasis>)."
 
 #. Tag: title
 #, no-c-format
 msgid "Emulating Windows: Wine"
-msgstr ""
+msgstr "Emulación de Windows: Wine"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Emulating Windows</primary>"
-msgstr ""
+msgstr "<primary>emulación de Windows</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Windows, emulation</primary>"
-msgstr ""
+msgstr "<primary>Windows, emulación</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In spite of all the previously mentioned efforts, there are still a number of tools without a Linux equivalent, or for which the original version is absolutely required. This is where Windows emulation systems come in handy. The most well-known among them is Wine. <ulink type=\"block\" url=\"http://www.winehq.com/\" />"
 msgstr ""
+"A pesar de todos los esfuerzos mencionados anteriormente, existen todavía "
+"herramientas sin equivalente en Linux o para las que las versiones "
+"originales son absolutamente necesarias. Aquí es donde son útiles los "
+"sistemas de emulación de Windows. El más conocido entre ellos es Wine. "
+"<ulink type=\"block\" url=\"http://www.winehq.com/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMPLEMENTS</emphasis> CrossOver Linux"
-msgstr ""
+msgstr "<emphasis>COMPLEMENTOS</emphasis> CrossOver Linux"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>CrossOver</emphasis>, produced by CodeWeavers, is a set of enhancements to Wine that broaden the available set of emulated features to a point at which Microsoft Office becomes fully usable. Some of the enhancements are periodically merged into Wine. <ulink type=\"block\" url=\"http://www.codeweavers.com/products/\" />"
 msgstr ""
+"<emphasis>CrossOver</emphasis>, producido por CodeWeavers, es un conjunto de "
+"mejoras a Wine que amplían el conjunto de funcionalidades de emulación al "
+"punto que se puede utilizar completamente Microsoft Office. Algunas de estas "
+"mejoras son incorporadas periódicamente en Wine. <ulink type=\"block\" "
+"url=\"http://www.codeweavers.com/products/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>CrossOver</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>CrossOver</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CodeWeavers</primary>"
-msgstr ""
+msgstr "<primary>CodeWeavers</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "However, one should keep in mind that it's only a solution among others, and the problem can also be tackled with a virtual machine or VNC; both of these solutions are detailed in the sidebars."
 msgstr ""
+"Sin embargo, uno debe tener en cuenta que sólo es una solución entre muchas "
+"otras y que también puede enfrentar el problema con una máquina virtual o "
+"VNC, ambas soluciones son detalladas en los recuadros."
 
 #. Tag: para
 #, no-c-format
 msgid "Let us start with a reminder: emulation allows executing a program (developed for a target system) on a different host system. The emulation software uses the host system, where the application runs, to imitate the required features of the target system."
 msgstr ""
+"Comencemos con un recordatorio: la emulación permite ejecutar un programa "
+"(desarrollado para un sistema objetivo) en on sistema anfitrión diferente. "
+"El software de emulación utiliza el sistema anfitrión, donde ejecuta la "
+"aplicación, para imitar la funcionalidad requerida del sistema objetivo."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Wine</primary>"
-msgstr ""
+msgstr "<primary>Wine</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The simplest way of using Wine is with an instance of Microsoft Windows already installed on an existing partition (which will be the case on machines dual-booting with this system). When no installed Windows version is available, Wine works in a less complete way, and fewer programs will be able to run."
 msgstr ""
+"La forma más simple de utilizar Wine es con una instancia de Microsoft "
+"Windows ya instalada en una partición existente (que será el caso de las "
+"máquinas con arranque dual en este sistema). Cuando no se encuentre "
+"disponible una versión de Windows instalada, Wine trabja de forma menos "
+"completa y podrá ejecutar menos programas."
 
 #. Tag: para
 #, no-c-format
 msgid "The Windows partition must first be mounted (for instance under <filename>/windows/</filename>), and the <command>wine</command> user must have read and write access. The following <filename>fstab</filename> entry grants this access to all users:"
 msgstr ""
+"Primero debe montar la partición Windows (por ejemplo bajo "
+"<filename>/windows/</filename>) a la que el usuario <command>wine</command> "
+"debe tener acceso de lectura y escritura. La siguiente línea en el archivo "
+"<filename>/etc/fstab</filename> provee este acceso a todos los usuarios:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1318,11 +1924,13 @@ msgid ""
 "\n"
 "/dev/hda1 /windows fat defaults,uid=1000,gid=100,umask=002,nls=iso8859-1 0 0\n"
 msgstr ""
+"\n"
+"/dev/hda1 /windows fat defaults,uid=1000,gid=100,umask=002,nls=iso8859-1 0 0\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Now let's install the required packages:"
-msgstr ""
+msgstr "Instalemos ahora los paquetes necesarios:"
 
 #. Tag: screen
 #, no-c-format
@@ -1330,58 +1938,87 @@ msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-"
+"mscorefonts-installer wine-doc</userinput>\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>winesetup</command></primary>"
-msgstr ""
+msgstr "<primary><command>winesetup</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The user then needs to run <command>winecfg</command> and configure <filename>/windows/</filename> to be used as the <literal>C:</literal> drive. Other settings can be kept to their default values. Running Windows programs then becomes a simple matter of running <command>wine <replaceable>/windows/.../program.exe</replaceable></command>."
 msgstr ""
+"Luego, el usuario necesita ejecutar <command>winecfg</command> y "
+"configurarlo para que utilice <filename>/windows/</filename> como el disco "
+"<literal>C:</literal>. Puede mantener el valor predeterminado de las otras "
+"opciones. La ejecución de programas Windows entonces será simplemente "
+"cuestión de ejecutar <command>wine "
+"<replaceable>/windows/.../programa.exe</replaceable></command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Note that you should not rely on Wine (or similar solutions) without actually testing the particular software: only a real-use test will determine conclusively whether emulation is fully functional."
 msgstr ""
+"Sepa que no debe depender de Wine (o soluciones similares) sin probar "
+"realmente el software particular: sólo una prueba de uso real determinará "
+"sin dudas si la emulación es completamente funcional."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Virtual machines"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVA</emphasis> Máquinas virtuales"
 
 #. Tag: para
 #, no-c-format
 msgid "An alternative to emulating Microsoft's operating system is to actually run it in a virtual machine that emulates a full hardware machine. This allows running any operating system. <xref linkend=\"advanced-administration\" /> describes several virtualization systems, most notably Xen and KVM (but also QEMU, VMWare and Bochs)."
 msgstr ""
+"Una alternativa para emular el sistema operativo de Microsoft es ejecutarlo "
+"realmente en una máquina virtual que emula el hardware completo de un "
+"equipo. Esto permite ejecutar cualquier sistema operativo. <xref linkend"
+"=\"advanced-administration\" /> describe varios sistemas de virtualización, "
+"más notablemente Xen y KVM (pero también QEMU, VMWare y Bochs)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <foreignphrase>Windows Terminal Server</foreignphrase> or VNC"
 msgstr ""
+"<emphasis>ALTERNATIVA</emphasis> <foreignphrase>Windows Terminal "
+"Server</foreignphrase> o VNC"
 
 #. Tag: para
 #, no-c-format
 msgid "Yet another possibility is to remotely run the legacy Windows applications on a central server with <emphasis>Windows Terminal Server</emphasis> and access the application from Linux machines using <emphasis>rdesktop</emphasis>. This is a Linux client for the RDP protocol (<emphasis>Remote Desktop Protocol</emphasis>) that <foreignphrase>Windows NT/2000 Terminal Server</foreignphrase> uses to display desktops on remote machines."
 msgstr ""
+"Otra posibilidad es ejecutar remotamente las aplicaciones Windows en un "
+"servidor centra con <emphasis>Windows Terminal Server</emphasis> y acceder a "
+"la aplicación desde máquinas Linux utilizando "
+"<emphasis>rdesktop</emphasis>. Éste es un cliente Linux para el protocolo "
+"RDP (<emphasis>protocolo de escritorio remoto</emphasis>: «Remote Desktop "
+"Protocol») que  <foreignphrase>Windows NT/2000 Terminal "
+"Server</foreignphrase> utiliza para mostrar escritorios en máquinas remotas."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RDP</primary>"
-msgstr ""
+msgstr "<primary>RDP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>Remote Desktop Protocol</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>Remote Desktop Protocol</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>Windows Terminal Server</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>Windows Terminal Server</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The VNC software provides similar features, with the added benefit of also working with many operating systems. Linux VNC clients and servers are described in <xref linkend=\"sect.remote-login\" />."
 msgstr ""
+"El software VNC provee funcionalidades similares, con el beneficio adicional "
+"de que también funciona con muchos sistemas operativos. Describimos los "
+"clientes y servidores VNC Linux en <xref linkend=\"sect.remote-login\" />."
