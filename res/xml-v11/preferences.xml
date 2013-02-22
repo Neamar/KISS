@@ -15,26 +15,15 @@
             android:summary="Put search box on top"
             android:title="Invert UI" >
         </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="small-screen"
+            android:summary="Hide the ActionBar when in landscape Mode"
+            android:title="Small Screen Mode" >
+        </CheckBoxPreference>
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/title_providers" >
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="enable-apps"
-            android:summary="@string/apps_desc"
-            android:title="@string/apps_name" >
-        </CheckBoxPreference>
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="enable-contacts"
-            android:summary="@string/contacts_desc"
-            android:title="@string/contacts_name" >
-        </CheckBoxPreference>
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="enable-settings"
-            android:summary="@string/settings_desc"
-            android:title="@string/settings_name" >
-        </CheckBoxPreference>
+
+    <PreferenceCategory android:title="@string/title_providers">
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-toggles"
@@ -49,10 +38,27 @@
         </CheckBoxPreference>
         <CheckBoxPreference
             android:defaultValue="true"
+            android:key="enable-apps"
+            android:summary="@string/apps_desc"
+            android:title="@string/apps_name" >
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable-contacts"
+            android:summary="@string/contacts_desc"
+            android:title="@string/contacts_name" >
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="true"
             android:key="enable-search"
             android:summary="@string/search_desc"
             android:title="@string/search_name" >
         </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable-settings"
+            android:summary="@string/settings_desc"
+            android:title="@string/settings_name" >
+        </CheckBoxPreference>
     </PreferenceCategory>
-
 </PreferenceScreen>
