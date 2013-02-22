@@ -19,12 +19,12 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -37,7 +37,10 @@ import fr.neamar.summon.task.UpdateRecords;
 
 public class SummonActivity extends ListActivity implements QueryInterface {
 
+	public static String START_LOAD = "fr.neamar.summon.START_LOAD";
 	public static String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
+	public static String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
+	public static String NB_PROVIDERS = "nb_providers";
 	private BroadcastReceiver mReceiver;
 	
 	/**
@@ -69,6 +72,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		if (prefs.getBoolean("themeDark", false)) {
 			setTheme(R.style.SummonThemeDark);
 		}
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
 
 		// Initialize preferences
@@ -154,15 +158,24 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		}
 		
 		IntentFilter intentFilter = new IntentFilter(LOAD_OVER);
+		IntentFilter intentFilterBis = new IntentFilter(FULL_LOAD_OVER);
+		IntentFilter intentFilterTer = new IntentFilter(START_LOAD);
         mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-            	updateRecords(searchEditText.getText().toString());
+            	if(intent.getAction().equalsIgnoreCase(LOAD_OVER)){
+            		updateRecords(searchEditText.getText().toString());
+            	}else if(intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)){
+            		setProgressBarIndeterminateVisibility(false);
+            	}else if(intent.getAction().equalsIgnoreCase(START_LOAD)){  
+            		setProgressBarIndeterminateVisibility(true);
+            	}
             }
         };
         //registering our receiver
         this.registerReceiver(mReceiver, intentFilter);
-
+        this.registerReceiver(mReceiver, intentFilterBis);
+        this.registerReceiver(mReceiver, intentFilterTer);
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
 			@Override
@@ -176,6 +189,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
 		super.onResume();
 	}
+	
+	@Override
+    protected void onPause() {
+        super.onPause();
+        //unregister our receiver
+        this.unregisterReceiver(this.mReceiver);
+    }
 
 	@Override
 	public void onBackPressed() {
