@@ -75,7 +75,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
 		
-		SummonApplication.resetDataHandler(this);
+		SummonApplication.initDataHandler(this);
 		
 		// Initialize preferences
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -106,7 +106,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		setListAdapter(adapter);
 
 		this.searchEditText = (EditText) findViewById(R.id.searchEditText);
-
+		
 		// Listen to changes
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
