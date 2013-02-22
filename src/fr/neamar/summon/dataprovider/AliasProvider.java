@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import fr.neamar.summon.SummonActivity;
 import fr.neamar.summon.holder.Holder;
 
 public class AliasProvider extends Provider {
@@ -49,7 +50,8 @@ public class AliasProvider extends Provider {
 						Intent.CATEGORY_APP_MESSAGING);
 				alias.put("text", messagingApp);
 				alias.put("sms", messagingApp);
-
+				Intent i = new Intent(SummonActivity.LOAD_OVER);
+		        context.sendBroadcast(i);
 			}
 		});
 		thread.setPriority(Thread.NORM_PRIORITY + 1);

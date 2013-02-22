@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import fr.neamar.summon.R;
+import fr.neamar.summon.SummonActivity;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.ToggleHolder;
 
@@ -30,6 +32,8 @@ public class ToggleProvider extends Provider {
 				// toggles.add(createHolder("GPS", "gps", R.drawable.toggle_gps));
 				// toggles.add(createHolder("Mobile network data", "data",
 				// R.drawable.toggle_data));
+				Intent i = new Intent(SummonActivity.LOAD_OVER);
+		        context.sendBroadcast(i);
 			}
 
 			private ToggleHolder createHolder(String name, String settingName,

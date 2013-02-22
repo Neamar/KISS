@@ -6,9 +6,11 @@ import java.util.regex.Pattern;
 
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
+import fr.neamar.summon.SummonActivity;
 import fr.neamar.summon.holder.ContactHolder;
 import fr.neamar.summon.holder.Holder;
 
@@ -111,7 +113,8 @@ public class ContactProvider extends Provider {
 						}
 					}
 				}
-
+				Intent i = new Intent(SummonActivity.LOAD_OVER);
+		        context.sendBroadcast(i);
 				long end = System.nanoTime();
 				Log.i("time", Long.toString((end - start) / 1000000)
 						+ " milliseconds to list contacts");

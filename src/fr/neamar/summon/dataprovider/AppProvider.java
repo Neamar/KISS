@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
+import fr.neamar.summon.SummonActivity;
 import fr.neamar.summon.holder.AppHolder;
 import fr.neamar.summon.holder.Holder;
 
@@ -48,6 +49,9 @@ public class AppProvider extends Provider {
 
 					apps.add(app);
 				}
+				
+				Intent i = new Intent(SummonActivity.LOAD_OVER);
+		        context.sendBroadcast(i);
 
 				long end = System.nanoTime();
 				Log.i("time", Long.toString((end - start) / 1000000)

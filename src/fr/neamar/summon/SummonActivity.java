@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.ListActivity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -13,11 +15,11 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,6 +37,9 @@ import fr.neamar.summon.task.UpdateRecords;
 
 public class SummonActivity extends ListActivity implements QueryInterface {
 
+	public static String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
+	private BroadcastReceiver mReceiver;
+	
 	/**
 	 * Adapter to display records
 	 */
@@ -130,22 +135,6 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 				return true;
 			}
 		});
-
-		// Some providers take time to load. So, on startup, we rebuild results
-		// every 400ms to avoid missing records
-		CountDownTimer t = new CountDownTimer(3200, 400) {
-
-			@Override
-			public void onTick(long millisUntilFinished) {
-				updateRecords(searchEditText.getText().toString());
-			}
-
-			@Override
-			public void onFinish() {
-
-			}
-		};
-		t.start();
 	}
 
 	/**
@@ -163,6 +152,16 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
 			startActivity(i);
 		}
+		
+		IntentFilter intentFilter = new IntentFilter(LOAD_OVER);
+        mReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+            	updateRecords(searchEditText.getText().toString());
+            }
+        };
+        //registering our receiver
+        this.registerReceiver(mReceiver, intentFilter);
 
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
