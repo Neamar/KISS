@@ -14,8 +14,6 @@ public class SummonApplication extends Application {
 	}
 
 	public static void resetDataHandler(Context ctx) {
-		if (dataHandler != null) {
-			dataHandler = new DataHandler(ctx);
-		}
+		dataHandler = new DataHandler(ctx);
 	}
 }

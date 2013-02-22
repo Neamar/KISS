@@ -74,7 +74,9 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		}
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
-
+		
+		SummonApplication.resetDataHandler(this);
+		
 		// Initialize preferences
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
