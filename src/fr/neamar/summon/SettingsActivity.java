@@ -22,22 +22,25 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
-		//Reload the DataHandler since Providers preferences might have changed
-		SummonApplication.resetDataHandler(this);
-		
 		if(key.equalsIgnoreCase("invert-ui") || key.equalsIgnoreCase("themeDark") || key.equalsIgnoreCase("small-screen")){
 			SharedPreferences prefs = PreferenceManager
 					.getDefaultSharedPreferences(this);
 			prefs.edit().putBoolean("layout-updated", true).commit();
 
-			// Restart current activity to refresh view, since some preferences
-			// might require using a new UI
-			Intent intent = new Intent(this, getClass());
-	        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-	        finish();
-	        overridePendingTransition(0, 0);
-	        startActivity(intent);
-	        overridePendingTransition(0, 0);
+			if(key.equalsIgnoreCase("themeDark")){
+				// Restart current activity to refresh view, since some preferences
+				// require using a new UI
+				Intent intent = new Intent(this, getClass());
+		        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		        finish();
+		        overridePendingTransition(0, 0);
+		        startActivity(intent);
+		        overridePendingTransition(0, 0);
+			}
+		}else {
+
+			//Reload the DataHandler since Providers preferences have changed
+			SummonApplication.resetDataHandler(this);
 		}
 	}
 }
