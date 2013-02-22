@@ -34,10 +34,10 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 			// might require using a new UI
 			Intent intent = new Intent(this, getClass());
 	        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-	        overridePendingTransition(0, 0);
 	        finish();
 	        overridePendingTransition(0, 0);
 	        startActivity(intent);
+	        overridePendingTransition(0, 0);
 		}
 	}
 }
