@@ -19,7 +19,7 @@ public class SummonBackupHelper extends BackupAgentHelper {
     static final String PREFS_BACKUP_KEY = "prefs";
     
     // The name of the SharedPreferences file
-    static final String DB = "summon.s3db";
+    static final String DB = "../databases/summon.s3db";
 
     // A key to uniquely identify the set of backup data
     static final String FILES_BACKUP_KEY = "files";
