@@ -60,23 +60,26 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if (prefs.getBoolean("themeDark", false)) {
+			setTheme(R.style.SummonThemeDark);
+		}
 		super.onCreate(savedInstanceState);
 
 		// Initialize preferences
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
+
 		if (prefs.getBoolean("invert-ui", false))
 			setContentView(R.layout.main_inverted);
 		else
 			setContentView(R.layout.main);
-		
-		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
-				Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB &&
-				prefs.getBoolean("small-screen", false)){
+
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
+				&& Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
+				&& prefs.getBoolean("small-screen", false)) {
 			getActionBar().hide();
 		}
-			
 
 		getListView().setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -149,19 +152,16 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 * Empty text field on resume and show keyboard
 	 */
 	protected void onResume() {
-		if (prefs.getBoolean("preferences-updated", false)) {
-			//Reload the DataHandler since Providers preferences might have changed
-			SummonApplication.resetDataHandler(this);
-			
+
+		if (prefs.getBoolean("layout-updated", false)) {
 			// Restart current activity to refresh view, since some preferences
 			// might require using a new UI
-			prefs.edit().putBoolean("preferences-updated", false).commit();
-			Intent intent = getIntent();
-			overridePendingTransition(0, 0);
-			intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-			finish();
-			overridePendingTransition(0, 0);
-			startActivity(intent);
+			prefs.edit().putBoolean("layout-updated", false).commit();
+			Intent i = getApplicationContext().getPackageManager()
+					.getLaunchIntentForPackage(
+							getApplicationContext().getPackageName());
+			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+			startActivity(i);
 		}
 
 		// Display keyboard
@@ -244,4 +244,5 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		// now we can cleanup the filter:
 		searchEditText.setText("");
 	}
+
 }

@@ -23,7 +23,7 @@ public class SettingProvider extends Provider {
 		public void run() {
 			settings.add(createHolder("Airplane mode",
 					android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS,
-					R.drawable.setting_airplane));
+					R.attr.airplane));
 			settings.add(createHolder("Device info",
 					android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS));
 			settings.add(createHolder(
@@ -31,7 +31,7 @@ public class SettingProvider extends Provider {
 					android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
 			settings.add(createHolder("Connectivity",
 					android.provider.Settings.ACTION_WIRELESS_SETTINGS,
-					R.drawable.setting_connectivity));
+					R.attr.wifi));
 		}
 
 		private SettingHolder createHolder(String name, String settingName) {

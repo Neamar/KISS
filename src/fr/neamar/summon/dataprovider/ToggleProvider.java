@@ -19,14 +19,14 @@ public class ToggleProvider extends Provider {
 			public void run() {
 				PackageManager pm = context.getPackageManager();
 				if(pm.hasSystemFeature(PackageManager.FEATURE_WIFI)){
-					toggles.add(createHolder("Wifi", "wifi", R.drawable.toggle_wifi));
+					toggles.add(createHolder("Wifi", "wifi", R.attr.wifi));
 				}
 				if(pm.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)){
 					toggles.add(createHolder("Bluetooth", "bluetooth",
-							R.drawable.toggle_bluetooth));
+							R.attr.bluetooth));
 				}
 				toggles.add(createHolder("Silent", "silent",
-						R.drawable.toggle_silent));
+						R.attr.silent));
 				// toggles.add(createHolder("GPS", "gps", R.drawable.toggle_gps));
 				// toggles.add(createHolder("Mobile network data", "data",
 				// R.drawable.toggle_data));
