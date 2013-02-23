@@ -1,61 +1,17 @@
 package fr.neamar.summon.lite.dataprovider;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.util.Log;
 import fr.neamar.summon.lite.holder.AppHolder;
 import fr.neamar.summon.lite.holder.Holder;
+import fr.neamar.summon.lite.task.LoadAppHolders;
 
-public class AppProvider extends Provider {
-	private ArrayList<AppHolder> apps = new ArrayList<AppHolder>();
+public class AppProvider extends Provider<AppHolder> {
 
-	public AppProvider(final Context context) {
-		super();
-		holderScheme = "app://";
-		Thread thread = new Thread(null, new Runnable() {
-			public void run() {
-				long start = System.nanoTime();
-
-				PackageManager manager = context.getPackageManager();
-
-				Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-				mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-				final List<ResolveInfo> appsInfo = manager
-						.queryIntentActivities(mainIntent, 0);
-				Collections.sort(appsInfo,
-						new ResolveInfo.DisplayNameComparator(manager));
-
-				for (int i = 0; i < appsInfo.size(); i++) {
-					AppHolder app = new AppHolder();
-					ResolveInfo info = appsInfo.get(i);
-
-					app.id = holderScheme
-							+ info.activityInfo.applicationInfo.packageName
-							+ "/" + info.activityInfo.name;
-					app.name = info.loadLabel(manager).toString();
-					app.nameLowerCased = app.name.toLowerCase();
-
-					app.packageName = info.activityInfo.applicationInfo.packageName;
-					app.activityName = info.activityInfo.name;
-
-					apps.add(app);
-				}
-
-				long end = System.nanoTime();
-				Log.i("time", Long.toString((end - start) / 1000000)
-						+ " milliseconds to list apps");
-			}
-		});
-		thread.setPriority(Thread.NORM_PRIORITY + 1);
-		thread.start();
+	public AppProvider(Context context) {
+		super(new LoadAppHolders(context));
 	}
 
 	public ArrayList<Holder> getResults(String query) {
@@ -63,9 +19,9 @@ public class AppProvider extends Provider {
 
 		int relevance;
 		String appNameLowerCased;
-		for (int i = 0; i < apps.size(); i++) {
+		for (int i = 0; i < holders.size(); i++) {
 			relevance = 0;
-			appNameLowerCased = apps.get(i).nameLowerCased;
+			appNameLowerCased = holders.get(i).nameLowerCased;
 			if (appNameLowerCased.startsWith(query))
 				relevance = 100;
 			else if (appNameLowerCased.contains(" " + query))
@@ -74,10 +30,10 @@ public class AppProvider extends Provider {
 				relevance = 1;
 
 			if (relevance > 0) {
-				apps.get(i).displayName = apps.get(i).name.replaceFirst("(?i)("
+				holders.get(i).displayName = holders.get(i).name.replaceFirst("(?i)("
 						+ Pattern.quote(query) + ")", "{$1}");
-				apps.get(i).relevance = relevance;
-				records.add(apps.get(i));
+				holders.get(i).relevance = relevance;
+				records.add(holders.get(i));
 			}
 		}
 
@@ -85,10 +41,10 @@ public class AppProvider extends Provider {
 	}
 
 	public Holder findById(String id) {
-		for (int i = 0; i < apps.size(); i++) {
-			if (apps.get(i).id.equals(id)) {
-				apps.get(i).displayName = apps.get(i).name;
-				return apps.get(i);
+		for (int i = 0; i < holders.size(); i++) {
+			if (holders.get(i).id.equals(id)) {
+				holders.get(i).displayName = holders.get(i).name;
+				return holders.get(i);
 			}
 
 		}

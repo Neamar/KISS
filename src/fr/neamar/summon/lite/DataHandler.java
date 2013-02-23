@@ -3,7 +3,10 @@ package fr.neamar.summon.lite;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import fr.neamar.summon.lite.dataprovider.AliasProvider;
@@ -18,19 +21,27 @@ import fr.neamar.summon.lite.db.ValuedHistoryRecord;
 import fr.neamar.summon.lite.holder.Holder;
 import fr.neamar.summon.lite.holder.HolderComparator;
 
-public class DataHandler {
+public class DataHandler extends BroadcastReceiver{
 
 	public String currentQuery;
-
+	
 	/**
 	 * List all knowns providers
 	 */
 	private ArrayList<Provider> providers = new ArrayList<Provider>();
+	private int providersLoaded = 0;
 
 	/**
 	 * Initialize all providers
 	 */
 	public DataHandler(Context context) {
+		
+		IntentFilter intentFilter = new IntentFilter(SummonActivity.LOAD_OVER);	
+        context.getApplicationContext().registerReceiver(this, intentFilter);
+        
+        Intent i = new Intent(SummonActivity.START_LOAD);
+        context.sendBroadcast(i);
+        
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		// Initialize providers
 		if(prefs.getBoolean("enable-apps", true)){
@@ -40,7 +51,7 @@ public class DataHandler {
 			providers.add(new ContactProvider(context));
 		}
 		if(prefs.getBoolean("enable-search", true)){
-			providers.add(new SearchProvider());
+			providers.add(new SearchProvider(context));
 		}
 		if(prefs.getBoolean("enable-toggles", true)){
 			providers.add(new ToggleProvider(context));
@@ -133,5 +144,16 @@ public class DataHandler {
 		}
 
 		return history;
+	}
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		providersLoaded++;
+		if(providersLoaded == providers.size()){
+			providersLoaded = 0;
+			context.unregisterReceiver(this);
+			Intent i = new Intent(SummonActivity.FULL_LOAD_OVER);
+	        context.sendBroadcast(i);
+		}
 	}
 }

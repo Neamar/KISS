@@ -4,60 +4,23 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import fr.neamar.summon.lite.R;
 import fr.neamar.summon.lite.holder.Holder;
 import fr.neamar.summon.lite.holder.SettingHolder;
+import fr.neamar.summon.lite.task.LoadSettingHolders;
 
-public class SettingProvider extends Provider {
-	private ArrayList<SettingHolder> settings = new ArrayList<SettingHolder>();
+public class SettingProvider extends Provider<SettingHolder> {
 
 	public SettingProvider(Context context) {
-		super();
-		holderScheme = "setting://";
-		Thread thread = new Thread(null, initSettingsList);
-		thread.setPriority(Thread.NORM_PRIORITY + 1);
-		thread.start();
+		super(new LoadSettingHolders(context));
 	}
 
-	protected Runnable initSettingsList = new Runnable() {
-		public void run() {
-			settings.add(createHolder("Airplane mode",
-					android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS,
-					R.drawable.setting_airplane));
-			settings.add(createHolder("Device info",
-					android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS));
-			settings.add(createHolder(
-					"Applications",
-					android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
-			settings.add(createHolder("Connectivity",
-					android.provider.Settings.ACTION_WIRELESS_SETTINGS,
-					R.drawable.setting_connectivity));
-		}
-
-		private SettingHolder createHolder(String name, String settingName) {
-			return createHolder(name, settingName, R.drawable.settings);
-		}
-
-		private SettingHolder createHolder(String name, String settingName,
-				int resId) {
-			SettingHolder holder = new SettingHolder();
-			holder.id = holderScheme + settingName.toLowerCase();
-			holder.name = "Setting: " + name;
-			holder.nameLowerCased = holder.name.toLowerCase();
-			holder.settingName = settingName;
-			holder.icon = resId;
-
-			return holder;
-		}
-	};
-
 	public ArrayList<Holder> getResults(String query) {
-		ArrayList<Holder> holders = new ArrayList<Holder>();
+		ArrayList<Holder> results = new ArrayList<Holder>();
 
 		int relevance;
 		String settingNameLowerCased;
-		for (int i = 0; i < settings.size(); i++) {
-			SettingHolder setting = settings.get(i);
+		for (int i = 0; i < holders.size(); i++) {
+			SettingHolder setting = holders.get(i);
 			relevance = 0;
 			settingNameLowerCased = setting.nameLowerCased;
 			if (settingNameLowerCased.startsWith(query))
@@ -70,19 +33,19 @@ public class SettingProvider extends Provider {
 						"<small><small>Setting:</small></small>").replaceFirst(
 						"(?i)(" + Pattern.quote(query) + ")", "{$1}");
 				setting.relevance = relevance;
-				holders.add(setting);
+				results.add(setting);
 			}
 		}
 
-		return holders;
+		return results;
 	}
 
 	public Holder findById(String id) {
-		for (int i = 0; i < settings.size(); i++) {
-			if (settings.get(i).id.equals(id)) {
-				settings.get(i).displayName = settings.get(i).name.replace(
+		for (int i = 0; i < holders.size(); i++) {
+			if (holders.get(i).id.equals(id)) {
+				holders.get(i).displayName = holders.get(i).name.replace(
 						"Setting:", "<small><small>Setting:</small></small>");
-				return settings.get(i);
+				return holders.get(i);
 			}
 
 		}

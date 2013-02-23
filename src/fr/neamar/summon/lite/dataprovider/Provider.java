@@ -3,15 +3,31 @@ package fr.neamar.summon.lite.dataprovider;
 import java.util.ArrayList;
 
 import fr.neamar.summon.lite.holder.Holder;
+import fr.neamar.summon.lite.task.LoadHolders;
 
-public abstract class Provider {
+
+public abstract class Provider<T> {
 	/**
 	 * Scheme used to build ids for the holders created by this provider
 	 */
 	public String holderScheme = "(none)://";
+	
+	protected LoadHolders<T> loader = null;
+	protected ArrayList<T> holders = new ArrayList<T>();
+	
+	public Provider(LoadHolders<T> loader) {
+		super();
+		this.loader = loader;
+		this.loader.setProvider(this);
+		this.holderScheme = loader.getHolderScheme();
+		loader.execute();
+	}
 
 	public abstract ArrayList<Holder> getResults(String s);
-
+	
+	public void loadOver(ArrayList<T> results){
+		holders = results;
+	}
 	/**
 	 * Tells whether or not this provider may be able to find the holder with
 	 * specified id
@@ -32,5 +48,5 @@ public abstract class Provider {
 	 */
 	public Holder findById(String id) {
 		return null;
-	}
+	}	
 }

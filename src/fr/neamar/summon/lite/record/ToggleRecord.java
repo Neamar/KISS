@@ -1,6 +1,7 @@
 package fr.neamar.summon.lite.record;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -38,10 +39,14 @@ public class ToggleRecord extends Record {
 
 		ImageView toggleIcon = (ImageView) v
 				.findViewById(R.id.item_toggle_icon);
-		if (toggleHolder.icon != -1)
-			toggleIcon.setImageDrawable(context.getResources().getDrawable(
-					toggleHolder.icon));
-
+		if (toggleHolder.icon != -1){
+			TypedArray a = context.obtainStyledAttributes(R.style.SummonTheme, new int[] {toggleHolder.icon});     
+			int attributeResourceId = a.getResourceId(0, -1);
+			if(attributeResourceId != -1){
+				toggleIcon.setImageDrawable(context.getResources().getDrawable(attributeResourceId));
+			}
+			a.recycle();
+		}
 		// Use the handler to check or uncheck button
 		final CompoundButton toggleButton = (CompoundButton) v
 				.findViewById(R.id.item_toggle_action_toggle);
