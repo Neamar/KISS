@@ -81,10 +81,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-		if (prefs.getBoolean("invert-ui", false))
-			setContentView(R.layout.main_inverted);
-		else
-			setContentView(R.layout.main);
+		setContentView(R.layout.main);
 
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
 				&& Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
@@ -133,10 +130,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 				RecordAdapter adapter = ((RecordAdapter) getListView()
 						.getAdapter());
 
-				if (prefs.getBoolean("invert-ui", false))
-					adapter.onClick(0, v);
-				else
-					adapter.onClick(adapter.getCount() - 1, v);
+				adapter.onClick(adapter.getCount() - 1, v);
 
 				return true;
 			}

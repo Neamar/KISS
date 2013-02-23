@@ -3,7 +3,6 @@ package fr.neamar.summon.task;
 import java.util.ArrayList;
 
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import fr.neamar.summon.SummonActivity;
 import fr.neamar.summon.SummonApplication;
 import fr.neamar.summon.holder.Holder;
@@ -42,17 +41,9 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 		activity.adapter.clear();
 		
 		if (holders != null) {
-			if (PreferenceManager.getDefaultSharedPreferences(activity)
-					.getBoolean("invert-ui", false)) {
-				for (int i = 0; i < Math.min(MAX_RECORDS, holders.size()); i++) {
-					activity.adapter.add(Record.fromHolder(activity,
-							holders.get(i)));
-				}
-			} else {
-				for (int i = Math.min(MAX_RECORDS, holders.size()) - 1; i >= 0; i--) {
-					activity.adapter.add(Record.fromHolder(activity,
-							holders.get(i)));
-				}
+			for (int i = Math.min(MAX_RECORDS, holders.size()) - 1; i >= 0; i--) {
+				activity.adapter.add(Record.fromHolder(activity,
+						holders.get(i)));
 			}
 		}
 		activity.resetTask();

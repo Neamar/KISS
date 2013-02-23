@@ -24,7 +24,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		new BackupManager(this).dataChanged();
-		if(key.equalsIgnoreCase("invert-ui") || key.equalsIgnoreCase("themeDark") || key.equalsIgnoreCase("small-screen")){
+		if(key.equalsIgnoreCase("themeDark") || key.equalsIgnoreCase("small-screen")){
 			SharedPreferences prefs = PreferenceManager
 					.getDefaultSharedPreferences(this);
 			prefs.edit().putBoolean("layout-updated", true).commit();
