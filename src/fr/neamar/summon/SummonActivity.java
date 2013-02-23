@@ -42,7 +42,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	public static String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
 	public static String NB_PROVIDERS = "nb_providers";
 	private BroadcastReceiver mReceiver;
-	
+
 	/**
 	 * Adapter to display records
 	 */
@@ -57,6 +57,8 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 * Task launched on text change
 	 */
 	private UpdateRecords updateRecords;
+
+	private MenuItem clear;
 
 	/**
 	 * Store user preferences
@@ -74,9 +76,9 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		}
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
-		
+
 		SummonApplication.initDataHandler(this);
-		
+
 		// Initialize preferences
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -103,7 +105,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		setListAdapter(adapter);
 
 		this.searchEditText = (EditText) findViewById(R.id.searchEditText);
-		
+
 		// Listen to changes
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
@@ -118,6 +120,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				updateRecords(s.toString());
+				if (clear != null) {
+					if (!searchEditText.getText().toString().equalsIgnoreCase("")) {
+						clear.setVisible(true);
+					} else {
+						clear.setVisible(false);
+					}
+				}
 			}
 		});
 
@@ -149,29 +158,41 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			Intent i = getApplicationContext().getPackageManager()
 					.getLaunchIntentForPackage(
 							getApplicationContext().getPackageName());
-			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+					| Intent.FLAG_ACTIVITY_NEW_TASK
+					| Intent.FLAG_ACTIVITY_NO_ANIMATION);
 			startActivity(i);
 		}
-		
+
+		if (clear != null) {
+			if (searchEditText != null
+					&& !searchEditText.getText().toString()
+							.equalsIgnoreCase("")) {
+				clear.setVisible(true);
+			} else {
+				clear.setVisible(false);
+			}
+		}
+
 		IntentFilter intentFilter = new IntentFilter(LOAD_OVER);
 		IntentFilter intentFilterBis = new IntentFilter(FULL_LOAD_OVER);
 		IntentFilter intentFilterTer = new IntentFilter(START_LOAD);
-        mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-            	if(intent.getAction().equalsIgnoreCase(LOAD_OVER)){
-            		updateRecords(searchEditText.getText().toString());
-            	}else if(intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)){
-            		setProgressBarIndeterminateVisibility(false);
-            	}else if(intent.getAction().equalsIgnoreCase(START_LOAD)){  
-            		setProgressBarIndeterminateVisibility(true);
-            	}
-            }
-        };
-        //registering our receiver
-        this.registerReceiver(mReceiver, intentFilter);
-        this.registerReceiver(mReceiver, intentFilterBis);
-        this.registerReceiver(mReceiver, intentFilterTer);
+		mReceiver = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
+					updateRecords(searchEditText.getText().toString());
+				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
+					setProgressBarIndeterminateVisibility(false);
+				} else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
+					setProgressBarIndeterminateVisibility(true);
+				}
+			}
+		};
+		// registering our receiver
+		this.registerReceiver(mReceiver, intentFilter);
+		this.registerReceiver(mReceiver, intentFilterBis);
+		this.registerReceiver(mReceiver, intentFilterTer);
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
 			@Override
@@ -185,13 +206,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
 		super.onResume();
 	}
-	
+
 	@Override
-    protected void onPause() {
-        super.onPause();
-        //unregister our receiver
-        this.unregisterReceiver(this.mReceiver);
-    }
+	protected void onPause() {
+		super.onPause();
+		// unregister our receiver
+		this.unregisterReceiver(this.mReceiver);
+	}
 
 	@Override
 	public void onBackPressed() {
@@ -229,6 +250,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
+		clear = menu.findItem(R.id.clear);
+		if (searchEditText != null
+				&& !searchEditText.getText().toString().equalsIgnoreCase("")) {
+			clear.setVisible(true);
+		} else {
+			clear.setVisible(false);
+		}
 		return true;
 	}
 
