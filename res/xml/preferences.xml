@@ -9,27 +9,8 @@
             android:summary="Use a dark theme for summon instead of the default light one"
             android:title="Dark Theme" >
         </CheckBoxPreference>
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="invert-ui"
-            android:summary="Put search box on top"
-            android:title="Invert UI" >
-        </CheckBoxPreference>
     </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/title_providers">
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="enable-toggles"
-            android:summary="@string/toggles_desc"
-            android:title="@string/toggles_name" >
-        </CheckBoxPreference>
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="enable-alias"
-            android:summary="@string/aliases_desc"
-            android:title="@string/aliases_name" >
-        </CheckBoxPreference>
+    <PreferenceCategory android:title="@string/title_providers" >
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-apps"
@@ -44,15 +25,28 @@
         </CheckBoxPreference>
         <CheckBoxPreference
             android:defaultValue="true"
-            android:key="enable-search"
-            android:summary="@string/search_desc"
-            android:title="@string/search_name" >
-        </CheckBoxPreference>
-        <CheckBoxPreference
-            android:defaultValue="true"
             android:key="enable-settings"
             android:summary="@string/settings_desc"
             android:title="@string/settings_name" >
         </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable-toggles"
+            android:summary="@string/toggles_desc"
+            android:title="@string/toggles_name" >
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable-alias"
+            android:summary="@string/aliases_desc"
+            android:title="@string/aliases_name" >
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable-search"
+            android:summary="@string/search_desc"
+            android:title="@string/search_name" >
+        </CheckBoxPreference>
     </PreferenceCategory>
+
 </PreferenceScreen>
