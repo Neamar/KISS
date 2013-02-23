@@ -1,5 +1,6 @@
 package fr.neamar.summon;
 
+import android.app.backup.BackupManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
+		new BackupManager(this).dataChanged();
 		if(key.equalsIgnoreCase("invert-ui") || key.equalsIgnoreCase("themeDark") || key.equalsIgnoreCase("small-screen")){
 			SharedPreferences prefs = PreferenceManager
 					.getDefaultSharedPreferences(this);
@@ -38,7 +40,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 		        overridePendingTransition(0, 0);
 			}
 		}else {
-
 			//Reload the DataHandler since Providers preferences have changed
 			SummonApplication.resetDataHandler(this);
 		}

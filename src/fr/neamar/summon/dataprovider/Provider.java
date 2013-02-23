@@ -18,6 +18,7 @@ public abstract class Provider<T> {
 		super();
 		this.loader = loader;
 		this.loader.setProvider(this);
+		this.holderScheme = loader.getHolderScheme();
 		loader.execute();
 	}
 

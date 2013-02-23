@@ -18,6 +18,10 @@ public abstract class LoadHolders<T> extends AsyncTask<Void, Void, ArrayList<T> 
 		this.provider = provider;
 	}
 	
+	public String getHolderScheme() {
+		return holderScheme;
+	}
+
 	public LoadHolders(Context context, String holderScheme) {
 		super();
 		this.context = context;
