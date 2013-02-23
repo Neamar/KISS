@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.ListActivity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -13,7 +15,6 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -23,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -34,6 +36,12 @@ import fr.neamar.summon.lite.record.Record;
 import fr.neamar.summon.lite.task.UpdateRecords;
 
 public class SummonActivity extends ListActivity implements QueryInterface {
+
+	public static String START_LOAD = "fr.neamar.summon.START_LOAD";
+	public static String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
+	public static String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
+	public static String NB_PROVIDERS = "nb_providers";
+	private BroadcastReceiver mReceiver;
 
 	/**
 	 * Adapter to display records
@@ -50,6 +58,8 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 */
 	private UpdateRecords updateRecords;
 
+	private MenuItem clear;
+
 	/**
 	 * Store user preferences
 	 */
@@ -60,23 +70,26 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if (prefs.getBoolean("themeDark", false)) {
+			setTheme(R.style.SummonThemeDark);
+		}
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
+
+		SummonApplication.initDataHandler(this);
 
 		// Initialize preferences
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
-		if (prefs.getBoolean("invert-ui", false))
-			setContentView(R.layout.main_inverted);
-		else
-			setContentView(R.layout.main);
-		
-		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
-				Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB &&
-				prefs.getBoolean("small-screen", false)){
+
+		setContentView(R.layout.main);
+
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
+				&& Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
+				&& prefs.getBoolean("small-screen", false)) {
 			getActionBar().hide();
 		}
-			
 
 		getListView().setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -107,6 +120,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				updateRecords(s.toString());
+				if (clear != null) {
+					if (!searchEditText.getText().toString().equalsIgnoreCase("")) {
+						clear.setVisible(true);
+					} else {
+						clear.setVisible(false);
+					}
+				}
 			}
 		});
 
@@ -119,51 +139,60 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 				RecordAdapter adapter = ((RecordAdapter) getListView()
 						.getAdapter());
 
-				if (prefs.getBoolean("invert-ui", false))
-					adapter.onClick(0, v);
-				else
-					adapter.onClick(adapter.getCount() - 1, v);
+				adapter.onClick(adapter.getCount() - 1, v);
 
 				return true;
 			}
 		});
-
-		// Some providers take time to load. So, on startup, we rebuild results
-		// every 400ms to avoid missing records
-		CountDownTimer t = new CountDownTimer(3200, 400) {
-
-			@Override
-			public void onTick(long millisUntilFinished) {
-				updateRecords(searchEditText.getText().toString());
-			}
-
-			@Override
-			public void onFinish() {
-
-			}
-		};
-		t.start();
 	}
 
 	/**
 	 * Empty text field on resume and show keyboard
 	 */
 	protected void onResume() {
-		if (prefs.getBoolean("preferences-updated", false)) {
-			//Reload the DataHandler since Providers preferences might have changed
-			SummonApplication.resetDataHandler(this);
-			
+
+		if (prefs.getBoolean("layout-updated", false)) {
 			// Restart current activity to refresh view, since some preferences
 			// might require using a new UI
-			prefs.edit().putBoolean("preferences-updated", false).commit();
-			Intent intent = getIntent();
-			overridePendingTransition(0, 0);
-			intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-			finish();
-			overridePendingTransition(0, 0);
-			startActivity(intent);
+			prefs.edit().putBoolean("layout-updated", false).commit();
+			Intent i = getApplicationContext().getPackageManager()
+					.getLaunchIntentForPackage(
+							getApplicationContext().getPackageName());
+			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+					| Intent.FLAG_ACTIVITY_NEW_TASK
+					| Intent.FLAG_ACTIVITY_NO_ANIMATION);
+			startActivity(i);
 		}
 
+		if (clear != null) {
+			if (searchEditText != null
+					&& !searchEditText.getText().toString()
+							.equalsIgnoreCase("")) {
+				clear.setVisible(true);
+			} else {
+				clear.setVisible(false);
+			}
+		}
+
+		IntentFilter intentFilter = new IntentFilter(LOAD_OVER);
+		IntentFilter intentFilterBis = new IntentFilter(FULL_LOAD_OVER);
+		IntentFilter intentFilterTer = new IntentFilter(START_LOAD);
+		mReceiver = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
+					updateRecords(searchEditText.getText().toString());
+				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
+					setProgressBarIndeterminateVisibility(false);
+				} else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
+					setProgressBarIndeterminateVisibility(true);
+				}
+			}
+		};
+		// registering our receiver
+		this.registerReceiver(mReceiver, intentFilter);
+		this.registerReceiver(mReceiver, intentFilterBis);
+		this.registerReceiver(mReceiver, intentFilterTer);
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
 			@Override
@@ -176,6 +205,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		}, 50);
 
 		super.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		// unregister our receiver
+		this.unregisterReceiver(this.mReceiver);
 	}
 
 	@Override
@@ -214,6 +250,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
+		clear = menu.findItem(R.id.clear);
+		if (searchEditText != null
+				&& !searchEditText.getText().toString().equalsIgnoreCase("")) {
+			clear.setVisible(true);
+		} else {
+			clear.setVisible(false);
+		}
 		return true;
 	}
 
@@ -244,4 +287,5 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		// now we can cleanup the filter:
 		searchEditText.setText("");
 	}
+
 }

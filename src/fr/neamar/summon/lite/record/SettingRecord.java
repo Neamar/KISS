@@ -2,6 +2,7 @@ package fr.neamar.summon.lite.record;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,9 +28,14 @@ public class SettingRecord extends Record {
 
 		ImageView settingIcon = (ImageView) v
 				.findViewById(R.id.item_setting_icon);
-		if (settingHolder.icon != -1)
-			settingIcon.setImageDrawable(context.getResources().getDrawable(
-					settingHolder.icon));
+		if (settingHolder.icon != -1){
+			TypedArray a = context.obtainStyledAttributes(R.style.SummonTheme, new int[] {settingHolder.icon});     
+			int attributeResourceId = a.getResourceId(0, -1);
+			if(attributeResourceId != -1){
+				settingIcon.setImageDrawable(context.getResources().getDrawable(attributeResourceId));
+			}
+			a.recycle();
+		}
 
 		return v;
 	}
