@@ -203,7 +203,9 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 						InputMethodManager.SHOW_IMPLICIT);
 			}
 		}, 50);
-
+		
+		updateRecords(searchEditText.getText().toString());
+		
 		super.onResume();
 	}
 
