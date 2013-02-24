@@ -1,16 +1,17 @@
 package fr.neamar.summon.toggles;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.util.Log;
-import android.widget.Toast;
 import fr.neamar.summon.holder.ToggleHolder;
 
 public class TogglesHandler {
@@ -63,6 +64,7 @@ public class TogglesHandler {
 				return false;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			Log.w("log", "Unsupported toggle for device: " + holder.settingName);
 			return null;
 		}
@@ -85,6 +87,7 @@ public class TogglesHandler {
 						+ holder.settingName);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			Log.w("log", "Unsupported toggle for device: " + holder.settingName);
 		}
 	}
@@ -98,15 +101,46 @@ public class TogglesHandler {
 	}
 
 	protected Boolean getDataState() {
-		NetworkInfo ni = connectivityManager
-				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		return ni.isAvailable();
+		Method dataMtd = null;
+		try {
+			dataMtd = ConnectivityManager.class.getDeclaredMethod("getMobileDataEnabled");
+			dataMtd.setAccessible(true);
+			return (Boolean) dataMtd.invoke(connectivityManager);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	protected void setDataState(Boolean state) {
-		// http://stackoverflow.com/questions/3644144/how-to-disable-mobile-data-on-android
-		Toast.makeText(context, "Data toggle not working yet. Soon ;)",
-				Toast.LENGTH_SHORT).show();
+		Method dataMtd = null;
+		try {
+			dataMtd = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled", boolean.class);
+			dataMtd.setAccessible(true);
+			dataMtd.invoke(connectivityManager, state);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	protected Boolean getBluetoothState() {
