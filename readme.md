@@ -1,12 +1,33 @@
 Summon
 ======
-
 Summon is a *blazingly* fast launcher for android requiring nearly no memory to run.
 
-Expect to be even more productive. Stop losing time with this stupid drawer.
+Download for free: [https://play.google.com/store/apps/details?id=fr.neamar.summon.lite](Play Store).
+What is it?
+------------
+Summon is a fast launcher for your Android.
 
-How does it works ?
---------------------
+Search through you app, contacts and settings lightning fast.
+No more time spent trying to find the app you need to launch : enter a few characters from the name and press enter.
+Need to phone someone ? Don't meddle with the call log, juste give three letters of his name and push the "phone" button.
+
+Summon becomes smarter and smarter as you uses it, pushing forward results you're more likely to select.
+
+You can use this app as a widget on your default launcher, or replace your launcher with Summon for an even faster experience.
+
+Get ready to be amazed.
+
+Previews
+---------------------
+
+
+![Preview](https://lh5.ggpht.com/ncNrAB5Z3-sY8nk6KyEaX71aS5hJtbqrgKu5_ovaBEAizmJa-x78dzsE43gmQD8tmA)
+![Preview](https://lh6.ggpht.com/ai8ByZXcGLV62lAiskbcUaW27fOD4dprqtkvn6BwVs-50bR6BvzWgXiqdIK65a6Xruhv)
+![Preview](https://lh6.ggpht.com/XG1p9WAmjnvxsYLQIXPvJMbzPVVydBlOCi20nzMCwGEIJ1Ft_otrts5uCXGwy-582w)
+
+
+How does it works?
+-------------------
 Different data types can be aggregated via Summon simple interface : apps, contacts, settings...
 
 Each data types uses three classes :
@@ -17,11 +38,3 @@ Each data types uses three classes :
 
 Controlling the workflow is *SummonActivity*, intializing the UI, dispatching the query to the providers and ordering the results according to their relevance and user search history.
 
----------------------
-
-Download bêta on the [https://play.google.com/store/apps/details?id=fr.neamar.summon.lite](Play Store).
-(https://lh4.ggpht.com/DI0efjo_g4Y8gy-7qeODOM8XG-r6aNdL389Kkmd6wayHT42kXrXDsBebsBCskxar6A)
-
-![Preview](https://lh4.ggpht.com/DI0efjo_g4Y8gy-7qeODOM8XG-r6aNdL389Kkmd6wayHT42kXrXDsBebsBCskxar6A)
-![Preview](https://lh4.ggpht.com/_fXNqsbJkVOuj1kToJyFEderQ8oJ50uduHiWQqB7ac-w5HNVm32fcomFhz7id1pKpQ)
-![Preview](https://lh4.ggpht.com/_B28M9qIOoUmrQZIrhN1V6iI8f9pTxF-843LOJWdMPidIYkeI9uyzjx1EMJWq5XvhPg)
