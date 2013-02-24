@@ -55,6 +55,15 @@ public class DBHelper {
 		}
 		new BackupManager(context).dataChanged();
 	}
+	
+	public static void removeFromHistory(Context context, String record) {
+		synchronized (DBHelper.sDataLock) {
+			SQLiteDatabase db = getDatabase(context);
+			db.delete("history", "record = ?", new String[] {record});
+			db.close();
+		}
+		new BackupManager(context).dataChanged();
+	}
 
 	/**
 	 * Retrieve previous query history

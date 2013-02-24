@@ -55,6 +55,12 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 		return records.get(position).display(getContext(), convertView);
 	}
 
+	public void onLongClick(int pos){
+		records.get(pos).deleteRecord(getContext());
+		records.remove(pos);
+		notifyDataSetChanged();
+	}
+	
 	public void onClick(int position, View v) {
 		try {
 			records.get(position).launch(getContext(), v);

@@ -27,8 +27,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import fr.neamar.summon.adapter.RecordAdapter;
@@ -91,14 +92,6 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			getActionBar().hide();
 		}
 
-		getListView().setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View arg1,
-					int position, long id) {
-				adapter.onClick(position, arg1);
-			}
-		});
-
 		// Create adapter for records
 		adapter = new RecordAdapter(this, this, R.layout.item_app,
 				new ArrayList<Record>());
@@ -146,6 +139,12 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		});
 	}
 
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		adapter.onClick(position, v);
+	}
+
 	/**
 	 * Empty text field on resume and show keyboard
 	 */
@@ -189,6 +188,17 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 				}
 			}
 		};
+		getListView().setLongClickable(true);
+		getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View arg1,
+					 int pos, long id) {
+				((RecordAdapter)parent.getAdapter()).onLongClick(pos);
+				return true;
+			}
+		});
+		
 		// registering our receiver
 		this.registerReceiver(mReceiver, intentFilter);
 		this.registerReceiver(mReceiver, intentFilterBis);
