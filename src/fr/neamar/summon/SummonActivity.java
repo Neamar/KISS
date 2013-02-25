@@ -77,7 +77,25 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		}
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
-
+		
+		IntentFilter intentFilter = new IntentFilter(START_LOAD);
+		IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
+		IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
+		mReceiver = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
+					updateRecords(searchEditText.getText().toString());
+				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
+					setProgressBarIndeterminateVisibility(false);
+				} else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
+					setProgressBarIndeterminateVisibility(true);
+				}
+			}
+		};
+		this.registerReceiver(mReceiver, intentFilter);
+		this.registerReceiver(mReceiver, intentFilterBis);
+		this.registerReceiver(mReceiver, intentFilterTer);
 		SummonApplication.initDataHandler(this);
 
 		// Initialize preferences
@@ -173,9 +191,9 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			}
 		}
 
-		IntentFilter intentFilter = new IntentFilter(LOAD_OVER);
-		IntentFilter intentFilterBis = new IntentFilter(FULL_LOAD_OVER);
-		IntentFilter intentFilterTer = new IntentFilter(START_LOAD);
+		IntentFilter intentFilter = new IntentFilter(START_LOAD);
+		IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
+		IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
 		mReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
@@ -263,11 +281,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
 		clear = menu.findItem(R.id.clear);
-		if (searchEditText != null
-				&& !searchEditText.getText().toString().equalsIgnoreCase("")) {
-			clear.setVisible(true);
-		} else {
-			clear.setVisible(false);
+		if(clear != null){
+			if (searchEditText != null
+					&& !searchEditText.getText().toString().equalsIgnoreCase("")) {
+				clear.setVisible(true);
+			} else {
+				clear.setVisible(false);
+			}
 		}
 		return true;
 	}
