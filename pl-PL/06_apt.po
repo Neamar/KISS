@@ -5,48 +5,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2012-11-22 21:15+0100\n"
-"Last-Translator: Mateusz Kacprzak <mateusz.kacprzak@yandex.ru>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2013-02-25 18:24+0200\n"
+"Last-Translator: Bartek Kłosiński <szopa@vp.pl>\n"
+"Language-Team: Polish <http://debian.weblate.org/projects/debian-"
+"handbook/06_apt/pl/>\n"
+"Language: pl-PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "apt-get"
-msgstr ""
+msgstr "apt-get"
 
 #. Tag: keyword
 #, no-c-format
 msgid "apt-cache"
-msgstr ""
+msgstr "apt-cache"
 
 #. Tag: keyword
 #, no-c-format
 msgid "aptitude"
-msgstr ""
+msgstr "aptitude"
 
 #. Tag: keyword
 #, no-c-format
 msgid "synaptic"
-msgstr ""
+msgstr "synaptic"
 
 #. Tag: keyword
 #, no-c-format
 msgid "sources.list"
-msgstr ""
+msgstr "sources.list"
 
 #. Tag: keyword
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "apt-cdrom"
-msgstr ""
+msgstr "apt-cdrom"
 
 #. Tag: title
 #, no-c-format
 msgid "Maintenance and Updates: The APT Tools"
-msgstr ""
+msgstr "Konserwacja i aktualizacje: Narzędzie APT"
 
 #. Tag: para
 #, no-c-format
@@ -56,6 +60,11 @@ msgid ""
 "advantage is largely due to the <emphasis>APT</emphasis> program, the "
 "features of which Falcot Corp administrators studied with enthusiasm."
 msgstr ""
+"Tym co sprawia, że Debian jest tak popularny wśród administratorów jest "
+"łatwość instalacji nowych programów oraz prostota uaktualnienia całego "
+"systemu. Ta unikatowa zaleta jest spowodowana głównie przez program "
+"<emphasis>APT</emphasis>,funkcja którą administratorzy Falcot Corp "
+"studiowali z zapałem."
 
 #. Tag: para
 #, no-c-format
@@ -67,11 +76,18 @@ msgid ""
 "them as a whole and produces the best possible combination of packages "
 "depending on what is available and compatible (according to dependencies)."
 msgstr ""
+"<indexterm><primary>APT</primary></indexterm> <indexterm><primary>Advanced "
+"Package Tool</primary></indexterm> APT jest skrótem od angielskiego Advanced "
+"Packaging Tool - Zaawansowane narzędzie zarządzania pakietami. To co "
+"sprawia, że program jest 'zaawansowany' jest spojrzeniem na pakiety. Nie "
+"przetwarza ich indywidualnie, lecz uważa je za całość i tworzy najlepszą "
+"możliwą kombinację pakietów w zależności od tego co jest dostępne i "
+"kompatybilne(zgodnie z zależnościami)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Package source and source package"
-msgstr ""
+msgstr "<emphasis> SŁOWNICZEK </emphasis> Źródło pakietu i pakiet źródłowy"
 
 #. Tag: para
 #, no-c-format
@@ -81,6 +97,10 @@ msgid ""
 "with a package source — a repository (website, FTP server, CD-ROM, local "
 "directory, etc.) which contains packages."
 msgstr ""
+"Słowo <emphasis> źródło </emphasis> może być niejednoznaczne. Pakiet "
+"źródłowy - pakiet zawierający kod źródłowy programu - nie należy mylić ze "
+"źródłem pakietu - repozytorium (strona www, serwer FTP, CD-ROM, lokalny "
+"katalog, itp.), które zawiera pakiety."
 
 #. Tag: para
 #, no-c-format
@@ -97,16 +117,27 @@ msgid ""
 "only downloading the differences (see sidebar <xref linkend=\"encadre.apt-"
 "pdiff\" />)."
 msgstr ""
+"APT trzeba dostarczyć \"listę źródeł pakietów\": plik  "
+"<filename>/etc/apt/sources.list</filename> zawiera listę różnych "
+"repozytoriów (lub \"źródeł\"), które publikują pakiety Debiana. APT importuje "
+"listę paczek opublikowane przez każde ze źródeł. Jest to osiągane przez "
+"pobranie plików <filename>Packages.gz</filename> lub "
+"<filename>Packages.bz2</filename> (w przypadku źródła dostarczającego "
+"pakiety binarne oraz plik <filename>Sources.gz</filename> bądź "
+"<filename>Sources.bz2</filename> (w wypadku źródła dostarczającego pakiety "
+"źródłowe) i analizę ich zawartość. Gdy stara kopia tych plików jest obecna w "
+"systemie, APT może uaktualnić ją przez pobranie jedynie różnic (spójrz na "
+"fiszkę <xref linkend=\"encadre.apt-pdiff\" />)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Packages.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Packages.gz</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Sources.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Sources.gz</filename></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -118,22 +149,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gzip</command></primary>"
-msgstr ""
+msgstr "<primary><command>gzip</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bzip2</command></primary>"
-msgstr ""
+msgstr "<primary><command>bzip2</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lzma</command></primary>"
-msgstr ""
+msgstr "<primary><command>lzma</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>xz</command></primary>"
-msgstr ""
+msgstr "<primary><command>xz</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -147,21 +178,30 @@ msgid ""
 "<command>lzma</command> (generating <filename>.lzma</filename> files) and "
 "<command>xz</command> (generating <filename>.xz</filename> files)."
 msgstr ""
+"Rozszerzenie <filename>.gz</filename> oznacza plik skompresowany za pomocą "
+"komendy <command>gzip</command>. <command>gzip</command> jest szybkim i "
+"efektywnym tradycyjnym narzędziem Uniksa do kompresji plików. Nowsze "
+"narzędzia osiągnają lepsze wskaźniki kompresji, ale wymagają więcej czasu "
+"obliczeń do kompresji plików. Wśród nich, oraz w kolejności występowania, "
+"jest <command> bzip2 </command> (Generowanie plików z rozszerzeniem "
+"<filename>.bz2</filename>), <command> lzma </command> (Generowanie plików "
+"<filename>.lzma</filename>) oraz <command>xz</command> (Generowanie plików "
+"<filename>.xz</filename>)."
 
 #. Tag: title
 #, no-c-format
 msgid "Filling in the <filename>sources.list</filename> File"
-msgstr ""
+msgstr "Wypełnianie pliku <filename>sources.list</filename>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>sources.list</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>sources.list</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>source of packages</primary>"
-msgstr ""
+msgstr "<primary>źródło pakietów</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -171,7 +211,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/sources.list</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/sources.list</filename></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -179,21 +219,23 @@ msgid ""
 "Each active line of the <filename>/etc/apt/sources.list</filename> file "
 "contains the description of a source, made of 3 parts separated by spaces."
 msgstr ""
+"Każda aktywna linia pliku <filename>/etc/apt/sources.list</filename> zawiera "
+"opis źródła, tworzony z 3 części oddzielonych spacjami."
 
 #. Tag: para
 #, no-c-format
 msgid "The first field indicates the source type:"
-msgstr ""
+msgstr "Pierwsze pole określa rodzaj źródła:"
 
 #. Tag: para
 #, no-c-format
 msgid "“<literal>deb</literal>” for binary packages,"
-msgstr ""
+msgstr "“<literal>deb</literal>” dla pakietów binarnych,"
 
 #. Tag: para
 #, no-c-format
 msgid "“<literal>deb-src</literal>” for source packages."
-msgstr ""
+msgstr "“<literal>deb-src</literal>” dla pakietów źródłowych."
 
 #. Tag: para
 #, no-c-format
@@ -210,6 +252,16 @@ msgid ""
 "less frequent, since network-based installation methods are more and more "
 "common."
 msgstr ""
+"Drugie pole zawiera adres bazowy źródła (w połączeniu z nazwami w pliku "
+"<filename>Packages.gz</filename>, należy podać pełny i ważny adres URL): to "
+"może polegać na serwerze lustrzanym Debiana lub w innym archiwum pakietu "
+"utworzonego przez stronę trzecią. URL może rozpocząć "
+"<literal>file://</literal> wskazując źródło lokalne zainstalowane w systemie "
+"hierarchii plików, <literal>http://</literal> wskazuje źródło dostępne z "
+"serwera WWW, lub <literal>ftp://</literal> dla źródła dostępnego na serwerze "
+"FTP. Adres URL może również rozpocząć <literal>cdrom://</literal> dla "
+"instalacji z CD-ROMu, chociaż ta jest rzadsza, ponieważ oparte na sieci "
+"metody instalacji są coraz bardziej powszechne."
 
 #. Tag: para
 #, no-c-format
@@ -233,6 +285,9 @@ msgid ""
 "<foreignphrase>contrib</foreignphrase> and <foreignphrase>non-free</"
 "foreignphrase> archives"
 msgstr ""
+"<emphasis>SŁOWNICZEK</emphasis> Archiwa <foreignphrase>main</foreignphrase>, "
+"<foreignphrase>contrib</foreignphrase> i <foreignphrase>non-"
+"free</foreignphrase>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -240,6 +295,8 @@ msgid ""
 "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></"
 "secondary>"
 msgstr ""
+"<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></sec"
+"ondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -278,6 +335,11 @@ msgid ""
 "foreignphrase> (the main archive) gathers all packages which fully comply "
 "with the Debian Free Software Guidelines."
 msgstr ""
+"Debian używa trzech sekcji do różnicowania pakietów według licencji "
+"wybranych przez autorów poszczególnych prac. "
+"<foreignphrase>Main</foreignphrase> (główne archiwum) gromadzi wszystkie "
+"pakiety, które są w pełni zgodne z Wytycznymi Debiana dotyczącymi Wolnego "
+"Oprogramowania (Debian Free Software Guidelines)."
 
 #. Tag: para
 #, no-c-format
@@ -291,6 +353,14 @@ msgid ""
 "considerable problem for Richard M. Stallman and keeps the Free Software "
 "Foundation from recommending Debian to users."
 msgstr ""
+"Archiwum <foreignphrase>non-free</foreignphrase> jest inne, ponieważ zawiera "
+"oprogramowanie, które nie jest (w całości) dostosowane do tych zasad, ale "
+"które mimo to mogą być rozpowszechniane bez ograniczeń. To archiwum, które "
+"nie jest oficjalnie częścią Debiana, jest to usługa dla użytkowników, którzy "
+"mogą potrzebować niektóre z tych programów - jednak Debian zawsze zaleca "
+"nadawać priorytet wolnemu oprogramowaniu. Istnienie tej sekcji stanowi "
+"znaczący problem dla Richarda M. Stallmana i przez to Free Software "
+"Foundation nie rekomenduje Debian użytkownikom."
 
 #. Tag: para
 #, no-c-format
