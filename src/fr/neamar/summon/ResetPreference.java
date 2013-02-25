@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
+import android.widget.Toast;
 
 public class ResetPreference extends DialogPreference {
 
@@ -24,6 +25,8 @@ public class ResetPreference extends DialogPreference {
 					.getDefaultSharedPreferences(getContext())
 					.edit().putBoolean("layout-updated", true)
 					.commit();
+			
+			Toast.makeText(getContext(), "History erased.", Toast.LENGTH_LONG).show();
 		}
 
 	}	
