@@ -9,16 +9,16 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Pair;
 
-public class LoadAliasHolders extends LoadHolders<Pair<String,String>> {
-	
+public class LoadAliasHolders extends LoadHolders<Pair<String, String>> {
+
 	public LoadAliasHolders(Context context) {
 		super(context, "none://");
 	}
 
 	@Override
-	protected ArrayList<Pair<String,String>> doInBackground(Void... params) {
+	protected ArrayList<Pair<String, String>> doInBackground(Void... params) {
 		final PackageManager pm = context.getPackageManager();
-		ArrayList<Pair<String, String>> alias = new ArrayList<Pair<String,String>>();
+		ArrayList<Pair<String, String>> alias = new ArrayList<Pair<String, String>>();
 		String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
 		alias.add(new Pair<String, String>("contacts", contactApp));
 
@@ -37,14 +37,13 @@ public class LoadAliasHolders extends LoadHolders<Pair<String,String>> {
 		String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
 		alias.add(new Pair<String, String>("market", marketApp));
 
-		String messagingApp = getAppByCategory(pm,
-				Intent.CATEGORY_APP_MESSAGING);
+		String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
 		alias.add(new Pair<String, String>("text", messagingApp));
 		alias.add(new Pair<String, String>("sms", messagingApp));
 		return alias;
 
 	}
-	
+
 	private String getApp(PackageManager pm, String action) {
 		Intent lookingFor = new Intent(action, null);
 		return getApp(pm, lookingFor);
@@ -61,9 +60,8 @@ public class LoadAliasHolders extends LoadHolders<Pair<String,String>> {
 		if (list.size() == 0)
 			return "(none)";
 		else
-			return "app://"
-					+ list.get(0).activityInfo.applicationInfo.packageName
-					+ "/" + list.get(0).activityInfo.name;
+			return "app://" + list.get(0).activityInfo.applicationInfo.packageName + "/"
+					+ list.get(0).activityInfo.name;
 
 	}
 }

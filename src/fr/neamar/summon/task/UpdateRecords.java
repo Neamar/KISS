@@ -29,8 +29,8 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 		String workingOnQuery = queries[0];
 
 		// Ask for records
-		final ArrayList<Holder> holders = SummonApplication.getDataHandler(
-				activity).getResults(activity, workingOnQuery);
+		final ArrayList<Holder> holders = SummonApplication.getDataHandler(activity).getResults(
+				activity, workingOnQuery);
 
 		return holders;
 	}
@@ -39,11 +39,10 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 	protected void onPostExecute(ArrayList<Holder> holders) {
 		super.onPostExecute(holders);
 		activity.adapter.clear();
-		
+
 		if (holders != null) {
 			for (int i = Math.min(MAX_RECORDS, holders.size()) - 1; i >= 0; i--) {
-				activity.adapter.add(Record.fromHolder(activity,
-						holders.get(i)));
+				activity.adapter.add(Record.fromHolder(activity, holders.get(i)));
 			}
 		}
 		activity.resetTask();

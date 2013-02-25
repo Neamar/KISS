@@ -1,17 +1,10 @@
 package fr.neamar.summon.dataprovider;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.util.Pair;
-import fr.neamar.summon.SummonActivity;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.task.LoadAliasHolders;
 
@@ -35,9 +28,9 @@ public class AliasProvider extends Provider<Pair<String, String>> {
 						if (holder != null) {
 							holder.displayName = holder.name
 									+ " <small>("
-									+ entry.first.replaceFirst("(?i)("
-											+ Pattern.quote(query) + ")",
-											"{$1}") + ")</small>";
+									+ entry.first.replaceFirst(
+											"(?i)(" + Pattern.quote(query) + ")", "{$1}")
+									+ ")</small>";
 							holder.relevance = 10;
 							results.add(holder);
 						}

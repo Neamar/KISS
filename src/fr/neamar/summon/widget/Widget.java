@@ -13,11 +13,9 @@ import fr.neamar.summon.SummonActivity;
 
 public class Widget extends AppWidgetProvider {
 	@Override
-	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
-			int[] appWidgetIds) {
+	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-		RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-				R.layout.widget);
+		RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
 		ComponentName watchWidget = new ComponentName(context, Widget.class);
 
 		Intent intent = new Intent(context, SummonActivity.class);

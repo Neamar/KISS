@@ -1,6 +1,7 @@
 package fr.neamar.summon.task;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.content.Context;
 import android.content.Intent;
@@ -34,9 +35,9 @@ public class LoadSettingHolders extends LoadHolders<SettingHolder> {
 
 	private SettingHolder createHolder(String name, String settingName, int resId) {
 		SettingHolder holder = new SettingHolder();
-		holder.id = holderScheme + settingName.toLowerCase();
+		holder.id = holderScheme + settingName.toLowerCase(Locale.ENGLISH);
 		holder.name = "Setting: " + name;
-		holder.nameLowerCased = holder.name.toLowerCase();
+		holder.nameLowerCased = holder.name.toLowerCase(Locale.ENGLISH);
 		holder.settingName = settingName;
 		holder.icon = resId;
 

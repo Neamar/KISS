@@ -43,8 +43,8 @@ public class SettingProvider extends Provider<SettingHolder> {
 	public Holder findById(String id) {
 		for (int i = 0; i < holders.size(); i++) {
 			if (holders.get(i).id.equals(id)) {
-				holders.get(i).displayName = holders.get(i).name.replace(
-						"Setting:", "<small><small>Setting:</small></small>");
+				holders.get(i).displayName = holders.get(i).name.replace("Setting:",
+						"<small><small>Setting:</small></small>");
 				return holders.get(i);
 			}
 

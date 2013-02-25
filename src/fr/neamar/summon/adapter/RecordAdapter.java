@@ -24,8 +24,8 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 
 	private QueryInterface parent;
 
-	public RecordAdapter(Context context, QueryInterface parent,
-			int textViewResourceId, ArrayList<Record> records) {
+	public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
+			ArrayList<Record> records) {
 		super(context, textViewResourceId, records);
 
 		this.parent = parent;
@@ -56,18 +56,18 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 		return records.get(position).display(getContext(), convertView);
 	}
 
-	public void onLongClick(int pos){
+	public void onLongClick(int pos) {
 		records.get(pos).deleteRecord(getContext());
 		records.remove(pos);
 		Toast.makeText(getContext(), "Removed from history", Toast.LENGTH_SHORT).show();
 		notifyDataSetChanged();
 	}
-	
+
 	public void onClick(int position, View v) {
 		try {
 			records.get(position).launch(getContext(), v);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			
+
 		}
 
 		parent.launchOccured();

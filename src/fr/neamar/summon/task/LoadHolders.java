@@ -8,16 +8,16 @@ import android.os.AsyncTask;
 import fr.neamar.summon.SummonActivity;
 import fr.neamar.summon.dataprovider.Provider;
 
-public abstract class LoadHolders<T> extends AsyncTask<Void, Void, ArrayList<T> > {
+public abstract class LoadHolders<T> extends AsyncTask<Void, Void, ArrayList<T>> {
 
 	protected Provider<T> provider;
 	protected Context context;
 	protected String holderScheme = "(none)://";
-	
-	public void setProvider(Provider<T> provider){
+
+	public void setProvider(Provider<T> provider) {
 		this.provider = provider;
 	}
-	
+
 	public String getHolderScheme() {
 		return holderScheme;
 	}
@@ -31,9 +31,9 @@ public abstract class LoadHolders<T> extends AsyncTask<Void, Void, ArrayList<T> 
 	@Override
 	protected void onPostExecute(ArrayList<T> result) {
 		super.onPostExecute(result);
-        provider.loadOver(result);
+		provider.loadOver(result);
 		Intent i = new Intent(SummonActivity.LOAD_OVER);
-        context.sendBroadcast(i);
-	}	
-	
+		context.sendBroadcast(i);
+	}
+
 }

@@ -41,8 +41,7 @@ public class DataHandler extends BroadcastReceiver {
 		Intent i = new Intent(SummonActivity.START_LOAD);
 		context.sendBroadcast(i);
 
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		// Initialize providers
 		if (prefs.getBoolean("enable-apps", true)) {
 			providers.add(new AppProvider(context));
@@ -82,8 +81,8 @@ public class DataHandler extends BroadcastReceiver {
 		}
 
 		// Have we ever made the same query and selected something ?
-		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper
-				.getPreviousResultsForQuery(context, query);
+		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
+				context, query);
 
 		// Ask all providers for datas
 		ArrayList<Holder> allHolders = new ArrayList<Holder>();
@@ -99,8 +98,7 @@ public class DataHandler extends BroadcastReceiver {
 				// Give a boost if item was previously selected for this query
 				for (int k = 0; k < lastIdsForQuery.size(); k++) {
 					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record)) {
-						holders.get(j).relevance += 25 * Math.min(5,
-								lastIdsForQuery.get(k).value);
+						holders.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
 					}
 				}
 
@@ -133,8 +131,7 @@ public class DataHandler extends BroadcastReceiver {
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
 				if (providers.get(j).mayFindById(ids.get(i).record)) {
-					Holder holder = providers.get(j)
-							.findById(ids.get(i).record);
+					Holder holder = providers.get(j).findById(ids.get(i).record);
 					if (holder != null) {
 						history.add(holder);
 						break;
@@ -150,13 +147,13 @@ public class DataHandler extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		providersLoaded++;
 		if (providersLoaded == providers.size()) {
-			try{
+			try {
 				context.unregisterReceiver(this);
 				Intent i = new Intent(SummonActivity.FULL_LOAD_OVER);
 				context.sendBroadcast(i);
 				providersLoaded = 0;
-			}catch (IllegalArgumentException e){
-				//Nothing
+			} catch (IllegalArgumentException e) {
+				// Nothing
 			}
 		}
 	}

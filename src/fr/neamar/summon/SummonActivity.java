@@ -77,7 +77,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		}
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
-		
+
 		IntentFilter intentFilter = new IntentFilter(START_LOAD);
 		IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
 		IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
@@ -111,8 +111,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		}
 
 		// Create adapter for records
-		adapter = new RecordAdapter(this, this, R.layout.item_app,
-				new ArrayList<Record>());
+		adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Record>());
 		setListAdapter(adapter);
 
 		this.searchEditText = (EditText) findViewById(R.id.searchEditText);
@@ -123,13 +122,11 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
 			}
 
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
 			}
 
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				updateRecords(s.toString());
 				if (clear != null) {
 					if (!searchEditText.getText().toString().equalsIgnoreCase("")) {
@@ -145,10 +142,8 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
 
 			@Override
-			public boolean onEditorAction(TextView v, int actionId,
-					KeyEvent event) {
-				RecordAdapter adapter = ((RecordAdapter) getListView()
-						.getAdapter());
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				RecordAdapter adapter = ((RecordAdapter) getListView().getAdapter());
 
 				adapter.onClick(adapter.getCount() - 1, v);
 
@@ -172,19 +167,15 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			// Restart current activity to refresh view, since some preferences
 			// might require using a new UI
 			prefs.edit().putBoolean("layout-updated", false).commit();
-			Intent i = getApplicationContext().getPackageManager()
-					.getLaunchIntentForPackage(
-							getApplicationContext().getPackageName());
-			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-					| Intent.FLAG_ACTIVITY_NEW_TASK
+			Intent i = getApplicationContext().getPackageManager().getLaunchIntentForPackage(
+					getApplicationContext().getPackageName());
+			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
 					| Intent.FLAG_ACTIVITY_NO_ANIMATION);
 			startActivity(i);
 		}
 
 		if (clear != null) {
-			if (searchEditText != null
-					&& !searchEditText.getText().toString()
-							.equalsIgnoreCase("")) {
+			if (searchEditText != null && !searchEditText.getText().toString().equalsIgnoreCase("")) {
 				clear.setVisible(true);
 			} else {
 				clear.setVisible(false);
@@ -210,13 +201,12 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View arg1,
-					 int pos, long id) {
-				((RecordAdapter)parent.getAdapter()).onLongClick(pos);
+			public boolean onItemLongClick(AdapterView<?> parent, View arg1, int pos, long id) {
+				((RecordAdapter) parent.getAdapter()).onLongClick(pos);
 				return true;
 			}
 		});
-		
+
 		// registering our receiver
 		this.registerReceiver(mReceiver, intentFilter);
 		this.registerReceiver(mReceiver, intentFilterBis);
@@ -227,13 +217,12 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			public void run() {
 				searchEditText.requestFocus();
 				InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-				mgr.showSoftInput(searchEditText,
-						InputMethodManager.SHOW_IMPLICIT);
+				mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
 			}
 		}, 50);
-		
+
 		updateRecords(searchEditText.getText().toString());
-		
+
 		super.onResume();
 	}
 
@@ -281,9 +270,8 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
 		clear = menu.findItem(R.id.clear);
-		if(clear != null){
-			if (searchEditText != null
-					&& !searchEditText.getText().toString().equalsIgnoreCase("")) {
+		if (clear != null) {
+			if (searchEditText != null && !searchEditText.getText().toString().equalsIgnoreCase("")) {
 				clear.setVisible(true);
 			} else {
 				clear.setVisible(false);

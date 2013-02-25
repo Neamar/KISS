@@ -38,8 +38,7 @@ public class ImprovedQuickContactBadge extends QuickContactBadge {
 		super(context, attrs);
 	}
 
-	public ImprovedQuickContactBadge(Context context, AttributeSet attrs,
-			int defStyle) {
+	public ImprovedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
@@ -51,8 +50,7 @@ public class ImprovedQuickContactBadge extends QuickContactBadge {
 		}
 	}
 
-	public void setExtraOnClickListener(
-			View.OnClickListener extraOnClickListener) {
+	public void setExtraOnClickListener(View.OnClickListener extraOnClickListener) {
 		mExtraOnClickListener = extraOnClickListener;
 	}
 

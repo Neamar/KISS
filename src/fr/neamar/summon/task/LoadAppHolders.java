@@ -11,8 +11,8 @@ import android.content.pm.ResolveInfo;
 import android.util.Log;
 import fr.neamar.summon.holder.AppHolder;
 
-public class LoadAppHolders extends LoadHolders<AppHolder>{
-	
+public class LoadAppHolders extends LoadHolders<AppHolder> {
+
 	public LoadAppHolders(Context context) {
 		super(context, "app://");
 	}
@@ -26,19 +26,16 @@ public class LoadAppHolders extends LoadHolders<AppHolder>{
 		Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
 		mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-		final List<ResolveInfo> appsInfo = manager
-				.queryIntentActivities(mainIntent, 0);
-		Collections.sort(appsInfo,
-				new ResolveInfo.DisplayNameComparator(manager));
-		
+		final List<ResolveInfo> appsInfo = manager.queryIntentActivities(mainIntent, 0);
+		Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
+
 		ArrayList<AppHolder> apps = new ArrayList<AppHolder>();
 		for (int i = 0; i < appsInfo.size(); i++) {
 			AppHolder app = new AppHolder();
 			ResolveInfo info = appsInfo.get(i);
 
-			app.id = holderScheme
-					+ info.activityInfo.applicationInfo.packageName
-					+ "/" + info.activityInfo.name;
+			app.id = holderScheme + info.activityInfo.applicationInfo.packageName + "/"
+					+ info.activityInfo.name;
 			app.name = info.loadLabel(manager).toString();
 			app.nameLowerCased = app.name.toLowerCase();
 
@@ -48,8 +45,7 @@ public class LoadAppHolders extends LoadHolders<AppHolder>{
 			apps.add(app);
 		}
 		long end = System.nanoTime();
-		Log.i("time", Long.toString((end - start) / 1000000)
-				+ " milliseconds to list apps");
+		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list apps");
 		return apps;
-	}	
+	}
 }

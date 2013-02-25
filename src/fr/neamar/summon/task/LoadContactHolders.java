@@ -10,8 +10,8 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import fr.neamar.summon.holder.ContactHolder;
 
-public class LoadContactHolders extends LoadHolders<ContactHolder>{
-	
+public class LoadContactHolders extends LoadHolders<ContactHolder> {
+
 	public LoadContactHolders(Context context) {
 		super(context, "contact://");
 	}
@@ -19,20 +19,17 @@ public class LoadContactHolders extends LoadHolders<ContactHolder>{
 	@Override
 	protected ArrayList<ContactHolder> doInBackground(Void... params) {
 		long start = System.nanoTime();
-		
+
 		// Run query
-		Cursor cur = context
-				.getContentResolver()
-				.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-						new String[] {
-								ContactsContract.Contacts.LOOKUP_KEY,
-								ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED,
-								ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-								ContactsContract.CommonDataKinds.Phone.NUMBER,
-								ContactsContract.CommonDataKinds.Phone.STARRED,
-								ContactsContract.CommonDataKinds.Phone.IS_SUPER_PRIMARY,
-								ContactsContract.Contacts.PHOTO_ID },
-						null, null, null);
+		Cursor cur = context.getContentResolver().query(
+				ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+				new String[] { ContactsContract.Contacts.LOOKUP_KEY,
+						ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED,
+						ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+						ContactsContract.CommonDataKinds.Phone.NUMBER,
+						ContactsContract.CommonDataKinds.Phone.STARRED,
+						ContactsContract.CommonDataKinds.Phone.IS_SUPER_PRIMARY,
+						ContactsContract.Contacts.PHOTO_ID }, null, null, null);
 
 		// Prevent duplicates by keeping in memory encountered phones.
 		// The string key is "phone" + "|" + "name" (so if two contacts
@@ -52,8 +49,7 @@ public class LoadContactHolders extends LoadHolders<ContactHolder>{
 						.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 				contact.phone = cur.getString(cur
 						.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-				contact.homeNumber = contact.phone
-						.matches("^(\\+33|0)[1-5].*");
+				contact.homeNumber = contact.phone.matches("^(\\+33|0)[1-5].*");
 				contact.starred = cur.getInt(cur
 						.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
 				contact.primary = cur.getInt(cur
@@ -61,22 +57,16 @@ public class LoadContactHolders extends LoadHolders<ContactHolder>{
 				String photoId = cur.getString(cur
 						.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
 				if (photoId != null) {
-					contact.icon = ContentUris.withAppendedId(
-							ContactsContract.Data.CONTENT_URI,
+					contact.icon = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI,
 							Long.parseLong(photoId));
 				}
 
-				contact.id = holderScheme + contact.lookupKey
-						+ contact.phone;
+				contact.id = holderScheme + contact.lookupKey + contact.phone;
 
 				if (contact.name != null) {
-					contact.nameLowerCased = contact.name.toLowerCase()
-							.replaceAll("[èéêë]", "e")
-							.replaceAll("[ûù]", "u")
-							.replaceAll("[ïî]", "i")
-							.replaceAll("[àâ]", "a")
-							.replaceAll("ô", "o")
-							.replaceAll("[ÈÉÊË]", "E");
+					contact.nameLowerCased = contact.name.toLowerCase().replaceAll("[èéêë]", "e")
+							.replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
+							.replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("[ÈÉÊË]", "E");
 
 					if (mapContacts.containsKey(contact.lookupKey))
 						mapContacts.get(contact.lookupKey).add(contact);
@@ -110,8 +100,7 @@ public class LoadContactHolders extends LoadHolders<ContactHolder>{
 			}
 		}
 		long end = System.nanoTime();
-		Log.i("time", Long.toString((end - start) / 1000000)
-				+ " milliseconds to list contacts");
+		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list contacts");
 		return contacts;
-	}	
+	}
 }

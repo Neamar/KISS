@@ -17,18 +17,16 @@ public class ResetPreference extends DialogPreference {
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		super.onClick(dialog, which);
-		if(which == DialogInterface.BUTTON_POSITIVE){
+		if (which == DialogInterface.BUTTON_POSITIVE) {
 			getContext().deleteDatabase("summon.s3db");
 			new BackupManager(getContext()).dataChanged();
 			SummonApplication.resetDataHandler(getContext());
-			PreferenceManager
-					.getDefaultSharedPreferences(getContext())
-					.edit().putBoolean("layout-updated", true)
-					.commit();
-			
+			PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
+					.putBoolean("layout-updated", true).commit();
+
 			Toast.makeText(getContext(), "History erased.", Toast.LENGTH_LONG).show();
 		}
 
-	}	
+	}
 
 }

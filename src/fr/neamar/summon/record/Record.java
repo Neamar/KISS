@@ -75,8 +75,7 @@ public abstract class Record {
 	 * @return text displayable on a textview
 	 */
 	protected Spanned enrichText(String text) {
-		return Html.fromHtml(text.replaceAll("\\{(.+)\\}",
-				"<font color=#6e73e5>$1</font>"));
+		return Html.fromHtml(text.replaceAll("\\{(.+)\\}", "<font color=#6e73e5>$1</font>"));
 	}
 
 	/**
@@ -87,12 +86,11 @@ public abstract class Record {
 	protected void recordLaunch(Context context) {
 		// Save in history
 		// TODO: move to datahandler
-		DBHelper.insertHistory(context,
-				SummonApplication.getDataHandler(context).currentQuery,
+		DBHelper.insertHistory(context, SummonApplication.getDataHandler(context).currentQuery,
 				holder.id);
 	}
-	
-	public void deleteRecord(Context context){
+
+	public void deleteRecord(Context context) {
 		DBHelper.removeFromHistory(context, holder.id);
 	}
 

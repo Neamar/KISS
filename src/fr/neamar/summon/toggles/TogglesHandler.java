@@ -31,13 +31,10 @@ public class TogglesHandler {
 		this.context = context;
 		this.connectivityManager = (ConnectivityManager) context
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		this.wifiManager = (WifiManager) context
-				.getSystemService(Context.WIFI_SERVICE);
+		this.wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-		this.locationManager = (LocationManager) context
-				.getSystemService(Context.LOCATION_SERVICE);
-		this.audioManager = ((AudioManager) context
-				.getSystemService(Context.AUDIO_SERVICE));
+		this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+		this.audioManager = ((AudioManager) context.getSystemService(Context.AUDIO_SERVICE));
 	}
 
 	/**
@@ -59,8 +56,7 @@ public class TogglesHandler {
 			else if (holder.settingName.equals("silent"))
 				return getSilentState();
 			else {
-				Log.e("wtf", "Unsupported toggle for reading: "
-						+ holder.settingName);
+				Log.e("wtf", "Unsupported toggle for reading: " + holder.settingName);
 				return false;
 			}
 		} catch (Exception e) {
@@ -83,8 +79,7 @@ public class TogglesHandler {
 			else if (holder.settingName.equals("silent"))
 				setSilentState(state);
 			else {
-				Log.e("wtf", "Unsupported toggle for update: "
-						+ holder.settingName);
+				Log.e("wtf", "Unsupported toggle for update: " + holder.settingName);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,7 +120,8 @@ public class TogglesHandler {
 	protected void setDataState(Boolean state) {
 		Method dataMtd = null;
 		try {
-			dataMtd = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled", boolean.class);
+			dataMtd = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled",
+					boolean.class);
 			dataMtd.setAccessible(true);
 			dataMtd.invoke(connectivityManager, state);
 		} catch (NoSuchMethodException e) {
@@ -166,8 +162,7 @@ public class TogglesHandler {
 
 	protected Boolean getSilentState() {
 		int state = audioManager.getRingerMode();
-		if (state == AudioManager.RINGER_MODE_SILENT
-				|| state == AudioManager.RINGER_MODE_VIBRATE)
+		if (state == AudioManager.RINGER_MODE_SILENT || state == AudioManager.RINGER_MODE_VIBRATE)
 			return true;
 		else
 			return false;
@@ -182,8 +177,7 @@ public class TogglesHandler {
 					AudioManager.FLAG_PLAY_SOUND);
 		} else {
 			audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-			audioManager.setStreamVolume(AudioManager.STREAM_RING, 0,
-					AudioManager.FLAG_VIBRATE);
+			audioManager.setStreamVolume(AudioManager.STREAM_RING, 0, AudioManager.FLAG_VIBRATE);
 		}
 	}
 }

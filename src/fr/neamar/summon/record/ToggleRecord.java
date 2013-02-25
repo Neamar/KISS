@@ -37,13 +37,14 @@ public class ToggleRecord extends Record {
 		TextView toggleName = (TextView) v.findViewById(R.id.item_toggle_name);
 		toggleName.setText(enrichText(toggleHolder.displayName));
 
-		ImageView toggleIcon = (ImageView) v
-				.findViewById(R.id.item_toggle_icon);
-		if (toggleHolder.icon != -1){
-			TypedArray a = context.obtainStyledAttributes(R.style.SummonTheme, new int[] {toggleHolder.icon});     
+		ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_toggle_icon);
+		if (toggleHolder.icon != -1) {
+			TypedArray a = context.obtainStyledAttributes(R.style.SummonTheme,
+					new int[] { toggleHolder.icon });
 			int attributeResourceId = a.getResourceId(0, -1);
-			if(attributeResourceId != -1){
-				toggleIcon.setImageDrawable(context.getResources().getDrawable(attributeResourceId));
+			if (attributeResourceId != -1) {
+				toggleIcon
+						.setImageDrawable(context.getResources().getDrawable(attributeResourceId));
 			}
 			a.recycle();
 		}
@@ -58,17 +59,15 @@ public class ToggleRecord extends Record {
 			toggleButton.setEnabled(false);
 
 		toggleButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (!togglesHandler.getState(toggleHolder).equals(
-						toggleButton.isChecked())) {
+				if (!togglesHandler.getState(toggleHolder).equals(toggleButton.isChecked())) {
 
 					// record launch manually
 					recordLaunch(buttonView.getContext());
 
-					togglesHandler.setState(toggleHolder,
-							toggleButton.isChecked());
+					togglesHandler.setState(toggleHolder, toggleButton.isChecked());
 
 					toggleButton.setEnabled(false);
 					new AsyncTask<Void, Void, Void>() {
@@ -88,8 +87,7 @@ public class ToggleRecord extends Record {
 							super.onPostExecute(result);
 							toggleButton.setEnabled(true);
 						}
-						
-						
+
 					}.execute();
 				}
 			}
