@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 import fr.neamar.summon.QueryInterface;
 import fr.neamar.summon.record.AppRecord;
 import fr.neamar.summon.record.ContactRecord;
@@ -58,6 +59,7 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	public void onLongClick(int pos){
 		records.get(pos).deleteRecord(getContext());
 		records.remove(pos);
+		Toast.makeText(getContext(), "Removed from history", Toast.LENGTH_SHORT).show();
 		notifyDataSetChanged();
 	}
 	
