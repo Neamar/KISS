@@ -27,8 +27,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import fr.neamar.summon.adapter.RecordAdapter;
@@ -76,7 +77,25 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		}
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
-
+		
+		IntentFilter intentFilter = new IntentFilter(START_LOAD);
+		IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
+		IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
+		mReceiver = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
+					updateRecords(searchEditText.getText().toString());
+				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
+					setProgressBarIndeterminateVisibility(false);
+				} else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
+					setProgressBarIndeterminateVisibility(true);
+				}
+			}
+		};
+		this.registerReceiver(mReceiver, intentFilter);
+		this.registerReceiver(mReceiver, intentFilterBis);
+		this.registerReceiver(mReceiver, intentFilterTer);
 		SummonApplication.initDataHandler(this);
 
 		// Initialize preferences
@@ -90,14 +109,6 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 				&& prefs.getBoolean("small-screen", false)) {
 			getActionBar().hide();
 		}
-
-		getListView().setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View arg1,
-					int position, long id) {
-				adapter.onClick(position, arg1);
-			}
-		});
 
 		// Create adapter for records
 		adapter = new RecordAdapter(this, this, R.layout.item_app,
@@ -146,6 +157,12 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		});
 	}
 
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		adapter.onClick(position, v);
+	}
+
 	/**
 	 * Empty text field on resume and show keyboard
 	 */
@@ -174,9 +191,9 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			}
 		}
 
-		IntentFilter intentFilter = new IntentFilter(LOAD_OVER);
-		IntentFilter intentFilterBis = new IntentFilter(FULL_LOAD_OVER);
-		IntentFilter intentFilterTer = new IntentFilter(START_LOAD);
+		IntentFilter intentFilter = new IntentFilter(START_LOAD);
+		IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
+		IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
 		mReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
@@ -189,6 +206,17 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 				}
 			}
 		};
+		getListView().setLongClickable(true);
+		getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View arg1,
+					 int pos, long id) {
+				((RecordAdapter)parent.getAdapter()).onLongClick(pos);
+				return true;
+			}
+		});
+		
 		// registering our receiver
 		this.registerReceiver(mReceiver, intentFilter);
 		this.registerReceiver(mReceiver, intentFilterBis);
@@ -203,7 +231,9 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 						InputMethodManager.SHOW_IMPLICIT);
 			}
 		}, 50);
-
+		
+		updateRecords(searchEditText.getText().toString());
+		
 		super.onResume();
 	}
 
@@ -251,11 +281,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
 		clear = menu.findItem(R.id.clear);
-		if (searchEditText != null
-				&& !searchEditText.getText().toString().equalsIgnoreCase("")) {
-			clear.setVisible(true);
-		} else {
-			clear.setVisible(false);
+		if(clear != null){
+			if (searchEditText != null
+					&& !searchEditText.getText().toString().equalsIgnoreCase("")) {
+				clear.setVisible(true);
+			} else {
+				clear.setVisible(false);
+			}
 		}
 		return true;
 	}

@@ -16,6 +16,15 @@
             android:title="Small Screen Mode" >
         </CheckBoxPreference>
     </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/title_history" >
+        <fr.neamar.summon.ResetPreference
+            android:key="reset"
+            android:title="Reset history"
+            android:summary="Reset your summon history"
+            android:dialogMessage="Do you really want to reset your history?">
+        </fr.neamar.summon.ResetPreference>
+    </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/title_providers">
         <CheckBoxPreference

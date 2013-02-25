@@ -3,6 +3,7 @@ package fr.neamar.summon.task;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import fr.neamar.summon.R;
 import fr.neamar.summon.holder.SettingHolder;
 
@@ -26,6 +27,7 @@ public class LoadSettingHolders extends LoadHolders<SettingHolder>{
 		settings.add(createHolder("Connectivity",
 				android.provider.Settings.ACTION_WIRELESS_SETTINGS,
 				R.attr.wifi));
+		settings.add(createHolder("Battery", Intent.ACTION_POWER_USAGE_SUMMARY, R.attr.battery));
 		return settings;
 	}	
 	

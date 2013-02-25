@@ -91,6 +91,10 @@ public abstract class Record {
 				SummonApplication.getDataHandler(context).currentQuery,
 				holder.id);
 	}
+	
+	public void deleteRecord(Context context){
+		DBHelper.removeFromHistory(context, holder.id);
+	}
 
 	public static Record fromHolder(QueryInterface parent, Holder holder) {
 		if (holder instanceof AppHolder)
