@@ -127,7 +127,7 @@
       “localization” for various applications. During installation,
       this package will ask a few questions in order to choose supported
       languages. This set of supported languages can be changed by running
-      <command>dpkg-reconfigure locales</command> as root.</para>
+      <command>dpkg-reconfigure locales</command>.</para>
 
       <para>You will be asked, first, to choose what “locales” to
       include. Selecting all English locales (meaning those beginning
@@ -426,7 +426,7 @@ $ </computeroutput><userinput>ls travail/</userinput>
     <section id="section.interface-ethernet">
       <title>Ethernet Interface</title>
 
-      <para>If the computer has an Ethernet card, the IP network that is
+      <para>If the computer has an Ethernet card, the network that is
       associated with it must be configured by choosing from one of two
       methods. The simplest method is dynamic configuration with DHCP, and
       it requires a DHCP server on the local network. It may indicate a
@@ -1517,9 +1517,9 @@ nameserver 8.8.8.8
 	<filename>/dev/root-partition</filename> if you prefer, or even
 	both at the same time since <command>udevd</command> can be
 	configured to automatically create a symbolic link. Furthermore,
-	<filename>/dev/</filename> now only contains files which are relevant to the
-	current situation. Previously, some kernel modules did automatically load
-	when you tried to access the corresponding device; henceforth,
+	<filename>/dev/</filename> no longer contains useful files at this
+	time. Previously, some kernel modules did not automatically load
+	when you tried to access the corresponding peripheral; henceforth,
 	the peripheral's special file no longer exists prior to loading the
 	module, which is no big deal, since most modules are loaded on boot
 	thanks to automatic hardware detection. But for undetectable
