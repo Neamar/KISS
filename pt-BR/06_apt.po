@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2012-08-13 00:56+0200\n"
+"PO-Revision-Date: 2013-03-10 01:25+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 1.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -349,6 +349,14 @@ msgstr ""
 #, no-c-format
 msgid "This file lists all sources of packages associated with the stable version of Debian. If you would like to use <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, you will of course have to add (or replace them with) the appropriate lines. When the desired version of a package is available on several mirrors, the first one listed in the <filename>sources.list</filename> file will be used. For this reason, non-official sources are usually added at the end of the file."
 msgstr ""
+"Este arquivo lista todas as fontes de pacotes associadas com a versão "
+"estável do Debian. Se você gosta de usar a <emphasis "
+"role=\"distribution\">Testing</emphasis> ou a <emphasis "
+"role=\"distribution\">Unstable</emphasis>, você terá, obviamente, que "
+"adicionar (ou substituir) as linhas apropriadas. Quando a versão desejada de "
+"um pacote estiver disponível em vários espelhos, o primeiro listado no "
+"arquivo <filename>sources.list</filename> será usado. Por isto, fontes de "
+"pacotes não oficiais são normalmente adicionadas no final do arquivo."
 
 #. Tag: title
 #, no-c-format
@@ -358,9 +366,14 @@ msgstr ""
 "<filename>/etc/apt/sources.list.d/*.list</filename> arquivos"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "If many package sources are referenced, it can be useful to split them in multiple files. Each part is then stored in <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> (see sidebar <xref linkend=\"cadre-repertoire.d\" />)."
 msgstr ""
+"Se muitas fontes de pacotes são referenciadas, pode ser útil separá-las em "
+"múltiplos arquivos. Cada parte é então guardada em "
+"<filename>/etc/apt/sources.list.d/<replaceable>nome-de-"
+"arquivo</replaceable>.list</filename> (veja a barra lateral <xref linkend"
+"=\"cadre-repertoire.d\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -376,88 +389,143 @@ msgstr "<primary><command>apt-spy</command></primary>"
 #, no-c-format
 msgid "This software tests the download speed from several Debian mirrors and generates a <filename>sources.list</filename> file which points to the fastest mirror."
 msgstr ""
+"Este software teste a velocidade de download para vários espelhos Debian e "
+"gera um arquivo <filename>sources.list</filename> que aponta para o espelho "
+"mais rápido."
 
 #. Tag: para
 #, no-c-format
 msgid "The mirror selected during installation is generally suitable since its selection is based on the country. However, if the download is a little slow, or after a move, you can try running the application available in the <emphasis role=\"pkg\">apt-spy</emphasis> package."
 msgstr ""
+"O espelho selecionado durante a instalação é geralmente adequado já que sua "
+"seleção é baseada no país. Entretanto, se o download é lento, ou você se "
+"mudou, você pode rodar a aplicação disponível no pacote <emphasis role=\"pkg"
+"\">apt-spy</emphasis>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cdrom</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cdrom</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sources.list</filename> file contains several other entry types: some describe the Debian CD-ROMs you have. Contrary to other entries, a CD-ROM is not always available since it has to be inserted into the drive and since only one disc can be read at a time — consequently, these sources are managed in a slightly different way. These entries need to be added with the <command>apt-cdrom</command> program, usually executed with the <literal>add</literal> parameter. The latter will then request the disc to be inserted in the drive and will browse its contents looking for <filename>Packages</filename> files. It will use these files to update its database of available packages (this is usually done by the <command>aptitude update</command> command). From then on, APT can require the disc to be inserted if it needs one of its packages."
 msgstr ""
+"O arquivo <filename>sources.list</filename> contém vários outros tipos de "
+"entradas: alguns descrevem os CD-ROMs do Debian que você tem. Ao contrário "
+"de outras entradas, um CD-ROM não está sempre disponível já que ele tem que "
+"ser inserido no drive e só pode ser lido um disco por vez — "
+"consequentemente, estas fontes são geridas de uma forma levemente diferente. "
+"Estas entradas precisam ser adicionadas com o programa <command>apt-"
+"cdrom</command>, normalmente executado com o parâmetro "
+"<literal>add</literal>. Este então vai precisar que o disco seja inserido no "
+"drive e vai navegar pelo disco em busca de arquivos "
+"<filename>Packages</filename>. Ele vai utilizar estes arquivos para "
+"atualizar seu banco de dados de arquivos disponíveis (isto é normalmente "
+"feito pelo comando <command>aptitude update</command>). A partir daí, o APT "
+"pode pedir que o disco seja inserido se ele precisar de um de seus pacotes."
 
 #. Tag: title
 #, no-c-format
 msgid "Other Available Official Repositories"
-msgstr ""
+msgstr "Outros repositórios Oficiais Disponíveis"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis role=\"distribution\">Stable</emphasis> Updates"
-msgstr ""
+msgstr "atualizações da <emphasis role=\"distribution\">Stable</emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>stable-updates</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>stable-updates</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Once published, the <emphasis role=\"distribution\">Stable</emphasis> distribution is only updated about once every 2 months in order to integrate the security updates published on <literal>security.debian.org</literal>."
 msgstr ""
+"Depois de publicada, a distribuição <emphasis "
+"role=\"distribution\">Stable</emphasis> é atualizada em aproximadamente de "
+"dois em dois meses para integrar as atualizações de segurança publicadas no "
+"<literal>security.debian.org</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "This minor release can also include updates for packages that have to evolve over time... like <emphasis role=\"pkg\">spamassassin</emphasis>'s spam detection rules, <emphasis role=\"pkg\">clamav</emphasis>'s virus database, or the daylight-saving rules of all timezones (<emphasis role=\"pkg\">tzdata</emphasis>)."
 msgstr ""
+"Este lançamento menor também pode incluir atualizações de pacotes que "
+"evoluíram ao longo do tempo... como as regras de detecção de spam do "
+"<emphasis role=\"pkg\">spamassassin</emphasis>, o banco de dados de vírus do "
+"<emphasis role=\"pkg\">clamav</emphasis> ou as regras de horário de verão de "
+"todos os fusos horários do (<emphasis role=\"pkg\">tzdata</emphasis>)."
 
 #. Tag: para
 #, no-c-format
 msgid "All those updates are prepared in a repository known as <literal>proposed-updates</literal>. Anyone can use this repository to test those updates before their official publication. The extract below uses the <literal>squeeze-proposed-updates</literal> alias which is both more explicit and more consistent since <literal>lenny-proposed-updates</literal> also exists (for the <emphasis role=\"distribution\">Oldstable</emphasis> updates):"
 msgstr ""
+"Todas estas atualizações são preparadas num repositório conhecido como "
+"<literal>proposed-updates</literal>. Qualquer um pode usar este repositório "
+"para testar estas atualizações antes de sua publicação oficial. O trecho "
+"abaixo usa o alias <literal>squeeze-proposed-updates</literal> que tanto é "
+"mais explícito quanto mais consistente, uma vez que o <literal>lenny-"
+"proposed-updates</literal> também existe (para as atualizações do <emphasis "
+"role=\"distribution\">Oldstable</emphasis>):"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian squeeze-proposed-updates main contrib non-free\n"
 ""
-msgstr ""
+msgstr "deb http://ftp.debian.org/debian squeeze-proposed-updates main contrib non-"
+"free\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Once ready, the most important updates — those which cannot wait for the next minor Debian release — are published in the <literal>stable-updates</literal> repository (which most systems are expected to use):"
 msgstr ""
+"Depois de prontas, as atualizações mais importantes — aquelas que não podem "
+"esperar para o próximo pequeno lançamento do Debian — são publicadas no "
+"repositório <literal>stable-updates</literal> (que espera-se que a maioria "
+"dos sistemas usem):"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian stable-updates main contrib non-free\n"
 ""
-msgstr ""
+msgstr "deb http://ftp.debian.org/debian stable-updates main contrib non-free\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The Backports From <literal>backports.debian.org</literal>"
-msgstr ""
+msgstr "Os retroportes (\"Backports\") de <literal>backports.debian.org</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>backports.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>backports.debian.org</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backport</primary>"
-msgstr ""
+msgstr "<primary>backport</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Unsurprisingly, the <literal>backports.debian.org</literal> server hosts “package backports”. The term refers to a package of some recent software which has been recompiled for an older distribution, generally for <emphasis role=\"distribution\">Stable</emphasis>. When the distribution becomes a little dated, numerous software projects have released new versions that are not integrated into the current <emphasis role=\"distribution\">Stable</emphasis> (which is only modified to address the most critical problems, such as security problems). Since the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> distributions can be more risky, some volunteers sometimes offer recompilations of recent software applications for <emphasis role=\"distribution\">Stable</emphasis>, which has the advantage to limit potential instability to a small number of chosen packages. <ulink type=\"block\" url=\"http://backports.debian.org/\" />"
 msgstr ""
+"Obviamente, o servidor <literal>backports.debian.org</literal> hospeda “ "
+"backports de pacotes”. O termo se refere a um pacote de algum software "
+"recente que foi recompilado para uma distribuição antiga, geralmente para a "
+"<emphasis role=\"distribution\">Stable</emphasis>. Quando a distribuição "
+"começa a envelhecer, vários projetos de software lançam novas versões que "
+"não são integradas na <emphasis role=\"distribution\">Stable</emphasis> atual "
+"(que é modificada apenas para resolver os problemas mais críticos, como "
+"problemas de segunrança). Como as distribuições <emphasis "
+"role=\"distribution\">Testing</emphasis> e <emphasis "
+"role=\"distribution\">Unstable</emphasis> podem ser mais arriscadas, alguns "
+"voluntários oferencem recompilações de software recente para a <emphasis "
+"role=\"distribution\">Stable</emphasis>, que tem a vantagem de limitar "
+"instabilidade potencial a um pequeno número de pacotes escolhidos. <ulink "
+"type=\"block\" url=\"http://backports.debian.org/\" />"
 
 #. Tag: para
 #, no-c-format
@@ -615,17 +683,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>installation</secondary>"
-msgstr ""
+msgstr "<secondary>instalação</secondary> de <primary>pacote</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>removal</secondary>"
-msgstr ""
+msgstr "<secondary>remoção</secondary> de <primary>pacote</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>of packages</secondary>"
-msgstr ""
+msgstr "<primary>instalação</primary><secondary>de pacotes</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
