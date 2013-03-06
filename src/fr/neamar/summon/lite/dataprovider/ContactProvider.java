@@ -40,8 +40,8 @@ public class ContactProvider extends Provider<ContactHolder> {
 				if (contact.homeNumber)
 					relevance -= 1;
 
-				contact.displayName = holders.get(i).name.replaceFirst("(?i)("
-						+ Pattern.quote(query) + ")", "{$1}");
+				contact.displayName = holders.get(i).name.replaceFirst(
+						"(?i)(" + Pattern.quote(query) + ")", "{$1}");
 				contact.relevance = relevance;
 				results.add(contact);
 			}

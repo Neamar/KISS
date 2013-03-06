@@ -1,16 +1,17 @@
 package fr.neamar.summon.lite.toggles;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.util.Log;
-import android.widget.Toast;
 import fr.neamar.summon.lite.holder.ToggleHolder;
 
 public class TogglesHandler {
@@ -30,13 +31,10 @@ public class TogglesHandler {
 		this.context = context;
 		this.connectivityManager = (ConnectivityManager) context
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		this.wifiManager = (WifiManager) context
-				.getSystemService(Context.WIFI_SERVICE);
+		this.wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-		this.locationManager = (LocationManager) context
-				.getSystemService(Context.LOCATION_SERVICE);
-		this.audioManager = ((AudioManager) context
-				.getSystemService(Context.AUDIO_SERVICE));
+		this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+		this.audioManager = ((AudioManager) context.getSystemService(Context.AUDIO_SERVICE));
 	}
 
 	/**
@@ -58,11 +56,11 @@ public class TogglesHandler {
 			else if (holder.settingName.equals("silent"))
 				return getSilentState();
 			else {
-				Log.e("wtf", "Unsupported toggle for reading: "
-						+ holder.settingName);
+				Log.e("wtf", "Unsupported toggle for reading: " + holder.settingName);
 				return false;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			Log.w("log", "Unsupported toggle for device: " + holder.settingName);
 			return null;
 		}
@@ -81,10 +79,10 @@ public class TogglesHandler {
 			else if (holder.settingName.equals("silent"))
 				setSilentState(state);
 			else {
-				Log.e("wtf", "Unsupported toggle for update: "
-						+ holder.settingName);
+				Log.e("wtf", "Unsupported toggle for update: " + holder.settingName);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			Log.w("log", "Unsupported toggle for device: " + holder.settingName);
 		}
 	}
@@ -98,15 +96,47 @@ public class TogglesHandler {
 	}
 
 	protected Boolean getDataState() {
-		NetworkInfo ni = connectivityManager
-				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		return ni.isAvailable();
+		Method dataMtd = null;
+		try {
+			dataMtd = ConnectivityManager.class.getDeclaredMethod("getMobileDataEnabled");
+			dataMtd.setAccessible(true);
+			return (Boolean) dataMtd.invoke(connectivityManager);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	protected void setDataState(Boolean state) {
-		// http://stackoverflow.com/questions/3644144/how-to-disable-mobile-data-on-android
-		Toast.makeText(context, "Data toggle not working yet. Soon ;)",
-				Toast.LENGTH_SHORT).show();
+		Method dataMtd = null;
+		try {
+			dataMtd = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled",
+					boolean.class);
+			dataMtd.setAccessible(true);
+			dataMtd.invoke(connectivityManager, state);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	protected Boolean getBluetoothState() {
@@ -132,8 +162,7 @@ public class TogglesHandler {
 
 	protected Boolean getSilentState() {
 		int state = audioManager.getRingerMode();
-		if (state == AudioManager.RINGER_MODE_SILENT
-				|| state == AudioManager.RINGER_MODE_VIBRATE)
+		if (state == AudioManager.RINGER_MODE_SILENT || state == AudioManager.RINGER_MODE_VIBRATE)
 			return true;
 		else
 			return false;
@@ -148,8 +177,7 @@ public class TogglesHandler {
 					AudioManager.FLAG_PLAY_SOUND);
 		} else {
 			audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-			audioManager.setStreamVolume(AudioManager.STREAM_RING, 0,
-					AudioManager.FLAG_VIBRATE);
+			audioManager.setStreamVolume(AudioManager.STREAM_RING, 0, AudioManager.FLAG_VIBRATE);
 		}
 	}
 }

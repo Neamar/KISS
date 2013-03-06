@@ -19,8 +19,7 @@ public class AppRecord extends Record {
 		super();
 		this.holder = this.appHolder = appHolder;
 
-		className = new ComponentName(appHolder.packageName,
-				appHolder.activityName);
+		className = new ComponentName(appHolder.packageName, appHolder.activityName);
 	}
 
 	@Override
@@ -33,8 +32,7 @@ public class AppRecord extends Record {
 
 		ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
 		try {
-			appIcon.setImageDrawable(context.getPackageManager()
-					.getActivityIcon(className));
+			appIcon.setImageDrawable(context.getPackageManager().getActivityIcon(className));
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -47,8 +45,7 @@ public class AppRecord extends Record {
 		Intent intent = new Intent(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_LAUNCHER);
 		intent.setComponent(className);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-				| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 
 		context.startActivity(intent);
 	}

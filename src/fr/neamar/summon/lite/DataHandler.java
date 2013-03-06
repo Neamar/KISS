@@ -21,10 +21,10 @@ import fr.neamar.summon.lite.db.ValuedHistoryRecord;
 import fr.neamar.summon.lite.holder.Holder;
 import fr.neamar.summon.lite.holder.HolderComparator;
 
-public class DataHandler extends BroadcastReceiver{
+public class DataHandler extends BroadcastReceiver {
 
 	public String currentQuery;
-	
+
 	/**
 	 * List all knowns providers
 	 */
@@ -35,31 +35,30 @@ public class DataHandler extends BroadcastReceiver{
 	 * Initialize all providers
 	 */
 	public DataHandler(Context context) {
-		
-		IntentFilter intentFilter = new IntentFilter(SummonActivity.LOAD_OVER);	
-        context.getApplicationContext().registerReceiver(this, intentFilter);
-        
-        Intent i = new Intent(SummonActivity.START_LOAD);
-        context.sendBroadcast(i);
-        
+		IntentFilter intentFilter = new IntentFilter(SummonActivity.LOAD_OVER);
+		context.getApplicationContext().registerReceiver(this, intentFilter);
+
+		Intent i = new Intent(SummonActivity.START_LOAD);
+		context.sendBroadcast(i);
+
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		// Initialize providers
-		if(prefs.getBoolean("enable-apps", true)){
+		if (prefs.getBoolean("enable-apps", true)) {
 			providers.add(new AppProvider(context));
 		}
-		if(prefs.getBoolean("enable-contacts", true)){
+		if (prefs.getBoolean("enable-contacts", true)) {
 			providers.add(new ContactProvider(context));
 		}
-		if(prefs.getBoolean("enable-search", true)){
+		if (prefs.getBoolean("enable-search", true)) {
 			providers.add(new SearchProvider(context));
 		}
-		if(prefs.getBoolean("enable-toggles", true)){
+		if (prefs.getBoolean("enable-toggles", true)) {
 			providers.add(new ToggleProvider(context));
 		}
-		if(prefs.getBoolean("enable-settings", true)){
+		if (prefs.getBoolean("enable-settings", true)) {
 			providers.add(new SettingProvider(context));
 		}
-		if(prefs.getBoolean("enable-aliases", true)){
+		if (prefs.getBoolean("enable-aliases", true)) {
 			providers.add(new AliasProvider(context, providers));
 		}
 	}
@@ -82,28 +81,27 @@ public class DataHandler extends BroadcastReceiver{
 		}
 
 		// Have we ever made the same query and selected something ?
-		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper
-				.getPreviousResultsForQuery(context, query);
+		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
+				context, query);
 
 		// Ask all providers for datas
 		ArrayList<Holder> allHolders = new ArrayList<Holder>();
 
 		for (int i = 0; i < providers.size(); i++) {
-			
-			//Retrieve results for query:
+
+			// Retrieve results for query:
 			ArrayList<Holder> holders = providers.get(i).getResults(query);
-			
-			//Add results to list
+
+			// Add results to list
 			for (int j = 0; j < holders.size(); j++) {
-				
+
 				// Give a boost if item was previously selected for this query
 				for (int k = 0; k < lastIdsForQuery.size(); k++) {
 					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record)) {
-						holders.get(j).relevance += 25 * Math.min(5,
-								lastIdsForQuery.get(k).value);
+						holders.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
 					}
 				}
-				
+
 				allHolders.add(holders.get(j));
 			}
 		}
@@ -133,8 +131,7 @@ public class DataHandler extends BroadcastReceiver{
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
 				if (providers.get(j).mayFindById(ids.get(i).record)) {
-					Holder holder = providers.get(j)
-							.findById(ids.get(i).record);
+					Holder holder = providers.get(j).findById(ids.get(i).record);
 					if (holder != null) {
 						history.add(holder);
 						break;
@@ -149,11 +146,15 @@ public class DataHandler extends BroadcastReceiver{
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		providersLoaded++;
-		if(providersLoaded == providers.size()){
-			providersLoaded = 0;
-			context.unregisterReceiver(this);
-			Intent i = new Intent(SummonActivity.FULL_LOAD_OVER);
-	        context.sendBroadcast(i);
+		if (providersLoaded == providers.size()) {
+			try {
+				context.unregisterReceiver(this);
+				Intent i = new Intent(SummonActivity.FULL_LOAD_OVER);
+				context.sendBroadcast(i);
+				providersLoaded = 0;
+			} catch (IllegalArgumentException e) {
+				// Nothing
+			}
 		}
 	}
 }

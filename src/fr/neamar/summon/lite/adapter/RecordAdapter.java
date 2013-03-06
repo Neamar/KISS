@@ -13,6 +13,7 @@ import fr.neamar.summon.lite.record.Record;
 import fr.neamar.summon.lite.record.SearchRecord;
 import fr.neamar.summon.lite.record.SettingRecord;
 import fr.neamar.summon.lite.record.ToggleRecord;
+import android.widget.Toast;
 
 public class RecordAdapter extends ArrayAdapter<Record> {
 
@@ -23,8 +24,8 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 
 	private QueryInterface parent;
 
-	public RecordAdapter(Context context, QueryInterface parent,
-			int textViewResourceId, ArrayList<Record> records) {
+	public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
+			ArrayList<Record> records) {
 		super(context, textViewResourceId, records);
 
 		this.parent = parent;
@@ -55,11 +56,18 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 		return records.get(position).display(getContext(), convertView);
 	}
 
+	public void onLongClick(int pos) {
+		records.get(pos).deleteRecord(getContext());
+		records.remove(pos);
+		Toast.makeText(getContext(), "Removed from history", Toast.LENGTH_SHORT).show();
+		notifyDataSetChanged();
+	}
+
 	public void onClick(int position, View v) {
 		try {
 			records.get(position).launch(getContext(), v);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			
+
 		}
 
 		parent.launchOccured();

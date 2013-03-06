@@ -24,8 +24,8 @@ public class SearchRecord extends Record {
 			v = inflateFromId(context, R.layout.item_search);
 
 		TextView appName = (TextView) v.findViewById(R.id.item_search_text);
-		appName.setText(enrichText(context.getString(R.string.ui_item_search)
-				+ " \"{" + searchHolder.query + "}\""));
+		appName.setText(enrichText(context.getString(R.string.ui_item_search) + " \"{"
+				+ searchHolder.query + "}\""));
 
 		return v;
 	}
@@ -35,11 +35,11 @@ public class SearchRecord extends Record {
 		Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
 		search.putExtra(SearchManager.QUERY, searchHolder.query);
 		search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		
+
 		try {
 			context.startActivity(search);
 		} catch (ActivityNotFoundException e) {
-			//This exception gets thrown if Google Search has been deactivated:
+			// This exception gets thrown if Google Search has been deactivated:
 			Uri uri = Uri.parse("http://www.google.com/#q=" + searchHolder.query);
 			search = new Intent(Intent.ACTION_VIEW, uri);
 			search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -28,9 +28,9 @@ public class AliasProvider extends Provider<Pair<String, String>> {
 						if (holder != null) {
 							holder.displayName = holder.name
 									+ " <small>("
-									+ entry.first.replaceFirst("(?i)("
-											+ Pattern.quote(query) + ")",
-											"{$1}") + ")</small>";
+									+ entry.first.replaceFirst(
+											"(?i)(" + Pattern.quote(query) + ")", "{$1}")
+									+ ")</small>";
 							holder.relevance = 10;
 							results.add(holder);
 						}

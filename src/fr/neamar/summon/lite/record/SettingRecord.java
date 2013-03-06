@@ -22,17 +22,17 @@ public class SettingRecord extends Record {
 		if (v == null)
 			v = inflateFromId(context, R.layout.item_setting);
 
-		TextView settingName = (TextView) v
-				.findViewById(R.id.item_setting_name);
+		TextView settingName = (TextView) v.findViewById(R.id.item_setting_name);
 		settingName.setText(enrichText(settingHolder.displayName));
 
-		ImageView settingIcon = (ImageView) v
-				.findViewById(R.id.item_setting_icon);
-		if (settingHolder.icon != -1){
-			TypedArray a = context.obtainStyledAttributes(R.style.SummonTheme, new int[] {settingHolder.icon});     
+		ImageView settingIcon = (ImageView) v.findViewById(R.id.item_setting_icon);
+		if (settingHolder.icon != -1) {
+			TypedArray a = context.obtainStyledAttributes(R.style.SummonTheme,
+					new int[] { settingHolder.icon });
 			int attributeResourceId = a.getResourceId(0, -1);
-			if(attributeResourceId != -1){
-				settingIcon.setImageDrawable(context.getResources().getDrawable(attributeResourceId));
+			if (attributeResourceId != -1) {
+				settingIcon.setImageDrawable(context.getResources()
+						.getDrawable(attributeResourceId));
 			}
 			a.recycle();
 		}

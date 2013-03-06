@@ -30,8 +30,8 @@ public class AppProvider extends Provider<AppHolder> {
 				relevance = 1;
 
 			if (relevance > 0) {
-				holders.get(i).displayName = holders.get(i).name.replaceFirst("(?i)("
-						+ Pattern.quote(query) + ")", "{$1}");
+				holders.get(i).displayName = holders.get(i).name.replaceFirst(
+						"(?i)(" + Pattern.quote(query) + ")", "{$1}");
 				holders.get(i).relevance = relevance;
 				records.add(holders.get(i));
 			}
