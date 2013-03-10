@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2013-01-09 16:51+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-03-07 21:16+0200\n"
+"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/12_advanced-administration/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 1.4-dev\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -110,6 +110,14 @@ msgstr "RAID Por Software"
 #, no-c-format
 msgid "RAID <indexterm><primary>RAID</primary></indexterm> means <emphasis>Redundant Array of Independent Disks</emphasis>. The goal of this system is to prevent data loss in case of hard disk failure. The general principle is quite simple: data are stored on several physical disks instead of only one, with a configurable level of redundancy. Depending on this amount of redundancy, and even in the event of an unexpected disk failure, data can be losslessly reconstructed from the remaining disks."
 msgstr ""
+"RAID <indexterm><primary>RAID</primary></indexterm> significa "
+"<emphasis>conjunto redundante de discos independentes</emphasis>. O objetivo "
+"deste sistema é evitar perda de dados em caso de falha do disco rígido. O "
+"princípio geral é bastante simples: os dados são armazenados em vários "
+"discos físicos em vez de apenas um, com um nível configurável de "
+"redundância. Dependendo desta quantidade de redundância, e mesmo no caso de "
+"uma falha de disco inesperado, dados podem ser reconstruídos sem perdas dos "
+"restantes discos."
 
 #. Tag: title
 #, no-c-format
@@ -135,11 +143,17 @@ msgstr "Diferentes Níveis de RAID"
 #, no-c-format
 msgid "RAID has actually several levels, differentiated by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks; seen the other way, more disks will be needed to store the same amount of data."
 msgstr ""
+"RAID tem realmente vários níveis, diferenciados por sua disposição e da "
+"quantidade de redundância que eles fornecem. Quanto mais redundante, mais à "
+"prova de falhas, uma vez que o sistema será capaz de continuar a trabalhar "
+"com mais discos de falha. A contrapartida é que reduz o espaço utilizável; "
+"visto de outra forma, mais discos serão necessários para armazenar a mesma "
+"quantidade de dados."
 
 #. Tag: term
 #, no-c-format
 msgid "Linear RAID"
-msgstr ""
+msgstr "RAID Linear"
 
 #. Tag: para
 #, no-c-format
@@ -174,22 +188,31 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Disks and cluster sizes"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Discos e tamanhos de cluster"
 
 #. Tag: para
 #, no-c-format
 msgid "If two disks of different sizes are set up in a mirror, the bigger one will not be fully used, since it will contain the same data as the smallest one and nothing more. The useful available space provided by a RAID-1 volume therefore matches the size of the smallest disk in the array. This still holds for RAID volumes with a higher RAID level, even though redundancy is stored differently."
 msgstr ""
+"Se dois discos de tamanhos diferentes são criados em um espelho, o maior não "
+"será totalmente usado, pois ele irá conter os mesmos dados como o menor e "
+"nada mais. O espaço útil disponível fornecido por um volume RAID-1, "
+"portanto, corresponde ao tamanho do disco menor na matriz. Isso ainda vale "
+"para volumes RAID com um maior nível RAID, apesar de redundância é "
+"armazenada de forma diferente."
 
 #. Tag: para
 #, no-c-format
 msgid "It is therefore important, when setting up RAID arrays (except for RAID-0 and “linear RAID”), to only assemble disks of identical, or very close, sizes, to avoid wasting resources."
 msgstr ""
+"Por isso é importante, ao configurar arrays RAID (exceto RAID-0 \"RAID "
+"linear\"), só montar discos de tamanhos idênticos, ou muito perto, para "
+"evitar o desperdício de recursos."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Spare disks"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Discos de reposição"
 
 #. Tag: para
 #, no-c-format
