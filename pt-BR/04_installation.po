@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2013-03-08 19:38+0200\n"
-"Last-Translator: Éverton Arruda <root@earruda.eti.br>\n"
+"PO-Revision-Date: 2013-03-15 15:39+0200\n"
+"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/04_installation/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -553,17 +553,19 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Boot loader"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Carregador de inicialização"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>loader</primary><secondary>bootloader</secondary>"
 msgstr ""
+"<primary>carregador</primary><secondary>carregador de "
+"inicialização</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bootloader</primary>"
-msgstr ""
+msgstr "<primary>carregador de inicialização</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -574,6 +576,13 @@ msgstr ""
 #, no-c-format
 msgid "The bootloader is a low-level program that is responsible for booting the Linux kernel just after the BIOS passes off its control. To handle this task, it must be able to locate the Linux kernel to boot on the disk. On i386/amd64 architectures, the two most used programs to perform this task are LILO, the older of the two, and GRUB, a more modern challenger. Isolinux and Syslinux are alternatives frequently used to boot from removable media."
 msgstr ""
+"O carregador de inicialização é um programa de baixo nível que é responsável "
+"por inicializar o núcleo Linux logo após a BIOS passar para ele o controle. "
+"Para realizar esta tarefa, ele deve ser capaz de localizar o núcleo Linux "
+"para inicializar no disco.Em arquiteturas i386/amd64, os dois programas mais "
+"utilizados para realizar esta tarefa são o LILO, o mais velho dos dois, e o "
+"GRUB, um concorrente mais moderno. Isolinux e Syslinux são alternativas "
+"frequentemente utilizadas para inicializar de mídias removíveis."
 
 #. Tag: para
 #, no-c-format
@@ -584,11 +593,16 @@ msgstr ""
 #, no-c-format
 msgid "The “expert” mode (accessible in the “Advanced Options” menu) details all possible options in the process of installation, and allows navigation between the various steps without them happening automatically in sequence. Be careful, this very verbose mode can be confusing due to the multitude of configuration choices that it offers."
 msgstr ""
+"O modo \"avançado\" (acessível no menu \"Opções avançadas\") detalha todas as "
+"opções possíveis no processo de instalação, e possibilita a navegação entre "
+"os vários passos sem que eles aconteçam automaticamente em sequência. Seja "
+"cuidadoso, este modo muito detalhado pode ser confuso devido as muitas "
+"opções de configuração que ele oferece."
 
 #. Tag: title
 #, no-c-format
 msgid "Boot screen"
-msgstr ""
+msgstr "Tela de inicialização"
 
 #. Tag: para
 #, no-c-format
@@ -598,12 +612,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Selecting the language"
-msgstr ""
+msgstr "Selecionando o idioma"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>choice</primary><secondary>of language</secondary>"
-msgstr ""
+msgstr "<primary>escolha</primary><secondary>do idioma</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -613,37 +627,47 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Navigating with the keyboard"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Navegando com o teclado"
 
 #. Tag: para
 #, no-c-format
 msgid "Some steps in the installation process require you to enter information. These screens have several areas that may “have focus” (text entry area, checkboxes, list of choices, OK and Cancel buttons), and the <keycap>TAB</keycap> key allows you to move from one to another."
 msgstr ""
+"Alguns passos no processo de instalação requerem que você entre com "
+"informações. Estas telas tem muitas áreas que podem \"ter foco\" (áreas de "
+"entrada de texto, caixas de seleção, lista de escolhas, botões OK e "
+"Cancelar), e a tecla <keycap>TAB</keycap> permite que você mova de uma para "
+"outra."
 
 #. Tag: para
 #, no-c-format
 msgid "In graphical mode, you can use the mouse."
-msgstr ""
+msgstr "No modo gráfico, você pode usar o mouse."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting the country"
-msgstr ""
+msgstr "Selecionando o país"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>choice</primary><secondary>of country</secondary>"
-msgstr ""
+msgstr "<primary>escolha</primary><secondary>do país</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The second step consists in choosing your country. Associated with the language, this information enables the program to offer the most appropriate keyboard layout. This will also influence the configuration of the time zone. In the United States, a standard QWERTY keyboard is suggested, and a choice of appropriate time zones is offered."
 msgstr ""
+"O segundo passo consiste em escolher seu país. Associada com o idioma, esta "
+"informação possibilita ao programa oferecer o padrão de teclado mais "
+"apropriado. Isto também influencia a configuração da zona de tempo. Nos "
+"Estados Unidos, o padrão de teclado QWERTY é sugerido, e uma opção com as "
+"zonas de tempo adequadas é oferecida."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting the keyboard layout"
-msgstr ""
+msgstr "Selecionando o padrão do teclado"
 
 #. Tag: indexterm
 #, no-c-format
@@ -658,52 +682,78 @@ msgstr "<primary>disposição do teclado</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The proposed “American English” keyboard corresponds to the usual QWERTY layout."
-msgstr ""
+msgstr "O teclado \"Inglês Americano\" corresponde ao padrão QWERTY usual."
 
 #. Tag: title
 #, no-c-format
 msgid "Choice of keyboard"
-msgstr ""
+msgstr "Escolha do teclado"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Hardware"
-msgstr ""
+msgstr "Detectando o Hardware"
 
 #. Tag: para
 #, no-c-format
 msgid "This step is completely automatic in the vast majority of cases. The installer detects your hardware, and tries to identify the CD-ROM drive used in order to access its content. It loads the modules corresponding to the various hardware components detected, and then “mounts” the CD-ROM in order to read it. The previous steps were completely contained in the boot image included on the CD, a file of limited size and loaded into memory by the BIOS when booting from the CD."
 msgstr ""
+"Este passo é completamente automático na vasta maioria dos casos. O "
+"instalador detecta seu hardware e tenta identificar o dispositivo de CD-ROM "
+"utilizado para acessar seu conteúdo. Ele carrega os módulos correspondentes "
+"aos vários componentes de hardware detectados e então \"monta\" o CD-ROM para "
+"lê-lo. Os passos anteriores estavam completamente contidos na imagem de "
+"inicialização incluída no CD, um arquivo de tamanho limitado e carregado na "
+"memória pela BIOS ao inicializar do CD."
 
 #. Tag: para
 #, no-c-format
 msgid "The installer can work with the vast majority of drives, especially standard ATAPI peripherals (sometimes called IDE and EIDE). However, if detection of the CD-ROM reader fails, the installer offers the choice to load a kernel module (for instance from a USB key) corresponding to the CD-ROM driver."
 msgstr ""
+"O instalador pode trabalhar com a vasta maioria dos dispositivos, "
+"especialmente periféricos ATAPI (algumas vezes chamados IDE e EIDE). "
+"Entretanto, se a detecção do leitor de CD-ROM falha, o instalador oferece a "
+"escolha de carregar um módulo do núcleo (por exemplo de um dispositivo USB) "
+"correspondendo ao driver de CD-ROM."
 
 #. Tag: title
 #, no-c-format
 msgid "Loading Components"
-msgstr ""
+msgstr "Carregando componentes"
 
 #. Tag: para
 #, no-c-format
 msgid "With the contents of the CD now available, the installer downloads all the files necessary to continue with its work. This includes additional drivers for the remaining hardware (especially the network card), as well as all the components of the installation program."
 msgstr ""
+"Com os conteúdos do CD agora disponíveis, o instalador baixa todos os "
+"arquivos necessários para continuar com o trabalho. Isto inclui drivers "
+"adicionais para os dispositivos restantes (especialmente a placa de rede), "
+"assim como todos os componentes do programa de instalação."
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Network Hardware"
-msgstr ""
+msgstr "Detectando Dispositivos de Rede"
 
 #. Tag: para
 #, no-c-format
 msgid "This automatic step tries to identify the network card and load the corresponding module. If automatic detection fails, you can manually select the module to load. If no module works, it is possible to load a specific module from a removable peripheral. This last solution is usually only needed if the appropriate driver is not included in the standard Linux kernel, but available elsewhere, such as the manufacturer's website."
 msgstr ""
+"Este passo automático tenta identificar a placa de rede e carregar o módulo "
+"correspondente. Se a detecção automática falha, você pode selecionar "
+"manualmente o módulo a carregar. Se nenhum módulo funciona, é possível "
+"carregar um módulo específico de um periférico removível. Esta última "
+"solução geralmente só é necessária se o driver apropriado não está incluído "
+"no núcleo Linux padrão, mas disponível em outro lugar, como a página web do "
+"fabricante."
 
 #. Tag: para
 #, no-c-format
 msgid "This step must absolutely be successful for <emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis> installations, since the Debian packages must be loaded from the network."
 msgstr ""
+"Este passo deve ser definitivamente um sucesso para as instalações "
+"<emphasis>netinst</emphasis> e <emphasis>businesscard</emphasis>, já que os "
+"pacotes do Debian devem ser carregados pela rede."
 
 #. Tag: title
 #, no-c-format
@@ -714,26 +764,38 @@ msgstr "Configurando a Rede"
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>network</secondary><tertiary>static</tertiary>"
 msgstr ""
+"<primary>configuração</primary><secondary>de "
+"rede</secondary><tertiary>estática</tertiary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>network</secondary><tertiary>DHCP</tertiary>"
 msgstr ""
+"<primary>configuração</primary><secondary>de "
+"rede</secondary><tertiary>DHCP</tertiary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Eager to automate the process as much as possible, the installer attempts an automatic DHCP network configuration. If this fails, it offers more choices: try again with a normal DHCP configuration, attempt DHCP configuration by declaring the name of the machine, or set up a static network configuration."
 msgstr ""
+"Ansioso por automatizar o processo tanto quanto possível, o instalador tenta "
+"configurar uma rede DHCP automaticamente. Se isto falhar, ele oferece mais "
+"opções: tentar de novo com uma configuração DHCP normal, tentar uma "
+"configuração DHCP declarando o nome da máquina, ou estabelecer uma "
+"configuração de rede estática."
 
 #. Tag: para
 #, no-c-format
 msgid "This last option requires an IP address, a subnet mask, an IP address for a potential gateway, a machine name, and a domain name."
 msgstr ""
+"Esta última opção requer um endereço IP, uma máscara de sub-rede, um "
+"endereço IP para um possível gateway, um nome de máquina, e um nome de "
+"domínio."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Configuration without DHCP"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Configuração sem DHCP"
 
 #. Tag: para
 #, no-c-format
@@ -743,7 +805,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Do not improvise"
-msgstr ""
+msgstr "<emphasis>ATENÇÃO</emphasis> Não improvise"
 
 #. Tag: para
 #, no-c-format
@@ -753,7 +815,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Clock"
-msgstr ""
+msgstr "Configurando o relógio"
 
 #. Tag: para
 #, no-c-format
@@ -763,12 +825,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Administrator Password"
-msgstr ""
+msgstr "Senha do administrador"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>account</primary><secondary>administrator account</secondary>"
-msgstr ""
+msgstr "<primary>conta</primary><secondary>conta do administrador</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -778,7 +840,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Administrator password"
-msgstr ""
+msgstr "<emphasis>SEGURANÇA</emphasis> Senha do administrador"
 
 #. Tag: para
 #, no-c-format
@@ -789,16 +851,21 @@ msgstr ""
 #, no-c-format
 msgid "These remarks are equally applicable for other user passwords, but the consequences of a compromised account are less drastic for users without administrative rights."
 msgstr ""
+"Estas observações são igualmente aplicáveis para senhas de outros usuários, "
+"mas as consequências de uma conta comprometida são menos drásticas para "
+"usuários sem privilégios administrativos."
 
 #. Tag: para
 #, no-c-format
 msgid "If inspiration is lacking, do not hesitate to use password generators, such as <command>pwgen</command> (in the package of the same name)."
 msgstr ""
+"Se estiver faltando inspiração, não hesite em usar geradores de senha, como "
+"o <command>pwgen</command> (no pacote de mesmo nome)."
 
 #. Tag: title
 #, no-c-format
 msgid "Creating the First User"
-msgstr ""
+msgstr "Criando o Primeiro Usuário"
 
 #. Tag: para
 #, no-c-format
@@ -808,32 +875,34 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Name of the first user"
-msgstr ""
+msgstr "Nome do primeiro usuário"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Disks and Other Devices"
-msgstr ""
+msgstr "Detectando Discos e Outros Dispositivos"
 
 #. Tag: para
 #, no-c-format
 msgid "This step automatically detects the hard drives on which Debian may be installed. They will be presented in the next step: partitioning."
 msgstr ""
+"Este passo automaticamente detecta os discos rígidos nos quais o Debian pode "
+"ser instalado. Eles serão apresentados no próximo passo: particionamento."
 
 #. Tag: title
 #, no-c-format
 msgid "Starting the Partitioning Tool"
-msgstr ""
+msgstr "Iniciando a Ferramenta de Partição"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partitioning</primary>"
-msgstr ""
+msgstr "<primary>particionando</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Uses of partitioning"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> Usos do particionamento"
 
 #. Tag: para
 #, no-c-format
@@ -849,11 +918,14 @@ msgstr ""
 #, no-c-format
 msgid "Fortunately, the partitioning software has a “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
 msgstr ""
+"Felizmente, o programa de particionamento tem um modo \"guiado\" que recomenda "
+"partições para o usuário fazer - na maioria dos casos, você pode "
+"simplesmente validar as sugestões do programa."
 
 #. Tag: title
 #, no-c-format
 msgid "Choice of partitioning mode"
-msgstr ""
+msgstr "Escolha do modo de particionamento"
 
 #. Tag: para
 #, no-c-format
@@ -863,7 +935,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Disk to use for guided partitioning"
-msgstr ""
+msgstr "Disco a utilizar para particionamento guiado"
 
 #. Tag: para
 #, no-c-format
@@ -1003,7 +1075,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mount point</primary>"
-msgstr ""
+msgstr "<primary>ponto de montagem</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1398,7 +1470,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB</primary>"
-msgstr ""
+msgstr "<primary>GRUB</primary>"
 
 #. Tag: para
 #, no-c-format

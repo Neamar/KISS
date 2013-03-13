@@ -5,15 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2012-11-12 20:53+0100\n"
-"Last-Translator: Willer Gomes Junior <willer@ogomes.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects/debian-handbook/14_security/pt_BR/>\n"
+"PO-Revision-Date: 2013-03-13 16:14+0200\n"
+"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"/debian-handbook/14_security/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 1.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -96,9 +97,16 @@ msgid "Bruce Schneier, a world expert in security matters (not only computer sec
 msgstr "Bruce Schneier, um especialista mundial em matéria de segurança (e não apenas a segurança do computador) tenta combater um dos mitos mais importantes de segurança com um lema: \"Segurança é um processo, não um produto\". Ativos a serem protegidos mudam no tempo, assim como ameaças e os meios disponíveis para potenciais agressores. Mesmo se uma política de segurança foi inicialmente perfeitamente desenhada e implementada, nunca se deve descansar sobre seus louros. Os componentes de risco evoluem, e a resposta a esse risco deve evoluir nesse sentido."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Extra constraints are also worth taking into account, as they can restrict the range of available policies. How far are we willing to go to secure a system? This question has a major impact on the policy to implement. The answer is too often only defined in terms of monetary costs, but the other elements should also be considered, such as the amount of inconvenience imposed on system users or performance degradation."
-msgstr "Restrições adicionais também devem ser levadas em conta, uma vez que podem restringir o leque de políticas disponíveis. Até onde estamos dispostos a ir para proteger um sistema? Esta questão tem um grande impacto sobre a política a implementar. A resposta é muitas vezes definida apenas em termos de custos monetários, mas os outros elementos devem também ser considerados, tais como a quantidade de inconveniência imposta aos usuários do sistema ou degradação do desempenho."
+msgstr ""
+"Restrições adicionais também devem ser levadas em conta, uma vez que podem "
+"restringir o leque de políticas disponíveis. Até onde estamos dispostos a ir "
+"para proteger um sistema? Esta questão tem um grande impacto sobre a "
+"política a implementar. A resposta é muitas vezes definida apenas em termos "
+"de custos monetários, mas os outros elementos devem também ser considerados, "
+"tais como a quantidade de inconveniência imposta aos usuários do sistema ou "
+"degradação do desempenho."
 
 #. Tag: para
 #, no-c-format
@@ -123,7 +131,19 @@ msgstr "Por exemplo, se o sistema a ser protegido apenas compreende um computado
 #. Tag: para
 #, no-c-format
 msgid "At the other end of the spectrum, we might want to protect the confidentiality of secret data in the most comprehensive way possible, trumping any other consideration. In this case, an appropriate response would be the total destruction of these data (securely erasing the files, shredding of the hard disks to bits, then dissolving these bits in acid, and so on). If there is an additional requirement that data must be kept in store for future use (although not necessarily readily available), and if cost still isn't a factor, then a starting point would be storing the data on iridium–platinum alloy plates stored in bomb-proof bunkers under various mountains in the world, each of which being (of course) both entirely secret and guarded by entire armies…"
-msgstr "No outro extremo do espectro, podemos querer proteger a confidencialidade dos dados secretos da forma mais abrangente possível, superando qualquer outra consideração. Neste caso, uma resposta apropriada seria a destruição total destes dados (de forma segura e apagar os arquivos, trituração dos discos rígidos aos bits, em seguida, dissolvendo estes bits em ácido, e assim por diante). Se houver um requisito adicional de que os dados devem ser mantidos guardados para uso futuro (embora não necessariamente prontamente disponível), e se o custo ainda não é um fator, então, um ponto de partida seria armazenar os dados sobre placas de liga leve de irídio-platina armazenados em depósitos à prova de bomba em várias montanhas no mundo, cada uma das quais, é claro, inteiramente secreta e guardada por exércitos inteiros..."
+msgstr ""
+"No outro extremo do espectro, podemos querer proteger a confidencialidade "
+"dos dados secretos da forma mais abrangente possível, superando qualquer "
+"outra consideração. Neste caso, uma resposta apropriada seria a destruição "
+"total destes dados (de forma segura e apagar os arquivos, trituração dos "
+"discos rígidos aos bits, em seguida, dissolvendo estes bits em ácido, e "
+"assim por diante). Se houver um requisito adicional de que os dados devem "
+"ser mantidos guardados para uso futuro (embora não necessariamente "
+"prontamente disponível), e se o custo ainda não é um fator, então, um ponto "
+"de partida seria armazenar os dados sobre placas de liga leve de irídio-"
+"platina armazenados em depósitos à prova de bomba em várias montanhas no "
+"mundo, cada uma das quais, é claro, inteiramente secreta e guardada por "
+"exércitos inteiros…"
 
 #. Tag: para
 #, no-c-format
@@ -236,9 +256,13 @@ msgid "<literal>raw</literal> allows other manual modifications on packets befor
 msgstr "<literal>raw</literal> permite outras modificações manuais em pacotes antes de chegar ao sistema de rastreamento de conexões."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Each table contains lists of rules called <emphasis>chains</emphasis>. The firewall uses standard chains to handle packets based on predefined circumstances. The administrator can create other chains, which will only be used when referred to by one of the standard chains (either directly or indirectly)."
-msgstr "Cada tabela contém listas das chamadas regras <emphasis>cadeias</emphasis>. O firewall usa padrão para lidar com cadeias de pacotes com base em circunstâncias pré-definidas. O administrador pode criar outras cadeias, o que só será usado quando referido por uma das cadeias padrão."
+msgstr ""
+"Cada tabela contém listas das chamadas regras <emphasis>cadeias</emphasis>. "
+"O firewall usa padrão para lidar com cadeias de pacotes com base em "
+"circunstâncias pré-definidas. O administrador pode criar outras cadeias, o "
+"que só será usado quando referido por uma das cadeias padrão."
 
 #. Tag: indexterm
 #, no-c-format
@@ -393,7 +417,10 @@ msgstr "<literal>DNAT</literal> (apenas na tabela <literal>nat</literal>, portan
 #. Tag: para
 #, no-c-format
 msgid "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>masquerading</emphasis> (a special case of <emphasis>Source NAT</emphasis>);"
-msgstr "(apenas na tabela <literal>nat</literal>, portanto, somente em IPv4): aplica <emphasis>masquerading</emphasis> (um caso especial de <emphasis>Fonte NAT</emphasis>);"
+msgstr ""
+"<literal>MASQUERADE</literal> (apenas na tabela <literal>nat</literal>, "
+"portanto, somente em IPv4): aplica <emphasis>masquerading</emphasis> (um "
+"caso especial de <emphasis>NAT de origem</emphasis>);"
 
 #. Tag: para
 #, no-c-format
@@ -423,7 +450,27 @@ msgstr "Comandos"
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable><replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable><replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable><replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
-msgstr "A opção <literal><replaceable>cadeia</replaceable> -N</literal>  cria uma nova cadeia. A <replaceable>cadeia</replaceable><literal> -X</literal> exclui uma cadeia vazia e sem uso. A <literal><replaceable>regra de cadeia</replaceable> -A</literal> adiciona uma regra no final da cadeia dada. A opcao <literal>-I <replaceable>cadeia</replaceable> <replaceable>rule_num</replaceable><replaceable>regra</replaceable></literal> insere uma regra antes da regra número <replaceable>rule_num</replaceable>. A opcao <literal>-D <replaceable>cadeia</replaceable><replaceable>rule_num</replaceable></literal> (ou a opção  <literal>-D cadeia <replaceable> </replaceable>regra<replaceable> </replaceable></literal>) exclui uma regra em uma cadeia, a primeira sintaxe identifica a regra a ser excluída pelo seu número, enquanto o segundo o identifica pelo seu conteúdo. A opcao  <literal>-F <replaceable>cadeia</replaceable></literal> libera uma cadeia (apaga todas suas regras), se nenhuma cadeia é mencionada, todas as regras da tabela são excluídas. A opção <literal>-L <replaceable>cadeia</replaceable></literal> lista as regras na cadeia. Finalmente, a opcao <literal>-P <replaceable>cadeia</replaceable><replaceable> ação</replaceable></literal> define a ação padrão, ou \"política\", para uma dada cadeia; observe que apenas as cadeias padrão podem ter essa política."
+msgstr ""
+"A opção <literal><replaceable>cadeia</replaceable> -N</literal>  cria uma "
+"nova cadeia. A <replaceable>cadeia</replaceable><literal> -X</literal> "
+"exclui uma cadeia vazia e sem uso. A <literal><replaceable>regra de "
+"cadeia</replaceable> -A</literal> adiciona uma regra no final da cadeia "
+"dada. A opcao <literal>-I <replaceable>cadeia</replaceable> <replaceable>rul"
+"e_num</replaceable><replaceable>regra</replaceable></literal> insere uma "
+"regra antes da regra número <replaceable>rule_num</replaceable>. A opcao "
+"<literal>-D <replaceable>cadeia</replaceable><replaceable>rule_num</replacea"
+"ble></literal> (ou a opção  <literal>-D cadeia <replaceable> "
+"</replaceable>regra<replaceable> </replaceable></literal>) exclui uma regra "
+"em uma cadeia, a primeira sintaxe identifica a regra a ser excluída pelo seu "
+"número, enquanto o segundo o identifica pelo seu conteúdo. A opção  "
+"<literal>-F <replaceable>cadeia</replaceable></literal> libera uma cadeia "
+"(apaga todas suas regras), se nenhuma cadeia é mencionada, todas as regras "
+"da tabela são excluídas. A opção <literal>-L "
+"<replaceable>cadeia</replaceable></literal> lista as regras na cadeia. "
+"Finalmente, a opcao <literal>-P "
+"<replaceable>cadeia</replaceable><replaceable> ação</replaceable></literal> "
+"define a ação padrão, ou \"política\", para uma dada cadeia; observe que "
+"apenas as cadeias padrão podem ter essa política."
 
 #. Tag: title
 #, no-c-format
@@ -711,7 +758,15 @@ msgstr "<emphasis>DICA</emphasis> Seus logs como fundo de tela"
 #. Tag: para
 #, no-c-format
 msgid "Some administrators like seeing their log messages scroll by in real time; the <command>root-tail</command> command (in the <emphasis role=\"pkg\">root-tail</emphasis>) package can be used to integrate the logs into the background of their graphical desktop. The <command>xconsole</command> program (in the <emphasis>x11-apps</emphasis> package) can also have them scrolling in a small window. Messages are directly taken from <command>syslogd</command> via the <filename>/dev/xconsole</filename> named pipe."
-msgstr "Alguns administradores gostam de ver suas mensagens de log rolar em tempo real, o comando <command>root-tail</command> (no pacote <emphasis role=\"pkg\">root-tail</emphasis>) pode ser usado para integrar os logs para o fundo da sua área de trabalho gráfica. O programa <command>xconsole</command> (no pacote x11-apps) pode também tê los rolando em uma pequena janela. As mensagens são diretamente retiradas de syslogd através do <filename>/dev/xconsole</filename> chamado pipe."
+msgstr ""
+"Alguns administradores gostam de ver suas mensagens de log rolar em tempo "
+"real, o comando <command>root-tail</command> (no pacote <emphasis role=\"pkg"
+"\">root-tail</emphasis>) pode ser usado para integrar os logs para o fundo da "
+"sua área de trabalho gráfica. O programa <command>xconsole</command> (no "
+"pacote <emphasis>x11-apps</emphasis>) pode também tê-los rolando em uma "
+"pequena janela. As mensagens são diretamente retiradas de "
+"<command>syslogd</command> através do <filename>/dev/xconsole</filename> "
+"chamado pipe."
 
 #. Tag: indexterm
 #, no-c-format
@@ -881,7 +936,14 @@ msgstr "<emphasis>INDO ALEM</emphasis> Protegendo se contra mudanças mais signi
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is useful in detecting changes to files coming from a Debian package, but it will be useless if the package itself is compromised, for instance if the Debian mirror is compromised. Protecting against this class of attacks involves using APT's digital signature verification system (see <xref linkend=\"sect.package-authentication\" />), and taking care to only install packages from a certified origin."
-msgstr " \t<command>debsums</command> é útil na detecção de alterações em arquivos provenientes de um pacote Debian, mas será inútil se o pacote em si está comprometidO, por exemplo, se o espelho Debian está comprometida. Protegendo-se contra este tipo de ataques envolve a utilização de sistema APT de verificação de assinatura digital (veja <xref linkend=\"sect.package-authentication\" />), e tomando cuidado para só instalar pacotes a partir de uma origem certificada."
+msgstr ""
+"<command>debsums</command> é útil na detecção de alterações em arquivos "
+"provenientes de um pacote Debian, mas será inútil se o pacote em si está "
+"comprometidO, por exemplo, se o espelho Debian está comprometida. "
+"Protegendo-se contra este tipo de ataques envolve a utilização de sistema "
+"APT de verificação de assinatura digital (veja <xref linkend=\"sect.package-"
+"authentication\" />), e tomando cuidado para só instalar pacotes a partir de "
+"uma origem certificada."
 
 #. Tag: para
 #, no-c-format
@@ -939,9 +1001,12 @@ msgstr ""
 "      "
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Note that this example uses the <command>grep-status</command> command from the <emphasis role=\"pkg\">dctrl-tools</emphasis> package, which is not installed by default."
-msgstr "Note que este exemplo usa o comando <command>grep status</command> a partir do pacote <emphasis role=\"pkg\">grep-dctrl</emphasis>, que não é instalado por padrão."
+msgstr ""
+"Note que este exemplo usa o comando <command>grep status</command> a partir "
+"do pacote <emphasis role=\"pkg\">dctrl-tools</emphasis>, que não é instalado "
+"por padrão."
 
 #. Tag: title
 #, no-c-format
@@ -1141,9 +1206,14 @@ msgid "Principles"
 msgstr "Principios"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "SELinux (<emphasis>Security Enhanced Linux</emphasis>) is a <emphasis>Mandatory Access Control</emphasis> system built on Linux's LSM (<emphasis>Linux Security Modules</emphasis>) interface. In practice, the kernel queries SELinux before each system call to know whether the process is authorized to do the given operation."
-msgstr "SELinux (<emphasis>Security Enhanced Linux</emphasis>) é um sistema de <emphasis>controle de acesso obrigatório</emphasis> construído sobre a interface LSM (<emphasis>Linux Security Modules</emphasis>) do Linux. Na prática, o kernel consulta o SELinux antes de cada chamada do sistema para saber se o processo está autorizado a fazer a operação dada."
+msgstr ""
+"SELinux (<emphasis>Security Enhanced Linux</emphasis>) é um sistema de "
+"<emphasis>controle de acesso obrigatório</emphasis> construído sobre a "
+"interface LSM (<emphasis>Linux Security Modules</emphasis>) do Linux. Na "
+"prática, o kernel consulta o SELinux antes de cada chamada do sistema para "
+"saber se o processo está autorizado a fazer a operação dada."
 
 #. Tag: para
 #, no-c-format
@@ -1181,9 +1251,18 @@ msgid "Internally, a domain is just a type, but a type that only applies to proc
 msgstr "Internamente, um domínio é apenas um tipo, mas um tipo que só se aplica a processos. É por isso que são domínios com o sufixo <literal>_t</literal> como tipos de objeto."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
-msgstr "Por padrão, um programa herda seu domínio para o usuário que o iniciou, mas políticas SELinux padroes esperam que muitos programas importantes sejam executados em domínios dedicados. Para conseguir isso, estes executáveis são marcados com um tipo específico (por exemplo <literal>ssh</literal>) é marcado com <literal>ssh_exec_t</literal>, e quando o programa é iniciado, ele muda automaticamente no dominio <literal>ssh_t</literal>)). Este mecanismo de transição automática de domínio torna possível conceder apenas os direitos necessários para cada programa. É um princípio fundamental do SELinux."
+msgstr ""
+"Por padrão, um programa herda seu domínio para o usuário que o iniciou, mas "
+"políticas SELinux padrões esperam que muitos programas importantes sejam "
+"executados em domínios dedicados. Para conseguir isso, estes executáveis são "
+"marcados com um tipo específico (por exemplo <literal>ssh</literal>) é "
+"marcado com <literal>ssh_exec_t</literal>, e quando o programa é iniciado, "
+"ele muda automaticamente no dominio <literal>ssh_t</literal>). Este "
+"mecanismo de transição automática de domínio torna possível conceder apenas "
+"os direitos necessários para cada programa. É um princípio fundamental do "
+"SELinux."
 
 #. Tag: title
 #, no-c-format
@@ -2127,9 +2206,16 @@ msgid "A security audit is the process of thoroughly reading and analyzing the s
 msgstr "A auditoria de segurança é o processo de leitura cuidadosa e analise do código fonte de algum software, procurando por vulnerabilidades de segurança em potencial que poderiam conter. Estas auditorias são geralmente pró-ativas e são realizadas para garantir que um programa atenda aos requisitos de segurança determinados."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "In the Free Software world, there is generally ample room for choice, and choosing one piece of software over another should be a decision based on the criteria that apply locally. More features imply an increased risk of a vulnerability hiding in the code; picking the most advanced program for a task may actually be counter-productive, and a better approach is usually to pick the simplest program that meets the requirements."
-msgstr "No mundo do Software Livre, geralmente há um amplo espaço para a escolha, e escolher um pedaço de software em detrimento de outro deve ser uma decisão com base nos critérios que se aplicam localmente. Mais características implicam num aumento do risco de um vulnerabilidade escondida no código; escolher o programa mais avançado para uma tarefa pode realmente ser contraproducente, e uma melhor abordagem é, geralmente, para escolher o programa mais simples que atenda aos requisitos."
+msgstr ""
+"No mundo do Software Livre, geralmente há um amplo espaço para a escolha, e "
+"escolher um pedaço de software em detrimento de outro deve ser uma decisão "
+"com base nos critérios que se aplicam localmente. Mais características "
+"implicam num aumento do risco de um vulnerabilidade escondida no código; "
+"escolher o programa mais avançado para uma tarefa pode realmente ser "
+"contraproducente, e uma melhor abordagem é, geralmente, para escolher o "
+"programa mais simples que atenda aos requisitos."
 
 #. Tag: title
 #, no-c-format

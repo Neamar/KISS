@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-01-09 16:51+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-03-15 14:41+0200\n"
+"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 1.4-dev\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -24,7 +24,7 @@ msgstr "Inicialização do Sistema"
 #. Tag: keyword
 #, no-c-format
 msgid "Initscripts"
-msgstr ""
+msgstr "Initscripts"
 
 #. Tag: keyword
 #, no-c-format
@@ -39,7 +39,7 @@ msgstr "Telnet"
 #. Tag: keyword
 #, no-c-format
 msgid "Rights"
-msgstr ""
+msgstr "Direitos"
 
 #. Tag: keyword
 #, no-c-format
@@ -49,7 +49,7 @@ msgstr "Permissões"
 #. Tag: keyword
 #, no-c-format
 msgid "Supervision"
-msgstr ""
+msgstr "Supervisão"
 
 #. Tag: keyword
 #, no-c-format
@@ -89,7 +89,7 @@ msgstr "ACPI"
 #. Tag: title
 #, no-c-format
 msgid "Unix Services"
-msgstr ""
+msgstr "Serviços Unix"
 
 #. Tag: para
 #, no-c-format
@@ -139,7 +139,7 @@ msgstr "<emphasis>BACK TO BASICS</emphasis> Um processo, uma instância do progr
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>process</primary>"
-msgstr ""
+msgstr "<primary>processo</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -155,6 +155,7 @@ msgstr "Init executa vários processos, seguindo as instruções do arquivo <fil
 #, no-c-format
 msgid "Among these, you will find successively programs in charge of:"
 msgstr ""
+"Entre estes, você encontrará sucessivamente programas responsáveis ​​pela:"
 
 #. Tag: para
 #, no-c-format
@@ -214,7 +215,18 @@ msgstr "Para evitar isso, você pode proteger o bootloader com uma senha. Você 
 #. Tag: para
 #, no-c-format
 msgid "Finally, be aware that most BIOS have a generic password available. Initially intended for troubleshooting for those who have forgotten their password, these passwords are now public and available on the Internet (see for yourself by searching for “generic BIOS passwords” in a search engine). All of these protections will thus impede unauthorized access to the machine without being able to completely prevent it. There's no reliable way to protect a computer if the attacker can physically access it; they could dismount the hard drives to connect them to a computer under their own control anyway, or even steal the entire machine, or erase the BIOS memory to reset the password…"
-msgstr "Finalmente, esteja ciente que a maioria das BIOS tem uma senha genérica disponível. Inicialmente destinado a solução de problemas para aqueles que esqueceram sua senha, essas senhas são agora público e disponível na Internet (veja por si mesmo procurando por \"senhas genéricas\" do BIOS em um motor de busca). Todas estas proteções deverá impedir o acesso não autorizado para a máquina sem ser capaz de impedir completamente. Não há nenhuma maneira confiável para proteger um computador se o atacante pode acessar fisicamente ela, pois eles podem desmontar os discos rígidos para conectá-los a um computador sob seu próprio controle de qualquer maneira, ou até mesmo roubar a máquina inteira, ou apagar a memória do BIOS para redefinir a senha ..."
+msgstr ""
+"Finalmente, esteja ciente que a maioria das BIOS tem uma senha genérica "
+"disponível. Inicialmente destinado a solução de problemas para aqueles que "
+"esqueceram sua senha, essas senhas são agora público e disponível na "
+"Internet (veja por si mesmo procurando por \"senhas genéricas\" do BIOS em um "
+"motor de busca). Todas estas proteções deverá impedir o acesso não "
+"autorizado para a máquina sem ser capaz de impedir completamente. Não há "
+"nenhuma maneira confiável para proteger um computador se o atacante pode "
+"acessar fisicamente ela, pois eles podem desmontar os discos rígidos para "
+"conectá-los a um computador sob seu próprio controle de qualquer maneira, ou "
+"até mesmo roubar a máquina inteira, ou apagar a memória do BIOS para "
+"redefinir a senha…"
 
 #. Tag: title
 #, no-c-format
@@ -239,12 +251,12 @@ msgstr "Estes arquivos de configuração são destinados para o <command> modpro
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>modprobe</command></primary>"
-msgstr ""
+msgstr "<primary><command>modprobe</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -259,7 +271,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Other boot systems"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVAS</emphasis> Outros sistemas de inicializações"
 
 #. Tag: para
 #, no-c-format
@@ -294,12 +306,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>runlevel</primary>"
-msgstr ""
+msgstr "<primary>runlevel</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>level, runlevel</primary>"
-msgstr ""
+msgstr "<primary>level, runlevel</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -309,12 +321,14 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "By default, Debian uses four different runlevels:"
-msgstr ""
+msgstr "Por padrão, o Debian usa quatro runlevels diferentes:"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Level 0 is only used temporarily, while the computer is powering down. As such, it only contains many “K” scripts."
 msgstr ""
+"Nível 0 é somente usado temporariamente, enquanto o computador é desligado. "
+"Como tal, ele somente contém scripts \"K\"."
 
 #. Tag: para
 #, no-c-format
@@ -689,7 +703,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>port forwarding</primary>"
-msgstr ""
+msgstr "<primary>encaminhamento de porta</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2130,7 +2144,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quota</primary>"
-msgstr ""
+msgstr "<primary>cota</primary>"
 
 #. Tag: para
 #, no-c-format
