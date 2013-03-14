@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2013-03-13 16:14+0200\n"
-"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"PO-Revision-Date: 2013-03-14 16:48+0200\n"
+"Last-Translator: Éverton Arruda <root@earruda.eti.br>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/14_security/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -1077,8 +1077,13 @@ msgstr "O primeiro destes pacotes contém vários pequenos scripts que executam 
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis role=\"pkg\">rkhunter</emphasis> packages allow looking for <emphasis>rootkits</emphasis> potentially installed on the system. As a reminder, these are pieces of software designed to hide the compromise of a system while discreetly keeping control of the machine. The tests are not 100% reliable, but they can usually draw the administrator's attention to potential problems."
 msgstr ""
-"The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis role=\"pkg\">rkhunter</emphasis> packages allow looking for <emphasis>rootkits</emphasis> potentially installed on the system. As a reminder, these are pieces of software designed to hide the compromise of a system while discreetly keeping control of the machine. The tests are not 100% reliable, but they can usually draw the administrator's attention to potential problems.\n"
-"Os pacotes <emphasis role=\"pkg\">chkrootkit</emphasis> e <emphasis role=\"pkg\">rkhunter</emphasis> permitem que procura por  potenciais instalacoes de <emphasis>rootkits</emphasis> no sistema. Como um lembrete, estes são pedaços de software projetados para ocultar o comprometimento de um sistema, enquanto discretamente mantem o controle da máquina. Os testes não são 100% confiáveis, mas geralmente eles podem chamar a atenção do administrador a potenciais problemas."
+"Os pacotes <emphasis role=\"pkg\">chkrootkit</emphasis> e <emphasis "
+"role=\"pkg\">rkhunter</emphasis> permitem buscar por potenciais "
+"<emphasis>rootkits</emphasis> instalados no sistema. Como um lembrete, "
+"existem peças de software desenvolvidas para esconder o comprometimento de "
+"um sistema enquanto, discretamente, mantém o controle da máquina. Os testes "
+"não são 100% confiáveis, mas eles geralmente chamam a atenção do "
+"administrador para potenciais problemas."
 
 #. Tag: title
 #, no-c-format
@@ -1254,7 +1259,7 @@ msgstr "Internamente, um domínio é apenas um tipo, mas um tipo que só se apli
 #, no-c-format
 msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
 msgstr ""
-"Por padrão, um programa herda seu domínio para o usuário que o iniciou, mas "
+"Por padrão, um programa herda seu domínio do usuário que o iniciou, mas "
 "políticas SELinux padrões esperam que muitos programas importantes sejam "
 "executados em domínios dedicados. Para conseguir isso, estes executáveis são "
 "marcados com um tipo específico (por exemplo <literal>ssh</literal>) é "
