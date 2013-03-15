@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2013-03-11 13:31+0200\n"
+"PO-Revision-Date: 2013-03-15 14:02+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
@@ -624,11 +624,17 @@ msgstr ""
 #, no-c-format
 msgid "The <literal>mentors.debian.net</literal> site is also interesting, since it gathers packages created by candidates to the status of official Debian developer or by volunteers who wish to create Debian packages without going through that process of integration. These packages are made available without any guarantee regarding their quality; make sure that you check their origin and integrity and then test them before you consider using them in production."
 msgstr ""
+"O sítio <literal>mentors.debian.net</literal> também é interessante, já que "
+"ele \"gather\" pacotes criados por candidatos ao status de desenvolvedor "
+"Debian oficial ou por voluntários que desejam criar pacotes Debian sem "
+"passar pelo processo de integração. Estes pacotes são disponibilizados sem "
+"qualquer garantia de qualidade; certifique-se de verificar a origem e a "
+"integridade e fazer testes antes de usar em produção."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> The <literal>debian.net</literal> sites"
-msgstr ""
+msgstr "<emphasis>COMUNIDADE</emphasis> Os sítios <literal>debian.net</literal>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -639,61 +645,102 @@ msgstr "<primary><emphasis>debian.net</emphasis></primary>"
 #, no-c-format
 msgid "The <emphasis>debian.net</emphasis> domain is not an official resource of the Debian project. Each Debian developer may use that domain name for their own use. These websites can contain unofficial services (sometimes personal sites) hosted on a machine which does not belong to the project and set up by Debian developers, or even prototypes about to be moved on to <emphasis>debian.org</emphasis>. Two reasons can explain why some of these prototypes remain on <emphasis>debian.net</emphasis>: either no one has made the necessary effort to transform it into an official service (hosted on the <emphasis>debian.org</emphasis> domain, and with a certain guarantee of maintenance), or the service is too controversial to be officialized."
 msgstr ""
+"O domínio <emphasis>debian.net</emphasis> não é um recurso oficial do "
+"projeto Debian. Cada desenvolvedor Debian pode usar este domínio  para seu "
+"próprio uso. Estes sítios podem conter serviços não-oficiais (algumas vezes "
+"sítios pessoais) hospedados numa máquina que não pertence ao projeto e que "
+"foram configurados por desenvolvedores Debian, ou podem conter protótipos "
+"prestes a irem para o <emphasis>debian.org</emphasis>. Duas razões podem "
+"explicar por que alguns destes protótipos permanecem no "
+"<emphasis>debian.net</emphasis>: ou por que ninguém fez o esforço necessário "
+"para transformar a coisa num serviço oficial (hospedado no domínio "
+"<emphasis>debian.org</emphasis>, e com uma certa garantia de manutenção), ou "
+"o serviço é muito controverso para ser oficializado."
 
 #. Tag: para
 #, no-c-format
 msgid "Installing a package means giving root rights to its creator, because they decide on the contents of the initialization scripts which are run under that identity. Official Debian packages are created by volunteers who have been co-opted and reviewed and who can seal their packages so that their origin and integrity can be checked."
 msgstr ""
+"Instalar um pacote significa dar permissões de root para seu criador, por "
+"que o criador decide o que fica nos scripts de inicialização que rodam com a "
+"identidade do root. Pacotes Debian oficiais são criados por voluntários que "
+"cooperam e revisam e que marcam seus pacotes de forma que a origem e "
+"integridade deles possam ser verificada."
 
 #. Tag: para
 #, no-c-format
 msgid "In general, be wary of a package whose origin you don't know and which isn't hosted on one of the official Debian servers: evaluate the degree to which you can trust the creator, and check the integrity of the package. <ulink type=\"block\" url=\"http://mentors.debian.net/\" />"
 msgstr ""
+"Em geral, fique alerta com pacotes cuja origem você não conhece e que não "
+"são hospedados em um dos servidores Debian oficiais: avalie o grau em que "
+"você confia no criador, e verifique a integridade do pacote. <ulink "
+"type=\"block\" url=\"http://mentors.debian.net/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Old package versions: <literal>snapshot.debian.org</literal>"
 msgstr ""
+"<emphasis>INDO ALÉM</emphasis> versões de pacotes antigas: "
+"<literal>snapshot.debian.org</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>snapshot.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>snapshot.debian.org</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A new service (introduced in April 2010) can be used to “go backwards in time” and to find an old version of a package. It can be used for example to identify which version of a package introduced a regression, and more concretely, to come back to the former version while waiting for the regression fix."
 msgstr ""
+"Um novo serviço (introduzido em abril de 2010) pode ser usado para \"voltar "
+"no tempo\" e encontrar uma versão antiga de um pacote. Ele pode ser usado por "
+"exemplo para identificar que versão de um pacote introduziu uma regrassão, "
+"e mais concretamente, para voltar à versão anterior enquanto espera que a "
+"regressão seja corrigida."
 
 #. Tag: title
 #, no-c-format
 msgid "<command>aptitude</command> and <command>apt-get</command> Commands"
-msgstr ""
+msgstr "Comandos <command>aptitude</command> e <command>apt-get</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first interface — command-line based — which was developed within the project."
 msgstr ""
+"APT é um projeto amplo, cujos planos originais incluem uma interface "
+"gráfica. Ele é baseado numa biblioteca que contém as aplicações principais, "
+"e o <command>apt-get</command> é a primeira interface — em linha de comando "
+"— que foi desenvolvida dentro do projeto."
 
 #. Tag: para
 #, no-c-format
 msgid "Numerous other graphical interfaces then appeared as external projects: <command>synaptic</command>, <command>aptitude</command> (which includes both a text mode interface and a graphical one — even if not complete yet), <command>wajig</command>, etc. The most recommended interface, <command>aptitude</command>, is the one used during the installation of Debian. Since its command-line syntax is very similar to <command>apt-get</command>'s, we will be focusing on <command>aptitude</command> in the examples given in this section. When there are major differences between <command>aptitude</command> and <command>apt-get</command>, these differences will be detailed."
 msgstr ""
+"Várias outras interfaces gráficas apareceram como projetos externos: "
+"<command>synaptic</command>, <command>aptitude</command> (que tem uma "
+"interface modo texto e uma gráfica — que ainda não está completa), "
+"<command>wajig</command>, etc. A interface mais recomendada, "
+"<command>aptitude</command>, é a usada durante a instalação do Debian. Como "
+"a sua sintaxe de linha de comando é muito similar à do <command>apt-"
+"get</command>, vamos focar no <command>aptitude</command> nos exemplos dados "
+"nesta seção. Quando existirem diferenças substanciais entre o "
+"<command>aptitude</command> e o <command>apt-get</command>, estas diferenças "
+"serão detalhadas."
 
 #. Tag: title
 #, no-c-format
 msgid "Initialization"
-msgstr ""
+msgstr "Initialização"
 
 #. Tag: para
 #, no-c-format
