@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2013-03-15 15:39+0200\n"
-"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"PO-Revision-Date: 2013-03-17 03:11+0200\n"
+"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/04_installation/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -623,6 +623,12 @@ msgstr "<primary>escolha</primary><secondary>do idioma</secondary>"
 #, no-c-format
 msgid "The installation program begins in English, but the first step allows the user to choose the language that will be used in the rest of the process. Choosing French, for example, will provide an installation entirely translated into French (and a system configured in French as a result). This choice is also used to define more relevant default choices in subsequent stages (notably the keyboard layout)."
 msgstr ""
+"O programa de instalação começa em inglês, mas o primeiro passo permite ao "
+"usuário escolher o idioma que será usado no resto do processo. Escolher o "
+"francês, por exemplo, fornecerá uma instalação totalmente traduzido para o "
+"francês (e um sistema configurado em francês como resultado). Esta escolha "
+"também é usada para definir opções de padrão mais relevantes nas fases "
+"subsequentes (nomeadamente o layout de teclado)."
 
 #. Tag: title
 #, no-c-format
@@ -811,6 +817,12 @@ msgstr "<emphasis>ATENÇÃO</emphasis> Não improvise"
 #, no-c-format
 msgid "Many local area networks are based on an implicit assumption that all machines can be trusted, and inadequate configuration of a single computer will often perturb the whole network. As a result, do not connect your machine to a network without first agreeing with its administrator on the appropriate settings (for example, the IP address, netmask, and broadcast address)."
 msgstr ""
+"Muitas redes locais são baseadas em uma suposição implícita que todas as "
+"máquinas são confiáveis, e configurações inadequadas de um único computador "
+"irão frequentemente perturbar toda a rede. Como resultado, não conecte sua "
+"máquina em uma rede sem primeiramente consultar o administrador sobre as "
+"configurações apropriadas (por exemplo, o endereço IP, máscara de rede e "
+"endereços de broadcast)."
 
 #. Tag: title
 #, no-c-format
@@ -871,6 +883,13 @@ msgstr "Criando o Primeiro Usuário"
 #, no-c-format
 msgid "Debian also imposes the creation of a standard user account so that the administrator doesn't get into the bad habit of working as root. The precautionary principle essentially means that each task is performed with the minimum required rights, in order to limit the damage caused by human error. This is why the installer will ask for the complete name of this first user, their username, and their password (twice, to prevent the risk of erroneous input)."
 msgstr ""
+"Debian também impõe a criação de uma conta de usuário padrão para que o "
+"administrador não adquira o mau hábito de trabalhar como root. O princípio "
+"da precaução, essencialmente, significa que cada tarefa é executada com os "
+"direitos mínimos necessários, a fim de limitar os danos causados por erro "
+"humano. Por isso, o instalador vai pedir o nome completo do usuário "
+"primeiro, seu nome de usuário e sua senha (duas vezes, para evitar o risco "
+"de entrada errada)."
 
 #. Tag: title
 #, no-c-format
@@ -908,6 +927,12 @@ msgstr "<emphasis>CULTURA</emphasis> Usos do particionamento"
 #, no-c-format
 msgid "Partitioning, an indispensable step in installation, consists in dividing the available space on the hard drives (each subdivision thereof being called a “partition”) according to the data to be stored on it and the use for which the computer is intended. This step also includes choosing the filesystems to be used. All of these decisions will have an influence on performance, data security, and the administration of the server."
 msgstr ""
+"Particionamento, uma etapa indispensável na instalação, consiste em dividir "
+"o espaço disponível em discos rígidos (cada subdivisão deve ser chamado de "
+"uma \"partição\") de acordo com os dados a serem armazenados nele e o uso a "
+"que se destina o computador. Esta etapa inclui também escolher os sistemas "
+"de arquivos a ser usado. Todas essas decisões terão influência no "
+"desempenho, segurança de dados e a administração do servidor."
 
 #. Tag: para
 #, no-c-format
@@ -946,11 +971,13 @@ msgstr ""
 #, no-c-format
 msgid "In other cases, when Linux must work alongside other already existing partitions, you need to choose manual partitioning."
 msgstr ""
+"Em outros casos, quando o Linux deve trabalhar ao lado de outras partições "
+"já existentes, você precisa escolher o particionamento manual."
 
 #. Tag: title
 #, no-c-format
 msgid "Guided partitioning"
-msgstr ""
+msgstr "Particionamento guiado"
 
 #. Tag: indexterm
 #, no-c-format
@@ -961,6 +988,8 @@ msgstr ""
 #, no-c-format
 msgid "The guided partitioning tool offers three partitioning methods, which correspond to different usages."
 msgstr ""
+"A ferramenta de particionamento guiada oferece três métodos de "
+"particionamento, que correspondem a diferentes usos."
 
 #. Tag: para
 #, no-c-format
@@ -1010,12 +1039,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Validating partitioning"
-msgstr ""
+msgstr "Validando o particionamento"
 
 #. Tag: title
 #, no-c-format
 msgid "Manual Partitioning"
-msgstr ""
+msgstr "Particionamento manual"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1026,26 +1055,34 @@ msgstr ""
 #, no-c-format
 msgid "Manual partitioning allows greater flexibility, allowing the user to choose the purpose and size of each partition. Furthermore, this mode is unavoidable if you wish to use software RAID."
 msgstr ""
+"Particionamento manual permite uma maior flexibilidade, permitindo que o "
+"usuário escolha a finalidade e o tamanho de cada partição. Além disso, este "
+"modo é inevitável, se você quiser usar o software RAID."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Shrinking a Windows partition."
-msgstr ""
+msgstr "<emphasis>Em prática</emphasis> diminuindo uma partição do Windows."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>resize a partition</primary>"
-msgstr ""
+msgstr "<primary>redimensionar uma partição</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>shrink a partition</primary>"
-msgstr ""
+msgstr "<primary>diminuir uma partição</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To install Debian alongside an existing operating system (Windows or other), you must have some available hard drive space that is not being used by the other system in order to be able to create the partitions dedicated to Debian. In most cases, this means shrinking a Windows partition and reusing the freed space."
 msgstr ""
+"Para instalar o Debian ao lado de um sistema operacional existente (Windows "
+"ou outro), você deve ter algum espaço disponível no disco rígido que não "
+"está sendo usado por outro sistema, a fim de ser capaz de criar as partições "
+"dedicadas ao Debian. Na maioria dos casos, isso significa diminuir uma "
+"partição do Windows e reutilizando o espaço liberado."
 
 #. Tag: para
 #, no-c-format
@@ -1060,7 +1097,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "You can erase all partitions on a disk by selecting it."
-msgstr ""
+msgstr "Você pode apagar todas as partições em um disco, selecionando-o."
 
 #. Tag: para
 #, no-c-format
@@ -1081,6 +1118,10 @@ msgstr "<primary>ponto de montagem</primary>"
 #, no-c-format
 msgid "The mount point is the directory tree that will house the contents of the filesystem on the selected partition. Thus, a partition mounted at <filename>/home/</filename> is traditionally intended to contain user data."
 msgstr ""
+"O ponto de montagem é a árvore de diretório que vai abrigar o conteúdo do "
+"sistema de arquivos na partição seleccionada. Assim, uma partição montada em "
+"<filename>/home/</filename> destina-se tradicionalmente para conter dados "
+"de usuário."
 
 #. Tag: para
 #, no-c-format
@@ -1095,12 +1136,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual memory</primary>"
-msgstr ""
+msgstr "<primary>memória virtual</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>swap</primary>"
-msgstr ""
+msgstr "<primary>swap</primary>"
 
 #. Tag: indexterm
 #, no-c-format

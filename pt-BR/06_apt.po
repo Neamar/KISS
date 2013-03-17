@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2013-03-15 14:02+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-03-18 04:08+0200\n"
+"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -750,17 +750,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get update</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get update</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude update</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude update</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing and Removing"
-msgstr ""
+msgstr "Instalação e remoção"
 
 #. Tag: indexterm
 #, no-c-format
@@ -780,7 +780,7 @@ msgstr "<primary>instalação</primary><secondary>de pacotes</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>removal of a package</primary>"
-msgstr ""
+msgstr "<primary>remoção de um pacote</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -790,32 +790,32 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get install</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get install</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get remove</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get remove</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get purge</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get purge</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude install</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude install</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude remove</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude remove</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude purge</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude purge</command></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -826,17 +826,22 @@ msgstr ""
 #, no-c-format
 msgid "It can be useful to systematically install the same list of packages on several computers. This can be done quite easily."
 msgstr ""
+"Pode ser útil instalar sistematicamente a mesma lista de pacotes em vários "
+"computadores. Isso pode ser feito facilmente."
 
 #. Tag: para
 #, no-c-format
 msgid "First, retrieve the list of packages installed on the computer which will serve as the “model” to copy."
 msgstr ""
+"Em primeiro lugar, recupere a lista de pacotes instalados no computador que "
+"servirá como o \"modelo\" para copiar."
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
 ""
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-"
+"list</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -849,6 +854,10 @@ msgid "<computeroutput># </computeroutput><userinput>dpkg --set-selections &lt;p
 "<computeroutput># </computeroutput><userinput>apt-get dselect-upgrade</userinput>\n"
 ""
 msgstr ""
+"<computeroutput># </computeroutput><userinput>dpkg --set-selections &lt;pkg-"
+"list</userinput>\n"
+"<computeroutput># </computeroutput><userinput>apt-get dselect-"
+"upgrade</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -869,6 +878,9 @@ msgstr ""
 #, no-c-format
 msgid "The next example shows two different ways to install <replaceable>package1</replaceable> and to remove <replaceable>package2</replaceable>."
 msgstr ""
+"O próximo exemplo mostra duas maneiras diferentes de instalar "
+"<replaceable>package1</replaceable>  \t\n"
+"e remover <replaceable>package2</replaceable>."
 
 #. Tag: screen
 #, no-c-format
@@ -878,6 +890,14 @@ msgid "<computeroutput># </computeroutput><userinput>aptitude install <replaceab
 "[...]\n"
 ""
 msgstr ""
+"<computeroutput># </computeroutput><userinput>aptitude install "
+"<replaceable>package1</replaceable> "
+"<replaceable>package2-</replaceable></userinput>\n"
+"[...]\n"
+"<computeroutput># </computeroutput><userinput>aptitude remove "
+"<replaceable>package1+</replaceable> "
+"<replaceable>package2</replaceable></userinput>\n"
+"[...]\n"
 
 #. Tag: title
 #, no-c-format
@@ -887,7 +907,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>reinstallation</primary>"
-msgstr ""
+msgstr "<primary>reinstalação</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -898,7 +918,8 @@ msgstr ""
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
 ""
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>apt-get --reinstall install "
+"postfix</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -929,7 +950,8 @@ msgstr ""
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>aptitude install spamassassin/unstable</userinput>\n"
 ""
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>aptitude install "
+"spamassassin/unstable</userinput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -944,12 +966,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "System Upgrade"
-msgstr ""
+msgstr "Atualização do sistema"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>upgrade</primary><secondary>of the system</secondary>"
-msgstr ""
+msgstr "<primary>atualização</primary><secondary>do sistema</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -989,12 +1011,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get upgrade</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude safe-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude safe-upgrade</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1009,22 +1031,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get dist-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get dist-upgrade</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude dist-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude dist-upgrade</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude full-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude full-upgrade</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuration Options"
-msgstr ""
+msgstr "Opções de configuração"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1034,12 +1056,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>apt.conf.d/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>apt.conf.d/</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1059,7 +1081,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>.d</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>.d</filename></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1084,7 +1106,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Managing Package Priorities"
-msgstr ""
+msgstr "Gerenciar prioridades de pacote"
 
 #. Tag: para
 #, no-c-format
@@ -1109,12 +1131,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>preferences</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>preferências</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/preferences</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/preferences</filename></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1125,6 +1147,9 @@ msgstr ""
 #, no-c-format
 msgid "You can modify the priorities by adding entries in the file <filename>/etc/apt/preferences</filename> with the names of the affected packages, their version, their origin and their new priority."
 msgstr ""
+"Você pode modificar as prioridades adicionando entradas no arquivo "
+"<filename>/etc/apt/preferences</filename> com os nomes dos pacotes afetados, "
+"sua versão, sua origem e sua nova prioridade."
 
 #. Tag: para
 #, no-c-format
@@ -1158,11 +1183,18 @@ msgid "Package: *\n"
 "Pin-Priority: 500\n"
 ""
 msgstr ""
+"Package: *\n"
+"Pin: release a=experimental\n"
+"Pin-Priority: 500\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's suppose that you only want to use packages from the stable version of Debian. Those provided in other versions should not be installed except if explicitly requested. You could write the following entries in the <filename>/etc/apt/preferences</filename> file:"
 msgstr ""
+"Vamos supor que você só quer usar os pacotes da versão estável do Debian. As "
+"previstas em outras versões não devem ser instaladas exceto se "
+"explicitamente solicitado. Você poderia escrever as seguintes entradas do "
+"arquivo <filename>/etc/apt/preferences</filename> :"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1175,6 +1207,13 @@ msgid "Package: *\n"
 "Pin-Priority: -10\n"
 ""
 msgstr ""
+"Package: *\n"
+"Pin: release a=stable\n"
+"Pin-Priority: 900\n"
+"\n"
+"Package: *\n"
+"Pin: release o=Debian\n"
+"Pin-Priority: -10\n"
 
 #. Tag: para
 #, no-c-format
@@ -1193,6 +1232,9 @@ msgid "Package: perl\n"
 "Pin-Priority: 1001\n"
 ""
 msgstr ""
+"Package: perl\n"
+"Pin: version 5.10*\n"
+"Pin-Priority: 1001\n"
 
 #. Tag: para
 #, no-c-format

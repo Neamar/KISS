@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-03-15 14:41+0200\n"
-"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"PO-Revision-Date: 2013-03-17 06:43+0200\n"
+"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -205,7 +205,12 @@ msgstr "<primary><command>init</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Any person who is able to access the computer can press the <keycap>Reset</keycap> button, and thus reboot it. Then, at the bootloader's prompt, it is possible to pass the <literal>init=/bin/sh</literal> option to the kernel to gain root access without knowing the administrator's password."
-msgstr "Qualquer pessoa que  é capaz de acessar o computador e poder  pressionar o botão  <keycap>Reset</keycap>, e, portanto reinicia-lo . Então, no prompt do inicializador do sistema, é possível passar  opção  <literal>init=/bin/sh</literal> para o kernel e ganhar acesso root sem no saber a senha de administrador"
+msgstr ""
+"Qualquer pessoa que  é capaz de acessar o computador e poder  pressionar o "
+"botão  <keycap>Reset</keycap>, e, portanto reinicia-lo . Então, no prompt do "
+"inicializador do sistema, é possível passar  opção  "
+"<literal>init=/bin/sh</literal> para o kernel e ganhar acesso root sem no "
+"saber a senha de administrador."
 
 #. Tag: para
 #, no-c-format
@@ -267,6 +272,12 @@ msgstr "Após este estágio, o <command>init</command> assume o controle e inici
 #, no-c-format
 msgid "This dependency-based boot system makes it possible to automate re-numbering, which could be rather tedious if it had to be done manually, and it limits the risks of human error, since scheduling is conducted according to the parameters that are indicated. Another benefit is that services can be started in parallel when they are independent from one another, which can accelerate the boot process."
 msgstr ""
+"Este sistema de inicialização baseado em dependência torna possível "
+"automatizar a numeração, que poderia ser um pouco entediante se tivesse que "
+"ser feito manualmente, e limita os riscos de erro humano, já que o "
+"agendamento é realizado de acordo com os parâmetros indicados. Outro "
+"benefício é que os serviços podem ser iniciados em paralelo quando são "
+"independentes um do outro, que pode acelerar o processo de inicialização."
 
 #. Tag: title
 #, no-c-format
@@ -302,6 +313,10 @@ msgstr ""
 #, no-c-format
 msgid "There are also other systems and other operating modes, such as <command>runit</command>, <command>minit</command>, or <command>initng</command>, but they are relatively specialized and not widespread."
 msgstr ""
+"Existem também outros sistemas e outros modos de funcionamento, tais como "
+"<command>runit</command>, <command>minit</command>, ou "
+"<command>initng</command>, mas eles são relativamente especializados e não "
+"generalizada."
 
 #. Tag: indexterm
 #, no-c-format
@@ -324,26 +339,34 @@ msgid "By default, Debian uses four different runlevels:"
 msgstr "Por padrão, o Debian usa quatro runlevels diferentes:"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Level 0 is only used temporarily, while the computer is powering down. As such, it only contains many “K” scripts."
 msgstr ""
-"Nível 0 é somente usado temporariamente, enquanto o computador é desligado. "
-"Como tal, ele somente contém scripts \"K\"."
+"Nível 0 é usada apenas temporariamente, enquanto o computador está "
+"desligando. Como tal, ele só contém muitos scripts de \"K\"."
 
 #. Tag: para
 #, no-c-format
 msgid "Level 1, also known as single-user mode, corresponds to the system in degraded mode; it includes only basic services, and is intended for maintenance operations where interactions with ordinary users are not desired."
 msgstr ""
+"Nível 1, também conhecido como modo de usuário único, corresponde ao sistema "
+"em modo degradado; inclui apenas os serviços básicos e destina-se para "
+"operações de manutenção onde interações com usuários comuns não são "
+"desejadas."
 
 #. Tag: para
 #, no-c-format
 msgid "Level 2 is the level for normal operation, which includes networking services, a graphical interface, user logins, etc."
 msgstr ""
+"Nível 2 é o funcionamento normal, o que inclui serviços de rede, uma "
+"interface gráfica, logons de usuário, etc."
 
 #. Tag: para
 #, no-c-format
 msgid "Level 6 is similar to level 0, except that it is used during the shutdown phase that precedes a reboot."
 msgstr ""
+"Nível 6 é semelhante ao nível 0, exceto que é utilizada durante a fase de "
+"desligamento que precede uma reinicialização."
 
 #. Tag: para
 #, no-c-format
@@ -353,12 +376,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Boot sequence of a computer running Linux"
-msgstr ""
+msgstr "Seqüência de inicialização de um computador rodando Linux"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>initialization script</primary>"
-msgstr ""
+msgstr "<primary>script de inicialização</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -368,7 +391,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>update-rc.d</command></primary>"
-msgstr ""
+msgstr "<primary><command>update-rc.d</command></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -378,7 +401,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>invoke-rc.d</command></primary>"
-msgstr ""
+msgstr "<primary><command>invoke-rc.d</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -388,7 +411,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>restarting services</primary>"
-msgstr ""
+msgstr "<primary>reiniciando serviços</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -399,11 +422,15 @@ msgstr ""
 #, no-c-format
 msgid "Finally, <command>init</command> starts control programs for various virtual consoles (<command>getty</command>). It displays a prompt, waiting for a username, then executes <command>login <replaceable>user</replaceable></command> to initiate a session."
 msgstr ""
+"Finalmente, <command>init</command> começa a controla programas para vários "
+"consoles virtuais (<command>getty</command>). Ele exibe um prompt, esperando "
+"por um nome de usuário, em seguida, executa o usuário <command>login "
+"<replaceable>user</replaceable></command> para iniciar uma sessão."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>getty</command></primary>"
-msgstr ""
+msgstr "<primary><command>getty</command></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -414,6 +441,12 @@ msgstr ""
 #, no-c-format
 msgid "The first computers were usually separated into several, very large parts: the storage enclosure and the central processing unit were separate from the peripheral devices used by the operators to control them. These were part of a separate furniture, the “console”. This term was retained, but its meaning has changed. It has become more or less synonymous with “terminal”, being a keyboard and a screen."
 msgstr ""
+"Os primeiros computadores eram geralmente separados em diversas, peças muito "
+"grandes: o compartimento de armazenamento e unidade central de "
+"processamento foram separados dos dispositivos periféricos usados pelos "
+"operadores para controlá-los. Estes eram parte de uma mobília separada, o "
+"\"console\". Este termo foi mantido, mas seu significado foi alterado. Tornou-"
+"se mais ou menos sinônimo de \"terminal\", sendo um teclado e uma tela."
 
 #. Tag: para
 #, no-c-format
@@ -428,7 +461,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Remote Login"
-msgstr ""
+msgstr "Login remoto"
 
 #. Tag: para
 #, no-c-format
@@ -443,37 +476,43 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>client/server architecture</primary>"
-msgstr ""
+msgstr "<primary>arquitetura cliente/servidor</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>client/server architecture</secondary>"
 msgstr ""
+"<primary>servidor</primary><secondary>arquitetura "
+"cliente/servidor</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A system where several processes communicate with each other is often described with the “client/server” metaphor. The server is the program that takes requests coming from a client and executes them. It is the client that controls operations, the server doesn't take any initiative of its own."
 msgstr ""
+"Um sistema onde vários processos comunicarem é frequentemente descrito com a "
+"metáfora de \"cliente/servidor\". O servidor é o programa que recebe as "
+"solicitações provenientes de um cliente e os executa. É o cliente que "
+"controla as operações, o servidor não toma qualquer iniciativa própria."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>login</primary><secondary>remote login</secondary>"
-msgstr ""
+msgstr "<primary>login</primary><secondary>login remoto</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>remote login</primary>"
-msgstr ""
+msgstr "<primary>login remoto</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Remote Login: <command>telnet</command>"
-msgstr ""
+msgstr "Login remoto: <command>telnet</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>telnet</command></primary>"
-msgstr ""
+msgstr "<primary><command>telnet</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -483,7 +522,8 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>apt-get remove telnetd</userinput>\n"
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>apt-get remove "
+"telnetd</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -493,12 +533,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>telnet-ssl</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>telnet-ssl</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>telnetd-ssl</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>telnetd-ssl</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -514,16 +554,19 @@ msgstr ""
 #, no-c-format
 msgid "Authentication and encryption are often mentioned together, both because they are frequently used together, and because they are usually implemented with similar mathematical concepts."
 msgstr ""
+"Autenticação e criptografia, muitas vezes são mencionados juntos, porque "
+"eles são freqüentemente usados em conjunto, tanto porque eles geralmente são "
+"implementados com conceitos matemáticos semelhantes."
 
 #. Tag: title
 #, no-c-format
 msgid "Secure Remote Login: SSH"
-msgstr ""
+msgstr "Login remoto seguro: SSH"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSH</primary>"
-msgstr ""
+msgstr "<primary>SSH</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -543,7 +586,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RSH</primary>"
-msgstr ""
+msgstr "<primary>RSH</primary>"
 
 #. Tag: indexterm
 #, no-c-format
