@@ -1,6 +1,5 @@
-package fr.neamar.summon;
+package fr.neamar.summon.lite;
 
-import fr.neamar.summon.lite.SummonApplication;
 import android.app.backup.BackupManager;
 import android.content.Context;
 import android.content.DialogInterface;
