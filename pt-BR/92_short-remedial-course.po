@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2013-03-17 04:30+0200\n"
-"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
+"PO-Revision-Date: 2013-03-28 15:24+0200\n"
+"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/92_short-remedial-course/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -24,7 +24,7 @@ msgstr "BIOS"
 #. Tag: keyword
 #, no-c-format
 msgid "Kernel"
-msgstr ""
+msgstr "Núcleo"
 
 #. Tag: keyword
 #, no-c-format
@@ -90,6 +90,16 @@ msgstr "Navegando na Árvore de Diretórios e Gestão de Arquivos"
 #, no-c-format
 msgid "Once a session is open, the <command>pwd</command> command (<emphasis>print working directory</emphasis>) displays the current location in the filesystem. The current directory is changed with the <command>cd <replaceable>directory</replaceable></command> command (<command>cd</command> is for <emphasis>change directory</emphasis>). The parent directory is always called <literal>..</literal> (two dots), whereas the current directory is also known as <literal>.</literal> (one dot). The <command>ls</command> command allows <emphasis>listing</emphasis> the contents of a directory. If no parameters are given, it operates on the current directory."
 msgstr ""
+"Uma vez que uma sessão é aberta, o comando <command>pwd</command> "
+"(<emphasis>print working directory</emphasis>) mostra a localização atual do "
+"sistema de arquivos. O diretório atual é alterada com o comando "
+"<command>cd<replaceable> cd </replaceable> </command> (<command>cd</command> "
+"é para alterar de diretório <emphasis>change directory</emphasis>). O "
+"diretório pai é sempre chamado <literal> ..</literal> (dois pontos), "
+"enquanto o diretório atual também é conhecido como <literal>.</Literal> "
+"(ponto). O <command>ls</command> permite <emphasis>listar</emphasis> o "
+"conteúdo de um diretório. Se nenhum parâmetro é dado, ele opera no diretório "
+"atual."
 
 #. Tag: screen
 #, no-c-format
@@ -111,6 +121,22 @@ msgid ""
 "Documents  Music      Public    Videos</computeroutput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>pwd</userinput>\n"
+"<computeroutput>/home/rhertzog\n"
+"$ </computeroutput><userinput>cd Desktop</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>pwd</userinput>\n"
+"<computeroutput>/home/rhertzog/Desktop\n"
+"$ </computeroutput><userinput>cd .</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>pwd</userinput>\n"
+"<computeroutput>/home/rhertzog/Desktop\n"
+"$ </computeroutput><userinput>cd ..</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>pwd</userinput>\n"
+"<computeroutput>/home/rhertzog\n"
+"$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>Desktop    Downloads  Pictures  Templates\n"
+"Documents  Music      Public    Videos</computeroutput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
@@ -135,6 +161,20 @@ msgid ""
 "Documents  Music      Public    test</computeroutput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>mkdir test</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>Desktop    Downloads  Pictures  Templates  Videos\n"
+"Documents  Music      Public    test\n"
+"$ </computeroutput><userinput>mv test new</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>Desktop    Downloads  new       Public     Videos\n"
+"Documents  Music      Pictures  Templates\n"
+"$ </computeroutput><userinput>rmdir new</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>Desktop    Downloads  Pictures  Templates  Videos\n"
+"Documents  Music      Public    test</computeroutput>\n"
+"      "
 
 #. Tag: title
 #, no-c-format
@@ -149,7 +189,7 @@ msgstr ""
 "se a <emphasis>concatenar</emphasis> arquivos em sua saída padrão) lê um "
 "arquivo e exibe seu conteúdo no terminal. Se o arquivo é muito grande para "
 "ser ajustado na tela, use um paginador como o <command>less</command> (ou "
-"<command>more</command>) para exibir o conteúdo págiana a página. "
+"<command>more</command>) para exibir o conteúdo págiana a página."
 
 #. Tag: para
 #, no-c-format
@@ -192,9 +232,17 @@ msgid "System Information: Memory, Disk Space, Identity"
 msgstr "Informações do Sistema: Memória, Espaço em Disco, Identidade"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The <command>free</command> command displays information on memory; <command>df</command> (<emphasis>disk free</emphasis>) reports on the available disk space on each of the disks mounted in the filesystem. Its <literal>-h</literal> option (for <emphasis>human readable</emphasis>) converts the sizes into a more legible unit (usually mebibytes or gibibytes). In a similar fashion, the <command>free</command> command understands the <literal>-m</literal> and <literal>-g</literal> options, and displays its data either in mebibytes or in gibibytes, respectively."
-msgstr "O comando<command>free</command> exibe informações sobre a memória; o <command>df</command>(<emphasis>disk free</emphasis>) exibe relatórios sobre o espaço disponível no disco em cada um dos discos montados no sistema de arquivo. A opção <literal>-h</literal> (para <emphasis>leitura humana</emphasis> converte os tamanhos para uma unidade mais legível). De um modo semelhante, o <command>free</command> entende as opções <literal>-m</literal> e <literal>-g</literal>, e mostra estes dados tanto em megabytes ou em gigabytes, respectivamente. "
+msgstr ""
+"O comando <command>free</command> exibe informações sobre a memória; o "
+"<command>df</command>(<emphasis>disk free</emphasis>) exibe relatórios sobre "
+"o espaço disponível no disco em cada um dos discos montados no sistema de "
+"arquivo. A opção <literal>-h</literal> (para <emphasis>leitura "
+"humana</emphasis> converte os tamanhos para uma unidade mais legível). De um "
+"modo semelhante, o <command>free</command> entende as opções "
+"<literal>-m</literal> e <literal>-g</literal>, e mostra estes dados tanto em "
+"megabytes ou em gigabytes, respectivamente."
 
 #. Tag: screen
 #, no-c-format
@@ -215,6 +263,23 @@ msgid ""
 "</computeroutput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>free</userinput>\n"
+"<computeroutput>             total       used       free     shared    "
+"buffers     cached\n"
+"Mem:       1028420    1009624      18796          0      47404     391804\n"
+"-/+ buffers/cache:     570416     458004\n"
+"Swap:      2771172     404588    2366584\n"
+"$ </computeroutput><userinput>df</userinput>\n"
+"<computeroutput>Filesystem           1K-blocks      Used Available Use% "
+"Mounted on\n"
+"/dev/sda2              9614084   4737916   4387796  52% /\n"
+"tmpfs                   514208         0    514208   0% /lib/init/rw\n"
+"udev                     10240       100     10140   1% /dev\n"
+"tmpfs                   514208    269136    245072  53% /dev/shm\n"
+"/dev/sda5             44552904  36315896   7784380  83% /home\n"
+"</computeroutput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
@@ -363,11 +428,14 @@ msgstr ""
 #, no-c-format
 msgid "Finally, the email system sometimes stores incoming emails into a <filename>~/Mail/</filename> directory."
 msgstr ""
+"Finalmente, o sistema de e-mail às vezes armazena e-mails recebidos no "
+"diretório <filename>~/Mail/</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "Inner Workings of a Computer: the Different Layers Involved"
 msgstr ""
+"Funcionamento Interno de um Computador: as Diferentes Camadas Envolvidas"
 
 #. Tag: para
 #, no-c-format
@@ -438,6 +506,8 @@ msgstr "<emphasis>NA PRÄTICA</emphasis> Verificando se o hardware funciona"
 #, no-c-format
 msgid "Checking that a piece of hardware works can be tricky. On the other hand, proving that it doesn't work is sometimes quite simple."
 msgstr ""
+"Verificar se um hardware está funcionando pode ser complicado. Muito embora, "
+"provar que o mesmo não funciona às vezes é bem simples."
 
 #. Tag: para
 #, no-c-format
@@ -683,7 +753,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Rights Management"
-msgstr ""
+msgstr "Gerenciamento de Direitos"
 
 #. Tag: para
 #, no-c-format
@@ -693,12 +763,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>user space</primary>"
-msgstr ""
+msgstr "<primary>espaço de usuário</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>kernel space</primary>"
-msgstr ""
+msgstr "<primary>espaço de núcleo</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -718,7 +788,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>fork</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>fork</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -751,9 +821,9 @@ msgid "A “daemon” is a process started automatically by the boot sequence. I
 msgstr ""
 
 #. Tag: title
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Daemon, demon, a derogatory term?"
-msgstr ""
+msgstr "<emphasis>VOCABULÁRIO</emphasis> Daemon, demon, um termo depreciativo?"
 
 #. Tag: para
 #, no-c-format
@@ -793,7 +863,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>pipe</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>pipe</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -858,7 +928,7 @@ msgstr "Bibliotecas"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>library (of functions)</primary>"
-msgstr ""
+msgstr "<primary>biblioteca (de funções)</primary>"
 
 #. Tag: para
 #, no-c-format
