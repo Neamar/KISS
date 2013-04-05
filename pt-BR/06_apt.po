@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2013-03-18 17:31+0200\n"
-"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"PO-Revision-Date: 2013-04-05 17:53+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -795,6 +795,16 @@ msgstr "<primary>remoção de um pacote</primary>"
 #, no-c-format
 msgid "With APT, packages can be added or removed from the system, respectively with <command>aptitude install <replaceable>package</replaceable></command> and <command>aptitude remove <replaceable>package</replaceable></command>. In both cases, APT will automatically install the necessary dependencies or delete the packages which depend on the package that is being removed. The <command>aptitude purge <replaceable>package</replaceable></command> or <command>apt-get purge <replaceable>package</replaceable></command> commands involve a complete uninstallation — the configuration files are also deleted."
 msgstr ""
+"Com o APT, os pacotes podem ser adicionados ou removidos do sistema, "
+"respectivamente com <command>aptitude install "
+"<replaceable>pacote</replaceable></command> e <command>aptitude remove "
+"<replaceable>pacote</replaceable></command>. Em ambos os casos, o APT vai "
+"instalar automaticamente as dependências necessárias ou apagar os pacotes "
+"que dependem do pacote que está para ser removido. Os comandos "
+"<command>aptitude purge <replaceable>pacote</replaceable></command> ou "
+"<command>apt-get purge <replaceable>pacote</replaceable></command> envolvem "
+"uma desinstalação completa — os arquivos de configuração também são "
+"apagados."
 
 #. Tag: indexterm
 #, no-c-format
@@ -858,6 +868,9 @@ msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;
 #, no-c-format
 msgid "The <filename>pkg-list</filename> file then contains the list of installed packages. Next, transfer the <filename>pkg-list</filename> file on the computers you want to update and use the following commands:"
 msgstr ""
+"O arquivo <filename>pkg-list</filename> passa a conter a lista dos pacotes "
+"instalados. Em seguida, transfira o arquivo <filename>pkg-list</filename> "
+"para os computadores que você quer atualizar e use os seguintes comandos:"
 
 #. Tag: screen
 #, no-c-format
@@ -874,6 +887,9 @@ msgstr ""
 #, no-c-format
 msgid "The first command registers the list of packages you wish to install, then the <command>apt-get</command> invocation executes the required operations! <command>aptitude</command> does not have this command."
 msgstr ""
+"O primeiro comando registra a lista de pacotes que você gostaria de "
+"instalar, e a chamada ao <command>apt-get</command> executa as operações "
+"necessárias! O <command>aptitude</command> não tem este comando."
 
 #. Tag: title
 #, no-c-format
@@ -884,6 +900,13 @@ msgstr "<emphasis>DICA</emphasis> Removendo e instalando ao mesmo tempo"
 #, no-c-format
 msgid "It is possible to ask <command>aptitude</command> (or <command>apt-get</command>) to install certain packages and remove others on the same command line by adding a suffix. With an <command>aptitude install</command> command, add “<literal>-</literal>” to the names of the packages you wish to remove. With an <command>aptitude remove</command> command, add “<literal>+</literal>” to the names of the packages you wish to install."
 msgstr ""
+"É possível pedir ao <command>aptitude</command> (ou <command>apt-"
+"get</command>) para instalar certos pacotes e remover outros na mesma linha "
+"de comando ao adicionar um sufixo. Com um comando <command>aptitude "
+"install</command>, adicione  “<literal>-</literal>” a todos os nomes de "
+"pacotes que você precisa remover. Com um comando <command>aptitude "
+"remove</command>, adicione “<literal>+</literal>” para os nomes dos pacotes "
+"que você precisa instalar."
 
 #. Tag: para
 #, no-c-format
@@ -926,6 +949,13 @@ msgstr "<primary>reinstalação</primary>"
 #, no-c-format
 msgid "The system can sometimes be damaged after the removal or modification of files in a package. The easiest way to retrieve these files is to reinstall the affected package. Unfortunately, the packaging system finds that the latter is already installed and politely refuses to reinstall it; to avoid this, use the <literal>--reinstall</literal> option of the <command>apt-get</command> command. The following command reinstalls <emphasis role=\"pkg\">postfix</emphasis> even if it is already present:"
 msgstr ""
+"O sistema pode, às vezes, ser danificado com a remoção ou modificação de "
+"arquivos num pacote. A forma mais fácil de recuperar estes arquivos é "
+"reinstalar o pacote afetado. Infelizmente, o sistema de empacotamento nota "
+"que o pacote está instalado e se recusa educadamente a reinstalá-lo; para "
+"evitar isto, use a opção <literal>--reinstall</literal> do comando <command"
+">apt-get</command>. o comando abaixo reinstala o <emphasis "
+"role=\"pkg\">postfix</emphasis> mesmo quando ele já está presente:"
 
 #. Tag: screen
 #, no-c-format
@@ -938,6 +968,9 @@ msgstr "<computeroutput># </computeroutput><userinput>apt-get --reinstall instal
 #, no-c-format
 msgid "The <command>aptitude</command> command line is slightly different, but achieves the same result with <command>aptitude reinstall postfix</command>."
 msgstr ""
+"O <command>aptitude</command> em linha de comando é ligeiramente diferente, "
+"mas atinge os mesmos resultados com <command>aptitude reinstall "
+"postfix</command>."
 
 #. Tag: para
 #, no-c-format
@@ -950,16 +983,37 @@ msgstr ""
 #, no-c-format
 msgid "Be careful, using <command>apt-get --reinstall</command> to restore packages modified during an attack certainly cannot recover the system as it was. <xref linkend=\"sect.dealing-with-compromised-machine\" /> details the necessary steps to take with a compromised system."
 msgstr ""
+"Seja cuidadoso, usando <command>apt-get --reinstall</command> para recuperar "
+"pacotes alterados durante um ataque com certeza não trazem o sistema ao que "
+"ele era. <xref linkend=\"sect.dealing-with-compromised-machine\" /> detalha "
+"os passos necessários para lidar com um sistema comprometido."
 
 #. Tag: para
 #, no-c-format
 msgid "If the file <filename>sources.list</filename> mentions several distributions, it is possible to give the version of the package to install. A specific version number can be requested with <command>aptitude install <replaceable>package</replaceable>=<replaceable>version</replaceable></command>, but indicating its distribution of origin (<emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>) — with <command>aptitude install <replaceable>package</replaceable>/<replaceable>distribution</replaceable></command> — is usually preferred. With this command, it is possible to go back to an older version of a package (if for instance you know that it works well), provided that it is still available in one of the sources referenced by the <filename>sources.list</filename> file. Otherwise the <literal>snapshot.debian.org</literal> archive can come to the rescue (see sidebar <xref linkend=\"cadre.snapshot.debian.org\" />)."
 msgstr ""
+"Se o arquivo <filename>sources.list</filename> menciona muitas "
+"distribuições, é possível passar a versão do pacote a instalar. Um número de "
+"versão específico pode ser pedido com <command>aptitude install <replaceabl"
+"e>pacote</replaceable>=<replaceable>versão</replaceable></command>, mas "
+"indicar sua destribuição de origem (<emphasis "
+"role=\"distribution\">Stable</emphasis>, <emphasis "
+"role=\"distribution\">Testing</emphasis> ou <emphasis "
+"role=\"distribution\">Unstable</emphasis>) — com o <command>aptitude install <"
+"replaceable>pacote</replaceable>/<replaceable>distribuição</replaceable></co"
+"mmand> — é normalmente preferido. Com este comando, é possível voltar a uma "
+"versão antiga do pacote (se por exemplo você sabe que isto vai funcionar "
+"bem), desde que ela ainda esteja disponível em alguma das fontes "
+"referenciadas pelo arquivo <filename>sources.list</filename>. Por outro "
+"lado, o arquivamento <literal>snapshot.debian.org</literal> pode vir ao seu "
+"socorro (veja a barra lateral <xref linkend=\"cadre.snapshot.debian.org\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installation of the <emphasis role=\"distribution\">unstable</emphasis> version of <emphasis role=\"pkg\">spamassassin</emphasis>"
 msgstr ""
+"Instalação da versão <emphasis role=\"distribution\">unstable</emphasis> do "
+"<emphasis role=\"pkg\">spamassassin</emphasis>"
 
 #. Tag: screen
 #, no-c-format
@@ -979,6 +1033,17 @@ msgstr ""
 #, no-c-format
 msgid "APT keeps a copy of each downloaded <filename>.deb</filename> file in the directory <filename>/var/cache/apt/archives/</filename>. In case of frequent updates, this directory can quickly take a lot of disk space with several versions of each package; you should regularly sort through them. Two commands can be used: <command>aptitude clean</command> entirely empties the directory; <command>aptitude autoclean</command> only removes packages which cannot be downloaded (because they have disappeared from the Debian mirror) and are therefore clearly useless (the configuration parameter <literal>APT::Clean-Installed</literal> can prevent the removal of <filename>.deb</filename> files that are currently installed)."
 msgstr ""
+"APT mantém uma cópia de cada arquivo <filename>.deb</filename> baixado no "
+"diretório <filename>/var/cache/apt/archives/</filename>. Caso haja "
+"atualizações frequentes, este diretório pode rapidamente ocupar um grande "
+"espaço em disco com várias versões de cada pacote; você deve regularmente "
+"passear por eles. Dois comandos podem ser usados: <command>aptitude "
+"clean</command> limpa completamente o diretório; <command>aptitude "
+"autoclean</command> limpa apenas pacotes que não podem ser mais baixados "
+"(por terem sumido dos espelhos Debian) e são agora claramente inúteis(o "
+"parâmetro de configuração <literal>APT::Clean-Installed</literal> evita a "
+"remoção de arquivos <filename>.deb</filename> que estão atualmente "
+"instalados)."
 
 #. Tag: title
 #, no-c-format
@@ -994,6 +1059,15 @@ msgstr "<primary>atualização</primary><secondary>do sistema</secondary>"
 #, no-c-format
 msgid "Regular upgrades are recommended, because they include the latest security updates. To upgrade, use <command>aptitude safe-upgrade</command> or <command>apt-get upgrade</command> (of course after <command>aptitude update</command>). This command looks for installed packages which can be upgraded without removing any packages. In other words, the goal is to ensure the least intrusive upgrade possible. <command>apt-get</command> is slightly more demanding than <command>aptitude</command> because it will refuse to install packages which were not installed beforehand."
 msgstr ""
+"atualizações (\"upgrades\") regulares são recomendados, pois eles incluem as "
+"últimas atualizações de segurança. Para atualizar, use <command>aptitude "
+"safe-upgrade</command> ou <command>apt-get upgrade</command> (claro que "
+"depois de um <command>aptitude update</command>). Este comando busca pacotes "
+"instalados que possam ser atualizados sem remover nenhum pacote. Em outras "
+"palavras, o objetivo é garantir uma atualização o menos invasiva possível. "
+"<command>apt-get</command> é um pouco mais pesado que "
+"<command>aptitude</command> por que ele vai se recusar a instalar pacotes "
+"que não estavam instalados antes."
 
 #. Tag: title
 #, no-c-format
@@ -1423,9 +1497,9 @@ msgid "Some features are more rarely used. For instance, <command>apt-cache poli
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Frontends: <command>aptitude</command>, <command>synaptic</command>"
-msgstr "Frontends: <command>aptitude</command>, <command>synaptic</command>"
+msgstr "Interfaces: <command>aptitude</command>, <command>synaptic</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1655,9 +1729,9 @@ msgstr ""
 "<primary>pacote</primary><secondary>verificação de autenticidade</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>package</primary><secondary>seal</secondary>"
-msgstr "<primary>pacote</primary><secondary>selar</secondary>"
+msgstr "<secondary>lacre</secondary> do <primary>pacote</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2127,7 +2201,7 @@ msgid "The most trivial search possible is looking up an exact package name. If 
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>TIP</emphasis> Package naming conventions"
 msgstr "<emphasis>DICA</emphasis> Convenções de nomes de pacote"
 
