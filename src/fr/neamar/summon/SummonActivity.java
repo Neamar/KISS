@@ -262,7 +262,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			Holder holder = SummonApplication.getDataHandler(this).getFavorites(this)
 					.get(item.getItemId());
 			Record record = Record.fromHolder(this, holder);
-			record.doLaunch(this, null);
+			record.fastLaunch(this);
 		}
 
 		switch (item.getItemId()) {

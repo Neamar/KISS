@@ -88,15 +88,7 @@ public class ContactRecord extends Record {
 			phoneButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// We need to manually call this function to ensure the
-					// system
-					// store this contact in history
-					recordLaunch(v.getContext());
-					queryInterface.launchOccured();
-					String url = "tel:" + contactHolder.phone;
-					Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
-					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					v.getContext().startActivity(i);
+					launchCall(v.getContext());
 				}
 			});
 
@@ -104,15 +96,7 @@ public class ContactRecord extends Record {
 
 				@Override
 				public void onClick(View v) {
-					// We need to manually call this function to ensure the
-					// system
-					// store this contact in history
-					recordLaunch(v.getContext());
-					queryInterface.launchOccured();
-					String url = "sms:" + contactHolder.phone;
-					Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
-					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					v.getContext().startActivity(i);
+					launchMessaging(v.getContext());
 				}
 			});
 		} else {
@@ -146,5 +130,31 @@ public class ContactRecord extends Record {
 		viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 		context.startActivity(viewContact);
+	}
+	
+	@Override
+	public void fastLaunch(Context context)
+	{
+		launchMessaging(context);
+	}
+	
+	protected void launchMessaging(Context context)
+	{
+		recordLaunch(context);
+		queryInterface.launchOccured();
+		String url = "sms:" + contactHolder.phone;
+		Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(i);
+	}
+	
+	protected void launchCall(Context context)
+	{
+		recordLaunch(context);
+		queryInterface.launchOccured();
+		String url = "tel:" + contactHolder.phone;
+		Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(i);
 	}
 }

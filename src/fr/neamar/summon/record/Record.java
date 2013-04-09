@@ -57,6 +57,17 @@ public abstract class Record {
 	public abstract void doLaunch(Context context, View v);
 	
 	/**
+	 * How to launch this record "quickly" ? Most probably, same as doLaunch().
+	 * Override to define another behavior.
+	 * 
+	 * @param context
+	 */
+	public void fastLaunch(Context context)
+	{
+		this.doLaunch(context, null);
+	}
+	
+	/**
 	 * Return the icon for this Record, or null if non existing.
 	 * 
 	 * @param context
