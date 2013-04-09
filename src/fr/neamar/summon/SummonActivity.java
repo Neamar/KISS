@@ -90,13 +90,8 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
-					// Invalidate menu for favorites generation
-					invalidateOptionsMenu();
-
 					updateRecords(searchEditText.getText().toString());
 				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
-					// Invalidate menu for favorites generation
-					invalidateOptionsMenu();
 					setProgressBarIndeterminateVisibility(false);
 				} else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
 					setProgressBarIndeterminateVisibility(true);
@@ -129,7 +124,9 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		// Listen to changes
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
-
+				// Auto left-trim text.
+				if(s.length() > 0 && s.charAt(0) == ' ')
+					s.delete(0, 1);
 			}
 
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
