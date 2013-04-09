@@ -298,8 +298,6 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
 		
-
-		
 		// "Clear" button
 		clear = menu.findItem(R.id.clear);
 		if (clear != null) {
