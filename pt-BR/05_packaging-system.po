@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:34\n"
-"PO-Revision-Date: 2013-03-05 12:01+0200\n"
+"PO-Revision-Date: 2013-04-09 14:32+0200\n"
 "Last-Translator: Francisco Aparecido da Silva <francisco@silva.eti.br>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/05_packaging-system/pt_BR/>\n"
@@ -1926,7 +1926,7 @@ msgstr "<primary>instalação</primary><secondary>de pacotes</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>installation</secondary>"
-msgstr "<secondary>instalação</secondary> de <primary>pacote</primary>"
+msgstr "<primary>pacote</primary><secondary>instalação</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -2017,7 +2017,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>unpacking</secondary>"
-msgstr "<secondary>desempacotando</secondary> <primary>pacotes</primary>"
+msgstr "<primary>pacotes</primary><secondary>desempacotando</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -2146,12 +2146,12 @@ msgstr "<primary>removendo um pacote</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>removal</secondary>"
-msgstr "<secondary>remoção</secondary> de <primary>pacote</primary>"
+msgstr "<primary>pacote</primary><secondary>remoção</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>purge</secondary>"
-msgstr "<secondary>expurgo</secondary> de <primary>pacote</primary>"
+msgstr "<primary>pacote</primary><secondary>expurgo</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -2201,18 +2201,18 @@ msgstr "Outras funcionalidades do <command>dpkg</command>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>status</secondary>"
-msgstr "<secondary>status</secondary> do <primary>pacote</primary>"
+msgstr "<primary>pacote</primary><secondary>status</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>file list</secondary>"
-msgstr "<secondary>lista de arquivos</secondary> do <primary>pacote</primary>"
+msgstr "<primary>pacote</primary><secondary>lista de arquivos</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>content inspection</secondary>"
 msgstr ""
-"<secondary>inspeção de conteúdo</secondary> do <primary>pacote</primary>"
+"<primary>pacote</primary><secondary>inspeção de conteúdo</secondary>"
 
 #. Tag: title
 #, no-c-format
@@ -2431,14 +2431,14 @@ msgstr ""
 "Priority: required\n"
 "Section: utils\n"
 "Installed-Size: 14026\n"
-"Maintainer: Michael Stone <mstone@debian.org>\n"
+"Maintainer: Michael Stone &lt;mstone@debian.org&gt;\n"
 "Architecture: i386\n"
 "Multi-Arch: foreign\n"
 "Version: 8.13-3.3\n"
 "Replaces: mktemp, timeout\n"
-"Depends: dpkg (>= 1.15.4) | install-info\n"
-"Pre-Depends: libacl1 (>= 2.2.51-8), libattr1 (>= 1:2.4.46-8), libc6 (>= "
-"2.7), libselinux1 (>= 1.32)\n"
+"Depends: dpkg (&gt;= 1.15.4) | install-info\n"
+"Pre-Depends: libacl1 (&gt;= 2.2.51-8), libattr1 (&gt;= 1:2.4.46-8), libc6 (&gt;= "
+"2.7), libselinux1 (&gt;= 1.32)\n"
 "Conflicts: timeout\n"
 "Description: GNU core utilities\n"
 " This package contains the basic file, shell and text manipulation\n"
@@ -2464,13 +2464,13 @@ msgstr ""
 "+++-====================================-==================================-"
 "============-==============================================================="
 "===============\n"
-"un  backupninja                          <nenhuma> "
+"un  backupninja                          &lt;nenhuma&gt; "
 "                                      (nenhuma descrição disponível)\n"
 "rc  baobab                               3.4.1-1                            "
 "i386         GNOME disk usage analyzer\n"
-"un  base                                 <nenhuma> "
+"un  base                                 &lt;nenhuma&gt; "
 "                                      (nenhuma descrição disponível)\n"
-"un  base-config                          <nenhuma> "
+"un  base-config                          &lt;nenhuma&gt; "
 "                                      (nenhuma descrição disponível)\n"
 "ii  base-files                           7.1                                "
 "i386         Debian base system miscellaneous files\n"
@@ -2513,13 +2513,13 @@ msgstr ""
 " Package: iceweasel\n"
 " Version: 10.0.12esr-1\n"
 " Architecture: i386\n"
-" Maintainer: Maintainers of Mozilla-related packages <pkg-mozilla-"
-"maintainers@lists.alioth.debian.org>\n"
+" Maintainer: Maintainers of Mozilla-related packages &lt;pkg-mozilla-"
+"maintainers@lists.alioth.debian.org&gt;\n"
 " Installed-Size: 6430\n"
-" Depends: libc6 (>= 2.4), libgdk-pixbuf2.0-0 (>= 2.22.0), libglib2.0-0 (>= "
-"2.16.0), libgtk2.0-0 (>= 2.10), libnspr4 (>= 2:4.9-2~) | libnspr4-0d (>= "
-"1.8.0.10), libstdc++6 (>= 4.1.1), fontconfig, procps, debianutils (>= 1.16), "
-"xulrunner-10.0 (>= 10.0.12esr-1), libsqlite3-0 (>= 3.7.12-1~)\n"
+" Depends: libc6 (&gt;= 2.4), libgdk-pixbuf2.0-0 (&gt;= 2.22.0), libglib2.0-0 (&gt;= "
+"2.16.0), libgtk2.0-0 (&gt;= 2.10), libnspr4 (&gt;= 2:4.9-2~) | libnspr4-0d (&gt;= "
+"1.8.0.10), libstdc++6 (&gt;= 4.1.1), fontconfig, procps, debianutils (&gt;= 1.16), "
+"xulrunner-10.0 (&gt;= 10.0.12esr-1), libsqlite3-0 (&gt;= 3.7.12-1~)\n"
 " Suggests: fonts-stix | otf-stix, mozplugger, libgssapi-krb5-2 | libkrb53\n"
 " Provides: gnome-www-browser, www-browser\n"
 " Section: web\n"
