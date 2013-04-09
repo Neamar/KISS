@@ -1,8 +1,11 @@
 package fr.neamar.summon.record;
 
+import java.io.FileNotFoundException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -53,10 +56,8 @@ public class ContactRecord extends Record {
 		// Contact photo
 		ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) v
 				.findViewById(R.id.item_contact_icon);
-		if (contactHolder.icon != null)
-			contactIcon.setImageURI(contactHolder.icon);
-		else
-			contactIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact));
+		contactIcon.setImageDrawable(getDrawable(context));
+			
 		contactIcon.assignContactUri(Uri.withAppendedPath(
 				ContactsContract.Contacts.CONTENT_LOOKUP_URI,
 				String.valueOf(contactHolder.lookupKey)));
@@ -123,6 +124,20 @@ public class ContactRecord extends Record {
 	}
 
 	@Override
+	public Drawable getDrawable(Context context) {
+		if (contactHolder.icon != null) {
+			try {
+				return Drawable.createFromStream(
+						context.getContentResolver().openInputStream(contactHolder.icon), null);
+			} catch (FileNotFoundException e) {
+			}
+		}
+
+		// Default icon
+		return context.getResources().getDrawable(R.drawable.ic_contact);
+	}
+
+	@Override
 	public void doLaunch(Context context, View v) {
 		Intent viewContact = new Intent(Intent.ACTION_VIEW);
 
@@ -132,5 +147,4 @@ public class ContactRecord extends Record {
 		viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 		context.startActivity(viewContact);
 	}
-
 }

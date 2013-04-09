@@ -13,13 +13,13 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -90,7 +90,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 				if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
 					// Invalidate menu for favorites generation
 					invalidateOptionsMenu();
-					
+
 					updateRecords(searchEditText.getText().toString());
 				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
 					// Invalidate menu for favorites generation
@@ -258,24 +258,29 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle favorites
-		if(item.getItemId() < 5)
-		{
-			Holder holder = SummonApplication.getDataHandler(this).getFavorites(this).get(item.getItemId());
+		if (item.getItemId() < 5) {
+			Holder holder = SummonApplication.getDataHandler(this).getFavorites(this)
+					.get(item.getItemId());
 			Record record = Record.fromHolder(this, holder);
 			record.doLaunch(this, null);
 		}
-		
+
 		switch (item.getItemId()) {
 		case R.id.favorites:
 			// Populate option menu
 			// Favorites button
 			SubMenu favorites = item.getSubMenu();
 			favorites.clear();
-			ArrayList<Holder> favorites_holder = SummonApplication.getDataHandler(this).getFavorites(this);
-			for(int i = 0; i < favorites_holder.size(); i++)
-			{
+			ArrayList<Holder> favorites_holder = SummonApplication.getDataHandler(this)
+					.getFavorites(this);
+			for (int i = 0; i < favorites_holder.size(); i++) {
 				Holder holder = favorites_holder.get(i);
-				/*MenuItem favorite =*/ favorites.add(Menu.NONE, i, i, holder.displayName);
+				MenuItem favorite = favorites.add(Menu.NONE, i, i, holder.name);
+
+				Record record = Record.fromHolder(this, holder);
+				Drawable drawable = record.getDrawable(this);
+				if (drawable != null)
+					favorite.setIcon(drawable);
 			}
 			return true;
 		case R.id.settings:
@@ -297,7 +302,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
-		
+
 		// "Clear" button
 		clear = menu.findItem(R.id.clear);
 		if (clear != null) {

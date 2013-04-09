@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,13 +32,18 @@ public class AppRecord extends Record {
 		appName.setText(enrichText(appHolder.displayName));
 
 		ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
-		try {
-			appIcon.setImageDrawable(context.getPackageManager().getActivityIcon(className));
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-		}
+		appIcon.setImageDrawable(this.getDrawable(context));
 
 		return v;
+	}
+	
+	@Override
+	public Drawable getDrawable(Context context) {
+		try {
+			return context.getPackageManager().getActivityIcon(className);
+		} catch (NameNotFoundException e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -49,5 +55,4 @@ public class AppRecord extends Record {
 
 		context.startActivity(intent);
 	}
-
 }
