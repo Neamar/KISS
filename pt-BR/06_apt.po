@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2012-08-13 00:56+0200\n"
+"PO-Revision-Date: 2013-04-09 14:33+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 1.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -349,6 +349,14 @@ msgstr ""
 #, no-c-format
 msgid "This file lists all sources of packages associated with the stable version of Debian. If you would like to use <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, you will of course have to add (or replace them with) the appropriate lines. When the desired version of a package is available on several mirrors, the first one listed in the <filename>sources.list</filename> file will be used. For this reason, non-official sources are usually added at the end of the file."
 msgstr ""
+"Este arquivo lista todas as fontes de pacotes associadas com a versão "
+"estável do Debian. Se você gosta de usar a <emphasis "
+"role=\"distribution\">Testing</emphasis> ou a <emphasis "
+"role=\"distribution\">Unstable</emphasis>, você terá, obviamente, que "
+"adicionar (ou substituir) as linhas apropriadas. Quando a versão desejada de "
+"um pacote estiver disponível em vários espelhos, o primeiro listado no "
+"arquivo <filename>sources.list</filename> será usado. Por isto, fontes de "
+"pacotes não oficiais são normalmente adicionadas no final do arquivo."
 
 #. Tag: title
 #, no-c-format
@@ -358,9 +366,14 @@ msgstr ""
 "<filename>/etc/apt/sources.list.d/*.list</filename> arquivos"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "If many package sources are referenced, it can be useful to split them in multiple files. Each part is then stored in <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> (see sidebar <xref linkend=\"cadre-repertoire.d\" />)."
 msgstr ""
+"Se muitas fontes de pacotes são referenciadas, pode ser útil separá-las em "
+"múltiplos arquivos. Cada parte é então guardada em "
+"<filename>/etc/apt/sources.list.d/<replaceable>nome-de-"
+"arquivo</replaceable>.list</filename> (veja a barra lateral <xref linkend"
+"=\"cadre-repertoire.d\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -376,104 +389,163 @@ msgstr "<primary><command>apt-spy</command></primary>"
 #, no-c-format
 msgid "This software tests the download speed from several Debian mirrors and generates a <filename>sources.list</filename> file which points to the fastest mirror."
 msgstr ""
+"Este software teste a velocidade de download para vários espelhos Debian e "
+"gera um arquivo <filename>sources.list</filename> que aponta para o espelho "
+"mais rápido."
 
 #. Tag: para
 #, no-c-format
 msgid "The mirror selected during installation is generally suitable since its selection is based on the country. However, if the download is a little slow, or after a move, you can try running the application available in the <emphasis role=\"pkg\">apt-spy</emphasis> package."
 msgstr ""
+"O espelho selecionado durante a instalação é geralmente adequado já que sua "
+"seleção é baseada no país. Entretanto, se o download é lento, ou você se "
+"mudou, você pode rodar a aplicação disponível no pacote <emphasis role=\"pkg"
+"\">apt-spy</emphasis>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cdrom</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cdrom</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sources.list</filename> file contains several other entry types: some describe the Debian CD-ROMs you have. Contrary to other entries, a CD-ROM is not always available since it has to be inserted into the drive and since only one disc can be read at a time — consequently, these sources are managed in a slightly different way. These entries need to be added with the <command>apt-cdrom</command> program, usually executed with the <literal>add</literal> parameter. The latter will then request the disc to be inserted in the drive and will browse its contents looking for <filename>Packages</filename> files. It will use these files to update its database of available packages (this is usually done by the <command>aptitude update</command> command). From then on, APT can require the disc to be inserted if it needs one of its packages."
 msgstr ""
+"O arquivo <filename>sources.list</filename> contém vários outros tipos de "
+"entradas: alguns descrevem os CD-ROMs do Debian que você tem. Ao contrário "
+"de outras entradas, um CD-ROM não está sempre disponível já que ele tem que "
+"ser inserido no drive e só pode ser lido um disco por vez — "
+"consequentemente, estas fontes são geridas de uma forma levemente diferente. "
+"Estas entradas precisam ser adicionadas com o programa <command>apt-"
+"cdrom</command>, normalmente executado com o parâmetro "
+"<literal>add</literal>. Este então vai precisar que o disco seja inserido no "
+"drive e vai navegar pelo disco em busca de arquivos "
+"<filename>Packages</filename>. Ele vai utilizar estes arquivos para "
+"atualizar seu banco de dados de arquivos disponíveis (isto é normalmente "
+"feito pelo comando <command>aptitude update</command>). A partir daí, o APT "
+"pode pedir que o disco seja inserido se ele precisar de um de seus pacotes."
 
 #. Tag: title
 #, no-c-format
 msgid "Other Available Official Repositories"
-msgstr ""
+msgstr "Outros repositórios Oficiais Disponíveis"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis role=\"distribution\">Stable</emphasis> Updates"
-msgstr ""
+msgstr "atualizações da <emphasis role=\"distribution\">Stable</emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>stable-updates</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>stable-updates</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Once published, the <emphasis role=\"distribution\">Stable</emphasis> distribution is only updated about once every 2 months in order to integrate the security updates published on <literal>security.debian.org</literal>."
 msgstr ""
+"Depois de publicada, a distribuição <emphasis "
+"role=\"distribution\">Stable</emphasis> é atualizada em aproximadamente de "
+"dois em dois meses para integrar as atualizações de segurança publicadas no "
+"<literal>security.debian.org</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "This minor release can also include updates for packages that have to evolve over time... like <emphasis role=\"pkg\">spamassassin</emphasis>'s spam detection rules, <emphasis role=\"pkg\">clamav</emphasis>'s virus database, or the daylight-saving rules of all timezones (<emphasis role=\"pkg\">tzdata</emphasis>)."
 msgstr ""
+"Este lançamento menor também pode incluir atualizações de pacotes que "
+"evoluíram ao longo do tempo... como as regras de detecção de spam do "
+"<emphasis role=\"pkg\">spamassassin</emphasis>, o banco de dados de vírus do "
+"<emphasis role=\"pkg\">clamav</emphasis> ou as regras de horário de verão de "
+"todos os fusos horários do (<emphasis role=\"pkg\">tzdata</emphasis>)."
 
 #. Tag: para
 #, no-c-format
 msgid "All those updates are prepared in a repository known as <literal>proposed-updates</literal>. Anyone can use this repository to test those updates before their official publication. The extract below uses the <literal>squeeze-proposed-updates</literal> alias which is both more explicit and more consistent since <literal>lenny-proposed-updates</literal> also exists (for the <emphasis role=\"distribution\">Oldstable</emphasis> updates):"
 msgstr ""
+"Todas estas atualizações são preparadas num repositório conhecido como "
+"<literal>proposed-updates</literal>. Qualquer um pode usar este repositório "
+"para testar estas atualizações antes de sua publicação oficial. O trecho "
+"abaixo usa o alias <literal>squeeze-proposed-updates</literal> que tanto é "
+"mais explícito quanto mais consistente, uma vez que o <literal>lenny-"
+"proposed-updates</literal> também existe (para as atualizações do <emphasis "
+"role=\"distribution\">Oldstable</emphasis>):"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian squeeze-proposed-updates main contrib non-free\n"
 ""
-msgstr ""
+msgstr "deb http://ftp.debian.org/debian squeeze-proposed-updates main contrib non-"
+"free\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Once ready, the most important updates — those which cannot wait for the next minor Debian release — are published in the <literal>stable-updates</literal> repository (which most systems are expected to use):"
 msgstr ""
+"Depois de prontas, as atualizações mais importantes — aquelas que não podem "
+"esperar para o próximo pequeno lançamento do Debian — são publicadas no "
+"repositório <literal>stable-updates</literal> (que espera-se que a maioria "
+"dos sistemas usem):"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian stable-updates main contrib non-free\n"
 ""
-msgstr ""
+msgstr "deb http://ftp.debian.org/debian stable-updates main contrib non-free\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The Backports From <literal>backports.debian.org</literal>"
-msgstr ""
+msgstr "Os retroportes (\"Backports\") de <literal>backports.debian.org</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>backports.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>backports.debian.org</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backport</primary>"
-msgstr ""
+msgstr "<primary>backport</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Unsurprisingly, the <literal>backports.debian.org</literal> server hosts “package backports”. The term refers to a package of some recent software which has been recompiled for an older distribution, generally for <emphasis role=\"distribution\">Stable</emphasis>. When the distribution becomes a little dated, numerous software projects have released new versions that are not integrated into the current <emphasis role=\"distribution\">Stable</emphasis> (which is only modified to address the most critical problems, such as security problems). Since the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> distributions can be more risky, some volunteers sometimes offer recompilations of recent software applications for <emphasis role=\"distribution\">Stable</emphasis>, which has the advantage to limit potential instability to a small number of chosen packages. <ulink type=\"block\" url=\"http://backports.debian.org/\" />"
 msgstr ""
+"Obviamente, o servidor <literal>backports.debian.org</literal> hospeda “ "
+"backports de pacotes”. O termo se refere a um pacote de algum software "
+"recente que foi recompilado para uma distribuição antiga, geralmente para a "
+"<emphasis role=\"distribution\">Stable</emphasis>. Quando a distribuição "
+"começa a envelhecer, vários projetos de software lançam novas versões que "
+"não são integradas na <emphasis role=\"distribution\">Stable</emphasis> atual "
+"(que é modificada apenas para resolver os problemas mais críticos, como "
+"problemas de segunrança). Como as distribuições <emphasis "
+"role=\"distribution\">Testing</emphasis> e <emphasis "
+"role=\"distribution\">Unstable</emphasis> podem ser mais arriscadas, alguns "
+"voluntários oferencem recompilações de software recente para a <emphasis "
+"role=\"distribution\">Stable</emphasis>, que tem a vantagem de limitar "
+"instabilidade potencial a um pequeno número de pacotes escolhidos. <ulink "
+"type=\"block\" url=\"http://backports.debian.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sources.list</filename> entry for backports targeting the <emphasis role=\"distribution\">Squeeze</emphasis> distribution is the following:"
 msgstr ""
+"A entrada para o backports no <filename>sources.list</filename> voltada para "
+"a distribuição <emphasis role=\"distribution\">Squeeze</emphasis> é a "
+"seguinte:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
 ""
-msgstr ""
+msgstr "deb http://backports.debian.org/debian-backports squeeze-backports main "
+"contrib non-free\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <emphasis role=\"distribution\">Experimental</emphasis> Repository"
-msgstr ""
+msgstr "O <emphasis role=\"distribution\">repositório</emphasis> experimental"
 
 #. Tag: indexterm
 #, no-c-format
@@ -485,213 +557,320 @@ msgstr ""
 #, no-c-format
 msgid "The archive of <emphasis role=\"distribution\">Experimental</emphasis> packages is present on all Debian mirrors, and contains packages which are not in the <emphasis role=\"distribution\">Unstable</emphasis> version yet because of their substandard quality — they are often software development versions or pre-versions (alpha, beta, release candidate…). A package can also be sent there after undergoing subsequent changes which can generate problems. The maintainer then tries to uncover them thanks to advanced users who can manage important issues. After this first stage, the package is moved into <emphasis role=\"distribution\">Unstable</emphasis>, where it reaches a much larger audience and where it will be tested in much more detail."
 msgstr ""
+"O arquivamento dos pacotes <emphasis "
+"role=\"distribution\">Experimental</emphasis> existe em todos os espelhos "
+"Debian, e contém pacotes que não estão na versão <emphasis "
+"role=\"distribution\">Unstable</emphasis> \"yet because\" de sua baixa qualidade "
+"— eles são às vezes versões em desenvolvimento ou pré-versões (alfa, beta, "
+"candidatos a lançamento…). Um pacote pode também ser enviado para lá depois "
+"de mudanças que possam gerar problemas. O mantenedor então tenta \"uncover "
+"them\" com a ajuda de usuários avançados que possam lidar com questões "
+"importantes. Depois deste primeiro estágio, o pacote é movido para a "
+"<emphasis role=\"distribution\">Unstable</emphasis>, onde ele alcança uma "
+"audiência muito maior e onde ele será testado em detalhes."
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"distribution\">Experimental</emphasis> is generally used by users who do not mind breaking their system and then repairing it. This distribution gives the possibility to import a package which a user wants to try or use as the need arises. That is exactly how Debian approaches it, since adding it in APT's <filename>sources.list</filename> file does not lead to the systematic use of its packages. The line to be added is:"
 msgstr ""
+"A <emphasis role=\"distribution\">Experimental</emphasis> é geralmente usada "
+"por usuário que não se importam em quebrar o seu sistema e ter que "
+"consertá-lo. Esta distribuição dá a possibilidade de importar um pacote que "
+"o usuário queira testar ou usar quando surge uma necessidade. Esta é "
+"exatamente a abordagem do Debian, já que adicionar a Experimental ao arquivo "
+"<filename>sources.list</filename> do APT não leva ao uso sistemático destes "
+"pacotes. A linha a ser adicionada é:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
 ""
-msgstr ""
+msgstr "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Non-Official Resources: <literal>apt-get.org</literal> and <literal>mentors.debian.net</literal>"
 msgstr ""
+"Recursos não oficial: <literal>apt-get.org</literal> e "
+"<literal>mentors.debian.net</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>apt-get.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>apt-get.org</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>mentors.debian.net</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>mentors.debian.net</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "There are numerous non-official sources of Debian packages set up by advanced users who have recompiled some software, by programmers who make their creation available to all, and even by Debian developers who offer pre-versions of their package online. A web site was set up to find these alternative sources more easily. It contains an impressive amount of Debian package sources which can immediately be integrated into <filename>sources.list</filename> files. However, be careful not to add random packages. Each source is designed for a particular version of Debian (the one used to compile the packages in question); each user should maintain a certain coherence in what they choose to install. <ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
 msgstr ""
+"Existem várias fontes não-oficiais de pacotes Debian configuradas por "
+"usuários avançados que recompilaram algum software, por programadores que "
+"tornam seus produtos disponíveis para todos, e até mesmo por desenvolvedores "
+"Debian que oferecem pré-versões de seus pacotes on-line. Um sítio web foi "
+"configurado para facilitar a busca destas fontes alternativas. Ele contém "
+"uma impressionante quantidade de fontes de pacotes Debian que podem ser "
+"imediatamente integrados nos arquivos <filename>sources.list</filename>. "
+"Entretanto, seja cauteloso para não adicionar pacotes aleatórios. Cada fonte "
+"é feita para uma versão particular do Debian (aquela usada para compilar os "
+"pacotes em questão); cada usuário deve manter uma certa coerência no que "
+"ele escolhe instalar. <ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>mentors.debian.net</literal> site is also interesting, since it gathers packages created by candidates to the status of official Debian developer or by volunteers who wish to create Debian packages without going through that process of integration. These packages are made available without any guarantee regarding their quality; make sure that you check their origin and integrity and then test them before you consider using them in production."
 msgstr ""
+"O sítio <literal>mentors.debian.net</literal> também é interessante, já que "
+"ele \"gather\" pacotes criados por candidatos ao status de desenvolvedor "
+"Debian oficial ou por voluntários que desejam criar pacotes Debian sem "
+"passar pelo processo de integração. Estes pacotes são disponibilizados sem "
+"qualquer garantia de qualidade; certifique-se de verificar a origem e a "
+"integridade e fazer testes antes de usar em produção."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> The <literal>debian.net</literal> sites"
-msgstr ""
+msgstr "<emphasis>COMUNIDADE</emphasis> Os sítios <literal>debian.net</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>debian.net</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>debian.net</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>debian.net</emphasis> domain is not an official resource of the Debian project. Each Debian developer may use that domain name for their own use. These websites can contain unofficial services (sometimes personal sites) hosted on a machine which does not belong to the project and set up by Debian developers, or even prototypes about to be moved on to <emphasis>debian.org</emphasis>. Two reasons can explain why some of these prototypes remain on <emphasis>debian.net</emphasis>: either no one has made the necessary effort to transform it into an official service (hosted on the <emphasis>debian.org</emphasis> domain, and with a certain guarantee of maintenance), or the service is too controversial to be officialized."
 msgstr ""
+"O domínio <emphasis>debian.net</emphasis> não é um recurso oficial do "
+"projeto Debian. Cada desenvolvedor Debian pode usar este domínio  para seu "
+"próprio uso. Estes sítios podem conter serviços não-oficiais (algumas vezes "
+"sítios pessoais) hospedados numa máquina que não pertence ao projeto e que "
+"foram configurados por desenvolvedores Debian, ou podem conter protótipos "
+"prestes a irem para o <emphasis>debian.org</emphasis>. Duas razões podem "
+"explicar por que alguns destes protótipos permanecem no "
+"<emphasis>debian.net</emphasis>: ou por que ninguém fez o esforço necessário "
+"para transformar a coisa num serviço oficial (hospedado no domínio "
+"<emphasis>debian.org</emphasis>, e com uma certa garantia de manutenção), ou "
+"o serviço é muito controverso para ser oficializado."
 
 #. Tag: para
 #, no-c-format
 msgid "Installing a package means giving root rights to its creator, because they decide on the contents of the initialization scripts which are run under that identity. Official Debian packages are created by volunteers who have been co-opted and reviewed and who can seal their packages so that their origin and integrity can be checked."
 msgstr ""
+"Instalar um pacote significa dar permissões de root para seu criador, por "
+"que o criador decide o que fica nos scripts de inicialização que rodam com a "
+"identidade do root. Pacotes Debian oficiais são criados por voluntários que "
+"cooperam e revisam e que marcam seus pacotes de forma que a origem e "
+"integridade deles possam ser verificada."
 
 #. Tag: para
 #, no-c-format
 msgid "In general, be wary of a package whose origin you don't know and which isn't hosted on one of the official Debian servers: evaluate the degree to which you can trust the creator, and check the integrity of the package. <ulink type=\"block\" url=\"http://mentors.debian.net/\" />"
 msgstr ""
+"Em geral, fique alerta com pacotes cuja origem você não conhece e que não "
+"são hospedados em um dos servidores Debian oficiais: avalie o grau em que "
+"você confia no criador, e verifique a integridade do pacote. <ulink "
+"type=\"block\" url=\"http://mentors.debian.net/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Old package versions: <literal>snapshot.debian.org</literal>"
 msgstr ""
+"<emphasis>INDO ALÉM</emphasis> versões de pacotes antigas: "
+"<literal>snapshot.debian.org</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>snapshot.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>snapshot.debian.org</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A new service (introduced in April 2010) can be used to “go backwards in time” and to find an old version of a package. It can be used for example to identify which version of a package introduced a regression, and more concretely, to come back to the former version while waiting for the regression fix."
 msgstr ""
+"Um novo serviço (introduzido em abril de 2010) pode ser usado para \"voltar "
+"no tempo\" e encontrar uma versão antiga de um pacote. Ele pode ser usado por "
+"exemplo para identificar que versão de um pacote introduziu uma regrassão, "
+"e mais concretamente, para voltar à versão anterior enquanto espera que a "
+"regressão seja corrigida."
 
 #. Tag: title
 #, no-c-format
 msgid "<command>aptitude</command> and <command>apt-get</command> Commands"
-msgstr ""
+msgstr "Comandos <command>aptitude</command> e <command>apt-get</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first interface — command-line based — which was developed within the project."
 msgstr ""
+"APT é um projeto amplo, cujos planos originais incluem uma interface "
+"gráfica. Ele é baseado numa biblioteca que contém as aplicações principais, "
+"e o <command>apt-get</command> é a primeira interface — em linha de comando "
+"— que foi desenvolvida dentro do projeto."
 
 #. Tag: para
 #, no-c-format
 msgid "Numerous other graphical interfaces then appeared as external projects: <command>synaptic</command>, <command>aptitude</command> (which includes both a text mode interface and a graphical one — even if not complete yet), <command>wajig</command>, etc. The most recommended interface, <command>aptitude</command>, is the one used during the installation of Debian. Since its command-line syntax is very similar to <command>apt-get</command>'s, we will be focusing on <command>aptitude</command> in the examples given in this section. When there are major differences between <command>aptitude</command> and <command>apt-get</command>, these differences will be detailed."
 msgstr ""
+"Várias outras interfaces gráficas apareceram como projetos externos: "
+"<command>synaptic</command>, <command>aptitude</command> (que tem uma "
+"interface modo texto e uma gráfica — que ainda não está completa), "
+"<command>wajig</command>, etc. A interface mais recomendada, "
+"<command>aptitude</command>, é a usada durante a instalação do Debian. Como "
+"a sua sintaxe de linha de comando é muito similar à do <command>apt-"
+"get</command>, vamos focar no <command>aptitude</command> nos exemplos dados "
+"nesta seção. Quando existirem diferenças substanciais entre o "
+"<command>aptitude</command> e o <command>apt-get</command>, estas diferenças "
+"serão detalhadas."
 
 #. Tag: title
 #, no-c-format
 msgid "Initialization"
-msgstr ""
+msgstr "Initialização"
 
 #. Tag: para
 #, no-c-format
 msgid "For any work with APT, the list of available packages needs to be updated; this can be done simply through <command>aptitude update</command>. Depending on the speed of your connection, the operation can take a while since it involves downloading a certain number of <filename>Packages.(gz|bz2)</filename> files (or even <filename>Sources.(gz|bz2)</filename>), which have gradually become bigger and bigger as Debian has developed (more than 8 MB for the largest <filename>Packages.gz</filename> — from the <literal>main</literal> section). Of course, installing from a CD-ROM set does not require any downloading — in this case, the operation is very fast."
 msgstr ""
+"Para qualquer trabalho com o APT, a lista de pacotes precisa ser atualizada; "
+"isto pode ser feito simplesmente com <command>aptitude update</command>. "
+"Dependendo da velocidade de sua conexão, a operação pode demorar um pouco, "
+"pois ela baixa alguns arquivos <filename>Packages.(gz|bz2)</filename> (ou "
+"até mesmo arquivos <filename>Sources.(gz|bz2)</filename>), que estão se "
+"tornando maiores à medida em que o Debian vai se tornando maior (mais que "
+"8 MB para os últimos <filename>Packages.gz</filename> — da seção "
+"<literal>main</literal>). Obviamente, instalar de um conjunto de CD-ROMs não "
+"baixa nada — neste caso, a operação é bastante rápida."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get update</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get update</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude update</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude update</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing and Removing"
-msgstr ""
+msgstr "Instalação e remoção"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>installation</secondary>"
-msgstr ""
+msgstr "<primary>pacote</primary><secondary>instalação</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>removal</secondary>"
-msgstr ""
+msgstr "<primary>pacote</primary><secondary>remoção</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>of packages</secondary>"
-msgstr ""
+msgstr "<primary>instalação</primary><secondary>de pacotes</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>removal of a package</primary>"
-msgstr ""
+msgstr "<primary>remoção de um pacote</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "With APT, packages can be added or removed from the system, respectively with <command>aptitude install <replaceable>package</replaceable></command> and <command>aptitude remove <replaceable>package</replaceable></command>. In both cases, APT will automatically install the necessary dependencies or delete the packages which depend on the package that is being removed. The <command>aptitude purge <replaceable>package</replaceable></command> or <command>apt-get purge <replaceable>package</replaceable></command> commands involve a complete uninstallation — the configuration files are also deleted."
 msgstr ""
+"Com o APT, os pacotes podem ser adicionados ou removidos do sistema, "
+"respectivamente com <command>aptitude install "
+"<replaceable>pacote</replaceable></command> e <command>aptitude remove "
+"<replaceable>pacote</replaceable></command>. Em ambos os casos, o APT vai "
+"instalar automaticamente as dependências necessárias ou apagar os pacotes "
+"que dependem do pacote que está para ser removido. Os comandos "
+"<command>aptitude purge <replaceable>pacote</replaceable></command> ou "
+"<command>apt-get purge <replaceable>pacote</replaceable></command> envolvem "
+"uma desinstalação completa — os arquivos de configuração também são "
+"apagados."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get install</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get install</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get remove</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get remove</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get purge</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get purge</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude install</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude install</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude remove</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude remove</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude purge</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude purge</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Installing the same selection of packages several times"
 msgstr ""
+"<emphasis>DICA</emphasis> Instalando a mesma seleção de pacotes diversas "
+"vezes"
 
 #. Tag: para
 #, no-c-format
 msgid "It can be useful to systematically install the same list of packages on several computers. This can be done quite easily."
 msgstr ""
+"Pode ser útil instalar sistematicamente a mesma lista de pacotes em vários "
+"computadores. Isso pode ser feito facilmente."
 
 #. Tag: para
 #, no-c-format
 msgid "First, retrieve the list of packages installed on the computer which will serve as the “model” to copy."
 msgstr ""
+"Em primeiro lugar, recupere a lista de pacotes instalados no computador que "
+"servirá como o \"modelo\" para copiar."
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
 ""
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-"
+"list</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>pkg-list</filename> file then contains the list of installed packages. Next, transfer the <filename>pkg-list</filename> file on the computers you want to update and use the following commands:"
 msgstr ""
+"O arquivo <filename>pkg-list</filename> passa a conter a lista dos pacotes "
+"instalados. Em seguida, transfira o arquivo <filename>pkg-list</filename> "
+"para os computadores que você quer atualizar e use os seguintes comandos:"
 
 #. Tag: screen
 #, no-c-format
@@ -699,26 +878,43 @@ msgid "<computeroutput># </computeroutput><userinput>dpkg --set-selections &lt;p
 "<computeroutput># </computeroutput><userinput>apt-get dselect-upgrade</userinput>\n"
 ""
 msgstr ""
+"<computeroutput># </computeroutput><userinput>dpkg --set-selections &lt;pkg-"
+"list</userinput>\n"
+"<computeroutput># </computeroutput><userinput>apt-get dselect-"
+"upgrade</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The first command registers the list of packages you wish to install, then the <command>apt-get</command> invocation executes the required operations! <command>aptitude</command> does not have this command."
 msgstr ""
+"O primeiro comando registra a lista de pacotes que você gostaria de "
+"instalar, e a chamada ao <command>apt-get</command> executa as operações "
+"necessárias! O <command>aptitude</command> não tem este comando."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Removing and installing at the same time"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Removendo e instalando ao mesmo tempo"
 
 #. Tag: para
 #, no-c-format
 msgid "It is possible to ask <command>aptitude</command> (or <command>apt-get</command>) to install certain packages and remove others on the same command line by adding a suffix. With an <command>aptitude install</command> command, add “<literal>-</literal>” to the names of the packages you wish to remove. With an <command>aptitude remove</command> command, add “<literal>+</literal>” to the names of the packages you wish to install."
 msgstr ""
+"É possível pedir ao <command>aptitude</command> (ou <command>apt-"
+"get</command>) para instalar certos pacotes e remover outros na mesma linha "
+"de comando ao adicionar um sufixo. Com um comando <command>aptitude "
+"install</command>, adicione  “<literal>-</literal>” a todos os nomes de "
+"pacotes que você precisa remover. Com um comando <command>aptitude "
+"remove</command>, adicione “<literal>+</literal>” para os nomes dos pacotes "
+"que você precisa instalar."
 
 #. Tag: para
 #, no-c-format
 msgid "The next example shows two different ways to install <replaceable>package1</replaceable> and to remove <replaceable>package2</replaceable>."
 msgstr ""
+"O próximo exemplo mostra duas maneiras diferentes de instalar "
+"<replaceable>package1</replaceable>  \t\n"
+"e remover <replaceable>package2</replaceable>."
 
 #. Tag: screen
 #, no-c-format
@@ -728,88 +924,155 @@ msgid "<computeroutput># </computeroutput><userinput>aptitude install <replaceab
 "[...]\n"
 ""
 msgstr ""
+"<computeroutput># </computeroutput><userinput>aptitude install "
+"<replaceable>package1</replaceable> "
+"<replaceable>package2-</replaceable></userinput>\n"
+"[...]\n"
+"<computeroutput># </computeroutput><userinput>aptitude remove "
+"<replaceable>package1+</replaceable> "
+"<replaceable>package2</replaceable></userinput>\n"
+"[...]\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <command>apt-get --reinstall</command> and <command>aptitude reinstall</command>"
 msgstr ""
+"<emphasis>DICA</emphasis> <command>apt-get --reinstall</command> e "
+"<command>aptitude reinstall</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>reinstallation</primary>"
-msgstr ""
+msgstr "<primary>reinstalação</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The system can sometimes be damaged after the removal or modification of files in a package. The easiest way to retrieve these files is to reinstall the affected package. Unfortunately, the packaging system finds that the latter is already installed and politely refuses to reinstall it; to avoid this, use the <literal>--reinstall</literal> option of the <command>apt-get</command> command. The following command reinstalls <emphasis role=\"pkg\">postfix</emphasis> even if it is already present:"
 msgstr ""
+"O sistema pode, às vezes, ser danificado com a remoção ou modificação de "
+"arquivos num pacote. A forma mais fácil de recuperar estes arquivos é "
+"reinstalar o pacote afetado. Infelizmente, o sistema de empacotamento nota "
+"que o pacote está instalado e se recusa educadamente a reinstalá-lo; para "
+"evitar isto, use a opção <literal>--reinstall</literal> do comando <command"
+">apt-get</command>. o comando abaixo reinstala o <emphasis "
+"role=\"pkg\">postfix</emphasis> mesmo quando ele já está presente:"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
 ""
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>apt-get --reinstall install "
+"postfix</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>aptitude</command> command line is slightly different, but achieves the same result with <command>aptitude reinstall postfix</command>."
 msgstr ""
+"O <command>aptitude</command> em linha de comando é ligeiramente diferente, "
+"mas atinge os mesmos resultados com <command>aptitude reinstall "
+"postfix</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "The problem does not arise with <command>dpkg</command>, but the administrator rarely uses it directly."
 msgstr ""
+"O problema não ocorre com o <command>dpkg</command>, mas o administrador "
+"raramente usa-o diretamente."
 
 #. Tag: para
 #, no-c-format
 msgid "Be careful, using <command>apt-get --reinstall</command> to restore packages modified during an attack certainly cannot recover the system as it was. <xref linkend=\"sect.dealing-with-compromised-machine\" /> details the necessary steps to take with a compromised system."
 msgstr ""
+"Seja cuidadoso, usando <command>apt-get --reinstall</command> para recuperar "
+"pacotes alterados durante um ataque com certeza não trazem o sistema ao que "
+"ele era. <xref linkend=\"sect.dealing-with-compromised-machine\" /> detalha "
+"os passos necessários para lidar com um sistema comprometido."
 
 #. Tag: para
 #, no-c-format
 msgid "If the file <filename>sources.list</filename> mentions several distributions, it is possible to give the version of the package to install. A specific version number can be requested with <command>aptitude install <replaceable>package</replaceable>=<replaceable>version</replaceable></command>, but indicating its distribution of origin (<emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>) — with <command>aptitude install <replaceable>package</replaceable>/<replaceable>distribution</replaceable></command> — is usually preferred. With this command, it is possible to go back to an older version of a package (if for instance you know that it works well), provided that it is still available in one of the sources referenced by the <filename>sources.list</filename> file. Otherwise the <literal>snapshot.debian.org</literal> archive can come to the rescue (see sidebar <xref linkend=\"cadre.snapshot.debian.org\" />)."
 msgstr ""
+"Se o arquivo <filename>sources.list</filename> menciona muitas "
+"distribuições, é possível passar a versão do pacote a instalar. Um número de "
+"versão específico pode ser pedido com <command>aptitude install <replaceabl"
+"e>pacote</replaceable>=<replaceable>versão</replaceable></command>, mas "
+"indicar sua destribuição de origem (<emphasis "
+"role=\"distribution\">Stable</emphasis>, <emphasis "
+"role=\"distribution\">Testing</emphasis> ou <emphasis "
+"role=\"distribution\">Unstable</emphasis>) — com o <command>aptitude install <"
+"replaceable>pacote</replaceable>/<replaceable>distribuição</replaceable></co"
+"mmand> — é normalmente preferido. Com este comando, é possível voltar a uma "
+"versão antiga do pacote (se por exemplo você sabe que isto vai funcionar "
+"bem), desde que ela ainda esteja disponível em alguma das fontes "
+"referenciadas pelo arquivo <filename>sources.list</filename>. Por outro "
+"lado, o arquivamento <literal>snapshot.debian.org</literal> pode vir ao seu "
+"socorro (veja a barra lateral <xref linkend=\"cadre.snapshot.debian.org\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installation of the <emphasis role=\"distribution\">unstable</emphasis> version of <emphasis role=\"pkg\">spamassassin</emphasis>"
 msgstr ""
+"Instalação da versão <emphasis role=\"distribution\">unstable</emphasis> do "
+"<emphasis role=\"pkg\">spamassassin</emphasis>"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>aptitude install spamassassin/unstable</userinput>\n"
 ""
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>aptitude install "
+"spamassassin/unstable</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> The cache of <filename>.deb</filename> files"
 msgstr ""
+"<emphasis>APROFUNDANDO</emphasis> O cache dos arquivos "
+"<filename>.deb</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "APT keeps a copy of each downloaded <filename>.deb</filename> file in the directory <filename>/var/cache/apt/archives/</filename>. In case of frequent updates, this directory can quickly take a lot of disk space with several versions of each package; you should regularly sort through them. Two commands can be used: <command>aptitude clean</command> entirely empties the directory; <command>aptitude autoclean</command> only removes packages which cannot be downloaded (because they have disappeared from the Debian mirror) and are therefore clearly useless (the configuration parameter <literal>APT::Clean-Installed</literal> can prevent the removal of <filename>.deb</filename> files that are currently installed)."
 msgstr ""
+"APT mantém uma cópia de cada arquivo <filename>.deb</filename> baixado no "
+"diretório <filename>/var/cache/apt/archives/</filename>. Caso haja "
+"atualizações frequentes, este diretório pode rapidamente ocupar um grande "
+"espaço em disco com várias versões de cada pacote; você deve regularmente "
+"passear por eles. Dois comandos podem ser usados: <command>aptitude "
+"clean</command> limpa completamente o diretório; <command>aptitude "
+"autoclean</command> limpa apenas pacotes que não podem ser mais baixados "
+"(por terem sumido dos espelhos Debian) e são agora claramente inúteis(o "
+"parâmetro de configuração <literal>APT::Clean-Installed</literal> evita a "
+"remoção de arquivos <filename>.deb</filename> que estão atualmente "
+"instalados)."
 
 #. Tag: title
 #, no-c-format
 msgid "System Upgrade"
-msgstr ""
+msgstr "Atualização do sistema"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>upgrade</primary><secondary>of the system</secondary>"
-msgstr ""
+msgstr "<primary>atualização</primary><secondary>do sistema</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Regular upgrades are recommended, because they include the latest security updates. To upgrade, use <command>aptitude safe-upgrade</command> or <command>apt-get upgrade</command> (of course after <command>aptitude update</command>). This command looks for installed packages which can be upgraded without removing any packages. In other words, the goal is to ensure the least intrusive upgrade possible. <command>apt-get</command> is slightly more demanding than <command>aptitude</command> because it will refuse to install packages which were not installed beforehand."
 msgstr ""
+"atualizações (\"upgrades\") regulares são recomendados, pois eles incluem as "
+"últimas atualizações de segurança. Para atualizar, use <command>aptitude "
+"safe-upgrade</command> ou <command>apt-get upgrade</command> (claro que "
+"depois de um <command>aptitude update</command>). Este comando busca pacotes "
+"instalados que possam ser atualizados sem remover nenhum pacote. Em outras "
+"palavras, o objetivo é garantir uma atualização o menos invasiva possível. "
+"<command>apt-get</command> é um pouco mais pesado que "
+"<command>aptitude</command> por que ele vai se recusar a instalar pacotes "
+"que não estavam instalados antes."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Incremental upgrade"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Atualização incremental"
 
 #. Tag: para
 #, no-c-format
@@ -839,12 +1102,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get upgrade</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude safe-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude safe-upgrade</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -859,37 +1122,37 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get dist-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get dist-upgrade</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude dist-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude dist-upgrade</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude full-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude full-upgrade</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuration Options"
-msgstr ""
+msgstr "Opções de configuração"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>configuration</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>configuração</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>apt.conf.d/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>apt.conf.d/</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -905,11 +1168,13 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Directories ending in <filename>.d</filename>"
 msgstr ""
+"<emphasis>DE VOLTA AO BÁSICO</emphasis> Diretórios terminados em "
+"<filename>.d</filename>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>.d</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>.d</filename></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -934,7 +1199,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Managing Package Priorities"
-msgstr ""
+msgstr "Gerenciar prioridades de pacote"
 
 #. Tag: para
 #, no-c-format
@@ -945,26 +1210,28 @@ msgstr ""
 #, no-c-format
 msgid "<primary>APT</primary><secondary><foreignphrase>pinning</foreignphrase></secondary>"
 msgstr ""
+"<primary>APT</primary><secondary><foreignphrase>pinning</foreignphrase></sec"
+"ondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>priority</secondary>"
-msgstr ""
+msgstr "<primary>pacote</primary><secondary>prioridade</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>preferences</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>preferências</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>preferences</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>preferências</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/preferences</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/preferences</filename></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -975,6 +1242,9 @@ msgstr ""
 #, no-c-format
 msgid "You can modify the priorities by adding entries in the file <filename>/etc/apt/preferences</filename> with the names of the affected packages, their version, their origin and their new priority."
 msgstr ""
+"Você pode modificar as prioridades adicionando entradas no arquivo "
+"<filename>/etc/apt/preferences</filename> com os nomes dos pacotes afetados, "
+"sua versão, sua origem e sua nova prioridade."
 
 #. Tag: para
 #, no-c-format
@@ -995,6 +1265,8 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Priority of <emphasis role=\"distribution\">experimental</emphasis>"
 msgstr ""
+"<emphasis>CASO ESPECÍFICO</emphasis> Prioridade do <emphasis "
+"role=\"distribution\">experimental</emphasis>"
 
 #. Tag: para
 #, no-c-format
@@ -1008,11 +1280,18 @@ msgid "Package: *\n"
 "Pin-Priority: 500\n"
 ""
 msgstr ""
+"Package: *\n"
+"Pin: release a=experimental\n"
+"Pin-Priority: 500\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's suppose that you only want to use packages from the stable version of Debian. Those provided in other versions should not be installed except if explicitly requested. You could write the following entries in the <filename>/etc/apt/preferences</filename> file:"
 msgstr ""
+"Vamos supor que você só quer usar os pacotes da versão estável do Debian. As "
+"previstas em outras versões não devem ser instaladas exceto se "
+"explicitamente solicitado. Você poderia escrever as seguintes entradas do "
+"arquivo <filename>/etc/apt/preferences</filename> :"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1025,6 +1304,13 @@ msgid "Package: *\n"
 "Pin-Priority: -10\n"
 ""
 msgstr ""
+"Package: *\n"
+"Pin: release a=stable\n"
+"Pin-Priority: 900\n"
+"\n"
+"Package: *\n"
+"Pin: release o=Debian\n"
+"Pin-Priority: -10\n"
 
 #. Tag: para
 #, no-c-format
@@ -1043,6 +1329,9 @@ msgid "Package: perl\n"
 "Pin-Priority: 1001\n"
 ""
 msgstr ""
+"Package: perl\n"
+"Pin: version 5.10*\n"
+"Pin-Priority: 1001\n"
 
 #. Tag: para
 #, no-c-format
@@ -1053,16 +1342,18 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Comments in <filename>/etc/apt/preferences</filename>"
 msgstr ""
+"<emphasis>DICA</emphasis> Comentários no "
+"<filename>/etc/apt/preferences</filename>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Explanation</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>Explicação</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pin</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>Pin</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1087,7 +1378,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Working with Several Distributions"
-msgstr ""
+msgstr "Trabalhando com Distribuições Diversas"
 
 #. Tag: para
 #, no-c-format
@@ -1117,7 +1408,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <command>apt-cache policy</command>"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> <command>apt-cache policy</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1141,36 +1432,39 @@ msgid "Package: *\n"
 "Pin-Priority: 490\n"
 ""
 msgstr ""
+"Package: *\n"
+"Pin: release a=unstable\n"
+"Pin-Priority: 490\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <command>apt-cache</command> Command"
-msgstr ""
+msgstr "O Comando <command>apt-cache</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cache</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cache</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>package search</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>buscador de pacotes</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>header display</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>exibição de cabeçalho</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>search of packages</primary>"
-msgstr ""
+msgstr "<primary>busca de pacotes</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>search</secondary>"
-msgstr ""
+msgstr "<primary>pacote</primary><secondary>busca</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1180,7 +1474,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Cache"
-msgstr ""
+msgstr "<emphasis>VOCABULÁRIO</emphasis> Cache"
 
 #. Tag: para
 #, no-c-format
@@ -1205,17 +1499,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Frontends: <command>aptitude</command>, <command>synaptic</command>"
-msgstr ""
+msgstr "Interfaces: <command>aptitude</command>, <command>synaptic</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>synaptic</command></primary>"
-msgstr ""
+msgstr "<primary><command>synaptic</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>interfaces</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>interfaces</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1225,7 +1519,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<command>aptitude</command>"
-msgstr ""
+msgstr "<command>aptitude</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1235,7 +1529,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The <command>aptitude</command> package manager"
-msgstr ""
+msgstr "O gerenciador de pacotes <command>aptitude</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1245,7 +1539,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> <command>aptitude</command>"
-msgstr ""
+msgstr "<emphasis>DOCUMENTAÇÃO</emphasis> <command>aptitude</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1260,7 +1554,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Tracking Automatically Installed Packages"
-msgstr ""
+msgstr "Rastreando Pacotes Instalados Automaticamente"
 
 #. Tag: para
 #, no-c-format
@@ -1283,12 +1577,14 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude why</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude por que</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>WORTH FOLLOWING</emphasis> Recent evolutions of <command>apt-get</command> and <command>aptitude</command>"
 msgstr ""
+"<emphasis>VALE A PENA SEGUIR</emphasis> Evoluções recentes <command>apt-"
+"get</command> e <command>aptitude</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1304,6 +1600,8 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Using <command>aptitude</command> on the command-line interface"
 msgstr ""
+"<emphasis>FERRAMENTA</emphasis> Usando <command>aptitude</command> na "
+"interface de linha de comando"
 
 #. Tag: para
 #, no-c-format
@@ -1319,7 +1617,8 @@ msgstr ""
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
 ""
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>aptitude markauto "
+"'~slibs|~sperl'</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1335,6 +1634,8 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <command>deborphan</command> and <command>debfoster</command>"
 msgstr ""
+"<emphasis>ALTERNATIVA</emphasis> <command>deborphan</command> e "
+"<command>debfoster</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1354,7 +1655,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Managing Recommendations, Suggestions and Tasks"
-msgstr ""
+msgstr "Gerenciando Recomendações, Sugestões e Tarefas"
 
 #. Tag: para
 #, no-c-format
@@ -1389,7 +1690,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> <command>aptitude</command>'s log"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> logs do <command>aptitude</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1404,7 +1705,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<command>synaptic</command>"
-msgstr ""
+msgstr "<command>synaptic</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1414,32 +1715,33 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<command>synaptic</command> package manager"
-msgstr ""
+msgstr "gerenciador de pacotes <command>synaptic</command>"
 
 #. Tag: title
 #, no-c-format
 msgid "Checking Package Authenticity"
-msgstr ""
+msgstr "Verificando Autenticidade do Pacote"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>authenticity check</secondary>"
 msgstr ""
+"<primary>pacote</primary><secondary>verificação de autenticidade</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>seal</secondary>"
-msgstr ""
+msgstr "<primary>pacote</primary><secondary>lacre</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>pacakage</primary><secondary>signature</secondary>"
-msgstr ""
+msgstr "<primary>pacote</primary><secondary>assinatura</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>signature</primary><secondary>of a package</secondary>"
-msgstr ""
+msgstr "<primary>assinatura</primary><secondary>de um pacote</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1454,7 +1756,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-key</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-key</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1489,16 +1791,46 @@ msgid "<computeroutput># </computeroutput><userinput>apt-key fingerprint</userin
 "</computeroutput>\n"
 ""
 msgstr ""
+"<computeroutput># </computeroutput><userinput>apt-key "
+"fingerprint</userinput>\n"
+"<computeroutput>/etc/apt/trusted.gpg\n"
+"--------------------\n"
+"pub   1024D/F42584E6 2008-04-06 [expires: 2012-05-15]\n"
+"    Key fingerprint = 7F5A 4445 4C72 4A65 CBCD  4FB1 4D27 0D06 F425 84E6\n"
+"uid                  Lenny Stable Release Key &lt;debian-"
+"release@lists.debian.org&gt;\n"
+"\n"
+"pub   4096R/55BE302B 2009-01-27 [expires: 2012-12-31]\n"
+"    Key fingerprint = 150C 8614 919D 8446 E01E  83AF 9AA3 8DCD 55BE 302B\n"
+"uid                  Debian Archive Automatic Signing Key (5.0/lenny) "
+"&lt;ftpmaster@debian.org&gt;\n"
+"\n"
+"pub   2048R/6D849617 2009-01-24 [expires: 2013-01-23]\n"
+"    Key fingerprint = F6CF DE30 6133 3CE2 A43F  DAF0 DFD9 9330 6D84 9617\n"
+"uid                  Debian-Volatile Archive Automatic Signing Key "
+"(5.0/lenny)\n"
+"\n"
+"pub   4096R/B98321F9 2010-08-07 [expires: 2017-08-05]\n"
+"    Key fingerprint = 0E4E DE2C 7F3E 1FC0 D033  800E 6448 1591 B983 21F9\n"
+"uid                  Squeeze Stable Release Key &lt;debian-"
+"release@lists.debian.org&gt;\n"
+"\n"
+"pub   4096R/473041FA 2010-08-27 [expires: 2018-03-05]\n"
+"    Key fingerprint = 9FED 2BCB DCD2 9CDF 7626  78CB AED4 B06F 4730 41FA\n"
+"uid                  Debian Archive Automatic Signing Key (6.0/squeeze) "
+"&lt;ftpmaster@debian.org&gt;\n"
+"\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Adding trusted keys"
-msgstr ""
+msgstr "<emphasis>NA PRÁTICA</emphasis> Adicionando chaves confiáveis"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>trusted key</primary>"
-msgstr ""
+msgstr "<primary>chave confiável</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1523,7 +1855,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Upgrading from One Stable Distribution to the Next"
-msgstr ""
+msgstr "Atualizando de uma Versão Estável para a Próxima"
 
 #. Tag: para
 #, no-c-format
@@ -1533,7 +1865,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Recommended Procedure"
-msgstr ""
+msgstr "Procedimento Recomendado"
 
 #. Tag: para
 #, no-c-format
@@ -1543,7 +1875,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Release notes"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Notas de lançamento"
 
 #. Tag: para
 #, no-c-format
@@ -1569,7 +1901,8 @@ msgstr ""
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>deborphan | xargs aptitude remove</userinput>\n"
 ""
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>deborphan | xargs aptitude "
+"remove</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1619,7 +1952,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Handling Problems after an Upgrade"
-msgstr ""
+msgstr "Lidando com Problemas após uma Atualização"
 
 #. Tag: para
 #, no-c-format
@@ -1664,7 +1997,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Keeping a System Up to Date"
-msgstr ""
+msgstr "Mantendo um Sistema Atualizado"
 
 #. Tag: para
 #, no-c-format
@@ -1689,7 +2022,7 @@ msgstr ""
 #. Tag: term
 #, no-c-format
 msgid "<literal>APT::Periodic::Update-Package-Lists</literal>"
-msgstr ""
+msgstr "<literal>APT::Periodic::Update-Package-Lists</literal>"
 
 #. Tag: para
 #, no-c-format
@@ -1699,7 +2032,7 @@ msgstr ""
 #. Tag: term
 #, no-c-format
 msgid "<literal>APT::Periodic::Download-Upgradeable-Packages</literal>"
-msgstr ""
+msgstr "<literal>APT::Periodic::Download-Upgradeable-Packages</literal>"
 
 #. Tag: para
 #, no-c-format
@@ -1709,7 +2042,7 @@ msgstr ""
 #. Tag: term
 #, no-c-format
 msgid "<literal>APT::Periodic::AutocleanInterval</literal>"
-msgstr ""
+msgstr "<literal>APT::Periodic::AutocleanInterval</literal>"
 
 #. Tag: para
 #, no-c-format
@@ -1729,17 +2062,18 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Upgrading with <command>update-manager</command>"
-msgstr ""
+msgstr "Atualizando com <command>update-manager</command>"
 
 #. Tag: title
 #, no-c-format
 msgid "Automatic Upgrades"
-msgstr ""
+msgstr "Atualizações Automáticas"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>upgrade</primary><secondary>automatic (of the system)</secondary>"
 msgstr ""
+"<primary>atualização</primary><secondary>automática (do sistema)</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1749,7 +2083,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring <command>dpkg</command>"
-msgstr ""
+msgstr "Configurando <command>dpkg</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1759,7 +2093,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring APT"
-msgstr ""
+msgstr "Configurando APT"
 
 #. Tag: para
 #, no-c-format
@@ -1769,7 +2103,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring <command>debconf</command>"
-msgstr ""
+msgstr "Configurando <command>debconf</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1789,7 +2123,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Handling Command Line Interactions"
-msgstr ""
+msgstr "Lidando com Interações Via Linha de Comando"
 
 #. Tag: para
 #, no-c-format
@@ -1804,7 +2138,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The Miracle Combination"
-msgstr ""
+msgstr "A Combinação Miraculosa"
 
 #. Tag: para
 #, no-c-format
@@ -1814,7 +2148,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Non-interactive upgrade script"
-msgstr ""
+msgstr "Roteiro de atualização não interativa"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1822,11 +2156,14 @@ msgid "export DEBIAN_FRONTEND=noninteractive\n"
 "yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
 ""
 msgstr ""
+"export DEBIAN_FRONTEND=noninteractive\n"
+"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options"
+"::=\"--force-confold\" dist-upgrade\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> The Falcot Corp case"
-msgstr ""
+msgstr "<emphasis>NÁ PRÁTICA</emphasis> O caso Falcot Corp"
 
 #. Tag: para
 #, no-c-format
@@ -1851,7 +2188,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Searching for Packages"
-msgstr ""
+msgstr "Buscando por Pacotes"
 
 #. Tag: para
 #, no-c-format
@@ -1866,7 +2203,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Package naming conventions"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Convenções de nomes de pacote"
 
 #. Tag: para
 #, no-c-format
@@ -1884,7 +2221,7 @@ msgid "For more complex searches, a more powerful tool such as <command>aptitude
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "<computeroutput>p   kino  - Non-linear editor for Digital Video data\n"
 "$ </computeroutput><userinput>aptitude show kino</userinput>\n"
@@ -1919,6 +2256,40 @@ msgid "<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo
 "      works-with::video, x11::application</computeroutput>\n"
 ""
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>aptitude search "
+"kino~dvideo~mpaul</userinput>\n"
+"<computeroutput>p   kino  - Non-linear editor for Digital Video data\n"
+"$ </computeroutput><userinput>aptitude show kino</userinput>\n"
+"<computeroutput>Package: kino\n"
+"State: not installed\n"
+"Version: 1.3.4-1+b1\n"
+"Priority: extra\n"
+"Section: video\n"
+"Maintainer: Paul Brossier &lt;piem@debian.org&gt;\n"
+"Uncompressed Size: 9519k\n"
+"Depends: libasound2 (&gt; 1.0.18), libatk1.0-0 (&gt;= 1.20.0),\n"
+"         libavc1394-0 (&gt;= 0.5.3), libavcodec52 (&gt;= "
+"4:0.5+svn20090706-3) |\n"
+"         libavcodec-extra-52 (&gt;= 4:0.5+svn20090706-3), libavformat52\n"
+"         […]\n"
+"Recommends: ffmpeg, gawk | mawk, curl\n"
+"Suggests: udev | hotplug, vorbis-tools, sox, mjpegtools, lame, ffmpeg2theora\n"
+"Conflicts: kino-dvtitler, kino-timfx, kinoplus\n"
+"Replaces: kino-dvtitler, kino-timfx, kinoplus\n"
+"Provides: kino-dvtitler, kino-timfx, kinoplus\n"
+"Description: Non-linear editor for Digital Video data\n"
+" Kino allows you to record, create, edit, and play movies recorded with\n"
+" DV camcorders. This program uses many keyboard commands for fast\n"
+" navigating and editing inside the movie.\n"
+" \n"
+" The kino-timfx, kino-dvtitler and kinoplus sets of plugins, formerly\n"
+" distributed as separate packages, are now provided with Kino.\n"
+"Homepage: http://www.kinodv.org/\n"
+"\n"
+"Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
+"      interface::x11, role::program, scope::application,\n"
+"      suite::gnome, uitoolkit::gtk, use::editing, \n"
+"      works-with::video, x11::application</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1939,6 +2310,8 @@ msgstr ""
 #, no-c-format
 msgid "To sum up, the best tool for the job depends on the complexity of the search that you wish to do:"
 msgstr ""
+"Para sumarizar, a melhor ferramenta para o trabalho depende da complexidade "
+"da busca que você deseja fazer:"
 
 #. Tag: para
 #, no-c-format
@@ -1958,7 +2331,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format

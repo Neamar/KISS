@@ -1,5 +1,6 @@
 # 
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Zaki Akhmad <za@students.ee.itb.ac.id>, 2013.
 #
 msgid ""
 msgstr ""
@@ -15,122 +16,122 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Backport"
-msgstr ""
+msgstr "Backport"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Rebuild"
-msgstr ""
+msgstr "Rebuild"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Source package"
-msgstr ""
+msgstr "Source package"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Archive"
-msgstr ""
+msgstr "Archive"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Meta-package"
-msgstr ""
+msgstr "Meta-package"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Debian Developer"
-msgstr ""
+msgstr "Debian Developer"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Maintainer"
-msgstr ""
+msgstr "Maintainer"
 
 #. Tag: title
 #, no-c-format
 msgid "Creating a Debian Package"
-msgstr ""
+msgstr "Membuat paket Debian"
 
 #. Tag: para
 #, no-c-format
 msgid "It is quite common, for an administrator who has been handling Debian packages in a regular fashion, to eventually feel the need to create their own packages, or to modify an existing package. This chapter aims to answer the most common questions in this field, and provide the required elements to take advantage of the Debian infrastructure in the best way. With any luck, after trying your hand for local packages, you may even feel the need to go further than that and join the Debian project itself!"
-msgstr ""
+msgstr "Sudah menjadi hal umum bagi administrator yang rutin menangani paket Debian, pada suatu saat ingin membuat paket Debian-nya sendiri, atau memodifikasi paket yang sudah ada. Bab ini berusaha menjawab pertanyaan yang paling sering diajukan dalam topik paket Debian, dan menyediakan bagian-bagian yang diperlukan untuk memanfaatkan keunggulan infrastruktur Debian dengan cara terbaik. Dengan sedikit keberuntungan, setelah mencoba sendiri membuat paket Debian, bisa jadi Anda merasa tertarik untuk melanjutkan dan bergabung dengan proyek Debian itu sendiri!"
 
 #. Tag: title
 #, no-c-format
 msgid "Rebuilding a Package from its Sources"
-msgstr ""
+msgstr "Membangun ulang sebuah Paket dari Source-nya"
 
 #. Tag: para
 #, no-c-format
 msgid "Rebuilding a binary package is required under several sets of circumstances. In some cases, the administrator needs a software feature that requires the software to be compiled from sources, with a particular compilation option; in others, the software as packaged in the installed version of Debian is not recent enough. In the latter case, the administrator will usually build a more recent package taken from a newer version of Debian — such as <emphasis role=\"distribution\">Testing</emphasis> or even <emphasis role=\"distribution\">Unstable</emphasis> — so that this new package works in their <emphasis role=\"distribution\">Stable</emphasis> distribution; this operation is called “backporting”. As usual, care should be taken, before undertaking such a task, to check whether it has been done already. This can be checked at the <literal>backports.debian.org</literal> site. <indexterm><primary>backport</primary></indexterm>"
-msgstr ""
+msgstr "Membangun ulang sebuah paket binari dibutuhkan dalam beberapa kondisi. Dalam kondisi tertentu, administrator membutuhkan fitur perangkat lunak yang mensyaratkan untuk di-compile dari source, dengan opsi kompilasi tertentu; atau pada sisi lain, perangkat yang dipaketkan dalam Debian yang ter-install tidak cukup anyar. Pada kasus kedua, administrator umumnya akan mem-build paket yang lebih baru diambil dari Debian dengan versi yang lebih baru — seperti <emphasis role=\"distribution\">Testing</emphasis> atau bahkan <emphasis role=\"distribution\">Unstable</emphasis> — sehingga paket yang lebih baru ini dapat bekerja pada distribusi <emphasis role=\"distribution\">Stable</emphasis> mereka; operasi ini disebut dengan “backporting”. Seperti biasa, perlu hati-hati sebelum memutuskan melakukan backporting. Periksa apakah sebelumnya sudah pernah dilakukan, dengan cara melihat di situs <literal>backports.debian.org</literal>. <indexterm><primary>backport</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Getting the Sources"
-msgstr ""
+msgstr "Mendapatkan Source"
 
 #. Tag: para
 #, no-c-format
 msgid "Rebuilding a Debian package starts with getting its source code. The easiest way is to use the <command>apt-get source <replaceable>source-package-name</replaceable></command> command. This command requires a <literal>deb-src</literal> line in the <filename>/etc/apt/sources.list</filename> file, and up-to-date index files (i.e. <command>apt-get update</command>). These conditions should already be met if you followed the instructions from the chapter dealing with APT configuration (see <xref linkend=\"sect.apt-sources.list\" />). Note however, that you'll be downloading the source packages from the Debian version mentioned in the <literal>deb-src</literal> line. If you need another version, you may need to download it manually from a Debian mirror or from the web site. This involves fetching two or three files (with extensions <filename>*.dsc</filename> — for <emphasis>Debian Source Control</emphasis> — <filename>*.tar.<replaceable>comp</replaceable></filename>, and sometimes <filename>*.diff.gz</filename> or <filename>*.debian.tar.<replaceable>comp</replaceable></filename> — <replaceable>comp</replaceable> taking one value among <literal>gz</literal>, <literal>bz2</literal>, <literal>lzma</literal> or <literal>xz</literal> depending on the compression tool in use), then run the <command>dpkg-source -x <replaceable>file.dsc</replaceable></command> command. If the <filename>*.dsc</filename> file is directly accessible at a given URL, there's an even simpler way to fetch it all, with the <command>dget <replaceable>URL</replaceable></command> command. This command (which can be found in the <emphasis role=\"pkg\">devscripts</emphasis> package) fetches the <filename>*.dsc</filename> file at the given address, then analyzes its contents, and automatically fetches the file or files referenced within. With the <literal>-x</literal> option, the source package is even unpacked locally after download."
-msgstr ""
+msgstr "Membangun ulang sebuah paket Debian dimulai dengan mendapatkan kode sumber. Cara yang paling mudah adalah menggunakan perintah <command>apt-get source <replaceable>source-package-name</replaceable></command>. Perintah ini membutuhkan baris <literal>deb-src</literal> pada berkas  <filename>/etc/apt/sources.list</filename>, dan berkas indeks yang anyar (contoh <command>apt-get update</command>). Kondisi ini harusnya sudah terpenuhi jika Anda mengikuti instruksi dari bab mengenai konfigurasi APT (lihat <xref linkend=\"sect.apt-sources.list\" />). Perhatikan, bahwa Anda akan mengunduh paket source dari versi Debian yang disebutkan dalam baris <literal>deb-src</literal>. Jika Anda membutuhkan versi lainnya, Anda dapat mengunduh secara manual dari cermin Debian atau dari situs web. Hal ini melibatkan dua atau tiga berkas (dengan ekstensi <filename>*.dsc</filename> — untuk <emphasis>Debian Source Control</emphasis> — <filename>*.tar.<replaceable>comp</replaceable></filename>, dan terkadang <filename>*.diff.gz</filename> atau <filename>*.debian.tar.<replaceable>comp</replaceable></filename> — <replaceable>comp</replaceable> dengan alternatif <literal>gz</literal>, <literal>bz2</literal>, <literal>lzma</literal> or <literal>xz</literal> tergantung perkakas kompresi yang digunakan), lalu jalankan perintah <command>dpkg-source -x <replaceable>file.dsc</replaceable></command>. Jika berkas <filename>*.dsc</filename> dapat diakses langsung pada URL tertentu, terdapat cara yang lebih sederhana untuk mem-fetch-nya, yaitu dengan perintah <command>dget <replaceable>URL</replaceable></command>. Perintah ini (yang dapat ditemukan di paket <emphasis role=\"pkg\">devscripts</emphasis>) mem-fetch berkas <filename>*.dsc</filename> pada alamat yang diberikan, menganalisis isinya, dan secara otomatis mem-fetch berkas yang tereferensi di dalamnya. Dengan opsi <literal>-x</literal>, paket sumber di-unpack usai selesai diunduh."
 
 #. Tag: title
 #, no-c-format
 msgid "Making Changes"
-msgstr ""
+msgstr "Membuat Perubahan"
 
 #. Tag: para
 #, no-c-format
 msgid "The source of the package is now available in a directory named after the source package and its version (for instance, <emphasis>samba-3.0.24</emphasis>); this is where we'll work on our local changes."
-msgstr ""
+msgstr "Source dari paket sekarang tersedia di dalam direktori dengan nama paket sumber berikut dengan versinya (sebagai contoh, <emphasis>samba-3.0.24</emphasis>); di sini lah kita akan bekerja untuk melakukan perubahan lokal."
 
 #. Tag: para
 #, no-c-format
 msgid "The first thing to do is to change the package version number, so that the rebuilt packages can be distinguished from the original packages provided by Debian. Assuming the current version is <literal>3.0.24-6</literal>, we can create version <literal>3.0.24-6.falcot1</literal>, which clearly indicates the origin of the package. This makes the package version number higher than the one provided by Debian, so that the package will easily install as an update do the original package. Such a change is best effected with the <command>dch</command> command (<emphasis>Debian CHangelog</emphasis>) from the <emphasis role=\"pkg\">devscripts</emphasis> package, with an invocation such as <command>dch -v 3.0.24-6.falcot1</command>. This invocation invokes a text editor (<command>sensible-editor</command> — this should be your favorite editor if it's mentioned in the <varname>VISUAL</varname> or <varname>EDITOR</varname> environment variables, and default editor otherwise) to allow documenting the differences brought by this rebuild. This editor shows us that <command>dch</command> really did change the <filename>debian/changelog</filename> file."
-msgstr ""
+msgstr "Hal pertama yang perlu dilakukan adalah mengubah nomor versi paket, sehingga paket hasil rebuilt dapat dibedakan dari paket asalnya yang disediakan Debian. Dengan asumsi versi saat ini adalah <literal>3.0.24-6</literal>, kita dapat membuat versi <literal>3.0.24-6.falcot1</literal>, yang dengan jelas menandakan asal dari paket. Hal ini membuat nomor versi paket lebih tinggi dari yang disediakan Debian, sehingga paket akan dengan mudah ter-install sebagai pemutakhiran dari paket asalnya. Perubahan seperti ini paling baik dihasilkan menggunakan perintah <command>dch</command> (<emphasis>Debian CHangelog</emphasis>) dari paket <emphasis role=\"pkg\">devscripts</emphasis>, dengan invokasi seperti <command>dch -v 3.0.24-6.falcot1</command>. Invokasi ini meng-invoke penyunting teks (<command>sensible-editor</command> — ini harus menjadi penyunting teks favorit Anda jika disebutkan variabel lingkungan <varname>VISUAL</varname> atau <varname>EDITOR</varname> dan penyunting teks default) untuk dapat mendokumentasikan perbedaan yang dihasilkan oleh rebuild ini. Penyunting ini menunjukkan bahwa <command>dch</command> benar-benar mengubah berkas <filename>debian/changelog</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "When a change in build options is required, changes are made to <filename>debian/rules</filename>, which drives the steps in the package build process. In the simplest cases, the lines concerning the initial configuration (<literal>./configure …</literal>) or the actual build (<literal>$(MAKE) …</literal> or <literal>make …</literal>) are easy to spot. If these commands are not explicitly called, they are probably a side effect of another explicit command, in which case please refer to their documentation to learn more about how to change the default behavior."
-msgstr ""
+msgstr "Saat perubahan pada opsi build diperlukan, perubahan dibuat pada <filename>debian/rules</filename>, yang membuat langkah-langkah pada proses build. Pada kasus yang paling sederhana, baris terkait konfigurasi awal (<literal>./configure …</literal>) atau pada build sesungguhnya (<literal>$(MAKE) …</literal> atau <literal>make …</literal>) dapat dengan mudah ditemukan. Jika perintah ini tidak dipanggil secara eksplisit, mereka merupakan efek samping dari perintah eksplisit lainnya, yang pada kasus tertentu mengacu pada dokumentasi mereka untuk mempelajari lebih lanjut bagaimana mengubah perilaku default."
 
 #. Tag: para
 #, no-c-format
 msgid "Depending on the local changes to the packages, an update may also be required in the <filename>debian/control</filename> file, which contains a description of the generated packages. In particular, this file contains <literal>Build-Depends</literal> lines controlling the list of dependencies that must be fulfilled at package build time. These often refer to versions of packages contained in the distribution the source package comes from, but which may not be available in the distribution used for the rebuild. There is no automated way to determine if a dependency is real or only specified to guarantee that the build should only be attempted with the latest version of a library — this is the only available way to force an <emphasis>autobuilder</emphasis> to use a given package version during build, which is why Debian maintainers frequently use strictly versioned build-dependencies."
-msgstr ""
+msgstr "Tergantung pada perubahan lokal pada paket, pemutakhiran bisa jadi dibutuhkan dalam berkas <filename>debian/control</filename>, yang berisi deskripsi dari paket yang dihasilkan. Secara spesifik, berkas ini berisi baris <literal>Build-Depends</literal> yang mengendalikan daftar dependensi yang perlu dipenuhi pada paket yang dibangun. Hal ini seringkali mengacu pada versi paket yang ada di dalam distribusi dari sumber paket asal, namun tidak tersedia di dalam distribusi yang digunakan untuk rebuild. Tidak ada cara otomatis untuk menentukan jika dependensi benar-benar dibutuhkan atau hanya disebutkan untuk menjamin bahwa build hanya dicoba dengan versi terbaru dari pustaka — ini merupakan satu-satunya cara untuk memaksa <emphasis>autobuilder</emphasis> untuk menggunakan versi paket yang diberikan selama proses build, hal inilah mengapa Debian maintainer seringkali menggunakan versi build-dependencies yang ketat."
 
 #. Tag: para
 #, no-c-format
 msgid "If you know for sure that these build-dependencies are too strict, you should feel free to relax them locally. Reading the files which document the standard way of building the software — these files are often called <filename>INSTALL</filename> — will help you figure out the appropriate dependencies. Ideally, all dependencies should be satisfiable from the distribution used for the rebuild; if they are not, a recursive process starts, whereby the packages mentioned in the <literal>Build-Depends</literal> field must be backported before the target package can be. Some packages may not need backporting, and can be installed as-is during the build process (a notable example is <emphasis role=\"pkg\">debhelper</emphasis>). Note that the backporting process can quickly become complex if you are not vigilant. Therefore, backports should be kept to a strict minimum when possible."
-msgstr ""
+msgstr "Jika Anda yakin mengetahui bahwa build-dependencies terlalu ketat, Anda bebas untuk melonggarkannya secara lokal. Dengan membaca berkas yang mendokumentasikan standar membangun perangkat lunak — berkas ini sering disebut sebagai <filename>INSTALL</filename> — akan membantu Anda mengetahui dependensi yang sesuai. Idealnya, semua dependensi harus dapat dipenuhi dari distribusi yang digunakan untuk rebuild; jika tidak, sebuah proses rekursif dimulai, yaitu saat paket yang disebutkan dalam field  <literal>Build-Depends</literal> harus di-backport sebelum paket target dapat di-backport. Beberapa paket bisa jadi tidak perlu di-backport, dan dapat di-install apa-adanya selama proses build (contoh yang jelas adalah <emphasis role=\"pkg\">debhelper</emphasis>). Perlu dicatat bahwa proses backport dapat dengan cepat menjadi kompleks jika Anda tidak vigilant. Oleh karena itu, backport sedapat mungkin diminimalisir."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Installing <literal>Build-Depends</literal>"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> Menginstall <literal>Build-Depends"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><literal>Build-Depends</literal>, control field</primary></indexterm> <command>apt-get</command> allows installing all packages mentioned in the <literal>Build-Depends</literal> fields of a source package available in a distribution mentioned in a <literal>deb-src</literal> line of the <filename>/etc/apt/sources.list</filename> file. This is a simple matter of running the <command>apt-get build-dep <replaceable>source-package</replaceable></command> command."
-msgstr ""
+msgstr "<indexterm><primary><literal>Build-Depends</literal>, control field</primary></indexterm> <command>apt-get</command> memungkinkan meng-install paket yang disebutkan dalam field <literal>Build-Depends</literal> dari paket sumber tersedia di dalam distribusi yang disebutkan dalam baris <literal>deb-src</literal> dalam berkas <filename>/etc/apt/sources.list</filename>. Hal ini merupakan masalah sederhana dengan menjalankan perintah <command>apt-get build-dep <replaceable>source-package</replaceable></command>."
 
 #. Tag: title
 #, no-c-format
 msgid "Starting the Rebuild"
-msgstr ""
+msgstr "Memulai Rebuild"
 
 #. Tag: para
 #, no-c-format
 msgid "When all the needed changes have been applied to the sources, we can start generating the actual binary package (<filename>.deb</filename> file). The whole process is managed by the <command>dpkg-buildpackage</command> command."
-msgstr ""
+msgstr "Saat semua perubahan yang diperlukan telah diterapkan pada sumber, kita dapat memulai membuat paket binari sesungguhnya (<filename>.deb</filename> file). Semua proses ini dikelola oleh perintah <command>dpkg-buildpackage</command>."
 
 #. Tag: title
 #, no-c-format
 msgid "Rebuilding a package"
-msgstr ""
+msgstr "Membangun ulang sebuah paket"
 
 #. Tag: screen
 #, no-c-format
@@ -138,87 +139,90 @@ msgid "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg-buildpackage -us -uc</userinput>\n"
 "[...]\n"
 ""
-msgstr ""
+msgstr "\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg-buildpackage -us -uc</userinput>\n"
+"[...]\n"
+""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> <command>fakeroot</command>"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> <command>fakeroot</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "In essence, the package creation process is a simple matter of gathering in an archive a set of existing (or build) files; most of the files will end up being owned by <emphasis>root</emphasis> in the archive. However, building the whole package under this user would imply increased risks; fortunately, this can be avoided with the <command>fakeroot</command> command. This tool can be used to run a program and give it the impression that it runs as <emphasis>root</emphasis> and creates files with arbitrary ownership and permissions. When the program creates the archive that will become the Debian package, it is tricked into creating an archive containing files marked as belonging to arbitrary owners, including <emphasis>root</emphasis>. This setup is so convenient that <command>dpkg-buildpackage</command> uses <command>fakeroot</command> by default when building packages."
-msgstr ""
+msgstr "Esensinya, proses pembuatan paket adalah perihal pengumpulan sekumpulan berkas yang ada dalam sebuah archive; mayoritas berkas akan berakhir dengan dimiliki oleh <emphasis>root</emphasis> dalam arsip. Namun, membangun seluruh paket dengan pengguna root akan secara langsung meningkatkan risiko; untungnya hal ini dapat dihindari dengan perintah <command>fakeroot</command>. Perkakas ini dapat digunakan untuk menjalankan sebuah program dan memberikan kesan pengguna berjalan seolah-olah sebagai <emphasis>root</emphasis> dan membuat berkas dengan kepemilikan dan izin arbitrer (arbitrary ownership and permissions). Saat program membuat archive yang akan menjadi paket Debian, hal ini diakali dengan membuat sebuah archive yang mengandung berkas ditandai dengan kepemilikan arbitrer, termasuk <emphasis>root</emphasis>. Persiapan ini sungguh nyaman sehingga <command>dpkg-buildpackage</command> menggunakan <command>fakeroot</command> secara default saat membangun paket."
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the program is only tricked into “believing” that it operates as a privileged account, and the process actually runs as the user running <command>fakeroot <replaceable>program</replaceable></command> (and the files are actually created with that user's permissions). At no time does it actually get root privileges that it could abuse."
-msgstr ""
+msgstr "Perhatikan bahwa program hanya mengakali sehingga “seolah-olah percaya” beroperasi dengan akun ber-privilege, dan proses sesungguhnya berjalan sebagai pengguna menjalankan <command>fakeroot <replaceable>program</replaceable></command> (dan berkas sesungguhnya dibuat dengan permission pengguna). Dalam proses ini sama sekali tidak menggunakan privilege root sehingga tidak mungkin terjadi abuse."
 
 #. Tag: para
 #, no-c-format
 msgid "The previous command can fail if the <literal>Build-Depends</literal> fields have not been updated, or if the related packages are not installed. In such a case, it is possible to overrule this check by passing the <literal>-d</literal> option to <command>dpkg-buildpackage</command>. However, explicitly ignoring these dependencies runs the risk of the build process failing at a later stage. Worse, the package may seem to build correctly but fail to run properly: some programs automatically disable some of their features when a required library is not available at build time."
-msgstr ""
+msgstr "Perintah sebelumnya dapat gagal jika field <literal>Build-Depends</literal> belum diperbaharui, atau jika paket terkait tidak ter-install. Pada kasus seperti ini, mungkin untuk meng-overrule kondisi ini dengan memberikan opsi <literal>-d</literal> ke <command>dpkg-buildpackage</command>. Namun, dengan secara eksplisit mengacuhkan dependensi ini akan berisiko terjadi kegagalan pada tahap berikutnya. Lebih buruk lagi, paket bisa jadi terlihat di-build dengan benar namun tidak berjalan sebagaimana mestinya: beberapa program secara otomatis men-disable beberapa fitur saat pustaka yang dibutuhkan tidak tersedia saat waktu build."
 
 #. Tag: para
 #, no-c-format
 msgid "More often than not, Debian developers use a higher-level program such as <command>debuild</command>; this runs <command>dpkg-buildpackage</command> as usual, but it also adds an invocation of a program that runs many checks to validate the generated package against the Debian policy. This script also cleans up the environment so that local environment variables do not “pollute” the package build. The <command>debuild</command> command is one of the tools in the <emphasis>devscripts</emphasis> suite, which share some consistency and configuration to make the maintainers' task easier."
-msgstr ""
+msgstr "Lebih sering, pengembang Debian menggunakan program dengan tingkat lebih tinggi (higher-level program) seperti <command>debuild</command>; debuild menjalankan <command>dpkg-buildpackage</command>, namun juga menambahkan invokasi dari program yang menjalankan pemeriksaan untuk memvalidasi paket terhadap Debian policy. Script ini juga membersihkan environment sehingga variabel environment lokal tidak “mengotori” paket yang di-build. Perintah <command>debuild</command> adalah salah satu perkakas dalam <emphasis>devscripts</emphasis> suite, yang berbagi konsistensi yang sama dan konfigurasi yang sama untuk membuat pekerjaan maintainer menjadi lebih mudah."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> <command>pbuilder</command>"
-msgstr ""
+msgstr "<emphasis>SEKILAS</emphasis> <command>pbuilder</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pbuilder</command></primary>"
-msgstr ""
+msgstr "<primary><command>pbuilder</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>pbuilder</command> program (in the similarly named package) allows building a Debian package in a <emphasis>chrooted</emphasis> environment. It first creates a temporary directory containing the minimal system required for building the package (including the packages mentioned in the <emphasis>Build-Depends</emphasis> field). This directory is then used as the root directory (<filename>/</filename>), using the <command>chroot</command> command, during the build process."
-msgstr ""
+msgstr "Program <command>pbuilder</command> (dalam paket dengan nama mirip) memungkinkan mem-build paket Debian dalam lingkungan <emphasis>chrooted</emphasis>. Pada awalnya pbuilder membuat direktori temporer berisi sistem minimal yang dibutuhkan untuk mem-build paket (termasuk paket yang disebutkan dalam field <emphasis>Build-Depends</emphasis>). Direktori ini digunakan sebagai direktori root (<filename>/</filename>), menggunakan perintah <command>chroot</command>, saat proses build."
 
 #. Tag: para
 #, no-c-format
 msgid "This tool allows the build process to happen in an environment that is not altered by users' manipulations. This also allows for quick detection of the missing build-dependencies (since the build will fail unless the appropriate dependencies are documented). Finally, it allows building a package for a Debian version that is not the one used by the system as a whole: the machine can be using <emphasis role=\"distribution\">Stable</emphasis> for its normal workload, and a <command>pbuilder</command> running on the same machine can be using <emphasis role=\"distribution\">Unstable</emphasis> for package builds."
-msgstr ""
+msgstr "Perkakas ini memungkinkan proses build terjadi dalam lingkungan yang tidak dikotak-katik oleh pengguna. Hal ini juga memungkinkan untuk mendeteksi build-dependencies yang hilang (karena build akan gagal kecuali dependensi terkait didokumentasikan). Akhirnya, pbuilder memungkinkan untuk membangun paket versi Debian yang tidak digunakan oleh sistem secara keseluruhan: mesin dapat menggunakan <emphasis role=\"distribution\">Stable</emphasis> untuk beban kerja normal, dan <command>pbuilder</command> berjalan pada mesin yang sama menggunakan <emphasis role=\"distribution\">Unstable</emphasis> untuk membangun paket."
 
 #. Tag: title
 #, no-c-format
 msgid "Building your First Package"
-msgstr ""
+msgstr "Membangun Ulang Paket Pertama Anda"
 
 #. Tag: title
 #, no-c-format
 msgid "Meta-Packages or Fake Packages"
-msgstr ""
+msgstr "Meta-Packages atau Paket Palsu"
 
 #. Tag: para
 #, no-c-format
 msgid "Fake packages and meta-packages are similar, in that they are empty shells that only exist for the effects their meta-data have on the package handling stack."
-msgstr ""
+msgstr "Paket palsu dan meta-packages, sebenarnya mirip. Keduanya merupakan shell kosong yang ada hanya untuk membuat meta-data mereka dimuat di dalam package handling stack."
 
 #. Tag: para
 #, no-c-format
 msgid "The purpose of a fake package is to trick <command>dpkg</command> and <command>apt</command> into believing that some package is installed even though it's only an empty shell. This allows satisfying dependencies on a package when the corresponding software was installed outside the scope of the packaging system. Such a method works, but it should still be avoided whenever possible, since there's no guarantee that the manually installed software behaves exactly like the corresponding package would and other packages depending on it would not work properly."
-msgstr ""
+msgstr "Tujuan dari paket palsu adalah mengakali <command>dpkg</command> dan <command>apt</command> sehingga percaya bahwa paket ter-install biarpun hanya berupa shell kosong. Hal ini memungkinkan memenuhi dependensi dari paket saat perangkat lunak terkait ter-install di luar ruang lingkup sistem pemaketan. Metode seperti ini bekerja, namun sedapat mungkin dihindari, karena tidak ada jaminan bahwa perangkat lunak yang ter-install berperilaku persis seperti paket terkait dan paket lainnya yang tergantung padanya tidak bekerja sebagaimana mestinya."
 
 #. Tag: para
 #, no-c-format
 msgid "On the other hand, a meta-package exists mostly as a collection of dependencies, so that installing the meta-package will actually bring in a set of other packages in a single step."
-msgstr ""
+msgstr "Di sisi lain, sebuah meta-package mayoritas ada sebagai kumpulan dari dependensi, sehingga meng-install meta-package sesungguhnya akan mendatangkan paket lain dalam satu langkah."
 
 #. Tag: para
 #, no-c-format
 msgid "Both these kinds of packages can be created by the <command>equivs-control</command> and <command>equivs-build</command> commands (in the <emphasis role=\"pkg\">equivs</emphasis> package). The <command>equivs-control <replaceable>file</replaceable></command> command creates a Debian package header file that should be edited to contain the name of the expected package, its version number, the name of the maintainer, its dependencies, and its description. Other fields without a default value are optional and can be deleted. The <literal>Copyright</literal>, <literal>Changelog</literal>, <literal>Readme</literal> and <literal>Extra-Files</literal> fields are not standard fields in Debian packages; they only make sense within the scope of <command>equivs-build</command>, and they will not be kept in the headers of the generated package."
-msgstr ""
+msgstr "Kedua jenis paket ini dapat dibuat dengan perintah <command>equivs-control</command> dan <command>equivs-build</command>. Perintah <command>equivs-control <replaceable>file</replaceable></command> membuat berkas header paket Debian yang harus disunting agar terdapat nama dari paket yang diinginkan, nomor versinya, nama dari maintainer, dependensi, dan deskripsinya. Field lainnya tanpa nilai default adalah opsional dan dapat dihapus. Field <literal>Copyright</literal>, <literal>Changelog</literal>, <literal>Readme</literal> dan <literal>Extra-Files</literal> bukan merupakan field standar dalam paket Debian; mereka hanya relevan dalam ruang lingkup <command>equivs-build</command>, dan mereka tidak akan disimpan dalam header dari paket yang dihasilkan."
 
 #. Tag: title
 #, no-c-format
 msgid "Header file of the <emphasis>libxml-libxml-perl</emphasis> fake package"
-msgstr ""
+msgstr "Berkas header dari <emphasis>libxml-libxml-perl</emphasis> paket palsu"
 
 #. Tag: programlisting
 #, no-c-format
@@ -240,27 +244,44 @@ msgid "\n"
 " of the module has been manually compiled &amp; installed in the\n"
 " site_perl directory.\n"
 ""
-msgstr ""
+msgstr "\n"
+"Section: perl\n"
+"Priority: optional\n"
+"Standards-Version: 3.8.4\n"
+"\n"
+"Package: libxml-libxml-perl\n"
+"Version: 1.57-1\n"
+"Maintainer: Raphael Hertzog &lt;hertzog@debian.org&gt;\n"
+"Depends: libxml2 (&gt;= 2.6.6)\n"
+"Architecture: all\n"
+"Description: Fake package - module manually installed in site_perl\n"
+" This is a fake package to let the packaging system\n"
+" believe that this Debian package is installed. \n"
+" .\n"
+" In fact, the package is not installed since a newer version\n"
+" of the module has been manually compiled &amp; installed in the\n"
+" site_perl directory.\n"
+""
 
 #. Tag: para
 #, no-c-format
 msgid "The next step is to generate the Debian package with the <command>equivs-build <replaceable>file</replaceable></command> command. Voilà: the package is created in the current directory and it can be handled like any other Debian package would."
-msgstr ""
+msgstr "Langkah selanjutnya adalah membuat paket Debian dengan perintah <command>equivs-build <replaceable>file</replaceable></command>. Voilà: paket dibuat pada direktori saat ini dan dapat dapat diperlakukan sebagaimana paket Debian lainnya. "
 
 #. Tag: title
 #, no-c-format
 msgid "Simple File Archive"
-msgstr ""
+msgstr "Berkas Archive Sederhana"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators need to create a Debian package in order to ease deployment of a set of documents on a large number of machines. The administrator in charge of this task first reads the “New Maintainer's Guide”, then starts working on their first package. <ulink type=\"block\" url=\"http://www.debian.org/doc/maint-guide/\" />"
-msgstr ""
+msgstr "Administrator Falcot Corp butuh membuat paket Debian agar dapat mempermudah proses deployment sekian dokumen pada banyak mesin. Administrator yang bertanggung jawab akan pekerjaan ini pertama perlu membaca “New Maintainer's Guide” (Panduan Maintainer Baru), lalu mulai bekerja pada paket pertamanya.<ulink type=\"block\" url=\"http://www.debian.org/doc/maint-guide/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The first step is creating a <filename>falcot-data-1.0</filename> directory to contain the target source package. The package will logically, be named <literal>falcot-data</literal> and bear the <literal>1.0</literal> version number. The administrator then places the document files in a <filename>data</filename> subdirectory. Then they invoke the <command>dh_make</command> command (from the <emphasis role=\"pkg\">dh-make</emphasis> package) to add files required by the package generation process, which will all be stored in a <filename>debian</filename> subdirectory:"
-msgstr ""
+msgstr "Langkah pertama adalah membuat direktori <filename>falcot-data-1.0</filename> berisi target dari paket sumber. Paket secara logika akan dinamakan <literal>falcot-data</literal> dan dengan nomor versi <literal>1.0</literal>. Administrator selanjutnya meletakkan berkas dokumen dalam subdirektori <filename>data</filename>. Lalu mereka meng-invoke perintah <command>dh_make</command> (dari paket <emphasis role=\"pkg\">dh-make</emphasis>) untuk menambah berkas yang dibutuhkan oleh proses pembuatan paket, yang akan disimpan dalam subdirektori <filename>debian</filename>:"
 
 #. Tag: screen
 #, no-c-format
@@ -285,27 +306,47 @@ msgid "\n"
 "check that the falcot-data Makefiles install into $DESTDIR and not in / .\n"
 "$</computeroutput>\n"
 ""
-msgstr ""
+msgstr "\n"
+"<computeroutput>$ </computeroutput><userinput>cd falcot-data-1.0</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>dh_make --native</userinput>\n"
+"<computeroutput>\n"
+"Type of package: single binary, indep binary, multiple binary, library, kernel module, kernel patch or cdbs?\n"
+" [s/i/m/l/k/n/b] </computeroutput><userinput>i</userinput>\n"
+"<computeroutput>\n"
+"Maintainer name : Raphael Hertzog\n"
+"Email-Address   : hertzog@debian.org\n"
+"Date            : Mon, 11 Apr 2011 15:11:36 +0200\n"
+"Package Name    : falcot-data\n"
+"Version         : 1.0\n"
+"License         : blank\n"
+"Usind dpatch    : no\n"
+"Type of Package : Independent\n"
+"Hit &lt;enter&gt; to confirm:\n"
+"Currently there is no top level Makefile. This may require additional tuning.\n"
+"Done. Please edit the files in the debian/ subdirectory now. You should also\n"
+"check that the falcot-data Makefiles install into $DESTDIR and not in / .\n"
+"$</computeroutput>\n"
+""
 
 #. Tag: para
 #, no-c-format
 msgid "The selected type of package (<emphasis>single binary</emphasis>) indicates that this source package will generate a single binary package depending on the architecture (<literal>Architecture: any</literal>). <emphasis>indep binary</emphasis> acts as a counterpart, and leads to a single binary package that is not dependent on the target architecture (<literal>Architecture: all</literal>). In this case, the latter choice is more relevant since the package only contains documents and no binary programs, so it can be used similarly on computers of all architectures."
-msgstr ""
+msgstr "Tipe paket yang dipilih (<emphasis>single binary</emphasis>) menandakan bahwa paket sumber ini akan menghasilkan sebuah paket binari single bergantung pada arsitektur (<literal>Architecture: any</literal>). <emphasis>indep binary</emphasis> bertindak sebagai lawannya, dan menghasilkan paket binari single yang tidak bergantung pada arsitektur target (<literal>Architecture: all</literal>). Dalam kasus ini, pilihan yang terakhir lebih relevan karena paket hanya mengandung dokumen dan tidak ada binari program, jadi dapat digunakan pada semua komputer dari semua arsitektur."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>multiple binary</emphasis> type corresponds to a source package leading to several binary packages. A particular case, <emphasis>library</emphasis>, is useful for shared libraries, since they need to follow strict packaging rules. In a similar fashion, <emphasis>kernel module</emphasis> should be restricted to packages containing kernel modules. Finally, <emphasis>cdbs</emphasis> is a specific package build system; it is rather flexible, but it requires some amount of learning. <indexterm><primary>package types</primary></indexterm> <indexterm><primary>package</primary><secondary>types</secondary></indexterm>"
-msgstr ""
+msgstr "Tipe <emphasis>multiple binary</emphasis> terkait ke paket sumber yang menghasilkan beberapa paket binari. Pada kasus khusus, <emphasis>library</emphasis>, berguna untuk shared libraries, karena mereka perlu mengikuti aturan pemaketan yang ketat. Dalam kasus serupa, <emphasis>kernel module</emphasis> harus dibatasi ke paket yang mengandung modul kernel. Akhirnya, <emphasis>cdbs</emphasis> adalah paket build system spesifik; sebenarnya cenderung fleksibel, namun membutuhkan waktu untuk mempelajarinya. <indexterm><primary>package types</primary></indexterm> <indexterm><primary>package</primary><secondary>types</secondary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Maintainer's name and email address"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> Nama dan alamat surel Maintainer"
 
 #. Tag: para
 #, no-c-format
 msgid "Most of the programs involved in package maintenance will look for your name and email address in the <varname>DEBFULLNAME</varname> and <varname>DEBEMAIL</varname> or <varname>EMAIL</varname> environment variables. Defining them once and for all will avoid you having to type them multiple times. If your usual shell is <command>bash</command>, it's a simple matter of adding the following two lines in your <filename>~/.bashrc</filename> and <filename>~/.bash_profile</filename> files (you will obviously replace the values with more relevant ones!):"
-msgstr ""
+msgstr "Kebanyakan program yang terlibat dalam pengelolaan paket akan mencari nama Anda dan alamat surel dalam variabel environment <varname>DEBFULLNAME</varname> dan <varname>DEBEMAIL</varname> atau <varname>EMAIL</varname>. Definisikan variabel ini sekali dan selamanya akan menghindari Anda dari harus mengisi-nya berulang kali. Jika shell Anda adalah <command>bash</command>, sesederhana menambahkan dua baris berikut dalam <filename>~/.bashrc</filename> dan <filename>~/.bash_profile</filename> (tentunya Anda akan mengisi dengan nilai yang relevan!):"
 
 #. Tag: programlisting
 #, no-c-format
@@ -313,22 +354,25 @@ msgid "\n"
 "export EMAIL=\"hertzog@debian.org\"\n"
 "export DEBFULLNAME=\"Raphael Hertzog\"\n"
 ""
-msgstr ""
+msgstr "\n"
+"export EMAIL=\"hertzog@debian.org\"\n"
+"export DEBFULLNAME=\"Raphael Hertzog\"\n"
+""
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>dh_make</command> command created a <filename>debian</filename> subdirectory with many files. Some are required, in particular <filename>rules</filename>, <filename>control</filename>, <filename>changelog</filename> and <filename>copyright</filename>. Files with the <filename>.ex</filename> extension are example files that can used by modifying them (and removing the extension) when appropriate. When they are not needed, removing them is recommended. The <filename>compat</filename> file should be kept, since it is required for the correct functioning of the <emphasis>debhelper</emphasis> suite of programs (all beginning with the <command>dh_</command> prefix) used at various stages of the package build process."
-msgstr ""
+msgstr "Perintah <command>dh_make</command> membuat sebuah subdirektori <filename>debian</filename> dengan banyak berkas. Beberapa diperlukan, khususnya <filename>rules</filename>, <filename>control</filename>, <filename>changelog</filename> dan <filename>copyright</filename>. Berkas dengan ekstensi <filename>.ex</filename> adalah contoh yang dapat digunakan dengan memodifikasi mereka (dan menghapus ekstensi) saat diperlukan. Saat mereka tidak lagi diperlukan, removing adalah hal yand direkomendasikan. Berkas <filename>compat</filename> harus disimpan, karena dibutuhkan agar kumpulan program <emphasis>debhelper</emphasis> berfungsi dengan benar (semuanya dimulai dengan awalan <command>dh_</command>) yang digunakan pada beragam tingkat proses pembuatan paket."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>copyright</filename> file must contain information about the authors of the documents included in the package, and the related license. In our case, these are internal documents and their use is restricted to within the Falcot Corp company. The default <filename>changelog</filename> file is generally appropriate; replacing the “Initial release” with a more verbose explanation and changing the distribution from <literal>unstable</literal> to <literal>internal</literal> is enough. The <filename>control file</filename> was also updated: the section has been changed to <emphasis>misc</emphasis> and the <literal>Homepage</literal>, <literal>Vcs-Git</literal> and <literal>Vcs-Browser</literal> fields were removed. The <literal>Depends</literal> fields was completed with <literal>iceweasel | www-browser</literal> so as to ensure the availability of a web browser able to display the documents in the package."
-msgstr ""
+msgstr "Berkas <filename>copyright</filename> harus berisi informasi tentang penulis dari dokumen yang dimasukkan dalam paket, dan lisensi terkait. Dalam kasus kita, hal ini merupakan dokumen internal dan penggunaan mereka terbatas dalam perusahaan Falcot. Berkas default <filename>changelog</filename> umumnya cukup; menggantikan “Rilis awal” dengan penjelasan yang lebih rinci dan mengubah distribusi dari <literal>unstable</literal> ke <literal>internal</literal> sudah cukup. <filename>control file</filename> juga diperbaharui: bagian ini telah dibuah menjadi <emphasis>misc</emphasis> dan field <literal>Homepage</literal>, <literal>Vcs-Git</literal> dan <literal>Vcs-Browser</literal> dihapus. Field <literal>Depends</literal> dilengkapi dengan <literal>iceweasel | www-browser</literal> untuk memastikan ketersediaan perambah web dapat menampilkan dokumen dalam paket."
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>control</filename> file"
-msgstr ""
+msgstr "Berkas <filename>control</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -352,12 +396,31 @@ msgid "\n"
 " These documents MUST NOT leave the company.\n"
 " Their use is INTERNAL ONLY.\n"
 ""
-msgstr ""
+msgstr "\n"
+"Source: falcot-data\n"
+"Section: misc\n"
+"Priority: optional\n"
+"Maintainer: Raphael Hertzog &lt;hertzog@debian.org&gt;\n"
+"Build-Depends: debhelper (&gt;= 7.0.50~)\n"
+"Standards-Version: 3.8.4\n"
+"\n"
+"Package: falcot-data\n"
+"Architecture: all\n"
+"Depends: iceweasel | www-browser, ${misc:Depends}\n"
+"Description: Internal Falcot Corp Documentation\n"
+" This package provides several documents describing the internal\n"
+" structure at Falcot Corp.  This includes:\n"
+"  - organization diagram\n"
+"  - contacts for each department.\n"
+" .\n"
+" These documents MUST NOT leave the company.\n"
+" Their use is INTERNAL ONLY.\n"
+""
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>changelog</filename> file"
-msgstr ""
+msgstr "Berkas <filename>changelog</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -371,12 +434,21 @@ msgid "\n"
 "\n"
 " -- Raphael Hertzog &lt;hertzog@debian.org&gt;  Mon, 11 Apr 2011 20:46:33 +0200\n"
 ""
-msgstr ""
+msgstr "\n"
+"falcot-data (1.0) internal; urgency=low\n"
+"\n"
+"  * Initial Release.\n"
+"  * Let's start with few documents:\n"
+"    - internal company structure;\n"
+"    - contacts for each department.\n"
+"\n"
+" -- Raphael Hertzog &lt;hertzog@debian.org&gt;  Mon, 11 Apr 2011 20:46:33 +0200\n"
+""
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>copyright</filename> file"
-msgstr ""
+msgstr "Berkas <filename>copyright</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -392,22 +464,33 @@ msgid "\n"
 "\n"
 "    All rights reserved.\n"
 ""
-msgstr ""
+msgstr "\n"
+"This work was packaged for Debian by Raphael Hertzog &lt;hertzog@debian.org&gt;\n"
+"on Mon, 11 Apr 2011 20:46:33 +0200\n"
+"\n"
+"Copyright:\n"
+"\n"
+"    Copyright (C) 2004-2011 Falcot Corp\n"
+"\n"
+"License:\n"
+"\n"
+"    All rights reserved.\n"
+""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <filename>Makefile</filename> file"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Berkas <filename>Makefile</filename>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Makefile</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Makefile</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A <filename>Makefile</filename> file is a script used by the <command>make</command> program; it describes rules for how to build a set of files from each other in a tree of dependencies (for instance, a program can be build from a set of source files). The <filename>Makefile</filename> file describes these rules in the following format:"
-msgstr ""
+msgstr "Berkas <filename>Makefile</filename> adalah sebuah script yang digunakan oleh program <command>make</command>; Berkas ini mendeskripsikan bagaimana mem-build sekumpulan berkas dari berkas lainnya dalam dependensi tree (contohnya, sebuah program dapat di-build dari beberapa berkas sumber). Berkas <filename>Makefile</filename> mendeskripsikan aturan ini dalam format berikut:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -416,44 +499,50 @@ msgid "\n"
 "        command1\n"
 "        command2\n"
 ""
-msgstr ""
+msgstr "\n"
+"target: sources\n"
+"        command1\n"
+"        command2\n"
+""
 
 #. Tag: para
 #, no-c-format
 msgid "The interpretation of such a rule is as follows: if one of the files of <literal>sources</literal> is more recent than the <literal>target</literal> file, then the target needs to be generated, using <command>command1</command> and <command>command2</command>."
-msgstr ""
+msgstr "Interpretasi dari aturan tersebut sebagai berikut: jika salah satu dari berkas <literal>sources</literal> lebih baru dari berkas <literal>target</literal>, maka target perlu dibuat, menggunakan <command>command1</command> dan <command>command2</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the command lines must start with a tab character; also note that when a command line starts with a dash character (<literal>-</literal>), failure of the command does not interrupt the whole process."
-msgstr ""
+msgstr "Perhatikan bahwa command line harus dimulai dengan karakter tab; perhatikan juga bahwa saat command line dimulai dengan karakter dash (<literal>-</literal>), kegagalan dari perintah meng-interupsi seluruh proses."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>rules</filename> file usually contains a set of rules used to configure, build and install the software in a dedicated subdirectory (named after the generated binary package). The contents of this subdirectory is then archived within the Debian package as if it were the root of the filesystem. In our case, files will be installed in the <filename>debian/falcot-data/usr/share/falcot-data/</filename> subdirectory, so that installing the generated package will deploy the files under <filename>/usr/share/falcot-data/</filename>. The <filename>rules</filename> file is used as a <filename>Makefile</filename>, with a few standard targets (including <literal>clean</literal> and <literal>binary</literal>, used respectively to clean the source directory and generate the binary package)."
-msgstr ""
+msgstr "Berkas <filename>rules</filename> umumnya berisi sekumpulan rules yang digunakan untuk meng-konfigurasi, build dan install perangkat lunak dalam subdirektori terdedikasi (dinamakan setelah paket binari dihasilkan). Isi dari subdirektori ini selanjutnya diarsipkan dalam paket Debian seolah sebagai root dari filesystem. Dalam kasus kami, berkas akan di-install dalam subdirektori <filename>debian/falcot-data/usr/share/falcot-data/</filename>, jadi meng-install paket yang dihasilkan akan men-deploy berkas di bawah <filename>/usr/share/falcot-data/</filename>. Berkas <filename>rules</filename> digunakan sebagai <filename>Makefile</filename>, dengan beberapa target standar (termasuk <literal>clean</literal> dan <literal>binary</literal>, digunakan untuk membersihkan direktori sumber dan menghasilkan paket binari)."
 
 #. Tag: para
 #, no-c-format
 msgid "Although this file is the heart of the process, it increasingly contains only the bare minimum for running a standard set of commands provided by the <command>debhelper</command> tool. Such is the case for files generated by <command>dh_make</command>. To install our files, we simply configure the behavior of the <command>dh_install</command> command by creating the following <filename>debian/falcot-data.install</filename> file:"
-msgstr ""
+msgstr "Walaupun berkas ini merupakan jantung dari proses, lama kelamaan hanya berisi bare minimum untuk menjalankan sekumpulan perintah yang disediakan oleh perkakas <command>debhelper</command>. Sebagai contoh dalam kasus untuk berkas yang dihasilkan oleh <command>dh_make</command>. Untuk menginstall berkas kita, kita hanya perlu mengkonfigurasi perilaku dari perintah <command>dh_install</command> dengan membuat berkas berikut <filename>debian/falcot-data.install</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
 "data/* usr/share/falcot-data/\n"
 ""
-msgstr ""
+msgstr "\n"
+"data/* usr/share/falcot-data/\n"
+""
 
 #. Tag: para
 #, no-c-format
 msgid "At this point, the package can be created. We will however add a lick of paint. Since the administrators want the documents to be easily accessed from the Help menus of graphical desktop environment, we create an entry in the Debian menu system. This is simply done by renaming the <filename>debian/menu.ex</filename> without its extension and editing it as follows:"
-msgstr ""
+msgstr "Pada titik ini, paket dapat dibuat. Namun kita akan namun menumpahkan sedikit cat. Karena administrator ingin dokumen dapat diakses dengan mudah dari menu Bantuan dalam lingkungan grafis desktop, kita membuat sebuah entri dalam menu sistem Debian. Hal ini dilakukan sederhana dengan cara menamakan-ulang <filename>debian/menu.ex</filename> tanpa ekstensi dan menyuntingnya sebagai berikut:"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>menu</filename> file"
-msgstr ""
+msgstr "Berkas <filename>menu</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -465,67 +554,74 @@ msgid "\n"
 "  title=\"Internal Falcot Corp Documentation\" \\\n"
 "  command=\"/usr/bin/www-browser /usr/share/falcot-data/index.html\"\n"
 ""
-msgstr ""
+msgstr "\n"
+"?package(falcot-data):needs=X11|wm section=Help\\\n"
+"  title=\"Internal Falcot Corp Documentation\" \\\n"
+"  command=\"/usr/bin/x-www-browser /usr/share/falcot-data/index.html\"\n"
+"?package(falcot-data):needs=text section=Help\\\n"
+"  title=\"Internal Falcot Corp Documentation\" \\\n"
+"  command=\"/usr/bin/www-browser /usr/share/falcot-data/index.html\"\n"
+""
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>needs</literal> field, when set to <literal>X11|wm</literal> indicates that this entry only makes sense in a graphical interface. It will therefore only be integrated into the menus of the graphical (X11) applications and window managers (hence the <literal>wm</literal>). The <literal>section</literal> field states where in the menu the entry should be displayed. In our case, the entry will be in the Help menu. The <literal>title</literal> field contains the text that will be displayed in the menu. Finally, the <literal>command</literal> field describes the command to run when the user selects the menu entry."
-msgstr ""
+msgstr "Field <literal>needs</literal>, saat di-set menjadi <literal>X11|wm</literal> menandakan bahwa entri ini hanya relevan dalam antarmuka grafis. Hal ini selanjutnya akan disatukan ke dalam menu dari aplikasi grafis (X11) dan window manager (karena <literal>wm</literal>). Field <literal>section</literal> menyatakan di mana menu dan akan ditampilkan. Dalam kasus kita, entri akan ditampilkan dalam menu Bantuan. Field <literal>title</literal> berisi teks yang akan ditampilkan dalam menu. Akhirnya, field <literal>command</literal> mendeskripsikan perintah yang perlu dijalankan saat pengguna memilih entri menu."
 
 #. Tag: para
 #, no-c-format
 msgid "The second entry matches the first one, with slight adaptations adapted to the Linux console text mode."
-msgstr ""
+msgstr "Entri kedua cocok dengan yang pertama, dengan adaptasi secukupnya mengadopsi mode teks konsol linux."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> Menu organization"
-msgstr ""
+msgstr "<emphasis>DEBIAN POLICY</emphasis> Organisasi Menu"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian menus are organized in a formal structure, documented in the following text: <ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/menu-policy/\" />"
-msgstr ""
+msgstr "Menu Debian diatur dalam struktur formal, terdokumentasi dalam teks berikut: <ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/menu-policy/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>section</literal> in a <filename>menu</filename> file should be picked from the list mentioned in this document."
-msgstr ""
+msgstr "<literal>section</literal> dalam <filename>menu</filename> perlu dipilih dari daftar yang disebutkan dalam dokumen ini."
 
 #. Tag: para
 #, no-c-format
 msgid "Simply creating the <filename>debian/menu</filename> file is enough to enable the menu in the package, since the <command>dh_installmenu</command> command is automatically invoked by <command>dh</command> during the package build process."
-msgstr ""
+msgstr "Cukup dengan membuat berkas <filename>debian/menu</filename> dapat untuk mengaktifkan menu dalam paket, karena perintah <command>dh_installmenu</command> secara otomatis di-invoke oleh <command>dh</command> selama proses pembuatan paket."
 
 #. Tag: para
 #, no-c-format
 msgid "Our source package is now ready. All that's left to do is to generate the binary package, with the same method we used previously for rebuilding packages: we run the <command>dpkg-buildpackage -us -uc</command> command from within the <filename>falcot-data-1.0</filename> directory."
-msgstr ""
+msgstr "Paket sumber kita sekarang sudah siap. Yang perlu dilakukan hanya membuat paket binari, dengan metode yang sama yang kita gunakan sebelumnya untuk membangun ulang paket: kita jalankan perintah <command>dpkg-buildpackage -us -uc</command> dari direktori <filename>falcot-data-1.0</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "Creating a Package Repository for APT"
-msgstr ""
+msgstr "Membuat Repositori Paket untuk APT"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package archive</primary>"
-msgstr ""
+msgstr "<primary>package archive</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>Debian</secondary><tertiary>archive of</tertiary>"
-msgstr ""
+msgstr "<primary>package</primary><secondary>Debian</secondary><tertiary>archive of</tertiary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Falcot Corp gradually started maintaining a number of Debian packages either locally modified from existing packages or created from scratch to distribute internal data and programs."
-msgstr ""
+msgstr "Falcor Corp perlahan mulai mengelola sejumlah paket Debian baik dimodifikasi lokal dari paket yang sudah ada atau membuat dari awal untuk mendistribusikan data internal dan program."
 
 #. Tag: para
 #, no-c-format
 msgid "To make deployment easier, they want to integrate these packages in a package archive that can be directly used by APT. For obvious maintenance reasons, they wish to separate internal packages from locally-rebuilt packages. The goal is for the matching entries in a <filename>/etc/apt/sources.list</filename> file to be as follows:"
-msgstr ""
+msgstr "Untuk membuat deployent lebih mudah, mereka ingin mengintegrasikan paket-paket ke dalam sebuah arsip paket yang dapat digunakan langsung oleh APT. Untuk alasan pengelolaan, mereka ingin memisahkan paket internal dari paket yang dibangun-ulang-lokal. Tujuannya adalah untuk menyamakan entri berkas <filename>/etc/apt/sources.list</filename> sebagai berikut:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -533,27 +629,30 @@ msgid "\n"
 "deb http://packages.falcot.com/ updates/\n"
 "deb http://packages.falcot.com/ internal/\n"
 ""
-msgstr ""
+msgstr "\n"
+"deb http://packages.falcot.com/ updates/\n"
+"deb http://packages.falcot.com/ internal/\n"
+""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mini-dinstall</command></primary>"
-msgstr ""
+msgstr "<primary><command>mini-dinstall</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The administrators therefore configure a virtual host on their internal HTTP server, with <filename>/srv/vhosts/packages/</filename> as the root of the associated web space. The management of the archive themselves is delegated to the <command>mini-dinstall</command> command (in the similarly-named package). This tool keeps an eye on an <filename>incoming/</filename> directory (in our case, <filename>/srv/vhosts/packages/mini-dinstall/incoming/</filename>) and waits for new packages there; when a package is uploaded, it is installed into a Debian archive at <filename>/srv/vhosts/packages/</filename>. The <command>mini-dinstall</command> command reads the <filename>*.changes</filename> file created when the Debian package is generated. These files contain a list of all other files associated to the version of the package (<filename>*.deb</filename>, <filename>*.dsc</filename>, <filename>*.diff.gz</filename>/<filename>*.debian.tar.gz</filename>, <filename>*.orig.tar.gz</filename>, or their equivalents with other compression tools), and they allow <command>mini-dinstall</command> to know which files to install. <filename>*.changes</filename> files also contain the name of the target distribution (often <literal>unstable</literal>) mentioned in the latest <filename>debian/changelog</filename> entry, and <command>mini-dinstall</command> uses this information to decide where the package should be installed. This is why administrators must always change this field before building a package, and set it to <literal>internal</literal> or <literal>updates</literal>, depending on the target location. <command>mini-dinstall</command> then generates the files required by APT, such as <filename>Packages.gz</filename>."
-msgstr ""
+msgstr "..."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <command>apt-ftparchive</command>"
-msgstr ""
+msgstr "<emphasis>ALTERNATIF</emphasis> <command>apt-ftparchive</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-ftparchive</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-ftparchive</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -569,17 +668,23 @@ msgid "\n"
 "<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages internal &gt;internal/Packages</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>gzip internal/Packages</userinput>\n"
 ""
-msgstr ""
+msgstr "\n"
+"<computeroutput>$ </computeroutput><userinput>cd /srv/vhosts/packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages updates &gt;updates/Packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>gzip updates/Packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages internal &gt;internal/Packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>gzip internal/Packages</userinput>\n"
+""
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>apt-ftparchive sources</command> command allows creating <filename>Sources.gz</filename> files in a similar fashion."
-msgstr ""
+msgstr "Perintah <command>apt-ftparchive sources</command> mengizinkan membuat berkas <filename>Sources.gz</filename> dengan cara yang mirip."
 
 #. Tag: para
 #, no-c-format
 msgid "Configuring <command>mini-dinstall</command> requires setting up a <filename>~/.mini-dinstall.conf</filename> file; in the Falcot Corp case, the contents are as follows:"
-msgstr ""
+msgstr "Mengkonfigurasi <command>mini-dinstall</command> membutuhkan menyiapkan sebuah berkas <filename>~/.mini-dinstall.conf</filename>; dalam kasus Falcot Corp, isinya adalah sebagai berikut:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -601,405 +706,422 @@ msgid "\n"
 "[internal]\n"
 "release_label = Internal Packages\n"
 ""
-msgstr ""
+msgstr "\n"
+"[DEFAULT]\n"
+"archive_style = flat\n"
+"archivedir = /srv/vhosts/packages\n"
+"\n"
+"verify_sigs = 0\n"
+"mail_to = admin@falcot.com\n"
+"\n"
+"generate_release = 1\n"
+"release_origin = Falcot Corp\n"
+"release_codename = stable\n"
+"\n"
+"[updates]\n"
+"release_label = Recompiled Debian Packages\n"
+"\n"
+"[internal]\n"
+"release_label = Internal Packages\n"
+""
 
 #. Tag: para
 #, no-c-format
 msgid "One decision worth noting is the generation of <filename>Release</filename> files for each archive. This can help manage package installation priorities using the <filename>/etc/apt/preferences</filename> configuration file (see chapter on APT configuration for details)."
-msgstr ""
+msgstr "Satu keputusan yang perlu diperhatikan adalah membuat berkas <filename>Release</filename> untuk setiap archive. Hal ini bisa membantu mengelola prioritas instalasi paket menggunakan berkas konfigurasi <filename>/etc/apt/preferences</filename> (lihat bab konfigurasi APT untuk detailnya)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <command>mini-dinstall</command> and permissions"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> <command>mini-dinstall</command> dan permission"
 
 #. Tag: para
 #, no-c-format
 msgid "Since <command>mini-dinstall</command> has been designed to run as a regular user, there's no need to run it as root. The easiest way is to configure everything within the user account belonging to the administrator in charge of creating the Debian packages. Since only this administrator has the required permissions to put files in the <filename>incoming/</filename> directory, we can deduce that the administrator authenticated the origin of each package prior to deployment and <command>mini-dinstall</command> does not need to do it again. This explains the <literal>verify_sigs = 0</literal> parameter (which means that signatures need not be verified). However, if the contents of packages are sensitive, we can reverse the setting and elect to authenticate with a keyring containing the public keys of persons allowed to create packages (configured with the <literal>extra_keyrings</literal> parameter); <command>mini-dinstall</command> will then check the origin of each incoming package by analyzing the signature integrated to the <filename>*.changes</filename> file."
-msgstr ""
+msgstr "..."
 
 #. Tag: para
 #, no-c-format
 msgid "Invoking <command>mini-dinstall</command> actually starts a daemon in the background. As long as this daemon runs, it will check for new packages in the <filename>incoming/</filename> directory every half-hour; when a new package arrives, it will be moved to the archive and the appropriate <filename>Packages.gz</filename> and <filename>Sources.gz</filename> files will be regenerated. If running a daemon is a problem, <command>mini-dinstall</command> can also be manually invoked in batch mode (with the <literal>-b</literal> option) every time a package is uploaded into the <filename>incoming/</filename> directory. Other possibilities provided by <command>mini-dinstall</command> are documented in its <citerefentry><refentrytitle>mini-dinstall</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page."
-msgstr ""
+msgstr "..."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Generating a signed archive"
-msgstr ""
+msgstr "<emphasis>EKSTRA</emphasis> Membuat sebuah signed archive"
 
 #. Tag: para
 #, no-c-format
 msgid "The APT suite checks a chain of cryptographic signatures on the packages it handles before installing them (and has done so since <emphasis role=\"distribution\">Etch</emphasis>), in order to ensure their authenticity (see <xref linkend=\"sect.package-authentication\" />). Private APT archives can then be a problem, since the machines using them will keep displaying warnings about unsigned packages. A diligent administrator will therefore integrate private archives with the secure APT mechanism."
-msgstr ""
+msgstr "APT suite memeriksa rantai tanda tangan kriptografik dari paket ... sebelum meng-install mereka (dan telah dilakukan sejak <emphasis role=\"distribution\">Etch</emphasis>), untuk memastikan keaslian (lihat <xref linkend=\"sect.package-authentication\" />). Arsip APT privat dapat menjadi masalah, karena mesin yang menggunakan mereka akan terus menampilkan peringatan tentang paket tanpa-tanda-tangan. Administrator yang rajin akan memeriksa arsip ... dengan mekanisme secure APT."
 
 #. Tag: para
 #, no-c-format
 msgid "To help with this process, <command>mini-dinstall</command> includes a <literal>release_signscript</literal> configuration option that allows specifying a script to use for generating the signature. A good starting point is the <filename>sign-release.sh</filename> script provided by the <emphasis role=\"pkg\">mini-dinstall</emphasis> package in <filename>/usr/share/doc/mini-dinstall/examples/</filename>; local changes may be relevant."
-msgstr ""
+msgstr "Untuk membantu dengan proses ini, <command>mini-dinstall</command> memuat <literal>release_signscript</literal> opsi konfigurasi yang memungkinkan menspesifikasikan sebuah script untuk digunakan untuk menghasilkan signature. Titik mulai yang bagus adalah script <filename>sign-release.sh</filename> yang disediakan oleh <emphasis role=\"pkg\">mini-dinstall</emphasis> paket <filename>/usr/share/doc/mini-dinstall/examples/</filename>; perubahan lokal bisa jadi relevan."
 
 #. Tag: title
 #, no-c-format
 msgid "Becoming a Package Maintainer"
-msgstr ""
+msgstr "Menjadi seorang Maintainer Paket"
 
 #. Tag: title
 #, no-c-format
 msgid "Learning to Make Packages"
-msgstr ""
+msgstr "Belajar untuk Membuat Perubahan"
 
 #. Tag: para
 #, no-c-format
 msgid "Creating a quality Debian package is not always a simple task, and becoming a package maintainer takes some learning, both with theory and practice. It's not a simple matter of building and installing software; rather, the bulk of the complexity comes from understanding the problems and conflicts, and more generally the interactions, with the myriad of other packages available."
-msgstr ""
+msgstr "Membuat paket Debian berkualitas tidak selalu pekerjaan sederhana, dan menjadi pengelola paket membutuhkan ..., keduanya dengan teori dan praktik. Bukan masalah sesederhana membangun dan meng-install perangkat lunak; tapi, ... kompleksitas datang dari pemahaman masalah dan konflik, dan lebih umum dengan interaksi, dengan ... paket lain yang tersedia."
 
 #. Tag: title
 #, no-c-format
 msgid "Rules"
-msgstr ""
+msgstr "Aturan"
 
 #. Tag: para
 #, no-c-format
 msgid "A Debian package must comply with the precise rules compiled in the Debian policy, and each package maintainer must know them. There is no requirement to know them by heart, but rather to know they exist and to refer to them whenever a choice presents a non-trivial alternative. Every Debian maintainer has made mistakes by not knowing about a rule, but this is not a huge problem as soon as the error is fixed when a user reports it as a bug report, which tends to happen fairly soon thanks to advanced users. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/\" />"
-msgstr ""
+msgstr "Sebuah paket Debian harus comply dengan aturan ... yang terkumpul dalam kebijakan Debian, dan setiap maintainer paket harus mengetahuinya. Tidak terdapat persyaratan untuk mengetahui mereka dengan hati, namun mengetahui mereka ada dan mengacu padanya saat ... menghadirkan alternatif non-trivial. Setiap Debian maintainer membuat kesalahan dengan tidak mengetahui aturan, namun ini bukan masalah besar begitu mereka mengetahui kesalahan diperbaiki saat pengguna melaporkanny dalam laporan bug, yang seringkali terjadi terima kasih pada pengguna mahir. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Procedures"
-msgstr ""
+msgstr "Prosedur"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian Developer's Reference</primary>"
-msgstr ""
+msgstr "<primary>Referensi Pengembang Debian</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian is not a simple collection of individual packages. Everyone's packaging work is part of a collective project; being a Debian developer involves knowing how the Debian project operates as a whole. Every developer will, sooner or later, interact with others. The Debian Developer's Reference (in the <emphasis role=\"pkg\">developers-reference</emphasis> package) summarizes what every developer must know in order to interact as smoothly as possible with the various teams within the project, and to take the best possible advantages of the available resources. This document also enumerates a number of duties a developer is expected to fulfill. <ulink type=\"block\" url=\"http://www.debian.org/doc/developers-reference/\" />"
-msgstr ""
+msgstr "Debian bukanlah koleksi sederhana dari paket-paket individual. Semua pekerjaan pemaketan merupakan bagian dari proyek kolektif; menjadi pengembang Debian meliputi mengetahi bagaimana proyek Debian beroperasi ... Setiap pengembang akan, cepat atau lambat, berinteraksi satu sama lain. Referensi pengembang Debian (dalam paket <emphasis role=\"pkg\">developers-reference</emphasis>) menyarikan apa yang harus diketahui oleh setiap pengembang Debian agar dapat berinteraksi dengan baik mungkin dengan beragam tim dalam proyek, dan untuk keuntungan terbaik dari sumber daya yang tersedia. Dokumen ini juga ... beberapa tanggung jawab pengembang yang diharapkan dipenuhi. <ulink type=\"block\" url=\"http://www.debian.org/doc/developers-reference/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Tools"
-msgstr ""
+msgstr "Perkakas"
 
 #. Tag: para
 #, no-c-format
 msgid "Many tools help package maintainers in their work. This section describes them quickly, but does not give the full details, since they all have comprehensive documentation on their own."
-msgstr ""
+msgstr "Banyak perkakas membantu maintainer paket dalam pekerjaannya. Bagian ini menjelaskan ... secara cepat, namun tidak memberikan detail sepenuhnya, karena mereka memiliki dokumentasi komprehensifnya sendiri."
 
 #. Tag: title
 #, no-c-format
 msgid "The <command>lintian</command> Program"
-msgstr ""
+msgstr "Program <command>lintian</command"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lintian</command></primary>"
-msgstr ""
+msgstr "<primary><command>lintian</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This tool is one of the most important: it's the Debian package checker. It is based on a large array of tests created from the Debian policy, and detects quickly and automatically a great many errors that can be fixed before packages are released."
-msgstr ""
+msgstr "Perkakas ini adalah salah satu yang paling penting: pemeriksa paket Debian. Lintian berbasiskan array besar dari tes yang dibuat dari kebijakan Debian, dan mendeteksi secara cepat dan secara otomatis ... banyak kesalahan yang dapat diperbaiki sebelum paket dirilis."
 
 #. Tag: para
 #, no-c-format
 msgid "This tool is only a helper, and it sometimes gets it wrong (for instance, since the Debian policy changes over time, <command>lintian</command> is sometimes outdated). It is also not exhaustive: not getting any Lintian error should not be interpreted as a proof that the package is perfect; at most, it avoids the most common errors."
-msgstr ""
+msgstr "Perkakas ini hanyalah pembantu, dan sesekali salah (contohnya, sejak kebijakan Debian berubah seiring waktu, <command>lintian</command> sesekali ....) ... juga tidak lengkap: tidak mendapatkan kesalahan Lintian bukan berarti bukti bahwa paket sudah sempurna; ... mencegah kesalahan yang paling umum."
 
 #. Tag: title
 #, no-c-format
 msgid "devscripts"
-msgstr ""
+msgstr "devscripts"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">devscripts</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">devscripts</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debuild</command></primary>"
-msgstr ""
+msgstr "<primary><command>debuild</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dch</command></primary>"
-msgstr ""
+msgstr "<primary><command>dch</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>uscan</command></primary>"
-msgstr ""
+msgstr "<primary><command>uscan</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debi</command></primary>"
-msgstr ""
+msgstr "<primary><command>debi</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debc</command></primary>"
-msgstr ""
+msgstr "<primary><command>debc</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">devscripts</emphasis> package contains many programs helping with a wide array of a Debian developer's job:"
-msgstr ""
+msgstr "Paket <emphasis role=\"pkg\">devscripts</emphasis> berisi banyak program yang membantu beragam pekerjaan pengembang Debian:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debuild</command> allows generating a package (with <command>dpkg-buildpackage</command>) and running <command>lintian</command> to check its compliance with the Debian policy afterwards."
-msgstr ""
+msgstr "<command>debuild</command> memungkinkan menghasilkan sebuah paket (dengan <command>dpkg-buildpackage</command>) dan menjalankan <command>lintian</command> untuk memeriksa kepatuhan dengan kebijakan Debian."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debclean</command> cleans a source package after a binary package has been generated."
-msgstr ""
+msgstr "<command>debclean</command> membersihkan paket sumber setelah paket binari dihasilkan."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dch</command> allows quick and easy editing of a <filename>debian/changelog</filename> file in a source package."
-msgstr ""
+msgstr "<command>dch</command> memungkinkan penyuntingan cepat dan mudah dari berkas <filename>debian/changelog</filename> dalam paket sumber."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>uscan</command> checks whether a new version of a software has been released by the upstream author; this requires a <filename>debian/watch</filename> file with a description of the location of such releases."
-msgstr ""
+msgstr "<command>uscan</command> memeriksa apakah terdapat versi baru perangkat lunak yang dirilis oleh penulis upstream; hal ini membutuhkan berkas <filename>debian/watch</filename> dengan deskripsi dari lokasi rilis."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debi</command> allows installing (with <command>dpkg -i</command>) the Debian package that was just generated, and avoid typing its full name and path."
-msgstr ""
+msgstr "<command>debi</command> memungkinkan meng-install (dengan <command>dpkg -i</command>) paket Debian yang baru saja dibuat, dan menghindari mengetik nama lengkap dan path."
 
 #. Tag: para
 #, no-c-format
 msgid "In a similar fashion, <command>debc</command> allows scanning the contents of the recently-generated package (with <command>dpkg -c</command>), without needing to type its full name and path."
-msgstr ""
+msgstr "Hal yang mirip, <command>debc</command> memungkinkan pencarian isi dari paket yang baru dibuat (dengan <command>dpkg -c</command>), tanpa harus mengetik nama lengkap dan path."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>bts</command> controls the bug tracking system from the command line; this program automatically generates the appropriate emails."
-msgstr ""
+msgstr "<command>bts</command> mengendalikan sistem pelacakan bug dari command line; program ini secara otomatis menghasilkan pesan seperlunya."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debrelease</command> uploads a recently-generated package to a remote server, without needing to type the full name and path of the related <filename>.changes</filename> file."
-msgstr ""
+msgstr "<command>debrelease</command> menggunggah paket yang baru dibuat ke server remote, tanpa harus mengisi nama lengkap dan path dari berkas <filename>.changes</filename> terkait."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debsign</command> signs the <filename>*.dsc</filename> and <filename>*.changes</filename> files."
-msgstr ""
+msgstr "<command>debsign</command> menandakan berkas <filename>*.dsc</filename> dan <filename>*.changes</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>uupdate</command> automates the creation of a new revision of a package when a new upstream version has been released."
-msgstr ""
+msgstr "<command>uupdate</command> ... proses pembuatan dari revisi baru paket saat versi upstream telah dirilis."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis role=\"pkg\">debhelper</emphasis> and <emphasis role=\"pkg\">dh-make</emphasis>"
-msgstr ""
+msgstr "<emphasis role=\"pkg\">debhelper</emphasis> dan <emphasis role=\"pkg\">dh-make</emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>debhelper</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>debhelper</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>dh-make</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>dh-make</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Hess, Joey</primary>"
-msgstr ""
+msgstr "<primary>Hess, Joey</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debhelper is a set of scripts easing the creation of policy-compliant packages; these scripts are invoked from <filename>debian/rules</filename>. Debhelper has been widely adopted within Debian, as evidenced by the fact that it is used by the majority of official Debian packages. All the commands it contains have a <command>dh_</command> prefix. Debhelper is mainly developed by Joey Hess."
-msgstr ""
+msgstr "Debhelper adalah sekumpulan script yang memudahkan pembuatan paket ... kebijakan; script ini di-invoke dari <filename>debian/rules</filename>. Debhelper telah diterima secara luas dalam Debian, dengan ditunjukkan fakta bahwa digunakan oleh mayoritas paket Debian resmi. SEmua perintah berisi prefiks <command>dh_</command>. Debhelper ... dikembangkan oleh Joey Hess."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>dh_make</command> script (in the <emphasis>dh-make</emphasis> package) creates files required for generating a Debian package in a directory initially containing the sources for a piece of software. As can be guessed from the name of the program, the generated files use Debhelper by default."
-msgstr ""
+msgstr "Script <command>dh_make</command> (dalam paket <emphasis>dh-make</emphasis>) membuat berkas yang dibutuhkan untuk membuat paket Debian dalam direktori .... berisi sumber ... perangkat lunak. Seperti sudah bisa ditebak dari nama program, berkas yang dihasilkan menggunakan Debhelper secara default."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> CDBS"
-msgstr ""
+msgstr "<emphasis>ALTERNATIF</emphasis> CDBS"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">cdbs</emphasis> is another approach to Debian packaging, based exclusively on an inheritance system across <filename>Makefile</filename> files."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">cdbs</emphasis> merupakan pendekatan lain akan pemaketan Debian, berdasarkan ... inheritance sistem ... berkas <filename>Makefile</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "That tool has its advocates, since it avoids duplicating the same list of <command>dh_*</command> commands in the <filename>debian/rules</filename> file. However, Debhelper version 7 introduced the <command>dh</command> command, which itself automates the appropriate sequence of calls to all the individual commands in the correct order, and CDBS has lost most of its appeal since then."
-msgstr ""
+msgstr "Perkakas ini memiliki ..., karena menghindari duplikasi daftar yang sama dari perintah <command>dh_*</command> pada berkas <filename>debian/rules</filename>. Bagaimanapun, Debhelper versi 7 memperkenalkan perintah <command>dh</command>, yang mengotomatisasi urutan ... ... perintah individual dalam urutan yang tepat, dan CDBS kehilangan ... sejak saat itu."
 
 #. Tag: title
 #, no-c-format
 msgid "<command>dupload</command> and <command>dput</command>"
-msgstr ""
+msgstr "<command>dupload</command> dan <command>dput</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dupload</command></primary>"
-msgstr ""
+msgstr "<primary><command>dupload</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dput</command></primary>"
-msgstr ""
+msgstr "<primary><command>dput</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>dupload</command> and <command>dput</command> commands allow uploading a Debian package to a (possibly remote) server. This allows developers to publish their package on the main Debian server (<literal>ftp-master.debian.org</literal>) so that it can be integrated to the archive and distributed by mirrors. These commands take a <filename>*.changes</filename> file as a parameter, and deduce the other relevant files from its contents."
-msgstr ""
+msgstr "Perintah <command>dupload</command> dan <command>dput</command> memungkinkan mengunggah paket Debian ke (bisa jadi remote) server. Hal ini memungkinkan pengembang untuk mempublikasikan paket mereka pada server Debian utama (<literal>ftp-master.debian.org</literal>) sehingga bisa terintegrasi ke dalam archive dan didistribusikan oleh cermin. Perintah ini mengambil berkas <filename>*.changes</filename> sebagai parameter, dan ... berkas relevan lainnya dari isinya."
 
 #. Tag: title
 #, no-c-format
 msgid "Acceptance Process"
-msgstr ""
+msgstr "Proses Penerimaan"
 
 #. Tag: para
 #, no-c-format
 msgid "Becoming a Debian developer is not a simple administrative matter. The process is made of several steps, and is as much an initiation as it is a selection process. In any case, it is formalized and well-documented, so anyone can track their progression on the website dedicated to the new member process. <ulink type=\"block\" url=\"http://nm.debian.org/\" />"
-msgstr ""
+msgstr "Menjadi pengembang Debian bukanlah hal administratif sederhana. Proses ini terdiri dari beberapa langkah, dan ... merupakan inisiasi ... proses seleksi. Pada kasus apapun, hal ini diformalkan dan terdokumentasi dengan baik, jadi siapapun dapat melacak perkembangan pada situs ... pada proses anggota baru. <ulink type=\"block\" url=\"http://nm.debian.org/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Lightweight process for “Debian Maintainers”"
-msgstr ""
+msgstr "<emphasis>EXTRA</emphasis> Proses lightweight untuk “Debian Maintainers”"
 
 #. Tag: para
 #, no-c-format
 msgid "A “Debian Maintainer” status has recently been introduced. The associated process is quicker, and the privileges granted by this status are only enough to maintain one's own packages. A Debian developer only needs to perform a check on an initial upload, and issue a statement to the effect that they trust the prospective maintainer with the ability to maintain the package on their own."
-msgstr ""
+msgstr "Status “Debian Maintainer” belakangan ini telah diperkenalkan. Proses terkait lebih cepat, dan ... yang diberikan dengan status ini hanya cukup untuk mengelola paket seseorang. Seorang pengembang Debian hanya perlu melakukan pemeriksaan awal pada unggah-an awal, dan mengeluarkan penyataan ... bahwa mereka percaya dengan maintainer ... dengan kemampuan mengelola paket mereka sendiri."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian Maintainer</primary>"
-msgstr ""
+msgstr "<primary>Debian Maintainer</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Prerequisites"
-msgstr ""
+msgstr "Persyaratan"
 
 #. Tag: para
 #, no-c-format
 msgid "All candidates are expected to have at least a working knowledge of the English language. This is required at all levels: for the initial communications with the examiner, of course, but also later, since English is the preferred language for most of the documentation; also, package users will be communicating in English when reporting bugs, and they will expect replies in English."
-msgstr ""
+msgstr "Semua kandidat diharapkan memiliki pengetahuan ... dari bahasa Inggris. Hal ini dibutuhkan pada semua tingkat: untuk komunikasi awal dengan penguji, tentunya, dan tentu nanti, sejak bahasa Inggris adalah bahasa yang ... untuk hampir semua dokumentasi; juga, pengguna paket akan berkomunikasi dengan bahasa Inggris saat melaporkan bug, dan mereka berharap balasan dalam bahasa Inggris."
 
 #. Tag: para
 #, no-c-format
 msgid "The other prerequisite deals with motivation. Becoming a Debian developer is a process that only makes sense if the candidate knows that their interest in Debian will last for many months. The acceptance process itself may last for several months, and Debian needs developers for the long haul; each package needs permanent maintenance, and not just an initial upload."
-msgstr ""
+msgstr "Persyaratan lainnya berkaitan dengan motivasi. Menjadi pengembang Debian merupakan proses yang hanya masuk akal jika kandidat mengetahui bahwa minat mereka dalam Debian akan bertahan hingga berbulan-bulan. Proses penerimaanya itu sendiri bisa jadi berlangsung beberapa bulan, dan Debian membutuhkan pengembang untuk jangka waktu panjang; setiap paket perlu pengelolaan permanen, dan tidak hanya unggah di awal saja."
 
 #. Tag: title
 #, no-c-format
 msgid "Registration"
-msgstr ""
+msgstr "Registrasi"
 
 #. Tag: para
 #, no-c-format
 msgid "The first (real) step consists in finding a sponsor or advocate; this means an official developer willing to state that they believe that accepting <emphasis>X</emphasis> would be a good thing for Debian. This usually implies that the candidate has already been active within the community, and that their work has been appreciated. If the candidate is shy and their work is not publicly touted, they can try to convince a Debian developer to advocate them by showing their work in a private way."
-msgstr ""
+msgstr "Langkah pertama (nyata) terdiri dari mencari sponsor atau advokat; hal ini berarti menandakan bahwa kandidat telah aktif di dalam komunitas, dan karya mereka telah diapresias. Jika kandidat pemalu dan karya mereka tidak ... secara publik, mereka dapat mencoba meyakinkan pengembang Debian untuk mengadvokasi dan menunjukkan karya mereka secara privat."
 
 #. Tag: para
 #, no-c-format
 msgid "At the same time, the candidate must generate a public/private RSA key pair <indexterm><primary>key pair</primary></indexterm> with GnuPG, which should be signed by at least one official Debian developer. The signature authenticates the name on the key. Effectively, during a key signing party, each participant must show an identity card together with their key identifiers. This step makes the link between the human and the keys official. This signature thus requires meeting in real life. If you have not yet met any Debian developers in a public free software conference, you can explicitly seek developers living nearby using the list on the following webpage as a starting point. <ulink type=\"block\" url=\"http://wiki.debian.org/Keysigning\" />"
-msgstr ""
+msgstr "Pada waktu yang bersamaan, kandidat harus membuat sepasang kunci publik/privat RSA <indexterm><primary>pasang kunci</primary></indexterm> dengan GnuPG, yang harus ditandatangai paling tidak oleh seorang pengembagn resmi Debian. Tanda tangan mengotentikasi nama pada kunci. Secara efektif pada pesta penandatanganan, setiap partisipan harus menunjukkan kartu identitas bersamaan dengan identifier kunci. Langkah ini membuat hubungan antara manusia dengan kunci resmi. Jika Anda belum pernah bertemu dengan pengembang Debian dalam konferensi perangkat lunak bebas publik, Anda dapat secara eksplisit mencari pengembang yang hidup di dekat Anda menggunakan halaman ini sebagai permulaan. <ulink type=\"block\" url=\"http://wiki.debian.org/Keysigning\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the registration on <literal>nm.debian.org</literal> has been validated by the advocate, an <emphasis>Application Manager</emphasis> is assigned to the candidate. The application manager will, from there on, follow procedures and validate the various steps that the process includes."
-msgstr ""
+msgstr "Usai proses registrasi pada <literal>nm.debian.org</literal> telah divalidasi oleh advokat, seorang <emphasis>Application Manager</emphasis> ditugaskan ... kandidat. Manajer aplikasi selanjutnya akan mengikuti prosedur dan memvalidasi beragam langkah proses ini."
 
 #. Tag: para
 #, no-c-format
 msgid "The first verification is an identity check. If you already have a key signed by two Debian developers, this step is easy; otherwise, the application manager will try and guide you in your search for Debian developers close by to organize a meet-up and a key signing. At the very beginning of the process, when the number of developers was small, there was an exception to this procedure which allowed this step to be completed with a digital scan of official identification documents; this is no longer the case."
-msgstr ""
+msgstr "Verifikasi pertama adalah pemeriksaan identitas. Jika Anda telah memiliki kunci yang ditandatangani oleh dua orang pengembang Debian, langkah ini sangat mudah; sebaliknya, manajer aplikasi akan mencoba mencari dan memandu Anda dalam mencari pengembang Debian yang dekat atau mengadakan kopdar dan penandatanganan kunci. Pada proses awal, saat jumlah pengembang masih sedikit, terdapat pengecualian terhadap prosedur ini yang memungkinkan langkah ini dilengkapi dengan memindai dokumen identifikasi resmi; ini tidak lagi relevan."
 
 #. Tag: title
 #, no-c-format
 msgid "Accepting the Principles"
-msgstr ""
+msgstr "Menerima Prinsip-prinsip"
 
 #. Tag: para
 #, no-c-format
 msgid "These administrative formalities are followed with philosophical considerations. The point is to make sure that the candidate understands and accepts the social contract and the principles behind Free Software. Joining Debian is only possible if one shares the values that unite the current developers, as expressed in the founding texts (and summarized in <xref linkend=\"the-debian-project\" />)."
-msgstr ""
+msgstr "Semua administratif formal ini diizinkan dengan pertimbangan filosofis. Poinnya adalah memastikan bahwa kandidat memahami dan menerima kontrak sosial dan prinsip di balik Free Software. Bergabung dengan Debian hanya mungkin jika seseorang berbagi nilai yang menyatukan pengembang saat ini, seperti yang dinyatakan dalam teks ... (dan diringkas dalam <xref linkend=\"the-debian-project\" />)."
 
 #. Tag: para
 #, no-c-format
 msgid "In addition, each candidate wishing to join Debian ranks is expected to know the workings of the project, and how to interact appropriately to solve the problems they will doubtless encounter as time passes. All of this information is generally documented in manuals targeting the new maintainers, and in the Debian developer's reference. An attentive reading of this document should be enough to answer the examiner's questions. If the answers are not satisfactory, the candidate will be informed. He will then have to read (again) the relevant documentation before trying again. In the cases where the existing documentation does not contain the appropriate answer for the question, the candidate can usually reach an answer with some practical experience within Debian, or potentially by discussing with other Debian developers. This mechanism ensures that candidates get involved somewhat in Debian before becoming a full part of it. It is a deliberate policy, by which candidates who eventually join the project are integrated as another piece of an infinitely extensible jigsaw puzzle."
-msgstr ""
+msgstr "Sebagai tambahan, setiap kandidat yang ingin bergabung Debian ranks diharapkan mengetahui cara kerja dari proyek, dan bagaimana berinteraksi dengan tepat untuk memecahkan masalah ... yang akan mereka temui seiring berjalannya waktu. Semua informasi ini secara umum didokumentasikan di dalam manual yang ditujukan kepada maintainer baru, dan dalam referensi pengembang Debian. ... dari dokumen ini seharusnya cukup ... menjawab pertanyaan penguji. Jika jawaban tidak cukup memuaskan, kandidat akan dikabari. Ia akan harus membaca (lagi) dokumentasi relevan sebelum mencoba lagi. Pada kasus di mana dokumentasi saat ini tidak mengandung jawaban yang tepat untuk jawaban, kandidat umumnya dapat mencapai jawaban dengan pengalaman praktikal selama di Debian, atau mendiskusikannya dengan pengembang Debian lainnya. Mekanisme ini memastikan bahwa kandidkat yang ... dalam Debian sebelum bergabung secara utuh. Ini merupakan kebijakan ..., kandidat .. yang bergabung ke ... merupakan ... dari kepingan puzzle."
 
 #. Tag: para
 #, no-c-format
 msgid "This step is usually known as the <emphasis>Philosophy &amp; Procedures</emphasis> (P&amp;P for short) in the lingo of the developers involved in the new member process. <indexterm><primary><emphasis>Philosophy &amp; Procedures</emphasis></primary></indexterm>"
-msgstr ""
+msgstr "Langkah ini umumnya dikenal sebagai <emphasis>Philosophy &amp; Procedures</emphasis> (P&amp;P for short) pada lingo pengembang yang terlibat dalam proses anggota baru. <indexterm><primary><emphasis>Philosophy &amp; Procedures</emphasis></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Checking Skills"
-msgstr ""
+msgstr "Pemeriksaan Keahlian"
 
 #. Tag: para
 #, no-c-format
 msgid "Each application to become an official Debian developer must be justified. Becoming a project member requires showing that this status is legitimate, and that it facilitates the candidate's job in helping Debian. The most common justification is that being granted Debian developer status eases maintenance of a Debian package, but it is not the only one. Some developers join the project to contribute to porting to a specific architecture, others want to improve documentation, and so on."
-msgstr ""
+msgstr "Setiap aplikasi untuk menjadi pengembang resmi Debian harus dijustifikasi. Menjadi anggota proyek membutuhkan ... menunjukkan status ini legitimasi, dan memfasilitasi pekerjaan kandidat dalam membantu Debian. Justifikasi yang paling umum adalah ... diberikan Debian developer status ... memudahkan pengelolaan paket Debian, namun ini bukan satu-satunya. Beberapa pengembang bergabung ke proyek untuk aktif berkontribusi dengan mem-porting ke arsitektur spesifik, lainnya ingin meningkatkan dokumentasi, dan seterusnya."
 
 #. Tag: para
 #, no-c-format
 msgid "This step represents the opportunity for the candidate to state what they intend to do within the Debian project and to show what they have already done towards that end. Debian is a pragmatic project and saying something is not enough, if the actions do not match what is announced. Generally, when the intended role within the project is related to package maintenance, a first version of the prospective package will have to be validated technically and uploaded to the Debian servers by a sponsor among the existing Debian developers."
-msgstr ""
+msgstr "Langkah ini merepresentasikan peluang bagi kandidat untuk menyatakan bahwa mereka ingin ... dalam proyek Debian dan menunjukkan bahwa mereka telah bergerak maju... Debian adalah proyek pragmatis dan mengatakan sesuatu tidak cukup, jika tindakan tidak sesuai dengan apa yang dikatakan. Umumnya, saat ... dalam proyek berkaitan dengan pengelolaan paket, versi pertama dari prospektif pakt akan harus divalidasi secara teknis dan diunggah ke server Debian oleh sponsor dari pengembang Debian saat ini."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> Sponsoring"
-msgstr ""
+msgstr "<emphasis>KOMUNITAS</emphasis> Sponsoring"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>sponsoring</primary>"
-msgstr ""
+msgstr "<primary>sponsoring</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian developers can “sponsor” packages prepared by someone else, meaning that they publish them in the official Debian repositories after having performed a careful review. This mechanism enables external persons, who have not yet gone through the new member process, to contribute occasionally to the project. At the same time, it ensures that all packages included in Debian have always been checked by an official member."
-msgstr ""
+msgstr "Pengembang Debian dapat “sponsor” paket yang disiapkan oleh orang lain, berarti bahwa mereka mempublikasikan mereka dalam repositori Debian resmi setelah melakukan review ... Mekanisme ini memungkinkan orang lain, yang ... melalui proses anggota baru, untuk berkontribusi ... pada proyek. Pada waktu yang bersamaan, memastikan bahwa semua paket yang dimasukkan dalam Debian telah diperiksa oleh anggota resmi."
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the examiner checks the candidate's technical (packaging) skills with a detailed questionnaire. Bad answers are not permitted, but the answer time is not limited. All the documentation is available and several tries are allowed if the first answers are not satisfactory. This step does not intend to discriminate, but to ensure at least a modicum of knowledge common to new contributors."
-msgstr ""
+msgstr "Akhirnya, penguji memeriksa kemampuan teknis (pemaketan) kandidat dengan kuesioner yang detail. Jawaban buruk tidak diizinkan, namun waktu menjawab tidak dibatasi. Semua dokumentasi tersedia dan beberapa kali percobaan diizinkan jika jawaban pertama belum mencukupi. Langkah ini bukan bermaksud untuk mendiskriminasi, namun untuk memastikan ... pengetahuan yang sama bagi kontributor baru."
 
 #. Tag: para
 #, no-c-format
 msgid "This step is known as the <emphasis>Tasks &amp; Skills</emphasis> step in the examiners' jargon. <indexterm><primary><emphasis>Tasks &amp; Skills</emphasis></primary></indexterm>"
-msgstr ""
+msgstr "Langkah ini dikenal sebagai <emphasis>Tasks &amp; Skills</emphasis> pada jargon penguji. <indexterm><primary><emphasis>Tasks &amp; Skills</emphasis></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Final Approval"
-msgstr ""
+msgstr "Persetujuan Akhir"
 
 #. Tag: para
 #, no-c-format
 msgid "At the very last step, the whole process is reviewed by a DAM (<emphasis>Debian Account Manager</emphasis>). The DAM will review all the information about the candidate that the examiner collected, and makes the decision on whether or not to create an account on the Debian servers. In cases where extra information is required, the account creation may be delayed. Refusals are rather rare if the examiner does a good job of following the process, but they sometimes happen. They are never permanent, and the candidate is free to try again at a later time."
-msgstr ""
+msgstr "Pada langkah terakhir, seluruh proses di-review oleh DAM (<emphasis>Debian Account Manager</emphasis>). DAM akan me-review semua informasi kandidat yang telah dikumpulkan penguji dan membuat keputusan apakah akan membuat akun pada server Debian atau tidak. Pada keadaan di mana informasi tambahan dibutuhkan, pembuatan akun bisa jadi tertunda. Penolakan jarang terjadi jika penguji melakukan pekerjaannya dengan baik, namun sesekali terjadi penolakan. Hal ini tidak pernah permanen, dan kandidat bebas untuk mencoba lagi pada waktu berikutnya."
 
 #. Tag: para
 #, no-c-format
 msgid "The DAM's decision is authoritative and (almost) without appeal, which explains why the people in that seat (currently, Jörg Jaspert, Christoph Berg and Enrico Zini) have often been criticized in the past."
-msgstr ""
+msgstr "Keputusan DAM bersifat otoritatif dan (hampir) tanpa sanggahan, yang menerangkan mengapa orang-orang di DAM (saat ini, Jörg Jaspert, Christoph Berg dan Enrico Zini) seringkali pada masa lalu dikritik."
 

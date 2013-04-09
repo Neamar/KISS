@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2013-01-09 16:51+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-03-25 17:20+0200\n"
+"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/12_advanced-administration/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 1.4-dev\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -110,11 +110,21 @@ msgstr "RAID Por Software"
 #, no-c-format
 msgid "RAID <indexterm><primary>RAID</primary></indexterm> means <emphasis>Redundant Array of Independent Disks</emphasis>. The goal of this system is to prevent data loss in case of hard disk failure. The general principle is quite simple: data are stored on several physical disks instead of only one, with a configurable level of redundancy. Depending on this amount of redundancy, and even in the event of an unexpected disk failure, data can be losslessly reconstructed from the remaining disks."
 msgstr ""
+"RAID <indexterm><primary>RAID</primary></indexterm> significa "
+"<emphasis>conjunto redundante de discos independentes</emphasis>. O objetivo "
+"deste sistema é evitar perda de dados em caso de falha do disco rígido. O "
+"princípio geral é bastante simples: os dados são armazenados em vários "
+"discos físicos em vez de apenas um, com um nível configurável de "
+"redundância. Dependendo desta quantidade de redundância, e mesmo no caso de "
+"uma falha de disco inesperado, dados podem ser reconstruídos sem perdas dos "
+"restantes discos."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Independent</foreignphrase> or <foreignphrase>inexpensive</foreignphrase>?"
 msgstr ""
+"<emphasis>CULTURA</emphasis> <foreignphrase>Independent</foreignphrase> or "
+"<foreignphrase>inexpensive</foreignphrase>?"
 
 #. Tag: para
 #, no-c-format
@@ -135,11 +145,17 @@ msgstr "Diferentes Níveis de RAID"
 #, no-c-format
 msgid "RAID has actually several levels, differentiated by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks; seen the other way, more disks will be needed to store the same amount of data."
 msgstr ""
+"RAID tem realmente vários níveis, diferenciados por sua disposição e da "
+"quantidade de redundância que eles fornecem. Quanto mais redundante, mais à "
+"prova de falhas, uma vez que o sistema será capaz de continuar a trabalhar "
+"com mais discos de falha. A contrapartida é que reduz o espaço utilizável; "
+"visto de outra forma, mais discos serão necessários para armazenar a mesma "
+"quantidade de dados."
 
 #. Tag: term
 #, no-c-format
 msgid "Linear RAID"
-msgstr ""
+msgstr "RAID Linear"
 
 #. Tag: para
 #, no-c-format
@@ -174,22 +190,31 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Disks and cluster sizes"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Discos e tamanhos de cluster"
 
 #. Tag: para
 #, no-c-format
 msgid "If two disks of different sizes are set up in a mirror, the bigger one will not be fully used, since it will contain the same data as the smallest one and nothing more. The useful available space provided by a RAID-1 volume therefore matches the size of the smallest disk in the array. This still holds for RAID volumes with a higher RAID level, even though redundancy is stored differently."
 msgstr ""
+"Se dois discos de tamanhos diferentes são criados em um espelho, o maior não "
+"será totalmente usado, pois ele irá conter os mesmos dados como o menor e "
+"nada mais. O espaço útil disponível fornecido por um volume RAID-1, "
+"portanto, corresponde ao tamanho do disco menor na matriz. Isso ainda vale "
+"para volumes RAID com um maior nível RAID, apesar de redundância é "
+"armazenada de forma diferente."
 
 #. Tag: para
 #, no-c-format
 msgid "It is therefore important, when setting up RAID arrays (except for RAID-0 and “linear RAID”), to only assemble disks of identical, or very close, sizes, to avoid wasting resources."
 msgstr ""
+"Por isso é importante, ao configurar arrays RAID (exceto RAID-0 \"RAID "
+"linear\"), só montar discos de tamanhos idênticos, ou muito perto, para "
+"evitar o desperdício de recursos."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Spare disks"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Discos de reposição"
 
 #. Tag: para
 #, no-c-format
@@ -230,11 +255,17 @@ msgstr "RAID-5"
 #, no-c-format
 msgid "RAID-5 addresses the asymmetry issue of RAID-4: parity blocks are spread over all of the N+1 disks, with no single disk having a particular role."
 msgstr ""
+"RAID-5 resolve o problema de assimetria do RAID-4: a paridade de blocos é "
+"distribuída por todos os N+1 discos, sendo que nenhum tem um papel "
+"particular."
 
 #. Tag: para
 #, no-c-format
 msgid "Read and write performance are identical to RAID-4. Here again, the system stays functional with up to one failed disk (of the N+1), but no more."
 msgstr ""
+"A performance de leitura e escrita são idênticas ao RAID-4. Aqui novamente, "
+"o sistema continua funcional mesmo com a falha de um disco (do N+1), mas não "
+"mais."
 
 #. Tag: term
 #, no-c-format
@@ -245,6 +276,9 @@ msgstr "RAID-6"
 #, no-c-format
 msgid "RAID-6 can be considered an extension of RAID-5, where each series of N blocks involves two redundancy blocks, and each such series of N+2 blocks is spread over N+2 disks."
 msgstr ""
+"RAID-6 pode ser considerado uma extensão do RAID-5, onde cada série de N "
+"blocos envolvem dois blocos redundantes, e cada série de N+2 blocos e "
+"distribuída sobre N+2 discos."
 
 #. Tag: para
 #, no-c-format
@@ -265,11 +299,13 @@ msgstr ""
 #, no-c-format
 msgid "RAID-1+0 can survive multiple disk failures: up to N in the 2×N array described above, provided that at least one disk keeps working in each of the RAID-1 pairs."
 msgstr ""
+"RAID-1+0 pode sobreviver com múltiplas falhas nos discos: até N na 2xN série "
+"descrita acima, provendo ao menos um disco funcional em cada par de RAID-1."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> RAID-10"
-msgstr ""
+msgstr "<emphasis>Aprofundando</emphasis> RAID-10"
 
 #. Tag: para
 #, no-c-format
@@ -280,16 +316,21 @@ msgstr ""
 #, no-c-format
 msgid "Performances will vary depending on the chosen repartition model and redundancy level, and of the workload of the logical volume."
 msgstr ""
+"A performance variará dependendo da escolha do modelo de repartição e do "
+"nível de redundância, e da carga de trabalho do volume lógico."
 
 #. Tag: para
 #, no-c-format
 msgid "Obviously, the RAID level will be chosen according to the constraints and requirements of each application. Note that a single computer can have several distinct RAID arrays with different configurations."
 msgstr ""
+"Obviamente, o nível de RAID será escolhido de acordo com as restrições e "
+"requerimentos de cada aplicação. Note que um computador sozinho pode ter "
+"diversos tipos de RAIDs distintos com diversas configurações."
 
 #. Tag: title
 #, no-c-format
 msgid "Setting up RAID"
-msgstr ""
+msgstr "Configurando um RAID"
 
 #. Tag: para
 #, no-c-format
@@ -300,44 +341,55 @@ msgstr ""
 #, no-c-format
 msgid "Our example will be a server with a number of disks, some of which are already used, the rest being available to setup RAID. We initially have the following disks and partitions:"
 msgstr ""
+"Nossos exemplo será um servidor com um número de discos, sendo que alguns já "
+"estão em uso, e o resto está disponível para a configuração do RAID. Nós "
+"inicialmente temos os seguintes discos e partições:"
 
 #. Tag: para
 #, no-c-format
 msgid "the <filename>sda</filename> disk, 4 GB, is entirely available;"
-msgstr ""
+msgstr "o disco <filename>sda</filename>, 4 GB, estão disponíveis;"
 
 #. Tag: para
 #, no-c-format
 msgid "the <filename>sde</filename> disk, 4 GB, is also entirely available;"
-msgstr ""
+msgstr "o disco <filename>sde</filename>, 4 GB, também estão disponíveis;"
 
 #. Tag: para
 #, no-c-format
 msgid "on the <filename>sdg</filename> disk, only partition <filename>sdg2</filename> (about 4 GB) is available;"
 msgstr ""
+"no disco <filename>sdg</filename>, somente a partição "
+"<filename>sdg2</filename> (cerca de 4 GB) está disponível;"
 
 #. Tag: para
 #, no-c-format
 msgid "finally, a <filename>sdh</filename> disk, still 4 GB, entirely available."
 msgstr ""
+"finalmente, o disco <filename>sdh</filename>, ainda com 4 GB, disponíveis."
 
 #. Tag: para
 #, no-c-format
 msgid "We're going to use these physical elements to build two volumes, one RAID-0 and one mirror (RAID-1). Let's start with the RAID-0 volume:"
 msgstr ""
+"Iremos usar estes elementos físicos para criar dois volumes, um RAID-0 e um "
+"espelho (RAID-1). Comecemos com o volume RAID-0:"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Identifying existing RAID volumes"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Identificando os volumes RAID existentes"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/proc/mdstat</filename> file lists existing volumes and their states. When creating a new RAID volume, care should be taken not to name it the same as an existing volume."
 msgstr ""
+"O arquivo <filename>/proc/mdstat</filename> lista os volumes existentes e "
+"seus estados. Quando criando um novo volume RAID, devemos tomar cuidado para "
+"não nomeá-lo da mesma maneira que um volume existente."
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>\n"
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
@@ -400,6 +452,69 @@ msgid ""
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
 "/dev/md0              8.0G  249M  7.4G   4% /srv/raid-0</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 "
+"--level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>\n"
+"<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
+"mdadm: array /dev/md0 started.\n"
+"# </computeroutput><userinput>mdadm --query /dev/md0</userinput>\n"
+"<computeroutput>/dev/md0: 8.00GiB raid0 2 devices, 0 spares. Use mdadm "
+"--detail for more detail.\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md0</userinput>\n"
+"<computeroutput>/dev/md0:\n"
+"        Version : 1.2\n"
+"  Creation Time : Thu Sep 30 15:21:15 2010\n"
+"     Raid Level : raid0\n"
+"     Array Size : 8388480 (8.00 GiB 8.59 GB)\n"
+"   Raid Devices : 2\n"
+"  Total Devices : 2\n"
+"    Persistence : Superblock is persistent\n"
+"\n"
+"    Update Time : Thu Sep 30 15:21:15 2010\n"
+"          State : active\n"
+" Active Devices : 2\n"
+"Working Devices : 2\n"
+" Failed Devices : 0\n"
+"  Spare Devices : 0\n"
+"\n"
+"     Chunk Size : 512K\n"
+"\n"
+"           Name : squeeze:0  (local to host squeeze)\n"
+"           UUID : 0012a273:cbdb8b83:0ee15f7f:aec5e3c3\n"
+"         Events : 0\n"
+"\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8        0        0      active sync   /dev/sda\n"
+"       1       8       64        1      active sync   /dev/sde\n"
+"# </computeroutput><userinput>mkfs.ext4 /dev/md0</userinput>\n"
+"<computeroutput>\n"
+"mke2fs 1.41.12 (17-May-2010)\n"
+"Filesystem label=\n"
+"OS type: Linux\n"
+"Block size=4096 (log=2)\n"
+"Fragment size=4096 (log=2)\n"
+"Stride=0 blocks, Stripe width=0 blocks\n"
+"524288 inodes, 2097152 blocks\n"
+"104857 blocks (5.00%) reserved for the super user\n"
+"First data block=0\n"
+"Maximum filesystem blocks=2147483648\n"
+"55 block groups\n"
+"32768 blocks per group, 32768 fragments per group\n"
+"8160 inodes per group\n"
+"Superblock backups stored on blocks: \n"
+"        32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632\n"
+"\n"
+"Writing inode tables: done\n"
+"Creating journal (32768 blocks): done\n"
+"Writing superblocks and filesystem accounting information: done\n"
+"\n"
+"This filesystem will be automatically checked every 26 mounts or\n"
+"180 days, whichever comes first.  Use tune2fs -c or -i to override.\n"
+"# </computeroutput><userinput>mkdir /srv/raid-0</userinput>\n"
+"<computeroutput># </computeroutput><userinput>mount /dev/md0 "
+"/srv/raid-0</userinput>\n"
+"<computeroutput># </computeroutput><userinput>df -h /srv/raid-0</userinput>\n"
+"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
+"/dev/md0              8.0G  249M  7.4G   4% /srv/raid-0</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -410,9 +525,11 @@ msgstr ""
 #, no-c-format
 msgid "Creation of a RAID-1 follows a similar fashion, the differences only being noticeable after the creation:"
 msgstr ""
+"A criação do RAID-1 segue estilo similar, as diferenças somente serão "
+"notadas após a criação:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdg2 /dev/sdh</userinput>\n"
 "<computeroutput>mdadm: largest drive (/dev/sdg2) exceed size (4194240K) by more than 1%\n"
@@ -454,21 +571,68 @@ msgid ""
 "[...]\n"
 "</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 "
+"--level=1 --raid-devices=2 /dev/sdg2 /dev/sdh</userinput>\n"
+"<computeroutput>mdadm: largest drive (/dev/sdg2) exceed size (4194240K) by "
+"more than 1%\n"
+"Continue creating array? </computeroutput><userinput>y</userinput>\n"
+"<computeroutput>mdadm: array /dev/md1 started.\n"
+"# </computeroutput><userinput>mdadm --query /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1: 4.00GiB raid1 2 devices, 0 spares. Use mdadm "
+"--detail for more detail.\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"        Version : 1.2\n"
+"  Creation Time : Thu Sep 30 15:39:13 2010\n"
+"     Raid Level : raid1\n"
+"     Array Size : 4194240 (4.00 GiB 4.29 GB)\n"
+"  Used Dev Size : 4194240 (4.00 GiB 4.29 GB)\n"
+"   Raid Devices : 2\n"
+"  Total Devices : 2\n"
+"    Persistence : Superblock is persistent\n"
+"\n"
+"    Update Time : Thu Sep 30 15:39:26 2010\n"
+"          State : active, resyncing\n"
+" Active Devices : 2\n"
+"Working Devices : 2\n"
+" Failed Devices : 0\n"
+"  Spare Devices : 0\n"
+"\n"
+" Rebuild Status : 10% complete\n"
+"\n"
+"           Name : squeeze:1  (local to host squeeze)\n"
+"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
+"         Events : 27\n"
+"\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       98        0      active sync   /dev/sdg2\n"
+"       1       8      112        1      active sync   /dev/sdh\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"[...]\n"
+"          State : active\n"
+"[...]\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> RAID, disks and partitions"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> RAID, discos e partições"
 
 #. Tag: para
 #, no-c-format
 msgid "As illustrated by our example, RAID devices can be constructed out of disk partitions, and do not require full disks."
 msgstr ""
+"Como ilustrado pelo nosso exemplo, dispositivos RAID podem ser construídos à "
+"partir de partições de disco, e não necessitam discos inteiros."
 
 #. Tag: para
 #, no-c-format
 msgid "A few remarks are in order. First, <command>mdadm</command> notices that the physical elements have different sizes; since this implies that some space will be lost on the bigger element, a confirmation is required."
 msgstr ""
+"Algumas observações em ordem. Primeiro, <command>mdadm</command> nota que os "
+"elementos físicos possuem tamanhos diferentes; já que isso implica que "
+"algum espaço será perdido no maior elemento, uma confirmação é necessária."
 
 #. Tag: para
 #, no-c-format
@@ -478,7 +642,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Starting a mirror in degraded mode"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Começando um espelho em modo reduzido"
 
 #. Tag: para
 #, no-c-format
@@ -488,7 +652,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Setting up a mirror without synchronization"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Configurando um espelho sem sincronização"
 
 #. Tag: para
 #, no-c-format
@@ -511,7 +675,7 @@ msgid "Now let's see what happens when one of the elements of the RAID-1 array f
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sdh</userinput>\n"
 "<computeroutput>mdadm: set /dev/sdh faulty in /dev/md1\n"
@@ -535,6 +699,29 @@ msgid ""
 "\n"
 "       2       8      112        -      faulty spare  /dev/sdh</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail "
+"/dev/sdh</userinput>\n"
+"<computeroutput>mdadm: set /dev/sdh faulty in /dev/md1\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"[...]\n"
+"    Update Time : Thu Sep 30 15:45:50 2010\n"
+"          State : active, degraded\n"
+" Active Devices : 1\n"
+"Working Devices : 1\n"
+" Failed Devices : 1\n"
+"  Spare Devices : 0\n"
+"\n"
+"           Name : squeeze:1  (local to host squeeze)\n"
+"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
+"         Events : 35\n"
+"\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       98        0      active sync   /dev/sdg2\n"
+"       1       0        0        1      removed\n"
+"\n"
+"       2       8      112        -      faulty spare  "
+"/dev/sdh</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -542,7 +729,7 @@ msgid "The contents of the volume are still accessible (and, if it's mounted, th
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdi</userinput>\n"
 "<computeroutput>mdadm: added /dev/sdi\n"
@@ -593,6 +780,56 @@ msgid ""
 "\n"
 "       2       8      112        -      faulty spare   /dev/sdh</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add "
+"/dev/sdi</userinput>\n"
+"<computeroutput>mdadm: added /dev/sdi\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"[...]\n"
+"   Raid Devices : 2\n"
+"  Total Devices : 3\n"
+"    Persistence : Superblock is persistent\n"
+"\n"
+"    Update Time : Thu Sep 30 15:52:29 2010\n"
+"          State : active, degraded, recovering\n"
+" Active Devices : 1\n"
+"Working Devices : 2\n"
+" Failed Devices : 1\n"
+"  Spare Devices : 1\n"
+"\n"
+" Rebuild Status : 45% complete\n"
+"\n"
+"           Name : squeeze:1  (local to host squeeze)\n"
+"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
+"         Events : 53\n"
+"\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       98        0      active sync   /dev/sdg2\n"
+"       3       8      128        1      spare rebuilding   /dev/sdi\n"
+"\n"
+"       2       8      112        -      faulty spare   /dev/sdh\n"
+"# </computeroutput><userinput>[...]</userinput>\n"
+"<computeroutput>[...]\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"[...]\n"
+"    Update Time : Thu Sep 30 15:52:35 2010\n"
+"          State : active\n"
+" Active Devices : 2\n"
+"Working Devices : 2\n"
+" Failed Devices : 1\n"
+"  Spare Devices : 0\n"
+"\n"
+"           Name : squeeze:1  (local to host squeeze)\n"
+"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
+"         Events : 71\n"
+"\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       98        0      active sync   /dev/sdg2\n"
+"       1       8      128        1      active sync   /dev/sdi\n"
+"\n"
+"       2       8      112        -      faulty spare   "
+"/dev/sdh</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -600,7 +837,7 @@ msgid "Here again, the kernel automatically triggers a reconstruction phase duri
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sdh</userinput>\n"
 "<computeroutput>mdadm: hot removed /dev/sdh from /dev/md1\n"
@@ -611,6 +848,16 @@ msgid ""
 "       0       8       98        0      active sync   /dev/sdg2\n"
 "       1       8      128        1      active sync   /dev/sdi</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove "
+"/dev/sdh</userinput>\n"
+"<computeroutput>mdadm: hot removed /dev/sdh from /dev/md1\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"[...]\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       98        0      active sync   /dev/sdg2\n"
+"       1       8      128        1      active sync   "
+"/dev/sdi</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -635,10 +882,10 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<command>mdadm</command> configuration file"
-msgstr ""
+msgstr "<command>mdadm</command> arquivo de configuração"
 
 #. Tag: programlisting
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "# mdadm.conf\n"
 "#\n"
@@ -661,6 +908,28 @@ msgid ""
 "ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
 "ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432\n"
 msgstr ""
+"# mdadm.conf\n"
+"#\n"
+"# Please refer to mdadm.conf(5) for information about this file.\n"
+"#\n"
+"\n"
+"# by default, scan all partitions (/proc/partitions) for MD superblocks.\n"
+"# alternatively, specify devices to scan, using wildcards if desired.\n"
+"DEVICE /dev/sd*\n"
+"\n"
+"# auto-create devices with Debian standard permissions\n"
+"CREATE owner=root group=disk mode=0660 auto=yes\n"
+"\n"
+"# automatically tag new arrays as belonging to the local system\n"
+"HOMEHOST &lt;system&gt;\n"
+"\n"
+"# instruct the monitoring daemon where to send mail alerts\n"
+"MAILADDR root\n"
+"\n"
+"ARRAY /dev/md0 metadata=1.2 name=squeeze:0 "
+"UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
+"ARRAY /dev/md1 metadata=1.2 name=squeeze:1 "
+"UUID=20a8419b:41612750:b9171cfe:00d9a432\n"
 
 #. Tag: para
 #, no-c-format
@@ -675,15 +944,21 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Fortunately, these lines can be generated automatically:"
-msgstr ""
+msgstr "Felizmente, estas linhas podem ser geradas automaticamente:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
 "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
 "ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief "
+"/dev/md?</userinput>\n"
+"<computeroutput>ARRAY /dev/md0 metadata=1.2 name=squeeze:0 "
+"UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
+"ARRAY /dev/md1 metadata=1.2 name=squeeze:1 "
+"UUID=20a8419b:41612750:b9171cfe:00d9a432</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -698,12 +973,14 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "LVM Concepts"
-msgstr ""
+msgstr "Conceitos sobre LVM"
 
 #. Tag: para
 #, no-c-format
 msgid "This flexibility is attained by a level of abstraction involving three concepts."
 msgstr ""
+"Esta flexibilidade é atingida graças ao nível de abstração envolvendo três "
+"conceitos."
 
 #. Tag: para
 #, no-c-format
@@ -738,7 +1015,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Setting up LVM"
-msgstr ""
+msgstr "Configurando um LVM"
 
 #. Tag: para
 #, no-c-format
@@ -749,26 +1026,34 @@ msgstr ""
 #, no-c-format
 msgid "on the <filename>sdb</filename> disk, a <filename>sdb2</filename> partition, 4 GB;"
 msgstr ""
+"no disco <filename>sdb</filename>, uma partição <filename>sdb2</filename>, "
+"4 GB;"
 
 #. Tag: para
 #, no-c-format
 msgid "on the <filename>sdc</filename> disk, a <filename>sdc3</filename> partition, 3 GB;"
 msgstr ""
+"no disco <filename>sdc</filename>, uma partição <filename>sdc3</filename>, "
+"3 GB;"
 
 #. Tag: para
 #, no-c-format
 msgid "the <filename>sdd</filename> disk, 4 GB, in fully available;"
-msgstr ""
+msgstr "o disco <filename>sdd</filename>, 4 GB, completamente disponíveis;"
 
 #. Tag: para
 #, no-c-format
 msgid "on the <filename>sdf</filename> disk, a <filename>sdf1</filename> partition, 4 GB; and a <filename>sdf2</filename> partition, 5 GB."
 msgstr ""
+"no disco <filename>sdf</filename>, uma partição <filename>sdf1</filename>, "
+"4 GB; e uma partição <filename>sdf2</filename>, 5 GB."
 
 #. Tag: para
 #, no-c-format
 msgid "In addition, let's assume that disks <filename>sdb</filename> and <filename>sdf</filename> are faster than the other two."
 msgstr ""
+"Complementando, vamos assumir que os discos <filename>sdb</filename> e "
+"<filename>sdf</filename> são mais rápidos do que os outros dois."
 
 #. Tag: para
 #, no-c-format
@@ -779,14 +1064,20 @@ msgstr ""
 #, no-c-format
 msgid "The required tools are in the <emphasis role=\"pkg\">lvm2</emphasis> package and its dependencies. When they're installed, setting up LVM takes three steps, matching the three levels of concepts."
 msgstr ""
+"As ferramentas necessárias estão no pacote <emphasis "
+"role=\"pkg\">lvm2</emphasis> e suas dependência. Quando os mesmos estiverem "
+"instalados, configurarar o LVM terá três etapas, cobrindo três níveis de "
+"conceitos."
 
 #. Tag: para
 #, no-c-format
 msgid "First, we prepare the physical volumes using <command>pvcreate</command>:"
 msgstr ""
+"Primeiro, nós preparamos o volumes físicos utilizando "
+"<command>pvcreate</command>:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
@@ -818,11 +1109,45 @@ msgid ""
 "  /dev/sdf1       lvm2 a-   4.10g 4.10g\n"
 "  /dev/sdf2       lvm2 a-   5.22g 5.22g</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
+"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
+"<computeroutput>  Physical volume \"/dev/sdb2\" successfully created\n"
+"# </computeroutput><userinput>pvdisplay</userinput>\n"
+"<computeroutput>\n"
+"  \"/dev/sdb2\" is a new physical volume of \"4,00 GiB\"\n"
+"  --- NEW Physical volume ---\n"
+"  PV Name               /dev/sdb2\n"
+"  VG Name\n"
+"  PV Size               4.00 GiB\n"
+"  Allocatable           NO\n"
+"  PE Size (KByte)       0\n"
+"  Total PE              0\n"
+"  Free PE               0\n"
+"  Allocated PE          0\n"
+"  PV UUID               9JuaGR-W7jc-pNgj-NU4l-2IX1-kUJ7-m8cRim\n"
+"\n"
+"# </computeroutput><userinput>for i in sdc3 sdd sdf1 sdf2 ; do pvcreate "
+"/dev/$i ; done</userinput>\n"
+"<computeroutput>  Physical volume \"/dev/sdc3\" successfully created\n"
+"  Physical volume \"/dev/sdd\" successfully created\n"
+"  Physical volume \"/dev/sdf1\" successfully created\n"
+"  Physical volume \"/dev/sdf2\" successfully created\n"
+"# </computeroutput><userinput>pvdisplay -C</userinput>\n"
+"<computeroutput>  PV         VG   Fmt  Attr PSize PFree\n"
+"  /dev/sdb2       lvm2 a-   4.00g 4.00g\n"
+"  /dev/sdc3       lvm2 a-   3.09g 3.09g\n"
+"  /dev/sdd        lvm2 a-   4.00g 4.00g\n"
+"  /dev/sdf1       lvm2 a-   4.10g 4.10g\n"
+"  /dev/sdf2       lvm2 a-   5.22g 5.22g</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "So far, so good; note that a PV can be set up on a full disk as well as on individual partitions of it. As shown above, the <command>pvdisplay</command> command lists the existing PVs, with two possible output formats."
 msgstr ""
+"Até agora tudo bem; note que o PV (volume físico) pode ser configurado em um "
+"disco inteiro assim como em partições individuais do mesmo. Como "
+"demonstrado acima, o comando <command>pvdisplay</command> lista os PVs "
+"existentes, com dois possíveis formatos de saída."
 
 #. Tag: para
 #, no-c-format
@@ -830,7 +1155,7 @@ msgid "Now let's assemble these physical elements into VGs using <command>vgcrea
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 /dev/sdf1</userinput>\n"
@@ -864,6 +1189,39 @@ msgid ""
 "  vg_critical   2   0   0 wz--n-  8.14g  8.14g\n"
 "  vg_normal     3   0   0 wz--n- 12.30g 12.30g</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
+"<computeroutput># </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 "
+"/dev/sdf1</userinput>\n"
+"<computeroutput>  Volume group \"vg_critical\" successfully created\n"
+"# </computeroutput><userinput>vgdisplay</userinput>\n"
+"<computeroutput>  --- Volume group ---\n"
+"  VG Name               vg_critical\n"
+"  System ID\n"
+"  Format                lvm2\n"
+"  Metadata Areas        2\n"
+"  Metadata Sequence No  1\n"
+"  VG Access             read/write\n"
+"  VG Status             resizable\n"
+"  MAX LV                0\n"
+"  Cur LV                0\n"
+"  Open LV               0\n"
+"  Max PV                0\n"
+"  Cur PV                2\n"
+"  Act PV                2\n"
+"  VG Size               8.14 GB\n"
+"  PE Size               4.00 MB\n"
+"  Total PE              2084\n"
+"  Alloc PE / Size       0 / 0\n"
+"  Free  PE / Size       2084 / 8.14 GB\n"
+"  VG UUID               6eG6BW-MmJE-KB0J-dsB2-52iL-N6eD-1paeo8\n"
+"\n"
+"# </computeroutput><userinput>vgcreate vg_normal /dev/sdc3 /dev/sdd "
+"/dev/sdf2</userinput>\n"
+"<computeroutput>  Volume group \"vg_normal\" successfully created\n"
+"# </computeroutput><userinput>vgdisplay -C</userinput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree\n"
+"  vg_critical   2   0   0 wz--n-  8.14g  8.14g\n"
+"  vg_normal     3   0   0 wz--n- 12.30g 12.30g</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -874,9 +1232,13 @@ msgstr ""
 #, no-c-format
 msgid "We now have two “virtual disks”, sized about 8 GB and 12 GB, respectively. Let's now carve them up into “virtual partitions” (LVs). This involves the <command>lvcreate</command> command, and a slightly more complex syntax:"
 msgstr ""
+"Nós agora temos dois \"discos virtuais\", com o tamanho de 8 GB e 12 GB, "
+"respectivamente.Vamos transformá-los em \"partições virtuais\" (LVs). Isto "
+"envolve o comando <command>lvcreate</command>, e uma sintaxe um pouco mais "
+"complexa:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
@@ -907,6 +1269,38 @@ msgid ""
 "  lv_files   vg_critical -wi-a-  5.00G\n"
 "  lv_backups vg_normal   -wi-a- 12.00G</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
+"<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G "
+"vg_critical</userinput>\n"
+"<computeroutput>  Logical volume \"lv_files\" created\n"
+"# </computeroutput><userinput>lvdisplay</userinput>\n"
+"<computeroutput>  --- Logical volume ---\n"
+"  LV Name                /dev/vg_critical/lv_files\n"
+"  VG Name                vg_critical\n"
+"  LV UUID                4QLhl3-2cON-jRgQ-X4eT-93J4-6Ox9-GyRx3M\n"
+"  LV Write Access        read/write\n"
+"  LV Status              available\n"
+"  # open                 0\n"
+"  LV Size                5.00 GB\n"
+"  Current LE             1280\n"
+"  Segments               2\n"
+"  Allocation             inherit\n"
+"  Read ahead sectors     auto\n"
+"  - currently set to     256\n"
+"  Block device           253:0\n"
+"\n"
+"# </computeroutput><userinput>lvcreate -n lv_base -L 1G "
+"vg_critical</userinput>\n"
+"<computeroutput>  Logical volume \"lv_base\" created\n"
+"# </computeroutput><userinput>lvcreate -n lv_backups -L 12G "
+"vg_normal</userinput>\n"
+"<computeroutput>  Logical volume \"lv_backups\" created\n"
+"# </computeroutput><userinput>lvdisplay -C</userinput>\n"
+"<computeroutput>  LV         VG          Attr   LSize  Origin Snap%  Move "
+"Log Copy%  Convert\n"
+"  lv_base    vg_critical -wi-a-  1.00G\n"
+"  lv_files   vg_critical -wi-a-  5.00G\n"
+"  lv_backups vg_normal   -wi-a- 12.00G</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -916,12 +1310,14 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> <command>lvcreate</command> options"
-msgstr ""
+msgstr "<emphasis>Aprofundamento</emphasis> <command>lvcreate</command> opções"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>lvcreate</command> command has several options to allow tweaking how the LV is created."
 msgstr ""
+"O comando <command>lvcreate</command> possui diversas opções que permitem "
+"manipular como o LV é criado."
 
 #. Tag: para
 #, no-c-format
@@ -937,9 +1333,11 @@ msgstr ""
 #, no-c-format
 msgid "Logical volumes, once created, end up as block device files in <filename>/dev/mapper/</filename>:"
 msgstr ""
+"Volumes lógicos, quando criados, são representados como dispositivos de "
+"blocos no <filename>/dev/mapper/</filename>:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 "<computeroutput>total 0\n"
@@ -952,11 +1350,24 @@ msgid ""
 "brw-rw---- 1 root disk 253,  1  5 oct.  18:14 /dev/dm-1\n"
 "brw-rw---- 1 root disk 253,  2  5 oct.  18:14 /dev/dm-2</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
+"<computeroutput>total 0\n"
+"crw-rw---- 1 root root  10, 59  5 oct.  17:40 control\n"
+"lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_critical-lv_base -&gt; "
+"../dm-1\n"
+"lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_critical-lv_files -&gt; "
+"../dm-0\n"
+"lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_normal-lv_backups -&gt; "
+"../dm-2\n"
+"# </computeroutput><userinput>ls -l /dev/dm-*</userinput>\n"
+"<computeroutput>brw-rw---- 1 root disk 253,  0  5 oct.  18:14 /dev/dm-0\n"
+"brw-rw---- 1 root disk 253,  1  5 oct.  18:14 /dev/dm-1\n"
+"brw-rw---- 1 root disk 253,  2  5 oct.  18:14 /dev/dm-2</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Autodetecting LVM volumes"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Auto-detectando volumes LVM"
 
 #. Tag: para
 #, no-c-format
@@ -972,9 +1383,11 @@ msgstr ""
 #, no-c-format
 msgid "To make things easier, convenience symbolic links are also created in directories matching the VGs:"
 msgstr ""
+"Para simplificar, links simbólicos são convenientemente criados em "
+"diretórios que coincidem com os VGs:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
 "<computeroutput>total 0\n"
@@ -984,14 +1397,23 @@ msgid ""
 "<computeroutput>total 0\n"
 "lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_backups -&gt; ../dm-2</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>ls -l "
+"/dev/vg_critical</userinput>\n"
+"<computeroutput>total 0\n"
+"lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_base -&gt; ../dm-1\n"
+"lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_files -&gt; ../dm-0\n"
+"# </computeroutput><userinput>ls -l /dev/vg_normal</userinput>\n"
+"<computeroutput>total 0\n"
+"lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_backups -&gt; "
+"../dm-2</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The LVs can then be used exactly like standard partitions:"
-msgstr ""
+msgstr "Os LVs então podem ser utilizados exatamente como partições padrão:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
 "<computeroutput>mke2fs 1.41.12 (17-May-2010)\n"
@@ -1015,16 +1437,41 @@ msgid ""
 "/dev/vg_critical/lv_files   /srv/files      ext4\n"
 "/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mkfs.ext4 "
+"/dev/vg_normal/lv_backups</userinput>\n"
+"<computeroutput>mke2fs 1.41.12 (17-May-2010)\n"
+"Filesystem label=\n"
+"OS type: Linux\n"
+"Block size=4096 (log=2)\n"
+"[...]\n"
+"This filesystem will be automatically checked every 34 mounts or\n"
+"180 days, whichever comes first.  Use tune2fs -c or -i to override.\n"
+"# </computeroutput><userinput>mkdir /srv/backups</userinput>\n"
+"<computeroutput># </computeroutput><userinput>mount "
+"/dev/vg_normal/lv_backups /srv/backups</userinput>\n"
+"<computeroutput># </computeroutput><userinput>df -h /srv/backups</userinput>\n"
+"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_normal-lv_backups\n"
+"                       12G  159M   12G   2% /srv/backups\n"
+"# </computeroutput><userinput>[...]</userinput>\n"
+"<computeroutput>[...]\n"
+"# </computeroutput><userinput>cat /etc/fstab</userinput>\n"
+"<computeroutput>[...]\n"
+"/dev/vg_critical/lv_base    /srv/base       ext4\n"
+"/dev/vg_critical/lv_files   /srv/files      ext4\n"
+"/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "From the applications' point of view, the myriad small partitions have now been abstracted into one large 12 GB volume, with a friendlier name."
 msgstr ""
+"Do ponto de vista das aplicações, a miríade de pequenas partições foi "
+"abstraída em um grande volume de 12 GB, com um nome amigável."
 
 #. Tag: title
 #, no-c-format
 msgid "LVM Over Time"
-msgstr ""
+msgstr "LVM ao longo do tempo"
 
 #. Tag: para
 #, no-c-format
@@ -1032,7 +1479,7 @@ msgid "Even though the ability to aggregate partitions or physical disks is conv
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
@@ -1062,11 +1509,44 @@ msgid ""
 "/dev/mapper/vg_critical-lv_files\n"
 "                      6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
+"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_files\n"
+"                      5.0G  4.6G  142M  98% /srv/files\n"
+"# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
+"<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log "
+"Copy%  Convert\n"
+"  lv_files vg_critical -wi-ao 5.00g\n"
+"# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
+"  vg_critical   2   2   0 wz--n- 8.14g 2.14g\n"
+"# </computeroutput><userinput>lvresize -L 7G "
+"vg_critical/lv_files</userinput>\n"
+"<computeroutput>  Extending logical volume lv_files to 7.00 GB\n"
+"  Logical volume lv_files successfully resized\n"
+"# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
+"<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log "
+"Copy%  Convert\n"
+"  lv_files vg_critique -wi-ao 7.00g\n"
+"# </computeroutput><userinput>resize2fs "
+"/dev/vg_critical/lv_files</userinput>\n"
+"<computeroutput>resize2fs 1.41.12 (17-May-2010)\n"
+"Filesystem at /dev/vg_critical/lv_files is mounted on /srv/files; on-line "
+"resizing required\n"
+"old desc_blocks = 1, new_desc_blocks = 1\n"
+"Performing an on-line resize of /dev/vg_critical/lv_files to 1835008 (4k) "
+"blocks.\n"
+"The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.\n"
+"\n"
+"# </computeroutput><userinput>df -h /srv/files/</userinput>\n"
+"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_files\n"
+"                      6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Resizing filesystems"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> Redimensionando sistemas de arquivos"
 
 #. Tag: para
 #, no-c-format
@@ -1084,7 +1564,7 @@ msgid "We could proceed in a similar fashion to extend the volume hosting the da
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
@@ -1094,6 +1574,13 @@ msgid ""
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
 "  vg_critical   2   2   0 wz--n- 8.14g 144.00m</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
+"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_base\n"
+"                     1008M  835M  123M  88% /srv/base\n"
+"# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
+"  vg_critical   2   2   0 wz--n- 8.14g 144.00m</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1117,11 +1604,24 @@ msgid ""
 "/dev/mapper/vg_critical-lv_base\n"
 "                      2.0G  835M  1.1G  44% /srv/base</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
+"<computeroutput>  Physical volume \"/dev/sdb1\" successfully created\n"
+"# </computeroutput><userinput>vgextend vg_critical /dev/sdb1</userinput>\n"
+"<computeroutput>  Volume group \"vg_critical\" successfully extended\n"
+"# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
+"  vg_critical   3   2   0 wz--n- 9.09g 1.09g\n"
+"# </computeroutput><userinput>[...]</userinput>\n"
+"<computeroutput>[...]\n"
+"# </computeroutput><userinput>df -h /srv/base/</userinput>\n"
+"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_base\n"
+"                      2.0G  835M  1.1G  44% /srv/base</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Advanced LVM"
-msgstr ""
+msgstr "<emphasis>Aprofundamento</emphasis> LVM avançado"
 
 #. Tag: para
 #, no-c-format
@@ -1131,7 +1631,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "RAID or LVM?"
-msgstr ""
+msgstr "RAID ou LVM?"
 
 #. Tag: para
 #, no-c-format
@@ -1183,16 +1683,40 @@ msgid ""
 "/dev/sda6           12698    25146    99996561   fd  Linux raid autodetect\n"
 "/dev/sda7           25147    36483    91064421   8e  Linux LVM</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinput>\n"
+"<computeroutput>\n"
+"Disk /dev/hda: 300.0 GB, 300090728448 bytes\n"
+"255 heads, 63 sectors/track, 36483 cylinders\n"
+"Units = cylinders of 16065 * 512 = 8225280 bytes\n"
+"Sector size (logical/physical): 512 bytes / 512 bytes\n"
+"I/O size (minimum/optimal): 512 bytes / 512 bytes\n"
+"Disk identifier: 0x00039a9f\n"
+"\n"
+"   Device Boot      Start      End      Blocks   Id  System\n"
+"/dev/sda1   *           1      124      995998+  fd  Linux raid autodetect\n"
+"/dev/sda2             125      248      996030   82  Linux swap / Solaris\n"
+"/dev/sda3             249    36483   291057637+   5  Extended\n"
+"/dev/sda5             249    12697    99996561   fd  Linux raid autodetect\n"
+"/dev/sda6           12698    25146    99996561   fd  Linux raid autodetect\n"
+"/dev/sda7           25147    36483    91064421   8e  Linux "
+"LVM</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The first partitions of both disks (about 1 GB) are assembled into a RAID-1 volume, <filename>md0</filename>. This mirror is directly used to store the root filesystem."
 msgstr ""
+"As primeiras partições em ambos os discos (por volta de 1 GB) são juntas em "
+"um volume RAID-1, <filename>md0</filename>. Este espelho é diretamente usado "
+"para armazenar o sistema de arquivos raiz."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sda2</filename> and <filename>sdc2</filename> partitions are used as swap partitions, providing a total 2 GB of swap space. With 1 GB of RAM, the workstation has a comfortable amount of available memory."
 msgstr ""
+"As partições <filename>sda2</filename> e <filename>sdc2</filename> são "
+"usadas como swap, provendo um total de 2 GB de swap. Com 1 GB de RAM, a "
+"estação de trabalho encontra uma quantidade confortável de memoria "
+"disponível."
 
 #. Tag: para
 #, no-c-format
@@ -1203,6 +1727,10 @@ msgstr ""
 #, no-c-format
 msgid "The remaining partitions, <filename>sda7</filename> and <filename>sdc7</filename>, are directly used as physical volumes, and assigned to another VG called <filename>vg_bulk</filename>, which therefore ends up with roughly 200 GB of space."
 msgstr ""
+"As partições que sobraram, <filename>sda7</filename> e "
+"<filename>sdc7</filename>,são diretamente usadas como volumes físicos, e "
+"associadas a outro VG chamado <filename>vg_bulk</filename>, o qual portanto "
+"terminará com aproximadamente 200 GB de espaço."
 
 #. Tag: para
 #, no-c-format
@@ -1222,12 +1750,14 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Why three RAID-1 volumes?"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Por que três volumes RAID-1?"
 
 #. Tag: para
 #, no-c-format
 msgid "We could have set up one RAID-1 volume only, to serve as a physical volume for <filename>vg_raid</filename>. Why create three of them, then?"
 msgstr ""
+"Poderíamos configurar um volume RAID-1 somente para servir como volume "
+"físico para <filename>vg_raid</filename>. Por que criar três deles, então?"
 
 #. Tag: para
 #, no-c-format
@@ -1248,31 +1778,34 @@ msgstr ""
 #, no-c-format
 msgid "There are multiple virtualization solutions, each with its own pros and cons. This book will focus on Xen, LXC, and KVM, but other noteworthy implementations include the following:"
 msgstr ""
+"Existem múltiplas soluções de virtualização, cada uma com seus prós e "
+"contras. Este livro focará no Xen, LXC e KVM, mas outras implementações "
+"dignas de nora incluem as seguintes:"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>VMWare</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>VMWare</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>Bochs</command></primary>"
-msgstr ""
+msgstr "<primary><command>Bochs</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>QEMU</command></primary>"
-msgstr ""
+msgstr "<primary><command>QEMU</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>VirtualBox</command></primary>"
-msgstr ""
+msgstr "<primary><command>VirtualBox</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>KVM</command></primary>"
-msgstr ""
+msgstr "<primary><command>KVM</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1283,6 +1816,7 @@ msgstr ""
 #, no-c-format
 msgid "Bochs is another free virtual machine, but it only emulates the i386 architecture."
 msgstr ""
+"Bochs é outro máquina virtual livre, mas somente simula arquiteturas i386."
 
 #. Tag: para
 #, no-c-format
@@ -1307,7 +1841,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Xen and the various versions of Linux"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> Xen e as várias versões do Linux"
 
 #. Tag: para
 #, no-c-format
@@ -1327,12 +1861,12 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Using Xen under Debian requires three components:"
-msgstr ""
+msgstr "Utilizar o Xen com o Debian necessita de três componentes:"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Architectures compatible with Xen"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Arquiteturas compatíveis com Xen"
 
 #. Tag: para
 #, no-c-format
@@ -1342,7 +1876,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Xen and non-Linux kernels"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> Xen e núcleos não-Linux"
 
 #. Tag: para
 #, no-c-format
@@ -1381,6 +1915,10 @@ msgid ""
 "</userinput><computeroutput># </computeroutput><userinput>update-grub\n"
 "</userinput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen "
+"/etc/grub.d/09_linux_xen\n"
+"</userinput><computeroutput># </computeroutput><userinput>update-grub\n"
+"</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1396,11 +1934,15 @@ msgstr ""
 #, no-c-format
 msgid "<literal>--memory</literal>, to specify the amount of RAM dedicated to the newly created system;"
 msgstr ""
+"<literal>--memory</literal>, para definir o quantidade de RAM dedicada para "
+"o sistema recentemente criado;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--size</literal> and <literal>--swap</literal>, to define the size of the “virtual disks” available to the domU;"
 msgstr ""
+"<literal>--size</literal> e <literal>--swap</literal>, para definir o "
+"tamanho dos \"discos virtuais\" disponíveis para o domU;"
 
 #. Tag: para
 #, no-c-format
@@ -1411,6 +1953,8 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Installing a non-Debian system in a domU"
 msgstr ""
+"<emphasis>Aprofundamento</emphasis> Instalando um sistema não Debian em um "
+"domU"
 
 #. Tag: para
 #, no-c-format
@@ -1421,11 +1965,16 @@ msgstr ""
 #, no-c-format
 msgid "In case of a non-Linux system, care should be taken to define the kernel the domU must use, using the <literal>--kernel</literal> option."
 msgstr ""
+"Em caso de sistemas não-Linux, um certo cuidado deve ser tomado ao definir "
+"qual domU o núcleo deve usar, usando a opção <literal>--kernel</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--dhcp</literal> states that the domU's network configuration should be obtained by DHCP while <literal>--ip</literal> allows defining a static IP address."
 msgstr ""
+"<literal>--dhcp</literal> define que a configuração de rede do domU deve ser "
+"obtida por DHCP enquanto <literal>--ip</literal> permite a definição "
+"estática do endereço IP."
 
 #. Tag: para
 #, no-c-format
@@ -1435,7 +1984,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Storage in the domU"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Armazenamento em domU"
 
 #. Tag: para
 #, no-c-format
@@ -1446,6 +1995,8 @@ msgstr ""
 #, no-c-format
 msgid "Once these choices are made, we can create the image for our future Xen domU:"
 msgstr ""
+"Assim que essas escolhas são feitas, podemos criar uma imagem para o nosso "
+"futuro Xen domU:"
 
 #. Tag: screen
 #, no-c-format
@@ -1476,11 +2027,40 @@ msgid ""
 "Root Password   :  52emxRmM\n"
 "</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>xen-create-image "
+"--hostname=testxen</userinput>\n"
+"<computeroutput>\n"
+"General Information\n"
+"--------------------\n"
+"Hostname       :  testxen\n"
+"Distribution   :  squeeze\n"
+"Mirror         :  http://ftp.us.debian.org/debian/\n"
+"Partitions     :  swap            128Mb (swap)\n"
+"                  /               4Gb   (ext3)\n"
+"Image type     :  sparse\n"
+"Memory size    :  128Mb\n"
+"Kernel path    :  /boot/vmlinuz-2.6.32-5-xen-686\n"
+"Initrd path    :  /boot/initrd.img-2.6.32-5-xen-686\n"
+"[...]\n"
+"Logfile produced at:\n"
+"         /var/log/xen-tools/testxen.log\n"
+"\n"
+"Installation Summary\n"
+"---------------------\n"
+"Hostname        :  testxen\n"
+"Distribution    :  squeeze\n"
+"IP-Address(es)  :  dynamic\n"
+"RSA Fingerprint :  25:6b:6b:c7:84:03:9e:8b:82:da:84:c0:08:cd:29:94\n"
+"Root Password   :  52emxRmM\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "We now have a virtual machine, but it is currently not running (and therefore only using space on the dom0's hard disk). Of course, we can create more images, possibly with different parameters."
 msgstr ""
+"Agora temos uma máquina virtual, mas atualmente não está sendo executada (e "
+"portanto somente utilizando espaço de disco do dom0). Obviamente, podemos "
+"criar mais imagens, possivelmente com parâmetros diferentes. "
 
 #. Tag: para
 #, no-c-format
@@ -1491,16 +2071,26 @@ msgstr ""
 #, no-c-format
 msgid "The simplest model is the <emphasis>bridge</emphasis> model; all the eth0 network cards (both in the dom0 and the domU systems) behave as if they were directly plugged into an Ethernet switch."
 msgstr ""
+"O modelo mais simples é o modelo de ponte <emphasis>bridge</emphasis>; todos "
+"as placas de rede eth0 (tanto no caso do dom0 quanto nos sistemas domU) se "
+"comportam como se fossem diretamente conectadas em um switch de rede."
 
 #. Tag: para
 #, no-c-format
 msgid "Then comes the <emphasis>routing</emphasis> model, where the dom0 behaves as a router that stands between the domU systems and the (physical) external network."
 msgstr ""
+"Em seguida vem o modelo <emphasis>routing</emphasis>, onde o dom0 se "
+"comporta como um roteador que se põem entre sistemas domU e a rede (física) "
+"externa."
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, in the <emphasis>NAT</emphasis> model, the dom0 is again between the domU systems and the rest of the network, but the domU systems are not directly accessible from outside, and traffic goes through some network address translation on the dom0."
 msgstr ""
+"Finalmente, no modelo <emphasis>NAT</emphasis>, o dom0 novamente está entre "
+"os sistemas domU e o resto da rede, mas os sistemas domU não são diretamente "
+"acessíveis por fora, e todo o tráfego vai através de uma tradução de "
+"endereços de rede (NAT) para o dom0."
 
 #. Tag: para
 #, no-c-format
@@ -1521,6 +2111,11 @@ msgid ""
 "    bridge_maxwait 0\n"
 "    "
 msgstr ""
+"auto xenbr0\n"
+"iface xenbr0 inet dhcp\n"
+"    bridge_ports eth0\n"
+"    bridge_maxwait 0\n"
+"    "
 
 #. Tag: para
 #, no-c-format
@@ -1541,11 +2136,24 @@ msgid ""
 "Domain-0                         0 873     1 r-----   3917.1\n"
 "testxen                          1 128     1 -b----      3.7</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
+"<computeroutput>Name                            ID Mem VCPUs  State   "
+"Time(s)\n"
+"Domain-0                         0 940     1 r-----   3896.9\n"
+"# </computeroutput><userinput>xm create testxen.cfg</userinput>\n"
+"<computeroutput>Using config file \"/etc/xen/testxen.cfg\".\n"
+"Started domain testxen (id=1)\n"
+"# </computeroutput><userinput>xm list</userinput>\n"
+"<computeroutput>Name                            ID Mem VCPUs  State   "
+"Time(s)\n"
+"Domain-0                         0 873     1 r-----   3917.1\n"
+"testxen                          1 128     1 -b----      "
+"3.7</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Only one domU per image!"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> Somente utilize um domU por imagem!"
 
 #. Tag: para
 #, no-c-format
@@ -1575,6 +2183,15 @@ msgid ""
 "\n"
 "testxen login: </computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
+"<computeroutput>[...]\n"
+"Starting enhanced syslogd: rsyslogd.\n"
+"Starting periodic command scheduler: cron.\n"
+"Starting OpenBSD Secure Shell server: sshd.\n"
+"\n"
+"Debian GNU/Linux 6.0 testxen hvc0\n"
+"\n"
+"testxen login: </computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1584,7 +2201,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Getting the console straight away"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Obtendo o console imediatamente"
 
 #. Tag: para
 #, no-c-format
@@ -1594,7 +2211,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> ConVirt"
-msgstr ""
+msgstr "<emphasis>FERRAMENTAS</emphasis> ConVirt"
 
 #. Tag: para
 #, no-c-format
@@ -1609,7 +2226,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> <command>xm</command> options"
-msgstr ""
+msgstr "<emphasis>DOCUMENTAÇÃO</emphasis> <command>xm</command> opções"
 
 #. Tag: para
 #, no-c-format
@@ -1624,7 +2241,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Advanced Xen"
-msgstr ""
+msgstr "<emphasis>APROFUNDAMENTO</emphasis> Xen avançado"
 
 #. Tag: para
 #, no-c-format
@@ -1644,12 +2261,14 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> LXC isolation limits"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> limites de isolamento do LXC"
 
 #. Tag: para
 #, no-c-format
 msgid "LXC containers do not provide the level of isolation achieved by heavier emulators or virtualizers. In particular:"
 msgstr ""
+"Contêineres LXC não provêm o mesmo nível de isolamento conseguido por "
+"emuladores ou virtualizadores. Em particular:"
 
 #. Tag: para
 #, no-c-format
@@ -1660,11 +2279,17 @@ msgstr ""
 #, no-c-format
 msgid "since the kernel is shared among the host system and the containers, processes constrained to containers can still access the kernel messages, which can lead to information leaks if messages are emitted by a container;"
 msgstr ""
+"já que o núcleo é compartilhado entre os sistemas e os contêineres, "
+"processos restritos ao contêineres ainda podem acessar mensagens do núcleo, "
+"o qual pode levar ao vazamento de informação se as mensagem forem emitidas "
+"pelo contêiner;"
 
 #. Tag: para
 #, no-c-format
 msgid "for similar reasons, if a container is compromised and a kernel vulnerability is exploited, the other containers may be affected too;"
 msgstr ""
+"por razões parecidas, se o contêiner é comprometido e se uma vulnerabilidade "
+"do núcleo é explorada, os outros contêineres podem ser afetados também;"
 
 #. Tag: para
 #, no-c-format
@@ -1679,17 +2304,23 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Preliminary Steps"
-msgstr ""
+msgstr "Etapas Preliminares"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">lxc</emphasis> package contains the tools required to run LXC, and must therefore be installed."
 msgstr ""
+"O pacote <emphasis role=\"pkg\">lxc</emphasis> contém as ferramentas "
+"necessárias para executar o LXC, e devem portanto serem instaladas."
 
 #. Tag: para
 #, no-c-format
 msgid "LXC also requires the <emphasis>control groups</emphasis> configuration system, which is a virtual filesystem to be mounted on <filename>/sys/fs/cgroup</filename>. The <filename>/etc/fstab</filename> should therefore include the following entry:"
 msgstr ""
+"O LXC também necessita do sistema de configuração <emphasis>control "
+"groups</emphasis>, o qual é um sistema de arquivos virtual que é montado no "
+"<filename>/sys/fs/cgroup</filename>. O <filename>/etc/fstab</filename> deve "
+"portanto incluir a seguinte entrada:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1698,16 +2329,24 @@ msgid ""
 "[...]\n"
 "cgroup            /sys/fs/cgroup           cgroup    defaults        0       0\n"
 msgstr ""
+"# /etc/fstab: static file system information.\n"
+"[...]\n"
+"cgroup            /sys/fs/cgroup           cgroup    defaults        0 "
+"      0\n"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>/sys/fs/cgroup</filename> will then be mounted automatically at boot time; if no immediate reboot is planned, the filesystem should be manually mounted with <command>mount /sys/fs/cgroup</command>."
 msgstr ""
+"<filename>/sys/fs/cgroup</filename> será automaticamente montado na "
+"inicialização; se nenhuma reinicialização está planejada, o sistema de "
+"arquivos deve ser manualmente montado com <command>mount "
+"/sys/fs/cgroup</command>."
 
 #. Tag: title
 #, no-c-format
 msgid "Network Configuration"
-msgstr ""
+msgstr "Configuração de Rede"
 
 #. Tag: para
 #, no-c-format
@@ -1725,11 +2364,13 @@ msgid ""
 "auto eth0\n"
 "iface eth0 inet dhcp"
 msgstr ""
+"auto eth0\n"
+"iface eth0 inet dhcp"
 
 #. Tag: para
 #, no-c-format
 msgid "They should be disabled and replaced with the following:"
-msgstr ""
+msgstr "Devem ser desabilitados e substituídos pelo seguinte:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1741,6 +2382,12 @@ msgid ""
 "iface br0 inet dhcp\n"
 "  bridge-ports eth0"
 msgstr ""
+"#auto eth0\n"
+"#iface eth0 inet dhcp\n"
+"\n"
+"auto br0\n"
+"iface br0 inet dhcp\n"
+"  bridge-ports eth0"
 
 #. Tag: para
 #, no-c-format
@@ -1781,11 +2428,15 @@ msgstr ""
 #, no-c-format
 msgid "The network can then be set up either statically in the containers, or dynamically with DHCP server running on the host. Such a DHCP server will need to be configured to answer queries on the <literal>br0</literal> interface."
 msgstr ""
+"A rede então pode ser configurada estaticamente nos contêineres, ou "
+"dinamicamente com um servidor DHCP rodando no host.\n"
+"Tal servidor DHCP deverá ser configurado para responder as consultas na "
+"interface <literal>br0</literal>."
 
 #. Tag: title
 #, no-c-format
 msgid "Setting Up the System"
-msgstr ""
+msgstr "Configurando o Sistema"
 
 #. Tag: para
 #, no-c-format
@@ -1809,11 +2460,31 @@ msgid ""
 "root@scouzmir:~# </computeroutput>\n"
 "        "
 msgstr ""
+"<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir "
+"/var/lib/lxc/testlxc/\n"
+"</userinput><computeroutput>root@scouzmir:~# "
+"</computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p "
+"/var/lib/lxc/testlxc/\n"
+"</userinput><computeroutput>debootstrap is /usr/sbin/debootstrap\n"
+"Checking cache download in /var/cache/lxc/debian/rootfs-i386 ... \n"
+"Downloading debian minimal ...\n"
+"I: Retrieving Release\n"
+"I: Retrieving Packages\n"
+"[...]\n"
+" Removing any system startup links for /etc/init.d/hwclockfirst.sh ...\n"
+"   /etc/rcS.d/S08hwclockfirst.sh\n"
+"Root password is 'root', please change !\n"
+"root@scouzmir:~# </computeroutput>\n"
+"        "
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the filesystem is initially created in <filename>/var/cache/lxc</filename>, then moved to its destination directory. This allows creating identical containers much more quickly, since only copying is then required."
 msgstr ""
+"Note que o sistema de arquivo é inicialmente criado em "
+"<filename>/var/cache/lxc</filename>, então é movido para o seu diretório de "
+"destino. Isto proporciona a criação de contêineres idênticos mais "
+"rapidamente, já que somente um cópia é necessária."
 
 #. Tag: para
 #, no-c-format
@@ -1833,6 +2504,10 @@ msgid ""
 "lxc.network.link = br0\n"
 "lxc.network.hwaddr = 4a:49:43:49:79:20\n"
 msgstr ""
+"lxc.network.type = veth\n"
+"lxc.network.flags = up\n"
+"lxc.network.link = br0\n"
+"lxc.network.hwaddr = 4a:49:43:49:79:20\n"
 
 #. Tag: para
 #, no-c-format
@@ -1842,12 +2517,14 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Starting the Container"
-msgstr ""
+msgstr "Inicializando o Contêiner"
 
 #. Tag: para
 #, no-c-format
 msgid "Now that our virtual machine image is ready, let's start the container:"
 msgstr ""
+"Agora que nossa imagem da máquina virtual está pronta, vamos inicializar o "
+"contêiner:"
 
 #. Tag: screen
 #, no-c-format
@@ -1904,6 +2581,67 @@ msgid ""
 "root       290  0.0  0.2   1652   560 tty4     Ss+  08:44   0:00 /sbin/getty 38400 tty4 linux\n"
 "scouzmir:~# </computeroutput>"
 msgstr ""
+"<computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start "
+"--name=testlxc\n"
+"</userinput><computeroutput>INIT: version 2.86 booting\n"
+"Activating swap...done.\n"
+"Cleaning up ifupdown....\n"
+"Checking file systems...fsck 1.41.3 (12-Oct-2008)\n"
+"done.\n"
+"Setting kernel variables (/etc/sysctl.conf)...done.\n"
+"Mounting local filesystems...done.\n"
+"Activating swapfile swap...done.\n"
+"Setting up networking....\n"
+"Configuring network interfaces...Internet Systems Consortium DHCP Client "
+"V3.1.1\n"
+"Copyright 2004-2008 Internet Systems Consortium.\n"
+"All rights reserved.\n"
+"For info, please visit http://www.isc.org/sw/dhcp/\n"
+"\n"
+"Listening on LPF/eth0/52:54:00:99:01:01\n"
+"Sending on   LPF/eth0/52:54:00:99:01:01\n"
+"Sending on   Socket/fallback\n"
+"DHCPDISCOVER on eth0 to 255.255.255.255 port 67 interval 4\n"
+"DHCPOFFER from 192.168.1.2\n"
+"DHCPREQUEST on eth0 to 255.255.255.255 port 67\n"
+"DHCPACK from 192.168.1.2\n"
+"bound to 192.168.1.243 -- renewal in 1392 seconds.\n"
+"done.\n"
+"INIT: Entering runlevel: 3\n"
+"Starting OpenBSD Secure Shell server: sshd.\n"
+"\n"
+"Debian GNU/Linux 5.0 scouzmir console\n"
+"\n"
+"scouzmir login: </computeroutput><userinput>root\n"
+"</userinput><computeroutput>Password: \n"
+"Linux scouzmir 2.6.32-5-686 #1 SMP Tue Mar 8 21:36:00 UTC 2011 i686\n"
+"\n"
+"The programs included with the Debian GNU/Linux system are free software;\n"
+"the exact distribution terms for each program are described in the\n"
+"individual files in /usr/share/doc/*/copyright.\n"
+"\n"
+"Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent\n"
+"permitted by applicable law.\n"
+"scouzmir:~# </computeroutput><userinput>ps auxwf</userinput>\n"
+"<computeroutput>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   "
+"TIME COMMAND\n"
+"root         1  0.0  0.2   1984   680 ?        Ss   08:44   0:00 init [3]  \n"
+"root       197  0.0  0.1   2064   364 ?        Ss   08:44   0:00 dhclient3 "
+"-pf /var/run/dhclient.eth0.pid -lf /var/lib/dhcp3/dhclien\n"
+"root       286  0.1  0.4   2496  1256 console  Ss   08:44   0:00 /bin/login "
+"--     \n"
+"root       291  0.7  0.5   2768  1504 console  S    08:46   0:00  \\_ -bash\n"
+"root       296  0.0  0.3   2300   876 console  R+   08:46   0:00      \\_ ps "
+"auxwf\n"
+"root       287  0.0  0.2   1652   560 tty1     Ss+  08:44   0:00 /sbin/getty "
+"38400 tty1 linux\n"
+"root       288  0.0  0.2   1652   560 tty2     Ss+  08:44   0:00 /sbin/getty "
+"38400 tty2 linux\n"
+"root       289  0.0  0.2   1652   556 tty3     Ss+  08:44   0:00 /sbin/getty "
+"38400 tty3 linux\n"
+"root       290  0.0  0.2   1652   560 tty4     Ss+  08:44   0:00 /sbin/getty "
+"38400 tty4 linux\n"
+"scouzmir:~# </computeroutput>"
 
 #. Tag: para
 #, no-c-format
@@ -1923,7 +2661,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Mass virtualization"
-msgstr ""
+msgstr "<emphasis>APROFUNDAMENTO</emphasis> Virtualização em massa"
 
 #. Tag: para
 #, no-c-format
@@ -1943,12 +2681,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Virtualization with KVM"
-msgstr ""
+msgstr "Virtualização com KVM"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>KVM</primary>"
-msgstr ""
+msgstr "<primary>KVM</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1964,11 +2702,13 @@ msgstr ""
 #, no-c-format
 msgid "With Red Hat actively supporting its development, KVM looks poised to become the reference for Linux virtualization."
 msgstr ""
+"Com a Red Hat ativamente suportando seu desenvolvimento, o KVM parece pronto "
+"para se tornar a referência em virtualização do Linux."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>virt-install</command></primary>"
-msgstr ""
+msgstr "<primary><command>virt-install</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1978,12 +2718,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>libvirt</primary>"
-msgstr ""
+msgstr "<primary>libvirt</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">virt-manager</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">virt-manager</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1993,7 +2733,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">virtinst</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">virtinst</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2023,7 +2763,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Installation with <command>virt-install</command>"
-msgstr ""
+msgstr "Instalação com <command>virt-install</command>"
 
 #. Tag: para
 #, no-c-format
@@ -2043,7 +2783,8 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>virsh pool-create-as srv-kvm dir --target /srv/kvm</userinput>\n"
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>virsh pool-create-as srv-kvm "
+"dir --target /srv/kvm</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -2073,6 +2814,29 @@ msgid ""
 "to the console to complete the installation process.\n"
 "</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>virt-install --connect "
+"qemu:///system  <co id=\"virtinst.connect\"></co>\n"
+"               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
+"               --name testkvm            <co id=\"virtinst.name\"></co>\n"
+"               --ram 1024                <co id=\"virtinst.ram\"></co>\n"
+"               --disk /srv/kvm/testkvm.qcow,format=qcow2,size=10 <co "
+"id=\"virtinst.disk\"></co>\n"
+"               --cdrom /srv/isos/debian-6.0.0-amd64-DVD-1.iso    <co "
+"id=\"virtinst.cdrom\"></co>\n"
+"               --network bridge=br0      <co id=\"virtinst.network\"></co>\n"
+"               --vnc                     <co id=\"virtinst.vnc\"></co>\n"
+"               --os-type linux           <co id=\"virtinst.os\"></co>\n"
+"               --os-variant debiansqueeze\n"
+"</userinput><computeroutput>\n"
+"Starting install...\n"
+"Allocating 'testkvm.qcow'             |  10 GB     00:00\n"
+"Creating domain...                    |    0 B     00:00\n"
+"Cannot open display:\n"
+"Run 'virt-viewer --help' to see a full list of available command line "
+"options.\n"
+"Domain installation still in progress. You can reconnect\n"
+"to the console to complete the installation process.\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -2131,21 +2895,27 @@ msgid ""
 "</userinput><computeroutput>root@server's password: \n"
 "root@server's password: </computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>virt-viewer --connect "
+"qemu+ssh://root@<replaceable>server</replaceable>/system testkvm\n"
+"</userinput><computeroutput>root@server's password: \n"
+"root@server's password: </computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "When the installation process ends, the virtual machine is restarted, now ready for use."
 msgstr ""
+"Quando o processo de instalação terminar, a máquina virtual é reiniciada, e "
+"agora pronta para o uso."
 
 #. Tag: title
 #, no-c-format
 msgid "Managing Machines with <command>virsh</command>"
-msgstr ""
+msgstr "Gerenciando Máquina com <command>virsh</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>virsh</command></primary>"
-msgstr ""
+msgstr "<primary><command>virsh</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2153,7 +2923,7 @@ msgid "Now that the installation is done, let us see how to handle the available
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all\n"
 " Id Name                 State\n"
@@ -2161,18 +2931,27 @@ msgid ""
 "  - testkvm              shut off\n"
 "</userinput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list "
+"--all\n"
+" Id Name                 State\n"
+"----------------------------------\n"
+"  - testkvm              shut off\n"
+"</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's start our test virtual machine:"
-msgstr ""
+msgstr "Vamos iniciar nossa máquina virtual de teste:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
 "</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start "
+"testkvm\n"
+"</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -2185,36 +2964,39 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system vncdisplay testkvm\n"
 "</userinput><computeroutput>:0</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system "
+"vncdisplay testkvm\n"
+"</userinput><computeroutput>:0</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Other available <command>virsh</command> subcommands include:"
-msgstr ""
+msgstr "Outros subcomandos disponíveis para o <command>virsh</command> incluem:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>reboot</literal> to restart a virtual machine;"
-msgstr ""
+msgstr "<literal>reboot</literal> reinicia uma máquina virtual;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>shutdown</literal> to trigger a clean shutdown;"
-msgstr ""
+msgstr "<literal>shutdown</literal> para ativar um desligamento limpo;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>destroy</literal>, to stop it brutally;"
-msgstr ""
+msgstr "<literal>destroy</literal>, para parar abruptamente;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>suspend</literal> to pause it;"
-msgstr ""
+msgstr "<literal>suspend</literal> para pausar a mesma;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>resume</literal> to unpause it;"
-msgstr ""
+msgstr "<literal>resume</literal> para despausar a mesma;"
 
 #. Tag: para
 #, no-c-format
@@ -2230,11 +3012,13 @@ msgstr ""
 #, no-c-format
 msgid "All these subcommands take a virtual machine identifier as a parameter."
 msgstr ""
+"Todos esses subcomandos têm como parâmetro a identificação da máquina "
+"virtual."
 
 #. Tag: title
 #, no-c-format
 msgid "Automated Installation"
-msgstr ""
+msgstr "Instalação Automatizada"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2245,6 +3029,7 @@ msgstr ""
 #, no-c-format
 msgid "<primary>installation</primary><secondary>automated installation</secondary>"
 msgstr ""
+"<primary>instalação</primary><secondary>instalação automatizada</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -2274,12 +3059,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Fully Automatic Installer (FAI)"
-msgstr ""
+msgstr "Instalador Completamente Automático (FAI)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Fully Automatic Installer (FAI)</primary>"
-msgstr ""
+msgstr "<primary>Instalador Completamente Automático (FAI)</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2305,21 +3090,26 @@ msgstr ""
 #, no-c-format
 msgid "Creating all these configuration files requires some understanding of the way FAI works. A typical installation process is made of the following steps:"
 msgstr ""
+"Para criar todos esses arquivos de configuração é necessário algum "
+"entendimento da maneira a qual o FAI funciona. Um processo de instalação "
+"típico é feito dos passos seguintes:"
 
 #. Tag: para
 #, no-c-format
 msgid "fetching a kernel from the network, and booting it;"
-msgstr ""
+msgstr "pegar um núcleo da rede, e iniciá-lo;"
 
 #. Tag: para
 #, no-c-format
 msgid "mounting the root filesystem from NFS;"
-msgstr ""
+msgstr "montar um sistema de arquivo raiz de um NFS;"
 
 #. Tag: para
 #, no-c-format
 msgid "executing <command>/usr/sbin/fai</command>, which controls the rest of the process (the next steps are therefore initiated by this script);"
 msgstr ""
+"executar <command>/usr/sbin/fai</command>, o qual controla o resto do "
+"processo (os próximos passos portanto são iniciados por este roteiro);"
 
 #. Tag: para
 #, no-c-format
@@ -2889,7 +3679,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Installing"
-msgstr ""
+msgstr "Instalando"
 
 #. Tag: para
 #, no-c-format
@@ -2920,7 +3710,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring"
-msgstr ""
+msgstr "Configurando"
 
 #. Tag: para
 #, no-c-format

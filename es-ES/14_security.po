@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2013-01-19 21:39+0200\n"
-"Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
+"PO-Revision-Date: 2013-04-09 14:21+0200\n"
+"Last-Translator: Iván Alemán <aleman.ivan@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-"
 "handbook/14_security/es-ES/>\n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 1.4-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -41,16 +41,16 @@ msgstr "Seguridad"
 msgid "An information system can have a varying level of importance depending on the environment. In some cases, it is vital to a company's survival. It must therefore be protected from various kinds of risks. The process of evaluating these risks, defining and implementing the protection is collectively known as the “security process”."
 msgstr ""
 "Un sistema de información puede tener un nivel variable de importancia "
-"dependiendo del entorno. En algunos casos es vital para la superviviencia de "
+"dependiendo del entorno. En algunos casos es vital para la supervivencia de "
 "una empresa. Por lo tanto, debe ser protegido de los diversos tipos de "
 "riesgos. El proceso de evaluación de estos riesgos y la definición e "
-"implementación de la protección se conocen colectivamente como «procesos de "
+"implementación de la protección se conocen en su conjunto como «procesos de "
 "seguridad»."
 
 #. Tag: title
 #, no-c-format
 msgid "Defining a Security Policy"
-msgstr "Definición de una normativa de seguridad"
+msgstr "Definición de una política de seguridad"
 
 #. Tag: title
 #, no-c-format
@@ -65,9 +65,10 @@ msgstr ""
 "pretender describirlo de cualquier forma exhaustiva en el curso de un solo "
 "capítulo. Sólo delinearemos algunos puntos importantes y describiremos "
 "algunas de las herramientas y métodos que pueden ser de utilidad en el "
-"ámbito de la seguridad. Para leer más, la literatura abunda y libros entero "
-"se dedicaron al tema. Un excelente punto de partida sería <citetitle>Linux "
-"Server Security</citetitle> por Michael D. Bauer (publicado por O'Reilly)."
+"ámbito de la seguridad. Para leer más, la literatura abunda y libros enteros "
+"se han dedicado al tema. Un excelente punto de partida sería "
+"<citetitle>Linux Server Security</citetitle> por Michael D. Bauer (publicado "
+"por O'Reilly)."
 
 #. Tag: para
 #, no-c-format
@@ -91,9 +92,9 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>What</emphasis> are we trying to protect? The security policy will be different depending on whether we want to protect computers or data. In the latter case, we also need to know which data."
 msgstr ""
-"¿<emphasis>Qué</emphasis> estamos tratando de proteger? La normativa de "
+"¿<emphasis>Qué</emphasis> estamos tratando de proteger? La política de "
 "seguridad será diferente dependiendo de si queremos proteger los equipos o "
-"los datos. En este último caso, tambien es necesario saber qué datos."
+"los datos. En este último caso, también es necesario saber qué datos."
 
 #. Tag: para
 #, no-c-format
@@ -107,20 +108,20 @@ msgstr ""
 #, no-c-format
 msgid "Also, <emphasis>who</emphasis> are we trying to protect against? Security measures will be quite different for guarding against a typo by a regular user of the system than they would be when protecting against a determined attacker group."
 msgstr ""
-"Tambien, contra <emphasis>Quién</emphasis> estamos tratando de protegernos? "
-"Las medidas de seguridad seran  diferentes para protegerse contra un usuario "
-"regular del sistema de lo que serian contra un grupo de atacantes "
-"determinado.    "
+"Tambien ¿contra <emphasis>quién</emphasis> estamos tratando de protegernos? "
+"Las medidas de seguridad serán diferentes para protegerse contra un error de "
+"un usuario regular del sistema de lo que serían contra un grupo de "
+"atacantes determinado."
 
 #. Tag: para
 #, no-c-format
 msgid "The term “risk” is customarily used to refer collectively to these three factors: what to protect, what needs to be prevented from happening, and who will try to make it happen. Modeling the risk requires answers to these three questions. From this risk model, a security policy can be constructed, and the policy can be implemented with concrete actions."
 msgstr ""
-"El termino \"riesgo\" es habitualmente usado para referirse colectivamente ha "
+"El termino \"riesgo\" es habitualmente usado para referirse al conjunto de "
 "estos tres factores: que proteger, que necesitamos prevenir antes que "
 "suceda, y quien intentará hacer que suceda. Modelar el riesgo requiere "
 "respuestas ha estas tres preguntas. A partir de este modelo de riesgo, una "
-"normativa de seguridad puede ser construida,  y la normativa puede ser "
+"normativa de seguridad puede ser construida y la normativa puede ser "
 "implementada con acciones concretas."
 
 #. Tag: title
@@ -133,73 +134,111 @@ msgstr "<emphasis>NOTA</emphasis>Preguntas permanentes"
 msgid "Bruce Schneier, a world expert in security matters (not only computer security) tries to counter one of security's most important myths with a motto: “Security is a process, not a product”. Assets to be protected change in time, and so do threats and the means available to potential attackers. Even if a security policy has initially been perfectly designed and implemented, one should never rest on one's laurels. The risk components evolve, and the response to that risk must evolve accordingly."
 msgstr ""
 "Bruce Schneier, un experto mundial en asuntos de seguridad (no sólo "
-"seguridad informática) intenta contrarestar uno de los más importantes mitos "
-"con una frase \"La Seguridad es un proceso, no un producto\". Los activos a "
-"ser protegidos cambian con el tiempo, y tambien lo hacen las amenazas y los "
-"medios a disposicion de los potenciales atacantes. Incluso si una normativa "
-"de seguridad ha sido inicialmente diseñada e  implementada perfectamente, "
-"uno nunca debe dormirse en los laureles, Los componentes del riesgo "
-"evolucionan,  y la respuesta a ese riesgo debe evolucionar acordemente."
+"seguridad informática) intenta contrarrestar uno de los mitos más "
+"importantes la frase \"La Seguridad es un proceso, no un producto\". Los "
+"activos a proteger cambian con el tiempo, y también lo hacen las amenazas y "
+"los medios a disposición de los potenciales atacantes. Incluso si una "
+"normativa de seguridad ha sido inicialmente diseñada e  implementada "
+"perfectamente, uno nunca debe dormirse en los laureles, Los componentes del "
+"riesgo evolucionan y la respuesta a ese riesgo debe evolucionar acordemente."
 
 #. Tag: para
 #, no-c-format
 msgid "Extra constraints are also worth taking into account, as they can restrict the range of available policies. How far are we willing to go to secure a system? This question has a major impact on the policy to implement. The answer is too often only defined in terms of monetary costs, but the other elements should also be considered, such as the amount of inconvenience imposed on system users or performance degradation."
 msgstr ""
+"Vale la pena el tomar en cuenta restricciones adicionales, dado que pueden "
+"limitar el alcance de las políticas disponibles. ¿Hasta donde estamos "
+"dispuestos a ir para asegurar un sistema? Esta pregunta tiene un gran "
+"impacto en la política a implementar. La respuesta es a menudo definida en "
+"términos de costos monetarios, pero deben considerarse otros elementos, tal "
+"es el caso de la cantidad de inconvenientes impuestas a los usuarios del "
+"sistema o una degradación en el rendimiento."
 
 #. Tag: para
 #, no-c-format
 msgid "Once the risk has been modeled, one can start thinking about designing an actual security policy."
 msgstr ""
+"Una vez que el riesgo ha sido modelado, podemos comenzar a pensar en el "
+"diseño de una política de seguridad efectiva."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Extreme policies"
-msgstr ""
+msgstr "<emphasis>NOTA</emphasis> Políticas extremas"
 
 #. Tag: para
 #, no-c-format
 msgid "There are cases where the choice of actions required to secure a system is extremely simple."
-msgstr ""
+msgstr "Hay casos donde la elección de las acciones necesarias para proteger un sistema es extremadamente simple."
 
 #. Tag: para
 #, no-c-format
 msgid "For instance, if the system to be protected only comprises a second-hand computer, the sole use of which is to add a few numbers at the end of the day, deciding not to do anything special to protect it would be quite reasonable. The intrinsic value of the system is low. The value of the data is zero since they are not stored on the computer. A potential attacker infiltrating this “system” would only gain an unwieldy calculator. The cost of securing such a system would probably be greater than the cost of a breach."
-msgstr ""
+msgstr "Por ejemplo, si el sistema a proteger solo comprende un ordenador de segunda mano, el cual tiene como único uso el sumar unos cuantos números al final del día, la decisión de no hacer nada especial para protegerlo seria bastante razonable. El valor intrínseco del sistema es bajo. El valor de los datos es cero ya que estos no se almacenan en el ordenador. Un atacante potencial que se infiltre en este \"sistema\" solo ganaría una calculadora difícil de manejar. El costo de asegurar tal sistema seria probablemente mayor que el costo de una violación."
 
 #. Tag: para
 #, no-c-format
 msgid "At the other end of the spectrum, we might want to protect the confidentiality of secret data in the most comprehensive way possible, trumping any other consideration. In this case, an appropriate response would be the total destruction of these data (securely erasing the files, shredding of the hard disks to bits, then dissolving these bits in acid, and so on). If there is an additional requirement that data must be kept in store for future use (although not necessarily readily available), and if cost still isn't a factor, then a starting point would be storing the data on iridium–platinum alloy plates stored in bomb-proof bunkers under various mountains in the world, each of which being (of course) both entirely secret and guarded by entire armies…"
 msgstr ""
+"En el otro extremo del espectro, quizás lo que se quiere proteger es la "
+"confidencialidad de los datos secretos de la manera más completa posible, "
+"superando cualquier otra consideración. En este caso, una respuesta "
+"apropiada sería la destrucción total de estos datos (asegurándose del "
+"borrado de los archivos, la trituración de los discos duros en pedacitos, a "
+"continuación, disolviendo estos pedacitos en ácido, y así sucesivamente). Si "
+"adicionalmente hay un requisito de que los datos deben ser guardados para "
+"un uso futuro (aunque no necesariamente disponibles con facilidad), y si el "
+"costo aun no es un factor, entonces un punto de partida podría ser el "
+"almacenamiento de los datos en placas de aleación de platino-iridio "
+"almacenados en búnkeres a prueba de bombas en varias montañas del mundo, "
+"cada uno de los cuales es (por supuesto) tanto totalmente secreto como "
+"ademas protegido por ejércitos enteros..."
 
 #. Tag: para
 #, no-c-format
 msgid "Extreme though these examples may seem, they would nevertheless be an adequate response to defined risks, insofar as they are the outcome of a thought process that takes into account the goals to reach and the constraints to fulfill. When coming from a reasoned decision, no security policy is less respectable than any other."
-msgstr ""
+msgstr "Estos ejemplos podrán parecer extremos, sin embargo, serian una respuesta adecuada a riesgos definidos, en la medida en que son el resultado de un proceso de pensamiento que toma en cuenta los objetivos a alcanzar con las limitaciones que deben cumplirse. Viniendo de una decisión razonada, ninguna política de seguridad es menos respetable que cualquier otra."
 
 #. Tag: para
 #, no-c-format
 msgid "In most cases, the information system can be segmented in consistent and mostly independent subsets. Each subsystem will have its own requirements and constraints, and so the risk assessment and the design of the security policy should be undertaken separately for each. A good principle to keep in mind is that a short and well-defined perimeter is easier to defend than a long and winding frontier. The network organization should also be designed accordingly: the sensitive services should be concentrated on a small number of machines, and these machines should only be accessible via a minimal number of check-points; securing these check-points will be easier than securing all the sensitive machines against the entirety of the outside world. It is at this point that the usefulness of network filtering (including by firewalls) becomes apparent. This filtering can be implemented with dedicated hardware, but a possibly simpler and more flexible solution is to use a software firewall such as the one integrated in the Linux kernel."
 msgstr ""
+"En la mayoría de los casos, el sistema de información puede ser segmentado "
+"en subconjuntos coherentes y en su mayoría independientes. Cada subsistema "
+"tendrá sus propios requisitos y limitaciones, por lo que la evaluación de "
+"riesgos y el diseño de la política de seguridad deberá ser llevado a cabo "
+"por separado para cada uno. Un buen principio a tener en cuenta es que un "
+"perímetro corto y bien definido, es más fácil de defender que una frontera "
+"larga y sinuosa. La organización de la red también debe ser diseñada en "
+"consecuencia: los servicios sensibles deben ser concentrados en un pequeño "
+"número de máquinas y estas máquinas sólo deben ser accesibles a través de un "
+"número mínimo de puntos de control, asegurar estos puntos de control será "
+"más fácil que asegurar todas la máquinas sensibles contra la totalidad del "
+"mundo exterior. Es en este punto que la utilidad del filtrado de red "
+"(incluyendo los firewalls) se hace evidente. Este filtrado puede ser "
+"implementado con hardware dedicado, pero posiblemente una solución más "
+"simple y flexible es el uso de un software de cortafuegos como el que se "
+"integra en el núcleo de Linux."
 
 #. Tag: title
 #, no-c-format
 msgid "Firewall or Packet Filtering"
-msgstr ""
+msgstr "Firewall o el filtrado de paquetes"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>firewall</primary>"
-msgstr ""
+msgstr "<primary>firewall</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>packet filter</primary>"
-msgstr ""
+msgstr "<primary>filtrado de paquetes</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Firewall"
-msgstr ""
+msgstr "<emphasis>De vuelta a lo básico</emphasis> Firewall"
 
 #. Tag: indexterm
 #, no-c-format
@@ -210,41 +249,67 @@ msgstr "<primary>paquete</primary><secondary>IP</secondary>"
 #, no-c-format
 msgid "A <emphasis>firewall</emphasis> is a piece of computer equipment with hardware and/or software that sorts the incoming or outgoing network packets (coming to or from a local network) and only lets through those matching certain predefined conditions."
 msgstr ""
+"Un <emphasis>firewall</emphasis> es una pieza de equipo de cómputo con "
+"hardware y/o software que ordena los paquetes entrantes o salientes de la "
+"red (que vienen hacia o desde una red local) y sólo permite el paso de "
+"aquellos que coinciden con ciertas condiciones predefinidas."
 
 #. Tag: para
 #, no-c-format
 msgid "A firewall is a filtering network gateway and is only effective on packets that must go through it. Therefore, it can only be effective when going through the firewall is the only route for these packets."
 msgstr ""
+"Un firewall es una puerta de enlace de la red de filtración y sólo es eficaz "
+"en los paquetes que deben pasar a través de ella. Por lo tanto, sólo puede "
+"ser eficaz cuando va a través del cortafuegos es la única ruta para estos "
+"paquetes."
 
 #. Tag: para
 #, no-c-format
 msgid "The lack of a standard configuration (and the “process, not product” motto) explains the lack of a turn-key solution. There are, however, tools that make it simpler to configure the <emphasis>netfilter</emphasis> firewall, with a graphical representation of the filtering rules. <command>fwbuilder</command> is undoubtedly among the best of them."
 msgstr ""
+"La falta de una configuración estándar (y el lema \"proceso, no producto\") "
+"explica la falta de una solución pre-configurada. Hay, sin embargo, las "
+"herramientas que hacen que sea más fácil de configurar el "
+"<emphasis>netfilter</emphasis> firewall, con una representación gráfica de "
+"las reglas de filtrado. <command>fwbuilder</command> es sin duda uno de los "
+"mejores de ellos."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>netfilter</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>netfilter</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Local Firewall"
-msgstr ""
+msgstr "<emphasis>CASO ESPECÍFICO</emphasis> Firewall local"
 
 #. Tag: para
 #, no-c-format
 msgid "A firewall can be restricted to one particular machine (as opposed to a complete network), in which case its role is to filter or limit access to some services, or possibly to prevent outgoing connections by rogue software that a user could, willingly or not, have installed."
 msgstr ""
+"Un firewall puede ser restringido a una máquina en particular (a diferencia "
+"de una red completa), en cuyo caso su función es filtrar o limitar el acceso "
+"a algunos servicios, o posiblemente para evitar las conexiones de salida "
+"por software ilegitimo que un usuario podría, voluntariamente o no haber "
+"instalado."
 
 #. Tag: para
 #, no-c-format
 msgid "The Linux 2.6 kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
 msgstr ""
+"El kernel de Linux 2.6 incorpora el firewall <emphasis>netfilter</emphasis>. "
+"Puede ser controlado desde el espacio de usuario con los comandos "
+"<command>iptables</command> y <command>ip6tables</command>. La diferencia "
+"entre estos dos comandos es que el primero actúa sobre la red IPv4, mientras "
+"que el segundo actúa sobre el IPv6. Puesto que ambas pilas de protocolos de "
+"red probablemente estarán alrededor durante muchos años, ambas herramientas "
+"son necesarias y deberán ser usadas en paralelo."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>iptables</command></primary>"
-msgstr ""
+msgstr "<primary><command>iptables</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -254,352 +319,572 @@ msgstr "<primary><command>ip6tables</command></primary>"
 #. Tag: title
 #, no-c-format
 msgid "Netfilter Behavior"
-msgstr ""
+msgstr "Netfilter Comportamiento"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>netfilter</emphasis> uses four distinct tables which store rules regulating three kinds of operations on packets:"
 msgstr ""
+"<emphasis>netfilter</emphasis> utiliza cuatro tablas distintas que almacenan "
+"las reglas que regulan tres tipos de operaciones sobre los paquetes:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>filter</literal> concerns filtering rules (accepting, refusing or ignoring a packet);"
 msgstr ""
+"<literal>filter</literal> se refiere a las reglas de filtrado (aceptar, "
+"rechazar o ignorar un paquete);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>nat</literal> concerns translation of source or destination addresses and ports of packages; note that this table only exists for IPv4;"
 msgstr ""
+"<literal>nat</literal> se refiere a la traducción de las direcciones de "
+"origen o destino y puertos de los paquetes, tenga en cuenta que esta tabla "
+"sólo existe para IPv4;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>mangle</literal> concerns other changes to the IP packets (including the ToS — <emphasis>Type of Service</emphasis> — field and options);"
 msgstr ""
+"<literal>mangle</literal> se refiere a otros cambios en los paquetes IP "
+"(incluyendo los Términos de servicio - <emphasis> Tipo de Servicio "
+"</emphasis> - Campo y opciones);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>raw</literal> allows other manual modifications on packets before they reach the connection tracking system."
 msgstr ""
+"<literal>raw</literal> permite otras modificaciones manuales en los paquetes "
+"antes de que lleguen al sistema de seguimiento de conexiones."
 
 #. Tag: para
 #, no-c-format
 msgid "Each table contains lists of rules called <emphasis>chains</emphasis>. The firewall uses standard chains to handle packets based on predefined circumstances. The administrator can create other chains, which will only be used when referred to by one of the standard chains (either directly or indirectly)."
 msgstr ""
+"Cada tabla contiene una lista de reglas llamadas "
+"<emphasis>cadenas</emphasis>. El firewall utiliza cadenas estándar para "
+"manejar paquetes en función de circunstancias predefinidas. El administrador "
+"puede crear otras cadenas, que sólo se utilizan cuando se hace referencia a "
+"una de las cadenas estándar (ya sea directa o indirectamente)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>chain</primary>"
-msgstr ""
+msgstr "<primary>cadena</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>filtering rule</primary>"
-msgstr ""
+msgstr "<primary>regla de filtrado</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>filter</literal> table has three standard chains:"
-msgstr ""
+msgstr "La tabla <literal>filter</literal> tiene tres cadenas estandar:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>INPUT</literal>: concerns packets whose destination is the firewall itself;"
 msgstr ""
+"<literal>INPUT</literal>: se refiere a paquetes cuyo destino es el propio "
+"firewall;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>OUTPUT</literal>: concerns packets emitted by the firewall;"
 msgstr ""
+"<literal>OUTPUT</literal>: se refiere a los paquetes que emite el firewall;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>FORWARD</literal>: concerns packets transiting through the firewall (which is neither their source nor their destination)."
 msgstr ""
+"<literal>FORWARD</literal>: se refiere a los paquetes que transitan a través "
+"del firewall (que no es ni su origen ni su destino)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>nat</literal> table also has three standard chains:"
-msgstr ""
+msgstr "La tabla <literal>nat</literal> tiene también tres cadenas estándar:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>PREROUTING</literal>: to modify packets as soon as they arrive;"
 msgstr ""
+"<literal>PREROUTING</literal>: para modificar los paquetes tan pronto como "
+"llegan;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>POSTROUTING</literal>: to modify packets when they are ready to go on their way;"
 msgstr ""
+"<literal>POSTROUTING</literal>: para modificar los paquetes cuando están "
+"listos para seguir su camino;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>OUTPUT</literal>: to modify packets generated by the firewall itself."
 msgstr ""
+"<literal>OUTPUT</literal>: para modificar los paquetes generados por el "
+"propio firewall."
 
 #. Tag: title
 #, no-c-format
 msgid "How <emphasis>netfilter</emphasis> chains are called"
-msgstr ""
+msgstr "Cómo son llamadas las cadenas de <emphasis>netfilter</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "Each chain is a list of rules; each rule is a set of conditions and an action to execute when the conditions are met. When processing a packet, the firewall scans the appropriate chain, one rule after another; when the conditions for one rule are met, it “jumps” (hence the <literal>-j</literal> option in the commands) to the specified action to continue processing. The most common behaviors are standardized, and dedicated actions exist for them. Taking one of these standard actions interrupts the processing of the chain, since the packet's fate is already sealed (barring an exception mentioned below):"
 msgstr ""
+"Cada cadena es una lista de reglas, cada regla es un conjunto de condiciones "
+"y una acción que se ejecutará cuando se cumplan las condiciones. Cuando se "
+"procesa un paquete, el firewall examina la cadena apropiada, una norma tras "
+"otra, cuando las condiciones de una regla se cumplen, se \"salta\" (de ahí la "
+"opción <literal>-j</literal> en los comandos) a la acción especificada para "
+"continuar el procesamiento. Los comportamientos más comunes están "
+"estandarizados y existen acciones dedicadas para ellos. Tomando una de estas "
+"acciones estándar interrumpe el procesamiento de la cadena, ya que el "
+"destino del paquete ya está sellado (salvo una excepción que se menciona a "
+"continuación):"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> ICMP"
-msgstr ""
+msgstr "<emphasis>Volver a lo básico</emphasis> ICMP"
 
 #. Tag: para
 #, no-c-format
 msgid "ICMP (<emphasis>Internet Control Message </emphasis>Protocol) is the protocol used to transmit complementary information on communications. It allows testing network connectivity with the <command>ping</command> command (which sends an ICMP <emphasis>echo request</emphasis> message, which the recipient is meant to answer with an ICMP <emphasis>echo reply</emphasis> message). It signals a firewall rejecting a packet, indicates an overflow in a receive buffer, proposes a better route for the next packets in the connection, and so on. This protocol is defined by several RFC documents; the initial RFC777 and RFC792 were soon completed and extended. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc777.html\" /><ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc792.html\" />"
 msgstr ""
+"ICMP (por sus siglas en ingles <emphasis>Internet Control Message</emphasis> "
+"Protocol) es el protocolo utilizado para transmitir información "
+"complementaria en las comunicaciones. Permite probar la conectividad de red "
+"con el comando <command>ping</command> (el cual envía un mensaje ICMP de "
+"<emphasis>petición de eco</emphasis>, del cual se pretende que el "
+"destinatario responda con un mensaje ICMP de <emphasis>respuesta de "
+"eco</emphasis>). Señala al firewall el rechazar un paquete, indica un "
+"desbordamiento en memoria intermedia de recepción, propone una mejor ruta "
+"para los paquetes siguientes de la conexión y así sucesivamente. Este "
+"protocolo se fue definido en varios documentos RFC, inicialmente en el "
+"RFC777 y RFC792 fueron a la brevedad completados y extendidos. <ulink "
+"type=\"block\" url=\"http://www.faqs.org/rfcs/rfc777.html\" /><ulink "
+"type=\"block\" url=\"http://www.faqs.org/rfcs/rfc792.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "For reference, a receive buffer is a small memory zone storing data between the time it arrives from the network and the time the kernel handles it. If this zone is full, new data cannot be received, and ICMP signals the problem, so that the emitter can slow down its transfer rate (which should ideally reach an equilibrium after some time)."
 msgstr ""
+"Para referencia, una memoria intermedia de recepción es una zona pequeña que "
+"almacena datos entre el momento que llegan desde la red y el momento en que "
+"estos son controlados por el kernel. Si esta zona está llena, nuevos datos "
+"no pueden ser recibidos y el problema lo señala ICMP, por lo que el emisor "
+"puede ralentizar su velocidad de transferencia (que idealmente debe alcanzar "
+"un equilibrio después de algún tiempo)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ICMP</primary>"
-msgstr ""
+msgstr "<primary>ICMP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Internet Control Message Protocol</primary>"
-msgstr ""
+msgstr "<primary>Internet Control Message Protocol</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>receive buffer</primary>"
-msgstr ""
+msgstr "<primary>búfer de recepción</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>buffer</primary><secondary>receive buffer</secondary>"
-msgstr ""
+msgstr "<primary>búfer</primary><secondary>búfer de recepción</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ping</command></primary>"
-msgstr ""
+msgstr "<primary><command>ping</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that although an IPv4 network can work without ICMP, ICMPv6 is strictly required for an IPv6 network, since it combines several functions that were, in the IPv4 world, spread across ICMPv4, IGMP (<emphasis>Internet Group Membership Protocol</emphasis>) and ARP (<emphasis>Address Resolution Protocol</emphasis>). ICMPv6 is defined in RFC4443. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc4443.html\" />"
 msgstr ""
+"Tenga en cuenta que aunque una red IPv4 puede trabajar sin ICMP, ICMPv6 es "
+"estrictamente necesario para una red IPv6, ya que combina varias funciones "
+"que estaban en el mundo IPv4, repartidos en ICMPv4 (IGMP, <emphasis>Internet "
+"Group Membership Protocol</emphasis> ) y ARP (<emphasis> Address Resolution "
+"Protocol</emphasis> ). ICMPv6 se define en RFC4443. <ulink type=\"block\" "
+"url=\"http://www.faqs.org/rfcs/rfc4443.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ACCEPT</literal>: allow the packet to go on its way;"
-msgstr ""
+msgstr "<literal>ACCEPT</literal>: permite al paquete seguir su camino;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>REJECT</literal>: reject the packet with an ICMP error packet (the <literal>--reject-with <replaceable>type</replaceable></literal> option to <command>iptables</command> allows selecting the type of error);"
 msgstr ""
+"<literal>REJECT</literal>: rechazar el paquete con un paquete de error ICMP "
+"(la opcion <literal> --reject-with <replaceable>tipo</replaceable></literal> "
+"de <command>iptables</command> permite seleccionar el tipo de error);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>DROP</literal>: delete (ignore) the packet;"
-msgstr ""
+msgstr "<literal>DROP</literal>: borrar (ignorar) el paquete;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>LOG</literal>: log (via <command>syslogd</command>) a message with a description of the packet; note that this action does not interrupt processing, and the execution of the chain continues at the next rule, which is why logging refused packets requires both a LOG and a REJECT/DROP rule;"
 msgstr ""
+"<literal>LOG</literal>: registra (a través de <command>syslogd</command>) un "
+"mensaje con una descripción del paquete, tenga en cuenta que esta acción no "
+"interrumpe el procesamiento y la ejecución de la cadena continúa con la "
+"regla siguiente, debido a que se registro la negación del paquete es que se "
+"requiere de una regla de LOG y de una regla REJECT/DROP;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ULOG</literal>: log a message via <command>ulogd</command>, which can be better adapted and more efficient than <command>syslogd</command> for handling large numbers of messages; note that this action, like LOG, also returns processing to the next rule in the calling chain;"
 msgstr ""
+"<literal>ULOG</literal>: registra un mensaje a través de "
+"<command>ulogd</command>, los cuales se pueden adaptar mejor y ser más "
+"eficientes que <command>syslogd</command> para el manejo de grandes "
+"cantidades de mensajes, tenga en cuenta que esta acción, como LOG, también "
+"vuelve a procesar la siguiente regla de la cadena llamada;"
 
 #. Tag: para
 #, no-c-format
 msgid "<replaceable>chain_name</replaceable>: jump to the given chain and evaluate its rules;"
 msgstr ""
+"<replaceable>chain_name</replaceable>: saltar a la cadena dada y evalúa sus "
+"reglas;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>RETURN</literal>: interrupt processing of the current chain, and return to the calling chain; in case the current chain is a standard one, there's no calling chain, so the default action (defined with the <literal>-P</literal> option to <command>iptables</command>) is executed instead;"
 msgstr ""
+"<literal>RETURN</literal>: interrumpe el procesamiento de la cadena actual y "
+"regresa a la cadena que la llamo; en el caso de que la cadena actual es "
+"estándar, no hay cadena de llamada, por lo que la acción predeterminada "
+"(definida con la opción <literal>-P</literal> de "
+"<command>iptables</command>) se ejecuta en su lugar;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Source NAT</emphasis> (extra options describe the exact changes to apply);"
 msgstr ""
+"<literal>SNAT</literal> (unicamente en la  tabla <literal>nat</literal>, por "
+"lo tanto sólo en IPv4): aplica <emphasis>Source NAT</emphasis> (las "
+"opciones adicionales describen los cambios exactos que se aplican);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>DNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Destination NAT</emphasis> (extra options describe the exact changes to apply);"
 msgstr ""
+"<literal>DNAT</literal> (unicamente en la tabla <literal>nat</literal>, por "
+"lo tanto, sólo en IPv4): aplica <emphasis>Destination NAT</emphasis> (las "
+"opciones adicionales describen los cambios exactos que se aplican);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>masquerading</emphasis> (a special case of <emphasis>Source NAT</emphasis>);"
 msgstr ""
+"<literal>MASQUERADE</literal> (unicamente en la tabla "
+"<literal>nat</literal>, por lo tanto, sólo en IPv4): aplica "
+"<emphasis>enmascaramiento</emphasis> (un caso especial de <emphasis>Source "
+"NAT</emphasis>);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>REDIRECT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): redirect a packet to a given port of the firewall itself; this can be used to set up a transparent web proxy that works with no configuration on the client side, since the client thinks it connects to the recipient whereas the communications actually go through the proxy."
 msgstr ""
+"<literal>REDIRECT</literal> (unicamente en la tabla <literal>nat</literal>, "
+"por lo tanto, sólo en IPv4): redirige un paquete a un puerto determinado de "
+"la misma firewall, esto puede ser utilizado para configurar un proxy web "
+"transparente que funciona sin ninguna configuración en el lado del cliente, "
+"dado que el cliente piensa que se conecta con el destinatario mientras que "
+"las comunicaciones realmente pasan por el proxy."
 
 #. Tag: para
 #, no-c-format
 msgid "Other actions, particularly those concerning the <literal>mangle</literal> table, are outside the scope of this text. The <citerefentry><refentrytitle>iptables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>ip6tables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> have a comprehensive list."
 msgstr ""
+"Otras medidas, en particular las relativas a la tabla "
+"<literal>mangle</literal>, están fuera del alcance de este texto. En <citere"
+"fentry><refentrytitle>iptables</refentrytitle><manvolnum>8</manvolnum></cite"
+"refentry> y <citerefentry><refentrytitle>ip6tables</refentrytitle><manvolnum"
+">8</manvolnum></citerefentry> se tiene una lista completa."
 
 #. Tag: title
 #, no-c-format
 msgid "Syntax of <command>iptables</command> and <command>ip6tables</command>"
-msgstr ""
+msgstr "Sintaxis de <command>iptables</command> e <command>ip6tables</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>iptables</command> and <command>ip6tables</command> commands allow manipulating tables, chains and rules. Their <literal>-t <replaceable>table</replaceable></literal> option indicates which table to operate on (by default, <literal>filter</literal>)."
 msgstr ""
+"Los comandos <command>iptables</command> e <command>ip6tables</command> "
+"permiten manipular las tablas, cadenas y reglas. Su opción "
+"<literal>-t<replaceable>tabla</replaceable></literal> indica en qué tabla "
+"operar (por defecto, la tabla <literal>filter</literal> )."
 
 #. Tag: title
 #, no-c-format
 msgid "Commands"
-msgstr ""
+msgstr "Comandos"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable><replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable><replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable><replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
 msgstr ""
+"La opción <literal>-N<replaceable>chain</replaceable></literal> crea una "
+"nueva cadena. La opción "
+"<literal>-X<replaceable>chain</replaceable></literal> elimina una cadena "
+"vacía y sin uso. La opción <literal>-A<replaceable>chain</replaceable><repla"
+"ceable>rule</replaceable></literal> añade una regla al final de la cadena "
+"dada. La opción <literal>-I<replaceable>chain</replaceable><replaceable>rule"
+"_num</replaceable><replaceable>rule</replaceable></literal> inserta una "
+"regla antes de la regla con número <replaceable>rule_num</replaceable>. La "
+"opción <literal>-D<replaceable>chain</replaceable><replaceable>rule_num</rep"
+"laceable></literal> (o <literal>-D<replaceable>chain</replaceable>rule<repla"
+"ceable></replaceable></literal>) elimina una regla en una cadena, la primera "
+"sintaxis identifica la regla que se desea eliminar por su número, mientras "
+"que el segundo se identifica por su contenido. La opción "
+"<literal>-F<replaceable>chain</replaceable></literal> vacía una cadena "
+"(borra todas sus reglas), si ninguna cadena es menciona, todas las reglas de "
+"la tabla se eliminan. La opción "
+"<literal>-L<replaceable>chain</replaceable></literal> muestra las reglas de "
+"la cadena. Por último, la opción <literal>-P<replaceable>chain</replaceable>"
+"<replaceable>action</replaceable></literal> define la acción por defecto o "
+"\"política\", para una cadena dada, tomar en cuenta que sólo las cadenas "
+"estándar puede tener dicha política."
 
 #. Tag: title
 #, no-c-format
 msgid "Rules"
-msgstr ""
+msgstr "Reglas"
 
 #. Tag: para
 #, no-c-format
 msgid "Each rule is expressed as <literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable><replaceable>action_options</replaceable></literal>. If several conditions are described in the same rule, then the criterion is the conjunction (logical <emphasis>and</emphasis>) of the conditions, which is at least as restrictive as each individual condition."
 msgstr ""
+"Cada regla es expresada como <literal><replaceable>conditions</replaceable>-"
+"J<replaceable>action</replaceable><replaceable>action_options</replaceable><"
+"/literal>. Si varias condiciones son descritas en la misma regla, entonces "
+"el criterio es el conjunto (lógico <emphasis>y</emphasis>) de las "
+"condiciones, que son al menos tan restrictivas como cada condición "
+"individual."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-p <replaceable>protocol</replaceable></literal> condition matches the protocol field of the IP packet. The most common values are <literal>tcp</literal>, <literal>udp</literal>, <literal>icmp</literal>, and <literal>icmpv6</literal>. Prefixing the condition with an exclamation mark negates the condition, which then becomes a match for “any packets with a different protocol than the specified one”. This negation mechanism is not specific to the <literal>-p</literal> option and it can be applied to all other conditions too."
 msgstr ""
+"La condición <literal>-p<replaceable>protocol</replaceable></literal> "
+"coincide con el campo de protocolo del paquete IP. Los valores más comunes "
+"son <literal>tcp</literal>, <literal>udp</literal>, <literal>icmp</literal> "
+"e <literal>ICMPv6</literal>. El anteponer a la condición un signo de "
+"exclamación niega la condición la cual después se convierte en contra para "
+"\"todos los paquetes con un protocolo distinto al especificado\". Este "
+"mecanismo de negación no es específico de la opción <literal>-p</literal> y "
+"se puede aplicar a todas las otras condiciones también."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-s <replaceable>address</replaceable></literal> or <literal>-s <replaceable>network/mask</replaceable></literal> condition matches the source address of the packet. Correspondingly, <literal>-d <replaceable>address</replaceable></literal> or <literal>-d <replaceable>network/mask</replaceable></literal> matches the destination address."
 msgstr ""
+"La condición <literal>-s<replaceable>address</replaceable></literal> o "
+"<literal>-s<replaceable>network/mask</replaceable></literal> coincide con la "
+"dirección origen del paquete. Correspondientemente, "
+"<literal>-D<replaceable>address</replaceable></literal> o "
+"<literal>-d<replaceable>network/mask</replaceable></literal> coincide con la "
+"dirección destino."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-i <replaceable>interface</replaceable></literal> condition selects packets coming from the given network interface. <literal>-o <replaceable>interface</replaceable></literal> selects packets going out on a specific interface."
 msgstr ""
+"La condición <literal>-i <replaceable>interfaz</replaceable></literal> "
+"selecciona los paquetes procedentes de la interfaz de red dada. <literal>-o "
+"<replaceable>interfaz</replaceable></literal> selecciona los paquetes que "
+"salen en una interfaz específica."
 
 #. Tag: para
 #, no-c-format
 msgid "There are more specific conditions, depending on the generic conditions described above. For instance, the <literal>-p tcp</literal> condition can be complemented with conditions on the TCP ports, with clauses such as <literal>--source-port <replaceable>port</replaceable></literal> and <literal>--destination-port <replaceable>port</replaceable></literal>."
 msgstr ""
+"Hay condiciones más específicas, dependiendo de las condiciones genéricas "
+"descritas anteriormente. Por ejemplo, la condición <literal>-p tcp "
+"</literal> puede ser complementada con las condiciones de los puertos TCP, "
+"con cláusulas como <literal>--source-port "
+"<replaceable>puerto</replaceable></literal> y <literal> --destination-port "
+"<replaceable>puerto</replaceable></literal> ."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>--state <replaceable>state</replaceable></literal> condition matches the state of a packet in a connection (this requires the <command>ipt_conntrack</command> kernel module, for connection tracking). The <literal>NEW</literal> state describes a packet starting a new connection; <literal>ESTABLISHED</literal> matches packets belonging to an already existing connection, and <literal>RELATED</literal> matches packets initiating a new connection related to an existing one (which is useful for the <literal>ftp-data</literal> connections in the “active” mode of the FTP protocol)."
 msgstr ""
+"La condición <literal>--state <replaceable>estado</replaceable></literal> "
+"coincide con el estado de un paquete en una conexión (se requiere el modulo "
+"<command>ipt_conntrack</command> del kernel, para el seguimiento de "
+"conexiones). El estado <literal>NEW</literal> describe un paquete que ha "
+"iniciando una nueva conexión; <literal>ESTABLISHED</literal> coincide con "
+"paquetes pertenecientes a una conexión ya existente y "
+"<literal>RELATED</literal> coincide con paquetes iniciando una nueva "
+"conexión relacionada con una ya existente (lo cual es útil para las "
+"conexiones <literal>ftp-data</literal> en el modo \"activo\" del protocolo "
+"FTP)."
 
 #. Tag: para
 #, no-c-format
 msgid "The previous section lists available actions, but not their respective options. The <literal>LOG</literal> action, for instance, has the following options:"
 msgstr ""
+"En la sección anterior se enumeran las acciones disponibles, pero no sus "
+"opciones respectivas. La acción <literal>LOG</literal>, por ejemplo, tiene "
+"las siguientes opciones:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-priority</literal>, with default value <literal>warning</literal>, indicates the <command>syslog</command> message priority;"
 msgstr ""
+"<literal>--log-priority</literal>, con un valor por defecto de "
+"<literal>warning</literal>, indica la prioridad de los mensajes en "
+"<command>syslog</command>;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-prefix</literal> allows specifying a text prefix to differentiate between logged messages;"
 msgstr ""
+"<literal>--log-prefix</literal> permite especificar un prefijo de texto para "
+"diferenciar entre los mensajes registrados;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-tcp-sequence</literal>, <literal>--log-tcp-options</literal> and <literal>--log-ip-options</literal> indicate extra data to be integrated into the message: respectively, the TCP sequence number, TCP options, and IP options."
 msgstr ""
+"<literal>--log-tcp-sequence</literal>, <literal>--log-tcp-options</literal> "
+"y <literal>--log-ip-options</literal> indican datos adicionales que se "
+"integran en el mensaje: respectivamente, el número de secuencia TCP, "
+"opciones TCP y las opciones IP."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>DNAT</literal> action (only available for IPv4) provides the <literal>--to-destination <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> option to indicate the new destination IP address and/or port. Similarly, <literal>SNAT</literal> provides <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> to indicate the new source IP address and/or port."
 msgstr ""
+"La acción <literal>DNAT</literal> (sólo disponible para IPv4) ofrece la "
+"opción <literal>--to-destination<replaceable> "
+"dirección</replaceable>:<replaceable>puerto</replaceable></literal> para "
+"indicar la nueva dirección IP destino y/o puerto. De manera similar, "
+"<literal>SNAT</literal> proporciona <literal> --to-source<replaceable> "
+"dirección</replaceable>:<replaceable>puerto</replaceable></literal> para "
+"indicar la nueva dirección IP de origen y/o el puerto."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>REDIRECT</literal> action (only available for IPv4) provides the <literal>--to-ports <replaceable>port(s)</replaceable></literal> option to indicate the port, or port range, where the packets should be redirected."
 msgstr ""
+"La acción <literal>REDIRECT</literal> (sólo disponible para IPv4) ofrece la "
+"opción <literal>--to-ports<replaceable> puerto(s)</replaceable></literal> "
+"para indicar el puerto o rango de puertos, donde los paquetes deben ser "
+"redirigidos."
 
 #. Tag: title
 #, no-c-format
 msgid "Creating Rules"
-msgstr ""
+msgstr "Creación de reglas"
 
 #. Tag: para
 #, no-c-format
 msgid "Each rule creation requires one invocation of <command>iptables</command>/<command>ip6tables</command>. Typing these commands manually can be tedious, so the calls are usually stored in a script so that the same configuration is set up automatically every time the machine boots. This script can be written by hand, but it can also be interesting to prepare it with a high-level tool such as <command>fwbuilder</command>."
 msgstr ""
+"Cada regla creada requiere una invocación de "
+"<command>iptables</command>/<command>ip6tables</command> . Escribir estos "
+"comandos de forma manual puede ser tedioso, por lo que las llamadas se "
+"suelen almacenar en un archivo de secuencia de comandos para que la misma "
+"configuración se colocada automáticamente cada vez que la máquina arranca. "
+"Este script puede ser escrito a mano, pero también puede ser interesante el "
+"prepararlo con una herramienta de alto nivel, como es "
+"<command>fwbuilder</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "The principle is simple. In the first step, one needs to describe all the elements that will be involved in the actual rules:"
 msgstr ""
+"El principio es simple. En el primer paso, es necesario describir todos los "
+"elementos que intervendrán en las normas actuales:"
 
 #. Tag: para
 #, no-c-format
 msgid "the firewall itself, with its network interfaces;"
-msgstr ""
+msgstr "el propio firewall, con sus interfaces de red;"
 
 #. Tag: para
 #, no-c-format
 msgid "the networks, with their corresponding IP ranges;"
-msgstr ""
+msgstr "las redes, con sus rangos de direcciones IP correspondientes;"
 
 #. Tag: para
 #, no-c-format
 msgid "the servers;"
-msgstr ""
+msgstr "los servidores;"
 
 #. Tag: para
 #, no-c-format
 msgid "the ports belonging to the services hosted on the servers."
-msgstr ""
+msgstr "los puertos pertenecientes a los servicios alojados en los servidores."
 
 #. Tag: para
 #, no-c-format
 msgid "The rules are then created with simple drag-and-drop actions on the objects. A few contextual menus can change the condition (negating it, for instance). Then the action needs to be chosen and configured."
 msgstr ""
+"Las reglas se crean con un simplemente con arrastrar y soltar las acciones "
+"sobre los objetos. Unos cuantoss menús contextuales pueden cambiar la "
+"condición (negarla, por ejemplo). A continuación, la acción debe ser elegida "
+"y configurada."
 
 #. Tag: para
 #, no-c-format
 msgid "As far as IPv6 is concerned, one can either create two distinct rulesets for IPv4 and IPv6, or create only one and let <command>fwbuilder</command> translate the rules according to the addresses assigned to the objects."
 msgstr ""
+"Por lo que se refiere a IPv6, se pueden crear dos conjuntos de reglas "
+"diferentes para IPv4 e IPv6, o crear una sola y dejar a "
+"<command>fwbuilder</command> traducir las normas de acuerdo con las "
+"direcciones asignadas a los objetos."
 
 #. Tag: title
 #, no-c-format
 msgid "Fwbuilder's main window"
-msgstr ""
+msgstr "Ventana principal de fwbuilder"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>fwbuilder</command></primary>"
-msgstr ""
+msgstr "<primary><command>fwbuilder</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>fwbuilder</command> can then generate a script configuring the firewall according to the rules that have been defined. Its modular architecture gives it the ability to generate scripts targeting different systems (<command>iptables</command> for Linux 2.4/2.6, <command>ipf</command> for FreeBSD and <command>pf</command> for OpenBSD)."
 msgstr ""
+"A continuación <command>fwbuilder</command> puede generar un script de "
+"configuración del servidor de seguridad (firewall) de acuerdo con las reglas "
+"que se han definido. Su arquitectura modular le da la capacidad para "
+"generar scripts dirigidos a diferentes sistemas (<command>iptables</command> "
+"para Linux 2.4/2.6, <command>ipf</command> para FreeBSD y "
+"<command>pf</command> para OpenBSD)."
 
 #. Tag: para
 #, no-c-format
 msgid "Versions of the <emphasis role=\"pkg\">fwbuilder</emphasis> package since <emphasis role=\"distribution\">Squeeze</emphasis> contain both the graphical interface and the modules for each firewall system (these were previously split over several packages, one for each target system):"
 msgstr ""
+"Las versiones del paquete <emphasis role=\"pkg\">fwbuilder</emphasis> desde "
+"<emphasis role=\"distribution\">Squeeze</emphasis> contienen tanto la interfaz "
+"gráfica y los módulos para cada sistema de servidor de seguridad (éstos se "
+"dividían previamente en varios paquetes, uno para cada sistema destino):"
 
 #. Tag: screen
 #, no-c-format
@@ -607,26 +892,39 @@ msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>aptitude install "
+"fwbuilder</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the Rules at Each Boot"
-msgstr ""
+msgstr "Instalando las reglas en cada arranque"
 
 #. Tag: para
 #, no-c-format
 msgid "If the firewall is meant to protect an intermittent PPP network connection, the simplest way to deploy the script is to install it as <filename>/etc/ppp/ip-up.d/0iptables</filename> (note that only files without a dot in their name are taken into account). The firewall will thus be reloaded every time a PPP connection is established."
 msgstr ""
+"Si el firewall está destinado a proteger una conexión PPP intermitente de la "
+"red, la forma más sencilla de implementar el script es instalarlo como "
+"<filename>/etc/ppp/ip-up.d/0iptables</filename> (Tenga en cuenta que sólo "
+"los archivos sin un punto en su nombre se tienen en cuenta). El servidor de "
+"seguridad por lo tanto se vuelve a cargar cada vez que se establece una "
+"conexión PPP."
 
 #. Tag: para
 #, no-c-format
 msgid "In other cases, the recommended way is to register the configuration script in an <literal>up</literal> directive of the <filename>/etc/network/interfaces</filename> file. In the following example, the script is stored under <filename>/usr/local/etc/arrakis.fw</filename>."
 msgstr ""
+"En otros casos, la forma recomendada es registrar el script de configuración "
+"en una directiva <literal>up</literal> del archivo "
+"<filename>/etc/network/interfaces</filename>. En el siguiente ejemplo, el "
+"script se almacena en <filename>/usr/local/etc/arrakis.fw</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>interfaces</filename> file calling firewall script"
-msgstr ""
+msgstr "archivo <filename>interfaces</filename> llamando al script del firewall"
 
 #. Tag: programlisting
 #, no-c-format
@@ -639,26 +937,46 @@ msgid ""
 "    broadcast 192.168.0.255\n"
 "    up /usr/local/etc/arrakis.fw\n"
 msgstr ""
+"auto eth0\n"
+"iface eth0 inet static\n"
+"    address 192.168.0.1\n"
+"    network 192.168.0.0\n"
+"    netmask 255.255.255.0\n"
+"    broadcast 192.168.0.255\n"
+"    up /usr/local/etc/arrakis.fw\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Supervision: Prevention, Detection, Deterrence"
-msgstr ""
+msgstr "Supervisión: prevención, detección, disuasión"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary>"
-msgstr ""
+msgstr "<primary>monitoreo</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can enable the detection of intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
 msgstr ""
+"La supervisión es una parte integral de cualquier política de seguridad por "
+"varias razones. Entre ellas esta, que el objetivo de la seguridad "
+"generalmente no se limita a garantizar la confidencialidad de los datos, "
+"sino que también incluye garantizar la disponibilidad de los servicios. Por "
+"tanto, es imprescindible comprobar que todo funciona como se espera, y "
+"detectar de manera oportuna cualquier desvío en la conducta o cambio en la "
+"calidad del servicio(s) prestado. La supervisión de la actividad puede "
+"permitir la detección de intentos de intrusión y permitir una reacción "
+"rápida antes que graves consecuencias ocurran. Esta sección revisa algunas "
+"de las herramientas que se pueden utilizar para supervisar varios aspectos "
+"de un sistema Debian. Como tal, esto completa la sección dedicada a la "
+"supervisión del sistema genérico en <xref linkend=\"advanced-"
+"administration\"/>."
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Logs with <command>logcheck</command>"
-msgstr ""
+msgstr "Supervisión de los registros con <command>logcheck</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -668,72 +986,112 @@ msgstr "<primary><command>logcheck</command></primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>monitoring</secondary>"
-msgstr ""
+msgstr "<primary>registros</primary><secondary>monitoreo</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary><secondary>log files</secondary>"
-msgstr ""
+msgstr "<primary>monitoreo</primary><secondary>archivos de registro</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>logcheck</command> program monitors log files every hour by default. It sends unusual log messages in emails to the administrator for further analysis."
 msgstr ""
+"El programa <command>logcheck</command> monitorea los archivos de registro "
+"cada hora de forma predeterminada. Envía mensajes de registro inusual en los "
+"correos electrónicos al administrador para su posterior análisis."
 
 #. Tag: para
 #, no-c-format
 msgid "The list of monitored files is stored in <filename>/etc/logcheck/logcheck.logfiles</filename>; the default values work fine if the <filename>/etc/syslog.conf</filename> file has not been completely overhauled."
 msgstr ""
+"La lista de archivos a supervisar se almacena en "
+"<filename>/etc/logcheck/logcheck.logfiles</filename> los valores por defecto "
+"funcionan bien si el archivo <filename>/etc/syslog.conf</filename> no ha "
+"sido modificado totalmente."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>logcheck</command> can work in one of three more or less detailed modes: <emphasis>paranoid</emphasis>, <emphasis>server</emphasis> and <emphasis>workstation</emphasis>. The first one is <emphasis>very</emphasis> verbose, and should probably be restricted to specific servers such as firewalls. The second (and default) mode is recommended for most servers. The last one is designed for workstations, and is even terser (it filters out more messages)."
 msgstr ""
+"<command>logcheck</command> puede funcionar en una de tres más o menos "
+"detalladas modalidades: <emphasis>paranoid</emphasis>, "
+"<emphasis>server</emphasis> y <emphasis>workstation</emphasis>. El primero "
+"es <emphasis>muy</emphasis> detallado y probablemente, se debe restringir a "
+"servidores específicos, tales como firewalls. El segundo (por defecto) es el "
+"modo recomendado para la mayoría de los servidores. El ultimo está diseñado "
+"para estaciones de trabajo, y es aún más conciso (filtra la mayoría de los "
+"mensajes)."
 
 #. Tag: para
 #, no-c-format
 msgid "In all three cases, <command>logcheck</command> should probably be customized to exclude some extra messages (depending on installed services), unless the admin really wishes to receive hourly batches of long uninteresting emails. Since the message selection mechanism is rather complex, <filename>/usr/share/doc/logcheck-database/README.logcheck-database.gz</filename> is a required — if challenging — read."
 msgstr ""
+"En los tres casos, <command>logcheck</command> probablemente debe ser "
+"personalizado para excluir algunos mensajes adicionales (dependiendo de los "
+"servicios instalados), a menos que el administrador realmente desee recibir "
+"los lotes por hora de los mensajes no interesantes de correo electrónico "
+"enormes. Dado que el mecanismo de selección de mensaje es bastante complejo, "
+"<filename>/usr/share/doc/logcheck-database/README.logcheck-"
+"database.gz</filename> es una lectura -difícil- necesaria."
 
 #. Tag: para
 #, no-c-format
 msgid "The applied rules can be split into several types:"
-msgstr ""
+msgstr "Las normas aplicadas se puede dividir en varios tipos:"
 
 #. Tag: para
 #, no-c-format
 msgid "those that qualify a message as a cracking attempt (stored in a file in the <filename>/etc/logcheck/cracking.d/</filename> directory);"
 msgstr ""
+"aquellas que califican un mensaje como un intento de \"cracking\" (almacenado "
+"en un archivo en el directorio "
+"<filename>/etc/logcheck/cracking.d/</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "those canceling such a qualification (<filename>/etc/logcheck/cracking.ignore.d/</filename>);"
 msgstr ""
+"aquellas que cancelan esta calificación ( "
+"<filename>/etc/logcheck/cracking.ignore.d/</filename> );"
 
 #. Tag: para
 #, no-c-format
 msgid "those classifying a message as a security alert (<filename>/etc/logcheck/violations.d/</filename>);"
 msgstr ""
+"aquellos clasificados como un mensaje de alerta de seguridad "
+"(<filename>/etc/logcheck/violations.d/</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "those canceling this classification (<filename>/etc/logcheck/violations.ignore.d/</filename>);"
 msgstr ""
+"aquellos que cancelan esta clasificación "
+"(<filename>/etc/logcheck/violations.ignore.d/</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "finally, those applying to the remaining messages (considered as <emphasis>system events</emphasis>)."
 msgstr ""
+"finalmente, las que son aplicadas a los mensajes restantes (considerados "
+"como <emphasis>eventos del sistema</emphasis>)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Ignoring a message"
-msgstr ""
+msgstr "<emphasis>PRECAUCIÓN</emphasis> Haciendo caso omiso de un mensaje"
 
 #. Tag: para
 #, no-c-format
 msgid "Any message tagged as a cracking attempt or a security alert (following a rule stored in a <filename>/etc/logcheck/violations.d/myfile</filename> file) can only be ignored by a rule in a <filename>/etc/logcheck/violations.ignore.d/myfile</filename> or <filename>/etc/logcheck/violations.ignore.d/myfile-<replaceable>extension</replaceable></filename> file."
 msgstr ""
+"Cualquier mensaje marcado como un intento de 'cracking' o una alerta de "
+"seguridad (siguiendo una regla almacenada en el archivo "
+"<filename>/etc/logcheck/violations.d/miarchivo</filename>) sólo puede ser "
+"ignorado por una regla en el archivo "
+"<filename>/etc/logcheck/violations.ignore.d/miarchivo</filename> o <filename"
+">/etc/logcheck/violations.ignore.d/miarchivo-<replaceable>extensión</replace"
+"able></filename>."
 
 #. Tag: para
 #, no-c-format

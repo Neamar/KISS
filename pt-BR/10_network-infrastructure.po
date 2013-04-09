@@ -5,15 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2012-08-07 17:47+0200\n"
+"PO-Revision-Date: 2013-03-25 17:31+0200\n"
 "Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects/debian-handbook/10_network-infrastructure/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"/debian-handbook/10_network-infrastructure/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 1.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 1.5-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -69,6 +70,11 @@ msgstr "O Linux herda toda a tradição do Unix na área de redes, e o Debian fo
 #, no-c-format
 msgid "A gateway is a system linking several networks. This term often refers to a local network's “exit point” on the mandatory path to all external IP addresses. The gateway is connected to each of the networks it links together, and acts as a router to convey IP packets between its various interfaces."
 msgstr ""
+"Um gateway é um sistema de ligação de várias redes. Este termo "
+"frequentemente se refere ao \"ponto de saída\" de uma rede local no caminho "
+"obrigatório para endereços IP externos. O gateway está ligado a cada uma das "
+"redes que une e atua como um roteador para transmitir pacotes IP entre suas "
+"várias interfaces."
 
 #. Tag: indexterm
 #, no-c-format
@@ -78,7 +84,7 @@ msgstr "<primary>gateway</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>gateway</secondary>"
-msgstr ""
+msgstr "<primary>rede</primary><secondary>gateway</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -139,6 +145,11 @@ msgstr ""
 #, no-c-format
 msgid "TCP and UDP both involve ports, which are “extension numbers” for establishing communication with a given application on a machine. This concept allows keeping several different communications in parallel with the same correspondent, since these communications can be distinguished by the port number."
 msgstr ""
+"TCP e UDP ambos envolvem portas, que são \"números de ramal\" para estabelecer "
+"a comunicação com um determinado aplicativo em uma máquina. Este conceito "
+"permite manter várias comunicações diferentes em paralelo com o mesmo "
+"correspondente, desde que estas comunicações podem ser distinguidas pelo "
+"número da porta."
 
 #. Tag: para
 #, no-c-format
@@ -153,7 +164,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>masquerading</primary>"
-msgstr ""
+msgstr "<primary>masquerading</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -203,12 +214,12 @@ msgstr "<primary>DNAT</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Destination NAT</primary>"
-msgstr ""
+msgstr "<primary>NAT de Destino</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Source NAT</primary>"
-msgstr ""
+msgstr "<primary>NAT de Origem</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -218,7 +229,7 @@ msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Encaminhamento de porta"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>port forwarding</primary>"
-msgstr ""
+msgstr "<primary>encaminhamento de porta</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -300,7 +311,7 @@ msgstr "<primary>VPN</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual private network</primary>"
-msgstr ""
+msgstr "<primary>rede privada virtual</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -350,27 +361,27 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Public Key Infrastructure: <emphasis>easy-rsa</emphasis>"
-msgstr ""
+msgstr "Infraestrutura de Chaves Públicas: <emphasis>easy-rsa</emphasis>"
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>PKI (Public Key Infrastructure)</primary>"
-msgstr ""
+msgstr "<primary>PKI (Public Key Infrastructure)</primary>"
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>Public Key Infrastructure</primary>"
-msgstr ""
+msgstr "<primary>Public Key Infrastructure</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>X.509, certificate</primary>"
-msgstr ""
+msgstr "<primary>X.509, certificado</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>certificate</primary><secondary>X.509</secondary>"
-msgstr ""
+msgstr "<primary>certificado</primary><secondary>X.509</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -424,7 +435,7 @@ msgid "They then store the required parameters into the <filename>vars</filename
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>vim vars\n"
@@ -444,6 +455,25 @@ msgid ""
 "$ </computeroutput><userinput>./clean-all\n"
 "</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>vim vars\n"
+"</userinput><computeroutput>$ </computeroutput><userinput>grep KEY_ vars\n"
+"</userinput><computeroutput>export KEY_CONFIG=`$EASY_RSA/whichopensslcnf "
+"$EASY_RSA`\n"
+"export KEY_DIR=\"$EASY_RSA/keys\"\n"
+"echo NOTE: If you run ./clean-all, I will be doing a rm -rf on $KEY_DIR\n"
+"export KEY_SIZE=1024\n"
+"export KEY_EXPIRE=3650\n"
+"export KEY_COUNTRY=\"FR\"\n"
+"export KEY_PROVINCE=\"Loire\"\n"
+"export KEY_CITY=\"Saint-Étienne\"\n"
+"export KEY_ORG=\"Falcot Corp\"\n"
+"export KEY_EMAIL=\"admin@falcot.com\"\n"
+"$ </computeroutput><userinput>. ./vars\n"
+"</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a "
+"rm -rf on /home/rhertzog/pki-falcot/keys\n"
+"$ </computeroutput><userinput>./clean-all\n"
+"</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -451,7 +481,7 @@ msgid "The next step is the creation of the CA's key pair itself (the two parts 
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-ca</userinput>\n"
@@ -477,6 +507,29 @@ msgid ""
 "Email Address [admin@falcot.com]:\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>./build-ca</userinput>\n"
+"<computeroutput>Generating a 1024 bit RSA private key\n"
+"..............................................++++++\n"
+".......................++++++\n"
+"writing new private key to 'ca.key'\n"
+"-----\n"
+"You are about to be asked to enter information that will be incorporated\n"
+"into your certificate request.\n"
+"What you are about to enter is what is called a Distinguished Name or a DN.\n"
+"There are quite a few fields but you can leave some blank\n"
+"For some fields there will be a default value,\n"
+"If you enter '.', the field will be left blank.\n"
+"-----\n"
+"Country Name (2 letter code) [FR]:\n"
+"State or Province Name (full name) [Loire]:\n"
+"Locality Name (eg, city) [Saint-Étienne]:\n"
+"Organization Name (eg, company) [Falcot Corp]:\n"
+"Organizational Unit Name (eg, section) []:\n"
+"Common Name (eg, your name or your server's hostname) [Falcot Corp CA]:\n"
+"Name []:\n"
+"Email Address [admin@falcot.com]:\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -484,7 +537,7 @@ msgid "The certificate for the VPN server can now be created, as well as the Dif
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-key-server vpn.falcot.com\n"
@@ -536,14 +589,68 @@ msgid ""
 "..............+.......+.................................++*++*++*\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>./build-key-server "
+"vpn.falcot.com\n"
+"</userinput><computeroutput>Generating a 1024 bit RSA private key\n"
+"...............++++++\n"
+"...........++++++\n"
+"writing new private key to 'vpn.falcot.com.key'\n"
+"-----\n"
+"You are about to be asked to enter information that will be incorporated\n"
+"into your certificate request.\n"
+"What you are about to enter is what is called a Distinguished Name or a DN.\n"
+"There are quite a few fields but you can leave some blank\n"
+"For some fields there will be a default value,\n"
+"If you enter '.', the field will be left blank.\n"
+"-----\n"
+"Country Name (2 letter code) [FR]:\n"
+"State or Province Name (full name) [Loire]:\n"
+"Locality Name (eg, city) [Saint-Étienne]:\n"
+"Organization Name (eg, company) [Falcot Corp]:\n"
+"Organizational Unit Name (eg, section) []:\n"
+"Common Name (eg, your name or your server's hostname) [vpn.falcot.com]:\n"
+"Name []:\n"
+"Email Address [admin@falcot.com]:\n"
+"\n"
+"Please enter the following 'extra' attributes\n"
+"to be sent with your certificate request\n"
+"A challenge password []:\n"
+"An optional company name []:\n"
+"Using configuration from /home/rhertzog/pki-falcot/openssl.cnf\n"
+"Check that the request matches the signature\n"
+"Signature ok\n"
+"The Subject's Distinguished Name is as follows\n"
+"countryName           :PRINTABLE:'FR'\n"
+"stateOrProvinceName   :PRINTABLE:'Loire'\n"
+"localityName          :T61STRING:'Saint-\\0xFFFFFFC3\\0xFFFFFF89tienne'\n"
+"organizationName      :PRINTABLE:'Falcot Corp'\n"
+"commonName            :PRINTABLE:'vpn.falcot.com'\n"
+"emailAddress          :IA5STRING:'admin@falcot.com'\n"
+"Certificate is to be certified until Oct  9 13:57:42 2020 GMT (3650 days)\n"
+"Sign the certificate? [y/n]:</computeroutput><userinput>y\n"
+"</userinput><computeroutput>\n"
+"\n"
+"1 out of 1 certificate requests certified, commit? "
+"[y/n]</computeroutput><userinput>y\n"
+"</userinput><computeroutput>Write out database with 1 new entries\n"
+"Data Base Updated\n"
+"$ </computeroutput><userinput>./build-dh\n"
+"</userinput><computeroutput>Generating DH parameters, 1024 bit long safe "
+"prime, generator 2\n"
+"This is going to take a long time\n"
+"..............+.......+.................................++*++*++*\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The following step creates certificates for the VPN clients; one certificate is required for each computer or person allowed to use the VPN:"
 msgstr ""
+"O próximo passo cria certificados para os clientes VPN; um certificado é "
+"necessário para cada computar ou pessoa ser autorizada a usar a VPN:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-key JoeSmith\n"
@@ -569,6 +676,30 @@ msgid ""
 "Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com\n"
 "</userinput><computeroutput>[…]</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>./build-key JoeSmith\n"
+"</userinput><computeroutput>Generating a 1024 bit RSA private key\n"
+"................++++++\n"
+".............................++++++\n"
+"writing new private key to 'JoeSmith.key'\n"
+"-----\n"
+"You are about to be asked to enter information that will be incorporated\n"
+"into your certificate request.\n"
+"What you are about to enter is what is called a Distinguished Name or a DN.\n"
+"There are quite a few fields but you can leave some blank\n"
+"For some fields there will be a default value,\n"
+"If you enter '.', the field will be left blank.\n"
+"-----\n"
+"Country Name (2 letter code) [FR]:\n"
+"State or Province Name (full name) [Loire]:\n"
+"Locality Name (eg, city) [Saint-Étienne]:\n"
+"Organization Name (eg, company) [Falcot Corp]:\n"
+"Organizational Unit Name (eg, section) []:\n"
+"Common Name (eg, your name or your server's hostname) "
+"[JoeSmith]:</computeroutput><userinput>Joe Smith\n"
+"</userinput><computeroutput>Name []:\n"
+"Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com\n"
+"</userinput><computeroutput>[…]</computeroutput>"
 
 #. Tag: para
 #, no-c-format
@@ -578,7 +709,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring the OpenVPN Server"
-msgstr ""
+msgstr "Configurando o Servidor OpenVPN"
 
 #. Tag: para
 #, no-c-format
@@ -598,7 +729,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring the OpenVPN Client"
-msgstr ""
+msgstr "Configurando o Cliente OpenVPN"
 
 #. Tag: para
 #, no-c-format
@@ -618,17 +749,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Virtual Private Network with SSH"
-msgstr ""
+msgstr "Rede Privada Virtual com SSH"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSH</primary>"
-msgstr ""
+msgstr "<primary>SSH</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPP</primary>"
-msgstr ""
+msgstr "<primary>PPP</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -653,27 +784,27 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "IPsec"
-msgstr ""
+msgstr "IPsec"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IPsec</primary>"
-msgstr ""
+msgstr "<primary>IPsec</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>openswan</command></primary>"
-msgstr ""
+msgstr "<primary><command>openswan</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>strongswan</command></primary>"
-msgstr ""
+msgstr "<primary><command>strongswan</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>racoon</command></primary>"
-msgstr ""
+msgstr "<primary><command>racoon</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -688,7 +819,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> IPsec and NAT"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> IPsec e NAT"
 
 #. Tag: para
 #, no-c-format
@@ -698,7 +829,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NAT-T</primary>"
-msgstr ""
+msgstr "<primary>NAT-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -708,7 +839,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> IPsec and firewalls"
-msgstr ""
+msgstr "<emphasis>SEGURANÇA</emphasis> IPsec e firewalls"
 
 #. Tag: para
 #, no-c-format
@@ -718,27 +849,27 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ESP, protocol</primary>"
-msgstr ""
+msgstr "<primary>ESP, protocolo</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>AH, protocol</primary>"
-msgstr ""
+msgstr "<primary>AH, protocolo</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>protocol</primary><secondary>AH</secondary>"
-msgstr ""
+msgstr "<primary>protocolo</primary><secondary>AH</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>protocol</primary><secondary>ESP</secondary>"
-msgstr ""
+msgstr "<primary>protocolo</primary><secondary>ESP</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "PPTP"
-msgstr ""
+msgstr "PPTP"
 
 #. Tag: para
 #, no-c-format
@@ -748,7 +879,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPTP</primary>"
-msgstr ""
+msgstr "<primary>PPTP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -758,17 +889,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRE, protocol</primary>"
-msgstr ""
+msgstr "<primary>GRE, protocolo</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>protocol</primary><secondary>GRE</secondary>"
-msgstr ""
+msgstr "<primary>protocolo</primary><secondary>GRE</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Client"
-msgstr ""
+msgstr "Configurando o Cliente"
 
 #. Tag: para
 #, no-c-format
@@ -778,7 +909,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">pptp-linux</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">pptp-linux</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -788,7 +919,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/options.pptp</filename> file"
-msgstr ""
+msgstr "O arquivo <filename>/etc/ppp/options.pptp</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -800,11 +931,17 @@ msgid ""
 "nobsdcomp\n"
 "nodeflate\n"
 msgstr ""
+"\n"
+"# PPP options used for a PPTP connection\n"
+"lock\n"
+"noauth\n"
+"nobsdcomp\n"
+"nodeflate\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/peers/falcot</filename> file"
-msgstr ""
+msgstr "O arquivo <filename>/etc/ppp/peers/falcot</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -820,14 +957,24 @@ msgid ""
 "file /etc/ppp/options.pptp\n"
 "ipparam falcot\n"
 msgstr ""
+"\n"
+"# vpn.falcot.com is the PPTP server\n"
+"pty \"pptp vpn.falcot.com --nolaunchpppd\"\n"
+"# the connection will identify as the \"vpn\" user\n"
+"user vpn\n"
+"remotename pptp\n"
+"# encryption is needed\n"
+"require-mppe-128\n"
+"file /etc/ppp/options.pptp\n"
+"ipparam falcot\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/ip-up.d/falcot</filename> file"
-msgstr ""
+msgstr "O arquivo <filename>/etc/ppp/ip-up.d/falcot</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "\n"
 "# Create the route to the Falcot network\n"
@@ -836,14 +983,20 @@ msgid ""
 "  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
 "fi\n"
 msgstr ""
+"\n"
+"# Create the route to the Falcot network\n"
+"if [ \"$6\" = \"falcot\" ]; then\n"
+"  # 192.168.0.0/24 is the (remote) Falcot network\n"
+"  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
+"fi\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/ip-down.d/falcot</filename> file"
-msgstr ""
+msgstr "O arquivo <filename>/etc/ppp/ip-down.d/falcot</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "\n"
 "# Delete the route to the Falcot network\n"
@@ -852,11 +1005,17 @@ msgid ""
 "  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
 "fi\n"
 msgstr ""
+"\n"
+"# Delete the route to the Falcot network\n"
+"if [ \"$6\" = \"falcot\" ]; then\n"
+"  # 192.168.0.0/24 is the (remote) Falcot network\n"
+"  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
+"fi\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> MPPE"
-msgstr ""
+msgstr "<emphasis>SEGURANÇA</emphasis> MPPE"
 
 #. Tag: para
 #, no-c-format
@@ -866,7 +1025,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MPPE</primary>"
-msgstr ""
+msgstr "<primary>MPPE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -876,12 +1035,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Server"
-msgstr ""
+msgstr "Configurando o Servidor"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> PPTP and firewalls"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> PPTP e firewalls"
 
 #. Tag: para
 #, no-c-format
@@ -896,7 +1055,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/pptpd.conf</filename> file"
-msgstr ""
+msgstr "O arquivo <filename>/etc/pptpd.conf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -962,7 +1121,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/pptpd-options</filename> file"
-msgstr ""
+msgstr "O arquivo <filename>/etc/ppp/pptpd-options</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1007,7 +1166,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/chap-secrets</filename> file"
-msgstr ""
+msgstr "O arquivo <filename>/etc/ppp/chap-secrets</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1022,7 +1181,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> PPTP vulnerabilities"
-msgstr ""
+msgstr "<emphasis>SEGURANÇA</emphasis> Vulnerabilidades PPTP"
 
 #. Tag: para
 #, no-c-format
@@ -1032,12 +1191,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Quality of Service"
-msgstr ""
+msgstr "Qualidade do Serviço"
 
 #. Tag: title
 #, no-c-format
 msgid "Principle and Mechanism"
-msgstr ""
+msgstr "Princípio e Mecanismo"
 
 #. Tag: para
 #, no-c-format
@@ -1047,22 +1206,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>QoS</primary>"
-msgstr ""
+msgstr "<primary>QoS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quality of service</primary>"
-msgstr ""
+msgstr "<primary>qualidade do serviço</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quality</primary><secondary>of service</secondary>"
-msgstr ""
+msgstr "<primary>qualidade</primary><secondary>do serviço</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>service</primary><secondary>quality</secondary>"
-msgstr ""
+msgstr "<primary>serviço</primary><secondary>qualidade</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1087,22 +1246,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>routing</primary><secondary>advanced</secondary>"
-msgstr ""
+msgstr "<primary>roteamento</primary><secondary>avançado</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>traffic control</primary>"
-msgstr ""
+msgstr "<primary>controle de tráfego</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>control, of traffic</primary>"
-msgstr ""
+msgstr "<primary>controle, de tráfego</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring and Implementing"
-msgstr ""
+msgstr "Configurando e implementando"
 
 #. Tag: para
 #, no-c-format
@@ -1112,17 +1271,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>iproute</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>iproute</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tc</command></primary>"
-msgstr ""
+msgstr "<primary><command>tc</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Reducing Latencies: <command>wondershaper</command>"
-msgstr ""
+msgstr "Reduzindo Latências: <command>wondershaper</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1132,17 +1291,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>wondershaper</command></primary>"
-msgstr ""
+msgstr "<primary><command>wondershaper</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>limitation, of traffic</primary>"
-msgstr ""
+msgstr "<primary>limitando, o tráfego</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>traffic</primary><secondary>limitation</secondary>"
-msgstr ""
+msgstr "<primary>tráfego</primary><secondary>limitando</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1157,7 +1316,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Changes in the <filename>/etc/network/interfaces</filename> file"
-msgstr ""
+msgstr "Mudanças no arquivo <filename>/etc/network/interfaces</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1167,6 +1326,10 @@ msgid ""
 "    up /sbin/wondershaper eth0 500 100\n"
 "    down /sbin/wondershaper remove eth0\n"
 msgstr ""
+"\n"
+"iface eth0 inet dhcp\n"
+"    up /sbin/wondershaper eth0 500 100\n"
+"    down /sbin/wondershaper remove eth0\n"
 
 #. Tag: para
 #, no-c-format
@@ -1174,9 +1337,9 @@ msgid "In the PPP case, creating a script that calls <command>wondershaper</comm
 msgstr ""
 
 #. Tag: title
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Optimal configuration"
-msgstr ""
+msgstr "<emphasis>APROFUNDANDO</emphasis> Configuração optimal"
 
 #. Tag: para
 #, no-c-format
@@ -1186,7 +1349,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Standard Configuration"
-msgstr ""
+msgstr "Configuração Padrão"
 
 #. Tag: para
 #, no-c-format
@@ -1240,26 +1403,31 @@ msgid ""
 "iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos Minimize-Delay\n"
 "iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay\n"
 msgstr ""
+"\n"
+"iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos "
+"Minimize-Delay\n"
+"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos "
+"Minimize-Delay\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Dynamic Routing"
-msgstr ""
+msgstr "Roteamento Dinâmico"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>routing</primary><secondary>dynamic</secondary>"
-msgstr ""
+msgstr "<primary>roteamento</primary><secondary>dinâmico</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>quagga</command></primary>"
-msgstr ""
+msgstr "<primary><command>quagga</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>zebra</command></primary>"
-msgstr ""
+msgstr "<primary><command>zebra</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1269,7 +1437,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Dynamic routing"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Roteamento dinâmico"
 
 #. Tag: para
 #, no-c-format
@@ -1284,7 +1452,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>route</command></primary>"
-msgstr ""
+msgstr "<primary><command>route</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1292,44 +1460,44 @@ msgid "Quagga is a set of daemons cooperating to define the routing tables to be
 msgstr ""
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>OSPF</primary>"
-msgstr ""
+msgstr "<primary>OSPF</primary>"
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>BGP</primary>"
-msgstr ""
+msgstr "<primary>BGP</primary>"
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>RIP</primary>"
-msgstr ""
+msgstr "<primary>RIP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bgpd</command></primary>"
-msgstr ""
+msgstr "<primary><command>bgpd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ospfd</command></primary>"
-msgstr ""
+msgstr "<primary><command>ospfd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ospf6d</command></primary>"
-msgstr ""
+msgstr "<primary><command>ospf6d</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ripd</command></primary>"
-msgstr ""
+msgstr "<primary><command>ripd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ripngd</command></primary>"
-msgstr ""
+msgstr "<primary><command>ripngd</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1344,7 +1512,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> OPSF, BGP or RIP?"
-msgstr ""
+msgstr "<emphasis>NA PRÁTICA</emphasis> OPSF, BGP ou RIP?"
 
 #. Tag: para
 #, no-c-format
@@ -1364,17 +1532,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IPv6</primary>"
-msgstr ""
+msgstr "<primary>IPv6</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">iputils-ping</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">iputils-ping</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">iputils-tracepath</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">iputils-tracepath</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1384,10 +1552,10 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Example of IPv6 configuration"
-msgstr ""
+msgstr "Exemplo de configuração IPv6"
 
 #. Tag: programlisting
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "\n"
 "iface eth0 inet6 static\n"
@@ -1399,6 +1567,15 @@ msgid ""
 "    # (/proc/sys/net/ipv6/conf/all/accept_ra). If it had:\n"
 "    # gateway 2001:db8:1234:5::1\n"
 msgstr ""
+"\n"
+"iface eth0 inet6 static\n"
+"    address 2001:db8:1234:5::1:1\n"
+"    netmask 64\n"
+"    # Disabling auto-configuration\n"
+"    # up echo 0 &gt;/proc/sys/net/ipv6/conf/all/autoconf\n"
+"    # The router is auto-configured and has no fixed address\n"
+"    # (/proc/sys/net/ipv6/conf/all/accept_ra). If it had:\n"
+"    # gateway 2001:db8:1234:5::1\n"
 
 #. Tag: para
 #, no-c-format
@@ -1408,7 +1585,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Freenet6</primary>"
-msgstr ""
+msgstr "<primary>Freenet6</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1428,6 +1605,10 @@ msgid ""
 "prefix_len=48\n"
 "if_prefix=eth0\n"
 msgstr ""
+"\n"
+"host_type=router\n"
+"prefix_len=48\n"
+"if_prefix=eth0\n"
 
 #. Tag: para
 #, no-c-format
@@ -1442,7 +1623,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>radvd</command></primary>"
-msgstr ""
+msgstr "<primary><command>radvd</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1450,9 +1631,9 @@ msgid "Then run <command>/etc/init.d/tspc restart</command> and <command>/etc/in
 msgstr ""
 
 #. Tag: title
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<emphasis>TIP</emphasis> Programs built with IPv6"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Programas construídos com IPv6"
 
 #. Tag: para
 #, no-c-format
@@ -1462,17 +1643,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> IPv6 and firewalls"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> IPv6 e firewalls"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IPv6 firewall</primary>"
-msgstr ""
+msgstr "<primary>IPv6 firewall</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>firewall</primary><secondary>IPv6</secondary>"
-msgstr ""
+msgstr "<primary>firewall</primary><secondary>IPv6</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1492,7 +1673,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNS</primary>"
-msgstr ""
+msgstr "<primary>DNS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1512,12 +1693,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>zone</primary><secondary>DNS</secondary>"
-msgstr ""
+msgstr "<primary>zona</primary><secondary>DNS</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNS</primary><secondary>zone</secondary>"
-msgstr ""
+msgstr "<primary>DNS</primary><secondary>zona</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1572,27 +1753,27 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">bind9</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">bind9</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ISC</primary>"
-msgstr ""
+msgstr "<primary>ISC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Internet Software Consortium</primary>"
-msgstr ""
+msgstr "<primary>Internet Software Consortium</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> DNSSEC"
-msgstr ""
+msgstr "<emphasis>CULTURA</emphasis> DNSSEC"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNSSEC</primary>"
-msgstr ""
+msgstr "<primary>DNSSEC</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1602,12 +1783,14 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring"
-msgstr ""
+msgstr "Configurando"
 
 #. Tag: para
 #, no-c-format
 msgid "Configuration files for <command>bind</command>, irrespective of version, have the same structure."
 msgstr ""
+"Arquivos de configuração para o <command>bind</command>, independente da "
+"versão, têm a mesma estrutura."
 
 #. Tag: para
 #, no-c-format
@@ -1632,7 +1815,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>in-addr.arpa</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>in-addr.arpa</literal></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1642,7 +1825,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Testing the DNS server"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Testando o servidor DNS"
 
 #. Tag: para
 #, no-c-format
@@ -1652,7 +1835,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>host</command></primary>"
-msgstr ""
+msgstr "<primary><command>host</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1662,17 +1845,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>named.conf</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>named.conf</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/bind/named.conf</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/bind/named.conf</filename></primary>"
 
 #. Tag: title
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Excerpt of <filename>/etc/bind/named.conf.local</filename>"
-msgstr ""
+msgstr "Trecho do <filename>/etc/bind/named.conf.local</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1700,14 +1883,36 @@ msgid ""
 "        allow-query { 192.168.0.0/16; };\n"
 "};\n"
 msgstr ""
+"\n"
+"zone \"falcot.com\" {\n"
+"        type master;\n"
+"        file \"/etc/bind/db.falcot.com\";\n"
+"        allow-query { any; };\n"
+"        allow-transfer {\n"
+"                195.20.105.149/32 ; // ns0.xname.org\n"
+"                193.23.158.13/32 ; // ns1.xname.org\n"
+"        };\n"
+"};\n"
+"\n"
+"zone \"internal.falcot.com\" {\n"
+"        type master;\n"
+"        file \"/etc/bind/db.internal.falcot.com\";\n"
+"        allow-query { 192.168.0.0/16; };\n"
+"};\n"
+"\n"
+"zone \"168.192.in-addr.arpa\" {\n"
+"        type master;\n"
+"        file \"/etc/bind/db.192.168\";\n"
+"        allow-query { 192.168.0.0/16; };\n"
+"};\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Excerpt of <filename>/etc/bind/db.falcot.com</filename>"
-msgstr ""
+msgstr "Trecho do <filename>/etc/bind/db.falcot.com</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "; falcot.com Zone \n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
@@ -1738,11 +1943,39 @@ msgid ""
 "\n"
 "dns     IN      CNAME   ns\n"
 msgstr ""
+"; falcot.com Zone \n"
+"; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
+"$TTL    604800\n"
+"@       IN      SOA     falcot.com. admin.falcot.com. (\n"
+"                        20040121        ; Serial\n"
+"                         604800         ; Refresh\n"
+"                          86400         ; Retry\n"
+"                        2419200         ; Expire\n"
+"                         604800 )       ; Negative Cache TTL\n"
+";\n"
+"; The @ refers to the zone name (\"falcot.com\" here)\n"
+"; or to $ORIGIN if that directive has been used\n"
+";\n"
+"@       IN      NS      ns\n"
+"@       IN      NS      ns0.xname.org.\n"
+"\n"
+"interne IN      NS      192.168.0.2\n"
+"\n"
+"@       IN      A       212.94.201.10\n"
+"@       IN      MX      5 mail\n"
+"@       IN      MX      10 mail2\n"
+"\n"
+"ns      IN      A       212.94.201.10\n"
+"mail    IN      A       212.94.201.10\n"
+"mail2   IN      A       212.94.201.11\n"
+"www     IN      A       212.94.201.11\n"
+"\n"
+"dns     IN      CNAME   ns\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Syntax of a name"
-msgstr ""
+msgstr "<emphasis>CUIDADO</emphasis> Sintaxe de um nome"
 
 #. Tag: para
 #, no-c-format
@@ -1752,10 +1985,10 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Excerpt of <filename>/etc/bind/db.192.168</filename>"
-msgstr ""
+msgstr "Trecho do <filename>/etc/bind/db.192.168</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "; Reverse zone for 192.168.0.0/16\n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
@@ -1777,11 +2010,30 @@ msgid ""
 "; 192.168.3.1 -&gt; pau\n"
 "1.3     IN      PTR     pau.interne.falcot.com.\n"
 msgstr ""
+"; Reverse zone for 192.168.0.0/16\n"
+"; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
+"$TTL    604800\n"
+"@       IN      SOA     ns.interne.falcot.com. admin.falcot.com. (\n"
+"                        20040121        ; Serial\n"
+"                         604800         ; Refresh\n"
+"                          86400         ; Retry\n"
+"                        2419200         ; Expire\n"
+"                         604800 )       ; Negative Cache TTL\n"
+"\n"
+"        IN      NS      ns.interne.falcot.com.\n"
+"\n"
+"; 192.168.0.1 -&gt; arrakis\n"
+"1.0     IN      PTR     arrakis.interne.falcot.com.\n"
+"; 192.168.0.2 -&gt; neptune\n"
+"2.0     IN      PTR     neptune.interne.falcot.com.\n"
+"\n"
+"; 192.168.3.1 -&gt; pau\n"
+"1.3     IN      PTR     pau.interne.falcot.com.\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Presentation"
-msgstr ""
+msgstr "Apresentação"
 
 #. Tag: para
 #, no-c-format
@@ -1791,17 +2043,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DHCP</primary>"
-msgstr ""
+msgstr "<primary>DHCP</primary>"
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>Dynamic Host Configuration Protocol</primary>"
-msgstr ""
+msgstr "<primary>Dynamic Host Configuration Protocol</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>DHCP configuration</secondary>"
-msgstr ""
+msgstr "<primary>rede</primary><secondary>configuração DHCP</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1821,7 +2073,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Excerpt of <filename>/etc/dhcp/dhcpd.conf</filename>"
-msgstr ""
+msgstr "Trecho do <filename>/etc/dhcp/dhcpd.conf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1864,12 +2116,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "DHCP and DNS"
-msgstr ""
+msgstr "DHCP e DNS"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNS</primary><secondary>automated updates</secondary>"
-msgstr ""
+msgstr "<primary>DNS</primary><secondary>atualizações automáticas</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1887,6 +2139,8 @@ msgid ""
 "\n"
 "allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
 msgstr ""
+"\n"
+"allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
 
 #. Tag: para
 #, no-c-format
@@ -1901,7 +2155,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Network Diagnosis Tools"
-msgstr ""
+msgstr "Ferramentas de Diagnóstico de Rede"
 
 #. Tag: para
 #, no-c-format
@@ -1911,12 +2165,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Local Diagnosis: <command>netstat</command>"
-msgstr ""
+msgstr "Diagnóstico Local: <command>netstat</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>netstat</command></primary>"
-msgstr ""
+msgstr "<primary><command>netstat</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1964,7 +2218,7 @@ msgid "Other options, documented in the <citerefentry><refentrytitle>netstat</re
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>netstat -tupan</userinput>\n"
@@ -1986,6 +2240,40 @@ msgid ""
 "udp6       0      0 :::123                  :::*                                764/ntpd        \n"
 "</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>netstat -tupan</userinput>\n"
+"<computeroutput>Active Internet connections (servers and established)\n"
+"Proto Recv-Q Send-Q Local Address           Foreign Address         State "
+"      PID/Program name\n"
+"tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN "
+"     2224/sshd       \n"
+"tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN "
+"     994/exim4       \n"
+"tcp        0      0 192.168.1.241:22        192.168.1.128:47372     "
+"ESTABLISHED 2944/sshd: roland [\n"
+"tcp        0      0 192.168.1.241:22        192.168.1.128:32970     "
+"ESTABLISHED 2232/sshd: roland [\n"
+"tcp6       0      0 :::22                   :::*                    LISTEN "
+"     2224/sshd       \n"
+"tcp6       0      0 ::1:25                  :::*                    LISTEN "
+"     994/exim4       \n"
+"udp        0      0 0.0.0.0:68              0.0.0.0:* "
+"                          633/dhclient    \n"
+"udp        0      0 192.168.1.241:123       0.0.0.0:* "
+"                          764/ntpd        \n"
+"udp        0      0 127.0.0.1:123           0.0.0.0:* "
+"                          764/ntpd        \n"
+"udp        0      0 0.0.0.0:123             0.0.0.0:* "
+"                          764/ntpd        \n"
+"udp6       0      0 fe80::a00:27ff:fe6c:123 :::* "
+"                               764/ntpd        \n"
+"udp6       0      0 2002:52e0:87e4:0:a0:123 :::* "
+"                               764/ntpd        \n"
+"udp6       0      0 ::1:123                 :::* "
+"                               764/ntpd        \n"
+"udp6       0      0 :::123                  :::* "
+"                               764/ntpd        \n"
+"</computeroutput>"
 
 #. Tag: para
 #, no-c-format
@@ -1995,12 +2283,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Remote Diagnosis: <command>nmap</command>"
-msgstr ""
+msgstr "Diagnóstico Remoto: <command>nmap</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>nmap</command></primary>"
-msgstr ""
+msgstr "<primary><command>nmap</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2073,9 +2361,9 @@ msgid "As expected, the SSH and Exim4 applications are listed. Note that not all
 msgstr ""
 
 #. Tag: title
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Sniffers: <command>tcpdump</command> and <command>wireshark</command>"
-msgstr ""
+msgstr "Sniffers: <command>tcpdump</command> e <command>wireshark</command>"
 
 #. Tag: para
 #, no-c-format
@@ -2085,7 +2373,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tcpdump</command></primary>"
-msgstr ""
+msgstr "<primary><command>tcpdump</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2095,7 +2383,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>wireshark</command></primary>"
-msgstr ""
+msgstr "<primary><command>wireshark</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2105,7 +2393,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The <command>wireshark</command> network traffic analyzer"
-msgstr ""
+msgstr "O analisador de tráfego de rede <command>wireshark</command>"
 
 #. Tag: para
 #, no-c-format
@@ -2116,11 +2404,13 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <command>wireshark</command> with no graphical interface: <command>tshark</command>"
 msgstr ""
+"<emphasis>DICA</emphasis> <command>wireshark</command> sem interface "
+"gráfica: <command>tshark</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tshark</command></primary>"
-msgstr ""
+msgstr "<primary><command>tshark</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2131,16 +2421,18 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <command>ethereal</command> and <command>wireshark</command>"
 msgstr ""
+"<emphasis>CULTURA</emphasis> <command>ethereal</command> e "
+"<command>wireshark</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ethereal</command></primary>"
-msgstr ""
+msgstr "<primary><command>ethereal</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tethereal</command></primary>"
-msgstr ""
+msgstr "<primary><command>tethereal</command></primary>"
 
 #. Tag: para
 #, no-c-format
