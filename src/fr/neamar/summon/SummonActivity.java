@@ -23,6 +23,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -269,6 +270,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
+		
+		// Favorites button
+		SubMenu favorites = menu.findItem(R.id.favorites).getSubMenu();
+		favorites.clear();
+		
+		
+		// "Clear" button
 		clear = menu.findItem(R.id.clear);
 		if (clear != null) {
 			if (searchEditText != null && !searchEditText.getText().toString().equalsIgnoreCase("")) {
