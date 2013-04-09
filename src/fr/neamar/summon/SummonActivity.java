@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,6 +35,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import fr.neamar.summon.adapter.RecordAdapter;
+import fr.neamar.summon.db.DBHelper;
+import fr.neamar.summon.db.ValuedHistoryRecord;
+import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.task.UpdateRecords;
 
@@ -267,6 +271,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.e("wtf", "Generating menu");
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
@@ -274,7 +279,12 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		// Favorites button
 		SubMenu favorites = menu.findItem(R.id.favorites).getSubMenu();
 		favorites.clear();
-		
+		ArrayList<Holder> favorites_records = SummonApplication.getDataHandler(this).getFavorites(this);
+		for(int i = 0; i < favorites_records.size(); i++)
+		{
+			Log.e("wtf", favorites_records.get(i).displayName);
+			favorites.add(Menu.NONE, i, i, favorites_records.get(i).displayName);
+		}
 		
 		// "Clear" button
 		clear = menu.findItem(R.id.clear);

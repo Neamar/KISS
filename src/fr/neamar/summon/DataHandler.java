@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import fr.neamar.summon.dataprovider.AliasProvider;
 import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.ContactProvider;
@@ -131,6 +132,7 @@ public class DataHandler extends BroadcastReceiver {
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
 				if (providers.get(j).mayFindById(ids.get(i).record)) {
+					//TODO: use new getHolder() function
 					Holder holder = providers.get(j).findById(ids.get(i).record);
 					if (holder != null) {
 						history.add(holder);
@@ -141,6 +143,29 @@ public class DataHandler extends BroadcastReceiver {
 		}
 
 		return history;
+	}
+
+	/**
+	 * Return most used items.<br />
+	 * May return null if no items were ever selected (app first use)
+	 * 
+	 * @return
+	 */
+	protected ArrayList<Holder> getFavorites(Context context) {
+		ArrayList<Holder> favorites = new ArrayList<Holder>();
+
+		// Read history
+		ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, 5);
+
+		// Find associated items
+		for (int i = 0; i < ids.size(); i++) {
+			Holder holder = getHolder(ids.get(i).record);
+			if (holder != null) {
+				favorites.add(holder);
+			}
+		}
+
+		return favorites;
 	}
 
 	@Override
@@ -156,5 +181,17 @@ public class DataHandler extends BroadcastReceiver {
 				// Nothing
 			}
 		}
+	}
+
+	private Holder getHolder(String id)
+	{
+		// Ask all providers if they know this id
+		for (int i = 0; i < providers.size(); i++) {
+			if (providers.get(i).mayFindById(id)) {
+				return providers.get(i).findById(id);
+			}
+		}
+			
+		return null;
 	}
 }
