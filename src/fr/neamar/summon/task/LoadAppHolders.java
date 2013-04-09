@@ -37,7 +37,12 @@ public class LoadAppHolders extends LoadHolders<AppHolder> {
 			app.id = holderScheme + info.activityInfo.applicationInfo.packageName + "/"
 					+ info.activityInfo.name;
 			app.name = info.loadLabel(manager).toString();
-			app.nameLowerCased = app.name.toLowerCase();
+			
+			//Ugly hack to remove accented characters.
+			//Note Java 5 provides a Normalizer method, unavailable for Android :\
+			app.nameLowerCased = app.name.toLowerCase().replaceAll("[èéêë]", "e")
+					.replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
+					.replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("[ÈÉÊË]", "E");;
 
 			app.packageName = info.activityInfo.applicationInfo.packageName;
 			app.activityName = info.activityInfo.name;
