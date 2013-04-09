@@ -35,8 +35,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import fr.neamar.summon.adapter.RecordAdapter;
-import fr.neamar.summon.db.DBHelper;
-import fr.neamar.summon.db.ValuedHistoryRecord;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.task.UpdateRecords;
@@ -90,8 +88,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
+					// Invalidate menu for favorites generation
+					invalidateOptionsMenu();
+					
 					updateRecords(searchEditText.getText().toString());
 				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
+					// Invalidate menu for favorites generation
+					invalidateOptionsMenu();
 					setProgressBarIndeterminateVisibility(false);
 				} else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
 					setProgressBarIndeterminateVisibility(true);
