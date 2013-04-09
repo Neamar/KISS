@@ -257,7 +257,27 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle favorites
+		if(item.getItemId() < 5)
+		{
+			Holder holder = SummonApplication.getDataHandler(this).getFavorites(this).get(item.getItemId());
+			Record record = Record.fromHolder(this, holder);
+			record.doLaunch(this, null);
+		}
+		
 		switch (item.getItemId()) {
+		case R.id.favorites:
+			// Populate option menu
+			// Favorites button
+			SubMenu favorites = item.getSubMenu();
+			favorites.clear();
+			ArrayList<Holder> favorites_holder = SummonApplication.getDataHandler(this).getFavorites(this);
+			for(int i = 0; i < favorites_holder.size(); i++)
+			{
+				Holder holder = favorites_holder.get(i);
+				/*MenuItem favorite =*/ favorites.add(Menu.NONE, i, i, holder.displayName);
+			}
+			return true;
 		case R.id.settings:
 			startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
 			return true;
@@ -274,20 +294,11 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		Log.e("wtf", "Generating menu");
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
 		
-		// Favorites button
-		SubMenu favorites = menu.findItem(R.id.favorites).getSubMenu();
-		favorites.clear();
-		ArrayList<Holder> favorites_records = SummonApplication.getDataHandler(this).getFavorites(this);
-		for(int i = 0; i < favorites_records.size(); i++)
-		{
-			Log.e("wtf", favorites_records.get(i).displayName);
-			favorites.add(Menu.NONE, i, i, favorites_records.get(i).displayName);
-		}
+
 		
 		// "Clear" button
 		clear = menu.findItem(R.id.clear);
