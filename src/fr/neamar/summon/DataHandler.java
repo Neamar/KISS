@@ -157,6 +157,7 @@ public class DataHandler extends BroadcastReceiver {
 		// Read history
 		ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, 5);
 
+		
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
 			Holder holder = getHolder(ids.get(i).record);
@@ -164,6 +165,8 @@ public class DataHandler extends BroadcastReceiver {
 				favorites.add(holder);
 			}
 		}
+		
+
 
 		return favorites;
 	}

@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,6 +35,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 import fr.neamar.summon.adapter.RecordAdapter;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.Record;
@@ -281,6 +283,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 				Drawable drawable = record.getDrawable(this);
 				if (drawable != null)
 					favorite.setIcon(drawable);
+			}
+			
+			if(favorites_holder.size() == 0)
+			{
+				Toast toast = Toast.makeText(this, getString(R.string.menu_favorites_empty), Toast.LENGTH_SHORT);
+				toast.setGravity(Gravity.TOP, 0, 20);
+				toast.show();
 			}
 			return true;
 		case R.id.settings:
