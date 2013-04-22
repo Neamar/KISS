@@ -1,8 +1,11 @@
 package fr.neamar.summon.lite.record;
 
+import java.io.FileNotFoundException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -53,10 +56,8 @@ public class ContactRecord extends Record {
 		// Contact photo
 		ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) v
 				.findViewById(R.id.item_contact_icon);
-		if (contactHolder.icon != null)
-			contactIcon.setImageURI(contactHolder.icon);
-		else
-			contactIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact));
+		contactIcon.setImageDrawable(getDrawable(context));
+			
 		contactIcon.assignContactUri(Uri.withAppendedPath(
 				ContactsContract.Contacts.CONTENT_LOOKUP_URI,
 				String.valueOf(contactHolder.lookupKey)));
@@ -87,15 +88,7 @@ public class ContactRecord extends Record {
 			phoneButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// We need to manually call this function to ensure the
-					// system
-					// store this contact in history
-					recordLaunch(v.getContext());
-					queryInterface.launchOccured();
-					String url = "tel:" + contactHolder.phone;
-					Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
-					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					v.getContext().startActivity(i);
+					launchCall(v.getContext());
 				}
 			});
 
@@ -103,15 +96,7 @@ public class ContactRecord extends Record {
 
 				@Override
 				public void onClick(View v) {
-					// We need to manually call this function to ensure the
-					// system
-					// store this contact in history
-					recordLaunch(v.getContext());
-					queryInterface.launchOccured();
-					String url = "sms:" + contactHolder.phone;
-					Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
-					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					v.getContext().startActivity(i);
+					launchMessaging(v.getContext());
 				}
 			});
 		} else {
@@ -120,6 +105,20 @@ public class ContactRecord extends Record {
 		}
 
 		return v;
+	}
+
+	@Override
+	public Drawable getDrawable(Context context) {
+		if (contactHolder.icon != null) {
+			try {
+				return Drawable.createFromStream(
+						context.getContentResolver().openInputStream(contactHolder.icon), null);
+			} catch (FileNotFoundException e) {
+			}
+		}
+
+		// Default icon
+		return context.getResources().getDrawable(R.drawable.ic_contact);
 	}
 
 	@Override
@@ -132,5 +131,30 @@ public class ContactRecord extends Record {
 		viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 		context.startActivity(viewContact);
 	}
-
+	
+	@Override
+	public void fastLaunch(Context context)
+	{
+		launchMessaging(context);
+	}
+	
+	protected void launchMessaging(Context context)
+	{
+		recordLaunch(context);
+		queryInterface.launchOccured();
+		String url = "sms:" + contactHolder.phone;
+		Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(i);
+	}
+	
+	protected void launchCall(Context context)
+	{
+		recordLaunch(context);
+		queryInterface.launchOccured();
+		String url = "tel:" + contactHolder.phone;
+		Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(i);
+	}
 }

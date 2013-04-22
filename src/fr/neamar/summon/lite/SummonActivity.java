@@ -13,16 +13,19 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -32,7 +35,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 import fr.neamar.summon.lite.adapter.RecordAdapter;
+import fr.neamar.summon.lite.holder.Holder;
 import fr.neamar.summon.lite.record.Record;
 import fr.neamar.summon.lite.task.UpdateRecords;
 
@@ -111,7 +116,8 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		}
 
 		// Create adapter for records
-		adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Record>());
+		adapter = new RecordAdapter(this, this, R.layout.item_app,
+				new ArrayList<Record>());
 		setListAdapter(adapter);
 
 		this.searchEditText = (EditText) findViewById(R.id.searchEditText);
@@ -119,17 +125,22 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		// Listen to changes
 		searchEditText.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
+				// Auto left-trim text.
+				if (s.length() > 0 && s.charAt(0) == ' ')
+					s.delete(0, 1);
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
 
 			}
 
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-			}
-
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
 				updateRecords(s.toString());
 				if (clear != null) {
-					if (!searchEditText.getText().toString().equalsIgnoreCase("")) {
+					if (!searchEditText.getText().toString()
+							.equalsIgnoreCase("")) {
 						clear.setVisible(true);
 					} else {
 						clear.setVisible(false);
@@ -142,8 +153,10 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
 
 			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				RecordAdapter adapter = ((RecordAdapter) getListView().getAdapter());
+			public boolean onEditorAction(TextView v, int actionId,
+					KeyEvent event) {
+				RecordAdapter adapter = ((RecordAdapter) getListView()
+						.getAdapter());
 
 				adapter.onClick(adapter.getCount() - 1, v);
 
@@ -167,15 +180,19 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			// Restart current activity to refresh view, since some preferences
 			// might require using a new UI
 			prefs.edit().putBoolean("layout-updated", false).commit();
-			Intent i = getApplicationContext().getPackageManager().getLaunchIntentForPackage(
-					getApplicationContext().getPackageName());
-			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+			Intent i = getApplicationContext().getPackageManager()
+					.getLaunchIntentForPackage(
+							getApplicationContext().getPackageName());
+			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+					| Intent.FLAG_ACTIVITY_NEW_TASK
 					| Intent.FLAG_ACTIVITY_NO_ANIMATION);
 			startActivity(i);
 		}
 
 		if (clear != null) {
-			if (searchEditText != null && !searchEditText.getText().toString().equalsIgnoreCase("")) {
+			if (searchEditText != null
+					&& !searchEditText.getText().toString()
+							.equalsIgnoreCase("")) {
 				clear.setVisible(true);
 			} else {
 				clear.setVisible(false);
@@ -201,7 +218,8 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View arg1, int pos, long id) {
+			public boolean onItemLongClick(AdapterView<?> parent, View arg1,
+					int pos, long id) {
 				((RecordAdapter) parent.getAdapter()).onLongClick(pos);
 				return true;
 			}
@@ -217,7 +235,8 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			public void run() {
 				searchEditText.requestFocus();
 				InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-				mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+				mgr.showSoftInput(searchEditText,
+						InputMethodManager.SHOW_IMPLICIT);
 			}
 		}, 50);
 
@@ -249,7 +268,40 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle favorites
+		if (item.getItemId() < 5) {
+			Holder holder = SummonApplication.getDataHandler(this)
+					.getFavorites(this).get(item.getItemId());
+			Record record = Record.fromHolder(this, holder);
+			record.fastLaunch(this);
+		}
+
 		switch (item.getItemId()) {
+		case R.id.favorites:
+			// Populate option menu
+			// Favorites button
+			SubMenu favorites = item.getSubMenu();
+			favorites.clear();
+			ArrayList<Holder> favorites_holder = SummonApplication
+					.getDataHandler(this).getFavorites(this);
+			for (int i = 0; i < favorites_holder.size(); i++) {
+				Holder holder = favorites_holder.get(i);
+				MenuItem favorite = favorites.add(Menu.NONE, i, i, holder.name);
+
+				Record record = Record.fromHolder(this, holder);
+				Drawable drawable = record.getDrawable(this);
+				if (drawable != null)
+					favorite.setIcon(drawable);
+			}
+
+			if (favorites_holder.size() == 0) {
+				Toast toast = Toast.makeText(this,
+						getString(R.string.menu_favorites_empty),
+						Toast.LENGTH_SHORT);
+				toast.setGravity(Gravity.TOP, 0, 20);
+				toast.show();
+			}
+			return true;
 		case R.id.settings:
 			startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
 			return true;
@@ -269,9 +321,13 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
+
+		// "Clear" button
 		clear = menu.findItem(R.id.clear);
 		if (clear != null) {
-			if (searchEditText != null && !searchEditText.getText().toString().equalsIgnoreCase("")) {
+			if (searchEditText != null
+					&& !searchEditText.getText().toString()
+							.equalsIgnoreCase("")) {
 				clear.setVisible(true);
 			} else {
 				clear.setVisible(false);

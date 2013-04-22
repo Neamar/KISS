@@ -1,6 +1,7 @@
 package fr.neamar.summon.lite.record;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -54,6 +55,27 @@ public abstract class Record {
 	 * @param context
 	 */
 	public abstract void doLaunch(Context context, View v);
+	
+	/**
+	 * How to launch this record "quickly" ? Most probably, same as doLaunch().
+	 * Override to define another behavior.
+	 * 
+	 * @param context
+	 */
+	public void fastLaunch(Context context)
+	{
+		this.doLaunch(context, null);
+	}
+	
+	/**
+	 * Return the icon for this Record, or null if non existing.
+	 * 
+	 * @param context
+	 */
+	public Drawable getDrawable(Context context)
+	{
+		return null;
+	}
 
 	/**
 	 * Helper function to get a view

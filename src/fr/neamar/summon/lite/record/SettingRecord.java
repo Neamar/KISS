@@ -3,6 +3,7 @@ package fr.neamar.summon.lite.record;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,18 +27,25 @@ public class SettingRecord extends Record {
 		settingName.setText(enrichText(settingHolder.displayName));
 
 		ImageView settingIcon = (ImageView) v.findViewById(R.id.item_setting_icon);
+		settingIcon.setImageDrawable(getDrawable(context));
+
+		return v;
+	}
+
+	@Override
+	public Drawable getDrawable(Context context) {
 		if (settingHolder.icon != -1) {
 			TypedArray a = context.obtainStyledAttributes(R.style.SummonTheme,
 					new int[] { settingHolder.icon });
 			int attributeResourceId = a.getResourceId(0, -1);
 			if (attributeResourceId != -1) {
-				settingIcon.setImageDrawable(context.getResources()
-						.getDrawable(attributeResourceId));
+				a.recycle();
+				return context.getResources().getDrawable(attributeResourceId);
 			}
 			a.recycle();
 		}
 
-		return v;
+		return null;
 	}
 
 	@Override

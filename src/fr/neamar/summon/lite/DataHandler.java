@@ -41,7 +41,8 @@ public class DataHandler extends BroadcastReceiver {
 		Intent i = new Intent(SummonActivity.START_LOAD);
 		context.sendBroadcast(i);
 
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(context);
 		// Initialize providers
 		if (prefs.getBoolean("enable-apps", true)) {
 			providers.add(new AppProvider(context));
@@ -81,8 +82,8 @@ public class DataHandler extends BroadcastReceiver {
 		}
 
 		// Have we ever made the same query and selected something ?
-		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
-				context, query);
+		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper
+				.getPreviousResultsForQuery(context, query);
 
 		// Ask all providers for datas
 		ArrayList<Holder> allHolders = new ArrayList<Holder>();
@@ -98,7 +99,8 @@ public class DataHandler extends BroadcastReceiver {
 				// Give a boost if item was previously selected for this query
 				for (int k = 0; k < lastIdsForQuery.size(); k++) {
 					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record)) {
-						holders.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
+						holders.get(j).relevance += 25 * Math.min(5,
+								lastIdsForQuery.get(k).value);
 					}
 				}
 
@@ -131,7 +133,9 @@ public class DataHandler extends BroadcastReceiver {
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
 				if (providers.get(j).mayFindById(ids.get(i).record)) {
-					Holder holder = providers.get(j).findById(ids.get(i).record);
+					// TODO: use new getHolder() function
+					Holder holder = providers.get(j)
+							.findById(ids.get(i).record);
 					if (holder != null) {
 						history.add(holder);
 						break;
@@ -141,6 +145,29 @@ public class DataHandler extends BroadcastReceiver {
 		}
 
 		return history;
+	}
+
+	/**
+	 * Return most used items.<br />
+	 * May return null if no items were ever selected (app first use)
+	 * 
+	 * @return
+	 */
+	protected ArrayList<Holder> getFavorites(Context context) {
+		ArrayList<Holder> favorites = new ArrayList<Holder>();
+
+		// Read history
+		ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, 5);
+
+		// Find associated items
+		for (int i = 0; i < ids.size(); i++) {
+			Holder holder = getHolder(ids.get(i).record);
+			if (holder != null) {
+				favorites.add(holder);
+			}
+		}
+
+		return favorites;
 	}
 
 	@Override
@@ -156,5 +183,16 @@ public class DataHandler extends BroadcastReceiver {
 				// Nothing
 			}
 		}
+	}
+
+	private Holder getHolder(String id) {
+		// Ask all providers if they know this id
+		for (int i = 0; i < providers.size(); i++) {
+			if (providers.get(i).mayFindById(id)) {
+				return providers.get(i).findById(id);
+			}
+		}
+
+		return null;
 	}
 }
