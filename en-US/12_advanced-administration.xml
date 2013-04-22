@@ -1454,23 +1454,24 @@ Disk identifier: 0x00039a9f
     pros and cons. This book will focus on Xen, LXC, and KVM, but other
     noteworthy implementations include the following:</para>
     <indexterm><primary><emphasis>VMWare</emphasis></primary></indexterm>
-    <indexterm><primary><command>Bochs</command></primary></indexterm>
-    <indexterm><primary><command>QEMU</command></primary></indexterm>
-    <indexterm><primary><command>VirtualBox</command></primary></indexterm>
-    <indexterm><primary><command>KVM</command></primary></indexterm>
+    <indexterm><primary><emphasis>Bochs</emphasis></primary></indexterm>
+    <indexterm><primary><emphasis>QEMU</emphasis></primary></indexterm>
+    <indexterm><primary><emphasis>VirtualBox</emphasis></primary></indexterm>
+    <indexterm><primary><emphasis>KVM</emphasis></primary></indexterm>
+    <indexterm><primary><emphasis>LXC</emphasis></primary></indexterm>
     <itemizedlist>
       <listitem>
 	<para>QEMU is a software emulator for a full computer; performances
 	are far from the speed one could achieve running natively, but this
 	allows running unmodified or experimental operating systems on the
 	emulated hardware. It also allows emulating a different hardware
-	architecture: for instance, an <emphasis>i386</emphasis> system can
+	architecture: for instance, an <emphasis>amd64</emphasis> system can
 	emulate an <emphasis>arm</emphasis> computer. QEMU is free
 	software. <ulink type="block" url="http://www.qemu.org/"/></para>
       </listitem>
       <listitem>
-	<para>Bochs is another free virtual machine, but it only emulates
-	the i386 architecture.</para>
+	<para>Bochs is another free virtual machine, but it only
+	emulates the x86 architectures (i386 and amd64).</para>
       </listitem>
       <listitem>
 	<para>VMWare is a proprietary virtual machine; being one of the
@@ -1480,11 +1481,12 @@ Disk identifier: 0x00039a9f
 	url="http://www.vmware.com/"/></para>
       </listitem>
       <listitem>
-	<para>VirtualBox is a virtual machine that is mostly free software
-	(although some extra components are under a proprietary license).
-	Although younger than VMWare and restricted to the i386 and amd64
-	architectures, it shows promise; it already allows snapshotting,
-	for instance. VirtualBox has been part of Debian since <emphasis
+	<para>VirtualBox is a virtual machine that is mostly free
+	software (although some extra components are available under a
+	proprietary license).  It's younger than VMWare and restricted
+	to the i386 and amd64 architectures, but it still includes
+	some snapshotting and other interesting features. VirtualBox
+	has been part of Debian since <emphasis
 	role="distribution">Lenny</emphasis>. <ulink type="block"
 	url="http://www.virtualbox.org/"/></para>
       </listitem>
@@ -1539,17 +1541,14 @@ Disk identifier: 0x00039a9f
 	<ulink type="block"
 	url="http://wiki.xensource.com/xenwiki/XenParavirtOps"/></para>
 
-	<para>Although <emphasis role="distribution">Squeeze</emphasis> is
-	based on version 2.6.32 of the Linux kernel, a version including
-	the Xen patches from Xensource is also available in the <emphasis
-	role="pkg">linux-image-2.6-xen-686</emphasis> and <emphasis
-	role="pkg">linux-image-2.6-xen-amd64</emphasis> packages. This
-	distribution-specific patching means that the available featureset
-	depends on the distribution; discrepancies in the versions of the
-	code, or even integration of code still under development into some
-	distributions also mean differences in the supported features. This
-	problem should be greatly reduced now that Xen has been officially
-	merged into Linux. <ulink type="block"
+	<para>Since <emphasis role="distribution">Wheezy</emphasis> is
+	based on version 3.2 of the Linux kernel, the standard
+	<emphasis role="pkg">linux-image-686-pae</emphasis> and
+	<emphasis role="pkg">linux-image-amd64</emphasis> packages
+	include the necessary code, and the distribution-specific
+	patching that was required for <emphasis
+	role="distribution">Squeeze</emphasis> and earlier versions of
+	Debian is no more. <ulink type="block"
 	url="http://wiki.xen.org/xenwiki/XenKernelFeatures"/></para>
       </sidebar>
 
@@ -1569,12 +1568,12 @@ Disk identifier: 0x00039a9f
       <sidebar>
         <title><emphasis>CULTURE</emphasis> Xen and non-Linux kernels</title>
 
-	<para>Xen requires modifications to all the operating systems one
-	wants to run on it; not all kernels have the same level of maturity
-	in this regard. Many are fully-functional, both as dom0 and domU:
-	Linux 2.6 (as patched by Debian) and 3.0, NetBSD 4.0 and later, and
-	OpenSolaris. Others, such as OpenBSD 4.0, FreeBSD 8 and Plan 9,
-	only work as a domU.</para>
+	<para>Xen requires modifications to all the operating systems
+	one wants to run on it; not all kernels have the same level of
+	maturity in this regard. Many are fully-functional, both as
+	dom0 and domU: Linux 3.0 and later, NetBSD 4.0 and later, and
+	OpenSolaris. Others, such as OpenBSD 4.0, FreeBSD 8 and
+	Plan 9, only work as a domU.</para>
 
 	<para>However, if Xen can rely on the hardware functions dedicated
 	to virtualization (which are only present in more recent
@@ -1585,16 +1584,13 @@ Disk identifier: 0x00039a9f
         <listitem>
 	  <para>The hypervisor itself. According to the available hardware,
 	  the appropriate package will be either <emphasis
-	  role="pkg">xen-hypervisor-4.0-i386</emphasis> or <emphasis
-	  role="pkg">xen-hypervisor-4.0-amd64</emphasis>.</para>
+	  role="pkg">xen-hypervisor-4.1-i386</emphasis> or <emphasis
+	  role="pkg">xen-hypervisor-4.1-amd64</emphasis>.</para>
         </listitem>
         <listitem>
-	  <para>A kernel with the appropriate patches allowing it to work
-	  on that hypervisor. In the 2.6.32 case relevant to <emphasis
-	  role="distribution">Squeeze</emphasis>, the available hardware
-	  will dictate the choice among the various available <emphasis
-	  role="pkg">xen-linux-system-2.6.32-5-xen-*</emphasis>
-	  packages.</para>
+	  <para>A kernel that runs on that hypervisor. Any kernel more
+	  recent than 3.0 will do, including the 3.2 version present
+	  in <emphasis role="distribution">Wheezy</emphasis>.</para>
         </listitem>
         <listitem>
 	  <para>The i386 architecture also requires a standard library with
@@ -1603,19 +1599,21 @@ Disk identifier: 0x00039a9f
         </listitem>
       </itemizedlist>
 
-      <para>In order to avoid the hassle of selecting these components by
-      hand, a few convenience packages (such as <emphasis
-      role="pkg">xen-linux-system-2.6.32-5-xen-686</emphasis> and variants)
-      have been made available; they all pull in a known-good combination
-      of the appropriate hypervisor and kernel packages. The hypervisor
-      also brings <emphasis role="pkg">xen-utils-4.0</emphasis>, which
-      contains tools to control the hypervisor from the dom0. This in turn
-      brings the appropriate standard library. During the installation of
-      all that, configuration scripts also create a new entry in the Grub
-      bootloader menu, so as to start the chosen kernel in a Xen dom0. Note
-      however that this entry is not usually set to be the first one in the
-      list, and will therefore not be selected by default. If that is not
-      the desired behavior, the following commands will change it:</para>
+      <para>In order to avoid the hassle of selecting these components
+      by hand, a few convenience packages (such as <emphasis
+      role="pkg">xen-linux-system-686-pae</emphasis> and <emphasis
+      role="pkg">xen-linux-system-amd64</emphasis>) have been made
+      available; they all pull in a known-good combination of the
+      appropriate hypervisor and kernel packages. The hypervisor also
+      brings <emphasis role="pkg">xen-utils-4.1</emphasis>, which
+      contains tools to control the hypervisor from the dom0. This in
+      turn brings the appropriate standard library. During the
+      installation of all that, configuration scripts also create a
+      new entry in the Grub bootloader menu, so as to start the chosen
+      kernel in a Xen dom0. Note however that this entry is not
+      usually set to be the first one in the list, and will therefore
+      not be selected by default. If that is not the desired behavior,
+      the following commands will change it:</para>
 
       <screen><computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen /etc/grub.d/09_linux_xen
 </userinput><computeroutput># </computeroutput><userinput>update-grub
@@ -1656,7 +1654,7 @@ Disk identifier: 0x00039a9f
 	  to be installed with <command>debootstrap</command>; in that
 	  case, the <literal>--dist</literal> option will also most often
 	  be used (with a distribution name such as <emphasis
-	  role="distribution">squeeze</emphasis>).</para>
+	  role="distribution">wheezy</emphasis>).</para>
 
           <sidebar>
             <title><emphasis>GOING FURTHER</emphasis> Installing a non-Debian system in a domU</title>
@@ -1709,30 +1707,31 @@ Disk identifier: 0x00039a9f
       <para>Once these choices are made, we can create the image for our
       future Xen domU:</para>
 
-      <screen><computeroutput># </computeroutput><userinput>xen-create-image --hostname=testxen</userinput>
+      <screen><computeroutput># </computeroutput><userinput>xen-create-image --hostname testxen --dhcp --dir /srv/testxen --size=2G --dist=wheezy --role=udev</userinput>
 <computeroutput>
+[...]
 General Information
 --------------------
 Hostname       :  testxen
-Distribution   :  squeeze
-Mirror         :  http://ftp.us.debian.org/debian/
+Distribution   :  wheezy
+Mirror         :  http://ftp.fr.debian.org/debian/
 Partitions     :  swap            128Mb (swap)
-                  /               4Gb   (ext3)
+                  /               2G    (ext3)
 Image type     :  sparse
 Memory size    :  128Mb
-Kernel path    :  /boot/vmlinuz-2.6.32-5-xen-686
-Initrd path    :  /boot/initrd.img-2.6.32-5-xen-686
+Kernel path    :  /boot/vmlinuz-3.2.0-4-686-pae
+Initrd path    :  /boot/initrd.img-3.2.0-4-686-pae
 [...]
 Logfile produced at:
-         /var/log/xen-tools/testxen.log
+	 /var/log/xen-tools/testxen.log
 
 Installation Summary
 ---------------------
 Hostname        :  testxen
-Distribution    :  squeeze
+Distribution    :  wheezy
 IP-Address(es)  :  dynamic
-RSA Fingerprint :  25:6b:6b:c7:84:03:9e:8b:82:da:84:c0:08:cd:29:94
-Root Password   :  52emxRmM
+RSA Fingerprint :  0a:6e:71:98:95:46:64:ec:80:37:63:18:73:04:dd:2b
+Root Password   :  48su67EW
 </computeroutput>
 </screen>
 
@@ -1788,7 +1787,7 @@ Root Password   :  52emxRmM
       exist). We must therefore set up a bridge in
       <filename>/etc/network/interfaces</filename> (which requires
       installing the <emphasis role="pkg">bridge-utils</emphasis> package,
-      which is why the <emphasis role="pkg">xen-utils-4.0</emphasis> package
+      which is why the <emphasis role="pkg">xen-utils-4.1</emphasis> package
       recommends it) to replace the existing eth0 entry:</para>
 
       <programlisting>auto xenbr0
@@ -1804,15 +1803,15 @@ iface xenbr0 inet dhcp
       starting/stopping them.</para>
 
       <screen><computeroutput># </computeroutput><userinput>xm list</userinput>
-<computeroutput>Name                            ID Mem VCPUs  State   Time(s)
-Domain-0                         0 940     1 r-----   3896.9
+<computeroutput>Name                                        ID   Mem VCPUs      State   Time(s)
+Domain-0                                     0   463     1     r-----      9.8
 # </computeroutput><userinput>xm create testxen.cfg</userinput>
 <computeroutput>Using config file "/etc/xen/testxen.cfg".
 Started domain testxen (id=1)
 # </computeroutput><userinput>xm list</userinput>
-<computeroutput>Name                            ID Mem VCPUs  State   Time(s)
-Domain-0                         0 873     1 r-----   3917.1
-testxen                          1 128     1 -b----      3.7</computeroutput>
+<computeroutput>Name                                        ID   Mem VCPUs      State   Time(s)
+Domain-0                                     0   366     1     r-----     11.4
+testxen                                      1   128     1     -b----      1.1</computeroutput>
 </screen>
 
       <sidebar>
@@ -1846,11 +1845,8 @@ testxen                          1 128     1 -b----      3.7</computeroutput>
 
       <screen><computeroutput># </computeroutput><userinput>xm console testxen</userinput>
 <computeroutput>[...]
-Starting enhanced syslogd: rsyslogd.
-Starting periodic command scheduler: cron.
-Starting OpenBSD Secure Shell server: sshd.
 
-Debian GNU/Linux 6.0 testxen hvc0
+Debian GNU/Linux 7.0 testxen hvc0
 
 testxen login: </computeroutput>
 </screen>
@@ -1876,8 +1872,14 @@ testxen login: </computeroutput>
 
 	<para>ConVirt (in the <emphasis role="pkg">convirt</emphasis>
 	package, previously XenMan) is a graphical interface allowing
-	controlling Xen domains installed on a machine. It provides most of
-	the features of the <command>xm</command> command.</para>
+	controlling Xen domains installed on a machine. It provides
+	most of the features of the <command>xm</command> command.
+	Note that due to bugs and a slackening of development,
+	<emphasis role="pkg">convirt</emphasis>, which was included in
+	<emphasis role="distribution">Squeeze</emphasis>, has been
+	removed and is no longer present in <emphasis
+	role="distribution">Wheezy</emphasis>.
+	</para>
       </sidebar>
 
       <para>Once the domU is up, it can be used just like any other server
@@ -1948,21 +1950,21 @@ testxen login: </computeroutput>
       on the system.</para>
 
       <para>These features can be combined to isolate a whole process
-      family starting from the <command>init</command> process, and the
-      resulting set looks very much like a virtual machine. The official
-      name for such a setup is a “container” (hence the LXC moniker:
-      <emphasis>LinuX Containers</emphasis>), but a rather important
-      difference with “real” virtual machines such as provided by Xen
-      or KVM is that there's no second kernel; the container uses the very
-      same kernel as the host system. This has both pros and cons:
-      advantages include the total lack of overhead and therefore
-      performance costs, and the fact that the kernel has a global vision
-      of all the processes running on the system, so the scheduling can be
-      more efficient than it would be if two independent kernels were to
-      schedule different task sets. Chief among the inconveniences is the
-      impossibility to run a different kernel in a container (whether a
-      different Linux version or a different operating system
-      altogether).</para>
+      family starting from the <command>init</command> process, and
+      the resulting set looks very much like a virtual machine. The
+      official name for such a setup is a “container” (hence the LXC
+      moniker: <emphasis>LinuX Containers</emphasis>), but a rather
+      important difference with “real” virtual machines such as
+      provided by Xen or KVM is that there's no second kernel; the
+      container uses the very same kernel as the host system. This has
+      both pros and cons: advantages include excellent performance due
+      to the total lack of overhead, and the fact that the kernel has
+      a global vision of all the processes running on the system, so
+      the scheduling can be more efficient than it would be if two
+      independent kernels were to schedule different task sets. Chief
+      among the inconveniences is the impossibility to run a different
+      kernel in a container (whether a different Linux version or a
+      different operating system altogether).</para>
 
       <sidebar>
         <title><emphasis>NOTE</emphasis> LXC isolation limits</title>
@@ -1971,14 +1973,14 @@ testxen login: </computeroutput>
 	by heavier emulators or virtualizers. In particular:</para>
         <itemizedlist>
           <listitem>
-	    <para>the <emphasis role="distribution">Squeeze</emphasis>
-	    standard kernel does not allow limiting the amount of memory
-	    available to a container; this feature exists, and can be
-	    enabled by rebuilding the kernel with the <foreignphrase>Memory
-	    Resource Controller</foreignphrase> option, but it is still
-	    considered somewhat experimental, and it has a (slight) cost on
-	    overall system performance, which is why it's disabled by
-	    default;</para>
+	    <para>the <emphasis role="distribution">Wheezy</emphasis>
+	    standard kernel does not allow limiting the amount of
+	    memory available to a container; the feature exists, and
+	    is built in the kernel, but it's disabled by default
+	    because it has a (slight) cost on overall system
+	    performance; however, enabling it is a simple matter of
+	    setting the <command>cgroup_enable=memory</command> kernel
+	    at boot time;</para>
           </listitem>
           <listitem>
 	    <para>since the kernel is shared among the host system and the
@@ -2125,18 +2127,16 @@ iface br0 inet static
 	role="pkg">debootstrap</emphasis> package) will install a Debian
 	container:</para>
 
-        <screen><computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/
-</userinput><computeroutput>root@scouzmir:~# </computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/
-</userinput><computeroutput>debootstrap is /usr/sbin/debootstrap
-Checking cache download in /var/cache/lxc/debian/rootfs-i386 ... 
-Downloading debian minimal ...
-I: Retrieving Release
-I: Retrieving Packages
+        <screen><computeroutput>root@mirwiz:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/
+</userinput><computeroutput>root@mirwiz:~# </computeroutput><userinput>/usr/share/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/
+</userinput><computeroutput>[...]
+Downloading minimal system...
+I: Retrieving InRelease
+I: Checking Release signature
 [...]
- Removing any system startup links for /etc/init.d/hwclockfirst.sh ...
-   /etc/rcS.d/S08hwclockfirst.sh
-Root password is 'root', please change !
-root@scouzmir:~# </computeroutput>
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+rm: cannot remove `/etc/lxc/auto/': Is a directory
+root@mirwiz:~# </computeroutput>
         </screen>
 
 	<para>Note that the filesystem is initially created in
@@ -2144,13 +2144,11 @@ root@scouzmir:~# </computeroutput>
 	directory. This allows creating identical containers much more
 	quickly, since only copying is then required.</para>
 
-	<para>Note also that the <command>lxc-debian</command> command as
-	shipped in <emphasis role="distribution">Squeeze</emphasis>
-	unfortunately creates a <emphasis
-	role="distribution">Lenny</emphasis> system, and not a <emphasis
-	role="distribution">Squeeze</emphasis> system as one could expect.
-	This problem can be worked around by simply installing a newer
-	version of the package (starting from 0.7.3-1).</para>
+	<para>Note also that the <command>lxc-debian</command> command
+	as shipped in <emphasis role="distribution">Wheezy</emphasis>
+	can create <emphasis role="distribution">Squeeze</emphasis>,
+	<emphasis role="distribution">Wheezy</emphasis> and <emphasis
+	role="distribution">Sid</emphasis> systems.</para>
 
 	<para>The newly-created filesystem now contains a minimal Debian
 	system, adapted to the aforementioned “simple” network
@@ -2176,6 +2174,25 @@ lxc.network.hwaddr = 4a:49:43:49:79:20
 	the host; and that its MAC address will be as specified. Should
 	this last entry be missing or disabled, a random MAC address will
 	be generated.</para>
+
+	<para>Another useful entry in that file is the setting of the
+	hostname:</para>
+
+<programlisting>lxc.utsname = testlxc
+</programlisting>
+
+	<para>Finally, note that as of this writing, the
+	<command>lxc-debian</command> provided in <emphasis
+	role="distribution">Wheezy</emphasis> leads to LXC systems
+	where the console is not accessible.  A work-around for this
+	problem is to edit the
+	<filename>/var/lib/lxc/testlxc/rootfs/etc/inittab</filename>
+	file and replace the six <command>getty</command> lines with a
+	single one:</para>
+
+<programlisting>1:2345:respawn:/sbin/getty 38400 console
+</programlisting>
+
       </section>
       <section>
         <title>Starting the Container</title>
@@ -2183,38 +2200,16 @@ lxc.network.hwaddr = 4a:49:43:49:79:20
 	<para>Now that our virtual machine image is ready, let's start the
 	container:</para>
 
-        <screen width="94" role="scale"><computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc
-</userinput><computeroutput>INIT: version 2.86 booting
-Activating swap...done.
-Cleaning up ifupdown....
-Checking file systems...fsck 1.41.3 (12-Oct-2008)
-done.
-Setting kernel variables (/etc/sysctl.conf)...done.
-Mounting local filesystems...done.
-Activating swapfile swap...done.
-Setting up networking....
-Configuring network interfaces...Internet Systems Consortium DHCP Client V3.1.1
-Copyright 2004-2008 Internet Systems Consortium.
-All rights reserved.
-For info, please visit http://www.isc.org/sw/dhcp/
+        <screen width="94" role="scale"><computeroutput>root@mirwiz:~# </computeroutput><userinput>lxc-start --name=testlxc
+</userinput><computeroutput>INIT: version 2.88 booting
+[info] Using makefile-style concurrent boot in runlevel S.
 
-Listening on LPF/eth0/52:54:00:99:01:01
-Sending on   LPF/eth0/52:54:00:99:01:01
-Sending on   Socket/fallback
-DHCPDISCOVER on eth0 to 255.255.255.255 port 67 interval 4
-DHCPOFFER from 192.168.1.2
-DHCPREQUEST on eth0 to 255.255.255.255 port 67
-DHCPACK from 192.168.1.2
-bound to 192.168.1.243 -- renewal in 1392 seconds.
-done.
-INIT: Entering runlevel: 3
-Starting OpenBSD Secure Shell server: sshd.
+Debian GNU/Linux 7.0 testlxc console
 
-Debian GNU/Linux 5.0 scouzmir console
-
-scouzmir login: </computeroutput><userinput>root
+testlxc login: </computeroutput><userinput>root
 </userinput><computeroutput>Password: 
-Linux scouzmir 2.6.32-5-686 #1 SMP Tue Mar 8 21:36:00 UTC 2011 i686
+Last login: Thu Feb  7 14:53:11 UTC 2013 on console
+Linux testlxc 3.2.0-4-686-pae #1 SMP Debian 3.2.35-2 i686
 
 The programs included with the Debian GNU/Linux system are free software;
 the exact distribution terms for each program are described in the
@@ -2222,25 +2217,20 @@ individual files in /usr/share/doc/*/copyright.
 
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
-scouzmir:~# </computeroutput><userinput>ps auxwf</userinput>
+root@testlxc:~# </computeroutput><userinput>ps auxwf</userinput>
 <computeroutput>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.2   1984   680 ?        Ss   08:44   0:00 init [3]  
-root       197  0.0  0.1   2064   364 ?        Ss   08:44   0:00 dhclient3 -pf /var/run/dhclient.eth0.pid -lf /var/lib/dhcp3/dhclien
-root       286  0.1  0.4   2496  1256 console  Ss   08:44   0:00 /bin/login --     
-root       291  0.7  0.5   2768  1504 console  S    08:46   0:00  \_ -bash
-root       296  0.0  0.3   2300   876 console  R+   08:46   0:00      \_ ps auxwf
-root       287  0.0  0.2   1652   560 tty1     Ss+  08:44   0:00 /sbin/getty 38400 tty1 linux
-root       288  0.0  0.2   1652   560 tty2     Ss+  08:44   0:00 /sbin/getty 38400 tty2 linux
-root       289  0.0  0.2   1652   556 tty3     Ss+  08:44   0:00 /sbin/getty 38400 tty3 linux
-root       290  0.0  0.2   1652   560 tty4     Ss+  08:44   0:00 /sbin/getty 38400 tty4 linux
-scouzmir:~# </computeroutput></screen>
+root         1  0.0  0.1   2196   708 ?        Ss   15:01   0:00 init [2]  
+root      1107  0.0  0.2   6384  1032 ?        Ss   15:01   0:00 /usr/sbin/sshd
+root      1139  0.0  0.2   2756  1388 console  Ss   15:01   0:00 /bin/login --     
+root      1140  0.0  0.3   3096  1684 console  S    15:02   0:00  \_ -bash
+root      1144  0.0  0.1   2720   932 console  R+   15:02   0:00      \_ ps auxwf
+root@testlxc:~# </computeroutput></screen>
 
-	<para>We are now in the container; our access to the processes is
-	restricted to only those started from the container itself, and our
-	access to the filesystem is similarly restricted to the dedicated
-	subset of the full filesystem
-	(<filename>/var/lib/lxc/testlxc/rootfs</filename>), in which root's
-	password is initially set to <literal>root</literal>.</para>
+	<para>We are now in the container; our access to the processes
+	is restricted to only those started from the container itself,
+	and our access to the filesystem is similarly restricted to
+	the dedicated subset of the full filesystem
+	(<filename>/var/lib/lxc/testlxc/rootfs</filename>).</para>
 
 	<para>Should we want to run the container as a background process,
 	we would invoke <command>lxc-start</command> with the
@@ -2253,10 +2243,10 @@ scouzmir:~# </computeroutput></screen>
 	containers when the host boots; its configuration file,
 	<filename>/etc/default/lxc</filename>, is relatively
 	straightforward; note that the container configuration files need
-	to be stored in <filename>/etc/lxc/</filename>; many users may
+	to be stored in <filename>/etc/lxc/auto/</filename>; many users may
 	prefer symbolic links, such as can be created with <command>ln -s
 	/var/lib/lxc/testlxc/config
-	/etc/lxc/testlxc.config</command>.</para>
+	/etc/lxc/auto/testlxc.config</command>.</para>
 
         <sidebar>
           <title><emphasis>GOING FURTHER</emphasis> Mass virtualization</title>
@@ -2319,8 +2309,9 @@ scouzmir:~# </computeroutput></screen>
       http://www.linux-kvm.org/page/Status
       -->
 
-      <para>With Red Hat actively supporting its development, KVM looks
-      poised to become the reference for Linux virtualization.</para>
+      <para>With Red Hat actively supporting its development, KVM has
+      more or less become the reference for Linux
+      virtualization.</para>
       <section>
         <title>Preliminary Steps</title>
         <indexterm><primary><command>virt-install</command></primary></indexterm>
@@ -2398,8 +2389,11 @@ scouzmir:~# </computeroutput></screen>
 	images, unless the default location
 	(<filename>/var/lib/libvirt/images/</filename>) is fine.</para>
 
-        <screen><computeroutput># </computeroutput><userinput>virsh pool-create-as srv-kvm dir --target /srv/kvm</userinput>
-</screen>
+        <screen><computeroutput>root@mirwiz:~# </computeroutput><userinput>mkdir /srv/kvm</userinput>
+<computeroutput>root@mirwiz:~# </computeroutput><userinput>virsh pool-create-as srv-kvm dir --target /srv/kvm</userinput>
+<computeroutput>Pool srv-kvm created
+
+root@mirwiz:~# </computeroutput></screen>
 
 	<para>Let us now start the installation process for the virtual
 	machine, and have a closer look at
@@ -2413,11 +2407,11 @@ scouzmir:~# </computeroutput></screen>
                --name testkvm            <co id="virtinst.name"/>
                --ram 1024                <co id="virtinst.ram"/>
                --disk /srv/kvm/testkvm.qcow,format=qcow2,size=10 <co id="virtinst.disk"/>
-               --cdrom /srv/isos/debian-6.0.0-amd64-DVD-1.iso    <co id="virtinst.cdrom"/>
+               --cdrom /srv/isos/debian-wheezy-DI-b4-amd64-netinst.iso    <co id="virtinst.cdrom"/>
                --network bridge=br0      <co id="virtinst.network"/>
                --vnc                     <co id="virtinst.vnc"/>
                --os-type linux           <co id="virtinst.os"/>
-               --os-variant debiansqueeze
+               --os-variant debianwheezy
 </userinput><computeroutput>
 Starting install...
 Allocating 'testkvm.qcow'             |  10 GB     00:00
