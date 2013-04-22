@@ -2631,7 +2631,7 @@ root@server's password: </computeroutput>
     installer… Fortunately, the installer is very modular, and there are
     tools to automate most of the work required for this customization,
     most importantly simple-CDD (CDD being an acronym for <emphasis>Custom
-    Debian Derivatives</emphasis>). Even the simple-CDD solution, however,
+    Debian Derivative</emphasis>). Even the simple-CDD solution, however,
     only handles initial installations; this is usually not a problem since
     the APT tools allow efficient deployment of updates later on.</para>
 
@@ -2761,7 +2761,7 @@ root@server's password: </computeroutput>
 	need upgrading, and new answers may become required, the
 	<filename>/etc/debconf.conf</filename> configuration file can be
 	set up so that Debconf uses external data sources (such as an LDAP
-	directory server, or a remote file mounted via NFS or Samba).
+	directory server, or a remote file accessed via NFS or Samba).
 	Several external data sources can be defined at the same time, and
 	they complement one another. The local database is still used (for
 	read-write access), but the remote databases are usually restricted
@@ -2836,9 +2836,9 @@ root@server's password: </computeroutput>
           </listitem>
           <listitem>
 	    <para>the fourth and last field contains the value for the
-	    answer; note that it must be separated from the third field
-	    with a single space, so that the value can start with
-	    whitespace.</para>
+	    answer. Note that it must be separated from the third field
+	    with a single space; if there are more than one, the
+	    following space characters are considered part of the value.</para>
           </listitem>
         </itemizedlist>
 
@@ -2861,9 +2861,9 @@ root@server's password: </computeroutput>
 	  documentation on the use of a preseed file in an appendix. It
 	  also includes a detailed and commented sample file, which can
 	  serve as a base for local customizations. <ulink type="block"
-	  url="http://www.debian.org/releases/squeeze/i386/apb.html"/>
+	  url="http://www.debian.org/releases/wheezy/i386/apb.html"/>
 	  <ulink type="block"
-	  url="http://www.debian.org/releases/squeeze/example-preseed.txt"/></para>
+	  url="http://www.debian.org/releases/wheezy/example-preseed.txt"/></para>
         </sidebar>
       </section>
       <section>
@@ -2883,7 +2883,7 @@ root@server's password: </computeroutput>
 	  <filename>/tftpboot/pxelinux.cfg/default</filename> configuration
 	  file. Setting up network boot is a prerequisite; see the
 	  Installation Guide for details. <ulink type="block"
-	  url="http://www.debian.org/releases/squeeze/i386/ch04s05.html"/></para>
+	  url="http://www.debian.org/releases/wheezy/i386/ch04s05.html"/></para>
         </section>
         <section>
           <title>Preparing a Bootable USB Key</title>
@@ -2935,13 +2935,13 @@ append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap
 	  image directory is finalized after debian-cd's <command>make
 	  image-trees</command> step. At that point, we insert the preseed
 	  file into the appropriate directory (usually
-	  <filename>$TDIR/squeeze/CD1/</filename>, $TDIR being one of the
+	  <filename>$TDIR/wheezy/CD1/</filename>, $TDIR being one of the
 	  parameters defined by the <filename>CONF.sh</filename>
 	  configuration file). The CD-ROM uses <command>isolinux</command>
 	  as its bootloader, and its configuration file must be adapted
 	  from what debian-cd generated, in order to insert the required
 	  boot parameters (the specific file is
-	  <filename>$TDIR/squeeze/boot1/isolinux/isolinux.cfg</filename>).
+	  <filename>$TDIR/wheezy/boot1/isolinux/isolinux.cfg</filename>).
 	  Then the “normal” process can be resumed, and we can go on to
 	  generating the ISO image with <command>make image CD=1</command>
 	  (or <command>make images</command> if several CD-ROMs are
@@ -3105,7 +3105,7 @@ append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap
 	profiles, the remaining step is to invoke <command>build-simple-cdd
 	--conf simple-cdd.conf</command>. After a few minutes, we get the
 	required image in
-	<filename>images/debian-6.0-i386-CD-1.iso</filename>.</para>
+	<filename>images/debian-7.0-i386-CD-1.iso</filename>.</para>
       </section>
     </section>
   </section>
