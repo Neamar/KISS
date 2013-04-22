@@ -3116,8 +3116,8 @@ append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap
     have several goals: on the one hand, following usage of the resources
     provided by a machine allows anticipating saturation and the subsequent
     required upgrades; on the other hand, alerting the administrator as
-    soon as a service is unavailable or not working properly means the
-    problem can be fixed earlier.</para>
+    soon as a service is unavailable or not working properly means
+    that the problems that do happen can be fixed sooner.</para>
 
     <para><emphasis>Munin</emphasis> covers the first area, by displaying
     graphical charts for historical values of a number of parameters (used
@@ -3139,7 +3139,10 @@ append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap
       other). Zabbix, on the other hand, integrates both parts of
       monitoring; it also has a web interface for configuring the most
       common aspects. It has grown by leaps and bounds during the last few
-      years, and can now be considered a viable contender. <ulink
+      years, and can now be considered a viable contender;
+      unfortunately, Zabbix isn't present in Debian Wheezy due to
+      timing issues in the release process, but packages will be
+      provided as backports or in unofficial repositories.  <ulink
       type="block" url="http://www.zabbix.org/"/></para>
     </sidebar>
 
