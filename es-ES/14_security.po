@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2013-04-10 07:46+0200\n"
-"Last-Translator: Iván Alemán <aleman.ivan@gmail.com>\n"
+"PO-Revision-Date: 2013-04-22 12:10+0200\n"
+"Last-Translator: Marcos Mezo <mmezo@selexco.net>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-"
 "handbook/14_security/es-ES/>\n"
 "Language: es-ES\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.5-dev\n"
+"X-Generator: Weblate 1.6-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -1107,197 +1107,319 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Your logs as screen background"
-msgstr ""
+msgstr "<emphasis>SUGERENCIA</emphasis> Tus logs como fondo de pantalla"
 
 #. Tag: para
 #, no-c-format
 msgid "Some administrators like seeing their log messages scroll by in real time; the <command>root-tail</command> command (in the <emphasis role=\"pkg\">root-tail</emphasis>) package can be used to integrate the logs into the background of their graphical desktop. The <command>xconsole</command> program (in the <emphasis>x11-apps</emphasis> package) can also have them scrolling in a small window. Messages are directly taken from <command>syslogd</command> via the <filename>/dev/xconsole</filename> named pipe."
 msgstr ""
+"A algunos administradores les gusta ver los mensajes de log en tiempo real; "
+"la orden <command>root-tail</command> (contenida en el paquete <emphasis "
+"role=\"pkg\">root-tail</emphasis>) puede ser utilizado para integrar los logs "
+"con el fondo del escritorio gráfico. El programa <command>xconsole</command> "
+"(contenido en el paquete <emphasis>x11-apps</emphasis>) también puede "
+"mostrarlos en una pequeña ventana. Los mensajes se obtienen directamente "
+"desde la orden <command>syslogd</command> a través de la tubería "
+"<filename>/dev/xconsole</filename>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>root-tail</command></primary>"
-msgstr ""
+msgstr "<primary><command>root-tail</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>display</secondary>"
-msgstr ""
+msgstr "<primary>logs</primary><secondary>mostrar</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Activity"
-msgstr ""
+msgstr "Actividad de Monitorización"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary><secondary>activity</secondary>"
-msgstr ""
+msgstr "<primary>monitorización</primary><secondary>actividad</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>activity, monitoring</primary>"
-msgstr ""
+msgstr "<primary>actividad, monitorización</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "In Real Time"
-msgstr ""
+msgstr "En tiempo real"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>top</command> is an interactive tool that displays a list of currently running processes. The default sorting is based on the current amount of processor use and can be obtained with the <keycap>P</keycap> key. Other sort orders include a sort by occupied memory (<keycap>M</keycap> key), by total processor time (<keycap>T</keycap> key) and by process identifier (<keycap>N</keycap> key). The <keycap>k</keycap> key allows killing a process by entering its process identifier. The <keycap>r</keycap> key allows <emphasis>renicing</emphasis> a process, i.e. changing its priority."
 msgstr ""
+"<command>top</command> es una herramienta interactiva que muestra una lista "
+"de los procesos en ejecución. La ordenación predeterminada es según la "
+"cantidad de procesador utilizada y se puede obtener mediante la tecla "
+"<keycap>P</keycap>. Otros posibles criterios de ordenación posibles son "
+"atendiendo a la cantidad de memoria ocupada (tecla <keycap>M</keycap>), por "
+"el tiempo total de uso de procesador (tecla <keycap>T</keycap>) o por el "
+"identificador de proceso (tecla <keycap>N</keycap>). La tecla "
+"<keycap>k</keycap> permite matar un preoceso tecleando su identificador de "
+"proceso. La tecla <keycap>r</keycap> permite hacer "
+"<emphasis>renice</emphasis> sobre un proceso, es decir, cambiar su "
+"prioridad."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>top</command></primary>"
-msgstr ""
+msgstr "<primary><command>top</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When the system seems to be overloaded, <command>top</command> is a great tool to see which processes are competing for processor time or consume too much memory. In particular, it is often interesting to check if the processes consuming resources match the real services that the machine is known to host. An unknown process running as the www-data user should really stand out and be investigated, since it's probably an instance of software installed and executed on the system through a vulnerability in a web application."
 msgstr ""
+"Cuando el sistema aparenta estar sobrecargado, <command>top</command> es una "
+"herramienta excelente para ver qué procesos estan compitiendo por el tiempo "
+"de procesador o consumiendo demasiada memoria. En particular, a menudo es "
+"interesante comprobar si los procesos que están consumiendo los recursos se "
+"corresponden con los servicios reales que la máquina debe albergar. Por "
+"ejemplo, un proceso desconocido, ejecutándose como usuario www-data debería "
+"destacar prominentemente y ser investigado, puesto que posiblemente fuera "
+"algún tipo de software instalado y ejecutado en la máquina a través de una "
+"vulnerabilidad de una aplicación web."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>top</command> is a very flexible tool and its manual page gives details on how to customize its display and adapt it to one's personal needs and habits."
 msgstr ""
+"<command>top</command> es una herramienta muy flexible y su página de manual "
+"detalla cómo personalizar su presentación y adaptarla a las necesidades y "
+"habitos particulares."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>gnome-system-monitor</command> and <command>qps</command> graphical tools are similar to <command>top</command> and they provide roughly the same features."
 msgstr ""
+"Las herramientas gráficas <command>gnome-system-monitor</command> y "
+"<command>qps</command> sin similares a la orden <command>top</command> y "
+"proporcionan aproximandamente las mismas prestaciones."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Visual representations of activity"
 msgstr ""
+"<emphasis>SUGERENCIA</emphasis> Representaciones visuales de la actividad"
 
 #. Tag: para
 #, no-c-format
 msgid "For more visual (and entertaining) representations of a computer's activity, one should investigate the <emphasis role=\"pkg\">lavaps</emphasis>, <emphasis role=\"pkg\">bubblemon</emphasis> and <emphasis role=\"pkg\">bubblefishymon</emphasis> packages. <command>lavaps</command> displays running processes as the wax bubbles in a lava-lamp. <emphasis>bubblemon</emphasis> is a desktop panel applet representing the amount of used memory and the processor usage as an aquarium with bubbles. <command>bubblefishymon</command> is rather similar, but it also adds fish representing network traffic (and even a duck)."
 msgstr ""
+"Para obtener representaciones más visuales (y entretenidas) de la actividad "
+"de un equipo, se deberían investigar los paquetes <emphasis "
+"role=\"pkg\">lavaps</emphasis>, <emphasis role=\"pkg\">bubblemon</emphasis> y "
+"<emphasis role=\"pkg\">bubblefishymon</emphasis>. <command>lavaps</command> "
+"muestra los procesos en ejecución como las burbujas de cera de una lámpara "
+"de lava. <emphasis>bubblemon</emphasis> es un applet de escritorio que "
+"representa la cantidad de memoria y procesador utilizado como un acuario con "
+"burbujas.<command>bubblefishymon</command> es bastante similar, pero además "
+"añade peces que representan el tráfico de red (e incluso un pato)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gnome-system-monitor</command></primary>"
-msgstr ""
+msgstr "<primary><command>gnome-system-monitor</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lavaps</command></primary>"
-msgstr ""
+msgstr "<primary><command>lavaps</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bubblefishymon</command></primary>"
-msgstr ""
+msgstr "<primary><command>bubblefishymon</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>bubblemon</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>bubblemon</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "History"
-msgstr ""
+msgstr "Historial"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>activity, history</primary>"
-msgstr ""
+msgstr "<primary>actividad, historial</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Processor load, network traffic and free disk space are information that are constantly varying. Keeping a history of their evolution is often useful in determining exactly how the computer is used."
 msgstr ""
+"La carga del procesador, el tráfico de red y el espacio libre en disco son "
+"datos que varían continuamente. A menudo es útil disponer de un historial "
+"con su evolución para determinar cómo se utiliza exáctamente la máquina."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SNMP</primary>"
-msgstr ""
+msgstr "<primary>SNMP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Simple Network Management Protocol</primary>"
 msgstr ""
+"<primary>Simple Network Management Protocol, Protocolo Simple de Gestión de "
+"Red</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "There are many dedicated tools for this task. Most can fetch data via SNMP (<emphasis>Simple Network Management Protocol</emphasis>) in order to centralize this information. An added benefit is that this allows fetching data from network elements that may not be general-purpose computers, such as dedicated network routers or switches."
 msgstr ""
+"Existen muchas herramientas dedicadas para esta tarea. La mayoría puede "
+"obtener la información via SNMP (<emphasis>Simple Network Management "
+"Protocol</emphasis>) para centralizar la información. Un beneficio adicional "
+"es que permite recoger datos de elementos de red que pueden no ser "
+"ordenadores de propósito general, tal como conmutadores (switches) o "
+"enrutadores (routers) dedicados."
 
 #. Tag: para
 #, no-c-format
 msgid "This book deals with Munin in some detail (see <xref linkend=\"section.munin\" />) as part of <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />. Debian also provides a similar tool, <emphasis role=\"pkg\">cacti</emphasis>. Its deployment is slightly more complex, since it is based solely on SNMP. Despite having a web interface, grasping the concepts involved in configuration still requires some effort. Reading the HTML documentation (<filename>/usr/share/doc/cacti/html/index.html</filename>) should be considered a prerequisite."
 msgstr ""
+"Este libro se ocupa de Munin en cierto detalle (ver <xref "
+"linkend=\"section.munin\" /> como parte de <xref linkend=\"advanced-"
+"administration\" xrefstyle=\"select: label quotedtitle\" />. Debian también "
+"proporciona una herramienta similar, <emphasis role=\"pkg\">cacti</emphasis>. "
+"Su despliegue es algo más complejo, puesto que se basa exclusivamente en "
+"SNMP. A pesar de que dispone de una interfaz web, entender los conceptos "
+"involucrados en la configuración requiere de todas formas un poco de "
+"esfuerzo. Debería considerarse un pre-requisito leer la documentación HTML "
+"(<filename>/usr/share/doc/cacti/html/index.html</filename>)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <command>mrtg</command>"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVA</emphasis> <command>mrtg</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mrtg</command></primary>"
-msgstr ""
+msgstr "<primary><command>mrtg</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>mrtg</command> (in the similarly-named package) is an older tool. Despite some rough edges, it can aggregate historical data and display them as graphs. It includes a number of scripts dedicated to collecting the most commonly monitored data such as processor load, network traffic, web page hits, and so on."
 msgstr ""
+"<command>mrtg</command> (contenido en el paquete homónimo) es una "
+"herramienta más antigua. A pesar de algunas asperezas, puede agregar datos "
+"históricos y mostrarlos como gráficos. Incluye algunos scripts para "
+"recolectar los datos monitorizados con más frecuencia, como la carga de "
+"procesador, el tráfico de red, el número de impresiones de una página web, "
+"etc..."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">mrtg-contrib</emphasis> and <emphasis role=\"pkg\">mrtgutils</emphasis> packages contain example scripts that can be used directly."
 msgstr ""
+"Los paquetes <emphasis role=\"pkg\">mrtg-contrib</emphasis> y <emphasis "
+"role=\"pkg\">mrtgutils</emphasis> contienen scripts de ejemplo que pueden ser "
+"utilizados directamente."
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Changes"
-msgstr ""
+msgstr "Detección de cambios"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the system is installed and configured, and barring security upgrades, there's usually no reason for most of the files and directories to evolve, data excepted. It is therefore interesting to make sure that files actually do not change: any unexpected change would therefore be worth investigating. This section presents a few tools able to monitor files and to warn the administrator when an unexpected change occurs (or simply to list such changes)."
 msgstr ""
+"Una vez que el sistema está instalado y configurad, y dejando al margen las "
+"actualizaciones de seguridad, normalmente no hay razón para que los archivos "
+"y directorios cambien, exceptuando los datos. Por lo tanto es interesante "
+"asegurarse de que efectivamente los ficheros no cambian: cualquier cambio "
+"inesperado debería ser investigado. Esta sección presenta algunas "
+"herramientas capaces de monitorizar archivos y de advertir al administrador "
+"en caso de que se produzca un cambio no esperado (o simplemente de listar "
+"estos cambios)."
 
 #. Tag: title
 #, no-c-format
 msgid "Auditing Packages: <command>debsums</command> and its Limits"
-msgstr ""
+msgstr "Auditoría de paquetes: <command>debsums</command> y sus límites"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debsums</command></primary>"
-msgstr ""
+msgstr "<primary><command>debsums</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Protecting against upstream changes"
 msgstr ""
+"<emphasis>PROFUNDIZANDO MÁS</emphasis> Protección contra los cambios de los "
+"desarrolladores originales (upstream)"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is useful in detecting changes to files coming from a Debian package, but it will be useless if the package itself is compromised, for instance if the Debian mirror is compromised. Protecting against this class of attacks involves using APT's digital signature verification system (see <xref linkend=\"sect.package-authentication\" />), and taking care to only install packages from a certified origin."
 msgstr ""
+"<command>debsums</command> es útil para detectar cambios en los archivos que "
+"provienen de un paquete de Debian, pero no sirve de nada si el propio "
+"paquete ha sido comprometido, por ejemplo si el \"mirror\" de Debian ha sido "
+"comprometido. Protegerse de este tipo de ataques implica la utilización del "
+"sistema de verificación de firma digital de APT (ver <xref linkend=\"sect"
+".package-authentication\" />) y tener cuidado de instalar paquetes "
+"exclusivamente con un orígen certificado."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is an interesting tool since it allows finding what installed files have been modified (potentially by an attacker), but this should be taken with a grain of salt. First, because not all Debian packages provide the fingerprints required by this program (they can be found in <filename>/var/lib/dpkg/info/<replaceable>package</replaceable>.md5sums</filename> when they exist). <indexterm><primary>fingerprint</primary></indexterm> <indexterm><primary>control sum</primary></indexterm> <indexterm><primary>MD5</primary></indexterm> <indexterm><primary>SHA1</primary></indexterm> As a reminder: a fingerprint is a value, often a number (even though in hexadecimal notation), that contains a kind of signature for the contents of a file. This signature is calculated with an algorithm (MD5 or SHA1 being well-known examples) that more or less guarantee that even the tiniest change in the file contents implies a change in the fingerprint; this is known as the “avalanche effect”. This allows a simple numerical fingerprint to serve as a litmus test to check whether the contents of a file have been altered. These algorithms are not reversible; in other words, for most of them, knowing a fingerprint doesn't allow finding the corresponding contents. Recent mathematical advances seem to weaken the absoluteness of these principles, but their use is not called into question so far, since creating different contents yielding the same fingerprint still seems to be quite a difficult task."
 msgstr ""
+"<command>debsums</command> es una herramienta interesante, puesto que "
+"permite buscar qué archivos instalados han sido modificados (potencialmente "
+"por un atacante), pero debe tratarse con prudencia. En primer lugar, porque "
+"no todos los paquetes de debian proporcionan las huellas digitales "
+"requeridas por este programa (en el caso de que existan se encuentran en <fi"
+"lename>/var/lib/dpkg/info/<replaceable>package</replaceable>.md5sums</filena"
+"me>). <indexterm><primary>fingerprint</primary></indexterm> "
+"<indexterm><primary>suma de control</primary></indexterm> "
+"<indexterm><primary>MD5</primary></indexterm> "
+"<indexterm><primary>SHA1</primary></indexterm> Como recordatorio: una huella "
+"digital es un valor, a menudo un número (aunque pueda estar en notación "
+"hexadecimal), que contiene un tipo de firma de los contenidos de un archivo. "
+"Esta firma se calcula mediante un algoritmo (MD5 o SHA1 son ejemplos muy "
+"conocidos) que más o menos garantizan que incluso el cambio más pequeño en "
+"el contenido de un archivo implica un cambio en su huella digital; esto es "
+"conocido como \"efecto avalancha\". Esto permite que una simple huella digital "
+"numérica sirva como patrón para comprobar si los contenidos de un archivo "
+"han sido alterados. Estos algoritmos no son reversibles; en otras palabra, "
+"para la mayoría de ellos, conocer la huella digital no permite averiguar los "
+"contenidos correspondientes. Los avances matemáticos recientes parece que "
+"debilitan la verdad absoluta de estos principios, pero por el momento su uso "
+"no se ha puesto en cuestón, puesto que crear distintos contenidos que "
+"produzcan la misma huella parece una tarea muy complicada. (N.T. para MD5 sí "
+"se han encontrado colisiones)."
 
 #. Tag: para
 #, no-c-format
 msgid "In addition, the <filename>md5sums</filename> files are stored on the hard disk; a thorough attacker will therefore update these files so they contain the new control sums for the subverted files."
 msgstr ""
+"Adicionalmente, los archivos <filename>md5sums</filename> se almacenan en el "
+"disco duro; por lo tanto un atacante meticuloso actualizará estos archivos "
+"para que contengan las nuevas sumas de control de los archivos sustituidos."
 
 #. Tag: para
 #, no-c-format
 msgid "The first drawback can be avoided by asking <command>debsums</command> to base its checks on a <filename>.deb</filename> package instead of relying on the <filename>md5sums</filename> file. But that requires downloading the matching <filename>.deb</filename> files first:"
 msgstr ""
+"El primer inconveniente se puede evitar haciendo que "
+"<command>debsums</command> base sus comprobaciones en paquete "
+"<filename>.deb</filename> en lugar de confiar en el archivo "
+"<filename>md5sums</filename>. Pero esto requiere descargar antes los "
+"archivos de los paquetes <filename>.deb</filename> correspondientes:"
 
 #. Tag: screen
 #, no-c-format
@@ -1308,16 +1430,34 @@ msgid ""
 "# </computeroutput><userinput>debsums -p /var/cache/apt/archives -g</userinput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get --reinstall -d install "
+"`debsums -l`</userinput>\n"
+"<computeroutput>[ ... ]\n"
+"# </computeroutput><userinput>debsums -p /var/cache/apt/archives "
+"-g</userinput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "It is also worth noting that, in its default configuration, <command>debsums</command> automatically generates the missing <filename>md5sums</filename> files whenever a package is installed using APT."
 msgstr ""
+"También conviene hacer notar que en su configuración predeterminada "
+"<command>debsums</command> genera automáticamente los archivos "
+"<filename>md5sums</filename> que faltan cada vez que se instala un paquete "
+"utilizando APT."
 
 #. Tag: para
 #, no-c-format
 msgid "The other problem can be avoided in a similar fashion: the check must simply be based on a pristine <filename>.deb</filename> file. Since this implies having all the <filename>.deb</filename> files for all the installed packages, and being sure of their integrity, the simplest way is to grab them from a Debian mirror. This operation can be slow and tedious, and should therefore not be considered a proactive technique to be used on a regular basis."
 msgstr ""
+"El otro problema puede ser evitado de forma similar: la comprobación debe "
+"basarse en un archivo <filename>.deb</filename> impoluto. Puesto que esto "
+"implica disponer de los archivos <filename>.deb</filename> de todos los "
+"paquetes instalados, y además estar seguros de su integridad, la forma más "
+"sencilla es obtenerlos de un espejo de Debian. Esta operación puede ser "
+"lenta y tediosa, y por lo tanto no debe considerarse como una técnica "
+"proactiva a utilizar de forma regular."
 
 #. Tag: screen
 #, no-c-format
@@ -1328,281 +1468,475 @@ msgid ""
 "# </computeroutput><userinput>debsums -p /var/cache/apt/archives --generate=all</userinput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get --reinstall -d install "
+"`grep-status -e 'Status: install ok installed' -n -s Package`</userinput>\n"
+"<computeroutput>[ ... ]\n"
+"# </computeroutput><userinput>debsums -p /var/cache/apt/archives "
+"--generate=all</userinput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "Note that this example uses the <command>grep-status</command> command from the <emphasis role=\"pkg\">dctrl-tools</emphasis> package, which is not installed by default."
 msgstr ""
+"Advierta que este ejemplo utiliza la orden <command>grep-status</command> "
+"del paquete <emphasis role=\"pkg\">dctrl-tools</emphasis>, que no se instala "
+"de forma predeterminada."
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Files: AIDE"
-msgstr ""
+msgstr "Monitorizar archivos: AIDE"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">aide</emphasis> (Debian package)</primary>"
 msgstr ""
+"<primary><emphasis role=\"pkg\">aide</emphasis> (paquete Debian)</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The AIDE tool (<emphasis>Advanced Intrusion Detection Environment</emphasis>) allows checking file integrity, and detecting any change against a previously recorded image of the valid system. This image is stored as a database (<filename>/var/lib/aide/aide.db</filename>) containing the relevant information on all files of the system (fingerprints, permissions, timestamps and so on). This database is first initialized with <command>aideinit</command>; it is then used daily (by the <filename>/etc/cron.daily/aide</filename> script) to check that nothing relevant changed. When changes are detected, AIDE records them in log files (<filename>/var/log/aide/*.log</filename>) and sends its findings to the administrator by email."
 msgstr ""
+"La herramienta AIDE (<emphasis>Advanced Intrusion Detection "
+"Environment</emphasis>) permite comprobar la integridad de los archivos y "
+"detectar cualquier cambio frente a una imagen guardad previamente de un "
+"sistema válido. Esta imagen se almacena como una base de datos "
+"(<filename>/var/lib/aide/aide.db</filename>) que contiene la información "
+"relevante de todos los archivos del sistema (huella digital, permisos, "
+"marcas de tiempo, etc). Esta base de datos se inicializa con la orden "
+"<command>aideinit</command>; después se utiliza diariamente (por el script "
+"<filename>/etc/cron.daily/aide</filename>) para comprobar que nada "
+"importante haya cambiado. Si se detecta alguna alteración, AIDE la guarda en "
+"ficheros de log (<filename>/var/log/aide/*.log</filename>) y envía sus "
+"averiguaciones por email al administrador."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Protecting the database"
-msgstr ""
+msgstr "<emphasis>EN LA PRÁCTICA</emphasis> Proteger la base de datos"
 
 #. Tag: para
 #, no-c-format
 msgid "Since AIDE uses a local database to compare the states of the files, the validity of its results is directly linked to the validity of the database. If an attacker gets root permissions on a compromised system, they will be able to replace the database and cover their tracks. A possible workaround would be to store the reference data on read-only storage media."
 msgstr ""
+"Puesto que AIDE utiliza una base de datos local para comparar el estado de "
+"los archivos, la validez de sus resultados está unida directamente a la "
+"validez de la base de datos. Si un atacante consigue obtener permisos de "
+"administrador en un sistema comprometido, podrán reemplazar la base de datos "
+"y cubrir sus huellas. Una posible solución podría ser almacenar la base de "
+"datos de referencia en un medio de almacenamiento de sólo lectura."
 
 #. Tag: para
 #, no-c-format
 msgid "Many options in <filename>/etc/default/aide</filename> can be used to tweak the behavior of the <emphasis role=\"pkg\">aide</emphasis> package. The AIDE configuration proper is stored in <filename>/etc/aide/aide.conf</filename> and <filename>/etc/aide/aide.conf.d/</filename> (actually, these files are only used by <command>update-aide.conf</command> to generate <filename>/var/lib/aide/aide.conf.autogenerated</filename>). Configuration indicates which properties of which files need to be checked. For instance, the contents of log files changes routinely, and such changes can be ignored as long as the permissions of these files stay the same, but both contents and permissions of executable programs must be constant. Although not very complex, the configuration syntax is not fully intuitive, and reading the <citerefentry><refentrytitle>aide.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page is therefore recommended."
 msgstr ""
+"Se pueden utilizar numerosas opciones en el archivo "
+"<filename>/etc/default/aide</filename> para configurar el comportamiento del "
+"paquete <emphasis role=\"pkg\">aide</emphasis>. La configuración propiamente "
+"dicha de AIDE se almacena en <filename>/etc/aide/aide.conf</filename> y "
+"<filename>/etc/aide/aide.conf.d/</filename> (de hecho estos archivos se "
+"utilizan únicmaente por <command>update-aide.conf</command> para generar "
+"<filename>/var/lib/aide/aide.conf.autogenerated</filename>). La "
+"configuración indica qué propiedades han de ser comprobadas. Por ejemplo los "
+"contenidos de los archivos de log cambia rutinariamente, y estos cambios "
+"pueden ser ignorados mientras que los permisos de los archivos permanezcan "
+"inalterados, pero sin embargo para los archivos ejecutables tanto el "
+"contenido como los permisos debe permanecer constante. Aunque no es "
+"excesivamente compleja, la sintaxis de la configuración no es del todo "
+"intuitiva y por lo tanto se recomienda leer la página de manual "
+"<citerefentry><refentrytitle>aide.conf</refentrytitle> "
+"<manvolnum>5</manvolnum></citerefentry>."
 
 #. Tag: para
 #, no-c-format
 msgid "A new version of the database is generated daily in <filename>/var/lib/aide/aide.db.new</filename>; if all recorded changes were legitimate, it can be used to replace the reference database."
 msgstr ""
+"Cada día se genera unan ueva versión de la base de datos en "
+"<filename>/var/lib/aide/aide.db.new</filename>; si todos los cambios fueran "
+"legítimos, puede ser utilizada para reemplazar a la base de datos de "
+"referencia."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Tripwire and Samhain"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVAS</emphasis> Tripwire y Samhain"
 
 #. Tag: para
 #, no-c-format
 msgid "Tripwire is very similar to AIDE; even the configuration file syntax is almost the same. The main addition provided by <emphasis role=\"pkg\">tripwire</emphasis> is a mechanism to sign the configuration file, so that an attacker cannot make it point at a different version of the reference database."
 msgstr ""
+"Tripwire es muy similar a AIDE; incluso la sintáxis del archivo de "
+"configuración es prácticamente la misma. La principal aportación de "
+"<emphasis role=\"pkg\">tripwire</emphasis> es un mecanismo para firmar el "
+"archivo de configuración, de forma que un atacante no pueda hacer que apunte "
+"a una versión diferente de la base de datos de referencia."
 
 #. Tag: para
 #, no-c-format
 msgid "Samhain also offers similar features, as well as some functions to help detecting rootkits (see the QUICK LOOK sidebar). It can also be deployed globally on a network, and record its traces on a central server (with a signature)."
 msgstr ""
+"Samhain también ofrece características similares, así como algunas funciones "
+"para ayudar a detectar rootkits (vea el recuadro VISTAZO RÁPIDO). También "
+"puede ser desplegado de forma global en una red y guardar las trazas en un "
+"servidor central (con su correspondiente firma)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> The <emphasis role=\"pkg\">checksecurity</emphasis> and <emphasis role=\"pkg\">chkrootkit</emphasis>/<emphasis role=\"pkg\">rkhunter</emphasis> packages"
 msgstr ""
+"<emphasis>VISTAZO RÁPIDO</emphasis> Los paquetes <emphasis "
+"role=\"pkg\">checksecurity</emphasis> y <emphasis "
+"role=\"pkg\">chkrootkit</emphasis>/<emphasis role=\"pkg\">rkhunter</emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">checksecurity</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">checksecurity</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The first of these packages contains several small scripts performing basic checks on the system (empty passwords, new setuid files, and so on) and warning the administrator if required. Despite its explicit name, an administrator should not rely solely on it to make sure a Linux system is secure."
 msgstr ""
+"El primero de estos paquetes contiene varios pequeños scripts que realizan "
+"comprobaciones básicas en el sistema (contraseñas vacías, nuevos archivos "
+"setuid, etc) y advierten al administrador si fuera preciso. A pesar de su "
+"nombre, un administrador no debería confiar exclusivamente en él para "
+"cerciorarse de que un sistema Linux sea seguro."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis role=\"pkg\">rkhunter</emphasis> packages allow looking for <emphasis>rootkits</emphasis> potentially installed on the system. As a reminder, these are pieces of software designed to hide the compromise of a system while discreetly keeping control of the machine. The tests are not 100% reliable, but they can usually draw the administrator's attention to potential problems."
 msgstr ""
+"Los paquetes <emphasis role=\"pkg\">chkrootkit</emphasis> y <emphasis "
+"role=\"pkg\">rkhunter</emphasis> permiten buscar posibles "
+"<emphasis>rootkits</emphasis> instalados en el sistema. Como recordatorio, "
+"estos son programas designados para ocultar que se ha comprometido el "
+"ordenador a la vez que se mantiene el control de la máquina. Las "
+"comprobaciones no son fiables al 100%, pero a menudo hacen centrar la "
+"atención del administrado sobre potenciales problemas."
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Intrusion (IDS/NIDS)"
-msgstr ""
+msgstr "Detección de Intrusiones (IDS/NIDS)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>detection, intrusion</primary>"
-msgstr ""
+msgstr "<primary>detección, intrusión</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>intrusion detection</primary>"
-msgstr ""
+msgstr "<primary>detección de intrusiones</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IDS</primary>"
-msgstr ""
+msgstr "<primary>IDS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>intrusion detection system</primary>"
-msgstr ""
+msgstr "<primary>sistema de detección de intrusiones</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NIDS</primary>"
-msgstr ""
+msgstr "<primary>NIDS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Network</primary><secondary>IDS</secondary>"
-msgstr ""
+msgstr "<primary>Red</primary><secondary>IDS</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Denial of service"
-msgstr ""
+msgstr "<emphasis>VUELTA A LOS ORÍGENES</emphasis> Denegación de servicio"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>denial of service</primary>"
-msgstr ""
+msgstr "<primary>denigación de servicio</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A “denial of service” attack has only one goal: to make a service unavailable. Whether such an attack involves overloading the server with queries or exploiting a bug, the end result is the same: the service is no longer operational. Regular users are unhappy, and the entity hosting the targeted network service suffers a loss in reputation (and possibly in revenue, for instance if the service was an e-commerce site)."
 msgstr ""
+"Un ataque de \"denegación de servicio\" tiene una única finalidad: hacer que "
+"un servicio no esté disponible. El resultado es el mismo independientemente "
+"de si un ataque de este tipo implica sobrecargar al servidor mediante "
+"consultas o si se explota algún fallo: el servicio deja de estar operativo. "
+"Los usuarios habituales se vuelven discontentos y la entidad que alberga la "
+"red a la que se dirige el ataque sufre una pérdida de reputación (y "
+"posiblemente también de ingresos, por ejemplo si el servicio es un sitio de "
+"comercio electrónico)."
 
 #. Tag: para
 #, no-c-format
 msgid "Such an attack is sometimes “distributed”; this usually involves overloading the server with large numbers of queries coming from many different sources so that the server becomes unable to answer the legitimate queries. These types of attacks have gained well-known acronyms: <acronym>DoS</acronym> and <acronym>DDoS</acronym> (depending on whether the denial of service attack is distributed or not)."
 msgstr ""
+"Algunas veces estos ataques son \"distribuidos\"; esto implica habitualmente "
+"sobrecargar al servidor mediante un gran número de consultas provinientes de "
+"diferentes fuentes para que el servidor no sea capaz de atender a las "
+"consultas legítimas. Este tipo de ataques se han hecho merecedores de dos "
+"acrónimos muy conocidos:  <acronym>DoS</acronym> (del inglés Denial of "
+"Service, Denegación de Servicio) y <acronym>DDoS</acronym> (del inglés "
+"Distributed Denial of Service, Denegación de Servicio Distribuída)."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>snort</command> (in the Debian package of the same name) is a NIDS — a <emphasis>Network Intrusion Detection System</emphasis>. Its function is to listen to the network and try to detect infiltration attempts and/or hostile acts (including denial of service attacks). All these events are logged, and a daily email is sent to the administrator with a summary of the past 24 hours."
 msgstr ""
+"<command>snort</command> (del paquete Debian con el mismo nombre) es un NIDS "
+"- un <emphasis>Network Intrusion Detection System( o Sistema de Detección "
+"de Intrusiones de Red)</emphasis>. Su función es escuchar la red y tratar de "
+"detectar intentos de infiltración y/o de actos hostiles (incluídos ataques "
+"de denegación de servicio). Todos estos eventos son registrados y "
+"diariamente se envía un mail al administrador con un resumen de las últimas "
+"24 horas."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>snort</command></primary>"
-msgstr ""
+msgstr "<primary><command>snort</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Its configuration requires describing the range of addresses that the local network covers. In practice, this means the set of all potential attack targets. Other important parameters can be configured with <command>dpkg-reconfigure snort</command>, including the network interface to monitor. This will often be <literal>eth0</literal> for an Ethernet connection, but other possibilities exist such as <literal>ppp0</literal> for an ADSL or PSTN (<emphasis>Public Switched Telephone Network</emphasis>, or good old dialup modem), or even <literal>wlan0</literal> for some wireless network cards."
 msgstr ""
+"Su configuración requiere describir el rango de direcciones que cubre la red "
+"local. En la práctica, esto supone el conjunto de objetivos potenciales de "
+"los ataques. Se pueden configurar otros parámentros importantes mediante "
+"<command>dpkg-reconfigure snort</command>, incluyendo la interfaz de red a "
+"monitorizar. A menudo será <literal>eth0</literal> para una conexión "
+"Ethernet, pero existen otras posibilidades como <literal>ppp0</literal> para "
+"una línea ADSL o telefónica con un modem, o incluso "
+"<literal>wlan0</literal> para algunas tarjetas de red inalámbricas."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Integration with <command>prelude</command>"
 msgstr ""
+"<emphasis>PROFUNDIZANDO MÁS</emphasis> Integración con "
+"<command>prelude</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "Prelude brings centralized monitoring of security information. Its modular architecture includes a server (the <emphasis>manager</emphasis> in <emphasis role=\"pkg\">prelude-manager</emphasis>) which gathers alerts generated by <emphasis>sensors</emphasis> of various types."
 msgstr ""
+"Prelude permite la monitorización centralizada de la información de "
+"seguridad. Su arquitectura modular incluye un servidor (el "
+"<emphasis>gestor</emphasis>, en el paquete <emphasis role=\"pkg\">prelude-"
+"manager</emphasis>), que recoge las alertas generadas por los "
+"<emphasis>sensores</emphasis> de diferentes tipos."
 
 #. Tag: para
 #, no-c-format
 msgid "Snort can be configured as such a sensor. Other possibilities include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) which monitors log files (in a manner similar to <command>logcheck</command>, described in <xref linkend=\"section.logcheck\" />)."
 msgstr ""
+"Snort puede ser configurado como uno de estos sensores. Otra posibilidad es "
+"<emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>), "
+"que monitoriza los ficheros de log (de forma similar a como lo hace "
+"<command>logcheck</command>, descrito en <xref linkend=\"section.logcheck\" "
+"/>)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>prelude</command></primary>"
-msgstr ""
+msgstr "<primary><command>prelude</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>snort</command> configuration file (<filename>/etc/snort/snort.conf</filename>) is very long, and the abundant comments describe each directive with much detail. Getting the most out of it requires reading it in full and adapting it to the local situation. For instance, indicating which machine hosts which service can limit the number of incidents <command>snort</command> will report, since a denial of service attack on a desktop machine is far from being as critical as one on a DNS server. Another interesting directive allows storing the mappings between IP addresses and MAC addresses (these uniquely identify a network card), so as to allow detecting <emphasis>ARP spoofing</emphasis> attacks by which a compromised machine attempts to masquerade as another such as a sensitive server."
 msgstr ""
+"El archivo de configuración (<filename>/etc/snort/snort.conf</filename>) de "
+"<command>snort</command> es muy largo, y los abundantes comentarios "
+"describen cada directiva de forma detallada. Para exprimirlo al máximo, hay "
+"que leerlo completamente y adaptarlo a la situación local. Por ejemplo, al "
+"indicar qué máquina alberga qué servicio, se puede limitar el número de "
+"incidentes que <command>snort</command> reporta, puesto que un ataque de "
+"denegación de servicio a un equipo de escritorio es mucho menos crítico que "
+"uno dirigido a un servidor DNS. Otra directiva interesante, permite "
+"almacenar las asociaciones entre direcciones IP y direcciones MAC (estas "
+"identifican de forma unívoca a una tarjeta de red), de forma que se permita "
+"detectar ataques de tipo <emphasis>ARP spoofing</emphasis> en los que una "
+"máquina comprometida se intente enmascarar como otra, por ejemplo como un "
+"servidor sensible."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Range of action"
-msgstr ""
+msgstr "<emphasis>PRECAUCIÓN</emphasis> Rango de acción"
 
 #. Tag: para
 #, no-c-format
 msgid "The effectiveness of <command>snort</command> is limited by the traffic seen on the monitored network interface. It will obviously not be able to detect anything if it cannot observe the real traffic. When plugged into a network switch, it will therefore only monitor attacks targeting the machine it runs on, which is probably not the intention. The machine hosting <command>snort</command> should therefore be plugged into the “mirror” port of the switch, which is usually dedicated to chaining switches and therefore gets all the traffic."
 msgstr ""
+"La efectividad de <command>snort</command> está limitada por el tráfico que "
+"se ve en la interfaz de red monitorizada. Obviamente no puede detectar nada "
+"si no puede observar el tráfico real. Cuando se conecta a aun switch de red, "
+"sólo monitorizará los ataques que tengan como objetivo a la máquina en la "
+"que está ejecutándose, y posiblemente no sea esa la intención. Por lo tanto, "
+"la máquina que ejecute <command>snort</command> debería conectarse a un "
+"puerto \"mirror\" de un switch, que habitualmente se utiliza para encadenar "
+"switches y por lo tanto obtiene todo el tráfico."
 
 #. Tag: para
 #, no-c-format
 msgid "On a small network based around a network hub, there is no such problem, since all machines get all the traffic."
 msgstr ""
+"En una pequeña red basada en un hub, no existe el problema, puesto que todas "
+"las máquinas reciben todo el tráfico."
 
 #. Tag: title
 #, no-c-format
 msgid "Introduction to SELinux"
-msgstr ""
+msgstr "Introducción a SELinux"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SELinux</primary>"
-msgstr ""
+msgstr "<primary>SELinux</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Principles"
-msgstr ""
+msgstr "Principios"
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux (<emphasis>Security Enhanced Linux</emphasis>) is a <emphasis>Mandatory Access Control</emphasis> system built on Linux's LSM (<emphasis>Linux Security Modules</emphasis>) interface. In practice, the kernel queries SELinux before each system call to know whether the process is authorized to do the given operation."
 msgstr ""
+"SELinux (<emphasis>Security Enhanced Linux</emphasis> o Linux con Seguridad "
+"Mejorada) es un sistema de <emphasis>Control de Acceso "
+"Obligatorio</emphasis> basado en la interfaz LSM (<emphasis>Linux Security "
+"Modules</emphasis> o Módulos de Seguridad de Linux). En la práctica, el "
+"núcleo pregunta a SELinux antes de cada llamada al sistema para saber si un "
+"proceso está autorizado a realizar esa operación."
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux uses a set of rules — collectively known as a <emphasis>policy</emphasis> — to authorize or forbid operations. Those rules are difficult to create. Fortunately, two standard policies (<emphasis>targeted</emphasis> and <emphasis>strict</emphasis>) are provided to avoid the bulk of the configuration work."
 msgstr ""
+"SELinux utiliza una serie de reglas - conocidas en conjunto como una "
+"<emphasis>policy</emphasis> o normativa - para autorizar o denegar "
+"operaciones. Estas reglas son difíciles de crear. Afortunadamente se "
+"proporcionan dos normativas estándar para evitar el gruso del trabajo de "
+"configuración (<emphasis>targeted</emphasis> o dirigida y "
+"<emphasis>strict</emphasis> o estricta)."
 
 #. Tag: para
 #, no-c-format
 msgid "With SELinux, the management of rights is completely different from traditional Unix systems. The rights of a process depend on its <emphasis>security context</emphasis>. The context is defined by the <emphasis>identity</emphasis> of the user who started the process, the <emphasis>role</emphasis> and the <emphasis>domain</emphasis> that the user carried at that time. The rights really depend on the domain, but the transitions between domains are controlled by the roles. Finally, the possible transitions between roles depend on the identity."
 msgstr ""
+"Con SELinux, la gestión de permisos es completamente distinta de la de los "
+"sistemas Unix tradicionales. Los permisos de un proceso dependen de su "
+"<emphasis>contexto de seguridad</emphasis>. El contexto está definido por la "
+"<emphasis>identidad</emphasis> del usuario que lanza el proceso y el "
+"<emphasis>rol</emphasis> y el <emphasis>dominio</emphasis> que el usuario "
+"tenía en ese momento. Los permisos realmente dependen del dominio, pero la "
+"transición entre dominios se controla por los roles. Por último, las "
+"posibles transiciones entre roles dependen de la identidad."
 
 #. Tag: title
 #, no-c-format
 msgid "Security contexts and Unix users"
-msgstr ""
+msgstr "Contextos de seguridad y usuarios de Unix"
 
 #. Tag: para
 #, no-c-format
 msgid "In practice, during login, the user gets assigned a default security context (depending on the roles that they should be able to endorse). This defines the current domain, and thus the domain that all new child processes will carry. If you want to change the current role and its associated domain, you must call <command>newrole -r <replaceable>role_r</replaceable> -t <replaceable>domain_t</replaceable></command> (there's usually only a single domain allowed for a given role, the <literal>-t</literal> parameter can thus often be left out). This command authenticates you by asking you to type your password. This feature forbids programs to automatically switch roles. Such changes can only happen if they are explicitly allowed in the SELinux policy."
 msgstr ""
+"En la práctica a un usuario se le asigna un contexto de seguridad al iniciar "
+"sesión (dependiendo de los roles que pueda adoptar). Este define el dominio "
+"actual y a su vez el dominio de todos los procesos hijos que se lancen. Si "
+"se quier cambiar el rol actual y su dominio asociado, hay que llamar a la "
+"orden <command>newrole -r <replaceable>rol_r</replaceable> -t "
+"<replaceable>dominio_t</replaceable></command> (habitualmente se permite un "
+"único dominio para un rol determinado, y por lo tanto el parámetro "
+"<literal>-t</literal> puede ser omitido). Este comando autentica al usuario "
+"pidiendo que escriba una contraseña. Esta característica impide que los "
+"programas cambien de rol de forma automática. Estos cambios sólo pueden "
+"ocurrir si se permiten explícitamente en la normativa de seguridad de "
+"SELinux."
 
 #. Tag: para
 #, no-c-format
 msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labeling). Domain's rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labeled with the given type)."
 msgstr ""
+"Obviamente los permisos no se aplican a todos los "
+"<emphasis>objetos</emphasis> (archivos, directorios, zócalos, dispositivos, "
+"etc.). Pueden variar de objeto a objeto. Para conseguir esto, cada objeto "
+"está asociado a un <emphasis>tipo</emphasis> (esta operación se conoce como "
+"etiquetado). De esta forma los permisos de los dominios se expresan como "
+"conjuntos de operaciones permitidas o denegadas sobre estos tipos (e "
+"indirectamente sobre todos los objetos que estan etiquetados con el tipo "
+"dado)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Domains and types are equivalent"
-msgstr ""
+msgstr "<emphasis>EXTRA</emphasis> Los dominios y los tipos son equivalentes"
 
 #. Tag: para
 #, no-c-format
 msgid "Internally, a domain is just a type, but a type that only applies to processes. That's why domains are suffixed with <literal>_t</literal> just like object's types."
 msgstr ""
+"Internamente un dominio es simplemente un tipo, pero un tipo que sólo se "
+"aplica a procesos. Es por esto por lo que los dominios tiene el sufijo "
+"<literal>_t</literal> igual que los tipos de objeto."
 
 #. Tag: para
 #, no-c-format
 msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
 msgstr ""
+"Los programas heredan de forma predeterminada el dominio del usuario que los "
+"ejecuta, pero sin embargo las normativas estándar de SELinux esperan que "
+"muchos programas importantes se ejecuten en dominios dedicados. Para "
+"conseguir esto, esos ejecutables se etiquetan con un tipo dedicado (por "
+"ejemplo <command>ssh</command> se etiqueta con "
+"<literal>ssh_exec_t</literal>, y cuando el programa arranca, automáticamente "
+"se cambia al dominio <literal>ssh_t</literal>). Este mecanismo de "
+"transición de dominios permite otorgar exclusivamente los permisos que "
+"requiere cada programa. Es un principio fundamental de SELinux."
 
 #. Tag: title
 #, no-c-format
 msgid "Automatic transitions between domains"
-msgstr ""
+msgstr "Transiciones automáticas entre dominios"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Finding the security context"
-msgstr ""
+msgstr "<emphasis>EN LA PRÁCTICA</emphasis> Averiguar el contexto de seguridad"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>security context</primary>"
-msgstr ""
+msgstr "<primary>contexto de seguridad</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>context, security context</primary>"
-msgstr ""
+msgstr "<primary>contexto, contexto de seguridad</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MCS (<emphasis>Multi-Category Security</emphasis>)</primary>"
 msgstr ""
+"<primary>MCS (<emphasis>Multi-Category Security</emphasis> Seguridad Multi-"
+"Categoría)</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To find the security context of a given process, you should use the <literal>Z</literal> option of <command>ps</command>."
 msgstr ""
+"Para averiguar el contexto de seguridad de un proceso dado se debe utilizar "
+"la opción <literal>Z</literal> de <command>ps</command>."
 
 #. Tag: screen
 #, no-c-format
@@ -1610,16 +1944,28 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>ps axZ | grep vstfpd</userinput>\n"
 "<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ps axZ | grep "
+"vstfpd</userinput>\n"
+"<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 "
+"/usr/sbin/vsftpd</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The first field contains the identity, the role, the domain and the MCS level, separated by colons. The MCS level (<emphasis>Multi-Category Security</emphasis>) is a parameter that intervenes in the setup of a confidentiality protection policy, which regulates the access to files based on their sensitivity. This feature will not be explained in this book."
 msgstr ""
+"El primer campo contiene la identidad, el rol, el dominio y el nivel MCS, "
+"separados por dos puntos. El nivel MCS (<emphasis>Multi-Category "
+"Security</emphasis>, Seguridad Multi-Categoría) es un parámetro que "
+"interviene en el establecimiento de una normativa de protección de la "
+"privacidad, que regula el acceso a archivos basándose en su sensibilidad. "
+"Esta característica no se va a explicar en este libro."
 
 #. Tag: para
 #, no-c-format
 msgid "To find the current security context in a shell, you should call <command>id -Z</command>."
 msgstr ""
+"Para averiguar el contexto de seguridad de una consola se puede ejecutar "
+"<command>id -Z</command>."
 
 #. Tag: screen
 #, no-c-format
@@ -1627,11 +1973,16 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
 "<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
+"<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</compu"
+"teroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, to find the type assigned to a file, you can use <command>ls -Z</command>."
 msgstr ""
+"Por último, para averiguar el tipo asignado a un archivo se puede utilizar "
+"<command>ls -Z</command>."
 
 #. Tag: screen
 #, no-c-format
@@ -1640,101 +1991,182 @@ msgid ""
 "<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
 "     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ls -Z test "
+"/usr/bin/ssh</userinput>\n"
+"<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
+"     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that the identity and role assigned to a file bear no special importance (they are never used), but for the sake of uniformity, all objects get assigned a complete security context."
 msgstr ""
+"Conviene hacer notar que la identidad y rol asignados a un archivo no tienen "
+"importancia alguna (no se utilizan nunca), pero para mantener la "
+"uniformidad se asigna un contexto de seguridad completo a todos los objetos."
 
 #. Tag: title
 #, no-c-format
 msgid "Setting Up SELinux"
-msgstr ""
+msgstr "Configuración de SELinux"
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux support is built into the standard kernels provided by Debian. The core Unix tools support SELinux without any modifications. It is thus relatively easy to enable SELinux."
 msgstr ""
+"La compatibilidad con SELinux está incluida en todos los núcleos estándar "
+"proporcionados por Debian. Todas las herramientas básicas de Unix admiten "
+"SELinux sin ninguna modificación. Por lo tanto es relativamente sencillo "
+"habilitar SELinux."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>aptitude install selinux-basics selinux-policy-default</command> command will automatically install the packages required to configure an SELinux system."
 msgstr ""
+"La orden <command>aptitude install selinux-basics selinux-policy-"
+"default</command> instala automáticamente todos los paquetes necesarios para "
+"configurar un sistema con SELinux."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">selinux-policy-default</emphasis> package contains a set of standard rules. By default, this policy only restricts access for a few broadly exposed services. The user sessions are not restricted and it is thus unlikely that SELinux would block legitimate user operations. However, this does enhance the security of system services running on the machine. To setup a policy equivalent to the old “strict” rules, you just have to disable the <literal>unconfined</literal> module (modules management is detailed further in this section)."
 msgstr ""
+"El paquete <emphasis role=\"pkg\">selinux-policy-default</emphasis> contiene "
+"un conjunto de reglas estándar. Esta normativa solo restringe de manera "
+"predeterminada el acceso a algunos servicios expuestos ampliamente. Las "
+"sesiones de usuario no están restringidas y por lo tanto es improbable que "
+"SELinux bloquee ninguna operación legítima de un usuario. Aún así, mejora la "
+"seguridad de los servicios del sistema que se estén ejecutando en la "
+"máquina. Para establecer una normativa equivalente a las reglas \"estrictas\" "
+"antiguas, hay que deshabilitar el módulo <literal>unconfined</literal> (no "
+"confinado). La gestión de módulos se detalla más adelante en esta sección."
 
 #. Tag: para
 #, no-c-format
 msgid "Once the policy has been installed, you should label all the available files (which means assigning them a type). This operation must be manually started with <command>fixfiles relabel</command>."
 msgstr ""
+"Después de instalar una normativa, hay que etiquetar todos los archivos "
+"disponibles (lo que quiere decir asignarles un tipo). Eta operación se tiene "
+"que ejecutar manualmente mediante la orden <command>fixfiles "
+"relabel</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux system is now ready. To enable it, you should add the <literal>selinux=1</literal> parameter to the Linux kernel. The <literal>audit=1</literal> parameter enables SELinux logging which records all the denied operations. Finally, the <literal>enforcing=1</literal> parameter brings the rules into application: without it SELinux works in its default <emphasis>permissive</emphasis> mode where denied actions are logged but still executed. You should thus modify the GRUB bootloader configuration file to append the desired parameters. One easy way to do this is to modify the <literal>GRUB_CMDLINE_LINUX</literal> variable in <filename>/etc/default/grub</filename> and to run <command>update-grub</command>. SELinux will be active after a reboot."
 msgstr ""
+"El sistema SELinux ya está listo. Para habilitarlo es preciso añadir el "
+"parámetro <literal>selinux=1</literal> al núcleo de Linux. El parámetro "
+"<literal>audit=1</literal> habilita el log de SELinux, registrando todas las "
+"operaciones denegadas. Por último el parámetro "
+"<literal>enforcing=1</literal> hace que se apliquen las reglas: sin él, "
+"SELinux trabaja en el modo predeterminado <emphasis>permissive</emphasis> "
+"(permisivo), en el cual las acciones denegadas sólo son registradas pero "
+"siguen ejecutándose. Por lo tanto es preciso modificar el archivo de "
+"configuración del gestor de arranque GRUB para añadir los parámetros que se "
+"deseen. Una forma sencilla de hacerlo es modificar la variable "
+"<literal>GRUB_CMDLINE_LINUX</literal> del archivo "
+"<filename>/etc/default/grub</filename> y ejecutar <command>update-"
+"grub</command>. SELinux estará activo al reiniciar."
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that the <command>selinux-activate</command> script automates those operations and forces a labeling on next boot (which avoids new non-labeled files created while SELinux was not yet active and while the labeling was going on)."
 msgstr ""
+"Conviene hacer notar que el script <command>selinux-activate</command> "
+"automatiza todas estas operaciones y fuerza el etiquetado de archivos en el "
+"siguiente reinicio (lo que evita que se creen nuevos archivos sin etiquetar "
+"mientras SELinux aún no esta activo y mientras tenía lugar el etiquetado)."
 
 #. Tag: title
 #, no-c-format
 msgid "Managing an SELinux System"
-msgstr ""
+msgstr "Gestión de un Sistema SELinux"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>semodule</command></primary>"
-msgstr ""
+msgstr "<primary><command>semodule</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>semanage</command></primary>"
-msgstr ""
+msgstr "<primary><command>semanage</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux policy is a modular set of rules, and its installation detects and enables automatically all the relevant modules based on the already installed services. The system is thus immediately operational. However, when a service is installed after the SELinux policy, you must be able to manually enable the corresponding module. That is the purpose of the <command>semodule</command> command. Furthermore, you must be able to define the roles that each user can endorse, and this can be done with the <command>semanage</command> command."
 msgstr ""
+"La normativa SELinux consiste en un conjunto de reglas modular. Su "
+"instalación detecta y habilita automáticamente todos los módulos necesarios "
+"en función de los servicios que se encuentren instalados. El sistema por lo "
+"tanto se encuentra operativo de forma inmediata. Sin embargo, cuando se "
+"instala un servicio después de haber instalado la normativa SELinux, es "
+"necesario habilitar manualmente el módulo correspondiente. La orden "
+"<command>semodule</command> se utiliza para este propósito. Además es "
+"necesario poder definir los roles que cada usuario puede adoptar, y esto se "
+"realiza con la orden <command>semanage</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Those two commands can thus be used to modify the current SELinux configuration, which is stored in <filename>/etc/selinux/default/</filename>. Unlike other configuration files that you can find in <filename>/etc/</filename>, all those files must not be changed by hand. You should use the programs designed for this purpose."
 msgstr ""
+"Estos dos comandos se utilizan para modificar la configuración actual de "
+"SELinux, que se guarda en <filename>/etc/selinux/default/</filename>. Al "
+"contrario que otros archivos de configuración que se pueden encontrar en "
+"<filename>/etc/</filename>, estos archivos no deben ser manipulados "
+"manualmente. Deben utilizarse los programas diseñados para este propósito."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> More documentation"
-msgstr ""
+msgstr "<emphasis>YENDO MÁS ALLÁ</emphasis> Más documentación"
 
 #. Tag: para
 #, no-c-format
 msgid "Since the NSA doesn't provide any official documentation, the community set up a wiki to compensate. It brings together a lot of information, but you must be aware that most SELinux contributors are Fedora users (where SELinux is enabled by default). The documentation thus tends to deal specifically with that distribution. <ulink type=\"block\" url=\"http://www.selinuxproject.org\" />"
 msgstr ""
+"Puesto que la NSA no proporciona documentación oficial (N.T. La NSA es una "
+"agencia estadounidense de seguridad que fué la que desarrolló SELinux en "
+"principio), la comunidad ha creado un wiki para compensarlo. Dispone de "
+"mucha información, pero hay que tener en cuenta que la mayoría de los que "
+"contribuyen a SELinux son usuarios de Fedora (en la que SELinux está "
+"habilitado de forma predeterminada). Por este motivo la documentación suele "
+"estar adaptada a esa distribución específica. <ulink type=\"block\" "
+"url=\"http://www.selinuxproject.org\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "You should also have a look at the dedicated Debian wiki page as well as Russel Coker's blog, who is one of the most active Debian developers working on SELinux support. <ulink type=\"block\" url=\"http://wiki.debian.org/SELinux\" /> <ulink type=\"block\" url=\"http://etbe.coker.com.au/tag/selinux/\" />"
 msgstr ""
+"Debería prestarse atención también a la página del wiki de Debian dedicada a "
+"este tema, así como al blog de Russel Coker, que es uno de los "
+"desarrolladores Debian más activos que trabaja en SELinux. <ulink "
+"type=\"block\" url=\"http://wiki.debian.org/SELinux\" /> <ulink type=\"block\" "
+"url=\"http://etbe.coker.com.au/tag/selinux/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing SELinux Modules"
-msgstr ""
+msgstr "Gestión de Módulos SELinux"
 
 #. Tag: para
 #, no-c-format
 msgid "Available SELinux modules are stored in the <filename>/usr/share/selinux/default/</filename> directory. To enable one of these modules in the current configuration, you should use <command>semodule -i <replaceable>module.pp</replaceable></command>. The <emphasis>pp</emphasis> extension stands for <emphasis>policy package</emphasis>."
 msgstr ""
+"Los módulos SELinux disponibles se almacenan en el directorio "
+"<filename>/usr/share/selinux/default/</filename>. Para habilitar uno de "
+"estos módulos en la configuración actual se utiliza <command>semodule -i "
+"<replaceable>module.pp</replaceable></command>. La extensión "
+"<emphasis>pp</emphasis> proviene de <emphasis>policy package</emphasis> en "
+"inglés, que quiere decir \"paquete de normativa\"."
 
 #. Tag: para
 #, no-c-format
 msgid "Removing a module from the current configuration is done with <command>semodule -r <replaceable>module</replaceable></command>. Finally, the <command>semodule -l</command> command lists the modules which are currently enabled. It also outputs their version numbers."
 msgstr ""
+"Para eliminar un módulo de la configuración actual se utiliza "
+"<command>semodule -r <replaceable>module</replaceable></command>. Por "
+"último, <command>semodule -l</command> lista los módulos habilitados en un "
+"momento dado. También imprime los números de versión correspondientes."
 
 #. Tag: screen
 #, no-c-format
@@ -1751,31 +2183,68 @@ msgid ""
 "apm     1.7.0\n"
 "[...]</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semodule -i "
+"/usr/share/selinux/default/aide.pp</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
+"<computeroutput>aide    1.4.0\n"
+"apache  1.10.0\n"
+"apm     1.7.0\n"
+"[...]</computeroutput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -r aide</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
+"<computeroutput>apache  1.10.0\n"
+"apm     1.7.0\n"
+"[...]</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semodule</command> immediately loads the new configuration unless you use its <literal>-n</literal> option. It is worth noting that the program acts by default on the current configuration (which is indicated by the <literal>SELINUXTYPE</literal> variable in <filename>/etc/selinux/config</filename>), but that you can modify another one by specifying it with the <literal>-s</literal> option."
 msgstr ""
+"<command>semodule</command> carga inmediatamente la nueva configuración a no "
+"ser que se utilice la opción <literal>-n</literal>. El programa actúa de "
+"forma predeterminada sobre la configuración actual (que se indica por la "
+"variable <literal>SELINUXTYPE</literal> del archivo "
+"<filename>/etc/selinux/config</filename>), pero también se pueden modificar "
+"una distinta especificándola con la opción <literal>-s</literal>."
 
 #. Tag: title
 #, no-c-format
 msgid "Managing Identities"
-msgstr ""
+msgstr "Gestión de Identidades"
 
 #. Tag: para
 #, no-c-format
 msgid "Every time that a user logs in, they get assigned an SELinux identity. This identity defines the roles that they will be able to endorse. Those two mappings (from the user to the identity and from this identity to roles) are configurable with the <command>semanage</command> command."
 msgstr ""
+"Cada vez que un usuario inicia sesión, se le asigna una identidad SELinux. "
+"Esta identidad determina los roles que puede adoptar. Estas correspondencias "
+"(entre el usuario y la identidad y entre la identidad y los roles) se puede "
+"configurar mediante la orden <command>semanage</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "You should definitely read the <citerefentry><refentrytitle>semanage</refentrytitle><manvolnum>8</manvolnum></citerefentry> manual page, even if the command's syntax tends to be similar for all the concepts which are managed. You will find common options to all sub-commands: <literal>-a</literal> to add, <literal>-d</literal> to delete, <literal>-m</literal> to modify, <literal>-l</literal> to list, and <literal>-t</literal> to indicate a type (or domain)."
 msgstr ""
+"Se recomienda efusivamente leer la página de manual <citerefentry><refentryt"
+"itle>semanage</refentrytitle><manvolnum>8</manvolnum></citerefentry>, "
+"incluso aunque la sintaxis de la orden tienda a ser similar para todos los "
+"conceptos que se gestionan. Muchas opciones son comunes a todos las sub-"
+"ordenes: <literal>-a</literal> to añadir, <literal>-d</literal> para borrar, "
+"<literal>-m</literal> para modificar, <literal>-l</literal> para listar, y "
+"<literal>-t</literal> para indicar un tipo (o dominio)."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semanage login -l</command> lists the current mapping between user identifiers and SELinux identities. Users that have no explicit entry get the identity indicated in the <literal>__default__</literal> entry. The <command>semanage login -a -s user_u <replaceable>user</replaceable></command> command will associate the <emphasis>user_u</emphasis> identity to the given user. Finally, <command>semanage login -d <replaceable>user</replaceable></command> drops the mapping entry assigned to this user."
 msgstr ""
+"<command>semanage login -l</command> imprime una lista de las "
+"correspondencias entre identificadores de usuarios y entidades de SELinux. A "
+"los usuarios que no aparecen explícitamente se les asigna la identidad que "
+"corresponde a <literal>__default__</literal>. La orden <command>semanage "
+"login -a -s user_u <replaceable>usuario</replaceable></command> asocia la "
+"identidad <emphasis>user_u</emphasis> con el usuario dado. Por último "
+"<command>semanage login -d <replaceable>usuario</replaceable></command> "
+"elimina la asociación asignada al usuario."
 
 #. Tag: screen
 #, no-c-format
@@ -1791,11 +2260,36 @@ msgid ""
 "system_u                  system_u                  s0-s0:c0.c1023\n"
 "# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semanage login -a -s user_u "
+"rhertzog</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semanage login -l</userinput>\n"
+"<computeroutput>\n"
+"Nombre de Ingreso         Usuario SELinux           Rango MLS/MCS\n"
+"__default__               unconfined_u              s0-s0:c0.c1023\n"
+"rhertzog                  user_u                    None\n"
+"root                      unconfined_u              s0-s0:c0.c1023\n"
+"system_u                  system_u                  s0-s0:c0.c1023\n"
+"# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semanage user -l</command> lists the mapping between SELinux user identities and allowed roles. Adding a new identity requires to define both the corresponding roles and a labeling prefix which is used to assign a type to personal files (<filename>/home/<replaceable>user</replaceable>/*</filename>). The prefix must be picked among <literal>user</literal>, <literal>staff</literal>, and <literal>sysadm</literal>. The “<literal>staff</literal>” prefix results in files of type “<literal>staff_home_dir_t</literal>”. Creating a new SELinux user identity is done with <command>semanage user -a -R <replaceable>roles</replaceable> -P <replaceable>prefix</replaceable> <replaceable>identity</replaceable></command>. Finally, you can remove an SELinux user identity with <command>semanage user -d <replaceable>identity</replaceable></command>."
 msgstr ""
+"<command>semanage user -l</command> lista las asociaciones entre las "
+"identidades de usuario de SELinux y los roles permitidos. Al añadir una "
+"nueva identidad es necesario definir tanto sus roles correspondientes como "
+"un prefijo de etiquetado que se utiliza para asignar un tipo a los archivos "
+"personales "
+"(<filename>/home/<replaceable>usuario</replaceable>/*</filename>). El "
+"prefijo debe elegirse entre <literal>user</literal>, "
+"<literal>staff</literal>, y <literal>sysadm</literal>. El prefijo "
+"“<literal>staff</literal>” hace que los archivos sean del tipo "
+"“<literal>staff_home_dir_t</literal>”. Para crear una nueva identidad de "
+"usuario SELinux se utiliza la orden <command>semanage user -a -R "
+"<replaceable>roles</replaceable> -P <replaceable>prefijo</replaceable> "
+"<replaceable>identidad</replaceable></command>. Se puede eliminar una "
+"identidad de usuario SELinux ejecutando <command>semanage user -d "
+"<replaceable>identidad</replaceable></command>."
 
 #. Tag: screen
 #, no-c-format
@@ -1815,26 +2309,69 @@ msgid ""
 "user_u          user       s0         s0               user_r\n"
 "# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semanage user -a -R 'staff_r "
+"user_r' -P staff test_u</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semanage user -l</userinput>\n"
+"<computeroutput>\n"
+"                Etiquetado MLS/       MLS/                          \n"
+"Usuario SELinux Prefijo    Nivel MCS  Rango MCS        Roles SELinux\n"
+"\n"
+"root            sysadm     s0         s0-s0:c0.c1023   staff_r sysadm_r "
+"system_r\n"
+"staff_u         staff      s0         s0-s0:c0.c1023   staff_r sysadm_r\n"
+"sysadm_u        sysadm     s0         s0-s0:c0.c1023   sysadm_r\n"
+"system_u        user       s0         s0-s0:c0.c1023   system_r\n"
+"test_u          staff      s0         s0               staff_r user_r\n"
+"unconfined_u    unconfined s0         s0-s0:c0.c1023   system_r unconfined_r\n"
+"user_u          user       s0         s0               user_r\n"
+"# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing File Contexts, Ports and Booleans"
-msgstr ""
+msgstr "Gestión de Contextos de Archivo, Puertos y Valores Booleanos"
 
 #. Tag: para
 #, no-c-format
 msgid "Each SELinux module provides a set of file labeling rules, but it is also possible to add custom labeling rules to cater to a specific case. For example, if you want the web server to be able to read files within the <filename>/srv/www/</filename> file hierarchy, you could execute <command>semanage fcontext -a -t httpd_sys_content_t \"/srv/www(/.*)?\"</command> followed by <command>restorecon -R /srv/www/</command>. The former command registers the new labeling rules and the latter resets the file types according to the current labeling rules."
 msgstr ""
+"Cada módulo de SELinux proporciona un conjunto de reglas de etiquetado de "
+"archivos, pero también es posible crear reglas de etiquetado personalizadas "
+"para ajustarse a algún caso específico. Por ejemplo, si se quiere que el "
+"servidor web sea capaz de leer archivos bajo el directorio "
+"<filename>/srv/www/</filename>, se podría ejecutar <command>semanage "
+"fcontext -a -t httpd_sys_content_t \"/srv/www(/.*)?\"</command>, seguido de "
+"<command>restorecon -R /srv/www/</command>. La primera orden registra las "
+"nuevas reglas de etiquetado, mientras que la segunda hace que se restauren "
+"los tipos de archivo según las reglas de etiquetado actuales."
 
 #. Tag: para
 #, no-c-format
 msgid "Similarly, TCP/UDP ports are labeled in a way that ensures that only the corresponding daemons can listen to them. For instance, if you want that the web server be able to listen on port 8080, you should run <command>semanage port -m -t http_port_t -p tcp 8080</command>."
 msgstr ""
+"De forma similar, los puertos TCP/UDP se etiquetan de forma que se asegura "
+"que únicamente los demonios correspondientes pueden escuchar en ellos. Por "
+"ejemplo, si se quiere que el servidor web pueda escuchar en el puerto 8080, "
+"hay que ejecutar <command>semanage port -m -t http_port_t -p tcp "
+"8080</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Some SELinux modules export boolean options that you can tweak to alter the behavior of the default rules. The <command>getsebool</command> utility can be used to inspect those options (<command>getsebool <replaceable>boolean</replaceable></command> displays one option, and <command>getsebool -a</command> them all). The <command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> command changes the current value of a boolean option. The <literal>-P</literal> option makes the change permanent, it means that the new value becomes the default and will be kept across reboots. The example below grants web servers an access to home directories (this is useful when users have personal websites in <filename>~/public_html/</filename>)."
 msgstr ""
+"Algunos módulos de SELinux exportan opciones booleanas que se pueden ajustar "
+"para alterar el comportamiento de las reglas predeterminadas. Se utiliza la "
+"utilidad <command>getsebool</command> para inspeccionar estas opciones "
+"(<command>getsebool <replaceable>opcion_booleana</replaceable></command> "
+"muestra una opción concreta, mientras que <command>getsebool -a</command> "
+"muestra todas). La orden <command>setsebool "
+"<replaceable>opción_booleana</replaceable> "
+"<replaceable>valor</replaceable></command> cambia el valor de una opción "
+"booleana. La opción <literal>-P</literal> hace que el cambio sea permanente, "
+"es decir que el nuevo valor se convierte en el predeterminado y se mantiene "
+"después de un reinicio. El ejemplo siguiente permite a los servidores web "
+"acceso a los directorios personales (puede ser útil cuando los usuarios "
+"tienen sitiow web personales en <filename>~/public_html/</filename>)."
 
 #. Tag: screen
 #, no-c-format
@@ -1845,21 +2382,40 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput> \n"
 "<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>getsebool "
+"httpd_enable_homedirs</userinput>\n"
+"<computeroutput>httpd_enable_homedirs --&gt; off\n"
+"# </computeroutput><userinput>setsebool -P httpd_enable_homedirs "
+"on</userinput>\n"
+"<computeroutput># </computeroutput><userinput>getsebool "
+"httpd_enable_homedirs</userinput> \n"
+"<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Adapting the Rules"
-msgstr ""
+msgstr "Adaptación de las Reglas"
 
 #. Tag: para
 #, no-c-format
 msgid "Since the SELinux policy is modular, it might be interesting to develop new modules for (possibly custom) applications that lack them. These new modules will then complete the <emphasis>reference policy</emphasis>."
 msgstr ""
+"Puesto que la normativa SELinux es modular, puede ser interesante "
+"desarrollar nuevos módulos para aplicaciones (posiblemente propias) que "
+"carezcan de uno. Estos nuevos módulos completarán la <emphasis>normativa de "
+"referencia</emphasis>.\n"
+"\t"
 
 #. Tag: para
 #, no-c-format
 msgid "To create new modules, the <emphasis role=\"pkg\">selinux-policy-dev</emphasis> package is required, as well as <emphasis role=\"pkg\">selinux-policy-doc</emphasis>. The latter contains the documentation of the standard rules (<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) and sample files that can be used as templates to create new modules. Install those files and study them more closely:"
 msgstr ""
+"Para crear nuevos módulos se necesitan los paquetes <emphasis role=\"pkg"
+"\">selinux-policy-dev</emphasis> y <emphasis role=\"pkg\">selinux-policy-"
+"doc</emphasis>. Este último contiene la documentación de las reglas estándar "
+"(<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) y archivos "
+"de ejemplo que pueden ser utilizados como plantillas para crear nuevo "
+"módulos. Instale estos módulos y estúdielos detenidamente:"
 
 #. Tag: screen
 #, no-c-format
@@ -1869,26 +2425,46 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.if.gz &gt;example.if</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-"
+"policy-doc/Makefile.example.gz &gt;Makefile</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-"
+"policy-doc/example.fc.gz &gt;example.fc</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-"
+"policy-doc/example.if.gz &gt;example.if</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-"
+"policy-doc/example.te ./</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.te</filename> file is the most important one. It defines the rules. The <filename>.fc</filename> file defines the “file contexts”, that is the types assigned to files related to this module. The data within the <filename>.fc</filename> file are used during the file labeling step. Finally, the <filename>.if</filename> file defines the interface of the module: it's a set of “public functions” that other modules can use to properly interact with the module that you're creating."
 msgstr ""
+"El archivo <filename>.te</filename> es el más importante. Define las reglas. "
+"El archivo <filename>.fc</filename> define los \"contextos de archivo\", es "
+"decir los tipos asignados a los archivos relacionados con el módulo. Los "
+"datos del archivo <filename>.fc</filename> se utilizan durante el paso de "
+"etiquetado de archvios. Por último, el archivo <filename>.if</filename> "
+"define la interfaz del módulo: es una serie de \"funciones públicas\" que "
+"otros módulos pueden utilizar para interactuar con el módulo que se está "
+"creando."
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.fc</filename> file"
-msgstr ""
+msgstr "Creación de un Archivo <filename>.fc</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "Reading the below example should be sufficient to understand the structure of such a file. You can use regular expressions to assign the same security context to multiple files, or even an entire directory tree."
 msgstr ""
+"Para entender la estructura de este tipo de archivos debería ser suficiente "
+"leer el ejemplo que se muestra debajo. Se pueden utilizar expresiones "
+"regulares para asignar el mismo contexto de seguridad a múltiples archivos, "
+"incluso a un arbol de directorios completo."
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>example.fc</filename> file"
-msgstr ""
+msgstr "Archivo <filename>example.fc</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1900,26 +2476,43 @@ msgid ""
 "\n"
 "/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)\n"
 msgstr ""
+"# El ejecutable myapp tendrá:\n"
+"# etiqueta: system_u:object_r:myapp_exec_t\n"
+"# Sensibilidad MLS: s0\n"
+"# Categorías MCS: &lt;none&gt;\n"
+"\n"
+"/usr/sbin/myapp         --      "
+"gen_context(system_u:object_r:myapp_exec_t,s0)\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.if</filename> File"
-msgstr ""
+msgstr "Creación de un Archivo <filename>.if</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "In the sample below, the first interface (“<literal>myapp_domtrans</literal>”) controls who can execute the application. The second one (“<literal>myapp_read_log</literal>”) grants read rights on the application's log files."
 msgstr ""
+"En el ejemplo siguiente, la primera interfaz "
+"(“<literal>myapp_domtrans</literal>”) controla quién puede utilizar la "
+"aplicación. La segunda (“<literal>myapp_read_log</literal>”) otorga permisos "
+"de escritura a los archivos de registro de la aplicación."
 
 #. Tag: para
 #, no-c-format
 msgid "Each interface must generate a valid set of rules which can be embedded in a <filename>.te</filename> file. You should thus declare all the types that you use (with the <literal>gen_require</literal> macro), and use standard directives to grant rights. Note, however, that you can use interfaces provided by other modules. The next section will give more explanations about how to express those rights."
 msgstr ""
+"Cada interfaz debe generar un conjunto de reglas válido que pueda ser "
+"integrado en un archivo <filename>.te</filename>. Se deben declarar todos "
+"los tipos que se utilizarán (con la macro <literal>gen_require</literal>), y "
+"utilizar directivas estándar para otorgar permisos. También se pueden "
+"utilizar interfaces proporcionadas por otros módulos. En la siguiente "
+"sección se darán más explicaciones acerca de cómo expresar estos permisos."
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>example.if</filename> File"
-msgstr ""
+msgstr "Archivo <filename>ejemplo.if</filename>"
 
 #. Tag: programlisting
 #, no-c-format
