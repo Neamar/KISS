@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2013-04-09 14:33+0200\n"
+"PO-Revision-Date: 2013-05-02 18:49+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 1.5-dev\n"
+"X-Generator: Weblate 1.6-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -1078,26 +1078,77 @@ msgstr "<emphasis>DICA</emphasis> Atualização incremental"
 #, no-c-format
 msgid "As we explained earlier, the aim of the <command>aptitude update</command> command is to download for each package source the corresponding <filename>Packages</filename> (or <filename>Sources</filename>) file. However, even after a <command>bzip2</command> compression, these files can remain rather large (the <filename>Packages.bz2</filename> for the <foreignphrase>main</foreignphrase> section of <emphasis role=\"distribution\">Squeeze</emphasis> takes more than 8 MB). If you wish to upgrade regularly, these downloads can take up a lot of time."
 msgstr ""
+"Como já explicado, o objetivo do comando <command>aptitude update</command> "
+"é baixar para cada fonte de pacotes o arquivo  <filename>Packages</filename> "
+"(ou <filename>Sources</filename>) correspondente. Entretanto, mesmo depois "
+"de uma compressão com <command>bzip2</command>, estes arquivos podem ficar "
+"muito grandes (o <filename>Packages.bz2</filename> da seção "
+"<foreignphrase>main</foreignphrase> da <emphasis "
+"role=\"distribution\">Squeeze</emphasis> ocupa mais de 8 MB). Se você quiser "
+"atualizar com frequencia, o download pode tomar muito tempo."
 
 #. Tag: para
 #, no-c-format
 msgid "A “new feature” (available since <emphasis role=\"distribution\">Etch</emphasis>) is that APT can now download the changes since the previous update, as opposed to the entire file. To achieve this, official Debian mirrors distribute different files which list the differences between one version of the <filename>Packages</filename> file and the following version. They are generated at each update of the archives and a history of one week is kept. Each of these “diff” files only takes a few dozen kilobytes for <emphasis role=\"distribution\">Unstable</emphasis>, so that the amount of data downloaded by a weekly <command>aptitude update</command> is often divided by 10. For distributions like <emphasis role=\"distribution\">Stable</emphasis> and <emphasis role=\"distribution\">Testing</emphasis>, which change less, the gain is even more noticeable."
 msgstr ""
+"Uma “nova funcionalidade” (disponível desde o <emphasis "
+"role=\"distribution\">Etch</emphasis>) é que o APT pode agora baixar as "
+"mudanças desde o update anterior, ao invés de todo o arquivo. para isto, os "
+"espelhos oficiais do Debian distribuem arquivos diferentes que listas as "
+"diferenças entre uma versão do arquivos <filename>Packages</filename> e a "
+"versão seguinte. Eles são gerados em cada atualização dos arquivamentos e um "
+"histórico de uma semana é guardadao. Cada um destes arquvios de \"diff\" "
+"apenas ocupam uns poucos kilobytes para a <emphasis "
+"role=\"distribution\">Unstable</emphasis>, de forma que a quatidade de dados "
+"baixados por um <command>aptitude update</command> semanal é às vezes "
+"dividida por 10. Para distribuições como a <emphasis "
+"role=\"distribution\">Stable</emphasis> e a <emphasis "
+"role=\"distribution\">Testing</emphasis>, que mudam menos, o ganho é ainda "
+"mais visível."
 
 #. Tag: para
 #, no-c-format
 msgid "However, it can sometimes be of interest to force the download of the entire <filename>Packages.bz2</filename> file, especially when the last upgrade is very old and when the mechanism of incremental differences would not contribute much. This can also be interesting when network access is very fast but when the processor of the machine to upgrade is rather slow, since the time saved on the download is more than lost when the computer calculates the new versions of these files (starting with the older versions and applying the downloaded differences). To do that, you can use the configuration parameter <literal>Acquire::Pdiffs</literal> and set it to <literal>false</literal>."
 msgstr ""
+"Entretanto, algumas vezes é interessante forçar o download do arquivo "
+"<filename>Packages.bz2</filename> todo, especialmente quando a última "
+"atualização é muito antiga e o mecanismo de diferenças incremental não vai "
+"ajudar muito. Isto també pode ser interessante quando o acesso à rede é "
+"muito rápido mas o processador da máquina que vai atualizar nem tanto, pois "
+"o tempo economizado para o download é maior que o perdido para juntar as "
+"versões dos arquivos (iniciando com a versão antiga e aplicando as "
+"diferenças baixadas). Para fazer isto, você pode usar o parâmetro de "
+"configuração <literal>Acquire::Pdiffs</literal> e configurar ele para "
+"<literal>false</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>aptitude</command> will generally select the most recent version number (except for <emphasis role=\"distribution\">Experimental</emphasis> packages, which are ignored by default whatever their version number). If you specified <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> in your <filename>sources.list</filename>, <command>aptitude safe-upgrade</command> will switch most of your <emphasis role=\"distribution\">Stable</emphasis> system to <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, which might not be what you intended."
 msgstr ""
+"<command>aptitude</command> vai geralmente selecionar o número de versão "
+"mais recente (exceto para pacotes da <emphasis "
+"role=\"distribution\">Experimental</emphasis>, que são normalmente ignorados "
+"independente do número de versão). Se você especificar a <emphasis "
+"role=\"distribution\">Testing</emphasis> ou a <emphasis "
+"role=\"distribution\">Unstable</emphasis> em seu "
+"<filename>sources.list</filename>, <command>aptitude safe-upgrade</command> "
+"vai trocar a maioria do seu sistema <emphasis "
+"role=\"distribution\">Stable</emphasis> para <emphasis "
+"role=\"distribution\">Testing</emphasis> ou <emphasis "
+"role=\"distribution\">Unstable</emphasis>, que pode não ser o que você deseja."
 
 #. Tag: para
 #, no-c-format
 msgid "To tell <command>aptitude</command> to use a specific distribution when searching for upgraded packages, you need to use the option <literal>-t</literal> or <literal>--target-release</literal>, followed by the name of the distribution you want (for example: <command>aptitude -t stable safe-upgrade</command>). To avoid specifying this option every time you use <command>aptitude</command>, you can add <literal>APT::Default-Release \"stable\";</literal> in the file <filename>/etc/apt/apt.conf.d/local</filename>."
 msgstr ""
+"Para dizer ao <command>aptitude</command> para usar uma distribuição "
+"específica quando buscando por pacotes para atualizar, você precisa usar a "
+"opção <literal>-t</literal> ou <literal>--target-release</literal>, seguida "
+"do nome da distribuição que você quer (por exemplo: <command>aptitude -t "
+"stable safe-upgrade</command>). para evitar ficar usando esta opção toda vez "
+"que usa o  <command>aptitude</command>, você pode adicionar a linha "
+"<literal>APT::Default-Release \"stable\";</literal> no arquivo "
+"<filename>/etc/apt/apt.conf.d/local</filename>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1113,6 +1164,16 @@ msgstr "<primary><command>aptitude safe-upgrade</command></primary>"
 #, no-c-format
 msgid "For more important upgrades, such as the change from one major Debian version to the next, you need to use <command>aptitude full-upgrade</command> (the option used to be named <literal>dist-upgrade</literal>, for “distribution upgrade”). With this instruction, <command>aptitude</command> will complete the upgrade even if it has to remove some obsolete packages or install new dependencies. This is also the command used by users who work daily with the Debian <emphasis role=\"distribution\">Unstable</emphasis> release and follow its evolution day by day. It is so simple that it hardly needs explanation: APT's reputation is based on this great functionality."
 msgstr ""
+"para upgrades mais importantes, como mudar de uma versão principal do Debian "
+"para a seguinte, você precisa usar <command>aptitude full-upgrade</command> "
+"(esta opção costumava ser chamada <literal>dist-upgrade</literal>, de "
+"“distribution upgrade”). Com esta instrução, <command>aptitude</command> vai "
+"completar o upgrade mesmo se ele tiver que remover alguns pacotes obsoletos "
+"ou instalar novas dependências. Este também é o comando usado pelos "
+"usuários que trabalham diariamente com a versão Debian <emphasis "
+"role=\"distribution\">Unstable</emphasis> e seguem sua evolução dia após dia. "
+"É tão simples que dispensa explicações: a reputação do APT é baseada nesta "
+"fantástica funcionalidade."
 
 #. Tag: para
 #, no-c-format
