@@ -1659,15 +1659,6 @@ Disk identifier: 0x00039a9f
           <sidebar>
             <title><emphasis>GOING FURTHER</emphasis> Installing a non-Debian system in a domU</title>
 
-	    <para>If the Xen image is not meant to run Debian but another
-	    system, another potentially interesting option is
-	    <literal>--rpmstrap</literal>, to invoke
-	    <command>rpmstrap</command> in order to initialize a new
-	    RPM-based system (such as Fedora, CentOS or Mandriva). Other
-	    methods include <literal>--copy</literal>, to copy an image
-	    from an existing system, and <literal>--tar</literal>, to
-	    extract the system image from an archive.</para>
-
 	    <para>In case of a non-Linux system, care should be taken to
 	    define the kernel the domU must use, using the
 	    <literal>--kernel</literal> option.</para>
@@ -2581,6 +2572,96 @@ root@server's password: </computeroutput>
 
 	<para>All these subcommands take a virtual machine identifier as a
 	parameter.</para>
+      </section>
+      <section>
+        <title>Installting an RPM based system in Debian with yum</title>
+
+	<para>If the Xen image is meant to run a Debian (or one of its
+	derivatives), the domU can be initialized with
+	<command>debootstrap</command>, as described above.  But if
+	the domU is to be installed with an RPM-based system (such as
+	Fedora, CentOS or Scientific Linux), the setup will need to be
+	done using the <command>yum</command> utility (which is packaged in Debian).</para>
+	
+	<para>The procedure requires setting up a
+	<filename>yum.conf</filename> file containing the necessary
+	parameters, including the path to the source RPM repositories,
+	the path to the plugin configuration, and the destination
+	folder. For this example, we will assume that the environment
+	will be stored in /var/tmp/yum-bootstrap. The file
+	/var/tmp/yum-bootstrap/yum.conf file should look like
+	this:</para>
+	
+<screen><userinput>[main]
+reposdir=/var/tmp/yum-bootstrap/repos.d
+pluginconfpath=/var/tmp/yum-bootstrap/pluginconf.d
+cachedir=/var/cache/yum
+installroot=/path/to/destination/domU/install
+exclude=$exclude
+keepcache=1
+#debuglevel=4  
+#errorlevel=4
+pkgpolicy=newest
+distroverpkg=centos-release
+tolerant=1
+exactarch=1
+obsoletes=1
+gpgcheck=1
+plugins=1
+metadata_expire=1800</userinput></screen>
+
+	    <para>The
+	    <filename>/var/tmp/yum-bootstrap/repos.d</filename>
+	    directory should contain the descriptions of the RPM
+	    source repositories, just as in
+	    <filename>/etc/yum.repo.d</filename> in an already
+	    installed RPM-based system. Here is an example for a
+	    CentOS 6 installation:</para>
+
+<screen><userinput>[base]
+name=CentOS-6 - Base
+#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6
+   
+[updates]
+name=CentOS-6 - Updates
+#baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=updates
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6
+
+[extras]
+name=CentOS-6 - Extras
+#baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=extras
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6
+
+[centosplus]
+name=CentOS-6 - Plus
+#baseurl=http://mirror.centos.org/centos/$releasever/centosplus/$basearch/
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=centosplus
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6
+</userinput></screen>
+
+	    <para>Finally,
+	    <filename>pluginconf.d/installonlyn.conf</filename> file
+	    should contain the following:
+<screen><userinput>[main]
+enabled=1
+tokeep=5
+</userinput></screen>
+
+	    <para>Once all this is setup, make sure the
+	    <command>rpm</command> databases are correctly
+	    initialized, with a command such as <command>rpm
+	    --rebuilddb</command>.  An installation of CentOS 6 is
+	    then a matter of the following:</para>
+
+<screen><userinput>yum -c /var/tmp/yum-bootstrap/yum.conf -y install coreutils basesystem centos-release yum-basearchonly initscripts</userinput></screen>
       </section>
     </section>
   </section>
