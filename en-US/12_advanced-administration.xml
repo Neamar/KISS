@@ -1269,6 +1269,32 @@ The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.
       volumes are made independent of the physical layout of the disks,
       RAID doesn't help much and LVM will be the natural choice.</para>
 
+      <sidebar>
+        <title><emphasis>NOTE</emphasis> If performance matters…</title>
+
+	<para>If input/output speed is of the essence, especially in
+	terms of access times, using LVM and/or RAID in one of the
+	many combinations may have some impact on performances, and
+	this may influence decisions as to which to pick.  However,
+	these differences in performance are really minor, and will
+	only be measurable in a few use cases.  If performance
+	matters, the best gain to be obtained would be to use
+	non-rotating storage media
+	(<indexterm>SSD</indexterm><emphasis>solid-state
+	drives</emphasis> or SSDs); their cost per megabyte is higher
+	than that of standard hard disk drives, and their capacity is
+	usually smaller, but they provide excellent performance for
+	random accesses.  If the usage pattern includes many
+	input/output operations scattered all around the filesystem,
+	for instance for databases where complex queries are routinely
+	being run, then the advantage of running them on an SSD far
+	outweigh whatever could be gained by picking LVM over RAID or
+	the reverse.  In these situations, the choice should be
+	determined by other considerations than pure speed, since the
+	performance aspect is most easily handled by using
+	SSDs.</para>
+      </sidebar>
+
       <para>The third notable use case is when one just wants to
       aggregate two disks into one volume, either for performance
       reasons or to have a single filesystem that is larger than any
