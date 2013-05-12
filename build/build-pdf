@@ -18,7 +18,7 @@ topdir=$(pwd)
 parse_options "$@"
 
 if [ ! -e tmp/$OPT_lang/xml ] || [ -z "$OPT_skip" ]; then
-    publican build --formats=xml --langs=$OPT_lang
+    publican build --config=publican-pdf.cfg --formats=xml --langs=$OPT_lang
 fi
 
 cp -a build/dblatex tmp/$OPT_lang/xml/
