@@ -29,10 +29,15 @@ else
     exit 1
 fi
 
-if [ -x /usr/bin/ebook-convert ]; then
-    dbtoepub -s epub/tdah-epub.xsl -c epub/tdah-plain.css \
-        -o debian-handbook-plain.epub $OPT_opts debian-handbook.xml
-    ebook-convert debian-handbook-plain.epub debian-handbook.mobi \
+if which kindlegen >/dev/null; then
+    dbtoepub -s epub/tdah-mobi.xsl -c epub/tdah.css \
+        -o debian-handbook-mobi.epub $OPT_opts debian-handbook.xml
+    kindlegen debian-handbook-mobi.epub -o debian-handbook.mobi
+    cp debian-handbook.mobi $targetdir/
+elif [ -x /usr/bin/ebook-convert ]; then
+    dbtoepub -s epub/tdah-mobi.xsl -c epub/tdah.css \
+        -o debian-handbook-mobi.epub $OPT_opts debian-handbook.xml
+    ebook-convert debian-handbook-mobi.epub debian-handbook.mobi \
         --output-profile=kindle \
         --chapter="/" \
         --no-chapters-in-toc \
@@ -45,4 +50,3 @@ if [ -x /usr/bin/ebook-convert ]; then
     cp debian-handbook.mobi $targetdir/
     echo "SUCCESS: $targetdir/debian-handbook.mobi"
 fi
-
