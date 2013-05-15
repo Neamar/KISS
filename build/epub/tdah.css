@@ -27,9 +27,7 @@ div.figure-title, div.example-title, div.equation-title, div.table-title, div.si
 
 /* Styles of sidebars */
 hr.delimit-sidebar {
-    /* Old readers with limited CSS knowledge will display them
-     * while modern readers will hide them but will show the improved
-     * CSS. */
+    /* Those horizantal rules are for the Kindle only */
     display: none;
 }
 
@@ -55,3 +53,29 @@ div.url + div.url {
     margin-top: 0;
 }
 
+/* Styles for Kindle's Mobipocket (e-ink reader) */
+@media amzn-mobi {
+    hr.delimit-sidebar {
+	display: block;
+    }
+    div.sidebar {
+	border-left: 1px solid black;
+	margin-left: 5%;
+	padding: 5px;
+    }
+    div.sidebar-title {
+	border-bottom: 0px
+	text-align: center;
+	text-indent: 0;
+    }
+    p {
+	text-indent: 0;
+	margin-top: 0.5em;
+    }
+    p.title {
+	margin-top: 0;
+    }
+    div.section {
+	margin-top: 0.5em;
+    }
+}
