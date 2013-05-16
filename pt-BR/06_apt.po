@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2013-05-02 18:49+0200\n"
+"PO-Revision-Date: 2013-05-17 01:47+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
@@ -1179,6 +1179,9 @@ msgstr ""
 #, no-c-format
 msgid "<command>aptitude dist-upgrade</command> is still available as a synonym for <command>aptitude full-upgrade</command>; <command>apt-get</command> only recognizes the former."
 msgstr ""
+"<command>aptitude dist-upgrade</command> ainda está disponível como um "
+"sinônimo de <command>aptitude full-upgrade</command>; <command>apt-"
+"get</command> só reconhece a forma antiga."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1219,11 +1222,26 @@ msgstr "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
 #, no-c-format
 msgid "Besides the configuration elements already mentioned, it is possible to configure certain aspects of APT by adding directives in a file of the <filename>/etc/apt/apt.conf.d/</filename> directory. Remember for instance that it is possible for APT to tell <command>dpkg</command> to ignore file conflict errors by specifying <literal>DPkg::Options { \"--force-overwrite\"; }</literal>."
 msgstr ""
+"Apesar dos elementos de configuração sá mencionados, é possível configurar "
+"certos aspectos do APT adicionando directivas num arquivo do diretório "
+"<filename>/etc/apt/apt.conf.d/</filename>. Lembre, por exemplo, que é "
+"possível para o APT pedir ao <command>dpkg</command> para ignorar erros de "
+"conflito em arquivos ao especificar <literal>DPkg::Options { \"--force-"
+"overwrite\"; }</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "If the Web can only be accessed through a proxy, add a line like <literal>Acquire::http::proxy \"http://<replaceable>yourproxy</replaceable>:3128\"</literal>. For an FTP proxy, write <literal>Acquire::ftp::proxy \"ftp://<replaceable>yourproxy</replaceable>\"</literal>. To discover more configuration options, read the <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page with the command <command>man apt.conf</command> (for details on manual pages, see next chapter)."
 msgstr ""
+"Se a rede só puder ser acessada através de um proxy,  adicione uma linha "
+"como <literal>Acquire::http::proxy \"http://<replaceable>seu-"
+"proxy</replaceable>:3128\"</literal>. Para um proxy FTP, escreva "
+"<literal>Acquire::ftp::proxy \"ftp://<replaceable>seu-"
+"proxy</replaceable>\"</literal>. Para descobrir mais opções de configuração, "
+"leia a página de manual do <citerefentry><refentrytitle>apt.conf</refentryti"
+"tle><manvolnum>5</manvolnum></citerefentry> com o comando <command>man "
+"apt.conf</command> (para detalhes sobre páginas de manual, leia o próximo "
+"capítulo)."
 
 #. Tag: title
 #, no-c-format
@@ -1241,21 +1259,61 @@ msgstr "<primary><filename>.d</filename></primary>"
 #, no-c-format
 msgid "Directories with a <filename>.d</filename> suffix are used more and more often. Each directory represents a configuration file which is split over multiple files. In this sense, all of the files in <filename>/etc/apt/apt.conf.d/</filename> are instructions for the configuration of APT. APT includes them in alphabetical order, so that the last ones can modify a configuration element defined in one of the first ones."
 msgstr ""
+"Directórios com um sufixo <filename>.d</filename> estão sendo cada vez mais "
+"usados. Cada diretório representa um arquivo de configuração  que é separado "
+"em múltiplos arquivos. Neste sentido, todos os arquivos em "
+"<filename>/etc/apt/apt.conf.d/</filename> são instruções para a configuração "
+"do APT. APT inclui eles em ordem alfabética, assim os últimos podem altera "
+"um elemento de configuração definido em um dos primeiros."
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "This structure brings some flexibility to the machine administrator and to the package maintainers. Indeed, the administrator can easily modify the configuration of the software by adding a ready-made file in the directory in question without having to change an existing file. Package maintainers use the same approach when they need to adapt the configuration of another software to ensure that it perfectly co-exists with theirs. However, the Debian policy explicitly forbids modifying configuration files of other packages — only users are allowed to do this. Remember that during a package upgrade, the user gets to choose the version of the configuration file that should be kept when a modification has been detected. Any external modification of the file would trigger that request, which would disturb the administrator, who is sure not to have changed anything."
 msgstr ""
+"Esta estrutura trás alguma flexibilidade ao administrador da máquina e aos "
+"mantenedores de pacotes. Na verdade, o administrador pode modificar "
+"facilmente a configuração do software ao adicionar um arquivo pronto para "
+"usar no diretório em questão sem ter que alterar um arquivo existente. "
+"mantenedores de pacotes usam a mesma abordagem quandoprecisam adaptar a "
+"configuração de outro software para garantir que ele coexista perfeitamente "
+"com o seu. Entretanto, a política Debian explicitamente proibe a modificação "
+"de arquivos de configuração de outros pacotes — apenas usuários tem "
+"autorização para isto. Lembre que durante uma atualização de pacote, o "
+"usuário escolhe a versão do arquivo de configuração que deve ser mantido "
+"quando uma modificação é detectada. Qualquer modificação externa do arquivo "
+"irá \"trigger that request\", que irá perturbar o administrador, que está "
+"certo de não haver mudado nada."
 
 #. Tag: para
 #, no-c-format
 msgid "Without a <filename>.d</filename> directory, it is impossible for an external package to change the settings of a program without modifying its configuration file. Instead it must invite the user to do it himself and lists the operations to be done in the file <filename>/usr/share/doc/<replaceable>package</replaceable>/README.Debian</filename>."
 msgstr ""
+"Sem um diretório <filename>.d</filename>, é impossível para um pacote "
+"externo mudar as configurações de um programa sem modificar seu arquivo de "
+"configuração. Ao invés disto, ele deve pedir para o usuário fazer isto ele "
+"próprio e listar as operações a serem feitas no arquivo <filename>/usr/share"
+"/doc/<replaceable>pacote</replaceable>/README.Debian</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "Depending on the application, the <filename>.d</filename> directory is used directly or managed by an external script which will concatenate all the files to create the configuration file itself. It is important to execute the script after any change in that directory so that the most recent modifications are taken into account. In the same way, it is important not to work directly in the configuration file created automatically, since everything would be lost at the next execution of the script. Choosing one method (<filename>.d</filename> directory used directly or a file generated from that directory) is usually imposed by implementation constraints, but in both cases the gains in terms of configuration flexibility more than make up for the small complications that they entail. The Exim 4 mail server is an example of the generated file method: it can be configured through several files (<filename>/etc/exim4/conf.d/*</filename>) which are concatenated into <filename>/var/lib/exim4/config.autogenerated</filename> by the <command>update-exim4.conf</command> command."
 msgstr ""
+"Dependendo da aplicação, o diretório <filename>.d</filename> é usado "
+"diretamente ou gerenciado por um script externo que vai concatenar todos os "
+"arquivos para criar um outro arquivo de configuração. É importante executar "
+"o script depois de qualquer mudança neste diretório, para que as "
+"modificações mais recentes sejam aplicadas. Da mesma forma, é importante não "
+"trabalhar diretamente no arquivo de configuração criado automaticamente, já "
+"que toda alteração será perdida na próxima execução do script. Escolher um "
+"método (diretório <filename>.d</filename> usado diretamente ou arquivo "
+"gerado a partir do diretório) é normalmente imposto por restrições de "
+"implementação, mas em ambos os casos os ganhos em termos de flexibilidade de "
+"configuração superam as pequenas complicações que são trazidas. O servidor "
+"de email Exim 4 é um exemplo do métido de arquivo gerado: ele pode ser "
+"configurado através de vŕios arquivos "
+"(<filename>/etc/exim4/conf.d/*</filename>) que são concatenados em "
+"<filename>/var/lib/exim4/config.autogenerated</filename> pelo comando "
+"<command>update-exim4.conf</command>."
 
 #. Tag: title
 #, no-c-format
