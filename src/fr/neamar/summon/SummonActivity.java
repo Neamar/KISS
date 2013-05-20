@@ -1,14 +1,8 @@
 package fr.neamar.summon;
 
-import java.util.ArrayList;
-
 import android.annotation.SuppressLint;
 import android.app.ListActivity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -20,22 +14,14 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.SubMenu;
-import android.view.View;
-import android.view.Window;
+import android.view.*;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+
 import fr.neamar.summon.adapter.RecordAdapter;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.record.Record;
@@ -45,6 +31,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
 	public static String START_LOAD = "fr.neamar.summon.START_LOAD";
 	public static String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
+    public static String LOAD_DB_OVER = "fr.neamar.summon.LOAD_DB_OVER";
 	public static String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
 	public static String NB_PROVIDERS = "nb_providers";
 	private BroadcastReceiver mReceiver;
@@ -86,10 +73,11 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		IntentFilter intentFilter = new IntentFilter(START_LOAD);
 		IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
 		IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
+        IntentFilter intentFilterQuatr = new IntentFilter(LOAD_DB_OVER);
 		mReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
-				if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
+				if (intent.getAction().equalsIgnoreCase(LOAD_OVER) || intent.getAction().equalsIgnoreCase(LOAD_DB_OVER)) {
 					updateRecords(searchEditText.getText().toString());
 				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
 					setProgressBarIndeterminateVisibility(false);
@@ -101,6 +89,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		this.registerReceiver(mReceiver, intentFilter);
 		this.registerReceiver(mReceiver, intentFilterBis);
 		this.registerReceiver(mReceiver, intentFilterTer);
+        this.registerReceiver(mReceiver, intentFilterQuatr);
 		SummonApplication.initDataHandler(this);
 
 		// Initialize preferences
@@ -192,10 +181,11 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		IntentFilter intentFilter = new IntentFilter(START_LOAD);
 		IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
 		IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
+        IntentFilter intentFilterQuatr = new IntentFilter(LOAD_DB_OVER);
 		mReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
-				if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
+				if (intent.getAction().equalsIgnoreCase(LOAD_OVER) || intent.getAction().equalsIgnoreCase(LOAD_DB_OVER)) {
 					updateRecords(searchEditText.getText().toString());
 				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
 					setProgressBarIndeterminateVisibility(false);
@@ -218,6 +208,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		this.registerReceiver(mReceiver, intentFilter);
 		this.registerReceiver(mReceiver, intentFilterBis);
 		this.registerReceiver(mReceiver, intentFilterTer);
+        this.registerReceiver(mReceiver, intentFilterQuatr);
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
 			@Override
@@ -238,6 +229,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		super.onPause();
 		// unregister our receiver
 		this.unregisterReceiver(this.mReceiver);
+        SummonApplication.getDataHandler(this).saveHandler(this);
 	}
 
 	@Override
@@ -325,7 +317,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 * This function gets called on changes. It will ask all the providers for
 	 * datas
 	 * 
-	 * @param s
+	 * @param query
 	 */
 	public void updateRecords(String query) {
 		if (updateRecords != null) {

@@ -20,7 +20,7 @@ public class DB extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS history ( _id INTEGER PRIMARY KEY AUTOINCREMENT, query TEXT NOT NULL, record TEXT NOT NULL);");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS apps ( _id INTEGER PRIMARY KEY AUTOINCREMENT, package TEXT NOT NULL, activity TEXT NOT NULL, name TEXT NOT NULL);");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS contacts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, lookup_key TEXT NOT NULL, phone TEXT NOT NULL, " +
-                "mail TEXT NOT NULL, icon TEXT NOT NULL, primary_number BOOLEAN NOT NULL, times_contacted INTEGER NOT NULL, starred BOOLEAN NOT NULL, " +
+                "mail TEXT NOT NULL, icon TEXT, primary_number BOOLEAN NOT NULL, times_contacted INTEGER NOT NULL, starred BOOLEAN NOT NULL, " +
                 "home_number BOOLEAN NOT NULL, name TEXT);");
 	}
 
@@ -30,7 +30,7 @@ public class DB extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS history ( _id INTEGER PRIMARY KEY AUTOINCREMENT, query TEXT NOT NULL, record TEXT NOT NULL);");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS apps ( _id INTEGER PRIMARY KEY AUTOINCREMENT, package TEXT NOT NULL, activity TEXT NOT NULL, name TEXT NOT NULL);");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS contacts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, lookup_key TEXT NOT NULL, phone TEXT NOT NULL, " +
-                "mail TEXT NOT NULL, icon TEXT NOT NULL, primary_number BOOLEAN NOT NULL, times_contacted INTEGER NOT NULL, starred BOOLEAN NOT NULL, " +
+                "mail TEXT NOT NULL, icon TEXT, primary_number BOOLEAN NOT NULL, times_contacted INTEGER NOT NULL, starred BOOLEAN NOT NULL, " +
                 "home_number BOOLEAN NOT NULL, name TEXT);");
     }
 
@@ -40,7 +40,7 @@ public class DB extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS history ( _id INTEGER PRIMARY KEY AUTOINCREMENT, query TEXT NOT NULL, record TEXT NOT NULL);");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS apps ( _id INTEGER PRIMARY KEY AUTOINCREMENT, package TEXT NOT NULL, activity TEXT NOT NULL, name TEXT NOT NULL);");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS contacts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, lookup_key TEXT NOT NULL, phone TEXT NOT NULL, " +
-                "mail TEXT NOT NULL, icon TEXT NOT NULL, primary_number BOOLEAN NOT NULL, times_contacted INTEGER NOT NULL, starred BOOLEAN NOT NULL, " +
+                "mail TEXT NOT NULL, icon TEXT, primary_number BOOLEAN NOT NULL, times_contacted INTEGER NOT NULL, starred BOOLEAN NOT NULL, " +
                 "home_number BOOLEAN NOT NULL, name TEXT);");
     }
 }

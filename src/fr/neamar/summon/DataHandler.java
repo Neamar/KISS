@@ -199,11 +199,10 @@ public class DataHandler extends BroadcastReceiver {
 		providersLoaded++;
 		if (providersLoaded == providers.size()) {
 			try {
-
 				context.unregisterReceiver(this);
+                SummonApplication.loadingOver();
 				Intent i = new Intent(SummonActivity.FULL_LOAD_OVER);
                 context.sendBroadcast(i);
-                SummonApplication.loadingOver();
 				providersLoaded = 0;
 			} catch (IllegalArgumentException e) {
 				// Nothing
@@ -223,9 +222,15 @@ public class DataHandler extends BroadcastReceiver {
 		return null;
 	}
 
-    public void saveHandler(Context context){
-        for(Provider p : providers){
-            p.saveProvider(context);
-        }
+    public void saveHandler(final Context context){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DBHelper.clearHolders(context);
+                for (Provider p : providers) {
+                    p.saveProvider(context);
+                }
+            }
+        }).start();
     }
 }

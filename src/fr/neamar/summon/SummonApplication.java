@@ -23,7 +23,9 @@ public class SummonApplication extends Application {
 	}
 
 	public static void resetDataHandler(Context ctx) {
-        loadingDataHandler = new DataHandler(ctx);
+        if(loadingDataHandler == null){
+            loadingDataHandler = new DataHandler(ctx);
+        }
 	}
 
     public static void loadingOver(){
