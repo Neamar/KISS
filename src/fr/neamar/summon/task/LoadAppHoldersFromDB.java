@@ -21,7 +21,7 @@ public class LoadAppHoldersFromDB extends LoadHoldersFromDB<AppHolder> {
 		ArrayList<AppHolder> apps = DBHelper.getAppHolders(context, holderScheme);
 
 		long end = System.nanoTime();
-		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list apps from DB");
+		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list " +apps.size()+ "  apps from DB");
 		return apps;
 	}
 }

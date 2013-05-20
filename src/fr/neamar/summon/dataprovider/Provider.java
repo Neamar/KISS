@@ -1,8 +1,11 @@
 package fr.neamar.summon.dataprovider;
 
 import android.content.Context;
+import android.os.Build;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.task.LoadHolders;
@@ -11,6 +14,7 @@ public abstract class Provider<T> {
 	/**
 	 * Scheme used to build ids for the holders created by this provider
 	 */
+    private static ExecutorService poolExecutor = Executors.newFixedThreadPool(6);
 	public String holderScheme = "(none)://";
 
 	protected LoadHolders<T> loader = null;
@@ -21,7 +25,11 @@ public abstract class Provider<T> {
 		this.loader = loader;
 		this.loader.setProvider(this);
 		this.holderScheme = loader.getHolderScheme();
-		loader.execute();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+            loader.executeOnExecutor(poolExecutor);
+        }else {
+            loader.execute();
+        }
 	}
 
 	public abstract ArrayList<Holder> getResults(String s);

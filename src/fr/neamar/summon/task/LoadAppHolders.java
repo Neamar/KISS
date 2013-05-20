@@ -51,7 +51,7 @@ public class LoadAppHolders extends LoadHolders<AppHolder> {
 			apps.add(app);
 		}
 		long end = System.nanoTime();
-		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list apps");
+		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list " +apps.size()+ " apps");
 		return apps;
 	}
 }

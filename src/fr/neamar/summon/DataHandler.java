@@ -5,6 +5,8 @@ import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import fr.neamar.summon.dataprovider.*;
 import fr.neamar.summon.db.DBHelper;
@@ -21,6 +23,7 @@ public class DataHandler extends BroadcastReceiver {
 	 */
 	private ArrayList<Provider> providers = new ArrayList<Provider>();
 	private int providersLoaded = 0;
+    private ExecutorService poolExecutor = Executors.newFixedThreadPool(6);
 
     private DataHandler() {
         super();

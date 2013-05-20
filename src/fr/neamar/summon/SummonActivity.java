@@ -70,28 +70,6 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
 
-		IntentFilter intentFilter = new IntentFilter(START_LOAD);
-		IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
-		IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
-        IntentFilter intentFilterQuatr = new IntentFilter(LOAD_DB_OVER);
-		mReceiver = new BroadcastReceiver() {
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				if (intent.getAction().equalsIgnoreCase(LOAD_OVER) || intent.getAction().equalsIgnoreCase(LOAD_DB_OVER)) {
-					updateRecords(searchEditText.getText().toString());
-				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
-					setProgressBarIndeterminateVisibility(false);
-				} else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
-					setProgressBarIndeterminateVisibility(true);
-				}
-			}
-		};
-		this.registerReceiver(mReceiver, intentFilter);
-		this.registerReceiver(mReceiver, intentFilterBis);
-		this.registerReceiver(mReceiver, intentFilterTer);
-        this.registerReceiver(mReceiver, intentFilterQuatr);
-		SummonApplication.initDataHandler(this);
-
 		// Initialize preferences
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -189,6 +167,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 					updateRecords(searchEditText.getText().toString());
 				} else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
 					setProgressBarIndeterminateVisibility(false);
+                    updateRecords(searchEditText.getText().toString());
 				} else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
 					setProgressBarIndeterminateVisibility(true);
 				}
@@ -209,6 +188,8 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		this.registerReceiver(mReceiver, intentFilterBis);
 		this.registerReceiver(mReceiver, intentFilterTer);
         this.registerReceiver(mReceiver, intentFilterQuatr);
+        SummonApplication.initDataHandler(this);
+
 		// Display keyboard
 		new Handler().postDelayed(new Runnable() {
 			@Override

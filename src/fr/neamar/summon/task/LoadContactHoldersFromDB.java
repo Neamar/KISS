@@ -21,7 +21,7 @@ public class LoadContactHoldersFromDB extends LoadHoldersFromDB<ContactHolder> {
 		ArrayList<ContactHolder> contacts = DBHelper.getContactsHolders(context, holderScheme);
 
 		long end = System.nanoTime();
-		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list contacts");
+		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list " +contacts.size()+ " contacts from DB");
 		return contacts;
 	}
 }

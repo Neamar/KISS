@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Build;
 
 import java.util.ArrayList;
 
@@ -16,11 +17,21 @@ public class DBHelper {
 
 	public static final Object sDataLock = new Object();
 
-	private static SQLiteDatabase getDatabase(Context context) {
+	private static SQLiteDatabase getReadDatabase(Context context) {
 		DB db = new DB(context);
-        db.setWriteAheadLoggingEnabled(true);
-		return db.getWritableDatabase();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+            db.setWriteAheadLoggingEnabled(true);
+        }
+		return db.getReadableDatabase();
 	}
+
+    private static SQLiteDatabase getWriteDatabase(Context context) {
+        DB db = new DB(context);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            db.setWriteAheadLoggingEnabled(true);
+        }
+        return db.getWritableDatabase();
+    }
 
 	private static ArrayList<ValuedHistoryRecord> readCursor(Cursor cursor) {
 		ArrayList<ValuedHistoryRecord> records = new ArrayList<ValuedHistoryRecord>();
@@ -49,7 +60,7 @@ public class DBHelper {
 	 */
 	public static void insertHistory(Context context, String query, String record) {
 		synchronized (DBHelper.sDataLock) {
-			SQLiteDatabase db = getDatabase(context);
+			SQLiteDatabase db = getWriteDatabase(context);
 
 			ContentValues values = new ContentValues();
 			values.put("query", query);
@@ -62,7 +73,7 @@ public class DBHelper {
 
 	public static void removeFromHistory(Context context, String record) {
 		synchronized (DBHelper.sDataLock) {
-			SQLiteDatabase db = getDatabase(context);
+			SQLiteDatabase db = getWriteDatabase(context);
 			db.delete("history", "record = ?", new String[] { record });
 			db.close();
 		}
@@ -78,7 +89,7 @@ public class DBHelper {
 	 */
 	public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit) {
 		ArrayList<ValuedHistoryRecord> records;
-        SQLiteDatabase db = getDatabase(context);
+        SQLiteDatabase db = getReadDatabase(context);
 
         // Cursor query (boolean distinct, String table, String[] columns,
         // String selection, String[] selectionArgs, String groupBy, String
@@ -101,7 +112,7 @@ public class DBHelper {
 	public static ArrayList<ValuedHistoryRecord> getPreviousResultsForQuery(Context context,
 			String query) {
 		ArrayList<ValuedHistoryRecord> records;
-        SQLiteDatabase db = getDatabase(context);
+        SQLiteDatabase db = getReadDatabase(context);
 
         // Cursor query (String table, String[] columns, String selection,
         // String[] selectionArgs, String groupBy, String having, String
@@ -122,7 +133,7 @@ public class DBHelper {
 	 */
 	public static ArrayList<ValuedHistoryRecord> getFavorites(Context context, int limit) {
 		ArrayList<ValuedHistoryRecord> records;
-        SQLiteDatabase db = getDatabase(context);
+        SQLiteDatabase db = getReadDatabase(context);
 
         // Cursor query (String table, String[] columns, String selection,
         // String[] selectionArgs, String groupBy, String having, String
@@ -137,7 +148,7 @@ public class DBHelper {
 
     public static void clearHolders(Context context){
         synchronized (DBHelper.sDataLock) {
-            SQLiteDatabase db = getDatabase(context);
+            SQLiteDatabase db = getWriteDatabase(context);
             db.delete("apps", null, null);
             db.delete("contacts", null, null);
             db.close();
@@ -146,7 +157,7 @@ public class DBHelper {
 
     public static void saveAppHolders(Context context, ArrayList<AppHolder> apps) {
         synchronized (DBHelper.sDataLock) {
-            SQLiteDatabase db = getDatabase(context);
+            SQLiteDatabase db = getWriteDatabase(context);
             for (AppHolder app : apps){
                 ContentValues values = new ContentValues();
                 values.put("name", app.name);
@@ -160,23 +171,24 @@ public class DBHelper {
 
     public static ArrayList<AppHolder> getAppHolders(Context context, String holderScheme){
         ArrayList<AppHolder> apps = new ArrayList<AppHolder>();
-        SQLiteDatabase db = getDatabase(context);
+        SQLiteDatabase db = getReadDatabase(context);
 
         Cursor cursor = db.query("apps", null, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
             AppHolder app = new AppHolder();
-            app.packageName = cursor.getString(0);
-            app.activityName = cursor.getString(1);
+            app.packageName = cursor.getString(1);
+            app.activityName = cursor.getString(2);
             app.id = holderScheme + app.packageName + "/"
                     + app.activityName;
-            app.name = cursor.getString(2);
+            app.name = cursor.getString(3);
 
             //Ugly hack to remove accented characters.
             //Note Java 5 provides a Normalizer method, unavailable for Android :\
             app.nameLowerCased = app.name.toLowerCase().replaceAll("[èéêë]", "e")
                     .replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
                     .replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("[ÈÉÊË]", "E");
+            apps.add(app);
             cursor.moveToNext();
         }
         db.close();
@@ -185,7 +197,7 @@ public class DBHelper {
 
     public static void saveContactHolders(Context context, ArrayList<ContactHolder> contacts) {
         synchronized (DBHelper.sDataLock) {
-            SQLiteDatabase db = getDatabase(context);
+            SQLiteDatabase db = getWriteDatabase(context);
             for (ContactHolder contact : contacts) {
                 ContentValues values = new ContentValues();
                 values.put("name", contact.name);
@@ -210,34 +222,34 @@ public class DBHelper {
 
     public static ArrayList<ContactHolder> getContactsHolders(Context context, String holderScheme) {
         ArrayList<ContactHolder> contacts = new ArrayList<ContactHolder>();
-        SQLiteDatabase db = getDatabase(context);
+        SQLiteDatabase db = getReadDatabase(context);
 
         Cursor cursor = db.query("contacts", null, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             ContactHolder contact = new ContactHolder();
-            contact.lookupKey = cursor.getString(0);
-            contact.phone = cursor.getString(1);
-            contact.mail = cursor.getString(2);
-            if(!cursor.isNull(3)){
+            contact.lookupKey = cursor.getString(1);
+            contact.phone = cursor.getString(2);
+            contact.mail = cursor.getString(3);
+            if(!cursor.isNull(4)){
                 contact.icon = new Uri.Builder().appendPath(cursor.getString(3)).build();
             }else {
                 contact.icon = null;
             }
-            contact.primary = cursor.getInt(4) == 1;
-            contact.timesContacted = cursor.getInt(5);
-            contact.starred = cursor.getInt(6) == 1;
-            contact.homeNumber = cursor.getInt(7) == 1;
-            if(!cursor.isNull(8)){
-                contact.name = cursor.getString(8);
+            contact.primary = cursor.getInt(5) == 1;
+            contact.timesContacted = cursor.getInt(6);
+            contact.starred = cursor.getInt(7) == 1;
+            contact.homeNumber = cursor.getInt(8) == 1;
+            if(!cursor.isNull(9)){
+                contact.name = cursor.getString(9);
             }
-            contact.name = null;
             contact.id = holderScheme + contact.lookupKey + contact.phone;
             if (contact.name != null) {
                 contact.nameLowerCased = contact.name.toLowerCase().replaceAll("[èéêë]", "e")
                         .replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
                         .replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("[ÈÉÊË]", "E");
             }
+            contacts.add(contact);
             cursor.moveToNext();
         }
         db.close();

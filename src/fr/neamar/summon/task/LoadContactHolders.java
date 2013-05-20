@@ -1,13 +1,14 @@
 package fr.neamar.summon.task;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import fr.neamar.summon.holder.ContactHolder;
 
 public class LoadContactHolders extends LoadHolders<ContactHolder> {
@@ -100,7 +101,7 @@ public class LoadContactHolders extends LoadHolders<ContactHolder> {
 			}
 		}
 		long end = System.nanoTime();
-		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list contacts");
+		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list " +contacts.size()+ " contacts");
 		return contacts;
 	}
 }
