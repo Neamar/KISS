@@ -2,17 +2,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-07-29T20:56:34\n"
-"PO-Revision-Date: 2012-09-13 00:39+0200\n"
-"Last-Translator: Innocenzo Ventre <el.diabl09@gmail.com>\n"
-"Language-Team: Italian <http://debian.weblate.org/projects/debian-handbook"
-"/05_packaging-system/it-IT/>\n"
-"Language: it-IT\n"
+"POT-Creation-Date: 2012-08-18T13:21:09\n"
+"PO-Revision-Date: 2013-05-19 12:22+0200\n"
+"Last-Translator: Daniele Forsi <dforsi@gmail.com>\n"
+"Language-Team: Italian <debian-l10n-italian@lists.debian.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
-"Content-Type: application/x-publican; charset=UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 1.2\n"
+"X-Generator: Virtaal 0.7.1\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -27,7 +26,7 @@ msgstr "Pacchetto sorgente"
 #. Tag: keyword
 #, no-c-format
 msgid "dpkg"
-msgstr "Dpkg"
+msgstr "dpkg"
 
 #. Tag: keyword
 #, no-c-format
@@ -52,12 +51,7 @@ msgstr "Come amministratore di sistema Debian, si gestiranno abitualmente pacche
 #. Tag: para
 #, no-c-format
 msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the source code, as well as instructions for building binary packages."
-msgstr ""
-"Questo capitolo descrive la struttura e il contenuto dei pacchetti «binari» "
-"e «sorgenti». I primi sono file <filename>.deb</filename>, direttamente "
-"utilizzabili da <command>dpkg</command>, mentre i secondi contengono il "
-"codice sorgente del programma e le istruzioni per costruire pacchetti "
-"binari."
+msgstr "Questo capitolo descrive la struttura e il contenuto dei pacchetti «binari» e «sorgenti». I primi sono file <filename>.deb</filename>, direttamente utilizzabili da <command>dpkg</command>, mentre i secondi contengono il codice sorgente e le istruzioni per costruire pacchetti binari."
 
 #. Tag: title
 #, no-c-format
@@ -77,12 +71,12 @@ msgstr "<primary><command>ar</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command>. This seemingly trivial property is important for portability and disaster recovery."
-msgstr "Il formato dei pacchetti Debian è progettato in modo che il suo contenuto possa essere estratto su qualsiasi sistema Unix che abbia i classici comandi <command>ar</command>, <command>tar</command>, e <command>gzip</command>. Questa proprietà apparentemente banale è importante per la portabilità e il disaster recovery."
+msgstr "Il formato dei pacchetti Debian è progettato in modo che il suo contenuto possa essere estratto su qualsiasi sistema Unix che abbia i classici comandi <command>ar</command>, <command>tar</command> e <command>gzip</command>. Questa proprietà apparentemente banale è importante per la portabilità e il disaster recovery."
 
 #. Tag: para
 #, no-c-format
 msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
-msgstr "Si immagini, per esempio, di aver eliminato per errore il programma <command>dpkg</command> e perciò non si possano più installare pacchetti Debian. Dal momento che <command>dpkg</command> è esso stesso un pacchetto Debian, sembrerebbe che il sistema sia spacciato… Fortunatamente, si conosce il formato di un pacchetto e perciò si può scaricare il file <filename>.deb</filename> del pacchetto <emphasis role=\"pkg\">dpkg</emphasis> e installarlo manualmente (si veda la barra laterale «STRUMENTI»). Se per sfortuna uno o più dei programmi <command>ar</command>, <command>tar</command> o <command>gzip</command> è scomparso, sarà necessario solamente copiare il programma mancante da un altro sistema (dal momento che ognuno di essi opera in maniera completamente autonoma, senza dipendenze, una semplice copia è sufficiente)."
+msgstr "Per esempio, si immagini di aver eliminato per errore il programma <command>dpkg</command> e perciò di non potere più installare pacchetti Debian. Dal momento che <command>dpkg</command> è esso stesso un pacchetto Debian, sembrerebbe che il sistema sia spacciato… Fortunatamente, si conosce il formato di un pacchetto e perciò si può scaricare il file <filename>.deb</filename> del pacchetto <emphasis role=\"pkg\">dpkg</emphasis> e installarlo manualmente (si veda la barra laterale «STRUMENTI»). Se per sfortuna uno o più dei programmi <command>ar</command>, <command>tar</command> o <command>gzip</command> è scomparso, sarà necessario solamente copiare il programma mancante da un altro sistema (dal momento che ognuno di essi opera in maniera completamente autonoma, senza dipendenze, una semplice copia è sufficiente)."
 
 #. Tag: title
 #, no-c-format
@@ -112,7 +106,7 @@ msgstr "<command>APT</command> è un gruppo di programmi che permette l'esecuzio
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents its many other operations. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the archive <filename>data.tar.gz</filename> in the system's root (<filename>/</filename>):"
-msgstr "<indexterm><primary><command>ar</command></primary></indexterm>Per quanto riguarda il programma <command>ar</command>, esso permette la gestione dei file con lo stesso nome: <command>ar t <replaceable>archivio</replaceable></command> visualizza l'elenco dei file contenuti in tale archivio, <command>ar x <replaceable>archivio</replaceable></command> estrae i file dall'archivio nella directory di lavoro corrente, <command>ar d <replaceable>archivio</replaceable> <replaceable>file</replaceable></command> elimina un file dall'archivio, ecc. La sua pagina man (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documenta le sue numerose operazioni. <command>ar</command> è uno strumento molto rudimentale che un amministratore Unix userebbe solo in rare occasioni, ma gli amministratori abitualmente usano <command>tar</command>, un programma di archiviazione e gestione file più evoluto. Questo è il motivo per cui è facile ripristinare <command>dpkg</command> in caso di una sua eliminazione accidentale. Si dovrebbe solo scaricare il pacchetto Debian ed estrarre il contenuto dall'archivio <filename>data.tar.gz</filename> alla radice del sistema (<filename>/</filename>):"
+msgstr "<indexterm><primary><command>ar</command></primary></indexterm>Per quanto riguarda il programma <command>ar</command>, esso permette la gestione dei file con lo stesso nome: <command>ar t <replaceable>archivio</replaceable></command> visualizza l'elenco dei file contenuti in tale archivio, <command>ar x <replaceable>archivio</replaceable></command> estrae i file dall'archivio nella directory di lavoro corrente, <command>ar d <replaceable>archivio</replaceable> <replaceable>file</replaceable></command> elimina un file dall'archivio, ecc. La sua pagina di manuale (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documenta le sue numerose operazioni. <command>ar</command> è uno strumento molto rudimentale che un amministratore Unix userebbe solo in rare occasioni, ma gli amministratori abitualmente usano <command>tar</command>, un programma di archiviazione e gestione file più evoluto. Questo è il motivo per cui è facile ripristinare <command>dpkg</command> in caso di una sua eliminazione accidentale. Si dovrebbe solo scaricare il pacchetto Debian ed estrarre il contenuto dall'archivio <filename>data.tar.gz</filename> alla radice del sistema (<filename>/</filename>):"
 
 #. Tag: screen
 #, no-c-format
@@ -128,12 +122,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Man page notation"
-msgstr "<emphasis>PRINCIPI</emphasis> Notazione delle pagine di manuale"
+msgstr "<emphasis>FONDAMENTALI</emphasis> Notazione delle pagine di manuale"
 
 #. Tag: para
 #, no-c-format
 msgid "It can be confusing for beginners to find references to “<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>” in the literature. This is generally a convenient means of referring to the man page entitled <literal>ar</literal> in section 1."
-msgstr "I principianti possono essere disorientati dal trovare riferimenti a «<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>» nella documentazione. Questo è generalmente un modo comodo per riferirsi a una pagina intitolata <literal>ar</literal> nella sezione 1."
+msgstr "I principianti possono essere disorientati dal trovare riferimenti a «<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>» nella documentazione. Questo è generalmente un modo comodo per riferirsi alla pagina di manuale intitolata <literal>ar</literal> nella sezione 1."
 
 #. Tag: para
 #, no-c-format
@@ -187,41 +181,6 @@ msgid ""
 "$ </computeroutput><userinput>cat debian-binary</userinput>\n"
 "<computeroutput>2.0</computeroutput>\n"
 msgstr ""
-"<computeroutput>$ </computeroutput><userinput>ar t "
-"dpkg_1.15.8.5_i386.deb</userinput>\n"
-"<computeroutput>debian-binary\n"
-"control.tar.gz\n"
-"data.tar.gz\n"
-"$ </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
-"<computeroutput>control.tar.gz  data.tar.gz  debian-binary  "
-"dpkg_1.15.8.5_i386.deb\n"
-"$ </computeroutput><userinput>tar tzf data.tar.gz | head -15</userinput>\n"
-"<computeroutput>./\n"
-"./var/\n"
-"./var/lib/\n"
-"./var/lib/dpkg/\n"
-"./var/lib/dpkg/updates/\n"
-"./var/lib/dpkg/parts/\n"
-"./var/lib/dpkg/info/\n"
-"./var/lib/dpkg/alternatives/\n"
-"./sbin/\n"
-"./sbin/start-stop-daemon\n"
-"./usr/\n"
-"./usr/sbin/\n"
-"./usr/sbin/install-info\n"
-"./usr/bin/\n"
-"./usr/bin/dpkg-split\n"
-"$ </computeroutput><userinput>tar tzf control.tar.gz</userinput>\n"
-"<computeroutput>./\n"
-"./control\n"
-"./preinst\n"
-"./md5sums\n"
-"./conffiles\n"
-"./postrm\n"
-"./postinst\n"
-"$ </computeroutput><userinput>cat debian-binary</userinput>\n"
-"<computeroutput>2.0</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -234,9 +193,9 @@ msgid "<filename>debian-binary</filename>. This is a text file which simply indi
 msgstr "<filename>debian-binary</filename>. Questo è un file di testo che indica semplicemente la versione del file <filename>.deb</filename> usato (nel 2011: versione 2.0)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information. In it, package management tools find, among other things, the name and version of the package. Some of this meta-information allows them to determine if it is possible to install or uninstall it, for example according to the list of packages already on the machine."
-msgstr "<filename>control.tar.gz</filename>. Questo file archivio contiene tutte le meta-informazioni disponibili. In esso, gli strumenti di gestione dei pacchetti trovano, tra le altre cose, il nome e la versione del pacchetto. Alcune di queste meta-informazioni permettono loro di determinare se è possibile installare o disinstallare i programmi all'interno, per esempio secondo l'elenco dei pacchetti già sulla macchina."
+msgstr "<filename>control.tar.gz</filename>. Questo file archivio contiene tutte le meta-informazioni disponibili. In esso, gli strumenti di gestione dei pacchetti trovano, tra le altre cose, il nome e la versione del pacchetto. Alcune di queste meta-informazioni permettono loro di determinare se è possibile installarlo o disinstallarlo, per esempio secondo l'elenco dei pacchetti già sulla macchina."
 
 #. Tag: para
 #, no-c-format
@@ -261,7 +220,7 @@ msgstr "<primary>pacchetto</primary><secondary>meta-informazioni</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The Debian package is not only an archive of files intended for installation. It is part of a larger whole, and it describes its relationship with other Debian packages (dependencies, conflicts, suggestions). It also provides scripts that enable the execution of commands at different stages in the package's lifecycle (installation, removal, upgrades). These data used by the package management tools are not part of the packaged software, but are, within the package, what is called its “meta-information” (information about other information)."
-msgstr "Il pacchetto Debian non è solo un archivio di file da installare. È parte di un insieme più ampio e descrive le proprie relazioni con altri pacchetti Debian (dipendenze, conflitti, suggerimenti). Fornisce anche degli script che permettono l'esecuzione di comandi nei diversi stadi del ciclo di vita del pacchetto (installazione, rimozione, aggiornamenti). Questi dati usati dagli strumenti di gestione dei pacchetti non fanno parte del software contenuto nel pacchetto, ma sono, all'interno del pacchetto, ciò che viene chiamato «meta-informazioni» (informazioni riguardanti altre informazioni)."
+msgstr "Il pacchetto Debian non è solo un archivio di file da installare. È parte di un insieme più ampio e descrive le proprie relazioni con altri pacchetti Debian (dipendenze, conflitti, consigli). Fornisce anche degli script che permettono l'esecuzione di comandi nei diversi stadi del ciclo di vita del pacchetto (installazione, rimozione, aggiornamenti). Questi dati usati dagli strumenti di gestione dei pacchetti non fanno parte del software contenuto nel pacchetto, ma sono, all'interno del pacchetto, ciò che viene chiamato «meta-informazioni» (informazioni riguardanti altre informazioni)."
 
 #. Tag: title
 #, no-c-format
@@ -276,7 +235,7 @@ msgstr "<primary><filename>control</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "This file uses a structure similar to email headers (as defined by RFC 2822). For example, for <emphasis role=\"pkg\">apt</emphasis>, the <filename>control</filename> file looks like the following:"
-msgstr "Questo file usa una struttura simile alle intestazioni delle email (come definite da RFC 2822). Per esempio, per <emphasis role=\"pkg\">apt</emphasis>, il file <filename>control</filename> è fatto così:"
+msgstr "Questo file usa una struttura simile alle intestazioni delle email (come definite dalla RFC 2822). Per esempio, per <emphasis role=\"pkg\">apt</emphasis>, il file <filename>control</filename> è fatto così:"
 
 #. Tag: screen
 #, no-c-format
@@ -351,7 +310,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> RFC — Internet standards"
-msgstr "<emphasis>PRINCIPI</emphasis> RFC — Internet standards"
+msgstr "<emphasis>FONDAMENTALI</emphasis> RFC — Standard per Internet"
 
 #. Tag: indexterm
 #, no-c-format
@@ -366,7 +325,7 @@ msgstr "<primary>Request For Comments</primary>"
 #. Tag: para
 #, no-c-format
 msgid "RFC is the abbreviation of “Request For Comments”. An RFC is generally a technical document that describes what will become an Internet standard. Before becoming standardized and frozen, these standards are submitted for public review (hence their name). The IETF (Internet Engineering Task Force) decides on the evolution of the status of these documents (proposed standard, draft standard, or standard)."
-msgstr "RFC è l'acronimo di «Request For Comments» («Richiesta di commenti»). Un RFC è generalmente un documento tecnico che descrive ciò che diventerà uno standard per Internet. Prima di diventare standardizzati e congelati, questi standard sono sottoposti a una revisione pubblica (da cui il loro nome). Lo IETF (Internet Engineering Task Force) decide sull'evoluzione e sullo stato di questi documenti (proposta di standard, bozza di standard, standard)."
+msgstr "RFC è l'acronimo di «Request For Comments» («Richiesta di commenti»). Una RFC è generalmente un documento tecnico che descrive ciò che diventerà uno standard per Internet. Prima di diventare standardizzati e congelati, questi standard sono sottoposti a una revisione pubblica (da cui il loro nome). La IETF (Internet Engineering Task Force) decide sull'evoluzione e sullo stato di questi documenti (proposta di standard, bozza di standard, standard)."
 
 #. Tag: para
 #, no-c-format
@@ -394,9 +353,9 @@ msgid "<primary>package</primary><secondary>dependency</secondary>"
 msgstr "<primary>pacchetto</primary><secondary>dipendenza</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the package to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
-msgstr "Le dipendenze sono definite nel campo <literal>Depends</literal> dell'intestazione del pacchetto. Questo è un elenco di condizioni che devono essere verificate perché il pacchetto lavori correttamente — queste informazioni sono usate da strumenti come <command>apt</command> per installare le librerie richieste, nelle loro versioni appropriate, dalle quali dipende il programma che deve essere installato. Per ogni dipendenza, è possibile restringere l'intervallo di versioni che verificano una condizione. In altre parole, è possibile esprimere il fatto che è necessario il pacchetto <emphasis role=\"pkg\">libc6</emphasis> in una versione uguale o superiore a «2.3.4» (scritto «<command>libc6 (&gt;= 2.3.4)</command>»). Gli operatori di confronto per la versione sono i seguenti:"
+msgstr "Le dipendenze sono definite nel campo <literal>Depends</literal> dell'intestazione del pacchetto. Questo è un elenco di condizioni che devono essere verificate perché il pacchetto lavori correttamente; queste informazioni sono usate da strumenti come <command>apt</command> per installare le librerie richieste, nelle loro versioni appropriate, dalle quali dipende il pacchetto che deve essere installato. Per ogni dipendenza, è possibile restringere l'intervallo di versioni che verificano una condizione. In altre parole, è possibile esprimere il fatto che è necessario il pacchetto <emphasis role=\"pkg\">libc6</emphasis> in una versione uguale o superiore a «2.3.4» (scritto «<command>libc6 (&gt;= 2.3.4)</command>»). Gli operatori di confronto per la versione sono i seguenti:"
 
 #. Tag: para
 #, no-c-format
@@ -426,7 +385,7 @@ msgstr "<command>&gt;&gt;</command>: maggiore."
 #. Tag: para
 #, no-c-format
 msgid "In a list of conditions to be met, the comma serves as a separator. In logic, its meaning would be interpreted as “and”. In conditions, the vertical bar (“|”) expresses “or” in logic (it is an inclusive “or”, as opposed to meaning “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
-msgstr "In un elenco di condizioni che devono essere verificate, la virgola serve come separatore. In logica il suo significato sarebbe interpretato come «and». Nelle condizioni, la barra verticale («|») esprime «or» in logica (è un «or» inclusivo, diverso dal significato «o... o...»). Ha una priorità superiore di «and» e può essere usato tante volte quanto necessario. Perciò, la dipendenza «(A o B) e C» viene scritta <command>A | B, C</command>. Invece l'espressione «A o (B e C)» deve essere scritta come «(A o B) e (A o C)», perché il campo <literal>Depends</literal> non accetta parentesi che cambino la priorità tra gli operatori logici «or» e «and». Verrebbe perciò scritta come <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
+msgstr "In un elenco di condizioni che devono essere verificate, la virgola serve come separatore. In logica il suo significato sarebbe interpretato come «and». Nelle condizioni, la barra verticale («|») esprime «or» in logica (è un «or» inclusivo, diverso dal significato «o... o...»). Ha una priorità superiore di «and» e può essere usata tante volte quanto necessario. Perciò, la dipendenza «(A o B) e C» viene scritta <command>A | B, C</command>. Invece l'espressione «A o (B e C)» deve essere scritta come «(A o B) e (A o C)», perché il campo <literal>Depends</literal> non accetta parentesi che cambino la priorità tra gli operatori logici «or» e «and». Verrebbe perciò scritta come <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -436,12 +395,12 @@ msgstr "<primary>meta-pacchetto</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The dependencies system is a good mechanism for guaranteeing the operation of a program, but it has another use with “meta-packages”. These are empty packages that only describe dependencies. They facilitate the installation of a consistent group of programs preselected by the meta-package maintainer; as such, <command>apt-get install <replaceable>meta-package</replaceable></command> will automatically install all of these programs using the meta-package's dependencies. The <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde</emphasis> and <emphasis role=\"pkg\">linux-image-2.6-686</emphasis> packages are examples of meta-packages."
-msgstr "Il sistema delle dipendenze è un buon meccanismo per garantire il funzionamento di un programma, ma ha un altro uso con i «meta-pacchetti». Questi sono pacchetti vuoti che descrivono solamente delle dipendenze. Essi facilitano l'installazione di grandi gruppi di programmi prescelti dal manutentore del pacchetto; in tal modo, <command>apt-get install <replaceable>meta-pacchetto</replaceable></command> installerà automaticamente tutti questi programmi usando le dipendenze del meta-pacchetto. Esempi di meta-pacchetti sono <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde</emphasis> e <emphasis role=\"pkg\">linux-image-2.6-686</emphasis>."
+msgstr "Il sistema delle dipendenze è un buon meccanismo per garantire il funzionamento di un programma, ma ha un altro uso con i «meta-pacchetti». Questi sono pacchetti vuoti che descrivono solamente delle dipendenze. Essi facilitano l'installazione di gruppi coerenti di programmi prescelti dal manutentore del meta-pacchetto; in tal modo, <command>apt-get install <replaceable>meta-pacchetto</replaceable></command> installerà automaticamente tutti questi programmi usando le dipendenze del meta-pacchetto. Esempi di meta-pacchetti sono <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde</emphasis> e <emphasis role=\"pkg\">linux-image-2.6-686</emphasis>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, a more demanding <literal>Depends</literal>"
-msgstr "<emphasis>POLICY DEBIAN</emphasis> <literal>Pre-Depends</literal>, più forte di <literal>Depends</literal>"
+msgstr "<emphasis>POLICY DEBIAN</emphasis> <literal>Pre-Depends</literal>, più esigente di <literal>Depends</literal>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -456,7 +415,7 @@ msgstr "<primary>pre-dipendenza</primary>"
 #. Tag: para
 #, no-c-format
 msgid "“Pre-dependencies”, which are listed in the “<literal>Pre-Depends</literal>” field in the package headers, complete the normal dependencies; their syntax is identical. A normal dependency indicates that the package in question must be unpacked and configured before the package declaring the dependency. A pre-dependency stipulates that the package in question must be unpacked and configured before execution of the pre-installation script of the package declaring the pre-dependency, that is before its installation."
-msgstr "Le «pre-dipendenze», che sono elencate nel campo «<literal>Pre-Depends</literal>» nelle intestazioni del pacchetto, completano le normali dipendenze; la loro sintassi è identica. Una normale dipendenza indica che il pacchetto in questione deve essere scompattato e configurato prima dell'esecuzione dello script di pre-installazione del pacchetto che dichiara la pre-dipendenza, cioè prima della sua installazione."
+msgstr "Le «pre-dipendenze», che sono elencate nel campo «<literal>Pre-Depends</literal>» nelle intestazioni del pacchetto, completano le normali dipendenze; la loro sintassi è identica. Una normale dipendenza indica che il pacchetto in questione deve essere scompattato e configurato prima del pacchetto che dichiara la pre-dipendenza. Una pre-dipendenza indica espressamente che il pacchetto in questione deve essere scompattato e configurato prima dell'esecuzione dello script di pre-installazione del pacchetto che dichiara la pre-dipendenza, cioè prima della sua installazione."
 
 #. Tag: para
 #, no-c-format
@@ -466,7 +425,7 @@ msgstr "Una pre-dipendenza è molto forte per <command>apt</command> perché agg
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Recommends</literal>, <literal>Suggests</literal>, and <literal>Enhances</literal> fields"
-msgstr "<emphasis>POLICY DEBIAN</emphasis> I campi <literal>Recommends</literal>, <literal>Suggests</literal>, e <literal>Enhances</literal>"
+msgstr "<emphasis>POLICY DEBIAN</emphasis> I campi <literal>Recommends</literal>, <literal>Suggests</literal> e <literal>Enhances</literal>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -481,12 +440,12 @@ msgstr "<primary><literal>Suggests</literal>, campo dell'intestazione</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Recommends</literal> and <literal>Suggests</literal> fields describe dependencies that are not compulsory. The “recommended” dependencies, the most important, considerably improve the functionality offered by the package but are not indispensable to its operation. The “suggested” dependencies, of secondary importance, indicate that certain packages may complement and increase their respective utility, but it is perfectly reasonable to install one without the others."
-msgstr "I campi <literal>Recommends</literal> e <literal>Suggests</literal> descrivono dipendenze non obbligatorie. Le dipendenze «raccomandate», le più importanti, migliorano considerevolmente le funzionalità offerte dal pacchetto, ma non sono indispensabili al suo funzionamento. Le dipendenze «suggerite», di importanza secondaria, indicano che certi pacchetti possono integrare o aumentare la loro rispettiva utilità, ma è perfettamente ragionevole installarne uno senza gli altri."
+msgstr "I campi <literal>Recommends</literal> e <literal>Suggests</literal> descrivono dipendenze non obbligatorie. Le dipendenze «raccomandate», le più importanti, migliorano considerevolmente le funzionalità offerte dal pacchetto, ma non sono indispensabili al suo funzionamento. Le dipendenze «consigliate», di importanza secondaria, indicano che certi pacchetti possono integrare o aumentare la loro rispettiva utilità, ma è perfettamente ragionevole installarne uno senza gli altri."
 
 #. Tag: para
 #, no-c-format
 msgid "You should always install the “recommended” packages, unless you know exactly why you do not need them. Conversely, it is not necessary to install “suggested” packages unless you know why you need them."
-msgstr "Si dovrebbe sempre installare i pacchetti «raccomandati», a meno che non si sappia esattamente perché non se ne ha bisogno. Al contrario, non è necessario installare i pacchetti «suggeriti» a meno che non si sappia perché se ne ha bisogno."
+msgstr "Si dovrebbe sempre installare i pacchetti «raccomandati», a meno che non si sappia esattamente perché non se ne ha bisogno. Al contrario, non è necessario installare i pacchetti «consigliati» a meno che non si sappia perché se ne ha bisogno."
 
 #. Tag: indexterm
 #, no-c-format
@@ -496,7 +455,7 @@ msgstr "<primary><literal>Enhances</literal>, campo dell'intestazione</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Enhances</literal> field also describes a suggestion, but in a different context. It is indeed located in the suggested package, and not in the package that benefits from the suggestion. Its interest lies in that it is possible to add a suggestion without having to modify the package that is concerned. Thus, all add-ons, plug-ins, and other extensions of a program can then take place in the list of suggestions related to the software. Although it has existed for several years, this last field is still largely ignored by programs such as <command>apt-get</command> or <command>synaptic</command>. Its purpose is for a suggestion made by the <literal>Enhances</literal> field to appear to the user in addition to the traditional suggestions — found in the <literal>Suggests</literal> field."
-msgstr "Anche il campo <literal>Enhances</literal> descrive un suggerimento, ma in un contesto differente. Infatti si trova nel pacchetto suggerito, non nel pacchetto che beneficia del suggerimento. È interessante perché è possibile aggiungere un suggerimento senza dover modificare il pacchetto interessato. Perciò tutte le aggiunte, plug-in e altre estensioni a un programma possono prendere posto nell'elenco di suggerimenti relativi a quel software. Sebbene esista da diversi anni, quest'ultimo campo è ancora largamente ignorato da programmi come <command>apt-get</command> or <command>synaptic</command>. Il suo scopo è far apparire all'utente un suggerimento fatto dal campo <literal>Enhances</literal> in aggiunta ai tradizionali suggerimenti — trovati nel campo <literal>Suggests</literal>."
+msgstr "Anche il campo <literal>Enhances</literal> descrive un consiglio, ma in un contesto differente. Infatti si trova nel pacchetto consigliato, non nel pacchetto che beneficia del consiglio. È interessante perché è possibile aggiungere un consiglio senza dover modificare il pacchetto interessato. Perciò tutte le aggiunte, plug-in e altre estensioni a un programma possono prendere posto nell'elenco di consigli relativi a quel software. Sebbene esista da diversi anni, quest'ultimo campo è ancora largamente ignorato da programmi come <command>apt-get</command> o <command>synaptic</command>. Il suo scopo è far apparire all'utente un consiglio fatto dal campo <literal>Enhances</literal> in aggiunta ai tradizionali consigli trovati nel campo <literal>Suggests</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -521,10 +480,10 @@ msgstr "<primary>pacchetto</primary><secondary>conflitto</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Conflicts</literal> field indicates when a package cannot be installed simultaneously with another. The most common reasons for this are that both packages include a file containing the same name, or provide the same service on the same TCP port, or would hinder each other's operation."
-msgstr "Il campo <literal>Conflicts</literal> indica quando un pacchetto non può essere installato simultaneamente ad un altro. La ragione più comune è che entrambi i pacchetti contengono un file con lo stesso nome o forniscono il solito servizio sulla stessa porta TCP o si ostacolerebbero a vicenda nel funzionamento."
+msgstr "Il campo <literal>Conflicts</literal> indica quando un pacchetto non può essere installato insieme a un altro. La ragione più comune è che entrambi i pacchetti contengono un file con lo stesso nome o forniscono il solito servizio sulla stessa porta TCP o si ostacolerebbero a vicenda nel funzionamento."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<command>dpkg</command> will refuse to install a package if it triggers a conflict with an already installed package, except if the new package specifies that it will “replace” the installed package, in which case <command>dpkg</command> will choose to replace the old package with the new one. <command>apt-get</command> always follows your instructions: if you choose to install a new package, it will automatically offer to uninstall the package that poses a problem."
 msgstr "<command>dpkg</command> si rifiuterà di installare un pacchetto che provoca un conflitto con un pacchetto già installato, a meno che il nuovo pacchetto non specifichi che «sostituisce» il pacchetto installato, nel qual caso <command>dpkg</command> sceglierà di sostituire il vecchio pacchetto con quello nuovo. <command>apt-get</command> segue sempre le istruzioni: se si sceglie di installare un nuovo pacchetto, offrirà automaticamente di disinstallare il pacchetto che crea un problema."
 
@@ -551,12 +510,12 @@ msgstr "<primary>pacchetto</primary><secondary>incompatibilità</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Breaks</literal> field has an effect similar to that of the <literal>Conflicts</literal> field, but with a special meaning. It signals that the installation of a package will “break” another package (or particular versions of it). In general, this incompatibility between two packages is transitory, and the <literal>Breaks</literal> relationship specifically refers to the incompatible versions."
-msgstr "Il campo <literal>Breaks</literal> ha un effetto simile a <literal>Conflicts</literal>, ma con un significato speciale. Segnala che l'installazione di un pacchetto «danneggerà» un altro pacchetto (o delle sue versioni particolari). In generale, questa incompatibilità tra due pacchetti è transitoria e la relazione <literal>Breaks</literal> fa specifico riferimento alle versioni incompatibili."
+msgstr "Il campo <literal>Breaks</literal> ha un effetto simile a <literal>Conflicts</literal>, ma con un significato speciale. Segnala che l'installazione di un pacchetto «renderà difettoso» un altro pacchetto (o delle sue versioni particolari). In generale, questa incompatibilità tra due pacchetti è transitoria e la relazione <literal>Breaks</literal> fa specifico riferimento alle versioni incompatibili."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> will refuse to install a package that breaks an already installed package, and <command>apt-get</command> will try to resolve the problem by updating the package that would be broken to a newer version (which is assumed to be fixed and, thus, compatible again)."
-msgstr "<command>dpkg</command> si rifiuterà di installare un pacchetto che danneggia un pacchetto già installato e <command>apt-get</command> cercherà di risolvere il problema aggiornando il pacchetto che sarebbe danneggiato ad una nuova versione (che si suppone corretta, perciò, di nuovo compatibile)."
+msgstr "<command>dpkg</command> si rifiuterà di installare un pacchetto che rende difettoso un pacchetto già installato e <command>apt-get</command> cercherà di risolvere il problema aggiornando il pacchetto che sarebbe reso difettoso a una nuova versione (che si suppone corretta e, perciò, di nuovo compatibile)."
 
 #. Tag: para
 #, no-c-format
@@ -601,7 +560,7 @@ msgstr "È essenziale distinguere chiaramente i meta-pacchetti dai pacchetti vir
 #. Tag: para
 #, no-c-format
 msgid "Virtual packages, however, do not exist physically; they are only a means of identifying real packages based on common, logical criteria (service provided, compatibility with a standard program or a pre-existing package, etc.)."
-msgstr "I pacchetti virtuali, invece, non esistono fisicamente; sono solo un mezzo per identificare pacchetti reali basati su criteri comuni e logici (servizio fornito, compatibilità con un programma standard o con un pacchetto preesistente."
+msgstr "I pacchetti virtuali, invece, non esistono fisicamente; sono solo un mezzo per identificare pacchetti reali in base a criteri comuni e logici (servizio fornito, compatibilità con un programma standard o con un pacchetto preesistente, ecc.)."
 
 #. Tag: title
 #, no-c-format
@@ -611,7 +570,7 @@ msgstr "Fornire un «servizio»"
 #. Tag: para
 #, no-c-format
 msgid "Let us discuss the first case in greater detail with an example: all mail servers, such as <emphasis role=\"pkg\">postfix</emphasis> or <emphasis role=\"pkg\">sendmail</emphasis> are said to “provide” the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. Thus, any package that needs this service to be functional (e.g. a mailing list manager, such as <emphasis role=\"pkg\">smartlist</emphasis> or <emphasis role=\"pkg\">sympa</emphasis>) simply states in its dependencies that it requires a <emphasis role=\"pkg\">mail-transport-agent</emphasis> instead of specifying a large yet incomplete list of possible solutions (e.g. <command>postfix | sendmail | exim | …</command>). Furthermore, it is useless to install two mail servers on the same machine, which is why each of these packages declares a conflict with the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. The conflict with itself is ignored by the system, but this technique will prohibit the installation of two mail servers side by side."
-msgstr "Il primo caso può essere discusso nei dettagli con un esempio: si dice che tutti server di posta come <emphasis role=\"pkg\">postfix</emphasis> o <emphasis role=\"pkg\">sendmail</emphasis> «forniscono» il pacchetto virtuale <emphasis role=\"pkg\">mail-transport-agent</emphasis>. Perciò, ogni pacchetto che abbia bisogno di questo servizio per funzionare (es. un gestore di mailing list come <emphasis role=\"pkg\">smartlist</emphasis> o <emphasis role=\"pkg\">sympa</emphasis>) semplicemente dichiara nelle proprie dipendenze di richiedere <emphasis role=\"pkg\">mail-transport-agent</emphasis> invece di specificare un elenco lungo e, nonostante ciò, incompleto di possibili soluzioni (es. <command>postfix | sendmail | exim | …</command>). Inoltre è inutile installare due server di posta sulla stessa macchina, ciò è il motivo per cui ognuno di tali pacchetti dichiara un conflitto con il pacchetto virtuale <emphasis role=\"pkg\">mail-transport-agent</emphasis>. Il conflitto in sé è ignorato dal sistema, ma questa tecnica proibisce l'installazione contemporanea di due server di posta."
+msgstr "Il primo caso può essere discusso nei dettagli con un esempio: si dice che tutti server di posta come <emphasis role=\"pkg\">postfix</emphasis> o <emphasis role=\"pkg\">sendmail</emphasis> «forniscono» il pacchetto virtuale <emphasis role=\"pkg\">mail-transport-agent</emphasis>. Perciò, ogni pacchetto che abbia bisogno di questo servizio per funzionare (es. un gestore di mailing list come <emphasis role=\"pkg\">smartlist</emphasis> o <emphasis role=\"pkg\">sympa</emphasis>) semplicemente dichiara nelle proprie dipendenze di richiedere <emphasis role=\"pkg\">mail-transport-agent</emphasis> invece di specificare un elenco lungo e, nonostante ciò, incompleto di possibili soluzioni (es. <command>postfix | sendmail | exim | …</command>). Inoltre è inutile installare due server di posta sulla stessa macchina, questo è il motivo per cui ognuno di tali pacchetti dichiara un conflitto con il pacchetto virtuale <emphasis role=\"pkg\">mail-transport-agent</emphasis>. Il conflitto di un pacchetto con sé stesso viene ignorato dal sistema, ma questa tecnica proibisce l'installazione contemporanea di due server di posta."
 
 #. Tag: title
 #, no-c-format
@@ -621,7 +580,7 @@ msgstr "<emphasis>POLICY DEBIAN</emphasis> Elenco di pacchetti virtuali"
 #. Tag: para
 #, no-c-format
 msgid "For virtual packages to be useful, everyone must agree on their name. This is why they are standardized in the Debian Policy. The list includes among others <emphasis role=\"pkg\">mail-transport-agent</emphasis> for mail servers, <emphasis role=\"pkg\">c-compiler</emphasis> for C programming language compilers, <emphasis role=\"pkg\">www-browser</emphasis> for web browsers, <emphasis role=\"pkg\">httpd</emphasis> for web servers, <emphasis role=\"pkg\">ftp-server</emphasis> for FTP servers, <emphasis role=\"pkg\">x-terminal-emulator</emphasis> for terminal emulators in graphical mode (<command>xterm</command> ), and <emphasis role=\"pkg\">x-window-manager</emphasis> for window managers."
-msgstr "Perché i pacchetti virtuali siano utili, ognuno deve concordare sul loro nome. Questo è il motivo per cui sono standardizzati nella Policy Debian. L'elenco include tra gli altri <emphasis role=\"pkg\">mail-transport-agent</emphasis> per i server di posta, <emphasis role=\"pkg\">c-compiler</emphasis> per i compilatori del linguaggio di programmazione C, <emphasis role=\"pkg\">www-browser</emphasis> per i browser web, <emphasis role=\"pkg\">httpd</emphasis> per i server web, <emphasis role=\"pkg\">ftp-server</emphasis> per i server FTP, <emphasis role=\"pkg\">x-terminal-emulator</emphasis> per gli emulatori di terminale in modalità grafica (<command>xterm</command>) e<emphasis role=\"pkg\">x-window-manager</emphasis> per i window manager."
+msgstr "Perché i pacchetti virtuali siano utili, tutti devono concordare sul loro nome. Questo è il motivo per cui sono standardizzati nella Policy Debian. L'elenco include tra gli altri <emphasis role=\"pkg\">mail-transport-agent</emphasis> per i server di posta, <emphasis role=\"pkg\">c-compiler</emphasis> per i compilatori del linguaggio di programmazione C, <emphasis role=\"pkg\">www-browser</emphasis> per i browser web, <emphasis role=\"pkg\">httpd</emphasis> per i server web, <emphasis role=\"pkg\">ftp-server</emphasis> per i server FTP, <emphasis role=\"pkg\">x-terminal-emulator</emphasis> per gli emulatori di terminale in modalità grafica (<command>xterm</command>) e <emphasis role=\"pkg\">x-window-manager</emphasis> per i window manager."
 
 #. Tag: para
 #, no-c-format
@@ -636,12 +595,12 @@ msgstr "Interscambiabilità con un altro pacchetto"
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Provides</literal> field is again interesting when the content of a package is included in a larger package. For example, the <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> Perl module was an optional module in Perl 5.6, and has been integrated as standard in Perl 5.8 (and later versions, such as 5.10 present in <emphasis role=\"distribution\">Squeeze</emphasis>). As such, the package <emphasis role=\"pkg\">perl</emphasis> has since version 5.8 declared <literal>Provides: libdigest-md5-perl</literal> so that the dependencies on this package are met if the user has Perl 5.8 or 5.10. The <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> package itself has eventually been deleted, since it no longer had any purpose when old Perl versions were removed."
-msgstr "Il campo <literal>Provides</literal> è ancora interessante quando il contenuto di un pacchetto è incluso in un pacchetto più grande, Per esempio, il modulo Perl <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> era un modulo opzionale in Perl 5.6 ed è stato integrato come standard in Perl 5.8 (e in versioni successive, come la 5.10 presente in <emphasis role=\"distribution\">Squeeze</emphasis>). Perciò, dalla versione 5.8 il pacchetto <emphasis role=\"pkg\">perl</emphasis> ha dichiarato <literal>Provides: libdigest-md5-perl</literal> così che le dipendenze su questo pacchetto sono soddisfate se l'utente ha Perl 5.8 o 5.10. Il pacchetto <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> vero e proprio è stato infine eliminato dal momento che non aveva più alcuno scopo quando le vecchie versioni di Perl sono state rimosse."
+msgstr "Il campo <literal>Provides</literal> è interessante anche quando il contenuto di un pacchetto è incluso in un pacchetto più grande. Per esempio, il modulo Perl <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> era un modulo opzionale in Perl 5.6 ed è stato integrato come standard in Perl 5.8 (e in versioni successive, come la 5.10 presente in <emphasis role=\"distribution\">Squeeze</emphasis>). Perciò, dalla versione 5.8 il pacchetto <emphasis role=\"pkg\">perl</emphasis> ha dichiarato <literal>Provides: libdigest-md5-perl</literal> così che le dipendenze da questo pacchetto sono soddisfate se l'utente ha Perl 5.8 o 5.10. Il pacchetto <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> vero e proprio è stato infine eliminato dal momento che non aveva più alcuno scopo quando le vecchie versioni di Perl sono state rimosse."
 
 #. Tag: title
 #, no-c-format
 msgid "Use of a <literal>Provides</literal> field in order to not break dependencies"
-msgstr "Uso del campo <literal>Provides</literal> per non danneggiare le dipendenze"
+msgstr "Uso del campo <literal>Provides</literal> per non lasciare dipendenze non soddisfatte"
 
 #. Tag: para
 #, no-c-format
@@ -651,7 +610,7 @@ msgstr "Questa caratteristica è molto utile dal momento che non è mai possibil
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Perl, a programming language"
-msgstr "<emphasis>PRINCIPI</emphasis> Perl, un linguaggio di programmazione"
+msgstr "<emphasis>FONDAMENTALI</emphasis> Perl, un linguaggio di programmazione"
 
 #. Tag: indexterm
 #, no-c-format
@@ -666,12 +625,12 @@ msgstr "<primary>CPAN</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Perl (Practical Extraction and Report Language) is a very popular programming language. It has many ready-to-use modules that cover a vast spectrum of applications, and that are distributed by the CPAN (Comprehensive Perl Archive Network) servers, an exhaustive network of Perl packages. <ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
-msgstr "Perl (Practical Extraction and Report Language) è un linguaggio di programmazione molto popolare. Ha molti moduli pronti all'uso che coporno un vasto spettro di applicazioni e che sono distribuiti tramite i server CPAN (Comprehensive Perl Archive Network), una completa rete di pacchetti Perl. <ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
+msgstr "Perl (Practical Extraction and Report Language) è un linguaggio di programmazione molto popolare. Ha molti moduli pronti all'uso che coprono un vasto spettro di applicazioni e che sono distribuiti tramite i server CPAN (Comprehensive Perl Archive Network), una completa rete di pacchetti Perl. <ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Since it is an interpreted language, a program written in Perl does not require compilation prior to execution. This is why they are called “Perl scripts”."
-msgstr "Dal momento che è un linguaggio interpretato, un programma scritto in Perl non richiede una compilazione prima dell'esecuzione. Questo è l motivo per cui sono chiamati «script Perl»."
+msgstr "Dal momento che è un linguaggio interpretato, un programma scritto in Perl non richiede una compilazione prima dell'esecuzione. Questo è il motivo per cui sono chiamati «script Perl»."
 
 #. Tag: title
 #, no-c-format
@@ -681,7 +640,7 @@ msgstr "Limitazioni attuali"
 #. Tag: para
 #, no-c-format
 msgid "Virtual packages suffer from some troubling limitations, the most significant of which being the absence of a version number. To return to the previous example, a dependency such as <literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal>, despite the presence of Perl 5.10, will never be considered as satisfied by the packaging system — while in fact it most likely is satisfied. Unaware of this, the package system chooses the least risky option, assuming that the versions do not match."
-msgstr "I pacchetti virtuali soffrono di alcune limitazioni problematiche, la più significativa delle quali è l'assenza di un numero di versione. Per tornare all'esempio precedente, una dipendenza come <literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal>, nonostante la presenza di Perl 5.10, non sarà mai considerata soddisfatta dal sistema dei pacchetti — mentre in realtà molto probabilmente è soddisfatta. Inconsapevole di ciò, il sistema dei pacchetti sceglie l'opzione meno rischiosa supponendo che le versioni non coincidano."
+msgstr "I pacchetti virtuali soffrono di alcune limitazioni problematiche, la più significativa delle quali è l'assenza di un numero di versione. Per tornare all'esempio precedente, una dipendenza come <literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal>, nonostante la presenza di Perl 5.10, non sarà mai considerata soddisfatta dal sistema dei pacchetti, mentre in realtà molto probabilmente è soddisfatta. Inconsapevole di ciò, il sistema dei pacchetti sceglie l'opzione meno rischiosa supponendo che le versioni non coincidano."
 
 #. Tag: title
 #, no-c-format
@@ -691,7 +650,7 @@ msgstr "<emphasis>APPROFONDIMENTI</emphasis> Versioni dei pacchetti virtuali"
 #. Tag: para
 #, no-c-format
 msgid "Although today virtual packages can't have versions, this will not necessarily always be the case. Indeed, <command>apt</command> is already able to manage the versions of virtual packages and it is likely that <command>dpkg</command> eventually will too. We will then be able to write fields such as <literal>Provides: libstorable-perl (= 1.7)</literal> to indicate that a package provides the same functionality as <emphasis role=\"pkg\">libstorable-perl</emphasis> in its 1.7 version."
-msgstr "Sebbene oggi i pacchetti virtuali non possano avere versioni, non sarà sempre così. Infatti, <command>apt</command> è già in grado di gestire le versioni dei pacchetti virtuali ed è probabile che alla fine lo faccia anche <command>dpkg</command>. Sarà quidi possibile scrivere campi come <literal>Provides: libstorable-perl (= 1.7)</literal> per indicare che un pacchetto fornisce le stesse funzionalità della versione 1.7 di <emphasis role=\"pkg\">libstorable-perl</emphasis>."
+msgstr "Sebbene oggi i pacchetti virtuali non possano avere versioni, non sarà necessariamente sempre così. Infatti, <command>apt</command> è già in grado di gestire le versioni dei pacchetti virtuali ed è probabile che alla fine lo faccia anche <command>dpkg</command>. Sarà quindi possibile scrivere campi come <literal>Provides: libstorable-perl (= 1.7)</literal> per indicare che un pacchetto fornisce le stesse funzionalità della versione 1.7 di <emphasis role=\"pkg\">libstorable-perl</emphasis>."
 
 #. Tag: title
 #, no-c-format
@@ -771,12 +730,12 @@ msgstr "<primary><filename>control.tar.gz</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "In addition to the <filename>control</filename> file, the <filename>control.tar.gz</filename> archive for each Debian package may contain a number of scripts, called by <command>dpkg</command> at different stages in the processing of a package. The Debian Policy describes the possible cases in detail, specifying the scripts called and the arguments that they receive. These sequences may be complicated, since if one of the scripts fails, <command>dpkg</command> will try to return to a satisfactory state by canceling the installation or removal in progress (insofar as it is possible)."
-msgstr "In aggiunta al file <filename>control</filename>, l'archivio <filename>control.tar.gz</filename> per ogni pacchetto Debian può contenere numerosi script, chiamati da <command>dpkg</command> a differenti stadi dell'elaborazione di un pacchetto. La Policy Debian descrive nei dettagli i casi possibili, specificando gli script chiamati e gli argomenti che ricevono. Queste sequenza possono essere complicate, dal momento che, se uno degli script fallisce, <command>dpkg</command> cercherà di ritornare a uno stato soddisfacente annullando l'installazione o la rimozione in corso (per quanto possibile)."
+msgstr "In aggiunta al file <filename>control</filename>, l'archivio <filename>control.tar.gz</filename> per ogni pacchetto Debian può contenere alcuni script, chiamati da <command>dpkg</command> a differenti stadi dell'elaborazione di un pacchetto. La Policy Debian descrive nei dettagli i casi possibili, specificando gli script chiamati e gli argomenti che ricevono. Queste sequenze possono essere complicate, dal momento che, se uno degli script fallisce, <command>dpkg</command> cercherà di ritornare a uno stato soddisfacente annullando l'installazione o la rimozione in corso (per quanto possibile)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command> data directory"
-msgstr "<emphasis>APPROFONDIMENTI</emphasis> la directory dei dati di <command>dpkg</command>"
+msgstr "<emphasis>APPROFONDIMENTI</emphasis> La directory dei dati di <command>dpkg</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -786,7 +745,7 @@ msgstr "<primary><filename>/var/lib/dpkg/</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "All of the configuration scripts for installed packages are stored in the <filename>/var/lib/dpkg/info/</filename> directory, in the form of a file prefixed with the package's name. This directory also includes a file with the <filename>.list</filename> extension for each package, containing the list of files that belong to that package."
-msgstr "Tutti gli script di configurazione per i pacchetti installati sono memorizzati nella directory <filename>/var/lib/dpkg/info/</filename>, sotto forma di file prefissati con il nome del pacchetto. Questa directory comprende anche un file con l'estensione <filename>.list</filename> per ogni pacchetto, che contiene l'elenco dei file che appartengono a tale pacchetto."
+msgstr "Tutti gli script di configurazione per i pacchetti installati sono memorizzati nella directory <filename>/var/lib/dpkg/info/</filename>, sotto forma di file il cui nome inizia con il nome del pacchetto. Questa directory comprende anche un file con l'estensione <filename>.list</filename> per ogni pacchetto, che contiene l'elenco dei file che appartengono a tale pacchetto."
 
 #. Tag: para
 #, no-c-format
@@ -796,7 +755,7 @@ msgstr "Il file <filename>/var/lib/dpkg/status</filename> contiene una serie di 
 #. Tag: para
 #, no-c-format
 msgid "In general, the <filename>preinst</filename> script is executed prior to installation of the package, while the <filename>postinst</filename> follows it. Likewise, <filename>prerm</filename> is invoked before removal of a package and <filename>postrm</filename> afterwards. An update of a package is equivalent to removal of the previous version and installation of the new one. It is not possible to describe in detail all the possible scenarios here, but we will discuss the most common two: an installation/update and a removal."
-msgstr "In genere, lo script <filename>preinst</filename> viene eseguito prima dell'installazione del pacchetto, mentre <filename>postinst</filename> la segue. Nella stessa maniera, <filename>prerm</filename> viene invocato prima della rimozione di un pacchetto e <filename>postrm</filename> dopo. Un aggiornamento di un pacchetto equivale alla rimozione della versione precedente e all'installazione di quella nuova. Non è possibile descrivere nei dettagli tutti i possibili scenari, ma daranno discussi i due più comuni: un'installazione/aggiornamento e una rimozione."
+msgstr "In genere, lo script <filename>preinst</filename> viene eseguito prima dell'installazione del pacchetto, mentre <filename>postinst</filename> la segue. Nella stessa maniera, <filename>prerm</filename> viene invocato prima della rimozione di un pacchetto e <filename>postrm</filename> dopo. Un aggiornamento di un pacchetto equivale alla rimozione della versione precedente e all'installazione di quella nuova. Non è possibile qui descrivere nei dettagli tutti i possibili scenari, ma saranno discussi i due più comuni: un'installazione/aggiornamento e una rimozione."
 
 #. Tag: title
 #, no-c-format
@@ -806,7 +765,7 @@ msgstr "<emphasis>ATTENZIONE</emphasis> Nomi simbolici degli script"
 #. Tag: para
 #, no-c-format
 msgid "The sequences described in this section call configuration scripts by specific names, such as <command>old-prerm</command> or <command>new-postinst</command>. They are, respectively, the <command>prerm</command> script contained in the old version of the package (installed before the update) and the <command>postinst</command> script contained in the new version (installed by the update)."
-msgstr "Le sequenze descritte in questa sezione chiamano gli script di configurazione con nomi specifici come <command>old-prerm</command> or <command>new-postinst</command>. Sono rispettivamente lo script <command>prerm</command> contenuto nella vecchia versione del pacchetto (installata prima dell'aggiornamento) e lo script <command>postinst</command> contenuto nella nuova versione (installata dall'aggiornamento)."
+msgstr "Le sequenze descritte in questa sezione chiamano gli script di configurazione con nomi specifici come <command>old-prerm</command> o <command>new-postinst</command>. Sono rispettivamente lo script <command>prerm</command> contenuto nella vecchia versione del pacchetto (installata prima dell'aggiornamento) e lo script <command>postinst</command> contenuto nella nuova versione (installata dall'aggiornamento)."
 
 #. Tag: title
 #, no-c-format
@@ -816,7 +775,7 @@ msgstr "<emphasis>SUGGERIMENTO</emphasis> Diagrammi di stato"
 #. Tag: para
 #, no-c-format
 msgid "Manoj Srivastava made these diagrams explaining how the configuration scripts are called by <command>dpkg</command>. Similar diagrams have also been developed by the Debian Women project; they are a bit simpler to understand, but less complete. <ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
-msgstr "Manoj Srivastava ha creato questi diagrammi che spiegano come gli script di configurazione vengono chiamati da <command>dpkg</command>. Diagrammi simili sono stai sviluppati anche dal progetto Debian Women; sono un po' più semplici da comprendere, ma meno completi <ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
+msgstr "Manoj Srivastava ha creato questi diagrammi che spiegano come gli script di configurazione vengono chiamati da <command>dpkg</command>. Diagrammi simili sono stati sviluppati anche dal progetto Debian Women; sono un po' più semplici da comprendere, ma meno completi <ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
 
 #. Tag: title
 #, no-c-format
@@ -836,7 +795,7 @@ msgstr "Per un aggiornamento, <command>dpkg</command> chiama <command>old-prerm 
 #. Tag: para
 #, no-c-format
 msgid "Still for an update, <command>dpkg</command> then executes <command>new-preinst upgrade <replaceable>old-version</replaceable></command>; for a first installation, it executes <command>new-preinst install</command>. It may add the old version in the last parameter, if the package has already been installed and removed since (but not purged, the configuration files having been retained)."
-msgstr "Per un aggiornamento, <command>dpkg</command> poi esegue <command>new-preinst upgrade <replaceable>old-version</replaceable></command>; per una prima installazione, esegue <command>new-preinst install</command>. Può anche aggiungere la vecchia versione nell'ultimo parametro, se il pacchetto è già stato installato e rimosso (ma non completamente e i vecchi file di configurazione sono stati conservati)."
+msgstr "Per un aggiornamento, <command>dpkg</command> poi esegue <command>new-preinst upgrade <replaceable>vecchia-versione</replaceable></command>; per una prima installazione, esegue <command>new-preinst install</command>. Può anche aggiungere la vecchia versione nell'ultimo parametro, se il pacchetto è già stato installato e rimosso (ma non completamente e i vecchi file di configurazione sono stati conservati)."
 
 #. Tag: para
 #, no-c-format
@@ -886,17 +845,17 @@ msgstr "<command>dpkg</command> rimuove tutti i file del pacchetto, con l'eccezi
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> executes <command>postrm remove</command>. All of the configuration scripts, except <filename>postrm</filename>, are removed. If the user has not used the “purge” option, the operations are completed there."
-msgstr "<command>dpkg</command> esegue <command>postrm remove</command>. Tutti gli script di configurazione, eccetto <filename>postrm</filename>, vengono rimossi. Se l'utente non ha usato l'opzione «purge», le operazioni cono terminate qui."
+msgstr "<command>dpkg</command> esegue <command>postrm remove</command>. Tutti gli script di configurazione, eccetto <filename>postrm</filename>, vengono rimossi. Se l'utente non ha usato l'opzione «purge», le operazioni sono terminate qui."
 
 #. Tag: para
 #, no-c-format
 msgid "For a complete purge of the package (command issued with <command>dpkg --purge</command> or <command>dpkg -P</command>), the configuration files are also deleted, as well as a certain number of copies (<filename>*.dpkg-tmp</filename>, <filename>*.dpkg-old</filename>, <filename>*.dpkg-new</filename>) and temporary files; <command>dpkg</command> then executes <command>postrm purge</command>."
-msgstr "Per un rimozione completa del pacchetto (comando impartito con <command>dpkg --purge</command> o <command>dpkg -P</command>), anche i file di configurazione vengono eliminati, così come certe copie (<filename>*.dpkg-tmp</filename>, <filename>*.dpkg-old</filename>, <filename>*.dpkg-new</filename>) e certi file temporanei; poi <command>dpkg</command> esegue <command>postrm purge</command>."
+msgstr "Per una eliminazione completa del pacchetto (comando impartito con <command>dpkg --purge</command> o <command>dpkg -P</command>), anche i file di configurazione vengono eliminati, così come certe copie (<filename>*.dpkg-tmp</filename>, <filename>*.dpkg-old</filename>, <filename>*.dpkg-new</filename>) e certi file temporanei; poi <command>dpkg</command> esegue <command>postrm purge</command>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg</command>, internal operation</primary>"
-msgstr "<primary><command>dpkg</command>, operazioni interne</primary>"
+msgstr "<primary><command>dpkg</command>, funzionamento interno</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -906,22 +865,22 @@ msgstr "<primary><filename>config</filename>, script di <filename>debconf</filen
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Purge, complete removal"
-msgstr "<emphasis>VOCABOLARIO</emphasis> Purge, rimozione completa"
+msgstr "<emphasis>VOCABOLARIO</emphasis> Purge, eliminazione completa"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>purge of a package</primary>"
-msgstr "<primary>rimozione completa di un pacchetto</primary>"
+msgstr "<primary>eliminazione completa di un pacchetto</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When a Debian package is removed, the configuration files are retained in order to facilitate possible re-installation. Likewise, the data generated by a daemon (such as the content of an LDAP server directory, or the content of a database for an SQL server) are usually retained."
-msgstr "Quando un pacchetto Debian viene rimosso, i file di configurazione sono conservati per facilitare una possibile reinstallazione. Per lo stesso motivo, i dati generati da un demone (come i contenuti della directory di un server LDAP o il contenuto di un database per un server SQL normalmente sono conservati)."
+msgstr "Quando un pacchetto Debian viene rimosso, i file di configurazione sono conservati per facilitare una possibile reinstallazione. Per lo stesso motivo, i dati generati da un demone (come i contenuti della directory di un server LDAP o il contenuto di un database per un server SQL) normalmente sono conservati."
 
 #. Tag: para
 #, no-c-format
 msgid "To remove all data associated with a package, it is necessary to “purge” the package with the command, <command>dpkg -P <replaceable>package</replaceable></command>, <command>apt-get remove --purge <replaceable>package</replaceable></command> or <command>aptitude purge <replaceable>package</replaceable></command>."
-msgstr "Per rimuovere tutti i dati associati a un pacchetto, è necessario eseguirne il «purge» con il comando <command>dpkg -P <replaceable>package</replaceable></command>, <command>apt-get remove --purge <replaceable>package</replaceable></command> oppure <command>aptitude purge <replaceable>package</replaceable></command>."
+msgstr "Per rimuovere tutti i dati associati a un pacchetto, è necessario eseguirne il «purge» con il comando <command>dpkg -P <replaceable>pacchetto</replaceable></command>, <command>apt-get remove --purge <replaceable>pacchetto</replaceable></command> oppure <command>aptitude purge <replaceable>pacchetto</replaceable></command>."
 
 #. Tag: para
 #, no-c-format
@@ -941,12 +900,12 @@ msgstr "<emphasis>STRUMENTO</emphasis> <command>debconf</command>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debconf</command></primary>"
-msgstr "<primary><command> debconf </command></primary>"
+msgstr "<primary><command>debconf</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debconf</command> was created to resolve a recurring problem in Debian. All Debian packages unable to function without a minimum of configuration used to ask questions with calls to the <command>echo</command> and <command>read</command> commands in shell scripts such as <filename>postinst</filename> and similar scripts. But this also means that during a large installation or update the user must stay with their computer to respond to various questions that may arise at any time. These manual interactions have now been almost entirely dispensed with, thanks to the <command>debconf</command> tool."
-msgstr "<command>debconf</command> è stato creato per risolvere un problema ricorrente in Debian. Tutti i pacchetti Debian. Tutti i pacchetti che non sono in grado di funzionare senza un minimo di configurazione ponevano le loro domande con chiamate ai comandi <command>echo</command> e <command>read</command> in script della shell come <filename>postinst</filename> e script simili. Ma questo significava che durante un'installazione o un aggiornamento l'utente doveva stare davanti al computer per rispondere alle varie domande che potevano essere poste in qualsiasi momento. Queste interazioni manuali sono quasi completamente eliminate grazie allo strumento <command>debconf</command>."
+msgstr "<command>debconf</command> è stato creato per risolvere un problema ricorrente in Debian. Tutti i pacchetti Debian che non sono in grado di funzionare senza un minimo di configurazione ponevano le loro domande con chiamate ai comandi <command>echo</command> e <command>read</command> in script della shell come <filename>postinst</filename> e script simili. Ma questo significava che durante un'installazione o un aggiornamento importante l'utente doveva stare davanti al computer per rispondere alle varie domande che potevano essere poste in qualsiasi momento. Queste interazioni manuali sono quasi completamente eliminate grazie allo strumento <command>debconf</command>."
 
 #. Tag: para
 #, no-c-format
@@ -981,7 +940,7 @@ msgstr "<primary>configurazione</primary><secondary>file</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "In addition to the configuration files mentioned in the previous sections, the <filename>control.tar.gz</filename> file in a Debian package contains others. The first, <filename>md5sums</filename>, contains the list of digital fingerprints for all of the package's files. Its main advantage is that it allows a tool such as <command>debsums</command> (which we will study in <xref linkend=\"section.debsums\" />) to check if these files have been modified since their installation."
-msgstr "Oltre ai file di configurazione menzionati nelle sezioni precedenti, il file <filename>control.tar.gz</filename> contenuto in pacchetto Debian ne contiene altri. Il primo, <filename>md5sums</filename>, contiene l'elenco delle impronte digitali per tutti i file del pacchetto. Il suo vantaggio principale è che permette a uno strumento come <command>debsums</command> (che sarà studiato nella <xref linkend=\"section.debsums\" />) di controllare se questi file sono stati modificati dopo la loro installazione."
+msgstr "Oltre ai file di configurazione menzionati nelle sezioni precedenti, il file <filename>control.tar.gz</filename> contenuto in un pacchetto Debian ne contiene altri. Il primo, <filename>md5sums</filename>, contiene l'elenco delle impronte digitali per tutti i file del pacchetto. Il suo vantaggio principale è che permette a uno strumento come <command>debsums</command> (che sarà studiato nella <xref linkend=\"section.debsums\" />) di controllare se questi file sono stati modificati dopo la loro installazione."
 
 #. Tag: para
 #, no-c-format
@@ -991,7 +950,7 @@ msgstr "<filename>conffiles</filename> elenca i file del pacchetto che devono es
 #. Tag: para
 #, no-c-format
 msgid "In effect, in this situation, <command>dpkg</command> behaves as intelligently as possible: if the standard configuration file has not changed between the two versions, it does nothing. If, however, the file has changed, it will try to update this file. Two cases are possible: either the administrator has not touched this configuration file, in which case <command>dpkg</command> automatically installs the new version; or the file has been modified, in which case <command>dpkg</command> asks the administrator which version they wish to use (the old one with modifications, or the new one provided with the package). To assist in making this decision, <command>dpkg</command> offers to display a “<command>diff</command>” that shows the difference between the two versions. If the user chooses to retain the old version, the new one will be stored in the same location in a file with the <filename>.dpkg-dist</filename> suffix. If the user chooses the new version, the old one is retained in a file with the <filename>.dpkg-old</filename> suffix. Another available action consists of momentarily interrupting <command>dpkg</command> to edit the file and attempt to re-instate the relevant modifications (previously identified with <command>diff</command>)."
-msgstr "In effetti, in questa situazione, <command>dpkg</command> si comporta il più intelligentemente possibile: non fa niente se il file di configurazione standard non è cambiato tra le due versioni. Se, invece, il file è cambiato, cercherà di aggiornarlo. Sono possibili due casi: o l'amministratore non ha toccato questo file di configurazione, nel qual caso <command>dpkg</command> installa automaticamente la nuova versione; oppure il file è stato modificato, nel qual caso <command>dpkg</command> chiede all'amministratore quale versione desidera usare (quella vecchia con modifiche o quella nuova fornita con il pacchetto). Per aiutare nella decisione, <command>dpkg</command>offre la possibilità di visualizzare un «<command>diff</command>» che mostra le differenze tra le due versioni. Se l'utente sceglie di tenere la vecchia versione, quella nuova sarà memorizzata nella stessa posizione, in un file con il suffisso <filename>.dpkg-dist</filename>. Se l'utente sceglie la nuova versione, quella vecchia è mantenuta in un file con il suffisso <filename>.dpkg-old</filename>. Un'altra azione disponibile consiste nell'interrompere momentaneamente <command>dpkg</command> per modificare il file e tentare di applicare di nuovo le relative modifiche (precedentemente identificate con <command>diff</command>)."
+msgstr "In effetti, in questa situazione, <command>dpkg</command> si comporta il più intelligentemente possibile: non fa niente se il file di configurazione standard non è cambiato tra le due versioni. Se, invece, il file è cambiato, cercherà di aggiornarlo. Sono possibili due casi: o l'amministratore non ha toccato questo file di configurazione, nel qual caso <command>dpkg</command> installa automaticamente la nuova versione; oppure il file è stato modificato, nel qual caso <command>dpkg</command> chiede all'amministratore quale versione desidera usare (quella vecchia con modifiche o quella nuova fornita con il pacchetto). Per aiutare nella decisione, <command>dpkg</command> offre la possibilità di visualizzare un «<command>diff</command>» che mostra le differenze tra le due versioni. Se l'utente sceglie di tenere la vecchia versione, quella nuova sarà memorizzata nella stessa posizione, in un file con il suffisso <filename>.dpkg-dist</filename>. Se l'utente sceglie la nuova versione, quella vecchia è mantenuta in un file con il suffisso <filename>.dpkg-old</filename>. Un'altra azione disponibile consiste nell'interrompere momentaneamente <command>dpkg</command> per modificare il file e tentare di applicare di nuovo le relative modifiche (precedentemente identificate con <command>diff</command>)."
 
 #. Tag: title
 #, no-c-format
@@ -1020,7 +979,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "These options can be stored directly in the configuration for the <command>apt</command> program, rather than specified them each time on the command line. To do so, simply write the following line in the <filename>/etc/apt/apt.conf.d/local</filename> file:"
-msgstr "Queste opzioni possono essere memorizzate direttamente nella configurazione del programma <command>apt</command>, invece che specificarle ogni volta sulla riga di commando. Per far ciò, è sufficiente scrivere la ria seguente nel file <filename>/etc/apt/apt.conf.d/local</filename>:"
+msgstr "Queste opzioni possono essere memorizzate direttamente nella configurazione del programma <command>apt</command>, invece che specificarle ogni volta sulla riga di commando. Per far ciò, è sufficiente scrivere la riga seguente nel file <filename>/etc/apt/apt.conf.d/local</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1084,7 +1043,7 @@ msgstr "Un pacchetto sorgente è normalmente composto da tre file, un <filename>
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.dsc</filename> (Debian Source Control) file is a short text file containing an RFC 2822 header (just like the <filename>control</filename> file studied in <xref linkend=\"section.control\" />) which describes the source package and indicates which other files are part thereof. It is signed by its maintainer, which guarantees authenticity. See <xref linkend=\"sect.package-authentication\" /> for further details on this subject."
-msgstr "Il file <filename>.dsc</filename> (Debian Source Control) è un breve file di testo che contiene un'intestazione RFC 2822 (proprio come il file <filename>control</filename> esaminato nella <xref linkend=\"section.control\" />) che descrive il pacchetto sorgente e indica quali altri file ne fanno parte. È firmato dal suo manutentore, che en garantisce l'autenticità. Vedere la <xref linkend=\"sect.package-authentication\" /> per ulteriori dettagli su questo argomento."
+msgstr "Il file <filename>.dsc</filename> (Debian Source Control) è un breve file di testo che contiene un'intestazione RFC 2822 (proprio come il file <filename>control</filename> esaminato nella <xref linkend=\"section.control\" />) che descrive il pacchetto sorgente e indica quali altri file ne fanno parte. È firmato dal suo manutentore, il che garantisce la sua autenticità. Vedere la <xref linkend=\"sect.package-authentication\" /> per ulteriori dettagli su questo argomento."
 
 #. Tag: title
 #, no-c-format
@@ -1133,49 +1092,6 @@ msgid ""
 "=qnbh\n"
 "-----END PGP SIGNATURE-----\n"
 msgstr ""
-"\n"
-"-----BEGIN PGP SIGNED MESSAGE-----\n"
-"Hash: SHA256\n"
-"\n"
-"Format: 3.0 (quilt)\n"
-"Source: zim\n"
-"Binary: zim\n"
-"Architecture: all\n"
-"Version: 0.48-1\n"
-"Maintainer: Emfox Zhou &lt;emfox@debian.org&gt;\n"
-"Uploaders: Raphaël Hertzog &lt;hertzog@debian.org&gt;\n"
-"Homepage: http://zim-wiki.org\n"
-"Standards-Version: 3.9.0\n"
-"Vcs-Browser: http://svn.debian.org/wsvn/collab-maint/deb-"
-"maint/zim/trunk?op=log\n"
-"Vcs-Svn: svn://svn.debian.org/collab-maint/deb-maint/zim/trunk\n"
-"Build-Depends: debhelper (&gt;= 7.4.12), python-support (&gt;= 0.8), xdg-"
-"utils, python (&gt;= 2.5), libgtk2.0-0 (&gt;= 2.6), python-gtk2, python-xdg, "
-"python-simplejson | python (&gt;= 2.6)\n"
-"Checksums-Sha1: \n"
-" bd84fa5104de5ed85a49723d26b350856de93217 966899 zim_0.48.orig.tar.gz\n"
-" 352111ff372a20579664416c9abd4970839835b3 9615 zim_0.48-1.debian.tar.gz\n"
-"Checksums-Sha256: \n"
-" 77d8df7dc89b233fdc3aab1a8ad959c6888881ae160770f50bf880a56e02f895 966899 "
-"zim_0.48.orig.tar.gz\n"
-" 0fceab5d3b099075cd38c225fa4002d893c1cdf4bbcc51d1391a34248e1e1a22 9615 "
-"zim_0.48-1.debian.tar.gz\n"
-"Files: \n"
-" 88cfc18c0c7339528d5f5f463647bb5f 966899 zim_0.48.orig.tar.gz\n"
-" 608b6e74aa14252dfc6236ab184bdb0c 9615 zim_0.48-1.debian.tar.gz\n"
-"\n"
-"-----BEGIN PGP SIGNATURE-----\n"
-"Version: GnuPG v1.4.10 (GNU/Linux)\n"
-"Comment: Signed by Raphael Hertzog\n"
-"\n"
-"iQEcBAEBCAAGBQJMSUAfAAoJEAOIHavrwpq5qjUIAKmM8p86GcHYTxMmKENoBUoW\n"
-"UPi5R7DzrLMbFrUXKgXWLvEKQTXpmkJhh2aSWq2iY+5piBSHwMiITfaBTpdTRvzU\n"
-"5nT/n9MlF8sJFESet/NgZaMPFDzWUbIy5aYbuG1TXmn/7XiDrBaQGiVqKkVLPrqc\n"
-"yWhsotn3JNKIjbPDW/DjImYyKD5RZpXrbVjuIgDT1E6yxtNYwUyBlK0cx/GITNep\n"
-"uV48hsT8cj0paqVXl5+P9Ww8XIE3clxNpE/45/tvKvkqGOeysc6OPAqsIw6HYFY9\n"
-"0EnvMTfMpeQOA68ZqsNpUjomv5r/EGwdCbAWo5iJDsZzXQ1Feh6iSNrjv3yeRzg=\n"
-"=qnbh\n"
-"-----END PGP SIGNATURE-----\n"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1215,22 +1131,22 @@ msgstr "Altrettanto di frequente, la documentazione è fornita in un pacchetto d
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>PERSPECTIVE</emphasis> Different source package formats"
-msgstr "<emphasis>PROSPETTIVA</emphasis> Differenti formati di pacchetti sorgenti"
+msgstr "<emphasis>IN PROSPETTIVA</emphasis> Differenti formati di pacchetti sorgenti"
 
 #. Tag: para
 #, no-c-format
 msgid "Originally there was only one source package format. This is the <literal>1.0</literal> format, which associates an <filename>.orig.tar.gz</filename> archive to a <filename>.diff.gz</filename> “debianization” patch (there is also a variant, consisting of a single <filename>.tar.gz</filename> archive, which is automatically used if no <filename>.orig.tar.gz</filename> is available)."
-msgstr "Inizialmente c'era un solo formato per i pacchetti sorgenti. È il formato <literal>1.0</literal> che associa un archivio <filename>.orig.tar.gz</filename> con un patch <filename>.diff.gz</filename> di «debianizzazione» (c'è anche una variante che consiste di un singolo archivio <filename>.tar.gz</filename> che è usato automaticamente se non c'è alcun <filename>.orig.tar.gz</filename> disponibile)."
+msgstr "Inizialmente c'era un solo formato per i pacchetti sorgenti. È il formato <literal>1.0</literal> che associa un archivio <filename>.orig.tar.gz</filename> a una patch <filename>.diff.gz</filename> di «debianizzazione» (c'è anche una variante che consiste di un singolo archivio <filename>.tar.gz</filename> che è usato automaticamente se non c'è alcun <filename>.orig.tar.gz</filename> disponibile)."
 
 #. Tag: para
 #, no-c-format
 msgid "Since Debian <emphasis role=\"distribution\">Squeeze</emphasis>, Debian developers have the option to use new formats that correct many problems of the historical format. Format <literal>3.0 (quilt)</literal> can combine multiple upstream archives in the same source package: in addition to the usual <filename>.orig.tar.gz</filename>, supplementary <filename>.orig-<replaceable>component</replaceable>.tar.gz</filename> archives. This is useful with software that are distributed in several upstream components but for which a single source package is desired. These archives can also be compressed with <command>bzip2</command> rather than <command>gzip</command> (<command>lzma</command> and <command>xz</command> are supported by <command>dpkg-source</command> but not accepted into the official archive), which saves disk space and network resources. Finally, the monolithic patch, <filename>.diff.gz</filename> is replaced by a <filename>.debian.tar.gz</filename> archive containing the compiling instructions and a set of upstream patches contributed by the package maintainer. These last are recorded in a format compatible with <command>quilt</command>, a tool that facilitates the management of a series of patches."
-msgstr "A partire da Debian <emphasis role=\"distribution\">Squeeze</emphasis>, gli sviluppatori Debian hanno l'opzione di usare dei nuovi formati che correggono molti problemi dei formati storici. Il formato <literal>3.0 (quilt)</literal> può unire più archivi a monte in uno stesso pacchetto sorgente: in aggiunta al solito <filename>.orig.tar.gz</filename>, archivi supplementari <filename>.orig-<replaceable>componente</replaceable>.tar.gz</filename>. Ciò è utile con software che è distribuito in diversi componenti a monte ma per il quale si desidera un singolo pacchetto sorgente. Questi archivi possono anche essere compressi con <command>bzip2</command> piuttosto che con <command>gzip</command> (<command>lzma</command> e <command>xz</command> sono supportati da <command>dpkg-source</command> ma non accettati nell'archivio ufficiale), il che risparmia spazio su disco e risorse di rete. Infine, il patch monolitico, <filename>.diff.gz</filename>, è sostituito da un archivio <filename>.debian.tar.gz</filename> che contiene le istruzioni di compilazione e un insieme di patch contribuiti dal manutentore del pacchetto. Questi ultimi sono registrati in un formato compatibile con <command>quilt</command>, uno strumento che facilita la gestione di una serie di patch."
+msgstr "A partire da Debian <emphasis role=\"distribution\">Squeeze</emphasis>, gli sviluppatori Debian hanno l'opzione di usare dei nuovi formati che correggono molti problemi del formato storico. Il formato <literal>3.0 (quilt)</literal> può unire più archivi a monte in uno stesso pacchetto sorgente: in aggiunta al solito <filename>.orig.tar.gz</filename>, archivi supplementari <filename>.orig-<replaceable>componente</replaceable>.tar.gz</filename>. Ciò è utile con software che è distribuito in diversi componenti a monte ma per il quale si desidera un singolo pacchetto sorgente. Questi archivi possono anche essere compressi con <command>bzip2</command> piuttosto che con <command>gzip</command> (<command>lzma</command> e <command>xz</command> sono supportati da <command>dpkg-source</command> ma non accettati nell'archivio ufficiale), il che risparmia spazio su disco e risorse di rete. Infine, la patch monolitica, <filename>.diff.gz</filename>, è sostituito da un archivio <filename>.debian.tar.gz</filename> che contiene le istruzioni di compilazione e un insieme di patch contribuiti dal manutentore del pacchetto. Questi ultimi sono registrati in un formato compatibile con <command>quilt</command>, uno strumento che facilita la gestione di una serie di patch."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The <filename>.orig.tar.gz</filename> is an archive containing the source code as provided by the original developer. Debian package maintainers are asked to not modify this archive in order to be able to easily check the source and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
-msgstr "<filename>.orig.tar.gz</filename> è un archivio che contiene il codice sorgente del programma come fornito dallo sviluppatore originale. Agli sviluppatori si chiede di non modificare questo archivio in modo da poter facilmente verificare la fonte e l'integrità del file (con un semplice confronto con una somma di controllo) e per rispettare i desideri di alcuni autori."
+msgstr "Il <filename>.orig.tar.gz</filename> è un archivio che contiene il codice sorgente del programma come fornito dallo sviluppatore originale. Ai manutentori dei pacchetti Debian viene chiesto di non modificare questo archivio in modo da poter facilmente verificare la fonte e l'integrità del file (con un semplice confronto con una somma di controllo) e per rispettare i desideri di alcuni autori."
 
 #. Tag: para
 #, no-c-format
@@ -1265,7 +1181,7 @@ msgstr "Si può anche usare <command>apt-get</command> per scaricare un pacchett
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>pacchetto</replaceable></userinput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -1280,7 +1196,7 @@ msgstr "Il pacchetto sorgente è alla base di tutto in Debian. Tutti i pacchetti
 #. Tag: para
 #, no-c-format
 msgid "When a new version of a package (source package and one or more binary packages) arrives on the Debian server, the source package is the most important. Indeed, it will then be used by a network of machines of different architectures for compilation of the various architectures supported by Debian. The fact that the developer also sends one or more binary packages for a given architecture (usually i386 or amd64) is relatively unimportant, since these could just as well have been automatically generated."
-msgstr "Quando una nuova versione di un pacchetto (pacchetto sorgente e uno o più pacchetti binari) arriva su un server Debian, il pacchetto è il più importante. Infatti, sarà usato da una rete di macchine con architetture differenti per la compilazione delle varie architetture supportate da Debian. Il fatto che lo sviluppatore invii anche uno o più pacchetti binari per una data architettura (solitamente i386 o amd64) è relativamente non importante, dal momento che potrebbero anche essere stati generati automaticamente."
+msgstr "Quando una nuova versione di un pacchetto (pacchetto sorgente e uno o più pacchetti binari) arriva su un server Debian, il pacchetto sorgente è il più importante. Infatti, sarà usato da una rete di macchine con architetture differenti per la compilazione delle varie architetture supportate da Debian. Il fatto che lo sviluppatore invii anche uno o più pacchetti binari per una data architettura (solitamente i386 o amd64) è relativamente non importante, dal momento che potrebbero anche essere stati generati automaticamente."
 
 #. Tag: title
 #, no-c-format
@@ -1320,7 +1236,7 @@ msgstr "<primary>pacchetto</primary><secondary>installazione</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is, above all, a tool for installing an already available Debian package (because it does not download anything). To do this, we use its <literal>-i</literal> or <literal>--install</literal> option."
-msgstr "<command>dpkg</command> è, sopratutto, uno strumento per installare un pacchetto Debian già disponibile (perché non scarica niente). Per fare ciò, si usa la sua opzione <literal>-i</literal> oppure <literal>--install</literal>."
+msgstr "<command>dpkg</command> è, soprattutto, uno strumento per installare un pacchetto Debian già disponibile (perché non scarica niente). Per fare ciò, si usa la sua opzione <literal>-i</literal> oppure <literal>--install</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -1345,7 +1261,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "We can see the different steps performed by <command>dpkg</command>; we know, thus, at what point any error may have occurred. The installation can also be effected in two stages: first unpacking, then configuration. <command>apt-get</command> takes advantage of this, limiting the number of calls to <command>dpkg</command> (since each call is costly, due to loading of the database in memory, especially the list of already installed files)."
-msgstr "Si possono vedere i differenti passi eseguiti da <command>dpkg</command>; si può sapere, perciò, a quale punto si può essere verificato un errore. L'installazione può anche essere effettuata in due stadi: prima lo spacchettamento, poi la configurazione. <command>apt-get</command> si avvantaggia di ciò, limitando il numero di chiamate a <command>dpkg</command> (dal momento che ogni chiamata è onerosa a causa del caricamento del database in memoria, specialmente l'elenco dei file già installati)."
+msgstr "Si possono vedere i differenti passi eseguiti da <command>dpkg</command>; si può sapere, perciò, a quale punto si è verificato un errore. L'installazione può anche essere effettuata in due stadi: prima lo spacchettamento, poi la configurazione. <command>apt-get</command> si avvantaggia di ciò, limitando il numero di chiamate a <command>dpkg</command> (dal momento che ogni chiamata è onerosa a causa del caricamento del database in memoria, specialmente l'elenco dei file già installati)."
 
 #. Tag: title
 #, no-c-format
@@ -1376,7 +1292,7 @@ msgstr "<primary>pacchetto</primary><secondary>spacchettamento</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "Sometimes <command>dpkg</command> will fail to install a package and return an error; if the user orders it to ignore this, it will only issue a warning; it is for this reason that we have the different <literal>--force-*</literal> options. The <command>dpkg --force-help</command> command, or documentation of this command, will give a complete list of these options. The most frequent error, which you are bound to encounter sooner or later, is a file collision. When a package contains a file that is already installed by another package, <command>dpkg</command> will refuse to install it. The following messages will then appear:"
-msgstr "Talvolta <command>dpkg</command> non riuscirà a installare un pacchetto e ritornerà un errore; se l'utente ordina di ignorarlo, verrà emesso soltanto un avvertimento; è per questo motivo che esistono le diverse opzioni <literal>--force-*</literal>. Il comando <command>dpkg --force-help</command> command, o la documentazione di questo comando, dà un elenco completo di queste opzioni. L'errore più frequente, che prima o poi si incontrerà, è una collisione tra file. Quando un pacchetto contiene un file che è già installato da un altro pacchetto, <command>dpkg</command> si rifiuterà di installarlo. Il seguente messaggio apparirà:"
+msgstr "Talvolta <command>dpkg</command> non riuscirà a installare un pacchetto e restituirà un errore; se l'utente ordina di ignorarlo, verrà emesso soltanto un avvertimento; è per questo motivo che esistono le diverse opzioni <literal>--force-*</literal>. Il comando <command>dpkg --force-help</command>, o la documentazione di questo comando, dà un elenco completo di queste opzioni. L'errore più frequente, che prima o poi si incontrerà, è una collisione tra file. Quando un pacchetto contiene un file che è già installato da un altro pacchetto, <command>dpkg</command> si rifiuterà di installarlo. Il seguente messaggio apparirà:"
 
 #. Tag: screen
 #, no-c-format
@@ -1390,12 +1306,12 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "In this case, if you think that replacing this file is not a significant risk to the stability of your system (which is usually the case), you can use the option <literal>--force-overwrite</literal>, which tells <command>dpkg</command> to ignore this error and overwrite the file."
-msgstr "In questo caso, se si pensa che sostituire questo file non sia un rischio significativo per la stabilità del sistema (che è solitamente il caso), si può usare l'opzione <literal>--force-overwrite</literal>, che dice a <command>dpkg</command> di ignorare questo errore e di sovrascrivere il file."
+msgstr "In questo caso, se si pensa che sostituire questo file non sia un rischio significativo per la stabilità del sistema (e solitamente è così), si può usare l'opzione <literal>--force-overwrite</literal>, che dice a <command>dpkg</command> di ignorare questo errore e di sovrascrivere il file."
 
 #. Tag: para
 #, no-c-format
 msgid "While there are many available <literal>--force-*</literal> options, only <literal>--force-overwrite</literal> is likely to be used regularly. These options only exist for exceptional situations, and it is better to leave them alone as much as possible in order to respect the rules imposed by the packaging mechanism. Do not forget, these rules ensure the consistency and stability of your system."
-msgstr "Anche se ci sono molte opzioni <literal>--force-*</literal>, solo <literal>--force-overwrite</literal> è probabile che sia usata regolarmente. Queste opzioni esistono solamente per situazioni eccezionali ed è meglio lasciarle stare il più possibile per rispettare le regole imposte dal meccanismo dei pacchetti. Non si dimentichi che queste regole assicurano la coerenza e la stabilità del sistema."
+msgstr "Anche se ci sono molte opzioni <literal>--force-*</literal>, è probabile che solo <literal>--force-overwrite</literal> sia usata regolarmente. Queste opzioni esistono solamente per situazioni eccezionali ed è meglio lasciarle stare il più possibile per rispettare le regole imposte dal meccanismo dei pacchetti. Non si dimentichi che queste regole assicurano la coerenza e la stabilità del sistema."
 
 #. Tag: title
 #, no-c-format
@@ -1405,12 +1321,12 @@ msgstr "<emphasis>ATTENZIONE</emphasis> Uso efficace di <literal>--force-*</lite
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>broken dependency</primary>"
-msgstr "<primary>dipendenza danneggiata</primary>"
+msgstr "<primary>dipendenza non soddisfatta</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you are not careful, the use of an option <literal>--force-*</literal> can lead to a system where the APT family of commands will refuse to function. In effect, some of these options allow installation of a package when a dependency is not met, or when there is a conflict. The result is an inconsistent system from the point of view of dependencies, and the APT commands will refuse to execute any action unless the action enables it to return the system to a consistent state (this often consists of installing the missing dependency or removing a problematic package). This often results in a message like this one, obtained after installing a new version of <emphasis role=\"pkg\">rdesktop</emphasis> while ignoring its dependency on a newer version of the <emphasis role=\"pkg\">libc6</emphasis>:"
-msgstr "Se non si presta attenzione, l'uso di un'opzione <literal>--force-*</literal> può condurre a un sistema in cui la famiglia di comandi APT si rifiuterà di funzionare. Infatti, alcune di queste opzioni permettono l'installazione di un pacchetto quando una dipendenza non è soddisfatta o quando c'è un conflitto. Il risultato è un sistema non coerente dal punto di vista delle dipendenze e i comandi APT si rifiuteranno di eseguire qualsiasi azione a meno che l'azione non permetta di tornare a uno stato coerente (questo spesso consiste nell'installazione della dipendenza mancante o nella rimozione di un pacchetto problematico). Questo spesso risulta in un messaggio come questo, ottenuto dopo l'installazione di una nuova versione di <emphasis role=\"pkg\">rdesktop</emphasis> ignorando la sua dipendenza da una nuova versione di <emphasis role=\"pkg\">libc6</emphasis>:"
+msgstr "Se non si presta attenzione, l'uso di un'opzione <literal>--force-*</literal> può condurre a un sistema in cui la famiglia di comandi APT si rifiuterà di funzionare. Infatti, alcune di queste opzioni permettono l'installazione di un pacchetto quando una dipendenza non è soddisfatta o quando c'è un conflitto. Il risultato è un sistema non coerente dal punto di vista delle dipendenze e i comandi APT si rifiuteranno di eseguire qualsiasi azione a meno che l'azione non permetta di tornare a uno stato coerente (questo spesso consiste nell'installazione della dipendenza mancante o nella rimozione di un pacchetto problematico). Questo spesso risulta in un messaggio come il seguente, ottenuto dopo l'installazione di una nuova versione di <emphasis role=\"pkg\">rdesktop</emphasis> ignorando la sua dipendenza da una nuova versione di <emphasis role=\"pkg\">libc6</emphasis>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1447,17 +1363,17 @@ msgstr "<primary>pacchetto</primary><secondary>rimozione</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>purge</secondary>"
-msgstr "<primary>pacchetto</primary><secondary>rimozione completa</secondary>"
+msgstr "<primary>pacchetto</primary><secondary>eliminazione completa</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Invoking <command>dpkg</command> with the <literal>-r</literal> or <literal>--remove</literal> option, followed by the name of a package, removes that package. This removal is, however, not complete: all of the configuration files and scripts, log files (system logs) and other user data handled by the package remain. The reason for keeping them is to disable the program by uninstalling it, while preserving the option to reinstall it quickly and with the same configurations. To completely remove everything associated with a package, use the <literal>-P</literal> or <literal>--purge</literal> option, followed by the package name."
-msgstr "Invocare <command>dpkg</command> con l'opzione <literal>-r</literal> o <literal>--remove</literal> seguita dal nome del pacchetto, rimuove tale pacchetto. Questa rimozione, comunque, non è completa: rimangono tutti i file di configurazione e gli script, i file di registro (registri di sistema) e altri dati dell'utente gestiti dal pacchetto. La ragione della loro conservazione è di disabilitare il programma disinstallandolo, preservando allo stesso tempo l'opzione di reinstallarlo velocemente e con la stessa configurazione. Per rimuovere completamente ogni cosa associata al pacchetto, usare l'opzione<literal>-P</literal> or <literal>--purge</literal>, seguita dal nome del pacchetto."
+msgstr "Invocare <command>dpkg</command> con l'opzione <literal>-r</literal> o <literal>--remove</literal> seguita dal nome del pacchetto, rimuove tale pacchetto. Questa rimozione, comunque, non è completa: rimangono tutti i file di configurazione e gli script, i file di registro (registri di sistema) e altri dati dell'utente gestiti dal pacchetto. La ragione della loro conservazione è di disabilitare il programma disinstallandolo, preservando allo stesso tempo l'opzione di reinstallarlo velocemente e con la stessa configurazione. Per rimuovere completamente ogni cosa associata al pacchetto, usare l'opzione <literal>-P</literal> o <literal>--purge</literal> seguita dal nome del pacchetto."
 
 #. Tag: title
 #, no-c-format
 msgid "Removal and purge of the <emphasis>debian-cd</emphasis> package"
-msgstr "Rimozione e rimozione completa del pacchetto <emphasis>debian-cd</emphasis>"
+msgstr "Rimozione ed eliminazione completa del pacchetto <emphasis>debian-cd</emphasis>"
 
 #. Tag: screen
 #, no-c-format
@@ -1494,17 +1410,17 @@ msgstr "<primary>pacchetto</primary><secondary>ispezione del contenuto</secondar
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Option syntax"
-msgstr "<emphasis>PRINCIPI</emphasis> Sintassi delle opzioni"
+msgstr "<emphasis>FONDAMENTALI</emphasis> Sintassi delle opzioni"
 
 #. Tag: para
 #, no-c-format
 msgid "Most options are available in the “long” version (one or more relevant words, preceded by a double dash) or a “short” version (a single letter, often the initial of one word from the long version, and preceded by a single dash). This convention is so common that it is a POSIX standard. <indexterm><primary>POSIX</primary></indexterm> <indexterm><primary>option</primary><secondary>POSIX</secondary></indexterm>"
-msgstr "La maggior parte delle opzioni disponibili nella versione «lunga» (una o più parole precedute da due trattini) o nella versione «corta» (una singola lettera, spesso l'iniziale di una parola della versione lunga, preceduta da un singolo trattino). Questa convenzione è così comune che è uno standard POSIX. <indexterm><primary>POSIX</primary></indexterm> <indexterm><primary>opzione</primary><secondary>POSIX</secondary></indexterm>"
+msgstr "La maggior parte delle opzioni è disponibile nella versione «lunga» (una o più parole precedute da due trattini) o nella versione «corta» (una singola lettera, spesso l'iniziale di una parola della versione lunga, preceduta da un singolo trattino). Questa convenzione è così comune che è uno standard POSIX. <indexterm><primary>POSIX</primary></indexterm> <indexterm><primary>opzione</primary><secondary>POSIX</secondary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Before concluding this section, we note that some <command>dpkg</command> options may query the internal database in order to obtain information. Giving first the long options and then corresponding short options (that will evidently take the same possible arguments) we cite <literal>--listfiles <replaceable>package</replaceable></literal> (or <literal>-L</literal>), which lists the files installed by this package; <literal>--search <replaceable>file</replaceable></literal> (or <literal>-S</literal>), which finds the package from which the file comes; <literal>--status <replaceable>package</replaceable></literal> (or <literal>-s</literal>), which displays the headers of an installed package; <literal>--list</literal> (or <literal>-l</literal>), which displays the list of packages known to the system and their installation status; <literal>--contents <replaceable>file.deb</replaceable></literal> (or <literal>-c</literal>), which lists the files in the Debian package specified; <literal>--info<replaceable> file.deb </replaceable></literal> (or <literal>-I</literal>), which displays the headers of the Debian package."
-msgstr ""
+msgstr "Prima di concludere questa sezione, si noti che alcune opzioni di <command>dpkg</command> possono interrogare il database interno per ottenere informazioni. Mostrando prima le opzioni lunghe e poi le corrispondenti opzioni corte (che evidentemente accettano i soliti argomenti) we cite <literal>--listfiles <replaceable>pacchetto</replaceable></literal> (o <literal>-L</literal>), che elenca i file installati da questo pacchetto; <literal>--search <replaceable>file</replaceable></literal> (o <literal>-S</literal>), che trova il pacchetto da cui proviene il file; <literal>--status <replaceable>pacchetto</replaceable></literal> (o <literal>-s</literal>), che mostra le intestazioni di un pacchetto installato; <literal>--list</literal> (o <literal>-l</literal>), che mostra l'elenco dei pacchetti conosciuti dal sistema e il loro stato di installazione; <literal>--contents <replaceable>file.deb</replaceable></literal> (o <literal>-c</literal>), che elenca i file nel pacchetto Debian specificato; <literal>--info<replaceable> file.deb </replaceable></literal> (o <literal>-I</literal>), che mostra le intestazioni del pacchetto Debian."
 
 #. Tag: title
 #, no-c-format
@@ -1655,7 +1571,7 @@ msgstr "<primary>confronto di versioni</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Since <command>dpkg</command> is the program for handling Debian packages, it also provides the reference implementation of the logic of comparing version numbers. This is why it has a <literal>--compare-versions</literal> option, usable by external programs (especially configuration scripts executed by <command>dpkg</command> itself). This option requires three parameters: a version number, a comparison operator, and a second version number. The different possible operators are <literal>lt</literal> (strictly less than), <literal>le</literal> (less than or equal to), <literal>eq</literal> (equal), <literal>ne</literal> (not equal), <literal>ge</literal> (greater than or equal to), and <literal>gt</literal> (strictly greater than). If the comparison is correct, <command>dpkg</command> gives the return code, 0 (success); if not, it gives a non-zero return value (indicating failure)."
-msgstr "Dal momento che <command>dpkg</command> è il programma per gestire pacchetti Debian, fornisce anche l'implementazione tipo della logica di confronto dei numeri di versione. Questo è il motivo per cui ha un'opzione <literal>--compare-versions</literal> utilizzabile da programmi esterni (specialmente gli script di configurazione eseguiti dallo stesso <command>dpkg</command>). Questa opzione richiede tre parametri: un numero di versione, un operatore di confronto e un secondo numero di versione. I diversi operatori possibili sono <literal>lt</literal> (strettamente minore), <literal>le</literal> (minore o uguale), <literal>eq</literal> (uguale), <literal>ne</literal> (diverso), <literal>ge</literal> (maggiore o uguale) e <literal>gt</literal> (strettamente maggiore)."
+msgstr "Dal momento che <command>dpkg</command> è il programma per gestire pacchetti Debian, fornisce anche l'implementazione tipo della logica di confronto dei numeri di versione. Questo è il motivo per cui ha un'opzione <literal>--compare-versions</literal> utilizzabile da programmi esterni (specialmente gli script di configurazione eseguiti dallo stesso <command>dpkg</command>). Questa opzione richiede tre parametri: un numero di versione, un operatore di confronto e un secondo numero di versione. I diversi operatori possibili sono <literal>lt</literal> (strettamente minore), <literal>le</literal> (minore o uguale), <literal>eq</literal> (uguale), <literal>ne</literal> (diverso), <literal>ge</literal> (maggiore o uguale) e <literal>gt</literal> (strettamente maggiore). Se il confronto è corretto, <command>dpkg</command> restituisce il codice di ritorno 0 (successo), altrimenti restituisce un valore di ritorno diverso da zero (che indica fallimento)."
 
 #. Tag: screen
 #, no-c-format
@@ -1685,7 +1601,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Note the unexpected failure of the last comparison: for <command>dpkg</command>, <literal>pre</literal>, usually denoting a pre-release, has no particular meaning, and this program compares the alphabetic characters in the same way as the numbers (a &lt;b &lt;c ...), in alphabetical order. This is why it considers “<literal>0pre3</literal>” to be greater than “<literal>0</literal>”. When we want a package's version number to indicate that it is a pre-release, we use the tilde character, “<literal>~</literal>”:"
-msgstr "Si noti il fallimento atteso dell'ultimo confronto: per <command>dpkg</command>, <literal>pre</literal>, che normalmente indica un pre-rilascio, non ha alcun particolare significato e questo programma confronta i caratteri alfabetici nello stesso modo dei numeri (a &lt;b &lt;c ...) in ordine alfabetico. Questo è il motivo per cui «<literal>0pre3</literal>» è considerato maggiore di «<literal>0</literal>». Quando si vuole che un numero di versione di un pacchetto indichi che si tratta di un pre-rilascio, si deve usare il carattere tilde «<literal>~</literal>»:"
+msgstr "Si noti il fallimento inatteso dell'ultimo confronto: per <command>dpkg</command>, <literal>pre</literal>, che normalmente indica un pre-rilascio, non ha alcun particolare significato e questo programma confronta i caratteri alfabetici nello stesso modo dei numeri (a &lt;b &lt;c ...) in ordine alfabetico. Questo è il motivo per cui «<literal>0pre3</literal>» è considerato maggiore di «<literal>0</literal>». Quando si vuole che un numero di versione di un pacchetto indichi che si tratta di un pre-rilascio, si deve usare il carattere tilde «<literal>~</literal>»:"
 
 #. Tag: screen
 #, no-c-format
@@ -1708,7 +1624,7 @@ msgstr "File di registro di <command>dpkg</command>"
 #. Tag: para
 #, no-c-format
 msgid "A recently introduced feature in <command>dpkg</command> is that it keeps a log of all of its actions in <filename>/var/log/dpkg.log</filename>. This log is extremely verbose, since it details every one of the stages through which packages handled by <command>dpkg</command> go. In addition to offering a way to track dpkg's behavior, it helps, above all, to keep a history of the development of the system: one can find the exact moment when each package has been installed or updated, and this information can be extremely useful in understanding a recent change in behavior. Additionally, all versions being recorded, it is easy to cross-check the information with the <filename>changelog.Debian.gz</filename> for packages in question, or even with online bug reports."
-msgstr "Una funzionalità introdotta recentemente in <command>dpkg</command> è che mantiene un registro di tutte le proprie azioni in <filename>/var/log/dpkg.log</filename>. Questo registro è estremamente prolisso, dal momento che contiene dettagli di ciascun stato attraverso cui passano i pacchetti gestiti da <command>dpkg</command>. Oltre a offrire un modo per tenere traccia del comportamento di dpkg, ciò aiuta, sopratutto, a mantenere una cronologia dello sviluppo del sistema: si può trovare il momento esatto in cui ciascun pacchetto è stato installato o aggiornato e queste informazioni possono essere estremamente utili nel comprendere un recente cambiamento di comportamento. Inoltre, siccome tutte le versioni sono registrate, è facile incrociare queste informazioni con il <filename>changelog.Debian.gz</filename> dei pacchetti in questione o anche con i rapporti di bug online."
+msgstr "Una funzionalità introdotta recentemente in <command>dpkg</command> è che mantiene un registro di tutte le proprie azioni in <filename>/var/log/dpkg.log</filename>. Questo registro è estremamente prolisso, dal momento che contiene dettagli di ciascun stato attraverso cui passano i pacchetti gestiti da <command>dpkg</command>. Oltre a offrire un modo per tenere traccia del comportamento di dpkg, ciò aiuta, soprattutto, a mantenere una cronologia dello sviluppo del sistema: si può trovare il momento esatto in cui ciascun pacchetto è stato installato o aggiornato e queste informazioni possono essere estremamente utili nel comprendere un recente cambiamento di comportamento. Inoltre, siccome tutte le versioni sono registrate, è facile incrociare queste informazioni con il <filename>changelog.Debian.gz</filename> dei pacchetti in questione o anche con le segnalazioni di bug online."
 
 #. Tag: title
 #, no-c-format
@@ -1738,7 +1654,7 @@ msgstr "I pacchetti Debian non son gli unici pacchetti software usati nel monto 
 #. Tag: para
 #, no-c-format
 msgid "In this case, you should know that the program <command>rpm</command>, which handles RPM packages, is available as a Debian package, so it is possible to use this package format on Debian. Care should be taken, however, to limit these manipulations to extract the information from a package or to verify its integrity. It is, in truth, unreasonable to use <command>rpm</command> to install an RPM on a Debian system; RPM uses its own database, separate from those of native software (such as <command>dpkg</command>). This is why it is not possible to ensure a stable coexistence of two packaging systems."
-msgstr "In questo caso, si deve sapere che <command>rpm</command>, che gestisce pacchetti RPM, è disponibile come pacchetto Debian, così è possibile usare questo formato di pacchetti su Debian. Si dovrebbe fare attenzione, comunque, a limitare queste manipolazioni all'estrazione di informazioni da un pacchetto o alla verifica della sua integrità. In realtà non è ragionevole usare <command>rpm</command> per installare un RPM su un sistema Debian; RPM usa un proprio database, separato da quello del software nativo (come <command>dpkg</command>). Questo è il motivo per cui non è possibile assicurare una coesistenza stabile dei due sistemi di pacchetti."
+msgstr "In questo caso, si deve sapere che il programma <command>rpm</command>, che gestisce pacchetti RPM, è disponibile come pacchetto Debian, così è possibile usare questo formato di pacchetti su Debian. Si dovrebbe fare attenzione, comunque, a limitare queste manipolazioni all'estrazione di informazioni da un pacchetto o alla verifica della sua integrità. In realtà non è ragionevole usare <command>rpm</command> per installare un RPM su un sistema Debian; RPM usa un proprio database, separato da quello del software nativo (come <command>dpkg</command>). Questo è il motivo per cui non è possibile assicurare una coesistenza stabile dei due sistemi di pacchetti."
 
 #. Tag: para
 #, no-c-format
@@ -1768,12 +1684,12 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "You will find that this process is extremely simple. You must know, however, that the package generated does not have any information on dependencies, since the dependencies in the two packaging formats don't have systematic correspondence. The administrator, thus, must manually ensure that the converted package will function correctly, and this is why Debian packages thus generated should be avoided as much as possible. Fortunately, Debian has the largest collection of software packages of all distributions, and it is likely that whatever you seek is already in there."
-msgstr "Questo procedimento è estremamente semplice. Si deve sapere, però, che il pacchetto generato non ha alcuna informazione sulle dipendenze, dal momento che le dipendenze nei due formati di pacchetti non hanno una corrispondenza sistematica. L'amministratore, perciò, deve assicurare manualmente che il pacchetto convertito funzioni correttamente e questo è il motivo per cui i pacchetti Debian generati in questo modo dovrebbe essere evitati il più possibile. Fortunatamente, Debian ha la più grande collezione di pacchetti software rispetto a tutte le distribuzioni ed è probabile che qualunque cosa si cerchi ci sia già."
+msgstr "Questo procedimento è estremamente semplice. Si deve sapere, però, che il pacchetto generato non ha alcuna informazione sulle dipendenze, dal momento che le dipendenze nei due formati di pacchetti non hanno una corrispondenza sistematica. L'amministratore, perciò, deve assicurare manualmente che il pacchetto convertito funzioni correttamente e questo è il motivo per cui i pacchetti Debian generati in questo modo dovrebbe essere evitati il più possibile. Fortunatamente, Debian ha la più grande raccolta di pacchetti software rispetto a tutte le distribuzioni ed è probabile che qualunque cosa si cerchi ci sia già."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program also handles other packaging formats, especially the one used by the Slackware distribution (it is made of a simple <filename>tar.gz</filename> archive)."
-msgstr "Guardando la pagina di manuale per il comando <command>alien</command>, si noterà che questo programma gestisce anche altri formati di pacchetti, specificamente quelli della distribuzione Slackware (sono dei semplici archivi <filename>tar.gz</filename>)."
+msgstr "Guardando la pagina di manuale per il comando <command>alien</command>, si noterà che questo programma gestisce anche altri formati di pacchetti, specificamente quello della distribuzione Slackware (è composto da un semplice archivio <filename>tar.gz</filename>)."
 
 #. Tag: para
 #, no-c-format
