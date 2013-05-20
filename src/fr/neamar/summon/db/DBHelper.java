@@ -1,12 +1,17 @@
 package fr.neamar.summon.db;
 
-import java.util.ArrayList;
-
 import android.app.backup.BackupManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+
+import java.util.ArrayList;
+
+import fr.neamar.summon.holder.AppHolder;
+import fr.neamar.summon.holder.ContactHolder;
+import fr.neamar.summon.holder.ToggleHolder;
 
 public class DBHelper {
 
@@ -14,7 +19,7 @@ public class DBHelper {
 
 	private static SQLiteDatabase getDatabase(Context context) {
 		DB db = new DB(context);
-		return db.getReadableDatabase();
+		return db.getWritableDatabase();
 	}
 
 	private static ArrayList<ValuedHistoryRecord> readCursor(Cursor cursor) {
@@ -116,7 +121,7 @@ public class DBHelper {
 	 * Retrieve most used records. Warning : filter through applications only
 	 * 
 	 * @param context
-	 * @param int
+	 * @param limit
 	 * @return
 	 */
 	public static ArrayList<ValuedHistoryRecord> getFavorites(Context context, int limit) {
@@ -135,4 +140,100 @@ public class DBHelper {
 		}
 		return records;
 	}
+
+    public static void saveAppHolders(Context context, ArrayList<AppHolder> apps) {
+        synchronized (DBHelper.sDataLock) {
+            SQLiteDatabase db = getDatabase(context);
+            for (AppHolder app : apps){
+                ContentValues values = new ContentValues();
+                values.put("name", app.name);
+                values.put("package", app.packageName);
+                values.put("activity", app.activityName);
+                db.insert("apps", null, values);
+            }
+            db.close();
+        }
+    }
+
+    public static ArrayList<AppHolder> getAppHolders(Context context, String holderScheme){
+        ArrayList<AppHolder> apps = new ArrayList<AppHolder>();
+        synchronized (DBHelper.sDataLock){
+            SQLiteDatabase db = getDatabase(context);
+
+            Cursor cursor = db.query("apps", null, null, null, null, null, null);
+            while (!cursor.isAfterLast()){
+                AppHolder app = new AppHolder();
+                app.packageName = cursor.getString(0);
+                app.activityName = cursor.getString(1);
+                app.id = holderScheme + app.packageName + "/"
+                        + app.activityName;
+                app.name = cursor.getString(2);
+
+                //Ugly hack to remove accented characters.
+                //Note Java 5 provides a Normalizer method, unavailable for Android :\
+                app.nameLowerCased = app.name.toLowerCase().replaceAll("[èéêë]", "e")
+                        .replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
+                        .replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("[ÈÉÊË]", "E");
+                cursor.moveToNext();
+            }
+            db.close();
+        }
+        return apps;
+    }
+
+    public static void saveContactHolders(Context context, ArrayList<ContactHolder> contacts) {
+        synchronized (DBHelper.sDataLock) {
+            SQLiteDatabase db = getDatabase(context);
+            for (ContactHolder contact : contacts) {
+                ContentValues values = new ContentValues();
+                values.put("name", contact.name);
+                values.put("lookup_key", contact.lookupKey);
+                values.put("phone", contact.phone);
+                values.put("mail", contact.mail);
+                values.put("icon", contact.icon.getPath());
+                values.put("primary_number", contact.primary);
+                values.put("times_contacted", contact.timesContacted);
+                values.put("starred", contact.starred);
+                values.put("home_number", contact.homeNumber);
+                values.put("name", contact.name);
+                db.insert("contacts", null, values);
+            }
+            db.close();
+        }
+    }
+
+    public static ArrayList<ContactHolder> getContactsHolders(Context context, String holderScheme) {
+        ArrayList<ContactHolder> contacts = new ArrayList<ContactHolder>();
+        synchronized (DBHelper.sDataLock) {
+            SQLiteDatabase db = getDatabase(context);
+
+            Cursor cursor = db.query("contacts", null, null, null, null, null, null);
+            while (!cursor.isAfterLast()) {
+                ContactHolder contact = new ContactHolder();
+                contact.lookupKey = cursor.getString(0);
+                contact.phone = cursor.getString(1);
+                contact.mail = cursor.getString(2);
+                contact.icon = new Uri.Builder().appendPath(cursor.getString(3)).build();
+                contact.primary = cursor.getInt(4) == 1;
+                contact.timesContacted = cursor.getInt(5);
+                contact.starred = cursor.getInt(6) == 1;
+                contact.homeNumber = cursor.getInt(7) == 1;
+                if(!cursor.isNull(8)){
+                    contact.name = cursor.getString(8);
+                }
+                contact.name = null;
+                contact.id = holderScheme + contact.lookupKey + contact.phone;
+                if (contact.name != null) {
+                    contact.nameLowerCased = contact.name.toLowerCase().replaceAll("[èéêë]", "e")
+                            .replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
+                            .replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("[ÈÉÊË]", "E");
+                }
+                cursor.moveToNext();
+            }
+            db.close();
+        }
+        return contacts;
+    }
+
+
 }

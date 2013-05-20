@@ -1,14 +1,15 @@
 package fr.neamar.summon.task;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import fr.neamar.summon.holder.AppHolder;
 
 public class LoadAppHolders extends LoadHolders<AppHolder> {
@@ -42,7 +43,7 @@ public class LoadAppHolders extends LoadHolders<AppHolder> {
 			//Note Java 5 provides a Normalizer method, unavailable for Android :\
 			app.nameLowerCased = app.name.toLowerCase().replaceAll("[èéêë]", "e")
 					.replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
-					.replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("[ÈÉÊË]", "E");;
+					.replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("[ÈÉÊË]", "E");
 
 			app.packageName = info.activityInfo.applicationInfo.packageName;
 			app.activityName = info.activityInfo.name;

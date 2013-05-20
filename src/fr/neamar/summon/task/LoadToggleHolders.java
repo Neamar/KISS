@@ -1,16 +1,17 @@
 package fr.neamar.summon.task;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+
+import java.util.ArrayList;
+
 import fr.neamar.summon.R;
 import fr.neamar.summon.holder.ToggleHolder;
 
-public class LoadToogleHolders extends LoadHolders<ToggleHolder> {
+public class LoadToggleHolders extends LoadHolders<ToggleHolder> {
 
-	public LoadToogleHolders(Context context) {
+	public LoadToggleHolders(Context context) {
 		super(context, "app://");
 	}
 

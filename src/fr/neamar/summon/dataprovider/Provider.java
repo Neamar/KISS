@@ -1,5 +1,7 @@
 package fr.neamar.summon.dataprovider;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 import fr.neamar.summon.holder.Holder;
@@ -49,4 +51,6 @@ public abstract class Provider<T> {
 	public Holder findById(String id) {
 		return null;
 	}
+
+    public abstract void saveProvider(Context context);
 }

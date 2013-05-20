@@ -1,18 +1,28 @@
 package fr.neamar.summon.dataprovider;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import android.content.Context;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.SettingHolder;
 import fr.neamar.summon.task.LoadSettingHolders;
+import fr.neamar.summon.task.LoadSettingHoldersFromDB;
 
 public class SettingProvider extends Provider<SettingHolder> {
 
 	public SettingProvider(Context context) {
 		super(new LoadSettingHolders(context));
 	}
+
+    private SettingProvider(LoadSettingHoldersFromDB loader) {
+        super(loader);
+    }
+
+    public static SettingProvider fromDB(Context context){
+        return new SettingProvider(new LoadSettingHoldersFromDB(context));
+    }
 
 	public ArrayList<Holder> getResults(String query) {
 		ArrayList<Holder> results = new ArrayList<Holder>();
@@ -52,4 +62,9 @@ public class SettingProvider extends Provider<SettingHolder> {
 
 		return null;
 	}
+
+    @Override
+    public void saveProvider(Context context) {
+        //Nothing to save here
+    }
 }

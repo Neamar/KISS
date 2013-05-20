@@ -1,12 +1,14 @@
 package fr.neamar.summon.dataprovider;
 
+import android.content.Context;
+import android.util.Pair;
+
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import android.content.Context;
-import android.util.Pair;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.task.LoadAliasHolders;
+import fr.neamar.summon.task.LoadAliasHoldersFromDB;
 
 public class AliasProvider extends Provider<Pair<String, String>> {
 	private ArrayList<Provider> providers;
@@ -15,6 +17,15 @@ public class AliasProvider extends Provider<Pair<String, String>> {
 		super(new LoadAliasHolders(context));
 		this.providers = providers;
 	}
+
+    private AliasProvider(LoadAliasHoldersFromDB loader, ArrayList<Provider> providers) {
+        super(loader);
+        this.providers = providers;
+    }
+
+    public static AliasProvider fromDB(Context context, ArrayList<Provider> providers) {
+        return new AliasProvider(new LoadAliasHoldersFromDB(context), providers);
+    }
 
 	public ArrayList<Holder> getResults(String query) {
 		ArrayList<Holder> results = new ArrayList<Holder>();
@@ -41,4 +52,9 @@ public class AliasProvider extends Provider<Pair<String, String>> {
 
 		return results;
 	}
+
+    @Override
+    public void saveProvider(Context context) {
+        //Nothing to save here
+    }
 }

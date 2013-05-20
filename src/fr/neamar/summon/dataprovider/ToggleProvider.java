@@ -1,18 +1,28 @@
 package fr.neamar.summon.dataprovider;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import android.content.Context;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.ToggleHolder;
-import fr.neamar.summon.task.LoadToogleHolders;
+import fr.neamar.summon.task.LoadToggleHolders;
+import fr.neamar.summon.task.LoadToggleHoldersFromDB;
 
 public class ToggleProvider extends Provider<ToggleHolder> {
 
-	public ToggleProvider(Context context) {
-		super(new LoadToogleHolders(context));
+    public ToggleProvider(Context context) {
+		super(new LoadToggleHolders(context));
 	}
+
+    private ToggleProvider(LoadToggleHoldersFromDB loader) {
+        super(loader);
+    }
+
+    public static ToggleProvider fromDB(Context context){
+        return  new ToggleProvider(new LoadToggleHoldersFromDB(context));
+    }
 
 	public ArrayList<Holder> getResults(String query) {
 		ArrayList<Holder> results = new ArrayList<Holder>();
@@ -55,4 +65,9 @@ public class ToggleProvider extends Provider<ToggleHolder> {
 
 		return null;
 	}
+
+    @Override
+    public void saveProvider(Context context) {
+        //Nothing to save here
+    }
 }

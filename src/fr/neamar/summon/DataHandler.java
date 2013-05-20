@@ -1,22 +1,12 @@
 package fr.neamar.summon;
 
+import android.content.*;
+import android.preference.PreferenceManager;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import fr.neamar.summon.dataprovider.AliasProvider;
-import fr.neamar.summon.dataprovider.AppProvider;
-import fr.neamar.summon.dataprovider.ContactProvider;
-import fr.neamar.summon.dataprovider.Provider;
-import fr.neamar.summon.dataprovider.SearchProvider;
-import fr.neamar.summon.dataprovider.SettingProvider;
-import fr.neamar.summon.dataprovider.ToggleProvider;
+import fr.neamar.summon.dataprovider.*;
 import fr.neamar.summon.db.DBHelper;
 import fr.neamar.summon.db.ValuedHistoryRecord;
 import fr.neamar.summon.holder.Holder;
@@ -32,7 +22,11 @@ public class DataHandler extends BroadcastReceiver {
 	private ArrayList<Provider> providers = new ArrayList<Provider>();
 	private int providersLoaded = 0;
 
-	/**
+    private DataHandler() {
+        super();
+    }
+
+    /**
 	 * Initialize all providers
 	 */
 	public DataHandler(Context context) {
@@ -63,6 +57,35 @@ public class DataHandler extends BroadcastReceiver {
 			providers.add(new AliasProvider(context, providers));
 		}
 	}
+
+    public static DataHandler fromDB(Context context) {
+        DataHandler newIntance = new DataHandler();
+
+        Intent i = new Intent(SummonActivity.START_LOAD);
+        context.sendBroadcast(i);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        // Initialize providers
+        if (prefs.getBoolean("enable-apps", true)) {
+            newIntance.providers.add(AppProvider.fromDB(context));
+        }
+        if (prefs.getBoolean("enable-contacts", true)) {
+            newIntance.providers.add(ContactProvider.fromDB(context));
+        }
+        if (prefs.getBoolean("enable-search", true)) {
+            newIntance.providers.add(SearchProvider.fromDB(context));
+        }
+        if (prefs.getBoolean("enable-toggles", true)) {
+            newIntance.providers.add(ToggleProvider.fromDB(context));
+        }
+        if (prefs.getBoolean("enable-settings", true)) {
+            newIntance.providers.add(SettingProvider.fromDB(context));
+        }
+        if (prefs.getBoolean("enable-aliases", true)) {
+            newIntance.providers.add(AliasProvider.fromDB(context, newIntance.providers));
+        }
+        return newIntance;
+    }
 
 	/**
 	 * Get records for this query.
@@ -176,9 +199,11 @@ public class DataHandler extends BroadcastReceiver {
 		providersLoaded++;
 		if (providersLoaded == providers.size()) {
 			try {
+
 				context.unregisterReceiver(this);
 				Intent i = new Intent(SummonActivity.FULL_LOAD_OVER);
-				context.sendBroadcast(i);
+                context.sendBroadcast(i);
+                SummonApplication.loadingOver();
 				providersLoaded = 0;
 			} catch (IllegalArgumentException e) {
 				// Nothing
@@ -197,4 +222,10 @@ public class DataHandler extends BroadcastReceiver {
 			
 		return null;
 	}
+
+    public void saveHandler(Context context){
+        for(Provider p : providers){
+            p.saveProvider(context);
+        }
+    }
 }

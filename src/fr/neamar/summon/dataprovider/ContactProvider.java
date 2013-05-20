@@ -1,18 +1,29 @@
 package fr.neamar.summon.dataprovider;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import android.content.Context;
+import fr.neamar.summon.db.DBHelper;
 import fr.neamar.summon.holder.ContactHolder;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.task.LoadContactHolders;
+import fr.neamar.summon.task.LoadContactHoldersFromDB;
 
 public class ContactProvider extends Provider<ContactHolder> {
+
+    private ContactProvider(LoadContactHoldersFromDB loader){
+        super(loader);
+    }
 
 	public ContactProvider(final Context context) {
 		super(new LoadContactHolders(context));
 	}
+
+    public static ContactProvider fromDB(final Context context) {
+        return new ContactProvider(new LoadContactHoldersFromDB(context));
+    }
 
 	public ArrayList<Holder> getResults(String query) {
 		ArrayList<Holder> results = new ArrayList<Holder>();
@@ -61,4 +72,9 @@ public class ContactProvider extends Provider<ContactHolder> {
 
 		return null;
 	}
+
+    @Override
+    public void saveProvider(Context context) {
+        DBHelper.saveContactHolders(context, holders);
+    }
 }
