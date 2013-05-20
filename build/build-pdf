@@ -17,32 +17,9 @@ topdir=$(pwd)
 
 parse_options "$@"
 
-get_babel_sty() {
-    case "$1" in
-	en-US) echo "USenglish" ;;
-	da-DK) echo "danish" ;;
-	de-DE) echo "germanb" ;;
-	el-GR) echo "greek" ;;
-	es-ES) echo "spanish" ;;
-	fr-FR) echo "frenchb" ;;
-	it-IT) echo "italian" ;;
-	pl-PL) echo "polish" ;;
-	pt-BR) echo "portuges" ;;
-	ro-RO) echo "romanian" ;;
-	tr-TR) echo "turkish" ;;
-	*)
-	    echo "WARNING: Don't know proper babel .sty for $1" >&2
-	;;
-    esac
-}
-
-babel=$(get_babel_sty $OPT_lang)
-if [ -n "$babel" ]; then
-    OPT_opts="-P latex.babel.language=$babel $OPT_opts"
-fi
-
 if [ ! -e tmp/$OPT_lang/xml ] || [ -z "$OPT_skip" ]; then
     publican build --config=publican-pdf.cfg --formats=xml --langs=$OPT_lang
+    sed -i -e "s/<book/<book lang=\"${OPT_lang}\"/" tmp/$OPT_lang/xml/debian-handbook.xml
 fi
 
 cp -a build/dblatex tmp/$OPT_lang/xml/
