@@ -128,6 +128,17 @@ actual page. By default the page is centered as required in this mode.
     </l:context>
   </l:l10n>
 
+  <l:l10n language="es">
+    <l:gentext key="minitoc" text="Contenidos"/>
+    <l:gentext key="keywordset" text="Palabras clave"/>
+    <l:context name="xref">
+      <l:template name="page.citation" text=" (p&#225;gina %p)"/>
+    </l:context>
+    <l:context name="xref">
+      <l:template name="sidebar" text="«%t»"/>
+    </l:context>
+  </l:l10n>
+
   <l:l10n language="fr">
     <l:gentext key="minitoc" text="Sommaire"/>
     <l:gentext key="keywordset" text="Mots-cl&#233;s"/>
