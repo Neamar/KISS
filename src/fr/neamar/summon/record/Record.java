@@ -50,7 +50,7 @@ public abstract class Record {
 
 	/**
 	 * How to launch this record ? Most probably, will fire an intent. This
-	 * function needs to call recordLaunch()
+	 * function must call recordLaunch()
 	 * 
 	 * @param context
 	 */
@@ -64,7 +64,7 @@ public abstract class Record {
 	 */
 	public void fastLaunch(Context context)
 	{
-		this.doLaunch(context, null);
+		this.launch(context, null);
 	}
 	
 	/**
