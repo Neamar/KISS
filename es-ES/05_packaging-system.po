@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:34\n"
-"PO-Revision-Date: 2013-05-23 20:21+0200\n"
-"Last-Translator: Raúl Priego <raul.priego@ymail.com>\n"
+"PO-Revision-Date: 2013-05-28 23:12+0200\n"
+"Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
 "/05_packaging-system/es-ES/>\n"
 "Language: es-ES\n"
@@ -205,8 +205,8 @@ msgstr ""
 #, no-c-format
 msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"section.manuel\" />)."
 msgstr ""
-"<xref linkend=\"solving-problems\" /> discute las páginas de manual con más "
-"detalles (revise <xref linkend=\"section.manuel\" />)."
+"El <xref linkend=\"solving-problems\" /> discute las páginas de manual con más "
+"detalles (revise la <xref linkend=\"section.manuel\" />)."
 
 #. Tag: para
 #, no-c-format
@@ -1226,7 +1226,7 @@ msgid "<command>dpkg</command> will update the configuration files, asking the u
 msgstr ""
 "<command>dpkg</command> actualizará los archivos de configuración, "
 "pidiéndole al usuario que decida si no es capaz de administrar esta tarea "
-"automáticamente. Los detalles de este proceso son discutidos en <xref "
+"automáticamente. Los detalles de este proceso son discutidos en la <xref "
 "linkend=\"section.conffiles\" />."
 
 #. Tag: para
@@ -1411,7 +1411,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>files</secondary>"
-msgstr "<primary>archivos</primary><secondary>de configuración</secondary>"
+msgstr "<primary>archivo</primary><secondary>de configuración</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1422,7 +1422,7 @@ msgstr ""
 "otros. El primero, <filename>md5sums</filename> contiene una lista de las "
 "huellas digitales de todos los archivos del paquete. Su principal ventaja es "
 "que permite que herramientas como <command>debsums</command> (que "
-"estudiaremos en <xref linkend=\"section.debsums\" />) chequeen si estos "
+"estudiaremos en la <xref linkend=\"section.debsums\" />) chequeen si estos "
 "archivos fueron modificados desde su instalación."
 
 #. Tag: para
@@ -1601,10 +1601,10 @@ msgstr ""
 "El archivo <filename>.dsc</filename> («Debian Source Control»: control de "
 "fuente Debian) es un archivo de texto corto que contiene una cabecera RFC "
 "2822 (de la misma forma que el archivo <filename>control</filename> "
-"estudiado en <xref linkend=\"section.control\" />) que describe el paquete "
+"estudiado en la <xref linkend=\"section.control\" />) que describe el paquete "
 "fuente e indica qué otros archivos forman parte del mismo. Está firmado por "
-"su encargado, lo que garantiza su autenticidad. Revise <xref linkend=\"sect"
-".package-authentication\" /> para más detalles sobre este tema."
+"su encargado, lo que garantiza su autenticidad. Revise la <xref "
+"linkend=\"sect.package-authentication\" /> para más detalles sobre este tema."
 
 #. Tag: title
 #, no-c-format
@@ -1700,7 +1700,9 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Build-Depends</literal>, header field</primary>"
-msgstr "<primary><literal>Build-Depends</literal>, campo de cabecera</primary>"
+msgstr ""
+"<primary><literal>Build-Depends</literal><secondary>campo de "
+"cabecera</secondary></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1850,10 +1852,10 @@ msgstr ""
 "También puede utilizar <command>apt-get</command> para descargar un paquete "
 "fuente y descomprimirlo inmediatamente. Necesita, sin embargo, que las "
 "líneas <emphasis>deb-src</emphasis> apropiadas estén presentes en el archivo "
-"<filename>/etc/apt/sources.list</filename> (para maś detalles, revise <xref "
-"linkend=\"sect.apt-sources.list\" />). Éstas son utilizadas para listar los "
-"orígenes de los paquetes fuente (los servidores en los que se encuentran un "
-"grupo de paquetes fuente)."
+"<filename>/etc/apt/sources.list</filename> (para maś detalles, revise la "
+"<xref linkend=\"sect.apt-sources.list\" />). Éstas son utilizadas para listar "
+"los orígenes de los paquetes fuente (los servidores en los que se encuentran "
+"un grupo de paquetes fuente)."
 
 #. Tag: screen
 #, no-c-format
@@ -2149,10 +2151,10 @@ msgid "This manipulation is an ugly hack, and should never be used, except in th
 msgstr ""
 "Esta manipulación es un atajo desagradable y no debería ser utilizado nunca "
 "excepto en los casos de más extrema necesidad. Muy frecuentemente, "
-"recompilar el paquete que está causando el problema (revise <xref "
+"recompilar el paquete que está causando el problema (revise la <xref "
 "linkend=\"sect.rebuilding-package\" />) o utilizar una nueva verión "
 "(potencialmente corregida) de un sitio como "
-"<literal>backports.debian.org</literal> (revise <xref "
+"<literal>backports.debian.org</literal> (revise la <xref "
 "linkend=\"section.backports\" />) son soluciones más adecuadas."
 
 #. Tag: indexterm
@@ -2553,7 +2555,7 @@ msgstr "<primary>versión, comparación</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>comparison of versions</primary>"
-msgstr "<primary>comparación de versione</primary>"
+msgstr "<primary>comparación de versiones</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2643,12 +2645,12 @@ msgstr ""
 "<filename>/var/log/dpkg.log</filename>. Este registro es extremadamente "
 "detallado ya que incluye cada una de las etapas por las que pasa un paquete "
 "gestionado por <command>dpkg</command>. Además de ofrecer una forma de "
-"rastrear el funcionamiento de dpkg, por sobre todas las cosas, ayuda a "
-"mantener un historial del desarrollo del sistema: uno puede encontrar el "
-"momento exacto en el que se instaló o actualizó un paquete, y esta "
-"información puede ser extremadamente útil cuando se intenta entender un "
-"cambio de comportamiento reciente. Además, como se registran todas las "
-"versiones, es sencillo verificar y referenciar información con el archivo "
+"rastrear el funcionamiento de dpkg, sobre todo ayuda a mantener un historial "
+"del desarrollo del sistema: uno puede encontrar el momento exacto en el que "
+"se instaló o actualizó un paquete, y esta información puede ser "
+"extremadamente útil cuando se intenta entender un cambio de comportamiento "
+"reciente. Además, como se registran todas las versiones, es sencillo "
+"verificar y referenciar información con el archivo "
 "<filename>changelog.Debian.gz</filename> del paquete en cuestión o inclusive "
 "con reportes de error online."
 

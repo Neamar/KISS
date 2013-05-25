@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2013-05-20 00:29+0200\n"
+"PO-Revision-Date: 2013-05-28 22:52+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
 "/92_short-remedial-course/es-ES/>\n"
@@ -72,7 +72,7 @@ msgstr ""
 "En el mundo Unix, todo administrador debe utilizar la línea de órdenes tarde "
 "o temprano; por ejemplo, cuando el sistema no inicia adecuadamente y sólo "
 "provee la consola de modo de rescate. Poder manejar tal interfaz es, por lo "
-"tanto, una habilidad de supervivencia básica para dichas cirumstancias."
+"tanto, una habilidad de supervivencia básica para dichas circunstancias."
 
 #. Tag: title
 #, no-c-format
@@ -115,7 +115,7 @@ msgstr ""
 "significa <emphasis>cambiar directorio</emphasis>: «change directory»). El "
 "directorio padre siempre se llama <literal>..</literal> (dos puntos), "
 "mientras que también se conoce al directorio actual como "
-"<literal>.</literal> (un punto). El programa <command>ls</command> premite "
+"<literal>.</literal> (un punto). El programa <command>ls</command> permite "
 "<emphasis>enumerar</emphasis> («listing») el contenido de un directorio. Si "
 "no le provee ningún parámetro, operará en el directorio actual."
 
@@ -276,7 +276,7 @@ msgstr ""
 "<emphasis>pid</emphasis> (id de proceso: «process id»). Una vez que sabe el "
 "<emphasis>pid</emphasis> de un proceso, puede ejecutar <command>kill "
 "-<replaceable>señal</replaceable> <replaceable>pid</replaceable></command> "
-"para enviarle una señal (siempre que sea el dueño del proceos). Existen "
+"para enviarle una señal (siempre que sea el dueño del proceso). Existen "
 "varias señales, las más utilizadas son <literal>TERM</literal> (pedido de "
 "terminación) y <literal>KILL</literal> (finalización forzada)."
 
@@ -285,7 +285,7 @@ msgstr ""
 msgid "The command interpreter can also run programs in the background if the command ends with “&amp;”. By using the ampersand, the user resumes control of the shell immediately even though the command is still running (hidden from the user; as a background process). The <command>jobs</command> command lists the processes running in the background; running <command>fg %<replaceable>job-number</replaceable></command> (for <emphasis>foreground</emphasis>) restores a job to the foreground. When a command is running in the foreground (either because it was started normally, or brought back to the foreground with <command>fg</command>), the <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> key pair pauses the process and resumes control of the command-line. The process can then be restarted in the background with <command>bg %<replaceable>job-number</replaceable></command> (for <foreignphrase>background</foreignphrase>)."
 msgstr ""
 "El intérprete de órdenes también puede ejecutar programas en segundo plano "
-"si la orden finaliza con «&amp;». Cuando utiliza el símobo «et», el usuario "
+"si la orden finaliza con «&amp;». Cuando utiliza el símbolo «et», el usuario "
 "recupera el control de la consola inmediatamente aún cuando la orden "
 "continúa en ejecución (escondido del usuario como un proceso en segundo "
 "plano). El programa <command>jobs</command> («trabajos») enumerará los "
@@ -416,7 +416,7 @@ msgstr "<filename>/bin/</filename>: programas básicos;"
 #, no-c-format
 msgid "<filename>/boot/</filename>: Linux kernel and other files required for its early boot process;"
 msgstr ""
-"<filename>/boot/</filename>: núcleo Linus y otros archivos necesarios para "
+"<filename>/boot/</filename>: núcleo Linux y otros archivos necesarios para "
 "las primeras etapas del proceso de arranque;"
 
 #. Tag: para
@@ -544,7 +544,7 @@ msgid "Some programs use multiple configuration files organized in one directory
 msgstr ""
 "Algunos programas utilizan múltiples archivos de configuración organizados "
 "en un directorio (por ejemplo: <filename>~/.evolution/</filename>). Algunas "
-"aplicaiones (como el navegador web Iceweasel) también utlizarán su "
+"aplicaciones (como el navegador web Iceweasel) también utlizarán su "
 "directorio para almacenar un caché de datos descargados. Esto significa que "
 "estos directorios pueden llegar a utilizar mucho espacio en disco."
 
@@ -584,7 +584,7 @@ msgstr ""
 #, no-c-format
 msgid "An end-user can get by without knowing these details… as long as everything works. When confronting a problem such as, “The internet doesn't work!”, the first thing to do is to identify in which layer the problem originates. Is the network card (hardware) working? Is it recognized by the computer? Does the Linux kernel see it? Are the network parameters properly configured? All these questions isolate an appropriate layer and focus on a potential source of the problem."
 msgstr ""
-"Un usuario final puede vivir sin saber estos detalls… siempre que todo "
+"Un usuario final puede vivir sin saber estos detalles… siempre que todo "
 "funcione. Cuando nos enfrentamos con un problema como «¡Internet no anda!», "
 "lo primero que debemos hacer es identificar en qué capa se origina el "
 "problema. ¿Está funcionando la tarjeta de red (hardware)? ¿Es reconocida por "
@@ -669,7 +669,7 @@ msgstr ""
 msgid "Checking that a piece of hardware works can be tricky. On the other hand, proving that it doesn't work is sometimes quite simple."
 msgstr ""
 "Puede ser complicado revisar que una porción de hardware funciona. Por el "
-"otro lado, proar que no funciona a veces es muy simple."
+"otro lado, probar que no funciona a veces es muy simple."
 
 #. Tag: para
 #, no-c-format
@@ -755,10 +755,10 @@ msgstr ""
 "configurar aspectos del equipo. En particular, permite elegir el "
 "dispositivo de arranque preferido (por ejemplo, un disco flexible o "
 "dispositivo CD-ROM), configurar el reloj del sistema, etc. Iniciar «Setup» "
-"usualmente involucra presionar una tecla a penas se enciende el equipo. "
-"Generalmente esta tecla es <keycap>Del</keycap> o <keycap>Esc</keycap>, pero "
-"a veces también puede ser <keycap>F2</keycap> o <keycap>F10</keycap>. La "
-"mayoría de las veces, la tecla correcta aparece brevemente en la pantalla "
+"usualmente involucra presionar una tecla tan pronto como enciende el equipo. "
+"Generalmente esta tecla es <keycap>Del</keycap> o <keycap>Esc</keycap>, "
+"pero a veces también puede ser <keycap>F2</keycap> o <keycap>F10</keycap>. "
+"La mayoría de las veces, la tecla correcta aparece brevemente en la pantalla "
 "durante el arranque."
 
 #. Tag: para
@@ -843,7 +843,7 @@ msgstr ""
 "El núcleo tiene, antes que nada, la tarea de controlar las partes del "
 "hardware, detectarlas, encenderlas cuando se enciende el equipo, etc. "
 "También los pone a disposición del software de más alto nivel con una "
-"interfaz de programación simplificada para que las aplicaciones pueda "
+"interfaz de programación simplificada para que las aplicaciones puedan "
 "aprovechar dispositivos sin tener que preocuparse por detalles como cuál "
 "puerto de extensión es aquél en el que está conectada una tarjeta. La "
 "interfaz de programación también provee una capa de abstracción; permite, "
@@ -871,7 +871,7 @@ msgstr ""
 "role=\"pkg\">usbutils</emphasis>) enumera los dispositivos USB y "
 "<command>lspcmcia</command> (en el paquete <emphasis "
 "role=\"pkg\">pcmciautils</emphasis>) enumera las tarjetas PCMCIA. Estas "
-"herramientas son múy útiles para identificar el modelo exacto de un "
+"herramientas son muy útiles para identificar el modelo exacto de un "
 "dispositivo. Esta identificación permite realizar búsquedas más precisas en "
 "la web lo que, a su vez, lleva a documentos más relevantes."
 
@@ -966,7 +966,7 @@ msgstr "<primary>sistema de archivos</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>system, filesystem</primary>"
-msgstr "<primary>archivos, sistema</primary>"
+msgstr "<primary>archivos</primary><secondary>sistema de</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1152,7 +1152,7 @@ msgstr ""
 "acciones que pueda realizar el usuario. Por ejemplo, intentar abrir un "
 "archivo requiere que el núcleo verifique la identidad del proceso según los "
 "permisos de acceso (para más detalles sobre este ejemplo particular, revise "
-"<xref linkend=\"sect.rights-management\" />)."
+"la <xref linkend=\"sect.rights-management\" />)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1184,10 +1184,10 @@ msgstr "<primary><command>init</command></primary>"
 #, no-c-format
 msgid "When the kernel gets past its initialization phase, it starts the very first process, <command>init</command>. Process #1 alone is very rarely useful by itself, and Unix-like systems run with a whole lifecycle of processes."
 msgstr ""
-"Cuando el núcleo supera su fase de inicialización, ejecuta el primerproceso: "
-"<command>init</command>. El proceso #1 rara vez es útil por sí mismo, y los "
-"sistemas similares a Unix ejecutan con un ciclo de vida completo de "
-"procesos."
+"Cuando el núcleo supera su fase de inicialización, ejecuta el primer "
+"proceso: <command>init</command>. El proceso #1 rara vez es útil por sí "
+"mismo, y los sistemas similares a Unix ejecutan con un ciclo de vida "
+"completo de procesos."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1222,25 +1222,25 @@ msgstr ""
 "sí mismo y ejecuta otros varios programas. En algún punto, uno de los "
 "proceso de la descendencia de <command>init</command> inicia una interfaz "
 "gráfica en la que los usuarios pueden iniciar sesión (describimos con más "
-"detalle la secuencia real de eventos en <xref linkend=\"sect.system-boot\" "
+"detalle la secuencia real de eventos en la <xref linkend=\"sect.system-boot\" "
 "/>)."
 
 #. Tag: para
 #, no-c-format
 msgid "When a process finishes the task for which it was started, it terminates. The kernel then recovers the memory assigned to this process, and stops giving it slices of running time. The parent process is told about its child process being terminated, which allows a process to wait for the completion of a task it delegated to a child process. This behavior is plainly visible in command-line interpreters (known as <emphasis>shells</emphasis>). When a command is typed into a shell, the prompt only comes back when the execution of the command is over. Most shells allow for running the command in the background, it is a simple matter of adding an <userinput>&amp;</userinput> to the end of the command. The prompt is displayed again right away, which can lead to problems if the command needs to display data of its own."
 msgstr ""
-"Cuando un proceso finaliza la tare para la que fue iniciado, termina. El "
+"Cuando un proceso finaliza la tarea para la que fue iniciado, termina. El "
 "núcleo recupera la memoria asignada a este proceso y no le asignará más "
 "divisiones de tiempo de ejecución. Se le informa al proceso padre sobre la "
 "finalización de su proceso hijo, lo que permite a un proceso esperar que se "
-"complete una tarea que delegó a un proceso hijo. Este comportanmiento es "
+"complete una tarea que delegó a un proceso hijo. Este comportamiento es "
 "obvio a simple vista en los intérpretes de línea de órdenes (conocidos como "
-"<emphasis>consolas</emphasis> — «shells»). Cuando se ingresa una orden una "
-"consola, sólo vuelve el prompt cuando finaliza la ejecución de dicha orden. "
-"La mayoría de las consolas permiten ejecutar programas en segundo plano, "
-"sólo es cuestión de agregar un <userinput>&amp;</userinput> al final de la "
-"orden. Se mostrará el prompt inmediatamente, lo que puede llevar a problemas "
-"si la orden necesita mostrar datos por su cuenta."
+"<emphasis>consolas</emphasis> — «shells»). Cuando se ingresa una orden en "
+"una consola, sólo vuelve el prompt cuando finaliza la ejecución de dicha "
+"orden. La mayoría de las consolas permiten ejecutar programas en segundo "
+"plano, sólo es cuestión de agregar un <userinput>&amp;</userinput> al final "
+"de la orden. Se mostrará el prompt inmediatamente, lo que puede llevar a "
+"problemas si la orden necesita mostrar datos por su cuenta."
 
 #. Tag: title
 #, no-c-format
@@ -1287,7 +1287,8 @@ msgstr ""
 #, no-c-format
 msgid "Several such daemons are described in detail in <xref linkend=\"unix-services\" />."
 msgstr ""
-"Describimos en detalle muchos demonios en <xref linkend=\"unix-services\" />."
+"Describimos en detalle muchos demonios en el <xref linkend=\"unix-services\" "
+"/>."
 
 #. Tag: title
 #, no-c-format
@@ -1431,7 +1432,7 @@ msgstr ""
 msgid "For more complex communications, there are also mechanisms allowing a process to open access, or share, part of its allocated memory to other processes. Memory then shared between them, allows moving data across."
 msgstr ""
 "Para comunicaciones más complejas también existen mecanismos que le permiten "
-"a un proceo acceder, o compartir, parte de la memoria reservada para otros "
+"a un proceso acceder, o compartir, parte de la memoria reservada para otros "
 "procesos. Luego se comparte la memoria entre ellos, lo que permite "
 "intercambiar datos entre ellos."
 
@@ -1497,7 +1498,7 @@ msgid "Thanks to those libraries, applications can reuse existing code. Their de
 msgstr ""
 "Gracias a estas bibliotecas, las aplicaciones puede reutilizar código "
 "existente. Por lo tanto, se simplifica su desarrollo, en particular cuando "
-"muchas aplicaciones reutilizan las mismas funciones. Debido diferentes "
+"muchas aplicaciones reutilizan las mismas funciones. Debido a que diferentes "
 "personas desarrollan las bibliotecas, el desarrollo global del sistema es "
 "más cercano a la filosofía histórica de Unix."
 

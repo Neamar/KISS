@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-05-09 19:12+0200\n"
-"Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
+"PO-Revision-Date: 2013-06-04 19:19+0200\n"
+"Last-Translator: Raúl Priego <raul.priego@ymail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
 "/10_network-infrastructure/es-ES/>\n"
 "Language: es-ES\n"
@@ -317,8 +317,8 @@ msgstr ""
 "puertos</emphasis> («port forwarding»). Las conexiones entrantes a un puerto "
 "dado de una máquina son redireccionados a un puerto en otra máquina. Sin "
 "embargo, pueden existir otras soluciones para conseguir un efecto similar, "
-"especialmente a nivel de aplicación con <command>ssh</command> (revise <xref "
-"linkend=\"section.ssh-port-forwarding\" />) o <command>redir</command>."
+"especialmente a nivel de aplicación con <command>ssh</command> (revise la "
+"<xref linkend=\"section.ssh-port-forwarding\" />) o <command>redir</command>."
 
 #. Tag: para
 #, no-c-format
@@ -388,9 +388,9 @@ msgid "Similarly, using NAT (for IPv4) requires configuring <emphasis>netfilter<
 msgstr ""
 "De forma similar, utilizar NAT (para IPv4) necesita configurar "
 "<emphasis>netfilter</emphasis>. Debido a que el propósito principal de este "
-"componente es filtrar paquetes, se enumeran los detalles en <xref "
+"componente es filtrar paquetes, se enumeran los detalles en el <xref "
 "linkend=\"security\" xrefstyle=\"select: label quotedtitle nopage\" /> (revise "
-"<xref linkend=\"sect.firewall-packet-filtering\" />)."
+"la <xref linkend=\"sect.firewall-packet-filtering\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -542,7 +542,7 @@ msgid "The RSA algorithm is widely used in public-key cryptography. It involves 
 msgstr ""
 "El algoritmo RSA es ampliamente utilizado en criptografía de llave pública. "
 "Involucra un «par de llaves», compuestas de una llave privada y una llave "
-"pública. Las dos llaves están fuertemente enlazadas entre ellas y sus "
+"pública. Las dos llaves están fuertemente relacionadas entre ellas y sus "
 "propiedades matemáticas son tales que un mensaje cifrado con la llave "
 "pública sólo puede ser descifrado por alguien que conozca la llave privada, "
 "lo que asegura confidencialidad. En la dirección opuesta, un mensaje cifrado "
@@ -940,7 +940,7 @@ msgstr ""
 "<literal>/etc/openvpn/dh1024.pem</literal>). La directiva <literal>server "
 "10.8.0.0 255.255.255.0</literal> define la subred utilizada por la VPN; el "
 "servidor utilizará la primera dirección IP en el rango "
-"(<literal>10.8.0.1</literal> y se asignarán a los clientes el resto de las "
+"(<literal>10.8.0.1</literal>) y se asignarán a los clientes el resto de las "
 "direcciones."
 
 #. Tag: para
@@ -977,7 +977,7 @@ msgstr ""
 "funciona automáticamente cuando instala el servidor VPN en la puerta de "
 "enlace). Otra alternativa es configurar el servidor VPN para realizar "
 "enmascaramiento de IPs de forma que las conexiones que provengan de los "
-"clientes VPN parezcan provenir del servidor VPN en su lugar (revise <xref "
+"clientes VPN parezcan provenir del servidor VPN en su lugar (revise la <xref "
 "linkend=\"sect.gateway\" />)."
 
 #. Tag: title
@@ -1017,7 +1017,7 @@ msgstr ""
 msgid "The <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> package contains an extension to Network Manager (see <xref linkend=\"sect.config-reseau-itinerante\" />) that allows managing OpenVPN virtual private networks. This allows every user to configure OpenVPN connections graphically and to control them from the network management icon. <indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
 msgstr ""
 "El paquete <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> "
-"contiene una extensión para Network Manager (revise <xref linkend=\"sect"
+"contiene una extensión para Network Manager (revise la <xref linkend=\"sect"
 ".config-reseau-itinerante\" />) que permite administrar redes privadas "
 "virtuales OpenVPN. Esto permite que cada usuario configure gráficamente sus "
 "conexiones OpenVPN y las controle desde el ícono del gestor de red. "
@@ -1722,7 +1722,7 @@ msgstr "<primary>calidad</primary><secondary>del servicio</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>service</primary><secondary>quality</secondary>"
-msgstr "<primary>servicio</primary><secondary>calidad</secondary>"
+msgstr "<primary>servicio</primary><secondary>calidad del</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1768,7 +1768,7 @@ msgstr "<primary>enrutamiento</primary><secondary>avanzado</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>traffic control</primary>"
-msgstr "<primary>control de tráfico</primary>"
+msgstr "<primary>control</primary><secondary>de tráfico</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
