@@ -31,6 +31,7 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -63,8 +64,6 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	 * Task launched on text change
 	 */
 	private UpdateRecords updateRecords;
-
-	private MenuItem clear;
 
 	/**
 	 * Store user preferences
@@ -135,13 +134,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				updateRecords(s.toString());
-				if (clear != null) {
-					if (!searchEditText.getText().toString().equalsIgnoreCase("")) {
-						clear.setVisible(true);
-					} else {
-						clear.setVisible(false);
-					}
-				}
+				displayClearOnInput();
 			}
 		});
 
@@ -157,6 +150,18 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 				return true;
 			}
 		});
+		
+		Button clearButton = (Button) findViewById(R.id.clearButton);
+		clearButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				searchEditText.setText("");
+				
+			}
+		});
+		
+		displayClearOnInput();
 	}
 
 	@Override
@@ -179,14 +184,6 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
 					| Intent.FLAG_ACTIVITY_NO_ANIMATION);
 			startActivity(i);
-		}
-
-		if (clear != null) {
-			if (searchEditText != null && !searchEditText.getText().toString().equalsIgnoreCase("")) {
-				clear.setVisible(true);
-			} else {
-				clear.setVisible(false);
-			}
 		}
 
 		IntentFilter intentFilter = new IntentFilter(START_LOAD);
@@ -229,7 +226,8 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		}, 50);
 
 		updateRecords(searchEditText.getText().toString());
-
+		displayClearOnInput();
+		
 		super.onResume();
 	}
 
@@ -295,9 +293,6 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		case R.id.preferences:
 			startActivity(new Intent(this, SettingsActivity.class));
 			return true;
-		case R.id.clear:
-			searchEditText.setText("");
-			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -309,16 +304,22 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_settings, menu);
 
-		// "Clear" button
-		clear = menu.findItem(R.id.clear);
-		if (clear != null) {
-			if (searchEditText != null && !searchEditText.getText().toString().equalsIgnoreCase("")) {
-				clear.setVisible(true);
-			} else {
-				clear.setVisible(false);
-			}
-		}
 		return true;
+	}
+	
+	protected boolean displayClearOnInput()
+	{
+		final Button clearButton = (Button) findViewById(R.id.clearButton);
+		if(searchEditText.getText().length() > 0)
+		{
+			clearButton.setVisibility(View.VISIBLE);
+			return true;
+		}
+		else
+		{
+			clearButton.setVisibility(View.INVISIBLE);
+			return false;
+		}
 	}
 
 	/**
