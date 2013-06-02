@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2013-05-17 01:47+0200\n"
+"PO-Revision-Date: 2013-06-02 04:36+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
@@ -1324,6 +1324,18 @@ msgstr "Gerenciar prioridades de pacote"
 #, no-c-format
 msgid "One of the most important aspects in the configuration of APT is the management of the priorities associated with each package source. For instance, you might want to extend one distribution with one or two newer packages from <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis>. It is possible to assign a priority to each available package (the same package can have several priorities depending on its version or the distribution providing it). These priorities will influence APT's behavior: for each package, it will always select the version with the highest priority (except if this version is older than the installed one and if its priority is less than 1000)."
 msgstr ""
+"Um dos mais importantes aspectos na configuração do APT é o gerenciamento de "
+"prioridades associadas com cadafonte de pacote (\"package source\"). Por "
+"Exemplo, você pode querer extender uma distribuição com um ou dois pacotes "
+"mais novos da <emphasis role=\"distribution\">Testing</emphasis>, <emphasis "
+"role=\"distribution\">Unstable</emphasis> ou <emphasis "
+"role=\"distribution\">Experimental</emphasis>. É possível atribuir uma "
+"prioridade a cada pacote disponível (o mesmo pacote pode ter várias "
+"prioridades dependendo da sua versão ou da distribuição que o "
+"disponibiliza). Estas prioridades vão influenciar o comportamento do APT: "
+"para cada pacote, ele vai sempre selecionar a versão com a prioridade mais "
+"alta (exceto se esta versão é mais velha que a instalada e se sua prioridade "
+"for menor que 1000)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1356,6 +1368,11 @@ msgstr "<primary><filename>/etc/apt/preferences</filename></primary>"
 #, no-c-format
 msgid "APT defines several default priorities. Each installed package version has a priority of 100. A non-installed version has a priority of 500 by default, but it can jump to 990 if it is part of the target release (defined with the <literal>-t</literal> command-line option or the <literal>APT::Target-Release</literal> configuration directive)."
 msgstr ""
+"O APT define várias prioridades padrão. Cada versão de pacote instalada tem "
+"a prioridade 100. uma versão não instalada tem a prioridade 500 por padrão, "
+"mas pode pular para 990 se for parte da \"target release\" (definida com a "
+"opção de linha de comando <literal>-t</literal> ou a diretiva de "
+"configuração <literal>APT::Target-Release</literal>)."
 
 #. Tag: para
 #, no-c-format
@@ -1369,16 +1386,55 @@ msgstr ""
 #, no-c-format
 msgid "APT will never install an older version of a package (that is, a package whose version number is lower than the one of the currently installed package) except if its priority is higher than 1000. APT will always install the highest priority package which follows this constraint. If two packages have the same priority, APT installs the newest one (whose version number is the highest). If two packages of same version have the same priority but differ in their content, APT installs the version that is not installed (this rule has been created to cover the case of a package update without the increment of the revision number, which is usually required)."
 msgstr ""
+"O APT nunca vai instalar uma versão mais antiga de um pacote (quer dizer, um "
+"pacote cujo número de versão é menor que o que está atualmente instalado) "
+"exceto se sua prioridade for maior que 1000. O APT vai sempre instalar o "
+"pacote de prioridade mais alta que satisfizer esta restrição. Se dois "
+"pacotes têm a mesma prioridade, o APT instala o mais novo (o que tiver o "
+"maior número de versão). Se dois pacotes da mesma versão tiverem a mesma "
+"prioridade mas conteúdos diferentes, o APT instala a versão que não estiver "
+"instalada (esta regra foi criada para o caso onde uma atualização de pacote "
+"que não incrementa o número de revisão, que é normalmente necessário)."
 
 #. Tag: para
 #, no-c-format
 msgid "In more concrete terms, a package whose priority is less than 0 will never be installed. A package with a priority ranging between 0 and 100 will only be installed if no other version of the package is already installed. With a priority between 100 and 500, the package will only be installed if there is no other newer version installed or available in another distribution. A package of priority between 500 and 990 will only be installed if there is no newer version installed or available in the target distribution. With a priority between 990 and 1000, the package will be installed except if the installed version is newer. A priority greater than 1000 will always lead to the installation of the package even if it forces APT to downgrade to an older version."
 msgstr ""
+"Em termos mai concretos, umpacote cuja prioridade é menor que 0 nunca vai "
+"ser instalado. Um pacote com a prioridade entre 0 100 só vai ser instalado "
+"se nenhuma outra versão do pacote estiver instalada. Com uma prioridade "
+"entre 100 e 500, o pacote só será instalado se não houver uma versão mais "
+"nova instalada ou disponível em outra distribuição. Um pacote de prioridade "
+"entre 500 e 990 só será instalado se não houver uma versão mais nova "
+"instalada oudisponível numa \"target distribution\". Com uma prioridade entre "
+"990 e 1000, o pacote será instalado a menos que a versão instalada seja mais "
+"nova. Uma prioridade maior que 1000 vai sempre levar à instalação do "
+"pacote, mesmo se ela forçar o APT a fazer downgrade para uma versão mais "
+"antiga."
 
 #. Tag: para
 #, no-c-format
 msgid "When APT checks <filename>/etc/apt/preferences</filename>, it first takes into account the most specific entries (often those specifying the concerned package), then the more generic ones (including for example all the packages of a distribution). If several generic entries exist, the first match is used. The available selection criteria include the package's name and the source providing it. Every package source is identified by the information contained in a <filename>Release</filename> file that APT downloads together with the <filename>Packages.gz</filename> files. It specifies the origin (usually “Debian” for the packages of official mirrors, but it can also be a person's or an organization's name for third-parties repositories). It also gives the name of the distribution (usually <emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis> for the standard distributions provided by Debian) together with its version (for example 5.0 for Debian <emphasis role=\"distribution\">Lenny</emphasis>). Let's have a look at its syntax through some realistic case studies of this mechanism."
 msgstr ""
+"Quando o APT verifica o <filename>/etc/apt/preferences</filename>, ele leva "
+"em conta primeiro as entradas mais específicas (geralmente aquelas "
+"especificando o pacote em consideração), para depois ir para as mais "
+"genéricas (incluindo, por exemplo, todos os pacotes de uma distribuição). Se "
+"várias entradas genéricas existirem, o primeiro \"match\" é usado. O critério "
+"de seleção disponível inclui o nome do pacote e a fonte que o fornece. Cada "
+"fonte de pacote é identificada pela informação contida em um arquivo "
+"<filename>Release</filename> que o APT baixa junto com os arquivos "
+"<filename>Packages.gz</filename>. Ele especifica a origem (normalmente "
+"\"Debian\" para os pacotes de espelhos oficiais, mas pode ser também um nome "
+"de pessoa ou organização para repositórios de terceiros). Ele também dá o "
+"nome da distribuição (normalmente <emphasis "
+"role=\"distribution\">Stable</emphasis>, <emphasis "
+"role=\"distribution\">Testing</emphasis>, <emphasis "
+"role=\"distribution\">Unstable</emphasis> ou <emphasis "
+"role=\"distribution\">Experimental</emphasis> para as distribuições padrão "
+"fornecidas pelo Debian) junto com sua versão (por exemplo 5.0 para o Debian "
+"<emphasis role=\"distribution\">Lenny</emphasis>). Vamos dar uma olhada na "
+"sintaxe em alguns estudos de caso reais deste mecanismo."
 
 #. Tag: title
 #, no-c-format
@@ -1391,6 +1447,19 @@ msgstr ""
 #, no-c-format
 msgid "If you listed <emphasis role=\"distribution\">Experimental</emphasis> in your <filename>sources.list</filename> file, the corresponding packages will almost never be installed because their default APT priority is 1. This is of course a specific case, designed to keep users from installing <emphasis role=\"distribution\">Experimental</emphasis> packages by mistake. The packages can only be installed by typing <command>aptitude install <replaceable>package</replaceable>/experimental</command> — users typing this command can only be aware of the risks that they take. It is still possible (though <emphasis>not</emphasis> recommended) to treat packages of <emphasis role=\"distribution\">Experimental</emphasis> like those of other distributions by giving them a priority of 500. This is done with a specific entry in <filename>/etc/apt/preferences</filename>:"
 msgstr ""
+"Se você listou a <emphasis role=\"distribution\">Experimental</emphasis> em "
+"seu arquivo <filename>sources.list</filename>, os pacotes correspondentes "
+"quase nunca vão ser instalados, por que a prioridade padrão do APT é 1. Este "
+"é, claro, um caso particular, projetado para evitar que usuários instalem "
+"pacotes da <emphasis role=\"distribution\">Experimental</emphasis> por engano. "
+"Os pacotes podem apenas ser intalados digitando <command>aptitude install "
+"<replaceable>pacote</replaceable>/experimental</command> — usuários "
+"digitando este comando podem apenas ser avisados dos riscos que estão "
+"assumindo. Ainda é possível (embora <emphasis>não</emphasis> recomendado) "
+"tratar pacotes da <emphasis role=\"distribution\">Experimental</emphasis> como "
+"aqueles de outras distribuições dando a eles uma prioridade de 500. Isto é "
+"feito com uma entrada específica no "
+"<filename>/etc/apt/preferences</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1435,11 +1504,17 @@ msgstr ""
 #, no-c-format
 msgid "<literal>a=stable</literal> defines the name of the selected distribution. <literal>o=Debian</literal> limits the scope to packages whose origin is “Debian”."
 msgstr ""
+"<literal>a=stable</literal> define o nome da distribuição selecionada. "
+"<literal>o=Debian</literal> limita o escopo para pacotes cuja origem seja "
+"\"Debian\"."
 
 #. Tag: para
 #, no-c-format
 msgid "Let's now assume that you have a server with several local programs depending on the version 5.10 of Perl and that you want to ensure that upgrades will not install another version of it. You could use this entry:"
 msgstr ""
+"Suponha agora que você tenha um servidor com vários programas locais que "
+"dependem da versão 5.10 do Perl e que você queira garantir que atualizações "
+"não vão instalar outra versão dele. Você pode usar esta entrada:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1456,6 +1531,10 @@ msgstr ""
 #, no-c-format
 msgid "The reference documentation for this configuration file is available in the manual page <citerefentry><refentrytitle>apt_preferences</refentrytitle><manvolnum>5</manvolnum></citerefentry>, which you can display with <command>man apt_preferences</command>."
 msgstr ""
+"A documentação de referência para este arquivo de configuração está "
+"disponível na página de manual <citerefentry><refentrytitle>apt_preferences<"
+"/refentrytitle><manvolnum>5</manvolnum></citerefentry>, que você lê com "
+"<command>man apt_preferences</command>."
 
 #. Tag: title
 #, no-c-format
@@ -1477,12 +1556,16 @@ msgstr "<primary><literal>Pin</literal></primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pin-Priority</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>Pin-Priority</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "There is no official syntax to put comments in the <filename>/etc/apt/preferences</filename> file, but some textual descriptions can be provided by putting one or more “<literal>Explanation</literal>” fields at the start of each entry:"
 msgstr ""
+"Não existe uma sintaxe oficial para colocar comentários no arquivo "
+"<filename>/etc/apt/preferences</filename>, mas algumas descrições textuais "
+"pode ser fornecidas colocando um ou mais campos "
+"\"<literal>Explanation</literal>\" no começo de cada entrada:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1493,6 +1576,11 @@ msgid "Explanation: The package xserver-xorg-video-intel provided\n"
 "Pin-Priority: 500\n"
 ""
 msgstr ""
+"Explanation: O pacote xserver-xorg-video-intel fornecido na\n"
+"Explanation: experimental pode ser usado\n"
+"Package: xserver-xorg-video-intel\n"
+"Pin: release a=experimental\n"
+"Pin-Priority: 500\n"
 
 #. Tag: title
 #, no-c-format
@@ -1503,11 +1591,28 @@ msgstr "Trabalhando com Distribuições Diversas"
 #, no-c-format
 msgid "<command>aptitude</command> being such a marvelous tool, it is tempting to pick packages coming from other distributions. For example, after having installed a <emphasis role=\"distribution\">Stable</emphasis> system, you might want to try out a software package available in <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> without diverging too much from the system's initial state."
 msgstr ""
+"Sendo o <command>aptitude</command> uma ferramenta assim tão maravilhosa, é "
+"tentador pegar pacotes de outras ditribuicões. Por exemplo, depois de "
+"instalar um sistema <emphasis role=\"distribution\">Stable</emphasis>, você "
+"pode querer tentar um pacote de software disponível na <emphasis "
+"role=\"distribution\">Testing</emphasis> ou <emphasis "
+"role=\"distribution\">Unstable</emphasis> sem divergir muito do estado inicial "
+"do sistema."
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Even if you will occasionally encounter problems while mixing packages from different distributions, <command>aptitude</command> manages such coexistence very well and limits risks very effectively. The best way to proceed is to list all distributions used in <filename>/etc/apt/sources.list</filename> (some people always put the three distributions, but remember that <emphasis role=\"distribution\">Unstable</emphasis> is reserved for experienced users) and to define your reference distribution with the <literal>APT::Default-Release</literal> parameter (see <xref linkend=\"section.apt-mise-a-jour\" />)."
 msgstr ""
+"Mesmo se você ocasionalmente encontrar problemas enquanto estiver misturando "
+"pacotes de distribuições diferentes, o <command>aptitude</command> gerencia "
+"tal coexistência muito bem e limita os riscos de forma bastante efetiva. A "
+"melhor maneira de proceder é listando todas as distribuições usadas em "
+"<filename>/etc/apt/sources.list</filename> (algumas pessoas sempre botam as "
+"três distribuições, mas lembre-se que <emphasis "
+"role=\"distribution\">Unstable</emphasis> é reservada para usuários "
+"experientes) e definindo a sua distribuição de referência com o parâmetro "
+"<literal>APT::Default-Release</literal> (see <xref linkend=\"section.apt-"
+"mise-a-jour\" />)."
 
 #. Tag: para
 #, no-c-format
