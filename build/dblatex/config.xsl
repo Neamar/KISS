@@ -133,9 +133,11 @@ actual page. By default the page is centered as required in this mode.
     <l:gentext key="keywordset" text="Palabras clave"/>
     <l:context name="xref">
       <l:template name="page.citation" text=" (p&#225;gina %p)"/>
-    </l:context>
-    <l:context name="xref">
       <l:template name="sidebar" text="«%t»"/>
+    </l:context>
+    <l:context name="xref-number-and-title">
+      <l:template name="chapter" text=" Cap&#237;tulo %n: «%t»"/>
+      <l:template name="section" text=" Secci&#243;n %n, «%t»"/>
     </l:context>
   </l:l10n>
 
