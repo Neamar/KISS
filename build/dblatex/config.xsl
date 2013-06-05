@@ -122,9 +122,20 @@ actual page. By default the page is centered as required in this mode.
     <l:gentext key="keywordset" text="Keywords"/>
     <l:context name="xref">
       <l:template name="page.citation" text=" (page %p)"/>
-    </l:context>
-    <l:context name="xref">
       <l:template name="sidebar" text="“%t”"/>
+    </l:context>
+  </l:l10n>
+
+  <l:l10n language="es">
+    <l:gentext key="minitoc" text="Contenidos"/>
+    <l:gentext key="keywordset" text="Palabras clave"/>
+    <l:context name="xref">
+      <l:template name="page.citation" text=" (p&#225;gina %p)"/>
+      <l:template name="sidebar" text="«%t»"/>
+    </l:context>
+    <l:context name="xref-number-and-title">
+      <l:template name="chapter" text=" Cap&#237;tulo %n: «%t»"/>
+      <l:template name="section" text=" Secci&#243;n %n, «%t»"/>
     </l:context>
   </l:l10n>
 
@@ -133,8 +144,6 @@ actual page. By default the page is centered as required in this mode.
     <l:gentext key="keywordset" text="Mots-cl&#233;s"/>
     <l:context name="xref">
       <l:template name="page.citation" text=" (page %p)"/>
-    </l:context>
-    <l:context name="xref">
       <l:template name="sidebar" text="« %t »"/>
     </l:context>
   </l:l10n>

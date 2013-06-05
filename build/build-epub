@@ -14,6 +14,7 @@ parse_options "$@"
 
 if [ ! -e tmp/$OPT_lang/xml ] || [ -z "$OPT_skip" ]; then
     publican build --formats=xml --langs=$OPT_lang
+    sed -i -e "s/<book/<book lang=\"${OPT_lang}\"/" tmp/$OPT_lang/xml/debian-handbook.xml
 fi
 
 cp -a build/epub tmp/$OPT_lang/xml/

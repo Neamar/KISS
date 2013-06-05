@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2013-04-28 23:55+0200\n"
+"PO-Revision-Date: 2013-05-28 22:54+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-"
 "handbook/04_installation/es-ES/>\n"
@@ -72,8 +72,8 @@ msgstr ""
 msgid "Installing a computer is always simpler when you are familiar with the way it works. If you are not, make a quick detour to <xref linkend=\"short-remedial-course\" /> before reading this chapter."
 msgstr ""
 "Instalar un equipo siempre es más simple cuando uno conoce cómo funciona. Si "
-"no lo sabe, desvíese rápidamente a <xref linkend=\"short-remedial-course\" /> "
-"antes de leer este capítulo."
+"no lo sabe, desvíese rápidamente al <xref linkend=\"short-remedial-course\" "
+"/> antes de leer este capítulo."
 
 #. Tag: para
 #, no-c-format
@@ -128,7 +128,7 @@ msgstr ""
 #, no-c-format
 msgid "The upgrade process will be described in <xref linkend=\"sect.dist-upgrade\" />."
 msgstr ""
-"Se describirá el proceso de actualización en <xref linkend=\"sect.dist-"
+"Describiremos el proceso de actualización en la <xref linkend=\"sect.dist-"
 "upgrade\" />."
 
 #. Tag: title
@@ -314,7 +314,7 @@ msgstr ""
 "pequeño disco de memoria flash). Tenga cuidado ya que no todos los BIOS son "
 "iguales, algunos pueden arrancar desde dispositivos USB 2.0 mientras que "
 "otros sólo funcionarán con USB 1.1. Además, la llave USB debe tener sectores "
-"de 512 sectores y esta característica — aunque común — nunca es documentado "
+"de 512 bytes y esta característica — aunque común — nunca está documentada "
 "en el empaquetado de las llaves que encontrará a la venta."
 
 #. Tag: para
@@ -397,9 +397,10 @@ msgstr ""
 "respuesta, incluye un nombre de archivo además de la configuración de red. "
 "Luego de configurar la red, el equipo cliente hace un pedido TFTP (siglas en "
 "inglés de «protocolo trivial de transferencia de archivos») para el archivo "
-"cuyo nombre recibió. Una vez que adquiere dicho archivo, lo ejecuta como un "
-"gestor de arranque. Esto luego ejecuta el programa de instalación de Debian "
-"como si lo hubiese cargado desde el disco duro, un CD-ROM o una llave USB."
+"del nombre que recibió. Una vez que adquiere dicho archivo, lo ejecuta como "
+"un gestor de arranque. Esto luego ejecuta el programa de instalación de "
+"Debian como si lo hubiese cargado desde el disco duro, un CD-ROM o una llave "
+"USB."
 
 #. Tag: para
 #, no-c-format
@@ -425,8 +426,8 @@ msgstr ""
 "cantidad de equipos generalmente elegimos un método de instalación "
 "automático en lugar de uno manual. Dependiendo de la situación y la "
 "complejidad de las instalaciones podemos utilizar FAI (siglas de «instalador "
-"completamente automático», descripto en <xref linkend=\"fai\" />) o un CD de "
-"instalación preconfigurado («preseeding», revise <xref "
+"completamente automático», descripto en la <xref linkend=\"fai\" />) o un CD "
+"de instalación preconfigurado («preseeding», revise la <xref "
 "linkend=\"d-i-preseeding\" />)."
 
 #. Tag: title
@@ -525,7 +526,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dual boot</primary>"
-msgstr "<primary>arranque dual</primary>"
+msgstr "<primary>arranque</primary><secondary>dual</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -561,7 +562,7 @@ msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> Gestor de arranque"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>loader</primary><secondary>bootloader</secondary>"
-msgstr "<primary>arranque</primary><secondary>gestor de arranque</secondary>"
+msgstr "<primary>arranque</primary><secondary>gestor de</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -620,8 +621,8 @@ msgstr ""
 "paso a paso. Esta sección presenta cada uno de estos pasos en detalle. "
 "Seguiremos aquí el proceso de una instalación desde un DVD-ROM "
 "multiarquitectura; otros tipos de instalación (<emphasis>netinst</emphasis> "
-"o <emphasis>businesscard</emphasis>) puede ser ligeramente distinto. También "
-"abordaremos la instalación en modo gráfico, pero sólo difiere de la "
+"o <emphasis>businesscard</emphasis>) pueden ser ligeramente distintos. "
+"También abordaremos la instalación en modo gráfico, pero sólo difiere de la "
 "instalación «clásica» en su apariencia."
 
 #. Tag: title
@@ -723,8 +724,8 @@ msgstr "Detección de hardware"
 msgid "This step is completely automatic in the vast majority of cases. The installer detects your hardware, and tries to identify the CD-ROM drive used in order to access its content. It loads the modules corresponding to the various hardware components detected, and then “mounts” the CD-ROM in order to read it. The previous steps were completely contained in the boot image included on the CD, a file of limited size and loaded into memory by the BIOS when booting from the CD."
 msgstr ""
 "Este paso es completamente automático en la gran mayoría de los casos. El "
-"instalador detecta su hardware e intenta indentificar el dispositivo CD-ROM "
-"a utilizar para acceder a su contenido. Carga los módulos correspondientes a "
+"instalador detecta su hardware e intenta identificar el dispositivo CD-ROM a "
+"utilizar para acceder a su contenido. Carga los módulos correspondientes a "
 "los componentes de hardware detectados y luego «monta» el CD-ROM para poder "
 "leerlo. Los pasos previos estaban completamente contenidos en la imagen "
 "incluida en el CD, un archivo de tamaño limitado y cargado en memoria por el "
@@ -813,7 +814,7 @@ msgstr ""
 msgid "This last option requires an IP address, a subnet mask, an IP address for a potential gateway, a machine name, and a domain name."
 msgstr ""
 "La última opción necesita una dirección IP, una máscara de red, una "
-"dirección IP para una puerta de enlace potencia, un nombre de equipo y un "
+"dirección IP para una posible puerta de enlace, un nombre de equipo y un "
 "nombre de dominio."
 
 #. Tag: title
@@ -860,8 +861,8 @@ msgstr ""
 "actualizado (por única vez) desde un servidor NTP. De esta forma, la marcas "
 "temporales en los registros serán correctas desde el primer arranque. Para "
 "que se mantengan consistentes en el tiempo es necesario configurar un "
-"demonio NTP luego de la instalación inicial (revise  <xref linkend=\"section"
-".synchronisation-horaire\" />)."
+"demonio NTP luego de la instalación inicial (revise la <xref "
+"linkend=\"section.synchronisation-horaire\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -993,8 +994,8 @@ msgstr ""
 msgid "Fortunately, the partitioning software has a “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
 msgstr ""
 "Afortunadamente, el software de particionado tiene un modo «guiado» que "
-"recomienda las particiones que debe crear el usuario — en la matoría de los "
-"casos puede simplemente validar las sugerencias del software."
+"recomienda las particiones que debe crear el usuario — en la mayoría de los "
+"casos puede simplemente aceptar las sugerencias del software."
 
 #. Tag: title
 #, no-c-format
@@ -1109,7 +1110,7 @@ msgstr "<primary>sistema</primary><secondary>de archivos</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>system</secondary>"
-msgstr "<primary>archivo</primary><secondary>sistema de</secondary>"
+msgstr "<primary>archivos</primary><secondary>sistema de</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1420,8 +1421,8 @@ msgstr ""
 #, no-c-format
 msgid "For further details on RAID functions, please refer to <xref linkend=\"section.raid-soft\" />."
 msgstr ""
-"Para maś detalles sobre funciones RAID, revise <xref linkend=\"section.raid-"
-"soft\" />."
+"Para maś detalles sobre funciones RAID, revise la <xref linkend=\"section"
+".raid-soft\" />."
 
 #. Tag: title
 #, no-c-format
@@ -1515,7 +1516,7 @@ msgstr ""
 #, no-c-format
 msgid "The usage of LVM is described in further detail in <xref linkend=\"section.lvm\" />."
 msgstr ""
-"Se describe el uso de LVM con más detalles en <xref linkend=\"section.lvm\" "
+"Se describe el uso de LVM con más detalles en la <xref linkend=\"section.lvm\" "
 "/>."
 
 #. Tag: title
@@ -1551,7 +1552,7 @@ msgstr "<primary>confidencialidad</primary><secondary>archivos</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>confidentiality</secondary>"
-msgstr "<primary>archivo</primary><secondary>confidencialidad</secondary>"
+msgstr "<primary>archivo</primary><secondary>confidencialidad de</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1895,7 +1896,7 @@ msgstr ""
 #, no-c-format
 msgid "For more information on configuring GRUB, please refer to <xref linkend=\"section.config-grub\" />."
 msgstr ""
-"Para más información sobre la configuración de GRUB, revise <xref "
+"Para más información sobre la configuración de GRUB, revise la <xref "
 "linkend=\"section.config-grub\" />."
 
 #. Tag: title
@@ -2073,7 +2074,7 @@ msgstr ""
 #, no-c-format
 msgid "These concepts are discussed in greater detail in <xref linkend=\"packaging-system\" />."
 msgstr ""
-"Se discuten estos conceptos con más detalles en <xref linkend=\"packaging-"
+"Se discuten estos conceptos con más detalles en el <xref linkend=\"packaging-"
 "system\" />."
 
 #. Tag: title
@@ -2097,5 +2098,5 @@ msgstr ""
 "Debian. Estas actualizaciones podrían requerir preguntas adicionales a "
 "través de <command>debconf</command>, la herramienta estándar para "
 "configuración en Debian. Para más información sobre estas actualizaciones "
-"realizadas por <command>aptitude</command> revise <xref linkend=\"section"
+"realizadas por <command>aptitude</command> revise la <xref linkend=\"section"
 ".apt-mise-a-jour\" />."

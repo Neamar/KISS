@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:57\n"
-"PO-Revision-Date: 2013-05-20 00:33+0200\n"
+"PO-Revision-Date: 2013-05-28 23:01+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
 "/11_network-services/es-ES/>\n"
@@ -150,7 +150,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> SMTP"
-msgstr "<emphasis>VUELTA A LOS CIMIENTOS</emphasis> SMTP"
+msgstr "<emphasis>VOLVER A LOS CIMIENTOS</emphasis> SMTP"
 
 #. Tag: indexterm
 #, no-c-format
@@ -435,7 +435,7 @@ msgstr ""
 "idéntica en todos los sistemas Debian, con la misma parte «privada». Deben "
 "utilizarse exclusivamente para pruebas y el servicio normal debe utilizar "
 "certificados reales; puede generarlos utilizado el procedimiento descripto "
-"en <xref linkend=\"sect.easy-rsa\" />."
+"en la <xref linkend=\"sect.easy-rsa\" />."
 
 #. Tag: title
 #, no-c-format
@@ -1569,7 +1569,7 @@ msgid ""
 "falcot.com             greylisting\n"
 msgstr ""
 "\n"
-"# Direcciones sin filtor\n"
+"# Direcciones sin filtro\n"
 "postmaster@falcot.com  permissive\n"
 "support@falcot.com     permissive\n"
 "sales-asia@falcot.com  permissive\n"
@@ -2531,7 +2531,7 @@ msgstr "Autenticación obligatoria"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>web authentication</primary>"
-msgstr "<primary>authenticación web</primary>"
+msgstr "<primary>autenticación web</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2967,7 +2967,7 @@ msgstr ""
 "web almacenado por nuestro proveedor de Internet (o cualquier otra entidad "
 "que almacene sitios web). En estos casos, se fuerza el acceso seguro con un "
 "identificador de usuario y una contraseña; si éste es exitoso, el servidor "
-"FTP proporciona acceso de lectura/escritura al directorio del usuario."
+"FTP proporciona acceso de lectura y escritura al directorio del usuario."
 
 #. Tag: para
 #, no-c-format
@@ -3386,9 +3386,9 @@ msgid "Directories are made available as read-only by default (or with the <lite
 msgstr ""
 "De forma predeterminada (o si utiliza la opción <literal>ro</literal>), los "
 "directorios están disponibles sólo para lectura. La opción "
-"<literal>rw</literal> permite acceso de lectura/escritura. Los clientes NFS "
-"típicamente se conectan desde un puerto restringido sólo a root (en otras "
-"palabras, menor a 1024); puede eliminar esta restricción con la opción "
+"<literal>rw</literal> permite acceso de lectura y escritura. Los clientes "
+"NFS típicamente se conectan desde un puerto restringido sólo a root (en "
+"otras palabras, menor a 1024); puede eliminar esta restricción con la opción "
 "<literal>insecure</literal> (la opción <literal>secure</literal> es "
 "implícita, pero puede hacerla explícita para más claridad)."
 
@@ -3521,7 +3521,7 @@ msgstr ""
 "El elemento descripto monta, al iniciar el sistema, el directorio NFS "
 "<filename>/srv/shared/</filename> en el servidor <literal>arrakis</literal> "
 "en el directorio local <filename>/shared/</filename>. Necesita acceso de "
-"lectura-escritura (de allí el parámetro <literal>rw</literal>). La opción "
+"lectura y escritura (de allí el parámetro <literal>rw</literal>). La opción "
 "<literal>nosuid</literal> es una medida de protección que elimina cualquier "
 "bit <literal>setuid</literal> o <literal>setgid</literal> de los programas "
 "almacenados en el espacio compartido. Si el espacio compartido NFS está "
@@ -4849,9 +4849,9 @@ msgstr ""
 msgid "The <command>migrate_all_online.sh</command> asks a few questions about the LDAP database into which the data is to be migrated. <xref linkend=\"tab-migrate-all\" xrefstyle=\"select: label nopage\" /> summarizes the answers given in the Falcot use-case."
 msgstr ""
 "<command>migrate_all_online.sh</command> realizará unas pocas preguntas "
-"sobre la base de datos LDAP a la que migrará los datos. <xref linkend=\"tab-"
-"migrate-all\" xrefstyle=\"select: label nopage\" /> resume las respuestas dadas "
-"en el caso de uso de Falcot."
+"sobre la base de datos LDAP a la que migrará los datos. La <xref linkend"
+"=\"tab-migrate-all\" xrefstyle=\"select: label nopage\" /> resume las respuestas "
+"dadas en el caso de uso de Falcot."
 
 #. Tag: title
 #, no-c-format
@@ -4987,7 +4987,7 @@ msgstr ""
 "diseñado para definir u obtener información para directorios de sistemas. "
 "Utilizar LDAP como fuente de datos para NSS requiere instalar el paquete "
 "<emphasis role=\"pkg\">libnss-ldap</emphasis>. Al hacerlo, se harán unas pocas "
-"preguntas cuyas respuestas están resumidas en <xref linkend=\"tab-libnss-"
+"preguntas cuyas respuestas están resumidas en la <xref linkend=\"tab-libnss-"
 "ldap\" xrefstyle=\"select: label nopage\" />."
 
 #. Tag: indexterm
@@ -5179,7 +5179,7 @@ msgstr ""
 "similares a aquellas en el paquete <emphasis role=\"pkg\">libnss-"
 "ldap</emphasis>; algunos parámetros de configuración (como el URI del "
 "servidor LDAP) son inclusive compartidos con el paquete <emphasis role=\"pkg"
-"\">libnss-ldap</emphasis>. Encontrará resumidas las respuestas en <xref "
+"\">libnss-ldap</emphasis>. Encontrará resumidas las respuestas en la <xref "
 "linkend=\"tab-libpam-ldap\" xrefstyle=\"select: label nopage\" />."
 
 #. Tag: indexterm

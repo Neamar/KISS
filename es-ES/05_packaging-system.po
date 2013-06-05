@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:34\n"
-"PO-Revision-Date: 2013-05-20 00:45+0200\n"
+"PO-Revision-Date: 2013-06-05 10:12+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
 "/05_packaging-system/es-ES/>\n"
@@ -205,8 +205,8 @@ msgstr ""
 #, no-c-format
 msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"section.manuel\" />)."
 msgstr ""
-"<xref linkend=\"solving-problems\" /> discute las páginas de manual con más "
-"detalles (revise <xref linkend=\"section.manuel\" />)."
+"El <xref linkend=\"solving-problems\" /> discute las páginas de manual con más "
+"detalles (revise la <xref linkend=\"section.manuel\" />)."
 
 #. Tag: para
 #, no-c-format
@@ -346,7 +346,7 @@ msgstr ""
 "Un paquete Debian no es sólo un compendio de archivos a instalar. Es parte "
 "de un todo más grande y describe su relación con otros paquetes Debian "
 "(dependencias, conflictos, sugerencias). También provee scripts que permiten "
-"la ejecución de órdenes en diferentes estapas del ciclo de vida del paquete "
+"la ejecución de órdenes en diferentes etapas del ciclo de vida del paquete "
 "(instalación, eliminación, actualización). Estos datos utilizados por las "
 "herramientas de gestión de paquetes no son parte del software empaquetado "
 "pero son, dentro del paquete, lo que se denomina «metainformación» "
@@ -502,8 +502,8 @@ msgstr ""
 "versiones que cumplen dicha condición. En otras palabras, es posible "
 "expresar el hecho de que necesitamos el paquete <emphasis "
 "role=\"pkg\">libc6</emphasis> en una versión igual o mayor a «2.3.4» (escrito "
-"como «<command>libc6 ($gt;= 2.3.4)</command>». Los operadores de comparación "
-"de versiones son los siguientes:"
+"como «<command>libc6 (>= 2.3.4)</command>». Los operadores de comparación de "
+"versiones son los siguientes:"
 
 #. Tag: para
 #, no-c-format
@@ -967,7 +967,7 @@ msgstr "<emphasis>YENDO MÁS ALLÁ</emphasis> Versiones de paquetes virtuales"
 msgid "Although today virtual packages can't have versions, this will not necessarily always be the case. Indeed, <command>apt</command> is already able to manage the versions of virtual packages and it is likely that <command>dpkg</command> eventually will too. We will then be able to write fields such as <literal>Provides: libstorable-perl (= 1.7)</literal> to indicate that a package provides the same functionality as <emphasis role=\"pkg\">libstorable-perl</emphasis> in its 1.7 version."
 msgstr ""
 "Si bien hoy en día los paquetes virtuales no pueden tener versiones, esto no "
-"será el caso por siempre. De hecho, <command>apt</command> ya puede "
+"será el caso para siempre. De hecho, <command>apt</command> ya puede "
 "gestionar versiones de paquetes virtuales y es probable que "
 "<command>dpkg</command> también lo hará eventualmente. Luego podremos "
 "escribir los campos como <literal>Provides: libstorable-perl (= "
@@ -1043,9 +1043,9 @@ msgstr ""
 "interfaz, lenguaje de programación, dominio de la aplicación, etc.) es un "
 "desarrollo reciente de Debian. Por esto no está integrado aún en todas sus "
 "herramientas; <command>aptitude</command> muestra estas etiquetas y permite "
-"utilizarlas como criterio de búsqueda. Para quellos que evitan los criterios "
-"de búsqueda de <command>aptitude</command>, el siguiente sitio le permite "
-"navegar la base de datos de etiquetas: <ulink type=\"block\" "
+"utilizarlas como criterio de búsqueda. Para aquellos que evitan los "
+"criterios de búsqueda de <command>aptitude</command>, el siguiente sitio le "
+"permite navegar por la base de datos de etiquetas: <ulink type=\"block\" "
 "url=\"http://debtags.alioth.debian.org/\" />"
 
 #. Tag: title
@@ -1226,7 +1226,7 @@ msgid "<command>dpkg</command> will update the configuration files, asking the u
 msgstr ""
 "<command>dpkg</command> actualizará los archivos de configuración, "
 "pidiéndole al usuario que decida si no es capaz de administrar esta tarea "
-"automáticamente. Los detalles de este proceso son discutidos en <xref "
+"automáticamente. Los detalles de este proceso son discutidos en la <xref "
 "linkend=\"section.conffiles\" />."
 
 #. Tag: para
@@ -1411,7 +1411,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>files</secondary>"
-msgstr "<primary>archivos</primary><secondary>de configuración</secondary>"
+msgstr "<primary>archivo</primary><secondary>de configuración</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1422,7 +1422,7 @@ msgstr ""
 "otros. El primero, <filename>md5sums</filename> contiene una lista de las "
 "huellas digitales de todos los archivos del paquete. Su principal ventaja es "
 "que permite que herramientas como <command>debsums</command> (que "
-"estudiaremos en <xref linkend=\"section.debsums\" />) chequeeen si estos "
+"estudiaremos en la <xref linkend=\"section.debsums\" />) chequeen si estos "
 "archivos fueron modificados desde su instalación."
 
 #. Tag: para
@@ -1455,7 +1455,7 @@ msgstr ""
 "versión, se mantiene la versión anterior en la misma ubicación con el sufijo "
 "<filename>.dpkg-old</filename>. Otra acción posible consiste en interrumpir "
 "momentáneamente <command>dpkg</command> para editar el archivo e intentar "
-"rehacer las modificaciones relevantes (indentificadas previamente con "
+"rehacer las modificaciones relevantes (identificadas previamente con "
 "<command>diff</command>)."
 
 #. Tag: title
@@ -1601,10 +1601,10 @@ msgstr ""
 "El archivo <filename>.dsc</filename> («Debian Source Control»: control de "
 "fuente Debian) es un archivo de texto corto que contiene una cabecera RFC "
 "2822 (de la misma forma que el archivo <filename>control</filename> "
-"estudiado en <xref linkend=\"section.control\" />) que describe el paquete "
+"estudiado en la <xref linkend=\"section.control\" />) que describe el paquete "
 "fuente e indica qué otros archivos forman parte del mismo. Está firmado por "
-"su encargado, lo que garantica autenticidad. Revise <xref linkend=\"sect"
-".package-authentication\" /> para más detalles sobre este tema."
+"su encargado, lo que garantiza su autenticidad. Revise la <xref "
+"linkend=\"sect.package-authentication\" /> para más detalles sobre este tema."
 
 #. Tag: title
 #, no-c-format
@@ -1700,7 +1700,8 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Build-Depends</literal>, header field</primary>"
-msgstr "<primary><literal>Build-Depends</literal>, campo de cabecera</primary>"
+msgstr ""
+"<primary><literal>Build-Depends</literal>, campo de cabecera</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1850,10 +1851,10 @@ msgstr ""
 "También puede utilizar <command>apt-get</command> para descargar un paquete "
 "fuente y descomprimirlo inmediatamente. Necesita, sin embargo, que las "
 "líneas <emphasis>deb-src</emphasis> apropiadas estén presentes en el archivo "
-"<filename>/etc/apt/sources.list</filename> (para maś detalles, revise <xref "
-"linkend=\"sect.apt-sources.list\" />). Éstas son utilizadas para listar los "
-"orígenes de los paquetes fuente (los servidores en los que se encuentran un "
-"grupo de paquetes fuente)."
+"<filename>/etc/apt/sources.list</filename> (para maś detalles, revise la "
+"<xref linkend=\"sect.apt-sources.list\" />). Éstas son utilizadas para listar "
+"los orígenes de los paquetes fuente (los servidores en los que se encuentran "
+"un grupo de paquetes fuente)."
 
 #. Tag: screen
 #, no-c-format
@@ -1870,13 +1871,13 @@ msgstr "Utilización dentro de Debian"
 #, no-c-format
 msgid "The source package is the foundation of everything in Debian. All Debian packages come from a source package, and each modification in a Debian package is the consequence of a modification made to the source package. The Debian maintainers work with the source package, knowing, however, the consequences of their actions on the binary packages. The fruits of their labors are found, thus, in the source packages available from Debian: you can easily go back and follow everything."
 msgstr ""
-"El paquete fuente es la fundación de todo en Debian. Todos los paquetes "
-"Debian provienen de un paquete fuente y cada modificación en un paquete "
-"Debian es la consecuencia de una modificación realizada al paquete fuente. "
-"Los desarrolladores Debian trabajan con el paquete fuente sabiendo, sin "
-"embargo, las consecuencias de sus acciones en los paquetes binarios. Los "
-"frutos de su labor se encuentran, entonces, en los paquetes fuentes "
-"disponibles desde Debian: puede volver atrás fácilmente y seguir todo."
+"El paquete fuente es la base de todo en Debian. Todos los paquetes Debian "
+"provienen de un paquete fuente y cada modificación en un paquete Debian es "
+"la consecuencia de una modificación realizada al paquete fuente. Los "
+"desarrolladores Debian trabajan con el paquete fuente sabiendo, sin embargo, "
+"las consecuencias de sus acciones en los paquetes binarios. Los frutos de "
+"su labor se encuentran, entonces, en los paquetes fuentes disponibles desde "
+"Debian: puede volver atrás fácilmente y seguir todo."
 
 #. Tag: para
 #, no-c-format
@@ -2149,10 +2150,10 @@ msgid "This manipulation is an ugly hack, and should never be used, except in th
 msgstr ""
 "Esta manipulación es un atajo desagradable y no debería ser utilizado nunca "
 "excepto en los casos de más extrema necesidad. Muy frecuentemente, "
-"recompilar el paquete que está causando el problema (revise <xref "
+"recompilar el paquete que está causando el problema (revise la <xref "
 "linkend=\"sect.rebuilding-package\" />) o utilizar una nueva verión "
 "(potencialmente corregida) de un sitio como "
-"<literal>backports.debian.org</literal> (revise <xref "
+"<literal>backports.debian.org</literal> (revise la <xref "
 "linkend=\"section.backports\" />) son soluciones más adecuadas."
 
 #. Tag: indexterm
@@ -2553,7 +2554,7 @@ msgstr "<primary>versión, comparación</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>comparison of versions</primary>"
-msgstr "<primary>comparación de versione</primary>"
+msgstr "<primary>comparación de versiones</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2612,7 +2613,7 @@ msgstr ""
 "la misma forma que los números (a &lt;b &lt;c ...): en orden alfabético. Es "
 "por esto que considera «<literal>0pre3</literal>» mayor que "
 "«<literal>0</literal>». Si deseamos que el número de versión de un paquete "
-"indique que es una prepublicación, utilizamos el carácter «tilde de ñ»: "
+"indique que es una prepublicación, utilizamos el carácter virgulilla: "
 "«<literal>~</literal>»:"
 
 #. Tag: screen
@@ -2643,12 +2644,12 @@ msgstr ""
 "<filename>/var/log/dpkg.log</filename>. Este registro es extremadamente "
 "detallado ya que incluye cada una de las etapas por las que pasa un paquete "
 "gestionado por <command>dpkg</command>. Además de ofrecer una forma de "
-"rastrear el funcionamiento de dpkg, por sobre todas las cosas, ayuda a "
-"mantener un historial del desarrollo del sistema: uno puede encontrar el "
-"momento exacto en el que se instaló o actualizó un paquete, y esta "
-"información puede ser extremadamente útil cuando se intenta entender un "
-"cambio de comportamiento reciente. Además, como se registran todas las "
-"versiones, es sencillo verificar y referenciar información con el archivo "
+"rastrear el funcionamiento de dpkg, sobre todo ayuda a mantener un historial "
+"del desarrollo del sistema: uno puede encontrar el momento exacto en el que "
+"se instaló o actualizó un paquete, y esta información puede ser "
+"extremadamente útil cuando se intenta entender un cambio de comportamiento "
+"reciente. Además, como se registran todas las versiones, es sencillo "
+"verificar y referenciar información con el archivo "
 "<filename>changelog.Debian.gz</filename> del paquete en cuestión o inclusive "
 "con reportes de error online."
 
