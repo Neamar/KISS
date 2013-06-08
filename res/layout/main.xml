@@ -21,21 +21,36 @@
         android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_above="@+id/searchEditText"
+        android:layout_above="@+id/searchEditLayout"
         android:background="@android:color/darker_gray" />
 
-    <EditText
-        android:id="@+id/searchEditText"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/searchEditLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:drawableLeft="@drawable/search"
-        android:ems="10"
-        android:hint="@string/ui_search_hint"
-        android:imeOptions="flagNoExtractUi|actionSearch"
-        android:inputType="textVisiblePassword|textNoSuggestions"
-        android:singleLine="true" />
+        android:layout_alignParentLeft="true" >
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/search"
+            android:ems="10"
+            android:hint="@string/ui_search_hint"
+            android:imeOptions="flagNoExtractUi|actionSearch"
+            android:inputType="textVisiblePassword|textNoSuggestions"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/clear_dark" />
+    </RelativeLayout>
 
     <ScrollView
         android:id="@android:id/empty"
