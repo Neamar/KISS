@@ -88,17 +88,17 @@ msgstr ""
 "slučaju katastrofe."
 
 #. Tag: para
-#, no-c-format, fuzzy
+#, no-c-format
 msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
 msgstr ""
 "Zamislite da ste npr. slučajno obrisali <command>dpkg</command> program,\" i "
 "da više ne možete instalirati Debian pakete. Kako je <command>dpkg</command> "
 "paket sam po sebi, izgleda da je vas sustav gotov... Srecom, znate koji je "
 "format paketa te možete preuzeti <filename>.deb</filename> datoteku sa "
-"naglaskom na <emphasis role=\"pkg">dpkg</emphasis>."
+"naglaskom na <emphasis role=\"pkg\\"
 
 #. Tag: title
-#, no-c-format, fuzzy
+#, no-c-format
 msgid "<emphasis>TOOLS</emphasis> <command>dpkg</command>, <command>APT</command> and <command>ar</command>"
 msgstr "<emphasis>ALATI</emphasis>"
 
@@ -312,7 +312,7 @@ msgstr "Meta-informacije paketa"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package meta-information</primary>"
-msgstr "<primary>package meta-information</primary>"
+msgstr "\"<primary>package meta-information</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -451,42 +451,54 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Dependencies: the <literal>Depends</literal> Field"
-msgstr ""
+msgstr "Zavisnosti: polje <literal>Zavisnost</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dependency</primary>"
-msgstr ""
+msgstr "\"<primary>zavisnost</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Zavisnost</literal>, polje zaglavlja</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>dependency</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>zavisnosti</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the package to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
 msgstr ""
+"Zavisnosti su definirane u <literal>Zavisnost</literal> polju u zaglavlju "
+"paketa. To je lista preduvjeta koji su potrebni da bi paket vršio svoju "
+"funkciju - ova informacija je korištana od strane alata kao "
+"<command>apt</command> u slučaju instalacije potrebitih biblioteka i "
+"njihovih verzija od kojih ovisi paket koji želimo instalirati. Za svaku "
+"međuovisnost moguće je točno odrediti raspon verzija koje odgovaraju tim "
+"uvjetima. Drugim riječima, moguće je reći da trebamo paket <emphasis "
+"role=\"pkg\">libc6</emphasis> verzije jednake ili veće od \"2.3.4\" (napisano "
+"kao “<command>libc6 (&gt;= 2.3.4)</command>)\". Operatori uspoređivanja "
+"verzija su slijedeći:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;&lt;</command>: less than;"
-msgstr ""
+msgstr "<command>&lt;&lt;</command>: manje od;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;=</command>: less than or equal to;"
-msgstr ""
+msgstr "<command>&lt;=</command>: manje od ili jednako;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>=</command>: equal to (note, “<literal>2.6.1</literal>” is not equal to “<literal>2.6.1-1</literal>”);"
 msgstr ""
+"<command>=</command>: jednako (primjer, “<literal>2.6.1</literal>” nije "
+"jednako kao “<literal>2.6.1-1</literal>”);"
 
 #. Tag: para
 #, no-c-format
