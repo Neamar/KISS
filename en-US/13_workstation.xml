@@ -35,8 +35,8 @@
     driver that makes efficient use of the video card. The features offered
     to the graphical applications are exported through a standard
     interface, <emphasis>X11</emphasis> (<emphasis
-    role="distribution">Squeeze</emphasis> contains its
-    <emphasis>X11R7.5</emphasis> version).</para>
+    role="distribution">Wheezy</emphasis> contains its
+    <emphasis>X11R7.7</emphasis> version).</para>
 
     <sidebar>
       <title><emphasis>PERSPECTIVE</emphasis> X11, XFree86 and X.org</title>
@@ -54,7 +54,7 @@
       drivers. That situation, along with a very controversial license
       change, led to the X.org fork in 2004. This is now the reference
       implementation, and Debian <emphasis
-      role="distribution">Squeeze</emphasis> uses X.org version 7.5.</para>
+      role="distribution">Wheezy</emphasis> uses X.org version 7.7.</para>
     </sidebar>
 
     <para>Current versions of X.org are able to autodetect the available
@@ -83,16 +83,17 @@
     <indexterm><primary>server</primary><secondary>X</secondary></indexterm>
     <indexterm><primary><emphasis role="pkg">xserver-xorg</emphasis></primary></indexterm>
 
-    <para>Note that if the detected video card is not handled by any of the
-    available drivers, X.org tries using the VESA and fbdev drivers. The former is a generic
-    driver that should work everywhere, but with limited capabilities
-    (fewer available resolutions, no hardware acceleration for games, and
-    so on) while the latter works on top of the kernel's framebuffer
-    device. The X server writes its messages to the
-    <filename>/var/log/Xorg.0.log</filename> log file, which is where one
-    would look to know what driver is currently in use. For example, the
-    following snippet matches what the <literal>intel</literal> driver
-    outputs when it is loaded:</para>
+    <para>Note that if the detected video card is not handled by any
+    of the available drivers, X.org tries using the VESA and fbdev
+    drivers. The former is a generic driver that should work
+    everywhere, but with limited capabilities (fewer available
+    resolutions, no hardware acceleration for games and visual effects
+    for the desktop, and so on) while the latter works on top of the
+    kernel's framebuffer device. The X server writes its messages to
+    the <filename>/var/log/Xorg.0.log</filename> log file, which is
+    where one would look to know what driver is currently in use. For
+    example, the following snippet matches what the
+    <literal>intel</literal> driver outputs when it is loaded:</para>
 
     <programlisting>
 (==) Matched intel as autoconfigured driver 0
@@ -130,7 +131,7 @@
 
       <para>The “nouveau” project aims to develop a free software
       driver for nVidia cards. As of <emphasis
-      role="distribution">Squeeze</emphasis>, its feature set does not
+      role="distribution">Wheezy</emphasis>, its feature set does not
       match the proprietary driver. In the developers' defense, we should
       mention that the required information can only be gathered by reverse
       engineering, which makes things difficult. The free driver for ATI
@@ -149,26 +150,32 @@
       <indexterm><primary><command>kdm</command></primary></indexterm>
       <indexterm><primary><command>xdm</command></primary></indexterm>
 
-      <para>The graphical interface only provides display space. Running
-      the X server by itself only leads to an empty screen, which is why
-      most installations use a <emphasis>display manager</emphasis> to
-      display a user authentication screen and start the graphical desktop
-      once the user has authenticated. The three most popular display
-      managers in current use are <emphasis role="pkg">gdm3</emphasis>
-      (<foreignphrase>GNOME Display Manager</foreignphrase>), <emphasis
-      role="pkg">kdm</emphasis> (<foreignphrase>KDE Display
-      Manager</foreignphrase>) and <emphasis role="pkg">xdm</emphasis>
-      (<foreignphrase>X Display Manager</foreignphrase>). Since the Falcot
-      Corp administrators have opted to use the GNOME desktop environment,
-      they logically picked <command>gdm3</command> as a display manager
-      too. The <filename>/etc/gdm3/daemon.conf</filename> configuration
-      file has many options, some of which can also be set by
-      <command>gdmsetup</command>, a graphical interface for
-      <command>gdm3</command> configuration that can be run from the
+      <para>The graphical interface only provides display
+      space. Running the X server by itself only leads to an empty
+      screen, which is why most installations use a <emphasis>display
+      manager</emphasis> to display a user authentication screen and
+      start the graphical desktop once the user has authenticated. The
+      three most popular display managers in current use are <emphasis
+      role="pkg">gdm3</emphasis> (<foreignphrase>GNOME Display
+      Manager</foreignphrase>), <emphasis role="pkg">kdm</emphasis>
+      (<foreignphrase>KDE Display Manager</foreignphrase>) and
+      <emphasis role="pkg">xdm</emphasis> (<foreignphrase>X Display
+      Manager</foreignphrase>). Since the Falcot Corp administrators
+      have opted to use the GNOME desktop environment, they logically
+      picked <command>gdm3</command> as a display manager too. The
+      <filename>/etc/gdm3/daemon.conf</filename> configuration file
+      has many options.  Up to <emphasis
+      role="distribution">Squeeze</emphasis>, some of these options
+      could be set by <command>gdmsetup</command>, a graphical
+      interface for <command>gdm3</command> configuration that could be
+      run from the
       <menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu>
-      <guimenuitem>Display screen</guimenuitem></menuchoice> menu in the
-      GNOME desktop.</para>
+      <guimenuitem>Display screen</guimenuitem></menuchoice> menu in
+      the GNOME desktop.  This tool is no longer available in <emphasis
+      role="distribution">Wheezy</emphasis>, but some of its
+      functionality can be found in GNOME's control center.</para>
 
+      <!-- Obsolete
       <sidebar>
         <title><emphasis>ALTERNATIVE</emphasis> gdm vs. gdm3</title>
 
@@ -188,19 +195,23 @@
 	<emphasis role="pkg">gdm3</emphasis> straight away if the missing
 	features are not important to you.</para>
       </sidebar>
+      -->
     </section>
     <section>
       <title>Choosing a Window Manager</title>
 
-      <para>Since each graphical desktop provides its own window manager,
-      choosing the former usually implies software selections from the
-      latter. GNOME uses the <command>metacity</command> window manager,
-      KDE uses <command>kwin</command>, and Xfce (which we present later)
-      has <command>xfwm</command>. The Unix philosophy always allows using
-      one's window manager of choice, but following the recommendations
-      allows an administrator to best take advantage of the integration
-      efforts led by each project.</para>
+      <para>Since each graphical desktop provides its own window
+      manager, choosing the former usually implies software selections
+      from the latter. GNOME uses the <command>mutter</command> window
+      manager (or <command>metacity</command> when run in GNOME
+      Classic mode), KDE uses <command>kwin</command>, and Xfce (which
+      we present later) has <command>xfwm</command>. The Unix
+      philosophy always allows using one's window manager of choice,
+      but following the recommendations allows an administrator to
+      best take advantage of the integration efforts led by each
+      project.</para>
       <indexterm><primary><command>metacity</command></primary></indexterm>
+      <indexterm><primary><command>mutter</command></primary></indexterm>
       <indexterm><primary><command>kwin</command></primary></indexterm>
 
       <sidebar>
@@ -221,7 +232,7 @@
 
       <para>Older computers may, however, have a hard time running
       heavyweight graphical desktop environments. In these cases, a lighter
-      configuration should be used. "Light" (or small footprint) window
+      configuration should be used. “Light” (or small footprint) window
       managers include WindowMaker (in the <emphasis
       role="pkg">wmaker</emphasis> package), Afterstep, fvwm, icewm,
       blackbox, fluxbox, or openbox. In these cases, the system should be configured so that the
@@ -330,15 +341,19 @@
 	project. <ulink type="block"
 	url="http://www.freedesktop.org/"/></para>
 
-	<para>The Debian developers have kept a close eye on this project
-	and <filename>.desktop</filename> files can be generated from the
-	Debian menu system. However, neither GNOME nor KDE use the Debian
-	menu. They both prefer keeping complete control over their menus.
-	Still, it is possible to enable a “Debian” submenu containing
-	the official menu as maintained by Debian: in GNOME, the menu
-	editor (in the <emphasis role="pkg">alacarte</emphasis> package) is
-	available by right-clicking on the panel menu, then choosing
-	“Edit menus”.</para>
+	<para>The Debian developers have kept a close eye on this
+	project and <filename>.desktop</filename> files can be
+	generated from the Debian menu system. However, neither GNOME
+	nor KDE use the Debian menu. They both prefer keeping complete
+	control over their menus.  Up to <emphasis
+	role="distribution">Squeeze</emphasis>, it used to be possible
+	to enable a “Debian” submenu containing the official menu as
+	maintained by Debian: in GNOME, the menu editor (in the
+	<emphasis role="pkg">alacarte</emphasis> package) is available
+	by right-clicking on the panel menu, then choosing “Edit
+	menus”.  The menu-editing process is still available in
+	<emphasis role="distribution">Wheezy</emphasis>, but the
+	Debian submenu is no longer available.</para>
       </sidebar>
 
       <para>The administrator can also have a say in the process and in the
@@ -348,7 +363,7 @@
       package providing the entries to be disabled. Second, the menu can be
       reorganized and sections renamed or grouped. The
       <filename>/etc/menu-methods/translate_menus</filename> file is where
-      this reorganization is defined and contains commented examples. Last,
+      this reorganization is defined and contains commented examples. Finally,
       new elements can be added to the menu, for example to start programs
       installed outside the packaging system, or to run a particular
       command such as starting a web browser on a particular page. These
@@ -390,8 +405,8 @@
     <section>
       <title>GNOME</title>
 
-      <para>Debian <emphasis role="distribution">Squeeze</emphasis>
-      includes GNOME version 2.30, which can be installed by a simple
+      <para>Debian <emphasis role="distribution">Wheezy</emphasis>
+      includes GNOME version 3.4, which can be installed by a simple
       <command>apt-get install gnome</command> (it can also be installed by
       selecting the “Graphical desktop environment” task).</para>
       <indexterm><primary><emphasis role="pkg">gnome</emphasis></primary></indexterm>
@@ -421,25 +436,29 @@
       </figure>
 
       <para>For administrators, GNOME seems to be better prepared for
-      massive deployments. Application configuration is handled by GConf, a
-      kind of registry that can be queried and edited with the
-      <command>gconftool-2</command> command-line tool. The administrator
-      can therefore change users' configuration with a simple script. The
-      following website lists all information of interest to an
-      administrator tasked to manage GNOME workstations: <ulink
-      type="block"
+      massive deployments. Application configuration is handled by two
+      registries, GSettings (the current standard) and GConf (the old
+      system used in GNOME 2.x, and still used by a few GNOME 3.x
+      applications).  These registries can be queried and edited with
+      the <command>gsettings</command> and
+      <command>gconftool-2</command> command-line tools. The
+      administrator can therefore change users' configuration with a
+      simple script. The following website lists all information of
+      interest to an administrator tasked to manage GNOME
+      workstations: <ulink type="block"
       url="http://library.gnome.org/admin/system-admin-guide/stable/"/><ulink
       type="block"
       url="http://library.gnome.org/admin/deployment-guide/"/></para>
+      <indexterm><primary><command>gsettings</command></primary></indexterm>
       <indexterm><primary><command>gconf</command></primary></indexterm>
       <indexterm><primary><command>gconftool-2</command></primary></indexterm>
     </section>
     <section>
       <title>KDE</title>
 
-      <para>Debian <emphasis role="distribution">Squeeze</emphasis>
-      includes version 4.4.5 of KDE, which can be installed with
-      <command>apt-get install kde</command>.</para>
+      <para>Debian <emphasis role="distribution">Wheezy</emphasis>
+      includes version 4.8.4 of KDE, which can be installed with
+      <command>apt-get install kde-standard</command>.</para>
 
       <para>KDE has had a rapid evolution based on a very hands-on
       approach. Its authors quickly got very good results, which allowed
@@ -602,7 +621,7 @@
 	be a great success, just like Mozilla Firefox.</para>
 
 	<para>Strictly speaking, Debian <emphasis
-	role="distribution">Squeeze</emphasis> contains Icedove, and not
+	role="distribution">Wheezy</emphasis> contains Icedove, and not
 	Thunderbird, for legal reasons we will detail in the “Iceweasel,
 	Firefox and others” section later on; but apart from their names
 	(and icons), there are no real differences between them.</para>
@@ -651,7 +670,7 @@
 
 	<para>Many users will no doubt be surprised by the absence of
 	Mozilla Firefox in the Debian <emphasis
-	role="distribution">Squeeze</emphasis> menus. No need to panic: the
+	role="distribution">Wheezy</emphasis> menus. No need to panic: the
 	<emphasis role="pkg">iceweasel</emphasis> package contains
 	Iceweasel, which is basically Firefox under another name.</para>
 
@@ -694,12 +713,12 @@
         <indexterm><primary>Netscape</primary></indexterm>
       </sidebar>
 
-      <para><emphasis role="distribution">Squeeze</emphasis> also brings a
+      <para><emphasis role="distribution">Wheezy</emphasis> also brings a
       relative newcomer on the web browser scene, Chromium (available in
       the <emphasis role="pkg">chromium-browser</emphasis> package). This
       browser is developed by Google at such a fast pace that maintaining a
       single version of it across the whole lifespan of Debian <emphasis
-      role="distribution">Squeeze</emphasis> is unlikely to be possible.
+      role="distribution">Wheezy</emphasis> is unlikely to be possible.
       Its clear purpose is to make web services more attractive, both by
       optimizing the browser for performance and by increasing the user's
       security. The free code that powers Chromium is also used by its
@@ -732,8 +751,7 @@
 	<para>The equivalent applications for KDE are KDevelop (in the
 	<emphasis role="pkg">kdevelop</emphasis> package) for the
 	development environment, and Qt Designer (in the <emphasis
-	role="pkg">qt3-designer</emphasis> or <emphasis
-	role="pkg">qt4-designer</emphasis> packages) for the design of
+	role="pkg">qt4-designer</emphasis> package) for the design of
 	graphical interfaces for Qt applications on KDE.</para>
 
 	<para>The next versions of these applications should be better
@@ -750,13 +768,15 @@
         <indexterm><primary><emphasis>groupware</emphasis></primary></indexterm>
 
 	<para>A previous edition of this book mentioned
-	<emphasis>PHPGroupware</emphasis>, but this software is no longer
-	in Debian… It is no longer actively maintained, and no existing
-	version was compatible with the PHP version 5.3 included in Debian
-	<emphasis role="distribution">Squeeze</emphasis>, which is why the
-	Debian maintainer asked for the package to be removed. <ulink
-	type="block" url="http://www.phpgroupware.org/"/></para>
-        <indexterm><primary>PHPGroupware</primary></indexterm>
+	<emphasis>PHPGroupware</emphasis>, but this software is no
+	longer in Debian… It is no longer actively maintained, and no
+	existing version was compatible with the PHP version 5.3
+	included in Debian <emphasis
+	role="distribution">Squeeze</emphasis> (or later versions),
+	which is why the Debian maintainer asked for the package to be
+	removed. <ulink type="block"
+	url="http://www.phpgroupware.org/"/></para>
+	<indexterm><primary>PHPGroupware</primary></indexterm>
 
 	<para><emphasis>eGroupware</emphasis> was also mentioned, but it
 	too went the way of PHPGroupware, but for different reasons. The
@@ -767,18 +787,23 @@
 	url="http://www.egroupware.org/"/></para>
         <indexterm><primary>eGroupware</primary></indexterm>
 
-	<para>All is not lost though. Many of the features traditionally
-	provided by “groupware” software are increasingly integrated
-	into “standard” software. This is reducing the requirement for
-	specific, specialized groupware software. On the other hand, this
-	usually requires a specific server. A good example for such a
-	server is Kolab, that can integrate into KDE (Kontact, Kmail, and
-	so on), the Horde webmail, Thunderbird (via a plugin) and even into
-	Microsoft Outlook. Kolab is part of Debian <emphasis
+	<para>All is not lost though. Many of the features
+	traditionally provided by “groupware” software are
+	increasingly integrated into “standard” software. This is
+	reducing the requirement for specific, specialized groupware
+	software. On the other hand, this usually requires a specific
+	server. A good example for such a server is Kolab, that can
+	integrate into KDE (Kontact, Kmail, and so on), the Horde
+	webmail, Thunderbird (via a plugin) and even into Microsoft
+	Outlook. Kolab was part of Debian <emphasis
 	role="distribution">Squeeze</emphasis> (<emphasis
-	role="pkg">kolab*</emphasis> packages). <ulink type="block"
+	role="pkg">kolab*</emphasis> packages). Unfortunately, the
+	Kolab server too was unmaintained and dropped from Debian, so
+	it's no longer in <emphasis
+	role="distribution">Wheezy</emphasis> (the clients and plugins
+	that use it are still there).<ulink type="block"
 	url="http://www.kolab.org/"/></para>
-        <indexterm><primary>Kolab</primary></indexterm>
+	<indexterm><primary>Kolab</primary></indexterm>
       </section>
       <section>
         <title>Instant Messaging Systems</title>
@@ -951,6 +976,13 @@
 	<para>Most of these tools are accessible, or even managed, through
 	a web interface, with a fine-grained permission system, and email
 	notifications for some events.</para>
+
+        <para>Unfortunately, FusionForge was in a state of flux when
+	<emphasis role="distribution">Wheezy</emphasis> was frozen,
+	and so it is not present in standard <emphasis
+	role="distribution">Wheezy</emphasis>; at the time of this
+	writing, backports are not available yet, but they are
+	expected to appear soon.</para>
       </section>
     </section>
     <section>
@@ -959,17 +991,19 @@
       <indexterm><primary>suite, office</primary></indexterm>
 
       <para>Office software has long been seen as lacking in the free
-      software world. Users have long asked for replacements for Microsoft
-      tools such as Word and Excel, but these are so complex that
-      replacements were hard to develop. The situation changed when the
-      OpenOffice.org project started (following Sun's release of the
-      StarOffice code under a free license). The GNOME and KDE projects are
-      still working on their offerings (GNOME Office and KOffice), and the
-      friendly competition leads to interesting results. For instance, the
-      Gnumeric spreadsheet (part of GNOME Office) is even better than
-      OpenOffice.org in some domains, notably the precision of its
-      calculations. On the word processing front, the OpenOffice.org suite
-      still leads the way.</para>
+      software world. Users have long asked for replacements for
+      Microsoft tools such as Word and Excel, but these are so complex
+      that replacements were hard to develop. The situation changed
+      when the OpenOffice.org project started (following Sun's release
+      of the StarOffice code under a free license), and the appearance
+      of Libre Office as a variant. The GNOME and KDE projects are
+      still working on their offerings (GNOME Office and KOffice), and
+      the friendly competition leads to interesting results. For
+      instance, the Gnumeric spreadsheet (part of GNOME Office) is
+      even better than OpenOffice.org/Libre Office in some domains,
+      notably the precision of its calculations. On the word
+      processing front, the OpenOffice.org and Libre Office suites
+      still lead the way.</para>
       <indexterm><primary>OpenOffice.org</primary></indexterm>
       <indexterm><primary>StarOffice</primary></indexterm>
       <indexterm><primary>Libre Office</primary></indexterm>
@@ -977,11 +1011,12 @@
       <indexterm><primary>KOffice</primary></indexterm>
       <indexterm><primary>Gnumeric</primary></indexterm>
 
-      <para>Another important feature for users is the ability to import
-      Word and Excel documents received from contacts or found in archives.
-      Even though all office suites have filters which allow working on
-      these formats, only the ones found in OpenOffice.org are functional
-      enough for daily use.</para>
+      <para>Another important feature for users is the ability to
+      import Word and Excel documents received from contacts or found
+      in archives.  Even though all office suites have filters which
+      allow working on these formats, only the ones found in
+      OpenOffice.org and Libre Office are functional enough for daily
+      use.</para>
 
       <sidebar>
         <title><emphasis>THE BROADER VIEW</emphasis> Libre Office replaces OpenOffice.org</title>
@@ -993,30 +1028,41 @@
 	made the future of OpenOffice under Oracle uncertain. Since Oracle
 	declined to join the foundation, the developers had to give up on
 	the OpenOffice.org name. The software is now known as
-	<emphasis>Libre Office</emphasis>.</para>
+	<emphasis>Libre Office</emphasis>.  After a period of relative
+	stagnation on the OpenOffice.org front, Oracle decided to
+	migrate the code and associated rights to the Apache Software
+	Foundation, and OpenOffice is now an Apache project.</para>
 
-	<para>These changes occurred after Debian <emphasis
-	role="distribution">Squeeze</emphasis> was frozen, which explains
-	why the repositories still contain OpenOffice.org… but Libre
-	Office is already available in the
-	<literal>backports.debian.org</literal> package repository, as well
-	as in more recent versions of Debian.</para>
+	<para>Debian <emphasis role="distribution">Squeeze</emphasis>
+	contained OpenOffice.org due to the timing of events… but
+	Libre Office was rapidly made available in the
+	<literal>backports.debian.org</literal> package repository.
+	Debian <emphasis role="distribution">Wheezy</emphasis>
+	includes only Libre Office, and the <emphasis
+	role="pkg">openoffice.org*</emphasis> packages are merely
+	transitional packages.  The OpenOffice software suite as
+	published by the Apache Software Foundation is not currently
+	available in Debian.</para>
+
       </sidebar>
       <indexterm><primary>Word, Microsoft</primary></indexterm>
       <indexterm><primary>Excel, Microsoft</primary></indexterm>
       <indexterm><primary>Microsoft</primary><secondary>Word</secondary></indexterm>
       <indexterm><primary>Microsoft</primary><secondary>Excel</secondary></indexterm>
 
-      <para>OpenOffice.org, KOffice and GNOME Office are, respectively,
-      available in the <emphasis role="pkg">openoffice.org</emphasis>,
+      <para>Libre Office, KOffice and GNOME Office are, respectively,
+      available in the <emphasis role="pkg">libreoffice</emphasis>,
       <emphasis role="pkg">koffice</emphasis> and <emphasis
-      role="pkg">gnome-office</emphasis> Debian packages. Language-specific
-      packs for OpenOffice.org are distributed in separate packages:
-      <emphasis role="pkg">openoffice.org-l10n-*</emphasis>, <emphasis
-      role="pkg">openoffice.org-help-*</emphasis>, and <emphasis
-      role="pkg">openoffice.org-spellcheck-*</emphasis> (which can be a
-      virtual package provided by <emphasis
-      role="pkg">myspell-*</emphasis>).</para>
+      role="pkg">gnome-office</emphasis> Debian
+      packages. Language-specific packs for Libre Office are
+      distributed in separate packages: <emphasis
+      role="pkg">libreoffice-l10n-*</emphasis> and <emphasis
+      role="pkg">libreoffice-help-*</emphasis> most notably; some
+      features such as spelling dictionaries, hyphenation patterns and
+      thesauri are in separate packages, such as <emphasis
+      role="pkg">myspell-*</emphasis>, <emphasis
+      role="pkg">hyphen-*</emphasis> and <emphasis
+      role="pkg">mythes-*</emphasis>.</para>
     </section>
   </section>
   <section id="sect.windows-emulation">
