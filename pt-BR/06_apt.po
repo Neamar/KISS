@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2013-06-02 04:36+0200\n"
+"PO-Revision-Date: 2013-06-20 03:31+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
@@ -366,7 +366,7 @@ msgstr ""
 "<filename>/etc/apt/sources.list.d/*.list</filename> arquivos"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "If many package sources are referenced, it can be useful to split them in multiple files. Each part is then stored in <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> (see sidebar <xref linkend=\"cadre-repertoire.d\" />)."
 msgstr ""
 "Se muitas fontes de pacotes são referenciadas, pode ser útil separá-las em "
@@ -1618,16 +1618,40 @@ msgstr ""
 #, no-c-format
 msgid "Let's suppose that <emphasis role=\"distribution\">Stable</emphasis> is your reference distribution but that <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> are also listed in your <filename>sources.list</filename> file. In this case, you can use <command>aptitude install <replaceable>package</replaceable>/testing</command> to install a package from <emphasis role=\"distribution\">Testing</emphasis>. If the installation fails due to some unsatisfiable dependencies, let it solve those dependencies within <emphasis role=\"distribution\">Testing</emphasis> by adding the <literal>-t testing</literal> parameter. The same obviously applies to <emphasis role=\"distribution\">Unstable</emphasis>."
 msgstr ""
+"suponha que <emphasis role=\"distribution\">Stable</emphasis> é sua "
+"distribuição de referência mas que <emphasis "
+"role=\"distribution\">Testing</emphasis> e <emphasis "
+"role=\"distribution\">Unstable</emphasis> também estão listadas em seu arquivo "
+"<filename>sources.list</filename>. Neste caso, você pode usar "
+"<command>aptitude install "
+"<replaceable>pacote</replaceable>/testing</command> para instalar um pacote "
+"da <emphasis role=\"distribution\">Testing</emphasis>. Se a instalação falha "
+"devido a algumas dependências não-satisfeitas, deixe ela resolver estas "
+"dependências na <emphasis role=\"distribution\">Testing</emphasis> adicionando "
+"o parâmetro <literal>-t testing</literal>. O mesmo obviamente se aplica à "
+"<emphasis role=\"distribution\">Unstable</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "In this situation, upgrades (<command>safe-upgrade</command> and <command>dist-upgrade</command>) are done within <emphasis role=\"distribution\">Stable</emphasis> except for packages already upgraded to an other distribution: those will follow updates available in the other distributions. We'll explain this behavior with the help of the default priorities set by APT below. Do not hesitate to use <command>apt-cache policy</command> (see sidebar) to verify the given priorities."
 msgstr ""
+"Nesta situação, atualizações (<command>safe-upgrade</command> e <command"
+">dist-upgrade</command>) são feitas no <emphasis "
+"role=\"distribution\">Stable</emphasis> exceto para pacotes já atualizados "
+"para uma outra distribuição: estes vão seguir as atualizações disponíveis em "
+"outras distribuições. Vamos explicar este comportamento com a ajuda de "
+"prioridades padrão configuradas pelo APT abaixo. Não hesite em usar <command"
+">apt-cache policy</command> (veja a barra lateral) para verificar as "
+"prioridades dadas."
 
 #. Tag: para
 #, no-c-format
 msgid "Everything centers around the fact that APT only considers packages of higher or equal version than the installed one (assuming that <filename>/etc/apt/preferences</filename> has not been used to force priorities higher than 1000 for some packages)."
 msgstr ""
+"Tudo se baseia no fato de que o APT apenas considera pacotes com versão "
+"igual ou superior à instalada (assumindo que o "
+"<filename>/etc/apt/preferences</filename> não foi usado para forçar "
+"prioridades maiores que 1000 para alguns pacotes)."
 
 #. Tag: title
 #, no-c-format
@@ -1638,11 +1662,29 @@ msgstr "<emphasis>DICA</emphasis> <command>apt-cache policy</command>"
 #, no-c-format
 msgid "To gain a better understanding of the mechanism of priority, do not hesitate to execute <command>apt-cache policy</command> to display the default priority associated with each package source. You can also use <command>apt-cache policy <replaceable>package</replaceable></command> to display the priorities of all available versions of a given package."
 msgstr ""
+"Para entender melhor o mecanismo das prioridades, não hesite em executar "
+"<command>apt-cache policy</command> para exibir as prioridades padrão "
+"associadas a cada fonte de pacote. Você também pode usar <command>apt-cache "
+"policy <replaceable>pacote</replaceable></command> para exibir as "
+"prioridades de todas as versões disponíveis de um dado pacote."
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Let's assume that you have installed version 1 of a first package from <emphasis role=\"distribution\">Stable</emphasis> and that version 2 and 3 are available respectively in <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis>. The installed version has a priority of 100 but the version available in <emphasis role=\"distribution\">Stable</emphasis> (the very same) has a priority of 990 (because it is part of the target release). Packages in <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> have a priority of 500 (the default priority of a non-installed version). The winner is thus version 1 with a priority of 990. The package “stays in <emphasis role=\"distribution\">Stable</emphasis>”."
 msgstr ""
+"Suponha que você instalou a versão 1 de um primeiro pacote da <emphasis "
+"role=\"distribution\">Stable</emphasis> e que versão 2 e 3 estão "
+"respectivamente disponíveis em <emphasis "
+"role=\"distribution\">Testing</emphasis> e <emphasis "
+"role=\"distribution\">Unstable</emphasis>. A versão instalada tem uma "
+"prioridade de 100 mas a versão disponível na <emphasis "
+"role=\"distribution\">Stable</emphasis> (exatamente a mesma) tem uma "
+"prioridade de 990 (porque ela é parte da \"target release\"). Pacotes na "
+"<emphasis role=\"distribution\">Testing</emphasis> e na <emphasis "
+"role=\"distribution\">Unstable</emphasis> tem a prioridade de 500 (a "
+"prioridade padrão de uma versão não instalada). O ganhador é então a versão "
+"1 com uma prioridade de 990. O pacote “fica na <emphasis "
+"role=\"distribution\">Stable</emphasis>”."
 
 #. Tag: para
 #, no-c-format
