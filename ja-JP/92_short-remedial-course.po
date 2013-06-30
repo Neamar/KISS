@@ -1,0 +1,866 @@
+# 
+# AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0\n"
+"POT-Creation-Date: 2012-10-31T14:54:18\n"
+"PO-Revision-Date: 2012-10-31T14:54:18\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: None\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-publican; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: keyword
+#, no-c-format
+msgid "BIOS"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Kernel"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Unix"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Process"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Hierarchy"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Basic Commands"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Short Remedial Course"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Even though this book primarily targets administrators and “power-users”, we wouldn't like to exclude motivated beginners. This appendix will therefore be a crash-course describing the fundamental concepts involved in handling a Unix computer."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Shell and Basic Commands"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In the Unix world, every administrator has to use the command line sooner or later; for example, when the system fails to start properly and only provides a command-line rescue mode. Being able to handle such an interface, therefore, is a basic survival skill for these circumstances."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>QUICK LOOK</emphasis> Starting the command interpreter"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A command-line environment can be run from the graphical desktop, by an application known as a “terminal”, such as those found under the <menuchoice><guimenu>Applications</guimenu> <guisubmenu>Accessories</guisubmenu></menuchoice> menu for GNOME, and in <menuchoice><guimenu>K</guimenu> <guisubmenu>Applications</guisubmenu> <guisubmenu>System</guisubmenu></menuchoice> for KDE."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This section only gives a quick peek at the commands. They all have many options not described here; accordingly, they also have abundant documentation in their respective manual pages."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Browsing the Directory Tree and Managing Files"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Once a session is open, the <command>pwd</command> command (<emphasis>print working directory</emphasis>) displays the current location in the filesystem. The current directory is changed with the <command>cd <replaceable>directory</replaceable></command> command (<command>cd</command> is for <emphasis>change directory</emphasis>). The parent directory is always called <literal>..</literal> (two dots), whereas the current directory is also known as <literal>.</literal> (one dot). The <command>ls</command> command allows <emphasis>listing</emphasis> the contents of a directory. If no parameters are given, it operates on the current directory."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>pwd</userinput>\n"
+"<computeroutput>/home/rhertzog\n"
+"$ </computeroutput><userinput>cd Desktop</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>pwd</userinput>\n"
+"<computeroutput>/home/rhertzog/Desktop\n"
+"$ </computeroutput><userinput>cd .</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>pwd</userinput>\n"
+"<computeroutput>/home/rhertzog/Desktop\n"
+"$ </computeroutput><userinput>cd ..</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>pwd</userinput>\n"
+"<computeroutput>/home/rhertzog\n"
+"$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>Desktop    Downloads  Pictures  Templates\n"
+"Documents  Music      Public    Videos</computeroutput>\n"
+"      "
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A new directory can be created with <command>mkdir <replaceable>directory</replaceable></command>, and an existing (empty) directory can be removed with <command>rmdir <replaceable>directory</replaceable></command>. The <command>mv</command> command allows <emphasis>moving</emphasis> and/or renaming files and directories; <emphasis>removing</emphasis> a file involves <command>rm <replaceable>file</replaceable></command>."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>mkdir test</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>Desktop    Downloads  Pictures  Templates  Videos\n"
+"Documents  Music      Public    test\n"
+"$ </computeroutput><userinput>mv test new</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>Desktop    Downloads  new       Public     Videos\n"
+"Documents  Music      Pictures  Templates\n"
+"$ </computeroutput><userinput>rmdir new</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>Desktop    Downloads  Pictures  Templates  Videos\n"
+"Documents  Music      Public    test</computeroutput>\n"
+"      "
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Displaying and Modifying Text Files"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>cat <replaceable>file</replaceable></command> command (intended to <emphasis>concatenate</emphasis> files on its standard output) reads a file and displays its contents in the terminal. If the file is too big to fit on a screen, use a pager such as <command>less</command> (or <command>more</command>) to display it page by page."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>editor</command> command always points at a text editor (such as <command>vi</command> or <command>nano</command>) and allows creating, modifying and reading text files. The simplest files can sometimes be created directly from the command interpreter thanks to redirection: <command>echo \"<replaceable>text</replaceable>\" &gt;<replaceable>file</replaceable></command> creates a file named <replaceable>file</replaceable> with “<replaceable>text</replaceable>” as its contents. Adding a line at the end of this file is possible too, with a command such as <command>echo \"<replaceable>line</replaceable>\" &gt;&gt;<replaceable>file</replaceable></command>."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Searching for Files and within Files"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>find <replaceable>directory</replaceable> <replaceable>criteria</replaceable></command> command looks for files in the hierarchy under <replaceable>directory</replaceable> according to several criteria. The most commonly used criterion is <literal>-name <replaceable>name</replaceable></literal>: it allows looking for a file by its name."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> command searches the contents of the files and extracts the lines matching the regular expression (see sidebar <xref linkend=\"encadre.expression-rationnelle\" />). Adding the <literal>-r</literal> option enables a recursive search on all files contained in the directory passed as a parameter. This allows looking for a file when only a part of the contents are known."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Managing Processes"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>ps aux</command> command lists the processes currently running and allows identifying them by their <emphasis>pid</emphasis> (process id). Once the <emphasis>pid</emphasis> of a process is known, the <command>kill -<replaceable>signal</replaceable> <replaceable>pid</replaceable></command> command allows sending it a signal (if the process belongs to the current user). Several signals exist; most commonly used are <literal>TERM</literal> (a request to terminate) and <literal>KILL</literal> (a heavy-handed kill)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The command interpreter can also run programs in the background if the command ends with “&amp;”. By using the ampersand, the user resumes control of the shell immediately even though the command is still running (hidden from the user; as a background process). The <command>jobs</command> command lists the processes running in the background; running <command>fg %<replaceable>job-number</replaceable></command> (for <emphasis>foreground</emphasis>) restores a job to the foreground. When a command is running in the foreground (either because it was started normally, or brought back to the foreground with <command>fg</command>), the <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> key pair pauses the process and resumes control of the command-line. The process can then be restarted in the background with <command>bg %<replaceable>job-number</replaceable></command> (for <foreignphrase>background</foreignphrase>)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "System Information: Memory, Disk Space, Identity"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>free</command> command displays information on memory; <command>df</command> (<emphasis>disk free</emphasis>) reports on the available disk space on each of the disks mounted in the filesystem. Its <literal>-h</literal> option (for <emphasis>human readable</emphasis>) converts the sizes into a more legible unit (usually mebibytes or gibibytes). In a similar fashion, the <command>free</command> command understands the <literal>-m</literal> and <literal>-g</literal> options, and displays its data either in mebibytes or in gibibytes, respectively."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>free</userinput>\n"
+"<computeroutput>             total       used       free     shared    buffers     cached\n"
+"Mem:       1028420    1009624      18796          0      47404     391804\n"
+"-/+ buffers/cache:     570416     458004\n"
+"Swap:      2771172     404588    2366584\n"
+"$ </computeroutput><userinput>df</userinput>\n"
+"<computeroutput>Filesystem           1K-blocks      Used Available Use% Mounted on\n"
+"/dev/sda2              9614084   4737916   4387796  52% /\n"
+"tmpfs                   514208         0    514208   0% /lib/init/rw\n"
+"udev                     10240       100     10140   1% /dev\n"
+"tmpfs                   514208    269136    245072  53% /dev/shm\n"
+"/dev/sda5             44552904  36315896   7784380  83% /home\n"
+"</computeroutput>\n"
+"      "
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>id</command> command displays the identity of the user running the session, along with the list of groups they belong to. Since access to some files or devices may be limited to group members, checking available group membership may be useful."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>id</userinput>\n"
+"<computeroutput>uid=1000(rhertzog) gid=1000(rhertzog) groups=1000(rhertzog),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),108(netdev),109(bluetooth),115(scanner)</computeroutput>\n"
+"      "
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Organization of the Filesystem Hierarchy"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Filesystem Hierarchy</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The Root Directory"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A Debian system is organized along the <emphasis>File Hierarchy Standard</emphasis> (FHS). This standard defines the purpose of each directory. For instance, the top-level directories are described as follows:"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/bin/</filename>: basic programs;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/boot/</filename>: Linux kernel and other files required for its early boot process;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/dev/</filename>: device files;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/etc/</filename>: configuration files;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/home/</filename>: user's personal files;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/lib/</filename>: basic libraries;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/media/*</filename>: mount points for removable devices (CD-ROM, USB keys and so on);"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/mnt/</filename>: temporary mount point;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/opt/</filename>: extra applications provided by third parties;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/root/</filename>: administrator's (root's) personal files;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/sbin/</filename>: system programs;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/srv/</filename>: data used by servers hosted on this system;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/tmp/</filename>: temporary files; this directory is often emptied at boot;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/usr/</filename>: applications; this directory is further subdivided into <filename>bin</filename>, <filename>sbin</filename>, <filename>lib</filename> (according to the same logic as in the root directory). Furthermore, <filename>/usr/share/</filename> contains architecture-independent data. <filename>/usr/local/</filename> is meant to be used by the administrator for installing applications manually without overwriting files handled by the packaging system (<command>dpkg</command>)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/var/</filename>: variable data handled by daemons. This includes log files, queues, spools, caches and so on."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<filename>/proc/</filename> and <filename>/sys/</filename> are specific to the Linux kernel (and not part of the FHS). They are used by the kernel for exporting data to user-space."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The User's Home Directory"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The contents of a user's home directory is not standardized, but there are still a few noteworthy conventions. One is that a user's home directory is often referred to by a tilde (“~”). That is useful to know because command interpreters automatically replace a tilde with the correct directory (usually <filename>/home/<replaceable>user</replaceable>/</filename>)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Application configuration files are often stored directly under the user's home directory, but their names usually start with a dot (for instance, the <command>mutt</command> email client stores its configuration in <filename>~/.muttrc</filename>). Filenames that start with a dot are hidden by default, and <command>ls</command> only lists them when the <literal>-a</literal> option is used."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Some programs use multiple configuration files organized in one directory (for instance, <filename>~/.evolution/</filename>). Some applications (such as the Iceweasel web browser) also use their directory to store a cache of downloaded data. This means that those directories can end up using a lot of disk space."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Graphical desktops usually display the contents of the <filename>~/Desktop/</filename> directory (or <filename>~/Bureau/</filename> or whatever the appropriate translation is for systems not configured in English) on the desktop (ie, what's visible on screen once all applications are closed or iconized)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Finally, the email system sometimes stores incoming emails into a <filename>~/Mail/</filename> directory."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Inner Workings of a Computer: the Different Layers Involved"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A computer is often considered as something rather abstract, and the externally visible interface is much simpler than its internal complexity. Such complexity comes in part from the number of pieces involved. However, these pieces can be viewed in layers, where a layer only interacts with those immediately above or below."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "An end-user can get by without knowing these details… as long as everything works. When confronting a problem such as, “The internet doesn't work!”, the first thing to do is to identify in which layer the problem originates. Is the network card (hardware) working? Is it recognized by the computer? Does the Linux kernel see it? Are the network parameters properly configured? All these questions isolate an appropriate layer and focus on a potential source of the problem."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The Deepest Layer: the Hardware"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>IDE</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>SCSI</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Serial ATA</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Parallel ATA</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>ATA</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>IEEE 1394</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Firewire</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>USB</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Let us start with a basic reminder that a computer is, first and foremost, a set of hardware elements. There is generally a main board, with one (or more) processor(s), some RAM, device controllers, and extension slots for option boards (for other device controllers). Most noteworthy among these controllers are IDE (Parallel ATA), SCSI and Serial ATA, for connecting to storage devices such as hard disks. Other controllers include USB, which is able to host a great variety of devices (ranging from webcams to thermometers, from keyboards to home automation systems) and IEEE_1394 (Firewire). These controllers often allow connecting several devices so the complete subsystem handled by a controller is therefore usually known as a “bus”. Option boards include graphics cards (where monitor screens will be plugged in to), sound cards, network interface cards, and so on. Some main boards are pre-built with these features, and don't need option boards."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>IN PRACTICE</emphasis> Checking that the hardware works"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Checking that a piece of hardware works can be tricky. On the other hand, proving that it doesn't work is sometimes quite simple."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A hard disk drive is made of spinning platters and moving magnetic heads. When a hard disk is powered up, the platter motor makes a characteristic whir. It also dissipates energy as heat. Consequently, a hard disk drive that stays cold and silent when powered up is broken."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Network cards often include LEDs displaying the state of the link. If a cable is plugged in and leads to a working network hub or switch, at least one LED will be on. If no LEDs lights, either the card itself, the network device, or the cable between them, is faulty. The next step is therefore testing each component individually."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Some option boards — especially 3D video cards — include cooling devices, such as heat sinks and/or fans. If the fan does not spin even though the card is powered up, a plausible explanation is the card overheated. This also applies to the main processor(s) located on the main board."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The Starter: the BIOS"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>BIOS</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Hardware, on its own, is unable to perform useful tasks without a corresponding piece of software driving it. Controlling and interacting with the hardware is the purpose of the operating system and applications. These, in turn, require functional hardware to run."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This symbiosis between hardware and software does not happen on its own. When the computer is first powered up, some initial setup is required. This role is assumed by the BIOS, a tiny piece of software embedded into the main board that runs automatically upon power-up. Its primary task is searching for software it can hand over control to. Usually, this involves looking for the first hard disk with a boot sector (also known as the <emphasis>master boot record</emphasis> or <acronym>MBR</acronym>), loading that boot sector, and running it. From then on, the BIOS is usually not involved (until the next boot)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TOOL</emphasis> Setup, the BIOS configuration tool"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>Setup</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The BIOS also contains a piece of software called Setup, designed to allow configuring aspects of the computer. In particular, it allows choosing which boot device is preferred (for instance, the floppy disk or CD-ROM drive), setting the system clock, and so on. Starting Setup usually involves pressing a key very soon after the computer is powered on. This key is often <keycap>Del</keycap> or <keycap>Esc</keycap>, sometimes <keycap>F2</keycap> or <keycap>F10</keycap>. Most of the time, the choice is flashed on screen while booting."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The boot sector, in turn, contains another tiny piece of software, called the bootloader, whose purpose is to find and run an operating system. Since this bootloader is not embedded in the main board but loaded from disk, it can be smarter than the BIOS, which explains why the BIOS does not load the operating system by itself. For instance, the bootloader (often GRUB on Linux systems) can list the available operating systems and ask the user to choose one. Usually, a time-out and default choice is provided. Sometimes the user can also choose to add parameters to pass to the kernel, and so on. Eventually, a kernel is found, loaded into memory, and executed."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The BIOS is also in charge of detecting and initializing a number of devices. Obviously, this includes the IDE/SATA devices (usually hard disk(s) and CD/DVD-ROM drives), but also PCI devices. Detected devices are often listed on screen during the boot process. If this list goes by too fast, use the <keycap>Pause</keycap> key to freeze it for long enough to read. Installed PCI devices that don't appear, are a bad omen. At worst, the device is faulty. At best, it is merely incompatible with the current version of the BIOS or main board. PCI specifications evolve, and old main boards are not guaranteed to handle newer PCI devices."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The Kernel"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Both the BIOS and the bootloader only run for a few seconds each; now we're getting to the first piece of software that runs for a longer time, the operating system kernel. This kernel assumes the role of a conductor in an orchestra, and ensures coordination between hardware and software. This role involves several tasks including: driving hardware, managing processes, users and permissions, the filesystem, and so on. The kernel provides a common base to all other programs on the system."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The User Space"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Although everything that happens outside of the kernel can be lumped together under “user-space”, we can still separate it into software layers. However, their interactions are more complex than before, and the classifications may not be as simple. An application commonly uses libraries, which in turn involve the kernel, but the communications can also involve other programs, or even many libraries calling each other."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Some Tasks Handled by the Kernel"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Driving the Hardware"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The kernel is, first and foremost, tasked with controlling the hardware parts, detecting them, switching them on when the computer is powered on, and so on. It also makes them available to higher-level software with a simplified programming interface, so applications can take advantage of devices without having to worry about details such as which extension slot the option board is plugged into. The programming interface also provides an abstraction layer; this allows video-conferencing software, for example, to use a webcam independently of its make and model. The software can just use the <emphasis>Video for Linux</emphasis> (V4L) interface, and the kernel translates the function calls of this interface into the actual hardware commands needed by the specific webcam in use."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<indexterm><primary><command>lspci</command></primary></indexterm> <indexterm><primary><command>lsusb</command></primary></indexterm> <indexterm><primary><command>lsdev</command></primary></indexterm> <indexterm><primary><command>lspcmcia</command></primary></indexterm> The kernel exports many details about detected hardware through the <filename>/proc/</filename> and <filename>/sys/</filename> virtual filesystems. Several tools summarize those details. Among them, <command>lspci</command> (in the <emphasis role=\"pkg\">pciutils</emphasis> package) lists PCI devices, <command>lsusb</command> (in the <emphasis role=\"pkg\">usbutils</emphasis> package) lists USB devices, and <command>lspcmcia</command> (in the <emphasis role=\"pkg\">pcmciautils</emphasis> package) lists PCMCIA cards. These tools are very useful for identifying the exact model of a device. This identification also allows more precise searches on the web, which in turn, lead to more relevant documents."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Example of information provided by <command>lspci</command> and <command>lsusb</command>"
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput>$ </computeroutput><userinput>lspci</userinput>\n"
+"<computeroutput>[...]\n"
+"00:02.1 Display controller: Intel Corporation Mobile 915GM/GMS/910GML Express Graphics Controller (rev 03)\n"
+"00:1c.0 PCI bridge: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) PCI Express Port 1 (rev 03)\n"
+"00:1d.0 USB Controller: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #1 (rev 03)\n"
+"[...]\n"
+"01:00.0 Ethernet controller: Broadcom Corporation NetXtreme BCM5751 Gigabit Ethernet PCI Express (rev 01)\n"
+"02:03.0 Network controller: Intel Corporation PRO/Wireless 2200BG Network Connection (rev 05)\n"
+"$ </computeroutput><userinput>lsusb</userinput>\n"
+"<computeroutput>Bus 005 Device 004: ID 413c:a005 Dell Computer Corp.\n"
+"Bus 005 Device 008: ID 413c:9001 Dell Computer Corp.\n"
+"Bus 005 Device 007: ID 045e:00dd Microsoft Corp.\n"
+"Bus 005 Device 006: ID 046d:c03d Logitech, Inc.\n"
+"[...]\n"
+"Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth\n"
+"</computeroutput>\n"
+"      "
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "These programs have a <literal>-v</literal> option, that lists much more detailed (but usually not necessary) information. Finally, the <command>lsdev</command> command (in the <emphasis role=\"pkg\">procinfo</emphasis> package) lists communication resources used by devices."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Applications often access devices by way of special files created within <filename>/dev/</filename> (see sidebar <xref linkend=\"cadre.fichiers-speciaux\" />). These are special files that represent disk drives (for instance, <filename>/dev/hda</filename> and <filename>/dev/sdc</filename>), partitions (<filename>/dev/hda1</filename> or <filename>/dev/sdc3</filename>), mice (<filename>/dev/input/mouse0</filename>), keyboards (<filename>/dev/input/event0</filename>), soundcards (<filename>/dev/snd/*</filename>), serial ports (<filename>/dev/ttyS*</filename>), and so on."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Filesystems"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>filesystem</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>system, filesystem</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Filesystems are one of the most prominent aspects of the kernel. Unix systems merge all the file stores into a single hierarchy, which allows users (and applications) to access data simply by knowing its location within that hierarchy."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The starting point of this hierarchical tree is called the root, <filename>/</filename>. This directory can contain named subdirectories. For instance, the <literal>home</literal> subdirectory of <filename>/</filename> is called <filename>/home/</filename>. This subdirectory can, in turn, contain other subdirectories, and so on. Each directory can also contain files, where the actual data will be stored. Thus, the <filename>/home/rmas/Desktop/hello.txt</filename> name refers to a file named <literal>hello.txt</literal> stored in the <literal>Desktop</literal> subdirectory of the <literal>rmas</literal> subdirectory of the <literal>home</literal> directory present in the root. The kernel translates between this naming system and the actual, physical storage on a disk."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Unlike other systems, there's only one such hierarchy, and it can integrate data from several disks. One of these disks is used as the root, and the others are “mounted” on directories in the hierarchy (the Unix command is called <command>mount</command>); these other disks are then available under these “mount points”. This allows storing users' home directories (traditionally stored within <filename>/home/</filename>) on a second hard disk, which will contain <literal>rhertzog</literal> and <literal>rmas</literal> directories. Once the disk is mounted on <filename>/home/</filename>, these directories become accessible at their usual locations, and paths such as <filename>/home/rmas/Desktop/hello.txt</filename> keep working."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>mkfs</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "There are many filesystems, corresponding to many ways of physically storing data on disks. The most widely known are <emphasis>ext2</emphasis>, <emphasis>ext3</emphasis> and <emphasis>ext4</emphasis>, but others exist. For instance, <emphasis>vfat</emphasis> is the system that was historically used by DOS and Windows operating systems, which allows using hard disks under Debian as well as under Windows. In any case, a filesystem must be prepared on a disk before it can be mounted and this operation is known as “formatting”. Commands such as <command>mkfs.ext3</command> (where <command>mkfs</command> stands for <emphasis>MaKe FileSystem</emphasis>) handle formatting. These commands require, as a parameter, a device file representing the partition to be formatted (for instance, <filename>/dev/sda1</filename>). This operation is destructive and should only be run once, except if one deliberately wishes to wipe a filesystem and start afresh."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "There are even network filesystems, such as <acronym>NFS</acronym>, where data is not stored on a local disk. Instead, data is transmitted through the network to a server that stores and retrieves them on demand. The filesystem abstraction shields users from having to care: files remain accessible in their usual hierarchical way."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Shared Functions"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Since a number of the same functions are used by all software, it makes sense to centralize them in the kernel. For instance, shared filesystem handling allow any application to simply open a file by name, without needing to worry where the file is stored physically. The file can be stored in several different slices on a hard disk, or split across several hard disks, or even stored on a remote file server. Shared communication functions, are used by applications to exchange data independently of the way the data is transported. For instance, transport could be over any combination of local or wireless networks, or over a telephone landline."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>pid</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A process is a running instance of a program. This requires memory to store both the program itself and its operating data. The kernel is in charge of creating and tracking them. When a program runs, first the kernel sets aside memory, then loads the executable code from the filesystem into it, and then starts the code running. It keeps information about this process, the most visible of which, is an identification number known as <emphasis>pid</emphasis> (<emphasis>process identifier</emphasis>)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Unix-like kernels (including Linux), and like most other modern operating systems, are able of “multi-tasking”. In other words, they allow running many processes “at the same time”. There's actually only one running process at any one time, but the kernel cuts time into small slices and runs each process in turn. Since these time slices are very short (in the millisecond range), they create the illusion of processes running in parallel, although they're actually only active during some time intervals and idle the rest of the time. The kernel's job is to adjust its scheduling mechanisms to keep that illusion, while maximizing the global system performance. If the time slices are too long, the application may lack in snappiness and user interactivity. Too short, and the system loses time switching tasks too frequently. These decisions can be tweaked with process priorities. High-priority processes will run for longer and more frequent time slices than low-priority processes."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>NOTE</emphasis> Multi-processor systems (and variants)"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The restriction described here is only a corner case. The actual restriction is that there can only be one running process <emphasis>per processor core</emphasis> at a time. Multi-processor, multi-core or “hyper-threaded” systems allow several processes to run in parallel. The same time-slicing system is still used, though, so as to handle cases where there are more active processes than available processor cores. This is the usual case: a basic system, even a mostly idle one, almost always has tens of running processes."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Of course, the kernel allows running several independent instances of the same program. But each can only access its own time slices and memory. Their data thus remain independent."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Rights Management"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Unix-like systems are also multi-user. They provide a rights management system that allows separate groups and users, and for choosing to permit or block actions based on permissions. The kernel manages, for each process, data allowing permission checking. Most of the time, this means the process' “identity” is the same as the user that started it. And, the process is only able to take user permitted actions. For instance, trying to open a file requires the kernel to check the process identity against access permissions (for more details on this particular example, see <xref linkend=\"sect.rights-management\" />)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>user space</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>kernel space</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "“User-space” refers to the runtime environment of normal (as opposed to kernel) processes. This does not necessarily mean these processes are actually started by users because a standard system routinely has several “daemon” processes running before the user even opens a session. Daemon processes are user-space processes."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>init</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When the kernel gets past its initialization phase, it starts the very first process, <command>init</command>. Process #1 alone is very rarely useful by itself, and Unix-like systems run with a whole lifecycle of processes."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>fork</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "First of all, a process can clone itself (this is known as a <emphasis>fork</emphasis>). The kernel allocates a new, but identical, process memory space, and another process to use it. At this point in time, the only difference between these two processes is their <emphasis>pid</emphasis>. The new process is customarily called a child process, and the process whose <emphasis>pid</emphasis> doesn't change, is called the parent process."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Sometimes, the child process continues to lead its own life independently from its parent, with its own data copied from the parent process. In many cases, though, this child process executes another program. With a few exceptions, its memory is simply replaced by that of the new program, and execution of this new program begins. One of the very first actions of process number 1 thus is to duplicate itself (which means there are, for a tiny amount of time, two running copies of the same <command>init</command> process), but the child process is then replaced by the first system initialization script, usually <filename>/etc/init.d/rcS</filename>. This script, in turn, clones itself and runs several other programs. At some point, one process among <command>init</command>'s offspring starts a graphical interface for users to log in to (the actual sequence of events is described in more details in <xref linkend=\"sect.system-boot\" />)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When a process finishes the task for which it was started, it terminates. The kernel then recovers the memory assigned to this process, and stops giving it slices of running time. The parent process is told about its child process being terminated, which allows a process to wait for the completion of a task it delegated to a child process. This behavior is plainly visible in command-line interpreters (known as <emphasis>shells</emphasis>). When a command is typed into a shell, the prompt only comes back when the execution of the command is over. Most shells allow for running the command in the background, it is a simple matter of adding an <userinput>&amp;</userinput> to the end of the command. The prompt is displayed again right away, which can lead to problems if the command needs to display data of its own."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Daemons"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>daemon</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A “daemon” is a process started automatically by the boot sequence. It keeps running (in the background) to perform maintenance tasks or provide services to other processes. This “background task” is actually arbitrary, and does not match anything particular from the system's point of view. They are simply processes, quite similar to other processes, which run in turn when their time slice comes. The distinction is only in the human language: a process that runs with no interaction with a user (in particular, without any graphical interface) is said to be running “in the background” or “as a daemon”."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>VOCABULARY</emphasis> Daemon, demon, a derogatory term?"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Although <emphasis>daemon</emphasis> term shares its Greek etymology with <emphasis>demon</emphasis>, the former does not imply diabolical evil, instead, it should be understood as a kind-of helper spirit. This distinction is subtle enough in English, but it's even worse in other languages where the same word is used for both meanings."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Several such daemons are described in detail in <xref linkend=\"unix-services\" />."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Inter-Process Communications"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>IPC</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Inter-Process Communications</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "An isolated process, whether a daemon or an interactive application, is rarely useful on its own, which is why there are several methods allowing separate processes to communicate together, either to exchange data or to control one another. The generic term referring to this is <emphasis>inter-process communication</emphasis>, or IPC for short."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The simplest IPC system is to use files. The process that wishes to send data writes it into a file (with a name known in advance), while the recipient only has to open the file and read its contents."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>pipe</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In the case where one does not wish to store data on disk, one can use a <emphasis>pipe</emphasis>, which is simply an object with two ends; bytes written in one end, are readable at the other. If the ends are controlled by separate processes, this leads to a simple and convenient inter-process communication channel. Pipes can be classified into two categories: named pipes, and anonymous pipes. A named pipe is represented by an entry on the filesystem (although the transmitted data is not stored there), so both processes can open it independently if the location of the named pipe is known beforehand. In cases where the communicating processes are related (for instance, a parent and its child process), the parent process can also create an anonymous pipe before forking, and the child inherits it. Both processes will then be able to exchange data through the pipe without needing the filesystem."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>IN PRACTICE</emphasis> A concrete example"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Let's describe in some detail what happens when a complex command (a <emphasis>pipeline</emphasis>) is run from a shell. We assume we have a <command>bash</command> process (the standard user shell on Debian), with <emphasis>pid</emphasis> 4374; into this shell, we type the command: <command>ls | sort</command> ."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The shell first interprets the command typed in. In our case, it understands there are two programs (<command>ls</command> and <command>sort</command>), with a data stream flowing from one to the other (denoted by the <userinput>|</userinput> character, known as <emphasis>pipe</emphasis>). <command>bash</command> first creates an unnamed pipe (which initially exists only within the <command>bash</command> process itself)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Then the shell clones itself; this leads to a new <command>bash</command> process, with <emphasis>pid</emphasis> #4521 (<emphasis>pids</emphasis> are abstract numbers, and generally have no particular meaning). Process #4521 inherits the pipe, which means it is able to write in its “input” side; <command>bash</command> redirects its standard output stream to this pipe's input. Then it executes (and replaces itself with) the <command>ls</command> program, which lists the contents of the current directory. Since <command>ls</command> writes on its standard output, and this output has previously been redirected, the results are effectively sent into the pipe."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A similar operation happens for the second command: <command>bash</command> clones itself again, leading to a new <command>bash</command> process with pid #4522. Since it is also a child process of #4374, it also inherits the pipe; <command>bash</command> then connects its standard input to the pipe output, then executes (and replaces itself with) the <command>sort</command> command, which sorts its input and displays the results."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "All the pieces of the puzzle are now set up: <command>ls</command> writes the list of files in the current directory into the pipe; <command>sort</command> reads this list, sorts it alphabetically, and displays the results. Processes numbers #4521 and #4522 then terminate, and #4374 (which was waiting for them during the operation), resumes control and displays the prompt to allow the user to type in a new command."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Not all inter-process communications are used to move data around though. In many situations, the only information that needs to be transmitted are control messages such as “pause execution” or “resume execution”. Unix (and Linux) provides a mechanism known as <emphasis>signals</emphasis>, through which a process can simply send a signal (chosen within a fixed list of a few tens of predefined signals) to another process. The only requirement is to know the <emphasis>pid</emphasis> of the target."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For more complex communications, there are also mechanisms allowing a process to open access, or share, part of its allocated memory to other processes. Memory then shared between them, allows moving data across."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Finally, network connections can also help processes communicate; these processes can even be running on different computers, possibly thousands of kilometers apart."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "It is quite standard for a typical Unix-like system to make use of all these mechanisms to various degrees."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Libraries"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>library (of functions)</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Function libraries play a crucial role in a Unix-like operating system. They are not proper programs, since they cannot be executed on their own, but collections of code fragments that can be used by standard programs. Among the common libraries, you can find:"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "the standard C library (<emphasis>glibc</emphasis>), which contains basic functions such as ones to open files or network connections, and others facilitating interactions with the kernel;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "graphical toolkits, such as Gtk+ and Qt, allowing many programs to reuse the graphical objects they provide;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "the <emphasis>libpng</emphasis> library, that allows loading, interpreting and saving images in the PNG format."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Thanks to those libraries, applications can reuse existing code. Their development is thus correspondingly simplified, in particular when many applications reuse the same functions. Since libraries are often developed by different persons, the global development of the system is closer to Unix's historical philosophy."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>CULTURE</emphasis> The Unix Way: one thing at a time"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "One of the fundamental concepts that underlies the Unix family of operating systems is that each tool should only do one thing, and do it well; applications can then reuse these tools to build more advanced logic on top. This Way can be seen in many incarnations. Shell scripts may be the best example: they assemble complex sequences of very simple tools (such as <command>grep</command>, <command>wc</command>, <command>sort</command>, <command>uniq</command> and so on). Another implementation of this philosophy can be seen in code libraries: the <emphasis>libpng</emphasis> library allows reading and writing PNG images, with different options and in different ways, but it does only that; no question of including functions that display or edit images."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Moreover, these libraries are often referred to as “shared libraries”, since the kernel is able to only load them into memory once, even if several processes use the same library at the same time. This allows saving memory, when compared with the opposite (hypothetical) situation where the code for a library would be loaded as many times as there are processes using it."
+msgstr ""
+
