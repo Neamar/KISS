@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2013-07-02 03:27+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-07-04 21:32+0200\n"
+"Last-Translator: Rodrigo Borges de Azevedo <ro@roazevedo.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/04_installation/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -771,9 +771,9 @@ msgstr ""
 #, no-c-format
 msgid "This step must absolutely be successful for <emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis> installations, since the Debian packages must be loaded from the network."
 msgstr ""
-"Este passo deve ser definitivamente um sucesso para as instalações "
-"<emphasis>netinst</emphasis> e <emphasis>businesscard</emphasis>, já que os "
-"pacotes Debian devem ser carregados pela rede."
+"Este passo deve definitivamente obter sucesso para as instalações "
+"<emphasis>netinst</emphasis> ou <emphasis>businesscard</emphasis>, já que os "
+"pacotes Debian devem ser carregados da rede."
 
 #. Tag: title
 #, no-c-format
@@ -854,6 +854,12 @@ msgstr "Configurando o relógio"
 #, no-c-format
 msgid "If the network is available, the system's internal clock is updated (in a one-shot way) from an NTP server. This way the timestamps on logs will be correct from the first boot. For them to remain consistently precise over time, an NTP daemon needs to be set up after initial installation (see <xref linkend=\"section.synchronisation-horaire\" />)."
 msgstr ""
+"Se a rede estiver disponível, o relógio interno é atualizado (uma única vez) "
+"a partir de um servidor NTP. Desse modo, os registros de tempo nos "
+"relatórios estarão corretos desde a primeira inicialização. Para que eles "
+"permaneçam consistentemente precisos ao longo do tempo, um serviço (daemon) "
+"precisa ser configurado após a instalação inicial (veja <xref "
+"linkend=\"section.synchronisation-horaire\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -1165,6 +1171,10 @@ msgstr ""
 #, no-c-format
 msgid "The first screen displays the available disks, their partitions, and any possible free space that has not yet been partitioned. You can select each displayed element; pressing the <keycap>Enter</keycap> key then gives a list of possible actions."
 msgstr ""
+"A primeira tela exibe os discos disponíveis, suas partições e qualquer "
+"espaço livre possível que ainda não foi particionado. Você pode selecionar "
+"cada elemento exibido, pressionando a tecla <keycap>Enter</keycap> resultará "
+"numa lista de possíveis ações."
 
 #. Tag: para
 #, no-c-format
@@ -1175,6 +1185,12 @@ msgstr "Você pode apagar todas as partições em um disco, selecionando-o."
 #, no-c-format
 msgid "When selecting free space on a disk, you can manually create a new partition. You can also do this with guided partitioning, which is an interesting solution for a disk that already contains another operating system, but which you may wish to partition for Linux in a standard manner. See the previous section for more details on guided partitioning."
 msgstr ""
+"Ao selecionar o espaço livre em disco, você pode criar manualmente uma nova "
+"partição. Você também pode fazer isso com o assistente de particionamento, "
+"que é uma solução interessante para um disco que já contenha outro sistema "
+"operacional, mas você pode desejar particionar para o Linux de uma forma "
+"padrão. Consulte a seção anterior para obter mais detalhes sobre "
+"particionamento assistido."
 
 #. Tag: title
 #, no-c-format
@@ -1192,13 +1208,16 @@ msgid "The mount point is the directory tree that will house the contents of the
 msgstr ""
 "O ponto de montagem é a árvore de diretório que vai abrigar o conteúdo do "
 "sistema de arquivos na partição seleccionada. Assim, uma partição montada em "
-"<filename>/home/</filename> destina-se tradicionalmente para conter dados "
-"de usuário."
+"<filename>/home/</filename> é tradicionalmente destinada a conter dados do "
+"usuário."
 
 #. Tag: para
 #, no-c-format
 msgid "When this directory is named “<filename>/</filename>”, it is known as the <emphasis>root</emphasis> of the file tree, and therefore the root of the partition that will actually host the Debian system."
 msgstr ""
+"Quando esse diretório é chamado de \"<filename>/</filename>\", ele é conhecido "
+"como a <emphasis>raiz</emphasis> do sistema de arquivos e, portanto, a raiz "
+"da partição que vai realmente hospedar o sistema Debian."
 
 #. Tag: title
 #, no-c-format
@@ -1229,31 +1248,43 @@ msgstr "<primary>partição de swap</primary>"
 #, no-c-format
 msgid "Virtual memory allows the Linux kernel, when lacking sufficient memory (RAM), to free a bit of storage by storing the parts of the RAM that have been inactive for some time on the swap partition of the hard disk."
 msgstr ""
+"A memória virtual permite que o kernel do Linux, quando falta memória "
+"suficiente (RAM), libere um pouco de armazenamento, realocando na partição "
+"swap do disco rígido as partes da memória RAM inativas por algum tempo."
 
 #. Tag: para
 #, no-c-format
 msgid "To simulate the additional memory, Windows uses a swap file that is directly contained in a filesystem. Conversely, Linux uses a partition dedicated to this purpose, hence the term “swap partition”."
 msgstr ""
+"Para simular a memória adicional, o Windows usa um arquivo de swap que está "
+"diretamente contido em um sistema de arquivos. Por outro lado, o Linux usa "
+"uma partição dedicada a este propósito, daí o termo \"partição swap\"."
 
 #. Tag: para
 #, no-c-format
 msgid "When choosing a partition, you can indicate the manner in which you are going to use it:"
 msgstr ""
+"Ao escolher uma partição, você pode indicar a forma como que você vai "
+"utilizá-la:"
 
 #. Tag: para
 #, no-c-format
 msgid "format it and include it in the file tree by choosing a mount point;"
 msgstr ""
+"formatá-la e incluí-la no sistema de arquivos escolhendo um ponto de "
+"montagem;"
 
 #. Tag: para
 #, no-c-format
 msgid "use it as a swap partition;"
-msgstr ""
+msgstr "usá-la como uma partição swap;"
 
 #. Tag: para
 #, no-c-format
 msgid "make it into a “physical volume for encryption” (to protect the confidentiality of data on certain partitions, see below);"
 msgstr ""
+"transformá-la em um \"volume físico para encriptação\" (para proteger a "
+"confidencialidade dos dados em determinadas partições, veja abaixo);"
 
 #. Tag: para
 #, no-c-format
