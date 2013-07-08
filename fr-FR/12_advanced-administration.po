@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Debian Administrator's Handbook\n"
-"POT-Creation-Date: 2012-02-27T14:34:49\n"
+"POT-Creation-Date: 2012-10-31T14:54:18\n"
 "PO-Revision-Date: 2012-05-03 16:15+0200\n"
 "Last-Translator: Gerold Rupprecht <geroldr@bluewin.ch>\n"
 "Language-Team: English translators <rapael.hertzog@>\n"
@@ -78,8 +78,8 @@ msgid "<xref linkend=\"installation\" /> presented these technologies from the p
 msgstr "Le <xref linkend=\"installation\" /> a présenté ces technologies en montrant comment l'installateur facilitait leur déploiement. Mais au delà de cette étape cruciale, un bon administrateur doit pouvoir gérer l'évolution de ses besoins en espace de stockage sans devoir recourir à une coûteuse réinstallation. Il convient donc de maîtriser les outils qui permettent de manipuler des volumes RAID et LVM."
 
 #. Tag: para
-#, no-c-format
-msgid "RAID and LVM are both techniques to abstract the mounted volumes from their physical counterparts (actual hard-disk drives or partitions thereof); the former secures the data by introducing redundancy, the latter makes data management more flexible and independent of the actual size of the underlying disks. In both cases, the system ends up with new block devices, which can be used to create filesystems or swap space, without necessarily having them mapped to one physical disk. RAID and LVM come from quite different backgrounds, but their functionality can overlap somewhat, which is why they are ofter mentioned together."
+#, fuzzy, no-c-format
+msgid "RAID and LVM are both techniques to abstract the mounted volumes from their physical counterparts (actual hard-disk drives or partitions thereof); the former secures the data by introducing redundancy, the latter makes data management more flexible and independent of the actual size of the underlying disks. In both cases, the system ends up with new block devices, which can be used to create filesystems or swap space, without necessarily having them mapped to one physical disk. RAID and LVM come from quite different backgrounds, but their functionality can overlap somewhat, which is why they are often mentioned together."
 msgstr "Ces deux techniques permettent d'abstraire les volumes à monter de leurs contreparties physiques (disques durs ou partitions), la première pour sécuriser les données en dupliquant les informations et la seconde pour gérer ses données à sa guise en faisant abstraction de la taille réelle de ses disques. Dans les deux cas, cela se traduit par des nouveaux périphériques de type bloc sur lesquels on pourra donc créer des systèmes de fichier, ou des espaces de mémoire virtuelle, qui ne correspondent pas directement à un seul disque dur réel. Bien que ces deux systèmes aient des origines bien distinctes, une partie de leur fonctionnalité se recoupe, c'est pourquoi ils sont souvent mentionnés ensemble."
 
 #. Tag: title
@@ -118,8 +118,8 @@ msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Independent</foreignphrase> o
 msgstr "<emphasis>CULTURE</emphasis> <foreignphrase>Independent</foreignphrase> ou <foreignphrase>inexpensive</foreignphrase>?"
 
 #. Tag: para
-#, no-c-format
-msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it's now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavoury flavour of cheapness."
+#, fuzzy, no-c-format
+msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it's now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavory flavour of cheapness."
 msgstr "Le I de RAID signifiait à l'origine <foreignphrase>inexpensive</foreignphrase> (bon marché), car le RAID permet d'obtenir une nette augmentation de la sécurité des données sans investir dans des disques hors de prix. Peut-être pour des considérations d'image, on a tendance à préférer <foreignphrase>independent</foreignphrase>, qui n'a pas la connotation de bricolage associée au bon marché."
 
 #. Tag: para
@@ -133,8 +133,8 @@ msgid "Different RAID Levels"
 msgstr "Différents niveaux de RAID"
 
 #. Tag: para
-#, no-c-format
-msgid "RAID has actually several levels, differenciated by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks; seen the other way, more disks will be needed to store the same amount of data."
+#, fuzzy, no-c-format
+msgid "RAID has actually several levels, differentiated by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks; seen the other way, more disks will be needed to store the same amount of data."
 msgstr "On distingue plusieurs niveaux de RAID, selon le degré de redondance qu'ils proposent. Plus la redondance est élevée, plus la résistance aux pannes sera forte, puisque le système pourra continuer à fonctionner avec un plus grand nombre de disques en panne; la contrepartie est que le volume utile de données devient plus restreint (ou, pour voir les choses différemment, qu'il sera nécessaire d'avoir plus de disques pour stocker la même quantité de données)."
 
 #. Tag: term
@@ -260,8 +260,8 @@ msgstr "RAID-1+0"
 
 # You will start getting into bandwidth limitations rather quickly, requiring additional controllers to spread the load.
 #. Tag: para
-#, no-c-format
-msgid "This isn't stricly speaking, a RAID level, but a stacking of two RAID groupings. Starting from 2×N disks, one first sets them up by pairs into N RAID-1 volumes; these N volumes are then aggregated into one, either by “linear RAID” or (increasingly) by LVM. This last case goes farther than pure RAID, but there's no problem with that."
+#, fuzzy, no-c-format
+msgid "This isn't strictly speaking, a RAID level, but a stacking of two RAID groupings. Starting from 2×N disks, one first sets them up by pairs into N RAID-1 volumes; these N volumes are then aggregated into one, either by “linear RAID” or (increasingly) by LVM. This last case goes farther than pure RAID, but there's no problem with that."
 msgstr "Il ne s'agit pas à proprement parler d'un niveau de RAID, mais d'un RAID à deux niveaux. Si l'on dispose de 2×N disques, on commence par les apparier en N volumes de RAID-1. Ces N volumes sont alors agrégés en un seul, soit par le biais de RAID linéaire, soit par du RAID-0, voire (de plus en plus fréquemment) par LVM. On sort dans ce dernier cas du RAID pur, mais cela ne pose pas de problème."
 
 #. Tag: para
@@ -577,8 +577,8 @@ msgid "A few remarks are in order. First, <command>mdadm</command> notices that 
 msgstr "Plusieurs remarques ici. Premièrement, <command>mdadm</command> constate que les deux éléments physiques n'ont pas la même taille; comme cela implique que de l'espace sera perdu sur le plus gros des deux éléments, une confirmation est nécessaire."
 
 #. Tag: para
-#, no-c-format
-msgid "More importantly, note the state of the mirror. The normal state of a RAID mirror is that both disks have exactly the same contents. However, nothing guarantees this is the case when the volume is first created. The RAID subsystem will therefore provide that guarantee itself, and there will be a synchronisation phase as soon as the RAID device is created. After some time (the exact amount will depend on the actual size of the disks…), the RAID array switches to the “active” state. Note that during this reconstruction phase, the mirror is in a degraded mode, and redundancy isn't assured. A disk failing during that risk window could lead to losing all the data. Large amounts of critical data, however, are rarely stored on a freshly created RAID array before its initial synchronisation. Note that even in degraded mode, the <filename>/dev/md1</filename> is usable, and a filesystem can be created on it, as well as some data copied on it."
+#, fuzzy, no-c-format
+msgid "More importantly, note the state of the mirror. The normal state of a RAID mirror is that both disks have exactly the same contents. However, nothing guarantees this is the case when the volume is first created. The RAID subsystem will therefore provide that guarantee itself, and there will be a synchronization phase as soon as the RAID device is created. After some time (the exact amount will depend on the actual size of the disks…), the RAID array switches to the “active” state. Note that during this reconstruction phase, the mirror is in a degraded mode, and redundancy isn't assured. A disk failing during that risk window could lead to losing all the data. Large amounts of critical data, however, are rarely stored on a freshly created RAID array before its initial synchronization. Note that even in degraded mode, the <filename>/dev/md1</filename> is usable, and a filesystem can be created on it, as well as some data copied on it."
 msgstr "La deuxième remarque, plus importante, concerne l'état du miroir. Les deux disques sont en effet censés avoir, en fonctionnement normal, un contenu rigoureusement identique. Comme rien ne garantit que c'est le cas à la création du volume, le système RAID va s'en assurer. Il y a donc une phase de synchronisation, automatique, dès la création du périphérique RAID. Si l'on patiente quelques instants (qui varient selon la taille des disques...), on obtient finalement un état «actif». Il est à noter que durant cette étape de reconstruction du miroir, l'ensemble RAID est en mode dégradé, et que la redondance n'est pas assurée. Une panne de l'un des disques pendant cette fenêtre sensible peut donc aboutir à la perte de l'intégralité des données. Il est cependant rare que de grandes quantités de données critiques soient placées sur un volume RAID fraîchement créé avant que celui-ci ait eu le temps de se synchroniser. On notera également que même en mode dégradé, le périphérique <filename>/dev/md1</filename> est utilisable (pour créer le système de fichiers et commencer à copier des données, éventuellement)."
 
 #. Tag: title
@@ -587,13 +587,13 @@ msgid "<emphasis>TIP</emphasis> Starting a mirror in degraded mode"
 msgstr "<emphasis>ASTUCE</emphasis> Démarrer un miroir en mode dégradé"
 
 #. Tag: para
-#, no-c-format
-msgid "Sometimes two disks are not immediately available when one wants to start a RAID-1 mirror, for instance because one of the disks one plans to include is already used to store the data one wants to move to the array. In such circumstances, it is possible to deliberately create a degraded RAID-1 array by passing <filename>missing</filename> instead of a device file as one of the arguments to <command>mdadm</command>. Once the data have been copied to the “mirror”, the old disk can be added to the array. A synchronisation will then take place, giving us the redundancy that was wanted in the first place."
+#, fuzzy, no-c-format
+msgid "Sometimes two disks are not immediately available when one wants to start a RAID-1 mirror, for instance because one of the disks one plans to include is already used to store the data one wants to move to the array. In such circumstances, it is possible to deliberately create a degraded RAID-1 array by passing <filename>missing</filename> instead of a device file as one of the arguments to <command>mdadm</command>. Once the data have been copied to the “mirror”, the old disk can be added to the array. A synchronization will then take place, giving us the redundancy that was wanted in the first place."
 msgstr "Lorsque l'on souhaite sécuriser des données présentes sur un disque non-RAID, et les migrer vers un volume RAID-1, il n'est pas toujours possible de disposer à la fois de l'ancien disque et des deux nouveaux en même temps (souvent parce que le disque existant va être intégré dans le miroir). On peut alors délibérément créer le volume RAID-1 en mode dégradé, en passant <filename>missing</filename> en argument à <command>mdadm</command> à la place d'un des deux périphériques à utiliser. Une fois que les données auront été copiées vers le «miroir», le disque historique pourra être intégré au volume. Une synchronisation aura alors lieu, à la suite de quoi les données seront stockées de manière redondante."
 
 #. Tag: title
-#, no-c-format
-msgid "<emphasis>TIP</emphasis> Setting up a mirror without synchronisation"
+#, fuzzy, no-c-format
+msgid "<emphasis>TIP</emphasis> Setting up a mirror without synchronization"
 msgstr "<emphasis>ASTUCE</emphasis> Mise en place d'un miroir sans synchronisation"
 
 #. Tag: para
@@ -602,13 +602,13 @@ msgid "RAID-1 volumes are often created to be used as a new disk, often consider
 msgstr "Lorsque l'on crée un volume RAID-1, c'est généralement pour l'utiliser comme un disque neuf, donc a priori vierge. Le contenu initial de ce disque importe peu, puisque l'on n'a besoin que de savoir que les données écrites seront bien restituées (en particulier le système de fichiers)."
 
 #. Tag: para
-#, no-c-format
-msgid "One might therefore wonder about the point of synchronising both disks at creation time. Why care whether the contents are identical on zones of the volume that we know will only be read after we have written to them?"
+#, fuzzy, no-c-format
+msgid "One might therefore wonder about the point of synchronizing both disks at creation time. Why care whether the contents are identical on zones of the volume that we know will only be read after we have written to them?"
 msgstr "Il peut donc sembler superflu de synchroniser les deux disques d'un miroir lors de sa création. À quoi sert d'avoir un contenu identique sur des zones du volume dont on sait qu'on ne se servira qu'après y avoir écrit?"
 
 #. Tag: para
-#, no-c-format
-msgid "Fortunately, this synchronisation phase can be avoided by passing the <literal>--assume-clean</literal> option to <command>mdadm</command>. However, this option can lead to surprises in cases where the initial data will be read (for instance if a filesystem is already present on the physical disks), which is why it isn't enabled by default."
+#, fuzzy, no-c-format
+msgid "Fortunately, this synchronization phase can be avoided by passing the <literal>--assume-clean</literal> option to <command>mdadm</command>. However, this option can lead to surprises in cases where the initial data will be read (for instance if a filesystem is already present on the physical disks), which is why it isn't enabled by default."
 msgstr "Il est heureusement possible de se passer de cette phase de synchronisation, grâce à l'option <literal>--assume-clean</literal> de <command>mdadm</command>. Cette option pouvant amener à des résultats surprenants dans les cas d'usage où les données initiales seront utilisées (par exemple si un système de fichiers est déjà présent), elle n'est pas active par défaut."
 
 #. Tag: para
@@ -1273,8 +1273,8 @@ msgid "<emphasis>NOTE</emphasis> Autodetecting LVM volumes"
 msgstr "<emphasis>NOTE</emphasis> Détection automatique des volumes LVM"
 
 #. Tag: para
-#, no-c-format
-msgid "When the computer boots, the <filename>/etc/init.d/lvm</filename> script scans the available devices; those that have been initialised as physical volumes for LVM are registered into the LVM subsystem, those that belong to volume groups are assembled, and the relevant logical volumes are started and made available. There is therefore no need to edit configuration files when creating or modifying LVM volumes."
+#, fuzzy, no-c-format
+msgid "When the computer boots, the <filename>/etc/init.d/lvm</filename> script scans the available devices; those that have been initialized as physical volumes for LVM are registered into the LVM subsystem, those that belong to volume groups are assembled, and the relevant logical volumes are started and made available. There is therefore no need to edit configuration files when creating or modifying LVM volumes."
 msgstr "Lors du démarrage de l'ordinateur, le script <filename>/etc/init.d/lvm</filename> effectue un balayage des périphériques disponibles; ceux qui ont été préparés comme des volumes physiques pour LVM sont alors répertoriés auprès du sous-système LVM, ceux qui font partie de groupes de volumes sont assemblés, et les volumes logiques sont mis en fonctionnement. Il n'est donc pas nécessaire de modifier des fichiers de configuration lors de la création ou de l'altération de volumes LVM."
 
 #. Tag: para
@@ -1378,10 +1378,12 @@ msgid "Even though the ability to aggregate partitions or physical disks is conv
 msgstr "Mais cette capacité à agréger des partitions ou des disques physiques n'est pas le principal attrait de LVM. La souplesse offerte se manifeste surtout au fil du temps, lorsque les besoins évoluent. Supposons par exemple que de nouveaux fichiers volumineux doivent être stockés, et que le LV dévolu au serveur de fichiers ne suffise plus. Comme nous n'avons pas utilisé l'intégralité de l'espace disponible dans <filename>vg_critique</filename>, nous pouvons étendre <filename>lv_fichiers</filename>. Nous allons pour cela utiliser la commande <command>lvresize</command> pour étendre le LV, puis <command>resize2fs</command> pour ajuster le système de fichiers en conséquence:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on/dev/mapper/vg_critical-lv_files                      5.0G  4.6G  142M  98% /srv/files\n"
+"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_files\n"
+"                      5.0G  4.6G  142M  98% /srv/files\n"
 "# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
 "<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert\n"
 "  lv_files vg_critical -wi-ao 5.00g\n"
@@ -1528,8 +1530,8 @@ msgid "RAID or LVM?"
 msgstr "RAID ou LVM?"
 
 #. Tag: para
-#, no-c-format
-msgid "RAID and LVM both bring undisputable advantages as soon as one leaves the simple case of a desktop computer with a single hard disk where the usage pattern doesn't change over time. However, RAID and LVM go in two different directions, with diverging goals, and it is legitimate to wonder which one should be adopted. The most appropriate answer will of course depend on current and foreseeable requirements."
+#, fuzzy, no-c-format
+msgid "RAID and LVM both bring indisputable advantages as soon as one leaves the simple case of a desktop computer with a single hard disk where the usage pattern doesn't change over time. However, RAID and LVM go in two different directions, with diverging goals, and it is legitimate to wonder which one should be adopted. The most appropriate answer will of course depend on current and foreseeable requirements."
 msgstr "Les apports de RAID et LVM sont indéniables dès que l'on s'éloigne d'un poste bureautique simple, à un seul disque dur, dont l'utilisation ne change pas dans le temps. Cependant, RAID et LVM constituent deux directions différentes, ayant chacune leur finalité, et l'on peut se demander lequel de ces systèmes adopter. La réponse dépendra des besoins, présents et futurs."
 
 #. Tag: para
@@ -1549,8 +1551,8 @@ msgstr "Vient enfin le cas le plus intéressant, celui où l'on souhaite concili
 
 # I think the example should focus on SATA disks rather than IDE as these are fast disappearing, otherwise the book will be very quickly dated. You may also want to bump up the disk size to what is currently available.
 #. Tag: para
-#, no-c-format
-msgid "Let's take a concrete example: the public relations department at Falcot Corp needs a workstation for video editing, but the department's budget doesn't allow investing in high-end hardware from the bottom up. A decision is made to favour the hardware that is specific to the graphic nature of the work (monitor and video card), and to stay with generic hardware for storage. However, as is widely known, digital video does have some particular requirements for its storage: the amount of data to store is large, and the throughput rate for reading and writing this data is important for the overall system performance (more than typical access time, for instance). These constraints need to be fulfilled with generic hardware, in this case two 300 GB SATA hard disk drives; the system data must also be made resistant to hardware failure, as well as some of the user data. Edited videoclips must indeed be safe, but video rushes pending editing are less critical, since they're still on the videotapes."
+#, fuzzy, no-c-format
+msgid "Let's take a concrete example: the public relations department at Falcot Corp needs a workstation for video editing, but the department's budget doesn't allow investing in high-end hardware from the bottom up. A decision is made to favor the hardware that is specific to the graphic nature of the work (monitor and video card), and to stay with generic hardware for storage. However, as is widely known, digital video does have some particular requirements for its storage: the amount of data to store is large, and the throughput rate for reading and writing this data is important for the overall system performance (more than typical access time, for instance). These constraints need to be fulfilled with generic hardware, in this case two 300 GB SATA hard disk drives; the system data must also be made resistant to hardware failure, as well as some of the user data. Edited videoclips must indeed be safe, but video rushes pending editing are less critical, since they're still on the videotapes."
 msgstr "Prenons un exemple concret: le département des relations publiques de Falcot SA a besoin d'une station de travail adaptée au montage vidéo. En revanche, les contraintes de budget du département ne permettent pas d'investir dans du matériel neuf entièrement haut de gamme. Le choix est fait de privilégier le matériel spécifiquement graphique (écran et carte vidéo), et de rester dans le générique pour les éléments de stockage. Or la vidéo numérique, comme on le sait, a des besoins en stockage particuliers: les données à stocker sont volumineuses, et la vitesse de lecture et d'écriture de ces données est importante pour les performances du système (plus que le temps d'accès moyen, par exemple). Il faut donc répondre à ces contraintes avec du matériel générique, en l'occurrence deux disques durs IDE de 300 Go, tout en garantissant la disponibilité du système et de certaines des données. Les films montés doivent en effet rester disponibles, mais les fichiers bruts non encore montés sont moins critiques, puisque les <foreignphrase>rushes</foreignphrase> restent sur les bandes."
 
 #. Tag: para
@@ -1710,8 +1712,8 @@ msgid "Xen <indexterm><primary>Xen</primary></indexterm> is a “paravirtualizat
 msgstr "Xen<indexterm><primary>Xen</primary></indexterm> est une solution de «paravirtualisation», c'est-à-dire qu'il insère entre le matériel et les systèmes supérieurs une fine couche d'abstraction, nommée «hyperviseur», dont le rôle est de répartir l'utilisation du matériel entre les différentes machines virtuelles qui fonctionnent dessus. Cependant, cet hyperviseur n'entre en jeu que pour une petite partie des instructions, le reste étant exécuté directement par le matériel pour le compte des différents systèmes. L'avantage est que les performances ne subissent pas de dégradation; la contrepartie est que les noyaux des systèmes d'exploitation que l'on souhaite utiliser sur un hyperviseur Xen doivent être modifiés pour en tirer parti."
 
 #. Tag: para
-#, no-c-format
-msgid "Let's spend some time on terms. The hypervisor is the lowest layer, that runs directly on the hardware, even below the kernel. This hypervisor can split the rest of the software across several <emphasis>domains</emphasis>, which can be seen as so many virtual machines. One of these domains (the first one that gets started) is known as <emphasis>dom0</emphasis>, and has a special role, since only this domain can control the hypervisor and the execution of other domains. These other domains are known as <emphasis>domU</emphasis>. In other words, and from a user point of view, the <emphasis>dom0</emphasis> matches the “host” of other virtualizaton systems, while a <emphasis>domU</emphasis> can be seen as a “guest”."
+#, fuzzy, no-c-format
+msgid "Let's spend some time on terms. The hypervisor is the lowest layer, that runs directly on the hardware, even below the kernel. This hypervisor can split the rest of the software across several <emphasis>domains</emphasis>, which can be seen as so many virtual machines. One of these domains (the first one that gets started) is known as <emphasis>dom0</emphasis>, and has a special role, since only this domain can control the hypervisor and the execution of other domains. These other domains are known as <emphasis>domU</emphasis>. In other words, and from a user point of view, the <emphasis>dom0</emphasis> matches the “host” of other virtualization systems, while a <emphasis>domU</emphasis> can be seen as a “guest”."
 msgstr "Explicitons un peu de terminologie. Nous avons vu que l'hyperviseur était la couche logicielle la plus basse, qui vient s'intercaler directement entre le noyau et le matériel. Cet hyperviseur est capable de séparer le reste du logiciel en plusieurs <emphasis>domaines</emphasis>, correspondant à autant de machines virtuelles. Parmi ces domaines, le premier à être lancé, désigné sous l'appellation <emphasis>dom0</emphasis>, joue un rôle particulier, puisque c'est depuis ce domaine (et seulement celui-là) qu'on pourra contrôler l'exécution des autres. Ces autres domaines sont, eux, appelés <emphasis>domU</emphasis>. Le terme «dom0» correspond donc au système «hôte» d'autres mécanismes de virtualisation, «domU» correspondant aux «invités»."
 
 #. Tag: title
@@ -1730,8 +1732,8 @@ msgid "Xensource, the company behind Xen, therefore had to port Xen to this new 
 msgstr "Suite à ce revers, Xensource — la société éditrice de Xen — a décidé de modifier sa solution pour s'appuyer sur ce nouveau socle afin de pouvoir officiellement intégrer Xen au noyau Linux. Une grande partie du code a dû être récrite. Et si la société dispose désormais d'une version fonctionnelle s'appuyant sur paravirt_ops, l'intégration dans le noyau Linux est très progressive. La version actuelle de Linux (2.6.35 à l'heure où ces lignes sont écrites) ne sait toujours pas faire office de dom0. <ulink type=\"block\" url=\"http://wiki.xensource.com/xenwiki/XenParavirtOps\" />"
 
 #. Tag: para
-#, no-c-format
-msgid "Although <emphasis role=\"distribution\">Squeeze</emphasis> is based on version 2.6.32 of the Linux kernel, a version including the Xen patches from Xensource is also available in the <emphasis role=\"pkg\">linux-image-2.6-xen-686</emphasis> and <emphasis role=\"pkg\">linux-image-2.6-xen-amd64</emphasis> packages. This distribution-specific patching means that the available featureset depends on the distibution; discrepancies in the versions of the code, or even integration of code still under development into some distributions also mean differences in the supported features. This problem should be greatly reduced now that Xen has been officially merged into Linux. <ulink type=\"block\" url=\"http://wiki.xen.org/xenwiki/XenKernelFeatures\" />"
+#, fuzzy, no-c-format
+msgid "Although <emphasis role=\"distribution\">Squeeze</emphasis> is based on version 2.6.32 of the Linux kernel, a version including the Xen patches from Xensource is also available in the <emphasis role=\"pkg\">linux-image-2.6-xen-686</emphasis> and <emphasis role=\"pkg\">linux-image-2.6-xen-amd64</emphasis> packages. This distribution-specific patching means that the available featureset depends on the distribution; discrepancies in the versions of the code, or even integration of code still under development into some distributions also mean differences in the supported features. This problem should be greatly reduced now that Xen has been officially merged into Linux. <ulink type=\"block\" url=\"http://wiki.xen.org/xenwiki/XenKernelFeatures\" />"
 msgstr "Afin de fournir un noyau pouvant faire office de dom0, Debian fournit une variante du noyau qui intègre le code développé par Xensource. On la trouve dans les paquets <emphasis role=\"pkg\">linux-image-2.6-xen-686</emphasis> et <emphasis role=\"pkg\">linux-image-2.6-xen-amd64</emphasis>. L'ensemble de fonctionnalités supportées varie d'une distribution à l'autre: les versions du code employées ne sont pas toujours les mêmes et certaines distributions ont la capacité d'intégrer et maintenir des fonctionnalités encore en développement. <ulink type=\"block\" url=\"http://wiki.xen.org/xenwiki/XenKernelFeatures\" />"
 
 #. Tag: para
@@ -1797,8 +1799,8 @@ msgstr ""
 "</userinput>\n"
 
 #. Tag: para
-#, no-c-format
-msgid "Once these prerequisites are installed, the next step is to test the behaviour of the dom0 by itself; this involves a reboot to the hypervisor and the Xen kernel. The system should boot in its standard fashion, with a few extra messages on the console during the early initialization steps."
+#, fuzzy, no-c-format
+msgid "Once these prerequisites are installed, the next step is to test the behavior of the dom0 by itself; this involves a reboot to the hypervisor and the Xen kernel. The system should boot in its standard fashion, with a few extra messages on the console during the early initialization steps."
 msgstr "Une fois cette installation effectuée, il convient de tester le fonctionnement du dom0 seul, donc de redémarrer le système avec l'hyperviseur et le noyau Xen. À part quelques messages supplémentaires sur la console lors de l'initialisation, le système démarre comme d'habitude."
 
 #. Tag: para
@@ -1933,23 +1935,23 @@ msgid "The simplest model is the <emphasis>bridge</emphasis> model; all the eth0
 msgstr "En mode pont (<foreignphrase>bridge</foreignphrase>), toutes les cartes réseau eth0 (pour le dom0 comme pour les domU) se comportent comme si elles étaient directement branchées sur un commutateur Ethernet (<foreignphrase>switch</foreignphrase>). C'est le mode le plus simple."
 
 #. Tag: para
-#, no-c-format
-msgid "Then comes the <emphasis>routing</emphasis> mode, where the dom0 behaves as a router that stands between the domU systems and the (physical) external network."
+#, fuzzy, no-c-format
+msgid "Then comes the <emphasis>routing</emphasis> model, where the dom0 behaves as a router that stands between the domU systems and the (physical) external network."
 msgstr "En mode routage, le dom0 est placé entre les domU et le réseau extérieur (physique), et joue un rôle de routeur."
 
 #. Tag: para
-#, no-c-format
-msgid "Finally, in the <emphasis>NAT</emphasis> mode, the dom0 is again between the domU systems and the rest of the network, but the domU systems are not directly accessible from outside, and traffic goes through some network address translation on the dom0."
+#, fuzzy, no-c-format
+msgid "Finally, in the <emphasis>NAT</emphasis> model, the dom0 is again between the domU systems and the rest of the network, but the domU systems are not directly accessible from outside, and traffic goes through some network address translation on the dom0."
 msgstr "En mode traduction d'adresse (NAT), le dom0 est également placé entre les domU et le reste du réseau; cependant, les domU ne sont pas accessibles directement depuis l'extérieur, le trafic subissant de la traduction d'adresses sur le dom0."
 
 #. Tag: para
-#, no-c-format
-msgid "These three networking nodes involve a number of interfaces with unusual names, such as <filename>vif*</filename>, <filename>veth*</filename>, <filename>peth*</filename> and <filename>xenbr0</filename>. The Xen hypervisor arranges them in whichever layout has been defined, under the control of the user-space tools. Since the NAT and routing modes are only adapted to particular cases, we will only address the bridging model."
+#, fuzzy, no-c-format
+msgid "These three networking nodes involve a number of interfaces with unusual names, such as <filename>vif*</filename>, <filename>veth*</filename>, <filename>peth*</filename> and <filename>xenbr0</filename>. The Xen hypervisor arranges them in whichever layout has been defined, under the control of the user-space tools. Since the NAT and routing models are only adapted to particular cases, we will only address the bridging model."
 msgstr "Ces trois modes mettent en jeu un certain nombre d'interfaces aux noms inhabituels, comme <filename>vif*</filename>, <filename>veth*</filename>, <filename>peth*</filename> et <filename>xenbr0</filename>, qui sont mises en correspondance selon différents agencements par l'hyperviseur Xen, contrôlé par les utilitaires en espace utilisateur. Nous ne nous attarderons pas ici sur les modes NAT et routage, qui ne présentent d'intérêt que dans des cas particuliers."
 
 #. Tag: para
-#, no-c-format
-msgid "The standard configuration of the Xen packages does not change the system-wide network configuration. However, the <command>xend</command> daemon is configured to integrate virtual network interfaces into any pre-existing network bridge (with <filename>xenbr0</filename> taking precedence if several such bridges exist). We must therefore set up a bridge in <filename>/etc/network/interfaces</filename> (which requires installing the <emphasis role=\"pkg\">bridge-utils</emphasis> package, which is why the <emphasis role=\"pkg\">xen-utils-4.0</emphasis> recommends it) to replace the existing eth0 entry:"
+#, fuzzy, no-c-format
+msgid "The standard configuration of the Xen packages does not change the system-wide network configuration. However, the <command>xend</command> daemon is configured to integrate virtual network interfaces into any pre-existing network bridge (with <filename>xenbr0</filename> taking precedence if several such bridges exist). We must therefore set up a bridge in <filename>/etc/network/interfaces</filename> (which requires installing the <emphasis role=\"pkg\">bridge-utils</emphasis> package, which is why the <emphasis role=\"pkg\">xen-utils-4.0</emphasis> package recommends it) to replace the existing eth0 entry:"
 msgstr "La configuration standard des paquets Debian de Xen n'effectue aucune modification à la configuration réseau du système. En revanche le démon <command>xend</command> est configuré pour intégrer les cartes réseau virtuelles dans n'importe quel pont pré-existant (si plusieurs existent, c'est <filename>xenbr0</filename> qui est retenu). Il convient donc de mettre en place un pont dans /etc/network/interfaces (cela nécessite le paquet <emphasis role=\"pkg\">bridge-utils</emphasis> qui est recommandé par <emphasis role=\"pkg\">xen-utils-4.0</emphasis>) en remplacant l'entrée existante pour eth0:"
 
 #. Tag: programlisting
@@ -2094,13 +2096,13 @@ msgid "<emphasis>GOING FURTHER</emphasis> Advanced Xen"
 msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Xen avancé"
 
 #. Tag: para
-#, no-c-format
-msgid "Xen has many more features than we can describe in these few paragraphs. In particular, the system is very dynamic, and many parameters for one domain (such as the amount of allocated memory, the visible hard drives, the behaviour of the task scheduler, and so on) can be adjusted even when that domain is running. A domU can even be migrated across servers without being shut down, and without losing its network connections! For all these advanced aspects, the primary source of information is the official Xen documentation. <ulink type=\"block\" url=\"http://www.xen.org/support/documentation.html\" />"
+#, fuzzy, no-c-format
+msgid "Xen has many more features than we can describe in these few paragraphs. In particular, the system is very dynamic, and many parameters for one domain (such as the amount of allocated memory, the visible hard drives, the behavior of the task scheduler, and so on) can be adjusted even when that domain is running. A domU can even be migrated across servers without being shut down, and without losing its network connections! For all these advanced aspects, the primary source of information is the official Xen documentation. <ulink type=\"block\" url=\"http://www.xen.org/support/documentation.html\" />"
 msgstr "Xen offre de nombreuses fonctions avancées que que nous ne pouvons pas décrire dans ces quelques paragraphes. En particulier, le système est relativement dynamique, et l'on peut modifier différents paramètres d'un domaine (mémoire allouée, disques durs rendus disponibles, comportement de l'ordonnanceur des tâches, etc.) pendant le fonctionnement de ce domaine. On peut même migrer un domU entre des machines, sans l'éteindre ni perdre les connexions réseau! On se rapportera, pour ces aspects avancés, à la documentation de Xen. <ulink type=\"block\" url=\"http://www.xen.org/support/documentation.html\" />"
 
 #. Tag: para
-#, no-c-format
-msgid "Even though it's used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantages of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
+#, fuzzy, no-c-format
+msgid "Even though it's used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantage of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
 msgstr "Bien qu'il soit utilisé pour construire des «machines virtuelles», LXC<indexterm><primary>LXC</primary></indexterm> n'est pas à proprement parler une solution de virtualisation. C'est en réalité un système permettant d'isoler des ensembles de processus sur un même système. Il tire parti pour cela d'un ensemble d'évolutions récentes du noyau Linux, regroupées sous le nom de <foreignphrase>control groups</foreignphrase>, et qui permettent de donner des visions différentes de certains aspects du système à des ensembles de processus appelés groupes. Parmi ces aspects du système figurent notamment les identifiants de processus, la configuration réseau et les points de montage. Un groupe de processus ainsi isolés n'aura pas accès aux autres processus du système, et son accès au système de fichiers pourra être restreint à un sous-ensemble prédéfini. Il aura également accès à sa propre interface réseau, sa table de routage, éventuellement à un sous-ensemble des périphériques présents, etc."
 
 #. Tag: para
@@ -2222,8 +2224,8 @@ msgstr ""
 "  bridge-ports eth0"
 
 #. Tag: para
-#, no-c-format
-msgid "The effect of this configuration will be similar to what would be obtained if the containers were machines plugged into the same physical network as the host. The “bridge” configuration makes the Ethernet frames on all the bridged interfaces, which includes the physical <literal>eth0</literal> as well as the interfaces defined for the containers."
+#, fuzzy, no-c-format
+msgid "The effect of this configuration will be similar to what would be obtained if the containers were machines plugged into the same physical network as the host. The “bridge” configuration manages the transit of Ethernet frames between all the bridged interfaces, which includes the physical <literal>eth0</literal> as well as the interfaces defined for the containers."
 msgstr "Cette configuration aura un résultat similaire à celui qui serait obtenu si les conteneurs étaient des machines branchées sur le même réseau physique que la machine hôte. La configuration en «pont» s'occupe de faire transiter les trames Ethernet sur toutes les interfaces connectées au pont, c'est-à-dire l'interface physique <literal>eth0</literal> mais aussi les interfaces qui seront définies pour les conteneurs."
 
 #. Tag: para
@@ -2272,8 +2274,8 @@ msgstr ""
 "  netmask 255.255.255.0\n"
 
 #. Tag: para
-#, no-c-format
-msgid "The network can then be either be set up statically in the containers, or dynamically with DHCP server running on the host. Such a DHCP server will need to be configured to answer queries on the <literal>br0</literal> interface."
+#, fuzzy, no-c-format
+msgid "The network can then be set up either statically in the containers, or dynamically with DHCP server running on the host. Such a DHCP server will need to be configured to answer queries on the <literal>br0</literal> interface."
 msgstr "On pourra ensuite soit configurer le réseau de manière statique dans les conteneurs, soit installer sur l'hôte un serveur DHCP configuré pour répondre aux requêtes sur l'interface <literal>br0</literal>."
 
 #. Tag: title
@@ -2287,7 +2289,7 @@ msgid "Let us now set up the filesystem to be used by the container. Since this 
 msgstr "Nous allons maintenant mettre en place le système de fichiers qui sera utilisé par le conteneur. Comme cette «machine virtuelle» ne fonctionnera pas directement sur le matériel, certains ajustements sont nécessaires par rapport à un système de fichiers classique, notamment en ce qui concerne le noyau, les périphériques et les consoles. Fort heureusement, le paquet <emphasis role=\"pkg\">lxc</emphasis> contient des scripts qui automatisent en grande partie cette mise en place. Ainsi, pour créer un conteneur Debian, on pourra utiliser les commandes suivantes (qui auront besoin du paquet <emphasis role=\"pkg\">debootstrap</emphasis>):"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
 "</userinput><computeroutput>root@scouzmir:~# </computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/\n"
@@ -2300,7 +2302,8 @@ msgid ""
 " Removing any system startup links for /etc/init.d/hwclockfirst.sh ...\n"
 "   /etc/rcS.d/S08hwclockfirst.sh\n"
 "Root password is 'root', please change !\n"
-"root@scouzmir:~# </computeroutput>"
+"root@scouzmir:~# </computeroutput>\n"
+"        "
 msgstr ""
 "<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
 "</userinput><computeroutput>root@scouzmir:~# </computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/\n"
@@ -2516,8 +2519,8 @@ msgid "KVM, which stands for <emphasis>Kernel-based Virtual Machine</emphasis>, 
 msgstr "KVM (<foreignphrase>Kernel-based Virtual Machine</foreignphrase>, «Machine Virtuelle basée sur le Noyau») est avant tout un module noyau facilitant la mise en place de machines virtuelles. L'application que l'on utilise pour démarrer et contrôler ces machines virtuelles est dérivée de QEMU. Ne vous étonnez donc pas si l'on fait appel à des commandes <command>qemu-*</command> dans cette section traitant de KVM!"
 
 #. Tag: para
-#, no-c-format
-msgid "Unlike other virtualization systems, KVM was merged into the Linux kernel right from the start. Its developers chose to take advantage of the processor instruction sets dedicated to virtualization (Intel-VT and AMD-V), which keeps KVM lightweight, elegant and not resource-hungry. The counterpart, of course, is that KVM only works on i386 and amd64 processors, and only those recent enough to have these instruction sets."
+#, fuzzy, no-c-format
+msgid "Unlike other virtualization systems, KVM was merged into the Linux kernel right from the start. Its developers chose to take advantage of the processor instruction sets dedicated to virtualization (Intel-VT and AMD-V), which keeps KVM lightweight, elegant and not resource-hungry. The counterpart, of course, is that KVM mainly works on i386 and amd64 processors, and only those recent enough to have these instruction sets. You can ensure that you have such a processor if you have “vmx” or “svm” in the CPU flags listed in <filename>/proc/cpuinfo</filename>."
 msgstr "Contrairement aux autres solutions de virtualisation, KVM a été intégré au noyau Linux dès ses débuts. Le choix de s'appuyer sur les jeux d'instructions dédiés à la virtualisation (Intel-VT ou AMD-V) permet à KVM d'être léger, élégant et peu gourmand en ressources. La contre-partie est qu'il ne fonctionne que sur les processeurs d'architectures i386 et amd64 suffisamment récents pour disposer de ces instructions."
 
 #. Tag: para
@@ -2541,13 +2544,13 @@ msgid "<primary>libvirt</primary>"
 msgstr "<primary>libvirt</primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis role=\"pkg\">virtual-manager</emphasis></primary>"
+#, fuzzy, no-c-format
+msgid "<primary><emphasis role=\"pkg\">virt-manager</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">virtual-manager</emphasis></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Fortunately, Red Hat also provides another set of tools to address that problem, by developing the <emphasis>libvirt</emphasis> library and the associated <emphasis>virtual-manager</emphasis> tools. libvirt allows managing virtual machines in a uniform way, independently of the virtualization system involved behind the scenes (it currently supports QEMU, KVM, Xen, LXC, OpenVZ, VirtualBox, VMWare and UML). <command>virtual-manager</command> is a graphical interface that uses libvirt to create and manage virtual machines."
+#, fuzzy, no-c-format
+msgid "Fortunately, Red Hat also provides another set of tools to address that problem, by developing the <emphasis>libvirt</emphasis> library and the associated <emphasis>virtual machine manager</emphasis> tools. libvirt allows managing virtual machines in a uniform way, independently of the virtualization system involved behind the scenes (it currently supports QEMU, KVM, Xen, LXC, OpenVZ, VirtualBox, VMWare and UML). <command>virtual-manager</command> is a graphical interface that uses libvirt to create and manage virtual machines."
 msgstr "Fort heureusement RedHat fournit aussi la solution à ce problème puisqu'ils développent <emphasis>libvirt</emphasis> et les outils associés <emphasis>virtual-manager</emphasis>. libvirt est une bibliothèque qui permet de gérer des machines virtuelles de manière uniforme, quelle que soit la technologie de virtualisation employée. À l'heure actuelle libvirt gère QEMU, KVM, Xen, LXC, OpenVZ, VirtualBox, VMWare et UML. <command>virtual-manager</command> est une interface graphique exploitant libvirt pour créer et gérer des machines virtuelles."
 
 #. Tag: indexterm
@@ -2556,8 +2559,8 @@ msgid "<primary><emphasis role=\"pkg\">virtinst</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">virtinst</emphasis></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "We first install the required packages, with <command>apt-get install qemu-kvm libvirt-bin virtinst virtual-manager virt-viewer</command>. <emphasis role=\"pkg\">libvirt-bin</emphasis> provides the <command>libvirtd</command> daemon, which allows (potentially remote) management of the virtual machines running of the host, and starts the required VMs when the host boots. In addition, this package provides the <command>virsh</command> command-line tool, which allows controlling the <command>libvirtd</command>-managed machines."
+#, fuzzy, no-c-format
+msgid "We first install the required packages, with <command>apt-get install qemu-kvm libvirt-bin virtinst virt-manager virt-viewer</command>. <emphasis role=\"pkg\">libvirt-bin</emphasis> provides the <command>libvirtd</command> daemon, which allows (potentially remote) management of the virtual machines running of the host, and starts the required VMs when the host boots. In addition, this package provides the <command>virsh</command> command-line tool, which allows controlling the <command>libvirtd</command>-managed machines."
 msgstr "Installons donc tous les paquets requis avec <command>apt-get install qemu-kvm libvirt-bin virtinst virtual-manager virt-viewer</command>. <emphasis role=\"pkg\">libvirt-bin</emphasis> fournit le démon <command>libvirtd</command> qui permet de gérer des machines virtuelles (éventuellement à distance) et qui va mettre en route les machines virtuelles requises au démarrage du serveur. En outre le paquet fournit <command>virsh</command> un outil en ligne de commande qui permet de contrôler les machines virtuelles gérées par <command>libvirtd</command>."
 
 #. Tag: para
@@ -2655,8 +2658,8 @@ msgstr ""
 "</computeroutput>\n"
 
 #. Tag: para
-#, no-c-format
-msgid "The <literal>--connect</literal> option specifies the “hypervisor” to use. Its form is that of an URL containing a virtualization system (<literal>xen://</literal>, <literal>qemu://</literal>, <literal>lxc://</literal>, <literal>openvz://</literal>, <literal>vbox://</literal>, and so on) and the machine that should host the VM (this can be left empty in the case of the local host). In addition to that, and in the QEMU/KVM case, each user can manage virtual machines working with restricted permissions, and the URL path allows differenciating “system” machines (<literal>/system</literal>) from others (<literal>/session</literal>)."
+#, fuzzy, no-c-format
+msgid "The <literal>--connect</literal> option specifies the “hypervisor” to use. Its form is that of an URL containing a virtualization system (<literal>xen://</literal>, <literal>qemu://</literal>, <literal>lxc://</literal>, <literal>openvz://</literal>, <literal>vbox://</literal>, and so on) and the machine that should host the VM (this can be left empty in the case of the local host). In addition to that, and in the QEMU/KVM case, each user can manage virtual machines working with restricted permissions, and the URL path allows differentiating “system” machines (<literal>/system</literal>) from others (<literal>/session</literal>)."
 msgstr "L'option <literal>--connect</literal> permet d'indiquer l'hyperviseur à gérer. L'option prend la forme d'une URL indiquant à la fois la technologie de virtualisation (<literal>xen://</literal>, <literal>qemu://</literal>, <literal>lxc://</literal>, <literal>openvz://</literal>, <literal>vbox://</literal>, etc.) et la machine hôte (qui est laissée vide lorsque l'hôte est la machine locale). En outre, dans le cas de QEMU/KVM, chaque utilisateur peut gérer des machines virtuelles qui fonctionneront donc avec des droits limités, et le chemin de l'URL permet de distinguer les machines «systèmes» (<literal>/system</literal>) des autres (<literal>/session</literal>)."
 
 #. Tag: para
@@ -2685,13 +2688,13 @@ msgid "The <literal>--cdrom</literal> option is used to indicate where to find t
 msgstr "L'option <literal>--cdrom</literal> indique où trouver l'image ISO du CDROM qui va servir à démarrer l'installeur. On peut aussi bien indiquer un chemin local d'un fichier ISO, une URL où l'image peut être récupérée, ou encore un périphérique bloc correspondant à un vrai lecteur de CDROM (i.e. <literal>/dev/cdrom</literal>)."
 
 #. Tag: para
-#, no-c-format
-msgid "The <literal>--network</literal> specifies how the virtual network card integrates in the host's network configuration. The default behaviour (which we explicitly forced in our example) is to integrate it into any pre-existing network bridge. If no such bridge exists, the virtual machine will only reach the physical network through NAT, so it gets an address in a private subnet range (192.168.122.0/24)."
+#, fuzzy, no-c-format
+msgid "The <literal>--network</literal> specifies how the virtual network card integrates in the host's network configuration. The default behavior (which we explicitly forced in our example) is to integrate it into any pre-existing network bridge. If no such bridge exists, the virtual machine will only reach the physical network through NAT, so it gets an address in a private subnet range (192.168.122.0/24)."
 msgstr "L'option <literal>--network</literal> permet d'indiquer comment la carte réseau virtuelle doit s'intégrer dans la configuration réseau de l'hôte. Le comportement par défaut (que nous forçons ici) est de l'intégrer dans tout pont (<foreignphrase>bridge</foreignphrase>) pré-existant. En l'absence de pont, la machine virtuelle n'aura accès au LAN que par du NAT et obtient donc une adresse dans un sous-réseau privé (192.168.122.0/24)."
 
 #. Tag: para
-#, no-c-format
-msgid "<literal>--vnc</literal> states that the graphical console should be made available using VNC. The default behaviour for the associated VNC server is no only listen on the local interface; if the VNC client is to be run on a different host, establishing the connection will require setting up an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). Alternatively, the <literal>--vnclisten=0.0.0.0</literal> can be used so that the VNC server is accessible from all interfaces; note that if you do that, you really should design your firewall accordingly."
+#, fuzzy, no-c-format
+msgid "<literal>--vnc</literal> states that the graphical console should be made available using VNC. The default behavior for the associated VNC server is to only listen on the local interface; if the VNC client is to be run on a different host, establishing the connection will require setting up an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). Alternatively, the <literal>--vnclisten=0.0.0.0</literal> can be used so that the VNC server is accessible from all interfaces; note that if you do that, you really should design your firewall accordingly."
 msgstr "<literal>--vnc</literal> demande que la console graphique soit mise à disposition par VNC. Par défaut, le serveur VNC associé n'écoute que sur l'interface locale (localhost). Si le client VNC est exécuté depuis une autre machine, il faudra mettre en place un tunnel SSH pour établir la connection (voir <xref linkend=\"section.ssh-port-forwarding\" />). Alternativement on peut passer l'option <literal>--vnclisten=0.0.0.0</literal> pour demander que le serveur VNC soit accessible depuis toutes les interfaces, mais dans ce cas vous avez intérêt à prévoir des règles adéquates dans le pare-feu."
 
 #. Tag: para
@@ -2700,14 +2703,14 @@ msgid "The <literal>--os-type</literal> and <literal>--os-variant</literal> opti
 msgstr "Les options <literal>--os-type</literal> et <literal>--os-variant</literal> permettent d'optimiser quelques paramètres de la machine virtuelle en fonction des caractéristiques connues du système d'exploitation indiqué."
 
 #. Tag: para
-#, no-c-format
-msgid "At this point, the virtual machine is running, and we need to connect to the graphical console to proceed with the installation process. If the previous operation was run from a graphical desktop environment, this connection should be automatically started. If not, or if we operate remotely, <command>virt-viewer</command> can be used to run it:"
+#, fuzzy, no-c-format
+msgid "At this point, the virtual machine is running, and we need to connect to the graphical console to proceed with the installation process. If the previous operation was run from a graphical desktop environment, this connection should be automatically started. If not, or if we operate remotely, <command>virt-viewer</command> can be run from any graphical environment to open the graphical console (note that the root password of the remote host is asked twice because the operation requires 2 SSH connections):"
 msgstr "À ce stade, la machine virtuelle est démarrée et il faut se connecter à la console graphique pour effectuer l'installation. Si l'opération a été effectuée depuis un bureau graphique, la console graphique a été automatiquement lancée. Autrement on peut en démarrer une sur un autre poste à l'aide de <command>virt-viewer</command>:"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
-"<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@server/system\n"
+"<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@<replaceable>server</replaceable>/system testkvm\n"
 "</userinput><computeroutput>root@server's password: \n"
 "root@server's password: </computeroutput>\n"
 msgstr ""
@@ -2767,8 +2770,8 @@ msgstr ""
 "</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
 
 #. Tag: para
-#, no-c-format
-msgid "We can now get the connection instructions for the graphical console:"
+#, fuzzy, no-c-format
+msgid "We can now get the connection instructions for the graphical console (the returned VNC display can be given as parameter to <command>vncviewer</command>):"
 msgstr "On peut alors obtenir les informations de connexion à la console graphique:"
 
 #. Tag: screen
@@ -2852,8 +2855,8 @@ msgid "These requirements can be met by a wide range of solutions. On the one ha
 msgstr "Pour répondre à ces besoins, il y a différentes catégories de solutions: d'un côté des outils génériques comme SystemImager qui gèrent cela en créant une image des fichiers d'une machine modèle qui peut ensuite être déployée sur les machines cibles; de l'autre, debian-installer, l'installateur standard auquel on ajoute un fichier de configuration indiquant les réponses aux différentes questions posées au cours de l'installation. Entre les deux, on trouve un outil hybride comme FAI (<foreignphrase>Fully Automatic Installer</foreignphrase>) qui installe des machines en s'appuyant sur le système de paquetage mais qui exploite sa propre infrastructure pour les autres tâches relevant du déploiement (démarrage, partitionnement, configuration, etc.)."
 
 #. Tag: para
-#, no-c-format
-msgid "Each of these solutions has its pros and cons: SystemImager works independently from any particular packaging system, which allows it to manage large sets of machines using several distinct Linux distributions. It also includes an update system that doesn't require a reinstallation, but this update system can only be reliable if the machines are not modified independently; in other words, the user must not update any software on their own, or install any other software. Similarly, security updates must not be automated, because they have to go through the centralized reference image maintained by SystemImager. This solution also requires the target machines to be homogenous, otherwise many different images would have to be kept and managed (an i386 image won't fit on a powerpc machine, and so on)."
+#, fuzzy, no-c-format
+msgid "Each of these solutions has its pros and cons: SystemImager works independently from any particular packaging system, which allows it to manage large sets of machines using several distinct Linux distributions. It also includes an update system that doesn't require a reinstallation, but this update system can only be reliable if the machines are not modified independently; in other words, the user must not update any software on their own, or install any other software. Similarly, security updates must not be automated, because they have to go through the centralized reference image maintained by SystemImager. This solution also requires the target machines to be homogeneous, otherwise many different images would have to be kept and managed (an i386 image won't fit on a powerpc machine, and so on)."
 msgstr "Chacune de ces solutions a des avantages et des inconvénients: SystemImager ne dépend pas d'un système de paquetage particulier et permet donc de gérer des parcs de machines exploitant plusieurs distributions de Linux. Il offre en outre un mécanisme de mise à jour du parc sans requérir une réinstallation. Mais pour que ces mises à jour soient fiables, il faut en contrepartie que les machines du parc ne changent pas indépendamment. Autrement dit, il n'est pas question que l'utilisateur puisse mettre à jour certains logiciels voire en installer de supplémentaires. De même, les mises à jour de sécurité, qui pourraient être automatisées, ne devront pas l'être puisque qu'elles devront transiter via l'image de référence. Enfin, cette solution nécessite un parc homogène de machines pour éviter de devoir jongler avec de trop nombreuses images. Il n'est pas question d'installer une image powerpc sur une machine i386!"
 
 #. Tag: para
@@ -3153,8 +3156,8 @@ msgid "A USB key is a read-write media, so it was easy for us to add a file ther
 msgstr "Une clé USB étant un média accessible en lecture/écriture, il est facile d'y ajouter un fichier et de modifier quelques paramètres. Ce n'est plus le cas avec un CD-Rom: nous devons régénérer une image ISO d'installation de Debian. C'est précisément le rôle de <emphasis role=\"pkg\">debian-cd</emphasis>. Malheureusement cet outil est assez contraignant à l'usage. Il faut en effet disposer d'un miroir Debian local, prendre le temps de comprendre toutes les options offertes par <filename>/usr/share/debian-cd/CONF.sh</filename>, puis enchaîner des invocations de <command>make</command>. La lecture de <filename>/usr/share/debian-cd/README</filename> s'avérera nécessaire."
 
 #. Tag: para
-#, no-c-format
-msgid "Having said that, debian-cd always operates in a similar way: an “image” directory with the exact contents of the CD-ROM is generated, then converted to an ISO file with a tool such as <command>genisoimage</command>, <command>mkisofs</command> or <command>xorriso</command>. The image directory is finalized after debian-cd's <command>make image-trees</command> step. At that point, we insert the preseed file into the approriate directory (usually <filename>$TDIR/squeeze/CD1/</filename>, $TDIR being one of the parameters defined by the <filename>CONF.sh</filename> configuration file). The CD-ROM uses <command>isolinux</command> as its bootloader, and its configuration file must be adapted from what debian-cd generated, in order to insert the required boot parameters (the specific file is <filename>$TDIR/squeeze/boot1/isolinux/isolinux.cfg</filename>). Then the “normal” process can be resumed, and we can go on to generating the ISO image with <command>make image CD=1</command> (or <command>make images</command> if several CD-ROMs are generated)."
+#, fuzzy, no-c-format
+msgid "Having said that, debian-cd always operates in a similar way: an “image” directory with the exact contents of the CD-ROM is generated, then converted to an ISO file with a tool such as <command>genisoimage</command>, <command>mkisofs</command> or <command>xorriso</command>. The image directory is finalized after debian-cd's <command>make image-trees</command> step. At that point, we insert the preseed file into the appropriate directory (usually <filename>$TDIR/squeeze/CD1/</filename>, $TDIR being one of the parameters defined by the <filename>CONF.sh</filename> configuration file). The CD-ROM uses <command>isolinux</command> as its bootloader, and its configuration file must be adapted from what debian-cd generated, in order to insert the required boot parameters (the specific file is <filename>$TDIR/squeeze/boot1/isolinux/isolinux.cfg</filename>). Then the “normal” process can be resumed, and we can go on to generating the ISO image with <command>make image CD=1</command> (or <command>make images</command> if several CD-ROMs are generated)."
 msgstr "Cela dit, debian-cd procède toujours de la même manière: il crée un répertoire «image» qui contient exactement ce que le CD-Rom devra contenir, puis emploie un programme (<command>genisoimage</command>, <command>mkisofs</command> ou <command>xorriso</command>) pour transformer ce répertoire en fichier ISO. Le répertoire image est finalisé juste après l'étape <command>make image-trees</command> de debian-cd. À ce moment, au lieu de procéder directement à la génération du fichier ISO, on peut déposer le fichier de préconfiguration dans ce fameux répertoire (qui se trouve être <filename>$TDIR/squeeze/CD1/</filename>, $TDIR étant un des paramètres fournis par le fichier de configuration <filename>CONF.sh</filename>). Le chargeur d'amorçage du CD-Rom est <command>isolinux</command>; la configuration préparée par debian-cd doit également être modifiée à ce moment, afin de rajouter les paramètres de démarrage souhaités (le fichier précis à éditer est <filename>$TDIR/squeeze/boot1/isolinux/isolinux.cfg</filename>). Finalement, il n'y a plus qu'à générer l'image ISO avec <command>make image CD=1</command> (ou <command>make images</command> si l'on génère un jeu de CD-Roms)."
 
 #. Tag: title
@@ -3454,8 +3457,8 @@ msgid "Configuring the Grapher"
 msgstr "Configuration du grapheur"
 
 #. Tag: para
-#, no-c-format
-msgid "The “grapher” is simply the computer that aggregates the data and generate the corresponding graphs. The required software is in the <emphasis role=\"pkg\">munin</emphasis> package. The standard configuration runs <command>munin-cron</command> (once every 5 minutes), which gathers data from all the hosts listed in <filename>/etc/munin/munin.conf</filename> (only the local host is listed by default), saves the historical data in RRD files (<emphasis>Round Robin Database</emphasis>, a file format designed to store data varying in time) stored under <filename>/var/lib/munin/</filename> and generates an HTML page with the graphs in <filename>/var/cache/munin/www/</filename>."
+#, fuzzy, no-c-format
+msgid "The “grapher” is simply the computer that aggregates the data and generates the corresponding graphs. The required software is in the <emphasis role=\"pkg\">munin</emphasis> package. The standard configuration runs <command>munin-cron</command> (once every 5 minutes), which gathers data from all the hosts listed in <filename>/etc/munin/munin.conf</filename> (only the local host is listed by default), saves the historical data in RRD files (<emphasis>Round Robin Database</emphasis>, a file format designed to store data varying in time) stored under <filename>/var/lib/munin/</filename> and generates an HTML page with the graphs in <filename>/var/cache/munin/www/</filename>."
 msgstr "Par grapheur, on entend simplement la machine qui va collecter les données et générer les graphiques correspondants. Le paquet correspondant à installer est <emphasis role=\"pkg\">munin</emphasis>. La configuration initiale du paquet lance <command>munin-cron</command> toutes les 5 minutes. Ce dernier collecte les données depuis toutes les machines listées dans <filename>/etc/munin/munin.conf</filename> (uniquement l'hôte local par défaut), stocke les historiques sous forme de fichiers RRD (<foreignphrase>Round Robin Database</foreignphrase> est un format de fichier adapté au stockage de données variant dans le temps) dans <filename>/var/lib/munin/</filename> et régénère une page HTML avec des graphiques dans <filename>/var/cache/munin/www/</filename>."
 
 #. Tag: para
@@ -3604,8 +3607,8 @@ msgid "A <emphasis>service</emphasis> uses a <emphasis>command</emphasis> to che
 msgstr "Un <emphasis>service</emphasis> emploie une <emphasis>commande</emphasis> pour vérifier l'état d'une fonctionnalité sur un <emphasis>hôte</emphasis> ou un <emphasis>groupe d'hôtes</emphasis> dans une <emphasis>plage horaire</emphasis> donnée. En cas de problèmes, Nagios envoie une alerte à tous les membres du <emphasis>contactgroup</emphasis> associé au service défaillant. Chaque membre est alerté selon les modalités précisées dans son objet <emphasis>contact</emphasis> correspondant."
 
 #. Tag: para
-#, no-c-format
-msgid "An inheritance system allows easy sharing of a set of properties across many objects without duplicating information. Moreover, the initial configuration includes a number of standard objects; in many cases, defining now hosts, services and contacts is a simple matter of deriving from the provided generic objects. The files in <filename>/etc/nagios3/conf.d/</filename> are a good source of informaton on how they work."
+#, fuzzy, no-c-format
+msgid "An inheritance system allows easy sharing of a set of properties across many objects without duplicating information. Moreover, the initial configuration includes a number of standard objects; in many cases, defining now hosts, services and contacts is a simple matter of deriving from the provided generic objects. The files in <filename>/etc/nagios3/conf.d/</filename> are a good source of information on how they work."
 msgstr "Une fonctionnalité d'héritage entre les objets permet de partager facilement un ensemble de propriétés entre un grand nombre d'objets, tout en évitant une duplication de l'information. Par ailleurs, la configuration initiale comporte un certain nombre d'objets standards, et dans la plupart des cas, il suffit de définir de nouveaux hôtes, services et contacts en héritant des objets génériques prédéfinis. La lecture des fichiers de <filename>/etc/nagios3/conf.d/</filename> permet de se familiariser avec ceux-ci."
 
 #. Tag: para
@@ -3825,4 +3828,3 @@ msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Tests distants avec NRPE"
 #, no-c-format
 msgid "Many Nagios plugins allow checking some parameters local to a host; if many machines need these checks while a central installation gathers them, the NRPE (<emphasis>Nagios Remote Plugin Executor</emphasis>) plugin needs to be deployed. The <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> package needs to be installed on the Nagios server, and <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> on the hosts where local tests need to run. The latter gets its configuration from <filename>/etc/nagios/nrpe.cfg</filename>. This file should list the tests that can be started remotely, and the IP addresses of the machines allowed to trigger them. On the Nagios side, enabling these remote tests is a simple matter of adding matching services using the new <emphasis>check_nrpe</emphasis> command."
 msgstr "De nombreux greffons de Nagios permettent de vérifier l'état de certains paramètres locaux d'une machine. Si l'on souhaite effectuer ces vérifications sur de nombreuses machines tout en centralisant les résultats sur une seule installation, il faut employer le greffon NRPE (<foreignphrase>Nagios Remote Plugin Executor</foreignphrase>). On installe <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> sur le serveur Nagios et <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> sur les machines sur lesquels on veut exécuter certains tests locaux. Ce dernier se configure par le biais du fichier <filename>/etc/nagios/nrpe.cfg</filename>. On y indique les tests que l'on peut démarrer à distance ainsi que les adresses IP des machines qui sont autorisées à les déclencher. Du côté de Nagios, il suffit d'ajouter les services correspondants en faisant appel à la nouvelle commande <emphasis>check_nrpe</emphasis>."
-

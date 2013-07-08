@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-02-28T10:57:01\n"
+"POT-Creation-Date: 2012-10-31T14:54:17\n"
 "PO-Revision-Date: 2012-05-03 15:41+0200\n"
 "Last-Translator: Gerold Rupprecht <geroldr@bluewin.ch>\n"
 "Language-Team: raphael@ouaza.com\n"
@@ -17,8 +17,8 @@ msgstr ""
 "X-Generator: Virtaal 0.6.1\n"
 
 #. Tag: keyword
-#, no-c-format
-msgid "System Boot"
+#, fuzzy, no-c-format
+msgid "System boot"
 msgstr "Démarrage du système"
 
 #. Tag: keyword
@@ -28,12 +28,22 @@ msgstr "Scripts d'initialisation"
 
 #. Tag: keyword
 #, no-c-format
-msgid "SSH, Telnet"
+msgid "SSH"
+msgstr ""
+
+#. Tag: keyword
+#, fuzzy, no-c-format
+msgid "Telnet"
 msgstr "SSH, Telnet"
 
 #. Tag: keyword
 #, no-c-format
-msgid "Rights and Permissions"
+msgid "Rights"
+msgstr ""
+
+#. Tag: keyword
+#, fuzzy, no-c-format
+msgid "Permissions"
 msgstr "Droits et permissions"
 
 #. Tag: keyword
@@ -42,9 +52,14 @@ msgid "Supervision"
 msgstr "Supervision"
 
 #. Tag: keyword
-#, no-c-format
-msgid "Inetd, Cron"
+#, fuzzy, no-c-format
+msgid "Inetd"
 msgstr "Inetd, Cron"
+
+#. Tag: keyword
+#, no-c-format
+msgid "Cron"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
@@ -52,13 +67,23 @@ msgid "Backup"
 msgstr "Sauvegarde"
 
 #. Tag: keyword
-#, no-c-format
-msgid "Hotplug, PCMCIA"
+#, fuzzy, no-c-format
+msgid "Hotplug"
 msgstr "Hotplug, PCMCIA"
 
 #. Tag: keyword
 #, no-c-format
-msgid "APM, ACPI"
+msgid "PCMCIA"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "APM"
+msgstr ""
+
+#. Tag: keyword
+#, fuzzy, no-c-format
+msgid "ACPI"
 msgstr "APM, ACPI"
 
 #. Tag: title
@@ -70,6 +95,11 @@ msgstr "Services Unix"
 #, no-c-format
 msgid "This chapter covers a number of basic services that are common to many Unix systems. All administrators should be familiar with them."
 msgstr "Ce chapitre parcourt un ensemble de services fondamentaux, souvent communs à beaucoup d'Unix. Tout administrateur se doit de les connaître."
+
+#. Tag: title
+#, no-c-format
+msgid "System Boot"
+msgstr "Démarrage du système"
 
 #. Tag: indexterm
 #, no-c-format
@@ -92,8 +122,8 @@ msgid "<emphasis>SPECIFIC CASE</emphasis> Booting from the network"
 msgstr "<emphasis>CAS PARTICULIER</emphasis> Le démarrage sur le réseau"
 
 #. Tag: para
-#, no-c-format
-msgid "In some configurations, the BIOS may be configured not to execute the MBR, but to seek its equivalent on the network, making it posssible to build computers without a hard drive, or which are completely reinstalled on each boot. This option is not available on all hardware and it generally requires an appropriate combination of BIOS and network card."
+#, fuzzy, no-c-format
+msgid "In some configurations, the BIOS may be configured not to execute the MBR, but to seek its equivalent on the network, making it possible to build computers without a hard drive, or which are completely reinstalled on each boot. This option is not available on all hardware and it generally requires an appropriate combination of BIOS and network card."
 msgstr "Dans certaines configurations, le BIOS peut être configuré pour ne pas exécuter le MBR mais aller chercher son équivalent sur le réseau, ce qui permet par exemple de construire des ordinateurs sans disque dur, ou qui se réinstallent complètement à chaque démarrage. Cette possibilité n'est pas offerte par tous les matériels, et il faut généralement une combinaison adaptée du BIOS et de la carte réseau."
 
 #. Tag: para
@@ -112,8 +142,8 @@ msgid "<primary>process</primary>"
 msgstr "<primary>processus</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "A process is the representation in memory of a running program. It includes all of the information necessary for the proper execution of the software (the code itself, but also the data that it has in memory, the list of files that it has opened, the network connections it has established, etc.). A single program may be instanciated into several processes, not necessarily running under different user IDs."
+#, fuzzy, no-c-format
+msgid "A process is the representation in memory of a running program. It includes all of the information necessary for the proper execution of the software (the code itself, but also the data that it has in memory, the list of files that it has opened, the network connections it has established, etc.). A single program may be instantiated into several processes, not necessarily running under different user IDs."
 msgstr "Un processus est la représentation en mémoire d'un programme qui s'exécute. Il regroupe toutes les informations nécessaires au bon déroulement du logiciel (le code lui-même, mais aussi les données qu'il a en mémoire, la liste des fichiers qu'il a ouverts, des connexions réseau qu'il a établies, etc.). Un même programme peut faire l'objet de plusieurs processus, y compris sous le même identifiant utilisateur."
 
 #. Tag: para
@@ -217,8 +247,8 @@ msgid "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started. In <emphasis role=\"distribution\">Squeeze</emphasis>, the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two characters and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
+#, fuzzy, no-c-format
+msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started. In <emphasis role=\"distribution\">Squeeze</emphasis>, the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
 msgstr "Après cette phase, <command>init</command> reprend la main et démarre les programmes associés au niveau d'exécution (<foreignphrase>runlevel</foreignphrase>) normal, soit par défaut le niveau 2. Il exécute <command>/etc/init.d/rc 2</command>, script qui démarre tous les services donnés du répertoire <filename>/etc/rc2.d/</filename> débutant par la lettre «S». Le nombre (à deux chiffres) qui suit servait historiquement à classer les services pour les démarrer dans le bon ordre. Dans <emphasis role=\"distribution\">Squeeze</emphasis>, le système de démarrage par défaut utilise <command>insserv</command>, un système de démarrage où l'ordonnancement se fait en fonction des dépendances entre scripts. Chaque script de démarrage déclare ainsi les contraintes qui s'appliquent à lui (par exemple, s'il doit démarrer avant ou après tel autre service); <command>init</command> les lance alors dans un ordre qui satisfait les contraintes. La numérotation statique des scripts n'est donc plus prise en compte (mais ils doivent toujours s'appeler d'un nom composé d'un «S» suivi de deux caractères, suivis à leur tour du véritable nom du script utilisé pour les dépendances). D'une manière générale, les services de base (comme le service de collecte des journaux, <command>rsyslog</command>, ou celui d'attribution des ports, <command>portmap</command>) sont démarrés en premier, suivis par les services standards et l'interface graphique (<command>gdm</command>)."
 
 # Marilyne reviewed up to here
@@ -487,13 +517,13 @@ msgid "<primary>SSH</primary>"
 msgstr "<primary>SSH</primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>Secured Shell</primary>"
+#, fuzzy, no-c-format
+msgid "<primary>Secure Shell</primary>"
 msgstr "<primary><foreignphrase>Secured Shell</foreignphrase></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The <emphasis>SSH</emphasis> (Secured Shel) protocol, contrary to <emphasis>telnet</emphasis>, was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
+#, fuzzy, no-c-format
+msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol, contrary to <emphasis>telnet</emphasis>, was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
 msgstr "Le protocole <emphasis>SSH</emphasis> (<foreignphrase>Secured Shell</foreignphrase>, ou shell sécurisé), contrairement à <emphasis>telnet</emphasis>, a été conçu dans une optique de sécurité et de fiabilité. Les connexions ainsi mises en place sont sûres: le partenaire est authentifié et tous les échanges sont chiffrés."
 
 #. Tag: title
@@ -926,8 +956,8 @@ msgid "<primary>owner</primary><secondary>group</secondary>"
 msgstr "<primary>propriétaire</primary><secondary>groupe</secondary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Each file or folder has specific permissions for three categories of users:"
+#, fuzzy, no-c-format
+msgid "Each file or directory has specific permissions for three categories of users:"
 msgstr "Chaque fichier ou répertoire dispose de permissions spécifiques pour trois catégories d'utilisateurs:"
 
 #. Tag: para
@@ -1026,8 +1056,8 @@ msgid "<emphasis>SECURITY</emphasis> <literal>setgid</literal> directory and <em
 msgstr "<emphasis>SÉCURITÉ</emphasis> Répertoire <literal>setgid</literal> et <foreignphrase>sticky bit</foreignphrase>"
 
 #. Tag: para
-#, no-c-format
-msgid "The <literal>setgid</literal> bit also applies to directories. Any newly-created item in such directories is automaticallly assigned the owner group of the parent directory, instead of inheriting the creator's main group as usual. This setup avoids the user to have to change its main group (with the <command>newgrp</command> command) when working in a file tree shared between several users of the same dedicated group."
+#, fuzzy, no-c-format
+msgid "The <literal>setgid</literal> bit also applies to directories. Any newly-created item in such directories is automatically assigned the owner group of the parent directory, instead of inheriting the creator's main group as usual. This setup avoids the user having to change its main group (with the <command>newgrp</command> command) when working in a file tree shared between several users of the same dedicated group."
 msgstr "Le bit <literal>setgid</literal> s'applique également aux répertoires. Toutes les entrées qu'on y créera recevront alors pour groupe propriétaire celui du répertoire, au lieu de prendre comme c'est l'habitude le groupe principal de leur créateur. Cela évitera à celui-ci de changer de groupe principal (par la commande <command>newgrp</command>) lors d'un travail dans une arborescence partagée entre plusieurs utilisateurs d'un même groupe dédié."
 
 #. Tag: indexterm
@@ -1036,8 +1066,8 @@ msgid "<primary>sticky bit</primary>"
 msgstr "<primary><foreignphrase>sticky bit</foreignphrase></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The “sticky” bit (symbolized by the letter “t”) is a permission that is only useful in directories. It is especially used for temporary directories where everybody have write access (such as <filename>/tmp/</filename>): it restricts deletion of files so that only their owner (or the owner of the parent directory) can do it. Lacking this, everyone could delete other users' files in <filename>/tmp/</filename>."
+#, fuzzy, no-c-format
+msgid "The “sticky” bit (symbolized by the letter “t”) is a permission that is only useful in directories. It is especially used for temporary directories where everybody has write access (such as <filename>/tmp/</filename>): it restricts deletion of files so that only their owner (or the owner of the parent directory) can do it. Lacking this, everyone could delete other users' files in <filename>/tmp/</filename>."
 msgstr "Le bit <foreignphrase>sticky</foreignphrase> (symbolisé par la lettre «t») est un droit qui n'est utile que sur les répertoires. Il est notamment employé pour les répertoires temporaires ouverts en écriture à tous (comme <filename>/tmp/</filename>): il n'autorise la suppression d'un fichier que par son propriétaire ou celui de son répertoire parent. En son absence, tout le monde pourrait supprimer les fichiers d'autrui dans <filename>/tmp/</filename>."
 
 #. Tag: para
@@ -1122,8 +1152,8 @@ msgid "Sometimes we have to change rights for an entire file tree. All the comma
 msgstr "Il arrive que l'on doive changer les permissions de toute une arborescence. Toutes les commandes décrites disposent donc d'une option <literal>-R</literal>, effectuant l'opération demandée de manière récursive."
 
 #. Tag: para
-#, no-c-format
-msgid "The distinction between directories and files sometimes causes problems with recursive operations. That's why the “X” letter has been introduced in the symbolic representation of rights. It represents a right to execute which applies only to directories (and not to files lacking this right). Thus, <command>chmod -R a+X <replaceable>directory</replaceable></command> will only add execute rights for all categoties of users (<literal>a</literal>) for all of the sub-directories and files for which at least one category of user (even if their sole owner) already has execute rights."
+#, fuzzy, no-c-format
+msgid "The distinction between directories and files sometimes causes problems with recursive operations. That's why the “X” letter has been introduced in the symbolic representation of rights. It represents a right to execute which applies only to directories (and not to files lacking this right). Thus, <command>chmod -R a+X <replaceable>directory</replaceable></command> will only add execute rights for all categories of users (<literal>a</literal>) for all of the sub-directories and files for which at least one category of user (even if their sole owner) already has execute rights."
 msgstr "La distinction entre répertoires et fichiers pose souvent problème lors des opérations récursives. C'est la raison de l'introduction de la lettre «X» dans la représentation symbolique des droits. Elle représente un droit d'exécution qui ne concerne que les répertoires (mais pas les fichiers ne disposant pas encore de ce droit). Ainsi, <command>chmod -R a+X <replaceable>répertoire</replaceable></command> n'ajoutera les droits d'exécution pour toutes les catégories d'utilisateurs (<literal>a</literal>) qu'à tous les sous-répertoires et aux fichiers sur lesquels au moins une catégorie d'utilisateurs (ne serait-ce que leur seul propriétaire) a déjà les droits d'exécution."
 
 #. Tag: title
@@ -2112,8 +2142,8 @@ msgid "Unix systems (and thus Linux) are multi-tasking and multi-user systems. I
 msgstr "Les systèmes Unix (et donc Linux) sont éminemment multi-tâches et multi-utilisateurs. Plusieurs processus peuvent en effet tourner en parallèle, appartenant à plusieurs utilisateurs différents, le noyau se chargeant d'assurer la répartition des ressources entre les différents processus. Il gère pour cela une notion de priorité, qui lui permet de favoriser certains processus au détriment d'autres selon les besoins. Lorsque l'on sait qu'un processus peut tourner en basse priorité, on peut le signaler lors de son lancement, en utilisant <command>nice <replaceable>programme</replaceable></command> (<foreignphrase>nice</foreignphrase> signifiant «gentil, agréable»). Le programme disposera alors d'une proportion amoindrie des ressources du système, il perturbera donc moins les autres processus s'ils ont besoin de fonctionner. Bien entendu, si aucun autre processus n'a besoin de ressources, le programme ne sera pas artificiellement ralenti."
 
 #. Tag: para
-#, no-c-format
-msgid "<command>nice</command> works with levels of “niceness”: the positive levels (from 1 to 19) progressively lower the priority, while the negative levels (from -1 to -20) will increate it — but only root can use these negative levels. Unless otherwise indicated (see the <citerefentry><refentrytitle>nice</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page), <command>nice</command> increases the current level by 10."
+#, fuzzy, no-c-format
+msgid "<command>nice</command> works with levels of “niceness”: the positive levels (from 1 to 19) progressively lower the priority, while the negative levels (from -1 to -20) will increase it — but only root can use these negative levels. Unless otherwise indicated (see the <citerefentry><refentrytitle>nice</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page), <command>nice</command> increases the current level by 10."
 msgstr "<command>nice</command> fonctionne avec des niveaux de «gentillesse»: les niveaux positifs (de 1 à 19) rendent progressivement un processus moins prioritaire, les niveaux négatifs (de -1 à -20) le rendent au contraire plus avide de ressources — mais seul le super-utilisateur est autorisé à utiliser ces niveaux négatifs. Sauf indication contraire (voir la page de manuel <citerefentry><refentrytitle>nice</refentrytitle> <manvolnum>1</manvolnum></citerefentry>), <command>nice</command> utilise le niveau 10."
 
 #. Tag: para
@@ -2177,8 +2207,8 @@ msgid "The quota system allows you to set four limits:"
 msgstr "Le système de quotas permet de définir quatre limites:"
 
 #. Tag: para
-#, no-c-format
-msgid "two limits (called “soft” and “hard”) refer to the number of blocks consumed. If the filesystem was created with a block-size of 1 kilobyte, a block contains 1024 bytes from the same file. Unsaturated blocks thus induce losses of disk space. A quota of 100 blocks, which theoretically allows storage of 102,400 bytes, will however be saturated with just 100 files of 500 bytes each, only representing 50,000 bytes in total."
+#, fuzzy, no-c-format
+msgid "two limits (called “soft” and “hard”) refer to the number of blocks consumed. If the filesystem was created with a block-size of 1 kibibyte, a block contains 1024 bytes from the same file. Unsaturated blocks thus induce losses of disk space. A quota of 100 blocks, which theoretically allows storage of 102,400 bytes, will however be saturated with just 100 files of 500 bytes each, only representing 50,000 bytes in total."
 msgstr "deux limites (<foreignphrase>soft</foreignphrase> et <foreignphrase>hard</foreignphrase>, respectivement douce et dure) concernent le nombre de blocs consommés. Si le système de fichiers a été créé avec une taille de bloc de 1 kilo-octet, un bloc contient 1024 octets du même fichier. Les blocs non saturés induisent donc des pertes d'espace disque. Un quota de 100 blocs, qui permet théoriquement de stocker 102 400 octets, sera pourtant saturé par 100 fichiers de 500 octets, ne représentant que 50 000 octets au total."
 
 #. Tag: para
@@ -2207,8 +2237,8 @@ msgid "<primary>inode</primary>"
 msgstr "<primary><foreignphrase>inode</foreignphrase></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The filesystem divides the hard drive into blocks — small contiguous areas. The size of these blocks is defined during creation of the filesystem, and generally varies between 1 and 8 kilobytes."
+#, fuzzy, no-c-format
+msgid "The filesystem divides the hard drive into blocks — small contiguous areas. The size of these blocks is defined during creation of the filesystem, and generally varies between 1 and 8 kibibytes."
 msgstr "Le système de fichiers découpe le disque dur en blocs, petites zones contiguës. La taille de ces blocs est déterminée lors de la création du système de fichiers, et varie généralement entre 1 et 8 ko."
 
 #. Tag: para
@@ -2222,8 +2252,8 @@ msgid "<primary><command>warnquota</command></primary>"
 msgstr "<primary><command>warnquota</command></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "With the <command>edquota -t</command> command, you can define a maximum authorized “grace period” within which a soft limit may be exceeded. After this period, the software limit will be treated like a hard limit, and the user will have to reduce their disk space usage to within this limit in order to be able to write anything to the hard drive."
+#, fuzzy, no-c-format
+msgid "With the <command>edquota -t</command> command, you can define a maximum authorized “grace period” within which a soft limit may be exceeded. After this period, the soft limit will be treated like a hard limit, and the user will have to reduce their disk space usage to within this limit in order to be able to write anything to the hard drive."
 msgstr "On peut définir, par la commande <command>edquota -t</command>, une «période de grâce» maximale autorisée pour un dépassement de limite <foreignphrase>soft</foreignphrase>. Ce délai écoulé, la limite <foreignphrase>soft</foreignphrase> se comportera comme une limite <foreignphrase>hard</foreignphrase> et l'utilisateur devra donc repasser sous elle pour pouvoir à nouveau écrire quoi que ce soit sur le disque."
 
 #. Tag: title
@@ -2489,8 +2519,8 @@ msgid "<emphasis>GOING FURTHER</emphasis> Backing up SQL and LDAP services"
 msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Sauvegarde SQL, LDAP"
 
 #. Tag: para
-#, no-c-format
-msgid "Many services (such as SQL or LDAP databases) can not be backed up by simply copying their files (unnless they are properly interrupted during creation of the backups, which is frequently problematic, since they are intended to be available at all times). As such, it is necessary to use an “export” mechanism to create a “data dump” that can be safely backed up. These are often quite large, but they compress well. To reduce the storage space required, you will only store a complete text file per week, and a <command>diff</command> each day, which is created with a command of the type <command>diff <replaceable>file_from_yesterday</replaceable> <replaceable>file_from_today</replaceable></command>. The <command>xdelta</command> program produces incremental differences from binary dumps."
+#, fuzzy, no-c-format
+msgid "Many services (such as SQL or LDAP databases) can not be backed up by simply copying their files (unless they are properly interrupted during creation of the backups, which is frequently problematic, since they are intended to be available at all times). As such, it is necessary to use an “export” mechanism to create a “data dump” that can be safely backed up. These are often quite large, but they compress well. To reduce the storage space required, you will only store a complete text file per week, and a <command>diff</command> each day, which is created with a command of the type <command>diff <replaceable>file_from_yesterday</replaceable> <replaceable>file_from_today</replaceable></command>. The <command>xdelta</command> program produces incremental differences from binary dumps."
 msgstr "De nombreux services (comme les bases de données SQL ou LDAP) ne peuvent pas être sauvegardés simplement en copiant leurs fichiers (sauf s'ils sont correctement interrompus durant la sauvegarde, ce qui pose souvent problème car ils sont prévus pour être disponibles en permanence). Il est alors nécessaire de faire appel à une procédure «d'export» des données, dont on sauvegardera alors le <foreignphrase>dump</foreignphrase>. Souvent volumineux, celui-ci se prête cependant bien à la compression. Pour réduire l'espace de stockage nécessaire, on ne stockera qu'un fichier texte complet par semaine et un <command>diff</command> chaque jour, ce dernier étant obtenu par une commande du type <command>diff <replaceable>fichier-de-la-veille</replaceable> <replaceable>fichier-du-jour</replaceable></command>. Le programme <command>xdelta</command> produira les différences incrémentales des <foreignphrase>dumps</foreignphrase> binaires."
 
 #. Tag: indexterm
@@ -2560,8 +2590,8 @@ msgid "<primary>USB</primary>"
 msgstr "<primary>USB</primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>IEEE1394</primary>"
+#, fuzzy, no-c-format
+msgid "<primary>IEEE 1394</primary>"
 msgstr "<primary>IEEE1394</primary>"
 
 #. Tag: indexterm
@@ -2605,8 +2635,8 @@ msgid "Many computers have multiple network cards (sometimes two wired interface
 msgstr "De nombreux ordinateurs intègrent plusieurs cartes réseau (parfois deux interfaces filaires et une interface wifi) et avec l'intégration de la prise en charge de <emphasis>hotplug</emphasis> sur la plupart des types de bus, le noyau 2.6 n'offre plus de garantie de nommage fixe sur ces interfaces réseau. Pourtant l'utilisateur qui veut configurer son réseau dans <filename>/etc/network/interfaces</filename> a besoin d'un nom fixe!"
 
 #. Tag: para
-#, no-c-format
-msgid "It would be difficult to ask every user to create their own <emphasis>udev</emphasis> rules to address this problem. This is why <emphasis>udev</emphasis> was configured in a rather peculiar manner; on first boot (and, more generally, each time that a new network card appears) it uses the name of the network interface and its MAC address to create new rules that will reassign the same name on subsequents boots. These rules are stored in <filename>/etc/udev/rules.d/70-persistent-net.rules</filename>."
+#, fuzzy, no-c-format
+msgid "It would be difficult to ask every user to create their own <emphasis>udev</emphasis> rules to address this problem. This is why <emphasis>udev</emphasis> was configured in a rather peculiar manner; on first boot (and, more generally, each time that a new network card appears) it uses the name of the network interface and its MAC address to create new rules that will reassign the same name on subsequent boots. These rules are stored in <filename>/etc/udev/rules.d/70-persistent-net.rules</filename>."
 msgstr "Il serait pénible de demander à chaque utilisateur de se créer ses propres règles <emphasis>udev</emphasis> pour régler ce problème, c'est pourquoi <emphasis>udev</emphasis> a été configuré d'une manière un peu particulière: au premier démarrage (et plus généralement à chaque fois qu'une carte jamais rencontrée apparaît) il utilise le nom de l'interface réseau et son adresse MAC pour créer des nouvelles règles qui, aux prochains redémarrages, seront employées pour réattribuer systématiquement les mêmes noms. Ces règles sont stockées dans <filename>/etc/udev/rules.d/70-persistent-net.rules</filename>."
 
 #. Tag: para
@@ -3105,4 +3135,3 @@ msgstr "À chaque insertion ou éjection d'une carte, le démon la configure ou 
 #, no-c-format
 msgid "After this overview of basic services common to many Unix systems, we will focus on the environment of the administered machines: the network. Many services are required for the network to work properly. They will be discussed in the next chapter."
 msgstr "Après ce survol des services de base communs à de nombreux Unix, nous nous focaliserons sur l'environnement dans lequel évoluent les machines administrées: le réseau. De nombreux services sont en effet nécessaires à son bon fonctionnement — nous vous proposons de les découvrir dans le chapitre qui suit."
-

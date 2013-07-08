@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-02-27T14:34:48\n"
+"POT-Creation-Date: 2012-10-31T14:54:17\n"
 "PO-Revision-Date: 2012-05-04 22:59+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
@@ -19,9 +19,14 @@ msgid "Configuration"
 msgstr "Configuration"
 
 #. Tag: keyword
-#, no-c-format
-msgid "French Localization, locales"
+#, fuzzy, no-c-format
+msgid "Localization"
 msgstr "Francisation, locales"
+
+#. Tag: keyword
+#, no-c-format
+msgid "Locales"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
@@ -29,19 +34,34 @@ msgid "Network"
 msgstr "Réseau"
 
 #. Tag: keyword
-#, no-c-format
-msgid "Name Resolution"
+#, fuzzy, no-c-format
+msgid "Name resolution"
 msgstr "Résolution de noms"
 
 #. Tag: keyword
 #, no-c-format
-msgid "Users, groups, accounts"
-msgstr "Utilisateurs, groupes, comptes"
+msgid "Users"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
-msgid "Command Line Interpreter (Shell)"
+msgid "Groups"
+msgstr ""
+
+#. Tag: keyword
+#, fuzzy, no-c-format
+msgid "Accounts"
+msgstr "Création de comptes"
+
+#. Tag: keyword
+#, fuzzy, no-c-format
+msgid "Command-line interpreter"
 msgstr "Interpréteur de commandes"
+
+#. Tag: keyword
+#, no-c-format
+msgid "Shell"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
@@ -164,8 +184,8 @@ msgid "<primary>Latin 0</primary>"
 msgstr "<primary>Latin 0</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Historically, each locale has an associated “character set” (group of known characters) and a preferred “encoding” (internal representationfor characters within the computer)."
+#, fuzzy, no-c-format
+msgid "Historically, each locale has an associated “character set” (group of known characters) and a preferred “encoding” (internal representation for characters within the computer)."
 msgstr "À chaque locale sont normalement associés un «jeu de caractères» (ensemble des caractères possibles) et un «encodage» (manière de représenter les caractères pour l'ordinateur) de prédilection."
 
 #. Tag: para
@@ -305,37 +325,12 @@ msgstr "Il est à noter que la configuration du clavier pour le mode graphique d
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis>ALTERNATIVE</emphasis> the bépo layout"
-msgstr "<emphasis>ALTERNATIVE</emphasis> La disposition Bépo"
-
-#. Tag: para
-#, no-c-format
-msgid "The azerty keyboard layout, like its predecessor, the English qwerty keyboard, was not designed for ergonomic purposes, but more prosaically to circumvent mechanical limits affecting the reliability of typewriters in the nineteenth century. More recent reflections, initiated in particular by August Dvorak in the 1930s, led to the creation of more ergonomic keyboard layouts, especially the “dvorak” layout, particularly adapted to typing in English. More recently, the same principles have been adopted by a francophone community in order to create a layout suitable for computer use in French. The result is the “bépo” layout, named after the first four letters on the keyboard. This layout allows easy access to all of the French characters (but also to those used in most European languages) and the characters used in programming and system administration; their layout on the keyboard allows more fluid typing compared to the azerty and qwerty layouts."
-msgstr "La disposition de clavier azerty, comme son ancêtre anglophone qwerty, n'a pas été conçue dans des buts d'ergonomie, mais héritée plus ou moins directement de contraintes mécaniques liées à la fiabilité des machines à écrire au XIXe siècle. Des réflexions plus récentes, initiées en particulier par August Dvorak dans les années 1930, ont amené à la création de dispositions de clavier plus ergonomiques, en particulier la disposition dite «dvorak» particulièrement adaptée à la frappe de l'anglais. Plus récemment, les mêmes principes ont été repris par une communauté francophone afin d'obtenir une disposition adaptée à une utilisation de l'informatique dans un cadre francophone. Le résultat est la disposition «bépo», nommée d'après les quatre premières lettres du clavier. Cette disposition permet un accès aisé à tous les caractères du français (mais aussi de la plupart des langues européennes) et aux caractères utilisés en programmation et administration système ; leur disposition sur le clavier apporte de plus une frappe du texte fluidifiée par rapport à l'azerty."
-
-#. Tag: para
-#, no-c-format
-msgid "The bépo layout is available in Debian Squeeze, both for the console and the graphical environment. To install it, you must choose the option “France - Bépo, ergonomique, façon Dvorak” when running <command>dpkg-reconfigure keyboard-configuration</command> <ulink type=\"block\" url=\"http://bepo.fr/\" />"
-msgstr "La disposition bépo est disponible dans Debian Squeeze à la fois pour la console et dans l'environnement graphique. Pour l'installer, il faudra choisir dans <command>dpkg-reconfigure keyboard-configuration</command> l'option «France - Bépo, ergonomique, façon Dvorak». <ulink type=\"block\" url=\"http://bepo.fr/\" />"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><literal>bépo</literal></primary>"
-msgstr "<primary><literal>bépo</literal></primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><literal>dvorak</literal></primary>"
-msgstr "<primary><literal>dvorak</literal></primary>"
-
-#. Tag: title
-#, no-c-format
 msgid "Migrating to UTF-8"
 msgstr "Migration vers UTF-8"
 
 #. Tag: para
-#, no-c-format
-msgid "The generalization of UTF-8 encoding has been a long awaited solution to numerous difficulties with interoperability, since it facilitates international exchange and removes the arbitrary limits on characters that can be used in a document. The one drawback is that it had to go through a rather difficult transition phase. Since it could not be completely transparent (that is, it could not happen at the same time all over the world over), two conversion operations were required: one on file contents, and the other on filenames. Fortunately, the bulk of this migration has been completed and we discuss it largely for reference."
+#, fuzzy, no-c-format
+msgid "The generalization of UTF-8 encoding has been a long awaited solution to numerous difficulties with interoperability, since it facilitates international exchange and removes the arbitrary limits on characters that can be used in a document. The one drawback is that it had to go through a rather difficult transition phase. Since it could not be completely transparent (that is, it could not happen at the same time all over the world), two conversion operations were required: one on file contents, and the other on filenames. Fortunately, the bulk of this migration has been completed and we discuss it largely for reference."
 msgstr "La généralisation de l'encodage UTF-8 a constitué une solution longtemps attendue à de nombreux problèmes d'interopérabilité, puisqu'elle facilite les échanges internationaux et lève les limites arbitraires sur les caractères que l'on peut utiliser dans un document. L'inconvénient est qu'il a fallu passer par une phase de conversion un peu rebutante, d'autant qu'elle n'aurait pu être totalement transparente que si elle avait été synchronisée dans le monde entier, et que deux opérations de conversion étaient en réalité à prévoir: l'une sur le contenu des fichiers, l'autre sur leur nom. Fort heureusement, le plus gros de cette migration est passé, et nous la citons principalement pour référence."
 
 #. Tag: title
@@ -456,8 +451,8 @@ msgid "<primary>RJ45 connector</primary>"
 msgstr "<primary>connecteur RJ45</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Most modern local networks use the Ethernet protocol, where data is split into small blocks called frames and transmitted on the wire one frame at a time. Data speeds vary from 10 Mb/s for older Ethernet cards to 10 Gb/s in the newest cards (with the most common rate currently growing from 100 Mb/s to 1 Gb/s). The most widely used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T depending on the throughput they can reliably provide (the T stands for “twisted pair”); those cables end in an RJ45 connector. There are other cable types, used mostly for speeds in above 1 Gb/s."
+#, fuzzy, no-c-format
+msgid "Most modern local networks use the Ethernet protocol, where data is split into small blocks called frames and transmitted on the wire one frame at a time. Data speeds vary from 10 Mb/s for older Ethernet cards to 10 Gb/s in the newest cards (with the most common rate currently growing from 100 Mb/s to 1 Gb/s). The most widely used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T depending on the throughput they can reliably provide (the T stands for “twisted pair”); those cables end in an RJ45 connector. There are other cable types, used mostly for speeds above 1 Gb/s."
 msgstr "La majorité des réseaux locaux actuels sont des réseaux Ethernet qui fonctionnent par trames, c'est-à-dire que les données y circulent de manière non continue, par petits blocs. Le débit varie de 10 Mbit/s pour les cartes Ethernet les plus anciennes, à 10 Gbit/s pour la génération la plus récente (100 Mbit/s étant le débit le plus fréquent à l'heure actuelle). Les câbles correspondants les plus courants sont, selon les débits qu'ils permettent d'acheminer, connus sous les nom de 10BASE-T, 100BASE-T, 1000BASE-T ou 10GBASE-T, dits en «paire torsadée» (<foreignphrase>twisted pair</foreignphrase>), dont chaque extrémité est munie d'un connecteur RJ45 — mais il existe d'autres types de câbles, qui sont surtout utilisés pour les débits à partir du Gbit/s."
 
 #. Tag: indexterm
@@ -471,8 +466,8 @@ msgid "<primary>IP</primary><secondary>address</secondary>"
 msgstr "<primary>IP</primary><secondary>adresse</secondary>"
 
 #. Tag: para
-#, no-c-format
-msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2002:58bf:13bb:0002:0000:0000:0020, or 2002:58bf:13bb:2::20 for short)."
+#, fuzzy, no-c-format
+msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2001:db8:13bb:0002:0000:0000:0020, or 2001:db8:13bb:2::20 for short)."
 msgstr "Une adresse IP est un numéro employé pour identifier une interface réseau d'un ordinateur sur le réseau local ou sur l'Internet. Dans la version d'IP actuellement la plus répandue (IPv4), ce numéro se code sur 32 bits et se représente habituellement comme 4 nombres séparés par des points (ex: <literal>192.168.0.1</literal>), chaque nombre pouvant varier de 0 à 255 (représentant ainsi 8 bits de données). La version suivante du protocole, IPv6, étend cet espace d'adressage à 128 bits, une adresse étant représentée sous forme de nombres hexadécimaux séparés par des deux-points (ex: 2002:58bf:13bb:0002:0000:0000:0020, que l'on peut abréger en 2002:58bf:13bb:2::20)."
 
 #. Tag: indexterm
@@ -496,8 +491,8 @@ msgid "A subnet mask (netmask) defines in its binary code which portion of an IP
 msgstr "Un masque de sous-réseau (<foreignphrase>netmask</foreignphrase>) définit par son codage en binaire quelle portion d'une adresse IP correspond au réseau — le reste y spécifiant l'identifiant de la machine. Dans l'exemple de configuration statique IPv4 donné ici, le masque de sous-réseau <literal>255.255.255.0</literal> (24 «1» suivis de 8 «0» en représentation binaire) indique que les 24 premiers bits de l'adresse IP correspondent à l'adresse réseau, les 8 derniers relevant alors du numéro de machine. En IPv6, pour des raisons de lisibilité, on note uniquement le nombre de «1». Un <foreignphrase>netmask</foreignphrase> IPv6 peut donc être <literal>64</literal>."
 
 #. Tag: para
-#, no-c-format
-msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the name of the bits affected by the network part in an IP address. The example network would be written thus: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2002:58bf:13bb::/64</literal>."
+#, fuzzy, no-c-format
+msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the number of bits affected to the network part in an IP address. The example network would thus be written: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb::/64</literal>."
 msgstr "L'adresse de réseau est une adresse IP dont la partie décrivant le numéro de machine est à zéro. On décrit souvent la plage d'adresses IPv4 d'un réseau complet par la syntaxe <emphasis>a.b.c.d/e</emphasis> où <emphasis>a.b.c.d</emphasis> est l'adresse réseau et <emphasis>e</emphasis> le nombre de bits affectés à la partie réseau dans une adresse IP. Le réseau de l'exemple s'écrirait ainsi: <literal>192.168.0.0/24</literal>. La syntaxe est similaire en IPv6: <literal>2002:58bf:13bb::/64</literal>."
 
 #. Tag: indexterm
@@ -511,8 +506,8 @@ msgid "<primary>bridge</primary>"
 msgstr "<primary>passerelle</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyses incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
+#, fuzzy, no-c-format
+msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyzes incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
 msgstr "Un routeur est une machine reliant plusieurs réseaux entre eux. Tout le trafic y parvenant est réorienté sur le bon réseau. Pour cela, le routeur analyse les paquets entrants et les redirige en fonction des adresses IP de leurs destinataires. Le routeur est souvent qualifié de passerelle; il s'agit alors habituellement d'une machine qui permet de sortir d'un réseau local (vers un réseau étendu comme l'Internet)."
 
 #. Tag: indexterm
@@ -521,8 +516,8 @@ msgid "<primary>broadcast</primary>"
 msgstr "<primary><foreignphrase>broadcast</foreignphrase></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The special broadcast address connects all the stations in a network. Almost never “routed”, it only functions on the network in question. Specifically, it indicates that a data packet address to the broadcast never passes through the router."
+#, fuzzy, no-c-format
+msgid "The special broadcast address connects all the stations in a network. Almost never “routed”, it only functions on the network in question. Specifically, it means that a data packet addressed to the broadcast never passes through the router."
 msgstr "L'adresse de <foreignphrase>broadcast</foreignphrase> (diffusion), spéciale, permet de joindre tous les postes du réseau. Presque jamais «routée», elle ne fonctionne donc que sur le réseau considéré. Concrètement, cela signifie qu'un paquet de données adressé au <foreignphrase>broadcast</foreignphrase> ne franchit jamais un routeur."
 
 #. Tag: para
@@ -775,8 +770,8 @@ msgid "<primary><command>init</command></primary>"
 msgstr "<primary><command>init</command></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "PPP connections over ADSL are, by definition, intermittent. Since they are not billed according to time, there are few downsides to the temptation of keeping them always open; one simple means to do so is to use the <command>init</command> process to control the connection. All that's needed is to add a line such as the following at the end of the <filename>/etc/inittab</filename> file; then, any time the connection is disconnected, <command>init</command> will reconnect it."
+#, fuzzy, no-c-format
+msgid "PPP connections over ADSL are, by definition, intermittent. Since they are usually not billed according to time, there are few downsides to the temptation of keeping them always open; one simple means to do so is to use the <command>init</command> process to control the connection. All that's needed is to add a line such as the following at the end of the <filename>/etc/inittab</filename> file; then, any time the connection is disconnected, <command>init</command> will reconnect it."
 msgstr "Les connexions PPP par ADSL sont par définition intermittentes. Comme elles ne sont pas facturées à la durée, la tentation est grande de les garder toujours ouvertes; un moyen simple est de les faire démarrer par le processus <command>init</command>. Il suffit pour cela d'ajouter la ligne ci-dessous au fichier <filename>/etc/inittab</filename>; toute interruption provoquera alors immédiatement l'invocation d'une nouvelle connexion par <command>init</command>."
 
 #. Tag: programlisting
@@ -879,13 +874,13 @@ msgid "To avoid having to manually connect or disconnect the corresponding netwo
 msgstr "Pour éviter de devoir manuellement activer ou désactiver les interfaces réseau correspondantes, les administrateurs ont installé le paquet <emphasis role=\"pkg\">network-manager</emphasis> sur ces portables. Ce logiciel permet à l'utilisateur de basculer facilement d'un réseau à un autre grâce à une petite icône affichée dans la zone de notification des bureaux graphiques. Un clic sur l'icône affiche une liste des réseaux disponibles (filaires et wifi), il ne reste plus qu'à choisir le réseau de son choix. Le logiciel garde en mémoire les réseaux sur lesquels l'utilisateur s'est déjà connecté et bascule automatiquement sur le meilleur réseau disponible lorsque la connection actuelle vient à disparaître."
 
 #. Tag: para
-#, no-c-format
-msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this demon. Only members of the “netdev” group have permissions to control this program."
+#, fuzzy, no-c-format
+msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this daemon. Only members of the “netdev” group have permissions to control this program."
 msgstr "Pour réaliser cela, le logiciel est structuré en deux parties: un démon tournant en root effectue les opérations d'activation et de configuration des interfaces réseau, et une interface utilisateur pilote ce démon. Seuls les membres du groupe «netdev» ont le droit de lui envoyer des directives."
 
 #. Tag: para
-#, no-c-format
-msgid "Network Manager knows how to handle various types of connections (DHCP, manual configuration, local network), but only if the configuration is set with the program itself. This is why it will systematically ignore all network interfaces in <filename>/etc/network/interfaces</filename> for which it is not suited. The settings are very strict; details are available in the <filename>/usr/share/doc/network-manager/README.Debian</filename> file. Since Network Manager doesn't give details when no network connections are shown, the easy way is to delete from (<filename>/etc/network/interfaces</filename>) any configuration for all interfaces that must be managed by Network Manager."
+#, fuzzy, no-c-format
+msgid "Network Manager knows how to handle various types of connections (DHCP, manual configuration, local network), but only if the configuration is set with the program itself. This is why it will systematically ignore all network interfaces in <filename>/etc/network/interfaces</filename> for which it is not suited. The settings are very strict; details are available in the <filename>/usr/share/doc/network-manager/README.Debian</filename> file. Since Network Manager doesn't give details when no network connections are shown, the easy way is to delete from <filename>/etc/network/interfaces</filename> any configuration for all interfaces that must be managed by Network Manager."
 msgstr "Network Manager sait désormais gérer des connexions de divers types (DHCP, configuration manuelle, réseau local seulement), mais seulement si la configuration se fait par son biais. C'est pourquoi il ignorera systématiquement toutes les interfaces réseau dont la configuration dans <filename>/etc/network/interfaces</filename> ne lui convient pas. Les règles sont assez strictes, le fichier <filename>/usr/share/doc/network-manager/README.Debian</filename> les détaille. Le plus simple est encore d'enlever toute configuration pour chaque interface qui doit être gérée par Network Manager. En effet, le logiciel n'indiquera pas pourquoi il n'affiche aucune connexion réseau disponible."
 
 #. Tag: para
@@ -1019,6 +1014,11 @@ msgstr "<primary>nom</primary><secondary>de domaine</secondary>"
 msgid "<primary>NSS</primary>"
 msgstr "<primary>NSS</primary>"
 
+#. Tag: title
+#, no-c-format
+msgid "Name Resolution"
+msgstr "Résolution de noms"
+
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>resolution</primary><secondary>name</secondary>"
@@ -1060,8 +1060,8 @@ msgid "<primary>Domain Name Service</primary>"
 msgstr "<primary><foreignphrase>Domain Name Service</foreignphrase></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "DNS (Domain Name Service) is a distributed and hierarchal service mapping names to IP addresses, and vice-versa. Specifically, it can turn a human-friendly name such as <literal>www.eyrolles.com</literal> into the actual IP address, <literal>213.244.11.247</literal>."
+#, fuzzy, no-c-format
+msgid "DNS (Domain Name Service) is a distributed and hierarchical service mapping names to IP addresses, and vice-versa. Specifically, it can turn a human-friendly name such as <literal>www.eyrolles.com</literal> into the actual IP address, <literal>213.244.11.247</literal>."
 msgstr "Le DNS (<foreignphrase>Domain Name Service</foreignphrase>, ou service de noms) est un service distribué et hiérarchique associant des noms à des adresses IP et vice versa. Concrètement, il permet de savoir que <literal>www.eyrolles.com</literal> est en réalité l'adresse IP <literal>213.244.11.247</literal>."
 
 #. Tag: para
@@ -1493,19 +1493,19 @@ msgid "<primary><filename>/etc/group</filename></primary>"
 msgstr "<primary><filename>/etc/group</filename></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The <command>groupadd</command> and <command>groupdel</command> commands add or delete a group, respectively. The <command>groupmod</command> command modifies a group's information (its <literal>gid</literal> or identifier). The command <command>passwd -g <replaceable>group</replaceable></command> changes the password for the group, while the <command>passwd -r -g <replaceable>group</replaceable></command> command deletes it."
+#, fuzzy, no-c-format
+msgid "The <command>addgroup</command> and <command>delgroup</command> commands add or delete a group, respectively. The <command>groupmod</command> command modifies a group's information (its <literal>gid</literal> or identifier). The command <command>passwd -g <replaceable>group</replaceable></command> changes the password for the group, while the <command>passwd -r -g <replaceable>group</replaceable></command> command deletes it."
 msgstr "Les commandes <command>groupadd</command> et <command>groupdel</command> permettent respectivement de créer et de supprimer un groupe. La commande <command>groupmod</command> modifie les informations d'un groupe (son <literal>gid</literal> ou son identifiant). La commande <command>passwd -g <replaceable>groupe</replaceable></command> modifiera le mot de passe d'un groupe, tandis que la commande <command>passwd -r -g <replaceable>groupe</replaceable></command> le supprimera."
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>groupadd</command></primary>"
+#, fuzzy, no-c-format
+msgid "<primary><command>addgroup</command></primary>"
 msgstr "<primary><command>groupadd</command></primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>groupdel</command></primary>"
-msgstr "<primary><command>groupdel</command></primary>"
+#, fuzzy, no-c-format
+msgid "<primary><command>delgroup</command></primary>"
+msgstr "<primary><command>groupadd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1518,8 +1518,8 @@ msgid "<primary>group</primary><secondary>creation</secondary>"
 msgstr "<primary>groupe</primary><secondary>création</secondary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>creation</primary><secondary>of a group</secondary>"
+#, fuzzy, no-c-format
+msgid "<primary>creation</primary><secondary>of groups</secondary>"
 msgstr "<primary>création</primary><secondary>de groupe</secondary>"
 
 #. Tag: indexterm
@@ -1608,8 +1608,8 @@ msgid "<primary>add a user to a group</primary>"
 msgstr "<primary>ajout d'un utilisateur dans un groupe</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "In some cases, it will be useful to add a user to a group (other than their default “main” group) in order to grant them additional permissions. For example, a user who is included in the <emphasis>audio</emphasis> group can access audio devices (see sidebar “Peripheral access permissions”). This can be achieved with a command such as <command>adduser <replaceable>user</replaceable> <replaceable>group</replaceable></command>."
+#, fuzzy, no-c-format
+msgid "In some cases, it will be useful to add a user to a group (other than their default “main” group) in order to grant them additional permissions. For example, a user who is included in the <emphasis>audio</emphasis> group can access audio devices (see sidebar “Device access permissions”). This can be achieved with a command such as <command>adduser <replaceable>user</replaceable> <replaceable>group</replaceable></command>."
 msgstr "Dans certains cas, il sera utile d'ajouter un utilisateur dans un groupe, en particulier pour lui conférer des droits supplémentaires. Par exemple, un utilisateur intégré au groupe <emphasis>audio</emphasis> pourra accéder aux périphériques son (voir encadré «Droits d'accès à un périphérique»). Pour ce faire, on procède avec la commande <command>adduser <replaceable>utilisateur</replaceable> <replaceable>groupe</replaceable></command>."
 
 #. Tag: title
@@ -1823,8 +1823,8 @@ msgid "<emphasis>TIP</emphasis> All shells configured identically"
 msgstr "<emphasis>ASTUCE</emphasis> Tous les shells configurés à l'identique"
 
 #. Tag: para
-#, no-c-format
-msgid "Users often want to configure their login and interactive shells in the same way. To do this, they choose to interpreter (or “source”) the content from <filename>~/.bashrc</filename> in the <filename>~/.bash_profile</filename> file. It is possible to do the same with files common to all users (by calling <filename>/etc/bash.bashrc</filename> from <filename>/etc/profile</filename>)."
+#, fuzzy, no-c-format
+msgid "Users often want to configure their login and interactive shells in the same way. To do this, they choose to interpret (or “source”) the content from <filename>~/.bashrc</filename> in the <filename>~/.bash_profile</filename> file. It is possible to do the same with files common to all users (by calling <filename>/etc/bash.bashrc</filename> from <filename>/etc/profile</filename>)."
 msgstr "Les utilisateurs souhaitent souvent configurer de la même manière shells de connexion et interactifs. Pour cela, ils choisissent d'interpréter (ou «sourcer») le contenu de <filename>~/.bashrc</filename> depuis le fichier <filename>~/.bash_profile</filename>. Il est possible de faire de même avec les fichiers communs à tous les utilisateurs (en appelant <filename>/etc/bash.bashrc</filename> depuis <filename>/etc/profile</filename>)."
 
 #. Tag: title
@@ -1989,13 +1989,13 @@ msgid "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis>, <emphasis>devfs</
 msgstr "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis>, <emphasis>devfs</emphasis> et <filename>/dev/</filename>"
 
 #. Tag: para
-#, no-c-format
-msgid "The <filename>/dev/</filename> directory traditionally houses so-called “special” files, intended to represent system peripherals (see sidebar <xref linkend=\"cadre.fichiers-speciaux\" />). <filename>/dev/hda1</filename> thus always corresponds to the first partition of the the first IDE hard drive. This static structure does not allow dynamic setting of “major” and “minor” numbers for these files, which forces kernel developers to limit their number, since a priori assignment of the identifiers prohibits adding more once these conventions are established."
+#, fuzzy, no-c-format
+msgid "The <filename>/dev/</filename> directory traditionally houses so-called “special” files, intended to represent system peripherals (see sidebar <xref linkend=\"cadre.fichiers-speciaux\" />). <filename>/dev/hda1</filename> thus always corresponds to the first partition of the first IDE hard drive. This static structure does not allow dynamic setting of “major” and “minor” numbers for these files, which forces kernel developers to limit their number, since a priori assignment of the identifiers prohibits adding more once these conventions are established."
 msgstr "Le répertoire <filename>/dev/</filename> abrite traditionnellement des fichiers dits «spéciaux», destinés à représenter les périphériques du système (voir encadré <xref linkend=\"cadre.fichiers-speciaux\" />). <filename>/dev/hda1</filename> correspondait ainsi toujours à la première partition du disque dur IDE primaire. Cette structure statique ne permettait pas d'établir dynamiquement les numéros «majeurs» et «mineurs» de ces fichiers, ce qui contraignait les développeurs du noyau à limiter leur nombre puisque l'attribution a priori des identifiants interdisait d'en ajouter après établissement des conventions."
 
 #. Tag: para
-#, no-c-format
-msgid "To take into account the characteristics of more and more dynamic, modern computers, the kernel has, at some time, offered an implementation of <filename>/dev/</filename> by a virtual filesystem called <emphasis>defvs</emphasis>. In some cases, this makes it easier to find files, since the naming convention uses a hierarchal structure: the first partition of the master hard drive on the first IDE bus was then represented by the file, <filename>/dev/ide/host0/bus0/target0/lun0/part1</filename>. Not only were these naming conventions not very intuitive, but they were also hard-coded into the kernel which presented problems for hot-pluggable drives because the corresponding special file name would vary."
+#, fuzzy, no-c-format
+msgid "To take into account the characteristics of more and more dynamic, modern computers, the kernel has, at some time, offered an implementation of <filename>/dev/</filename> by a virtual filesystem called <emphasis>devfs</emphasis>. In some cases, this makes it easier to find files, since the naming convention uses a hierarchical structure: the first partition of the master hard drive on the first IDE bus was then represented by the file, <filename>/dev/ide/host0/bus0/target0/lun0/part1</filename>. Not only were these naming conventions not very intuitive, but they were also hard-coded into the kernel which presented problems for hot-pluggable drives because the corresponding special file name would vary."
 msgstr "Pour tenir compte des caractéristiques de plus en plus dynamiques des ordinateurs modernes, le noyau a pendant un temps proposé une mise en œuvre de <filename>/dev/</filename> par un système de fichiers virtuel appelé <emphasis>devfs</emphasis>. Cela facilitait l'accès aux fichiers dans certains cas, en utilisant notamment une organisation hiérarchique: la première partition du disque dur maître sur le bus IDE primaire était alors représentée par le fichier <filename>/dev/ide/host0/bus0/target0/lun0/part1</filename>. Non seulement ces conventions de nommage étaient peu intuitives, mais elles étaient également codées en dur dans le noyau, ce qui ne convenait guère à ceux que l'on connecte à chaud car le nom du fichier spécial correspondant variait."
 
 #. Tag: para
@@ -2156,7 +2156,7 @@ msgid "LILO configuration file"
 msgstr "Fichier de configuration de LILO"
 
 #. Tag: programlisting
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "\n"
 "# The disk on which LILO should be installed.\n"
@@ -2165,7 +2165,7 @@ msgid ""
 "boot=/dev/sda\n"
 "# the partition that contains Debian\n"
 "root=/dev/sda2\n"
-"# the item to be loaded by defaul\n"
+"# the item to be loaded by default\n"
 "default=Linux\n"
 "\n"
 "# the most recent kernel image\n"
@@ -2589,8 +2589,8 @@ msgid "<emphasis>NOTE</emphasis> System clock, hardware clock"
 msgstr "<emphasis>NOTE</emphasis> Horloge système, horloge matérielle"
 
 #. Tag: para
-#, no-c-format
-msgid "There are two time sources in a computer. A computer's motherboard has a hardware clock, called the “CMOS clock”. This clock is not very precise, and provides rather slow access times. The operating system kernel has its own, the software clock, which it keeps up to date with its own means (possibly with the help of time servers, see the “Time Synchronization” section). This system clock is generally more accurate, especially since it doesn't need access to hardware variables. However, since it only exists in live memory, it is zeroed out every time the machine is booted, contrary to the CMOS clock, which has a battery and therefores “survives” rebooting or halting of the machine. The system clock is, thus, set from the CMOS clock during boot, and the CMOS clock is updated on shutdown (to take into account possible changes or corrections if it has been improperly adjusted)."
+#, fuzzy, no-c-format
+msgid "There are two time sources in a computer. A computer's motherboard has a hardware clock, called the “CMOS clock”. This clock is not very precise, and provides rather slow access times. The operating system kernel has its own, the software clock, which it keeps up to date with its own means (possibly with the help of time servers, see the “Time Synchronization” section). This system clock is generally more accurate, especially since it doesn't need access to hardware variables. However, since it only exists in live memory, it is zeroed out every time the machine is booted, contrary to the CMOS clock, which has a battery and therefore “survives” rebooting or halting of the machine. The system clock is, thus, set from the CMOS clock during boot, and the CMOS clock is updated on shutdown (to take into account possible changes or corrections if it has been improperly adjusted)."
 msgstr "Il existe en réalité deux sources de temps dans un ordinateur. La carte-mère de l'ordinateur dispose d'une horloge matérielle, dite «CMOS». Cette horloge est peu précise et offre des temps d'accès assez lents. Le noyau du système d'exploitation a la sienne, logicielle, qu'il maintient à l'heure par ses propres moyens (éventuellement à l'aide de serveurs de temps, voir la section «Synchronisation horaire»). Cette horloge système est généralement plus précise, notamment parce qu'elle ne nécessite pas de temps d'accès variables à du matériel. Cependant, comme elle n'existe qu'en mémoire vive, elle est remise à zéro à chaque démarrage de l'ordinateur, contrairement à l'horloge CMOS, qui dispose d'une pile et «survit» donc à un redémarrage ou une extinction. L'horloge système est donc réglée sur l'horloge CMOS, lors du démarrage de l'ordinateur, et l'horloge CMOS est mise à jour lors de l'extinction (pour prendre en compte d'éventuels changements ou corrections si elle était déréglée)."
 
 #. Tag: para
@@ -2774,8 +2774,8 @@ msgid "<primary><command>sudo</command></primary>"
 msgstr "<primary><command>sudo</command></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Frequently, several administrators work on the same network. Sharing the the root passwords is not very elegant, and opens the door for abuse due to the anonymity such sharing creates. The solution to this problem is the <command>sudo</command> program, which allows certain users to execute certain commands with special rights. In the most common use case, <command>sudo</command> allows a trusted user to execute any command as root. To do so, the user simply executes <command>sudo <replaceable>command</replaceable></command> and authenticates using their personal password."
+#, fuzzy, no-c-format
+msgid "Frequently, several administrators work on the same network. Sharing the root passwords is not very elegant, and opens the door for abuse due to the anonymity such sharing creates. The solution to this problem is the <command>sudo</command> program, which allows certain users to execute certain commands with special rights. In the most common use case, <command>sudo</command> allows a trusted user to execute any command as root. To do so, the user simply executes <command>sudo <replaceable>command</replaceable></command> and authenticates using their personal password."
 msgstr "Bien souvent, plusieurs administrateurs s'occupent du réseau. Partager le mot de passe de l'utilisateur root n'est pas très élégant et ouvre la porte à des abus du fait de l'anonymat de ce compte partagé. La solution à ce problème est le programme <command>sudo</command>, qui permet à certains utilisateurs d'exécuter certaines commandes avec des droits particuliers. Dans son emploi le plus courant <command>sudo</command> permet à un utilisateur de confiance d'exécuter n'importe quelle commande en tant que root. Pour cela l'utilisateur doit simplement exécuter <command>sudo <replaceable>commande</replaceable></command> et s'authentifier à l'aide de son mot de passe personnel."
 
 #. Tag: para
@@ -2988,8 +2988,8 @@ msgid "<primary><emphasis>autofs</emphasis></primary>"
 msgstr "<primary><emphasis>autofs</emphasis></primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>auto-monteur</primary>"
+#, fuzzy, no-c-format
+msgid "<primary>automounter</primary>"
 msgstr "<primary>auto-monteur</primary>"
 
 #. Tag: para
@@ -3193,8 +3193,8 @@ msgid "Unless you need to change the configuration, you can stop here and skip t
 msgstr "Si vous ne souhaitez pas changer la configuration, vous pouvez en rester là et sauter directement à la section suivante. Dans le cas contraire, ou si vous avez décidé de tout reconfigurer depuis zéro, il faudra prendre le temps de configurer votre noyau. Pour cela, il propose différentes interfaces, qu'on invoque depuis le répertoire des sources par la commande <command>make</command> suivie d'un argument."
 
 #. Tag: para
-#, no-c-format
-msgid "<command>make menuconfig</command> compiles and executes an text-mode interface (this is where the <emphasis role=\"pkg\">libncurses5-dev</emphasis> package is required) which allows navigating the options available in a hierarchical structure. Pressing the <keycap>Space</keycap> key changes the value of the selected option, and <keycap>Enter</keycap> validates the button selected at the bottom of the screen; <guibutton>Select</guibutton> returns to the selected sub-menu; <guibutton>Exit</guibutton> closes the current screen and move back up in the hierarchy; <guibutton>Help</guibutton> will display more detailed information on the role of the selected option. The arrows allow moving within the list of options and buttons. To exit the configuration program, choose <guibutton>Exit</guibutton> from the main menu. The program then offers to save the changes you've made; accept if you are satisfied with your choices."
+#, fuzzy, no-c-format
+msgid "<command>make menuconfig</command> compiles and executes a text-mode interface (this is where the <emphasis role=\"pkg\">libncurses5-dev</emphasis> package is required) which allows navigating the options available in a hierarchical structure. Pressing the <keycap>Space</keycap> key changes the value of the selected option, and <keycap>Enter</keycap> validates the button selected at the bottom of the screen; <guibutton>Select</guibutton> returns to the selected sub-menu; <guibutton>Exit</guibutton> closes the current screen and move back up in the hierarchy; <guibutton>Help</guibutton> will display more detailed information on the role of the selected option. The arrows allow moving within the list of options and buttons. To exit the configuration program, choose <guibutton>Exit</guibutton> from the main menu. The program then offers to save the changes you've made; accept if you are satisfied with your choices."
 msgstr "<command>make menuconfig</command> compile et exécute une interface évoluée en mode texte (c'est ici que le paquet <emphasis role=\"pkg\">libncurses5-dev</emphasis> est requis) qui propose de naviguer dans une structure hiérarchique présentant les options proposées. Une pression sur la touche <keycap>Espace</keycap> change la valeur de l'option sélectionnée et <keycap>Entrée</keycap> valide le bouton sélectionné en bas de l'écran: <guibutton>Select</guibutton> permet de rentrer dans le sous-menu sélectionné, <guibutton>Exit</guibutton> remonte d'un cran dans la hiérarchie, et <guibutton>Help</guibutton> produit des informations plus détaillées sur le rôle de l'option sélectionnée. Les flèches permettent de se positionner dans la liste des options et des boutons. Pour quitter le configurateur, il faut sélectionner <guibutton>Exit</guibutton> depuis le menu principal. Le programme propose alors de sauvegarder les changements: acceptez si vous êtes satisfait de vos choix."
 
 #. Tag: para
@@ -3273,8 +3273,8 @@ msgid "<command>make-kpkg</command> uses information contained in the <filename>
 msgstr "<command>make-kpkg</command> utilise les informations contenues dans le fichier <filename>/etc/kernel-pkg.conf</filename> pour générer les en-têtes du paquet Debian du noyau. Si vous souhaitez diffuser le paquet, il est donc souhaitable de modifier ce fichier afin d'y placer des informations correctes."
 
 #. Tag: para
-#, no-c-format
-msgid "Once the kernel configuration is ready, the <command>make-pkg</command> command provided by Debian compiles the kernel, then generates the corresponding Debian package (or packages). Just like <command>make</command>, <command>make-pkg</command> takes the name of a target to execute as an argument: <literal>kernel-image</literal> generates a compiled kernel package, <literal>kernel-doc</literal> a package containing the documentation included with the kernel, <literal>kernel-headers</literal> a package of kernel header files (<filename>.h</filename> files for the kernel in the <filename>include/</filename> directory, which is useful for compilation of some external modules), and <literal>kernel-source</literal> creates a package containing the kernel sources."
+#, fuzzy, no-c-format
+msgid "Once the kernel configuration is ready, the <command>make-kpkg</command> command provided by Debian compiles the kernel, then generates the corresponding Debian package (or packages). Just like <command>make</command>, <command>make-kpkg</command> takes the name of a target to execute as an argument: <literal>kernel-image</literal> generates a compiled kernel package, <literal>kernel-doc</literal> a package containing the documentation included with the kernel, <literal>kernel-headers</literal> a package of kernel header files (<filename>.h</filename> files for the kernel in the <filename>include/</filename> directory, which is useful for compilation of some external modules), and <literal>kernel-source</literal> creates a package containing the kernel sources."
 msgstr "À ce stade, Debian emploie la commande <command>make-kpkg</command> pour compiler le noyau puis générer le paquet Debian correspondant. Tout comme <command>make</command>, <command>make-kpkg</command> accepte en paramètre le nom d'une cible à exécuter: <literal>kernel-image</literal> génère un paquet du noyau compilé, <literal>kernel-doc</literal> un paquet contenant la documentation incluse avec le noyau, <literal>kernel-headers</literal> un paquet des fichiers d'en-têtes du noyau (fichiers <filename>.h</filename> du répertoire <filename>include/</filename> — utiles à la compilation de certains modules externes), et <literal>kernel-source</literal> un paquet contenant les sources du noyau."
 
 #. Tag: para
@@ -3373,8 +3373,8 @@ msgid "Note that <command>make-kpkg</command> must still be invoked from the ker
 msgstr "De plus, il faut toujours appeler <command>make-kpkg</command> depuis le répertoire des sources du noyau, même si l'objectif est de compiler des modules externes placés dans d'autres répertoires."
 
 #. Tag: para
-#, no-c-format
-msgid "The module sources are now located in the <filename>~/kernel/modules/qc-usb/</filename> directory. To compile these modules and create a Debian package, we invoke <command>make-kpkg</command> with the <literal>modules-image</literal> target and indicate the location of the modules via the <varname>MODULE_LOC</varname> environment variable (without this variable, it uses <filename>/usr/src/modules/</filename>, which won't work in our case). By default, it tries to create the packages for all the external modules that can be found at this location extracted. The <literal>--added-modules</literal> option allows to explicitly choose the external modules to compile. To include more than one, separate them with a comma."
+#, fuzzy, no-c-format
+msgid "The module sources are now located in the <filename>~/kernel/modules/qc-usb/</filename> directory. To compile these modules and create a Debian package, we invoke <command>make-kpkg</command> with the <literal>modules-image</literal> target and indicate the location of the modules via the <varname>MODULE_LOC</varname> environment variable (without this variable, it uses <filename>/usr/src/modules/</filename>, which won't work in our case). By default, it tries to create the packages for all the external modules that you extracted at this location. The <literal>--added-modules</literal> option allows to explicitly choose the external modules to compile. To include more than one, separate them with a comma."
 msgstr "Les sources des modules sont à présent disponibles dans le répertoire <filename>~/kernel/modules/qc-usb/</filename>. Pour compiler ces modules et en créer un paquet Debian, il faut appeler <command>make-kpkg</command> avec le paramètre <literal>modules-image</literal> en lui indiquant via la variable d'environnement <varname>MODULE_LOC</varname> où trouver les modules (en l'absence de cette variable, il emploie <filename>/usr/src/modules/</filename> — qui ne nous convient pas). Par défaut, il essaie alors de créer les paquets de tous les modules externes que vous aurez décompactés. L'option <literal>--added-modules</literal> permet d'indiquer explicitement les modules externes à compiler. Pour en citer plusieurs, séparez-les par une virgule."
 
 #. Tag: screen
@@ -3534,8 +3534,8 @@ msgid "<primary><filename>vmlinuz</filename></primary>"
 msgstr "<primary><filename>vmlinuz</filename></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "A Debian kernel package installs the kernel image (<filename>vmlinuz-<replaceable>version</replaceable></filename>), its configuration (<filename>config-<replaceable>version</replaceable></filename>) and its symbols table (<filename>System.map-<replaceable>version</replaceable></filename>) in <filename>/boot/</filename>. The symbols table table helps developers understand the meaning of a kernel error message; without it, kernel “oopses” (an “oops” is the kernel equivalent in the kernel of a segmentation fault for user space programs, in other words messages generated following an invalid pointer dereference) only contain numeric memory addresses, which is useless information without the table mapping these addresses to symbols and function names. The modules are installed in the <filename>/lib/modules/<replaceable>version</replaceable>/</filename> directory."
+#, fuzzy, no-c-format
+msgid "A Debian kernel package installs the kernel image (<filename>vmlinuz-<replaceable>version</replaceable></filename>), its configuration (<filename>config-<replaceable>version</replaceable></filename>) and its symbols table (<filename>System.map-<replaceable>version</replaceable></filename>) in <filename>/boot/</filename>. The symbols table helps developers understand the meaning of a kernel error message; without it, kernel “oopses” (an “oops” is the kernel equivalent of a segmentation fault for user space programs, in other words messages generated following an invalid pointer dereference) only contain numeric memory addresses, which is useless information without the table mapping these addresses to symbols and function names. The modules are installed in the <filename>/lib/modules/<replaceable>version</replaceable>/</filename> directory."
 msgstr "Un paquet Debian de noyau installe l'image du noyau (<filename>vmlinuz-<replaceable>version</replaceable></filename>), sa configuration (<filename>config-<replaceable>version</replaceable></filename>) et sa table de symboles (<filename>System.map-<replaceable>version</replaceable></filename>) dans <filename>/boot/</filename>. La table de symboles permet aux développeurs de comprendre le sens d'un message d'erreur du noyau (en son absence, les «<foreignphrase>oops</foreignphrase>» — équivalents dans le noyau des erreurs de segmentation des programmes de l'espace utilisateur, ces messages sont générés suite à un déréférencement de pointeur invalide — n'indiqueraient que des adresses mémoire numériques, informations inutiles si on ne sait pas à quels symboles elles correspondent). Les modules sont installés dans le répertoire <filename>/lib/modules/<replaceable>version</replaceable>/</filename>."
 
 #. Tag: para
@@ -3596,3 +3596,23 @@ msgstr "L'emploi fréquent d'<command>apt-get</command> a tendance à faire oubl
 msgid "The configuration steps described in this chapter are basic and can lead both to a server system or a workstation, and it can be massively duplicated in semi-automated ways. However, it is not enough by itself to provide a fully configured system. A few pieces are still in need of configuration, starting with low-level programs known as the “Unix services”."
 msgstr "La configuration de base obtenue peut aussi bien devenir un serveur qu'un poste de bureautique et elle est reproductible en masse de façon semi-automatisée. Une machine en disposant n'est toutefois pas encore adaptée à un usage donné, c'est pourquoi l'administrateur doit à présent compléter la préparation. Pour cela il commencera par mettre en place les couches logicielles basses appelées «services Unix»."
 
+#~ msgid "Users, groups, accounts"
+#~ msgstr "Utilisateurs, groupes, comptes"
+
+#~ msgid "<emphasis>ALTERNATIVE</emphasis> the bépo layout"
+#~ msgstr "<emphasis>ALTERNATIVE</emphasis> La disposition Bépo"
+
+#~ msgid "The azerty keyboard layout, like its predecessor, the English qwerty keyboard, was not designed for ergonomic purposes, but more prosaically to circumvent mechanical limits affecting the reliability of typewriters in the nineteenth century. More recent reflections, initiated in particular by August Dvorak in the 1930s, led to the creation of more ergonomic keyboard layouts, especially the “dvorak” layout, particularly adapted to typing in English. More recently, the same principles have been adopted by a francophone community in order to create a layout suitable for computer use in French. The result is the “bépo” layout, named after the first four letters on the keyboard. This layout allows easy access to all of the French characters (but also to those used in most European languages) and the characters used in programming and system administration; their layout on the keyboard allows more fluid typing compared to the azerty and qwerty layouts."
+#~ msgstr "La disposition de clavier azerty, comme son ancêtre anglophone qwerty, n'a pas été conçue dans des buts d'ergonomie, mais héritée plus ou moins directement de contraintes mécaniques liées à la fiabilité des machines à écrire au XIXe siècle. Des réflexions plus récentes, initiées en particulier par August Dvorak dans les années 1930, ont amené à la création de dispositions de clavier plus ergonomiques, en particulier la disposition dite «dvorak» particulièrement adaptée à la frappe de l'anglais. Plus récemment, les mêmes principes ont été repris par une communauté francophone afin d'obtenir une disposition adaptée à une utilisation de l'informatique dans un cadre francophone. Le résultat est la disposition «bépo», nommée d'après les quatre premières lettres du clavier. Cette disposition permet un accès aisé à tous les caractères du français (mais aussi de la plupart des langues européennes) et aux caractères utilisés en programmation et administration système ; leur disposition sur le clavier apporte de plus une frappe du texte fluidifiée par rapport à l'azerty."
+
+#~ msgid "The bépo layout is available in Debian Squeeze, both for the console and the graphical environment. To install it, you must choose the option “France - Bépo, ergonomique, façon Dvorak” when running <command>dpkg-reconfigure keyboard-configuration</command> <ulink type=\"block\" url=\"http://bepo.fr/\" />"
+#~ msgstr "La disposition bépo est disponible dans Debian Squeeze à la fois pour la console et dans l'environnement graphique. Pour l'installer, il faudra choisir dans <command>dpkg-reconfigure keyboard-configuration</command> l'option «France - Bépo, ergonomique, façon Dvorak». <ulink type=\"block\" url=\"http://bepo.fr/\" />"
+
+#~ msgid "<primary><literal>bépo</literal></primary>"
+#~ msgstr "<primary><literal>bépo</literal></primary>"
+
+#~ msgid "<primary><literal>dvorak</literal></primary>"
+#~ msgstr "<primary><literal>dvorak</literal></primary>"
+
+#~ msgid "<primary><command>groupdel</command></primary>"
+#~ msgstr "<primary><command>groupdel</command></primary>"
