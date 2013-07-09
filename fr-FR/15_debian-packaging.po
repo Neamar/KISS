@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2012-05-06 15:16+0200\n"
+"PO-Revision-Date: 2013-07-09 16:26+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -34,7 +34,7 @@ msgid "Archive"
 msgstr "Archive"
 
 #. Tag: keyword
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Meta-package"
 msgstr "Méta-paquet"
 
@@ -94,7 +94,7 @@ msgid "The first thing to do is to change the package version number, so that th
 msgstr "La première modification à apporter est de changer le numéro de version du paquet pour distinguer les paquets recompilés des paquets originaux fournis par Debian. Supposons que la version actuelle soit <literal>3.0.24-6</literal>; nous pouvons créer une version <literal>3.0.24-6.falcot1</literal>, ce qui désigne clairement l'origine du paquet. De cette manière, la version du paquet est supérieure à celle fournie par Debian et le paquet s'installera facilement en tant que mise à jour du paquet original. Pour effectuer ce changement, il est préférable d'utiliser le programme <command>dch</command> (<foreignphrase>Debian CHangelog</foreignphrase>) du paquet <emphasis role=\"pkg\">devscripts</emphasis> en saisissant <command>dch -v 3.0.24-6.falcot1</command>. Cette commande démarre un éditeur de texte (<command>sensible-editor</command> — votre éditeur favori si vous l'avez précisé dans la variable d'environnement <varname>VISUAL</varname> ou <varname>EDITOR</varname>, un éditeur par défaut dans les autres cas) où l'on pourra documenter les différences apportées par cette recompilation. On peut constater que <command>dch</command> a bien modifié le fichier <filename>debian/changelog</filename>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "When a change in build options is required, changes are made to <filename>debian/rules</filename>, which drives the steps in the package build process. In the simplest cases, the lines concerning the initial configuration (<literal>./configure …</literal>) or the actual build (<literal>$(MAKE) …</literal> or <literal>make …</literal>) are easy to spot. If these commands are not explicitly called, they are probably a side effect of another explicit command, in which case please refer to their documentation to learn more about how to change the default behavior."
 msgstr "Si une modification des options de compilation s'avère nécessaire, il faudra modifier le fichier <filename>debian/rules</filename>, qui pilote les différentes étapes de la compilation du paquet. Dans les cas les plus simples, vous repérerez facilement les lignes concernant la configuration initiale (<literal>./configure ...</literal>) ou déclenchant la compilation (<literal>$(MAKE) ...</literal> ou <literal>make ...</literal>). En les adaptant convenablement, il est possible d'obtenir l'effet souhaité. Si ces commandes n'apparaissent pas directement, elles sont vraisemblablement appelées par une des commandes présentes. Il faudra se référer à leur documentation pour en apprendre plus sur la manière de changer le comportement par défaut."
 
@@ -215,7 +215,7 @@ msgid "On the other hand, a meta-package exists mostly as a collection of depend
 msgstr "Le méta-paquet existe en tant que collection de paquets par le biais de ses dépendances, que son installation installera donc toutes."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Both these kinds of packages can be created by the <command>equivs-control</command> and <command>equivs-build</command> commands (in the <emphasis role=\"pkg\">equivs</emphasis> package). The <command>equivs-control <replaceable>file</replaceable></command> command creates a Debian package header file that should be edited to contain the name of the expected package, its version number, the name of the maintainer, its dependencies, and its description. Other fields without a default value are optional and can be deleted. The <literal>Copyright</literal>, <literal>Changelog</literal>, <literal>Readme</literal> and <literal>Extra-Files</literal> fields are not standard fields in Debian packages; they only make sense within the scope of <command>equivs-build</command>, and they will not be kept in the headers of the generated package."
 msgstr "Pour créer ces deux types de paquets, on peut recourir aux programmes <command>equivs-control</command> et <command>equivs-build</command> (du paquet Debian <emphasis>equivs</emphasis>). La commande <command>equivs-control <replaceable>fichier</replaceable></command> crée un fichier contenant des en-têtes de paquet Debian qu'on modifiera pour indiquer le nom du paquet souhaité, son numéro de version, le nom du mainteneur, ses dépendances, sa description. Tous les autres champs dépourvus de valeur par défaut sont optionnels et peuvent être supprimés. Les champs <literal>Copyright</literal>, <literal>Changelog</literal>, <literal>Readme</literal> et <literal>Extra-Files</literal> ne sont pas standards pour un paquet Debian. Propres à <command>equivs-build</command>, ils disparaîtront des en-têtes réels du paquet généré."
 
@@ -489,7 +489,7 @@ msgid "<primary><filename>Makefile</filename></primary>"
 msgstr "<primary><filename>Makefile</filename></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "A <filename>Makefile</filename> file is a script used by the <command>make</command> program; it describes rules for how to build a set of files from each other in a tree of dependencies (for instance, a program can be build from a set of source files). The <filename>Makefile</filename> file describes these rules in the following format:"
 msgstr "Un fichier <filename>Makefile</filename> est un script détaillant au programme <command>make</command> les règles nécessaires pour reconstruire des fichiers issus d'un réseau de dépendances (un programme, fruit de la compilation de fichiers sources, en est un exemple). Le fichier <filename>Makefile</filename> contient la liste de ces règles en respectant le format suivant:"
 
@@ -522,7 +522,7 @@ msgid "The <filename>rules</filename> file usually contains a set of rules used 
 msgstr "Le fichier <filename>rules</filename> contient normalement un ensemble de règles employées pour configurer, compiler et installer le logiciel dans un sous-répertoire dédié (portant le nom du paquet binaire généré). Le contenu de ce sous-répertoire est ensuite intégré au paquet Debian comme s'il était la racine du système de fichiers. Dans le cas qui nous concerne, les fichiers seront installés dans le répertoire <filename>debian/falcot-data/usr/share/falcot-data/</filename> pour que les documents ainsi diffusés soient disponibles sous <filename>/usr/share/falcot-data/</filename> dans le paquet généré. Le fichier <filename>rules</filename> est de type <filename>Makefile</filename> avec quelques cibles standardisées (notamment <literal>clean</literal> et <literal>binary</literal>, respectivement pour nettoyer et produire le binaire)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Although this file is the heart of the process, it increasingly contains only the bare minimum for running a standard set of commands provided by the <command>debhelper</command> tool. Such is the case for files generated by <command>dh_make</command>. To install our files, we simply configure the behavior of the <command>dh_install</command> command by creating the following <filename>debian/falcot-data.install</filename> file:"
 msgstr "Bien que ce fichier soit au cœur du processus, il est fréquent qu'il ne contienne que le strict minimum pour lancer un ensemble standardisé de commandes qui sont fournies par le paquet <command>debhelper</command>. C'est le cas dans le fichier préparé par <command>dh_make</command>. Pour installer nos fichiers, nous allons simplement modifier le comportement de la commande <command>dh_install</command> en créant le fichier <filename>debian/falcot-data.install</filename>:"
 
@@ -992,7 +992,7 @@ msgid "Acceptance Process"
 msgstr "Processus d'acceptation"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Becoming a Debian developer is not a simple administrative matter. The process is made of several steps, and is as much an initiation as it is a selection process. In any case, it is formalized and well-documented, so anyone can track their progression on the website dedicated to the new member process. <ulink type=\"block\" url=\"http://nm.debian.org/\" />"
 msgstr "Ne devient pas développeur Debian qui veut. Différentes étapes jalonnent le processus d'acceptation, qui se veut autant un parcours initiatique qu'une sélection. Ce processus est formalisé et chacun peut suivre sa progression sur le site web des nouveaux mainteneurs (<literal>nm</literal> est l'abréviation de <foreignphrase>New Maintainer</foreignphrase>). <ulink type=\"block\" url=\"http://nm.debian.org/\" />"
 
@@ -1033,7 +1033,7 @@ msgid "Registration"
 msgstr "Inscription"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The first (real) step consists in finding a sponsor or advocate; this means an official developer willing to state that they believe that accepting <emphasis>X</emphasis> would be a good thing for Debian. This usually implies that the candidate has already been active within the community, and that their work has been appreciated. If the candidate is shy and their work is not publicly touted, they can try to convince a Debian developer to advocate them by showing their work in a private way."
 msgstr "La première étape (réelle) consiste à trouver un sponsor, ou avocat (<foreignphrase>advocate</foreignphrase>); c'est un développeur officiel qui affirme «je pense que l'acceptation de <emphasis>X</emphasis> serait une bonne chose pour Debian». Cela implique normalement que le candidat ait déjà été actif au sein de la communauté et que quelqu'un ait apprécié son travail. Si le candidat est timide et n'affiche pas en public le fruit de son travail, il peut tenter de convaincre individuellement un développeur Debian officiel de le soutenir en lui présentant ses travaux en privé."
 
@@ -1058,7 +1058,7 @@ msgid "Accepting the Principles"
 msgstr "Acceptation des principes"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "These administrative formalities are followed with philosophical considerations. The point is to make sure that the candidate understands and accepts the social contract and the principles behind Free Software. Joining Debian is only possible if one shares the values that unite the current developers, as expressed in the founding texts (and summarized in <xref linkend=\"the-debian-project\" />)."
 msgstr "Ces formalités administratives sont suivies de considérations philosophiques. Il est question de s'assurer que le candidat comprend le contrat social et les principes du logiciel libre. En effet, il n'est pas possible de rejoindre Debian si l'on ne partage pas les valeurs qui unissent les développeurs actuels, exprimées dans les deux textes fondateurs (et résumées au <xref linkend=\"the-debian-project\" />)."
 
@@ -1068,7 +1068,7 @@ msgid "In addition, each candidate wishing to join Debian ranks is expected to k
 msgstr "En plus de cela, il est souhaité que chaque personne qui rejoint les rangs de Debian connaisse déjà son fonctionnement et sache interagir comme il se doit pour résoudre les problèmes qu'elle rencontrera au fil du temps. Toutes ces informations sont généralement documentées dans les divers manuels ciblant les nouveaux mainteneurs, mais aussi et surtout dans le guide de référence du développeur Debian. Une lecture attentive de ce document devrait suffire pour répondre aux questions de l'examinateur. Si les réponses ne sont pas satisfaisantes, il le fera savoir et invitera le candidat à se documenter davantage avant de retenter sa chance. Si la documentation ne semble pas répondre à la question, c'est qu'un peu de pratique au sein de Debian permet de découvrir la réponse par soi-même (éventuellement en discutant avec d'autres développeurs Debian). Ce mécanisme entraîne les gens dans les rouages de Debian avant de pouvoir totalement prendre part au projet. C'est une politique volontaire, et les gens qui arrivent finalement à rejoindre le projet s'intègrent comme une pièce supplémentaire d'un puzzle extensible à l'infini."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "This step is usually known as the <emphasis>Philosophy &amp; Procedures</emphasis> (P&amp;P for short) in the lingo of the developers involved in the new member process. <indexterm><primary><emphasis>Philosophy &amp; Procedures</emphasis></primary></indexterm>"
 msgstr "Cette étape est couramment désignée par le terme de <foreignphrase>Philosophy &amp; Procedures</foreignphrase> (<foreignphrase>P&amp;P</foreignphrase>) dans le jargon des personnes impliquées dans le processus d'acceptation de nouveaux mainteneurs. <indexterm><primary><foreignphrase>Philosophy &amp; Procedures</foreignphrase></primary></indexterm>"
 
@@ -1099,7 +1099,7 @@ msgid "<primary>sponsoring</primary>"
 msgstr "<primary>parrainage</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Debian developers can “sponsor” packages prepared by someone else, meaning that they publish them in the official Debian repositories after having performed a careful review. This mechanism enables external persons, who have not yet gone through the new member process, to contribute occasionally to the project. At the same time, it ensures that all packages included in Debian have always been checked by an official member."
 msgstr "Le parrainage (ou <foreignphrase>sponsoring</foreignphrase>) est un mécanisme par lequel un développeur Debian ou un mainteneur Debian vérifie un paquet préparé par quelqu'un d'autre et y appose sa signature pour le publier dans les dépôts officiels. Il permet ainsi à des personnes externes au projet, n'ayant pas suivi la procédure des nouveaux mainteneurs, de contribuer ponctuellement au projet, tout en garantissant que les paquets réellement inclus dans Debian ont toujours subi une vérification par un membre officiel."
 

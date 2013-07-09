@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2012-05-03 16:22+0200\n"
+"PO-Revision-Date: 2013-07-09 16:21+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -19,12 +19,12 @@ msgid "Workstation"
 msgstr "Station de travail"
 
 #. Tag: keyword
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Graphical desktop"
 msgstr "Bureau graphique"
 
 #. Tag: keyword
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Office work"
 msgstr "Bureautique"
 
@@ -104,9 +104,15 @@ msgid "The keyboard configuration is currently set up in <filename>/etc/default/
 msgstr "En ce qui concerne la configuration du clavier, elle est désormais indiquée dans <filename>/etc/default/keyboard</filename>. Ce fichier contrôle la configuration de la console ainsi que celle de l'interface graphique et il est géré par le paquet <emphasis role=\"pkg\">keyboard-configuration</emphasis>. La configuration de la disposition du clavier est détaillée dans la <xref linkend=\"section.config-clavier\" />."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The <emphasis role=\"pkg\">xserver-xorg-core</emphasis> package provides a generic X server, as used by the 7.x versions of X.org. This server is modular and uses a set of independent drivers to handle the many different kinds of video cards. Installing <emphasis role=\"pkg\">xserver-xorg</emphasis> ensures that both the server and at least one video driver are installed."
-msgstr "Le paquet <emphasis role=\"pkg\">xserver-xorg</emphasis> fournit le serveur X générique exploité par les versions 7.x de X.org. Ce serveur modulaire dispose d'une collection de pilotes pour gérer les différents modèles de carte vidéo."
+msgstr ""
+"Le paquet <emphasis role=\"pkg\">xserver-xorg</emphasis> fournit le\n"
+"serveur X générique exploité par les versions 7.x de X.org. Ce serveur\n"
+"modulaire dispose d'une collection de pilotes pour gérer les\n"
+"différents modèles de carte vidéo.  L'installation de <emphasis\n"
+"role=\\\"pkg\\\">xserver-xorg</emphasis> assure que le serveur et au moins\n"
+"un pilote graphique sont installés."
 
 #. Tag: indexterm
 #, no-c-format
@@ -119,7 +125,7 @@ msgid "<primary><emphasis role=\"pkg\">xserver-xorg</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">xserver-xorg</emphasis></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Note that if the detected video card is not handled by any of the available drivers, X.org tries using the VESA and fbdev drivers. The former is a generic driver that should work everywhere, but with limited capabilities (fewer available resolutions, no hardware acceleration for games, and so on) while the latter works on top of the kernel's framebuffer device. The X server writes its messages to the <filename>/var/log/Xorg.0.log</filename> log file, which is where one would look to know what driver is currently in use. For example, the following snippet matches what the <literal>intel</literal> driver outputs when it is loaded:"
 msgstr "Signalons que si la carte vidéo détectée n'est reconnue par aucun des pilotes disponibles sur l'ordinateur, X.org tente alors d'employer le pilote VESA qui fonctionnera généralement partout mais avec des capacités moindres (résolutions limitées, pas d'accélération graphique pour les jeux, etc.). Pour savoir quel pilote est actuellement employé, le plus simple est d'analyser les messages émis par le serveur X dans le fichier <filename>/var/log/Xorg.0.log</filename>. On rencontrera par exemple l'extrait ci-dessous pour le pilote <literal>intel</literal>:"
 
@@ -158,7 +164,7 @@ msgid "<emphasis>EXTRA</emphasis> Proprietary drivers"
 msgstr "<emphasis>COMPLÉMENTS</emphasis> Pilote propriétaire"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Some video card makers (most notably nVidia) refuse to publish the hardware specifications that would be required to implement good free drivers. They do, however, provide proprietary drivers that allow using their hardware. This policy is nefarious, because even when the provided driver exists, it is usually not as polished as it should be; more importantly, it does not necessarily follow the X.org updates, which may prevent the latest available driver from loading correctly (or at all). We cannot condone this behavior, and we recommend you avoid these makers and favor more cooperative manufacturers."
 msgstr "Certains fabricants de cartes graphiques (notamment nVidia) refusent de donner les spécifications nécessaires à la création de bons pilotes libres. En revanche, ils fournissent des pilotes propriétaires qui permettent malgré tout d'employer leur matériel. Cette politique est à combattre car le pilote fourni — s'il existe — est souvent de moins bonne qualité, et surtout ne suit pas les mises à jour de X.org, ce qui peut vous empêcher d'utiliser la dernière version disponible. Nous ne pouvons que vous encourager à boycotter de tels fabricants et à vous tourner vers des concurrents plus coopératifs."
 
@@ -168,7 +174,7 @@ msgid "If you still end up with such a card, you will find the required packages
 msgstr "Si vous êtes malgré tout le malheureux propriétaire d'une de ces cartes, vous trouverez les paquets nécessaires dans la section <foreignphrase>non-free</foreignphrase>: <emphasis role=\"pkg\">nvidia-glx</emphasis> pour nVidia et <emphasis role=\"pkg\">fglrx-driver</emphasis> pour certains cartes de ATI. Dans les deux cas, il faut des modules noyau correspondants, leur compilation peut être automatisée par l'installation des paquets <emphasis role=\"pkg\">nvidia-kernel-dkms</emphasis> (pour nVidia) ou<emphasis role=\"pkg\">fglrx-modules-dkms</emphasis> (pour ATI)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The “nouveau” project aims to develop a free software driver for nVidia cards. As of <emphasis role=\"distribution\">Squeeze</emphasis>, its feature set does not match the proprietary driver. In the developers' defense, we should mention that the required information can only be gathered by reverse engineering, which makes things difficult. The free driver for ATI video cards, called “radeon”, is much better in that regard although it often requires a non-free firmware."
 msgstr "Il existe un projet de pilote libre pour les cartes nVidia, le projet «nouveau», mais il n'égale pas encore le pilote non-libre. Il faut dire qu'il est développé uniquement par ingénierie inverse ce qui ne facilite pas la tâche des programmeurs. Pour les cartes ATI, le pilote libre se nomme «radeon» et est de bien meilleure facture."
 
@@ -233,7 +239,7 @@ msgid "Choosing a Window Manager"
 msgstr "Choix d'un gestionnaire de fenêtres"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Since each graphical desktop provides its own window manager, choosing the former usually implies software selections from the latter. GNOME uses the <command>metacity</command> window manager, KDE uses <command>kwin</command>, and Xfce (which we present later) has <command>xfwm</command>. The Unix philosophy always allows using one's window manager of choice, but following the recommendations allows an administrator to best take advantage of the integration efforts led by each project."
 msgstr "Chaque bureau graphique étant accompagné de son propre gestionnaire de fenêtres, le choix du premier implique habituellement celui du second. GNOME emploie ainsi <command>metacity</command> tandis que KDE exploite <command>kwm</command> (<foreignphrase>KDE Window Manager</foreignphrase>). De même, XFce (présenté dans une prochaine section) dispose de <command>XFwm</command>. La philosophie Unix autorise toujours d'employer le gestionnaire de fenêtres de son choix, mais suivre les recommandations permet de profiter au mieux des efforts d'intégration effectués par chacun des projets."
 
@@ -243,9 +249,9 @@ msgid "<primary><command>metacity</command></primary>"
 msgstr "<primary><command>metacity</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary><command>kwin</command></primary>"
-msgstr "<primary><command>kwm</command></primary>"
+msgstr "<primary><command>kwin</command></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -268,7 +274,7 @@ msgid "True to the Unix tradition of doing one thing only but doing it well, the
 msgstr "Fidèle à la tradition Unix de ne faire qu'une chose mais de la faire bien, le gestionnaire de fenêtres affiche les cadres des fenêtres des différentes applications en cours de fonctionnement, ce qui inclut les bordures et la barre de titre. Il offre donc également les fonctionnalités de réduction, restauration, maximisation et masquage des fenêtres. La plupart des gestionnaires de fenêtres gèrent également un menu qui s'obtient en cliquant d'une certaine manière sur le bureau, et qui permet de quitter la session, de démarrer de nouvelles applications, et parfois de changer de gestionnaire de fenêtres."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Older computers may, however, have a hard time running heavyweight graphical desktop environments. In these cases, a lighter configuration should be used. \"Light\" (or small footprint) window managers include WindowMaker (in the <emphasis role=\"pkg\">wmaker</emphasis> package), Afterstep, fvwm, icewm, blackbox, fluxbox, or openbox. In these cases, the system should be configured so that the appropriate window manager gets precedence; the standard way is to change the <command>x-window-manager</command> alternative with the <command>update-alternatives --config x-window-manager</command> command."
 msgstr "Il se peut cependant que certains ordinateurs trop anciens peinent sous la lourdeur des bureaux graphiques; dans ce cas, une configuration plus légère peut être envisagée. Parmi les gestionnaires de fenêtres correspondant à cette description, citons WindowMaker (paquet <emphasis role=\"pkg\">wmaker</emphasis>), Afterstep, fvwm, icewm ou encore blackbox. Dans ce cas, il peut être intéressant d'indiquer au système quel gestionnaire de fenêtres privilégier. Pour cela, il est possible de modifier le choix <command>x-window-manager</command> grâce à la commande <command>update-alternatives --config x-window-manager</command>."
 
@@ -293,14 +299,14 @@ msgid "<primary>Icewm</primary>"
 msgstr "<primary>Icewm</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>Fluxbox</primary>"
-msgstr "<primary>Blackbox</primary>"
+msgstr "<primary>Fluxbox</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>Openbox</primary>"
-msgstr "<primary>Blackbox</primary>"
+msgstr "<primary>Openbox</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -498,7 +504,7 @@ msgid "GNOME is noteworthy for its efforts in usability and accessibility. Desig
 msgstr "GNOME est intéressant de par ses efforts dans le domaine de l'ergonomie et de l'accessibilité. Des professionnels du design ont en effet rédigé des normes pour aider les développeurs à créer des interfaces graphiques satisfaisantes. Le projet est en outre encouragé par des grands acteurs de l'informatique comme Intel, IBM, Oracle, Novell, sans oublier des distributions Linux. Enfin, un grand nombre de langages de programmation sont exploitables pour développer des applications s'intégrant à GNOME."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "It took quite some time for the GNOME project to build up this infrastructure, which can account for a seemingly less mature desktop than KDE. The usability and accessibility efforts, in particular, are recent, and the benefits have only started to show in the latest versions of the environment."
 msgstr "La réalisation de toute cette infrastructure a pris beaucoup de temps au projet GNOME, qui donne parfois l'impression d'une maturité moins aboutie que celle de KDE. L'ergonomie et l'accessibilité n'ont fait que récemment l'objet d'une attention particulière, et on n'en perçoit les bénéfices que depuis les dernières versions de l'environnement."
 
@@ -508,7 +514,7 @@ msgid "The GNOME desktop"
 msgstr "Le bureau GNOME"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "For administrators, GNOME seems to be better prepared for massive deployments. Application configuration is handled by GConf, a kind of registry that can be queried and edited with the <command>gconftool-2</command> command-line tool. The administrator can therefore change users' configuration with a simple script. The following website lists all information of interest to an administrator tasked to manage GNOME workstations: <ulink type=\"block\" url=\"http://library.gnome.org/admin/system-admin-guide/stable/\" /><ulink type=\"block\" url=\"http://library.gnome.org/admin/deployment-guide/\" />"
 msgstr "Pour les administrateurs, GNOME semble être mieux préparé à des déploiements massifs. La configuration des applications est gérée par GConf, une sorte de base de registres interrogeable et modifiable par l'utilitaire en ligne de commande <command>gconftool-2</command>. L'administrateur peut donc modifier la configuration des utilisateurs par un simple script. Le site web ci-dessous regroupe toutes les informations qui peuvent intéresser un administrateur en charge de stations employant GNOME: <ulink type=\"block\" url=\"http://library.gnome.org/admin/system-admin-guide/stable/\" /> <ulink type=\"block\" url=\"http://library.gnome.org/admin/deployment-guide/\" />"
 
@@ -603,7 +609,7 @@ msgid "<emphasis>COMMUNITY</emphasis> <emphasis>Popular</emphasis> packages"
 msgstr "<emphasis>COMMUNAUTÉ</emphasis> Les paquets <emphasis>populaires</emphasis>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Installing the <emphasis role=\"pkg\">popularity-contest</emphasis> package enables participation in an automated survey that informs the Debian project about the most popular packages. A script is run weekly by <command>cron</command> which sends (by HTTP or email) an anonymized list of the installed packages and the latest access date for the files they contain. This allows differentiating, among the installed packages, those that are actually used."
 msgstr "En installant le paquet Debian <emphasis role=\"pkg\">popularity-contest</emphasis> vous pouvez participer à un sondage (automatique) qui permet au projet Debian de recenser les paquets les plus populaires. Un script lancé hebdomadairement par <command>cron</command> envoie par HTTP ou par courrier électronique et de façon aussi anonyme que possible la liste des paquets installés ainsi que la date de dernier accès aux fichiers contenus dans chacun. Ce système permet de savoir quels paquets sont installés et lesquels sont réellement utilisés."
 
@@ -808,7 +814,7 @@ msgid "<emphasis>CULTURE</emphasis> Mozilla"
 msgstr "<emphasis>CULTURE</emphasis> Mozilla"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Netscape Navigator was the standard browser when the web started reaching the masses, but it was progressively left behind when Microsoft Internet Explorer came around. Faced with this failure, Netscape (the company) decided to “free” its source code, by releasing it under a free license, to give it a second life. This was the beginning of the Mozilla project. After many years of development, the results are more than satisfying: the Mozilla project brought forth an HTML rendering engine (called Gecko) that is among the most standard-compliant. This rendering engine is in particular used by the Mozilla Firefox browser, which is one of the most successful browsers, with a fast-growing user base."
 msgstr "Netscape Navigator était le navigateur emblématique du début du Web mais l'arrivée de Microsoft Internet Explorer l'a progressivement marginalisé. Face à cet échec, la société Netscape a décidé de «libérer» ses codes sources (en les publiant sous une licence libre) pour tenter de lui donner une seconde vie. C'était le début du projet Mozilla. Après de nombreuses années de développement, le résultat est plus que satisfaisant: le projet Mozilla est à l'origine d'un moteur de rendu HTML (nommé Gecko) parmi les plus compatibles avec les normes. Il est notamment employé par Mozilla Firefox, un navigateur connaissant un franc succès et une croissance importante du nombre de ses utilisateurs."
 
@@ -838,7 +844,7 @@ msgid "Tools for GTK+ on GNOME"
 msgstr "Outils pour GTK+ sur GNOME"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Anjuta (in the <emphasis role=\"pkg\">anjuta</emphasis> package) is a development environment optimized for creating GTK+ applications for GNOME. Glade (in the <emphasis role=\"pkg\">glade</emphasis> package) is an application designed to create GTK+ graphical interfaces for GNOME and save them in an XML file. These XML files can then be loaded by the <emphasis>libglade</emphasis> shared library, which can dynamically recreate the saved interfaces; such a feature can be interesting, for instance for plugins that require dialogs."
 msgstr "Anjuta (du paquet Debian éponyme) est un environnement de développement permettant de créer des applications GTK+ pour GNOME. Glade (du paquet Debian éponyme) est un logiciel capable de créer des interfaces utilisateur avec GTK+ sous GNOME et de les enregistrer dans un fichier (au format XML). La bibliothèque partagée <emphasis>libglade</emphasis> permet alors de recréer dynamiquement les interfaces sauvegardées — fonctionnalité intéressante par exemple pour des greffons (<foreignphrase>plug-ins</foreignphrase>) ayant besoin d'une boîte de dialogue."
 
@@ -943,7 +949,7 @@ msgid "<primary>messaging</primary><secondary>instant</secondary>"
 msgstr "<primary>messagerie</primary><secondary>instantanée</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "When setting up an internal instant messaging system for a company, the obvious choice is Jabber: its protocol is an open standard (XMPP), and there is no shortage of features. The messages can be encrypted, which can be a real bonus, and gateways can be set up between a Jabber server and other instant messaging networks such as ICQ, AIM, Yahoo, MSN, and so on."
 msgstr "Pour mettre en place une messagerie instantanée interne à l'entreprise, l'emploi de Jabber s'impose: son protocole est standardisé (XMPP), et il ne démérite pas en termes de fonctionnalités. D'autre part, la possibilité d'y chiffrer les échanges est appréciable. Enfin, il est possible de placer des passerelles entre un serveur Jabber et les autres réseaux de messagerie instantanée (ICQ, GAIM, Yahoo, MSN, etc.)."
 
@@ -963,9 +969,9 @@ msgid "<primary>ICQ</primary>"
 msgstr "<primary>ICQ</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>AIM</primary>"
-msgstr "<primary>GAIM</primary>"
+msgstr "<primary>AIM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -978,7 +984,7 @@ msgid "<emphasis>ALTERNATIVE</emphasis> Internet Relay Chat"
 msgstr "<emphasis>ALTERNATIVE</emphasis> <foreignphrase>Internet Relay Chat</foreignphrase>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "IRC can also be considered, instead of Jabber. This system is more centered around the concept of channels, the name of which starts with a hash sign <literal>#</literal>. Each channel is usually targeted at a specific topic and any number of people can join a channel to discuss it (but users can still have one-to-one private conversations if needed). The IRC protocol is older, and does not allow end-to-end encryption of the messages; it is still possible to encrypt the communications between the users and the server by tunneling the IRC protocol inside SSL."
 msgstr "L'IRC peut remplacer Jabber. Ce service gravite autour de la notion de canal (dont les noms débutent systématiquement par le signe dièse <literal>#</literal>): chaque canal regroupe un ensemble de personnes autour d'un thème ou d'une habitude de groupe. Au besoin, des personnes peuvent converser en privé. Son protocole, plus ancien, n'offre pas la possibilité de sécuriser les échanges de bout en bout — mais il est possible de chiffrer les communications entre les utilisateurs et le serveur en faisant circuler ce protocole à travers SSL."
 
@@ -1093,7 +1099,7 @@ msgid "<primary>Empathy</primary>"
 msgstr "<primary>Empathy</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "KDE provides Kopete (in the package of the same name)."
 msgstr "KDE dispose quant à lui de Kopete (paquet Debian éponyme)."
 
@@ -1143,7 +1149,7 @@ msgid "<emphasis>sharing</emphasis>: documentation manager to provide a single c
 msgstr "<emphasis>partage</emphasis>: gestionnaire de documentation permettant de centraliser les documentations pour un projet, mise à disposition de fichiers génériques, espace web dédié à chaque projet."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Since FusionForge is largely targeting development projects, it also integrates many tools such as CVS, Subversion, Git, Bazaar, Darcs, Mercurial and Arch for source control management or “configuration management” or “version control” — this process has many names. These programs keep a history of all the revisions of all tracked files (often source code files), with all the changes they go through, and they can merge modifications when several developers work simultaneously on the same part of a project."
 msgstr "À cela, s'ajoute l'intégration de nombreux systèmes de gestion de sources (CVS, Subversion, Git, Bazaar, Darcs, Mercurial, Arch), ou de gestion de configuration ou de suivi de versions — les appellations sont nombreuses. Ces programmes conservent un historique des différentes versions par lesquelles est passé chaque fichier (il s'agit fréquemment de codes sources de programmes), conservent une trace de chaque changement, et fusionnent les modifications apportées indépendamment par plusieurs développeurs lorsqu'ils travaillent en même temps sur la même partie d'un projet."
 
@@ -1346,7 +1352,7 @@ msgid "The user then needs to run <command>winecfg</command> and configure <file
 msgstr "Il reste ensuite à l'utilisateur à exécuter <command>winecfg</command> pour configurer l'usage de <filename>/windows/</filename> comme lecteur <literal>C:</literal> et à accepter les réglages par défaut. Il pourra ensuite exécuter les programmes Windows en exécutant simplement la commande <command>wine <replaceable>/windows/.../program.exe</replaceable></command>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Note that you should not rely on Wine (or similar solutions) without actually testing the particular software: only a real-use test will determine conclusively whether emulation is fully functional."
 msgstr "Avant de compter sur Wine ou des solutions similaires, il faut savoir que rien ne remplace le test réel d'une version d'un logiciel: lui seul assure un fonctionnement satisfaisant avec une solution d'émulation."
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2012-05-03 15:29+0200\n"
+"PO-Revision-Date: 2013-07-09 16:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: None\n"
 "Language: \n"
@@ -64,7 +64,7 @@ msgid "<primary>documentation</primary>"
 msgstr "<primary>documentation</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Before you can understand what is really going on when there is a problem, you need to know the theoretical role played by each program involved in the problem. To do this, the best reflex to have is consult their documentation; but since these documentats are many and widely dispersed, you should know all the places where they can be found."
 msgstr "Avant de pouvoir comprendre ce qui se passe réellement en cas de problème, il faut connaître le rôle théorique de chaque programme impliqué. Pour cela, rien de tel que de consulter leurs documentations; mais celles-ci étant multiples et dispersées, il convient de les connaître toutes."
 
@@ -391,9 +391,23 @@ msgid "In other cases, you will get very general errors, such as “Permission d
 msgstr "Dans d'autres cas, on aura simplement une erreur très générique comme «Permission non accordée»; il conviendra alors de vérifier les permissions des éléments en jeu (fichiers, identité des utilisateurs, groupes, etc.)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "If you do not know the address for the software's website, there are various means of getting it. First, check if there is a <literal>Homepage</literal> field in the package's meta-information (<command>apt-cache show <replaceable>package</replaceable></command>). Alternately, the package description may contain a link to the program's official website. If no URL is indicated, look at <filename>/usr/share/doc/<replaceable>package</replaceable>/copyright</filename>. The Debian maintainer generally indicates in this file where they got the program's source code, and this is likely to be the website that you need to find. If at this stage your search is still unfruitful, consult a free software directory, such as Freecode.com (formerly Freshmeat.net) or Framasoft, or search directly with a search engine, such as Google or Yahoo. <ulink type=\"block\" url=\"http://freecode.com/\" /> <ulink type=\"block\" url=\"http://framasoft.org/\" />"
-msgstr "Si vous ne connaissez pas l'adresse du site web du logiciel, il y a différents moyens de l'obtenir. Vérifiez en premier lieu si un champ <literal>Homepage</literal> n'est pas présent dans les méta-informations du paquet (<command>apt-cache show <replaceable>paquet</replaceable></command>). Alternativement, la description du paquet peut contenir un pointeur sur le site web officiel du logiciel. Si aucune URL n'y est indiquée, il convient alors d'examiner <filename>/usr/share/doc/<replaceable>paquet</replaceable>/copyright</filename>. Le mainteneur Debian y mentionne en effet l'endroit où il a récupéré le code source du programme, et il est probable qu'il s'agisse justement du site web en question. Si à ce stade votre recherche est toujours infructueuse, il faut consulter un annuaire de logiciels libres tel que Freshmeat ou Framasoft, ou encore directement effectuer une recherche sur un moteur comme Google ou Yahoo. <ulink type=\"block\" url=\"http://freshmeat.net/\" /> <ulink type=\"block\" url=\"http://framasoft.org/\" />"
+msgstr ""
+"Si vous ne connaissez pas l'adresse du site web du logiciel, il y a\n"
+"différents moyens de l'obtenir. Vérifiez en premier lieu si un champ\n"
+"<literal>Homepage</literal> n'est pas présent dans les\n"
+"méta-informations du paquet (<command>apt-cache show\n"
+"<replaceable>paquet</replaceable></command>). Alternativement, la\n"
+"description du paquet peut contenir un pointeur sur le site web\n"
+"officiel du logiciel. Si aucune URL n'y est indiquée, il convient\n"
+"alors d'examiner\n"
+"<filename>/usr/share/doc/<replaceable>paquet</replaceable>/copyright</filename>. Le\n"
+"mainteneur Debian y mentionne en effet l'endroit où il a récupéré le\n"
+"code source du programme, et il est probable qu'il s'agisse justement\n"
+"du site web en question. Si à ce stade votre recherche est toujours\n"
+"infructueuse, il faut consulter un annuaire de logiciels libres tel\n"
+"que Freecode (anciennement Freshmeat) ou Framasoft, ou encore directement effectuer une recherche sur un moteur comme Google ou Yahoo. <ulink type=\"block\" url=\"http://freecode.com/\" /> <ulink type=\"block\" url=\"http://framasoft.org/\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -401,9 +415,9 @@ msgid "<primary><filename>copyright</filename></primary>"
 msgstr "<primary><filename>copyright</filename></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary><foreignphrase>Freecode</foreignphrase></primary>"
-msgstr "<primary><foreignphrase>Freshmeat</foreignphrase></primary>"
+msgstr "<primary><foreignphrase>Freecode</foreignphrase></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -426,7 +440,7 @@ msgid "<primary><emphasis>HOWTO</emphasis></primary>"
 msgstr "<primary><foreignphrase>HOWTO</foreignphrase></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "A howto is a document that describes, in concrete terms and step by step, how to reach a predefined goal. The covered goals are relatively varied, but often technical in nature: for example, setting up IP Masquerading, configuring software RAID, installing a Samba server, etc. These documents often attempt to cover all of the potential problems likely to occur during the implementation of a given technology."
 msgstr "Un <foreignphrase>howto</foreignphrase> («comment faire») est une documentation décrivant concrètement, étape par étape, comment atteindre un but prédéfini. Les buts couverts sont relativement variés mais souvent techniques: mettre en place l'<foreignphrase>IP Masquerading</foreignphrase> (masquage d'IP), configurer le RAID logiciel, installer un serveur Samba, etc. Ces documents essaient souvent de couvrir l'ensemble des problématiques susceptibles de se produire dans la mise en œuvre d'une technologie donnée."
 
@@ -531,7 +545,7 @@ msgid "<primary>examples, location</primary>"
 msgstr "<primary>exemples, emplacement</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "All examples must be installed in the <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> directory. This may be a configuration file, program source code (an example of the use of a library), or a data conversion script that the administrator can use in certain cases (such as to initialize a database). If the example is specific to a particular architecture, it should be installed in <filename>/usr/lib/<replaceable>package</replaceable>/examples/</filename> and there should be a link pointing to that file in the <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> directory."
 msgstr "Tout exemple doit être installé dans le répertoire <filename>/usr/share/doc/<replaceable>paquet</replaceable>/examples/</filename>. Il peut s'agir d'un fichier de configuration, d'un code source de programme (exemple d'emploi d'une bibliothèque), ou d'un script de conversion de données que l'administrateur pourrait employer dans certains cas (comme pour initialiser une base de données). Si l'exemple est spécifique à une architecture, il convient de l'installer dans <filename>/usr/lib/<replaceable>paquet</replaceable>/examples/</filename> et de créer un lien pointant sur lui dans le répertoire <filename>/usr/share/doc/<replaceable>paquet</replaceable>/examples/</filename>"
 
@@ -704,17 +718,3 @@ msgstr "Si tous vos efforts pour résoudre un problème restent vains, il est po
 #, no-c-format
 msgid "The elements of this chapter are a means of effectively resolving issues that the following chapters may bring about. Use them as often as necessary!"
 msgstr "Les éléments du présent chapitre constituent un moyen de résoudre, efficacement, les embarras que les chapitres suivants pourraient susciter. Faites-y donc appel aussi souvent que nécessaire!"
-
-# Not used in English book
-#~ msgid "<emphasis>TIP</emphasis> Manual pages in non-English languages"
-#~ msgstr "<emphasis>ASTUCE</emphasis> Pages de manuel en français"
-
-# Not used in English book
-#~ msgid "Some translations are included in the <emphasis>manpages-<replaceable>lang</replaceable></emphasis> packages, where <replaceable>lang</replaceable> is a two-letter language code such as <literal>fr</literal> for French. Install it to be able to see more translated manual pages. This essentially includes manual pages that can not be associated with specific packages. The others are indeed provided directly with the relevant packages."
-#~ msgstr "Certaines traductions sont regroupées dans le paquet <emphasis>manpages-fr</emphasis>. Installez-le pour bénéficier de beaucoup plus de pages traduites! Il s'agit essentiellement de pages de manuel qui ne peuvent pas être associées à des paquets spécifiques. Les autres sont en effet fournies directement au sein des paquets concernés."
-
-#~ msgid "As always, remain critical of translations. They may contain errors, or not be up to date in relation to the original version in English. If in doubt, do not hesitate to compare a translated manual page with the English version, which you can view by running <command>LANG=C man <replaceable>manual-page</replaceable></command>."
-#~ msgstr "Comme toujours, il faut garder un œil critique sur les traductions: elles peuvent contenir des erreurs ou ne plus être à jour par rapport à la version originale en anglais. En cas de doute, n'hésitez pas à comparer avec la version anglaise, que vous pouvez consulter en exécutant <command>LANG=C man <replaceable>page-manuel</replaceable></command>."
-
-#~ msgid "<primary><emphasis>doc-linux-fr-html</emphasis></primary>"
-#~ msgstr "<primary><emphasis>doc-linux-fr-html</emphasis></primary>"

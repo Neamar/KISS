@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:18\n"
-"PO-Revision-Date: 2012-05-03 16:34+0200\n"
+"PO-Revision-Date: 2013-07-09 16:27+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -214,7 +214,7 @@ msgid "System Information: Memory, Disk Space, Identity"
 msgstr "Informations système: mémoire, espace disque, identité"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The <command>free</command> command displays information on memory; <command>df</command> (<emphasis>disk free</emphasis>) reports on the available disk space on each of the disks mounted in the filesystem. Its <literal>-h</literal> option (for <emphasis>human readable</emphasis>) converts the sizes into a more legible unit (usually mebibytes or gibibytes). In a similar fashion, the <command>free</command> command understands the <literal>-m</literal> and <literal>-g</literal> options, and displays its data either in mebibytes or in gibibytes, respectively."
 msgstr "La commande <command>free</command> affiche des informations sur l'usage de la mémoire vive, tandis que <command>df</command> (<foreignphrase>disk free</foreignphrase>) rapporte l'espace disponible sur les différents disques accessibles dans l'arborensce. On emploie fréquemment l'option <literal>-h</literal> de <command>df</command> (pour <foreignphrase>human readable</foreignphrase>) afin qu'il affiche les tailles avec une unité plus adaptée (généralement mégaoctets ou gigaoctets). De même, la commande <command>free</command> dispose de <literal>-m</literal> ou <literal>-g</literal> pour afficher les informations soit en mégaoctets soit en gigaoctets."
 
@@ -648,7 +648,7 @@ msgid "<primary>system, filesystem</primary>"
 msgstr "<primary>fichiers, système de</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Filesystems are one of the most prominent aspects of the kernel. Unix systems merge all the file stores into a single hierarchy, which allows users (and applications) to access data simply by knowing its location within that hierarchy."
 msgstr "Un des aspects les plus visibles du noyau est celui des systèmes de fichiers. Les systèmes Unix intègrent en effet les différentes méthodes de stockage de fichiers dans une arborescence unique, ce qui permet aux utilisateurs (et aux applications) de stocker ou retrouver des données simplement grâce à leur emplacement dans cette arborescence."
 
@@ -763,12 +763,12 @@ msgid "First of all, a process can clone itself (this is known as a <emphasis>fo
 msgstr "Tout d'abord, un processus peut se dupliquer (on parle de <foreignphrase>fork</foreignphrase>). Le noyau alloue alors une nouvelle zone de mémoire pour le deuxième processus, de contenu identique à celle du premier, et se retrouve simplement avec un processus supplémentaire à gérer. À ce moment précis, la seule différence entre les deux processus est leur <foreignphrase>pid</foreignphrase>. Par convention, le nouveau processus est appelé le fils, alors que celui dont le <foreignphrase>pid</foreignphrase> n'a pas changé est appelé le père."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Sometimes, the child process continues to lead its own life independently from its parent, with its own data copied from the parent process. In many cases, though, this child process executes another program. With a few exceptions, its memory is simply replaced by that of the new program, and execution of this new program begins. One of the very first actions of process number 1 thus is to duplicate itself (which means there are, for a tiny amount of time, two running copies of the same <command>init</command> process), but the child process is then replaced by the first system initialization script, usually <filename>/etc/init.d/rcS</filename>. This script, in turn, clones itself and runs several other programs. At some point, one process among <command>init</command>'s offspring starts a graphical interface for users to log in to (the actual sequence of events is described in more details in <xref linkend=\"sect.system-boot\" />)."
 msgstr "Il arrive que le processus fils reste tel quel et «vive sa vie», indépendamment de son père, avec ses propres données correspondant au programme initial. Mais le cas le plus fréquent est que ce fils exécute un autre programme; à de rares exceptions près, sa zone mémoire est alors simplement remplacée par le nouveau programme, dont l'exécution démarre. C'est ainsi qu'une des premières actions du processus n°1 est de se dupliquer (il existe donc temporairement deux processus correspondant au programme <command>init</command>); le processus fils ainsi créé se remplace alors par le premier script d'initialisation du système, <filename>/etc/init.d/rcS</filename>. Ce script va à son tour se dupliquer puis exécuter différents autres programmes, pour qu'arrive un moment dans la filiation où un processus déclenchera une interface graphique pour l'utilisateur (la séquence des événements est décrite avec plus de détails dans la <xref linkend=\"sect.system-boot\" />)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "When a process finishes the task for which it was started, it terminates. The kernel then recovers the memory assigned to this process, and stops giving it slices of running time. The parent process is told about its child process being terminated, which allows a process to wait for the completion of a task it delegated to a child process. This behavior is plainly visible in command-line interpreters (known as <emphasis>shells</emphasis>). When a command is typed into a shell, the prompt only comes back when the execution of the command is over. Most shells allow for running the command in the background, it is a simple matter of adding an <userinput>&amp;</userinput> to the end of the command. The prompt is displayed again right away, which can lead to problems if the command needs to display data of its own."
 msgstr "Lorsqu'un processus finit la tâche qui lui était dévolue, il se termine. Le noyau récupère alors la mémoire qui était affectée à ce processus, et cesse de lui distribuer des intervalles de temps d'exécution. Le processus père est informé de la destruction du fils: cela permet entre autres au père d'attendre la complétion d'une tâche sous-traitée. On retrouve ce mode de fonctionnement dans les interpréteurs de commandes (shells): lorsque l'on tape une commande dans un shell, on ne retrouve l'invite que lorsqu'elle s'est terminée. La plupart des shells permettent cependant de ne pas attendre la fin de l'exécution d'une commande: il suffit pour cela de faire suivre le nom du programme à exécuter par <userinput>&amp;</userinput>. On retrouve alors l'invite aussitôt, ce qui peut poser des problèmes si la commande a des données à afficher."
 
@@ -900,7 +900,7 @@ msgid "<primary>library (of functions)</primary>"
 msgstr "<primary>bibliothèque (de fonctions)</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Function libraries play a crucial role in a Unix-like operating system. They are not proper programs, since they cannot be executed on their own, but collections of code fragments that can be used by standard programs. Among the common libraries, you can find:"
 msgstr "Les bibliothèques de fonctions jouent un rôle crucial dans le fonctionnement d'un système d'exploitation Unix. Ce ne sont pas à proprement parler des programmes, puisqu'elles ne s'exécutent pas indépendamment, mais des collections de fragments de programmes qui peuvent être utilisés par des programmes classiques. Parmi les bibliothèques les plus courantes, citons par exemple:"
 
@@ -910,7 +910,7 @@ msgid "the standard C library (<emphasis>glibc</emphasis>), which contains basic
 msgstr "la bibliothèque C standard (<emphasis>glibc</emphasis>), qui contient des fonctions de base telles celles permettant d'ouvrir des fichiers ou des connexions réseau, mais aussi de faciliter les interactions avec le noyau;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "graphical toolkits, such as Gtk+ and Qt, allowing many programs to reuse the graphical objects they provide;"
 msgstr "les boîtes à outils graphiques (<foreignphrase>toolkits</foreignphrase>), Gtk+ et Qt, qui permettent à de nombreux programmes de réutiliser les objets graphiques qu'elles proposent;"
 
@@ -930,7 +930,7 @@ msgid "<emphasis>CULTURE</emphasis> The Unix Way: one thing at a time"
 msgstr "<emphasis>CULTURE</emphasis> La méthode Unix: une chose à la fois"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "One of the fundamental concepts that underlies the Unix family of operating systems is that each tool should only do one thing, and do it well; applications can then reuse these tools to build more advanced logic on top. This Way can be seen in many incarnations. Shell scripts may be the best example: they assemble complex sequences of very simple tools (such as <command>grep</command>, <command>wc</command>, <command>sort</command>, <command>uniq</command> and so on). Another implementation of this philosophy can be seen in code libraries: the <emphasis>libpng</emphasis> library allows reading and writing PNG images, with different options and in different ways, but it does only that; no question of including functions that display or edit images."
 msgstr "Un des concepts qui sous-tend le fonctionnement général des systèmes d'exploitation de la famille Unix est que chaque outil ne devrait faire qu'une chose, mais la faire bien, les applications pouvant alors réutiliser ces outils et construire une logique plus poussée par-dessus. Cela transparaît dans de nombreux domaines. Les scripts shell sont peut-être le meilleur exemple, qui assemblent en des séquences complexes des outils très simples (<command>grep</command>, <command>wc</command>, <command>sort</command>, <command>uniq</command>, etc.). Une autre mise en pratique de cette philosophie est visible dans les bibliothèques de code: la <emphasis>libpng</emphasis> permet de lire et d'écrire des images au format PNG, avec différentes options et de différentes manières, mais elle ne fait que cela; pas question pour elle de proposer des fonctions d'affichage ou d'édition."
 
@@ -938,9 +938,3 @@ msgstr "Un des concepts qui sous-tend le fonctionnement général des systèmes 
 #, no-c-format
 msgid "Moreover, these libraries are often referred to as “shared libraries”, since the kernel is able to only load them into memory once, even if several processes use the same library at the same time. This allows saving memory, when compared with the opposite (hypothetical) situation where the code for a library would be loaded as many times as there are processes using it."
 msgstr "De plus, ces bibliothèques sont souvent dites «partagées», parce que le noyau est capable de ne les charger qu'une fois en mémoire même si plusieurs processus y font appel. Si le code qu'elles contiennent était au contraire intégré dans les applications, il serait présent en mémoire autant de fois qu'il y a de processus qui l'utilisent."
-
-#~ msgid "<emphasis>VOCABULAIRE</emphasis> Bibliothèque ou librairie?"
-#~ msgstr "<emphasis>VOCABULAIRE</emphasis> Bibliothèque ou librairie?"
-
-#~ msgid "Ici encore, l'anglais nous joue des tours et déborde un peu sur le français. Le mot «bibliothèque» se traduit en anglais par <foreignphrase>library</foreignphrase>, un faux ami notoire; il arrive donc, malgré les récriminations des puristes, que l'on entende parler de «librairie de fonctions»."
-#~ msgstr "Ici encore, l'anglais nous joue des tours et déborde un peu sur le français. Le mot «bibliothèque» se traduit en anglais par <foreignphrase>library</foreignphrase>, un faux ami notoire; il arrive donc, malgré les récriminations des puristes, que l'on entende parler de «librairie de fonctions»."

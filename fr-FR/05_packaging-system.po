@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2012-05-05 22:35+0200\n"
+"PO-Revision-Date: 2013-07-09 15:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: None\n"
 "Language: \n"
@@ -52,7 +52,7 @@ msgid "As a Debian system administrator, you will routinely handle <filename>.de
 msgstr "En tant qu'administrateur de système Debian, vous allez régulièrement manipuler des paquets (fichiers <filename>.deb</filename>) car ils abritent des ensembles fonctionnels cohérents (applications, documentations...) dont ils facilitent l'installation et la maintenance. Mieux vaut donc savoir de quoi ils sont constitués et comment on les utilise."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the source code, as well as instructions for building binary packages."
 msgstr "Vous trouverez ci-après la description des structures et contenus des fichiers de paquets de type «binaire» puis «source». Les premiers sont les fichiers <filename>.deb</filename> directement utilisables par <command>dpkg</command> alors que les seconds contiennent les codes sources des programmes ainsi que les instructions pour créer les paquets binaires."
 
@@ -230,7 +230,7 @@ msgid "<filename>debian-binary</filename>. This is a text file which simply indi
 msgstr "<filename>debian-binary</filename>. Il s'agit d'un fichier texte ne renfermant que le numéro de version du format <filename>.deb</filename> employé (en 2011: version 2.0)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information. In it, package management tools find, among other things, the name and version of the package. Some of this meta-information allows them to determine if it is possible to install or uninstall it, for example according to the list of packages already on the machine."
 msgstr "<filename>control.tar.gz</filename>. Ce fichier d'archive rassemble les diverses méta-informations disponibles. Les outils de gestion des paquets y trouvent, entre autres, le nom et la version de l'ensemble abrité. Certaines de ces méta-informations leur permettent de déterminer s'il est ou non possible de l'installer ou de le désinstaller, par exemple en fonction de la liste des paquets déjà présents sur la machine."
 
@@ -382,7 +382,7 @@ msgid "<primary>package</primary><secondary>dependency</secondary>"
 msgstr "<primary>paquet</primary><secondary>dépendance</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the package to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
 msgstr "Les dépendances sont définies dans le champ <literal>Depends</literal> des en-têtes du paquet. Il s'agit d'une liste de conditions à remplir pour que le paquet fonctionne correctement, informations utilisées par des outils comme <command>apt</command> pour installer les versions des bibliothèques dont dépend le programme à installer. Pour chaque dépendance, il est possible de restreindre l'espace des versions qui satisfont la condition. Autrement dit, il est possible d'exprimer le fait que l'on a besoin du paquet <emphasis role=\"pkg\">libc6</emphasis> dans une version supérieure ou égale à «2.3.4» (cela s'écrit «<command>libc6 (&gt;= 2.3.4)</command>»). Les opérateurs de comparaison de versions sont les suivants:"
 
@@ -477,7 +477,7 @@ msgid "You should always install the “recommended” packages, unless you know
 msgstr "Il faut systématiquement installer les paquets «recommandés» sauf si vous savez précisément pourquoi vous n'en avez pas besoin. Inversement, il est inutile d'installer les paquets «suggérés» sauf si vous savez pourquoi vous en aurez besoin."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary><literal>Enhances</literal>, header field</primary>"
 msgstr "<primary><literal>Replaces</literal>, champ d'en-tête</primary>"
 
@@ -512,7 +512,7 @@ msgid "The <literal>Conflicts</literal> field indicates when a package cannot be
 msgstr "Le champ <literal>Conflicts</literal> permet d'indiquer qu'un paquet ne peut être installé en même temps qu'un autre. Les raisons les plus courantes sont les suivantes: les deux paquets incluent un fichier portant le même nom, fournissent le même service sur le même port TCP, ou gênent mutuellement leur bon fonctionnement."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<command>dpkg</command> will refuse to install a package if it triggers a conflict with an already installed package, except if the new package specifies that it will “replace” the installed package, in which case <command>dpkg</command> will choose to replace the old package with the new one. <command>apt-get</command> always follows your instructions: if you choose to install a new package, it will automatically offer to uninstall the package that poses a problem."
 msgstr "<command>dpkg</command> refusera d'installer un paquet s'il déclenche un conflit avec un autre paquet déjà présent, sauf si le nouveau paquet précise qu'il «remplace» le paquet installé — auquel cas <command>dpkg</command> choisira de remplacer l'ancien par le nouveau. <command>apt-get</command> suit toujours vos instructions: si vous choisissez d'installer le nouveau paquet, il proposera automatiquement de désinstaller le paquet qui pose problème."
 
@@ -784,7 +784,7 @@ msgid "The <filename>/var/lib/dpkg/status</filename> file contains a series of d
 msgstr "Le fichier <filename>/var/lib/dpkg/status</filename> contient une série de blocs d'informations (au format des fameux en-têtes de courriers électroniques, RFC 2822) décrivant le statut de chaque paquet. On y trouve également les informations contenues dans le fichier <filename>control</filename> des différents paquets installés."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "In general, the <filename>preinst</filename> script is executed prior to installation of the package, while the <filename>postinst</filename> follows it. Likewise, <filename>prerm</filename> is invoked before removal of a package and <filename>postrm</filename> afterwards. An update of a package is equivalent to removal of the previous version and installation of the new one. It is not possible to describe in detail all the possible scenarios here, but we will discuss the most common two: an installation/update and a removal."
 msgstr "D'une manière générale, le script <filename>preinst</filename> est exécuté préalablement à l'installation du paquet alors que le <filename>postinst</filename> la suit. De même, <filename>prerm</filename> est invoqué avant la suppression du paquet et <filename>postrm</filename> après. Une mise à jour d'un paquet est équivalente à en supprimer la version précédente puis à installer la nouvelle. Il n'est pas possible de détailler ici tous les scénarios d'actions réussies, mais évoquons quand même les deux plus courants: une installation/mise à jour et une suppression."
 
@@ -824,7 +824,7 @@ msgid "For an update, <command>dpkg</command> calls the <command>old-prerm upgra
 msgstr "En cas de mise à jour, <command>dpkg </command> appelle la commande <command>ancien-prerm upgrade <replaceable>nouvelle-version</replaceable></command>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Still for an update, <command>dpkg</command> then executes <command>new-preinst upgrade <replaceable>old-version</replaceable></command>; for a first installation, it executes <command>new-preinst install</command>. It may add the old version in the last parameter, if the package has already been installed and removed since (but not purged, the configuration files having been retained)."
 msgstr "Pour une mise à jour toujours, <command>dpkg</command> exécute alors <command>nouveau-preinst upgrade <replaceable>ancienne-version</replaceable></command>; pour une première installation, il exécute <command>nouveau-preinst install</command>. Il peut ajouter l'ancienne version en dernier paramètre si le paquet avait déjà été installé et supprimé entre-temps (mais non purgé, les fichiers de configuration ayant alors été conservés)."
 
@@ -935,7 +935,7 @@ msgid "<primary><command>debconf</command></primary>"
 msgstr "<primary><command>debconf</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<command>debconf</command> was created to resolve a recurring problem in Debian. All Debian packages unable to function without a minimum of configuration used to ask questions with calls to the <command>echo</command> and <command>read</command> commands in shell scripts such as <filename>postinst</filename> and similar scripts. But this also means that during a large installation or update the user must stay with their computer to respond to various questions that may arise at any time. These manual interactions have now been almost entirely dispensed with, thanks to the <command>debconf</command> tool."
 msgstr "<command>debconf</command> fut créé pour résoudre un problème récurrent chez Debian. Tous les paquets Debian incapables de fonctionner sans un minimum de configuration posaient des questions à l'utilisateur avec des appels à <command>echo</command> et <command>read</command> dans les scripts shell <filename>postinst</filename> et similaires. Mais cela impliquait également, lors d'une grosse installation ou mise à jour, de rester à côté de son ordinateur pour renseigner ces requêtes qui pouvaient se produire à tout moment. Ces interactions manuelles ont désormais presque totalement disparu au profit de l'outil <command>debconf</command>."
 
@@ -990,7 +990,7 @@ msgid "<emphasis>GOING FURTHER</emphasis> Avoiding the configuration file questi
 msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Éviter les questions sur les fichiers de configuration"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<command>dpkg</command> handles configuration file updates, but regularly interrupts these operations to ask for input from the administrator. This makes it less than enjoyable for those who wish to run updates in a non-interactive manner. This is why this program offers options that allow the system to respond automatically according to the same logic: <command>--force-confold</command> retains the old version of the file; <command>--force-confnew</command> will use the new version of the file (these choices are respected, even if the file has not been changed by the administrator, which only rarely has the desired effect). Adding the <command>--force-confdef</command> option tells <command>dpkg</command> to use the default option when a choice is offered (in other words, when the original configuration file has not been touched), and only uses <command>--force-confnew</command> or <command>--force-confold</command> for other cases."
 msgstr "<command>dpkg</command> gère la mise à jour des fichiers de configuration mais interrompt régulièrement ses opérations pour solliciter l'avis de l'administrateur. Cette caractéristique est relativement désagréable pour qui souhaite obtenir une mise à jour non interactive. C'est pourquoi ce programme propose des options permettant de répondre systématiquement selon la même logique: <command>--force-confold</command> conserve l'ancienne version du fichier; <command>--force-confnew</command> utilise la nouvelle version du fichier (ces choix sont respectés même si le fichier n'a pas été modifié par l'administrateur; ce n'est que rarement l'effet souhaité). Si de plus vous précisez <command>--force-confdef</command>, il fera le choix automatique quand c'est possible (c'est-à-dire lorsque le fichier de configuration original n'a pas été modifié) et ne se rabattra sur <command>--force-confnew</command> ou <command>--force-confold</command> que dans les autres cas."
 
@@ -1214,7 +1214,7 @@ msgid "Since Debian <emphasis role=\"distribution\">Squeeze</emphasis>, Debian d
 msgstr "Depuis Debian <emphasis role=\"distribution\">Squeeze</emphasis>, les développeurs Debian ont la possibilité d'opter pour des nouveaux formats qui corrigent de nombreuses limitations du format historique. Ainsi le format <literal>3.0 (quilt)</literal> permet d'avoir dans un même paquet source plusieurs archives amont: en plus de l'habituel <filename>.orig.tar.gz</filename>, on peut inclure des <filename>.orig-<replaceable>composant</replaceable>.tar.gz</filename> pour tenir compte des logiciels qui sont distribués en plusieurs composants en amont mais dont on souhaite ne faire qu'un paquet source. Ces archives peuvent également être compressées avec <command>bzip2</command> plutôt que <command>gzip</command> (<command>lzma</command> et <command>xz</command> sont supportés par <command>dpkg-source</command> mais pas acceptés au sein de l'archive officielle), d'où un gain d'espace disque et de ressources réseau. Enfin, le <foreignphrase>patch</foreignphrase> monolithique <filename>.diff.gz</filename> est remplacé par une archive <filename>.debian.tar.gz</filename> contenant les instructions de compilation et les modifications unitaires apportées par le mainteneur du paquet. Ces dernières sont enregistrées sous une forme compatible avec <command>quilt</command> — un outil facilitant la gestion d'une série de <foreignphrase>patchs</foreignphrase>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The <filename>.orig.tar.gz</filename> is an archive containing the source code as provided by the original developer. Debian package maintainers are asked to not modify this archive in order to be able to easily check the source and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
 msgstr "Le fichier <filename>.orig.tar.gz</filename> est une archive contenant les codes sources du programme tels qu'ils ont été fournis par son auteur. Il est demandé aux développeurs de ne pas modifier cette archive afin de pouvoir vérifier facilement la provenance et l'intégrité du fichier (par simple comparaison d'une somme de contrôle) et par respect pour la volonté de certains auteurs."
 
@@ -1923,12 +1923,12 @@ msgstr ""
 "<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "You will find that this process is extremely simple. You must know, however, that the package generated does not have any information on dependencies, since the dependencies in the two packaging formats don't have systematic correspondence. The administrator, thus, must manually ensure that the converted package will function correctly, and this is why Debian packages thus generated should be avoided as much as possible. Fortunately, Debian has the largest collection of software packages of all distributions, and it is likely that whatever you seek is already in there."
 msgstr "Vous constaterez que ce processus est extrêmement simple. Il faut cependant savoir que le paquet généré ne dispose d'aucune information de dépendances, puisque les dépendances des deux formats de paquetage n'ont pas de rapports systématiques. C'est donc à l'administrateur de s'assurer manuellement que le paquet converti fonctionnera correctement, et c'est pourquoi il faut éviter autant que possible les paquets Debian générés ainsi. Heureusement, Debian dispose de la plus grosse collection de paquets logiciels de toutes les distributions et il est probable que ce que vous cherchez y existe déjà."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program also handles other packaging formats, especially the one used by the Slackware distribution (it is made of a simple <filename>tar.gz</filename> archive)."
 msgstr "En consultant la page de manuel de la commande <command>alien</command>, vous constaterez également que ce programme gère d'autres formats de paquetages, notamment celui de la distribution Slackware (il s'agit simplement d'une archive <filename>.tar.gz</filename>)."
 
@@ -1936,6 +1936,3 @@ msgstr "En consultant la page de manuel de la commande <command>alien</command>,
 #, no-c-format
 msgid "The stability of the software deployed using the <command>dpkg</command> tool contributes to Debian's fame. The APT suite of tools, described in the following chapter, preserves this advantage, while relieving the administrator from managing the status of packages, a necessary but difficult task."
 msgstr "La stabilité des logiciels déployés grâce à l'outil <command>dpkg</command> contribue à la célébrité de Debian. La suite des outils APT, décrite dans le chapitre suivant, préserve cet avantage tout en soulageant l'administrateur de la gestion de l'état des paquets, nécessaire mais difficile."
-
-#~ msgid "<primary><literal>Enhances</literal>Field header</primary>"
-#~ msgstr "<primary><literal>Enhances</literal>, champ d'en-tête</primary>"
