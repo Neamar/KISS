@@ -5,15 +5,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2013-06-22 01:48+0200\n"
-"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
+"PO-Revision-Date: 2013-07-17 03:11+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 1.6-dev\n"
 
 #. Tag: keyword
@@ -1267,22 +1267,22 @@ msgstr ""
 "um elemento de configuração definido em um dos primeiros."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "This structure brings some flexibility to the machine administrator and to the package maintainers. Indeed, the administrator can easily modify the configuration of the software by adding a ready-made file in the directory in question without having to change an existing file. Package maintainers use the same approach when they need to adapt the configuration of another software to ensure that it perfectly co-exists with theirs. However, the Debian policy explicitly forbids modifying configuration files of other packages — only users are allowed to do this. Remember that during a package upgrade, the user gets to choose the version of the configuration file that should be kept when a modification has been detected. Any external modification of the file would trigger that request, which would disturb the administrator, who is sure not to have changed anything."
 msgstr ""
 "Esta estrutura trás alguma flexibilidade ao administrador da máquina e aos "
 "mantenedores de pacotes. Na verdade, o administrador pode modificar "
 "facilmente a configuração do software ao adicionar um arquivo pronto para "
 "usar no diretório em questão sem ter que alterar um arquivo existente. "
-"mantenedores de pacotes usam a mesma abordagem quandoprecisam adaptar a "
+"mantenedores de pacotes usam a mesma abordagem quando precisam adaptar a "
 "configuração de outro software para garantir que ele coexista perfeitamente "
-"com o seu. Entretanto, a política Debian explicitamente proibe a modificação "
+"com o seu. Entretanto, a política Debian explicitamente proíbe a modificação "
 "de arquivos de configuração de outros pacotes — apenas usuários tem "
 "autorização para isto. Lembre que durante uma atualização de pacote, o "
-"usuário escolhe a versão do arquivo de configuração que deve ser mantido "
+"usuário escolhe a versão do arquivo de configuração que deve ser mantida "
 "quando uma modificação é detectada. Qualquer modificação externa do arquivo "
-"irá \"trigger that request\", que irá perturbar o administrador, que está "
-"certo de não haver mudado nada."
+"irá ativar este requisito, que irá perturbar o administrador, que está certo "
+"de não haver mudado nada."
 
 #. Tag: para
 #, no-c-format
@@ -1600,7 +1600,7 @@ msgstr ""
 "do sistema."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Even if you will occasionally encounter problems while mixing packages from different distributions, <command>aptitude</command> manages such coexistence very well and limits risks very effectively. The best way to proceed is to list all distributions used in <filename>/etc/apt/sources.list</filename> (some people always put the three distributions, but remember that <emphasis role=\"distribution\">Unstable</emphasis> is reserved for experienced users) and to define your reference distribution with the <literal>APT::Default-Release</literal> parameter (see <xref linkend=\"section.apt-mise-a-jour\" />)."
 msgstr ""
 "Mesmo se você ocasionalmente encontrar problemas enquanto estiver misturando "
@@ -1669,13 +1669,13 @@ msgstr ""
 "prioridades de todas as versões disponíveis de um dado pacote."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Let's assume that you have installed version 1 of a first package from <emphasis role=\"distribution\">Stable</emphasis> and that version 2 and 3 are available respectively in <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis>. The installed version has a priority of 100 but the version available in <emphasis role=\"distribution\">Stable</emphasis> (the very same) has a priority of 990 (because it is part of the target release). Packages in <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> have a priority of 500 (the default priority of a non-installed version). The winner is thus version 1 with a priority of 990. The package “stays in <emphasis role=\"distribution\">Stable</emphasis>”."
 msgstr ""
 "Suponha que você instalou a versão 1 de um primeiro pacote da <emphasis "
 "role=\"distribution\">Stable</emphasis> e que versão 2 e 3 estão "
-"respectivamente disponíveis em <emphasis "
-"role=\"distribution\">Testing</emphasis> e <emphasis "
+"respectivamente disponíveis na <emphasis "
+"role=\"distribution\">Testing</emphasis> e na <emphasis "
 "role=\"distribution\">Unstable</emphasis>. A versão instalada tem uma "
 "prioridade de 100 mas a versão disponível na <emphasis "
 "role=\"distribution\">Stable</emphasis> (exatamente a mesma) tem uma "
@@ -1690,6 +1690,19 @@ msgstr ""
 #, no-c-format
 msgid "Let's take the example of another package whose version 2 has been installed from <emphasis role=\"distribution\">Testing</emphasis>. Version 1 is available in <emphasis role=\"distribution\">Stable</emphasis> and version 3 in <emphasis role=\"distribution\">Unstable</emphasis>. Version 1 (of priority 990 — thus lower than 1000) is discarded because it is lower than the installed version. This only leaves version 2 and 3, both of priority 500. Faced with this alternative, APT selects the newest version, the one from <emphasis role=\"distribution\">Unstable</emphasis>.If you don't want a package installed from <emphasis role=\"distribution\">Testing</emphasis> to migrate to <emphasis role=\"distribution\">Unstable</emphasis>, you have to assign a priority lower than 500 (490 for example) to packages coming from <emphasis role=\"distribution\">Unstable</emphasis>. You can modify <filename>/etc/apt/preferences</filename> to this effect:"
 msgstr ""
+"Tomemos o exemplo de outro pacote cuja versão 2 foi instalada da <emphasis "
+"role=\"distribution\">Testing</emphasis>. A versão 1 está disponível na "
+"<emphasis role=\"distribution\">Stable</emphasis> e a versão 3 na <emphasis "
+"role=\"distribution\">Unstable</emphasis>. A versão 1 (de prioridade 990 — "
+"logo, menor que 1000) é descartada pois é menor que a versão instalada. "
+"Sobram apenas as versões 2 e 3, ambas de prioridade 500. Perante esta "
+"alternativa, o APT seleciona a versão mais nova, aquela da <emphasis "
+"role=\"distribution\">Unstable</emphasis>. Se você não quer que um pacote "
+"instalado da <emphasis role=\"distribution\">Testing</emphasis> migre para a "
+"<emphasis role=\"distribution\">Unstable</emphasis>, você terá que atribuir "
+"uma prioridade menor que 500 (490 por exemplo) para pacotes vindo da "
+"<emphasis role=\"distribution\">Unstable</emphasis>. Você pode modificar o "
+"<filename>/etc/apt/preferences</filename> para obter este efeito:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1761,16 +1774,46 @@ msgstr ""
 #, no-c-format
 msgid "In the case of APT, the reference <filename>Packages</filename> files are those located on Debian mirrors. That said, it would be very ineffective to go through the network for every search that we might want to do in the database of available packages. That is why APT stores a copy of those files (in <filename>/var/lib/apt/lists/</filename>) and searches are done within those local files. Similarly, <filename>/var/cache/apt/archives/</filename> contains a cache of already downloaded packages to avoid downloading them again if you need to reinstall them after a removal."
 msgstr ""
+"No caso do APT, os arquivos <filename>Packages</filename> de referência são "
+"localizados nos espelhos Debian. Ou seja, será bastante ineficaz passar pela "
+"rede a cada busca que quisermos fazer no banco de dados de pacotes "
+"disponíveis. É por isto que o APT armazena uma cópia destes arquivos (em "
+"<filename>/var/lib/apt/lists/</filename>) e buscas são feitas neles. "
+"Similarmente, <filename>/var/cache/apt/archives/</filename> contém um cache "
+"de pacotes já baixados para evitar baixá-los de novo se você precisar deles "
+"depois de uma remoção."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>apt-cache</command> command can do keyword-based package searches with <command>apt-cache search <replaceable>keyword</replaceable></command>. It can also display the headers of the package's available versions with <command>apt-cache show <replaceable>package</replaceable></command>. This command provides the package's description, its dependencies, the name of its maintainer, etc. Note that <command>aptitude search</command> and <command>aptitude show</command> work in the same way. <indexterm><primary><command>apt-cache show</command></primary></indexterm><indexterm><primary><command>apt-cache search</command></primary></indexterm><indexterm><primary><command>aptitude show</command></primary></indexterm><indexterm><primary><command>aptitude search</command></primary></indexterm>"
 msgstr ""
+"O comando <command>apt-cache</command> pode buscar pacotes baseado em "
+"palavras-chave com <command>apt-cache search <replaceable>palavra-"
+"chave</replaceable></command>. Também pode mostrar os cabeçalhos das versões "
+"disponíveis dos pacotes com <command>apt-cache show "
+"<replaceable>pacote</replaceable></command>. Este comando fornece a "
+"descrição do pacote, suas dependências, o nome de seu mantenedor, etc. "
+"Observe que <command>aptitude search</command> e <command>aptitude "
+"show</command> funcionam do mesmo jeito. <indexterm><primary><command>apt-"
+"cache show</command></primary></indexterm><indexterm><primary><command>apt-"
+"cache "
+"search</command></primary></indexterm><indexterm><primary><command>aptitude "
+"show</command></primary></indexterm><indexterm><primary><command>aptitude "
+"search</command></primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Some features are more rarely used. For instance, <command>apt-cache policy</command> displays the priorities of package sources as well as those of individual packages. Another example is <command>apt-cache dumpavail</command> which displays the headers of all available versions of all packages. <command>apt-cache pkgnames</command> displays the list of all the packages which appear at least once in the cache.<indexterm><primary><command>apt-cache policy</command></primary></indexterm><indexterm><primary><command>apt-cache dumpavail</command></primary></indexterm>"
 msgstr ""
+"Algumas funcionalidades são raramente usadas. Por exemplo, <command>apt-"
+"cache policy</command> mostra as prioridades das fontes de pacotes assim "
+"como de pacotes individuais. Outro exemplo é <command>apt-cache "
+"dumpavail</command> que mostra os cabeçalhos de todas as versões disponíveis "
+"de todos os pacotes. <command>apt-cache pkgnames</command> mostra a lista "
+"de todos os pacotes que aparecem pelo menos uma vez no "
+"cache.<indexterm><primary><command>apt-cache "
+"policy</command></primary></indexterm><indexterm><primary><command>apt-cache "
+"dumpavail</command></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -1808,6 +1851,13 @@ msgstr "<command>aptitude</command>"
 #, no-c-format
 msgid "<command>aptitude</command> is an interactive program that can be used in semi-graphical mode on the console. You can browse the list of installed and available packages, look up all the available information, and select packages to install or remove. The program is designed specifically to be used by administrators, so that its default behaviors are much more intelligent than <command>apt-get</command>'s, and its interface much easier to understand."
 msgstr ""
+"<command>aptitude</command> é um programa interativo que pode ser usado em "
+"modo semi-gráfico no console. Você pode navegar a lista de pacotes "
+"disponíveis e instalados, buscar em todas as informações disponíveis e "
+"selecionar pacotes para instalar ou remover. O programa é projetado "
+"especificamente para ser usado pelos administradores, de forma que seu "
+"comportamento padrão seja muito mais inteligente que o do <command>apt-"
+"get</command> e sua interface muito mais fácil de entender."
 
 #. Tag: title
 #, no-c-format
@@ -1818,6 +1868,30 @@ msgstr "O gerenciador de pacotes <command>aptitude</command>"
 #, no-c-format
 msgid "When it starts, <command>aptitude</command> shows a list of packages sorted by state (installed, non-installed, or installed but not available on the mirrors — other sections display tasks, virtual packages, and new packages that appeared recently on mirrors). To facilitate thematic browsing, other views are available. In all cases, <command>aptitude</command> displays a list combining categories and packages on the screen. Categories are organized through a tree structure, whose branches can respectively be unfolded or closed with the <keycombo><keycap>Enter</keycap></keycombo>, <keycombo><keycap>[</keycap></keycombo> and <keycombo><keycap>]</keycap></keycombo> keys. <keycombo><keycap>+</keycap></keycombo> should be used to mark a package for installation, <keycombo><keycap>-</keycap></keycombo> to mark it for removal and <keycombo><keycap>_</keycap></keycombo> to purge it (note than these keys can also be used for categories, in which case the corresponding actions will be applied to all the packages of the category). <keycombo><keycap>u</keycap></keycombo> updates the lists of available packages and <keycombo action=\"simul\"><keycap>Shift</keycap><keycap>u</keycap></keycombo> prepares a global system upgrade. <keycombo><keycap>g</keycap></keycombo> switches to a summary view of the requested changes (and typing <keycombo><keycap>g</keycap></keycombo> again will apply the changes), and <keycombo><keycap>q</keycap></keycombo> quits the current view. If you are in the initial view, this will effectively close <command>aptitude</command>."
 msgstr ""
+"Quando o <command>aptitude</command> começa, ele mostra uma lista de pacotes "
+"ordenada por estado (instalado, não-instalado ou instalado mas não "
+"disponível nos espelhos — outras seções mostram tarefas, pacotes virtuais e "
+"novos pacotes que apareceram recentemente nos espelhos). Para facilitar a "
+"navegação temática, outras visões estão disponíveis. Em todos os casos, o "
+"<command>aptitude</command> mostra uma lista combinando categorias e pacotes "
+"na tela. Categorias são organizadas através de uma estrutura de árvore, "
+"cujos ramos podem respectivamente ser expandidos ou fechados com as teclas "
+"<keycombo><keycap>Enter</keycap></keycombo>, "
+"<keycombo><keycap>[</keycap></keycombo> ou "
+"<keycombo><keycap>]</keycap></keycombo>. "
+"<keycombo><keycap>+</keycap></keycombo> marca um pacote para instalação, "
+"<keycombo><keycap>-</keycap></keycombo> marca para remoção e "
+"<keycombo><keycap>_</keycap></keycombo> para expurgo (observe que estas "
+"teclas também podem ser usadas para categorias, e neste caso as ações "
+"correspondentes serão para todos os pacotes da categoria). "
+"<keycombo><keycap>u</keycap></keycombo> atualiza (update) as listas de "
+"pacotes disponíveis e <keycombo "
+"action=\"simul\"><keycap>Shift</keycap><keycap>u</keycap></keycombo> prepara "
+"uma atualização de sistema global. <keycombo><keycap>g</keycap></keycombo> "
+"alterna para uma visão resumida das mudanças necessárias (e digitar "
+"<keycombo><keycap>g</keycap></keycombo> de novo vai realizar as mudanças), e "
+"<keycombo><keycap>q</keycap></keycombo> (quit) sai da visão atual. Se você "
+"já está na visão inicial, isto fecha o <command>aptitude</command>."
 
 #. Tag: title
 #, no-c-format
@@ -1828,11 +1902,25 @@ msgstr "<emphasis>DOCUMENTAÇÃO</emphasis> <command>aptitude</command>"
 #, no-c-format
 msgid "This section does not cover the finer details of using <command>aptitude</command>, it rather focuses on giving you a survival kit to use it. <command>aptitude</command> is rather well documented and we advise you to use its complete manual available in the <emphasis role=\"pkg\">aptitude-doc-en</emphasis> package. <ulink type=\"block\" url=\"file:///usr/share/doc/aptitude/html/en/index.html\" />"
 msgstr ""
+"Esta seção não cobre os detalhes mais sutis do uso do "
+"<command>aptitude</command>, ao invés disto ela se concentra em dar-lhe um "
+"kit de sobrevivência para usá-lo. <command>aptitude</command> é bastante bem "
+"documentado e aconselhamos que você use seu manual completo disponível no "
+"pacote <emphasis role=\"pkg\">aptitude-doc-en</emphasis>. <ulink type=\"block\" "
+"url=\"file:///usr/share/doc/aptitude/html/en/index.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "To search for a package, you can type <keycombo><keycap>/</keycap></keycombo> followed by a search pattern. This pattern matches the name of the package, but can also be applied to the description (if preceded by <literal>~d</literal>), to the section (with <literal>~s</literal>) or to other characteristics detailed in the documentation. The same patterns can filter the list of displayed packages: type the <keycombo><keycap>l</keycap></keycombo> key (as in <foreignphrase>limit</foreignphrase>) and enter the pattern."
 msgstr ""
+"Para buscar por um pacote, você pode digitar "
+"<keycombo><keycap>/</keycap></keycombo> seguido pelo padrão de busca. Este "
+"padrão pode coincidir com o nome do pacote, mas também pode ser aplicado à "
+"descrição (se precedido por <literal>~d</literal>), à seção (com "
+"<literal>~s</literal>) ou a outras características detalhadas na "
+"documentação. Os mesmos padrões podem filtrar a lista de pacotes exibidos: "
+"digite a tecla <keycombo><keycap>l</keycap></keycombo> (de "
+"<foreignphrase>limit</foreignphrase>) e digite o padrão."
 
 #. Tag: title
 #, no-c-format
@@ -1843,11 +1931,39 @@ msgstr "Rastreando Pacotes Instalados Automaticamente"
 #, no-c-format
 msgid "One of the essential functionalities of <command>aptitude</command> (which has also been integrated to <command>apt-get</command> since <emphasis role=\"distribution\">Lenny</emphasis>) is the tracking of packages installed only through dependencies. These packages are called “automatic” and are tagged with an “A” in the list of packages — they often include libraries for instance. When a package is removed, the corresponding automatic packages are also selected for removal unless another “manually installed” package depends on them. It is possible to mark a package as automatic (with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>) or to remove the mark (<keycombo><keycap>m</keycap></keycombo> key). When maintaining a system with <command>aptitude</command>, it is a good habit to mark as automatic any package that you don't need directly so that they are automatically removed when they aren't necessary anymore. You can either navigate the list of installed packages and play with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>, or apply the flag to entire sections (for example the <literal>libs</literal> section). This habit can help you to keep your system tidy and offers a simple way to visualize the packages in use on a machine, without all the libraries and dependencies that you don't really care about. The related pattern that can be used with <keycombo><keycap>l</keycap></keycombo> (to activate the filter mode) is <literal>~i!~M</literal>. It specifies that you only want to see installed packages (<literal>~i</literal>) not marked as automatic (<literal>!~M</literal>)."
 msgstr ""
+"Uma das funcionalidades essenciais do <command>aptitude</command> (que "
+"também foi integrada ao <command>apt-get</command> desde a <emphasis "
+"role=\"distribution\">Lenny</emphasis>) é o rastreio de pacotes instalados "
+"apenas através de dependências. Estes pacotes são chamados \"automáticos\" e "
+"são marcados com um \"A\" na lista de pacotes — Eles frequentemente incluem "
+"bibliotecas \"for instance\". Quando um pacote é removido, os pacotes "
+"automáticos correspondentes são também selecionados para remoção a menos que "
+"outro pacote \"manualmente instalado\" dependa dele. É possível marcar um "
+"pacote como automático (com <keycombo action=\"simul\"><keycap>Shift</keycap> "
+"<keycap>m</keycap></keycombo>) ou remover a marcação (tecla "
+"<keycombo><keycap>m</keycap></keycombo>). Quando mantendo um sistema com "
+"<command>aptitude</command>, é um bom hábito marcar como automático qualquer "
+"pacote que você não precise diretamente de forma que eles sejam removidos "
+"automáticamente quando não forem mais necessários. Você pode tanto navegar "
+"na lista de pacotes instalados e usar <keycombo "
+"action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>, ou "
+"aplicar a opção para seções inteiras (por exemplo a seção "
+"<literal>libs</literal>). Este hábito pode ajudar você a manter seu sistema "
+"organizado e oferecer uma forma simples de visualizar os pacotes em uso em "
+"uma máquina, sem todas as bibliotecas e dependências que você não cuida. O "
+"padrão relacionado que pode ser usado com "
+"<keycombo><keycap>l</keycap></keycombo> (para ativar o modo filtro) é "
+"<literal>~i!~M</literal>. Ele especifica que você apenas quer ver os pacotes "
+"instalados (<literal>~i</literal>) e não marcados como automáticos "
+"(<literal>!~M</literal>)."
 
 #. Tag: para
 #, no-c-format
 msgid "People might want to know why an automatically installed package is present on the system. To get this information from the command-line, you can use <command>aptitude why <replaceable>package</replaceable></command>:"
 msgstr ""
+"ALguém pode querer saber porque (\"why\") um pacote foi automaticamente "
+"instalado no sistema. Para obter esta informação na linha de comando, você "
+"pode usar <command>aptitude why <replaceable>pacote</replaceable></command>:"
 
 #. Tag: screen
 #, no-c-format
@@ -1856,6 +1972,12 @@ msgid "<computeroutput>$ </computeroutput><userinput> aptitude why python-debian
 "i A apt-xapian-index Depends    python-debian (&gt;= 0.1.15)</computeroutput>\n"
 "      "
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput> aptitude why python-"
+"debian</userinput>\n"
+"<computeroutput>i   aptitude         Recomenda apt-xapian-index         \n"
+"i A apt-xapian-index Depende    python-debian (&gt;= "
+"0.1.15)</computeroutput>\n"
+"      "
 
 #. Tag: indexterm
 #, no-c-format
@@ -1873,11 +1995,23 @@ msgstr ""
 #, no-c-format
 msgid "Some of the advantages that <command>aptitude</command> historically had over <command>apt-get</command> have recently disappeared. For instance, since the release of <emphasis role=\"distribution\">Lenny</emphasis>, <command>apt-get</command> memorizes the packages that have been installed only to satisfy dependencies, just like <command>aptitude</command> has always done. It can also follow recommendations expressed by one package on another."
 msgstr ""
+"Algumas das vantagens que o <command>aptitude</command> historicamente tem "
+"sobre o <command>apt-get</command> desapareceram recentemente. Por exemplo, "
+"desde o lançamento da <emphasis role=\"distribution\">Lenny</emphasis>, o "
+"<command>apt-get</command> memoriza os pacotes que foram instalados apenas "
+"para satisfazer dependências, exatamente como o <command>aptitude</command> "
+"sempre fez. Ele também pode seguir recomendação expressas por um pacote em "
+"outro pacote."
 
 #. Tag: para
 #, no-c-format
 msgid "Among the recent evolutions of <command>aptitude</command>, a new version with a graphical interface is currently being developed. Even if it's available in <emphasis role=\"distribution\">Squeeze</emphasis> (in the separate <emphasis role=\"pkg\">aptitude-gtk</emphasis> package), it's not complete yet and is subject to stability issues."
 msgstr ""
+"Dentre as evoluções recentes do <command>aptitude</command>, uma nova versão "
+"com uma interface gráfica está atualmente sendo desenvolvida. Mesmo se ela "
+"estiver disponível no <emphasis role=\"distribution\">Squeeze</emphasis> (no "
+"pacote a parte <emphasis role=\"pkg\">aptitude-gtk</emphasis>), ainda não está "
+"completa e tem problemas de estabilidade."
 
 #. Tag: title
 #, no-c-format
@@ -1890,11 +2024,22 @@ msgstr ""
 #, no-c-format
 msgid "Most of <command>aptitude</command>'s features are accessible via the interactive interface as well as via command-lines. These command-lines will seem familiar to regular users of <command>apt-get</command> and <command>apt-cache</command>."
 msgstr ""
+"A maioria das funcionalidade do <command>aptitude</command> estão "
+"disponíveis tanto na interface interativa quanto na linha de comando. A "
+"interface de linha de comando é bem familiar para quem já usa os comandos "
+"<command>apt-get</command> e <command>apt-cache</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "The advanced features of <command>aptitude</command> are also available on the command-line. You can use the same package search patterns as in the interactive version. For example, if you want to run the previously suggested cleanup of “automatic” packages, and if you know that none of the locally installed programs require any particular libraries or Perl modules, you can mark the corresponding packages as automatic with a single command:"
 msgstr ""
+"As funcionalidade avançadas do <command>aptitude</command> também estão "
+"disponíveis na linha de comando. Você pode usar os mesmos padrões de busca "
+"de pacotes da versão interativa. Por exemplo, se você quiser executar a "
+"limpeza de pacotes \"automáticos\" sugerida acima, e sabe que nenhum dos "
+"programas instalados localmente requer bibliotecas particulares ou módulos "
+"Perl, você pode marcar os pacotes correspondentes como automáticos com um "
+"único comando:"
 
 #. Tag: screen
 #, no-c-format
@@ -1907,11 +2052,17 @@ msgstr "<computeroutput># </computeroutput><userinput>aptitude markauto "
 #, no-c-format
 msgid "Here, you can clearly see the power of the search pattern system of <command>aptitude</command>, which enables the instant selection of all the packages in the <literal>libs</literal> and <literal>perl</literal> sections."
 msgstr ""
+"Aqui, você pode claramente ver o poder do sistema de padrões de busca do "
+"<command>aptitude</command>, que permite a seleção instantânea de todos os "
+"pacotes nas seções <literal>libs</literal> e <literal>perl</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "Beware, if some packages are marked as automatic and if no other package depends on them, they will be removed immediately (after a confirmation request)."
 msgstr ""
+"Cuidado, se alguns pacotes são marcados como automáticos e se não há outros "
+"pacotes dependendo deles, eles serão removidos imediatamente (depois de uma "
+"confirmação)."
 
 #. Tag: title
 #, no-c-format
@@ -1924,16 +2075,34 @@ msgstr ""
 #, no-c-format
 msgid "Before <command>aptitude</command> came to life with its tracking of automatic packages, there were two utilities producing lists of unnecessary packages: <command>deborphan</command> and <command>debfoster</command>."
 msgstr ""
+"Antes do surgimento do <command>aptitude</command> e sua capacidade de achar "
+"pacotes automáticos, havia dois utilitários que produziam listas de pacotes "
+"desnecessários: <command>deborphan</command> e "
+"<command>debfoster</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>deborphan</command> is the most rudimentary of both. It simply scans the <literal>libs</literal> and <literal>oldlibs</literal> sections (in the absence of supplementary instructions) looking for the packages that are currently installed and that no other packages depends on. The resulting list can then serve as a basis to remove unneeded packages."
 msgstr ""
+"<command>deborphan</command> é o mais rudimentar dos dois. Ele simplesmente "
+"varre as seções <literal>libs</literal> e <literal>oldlibs</literal> (na "
+"ausência de instruções complementares) procurando por pacotes instalados dos "
+"quais ninguém depende. A lista resultante pode servir como uma base para "
+"remover pacotes desnecessários."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debfoster</command> has a more elaborate approach, very similar to <command>aptitude</command>'s: it maintains a list of packages that have been explicitly installed, and remembers what packages are really required between each invocation. If new packages appear on the system and if <command>debfoster</command> doesn't know them as required packages, they will be shown on the screen together with a list of their dependencies. The program then offers a choice: remove the package (possibly together with those that depend on it), mark it as explicitly required, or ignore it temporarily."
 msgstr ""
+"<command>debfoster</command> tem uma abordagem mais elaborada, parecida com "
+"a do <command>aptitude</command>: Ele mantem uma lista de pacotes que foram "
+"explicitamente instalados, e lembra que pacotes são realmente requeridos "
+"entre cada invocação. Se novos pacotes aparecem no sistema e se o "
+"<command>debfoster</command> não reconhece eles como pacotes requeridos, "
+"eles serão mostrados na tela junto com uma lista de suas dependências. O "
+"programa então oferece uma escolha: remover o pacote (possivelmente junto "
+"com tudo que depende dele), marcá-lo como explicitamente requerido, ou "
+"ignorâ-lo temporariamente."
 
 #. Tag: title
 #, no-c-format
@@ -1944,11 +2113,29 @@ msgstr "Gerenciando Recomendações, Sugestões e Tarefas"
 #, no-c-format
 msgid "Another interesting feature of <command>aptitude</command> is the fact that it respects recommendations between packages while still giving users the choice not to install them on a case by case basis. For example, the <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> package recommends <emphasis role=\"pkg\">gnome-accessibility</emphasis> (among others). When you select the former for installation, the latter will also be selected (and marked as automatic if not already installed on the system). Typing <keycombo><keycap>g</keycap></keycombo> will make it obvious: <emphasis role=\"pkg\">gnome-accessibility</emphasis> appears on the summary screen of pending actions in the list of packages installed automatically to satisfy dependencies. However, you can decide not to install it by deselecting it before confirming the operations."
 msgstr ""
+"Outra funcionalidade interessante do <command>aptitude</command> é o fato "
+"que ele respeita recomendações entre pacotes mesmo dando aos usuários a "
+"escolha de, caso a caso, não instalá-los. Por exemplo, o pacote <emphasis "
+"role=\"pkg\">gnome-desktop-environment</emphasis> recomenda <emphasis "
+"role=\"pkg\">gnome-accessibility</emphasis> (entre outros). Quando você "
+"seleciona o primeiro para instalação, o último também vai ser selecionado (e "
+"marcado como automático se ainda não estiver instalado no sistema). "
+"Digitando <keycombo><keycap>g</keycap></keycombo> torna isto óbvio: "
+"<emphasis role=\"pkg\">gnome-accessibility</emphasis> aparece na tela de "
+"resumo das ações pendentes na lista de pacotes instalados automaticamente "
+"para satisfazer dependências. Entretanto, você pode decidir não instalar ele "
+"desmarcando-o antes de confirmar a operação."
 
 #. Tag: para
 #, no-c-format
 msgid "Note that this recommendation tracking feature does not apply to upgrades. For instance, if a new version of <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> recommends a package that it did not recommend formerly, the package won't be marked for installation. However, it will be listed on the upgrade screen so that the administrator can still select it for installation."
 msgstr ""
+"Observe que esta funcionalidade de rastreio de recomendação não se aplica a "
+"atualizações (upgrades). Por exemplo, se uma nova versão do <emphasis "
+"role=\"pkg\">gnome-desktop-environment</emphasis> recomenda um pacote que não "
+"recomendava antes, o pacote não vai ser marcado para instalação. Entretanto, "
+"ele vai ser listado na tela de atualização para que o administrador possa "
+"selecioná-lo para instalação, se desejar."
 
 #. Tag: para
 #, no-c-format
