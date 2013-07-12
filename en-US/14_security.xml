@@ -189,12 +189,13 @@
       have installed.</para>
     </sidebar>
 
-    <para>The Linux 2.6 kernel embeds the <emphasis>netfilter</emphasis>
-    firewall. It can be controlled from user-space with the
-    <command>iptables</command> and <command>ip6tables</command> commands.
-    The difference between these two commands is that the former acts on
-    the IPv4 network, whereas the latter acts on IPv6. Since both network
-    protocol stacks will probably be around for many years, both tools will
+    <para>The Linux kernel embeds the <emphasis>netfilter</emphasis>
+    firewall (and has done so since the Linux 2.4 days). It can be
+    controlled from user-space with the <command>iptables</command>
+    and <command>ip6tables</command> commands.  The difference between
+    these two commands is that the former acts on the IPv4 network,
+    whereas the latter acts on IPv6. Since both network protocol
+    stacks will probably be around for many years, both tools will
     need to be used in parallel.</para>
     <indexterm><primary><command>iptables</command></primary></indexterm>
     <indexterm><primary><command>ip6tables</command></primary></indexterm>
@@ -368,31 +369,36 @@
 	  <command>iptables</command>) is executed instead;</para>
         </listitem>
         <listitem>
-	  <para><literal>SNAT</literal> (only in the <literal>nat</literal>
-	  table, therefore only in IPv4): apply <emphasis>Source
-	  NAT</emphasis> (extra options describe the exact changes to
-	  apply);</para>
+	  <para><literal>SNAT</literal> (only in the
+	  <literal>nat</literal> table, therefore only in IPv4 on
+	  <emphasis role="distribution">Wheezy</emphasis> — NAT
+	  support for IPv6 appeared in the Linux 3.7 kernel): apply
+	  <emphasis>Source NAT</emphasis> (extra options describe the
+	  exact changes to apply);</para>
         </listitem>
         <listitem>
-	  <para><literal>DNAT</literal> (only in the <literal>nat</literal>
-	  table, therefore only in IPv4): apply <emphasis>Destination
-	  NAT</emphasis> (extra options describe the exact changes to
-	  apply);</para>
+	  <para><literal>DNAT</literal> (only in the
+	  <literal>nat</literal> table, therefore only in IPv4 on
+	  <emphasis role="distribution">Wheezy</emphasis>): apply
+	  <emphasis>Destination NAT</emphasis> (extra options describe
+	  the exact changes to apply);</para>
         </listitem>
         <listitem>
 	  <para><literal>MASQUERADE</literal> (only in the
-	  <literal>nat</literal> table, therefore only in IPv4): apply
+	  <literal>nat</literal> table, therefore only in IPv4 on
+	  <emphasis role="distribution">Wheezy</emphasis>): apply
 	  <emphasis>masquerading</emphasis> (a special case of
 	  <emphasis>Source NAT</emphasis>);</para>
         </listitem>
         <listitem>
 	  <para><literal>REDIRECT</literal> (only in the
-	  <literal>nat</literal> table, therefore only in IPv4): redirect a
-	  packet to a given port of the firewall itself; this can be used
-	  to set up a transparent web proxy that works with no
+	  <literal>nat</literal> table, therefore only in IPv4 on
+	  <emphasis role="distribution">Wheezy</emphasis>): redirect a
+	  packet to a given port of the firewall itself; this can be
+	  used to set up a transparent web proxy that works with no
 	  configuration on the client side, since the client thinks it
-	  connects to the recipient whereas the communications actually go
-	  through the proxy.</para>
+	  connects to the recipient whereas the communications
+	  actually go through the proxy.</para>
         </listitem>
       </itemizedlist>
 
@@ -417,31 +423,35 @@
       <section id="section.commandes-iptables">
         <title>Commands</title>
 
-	<para>The <literal>-N <replaceable>chain</replaceable></literal>
-	option creates a new chain. The <literal>-X
-	<replaceable>chain</replaceable></literal> deletes an empty and
-	unused chain. The <literal>-A
-	<replaceable>chain</replaceable><replaceable>rule</replaceable></literal>
-	adds a rule at the end of the given chain. The <literal>-I
+	<para>The <literal>-N
+	<replaceable>chain</replaceable></literal> option creates a
+	new chain. The <literal>-X
+	<replaceable>chain</replaceable></literal> deletes an empty
+	and unused chain. The <literal>-A
 	<replaceable>chain</replaceable>
-	<replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal>
-	option inserts a rule before the rule number
+	<replaceable>rule</replaceable></literal> adds a rule at the
+	end of the given chain. The <literal>-I
+	<replaceable>chain</replaceable>
+	<replaceable>rule_num</replaceable>
+	<replaceable>rule</replaceable></literal> option inserts a
+	rule before the rule number
 	<replaceable>rule_num</replaceable>. The <literal>-D
-	<replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal>
-	(or <literal>-D
-	<replaceable>chain</replaceable><replaceable>rule</replaceable></literal>)
-	option deletes a rule in a chain; the first syntax identifies the
-	rule to be deleted by its number, while the latter identifies it by
-	its contents. The <literal>-F
-	<replaceable>chain</replaceable></literal> option flushes a chain
-	(deletes all its rules); if no chain is mentioned, all the rules in
-	the table are deleted. The <literal>-L
-	<replaceable>chain</replaceable></literal> option lists the rules
-	in the chain. Finally, the <literal>-P
-	<replaceable>chain</replaceable><replaceable>action</replaceable></literal>
-	option defines the default action, or “policy”, for a given
-	chain; note that only standard chains can have such a
-	policy.</para>
+	<replaceable>chain</replaceable>
+	<replaceable>rule_num</replaceable></literal> (or <literal>-D
+	<replaceable>chain</replaceable>
+	<replaceable>rule</replaceable></literal>) option deletes a
+	rule in a chain; the first syntax identifies the rule to be
+	deleted by its number, while the latter identifies it by its
+	contents. The <literal>-F
+	<replaceable>chain</replaceable></literal> option flushes a
+	chain (deletes all its rules); if no chain is mentioned, all
+	the rules in the table are deleted. The <literal>-L
+	<replaceable>chain</replaceable></literal> option lists the
+	rules in the chain. Finally, the <literal>-P
+	<replaceable>chain</replaceable>
+	<replaceable>action</replaceable></literal> option defines the
+	default action, or “policy”, for a given chain; note that only
+	standard chains can have such a policy.</para>
       </section>
       <section id="section.regles-iptables">
         <title>Rules</title>
@@ -449,11 +459,12 @@
 
 	<para>Each rule is expressed as
 	<literal><replaceable>conditions</replaceable> -j
-	<replaceable>action</replaceable><replaceable>action_options</replaceable></literal>.
-	If several conditions are described in the same rule, then the
-	criterion is the conjunction (logical <emphasis>and</emphasis>) of
-	the conditions, which is at least as restrictive as each individual
-	condition.</para>
+	<replaceable>action</replaceable>
+	<replaceable>action_options</replaceable></literal>.  If
+	several conditions are described in the same rule, then the
+	criterion is the conjunction (logical
+	<emphasis>and</emphasis>) of the conditions, which is at least
+	as restrictive as each individual condition.</para>
 
 	<para>The <literal>-p <replaceable>protocol</replaceable></literal>
 	condition matches the protocol field of the IP packet. The most
@@ -521,7 +532,7 @@
           </listitem>
         </itemizedlist>
 
-	<para>The <literal>DNAT</literal> action (only available for IPv4)
+	<para>The <literal>DNAT</literal> action 
 	provides the <literal>--to-destination
 	<replaceable>address</replaceable>:<replaceable>port</replaceable></literal>
 	option to indicate the new destination IP address and/or port.
@@ -529,10 +540,13 @@
 	<replaceable>address</replaceable>:<replaceable>port</replaceable></literal>
 	to indicate the new source IP address and/or port.</para>
 
-	<para>The <literal>REDIRECT</literal> action (only available for
-	IPv4) provides the <literal>--to-ports
-	<replaceable>port(s)</replaceable></literal> option to indicate the
-	port, or port range, where the packets should be redirected.</para>
+	<para>The <literal>REDIRECT</literal> action (only available
+	if NAT is available — on <emphasis
+	role="distribution">Wheezy</emphasis>, this means IPv4 only)
+	provides the <literal>--to-ports
+	<replaceable>port(s)</replaceable></literal> option to
+	indicate the port, or port range, where the packets should be
+	redirected.</para>
       </section>
     </section>
     <section id="section.creer-regles">
@@ -592,7 +606,7 @@
       configuring the firewall according to the rules that have been
       defined. Its modular architecture gives it the ability to generate
       scripts targeting different systems (<command>iptables</command> for
-      Linux 2.4/2.6, <command>ipf</command> for FreeBSD and
+      Linux 2.4/2.6/3, <command>ipf</command> for FreeBSD and
       <command>pf</command> for OpenBSD).</para>
 
       <para>Versions of the <emphasis role="pkg">fwbuilder</emphasis>
@@ -646,7 +660,7 @@ iface eth0 inet static
     ensuring availability of the services. It is therefore imperative to
     check that everything works as expected, and to detect in a timely
     manner any deviant behavior or change in quality of the service(s)
-    rendered. Monitoring activity can enable the detection of intrusion
+    rendered. Monitoring activity can help detecting intrusion
     attempts and enable a swift reaction before they cause grave
     consequences. This section reviews some tools that can be used to
     monitor several aspects of a Debian system. As such, it completes the
@@ -781,30 +795,7 @@ iface eth0 inet static
 	<command>top</command> and they provide roughly the same
 	features.</para>
 
-	<!-- TODO: drop this sidebar in the wheezy version since
-	     lavaps and bubblemon have been dropped and bubblefishymon is
-	     pretty much dead upstream.
-	     Or maybe mention conky and gkrellm instead...
-	-->
-        <sidebar>
-          <title><emphasis>TIP</emphasis> Visual representations of activity</title>
-
-	  <para>For more visual (and entertaining) representations of a
-	  computer's activity, one should investigate the <emphasis
-	  role="pkg">lavaps</emphasis>, <emphasis
-	  role="pkg">bubblemon</emphasis> and <emphasis
-	  role="pkg">bubblefishymon</emphasis> packages.
-	  <command>lavaps</command> displays running processes as the wax
-	  bubbles in a lava-lamp. <emphasis>bubblemon</emphasis> is a
-	  desktop panel applet representing the amount of used memory and
-	  the processor usage as an aquarium with bubbles.
-	  <command>bubblefishymon</command> is rather similar, but it also
-	  adds fish representing network traffic (and even a duck).</para>
-        </sidebar>
         <indexterm><primary><command>gnome-system-monitor</command></primary></indexterm>
-        <indexterm><primary><command>lavaps</command></primary></indexterm>
-        <indexterm><primary><command>bubblefishymon</command></primary></indexterm>
-        <indexterm><primary><emphasis>bubblemon</emphasis></primary></indexterm>
       </section>
       <section id="section.surveillance-historique">
         <title>History</title>
@@ -1187,7 +1178,7 @@ iface eth0 inet static
       <emphasis>objects</emphasis> (files, directories, sockets, devices,
       etc.). They can vary from object to object. To achieve this, each
       object is associated to a <emphasis>type</emphasis> (this is known as
-      labeling). Domain's rights are thus expressed with sets of
+      labeling). Domains' rights are thus expressed with sets of
       (dis)allowed operations on those types (and, indirectly, on all
       objects which are labeled with the given type).</para>
 
@@ -1196,7 +1187,7 @@ iface eth0 inet static
 
 	<para>Internally, a domain is just a type, but a type that only
 	applies to processes. That's why domains are suffixed with
-	<literal>_t</literal> just like object's types.</para>
+	<literal>_t</literal> just like objects' types.</para>
       </sidebar>
 
       <para>By default, a program inherits its domain from the user who
@@ -1205,7 +1196,7 @@ iface eth0 inet static
       executables are labeled with a dedicated type (for example
       <command>ssh</command> is labeled with
       <literal>ssh_exec_t</literal>, and when the program starts, it
-      automatically switches in the <literal>ssh_t</literal> domain). This
+      automatically switches to the <literal>ssh_t</literal> domain). This
       automatic domain transition mechanism makes it possible to grant only
       the rights required by each program. It is a fundamental principle of
       SELinux.</para>
@@ -1274,7 +1265,7 @@ iface eth0 inet static
 
       <para>The <emphasis role="pkg">selinux-policy-default</emphasis>
       package contains a set of standard rules. By default, this policy
-      only restricts access for a few broadly exposed services. The user
+      only restricts access for a few widely exposed services. The user
       sessions are not restricted and it is thus unlikely that SELinux
       would block legitimate user operations. However, this does enhance
       the security of system services running on the machine. To setup a
