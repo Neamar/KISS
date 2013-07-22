@@ -259,10 +259,10 @@
       install” and “64 bit graphical install” enable the installation
       of the 64 bit variant (<emphasis>amd64</emphasis>) instead of
       the default 32 bit variant (<emphasis>i386</emphasis>). In
-      practice, the 64 bit version may be more relevant on a server
-      than on a desktop workstation, since it may cause difficulties
-      with the use of certain non-free software that are released only
-      as binaries.</para>
+      practice, the 64 bit version can almost always be used: most
+      recent processors are 64 bit processors and the 64 bit version deals
+      better with the large amount of RAM that new computers tend to have.
+      </para>
 
       <sidebar>
         <title><emphasis>GOING FURTHER</emphasis> 32 or 64 bits?</title>
@@ -283,14 +283,14 @@
 	<para>For an office computer (where a few percent difference in
 	performance is negligible), you must keep in mind that some
 	proprietary programs are not available in 64 bit versions (such as
-	Skype and the plugin for handling Java applets in web browsers, for
+	Skype, for
 	example). It is technically possible to make them work on 64 bit
-	systems, but you have to install the 32 bit versions with all the
-	necessary libraries, and often to use <command>setarch</command> or
+	systems, but you have to install the 32 bit versions of all the
+	necessary libraries (see <xref linkend="sect.multi-arch" />), and
+	often to use <command>setarch</command> or
 	<command>linux32</command> (in the <emphasis
 	role="pkg">util-linux</emphasis> package) to trick applications
-	regarding the nature of the system. This is very demanding for a
-	relatively small gain.
+	regarding the nature of the system.
 	<indexterm><primary><command>setarch</command></primary></indexterm>
 	<indexterm><primary><command>linux32</command></primary></indexterm></para>
       </sidebar>

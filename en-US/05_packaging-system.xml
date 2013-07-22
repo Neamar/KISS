@@ -1373,7 +1373,7 @@ Purging configuration files for debian-cd ...</computeroutput>
       </example>
     </section>
     <section>
-      <title>Other <command>dpkg</command> Features</title>
+      <title>Querying <command>dpkg</command>'s Database and Inspecting <filename>.deb</filename> Files</title>
       <indexterm><primary>package</primary><secondary>status</secondary></indexterm>
       <indexterm><primary>package</primary><secondary>file list</secondary></indexterm>
       <indexterm><primary>package</primary><secondary>content inspection</secondary></indexterm>
@@ -1594,6 +1594,142 @@ $ </computeroutput><userinput>dpkg --compare-versions 2.6.0pre3-1 lt 2.6.0-1</us
       cross-check the information with the
       <filename>changelog.Debian.gz</filename> for packages in question, or
       even with online bug reports.</para>
+    </section>
+    <section id="sect.multi-arch">
+      <title>Multi-Arch Support</title>
+      <indexterm><primary>Multi-Arch</primary></indexterm>
+      <indexterm><primary>architecture</primary><secondary>multi-arch support</secondary></indexterm>
+
+      <para>All Debian packages have an <literal>Architecture</literal>
+      field in their control information. This field can contain either
+      “<literal>all</literal>” (for packages that are architecture
+      independent) or the name of the architecture that it targets (like
+      “amd64”, “armhf”, …). In the latter case, by default,
+      <command>dpkg</command> will only accept to install the package if
+      its architecture matches the host's architecture as returned by
+      <command>dpkg --print-architecture</command>.</para>
+
+      <para>This restriction ensures that users do not end up with binaries
+      compiled for an incorrect architecture. Everything would be perfect
+      except that (some) computers can run binaries for multiple architectures,
+      either natively (an “amd64“ system can run “i386” binaries) or through
+      emulators.</para>
+      
+      <section>
+        <title>Enabling Multi-Arch</title>
+	<para><command>dpkg</command>'s multi-arch support allows
+	users to define “foreign architectures” that can be installed
+	on the current system. This is simply done with
+	<command>dpkg --add-architecture</command> like in the example
+	below. There's a corresponding <command>dpkg --remove-architecture</command>
+	to drop support of a foreign architecture, but it can only be used
+	when no packages of this architecture remain.</para>
+
+	<screen>
+<computeroutput># </computeroutput><userinput>dpkg --print-architecture</userinput>
+<computeroutput>amd64
+# </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>
+<computeroutput>#</computeroutput><userinput>dpkg -i gcc-4.7-base_4.7.2-5_armhf.deb</userinput>
+<computeroutput>dpkg: error processing gcc-4.7-base_4.7.2-5_armhf.deb (--install):
+ package architecture (armhf) does not match system (amd64)
+Errors were encountered while processing:
+ gcc-4.7-base_4.7.2-5_armhf.deb
+# </computeroutput><userinput>dpkg --add-architecture armhf</userinput>
+<computeroutput># </computeroutput><userinput>dpkg --add-architecture armel</userinput>
+<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>
+<computeroutput>armhf
+armel
+# </computeroutput><userinput>dpkg -i gcc-4.7-base_4.7.2-5_armhf.deb</userinput>
+<computeroutput>Selecting previously unselected package gcc-4.7-base:armhf.
+(Reading database ... 97399 files and directories currently installed.)
+Unpacking gcc-4.7-base:armhf (from gcc-4.7-base_4.7.2-5_armhf.deb) ...
+Setting up gcc-4.7-base:armhf (4.7.2-5) ...
+# </computeroutput><userinput>dpkg --remove-architecture armhf</userinput>
+<computeroutput>dpkg: error: cannot remove architecture 'armhf' currently in use by the database
+# </computeroutput><userinput>dpkg --remove-architecture armel</userinput>
+<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>
+<computeroutput>armhf</computeroutput>
+</screen>
+
+	<sidebar>
+	  <title><emphasis>NOTE</emphasis> APT's multi-arch support</title>
+	  <para>APT will automatically detect when dpkg has been configured
+	  to support foreign architectures and will start downloading the
+	  corresponding <filename>Packages</filename> files durings its
+	  update process.</para>
+	  <para>Foreign packages can then be installed with <command>apt-get
+	  install
+	  <replaceable>package</replaceable>:<replaceable>architecture</replaceable></command>.</para>
+	</sidebar>
+
+	<sidebar>
+	  <title><emphasis>IN PRACTICE</emphasis> Using proprietary i386 binaries on amd64</title>
+	  <para>There are multiple use cases for multi-arch, but the most
+	  popular one is the possibbility to execute 32 bit binaries (i386)
+	  on 64 bit systems (amd64), in particular since several popular
+	  proprietary applications (like Skype) are only provided in 32 bit
+	  versions.</para>
+
+	  <para>Before multi-arch, when you wanted to uses a 32 bit appliction
+	  on a 64 bit system, you had to install <emphasis
+	  role="pkg">ia32-libs</emphasis> to have 32 bit versions of the
+	  most popular libraries. That package was a huge hack that
+	  repackaged 32 bit libraries in an “amd64” package.
+	  </para>
+	  <indexterm><primary><emphasis role="pkg">ia32-libs</emphasis></primary></indexterm>
+
+	</sidebar>
+      </section>
+      <section>
+	<title>Multi-Arch Related Changes</title>
+
+	<para>To make multi-arch actually useful and usable, libraries had to
+	be repackaged and moved to an architecture-specific directory so that
+	multiple copies (targeting different architectures) can be installed
+	alongside. Such updated packages contain the “<literal>Multi-Arch:
+	same</literal>” header field to tell the packaging system that the
+	various architectures of the package can be safely co-installed (and
+	that those packages can only satisfy dependencies of packages of the
+	same architecture). Since multi-arch made its debut in Debian Wheezy,
+	not all libraries have been converted yet (but all libraries which
+	were embedded in <emphasis role="pkg">ia32-libs</emphasis> do!).
+	</para>
+
+	<screen>
+$ <userinput>dpkg -s gcc-4.7-base</userinput>
+dpkg-query: error: --status needs a valid package name but 'gcc-4.7-base' is not: ambiguous package name 'gcc-4.7-base' with more than one installed instance
+
+Use --help for help about querying packages.
+$ <userinput>dpkg -s gcc-4.7-base:amd64 gcc-4.7-base:armhf | grep ^Multi</userinput>
+Multi-Arch: same
+Multi-Arch: same
+$ <userinput>dpkg -L libgcc1:amd64 |grep .so</userinput>
+/lib/x86_64-linux-gnu/libgcc_s.so.1
+$ <userinput>dpkg -S /usr/share/doc/gcc-4.7-base/copyright</userinput>
+gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/copyright
+</screen>
+
+	<para>It is worth noting that <literal>Multi-Arch: same</literal> packages
+	must have their names qualified with their architecture to be unambiguously
+	identifiable. They also have the possibility to share files with other
+	instances of the same package; <command>dpkg</command> ensures that all
+	packages have bit-for-bit identical files when they are shared. Last but
+	not least, all instances of a package must have the same version. They must
+	thus be upgraded together.
+	</para>
+
+	<para>Multi-Arch support also brings some interesting challenges in
+	the way dependencies are handled. Satisfying a dependency requires
+	either a package marked “<literal>Multi-Arch: foreign</literal>” or a
+	package whose architecture matches the one of the package declaring
+	the dependency (in this dependency resolution process,
+	architecture-independent packages are assumed to be of the same
+	architecture than the host). A dependency can also be weakened
+	to allow any architecture to fulfill it, with the
+	<literal><replaceable>package</replaceable>:any</literal> syntax, but
+	foreign packages can only satisfy such a dependency if they
+	are marked “<literal>Multi-Arch: allowed</literal>”.</para>
+      </section>
     </section>
   </section>
   <section id="sect.coexistence-with-other-packaging-systems">
