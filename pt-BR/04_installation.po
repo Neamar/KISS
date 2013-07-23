@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2013-04-20 02:38+0200\n"
-"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
+"PO-Revision-Date: 2013-07-11 17:02+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/04_installation/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -771,9 +771,9 @@ msgstr ""
 #, no-c-format
 msgid "This step must absolutely be successful for <emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis> installations, since the Debian packages must be loaded from the network."
 msgstr ""
-"Este passo deve ser definitivamente um sucesso para as instalações "
-"<emphasis>netinst</emphasis> e <emphasis>businesscard</emphasis>, já que os "
-"pacotes Debian devem ser carregados pela rede."
+"Este passo deve definitivamente obter sucesso para as instalações "
+"<emphasis>netinst</emphasis> ou <emphasis>businesscard</emphasis>, já que os "
+"pacotes Debian devem ser carregados da rede."
 
 #. Tag: title
 #, no-c-format
@@ -821,6 +821,13 @@ msgstr "<emphasis>DICA</emphasis> Configuração sem DHCP"
 #, no-c-format
 msgid "If the local network is equipped with a DHCP server that you do not wish to use because you prefer to define a static IP address for the machine during installation, you can add the <userinput>netcfg/use_dhcp=false</userinput> option when booting from the CD-ROM. You just need to go to the desired menu entry by pressing the <keycap>TAB</keycap> key and add the desired option before pressing the <keycap>Enter</keycap> key."
 msgstr ""
+"Se a rede local é equipada com um servidor DHCP que você não deseja utilizar "
+"porque você prefere definir um endereço IP estático para a máquina durante "
+"a instalação, você pode adicionar a opção "
+"<userinput>netcfg/use_dhcp=false</userinput> ao inicializar de um CD-ROM. "
+"Você somente precisa ir para a opção desejada do menu pressionando a tecla "
+"<keycap>TAB</keycap> e adicionar a opção desejada antes de pressionar a "
+"tecla <keycap>Enter</keycap>."
 
 #. Tag: title
 #, no-c-format
@@ -847,6 +854,12 @@ msgstr "Configurando o relógio"
 #, no-c-format
 msgid "If the network is available, the system's internal clock is updated (in a one-shot way) from an NTP server. This way the timestamps on logs will be correct from the first boot. For them to remain consistently precise over time, an NTP daemon needs to be set up after initial installation (see <xref linkend=\"section.synchronisation-horaire\" />)."
 msgstr ""
+"Se a rede estiver disponível, o relógio interno é atualizado (uma única vez) "
+"a partir de um servidor NTP. Desse modo, os registros de tempo nos "
+"relatórios estarão corretos desde a primeira inicialização. Para que eles "
+"permaneçam consistentemente precisos ao longo do tempo, um serviço (daemon) "
+"precisa ser configurado após a instalação inicial (veja <xref "
+"linkend=\"section.synchronisation-horaire\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -876,6 +889,14 @@ msgstr "<emphasis>SEGURANÇA</emphasis> Senha do administrador"
 #, no-c-format
 msgid "The root user's password should be long (6 characters or more) and impossible to guess. Indeed, any computer (and a fortiori any server) connected to the Internet is regularly targeted by automated connection attempts with the most obvious passwords. Sometimes it may even be subject to dictionary attacks, in which many combinations of words and numbers are tested as password. Avoid using the names of children or parents, dates of birth, etc.: many of your co-workers might know them, and you rarely want to give them free access to the computer in question."
 msgstr ""
+"A senha do usuário root deve ser longa (6 caracteres ou mais) e impossível "
+"de adivinhar. De fato, qualquer computador (e com mais razão qualquer "
+"servidor) conectado a internet é regularmente alvo de tentativas de conexões "
+"automatizadas com as senhas mais óbvias. Algumas vezes ele ainda pode ser "
+"alvo de ataques de dicionário, em que várias combinações de palavras e "
+"números são testadas como senhas. Evite usar nomes de filhos ou pais, datas "
+"de nascimento, etc.: muitos de seus colegas de trabalho podem conhecê-los e "
+"você raramente quer dar-lhes livre acesso ao computador em questão."
 
 #. Tag: para
 #, no-c-format
@@ -956,6 +977,12 @@ msgstr ""
 #, no-c-format
 msgid "The partitioning step is traditionally difficult for new users. It is necessary to define the various portions of the disks (or “partitions”) on which the Linux filesystems and virtual memory (swap) will be stored. This task is complicated if another operating system that you want to keep is already on the machine. Indeed, you will then have to make sure that you do not alter its partitions (or that you resize them without causing damage)."
 msgstr ""
+"A etapa de particionamento é tradicionalmente difícil para os novos "
+"usuários. É necessário definir as várias partes dos discos (ou \"partições\") "
+"no qual o sistema de arquivos Linux e memória virtual (swap) serão "
+"armazenados. Esta tarefa é complicada se outro sistema operacional que você "
+"queira manter já está na máquina. De fato, você terá que ter certeza de não "
+"alterar as partições dele (ou que você redimensione elas sem causar danos)."
 
 #. Tag: para
 #, no-c-format
@@ -974,6 +1001,16 @@ msgstr "Escolha do modo de particionamento"
 #, no-c-format
 msgid "The first screen in the partitioning tool offers the choice of using an entire hard drive to create various partitions. For a (new) computer which will solely use Linux, this option is clearly the simplest, and you can choose the option “Guided - use entire disk”. If the computer has two hard drives for two operating systems, setting one drive for each is also a solution that can facilitate partitioning. In both of these cases, the next screen offers to choose the disk where Linux will be installed by selecting the corresponding entry (for example, “SCSI3 (0,0,0) (sda) - 12.9 GB ATA VBOX HARDDISK”). You then start guided partitioning."
 msgstr ""
+"A primeira tela na ferramenta de particionamento oferece a opção de usar "
+"todo o disco rígido para criar várias partições. Para um computador (novo) "
+"que irá utilizar somente Linux, esta opção é claramente a mais simples, e "
+"você pode escolher a opção \"Guiado - utilizar todo o disco\". Se o computador "
+"tem dois discos rígidos para dois sistemas operacionais, selecionar um "
+"disco para cada também é uma solução que pode facilitar o particionamento. "
+"Em ambos os casos, a próxima tela oferece a escolha do disco onde o Linux "
+"será instalado ao selecionar a opção correspondente (por exemplo, “SCSI3 "
+"(0,0,0) (sda) - 12.9 GB ATA VBOX HARDDISK”). Você então inicia o "
+"particionamento guiado."
 
 #. Tag: title
 #, no-c-format
@@ -1030,6 +1067,11 @@ msgstr ""
 #, no-c-format
 msgid "The second method, “Separate <filename>/home/</filename> partition”, is similar, but splits the file hierarchy in two: one partition contains the Linux system (<filename>/</filename>), and the second contains “home directories” (meaning user data, in files and subdirectories available under <filename>/home/</filename>)."
 msgstr ""
+"O segundo método, “Partição <filename>/home/</filename> separada”, é "
+"similar, mas divide a hierarquia de diretórios em dois: uma partição contém "
+"o sistema Linux (<filename>/</filename>), e a segunda contém os “diretórios "
+"de usuário” (ou seja, os dados dos usuários, arquivos e subdiretórios "
+"disponíveis em <filename>/home/</filename>)."
 
 #. Tag: para
 #, no-c-format
@@ -1120,11 +1162,19 @@ msgstr ""
 #, no-c-format
 msgid "The Debian installer allows this operation when using the manual mode for partitioning. You only need to choose the Windows partition and enter its new size (this works the same with both FAT and NTFS partitions)."
 msgstr ""
+"O instalador do Debian permite esta operação quando utilizar o modo manual "
+"para o particionamento. Você só precisa escolher a partição do Windows e "
+"digite seu novo tamanho (isso funciona da mesma forma em partições FAT ou "
+"NTFS)."
 
 #. Tag: para
 #, no-c-format
 msgid "The first screen displays the available disks, their partitions, and any possible free space that has not yet been partitioned. You can select each displayed element; pressing the <keycap>Enter</keycap> key then gives a list of possible actions."
 msgstr ""
+"A primeira tela exibe os discos disponíveis, suas partições e qualquer "
+"espaço livre possível que ainda não foi particionado. Você pode selecionar "
+"cada elemento exibido, pressionando a tecla <keycap>Enter</keycap> resultará "
+"numa lista de possíveis ações."
 
 #. Tag: para
 #, no-c-format
@@ -1135,6 +1185,12 @@ msgstr "Você pode apagar todas as partições em um disco, selecionando-o."
 #, no-c-format
 msgid "When selecting free space on a disk, you can manually create a new partition. You can also do this with guided partitioning, which is an interesting solution for a disk that already contains another operating system, but which you may wish to partition for Linux in a standard manner. See the previous section for more details on guided partitioning."
 msgstr ""
+"Ao selecionar espaço livre em um disco, você pode criar manualmente uma nova "
+"partição. Você também pode fazer isso com o assistente de particionamento, "
+"que é uma solução interessante para um disco que já contenha outro sistema "
+"operacional, mas onde você deseja particionar para o Linux de uma forma "
+"padrão. Consulte a seção anterior para obter mais detalhes sobre "
+"particionamento assistido."
 
 #. Tag: title
 #, no-c-format
@@ -1152,13 +1208,16 @@ msgid "The mount point is the directory tree that will house the contents of the
 msgstr ""
 "O ponto de montagem é a árvore de diretório que vai abrigar o conteúdo do "
 "sistema de arquivos na partição seleccionada. Assim, uma partição montada em "
-"<filename>/home/</filename> destina-se tradicionalmente para conter dados "
-"de usuário."
+"<filename>/home/</filename> é tradicionalmente destinada a conter dados do "
+"usuário."
 
 #. Tag: para
 #, no-c-format
 msgid "When this directory is named “<filename>/</filename>”, it is known as the <emphasis>root</emphasis> of the file tree, and therefore the root of the partition that will actually host the Debian system."
 msgstr ""
+"Quando esse diretório é chamado de \"<filename>/</filename>\", ele é conhecido "
+"como a <emphasis>raiz</emphasis> do sistema de arquivos e, portanto, a raiz "
+"da partição que vai realmente hospedar o sistema Debian."
 
 #. Tag: title
 #, no-c-format
@@ -1189,31 +1248,43 @@ msgstr "<primary>partição de swap</primary>"
 #, no-c-format
 msgid "Virtual memory allows the Linux kernel, when lacking sufficient memory (RAM), to free a bit of storage by storing the parts of the RAM that have been inactive for some time on the swap partition of the hard disk."
 msgstr ""
+"A memória virtual permite que o kernel do Linux, quando falta memória "
+"suficiente (RAM), libere um pouco de armazenamento, realocando na partição "
+"swap do disco rígido as partes da memória RAM inativas por algum tempo."
 
 #. Tag: para
 #, no-c-format
 msgid "To simulate the additional memory, Windows uses a swap file that is directly contained in a filesystem. Conversely, Linux uses a partition dedicated to this purpose, hence the term “swap partition”."
 msgstr ""
+"Para simular a memória adicional, o Windows usa um arquivo de swap que está "
+"diretamente contido em um sistema de arquivos. Por outro lado, o Linux usa "
+"uma partição dedicada a este propósito, daí o termo \"partição swap\"."
 
 #. Tag: para
 #, no-c-format
 msgid "When choosing a partition, you can indicate the manner in which you are going to use it:"
 msgstr ""
+"Ao escolher uma partição, você pode indicar a forma como que você vai "
+"utilizá-la:"
 
 #. Tag: para
 #, no-c-format
 msgid "format it and include it in the file tree by choosing a mount point;"
 msgstr ""
+"formatá-la e incluí-la no sistema de arquivos escolhendo um ponto de "
+"montagem;"
 
 #. Tag: para
 #, no-c-format
 msgid "use it as a swap partition;"
-msgstr ""
+msgstr "usá-la como uma partição swap;"
 
 #. Tag: para
 #, no-c-format
 msgid "make it into a “physical volume for encryption” (to protect the confidentiality of data on certain partitions, see below);"
 msgstr ""
+"transformá-la em um \"volume físico para encriptação\" (para proteger a "
+"confidencialidade dos dados em determinadas partições, veja abaixo);"
 
 #. Tag: para
 #, no-c-format

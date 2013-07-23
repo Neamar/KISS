@@ -1,0 +1,503 @@
+#
+# AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0\n"
+"POT-Creation-Date: 2012-10-31T14:54:17\n"
+"PO-Revision-Date: 2013-07-17 12:08+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: None\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-publican; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: keyword
+#, no-c-format
+msgid "Existing Setup"
+msgstr "Existant"
+
+#. Tag: keyword
+#, no-c-format
+msgid "Reuse"
+msgstr "Réutilisation"
+
+#. Tag: keyword
+#, no-c-format
+msgid "Migration"
+msgstr "Migration"
+
+#. Tag: title
+#, no-c-format
+msgid "Analyzing the Existing Setup and Migrating"
+msgstr "Prise en compte de l'existant et migration"
+
+#. Tag: para
+#, no-c-format
+msgid "Any computer system overhaul should take the existing system into account. This allows reuse of available resources as much as possible and guarantees interoperability of the various elements comprising the system. This study will introduce a generic framework to follow in any migration of a computing infrastructure to Linux."
+msgstr "Toute refonte du système d'information doit se baser sur l'existant pour réexploiter au maximum les ressources disponibles et garantir l'interopérabilité des différents éléments constituant le système. Cette étude fera apparaître une trame générique, à suivre dans chaque migration d'un service sous Linux."
+
+#. Tag: title
+#, no-c-format
+msgid "Coexistence in Heterogeneous Environments"
+msgstr "Coexistence en environnement hétérogène"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>environment</primary><secondary>heterogeneous environment</secondary>"
+msgstr "<primary>environnement</primary><secondary>hétérogène</secondary>"
+
+#. Tag: para
+#, no-c-format
+msgid "Debian integrates very well in all types of existing environments and plays well with any other operating system. This near-perfect harmony comes from market pressure which demands that software publishers develop programs that follow standards. Compliance with standards allow administrators to switch out programs: clients or servers, whether free or not."
+msgstr "Debian s'intègre très bien dans tous les types d'environnements existants et cohabite avec tous les systèmes d'exploitation. Cette quasi-parfaite harmonie provient des pressions du marché qui contraignent les éditeurs à développer des logiciels respectueux des normes et standards, donc avec lesquels les autres programmes, libres ou pas, serveurs comme clients, peuvent interagir."
+
+#. Tag: title
+#, no-c-format
+msgid "Integration with Windows Machines"
+msgstr "Intégration avec des machines Windows"
+
+#. Tag: para
+#, no-c-format
+msgid "Samba's SMB/CIFS support ensures excellent communication within a Windows context. It shares files and print queues to Windows clients and includes software that allow a Linux machine to use resources available on Windows servers."
+msgstr "La prise en charge de SMB/CIFS par Samba assure une très bonne communication dans un contexte Windows. Il sert des fichiers et des files d'impression aux clients Windows et intègre des logiciels grâce auxquels une machine Linux utilisera des ressources publiées par des serveurs Windows."
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TOOL</emphasis> Samba"
+msgstr "<emphasis>OUTIL</emphasis> Samba"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Samba</primary>"
+msgstr "<primary>Samba</primary>"
+
+#. Tag: para
+#, no-c-format
+msgid "Samba version 2 behaves like a Windows NT server (authentication, files, print queues, downloading printer drivers, DFS, etc.) Version 3 works with Active Directory, brings interoperability with NT4 domain controllers, and supports RPCs (Remote Procedure Calls). Version 4 is a rewrite (still experimental), the purpose of which is to provide functionality of a domain controller compatible with Active Directory."
+msgstr "La version 2 de Samba se comportait comme un serveur Windows NT (authentification, fichiers, files d'impression, téléchargement des pilotes d'impression, DFS, etc.). La version 3 honore l'annuaire Active Directory, l'interopérabilité avec les contrôleurs de domaines NT4 et les appels distants d'administration (RPC — <foreignphrase>Remote Procedure Call</foreignphrase>). La version 4 est une récriture (encore expérimentale) dont l'objectif est de fournir les fonctionnalités d'un contrôleur de domaines compatible avec Active Directory."
+
+#. Tag: title
+#, no-c-format
+msgid "Integration with Mac OS machines"
+msgstr "Intégration avec des machines Mac OS"
+
+#. Tag: para
+#, no-c-format
+msgid "Netatalk is a program which uses the Appletalk protocol (running on a Linux kernel) and allows Debian to interface with a Mac OS network. It ensures the operation of the file server and print queues, as well as time server (clock synchronization). Its router function allows interconnection with Appletalk networks."
+msgstr "Le logiciel Netatalk, employant le protocole Appletalk (lui-même géré par le noyau Linux), interfacera Debian avec un réseau Mac OS. Il assure les fonctions de serveur de fichiers et de files d'impression ainsi que de temps (synchronisation des horloges). Sa fonction de routeur permet d'interconnecter des réseaux Appletalk."
+
+#. Tag: title
+#, no-c-format
+msgid "Integration with Other Linux/Unix Machines"
+msgstr "Intégration avec d'autres machines Linux/Unix"
+
+#. Tag: para
+#, no-c-format
+msgid "Finally, NFS and NIS, both included, guarantee interaction with Unix systems. NFS ensures file server functionality, while NIS creates user directories. The BSD printing layer, used by most Unix systems, also allows sharing of print queues."
+msgstr "Enfin, NFS et NIS, eux aussi compris, garantiront les interactions avec des systèmes Unix. NFS assure la fonctionnalité de serveur de fichiers, tandis que NIS permet de créer un annuaire des utilisateurs. Signalons également que la couche d'impression BSD, employée par la majorité des Unix, permet aussi de partager des files d'impression."
+
+#. Tag: title
+#, no-c-format
+msgid "Coexistence of Debian with MacOS, Windows and Unix systems"
+msgstr "Cohabitation de Debian avec MacOS, Windows et les systèmes Unix"
+
+#. Tag: title
+#, no-c-format
+msgid "How To Migrate"
+msgstr "Démarche de migration"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>migration</primary>"
+msgstr "<primary>migration</primary>"
+
+# TODO: relu jusqu'ici
+#. Tag: para
+#, no-c-format
+msgid "In order to guarantee continuity of the services, each computer migration must be planned and executed according to the plan. Whatever the operating system used, this principle never changes."
+msgstr "Pour chaque ordinateur à migrer, il faut suivre une démarche garantissant une continuité dans les services offerts. Quel que soit le système d'exploitation utilisé, le principe ne change pas."
+
+#. Tag: title
+#, no-c-format
+msgid "Survey and Identify Services"
+msgstr "Recenser et identifier les services"
+
+#. Tag: para
+#, no-c-format
+msgid "As simple as it seems, this step is essential. A serious administrator truly knows the principal roles of each server, but such roles can change, and sometimes experienced users may have installed “wild” services. Knowing that they exist will at least allow you to decide what to do with them, rather than delete them haphazardly."
+msgstr "Aussi simple qu'elle paraisse, cette étape est indispensable. Un administrateur sérieux connaît vraisemblablement les rôles principaux de chaque serveur, mais ceux-ci évoluent et quelques utilisateurs expérimentés auront parfois installé des services «sauvages». Connaître leur existence vous permettra au moins de décider de leur sort au lieu de les supprimer par mégarde."
+
+#. Tag: para
+#, no-c-format
+msgid "For this purpose, it is wise to inform your users of the project before migrating the server. To involve them in the project, it may be useful to install the most common free software programs on their desktops prior to migration, which they will come across again after the migration to Debian; OpenOffice.org and the Mozilla suite are the best examples here."
+msgstr "À ce titre, il est souhaitable d'informer vos utilisateurs de votre projet quelque temps avant la migration effective du serveur. Pour les impliquer dans le projet, il pourra être utile d'installer sur les postes bureautiques les logiciels libres les plus courants qu'ils seront amenés à retrouver lors de la migration des postes de travail sous Debian; on pense bien entendu à OpenOffice.org et aux logiciels de la suite Mozilla."
+
+#. Tag: title
+#, no-c-format
+msgid "Network and Processes"
+msgstr "Réseau et processus"
+
+#. Tag: para
+#, no-c-format
+msgid "<indexterm><primary><command>nmap</command></primary></indexterm> The <command>nmap</command> tool (in the package with the same name) will quickly identify Internet services hosted by a network connected machine without even requiring to log in to it. Simply call the following command on another machine connected to the same network:"
+msgstr "<indexterm><primary><command>nmap</command></primary></indexterm> L'outil <command>nmap</command> (paquet Debian du même nom) identifiera rapidement les services Internet hébergés par une machine reliée au réseau sans même nécessiter de s'y connecter (<command>login</command>). Il suffit d'invoquer la commande suivante sur une autre machine connectée au même réseau:"
+
+#. Tag: screen
+#, no-c-format
+msgid ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>nmap mirlaine</userinput>\n"
+"<computeroutput>Starting Nmap 5.00 ( http://nmap.org ) at 2010-07-29 16:36 CET\n"
+"Interesting ports on mirlaine (192.168.1.99):\n"
+"Not shown: 1694 closed ports\n"
+"PORT    STATE SERVICE\n"
+"22/tcp  open  ssh\n"
+"79/tcp  open  finger\n"
+"111/tcp open  rpcbind\n"
+"\n"
+"Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>\n"
+msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>nmap mirlaine</userinput>\n"
+"<computeroutput>Starting Nmap 5.00 ( http://nmap.org ) at 2010-07-29 16:36 CET\n"
+"Interesting ports on mirlaine (192.168.1.99):\n"
+"Not shown: 1694 closed ports\n"
+"PORT    STATE SERVICE\n"
+"22/tcp  open  ssh\n"
+"79/tcp  open  finger\n"
+"111/tcp open  rpcbind\n"
+"\n"
+"Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds</computeroutput>\n"
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>ALTERNATIVE</emphasis> Use <command>netstat</command> to find the list of available services"
+msgstr "<emphasis>ALTERNATIVE</emphasis> Utiliser <command>netstat</command> pour trouver la liste des services disponibles"
+
+#. Tag: para
+#, no-c-format
+msgid "On a Linux machine, the <command>netstat -tupan</command> command will show the list of active or pending TCP sessions, as well UDP ports on which running programs are listening. This facilitates identification of services offered on the network."
+msgstr "Sur une machine Linux, la commande <command>netstat -tupan</command> dresse la liste des sessions TCP actives ou en attente ainsi que des ports UDP que les programmes actifs écoutent. Cela facilite le recensement des services proposés sur le réseau."
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>GOING FURTHER</emphasis> IPv6"
+msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> IPv6"
+
+#. Tag: para
+#, no-c-format
+msgid "Some network commands may work either with IPv4 (the default usually) or with IPv6. This is especially the case with the <command>nmap</command> and <command>netstat</command> commands, but also others, such as <command>route</command> or <command>ip</command>. The convention is that this behavior is enabled by the <parameter>-6</parameter> command-line option."
+msgstr "Certaines commandes réseau peuvent travailler en IPv4 ou en IPv6. C'est notamment le cas des commandes <command>nmap</command> et <command>netstat</command>, mais aussi d'autres comme <command>route</command> ou <command>ip</command>. La convention est que ce comportement est déclenché par l'option de ligne de commande <parameter>-6</parameter>."
+
+#. Tag: para
+#, no-c-format
+msgid "If the server is a Unix machine offering shell accounts to users, it is interesting to determine if processes are executed in the background in the absence of their owner. The command <command>ps auxw</command> displays a list of all processes with their user identity. By checking this information against the output of the <command>who</command> command, which gives a list of logged in users, it is possible to identify wild servers or programs running in the background. Looking at <filename>crontabs</filename> (tables listing automatic actions scheduled by users) will often provide interesting information on functions fulfilled by the server (a complete explanation of <command>cron</command> is available in <xref linkend=\"sect.task-scheduling-cron-atd\" />)."
+msgstr "Si le serveur est une machine Unix offrant un compte shell aux utilisateurs, il est intéressant de déterminer si des processus s'exécutent en tâche de fond, en l'absence de leur propriétaire. La commande <command>ps auxw</command> affiche tous les processus et leur identifiant utilisateur associé. En croisant ces informations avec la sortie de la commande <command>who</command> (donnant la liste des utilisateurs connectés), il est possible de retrouver d'éventuels serveurs sauvages ou des programmes fonctionnant en tâche de fond. La consultation des tables de processus planifiés (<filename>crontabs</filename>) fournira souvent des renseignements intéressants sur les fonctions remplies par le serveur (l'explication complète des commandes de <command>cron</command> se trouve dans la section «Planification de tâches» du <xref linkend=\"unix-services\" />)."
+
+#. Tag: para
+#, no-c-format
+msgid "In any case, it is essential to backup your servers: this allows recovery of information after the fact, when users will report specific problems due to the migration."
+msgstr "Dans tous les cas, il est indispensable de prévoir une sauvegarde du serveur: elle permettra de récupérer des informations a posteriori, quand les utilisateurs feront état de problèmes concrets dus à la migration."
+
+#. Tag: title
+#, no-c-format
+msgid "Backing up the Configuration"
+msgstr "Conserver la configuration"
+
+#. Tag: para
+#, no-c-format
+msgid "It is wise to retain the configuration of every service identified in order to be able to install the equivalent on the updated server. The strict minimum is to print the configuration files and make a backup copy of them."
+msgstr "Il convient de conserver la configuration de chaque service identifié afin de pouvoir installer l'équivalent sur le serveur mis à jour. Le strict minimum est d'imprimer les fichiers de configuration et d'en faire une copie de sauvegarde."
+
+#. Tag: para
+#, no-c-format
+msgid "For Unix machines, the configuration files are usually found in <filename>/etc/</filename>, but they may be located in a sub-directory of <filename>/usr/local/</filename>. This is the case if a program has been installed from sources, rather than with a package. One may also find them, in some cases, under <filename>/opt/</filename>."
+msgstr "Pour des machines Unix, la configuration se trouve habituellement sous <filename>/etc/</filename> mais il se peut qu'elle soit placée dans un sous-répertoire de <filename>/usr/local/</filename>. C'est le cas lorsqu'un logiciel est installé depuis ses sources plutôt qu'avec un paquet. On peut même la rencontrer, dans certains cas, sous <filename>/opt/</filename>."
+
+#. Tag: para
+#, no-c-format
+msgid "For data managing services (such as databases), it is strongly recommended to export them to a standard format that will be easily imported by the new software. Such a format is usually in text mode and documented; it may be, for example, an SQL dump for a database, or an LDIF file for an LDAP server."
+msgstr "Pour les services gérant des données (comme les bases de données), il est fortement recommandé d'exporter celles-ci dans un format standard, plus facile à reprendre par le nouveau logiciel. Un tel format est généralement en mode texte et documenté: il s'agira par exemple d'un <foreignphrase>dump</foreignphrase> SQL pour une base de données et d'un fichier LDIF pour un serveur LDAP."
+
+#. Tag: title
+#, no-c-format
+msgid "Database backups"
+msgstr "Sauvegarde des bases de données"
+
+#. Tag: para
+#, no-c-format
+msgid "Each server software is different, and it is impossible to detail all existing cases. See the new and current software documentation to identify the exportable (thus, re-importable) portions and those which will require manual manipulation. Reading this book will clarify the configuration of the main Linux server programs."
+msgstr "Chaque logiciel serveur est différent et il est impossible de détailler tous les cas existants. Reportez-vous aux documentations du logiciel actuel et du nouveau logiciel pour identifier les portions exportables puis réimportables et celles qui nécessiteront un travail manuel. La lecture de ce livre vous éclairera déjà sur la configuration des principaux logiciels serveurs sous Linux."
+
+#. Tag: title
+#, no-c-format
+msgid "Taking Over an Existing Debian Server"
+msgstr "Prendre en main un serveur Debian existant"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>recovering a Debian machine</primary>"
+msgstr "<primary>récupération d'une machine Debian</primary>"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>exploring a Debian machine</primary>"
+msgstr "<primary>exploration d'une machine Debian</primary>"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>taking over a Debian server</primary>"
+msgstr "<primary>prise en main d'un serveur Debian</primary>"
+
+#. Tag: para
+#, no-c-format
+msgid "To effectively take over its maintenance, one may analyze a machine already running with Debian."
+msgstr "Pour en reprendre efficacement l'administration, on pourra analyser une machine déjà animée par Debian."
+
+#. Tag: para
+#, no-c-format
+msgid "The first file to check is <filename>/etc/debian_version</filename>, which usually contains the version number for the installed Debian system (it is part of the <emphasis>base-files</emphasis> package). If it indicates <literal><replaceable>codename</replaceable>/sid</literal>, it means that the system was updated with packages coming from one of the development distributions (either testing or unstable)."
+msgstr "Le premier fichier à vérifier est <filename>/etc/debian_version</filename>, qui contient habituellement le numéro de version du système Debian installé (il fait partie du paquet <emphasis>base-files</emphasis>). S'il indique <literal>testing/unstable</literal>, c'est que le système a été mis à jour avec des paquets provenant d'une de ces deux distributions en développement."
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>apt-show-versions</command> program (from the Debian package of the same name) checks the list of packages installed and identifies the versions available. <command>aptitude</command> can also be used for these tasks, albeit in a less systematic manner."
+msgstr "Le programme <command>apt-show-versions</command> (du paquet Debian éponyme) consulte la liste des paquets installés et identifie les versions disponibles. <command>aptitude</command> permet aussi d'effectuer ces tâches, d'une manière moins systématique."
+
+#. Tag: para
+#, no-c-format
+msgid "A glance at the <filename>/etc/apt/sources.list</filename> file will show where the installed Debian packages likely came from. If many unknown sources appear, the administrator may choose to completely reinstall the computer's system to ensure optimal compatibility with the software provided by Debian."
+msgstr "Un coup d'œil au fichier <filename>/etc/apt/sources.list</filename> montrera la provenance probable des paquets Debian déjà installés. Si beaucoup de sources inconnues apparaissent, l'administrateur pourra choisir de réinstaller complètement l'ordinateur pour s'assurer une compatibilité optimale avec les logiciels fournis par Debian."
+
+#. Tag: para
+#, no-c-format
+msgid "The <filename>sources.list</filename> file is often a good indicator: the majority of administrators keep, at least in comments, the list of prior APT sources used. But you should not forget that sources used in the past might have been deleted, and that some random packages grabbed on the Internet might have been manually installed (with the <command>dpkg</command> command). In this case, the machine is misleading in its appearance of “standard” Debian. This is why you should pay attention to any indication that will give away the presence of external packages (appearance of <filename>deb</filename> files in unusual directories, package version numbers with a special suffix indicating that it originated from outside the Debian project, such as <literal>ubuntu</literal> or <literal>ximian</literal>, etc.)"
+msgstr "Ce fichier <filename>sources.list</filename> est souvent un bon indicateur: la majorité des administrateurs gardent au moins en commentaires les sources APT employées par le passé. Mais il est toujours possible que des sources employées par le passé aient été supprimées, voire que l'ancien administrateur ait installé manuellement (avec <command>dpkg</command>) des paquets téléchargés sur l'Internet. Dans ce cas, la machine trompe par son apparence de Debian «standard». C'est pourquoi il convient d'être attentif à tout indice pouvant trahir la présence de paquets externes (apparition de fichiers <filename>.deb</filename> dans des répertoires inhabituels, numéros de version de paquet dotés d'un suffixe particulier représentant l'origine du paquet — comme <literal>ubuntu</literal> ou <literal>ximian</literal>, etc.)"
+
+#. Tag: para
+#, no-c-format
+msgid "Likewise, it is interesting to analyze the contents of the directory <filename>/usr/local/</filename>, intended to contain programs compiled and installed manually. Listing software installed in this manner is instructive, since this raises questions on the reasons for not using the corresponding Debian package, if such a package exists."
+msgstr "De même, il est intéressant d'analyser le contenu du répertoire <filename>/usr/local/</filename>, prévu pour contenir des programmes compilés et installés manuellement. Répertorier les logiciels installés de cette manière est riche d'enseignements, car cela incite à s'interroger sur la raison justifiant le non-emploi du paquet Debian correspondant — si un tel paquet existe."
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>QUICK LOOK</emphasis> <emphasis role=\"pkg\">cruft</emphasis>"
+msgstr "<emphasis>DÉCOUVERTE</emphasis> <emphasis role=\"pkg\">cruft</emphasis>"
+
+#. Tag: para
+#, no-c-format
+msgid "The <emphasis role=\"pkg\">cruft</emphasis> package proposes to list the available files that are not owned by any package. It has some filters (more or less effective, and more or less up to date) to avoid reporting some legitimate files (files generated by Debian packages, or generated configuration files not managed by <command>dpkg</command>, etc.)."
+msgstr "Le paquet <emphasis role=\"pkg\">cruft</emphasis> permet de répertorier tous les fichiers présents sur le disque qui ne sont affectés à aucun paquet. Il dispose de quelques filtres (plus ou moins efficaces, et plus ou moins à jour) pour éviter d'afficher certains de ces fichiers qui existent légitimement (fichiers générés par les paquets Debian, ou fichiers de configuraton gérés en dehors du contrôle de <command>dpkg</command>, etc.)."
+
+#. Tag: para
+#, no-c-format
+msgid "Be careful to not blindly delete everything that <command>cruft</command> might list!"
+msgstr "Attention à ne pas supprimer aveuglément tout ce que <command>cruft</command> pourrait lister!"
+
+#. Tag: title
+#, no-c-format
+msgid "Installing Debian"
+msgstr "Installer Debian"
+
+#. Tag: para
+#, no-c-format
+msgid "All information on the current server being now known, we can shut it down and begin to install Debian on it."
+msgstr "Toutes les informations relatives au serveur actuel étant maintenant connues, il est possible de mettre celui-ci hors service et d'y installer Debian."
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>architecture</primary>"
+msgstr "<primary>architecture</primary>"
+
+#. Tag: para
+#, no-c-format
+msgid "To choose the appropriate version, we must know the computer's architecture. If it is a PC, it is most likely to be i386. In other cases, we can narrow down the possibilities according to the previously used system."
+msgstr "Pour en choisir la version adéquate, il faut connaître l'architecture de l'ordinateur. S'il s'agit d'un PC, ce sera vraisemblablement i386. Dans les autres cas, on pourra restreindre les possibilités en fonction du système précédemment employé."
+
+#. Tag: title
+#, no-c-format
+msgid "Installing the appropriate Debian version"
+msgstr "Installer la Debian adaptée à chaque ordinateur"
+
+#. Tag: para
+#, no-c-format
+msgid "<xref linkend=\"tab-corresp\" xrefstyle=\"select: label nopage\" /> is not intended to be exhaustive, but may be helpful. In any case, the original documentation for the computer is the most reliable source to find this information."
+msgstr "Le <xref linkend=\"tab-corresp\" xrefstyle=\"select: label nopage\" /> ne prétend pas être exhaustif mais pourra vous aider. Dans tous les cas, la documentation d'origine de l'ordinateur vous renseignera de manière plus certaine."
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>HARDWARE</emphasis> Next-generation PC"
+msgstr "<emphasis>MATÉRIEL</emphasis> PC de dernière génération"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Itanium</primary>"
+msgstr "<primary>Itanium</primary>"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>amd64</primary>"
+msgstr "<primary>amd64</primary>"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>ia64</primary>"
+msgstr "<primary>ia64</primary>"
+
+#. Tag: para
+#, no-c-format
+msgid "Most recent computers have 64 bit Intel or AMD processors, compatible with older 32 bit processors; the software compiled for “i386” architecture thus works. On the other hand, this compatibility mode does not fully exploit the capabilities of these new processors. This is why Debian provides software for “ia64” architecture for Intel Itanium chips and “amd64” for AMD chips. This last also works with Intel “em64t” processors, which are very similar to AMD64 processors."
+msgstr "La plupart des ordinateurs récents sont pourvus de processeurs 64 bits d'Intel ou d'AMD, compatibles avec les anciens processeurs 32 bits: les logiciels compilés pour architecture «i386» fonctionneront donc. En revanche, ce mode compatibilité ne met pas à profit les capacités de ces nouveaux processeurs. C'est pourquoi Debian prévoit les architectures «ia64» pour les processeurs Itanium d'Intel et «amd64» pour ceux d'AMD. Cette dernière prend également en charge les processeurs «em64t» d'Intel, très similaires aux AMD64."
+
+#. Tag: title
+#, no-c-format
+msgid "Matching operating system and architecture"
+msgstr "Correspondance entre système d'exploitation et architecture"
+
+#. Tag: entry
+#, no-c-format
+msgid "Operating System"
+msgstr "Système d'exploitation"
+
+#. Tag: entry
+#, no-c-format
+msgid "Architecture(s)"
+msgstr "Architecture(s)"
+
+#. Tag: entry
+#, no-c-format
+msgid "DEC Unix (OSF/1)"
+msgstr "DEC Unix (OSF/1)"
+
+#. Tag: entry
+#, no-c-format
+msgid "alpha, mipsel"
+msgstr "alpha, mipsel"
+
+#. Tag: entry
+#, no-c-format
+msgid "HP Unix"
+msgstr "HP Unix"
+
+#. Tag: entry
+#, no-c-format
+msgid "hppa"
+msgstr "hppa"
+
+#. Tag: entry
+#, no-c-format
+msgid "IBM AIX"
+msgstr "IBM AIX"
+
+#. Tag: entry
+#, no-c-format
+msgid "powerpc"
+msgstr "powerpc"
+
+#. Tag: entry
+#, no-c-format
+msgid "Irix"
+msgstr "Irix"
+
+#. Tag: entry
+#, no-c-format
+msgid "mips"
+msgstr "mips"
+
+#. Tag: entry
+#, no-c-format
+msgid "MacOS"
+msgstr "MacOS"
+
+#. Tag: entry
+#, no-c-format
+msgid "powerpc, m68k, i386, amd64"
+msgstr "powerpc, m68k, i386, amd64"
+
+#. Tag: entry
+#, no-c-format
+msgid "MVS"
+msgstr "MVS"
+
+#. Tag: entry
+#, no-c-format
+msgid "s390"
+msgstr "s390"
+
+#. Tag: entry
+#, no-c-format
+msgid "Solaris, SunOS"
+msgstr "Solaris, SunOS"
+
+#. Tag: entry
+#, no-c-format
+msgid "sparc, m68k, i386"
+msgstr "sparc, m68k, i386"
+
+#. Tag: entry
+#, no-c-format
+msgid "Ultrix"
+msgstr "Ultrix"
+
+#. Tag: entry
+#, no-c-format
+msgid "VMS"
+msgstr "VMS"
+
+#. Tag: entry
+#, no-c-format
+msgid "alpha"
+msgstr "alpha"
+
+#. Tag: entry
+#, no-c-format
+msgid "Windows NT"
+msgstr "Windows NT"
+
+#. Tag: entry
+#, no-c-format
+msgid "i386, alpha, mipsel"
+msgstr "i386, alpha, mipsel"
+
+#. Tag: entry
+#, no-c-format
+msgid "Windows XP / Windows Server 2008"
+msgstr "Windows XP / Windows Server 2008"
+
+#. Tag: entry
+#, no-c-format
+msgid "i386, ia64, amd64"
+msgstr "i386, ia64, amd64"
+
+#. Tag: entry
+#, no-c-format
+msgid "Windows Vista / Windows 7"
+msgstr "Windows Vista / Windows 7"
+
+#. Tag: entry
+#, no-c-format
+msgid "i386, amd64"
+msgstr "i386, amd64"
+
+#. Tag: title
+#, no-c-format
+msgid "Installing and Configuring the Selected Services"
+msgstr "Installer et configurer les services sélectionnés"
+
+#. Tag: para
+#, no-c-format
+msgid "Once Debian is installed, we must install and configure one by one all of the services that this computer must host. The new configuration must take into consideration the prior one in order to ensure a smooth transition. All the information collected in the first two steps are useful to successfully complete this part."
+msgstr "Une fois Debian installée, il s'agit d'installer et de configurer un à un tous les services que cet ordinateur doit héberger. La nouvelle configuration devra prendre en compte la précédente pour assurer une transition tout en douceur. Toutes les informations récoltées dans les deux premières étapes sont utiles pour mener à bien celle-ci."
+
+#. Tag: title
+#, no-c-format
+msgid "Install the selected services"
+msgstr "Installer les services sélectionnés"
+
+#. Tag: para
+#, no-c-format
+msgid "Prior to jumping in to this exercise with both feet, it is strongly recommended that you read the remainder of this book. After that you will have a more precise understanding of how to configure the expected services."
+msgstr "Avant de se lancer corps et âme dans cet exercice, il est fortement recommandé de consulter le reste de ce livre, grâce auquel vous aurez une idée plus précise sur la manière de configurer les services prévus."
+

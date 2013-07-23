@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-06-05 10:19+0200\n"
+"PO-Revision-Date: 2013-07-17 12:13+0200\n"
 "Last-Translator: Dag Velovic <dag.velovic@gmail.com>\n"
 "Language-Team: Croatian <http://debian.weblate.org/projects/debian-handbook"
 "/05_packaging-system/hr/>\n"
@@ -95,10 +95,10 @@ msgstr ""
 "da više ne možete instalirati Debian pakete. Kako je <command>dpkg</command> "
 "paket sam po sebi, izgleda da je vas sustav gotov... Srecom, znate koji je "
 "format paketa te možete preuzeti <filename>.deb</filename> datoteku sa "
-"naglaskom na <emphasis role=\"pkg">dpkg</emphasis>."
+"naglaskom na <emphasis role=\"pkg\">dpkg</emphasis>"
 
 #. Tag: title
-#, no-c-format, fuzzy
+#, no-c-format
 msgid "<emphasis>TOOLS</emphasis> <command>dpkg</command>, <command>APT</command> and <command>ar</command>"
 msgstr "<emphasis>ALATI</emphasis>"
 
@@ -451,42 +451,54 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Dependencies: the <literal>Depends</literal> Field"
-msgstr ""
+msgstr "Zavisnosti: polje <literal>Zavisnost</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dependency</primary>"
-msgstr ""
+msgstr "<primary>zavisnost</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Zavisnost</literal>, polje zaglavlja</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>dependency</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>zavisnosti</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the package to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
 msgstr ""
+"Zavisnosti su definirane u <literal>Zavisnost</literal> polju u zaglavlju "
+"paketa. To je lista preduvjeta koji su potrebni da bi paket vršio svoju "
+"funkciju - ova informacija je korištana od strane alata kao "
+"<command>apt</command> u slučaju instalacije potrebitih biblioteka i "
+"njihovih verzija od kojih ovisi paket koji želimo instalirati. Za svaku "
+"međuovisnost moguće je točno odrediti raspon verzija koje odgovaraju tim "
+"uvjetima. Drugim riječima, moguće je reći da trebamo paket <emphasis "
+"role=\"pkg\">libc6</emphasis> verzije jednake ili veće od \"2.3.4\" (napisano "
+"kao “<command>libc6 (&gt;= 2.3.4)</command>)\". Operatori uspoređivanja "
+"verzija su slijedeći:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;&lt;</command>: less than;"
-msgstr ""
+msgstr "<command>&lt;&lt;</command>: manje od;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;=</command>: less than or equal to;"
-msgstr ""
+msgstr "<command>&lt;=</command>: manje od ili jednako;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>=</command>: equal to (note, “<literal>2.6.1</literal>” is not equal to “<literal>2.6.1-1</literal>”);"
 msgstr ""
+"<command>=</command>: jednako (primjer, “<literal>2.6.1</literal>” nije "
+"jednako kao “<literal>2.6.1-1</literal>”);"
 
 #. Tag: para
 #, no-c-format
