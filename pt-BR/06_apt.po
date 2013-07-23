@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2013-07-17 03:11+0200\n"
+"PO-Revision-Date: 2013-07-24 01:51+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
@@ -2141,21 +2141,54 @@ msgstr ""
 #, no-c-format
 msgid "Suggestions between packages are also taken into account, but in a manner adapted to their specific status. For example, since <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> suggests <emphasis role=\"pkg\">gnome-audio</emphasis>, the latter will be displayed on the summary screen of pending actions (in the section of packages suggested by other packages). This way, it is visible and the administrator can decide whether to take the suggestion into account or not. Since it is only a suggestion and not a dependency or a recommendation, the package will not be selected automatically — its selection requires a manual intervention from the user (thus, the package will not be marked as automatic)."
 msgstr ""
+"Sugestões entre pacotes são também levadas em consideração, mas adaptadas a "
+"seu status específico. Por exemplo, já que o <emphasis role=\"pkg\">gnome-"
+"desktop-environment</emphasis> sugere o <emphasis role=\"pkg\">gnome-"
+"audio</emphasis>, este último será exibido na tela de resumo das ações "
+"pendentes (na seção de pacotes sugeridos por outros pacotes). Desta forma, "
+"ficará visível e o administrador poderá decidir se deve aceitar a sugestão "
+"ou não. Já que isto é apenas uma sugestão e não uma dependência ou uma "
+"recomendação, o pacote não será selecionado automaticamente — sua seleção "
+"requer uma intervenção manual do usuário (portanto o pacote não será marcado "
+"como automático)."
 
 #. Tag: para
 #, no-c-format
 msgid "In the same spirit, remember that <command>aptitude</command> makes intelligent use of the concept of task. Since tasks are displayed as categories in the screens of package lists, you can either select a full task for installation or removal, or browse the list of packages included in the task to select a smaller subset."
 msgstr ""
+"No mesmo espírito, lembre que o <command>aptitude</command> faz um uso "
+"inteligente do conceito de tarefa. Como tarefas são mostradas como "
+"categorias nas telas de listas de pacotes, você pode tanto selecionar uma "
+"tarefa completa para instalar ou remover, ou navegar na lista de pacotes "
+"inclusa na tarefa para selecionar um subconjunto menor."
 
 #. Tag: title
 #, no-c-format
 msgid "Better Solver Algorithms"
-msgstr ""
+msgstr "Algoritmos de Solução Melhores"
 
 #. Tag: para
 #, no-c-format
 msgid "To conclude this section, let's note that <command>aptitude</command> has more elaborate algorithms compared to <command>apt-get</command> when it comes to resolving difficult situations. When a set of actions is requested and when these combined actions would lead to an incoherent system, <command>aptitude</command> evaluates several possible scenarios and presents them in order of decreasing relevance. However, these algorithms are not failproof. Fortunately there is always the possibility to manually select the actions to perform. When the currently selected actions lead to contradictions, the upper part of the screen indicates a number of “broken” packages (and you can directly navigate to those packages by pressing <keycombo><keycap>b</keycap></keycombo>). It is then possible to manually build a solution for the problems found. In particular, you can get access to the different available versions by simply selecting the package with <keycombo><keycap>Enter</keycap></keycombo>. If the selection of one of these versions solves the problem, you should not hesitate to use the function. When the number of broken packages gets down to zero, you can safely go to the summary screen of pending actions for a last check before you apply them."
 msgstr ""
+"Para concluir esta seção, note que o <command>aptitude</command> tem "
+"algoritmos mais elaborados comparado com o <command>apt-get</command> quando "
+"se trata de resolver situações difíceis. Quando um conjunto de ações é "
+"requerido e quando estas ações combinadas levam a um sistema incoerente, o "
+"<command>aptitude</command> calcula vários cenários possíveis e apresenta "
+"eles domais para o manos relevante. Entretanto, estes algoritmos não são à "
+"prova de falhas. Afortunadamente existe  sempre a possibilidade de fazer uma "
+"seleção manual das ações a realizar. Quando as ações atualmente "
+"selecionadas levam a uma contradição, a parte de cima da tela indica um "
+"número de pacotes \"quebrados\" (e você pode diretamente navegar para estes "
+"pacotes pressionando <keycombo><keycap>b</keycap></keycombo>). É então "
+"possível construir manualmente uma solução para os problemas encontrados. Em "
+"particular, você pode obter acesso a diferentes versões disponíveis "
+"simplesmente selecionando o pacote com "
+"<keycombo><keycap>Enter</keycap></keycombo>. Se a seleção de uma destas "
+"versões resolve o problema, não hesite em usá-la. Quando o número de pacotes "
+"quebrados baixa a zero, você pode seguramente ir para a tela de resumo das "
+"ações pendentes para uma última verificação antes de aplicar as ações."
 
 #. Tag: title
 #, no-c-format
@@ -2166,11 +2199,25 @@ msgstr "<emphasis>NOTA</emphasis> logs do <command>aptitude</command>"
 #, no-c-format
 msgid "Like <command>dpkg</command>, <command>aptitude</command> keeps a trace of executed actions in its logfile (<filename>/var/log/aptitude</filename>). However, since both commands work at a very different level, you cannot find the same information in their respective logfiles. While <command>dpkg</command> logs all the operations executed on individual packages step by step, <command>aptitude</command> gives a broader view of high-level operations like a system-wide upgrade."
 msgstr ""
+"Assim como o <command>dpkg</command>, <command>aptitude</command> mantém um "
+"registro das ações executadas no seu arquivo de log "
+"(<filename>/var/log/aptitude</filename>). Entretanto, como os dois comandos "
+"trabalham em níveis muito diferentes, você não achará a mesma informação nos "
+"seus respectivos arquivos de log. Enquanto o  <command>dpkg</command> loga "
+"todas as operações executadas em pacotes individuais, passo a passo, o  "
+"<command>aptitude</command> dá uma visão geral das operações de alto nível, "
+"como uma atualização de sistema."
 
 #. Tag: para
 #, no-c-format
 msgid "Beware, this logfile only contains a summary of operations performed by <command>aptitude</command>. If other front-ends (or even <command>dpkg</command> itself) are occasionally used, then <command>aptitude</command>'s log will only contain a partial view of the operations, so you can't rely on it to build a trustworthy history of the system."
 msgstr ""
+"Cuidado, este arquivo de log contém um resumo das operações realizadas pelo "
+"<command>aptitude</command>. Se outras interfaces (ou o próprio "
+"<command>dpkg</command>) forem usadas ocasionalmente, então o log do "
+"<command>aptitude</command> vai conter apenas uma visão parcial das "
+"operações, de forma que você não pode se basear simplesmente nele para ter "
+"uma história totalmente confiável do seu sistema."
 
 #. Tag: title
 #, no-c-format
@@ -2181,6 +2228,15 @@ msgstr "<command>synaptic</command>"
 #, no-c-format
 msgid "<command>synaptic</command> is a graphical package manager for Debian which features a clean and efficient graphical interface based on GTK+/GNOME. Its many ready-to-use filters give fast access to newly available packages, installed packages, upgradable packages, obsolete packages and so on. If you browse through these lists, you can select the operations to be done on the packages (install, upgrade, remove, purge); these operations are not performed immediately, but put into a task list. A single click on a button then validates the operations, and they are performed in one go."
 msgstr ""
+"<command>synaptic</command> é um gerenciador de pacotes gráfico para o "
+"Debian que possui uma interface gráfica limpa e eficiente baseada em "
+"GTK+/GNOME. Seus muitos filtros prontos para uso permitem o acesso rápido a "
+"novos pacotes disponibilizados, pacotes instalados, pacotes atualizáveis, "
+"pacotes obsoletos e muito mais. Se você navegar através destas listas, você "
+"poderá selecionar as operacões a serem feitas nos pacotes (instalar, "
+"atualizar, remover, expurgar); estas operações não são realizadas "
+"imediatamente, mas postas em uma lista de tarefas. Um único clique de um "
+"botão então valida as operações, que são então realizadas todas juntas."
 
 #. Tag: title
 #, no-c-format
@@ -2217,11 +2273,31 @@ msgstr "<primary>assinatura</primary><secondary>de um pacote</secondary>"
 #, no-c-format
 msgid "Security is very important for Falcot Corp administrators. Accordingly, they need to ensure that they only install packages which are guaranteed to come from Debian with no tampering on the way. A computer cracker could try to add malicious code to an otherwise legitimate package. Such a package, if installed, could do anything the cracker designed it to do, including for instance disclosing passwords or confidential information. To circumvent this risk, Debian provides a tamper-proof seal to guarantee — at install time — that a package really comes from its official maintainer and hasn't been modified by a third party."
 msgstr ""
+"Segurança é muito importante para os administradores da Falcot Corp. E desta "
+"forma, eles precisam ter certeza que estão instalando pacotes que vem do "
+"Debian, sem interceptações no caminho. Um cracker de computador pode tentar "
+"adicionar código malicioso num pacote que de outra forma seria legítimo. Tal "
+"pacote, se instalado, poderia fazer qualquer coisa que o cracker o tivesse "
+"projetado para fazer, incluindo por exemplo revelar senhas e informações "
+"confidenciais. Para evitar este risco, o Debian fornece um selo de qualidade "
+"a prova de interceptações para garantir - no momento da instalação - que um "
+"pacote realmente vem de um mentenedor oficial e não foi modificado por um "
+"terceiro."
 
 #. Tag: para
 #, no-c-format
 msgid "The seal works with a chain of cryptographical hashes and a signature. The signed file is the <filename>Release</filename> file, provided by the Debian mirrors. It contains a list of the <filename>Packages</filename> files (including their compressed forms, <filename>Packages.gz</filename> and <filename>Packages.bz2</filename>, and the incremental versions), along with their MD5, SHA1 and SHA256 hashes, which ensures that the files haven't been tampered with. These <filename>Packages</filename> files contain a list of the Debian packages available on the mirror, along with their hashes, which ensures in turn that the contents of the packages themselves haven't been altered either."
 msgstr ""
+"O selo funciona como uma cadeia de hashes criptográficos e uma assinatura. O "
+"arquivo assinado é o arquivo <filename>Release</filename> file, fornecido "
+"pelos espelhos Debian. Ele contém uma lista de arquivos "
+"<filename>Packages</filename> (incluindo suas formas compactadas, "
+"<filename>Packages.gz</filename> e <filename>Packages.bz2</filename>, e as "
+"versões incrementais), junto com suas hashes MD5, SHA1 e SHA256 que garantem "
+"que os arquivos não foram interceptados. Estes arquivos "
+"<filename>Packages</filename> contém uma lista de pacotes Debian disponíveis "
+"no espelho, junto com seus hashes, que garantem, por sua vez, que os "
+"conteúdos dos próprios pacotes também não foram alterados."
 
 #. Tag: indexterm
 #, no-c-format

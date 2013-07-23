@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2013-07-11 17:02+0200\n"
+"PO-Revision-Date: 2013-07-26 04:15+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/04_installation/pt_BR/>\n"
@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 1.6-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 1.6\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -895,8 +895,8 @@ msgstr ""
 "automatizadas com as senhas mais óbvias. Algumas vezes ele ainda pode ser "
 "alvo de ataques de dicionário, em que várias combinações de palavras e "
 "números são testadas como senhas. Evite usar nomes de filhos ou pais, datas "
-"de nascimento, etc.: muitos de seus colegas de trabalho podem conhecê-los e "
-"você raramente quer dar-lhes livre acesso ao computador em questão."
+"de nascimento, etc.: muitos de seus colegas de trabalho podem conhecê-lo e "
+"você raramente quer dar a eles livre acesso ao computador em questão."
 
 #. Tag: para
 #, no-c-format
@@ -922,10 +922,10 @@ msgstr "Criando o Primeiro Usuário"
 #, no-c-format
 msgid "Debian also imposes the creation of a standard user account so that the administrator doesn't get into the bad habit of working as root. The precautionary principle essentially means that each task is performed with the minimum required rights, in order to limit the damage caused by human error. This is why the installer will ask for the complete name of this first user, their username, and their password (twice, to prevent the risk of erroneous input)."
 msgstr ""
-"Debian também impõe a criação de uma conta de usuário padrão para que o "
+"O Debian também impõe a criação de uma conta de usuário padrão para que o "
 "administrador não adquira o mau hábito de trabalhar como root. O princípio "
 "da precaução, essencialmente, significa que cada tarefa é executada com os "
-"direitos mínimos necessários, a fim de limitar os danos causados por erro "
+"privilégios mínimos necessários, a fim de limitar os danos causados por erro "
 "humano. Por isso, o instalador vai pedir o nome completo do usuário "
 "primeiro, seu nome de usuário e sua senha (duas vezes, para evitar o risco "
 "de entrada errada)."
@@ -966,20 +966,21 @@ msgstr "<emphasis>CULTURA</emphasis> Usos do particionamento"
 #, no-c-format
 msgid "Partitioning, an indispensable step in installation, consists in dividing the available space on the hard drives (each subdivision thereof being called a “partition”) according to the data to be stored on it and the use for which the computer is intended. This step also includes choosing the filesystems to be used. All of these decisions will have an influence on performance, data security, and the administration of the server."
 msgstr ""
-"Particionamento, uma etapa indispensável na instalação, consiste em dividir "
-"o espaço disponível em discos rígidos (cada subdivisão deve ser chamado de "
-"uma \"partição\") de acordo com os dados a serem armazenados nele e o uso a "
-"que se destina o computador. Esta etapa inclui também escolher os sistemas "
-"de arquivos a ser usado. Todas essas decisões terão influência no "
-"desempenho, segurança de dados e a administração do servidor."
+"O particionamento, um passo indispensável na instalação, consiste em dividir "
+"o espaço disponível nos discos rígidos (cada subdivisão sendo chamada de "
+"\"partição\") de acordo com os dados armazenados neles e a utilização para a "
+"qual se pretende utilizar o computador. Este passo também inclui escolher os "
+"sistemas de arquivos a serem utilizados. Todas estas decisões terão "
+"influência na performance, segurança de dados e na administração do "
+"servidor."
 
 #. Tag: para
 #, no-c-format
 msgid "The partitioning step is traditionally difficult for new users. It is necessary to define the various portions of the disks (or “partitions”) on which the Linux filesystems and virtual memory (swap) will be stored. This task is complicated if another operating system that you want to keep is already on the machine. Indeed, you will then have to make sure that you do not alter its partitions (or that you resize them without causing damage)."
 msgstr ""
-"A etapa de particionamento é tradicionalmente difícil para os novos "
-"usuários. É necessário definir as várias partes dos discos (ou \"partições\") "
-"no qual o sistema de arquivos Linux e memória virtual (swap) serão "
+"O passo de particionamento é tradicionalmente difícil para novos usuários. É "
+"necessário definir as várias porções dos discos (ou \"partições\") em que os "
+"sistemas de arquivos do Linux e a memória virtual (área de troca) serão "
 "armazenados. Esta tarefa é complicada se outro sistema operacional que você "
 "queira manter já está na máquina. De fato, você terá que ter certeza de não "
 "alterar as partições dele (ou que você redimensione elas sem causar danos)."
@@ -1077,6 +1078,20 @@ msgstr ""
 #, no-c-format
 msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>), and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
 msgstr ""
+"O último método de particionamento, chamado “partições "
+"<filename>/home</filename>, <filename>/usr</filename>, "
+"<filename>/var</filename> e <filename>/tmp</filename> separadas”, é "
+"apropriado para servidores e sistemas multi-usuário. Ele divide a árvore de "
+"diretórios em várias partições: Além das partições raiz "
+"(<filename>/</filename>) e de contas de usuários "
+"(<filename>/home/</filename>), também tem partições para aplicações "
+"(<filename>/usr/</filename>), dados de software de servidor "
+"(<filename>/var/</filename>) e arquivos temporários "
+"(<filename>/tmp/</filename>). Estas divisões têm várias vantagens. Os "
+"usuários não podem travar o servidor quando consomem todo o espaço "
+"disponível no disco rígido (eles só podem lotar o <filename>/tmp/</filename> "
+"e o <filename>/home/</filename>). Os dados dos daemons (especialmente os "
+"logs) já não pode paralisar o resto do sistema."
 
 #. Tag: title
 #, no-c-format
@@ -1098,16 +1113,52 @@ msgstr "<primary>arquivo</primary><secondary>sistema</secondary>"
 #, no-c-format
 msgid "A filesystem defines the way in which data is organized on the hard drive. Each existing filesystem has its merits and limitations. Some are more robust, others more effective: if you know your needs well, choosing the most appropriate filesystem is possible. Various comparisons have already been made; it seems that ReiserFS is particularly efficient for reading many small files; <emphasis>XFS</emphasis>, in turn, works faster with large files. <emphasis>Ext3</emphasis>, the default filesystem for Debian, is a good compromise, based on the two previous versions of filesystems historically used in Linux (<emphasis>ext</emphasis> and <emphasis>ext2</emphasis>). You could also choose its successor <emphasis>ext4</emphasis>, which overcomes certain limitations of <emphasis>ext3</emphasis> and is particularly appropriate for very large capacity hard drives. If you are particularly brave, you could experiment with the very promising <emphasis>btrfs</emphasis>, which includes numerous features that require, to this day, the use of LVM and/or RAID."
 msgstr ""
+"Um sistema de arquivos define a forma na qual os dados são organizados no "
+"disco rígido. Cada sistema de arquivos existente tem seus méritos e "
+"limitações. Alguns são mais robustos, outros mais efetivos: se você conhece "
+"bem suas necessidades, é possível escolher o sistema de arquivos mais "
+"apropriado. Várias comparações já foram feitas; parece que ReiserFS é muito "
+"bom para ler muitos arquivos pequenos; <emphasis>XFS</emphasis>, por sua "
+"vez, é mais rápido com arquivos grandes. <emphasis>Ext3</emphasis>, o "
+"sistema de arquivos padrão do Debian, é um bom meio termo, baseado na duas "
+"versões anteriores de sistemas de arquivos historicamente usados no Linux "
+"(<emphasis>ext</emphasis> e <emphasis>ext2</emphasis>). Você também pode "
+"escolher o seu sucessor, o <emphasis>ext4</emphasis>, que resolve certas "
+"limitações do <emphasis>ext3</emphasis> e é particularmente apropriado para "
+"dispositovos de capacidades muito grandes. Se você for particularmente "
+"audaz, pode experimentar o promissor <emphasis>btrfs</emphasis>, que inclui "
+"muitas funcionalidades que, atualmente, precisam de LVM e/ou RAID."
 
 #. Tag: para
 #, no-c-format
 msgid "A journalized filesystem (such as <emphasis>ext3</emphasis>, <emphasis>ext4</emphasis>, <emphasis>btrfs</emphasis>, <emphasis>reiserfs</emphasis>, or <emphasis>xfs</emphasis>) takes special measures to make it possible to return to a prior consistent state after an abrupt interruption without completely analyzing the entire disk (as was the case with the <emphasis>ext2</emphasis> system). This functionality is carried out by filling in a journal that describes the operations to conduct prior to actually executing them. If an operation is interrupted, it will be possible to “replay” it from the journal. Conversely, if an interruption occurs during an update of the journal, the last requested change is simply ignored; the data being written could be lost, but since the data on the disk has not changed, they have remained coherent. This is nothing more nor less than a transactional mechanism applied to the filesystem."
 msgstr ""
+"Os sistemas de arquivos com recurso de journaling \"diário\" (como "
+"<emphasis>ext3</emphasis>, <emphasis>ext4</emphasis>, "
+"<emphasis>btrfs</emphasis>, <emphasis>reiserfs</emphasis> ou "
+"<emphasis>xfs</emphasis>) tomam medidas especiais para ser possível retornar "
+"a um estado consistente após uma interrupção abrupta, sem analisar "
+"completamente o disco inteiro (como era o caso com o "
+"<emphasis>ext2</emphasis>). Isto é possível através do preenchimento de um "
+"\"journal\" que descreve as operações para realizar antes de realmente "
+"executá-las. Se uma operação for interrompida, irá ser possível \"repetir\" a "
+"partir do \"journal\". Por outro lado, se ocorrer uma interrupção durante uma "
+"atualização do \"journal\", a última alteração solicitada é simplesmente "
+"ignorada; os dados a serem escritos podem ser perdidos, mas uma vez que os "
+"dados sobre o disco não mudaram, eles permaneceram coerentes. Isso não é "
+"nada além de um mecanismo transacional aplicada ao sistema de arquivos."
 
 #. Tag: para
 #, no-c-format
 msgid "After choosing the type of partition, the software calculates a suggestion, and describes it on the screen; the user can then modify it if needed. You can, in particular, choose another filesystem if the standard choice (<emphasis>ext3</emphasis>) isn't appropriate. In most cases, however, the proposed partitioning is reasonable and it can be accepted by selecting the “Finish partitioning and write changes to disk” entry."
 msgstr ""
+"Depois de escolher o tipo de partição, o software calcula uma sugestão, e a "
+"descreve na tela; o usuário pode, então, modificá-la, se necessário. Você "
+"pode, em particular, escolher um outro sistema de arquivos se a escolha "
+"padrão (<emphasis> ext3 </emphasis>) não é apropriada. Na maioria dos casos, "
+"no entanto, o particionamento proposto é razoável e pode ser aceito "
+"selecionando a opção \"Concluir particionamento e escrever as mudanças no "
+"disco\"."
 
 #. Tag: title
 #, no-c-format
@@ -1173,8 +1224,8 @@ msgid "The first screen displays the available disks, their partitions, and any 
 msgstr ""
 "A primeira tela exibe os discos disponíveis, suas partições e qualquer "
 "espaço livre possível que ainda não foi particionado. Você pode selecionar "
-"cada elemento exibido, pressionando a tecla <keycap>Enter</keycap> resultará "
-"numa lista de possíveis ações."
+"qualquer elemento exibido; e se pressionar a tecla <keycap>Enter</keycap> "
+"depois vai ter uma lista de possíveis ações."
 
 #. Tag: para
 #, no-c-format
@@ -1290,21 +1341,23 @@ msgstr ""
 #, no-c-format
 msgid "make it a “physical volume for LVM” (this concept is discussed in greater detail later in this chapter);"
 msgstr ""
+"torná-lo um \"volume físico para LVM\" (\"physical volume for LVM\") (este "
+"conceito será discutido em detalhes ainda neste capítulo);"
 
 #. Tag: para
 #, no-c-format
 msgid "use it as a RAID device (see later in this chapter);"
-msgstr ""
+msgstr "use ele como um dispositivo RAID (veja mais a frente neste capítulo);"
 
 #. Tag: para
 #, no-c-format
 msgid "or the choice not to use it, and therefore leave it unchanged."
-msgstr ""
+msgstr "ou a opção de não usá-lo, e portanto deixá-lo inalterado."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring Multidisk Devices (Software RAID)"
-msgstr ""
+msgstr "Configurando dispositivos Multidisco (RAID em software)"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1321,11 +1374,21 @@ msgstr ""
 #, no-c-format
 msgid "Some types of RAID allow the duplication of information stored on hard drives to prevent data loss in the event of a hardware problem affecting one of them. Level 1 RAID keeps a simple, identical copy (mirror) of a hard drive on another drive, while level 5 RAID splits redundant data over several disks, thus allowing the complete reconstruction of a failing drive."
 msgstr ""
+"Alguns tipos de RAID permitem a duplicação de informações armazenadas em "
+"discos rígidos para evitar perda de dados no caso de um problema de hardware "
+"afetando um dos discos. RAID nível 1 mantém uma cópia idêntica e simples "
+"(espelho) de um disco rígido em outro, enquanto RAID nível 5 espalha dados "
+"redundantes por vários discos, permitindo assim a completa reconstrução de "
+"um dispositivo que falhe."
 
 #. Tag: para
 #, no-c-format
 msgid "We will only describe level 1 RAID, which is the simplest to implement. The first step involves creating two partitions of identical size located on two different hard drives, and to label them “physical volume for RAID”."
 msgstr ""
+"Vamos apenas descrever RAID nível 1, que é o mais simples de implementar. O "
+"primeiro passo envolve a criação de duas partições de mesmo tamanho "
+"localizadas em dois discos rígidos diferentes, e a rotulação delas como "
+"\"volume físico para RAID\" (\"physical volume for RAID\")."
 
 #. Tag: para
 #, no-c-format
