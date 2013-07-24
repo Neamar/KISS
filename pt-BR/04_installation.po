@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-06-01T20:23:56\n"
-"PO-Revision-Date: 2013-07-26 04:15+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-07-27 04:41+0200\n"
+"Last-Translator: Iran Albuquerque <irandealbuquerque@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/04_installation/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -1394,21 +1394,40 @@ msgstr ""
 #, no-c-format
 msgid "You must then choose “Configure software RAID” in the partitioning tool to combine these two partitions into a new virtual disk and select “Create MD device” in the configuration screen. You then need to answer a series of questions about this new device. The first question asks about the RAID level to use, which in our case will be “RAID1”. The second question asks about the number of active devices — two in our case, which is the number of partitions that needs to be included in this MD device. The third question is about the number of spare devices — 0; we have not planned any additional disk to take over for a possible defective disk. The last question requires you to choose the partitions for the RAID peripheral — these would be the two that we have set aside for this purpose (make sure you only select the partitions that explicitly mention “raid”)."
 msgstr ""
+"Você deve então escolher \"Configurar RAID por software\" na ferramenta de "
+"particionamento para combinar essas duas partições em um novo disco virtual "
+"e selecione \"Criar dispositivo MD\" na tela de configuração. Em seguida, você "
+"precisa responder a uma série de perguntas sobre este novo dispositivo. A "
+"primeira pergunta é sobre o nível de RAID de usar, que no nosso caso será "
+"\"RAID1\". A segunda pergunta é sobre o número de dispositivos ativos - dois, "
+"no nosso caso, que é o número de partições que precisa ser incluído neste "
+"dispositivo MD. A terceira pergunta é sobre o número de dispositivos de "
+"reserva - 0; não planejamos qualquer disco adicional para assumir um "
+"possível disco defeituoso. A última pergunta requer que você escolha as "
+"partições para o RAID - estes seriam os dois que temos reservado para esta "
+"finalidade (certifique-se apenas selecionar as partições que mencionam "
+"explicitamente \"raid\")."
 
 #. Tag: para
 #, no-c-format
 msgid "Back to the main menu, a new virtual “RAID” disk appears. This disk is presented with a single partition which can not be deleted, but whose use we can choose (just like for any other partition)."
 msgstr ""
+"Voltar ao menu principal, aparece um novo disco virtual \"RAID\". Este disco é "
+"apresentado com uma única partição que não pode ser excluído, mas cujo uso, "
+"podemos escolher (assim como em qualquer outra partição)."
 
 #. Tag: para
 #, no-c-format
 msgid "For further details on RAID functions, please refer to <xref linkend=\"section.raid-soft\" />."
 msgstr ""
+"Para mais detalhes sobre as funções RAID, consulte <xref linkend=\"section"
+".raid-soft\" />."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Logical Volume Manager (LVM)"
 msgstr ""
+"Configurando o Gerenciador de Volume Lógico (Logical Volume Manager - LVM)"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1426,6 +1445,11 @@ msgstr ""
 #, no-c-format
 msgid "LVM allows you to create “virtual” partitions that span over several disks. The benefits are twofold: the size of the partitions are no longer limited by individual disks but by their cumulative volume, and you can at any time increase the size of an existing partition by adding an additional disk when needed."
 msgstr ""
+"LVM permite criar partições \"virtuais\" que se estendem ao longo de vários "
+"discos. Os benefícios são dois: o tamanho das partições não estão limitados "
+"por discos individuais, mas estão pelo seu volume, e você pode a qualquer "
+"momento aumentar o tamanho de uma partição existente acrescentando um disco "
+"adicional quando necessário."
 
 #. Tag: para
 #, no-c-format
