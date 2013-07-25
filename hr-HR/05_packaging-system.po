@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-07-17 12:13+0200\n"
+"PO-Revision-Date: 2013-07-25 10:12+0200\n"
 "Last-Translator: Dag Velovic <dag.velovic@gmail.com>\n"
 "Language-Team: Croatian <http://debian.weblate.org/projects/debian-handbook"
 "/05_packaging-system/hr/>\n"
@@ -60,7 +60,11 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the source code, as well as instructions for building binary packages."
-msgstr "Ovo poglavlje opisuje strukturu i sadržaj \"binarnog\" i \"izvornog"
+msgstr ""
+"Ovo poglavlje opisuje strukturu i sadržaj \"binarnog\" i \"izvornog\" paketa. "
+"Binarne su <filename>.deb</filename> datoteke direktno primijenjive "
+"koristeći <command>dpkg</command>, dok izvorni dio sadrži izvorni kod, kao i "
+"instrukcije za kreiranje binarnog paketa."
 
 #. Tag: title
 #, no-c-format
@@ -88,19 +92,26 @@ msgstr ""
 "slučaju katastrofe."
 
 #. Tag: para
-#, no-c-format, fuzzy
+#, no-c-format
 msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
 msgstr ""
 "Zamislite da ste npr. slučajno obrisali <command>dpkg</command> program,\" i "
 "da više ne možete instalirati Debian pakete. Kako je <command>dpkg</command> "
-"paket sam po sebi, izgleda da je vas sustav gotov... Srecom, znate koji je "
+"paket sam po sebi, izgleda da je vas sustav gotov... Srećom, znate koji je "
 "format paketa te možete preuzeti <filename>.deb</filename> datoteku sa "
-"naglaskom na <emphasis role=\"pkg\">dpkg</emphasis>"
+"naglaskom na <emphasis role=\"pkg\">dpkg</emphasis> paket te ga instalirati "
+"ručno (pogledaj ALATI bočnu traku). Ako pak slučajem neke nesreće jedan ili "
+"više od programa <command>ar</command>, <command>tar</command> ili "
+"<command>gzip</command> nedostaju, trebate ih samo kopirati iz nekog drugog "
+"sistema (kako je svaki od njih kompletno autonoman, bez međuovisnosti, "
+"jednostavno kopiranje je dostatno)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOLS</emphasis> <command>dpkg</command>, <command>APT</command> and <command>ar</command>"
-msgstr "<emphasis>ALATI</emphasis>"
+msgstr ""
+"<emphasis>ALATI</emphasis> <command>dpkg</command>, <command>APT</command> i "
+"<command>ar</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -157,6 +168,11 @@ msgid "\n"
 "<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 ""
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>ar x "
+"dpkg_1.15.8.5_i386.deb</userinput>\n"
+"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf "
+"data.tar.gz</userinput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -194,7 +210,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Have a look at the content of a <filename>.deb</filename> file:"
-msgstr "Pogledajte u sadržaj <filename>.deb</filename> datoteke: "
+msgstr "Pogledajte u sadržaj <filename>.deb</filename> datoteke:"
 
 #. Tag: screen
 #, no-c-format
@@ -281,7 +297,7 @@ msgstr ""
 msgid "<filename>debian-binary</filename>. This is a text file which simply indicates the version of the <filename>.deb</filename> file used (in 2011: version 2.0)."
 msgstr ""
 "<filename>debian-binary</filename>. Ovo je tekst datoteka koja jednostavno "
-"opisuje verziju <filename>.deb</filename> datoteke (u 2011: verzija 2.0)"
+"opisuje verziju <filename>.deb</filename> datoteke (u 2011: verzija 2.0)."
 
 #. Tag: para
 #, no-c-format
@@ -312,12 +328,12 @@ msgstr "Meta-informacije paketa"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package meta-information</primary>"
-msgstr "<primary>package meta-information</primary>"
+msgstr "\"<primary>package meta-information</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>meta-information</secondary>"
-msgstr "<primary>package</primary><secondary>meta-information</secondary>"
+msgstr "<primary>package</primary><secondary>meta-informacija</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -456,7 +472,7 @@ msgstr "Zavisnosti: polje <literal>Zavisnost</literal>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dependency</primary>"
-msgstr "<primary>zavisnost</primary>"
+msgstr "\"<primary>zavisnost</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -503,37 +519,58 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;=</command>: greater than or equal to;"
-msgstr ""
+msgstr "<command>&gt;=</command>: veće od ili jednako;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;&gt;</command>: greater than."
-msgstr ""
+msgstr "<command>&gt;&gt;</command>: veće od."
 
 #. Tag: para
 #, no-c-format
 msgid "In a list of conditions to be met, the comma serves as a separator. In logic, its meaning would be interpreted as “and”. In conditions, the vertical bar (“|”) expresses “or” in logic (it is an inclusive “or”, as opposed to meaning “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 msgstr ""
+"U listi predodređenih uvjeta, točka služi kao separator. Logika nalaže da "
+"njeno značenje je u biti \"i\". U uvjetima okomita crta (\"|\") izražava logički "
+"\"ili\" (uključuje \"ili\" kao suprotno od \"oba/ili\"). Imajući veći prioritet "
+"od \"i\" može se upotrijebiti koliko god puta je to potrebno. Slijedi da je "
+"izraz \"(A ili B) i C\" zapisan kao <command>A | B, C</command>. Suprotno "
+"tome, izraz \"A ili (B i C)\" zapisan je kao \"(A ili B) i (A ili C)\", budući "
+"da polje <literal>Ovisi</literal> ne tolerira zagrade koje mijenjaju  "
+"poredak prioriteta između logičkih operatera \"ili\" i \"i\". Bilo bi znači "
+"zapisano <command>A | B, A | C</command>. <ulink type=\"block\" "
+"url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>meta-package</primary>"
-msgstr ""
+msgstr "<primary>meta-paket</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The dependencies system is a good mechanism for guaranteeing the operation of a program, but it has another use with “meta-packages”. These are empty packages that only describe dependencies. They facilitate the installation of a consistent group of programs preselected by the meta-package maintainer; as such, <command>apt-get install <replaceable>meta-package</replaceable></command> will automatically install all of these programs using the meta-package's dependencies. The <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde</emphasis> and <emphasis role=\"pkg\">linux-image-2.6-686</emphasis> packages are examples of meta-packages."
 msgstr ""
+"Sustav međuovisnosti je dobar mehanizam koji osigurava siguran rad programa, "
+"ali ima i drugu upotrebu u \"meta-paketima\". To su prazni paketi koji "
+"opisuju međuovisnosti. Oni olakšavaju instalaciju konzistentne grupe "
+"programa koji su unaprijed odabrani od strane održavatelja meta-paketa, kao "
+"takva, <command>apt-get install <replaceable>meta-"
+"package</replaceable></command> će automatski instalirati sve ove programe "
+"koristeći međuovisnost iz meta-paketa. Paketi <emphasis "
+"role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde</emphasis> i <emphasis "
+"role=\"pkg\">linux-image-2.6-686</emphasis> si primjeri takvih meta-paketa."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, a more demanding <literal>Depends</literal>"
 msgstr ""
+"<emphasis>DEBIAN PRAVILA</emphasis> <literal>Pred-Uvjeti</literal>, "
+"zahtjevnija <literal>Ovisnost</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pre-Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Pred-Uvjeti</literal>, polje zaglavlja</primary>"
 
 #. Tag: indexterm
 #, no-c-format
