@@ -43,7 +43,7 @@
     good to know what the installer does to set the language, so that
     later, if the need arises, you can change it.</para>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>TOOL</emphasis> The <command>locale</command> command to display the current configuration</title>
 
       <para>The <command>locale</command> command lists a summary of the
@@ -557,7 +557,7 @@ iface eth0 inet static
 	and disconnect with <command>poff dsl-provider</command>.</para>
         <indexterm><primary><literal>dsl-provider</literal></primary></indexterm>
 
-        <sidebar role="fil">
+        <sidebar>
           <title><emphasis>TIP</emphasis> Starting <command>ppp</command> via <command>init</command></title>
           <indexterm><primary><command>init</command></primary></indexterm>
 
@@ -817,7 +817,7 @@ nameserver 8.8.8.8
 	connected to the Internet, but with 5 machines or more, it is
 	recommended to install a proper DNS server.</para>
 
-        <sidebar role="fil">
+        <sidebar>
           <title><emphasis>TIP</emphasis> Bypassing DNS</title>
 
 	  <para>Since applications check the
@@ -855,7 +855,7 @@ nameserver 8.8.8.8
     several fields separated with a colon
     (“<literal>:</literal>”).</para>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>NOTE</emphasis> Editing system files</title>
 
       <para>The system files mentioned in this chapter are all plain text
@@ -979,7 +979,7 @@ nameserver 8.8.8.8
 	<citerefentry><refentrytitle>group</refentrytitle><manvolnum>5</manvolnum></citerefentry>.</para>
       </sidebar>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>SECURITY</emphasis> <filename>/etc/shadow</filename> file security</title>
 
 	<para><filename>/etc/shadow</filename>, unlike its alter-ego,
@@ -1081,7 +1081,7 @@ nameserver 8.8.8.8
 
       <para/>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>BACK TO BASICS</emphasis> Working with several groups</title>
         <indexterm><primary><command>newgrp</command></primary></indexterm>
         <indexterm><primary><command>sg</command></primary></indexterm>
@@ -1191,7 +1191,7 @@ nameserver 8.8.8.8
     command such as <command>adduser <replaceable>user</replaceable>
     <replaceable>group</replaceable></command>.</para>
 
-    <sidebar id="cadre.fichiers-speciaux" role="fil">
+    <sidebar id="cadre.fichiers-speciaux">
       <title><emphasis>BACK TO BASICS</emphasis> Device access permissions</title>
       <indexterm><primary>device</primary><secondary>access permissions</secondary></indexterm>
       <indexterm><primary>file</primary><secondary>special</secondary></indexterm>
@@ -1260,7 +1260,7 @@ nameserver 8.8.8.8
       non-interactive (when executing a script).</para>
     </sidebar>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>DISCOVERY</emphasis> Other shells, other scripts</title>
 
       <para>Each command interpreter has a specific syntax and its own
@@ -1347,7 +1347,7 @@ nameserver 8.8.8.8
     <varname>HTTP_PROXY</varname>, which indicates the existence and
     location of an HTTP proxy.</para>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>TIP</emphasis> All shells configured identically</title>
 
       <para>Users often want to configure their login and interactive
@@ -1398,7 +1398,7 @@ nameserver 8.8.8.8
       created. <ulink type="block" url="http://www.easysw.com/"/></para>
     </sidebar>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>NOTE</emphasis> CUPS and CUPSYS</title>
 
       <para>The packages containing <command>cups</command> are currently
@@ -1914,7 +1914,7 @@ macosx=/dev/sda5
 <computeroutput>$ </computeroutput><userinput>TZ="Pacific/Honolulu" date</userinput>
 <computeroutput>Wed Mar 28 03:51:21 HST 2012</computeroutput></screen>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>NOTE</emphasis> System clock, hardware clock</title>
 
 	<para>There are two time sources in a computer. A computer's
@@ -2036,7 +2036,7 @@ macosx=/dev/sda5
         <indexterm><primary>server</primary><secondary>NTP</secondary></indexterm>
         <indexterm><primary>NTP</primary><secondary>server</secondary></indexterm>
 
-        <sidebar role="fil">
+        <sidebar>
           <title><emphasis>GOING FURTHER</emphasis> GPS modules and other time sources</title>
           <indexterm><primary>GPS</primary></indexterm>
           <indexterm><primary>DCF-77</primary></indexterm>
@@ -2285,7 +2285,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       <citerefentry><refentrytitle>fstab</refentrytitle><manvolnum>5</manvolnum></citerefentry>
       man page.</para>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>GOING FURTHER</emphasis> Auto-mounting</title>
 
 	<para>The <emphasis>am-utils</emphasis> package provides the
@@ -2539,7 +2539,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       all the existing options, then this method will only ask questions
       for which the file has no saved answer.</para>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>TIP</emphasis> <command>make-kpkg --config</command></title>
 
 	<para><command>make-kpkg</command> can be told to use configuration
@@ -2558,7 +2558,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       <indexterm><primary><command>make-kpkg</command></primary><secondary><command>kernel-doc</command></secondary></indexterm>
       <indexterm><primary><command>make-kpkg</command></primary><secondary><command>kernel-headers</command></secondary></indexterm>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>NOTE</emphasis> Clean up before rebuilding</title>
         <indexterm><primary><command>make-kpkg</command></primary><secondary><command>clean</command></secondary></indexterm>
 

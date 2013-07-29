@@ -657,7 +657,7 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
         <indexterm><primary>NAT Traversal</primary></indexterm>
       </sidebar>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>SECURITY</emphasis> IPsec and firewalls</title>
 
 	<para>The standard mode of operation of IPsec involves data
@@ -752,7 +752,7 @@ fi
 </programlisting>
         </example>
 
-        <sidebar role="fil">
+        <sidebar>
           <title><emphasis>SECURITY</emphasis> MPPE</title>
 
 	  <para>Securing PPTP involves using the MPPE feature
@@ -1021,7 +1021,7 @@ iface eth0 inet dhcp
 	<filename>/etc/ppp/ip-up.d/</filename> will enable traffic control
 	as soon as the connection is up.</para>
 
-        <sidebar role="fil">
+        <sidebar>
           <title><emphasis>GOING FURTHER</emphasis> Optimal configuration</title>
 
 	  <para>The
@@ -1087,7 +1087,7 @@ iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-De
     compatibility reasons which explains the <command>zebra</command>
     commands below.</para>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>BACK TO BASICS</emphasis> Dynamic routing</title>
 
       <para>Dynamic routing allows routers to adjust, in real time, the
@@ -1221,7 +1221,7 @@ iface eth0 inet6 auto
 </programlisting>
     </example>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>TIP</emphasis> Programs built with IPv6</title>
 
       <para>Many pieces of software need to be adapted to handle IPv6. Most
@@ -1432,7 +1432,7 @@ if_prefix=eth0
 	suffix.</para>
       </sidebar>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>TIP</emphasis> Testing the DNS server</title>
 
 	<para>The <command>host</command> command (in the <emphasis

@@ -123,7 +123,7 @@
       </listitem>
     </itemizedlist>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>SECURITY</emphasis> Using a shell as <command>init</command> to gain root rights</title>
 
       <para>By convention, the first process that is booted is the
@@ -337,7 +337,7 @@
     user-friendly interface.</para>
     <indexterm><primary><command>update-rc.d</command></primary></indexterm>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>DEBIAN POLICY</emphasis> Restarting services</title>
       <indexterm><primary><command>invoke-rc.d</command></primary></indexterm>
       <indexterm><primary>service</primary><secondary>restart</secondary></indexterm>
@@ -437,7 +437,7 @@
       <indexterm><primary><emphasis>telnet-ssl</emphasis></primary></indexterm>
       <indexterm><primary><emphasis>telnetd-ssl</emphasis></primary></indexterm>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>VOCABULARY</emphasis> Authentication, encryption</title>
 
 	<para>When you need to give a client the ability to conduct or
@@ -598,7 +598,7 @@
 	  and replacing it with a newly generated key.</para>
         </sidebar>
 
-        <sidebar role="fil">
+        <sidebar>
           <title><emphasis>CULTURE</emphasis> OpenSSL flaw in Debian <emphasis role="distribution">Etch</emphasis></title>
 
 	  <para>The OpenSSL library, as initially provided in Debian
@@ -940,7 +940,7 @@
     allows changing it, and execute access allows you to run it (which will
     only work if it's a program).</para>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>SECURITY</emphasis> <literal>setuid</literal> and <literal>setgid</literal> executables</title>
 
       <para>Two particular rights are relevant to executable files:
@@ -971,7 +971,7 @@
     therein that are known by name, but not to find them if you do not know
     that they exist or under what name.</para>
 
-    <sidebar id="cadre.setgid-dir" role="fil">
+    <sidebar id="cadre.setgid-dir">
       <title><emphasis>SECURITY</emphasis> <literal>setgid</literal> directory and <emphasis>sticky bit</emphasis></title>
 
       <para>The <literal>setgid</literal> bit also applies to directories.
@@ -1090,7 +1090,7 @@
       <replaceable>user</replaceable>:<replaceable>group</replaceable></command></para>
     </sidebar>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>GOING FURTHER</emphasis> <command>umask</command></title>
 
       <para>When an application creates a file, it assigns indicative
@@ -1157,7 +1157,7 @@
       and activated by default, even if the corresponding service is not
       installed on the machine.</para>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>SECURITY</emphasis> Changing the root password</title>
 
 	<para>On first login, identification is conduced with the root
@@ -1257,7 +1257,7 @@
       ensure that its own modifications will not disrupt the existing
       settings).</para>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>DEBIAN POLICY</emphasis> Preserving changes</title>
 
 	<para>The Debian Policy expressly stipulates that everything should
@@ -1497,7 +1497,7 @@
           </listitem>
         </itemizedlist>
 
-        <sidebar role="fil">
+        <sidebar>
           <title><emphasis>SECURITY</emphasis> Forwarding logs</title>
           <indexterm><primary>log</primary><secondary>forwarding</secondary></indexterm>
 
@@ -1533,7 +1533,7 @@
     all of them; when it detects a connection to any such port, it executes
     the corresponding server program.</para>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>DEBIAN POLICY</emphasis> Register a server in <filename>inetd.conf</filename></title>
 
       <para>Packages frequently want to register a new server in the
@@ -1611,7 +1611,7 @@ ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i
     real server (like <command>/usr/bin/in.fingerd</command> in our
     example).</para>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>COMMUNITY</emphasis> Wietse Venema</title>
       <indexterm><primary>Wietse Venema</primary></indexterm>
       <indexterm><primary>Venema, Wietse</primary></indexterm>
@@ -2004,7 +2004,7 @@ job 31 at Fri Jul 27 09:00:00 2012</computeroutput>
     space usage.</para>
     <indexterm><primary><command>edquota</command></primary></indexterm>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>GOING FURTHER</emphasis> Defining quotas with a script</title>
       <indexterm><primary><command>setquota</command></primary></indexterm>
 
@@ -2072,7 +2072,7 @@ job 31 at Fri Jul 27 09:00:00 2012</computeroutput>
     within this limit in order to be able to write anything to the hard
     drive.</para>
 
-    <sidebar role="fil">
+    <sidebar>
       <title><emphasis>GOING FURTHER</emphasis> Setting up a default quota for new users</title>
 
       <para>To automatically setup a quota for new users, you have to
@@ -2297,7 +2297,7 @@ exclude:
       incremental backup on DVD-ROM once per week — only files that have
       been modified since the last backup are included.</para>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>GOING FURTHER</emphasis> Backing up SQL and LDAP services</title>
 
 	<para>Many services (such as SQL or LDAP databases) can not be
@@ -2749,7 +2749,7 @@ KERNEL=="sd?[0-9]", SUBSYSTEM=="block", ATTRS{serial}=="M004021000001", SYMLINK+
       problems (and vice-versa).</para>
       <indexterm><primary><command>acpid</command></primary></indexterm>
 
-      <sidebar role="fil">
+      <sidebar>
         <title><emphasis>ATTENTION</emphasis> Graphics card and standby</title>
 
 	<para>The graphics card driver often has a problem with standby. In
