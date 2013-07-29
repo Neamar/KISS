@@ -153,7 +153,7 @@
       <indexterm><primary>locale</primary></indexterm>
       <indexterm><primary><varname>LANG</varname></primary></indexterm>
 
-      <sidebar id="cadre.intro-pam">
+      <sidebar id="sidebar.intro-pam">
         <title><emphasis>BEHIND THE SCENES</emphasis> <filename>/etc/environment</filename> and <filename>/etc/default/locale</filename></title>
 
 	<para>The <filename>/etc/environment</filename> file provides the
@@ -1037,7 +1037,7 @@ nameserver 8.8.8.8
       account is done in similar fashion, with the <literal>-u</literal>
       option (unlock).</para>
 
-      <sidebar id="cadre.intro-nss">
+      <sidebar id="sidebar.intro-nss">
         <title><emphasis>GOING FURTHER</emphasis> NSS and system databases</title>
         <indexterm><primary>NSS</primary></indexterm>
         <indexterm><primary>Name Service Switch</primary></indexterm>
@@ -1105,7 +1105,7 @@ nameserver 8.8.8.8
 	<para>Alternatively, the user can set the <literal>setgid</literal>
 	bit on the directory, which causes files created in that directory
 	to automatically belong to the correct group. For more details, see
-	sidebar <xref linkend="cadre.setgid-dir"/>.</para>
+	sidebar <xref linkend="sidebar.setgid-dir"/>.</para>
 
 	<para>The <command>id</command> command displays the current state
 	of a user, with their personal identifier (<varname>uid</varname>
@@ -1191,7 +1191,7 @@ nameserver 8.8.8.8
     command such as <command>adduser <replaceable>user</replaceable>
     <replaceable>group</replaceable></command>.</para>
 
-    <sidebar id="cadre.fichiers-speciaux">
+    <sidebar id="sidebar.special-files">
       <title><emphasis>BACK TO BASICS</emphasis> Device access permissions</title>
       <indexterm><primary>device</primary><secondary>access permissions</secondary></indexterm>
       <indexterm><primary>file</primary><secondary>special</secondary></indexterm>
@@ -1429,7 +1429,7 @@ nameserver 8.8.8.8
       <filename>/etc/printcap</filename> file, which is now obsolete.
       Programs that rely upon this file to get a list of available printers
       will, thus, fail. To avoid this problem, delete this file and make it
-      a symbolic link (see sidebar <xref linkend="cadre.lien-symbolique"/>)
+      a symbolic link (see sidebar <xref linkend="sidebar.symbolic-link"/>)
       to <filename>/var/run/cups/printcap</filename>, which is maintained
       by <emphasis>cups</emphasis> to ensure compatibility.</para>
       <indexterm><primary><filename>printcap</filename></primary></indexterm>
@@ -1467,7 +1467,7 @@ nameserver 8.8.8.8
 	<para>The <filename>/dev/</filename> directory traditionally houses
 	so-called “special” files, intended to represent system
 	peripherals (see sidebar <xref
-	linkend="cadre.fichiers-speciaux"/>).
+	linkend="sidebar.special-files"/>).
 	<filename>/dev/hda1</filename> thus always corresponds to the first
 	partition of the first IDE hard drive. This static structure
 	does not allow dynamic setting of “major” and “minor”
@@ -1854,7 +1854,7 @@ macosx=/dev/sda5
       <title>Timezone</title>
       <indexterm><primary>timezone</primary></indexterm>
 
-      <sidebar id="cadre.lien-symbolique">
+      <sidebar id="sidebar.symbolic-link">
         <title><emphasis>BACK TO BASICS</emphasis> Symbolic links</title>
         <indexterm><primary>link</primary><secondary>symbolic</secondary></indexterm>
         <indexterm><primary>symbolic link</primary></indexterm>
@@ -2615,7 +2615,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       normally restricted to the root user when creating the Debian
       package; however, it can be tricked into working under a normal
       user's identity, with <command>fakeroot</command> (see sidebar <xref
-      linkend="cadre.fakeroot"/>).</para>
+      linkend="sidebar.fakeroot"/>).</para>
 
       <screen role="scale">
 <computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> 
