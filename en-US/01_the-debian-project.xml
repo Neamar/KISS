@@ -402,7 +402,7 @@
 
 	    <para>The commitment to maintain a structure to accommodate
 	    non-free software (i.e. the “non-free” section, see the
-	    sidebar <xref linkend="cadre-sections"/>) is frequently a
+	    sidebar <xref linkend="sidebar.sections"/>) is frequently a
 	    subject of debate within the Debian community.</para>
 
 	    <para>Detractors argue that it turns people away from free
@@ -1321,7 +1321,7 @@
 	  <para>Debian-Edu was, initially, a French project, created by
 	  Stéphane Casset and Raphaël Hertzog as part of their jobs at
 	  Logidée, on behalf of a pedagogical documentation departmental
-	  center. Raphaël then integrated it with Debian as a sub-project.
+	  center. Raphaël then integrated it in Debian as a sub-project.
 	  Due to time constraints, it has not progressed further, as is
 	  often the case with free software projects lacking
 	  contributors.</para>
@@ -1430,14 +1430,15 @@
 	  role="pkg">fusionforge</emphasis> Debian package.</para>
         </sidebar>
 
-	<para>The <emphasis>debian-admin</emphasis> team
+	<para id="dsa-team">The <emphasis>Debian System Administrators</emphasis> (DSA) team
 	(<email>debian-admin@lists.debian.org</email>), as one might
 	expect, is responsible for system administration of the many
 	servers used by the project. They ensure optimal functioning of all
 	base services (DNS, Web, e-mail, shell, etc.), install software
 	requested by Debian developers, and take all precautions in regards
-	to security.</para>
+	to security. <ulink type="block" url="http://dsa.debian.org"/></para>
         <indexterm><primary><emphasis>debian-admin</emphasis></primary></indexterm>
+	<indexterm><primary>DSA (Debian System Administrators)</primary></indexterm>
 
         <sidebar>
           <title><emphasis>TOOL</emphasis> Package tracking system</title>
@@ -1503,7 +1504,7 @@
 	  month generate 600,000 e-mails daily.</para>
         </sidebar>
 
-	<para>Each specific service has its own system administration team,
+	<para>Each specific service has its own administration team,
 	generally composed of volunteers who have installed it (and also
 	frequently programmed the corresponding tools themselves). This is
 	the case of the bug tracking system (BTS), the package tracking

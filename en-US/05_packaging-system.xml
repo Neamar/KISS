@@ -627,7 +627,7 @@ SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</comput
 	field also encourages <command>dpkg</command> to remove the
 	replaced package where there is a conflict.</para>
 
-        <sidebar>
+        <sidebar id="sidebar.debtags">
           <title><emphasis>GOING FURTHER</emphasis> The <literal>Tag</literal> field</title>
 
 	  <para>In the <emphasis role="pkg">apt</emphasis> example above,
@@ -636,9 +636,10 @@ SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</comput
 	  describe a relationship between packages, but is simply a way of
 	  categorizing a package in a thematic taxonomy. This
 	  classification of packages according to several criteria (type of
-	  interface, programming language, domain of application, etc.) is
-	  a recent development in Debian. For this purpose, it is not yet
-	  integrated in all of its tools; <command>aptitude</command>
+	  interface, programming language, domain of application, etc.) has
+	  been available for a long time. Despite this, not all packages have
+	  accurate tags and it is not yet
+	  integrated in all Debian tools; <command>aptitude</command>
 	  displays these tags, and allows them to be used as search
 	  criteria. For those who are repelled by
 	  <command>aptitude</command>'s search criteria, the following website
@@ -1219,7 +1220,7 @@ uV48hsT8cj0paqVXl5+P9Ww8XIE3clxNpE/45/tvKvkqGOeysc6OPAqsIw6HYFY9
     </sidebar>
     <section>
       <title>Installing Packages</title>
-      <indexterm><primary>installation</primary><secondary>of packages</secondary></indexterm>
+      <indexterm><primary>installation</primary><secondary>package installation</secondary></indexterm>
       <indexterm><primary>package</primary><secondary>installation</secondary></indexterm>
 
       <para><command>dpkg</command> is, above all, the tool for installing an
