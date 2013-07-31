@@ -30,20 +30,27 @@
   <section id="sect.rebuilding-package">
     <title>Rebuilding a Package from its Sources</title>
 
-    <para>Rebuilding a binary package is required under several sets of
-    circumstances. In some cases, the administrator needs a software
-    feature that requires the software to be compiled from sources, with a
-    particular compilation option; in others, the software as packaged in
-    the installed version of Debian is not recent enough. In the latter
-    case, the administrator will usually build a more recent package taken
-    from a newer version of Debian — such as <emphasis
-    role="distribution">Testing</emphasis> or even <emphasis
-    role="distribution">Unstable</emphasis> — so that this new package
-    works in their <emphasis role="distribution">Stable</emphasis>
-    distribution; this operation is called “backporting”. As usual,
-    care should be taken, before undertaking such a task, to check whether
-    it has been done already. This can be checked at the
-    <literal>backports.debian.org</literal> site.
+    <para>Rebuilding a binary package is required under several sets
+    of circumstances. In some cases, the administrator needs a
+    software feature that requires the software to be compiled from
+    sources, with a particular compilation option; in others, the
+    software as packaged in the installed version of Debian is not
+    recent enough. In the latter case, the administrator will usually
+    build a more recent package taken from a newer version of Debian —
+    such as <emphasis role="distribution">Testing</emphasis> or even
+    <emphasis role="distribution">Unstable</emphasis> — so that this
+    new package works in their <emphasis
+    role="distribution">Stable</emphasis> distribution; this operation
+    is called “backporting”. As usual, care should be taken, before
+    undertaking such a task, to check whether it has been done
+    already.  For versions of Debian up to <emphasis
+    role="distribution">Squeeze</emphasis>, that could be checked at
+    the <literal>backports.debian.org</literal> site.  Since then, the
+    backports have been merged into the main archive, so the
+    information about whether a package has already been backported or
+    not is displayed on the Package Tracking System page for that
+    package. <ulink type="block"
+    url="http://packages.qa.debian.org/"/>
     <indexterm><primary>backport</primary></indexterm></para>
     <section>
       <title>Getting the Sources</title>
@@ -86,38 +93,39 @@
 
       <para>The source of the package is now available in a directory named
       after the source package and its version (for instance,
-      <emphasis>samba-3.0.24</emphasis>); this is where we'll work on our
+      <emphasis>samba-3.6.16</emphasis>); this is where we'll work on our
       local changes.</para>
 
       <para>The first thing to do is to change the package version number,
       so that the rebuilt packages can be distinguished from the original
       packages provided by Debian. Assuming the current version is
-      <literal>3.0.24-6</literal>, we can create version
-      <literal>3.0.24-6.falcot1</literal>, which clearly indicates the
+      <literal>3.6.16-2</literal>, we can create version
+      <literal>3.6.16-2.falcot1</literal>, which clearly indicates the
       origin of the package. This makes the package version number higher
       than the one provided by Debian, so that the package will easily
       install as an update do the original package. Such a change is best
       effected with the <command>dch</command> command (<emphasis>Debian
       CHangelog</emphasis>) from the <emphasis
-      role="pkg">devscripts</emphasis> package, with an invocation such as
-      <command>dch -v 3.0.24-6.falcot1</command>. This invocation invokes a
+      role="pkg">devscripts</emphasis> package, with an command such as
+      <command>dch -v 3.6.16-2.falcot1</command>. This invokes a
       text editor (<command>sensible-editor</command> — this should be
       your favorite editor if it's mentioned in the
       <varname>VISUAL</varname> or <varname>EDITOR</varname> environment
-      variables, and default editor otherwise) to allow documenting the
+      variables, and the default editor otherwise) to allow documenting the
       differences brought by this rebuild. This editor shows us that
       <command>dch</command> really did change the
       <filename>debian/changelog</filename> file.</para>
 
-      <para>When a change in build options is required, changes are made to
-      <filename>debian/rules</filename>, which drives the steps in the
-      package build process. In the simplest cases, the lines concerning
-      the initial configuration (<literal>./configure …</literal>) or the
-      actual build (<literal>$(MAKE) …</literal> or <literal>make
-      …</literal>) are easy to spot. If these commands are not explicitly
-      called, they are probably a side effect of another explicit command,
-      in which case please refer to their documentation to learn more about
-      how to change the default behavior.</para>
+      <para>When a change in build options is required, the changes
+      need to be made in <filename>debian/rules</filename>, which
+      drives the steps in the package build process. In the simplest
+      cases, the lines concerning the initial configuration
+      (<literal>./configure …</literal>) or the actual build
+      (<literal>$(MAKE) …</literal> or <literal>make …</literal>) are
+      easy to spot. If these commands are not explicitly called, they
+      are probably a side effect of another explicit command, in which
+      case please refer to their documentation to learn more about how
+      to change the default behavior.</para>
 
       <para>Depending on the local changes to the packages, an update may
       also be required in the <filename>debian/control</filename> file,
@@ -146,7 +154,7 @@
       need backporting, and can be installed as-is during the build process
       (a notable example is <emphasis role="pkg">debhelper</emphasis>).
       Note that the backporting process can quickly become complex if you
-      are not vigilant. Therefore, backports should be kept to a strict
+      are not careful. Therefore, backports should be kept to a strict
       minimum when possible.</para>
 
       <sidebar>
@@ -184,7 +192,7 @@
         <title><emphasis>TOOL</emphasis> <command>fakeroot</command></title>
 
 	<para>In essence, the package creation process is a simple matter
-	of gathering in an archive a set of existing (or build) files; most
+	of gathering in an archive a set of existing (or built) files; most
 	of the files will end up being owned by <emphasis>root</emphasis>
 	in the archive. However, building the whole package under this user
 	would imply increased risks; fortunately, this can be avoided with
@@ -408,17 +416,18 @@ export DEBFULLNAME="Raphael Hertzog"
       </sidebar>
 
       <para>The <command>dh_make</command> command created a
-      <filename>debian</filename> subdirectory with many files. Some are
-      required, in particular <filename>rules</filename>,
+      <filename>debian</filename> subdirectory with many files. Some
+      are required, in particular <filename>rules</filename>,
       <filename>control</filename>, <filename>changelog</filename> and
       <filename>copyright</filename>. Files with the
-      <filename>.ex</filename> extension are example files that can used by
-      modifying them (and removing the extension) when appropriate. When
-      they are not needed, removing them is recommended. The
-      <filename>compat</filename> file should be kept, since it is required
-      for the correct functioning of the <emphasis>debhelper</emphasis>
-      suite of programs (all beginning with the <command>dh_</command>
-      prefix) used at various stages of the package build process.</para>
+      <filename>.ex</filename> extension are example files that can be
+      used by modifying them (and removing the extension) when
+      appropriate. When they are not needed, removing them is
+      recommended. The <filename>compat</filename> file should be
+      kept, since it is required for the correct functioning of the
+      <emphasis>debhelper</emphasis> suite of programs (all beginning
+      with the <command>dh_</command> prefix) used at various stages
+      of the package build process.</para>
 
       <para>The <filename>copyright</filename> file must contain
       information about the authors of the documents included in the
@@ -501,18 +510,18 @@ License:
 	<para>A <filename>Makefile</filename> file is a script used by the
 	<command>make</command> program; it describes rules for how to
 	build a set of files from each other in a tree of dependencies (for
-	instance, a program can be build from a set of source files). The
+	instance, a program can be built from a set of source files). The
 	<filename>Makefile</filename> file describes these rules in the
 	following format:</para>
 
         <programlisting>
-target: sources
+target: source1 source2 ...
         command1
         command2
 </programlisting>
 
 	<para>The interpretation of such a rule is as follows: if one of
-	the files of <literal>sources</literal> is more recent than the
+	the <literal>source*</literal> files is more recent than the
 	<literal>target</literal> file, then the target needs to be
 	generated, using <command>command1</command> and
 	<command>command2</command>.</para>
@@ -552,7 +561,7 @@ data/* usr/share/falcot-data/
 
       <para>At this point, the package can be created. We will however add
       a lick of paint. Since the administrators want the documents to be
-      easily accessed from the Help menus of graphical desktop environment,
+      easily accessed from the Help menus of graphical desktop environments,
       we create an entry in the Debian menu system. This is simply done by
       renaming the <filename>debian/menu.ex</filename> without its
       extension and editing it as follows:</para>
@@ -844,6 +853,17 @@ release_label = Internal Packages
 	  avoids the most common errors.</para>
         </section>
         <section>
+          <title>The <command>piuparts</command> Program</title>
+          <indexterm><primary><command>piuparts</command></primary></indexterm>
+
+	  <para>This is another important tool: it automates the
+	  installation, upgrade, removal and purge of a package (in an
+	  isolated environment), and checks that none of these
+	  operations leads to an error.  It can help in detecting
+	  missing dependencies, and it also detects when files are
+	  left over even if the package is purged.</para>
+        </section>
+        <section>
           <title>devscripts</title>
           <indexterm><primary><emphasis role="pkg">devscripts</emphasis></primary></indexterm>
           <indexterm><primary><command>debuild</command></primary></indexterm>
@@ -1018,22 +1038,23 @@ release_label = Internal Packages
 
 	<para>At the same time, the candidate must generate a
 	public/private RSA key pair <indexterm><primary>key
-	pair</primary></indexterm> with GnuPG, which should be signed by at
-	least one official Debian developer. The signature authenticates
-	the name on the key. Effectively, during a key signing party, each
-	participant must show an identity card together with their key
-	identifiers. This step makes the link between the human and the
-	keys official. This signature thus requires meeting in real life.
-	If you have not yet met any Debian developers in a public free
-	software conference, you can explicitly seek developers living
-	nearby using the list on the following webpage as a starting point.
-	<ulink type="block"
+	pair</primary></indexterm> with GnuPG, which should be signed
+	by at least two official Debian developers. The signature
+	authenticates the name on the key. Effectively, during a key
+	signing party, each participant must show an official
+	identification (usually an ID card or passport) together with
+	their key identifiers. This step makes the link between the
+	human and the keys official. This signature thus requires
+	meeting in real life.  If you have not yet met any Debian
+	developers in a public free software conference, you can
+	explicitly seek developers living nearby using the list on the
+	following webpage as a starting point.  <ulink type="block"
 	url="http://wiki.debian.org/Keysigning"/></para>
 
 	<para>Once the registration on <literal>nm.debian.org</literal> has
 	been validated by the advocate, an <emphasis>Application
 	Manager</emphasis> is assigned to the candidate. The application
-	manager will, from there on, follow procedures and validate the
+	manager will, from then on, follow procedures and validate the
 	various steps that the process includes.</para>
 
 	<para>The first verification is an identity check. If you already
@@ -1127,8 +1148,8 @@ release_label = Internal Packages
 	to new contributors.</para>
 
 	<para>This step is known as the <emphasis>Tasks &amp;
-	Skills</emphasis> step in the examiners' jargon.
-	<indexterm><primary><emphasis>Tasks &amp;
+	Skills</emphasis> step (T&amp;S for short) in the examiners'
+	jargon.  <indexterm><primary><emphasis>Tasks &amp;
 	Skills</emphasis></primary></indexterm></para>
       </section>
       <section>
