@@ -199,7 +199,7 @@
     need to be used in parallel.</para>
     <indexterm><primary><command>iptables</command></primary></indexterm>
     <indexterm><primary><command>ip6tables</command></primary></indexterm>
-    <section id="section.netfilter">
+    <section id="sect.netfilter">
       <title>Netfilter Behavior</title>
 
       <para><emphasis>netfilter</emphasis> uses four distinct tables which
@@ -410,7 +410,7 @@
       <manvolnum>8</manvolnum></citerefentry> have a comprehensive
       list.</para>
     </section>
-    <section id="section.iptables">
+    <section id="sect.iptables">
       <title>Syntax of <command>iptables</command> and <command>ip6tables</command></title>
 
       <para>The <command>iptables</command> and
@@ -420,7 +420,7 @@
       table to operate on (by default, <literal>filter</literal>).</para>
       <indexterm><primary><command>iptables</command></primary></indexterm>
       <indexterm><primary><command>ip6tables</command></primary></indexterm>
-      <section id="section.commandes-iptables">
+      <section id="sect.commandes-iptables">
         <title>Commands</title>
 
 	<para>The <literal>-N
@@ -453,7 +453,7 @@
 	default action, or “policy”, for a given chain; note that only
 	standard chains can have such a policy.</para>
       </section>
-      <section id="section.regles-iptables">
+      <section id="sect.regles-iptables">
         <title>Rules</title>
         <indexterm><primary>filtering rule</primary></indexterm>
 
@@ -549,7 +549,7 @@
 	redirected.</para>
       </section>
     </section>
-    <section id="section.creer-regles">
+    <section id="sect.creer-regles">
       <title>Creating Rules</title>
 
       <para>Each rule creation requires one invocation of
@@ -619,7 +619,7 @@
 <computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>
 </screen>
     </section>
-    <section id="section.installation-regles-boot">
+    <section id="sect.installation-regles-boot">
       <title>Installing the Rules at Each Boot</title>
 
       <para>If the firewall is meant to protect an intermittent PPP network
@@ -666,7 +666,7 @@ iface eth0 inet static
     monitor several aspects of a Debian system. As such, it completes the
     section dedicated to generic system monitoring in <xref
     linkend="advanced-administration"/>.</para>
-    <section id="section.logcheck">
+    <section id="sect.logcheck">
       <title>Monitoring Logs with <command>logcheck</command></title>
       <indexterm><primary><command>logcheck</command></primary></indexterm>
       <indexterm><primary>logs</primary><secondary>monitoring</secondary></indexterm>
@@ -757,11 +757,11 @@ iface eth0 inet static
         <indexterm><primary>logs</primary><secondary>display</secondary></indexterm>
       </sidebar>
     </section>
-    <section id="section.surveillance-activite">
+    <section id="sect.surveillance-activite">
       <title>Monitoring Activity</title>
       <indexterm><primary>monitoring</primary><secondary>activity</secondary></indexterm>
       <indexterm><primary>activity, monitoring</primary></indexterm>
-      <section id="section.surveillance-temps-reel">
+      <section id="sect.surveillance-temps-reel">
         <title>In Real Time</title>
 
 	<para><command>top</command> is an interactive tool that displays a
@@ -797,7 +797,7 @@ iface eth0 inet static
 
         <indexterm><primary><command>gnome-system-monitor</command></primary></indexterm>
       </section>
-      <section id="section.surveillance-historique">
+      <section id="sect.surveillance-historique">
         <title>History</title>
         <indexterm><primary>activity, history</primary></indexterm>
 
@@ -816,7 +816,7 @@ iface eth0 inet static
 	dedicated network routers or switches.</para>
 
 	<para>This book deals with Munin in some detail (see <xref
-	linkend="section.munin"/>) as part of <xref
+	linkend="sect.munin"/>) as part of <xref
 	linkend="advanced-administration" xrefstyle="select: label
 	quotedtitle"/>. Debian also provides a similar tool, <emphasis
 	role="pkg">cacti</emphasis>. Its deployment is slightly more
@@ -853,7 +853,7 @@ iface eth0 inet static
       would therefore be worth investigating. This section presents a few
       tools able to monitor files and to warn the administrator when an
       unexpected change occurs (or simply to list such changes).</para>
-      <section id="section.debsums">
+      <section id="sect.debsums">
         <title>Auditing Packages: <command>debsums</command> and its Limits</title>
         <indexterm><primary><command>debsums</command></primary></indexterm>
 
@@ -1024,7 +1024,7 @@ iface eth0 inet static
         </sidebar>
       </section>
     </section>
-    <section id="section.detection-intrusion">
+    <section id="sect.detection-intrusion">
       <title>Detecting Intrusion (IDS/NIDS)</title>
       <indexterm><primary>detection, intrusion</primary></indexterm>
       <indexterm><primary>intrusion detection</primary></indexterm>
@@ -1087,7 +1087,7 @@ iface eth0 inet static
 	include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor
 	Lackey</emphasis>) which monitors log files (in a manner similar to
 	<command>logcheck</command>, described in <xref
-	linkend="section.logcheck"/>).</para>
+	linkend="sect.logcheck"/>).</para>
         <indexterm><primary><command>prelude</command></primary></indexterm>
       </sidebar>
 
@@ -1126,7 +1126,7 @@ iface eth0 inet static
   <section id="sect.selinux">
     <title>Introduction to SELinux</title>
     <indexterm><primary>SELinux</primary></indexterm>
-    <section id="section.selinux-principes">
+    <section id="sect.selinux-principes">
       <title>Principles</title>
 
       <para>SELinux (<emphasis>Security Enhanced Linux</emphasis>) is a
@@ -1252,7 +1252,7 @@ iface eth0 inet static
 	context.</para>
       </sidebar>
     </section>
-    <section id="section.selinux-mise-en-route">
+    <section id="sect.selinux-mise-en-route">
       <title>Setting Up SELinux</title>
 
       <para>SELinux support is built into the standard kernels provided by
@@ -1297,7 +1297,7 @@ iface eth0 inet static
       (which avoids new non-labeled files created while SELinux was not yet
       active and while the labeling was going on).</para>
     </section>
-    <section id="section.selinux-gestion">
+    <section id="sect.selinux-gestion">
       <title>Managing an SELinux System</title>
       <indexterm><primary><command>semodule</command></primary></indexterm>
       <indexterm><primary><command>semanage</command></primary></indexterm>
@@ -1489,7 +1489,7 @@ user_u          user       s0         s0               user_r
 </screen>
       </section>
     </section>
-    <section id="section.selinux-adaptation-regles">
+    <section id="sect.selinux-adaptation-regles">
       <title>Adapting the Rules</title>
 
       <para>Since the SELinux policy is modular, it might be interesting to

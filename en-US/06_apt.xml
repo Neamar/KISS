@@ -258,7 +258,7 @@ deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free
       the latter is just an older <emphasis role="distribution">Stable</emphasis>
       that is maintained in parallel.</para>
 
-      <section id="section.security-updates">
+      <section id="sect.security-updates">
         <title>Security Updates</title>
 	<indexterm><primary><literal>security.debian.org</literal></primary></indexterm>
 	<indexterm><primary>security updates</primary></indexterm>
@@ -279,7 +279,7 @@ deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free
 	role="distribution">Unstable</emphasis>.</para>
       </section>
 
-      <section id="section.stable-updates">
+      <section id="sect.stable-updates">
         <title>Stable Updates</title>
 	<indexterm><primary>stable updates</primary></indexterm>
 	<indexterm><primary><literal>stable-updates</literal></primary></indexterm>
@@ -303,7 +303,7 @@ deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free
 	by the Stable Release Managers.</para>
       </section>
 
-      <section id="section.proposed-updates">
+      <section id="sect.proposed-updates">
         <title>Proposed Updates</title>
         <indexterm><primary><literal>proposed-updates</literal></primary></indexterm>
         <indexterm><primary><literal>stable-proposed-updates</literal></primary></indexterm>
@@ -330,7 +330,7 @@ deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free
 </programlisting>
       </section>
 
-      <section id="section.backports">
+      <section id="sect.backports">
         <title>Stable Backports</title>
         <indexterm><primary><literal>stable-backports</literal></primary></indexterm>
         <indexterm><primary>backport</primary></indexterm>
@@ -425,7 +425,7 @@ deb-src http://security.debian.org/ testing/updates main contrib non-free
       install packages from <emphasis
       role="distribution">Unstable</emphasis>.  If that is not desired,
       use the <literal>APT::Default-Release</literal> setting (see <xref
-      linkend="section.apt-upgrade" />) to instruct APT to pick
+      linkend="sect.apt-upgrade" />) to instruct APT to pick
       packages from another distribution (most likely <emphasis
       role="distribution">Testing</emphasis> in this case).</para>
 
@@ -803,7 +803,7 @@ deb http://apt.falcot.com:9999/debian wheezy main contrib non-free
       </sidebar>
     </section>
 
-    <section id="section.apt-upgrade">
+    <section id="sect.apt-upgrade">
       <title>System Upgrade</title>
       <indexterm><primary>upgrade</primary><secondary>system upgrade</secondary></indexterm>
 
@@ -929,7 +929,7 @@ deb http://apt.falcot.com:9999/debian wheezy main contrib non-free
       more configuration options, read the
       <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry>
       manual page with the <command>man apt.conf</command> command (for
-      details on manual pages, see <xref linkend="section.manual-pages" />).</para>
+      details on manual pages, see <xref linkend="sect.manual-pages" />).</para>
 
       <sidebar id="sidebar.directory.d">
         <title><emphasis>BACK TO BASICS</emphasis> Directories ending in <filename>.d</filename></title>
@@ -983,7 +983,7 @@ deb http://apt.falcot.com:9999/debian wheezy main contrib non-free
 	the <command>update-exim4.conf</command> command.</para>
       </sidebar>
     </section>
-    <section id="apt.priorities">
+    <section id="sect.apt.priorities">
       <title>Managing Package Priorities</title>
 
       <para>One of the most important aspects in the configuration of APT
@@ -1151,7 +1151,7 @@ Pin-Priority: 500
         </informalexample>
       </sidebar>
     </section>
-    <section id="section.apt-mix-distros">
+    <section id="sect.apt-mix-distros">
       <title>Working with Several Distributions</title>
 
       <para><command>apt-get</command> being such a marvelous tool, it is
@@ -1172,7 +1172,7 @@ Pin-Priority: 500
       role="distribution">Unstable</emphasis> is reserved for experienced
       users) and to define your reference distribution with the
       <literal>APT::Default-Release</literal> parameter (see <xref
-      linkend="section.apt-upgrade"/>).</para>
+      linkend="sect.apt-upgrade"/>).</para>
 
       <para>Let's suppose that <emphasis
       role="distribution">Stable</emphasis> is your reference distribution
@@ -1280,7 +1280,7 @@ Pin-Priority: 490
       opposite. <command>aptitude markauto</command> and
       <command>aptitude unmarkauto</command> work in the same way
       although they offer more features for marking many packages
-      at once (see <xref linkend="aptitude" />). The consoled-based
+      at once (see <xref linkend="sect.aptitude" />). The consoled-based
       graphical interface of <command>aptitude</command> also
       makes it easy to review the “automatic flag” on many packages.</para>
 
@@ -1439,7 +1439,7 @@ More tags: suite::debian works-with::software:package role::program interface::c
     <command>apt-get</command> was only designed as a test front-end for
     <command>libapt-pkg</command> but its success tends to obscure this
     fact.</para>
-    <section id="aptitude">
+    <section id="sect.aptitude">
       <title><command>aptitude</command></title>
 
       <para><command>aptitude</command> is an interactive program that can
@@ -1928,7 +1928,7 @@ uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.o
       package may be prepared specifically for a new revision of the stable
       release. When this happens, the fixed package is made available in
       the <literal>proposed-updates</literal> section of the Debian mirrors
-      (see <xref linkend="section.proposed-updates"/>). The corresponding
+      (see <xref linkend="sect.proposed-updates"/>). The corresponding
       entry can then be temporarily added to the
       <filename>sources.list</filename> file, and updated packages can be
       installed with <command>apt-get</command> or

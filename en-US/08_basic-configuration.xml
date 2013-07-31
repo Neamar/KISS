@@ -52,7 +52,7 @@
       environment variables dedicated to the dynamic modification of these
       settings.</para>
     </sidebar>
-    <section id="section.langue-par-defaut">
+    <section id="sect.langue-par-defaut">
       <title>Setting the Default Language</title>
       <indexterm><primary>locales</primary></indexterm>
       <indexterm><primary>language</primary></indexterm>
@@ -165,7 +165,7 @@
 	but rather via a PAM (<filename>pam_env.so</filename>) module. PAM
 	(Pluggable Authentication Module) is a modular library centralizing
 	the mechanisms for authentication, session initialization, and
-	password management. See <xref linkend="section.config-pam"/> for
+	password management. See <xref linkend="sect.config-pam"/> for
 	an example of PAM configuration.</para>
 
 	<para>The <filename>/etc/default/locale</filename> file works in a
@@ -179,7 +179,7 @@
         <indexterm><primary><filename>pam_env.so</filename></primary></indexterm>
       </sidebar>
     </section>
-    <section id="section.config-clavier">
+    <section id="sect.config-clavier">
       <title>Configuring the Keyboard</title>
       <indexterm><primary>keyboard</primary><secondary>layout</secondary></indexterm>
       <indexterm><primary>keyboard layout</primary></indexterm>
@@ -229,7 +229,7 @@
 
       
     </section>
-    <section id="section.migration-utf8">
+    <section id="sect.migration-utf8">
       <title>Migrating to UTF-8</title>
 
       <para>The generalization of UTF-8 encoding has been a long awaited
@@ -423,7 +423,7 @@ $ </computeroutput><userinput>ls travail/</userinput>
     <indexterm><primary>configuration</primary><secondary>of the network</secondary></indexterm>
     <indexterm><primary>interface</primary><secondary>network</secondary></indexterm>
     <indexterm><primary><literal>eth0</literal></primary></indexterm>
-    <section id="section.interface-ethernet">
+    <section id="sect.interface-ethernet">
       <title>Ethernet Interface</title>
 
       <para>If the computer has an Ethernet card, the IP network that is
@@ -480,7 +480,7 @@ iface eth0 inet static
 	cited here are typical of the usual configurations.</para>
       </sidebar>
     </section>
-    <section id="section.ppp-rtc">
+    <section id="sect.ppp-rtc">
       <title>Connecting with PPP through a PSTN Modem</title>
       <indexterm><primary>PPP</primary></indexterm>
       <indexterm><primary>point to point</primary></indexterm>
@@ -524,7 +524,7 @@ iface eth0 inet static
 	inactivity.</para>
       </sidebar>
     </section>
-    <section id="section.adsl">
+    <section id="sect.adsl">
       <title>Connecting through an ADSL Modem</title>
       <indexterm><primary>connection</primary><secondary>by ADSL modem</secondary></indexterm>
       <indexterm><primary>modem</primary><secondary>ADSL</secondary></indexterm>
@@ -537,7 +537,7 @@ iface eth0 inet static
       “box” with Ethernet interfaces more and more frequently, instead
       of those with USB interfaces. According to the type of modem, the
       configuration required can vary widely.</para>
-      <section id="section.adsl-pppoe">
+      <section id="sect.adsl-pppoe">
         <title>Modems Supporting PPPOE</title>
         <indexterm><primary>PPPOE</primary></indexterm>
         <indexterm><primary><command>pppoeconf</command></primary></indexterm>
@@ -579,7 +579,7 @@ adsl:2345:respawn:/usr/sbin/pppd call dsl-provider
 	  method reduces the duration of the interruption.</para>
         </sidebar>
       </section>
-      <section id="section.adsl-pptp">
+      <section id="sect.adsl-pptp">
         <title>Modems Supporting PPTP</title>
         <indexterm><primary>PPTP</primary></indexterm>
 
@@ -589,7 +589,7 @@ adsl:2345:respawn:/usr/sbin/pppd call dsl-provider
 	<xref linkend="network-infrastructure"/> in the section about
 	virtual private networks detailing PPTP.</para>
       </section>
-      <section id="section.adsl-dhcp">
+      <section id="sect.adsl-dhcp">
         <title>Modems Supporting DHCP</title>
 
 	<para>When a modem is connected to the computer by an Ethernet
@@ -742,7 +742,7 @@ adsl:2345:respawn:/usr/sbin/pppd call dsl-provider
     <indexterm><primary>domain</primary><secondary>name</secondary></indexterm>
     <indexterm><primary>name</primary><secondary>domain</secondary></indexterm>
     <indexterm><primary>NSS</primary></indexterm>
-    <section id="section.resolution-noms">
+    <section id="sect.resolution-noms">
       <title>Name Resolution</title>
       <indexterm><primary>resolution</primary><secondary>name</secondary></indexterm>
       <indexterm><primary>name</primary><secondary>resolution</secondary></indexterm>
@@ -764,7 +764,7 @@ adsl:2345:respawn:/usr/sbin/pppd call dsl-provider
 	consideration <filename>/etc/nsswitch.conf</filename>, and thus,
 	not <filename>/etc/hosts</filename> either.</para>
       </sidebar>
-      <section id="section.config-serveur-dns">
+      <section id="sect.config-serveur-dns">
         <title>Configuring DNS Servers</title>
         <indexterm><primary>DNS</primary></indexterm>
         <indexterm><primary>Domain Name Service</primary></indexterm>
@@ -792,7 +792,7 @@ nameserver 212.27.32.177
 nameserver 8.8.8.8
 </programlisting>
       </section>
-      <section id="section.etc-hosts">
+      <section id="sect.etc-hosts">
         <title>The <filename>/etc/hosts</filename> file</title>
         <indexterm><primary><filename>hosts</filename></primary></indexterm>
         <indexterm><primary><filename>/etc/hosts</filename></primary></indexterm>
@@ -892,7 +892,7 @@ nameserver 8.8.8.8
       (string <varname>A</varname>) and generates a string of 13,
       printable, ASCII characters (string <varname>B</varname>).</para>
     </sidebar>
-    <section id="section.etc-passwd">
+    <section id="sect.etc-passwd">
       <title>User List: <filename>/etc/passwd</filename></title>
 
       <para>Here is the list of fields in the
@@ -950,7 +950,7 @@ nameserver 8.8.8.8
 	certain programs to a specific group.</para>
       </sidebar>
     </section>
-    <section id="section.etc-shadow">
+    <section id="sect.etc-shadow">
       <title>The Hidden and Encrypted Password File: <filename>/etc/shadow</filename></title>
       <indexterm><primary><filename>shadow</filename></primary></indexterm>
       <indexterm><primary><filename>/etc/shadow</filename></primary></indexterm>
@@ -993,7 +993,7 @@ nameserver 8.8.8.8
 	<filename>/etc/shadow</filename>.</para>
       </sidebar>
     </section>
-    <section id="section.modifier-compte">
+    <section id="sect.modifier-compte">
       <title>Modifying an Existing Account or Password</title>
       <indexterm><primary><command>chsh</command></primary></indexterm>
       <indexterm><primary><command>chfn</command></primary></indexterm>
@@ -1021,7 +1021,7 @@ nameserver 8.8.8.8
       <replaceable>user</replaceable></command> command, which will require
       the user to change their password the next time they log in.</para>
     </section>
-    <section id="section.bloquer-compte">
+    <section id="sect.bloquer-compte">
       <title>Disabling an Account</title>
       <indexterm><primary>Disable an account</primary></indexterm>
       <indexterm><primary>account</primary><secondary>disable</secondary></indexterm>
@@ -1049,11 +1049,11 @@ nameserver 8.8.8.8
 	<filename>/etc/nsswitch.conf</filename> file, under the
 	<literal>passwd</literal>, <literal>shadow</literal> and
 	<literal>group</literal> entries. See <xref
-	linkend="section.config-nss"/> for a specific example of the use of
+	linkend="sect.config-nss"/> for a specific example of the use of
 	an NSS module by LDAP.</para>
       </sidebar>
     </section>
-    <section id="section.etc-group">
+    <section id="sect.etc-group">
       <title>Group List: <filename>/etc/group</filename></title>
 
       <para>Groups are listed in the <filename>/etc/group</filename> file,
@@ -1458,7 +1458,7 @@ nameserver 8.8.8.8
       operating system. In general, a bootloader is installed in the MBR,
       removing its previous content.</para>
     </sidebar>
-    <section id="section.identifier-disques">
+    <section id="sect.identifier-disques">
       <title>Identifying the Disks</title>
 
       <sidebar>
@@ -1612,7 +1612,7 @@ mirexpress:/dev/disk/by-id# </computeroutput>
       first partition is an old Windows installation and the second
       contains Debian GNU/Linux.</para>
     </section>
-    <section id="section.config-lilo">
+    <section id="sect.config-lilo">
       <title>Configuring LILO</title>
       <indexterm><primary>LILO</primary></indexterm>
       <indexterm><primary>Linux Loader</primary></indexterm>
@@ -1661,7 +1661,7 @@ other=/dev/sda1
 </programlisting>
       </example>
     </section>
-    <section id="section.config-grub">
+    <section id="sect.config-grub">
       <title>GRUB 2 Configuration</title>
       <indexterm><primary>GRUB</primary></indexterm>
       <indexterm><primary>GRUB 2</primary></indexterm>
@@ -1728,7 +1728,7 @@ other=/dev/sda1
       and <filename>30_os-prober</filename> lists other operating systems
       (Windows, Mac OSX, Hurd).</para>
     </section>
-    <section id="section.config-grub-legacy">
+    <section id="sect.config-grub-legacy">
       <title>GRUB Legacy Configuration</title>
       <indexterm><primary>GRUB 1</primary></indexterm>
       <indexterm><primary>GRUB Legacy</primary></indexterm>
@@ -1784,7 +1784,7 @@ chainloader +1
       <indexterm><primary><filename>menu.lst</filename></primary></indexterm>
       <indexterm><primary><filename>/boot/grub/menu.lst</filename></primary></indexterm>
     </section>
-    <section id="section.config-yaboot">
+    <section id="sect.config-yaboot">
       <title>For Macintosh Computers (PowerPC): Configuring Yaboot</title>
       <indexterm><primary><command>yaboot</command></primary></indexterm>
 
@@ -1850,7 +1850,7 @@ macosx=/dev/sda5
     anyone who wants to master all aspects of configuration of the
     GNU/Linux system. They are, however, treated briefly and frequently
     refer to the documentation.</para>
-    <section id="section.fuseau-horaire">
+    <section id="sect.fuseau-horaire">
       <title>Timezone</title>
       <indexterm><primary>timezone</primary></indexterm>
 
@@ -1961,7 +1961,7 @@ macosx=/dev/sda5
 	autumn).</para>
       </sidebar>
     </section>
-    <section id="section.synchronisation-horaire">
+    <section id="sect.synchronisation-horaire">
       <title>Time Synchronization</title>
       <indexterm><primary>time synchronization</primary></indexterm>
       <indexterm><primary>clock</primary><secondary>synchronization</secondary></indexterm>
@@ -2006,7 +2006,7 @@ macosx=/dev/sda5
 	same source, and this source is very close in terms of network
 	transfer times.</para>
       </sidebar>
-      <section id="section.ntp-stations-travail">
+      <section id="sect.ntp-stations-travail">
         <title>For Workstations</title>
 
 	<para>Since work stations are regularly rebooted (even if only to
@@ -2017,7 +2017,7 @@ macosx=/dev/sda5
         <indexterm><primary><filename>ntpdate</filename></primary></indexterm>
         <indexterm><primary><filename>/etc/default/ntpdate</filename></primary></indexterm>
       </section>
-      <section id="section.ntp-serveurs">
+      <section id="sect.ntp-serveurs">
         <title>For Servers</title>
 
 	<para>Servers are only rarely rebooted, and it is very important
@@ -2051,7 +2051,7 @@ macosx=/dev/sda5
         </sidebar>
       </section>
     </section>
-    <section id="section.rotation-logs">
+    <section id="sect.rotation-logs">
       <title>Rotating Log Files</title>
       <indexterm><primary>file</primary><secondary>logs, rotation</secondary></indexterm>
       <indexterm><primary>logs</primary><secondary>files, rotation</secondary></indexterm>
@@ -2079,7 +2079,7 @@ macosx=/dev/sda5
       the <command>cron</command> scheduling program (described in <xref
       linkend="sect.task-scheduling-cron-atd"/>).</para>
     </section>
-    <section id="section.partage-droits-admin">
+    <section id="sect.partage-droits-admin">
       <title>Sharing Administrator Rights</title>
       <indexterm><primary>account</primary><secondary>administrator account</secondary></indexterm>
       <indexterm><primary>root</primary></indexterm>
@@ -2115,7 +2115,7 @@ macosx=/dev/sda5
       <citerefentry><refentrytitle>sudoers</refentrytitle>
       <manvolnum>5</manvolnum></citerefentry> man page.</para>
     </section>
-    <section id="section.liste-points-montage">
+    <section id="sect.liste-points-montage">
       <title>List of Mount Points</title>
       <indexterm><primary>point, mount</primary></indexterm>
       <indexterm><primary>mount point</primary></indexterm>
@@ -2309,7 +2309,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
 	removable media when they are connected.</para>
       </sidebar>
     </section>
-    <section id="section.locate-updatedb">
+    <section id="sect.locate-updatedb">
       <title><command>locate</command> and <command>updatedb</command></title>
       <indexterm><primary><command>locate</command></primary></indexterm>
       <indexterm><primary><command>updatedb</command></primary></indexterm>
@@ -2366,7 +2366,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
     <para>Recompilation of the kernel is also necessary if you want to use
     certain features that are only available as patches (and not included
     in the standard kernel version).</para>
-    <section id="section.compil-noyau-prerequis">
+    <section id="sect.compil-noyau-prerequis">
       <title>Introduction and Prerequisites</title>
       <indexterm><primary><emphasis role="pkg">kernel-package</emphasis></primary></indexterm>
 
@@ -2388,7 +2388,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       <emphasis>fakeroot</emphasis> package will enable creation of the
       Debian package without using administrator's rights.</para>
     </section>
-    <section id="section.sources-noyau">
+    <section id="sect.sources-noyau">
       <title>Getting the Sources</title>
       <indexterm><primary>Linux kernel sources</primary></indexterm>
       <indexterm><primary>kernel</primary><secondary>sources</secondary></indexterm>
@@ -2403,7 +2403,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       role="distribution">Unstable</emphasis> distribution: you can
       retrieve them without much risk (especially if your APT is configured
       according to the instructions of <xref
-      linkend="section.apt-mix-distros"/>). Note that the source code
+      linkend="sect.apt-mix-distros"/>). Note that the source code
       contained in these packages does not correspond precisely with that
       published by Linus Torvalds and the kernel developers; like all
       distributions, Debian applies a number of patches. These
@@ -2471,7 +2471,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
 	information on the used kernel.</para>
       </sidebar>
     </section>
-    <section id="section.config-noyau">
+    <section id="sect.config-noyau">
       <title>Configuring the Kernel</title>
       <indexterm><primary>kernel</primary><secondary>configuration</secondary></indexterm>
       <indexterm><primary>configuration</primary><secondary>of the kernel</secondary></indexterm>
@@ -2550,7 +2550,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
 	<literal>--config</literal> option.</para>
       </sidebar>
     </section>
-    <section id="section.compilation-generation-noyau">
+    <section id="sect.compilation-generation-noyau">
       <title>Compiling and Building the Package</title>
       <indexterm><primary><command>make-kpkg</command></primary></indexterm>
       <indexterm><primary><command>make-kpkg</command></primary><secondary><command>kernel-image</command></secondary></indexterm>
@@ -2627,7 +2627,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       <para>As you can see, the package is created with the name
       “<filename>linux-image-2.6.32-falcot_1_i386.deb</filename>”.</para>
     </section>
-    <section id="section.compilation-modules">
+    <section id="sect.compilation-modules">
       <title>Compiling External Modules</title>
       <indexterm><primary><command>make-kpkg</command></primary><secondary><command>modules-image</command></secondary></indexterm>
       <indexterm><primary>kernel</primary><secondary>external modules</secondary></indexterm>
@@ -2737,7 +2737,7 @@ $ </computeroutput><userinput>ls ../*.deb</userinput>
 	role="pkg">linux-headers-2.6-686</emphasis>.</para>
       </sidebar>
     </section>
-    <section id="section.patch-noyau">
+    <section id="sect.patch-noyau">
       <title>Applying a Kernel Patch</title>
       <indexterm><primary>kernel</primary><secondary>patch</secondary></indexterm>
       <indexterm><primary>patch kernel</primary></indexterm>
@@ -2803,7 +2803,7 @@ $ </computeroutput><userinput>ls ../*.deb</userinput>
     <title>Installing a Kernel</title>
     <indexterm><primary>installation</primary><secondary>of a kernel</secondary></indexterm>
     <indexterm><primary>kernel</primary><secondary>installation</secondary></indexterm>
-    <section id="section.paquet-noyau">
+    <section id="sect.paquet-noyau">
       <title>Features of a Debian Kernel Package</title>
 
       <sidebar>
@@ -2879,7 +2879,7 @@ postrm_hook = update-grub
 </programlisting>
       </example>
     </section>
-    <section id="section.installation-paquet-noyau">
+    <section id="sect.installation-paquet-noyau">
       <title>Installing with <command>dpkg</command></title>
 
       <para>Using <command>apt-get</command> is so convenient that it makes

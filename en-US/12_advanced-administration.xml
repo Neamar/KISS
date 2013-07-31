@@ -80,7 +80,7 @@
     configuration, this block can be stored on one or several physical
     disks, and its physical location may not be directly correlated to the
     location of the block in the logical device.</para>
-    <section id="section.raid-soft">
+    <section id="sect.raid-soft">
       <title>Software RAID</title>
 
       <para>RAID <indexterm><primary>RAID</primary></indexterm> means
@@ -133,7 +133,7 @@
 
       <para>We only focus on software RAID in this book.</para>
 
-      <section id="niveaux-de-raid">
+      <section id="sect.raid-levels">
         <title>Different RAID Levels</title>
 
 	<para>RAID is actually not a single system, but a range of
@@ -335,7 +335,7 @@
 	single computer can have several distinct RAID arrays with
 	different configurations.</para>
       </section>
-      <section id="mise-en-place-du-raid">
+      <section id="sect.raid-setup">
         <title>Setting up RAID</title>
 
 	<para>Setting up RAID volumes requires the <emphasis
@@ -681,7 +681,7 @@ Working Devices : 2
 	SCSI controllers, most SATA disks, and external drives operating on
 	USB or Firewire.</para>
       </section>
-      <section id="sauvegarde-config-raid">
+      <section id="sect.backup-raid-config">
         <title>Backing up the Configuration</title>
 
 	<para>Most of the meta-data concerning RAID volumes are saved
@@ -771,7 +771,7 @@ ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f674
 	creating or deleting a RAID array.</para>
       </section>
     </section>
-    <section id="section.lvm">
+    <section id="sect.lvm">
       <title>LVM</title>
 
       <para><indexterm><primary>LVM</primary></indexterm> LVM, the
@@ -782,7 +782,7 @@ ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f674
       applications are concerned; for instance, it is possible to add new
       disks, migrate the data to them, and remove the old disks, without
       unmounting the volume.</para>
-      <section id="lvm-concepts">
+      <section id="sect.lvm-concepts">
         <title>LVM Concepts</title>
 
 	<para>This flexibility is attained by a level of abstraction
@@ -836,7 +836,7 @@ ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f674
 	(while staying within the PVs assigned to the VG, of
 	course).</para>
       </section>
-      <section id="lvm-mise-en-place">
+      <section id="sect.lvm-setup">
         <title>Setting up LVM</title>
 
 	<para>Let us now follow, step by step, the process of setting up
@@ -1130,7 +1130,7 @@ Writing superblocks and filesystem accounting information: done
 	partitions have now been abstracted into one large 12 GB volume,
 	with a friendlier name.</para>
       </section>
-      <section id="lvm-dans-le-temps">
+      <section id="sect.lvm-over-time">
         <title>LVM Over Time</title>
 
 	<para>Even though the ability to aggregate partitions or physical
@@ -1250,7 +1250,7 @@ The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.
         </sidebar>
       </section>
     </section>
-    <section id="raid-ou-lvm">
+    <section id="sect.raid-or-lvm">
       <title>RAID or LVM?</title>
 
       <para>RAID and LVM both bring indisputable advantages as soon as one
@@ -1517,7 +1517,7 @@ Disk identifier: 0x00039a9f
 	url="http://www.virtualbox.org/"/></para>
       </listitem>
     </itemizedlist>
-    <section id="xen">
+    <section id="sect.xen">
       <title>Xen</title>
 
       <para>Xen <indexterm><primary>Xen</primary></indexterm> is a
@@ -1947,7 +1947,7 @@ testxen login: </computeroutput>
 	url="http://www.xen.org/support/documentation.html"/></para>
       </sidebar>
     </section>
-    <section id="lxc">
+    <section id="sect.lxc">
       <title>LXC</title>
 
       <para>Even though it's used to build “virtual machines”, LXC
@@ -2049,7 +2049,7 @@ cgroup            /sys/fs/cgroup           cgroup    defaults        0       0
 	filesystem should be manually mounted with <command>mount
 	/sys/fs/cgroup</command>.</para>
       </section>
-      <section id="section.lxc.network">
+      <section id="sect.lxc.network">
         <title>Network Configuration</title>
 
 	<para>The goal of installing LXC is to set up virtual machines;
@@ -2375,7 +2375,7 @@ root@testlxc:~# </computeroutput></screen>
 	<para>Just as in Xen and LXC, the most frequent network
 	configuration involves a bridge grouping the network interfaces of
 	the virtual machines (see <xref
-	linkend="section.lxc.network"/>).</para>
+	linkend="sect.lxc.network"/>).</para>
 
 	<para>Alternatively, and in the default configuration provided by
 	KVM, the virtual machine is assigned a private address (in the
@@ -2399,7 +2399,7 @@ root@testlxc:~# </computeroutput></screen>
 	installer, by booting the virtual machine on a virtual DVD-ROM
 	drive that maps to a Debian DVD image stored on the host system.
 	The VM will export its graphical console over the VNC protocol (see
-	<xref linkend="section.bureau-distant"/> for details), which will
+	<xref linkend="sect.bureau-distant"/> for details), which will
 	allow us to control the installation process.</para>
 
 	<para>We first need to tell libvirtd where to store the disk
@@ -2504,7 +2504,7 @@ to the console to complete the installation process.
 	    the local interface; if the VNC client is to be run on a
 	    different host, establishing the connection will require
 	    setting up an SSH tunnel (see <xref
-	    linkend="section.ssh-port-forwarding"/>). Alternatively, the
+	    linkend="sect.ssh-port-forwarding"/>). Alternatively, the
 	    <literal>--vnclisten=0.0.0.0</literal> can be used so that the
 	    VNC server is accessible from all interfaces; note that if you
 	    do that, you really should design your firewall
@@ -2746,7 +2746,7 @@ tokeep=5
     altogether (which is no longer in Debian), in order to focus more
     intently on debian-installer and simple-CDD, which are more interesting
     in a Debian-only context.</para>
-    <section id="fai">
+    <section id="sect.fai">
       <title>Fully Automatic Installer (FAI)</title>
       <indexterm><primary>Fully Automatic Installer (FAI)</primary></indexterm>
 
@@ -2842,7 +2842,7 @@ tokeep=5
         </listitem>
       </itemizedlist>
     </section>
-    <section id="d-i-preseeding">
+    <section id="sect.d-i-preseeding">
       <title>Preseeding Debian-Installer</title>
       <indexterm><primary>preseed</primary></indexterm>
       <indexterm><primary>preconfiguration</primary></indexterm>
@@ -2996,7 +2996,7 @@ tokeep=5
           <title>Preparing a Bootable USB Key</title>
 
 	  <para>Once a bootable key has been prepared (see <xref
-	  linkend="section.install-usb"/>), a few extra operations are
+	  linkend="sect.install-usb"/>), a few extra operations are
 	  needed. Assuming the key contents are available under
 	  <filename>/media/usbdisk/</filename>:</para>
           <itemizedlist>
@@ -3264,7 +3264,7 @@ append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap
       plugins, but it also adds extra features. <ulink type="block"
       url="http://www.icinga.org/"/></para>
     </sidebar>
-    <section id="section.munin">
+    <section id="sect.munin">
       <title>Setting Up Munin</title>
       <indexterm><primary>Munin</primary></indexterm>
 
@@ -3408,7 +3408,7 @@ load.info 5 minute load average
 	details.</para>
       </section>
     </section>
-    <section id="section.nagios">
+    <section id="sect.nagios">
       <title>Setting Up Nagios</title>
       <indexterm><primary>Nagios</primary></indexterm>
 

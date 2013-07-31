@@ -83,7 +83,7 @@
       the background to provide an interface between the hardware and the
       software (in our case, the Linux kernel).</para>
     </sidebar>
-    <section id="section.install-cd">
+    <section id="sect.install-cd">
       <title>Installing from a CD-ROM/DVD-ROM</title>
 
       <para>The most widely used installation method is from a CD-ROM
@@ -157,7 +157,7 @@
 	url="http://raphaelhertzog.com/go/debian-cd/"/></para>
       </sidebar>
     </section>
-    <section id="section.install-usb">
+    <section id="sect.install-usb">
       <title id="demarrage-cle-usb">Booting from a USB Key</title>
       <indexterm><primary>USB key</primary></indexterm>
 
@@ -195,7 +195,7 @@
       command line). <ulink type="block"
       url="http://www.debian.org/releases/stable/amd64/ch04s03.html"/></para>
     </section>
-    <section id="section.install-net">
+    <section id="sect.install-net">
       <title>Installing through Network Booting</title>
       <indexterm><primary>installation</primary><secondary><emphasis>netboot installation</emphasis></secondary></indexterm>
       <indexterm><primary>installation</primary><secondary><emphasis>PXE installation</emphasis></secondary></indexterm>
@@ -227,21 +227,21 @@
       type="block"
       url="http://www.debian.org/releases/stable/amd64/ch04s05.html"/></para>
     </section>
-    <section id="section.install-auto">
+    <section id="sect.install-auto">
       <title>Other Installation Methods</title>
 
       <para>When we have to deploy customized installations for a large
       number of computers, we generally choose an automated rather than a
       manual installation method. Depending on the situation and the
       complexity of the installations to be made, we can use FAI (Fully
-      Automatic Installer, described in <xref linkend="fai"/>), or even a
+      Automatic Installer, described in <xref linkend="sect.fai"/>), or even a
       customized installation CD with preseeding (see <xref
-      linkend="d-i-preseeding"/>).</para>
+      linkend="sect.d-i-preseeding"/>).</para>
     </section>
   </section>
   <section id="sect.installation-steps">
     <title>Installing, Step by Step</title>
-    <section id="section.install-boot">
+    <section id="sect.install-boot">
       <title>Booting and Starting the Installer</title>
 
       <para>Once the BIOS has begun booting from the CD- or DVD-ROM, the
@@ -373,7 +373,7 @@
       in graphical mode, but the only difference from “classic”
       (text-mode) installation is in the visual appearance.</para>
     </section>
-    <section id="section.install-lang">
+    <section id="sect.install-lang">
       <title>Selecting the language</title>
       <indexterm><primary>choice</primary><secondary>of language</secondary></indexterm>
 
@@ -412,7 +412,7 @@
         </mediaobject>
       </figure>
     </section>
-    <section id="section.install-pays">
+    <section id="sect.install-pays">
       <title>Selecting the country</title>
       <indexterm><primary>choice</primary><secondary>of country</secondary></indexterm>
 
@@ -437,7 +437,7 @@
         </mediaobject>
       </figure>
     </section>
-    <section id="section.install-clavier">
+    <section id="sect.install-clavier">
       <title>Selecting the keyboard layout</title>
       <indexterm><primary>keyboard</primary><secondary>layout</secondary></indexterm>
       <indexterm><primary>keyboard layout</primary></indexterm>
@@ -459,7 +459,7 @@
         </mediaobject>
       </figure>
     </section>
-    <section id="section.install-detection-cdrom">
+    <section id="sect.install-detection-cdrom">
       <title>Detecting Hardware</title>
 
       <para>This step is completely automatic in the vast majority of
@@ -477,7 +477,7 @@
       installer offers the choice to load a kernel module (for instance
       from a USB key) corresponding to the CD-ROM driver.</para>
     </section>
-    <section id="section.install-chargement-composants">
+    <section id="sect.install-chargement-composants">
       <title>Loading Components</title>
 
       <para>With the contents of the CD now available, the installer
@@ -486,7 +486,7 @@
       the network card), as well as all the components of the installation
       program.</para>
     </section>
-    <section id="section.install-detection-reseau">
+    <section id="sect.install-detection-reseau">
       <title>Detecting Network Hardware</title>
 
       <para>This automatic step tries to identify the network card and load
@@ -501,7 +501,7 @@
       <emphasis>netinst</emphasis> installations, since the Debian
       packages must be loaded from the network.</para>
     </section>
-    <section id="section.install-config-reseau">
+    <section id="sect.install-config-reseau">
       <title>Configuring the Network</title>
       <indexterm><primary>configuration</primary><secondary>network</secondary><tertiary>static</tertiary></indexterm>
       <indexterm><primary>configuration</primary><secondary>network</secondary><tertiary>DHCP</tertiary></indexterm>
@@ -540,7 +540,7 @@
 	the IP address, netmask, and broadcast address).</para>
       </sidebar>
     </section>
-    <section id="section.install-config-horloge">
+    <section id="sect.install-config-horloge">
       <title>Configuring the Clock</title>
 
       <para>If the network is available, the system's internal clock is
@@ -548,7 +548,7 @@
       timestamps on logs will be correct from the first boot. For them to
       remain consistently precise over time, an NTP daemon needs to be set
       up after initial installation (see <xref
-      linkend="section.synchronisation-horaire"/>).</para>
+      linkend="sect.synchronisation-horaire"/>).</para>
     </section>
     <section>
       <title>Administrator Password</title>
@@ -611,14 +611,14 @@
         </mediaobject>
       </figure>
     </section>
-    <section id="section.install-detection-disques">
+    <section id="sect.install-detection-disques">
       <title>Detecting Disks and Other Devices</title>
 
       <para>This step automatically detects the hard drives on which Debian
       may be installed. They will be presented in the next step:
       partitioning.</para>
     </section>
-    <section id="section.install-partman">
+    <section id="sect.install-partman">
       <title>Starting the Partitioning Tool</title>
       <indexterm><primary>partitioning</primary></indexterm>
 
@@ -682,7 +682,7 @@
 
       <para>In other cases, when Linux must work alongside other already
       existing partitions, you need to choose manual partitioning.</para>
-      <section id="section.install-autopartman-mode">
+      <section id="sect.install-autopartman-mode">
         <title>Guided partitioning</title>
         <indexterm><primary>partitioning</primary><secondary>guided partitioning</secondary></indexterm>
 
@@ -894,7 +894,7 @@
           </listitem>
         </itemizedlist>
       </section>
-      <section id="installation-raid-logiciel">
+      <section id="sect.installation-software-raid">
         <title>Configuring Multidisk Devices (Software RAID)</title>
         <indexterm><primary>Software RAID</primary></indexterm>
         <indexterm><primary>device</primary><secondary>multi-disk device</secondary></indexterm>
@@ -932,9 +932,9 @@
 	partition).</para>
 
 	<para>For further details on RAID functions, please refer to <xref
-	linkend="section.raid-soft"/>.</para>
+	linkend="sect.raid-soft"/>.</para>
       </section>
-      <section id="installation-lvm">
+      <section id="sect.installation-lvm">
         <title>Configuring the Logical Volume Manager (LVM)</title>
         <indexterm><primary>LVM</primary><secondary>during installation</secondary></indexterm>
         <indexterm><primary>Logical Volume Manager</primary><secondary>during installation</secondary></indexterm>
@@ -979,7 +979,7 @@
 	you can use as desired.</para>
 
 	<para>The usage of LVM is described in further detail in <xref
-	linkend="section.lvm"/>.</para>
+	linkend="sect.lvm"/>.</para>
       </section>
       <section>
         <title>Setting Up Encrypted Partitions</title>
@@ -1226,7 +1226,7 @@
       automatically.</para>
 
       <para>For more information on configuring GRUB, please refer to <xref
-      linkend="section.config-grub"/>.</para>
+      linkend="sect.config-grub"/>.</para>
 
       <sidebar role="important">
         <title><emphasis>BEWARE</emphasis> Bootloaders and architectures</title>
@@ -1359,7 +1359,7 @@
       involve some additional questions through <command>debconf</command>,
       the standard Debian configuration tool. For further information on
       these updates conducted by <command>aptitude</command>, please refer
-      to <xref linkend="section.apt-upgrade"/>.</para>
+      to <xref linkend="sect.apt-upgrade"/>.</para>
     </section>
   </section>
 </chapter>

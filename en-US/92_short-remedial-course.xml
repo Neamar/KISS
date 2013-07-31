@@ -341,7 +341,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
     it? Are the network parameters properly configured? All these questions
     isolate an appropriate layer and focus on a potential source of the
     problem.</para>
-    <section id="section.materiel">
+    <section id="sect.materiel">
       <title>The Deepest Layer: the Hardware</title>
       <indexterm><primary>IDE</primary></indexterm>
       <indexterm><primary>SCSI</primary></indexterm>
@@ -395,7 +395,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
 	processor(s) located on the main board.</para>
       </sidebar>
     </section>
-    <section id="section.bios">
+    <section id="sect.bios">
       <title>The Starter: the BIOS</title>
       <indexterm><primary>BIOS</primary></indexterm>
 
@@ -454,7 +454,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
       board. PCI specifications evolve, and old main boards are not
       guaranteed to handle newer PCI devices.</para>
     </section>
-    <section id="section.noyau">
+    <section id="sect.noyau">
       <title>The Kernel</title>
 
       <para>Both the BIOS and the bootloader only run for a few seconds
@@ -466,7 +466,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
       filesystem, and so on. The kernel provides a common base to all other
       programs on the system.</para>
     </section>
-    <section id="section.userspace-presentation">
+    <section id="sect.userspace-presentation">
       <title>The User Space</title>
 
       <para>Although everything that happens outside of the kernel can be
@@ -480,7 +480,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
   </section>
   <section id="sect.kernel-role-and-tasks">
     <title>Some Tasks Handled by the Kernel</title>
-    <section id="section.pilotage-materiel">
+    <section id="sect.pilotage-materiel">
       <title>Driving the Hardware</title>
 
       <para>The kernel is, first and foremost, tasked with controlling the
@@ -554,7 +554,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       (<filename>/dev/snd/*</filename>), serial ports
       (<filename>/dev/ttyS*</filename>), and so on.</para>
     </section>
-    <section id="section.systemes-fichiers">
+    <section id="sect.systemes-fichiers">
       <title>Filesystems</title>
       <indexterm><primary>filesystem</primary></indexterm>
       <indexterm><primary>system, filesystem</primary></indexterm>
@@ -616,7 +616,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       shields users from having to care: files remain accessible in their
       usual hierarchical way.</para>
     </section>
-    <section id="section.fonctions-partagees">
+    <section id="sect.fonctions-partagees">
       <title>Shared Functions</title>
 
       <para>Since a number of the same functions are used by all software,
@@ -630,7 +630,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       instance, transport could be over any combination of local or
       wireless networks, or over a telephone landline.</para>
     </section>
-    <section id="section.gestion-processus">
+    <section id="sect.gestion-processus">
       <title>Managing Processes</title>
       <indexterm><primary><emphasis>pid</emphasis></primary></indexterm>
 
@@ -678,7 +678,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       instances of the same program. But each can only access its own time
       slices and memory. Their data thus remain independent.</para>
     </section>
-    <section id="section.permissions">
+    <section id="sect.permissions">
       <title>Rights Management</title>
 
       <para>Unix-like systems are also multi-user. They provide a rights
@@ -703,7 +703,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
     processes are actually started by users because a standard system
     routinely has several “daemon” processes running before the user
     even opens a session. Daemon processes are user-space processes.</para>
-    <section id="section.rappels-processus">
+    <section id="sect.rappels-processus">
       <title>Process</title>
       <indexterm><primary><command>init</command></primary></indexterm>
 
@@ -752,7 +752,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       displayed again right away, which can lead to problems if the command
       needs to display data of its own.</para>
     </section>
-    <section id="section.daemons">
+    <section id="sect.daemons">
       <title>Daemons</title>
       <indexterm><primary>daemon</primary></indexterm>
       <indexterm><primary>daemon</primary></indexterm>
@@ -782,7 +782,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       <para>Several such daemons are described in detail in <xref
       linkend="unix-services"/>.</para>
     </section>
-    <section id="section.ipc">
+    <section id="sect.ipc">
       <title>Inter-Process Communications</title>
       <indexterm><primary>IPC</primary></indexterm>
       <indexterm><primary>Inter-Process Communications</primary></indexterm>
@@ -886,7 +886,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       <para>It is quite standard for a typical Unix-like system to make use
       of all these mechanisms to various degrees.</para>
     </section>
-    <section id="section.bibliotheques">
+    <section id="sect.bibliotheques">
       <title>Libraries</title>
       <indexterm><primary>library (of functions)</primary></indexterm>
 

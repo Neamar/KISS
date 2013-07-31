@@ -160,7 +160,7 @@
       machine are forwarded to a port on another machine. Other solutions
       may exist for achieving a similar effect, though, especially at the
       application level with <command>ssh</command> (see <xref
-      linkend="section.ssh-port-forwarding"/>) or
+      linkend="sect.ssh-port-forwarding"/>) or
       <command>redir</command>.</para>
     </sidebar>
 
@@ -223,7 +223,7 @@ net.ipv4.tcp_syncookies = 1
     to provide a VPN, in addition to its more conventional features.
     Finally, a VPN can be established using Microsoft's PPTP protocol.
     Other solutions exist, but are beyond the focus of this book.</para>
-    <section id="section.openvpn">
+    <section id="sect.openvpn">
       <title>OpenVPN</title>
       <indexterm><primary>OpenVPN</primary></indexterm>
 
@@ -562,7 +562,7 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
 	role="pkg">network-manager-openvpn-gnome</emphasis></primary></indexterm></para>
       </section>
     </section>
-    <section id="section.ssh-vpn">
+    <section id="sect.ssh-vpn">
       <title>Virtual Private Network with SSH</title>
       <indexterm><primary>SSH</primary></indexterm>
       <indexterm><primary>PPP</primary></indexterm>
@@ -602,7 +602,7 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
       over SSH should therefore be restricted to one-off tunnels with no
       performance constraints.</para>
     </section>
-    <section id="section.ipsec">
+    <section id="sect.ipsec">
       <title>IPsec</title>
       <indexterm><primary>IPsec</primary></indexterm>
       <indexterm><primary><command>openswan</command></primary></indexterm>
@@ -672,7 +672,7 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
         <indexterm><primary>protocol</primary><secondary>ESP</secondary></indexterm>
       </sidebar>
     </section>
-    <section id="section.pptp">
+    <section id="sect.pptp">
       <title>PPTP</title>
 
       <para>PPTP (for <emphasis>Point-to-Point Tunneling
@@ -684,7 +684,7 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
       <indexterm><primary>Point-to-Point Tunneling Protocol</primary></indexterm>
       <indexterm><primary>GRE, protocol</primary></indexterm>
       <indexterm><primary>protocol</primary><secondary>GRE</secondary></indexterm>
-      <section id="section.pptp-config-client">
+      <section id="sect.pptp-config-client">
         <title>Configuring the Client</title>
 
 	<para>The <emphasis role="pkg">pptp-linux</emphasis> package
@@ -762,7 +762,7 @@ fi
           <indexterm><primary>Microsoft</primary><secondary>Point-to-Point Encryption</secondary></indexterm>
         </sidebar>
       </section>
-      <section id="section.pptp-config-serveur">
+      <section id="sect.pptp-config-serveur">
         <title>Configuring the Server</title>
 
         <sidebar role="important">
@@ -923,7 +923,7 @@ FALCOT\\vpn     pptp    f@Lc3au     *
   </section>
   <section id="sect.quality-of-service">
     <title>Quality of Service</title>
-    <section id="section.qos-principe">
+    <section id="sect.qos-principe">
       <title>Principle and Mechanism</title>
 
       <para><emphasis>Quality of Service</emphasis> (or
@@ -968,7 +968,7 @@ FALCOT\\vpn     pptp    f@Lc3au     *
         <indexterm><primary>control, of traffic</primary></indexterm>
       </sidebar>
     </section>
-    <section id="section.qos-config">
+    <section id="sect.qos-config">
       <title>Configuring and Implementing</title>
 
       <para>QoS parameters are set through the <command>tc</command>
@@ -977,7 +977,7 @@ FALCOT\\vpn     pptp    f@Lc3au     *
       tools is recommended.</para>
       <indexterm><primary><emphasis>iproute</emphasis></primary></indexterm>
       <indexterm><primary><command>tc</command></primary></indexterm>
-      <section id="section.qos-wondershaper">
+      <section id="sect.qos-wondershaper">
         <title>Reducing Latencies: <command>wondershaper</command></title>
 
 	<para>The main purpose of <command>wondershaper</command> (in the
@@ -1032,7 +1032,7 @@ iface eth0 inet dhcp
 	  real limits.</para>
         </sidebar>
       </section>
-      <section id="section.qos-config-standard">
+      <section id="sect.qos-config-standard">
         <title>Standard Configuration</title>
 
 	<para>Barring a specific QoS configuration, the Linux kernel uses
@@ -1249,7 +1249,7 @@ iface eth0 inet6 auto
     <command>ip6tables</command> instead of
     <command>iptables</command>.</para>
 
-    <section id="section.ipv6-tunneling">
+    <section id="sect.ipv6-tunneling">
       <title>Tunneling</title>
       <sidebar>
         <title><emphasis>CAUTION</emphasis> IPv6 tunneling and firewalls</title>
@@ -1306,7 +1306,7 @@ if_prefix=eth0
   </section>
   <section id="sect.domain-name-servers">
     <title>Domain Name Servers (DNS)</title>
-    <section id="section.dns-principe">
+    <section id="sect.dns-principe">
       <title>Principle and Mechanism</title>
       <indexterm><primary>DNS</primary></indexterm>
       <indexterm><primary>server</primary><secondary>name</secondary></indexterm>
@@ -1408,7 +1408,7 @@ if_prefix=eth0
 	url="http://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions"/></para>
       </sidebar>
     </section>
-    <section id="section.dns-config">
+    <section id="sect.dns-config">
       <title>Configuring</title>
 
       <para>Configuration files for <command>bind</command>, irrespective
@@ -1553,7 +1553,7 @@ $TTL    604800
   </section>
   <section id="sect.dhcp">
     <title>DHCP</title>
-    <section id="section.dhcp-presentation">
+    <section id="sect.dhcp-presentation">
       <title>Presentation</title>
 
       <para>DHCP (for <emphasis>Dynamic Host Configuration
@@ -1575,7 +1575,7 @@ $TTL    604800
       matching Debian package is <emphasis
       role="pkg">isc-dhcp-server</emphasis>.</para>
     </section>
-    <section id="section.dhcp-config">
+    <section id="sect.dhcp-config">
       <title>Configuring</title>
 
       <para>The first elements that need to be edited in the DHCP server
@@ -1630,7 +1630,7 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
 </programlisting>
       </example>
     </section>
-    <section id="section.dhcp-dns">
+    <section id="sect.dhcp-dns">
       <title>DHCP and DNS</title>
       <indexterm><primary>DNS</primary><secondary>automated updates</secondary></indexterm>
 
@@ -1680,7 +1680,7 @@ allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };
     to run smoothly, running a network diagnosis can help ensure everything
     is working as it should. Several diagnosis tools exists for this
     purpose; each one operates on a different level.</para>
-    <section id="section.netstat">
+    <section id="sect.netstat">
       <title>Local Diagnosis: <command>netstat</command></title>
       <indexterm><primary><command>netstat</command></primary></indexterm>
 
@@ -1763,7 +1763,7 @@ udp6       0      0 :::123                  :::*                                
       connections (listed as <literal>LISTEN</literal>), notably the Exim4
       email server listening on port 25.</para>
     </section>
-    <section id="section.nmap">
+    <section id="sect.nmap">
       <title>Remote Diagnosis: <command>nmap</command></title>
       <indexterm><primary><command>nmap</command></primary></indexterm>
 
@@ -1845,7 +1845,7 @@ Nmap done: 1 IP address (1 host up) scanned in 21.32 seconds
       not when scanning <literal>scouzmir</literal> (which maps to the
       <literal>eth0</literal> interface on the same machine).</para>
     </section>
-    <section id="section.sniffers">
+    <section id="sect.sniffers">
       <title>Sniffers: <command>tcpdump</command> and <command>wireshark</command></title>
 
       <para>Sometimes, one needs to look at what actually goes on the wire,

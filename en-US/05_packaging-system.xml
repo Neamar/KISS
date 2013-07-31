@@ -114,7 +114,7 @@
       <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry>.</para>
 
       <para><xref linkend="solving-problems"/> discusses manual pages in
-      further detail (see <xref linkend="section.manual-pages"/>).</para>
+      further detail (see <xref linkend="sect.manual-pages"/>).</para>
     </sidebar>
 
     <para>Have a look at the content of a <filename>.deb</filename>
@@ -197,7 +197,7 @@ $ </computeroutput><userinput>cat debian-binary</userinput>
     not part of the packaged software, but are, within the package, what is
     called its “meta-information” (information about other
     information).</para>
-    <section id="section.control">
+    <section id="sect.control">
       <title>Description: the <filename>control</filename> File</title>
       <indexterm><primary>package meta-information</primary></indexterm>
       <indexterm><primary>package</primary><secondary>meta-information</secondary></indexterm>
@@ -764,7 +764,7 @@ SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</comput
 	    <para><command>dpkg</command> will update the configuration
 	    files, asking the user to decide if it is unable to
 	    automatically manage this task. The details of this procedure
-	    are discussed in <xref linkend="section.conffiles"/>.</para>
+	    are discussed in <xref linkend="sect.conffiles"/>.</para>
           </listitem>
           <listitem>
 	    <para>Finally, <command>dpkg</command> configures the package
@@ -874,7 +874,7 @@ SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</comput
         </sidebar>
       </section>
     </section>
-    <section id="section.conffiles">
+    <section id="sect.conffiles">
       <title>Checksums, List of Configuration Files</title>
       <indexterm><primary><filename>md5sums</filename></primary></indexterm>
       <indexterm><primary><filename>conffiles</filename></primary></indexterm>
@@ -889,7 +889,7 @@ SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</comput
       <filename>md5sums</filename>, contains the MD5 checksums for all of
       the package's files. Its main advantage is that it allows a tool
       such as <command>debsums</command> (which we will study in <xref
-      linkend="section.debsums"/>) to check if these files have been
+      linkend="sect.debsums"/>) to check if these files have been
       modified since their installation. Note that when this file doesn't
       exist, <command>dpkg</command> will generate it dynamically at
       installation time (and store it in the dpkg database just like other
@@ -1004,7 +1004,7 @@ DPkg::options { "--force-confdef"; "--force-confold"; }
       <para>The <filename>.dsc</filename> (Debian Source Control) file is a
       short text file containing an RFC 2822 header (just like the
       <filename>control</filename> file studied in <xref
-      linkend="section.control"/>) which describes the source package and
+      linkend="sect.control"/>) which describes the source package and
       indicates which other files are part thereof. It is signed by its
       maintainer, which guarantees authenticity. See <xref
       linkend="sect.package-authentication"/> for further details on this
@@ -1339,7 +1339,7 @@ E: missing dependencies. Try to use the option -f.
 	the problem (see <xref linkend="sect.rebuilding-package"/>) or use
 	a new version (potentially corrected) from a repository such as
 	the <literal>stable-backports</literal> one (see <xref
-	linkend="section.backports"/>).</para>
+	linkend="sect.backports"/>).</para>
       </sidebar>
     </section>
     <section>

@@ -414,7 +414,7 @@
     </sidebar>
     <indexterm><primary>login</primary><secondary>remote login</secondary></indexterm>
     <indexterm><primary>remote login</primary></indexterm>
-    <section id="section.telnet">
+    <section id="sect.telnet">
       <title>Remote Login: <command>telnet</command></title>
       <indexterm><primary><command>telnet</command></primary></indexterm>
 
@@ -454,7 +454,7 @@
 	are usually implemented with similar mathematical concepts.</para>
       </sidebar>
     </section>
-    <section id="section.ssh">
+    <section id="sect.ssh">
       <title>Secure Remote Login: SSH</title>
       <indexterm><primary>SSH</primary></indexterm>
       <indexterm><primary>Secure Shell</primary></indexterm>
@@ -552,7 +552,7 @@
 	type="block"
 	url="http://www.logix.cz/michal/devel/padlock/"/></para>
       </sidebar>
-      <section id="section.ssh-cle-auth">
+      <section id="sect.ssh-cle-auth">
         <title>Key-Based Authentication</title>
 
 	<para>Each time someone logs in over SSH, the remote server asks
@@ -655,7 +655,7 @@
 	  url="http://patch-tracker.debian.org"/></para>
         </sidebar>
       </section>
-      <section id="section.ssh-x11">
+      <section id="sect.ssh-x11">
         <title>Using Remote X11 Applications</title>
 
 	<para>The SSH protocol allows forwarding of graphical data
@@ -671,7 +671,7 @@
 	must also request it by adding the <literal>-X</literal> option to
 	the <command>ssh</command> command-line.</para>
       </section>
-      <section id="section.ssh-port-forwarding">
+      <section id="sect.ssh-port-forwarding">
         <title>Creating Encrypted Tunnels with Port Forwarding</title>
         <indexterm><primary>port forwarding</primary></indexterm>
 
@@ -757,7 +757,7 @@
         </figure>
       </section>
     </section>
-    <section id="section.bureau-distant">
+    <section id="sect.bureau-distant">
       <title>Using Remote Graphical Desktops</title>
 
       <para>VNC (Virtual Network Computing) allows remote access to
@@ -811,7 +811,7 @@
 	<para>If you want to connect by VNC, and you don't want your data
 	sent in clear text on the network, it is possible to encapsulate
 	the data in an SSH tunnel (see <xref
-	linkend="section.ssh-port-forwarding"/>). You simply have to know
+	linkend="sect.ssh-port-forwarding"/>). You simply have to know
 	that VNC uses port 5900 by default for the first screen (called
 	“localhost:0”), 5901 for the second (called “localhost:1”),
 	etc.</para>
@@ -1133,7 +1133,7 @@
     all target to be very flexible and try to adopt the configuration file
     as a single reference, they are not always able to integrate external
     changes.</para>
-    <section id="section.webmin">
+    <section id="sect.webmin">
       <title>Administrating On a Web Interface: <command>webmin</command></title>
       <indexterm><primary><emphasis>webmin</emphasis></primary></indexterm>
 
@@ -1237,7 +1237,7 @@
 	services.</para>
       </sidebar>
     </section>
-    <section id="section.debconf">
+    <section id="sect.debconf">
       <title>Configuring Packages: <command>debconf</command></title>
       <indexterm><primary><command>debconf</command></primary></indexterm>
       <indexterm><primary><command>dpkg-reconfigure</command></primary></indexterm>
@@ -1285,7 +1285,7 @@
     <indexterm><primary><command>rsyslogd</command></primary></indexterm>
     <indexterm><primary>files</primary><secondary>log files</secondary></indexterm>
     <indexterm><primary>logs</primary><secondary>distribution</secondary></indexterm>
-    <section id="section.syslog-principe">
+    <section id="sect.syslog-principe">
       <title>Principle and Mechanism</title>
 
       <para>The <command>rsyslogd</command> daemon is responsible for
@@ -1401,7 +1401,7 @@
         </listitem>
       </itemizedlist>
     </section>
-    <section id="section.syslog-config">
+    <section id="sect.syslog-config">
       <title>The Configuration File</title>
 
       <para>The syntax of the <filename>/etc/rsyslog.conf</filename> file
@@ -1413,7 +1413,7 @@
       The overall principle is to write “selector” and “action”
       pairs. The selector defines all relevant messages, and the actions
       describes how to deal with them.</para>
-      <section id="section.syslog-syntaxe-selecteur">
+      <section id="sect.syslog-syntaxe-selecteur">
         <title>Syntax of the Selector</title>
 
 	<para>The selector is a semicolon-separated list of
@@ -1448,7 +1448,7 @@
 	priority equal to or higher than <literal>crit</literal> not coming
 	from the kernel.</para>
       </section>
-      <section id="section.syslog-syntaxe-actions">
+      <section id="sect.syslog-syntaxe-actions">
         <title>Syntax of Actions</title>
 
         <sidebar>
@@ -1727,7 +1727,7 @@ ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i
     <para>Many Debian packages rely on this service, they put maintenance
     scripts in these directories, which ensure optimal operation of their
     services.</para>
-    <section id="section.format-crontab">
+    <section id="sect.format-crontab">
       <title>Format of a <filename>crontab</filename> File</title>
       <indexterm><primary><filename>crontab</filename></primary></indexterm>
 
@@ -1861,7 +1861,7 @@ ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i
 	<emphasis>crontab</emphasis>.</para>
       </sidebar>
     </section>
-    <section id="section.commande-at">
+    <section id="sect.commande-at">
       <title>Using the <command>at</command> Command</title>
       <indexterm><primary><command>at</command></primary></indexterm>
 
@@ -2115,7 +2115,7 @@ job 31 at Fri Jul 27 09:00:00 2012</computeroutput>
 
       <para>Backups on tape having been deemed too slow and costly, data
       will be backed up on hard drives on a dedicated server, on which the
-      use of software RAID (see <xref linkend="section.raid-soft"/>) will
+      use of software RAID (see <xref linkend="sect.raid-soft"/>) will
       protect the data from hard drive failure. Desktop computers are not
       backed up individually, but users are advised that their personal
       account on their department's file server will be backed up. The
@@ -2271,7 +2271,7 @@ exclude:
 	<command>rsync</command> as a server. This requires the root user
 	to be able to automatically connect to it. The use of an SSH
 	authentication key allows precisely that (see <xref
-	linkend="section.ssh-cle-auth"/>).</para>
+	linkend="sect.ssh-cle-auth"/>).</para>
       </sidebar>
     </section>
     <section>
@@ -2702,7 +2702,7 @@ KERNEL=="sd?[0-9]", SUBSYSTEM=="block", ATTRS{serial}=="M004021000001", SYMLINK+
       <indexterm><primary>Garrett, Matthew</primary></indexterm>
       <indexterm><primary>Matthew Garrett</primary></indexterm></para>
     </sidebar>
-    <section id="section.apm">
+    <section id="sect.apm">
       <title>Advanced Power Management (APM)</title>
 
       <para>APM (Advanced Power Management) control is present in all
@@ -2730,7 +2730,7 @@ KERNEL=="sd?[0-9]", SUBSYSTEM=="block", ATTRS{serial}=="M004021000001", SYMLINK+
       that do not support ACPI properly. In all other cases, ACPI should be
       used.</para>
     </section>
-    <section id="section.acpi">
+    <section id="sect.acpi">
       <title>Modern power savings: Advanced Configuration and Power Interface (ACPI)</title>
 
       <para>Linux supports ACPI (Advanced Configuration and Power
