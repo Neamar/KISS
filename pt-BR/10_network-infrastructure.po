@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-03-25 17:31+0200\n"
-"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
+"PO-Revision-Date: 2013-08-02 18:53+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/10_network-infrastructure/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 1.5-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 1.7-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -64,7 +64,10 @@ msgstr "Infraestrutura de Rede"
 #. Tag: para
 #, no-c-format
 msgid "Linux sports the whole Unix heritage for networking, and Debian provides a full set of tools to create and manage them. This chapter reviews these tools."
-msgstr "O Linux herda toda a tradição do Unix na área de redes, e o Debian fornece um conjunto completo de ferramentas para gerenciá-las. Este capítulo apresenta estas ferramentas."
+msgstr ""
+"O Linux dispõe de toda a tradição do Unix na área de redes, e o Debian "
+"fornece um conjunto completo de ferramentas para criar e gerenciar tais "
+"redes. Este capítulo apresenta estas ferramentas."
 
 #. Tag: para
 #, no-c-format
@@ -84,7 +87,7 @@ msgstr "<primary>gateway</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>gateway</secondary>"
-msgstr "<primary>rede</primary><secondary>gateway</secondary>"
+msgstr "<secondary>gateway</secondary> de <primary>rede</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -104,7 +107,11 @@ msgstr "<primary>pacote</primary><secondary>IP</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "Most networks nowadays use the IP protocol (<emphasis>Internet Protocol</emphasis>). This protocol segments the transmitted data into limited-size packets. Each packet contains, in addition to its payload data, a number of details required for its proper routing."
-msgstr "A maioria das redes atualmente utiliza o protocolo IP (<emphasis>Internet Protocol</emphasis>). Este protocolo segmenta a transmissão dos dados em pacotes de tamanho limitado. Cada pacote contém, em adição aos seus dados de paylod, um número de detalhes necessários para seu próprio roteamento."
+msgstr ""
+"A maioria das redes atualmente utiliza o protocolo IP (<emphasis>Internet "
+"Protocol</emphasis>). Este protocolo segmenta a transmissão dos dados em "
+"pacotes de tamanho limitado. Cada pacote contém, em adição aos seus dados "
+"úteis, uma quantidade de detalhes necessários para seu próprio roteamento."
 
 #. Tag: title
 #, no-c-format
@@ -135,11 +142,31 @@ msgstr "<primary>UDP, porta</primary>"
 #, no-c-format
 msgid "Many programs do not handle the individual packets themselves, even though the data they transmit does travel over IP; they often use TCP (<emphasis>Transmission Control Protocol</emphasis>). TCP is a layer over IP allowing the establishment of connections dedicated to data streams between two points. The programs then only see an entry point into which data can be fed with the guarantee that the same data exits without loss (and in the same sequence) at the exit point at the other end of the connection. Although many kinds of errors can happen in the lower layers, they are compensated by TCP: lost packets are retransmitted, and packets arriving out of order (for example, if they used different paths) are re-ordered appropriately."
 msgstr ""
+"Muitos programas não manipulam os pacotes individuais por si sós, mesmo que "
+"os dados que eles transmitam trafegem sobre IP; Eles geralmente usam TCP "
+"(<emphasis>Transmission Control Protocol</emphasis>). TCP é uma camada acima "
+"do IP que permite o estabelecimento de conexões dedicadas a fluxos de dados "
+"entre dois pontos. Os programas então vêem apenas um ponto de entrada no "
+"qual os dados podem ser enviados com a garantia que os mesmos dados vão sair "
+"sem perdas (e na mesma sequência) no ponto de saída na outra extremidade da "
+"conexão. Embora muitos tipos de erros possam acontecer em camadas mais "
+"baixas, eles são compensados pelo TCP: pacotes perdidos são retransmitidos, "
+"e pacotes chegando fora de ordem (por exemplo, se pegaram caminhos "
+"diferentes) são reordenados corretamente."
 
 #. Tag: para
 #, no-c-format
 msgid "Another protocol relying on IP is UDP (<emphasis>User Datagram Protocol</emphasis>). In contrast to TCP, it is packet-oriented. Its goals are different: the purpose of UDP is only to transmit one packet from an application to another. The protocol does not try to compensate for possible packet loss on the way, nor does it ensure that packets are received in the same order as were sent. The main advantage to this protocol is that the latency is greatly improved, since the loss of a single packet does not delay the receiving of all following packets until the lost one is retransmitted."
 msgstr ""
+"Outro protocolo que se baseia no IP é o UDP (<emphasis>User Datagram "
+"Protocol</emphasis>). Ao contrário do TCP, ele é orientado a pacote. Seus "
+"objetivos são diferentes: O objetivo do UDP é apenas transmitir um pacote de "
+"uma aplicação para outra. O protocolo não tenta compensar possíveis perdas "
+"de pacotes no caminho, nem garante que pacotes são recebidos na ordem em que "
+"foram enviados. A principal vantagem deste protocolo é que a latência fica "
+"muito melhor, uma vez que a perda de um pacote único não atrasa o "
+"recebimento de todos os pacotes seguintes até que o que se perdeu seja "
+"retransmitido."
 
 #. Tag: para
 #, no-c-format
@@ -148,13 +175,18 @@ msgstr ""
 "TCP e UDP ambos envolvem portas, que são \"números de ramal\" para estabelecer "
 "a comunicação com um determinado aplicativo em uma máquina. Este conceito "
 "permite manter várias comunicações diferentes em paralelo com o mesmo "
-"correspondente, desde que estas comunicações podem ser distinguidas pelo "
+"correspondente, já que estas comunicações podem ser diferenciadas pelo "
 "número da porta."
 
 #. Tag: para
 #, no-c-format
 msgid "Some of these port numbers — standardized by the IANA (<emphasis>Internet Assigned Numbers Authority</emphasis>) — are “well-known” for being associated with network services. For instance, TCP port 25 is generally used by the email server. <ulink type=\"block\" url=\"http://www.iana.org/assignments/port-numbers\" />"
 msgstr ""
+"Alguns destes números de portas — pedronizados pela IANA (<emphasis>Internet "
+"Assigned Numbers Authority</emphasis>) — são \"famosos\" por estarem "
+"associados a certos serviços de rede. Por exemplo, a porta TCP 25 é "
+"geralmente usada pelo servidor de email. <ulink type=\"block\" "
+"url=\"http://www.iana.org/assignments/port-numbers\" />"
 
 #. Tag: para
 #, no-c-format
