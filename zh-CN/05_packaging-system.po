@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:34\n"
-"PO-Revision-Date: 2012-07-02 09:00+0800\n"
+"PO-Revision-Date: 2013-08-31 23:51+0800\n"
 "Last-Translator: Emfox Zhou <emfox@debian.org>\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -49,7 +49,7 @@ msgid "As a Debian system administrator, you will routinely handle <filename>.de
 msgstr "作为 Debian 系统管理员，你经常地要处理 <filename>.deb</filename> 包，因为它们包含一致的功能单元（应用程序、文档等），使得安装和维护更容易。所以了解它们是什么及如何使用它们是个好主意。"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the source code, as well as instructions for building binary packages."
 msgstr "本章介绍了“二进制”和“源码”包的结构和内容。前者是 <filename>.deb</filename> 文件，可以用 <command>dpkg</command> 命令直接处理；而后者则包含程序的源代码，以及创建二进制包的说明。"
 
@@ -407,587 +407,587 @@ msgstr "<command>&gt;&gt;</command>：大于。"
 #. Tag: para
 #, no-c-format
 msgid "In a list of conditions to be met, the comma serves as a separator. In logic, its meaning would be interpreted as “and”. In conditions, the vertical bar (“|”) expresses “or” in logic (it is an inclusive “or”, as opposed to meaning “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
-msgstr ""
+msgstr "在列表中必须满足一个条件,那就是逗号作为分隔符。逻辑上，就是“和”的意思。在这种条件下， 垂直分隔条 “|” 表示 “或" 的逻辑意思（它是一个包容性的”或”，意思就是 “要么”/“或”）。它比“和”具有更高的优先级，它可以根据需要多次的使用。因此，依赖“(A或B) 和 C” 写成 <command>A | B，C</command>。相比之下，表达“A或(B和C)”应写成“（A或B），（A或C）”，因为<literal>取决于</literal>的字段不能容忍括号改变逻辑运算符“或”和“与”之间的逻辑优先级顺序。因此，这将被写入<command>A|B，A|C</command>。<ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>meta-package</primary>"
-msgstr ""
+msgstr "<primary>元-软件包</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The dependencies system is a good mechanism for guaranteeing the operation of a program, but it has another use with “meta-packages”. These are empty packages that only describe dependencies. They facilitate the installation of a consistent group of programs preselected by the meta-package maintainer; as such, <command>apt-get install <replaceable>meta-package</replaceable></command> will automatically install all of these programs using the meta-package's dependencies. The <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde</emphasis> and <emphasis role=\"pkg\">linux-image-2.6-686</emphasis> packages are examples of meta-packages."
-msgstr ""
+msgstr "依赖系统可以保证程序的操作，这是一个非常好的机制，但它还可以另外和“元软件包”一起使用。元软件包是一种空的只描述依赖性的空包。通过采用一致的元软件包组程序预选方案，它们可以非常自动的安装使用了元软件包依赖的所有程序的依赖关系；比如<command>apt-get install <replaceable>元软件包</replaceable></command> 。<emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde</emphasis> 和 <emphasis role=\"pkg\">linux-image-2.6-686</emphasis> 是一些元软件包的包例子。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, a more demanding <literal>Depends</literal>"
-msgstr ""
+msgstr "<emphasis>DEBIAN 政策</emphasis> <literal>预依赖</literal>, 一个更苛刻的 <literal>取决于</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pre-Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>预依赖</literal>, 头失败</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>pre-dependency</primary>"
-msgstr ""
+msgstr "<primary>预依赖</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "“Pre-dependencies”, which are listed in the “<literal>Pre-Depends</literal>” field in the package headers, complete the normal dependencies; their syntax is identical. A normal dependency indicates that the package in question must be unpacked and configured before the package declaring the dependency. A pre-dependency stipulates that the package in question must be unpacked and configured before execution of the pre-installation script of the package declaring the pre-dependency, that is before its installation."
-msgstr ""
+msgstr "“预依赖关系”，是在”<literal>预依赖</literal>字段的软件包包头中，完成正常的依赖；它们的语法是相同的。一个正常的依赖性表明包的问题必须得到在解压包和配置包前所申明的依赖关系。预依赖关系规定，必须包进行解包和配置包并在宣告依赖前必须执行预安装脚本，也就是之前的安装。"
 
 #. Tag: para
 #, no-c-format
 msgid "A pre-dependency is very demanding for <command>apt</command>, because it adds a strict constraint on the ordering of the packages to install. As such, pre-dependencies are discouraged unless absolutely necessary. It is even recommended to consult other developers on <email>debian-devel@lists.debian.org</email> before adding a pre-dependency. It is generally possible to find another solution as a work-around."
-msgstr ""
+msgstr "<command>apt</command>对预依赖的要求非常严格，因为它在安装软件包的时候增加了严格约束。因此，预依赖关系的安装软件的时候不鼓励,除非绝对需要。它甚至建议在加入预依赖前直接咨询开发人员<email>debian-devel@lists.dibian.org</email>。这也是一个通用的解决办法。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Recommends</literal>, <literal>Suggests</literal>, and <literal>Enhances</literal> fields"
-msgstr ""
+msgstr "<emphasis>DEBIAN 政策</emphasis> <literal>推荐</literal>，<literal>建议</literal>，<literal>提高</literal>水平"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Recommends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>推荐</literal>，头字段</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Suggests</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>建议</literal>，头字段</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Recommends</literal> and <literal>Suggests</literal> fields describe dependencies that are not compulsory. The “recommended” dependencies, the most important, considerably improve the functionality offered by the package but are not indispensable to its operation. The “suggested” dependencies, of secondary importance, indicate that certain packages may complement and increase their respective utility, but it is perfectly reasonable to install one without the others."
-msgstr ""
+msgstr "<literal>推荐</literal>和<literal>建议</literal>字段描述的依赖关系不是强制性的。“推荐”的依赖,是最重要的，能显著改善由软件包提供的功能，但这并非是必不可少的操作。“建议”的依赖，是次要的，表明某些软件包可以补充或者增加其各自的效果，有充分的理由去单独安装它而不是其它的软件包。"
 
 #. Tag: para
 #, no-c-format
 msgid "You should always install the “recommended” packages, unless you know exactly why you do not need them. Conversely, it is not necessary to install “suggested” packages unless you know why you need them."
-msgstr ""
+msgstr "你应该总是安装“推荐”的软件包，除非你知道究竟为什么你不需要它们。相反，“建议”的软件包是不必要安装的，除非你知道为什么你需要它们。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Enhances</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>增强</literal>，头字段</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Enhances</literal> field also describes a suggestion, but in a different context. It is indeed located in the suggested package, and not in the package that benefits from the suggestion. Its interest lies in that it is possible to add a suggestion without having to modify the package that is concerned. Thus, all add-ons, plug-ins, and other extensions of a program can then take place in the list of suggestions related to the software. Although it has existed for several years, this last field is still largely ignored by programs such as <command>apt-get</command> or <command>synaptic</command>. Its purpose is for a suggestion made by the <literal>Enhances</literal> field to appear to the user in addition to the traditional suggestions — found in the <literal>Suggests</literal> field."
-msgstr ""
+msgstr "<literal>增强</literal>字段在不同的内容中也介绍了一个建议。这个建议是位于所建议的软件包内，而不是在建议的有好处的软件包内。它的好处是你可以添加一个建议，而不需要修改软件包。因此，所有的附加组件，插件，和其他扩展程序都可以取代该软件有关联的建议列表。虽然它已经存在了好几年，这个最后的字段仍然在很大程序上被比如<command>apt-get</command> 或者<command>synaptic</command> 所忽视。它的目的是为了<literal>增强</literal>字段来显示给用户那些普通的建议外所作出的建议 - 这个也在<literal>建议</literal>的字段可以找到。"
 
 #. Tag: title
 #, no-c-format
 msgid "Conflicts: the <literal>Conflicts</literal> field"
-msgstr ""
+msgstr "冲突：<literal>冲突</literal>字段"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>conflicts</primary>"
-msgstr ""
+msgstr "<primary>冲突</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Conflicts</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>冲突</literal>，头字段</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>conflict</secondary>"
-msgstr ""
+msgstr "<primary>包</primary><secondary>冲突</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Conflicts</literal> field indicates when a package cannot be installed simultaneously with another. The most common reasons for this are that both packages include a file containing the same name, or provide the same service on the same TCP port, or would hinder each other's operation."
-msgstr ""
+msgstr "<literal>冲突</literal>字段申明了不能和另外一个软件包同时安装。最常见的原因是这些软件包都包含了相同的名字，或者是在TCP端口上提供了相同的服务，或者可能会阻碍对方的操作。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> will refuse to install a package if it triggers a conflict with an already installed package, except if the new package specifies that it will “replace” the installed package, in which case <command>dpkg</command> will choose to replace the old package with the new one. <command>apt-get</command> always follows your instructions: if you choose to install a new package, it will automatically offer to uninstall the package that poses a problem."
-msgstr ""
+msgstr "<command>dpkg</command>会拒绝安装一个软件包，当这个软件包和已经安装的软件包触发了一个冲突的时候，除非新的软件包特别指定了“替换”已安装的软件包，在这种情况下<command>dpkg</command>将会用新的软件包来替换掉旧的软件包。<command>apt-get</command>则会一直遵循你的指示：如果你选择安装一个新的软件包，它将自动提供卸载老的软件包，这将会引入一个新的问题。"
 
 #. Tag: title
 #, no-c-format
 msgid "Incompatibilities: the <literal>Breaks</literal> Field"
-msgstr ""
+msgstr "不相容性:<literal>中断</literal>字段"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>incompatibilities</primary>"
-msgstr ""
+msgstr "<primary>不相容性</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Breaks</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>中断</literal>，头字段</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>incompatibility</secondary>"
-msgstr ""
+msgstr "<primary>包</primary><secondary>不相容性</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Breaks</literal> field has an effect similar to that of the <literal>Conflicts</literal> field, but with a special meaning. It signals that the installation of a package will “break” another package (or particular versions of it). In general, this incompatibility between two packages is transitory, and the <literal>Breaks</literal> relationship specifically refers to the incompatible versions."
-msgstr ""
+msgstr "<literal>中断</literal>字段有一个影响和<literal>冲突</literal>字段类似，但它具有特殊的意义。它标志着一个包的安装会将另外一个包（或者是特定版本）中断掉。通常而言，两个包之间的不兼容是短暂的，<literal>中断</literal>关系会特别指出那些不兼容的版本。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> will refuse to install a package that breaks an already installed package, and <command>apt-get</command> will try to resolve the problem by updating the package that would be broken to a newer version (which is assumed to be fixed and, thus, compatible again)."
-msgstr ""
+msgstr "<command>dpkg</command>在中断已安装的软件包时会拒绝安装新的软件包，<command>apt-get</command>则会通过更新到新的版本来尝试解决这个问题（这被认为是修复兼容性的方式，因此，包会再次兼容。）。"
 
 #. Tag: para
 #, no-c-format
 msgid "This type of situation may occur in the case of updates without backwards compatibility: this is the case if the new version no longer functions with the older version, and causes a malfunction in another program without making special provisions. The <literal>Breaks</literal> field prevents the user from running into these problems."
-msgstr ""
+msgstr "不向后兼容的更新可能会发生这种情况：如果新版本与旧版本的功能不在另一个程序中做特别规定，这将导致故障。<literal>中断</literal>字段会防止用户继续运行从而遇到这些问题。"
 
 #. Tag: title
 #, no-c-format
 msgid "Provided Items: the <literal>Provides</literal> Field"
-msgstr ""
+msgstr "预备好的条目：<literal>预备</literal>字段"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Provides</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>预备</literal>，头字段</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This field introduces the very interesting concept of a “virtual package”. It has many roles, but two are of particular importance. The first role consists in using a virtual package to associate a generic service with it (the package “provides” the service). The second indicates that a package completely replaces another, and that for this purpose it can also satisfy the dependencies that the other would satisfy. It is thus possible to create a substitution package without having to use the same package name."
-msgstr ""
+msgstr "这个字段引入了一个很有意思的“虚拟包”的概念。它有很多的角色，但有两个特别重要。第一个是由使用虚拟包关联到的一个通用的服务（包“预备”了这些服务）。第二个表示一个包完全取代了另外一个，所以它也能满足依赖性要求。因此，可以创建一个替换而不必使用相同的包名称的包。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Meta-package and virtual package"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis>元软件包和虚拟包"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>virtual package</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>虚拟软件包</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual package</primary>"
-msgstr ""
+msgstr "<primary>虚拟软件包</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "It is essential to clearly distinguish meta-packages from virtual packages. The former are real packages (including real <filename>.deb</filename> files), whose only purpose is to express dependencies."
-msgstr ""
+msgstr "这里必须明确的从虚拟软件包里面区分出元软件包。元软件包是真实的元件包（包含真实的<filename>.deb</filename>文件），其唯一目的是用来表示依赖性关系。"
 
 #. Tag: para
 #, no-c-format
 msgid "Virtual packages, however, do not exist physically; they are only a means of identifying real packages based on common, logical criteria (service provided, compatibility with a standard program or a pre-existing package, etc.)."
-msgstr ""
+msgstr "尽管如此，虚拟软件包并不实际存在，它们仅仅指的是验证基于公共逻辑标准的实际软件包（服务预备，和标准程序或者是已存在的软件包的兼容性,等等）。
 
 #. Tag: title
 #, no-c-format
 msgid "Providing a “Service”"
-msgstr ""
+msgstr "提供一个“服务”"
 
 #. Tag: para
 #, no-c-format
 msgid "Let us discuss the first case in greater detail with an example: all mail servers, such as <emphasis role=\"pkg\">postfix</emphasis> or <emphasis role=\"pkg\">sendmail</emphasis> are said to “provide” the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. Thus, any package that needs this service to be functional (e.g. a mailing list manager, such as <emphasis role=\"pkg\">smartlist</emphasis> or <emphasis role=\"pkg\">sympa</emphasis>) simply states in its dependencies that it requires a <emphasis role=\"pkg\">mail-transport-agent</emphasis> instead of specifying a large yet incomplete list of possible solutions (e.g. <command>postfix | sendmail | exim | …</command>). Furthermore, it is useless to install two mail servers on the same machine, which is why each of these packages declares a conflict with the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. The conflict with itself is ignored by the system, but this technique will prohibit the installation of two mail servers side by side."
-msgstr ""
+msgstr "让我们讨论更详细的例子：所有的邮件服务器，比如<emphasis role=\"pkg\">postfix</emphasis>或者 <emphasis role=\"pkg\">sendmail</emphasis> 都说可以“提供”<emphasis role=\"pkg\">邮件传输代理</emphasis>的虚软件包。因此，任何需要此服务功能的软件包（例如 邮件列表管理器，比如<emphasis role=\"pkg\">smartlist</emphasis>或者是<emphasis role=\"pkg\">sympa</emphasis>）的这些单一状态的依赖关系,需要<emphasis role=\"pkg\">邮件传输代理</emphasis>来代替指定一个庞大但不完整的可能的解决方案列表（如<command>postfix | sendmail | exim | ...</command>）。此外，安装两个邮件服务器在一个机器上是没用的，这就是为什么这些软件包会声明一个冲突在<emphasis role=\"pkg\">邮件传输代理</emphasis>的虚拟软件包中。系统本身会忽略这个冲突，但是这种技术会禁止两个邮件服务器的同时安装。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> List of virtual packages"
-msgstr ""
+msgstr "<emphasis>DEBIAN 政策</emphasis> 虚拟软件包列表"
 
 #. Tag: para
 #, no-c-format
 msgid "For virtual packages to be useful, everyone must agree on their name. This is why they are standardized in the Debian Policy. The list includes among others <emphasis role=\"pkg\">mail-transport-agent</emphasis> for mail servers, <emphasis role=\"pkg\">c-compiler</emphasis> for C programming language compilers, <emphasis role=\"pkg\">www-browser</emphasis> for web browsers, <emphasis role=\"pkg\">httpd</emphasis> for web servers, <emphasis role=\"pkg\">ftp-server</emphasis> for FTP servers, <emphasis role=\"pkg\">x-terminal-emulator</emphasis> for terminal emulators in graphical mode (<command>xterm</command> ), and <emphasis role=\"pkg\">x-window-manager</emphasis> for window managers."
-msgstr ""
+msgstr "对于虚拟软件包有用的是，每个人都必须同意它们的名字。这就是为什么他们制定Debian政策的标准化。这个列表包括了<emphasis role=\"pkg\">邮件传输代理</emphasis>的邮件服务器，<emphasis role=\"pkg\">C-编译器</emphasis>的C编程语言的编译器，<emphasis role=\"pkg\">www-浏览器</emphasis>的网页浏览器，<emphasis role=\"pkg\">httpd</emphasis>的web服务器，<emphasis role=\"pkg\">ftp-server</emphasis>的FTP服务器，<emphasis role=\"pkg\">x-终端模拟器</emphasis>的图形界面的终端模拟器(<command>xterm</command>),和<emphasis role=\"pkg\">X窗口管理器</emphasis>的窗口管理器。"
 
 #. Tag: para
 #, no-c-format
 msgid "The full list can be found on the Web, at <ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt\" />"
-msgstr ""
+msgstr "完整的列表在互联网上，地址是<ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Interchangeability with Another Package"
-msgstr ""
+msgstr "和另一个软件包的可交互性"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Provides</literal> field is again interesting when the content of a package is included in a larger package. For example, the <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> Perl module was an optional module in Perl 5.6, and has been integrated as standard in Perl 5.8 (and later versions, such as 5.10 present in <emphasis role=\"distribution\">Squeeze</emphasis>). As such, the package <emphasis role=\"pkg\">perl</emphasis> has since version 5.8 declared <literal>Provides: libdigest-md5-perl</literal> so that the dependencies on this package are met if the user has Perl 5.8 or 5.10. The <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> package itself has eventually been deleted, since it no longer had any purpose when old Perl versions were removed."
-msgstr ""
+msgstr "<literal>预备</literal>字段又是有趣的，当一个软件包的内容包含在另一个更大的软件包。例如<emphasis role=\"pkg\">libdigest-md5-perl</emphasis>的Perl模块是Perl5.6中的一个可选的模块，并已整合到Perl5.8（或更高的版本，比如目前的5.10，在<emphasis role=\"pkg\">Squeeze</emphasis>）的标准中。因此，软件包<emphasis role=\"pkg\">PERL</emphasis>的5.8版本后，如果用户拥有Perl5.8或Perl5.10，都申明了<literal>预备:libdigest-md5-perl</literal>以便满足这个软件包的依赖关系。当老的Perl版本删除的时候，libdigest-md5-perl软件包没有存在的目的的时候，<emphasis role=\"pkg\">libdigest-md5-perl</emphasis>软件包本身最终会被删除。"
 
 #. Tag: title
 #, no-c-format
 msgid "Use of a <literal>Provides</literal> field in order to not break dependencies"
-msgstr ""
+msgstr "使用了<literal>预备</literal>字段来避免中断依赖性关系"
 
 #. Tag: para
 #, no-c-format
 msgid "This feature is very useful, since it is never possible to anticipate the vagaries of development, and it is necessary to be able to adjust to renaming, and other automatic replacement, of obsolete software."
-msgstr ""
+msgstr "这个功能非常有用，因为它是永远不可能预料到变化莫测的发展，它不能够调整重命名，或者其他自动替换过的软件，所以它是必要的。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Perl, a programming language"
-msgstr ""
+msgstr "<emphasis>回到基本</emphasis>Perl，一种编程语言"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Perl</primary>"
-msgstr ""
+msgstr "<primary>Perl</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CPAN</primary>"
-msgstr ""
+msgstr "<primary>CPAN</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Perl (Practical Extraction and Report Language) is a very popular programming language. It has many ready-to-use modules that cover a vast spectrum of applications, and that are distributed by the CPAN (Comprehensive Perl Archive Network) servers, an exhaustive network of Perl packages. <ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
-msgstr ""
+msgstr "Perl（实用报表提取语言）是非常受欢迎的编程语言。它有许多现成的模块，涵盖了广阔的应用，这些都是由CPAN（Perl综合架构网络）提供服务的，cpan是一个详尽的网络Perl软件包。<ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Since it is an interpreted language, a program written in Perl does not require compilation prior to execution. This is why they are called “Perl scripts”."
-msgstr ""
+msgstr "由于它是一种解释语言，Perl语言编写的程序并不需要编译之前来执行。这就是为什么大家叫它“Perl脚本”"
 
 #. Tag: title
 #, no-c-format
 msgid "Current Limitations"
-msgstr ""
+msgstr "现在的缺点"
 
 #. Tag: para
 #, no-c-format
 msgid "Virtual packages suffer from some troubling limitations, the most significant of which being the absence of a version number. To return to the previous example, a dependency such as <literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal>, despite the presence of Perl 5.10, will never be considered as satisfied by the packaging system — while in fact it most likely is satisfied. Unaware of this, the package system chooses the least risky option, assuming that the versions do not match."
-msgstr ""
+msgstr "虚拟软件包受到了一些令人不安的限制，最明显的就是在一个版本号下。返回前面的例子中，一个依赖关系<literal>依赖：libdigest-md5-perl (大于等于1.6)</literal>,尽管Perl 5.10已经存在了，但这绝不会被视为满足软件包系统的依赖 — 但其实它最有可能被满足。意识到这一点的话，软件包系统在版本号不匹配的情况下会选择风险最小的选项。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Virtual package versions"
-msgstr ""
+msgstr "<emphasis>进一步讨论</emphasis>虚拟软件包版本"
 
 #. Tag: para
 #, no-c-format
 msgid "Although today virtual packages can't have versions, this will not necessarily always be the case. Indeed, <command>apt</command> is already able to manage the versions of virtual packages and it is likely that <command>dpkg</command> eventually will too. We will then be able to write fields such as <literal>Provides: libstorable-perl (= 1.7)</literal> to indicate that a package provides the same functionality as <emphasis role=\"pkg\">libstorable-perl</emphasis> in its 1.7 version."
-msgstr ""
+msgstr "尽管直到今天，虚拟软件包都没有版本号，但这不一定总是如此。事实上,<command>apt</command>命令中已经能够管理虚拟软件包的版本了,<command>dpkg</command>以后也可以管理。我们将能写一些字段到<literal>预备的：libstorable-perl (= 1.7)</literal> 来申明一个软件包提供了相同的功能,比如<emphasis role=\"pkg\">libstorable-perl</emphasis>的 1.7 版本。"
 
 #. Tag: title
 #, no-c-format
 msgid "Replacing Files: The <literal>Replaces</literal> Field"
-msgstr ""
+msgstr "替换文件：<literal>替换</literal>字段"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>replacement</primary>"
-msgstr ""
+msgstr "<primary>替换</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Replaces</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>替换</literal>,头字段</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>replacement</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>替换</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Replaces</literal> field indicates that the package contains files that are also present in another package, but that the package is legitimately entitled to replace them. Without this specification, <command>dpkg</command> fails, stating that it can not overwrite the files of another package (in fact, it is possible to force it to do so with the <literal>--force-overwrite</literal> option). This allows identification of potential problems and requires the maintainer to study the matter prior to choosing whether to add such a field."
-msgstr ""
+msgstr "<literal>替换</literal>字段表示该软件包中包含的文件，在另一个软件包中也存在，但该包能够合法和有权的替换掉这些文件。如果没有这个规范，<command>dpkg</command>命令会失败，说明它不能替换掉这些文件的另外一个软件包（事实上，它有可能迫使它这样做，使用<literal>强制覆盖</literal>选项）。这使得识别潜在的问题和需要维护者在研究此事前，选择是否增加这样的字段。"
 
 #. Tag: para
 #, no-c-format
 msgid "The use of this field is justified when package names change or when a package is included in another. This also happens when the maintainer decides to distribute files differently among various binary packages produced from the same source package: a replaced file no longer belongs to the old package, but only to the new one."
-msgstr ""
+msgstr "当软件包名称变更时，或者当一个软件包包含在另外一个的时候，此字段的使用是合理的。这也发生在维护者决定从来自相同的源码包的大量二进制包里分发出文件：一个替换的文件不再属于旧的软件包，只有新的才属于。"
 
 #. Tag: para
 #, no-c-format
 msgid "If all of the files in an installed package have been replaced, the package is considered to be removed. Finally, this field also encourages <command>dpkg</command> to remove the replaced package where there is a conflict."
-msgstr ""
+msgstr "如果已安装软件包的所有文件都被替换了，那么该软件包将认为将被删除掉。最后，这个字段会鼓励<command>dpkg</command>命令去删除替换掉有冲突的包。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> The <literal>Tag</literal> field"
-msgstr ""
+msgstr "<emphasis>更进一步</emphasis><literal>标签</literal>字段"
 
 #. Tag: para
 #, no-c-format
 msgid "In the <emphasis role=\"pkg\">apt</emphasis> example above, we can see the presence of a field that we have not yet described, the <literal>Tag</literal> field. This field does not describe a relationship between packages, but is simply a way of categorizing a package in a thematic taxonomy. This classification of packages according to several criteria (type of interface, programming language, domain of application, etc.) is a recent development in Debian. For this purpose, it is not yet integrated in all of its tools; <command>aptitude</command> displays these tags, and allows them to be used as search criteria. For those who are repelled by <command>aptitude</command>'s search criteria, the following site allows navigation of the tag database:<ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
-msgstr ""
+msgstr "在上述的<emphasis role=\"pkg\">apt</emphasis>的例子中，我们可以看到标签字段还没有被描述，<literal>标签</literal>字段的存在。该字段不描述软件包之间的关系，它仅仅是一个软件包专题分类方式。这种根据一些标准的程序包的分类（类型接口，编程语言，域名申请等）在Debian里是一个新的技术。为了这个目的，它目前还没有集成在下面这些工具中;<command>aptitude</command>显示这些标签，并允许它们被用作搜索条件。对于那些被排斥的<command>aptitude</command>的搜索条件，以下站点允许标签数据库的导航：<ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\"/>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuration Scripts"
-msgstr ""
+msgstr "配置脚本"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>postinst</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>postinst</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>preinst</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>preinst</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>postrm</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>postrm</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>prerm</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>prerm</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>control.tar.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>control.tar.gz</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition to the <filename>control</filename> file, the <filename>control.tar.gz</filename> archive for each Debian package may contain a number of scripts, called by <command>dpkg</command> at different stages in the processing of a package. The Debian Policy describes the possible cases in detail, specifying the scripts called and the arguments that they receive. These sequences may be complicated, since if one of the scripts fails, <command>dpkg</command> will try to return to a satisfactory state by canceling the installation or removal in progress (insofar as it is possible)."
-msgstr ""
+msgstr "除了<filename>控制</filename>文件之外，每个Debian软件包可能在<filename>control.tar.gz</filename>的存档中包含了一些脚本，这些脚本在软件包处理的不同的阶段被<command>dpkg</command>调用。Debian政策描述了一些可能的细节，在可能的情况下，指定脚本调用它们所收到的参数。这些顺序可能比较复杂，因为如果脚本中任何一步出现问题的时候，<command>dpkg</command>进程会通过取消安装或者卸载来尝试恢复到一个令人满意的状态（只要是可能的）。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command> data directory"
-msgstr ""
+msgstr "<emphasis>更进一步</emphasis><command>dpkg</command> 数据目录"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/var/lib/dpkg/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/var/lib/dpkg</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All of the configuration scripts for installed packages are stored in the <filename>/var/lib/dpkg/info/</filename> directory, in the form of a file prefixed with the package's name. This directory also includes a file with the <filename>.list</filename> extension for each package, containing the list of files that belong to that package."
-msgstr ""
+msgstr "所有已安装的软件包的配置脚本都存在<filename>/var/lib/dpkg/info/</filename>目录，在软件包的名字前会有一个文件名的前缀。此目录的每个软件包还包括一个叫<filename>.list</filename>的文件扩展，包括列表的文件字段属于哪些包。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/var/lib/dpkg/status</filename> file contains a series of data blocks (in the format of the famous mail headers, RFC 2822) describing the status of each package. The information from the <filename>control</filename> file of the installed packages is also replicated there."
-msgstr ""
+msgstr "<filename>/var/lib/dpkg/status</filename>文件包含了一些数据块（著名的邮件标题的格式，RFC2822）描述了每个软件包的状态。从<filename>control</filename>文件中已经安装的软件包的信息也会被复制。"
 
 #. Tag: para
 #, no-c-format
 msgid "In general, the <filename>preinst</filename> script is executed prior to installation of the package, while the <filename>postinst</filename> follows it. Likewise, <filename>prerm</filename> is invoked before removal of a package and <filename>postrm</filename> afterwards. An update of a package is equivalent to removal of the previous version and installation of the new one. It is not possible to describe in detail all the possible scenarios here, but we will discuss the most common two: an installation/update and a removal."
-msgstr ""
+msgstr "在一般情况下，<filename>preinst</filename>脚本会在安装软件包前执行，而<filename>postinst</filename>会稍候执行。同样，<filename>prerm</filename>会在移除一个软件包的前和<filename>postrm</filename>之后。更新软件包相当于是清除掉以前的旧版本并且安装新的软件包。所以在这里我们不可能来详细描述所有的可能的方案，但我们将讨论最常见的两种：安装/更新和移除。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Symbolic names of the scripts"
-msgstr ""
+msgstr "<emphasis>小心</emphasis> 脚本的符号名称"
 
 #. Tag: para
 #, no-c-format
 msgid "The sequences described in this section call configuration scripts by specific names, such as <command>old-prerm</command> or <command>new-postinst</command>. They are, respectively, the <command>prerm</command> script contained in the old version of the package (installed before the update) and the <command>postinst</command> script contained in the new version (installed by the update)."
-msgstr ""
+msgstr "本节中由特定的名称和描述的顺序来调用配置脚本，比如<command>old-prerm</command> 或 <command>new-postinst</command>。它们分别是，<command>prerm</command>脚本中包含的旧的版本软件包（更新之前安装的）和<command>postinst</command>脚本中包含的新版本（更新安装）"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> State diagrams"
-msgstr ""
+msgstr "<emphasis>提示</emphasis>状态图"
 
 #. Tag: para
 #, no-c-format
 msgid "Manoj Srivastava made these diagrams explaining how the configuration scripts are called by <command>dpkg</command>. Similar diagrams have also been developed by the Debian Women project; they are a bit simpler to understand, but less complete. <ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
-msgstr ""
+msgstr "Manoj Srivastava做了一个简单的图表来说明配置脚本是如何被<command>dpkg</command>调用的。类似的图表也被Debian 妇女项目所开发；她们简单的了解一些，但是不完整。<ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Installation and Upgrade"
-msgstr ""
+msgstr "安装和升级"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is what happens during an installation (or an update):"
-msgstr ""
+msgstr "这里告诉你，安装的时候发生了什么（或者是更新）"
 
 #. Tag: para
 #, no-c-format
 msgid "For an update, <command>dpkg</command> calls the <command>old-prerm upgrade <replaceable>new-version</replaceable></command>."
-msgstr ""
+msgstr "对于升级，<command>dpkg</command>会调用<command>old-prerm 升级新版本 <replaceable></replaceable></command>。"
 
 #. Tag: para
 #, no-c-format
 msgid "Still for an update, <command>dpkg</command> then executes <command>new-preinst upgrade <replaceable>old-version</replaceable></command>; for a first installation, it executes <command>new-preinst install</command>. It may add the old version in the last parameter, if the package has already been installed and removed since (but not purged, the configuration files having been retained)."
-msgstr ""
+msgstr "还是对于升级，<command>dpkg</command>执行<command>new-preinst 升级<replaceable>旧版本</replaceable></command>；对于第一个安装，它会执行<command>new-preinst 安装</command>。它可能会增加旧版本的最后一个参数，如果软件包已经被安装或者是删除了（但没有清除合并掉旧版本，那么这个配置文件会被保留）。"
 
 #. Tag: para
 #, no-c-format
 msgid "The new package files are then unpacked. If a file already exists, it is replaced, but a backup copy is temporarily made."
-msgstr ""
+msgstr "新的软件包文件被解压。如果文件已经存在，就被会替换，同时会产生一个临时的备份副本。"
 
 #. Tag: para
 #, no-c-format
 msgid "For an update, <command>dpkg</command> executes <command>old-postrm upgrade <replaceable>new-version</replaceable></command>."
-msgstr ""
+msgstr "对于更新，<command>dpkg</command>执行<command>old-postrm 升级<replaceable>新版本</replaceable></command>。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> updates all of the internal data (file list, configuration scripts, etc.) and removes the backups of the replaced files. This is the point of no return: <command>dpkg</command> no longer has access to all of the elements necessary to return to the previous state."
-msgstr ""
+msgstr "<command>dpkg</command>更新所有的内部数据（文件爱女列表，配置脚本等），并删除被替换文件的备份。这是一条不归路： ） <command>dpkg</command>将不再具有访问所有元素的需要以此来返回以前的状态。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> will update the configuration files, asking the user to decide if it is unable to automatically manage this task. The details of this procedure are discussed in <xref linkend=\"section.conffiles\" />."
-msgstr ""
+msgstr "<command>dpkg</command>将要求用户来决定如果dpkg不能自动管理这些任务,那么它就会更新这些配置文件。此过程的细节在这里被讨论<xref linkend=\"section.conffiles\" />。"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, <command>dpkg</command> configures the package by executing <command>new-postinst configure <replaceable>last-version-configured</replaceable></command>."
-msgstr ""
+msgstr "最后，<command>dpkg</command> 配置软件包通过执行<command>new-postinst配置<replaceable>最终版本配置</replaceable></command>"
 
 #. Tag: title
 #, no-c-format
 msgid "Package Removal"
-msgstr ""
+msgstr "软件包移除"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is what happens during a package removal:"
-msgstr ""
+msgstr "这里是当移除一个软件包的时候发生了什么："
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> calls <command>prerm remove</command>."
-msgstr ""
+msgstr "<command>dpkg</command> 回调<command>prerm 移除</command>。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> removes all of the package's files, with the exception of the configuration files and configuration scripts."
-msgstr ""
+msgstr "<command>dpkg</command> 移除了所有的软件包文件，只剩下了配置文件和配置的脚本。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> executes <command>postrm remove</command>. All of the configuration scripts, except <filename>postrm</filename>, are removed. If the user has not used the “purge” option, the operations are completed there."
-msgstr ""
+msgstr "<command>dpkg</command> 执行<command>postrm 移除</command>.  除了<filename>postrm</filename>之外的所有配置脚本都会被移除。如果用户没有使用“purge”选项，所有的操作将在这里完成。"
 
 #. Tag: para
 #, no-c-format
 msgid "For a complete purge of the package (command issued with <command>dpkg --purge</command> or <command>dpkg -P</command>), the configuration files are also deleted, as well as a certain number of copies (<filename>*.dpkg-tmp</filename>, <filename>*.dpkg-old</filename>, <filename>*.dpkg-new</filename>) and temporary files; <command>dpkg</command> then executes <command>postrm purge</command>."
-msgstr ""
+msgstr "对于一个完整的清除包（由<command>dpkg --purge</command>或<command>dpkg -P</command>发出的），配置文件也将会被删除，同时一些副本（<filename>*.dpkg-tmp</filename>,<filename>*.dpkg-old</filename>,<filename>*.dpkg-new</filename>）和缓存文件也会被删除掉；<command>dpkg</command>这时会执行<command>postrm purge</command>。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg</command>, internal operation</primary>"
-msgstr ""
+msgstr "<primary><command>dpkg</command>,内部操作</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>config</filename>, <filename>debconf</filename> script</primary>"
-msgstr ""
+msgstr "<primary><filename>配置</filename>，<filename>debconf</filename> 脚本</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Purge, complete removal"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> Purge,完全移除"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>purge of a package</primary>"
-msgstr ""
+msgstr "<primary>清除软件包</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When a Debian package is removed, the configuration files are retained in order to facilitate possible re-installation. Likewise, the data generated by a daemon (such as the content of an LDAP server directory, or the content of a database for an SQL server) are usually retained."
-msgstr ""
+msgstr "当Debian的软件包被移除掉的时候，该软件包的配置文件会被保留下来以便重新安装。同样，守护程序产生的数据（比如LDAP的服务器目录内容，或者是SQL服务器的数据库内容）也常常会被保留。"
 
 #. Tag: para
 #, no-c-format
 msgid "To remove all data associated with a package, it is necessary to “purge” the package with the command, <command>dpkg -P <replaceable>package</replaceable></command>, <command>apt-get remove --purge <replaceable>package</replaceable></command> or <command>aptitude purge <replaceable>package</replaceable></command>."
-msgstr ""
+msgstr "移除掉软件包所关联的所有数据，必须使用“purge”命令，<command>dpkg -P<replaceable>软件包</replaceable></command>，<command>apt-get remove --purge <replaceable>软件包</replaceable></command> 或者是<command>aptitude purge <replaceable>软件包</replaceable></command>。"
 
 #. Tag: para
 #, no-c-format
 msgid "Given the definitive nature of such data removal, purge should not be taken lightly."
-msgstr ""
+msgstr "位了更好的明确操作的性质，在删除数据，清除数据的时候，我们应当更加小心。"
 
 #. Tag: para
 #, no-c-format
 msgid "The four scripts detailed below are complemented by a <filename>config</filename> script, provided by packages using <command>debconf</command> to acquire information from the user for configuration. During installation, this script defines in detail the questions asked by <command>debconf</command>. The responses are recorded in the <command>debconf</command> database for future reference. The script is generally executed by <command>apt</command> prior to installing packages one by one in order to group all the questions and ask them all to the user at the beginning of the process. The pre- and post-installation scripts can then use this information to operate according to the user's wishes."
-msgstr ""
+msgstr "软件包使用了<command>debconf</command>从用户的配置那里获取信息，辅以下面四个<filename>config</filename>脚本，如下。在安装过程中，这个脚本定义详细的debconf的一些问题。响应被记录在<command>debconf</command>数据库以供将来参考。脚本通常易于<command>apt</command>优先安装软件包的时候逐一执行，以便分组所有的问题并且要求用户在进程开始前执行。前-和 安装后脚本就可以根据用户的意愿来使用此信息进行操作。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> <command>debconf</command>"
-msgstr ""
+msgstr "<emphasis>工具</emphasis> <command>debconf</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debconf</command></primary>"
-msgstr ""
+msgstr "<primary><command>debconf</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debconf</command> was created to resolve a recurring problem in Debian. All Debian packages unable to function without a minimum of configuration used to ask questions with calls to the <command>echo</command> and <command>read</command> commands in shell scripts such as <filename>postinst</filename> and similar scripts. But this also means that during a large installation or update the user must stay with their computer to respond to various questions that may arise at any time. These manual interactions have now been almost entirely dispensed with, thanks to the <command>debconf</command> tool."
-msgstr ""
+msgstr "<command>debconf</command>被创建用来解决Debian中一些重现的问题。所有的Debian软件包在没有最小配置的时候都无法发挥作用，这些配置通常会用在<command>echo</command>和<command>read</command>这些命令的shell脚本中比如<filename>postinst</filename>和一些类似的脚本。这也意味着当大型的安装或者更新的时候，用户必须和他们的电脑在一起，以便随时应对可能出现的各种问题。这些手工的交互现在已经几乎全部都免除了，这全都要感谢<command>debconf</command>工具。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debconf</command> has many interesting features: it requires the developer to specify user interaction; it allows localization of various strings of characters posted (all translations are stored in the <filename>templates</filename> file describing the interactions); it has different display models for presenting the questions to the user (text mode, graphical mode, non-interactive); and it allows creation of a central database of responses to share the same configuration with several computers... but the most important is that it is now possible to present all of the questions in a block to the user prior to starting a long installation or update process. The user can go about their business while the system handles the installation on its own, without having to stay there staring at the screen waiting for questions."
-msgstr ""
+msgstr "<command>debconf</command>有许多有趣的特性：它要求开发者指定用户的交互；它也允许张贴本地化的各种字符和字符串（所有翻译都存储在<filename>缓存</filename>文件中来描述相互作用）；它有不同的显示模式，用户提出问题可以通过（文本模式，图形模式，非交互模式）；它也允许一个中央数据库中创建响应与多台计算机共享相同的配置。。。最重要的是，用户在开始很长的安装或者更新之前能提前出现问题，用户可以在系统处理安装的时候去了解这个问题，而不必呆在那里，盯着屏幕，等待问题出现。"
 
 #. Tag: title
 #, no-c-format
 msgid "Checksums, List of Configuration Files"
-msgstr ""
+msgstr "校验，配置文件列表"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>md5sums</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>md5sums</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>conffiles</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>冲突文件</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>files</primary><secondary>configuration files</secondary>"
-msgstr ""
+msgstr "<primary>文件</primary><secondary>配置文件</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>files</secondary>"
-msgstr ""
+msgstr "<primary>配置</primary><secondary>文件</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition to the configuration files mentioned in the previous sections, the <filename>control.tar.gz</filename> file in a Debian package contains others. The first, <filename>md5sums</filename>, contains the list of digital fingerprints for all of the package's files. Its main advantage is that it allows a tool such as <command>debsums</command> (which we will study in <xref linkend=\"section.debsums\" />) to check if these files have been modified since their installation."
-msgstr ""
+msgstr "除了在前面的章节中提到的配置文件，Debian中的<filename>control.tar.gz</filename>包含了其他的。第一，<filename>md5sums</filename>，包含了所有软件包文件的数字签名指纹。其主要的优点是可以让一个工具比如说<command>debsums</command>（我们将研究<xref linkend=\"section.debsums\" />）来检查它们是否在安装前被篡改过。"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>conffiles</filename> lists package files that must be handled as configuration files. This involves a special handling, since configuration files can be modified by the administrator, and the changes are usually preserved during a package update."
-msgstr ""
+msgstr "<filename>冲突</filename>文件的列出必须处理配置文件的软件包。这涉及到了一个特殊的处理，因为配置文件是可以被管理员修改的，而软件包更新期间的配置文件是会被保留的。"
 
 #. Tag: para
 #, no-c-format
 msgid "In effect, in this situation, <command>dpkg</command> behaves as intelligently as possible: if the standard configuration file has not changed between the two versions, it does nothing. If, however, the file has changed, it will try to update this file. Two cases are possible: either the administrator has not touched this configuration file, in which case <command>dpkg</command> automatically installs the new version; or the file has been modified, in which case <command>dpkg</command> asks the administrator which version they wish to use (the old one with modifications, or the new one provided with the package). To assist in making this decision, <command>dpkg</command> offers to display a “<command>diff</command>” that shows the difference between the two versions. If the user chooses to retain the old version, the new one will be stored in the same location in a file with the <filename>.dpkg-dist</filename> suffix. If the user chooses the new version, the old one is retained in a file with the <filename>.dpkg-old</filename> suffix. Another available action consists of momentarily interrupting <command>dpkg</command> to edit the file and attempt to re-instate the relevant modifications (previously identified with <command>diff</command>)."
-msgstr ""
+msgstr "实际上，在这种情况下，<command>dpkg</command>的行为会尽可能地智能：如果两个版本之间并没有改变标准的配置文件，那么<command>dpkg</command>就什么也不会作。但是，如果文件已经被修改，它会尝试更新此文件。这会产生两种可能的情况：一是管理员没有碰配置文件，在这种情况下<command>dpkg</command>会自动安装新版本；二是文件已经被修改了，在这种情况下<command>dpkg</command>会询问管理员希望使用哪个版本（旧版本或者新的）。为了帮助用户作出选择，<command>dpkg</command>会提供“<command>差异</command>”，这会显示两个版本之间的差异。如果用户选择保留旧的版本，新的将被存储在文件夹的同一个位置并以<filename>.dpkg-dist</filename>为后缀名的文件中。另外一个可能的操作是由暂时中断的<command>dpkg</command>来编辑该文件，并试图重新恢复相关的修改（之前被验证的<command>差异</command>）。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Avoiding the configuration file questions"
-msgstr ""
+msgstr "<emphasis>更进一步</emphasis> 避免配置文件问题"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> handles configuration file updates, but regularly interrupts these operations to ask for input from the administrator. This makes it less than enjoyable for those who wish to run updates in a non-interactive manner. This is why this program offers options that allow the system to respond automatically according to the same logic: <command>--force-confold</command> retains the old version of the file; <command>--force-confnew</command> will use the new version of the file (these choices are respected, even if the file has not been changed by the administrator, which only rarely has the desired effect). Adding the <command>--force-confdef</command> option tells <command>dpkg</command> to use the default option when a choice is offered (in other words, when the original configuration file has not been touched), and only uses <command>--force-confnew</command> or <command>--force-confold</command> for other cases."
-msgstr ""
+msgstr "<command>dpkg</command>处理配置文件更新，但是经常中断来自管理员的输入的操作要求。这使得用户对于那些愿意在非交互式的方式上运行的更新感到不愉快。这就是为什么这个程序提供了选项，让系统根据同样的逻辑来自动响应：<command>--force-confold</command>会强制保留老版本的文件；<command>--force-confnew</command>将使用新版本的文件（这些选择让你感到被尊重，即使文件不是由管理员改变的，这会产生很少的预期的效果。）。添加<command>--force-confdef</command>选项会告诉<command>dpkg</command>命令使用默认的选项时，提供选择（换句话说，不去修改原来的配置文件），而只使用<command>--force-confnew</command>或者<command>--force-confold</command>在其他情况下" 
 
 #. Tag: para
 #, no-c-format
 msgid "These options apply to <command>dpkg</command>, but most of the time the administrator will work directly with the <command>aptitude</command> or <command>apt-get</command> programs. It is, thus, necessary to know the syntax used to indicate the options to pass to the <command>dpkg</command> command (their command line interfaces are very similar)."
-msgstr ""
+msgstr "这些选项使用<command>dpkg</command>，但是大多数时间管理员会直接用<command>aptitude</command> 或<command>apt-get</command>。实际上，有必要知道dpkg的语法参数来使用<command>dpkg</command>命令（命令行的界面是非常相似的）。"
 
 #. Tag: screen
 #, no-c-format
@@ -995,11 +995,13 @@ msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get -o DPkg::Options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get -o DPkg::Options::=\"--force-confdef\" -o DPkg::options::=\"==force-confold\" dist-upgrade</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "These options can be stored directly in the configuration for the <command>apt</command> program, rather than specified them each time on the command line. To do so, simply write the following line in the <filename>/etc/apt/apt.conf.d/local</filename> file:"
-msgstr ""
+msgstr "这个选项会<command>apt</command>直接存储在配置文件中，相比每次在命令行中指定。这样做，只需要写入<filename>/etc/apt/apt.conf.d/local</filename>文件里："
 
 #. Tag: programlisting
 #, no-c-format
@@ -1007,66 +1009,68 @@ msgid ""
 "\n"
 "DPkg::Options { \"--force-confdef\"; \"--force-confold\"; }\n"
 msgstr ""
+"\n"
+"DPkg::Options { \"--force-confdef\"; \"--force-confold\"; }\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Including this option in the configuration file will allow it to also be used in a graphical interface such as <command>aptitude</command>."
-msgstr ""
+msgstr "在配置文件中包含该选项将允许它也可以在图形界面中使用，如<command>aptitude</command>。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Force dpkg to ask configuration file questions"
-msgstr ""
+msgstr "<emphasis>更进一步</emphasis> 强制dpkg询问配置文件问题"
 
 #. Tag: para
 #, no-c-format
 msgid "The option, <command>--force-confask</command> requires <command>dpkg</command> to display the questions about the configuration files, even in cases where they would not normally be necessary. Thus, when reinstalling a package with this option, <command>dpkg</command> will ask the questions again for all of the configuration files modified by the administrator. This is very convenient, especially for reinstalling the original configuration file if it has been deleted and no other copy is available: a normal re-installation won't work, because <command>dpkg</command> considers removal as a form of legitimate modification, and, thus, doesn't install the desired configuration file."
-msgstr ""
+msgstr "选项<command>--force-confask</command>需要<command>dpkg</command>来显示关于配置文件的问题，通常这都是不必要的。因此，当重新安装一个软件包的时候使用此选项，<command>dpkg</command>会再次询问所有的被管理员修改的配置文件的问题。这相当方便，尤其是如果原来的配置文件已经被删除，并且没有其他的备份会导致你无法正常安装。因为<command>dpkg</command>命令会认为这是一个合法的修改因此而不会安装所需的配置文件。"
 
 #. Tag: title
 #, no-c-format
 msgid "Structure of a Source Package"
-msgstr ""
+msgstr "源软件包的结构"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>source package</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>源软件包</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>source (package)</primary>"
-msgstr ""
+msgstr "<primary>源 （软件包）</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Format"
-msgstr ""
+msgstr "格式"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DSC file</primary>"
-msgstr ""
+msgstr "<primary>DSC 文件</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>diff.gz</filename> file</primary>"
-msgstr ""
+msgstr "<primary><filename>diff.gz</filename> 文件</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A source package is usually comprised of three files, a <filename>.dsc</filename>, a <filename>.orig.tar.gz</filename>, and a <filename>.debian.tar.gz</filename> or <filename>.diff.gz</filename>. They allow creation of binary packages (<filename>.deb</filename> files described above) for the program(s) from their source code, written in a programming language."
-msgstr ""
+msgstr "源码软件包通常由三个文件组成，一个<filename>.dsc</filename>，一个<filename>.orig.tar.gz</filename>，和一个<filename>.debian.tar.gz</filename>或者<filename>.diff.gz</filename>。它们通过源代码用编程语言创建出二进制软件包（<filename>.deb</filename> 文件如上所述）。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.dsc</filename> (Debian Source Control) file is a short text file containing an RFC 2822 header (just like the <filename>control</filename> file studied in <xref linkend=\"section.control\" />) which describes the source package and indicates which other files are part thereof. It is signed by its maintainer, which guarantees authenticity. See <xref linkend=\"sect.package-authentication\" /> for further details on this subject."
-msgstr ""
+msgstr "<filename>.dsc</filename> （Debian 源码控制）文件包含了一段RFC 2822的文件头（和<filename>control</filename>文件的<xref linkend= \"section.control\" />类似），这是一个很短的文本，用来描述源码包和表示其它文件部分，并且有一个维护者签名来保证授权的真实性。参考<xref linkend=\"sect.package-authentication\" /> 对这个条目的更进一步详情。"
 
 #. Tag: title
 #, no-c-format
 msgid "A <filename>.dsc</filename> file"
-msgstr ""
+msgstr "一个<filename>.dsc</filename> 文件"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1110,156 +1114,194 @@ msgid ""
 "=qnbh\n"
 "-----END PGP SIGNATURE-----\n"
 msgstr ""
+"\n"
+"-----BEGIN PGP SIGNED MESSAGE-----\n"
+"Hash: SHA256\n"
+"\n"
+"Format: 3.0 (quilt)\n"
+"Source: zim\n"
+"Binary: zim\n"
+"Architecture: all\n"
+"Version: 0.48-1\n"
+"Maintainer: Emfox Zhou &lt;emfox@debian.org&gt;\n"
+"Uploaders: Raphaël Hertzog &lt;hertzog@debian.org&gt;\n"
+"Homepage: http://zim-wiki.org\n"
+"Standards-Version: 3.9.0\n"
+"Vcs-Browser: http://svn.debian.org/wsvn/collab-maint/deb-maint/zim/trunk?op=log\n"
+"Vcs-Svn: svn://svn.debian.org/collab-maint/deb-maint/zim/trunk\n"
+"Build-Depends: debhelper (&gt;= 7.4.12), python-support (&gt;= 0.8), xdg-utils, python (&gt;= 2.5), libgtk2.0-0 (&gt;= 2.6), python-gtk2, python-xdg, python-simplejson | python (&gt;= 2.6)\n"
+"Checksums-Sha1: \n"
+" bd84fa5104de5ed85a49723d26b350856de93217 966899 zim_0.48.orig.tar.gz\n"
+" 352111ff372a20579664416c9abd4970839835b3 9615 zim_0.48-1.debian.tar.gz\n"
+"Checksums-Sha256: \n"
+" 77d8df7dc89b233fdc3aab1a8ad959c6888881ae160770f50bf880a56e02f895 966899 zim_0.48.orig.tar.gz\n"
+" 0fceab5d3b099075cd38c225fa4002d893c1cdf4bbcc51d1391a34248e1e1a22 9615 zim_0.48-1.debian.tar.gz\n"
+"Files: \n"
+" 88cfc18c0c7339528d5f5f463647bb5f 966899 zim_0.48.orig.tar.gz\n"
+" 608b6e74aa14252dfc6236ab184bdb0c 9615 zim_0.48-1.debian.tar.gz\n"
+"\n"
+"-----BEGIN PGP SIGNATURE-----\n"
+"Version: GnuPG v1.4.10 (GNU/Linux)\n"
+"Comment: Signed by Raphael Hertzog\n"
+"\n"
+"iQEcBAEBCAAGBQJMSUAfAAoJEAOIHavrwpq5qjUIAKmM8p86GcHYTxMmKENoBUoW\n"
+"UPi5R7DzrLMbFrUXKgXWLvEKQTXpmkJhh2aSWq2iY+5piBSHwMiITfaBTpdTRvzU\n"
+"5nT/n9MlF8sJFESet/NgZaMPFDzWUbIy5aYbuG1TXmn/7XiDrBaQGiVqKkVLPrqc\n"
+"yWhsotn3JNKIjbPDW/DjImYyKD5RZpXrbVjuIgDT1E6yxtNYwUyBlK0cx/GITNep\n"
+"uV48hsT8cj0paqVXl5+P9Ww8XIE3clxNpE/45/tvKvkqGOeysc6OPAqsIw6HYFY9\n"
+"0EnvMTfMpeQOA68ZqsNpUjomv5r/EGwdCbAWo5iJDsZzXQ1Feh6iSNrjv3yeRzg=\n"
+"=qnbh\n"
+"-----END PGP SIGNATURE-----\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Build-Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>编译-依赖</literal>，头字段</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the source package also has dependencies (<literal>Build-Depends</literal>) completely distinct from those of binary packages, since they indicate tools required to compile the software in question and construct its binary package."
-msgstr ""
+msgstr "需要注意的是从二进制包编译出来的源码包也完全不同，它也有依赖关系（<literal>编译-依赖</literal>），因为它们需要编译器来编译和构建它们的源码包。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Distinct namespaces"
-msgstr ""
+msgstr "<emphasis>当心</emphasis> 不同的命名空间"
 
 #. Tag: para
 #, no-c-format
 msgid "It is important to note here that there is no strong correspondence between the name of the source package and that of the binary packages that they generate. It is easy enough to understand if you know that each source package may generate several binary packages. This is why the <filename>.dsc</filename> file has fields for <literal>Source</literal> and <literal>Binary</literal> to explicitly name the source package and store the list of binary packages that it generates."
-msgstr ""
+msgstr "非常重要的是，这里要注意的是源码包的名字和它们产生的二进制包有没有强烈的对应关系。这里很容易理解如果你知道每个源码包都可能会产生一些二进制包。这就是为什么<filename>.dsc</filename>文件有一个字段为<literal>源码</literal>和<literal>二进制</literal>来明确命名源码包和存储它所产生的二进制软件包列表。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Why divide into several packages"
-msgstr ""
+msgstr "<emphasis>文化</emphasis> 为什么要分成几个软件包"
 
 #. Tag: para
 #, no-c-format
 msgid "Quite frequently, a source package (for a certain group of programs) can generate several binary packages. The reasons are multiple: a program may often be used in different contexts, so a shared library may be installed to make an application work (for example, <emphasis role=\"pkg\">libc6</emphasis>), or when it can be installed to develop a new program (<emphasis role=\"pkg\">libc6-dev</emphasis> will then be the correct package). We find the same logic for client/server services where we want to install the server part on one machine and the client part on others (this is the case, for example, of <emphasis role=\"pkg\">openssh-server</emphasis> and <emphasis role=\"pkg\">openssh-client</emphasis>)."
-msgstr ""
+msgstr "相当频繁的是，一个源码包（比如一组特定的程序）可以产生一些二进制包。究其原因是多方面的：一个程序可能经常被用在不同的上下文中，因此可能被安装在一个共享库中以供一个应用程序正常运行（比如：<emphasis role=\"pkg\">libc6</emphasis>），或当它安装后又开发了新的程序（<emphasis role=\"pkg\">libc6-dev</emphasis>将会是正确的软件包）。我们安装在一个机器的服务端的部分和客户端的部分会有一些类似的逻辑（这种情况下，比如，<emphasis role=\"pkg\">openssh-server</emphasis> 和<emphasis role=\"pkg\">openssh-client</emphasis>）。"
 
 #. Tag: para
 #, no-c-format
 msgid "Just as frequently, the documentation is provided in a dedicated package: the user may install it independently from the software, and may at any time choose to remove it to save disk space. Additionally, this also saves disk space on the Debian mirrors, since the documentation package will be shared amongst all of the architectures (instead of having the documentation duplicated in the packages for each architecture)."
-msgstr ""
+msgstr "一样频繁的是，在一个专用的软件包提供的文档中：用户可以安装独立的软件，并且可以在任何时候选择删除掉以节省磁盘空间。此外，这也节省了Debian镜像的磁盘空间，因为在所有的节点中（而不是在每个节点的都用一样的文档软件包）将共享这个文档软件包。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>PERSPECTIVE</emphasis> Different source package formats"
-msgstr ""
+msgstr "<emphasis>洞察</emphasis>不同格式的源码包"
 
 #. Tag: para
 #, no-c-format
 msgid "Originally there was only one source package format. This is the <literal>1.0</literal> format, which associates an <filename>.orig.tar.gz</filename> archive to a <filename>.diff.gz</filename> “debianization” patch (there is also a variant, consisting of a single <filename>.tar.gz</filename> archive, which is automatically used if no <filename>.orig.tar.gz</filename> is available)."
-msgstr ""
+msgstr "本来只有一个原始的软件包格式，像<literal>1.0</literal>这样的格式，它关联了<filename>.orig.tar.gz</filename>和<filename>.diff.gz</filename>“Debian化”的补丁（还有一个变种，由一个单一的<filename>.tar.gz</filename>归档，当<filename>.orig.tar.gz</filename>不可用时它会自动使用。）"
 
 #. Tag: para
 #, no-c-format
 msgid "Since Debian <emphasis role=\"distribution\">Squeeze</emphasis>, Debian developers have the option to use new formats that correct many problems of the historical format. Format <literal>3.0 (quilt)</literal> can combine multiple upstream archives in the same source package: in addition to the usual <filename>.orig.tar.gz</filename>, supplementary <filename>.orig-<replaceable>component</replaceable>.tar.gz</filename> archives. This is useful with software that are distributed in several upstream components but for which a single source package is desired. These archives can also be compressed with <command>bzip2</command> rather than <command>gzip</command> (<command>lzma</command> and <command>xz</command> are supported by <command>dpkg-source</command> but not accepted into the official archive), which saves disk space and network resources. Finally, the monolithic patch, <filename>.diff.gz</filename> is replaced by a <filename>.debian.tar.gz</filename> archive containing the compiling instructions and a set of upstream patches contributed by the package maintainer. These last are recorded in a format compatible with <command>quilt</command>, a tool that facilitates the management of a series of patches."
-msgstr ""
+msgstr "从Debian <emphasis role=\"distribution\">Squeeze</emphasis>开始，Debian的开发人员就可以选择使用新的格式来纠正历史格式的许多问题。<literal>3.0 (quilt)</literal> 可以合并上游多个存档的同一个源码包：除了通常的<filename>.orig.tar.gz</filename>，补充的<filename>.orig-<replaceable>组件</replaceable>.tar.gz</filename>的档案。当一个软件分布在不同的上游组件时，只需要一个单一的源码包，这很有用。这些档案可以被<command>bzip2</command>而非<command>gzip</command>（<command>lzma</command>和<command>xz</command> 都被<command>dpkg-source</command>所支持，但不被官方归档接受。）压缩，从而节省磁盘空间和网络资源。最后，单片的补丁，<filename>.diff.gz</filename>被<filename>.debian.tar.gz</filename>这个归档替代。这个归档包含了编译说明和软件包维护者贡献的一组上游的补丁包。这些都记录在兼容的一种格式<command>quilt</command>里面，这种工具有利于管理一系列的补丁。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.orig.tar.gz</filename> is an archive containing the source code as provided by the original developer. Debian package maintainers are asked to not modify this archive in order to be able to easily check the source and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
-msgstr ""
+msgstr "<filename>.orig.tar.gz</filename>是一种归档包含了最初开发者的源代码。Debian软件包维护者会问要不要修改此存档，以便能够更容易地检查文件的来源和完整性（与校验来简单的比较），并尊重一些作者的意愿。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.debian.tar.gz</filename> contains all of the modifications made by the Debian maintainer, especially the addition of a <filename>debian</filename> directory containing instructions to execute to construct a Debian package."
-msgstr ""
+msgstr "<filename>.debian.tar.gz</filename> 包含了Debian维护者的所有修改，特别增加了一个<filename>debian</filename>目录，这个目录包含了要执行的指令用来构建一个Debian软件包"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Decompressing a source package"
-msgstr ""
+msgstr "<emphasis>工具</emphasis> 解压缩源码包"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg-source</command></primary>"
-msgstr ""
+msgstr "<primary><command>dpkg-source</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you have a source package, you can use the <command>dpkg-source</command> (from the <emphasis>dpkg-dev</emphasis> package) to decompress it:"
-msgstr ""
+msgstr "如果你有一个源码包，你可以使用<command>dpkg-source</command>(来自<emphasis>dpkg-dev</emphasis>软件包)来解压它"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "You can also use <command>apt-get</command> to download a source package and unpack it right away. It requires that the appropriate <emphasis>deb-src</emphasis> lines be present in the <filename>/etc/apt/sources.list</filename> file, however (for further details, see <xref linkend=\"sect.apt-sources.list\" />). These are used to list the “sources” of source packages (meaning the servers on which a group of source packages are hosted)."
-msgstr ""
+msgstr "你也可以使用<command>apt-get</command>来下载一个源码包并正确的把它解压。它需要合适的<emphasis>deb-src</emphasis>在<filename>/etc/apt/sources.list</filename>文件中，但是（进一步详细的说，请参阅<xref linkend=\"sect.apt-sources.list\" />）。这些都使用了列出来的“源”的源码包（即服务器中有一组被托管的源码包。）"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Usage within Debian"
-msgstr ""
+msgstr "Debian中的使用"
 
 #. Tag: para
 #, no-c-format
 msgid "The source package is the foundation of everything in Debian. All Debian packages come from a source package, and each modification in a Debian package is the consequence of a modification made to the source package. The Debian maintainers work with the source package, knowing, however, the consequences of their actions on the binary packages. The fruits of their labors are found, thus, in the source packages available from Debian: you can easily go back and follow everything."
-msgstr ""
+msgstr "源码包是Debian的基础。所有的Debian软件包都来自源码包，在Debian软件包中每次修改后分发出的源码包。Debian的维护者在为此而努力，维护者修改所产生的二进制包，他们的劳动成果得到尊敬，这些源码包可以你可以从Debian的源里获取：你可以很容易地回去并且继续所有的。"
 
 #. Tag: para
 #, no-c-format
 msgid "When a new version of a package (source package and one or more binary packages) arrives on the Debian server, the source package is the most important. Indeed, it will then be used by a network of machines of different architectures for compilation of the various architectures supported by Debian. The fact that the developer also sends one or more binary packages for a given architecture (usually i386 or amd64) is relatively unimportant, since these could just as well have been automatically generated."
-msgstr ""
+msgstr "当Debian服务器有新版本的软件包时（源码包或者是二进制包），源码包最重要。实际上，它将被用于通过网络编译的Debian来支持不同的架构，不同的机器。事实上，开发商也针对特定的架构（通常是i386或amd64）来发行一个或者多个二进制包，这其实并不重要，因为它们可以很好地自动生成。"
 
 #. Tag: title
 #, no-c-format
 msgid "Manipulating Packages with <command>dpkg</command>"
-msgstr ""
+msgstr "通过<command>dpkg</command>来操作软件包"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is the base command for handling Debian packages on the system. If you have <filename>.deb</filename> packages, it is <command>dpkg</command> that allows installation or analysis of their contents. But this program only has a partial view of the Debian universe: it knows what is installed on the system, and whatever it is given on the command line, but knows nothing of the other available packages. As such, it will fail if a dependency is not met. Tools such as <command>apt-get</command>, on the contrary, will create a list of dependencies to be installed as automatically as possible."
-msgstr ""
+msgstr "<command>dpkg</command>是Debian软件包的基础操作命令。如果你有一个<filename>.deb</filename>软件包，<command>dpkg</command>可以来安装或者是分析它的内容。但是这个程序仅仅只可以看到一些局部的：它知道什么将要安在系统上，不管你在是命令上还是没有可用的软件包的时候。如果不能满足依赖它就会失败。而相反的是<command>apt-get</command>，它会创建一个依赖的列表，并且尽可能的自动安装。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> <command>dpkg</command> or <command>apt-get</command>?"
-msgstr ""
+msgstr "<emphasis>简述</emphasis> <command>dpkg</command> 或 <command>apt-get</command>?"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> should be seen as a system tool (backend), and <command>apt-get</command> as a tool closer to the user, which overcomes the previous limitations. These tools work together, each one with its particularities, suited to specific tasks."
-msgstr ""
+msgstr "<command>dpkg</command> 作为一个系统工具是可见的（backend）,<command>apt-get</command>作为一个工具和使用者联系紧密，它客服了以前的限制,这些工具一起工作，每个工具都有它存在的特殊性，适合特定的任务。"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing Packages"
-msgstr ""
+msgstr "安装软件包"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>of packages</secondary>"
-msgstr ""
+msgstr "<primary>安装</primary><secondary>软件包</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>installation</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>安装</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is, above all, a tool for installing an already available Debian package (because it does not download anything). To do this, we use its <literal>-i</literal> or <literal>--install</literal> option."
-msgstr ""
+msgstr "<command>dpkg</command>总起来讲，它就是一个工具用来安装已经可用的Debian软件包（因为它不下载任何东西）。要做到这一点，我们使用它的<literal>-i</literal>或者是<literal>--install</literal>选项。"
 
 #. Tag: title
 #, no-c-format
 msgid "Installation of a package with <command>dpkg</command>"
-msgstr ""
+msgstr "通过<command>dpkg</command>来安装一个软件包"
 
 #. Tag: screen
 #, no-c-format
@@ -1275,16 +1317,26 @@ msgid ""
 "Processing 1 modified documentation file(s) \n"
 "Recording documents with scrollkeeper ... </computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.5.7-4_i386.deb</userinput>\n"
+"<computeroutput>(Reading database... 284247 files and directories currently installed.)\n"
+"Preparing replacement man-db 2.5.7-3 (using .../man-db_2.5.7-4_i386.deb) ...\n"
+"Unpacking the man-db update...\n"
+"Configuring man-db (2.5.7-4) ...\n"
+"Updating database of manual pages ...\n"
+"Processing triggers for “doc-base”...\n"
+"Processing 1 modified documentation file(s) \n"
+"Recording documents with scrollkeeper ... </computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "We can see the different steps performed by <command>dpkg</command>; we know, thus, at what point any error may have occurred. The installation can also be effected in two stages: first unpacking, then configuration. <command>apt-get</command> takes advantage of this, limiting the number of calls to <command>dpkg</command> (since each call is costly, due to loading of the database in memory, especially the list of already installed files)."
-msgstr ""
+msgstr "通过<command>dpkg</command>我们可以看到安装时的不同步骤；因此我们会知道在什么时候可能会发生错误。安装也被分为两个阶段：首先解压包，然后配置它。<command>apt-get</command>会利用这一点，然后有限的调用<command>dpkg</command>（因为每次调用都要把数据加载到内存中，特别是那些在名单中已经被安装的文件）。"
 
 #. Tag: title
 #, no-c-format
 msgid "Separate unpacking and configuration"
-msgstr ""
+msgstr "分开解压和配置"
 
 #. Tag: screen
 #, no-c-format
@@ -1301,16 +1353,27 @@ msgid ""
 "<computeroutput>Configuring man-db (2.5.7-4) ...\n"
 "Updating database of manual pages ...</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.5.7-4_i386.deb</userinput>\n"
+"<computeroutput>(Reading database... 284247 files already installed.)\n"
+"Preparing replacement of man-db 2.5.7-3 (using .../man-db_2.5.7-4_i386.deb) ...\n"
+"Unpacking the man-db update...\n"
+"Processing triggers for “doc-base”...\n"
+"Treatment of a modified documentation file(s) \n"
+"Recording documents with scrollkeeper ... \n"
+"# </computeroutput><userinput> dpkg --configure man-db</userinput>\n"
+"<computeroutput>Configuring man-db (2.5.7-4) ...\n"
+"Updating database of manual pages ...</computeroutput>\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>unpacking</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>解压</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes <command>dpkg</command> will fail to install a package and return an error; if the user orders it to ignore this, it will only issue a warning; it is for this reason that we have the different <literal>--force-*</literal> options. The <command>dpkg --force-help</command> command, or documentation of this command, will give a complete list of these options. The most frequent error, which you are bound to encounter sooner or later, is a file collision. When a package contains a file that is already installed by another package, <command>dpkg</command> will refuse to install it. The following messages will then appear:"
-msgstr ""
+msgstr "有时<command>dpkg</command>在安装软件包的时候会失败并且返回一个错误；如果用户命令dpkg忽略掉这个错误，那么它仅仅会提示一个警告；这也就是我们有一个不同的<literal>--force--*</literal>选项。<command>dpkg --force-help</command>，或者是dpkg的帮助文档，有一个这些选项的详细清单。最常见的错误是，你迟到会遇到这样一个文件冲突，当一个软件包包含的文件中已经安装了另外一个软件包。"
 
 #. Tag: screen
 #, no-c-format
@@ -1320,31 +1383,35 @@ msgid ""
 "dpkg : error processing /var/cache/apt/archives/libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb (--unpack) :\n"
 " trying to overwrite \"/usr/lib/libisc.so.50\", which is also in package libisc50 1:9.6.1.dfsg.P1-3</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>Unpacking libisc52 (from .../libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb) ...\n"
+"dpkg : error processing /var/cache/apt/archives/libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb (--unpack) :\n"
+" trying to overwrite \"/usr/lib/libisc.so.50\", which is also in package libisc50 1:9.6.1.dfsg.P1-3</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "In this case, if you think that replacing this file is not a significant risk to the stability of your system (which is usually the case), you can use the option <literal>--force-overwrite</literal>, which tells <command>dpkg</command> to ignore this error and overwrite the file."
-msgstr ""
+msgstr "在这种情况下，如果你认为文件替换该文件可能不会对系统的稳定性造成重大的风险（通常情况下），你可以使用<literal>--force-overwrite</literal>选项来告诉<command>dpkg</command>去忽略这个错误并且覆盖该文件。"
 
 #. Tag: para
 #, no-c-format
 msgid "While there are many available <literal>--force-*</literal> options, only <literal>--force-overwrite</literal> is likely to be used regularly. These options only exist for exceptional situations, and it is better to leave them alone as much as possible in order to respect the rules imposed by the packaging mechanism. Do not forget, these rules ensure the consistency and stability of your system."
-msgstr ""
+msgstr "当然这里有非常多的<literal>--force-*</literal>选项，只是<literal>--force-overwrite</literal>使用的非常频繁。这些选项仅存在特殊的情况下，所以最好是不去使用它们以便遵守软件包的管理机制。不要忘了，这些管理规则可以确保你的系统的稳定性和一致性。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Effective use of <literal>--force-*</literal>"
-msgstr ""
+msgstr "<emphasis>注意</emphasis> 使用<literal>--force-*</literal>的影响"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>broken dependency</primary>"
-msgstr ""
+msgstr "<primary>破坏依赖性</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you are not careful, the use of an option <literal>--force-*</literal> can lead to a system where the APT family of commands will refuse to function. In effect, some of these options allow installation of a package when a dependency is not met, or when there is a conflict. The result is an inconsistent system from the point of view of dependencies, and the APT commands will refuse to execute any action unless the action enables it to return the system to a consistent state (this often consists of installing the missing dependency or removing a problematic package). This often results in a message like this one, obtained after installing a new version of <emphasis role=\"pkg\">rdesktop</emphasis> while ignoring its dependency on a newer version of the <emphasis role=\"pkg\">libc6</emphasis>:"
-msgstr ""
+msgstr "如果你不小心，使用了<literal>--force-*</literal>的一个选项，这可能会导致系统的APT系列的命令失效。实际上，其中一些选项允许安装软件包的时候忽略这些依赖，或者是当有冲突的时候忽略掉。这个结果从依赖性的角度来看会导致一个不一致的系统，而APT命令将拒绝执行任何操作，除非系统恢复到一致性的状态（这通常包括安装缺少的依赖，或者是删除掉有问题的软件包）。通常这样会导致这样的结果，安装一个新版本的<emphasis role=\"pkg\">rdesktop</emphasis>时将忽略掉和<emphasis role=\"pkg\">libc6</emphasis>之间的依赖性。"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1357,41 +1424,48 @@ msgid ""
 "E: missing dependencies. Try to use the option -f.\n"
 "  "
 msgstr ""
+"# apt-get dist-upgrade\n"
+"[...]\n"
+"You can run \"apt-get -f install\" to correct these problems.\n"
+"The following packages contain unmet dependencies:\n"
+"  rdesktop: Depends on: libc6 (&gt;= 2.5) but 2.3.6.ds1-13etch7 is installed\n"
+"E: missing dependencies. Try to use the option -f.\n"
+"  "
 
 #. Tag: para
 #, no-c-format
 msgid "A courageous administrator who is certain of the correctness of their analysis may choose to ignore a dependency or conflict and use the corresponding <literal>--force-*</literal> option. In this case, if they want to be able to continue to use <command>apt-get</command> or <command>aptitude</command>, they must edit <filename>/var/lib/dpkg/status</filename> to delete/modify the dependency, or conflict, that they chose to override."
-msgstr ""
+msgstr "一个勇敢的系统管理员会确定他们分析的正确性，然后选择忽略依赖或者冲突，并且使用对应的<literal>--force-*</literal>选项。在这种情况下，如果他们希望能够继续使用<command>apt-get</command>或者是<command>aptitude</command>，他们必须编辑<filename>/var/lib/dpkg/status</filename>去删除/修改对应的依赖关系，或者是冲突。他们也可以选择覆盖。"
 
 #. Tag: para
 #, no-c-format
 msgid "This manipulation is an ugly hack, and should never be used, except in the most extreme case of necessity. Quite frequently, a more fitting solution is to recompile the package that's causing the problem (see <xref linkend=\"sect.rebuilding-package\" />) or use a new version (potentially corrected) from a site such as <literal>backports.debian.org</literal> (see <xref linkend=\"section.backports\" />)."
-msgstr ""
+msgstr "这种操作的方式像一个丑陋的黑客，绝不应该被使用，除非在最极端的情况下你必须要这样。相当频繁的是，一个更合适的解决方案是重新编译有问题的软件包（参见 <xref linkend=\"sect.rebuilding-package\" />）或者是使用一个从<literal>backports.debian.org</literal>（参见<xref linkend=\"section.backports\" />）网站获取的新版本（可能会纠正这个问题）。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>removing a package</primary>"
-msgstr ""
+msgstr "<primary>删除掉一个软件包</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>removal</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>移除</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>purge</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>清除</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Invoking <command>dpkg</command> with the <literal>-r</literal> or <literal>--remove</literal> option, followed by the name of a package, removes that package. This removal is, however, not complete: all of the configuration files and scripts, log files (system logs) and other user data handled by the package remain. The reason for keeping them is to disable the program by uninstalling it, while preserving the option to reinstall it quickly and with the same configurations. To completely remove everything associated with a package, use the <literal>-P</literal> or <literal>--purge</literal> option, followed by the package name."
-msgstr ""
+msgstr "调用<command>dpkg</command>的<literal>-r</literal>或<literal>--remove</literal>选项，然后根据软件包的名字，删除掉这个软件包。这样删除是不完整的：所有的配置文件和脚本，日志文件（系统日志）和其他的软件包交互的数据都会被保留。保存这些文件的理由是禁止程序卸载掉它，以便在重新安装的时候很迅速，并且有相同的配置。要完全移除掉和一个软件包相关联的一切，请使用<literal>-P</literal>或<literal>-purge</literal>选项，后面跟随软件包名。"
 
 #. Tag: title
 #, no-c-format
 msgid "Removal and purge of the <emphasis>debian-cd</emphasis> package"
-msgstr ""
+msgstr "删除和清除掉<emphasis>debian-cd</emphasis>软件包"
 
 #. Tag: screen
 #, no-c-format
@@ -1404,46 +1478,53 @@ msgid ""
 "Removing debian-cd ...\n"
 "Removing debian-cd configuration files...</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
+"<computeroutput>(Reading database... 14170 files and directories already installed.)\n"
+"Removing debian-cd ...\n"
+"# </computeroutput><userinput>dpkg -P debian-cd</userinput>\n"
+"<computeroutput>(Reading database... 13794 files and directories already installed.)\n"
+"Removing debian-cd ...\n"
+"Removing debian-cd configuration files...</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Other <command>dpkg</command> Features"
-msgstr ""
+msgstr "其他的<command>dpkg</command>特性"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>status</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>状态</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>file list</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>文件列表</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>content inspection</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>内容检查</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Option syntax"
-msgstr ""
+msgstr "<emphasis>回到基础</emphasis> 选项的语法"
 
 #. Tag: para
 #, no-c-format
 msgid "Most options are available in the “long” version (one or more relevant words, preceded by a double dash) or a “short” version (a single letter, often the initial of one word from the long version, and preceded by a single dash). This convention is so common that it is a POSIX standard. <indexterm><primary>POSIX</primary></indexterm> <indexterm><primary>option</primary><secondary>POSIX</secondary></indexterm>"
-msgstr ""
+msgstr "大多数选项都在“长”的版本里面（一个或者多个相关的词，前面加两个中短线‘--’）或者是一个“短”的版本（一个字母，这个字母通常来自于长版本的词，前面用一个中短线来表示‘-’）。这个约定是POSIX的标准风格。<indexterm><primary>POSIX</primary></indexterm> <indexterm><primary>选项</primary><secondary>POSIX</secondary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Before concluding this section, we note that some <command>dpkg</command> options may query the internal database in order to obtain information. Giving first the long options and then corresponding short options (that will evidently take the same possible arguments) we cite <literal>--listfiles <replaceable>package</replaceable></literal> (or <literal>-L</literal>), which lists the files installed by this package; <literal>--search <replaceable>file</replaceable></literal> (or <literal>-S</literal>), which finds the package from which the file comes; <literal>--status <replaceable>package</replaceable></literal> (or <literal>-s</literal>), which displays the headers of an installed package; <literal>--list</literal> (or <literal>-l</literal>), which displays the list of packages known to the system and their installation status; <literal>--contents <replaceable>file.deb</replaceable></literal> (or <literal>-c</literal>), which lists the files in the Debian package specified; <literal>--info<replaceable> file.deb </replaceable></literal> (or <literal>-I</literal>), which displays the headers of the Debian package."
-msgstr ""
+msgstr "本节结束前，我们注意到，一些<command>dpkg</command>选项可以查询内部的数据库以便获得信息。第一个长的选项，然后是对应的短的选项（显然它们采取的参数是相同的），我们列举<literal>--listfiles <replaceable>软件包</replaceable></literal>（或<literal>-L</literal>），这会列出这个软件包安装的文件；<literal>--search <replaceable>file</replaceable></literal> （或<literal>-S</literal>），这会查找软件包从哪些文件来；<literal>--status <replaceable>软件包</replaceable></literal>（或<literal>-s</literal>）,这会显示已安装的软件包的头字段；<literal>--list</literal> （或<literal>-l</literal>），这会显示系统中已知的软件包的列表和它们的安装状态；<literal>--contents <replaceable>file.deb</replaceable></literal> （或<literal>-c</literal>）,这会列出指定的Debian软件包的文件信息；<literal>--info<replaceable> file.deb </replaceable></literal> （或<literal>-I</literal>），这会显示Debian软件包的头字段。"
 
 #. Tag: title
 #, no-c-format
 msgid "Various queries with <command>dpkg</command>"
-msgstr ""
+msgstr "<command>dpkg</command>的各种查询"
 
 #. Tag: screen
 #, no-c-format
@@ -1570,26 +1651,147 @@ msgid ""
 "  Firebird and Phoenix.\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
+"<computeroutput>/.\n"
+"/usr\n"
+"/usr/sbin\n"
+"/usr/sbin/update-passwd\n"
+"/usr/share\n"
+"/usr/share/man\n"
+"/usr/share/man/ru\n"
+"/usr/share/man/ru/man8\n"
+"/usr/share/man/ru/man8/update-passwd.8.gz\n"
+"/usr/share/man/pl\n"
+"/usr/share/man/pl/man8\n"
+"/usr/share/man/pl/man8/update-passwd.8.gz\n"
+"/usr/share/man/man8\n"
+"/usr/share/man/man8/update-passwd.8.gz\n"
+"/usr/share/man/fr\n"
+"/usr/share/man/fr/man8\n"
+"/usr/share/man/fr/man8/update-passwd.8.gz\n"
+"/usr/share/doc-base\n"
+"/usr/share/doc-base/users-and-groups\n"
+"/usr/share/base-passwd\n"
+"/usr/share/base-passwd/passwd.master\n"
+"/usr/share/base-passwd/group.master\n"
+"/usr/share/lintian\n"
+"/usr/share/lintian/overrides\n"
+"/usr/share/lintian/overrides/base-passwd\n"
+"/usr/share/doc\n"
+"/usr/share/doc/base-passwd\n"
+"/usr/share/doc/base-passwd/copyright\n"
+"/usr/share/doc/base-passwd/users-and-groups.html\n"
+"/usr/share/doc/base-passwd/changelog.gz\n"
+"/usr/share/doc/base-passwd/users-and-groups.txt.gz\n"
+"/usr/share/doc/base-passwd/README\n"
+"$ </computeroutput><userinput>dpkg -S /bin/date</userinput>\n"
+"<computeroutput>coreutils: /bin/date\n"
+"$ </computeroutput><userinput>dpkg -s coreutils</userinput>\n"
+"<computeroutput>Package: coreutils\n"
+"Essential: yes\n"
+"Status: install ok installed\n"
+"Priority: required\n"
+"Section: utils\n"
+"Installed-Size: 12188\n"
+"Maintainer: Michael Stone &lt;mstone@debian.org&gt;\n"
+"Architecture: i386\n"
+"Version: 8.5-1\n"
+"Replaces: mktemp, timeout\n"
+"Pre-Depends: libacl1 (&gt;= 2.2.11-1), libattr1 (&gt;= 2.4.41-1), libc6 (&gt;= 2.6), libselinux1 (&gt;= 1.32)\n"
+"Conflicts: timeout\n"
+"Description: GNU core utilities\n"
+" This package contains the basic file, shell and text manipulation\n"
+" utilities which are expected to exist on every operating system.\n"
+" .\n"
+" Specifically, this package includes:\n"
+" arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp\n"
+" csplit cut date dd df dir dircolors dirname du echo env expand expr\n"
+" factor false flock fmt fold groups head hostid id install join link ln\n"
+" logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup nproc od\n"
+" paste pathchk pinky pr printenv printf ptx pwd readlink rm rmdir runcon\n"
+" sha*sum seq shred sleep sort split stat stty sum sync tac tail tee test\n"
+" timeout touch tr true truncate tsort tty uname unexpand uniq unlink\n"
+" users vdir wc who whoami yes\n"
+"Homepage: http://gnu.org/software/coreutils\n"
+"$ </computeroutput><userinput>dpkg -l 'b*' | head</userinput>\n"
+"<computeroutput>Desired=Unknown/Install/Remove/Purge/Hold\n"
+"| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend\n"
+"|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)\n"
+"||/ Name                   Version    Description\n"
+"+++-===================-==========-============================================\n"
+"un  backupninja         &lt;none&gt;    (no description available)\n"
+"un  base                &lt;none&gt;    (no description available)\n"
+"un  base-config         &lt;none&gt;    (no description available)\n"
+"ii  base-files          4          Debian base system miscellaneous files\n"
+"ii  base-passwd         3.5.11     Debian base system master password and group\n"
+"$ </computeroutput><userinput>dpkg -c /var/cache/apt/archives/iceweasel_2.0.0.18-0etch1_i386.deb</userinput>\n"
+"<computeroutput>\n"
+"drwxr-xr-x root/root         0 2008-11-23 23:18 ./\n"
+"drwxr-xr-x root/root         0 2008-11-23 23:16 ./etc/\n"
+"drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/\n"
+"drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/profile/\n"
+"-rw-r--r-- root/root      7138 2006-08-19 08:04 ./etc/iceweasel/profile/bookmarks.html\n"
+"-rw-r--r-- root/root       153 2006-09-14 19:13 ./etc/iceweasel/profile/localstore.rdf\n"
+"-rw-r--r-- root/root      3287 2005-02-01 18:36 ./etc/iceweasel/profile/search.rdf\n"
+"-rw-r--r-- root/root       287 2004-11-30 22:26 ./etc/iceweasel/profile/mimeTypes.rdf\n"
+"drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/profile/chrome/\n"
+"-rw-r--r-- root/root      1078 2004-11-30 22:26 ./etc/iceweasel/profile/chrome/userChrome-example.css\n"
+"-rw-r--r-- root/root       663 2004-11-30 22:26 ./etc/iceweasel/profile/chrome/userContent-example.css\n"
+"-rw-r--r-- root/root       347 2004-07-28 23:20 ./etc/iceweasel/profile/prefs.js\n"
+"-rw-r--r-- root/root        53 2008-11-23 22:43 ./etc/iceweasel/iceweaselrc\n"
+"[...]\n"
+"$ </computeroutput><userinput>dpkg -I /var/cache/apt/archives/iceweasel_2.0.0.18-0etch1_i386.deb</userinput>\n"
+"<computeroutput> new Debian package, version 2.0.\n"
+" size 9126828 bytes : control file = 37297 bytes.\n"
+"     346 bytes,     9 lines      conffiles            \n"
+"    1255 bytes,    20 lines      control              \n"
+"  122920 bytes,  1249 lines      md5sums              \n"
+"    1267 bytes,    37 lines   *  postinst             #!/bin/sh\n"
+"     293 bytes,     8 lines   *  postrm               #!/bin/sh\n"
+"    2763 bytes,    70 lines   *  preinst              #!/bin/sh\n"
+"     274 bytes,    12 lines   *  prerm                #!/bin/sh\n"
+" Package: iceweasel\n"
+" Version: 2.0.0.18-0etch1\n"
+" Section: web\n"
+" Priority: optional\n"
+" Architecture: i386\n"
+" Depends: fontconfig, psmisc, debianutils (&gt;= 1.16), libatk1.0-0 (&gt;= 1.12.2), libc6 (&gt;= 2.3.6-6)...\n"
+" Suggests: iceweasel-gnome-support (= 2.0.0.18-0etch1), latex-xft-fonts, xprint, mozplugger, libkrb53\n"
+" Conflicts: mozilla-firefox (&lt;&lt; 1.5.dfsg-1), firefox (&lt;&lt; 2.0+dfsg-1)\n"
+" Replaces: mozilla-firefox, firefox (&lt;&lt; 2.0+dfsg-1)\n"
+" Provides: www-browser\n"
+" Installed-Size: 26364\n"
+" Maintainer: Eric Dorland &lt;eric@debian.org&gt;\n"
+" Description: lightweight web browser based on Mozilla\n"
+"  Iceweasel is a redesign of the Mozilla browser component, similar to\n"
+"  Galeon, K-Meleon and Camino, but written using the XUL user interface\n"
+"  language and designed to be lightweight and cross-platform.\n"
+"  .\n"
+"  This browser is based on the Firefox source-code, with minor\n"
+"  modifications. Historically, this browser was previously known as\n"
+"  Firebird and Phoenix.\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Comparison of versions"
-msgstr ""
+msgstr "<emphasis>更进一步</emphasis> 版本的对比"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>version, comparison</primary>"
-msgstr ""
+msgstr "<primary>版本，对比</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>comparison of versions</primary>"
-msgstr ""
+msgstr "<primary>对比版本</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Since <command>dpkg</command> is the program for handling Debian packages, it also provides the reference implementation of the logic of comparing version numbers. This is why it has a <literal>--compare-versions</literal> option, usable by external programs (especially configuration scripts executed by <command>dpkg</command> itself). This option requires three parameters: a version number, a comparison operator, and a second version number. The different possible operators are <literal>lt</literal> (strictly less than), <literal>le</literal> (less than or equal to), <literal>eq</literal> (equal), <literal>ne</literal> (not equal), <literal>ge</literal> (greater than or equal to), and <literal>gt</literal> (strictly greater than). If the comparison is correct, <command>dpkg</command> gives the return code, 0 (success); if not, it gives a non-zero return value (indicating failure)."
-msgstr ""
+msgstr "自从<command>dpkg</command>作为处理Debian软件包的程序以来，它也提供了逻辑化的比较版本号的功能。这就是<literal>--compare-versions</literal>选项，使用外部程序（尤其是配置脚本的时候被<command>dpkg</command>执行的）。此选项需要三个参数：一个版本号，一个比较操作符，和第二个版本号。这和下面的<literal>lt</literal>（严格小于），<literal>le</literal>（小于或等于），<literal>eq</literal>（等于），<literal>ne</literal>（不等于）,<literal>ge</literal>（大于或登录），和<literal>gt</literal>（严格大于）有一些不同。如果对比后是正确的，<command>dpkg</command>得到返回代码，0 （成功）；如果不正确，会得到一个非零的返回值（表示失败）。"
 
 #. Tag: screen
 #, no-c-format
@@ -1605,11 +1807,21 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
 "<computeroutput>1</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 gt 1.1-4</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>0\n"
+"$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 lt 1.1-4</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>1\n"
+"$ </computeroutput><userinput>dpkg --compare-versions 2.6.0pre3-1 lt 2.6.0-1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>1</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Note the unexpected failure of the last comparison: for <command>dpkg</command>, <literal>pre</literal>, usually denoting a pre-release, has no particular meaning, and this program compares the alphabetic characters in the same way as the numbers (a &lt;b &lt;c ...), in alphabetical order. This is why it considers “<literal>0pre3</literal>” to be greater than “<literal>0</literal>”. When we want a package's version number to indicate that it is a pre-release, we use the tilde character, “<literal>~</literal>”:"
-msgstr ""
+msgstr "在最后的对比中需要注意意外的失败：<command>dpkg</command>，<literal>pre</literal>，通常表示一个预发布的，它本来没有特别的意义，这个程序会用字母顺序排列的方式比较相同的字母字符号码 （A &lt; B &lt; C...）。这也就是为什么它认为“<literal>0pre3</literal>”大于“<literal>0</literal>”的版本。当我们想要软件包的版本号来指明这是一个预发布版，我们使用波浪符“<literal>~</literal>”："
 
 #. Tag: screen
 #, no-c-format
@@ -1619,61 +1831,65 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
 "<computeroutput>0</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 2.6.0~pre3-1 lt 2.6.0-1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>0</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<command>dpkg</command>'s Log File"
-msgstr ""
+msgstr "<command>dpkg</command>的日志文件"
 
 #. Tag: para
 #, no-c-format
 msgid "A recently introduced feature in <command>dpkg</command> is that it keeps a log of all of its actions in <filename>/var/log/dpkg.log</filename>. This log is extremely verbose, since it details every one of the stages through which packages handled by <command>dpkg</command> go. In addition to offering a way to track dpkg's behavior, it helps, above all, to keep a history of the development of the system: one can find the exact moment when each package has been installed or updated, and this information can be extremely useful in understanding a recent change in behavior. Additionally, all versions being recorded, it is easy to cross-check the information with the <filename>changelog.Debian.gz</filename> for packages in question, or even with online bug reports."
-msgstr ""
+msgstr "最近推出的<command>dpkg</command>中的功能是，它使所有它的操作保存在<filename>/var/log/dpkg.log</filename>中。这个日志非常长，因为它记录了每一步的<command>dpkg</command>操作。它提供了追踪dpkg行为的一个方式，对于保持系统的升级来说这非常有用：一是可以查找到每个软件包安装或升级的确切的时间，这些信息对于理解系统最近的改变极其有用。此外，所有的版本都被记录了，这就很容易交叉核对<filename>changelog.Debian.gz</filename>的软件包的问题，或者通过网上的bug报告。"
 
 #. Tag: title
 #, no-c-format
 msgid "Coexistence with Other Packaging Systems"
-msgstr ""
+msgstr "与其它软件包共存"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RPM</primary>"
-msgstr ""
+msgstr "<primary>RPM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Red Hat Package Manager</primary>"
-msgstr ""
+msgstr "<primary>红帽的软件包管理</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>alien</command></primary>"
-msgstr ""
+msgstr "<primary><command>alien</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian packages are not the only software packages used in the free software world. The main competitor is the RPM format for Red Hat Linux and its many derivatives. Red Hat is a very popular, commercial distribution. It is common for software provided by third parties to be offered as RPM packages rather than Debian."
-msgstr ""
+msgstr "Debian软件包不仅仅是一个自由软件世界的软件包。主要竞争对手是红帽Linux的RPM和它的许多的衍生系统。红帽是一个非常流行，商业的贡献者。非常常见的是由第三方提供的RPM软件包比Debian的更多。"
 
 #. Tag: para
 #, no-c-format
 msgid "In this case, you should know that the program <command>rpm</command>, which handles RPM packages, is available as a Debian package, so it is possible to use this package format on Debian. Care should be taken, however, to limit these manipulations to extract the information from a package or to verify its integrity. It is, in truth, unreasonable to use <command>rpm</command> to install an RPM on a Debian system; RPM uses its own database, separate from those of native software (such as <command>dpkg</command>). This is why it is not possible to ensure a stable coexistence of two packaging systems."
-msgstr ""
+msgstr "这个情况下，你应该知道<command>rpm</command>程序是如何处理RPM软件包的，这种格式在Debian软件包中也可用。需要谨慎的使用，尽管如何，这些操作会限制从一个软件包中解压并且提取出信息以验证其完整性。实际上，不应该在Debian系统中使用<command>rpm</command>来安装一个RPM软件包；RPM使用了它自己的数据库以便和Debian的软件中分离（比如<command>dpkg</command>）。这也就是为什么不可能确保两个包管理系统共存在一个系统中，而这个系统还能保持稳定。"
 
 #. Tag: para
 #, no-c-format
 msgid "On the other hand, the <emphasis role=\"pkg\">alien</emphasis> utility can convert RPM packages into Debian packages, and vice versa."
-msgstr ""
+msgstr "另一方面，<emphasis role=\"\pkg">alien</emphasis> 可以把RPM软件包转换成Debian软件包，反之亦然。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> Encouraging the adoption of <filename>.deb</filename>"
-msgstr ""
+msgstr "<emphasis>社区</emphasis> 鼓励<filename>.deb</filename>的使用"
 
 #. Tag: para
 #, no-c-format
 msgid "If you regularly use the <command>alien</command> program to install RPM packages coming from one of your providers, do not hesitate to write to them and amicably express your strong preference for the <filename>.deb</filename> format. Note that the format of the package is not everything: a <filename>.deb</filename> package built with <command>alien</command> or prepared for a version of Debian different than that which you use, even for a derivative distribution like Ubuntu, would probably not offer the same level of quality and integration as a package specifically developed for Debian <emphasis role=\"distribution\">Squeeze</emphasis>."
-msgstr ""
+msgstr "如果你经常使用<command>alien</command>程序来安装从发行商那里得到的RPM软件包，不要犹豫，马上写信给他们，并友好地表达你自己强烈的喜欢<filename>.deb</filename>的格式，需要注意的是软件包的格式并不是一定的：一个<filename>.deb</filename>软件包可以被<command>alien</command>编译产生或是被不同版本的Debian使用，甚至是衍生的像Ubuntu这样的版本。这可能会导致无法提供专为Debian<emphasis role=\"distribution\">Squeeze</emphasis>而开发的同等级同质量的完整性。"
 
 #. Tag: screen
 #, no-c-format
@@ -1684,18 +1900,23 @@ msgid ""
 "$ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>\n"
 "<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>fakeroot alien --to-deb phpMyAdmin-2.0.5-2.noarch.rpm</userinput> \n"
+"<computeroutput>phpmyadmin_2.0.5-2_all.deb generated\n"
+"$ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>\n"
+"<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "You will find that this process is extremely simple. You must know, however, that the package generated does not have any information on dependencies, since the dependencies in the two packaging formats don't have systematic correspondence. The administrator, thus, must manually ensure that the converted package will function correctly, and this is why Debian packages thus generated should be avoided as much as possible. Fortunately, Debian has the largest collection of software packages of all distributions, and it is likely that whatever you seek is already in there."
-msgstr ""
+msgstr "你会发现，这个过程相当的简单。但是你必须知道，两种不同的包管理格式通过alien生成的软件包没有任何信息的依赖，因为它没有和系统对应。因此，管理员必须手动确保转换后的软件包正常。这也就是为什么要避免产生这种Debian软件包。幸运的是，Debian有非常强大的软件包仓库收集了所有的分发的软件包，基本上你所有需要寻找的软件包它都有，这简直太棒了！"
 
 #. Tag: para
 #, no-c-format
 msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program also handles other packaging formats, especially the one used by the Slackware distribution (it is made of a simple <filename>tar.gz</filename> archive)."
-msgstr ""
+msgstr "看看<command>alien</command>命令的帮助手册，你会注意到这个程序也可以处理其它的软件包格式，尤其是使用Slackware发行版(它使用简单的<filename>tar.gz</filename>来归档)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The stability of the software deployed using the <command>dpkg</command> tool contributes to Debian's fame. The APT suite of tools, described in the following chapter, preserves this advantage, while relieving the administrator from managing the status of packages, a necessary but difficult task."
-msgstr ""
+msgstr "<command>dpkg</command>作为一个稳定的工具有助于提高Debian的名字。APT套件工具，在下面的章节中会告诉我们，它不但保留了这一优势，同时减轻了管理员管理软件包这一必须但是艰难得任务的负担。"
