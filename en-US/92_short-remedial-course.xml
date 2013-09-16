@@ -50,15 +50,18 @@
       <title>Browsing the Directory Tree and Managing Files</title>
 
       <para>Once a session is open, the <command>pwd</command> command
-      (<emphasis>print working directory</emphasis>) displays the current
-      location in the filesystem. The current directory is changed with the
-      <command>cd <replaceable>directory</replaceable></command> command
-      (<command>cd</command> is for <emphasis>change directory</emphasis>).
-      The parent directory is always called <literal>..</literal> (two
-      dots), whereas the current directory is also known as
-      <literal>.</literal> (one dot). The <command>ls</command> command
-      allows <emphasis>listing</emphasis> the contents of a directory. If
-      no parameters are given, it operates on the current directory.</para>
+      (which stands for <emphasis>print working directory</emphasis>)
+      displays the current location in the filesystem. The current
+      directory is changed with the <command>cd
+      <replaceable>directory</replaceable></command> command
+      (<command>cd</command> is for <emphasis>change
+      directory</emphasis>).  The parent directory is always called
+      <literal>..</literal> (two dots), whereas the current directory
+      is also known as <literal>.</literal> (one dot). The
+      <command>ls</command> command allows
+      <emphasis>listing</emphasis> the contents of a directory. If no
+      parameters are given, it operates on the current
+      directory.</para>
 
       <screen>
 <computeroutput>$ </computeroutput><userinput>pwd</userinput>
@@ -166,7 +169,7 @@ Documents  Music      Public    test</computeroutput>
       started normally, or brought back to the foreground with
       <command>fg</command>), the <keycombo
       action="simul"><keycap>Control</keycap><keycap>Z</keycap></keycombo>
-      key pair pauses the process and resumes control of the command-line.
+      key combination pauses the process and resumes control of the command-line.
       The process can then be restarted in the background with <command>bg
       %<replaceable>job-number</replaceable></command> (for
       <foreignphrase>background</foreignphrase>).</para>
@@ -300,18 +303,37 @@ tmpfs                   514208    269136    245072  53% /dev/shm
       a tilde with the correct directory (usually
       <filename>/home/<replaceable>user</replaceable>/</filename>).</para>
 
-      <para>Application configuration files are often stored directly under
-      the user's home directory, but their names usually start with a dot
-      (for instance, the <command>mutt</command> email client stores its
-      configuration in <filename>~/.muttrc</filename>). Filenames that
-      start with a dot are hidden by default, and <command>ls</command>
-      only lists them when the <literal>-a</literal> option is used.</para>
+      <para>Traditionnally, application configuration files are often
+      stored directly under the user's home directory, but their names
+      usually start with a dot (for instance, the
+      <command>mutt</command> email client stores its configuration in
+      <filename>~/.muttrc</filename>). Note
+      that filenames that start with a dot are hidden by default; and
+      <command>ls</command> only lists them when the
+      <literal>-a</literal> option is used, and graphical file
+      managers need to be told to display hidden files.</para>
 
-      <para>Some programs use multiple configuration files organized in one
-      directory (for instance, <filename>~/.evolution/</filename>). Some
-      applications (such as the Iceweasel web browser) also use their
-      directory to store a cache of downloaded data. This means that those
-      directories can end up using a lot of disk space.</para>
+      <para>Some programs also use multiple configuration files
+      organized in one directory (for instance,
+      <filename>~/.ssh/</filename>). Some applications (such as the
+      Iceweasel web browser) also use their directory to store a cache
+      of downloaded data. This means that those directories can end up
+      using a lot of disk space.</para>
+
+      <para>These configuration files stored directly in a user's home
+      directory, often collectively referred to as
+      <emphasis>dotfiles</emphasis>, have long proliferated to the
+      point that these directories can be quite cluttered with them.
+      Fortunately, an effort led collectively under the
+      FreeDesktop.org umbrella has led to the “XDG Base Directory
+      Specification”, a convention that aims at cleaning up these
+      files and directory.  This specification states that
+      configuration files should be stored under
+      <filename>~/.config</filename>, cache files under
+      <filename>~/.cache</filename>, and application data files under
+      <filename>~/.local</filename> (or subdirectories thereof).  This
+      convention is slowly gaining traction, and several applications
+      (especially graphical ones) have started following it.</para>
 
       <para>Graphical desktops usually display the contents of the
       <filename>~/Desktop/</filename> directory (or
@@ -352,20 +374,23 @@ tmpfs                   514208    269136    245072  53% /dev/shm
       <indexterm><primary>Firewire</primary></indexterm>
       <indexterm><primary>USB</primary></indexterm>
 
-      <para>Let us start with a basic reminder that a computer is, first
-      and foremost, a set of hardware elements. There is generally a main
-      board, with one (or more) processor(s), some RAM, device controllers,
-      and extension slots for option boards (for other device controllers).
-      Most noteworthy among these controllers are IDE (Parallel ATA), SCSI
-      and Serial ATA, for connecting to storage devices such as hard disks.
-      Other controllers include USB, which is able to host a great variety
-      of devices (ranging from webcams to thermometers, from keyboards to
-      home automation systems) and IEEE_1394 (Firewire). These controllers
-      often allow connecting several devices so the complete subsystem
-      handled by a controller is therefore usually known as a “bus”.
-      Option boards include graphics cards (where monitor screens will be
-      plugged in to), sound cards, network interface cards, and so on. Some
-      main boards are pre-built with these features, and don't need option
+      <para>Let us start with a basic reminder that a computer is,
+      first and foremost, a set of hardware elements. There is
+      generally a main board (known as the
+      <emphasis>motherboard</emphasis>), with one (or more)
+      processor(s), some RAM, device controllers, and extension slots
+      for option boards (for other device controllers).  Most
+      noteworthy among these controllers are IDE (Parallel ATA), SCSI
+      and Serial ATA, for connecting to storage devices such as hard
+      disks.  Other controllers include USB, which is able to host a
+      great variety of devices (ranging from webcams to thermometers,
+      from keyboards to home automation systems) and IEEE 1394
+      (Firewire). These controllers often allow connecting several
+      devices so the complete subsystem handled by a controller is
+      therefore usually known as a “bus”.  Option boards include
+      graphics cards (where monitor screens will be plugged in to),
+      sound cards, network interface cards, and so on. Some main
+      boards are pre-built with these features, and don't need option
       boards.</para>
 
       <sidebar>
@@ -383,7 +408,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
 
 	<para>Network cards often include LEDs displaying the state of the
 	link. If a cable is plugged in and leads to a working network hub
-	or switch, at least one LED will be on. If no LEDs lights, either
+	or switch, at least one LED will be on. If no LED lights up, either
 	the card itself, the network device, or the cable between them, is
 	faulty. The next step is therefore testing each component
 	individually.</para>
@@ -449,7 +474,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
       Detected devices are often listed on screen during the boot process.
       If this list goes by too fast, use the <keycap>Pause</keycap> key to
       freeze it for long enough to read. Installed PCI devices that don't
-      appear, are a bad omen. At worst, the device is faulty. At best, it
+      appear are a bad omen. At worst, the device is faulty. At best, it
       is merely incompatible with the current version of the BIOS or main
       board. PCI specifications evolve, and old main boards are not
       guaranteed to handle newer PCI devices.</para>
@@ -585,7 +610,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       these other disks are then available under these “mount points”.
       This allows storing users' home directories (traditionally stored
       within <filename>/home/</filename>) on a second hard disk, which will
-      contain <literal>rhertzog</literal> and <literal>rmas</literal>
+      contain the <literal>rhertzog</literal> and <literal>rmas</literal>
       directories. Once the disk is mounted on <filename>/home/</filename>,
       these directories become accessible at their usual locations, and
       paths such as <filename>/home/rmas/Desktop/hello.txt</filename> keep
@@ -621,11 +646,11 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
 
       <para>Since a number of the same functions are used by all software,
       it makes sense to centralize them in the kernel. For instance, shared
-      filesystem handling allow any application to simply open a file by
+      filesystem handling allows any application to simply open a file by
       name, without needing to worry where the file is stored physically.
       The file can be stored in several different slices on a hard disk, or
       split across several hard disks, or even stored on a remote file
-      server. Shared communication functions, are used by applications to
+      server. Shared communication functions are used by applications to
       exchange data independently of the way the data is transported. For
       instance, transport could be over any combination of local or
       wireless networks, or over a telephone landline.</para>
@@ -634,16 +659,17 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       <title>Managing Processes</title>
       <indexterm><primary><emphasis>pid</emphasis></primary></indexterm>
 
-      <para>A process is a running instance of a program. This requires
-      memory to store both the program itself and its operating data. The
-      kernel is in charge of creating and tracking them. When a program
-      runs, first the kernel sets aside memory, then loads the executable
-      code from the filesystem into it, and then starts the code running.
-      It keeps information about this process, the most visible of which,
-      is an identification number known as <emphasis>pid</emphasis>
+      <para>A process is a running instance of a program. This
+      requires memory to store both the program itself and its
+      operating data. The kernel is in charge of creating and tracking
+      them. When a program runs, the kernel first sets aside some
+      memory, then loads the executable code from the filesystem into
+      it, and then starts the code running.  It keeps information
+      about this process, the most visible of which is an
+      identification number known as <emphasis>pid</emphasis>
       (<emphasis>process identifier</emphasis>).</para>
 
-      <para>Unix-like kernels (including Linux), and like most other modern
+      <para>Unix-like kernels (including Linux), like most other modern
       operating systems, are able of “multi-tasking”. In other words,
       they allow running many processes “at the same time”. There's
       actually only one running process at any one time, but the kernel
@@ -663,14 +689,15 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       <sidebar>
         <title><emphasis>NOTE</emphasis> Multi-processor systems (and variants)</title>
 
-	<para>The restriction described here is only a corner case. The
-	actual restriction is that there can only be one running process
-	<emphasis>per processor core</emphasis> at a time. Multi-processor,
-	multi-core or “hyper-threaded” systems allow several processes
-	to run in parallel. The same time-slicing system is still used,
-	though, so as to handle cases where there are more active processes
-	than available processor cores. This is the usual case: a basic
-	system, even a mostly idle one, almost always has tens of running
+	<para>The restriction described here is only a corner
+	case. The actual restriction is that there can only be one
+	running process <emphasis>per processor core</emphasis> at a
+	time. Multi-processor, multi-core or “hyper-threaded” systems
+	allow several processes to run in parallel. The same
+	time-slicing system is still used, though, so as to handle
+	cases where there are more active processes than available
+	processor cores. This is far from unusual: a basic system,
+	even a mostly idle one, almost always has tens of running
 	processes.</para>
       </sidebar>
 
@@ -681,14 +708,15 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
     <section id="sect.permissions">
       <title>Rights Management</title>
 
-      <para>Unix-like systems are also multi-user. They provide a rights
-      management system that allows separate groups and users, and for
-      choosing to permit or block actions based on permissions. The kernel
-      manages, for each process, data allowing permission checking. Most of
-      the time, this means the process' “identity” is the same as the
-      user that started it. And, the process is only able to take user
-      permitted actions. For instance, trying to open a file requires the
-      kernel to check the process identity against access permissions (for
+      <para>Unix-like systems are also multi-user. They provide a
+      rights management system that allows separate groups and users;
+      it also allows choosing to permit or block actions based on
+      permissions. The kernel manages, for each process, data allowing
+      permission checking. Most of the time, this means the process'
+      “identity” is the same as the user that started it. And the
+      process is only able to take the actions allowed to its
+      owner. For instance, trying to open a file requires the kernel
+      to check the process identity against access permissions (for
       more details on this particular example, see <xref
       linkend="sect.rights-management"/>).</para>
     </section>
@@ -722,20 +750,22 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       <emphasis>pid</emphasis> doesn't change, is called the parent
       process.</para>
 
-      <para>Sometimes, the child process continues to lead its own life
-      independently from its parent, with its own data copied from the
-      parent process. In many cases, though, this child process executes
-      another program. With a few exceptions, its memory is simply replaced
-      by that of the new program, and execution of this new program begins.
-      One of the very first actions of process number 1 thus is to
-      duplicate itself (which means there are, for a tiny amount of time,
-      two running copies of the same <command>init</command> process), but
-      the child process is then replaced by the first system initialization
-      script, usually <filename>/etc/init.d/rcS</filename>. This script, in
-      turn, clones itself and runs several other programs. At some point,
+      <para>Sometimes, the child process continues to lead its own
+      life independently from its parent, with its own data copied
+      from the parent process. In many cases, though, this child
+      process executes another program. With a few exceptions, its
+      memory is simply replaced by that of the new program, and
+      execution of this new program begins.  One of the very first
+      actions of process number 1, for instance, is to duplicate
+      itself (which means there are, for a tiny amount of time, two
+      running copies of the same <command>init</command> process), but
+      the child process is then replaced by the first system
+      initialization script, usually
+      <filename>/etc/init.d/rcS</filename>. This script, in turn,
+      clones itself and runs several other programs. At some point,
       one process among <command>init</command>'s offspring starts a
-      graphical interface for users to log in to (the actual sequence of
-      events is described in more details in <xref
+      graphical interface for users to log in to (the actual sequence
+      of events is described in more details in <xref
       linkend="sect.system-boot"/>).</para>
 
       <para>When a process finishes the task for which it was started, it
@@ -771,12 +801,12 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       <sidebar>
         <title><emphasis>VOCABULARY</emphasis> Daemon, demon, a derogatory term?</title>
 
-	<para>Although <emphasis>daemon</emphasis> term shares its Greek
-	etymology with <emphasis>demon</emphasis>, the former does not
-	imply diabolical evil, instead, it should be understood as a
-	kind-of helper spirit. This distinction is subtle enough in
-	English, but it's even worse in other languages where the same word
-	is used for both meanings.</para>
+	<para>Although <emphasis>daemon</emphasis> term shares its
+	Greek etymology with <emphasis>demon</emphasis>, the former
+	does not imply diabolical evil, instead, it should be
+	understood as a kind of helper spirit. This distinction is
+	subtle enough in English; it's even worse in other languages
+	where the same word is used for both meanings.</para>
       </sidebar>
 
       <para>Several such daemons are described in detail in <xref
@@ -803,7 +833,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
 
       <para>In the case where one does not wish to store data on disk, one
       can use a <emphasis>pipe</emphasis>, which is simply an object with
-      two ends; bytes written in one end, are readable at the other. If the
+      two ends; bytes written in one end are readable at the other. If the
       ends are controlled by separate processes, this leads to a simple and
       convenient inter-process communication channel. Pipes can be
       classified into two categories: named pipes, and anonymous pipes. A
@@ -856,17 +886,17 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
 	the results.</para>
 
 	<para>All the pieces of the puzzle are now set up:
-	<command>ls</command> writes the list of files in the current
-	directory into the pipe; <command>sort</command> reads this list,
-	sorts it alphabetically, and displays the results. Processes
-	numbers #4521 and #4522 then terminate, and #4374 (which was
-	waiting for them during the operation), resumes control and
-	displays the prompt to allow the user to type in a new
-	command.</para>
+	<command>ls</command> reads the current directory and writes
+	the list of files into the pipe; <command>sort</command> reads
+	this list, sorts it alphabetically, and displays the
+	results. Processes numbers #4521 and #4522 then terminate, and
+	#4374 (which was waiting for them during the operation),
+	resumes control and displays the prompt to allow the user to
+	type in a new command.</para>
       </sidebar>
 
       <para>Not all inter-process communications are used to move data
-      around though. In many situations, the only information that needs to
+      around, though. In many situations, the only information that needs to
       be transmitted are control messages such as “pause execution” or
       “resume execution”. Unix (and Linux) provides a mechanism known
       as <emphasis>signals</emphasis>, through which a process can simply
@@ -875,9 +905,9 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       <emphasis>pid</emphasis> of the target.</para>
 
       <para>For more complex communications, there are also mechanisms
-      allowing a process to open access, or share, part of its allocated
-      memory to other processes. Memory then shared between them, allows
-      moving data across.</para>
+      allowing a process to open access, or share, part of its
+      allocated memory to other processes. Memory shared between them
+      can be used to move data across.</para>
 
       <para>Finally, network connections can also help processes
       communicate; these processes can even be running on different
