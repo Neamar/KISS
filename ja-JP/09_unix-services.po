@@ -1,297 +1,266 @@
-#
+# 
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-09-23 00:42+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
-"/debian-handbook/09_unix-services/pt_BR/>\n"
-"Language: pt-BR\n"
+"PO-Revision-Date: 2012-10-31T14:54:17\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: None\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.7-dev\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "System boot"
-msgstr "Inicialização do Sistema"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Initscripts"
-msgstr "Initscripts"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "SSH"
-msgstr "SSH"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Telnet"
-msgstr "Telnet"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Rights"
-msgstr "Direitos"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Permissions"
-msgstr "Permissões"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Supervision"
-msgstr "Supervisão"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Inetd"
-msgstr "Inetd"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Cron"
-msgstr "Cron"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Backup"
-msgstr "Backup"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Hotplug"
-msgstr "Hotplug"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "PCMCIA"
-msgstr "PCMCIA"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "APM"
-msgstr "APM"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "ACPI"
-msgstr "ACPI"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Unix Services"
-msgstr "Serviços Unix"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter covers a number of basic services that are common to many Unix systems. All administrators should be familiar with them."
-msgstr "Este capítulo abrange uma série de serviços básicos que são comuns a muitos sistemas Unix. Todos os administradores devem estar familiarizados com eles."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "System Boot"
-msgstr "Inicialização do Sistema"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>booting</primary><secondary>the system</secondary>"
-msgstr "<primary>inicializando</primary><secondary>o sistema</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "When you boot the computer, the many messages scrolling by on the console display many automatic initializations and configurations that are being executed. Sometimes you may wish to slightly alter how this stage works, which means that you need to understand it well. That is the purpose of this section."
-msgstr "Quando você inicializar o computador, algumas mensagens rolarão pelo console automaticamente inicializando e as configurações são automaticamente executadas. Algumas vezes você pode desejar alterar como este estágio funciona, de forma que possa entender isto muito bem.  Este é o propósito desta seção."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
-msgstr "Primeiro, a BIOS pega o controle sobre o computador, detectando discos, carregando a <emphasis>Master Boot Record</emphasis>, e executa o bootloader. O bootloader assume, localiza o kernel no disco, carrega e o executa. O kernel é então inicializado e começa a pesquisa pela partição e  monta a partição contendo o sistema raiz e finalmente o primeiro programa  — <command>init</command>. Frequentemente, esta \"partição raiz\" e este <command>init</command> são, de fato, localizado em um sistema de arquivos virtual que só existe na RAM (daí o seu nome, \"initramfs\", anteriormente chamado de \"initrd\" para \"initialization RAM disk\"). Este sistema de arquivos é carregado na memoria pelo bootloader, muitas vezes a partir de um arquivo em um disco rígido ou da rede. Ele contém o mínimo exigido pelo kernel para carregar o sistema de arquivos raiz \"verdadeiro\". Este pode ser módulos de driver para o disco rígido ou outros dispositivos sem o qual o sistema pode não carregar, ou, mais freqüentemente, scripts de inicialização e módulos para a montagem de arrays RAID, abrindo partições criptografadas, ativando volumes LVM, etc. Uma vez que a partição raiz é montada,  o initramfs libera o controle para o init real, e a máquina voltará para o processo de boot padrão."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Booting from the network"
-msgstr "<emphasis>SPECIFIC CASE</emphasis> Inicializando pela rede"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "In some configurations, the BIOS may be configured not to execute the MBR, but to seek its equivalent on the network, making it possible to build computers without a hard drive, or which are completely reinstalled on each boot. This option is not available on all hardware and it generally requires an appropriate combination of BIOS and network card."
-msgstr "Em algumas configurações, o BIOS pode ser configurado para não executar o MBR, mas buscar o seu equivalente na rede, tornando possível a construção de computadores sem disco rígido, ou que são completamente reinstalado a cada boot. Esta opção não está disponível em todos os hardwares e geralmente requer uma combinação adequada de BIOS e placa de rede."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Booting from the network can be used to launch the <command>debian-installer</command> or FAI (see <xref linkend=\"sect.installation-methods\" />)."
-msgstr "A inicialização através da rede pode ser usada para iniciar o <command>debian-installer </command> ou FAI (ver <xref linkend=\"sect.installation-methods\" />)."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The process, a program instance"
-msgstr "<emphasis>BACK TO BASICS</emphasis> Um processo, uma instância do programa"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>process</primary>"
-msgstr "<primary>processo</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "A process is the representation in memory of a running program. It includes all of the information necessary for the proper execution of the software (the code itself, but also the data that it has in memory, the list of files that it has opened, the network connections it has established, etc.). A single program may be instantiated into several processes, not necessarily running under different user IDs."
-msgstr "Um processo é a representação em memória de um programa em execução. Isto inclui todas as informações necessárias para a  execução adequada do software (o código própriamente dito, mas também os dados que tem na memória, a lista de arquivos que ele abriu, as conexões de rede que estabeleceu, etc.). Um único programa pode ser instanciado em muitos processos, não necessáriamente rodando sob diferentes IDs de usuários."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Init executes several processes, following instructions from the <filename>/etc/inittab</filename> file. The first program that is executed (which corresponds to the <emphasis>sysinit</emphasis> step) is <command>/etc/init.d/rcS</command>, a script that executes all of the programs in the <filename>/etc/rcS.d/</filename> directory. <indexterm><primary><filename>/etc/init.d/rcS</filename></primary></indexterm> <indexterm><primary><filename>rcS</filename></primary></indexterm> <indexterm><primary><filename>/etc/init.d/rcS.d/</filename></primary></indexterm> <indexterm><primary><filename>rcS.d</filename></primary></indexterm>"
-msgstr "Init executa vários processos, seguindo as instruções do arquivo <filename>/etc/inittab</filename>. O primeiro programa que é executado (o que corresponde à sysinit uma chamada<emphasis>sysvinit</emphasis>) é <command>/etc/init.d/rcS </command>, um script que executa todos os programas no nome do arquivo <filename>/etc/rcS.d /</filename> diretório. <indexterm> <primary> <filename>/etc/init.d/rcS </filename> </primary> </indexterm> <indexterm> <primary> <filename>rcS </filename> </primary> </indexterm > <indexterm> <primary> <filename>/etc/init.d/rcS.d/</filename> </primary> </indexterm> <indexterm> <primary> <filename>rcS.d </filename> </primary> </indexterm>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Among these, you will find successively programs in charge of:"
 msgstr ""
-"Entre estes, você encontrará sucessivamente programas responsáveis ​​pela:"
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the console's keyboard;"
-msgstr "configurar o teclado do console;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "loading drivers: most of the kernel modules are loaded by the kernel itself as the hardware is detected; extra drivers are then loaded automatically when the corresponding modules are listed in <filename>/etc/modules</filename>;"
-msgstr "carregando drivers: a maioria dos módulos do kernel serão carregados por si assim que o hardware seja detectado; drivers extra então são carregado automaticamente quando o modulo correspondente seja listado em <filename>/etc/modules</filename>;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "checking the integrity of filesystems;"
-msgstr "checar a integridade do sistema de arquivos;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "mounting local partitions;"
-msgstr "montar partições locais;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the network;"
-msgstr "configuração da rede;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "mounting network filesystems (NFS)."
-msgstr "mountando sistemas de arquivos em rede (NFS)."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Using a shell as <command>init</command> to gain root rights"
-msgstr "<emphasis>SECURITY</emphasis> Usando Shell como <command>init</command> para ganhar privilégios de root"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "By convention, the first process that is booted is the <command>init</command> program. However, it is possible to pass an <literal>init</literal> option to the kernel indicating a different program."
-msgstr "Por convenção, o primeiro processo que é carregado é o programa <command>init</command>. Contudo, é possível passar uma opção <literal> init </literal> para o kernel indicando um programa diferente."
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>init</command></primary>"
-msgstr "<primary><command>init</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Any person who is able to access the computer can press the <keycap>Reset</keycap> button, and thus reboot it. Then, at the bootloader's prompt, it is possible to pass the <literal>init=/bin/sh</literal> option to the kernel to gain root access without knowing the administrator's password."
 msgstr ""
-"Qualquer pessoa que  é capaz de acessar o computador e poder  pressionar o "
-"botão  <keycap>Reset</keycap>, e, portanto reinicia-lo . Então, no prompt do "
-"inicializador do sistema, é possível passar  opção  "
-"<literal>init=/bin/sh</literal> para o kernel e ganhar acesso root sem no "
-"saber a senha de administrador."
 
 #. Tag: para
 #, no-c-format
 msgid "To prevent this, you can protect the bootloader itself with a password. You might also think about protecting access to the BIOS (a password protection mechanism is almost always available), without which a malicious intruder could still boot the machine on a removable media containing its own Linux system, which they could then use to access data on the computer's hard drives."
-msgstr "Para evitar isso, você pode proteger o bootloader com uma senha. Você também pode pensar em proteger o acesso ao BIOS (um mecanismo de proteção por senha geralmente é disponível), sem que um intruso mal-intencionado ainda possa iniciar a máquina por uma mídia removível que contém o seu próprio sistema Linux, que pode então usar para acessar dados sobre discos rígidos do computador."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, be aware that most BIOS have a generic password available. Initially intended for troubleshooting for those who have forgotten their password, these passwords are now public and available on the Internet (see for yourself by searching for “generic BIOS passwords” in a search engine). All of these protections will thus impede unauthorized access to the machine without being able to completely prevent it. There's no reliable way to protect a computer if the attacker can physically access it; they could dismount the hard drives to connect them to a computer under their own control anyway, or even steal the entire machine, or erase the BIOS memory to reset the password…"
 msgstr ""
-"Finalmente, esteja ciente que a maioria das BIOS tem uma senha genérica "
-"disponível. Inicialmente destinado a solução de problemas para aqueles que "
-"esqueceram sua senha, essas senhas são agora público e disponível na "
-"Internet (veja por si mesmo procurando por \"senhas genéricas\" do BIOS em um "
-"motor de busca). Todas estas proteções deverá impedir o acesso não "
-"autorizado para a máquina sem ser capaz de impedir completamente. Não há "
-"nenhuma maneira confiável para proteger um computador se o atacante pode "
-"acessar fisicamente ela, pois eles podem desmontar os discos rígidos para "
-"conectá-los a um computador sob seu próprio controle de qualquer maneira, ou "
-"até mesmo roubar a máquina inteira, ou apagar a memória do BIOS para "
-"redefinir a senha…"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Kernel modules and options"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Kernel modules and options"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modules</primary><secondary>kernel modules</secondary>"
-msgstr "<primary>módulos</primary><secondary>módulos do kernel</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Kernel modules also have options that can be configured by putting some files in <filename>/etc/modprobe.d/</filename>. These options are defined with directives like this: <literal>options <replaceable>module-name</replaceable> <replaceable>option-name</replaceable>=<replaceable>option-value</replaceable></literal>. Several options can be specified with a single directive if necessary."
-msgstr "Os módulos do kernel também tem opções que podem ser configuradas colocando alguns arquivos em <filename>/etc/modprobe.d/ </filename>. Essas opções são definidas com as diretivas como esta: <literal>opções<replaceable>nome do módulo</replaceable><replaceable>nome da opção</replaceable>=<replaceable>valor da opção</replaceable> </literal>. Várias opções podem ser especificadas com uma única diretiva, se necessário."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "These configuration files are intended for <command>modprobe</command> — the program that loads a kernel module with its dependencies (modules can indeed call other modules). This program is provided by the <emphasis role=\"pkg\">module-init-tools</emphasis> package."
-msgstr "Estes arquivos de configuração são destinados para o <command> modprobe </command> - o programa que carrega um módulo do kernel com suas dependências (módulos podem realmente chamar outros módulos). Este programa é fornecido pelo pacote <emphasis role=\"pkg\">module-init-tools</emphasis>."
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>modprobe</command></primary>"
-msgstr "<primary><command>modprobe</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started. In <emphasis role=\"distribution\">Squeeze</emphasis>, the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
-msgstr "Após este estágio, o <command>init</command> assume o controle e inicializa os programas habilitados no nível de execução padrão (que geralmente é no nível de execução 2). O comando <command>init</command> executa o <command>/etc/init.d/rc 2</command>, um script que inicia todos os serviços que estão listados em  <filename>/etc/rc2.d/</filename> e os quais tem o nome com a letra inicial \"S\". O número de duas casas que se segue tinha sido historicamente utilizado para definir a ordem em que os serviços teve de ser iniciado.  No <emphasis role=\"distribution\">Squeeze</emphasis>, o sistema de boot padrão usa <command>insserv</command>, o qual agenda automaticamente tudo, baseado nas dependencias dos scripts. Desta forma, Cada script de inicialização declara as condições que devem ser cumpridos para iniciar ou parar o serviço (por exemplo, se ele deve começar antes ou depois de outro serviço); <command>init</command> em seguida, lança-os na ordem que satisfaça estas condições. A numeração estática dos scripts, portanto, não são mais levados em consideração (mas eles sempre devem ter um nome começando por \"S\" seguido por dois digitos e o nome atual do script usado por suas dependências). Geralmente, serviços base (tal como registros com o <command>rsyslog</command>, ou numeração de portas com  <command>portmap</command>) são inicializados primeiro, seguidos por serviços padrões e a interface gráfica (<command>gdm</command>)."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "This dependency-based boot system makes it possible to automate re-numbering, which could be rather tedious if it had to be done manually, and it limits the risks of human error, since scheduling is conducted according to the parameters that are indicated. Another benefit is that services can be started in parallel when they are independent from one another, which can accelerate the boot process."
 msgstr ""
-"Este sistema de inicialização baseado em dependência torna possível "
-"automatizar a numeração, que poderia ser um pouco entediante se tivesse que "
-"ser feito manualmente, e limita os riscos de erro humano, já que o "
-"agendamento é realizado de acordo com os parâmetros indicados. Outro "
-"benefício é que os serviços podem ser iniciados em paralelo quando são "
-"independentes um do outro, que pode acelerar o processo de inicialização."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Other boot systems"
-msgstr "<emphasis>ALTERNATIVAS</emphasis> Outros sistemas de inicializações"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "This book describes the boot system used by default in Debian (as implemented by <emphasis role=\"pkg\">sysvinit</emphasis> package), which is derived and inherited from <emphasis>System V</emphasis> Unix systems, but there are others."
 msgstr ""
-"Este livro descreve o sistema de inicialização usado por padrão no Debian "
-"(como implementado pelo pacote <emphasis role=\"pkg\">sysvinit</emphasis>), "
-"que é derivado e herdado dos sistemas Unix <emphasis>System V</emphasis>, "
-"mas existem outros."
 
 #. Tag: para
 #, no-c-format
@@ -317,20 +286,16 @@ msgstr ""
 #, no-c-format
 msgid "There are also other systems and other operating modes, such as <command>runit</command>, <command>minit</command>, or <command>initng</command>, but they are relatively specialized and not widespread."
 msgstr ""
-"Existem também outros sistemas e outros modos de funcionamento, tais como "
-"<command>runit</command>, <command>minit</command>, ou "
-"<command>initng</command>, mas eles são relativamente especializados e não "
-"generalizada."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>runlevel</primary>"
-msgstr "<primary>runlevel</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>level, runlevel</primary>"
-msgstr "<primary>level, runlevel</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -340,37 +305,27 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "By default, Debian uses four different runlevels:"
-msgstr "Por padrão, o Debian usa quatro runlevels diferentes:"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Level 0 is only used temporarily, while the computer is powering down. As such, it only contains many “K” scripts."
 msgstr ""
-"Nível 0 é usada apenas temporariamente, enquanto o computador está "
-"desligando. Como tal, ele só contém muitos scripts de \"K\"."
 
 #. Tag: para
 #, no-c-format
 msgid "Level 1, also known as single-user mode, corresponds to the system in degraded mode; it includes only basic services, and is intended for maintenance operations where interactions with ordinary users are not desired."
 msgstr ""
-"Nível 1, também conhecido como modo de usuário único, corresponde ao sistema "
-"em modo degradado; inclui apenas os serviços básicos e destina-se para "
-"operações de manutenção onde interações com usuários comuns não são "
-"desejadas."
 
 #. Tag: para
 #, no-c-format
 msgid "Level 2 is the level for normal operation, which includes networking services, a graphical interface, user logins, etc."
 msgstr ""
-"Nível 2 é o funcionamento normal, o que inclui serviços de rede, uma "
-"interface gráfica, logons de usuário, etc."
 
 #. Tag: para
 #, no-c-format
 msgid "Level 6 is similar to level 0, except that it is used during the shutdown phase that precedes a reboot."
 msgstr ""
-"Nível 6 é semelhante ao nível 0, exceto que é utilizada durante a fase de "
-"desligamento que precede uma reinicialização."
 
 #. Tag: para
 #, no-c-format
@@ -380,12 +335,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Boot sequence of a computer running Linux"
-msgstr "Seqüência de inicialização de um computador rodando Linux"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>initialization script</primary>"
-msgstr "<primary>script de inicialização</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -395,27 +350,27 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>update-rc.d</command></primary>"
-msgstr "<primary><command>update-rc.d</command></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> Restarting services"
-msgstr "<emphasis>POLÍTICA DEBIAN</emphasis> Reiniciando serviços"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>invoke-rc.d</command></primary>"
-msgstr "<primary><command>invoke-rc.d</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>service</primary><secondary>restart</secondary>"
-msgstr "<primary>serviço</primary><secondary>reiniciar</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>restarting services</primary>"
-msgstr "<primary>reiniciando serviços</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -426,31 +381,21 @@ msgstr ""
 #, no-c-format
 msgid "Finally, <command>init</command> starts control programs for various virtual consoles (<command>getty</command>). It displays a prompt, waiting for a username, then executes <command>login <replaceable>user</replaceable></command> to initiate a session."
 msgstr ""
-"Finalmente, <command>init</command> começa a controla programas para vários "
-"consoles virtuais (<command>getty</command>). Ele exibe um prompt, esperando "
-"por um nome de usuário, em seguida, executa o usuário <command>login "
-"<replaceable>user</replaceable></command> para iniciar uma sessão."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>getty</command></primary>"
-msgstr "<primary><command>getty</command></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Console and terminal"
-msgstr "<emphasis>VOCABULÁRIO</emphasis> Console e terminal"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The first computers were usually separated into several, very large parts: the storage enclosure and the central processing unit were separate from the peripheral devices used by the operators to control them. These were part of a separate furniture, the “console”. This term was retained, but its meaning has changed. It has become more or less synonymous with “terminal”, being a keyboard and a screen."
 msgstr ""
-"Os primeiros computadores eram geralmente separados em diversas, peças muito "
-"grandes: o compartimento de armazenamento e unidade central de "
-"processamento foram separados dos dispositivos periféricos usados pelos "
-"operadores para controlá-los. Estes eram parte de uma mobília separada, o "
-"\"console\". Este termo foi mantido, mas seu significado foi alterado. Tornou-"
-"se mais ou menos sinônimo de \"terminal\", sendo um teclado e uma tela."
 
 #. Tag: para
 #, no-c-format
@@ -465,7 +410,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Remote Login"
-msgstr "Login remoto"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -475,48 +420,42 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Client, server"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Cliente, servidor"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>client/server architecture</primary>"
-msgstr "<primary>arquitetura cliente/servidor</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>client/server architecture</secondary>"
 msgstr ""
-"<primary>servidor</primary><secondary>arquitetura "
-"cliente/servidor</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A system where several processes communicate with each other is often described with the “client/server” metaphor. The server is the program that takes requests coming from a client and executes them. It is the client that controls operations, the server doesn't take any initiative of its own."
 msgstr ""
-"Um sistema onde vários processos comunicarem é frequentemente descrito com a "
-"metáfora de \"cliente/servidor\". O servidor é o programa que recebe as "
-"solicitações provenientes de um cliente e os executa. É o cliente que "
-"controla as operações, o servidor não toma qualquer iniciativa própria."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>login</primary><secondary>remote login</secondary>"
-msgstr "<primary>login</primary><secondary>login remoto</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>remote login</primary>"
-msgstr "<primary>login remoto</primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Remote Login: <command>telnet</command>"
-msgstr "Login remoto: <command>telnet</command>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>telnet</command></primary>"
-msgstr "<primary><command>telnet</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -526,8 +465,8 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>apt-get remove telnetd</userinput>\n"
-msgstr "<computeroutput># </computeroutput><userinput>apt-get remove "
-"telnetd</userinput>\n"
+""
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -537,17 +476,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>telnet-ssl</emphasis></primary>"
-msgstr "<primary><emphasis>telnet-ssl</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>telnetd-ssl</emphasis></primary>"
-msgstr "<primary><emphasis>telnetd-ssl</emphasis></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Authentication, encryption"
-msgstr "<emphasis>VOCABULÁRIO</emphasis> Autenticação, criptografia"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -558,24 +497,21 @@ msgstr ""
 #, no-c-format
 msgid "Authentication and encryption are often mentioned together, both because they are frequently used together, and because they are usually implemented with similar mathematical concepts."
 msgstr ""
-"Autenticação e criptografia, muitas vezes são mencionados juntos, porque "
-"eles são freqüentemente usados em conjunto, tanto porque eles geralmente são "
-"implementados com conceitos matemáticos semelhantes."
 
 #. Tag: title
 #, no-c-format
 msgid "Secure Remote Login: SSH"
-msgstr "Login remoto seguro: SSH"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSH</primary>"
-msgstr "<primary>SSH</primary>"
+msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>Secure Shell</primary>"
-msgstr "<primary>Secure Shell</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -585,17 +521,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> SSH compared to RSH"
-msgstr "<emphasis>CULTURA</emphasis> SSH comparado ao RSH"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RSH</primary>"
-msgstr "<primary>RSH</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Remote Shell</primary>"
-msgstr "<primary>Shell Remoto</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -608,10 +544,10 @@ msgid "SSH also offers two file transfer services. <command>scp</command> is a c
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>\n"
-msgstr "<computeroutput>$ </computeroutput><userinput>scp file "
-"machine:/tmp/</userinput>\n"
+""
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -621,12 +557,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>scp</command></primary>"
-msgstr "<primary><command>scp</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>sftp</command></primary>"
-msgstr "<primary><command>sftp</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -636,18 +572,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>OpenSSH</primary>"
-msgstr "<primary>OpenSSH</primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <foreignphrase>Fork</foreignphrase>"
 msgstr ""
-"<emphasis>DE VOLTA AO BÁSICO</emphasis> <foreignphrase>Fork</foreignphrase>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>fork</primary>"
-msgstr "<primary>fork</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -667,12 +602,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Hardware acceleration for SSH"
-msgstr "<emphasis>APROFUNDANDO</emphasis> Aceleração de Hardware para SSH"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>OpenSSL</primary><secondary>hardware acceleration</secondary>"
-msgstr "<primary>OpenSSL</primary><secondary>aceleração de hardware</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -687,7 +622,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Key-Based Authentication"
-msgstr "Autenticação Baseado em Chave"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -702,7 +637,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Protection of the private key"
-msgstr "<emphasis>SEGURANÇA</emphasis> Proteção da chave privada"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -713,8 +648,6 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> OpenSSL flaw in Debian <emphasis role=\"distribution\">Etch</emphasis>"
 msgstr ""
-"<emphasis>CULTURA</emphasis> Falha do OpenSSL no Debian <emphasis "
-"role=\"distribution\">Etch</emphasis>"
 
 #. Tag: para
 #, no-c-format
@@ -739,7 +672,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Using Remote X11 Applications"
-msgstr "Usando Aplicações X11 Remotamente"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -749,12 +682,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Creating Encrypted Tunnels with Port Forwarding"
-msgstr "Criando Túneis Criptografados com Encaminhamento de Porta"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>port forwarding</primary>"
-msgstr "<primary>encaminhamento de porta</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -764,12 +697,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Tunnel"
-msgstr "<emphasis>VOCABULÁRIO</emphasis> Túnel"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>tunnel SSH</primary><seealso>VPN</seealso>"
-msgstr "<primary>túnel SSH</primary><seealso>VPN</seealso>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -799,17 +732,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Forwarding a local port with SSH"
-msgstr "Encaminhando uma porta local com SSH"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Forwarding a remote port with SSH"
-msgstr "Encaminhando uma porta remota com SSH"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Using Remote Graphical Desktops"
-msgstr "Usando Ambientes Gráficos Remotamente"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -819,7 +752,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>VNC</primary>"
-msgstr "<primary>VNC</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
@@ -829,17 +762,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>graphical desktop</primary><secondary>remote</secondary>"
-msgstr "<primary>ambiente gráfico</primary><secondary>remoto</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>remote graphical desktop</primary>"
-msgstr "<primary>ambiente gráfico remoto</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>desktop, remote graphical desktop</primary>"
-msgstr "<primary>ambiente, ambiente gráfico remoto</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -849,17 +782,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">vino</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">vino</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">krfb</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">krfb</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -869,22 +802,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">vinagre</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">vinagre</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">tsclient</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">tsclient</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">krdc</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">krdc</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">xvnc4viewer</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">xvnc4viewer</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -894,12 +827,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> VNC over SSH"
-msgstr "<emphasis>SEGURANÇA</emphasis> VNC sobre SSH"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSH tunnel</primary><secondary>VNC</secondary>"
-msgstr "<primary>túnel SSH</primary><secondary>VNC</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -915,8 +848,6 @@ msgstr ""
 #, no-c-format
 msgid "When the VNC session is closed, remember to close the tunnel by also quitting the corresponding SSH session."
 msgstr ""
-"Quando uma sessão VNC é fechada, lembre-se de fechar o túnel por também "
-"saindo da sessão SSH correspondente."
 
 #. Tag: title
 #, no-c-format
@@ -926,17 +857,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gdm</command></primary>"
-msgstr "<primary><command>gdm</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>kdm</command></primary>"
-msgstr "<primary><command>kdm</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>xdm</command></primary>"
-msgstr "<primary><command>xdm</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
@@ -961,8 +892,8 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none\n"
-msgstr "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query "
-"localhost -once -geometry 1024x768 -depth 16 securitytypes=none\n"
+""
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -972,12 +903,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">vnc4server</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">vnc4server</emphasis></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Managing Rights"
-msgstr "Gerenciando Direitos"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -987,98 +918,92 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>rights</primary>"
-msgstr "<primary>direitos</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>permissions</primary>"
-msgstr "<primary>permissões</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>user</primary><secondary>owner</secondary>"
-msgstr "<primary>usuário</primary><secondary>dono</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>owner</secondary>"
-msgstr "<primary>grupo</primary><secondary>dono</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>owner</primary><secondary>user</secondary>"
-msgstr "<primary>dono</primary><secondary>usuário</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>owner</primary><secondary>group</secondary>"
-msgstr "<primary>dono</primary><secondary>grupo</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Each file or directory has specific permissions for three categories of users:"
 msgstr ""
-"Cada arquivo ou diretório têm permissões específicas para três categorias de "
-"usuários:"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "its owner (symbolized by <literal>u</literal> as in “user”);"
-msgstr "seu dono (simbolizado por <literal>u</literal> como em “user”);"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "its owner group (symbolized by <literal>g</literal> as in “group”), representing all the members of the group;"
 msgstr ""
-"o dono do grupo (simbolizado por <literal>g</literal> como em “group”), "
-"representando todos os membros do grupo;"
 
 #. Tag: para
 #, no-c-format
 msgid "the others (symbolized by <literal>o</literal> as in “other”)."
-msgstr "os outros (simbolizado por <literal>o</literal> como em “other”)."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Three types of rights can be combined:"
-msgstr "Os três tipos de direitos podem ser combinados:"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "reading (symbolized by <literal>r</literal> as in “read”);"
-msgstr "leitura (simbolizado por <literal>r</literal> como em “read”);"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "writing (or modifying, symbolized by <literal>w</literal> as in “write”);"
 msgstr ""
-"escrita (ou modificação, simbolizado por <literal>w</literal> como em "
-"“write”);"
 
 #. Tag: para
 #, no-c-format
 msgid "executing (symbolized by <literal>x</literal> as in “eXecute”)."
-msgstr "executar (simbolizado por <literal>x</literal> como em “eXecute”)."
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>read, right</primary>"
-msgstr "<primary>leitura, direito</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>write, right</primary>"
-msgstr "<primary>escrita, direito</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modification, right</primary>"
-msgstr "<primary>modificação, direito</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>execution</primary><secondary>right</secondary>"
-msgstr "<primary>execução</primary><secondary>direito</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1089,8 +1014,6 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <literal>setuid</literal> and <literal>setgid</literal> executables"
 msgstr ""
-"<emphasis>SEGURANÇA</emphasis> executáveis <literal>setuid</literal> e "
-"<literal>setgid</literal>"
 
 #. Tag: para
 #, no-c-format
@@ -1100,12 +1023,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>setuid</literal>, right</primary>"
-msgstr "<primary><literal>setuid</literal>, direito</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>setgid</literal>, right</primary>"
-msgstr "<primary><literal>setgid</literal>, direito</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1118,11 +1041,9 @@ msgid "A directory is handled differently. Read access gives the right to consul
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <literal>setgid</literal> directory and <emphasis>sticky bit</emphasis>"
 msgstr ""
-"<emphasis>SEGURANÇA</emphasis> <literal>setgid</literal> diretório e "
-"<emphasis>sticky bit</emphasis>"
 
 #. Tag: para
 #, no-c-format
@@ -1132,7 +1053,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>sticky bit</primary>"
-msgstr "<primary>sticky bit</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1142,7 +1063,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Three commands control the permissions associated with a file:"
-msgstr "Três comandos controlam as permissões associadas a um arquivo:"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1167,27 +1088,27 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>chmod</command></primary>"
-msgstr "<primary><command>chmod</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>chown</command></primary>"
-msgstr "<primary><command>chown</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>chgrp</command></primary>"
-msgstr "<primary><command>chgrp</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>octal representation of rights</primary>"
-msgstr "<primary>representação octal dos direitos</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>rights, octal representation</primary>"
-msgstr "<primary>direitos, representação octal</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1212,7 +1133,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Recursive operation"
-msgstr "<emphasis>DICA</emphasis> Operação recursiva"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1227,7 +1148,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Changing the user and group"
-msgstr "<emphasis>DICA</emphasis> Alterando o usuário e o grupo"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1237,7 +1158,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> <command>umask</command>"
-msgstr "<emphasis>APROFUNDANDO</emphasis> <command>umask</command>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1247,7 +1168,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>umask</primary>"
-msgstr "<primary>umask</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
@@ -1267,18 +1188,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Administration Interfaces"
-msgstr "Interfaces Administrativas"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>interface</primary><secondary>administration interface</secondary>"
 msgstr ""
-"<primary>interface</primary><secondary>interface administrativa</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>administration, interfaces</primary>"
-msgstr "<primary>administração, interfaces</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1298,12 +1218,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Administrating On a Web Interface: <command>webmin</command>"
-msgstr "Administrando Por uma Interface Web: <command>webmin</command>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>webmin</emphasis></primary>"
-msgstr "<primary><emphasis>webmin</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1323,7 +1243,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Changing the root password"
-msgstr "<emphasis>SEGURANÇA</emphasis> Alterando a senha do root"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1343,7 +1263,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Included modules cover a wide variety of services, among which:"
-msgstr "Módulos inclusos cobrem uma grande variedade de serviços, entre eles:"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1353,44 +1273,42 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "bind: DNS server configuration (name service);"
-msgstr "bind: configuração de servidor DNS (nome de serviço);"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "postfix: SMTP server configuration (e-mail);"
-msgstr "postfix: configuração de servidor SMTP (e-mail);"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "inetd: configuration of the <command>inetd</command> super-server;"
-msgstr "inetd: configuração do super servidor <command>inetd</command>;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "quota: user quota management;"
-msgstr "quota: gerenciamento de cota de usuário;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "dhcpd: DHCP server configuration;"
-msgstr "dhcpd: configuração do servidor DHCP;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "proftpd: FTP server configuration;"
-msgstr "proftpd: configuração do servidor FTP;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "samba: Samba file server configuration;"
-msgstr "samba: configuração do servidor de arquivos Samba;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "software: installation or removal of software from Debian packages and system updates."
 msgstr ""
-"software: instalação ou remoção de programas dos pacotes Debian e "
-"atualizações de sistema."
 
 #. Tag: para
 #, no-c-format
@@ -1401,12 +1319,11 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <emphasis>gnome-system-tools</emphasis>"
 msgstr ""
-"<emphasis>ALTERNATIVA</emphasis> <emphasis>gnome-system-tools</emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">gnome-system-tools</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">gnome-system-tools</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1416,17 +1333,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring Packages: <command>debconf</command>"
-msgstr "Configurando Pacotes: <command>debconf</command>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debconf</command></primary>"
-msgstr "<primary><command>debconf</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg-reconfigure</command></primary>"
-msgstr "<primary><command>dpkg-reconfigure</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1452,38 +1369,36 @@ msgstr ""
 #, no-c-format
 msgid "The <command>ucf</command> program (from the Debian package of the same name) can be used to implement such a behavior."
 msgstr ""
-"O programa <command>ucf</command> (do pacote Debian do mesmo nome) pode ser "
-"utilizado com o mesmo comportamento."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ucf</command></primary>"
-msgstr "<primary><command>ucf</command></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<command>syslog</command> System Events"
-msgstr "<command>syslog</command> Eventos de Sistema"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>rsyslogd</command></primary>"
-msgstr "<primary><command>rsyslogd</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>files</primary><secondary>log files</secondary>"
-msgstr "<primary>arquivos</primary><secondary>arquivos de log</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>distribution</secondary>"
-msgstr "<primary>logs</primary><secondary>distribuição</secondary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Principle and Mechanism"
-msgstr "Princípio e Mecanismo"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1493,12 +1408,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SUPPLEMENTS</emphasis> Moving from sysklogd to rsyslog"
-msgstr "<emphasis>SUPLEMENTOS</emphasis> Indo do sysklogd para rsyslog"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">sysklogd</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">sysklogd</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1579,8 +1494,6 @@ msgstr ""
 #, no-c-format
 msgid "Each message is also associated with a priority level. Here is the list in decreasing order:"
 msgstr ""
-"Cada mensagem está associada com um nível de prioridade. Está é a lista em "
-"ordem decrescente:"
 
 #. Tag: para
 #, no-c-format
@@ -1615,7 +1528,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "<literal>info</literal>: informative message;"
-msgstr "<literal>info</literal>: mensagem informativa;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1625,7 +1538,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The Configuration File"
-msgstr "O Arquivo de Configuração"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1635,7 +1548,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Syntax of the Selector"
-msgstr "Sintaxe do Seletor"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1650,7 +1563,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Syntax of Actions"
-msgstr "Sintaxe das Ações"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
@@ -1658,14 +1571,14 @@ msgid "<emphasis>BACK TO BASICS</emphasis> The named pipe, a persistent pipe"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>named pipe</primary>"
-msgstr "<primary>named pipe</primary>"
+msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>pipe, named pipe</primary>"
-msgstr "<primary>pipe, named pipe</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1675,26 +1588,22 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Such a file is created with the <command>mkfifo</command> command."
-msgstr "Tal arquivo é criado com o comando <command>mkfifo</command>."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The various possible actions are:"
-msgstr "As várias ações possíveis são:"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "add the message to a file (example: <filename>/var/log/messages</filename>);"
 msgstr ""
-"adiciona a mensagem a um arquivo (exemplo: "
-"<filename>/var/log/messages</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "send the message to a remote <command>syslog</command> server (example: <literal>@log.falcot.com</literal>);"
 msgstr ""
-"enviar a mensagem para um servidor remoto <command>syslog</command> "
-"(exemplo: <literal>@log.falcot.com</literal>);"
 
 #. Tag: para
 #, no-c-format
@@ -1710,25 +1619,21 @@ msgstr ""
 #, no-c-format
 msgid "send the message to all logged in users (example: <literal>*</literal>);"
 msgstr ""
-"enviar a mensagem para todos os usuário logados (exemplo: "
-"<literal>*</literal>);"
 
 #. Tag: para
 #, no-c-format
 msgid "write the message in a text console (example: <literal>/dev/tty8</literal>)."
 msgstr ""
-"escrever a mensagem em um console texto (exemplo: "
-"<literal>/dev/tty8</literal>)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Forwarding logs"
-msgstr "<emphasis>SEGURANÇA</emphasis> Encaminhamento de logs"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>log</primary><secondary>forwarding</secondary>"
-msgstr "<primary>log</primary><secondary>encaminhamento</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1743,7 +1648,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The <command>inetd</command> Super-Server"
-msgstr "O super servidor <command>inetd</command>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1753,12 +1658,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>inetd</command></primary>"
-msgstr "<primary><command>inetd</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>super-server</primary>"
-msgstr "<primary>super servidor</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1769,8 +1674,6 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> Register a server in <filename>inetd.conf</filename>"
 msgstr ""
-"<emphasis>POLÍTICA DEBIAN</emphasis> Registrar um servidor em "
-"<filename>inetd.conf</filename>"
 
 #. Tag: para
 #, no-c-format
@@ -1781,16 +1684,11 @@ msgstr ""
 #, no-c-format
 msgid "Each significant line of the <filename>/etc/inetd.conf</filename> file describes a server through seven fields (separated by spaces):"
 msgstr ""
-"Cada linha significativa do arquivo <filename>/etc/inetd.conf</filename> "
-"descreve um servidor através de sete campos (separados por espaços):"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The TCP or UDP port number, or the service name (which is mapped to a standard port number with the information contained in the <filename>/etc/services</filename> file)."
 msgstr ""
-"O número da porta TCP ou UDP, ou do serviço de nomes (o qual é mapeado para "
-"o número da porta padrão com a informação contida no arquivo "
-"<filename>/etc/services</filename>)."
 
 #. Tag: para
 #, no-c-format
@@ -1800,7 +1698,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The protocol: <literal>tcp</literal> or <literal>udp</literal>."
-msgstr "O protocolo: <literal>tcp</literal> ou <literal>udp</literal>."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1808,14 +1706,14 @@ msgid "The options: two possible values: <literal>wait</literal> or <literal>now
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The user name of the user under whose identity the server will run."
-msgstr "O nome do usuário do usuário o qual a identidade o servidor executará."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The full path to the server program to execute."
-msgstr "O caminho completo para o programa servidor a ser executado."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1825,28 +1723,25 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The following example illustrates the most common cases:"
-msgstr "O exemplo a seguir ilustra os casos mais comuns:"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Excerpt from <filename>/etc/inetd.conf</filename>"
-msgstr "Excerto do <filename>/etc/inetd.conf</filename>"
+msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid ""
-"talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
+msgid "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
 "finger stream tcp nowait  nobody     /usr/sbin/tcpd     /usr/sbin/in.fingerd\n"
 "ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
+""
 msgstr ""
-"talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
-"finger stream tcp nowait  nobody     /usr/sbin/tcpd     /usr/sbin/in.fingerd\n"
-"ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tcpd</command></primary>"
-msgstr "<primary><command>tcpd</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1856,17 +1751,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> Wietse Venema"
-msgstr "<emphasis>COMUNIDADE</emphasis> Wietse Venema"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Wietse Venema</primary>"
-msgstr "<primary>Wietse Venema</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Venema, Wietse</primary>"
-msgstr "<primary>Venema, Wietse</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1877,7 +1772,6 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Other <command>inetd</command> commands"
 msgstr ""
-"<emphasis>ALTERNATIVA</emphasis> Outros comandos <command>inetd</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1892,27 +1786,27 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Scheduling Tasks with <command>cron</command> and <command>atd</command>"
-msgstr "Agendando Tarefas com <command>cron</command> e <command>atd</command>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>cron</command></primary>"
-msgstr "<primary><command>cron</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>atd</command></primary>"
-msgstr "<primary><command>atd</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>scheduled commands</primary>"
-msgstr "<primary>agendando comandos</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>command scheduling</primary>"
-msgstr "<primary>comando agendamento</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1922,17 +1816,17 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "In a Unix system, many tasks are scheduled for regular execution:"
-msgstr "Em um sistema Unix, muitas tarefas são agendadas para execução regular:"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "rotating the logs;"
-msgstr "rotacionando os logs;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "updating the database for the <command>locate</command> program;"
-msgstr "atualizando o banco de dados para o programa <command>locate</command>;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1950,11 +1844,9 @@ msgid "By default, all users can schedule the execution of tasks. Each user has 
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Restricting <command>cron</command> or <command>atd</command>"
 msgstr ""
-"<emphasis>SEGURANÇA</emphasis> Restringindo <command>cron</command> ou "
-"<command>atd</command>"
 
 #. Tag: para
 #, no-c-format
@@ -1970,30 +1862,26 @@ msgstr ""
 #, no-c-format
 msgid "The <emphasis>cron</emphasis> package includes by default some scheduled commands that execute:"
 msgstr ""
-"O pacote <emphasis>cron</emphasis> incluí por padrão alguns comandos que "
-"executam:"
 
 #. Tag: para
 #, no-c-format
 msgid "programs in the <filename>/etc/cron.hourly/</filename> directory once per hour;"
 msgstr ""
-"programas no diretório <filename>/etc/cron.hourly/</filename> uma vez por "
-"hora;"
 
 #. Tag: para
 #, no-c-format
 msgid "programs in <filename>/etc/cron.daily/</filename> once per day;"
-msgstr "programas no <filename>/etc/cron.daily/</filename> uma vez por dia;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "programs in <filename>/etc/cron.weekly/</filename> once per week;"
-msgstr "programas no <filename>/etc/cron.weekly/</filename> uma vez por semana;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "programs in <filename>/etc/cron.monthly/</filename> once per month."
-msgstr "programas no <filename>/etc/cron.monthly/</filename> uma vez por mês."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2003,12 +1891,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Format of a <filename>crontab</filename> File"
-msgstr "Formato do Arquivo <filename>crontab</filename>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>crontab</filename></primary>"
-msgstr "<primary><filename>crontab</filename></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
@@ -2049,8 +1937,6 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>SPECIAL CASE</emphasis> <command>cron</command> and daylight savings time."
 msgstr ""
-"<emphasis>CASO ESPECIAL</emphasis> <command>cron</command> e o horário de "
-"verão."
 
 #. Tag: para
 #, no-c-format
@@ -2070,22 +1956,22 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "the value for the minute (number from 0 to 59);"
-msgstr "o valor para o minuto (números de 0 à 59);"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the hour (from 0 to 23);"
-msgstr "o valor para a hora (de 0 à 23);"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the day of the month (from 1 to 31);"
-msgstr "o valor para o dia do mês (de 1 à 31);"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the month (from 1 to 12);"
-msgstr "o valor para o mês (de 1 à 12);"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2101,8 +1987,6 @@ msgstr ""
 #, no-c-format
 msgid "the command to execute (when the conditions defined by the first five columns are met)."
 msgstr ""
-"o comando a ser executado (quando as condições definidas nas primeiras cinco "
-"colunas estão satisfeitas)."
 
 #. Tag: para
 #, no-c-format
@@ -2117,12 +2001,11 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Sample <filename>crontab</filename> file"
-msgstr "Arquivo de exemplo <filename>crontab</filename>"
+msgstr ""
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
-msgid ""
-"#Format\n"
+#, no-c-format
+msgid "#Format\n"
 "#min hour day mon dow  command\n"
 "\n"
 "# Download data every night at 7:25 pm\n"
@@ -2133,23 +2016,13 @@ msgid ""
 "\n"
 "# Restart the IRC proxy after each reboot\n"
 "@reboot /usr/bin/dircproxy\n"
+""
 msgstr ""
-"#Format\n"
-"#min hour day mon dow  command\n"
-"\n"
-"# Download data every night at 7:25 pm\n"
-" 25  19   *   *   *    $HOME/bin/get.pl\n"
-"\n"
-"# 8:00 am, on weekdays (Monday through Friday)\n"
-" 00  08   *   *   1-5  $HOME/bin/dosomething\n"
-"\n"
-"# Restart the IRC proxy after each reboot\n"
-"@reboot /usr/bin/dircproxy\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Executing a command on boot"
-msgstr "<emphasis>DICA</emphasis> Executando um comando na inicialização"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2159,12 +2032,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Using the <command>at</command> Command"
-msgstr "Usando o Comando <command>at</command>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>at</command></primary>"
-msgstr "<primary><command>at</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2173,25 +2046,15 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>echo \"Don't forget to wish a Happy Birthday to Raphaël!\" \\</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
 "<computeroutput>warning: commands will be executed using /bin/sh\n"
 "job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
+""
 msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 "
-"&lt;&lt;END</userinput>\n"
-"<computeroutput>&gt; </computeroutput><userinput>echo \"Don't forget to wish "
-"a Happy Birthday to Raphaël!\" \\</userinput>\n"
-"<computeroutput>&gt; </computeroutput><userinput>  | mail "
-"lolando@debian.org</userinput>\n"
-"<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
-"<computeroutput>warning: commands will be executed using /bin/sh\n"
-"job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -2206,17 +2069,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>atrm</command></primary>"
-msgstr "<primary><command>atrm</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>atq</command></primary>"
-msgstr "<primary><command>atq</command></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Scheduling Asynchronous Tasks: <command>anacron</command>"
-msgstr "Agendando Tarefas Assíncronas: <command>anacron</command>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2226,7 +2089,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>anacron</command></primary>"
-msgstr "<primary><command>anacron</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2237,8 +2100,6 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Priorities and <command>nice</command>"
 msgstr ""
-"<emphasis>DE VOLTA AO BÁSICO</emphasis> Prioridades e "
-"<command>nice</command>"
 
 #. Tag: para
 #, no-c-format
@@ -2263,12 +2124,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Quotas"
-msgstr "Cotas"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quota</primary>"
-msgstr "<primary>cota</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2288,7 +2149,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>edquota</command></primary>"
-msgstr "<primary><command>edquota</command></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
@@ -2298,7 +2159,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>setquota</command></primary>"
-msgstr "<primary><command>setquota</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2308,7 +2169,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The quota system allows you to set four limits:"
-msgstr "O sistema de cotas permite você definir quatro limites:"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2328,17 +2189,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Blocks and inodes"
-msgstr "<emphasis>VOCABULÁRIO</emphasis> Blocos e inodes"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>block (disk)</primary>"
-msgstr "<primary>blocos (disco)</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>inode</primary>"
-msgstr "<primary>inode</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2353,7 +2214,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>warnquota</command></primary>"
-msgstr "<primary><command>warnquota</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2378,12 +2239,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backup</primary>"
-msgstr "<primary>cópia de segurança</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>restoration</primary>"
-msgstr "<primary>restauração</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2393,12 +2254,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>amanda</command></primary>"
-msgstr "<primary><command>amanda</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>BackupPC</command></primary>"
-msgstr "<primary><command>BackupPC</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2413,7 +2274,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Backing Up with <command>rsync</command>"
-msgstr "Cópias de segurança com <command>rsync</command>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2423,24 +2284,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>rsync</command></primary>"
-msgstr "<primary><command>rsync</command></primary>"
+msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The hard link, a second name for the file"
 msgstr ""
-"<emphasis>DE VOLTA AO BÁSICO</emphasis> O hard link, um segundo nome para o "
-"arquivo"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>link</primary><secondary>hard link</secondary>"
-msgstr "<primary>link</primary><secondary>hard link</secondary>"
+msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>hard link</primary>"
-msgstr "<primary>hard link</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2470,7 +2329,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">dirvish</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">dirvish</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2485,12 +2344,11 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/dirvish/master.conf</filename> file"
-msgstr "O arquivo <filename>/etc/dirvish/master.conf</filename>"
+msgstr ""
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
-msgid ""
-"bank:\n"
+#, no-c-format
+msgid "bank:\n"
 "    /backup\n"
 "exclude:\n"
 "    lost+found/\n"
@@ -2504,21 +2362,8 @@ msgid ""
 "    *   *     *   *         1    +3 months\n"
 "    *   *     1-7 *         1    +1 year\n"
 "    *   *     1-7 1,4,7,10  1\n"
+""
 msgstr ""
-"bank:\n"
-"    /backup\n"
-"exclude:\n"
-"    lost+found/\n"
-"    core\n"
-"    *~\n"
-"Runall:\n"
-"    root    22:00\n"
-"expire-default: +15 days\n"
-"expire-rule:\n"
-"#   MIN HR    DOM MON       DOW  STRFTIME_FMT\n"
-"    *   *     *   *         1    +3 months\n"
-"    *   *     1-7 *         1    +1 year\n"
-"    *   *     1-7 1,4,7,10  1\n"
 
 #. Tag: para
 #, no-c-format
@@ -2528,7 +2373,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Scheduled expiration"
-msgstr "<emphasis>NA PRÁTICA</emphasis> Agendamento de expiração"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2538,12 +2383,11 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/backup/root/dirvish/default.conf</filename> file"
-msgstr "O arquivo <filename>/backup/root/dirvish/default.conf</filename>"
+msgstr ""
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
-msgid ""
-"client: rivendell.falcot.com\n"
+#, no-c-format
+msgid "client: rivendell.falcot.com\n"
 "tree: /\n"
 "xdev: 1\n"
 "index: gzip\n"
@@ -2554,18 +2398,8 @@ msgid ""
 "    /tmp/**\n"
 "    /var/tmp/**\n"
 "    *.bak\n"
+""
 msgstr ""
-"client: rivendell.falcot.com\n"
-"tree: /\n"
-"xdev: 1\n"
-"index: gzip\n"
-"image-default: %Y%m%d\n"
-"exclude:\n"
-"    /var/cache/apt/archives/*.deb\n"
-"    /var/cache/man/**\n"
-"    /tmp/**\n"
-"    /var/tmp/**\n"
-"    *.bak\n"
 
 #. Tag: para
 #, no-c-format
@@ -2580,7 +2414,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Remote backup over SSH"
-msgstr "<emphasis>NA PRÁTICA</emphasis> Cópia de segurança remota com SSH"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2590,7 +2424,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Restoring Machines without Backups"
-msgstr "Restaurando Máquinas sem Cópias de Segurança"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2600,18 +2434,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mondo</command></primary>"
-msgstr "<primary><command>mondo</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backup</primary><secondary>on CD-ROM</secondary>"
-msgstr "<primary>cópia de segurança</primary><secondary>no CD-ROM</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary>backup on CD-ROM</secondary>"
 msgstr ""
-"<primary>CD-ROM</primary><secondary>cópia de segurança no CD-ROM</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -2619,10 +2452,9 @@ msgid "The Falcot Corp administrators are aware of the limits in their backup po
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Backing up SQL and LDAP services"
 msgstr ""
-"<emphasis>APROFUNDANDO</emphasis> Cópia de segurança SQL e serviços LDAP"
 
 #. Tag: para
 #, no-c-format
@@ -2632,7 +2464,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>xdelta</command></primary>"
-msgstr "<primary><command>xdelta</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
@@ -2643,8 +2475,6 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <emphasis>TAR</emphasis>, the standard for tape backups"
 msgstr ""
-"<emphasis>CULTURA</emphasis> <emphasis>TAR</emphasis>, o padrão para cópias "
-"de seguranças em fita"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2694,12 +2524,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>USB</primary>"
-msgstr "<primary>USB</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IEEE 1394</primary>"
-msgstr "<primary>IEEE 1394</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
@@ -2908,8 +2738,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"<computeroutput># </computeroutput><userinput>udevadm info -a -n /dev/sdc</userinput>\n"
+msgid "<computeroutput># </computeroutput><userinput>udevadm info -a -n /dev/sdc</userinput>\n"
 "<computeroutput>[...]\n"
 "  looking at device '/devices/pci0000:00/0000:00:10.3/usb1/1-2/1-2.2/1-2.2:1.0/host9/target9:0:0/9:0:0:0/block/sdc':\n"
 "    KERNEL==\"sdc\"\n"
@@ -2958,6 +2787,7 @@ msgid ""
 "    ATTRS{serial}==\"M004021000001\"\n"
 "[...]\n"
 "</computeroutput>\n"
+""
 msgstr ""
 
 #. Tag: para
@@ -2967,9 +2797,9 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid ""
-"KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
+msgid "KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
 "KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\"\n"
+""
 msgstr ""
 
 #. Tag: para
@@ -3186,3 +3016,4 @@ msgstr ""
 #, no-c-format
 msgid "After this overview of basic services common to many Unix systems, we will focus on the environment of the administered machines: the network. Many services are required for the network to work properly. They will be discussed in the next chapter."
 msgstr ""
+

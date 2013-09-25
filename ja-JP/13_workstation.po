@@ -1,0 +1,1380 @@
+# 
+# AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0\n"
+"POT-Creation-Date: 2012-10-31T14:54:18\n"
+"PO-Revision-Date: 2012-10-31T14:54:18\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: None\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-publican; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: keyword
+#, no-c-format
+msgid "Workstation"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Graphical desktop"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "Office work"
+msgstr ""
+
+#. Tag: keyword
+#, no-c-format
+msgid "X.org"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Now that server deployments are done, the administrators can focus on installing the individual workstations and creating a typical configuration."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Configuring the X11 Server"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>XFree86</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>X.org</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>X11</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>interface</primary><secondary>graphical</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The initial configuration for the graphical interface can be awkward at times; very recent video cards often don't work perfectly with the X.org version shipped in the Debian stable version."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A brief reminder: X.org is the software component that allows graphical applications to display windows on screen. It includes a driver that makes efficient use of the video card. The features offered to the graphical applications are exported through a standard interface, <emphasis>X11</emphasis> (<emphasis role=\"distribution\">Squeeze</emphasis> contains its <emphasis>X11R7.5</emphasis> version)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>PERSPECTIVE</emphasis> X11, XFree86 and X.org"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "X11 is the graphical system most widely used on Unix-like systems (also available, in addition to the native system, for Windows and Mac OS). Strictly speaking, the “X11” term only refers to a protocol specification, but it's also used to refer to the implementation in practice."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "X11 had a rough start, but the 1990's saw XFree86 emerge as the reference implementation because it was free software, portable, and maintained by a collaborative community. However, the rate of evolution slowed down near the end when the software only gained new drivers. That situation, along with a very controversial license change, led to the X.org fork in 2004. This is now the reference implementation, and Debian <emphasis role=\"distribution\">Squeeze</emphasis> uses X.org version 7.5."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Current versions of X.org are able to autodetect the available hardware: this applies to the video card and the monitor, as well as keyboards and mice; in fact, it's so convenient that the package no longer even creates a <filename>/etc/X11/xorg.conf</filename> configuration file. This is all made possible by features provided by the Linux 2.6 kernel (in particular for keyboards and mice), by having each driver list the video cards it supports, and by using the DDC protocol to fetch monitor characteristics."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>resolution</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The keyboard configuration is currently set up in <filename>/etc/default/keyboard</filename>. This file is used both to configure the text console and the graphical interface, and it is handled by the <emphasis role=\"pkg\">keyboard-configuration</emphasis> package. Details on configuring the keyboard layout are available in <xref linkend=\"section.config-clavier\" />."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <emphasis role=\"pkg\">xserver-xorg-core</emphasis> package provides a generic X server, as used by the 7.x versions of X.org. This server is modular and uses a set of independent drivers to handle the many different kinds of video cards. Installing <emphasis role=\"pkg\">xserver-xorg</emphasis> ensures that both the server and at least one video driver are installed."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>server</primary><secondary>X</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">xserver-xorg</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Note that if the detected video card is not handled by any of the available drivers, X.org tries using the VESA and fbdev drivers. The former is a generic driver that should work everywhere, but with limited capabilities (fewer available resolutions, no hardware acceleration for games, and so on) while the latter works on top of the kernel's framebuffer device. The X server writes its messages to the <filename>/var/log/Xorg.0.log</filename> log file, which is where one would look to know what driver is currently in use. For example, the following snippet matches what the <literal>intel</literal> driver outputs when it is loaded:"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"(==) Matched intel as autoconfigured driver 0\n"
+"(==) Matched vesa as autoconfigured driver 1\n"
+"(==) Matched fbdev as autoconfigured driver 2\n"
+"(==) Assigned the driver to the xf86ConfigLayout\n"
+"(II) LoadModule: \"intel\"\n"
+"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
+""
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>VESA</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>video card</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>EXTRA</emphasis> Proprietary drivers"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Some video card makers (most notably nVidia) refuse to publish the hardware specifications that would be required to implement good free drivers. They do, however, provide proprietary drivers that allow using their hardware. This policy is nefarious, because even when the provided driver exists, it is usually not as polished as it should be; more importantly, it does not necessarily follow the X.org updates, which may prevent the latest available driver from loading correctly (or at all). We cannot condone this behavior, and we recommend you avoid these makers and favor more cooperative manufacturers."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If you still end up with such a card, you will find the required packages in the <emphasis>non-free</emphasis> section: <emphasis role=\"pkg\">nvidia-glx</emphasis> for nVidia cards, and <emphasis role=\"pkg\">fglrx-driver</emphasis> for some ATI cards. Both cases require matching kernel modules. Building these modules can be automated by installing the <emphasis role=\"pkg\">nvidia-kernel-dkms</emphasis> (for nVidia), or <emphasis role=\"pkg\">fglrx-modules-dkms</emphasis> (for ATI) packages."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The “nouveau” project aims to develop a free software driver for nVidia cards. As of <emphasis role=\"distribution\">Squeeze</emphasis>, its feature set does not match the proprietary driver. In the developers' defense, we should mention that the required information can only be gathered by reverse engineering, which makes things difficult. The free driver for ATI video cards, called “radeon”, is much better in that regard although it often requires a non-free firmware."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>ATI</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>nVidia</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Customizing the Graphical Interface"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Choosing a Display Manager"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>manager</primary><secondary>display</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>gdm</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>kdm</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>xdm</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The graphical interface only provides display space. Running the X server by itself only leads to an empty screen, which is why most installations use a <emphasis>display manager</emphasis> to display a user authentication screen and start the graphical desktop once the user has authenticated. The three most popular display managers in current use are <emphasis role=\"pkg\">gdm3</emphasis> (<foreignphrase>GNOME Display Manager</foreignphrase>), <emphasis role=\"pkg\">kdm</emphasis> (<foreignphrase>KDE Display Manager</foreignphrase>) and <emphasis role=\"pkg\">xdm</emphasis> (<foreignphrase>X Display Manager</foreignphrase>). Since the Falcot Corp administrators have opted to use the GNOME desktop environment, they logically picked <command>gdm3</command> as a display manager too. The <filename>/etc/gdm3/daemon.conf</filename> configuration file has many options, some of which can also be set by <command>gdmsetup</command>, a graphical interface for <command>gdm3</command> configuration that can be run from the <menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu> <guimenuitem>Display screen</guimenuitem></menuchoice> menu in the GNOME desktop."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>ALTERNATIVE</emphasis> gdm vs. gdm3"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A fresh installation of <emphasis role=\"distribution\">Squeeze</emphasis> sets up <emphasis role=\"pkg\">gdm3</emphasis>. On the other hand, a system upgraded to <emphasis role=\"distribution\">Squeeze</emphasis> from a previous version of Debian will usually have <emphasis role=\"pkg\">gdm</emphasis> (the 2.x version). Version 3 is a full rewrite, but it is still rather young: many of the options provided by previous versions have been removed, and the <command>gdmsetup</command> configuration interface is much more limited in scope. This explains why both versions are available in <emphasis role=\"distribution\">Squeeze</emphasis>. Note, however, the 2.x versions will be removed from the next stable Debian release. It makes sense to anticipate the migration and install <emphasis role=\"pkg\">gdm3</emphasis> straight away if the missing features are not important to you."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Choosing a Window Manager"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Since each graphical desktop provides its own window manager, choosing the former usually implies software selections from the latter. GNOME uses the <command>metacity</command> window manager, KDE uses <command>kwin</command>, and Xfce (which we present later) has <command>xfwm</command>. The Unix philosophy always allows using one's window manager of choice, but following the recommendations allows an administrator to best take advantage of the integration efforts led by each project."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>metacity</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>kwin</command></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BACK TO BASICS</emphasis> Window manager"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>manager</primary><secondary>window</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>window manager</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "True to the Unix tradition of doing one thing only but doing it well, the window manager displays the “decorations” around the windows belonging to the currently running applications, which includes frames and the title bar. It also allows reducing, restoring, maximizing, and hiding windows. Most window managers also provide a menu that pops up when the desktop is clicked in a specific way. This menu provides the means to close the window manager session, starting new applications, and in some cases, change to another window manager (if installed)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Older computers may, however, have a hard time running heavyweight graphical desktop environments. In these cases, a lighter configuration should be used. \"Light\" (or small footprint) window managers include WindowMaker (in the <emphasis role=\"pkg\">wmaker</emphasis> package), Afterstep, fvwm, icewm, blackbox, fluxbox, or openbox. In these cases, the system should be configured so that the appropriate window manager gets precedence; the standard way is to change the <command>x-window-manager</command> alternative with the <command>update-alternatives --config x-window-manager</command> command."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>WindowMaker</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Afterstep</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Blackbox</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Icewm</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Fluxbox</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Openbox</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>x-window-manager</command></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>DEBIAN SPECIFICITY</emphasis> Alternatives"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>alternative</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>choice</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>update-alternatives</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The Debian policy lists a number of standardized commands able to perform a particular action. For example, the <command>x-window-manager</command> command invokes a window manager. But Debian does not assign this command to a fixed window manager. The administrator can choose which manager it should invoke."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For each window manager, the relevant package therefore registers the appropriate command as a possible choice for <command>x-window-manager</command> along with an associated priority. Barring explicit configuration by the administrator, this priority allows picking the best installed window manager when the generic command is run."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Both the registration of commands and the explicit configuration involve the <command>update-alternatives</command> script. Choosing where a symbolic command points at is a simple matter of running <command>update-alternatives --config <replaceable>symbolic-command</replaceable></command>. The <command>update-alternatives</command> script creates (and maintains) symbolic links in the <filename>/etc/alternatives/</filename> directory, which in turn references the location of the executable. As time passes, packages are installed or removed, and/or the administrator makes explicit changes to the configuration. When a package providing an alternative is removed, the alternative automatically goes to the next best choice among the remaining possible commands."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Not all symbolic commands are explicitly listed by the Debian policy; some Debian package maintainers deliberately chose to use this mechanism in less straightforward cases where it still brings interesting flexibility (examples include <command>x-www-browser</command>, <command>www-browser</command>, <command>cc</command>, <command>c++</command>, <command>awk</command>, and so on)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>x-www-browser</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>www-browser</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>cc</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>c++</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>awk</command></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Menu Management"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>menu</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>update-menus</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Modern desktop environments and many window managers provide menus listing the available applications for the user. In order to keep menus up-to-date in relation to the actual set of available applications, Debian created a centralized database registering all installed applications. A newly installed package registers itself in that database, and tells the system to update the menus accordingly. This infrastructure is handled in the <emphasis role=\"pkg\">menu</emphasis> package."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When a package provides an application that should appear in the menu system, it stores a file in the <filename>/usr/share/menu/</filename> directory. That file describes some of the application features (including whether it's a graphical application or not), and the best location for it in the menu hierarchy. The post-installation script for this package then runs the <command>update-menus</command> command, which in turn updates all the required files. This command cannot know all the menu types used by installed applications. As a consequence, packages able to display a menu must provide an executable script that will be invoked with all the required information from the menu file; the script should then turn this information into elements that the application with the menu can use. These filter scripts are installed in the <filename>/etc/menu-methods/</filename> directory. <indexterm><primary><filename>/usr/share/menu/</filename></primary></indexterm> <indexterm><primary><filename>menu</filename></primary></indexterm> <indexterm><primary><filename>/etc/menu-methods/</filename></primary></indexterm> <indexterm><primary><filename>menu-methods</filename></primary></indexterm>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>GOING FURTHER</emphasis> Menus standardization"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>.desktop</filename></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Debian provides its own menu system, but both GNOME and KDE developed their own menu management solutions as well. The two projects agreed on a format for these menus — more precisely, a common format for the <filename>.desktop</filename> files that represent menu elements — under the FreeDesktop.org umbrella project. <ulink type=\"block\" url=\"http://www.freedesktop.org/\" />"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The Debian developers have kept a close eye on this project and <filename>.desktop</filename> files can be generated from the Debian menu system. However, neither GNOME nor KDE use the Debian menu. They both prefer keeping complete control over their menus. Still, it is possible to enable a “Debian” submenu containing the official menu as maintained by Debian: in GNOME, the menu editor (in the <emphasis role=\"pkg\">alacarte</emphasis> package) is available by right-clicking on the panel menu, then choosing “Edit menus”."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The administrator can also have a say in the process and in the resulting generated menus. First, they can delete a menu element even when the matching application is installed, by simply storing in <filename>/etc/menu/</filename> an empty file named according to the package providing the entries to be disabled. Second, the menu can be reorganized and sections renamed or grouped. The <filename>/etc/menu-methods/translate_menus</filename> file is where this reorganization is defined and contains commented examples. Last, new elements can be added to the menu, for example to start programs installed outside the packaging system, or to run a particular command such as starting a web browser on a particular page. These extra elements are specified in <filename>/etc/menu/local.<replaceable>element</replaceable></filename> files, which have the same format as other menu files available under <filename>/usr/share/menu/</filename>."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Graphical Desktops"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The free graphical desktop field is dominated by two large software collections: GNOME and KDE. Both of them are very popular. This is rather a rare instance in the free software world; the Apache web server, for instance, has very few peers."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>graphical desktop</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>GNOME</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>KDE</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>GTK+</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Qt</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This diversity is rooted in history. KDE was the first graphical desktop project, but it chose the Qt graphical toolkit and that choice wasn't acceptable for a large number of developers. Qt was not free software at the time, and GNOME was started based on the GTK+ toolkit. Qt became free software in the interval, but the projects haven't merged and evolved in parallel instead."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "GNOME and KDE still work together: under the FreeDesktop.org umbrella, the projects collaborated in defining standards for interoperability across applications."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>FreeDesktop.org</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Choosing “the best” graphical desktop is a sensitive topic which we prefer to steer clear of. We will merely describe the many possibilities and give a few pointers for further thoughts. The best choice will be the one you make after some experimentation."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "GNOME"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Debian <emphasis role=\"distribution\">Squeeze</emphasis> includes GNOME version 2.30, which can be installed by a simple <command>apt-get install gnome</command> (it can also be installed by selecting the “Graphical desktop environment” task)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">gnome</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "GNOME is noteworthy for its efforts in usability and accessibility. Design professionals have been involved in writing standards and recommendations. This has helped developers to create satisfying graphical user interfaces. The project also gets encouragement from the big players of computing, such as Intel, IBM, Oracle, Novell, and of course, various Linux distributions. Finally, many programming languages can be used in developing applications interfacing to GNOME."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "It took quite some time for the GNOME project to build up this infrastructure, which can account for a seemingly less mature desktop than KDE. The usability and accessibility efforts, in particular, are recent, and the benefits have only started to show in the latest versions of the environment."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The GNOME desktop"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For administrators, GNOME seems to be better prepared for massive deployments. Application configuration is handled by GConf, a kind of registry that can be queried and edited with the <command>gconftool-2</command> command-line tool. The administrator can therefore change users' configuration with a simple script. The following website lists all information of interest to an administrator tasked to manage GNOME workstations: <ulink type=\"block\" url=\"http://library.gnome.org/admin/system-admin-guide/stable/\" /><ulink type=\"block\" url=\"http://library.gnome.org/admin/deployment-guide/\" />"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>gconf</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>gconftool-2</command></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "KDE"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Debian <emphasis role=\"distribution\">Squeeze</emphasis> includes version 4.4.5 of KDE, which can be installed with <command>apt-get install kde</command>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "KDE has had a rapid evolution based on a very hands-on approach. Its authors quickly got very good results, which allowed them to grow a large user-base. These factors contributed to the overall project quality. KDE is a perfectly mature desktop environment with a wide range of applications."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The KDE desktop"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Since the Qt 4.0 release, the last remaining license problem with KDE is no more. This version was released under the GPL both for Linux and Windows (whereas the Windows version was previously released under a non-free license). Note that KDE applications must be developed using the C++ language."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Xfce and Others"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Xfce is a simple and lightweight graphical desktop, which is a perfect match for computers with limited resources. It can be installed with <command>apt-get install xfce4</command>. Like GNOME, Xfce is based on the GTK+ toolkit, and several components are common across both desktops."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Xfce</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Unlike GNOME and KDE, Xfce does not aim at being a vast project. Beyond the basic components of a modern desktop (file manager, window manager, session manager, a panel for application launchers and so on), it only provides a few specific applications: a very lightweight web browser (Midori), a terminal, a calendar, an image viewer, a CD/DVD burning tool, a media player (Parole) and a sound volume control."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The Xfce desktop"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Tools"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Email"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>email</primary><secondary>software</secondary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Evolution"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Evolution</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>COMMUNITY</emphasis> <emphasis>Popular</emphasis> packages"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Installing the <emphasis role=\"pkg\">popularity-contest</emphasis> package enables participation in an automated survey that informs the Debian project about the most popular packages. A script is run weekly by <command>cron</command> which sends (by HTTP or email) an anonymized list of the installed packages and the latest access date for the files they contain. This allows differentiating, among the installed packages, those that are actually used."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">popularity-contest</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>popularity of packages</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>package</primary><secondary>popularity</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This information is a great help to the Debian project. It is used to determine which packages should go on the first installation disks. The installation data is also an important factor used to decide whether to remove a package with very few users from the distribution. We heartily recommend installing the <emphasis role=\"pkg\">popularity-contest</emphasis> package, and participating to the survey."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The collected data are made public every day. <ulink type=\"block\" url=\"http://popcon.debian.org/\" />"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "These statistics can also help choose between two packages that would seem otherwise equivalent. Choosing the more popular package increases the probability of making a good choice."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Evolution is the GNOME email client and can be installed with <command>apt-get install evolution</command>. Evolution goes beyond a simple email client, and also provides a calendar, an address book, a task list, and a memo (free-form note) application. Its email component includes a powerful message indexing system, and allows for the creation of virtual folders based on search queries on all archived messages. In other words, all messages are stored the same way but displayed in a folder-based organization, each folder containing messages that match a set of filtering criteria."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The Evolution email software"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "An extension to Evolution allows integration to a Microsoft Exchange email system; the required package is <emphasis role=\"pkg\">evolution-exchange</emphasis>."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">evolution-exchange</emphasis></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "KMail"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>KMail</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The KDE email software can be installed with <command>apt-get install kmail</command>. KMail only handles email, but it belongs to a software suite called KDE-PIM (for <emphasis>Personal Information Manager</emphasis>) that includes features such as address books, a calendar component, and so on. KMail has all the features one would expect from an excellent email client."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The KMail email software"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Thunderbird and Icedove"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This email software, included in the <emphasis role=\"pkg\">icedove</emphasis> package, is part of the Mozilla software suite. Various localization sets are available in <emphasis role=\"pkg\">icedove-l10n-*</emphasis> packages; the <emphasis role=\"pkg\">enigmail</emphasis> extension handles message encrypting and signing (alas, it is not available in all languages)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The Icedove email software"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Thunderbird, Mozilla</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Mozilla</primary><secondary>Thunderbird</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Thunderbird is one of the best email clients, and it seems to be a great success, just like Mozilla Firefox."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Strictly speaking, Debian <emphasis role=\"distribution\">Squeeze</emphasis> contains Icedove, and not Thunderbird, for legal reasons we will detail in the “Iceweasel, Firefox and others” section later on; but apart from their names (and icons), there are no real differences between them."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Web Browsers"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Web browser</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>browser, Web</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Epiphany, the web browser in the GNOME suite, uses the WebKit display engine developed by Apple for its Safari browser. The relevant package is <emphasis role=\"pkg\">epiphany-browser</emphasis>."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>WebKit</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Epiphany</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Konqueror, the KDE file manager, also behaves as a web browser. It uses the KDE-specific KHTML rendering engine; KHTML is an excellent engine, as witnessed by the fact that Apple's WebKit is based on KHTML. Konqueror is available in the <emphasis role=\"pkg\">konqueror</emphasis> package. <indexterm><primary>Konqueror</primary></indexterm>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Users not satisfied by either of the above can use Iceweasel. This browser, available in the <emphasis role=\"pkg\">iceweasel</emphasis> package, uses the Mozilla project's Gecko renderer, with a thin and extensible interface on top. <indexterm><primary>Gecko</primary></indexterm> <indexterm><primary>Mozilla</primary><secondary>Firefox</secondary></indexterm> <indexterm><primary>Firefox, Mozilla</primary></indexterm>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "The Iceweasel web browser"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>CULTURE</emphasis> Iceweasel, Firefox and others"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Iceweasel</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Icedove</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Many users will no doubt be surprised by the absence of Mozilla Firefox in the Debian <emphasis role=\"distribution\">Squeeze</emphasis> menus. No need to panic: the <emphasis role=\"pkg\">iceweasel</emphasis> package contains Iceweasel, which is basically Firefox under another name."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The rationale behind this renaming is a result of the usage rules imposed by the Mozilla Foundation on the <trademark>Firefox</trademark> registered trademark: any software named Firefox must use the official Firefox logo and icons. However, since these elements are not released under a free license, Debian cannot distribute them in its <emphasis>main</emphasis> section. Rather than moving the whole browser to <emphasis>non-free</emphasis>, the package maintainer chose to use a different name."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>firefox</command> command still exists in the <emphasis role=\"pkg\">iceweasel</emphasis> package, but only for compatibility with tools that would try to use it."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For similar reasons, the <trademark>Thunderbird</trademark> email client was renamed to Icedove in a similar fashion."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Mozilla</primary><secondary>Firefox</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Firefox, Mozilla</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>CULTURE</emphasis> Mozilla"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Netscape Navigator was the standard browser when the web started reaching the masses, but it was progressively left behind when Microsoft Internet Explorer came around. Faced with this failure, Netscape (the company) decided to “free” its source code, by releasing it under a free license, to give it a second life. This was the beginning of the Mozilla project. After many years of development, the results are more than satisfying: the Mozilla project brought forth an HTML rendering engine (called Gecko) that is among the most standard-compliant. This rendering engine is in particular used by the Mozilla Firefox browser, which is one of the most successful browsers, with a fast-growing user base."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Mozilla</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Netscape</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis role=\"distribution\">Squeeze</emphasis> also brings a relative newcomer on the web browser scene, Chromium (available in the <emphasis role=\"pkg\">chromium-browser</emphasis> package). This browser is developed by Google at such a fast pace that maintaining a single version of it across the whole lifespan of Debian <emphasis role=\"distribution\">Squeeze</emphasis> is unlikely to be possible. Its clear purpose is to make web services more attractive, both by optimizing the browser for performance and by increasing the user's security. The free code that powers Chromium is also used by its proprietary version called Google Chrome."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Development"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Tools for GTK+ on GNOME"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Anjuta (in the <emphasis role=\"pkg\">anjuta</emphasis> package) is a development environment optimized for creating GTK+ applications for GNOME. Glade (in the <emphasis role=\"pkg\">glade</emphasis> package) is an application designed to create GTK+ graphical interfaces for GNOME and save them in an XML file. These XML files can then be loaded by the <emphasis>libglade</emphasis> shared library, which can dynamically recreate the saved interfaces; such a feature can be interesting, for instance for plugins that require dialogs."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Anjuta</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Glade</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The scope of Anjuta is to combine, in a modular way, all the features one would expect from an integrated development environment."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Tools for Qt on KDE"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The equivalent applications for KDE are KDevelop (in the <emphasis role=\"pkg\">kdevelop</emphasis> package) for the development environment, and Qt Designer (in the <emphasis role=\"pkg\">qt3-designer</emphasis> or <emphasis role=\"pkg\">qt4-designer</emphasis> packages) for the design of graphical interfaces for Qt applications on KDE."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The next versions of these applications should be better integrated together, thanks to the KParts component system."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>KDevelop</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Qt</primary><secondary>Designer</secondary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Collaborative Work"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Collaborative Work</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Working in Groups: <foreignphrase>groupware</foreignphrase>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>groupware</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "A previous edition of this book mentioned <emphasis>PHPGroupware</emphasis>, but this software is no longer in Debian… It is no longer actively maintained, and no existing version was compatible with the PHP version 5.3 included in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, which is why the Debian maintainer asked for the package to be removed. <ulink type=\"block\" url=\"http://www.phpgroupware.org/\" />"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>PHPGroupware</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis>eGroupware</emphasis> was also mentioned, but it too went the way of PHPGroupware, but for different reasons. The software is still maintained by the company that develops it, but no volunteer has stepped up to ensure its maintenance within Debian. Should you still wish to use it, the project itself provides Debian packages. <ulink type=\"block\" url=\"http://www.egroupware.org/\" />"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>eGroupware</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "All is not lost though. Many of the features traditionally provided by “groupware” software are increasingly integrated into “standard” software. This is reducing the requirement for specific, specialized groupware software. On the other hand, this usually requires a specific server. A good example for such a server is Kolab, that can integrate into KDE (Kontact, Kmail, and so on), the Horde webmail, Thunderbird (via a plugin) and even into Microsoft Outlook. Kolab is part of Debian <emphasis role=\"distribution\">Squeeze</emphasis> (<emphasis role=\"pkg\">kolab*</emphasis> packages). <ulink type=\"block\" url=\"http://www.kolab.org/\" />"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Kolab</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Instant Messaging Systems"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>messaging</primary><secondary>instant</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When setting up an internal instant messaging system for a company, the obvious choice is Jabber: its protocol is an open standard (XMPP), and there is no shortage of features. The messages can be encrypted, which can be a real bonus, and gateways can be set up between a Jabber server and other instant messaging networks such as ICQ, AIM, Yahoo, MSN, and so on."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Jabber</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>XMPP</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>ICQ</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>AIM</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>Messenger</emphasis></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>ALTERNATIVE</emphasis> Internet Relay Chat"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "IRC can also be considered, instead of Jabber. This system is more centered around the concept of channels, the name of which starts with a hash sign <literal>#</literal>. Each channel is usually targeted at a specific topic and any number of people can join a channel to discuss it (but users can still have one-to-one private conversations if needed). The IRC protocol is older, and does not allow end-to-end encryption of the messages; it is still possible to encrypt the communications between the users and the server by tunneling the IRC protocol inside SSL."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>IRC</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><foreignphrase>Internet Relay Chat</foreignphrase></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "IRC clients are a bit more complex, and they usually provide many features that are of limited use in a corporate environment. For instance, channel “operators” are users endowed with the ability to kick other users from a channel, or even ban them permanently, when the normal discussion is disrupted."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Since the IRC protocol is very old, many clients are available to cater for many user groups; examples include XChat and Smuxi (graphical clients based on GTK+), Irssi (text mode), Erc (integrated to Emacs), Chatzilla (in the Mozilla software suite), and so on."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>QUICK LOOK</emphasis> Video conferencing with Ekiga"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Ekiga (formerly GnomeMeeting) is the most prominent application for Linux video conferencing. It is both stable and functional, and is very easily used on a local network; setting up the service on a global network is much more complex when the firewalls involved lack explicit support for the H323 and/or SIP teleconferencing protocols with all their quirks."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>video conference</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>H323</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If only one Ekiga client is to run behind the firewall, the configuration is rather straightforward, and only involves forwarding a few ports to the dedicated host: TCP port 1720 (listening for incoming connections), TCP port 5060 (for SIP), TCP ports 30000 to 30010 (for control of open connections) and UDP ports 5000 to 5013 (for audio and video data transmission and registration to an H323 proxy)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>GnomeMeeting</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Ekiga</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When several Ekiga clients are to run behind the firewall, complexity increases notably. An H323 proxy (for instance the <emphasis role=\"pkg\">gnugk</emphasis> package) must be set up, and its configuration is far from simple."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">gnugk</emphasis></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Configuring the Server"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Setting up a Jabber server is rather straightforward. After installing the <emphasis role=\"pkg\">ejabberd</emphasis> package, executing <command>dpkg-reconfigure ejabberd</command> will allow customizing the default domain, and create an administrator account. Note that the Jabber server needs a valid DNS name to point at it, so some network administration can be required beforehand. The Falcot Corp administrators picked <literal>jabber.falcot.com</literal> for that purpose."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Once this initial set up is over, the service configuration can be controlled through a web interface accessible at <literal>http://jabber.falcot.com:5280/admin/</literal>. The requested username and password are those that were given earlier during the initial configuration. Note that the username must be qualified with the configured domain: the <literal>admin</literal> account becomes <literal>admin@jabber.falcot.com</literal>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The web interface removes the need to edit a configuration file, but does not always make the task easier, since many options have a peculiar syntax that needs to be known. <filename>/usr/share/doc/ejabberd/guide.html</filename> is therefore a recommended read."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Jabber Clients"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>client</primary><secondary>Jabber</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Jabber</primary><secondary>clients</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "GNOME provides Empathy (in the similarly-named package), a minimalist client that integrates in the notification area of the desktop (on the top-right corner in the default GNOME configuration). It also supports many instant messaging protocols beyond Jabber."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Empathy</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "KDE provides Kopete (in the package of the same name)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Kopete</primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Collaborative Work With FusionForge"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>FusionForge</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "FusionForge is a collaborative development tool with some ancestry in SourceForge, a hosting service for free software projects. It takes the same overall approach based on the standard development model for free software. The software itself has kept evolving after the SourceForge code went proprietary. Its initial authors, VA Software, decided not to release any more free versions. The same happened again when the first fork (GForge) followed the same path. Since various people and organizations have participated in development, the current FusionForge also includes features targeting a more traditional approach to development, as well as projects not purely concerned with software development."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>SourceForge</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "FusionForge can be seen as an amalgamation of several tools dedicated to manage, track and coordinate projects. These tools can be roughly classified into three families:"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis>communication</emphasis>: web forums, mailing-list manager, announcement system allowing a project to publish news;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis>tracking</emphasis>: task tracker to control progress and schedule tasks, trackers for bugs (or patches or feature requests, or any other kind of “ticket”), surveys;"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis>sharing</emphasis>: documentation manager to provide a single central point for documents related to a project, generic file release manager, dedicated website for each project."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Since FusionForge is largely targeting development projects, it also integrates many tools such as CVS, Subversion, Git, Bazaar, Darcs, Mercurial and Arch for source control management or “configuration management” or “version control” — this process has many names. These programs keep a history of all the revisions of all tracked files (often source code files), with all the changes they go through, and they can merge modifications when several developers work simultaneously on the same part of a project."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Most of these tools are accessible, or even managed, through a web interface, with a fine-grained permission system, and email notifications for some events."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Office Suites"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>office suite</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>suite, office</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Office software has long been seen as lacking in the free software world. Users have long asked for replacements for Microsoft tools such as Word and Excel, but these are so complex that replacements were hard to develop. The situation changed when the OpenOffice.org project started (following Sun's release of the StarOffice code under a free license). The GNOME and KDE projects are still working on their offerings (GNOME Office and KOffice), and the friendly competition leads to interesting results. For instance, the Gnumeric spreadsheet (part of GNOME Office) is even better than OpenOffice.org in some domains, notably the precision of its calculations. On the word processing front, the OpenOffice.org suite still leads the way."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>OpenOffice.org</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>StarOffice</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Libre Office</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>GNOME Office</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>KOffice</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Gnumeric</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Another important feature for users is the ability to import Word and Excel documents received from contacts or found in archives. Even though all office suites have filters which allow working on these formats, only the ones found in OpenOffice.org are functional enough for daily use."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>THE BROADER VIEW</emphasis> Libre Office replaces OpenOffice.org"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "OpenOffice.org contributors have set up a foundation (<emphasis>The Document Foundation</emphasis>) to foster project development. The idea had been discussed for some time, but the actual trigger was Oracle's acquisition of Sun. The new ownership made the future of OpenOffice under Oracle uncertain. Since Oracle declined to join the foundation, the developers had to give up on the OpenOffice.org name. The software is now known as <emphasis>Libre Office</emphasis>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "These changes occurred after Debian <emphasis role=\"distribution\">Squeeze</emphasis> was frozen, which explains why the repositories still contain OpenOffice.org… but Libre Office is already available in the <literal>backports.debian.org</literal> package repository, as well as in more recent versions of Debian."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Word, Microsoft</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Excel, Microsoft</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Microsoft</primary><secondary>Word</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Microsoft</primary><secondary>Excel</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "OpenOffice.org, KOffice and GNOME Office are, respectively, available in the <emphasis role=\"pkg\">openoffice.org</emphasis>, <emphasis role=\"pkg\">koffice</emphasis> and <emphasis role=\"pkg\">gnome-office</emphasis> Debian packages. Language-specific packs for OpenOffice.org are distributed in separate packages: <emphasis role=\"pkg\">openoffice.org-l10n-*</emphasis>, <emphasis role=\"pkg\">openoffice.org-help-*</emphasis>, and <emphasis role=\"pkg\">openoffice.org-spellcheck-*</emphasis> (which can be a virtual package provided by <emphasis role=\"pkg\">myspell-*</emphasis>)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Emulating Windows: Wine"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Emulating Windows</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Windows, emulation</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In spite of all the previously mentioned efforts, there are still a number of tools without a Linux equivalent, or for which the original version is absolutely required. This is where Windows emulation systems come in handy. The most well-known among them is Wine. <ulink type=\"block\" url=\"http://www.winehq.com/\" />"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>COMPLEMENTS</emphasis> CrossOver Linux"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis>CrossOver</emphasis>, produced by CodeWeavers, is a set of enhancements to Wine that broaden the available set of emulated features to a point at which Microsoft Office becomes fully usable. Some of the enhancements are periodically merged into Wine. <ulink type=\"block\" url=\"http://www.codeweavers.com/products/\" />"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>CrossOver</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>CodeWeavers</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "However, one should keep in mind that it's only a solution among others, and the problem can also be tackled with a virtual machine or VNC; both of these solutions are detailed in the sidebars."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Let us start with a reminder: emulation allows executing a program (developed for a target system) on a different host system. The emulation software uses the host system, where the application runs, to imitate the required features of the target system."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Wine</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The simplest way of using Wine is with an instance of Microsoft Windows already installed on an existing partition (which will be the case on machines dual-booting with this system). When no installed Windows version is available, Wine works in a less complete way, and fewer programs will be able to run."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The Windows partition must first be mounted (for instance under <filename>/windows/</filename>), and the <command>wine</command> user must have read and write access. The following <filename>fstab</filename> entry grants this access to all users:"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "\n"
+"/dev/hda1 /windows fat defaults,uid=1000,gid=100,umask=002,nls=iso8859-1 0 0\n"
+""
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Now let's install the required packages:"
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid "\n"
+"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"
+""
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>winesetup</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The user then needs to run <command>winecfg</command> and configure <filename>/windows/</filename> to be used as the <literal>C:</literal> drive. Other settings can be kept to their default values. Running Windows programs then becomes a simple matter of running <command>wine <replaceable>/windows/.../program.exe</replaceable></command>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Note that you should not rely on Wine (or similar solutions) without actually testing the particular software: only a real-use test will determine conclusively whether emulation is fully functional."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>ALTERNATIVE</emphasis> Virtual machines"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "An alternative to emulating Microsoft's operating system is to actually run it in a virtual machine that emulates a full hardware machine. This allows running any operating system. <xref linkend=\"advanced-administration\" /> describes several virtualization systems, most notably Xen and KVM (but also QEMU, VMWare and Bochs)."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>ALTERNATIVE</emphasis> <foreignphrase>Windows Terminal Server</foreignphrase> or VNC"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Yet another possibility is to remotely run the legacy Windows applications on a central server with <emphasis>Windows Terminal Server</emphasis> and access the application from Linux machines using <emphasis>rdesktop</emphasis>. This is a Linux client for the RDP protocol (<emphasis>Remote Desktop Protocol</emphasis>) that <foreignphrase>Windows NT/2000 Terminal Server</foreignphrase> uses to display desktops on remote machines."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>RDP</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>Remote Desktop Protocol</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis>Windows Terminal Server</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The VNC software provides similar features, with the added benefit of also working with many operating systems. Linux VNC clients and servers are described in <xref linkend=\"sect.remote-login\" />."
+msgstr ""
+

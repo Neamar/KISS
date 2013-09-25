@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:35\n"
-"PO-Revision-Date: 2013-07-17 03:11+0200\n"
+"PO-Revision-Date: 2013-09-04 03:22+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/06_apt/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.6-dev\n"
+"X-Generator: Weblate 1.7-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -55,11 +55,10 @@ msgstr "Manutenções e atualizações: As ferramentas APT"
 #, no-c-format
 msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, the features of which Falcot Corp administrators studied with enthusiasm."
 msgstr ""
-"O que faz o Debian tão popular com administradores é o quão facilmente um "
-"programa pode ser instalado e o quão facilmente o sistema inteiro pode ser "
-"atualizado. Essa vantagem única é amplamente devido ao programa "
-"<emphasis>APT</emphasis>, características quais os administradores da "
-"Falcot Corp estudaram com entusiasmo."
+"O que faz o Debian tão popular entre os administradores é a facilidade para "
+"instalar um programa e atualizar o sistema inteiro. Esta única vantagem é em "
+"grande parte devida ao programa <emphasis>APT</emphasis>, cuja "
+"características os administradores da Falcot Corp estudaram com entusiasmo."
 
 #. Tag: para
 #, no-c-format
@@ -2141,21 +2140,54 @@ msgstr ""
 #, no-c-format
 msgid "Suggestions between packages are also taken into account, but in a manner adapted to their specific status. For example, since <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> suggests <emphasis role=\"pkg\">gnome-audio</emphasis>, the latter will be displayed on the summary screen of pending actions (in the section of packages suggested by other packages). This way, it is visible and the administrator can decide whether to take the suggestion into account or not. Since it is only a suggestion and not a dependency or a recommendation, the package will not be selected automatically — its selection requires a manual intervention from the user (thus, the package will not be marked as automatic)."
 msgstr ""
+"Sugestões entre pacotes são também levadas em consideração, mas adaptadas a "
+"seu status específico. Por exemplo, já que o <emphasis role=\"pkg\">gnome-"
+"desktop-environment</emphasis> sugere o <emphasis role=\"pkg\">gnome-"
+"audio</emphasis>, este último será exibido na tela de resumo das ações "
+"pendentes (na seção de pacotes sugeridos por outros pacotes). Desta forma, "
+"ficará visível e o administrador poderá decidir se deve aceitar a sugestão "
+"ou não. Já que isto é apenas uma sugestão e não uma dependência ou uma "
+"recomendação, o pacote não será selecionado automaticamente — sua seleção "
+"requer uma intervenção manual do usuário (portanto o pacote não será marcado "
+"como automático)."
 
 #. Tag: para
 #, no-c-format
 msgid "In the same spirit, remember that <command>aptitude</command> makes intelligent use of the concept of task. Since tasks are displayed as categories in the screens of package lists, you can either select a full task for installation or removal, or browse the list of packages included in the task to select a smaller subset."
 msgstr ""
+"No mesmo espírito, lembre que o <command>aptitude</command> faz um uso "
+"inteligente do conceito de tarefa. Como tarefas são mostradas como "
+"categorias nas telas de listas de pacotes, você pode tanto selecionar uma "
+"tarefa completa para instalar ou remover, ou navegar na lista de pacotes "
+"inclusa na tarefa para selecionar um subconjunto menor."
 
 #. Tag: title
 #, no-c-format
 msgid "Better Solver Algorithms"
-msgstr ""
+msgstr "Algoritmos de Solução Melhores"
 
 #. Tag: para
 #, no-c-format
 msgid "To conclude this section, let's note that <command>aptitude</command> has more elaborate algorithms compared to <command>apt-get</command> when it comes to resolving difficult situations. When a set of actions is requested and when these combined actions would lead to an incoherent system, <command>aptitude</command> evaluates several possible scenarios and presents them in order of decreasing relevance. However, these algorithms are not failproof. Fortunately there is always the possibility to manually select the actions to perform. When the currently selected actions lead to contradictions, the upper part of the screen indicates a number of “broken” packages (and you can directly navigate to those packages by pressing <keycombo><keycap>b</keycap></keycombo>). It is then possible to manually build a solution for the problems found. In particular, you can get access to the different available versions by simply selecting the package with <keycombo><keycap>Enter</keycap></keycombo>. If the selection of one of these versions solves the problem, you should not hesitate to use the function. When the number of broken packages gets down to zero, you can safely go to the summary screen of pending actions for a last check before you apply them."
 msgstr ""
+"Para concluir esta seção, note que o <command>aptitude</command> tem "
+"algoritmos mais elaborados comparado com o <command>apt-get</command> quando "
+"se trata de resolver situações difíceis. Quando um conjunto de ações é "
+"requerido e quando estas ações combinadas levam a um sistema incoerente, o "
+"<command>aptitude</command> calcula vários cenários possíveis e apresenta "
+"eles domais para o manos relevante. Entretanto, estes algoritmos não são à "
+"prova de falhas. Afortunadamente existe  sempre a possibilidade de fazer uma "
+"seleção manual das ações a realizar. Quando as ações atualmente "
+"selecionadas levam a uma contradição, a parte de cima da tela indica um "
+"número de pacotes \"quebrados\" (e você pode diretamente navegar para estes "
+"pacotes pressionando <keycombo><keycap>b</keycap></keycombo>). É então "
+"possível construir manualmente uma solução para os problemas encontrados. Em "
+"particular, você pode obter acesso a diferentes versões disponíveis "
+"simplesmente selecionando o pacote com "
+"<keycombo><keycap>Enter</keycap></keycombo>. Se a seleção de uma destas "
+"versões resolve o problema, não hesite em usá-la. Quando o número de pacotes "
+"quebrados baixa a zero, você pode seguramente ir para a tela de resumo das "
+"ações pendentes para uma última verificação antes de aplicar as ações."
 
 #. Tag: title
 #, no-c-format
@@ -2166,11 +2198,25 @@ msgstr "<emphasis>NOTA</emphasis> logs do <command>aptitude</command>"
 #, no-c-format
 msgid "Like <command>dpkg</command>, <command>aptitude</command> keeps a trace of executed actions in its logfile (<filename>/var/log/aptitude</filename>). However, since both commands work at a very different level, you cannot find the same information in their respective logfiles. While <command>dpkg</command> logs all the operations executed on individual packages step by step, <command>aptitude</command> gives a broader view of high-level operations like a system-wide upgrade."
 msgstr ""
+"Assim como o <command>dpkg</command>, <command>aptitude</command> mantém um "
+"registro das ações executadas no seu arquivo de log "
+"(<filename>/var/log/aptitude</filename>). Entretanto, como os dois comandos "
+"trabalham em níveis muito diferentes, você não achará a mesma informação nos "
+"seus respectivos arquivos de log. Enquanto o  <command>dpkg</command> loga "
+"todas as operações executadas em pacotes individuais, passo a passo, o  "
+"<command>aptitude</command> dá uma visão geral das operações de alto nível, "
+"como uma atualização de sistema."
 
 #. Tag: para
 #, no-c-format
 msgid "Beware, this logfile only contains a summary of operations performed by <command>aptitude</command>. If other front-ends (or even <command>dpkg</command> itself) are occasionally used, then <command>aptitude</command>'s log will only contain a partial view of the operations, so you can't rely on it to build a trustworthy history of the system."
 msgstr ""
+"Cuidado, este arquivo de log contém um resumo das operações realizadas pelo "
+"<command>aptitude</command>. Se outras interfaces (ou o próprio "
+"<command>dpkg</command>) forem usadas ocasionalmente, então o log do "
+"<command>aptitude</command> vai conter apenas uma visão parcial das "
+"operações, de forma que você não pode se basear simplesmente nele para ter "
+"uma história totalmente confiável do seu sistema."
 
 #. Tag: title
 #, no-c-format
@@ -2181,6 +2227,15 @@ msgstr "<command>synaptic</command>"
 #, no-c-format
 msgid "<command>synaptic</command> is a graphical package manager for Debian which features a clean and efficient graphical interface based on GTK+/GNOME. Its many ready-to-use filters give fast access to newly available packages, installed packages, upgradable packages, obsolete packages and so on. If you browse through these lists, you can select the operations to be done on the packages (install, upgrade, remove, purge); these operations are not performed immediately, but put into a task list. A single click on a button then validates the operations, and they are performed in one go."
 msgstr ""
+"<command>synaptic</command> é um gerenciador de pacotes gráfico para o "
+"Debian que possui uma interface gráfica limpa e eficiente baseada em "
+"GTK+/GNOME. Seus muitos filtros prontos para uso permitem o acesso rápido a "
+"novos pacotes disponibilizados, pacotes instalados, pacotes atualizáveis, "
+"pacotes obsoletos e muito mais. Se você navegar através destas listas, você "
+"poderá selecionar as operacões a serem feitas nos pacotes (instalar, "
+"atualizar, remover, expurgar); estas operações não são realizadas "
+"imediatamente, mas postas em uma lista de tarefas. Um único clique de um "
+"botão então valida as operações, que são então realizadas todas juntas."
 
 #. Tag: title
 #, no-c-format
@@ -2217,11 +2272,31 @@ msgstr "<primary>assinatura</primary><secondary>de um pacote</secondary>"
 #, no-c-format
 msgid "Security is very important for Falcot Corp administrators. Accordingly, they need to ensure that they only install packages which are guaranteed to come from Debian with no tampering on the way. A computer cracker could try to add malicious code to an otherwise legitimate package. Such a package, if installed, could do anything the cracker designed it to do, including for instance disclosing passwords or confidential information. To circumvent this risk, Debian provides a tamper-proof seal to guarantee — at install time — that a package really comes from its official maintainer and hasn't been modified by a third party."
 msgstr ""
+"Segurança é muito importante para os administradores da Falcot Corp. E desta "
+"forma, eles precisam ter certeza que estão instalando pacotes que vem do "
+"Debian, sem interceptações no caminho. Um cracker de computador pode tentar "
+"adicionar código malicioso num pacote que de outra forma seria legítimo. Tal "
+"pacote, se instalado, poderia fazer qualquer coisa que o cracker o tivesse "
+"projetado para fazer, incluindo por exemplo revelar senhas e informações "
+"confidenciais. Para evitar este risco, o Debian fornece um selo de qualidade "
+"a prova de interceptações para garantir - no momento da instalação - que um "
+"pacote realmente vem de um mentenedor oficial e não foi modificado por um "
+"terceiro."
 
 #. Tag: para
 #, no-c-format
 msgid "The seal works with a chain of cryptographical hashes and a signature. The signed file is the <filename>Release</filename> file, provided by the Debian mirrors. It contains a list of the <filename>Packages</filename> files (including their compressed forms, <filename>Packages.gz</filename> and <filename>Packages.bz2</filename>, and the incremental versions), along with their MD5, SHA1 and SHA256 hashes, which ensures that the files haven't been tampered with. These <filename>Packages</filename> files contain a list of the Debian packages available on the mirror, along with their hashes, which ensures in turn that the contents of the packages themselves haven't been altered either."
 msgstr ""
+"O selo funciona como uma cadeia de hashes criptográficos e uma assinatura. O "
+"arquivo assinado é o arquivo <filename>Release</filename> file, fornecido "
+"pelos espelhos Debian. Ele contém uma lista de arquivos "
+"<filename>Packages</filename> (incluindo suas formas compactadas, "
+"<filename>Packages.gz</filename> e <filename>Packages.bz2</filename>, e as "
+"versões incrementais), junto com suas hashes MD5, SHA1 e SHA256 que garantem "
+"que os arquivos não foram interceptados. Estes arquivos "
+"<filename>Packages</filename> contém uma lista de pacotes Debian disponíveis "
+"no espelho, junto com seus hashes, que garantem, por sua vez, que os "
+"conteúdos dos próprios pacotes também não foram alterados."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2232,6 +2307,20 @@ msgstr "<primary><command>apt-key</command></primary>"
 #, no-c-format
 msgid "The trusted keys are managed with the <command>apt-key</command> command found in the <emphasis role=\"pkg\">apt</emphasis> package. This program maintains a keyring of GnuPG public keys, which are used to verify signatures in the <filename>Release.gpg</filename> files available on the mirrors. It can be used to add new keys manually (when non-official mirrors are needed). Generally however, only the official Debian keys are needed. These keys are automatically kept up-to-date by the <emphasis role=\"pkg\">debian-archive-keyring</emphasis> package (which invokes <command>apt-key</command> when it is installed or upgraded). However, the first installation of this particular package requires caution: even if the package is signed like any other, the signature cannot be verified externally. Cautious administrators should therefore check the fingerprints of imported keys before trusting them to install new packages:"
 msgstr ""
+"As chaves confiáveis são gerenciadas com o comando <command>apt-"
+"key</command> encontrado no pacote <emphasis role=\"pkg\">apt</emphasis>. Este "
+"programa mantém um chaveiro de chaves públicas GnuPG, que são usados para "
+"verificar assinaturas nos arquivos <filename>Release.gpg</filename> "
+"disponíveis nos espelhos. Ele pode ser usado para adicionar novas chaves "
+"manualmente (quando espelhos não-oficiais são necessários). Mas normalmente "
+"apenas as chaves Debian oficiais são necessárias. Estas chaves são mantidas "
+"atualizadas automaticamente pelo pacote <emphasis role=\"pkg\">debian-archive-"
+"keyring</emphasis> (que invoca o comando <command>apt-key</command> quando "
+"ele é instalado ou atualizado). Entretanto, a primeira instalação deste "
+"pacote em particular requer cautela: mesmo se o pacote é assinado como "
+"qualquer outro, a assinatura não pode ser verificada externamente. "
+"Administradores cautelosos devem portanto verificar as \"fingerprints\" de "
+"chaves importadas antes de confiar nelas para instalar novos pacotes:"
 
 #. Tag: screen
 #, no-c-format
@@ -2306,21 +2395,43 @@ msgstr "<primary>chave confiável</primary>"
 #, no-c-format
 msgid "When a third-party package source is added to the <filename>sources.list</filename> file, APT needs to be told about the corresponding GPG trusted key (otherwise it will keep complaining that it can't ensure the authenticity of the packages coming from that repository). The first step is of course to get the public key. More often than not, the key will be provided as a small text file, which we'll call <filename>key.asc</filename> in the following examples."
 msgstr ""
+"Quando uma origem de pacotes de terceiros é adicionada ao arquivo "
+"<filename>sources.list</filename>, o APT precisa ficar sabendo da chave "
+"confiável GPG correspondente (caso contrário ele vai ficar reclamando que "
+"não pode garantir a autenticidade dos pacotes vindo daquele repositório). O "
+"primeiro passo, obviamente, é obter a chave pública. Em geral, a chave vai "
+"ser fornecida como um pequeno arquivo texto, que vamos chamar de "
+"<filename>key.asc</filename> nos seguintes exemplos."
 
 #. Tag: para
 #, no-c-format
 msgid "To add the key to the trusted keyring, the administrator can run <command>apt-key add &lt; key.asc</command>. Another way is to use the <command>synaptic</command> graphical interface: its “Authentication” tab in the <menuchoice><guimenu>Settings</guimenu> <guisubmenu>Repositories</guisubmenu></menuchoice> menu gives the possibility of importing a key from the <filename>key.asc</filename> file."
 msgstr ""
+"Para adicionar a chave ao chaveiro confiável, o administrador pode executar "
+"<command>apt-key add &lt; key.asc</command>. Ou usar a interface gráfica "
+"<command>synaptic</command>: sua aba \"Autenticação\" no menu "
+"<menuchoice><guimenu>Configurações</guimenu> "
+"<guisubmenu>Repositórioos</guisubmenu></menuchoice> dá a possibilidade de "
+"importar uma chave do arquivo <filename>key.asc</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "For people who would want a dedicated application and more details on the trusted keys, it is possible to use <command>gui-apt-key</command> (in the package of the same name), a small graphical user interface which manages the trusted keyring. <indexterm><primary><emphasis role=\"pkg\">gui-apt-key</emphasis></primary></indexterm>"
 msgstr ""
+"Para pessoas que precisam de uma aplicação dedicada e mais detalhes sobre as "
+"chaves confiáveis, é possível usar o <command>gui-apt-key</command> (no "
+"pacote de mesmo nome), uma pequena interface gráfica que gerencia o chaveiro "
+"confiável. <indexterm><primary><emphasis role=\"pkg\">gui-apt-"
+"key</emphasis></primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the appropriate keys are in the keyring, APT will check the signatures before any risky operation, so that front-ends will display a warning if asked to install a package whose authenticity can't be ascertained."
 msgstr ""
+"Uma vez que as chaves apropriadas estiverem no chaveiro, o APT vai verificar "
+"as assinaturas antes de operações arriscadas, e as interface vão exibir um "
+"aviso se tiverem que instalar um pacote cuja autenticidade não puder ser "
+"verificada."
 
 #. Tag: title
 #, no-c-format
@@ -2331,6 +2442,13 @@ msgstr "Atualizando de uma Versão Estável para a Próxima"
 #, no-c-format
 msgid "One of the best-known features of Debian is its ability to upgrade an installed system from one stable release to the next: <foreignphrase>dist-upgrade</foreignphrase> — a well-known phrase — has largely contributed to the project's reputation. With a few precautions, upgrading a computer can take as little as a few, or a few dozen, minutes depending on the download speed from the package repositories."
 msgstr ""
+"Uma das funcionalidades mais conhecidas do Debian é sua habilidade de "
+"atualizar um sistema instalado de uma versão estável para a próxima: "
+"<foreignphrase>dist-upgrade</foreignphrase> — um termo bem conhecido — tem "
+"contribuído amplamente para a reputação do projeto. Com algumas poucas "
+"precauções, atualizar um computador pode levar alguns minutos, ou algumas "
+"dezenas de minutos, dependendo da velocidade do download do do repositório "
+"de pacotes."
 
 #. Tag: title
 #, no-c-format
@@ -2341,6 +2459,9 @@ msgstr "Procedimento Recomendado"
 #, no-c-format
 msgid "Since Debian has quite some time to evolve in-between stable releases, you should read the release notes before upgrading."
 msgstr ""
+"Como o Debian tem bastante tempo para evoluir entre lançamentos da versão "
+"estável, você deve ler as notas de lançamento (\"release notes\") antes de "
+"atualizar."
 
 #. Tag: title
 #, no-c-format
@@ -2351,21 +2472,46 @@ msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Notas de lançamento"
 #, no-c-format
 msgid "The release notes for an operating system (and, more generally, for any software) are a document giving an overview of the software, with some details concerning the particularities of one version. These documents are generally short compared to the complete documentation, and they usually list the features which have been introduced since the previous version. They also give details on upgrading procedures, warnings for users of previous versions, and sometimes errata."
 msgstr ""
+"As notas de lançamento para um sistema operacional (e, mais geralmente, para "
+"qualquer software) são um documento que dá uma visão geral do software, com "
+"alguns detalhes a respeito das particularidades de uma determinada versão. "
+"Estes documentos são em geral curtos se comparados com a documentação "
+"completa, e eles normalmente listam as funcionalidades que foram incluídas "
+"da versão anterior para a atual. Eles também dão detalhes dos procedimentos "
+"de atualização, alertas para os usuários da versão anterior e algumas "
+"erratas."
 
 #. Tag: para
 #, no-c-format
 msgid "Release notes are available online: the release notes for the current stable release have a dedicated URL, while older release notes can be found with their codenames: <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/releasenotes\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/lenny/releasenotes\" />"
 msgstr ""
+"As notas de lançamento estão disponíveis online: as notas de lançamento para "
+"a versão atual da estável tem uma URL dedicada, enquanto notas de "
+"lançamento mais antigas podem ser encontradas com seus codinomes: <ulink "
+"type=\"block\" url=\"http://www.debian.org/releases/stable/releasenotes\" /> "
+"<ulink type=\"block\" url=\"http://www.debian.org/releases/lenny/releasenotes\" "
+"/>"
 
 #. Tag: para
 #, no-c-format
 msgid "In this section, we will focus on upgrading a <emphasis role=\"distribution\">Lenny</emphasis> system to <emphasis role=\"distribution\">Squeeze</emphasis>. This is a major operation on a system; as such, it is never 100% risk-free, and should not be attempted before all important data has been backed up."
 msgstr ""
+"Nesta seção, vamos focar em atualizar um sistema de <emphasis "
+"role=\"distribution\">Lenny</emphasis> para <emphasis "
+"role=\"distribution\">Squeeze</emphasis>. Esta é uma operação importante num "
+"sistema; e como tal, nunca é 100% segura, e só deve ser tentada depois que "
+"todos os dados tenham sido protegidos num backup."
 
 #. Tag: para
 #, no-c-format
 msgid "Another good habit which makes the upgrade easier (and shorter) is to tidy your installed packages and keep only the ones that are really needed. Helpful tools to do that include <command>aptitude</command>, <command>deborphan</command> and <command>debfoster</command> (see <xref linkend=\"aptitude\" />). For example, you can use the following command:"
 msgstr ""
+"Outro hábito que mantém a atualização mais fácil (e rápida) é organizar a "
+"quantidade de pacotes instalados e manter  apenas aqueles que são realmente "
+"necessários. Ferramentas úteis para isto incluem "
+"<command>aptitude</command>, <command>deborphan</command> e "
+"<command>debfoster</command> (veja <xref linkend=\"aptitude\" />). Por "
+"exemplo, você pode usar o seguinte comando:"
 
 #. Tag: screen
 #, no-c-format
@@ -2378,46 +2524,92 @@ msgstr "<computeroutput># </computeroutput><userinput>deborphan | xargs aptitude
 #, no-c-format
 msgid "Now for the upgrading itself. First, you need to change the <filename>/etc/apt/sources.list</filename> file to tell APT to get its packages from <emphasis role=\"distribution\">Squeeze</emphasis> instead of <emphasis role=\"distribution\">Lenny</emphasis>. If the file only contains references to <emphasis role=\"distribution\">Stable</emphasis> rather than explicit codenames, the change isn't even required, since <emphasis role=\"distribution\">Stable</emphasis> always refers to the latest released version of Debian. In both cases, the database of available packages must be refreshed (with the <command>aptitude update</command> command or the refresh button in <command>synaptic</command>)."
 msgstr ""
+"Agora para a atualização em si. Primeiro, você precisa mudar o arquivo "
+"<filename>/etc/apt/sources.list</filename> para dizer ao APT para obter os "
+"pacotes da <emphasis role=\"distribution\">Squeeze</emphasis> ao invés da "
+"<emphasis role=\"distribution\">Lenny</emphasis>. Se o arquivo apenas contém "
+"referências à <emphasis role=\"distribution\">Stable</emphasis> ao invés do "
+"codinome explicitamente, esta mudança não é necessária, já que o nome "
+"<emphasis role=\"distribution\">Stable</emphasis> sempre se refere à última "
+"versão lançcada do Debian. Em ambos os casos, o banco de dados de pacotes "
+"disponíveis deve ser atualizado (com o comando <command>aptitude "
+"update</command> ou o botão command or the recarregar no "
+"<command>synaptic</command>)."
 
 #. Tag: para
 #, no-c-format
 msgid "Once these new package sources are registered, you need to upgrade the <emphasis role=\"pkg\">aptitude</emphasis> and <emphasis role=\"pkg\">apt</emphasis> packages; their versions in <emphasis role=\"distribution\">Lenny</emphasis> have some limitations that could compromise the automatic upgrade."
 msgstr ""
+"Uma vez que estas novas origens de pacotes estiverem registradas, você vai "
+"precisar atualizar os pacotes <emphasis role=\"pkg\">aptitude</emphasis> e "
+"<emphasis role=\"pkg\">apt</emphasis>; suas versões na <emphasis "
+"role=\"distribution\">Lenny</emphasis> tem algumas limitações que podem "
+"comprometer a atualização automática."
 
 #. Tag: para
 #, no-c-format
 msgid "Remember to upgrade (or install) the most essential packages listed below, otherwise you might find that your system is unbootable:"
 msgstr ""
+"lembre de atualizar (ou instalar) os pacotes mais essenciais listados "
+"abaixo, caso contrário você pode terminar com um sistema que não inicia:"
 
 #. Tag: para
 #, no-c-format
 msgid "the bootloader <emphasis role=\"pkg\">grub-pc</emphasis> or <emphasis role=\"pkg\">grub-legacy</emphasis> (sometimes <emphasis role=\"pkg\">lilo</emphasis>);"
 msgstr ""
+"o carregador de boot <emphasis role=\"pkg\">grub-pc</emphasis> ou o <emphasis "
+"role=\"pkg\">grub-legacy</emphasis> (às vezes <emphasis "
+"role=\"pkg\">lilo</emphasis>);"
 
 #. Tag: para
 #, no-c-format
 msgid "the tools that build the initial ramdisk (initrd): <emphasis role=\"pkg\">initramfs-tools</emphasis>;"
 msgstr ""
+"a ferramenta que constrói o ramdisk inicial (initrd): <emphasis role=\"pkg"
+"\">initramfs-tools</emphasis>;"
 
 #. Tag: para
 #, no-c-format
 msgid "the standard library: <emphasis role=\"pkg\">libc6</emphasis> or one of its optimized variants such as <emphasis role=\"pkg\">libc6-i686</emphasis>;"
 msgstr ""
+"a biblioteca padrão: <emphasis role=\"pkg\">libc6</emphasis> ou uma de suas "
+"variações otimizadas como a <emphasis role=\"pkg\">libc6-i686</emphasis>;"
 
 #. Tag: para
 #, no-c-format
 msgid "the management system for device files: <emphasis role=\"pkg\">udev</emphasis>;"
 msgstr ""
+"o sistema de gestão para arquivos de dispositivo: <emphasis "
+"role=\"pkg\">udev</emphasis>;"
 
 #. Tag: para
 #, no-c-format
 msgid "last but not least, the kernel: depending on the hardware, the metapackages to use are <emphasis role=\"pkg\">linux-image-486</emphasis>, <emphasis role=\"pkg\">linux-image-686</emphasis> or <emphasis role=\"pkg\">linux-image-686-bigmem</emphasis>. These packages will only work for the i386 architecture; owners of computers based on different hardware will use other packages, most likely <emphasis role=\"pkg\">linux-image-2.6-amd64</emphasis> for AMD64 or <emphasis role=\"pkg\">linux-image-powerpc*</emphasis> for PowerPC."
 msgstr ""
+"e por último, mas não menos importante, o núcleo: dependendo do hardware, os "
+"metapacotes para usar são <emphasis role=\"pkg\">linux-image-486</emphasis>, "
+"<emphasis role=\"pkg\">linux-image-686</emphasis> ou <emphasis role=\"pkg"
+"\">linux-image-686-bigmem</emphasis>. Estes pacotes só vão funcionar na "
+"arquitetura i386; proprietários de computadores baseados em hardware "
+"diferente vão usar outros pacotes, mais provavelmente <emphasis role=\"pkg"
+"\">linux-image-2.6-amd64</emphasis> para AMD64 ou <emphasis role=\"pkg\">linux-"
+"image-powerpc*</emphasis> para PowerPC."
 
 #. Tag: para
 #, no-c-format
 msgid "Once these first steps are done, it is time to handle the upgrade itself, either with <command>aptitude</command> or <command>synaptic</command>. You should carefully check the suggested actions before applying them: you might want to add suggested packages or deselect packages which are only recommended and known not to be useful. In any case, the front-end should come up with a scenario ending in a coherent and up-to-date <emphasis role=\"distribution\">Squeeze</emphasis> system. Then, all you need is to do is wait while the required packages are downloaded, answer the Debconf questions and possibly those about locally modified configuration files, and sit back while APT does its magic."
 msgstr ""
+"Uma vez que estes primeiros passos tenha sido feitos, é hora de partir para "
+"a atualização em si, com o <command>aptitude</command> ou com o "
+"<command>synaptic</command>. Você deve cuidadosamente verificar as ações "
+"sugeridas antes de aplicá-las: você pode querer adicionar os pacotes "
+"sugeridos ou desmarcar pacotes que são apenas recomendados e que você saiba "
+"que não serão úteis. De qualquer forma, a interface deve terminar com um "
+"cenário de um sistema <emphasis role=\"distribution\">Squeeze</emphasis> "
+"coerente e atualizado. Então, tudo o que você tem a fazer é esperar que os "
+"pacotes necessários sejam baixados, responder as perguntas do Debconf e "
+"possivelmente as perguntas relativas a arquivos de configuração localmente "
+"modificados, e sentar e esperar que o APT faça sua mágica."
 
 #. Tag: title
 #, no-c-format
@@ -2428,41 +2620,87 @@ msgstr "Lidando com Problemas após uma Atualização"
 #, no-c-format
 msgid "In spite of the Debian maintainers' best efforts, a major system upgrade isn't always as smooth as you could wish. New software versions may be incompatible with previous ones (for instance, their default behavior or their data format may have changed). Also, some bugs may slip through the cracks despite the testing phase which always precedes a Debian release."
 msgstr ""
+"Apesar dos esforços dos mantenedores Debian, uma atualização geral do "
+"sistema não é sempre tão suave quando você gostaria. Novas versões de "
+"software podem ser incompatíveis com versões anteriores (por exemplo, seu "
+"comportamento padrão ou seu formato de dados pode ter mudado). Além disso, "
+"alguns bugs podem passam despercebidos apesar da fase de testes pela qual o "
+"lançamento do Debian sempre passa."
 
 #. Tag: para
 #, no-c-format
 msgid "To anticipate some of these problems, you can install the <emphasis role=\"pkg\">apt-listchanges</emphasis> package, which displays information about possible problems at the beginning of a package upgrade. This information is compiled by the package maintainers and put in <filename>/usr/share/doc/<replaceable>package</replaceable>/NEWS.Debian</filename> files for the benefit of users. Reading these files (possibly through <emphasis role=\"pkg\">apt-listchanges</emphasis>) should help you avoid bad surprises."
 msgstr ""
+"Para antecipar alguns destes problemas, você pode instalar o pacote "
+"<emphasis role=\"pkg\">apt-listchanges</emphasis>, que mostra informações "
+"sobre possíveis problemas no início de uma atualização de pacotes. Esta "
+"informação é compilada pelos mantenedores de pacote e colocada em arquivos <"
+"filename>/usr/share/doc/<replaceable>package</replaceable>/NEWS.Debian</file"
+"name> para os usuários usarem. A leitura destes arquivos (possivelmente "
+"através do <emphasis role=\"pkg\">apt-listchanges</emphasis>) pode evitar "
+"surpresas desagradáveis."
 
 #. Tag: para
 #, no-c-format
 msgid "You might sometimes find that the new version of a software doesn't work at all. This generally happens if the application isn't particularly popular and hasn't been tested enough; a last-minute update can also introduce regressions which are only found after the stable release. In both cases, the first thing to do is to have a look at the bug tracking system at <literal>http://bugs.debian.org/<replaceable>package</replaceable></literal>, and check whether the problem has already been reported. If it hasn't, you should report it yourself with <command>reportbug</command>. If it is already known, the bug report and the associated messages are usually an excellent source of information related to the bug:"
 msgstr ""
+"Ás vezes você descobre que uma nova versão de um software não funciona de "
+"jeito nenhum. Isto geralmente acontece se a aplicação não é muito popular e "
+"não foi testada o suficiente; uma atualização que acabou de acontecer também "
+"pode introduzir regressões que são encontradas apenas no lançamento estável "
+"(\"stable\"). Em ambos os casos, a primeira coisa a fazer é olhar o sistema "
+"de rastreamento de bugs em <literal>http://bugs.debian.org/<replaceable>pack"
+"age</replaceable></literal>, e verificar se o problema já foi relatado. Se "
+"não tiver sido, você mesmo pode relatá-lo com o "
+"<command>reportbug</command>. Se ele já é conhecido, o bug report e as "
+"mensagens associadas a ele normalmente são uma excelente fonte de "
+"informações relativas ao bug:"
 
 #. Tag: para
 #, no-c-format
 msgid "sometimes a patch already exists, and it is available on the bug report; you can then recompile a fixed version of the broken package locally (see <xref linkend=\"sect.rebuilding-package\" />);"
 msgstr ""
+"algumas vezes um patch já existe, e está disponível no bug report; você pode "
+"recompilar uma versão consertada de um pacote quebrado localmente (see "
+"<xref linkend=\"sect.rebuilding-package\" />);"
 
 #. Tag: para
 #, no-c-format
 msgid "in other cases, users may have found a workaround for the problem and shared their insights about it in their replies to the report;"
 msgstr ""
+"Em outros casos, os usuários podem encontrar uma gambiarra para o problema e "
+"compartilhar suas ideias nas respostas do bug report;"
 
 #. Tag: para
 #, no-c-format
 msgid "in yet other cases, a fixed package may have already been prepared and made public by the maintainer."
 msgstr ""
+"em outros casos, um pacote consertado já pode ter sido preparado e publicado "
+"pelo mantenedor."
 
 #. Tag: para
 #, no-c-format
 msgid "Depending on the severity of the bug, a new version of the package may be prepared specifically for a new revision of the stable release. When this happens, the fixed package is made available in the <literal>proposed-updates</literal> section of the Debian mirrors (see <xref linkend=\"section.proposed-updates\" />). The corresponding entry can then be temporarily added to the <filename>sources.list</filename> file, and updated packages can be installed with <command>apt-get</command> or <command>aptitude</command>."
 msgstr ""
+"Dependendo da severidade do bug, uma nova versão do pacote pode ser "
+"preparada especificamente para para uma nova revisão do lançamento estável. "
+"Quando isto acontece, o pacote consertado é disponibilizado na seção "
+"<literal>proposed-updates</literal> dos espelhos Debian (veja <xref "
+"linkend=\"section.proposed-updates\" />). A entrada correspondente pode então "
+"ser adicionada temporariamente ao arquivo <filename>sources.list</filename>, "
+"e pacotes atualizados podem ser instalados com <command>apt-get</command> "
+"ou <command>aptitude</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes the fixed package isn't available in this section yet because it is pending a validation by the Stable Release Managers. You can verify if that's the case on their web page. Packages listed there aren't available yet, but at least you know that the publication process is ongoing. <ulink type=\"block\" url=\"http://release.debian.org/proposed-updates/stable.html\" />"
 msgstr ""
+"Por vezes, o pacote consertado não fica disponível nesta seção por faltar a "
+"validação de alguma pendência dos Stable Release Managers. Você pode "
+"verificar se este é o caso na página deles. Pacotes listados lá ainda não "
+"foram disponibilizados, mas pelo menos você saberá que o processo de "
+"publicação está andando. <ulink type=\"block\" url=\"http://release.debian.org"
+"/proposed-updates/stable.html\" />"
 
 #. Tag: title
 #, no-c-format
@@ -2473,21 +2711,56 @@ msgstr "Mantendo um Sistema Atualizado"
 #, no-c-format
 msgid "The Debian distribution is dynamic and changes continually. Most of the changes are in the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> versions, but even <emphasis role=\"distribution\">Stable</emphasis> is updated from time to time, mostly for security-related fixes. Whatever version of Debian a system runs, it is generally a good idea to keep it up to date, so that you can get the benefit of recent evolutions and bug fixes."
 msgstr ""
+"A distribuição Debian é dinâmica e muda continuamente. A maioria das "
+"mudanças ficam nas versões <emphasis role=\"distribution\">Testing</emphasis> "
+"e <emphasis role=\"distribution\">Unstable</emphasis>, mas mesmo a <emphasis "
+"role=\"distribution\">Stable</emphasis> é atualizada de tempos em tempos, "
+"geralmente por algo relativo a segurança. Qualquer que seja a versão do "
+"Debian que o sistema rodar, é geralmente uma boa ideia mantê-la atualizada, "
+"de forma que você possa se beneficiar das recentes evoluções e consertos de "
+"bug."
 
 #. Tag: para
 #, no-c-format
 msgid "While it is of course possible to periodically run a tool to check for available updates and run the upgrades, such a repetitive task is tedious, especially when it needs to be performed on several machines. Fortunately, like many repetitive tasks, it can be partly automated, and a set of tools have already been developed to that effect."
 msgstr ""
+"Mesmo que seja obviamente possível executar periodicamente uma ferramenta "
+"para verificar por atualizações disponíveis e executar as atualizações, tal "
+"tarefa repetitiva é tediosa, especialmente quando for feita em várias "
+"máquinas. Felizmente, assim como muitas tarefas repetitivas, ela pode ser "
+"parcialmente automatizada, e um conjunto de ferramentas já foi desenvolvido "
+"para isto."
 
 #. Tag: para
 #, no-c-format
 msgid "The first of these tools is <command>apticron</command>, in the package of the same name. Its main effect is to run a script daily (via <command>cron</command>). The script updates the list of available packages, and, if some installed packages are not in the latest available version, it sends an email with a list of these packages along with the changes that have been made in the new versions. Obviously, this package mostly targets users of Debian <emphasis role=\"distribution\">Stable</emphasis>, since the daily emails would be very long for the more mobile versions of Debian. When updates are available, <command>apticron</command> automatically downloads them. It does not install them — the administrator will still do it — but having the packages already downloaded and available locally (in APT's cache) makes the job faster."
 msgstr ""
+"A primeira destas ferramentas é a <command>apticron</command>, no pacote de "
+"mesmo nome. Seu principal efeito é executar um script diariamente (via "
+"<command>cron</command>). O script atualiza a lista de pacotes disponíveis, "
+"e, se alguns pacotes instalados não estão na versão mais recente, ele envia "
+"um email com uma lista destes pacotes e com as mudanças que foram feitas nas "
+"novas versões. Obviamente, este pacote foca principalmente em usuários do "
+"Debian <emphasis role=\"distribution\">Stable</emphasis>, já que os emails "
+"diários podem ser muito longos para versões mais dinâmicas do Debian. Quando "
+"atualizações são disponibilizadas, o <command>apticron</command> "
+"automaticamente baixa elas. Mas não as instala — o administrador ainda tem "
+"que fazer isto — mas ter os pacotes já baixados e disponíveis localmente (no "
+"cache do APT) torna o serviço mais rápido."
 
 #. Tag: para
 #, no-c-format
 msgid "Administrators in charge of several computers will no doubt appreciate being informed of pending upgrades, but the upgrades themselves are still as tedious as they used to be, which is where the <filename>/etc/cron.daily/apt</filename> script (in the <emphasis role=\"pkg\">apt</emphasis> package) comes in handy. This script is also run daily (and non-interactively) by <command>cron</command>. To control its behavior, use APT configuration variables (which are therefore stored in a file under <filename>/etc/apt/apt.conf.d/</filename>). The main three variables are:"
 msgstr ""
+"Administradores responsáveis por vários computadores com certeza vão "
+"apreciar ser informados de atualizações pendentes, mas as atualizações em si "
+"são tediosas como sempre, o que torna o script "
+"<filename>/etc/cron.daily/apt</filename> (no pacote <emphasis "
+"role=\"pkg\">apt</emphasis>) útil. Este script também é executado diariamente "
+"(e não-interativamente) pelo <command>cron</command>. Para controlar seu "
+"comportamento, use variáveis de configuração do APT (que devem ser postas "
+"num arquivo em <filename>/etc/apt/apt.conf.d/</filename>). As três "
+"principais variáveis são:"
 
 #. Tag: term
 #, no-c-format
@@ -2498,6 +2771,9 @@ msgstr "<literal>APT::Periodic::Update-Package-Lists</literal>"
 #, no-c-format
 msgid "This option allows you to specify the frequency (in days) at which the package lists are refreshed. <command>apticron</command> users can do without this variable, since <command>apticron</command> already does this task."
 msgstr ""
+"Esta opção especifica a frequência (em dias) na qual a lista de pacotes é "
+"atualizada. Usuários do <command>apticron</command> podem seguir sem esta "
+"variável, já que o <command>apticron</command> já faz esta tarefa."
 
 #. Tag: term
 #, no-c-format
@@ -2508,6 +2784,9 @@ msgstr "<literal>APT::Periodic::Download-Upgradeable-Packages</literal>"
 #, no-c-format
 msgid "Again, this option indicates a frequency (in days), this time for the downloading of the actual packages. Again, <command>apticron</command> users won't need it."
 msgstr ""
+"De novo, esta opção indica uma frequência (em dias), agora para o download "
+"dos pacotes em si. Novamente, os usuários do <command>apticron</command> não "
+"precisam disto."
 
 #. Tag: term
 #, no-c-format
@@ -2518,16 +2797,43 @@ msgstr "<literal>APT::Periodic::AutocleanInterval</literal>"
 #, no-c-format
 msgid "This last option covers a feature that <command>apticron</command> doesn't have. It controls how often obsolete packages (those not referenced by any distribution anymore) are removed from the APT cache. This keeps the APT cache at a reasonable size and means that you don't need to worry about that task."
 msgstr ""
+"Esta última opção cobre uma funcionalidade que o <command>apticron</command> "
+"não tem. Ela controla quão frequentemente pacotes obsoletos (aqueles não "
+"referenciados por mais nenhuma distribuição) são removidos do cache do APT. "
+"Isto mantém o cache do APT num tamanho razoável e evita que você tenha que "
+"se preocupar com esta tarefa."
 
 #. Tag: para
 #, no-c-format
 msgid "Other options can allow you to control the cache cleaning behavior with more precision. They are not listed here, but they are described in the <filename>/etc/cron.daily/apt</filename> script."
 msgstr ""
+"Outras opções podem deixar você controlar o comportamento de limpeza de "
+"cache com mais presicão. Elas não são listadas aqui, mas são descritas no "
+"script <filename>/etc/cron.daily/apt</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "These tools work very well for servers, but desktop users generally prefer a more interactive system. That is why the “Graphical desktop environment” task installs <command>update-notifier</command> and <command>update-manager</command>. The former displays an icon in the notification area of desktop environments when updates are available; clicking on this icon then runs <command>update-manager</command>, a simplified interface to perform updates. You can browse through available updates, read the description of the relevant packages and their <filename>changelog</filename>, and select whether to apply the update or not on a case-by-case basis. Note that these packages contain configuration data for <filename>/etc/cron.daily/apt</filename> so that it refreshes the lists of available packages and downloads the relevant ones. The <command>update-notifier</command>/<command>update-manager</command> combination is far from having as many features as <command>aptitude</command> and <command>synaptic</command>, since it only handles the upgrades of packages which are already installed; as a consequence, its minimalistic interface leaves little room for mistakes, and therefore little risk of breaking the system."
 msgstr ""
+"Estas ferramentas funcionam muito bem em servidores, mas usuários de desktop "
+"normalmente preferem um sistema mais interativo. É por isto que a tarefa "
+"“Graphical desktop environment” (\"ambiente de área de trabalho gráfico\") "
+"instala o <command>update-notifier</command> e o <command>update-"
+"manager</command>. O primeiro exibe um ícone na área de notificação do dos "
+"ambientes de desktop quando existem atualizações disponíveis; ao clicar "
+"neste ícone é aberto o <command>update-manager</command>, uma interface "
+"simplificada para realizar atualizações. Você pode navegar através de "
+"atualizações disponíveis, ler a descrição dos pacotes relevantes e seus "
+"<filename>changelog</filename>, e selecionar se deve aplicar a atualização "
+"caso-a-caso. Observe que estes pacotes contém dados de configuração para o "
+"<filename>/etc/cron.daily/apt</filename> de forma que ele renova as listas "
+"de pacotes disponíveis e baixa os relevantes. A combinação <command>update-"
+"notifier</command>/<command>update-manager</command> está longe de ter "
+"tantas funcionalidades quanto o <command>aptitude</command> e o "
+"<command>synaptic</command>, já que ele apenas manipula atualizações de "
+"pacotes que já estão instalados; como consequência, sua interface "
+"minimalista dá poucas chances de erro, e portanto pouco risco de inutilizar "
+"o sistema."
 
 #. Tag: title
 #, no-c-format
@@ -2549,6 +2855,10 @@ msgstr ""
 #, no-c-format
 msgid "Since Falcot Corp has many computers but only limited manpower, its administrators try to make upgrades as automatic as possible. The programs in charge of these processes must therefore run with no human intervention."
 msgstr ""
+"Como a Falcot Corp tem muitos computadores mas pouca mão de obra, seus "
+"administradores tentam tornar as atualizações o mais automáticas possível. "
+"Os programas encarregados destes processos devem portanto rodar sem "
+"intervenção humana."
 
 #. Tag: title
 #, no-c-format
@@ -2559,6 +2869,13 @@ msgstr "Configurando <command>dpkg</command>"
 #, no-c-format
 msgid "As we have already mentioned (see sidebar <xref linkend=\"cadre.questions-conffiles\" />), <command>dpkg</command> can be instructed not to ask for confirmation when replacing a configuration file (with the <literal>--force-confdef --force-confold</literal> options). Interactions can, however, have three other sources: some come from APT itself, some are handled by <command>debconf</command>, and some happen on the command line due to package configuration scripts."
 msgstr ""
+"Como já mencionamos (veja a barra lateral <xref linkend=\"cadre.questions-"
+"conffiles\" />), o <command>dpkg</command> pode ser instruído a não pedir "
+"confirmação quando for substituir um arquivo de configuração (com as opções "
+"<literal>--force-confdef --force-confold</literal>). Interações podem, "
+"entretanto, vir de outras origens: algumas vêm do próprio APT, algumas são "
+"manipuladas pelo <command>debconf</command> e algumas acontecem na linha de "
+"comando devido a scripts de configuração do pacote."
 
 #. Tag: title
 #, no-c-format
@@ -2569,6 +2886,9 @@ msgstr "Configurando APT"
 #, no-c-format
 msgid "The case of APT is simple: the <literal>-y</literal> option (or <literal>--assume-yes</literal>) tells APT to consider the answer to all its questions to be “yes”."
 msgstr ""
+"No caso do APT é simples: a opção <literal>-y</literal> (ou <literal"
+">--assume-yes</literal>) diz ao APT para considerar a resposta a todas as "
+"perguntas como sendo “sim”."
 
 #. Tag: title
 #, no-c-format
@@ -2579,16 +2899,35 @@ msgstr "Configurando <command>debconf</command>"
 #, no-c-format
 msgid "The case of <command>debconf</command> deserves more details. This program was, from its inception, designed to control the relevance and volume of questions displayed to the user, as well as the way they are shown. That is why its configuration requests a minimal priority for questions; only questions above the minimal priority are displayed. <command>debconf</command> assumes the default answer (defined by the package maintainer) for questions which it decided to skip."
 msgstr ""
+"o caso do <command>debconf</command> merece mais detalhes. Este programa "
+"foi, desde sua concepção, projetado para controlar a relevância e a "
+"quantidade das perguntas mostradas ao usuário, assim como a forma como são "
+"exibidas. É por isto que sua configuração requer uma prioridade mínima para "
+"perguntas; apenas perguntas acima da prioridade mínima são exibidas. O "
+"<command>debconf</command> supõe a resposta padrão (definida pelo mantenedor "
+"do pacote) para perguntas que ele decidiu pular."
 
 #. Tag: para
 #, no-c-format
 msgid "The other relevant configuration element is the interface used by the front-end. If you choose <literal>noninteractive</literal> out of the choices, all user interaction is disabled. If a package tries to display an informative note, it will be sent to the administrator by email."
 msgstr ""
+"O outro elemento de configuração relevante é a interface usada pelo front-"
+"end. Se você escolher <literal>noninteractive</literal>, toda interface de "
+"usuário será desabilitada. Se um pacote tenta exibir uma nota informativa, "
+"ele vai ser enviado ao administrador via email."
 
 #. Tag: para
 #, no-c-format
 msgid "To reconfigure <command>debconf</command>, use the <command>dpkg-reconfigure</command> tool from the <emphasis role=\"pkg\">debconf</emphasis> package; the relevant command is <command>dpkg-reconfigure debconf</command>. Note that the configured values can be temporarily overridden with environment variables when needed (for instance, <varname>DEBIAN_FRONTEND</varname> controls the interface, as documented in the <citerefentry><refentrytitle>debconf</refentrytitle><manvolnum>7</manvolnum></citerefentry> manual page)."
 msgstr ""
+"Para reconfigurar o <command>debconf</command>, use a ferramenta <command"
+">dpkg-reconfigure</command> do pacote <emphasis "
+"role=\"pkg\">debconf</emphasis>; o comando relevante é o <command>dpkg-"
+"reconfigure debconf</command>. Note que os valores configurados podem ser "
+"temporariamente sobreescritos com variáveis de ambiente quando necessário "
+"(por exemplo, <varname>DEBIAN_FRONTEND</varname> controla a interface, como "
+"documentado na página de manual <citerefentry><refentrytitle>debconf</refent"
+"rytitle><manvolnum>7</manvolnum></citerefentry>)."
 
 #. Tag: title
 #, no-c-format
@@ -2599,11 +2938,22 @@ msgstr "Lidando com Interações Via Linha de Comando"
 #, no-c-format
 msgid "The last source of interactions, and the hardest to get rid of, is the configuration scripts run by <command>dpkg</command>. There is unfortunately no standard solution, and no answer is overwhelmingly better than another."
 msgstr ""
+"A última fonte de interações, e a mais difícil de esconder, são os scripts "
+"de configuração executados pelo <command>dpkg</command>. infelizmente não "
+"existe solução padrão, e nenhuma resposta é substancialmente melhor que "
+"outra."
 
 #. Tag: para
 #, no-c-format
 msgid "The common approach is to suppress the standard input by redirecting the empty content of <filename>/dev/null</filename> into it with <command><replaceable>command</replaceable> &lt;/dev/null</command>, or to feed it with an endless stream of newlines. None of these methods are 100 % reliable, but they generally lead to the default answers being used, since most scripts consider a lack of reply as an acceptance of the default value."
 msgstr ""
+"A abordagem normal é suprimir a entrada padrão redirecionando o conteúdo "
+"vazio de <filename>/dev/null</filename> nela com "
+"<command><replaceable>comando</replaceable> &lt;/dev/null</command>, ou "
+"alimentá-la com um fluxo infinito de newlines. Nenhum destes métodos é 100% "
+"confiável, mas eles em geral levam a respostas padrão sendo preenchidas, uma "
+"vez que a maioria dos scripts consideram a ausência de resposta comouma "
+"aceitação do valor padrão."
 
 #. Tag: title
 #, no-c-format
@@ -2614,6 +2964,8 @@ msgstr "A Combinação Miraculosa"
 #, no-c-format
 msgid "By combining the previous elements, it is possible to design a small but rather reliable script which can handle automatic upgrades."
 msgstr ""
+"Combinando os elementos anteriores, é possível projetar um scrips pequeno "
+"mas muito confiável que possa manipular atualizações automáticas."
 
 #. Tag: title
 #, no-c-format
@@ -2639,21 +2991,44 @@ msgstr "<emphasis>NÁ PRÁTICA</emphasis> O caso Falcot Corp"
 #, no-c-format
 msgid "Falcot computers are a heterogeneous system, with machines having various functions. Administrators will therefore pick the most relevant solution for each computer."
 msgstr ""
+"Os computadores da Falcot formam um sistema heterogêneo, com máquinas tendo "
+"muitas funções. Os administradores vão portanto pegar a solução mais "
+"relevante para cada computador."
 
 #. Tag: para
 #, no-c-format
 msgid "In practice, the servers running <emphasis role=\"distribution\">Squeeze</emphasis> are configured with the “miracle combination” above, and are kept up to date automatically. Only the most critical servers (the firewalls, for instances) are set up with <command>apticron</command>, so that upgrades always happen under the supervision of an administrator."
 msgstr ""
+"Na prática, os servidores rodando <emphasis "
+"role=\"distribution\">Squeeze</emphasis> são configurados com a “combinação "
+"milagrosa” acima, e são mantidos atualizados automaticamente. Apenas os "
+"servidores mais críticos (firewalls, por exemplo) são configurados com "
+"<command>apticron</command>, de forma que atualizações sempre aconteçam sob "
+"a supervisão de um administrador."
 
 #. Tag: para
 #, no-c-format
 msgid "The office workstations in the administrative services also run <emphasis role=\"distribution\">Squeeze</emphasis>, but they are configured with the <command>update-notifier</command>/<command>update-manager</command> combination, so that users trigger the upgrades themselves. The rationale for this decision is that if upgrades happen without an explicit action, the behavior of the computer might change unexpectedly, which could cause confusion for the main users."
 msgstr ""
+"As estações de escritório para serviços administrativos também rodam "
+"<emphasis role=\"distribution\">Squeeze</emphasis>, mas elas são configuradas "
+"com a combinação <command>update-notifier</command>/<command>update-"
+"manager</command>, de forma que os usuários possam disparar as atualizações "
+"por si sós. A razão para esta decisão é que se atualizações acontecem sem "
+"alguém disparar, o comportamento do computador pode mudar inesperadamente, o "
+"que pode gerar confusão nos principais usuários."
 
 #. Tag: para
 #, no-c-format
 msgid "In the lab, the few computers using <emphasis role=\"distribution\">Testing</emphasis> — to take advantage of the latest software versions — are not upgraded automatically either. Administrators only configure APT to prepare the upgrades but not enact them; when they decide to upgrade (manually), the tedious parts of refreshing package lists and downloading packages will be avoided, and administrators can focus on the really useful part."
 msgstr ""
+"No laboratório, os poucos computadores que usam <emphasis "
+"role=\"distribution\">Testing</emphasis> — para usufruir das últimas "
+"atualizações de software — também não são atualizados automaticamente. Os "
+"administradores configuraram o APT apenas para preparar as atualizações mas "
+"não para as ativarem; quando eles decidem  atualizar (manualmente), a parte "
+"chata de renovar a lista de pacotes e baixar os pacotes é evitada, e os "
+"administradores podem focar na parte realmente útil."
 
 #. Tag: title
 #, no-c-format
@@ -2664,11 +3039,21 @@ msgstr "Buscando por Pacotes"
 #, no-c-format
 msgid "With the large and ever-growing amount of software in Debian, there emerges a paradox: Debian usually has a tool for most tasks, but that tool can be very difficult to find amongst the myriad other packages. The lack of appropriate ways to search for (and to find) the right tool has long been a problem. Fortunately, this problem has almost entirely been solved."
 msgstr ""
+"Com a grande e crescente quantidade de software no Debian, surge um "
+"paradoxo: o Debian normalmente tem uma ferramenta para a maioria das "
+"tarefas, mas pode ser muito difícil de achá-la na multidão de outros "
+"pacotes. A ausência de formas apropriadas de buscar (e encontrar) a "
+"ferramenta certa é um problema de longa data. Felizmente, este problema foi "
+"quase completamente resolvido."
 
 #. Tag: para
 #, no-c-format
 msgid "The most trivial search possible is looking up an exact package name. If <command>apt-cache show <replaceable>package</replaceable></command> returns a result, then the package exists. Unfortunately, this requires knowing or even guessing the package name, which isn't always possible."
 msgstr ""
+"A busca mais trivial possível é procurar pelo nome exato de um pacote. Se "
+"<command>apt-cache show <replaceable>pacote</replaceable></command> retorna "
+"um resultado, então o pacote existe. Infelizmente, para isto é necessário "
+"saber ou chutar o nome do pacote, o que nem sempre é possível."
 
 #. Tag: title
 #, no-c-format
@@ -2679,19 +3064,45 @@ msgstr "<emphasis>DICA</emphasis> Convenções de nomes de pacote"
 #, no-c-format
 msgid "Some categories of packages are named according to a conventional naming scheme; knowing the scheme can sometimes allow you to guess exact package names. For instance, for Perl modules, the convention says that a module called <literal>XML::Handler::Composer</literal> upstream should be packaged as <emphasis role=\"pkg\">libxml-handler-composer-perl</emphasis>. The library enabling the use of the <command>gconf</command> system from Python is packaged as <emphasis role=\"pkg\">python-gconf</emphasis>. It is unfortunately not possible to define a fully general naming scheme for all packages, even though package maintainers usually try to follow the choice of the upstream developers."
 msgstr ""
+"Algumas categorias de pacotes são batizados de acordo com um esquema de "
+"nomenclatura convencional; saber o esquema às vezes ajuda a adivinhar o nome "
+"exato dos pacotes. Por exemplo, para módulos Perl, a convenção diz que um "
+"módulo chamado <literal>XML::Handler::Composer</literal> no desenvolvimento "
+"principal deve ser empacotado como <emphasis role=\"pkg\">libxml-handler-"
+"composer-perl</emphasis>.  A biblioteca que habilita o uso do sistema "
+"<command>gconf</command> pelo Python é empacotada como <emphasis role=\"pkg"
+"\">python-gconf</emphasis>. Infelizmente não é possível definir um esquema de "
+"nomenclatura totalmente geral para todos os pacotes, mesmo que os "
+"mantenedores normalmente tentem seguir a escolha dos desenvolvedores "
+"principais."
 
 #. Tag: para
 #, no-c-format
 msgid "A slightly more successful searching pattern is a plain-text search in package names, but it remains very limited. You can generally find results by searching package descriptions: since each package has a more or less detailed description in addition to its package name, a keyword search in these descriptions will often be useful. <command>apt-cache</command> is the tool of choice for this kind of search; for instance, <command>apt-cache search video</command> will return a list of all packages whose name or description contains the keyword “video”."
 msgstr ""
+"Um padrão de busca um pouco mais bem-sucedido é uma busca simples e nomes de "
+"pacotes, as isto ainda é bem limitado. Você pode geralmente encontrar "
+"resultados buscando nas descrições de pacotes: como cada pacote tem uma "
+"descrição mais ou menos detalhada além do nome do pacote, uma busca por "
+"palavra-chave nestas descrições frequentemente será útil. <command>apt-"
+"cache</command> é a ferramenta para este tipo de busca; por exemplo, "
+"<command>apt-cache search video</command> retornará uma lista de todos os "
+"pacotes que tenham a palavra-chave \"video\" no nome ou na descrição."
 
 #. Tag: para
 #, no-c-format
 msgid "For more complex searches, a more powerful tool such as <command>aptitude</command> is required. <command>aptitude</command> allows you to search according to a logical expression based on the package's meta-data fields. For instance, the following command searches for packages whose name contains <literal>kino</literal>, whose description contains <literal>video</literal> and whose maintainer's name contains <literal>paul</literal>:"
 msgstr ""
+"Para buscas mais complexas, uma ferramenta mais poderosa como o "
+"<command>aptitude</command> é necessária. <command>aptitude</command> pode "
+"fazer uma busca de acordo com expressões lógicas baseadas em campos de "
+"metadados dos pacotes. Por exemplo, o seguinte comando busca por pacotes "
+"cujo nome contenha <literal>kino</literal>, cuja descrição contenha "
+"<literal>video</literal> e cujo nome do mantenedor contenha "
+"<literal>paul</literal>:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "<computeroutput>p   kino  - Non-linear editor for Digital Video data\n"
 "$ </computeroutput><userinput>aptitude show kino</userinput>\n"
@@ -2728,33 +3139,34 @@ msgid "<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>aptitude search "
 "kino~dvideo~mpaul</userinput>\n"
-"<computeroutput>p   kino  - Non-linear editor for Digital Video data\n"
+"<computeroutput>p   kino  - Editor não linear para dados de Digital Video\n"
 "$ </computeroutput><userinput>aptitude show kino</userinput>\n"
-"<computeroutput>Package: kino\n"
-"State: not installed\n"
-"Version: 1.3.4-1+b1\n"
-"Priority: extra\n"
-"Section: video\n"
-"Maintainer: Paul Brossier &lt;piem@debian.org&gt;\n"
-"Uncompressed Size: 9519k\n"
-"Depends: libasound2 (&gt; 1.0.18), libatk1.0-0 (&gt;= 1.20.0),\n"
+"<computeroutput>Pacote: kino\n"
+"Estado: não instalado\n"
+"Versão: 1.3.4-1+b1\n"
+"Prioridade: extra\n"
+"Seção: video\n"
+"Mantenedor: Paul Brossier &lt;piem@debian.org&gt;\n"
+"Tamanho Descompactado: 9.519 k\n"
+"Depende de: libasound2 (&gt; 1.0.18), libatk1.0-0 (&gt;= 1.20.0),\n"
 "         libavc1394-0 (&gt;= 0.5.3), libavcodec52 (&gt;= "
 "4:0.5+svn20090706-3) |\n"
 "         libavcodec-extra-52 (&gt;= 4:0.5+svn20090706-3), libavformat52\n"
 "         […]\n"
-"Recommends: ffmpeg, gawk | mawk, curl\n"
-"Suggests: udev | hotplug, vorbis-tools, sox, mjpegtools, lame, ffmpeg2theora\n"
-"Conflicts: kino-dvtitler, kino-timfx, kinoplus\n"
-"Replaces: kino-dvtitler, kino-timfx, kinoplus\n"
-"Provides: kino-dvtitler, kino-timfx, kinoplus\n"
-"Description: Non-linear editor for Digital Video data\n"
-" Kino allows you to record, create, edit, and play movies recorded with\n"
-" DV camcorders. This program uses many keyboard commands for fast\n"
-" navigating and editing inside the movie.\n"
+"Recomenda: ffmpeg, gawk | mawk, curl\n"
+"Sugere: udev | hotplug, vorbis-tools, sox, mjpegtools, lame, ffmpeg2theora\n"
+"Conflita com: kino-dvtitler, kino-timfx, kinoplus\n"
+"Substitui: kino-dvtitler, kino-timfx, kinoplus\n"
+"Fornece: kino-dvtitler, kino-timfx, kinoplus\n"
+"Descrição: Editor não linear para dados de Digital Video\n"
+" Kino permite-lhe gravar, criar, editar, e reproduzir filmes gravados com\n"
+" cameras de filmar DV. Este programa usa muitos comandos do teclado para "
+"rápida\n"
+" navegação e edição no interior do filme. \n"
 " \n"
-" The kino-timfx, kino-dvtitler and kinoplus sets of plugins, formerly\n"
-" distributed as separate packages, are now provided with Kino.\n"
-"Homepage: http://www.kinodv.org/\n"
+" Os conjuntos de plugins kino-timfx, kino-dvtitler e kinoplus, anteriormente\n"
+" distribuídos em pacotes separados, são agora disponibilizados com o Kino.\n"
+"Página web: http://www.kinodv.org/\n"
 "\n"
 "Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "      interface::x11, role::program, scope::application,\n"
@@ -2765,16 +3177,42 @@ msgstr ""
 #, no-c-format
 msgid "The search only returns one package, <emphasis role=\"pkg\">kino</emphasis>, which satisfies all three criteria."
 msgstr ""
+"A busca retorna apenas um pacote, <emphasis role=\"pkg\">kino</emphasis>, que "
+"satisfaz os três critérios."
 
 #. Tag: para
 #, no-c-format
 msgid "Even these multi-criteria searches are rather unwieldy, which explains why they are not used as much as they could. A new tagging system has therefore been developed, and it provides a new approach to searching. Packages are given tags that provide a thematical classification along several strands, known as a “facet-based classification”. In the case of <emphasis role=\"pkg\">kino</emphasis> above, the package's tags indicate that Kino is a Gnome-based software that works on video data and whose main purpose is editing."
 msgstr ""
+"Mesmo estas buscas multi-critério são bastante \"desajeitadas\", o que explica "
+"por que elas não são usadas tanto quanto poderiam. Um novo sistema de "
+"etiquetas foi portanto desenvolvido, e fornece uma nova abordagem de busca. "
+"Pacotes recebem etiquetas que fornecem classificação temática através de "
+"vários pontos de vista, conhecidos como uma \"classificação baseada em "
+"facetas\" (\"facet-based classification\"). No caso do <emphasis "
+"role=\"pkg\">kino</emphasis> acima, as etiquetas do pacote indicam que o Kino "
+"é um software baseado em gnome que trabalha com dados de vídeo e tem como "
+"função principal edição."
 
 #. Tag: para
 #, no-c-format
 msgid "Browsing this classification can help you to search for a package which corresponds to known needs; even if it returns a (moderate) number of hits, the rest of the search can be done manually. To do that, you can use the <literal>~G</literal> search pattern in <command>aptitude</command>, but it is probably easier to simply navigate the site where tags are managed: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/cloud/\" /> Selecting the <literal>works-with::video</literal> and <literal>use::editing</literal> tags yields a handful of packages, including the <emphasis role=\"pkg\">kino</emphasis> and <emphasis role=\"pkg\">pitivi</emphasis> video editors. This system of classification is bound to be used more and more as time goes on, and package managers will gradually provide efficient search interfaces based on it. <indexterm><primary><emphasis role=\"pkg\">debtags</emphasis></primary></indexterm> <indexterm><primary>tag</primary></indexterm>"
 msgstr ""
+"Navegar nesta classificação pode ajudar você a buscar um pacote que "
+"corresponda a necessidades conhecidas; mesmo se ele retornar uma quantidade "
+"(moderada) de hits, o restante da busca pode ser feita manualmente. Para "
+"fazer isto, você pode usar o padrão de busca <literal>~G</literal> no "
+"<command>aptitude</command>, mas é provavelmente mais fácil simplesmente "
+"navegar no site onde as etiquetas são geridas: <ulink type=\"block\" "
+"url=\"http://debtags.alioth.debian.org/cloud/\" /> Selecionando as etiquetas "
+"<literal>works-with::video</literal> e <literal>use::editing</literal> leva "
+"a vários pacotes úteis, inclusive os editores de vídeo <emphasis "
+"role=\"pkg\">kino</emphasis> e <emphasis role=\"pkg\">pitivi</emphasis>. Este "
+"sistema de classificação será usado cada vez mais com o passar do tempo, e "
+"os gestores de pacotes vão gradualmente fornecer interfaces de busca "
+"eficientes baseadas nele. <indexterm><primary><emphasis "
+"role=\"pkg\">debtags</emphasis></primary></indexterm> "
+"<indexterm><primary>tag</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
@@ -2787,16 +3225,26 @@ msgstr ""
 #, no-c-format
 msgid "<command>apt-cache</command> only allows searching in package names and descriptions, which is very convenient when looking for a particular package that matches a few target keywords;"
 msgstr ""
+"Com o <command>apt-cache</command> só se pode fazer busca em nomes e "
+"descrições de pacotes, que é bastante conveniente quando se busca por um "
+"pacote em particular que casa com algumas palavras-chave;"
 
 #. Tag: para
 #, no-c-format
 msgid "when the search criteria also include relationships between packages or other meta-data such as the name of the maintainer, <command>synaptic</command> will be more useful;"
 msgstr ""
+"Quando o critério de busca também inclui relações entre pacotes ou outros "
+"meta-pacotes como o nome do mantenedor, o <command>synaptic</command> será "
+"mais útil;"
 
 #. Tag: para
 #, no-c-format
 msgid "when a tag-based search is needed, a good tool is <command>packagesearch</command>, a graphical interface dedicated to searching available packages along several criteria (including the names of the files that they contain);"
 msgstr ""
+"Quando uma busca por etiquetas é necessária, uma boa ferramenta é o "
+"<command>packagesearch</command>, uma interface gráfica dedicada a buscar "
+"pacotes disponíveis através de vários critérios (inclusive os nomes dos "
+"arquivos que eles contém);"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2807,3 +3255,8 @@ msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
 #, no-c-format
 msgid "finally, when the searches involve complex expressions with logic operations, the tool of choice will be <command>aptitude</command>'s search pattern syntax, which is quite powerful despite being somewhat obscure; it works in both the command-line and the interactive modes."
 msgstr ""
+"finalmente, quando a busca envolve expressões complexas com operações "
+"lógicas, a melhor ferramenta é a sintaxe de padrões de busca do "
+"<command>aptitude</command>, que é bastante poderosa apesar de um pouco "
+"obscura; e funciona tanto no modo de linha de comando quanto no modo "
+"interativo."

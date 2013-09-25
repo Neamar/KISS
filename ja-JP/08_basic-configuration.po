@@ -1,531 +1,370 @@
-#
+# 
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-09-22 23:03+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
-"/debian-handbook/08_basic-configuration/pt_BR/>\n"
-"Language: pt-BR\n"
+"PO-Revision-Date: 2012-10-31T14:54:17\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: None\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.7-dev\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Configuration"
-msgstr "Configuração"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Localization"
-msgstr "Localização"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Locales"
-msgstr "Localidades"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Network"
-msgstr "Rede"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Name resolution"
-msgstr "Resolução de nomes"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Users"
-msgstr "Usuários"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Groups"
-msgstr "Grupos"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Accounts"
-msgstr "Contas"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Command-line interpreter"
-msgstr "Interpretador de linha de comando"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Shell"
-msgstr "Shell"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Printing"
-msgstr "Impressão"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Bootloader"
-msgstr "Sistema de iniciação"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Kernel compiling"
-msgstr "Compilação de kernel"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Basic Configuration: Network, Accounts, Printing..."
-msgstr "Configuração Básica: Rede, Contas, Impressão..."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "A computer with a new installation created with <command>debian-installer</command> is intended to be as functional as possible, but many services still have to be configured. Furthermore, it is always good to know how to change certain configuration elements defined during the initial installation process."
-msgstr "Um computador com uma nova instalação criada com o <command>debian-installer</command> tenta ser tão funcional quanto possível, mas muitos serviços  ainda devem ser configurados. Além disso, é sempre bom saber como mudar certos elementos de configuração definidos durante o processo de instalação inicial."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter reviews everything included in what we could call the “basic configuration”: networking, language and locales, users and groups, printing, mount points, etc."
 msgstr ""
-"Este capítulo revisa tudo que pode ser incluído no que se pode chamar de "
-"\"configuração básica\": redes, idioma e localização, usuários e grupos, "
-"impressão, pontos de montagem, etc."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the System for Another Language"
-msgstr "Configurando o Sistema para Outra Língua"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>French localization</primary>"
-msgstr "<primary>Localização francesa</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "If the system was installed using French, the machine will probably already have French set as the default language. But it is good to know what the installer does to set the language, so that later, if the need arises, you can change it."
-msgstr "Se o sistema foi instalado usando Francês, a máquina provavelmente  já vai ter o francês configurado como o idioma padrão. Mas é bom saber que o instalador vai configurar o idioma, de forma que, se mais tarde surgir a necessidade, você pode mudá-lo."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> The <command>locale</command> command to display the current configuration"
-msgstr "<emphasis>FERRAMENTA</emphasis> O comando <command>locale</command> para mostrar a configuração atual"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>locale</command> command lists a summary of the current configuration of various locale parameters (date format, numbers format, etc.), presented in the form of a group of standard environment variables dedicated to the dynamic modification of these settings."
-msgstr "O comando <command>locale</command> lista um resumo da configuração atual de vários parâmetros do locale (formato de data, formato de números, etc.), apresentados na forma de um grupo de variáveis de ambiente padrão dedicadas à modificação dinâmica destas configurações."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Setting the Default Language"
-msgstr "Definindo a Língua Padrão"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>locales</primary>"
-msgstr "<primary>locales</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>language</primary>"
-msgstr "<primary>língua</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>locale-gen</command></primary>"
-msgstr "<primary><command>locale-gen</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "A locale is a group of regional settings. This includes not only the language for text, but also the format for displaying numbers, dates, times, and monetary sums, as well as the method for alphabetical comparison (for alphabetically ordering items, to include accented characters, where applicable). Although each of these parameters can be specified independently from the others, we generally will use one locale, which is a coherent set of values for these parameters corresponding to a “region” in the broadest sense. These locales are usually indicated under the form, <literal><replaceable>language-code</replaceable>_<replaceable>COUNTRY-CODE</replaceable></literal>, sometimes with a suffix to specify the character set and encoding to be used. This enables consideration of idiomatic or typographical differences between different regions with a common language."
-msgstr "Um \"locale\" é um grupo de configurações regionais. Isto inclui não apenas o idioma do texto, mas também o formato para exibir números, datas, horas e valores monetários, assim como o método de comparação alfabética ( para itens ordenados alfabeticamente, quando aplicável). Embora cada um destes parâmetros possa ser especificado independentemente dos outros, geralmente usamos um \"locale\", que é um conjunto coerente de valores para estes parâmetros correspondendo a uma \"região\" no sentido amplo. Estes \"locales\" são usualmente indicados na forma, <literal><replaceable>código-de-idioma</replaceable>_<replaceable>CÓDIGO-DE-PAÍS</replaceable></literal>, algumas vezes com um sufixo para especificar o conjunto de caracteres e codificação a ser usado. Isto habilita considerações de diferenças idiomáticas ou tipográficas entre regiões com uma linguagem em comum."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Character sets"
-msgstr "<emphasis>CULTURA</emphasis> Conjuntos de Caracteres"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>character set</primary>"
-msgstr "<primary>conjunto de caracter</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>encoding</primary>"
-msgstr "<primary>codificação</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ISO-8859-1</primary>"
-msgstr "<primary>ISO-8859-1</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ISO-8859-15</primary>"
-msgstr "<primary>ISO-8859-15</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Latin 1</primary>"
-msgstr "<primary>Latin 1</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Latin 9</primary>"
-msgstr "<primary>Latin 9</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Latin 0</primary>"
-msgstr "<primary>Latin 0</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Historically, each locale has an associated “character set” (group of known characters) and a preferred “encoding” (internal representation for characters within the computer)."
 msgstr ""
-"Historicamente, cada localidade tem associado um \"conjunto de caracteres\" "
-"(um grupo de caracteres conhecidos) e uma \"codificação\" preferida "
-"(representação interna para caracteres dentro do computador)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>ISO-8859-1</emphasis> (or “Latin 1”) encoding, for instance, was used preferentially in France. But for historical reasons, it did not include certain characters (such as œ, Ÿ, and €). This problem prompted the creation of <emphasis>ISO-8859-15</emphasis> (or “Latin 9”, or even “Latin 0”). Among others, it replaced respectively the former international currency symbol (a circle with four branches, ¤), “½”,“¼” and “¾” with the Euro symbol “€”, “œ”, “Œ” and “Ÿ”. Since the encoding for these two sets uses a single octet (8 bits) for each character, the sets only have room for 256 characters. Other languages use other character sets or other encodings, either from the “Latin” family, or otherwise."
 msgstr ""
-"A codificação <emphasis>ISO-8859-1</emphasis> (ou “Latin 1”), por exemplo "
-"foi usada preferencialmente na França. Mas por razões históricas, ela não "
-"incluiu certos caracteres (como œ, Ÿ e €). Este problema levou a criação do "
-"<emphasis>ISO-8859-15</emphasis> (ou “Latin 9”, ou ainda “Latin 0”). Entre "
-"outros, ele substituiu respectivamente o símbolo internacional para moeda "
-"anterior (um círculo com quatro pontas, ¤), “½”,“¼” e “¾” por “€” (o símbolo "
-"de Euro), “œ”, “Œ” e “Ÿ”. Já que a codificação para estes dois conjuntos "
-"usam um único octeto (8 bits) para cada caractere, os conjuntos somente "
-"possuíam espaço para 256 caracteres. Outra línguas usam outro conjunto de "
-"caracteres ou outras codificações, da família \"Latin\" ou não."
 
 #. Tag: para
 #, no-c-format
 msgid "Working with foreign languages often implied regular switches between various encodings and character sets. Furthermore, writing multilingual documents led to further, almost intractable problems. Unicode (a super-catalog of nearly all writing systems from all of the world's languages) was created to work around this problem. One of Unicode's encodings, UTF-8, retains all 128 ASCII symbols (7-bit codes), but handles other characters differently. The others are preceded by a sequence of “escape” characters with a variable length. This allows encoding all Unicode characters on a sequence of one or more octets."
 msgstr ""
-"Trabalhar com línguas estrangeiras comumente implica trocar regularmente "
-"entre várias codificações e conjuntos de caracteres.\n"
-"Além disso, escrever um documento diversas linguás leva a mais, quase "
-"intratáveis problemas. Unicode (um super catálogo de quase todos os sistemas "
-"de escrita de todas as línguas do mundo) foi criado para contornar este "
-"problema. Uma das codificações Unicode, UTF-8, retém todos os 128 símbolos "
-"ASCII (códigos 7-bits), mas lida com outros caracteres diferentemente. Os "
-"outros são precedidos por uma sequência do carácter \"escape\" com um tamanho "
-"variado. Isto permite codificar todos os caracteres Unicode com uma "
-"sequência de um ou mais octetos."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ASCII</primary>"
-msgstr "<primary>ASCII</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>UTF-8</primary>"
-msgstr "<primary>UTF-8</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Unicode</primary>"
-msgstr "<primary>Unicode</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Applications have slowly migrated, and use of UTF-8 is now wide spread. This was made easier by the fact that this encoding is the standard encoding for XML documents. Outside of specific circumstances, this is the encoding that should generally be used. It has become the default on new installations since <emphasis role=\"distribution\">Etch</emphasis>."
 msgstr ""
-"Aplicações migraram vagarosamente, e o uso do UTF-8 é disseminado. Isto foi "
-"facilitado devido ao fato de que essa codificação é a codificação para "
-"documentos XML. Fora algumas situações específicas, está é a codificação que "
-"deveria ser utilizada de modo geral. Ele se tornou padrão para novas "
-"instalações desdo <emphasis role=\"distribution\">Etch</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">locales</emphasis> package includes all the elements required for proper functioning of “localization” for various applications. During installation, this package will ask a few questions in order to choose supported languages. This set of supported languages can be changed by running <command>dpkg-reconfigure locales</command>."
 msgstr ""
-"O pacote <emphasis role=\"pkg\">locales</emphasis> incluí todos os elementos "
-"necessários para seu funcionamento correto da \"localização\" de várias "
-"aplicativos. Durante a instalação, este pacote perguntará algumas questões "
-"de maneira a escolher o suporte de línguas. Este conjunto de línguas pode "
-"ser alterado executando o comando <command>dpkg-reconfigure "
-"locales</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "You will be asked, first, to choose what “locales” to include. Selecting all English locales (meaning those beginning with“<literal>en_US</literal>”) is a reasonable choice. Do not hesitate to choose other locales if the machine will host foreign users. This list of known locales on the system is stored in the <filename>/etc/locale.gen</filename> file. It is possible to edit this file by hand, but you should run <command>locale-gen</command> after any modifications. It will generate the necessary files for the proper functioning of added locales and remove any obsolete files."
 msgstr ""
-"Você será perguntado, primeiro, para escolher quais \"localidades\" serão "
-"incluídas. Selecionando todas as localidades inglesas (o que significa todos "
-"aqueles que começam com “<literal>en_US</literal>”) é uma escolha sensata. "
-"Não hesite em escolher outras localidades se a máquina for hospedar usuários "
-"estrangeiros. A lista de localidades do sistema estão armazenadas no "
-"arquivo <filename>/etc/locale.gen</filename>. É possível editar este arquivo "
-"manualmente, mas você deveria executar <command>locale-gen</command> após "
-"algumas modificações. Ele gerará os arquivos necessários para o "
-"funcionamento correto da inclusão das localidades e remoção dos arquivos "
-"obsoletos."
 
 #. Tag: para
 #, no-c-format
 msgid "The second question, entitled “Set default locale”, requests a default locale. The recommended choice in the U.S.A. is “<literal>en_US.UTF-8</literal>”. British English speakers will prefer “<literal>en_GB.UTF-8</literal>”, and Canadians will prefer either <literal>en_CA.UTF-8</literal>” or, for French, “<literal>fr_CA.UTF-8</literal>”. The <filename>/etc/default/locale</filename> file will then be modified to set the default locale for the environment variable, <varname>LANG</varname>."
 msgstr ""
-"A segunda pergunta, \"Set default locale\" (\"configurar locale padrão\"), pede "
-"um locale padrão. A escolha recomendada no Brasil é "
-"\"<literal>pt_BR.UTF-8</literal>\". Portugueses de portugal vão preferir "
-"\"<literal>pt_PT.UTF-8</literal>\" e franceses, "
-"\"<literal>fr_CA.UTF-8</literal>\". O arquivo "
-"<filename>/etc/default/locale</filename> vai ser então modificado para "
-"configurar o locale padrão para a variável de ambiente, "
-"<varname>LANG</varname>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>environment</primary>"
-msgstr "<primary>ambiente</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>locale</primary>"
-msgstr "<primary>localidade</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><varname>LANG</varname></primary>"
-msgstr "<primary><varname>LANG</varname></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEHIND THE SCENES</emphasis> <filename>/etc/environment</filename> and <filename>/etc/default/locale</filename>"
 msgstr ""
-"<emphasis>ATRÁS DAS CENAS</emphasis> <filename>/etc/environment</filename> e "
-"<filename>/etc/default/locale</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/environment</filename> file provides the <command>login</command>, <command>gdm</command>, or even <command>ssh</command> programs with the correct environment variables to be created."
 msgstr ""
-"O arquivo <filename>/etc/environment</filename> dá aos programas "
-"<command>login</command>, <command>gdm</command>, ou até mesmo "
-"<command>ssh</command> as variáveis de ambiente corretas a serem criadas."
 
 #. Tag: para
 #, no-c-format
 msgid "These applications do not create these variables directly, but rather via a PAM (<filename>pam_env.so</filename>) module. PAM (Pluggable Authentication Module) is a modular library centralizing the mechanisms for authentication, session initialization, and password management. See <xref linkend=\"section.config-pam\" /> for an example of PAM configuration."
 msgstr ""
-"Estes aplicativos não criam essas variáveis diretamente, mas sim via um "
-"módulo PAM (<filename>pam_env.so</filename>). PAM (Pluggable Authentication "
-"Module - Módulo de autenticação plugável) é uma biblioteca centralizadora de "
-"mecanismos para autenticação, inicialização de sessão, e gerenciamento de "
-"senhas. Veja <xref linkend=\"section.config-pam\" />  para um exemplo da "
-"configuração do PAM."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/default/locale</filename> file works in a similar manner, but does not contain the <varname>LANG</varname> environment variable. This means some PAM users will inherit an environment without localization. Running server programs with regional parameters is generally discouraged; on the other hand, using the implicit regional settings is recommended for programs that open user sessions."
 msgstr ""
-"O arquivo <filename>/etc/default/locale</filename> funciona de maneira "
-"similar, mas não contém a variável do ambiente <varname>LANG</varname>. Isto "
-"significa que os usuários do PAM herdarão um ambiente sem regionalização. "
-"Executar um programa servidor com os parâmetros regionais é geralmente "
-"desaconselhado; por outro lado, usar configurações implicitamente regionais "
-"é recomendado para programas que abram sessões para usuários."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PAM</primary>"
-msgstr "<primary>PAM</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>pam_env.so</filename></primary>"
-msgstr "<primary><filename>pam_env.so</filename></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Keyboard"
-msgstr "Configurando o Teclado"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard</primary><secondary>layout</secondary>"
-msgstr "<primary>teclado</primary><secondary>disposição</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard layout</primary>"
-msgstr "<primary>disposição do teclado</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Until Debian <emphasis role=\"distribution\">Lenny</emphasis>, the keyboard layout was controlled by two different systems: for the console, <emphasis role=\"pkg\">console-tools</emphasis>/<emphasis role=\"pkg\">console-data</emphasis>; for graphical environments, <emphasis role=\"pkg\">keyboard-configuration</emphasis>. Since <emphasis role=\"distribution\">Squeeze</emphasis>, these two systems have been unified and <emphasis role=\"pkg\">keyboard-configuration</emphasis> controls the keyboard layout in both console and graphical mode. The <command>dpkg-reconfigure keyboard-configuration</command> command can be used at any time to reset the keyboard layout."
 msgstr ""
-"Até o Debian <emphasis role=\"distribution\">Lenny</emphasis>, a disposição "
-"(\"layout\") do teclado era controlada por dois sistemas diferentes: para o "
-"console, o par <emphasis role=\"pkg\">console-tools</emphasis>/<emphasis "
-"role=\"pkg\">console-data</emphasis>; para ambientes gráficos, o <emphasis "
-"role=\"pkg\">keyboard-configuration</emphasis>. A partir da <emphasis "
-"role=\"distribution\">Squeeze</emphasis>, estes dois sistemas foram unificados "
-"e o <emphasis role=\"pkg\">keyboard-configuration</emphasis> controla a "
-"disposição do teclado tanto no console quanto no modo gráfico. O comando "
-"<command>dpkg-reconfigure keyboard-configuration</command> pode ser usado a "
-"qualquer momento para reconfigurar a disposição do teclado."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>console-data</emphasis></primary>"
-msgstr "<primary><emphasis>console-data</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>console-tools</emphasis></primary>"
-msgstr "<primary><emphasis>console-tools</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>keyboard-configuration</emphasis></primary>"
-msgstr "<primary><emphasis>keyboard-configuration</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><literal>azerty</literal></primary></indexterm>The questions are relevant to the physical keyboard layout (a standard PC keyboard in the US will be a “Generic 104 key”), then the layout to choose (generally “US”), and then the position of the AltGr key (right Alt). Finally comes the question of the key to use for the “Compose key”, which allows for entering special characters by combining keystrokes. Type successively <keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> and produce an e-acute (“é”). All these combinations are described in the <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> file (or another file, determined according to the current locale indicated by <filename>/usr/share/X11/locale/compose.dir</filename>). <indexterm><primary><literal>Compose</literal>, key</primary></indexterm> <indexterm><primary><literal>Meta</literal>, key</primary></indexterm> <indexterm><primary>key</primary><secondary><literal>Meta</literal></secondary></indexterm> <indexterm><primary>key</primary><secondary><literal>Compose</literal></secondary></indexterm>"
 msgstr ""
-"<indexterm><primary><literal>azerty</literal></primary></indexterm>As "
-"perguntas são relevantes para a disposição do teclado físico (um teclado PC "
-"padrão nos EUA será um \"Generic 104 key\"), e depois a disposição para "
-"escolher (geralmente \"US\"), e por fim a posição da tecla AltGr (Alt da "
-"direita). Finalmente vem a pergunta da tecla a usar para a \"Compose key\", "
-"que permite a entrada de caracteres especiais combinando conjuntos de "
-"teclas. Digite sucessivamente <keycombo action=\"seq\"><keycap>Compose</keycap"
-"><keycap>'</keycap><keycap>e</keycap></keycombo> e produza um e-agudo (\"é\"). "
-"Todas estas combinações são descritas no arquivo "
-"<filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> (ou outro "
-"arquivo, determinado de acordo com o locale atual indicado por "
-"<filename>/usr/share/X11/locale/compose.dir</filename>). "
-"<indexterm><primary><literal>Compose</literal>, tecla</primary></indexterm> "
-"<indexterm><primary><literal>Meta</literal>, tecla</primary></indexterm> <in"
-"dexterm><primary>tecla</primary><secondary><literal>Meta</literal></secondar"
-"y></indexterm> <indexterm><primary>tecla</primary><secondary><literal>Compos"
-"e</literal></secondary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the keyboard configuration for graphical mode described here only affects the default layout; the GNOME and KDE environments, among others, provide a keyboard control panel in their preferences allowing each user to have their own configuration. Some additional options regarding the behavior of some particular keys are also available in these control panels."
 msgstr ""
-"Note que a configuração do teclado para o ambiente gráfico é descrita aqui "
-"somente afeta a layout padrão; os ambientes GNOME e KDE, entre outros, provê "
-"um painel de controle para teclado em suas preferências permitem para "
-"usuário ter sua própria configuração. Algumas opções adicionais relacionadas "
-"ao comportamento de algumas teclas particulares também estão presentes "
-"nestes painéis."
 
 #. Tag: title
 #, no-c-format
 msgid "Migrating to UTF-8"
-msgstr "Migrando para UTF-8"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The generalization of UTF-8 encoding has been a long awaited solution to numerous difficulties with interoperability, since it facilitates international exchange and removes the arbitrary limits on characters that can be used in a document. The one drawback is that it had to go through a rather difficult transition phase. Since it could not be completely transparent (that is, it could not happen at the same time all over the world), two conversion operations were required: one on file contents, and the other on filenames. Fortunately, the bulk of this migration has been completed and we discuss it largely for reference."
 msgstr ""
-"A generalização da codificação UTF-8 foi uma solução a muito aguardada para "
-"várias dificuldades de interoperabilidade, já que ela facilita intercâmbio "
-"internacional e remove os limites arbitrários de caracteres que podem ser "
-"usados em um documento. O único problema é que é que ela teve que passar por "
-"uma difícil fase de transição. Como esta fase de transição não pôde ser "
-"completamente transparente (ou seja, não pôde acontecer ao mesmo tempo em "
-"todo o mundo), duas operações de conversão foram necessárias: uma no "
-"conteúdo dos arquivos e outra nos nomes dos arquivos. Felizmente, a maior "
-"parte desta migração já foi completada e discutimos ela amplamente para "
-"referência."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Mojibake</foreignphrase> and interpretation errors"
-msgstr "<emphasis>CULTURA</emphasis> <foreignphrase>Mojibake</foreignphrase> e erros de interpretação"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "When a text is sent (or stored) without encoding information, it is not always possible for the recipient to know with certainty what convention to use for determining the meaning of a set of bytes. You can usually get an idea by getting statistics on the distribution of values present in the text, but that doesn't always give a definite answer. When the encoding system chosen for reading differs from that used in writing the file, the bytes are mis-interpreted, and you get, at best, errors on some characters, or, at worst, something completely illegible."
 msgstr ""
-"Quando um texto é enviado (ou armazenado) sem informações de codificação, "
-"nem sempre é possível para o destinatário saber com certeza qual a convenção "
-"foi usada para determinar o significado dos conjuntos de bytes. Você pode "
-"normalmente ter uma noção olhando as estatísticas da distribuição de valores "
-"apresentados no texto, mas isto nem sempre dá uma resposta definitiva. "
-"Quando o sistema de codificação escolhido para a leitura difere do usado na "
-"escrita do arquivo, os bytes serão mal interpretados, e você terá, na melhor "
-"das hipóteses, erros em alguns caracteres, e na pior das hipóteses, algo "
-"completamente ilegível."
 
 #. Tag: para
 #, no-c-format
 msgid "Thus, if a French text appears normal with the exception of accented letters and certain symbols which appear to be replaced with sequences of characters like “Ã©” or Ã¨” or “Ã§”, it is probably a file encoded as UTF-8 but interpreted as ISO-8859-1 or ISO-8859-15. This is a sign of a local installation that has not yet been migrated to UTF-8. If, instead, you see question marks instead of accented letters — even if these question marks seem to also replace a character that should have followed the accented letter — it is likely that your installation is already configured for UTF-8 and that you have been sent a document encoded in Western ISO."
 msgstr ""
-"Então, se um texto em francês aparenta estar normal com exceção das letras "
-"acentuadas e de certos símbolos que parece terem sido substituídos com "
-"sequencias de caracteres como \"Ã©\" ou \"Ã¨\" ou \"Ã§\", provavelmente este é um "
-"texto codificado com UTF-8 mas interpretado como ISO-8859-1 ou ISO-8859-15. "
-"Este é um sinal de uma instalação local que ainda não foi migrada para "
-"UTF-8. Se, ao invés disto, você vê interrogações no lugar de letras "
-"acentuadas — mesmo se estas interrogações parecem substituir também um "
-"caractere que deve estar depois de uma letra acentuada — é provável que sua "
-"instalação já esteja configurada para UTF-8 e que você tenha recebido um "
-"documento codificado em ISO ocidental."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "So much for “simple” cases. These cases only appear in Western culture, since Unicode (and UTF-8) was designed to maximize the common points with historical encodings for Western languages based on the Latin alphabet, which allows recognition of parts of the text even when some characters are missing."
 msgstr ""
-"So much for “simple” cases. Estes casos aparecem apenas na cultura "
-"ocidental, uma vez que o Unicode (e UTF-8) foram projetados para maximizar "
-"os pontos em comum com codificações ocidentais baseadas no alfabeto Latino, "
-"que permite o reconhecimento de partes do texto mesmo quando alguns "
-"caracteres estão faltando."
 
 #. Tag: para
 #, no-c-format
 msgid "In more complex configurations, which, for example, involve two environments corresponding to two different languages that do not use the same alphabet, you often get completely illegible results — a series of abstract symbols that have nothing to do with each other. This is especially common with Asian languages due to their numerous languages and writing systems. The Japanese word <foreignphrase>mojibake</foreignphrase> has been adopted to describe this phenomenon. When it appears, diagnosis is more complex and the simplest solution is often to simply migrate to UTF-8 on both sides."
 msgstr ""
-"Em configurações mais complexas, que, por exemplo, envolvem dois ambientes "
-"correspondendo a dois idiomas diferentes que não usam o mesmo alfabeto, você "
-"frequentemente se vê com resultados completamente ilegíveis — uma série de "
-"símbolos abstratos que não tem nada a ver uns com os outros. Isto é "
-"especialmente comum com idiomas asiáticos devido devido a seus numerosos "
-"idiomas e sistemas de escrita. A palavra japonesa "
-"<foreignphrase>mojibake</foreignphrase> foi adotada para descrever este "
-"fenômeno. Quando ele acontece, o diagnóstico é mais complexo e a solução "
-"mais simples em geral é migrar os dois lados para UTF-8."
 
 #. Tag: para
 #, no-c-format
 msgid "As far as file names are concerned, the migration can be relatively simple. The <command>convmv</command> tool (in the package with the same name) was created specifically for this purpose; it allows renaming files from one encoding to another. The use of this tool is relatively simple, but we recommend doing it in two steps to avoid surprises. The following example illustrates a UTF-8 environment containing directory names encoded in ISO-8859-15, and the use of <command>convmv</command> to rename them."
 msgstr ""
-"As far as file names are concerned, a migração pode ser relativamente "
-"simples. A ferramenta <command>convmv</command> (no pacote com o mesmo nome) "
-"foi criada especificamente com este objetivo; ela permite renomear arquivos "
-"de uma codificação para outra. O uso desta ferramenta é relativamente "
-"simples, mas recomendamos fazê-lo em dois passos para evitar surpresas. O "
-"seguinte exemplo ilustra um ambiente UTF-8 contendo nomes de diretórios "
-"codificados em ISO-8859-15, e o uso do <command>convmv</command> para "
-"renomeá-los."
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
+msgid "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
 "$ </computeroutput><userinput>convmv -r -f iso-8859-15 -t utf-8 travail/</userinput>\n"
 "<computeroutput>Starting a dry run without changes...\n"
@@ -538,162 +377,103 @@ msgid ""
 "Ready!\n"
 "$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
+""
 msgstr ""
-"<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
-"<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
-"$ </computeroutput><userinput>convmv -r -f iso-8859-15 -t utf-8 "
-"travail/</userinput>\n"
-"<computeroutput>Starting a dry run without changes...\n"
-"mv \"travail/�l�ments graphiques\"        \"travail/Éléments graphiques\"\n"
-"mv \"travail/Ic�nes\"     \"travail/Icônes\"\n"
-"No changes to your files done. Use --notest to finally rename the files.\n"
-"$ </computeroutput><userinput>convmv -r --notest -f iso-8859-15 -t utf-8 "
-"travail/</userinput>\n"
-"<computeroutput>mv \"travail/�l�ments graphiques\"        \"travail/Éléments "
-"graphiques\"\n"
-"mv \"travail/Ic�nes\"     \"travail/Icônes\"\n"
-"Ready!\n"
-"$ </computeroutput><userinput>ls travail/</userinput>\n"
-"<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "For the file content, conversion procedures are more complex due to the vast variety of existing file formats. Some file formats include encoding information that facilitates the tasks of the software used to treat them; it is sufficient, then, to open these files and re-save them specifying UTF-8 encoding. In other cases, you have to specify the original encoding (ISO-8859-1 or “Western”, or ISO-8859-15 or “Western (European)”, according to the formulations) when opening the file."
 msgstr ""
-"Para o conteúdo dos arquivos, os procedimentos de conversão são mais "
-"complexos devido à vasta variedade de formatos de arquivos existentes. "
-"Alguns formatos de arquivos incluem informação de codificação que facilita a "
-"tarefa de softwares usados para tratá-los; é suficiente, portanto, abrir "
-"estes arquivos e regravá-los especificando a codificação UTF-8. Em outros "
-"casos, você tem que especificar a codificação original (ISO-8859-1 ou "
-"“Ocidental”, ou ISO-8859-15 ou “Ocidental (Europeu)”, de acordo com as "
-"formulações) quando abrir o arquivo."
 
 #. Tag: para
 #, no-c-format
 msgid "For simple text files, you can use <command>recode</command> (in the package of the same name) which allows automatic recoding. This tool has numerous options so you can play with its behavior. We recommend you consult the documentation, the <citerefentry> <refentrytitle>recode</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> man page, or the <citerefentry> <refentrytitle>recode</refentrytitle> </citerefentry> info page (more complete)."
 msgstr ""
-"Para arquivos de texto simples, você pode usar o <command>recode</command> "
-"(que está no pacote de mesmo nome) para fazer recodificação automática. Esta "
-"ferramenta tem várias opções, explore bastante. Nós recomendamos que você "
-"consulte a documentação, a página man <citerefentry> "
-"<refentrytitle>recode</refentrytitle> <manvolnum>1\n"
-"</manvolnum> </citerefentry>, ou a página info <citerefentry> "
-"<refentrytitle>recode</refentrytitle> </citerefentry> (mais completa)."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Network"
-msgstr "Configurando a Rede"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Essential network concepts (Ethernet, IP address, subnet, broadcast)."
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Conceitos essenciais de rede (Ethernet, endereço IP, sub-rede, broadcast)."
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Ethernet</primary>"
-msgstr "<primary>Ethernet</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>10BASE-T</primary>"
-msgstr "<primary>10BASE-T</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>100BASE-T</primary>"
-msgstr "<primary>100BASE-T</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>1000BASE-T</primary>"
-msgstr "<primary>1000BASE-T</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>10GBASE-T</primary>"
-msgstr "<primary>10GBASE-T</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RJ45, connector</primary>"
-msgstr "<primary>RJ45, conector</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RJ45 connector</primary>"
-msgstr "<primary>conector RJ45</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Most modern local networks use the Ethernet protocol, where data is split into small blocks called frames and transmitted on the wire one frame at a time. Data speeds vary from 10 Mb/s for older Ethernet cards to 10 Gb/s in the newest cards (with the most common rate currently growing from 100 Mb/s to 1 Gb/s). The most widely used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T depending on the throughput they can reliably provide (the T stands for “twisted pair”); those cables end in an RJ45 connector. There are other cable types, used mostly for speeds above 1 Gb/s."
 msgstr ""
-"A maioria das redes locais modernas usam o protocolo Ethernet, onde dados "
-"são quebrados em pequenos blocos chamados quadros (frames, em inglês) e "
-"transmitidos através do fio um quadro por vez. As velocidades de transmissão "
-"de dados variam de 10 Mb/s para placas Ethernet antigas a 10 Gb/s nas mais "
-"novas (com as taxas mais comuns atualmente crescendo de 100 Mb/s a 1 Gb/s). "
-"Os cabos mais amplamente usados são chamados 10BASE-T, 100BASE-T, 1000BASE-T "
-"ou 10GBASE-T dependendo da vazão que eles podem fornecer confiavelmente (o "
-"T significa \"twisted pair\", ou \"par trançado\"); estes cabos terminam num "
-"conector RJ45. Existem outros tipos de cabos, usados normalmente para "
-"velocidades acima de 1 Gb/s."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IP address</primary>"
-msgstr "<primary>endereço IP</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IP</primary><secondary>address</secondary>"
-msgstr "<primary>IP</primary><secondary>endereço</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2001:db8:13bb:0002:0000:0000:0020, or 2001:db8:13bb:2::20 for short)."
 msgstr ""
-"Um endereço IP é um número usado para identificar uma interface de rede num "
-"computador em uma rede local ou na internet. Na sua versão mais utilizada "
-"atualmente (IPv4), este número é codificado em 32 bits, e é normalmente "
-"representado como 4 números separados por pontos (e.g. "
-"<literal>192.168.0.1</literal>), cada número entre 0 e 255 (inclusive, o que "
-"corresponde a 8 bits de dados). A próxima versão do protocolo, IPv6, "
-"extende este espaço de endereçamento para 128 bits, e os endereços são "
-"geralmente representados como séries de números hexadecimais separados por "
-"dois-pontos (e.g., 2001:db8:13bb:0002:0000:0000:0020, ou 2001:db8:13bb:2::20 "
-"resumidamente)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>subnet</primary>"
-msgstr "<primary>sub-rede</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mask</primary><secondary>subnet mask</secondary>"
-msgstr "<primary>máscara</primary><secondary>máscara de sub-rede</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>address</secondary>"
-msgstr "<primary>rede</primary><secondary>endereço</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "A subnet mask (netmask) defines in its binary code which portion of an IP address corresponds to the network, the remainder specifying the machine. In the example of configuring a static IPv4 address given here, the subnet mask, <literal>255.255.255.0</literal> (24 “1”s followed by 8 “0”s in binary representation) indicates that the first 24 bits of the IP address correspond to the network address, and the other 8 are specific to the machine. In IPv6, for readability, only the number of “1”s is expressed; the netmask for an IPv6 network could, thus, be <literal>64</literal>."
 msgstr ""
-"Uma máscara de subrede (máscara de rede) define no seu código binário que "
-"porções de um endereço IP correspondem à rede, e o restante especifica a "
-"máquina. No exemplo de configurar um endereço IPv4 estático dado aqui, a "
-"máscara de subrede, <literal>255.255.255.0</literal> (24 “1”s seguidos de 8 "
-"“0”s na representação binária) indica que os primeiros 24 bits do endereço "
-"IP correspondem ao endereço de rede, e os outros 8 são específicos da "
-"máquina. Em IPv6, por legibilidade, apenas os números  “1”s são mostrados; a "
-"máscara de rede para uma rede IPv6 poderia ser, portanto, "
-"<literal>64</literal>."
 
 #. Tag: para
 #, no-c-format
@@ -703,12 +483,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>router</primary>"
-msgstr "<primary>roteador</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bridge</primary>"
-msgstr "<primary>ponte</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -718,7 +498,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>broadcast</primary>"
-msgstr "<primary>broadcast</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -729,45 +509,36 @@ msgstr ""
 #, no-c-format
 msgid "This chapter focuses on IPv4 addresses, since they are currently the most commonly used. The details of the IPv6 protocol are approached in <xref linkend=\"sect.ipv6\" />, but the concepts remain the same."
 msgstr ""
-"Este capítulo foca nos endereços IPv4, já que eles são os mais comumente "
-"usados. Os detalhes sobre o protocolo IPv6 são discutidos aqui <xref "
-"linkend=\"sect.ipv6\" />, mas os conceitos se mantém os mesmos."
 
 #. Tag: para
 #, no-c-format
 msgid "Since the network is automatically configured during the initial installation, the <filename>/etc/network/interfaces</filename> file already contains a valid configuration. A line starting with <literal>auto</literal> gives a list of interfaces to be automatically configured on boot. This will often be <literal>eth0</literal>, which refers to the first Ethernet card."
 msgstr ""
-"Já que a rede é automaticamente configurado durante a instalação inicial, o "
-"arquivo <filename>/etc/network/interfaces</filename> já contém uma "
-"configuração válida. Uma linha começando com <literal>auto</literal> provê "
-"uma lista de interfaces que são configuradas automaticamente na "
-"inicialização. Comumente será <literal>eth0</literal>, o qual se refere a "
-"primeira placa de rede."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>configuration</secondary>"
-msgstr "<primary>rede</primary><secondary>configuração</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>of the network</secondary>"
-msgstr "<primary>configuração</primary><secondary>da rede</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>interface</primary><secondary>network</secondary>"
-msgstr "<primary>interface</primary><secondary>rede</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>eth0</literal></primary>"
-msgstr "<primary><literal>eth0</literal></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Ethernet Interface"
-msgstr "Interface de Rede"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -777,39 +548,30 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "DHCP configuration"
-msgstr "Configuração DHCP"
+msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "auto eth0\n"
 "iface eth0 inet dhcp\n"
 "  hostname arrakis\n"
+""
 msgstr ""
-"\n"
-"auto eth0\n"
-"iface eth0 inet dhcp\n"
-"  hostname arrakis\n"
 
 #. Tag: para
 #, no-c-format
 msgid "A “static” configuration must indicate network settings in a fixed manner. This includes at least the IP address and subnet mask; network and broadcast addresses are also sometimes listed. A router connecting to the exterior will be specified as a gateway."
 msgstr ""
-"Uma configuração \"static\" deve indicar uma configuração de rede de maneira "
-"fixa. Isto incluí ao menos o endereço IP e uma máscara de sub rede; "
-"endereços de rede e brodcasts são algumas vezes listados também. Um roteador "
-"conectado ao exterior será especificado como um gateway."
 
 #. Tag: title
 #, no-c-format
 msgid "Static configuration"
-msgstr "Configuração estática"
+msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "auto eth0\n"
 "iface eth0 inet static\n"
 "  address 192.168.0.3\n"
@@ -817,20 +579,13 @@ msgid ""
 "  broadcast 192.168.0.255\n"
 "  network 192.168.0.0\n"
 "  gateway 192.168.0.1\n"
+""
 msgstr ""
-"\n"
-"auto eth0\n"
-"iface eth0 inet static\n"
-"  address 192.168.0.3\n"
-"  netmask 255.255.255.0\n"
-"  broadcast 192.168.0.255\n"
-"  network 192.168.0.0\n"
-"  gateway 192.168.0.1\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Multiple addresses"
-msgstr "<emphasis>NOTA</emphasis> Múltiplos endereços"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -841,42 +596,36 @@ msgstr ""
 #, no-c-format
 msgid "As you can guess, the configurations can be rather complex, but these options are only used in very special cases. The examples cited here are typical of the usual configurations."
 msgstr ""
-"Como você pode imaginar, as configurações podem ser complexas, mas estas "
-"opções são usadas somente em casos especiais. Os exemplos citados aqui são "
-"configurações habituais típicas."
 
 #. Tag: title
 #, no-c-format
 msgid "Connecting with PPP through a PSTN Modem"
-msgstr "Conectando com PPP através de um modem PSTN"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPP</primary>"
-msgstr "<primary>PPP</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>point to point</primary>"
-msgstr "<primary>ponto a ponto</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connection</primary><secondary>by PSTN modem</secondary>"
-msgstr "<primary>conexão</primary><secondary>por um modem PSTN</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modem</primary><secondary>PSTN</secondary>"
-msgstr "<primary>modem</primary><secondary>PSTN</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "A point to point (PPP) connection establishes an intermittent connection; this is the most common solution for connections made with a telephone modem (“PSTN modem”, since the connection goes over the public switched telephone network)."
 msgstr ""
-"Uma conexão ponto a ponto (PPP) cria uma conexão intermitente; está é a "
-"solução mais comum para conexão feitas com um modem telefônico (\"modem "
-"PSTN\", já que a conexão vai pela rede de telefonia)."
 
 #. Tag: para
 #, no-c-format
@@ -886,12 +635,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pppconfig</command></primary>"
-msgstr "<primary><command>pppconfig</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PAP</primary>"
-msgstr "<primary>PAP</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -901,57 +650,52 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pon</command></primary>"
-msgstr "<primary><command>pon</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>poff</command></primary>"
-msgstr "<primary><command>poff</command></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> On-demand connection with <command>diald</command>"
 msgstr ""
-"<emphasis>FERRAMENTA</emphasis> Conexão sob demanda com "
-"<command>diald</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>diald</command></primary>"
-msgstr "<primary><command>diald</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connection</primary><secondary>on demand</secondary>"
-msgstr "<primary>conexão</primary><secondary>sob demanda</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "<command>diald</command> is an on-demand connection service that automatically establishes a connection when needed, by detecting an outgoing IP packet and disconnecting after a period of inactivity."
 msgstr ""
-"<command>diald</command> é serviço de conexão sob demanda que "
-"automaticamente estabelece uma conexão com necessário, detectando um pacote "
-"IP sainte e desconectando após um período de inatividade."
 
 #. Tag: title
 #, no-c-format
 msgid "Connecting through an ADSL Modem"
-msgstr "Conectando através de um modem ADSL"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connection</primary><secondary>by ADSL modem</secondary>"
-msgstr "<primary>conexão</primary><secondary>por modem ADSL</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modem</primary><secondary>ADSL</secondary>"
-msgstr "<primary>modem</primary><secondary>ADSL</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ADSL, modem</primary>"
-msgstr "<primary>ADSL, modem</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -959,19 +703,19 @@ msgid "The generic term “ADSL modem” covers a multitude of devices with very
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Modems Supporting PPPOE"
-msgstr "Modems que Suportam PPPOE"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPPOE</primary>"
-msgstr "<primary>PPPOE</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pppoeconf</command></primary>"
-msgstr "<primary><command>pppoeconf</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -982,26 +726,21 @@ msgstr ""
 #, no-c-format
 msgid "Once this configuration is complete, you can open the ADSL connection with the command, <command>pon dsl-provider</command> and disconnect with <command>poff dsl-provider</command>."
 msgstr ""
-"Uma vez que essa configuração está completa, você pode iniciar a conexão "
-"ADSL com o comando, <command>pon dsl-provider</command> ou desconectar com "
-"<command>poff dsl-provider</command>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>dsl-provider</literal></primary>"
-msgstr "<primary><literal>dsl-provider</literal></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Starting <command>ppp</command> via <command>init</command>"
 msgstr ""
-"<emphasis>DICA</emphasis> Iniciando <command>ppp</command> via "
-"<command>init</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>init</command></primary>"
-msgstr "<primary><command>init</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1010,29 +749,25 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
+""
 msgstr ""
-"\n"
-"adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Most ADSL connections disconnect on a daily basis, but this method reduces the duration of the interruption."
 msgstr ""
-"A maioria das conexões ADSL desconectam diariamente, mas este método reduz a "
-"duração da interrupção."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Modems Supporting PPTP"
-msgstr "Modems que Suportam PPTP"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPTP</primary>"
-msgstr "<primary>PPTP</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1040,9 +775,9 @@ msgid "The PPTP (Point-to-Point Tunneling Protocol) protocol was created by Micr
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Modems Supporting DHCP"
-msgstr "Modems que Suportam DHCP"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1053,13 +788,11 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Crossover cable for a direct Ethernet connection"
 msgstr ""
-"<emphasis>DE VOLTA AO BÁSICO</emphasis> Cabos de par trançado para conexão "
-"de rede direta"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>crossover cable</primary>"
-msgstr "<primary>cabo de par trançado</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1074,32 +807,32 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Freebox</primary>"
-msgstr "<primary>Freebox</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Neufbox</primary>"
-msgstr "<primary>Neufbox</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Livebox</primary>"
-msgstr "<primary>Livebox</primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Automatic Network Configuration for Roaming Users"
-msgstr "Configuração Automática de Rede para Usuários em Roaming"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">network-manager</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">network-manager</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>roaming configuration</secondary>"
-msgstr "<primary>rede</primary><secondary>configuração de roaming</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1125,35 +858,26 @@ msgstr ""
 #, no-c-format
 msgid "Note that this program is installed by default when the “Desktop Environment” task is chosen during initial installation."
 msgstr ""
-"Note que este programa já é instalado por padrão quando a tarefa \"Desktop "
-"Environment\" é escolhida durante a instalação."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Configuration by “network profile”"
-msgstr "<emphasis>ALTERNATIVA</emphasis> Configuração por \"perfil de rede\""
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">guessnet</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">guessnet</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "More advanced users may want to try the <emphasis role=\"pkg\">guessnet</emphasis> package for automatic network configuration. A group of test scripts determine which network profile should be activated and configure it on the fly."
 msgstr ""
-"Usuários mais avançados talvez queiram usar o pacote <emphasis "
-"role=\"pkg\">guessnet</emphasis> para configuração automática de rede. Um "
-"grupo de scripts determina qual o perfil de rede deve ser ativado e "
-"configura a rede na hora."
 
 #. Tag: para
 #, no-c-format
 msgid "Users who prefer to manually select a network profile will prefer the <emphasis role=\"pkg\">netenv</emphasis> program, found in the package of the same name."
 msgstr ""
-"Usuários que preferem selecionar manualmente o perfil de rede preferirá o "
-"programa <emphasis role=\"pkg\">netenv</emphasis>, encontrado no pacote do "
-"mesmo nome."
 
 #. Tag: title
 #, no-c-format
@@ -1163,12 +887,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>name</primary><secondary>attribution and resolution</secondary>"
-msgstr "<primary>nome</primary><secondary>atribuição e resolução</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>assignment of names</primary>"
-msgstr "<primary>atribuição de nomes</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1183,34 +907,32 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>hostname</command></primary>"
-msgstr "<primary><command>hostname</command></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <filename>/proc/</filename> and <filename>/sys/</filename>, virtual filesystems"
 msgstr ""
-"<emphasis>DE VOLTA AO BÁSICO</emphasis> <filename>/proc/</filename> e "
-"<filename>/sys/</filename>, sistemas de arquivos virtuais"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/proc/</filename></primary>"
-msgstr "<primary><filename>/proc/</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>proc</filename></primary>"
-msgstr "<primary><filename>proc</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/sys/</filename></primary>"
-msgstr "<primary><filename>/sys/</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>sys</filename></primary>"
-msgstr "<primary><filename>sys</filename></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1229,54 +951,51 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "127.0.0.1     localhost\n"
 "192.168.0.1   arrakis.falcot.com arrakis\n"
+""
 msgstr ""
-"\n"
-"127.0.0.1     localhost\n"
-"192.168.0.1   arrakis.falcot.com arrakis\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>hosts</filename></primary>"
-msgstr "<primary><filename>hosts</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/hosts</filename></primary>"
-msgstr "<primary><filename>/etc/hosts</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>domain</primary><secondary>name</secondary>"
-msgstr "<primary>domínio</primary><secondary>nome</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>name</primary><secondary>domain</secondary>"
-msgstr "<primary>nome</primary><secondary>domínio</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NSS</primary>"
-msgstr "<primary>NSS</primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Name Resolution"
-msgstr "Resolução de Nome"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>resolution</primary><secondary>name</secondary>"
-msgstr "<primary>resolução</primary><secondary>nome</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>name</primary><secondary>resolution</secondary>"
-msgstr "<primary>nome</primary><secondary>resolução</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1286,7 +1005,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> NSS and DNS"
-msgstr "<emphasis>NOTA</emphasis> NSS e DNS"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1296,17 +1015,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring DNS Servers"
-msgstr "Configurando Servidores DNS"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNS</primary>"
-msgstr "<primary>DNS</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Domain Name Service</primary>"
-msgstr "<primary>Domain Name Service</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1321,12 +1040,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>resolv.conf</filename></primary>"
-msgstr "<primary><filename>resolv.conf</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>nameserver</literal></primary>"
-msgstr "<primary><literal>nameserver</literal></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1335,21 +1054,17 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "nameserver 212.27.32.176\n"
 "nameserver 212.27.32.177\n"
 "nameserver 8.8.8.8\n"
+""
 msgstr ""
-"\n"
-"nameserver 212.27.32.176\n"
-"nameserver 212.27.32.177\n"
-"nameserver 8.8.8.8\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/hosts</filename> file"
-msgstr "O arquivo <filename>/etc/hosts</filename>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1365,14 +1080,11 @@ msgstr ""
 #, no-c-format
 msgid "This file will be sufficient for a small network not connected to the Internet, but with 5 machines or more, it is recommended to install a proper DNS server."
 msgstr ""
-"Este arquivo será suficiente para uma rede pequena sem conexão com a "
-"internet, mas com 5 máquinas ou mais, é recomendado a instalação de um "
-"servidor DNS adequado."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Bypassing DNS"
-msgstr "<emphasis>DICA</emphasis> Ignorando o DNS"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1397,22 +1109,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>user</primary><secondary>database</secondary>"
-msgstr "<primary>usuário</primary><secondary>banco de dados</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>database</secondary>"
-msgstr "<primary>grupo</primary><secondary>banco de dados</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>database</primary><secondary>of users</secondary>"
-msgstr "<primary>banco de dados</primary><secondary>de usuários</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>database</primary><secondary>of groups</secondary>"
-msgstr "<primary>banco de dados</primary><secondary>de grupos</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1422,7 +1134,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Editing system files"
-msgstr "<emphasis>NOTA</emphasis> Editando arquivos do sistema"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1437,12 +1149,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Crypt, a one-way function"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Crypt, uma função de mão única"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>crypt</primary>"
-msgstr "<primary>crypt</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1452,48 +1164,47 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "User List: <filename>/etc/passwd</filename>"
-msgstr "Lista de Usuários: <filename>/etc/passwd</filename>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Here is the list of fields in the <filename>/etc/passwd</filename> file:"
 msgstr ""
-"Aqui está uma lista de campos do arquivo <filename>/etc/passwd</filename>:"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>passwd</command></primary>"
-msgstr "<primary><command>passwd</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/passwd</filename></primary>"
-msgstr "<primary><filename>/etc/passwd</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>uid</literal></primary>"
-msgstr "<primary><literal>uid</literal></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>gid</literal></primary>"
-msgstr "<primary><literal>gid</literal></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>GECOS</literal></primary>"
-msgstr "<primary><literal>GECOS</literal></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>login</literal></primary>"
-msgstr "<primary><literal>login</literal></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "login, for example <literal>rhertzog</literal>;"
-msgstr "login, por exemplo <literal>rhertzog</literal>;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1503,7 +1214,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "<literal>uid</literal>: unique number identifying each user;"
-msgstr "<literal>uid</literal>: identificar numérico único para cada usuário;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1528,12 +1239,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Unix group"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Grupo Unix"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary>"
-msgstr "<primary>grupo</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1544,62 +1255,51 @@ msgstr ""
 #, no-c-format
 msgid "The Hidden and Encrypted Password File: <filename>/etc/shadow</filename>"
 msgstr ""
-"O Oculto e Criptografo Arquivo de Senhas: <filename>/etc/shadow</filename>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>shadow</filename></primary>"
-msgstr "<primary><filename>shadow</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/shadow</filename></primary>"
-msgstr "<primary><filename>/etc/shadow</filename></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/shadow</filename> file contains the following fields:"
-msgstr "O arquivo <filename>/etc/shadow</filename> contém os seguintes campos:"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "login"
-msgstr "login"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "encrypted password;"
-msgstr "senha criptografada;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "several fields managing password expiration."
-msgstr "diversos campos controlam a expiração da senha."
+msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> <filename>/etc/passwd</filename>, <filename>/etc/shadow</filename> and <filename>/etc/group</filename> file formats"
 msgstr ""
-"<emphasis>DOCUMENTAÇÃO</emphasis> <filename>/etc/passwd</filename>, "
-"<filename>/etc/shadow</filename> e <filename>/etc/group</filename> formatos "
-"de arquivo"
 
 #. Tag: para
 #, no-c-format
 msgid "These formats are documented in the following man pages: <citerefentry><refentrytitle>passwd</refentrytitle><manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>shadow</refentrytitle><manvolnum>5</manvolnum></citerefentry>, and <citerefentry><refentrytitle>group</refentrytitle><manvolnum>5</manvolnum></citerefentry>."
 msgstr ""
-"Estes formatos estão documentados nas seguintes páginas de manuais: <citeref"
-"entry><refentrytitle>passwd</refentrytitle><manvolnum>5</manvolnum></citeref"
-"entry>, <citerefentry><refentrytitle>shadow</refentrytitle><manvolnum>5</man"
-"volnum></citerefentry>, e <citerefentry><refentrytitle>group</refentrytitle>"
-"<manvolnum>5</manvolnum></citerefentry>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <filename>/etc/shadow</filename> file security"
 msgstr ""
-"<emphasis>SEGURANÇA</emphasis> <filename>/etc/shadow</filename> segurança de "
-"arquivos"
 
 #. Tag: para
 #, no-c-format
@@ -1609,27 +1309,27 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Modifying an Existing Account or Password"
-msgstr "Modificando uma Conta de Usuário Existente ou Senha"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>chsh</command></primary>"
-msgstr "<primary><command>chsh</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>chfn</command></primary>"
-msgstr "<primary><command>chfn</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>chage</command></primary>"
-msgstr "<primary><command>chage</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>password</primary>"
-msgstr "<primary>senha</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1644,17 +1344,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Disabling an Account"
-msgstr "Desabilitando uma Conta"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Disable an account</primary>"
-msgstr "<primary>Desabilitando uma conta</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>account</primary><secondary>disable</secondary>"
-msgstr "<primary>conta</primary><secondary>desativar</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1664,7 +1364,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> NSS and system databases"
-msgstr "<emphasis>APROFUNDANDO</emphasis> NSS e banco de dados do sistema"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
@@ -1679,20 +1379,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Group List: <filename>/etc/group</filename>"
-msgstr "Lista de Grupo: <filename>/etc/group</filename>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Groups are listed in the <filename>/etc/group</filename> file, a simple textual database in a format similar to that of the <filename>/etc/passwd</filename> file, with the following fields:"
 msgstr ""
-"Grupos são listados no arquivo <filename>/etc/group</filename>, um banco de "
-"dados de texto simples em um formato similar ao arquivo "
-"<filename>/etc/passwd</filename>, com os seguintes campos:"
 
 #. Tag: para
 #, no-c-format
 msgid "group name"
-msgstr "nome do grupo"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1712,27 +1409,27 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Working with several groups"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Trabalhando com grupos diversos"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>newgrp</command></primary>"
-msgstr "<primary><command>newgrp</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>sg</command></primary>"
-msgstr "<primary><command>sg</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>id</command></primary>"
-msgstr "<primary><command>id</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>change</secondary>"
-msgstr "<primary>grupo</primary><secondary>mudança</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1752,12 +1449,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>group</filename></primary>"
-msgstr "<primary><filename>group</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/group</filename></primary>"
-msgstr "<primary><filename>/etc/group</filename></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1767,47 +1464,47 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>addgroup</command></primary>"
-msgstr "<primary><command>addgroup</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>delgroup</command></primary>"
-msgstr "<primary><command>delgroup</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>groupmod</command></primary>"
-msgstr "<primary><command>groupmod</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>creation</secondary>"
-msgstr "<primary>grupo</primary><secondary>criação</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>creation</primary><secondary>of groups</secondary>"
-msgstr "<primary>criação</primary><secondary>de grupos</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>deletion</secondary>"
-msgstr "<primary>grupo</primary><secondary>remoção</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>deletion of a group</primary>"
-msgstr "<primary>remoção de um grupo</primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <command>getent</command>"
-msgstr "<emphasis>DICA</emphasis> <command>getent</command>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>getent</command></primary>"
-msgstr "<primary><command>getent</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1817,17 +1514,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Creating Accounts"
-msgstr "Criação de Contas"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>account</primary><secondary>creation</secondary>"
-msgstr "<primary>conta</primary><secondary>criação</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>creation</primary><secondary>of user accounts</secondary>"
-msgstr "<primary>criação</primary><secondary>de contas de usuários</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1837,7 +1534,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>adduser</command></primary>"
-msgstr "<primary><command>adduser</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1847,19 +1544,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Quota"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Cota"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quota</primary>"
-msgstr "<primary>cota</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The term “quota” refers to a limit on machine resources that a user is allowed to use. This frequently refers to disk space."
 msgstr ""
-"O termo \"cota\" se refere a um limite de recursos da máquina que um usuário é "
-"permitido usar. Isto é frequentemente se refere ao espaço de disco."
 
 #. Tag: para
 #, no-c-format
@@ -1869,12 +1564,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>add a user</secondary>"
-msgstr "<primary>grupo</primary><secondary>adicionar um usuário</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>add a user to a group</primary>"
-msgstr "<primary>adicionar um usuário a um grupo</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1885,48 +1580,46 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Device access permissions"
 msgstr ""
-"<emphasis>DE VOLTA AO BÁSICO</emphasis> Permissão de acesso a dispositivos"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>device</primary><secondary>access permissions</secondary>"
 msgstr ""
-"<primary>dispositivo</primary><secondary>permissões de acesso</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>special</secondary>"
-msgstr "<primary>arquivo</primary><secondary>especial</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mode</primary><secondary>character</secondary>"
-msgstr "<primary>modo</primary><secondary>carácter</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mode</primary><secondary>block</secondary>"
-msgstr "<primary>modo</primary><secondary>bloco</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>block, mode</primary>"
-msgstr "<primary>bloco, modo</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>character, mode</primary>"
-msgstr "<primary>carácter, modo</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>special, file</primary>"
-msgstr "<primary>especial, arquivo</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mknod</command></primary>"
-msgstr "<primary><command>mknod</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -1956,22 +1649,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>command line interface</primary>"
-msgstr "<primary>interface de linha de comando</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>command, interpreter</primary>"
-msgstr "<primary>comando, interpretador</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>shell</primary>"
-msgstr "<primary>shell</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bash</command></primary>"
-msgstr "<primary><command>bash</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2001,12 +1694,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>zsh</command></primary>"
-msgstr "<primary><command>zsh</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>csh</command></primary>"
-msgstr "<primary><command>csh</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2016,12 +1709,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Automatic completion"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Preenchimento automático"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>automatic completion</primary>"
-msgstr "<primary>preenchimento automático</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2036,17 +1729,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The tilde, a shortcut to HOME"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> O til, um atalho para o HOME"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>~</primary>"
-msgstr "<primary>~</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>tilde</primary>"
-msgstr "<primary>til</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2066,17 +1759,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Environment variables"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Variáveis de ambiente"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>environment variable</primary>"
-msgstr "<primary>variável de ambiente</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>environment</primary><secondary>variable</secondary>"
-msgstr "<primary>ambiente</primary><secondary>variável</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2091,7 +1784,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> All shells configured identically"
-msgstr "<emphasis>DICA</emphasis> Todos os shells configurados identicamente"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2101,17 +1794,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Printer Configuration"
-msgstr "Configuração da Impressora"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>printing</secondary>"
-msgstr "<primary>configuração</primary><secondary>imprimindo</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>printing</primary><secondary>configuration</secondary>"
-msgstr "<primary>imprimindo</primary><secondary>configuração</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2121,17 +1814,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IPP</primary>"
-msgstr "<primary>IPP</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Internet Printing Protocol</primary>"
-msgstr "<primary>Internet Printing Protocol</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>cups</command></primary>"
-msgstr "<primary><command>cups</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2141,32 +1834,32 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lpr</command></primary>"
-msgstr "<primary><command>lpr</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lpd</command></primary>"
-msgstr "<primary><command>lpd</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lpq</command></primary>"
-msgstr "<primary><command>lpq</command></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> CUPS"
-msgstr "<emphasis>COMUNIDADE</emphasis> CUPS"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CUPS</primary>"
-msgstr "<primary>CUPS</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Common Unix Printing System</primary>"
-msgstr "<primary>Common Unix Printing System</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2176,7 +1869,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> CUPS and CUPSYS"
-msgstr "<emphasis>NOTA</emphasis> CUPS e CUPSYS"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2192,15 +1885,11 @@ msgstr ""
 #, no-c-format
 msgid "<primary><command>cups</command></primary><secondary>administration</secondary>"
 msgstr ""
-"<primary><command>cups</command></primary><secondary>administração</secondar"
-"y>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Obsolescence of <filename>/etc/printcap</filename>"
 msgstr ""
-"<emphasis>NOTA</emphasis> Obsolescência do "
-"<filename>/etc/printcap</filename>"
 
 #. Tag: para
 #, no-c-format
@@ -2210,24 +1899,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>printcap</filename></primary>"
-msgstr "<primary><filename>printcap</filename></primary>"
+msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Configuring the Bootloader"
-msgstr "Configurando o Bootloader"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>loader</primary><secondary>bootloader</secondary>"
 msgstr ""
-"<primary>carregador</primary><secondary>carregador de "
-"inicialização</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bootloader</primary>"
-msgstr "<primary>carregador de inicialização</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2238,17 +1925,16 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Master boot record"
 msgstr ""
-"<emphasis>DE VOLTA AO BÁSICO</emphasis> Registro mestre de inicialização"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MBR</primary>"
-msgstr "<primary>MBR</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Master Boot Record</primary>"
-msgstr "<primary>Master Boot Record</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2258,14 +1944,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Identifying the Disks"
-msgstr "Identificando os Discos"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis>, <emphasis>devfs</emphasis> and <filename>/dev/</filename>"
 msgstr ""
-"<emphasis>CULTURA</emphasis> <emphasis>udev</emphasis>, "
-"<emphasis>devfs</emphasis> e <filename>/dev/</filename>"
 
 #. Tag: para
 #, no-c-format
@@ -2295,12 +1979,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>hard drive, names</primary>"
-msgstr "<primary>disco rígido, nomes</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>names</primary><secondary>of hard drives</secondary>"
-msgstr "<primary>nomes</primary><secondary>dos discos rígidos</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2320,17 +2004,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>primary</secondary>"
-msgstr "<primary>partição</primary><secondary>primária</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>extended</secondary>"
-msgstr "<primary>partição</primary><secondary>estendida</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>secondary</secondary>"
-msgstr "<primary>partição</primary><secondary>secundária</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2339,8 +2023,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
+msgid "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
 "total 0\n"
 "lrwxrwxrwx 1 root root  9 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP -&gt; ../../sda\n"
 "lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP-part1 -&gt; ../../sda1\n"
@@ -2366,51 +2049,8 @@ msgid ""
 "lrwxrwxrwx 1 root root 10 23 jul. 08:58 wwn-0x5000c50015c4842f-part1 -&gt; ../../sda1\n"
 "[...]\n"
 "mirexpress:/dev/disk/by-id# </computeroutput>\n"
+""
 msgstr ""
-"mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls "
-"-l</userinput><computeroutput>\n"
-"total 0\n"
-"lrwxrwxrwx 1 root root  9 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP -&gt; "
-"../../sda\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP-part1 "
-"-&gt; ../../sda1\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP-part2 "
-"-&gt; ../../sda2\n"
-"[...]\n"
-"lrwxrwxrwx 1 root root  9 23 jul. 08:58 ata-WDC_WD5001AALS-00L3B2_WD-"
-"WCAT00241697 -&gt; ../../sdb\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-WDC_WD5001AALS-00L3B2_WD-"
-"WCAT00241697-part1 -&gt; ../../sdb1\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-WDC_WD5001AALS-00L3B2_WD-"
-"WCAT00241697-part2 -&gt; ../../sdb2\n"
-"[...]\n"
-"lrwxrwxrwx 1 root root  9 23 jul. 08:58 scsi-SATA_STM3500418AS_9VM3L3KP "
-"-&gt; ../../sda\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_STM3500418AS_9VM3L3KP-"
-"part1 -&gt; ../../sda1\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_STM3500418AS_9VM3L3KP-"
-"part2 -&gt; ../../sda2\n"
-"[...]\n"
-"lrwxrwxrwx 1 root root  9 23 jul. 08:58 scsi-SATA_WDC_WD5001AALS-_WD-"
-"WCAT00241697 -&gt; ../../sdb\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_WDC_WD5001AALS-_WD-"
-"WCAT00241697-part1 -&gt; ../../sdb1\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_WDC_WD5001AALS-_WD-"
-"WCAT00241697-part2 -&gt; ../../sdb2\n"
-"[...]\n"
-"lrwxrwxrwx 1 root root  9 23 jul. 16:48 usb-LaCie_iamaKey_3ed00e26ccc11a-0:0 "
-"-&gt; ../../sdc\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 16:48 usb-"
-"LaCie_iamaKey_3ed00e26ccc11a-0:0-part1 -&gt; ../../sdc1\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 16:48 usb-"
-"LaCie_iamaKey_3ed00e26ccc11a-0:0-part2 -&gt; ../../sdc2\n"
-"[...]\n"
-"lrwxrwxrwx 1 root root  9 23 jul. 08:58 wwn-0x5000c50015c4842f -&gt; "
-"../../sda\n"
-"lrwxrwxrwx 1 root root 10 23 jul. 08:58 wwn-0x5000c50015c4842f-part1 -&gt; "
-"../../sda1\n"
-"[...]\n"
-"mirexpress:/dev/disk/by-id# </computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -2425,17 +2065,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring LILO"
-msgstr "Configurando o LILO"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LILO</primary>"
-msgstr "<primary>LILO</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Linux Loader</primary>"
-msgstr "<primary>Carregador Linux</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2450,12 +2090,11 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "LILO configuration file"
-msgstr "LILO arquivo de configuração"
+msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "# The disk on which LILO should be installed.\n"
 "# By indicating the disk and not a partition.\n"
 "# you order LILO to be installed on the MBR.\n"
@@ -2481,48 +2120,23 @@ msgid ""
 "# only for Linux/Windows dual boot\n"
 "other=/dev/sda1\n"
 "  label=Windows\n"
+""
 msgstr ""
-"\n"
-"# The disk on which LILO should be installed.\n"
-"# By indicating the disk and not a partition.\n"
-"# you order LILO to be installed on the MBR.\n"
-"boot=/dev/sda\n"
-"# the partition that contains Debian\n"
-"root=/dev/sda2\n"
-"# the item to be loaded by default\n"
-"default=Linux\n"
-"\n"
-"# the most recent kernel image\n"
-"image=/vmlinuz\n"
-"  label=Linux\n"
-"  initrd=/initrd.img\n"
-"  read-only\n"
-"\n"
-"# Old kernel (if the newly installed kernel doesn't boot)\n"
-"image=/vmlinuz.old\n"
-"  label=LinuxOLD\n"
-"  initrd=/initrd.img.old\n"
-"  read-only\n"
-"  optional\n"
-"\n"
-"# only for Linux/Windows dual boot\n"
-"other=/dev/sda1\n"
-"  label=Windows\n"
 
 #. Tag: title
 #, no-c-format
 msgid "GRUB 2 Configuration"
-msgstr "Configuração do GRUB 2"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB</primary>"
-msgstr "<primary>GRUB</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB 2</primary>"
-msgstr "<primary>GRUB 2</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2532,7 +2146,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> GRUB and GRUB 2"
-msgstr "<emphasis>NOTA</emphasis> GRUB e GRUB 2"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2542,7 +2156,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Disk names for GRUB"
-msgstr "<emphasis>NOTA</emphasis> Nomes dos discos para o GRUB"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2562,17 +2176,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "GRUB Legacy Configuration"
-msgstr "Configuração do GRUB Legacy"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB 1</primary>"
-msgstr "<primary>GRUB 1</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB Legacy</primary>"
-msgstr "<primary>GRUB Legacy</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2582,7 +2196,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Disk names for GRUB Legacy"
-msgstr "<emphasis>NOTA</emphasis> Nomes de disco para o GRUB Legacy"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2593,18 +2207,15 @@ msgstr ""
 #, no-c-format
 msgid "GRUB's configuration is in the <filename>/boot/grub/menu.lst</filename> file (see example)."
 msgstr ""
-"O arquivo de configuração do GRUB é <filename>/boot/grub/menu.lst</filename> "
-"(veja exemplo)."
 
 #. Tag: title
 #, no-c-format
 msgid "GRUB configuration file"
-msgstr "Arquivo de configuração para o GRUB"
+msgstr ""
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
-msgid ""
-"\n"
+#, no-c-format
+msgid "\n"
 "# Boot automatically after 30 seconds\n"
 "timeout 30\n"
 "# Boot first entry by default\n"
@@ -2629,52 +2240,28 @@ msgid ""
 "rootnoverify (hd0,0)\n"
 "makeactive\n"
 "chainloader +1\n"
+""
 msgstr ""
-"\n"
-"# Boot automatically after 30 seconds\n"
-"timeout 30\n"
-"# Boot first entry by default\n"
-"default 0\n"
-"# If that fails, try the second\n"
-"fallback 1\n"
-"\n"
-"# Last kernel installed\n"
-"title GNU/Linux\n"
-"root (hd0,1)\n"
-"kernel /vmlinuz root=/dev/sda2\n"
-"initrd /initrd.img\n"
-"\n"
-"# Old kernel (if the most recent doesn't boot)\n"
-"title GNU/Linux OLD\n"
-"root (hd0,1)\n"
-"kernel /vmlinuz.old root=/dev/sda2\n"
-"initrd /initrd.img.old\n"
-"\n"
-"# Only for dual boot, Linux/Windows\n"
-"title Microsoft Windows\n"
-"rootnoverify (hd0,0)\n"
-"makeactive\n"
-"chainloader +1\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>menu.lst</filename></primary>"
-msgstr "<primary><filename>menu.lst</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/boot/grub/menu.lst</filename></primary>"
-msgstr "<primary><filename>/boot/grub/menu.lst</filename></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "For Macintosh Computers (PowerPC): Configuring Yaboot"
-msgstr "Para Computadores Macintosh (PowerPC): Configurando Yaboot"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>yaboot</command></primary>"
-msgstr "<primary><command>yaboot</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2689,12 +2276,11 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Yaboot configuration file"
-msgstr "Arquivo de configuração Yaboot"
+msgstr ""
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
-msgid ""
-"\n"
+#, no-c-format
+msgid "\n"
 "# bootstrap partition\n"
 "boot=/dev/sda2\n"
 "# the disk\n"
@@ -2727,40 +2313,8 @@ msgid ""
 "\n"
 "# bsd=/dev/sdaX and macos=/dev/sdaX\n"
 "# are also possible\n"
+""
 msgstr ""
-"\n"
-"# bootstrap partition\n"
-"boot=/dev/sda2\n"
-"# the disk\n"
-"device=hd:\n"
-"# the Linux partition\n"
-"partition=3\n"
-"root=/dev/sda3\n"
-"# boot after 3 seconds of inactivity\n"
-"# (timeout is in tenths of seconds)\n"
-"timeout=30\n"
-"\n"
-"install=/usr/lib/yaboot/yaboot\n"
-"magicboot=/usr/lib/yaboot/ofboot\n"
-"enablecdboot\n"
-"\n"
-"# last kernel installed\n"
-"image=/vmlinux\n"
-"        label=linux\n"
-"        initrd=/initrd.img\n"
-"        read-only\n"
-"\n"
-"# old kernel\n"
-"image=/vmlinux.old\n"
-"        label=old\n"
-"        initrd=/initrd.img.old\n"
-"        read-only\n"
-"\n"
-"# only for Linux/Mac OSX dual-boot\n"
-"macosx=/dev/sda5\n"
-"\n"
-"# bsd=/dev/sdaX and macos=/dev/sdaX\n"
-"# are also possible\n"
 
 #. Tag: title
 #, no-c-format
@@ -2775,32 +2329,32 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Timezone"
-msgstr "Região"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>timezone</primary>"
-msgstr "<primary>região</primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Symbolic links"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Links simbólicos"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>link</primary><secondary>symbolic</secondary>"
-msgstr "<primary>link</primary><secondary>simbólico</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>symbolic link</primary>"
-msgstr "<primary>link simbólico</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ln</command></primary>"
-msgstr "<primary><command>ln</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2825,32 +2379,32 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tzconfig</command></primary>"
-msgstr "<primary><command>tzconfig</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>timezone</filename></primary>"
-msgstr "<primary><filename>timezone</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/timezone</filename></primary>"
-msgstr "<primary><filename>/etc/timezone</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>zoneinfo</filename></primary>"
-msgstr "<primary><filename>zoneinfo</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/usr/share/zoneinfo/</filename></primary>"
-msgstr "<primary><filename>/usr/share/zoneinfo/</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DST</primary>"
-msgstr "<primary>DST</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
@@ -2865,28 +2419,21 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><varname>TZ</varname></primary>"
-msgstr "<primary><varname>TZ</varname></primary>"
+msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "<computeroutput>$ </computeroutput><userinput>date</userinput>\n"
 "<computeroutput>Wed Mar 28 15:51:19 CEST 2012</computeroutput>\n"
 "<computeroutput>$ </computeroutput><userinput>TZ=\"Pacific/Honolulu\" date</userinput>\n"
 "<computeroutput>Wed Mar 28 03:51:21 HST 2012</computeroutput>"
 msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>date</userinput>\n"
-"<computeroutput>Wed Mar 28 15:51:19 CEST 2012</computeroutput>\n"
-"<computeroutput>$ </computeroutput><userinput>TZ=\"Pacific/Honolulu\" "
-"date</userinput>\n"
-"<computeroutput>Wed Mar 28 03:51:21 HST 2012</computeroutput>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> System clock, hardware clock"
-msgstr "<emphasis>NOTA</emphasis> Relógio do sistema, relógio de hardware"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2906,17 +2453,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Time Synchronization"
-msgstr "Sincronização de Tempo"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>time synchronization</primary>"
-msgstr "<primary>sincronização de tempo</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>clock</primary><secondary>synchronization</secondary>"
-msgstr "<primary>relógio</primary><secondary>sincronização</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2926,12 +2473,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> NTP"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> NTP"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NTP</primary>"
-msgstr "<primary>NTP</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
@@ -2956,7 +2503,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "For Workstations"
-msgstr "Para Estações de Trabalho"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2966,17 +2513,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>ntpdate</filename></primary>"
-msgstr "<primary><filename>ntpdate</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/default/ntpdate</filename></primary>"
-msgstr "<primary><filename>/etc/default/ntpdate</filename></primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "For Servers"
-msgstr "Para Servidores"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2986,33 +2533,32 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">ntp</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">ntp</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>NTP</secondary>"
-msgstr "<primary>servidor</primary><secondary>NTP</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NTP</primary><secondary>server</secondary>"
-msgstr "<primary>NTP</primary><secondary>servidor</secondary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> GPS modules and other time sources"
 msgstr ""
-"<emphasis>APROFUNDANDO</emphasis> Módulos GPS e outros recursos de tempo"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GPS</primary>"
-msgstr "<primary>GPS</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DCF-77</primary>"
-msgstr "<primary>DCF-77</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3022,27 +2568,27 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Rotating Log Files"
-msgstr "Rotação de Arquivos de Log"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>logs, rotation</secondary>"
-msgstr "<primary>arquivo</primary><secondary>logs, rotação</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>files, rotation</secondary>"
-msgstr "<primary>logs</primary><secondary>arquivos, rotação</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>rotation of log files</primary>"
-msgstr "<primary>rotação de arquivos de log</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>logrotate</command></primary>"
-msgstr "<primary><command>logrotate</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3053,29 +2599,26 @@ msgstr ""
 #, no-c-format
 msgid "The <command>logrotate</command> program is executed daily by the <command>cron</command> scheduling program (described in <xref linkend=\"sect.task-scheduling-cron-atd\" />)."
 msgstr ""
-"O programa <command>logrotate</command> é executado diariamente pelo "
-"agendador de comandos <command>cron</command> (descrito em <xref "
-"linkend=\"sect.task-scheduling-cron-atd\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "Sharing Administrator Rights"
-msgstr "Compartilhando Direitos Administrativos"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>account</primary><secondary>administrator account</secondary>"
-msgstr "<primary>conta</primary><secondary>conta do administrador</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>root</primary>"
-msgstr "<primary>root</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>sudo</command></primary>"
-msgstr "<primary><command>sudo</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3090,17 +2633,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>visudo</command></primary>"
-msgstr "<primary><command>visudo</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>sudoers</filename></primary>"
-msgstr "<primary><filename>sudoers</filename></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/sudoers</filename></primary>"
-msgstr "<primary><filename>/etc/sudoers</filename></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3110,22 +2653,22 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "List of Mount Points"
-msgstr "Lista de Pontos de Montagem"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>point, mount</primary>"
-msgstr "<primary>ponto, montagem</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mount point</primary>"
-msgstr "<primary>ponto de montagem</primary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Mounting and unmounting"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Montando e desmontando"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3135,7 +2678,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mount</command></primary>"
-msgstr "<primary><command>mount</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3176,14 +2719,11 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> NFS, a network filesystem"
 msgstr ""
-"<emphasis>DE VOLTA AO BÁSICO</emphasis> NFS, um sistema de arquivos de rede"
 
 #. Tag: para
 #, no-c-format
 msgid "NFS is a network filesystem; under Linux, it allows transparent access to remote files by including them in the local filesystem."
 msgstr ""
-"NFS é um sistema de arquivos de rede; no Linux, ele permite acesso "
-"transparente a arquivos remotos os incluindo no sistema de arquivo local."
 
 #. Tag: para
 #, no-c-format
@@ -3228,12 +2768,11 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Example <filename>/etc/fstab</filename> file:"
-msgstr "Exemplo do arquivo <filename>/etc/fstab</filename>:"
+msgstr ""
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
-msgid ""
-"\n"
+#, no-c-format
+msgid "\n"
 "# /etc/fstab: static file system information.\n"
 "#\n"
 "# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;\n"
@@ -3245,20 +2784,8 @@ msgid ""
 "/dev/scd0       /media/cdrom0   udf,iso9660 user,noauto 0       0\n"
 "/dev/fd0        /media/floppy   auto    rw,user,noauto  0       0\n"
 "arrakis:/shared /shared         nfs     defaults        0       0\n"
+""
 msgstr ""
-"\n"
-"# /etc/fstab: static file system information.\n"
-"#\n"
-"# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt; "
-"      &lt;dump&gt;  &lt;pass&gt;\n"
-"proc            /proc           proc    defaults        0       0\n"
-"# / was on /dev/sda1 during installation\n"
-"UUID=c964222e-6af1-4985-be04-19d7c764d0a7 / ext3 errors=remount-ro 0 1\n"
-"# swap was on /dev/sda5 during installation\n"
-"UUID=ee880013-0f63-4251-b5c6-b771f53bd90e none swap sw  0       0\n"
-"/dev/scd0       /media/cdrom0   udf,iso9660 user,noauto 0       0\n"
-"/dev/fd0        /media/floppy   auto    rw,user,noauto  0       0\n"
-"arrakis:/shared /shared         nfs     defaults        0       0\n"
 
 #. Tag: para
 #, no-c-format
@@ -3268,7 +2795,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Auto-mounting"
-msgstr "<emphasis>APROFUNDANDO</emphasis> Montagem automática"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3278,27 +2805,27 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>am-utils</emphasis></primary>"
-msgstr "<primary><emphasis>am-utils</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>amd</command></primary>"
-msgstr "<primary><command>amd</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>automount</command></primary>"
-msgstr "<primary><command>automount</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>autofs</emphasis></primary>"
-msgstr "<primary><emphasis>autofs</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>automounter</primary>"
-msgstr "<primary>automounter</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3313,17 +2840,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<command>locate</command> and <command>updatedb</command>"
-msgstr "<command>locate</command> e <command>updatedb</command>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>locate</command></primary>"
-msgstr "<primary><command>locate</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>updatedb</command></primary>"
-msgstr "<primary><command>updatedb</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3343,22 +2870,22 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Compiling a Kernel"
-msgstr "Compilando o núcleo"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>compilation</primary><secondary>of a kernel</secondary>"
-msgstr "<primary>compilando</primary><secondary>o núcleo</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>kernel</primary><secondary>compilation</secondary>"
-msgstr "<primary>núcleo</primary><secondary>compilação</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>kernel</primary><see>kernel</see>"
-msgstr "<primary>núcleo</primary><see>núcleo</see>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3368,7 +2895,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Security updates"
-msgstr "<emphasis>NOTA</emphasis> Atualizações de segurança"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3383,12 +2910,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Introduction and Prerequisites"
-msgstr "Introdução e Pré-requisitos"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">kernel-package</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">kernel-package</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3403,17 +2930,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Getting the Sources"
-msgstr "Pegando os Fontes"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Linux kernel sources</primary>"
-msgstr "<primary>Fontes do núcleo Linux</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>kernel</primary><secondary>sources</secondary>"
-msgstr "<primary>núcleo</primary><secondary>fontes</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3423,7 +2950,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Names of kernel packages"
-msgstr "<emphasis>CULTURA</emphasis> Nomes dos pacotes do núcleo"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3442,21 +2969,16 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-2.6.32.tar.bz2</userinput>\n"
+""
 msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd "
-"~/kernel</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-"
-"source-2.6.32.tar.bz2</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Location of kernel sources"
-msgstr "<emphasis>CULTURA</emphasis> Localização dos fontes do núcleo"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3466,24 +2988,22 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Kernel"
-msgstr "Configurando o Núcleo"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>kernel</primary><secondary>configuration</secondary>"
-msgstr "<primary>núcleo</primary><secondary>configuração</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>of the kernel</secondary>"
-msgstr "<primary>configuração</primary><secondary>do núcleo</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The next step consists of configuring the kernel according to your needs. The exact procedure depends on the goals."
 msgstr ""
-"O próximo passo consiste da configuração do núcleo de acordo com suas "
-"necessidades. O procedimento exato depende dos objetivos."
 
 #. Tag: para
 #, no-c-format
@@ -3492,13 +3012,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "<computeroutput>$ </computeroutput><userinput>cp /boot/config-2.6.32-5-686 ~/kernel/linux-source-2.6.32/.config</userinput>\n"
+""
 msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>cp /boot/config-2.6.32-5-686 "
-"~/kernel/linux-source-2.6.32/.config</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -3523,7 +3040,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <command>make-kpkg --config</command>"
-msgstr "<emphasis>DICA</emphasis> <command>make-kpkg --config</command>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3533,52 +3050,42 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Compiling and Building the Package"
-msgstr "Compilando e Construindo um Pacote"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>make-kpkg</command></primary>"
-msgstr "<primary><command>make-kpkg</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>make-kpkg</command></primary><secondary><command>kernel-image</command></secondary>"
 msgstr ""
-"<primary><command>make-kpkg</command></primary><secondary><command>kernel-"
-"image</command></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>make-kpkg</command></primary><secondary><command>kernel-source</command></secondary>"
 msgstr ""
-"<primary><command>make-kpkg</command></primary><secondary><command>kernel-"
-"source</command></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>make-kpkg</command></primary><secondary><command>kernel-doc</command></secondary>"
 msgstr ""
-"<primary><command>make-kpkg</command></primary><secondary><command>kernel-"
-"doc</command></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>make-kpkg</command></primary><secondary><command>kernel-headers</command></secondary>"
 msgstr ""
-"<primary><command>make-kpkg</command></primary><secondary><command>kernel-"
-"headers</command></secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Clean up before rebuilding"
-msgstr "<emphasis>NOTA</emphasis> Limpar antes de construir"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>make-kpkg</command></primary><secondary><command>clean</command></secondary>"
 msgstr ""
-"<primary><command>make-"
-"kpkg</command></primary><secondary><command>clean</command></secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -3588,7 +3095,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Kernel package headers"
-msgstr "<emphasis>DICA</emphasis> Pacote de cabeçalhos do núcleo"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3612,48 +3119,38 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
 "[...]\n"
 "<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb</computeroutput>\n"
+""
 msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-"
-"to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
-"[...]\n"
-"<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
-"<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "As you can see, the package is created with the name “<filename>linux-image-2.6.32-falcot_1_i386.deb</filename>”."
 msgstr ""
-"Como você pode ver, o pacote é criado com o nome “<filename>linux-"
-"image-2.6.32-falcot_1_i386.deb</filename>”."
 
 #. Tag: title
 #, no-c-format
 msgid "Compiling External Modules"
-msgstr "Compilando Módulos Externos"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>make-kpkg</command></primary><secondary><command>modules-image</command></secondary>"
 msgstr ""
-"<primary><command>make-kpkg</command></primary><secondary><command>modules-"
-"image</command></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>kernel</primary><secondary>external modules</secondary>"
-msgstr "<primary>núcleo</primary><secondary>módulos externos</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modules</primary><secondary>external to the kernel</secondary>"
-msgstr "<primary>módulos</primary><secondary>externos ao núcleo</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3672,24 +3169,18 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/qc-usb.tar.bz2</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>ls modules/</userinput>\n"
 "<computeroutput>qc-usb</computeroutput>\n"
+""
 msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/qc-"
-"usb.tar.bz2</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>ls modules/</userinput>\n"
-"<computeroutput>qc-usb</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Save the settings"
-msgstr "<emphasis>NOTA</emphasis> Salvando as configurações"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3708,8 +3199,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "<computeroutput>$ </computeroutput><userinput>export MODULE_LOC=~/kernel/modules</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-2.6.32</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot modules-image</userinput>\n"
@@ -3718,34 +3208,23 @@ msgid ""
 "$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
 "../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb</computeroutput>\n"
+""
 msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>export "
-"MODULE_LOC=~/kernel/modules</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-"
-"source-2.6.32</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-"
-"to-version -falcot modules-image</userinput>\n"
-"<computeroutput>[...]\n"
-"Module /home/roland/kernel/modules/qc-usb processed fine\n"
-"$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
-"<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
-"../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Automating the process"
-msgstr "<emphasis>DICA</emphasis> Automatizando o processo"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">module-assistant</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">module-assistant</emphasis></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">dkms</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">dkms</emphasis></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3760,17 +3239,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Applying a Kernel Patch"
-msgstr "Aplicando um Patch ao Núcleo"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>kernel</primary><secondary>patch</secondary>"
-msgstr "<primary>núcleo</primary><secondary>patch</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>patch kernel</primary>"
-msgstr "<primary>patch núcleo</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3789,8 +3268,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-2.6.32</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg clean</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-patches/diffs/grsecurity2/grsecurity-2.1.14-2.6.32.13-201005151340.patch.gz | patch -p1</userinput>\n"
@@ -3799,26 +3277,13 @@ msgid ""
 "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
 "../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb\n"
 "../linux-image-2.6.32-grsec_1_i386.deb</computeroutput>\n"
+""
 msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-"
-"source-2.6.32</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg "
-"clean</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-"
-"patches/diffs/grsecurity2/grsecurity-2.1.14-2.6.32.13-201005151340.patch.gz "
-"| patch -p1</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-"
-"to-version -grsec --revision 1 --initrd kernel-image</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
-"<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb\n"
-"../qc-usb-modules-2.6.32-falcot_0.6.6-7+1_i386.deb\n"
-"../linux-image-2.6.32-grsec_1_i386.deb</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> <command>make-kpkg --added-patches</command>"
-msgstr "<emphasis>NOTA</emphasis> <command>make-kpkg --added-patches</command>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3833,32 +3298,32 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Installing a Kernel"
-msgstr "Instalando o Núcleo"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>of a kernel</secondary>"
-msgstr "<primary>instalação</primary><secondary>do núcleo</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>kernel</primary><secondary>installation</secondary>"
-msgstr "<primary>núcleo</primary><secondary>instalação</secondary>"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Features of a Debian Kernel Package"
-msgstr "Características do Pacote de Núcleo do Debian"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Special configurations"
-msgstr "<emphasis>APROFUNDANDO</emphasis> Configurações especiais"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>kernel-img.conf</filename></primary>"
-msgstr "<primary><filename>kernel-img.conf</filename></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3868,7 +3333,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>vmlinuz</filename></primary>"
-msgstr "<primary><filename>vmlinuz</filename></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3897,8 +3362,7 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid ""
-"\n"
+msgid "\n"
 "do_symlinks = yes\n"
 "relative_links = yes\n"
 "do_bootloader = no\n"
@@ -3907,21 +3371,13 @@ msgid ""
 "link_in_boot = no\n"
 "postinst_hook = update-grub\n"
 "postrm_hook = update-grub\n"
+""
 msgstr ""
-"\n"
-"do_symlinks = yes\n"
-"relative_links = yes\n"
-"do_bootloader = no\n"
-"do_bootfloppy = no\n"
-"do_initrd = yes\n"
-"link_in_boot = no\n"
-"postinst_hook = update-grub\n"
-"postrm_hook = update-grub\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing with <command>dpkg</command>"
-msgstr "Instalando com <command>dpkg</command>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3932,3 +3388,4 @@ msgstr ""
 #, no-c-format
 msgid "The configuration steps described in this chapter are basic and can lead both to a server system or a workstation, and it can be massively duplicated in semi-automated ways. However, it is not enough by itself to provide a fully configured system. A few pieces are still in need of configuration, starting with low-level programs known as the “Unix services”."
 msgstr ""
+

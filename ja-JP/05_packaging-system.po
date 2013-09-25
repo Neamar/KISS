@@ -5,161 +5,107 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-09-25 22:48+0200\n"
-"Last-Translator: Dag Velovic <dag.velovic@gmail.com>\n"
-"Language-Team: Croatian <http://debian.weblate.org/projects/debian-handbook"
-"/05_packaging-system/hr/>\n"
-"Language: hr-HR\n"
+"PO-Revision-Date: 2012-10-31T14:54:17\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: None\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 1.6-dev\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Binary package"
-msgstr "Binarni paket"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "Source package"
-msgstr "Paket izvornog koda"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "dpkg"
-msgstr "dpkg"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "dependencies"
-msgstr "ovisnosti"
+msgstr ""
 
 #. Tag: keyword
 #, no-c-format
 msgid "conflict"
-msgstr "sukob"
+msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Packaging System: Tools and Fundamental Principles"
-msgstr "Sustav pakiranja: Alati i osnovni principi"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "As a Debian system administrator, you will routinely handle <filename>.deb</filename> packages, since they contain consistent functional units (applications, documentation, etc.), whose installation and maintenance they facilitate. It is therefore a good idea to know what they are and how to use them."
 msgstr ""
-"Kao Debian administrator, morati cete rutinski baratati sa "
-"<filename>.deb</filename> paketima, obzirom da oni sadrže konzistentne "
-"funkcinalne jedinice (aplikacije, dokumentaciju, itd.), čiju instalaciju i "
-"održavanje olakšavaju. Stoga je dobra ideja znati što su oni i kako ih "
-"upotrebljavati."
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the source code, as well as instructions for building binary packages."
 msgstr ""
-"Ovo poglavlje opisuje strukturu i sadržaj \"binarnog\" i \"izvornog\" paketa. "
-"Binarne su <filename>.deb</filename> datoteke direktno primijenjive "
-"koristeći <command>dpkg</command>, dok izvorni dio sadrži izvorni kod, kao i "
-"instrukcije za kreiranje binarnog paketa."
 
 #. Tag: title
 #, no-c-format
 msgid "Structure of a Binary Package"
-msgstr "Struktura Binarnog paketa"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>binary package</secondary>"
-msgstr "<primary>paket</primary><secondary>binarni paket</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ar</command></primary>"
-msgstr "<primary><command>ar</command></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command>. This seemingly trivial property is important for portability and disaster recovery."
 msgstr ""
-"format Debian paketa je dizajniran na način da njegov sadržaj može biti "
-"raspakiran na bilo kojoj Unix platformi koja podržava klasične naredbe kao "
-"<command>ar</command>, <command>tar</command>, and <command>gzip</command>. "
-"Ova naočigled trivijalna mogućnost je važna zbog skalabilnosti i te u "
-"slučaju katastrofe."
 
 #. Tag: para
 #, no-c-format
 msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
 msgstr ""
-"Zamislite da ste npr. slučajno obrisali <command>dpkg</command> program,\" i "
-"da više ne možete instalirati Debian pakete. Kako je <command>dpkg</command> "
-"paket sam po sebi, izgleda da je vas sustav gotov... Srećom, znate koji je "
-"format paketa te možete preuzeti <filename>.deb</filename> datoteku sa "
-"naglaskom na <emphasis role=\"pkg\">dpkg</emphasis> paket te ga instalirati "
-"ručno (pogledaj ALATI bočnu traku). Ako pak slučajem neke nesreće jedan ili "
-"više od programa <command>ar</command>, <command>tar</command> ili "
-"<command>gzip</command> nedostaju, trebate ih samo kopirati iz nekog drugog "
-"sistema (kako je svaki od njih kompletno autonoman, bez međuovisnosti, "
-"jednostavno kopiranje je dostatno)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOLS</emphasis> <command>dpkg</command>, <command>APT</command> and <command>ar</command>"
 msgstr ""
-"<emphasis>ALATI</emphasis> <command>dpkg</command>, <command>APT</command> i "
-"<command>ar</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg</command></primary>"
-msgstr "<primary><command>dpkg</command></primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary>"
-msgstr "<primary>APT</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is the program that handles <filename>.deb</filename> files, notably extracting, analyzing, and unpacking them."
 msgstr ""
-"<command>dpkg</command> je naredba koja manipulira sa "
-"<filename>.deb</filename> datotekama, pogotovo njihovim raspakiravanjem, "
-"analiziranjem te ekstrakcijom."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>APT</command> is a group of programs that allows the execution of higher-level modifications to the system: installing or removing a package (while keeping dependencies satisfied), updating the system, listing the available packages, etc."
 msgstr ""
-"<command>APT</command> je grupa programa koji onogućuju izvršavanje "
-"modifikacija sustava na višoj razini: instalanje ili uklanjanje paketa (pri "
-"tome zadovoljavajući sve međusobne poveznice), nadogradnja sustava, pregled "
-"ponuđenih paketa, itd."
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents its many other operations. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the archive <filename>data.tar.gz</filename> in the system's root (<filename>/</filename>):"
 msgstr ""
-"<indexterm><primary><command>ar</command></primary></indexterm> Program "
-"<command>ar</command> omogućuje manipulaciju datotekama istog imena: "
-"<command>ar t <replaceable>archive</replaceable></command> prikazuje listu "
-"datoteka sadržanu u arhivi, <command>ar x "
-"<replaceable>archive</replaceable></command> raspakirava datoteke iz arhive "
-"u trenutni radni direktorij, <command>ar d "
-"<replaceable>archive</replaceable> <replaceable>file</replaceable></command> "
-"briše datoteku iz arhive, itd. Stranice pomoći (<citerefentry><refentrytitl"
-"e>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) opisuju mnoge "
-"druge operacije. <command>ar</command> je osnovni alat koji Unix "
-"administrator ne koristi često, ali admini rutinski koriste "
-"<command>tar</command> naredbu, nepredniju verziju programa za arhiviranje i "
-"manipulaciju datotekama. Upravo zato je lako povratiti "
-"<command>dpkg</command> u slučaju pogrešnog brisanja. Morali bi ste preuzeti "
-"Debian paket i raspakirati sadržaj arhive <filename>data.tar.gz</filename> "
-"u root sustava (<filename>/</filename>):"
 
 #. Tag: screen
 #, no-c-format
@@ -168,49 +114,31 @@ msgid "\n"
 "<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 ""
 msgstr ""
-"\n"
-"<computeroutput># </computeroutput><userinput>ar x "
-"dpkg_1.15.8.5_i386.deb</userinput>\n"
-"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf "
-"data.tar.gz</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Man page notation"
-msgstr "<emphasis>POVRATAK OSNOVAMA</emphasis> Notacija stranca pomoći"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "It can be confusing for beginners to find references to “<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>” in the literature. This is generally a convenient means of referring to the man page entitled <literal>ar</literal> in section 1."
 msgstr ""
-"Za početnike je možda zbunjujuće kako pronaći referencu za “<citerefentry><r"
-"efentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>” u "
-"literaturi. U biti to je referenca za stranice pomoći naslovljene "
-"<literal>ar</literal> u sekciji 1."
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes this notation is also used to remove ambiguities, for example to distinguish between the <command>printf</command> command that can also be indicated by <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry> and the <function>printf</function> function in the C programming language, which can also be referred to as <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry>."
 msgstr ""
-"Ponekad je takva notacija upotrebljena da se uklone nedoumice, na primjer "
-"prilikom razlikovanja između <command>printf</command> naredbe koja isto "
-"može biti indicirana sa <citerefentry><refentrytitle>printf</refentrytitle><"
-"manvolnum>1</manvolnum></citerefentry> te sa <function>printf</function> "
-"funkcijom u C programskom jeziku, koji je isto može biti referiran kao <cite"
-"refentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></cite"
-"refentry>."
 
 #. Tag: para
 #, no-c-format
 msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"section.manuel\" />)."
 msgstr ""
-"<xref linkend=\"solving-problems\" /> daje više informacija o stranicama "
-"pomoći (pogledaj <xref linkend=\"section.manuel\" />)."
 
 #. Tag: para
 #, no-c-format
 msgid "Have a look at the content of a <filename>.deb</filename> file:"
-msgstr "Pogledajte u sadržaj <filename>.deb</filename> datoteke:"
+msgstr ""
 
 #. Tag: screen
 #, no-c-format
@@ -249,121 +177,61 @@ msgid "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.15.8.5_i386.deb
 "<computeroutput>2.0</computeroutput>\n"
 ""
 msgstr ""
-"<computeroutput>$ </computeroutput><userinput>ar t "
-"dpkg_1.15.8.5_i386.deb</userinput>\n"
-"<computeroutput>debian-binary\n"
-"control.tar.gz\n"
-"data.tar.gz\n"
-"$ </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
-"<computeroutput>control.tar.gz  data.tar.gz  debian-binary  "
-"dpkg_1.15.8.5_i386.deb\n"
-"$ </computeroutput><userinput>tar tzf data.tar.gz | head -15</userinput>\n"
-"<computeroutput>./\n"
-"./var/\n"
-"./var/lib/\n"
-"./var/lib/dpkg/\n"
-"./var/lib/dpkg/updates/\n"
-"./var/lib/dpkg/parts/\n"
-"./var/lib/dpkg/info/\n"
-"./var/lib/dpkg/alternatives/\n"
-"./sbin/\n"
-"./sbin/start-stop-daemon\n"
-"./usr/\n"
-"./usr/sbin/\n"
-"./usr/sbin/install-info\n"
-"./usr/bin/\n"
-"./usr/bin/dpkg-split\n"
-"$ </computeroutput><userinput>tar tzf control.tar.gz</userinput>\n"
-"<computeroutput>./\n"
-"./control\n"
-"./preinst\n"
-"./md5sums\n"
-"./conffiles\n"
-"./postrm\n"
-"./postinst\n"
-"$ </computeroutput><userinput>cat debian-binary</userinput>\n"
-"<computeroutput>2.0</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "As you can see, the <command>ar</command> archive of a Debian package is comprised of three files:"
 msgstr ""
-"Kao što vidite, <command>ar</command> arhiva Debian paketa je sačinjena od "
-"tri datoteke:"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>debian-binary</filename>. This is a text file which simply indicates the version of the <filename>.deb</filename> file used (in 2011: version 2.0)."
 msgstr ""
-"<filename>debian-binary</filename>. Ovo je tekst datoteka koja jednostavno "
-"opisuje verziju <filename>.deb</filename> datoteke (u 2011: verzija 2.0)."
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information. In it, package management tools find, among other things, the name and version of the package. Some of this meta-information allows them to determine if it is possible to install or uninstall it, for example according to the list of packages already on the machine."
 msgstr ""
-"<filename>control.tar.gz</filename>. Ova arhiva sadrži sve dostupne meta-"
-"informacije. Alati za manipulaciju paketima u ovoj datoteci, povrh ostaloga, "
-"pronalaze ime i verziju paketa. Neke od tih meta-informacija im omogućuju "
-"procjenu da li se paket može ili ne može instalirati, kao i ukloniti, a sve "
-"to u sukladnosti sa listom postojećih paketa u sustavu."
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>data.tar.gz</filename>. This archive contains all of the files to be extracted from the package; this is where the executable files, documentation, etc., are all stored. Some packages may use other compression formats, in which case the file will be named differently (<filename>data.tar.bz2</filename> for bzip2, <filename>data.tar.xz</filename> for XZ, <filename>data.tar.lzma</filename> for LZMA)."
 msgstr ""
-"<filename>data.tar.gz</filename>. Ova arhiva sadrži sve datoteke koje se "
-"mogu raspakirati iz paketa; tu su izvršne datoteke, dokumentacija, itd. Neki "
-"paketi koriste druge metode kompresije, i u tom slučaju imaju drugačiji "
-"naziv (<filename>data.tar.bz2</filename> za bzip2, "
-"<filename>data.tar.xz</filename> za XZ, <filename>data.tar.lzma</filename> "
-"za LZMA)."
 
 #. Tag: title
 #, no-c-format
 msgid "Package Meta-Information"
-msgstr "Meta-informacije paketa"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package meta-information</primary>"
-msgstr "<primary>package meta-information</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>meta-information</secondary>"
-msgstr "<primary>package</primary><secondary>meta-informacija</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian package is not only an archive of files intended for installation. It is part of a larger whole, and it describes its relationship with other Debian packages (dependencies, conflicts, suggestions). It also provides scripts that enable the execution of commands at different stages in the package's lifecycle (installation, removal, upgrades). These data used by the package management tools are not part of the packaged software, but are, within the package, what is called its “meta-information” (information about other information)."
 msgstr ""
-"Debian paket nije samo arhiva namijenjena za instalaciju. On je dio veće "
-"cjeline, i opisuje odnos sa ostalim Debian paketima (međuovisnosti, "
-"konflikti, prijedlozi). Također pruža skripte koje omogućuju izvršavanje "
-"naredbi na različitim razinama životnog vijeka paketa (instalacija, "
-"uklanjanje, nadogradnja). Ti podaci koriste se od strane alata za "
-"upravljanje paketima koji nisu dio pakiranog programa, ali su unutar paketa "
-"meta-informacija (informacija o nekoj drugoj informaciji)."
 
 #. Tag: title
 #, no-c-format
 msgid "Description: the <filename>control</filename> File"
-msgstr "Opis: <filename>control</filename> datoteka"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>control</filename></primary>"
-msgstr "<primary><filename>control</filename></primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "This file uses a structure similar to email headers (as defined by RFC 2822). For example, for <emphasis role=\"pkg\">apt</emphasis>, the <filename>control</filename> file looks like the following:"
 msgstr ""
-"Ova datoteka koristi strukturu sličnu email header dijelu (definiranom u RFC "
-"2822). Na primjer, za <emphasis role=\"pkg\">apt</emphasis> "
-"<filename>control</filename> datoteka izgleda ovako:"
 
 #. Tag: screen
 #, no-c-format
@@ -396,181 +264,106 @@ msgid "\n"
 "Tag: admin::package-management, hardware::storage, hardware::storage:cd, interface::commandline, network::client, protocol::{ftp,http,ipv6}, role::program, suite::debian, use::downloading, use::searching, works-with::software:package</computeroutput>\n"
 ""
 msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
-"<computeroutput>Paket: apt\n"
-"Prioritet: vazno\n"
-"Sekcija: admin\n"
-"Instalacija-Veličina: 5612\n"
-"Održava: APT Development Team &lt;deity@lists.debian.org&gt;\n"
-"Arhitektura: i386\n"
-"Verzija: 0.8.0\n"
-"Zamjenjuje: manpages-pl (&lt;&lt; 20060617-3~)\n"
-"Omogućuje: libapt-pkg4.10\n"
-"Ovisi: libc6 (&gt;= 2.3.4), libgcc1 (&gt;= 1:4.1.1), libstdc++6 (&gt;= "
-"4.4.0), zlib1g (&gt;= 1:1.1.4), debian-archive-keyring, gnupg\n"
-"Prijedlozi: aptitude | synaptic | wajig, dpkg-dev, apt-doc, bzip2, lzma, "
-"python-apt\n"
-"Konflikti: python-apt (&lt;&lt; 0.7.93.2~)\n"
-"Naziv datoteke: pool/main/a/apt/apt_0.8.0_i386.deb\n"
-"Veličina: 1965454\n"
-"MD5sum: 43364819b898e49b8175e88ec5787241\n"
-"SHA1: 350a8a7a43fe182d54f3b7d73b8032f85b5d7ddf\n"
-"SHA256: a593e7d7f9b3cffa37770201a3c13bd2c8bc588bafbf39b4aaa5e13b5fb00b8b\n"
-"Opis: ANapredno sučelje za dpkg\n"
-" Ovo je Debian sučelje druge generacije za dpkg upravitelja paketima.\n"
-" Omogućuje apt-get komandu i APT dselect metodu koja pruža\n"
-" jednostavniji, sigurniji  način za instalaciju i nadogradnju paketa.\n"
-" .\n"
-" APT posjeduje mogućnost kompletnog upravljanja instalacijama, odabir više "
-"izvora\n"
-" i više drugih jedinstvenih mogućnosti, pročitajte više u korisničkom "
-"priručniku u apt-doc.\n"
-"Tag: admin::package-management, hardware::storage, hardware::storage:cd, "
-"interface::commandline, network::client, protocol::{ftp,http,ipv6}, "
-"role::program, suite::debian, use::downloading, use::searching, works-"
-"with::software:package</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> RFC — Internet standards"
-msgstr "<emphasis>POVRATAK OSNOVAMA</emphasis> RFC — Internet standardi"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RFC</primary>"
-msgstr "<primary>RFC</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Request For Comments</primary>"
-msgstr "<primary>Zahtjev za komentarima</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "RFC is the abbreviation of “Request For Comments”. An RFC is generally a technical document that describes what will become an Internet standard. Before becoming standardized and frozen, these standards are submitted for public review (hence their name). The IETF (Internet Engineering Task Force) decides on the evolution of the status of these documents (proposed standard, draft standard, or standard)."
 msgstr ""
-"RFC je kratica za \"Request For Commants\", odnosno zahtjev za komentarima. "
-"RFC je generalno tehnički dokument koji opisuje prema kamo se Internet "
-"standard razvija. Prije nego se ti dokumenti standardiziraju u zaključaju za "
-"promjene, isti standardi su upućeni na javni pregled. IETF (Internet "
-"Engineering Task Force) odlučuje o promjeni statusa dokumenta (predloženi "
-"standard, nacrt standarda, ili standard)."
 
 #. Tag: para
 #, no-c-format
 msgid "RFC 2026 defines the process for standardization of Internet protocols. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
 msgstr ""
-"RFC 2026 definira proces standardizacije Internet protokola. <ulink "
-"type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Dependencies: the <literal>Depends</literal> Field"
-msgstr "Zavisnosti: polje <literal>Zavisnost</literal>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dependency</primary>"
-msgstr "<primary>zavisnost</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Depends</literal>, header field</primary>"
-msgstr "<primary><literal>Zavisnost</literal>, polje zaglavlja</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>dependency</secondary>"
-msgstr "<primary>paket</primary><secondary>zavisnosti</secondary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the package to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
 msgstr ""
-"Zavisnosti su definirane u <literal>Zavisnost</literal> polju u zaglavlju "
-"paketa. To je lista preduvjeta koji su potrebni da bi paket vršio svoju "
-"funkciju - ova informacija je korištana od strane alata kao "
-"<command>apt</command> u slučaju instalacije potrebitih biblioteka i "
-"njihovih verzija od kojih ovisi paket koji želimo instalirati. Za svaku "
-"međuovisnost moguće je točno odrediti raspon verzija koje odgovaraju tim "
-"uvjetima. Drugim riječima, moguće je reći da trebamo paket <emphasis "
-"role=\"pkg\">libc6</emphasis> verzije jednake ili veće od \"2.3.4\" (napisano "
-"kao “<command>libc6 (&gt;= 2.3.4)</command>)\". Operatori uspoređivanja "
-"verzija su slijedeći:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;&lt;</command>: less than;"
-msgstr "<command>&lt;&lt;</command>: manje od;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;=</command>: less than or equal to;"
-msgstr "<command>&lt;=</command>: manje od ili jednako;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "<command>=</command>: equal to (note, “<literal>2.6.1</literal>” is not equal to “<literal>2.6.1-1</literal>”);"
 msgstr ""
-"<command>=</command>: jednako (primjer, “<literal>2.6.1</literal>” nije "
-"jednako kao “<literal>2.6.1-1</literal>”);"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;=</command>: greater than or equal to;"
-msgstr "<command>&gt;=</command>: veće od ili jednako;"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;&gt;</command>: greater than."
-msgstr "<command>&gt;&gt;</command>: veće od."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "In a list of conditions to be met, the comma serves as a separator. In logic, its meaning would be interpreted as “and”. In conditions, the vertical bar (“|”) expresses “or” in logic (it is an inclusive “or”, as opposed to meaning “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 msgstr ""
-"U listi predodređenih uvjeta, točka služi kao separator. Logika nalaže da "
-"njeno značenje je u biti \"i\". U uvjetima okomita crta (\"|\") izražava logički "
-"\"ili\" (uključuje \"ili\" kao suprotno od \"oba/ili\"). Imajući veći prioritet "
-"od \"i\" može se upotrijebiti koliko god puta je to potrebno. Slijedi da je "
-"izraz \"(A ili B) i C\" zapisan kao <command>A | B, C</command>. Suprotno "
-"tome, izraz \"A ili (B i C)\" zapisan je kao \"(A ili B) i (A ili C)\", budući "
-"da polje <literal>Ovisi</literal> ne tolerira zagrade koje mijenjaju  "
-"poredak prioriteta između logičkih operatera \"ili\" i \"i\". Bilo bi znači "
-"zapisano <command>A | B, A | C</command>. <ulink type=\"block\" "
-"url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>meta-package</primary>"
-msgstr "<primary>meta-paket</primary>"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The dependencies system is a good mechanism for guaranteeing the operation of a program, but it has another use with “meta-packages”. These are empty packages that only describe dependencies. They facilitate the installation of a consistent group of programs preselected by the meta-package maintainer; as such, <command>apt-get install <replaceable>meta-package</replaceable></command> will automatically install all of these programs using the meta-package's dependencies. The <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde</emphasis> and <emphasis role=\"pkg\">linux-image-2.6-686</emphasis> packages are examples of meta-packages."
 msgstr ""
-"Sustav međuovisnosti je dobar mehanizam koji osigurava siguran rad programa, "
-"ali ima i drugu upotrebu u \"meta-paketima\". To su prazni paketi koji "
-"opisuju međuovisnosti. Oni olakšavaju instalaciju konzistentne grupe "
-"programa koji su unaprijed odabrani od strane održavatelja meta-paketa, kao "
-"takva, <command>apt-get install <replaceable>meta-"
-"package</replaceable></command> će automatski instalirati sve ove programe "
-"koristeći međuovisnost iz meta-paketa. Paketi <emphasis "
-"role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde</emphasis> i <emphasis "
-"role=\"pkg\">linux-image-2.6-686</emphasis> si primjeri takvih meta-paketa."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, a more demanding <literal>Depends</literal>"
 msgstr ""
-"<emphasis>DEBIAN PRAVILA</emphasis> <literal>Pred-Uvjeti</literal>, "
-"zahtjevnija <literal>Ovisnost</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pre-Depends</literal>, header field</primary>"
-msgstr "<primary><literal>Pred-Uvjeti</literal>, polje zaglavlja</primary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
@@ -1174,7 +967,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>source package</secondary>"
-msgstr "<primary>paket</primary><secondary>paket sa izvornim kodom</secondary>"
+msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
@@ -1843,3 +1636,4 @@ msgstr ""
 #, no-c-format
 msgid "The stability of the software deployed using the <command>dpkg</command> tool contributes to Debian's fame. The APT suite of tools, described in the following chapter, preserves this advantage, while relieving the administrator from managing the status of packages, a necessary but difficult task."
 msgstr ""
+
