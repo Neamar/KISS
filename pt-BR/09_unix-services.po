@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-09-23 00:42+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-10-01 01:50+0200\n"
+"Last-Translator: Ezequiel Santos <zeckg@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -297,21 +297,54 @@ msgstr ""
 #, no-c-format
 msgid "In the original <emphasis>System V</emphasis>, and in versions of Debian up to <emphasis role=\"distribution\">Lenny</emphasis>, the execution order of initialization scripts was defined only by the names of the <filename>/etc/rc*.d/S*</filename> symbolic links (and <filename>/etc/rc*.d/K*</filename> upon shutdown). This behavior can be re-established by setting <literal>CONCURRENCY=none</literal> in the <filename>/etc/default/rcS</filename> file."
 msgstr ""
+"No sistema original <emphasis>V</ emphasis>, e em versões do Debian até "
+"<emphasis role=\"distribution\"> Lenny </ emphasis>, a ordem de execução dos "
+"scripts de inicialização foi definido apenas pelos nomes dos <filename "
+">/etc/rc *.d/S*</filename> links simbólicos(e <filename>/etc/rc*.d/K*</ "
+"filename> no encerramento).Este comportamento pode ser restabelecido, "
+"definindo <literal> CONCURRENCY=none</ literal> no arquivo</ "
+"filename>/etc/default/rcS<filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">file-rc</emphasis> is another boot system with a very simple process. It keeps the principle of runlevels, but replaces the directories and symbolic links with a configuration file, which indicates to <command>init</command> the processes that must be started and their launch order"
 msgstr ""
+"<emphasis role=\"pkg\">file-rc</emphasis> é um outro sistema de inicialização "
+"com um processo muito simples. Ele mantém os principais níveis de execução, "
+"mas substitui os diretórios e links simbólicos com um arquivo de "
+"configuração, o que indica em <command>init</command> os processos que devem "
+"ser iniciados e sua ordem de inicialização."
 
 #. Tag: para
 #, no-c-format
 msgid "The newly arrived <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
 msgstr ""
+"O mais recente adicionado <command>upstart</command> sistema ainda não está "
+"perfeitamente testado no Debian. Ele é um evento baseado em: scripts de "
+"inicialização que não são executados em uma ordem sequencial, mas em "
+"resposta a eventos como a conclusão de um outro script sobre o qual eles são "
+"dependentes. Este sistema, iniciado pelo Ubuntu, está presente no Debian  "
+"<emphasis role=\"distribution\">Squeeze</emphasis>, mas não é o padrão, que "
+"vem, de fato, como um substituto para <emphasis role=\"pkg\"> "
+"sysvinit</emphasis>, e uma das funções iniciada pelo "
+"<command>upstart</command> é inicializar os scripts escritos para sistemas "
+"tradicionais, especialmente aqueles do <emphasis role=\"pkg\">sysv-"
+"rc</emphasis> pacote ."
 
 #. Tag: para
 #, no-c-format
 msgid "Another new option is <command>systemd</command>, but it still lacks the maturity needed to be part of <emphasis role=\"distribution\">Squeeze</emphasis>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services."
 msgstr ""
+"Uma outra nova opção é o <command>systemd</command>, mas não tem ainda a  "
+"maturidade necessária para ser parte do <emphasis "
+"role=\"distribution\">Squeeze </ emphasis>.Sua abordagem é oposta aos sistemas "
+"anteriores, em vez de carregar antecipadamente todos os serviços, e ter que "
+"lidar com a questão de planejamento,<command>systemd</command> ele escolhe "
+"para iniciar os serviços sob demanda, aproximadamente ao longo do principal "
+"<command>inetd</command>.Porém isso significa que o sistema de inicialização "
+"deve ser capaz de conhecer como os serviços são disponibilizados (que "
+"poderia ser através de um soquete, um sistema de arquivos, ou outros), e "
+"portanto, requer pequenas modificações desses serviços."
 
 #. Tag: para
 #, no-c-format
