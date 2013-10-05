@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-10-03 04:50+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-10-05 23:07+0200\n"
+"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -154,8 +154,7 @@ msgstr "Init executa vários processos, seguindo as instruções do arquivo <fil
 #. Tag: para
 #, no-c-format
 msgid "Among these, you will find successively programs in charge of:"
-msgstr ""
-"Entre estes, você encontrará sucessivamente programas responsáveis ​​pela:"
+msgstr "Entre estes,você encontrará sucessivamente programas responsáveis pela:"
 
 #. Tag: para
 #, no-c-format
@@ -266,7 +265,27 @@ msgstr "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started. In <emphasis role=\"distribution\">Squeeze</emphasis>, the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
-msgstr "Após este estágio, o <command>init</command> assume o controle e inicializa os programas habilitados no nível de execução padrão (que geralmente é no nível de execução 2). O comando <command>init</command> executa o <command>/etc/init.d/rc 2</command>, um script que inicia todos os serviços que estão listados em  <filename>/etc/rc2.d/</filename> e os quais tem o nome com a letra inicial \"S\". O número de duas casas que se segue tinha sido historicamente utilizado para definir a ordem em que os serviços teve de ser iniciado.  No <emphasis role=\"distribution\">Squeeze</emphasis>, o sistema de boot padrão usa <command>insserv</command>, o qual agenda automaticamente tudo, baseado nas dependencias dos scripts. Desta forma, Cada script de inicialização declara as condições que devem ser cumpridos para iniciar ou parar o serviço (por exemplo, se ele deve começar antes ou depois de outro serviço); <command>init</command> em seguida, lança-os na ordem que satisfaça estas condições. A numeração estática dos scripts, portanto, não são mais levados em consideração (mas eles sempre devem ter um nome começando por \"S\" seguido por dois digitos e o nome atual do script usado por suas dependências). Geralmente, serviços base (tal como registros com o <command>rsyslog</command>, ou numeração de portas com  <command>portmap</command>) são inicializados primeiro, seguidos por serviços padrões e a interface gráfica (<command>gdm</command>)."
+msgstr ""
+"Após este estágio, o <command>init</command> assume o controle e inicializa "
+"os programas habilitados no nível de execução padrão (que geralmente é no "
+"nível de execução 2). Ele executa <command>/etc/init.d/rc 2</command>, um "
+"script que inicia todos os serviços que estão listados em  "
+"<filename>/etc/rc2.d/</filename> e os quais tem o nome com a letra inicial "
+"\"S\". O número de duas casas que se segue tinha sido historicamente utilizado "
+"para definir a ordem em que os serviços teve de ser iniciado.  No <emphasis "
+"role=\"distribution\">Squeeze</emphasis>, o sistema de boot padrão usa "
+"<command>insserv</command>, o qual agenda automaticamente tudo, baseado nas "
+"dependencias dos scripts. Desta forma, Cada script de inicialização declara "
+"as condições que devem ser cumpridos para iniciar ou parar o serviço (por "
+"exemplo, se ele deve começar antes ou depois de outro serviço); "
+"<command>init</command> em seguida, lança-os na ordem que satisfaça estas "
+"condições. A numeração estática dos scripts, portanto, não são mais levados "
+"em consideração (mas eles sempre devem ter um nome começando por \"S\" seguido "
+"por dois digitos e o nome atual do script usado por suas dependências). "
+"Geralmente, serviços base (tal como registros com o "
+"<command>rsyslog</command>, ou numeração de portas com  "
+"<command>portmap</command>) são inicializados primeiro, seguidos por "
+"serviços padrões e a interface gráfica (<command>gdm</command>)."
 
 #. Tag: para
 #, no-c-format
@@ -313,7 +332,7 @@ msgstr ""
 "com um processo muito simples. Ele mantém a ideia de runlevels (níveis de "
 "execução), mas substitui os diretórios e links simbólicos com um arquivo de "
 "configuração, que indica em <command>init</command> os processos que devem "
-"ser iniciados e sua ordem de inicialização."
+"ser iniciados e sua ordem de inicialização"
 
 #. Tag: para
 #, no-c-format
@@ -337,7 +356,7 @@ msgid "Another new option is <command>systemd</command>, but it still lacks the 
 msgstr ""
 "Uma outra nova opção é o <command>systemd</command>, mas não tem ainda a  "
 "maturidade necessária para ser parte do <emphasis "
-"role=\"distribution\">Squeeze </ emphasis>.Sua abordagem é oposta aos sistemas "
+"role=\"distribution\">Squeeze</emphasis>. Sua abordagem é oposta aos sistemas "
 "anteriores, em vez de carregar antecipadamente todos os serviços, e ter que "
 "lidar com a questão de planejamento,<command>systemd</command> ele escolhe "
 "para iniciar os serviços sob demanda, aproximadamente ao longo do principal "
@@ -409,6 +428,11 @@ msgstr ""
 #, no-c-format
 msgid "Other levels exist, especially 3 to 5. By default they are configured to operate the same way as level 2, but the administrator can modify them (by adding or deleting scripts in the corresponding <filename>/etc/rc<replaceable>X</replaceable>.d</filename> directories) to adapt them to particular needs."
 msgstr ""
+"Existem outros níveis, especialmente de 3 a 5. Por padrão, eles são "
+"configurados para operar da mesma maneira como nível 2, mas o administrador "
+"pode modificá-los (adicionando ou excluindo os scripts nos diretórios "
+"correspondentes <filename>/etc/rc<replaceable>X</replaceable>.d</filename>) "
+"para adaptá-los às necessidades específicas."
 
 #. Tag: title
 #, no-c-format
@@ -489,11 +513,23 @@ msgstr ""
 #, no-c-format
 msgid "With the development of computers, operating systems have offered several virtual consoles to allow for several independent sessions at the same time, even if there is only one keyboard and screen. Most GNU/Linux systems offer six virtual consoles (in text mode), accessible by typing the key combinations <keycombo action=\"simul\"> <keycap>Control</keycap> <keycap>Alt</keycap> <keycap>F1</keycap> </keycombo> through <keycombo action=\"simul\"> <keycap>Control</keycap> <keycap>Alt</keycap> <keycap>F6</keycap> </keycombo>."
 msgstr ""
+"Com o desenvolvimento de computadores, sistemas operacionais tem oferecido "
+"vários consoles virtuais para permitir várias sessões independentes ao mesmo "
+"tempo, mesmo se houver apenas um teclado e tela. A maioria dos sistemas "
+"GNU/Linux oferecem seis consoles virtuais (modo texto), acessíveis, "
+"digitando as combinações de teclas <keycombo action=\"simul\"> "
+"<keycap>Control</keycap> <keycap>Alt</keycap> <keycap>F1</keycap> "
+"</keycombo> through <keycombo action=\"simul\"> <keycap>Control</keycap> "
+"<keycap>Alt</keycap> <keycap>F6</keycap> </keycombo>."
 
 #. Tag: para
 #, no-c-format
 msgid "By extension, the terms “console” and “terminal” can also refer to a terminal emulator in a graphical X11 session (such as <command>xterm</command>, <command>gnome-terminal</command> or <command>konsole</command>)."
 msgstr ""
+"Por extensão, os termos \"console\" e \"terminal\" também pode se referir a um "
+"emulador de terminal em uma sessão X11 gráfica (como "
+"<command>xterm</command>, <command>gnome-terminal</command> ou "
+"<command>konsole</command>)."
 
 #. Tag: title
 #, no-c-format
@@ -504,6 +540,9 @@ msgstr "Login remoto"
 #, no-c-format
 msgid "It is essential for an administrator to be able to connect to a computer remotely. Servers, confined in their own room, are rarely equipped with permanent keyboards and monitors — but they are connected to the network."
 msgstr ""
+"É essencial para o administrador ser capaz de se conectar a um computador "
+"remotamente. Servidores, confinados em seu quarto, raramente são equipados "
+"com permanentes teclados e monitores — mas eles estão conectados à rede."
 
 #. Tag: title
 #, no-c-format
@@ -555,6 +594,11 @@ msgstr "<primary><command>telnet</command></primary>"
 #, no-c-format
 msgid "The <emphasis>telnet</emphasis> protocol, the oldest remote login service, is the worst in terms of security. Data and passwords are sent in clear text — that is, not encrypted — leaving them vulnerable to anyone snooping on the network. If necessary, take care to remove this obsolete service, that is no longer installed by default:"
 msgstr ""
+"O protocolo <emphasis>telnet</emphasis>, o mais antigo serviço de acesso "
+"remoto, é o pior em termos de segurança. Os dados e as senhas são enviadas "
+"em texto simples - isto é, não criptografado - deixando-os vulneráveis a "
+"qualquer espionagem na rede. Se necessário, tome cuidado para remover esse "
+"serviço obsoleto, que não é mais instalado por padrão:"
 
 #. Tag: screen
 #, no-c-format
@@ -566,6 +610,11 @@ msgstr "<computeroutput># </computeroutput><userinput>apt-get remove "
 #, no-c-format
 msgid "There is, however, an adaptation that corrects its most crippling defects; it uses SSL (Secure Socket Layer) to authenticate the partner and encrypt communications. The <emphasis>telnetd-ssl</emphasis> and <emphasis>telnet-ssl</emphasis> packages provide, respectively, the server and client software."
 msgstr ""
+"Há, no entanto, uma adaptação que corrige seus defeitos mais incapacitantes; "
+"Ele usa SSL (Secure Socket Layer) para autenticar o parceiro e criptografar "
+"as comunicações. Os pacotes <emphasis>telnetd-ssl</emphasis> e <emphasis"
+">telnet-ssl</emphasis> fornecem, respectivamente, o software de servidor e "
+"cliente."
 
 #. Tag: indexterm
 #, no-c-format
@@ -586,6 +635,14 @@ msgstr "<emphasis>VOCABULÁRIO</emphasis> Autenticação, criptografia"
 #, no-c-format
 msgid "When you need to give a client the ability to conduct or trigger actions on a server, security is important. You must ensure the identity of the client; this is authentication. This identity usually consists of a password that must be kept secret, or any other client could get the password. This is the purpose of encryption, which is a form of encoding that allows two systems to communicate confidential information on a public channel while protecting it from being readable to others."
 msgstr ""
+"Quando você precisar dar um cliente a capacidade de conduzir ou desencadear "
+"ações em um servidor, a segurança é importante. Você deve garantir a "
+"identidade do cliente; Esta é a autenticação. Esta identidade geralmente "
+"consiste de uma senha que deve ser mantida em segredo, ou qualquer outro "
+"cliente pode obter a senha. Este é o propósito da criptografia, que é uma "
+"forma de codificação que permite que dois sistemas de comunicação de "
+"informações confidenciais sobre um canal público, protegendo-o de ser lido "
+"por outros."
 
 #. Tag: para
 #, no-c-format
@@ -614,6 +671,10 @@ msgstr "<primary>Secure Shell</primary>"
 #, no-c-format
 msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol, contrary to <emphasis>telnet</emphasis>, was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
 msgstr ""
+"O protocolo <emphasis>SSH</emphasis> (Secure SHell), ao contrário do "
+"<emphasis>telnet</emphasis>, foi projetado com segurança e confiabilidade em "
+"mente. Conexões usando SSH estão seguras: o parceiro é autenticado e todas "
+"as trocas de dados criptografadas."
 
 #. Tag: title
 #, no-c-format
@@ -634,11 +695,21 @@ msgstr "<primary>Shell Remoto</primary>"
 #, no-c-format
 msgid "SSH tools provide secure variants of the programs from the classic RSH (Remote Shell) family — <command>rsh</command>, <command>rlogin</command>, and <command>rcp</command>. These are still available in the <emphasis role=\"pkg\">rsh-server</emphasis> and <emphasis role=\"pkg\">rsh-client</emphasis> packages, but their usage is strongly discouraged."
 msgstr ""
+"Ferramentas SSH fornecem variantes seguras dos programas da família clássica "
+"RSH (Remote Shell) — <command>rsh</command>, <command>rlogin</command>, e "
+"<command>rcp</command>.  \t  \t\n"
+"Estes estão ainda disponíveis nos pacotes <emphasis role=\"pkg\">rsh-"
+"server</emphasis> e <emphasis role=\"pkg\">rsh-client</emphasis>, mas seu uso "
+"é fortemente desencorajado."
 
 #. Tag: para
 #, no-c-format
 msgid "SSH also offers two file transfer services. <command>scp</command> is a command line tool that can be used like <command>cp</command>, except that any path to another machine is prefixed with the machine's name, followed by a colon."
 msgstr ""
+"SSH também oferece dois serviços de transferência de arquivo. "
+"<command>scp</command> é uma ferramenta de linha de comando que pode ser "
+"usada como <command>cp</command>, exceto que qualquer caminho a outra "
+"máquina é prefixado com o nome da máquina, seguido por dois-pontos."
 
 #. Tag: screen
 #, fuzzy, no-c-format
