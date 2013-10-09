@@ -13,10 +13,10 @@ get_release() {
 	6.0*)
 	    release="squeeze"
 	;;
-	7.0*)
+	7*)
 	    release="wheezy"
 	;;
-	8.0*)
+	8*)
 	    release="jessie"
 	;;
 	*)
