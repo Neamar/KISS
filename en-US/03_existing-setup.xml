@@ -67,13 +67,22 @@
       functionality.
       </para>
 
-      <para>Older Mac OS networks (before Mac OSX) use a different
-      protocol called Appletalk.  For environments involving machines
-      using this protocol, Debian provides Netatalk, a program which
-      uses the Appletalk protocol. It ensures the operation of the
-      file server and print queues, as well as time server (clock
-      synchronization). Its router function allows interconnection
-      with Appletalk networks.</para>
+      <indexterm><primary>AFP</primary></indexterm>
+      <indexterm><primary>AppleShare</primary></indexterm>
+      <para>In the other direction, the Netatalk daemon can be used to
+      provide file servers to Mac OSX machines on the network.  It
+      implements the AFP (AppleShare) protocol as well as the required
+      notifications so that the servers can be autodiscovered by the
+      Mac OSX clients.</para>
+
+      <indexterm><primary>AppleTalk</primary></indexterm> <para>Older
+      Mac OS networks (before Mac OSX) used a different protocol
+      called AppleTalk.  For environments involving machines using
+      this protocol, Netatalk, also provides the AppleTalk protocol
+      (it started as only a reimplementation of that protocol). It
+      ensures the operation of the file server and print queues, as
+      well as time server (clock synchronization). Its router function
+      allows interconnection with AppleTalk networks.</para>
     </section>
     <section>
       <title>Integration with Other Linux/Unix Machines</title>
