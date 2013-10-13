@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-10-05 23:07+0200\n"
-"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
+"PO-Revision-Date: 2013-10-13 05:14+0200\n"
+"Last-Translator: Ezequiel Santos <zeckg@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.7-dev\n"
+"X-Generator: Weblate 1.7\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -388,6 +388,17 @@ msgstr "<primary>level, runlevel</primary>"
 #, no-c-format
 msgid "<command>init</command> distinguishes several runlevels, so it can switch from one to another with the <command>telinit <replaceable>new-level</replaceable></command> command. Immediately, <command>init</command> executes <command>/etc/init.d/rc</command> again with the new runlevel. This script will then start the missing services and stop those that are no longer desired. To do this, it refers to the content of the <filename>/etc/rc<replaceable>X</replaceable>.d</filename> (where <replaceable>X</replaceable> represents the new runlevel). Scripts starting with “S” (as in “Start”) are services to be started; those starting with “K” (as in “Kill”) are the services to be stopped. The script does not start any service that was already active in the previous runlevel."
 msgstr ""
+"<command>init</command> distingue vários runlevels, então para que ele possa "
+"alternar de um para outro com o comando <command>telinit<replaceable>new-"
+"level</replaceable></command>. Imediatamente,<command>init</command> executa "
+"<command>/etc/init.d/rc</command> novamente com novo runlevel. Este script "
+"irá, em seguida, iniciar os serviços ausentes e interromper aqueles que não "
+"são mais desejado. Para fazer isso,  ele se dirige ao conteúdo do "
+"<filename>/etc/rc<replaceable>X</replaceable>.d</filename>(onde "
+"<replaceable>X</replaceable> representa o novo runlevel).Scripts começando "
+"com \"S\" (como em \"Start\") são serviços iniciados; aqueles que iniciam com "
+"\"K\" (como em \"Kill\") são os serviços interrompidos. O script não inicia "
+"qualquer serviço que já estava ativo em runlevel anterior."
 
 #. Tag: para
 #, no-c-format
@@ -721,6 +732,10 @@ msgstr "<computeroutput>$ </computeroutput><userinput>scp file "
 #, no-c-format
 msgid "<command>sftp</command> is an interactive command, similar to <command>ftp</command>. In a single session, <command>sftp</command> can transfer several files, and it is possible to manipulate remote files with it (delete, rename, change permissions, etc.)."
 msgstr ""
+"<command>sftp</command> é um comando interativo, semelhante ao "
+"<command>ftp</ command>. Em uma única sessão, <command>sftp</command> pode "
+"transferir vários arquivos, e com ele é possível manipular arquivos "
+"remotos(apagar, renomear, alterar permissões, etc.)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -736,6 +751,14 @@ msgstr "<primary><command>sftp</command></primary>"
 #, no-c-format
 msgid "Debian uses OpenSSH, a free version of SSH maintained by the <command>OpenBSD</command> project (a free operating system based on the BSD kernel, focused on security) and fork of the original SSH software developed by the SSH Communications Security Corp company, of Finland. This company initially developed SSH as free software, but eventually decided to continue its development under a proprietary license. The OpenBSD project then created OpenSSH to maintain a free version of SSH."
 msgstr ""
+"O Debian usa o OpenSSH, uma versão gratuita do SSH mantido pelo projeto "
+"<command>OpenBSD</command> (um sistema operacional livre baseado no kernel "
+"BSD, focado em segurança) uma bifurcação do programa original SSH "
+"desenvolvido pela empresa SSH Communications Security Corp ,da Finlândia. "
+"Esta empresa desenvolveu inicialmente o SSH como software livre, mas "
+"finalmente decidiu continuar o seu desenvolvimento sob uma licença "
+"proprietária. O projeto OpenBSD, então criou o OpenSSH para manter uma "
+"versão gratuita do SSH."
 
 #. Tag: indexterm
 #, no-c-format
@@ -757,16 +780,34 @@ msgstr "<primary>fork</primary>"
 #, no-c-format
 msgid "A “fork”, in the software field, means a new project that starts as a clone of an existing project, and that will compete with it. From there on, both software will usually quickly diverge in terms of new developments. A fork is often the result of disagreements within the development team."
 msgstr ""
+"A \"bifurcação\", na área de software, significa um novo projeto que se inicia "
+"como um clone de um projeto existente, e que vai competir com ele. A partir "
+"daí, ambos software irão divergir rapidamente em termos de novos "
+"desenvolvimentos. A bifurcação é frequentemente o resultado de divergências "
+"dentro da equipe de desenvolvimento."
 
 #. Tag: para
 #, no-c-format
 msgid "The option to fork a project is a direct result of the very nature of free software; a fork is a healthy event when it enables the continuation of a project as free software (for example in case of license changes). A fork arising from technical or personal disagreements is often a waste of human resources; another resolution would be preferable. Mergers of two projects that previously went through a prior fork are not unheard of."
 msgstr ""
+"A opção de bifurcar um projeto é um resultado direto da própria natureza do "
+"software livre, uma bifurcação é um evento saudável, quando se permite a "
+"continuação de um projeto como software livre (por exemplo, em caso de "
+"alterações de licença). Uma bifurcação decorrentes de divergências técnicas "
+"ou pessoais é muitas vezes um desperdício de recursos humanos; outra "
+"resolução seria preferível.Fusões de dois projetos que já passaram por uma "
+"bifurcação anterior não são desconhecidos."
 
 #. Tag: para
 #, no-c-format
 msgid "Since <emphasis role=\"distribution\">Etch</emphasis>, OpenSSH is split into two packages. The client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
 msgstr ""
+"uma vez que o  <emphasis role=\"distribution\">Etch</ emphasis>, OpenSSH é "
+"dividido em dois pacotes. A parte do cliente está no pacote <emphasis "
+"role=\"pkg\">openssh-client</emphasis>, e o pacote do servidor está no "
+"<emphasis role=\"pkg\">openssh-server </emphasis>. O  <emphasis "
+"role=\"pkg\">ssh</emphasis> meta-package depende de ambas as partes e facilita "
+"a instalação de ambos(<command>apt-get install ssh</command>)."
 
 #. Tag: title
 #, no-c-format
@@ -3290,3 +3331,7 @@ msgstr ""
 #, no-c-format
 msgid "After this overview of basic services common to many Unix systems, we will focus on the environment of the administered machines: the network. Many services are required for the network to work properly. They will be discussed in the next chapter."
 msgstr ""
+"Após esta visão geral dos serviços básicos comuns a muitos sistemas Unix, "
+"vamos nos concentrar no ambiente das máquinas administrados: a rede. Muitos "
+"serviços são necessários para que a rede funcione corretamente. Eles serão "
+"discutidos no próximo capítulo."
