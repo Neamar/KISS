@@ -1090,35 +1090,33 @@
     imitate the required features of the target system.</para>
     <indexterm><primary>Wine</primary></indexterm>
 
-    <para>The simplest way of using Wine is with an instance of Microsoft
-    Windows already installed on an existing partition (which will be the
-    case on machines dual-booting with this system). When no installed
-    Windows version is available, Wine works in a less complete way, and
-    fewer programs will be able to run.</para>
-
-    <para>The Windows partition must first be mounted (for instance under
-    <filename>/windows/</filename>), and the <command>wine</command> user
-    must have read and write access. The following
-    <filename>fstab</filename> entry grants this access to all
-    users:</para>
-
-    <programlisting>
-/dev/hda1 /windows fat defaults,uid=1000,gid=100,umask=002,nls=iso8859-1 0 0
-</programlisting>
-
     <para>Now let's install the required packages:</para>
 
     <screen>
 <computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>
 </screen>
-    <indexterm><primary><command>winesetup</command></primary></indexterm>
+    <indexterm><primary><command>winecfg</command></primary></indexterm>
 
     <para>The user then needs to run <command>winecfg</command> and
-    configure <filename>/windows/</filename> to be used as the
-    <literal>C:</literal> drive. Other settings can be kept to their
-    default values. Running Windows programs then becomes a simple matter
-    of running <command>wine
-    <replaceable>/windows/.../program.exe</replaceable></command>.</para>
+    configure which (Debian) locations are mapped to which (Windows)
+    drives.  <command>winecfg</command> has some sane defaults and can
+    autodetect some more drives; note that even if you have a
+    dual-boot system, you should not point the <literal>C:</literal>
+    at where the Windows partition is mounted in Debian, as Wine is
+    likely to overwrite some of the data on that partition, making
+    Windows unusable.  Other settings can be kept to their default
+    values.  To run Windows programs, you will first need to install
+    them by running their (Windows) installer under Wine, with a
+    command such as <command>wine
+    <replaceable>.../setup.exe</replaceable></command>; once the
+    program is installed, you can run it with <command>wine
+    <replaceable>.../program.exe</replaceable></command>.  The exact
+    location of the <filename>program.exe</filename> file depends on
+    where the <literal>C:</literal> drive is mapped; in many cases,
+    however, simply running <command>wine
+    <replaceable>program</replaceable></command> will work, since the
+    program is usually installed in a location where Wine will look
+    for it by itself.</para>
 
     <para>Note that you should not rely on Wine (or similar solutions)
     without actually testing the particular software: only a real-use test
