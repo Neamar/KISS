@@ -164,39 +164,21 @@
       have opted to use the GNOME desktop environment, they logically
       picked <command>gdm3</command> as a display manager too. The
       <filename>/etc/gdm3/daemon.conf</filename> configuration file
-      has many options.  Up to <emphasis
-      role="distribution">Squeeze</emphasis>, some of these options
-      could be set by <command>gdmsetup</command>, a graphical
-      interface for <command>gdm3</command> configuration that could be
-      run from the
+      has many options (the list can be found in the
+      <filename>/usr/share/gdm/gdm.schemas</filename> schema file).
+      Up to <emphasis role="distribution">Squeeze</emphasis>, some of
+      these options could be set by <command>gdmsetup</command>, a
+      graphical interface for <command>gdm3</command> configuration
+      that could be run from the
       <menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu>
       <guimenuitem>Display screen</guimenuitem></menuchoice> menu in
-      the GNOME desktop.  This tool is no longer available in <emphasis
-      role="distribution">Wheezy</emphasis>, but some of its
-      functionality can be found in GNOME's control center.</para>
+      the GNOME desktop.  This tool is no longer available in
+      <emphasis role="distribution">Wheezy</emphasis>.  Some of its
+      functionality (in particular the configuration of automatic
+      logins) can be found in GNOME's control center; the rest of the
+      <command>gdm3</command> configuration is controlled by the
+      <filename>/etc/gdm3/greeter.gsettings</filename> file.</para>
 
-      <!-- Obsolete
-      <sidebar>
-        <title><emphasis>ALTERNATIVE</emphasis> gdm vs. gdm3</title>
-
-	<para>A fresh installation of <emphasis
-	role="distribution">Squeeze</emphasis> sets up <emphasis
-	role="pkg">gdm3</emphasis>. On the other hand, a system upgraded to
-	<emphasis role="distribution">Squeeze</emphasis> from a previous
-	version of Debian will usually have <emphasis
-	role="pkg">gdm</emphasis> (the 2.x version). Version 3 is a full
-	rewrite, but it is still rather young: many of the options provided
-	by previous versions have been removed, and the
-	<command>gdmsetup</command> configuration interface is much more
-	limited in scope. This explains why both versions are available in
-	<emphasis role="distribution">Squeeze</emphasis>. Note, however,
-	the 2.x versions will be removed from the next stable Debian
-	release. It makes sense to anticipate the migration and install
-	<emphasis role="pkg">gdm3</emphasis> straight away if the missing
-	features are not important to you.</para>
-      </sidebar>
-      -->
-    </section>
     <section>
       <title>Choosing a Window Manager</title>
 
