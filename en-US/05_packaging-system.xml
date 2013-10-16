@@ -328,7 +328,7 @@ SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</comput
 	<replaceable>meta-package</replaceable></command> will
 	automatically install all of these programs using the
 	meta-package's dependencies. The <emphasis
-	role="pkg">gnome</emphasis>, <emphasis role="pkg">kde</emphasis>
+	role="pkg">gnome</emphasis>, <emphasis role="pkg">kde-full</emphasis>
 	and <emphasis role="pkg">linux-image-amd64</emphasis> packages
 	are examples of meta-packages.</para>
 
@@ -488,7 +488,7 @@ SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</comput
 	  that it requires a <emphasis
 	  role="pkg">mail-transport-agent</emphasis> instead of specifying
 	  a large yet incomplete list of possible solutions (e.g.
-	  <command>postfix | sendmail | exim | …</command>). Furthermore,
+	  <command>postfix | sendmail | exim4 | …</command>). Furthermore,
 	  it is useless to install two mail servers on the same machine,
 	  which is why each of these packages declares a conflict with the
 	  <emphasis role="pkg">mail-transport-agent</emphasis> virtual
