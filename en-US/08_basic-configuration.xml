@@ -136,7 +136,7 @@
       requests a default locale. The recommended choice in the U.S.A. is
       “<literal>en_US.UTF-8</literal>”. British English speakers will
       prefer “<literal>en_GB.UTF-8</literal>”, and Canadians will
-      prefer either <literal>en_CA.UTF-8</literal>” or, for French,
+      prefer either “<literal>en_CA.UTF-8</literal>” or, for French,
       “<literal>fr_CA.UTF-8</literal>”. The
       <filename>/etc/default/locale</filename> file will then be modified
       to store this choice. From there, it's picked up by all user sessions
@@ -634,6 +634,12 @@ adsl:2345:respawn:/usr/sbin/pppd call dsl-provider
 	  route the signal sent by one card to the receiving side of the
 	  other card, and vice-versa. This is the purpose of a crossover
 	  cable, and the reason it is used.</para>
+
+          <para>Note that this distinction is becoming less relevant
+          over time, as modern network cards are able do detect the
+          type of cable present and adapt accordingly, so it won't be
+          unusual that both kinds of cable will work in a given
+          location.</para>
         </sidebar>
 
 	<para>Most “ADSL routers” on the market can be used like this, as
@@ -904,8 +910,8 @@ nameserver 8.8.8.8
       <indexterm><primary>crypt</primary></indexterm>
 
       <para><command>crypt</command> is a one-way function that transforms
-      a string <varname>(A)</varname> into another string
-      <varname>(B)</varname> in a way that <varname>A</varname> cannot be
+      a string (<varname>A</varname>) into another string
+      (<varname>B</varname>) in a way that <varname>A</varname> cannot be
       derived from <varname>B</varname>. The only way to identify
       <varname>A</varname> is to test all possible values, checking each
       one to determine if transformation by the function will produce
@@ -956,7 +962,7 @@ nameserver 8.8.8.8
         </listitem>
         <listitem>
 	  <para>program to execute upon login. This is usually a command
-	  interpreter (shell), giving the user free reign. If you specify
+	  interpreter (shell), giving the user free rein. If you specify
 	  <command>/bin/false</command> (which does nothing and returns
 	  control immediately), the user can not login.</para>
         </listitem>
@@ -1425,7 +1431,7 @@ nameserver 8.8.8.8
     accessible at the local address:
     <literal>http://localhost:631/</literal>. There you can add printers
     (including network printers), remove, and administer them. You can also
-    administer <emphasis>cups</emphasis> with the
+    administer <command>cups</command> with the
     <command>system-config-printer</command> graphical interface (from the
     Debian package of the same name), which is installed by default if the
     “Desktop environment” task is chosen.</para>
@@ -1493,7 +1499,7 @@ nameserver 8.8.8.8
 	device and hands out a pair of major/minor numbers to identify it. With
 	this <command>udevd</command> can create the special file under the
 	name and with the permissions that it wants. It can also create aliases
-	and do additional actions (initialization or registrations tasks for
+	and do additional actions (initialization or registration tasks for
 	example). <command>udevd</command>'s behavior is driven by a
 	large set of (customizable) rules.</para>
 
@@ -1766,7 +1772,7 @@ macosx=/dev/sda5
     </section>
   </section>
   <section id="sect.config-misc">
-    <title>Other Configurations: Time Synchronization, Logs, Sharing Access...</title>
+    <title>Other Configurations: Time Synchronization, Logs, Sharing Access…</title>
 
     <para>The many elements listed in this section are good to know for
     anyone who wants to master all aspects of configuration of the
@@ -2439,7 +2445,7 @@ arrakis:/shared /shared         nfs     defaults        0       0
       returns to the selected sub-menu; <guibutton>Exit</guibutton> closes
       the current screen and move back up in the hierarchy;
       <guibutton>Help</guibutton> will display more detailed information on
-      the role of the selected option. The arrows allow moving within the
+      the role of the selected option. The arrow keys allow moving within the
       list of options and buttons. To exit the configuration program,
       choose <guibutton>Exit</guibutton> from the main menu. The program
       then offers to save the changes you've made; accept if you are
