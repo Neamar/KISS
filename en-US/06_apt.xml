@@ -62,15 +62,18 @@
     <indexterm><primary><command>lzma</command></primary></indexterm>
     <indexterm><primary><command>xz</command></primary></indexterm>
 
-    <para>A <filename>.gz</filename> extension refers to a file compressed
-    with the <command>gzip</command> utility. <command>gzip</command> is
-    the fast and efficient traditional Unix utility to compress files.
-    Newer tools achieve better rates of compression but require more
-    calculation time to compress a file. Among them, and by order of
-    appearance, there are <command>bzip2</command> (generating files with a
+    <para>A <filename>.gz</filename> extension refers to a file
+    compressed with the <command>gzip</command>
+    utility. <command>gzip</command> is the fast and efficient
+    traditional Unix utility to compress files.  Newer tools achieve
+    better rates of compression but require more resources
+    (computation time and memory) to compress and uncompress a
+    file. Among them, and by order of appearance, there are
+    <command>bzip2</command> (generating files with a
     <filename>.bz2</filename> extension), <command>lzma</command>
-    (generating <filename>.lzma</filename> files) and <command>xz</command>
-    (generating <filename>.xz</filename> files).</para>
+    (generating <filename>.lzma</filename> files) and
+    <command>xz</command> (generating <filename>.xz</filename>
+    files).</para>
   </sidebar>
   <section id="sect.apt-sources.list">
     <title>Filling in the <filename>sources.list</filename> File</title>
@@ -652,7 +655,7 @@ deb http://apt.falcot.com:9999/debian wheezy main contrib non-free
       APT will automatically install the necessary dependencies or delete
       the packages which depend on the package that is being removed. The
       <command>apt-get purge <replaceable>package</replaceable></command>
-      command involve a complete uninstallation — the configuration files
+      command involves a complete uninstallation — the configuration files
       are also deleted.</para>
       <indexterm><primary><command>apt-get install</command></primary></indexterm>
       <indexterm><primary><command>apt-get remove</command></primary></indexterm>
@@ -680,7 +683,7 @@ deb http://apt.falcot.com:9999/debian wheezy main contrib non-free
 	update and use the following commands:</para>
 
         <screen>## Update dpkg's database of known packages
-# <userinput>avail=`mktemp̛`</userinput>
+# <userinput>avail=`mktemp`</userinput>
 # <userinput>apt-cache dumpavail &gt; "$avail"</userinput>
 # <userinput>dpkg --merge-avail "$avail"</userinput>
 # <userinput>rm -f "$avail"</userinput>
@@ -971,9 +974,9 @@ deb http://apt.falcot.com:9999/debian wheezy main contrib non-free
 	that directory so that the most recent modifications are taken into
 	account. In the same way, it is important not to work directly in
 	the configuration file created automatically, since everything
-	would be lost at the next execution of the script. Choosing one
+	would be lost at the next execution of the script. The chosen
 	method (<filename>.d</filename> directory used directly or a file
-	generated from that directory) is usually imposed by implementation
+	generated from that directory) is usually dictated by implementation
 	constraints, but in both cases the gains in terms of configuration
 	flexibility more than make up for the small complications that they
 	entail. The Exim 4 mail server is an example of the generated file
@@ -1280,14 +1283,14 @@ Pin-Priority: 490
       opposite. <command>aptitude markauto</command> and
       <command>aptitude unmarkauto</command> work in the same way
       although they offer more features for marking many packages
-      at once (see <xref linkend="sect.aptitude" />). The consoled-based
-      graphical interface of <command>aptitude</command> also
+      at once (see <xref linkend="sect.aptitude" />). The console-based
+      interactive interface of <command>aptitude</command> also
       makes it easy to review the “automatic flag” on many packages.</para>
 
       <indexterm><primary><command>aptitude why</command></primary></indexterm>
       <para>People might want to know why an automatically installed
       package is present on the system. To get this information from the
-      command-line, you can use <command>aptitude why
+      command line, you can use <command>aptitude why
       <replaceable>package</replaceable></command> (<command>apt-get</command>
       has no similar feature):</para>
 
@@ -1843,7 +1846,7 @@ uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.o
       <para>Now for the upgrading itself. First, you need to change the
       <filename>/etc/apt/sources.list</filename> file to tell APT to get
       its packages from <emphasis role="distribution">Wheezy</emphasis>
-      instead of <emphasis role="distribution">Squeeez</emphasis>. If the
+      instead of <emphasis role="distribution">Squeeze</emphasis>. If the
       file only contains references to <emphasis
       role="distribution">Stable</emphasis> rather than explicit codenames,
       the change isn't even required, since <emphasis
