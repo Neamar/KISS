@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-10-16 01:44+0200\n"
-"Last-Translator: Ezequiel Santos <zeckg@hotmail.com>\n"
+"PO-Revision-Date: 2013-10-21 18:22+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.7\n"
+"X-Generator: Weblate 1.8-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -459,6 +459,24 @@ msgstr "<primary>script de inicialização</primary>"
 #, no-c-format
 msgid "All the scripts contained in the various <filename>/etc/rc<replaceable>X</replaceable>.d</filename> directories are really only symbolic links — created upon package installation by the <command>update-rc.d</command> program — pointing to the actual scripts which are stored in <filename>/etc/init.d/</filename>. The administrator can fine tune the services available in each runlevel by re-running <command>update-rc.d</command> with adjusted parameters. The <citerefentry><refentrytitle>update-rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> manual page describes the syntax in detail. Please note that removing all symbolic links (with the <literal>remove</literal> parameter) is not a good method to disable a service. Instead you should simply configure it to not start in the desired runlevel (while preserving the corresponding calls to stop it in the event that the service runs in the previous runlevel). Since <command>update-rc.d</command> has a somewhat convoluted interface, you may prefer using <command>rcconf</command> (from the <emphasis role=\"pkg\">rcconf</emphasis> package) which provides a more user-friendly interface."
 msgstr ""
+"Todos os scripts contidos nos vários diretórios "
+"<filename>/etc/rc<replaceable>X</replaceable>.d</filename> são na verdade "
+"apenas links simbólicos — criados durante a instalação de pacotes pelo "
+"programa <command>update-rc.d</command> — apontando para os scripts atuais "
+"que são armazenados no <filename>/etc/init.d/</filename>. O administrador "
+"pode ajustar os serviços disponíveis em cada nível de execução reexecutando "
+"o <command>update-rc.d</command> com parâmetros de ajuste. A página de "
+"manual do <citerefentry><refentrytitle>update-"
+"rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> descreve a "
+"sintaxe em detalhes. Note que remover todos os links simbólicos (com o "
+"parâmetro <literal>remove</literal>) não é um bom método para desabilitar um "
+"serviço. Ao invés disto você deve apenas configurar ele para não iniciar no "
+"nível de execução desejado (enquanto preserva as chamadas correspondentes "
+"para parar ele no caso do serviço iniciar num nível de execução anterior).  "
+"Uma vez que o <command>update-rc.d</command> tem uma interface de certa "
+"forma \"convoluted\", você pode preferir usar <command>rcconf</command> (do "
+"pacote <emphasis role=\"pkg\">rcconf</emphasis>) que fornece uma interface de "
+"usuários mais amigável."
 
 #. Tag: indexterm
 #, no-c-format
@@ -733,9 +751,9 @@ msgstr "<computeroutput>$ </computeroutput><userinput>scp file "
 msgid "<command>sftp</command> is an interactive command, similar to <command>ftp</command>. In a single session, <command>sftp</command> can transfer several files, and it is possible to manipulate remote files with it (delete, rename, change permissions, etc.)."
 msgstr ""
 "<command>sftp</command> é um comando interativo, semelhante ao "
-"<command>ftp</ command>. Em uma única sessão, <command>sftp</command> pode "
-"transferir vários arquivos, e com ele é possível manipular arquivos "
-"remotos(apagar, renomear, alterar permissões, etc.)."
+"<command>ftp</command>. Em uma única sessão, o <command>sftp</command> pode "
+"transferir vários arquivos, e com ele é possível manipular arquivos remotos "
+"(apagar, renomear, alterar permissões, etc.)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -774,17 +792,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>fork</primary>"
-msgstr "<primary>fork</primary>"
+msgstr "<primary>Divisão (\"fork\")</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A “fork”, in the software field, means a new project that starts as a clone of an existing project, and that will compete with it. From there on, both software will usually quickly diverge in terms of new developments. A fork is often the result of disagreements within the development team."
 msgstr ""
-"A \"bifurcação\", na área de software, significa um novo projeto que se inicia "
-"como um clone de um projeto existente, e que vai competir com ele. A partir "
-"daí, ambos software irão divergir rapidamente em termos de novos "
-"desenvolvimentos. A bifurcação é frequentemente o resultado de divergências "
-"dentro da equipe de desenvolvimento."
+"Uma \"divisão\" (\"fork\"), na área de software, significa um novo projeto que "
+"se inicia como um clone de um projeto existente, e que vai competir com ele. "
+"A partir daí, ambos os softwares irão divergir rapidamente em termos de "
+"novos desenvolvimentos. Uma divisão é frequentemente o resultado de "
+"divergências dentro da equipe de desenvolvimento."
 
 #. Tag: para
 #, no-c-format
@@ -793,21 +811,21 @@ msgstr ""
 "A opção de dividir um projeto é um resultado direto da própria natureza do "
 "software livre, uma divisão é um evento saudável, quando se permite a "
 "continuação de um projeto como software livre (por exemplo, em caso de "
-"alterações de licença). Uma divisão decorrentes de divergências técnicas ou "
+"alterações de licença). Uma divisão decorrente de divergências técnicas ou "
 "pessoais é muitas vezes um desperdício de recursos humanos; outra resolução "
-"seria preferível.Fusões de dois projetos que já passaram por uma divisão "
-"anterior não são desconhecidos. "
+"seria preferível. Fusões de dois projetos que já passaram por uma divisão "
+"anterior não são desconhecidos."
 
 #. Tag: para
 #, no-c-format
 msgid "Since <emphasis role=\"distribution\">Etch</emphasis>, OpenSSH is split into two packages. The client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
 msgstr ""
-"uma vez que o  <emphasis role=\"distribution\">Etch</ emphasis>, OpenSSH é "
-"dividido em dois pacotes. A parte do cliente está no pacote <emphasis "
-"role=\"pkg\">openssh-client</emphasis>, e o pacote do servidor está no "
-"<emphasis role=\"pkg\">openssh-server </emphasis>. O  <emphasis "
-"role=\"pkg\">ssh</emphasis> meta-package depende de ambas as partes e facilita "
-"a instalação de ambos(<command>apt-get install ssh</command>)."
+"Desde o <emphasis role=\"distribution\">Etch</emphasis>, o OpenSSH é dividido "
+"em dois pacotes. A parte do cliente está no pacote <emphasis role=\"pkg"
+"\">openssh-client</emphasis>, e o pacote do servidor está no <emphasis "
+"role=\"pkg\">openssh-server</emphasis>. O meta-pacote <emphasis "
+"role=\"pkg\">ssh</emphasis> depende de ambas as partes e facilita a instalação "
+"de ambos (<command>apt-get install ssh</command>)."
 
 #. Tag: title
 #, no-c-format
