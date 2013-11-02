@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-10-23 18:11+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-11-02 14:07+0200\n"
+"Last-Translator: Ezequiel Santos <zeckg@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -855,11 +855,25 @@ msgstr "<primary>OpenSSL</primary><secondary>aceleração de hardware</secondary
 #, no-c-format
 msgid "Some hardware provides native support of mathematical functions used by encryption, which can speed up the required calculations, thus increasing performance of some tools (and lightening the load on the main processor). These tools notably include the OpenSSL library, which is in turn used by OpenSSH."
 msgstr ""
+"Alguns equipamentos fornece suporte nativo de funções matemáticas usadas por "
+"criptografia, o que pode acelerar os cálculos necessários, aumentando assim "
+"o desempenho de algumas ferramentas (e aliviando a carga sobre o "
+"processador ).Estas ferramentas incluem precisamente a seguinte a biblioteca "
+"OpenSSL, que por sua vez é usado pelo OpenSSH."
 
 #. Tag: para
 #, no-c-format
 msgid "Although a project for standardization of drivers is underway (notably at the kernel level), the variety of hardware is still managed inequitably and heterogeneously. For example, the Padlock system included in Via C3 processors is only partially supported. While the Linux kernel does offer various encryption algorithms, the OpenSSL 0.9.8 library in <emphasis role=\"distribution\">Squeeze</emphasis> only handles delegation of AES encryption to the hardware dedicated to that purpose, but not the SHA algorithms; you have to recompile it with a patch. <ulink type=\"block\" url=\"http://www.logix.cz/michal/devel/padlock/\" />"
 msgstr ""
+"Embora o projeto de padronização dos drivers esteja em andamento "
+"(particulamente o do kernel level), a variedade de dispositivos ainda é "
+"gerenciado de forma desigual e heterogêneo. Por exemplo, o sistema  Padlock "
+"incluso nos processadores Via C3 é apenas parcialmente suportado. Enquanto o "
+"kernel Linux não oferece diversos algoritmos de criptografia, a biblioteca "
+"OpenSSL 0.9.8 em <emphasis role=\"distribution\">Squeeze</emphasis> lida "
+"apenas com delegação de criptografia AES para o dispositivo dedicado para "
+"essa finalidade, mas não os algoritmos SHA; você tem que recompilar com um "
+"patch.<ulink type=\"block\" url=\"http://www.logix.cz/michal/devel/padlock/\" />"
 
 #. Tag: title
 #, no-c-format
@@ -870,6 +884,11 @@ msgstr "Autenticação Baseado em Chave"
 #, no-c-format
 msgid "Each time someone logs in over SSH, the remote server asks for a password to authenticate the user. This can be problematic if you want to automate a connection, or if you use a tool that requires frequent connections over SSH. This is why SSH offers a key-based authentication system."
 msgstr ""
+"Cada vez que alguém se conecta por SSH, o servidor remoto pede uma senha "
+"para autenticar o usuário. Isto pode ser problemático se você quiser "
+"automatizar uma conexão, ou se você usar uma ferramenta que requer conexões "
+"frequentes com o SSH. Por este  motivo que o SSH oferece um sistema de "
+"autenticação baseado em chave."
 
 #. Tag: para
 #, no-c-format
