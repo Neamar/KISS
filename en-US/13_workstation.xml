@@ -420,10 +420,11 @@
 
       <para>For administrators, GNOME seems to be better prepared for
       massive deployments. Application configuration is handled by two
-      registries, GSettings (the current standard) and GConf (the old
-      system used in GNOME 2.x, and still used by a few GNOME 3.x
-      applications).  These registries can be queried and edited with
-      the <command>gsettings</command> and
+      registries, GSettings (the current standard, which stores its
+      data in DConf) and GConf (the old system used in GNOME 2.x, and
+      still used by a few GNOME 3.x applications).  These registries
+      can be queried and edited with the <command>gsettings</command>,
+      <command>dconf-editor</command> and
       <command>gconftool-2</command> command-line tools. The
       administrator can therefore change users' configuration with a
       simple script. The following website lists all information of
@@ -433,6 +434,7 @@
       type="block"
       url="http://library.gnome.org/admin/deployment-guide/"/></para>
       <indexterm><primary><command>gsettings</command></primary></indexterm>
+      <indexterm><primary><command>dconf-editor</command></primary></indexterm>
       <indexterm><primary><command>gconf</command></primary></indexterm>
       <indexterm><primary><command>gconftool-2</command></primary></indexterm>
     </section>
