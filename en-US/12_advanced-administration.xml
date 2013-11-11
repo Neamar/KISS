@@ -2399,7 +2399,7 @@ root@testlxc:~# </computeroutput></screen>
 	installer, by booting the virtual machine on a virtual DVD-ROM
 	drive that maps to a Debian DVD image stored on the host system.
 	The VM will export its graphical console over the VNC protocol (see
-	<xref linkend="sect.bureau-distant"/> for details), which will
+	<xref linkend="sect.remote-desktops"/> for details), which will
 	allow us to control the installation process.</para>
 
 	<para>We first need to tell libvirtd where to store the disk
@@ -3056,7 +3056,7 @@ append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap
         </section>
       </section>
     </section>
-    <section>
+    <section id="sect.simple-cdd">
       <title>Simple-CDD: The All-In-One Solution</title>
       <indexterm><primary>simple-cdd</primary></indexterm>
 

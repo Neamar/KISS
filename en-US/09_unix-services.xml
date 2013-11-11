@@ -39,6 +39,7 @@
     stage works, which means that you need to understand it well. That is
     the purpose of this section.</para>
 
+    <!-- XXX: Next time we should document EFI... -->
     <para>First, the BIOS takes control of the computer, detects the disks,
     loads the <emphasis>Master Boot Record</emphasis>, and executes the
     bootloader. The bootloader takes over, finds the kernel on the disk,
@@ -58,6 +59,10 @@
     the root partition is mounted, the initramfs hands over control to the
     real init, and the machine goes back to the standard boot
     process.</para>
+
+    <para>The “real init” is currently provided by
+    <emphasis role="pkg">sysv-rc</emphasis> (“System V”) and this section
+    documents this init system. </para>
 
     <sidebar>
       <title><emphasis>SPECIFIC CASE</emphasis> Booting from the network</title>
@@ -174,9 +179,9 @@
       <command>modprobe</command> — the program that loads a kernel
       module with its dependencies (modules can indeed call other modules).
       This program is provided by the <emphasis
-      role="pkg">module-init-tools</emphasis> package.</para>
+      role="pkg">kmod</emphasis> package.</para>
       <indexterm><primary><command>modprobe</command></primary></indexterm>
-      <indexterm><primary><emphasis role="pkg">module-init-tools</emphasis></primary></indexterm>
+      <indexterm><primary><emphasis role="pkg">kmod</emphasis></primary></indexterm>
     </sidebar>
 
     <para>After this stage, <command>init</command> takes over and starts
@@ -185,9 +190,9 @@
     starts all services which are listed in
     <filename>/etc/rc2.d/</filename> and whose name start with the “S”
     letter. The two-figures number that follows had historically been used
-    to define the order in which services had to be started. In <emphasis
-    role="distribution">Squeeze</emphasis>, the default boot system uses
-    <command>insserv</command>, which schedules everything automatically
+    to define the order in which services had to be started, but nowadays
+    the default boot system uses <command>insserv</command>, which schedules
+    everything automatically
     based on the scripts' dependencies. Each boot script thus declares the
     conditions that must be met to start or stop the service (for example,
     if it must start before or after another service);
@@ -213,25 +218,21 @@
       <title><emphasis>ALTERNATIVE</emphasis> Other boot systems</title>
 
       <para>This book describes the boot system used by default in Debian
-      (as implemented by <emphasis role="pkg">sysvinit</emphasis> package),
+      (as implemented by the <emphasis role="pkg">sysvinit</emphasis> package),
       which is derived and inherited from <emphasis>System V</emphasis>
-      Unix systems, but there are others.</para>
+      Unix systems, but there are others.
+      <emphasis role="distribution">Jessie</emphasis>
+      will likely come with another init system by default since
+      the current one is no longer suited to the dynamic nature
+      of computing.</para>
 
-      <para>In the original <emphasis>System V</emphasis>, and in versions
-      of Debian up to <emphasis role="distribution">Lenny</emphasis>, the
-      execution order of initialization scripts was defined only by the
-      names of the <filename>/etc/rc*.d/S*</filename> symbolic links (and
-      <filename>/etc/rc*.d/K*</filename> upon shutdown). This behavior can
-      be re-established by setting <literal>CONCURRENCY=none</literal> in
-      the <filename>/etc/default/rcS</filename> file.</para>
-
-      <para><emphasis role="pkg">file-rc</emphasis> is another boot system
+      <para><emphasis role="pkg">file-rc</emphasis> is a boot system
       with a very simple process. It keeps the principle of runlevels, but
       replaces the directories and symbolic links with a configuration
       file, which indicates to <command>init</command> the processes that
       must be started and their launch order.</para>
 
-      <para>The newly arrived <command>upstart</command> system is still
+      <para>The <command>upstart</command> system is still
       not perfectly tested on Debian. It is event based: init scripts are
       no longer executed in a sequential order but in response to events
       such as the completion of another script upon which they are
@@ -243,23 +244,22 @@
       traditional systems, especially those from the <emphasis
       role="pkg">sysv-rc</emphasis> package.</para>
 
-      <para>Another new option is <command>systemd</command>, but it still
-      lacks the maturity needed to be part of <emphasis
-      role="distribution">Squeeze</emphasis>. Its approach is opposite to
+      <para>Another new option that is gaining a lot of traction is
+      <command>systemd</command>. Its approach is opposite to
       the previous systems; instead of preemptively launching all services,
       and having to deal with the question of scheduling,
       <command>systemd</command> chooses to start services on demand,
       somewhat along the principle of <command>inetd</command>. But this
       means that the boot system must be able to know how services are made
       available (it could be through a socket, a filesystem, or others),
-      and thus requires small modifications of those services.</para>
+      and thus requires small modifications of those services. It also
+      provides backwards compatibility to System V init scripts.</para>
 
       <para>There are also other systems and other operating modes, such as
       <command>runit</command>, <command>minit</command>, or
       <command>initng</command>, but they are relatively specialized and
       not widespread.</para>
     </sidebar>
-    <indexterm><primary>runlevel</primary></indexterm>
     <indexterm><primary>runlevel</primary></indexterm>
     <indexterm><primary>level, runlevel</primary></indexterm>
 
@@ -393,7 +393,7 @@
     </sidebar>
   </section>
   <section id="sect.remote-login">
-    <title id="connexion-distance.title">Remote Login</title>
+    <title>Remote Login</title>
 
     <para>It is essential for an administrator to be able to connect to a
     computer remotely. Servers, confined in their own room, are rarely
@@ -402,9 +402,8 @@
 
     <sidebar>
       <title><emphasis>BACK TO BASICS</emphasis> Client, server</title>
-      <indexterm><primary>client/server architecture</primary></indexterm>
+      <indexterm><primary>client</primary><secondary>client/server architecture</secondary></indexterm>
       <indexterm><primary>server</primary><secondary>client/server architecture</secondary></indexterm>
-      <indexterm><primary>client/server architecture</primary></indexterm>
 
       <para>A system where several processes communicate with each other is
       often described with the “client/server” metaphor. The server is
@@ -412,30 +411,30 @@
       them. It is the client that controls operations, the server doesn't
       take any initiative of its own.</para>
     </sidebar>
+
     <indexterm><primary>login</primary><secondary>remote login</secondary></indexterm>
     <indexterm><primary>remote login</primary></indexterm>
-    <section id="sect.telnet">
-      <title>Remote Login: <command>telnet</command></title>
-      <indexterm><primary><command>telnet</command></primary></indexterm>
 
-      <para>The <emphasis>telnet</emphasis> protocol, the oldest remote
-      login service, is the worst in terms of security. Data and passwords
-      are sent in clear text — that is, not encrypted — leaving them
-      vulnerable to anyone snooping on the network. If necessary, take care
-      to remove this obsolete service, that is no longer installed by
-      default:</para>
+    <section id="sect.ssh">
+      <title>Secure Remote Login: SSH</title>
+      <indexterm><primary>SSH</primary></indexterm>
+      <indexterm><primary>Secure Shell</primary></indexterm>
 
-      <screen><computeroutput># </computeroutput><userinput>apt-get remove telnetd</userinput>
-</screen>
+      <para>The <emphasis>SSH</emphasis> (Secure SHell) protocol was designed
+      with security and reliability in mind. Connections using SSH are
+      secure: the partner is authenticated and all data exchanges are
+      encrypted.</para>
 
-      <para>There is, however, an adaptation that corrects its most
-      crippling defects; it uses SSL (Secure Socket Layer) to authenticate
-      the partner and encrypt communications. The
-      <emphasis>telnetd-ssl</emphasis> and <emphasis>telnet-ssl</emphasis>
-      packages provide, respectively, the server and client
-      software.</para>
-      <indexterm><primary><emphasis>telnet-ssl</emphasis></primary></indexterm>
-      <indexterm><primary><emphasis>telnetd-ssl</emphasis></primary></indexterm>
+      <sidebar>
+        <title><emphasis>CULTURE</emphasis> Telnet and RSH are obsolete</title>
+	<indexterm><primary><command>telnet</command></primary></indexterm>
+	<indexterm><primary><command>rsh</command></primary></indexterm>
+
+	<para>Before SSH, <emphasis>Telnet</emphasis> and
+	<emphasis>RSH</emphasis> were the main tools used to login
+	remotely. They are now largely obsolete and should no longer be
+	used even if Debian still provides them.</para>
+      </sidebar>
 
       <sidebar>
         <title><emphasis>VOCABULARY</emphasis> Authentication, encryption</title>
@@ -452,29 +451,6 @@
 	<para>Authentication and encryption are often mentioned together,
 	both because they are frequently used together, and because they
 	are usually implemented with similar mathematical concepts.</para>
-      </sidebar>
-    </section>
-    <section id="sect.ssh">
-      <title>Secure Remote Login: SSH</title>
-      <indexterm><primary>SSH</primary></indexterm>
-      <indexterm><primary>Secure Shell</primary></indexterm>
-
-      <para>The <emphasis>SSH</emphasis> (Secure SHell) protocol, contrary
-      to <emphasis>telnet</emphasis>, was designed with security and
-      reliability in mind. Connections using SSH are secure: the partner is
-      authenticated and all data exchanges are encrypted.</para>
-
-      <sidebar>
-        <title><emphasis>CULTURE</emphasis> SSH compared to RSH</title>
-        <indexterm><primary>RSH</primary></indexterm>
-        <indexterm><primary>Remote Shell</primary></indexterm>
-
-	<para>SSH tools provide secure variants of the programs from the
-	classic RSH (Remote Shell) family — <command>rsh</command>,
-	<command>rlogin</command>, and <command>rcp</command>. These are
-	still available in the <emphasis role="pkg">rsh-server</emphasis>
-	and <emphasis role="pkg">rsh-client</emphasis> packages, but their
-	usage is strongly discouraged.</para>
       </sidebar>
 
       <para>SSH also offers two file transfer services.
@@ -521,38 +497,14 @@
 	previously went through a prior fork are not unheard of.</para>
       </sidebar>
 
-      <para>Since <emphasis role="distribution">Etch</emphasis>, OpenSSH is
-      split into two packages. The client part is in the <emphasis
+      <para>OpenSSH is split into two packages: the client part is in the <emphasis
       role="pkg">openssh-client</emphasis> package, and the server is in
       the <emphasis role="pkg">openssh-server</emphasis> package. The
       <emphasis role="pkg">ssh</emphasis> meta-package depends on both
       parts and facilitates installation of both (<command>apt-get install
       ssh</command>).</para>
 
-      <sidebar>
-        <title><emphasis>GOING FURTHER</emphasis> Hardware acceleration for SSH</title>
-        <indexterm><primary>OpenSSL</primary><secondary>hardware acceleration</secondary></indexterm>
-
-	<para>Some hardware provides native support of mathematical
-	functions used by encryption, which can speed up the required
-	calculations, thus increasing performance of some tools (and
-	lightening the load on the main processor). These tools notably
-	include the OpenSSL library, which is in turn used by
-	OpenSSH.</para>
-
-	<para>Although a project for standardization of drivers is underway
-	(notably at the kernel level), the variety of hardware is still
-	managed inequitably and heterogeneously. For example, the Padlock
-	system included in Via C3 processors is only partially supported.
-	While the Linux kernel does offer various encryption algorithms,
-	the OpenSSL 0.9.8 library in <emphasis
-	role="distribution">Squeeze</emphasis> only handles delegation of
-	AES encryption to the hardware dedicated to that purpose, but not
-	the SHA algorithms; you have to recompile it with a patch. <ulink
-	type="block"
-	url="http://www.logix.cz/michal/devel/padlock/"/></para>
-      </sidebar>
-      <section id="sect.ssh-cle-auth">
+      <section id="sect.ssh-key-based-auth">
         <title>Key-Based Authentication</title>
 
 	<para>Each time someone logs in over SSH, the remote server asks
@@ -604,10 +556,9 @@
 	  <para>The OpenSSL library, as initially provided in Debian
 	  <emphasis role="distribution">Etch</emphasis>, had a serious
 	  problem in its random number generator (RNG). Indeed, the Debian
-	  maintainer had made a change in order for the library to not be
-	  the source of warnings for programs using it and that would be
-	  analyzed by memory testing tools like
-	  <command>valgrind</command>. Unfortunately, this change also
+	  maintainer had made a change so that applications using it
+	  would no longer generate warnings when analyzed by memory testing
+	  tools like <command>valgrind</command>. Unfortunately, this change also
 	  meant that the RNG was employing only one source of entropy
 	  corresponding to the process number (PID) whose 32,000 possible
 	  values do not offer enough randomness. <ulink type="block"
@@ -651,8 +602,8 @@
 	  submitted to the upstream project when possible, and widely
 	  publicized. It is from this perspective that the new source
 	  package format (“3.0 (quilt)”) and the Debian patch tracker
-	  were developed. <ulink type="block"
-	  url="http://patch-tracker.debian.org"/></para>
+	  were developed.
+	  <ulink type="block" url="http://patch-tracker.debian.org"/></para>
         </sidebar>
       </section>
       <section id="sect.ssh-x11">
@@ -683,7 +634,8 @@
 
         <sidebar>
           <title><emphasis>VOCABULARY</emphasis> Tunnel</title>
-          <indexterm><primary>tunnel SSH</primary><seealso>VPN</seealso></indexterm>
+          <indexterm><primary>tunnel (SSH)</primary><seealso>VPN</seealso></indexterm>
+          <indexterm><primary>SSH tunnel</primary><seealso>VPN</seealso></indexterm>
 
 	  <para>The Internet, and most LANs that are connected to it,
 	  operate in packet mode and not in connected mode, meaning that a
@@ -757,7 +709,7 @@
         </figure>
       </section>
     </section>
-    <section id="sect.bureau-distant">
+    <section id="sect.remote-desktops">
       <title>Using Remote Graphical Desktops</title>
 
       <para>VNC (Virtual Network Computing) allows remote access to
@@ -780,14 +732,12 @@
       and KDE graphical desktop environments include, respectively,
       <command>vino</command> and <command>krfb</command>, which provide a
       graphical interface that allows sharing an existing session over VNC
-      (found, respectively, in the menus at <menuchoice>
-      <guimenu>System</guimenu> <guisubmenu>Preferences</guisubmenu>
-      <guimenuitem>Remote Desktop</guimenuitem></menuchoice> and
-      <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu>
-      <guimenuitem>Desktop Sharing</guimenuitem></menuchoice>). For other
+      (both are identified as <emphasis>Desktop Sharing</emphasis> either in the
+      GNOME application list or in the KDE menu). For other
       graphical desktop environments, the <command>x11vnc</command> command
       (from the Debian package of the same name) serves the same purpose;
       you can make it available to the user with an explicit icon.</para>
+
       <indexterm><primary><emphasis role="pkg">vinagre</emphasis></primary></indexterm>
       <indexterm><primary><emphasis role="pkg">tsclient</emphasis></primary></indexterm>
       <indexterm><primary><emphasis role="pkg">krdc</emphasis></primary></indexterm>
@@ -795,7 +745,7 @@
 
       <para>When the graphical session is made available by VNC, the
       administrator must connect to it with a VNC client. GNOME has
-      <command>vinagre</command> and <command>tsclient</command> for that,
+      <command>vinagre</command> and <command>remmina</command> for that,
       while KDE includes <command>krdc</command> (in the menu at
       <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu>
       <guimenuitem>Remote Desktop Client</guimenuitem></menuchoice>). There
@@ -837,10 +787,11 @@
         <indexterm><primary><command>gdm</command></primary></indexterm>
         <indexterm><primary><command>kdm</command></primary></indexterm>
         <indexterm><primary><command>xdm</command></primary></indexterm>
+        <indexterm><primary><command>lightdm</command></primary></indexterm>
         <indexterm><primary>manager</primary><secondary>display manager</secondary></indexterm>
         <indexterm><primary>display manager</primary></indexterm>
 
-	<para><command>gdm</command>, <command>kdm</command> and
+	<para><command>gdm</command>, <command>kdm</command>, <command>lightdm</command>, and
 	<command>xdm</command> are Display Managers. They take control of
 	the graphical interface shortly after boot in order to provide the
 	user a login screen. Once the user has logged in, they execute the
@@ -853,13 +804,9 @@
       service is more complicated: you first install the <emphasis
       role="pkg">vnc4server</emphasis> package, change the configuration of
       the display manager to accept <literal>XDMCP Query</literal> requests
-      (for <command>gdm</command>, this can be done graphically via the
-      <menuchoice><guimenu>System</guimenu>
-      <guisubmenu>Administration</guisubmenu> <guimenuitem>Login
-      Screen</guimenuitem></menuchoice> menu and then the “Remote” tab;
-      note that this applies only to <command>gdm</command> and not
-      <command>gdm3</command>, which is the version installed by default in
-      <emphasis role="distribution">Squeeze</emphasis>), and finally, start
+      (for <command>gdm3</command>, this can be done by adding
+      <literal>Enable=true</literal> in the “xdmcp” section of
+      <filename>/etc/gdm3/daemon.conf</filename>), and finally, start
       the VNC server with <command>inetd</command> so that a session is
       automatically started when a user tries to login. For example, you
       may add this line to <filename>/etc/inetd.conf</filename>:</para>
@@ -933,7 +880,7 @@
     <indexterm><primary>read, right</primary></indexterm>
     <indexterm><primary>write, right</primary></indexterm>
     <indexterm><primary>modification, right</primary></indexterm>
-    <indexterm><primary>execution</primary><secondary>right</secondary></indexterm>
+    <indexterm><primary>execution, right</primary></indexterm>
 
     <para>In the case of a file, these rights are easily understood: read
     access allows reading the content (including copying), write access
@@ -969,10 +916,11 @@
     <command>cd</command> command). Being able to cross through a directory
     without being able to read it gives permission to access the entries
     therein that are known by name, but not to find them if you do not know
-    that they exist or under what name.</para>
+    their existence or their exact name.</para>
 
     <sidebar id="sidebar.setgid-dir">
       <title><emphasis>SECURITY</emphasis> <literal>setgid</literal> directory and <emphasis>sticky bit</emphasis></title>
+      <indexterm><primary><literal>setgid</literal> directory</primary></indexterm>
 
       <para>The <literal>setgid</literal> bit also applies to directories.
       Any newly-created item in such directories is automatically assigned
@@ -1030,8 +978,7 @@
     <indexterm><primary><command>chown</command></primary></indexterm>
     <indexterm><primary><command>chgrp</command></primary></indexterm>
     <indexterm><primary>octal representation of rights</primary></indexterm>
-    <indexterm><primary>rights, octal representation</primary></indexterm>
-    <indexterm><primary>rights, octal representation</primary></indexterm>
+    <indexterm><primary>rights</primary><secondary>octal representation</secondary></indexterm>
 
     <para>The (octal) numeric representation associates each right with a
     value: 4 for read, 2 for write, and 1 for execute. We associate each
@@ -1134,7 +1081,7 @@
     as a single reference, they are not always able to integrate external
     changes.</para>
     <section id="sect.webmin">
-      <title>Administrating On a Web Interface: <command>webmin</command></title>
+      <title>Administrating on a Web Interface: <command>webmin</command></title>
       <indexterm><primary><emphasis>webmin</emphasis></primary></indexterm>
 
       <para>This is, without a doubt, one of the most successful
@@ -1142,20 +1089,18 @@
       web browser, covering a wide array of areas and tools. Furthermore,
       it is internationalized and available in many languages.</para>
 
-      <para>Sadly, <command>webmin</command> is no longer part of Debian
-      since <emphasis role="distribution">Etch</emphasis>. Its Debian
-      maintainer — Jaldhar H. Vyas — removed the packages he created
+      <para>Sadly, <command>webmin</command> is no longer part of Debian.
+      Its Debian maintainer — Jaldhar H. Vyas — removed the packages he created
       because he no longer had the time required to maintain them at an
       acceptable quality level. Nobody has officially taken over, so
-      <emphasis role="distribution">Squeeze</emphasis> does not have the
+      <emphasis role="distribution">Wheezy</emphasis> does not have the
       <command>webmin</command> package.</para>
 
       <para>There is, however, an unofficial package distributed on the
-      <literal>webmin.com</literal> website. Contrary to the packages
-      included in <emphasis role="distribution">Sarge</emphasis>, this
-      package is monolithic; all of its configuration modules are installed
-      and activated by default, even if the corresponding service is not
-      installed on the machine.</para>
+      <literal>webmin.com</literal> website. Contrary to the original
+      Debian packages, this package is monolithic; all of its configuration
+      modules are installed and activated by default, even if the
+      corresponding service is not installed on the machine.</para>
 
       <sidebar>
         <title><emphasis>SECURITY</emphasis> Changing the root password</title>
@@ -1223,18 +1168,20 @@
       prompt you when it fails to activate a requested module.</para>
 
       <sidebar>
-        <title><emphasis>ALTERNATIVE</emphasis> <emphasis>gnome-system-tools</emphasis></title>
-        <indexterm><primary><emphasis role="pkg">gnome-system-tools</emphasis></primary></indexterm>
+        <title><emphasis>ALTERNATIVE</emphasis> GNOME control center</title>
+        <indexterm><primary><emphasis role="pkg">gnome-control-center</emphasis></primary></indexterm>
 
-	<para>The GNOME project also provides a graphical administration
-	interface in the <emphasis role="pkg">gnome-system-tools</emphasis>
-	package. Installed by default for a desktop system, it includes
-	applications that can be found in the menu at
-	<menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu></menuchoice>.
+	<para>The GNOME project also provides multiple administration
+	interfaces that are usually accessible via the “Settings” entry
+	in the user menu on the top right.
+	<command>gnome-control-center</command> is the main program
+	that brings them all together but many of the system wide
+	configuration tools are effectively provided by other
+	packages (<emphasis role="pkg">accountsservice</emphasis>,
+	<emphasis role="pkg">system-config-printer</emphasis>, etc.).
 	Easy to use, these applications cover only a limited number of base
-	services: user and group management, time configuration, network
-	configuration, disk management, and management of startup
-	services.</para>
+	services: user management, time configuration, network
+	configuration, printer configuration, and so on.</para>
       </sidebar>
     </section>
     <section id="sect.debconf">
@@ -1284,36 +1231,15 @@
     <title><command>syslog</command> System Events</title>
     <indexterm><primary><command>rsyslogd</command></primary></indexterm>
     <indexterm><primary>files</primary><secondary>log files</secondary></indexterm>
-    <indexterm><primary>logs</primary><secondary>distribution</secondary></indexterm>
+    <indexterm><primary>logs</primary><secondary>dispatching</secondary></indexterm>
     <section id="sect.syslog-principe">
       <title>Principle and Mechanism</title>
 
       <para>The <command>rsyslogd</command> daemon is responsible for
       collecting service messages coming from applications and the kernel,
-      then distributing them into log files (usually stored in the
+      then dispatching them into log files (usually stored in the
       <filename>/var/log/</filename> directory). It obeys the
       <filename>/etc/rsyslog.conf</filename> configuration file.</para>
-
-      <sidebar>
-        <title><emphasis>SUPPLEMENTS</emphasis> Moving from sysklogd to rsyslog</title>
-        <indexterm><primary><emphasis role="pkg">sysklogd</emphasis></primary></indexterm>
-
-	<para>Debian <emphasis role="distribution">Squeeze</emphasis>
-	installs <emphasis role="pkg">rsyslog</emphasis> by default, while
-	older versions (up to <emphasis
-	role="distribution">Etch</emphasis>, but not <emphasis
-	role="distribution">Lenny</emphasis>) used <emphasis
-	role="pkg">sysklogd</emphasis>. The transition was not automatic,
-	and in the case of an upgrade from <emphasis
-	role="distribution">Etch</emphasis>, <emphasis
-	role="pkg">rsyslog</emphasis> should be installed manually if you
-	want to keep in sync with Debian's default choice.</para>
-
-	<para>Migration from one to the other is painless, since the
-	default configuration is very similar, and the syntax of the older
-	<filename>/etc/syslog.conf</filename> is compatible with the new
-	<filename>/etc/rsyslog.conf</filename>.</para>
-      </sidebar>
 
       <para>Each log message is associated with an application subsystem
       (called “facility” in the documentation):</para>
@@ -1413,7 +1339,7 @@
       The overall principle is to write “selector” and “action”
       pairs. The selector defines all relevant messages, and the actions
       describes how to deal with them.</para>
-      <section id="sect.syslog-syntaxe-selecteur">
+      <section id="sect.syslog-selector-syntax">
         <title>Syntax of the Selector</title>
 
 	<para>The selector is a semicolon-separated list of
@@ -1448,7 +1374,7 @@
 	priority equal to or higher than <literal>crit</literal> not coming
 	from the kernel.</para>
       </section>
-      <section id="sect.syslog-syntaxe-actions">
+      <section id="sect.syslog-action-syntax">
         <title>Syntax of Actions</title>
 
         <sidebar>
@@ -1572,7 +1498,7 @@
 	<literal>nowait</literal> only if the server is capable of managing
 	several connections in parallel. You can suffix this field with a
 	period, followed by the maximum number of connections authorized
-	per minute (the default limit is 40).</para>
+	per minute (the default limit is 256).</para>
       </listitem>
       <listitem>
 	<para>The user name of the user under whose identity the server
@@ -1594,7 +1520,7 @@
       <title>Excerpt from <filename>/etc/inetd.conf</filename></title>
 
       <programlisting>talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd
-finger stream tcp nowait  nobody     /usr/sbin/tcpd     /usr/sbin/in.fingerd
+finger stream tcp nowait  nobody     /usr/sbin/tcpd     in.fingerd
 ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i
 </programlisting>
     </example>
@@ -1608,8 +1534,12 @@ ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i
     <filename>/etc/hosts.allow</filename> and
     <filename>/etc/hosts.deny</filename> files. Once it has been determined
     that the connection is authorized, <command>tcpd</command> executes the
-    real server (like <command>/usr/bin/in.fingerd</command> in our
-    example).</para>
+    real server (like <command>in.fingerd</command> in our
+    example). It is worth noting that <command>tcpd</command> relies on the
+    name under which it was invoked (that is the first argument,
+    <literal>argv[0]</literal>) to identify the real program
+    to run. So you should not start the arguments list with <literal>tcpd</literal>
+    but with the program that must be wrapped.</para>
 
     <sidebar>
       <title><emphasis>COMMUNITY</emphasis> Wietse Venema</title>
@@ -1627,13 +1557,12 @@ ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i
     <sidebar>
       <title><emphasis>ALTERNATIVE</emphasis> Other <command>inetd</command> commands</title>
 
-      <para>There is no lack of alternatives. In addition to <emphasis
-      role="pkg">openbsd-inetd</emphasis> and <emphasis
-      role="pkg">netkit-inetd</emphasis> already mentioned, there are
-      <emphasis role="pkg">inetutils-inetd</emphasis>, <emphasis
-      role="pkg">micro-inetd</emphasis>, <emphasis
-      role="pkg">rlinetd</emphasis> and <emphasis
-      role="pkg">xinetd</emphasis>.</para>
+      <para>While Debian installs <emphasis
+      role="pkg">openbsd-inetd</emphasis> by default, there is no lack of
+      alternatives: we can mention <emphasis role="pkg">inetutils-inetd</emphasis>,
+      <emphasis role="pkg">micro-inetd</emphasis>,
+      <emphasis role="pkg">rlinetd</emphasis> and
+      <emphasis role="pkg">xinetd</emphasis>.</para>
 
       <para>This last incarnation of a super-server offers very interesting
       possibilities. Most notably, its configuration can be split into
@@ -1643,11 +1572,10 @@ ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i
     </sidebar>
   </section>
   <section id="sect.task-scheduling-cron-atd">
-    <title id="cron.title">Scheduling Tasks with <command>cron</command> and <command>atd</command></title>
+    <title>Scheduling Tasks with <command>cron</command> and <command>atd</command></title>
     <indexterm><primary><command>cron</command></primary></indexterm>
     <indexterm><primary><command>atd</command></primary></indexterm>
     <indexterm><primary>scheduled commands</primary></indexterm>
-    <indexterm><primary>command scheduling</primary></indexterm>
     <indexterm><primary>command scheduling</primary></indexterm>
 
     <para><command>cron</command> is the daemon responsible for executing
@@ -1724,8 +1652,8 @@ ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i
       </listitem>
     </itemizedlist>
 
-    <para>Many Debian packages rely on this service, they put maintenance
-    scripts in these directories, which ensure optimal operation of their
+    <para>Many Debian packages rely on this service: by putting maintenance
+    scripts in these directories, they ensure optimal operation of their
     services.</para>
     <section id="sect.format-crontab">
       <title>Format of a <filename>crontab</filename> File</title>
@@ -1861,7 +1789,7 @@ ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i
 	<emphasis>crontab</emphasis>.</para>
       </sidebar>
     </section>
-    <section id="sect.commande-at">
+    <section id="sect.at-command">
       <title>Using the <command>at</command> Command</title>
       <indexterm><primary><command>at</command></primary></indexterm>
 
@@ -1888,7 +1816,7 @@ ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i
       “today” or “tomorrow”, which is self-explanatory.</para>
 
       <screen>
-<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>
+<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.14 &lt;&lt;END</userinput>
 <computeroutput>&gt; </computeroutput><userinput>echo "Don't forget to wish a Happy Birthday to Raphaël!" \</userinput>
 <computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>
 <computeroutput>&gt; </computeroutput><userinput>END</userinput>
@@ -2093,14 +2021,15 @@ job 31 at Fri Jul 27 09:00:00 2012</computeroutput>
     <indexterm><primary>backup</primary></indexterm>
     <indexterm><primary>restoration</primary></indexterm>
 
-    <para>Many programs exist, such as <command>amanda</command>, a
-    client/server system featuring many options, whose configuration is
-    rather difficult. <command>BackupPC</command> is also a client/server
-    solution, but with a web interface for configuration which makes it
-    more user-friendly. Dozens of other Debian packages are dedicated to
-    backup solutions, as you can easily confirm with <command>apt-cache
-    search backup</command>.</para>
+    <para>Many programs exist, such as <command>amanda</command>,
+    <command>bacula</command>, <command>BackupPC</command>. Those
+    are client/server system featuring many options, whose configuration is
+    rather difficult. Some of them provide user-friendly web interfaces
+    to mitigate this. But Debian contains dozens of other
+    backup software covering all possible use cases, as you can easily confirm
+    with <command>apt-cache search backup</command>.</para>
     <indexterm><primary><command>amanda</command></primary></indexterm>
+    <indexterm><primary><command>bacula</command></primary></indexterm>
     <indexterm><primary><command>BackupPC</command></primary></indexterm>
 
     <para>Rather than detailing some of them, this section will present the
@@ -2271,23 +2200,21 @@ exclude:
 	<command>rsync</command> as a server. This requires the root user
 	to be able to automatically connect to it. The use of an SSH
 	authentication key allows precisely that (see <xref
-	linkend="sect.ssh-cle-auth"/>).</para>
+	linkend="sect.ssh-key-based-auth"/>).</para>
       </sidebar>
     </section>
     <section>
       <title>Restoring Machines without Backups</title>
 
       <para>Desktop computers, which are not backed up, will be easy to
-      regenerate from CD-ROMs made by the <command>mondo</command> program.
-      These bootable CD-ROMs allow complete re-installation of the
-      machine's system. But beware: files that are not part of the system
-      or the user's home directory will not, themselves, be backed up by
-      <command>mondo</command>. This includes, for example, users' local
-      <emphasis>crontabs</emphasis>, as well as any changes made to system
-      configuration since the preparation of the CD-ROM.</para>
-      <indexterm><primary><command>mondo</command></primary></indexterm>
-      <indexterm><primary>backup</primary><secondary>on CD-ROM</secondary></indexterm>
-      <indexterm><primary>CD-ROM</primary><secondary>backup on CD-ROM</secondary></indexterm>
+      reinstall from custom DVD-ROMs prepared with <emphasis>Simple-CDD</emphasis>
+      (see <xref linkend="sect.simple-cdd" />). Since this performs
+      an installation from scratch, it loses any customization that can have
+      been made after the initial installation. This is fine since
+      the systems are all hooked to a central LDAP directory for
+      accounts and most desktop applications are preconfigured
+      thanks to dconf (see <xref linkend="sect.gnome-desktop" />
+      for more information about this).</para>
 
       <para>The Falcot Corp administrators are aware of the limits in their
       backup policy. Since they can't protect the backup server as well as
@@ -2315,6 +2242,7 @@ exclude:
 	<command>xdelta</command> program produces incremental differences
 	from binary dumps.</para>
         <indexterm><primary><command>xdelta</command></primary></indexterm>
+        <indexterm><primary><command>diff</command></primary></indexterm>
         <indexterm><primary>dump</primary></indexterm>
       </sidebar>
 
@@ -2336,20 +2264,22 @@ exclude:
     <section>
       <title>Introduction</title>
 
-      <para>The <emphasis>hotplug</emphasis> kernel subsystem loads drivers
-      for peripherals that can be hotplugged. This includes USB peripherals
-      (increasingly common), PCMCIA (common expansion cards for laptops),
-      IEEE 1394 (also called “Firewire” or “I-Link”), some SATA
-      hard drives, and even, for some high-end servers, PCI or SCSI
-      devices. The kernel has a database that associates each device ID
+      <para>The <emphasis>hotplug</emphasis> kernel subsystem dynamically
+      handles the addition and removal of devices, by loading the appropriate
+      drivers and by creating the corresponding device files (with the
+      help <command>udevd</command>). With modern hardware and virtualization,
+      almost everything can be hotplugged: from the usual USB/PCMCIA/IEEE 1394
+      peripherals to SATA hard drives, but also the CPU and the memory.</para>
+
+      <para> The kernel has a database that associates each device ID
       with the required driver. This database is used during boot to load
       all the drivers for the peripheral devices detected on the different
-      buses mentioned, but also when an additional hotplug device is
-      connected. Once a driver is loaded, a message is sent to
+      buses, but also when an additional hotplug device is
+      connected. Once the device is ready for use, a message is sent to
       <command>udevd</command> so it will be able to create the
       corresponding entry in <filename>/dev/</filename>.</para>
+
       <indexterm><primary><emphasis>hotplug</emphasis></primary></indexterm>
-      <indexterm><primary>hotplug</primary></indexterm>
       <indexterm><primary>hotplug</primary></indexterm>
       <indexterm><primary>USB</primary></indexterm>
       <indexterm><primary>IEEE 1394</primary></indexterm>
@@ -2467,7 +2397,6 @@ exclude:
 	  “usb”, “ide”, “net”, “firmware”, etc.);</para>
         </listitem>
         <listitem>
-	 
 	  <para><literal>ATTR{<replaceable>attribut</replaceable>}</literal>:
 	  file contents of the <replaceable>attribute</replaceable> file in
 	  the
@@ -2669,7 +2598,7 @@ KERNEL=="sd?[0-9]", SUBSYSTEM=="block", ATTRS{serial}=="M004021000001", SYMLINK+
     </section>
   </section>
   <section id="sect.power-management">
-    <title>Power Management</title>
+    <title>Power Management: Advanced Configuration and Power Interface (ACPI)</title>
     <indexterm><primary>power management</primary></indexterm>
     <indexterm><primary>management, power management</primary></indexterm>
 
@@ -2677,128 +2606,40 @@ KERNEL=="sd?[0-9]", SUBSYSTEM=="block", ATTRS{serial}=="M004021000001", SYMLINK+
     properly suspending the computer requires that all the computer's
     device drivers know how to put them to standby, and that they properly
     reconfigure the devices upon waking. Unfortunately, there are still
-    many devices unable to sleep well under Linux, because their
+    a few devices unable to sleep well under Linux, because their
     manufacturers have not provided the required specifications.</para>
 
+    <para>Linux supports ACPI (Advanced Configuration and Power
+    Interface) — the most recent standard in power management. The
+    <emphasis role="pkg">acpid</emphasis> package provides a daemon that
+    looks for power management related events (switching between AC and
+    battery power on a laptop, etc.) and that can execute various commands
+    in response.</para>
+
+    <indexterm><primary>ACPI</primary></indexterm>
+    <indexterm><primary>Advanced Configuration and Power Interface</primary></indexterm>
+    <indexterm><primary><command>acpid</command></primary></indexterm>
+    
     <sidebar>
-      <title><emphasis>WORTH FOLLOWING</emphasis> Software suspend</title>
-      <indexterm><primary>standby</primary></indexterm>
-      <indexterm><primary>software suspend</primary></indexterm>
-      <indexterm><primary>suspend</primary></indexterm>
-      <indexterm><primary>hibernation</primary></indexterm>
-
-      <para>The software suspend banner rallies several recent efforts to
-      integrate reliable hibernation under Linux, on disk or in memory.
-      Recent kernels are relatively reliable in that regard, when used in
-      cooperation with tools of the <emphasis role="pkg">uswsusp</emphasis>
-      package. Unfortunately the problems related to hibernation are not
-      yet ancient history, and you should run tests on your hardware before
-      putting too much faith in its ability to wake from suspend.</para>
-
-      <para>For those who want to learn more about how standby works with
-      ACPI, Matthew Garrett has an excellent article about this in his
-      blog. <ulink type="block"
-      url="http://www.advogato.org/article/913.html"/>
-      <indexterm><primary>Garrett, Matthew</primary></indexterm>
-      <indexterm><primary>Matthew Garrett</primary></indexterm></para>
-    </sidebar>
-    <section id="sect.apm">
-      <title>Advanced Power Management (APM)</title>
-
-      <para>APM (Advanced Power Management) control is present in all
-      Debian kernels, but disabled by default. To activate it, you add the
-      <literal>apm=on</literal> option to the kernel parameters passed at
-      boot time. With LILO, you would add the
-      <literal>append="apm=on"</literal> directive to the block indicating
-      which image to boot (in the <filename>/etc/lilo.conf</filename>
-      file), and relaunch <command>lilo</command>. With GRUB2, you simply
-      add <literal>apm=on</literal> to the
-      <literal>GRUB_CMDLINE_LINUX=</literal> variable in
-      <filename>/etc/default/grub</filename>, and run
-      <command>update-grub</command> to regenerate the contents of the boot
-      menu.</para>
+      <title><emphasis>CULTURE</emphasis> Advanced Power Management (APM)</title>
       <indexterm><primary>APM</primary></indexterm>
       <indexterm><primary>Advanced Power Management</primary></indexterm>
 
-      <para>The <emphasis role="pkg">apmd</emphasis> package provides a
-      daemon that looks for events connected to energy management
-      (switching between AC and battery power on a laptop, etc.), and
-      allows you to run specific commands in response.</para>
-      <indexterm><primary><command>apmd</command></primary></indexterm>
+      <para>APM (Advanced Power Management) is the ancestor of ACPI in
+      the power management world. While Debian still provides <command>apmd</command>
+      (the counterpart to <command>acpid</command> for the APM standard), the
+      official Debian kernel no longer supports APM so you'll have to run
+      a custom kernel if you really need it for some old computer.
+      </para>
+    </sidebar>
 
-      <para>These days, APM is really only justified on older computers
-      that do not support ACPI properly. In all other cases, ACPI should be
-      used.</para>
-    </section>
-    <section id="sect.acpi">
-      <title>Modern power savings: Advanced Configuration and Power Interface (ACPI)</title>
+    <sidebar>
+      <title><emphasis>BEWARE</emphasis> Graphics card and standby</title>
 
-      <para>Linux supports ACPI (Advanced Configuration and Power
-      Interface) — the most recent standard in power management. More
-      powerful and flexible, it is also more complicated to implement. The
-      <emphasis role="pkg">acpid</emphasis> package is the counterpart to
-      <emphasis role="pkg">apmd</emphasis> for the ACPI world.</para>
-      <indexterm><primary>ACPI</primary></indexterm>
-      <indexterm><primary>Advanced Configuration and Power Interface</primary></indexterm>
-
-      <para>If you know that your BIOS correctly manages ACPI, then this
-      should be preferred over APM (removed upon update of the BIOS). When
-      moving from one to the other, you must take care to remove the
-      <emphasis role="pkg">apmd</emphasis> package, since keeping it
-      alongside with <emphasis role="pkg">acpid</emphasis> could cause
-      problems (and vice-versa).</para>
-      <indexterm><primary><command>acpid</command></primary></indexterm>
-
-      <sidebar>
-        <title><emphasis>ATTENTION</emphasis> Graphics card and standby</title>
-
-	<para>The graphics card driver often has a problem with standby. In
-	case of trouble, it is a good idea to test the latest version of
-	the X.org graphics server.</para>
-      </sidebar>
-
-      <sidebar>
-        <title><emphasis>HARDWARE</emphasis> Apple and power management</title>
-
-	<para>On Apple Powerbooks (thus PowerPC processors), <emphasis
-	role="pkg">apmd</emphasis> should be replaced with <emphasis
-	role="pkg">pmud</emphasis>.</para>
-        <indexterm><primary><command>pmud</command></primary></indexterm>
-        <indexterm><primary>Powerbook</primary></indexterm>
-      </sidebar>
-    </section>
-  </section>
-  <section id="sect.pcmcia">
-    <title>Laptop Extension Cards: PCMCIA</title>
-
-    <para>PCMCIA card drivers are built into the kernel as modules since
-    kernel version 2.6.13. On a system running Debian <emphasis
-    role="distribution">Squeeze</emphasis>, you simply have to install the
-    user space support contained in the <emphasis
-    role="pkg">pcmciautils</emphasis> package.</para>
-    <indexterm><primary>PCMCIA</primary></indexterm>
-    <indexterm><primary><emphasis role="pkg">pcmciautils</emphasis></primary></indexterm>
-
-    <para>The <emphasis role="pkg">wireless-tools</emphasis> package is
-    also necessary for good management of Wifi cards.</para>
-    <indexterm><primary><emphasis>wireless-tools</emphasis></primary></indexterm>
-    <indexterm><primary>wifi</primary></indexterm>
-    <indexterm><primary>network</primary><secondary>wireless</secondary></indexterm>
-    <indexterm><primary>wireless network</primary></indexterm>
-    <indexterm><primary>wireless network</primary></indexterm>
-
-    <para>Every time you connect or remove a card, the daemon configures or
-    deconfigures it, by executing a script in the
-    <filename>/etc/pcmcia/</filename> directory, which gets its settings
-    from the <filename>/etc/pcmcia/*.opts</filename> files. These files
-    have been slightly adapted to work with a Debian system; the
-    configuration of the network is delegated to <command>ifup</command> if
-    the <filename>/etc/pcmcia/network.opts</filename> file does not take
-    care of it. The same is true for configuration of a wireless network,
-    which can be specified in <filename>/etc/network/interfaces</filename>
-    instead of <filename>/etc/pcmcia/wireless.opts</filename>. The
-    <filename>/usr/share/doc/wireless-tools/README.Debian</filename> file
-    also describes the syntax to use.</para>
+      <para>The graphics card driver is often the problematic drivers
+      when standby doesn't work properly. In that case, it is a good idea
+      to test the latest version of the X.org graphics server.</para>
+    </sidebar>
 
     <para>After this overview of basic services common to many Unix
     systems, we will focus on the environment of the administered machines:
