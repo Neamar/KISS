@@ -2267,11 +2267,11 @@ exclude:
       <para>The <emphasis>hotplug</emphasis> kernel subsystem dynamically
       handles the addition and removal of devices, by loading the appropriate
       drivers and by creating the corresponding device files (with the
-      help <command>udevd</command>). With modern hardware and virtualization,
+      help of <command>udevd</command>). With modern hardware and virtualization,
       almost everything can be hotplugged: from the usual USB/PCMCIA/IEEE 1394
       peripherals to SATA hard drives, but also the CPU and the memory.</para>
 
-      <para> The kernel has a database that associates each device ID
+      <para>The kernel has a database that associates each device ID
       with the required driver. This database is used during boot to load
       all the drivers for the peripheral devices detected on the different
       buses, but also when an additional hotplug device is
