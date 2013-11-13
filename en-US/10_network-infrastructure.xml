@@ -345,7 +345,7 @@ $ </computeroutput><userinput>./clean-all
 
         <screen>
 <computeroutput>$ </computeroutput><userinput>./build-ca</userinput>
-<computeroutput>Generating a 20482048 RSA private key
+<computeroutput>Generating a 2048 bit RSA private key
 ..............................................++++++
 .......................++++++
 writing new private key to 'ca.key'
@@ -1798,12 +1798,12 @@ udp6       0      0 :::123                  :::*                                
       <manvolnum>1</manvolnum> </citerefentry> manual page.</para>
 
       <screen width="80" role="scale">
-<computeroutput># </computeroutput><userinput>nmap scouzmir</userinput>
+<computeroutput># </computeroutput><userinput>nmap mirwiz</userinput>
 <computeroutput>
 nmap 192.168.1.30
 
 Starting Nmap 6.00 ( http://nmap.org ) at 2013-11-13 11:00 CET
-Nmap scan report for scouzmir (192.168.1.30)
+Nmap scan report for mirwiz (192.168.1.30)
 Host is up (0.000015s latency).
 Not shown: 997 closed ports
 PORT      STATE SERVICE
@@ -1824,7 +1824,7 @@ PORT      STATE SERVICE VERSION
 | ssh-hostkey: 1024 ea:47:e5:04:a0:b8:70:29:c2:94:3d:fe:a8:b8:b4:02 (DSA)
 |_2048 81:5c:a4:56:ff:c0:bf:0d:cd:e6:cc:48:2f:15:78:ea (RSA)
 25/tcp    open  smtp    Exim smtpd 4.80
-| smtp-commands: scouzmir.internal.placard.fr.eu.org Hello localhost [127.0.0.1], SIZE 52428800, 8BITMIME, PIPELINING, HELP, 
+| smtp-commands: mirwiz.internal.placard.fr.eu.org Hello localhost [127.0.0.1], SIZE 52428800, 8BITMIME, PIPELINING, HELP, 
 |_ Commands supported: AUTH HELO EHLO MAIL RCPT DATA NOOP QUIT RSET HELP 
 111/tcp   open  rpcbind
 | rpcinfo: 
@@ -1852,7 +1852,7 @@ OS:)U1(R=Y%DF=N%T=41%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%
 OS:DFI=N%T=41%CD=S)
 
 Network Distance: 0 hops
-Service Info: Host: scouzmir.internal.placard.fr.eu.org; OS: Linux; CPE: cpe:/o:linux:kernel
+Service Info: Host: mirwiz.internal.placard.fr.eu.org; OS: Linux; CPE: cpe:/o:linux:kernel
 
 OS and Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds
@@ -1863,7 +1863,7 @@ Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds
       that not all applications listen on all IP addresses; since Exim4 is
       only accessible on the <literal>lo</literal> loopback interface, it
       only appears during an analysis of <literal>localhost</literal> and
-      not when scanning <literal>scouzmir</literal> (which maps to the
+      not when scanning <literal>mirwiz</literal> (which maps to the
       <literal>eth0</literal> interface on the same machine).</para>
     </section>
     <section id="sect.sniffers">
