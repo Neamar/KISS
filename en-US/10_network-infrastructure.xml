@@ -109,7 +109,7 @@
     <sidebar>
       <title><emphasis>CULTURE</emphasis> Private address range</title>
       <indexterm><primary>IP address</primary><secondary>private</secondary></indexterm>
-      <indexterm><primary>private, IP address</primary></indexterm>
+      <indexterm><primary>private IP address</primary></indexterm>
 
       <para>RFC 1918 defines three ranges of IPv4 addresses not meant to
       be routed on the Internet but only used in local networks. The first
@@ -325,7 +325,7 @@ net.ipv4.tcp_syncookies = 1
 </userinput><computeroutput>export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`
 export KEY_DIR="$EASY_RSA/keys"
 echo NOTE: If you run ./clean-all, I will be doing a rm -rf on $KEY_DIR
-export KEY_SIZE=1024
+export KEY_SIZE=2048
 export KEY_EXPIRE=3650
 export KEY_COUNTRY="FR"
 export KEY_PROVINCE="Loire"
@@ -345,7 +345,7 @@ $ </computeroutput><userinput>./clean-all
 
         <screen>
 <computeroutput>$ </computeroutput><userinput>./build-ca</userinput>
-<computeroutput>Generating a 1024 bit RSA private key
+<computeroutput>Generating a 20482048 RSA private key
 ..............................................++++++
 .......................++++++
 writing new private key to 'ca.key'
@@ -379,7 +379,7 @@ Email Address [admin@falcot.com]:
 
         <screen>
 <computeroutput>$ </computeroutput><userinput>./build-key-server vpn.falcot.com
-</userinput><computeroutput>Generating a 1024 bit RSA private key
+</userinput><computeroutput>Generating a 2048 bit RSA private key
 ...............++++++
 ...........++++++
 writing new private key to 'vpn.falcot.com.key'
@@ -422,7 +422,7 @@ Sign the certificate? [y/n]:</computeroutput><userinput>y
 </userinput><computeroutput>Write out database with 1 new entries
 Data Base Updated
 $ </computeroutput><userinput>./build-dh
-</userinput><computeroutput>Generating DH parameters, 1024 bit long safe prime, generator 2
+</userinput><computeroutput>Generating DH parameters, 2048 bit long safe prime, generator 2
 This is going to take a long time
 ..............+.......+.................................++*++*++*
 </computeroutput>
@@ -434,7 +434,7 @@ This is going to take a long time
 
         <screen>
 <computeroutput>$ </computeroutput><userinput>./build-key JoeSmith
-</userinput><computeroutput>Generating a 1024 bit RSA private key
+</userinput><computeroutput>Generating a 2048 bit RSA private key
 ................++++++
 .............................++++++
 writing new private key to 'JoeSmith.key'
@@ -468,8 +468,8 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
 	<filename>/etc/ssl/private/vpn.falcot.com.key</filename> with
 	restricted permissions so that only the administrator can read it),
 	with the corresponding Diffie-Hellman parameters
-	(<filename>keys/dh1024.pem</filename>) installed to
-	<filename>/etc/openvpn/dh1024.pem</filename>. Client certificates
+	(<filename>keys/dh2048.pem</filename>) installed to
+	<filename>/etc/openvpn/dh2048.pem</filename>. Client certificates
 	are installed on the corresponding VPN client in a similar
 	fashion.</para>
       </section>
@@ -489,7 +489,7 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
 	<literal>/etc/ssl/certs/Falcot_CA.crt</literal>,
 	<literal>/etc/ssl/vpn.falcot.com.crt</literal>,
 	<literal>/etc/ssl/private/vpn.falcot.com.key</literal> and
-	<literal>/etc/openvpn/dh1024.pem</literal>). The <literal>server
+	<literal>/etc/openvpn/dh2048.pem</literal>). The <literal>server
 	10.8.0.0 255.255.255.0</literal> directive defines the subnet to be
 	used by the VPN; the server uses the first IP address in that range
 	(<literal>10.8.0.1</literal>) and the rest of the addresses are
@@ -618,7 +618,7 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
       parameters for <emphasis>IPsec tunnels</emphasis> (or
       <emphasis>Security Associations</emphasis>, in the IPsec terminology)
       that the host is concerned with;
-      <command>/etc/init.d/setkey</command> script provides a way to start
+      the <command>/etc/init.d/setkey</command> script provides a way to start
       and stop a tunnel (each tunnel is a secure link to another host
       connected to the virtual private network). This file can be built by
       hand from the documentation provided by the
@@ -632,11 +632,11 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
       role="pkg">openswan</emphasis> makes the process much simpler by
       bringing administration together at a central point, and more secure
       by rotating the keys periodically.
+      </para>
       <indexterm><primary>IKE</primary></indexterm>
-      <indexterm><primary>IPsec</primary><secondary>IPsec Key
-      Exchange</secondary></indexterm> <indexterm><primary>key
-      pair</primary></indexterm>
-      <indexterm><primary><command>setkey</command></primary></indexterm></para>
+      <indexterm><primary>IPsec</primary><secondary>IPsec Key Exchange</secondary></indexterm>
+      <indexterm><primary>key pair</primary></indexterm>
+      <indexterm><primary><command>setkey</command></primary></indexterm>
 
       <para>In spite of its status as the reference, the complexity of
       setting up IPsec restricts its usage in practice. OpenVPN-based
@@ -662,7 +662,7 @@ Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com
 
 	<para>The standard mode of operation of IPsec involves data
 	exchanges on UDP port 500 for key exchanges (also on UDP
-	port 4500 if case NAT-T is in use). Moreover, IPsec packets use
+	port 4500 in case NAT-T is in use). Moreover, IPsec packets use
 	two dedicated IP protocols that the firewall must let through;
 	reception of these packets is based on their protocol numbers, 50
 	(ESP) and 51 (AH).</para>
@@ -964,8 +964,8 @@ FALCOT\\vpn     pptp    f@Lc3au     *
 	everything there is to know about network quality of service.
 	<ulink type="block" url="http://www.lartc.org/howto/"/></para>
         <indexterm><primary>routing</primary><secondary>advanced</secondary></indexterm>
-        <indexterm><primary>traffic control</primary></indexterm>
-        <indexterm><primary>control, of traffic</primary></indexterm>
+        <indexterm><primary>traffic</primary><secondary>control</secondary></indexterm>
+        <indexterm><primary>control of traffic</primary></indexterm>
       </sidebar>
     </section>
     <section id="sect.qos-config">
@@ -985,7 +985,7 @@ FALCOT\\vpn     pptp    f@Lc3au     *
 	network load. This is achieved by limiting total traffic to a value
 	that falls just short of the link saturation value.</para>
         <indexterm><primary><command>wondershaper</command></primary></indexterm>
-        <indexterm><primary>limitation, of traffic</primary></indexterm>
+        <indexterm><primary>limitation of traffic</primary></indexterm>
         <indexterm><primary>traffic</primary><secondary>limitation</secondary></indexterm>
 
 	<para>Once a network interface is configured, setting up this
@@ -1108,16 +1108,21 @@ iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-De
     <command>zebra</command> daemon collects information from other daemons
     and handles static routing tables accordingly. The other daemons are
     known as <command>bgpd</command>, <command>ospfd</command>,
-    <command>ospf6d</command>, <command>ripd</command>, and
-    <command>ripngd</command>.</para>
+    <command>ospf6d</command>, <command>ripd</command>, 
+    <command>ripngd</command>, <command>isisd</command>, and
+    <command>babeld</command>.</para>
     <indexterm><primary>OSPF</primary></indexterm>
     <indexterm><primary>BGP</primary></indexterm>
     <indexterm><primary>RIP</primary></indexterm>
+    <indexterm><primary>IS-IS</primary></indexterm>
+    <indexterm><primary>BABEL wireless mesh routing</primary></indexterm>
     <indexterm><primary><command>bgpd</command></primary></indexterm>
     <indexterm><primary><command>ospfd</command></primary></indexterm>
     <indexterm><primary><command>ospf6d</command></primary></indexterm>
     <indexterm><primary><command>ripd</command></primary></indexterm>
     <indexterm><primary><command>ripngd</command></primary></indexterm>
+    <indexterm><primary><command>isisd</command></primary></indexterm>
+    <indexterm><primary><command>babeld</command></primary></indexterm>
 
     <para>Daemons are enabled by editing the
     <filename>/etc/quagga/daemons</filename> file and creating the
@@ -1159,9 +1164,9 @@ iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-De
     network links to be used on the path and to reassemble the chunks in
     their proper order on arrival).</para>
 
-    <para>Debian kernels include IPv6 handling in the core kernel (which
-    was not always the case; the <literal>ipv6</literal> module used to be
-    optional). Basic tools such as <command>ping</command> and
+    <para>Debian kernels include IPv6 handling in the core kernel (with
+    the exception of some architectures that have it compiled as a module
+    named <literal>ipv6</literal>). Basic tools such as <command>ping</command> and
     <command>traceroute</command> have their IPv6 equivalents in
     <command>ping6</command> and <command>traceroute6</command>, available
     respectively in the <emphasis role="pkg">iputils-ping</emphasis> and
@@ -1225,22 +1230,18 @@ iface eth0 inet6 auto
       <title><emphasis>TIP</emphasis> Programs built with IPv6</title>
 
       <para>Many pieces of software need to be adapted to handle IPv6. Most
-      of the packages in Debian <emphasis
-      role="distribution">Squeeze</emphasis> have been adapted already, but
-      not all. A few volunteers had previously created a package archive
-      dedicated to software specially rebuilt for IPv6; this archive was
-      decommissioned in March 2007, both for lack of time and for lack of
-      interest (since most of the patches have been integrated into the
-      official packages). If your favorite package does not work with IPv6
-      yet, help can be found on the <emphasis>debian-ipv6</emphasis>
-      mailing-list. <ulink type="block"
-      url="http://lists.debian.org/debian-ipv6/"/></para>
+      of the packages in Debian have been adapted already, but
+      not all. If your favorite package does not work with IPv6
+      yet, you can ask for help on the <emphasis>debian-ipv6</emphasis>
+      mailing-list. They might know about an IPv6-aware replacement
+      and could file a bug to get the issue properly tracked.
+      <ulink type="block" url="http://lists.debian.org/debian-ipv6/"/></para>
     </sidebar>
 
-    <para><indexterm><primary>IPv6 firewall</primary></indexterm>
     <indexterm><primary>IPv6 firewall</primary></indexterm>
     <indexterm><primary>firewall</primary><secondary>IPv6</secondary></indexterm>
     <indexterm><primary><command>ip6tables</command></primary></indexterm>
+    <para>
     IPv6 connections can be restricted, in the same fashion as for IPv4:
     the standard Debian kernels include an adaptation of
     <emphasis>netfilter</emphasis> for IPv6. This IPv6-enabled
@@ -1251,6 +1252,7 @@ iface eth0 inet6 auto
 
     <section id="sect.ipv6-tunneling">
       <title>Tunneling</title>
+
       <sidebar>
         <title><emphasis>CAUTION</emphasis> IPv6 tunneling and firewalls</title>
 
@@ -1259,31 +1261,33 @@ iface eth0 inet6 auto
       </sidebar>
 
       <para>If a native IPv6 connection is not available, the fallback method
-      is to use a tunnel over IPv4. Freenet6 is one (free) provider of such
-      tunnels: <ulink type="block" url="http://www.freenet6.net/"/></para>
+      is to use a tunnel over IPv4. Gogo6 is one (free) provider of such
+      tunnels: <ulink type="block" url="http://www.gogo6.com/freenet6/tunnelbroker"/></para>
       <indexterm><primary>Freenet6</primary></indexterm>
+      <indexterm><primary>Gogo6</primary></indexterm>
 
-      <para>To use a Freenet6 tunnel, you need to register on the website,
-      then install the <emphasis role="pkg">tspc</emphasis> package and
-      configure the tunnel. This requires editing the
-      <filename>/etc/tsp/tspc.conf</filename> file: <literal>userid</literal>
-      and <literal>password</literal> lines received by e-mail should be
-      added, and <literal>server</literal> should be replaced with
-      <literal>broker.freenet6.net</literal>.</para>
+      <para>To use a Freenet6 tunnel, you need to register for a Freenet6
+      Pro account on the website, then install the <emphasis
+      role="pkg">gogoc</emphasis> package and configure the tunnel. This
+      requires editing the <filename>/etc/gogoc/gogoc.conf</filename>
+      file: <literal>userid</literal> and <literal>password</literal>
+      lines received by e-mail should be added, and
+      <literal>server</literal> should be replaced with
+      <literal>authenticated.freenet6.net</literal>.</para>
 
       <para>IPv6 connectivity is proposed to all machines on a local network
       by adding the three following directives to the
-      <filename>/etc/tsp/tspc.conf</filename> file (assuming the local
+      <filename>/etc/gogoc/gogoc.conf</filename> file (assuming the local
       network is connected to the eth0 interface):</para>
 
       <programlisting>
 host_type=router
-prefix_len=48
+prefixlen=56
 if_prefix=eth0
 </programlisting>
 
       <para>The machine then becomes the access router for a subnet with a
-      48-bit prefix. Once the tunnel is aware of this change, the local
+      56-bit prefix. Once the tunnel is aware of this change, the local
       network must be told about it; this implies installing the
       <command>radvd</command> daemon (from the similarly-named package).
       This IPv6 configuration daemon has a role similar to
@@ -1298,7 +1302,7 @@ if_prefix=eth0
       block concerning the <literal>tun</literal> interface.</para>
       <indexterm><primary><command>radvd</command></primary></indexterm>
 
-      <para>Then run <command>/etc/init.d/tspc restart</command> and
+      <para>Then run <command>/etc/init.d/gogoc restart</command> and
       <command>/etc/init.d/radvd start</command>, and the IPv6 network should
       work.</para>
     </section>
@@ -1315,7 +1319,7 @@ if_prefix=eth0
       fundamental component of the Internet: it maps host names to IP
       addresses (and vice-versa), which allows the use of
       <literal>www.debian.org</literal> instead of
-      <literal>82.195.75.97</literal>.</para>
+      <literal>5.153.231.4</literal> or <literal>2001:41c8:1000:21::21:4</literal>.</para>
 
       <para>DNS records are organized in zones; each zone matches either a
       domain (or a subdomain) or an IP address range (since IP addresses
@@ -1376,10 +1380,9 @@ if_prefix=eth0
 	  <indexterm><primary>NS, DNS record</primary></indexterm></para>
         </listitem>
       </itemizedlist>
-
-     
-      <para><indexterm><primary>record</primary><secondary>DNS</secondary></indexterm>
-      <indexterm><primary>DNS record</primary></indexterm></para>
+      
+      <indexterm><primary>record</primary><secondary>DNS</secondary></indexterm>
+      <indexterm><primary>DNS record</primary></indexterm>
 
       <para>The reference name server, Bind, was developed and is
       maintained by ISC (<emphasis>Internet Software
@@ -1424,12 +1427,20 @@ if_prefix=eth0
         <indexterm><primary>zone</primary><secondary>reverse</secondary></indexterm>
         <indexterm><primary>reverse zone</primary></indexterm>
         <indexterm><primary><literal>in-addr.arpa</literal></primary></indexterm>
+        <indexterm><primary><literal>ip6.arpa</literal></primary></indexterm>
+	<indexterm><primary>nibble format</primary></indexterm>
 
 	<para>Reverse zones have a particular name. The zone covering the
 	<literal>192.168.0.0/16</literal> network need to be named
 	<literal>168.192.in-addr.arpa</literal>: the IP address components
 	are reversed, and followed by the <emphasis>in-addr.arpa</emphasis>
 	suffix.</para>
+
+	<para>For IPv6 networks, the suffix is <literal>ip6.arpa</literal> and
+	the IP address components which are reversed are each character in the full
+	hexadecimal representation of the IP address. As such, the
+	<literal>2001:0bc8:31a0::/48</literal> network would use a zone named
+	<literal>0.a.1.3.8.c.b.0.1.0.0.2.ip6.arpa</literal>.</para>
       </sidebar>
 
       <sidebar>
@@ -1497,7 +1508,7 @@ $TTL    604800
 @       IN      NS      ns
 @       IN      NS      ns0.xname.org.
 
-interne IN      NS      192.168.0.2
+internal IN      NS      192.168.0.2
 
 @       IN      A       212.94.201.10
 @       IN      MX      5 mail
@@ -1531,22 +1542,22 @@ dns     IN      CNAME   ns
         <programlisting>; Reverse zone for 192.168.0.0/16
 ; admin.falcot.com. =&gt; zone contact: admin@falcot.com
 $TTL    604800
-@       IN      SOA     ns.interne.falcot.com. admin.falcot.com. (
+@       IN      SOA     ns.internal.falcot.com. admin.falcot.com. (
                         20040121        ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
 
-        IN      NS      ns.interne.falcot.com.
+        IN      NS      ns.internal.falcot.com.
 
 ; 192.168.0.1 -&gt; arrakis
-1.0     IN      PTR     arrakis.interne.falcot.com.
+1.0     IN      PTR     arrakis.internal.falcot.com.
 ; 192.168.0.2 -&gt; neptune
-2.0     IN      PTR     neptune.interne.falcot.com.
+2.0     IN      PTR     neptune.internal.falcot.com.
 
 ; 192.168.3.1 -&gt; pau
-1.3     IN      PTR     pau.interne.falcot.com.
+1.3     IN      PTR     pau.internal.falcot.com.
 </programlisting>
       </example>
     </section>
@@ -1789,52 +1800,62 @@ udp6       0      0 :::123                  :::*                                
       <screen width="80" role="scale">
 <computeroutput># </computeroutput><userinput>nmap scouzmir</userinput>
 <computeroutput>
-Starting Nmap 5.00 ( http://nmap.org ) at 2010-10-12 18:52 CEST
-Interesting ports on 192.168.1.101:
-Not shown: 998 closed ports
-PORT    STATE SERVICE
-22/tcp  open  ssh
-111/tcp open  rpcbind
-MAC Address: 52:54:00:99:01:01 (QEMU Virtual NIC)
+nmap 192.168.1.30
 
-Nmap done: 1 IP address (1 host up) scanned in 2.11 seconds
+Starting Nmap 6.00 ( http://nmap.org ) at 2013-11-13 11:00 CET
+Nmap scan report for scouzmir (192.168.1.30)
+Host is up (0.000015s latency).
+Not shown: 997 closed ports
+PORT      STATE SERVICE
+22/tcp    open  ssh
+111/tcp   open  rpcbind
+10000/tcp open  snet-sensor-mgmt
+
+Nmap done: 1 IP address (1 host up) scanned in 0.12 seconds
 # </computeroutput><userinput>nmap -A localhost</userinput>
 <computeroutput>
-Starting Nmap 5.00 ( http://nmap.org ) at 2010-10-12 18:59 CEST
-Warning: Hostname localhost resolves to 2 IPs. Using 127.0.0.1.
-Interesting ports on localhost (127.0.0.1):
-Not shown: 997 closed ports
-PORT    STATE SERVICE VERSION
-22/tcp  open  ssh     OpenSSH 5.5p1 Debian 4 (protocol 2.0)
-|  ssh-hostkey: 1024 af:07:60:17:16:64:6f:ee:c4:ca:b5:64:1e:4a:4c:22 (DSA)
-|_ 2048 25:b0:aa:6b:11:5a:56:b6:8d:2d:ed:b3:16:17:96:33 (RSA)
-25/tcp  open  smtp    Exim smtpd 4.72
-|  smtp-commands: EHLO scouzmir.internal.placard.fr.eu.org Hello localhost [127.0.0.1], SIZE 52428800, PIPELINING, HELP
-|_ HELP Commands supported: AUTH HELO EHLO MAIL RCPT DATA NOOP QUIT RSET HELP
-111/tcp open  rpcbind
-|  rpcinfo:  
-|  100000  2    111/udp  rpcbind  
-|  100024  1  53273/udp  status   
-|  100000  2    111/tcp  rpcbind  
-|_ 100024  1  41127/tcp  status   
+Starting Nmap 6.00 ( http://nmap.org ) at 2013-11-13 10:54 CET
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000084s latency).
+Other addresses for localhost (not scanned): 127.0.0.1
+Not shown: 996 closed ports
+PORT      STATE SERVICE VERSION
+22/tcp    open  ssh     OpenSSH 6.0p1 Debian 4 (protocol 2.0)
+| ssh-hostkey: 1024 ea:47:e5:04:a0:b8:70:29:c2:94:3d:fe:a8:b8:b4:02 (DSA)
+|_2048 81:5c:a4:56:ff:c0:bf:0d:cd:e6:cc:48:2f:15:78:ea (RSA)
+25/tcp    open  smtp    Exim smtpd 4.80
+| smtp-commands: scouzmir.internal.placard.fr.eu.org Hello localhost [127.0.0.1], SIZE 52428800, 8BITMIME, PIPELINING, HELP, 
+|_ Commands supported: AUTH HELO EHLO MAIL RCPT DATA NOOP QUIT RSET HELP 
+111/tcp   open  rpcbind
+| rpcinfo: 
+|   program version   port/proto  service
+|   100000  2,3,4        111/tcp  rpcbind
+|   100000  2,3,4        111/udp  rpcbind
+|   100024  1          40114/tcp  status
+|_  100024  1          55628/udp  status
+10000/tcp open  http    MiniServ 1.660 (Webmin httpd)
+| ndmp-version: 
+|_  ERROR: Failed to get host information from server
+|_http-methods: No Allow or Public header in OPTIONS response (status code 200)
+|_http-title: Site doesn't have a title (text/html; Charset=iso-8859-1).
 No exact OS matches for host (If you know what OS is running on it, see http://nmap.org/submit/ ).
 TCP/IP fingerprint:
-OS:SCAN(V=5.00%D=10/12%OT=22%CT=1%CU=34421%PV=N%DS=0%G=Y%TM=4CB4941A%P=i686
-OS:-pc-linux-gnu)SEQ(SP=BF%GCD=1%ISR=CC%TI=Z%CI=Z%II=I%TS=8)OPS(O1=M400CST1
-OS:1NW4%O2=M400CST11NW4%O3=M400CNNT11NW4%O4=M400CST11NW4%O5=M400CST11NW4%O6
-OS:=M400CST11)WIN(W1=8000%W2=8000%W3=8000%W4=8000%W5=8000%W6=8000)ECN(R=Y%D
-OS:F=Y%T=40%W=8018%O=M400CNNSNW4%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=
-OS:0%Q=)T2(R=N)T3(R=Y%DF=Y%T=40%W=8000%S=O%A=S+%F=AS%O=M400CST11NW4%RD=0%Q=
-OS:)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=Z%A=
-OS:S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y%DF
-OS:=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=
-OS:G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+OS:SCAN(V=6.00%E=4%D=11/13%OT=22%CT=1%CU=40107%PV=N%DS=0%DC=L%G=Y%TM=52834C
+OS:9E%P=x86_64-unknown-linux-gnu)SEQ(SP=102%GCD=1%ISR=105%TI=Z%CI=Z%II=I%TS
+OS:=8)OPS(O1=M400CST11NW5%O2=M400CST11NW5%O3=M400CNNT11NW5%O4=M400CST11NW5%
+OS:O5=M400CST11NW5%O6=M400CST11)WIN(W1=8000%W2=8000%W3=8000%W4=8000%W5=8000
+OS:%W6=8000)ECN(R=Y%DF=Y%T=41%W=8018%O=M400CNNSNW5%CC=Y%Q=)T1(R=Y%DF=Y%T=41
+OS:%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=41%W=0%S=A%A=Z%F=R%O=
+OS:%RD=0%Q=)T5(R=Y%DF=Y%T=41%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=41%
+OS:W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=41%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=
+OS:)U1(R=Y%DF=N%T=41%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%
+OS:DFI=N%T=41%CD=S)
 
 Network Distance: 0 hops
-Service Info: Host: scouzmir.internal.placard.fr.eu.org; OS: Linux
+Service Info: Host: scouzmir.internal.placard.fr.eu.org; OS: Linux; CPE: cpe:/o:linux:kernel
 
 OS and Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 21.32 seconds
+Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds
 </computeroutput>
 </screen>
 
@@ -1886,7 +1907,7 @@ Nmap done: 1 IP address (1 host up) scanned in 21.32 seconds
 
       <para>In our example, the packets traveling over SSH are filtered
       out (with the <literal>!tcp.port == 22</literal> filter). The packet
-      currently displayed was developed at the TCP and HTTP layers.</para>
+      currently displayed was developed at the HTTP layer.</para>
 
       <sidebar>
         <title><emphasis>TIP</emphasis> <command>wireshark</command> with no graphical interface: <command>tshark</command></title>
