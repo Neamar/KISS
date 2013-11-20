@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-09-22 23:03+0200\n"
+"PO-Revision-Date: 2013-11-15 02:35+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.7-dev\n"
+"X-Generator: Weblate 1.9-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -699,6 +699,13 @@ msgstr ""
 #, no-c-format
 msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the number of bits affected to the network part in an IP address. The example network would thus be written: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb::/64</literal>."
 msgstr ""
+"O endereço de rede é um endereço IP no qual a parte descrevendo o número da "
+"máquina é 0. O intervalo de endereços IPv4 em uma rede é às vezes indicado "
+"pela sintaxe, <emphasis>a.b.c.d/x</emphasis>, onde "
+"<emphasis>a.b.c.d</emphasis> é o endereço de rede e <emphasis>x</emphasis> é "
+"o número de bits afetados pela parte da rede no endereço IP. A rede de "
+"exemplo pode então ser escrita: <literal>192.168.0.0/24</literal>. A sintaxe "
+"é similar no IPv6: <literal>2001:db8:13bb::/64</literal>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -714,6 +721,13 @@ msgstr "<primary>ponte</primary>"
 #, no-c-format
 msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyzes incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
 msgstr ""
+"Um roteador é uma máquina que conecta várias redes umas às outras. Todo o "
+"tráfego que passa por um roteador é direcionado para a rede correta. Para "
+"fazer isto, o roteador analisa pacotes entrando e os redireciona de acordo "
+"com o endereço IP de destino. O roteador é às vezes conhecido como um "
+"gateway; nesta configuração, ele funciona como uma máquina que ajuda a "
+"alcançar mais do que a rede local (indo por uma rede extendida, como a "
+"Internet)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -724,6 +738,10 @@ msgstr "<primary>broadcast</primary>"
 #, no-c-format
 msgid "The special broadcast address connects all the stations in a network. Almost never “routed”, it only functions on the network in question. Specifically, it means that a data packet addressed to the broadcast never passes through the router."
 msgstr ""
+"O endereço especial de broadcast conecta todas as estações numa rede. Quase "
+"nunca é \"roteado\", ele apenas funciona na rede em questão. Especificamente, "
+"significa que um pacote de dados endereçado para o broadcast nunca atravessa "
+"o roteador."
 
 #. Tag: para
 #, no-c-format
@@ -773,6 +791,14 @@ msgstr "Interface de Rede"
 #, no-c-format
 msgid "If the computer has an Ethernet card, the network that is associated with it must be configured by choosing from one of two methods. The simplest method is dynamic configuration with DHCP, and it requires a DHCP server on the local network. It may indicate a desired hostname, corresponding to the <literal>hostname</literal> setting in the example below. The DHCP server then sends configuration settings for the appropriate network. <indexterm><primary>Ethernet</primary></indexterm> <indexterm><primary>DHCP</primary></indexterm>"
 msgstr ""
+"Se o computador tem uma placa Ethernet, a rede que é associada com ele deve "
+"ser configurada escolhendo um de dois métodos. O método mais simples é a "
+"configuração dinâmica com DHCP, e requer um servidor DHCP na rede local. Ele "
+"pode indicar um hostname (\"nome de máquina\") desejado, correspondendo à "
+"configuração de <literal>hostname</literal> no exemplo abaixo. O servidor "
+"DHCP então manda as configurações para a rede "
+"apropriada.<indexterm><primary>Ethernet</primary></indexterm> "
+"<indexterm><primary>DHCP</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -836,6 +862,10 @@ msgstr "<emphasis>NOTA</emphasis> Múltiplos endereços"
 #, no-c-format
 msgid "It is possible not only to associate several interfaces to a single, physical network card, but also several IP addresses to a single interface. Remember also that an IP address may correspond to any number of names via DNS, and that a name may also correspond to any number of numerical IP addresses."
 msgstr ""
+"É possível associar não só várias interfaces de rede a uma única placa de "
+"rede, como também vários endereços IP a uma única interface. Lembre também "
+"que um endereço IP pode corresponder a qualquer número de nomes via DNS, e "
+"que um nome pode corresponder a qualquer número de endereços IP."
 
 #. Tag: para
 #, no-c-format
@@ -882,6 +912,13 @@ msgstr ""
 #, no-c-format
 msgid "A connection by telephone modem requires an account with an access provider, including a telephone number, username, password, and, sometimes the authentication protocol to be used. Such a connection is configured using the <command>pppconfig</command> tool in the Debian package of the same name. By default, it uses the access provider's connection. When in doubt about the authentication protocol, choose <emphasis>PAP</emphasis>: it is offered by the majority of Internet service providers."
 msgstr ""
+"Uma conexão via modem telefônico precisa de uma conta com um provedor de "
+"acesso, incluindo um número telefônico, usuário, senha e às vezes o "
+"protocolo de autenticação a ser usado. tal conexão é configurada usando a "
+"ferramenta <command>pppconfig</command> do pacote Debian de mesmo nome. Por "
+"padrão, ele usa a conexão do provedor de acesso. Quando em dúvida sobre o "
+"protocolo de autenticação, escolha <emphasis>PAP</emphasis>: ele é o "
+"oferecido pela maioria dos provedores de acesso a Internet."
 
 #. Tag: indexterm
 #, no-c-format
@@ -897,6 +934,12 @@ msgstr "<primary>PAP</primary>"
 #, no-c-format
 msgid "After configuration, it is possible to connect using the <command>pon</command> command (giving it the name of the connection as a parameter, when the default value of <literal>provider</literal> is not appropriate). The link is disconnected with the <command>poff</command> command. These two commands can be executed by the root user, or by any other user, provided they are in the <literal>dip</literal> group."
 msgstr ""
+"Depois da configuração, é possível conectar usando o comando "
+"<command>pon</command> (dando a ele o nome da conexão  como parâmetro, "
+"quando o valor padrão de <literal>provedor</literal> não for apropriado). O "
+"link é desconectado com o comando <command>poff</command>. Estes dois "
+"comandos podem ser executados pelo usuário root, ou por qualquer outro "
+"usuário que esteja no grupo <literal>dip</literal>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -957,9 +1000,16 @@ msgstr "<primary>ADSL, modem</primary>"
 #, no-c-format
 msgid "The generic term “ADSL modem” covers a multitude of devices with very different functions. The modems that are simplest to use with Linux are those that have an Ethernet interface. These tend to be popular; ADSL Internet service providers lend (or lease) a “box” with Ethernet interfaces more and more frequently, instead of those with USB interfaces. According to the type of modem, the configuration required can vary widely."
 msgstr ""
+"O termo genérico \"modem ADSL\" cobre uma infinidade de dispositivos com "
+"fuções muito diferentes. Os modems que são os mais simples de usar com Linux "
+"são aqueles que tem uma interface Ethernet. Estes tendem a ser bastatne "
+"populares; provedores de serviços internet ADSL emprestam ou fazem \"leasing\" "
+"de uma \"caixa\" com interfaces Ethernet mais e mais frequentemente, ao invés "
+"daquelas com interface USB. de acordo com o tipo do modem, a configuração "
+"requerida pode variar grandemente."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Modems Supporting PPPOE"
 msgstr "Modems que Suportam PPPOE"
 
@@ -977,6 +1027,14 @@ msgstr "<primary><command>pppoeconf</command></primary>"
 #, no-c-format
 msgid "Some Ethernet modems work with the PPPOE protocol (Point to Point Protocol over Ethernet). The <command>pppoeconf</command> tool (from the package with the same name) will configure the connection. To do so, it modifies the <filename>/etc/ppp/peers/dsl-provider</filename> file with the settings provided and records the login information in the <filename>/etc/ppp/pap-secrets</filename> and <filename>/etc/ppp/chap-secrets</filename> files. It is recommended to accept all modifications that it proposes."
 msgstr ""
+"Alguns modens Ethernet funcionam com o protocolo PPPOE (Point to Point "
+"Protocol over Ethernet). A ferramenta <command>pppoeconf</command> (do "
+"pacote de mesmo nome) vai configurar a conexão. Para isto, ele modifica o "
+"arquivo <filename>/etc/ppp/peers/dsl-provider</filename> com as "
+"configurações fornecidas e grava a informação de login nos arquivos "
+"<filename>/etc/ppp/pap-secrets</filename> e <filename>/etc/ppp/chap-"
+"secrets</filename>. Ele é recomendado para aceitar todas as modificações que "
+"se propõe."
 
 #. Tag: para
 #, no-c-format
@@ -1007,6 +1065,13 @@ msgstr "<primary><command>init</command></primary>"
 #, no-c-format
 msgid "PPP connections over ADSL are, by definition, intermittent. Since they are usually not billed according to time, there are few downsides to the temptation of keeping them always open; one simple means to do so is to use the <command>init</command> process to control the connection. All that's needed is to add a line such as the following at the end of the <filename>/etc/inittab</filename> file; then, any time the connection is disconnected, <command>init</command> will reconnect it."
 msgstr ""
+"conexões PPP sobre ADSL são, por definicão, intermitentes. Como eles "
+"normalmente não são cobradas por tempo, existem poucas problemas com a "
+"tentacão de mante-las abertas sempre. uma forma simples de fazer isto é "
+"usando o processo <command>init</command> para controlar a conexão. Tudo que "
+"é preciso é adicionar uma linha como a seguinte no final do arquivo "
+"<filename>/etc/inittab</filename>; então, a qualquer momento que a conexão "
+"cai, o <command>init</command> reconecta."
 
 #. Tag: programlisting
 #, no-c-format
@@ -1025,7 +1090,7 @@ msgstr ""
 "duração da interrupção."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Modems Supporting PPTP"
 msgstr "Modems que Suportam PPTP"
 
@@ -1038,9 +1103,14 @@ msgstr "<primary>PPTP</primary>"
 #, no-c-format
 msgid "The PPTP (Point-to-Point Tunneling Protocol) protocol was created by Microsoft. Deployed at the beginning of ADSL, it was quickly replaced by PPPOE. If this protocol is forced on you, see <xref linkend=\"network-infrastructure\" /> in the section about virtual private networks detailing PPTP."
 msgstr ""
+"O protocolo PPTP (Point-to-Point Tunneling Protocol) foi criado pela "
+"Microsoft. Publicado no começo da ADSL, foi rapidamente substituído pelo "
+"PPPOE. Se você for obrigado a usar este protocolo, veja <xref linkend"
+"=\"network-infrastructure\" /> na seção sobre virtual private networks "
+"detalhando PPTP."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Modems Supporting DHCP"
 msgstr "Modems que Suportam DHCP"
 
@@ -1048,6 +1118,11 @@ msgstr "Modems que Suportam DHCP"
 #, no-c-format
 msgid "When a modem is connected to the computer by an Ethernet cable (crossover cable) you typically configure a network connection by DHCP on the computer; the modem automatically acts as a gateway by default and takes care of routing (meaning that it manages the network traffic between the computer and the Internet)."
 msgstr ""
+"Quando um modem está conectado ao computador via cabo ethernet (crossover) "
+"você tipicamente configura uma conexão de rede pelo DHCP no computador; o "
+"modem age automaticamente como um gateway por padrão e cuida do roteamento "
+"(o que significa que ele gerencia o tráfego de rede entre o computador e a "
+"Internet)."
 
 #. Tag: title
 #, no-c-format
@@ -1065,11 +1140,22 @@ msgstr "<primary>cabo de par trançado</primary>"
 #, no-c-format
 msgid "Computer network cards expect to receive data on specific wires in the cable, and send their data on others. When you connect a computer to a local network, you usually connect a cable (straight or crossover) between the network card and a repeater or switch. However, if you want to connect two computers directly (without an intermediary switch or repeater), you must route the signal sent by one card to the receiving side of the other card, and vice-versa. This is the purpose of a crossover cable, and the reason it is used."
 msgstr ""
+"Placas de rede de computadores esperam receber dados em certos fios do cabo, "
+"e enviar por outros. Quando você conecta um computador em uma rede local, "
+"você normalmente conecta um cabo (normal ou crossover) entre a placa de rede "
+"e o repetidor ou switch. Entretanto, se você quer conectar dois "
+"computadores diretamente (sem um switch ou repetidor intermediário), você "
+"deve rotear o sinal enviado por uma placa para o lado receptor da outra "
+"placa, e vice-versa. Este é o objetivo de um cabo crossover, e a razão para "
+"usá-lo."
 
 #. Tag: para
 #, no-c-format
 msgid "In France, this method is used by Freebox, Neufbox, and Livebox, the ADSL modems provided by the Free, SFR/Neuf, and Wanadoo/Orange ISPs. It is also provided by most “ADSL routers” on the market."
 msgstr ""
+"Na franca, este método é usado pelo Freebox, Neufbox e Livebox, os modems "
+"ADSL fornecidos pelos provedores Free, SFR/Neuf e Wanadoo/Orange. É também "
+"fornecido pela maioria dos \"roteadores ADSL\" do mercado."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1105,16 +1191,33 @@ msgstr "<primary>rede</primary><secondary>configuração de roaming</secondary>"
 #, no-c-format
 msgid "Many Falcot engineers have a laptop computer that, for professional purposes, they also use at home. The network configuration to use differs according to location. At home, it may be a wifi network (protected by a WEP key), while the workplace uses a wired network for greater security and more bandwidth."
 msgstr ""
+"Muitos engenheiros da Falcot tem um laptop que, por motivos pessoais, também "
+"são usados  em casa. A configuracão de rede muda de acordo com o local. Em "
+"casa, pode ser uma rede sem fio (protegida por uma chave WEP), enquanto que "
+"no trabalho se usa uma rede cabeada para mais seguranca e mais banda."
 
 #. Tag: para
 #, no-c-format
 msgid "To avoid having to manually connect or disconnect the corresponding network interfaces, administrators installed the <emphasis role=\"pkg\">network-manager</emphasis> package on these roaming machines. This software enables a user to easily switch from one network to another using a small icon displayed in the notification area of their graphical desktop. Clicking on this icon displays a list of available networks (both wired and wireless), so they can simply choose the network they wish to use. The program saves the configuration for the networks to which the user has already connected, and automatically switches to the best available network when the current connection drops."
 msgstr ""
+"Para evitar ter que conectar ou desconectar manualmente as interface de rede "
+"correspondentes, os administradores instalaram o pacote <emphasis role=\"pkg"
+"\">network-manager</emphasis> nestas \"roaming machines\". Com este software o "
+"usuário pode mudar de uma rede para outra usando um pequeno ícone exibido na "
+"área de notificação de suas área de trabalho gráficas. Ao clicar nestes "
+"ícones é exibida uma lista de redes disponíveis (com e sem fios), para o "
+"usuário simplesmente escolher qual ele deseja usar. O programa grava a "
+"configuração das redes que o usuário já tenha usado e automaticamente troca "
+"para a melhor rede disponível quando a rede atual cai."
 
 #. Tag: para
 #, no-c-format
 msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this daemon. Only members of the “netdev” group have permissions to control this program."
 msgstr ""
+"Para fazer isto, o programa é estruturado em duas partes: um daemon rodando "
+"como root cuida da ativação e configuração das interfaces de rede e uma "
+"interface de usuário controla este daemon. Apenas membros do grupo “netdev” "
+"tem permissão para controlar este programa."
 
 #. Tag: para
 #, no-c-format

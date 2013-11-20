@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-09-23 00:42+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-11-02 14:07+0200\n"
+"Last-Translator: Ezequiel Santos <zeckg@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.7-dev\n"
+"X-Generator: Weblate 1.8-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -154,8 +154,7 @@ msgstr "Init executa vários processos, seguindo as instruções do arquivo <fil
 #. Tag: para
 #, no-c-format
 msgid "Among these, you will find successively programs in charge of:"
-msgstr ""
-"Entre estes, você encontrará sucessivamente programas responsáveis ​​pela:"
+msgstr "Entre estes,você encontrará sucessivamente programas responsáveis pela:"
 
 #. Tag: para
 #, no-c-format
@@ -266,7 +265,27 @@ msgstr "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started. In <emphasis role=\"distribution\">Squeeze</emphasis>, the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
-msgstr "Após este estágio, o <command>init</command> assume o controle e inicializa os programas habilitados no nível de execução padrão (que geralmente é no nível de execução 2). O comando <command>init</command> executa o <command>/etc/init.d/rc 2</command>, um script que inicia todos os serviços que estão listados em  <filename>/etc/rc2.d/</filename> e os quais tem o nome com a letra inicial \"S\". O número de duas casas que se segue tinha sido historicamente utilizado para definir a ordem em que os serviços teve de ser iniciado.  No <emphasis role=\"distribution\">Squeeze</emphasis>, o sistema de boot padrão usa <command>insserv</command>, o qual agenda automaticamente tudo, baseado nas dependencias dos scripts. Desta forma, Cada script de inicialização declara as condições que devem ser cumpridos para iniciar ou parar o serviço (por exemplo, se ele deve começar antes ou depois de outro serviço); <command>init</command> em seguida, lança-os na ordem que satisfaça estas condições. A numeração estática dos scripts, portanto, não são mais levados em consideração (mas eles sempre devem ter um nome começando por \"S\" seguido por dois digitos e o nome atual do script usado por suas dependências). Geralmente, serviços base (tal como registros com o <command>rsyslog</command>, ou numeração de portas com  <command>portmap</command>) são inicializados primeiro, seguidos por serviços padrões e a interface gráfica (<command>gdm</command>)."
+msgstr ""
+"Após este estágio, o <command>init</command> assume o controle e inicializa "
+"os programas habilitados no nível de execução padrão (que geralmente é no "
+"nível de execução 2). Ele executa <command>/etc/init.d/rc 2</command>, um "
+"script que inicia todos os serviços que estão listados em  "
+"<filename>/etc/rc2.d/</filename> e os quais tem o nome com a letra inicial "
+"\"S\". O número de duas casas que se segue tinha sido historicamente utilizado "
+"para definir a ordem em que os serviços teve de ser iniciado.  No <emphasis "
+"role=\"distribution\">Squeeze</emphasis>, o sistema de boot padrão usa "
+"<command>insserv</command>, o qual agenda automaticamente tudo, baseado nas "
+"dependencias dos scripts. Desta forma, Cada script de inicialização declara "
+"as condições que devem ser cumpridos para iniciar ou parar o serviço (por "
+"exemplo, se ele deve começar antes ou depois de outro serviço); "
+"<command>init</command> em seguida, lança-os na ordem que satisfaça estas "
+"condições. A numeração estática dos scripts, portanto, não são mais levados "
+"em consideração (mas eles sempre devem ter um nome começando por \"S\" seguido "
+"por dois digitos e o nome atual do script usado por suas dependências). "
+"Geralmente, serviços base (tal como registros com o "
+"<command>rsyslog</command>, ou numeração de portas com  "
+"<command>portmap</command>) são inicializados primeiro, seguidos por "
+"serviços padrões e a interface gráfica (<command>gdm</command>)."
 
 #. Tag: para
 #, no-c-format
@@ -297,21 +316,54 @@ msgstr ""
 #, no-c-format
 msgid "In the original <emphasis>System V</emphasis>, and in versions of Debian up to <emphasis role=\"distribution\">Lenny</emphasis>, the execution order of initialization scripts was defined only by the names of the <filename>/etc/rc*.d/S*</filename> symbolic links (and <filename>/etc/rc*.d/K*</filename> upon shutdown). This behavior can be re-established by setting <literal>CONCURRENCY=none</literal> in the <filename>/etc/default/rcS</filename> file."
 msgstr ""
+"No <emphasis>System V</emphasis> original, e em versões do Debian até "
+"<emphasis role=\"distribution\">Lenny</emphasis>, a ordem de execução dos "
+"scripts de inicialização foi definida apenas pelos nomes dos links "
+"simbólicos <filename>/etc/rc*.d/S*</filename> (e "
+"<filename>/etc/rc*.d/K*</filename> no encerramento). Este comportamento pode "
+"ser restabelecido, definindo <literal>CONCURRENCY=none</literal> no arquivo "
+"<filename>/etc/default/rcS</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">file-rc</emphasis> is another boot system with a very simple process. It keeps the principle of runlevels, but replaces the directories and symbolic links with a configuration file, which indicates to <command>init</command> the processes that must be started and their launch order"
 msgstr ""
+"<emphasis role=\"pkg\">file-rc</emphasis> é um outro sistema de inicialização "
+"com um processo muito simples. Ele mantém a ideia de runlevels (níveis de "
+"execução), mas substitui os diretórios e links simbólicos com um arquivo de "
+"configuração, que indica em <command>init</command> os processos que devem "
+"ser iniciados e sua ordem de inicialização"
 
 #. Tag: para
 #, no-c-format
 msgid "The newly arrived <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
 msgstr ""
+"O recém-chegado sistema <command>upstart</command> ainda não está "
+"perfeitamente testado no Debian. Ele é baseado em eventos: scripts de "
+"inicialização não são mais executados em uma ordem sequencial, mas em "
+"resposta a eventos como a conclusão de um outro script do qual eles são "
+"dependentes. Este sistema, iniciado pelo Ubuntu, está presente no Debian "
+"<emphasis role=\"distribution\">Squeeze</emphasis>, mas não é o padrão; ele "
+"vem, de fato, como um substituto para o <emphasis role=\"pkg\"> "
+"sysvinit</emphasis>, e uma das funções iniciadas pelo "
+"<command>upstart</command> é iniciar os scripts escritos para sistemas "
+"tradicionais, especialmente aqueles do pacote <emphasis role=\"pkg\">sysv-"
+"rc</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "Another new option is <command>systemd</command>, but it still lacks the maturity needed to be part of <emphasis role=\"distribution\">Squeeze</emphasis>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services."
 msgstr ""
+"Uma outra nova opção é o <command>systemd</command>, mas não tem ainda a  "
+"maturidade necessária para ser parte do <emphasis "
+"role=\"distribution\">Squeeze</emphasis>. Sua abordagem é oposta aos sistemas "
+"anteriores, em vez de carregar antecipadamente todos os serviços, e ter que "
+"lidar com a questão de planejamento,<command>systemd</command> ele escolhe "
+"para iniciar os serviços sob demanda, aproximadamente ao longo do principal "
+"<command>inetd</command>.Porém isso significa que o sistema de inicialização "
+"deve ser capaz de conhecer como os serviços são disponibilizados (que "
+"poderia ser através de um soquete, um sistema de arquivos, ou outros), e "
+"portanto, requer pequenas modificações desses serviços."
 
 #. Tag: para
 #, no-c-format
@@ -336,6 +388,17 @@ msgstr "<primary>level, runlevel</primary>"
 #, no-c-format
 msgid "<command>init</command> distinguishes several runlevels, so it can switch from one to another with the <command>telinit <replaceable>new-level</replaceable></command> command. Immediately, <command>init</command> executes <command>/etc/init.d/rc</command> again with the new runlevel. This script will then start the missing services and stop those that are no longer desired. To do this, it refers to the content of the <filename>/etc/rc<replaceable>X</replaceable>.d</filename> (where <replaceable>X</replaceable> represents the new runlevel). Scripts starting with “S” (as in “Start”) are services to be started; those starting with “K” (as in “Kill”) are the services to be stopped. The script does not start any service that was already active in the previous runlevel."
 msgstr ""
+"<command>init</command> distingue vários runlevels, então para que ele possa "
+"alternar de um para outro com o comando <command>telinit<replaceable>new-"
+"level</replaceable></command>. Imediatamente,<command>init</command> executa "
+"<command>/etc/init.d/rc</command> novamente com novo runlevel. Este script "
+"irá, em seguida, iniciar os serviços ausentes e interromper aqueles que não "
+"são mais desejado. Para fazer isso,  ele se dirige ao conteúdo do "
+"<filename>/etc/rc<replaceable>X</replaceable>.d</filename>(onde "
+"<replaceable>X</replaceable> representa o novo runlevel).Scripts começando "
+"com \"S\" (como em \"Start\") são serviços iniciados; aqueles que iniciam com "
+"\"K\" (como em \"Kill\") são os serviços interrompidos. O script não inicia "
+"qualquer serviço que já estava ativo em runlevel anterior."
 
 #. Tag: para
 #, no-c-format
@@ -376,6 +439,11 @@ msgstr ""
 #, no-c-format
 msgid "Other levels exist, especially 3 to 5. By default they are configured to operate the same way as level 2, but the administrator can modify them (by adding or deleting scripts in the corresponding <filename>/etc/rc<replaceable>X</replaceable>.d</filename> directories) to adapt them to particular needs."
 msgstr ""
+"Existem outros níveis, especialmente de 3 a 5. Por padrão, eles são "
+"configurados para operar da mesma maneira como nível 2, mas o administrador "
+"pode modificá-los (adicionando ou excluindo os scripts nos diretórios "
+"correspondentes <filename>/etc/rc<replaceable>X</replaceable>.d</filename>) "
+"para adaptá-los às necessidades específicas."
 
 #. Tag: title
 #, no-c-format
@@ -391,6 +459,24 @@ msgstr "<primary>script de inicialização</primary>"
 #, no-c-format
 msgid "All the scripts contained in the various <filename>/etc/rc<replaceable>X</replaceable>.d</filename> directories are really only symbolic links — created upon package installation by the <command>update-rc.d</command> program — pointing to the actual scripts which are stored in <filename>/etc/init.d/</filename>. The administrator can fine tune the services available in each runlevel by re-running <command>update-rc.d</command> with adjusted parameters. The <citerefentry><refentrytitle>update-rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> manual page describes the syntax in detail. Please note that removing all symbolic links (with the <literal>remove</literal> parameter) is not a good method to disable a service. Instead you should simply configure it to not start in the desired runlevel (while preserving the corresponding calls to stop it in the event that the service runs in the previous runlevel). Since <command>update-rc.d</command> has a somewhat convoluted interface, you may prefer using <command>rcconf</command> (from the <emphasis role=\"pkg\">rcconf</emphasis> package) which provides a more user-friendly interface."
 msgstr ""
+"Todos os scripts contidos nos vários diretórios "
+"<filename>/etc/rc<replaceable>X</replaceable>.d</filename> são na verdade "
+"apenas links simbólicos — criados durante a instalação de pacotes pelo "
+"programa <command>update-rc.d</command> — apontando para os scripts atuais "
+"que são armazenados no <filename>/etc/init.d/</filename>. O administrador "
+"pode ajustar os serviços disponíveis em cada nível de execução reexecutando "
+"o <command>update-rc.d</command> com parâmetros de ajuste. A página de "
+"manual do <citerefentry><refentrytitle>update-"
+"rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> descreve a "
+"sintaxe em detalhes. Note que remover todos os links simbólicos (com o "
+"parâmetro <literal>remove</literal>) não é um bom método para desabilitar um "
+"serviço. Ao invés disto você deve apenas configurar ele para não iniciar no "
+"nível de execução desejado (enquanto preserva as chamadas correspondentes "
+"para parar ele no caso do serviço iniciar num nível de execução anterior).  "
+"Uma vez que o <command>update-rc.d</command> tem uma interface de certa "
+"forma \"convoluted\", você pode preferir usar <command>rcconf</command> (do "
+"pacote <emphasis role=\"pkg\">rcconf</emphasis>) que fornece uma interface de "
+"usuários mais amigável."
 
 #. Tag: indexterm
 #, no-c-format
@@ -421,6 +507,20 @@ msgstr "<primary>reiniciando serviços</primary>"
 #, no-c-format
 msgid "The maintainer scripts for Debian packages will sometimes restart certain services to ensure their availability or get them to take certain options into account. The command that controls a service — <command>/etc/init.d/<replaceable>service</replaceable> <replaceable>operation</replaceable></command> — doesn't take runlevel into consideration, assumes (wrongly) that the service is currently being used, and may thus initiate incorrect operations (starting a service that was deliberately stopped, or stopping a service that is already stopped, etc.). Debian therefore introduced the <command>invoke-rc.d</command> program: this program must be used by maintainer scripts to run services initialization scripts and it will only execute the necessary commands. Note that, contrary to common usage, the <filename>.d</filename> suffix is used here in a program name, and not in a directory."
 msgstr ""
+"Os scripts de manutenção para os pacotes Debian algumas vezes irão reiniciar "
+"alguns serviços para garantir a sua disponibilidade ou levá-los a tomar "
+"certas opções em conta. O comando que controla um serviço - "
+"<command>/etc/init.d/<replaceable>serviço</replaceable> "
+"<replaceable>operação</replaceable></command> - não leva em consideração o "
+"nível de execução (\"runlevel\"), assume (erroneamente) que o serviço está "
+"sendo usado, e pode, assim, iniciar operações incorretas (começando um "
+"serviço que estava deliberadamente interrompido ou interromper um serviço "
+"que já esta parado, etc.) Portanto o Debian introduziu o programa <command"
+">invoke-rc.d</command>: este programa deve ser usado por scripts de "
+"manutenção para executar serviços de scripts de inicialização e isso só irão "
+"executar os comandos necessários. Observe que, ao contrário do uso comum, o "
+"sufixo <filename>.d</filename> é usado aqui em um nome de programa, e não "
+"em um diretório."
 
 #. Tag: para
 #, no-c-format
@@ -456,11 +556,23 @@ msgstr ""
 #, no-c-format
 msgid "With the development of computers, operating systems have offered several virtual consoles to allow for several independent sessions at the same time, even if there is only one keyboard and screen. Most GNU/Linux systems offer six virtual consoles (in text mode), accessible by typing the key combinations <keycombo action=\"simul\"> <keycap>Control</keycap> <keycap>Alt</keycap> <keycap>F1</keycap> </keycombo> through <keycombo action=\"simul\"> <keycap>Control</keycap> <keycap>Alt</keycap> <keycap>F6</keycap> </keycombo>."
 msgstr ""
+"Com o desenvolvimento de computadores, sistemas operacionais tem oferecido "
+"vários consoles virtuais para permitir várias sessões independentes ao mesmo "
+"tempo, mesmo se houver apenas um teclado e tela. A maioria dos sistemas "
+"GNU/Linux oferecem seis consoles virtuais (modo texto), acessíveis, "
+"digitando as combinações de teclas <keycombo action=\"simul\"> "
+"<keycap>Control</keycap> <keycap>Alt</keycap> <keycap>F1</keycap> "
+"</keycombo> through <keycombo action=\"simul\"> <keycap>Control</keycap> "
+"<keycap>Alt</keycap> <keycap>F6</keycap> </keycombo>."
 
 #. Tag: para
 #, no-c-format
 msgid "By extension, the terms “console” and “terminal” can also refer to a terminal emulator in a graphical X11 session (such as <command>xterm</command>, <command>gnome-terminal</command> or <command>konsole</command>)."
 msgstr ""
+"Por extensão, os termos \"console\" e \"terminal\" também pode se referir a um "
+"emulador de terminal em uma sessão X11 gráfica (como "
+"<command>xterm</command>, <command>gnome-terminal</command> ou "
+"<command>konsole</command>)."
 
 #. Tag: title
 #, no-c-format
@@ -471,6 +583,9 @@ msgstr "Login remoto"
 #, no-c-format
 msgid "It is essential for an administrator to be able to connect to a computer remotely. Servers, confined in their own room, are rarely equipped with permanent keyboards and monitors — but they are connected to the network."
 msgstr ""
+"É essencial para o administrador ser capaz de se conectar a um computador "
+"remotamente. Servidores, confinados em seu quarto, raramente são equipados "
+"com permanentes teclados e monitores — mas eles estão conectados à rede."
 
 #. Tag: title
 #, no-c-format
@@ -522,6 +637,11 @@ msgstr "<primary><command>telnet</command></primary>"
 #, no-c-format
 msgid "The <emphasis>telnet</emphasis> protocol, the oldest remote login service, is the worst in terms of security. Data and passwords are sent in clear text — that is, not encrypted — leaving them vulnerable to anyone snooping on the network. If necessary, take care to remove this obsolete service, that is no longer installed by default:"
 msgstr ""
+"O protocolo <emphasis>telnet</emphasis>, o mais antigo serviço de acesso "
+"remoto, é o pior em termos de segurança. Os dados e as senhas são enviadas "
+"em texto simples - isto é, não criptografado - deixando-os vulneráveis a "
+"qualquer espionagem na rede. Se necessário, tome cuidado para remover esse "
+"serviço obsoleto, que não é mais instalado por padrão:"
 
 #. Tag: screen
 #, no-c-format
@@ -533,6 +653,11 @@ msgstr "<computeroutput># </computeroutput><userinput>apt-get remove "
 #, no-c-format
 msgid "There is, however, an adaptation that corrects its most crippling defects; it uses SSL (Secure Socket Layer) to authenticate the partner and encrypt communications. The <emphasis>telnetd-ssl</emphasis> and <emphasis>telnet-ssl</emphasis> packages provide, respectively, the server and client software."
 msgstr ""
+"Há, no entanto, uma adaptação que corrige seus defeitos mais incapacitantes; "
+"Ele usa SSL (Secure Socket Layer) para autenticar o parceiro e criptografar "
+"as comunicações. Os pacotes <emphasis>telnetd-ssl</emphasis> e <emphasis"
+">telnet-ssl</emphasis> fornecem, respectivamente, o software de servidor e "
+"cliente."
 
 #. Tag: indexterm
 #, no-c-format
@@ -553,6 +678,14 @@ msgstr "<emphasis>VOCABULÁRIO</emphasis> Autenticação, criptografia"
 #, no-c-format
 msgid "When you need to give a client the ability to conduct or trigger actions on a server, security is important. You must ensure the identity of the client; this is authentication. This identity usually consists of a password that must be kept secret, or any other client could get the password. This is the purpose of encryption, which is a form of encoding that allows two systems to communicate confidential information on a public channel while protecting it from being readable to others."
 msgstr ""
+"Quando você precisar dar um cliente a capacidade de conduzir ou desencadear "
+"ações em um servidor, a segurança é importante. Você deve garantir a "
+"identidade do cliente; Esta é a autenticação. Esta identidade geralmente "
+"consiste de uma senha que deve ser mantida em segredo, ou qualquer outro "
+"cliente pode obter a senha. Este é o propósito da criptografia, que é uma "
+"forma de codificação que permite que dois sistemas de comunicação de "
+"informações confidenciais sobre um canal público, protegendo-o de ser lido "
+"por outros."
 
 #. Tag: para
 #, no-c-format
@@ -581,6 +714,10 @@ msgstr "<primary>Secure Shell</primary>"
 #, no-c-format
 msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol, contrary to <emphasis>telnet</emphasis>, was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
 msgstr ""
+"O protocolo <emphasis>SSH</emphasis> (Secure SHell), ao contrário do "
+"<emphasis>telnet</emphasis>, foi projetado com segurança e confiabilidade em "
+"mente. Conexões usando SSH estão seguras: o parceiro é autenticado e todas "
+"as trocas de dados criptografadas."
 
 #. Tag: title
 #, no-c-format
@@ -601,11 +738,21 @@ msgstr "<primary>Shell Remoto</primary>"
 #, no-c-format
 msgid "SSH tools provide secure variants of the programs from the classic RSH (Remote Shell) family — <command>rsh</command>, <command>rlogin</command>, and <command>rcp</command>. These are still available in the <emphasis role=\"pkg\">rsh-server</emphasis> and <emphasis role=\"pkg\">rsh-client</emphasis> packages, but their usage is strongly discouraged."
 msgstr ""
+"Ferramentas SSH fornecem variantes seguras dos programas da família clássica "
+"RSH (Remote Shell) — <command>rsh</command>, <command>rlogin</command>, e "
+"<command>rcp</command>.  \t  \t\n"
+"Estes estão ainda disponíveis nos pacotes <emphasis role=\"pkg\">rsh-"
+"server</emphasis> e <emphasis role=\"pkg\">rsh-client</emphasis>, mas seu uso "
+"é fortemente desencorajado."
 
 #. Tag: para
 #, no-c-format
 msgid "SSH also offers two file transfer services. <command>scp</command> is a command line tool that can be used like <command>cp</command>, except that any path to another machine is prefixed with the machine's name, followed by a colon."
 msgstr ""
+"SSH também oferece dois serviços de transferência de arquivo. "
+"<command>scp</command> é uma ferramenta de linha de comando que pode ser "
+"usada como <command>cp</command>, exceto que qualquer caminho a outra "
+"máquina é prefixado com o nome da máquina, seguido por dois-pontos."
 
 #. Tag: screen
 #, fuzzy, no-c-format
@@ -617,6 +764,10 @@ msgstr "<computeroutput>$ </computeroutput><userinput>scp file "
 #, no-c-format
 msgid "<command>sftp</command> is an interactive command, similar to <command>ftp</command>. In a single session, <command>sftp</command> can transfer several files, and it is possible to manipulate remote files with it (delete, rename, change permissions, etc.)."
 msgstr ""
+"<command>sftp</command> é um comando interativo, semelhante ao "
+"<command>ftp</command>. Em uma única sessão, o <command>sftp</command> pode "
+"transferir vários arquivos, e com ele é possível manipular arquivos remotos "
+"(apagar, renomear, alterar permissões, etc.)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -632,6 +783,14 @@ msgstr "<primary><command>sftp</command></primary>"
 #, no-c-format
 msgid "Debian uses OpenSSH, a free version of SSH maintained by the <command>OpenBSD</command> project (a free operating system based on the BSD kernel, focused on security) and fork of the original SSH software developed by the SSH Communications Security Corp company, of Finland. This company initially developed SSH as free software, but eventually decided to continue its development under a proprietary license. The OpenBSD project then created OpenSSH to maintain a free version of SSH."
 msgstr ""
+"O Debian usa o OpenSSH, uma versão livre do SSH mantido pelo projeto "
+"<command>OpenBSD</command> (um sistema operacional livre baseado no kernel "
+"BSD, focado em segurança) e uma bifurcação do programa original SSH "
+"desenvolvido pela empresa SSH Communications Security Corp, da Finlândia. "
+"Esta empresa desenvolveu inicialmente o SSH como software livre, mas num "
+"dado momento decidiu continuar o seu desenvolvimento sob uma licença "
+"proprietária. O projeto OpenBSD criou então o OpenSSH para manter uma versão "
+"gratuita do SSH."
 
 #. Tag: indexterm
 #, no-c-format
@@ -647,22 +806,40 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>fork</primary>"
-msgstr "<primary>fork</primary>"
+msgstr "<primary>Divisão (\"fork\")</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A “fork”, in the software field, means a new project that starts as a clone of an existing project, and that will compete with it. From there on, both software will usually quickly diverge in terms of new developments. A fork is often the result of disagreements within the development team."
 msgstr ""
+"Uma \"divisão\" (\"fork\"), na área de software, significa um novo projeto que "
+"se inicia como um clone de um projeto existente, e que vai competir com ele. "
+"A partir daí, ambos os softwares irão divergir rapidamente em termos de "
+"novos desenvolvimentos. Uma divisão é frequentemente o resultado de "
+"divergências dentro da equipe de desenvolvimento."
 
 #. Tag: para
 #, no-c-format
 msgid "The option to fork a project is a direct result of the very nature of free software; a fork is a healthy event when it enables the continuation of a project as free software (for example in case of license changes). A fork arising from technical or personal disagreements is often a waste of human resources; another resolution would be preferable. Mergers of two projects that previously went through a prior fork are not unheard of."
 msgstr ""
+"A opção de dividir um projeto é um resultado direto da própria natureza do "
+"software livre, uma divisão é um evento saudável, quando se permite a "
+"continuação de um projeto como software livre (por exemplo, em caso de "
+"alterações de licença). Uma divisão decorrente de divergências técnicas ou "
+"pessoais é muitas vezes um desperdício de recursos humanos; outra resolução "
+"seria preferível. Fusões de dois projetos que já passaram por uma divisão "
+"anterior não são desconhecidos."
 
 #. Tag: para
 #, no-c-format
 msgid "Since <emphasis role=\"distribution\">Etch</emphasis>, OpenSSH is split into two packages. The client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
 msgstr ""
+"Desde o <emphasis role=\"distribution\">Etch</emphasis>, o OpenSSH é dividido "
+"em dois pacotes. A parte do cliente está no pacote <emphasis role=\"pkg"
+"\">openssh-client</emphasis>, e o pacote do servidor está no <emphasis "
+"role=\"pkg\">openssh-server</emphasis>. O meta-pacote <emphasis "
+"role=\"pkg\">ssh</emphasis> depende de ambas as partes e facilita a instalação "
+"de ambos (<command>apt-get install ssh</command>)."
 
 #. Tag: title
 #, no-c-format
@@ -678,11 +855,25 @@ msgstr "<primary>OpenSSL</primary><secondary>aceleração de hardware</secondary
 #, no-c-format
 msgid "Some hardware provides native support of mathematical functions used by encryption, which can speed up the required calculations, thus increasing performance of some tools (and lightening the load on the main processor). These tools notably include the OpenSSL library, which is in turn used by OpenSSH."
 msgstr ""
+"Alguns equipamentos fornece suporte nativo de funções matemáticas usadas por "
+"criptografia, o que pode acelerar os cálculos necessários, aumentando assim "
+"o desempenho de algumas ferramentas (e aliviando a carga sobre o "
+"processador ).Estas ferramentas incluem precisamente a seguinte a biblioteca "
+"OpenSSL, que por sua vez é usado pelo OpenSSH."
 
 #. Tag: para
 #, no-c-format
 msgid "Although a project for standardization of drivers is underway (notably at the kernel level), the variety of hardware is still managed inequitably and heterogeneously. For example, the Padlock system included in Via C3 processors is only partially supported. While the Linux kernel does offer various encryption algorithms, the OpenSSL 0.9.8 library in <emphasis role=\"distribution\">Squeeze</emphasis> only handles delegation of AES encryption to the hardware dedicated to that purpose, but not the SHA algorithms; you have to recompile it with a patch. <ulink type=\"block\" url=\"http://www.logix.cz/michal/devel/padlock/\" />"
 msgstr ""
+"Embora o projeto de padronização dos drivers esteja em andamento "
+"(particulamente o do kernel level), a variedade de dispositivos ainda é "
+"gerenciado de forma desigual e heterogêneo. Por exemplo, o sistema  Padlock "
+"incluso nos processadores Via C3 é apenas parcialmente suportado. Enquanto o "
+"kernel Linux não oferece diversos algoritmos de criptografia, a biblioteca "
+"OpenSSL 0.9.8 em <emphasis role=\"distribution\">Squeeze</emphasis> lida "
+"apenas com delegação de criptografia AES para o dispositivo dedicado para "
+"essa finalidade, mas não os algoritmos SHA; você tem que recompilar com um "
+"patch.<ulink type=\"block\" url=\"http://www.logix.cz/michal/devel/padlock/\" />"
 
 #. Tag: title
 #, no-c-format
@@ -693,6 +884,11 @@ msgstr "Autenticação Baseado em Chave"
 #, no-c-format
 msgid "Each time someone logs in over SSH, the remote server asks for a password to authenticate the user. This can be problematic if you want to automate a connection, or if you use a tool that requires frequent connections over SSH. This is why SSH offers a key-based authentication system."
 msgstr ""
+"Cada vez que alguém se conecta por SSH, o servidor remoto pede uma senha "
+"para autenticar o usuário. Isto pode ser problemático se você quiser "
+"automatizar uma conexão, ou se você usar uma ferramenta que requer conexões "
+"frequentes com o SSH. Por este  motivo que o SSH oferece um sistema de "
+"autenticação baseado em chave."
 
 #. Tag: para
 #, no-c-format
@@ -3186,3 +3382,7 @@ msgstr ""
 #, no-c-format
 msgid "After this overview of basic services common to many Unix systems, we will focus on the environment of the administered machines: the network. Many services are required for the network to work properly. They will be discussed in the next chapter."
 msgstr ""
+"Após esta visão geral dos serviços básicos comuns a muitos sistemas Unix, "
+"vamos nos concentrar no ambiente das máquinas administrados: a rede. Muitos "
+"serviços são necessários para que a rede funcione corretamente. Eles serão "
+"discutidos no próximo capítulo."
