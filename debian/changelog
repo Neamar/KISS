@@ -25,6 +25,12 @@ debian-handbook (7.0~20120731) UNRELEASED; urgency=low
     - de-emphasize telnet, rsh and other obsolete protocols. Closes: #681412
     - drop section about APM
     - drop section about PCMCIA
+  * Chapter 11 (Network services):
+    - update LDAP configuration method to rely on cn=config integrated
+      configuration method. Closes: #672511
+    - smbmount is replaced by mount -t cifs. Closes: #696893
+    - CIFS is not the successor of SMB but rather a synonym.
+      Closes: #700168 Thanks to Reinier Olislagers for the patch.
 
   [ Roland Mas ]
   * Chapter 3: rephrase paragraph about AppleTalk and Netatalk (closes:
