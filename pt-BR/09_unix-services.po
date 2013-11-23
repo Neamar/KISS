@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-11-02 14:07+0200\n"
+"PO-Revision-Date: 2013-11-23 21:33+0200\n"
 "Last-Translator: Ezequiel Santos <zeckg@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.8-dev\n"
+"X-Generator: Weblate 1.9-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -904,6 +904,15 @@ msgstr "<emphasis>SEGURANÇA</emphasis> Proteção da chave privada"
 #, no-c-format
 msgid "Whoever has the private key can login on the account thus configured. This is why access to the private key is protected by a “passphrase”. Someone who acquires a copy of a private key file (for example, <filename>~/.ssh/id_rsa</filename>) still has to know this phrase in order to be able to use it. This additional protection is not, however, impregnable, and if you think that this file has been compromised, it is best to disable that key on the computers in which it has been installed (by removing it from the <filename>authorized_keys</filename> files) and replacing it with a newly generated key."
 msgstr ""
+"Quem tem a chave privada pode fazer login na conta, assim, configurada. É "
+"por isso que o acesso para a chave privada é protegida por uma \"frase\". "
+"Alguém que adquire uma cópia de um arquivo de chave privada (por "
+"exemplo,<filename>~/.ssh/id_rsa</filename>) ainda tem de saber esta frasea "
+"fim de ser capaz de usá-la. Esta proteção adicional não é, no entanto, "
+"impenetrável, e se você acha que esse arquivo foi comprometido, é melhor "
+"desativar essa chave nos computadores em que foi instalado (para removê-lo  "
+"<filename>authorized_keys</filename> files) e substituia com uma chave "
+"recentemente gerada."
 
 #. Tag: title
 #, no-c-format
@@ -916,6 +925,16 @@ msgstr ""
 #, no-c-format
 msgid "The OpenSSL library, as initially provided in Debian <emphasis role=\"distribution\">Etch</emphasis>, had a serious problem in its random number generator (RNG). Indeed, the Debian maintainer had made a change in order for the library to not be the source of warnings for programs using it and that would be analyzed by memory testing tools like <command>valgrind</command>. Unfortunately, this change also meant that the RNG was employing only one source of entropy corresponding to the process number (PID) whose 32,000 possible values do not offer enough randomness. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
 msgstr ""
+"A biblioteca OpenSSL, como inicialmente previsto no Debian <emphasis "
+"role=\"distribution\">Etch</emphasis>,tinha um grave problema no seu gerador "
+"de número aleatório (RNG). De fato, o mantenedor Debian tinha feito uma "
+"mudança para que a biblioteca não fosse a fonte de advertências para os "
+"programas que o utilizam e que seriam analisados por ferramentas de teste de "
+"memória como <command>valgrind</command>.Infelizmente, esta mudança também "
+"significou que o RNG estava empregando apenas uma fonte de entropia que "
+"corresponde ao número do processo(PID), cujos 32.000 possíveis valores não "
+"oferecem aleatoriedade suficiente.<ulink type=\"block\" "
+"url=\"http://www.debian.org/security/2008/dsa-1571\" />"
 
 #. Tag: para
 #, no-c-format
