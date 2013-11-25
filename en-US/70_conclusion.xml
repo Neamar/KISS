@@ -23,41 +23,45 @@
 
     <para>Weeks (or months) before a new version of Debian is released, the
     Release Manager picks the codename for the next version. Now that
-    Debian version 6.0 is out, the developers are already busy working on
+    Debian version 7 is out, the developers are already busy working on
     the next version, codenamed <emphasis
-    role="distribution">Wheezy</emphasis>…</para>
+    role="distribution">Jessie</emphasis>…</para>
 
     <para>There's no official list of planned changes, and Debian never
     makes promises relating to technical goals of the coming versions.
-    However, a few development trends can already be noted, and there are
-    many reasons to believe they will turn into concrete results in the new
-    version.</para>
+    However, a few development trends can already be noted, and we can try
+    some bets on what might happen (or not).</para>
 
-    <para>The package management system will be able to install packages
-    for several different architectures on the same system (this is known
-    as “multi-arch support”). This will allow installing 32 bit
-    applications on a 64 bit system, and vice-versa. Another project worth
-    mentioning is <emphasis>Constantly Usable Testing</emphasis>, which
-    aims at labeling <emphasis role="distribution">Testing</emphasis> as an
-    officially supported distribution that can be recommended to the
-    general public. The default “init” process
-    (<command>sysvinit</command>) may also be replaced by more modern
-    systems such as <command>upstart</command> or
-    <command>systemd</command>.</para>
-
+    <para>The default “init” process (<command>sysvinit</command>) will
+    hopefully be replaced by a more modern system such as
+    <command>upstart</command> or <command>systemd</command>.
+    Some ports will be gone: <literal>s390</literal> has been superseded
+    by <literal>s390x</literal>, <literal>sparc</literal> and
+    <literal>ia64</literal> might follow as they suffer from
+    multiple problems (lack of recent hardware, lack of Debian porters,
+    lack of upstream support, etc.). <command>dpkg</command>
+    will gain a <command>--verify</command> command that renders
+    <command>debsums</command> mostly obsolete.</para>
+    
     <para>Of course, all the main software suites will have had a major
-    release. For instance, <emphasis role="distribution">Wheezy</emphasis>
-    will include a 3.x version of GNOME, which brings a deep and promising
-    change in the usual graphical desktop paradigm.</para>
+    release. Apache 2.4 (or newer) will have a strong impact on deployed
+    websites as many configuration files will have to be updated. The Linux
+    kernel is likely to have a much improved container support (with
+    user namespaces, paving the path towards more secure containers). And
+    the latest version of the various desktops will bring better usability
+    and new features. GNOME 3 will be much more polished and the fans of
+    the good old GNOME 2 will be pleased with the inclusion of <ulink
+    url="http://mate-desktop.org/">MATE</ulink> in Debian.
+    </para>
   </section>
   <section id="sect.future-of-debian">
     <title>Debian's Future</title>
 
     <para>In addition to these internal developments, one can reasonably
-    expect new Debian-based distributions to come to light, thanks to the
-    growing popularity of <emphasis>debian-installer</emphasis> and its
-    flexibility. New specialized subprojects will also be started, in order
-    to widen Debian's reach to new horizons.</para>
+    expect new Debian-based distributions to come to light, as many
+    tools keep making this task easier. New specialized
+    subprojects will also be started, in order to widen Debian's reach to
+    new horizons.</para>
 
     <para>The Debian user community will increase, and new contributors
     will join the project… including, maybe, you!</para>
@@ -76,7 +80,7 @@
 
     <para>Beyond the apparent satisfaction of most Debian users, a deep
     trend is becoming more and more indisputable: people are increasingly
-    realising that collaborating, rather than doing business solo, leads to
+    realising that collaborating, rather than working alone in their corner, leads to
     better results for everyone. Such is the rationale used by
     distributions merging into Debian by way of subprojects.</para>
 
@@ -90,9 +94,14 @@
     We therefore welcome contributions, remarks, suggestions, and
     criticism. Please direct them to Raphaël
     (<email>hertzog@debian.org</email>) or Roland
-    (<email>lolando@debian.org</email>). The website will be used to gather
-    all information relevant to its evolution. <ulink type="block"
-    url="http://debian-handbook.info/"/></para>
+    (<email>lolando@debian.org</email>). For actionable feedback,
+    feel free to open bug reports against the <literal>debian-handbook</literal>
+    Debian package. The website will be used to gather
+    all information relevant to its evolution, and you will find there
+    information on how to contribute, in particular if you want
+    to translate this book to make it available to an even
+    larger public than today.
+    <ulink type="block" url="http://debian-handbook.info/"/></para>
 
     <para>We tried to integrate most of what our experience at Debian
     taught us, so that anyone can use this distribution and take the best
@@ -105,9 +114,10 @@
     usual professional activity. Since we're both freelance consultants,
     any new source of income grants us the freedom to spend more time
     improving Debian; we hope this book to be successful and to contribute
-    to this. In the meantime, feel free to retain our services! <ulink
-    type="block" url="http://www.freexian.com"/><ulink type="block"
-    url="http://www.gnurandal.com"/></para>
+    to this. In the meantime, feel free to retain our services!
+    <ulink type="block" url="http://www.freexian.com"/>
+    <ulink type="block" url="http://www.gnurandal.com"/>
+    </para>
 
     <para>See you soon!</para>
   </section>
