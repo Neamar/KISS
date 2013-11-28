@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-11-26 15:52+0100\n"
-"PO-Revision-Date: 2013-07-09 16:00+0200\n"
+"PO-Revision-Date: 2013-11-27 17:24+0100\n"
 "Last-Translator: Raphaël Hertzog <hertzog@debian.org>\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -50,8 +50,7 @@ msgid "Maintenance and Updates: The APT Tools"
 msgstr "Maintenance et mise à jour: les outils APT"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, the features of which Falcot Corp administrators studied with enthusiasm."
+#, no-c-format
 msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, that Falcot Corp administrators studied with enthusiasm."
 msgstr "Ce qui rend Debian si populaire auprès des administrateurs, c'est la facilité avec laquelle il est possible d'y installer des logiciels et de mettre à jour le système complet. Cet avantage unique est dû en grande partie au programme <emphasis>APT</emphasis>, outil dont les administrateurs de Falcot SA se sont empressés d'étudier les possibilités."
 
@@ -71,10 +70,9 @@ msgid "The word <emphasis>source</emphasis> can be ambiguous. A source package �
 msgstr "Le terme <emphasis>source</emphasis> est source d'ambiguïté. Il ne faut pas confondre un paquet source — paquet contenant le code source d'un programme — et une source de paquets — emplacement (site web, serveur FTP, CD-Rom, répertoire local, etc.) contenant des paquets."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.gz</filename> or <filename>Packages.bz2</filename> files (in case of a source of binary packages) and <filename>Sources.gz</filename> or <filename>Sources.bz2</filename> files (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"encadre.apt-pdiff\" />)."
+#, no-c-format
 msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.{gz,bz2,lzma,xz}</filename> files (in case of a source of binary packages) and <filename>Sources.{gz,bz2,lzma,xz}</filename> (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"sidebar.apt-pdiff\" />)."
-msgstr "APT a besoin qu'on lui fournisse une «liste de sources de paquets»: c'est le fichier <filename>/etc/apt/sources.list</filename> qui décrira les différents emplacements (ou «sources») publiant des paquets Debian. APT devra ensuite rapatrier la liste des paquets publiés par chacune de ces sources, ainsi que leurs en-têtes. Il réalise cette opération en téléchargeant les fichiers <filename>Packages.gz</filename> ou <filename>Packages.bz2</filename> (cas d'une source de paquets binaires) et <filename>Sources.gz</filename> ou <filename>Sources.bz2</filename> (cas d'une source de paquets sources) et en analysant leur contenu. Lorsque l'on dispose déjà d'une copie ancienne de ces fichiers, APT est capable de les mettre à jour en ne téléchargeant que les différences (voir encadré <xref linkend=\"encadre.apt-pdiff\" />)."
+msgstr "APT a besoin qu'on lui fournisse une «liste de sources de paquets»: c'est le fichier <filename>/etc/apt/sources.list</filename> qui décrira les différents emplacements (ou «sources») publiant des paquets Debian. APT devra ensuite rapatrier la liste des paquets publiés par chacune de ces sources, ainsi que leurs en-têtes. Il réalise cette opération en téléchargeant les fichiers <filename>Packages.{gz,bz2,lzma,xz}</filename> (cas d'une source de paquets binaires) et <filename>Sources.{gz,bz2,lzma,xz}</filename> (cas d'une source de paquets sources) et en analysant leur contenu. Lorsque l'on dispose déjà d'une copie ancienne de ces fichiers, APT est capable de les mettre à jour en ne téléchargeant que les différences (voir encadré <xref linkend=\"sidebar.apt-pdiff\" />)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -112,10 +110,15 @@ msgid "<primary><command>xz</command></primary>"
 msgstr "<primary><command>xz</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "A <filename>.gz</filename> extension refers to a file compressed with the <command>gzip</command> utility. <command>gzip</command> is the fast and efficient traditional Unix utility to compress files. Newer tools achieve better rates of compression but require more calculation time to compress a file. Among them, and by order of appearance, there are <command>bzip2</command> (generating files with a <filename>.bz2</filename> extension), <command>lzma</command> (generating <filename>.lzma</filename> files) and <command>xz</command> (generating <filename>.xz</filename> files)."
+#, no-c-format
 msgid "A <filename>.gz</filename> extension refers to a file compressed with the <command>gzip</command> utility. <command>gzip</command> is the fast and efficient traditional Unix utility to compress files. Newer tools achieve better rates of compression but require more resources (computation time and memory) to compress and uncompress a file. Among them, and by order of appearance, there are <command>bzip2</command> (generating files with a <filename>.bz2</filename> extension), <command>lzma</command> (generating <filename>.lzma</filename> files) and <command>xz</command> (generating <filename>.xz</filename> files)."
-msgstr "Une extension <filename>.gz</filename> dénote un fichier compressé avec l'utilitaire <command>gzip</command>. <command>gzip</command> est l'utilitaire Unix traditionnel pour compresser les fichiers, rapide et efficace. De nouveaux outils, plus récents, obtiennent de meilleurs taux de compression mais nécessitent plus de temps de calcul pour comprimer un fichier. Par ordre d'apparition, citons <command>bzip2</command> (qui produit des fichiers d'extension <filename>.bz2</filename>), <command>LZMA</command> (qui produit des <filename>.lzma</filename>) et <command>xz</command> (qui produit des <filename>.xz</filename>)."
+msgstr ""
+"Une extension <filename>.gz</filename> dénote un fichier compressé\n"
+"avec l'utilitaire <command>gzip</command>. <command>gzip</command> est\n"
+"l'utilitaire Unix traditionnel pour compresser les fichiers, rapide et\n"
+"efficace. De nouveaux outils, plus récents, obtiennent de meilleurs\n"
+"taux de compression mais nécessitent plus de ressources (temps de\n"
+"calcul et mémoire) pour comprimer ou décomprimer un fichier. Par ordre d'apparition, citons <command>bzip2</command> (qui produit des fichiers d'extension <filename>.bz2</filename>), <command>LZMA</command> (qui produit des <filename>.lzma</filename>) et <command>xz</command> (qui produit des <filename>.xz</filename>)."
 
 #. Tag: title
 #, no-c-format
@@ -128,10 +131,9 @@ msgid "<primary><filename>sources.list</filename></primary>"
 msgstr "<primary><filename>sources.list</filename></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>signature</primary><secondary>of a package</secondary>"
+#, no-c-format
 msgid "<primary>source</primary><secondary>of packages</secondary>"
-msgstr "<primary>signature</primary><secondary>d'un paquet</secondary>"
+msgstr "<primary>source</primary><secondary>de paquets</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -169,10 +171,9 @@ msgid "“<literal>deb-src</literal>” for source packages."
 msgstr "«<literal>deb-src</literal>» pour des paquets sources."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM based installations, although this is less frequent, since network-based installation methods are more and more common."
+#, no-c-format
 msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM/DVD-ROM/Blu-ray disc based installations, although this is less frequent, since network-based installation methods are more and more common."
-msgstr "Le deuxième champ indique l'URL de base de la source (combinée aux noms de fichier présents dans les fichiers <filename>Packages.gz</filename>, elle doit donner une URL complète valide): il peut s'agir d'un miroir Debian ou de toute autre archive de paquets mise en place par des tierces personnes. L'URL peut débuter par <literal>file://</literal> pour indiquer une source locale située dans l'arborescence de fichiers du système, par <literal>http://</literal> pour indiquer une source accessible depuis un serveur web, ou encore par <literal>ftp://</literal> pour une source disponible sur un serveur FTP. On trouvera aussi <literal>cdrom://</literal> pour les installations à partir de CD-Rom, mais moins fréquemment, les méthodes d'installation par le réseau étant de plus en plus répandues."
+msgstr "Le deuxième champ indique l'URL de base de la source (combinée aux noms de fichier présents dans les fichiers <filename>Packages.gz</filename>, elle doit donner une URL complète valide): il peut s'agir d'un miroir Debian ou de toute autre archive de paquets mise en place par des tierces personnes. L'URL peut débuter par <literal>file://</literal> pour indiquer une source locale située dans l'arborescence de fichiers du système, par <literal>http://</literal> pour indiquer une source accessible depuis un serveur web, ou encore par <literal>ftp://</literal> pour une source disponible sur un serveur FTP. On trouvera aussi <literal>cdrom://</literal> pour les installations à partir de CD-Rom/DVD-Rom/Blu-ray, mais moins fréquemment, les méthodes d'installation par le réseau étant de plus en plus répandues."
 
 #. Tag: para
 #, no-c-format
@@ -180,70 +181,59 @@ msgid "The syntax of the last field depends on the structure of the repository. 
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "<emphasis>VOCABULARY</emphasis> The <foreignphrase>main</foreignphrase>, <foreignphrase>contrib</foreignphrase> and <foreignphrase>non-free</foreignphrase> archives"
+#, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> The <literal>main</literal>, <literal>contrib</literal> and <literal>non-free</literal> archives"
-msgstr "<emphasis>VOCABULAIRE</emphasis> Les archives <foreignphrase>main</foreignphrase>, <foreignphrase>contrib</foreignphrase> et <foreignphrase>non-free</foreignphrase>"
+msgstr "<emphasis>VOCABULAIRE</emphasis> Les archives <literal>main</literal>, <literal>contrib</literal> et <literal>non-free</literal>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>section</primary><secondary><literal>main</literal></secondary>"
-msgstr "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>section</primary><secondary><literal>main</literal></secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><literal>Pin</literal></primary>"
+#, no-c-format
 msgid "<primary><literal>main</literal>, section</primary>"
-msgstr "<primary><literal>Pin</literal></primary>"
+msgstr "<primary><literal>main</literal>, section</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>contrib</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>section</primary><secondary><literal>contrib</literal></secondary>"
-msgstr "<primary>section</primary><secondary><foreignphrase>contrib</foreignphrase></secondary>"
+msgstr "<primary>section</primary><secondary><literal>contrib</literal></secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><literal>Pin</literal></primary>"
+#, no-c-format
 msgid "<primary><literal>contrib</literal>, section</primary>"
-msgstr "<primary><literal>Pin</literal></primary>"
+msgstr "<primary><literal>contrib</literal>, section</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>non-free</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>section</primary><secondary><literal>non-free</literal></secondary>"
-msgstr "<primary>section</primary><secondary><foreignphrase>non-free</foreignphrase></secondary>"
+msgstr "<primary>section</primary><secondary><literal>non-free</literal></secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><literal>Pin</literal></primary>"
+#, no-c-format
 msgid "<primary><literal>non-free</literal>, section</primary>"
-msgstr "<primary><literal>Pin</literal></primary>"
+msgstr "<primary><literal>non-free</literal>, section</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>source of packages</primary>"
+#, no-c-format
 msgid "<primary>component (of a repository)</primary>"
-msgstr "<primary>source de paquets</primary>"
+msgstr "<primary>composant (d'un dépôt)</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Debian uses three sections to differentiate packages according to the licenses chosen by the authors of each work. <foreignphrase>Main</foreignphrase> (the main archive) gathers all packages which fully comply with the Debian Free Software Guidelines."
+#, no-c-format
 msgid "Debian uses three sections to differentiate packages according to the licenses chosen by the authors of each work. <literal>Main</literal> gathers all packages which fully comply with the Debian Free Software Guidelines."
-msgstr "Debian prévoit trois sections pour différencier les paquets selon les licences prévues par les auteurs des programmes respectifs. <foreignphrase>Main</foreignphrase> (archive principale) rassemble tous les paquets répondant pleinement aux principes du logiciel libre selon Debian."
+msgstr "Debian prévoit trois sections pour différencier les paquets selon les licences prévues par les auteurs des programmes respectifs. <literal>Main</literal> (archive principale) rassemble tous les paquets répondant pleinement aux principes du logiciel libre selon Debian."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The <foreignphrase>non-free</foreignphrase> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed without restrictions. This archive, which is not officially part of Debian, is a service for users who could need some of those programs — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
+#, no-c-format
 msgid "The <literal>non-free</literal> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed without restrictions. This archive, which is not officially part of Debian, is a service for users who could need some of those programs — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
-msgstr "L'archive <foreignphrase>non-free</foreignphrase> (non libre), spéciale, contient des logiciels ne répondant pas (totalement) à ces principes mais néanmoins distribuables librement. Cette archive, qui ne fait pas officiellement partie de Debian, est un service rendu aux utilisateurs qui pourraient avoir besoin de ses logiciels — mais Debian recommande toujours d'accorder la préférence aux logiciels libres. L'existence de cette section gêne considérablement Richard M. Stallman et empêche la Free Software Foundation de recommander l'usage de Debian."
+msgstr "L'archive <literal>non-free</literal> (non libre), spéciale, contient des logiciels ne répondant pas (totalement) à ces principes mais néanmoins distribuables librement. Cette archive, qui ne fait pas officiellement partie de Debian, est un service rendu aux utilisateurs qui pourraient avoir besoin de ses logiciels — mais Debian recommande toujours d'accorder la préférence aux logiciels libres. L'existence de cette section gêne considérablement Richard M. Stallman et empêche la Free Software Foundation de recommander l'usage de Debian."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "<foreignphrase>Contrib</foreignphrase> (contributions) is a stock of open source software which cannot function without some non-free elements. These elements can be software from the <foreignphrase>non-free</foreignphrase> section, or non-free files such as game ROMs, BIOS of consoles, etc. <foreignphrase>Contrib</foreignphrase> also includes free software whose compilation requires proprietary elements. This was initially the case for the OpenOffice.org office suite, which used to require a proprietary Java environment."
+#, no-c-format
 msgid "<literal>Contrib</literal> (contributions) is a set of open source software which cannot function without some non-free elements. These elements can be software from the <literal>non-free</literal> section, or non-free files such as game ROMs, BIOS of consoles, etc. <literal>Contrib</literal> also includes free software whose compilation requires proprietary elements. This was initially the case for the OpenOffice.org office suite, which used to require a proprietary Java environment."
-msgstr "<foreignphrase>Contrib</foreignphrase> (contributions) est un stock de logiciels libres ne fonctionnant pas sans certains éléments non libres. Il peut s'agir de programmes dépendant de logiciels de la section <foreignphrase>non-free</foreignphrase> ou de fichiers non libres tels que des ROM de jeux, des BIOS de consoles, etc. On y trouve encore des logiciels libres dont la compilation nécessite des éléments propriétaires. C'était au début le cas de la suite bureautique OpenOffice.org, qui avait besoin d'un environnement Java propriétaire."
+msgstr "<literal>Contrib</literal> (contributions) est un stock de logiciels libres ne fonctionnant pas sans certains éléments non libres. Il peut s'agir de programmes dépendant de logiciels de la section <literal>non-free</literal> ou de fichiers non libres tels que des ROM de jeux, des BIOS de consoles, etc. On y trouve encore des logiciels libres dont la compilation nécessite des éléments propriétaires. C'était au début le cas de la suite bureautique OpenOffice.org, qui avait besoin d'un environnement Java propriétaire."
 
 #. Tag: title
 #, no-c-format
@@ -251,10 +241,9 @@ msgid "<emphasis>TIP</emphasis> <filename>/etc/apt/sources.list.d/*.list</filena
 msgstr "<emphasis>ASTUCE</emphasis> Fichiers <filename>/etc/apt/sources.list.d/*.list</filename>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "If many package sources are referenced, it can be useful to split them in multiple files. Each part is then stored in <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> (see sidebar <xref linkend=\"cadre-repertoire.d\" />)."
+#, no-c-format
 msgid "If many package sources are referenced, it can be useful to split them in multiple files. Each part is then stored in <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> (see sidebar <xref linkend=\"sidebar.directory.d\" />)."
-msgstr "Si de nombreuses sources de paquets sont référencées, il peut être utile de les séparer en plusieurs fichiers, chaque fragment étant stocké dans un <filename>/etc/apt/sources.list.d/<replaceable>fichier</replaceable>.list</filename> (voir encadré <xref linkend=\"cadre-repertoire.d\" />)."
+msgstr "Si de nombreuses sources de paquets sont référencées, il peut être utile de les séparer en plusieurs fichiers, chaque fragment étant stocké dans un <filename>/etc/apt/sources.list.d/<replaceable>fichier</replaceable>.list</filename> (voir encadré <xref linkend=\"sidebar.directory.d\" />)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -268,22 +257,23 @@ msgid "The <literal>cdrom</literal> entries describe the CD/DVD-ROMs you have. C
 msgstr "Le fichier <filename>sources.list</filename> comporte encore d'autres types d'entrées: celles décrivant des CD-Rom Debian dont vous disposez. Contrairement aux autres entrées, un CD-Rom n'est pas disponible en permanence puisqu'il faut l'insérer dans le lecteur et qu'un seul disque peut être lu à la fois — ces sources sont donc gérées un peu différemment. On ajoutera ces entrées à l'aide du petit programme <command>apt-cdrom</command>, habituellement invoqué avec le paramètre <literal>add</literal>. Ce dernier demande alors d'insérer le disque dans le lecteur et parcourt son contenu à la recherche de fichiers <filename>Packages</filename>, qu'il utilisera pour mettre à jour sa base de données de paquets disponibles (opération habituellement réalisée par la commande <command>aptitude update</command>). Dès lors, APT pourra vous demander d'insérer le CD-Rom en question s'il a besoin de l'un de ses paquets."
 
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "<emphasis role=\"distribution\">Stable</emphasis> Updates"
+#, no-c-format
 msgid "Repositories for <emphasis role=\"distribution\">Stable</emphasis> Users"
-msgstr "Les mises à jour pour <emphasis role=\"distribution\">Stable</emphasis>"
+msgstr "Dépôts pour les utilisateurs de <emphasis role=\"distribution\">Stable</emphasis> Users"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The <filename>sources.list</filename> entry for backports targeting the <emphasis role=\"distribution\">Squeeze</emphasis> distribution is the following:"
+#, no-c-format
 msgid "Here is a standard <filename>sources.list</filename> for a system running the <emphasis role=\"distribution\">Stable</emphasis> version of Debian:"
-msgstr "L'entrée à ajouter dans le fichier <filename>sources.list</filename> est la suivante pour les rétroportages ciblant la distribution <emphasis role=\"distribution\">Squeeze</emphasis>:"
+msgstr ""
+"Voici le contenu standard du fichier <filename>sources.list</filename>\n"
+"pour un système fonctionnant avec la version <emphasis role=\"distribution\">Stable</emphasis> de Debian:"
 
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "<filename>/etc/apt/sources.list</filename> file"
+#, no-c-format
 msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian Stable"
-msgstr "Fichier <filename>/etc/apt/sources.list</filename>"
+msgstr ""
+"Fichier <filename>/etc/apt/sources.list</filename> pour les\n"
+"utilisateurs de Debian Stable"
 
 #. Tag: programlisting
 #, fuzzy, no-c-format
@@ -371,22 +361,19 @@ msgid "Security Updates"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><literal>backports.debian.org</literal></primary>"
+#, no-c-format
 msgid "<primary><literal>security.debian.org</literal></primary>"
-msgstr "<primary><literal>backports.debian.org</literal></primary>"
+msgstr "<primary><literal>security.debian.org</literal></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>search of packages</primary>"
+#, no-c-format
 msgid "<primary>security updates</primary>"
-msgstr "<primary>recherche de paquet</primary>"
+msgstr "<primary>sécurité</primary><secondary>mises à jour de sécurité</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>package</primary><secondary>seal</secondary>"
+#, no-c-format
 msgid "<primary>updates</primary><secondary>security updates</secondary>"
-msgstr "<primary>paquet</primary><secondary>scellement</secondary>"
+msgstr "<primary>mises à jour de sécurité</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -404,10 +391,9 @@ msgid "Stable Updates"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>trusted key</primary>"
+#, no-c-format
 msgid "<primary>stable updates</primary>"
-msgstr "<primary>clé de confiance</primary>"
+msgstr "<primary>stable</primary><secondary>mises à jour de la distribution stable</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -415,10 +401,9 @@ msgid "<primary><literal>stable-updates</literal></primary>"
 msgstr "<primary><literal>stable-updates</literal></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>package</primary><secondary>seal</secondary>"
+#, no-c-format
 msgid "<primary>updates</primary><secondary>stable updates</secondary>"
-msgstr "<primary>paquet</primary><secondary>scellement</secondary>"
+msgstr "<primary>mises à jour</primary><secondary>de la distribution stable</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -442,16 +427,14 @@ msgid "Proposed Updates"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><literal>stable-updates</literal></primary>"
+#, no-c-format
 msgid "<primary><literal>proposed-updates</literal></primary>"
-msgstr "<primary><literal>stable-updates</literal></primary>"
+msgstr "<primary><literal>proposed-updates</literal></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><literal>stable-updates</literal></primary>"
+#, no-c-format
 msgid "<primary><literal>stable-proposed-updates</literal></primary>"
-msgstr "<primary><literal>stable-updates</literal></primary>"
+msgstr "<primary><literal>stable-proposed-updates</literal></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -484,10 +467,9 @@ msgid "Stable Backports"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><literal>stable-updates</literal></primary>"
+#, no-c-format
 msgid "<primary><literal>stable-backports</literal></primary>"
-msgstr "<primary><literal>stable-updates</literal></primary>"
+msgstr "<primary><literal>stable-backports</literal></primary>"
 
 # TODO: INTEGRATE ALTERNATE STRING: <primary><foreignphrase>backport</foreignphrase></primary>
 #. Tag: indexterm
@@ -662,10 +644,12 @@ msgid "There are numerous non-official sources of Debian packages set up by adva
 msgstr "Il existe de nombreuses sources non officielles de paquets Debian, mises en place par des utilisateurs avancés ayant recompilé certains logiciels, par des programmeurs mettant leur création à disposition, et même par des développeurs Debian proposant des pré-versions de leur paquet en ligne. Un site web fut mis en place pour trouver plus facilement ces sources alternatives. On y trouve une quantité impressionnante de sources de paquets Debian prêtes à être intégrées dans les fichiers <filename>sources.list</filename>. Attention toutefois à ne pas rajouter n'importe quoi. Chaque source est en effet prévue pour une version particulière de Debian (celle employée pour compiler les paquets concernés); on veillera à maintenir une certaine cohérence dans ce que l'on choisit d'installer. <ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The <literal>mentors.debian.net</literal> site is also interesting, since it gathers packages created by candidates to the status of official Debian developer or by volunteers who wish to create Debian packages without going through that process of integration. These packages are made available without any guarantee regarding their quality; make sure that you check their origin and integrity and then test them before you consider using them in production."
+#, no-c-format
 msgid "The <literal>mentors.debian.net</literal> site is also interesting, since it gathers source packages created by candidates to the status of official Debian developer or by volunteers who wish to create Debian packages without going through that process of integration. These packages are made available without any guarantee regarding their quality; make sure that you check their origin and integrity and then test them before you consider using them in production."
-msgstr "Signalons également l'existence du site <literal>mentors.debian.net</literal>, qui regroupe des paquets réalisés par des prétendants au statut de développeur Debian officiel ou par des volontaires souhaitant créer des paquets Debian sans passer par ce processus d'intégration. Ces paquets sont donc fournis sans aucune garantie de qualité; prenez garde à vous assurer de leur origine et intégrité puis à bien les tester avant d'envisager de les déployer."
+msgstr ""
+"Signalons également l'existence du site\n"
+"<literal>mentors.debian.net</literal>, qui regroupe des paquets\n"
+"sources réalisés par des prétendants au statut de développeur Debian officiel ou par des volontaires souhaitant créer des paquets Debian sans passer par ce processus d'intégration. Ces paquets sont donc fournis sans aucune garantie de qualité; prenez garde à vous assurer de leur origine et intégrité puis à bien les tester avant d'envisager de les déployer."
 
 #. Tag: title
 #, no-c-format
@@ -737,16 +721,14 @@ msgid "You can configure APT to use a \"standard\" proxy (see <xref linkend=\"se
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+#, no-c-format
 msgid "<primary><emphasis role=\"pkg\">apt-cacher</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">apt-cacher</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+#, no-c-format
 msgid "<primary><emphasis role=\"pkg\">apt-cacher-ng</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">apt-cacher-ng</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -754,10 +736,9 @@ msgid "<emphasis role=\"pkg\">apt-cacher</emphasis> and <emphasis role=\"pkg\">a
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+#, no-c-format
 msgid "<primary><emphasis role=\"pkg\">approx</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">approx</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -803,8 +784,7 @@ msgid "<primary><command>aptitude</command></primary>"
 msgstr "<primary><command>aptitude</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first interface — command-line based — which was developed within the project."
+#, no-c-format
 msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first front end — command-line based — which was developed within the project."
 msgstr "APT est un projet relativement vaste, qui prévoyait à l'origine une interface graphique. Il repose sur une bibliothèque contenant le cœur de l'application, et <command>apt-get</command> est la première interface — en ligne de commande — développée dans le cadre du projet."
 
@@ -851,8 +831,7 @@ msgid "<primary>package</primary><secondary>removal</secondary>"
 msgstr "<primary>paquet</primary><secondary>suppression</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>installation</primary><secondary>of packages</secondary>"
+#, no-c-format
 msgid "<primary>installation</primary><secondary>package installation</secondary>"
 msgstr "<primary>installation</primary><secondary>de paquets</secondary>"
 
@@ -1033,12 +1012,9 @@ msgid "Installation of the <emphasis role=\"distribution\">unstable</emphasis> v
 msgstr "Installation de la version <emphasis role=\"distribution\">Unstable</emphasis> de <emphasis role=\"pkg\">spamassassin</emphasis>"
 
 #. Tag: screen
-#, fuzzy, no-c-format
-#| msgid "<computeroutput># </computeroutput><userinput>aptitude install spamassassin/unstable</userinput>\n"
+#, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
-msgstr ""
-"\n"
-"<computeroutput># </computeroutput><userinput>aptitude install spamassassin/unstable</userinput>\n"
+msgstr "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -1057,8 +1033,7 @@ msgid "System Upgrade"
 msgstr "Mise à jour"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>upgrade</primary><secondary>of the system</secondary>"
+#, no-c-format
 msgid "<primary>upgrade</primary><secondary>system upgrade</secondary>"
 msgstr "<primary>mise à jour</primary><secondary>du système</secondary>"
 
@@ -1230,10 +1205,9 @@ msgid "<primary>package</primary><secondary>priority</secondary>"
 msgstr "<primary>paquet</primary><secondary>priorité</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>package</primary><secondary>priority</secondary>"
+#, no-c-format
 msgid "<primary>priority</primary><secondary>package priority</secondary>"
-msgstr "<primary>paquet</primary><secondary>priorité</secondary>"
+msgstr "<primary>priorité</primary><secondary>d'un paquet</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1251,14 +1225,12 @@ msgid "<primary><filename>/etc/apt/preferences</filename></primary>"
 msgstr "<primary><filename>/etc/apt/preferences</filename></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "APT defines several default priorities. Each installed package version has a priority of 100. A non-installed version has a priority of 500 by default, but it can jump to 990 if it is part of the target release (defined with the <literal>-t</literal> command-line option or the <literal>APT::Target-Release</literal> configuration directive)."
+#, no-c-format
 msgid "APT defines several default priorities. Each installed package version has a priority of 100. A non-installed version has a priority of 500 by default, but it can jump to 990 if it is part of the target release (defined with the <literal>-t</literal> command-line option or the <literal>APT::Default-Release</literal> configuration directive)."
-msgstr "APT définit un certain nombre de priorités par défaut. Chaque version de paquetage déjà installée a une priorité de 100, une version non installée reçoit une priorité de 500 sauf si elle fait partie de la distribution cible (<foreignphrase>Target Release</foreignphrase>), qu'on spécifie avec l'option <literal>-t</literal> ou la directive <literal>APT::Target-Release</literal>, auquel cas sa priorité passe à 990."
+msgstr "APT définit un certain nombre de priorités par défaut. Chaque version de paquetage déjà installée a une priorité de 100, une version non installée reçoit une priorité de 500 sauf si elle fait partie de la distribution cible (<foreignphrase>Target Release</foreignphrase>), qu'on spécifie avec l'option <literal>-t</literal> ou la directive <literal>APT::Default-Release</literal>, auquel cas sa priorité passe à 990."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "You can modify the priorities by adding entries in the file <filename>/etc/apt/preferences</filename> with the names of the affected packages, their version, their origin and their new priority."
+#, no-c-format
 msgid "You can modify the priorities by adding entries in the <filename>/etc/apt/preferences</filename> file with the names of the affected packages, their version, their origin and their new priority."
 msgstr "On modifiera ces priorités en intervenant sur le fichier <filename>/etc/apt/preferences</filename> pour y ajouter des entrées de quelques lignes décrivant le nom du ou des paquets concernés, leur version, leur origine, et leur nouvelle priorité."
 
@@ -1332,25 +1304,19 @@ msgid "<literal>a=stable</literal> defines the name of the selected distribution
 msgstr "<literal>a=stable</literal> précise le nom de la distribution concernée. <literal>o=Debian</literal> restreint l'entrée aux paquets dont l'origine est «Debian». Le terme <foreignphrase>pin</foreignphrase> (épingle en anglais), est généralement traduit, dans ce contexte, par «étiquetage», car il permet d'accrocher à un paquet une étiquette désignant de quelle distribution il doit provenir."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Let's now assume that you have a server with several local programs depending on the version 5.10 of Perl and that you want to ensure that upgrades will not install another version of it. You could use this entry:"
+#, no-c-format
 msgid "Let's now assume that you have a server with several local programs depending on the version 5.14 of Perl and that you want to ensure that upgrades will not install another version of it. You could use this entry:"
-msgstr "Supposons maintenant que nous disposions d'un serveur ayant installé de nombreux programmes spécifiques à la version 5.10 de Perl et que l'on veuille s'assurer qu'aucune mise à jour n'en installera une autre version. On peut pour cela utiliser cette entrée:"
+msgstr "Supposons maintenant que nous disposions d'un serveur ayant installé de nombreux programmes spécifiques à la version 5.14 de Perl et que l'on veuille s'assurer qu'aucune mise à jour n'en installera une autre version. On peut pour cela utiliser cette entrée:"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
-#| msgid ""
-#| "Package: perl\n"
-#| "Pin: version 5.10*\n"
-#| "Pin-Priority: 1001\n"
+#, no-c-format
 msgid ""
 "Package: perl\n"
 "Pin: version 5.14*\n"
 "Pin-Priority: 1001\n"
 msgstr ""
-"\n"
 "Package: perl\n"
-"Pin: version 5.10*\n"
+"Pin: version 5.14*\n"
 "Pin-Priority: 1001\n"
 
 #. Tag: para
@@ -1481,28 +1447,24 @@ msgid "With this information, when packages are removed, the package managers ca
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>apt-cdrom</command></primary>"
+#, no-c-format
 msgid "<primary><command>apt-mark auto</command></primary>"
-msgstr "<primary><command>apt-cdrom</command></primary>"
+msgstr "<primary><command>apt-mark auto</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>apt-cdrom</command></primary>"
+#, no-c-format
 msgid "<primary><command>apt-mark manual</command></primary>"
-msgstr "<primary><command>apt-cdrom</command></primary>"
+msgstr "<primary><command>apt-mark manual</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>aptitude</command></primary>"
+#, no-c-format
 msgid "<primary><command>aptitude markauto</command></primary>"
-msgstr "<primary><command>aptitude</command></primary>"
+msgstr "<primary><command>aptitude markauto</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>aptitude update</command></primary>"
+#, no-c-format
 msgid "<primary><command>aptitude unmarkauto</command></primary>"
-msgstr "<primary><command>aptitude update</command></primary>"
+msgstr "<primary><command>aptitude unmarkauto</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1545,16 +1507,14 @@ msgid "<emphasis>ALTERNATIVE</emphasis> <command>deborphan</command> and <comman
 msgstr "<emphasis>ALTERNATIVE</emphasis> <command>deborphan</command> et <command>debfoster</command>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>bzip2</command></primary>"
+#, no-c-format
 msgid "<primary><command>deborphan</command></primary>"
-msgstr "<primary><command>bzip2</command></primary>"
+msgstr "<primary><command>deborphan</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>xz</command></primary>"
+#, no-c-format
 msgid "<primary><command>debfoster</command></primary>"
-msgstr "<primary><command>xz</command></primary>"
+msgstr "<primary><command>debfoster</command></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -1604,10 +1564,9 @@ msgid "<primary>package</primary><secondary>search</secondary>"
 msgstr "<primary>paquet</primary><secondary>recherche</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The <command>apt-cache</command> command can display much of the information stored in APT's internal database. This information is a sort of cache since it is gathered from the different sources listed in the <filename>sources.list</filename> file. This happens during the <command>aptitude update</command> operation."
+#, no-c-format
 msgid "The <command>apt-cache</command> command can display much of the information stored in APT's internal database. This information is a sort of cache since it is gathered from the different sources listed in the <filename>sources.list</filename> file. This happens during the <command>apt-get update</command> operation."
-msgstr "La commande <command>apt-cache</command> permet de consulter un certain nombre d'informations stockées dans la base de données interne d'APT. Ces informations — qui constituent une sorte de <emphasis>cache</emphasis> — sont rassemblées depuis les différentes sources données dans le fichier <filename>sources.list</filename> au cours de l'opération <command>aptitude update</command>."
+msgstr "La commande <command>apt-cache</command> permet de consulter un certain nombre d'informations stockées dans la base de données interne d'APT. Ces informations — qui constituent une sorte de <emphasis>cache</emphasis> — sont rassemblées depuis les différentes sources données dans le fichier <filename>sources.list</filename> au cours de l'opération <command>apt-get update</command>."
 
 #. Tag: title
 #, no-c-format
@@ -1625,28 +1584,24 @@ msgid "In the case of APT, the reference <filename>Packages</filename> files are
 msgstr "Dans le cas d'APT, les fichiers <filename>Packages</filename> de référence sont ceux situés sur les miroirs Debian. Cependant, il serait très inefficace de devoir passer à travers le réseau pour chaque recherche que l'on souhaite faire dans la base de données des paquets disponibles. APT stocke donc (dans <filename>/var/lib/apt/lists/</filename>) une copie de ces fichiers, et les recherches se font à l'aide de ces fichiers locaux. De même, <filename>/var/cache/apt/archives/</filename> contient un cache des paquets déjà téléchargés, ce qui évite de les télécharger de nouveau si on souhaite les réinstaller après les avoir supprimés."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>apt-cache</command></primary>"
+#, no-c-format
 msgid "<primary><command>apt-cache show</command></primary>"
-msgstr "<primary><command>apt-cache</command></primary>"
+msgstr "<primary><command>apt-cache show</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>apt-cache</command></primary>"
+#, no-c-format
 msgid "<primary><command>apt-cache search</command></primary>"
-msgstr "<primary><command>apt-cache</command></primary>"
+msgstr "<primary><command>apt-cache search</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>aptitude why</command></primary>"
+#, no-c-format
 msgid "<primary><command>aptitude show</command></primary>"
-msgstr "<primary><command>aptitude why</command></primary>"
+msgstr "<primary><command>aptitude show</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>aptitude why</command></primary>"
+#, no-c-format
 msgid "<primary><command>aptitude search</command></primary>"
-msgstr "<primary><command>aptitude why</command></primary>"
+msgstr "<primary><command>aptitude search</command></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -1655,22 +1610,19 @@ msgid "The <command>apt-cache</command> command can do keyword-based package sea
 msgstr "Le programme <command>apt-cache</command> permet notamment de rechercher des paquets à l'aide de mots-clés, en tapant <command>apt-cache search <replaceable>mot-clé</replaceable></command>. On peut aussi consulter les en-têtes des différentes versions disponibles d'un paquet avec <command>apt-cache show <replaceable>paquet</replaceable></command>. Cette commande produira la description du paquet ainsi que ses dépendances, le nom de son mainteneur, etc. Signalons que <command>aptitude search</command> et <command>aptitude show</command> fonctionnent de manière similaire. <indexterm><primary><command>apt-cache show</command></primary></indexterm> <indexterm><primary><command>apt-cache search</command></primary></indexterm> <indexterm><primary><command>aptitude show</command></primary></indexterm> <indexterm><primary><command>aptitude search</command></primary></indexterm>"
 
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "<emphasis>TIP</emphasis> <command>apt-cache policy</command>"
+#, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <command>axi-cache</command>"
-msgstr "<emphasis>ASTUCE</emphasis> <command>apt-cache policy</command>"
+msgstr "<emphasis>ALTERNATIVE</emphasis> <command>axi-cache</command>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>apt-cache</command></primary>"
+#, no-c-format
 msgid "<primary><command>axi-cache</command></primary>"
-msgstr "<primary><command>apt-cache</command></primary>"
+msgstr "<primary><command>axi-cache</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+#, no-c-format
 msgid "<primary><emphasis role=\"pkg\">apt-xapian-index</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">apt-xapian-index</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1703,22 +1655,19 @@ msgid ""
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>apt-cache</command></primary>"
+#, no-c-format
 msgid "<primary><command>apt-cache policy</command></primary>"
-msgstr "<primary><command>apt-cache</command></primary>"
+msgstr "<primary><command>apt-cache policy</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>apt-cache</command></primary>"
+#, no-c-format
 msgid "<primary><command>apt-cache dumpavail</command></primary>"
-msgstr "<primary><command>apt-cache</command></primary>"
+msgstr "<primary><command>apt-cache dumpavail</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>apt-cache</command></primary>"
+#, no-c-format
 msgid "<primary><command>apt-cache pkgnames</command></primary>"
-msgstr "<primary><command>apt-cache</command></primary>"
+msgstr "<primary><command>apt-cache pkgnames</command></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -1937,22 +1886,19 @@ msgid "<primary><command>apt-key</command></primary>"
 msgstr "<primary><command>apt-key</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+#, no-c-format
 msgid "<primary><emphasis role=\"pkg\">debian-archive-keyring</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">debian-archive-keyring</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
+#, no-c-format
 msgid "<primary><filename>/etc/apt/trusted.gpg.d/</filename></primary>"
-msgstr "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
+msgstr "<primary><filename>/etc/apt/trusted.gpg.d/</filename></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><filename>.d</filename></primary>"
+#, no-c-format
 msgid "<primary><filename>Release.gpg</filename></primary>"
-msgstr "<primary><filename>.d</filename></primary>"
+msgstr "<primary><filename>Release.gpg</filename></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -2017,16 +1963,14 @@ msgid "To add the key to the trusted keyring, the administrator can run <command
 msgstr "On peut alors ajouter cette clé de confiance par la commande <command>apt-key add &lt; cle.asc</command> (à exécuter avec les droits administrateurs). Une autre manière de procéder existe avec l'interface graphique <command>synaptic</command>: l'onglet «Authentification» dans le menu <menuchoice><guimenu>Configuration</guimenu> <guisubmenu>Dépôts</guisubmenu></menuchoice> permet d'importer le fichier <filename>cle.asc</filename> préalablement récupéré."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+#, no-c-format
 msgid "<primary><emphasis role=\"pkg\">gui-apt-key</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">gui-apt-key</emphasis></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "For people who would want a dedicated application and more details on the trusted keys, it is possible to use <command>gui-apt-key</command> (in the package of the same name), a small graphical user interface which manages the trusted keyring. <indexterm><primary><emphasis role=\"pkg\">gui-apt-key</emphasis></primary></indexterm>"
+#, no-c-format
 msgid "For people who would want a dedicated application and more details on the trusted keys, it is possible to use <command>gui-apt-key</command> (in the package of the same name), a small graphical user interface which manages the trusted keyring."
-msgstr "Pour ceux qui préfèrent une application dédiée et veulent plus de détails sur les clés de confiance, il est possible d'employer le programme <command>gui-apt-key</command> (du paquet éponyme). Il s'agit d'une petite interface graphique qui gère le trousseau de clés de confiance. <indexterm><primary><emphasis role=\"pkg\">gui-apt-key</emphasis></primary></indexterm>"
+msgstr "Pour ceux qui préfèrent une application dédiée et veulent plus de détails sur les clés de confiance, il est possible d'employer le programme <command>gui-apt-key</command> (du paquet éponyme). Il s'agit d'une petite interface graphique qui gère le trousseau de clés de confiance."
 
 #. Tag: para
 #, no-c-format
@@ -2039,8 +1983,7 @@ msgid "Upgrading from One Stable Distribution to the Next"
 msgstr "Mise à jour d'une distribution à la suivante"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "One of the best-known features of Debian is its ability to upgrade an installed system from one stable release to the next: <foreignphrase>dist-upgrade</foreignphrase> — a well-known phrase — has largely contributed to the project's reputation. With a few precautions, upgrading a computer can take as little as a few, or a few dozen, minutes depending on the download speed from the package repositories."
+#, no-c-format
 msgid "One of the best-known features of Debian is its ability to upgrade an installed system from one stable release to the next: <foreignphrase>dist-upgrade</foreignphrase> — a well-known phrase — has largely contributed to the project's reputation. With a few precautions, upgrading a computer can take as little as a few minutes, or a few dozen minutes, depending on the download speed from the package repositories."
 msgstr "Un des éléments les plus marquants de Debian est sa capacité à mettre à jour un système d'une distribution stable vers la suivante (le fameux <foreignphrase>dist-upgrade</foreignphrase>, qui a contribué à la réputation du projet). Avec un peu d'attention, on peut ainsi migrer un ordinateur en quelques minutes ou dizaines de minutes, selon la rapidité d'accès aux sources de paquets."
 
@@ -2065,16 +2008,14 @@ msgid "The release notes for an operating system (and, more generally, for any s
 msgstr "Les notes de publication (<foreignphrase>release notes</foreignphrase>) d'un logiciel ou d'un système d'exploitation sont un document, généralement court par rapport à la documentation complète, qui permet de se faire une idée du logiciel en question, et particulièrement sur la version concernée. Ces documents donnent souvent un résumé des nouvelles fonctionnalités offertes par rapport aux versions précédentes, des instructions de mise à jour, des avertissements pour les utilisateurs des anciennes versions, et parfois des errata."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Release notes are available online: the release notes for the current stable release have a dedicated URL, while older release notes can be found with their codenames: <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/releasenotes\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/lenny/releasenotes\" />"
+#, no-c-format
 msgid "Release notes are available online: the release notes for the current stable release have a dedicated URL, while older release notes can be found with their codenames: <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/releasenotes\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/releasenotes\" />"
-msgstr "Pour les versions de Debian, on trouvera ces notes de publication sur le Web, autant pour la version stable courante que pour les précédentes (qui restent accessibles par leur nom de code): <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/releasenotes\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/lenny/releasenotes\" />"
+msgstr "Pour les versions de Debian, on trouvera ces notes de publication sur le Web, autant pour la version stable courante que pour les précédentes (qui restent accessibles par leur nom de code): <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/releasenotes\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/releasenotes\" />"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "In this section, we will focus on upgrading a <emphasis role=\"distribution\">Lenny</emphasis> system to <emphasis role=\"distribution\">Squeeze</emphasis>. This is a major operation on a system; as such, it is never 100% risk-free, and should not be attempted before all important data has been backed up."
+#, no-c-format
 msgid "In this section, we will focus on upgrading a <emphasis role=\"distribution\">Squeeze</emphasis> system to <emphasis role=\"distribution\">Wheezy</emphasis>. This is a major operation on a system; as such, it is never 100% risk-free, and should not be attempted before all important data has been backed up."
-msgstr "Nous allons ici nous attacher particulièrement à la migration d'un système <emphasis role=\"distribution\">Lenny</emphasis> en <emphasis role=\"distribution\">Squeeze</emphasis>. Comme toute opération majeure sur un système, cette mise à jour comporte une certaine part de risque, et il est donc vivement conseillé de s'assurer que les données importantes sont sauvegardées avant de s'engager dans la procédure."
+msgstr "Nous allons ici nous attacher particulièrement à la migration d'un système <emphasis role=\"distribution\">Squeeze</emphasis> en <emphasis role=\"distribution\">Wheezy</emphasis>. Comme toute opération majeure sur un système, cette mise à jour comporte une certaine part de risque, et il est donc vivement conseillé de s'assurer que les données importantes sont sauvegardées avant de s'engager dans la procédure."
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -2083,12 +2024,9 @@ msgid "Another good habit which makes the upgrade easier (and shorter) is to tid
 msgstr "Pour faciliter (et raccourcir) la mise à jour, il est également recommandé de faire un peu de nettoyage dans les paquets installés, pour ne garder que ceux qui sont réellement nécessaires. Pour cela, on mettra à profit les fonctions d'<command>aptitude</command>, éventuellement en conjonction avec <command>deborphan</command> et <command>debfoster</command> (voir <xref linkend=\"aptitude\" />). On pourra par exemple utiliser la commande suivante:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
-#| msgid "<computeroutput># </computeroutput><userinput>deborphan | xargs aptitude remove</userinput>\n"
+#, no-c-format
 msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
-msgstr ""
-"\n"
-"<computeroutput># </computeroutput><userinput>deborphan | xargs aptitude remove</userinput>\n"
+msgstr "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -2210,16 +2148,14 @@ msgid "This last option covers a feature that <command>apticron</command> doesn'
 msgstr "Enfin, cette option couvre une fonction que n'a pas <command>apticron</command>: elle spécifie la fréquence à laquelle le cache d'APT pourra être automatiquement épuré des paquets obsolètes (ceux qui ne sont plus disponibles sur les miroirs ni référencés par aucune distribution). Elle permet de ne pas avoir à se soucier de la taille du cache d'APT, qui sera ainsi régulée automatiquement."
 
 #. Tag: term
-#, fuzzy, no-c-format
-#| msgid "<literal>APT::Periodic::Download-Upgradeable-Packages</literal>"
+#, no-c-format
 msgid "<literal>APT::Periodic::Unattended-Upgrade</literal>"
-msgstr "<literal>APT::Periodic::Download-Upgradeable-Packages</literal>"
+msgstr "<literal>APT::Periodic::Unattended-Upgrade</literal>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+#, no-c-format
 msgid "<primary><emphasis role=\"pkg\">unattended-upgrades</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">unattended-upgrades</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2232,10 +2168,9 @@ msgid "Other options can allow you to control the cache cleaning behavior with m
 msgstr "D'autres options permettent de jouer plus finement sur le comportement du nettoyage de cache; nous ne les aborderons pas ici, mais elles sont décrites dans le script <filename>/etc/cron.daily/apt</filename> lui-même."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+#, no-c-format
 msgid "<primary><emphasis role=\"pkg\">gnome-packagekit</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">gnome-packagekit</emphasis></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -2536,10 +2471,9 @@ msgid "Browsing this classification can help you to search for a package which c
 msgstr "Il est alors possible de naviguer dans cette classification, à la recherche d'un paquet correspondant aux besoins, ou du moins d'un petit nombre de paquets parmi lesquels on pourra faire le tri manuellement. Pour cela, on pourra soit utiliser le motif de recherche <literal>~G</literal> dans <command>aptitude</command>, soit plus simplement naviguer vers le site qui centralise les étiquettes: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/cloud/\" /> Si l'on sélectionne les étiquettes <literal>works-with::video</literal> et <literal>use::editing</literal>, on obtient une poignée de paquets, dont les éditeurs vidéo <emphasis role=\"pkg\">kino</emphasis> et <emphasis role=\"pkg\">pitivi</emphasis>. Ce système de classement est appelé à se généraliser et les gestionnaires de paquets intégreront progressivement des interfaces pour rechercher efficacement les logiciels. <indexterm><primary><emphasis role=\"pkg\">debtags</emphasis></primary></indexterm> <indexterm><primary>étiquette</primary></indexterm> <indexterm><primary><foreignphrase>tag</foreignphrase></primary></indexterm>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+#, no-c-format
 msgid "<primary><emphasis role=\"pkg\">debtags</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">debtags</emphasis></primary>"
 
 # TODO: INTEGRATE ALTERNATE STRING: <primary><foreignphrase>backport</foreignphrase></primary>
 #. Tag: indexterm
