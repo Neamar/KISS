@@ -45,6 +45,12 @@
 \usepackage{geometry}[includeheadfoot,right=1.3cm,left=1.6cm,top=1.3cm,bottom=1.3cm,]
 }
 
+% Configure babel french settings
+\@ifundefined{frenchbsetup}{
+}{
+  \frenchbsetup{StandardLayout,StandardLists,AutoSpacePunctuation=false}
+}
+
 \newcommand\outermargin{\dimexpr 1in + \oddsidemargin \relax}
 \newcommand\innermargin{\dimexpr 1in + \evensidemargin \relax}
 

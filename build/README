@@ -1,0 +1,9 @@
+The various scripts are relatively self-explanatory.
+
+Howto build the book published by Eyrolles:
+$ ./build/build-pdf --opts="-p dblatex/eyrolles.xsl" --lang=fr-FR
+
+TODO
+----
+- Improve librement.sty / dblatex so that frenchb does not try to add
+  spaces before punctuation in "lstcode" environments
