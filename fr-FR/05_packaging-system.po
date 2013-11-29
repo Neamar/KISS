@@ -1,11 +1,26 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-11-26 15:52+0100\n"
-"PO-Revision-Date: 2013-11-28 22:05+0100\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#~ #
+#~ # AUTHOR <EMAIL@ADDRESS>, YEAR.
+#~ #
+#~ msgid ""
+#~ msgstr ""
+#~ "Project-Id-Version: 0\n"
+#~ "POT-Creation-Date: 2013-11-26 15:52+0100\n"
+"PO-Revision-Date: 2013-11-29 10:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: None\n"
 "Language: \n"
@@ -74,12 +89,7 @@ msgstr "<primary><command>ar</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command> (sometimes <command>xz</command> or <command>bzip2</command>). This seemingly trivial property is important for portability and disaster recovery."
-msgstr ""
-"Le format d'un paquet Debian est conçu de telle sorte que son contenu\n"
-"puisse être extrait sur tout système Unix disposant des commandes\n"
-"classiques <command>ar</command>, <command>tar</command>, et\n"
-"<command>gzip</command> (parfois <command>xz</command> ou\n"
-"<command>bzip2</command>). Cette propriété en apparence anodine est importante du point de vue de la portabilité et de la récupération en cas de catastrophe."
+msgstr "Le format d'un paquet Debian est conçu de telle sorte que son contenu puisse être extrait sur tout système Unix disposant des commandes classiques <command>ar</command>, <command>tar</command>, et <command>gzip</command> (parfois <command>xz</command> ou <command>bzip2</command>). Cette propriété en apparence anodine est importante du point de vue de la portabilité et de la récupération en cas de catastrophe."
 
 #. Tag: para
 #, no-c-format
@@ -651,15 +661,7 @@ msgstr "L'interchangeabilité avec un autre paquet"
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Provides</literal> field is again interesting when the content of a package is included in a larger package. For example, the <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> Perl module was an optional module in Perl 5.6, and has been integrated as standard in Perl 5.8 (and later versions, such as 5.14 present in <emphasis role=\"distribution\">Wheezy</emphasis>). As such, the package <emphasis role=\"pkg\">perl</emphasis> has since version 5.8 declared <literal>Provides: libdigest-md5-perl</literal> so that the dependencies on this package are met if the user has Perl 5.8 (or newer). The <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> package itself has eventually been deleted, since it no longer had any purpose when old Perl versions were removed."
-msgstr ""
-"Le champ <literal>Provides</literal> s'avère encore intéressant\n"
-"lorsque le contenu d'un paquet est intégré dans un paquet plus\n"
-"vaste. Ainsi le module Perl <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> était un module facultatif en\n"
-"Perl 5.6, qui a été intégré en standard dans Perl 5.8 (et les versions\n"
-"suivantes). Le paquet <emphasis role=\"pkg\">perl</emphasis> déclare\n"
-"donc depuis sa version 5.8 <literal>Provides:\n"
-"libdigest-md5-perl</literal> afin que les dépendances sur ce paquet\n"
-"soient satisfaites si l'utilisateur dispose de Perl 5.8 ou plus récent. Le paquet <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> lui-même a ainsi pu être supprimé, n'ayant plus de raison d'être."
+msgstr "Le champ <literal>Provides</literal> s'avère encore intéressant lorsque le contenu d'un paquet est intégré dans un paquet plus vaste. Ainsi le module Perl <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> était un module facultatif en Perl 5.6, qui a été intégré en standard dans Perl 5.8 (et les versions suivantes). Le paquet <emphasis role=\"pkg\">perl</emphasis> déclare donc depuis sa version 5.8 <literal>Provides: libdigest-md5-perl</literal> afin que les dépendances sur ce paquet soient satisfaites si l'utilisateur dispose de Perl 5.8 ou plus récent. Le paquet <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> lui-même a ainsi pu être supprimé, n'ayant plus de raison d'être."
 
 #. Tag: title
 #, no-c-format
@@ -759,15 +761,7 @@ msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Le champ <literal>Tag</literal
 #. Tag: para
 #, no-c-format
 msgid "In the <emphasis role=\"pkg\">apt</emphasis> example above, we can see the presence of a field that we have not yet described, the <literal>Tag</literal> field. This field does not describe a relationship between packages, but is simply a way of categorizing a package in a thematic taxonomy. This classification of packages according to several criteria (type of interface, programming language, domain of application, etc.) has been available for a long time. Despite this, not all packages have accurate tags and it is not yet integrated in all Debian tools; <command>aptitude</command> displays these tags, and allows them to be used as search criteria. For those who are repelled by <command>aptitude</command>'s search criteria, the following website allows navigation of the tag database: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
-msgstr ""
-"Dans l'exemple d'<emphasis role=\"pkg\">apt</emphasis>, cité plus haut,\n"
-"on peut constater la présence d'un champ que nous n'avons pas encore\n"
-"décrit, le champ <literal>Tag</literal> (étiquette). Il ne s'agit pas\n"
-"d'un champ décrivant une relation entre paquets, mais simplement d'une\n"
-"catégorisation du paquet dans une taxonomie thématique. Cette\n"
-"classification des paquets selon plusieurs critères (type d'interface,\n"
-"langage de programmation, domaine d'application, etc.) est présente de\n"
-"longue date dans Debian, mais elle n'est pas encore intégrée dans tous les outils; <command>aptitude</command> affiche ces étiquettes, et permet de s'en servir comme critères de recherche. Pour ceux que la syntaxe de recherche d'<command>aptitude</command> rebute, signalons le site qui permet de naviguer dans la base de données des étiquettes: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
+msgstr "Dans l'exemple d'<emphasis role=\"pkg\">apt</emphasis>, cité plus haut, on peut constater la présence d'un champ que nous n'avons pas encore décrit, le champ <literal>Tag</literal> (étiquette). Il ne s'agit pas d'un champ décrivant une relation entre paquets, mais simplement d'une catégorisation du paquet dans une taxonomie thématique. Cette classification des paquets selon plusieurs critères (type d'interface, langage de programmation, domaine d'application, etc.) est présente de longue date dans Debian, mais elle n'est pas encore intégrée dans tous les outils; <command>aptitude</command> affiche ces étiquettes, et permet de s'en servir comme critères de recherche. Pour ceux que la syntaxe de recherche d'<command>aptitude</command> rebute, signalons le site qui permet de naviguer dans la base de données des étiquettes: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
 
 # Marilyne Brun a relu jusqu'ici
 #. Tag: title
@@ -1576,9 +1570,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Querying <command>dpkg</command>'s Database and Inspecting <filename>.deb</filename> Files"
-msgstr ""
-"Consulter la base de données de <command>dpkg</command> et inspecter\n"
-"des fichiers <filename>.deb</filename>"
+msgstr "Consulter la base de données de <command>dpkg</command> et inspecter des fichiers <filename>.deb</filename>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1945,26 +1937,12 @@ msgstr "<primary>architecture</primary><secondary>support multi-architecture</se
 #. Tag: para
 #, no-c-format
 msgid "All Debian packages have an <literal>Architecture</literal> field in their control information. This field can contain either “<literal>all</literal>” (for packages that are architecture independent) or the name of the architecture that it targets (like “amd64”, “armhf”, …). In the latter case, by default, <command>dpkg</command> will only accept to install the package if its architecture matches the host's architecture as returned by <command>dpkg --print-architecture</command>."
-msgstr ""
-"Tous les paquets Debian ont un champ <literal>Architecture</literal>\n"
-"dans leur information de contrôle.  Ce champ peut prendre la valeur\n"
-"« <literal>all</literal> » (pour les paquets ne dépendant pas d'une\n"
-"architecture particulière), ou le nom de l'architecture visée dans le\n"
-"cas contraire (comme « amd64 », « armhf », etc.).  Dans ce dernier\n"
-"cas, par défaut, <command>dpkg</command> n'acceptera d'installer le\n"
-"paquet que si son architecture déclarée est la même que celle renvoyée\n"
-"par <command>dpkg --print-architecture</command>."
+msgstr "Tous les paquets Debian ont un champ <literal>Architecture</literal> dans leur information de contrôle.  Ce champ peut prendre la valeur « <literal>all</literal> » (pour les paquets ne dépendant pas d'une architecture particulière), ou le nom de l'architecture visée dans le cas contraire (comme « amd64 », « armhf », etc.).  Dans ce dernier cas, par défaut, <command>dpkg</command> n'acceptera d'installer le paquet que si son architecture déclarée est la même que celle renvoyée par <command>dpkg --print-architecture</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "This restriction ensures that users do not end up with binaries compiled for an incorrect architecture. Everything would be perfect except that (some) computers can run binaries for multiple architectures, either natively (an “amd64“ system can run “i386” binaries) or through emulators."
-msgstr ""
-"Cette restriction assure que les utilisateurs ne vont pas se retrouver\n"
-"avec des binaires compilés pour une architecture incorrecte.  Elle\n"
-"présente tout de même le défaut que certains ordinateurs sont capables\n"
-"de faire fonctionner des binaires compilés pour différentes\n"
-"architectures, soit de manière native (un système « amd64 » peut\n"
-"exécuter des programmes « i386 ») soit par le biais d'émulateurs."
+msgstr "Cette restriction assure que les utilisateurs ne vont pas se retrouver avec des binaires compilés pour une architecture incorrecte.  Elle présente tout de même le défaut que certains ordinateurs sont capables de faire fonctionner des binaires compilés pour différentes architectures, soit de manière native (un système « amd64 » peut exécuter des programmes « i386 ») soit par le biais d'émulateurs."
 
 #. Tag: title
 #, no-c-format
@@ -1974,15 +1952,7 @@ msgstr "Activer le support multi-architecture"
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command>'s multi-arch support allows users to define “foreign architectures” that can be installed on the current system. This is simply done with <command>dpkg --add-architecture</command> like in the example below. There's a corresponding <command>dpkg --remove-architecture</command> to drop support of a foreign architecture, but it can only be used when no packages of this architecture remain."
-msgstr ""
-"Le support multi-architecture de <command>dpkg</command> permet à\n"
-"l'administrateur de définir des architectures supplémentaires dont les\n"
-"paquets pourront être installés sur le système.  Cela se fait\n"
-"simplement par la commande <command>dpkg --add-architecture</command>\n"
-"comme l'illustre l'exemple ci-dessous.  Il existe aussi une commande\n"
-"<command>dpkg --remove-architecture</command> pour désactiver le\n"
-"support d'une architecture supplémentaire, mais elle n'est utilisable\n"
-"que si aucun paquet de cette architecture n'est installé."
+msgstr "Le support multi-architecture de <command>dpkg</command> permet à l'administrateur de définir des architectures supplémentaires dont les paquets pourront être installés sur le système.  Cela se fait simplement par la commande <command>dpkg --add-architecture</command> comme l'illustre l'exemple ci-dessous.  Il existe aussi une commande <command>dpkg --remove-architecture</command> pour désactiver le support d'une architecture supplémentaire, mais elle n'est utilisable que si aucun paquet de cette architecture n'est installé."
 
 #. Tag: screen
 #, no-c-format
@@ -2045,46 +2015,27 @@ msgstr "<emphasis>NOTE</emphasis> Le support multi-architecture dans APT"
 #. Tag: para
 #, no-c-format
 msgid "APT will automatically detect when dpkg has been configured to support foreign architectures and will start downloading the corresponding <filename>Packages</filename> files durings its update process."
-msgstr ""
-"APT détecte quand dpkg a été configuré pour supporter des\n"
-"architectures supplémentaires, et télécharge automatiquement les\n"
-"fichiers <filename>Packages</filename> correspondants pendant son\n"
-"processus de mise à jour."
+msgstr "APT détecte quand dpkg a été configuré pour supporter des architectures supplémentaires, et télécharge automatiquement les fichiers <filename>Packages</filename> correspondants pendant son processus de mise à jour."
 
 #. Tag: para
 #, no-c-format
 msgid "Foreign packages can then be installed with <command>apt-get install <replaceable>package</replaceable>:<replaceable>architecture</replaceable></command>."
-msgstr ""
-"Les paquets des architectures supplémentaires peuvent alors être\n"
-"installés avec <command>apt-get install <replaceable>package</replaceable>:<replaceable>architecture</replaceable></command>."
+msgstr "Les paquets des architectures supplémentaires peuvent alors être installés avec <command>apt-get install <replaceable>package</replaceable>:<replaceable>architecture</replaceable></command>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Using proprietary i386 binaries on amd64"
-msgstr ""
-"<emphasis>EN PRATIQUE</emphasis> Utilisation de binaires i386\n"
-"propriétaires sur amd64"
+msgstr "<emphasis>EN PRATIQUE</emphasis> Utilisation de binaires i386 propriétaires sur amd64"
 
 #. Tag: para
 #, no-c-format
 msgid "There are multiple use cases for multi-arch, but the most popular one is the possibbility to execute 32 bit binaries (i386) on 64 bit systems (amd64), in particular since several popular proprietary applications (like Skype) are only provided in 32 bit versions."
-msgstr ""
-"Il existe de nombreux cas d'usage pour le support multi-archtectures;\n"
-"parmi les plus populaires, citons la possibilité d'exécuter des\n"
-"binaires 32 bits (i386) sur des systèmes 64 bits (amd64), en\n"
-"particulier pour tenir compte du fait que plusieurs applications\n"
-"populaires bien que propriétaires (comme Skype) ne sont disponibles\n"
-"qu'en version 32 bits."
+msgstr "Il existe de nombreux cas d'usage pour le support multi-archtectures; parmi les plus populaires, citons la possibilité d'exécuter des binaires 32 bits (i386) sur des systèmes 64 bits (amd64), en particulier pour tenir compte du fait que plusieurs applications populaires bien que propriétaires (comme Skype) ne sont disponibles qu'en version 32 bits."
 
 #. Tag: para
 #, no-c-format
 msgid "Before multi-arch, when you wanted to uses a 32 bit appliction on a 64 bit system, you had to install <emphasis role=\"pkg\">ia32-libs</emphasis> to have 32 bit versions of the most popular libraries. That package was a huge hack that repackaged 32 bit libraries in an “amd64” package."
-msgstr ""
-"Avant le support multi-architecture, pour faire fonctionner une\n"
-"application 32 bits sur un système 64 bits, il fallait installer\n"
-"<emphasis role=\"pkg\">ia32-libs</emphasis>.  Ce paquet, qui rassemblait\n"
-"dans un paquet « amd64 » des versions 32 bits des bibliothèques les\n"
-"plus courantes, était un affreux bricolage."
+msgstr "Avant le support multi-architecture, pour faire fonctionner une application 32 bits sur un système 64 bits, il fallait installer <emphasis role=\"pkg\">ia32-libs</emphasis>.  Ce paquet, qui rassemblait dans un paquet « amd64 » des versions 32 bits des bibliothèques les plus courantes, était un affreux bricolage."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2099,20 +2050,7 @@ msgstr "Changements liés au support multi-architecture"
 #. Tag: para
 #, no-c-format
 msgid "To make multi-arch actually useful and usable, libraries had to be repackaged and moved to an architecture-specific directory so that multiple copies (targeting different architectures) can be installed alongside. Such updated packages contain the “<literal>Multi-Arch: same</literal>” header field to tell the packaging system that the various architectures of the package can be safely co-installed (and that those packages can only satisfy dependencies of packages of the same architecture). Since multi-arch made its debut in Debian Wheezy, not all libraries have been converted yet (but all libraries which were embedded in <emphasis role=\"pkg\">ia32-libs</emphasis> do!)."
-msgstr ""
-"Pour que le support multi-architecture soit réellement utile et\n"
-"utilisable, les bibliothèques ont dû être réempaquetées et déplacées\n"
-"vers un répertoire dépendant de l'architecture, de sorte que plusieurs\n"
-"copies de la même bibliothèque (mais compilées pour des architectures\n"
-"différentes) puissent être installées en même temps.  Ces paquets ont\n"
-"été mis à jour pour inclure le champ d'en-tête « <literal>Multi-Arch:\n"
-"same</literal> », qui signale au système de gestion des paquets que\n"
-"plusieurs versions de ces paquets peuvent être co-installées sans\n"
-"risque (et que ces paquets ne peuvent satisfaire que des dépendances\n"
-"de paquets ayant la même architecture).  Comme le support\n"
-"multi-architecture n'est présent que depuis Debian Wheezy, toutes les\n"
-"bibliothèques n'ont pas encore été converties (mais celles qui étaient\n"
-"rassemblées dans <emphasis role=\"pkg\">ia32-libs</emphasis> l'ont été !)."
+msgstr "Pour que le support multi-architecture soit réellement utile et utilisable, les bibliothèques ont dû être réempaquetées et déplacées vers un répertoire dépendant de l'architecture, de sorte que plusieurs copies de la même bibliothèque (mais compilées pour des architectures différentes) puissent être installées en même temps.  Ces paquets ont été mis à jour pour inclure le champ d'en-tête « <literal>Multi-Arch: same</literal> », qui signale au système de gestion des paquets que plusieurs versions de ces paquets peuvent être co-installées sans risque (et que ces paquets ne peuvent satisfaire que des dépendances de paquets ayant la même architecture).  Comme le support multi-architecture n'est présent que depuis Debian Wheezy, toutes les bibliothèques n'ont pas encore été converties (mais celles qui étaient rassemblées dans <emphasis role=\"pkg\">ia32-libs</emphasis> l'ont été !)."
 
 #. Tag: screen
 #, no-c-format
@@ -2146,32 +2084,12 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that <literal>Multi-Arch: same</literal> packages must have their names qualified with their architecture to be unambiguously identifiable. They also have the possibility to share files with other instances of the same package; <command>dpkg</command> ensures that all packages have bit-for-bit identical files when they are shared. Last but not least, all instances of a package must have the same version. They must thus be upgraded together."
-msgstr ""
-"Il est à noter que les paquets <literal>Multi-Arch: same</literal> ne\n"
-"sont identifiables sans ambiguïté que si leur nom est qualifié avec\n"
-"leur architecture.  Ils ont également la possibilité de partager des\n"
-"fichiers avec d'autres instances du même paquet;\n"
-"<command>dpkg</command> s'assure que ces fichiers partagés sont\n"
-"identiques au bit près.  Pour terminer, mentionnons que toutes les\n"
-"instances d'un même paquet doivent avoir la même version, et qu'ils\n"
-"doivent donc être mis à jour en même temps."
+msgstr "Il est à noter que les paquets <literal>Multi-Arch: same</literal> ne sont identifiables sans ambiguïté que si leur nom est qualifié avec leur architecture.  Ils ont également la possibilité de partager des fichiers avec d'autres instances du même paquet; <command>dpkg</command> s'assure que ces fichiers partagés sont identiques au bit près.  Pour terminer, mentionnons que toutes les instances d'un même paquet doivent avoir la même version, et qu'ils doivent donc être mis à jour en même temps."
 
 #. Tag: para
 #, no-c-format
 msgid "Multi-Arch support also brings some interesting challenges in the way dependencies are handled. Satisfying a dependency requires either a package marked “<literal>Multi-Arch: foreign</literal>” or a package whose architecture matches the one of the package declaring the dependency (in this dependency resolution process, architecture-independent packages are assumed to be of the same architecture than the host). A dependency can also be weakened to allow any architecture to fulfill it, with the <literal><replaceable>package</replaceable>:any</literal> syntax, but foreign packages can only satisfy such a dependency if they are marked “<literal>Multi-Arch: allowed</literal>”."
-msgstr ""
-"Le support multi-architecture apporte également quelques complications\n"
-"dans la gestion des dépendances.  Une dépendance, pour être\n"
-"satisfaite, requiert soit un paquet marqué « <literal>Multi-Arch:\n"
-"foreign</literal> », soit un paquet dont l'architecture est identique\n"
-"à celle du paquet déclarant la dépendance (lors de ce processus de\n"
-"résolution des dépendances, les paquets indépendants de l'architecture\n"
-"sont considérés comme ayant l'architecture principale du système).\n"
-"Une dépendance peut aussi être affaiblie de manière à pouvoir être\n"
-"satisfaite par un paquet d'architecture quelconque, avec la syntaxe\n"
-"<literal><replaceable>paquet</replaceable>:any</literal>, mais les\n"
-"paquets des architectures supplémentaires ne peuvent satisfaire cette\n"
-"dépendance que s'ils sont marqués comme « <literal>Multi-Arch: allowed</literal> »."
+msgstr "Le support multi-architecture apporte également quelques complications dans la gestion des dépendances.  Une dépendance, pour être satisfaite, requiert soit un paquet marqué « <literal>Multi-Arch: foreign</literal> », soit un paquet dont l'architecture est identique à celle du paquet déclarant la dépendance (lors de ce processus de résolution des dépendances, les paquets indépendants de l'architecture sont considérés comme ayant l'architecture principale du système). Une dépendance peut aussi être affaiblie de manière à pouvoir être satisfaite par un paquet d'architecture quelconque, avec la syntaxe <literal><replaceable>paquet</replaceable>:any</literal>, mais les paquets des architectures supplémentaires ne peuvent satisfaire cette dépendance que s'ils sont marqués comme « <literal>Multi-Arch: allowed</literal> »."
 
 #. Tag: title
 #, no-c-format
