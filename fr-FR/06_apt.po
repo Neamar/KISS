@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-11-26 15:52+0100\n"
-"PO-Revision-Date: 2013-11-29 11:45+0100\n"
+"PO-Revision-Date: 2013-11-29 17:12+0100\n"
 "Last-Translator: Raphaël Hertzog <hertzog@debian.org>\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -148,7 +148,7 @@ msgstr "<primary><filename>/etc/apt/sources.list</filename></primary>"
 #. Tag: title
 #, no-c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Syntaxe"
 
 #. Tag: para
 #, no-c-format
@@ -251,9 +251,9 @@ msgid "<primary><command>apt-cdrom</command></primary>"
 msgstr "<primary><command>apt-cdrom</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The <literal>cdrom</literal> entries describe the CD/DVD-ROMs you have. Contrary to other entries, a CD-ROM is not always available since it has to be inserted into the drive and since only one disc can be read at a time. For those reasons, these sources are managed in a slightly different way, and need to be added with the <command>apt-cdrom</command> program, usually executed with the <literal>add</literal> parameter. The latter will then request the disc to be inserted in the drive and will browse its contents looking for <filename>Packages</filename> files. It will use these files to update its database of available packages (this operation is usually done by the <command>apt-get update</command> command). From then on, APT can require the disc to be inserted if it needs one of its packages."
-msgstr "Le fichier <filename>sources.list</filename> comporte encore d'autres types d'entrées : celles décrivant des CD-Rom Debian dont vous disposez. Contrairement aux autres entrées, un CD-Rom n'est pas disponible en permanence puisqu'il faut l'insérer dans le lecteur et qu'un seul disque peut être lu à la fois — ces sources sont donc gérées un peu différemment. On ajoutera ces entrées à l'aide du petit programme <command>apt-cdrom</command>, habituellement invoqué avec le paramètre <literal>add</literal>. Ce dernier demande alors d'insérer le disque dans le lecteur et parcourt son contenu à la recherche de fichiers <filename>Packages</filename>, qu'il utilisera pour mettre à jour sa base de données de paquets disponibles (opération habituellement réalisée par la commande <command>aptitude update</command>). Dès lors, APT pourra vous demander d'insérer le CD-Rom en question s'il a besoin de l'un de ses paquets."
+msgstr "Les entrées <literal>cdrom</literal> décrivent les CD/DVD-Rom Debian dont vous disposez. Contrairement aux autres entrées, un CD-Rom n'est pas disponible en permanence puisqu'il faut l'insérer dans le lecteur et qu'un seul disque peut être lu à la fois — ces sources sont donc gérées un peu différemment. On ajoutera ces entrées à l'aide du petit programme <command>apt-cdrom</command>, habituellement invoqué avec le paramètre <literal>add</literal>. Ce dernier demande alors d'insérer le disque dans le lecteur et parcourt son contenu à la recherche de fichiers <filename>Packages</filename>, qu'il utilisera pour mettre à jour sa base de données de paquets disponibles (opération habituellement réalisée par la commande <command>apt-get update</command>). Dès lors, APT pourra vous demander d'insérer le disque en question s'il a besoin de l'un de ses paquets."
 
 #. Tag: title
 #, no-c-format
@@ -275,15 +275,7 @@ msgstr ""
 "utilisateurs de Debian Stable"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
-#| msgid ""
-#| "# Security updates\n"
-#| "deb http://security.debian.org/ stable/updates main contrib non-free\n"
-#| "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
-#| "\n"
-#| "# Debian mirror\n"
-#| "deb http://ftp.debian.org/debian stable main contrib non-free\n"
-#| "deb-src http://ftp.debian.org/debian stable main contrib non-free\n"
+#, no-c-format
 msgid ""
 "# Security updates\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
@@ -304,14 +296,23 @@ msgid ""
 "deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
 "  "
 msgstr ""
-"\n"
 "# Mises à jour de sécurité\n"
-"deb http://security.debian.org/ stable/updates main contrib non-free\n"
-"deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
+"deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ wheezy/updates main contrib non-free\n"
 "\n"
-"# Miroir Debian\n"
-"deb http://ftp.fr.debian.org/debian stable main contrib non-free\n"
-"deb-src http://ftp.fr.debian.org/debian stable main contrib non-free\n"
+"## Miroir Debian\n"
+"\n"
+"# Dépôt de base\n"
+"deb http://ftp.debian.org/debian wheezy main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy main contrib non-free\n"
+"\n"
+"# Mises à jour pour stable\n"
+"deb http://ftp.debian.org/debian wheezy-updates main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-updates main contrib non-free\n"
+"\n"
+"# Rétroportages vers stable\n"
+"deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free"
 
 #. Tag: para
 #, no-c-format
@@ -344,10 +345,9 @@ msgid "Most packages will come from the “base repository” which contains all
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "This file lists all sources of packages associated with the stable version of Debian. If you would like to use <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, you will of course have to add (or replace them with) the appropriate lines. When the desired version of a package is available on several mirrors, the first one listed in the <filename>sources.list</filename> file will be used. For this reason, non-official sources are usually added at the end of the file."
+#, no-c-format
 msgid "Note that when the desired version of a package is available on several repositories, the first one listed in the <filename>sources.list</filename> file will be used. For this reason, non-official sources are usually added at the end of the file."
-msgstr "Ce fichier référence toutes les sources de paquets associées à la version stable de Debian. Si vous souhaitez utiliser <emphasis role=\"distribution\">Testing</emphasis> ou <emphasis role=\"distribution\">Unstable</emphasis>, il faudra évidemment y ajouter (ou les remplacer par) les lignes adéquates. Lorsque la version désirée d'un paquet est disponible sur plusieurs miroirs, c'est celui qui est listé en premier dans le fichier <filename>sources.list</filename> qui sera employé. Pour cette raison on préfère ajouter les sources non-officielles à la fin du fichier."
+msgstr "Il est à noter que lorsque la version souhaitée d'un paquet est disponible sur plusieurs dépôts, le paquet sera téléchargé sur le premier de ces dépôts mentionnés dans le fichier <filename>sources.list</filename>.  C'est pour cette raison que l'on place généralement les sources non-officielles à la fin du ficiher."
 
 #. Tag: para
 #, no-c-format
@@ -410,10 +410,9 @@ msgid "Stable updates are not security sensitive but are deemed important enough
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "This minor release can also include updates for packages that have to evolve over time... like <emphasis role=\"pkg\">spamassassin</emphasis>'s spam detection rules, <emphasis role=\"pkg\">clamav</emphasis>'s virus database, or the daylight-saving rules of all timezones (<emphasis role=\"pkg\">tzdata</emphasis>)."
+#, no-c-format
 msgid "This repository will typically contain fixes for critical bugs which could not be fixed before release or which have been introduced by subsequent updates. Depending on the urgency, it can also contain updates for packages that have to evolve over time… like <emphasis role=\"pkg\">spamassassin</emphasis>'s spam detection rules, <emphasis role=\"pkg\">clamav</emphasis>'s virus database, or the daylight-saving rules of all timezones (<emphasis role=\"pkg\">tzdata</emphasis>)."
-msgstr "Cela permet également d'inclure des mises à jour pour les paquets qui ont besoin d'évoluer au fil du temps... par exemple les règles de détection de spam de <emphasis role=\"pkg\">spamassassin</emphasis>, la base de données de virus de <emphasis role=\"pkg\">clamav</emphasis>, ou encore les données de changement d'heure des tous les fuseaux horaires (<emphasis role=\"pkg\">tzdata</emphasis>)."
+msgstr "Ce dépôt va typiquement contenir des correctifs pour des bugs critiques qui n'ont pas pu être corrigés avant la publication officielle de la version stable de Debian, ou qui ont été introduits par des mises à jour postérieures.  En fonction de l'urgence ou non des différentes situations, il peut aussi contenir des mises à jour pour les paquets qui ont besoin d'évoluer au fil du temps... par exemple les règles de détection de spam de <emphasis role=\"pkg\">spamassassin</emphasis>, la base de données de virus de <emphasis role=\"pkg\">clamav</emphasis>, ou encore les données de changement d'heure des tous les fuseaux horaires (<emphasis role=\"pkg\">tzdata</emphasis>)."
 
 #. Tag: para
 #, no-c-format
@@ -436,10 +435,9 @@ msgid "<primary><literal>stable-proposed-updates</literal></primary>"
 msgstr "<primary><literal>stable-proposed-updates</literal></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Once published, the <emphasis role=\"distribution\">Stable</emphasis> distribution is only updated about once every 2 months in order to integrate the security updates published on <literal>security.debian.org</literal>."
+#, no-c-format
 msgid "Once published, the <emphasis role=\"distribution\">Stable</emphasis> distribution is only updated about once every 2 months. The <literal>proposed-updates</literal> repository is where the expected updates are prepared (under the supervision of the Stable Release Managers)."
-msgstr "Une fois publiée, la distribution <emphasis role=\"distribution\">Stable</emphasis> n'est mise à jour que tous les 2 mois environ afin d'intégrer toutes les mises à jour de sécurité publiées sur <literal>security.debian.org</literal>."
+msgstr "Une fois publiée, la distribution <emphasis role=\"distribution\">Stable</emphasis> n'est mise à jour que tous les 2 mois environ.  Le dépôt <literal>proposed-updates</literal> contient les mises à jour qui sont proposées à l'inclusion dans <emphasis role=\"distribution\">Stable</emphasis>, sous la supervision des gestionnaires de publication stable."
 
 #. Tag: para
 #, no-c-format
@@ -447,22 +445,19 @@ msgid "The security and stable updates documented in the former sections are alw
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Anyone can use this repository to test those updates before their official publication. The extract below uses the <literal>wheezy-proposed-updates</literal> alias which is both more explicit and more consistent since <literal>squeeze-proposed-updates</literal> also exists (for the <emphasis role=\"distribution\">Oldstable</emphasis> updates):"
-msgstr "Toutes ces mises à jour sont préparées dans un dépôt que l'on connaît sous le nom de <literal>proposed-updates</literal> et qu'il est possible d'activer si l'on veut tester ces corrections avant leur publication officielle. Nous employons ici l'alias <literal>squeeze-proposed-updates</literal> qui est à la fois plus explicite et plus cohérent puisque <literal>lenny-proposed-updates</literal> existe également (pour les mises à jour de <emphasis role=\"distribution\">Oldstable</emphasis>) :"
+msgstr "Notons qu'il est possible d'activer ce dépôt si l'on veut tester ces corrections avant leur publication officielle. Nous employons ici l'alias <literal>wheezy-proposed-updates</literal> qui est à la fois plus explicite et plus cohérent puisque <literal>squeeze-proposed-updates</literal> existe également (pour les mises à jour de <emphasis role=\"distribution\">Oldstable</emphasis>) :"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
-#| msgid "deb http://ftp.debian.org/debian squeeze-proposed-updates main contrib non-free\n"
+#, no-c-format
 msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
-msgstr ""
-"\n"
-"deb http://ftp.fr.debian.org/debian squeeze-proposed-updates main contrib non-free\n"
+msgstr "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Stable Backports"
-msgstr ""
+msgstr "Rétroportages vers stable"
 
 #. Tag: indexterm
 #, no-c-format
@@ -476,20 +471,19 @@ msgid "<primary>backport</primary>"
 msgstr "<primary>rétroportage</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>package</primary><secondary>priority</secondary>"
+#, no-c-format
 msgid "<primary>updates</primary><secondary>backports</secondary>"
-msgstr "<primary>paquet</primary><secondary>priorité</secondary>"
+msgstr "<primary>mises à jour</primary><secondary>rétroportages</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>stable-backports</literal> repository hosts “package backports”. The term refers to a package of some recent software which has been recompiled for an older distribution, generally for <emphasis role=\"distribution\">Stable</emphasis>."
-msgstr ""
+msgstr "Le dépôt <literal>stable-backports</literal> héberge des « rétroportages » de paquets (<foreignphrase>backports</foreignphrase>). Ce terme désigne un paquet d'un logiciel récent recompilé pour une distribution plus ancienne, généralement <emphasis role=\"distribution\">Stable</emphasis>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "When the distribution becomes a little dated, numerous software projects have released new versions that are not integrated into the current <emphasis role=\"distribution\">Stable</emphasis> (which is only modified to address the most critical problems, such as security problems). Since the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> distributions can be more risky, package maintainers sometimes offer recompilations of recent software applications for <emphasis role=\"distribution\">Stable</emphasis>, which has the advantage to limit potential instability to a small number of chosen packages. <ulink type=\"block\" url=\"http://backports.debian.org\" />"
-msgstr "Le serveur <literal>backports.debian.org</literal> héberge des « rétroportages » de paquets (<foreignphrase>backports</foreignphrase>). Ce terme désigne un paquet d'un logiciel récent (récupéré dans la distribution <emphasis role=\"distribution\">Testing</emphasis>) recompilé pour une distribution plus ancienne, généralement <emphasis role=\"distribution\">Stable</emphasis>. Lorsque cette distribution commence à dater, de nombreux logiciels évoluent en amont, et les nouvelles versions ne sont pas réintégrées dans la <emphasis role=\"distribution\">Stable</emphasis> courante (qui n'est modifiée que pour prendre en compte les problèmes les plus critiques, comme les problèmes de sécurité). Comme les distributions <emphasis role=\"distribution\">Testing</emphasis> et <emphasis role=\"distribution\">Unstable</emphasis> peuvent être plus risquées, des volontaires proposent parfois des recompilations des logiciels récents pour <emphasis role=\"distribution\">Stable</emphasis>, ce qui permet de restreindre une éventuelle instabilité à un petit nombre, bien choisi, de paquets. <ulink type=\"block\" url=\"http://backports.debian.org\" />"
+msgstr "Lorsque cette distribution commence à dater, de nombreux logiciels évoluent en amont, et les nouvelles versions ne sont pas réintégrées dans la <emphasis role=\"distribution\">Stable</emphasis> courante (qui n'est modifiée que pour prendre en compte les problèmes les plus critiques, comme les problèmes de sécurité). Comme les distributions <emphasis role=\"distribution\">Testing</emphasis> et <emphasis role=\"distribution\">Unstable</emphasis> peuvent être plus risquées, des volontaires proposent parfois des recompilations des logiciels récents pour <emphasis role=\"distribution\">Stable</emphasis>, ce qui permet de restreindre une éventuelle instabilité à un petit nombre, bien choisi, de paquets. <ulink type=\"block\" url=\"http://backports.debian.org\" />"
 
 #. Tag: para
 #, no-c-format
@@ -519,12 +513,7 @@ msgid "Even though this repository provides newer versions of packages, APT will
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
-#| msgid ""
-#| "<computeroutput># </computeroutput><userinput>aptitude install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
-#| "[...]\n"
-#| "<computeroutput># </computeroutput><userinput>aptitude remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
-#| "[...]\n"
+#, no-c-format
 msgid ""
 "\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
@@ -532,26 +521,24 @@ msgid ""
 "\t"
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>aptitude install <replaceable>paquet1</replaceable> <replaceable>paquet2-</replaceable></userinput>\n"
-"[...]\n"
-"<computeroutput># </computeroutput><userinput>aptitude remove <replaceable>paquet1+</replaceable> <replaceable>paquet2</replaceable></userinput>\n"
-"[...]\n"
+"$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
+"\t"
 
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "Installation of the <emphasis role=\"distribution\">unstable</emphasis> version of <emphasis role=\"pkg\">spamassassin</emphasis>"
+#, no-c-format
 msgid "Repositories for <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis> Users"
-msgstr "Installation de la version <emphasis role=\"distribution\">Unstable</emphasis> de <emphasis role=\"pkg\">spamassassin</emphasis>"
+msgstr "Dépôts pour les utilisateurs de <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Here is a standard <filename>sources.list</filename> for a system running the <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> version of Debian:"
-msgstr "L'entrée à ajouter dans le fichier <filename>sources.list</filename> est la suivante pour les rétroportages ciblant la distribution <emphasis role=\"distribution\">Squeeze</emphasis> :"
+msgstr "Voici un <filename>sources.list</filename> standard pour un système qui fonctionne avec la version <emphasis role=\"distribution\">Testing</emphasis> ou <emphasis role=\"distribution\">Unstable</emphasis> de Debian :"
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis>"
-msgstr "L'entrée à ajouter dans le fichier <filename>sources.list</filename> est la suivante pour les rétroportages ciblant la distribution <emphasis role=\"distribution\">Squeeze</emphasis> :"
+msgstr "Fichier <filename>/etc/apt/sources.list</filename> pour les utilisateurs de Debian <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -575,6 +562,24 @@ msgid ""
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
 msgstr ""
+"\n"
+"# Unstable\n"
+"deb http://ftp.debian.org/debian unstable main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian unstable main contrib non-free\n"
+"\n"
+"# Testing\n"
+"deb http://ftp.debian.org/debian testing main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian testing main contrib non-free\n"
+"\n"
+"# Stable\n"
+"deb http://ftp.debian.org/debian stable main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian stable main contrib non-free\n"
+"\n"
+"# Mises à jour de sécurité\n"
+"deb http://security.debian.org/ stable/updates main contrib non-free\n"
+"deb http://security.debian.org/ testing/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
 
 #. Tag: para
 #, no-c-format
@@ -687,23 +692,19 @@ msgid "A new service (introduced in April 2010) can be used to “go backwards i
 msgstr "Un nouveau service (officialisé en avril 2010) permet de « remonter dans le temps » et de retrouver une ancienne version d'un paquet. Il peut permettre de vérifier quelle version d'un paquet a introduit une régression, par exemple, et plus concrètement, de revenir à la version précédente en attendant que la régression soit corrigée. <ulink type=\"block\" url=\"http://snapshot.debian.org/\" />"
 
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "Searching for Packages"
+#, no-c-format
 msgid "Caching Proxy for Debian Packages"
-msgstr "Recherche de paquets"
+msgstr "Mandataire à antémémoire (<foreignphrase>proxy-cache</foreignphrase>) pour paquets Debian"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>source of packages</primary>"
+#, no-c-format
 msgid "<primary>proxy cache</primary>"
-msgstr "<primary>source de paquets</primary>"
+msgstr "<primary>proxy cache</primary>"
 
-# TODO: INTEGRATE ALTERNATE STRING: <primary><foreignphrase>backport</foreignphrase></primary>
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>backport</primary>"
+#, no-c-format
 msgid "<primary>cache, proxy</primary>"
-msgstr "<primary>rétroportage</primary>"
+msgstr "<primary>cache, proxy</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -784,9 +785,9 @@ msgid "APT is a vast project, whose original plans included a graphical interfac
 msgstr "APT est un projet relativement vaste, qui prévoyait à l'origine une interface graphique. Il repose sur une bibliothèque contenant le cœur de l'application, et <command>apt-get</command> est la première interface — en ligne de commande — développée dans le cadre du projet."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Numerous other graphical interfaces then appeared as external projects: <command>synaptic</command>, <command>aptitude</command> (which includes both a text mode interface and a graphical one — even if not complete yet), <command>wajig</command>, etc. The most recommended interface, <command>apt-get</command>, is the one used during the installation of Debian, and the one that we will use in the examples given in this section. Note however that <command>aptitude</command>'s command-line syntax is very similar. When there are major differences between <command>apt-get</command> and <command>aptitude</command>, these differences will be detailed."
-msgstr "De nombreuses interfaces sont ensuite apparues en tant que projets extérieurs : <command>synaptic</command> (interface graphique), <command>aptitude</command> (qui inclut à la fois une interface en mode texte et une interface graphique, bien que pas encore complète), <command>wajig</command>, etc. Le frontal le plus recommandé, <command>aptitude</command>, est celui employé lors de l'installation de Debian. Sa syntaxe en ligne de commande, très similaire à celle d'<command>apt-get</command>, explique notre choix de l'employer dans les exemples de cette section. En cas de différences notables avec <command>apt-get</command>, celles-ci seront détaillées."
+msgstr "De nombreuses interfaces graphiques sont ensuite apparues en tant que projets extérieurs : <command>synaptic</command> (interface graphique), <command>aptitude</command> (qui inclut à la fois une interface en mode texte et une interface graphique, bien que pas encore complète), <command>wajig</command>, etc. Le frontal le plus recommandé, <command>apt-get</command>, est celui employé lors de l'installation de Debian, et celui que nous utiliserons pour les exemples de cette section. Notez cependant que la syntaxe en ligne de commande d'<command>aptitude</command> est très similaire à celle d'<command>apt-get</command>. En cas de différences notables avec <command>apt-get</command>, celles-ci seront détaillées."
 
 #. Tag: title
 #, no-c-format
@@ -794,10 +795,9 @@ msgid "Initialization"
 msgstr "Initialisation"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "For any work with APT, the list of available packages needs to be updated; this can be done simply through <command>aptitude update</command>. Depending on the speed of your connection, the operation can take a while since it involves downloading a certain number of <filename>Packages.(gz|bz2)</filename> files (or even <filename>Sources.(gz|bz2)</filename>), which have gradually become bigger and bigger as Debian has developed (more than 8 MB for the largest <filename>Packages.gz</filename> — from the <literal>main</literal> section). Of course, installing from a CD-ROM set does not require any downloading — in this case, the operation is very fast."
+#, no-c-format
 msgid "For any work with APT, the list of available packages needs to be updated; this can be done simply through <command>apt-get update</command>. Depending on the speed of your connection, the operation can take a while since it involves downloading a certain number of <filename>Packages</filename>/<filename>Sources</filename>/<filename>Translation-<replaceable>language-code</replaceable></filename> files, which have gradually become bigger and bigger as Debian has developed (at least 10 MB of data for the <literal>main</literal> section). Of course, installing from a CD-ROM set does not require any downloading — in this case, the operation is very fast."
-msgstr "Un préalable à tout travail avec APT est la mise à jour de la liste des paquets disponibles, qui s'effectue avec un simple <command>aptitude update</command>. Selon le débit de votre connexion, cette opération peut durer puisqu'elle télécharge un certain nombre de fichiers <filename>Packages.(gz|bz2)</filename> (voire <filename>Sources.(gz|bz2)</filename>), devenus assez volumineux au fil de la croissance de Debian (plus de 8 Mo pour le plus gros <filename>Packages.gz</filename>, correspondant à la section <literal>main</literal>). Évidemment, une installation à partir d'un jeu de CD-Rom ne nécessite aucun téléchargement — cette opération est alors très rapide."
+msgstr "Un préalable à tout travail avec APT est la mise à jour de la liste des paquets disponibles, qui s'effectue avec un simple <command>apt-get update</command>. Selon le débit de votre connexion, cette opération peut durer puisqu'elle télécharge un certain nombre de fichiers <filename>Packages</filename>/<filename>Sources</filename>/<filename>Translation-<replaceable>code_langue</replaceable></filename>, devenus assez volumineux au fil de la croissance de Debian (plus de 10 Mo pour la section <literal>main</literal>). Évidemment, une installation à partir d'un jeu de CD-Rom ne nécessite aucun téléchargement — cette opération est alors très rapide."
 
 #. Tag: indexterm
 #, no-c-format
@@ -835,10 +835,9 @@ msgid "<primary>removal of a package</primary>"
 msgstr "<primary>suppression d'un paquet</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "With APT, packages can be added or removed from the system, respectively with <command>aptitude install <replaceable>package</replaceable></command> and <command>aptitude remove <replaceable>package</replaceable></command>. In both cases, APT will automatically install the necessary dependencies or delete the packages which depend on the package that is being removed. The <command>aptitude purge <replaceable>package</replaceable></command> or <command>apt-get purge <replaceable>package</replaceable></command> commands involve a complete uninstallation — the configuration files are also deleted."
+#, no-c-format
 msgid "With APT, packages can be added or removed from the system, respectively with <command>apt-get install <replaceable>package</replaceable></command> and <command>apt-get remove <replaceable>package</replaceable></command>. In both cases, APT will automatically install the necessary dependencies or delete the packages which depend on the package that is being removed. The <command>apt-get purge <replaceable>package</replaceable></command> command involves a complete uninstallation — the configuration files are also deleted."
-msgstr "APT permet d'ajouter ou de supprimer des paquets sur le système, respectivement avec <command>aptitude install <replaceable>paquet</replaceable></command> et <command>aptitude remove <replaceable>paquet</replaceable></command>. Dans chaque cas, APT installera automatiquement les dépendances nécessaires ou supprimera les paquets dépendant du paquet en cours de désinstallation. La commande <command>aptitude purge <replaceable>paquet</replaceable></command> ou <command>apt-get purge <replaceable>paquet</replaceable></command> demande une désinstallation complète — les fichiers de configuration sont alors également supprimés."
+msgstr "APT permet d'ajouter ou de supprimer des paquets sur le système, respectivement avec <command>apt-get install <replaceable>paquet</replaceable></command> et <command>apt-get remove <replaceable>paquet</replaceable></command>. Dans chaque cas, APT installera automatiquement les dépendances nécessaires ou supprimera les paquets dépendant du paquet en cours de désinstallation. La commande <command>apt-get purge <replaceable>paquet</replaceable></command> demande une désinstallation complète — les fichiers de configuration sont alors également supprimés."
 
 #. Tag: indexterm
 #, no-c-format
@@ -912,9 +911,9 @@ msgid ""
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The first commands records the list of available packages in the dpkg database, then <command>dpkg --set-selections</command> restores the selection of packages that you wish to install, and the <command>apt-get</command> invocation executes the required operations! <command>aptitude</command> does not have this command."
-msgstr "La première commande enregistre les vœux de paquets à installer, que l'invocation d'<command>apt-get</command> exauce ensuite ! <command>aptitude</command> n'offre pas cette commande."
+msgstr "La première commande enregistre la liste des paquets disponibles dans la base de données de dpkg, puis <command>dpkg --set-selections</command> restaure les vœux de paquets à installer, que l'invocation d'<command>apt-get</command> exauce ensuite ! <command>aptitude</command> n'offre pas cette commande."
 
 #. Tag: title
 #, no-c-format
@@ -922,9 +921,9 @@ msgid "<emphasis>TIP</emphasis> Removing and installing at the same time"
 msgstr "<emphasis>ASTUCE</emphasis> Supprimer et installer en même temps"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "It is possible to ask <command>apt-get</command> (or <command>aptitude</command>) to install certain packages and remove others on the same command line by adding a suffix. With an <command>apt-get install</command> command, add “<literal>-</literal>” to the names of the packages you wish to remove. With an <command>apt-get remove</command> command, add “<literal>+</literal>” to the names of the packages you wish to install."
-msgstr "Il est possible, en ajoutant un suffixe, de demander à <command>aptitude</command> d'installer certains paquets et d'en supprimer d'autres sur la même ligne de commande. Lors d'une commande <command>aptitude install</command>, ajoutez un « <literal>-</literal> » aux noms des paquets que vous souhaitez supprimer. Lors d'une commande <command>aptitude remove</command>, ajoutez un « <literal>+</literal> » aux noms des paquets que vous souhaitez installer."
+msgstr "Il est possible, en ajoutant un suffixe, de demander à <command>apt-get</command> (ou <command>aptitude</command>) d'installer certains paquets et d'en supprimer d'autres sur la même ligne de commande. Lors d'une commande <command>apt-get install</command>, ajoutez un « <literal>-</literal> » aux noms des paquets que vous souhaitez supprimer. Lors d'une commande <command>apt-get remove</command>, ajoutez un « <literal>+</literal> » aux noms des paquets que vous souhaitez installer."
 
 #. Tag: para
 #, no-c-format
@@ -932,22 +931,16 @@ msgid "The next example shows two different ways to install <replaceable>package
 msgstr "L'exemple suivant montre deux manières d'installer <replaceable>paquet1</replaceable> et de supprimer <replaceable>paquet2</replaceable>."
 
 #. Tag: screen
-#, fuzzy, no-c-format
-#| msgid ""
-#| "<computeroutput># </computeroutput><userinput>aptitude install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
-#| "[...]\n"
-#| "<computeroutput># </computeroutput><userinput>aptitude remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
-#| "[...]\n"
+#, no-c-format
 msgid ""
 "# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
 "[...]\n"
 "# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
 "[...]\n"
 msgstr ""
-"\n"
-"<computeroutput># </computeroutput><userinput>aptitude install <replaceable>paquet1</replaceable> <replaceable>paquet2-</replaceable></userinput>\n"
+"# <userinput>apt-get install <replaceable>paquet1</replaceable> <replaceable>paquet2-</replaceable></userinput>\n"
 "[...]\n"
-"<computeroutput># </computeroutput><userinput>aptitude remove <replaceable>paquet1+</replaceable> <replaceable>paquet2</replaceable></userinput>\n"
+"# <userinput>apt-get remove <replaceable>paquet1+</replaceable> <replaceable>paquet2</replaceable></userinput>\n"
 "[...]\n"
 
 #. Tag: para
@@ -993,10 +986,9 @@ msgid "Be careful, using <command>apt-get --reinstall</command> to restore packa
 msgstr "Attention, recourir à <command>apt-get --reinstall</command> pour restaurer des paquets modifiés au cours d'une attaque ne suffit certainement pas à retrouver un système identique à ce qu'il était au préalable. La <xref linkend=\"sect.dealing-with-compromised-machine\" /> détaille la marche à suivre si vous avez subi un tel incident de sécurité."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "If the file <filename>sources.list</filename> mentions several distributions, it is possible to give the version of the package to install. A specific version number can be requested with <command>aptitude install <replaceable>package</replaceable>=<replaceable>version</replaceable></command>, but indicating its distribution of origin (<emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>) — with <command>aptitude install <replaceable>package</replaceable>/<replaceable>distribution</replaceable></command> — is usually preferred. With this command, it is possible to go back to an older version of a package (if for instance you know that it works well), provided that it is still available in one of the sources referenced by the <filename>sources.list</filename> file. Otherwise the <literal>snapshot.debian.org</literal> archive can come to the rescue (see sidebar <xref linkend=\"cadre.snapshot.debian.org\" />)."
+#, no-c-format
 msgid "If the file <filename>sources.list</filename> mentions several distributions, it is possible to give the version of the package to install. A specific version number can be requested with <command>apt-get install <replaceable>package</replaceable>=<replaceable>version</replaceable></command>, but indicating its distribution of origin (<emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>) — with <command>apt-get install <replaceable>package</replaceable>/<replaceable>distribution</replaceable></command> — is usually preferred. With this command, it is possible to go back to an older version of a package (if for instance you know that it works well), provided that it is still available in one of the sources referenced by the <filename>sources.list</filename> file. Otherwise the <literal>snapshot.debian.org</literal> archive can come to the rescue (see sidebar <xref linkend=\"sidebar.snapshot.debian.org\" />)."
-msgstr "Si le fichier <filename>sources.list</filename> mentionne plusieurs distributions, il est possible de préciser la version du paquet à installer. On peut demander un numéro de version précis avec <command>aptitude install <replaceable>paquet</replaceable>=<replaceable>version</replaceable></command>, mais on se contentera en général d'indiquer la distribution d'origine du paquet (<emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis> ou <emphasis role=\"distribution\">Unstable</emphasis>) avec la syntaxe <command>aptitude install <replaceable>paquet</replaceable>/<replaceable>distribution</replaceable></command>. Avec cette commande, on pourra donc revenir à une ancienne version d'un paquet (si par exemple on sait qu'elle fonctionne bien), à condition qu'elle soit encore disponible dans une des sources référencées par le fichier <filename>sources.list</filename>. On pourra au besoin utiliser l'archive <literal>snapshot.debian.org</literal> (voir encadré <xref linkend=\"cadre.snapshot.debian.org\" />)."
+msgstr "Si le fichier <filename>sources.list</filename> mentionne plusieurs distributions, il est possible de préciser la version du paquet à installer. On peut demander un numéro de version précis avec <command>apt-get install <replaceable>paquet</replaceable>=<replaceable>version</replaceable></command>, mais on se contentera en général d'indiquer la distribution d'origine du paquet (<emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis> ou <emphasis role=\"distribution\">Unstable</emphasis>) avec la syntaxe <command>apt-get install <replaceable>paquet</replaceable>/<replaceable>distribution</replaceable></command>. Avec cette commande, on pourra donc revenir à une ancienne version d'un paquet (si par exemple on sait qu'elle fonctionne bien), à condition qu'elle soit encore disponible dans une des sources référencées par le fichier <filename>sources.list</filename>. On pourra au besoin utiliser l'archive <literal>snapshot.debian.org</literal> (voir encadré <xref linkend=\"sidebar.snapshot.debian.org\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -1014,9 +1006,9 @@ msgid "<emphasis>GOING FURTHER</emphasis> The cache of <filename>.deb</filename>
 msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Cache des fichiers <filename>.deb</filename>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "APT keeps a copy of each downloaded <filename>.deb</filename> file in the directory <filename>/var/cache/apt/archives/</filename>. In case of frequent updates, this directory can quickly take a lot of disk space with several versions of each package; you should regularly sort through them. Two commands can be used: <command>apt-get clean</command> entirely empties the directory; <command>apt-get autoclean</command> only removes packages which cannot be downloaded (because they have disappeared from the Debian mirror) and are therefore clearly useless (the configuration parameter <literal>APT::Clean-Installed</literal> can prevent the removal of <filename>.deb</filename> files that are currently installed)."
-msgstr "APT conserve dans le répertoire <filename>/var/cache/apt/archives/</filename> une copie de chaque fichier <filename>.deb</filename> téléchargé. Dans le cas de mises à jour fréquentes, ce répertoire peut rapidement occuper beaucoup d'espace disque avec plusieurs versions de chaque paquet ; il convient donc d'y faire régulièrement le tri. Deux commandes existent pour cela : <command>aptitude clean</command> vide entièrement le répertoire ; <command>aptitude autoclean</command> ne supprime que les paquets qui, n'étant plus téléchargeables (car ayant disparu du miroir Debian), sont clairement inutiles (le paramètre de configuration <literal>APT::Clean-Installed</literal> permet d'empêcher la suppression de fichiers <filename>.deb</filename> encore actuellement installés)."
+msgstr "APT conserve dans le répertoire <filename>/var/cache/apt/archives/</filename> une copie de chaque fichier <filename>.deb</filename> téléchargé. Dans le cas de mises à jour fréquentes, ce répertoire peut rapidement occuper beaucoup d'espace disque avec plusieurs versions de chaque paquet ; il convient donc d'y faire régulièrement le tri. Deux commandes existent pour cela : <command>apt-get clean</command> vide entièrement le répertoire ; <command>apt-get autoclean</command> ne supprime que les paquets qui, n'étant plus téléchargeables (car ayant disparu du miroir Debian), sont clairement inutiles (le paramètre de configuration <literal>APT::Clean-Installed</literal> permet d'empêcher la suppression de fichiers <filename>.deb</filename> encore actuellement installés)."
 
 #. Tag: title
 #, no-c-format
@@ -1039,10 +1031,9 @@ msgid "<primary><command>aptitude safe-upgrade</command></primary>"
 msgstr "<primary><command>aptitude safe-upgrade</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Regular upgrades are recommended, because they include the latest security updates. To upgrade, use <command>aptitude safe-upgrade</command> or <command>apt-get upgrade</command> (of course after <command>aptitude update</command>). This command looks for installed packages which can be upgraded without removing any packages. In other words, the goal is to ensure the least intrusive upgrade possible. <command>apt-get</command> is slightly more demanding than <command>aptitude</command> because it will refuse to install packages which were not installed beforehand."
+#, no-c-format
 msgid "Regular upgrades are recommended, because they include the latest security updates. To upgrade, use <command>apt-get upgrade</command> or <command>aptitude safe-upgrade</command> (of course after <command>apt-get update</command>). This command looks for installed packages which can be upgraded without removing any packages. In other words, the goal is to ensure the least intrusive upgrade possible. <command>apt-get</command> is slightly more demanding than <command>aptitude</command> because it will refuse to install packages which were not installed beforehand."
-msgstr "Des mises à jour régulières sont recommandées, car elles mettront en place les derniers correctifs de sécurité. Pour cela, on invoquera <command>aptitude safe-upgrade</command> ou <command>apt-get upgrade</command> (évidemment précédé par <command>aptitude update</command>). Cette commande cherche les mises à jour des paquets installés, réalisables sans supprimer de paquets. Autrement dit, l'objectif est d'assurer une mise à jour la moins intrusive possible. Pour cette action, <command>apt-get</command> est un peu plus exigeant que <command>aptitude</command> parce qu'il refusera d'installer des paquets qui n'étaient pas préalablement installés."
+msgstr "Des mises à jour régulières sont recommandées, car elles mettront en place les derniers correctifs de sécurité. Pour cela, on invoquera <command>apt-get upgrade</command> ou <command>aptitude safe-upgrade</command> (évidemment précédé par <command>apt-get update</command>). Cette commande cherche les mises à jour des paquets installés, réalisables sans supprimer de paquets. Autrement dit, l'objectif est d'assurer une mise à jour la moins intrusive possible. Pour cette action, <command>apt-get</command> est un peu plus exigeant que <command>aptitude</command> parce qu'il refusera d'installer des paquets qui n'étaient pas préalablement installés."
 
 #. Tag: title
 #, no-c-format
@@ -1050,32 +1041,29 @@ msgid "<emphasis>TIP</emphasis> Incremental upgrade"
 msgstr "<emphasis>ASTUCE</emphasis> Mise à jour incrémentale"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "As we explained earlier, the aim of the <command>aptitude update</command> command is to download for each package source the corresponding <filename>Packages</filename> (or <filename>Sources</filename>) file. However, even after a <command>bzip2</command> compression, these files can remain rather large (the <filename>Packages.bz2</filename> for the <foreignphrase>main</foreignphrase> section of <emphasis role=\"distribution\">Squeeze</emphasis> takes more than 8 MB). If you wish to upgrade regularly, these downloads can take up a lot of time."
+#, no-c-format
 msgid "As we explained earlier, the aim of the <command>apt-get update</command> command is to download for each package source the corresponding <filename>Packages</filename> (or <filename>Sources</filename>) file. However, even after a <command>bzip2</command> compression, these files can remain rather large (the <filename>Packages.bz2</filename> for the <foreignphrase>main</foreignphrase> section of <emphasis role=\"distribution\">Wheezy</emphasis> takes more than 5 MB). If you wish to upgrade regularly, these downloads can take up a lot of time."
-msgstr "On l'a vu, le but de la commande <command>aptitude update</command> est de télécharger pour chacune des sources de paquets le fichier <filename>Packages</filename> (ou <filename>Sources</filename>) correspondant. Cependant, même après compression <command>bzip2</command>, ces fichiers restent volumineux (le <filename>Packages.bz2</filename> pour la section <foreignphrase>main</foreignphrase> de <emphasis role=\"distribution\">Squeeze</emphasis> occupe plus de 8 Mo). Si l'on souhaite effectuer des mises à jour régulières, ces téléchargements peuvent prendre du temps inutilement."
+msgstr "On l'a vu, le but de la commande <command>apt-get update</command> est de télécharger pour chacune des sources de paquets le fichier <filename>Packages</filename> (ou <filename>Sources</filename>) correspondant. Cependant, même après compression <command>bzip2</command>, ces fichiers restent volumineux (le <filename>Packages.bz2</filename> pour la section <foreignphrase>main</foreignphrase> de <emphasis role=\"distribution\">Wheezy</emphasis> occupe plus de 5 Mo). Si l'on souhaite effectuer des mises à jour régulières, ces téléchargements peuvent prendre du temps inutilement."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "To speed up the process APT can download “diff” files containing the changes since the previous update, as opposed to the entire file. To achieve this, official Debian mirrors distribute different files which list the differences between one version of the <filename>Packages</filename> file and the following version. They are generated at each update of the archives and a history of one week is kept. Each of these “diff” files only takes a few dozen kilobytes for <emphasis role=\"distribution\">Unstable</emphasis>, so that the amount of data downloaded by a weekly <command>aptitude update</command> is often divided by 10. For distributions like <emphasis role=\"distribution\">Stable</emphasis> and <emphasis role=\"distribution\">Testing</emphasis>, which change less, the gain is even more noticeable."
-msgstr "Une « nouveauté » (présente depuis <emphasis role=\"distribution\">Etch</emphasis>) est qu'APT peut télécharger non plus le fichier entier mais simplement les différences par rapport à une version précédente. Les miroirs Debian officiels distribuent pour cela différents fichiers recensant les différences d'une version du fichier <filename>Packages</filename> à la suivante, lors des mises à jour des archives, avec un historique d'une semaine. Chacun de ces fichiers de différences ne pesant en général que quelques dizaines de kilo-octets pour <emphasis role=\"distribution\">Unstable</emphasis>, la quantité de données téléchargées par un <command>aptitude update</command> hebdomadaire est typiquement divisée par 10. Pour les distributions moins mobiles, comme <emphasis role=\"distribution\">Stable</emphasis> et <emphasis role=\"distribution\">Testing</emphasis>, le gain est encore plus flagrant."
+msgstr "Pour accélérer le processus, APT peut télécharger non plus le fichier entier mais simplement les différences par rapport à une version précédente. Les miroirs Debian officiels distribuent pour cela différents fichiers recensant les différences d'une version du fichier <filename>Packages</filename> à la suivante, lors des mises à jour des archives, avec un historique d'une semaine. Chacun de ces fichiers de différences ne pesant en général que quelques dizaines de kilo-octets pour <emphasis role=\"distribution\">Unstable</emphasis>, la quantité de données téléchargées par un <command>aptitude update</command> hebdomadaire est typiquement divisée par 10. Pour les distributions moins mobiles, comme <emphasis role=\"distribution\">Stable</emphasis> et <emphasis role=\"distribution\">Testing</emphasis>, le gain est encore plus flagrant."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "However, it can sometimes be of interest to force the download of the entire <filename>Packages.bz2</filename> file, especially when the last upgrade is very old and when the mechanism of incremental differences would not contribute much. This can also be interesting when network access is very fast but when the processor of the machine to upgrade is rather slow, since the time saved on the download is more than lost when the computer calculates the new versions of these files (starting with the older versions and applying the downloaded differences). To do that, you can use the configuration parameter <literal>Acquire::Pdiffs</literal> and set it to <literal>false</literal>."
+#, no-c-format
 msgid "However, it can sometimes be of interest to force the download of the entire <filename>Packages</filename> file, especially when the last upgrade is very old and when the mechanism of incremental differences would not contribute much. This can also be interesting when network access is very fast but when the processor of the machine to upgrade is rather slow, since the time saved on the download is more than lost when the computer calculates the new versions of these files (starting with the older versions and applying the downloaded differences). To do that, you can use the configuration parameter <literal>Acquire::Pdiffs</literal> and set it to <literal>false</literal>."
-msgstr "On notera cependant qu'il est parfois intéressant de forcer le téléchargement du fichier <filename>Packages.bz2</filename> complet, notamment lorsque la dernière mise à jour est vraiment trop ancienne et que le mécanisme des différences incrémentales n'apporterait rien. Cela peut également être intéressant dans les cas où l'accès réseau est très rapide mais que le processeur de la machine à mettre à jour est relativement lent, le temps gagné sur le téléchargement des fichiers étant plus que perdu lors du calcul des nouvelles versions de ces fichiers à partir des anciennes versions et des différences téléchargées. Pour cela, on pourra utiliser le paramètre de configuration <literal>Acquire::Pdiffs</literal>, que l'on règlera à <literal>false</literal>."
+msgstr "On notera cependant qu'il est parfois intéressant de forcer le téléchargement du fichier <filename>Packages</filename> complet, notamment lorsque la dernière mise à jour est vraiment trop ancienne et que le mécanisme des différences incrémentales n'apporterait rien. Cela peut également être intéressant dans les cas où l'accès réseau est très rapide mais que le processeur de la machine à mettre à jour est relativement lent, le temps gagné sur le téléchargement des fichiers étant plus que perdu lors du calcul des nouvelles versions de ces fichiers à partir des anciennes versions et des différences téléchargées. Pour cela, on pourra utiliser le paramètre de configuration <literal>Acquire::Pdiffs</literal>, que l'on règlera à <literal>false</literal>."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "<command>aptitude</command> will generally select the most recent version number (except for <emphasis role=\"distribution\">Experimental</emphasis> packages, which are ignored by default whatever their version number). If you specified <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> in your <filename>sources.list</filename>, <command>aptitude safe-upgrade</command> will switch most of your <emphasis role=\"distribution\">Stable</emphasis> system to <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, which might not be what you intended."
+#, no-c-format
 msgid "<command>apt-get</command> will generally select the most recent version number (except for packages from <emphasis role=\"distribution\">Experimental</emphasis> and <emphasis role=\"distribution\">stable-backports</emphasis>, which are ignored by default whatever their version number). If you specified <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> in your <filename>sources.list</filename>, <command>apt-get upgrade</command> will switch most of your <emphasis role=\"distribution\">Stable</emphasis> system to <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, which might not be what you intended."
-msgstr "Remarquons cependant qu'<command>aptitude</command> retiendra en général le numéro de version le plus récent (à l'exception des paquets <emphasis role=\"distribution\">Experimental</emphasis>, ignorés par défaut quel que soit leur numéro de version). Si vous avez mentionné <emphasis role=\"distribution\">Testing</emphasis> ou <emphasis role=\"distribution\">Unstable</emphasis> dans votre <filename>sources.list</filename>, <command>aptitude safe-upgrade</command> migrera une grande partie de votre système <emphasis role=\"distribution\">Stable</emphasis> en <emphasis role=\"distribution\">Testing</emphasis> ou <emphasis role=\"distribution\">Unstable</emphasis>, ce qui n'est peut-être pas l'effet recherché."
+msgstr "Remarquons cependant qu'<command>apt-get</command> retiendra en général le numéro de version le plus récent (à l'exception des paquets <emphasis role=\"distribution\">Experimental</emphasis> et des rétroportages, ignorés par défaut quel que soit leur numéro de version). Si vous avez mentionné <emphasis role=\"distribution\">Testing</emphasis> ou <emphasis role=\"distribution\">Unstable</emphasis> dans votre <filename>sources.list</filename>, <command>apt-get upgrade</command> migrera une grande partie de votre système <emphasis role=\"distribution\">Stable</emphasis> en <emphasis role=\"distribution\">Testing</emphasis> ou <emphasis role=\"distribution\">Unstable</emphasis>, ce qui n'est peut-être pas l'effet recherché."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "To tell <command>apt-get</command> to use a specific distribution when searching for upgraded packages, you need to use the <literal>-t</literal> or <literal>--target-release</literal> option, followed by the name of the distribution you want (for example: <command>apt-get -t stable upgrade</command>). To avoid specifying this option every time you use <command>apt-get</command>, you can add <literal>APT::Default-Release \"stable\";</literal> in the file <filename>/etc/apt/apt.conf.d/local</filename>."
-msgstr "Pour indiquer à <command>aptitude</command> d'utiliser telle ou telle distribution pour ses recherches de paquets mis à jour, il faut utiliser l'option <literal>-t</literal> ou <literal>--target-release</literal> (version cible), suivie du nom de la distribution en question (exemple : <command>aptitude -t stable safe-upgrade</command>). Pour éviter de spécifier cette option à chaque invocation d'<command>aptitude</command>, vous pouvez ajouter <literal>APT::Default-Release \"stable\";</literal> dans le fichier <filename>/etc/apt/apt.conf.d/local</filename>."
+msgstr "Pour indiquer à <command>apt-get</command> d'utiliser telle ou telle distribution pour ses recherches de paquets mis à jour, il faut utiliser l'option <literal>-t</literal> ou <literal>--target-release</literal> (version cible), suivie du nom de la distribution en question (exemple : <command>apt-get -t stable upgrade</command>). Pour éviter de spécifier cette option à chaque invocation d'<command>apt-get</command>, vous pouvez ajouter <literal>APT::Default-Release \"stable\";</literal> dans le fichier <filename>/etc/apt/apt.conf.d/local</filename>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1093,14 +1081,14 @@ msgid "<primary><command>aptitude full-upgrade</command></primary>"
 msgstr "<primary><command>aptitude full-upgrade</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "For more important upgrades, such as the change from one major Debian version to the next, you need to use <command>apt-get dist-upgrade</command> (“distribution upgrade”). With this instruction, <command>apt-get</command> will complete the upgrade even if it has to remove some obsolete packages or install new dependencies. This is also the command used by users who work daily with the Debian <emphasis role=\"distribution\">Unstable</emphasis> release and follow its evolution day by day. It is so simple that it hardly needs explanation: APT's reputation is based on this great functionality."
-msgstr "Pour les mises à jour plus importantes, comme lors du basculement d'une version majeure de Debian à la suivante, il faut utiliser <command>aptitude full-upgrade</command> (l'option s'appelait précédemment <literal>dist-upgrade</literal>, pour « mise à jour de la distribution »). Cela effectue la mise à jour même s'il y a des paquets obsolètes à supprimer et de nouvelles dépendances à installer. C'est également la commande employée par ceux qui exploitent quotidiennement la version <emphasis role=\"distribution\">Unstable</emphasis> de Debian et suivent ses évolutions au jour le jour. Elle est si simple qu'elle parle d'elle-même : c'est bien cette fonctionnalité qui a fait la renommée d'APT."
+msgstr "Pour les mises à jour plus importantes, comme lors du basculement d'une version majeure de Debian à la suivante, il faut utiliser <command>apt-get dist-upgrade</command> (pour « mise à jour de la distribution »). Cela effectue la mise à jour même s'il y a des paquets obsolètes à supprimer et de nouvelles dépendances à installer. C'est également la commande employée par ceux qui exploitent quotidiennement la version <emphasis role=\"distribution\">Unstable</emphasis> de Debian et suivent ses évolutions au jour le jour. Elle est si simple qu'elle parle d'elle-même : c'est bien cette fonctionnalité qui a fait la renommée d'APT."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<command>aptitude full-upgrade</command> is <command>aptitude</command>'s corresponding command although <command>dist-upgrade</command> is also recognized (but deprecated)."
-msgstr "<command>aptitude dist-upgrade</command> reste disponible, et est un synonyme de <command>aptitude full-upgrade</command> ; <command>apt-get</command> ne connait que la première variante."
+msgstr "La commande correspondante avec <command>aptitude</command> est <command>aptitude full-upgrade</command> ; <command>aptitude dist-upgrade</command> est également disponible, mais n'est pas la syntaxe canonique."
 
 #. Tag: title
 #, no-c-format
@@ -1128,10 +1116,9 @@ msgid "Besides the configuration elements already mentioned, it is possible to c
 msgstr "Outre les éléments de configuration déjà mentionnés, il est possible de configurer quelques aspects d'APT en ajoutant des directives dans un fichier du répertoire <filename>/etc/apt/apt.conf.d/</filename>. Rappelons par exemple qu'il est possible pour APT d'indiquer à <command>dpkg</command> d'ignorer les erreurs de collision de fichiers en précisant <literal>DPkg::Options { \"--force-overwrite\"; }</literal>."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "If the Web can only be accessed through a proxy, add a line like <literal>Acquire::http::proxy \"http://<replaceable>yourproxy</replaceable>:3128\"</literal>. For an FTP proxy, write <literal>Acquire::ftp::proxy \"ftp://<replaceable>yourproxy</replaceable>\"</literal>. To discover more configuration options, read the <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page with the command <command>man apt.conf</command> (for details on manual pages, see next chapter)."
+#, no-c-format
 msgid "If the Web can only be accessed through a proxy, add a line like <literal>Acquire::http::proxy \"http://<replaceable>yourproxy</replaceable>:3128\"</literal>. For an FTP proxy, write <literal>Acquire::ftp::proxy \"ftp://<replaceable>yourproxy</replaceable>\"</literal>. To discover more configuration options, read the <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page with the <command>man apt.conf</command> command (for details on manual pages, see <xref linkend=\"sect.manual-pages\" />)."
-msgstr "Si l'accès au Web n'est possible qu'à travers un mandataire (proxy), il faut ajouter une ligne semblable à <literal>Acquire::http::proxy \"http://<replaceable>monproxy</replaceable>:3128\"</literal>. Pour un proxy FTP, on écrira <literal>Acquire::ftp::proxy \"ftp://<replaceable>monproxy</replaceable>\"</literal>. Découvrez par vous-même les autres options de configuration en consultant la page de manuel <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry>, avec la commande <command>man apt.conf</command> (les pages de manuel seront détaillées au chapitre suivant)."
+msgstr "Si l'accès au Web n'est possible qu'à travers un mandataire (proxy), il faut ajouter une ligne semblable à <literal>Acquire::http::proxy \"http://<replaceable>monproxy</replaceable>:3128\"</literal>. Pour un proxy FTP, on écrira <literal>Acquire::ftp::proxy \"ftp://<replaceable>monproxy</replaceable>\"</literal>. Découvrez par vous-même les autres options de configuration en consultant la page de manuel <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry>, avec la commande <command>man apt.conf</command> (pour plus de détails sur les pages de manuel, voir <xref linkend=\"sect.manual-pages\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -1149,10 +1136,9 @@ msgid "Directories with a <filename>.d</filename> suffix are used more and more 
 msgstr "Les répertoires de suffixe <filename>.d</filename> sont de plus en plus souvent employés. Chacun abrite des fichiers ventilant un fichier de configuration. Ainsi, tous les fichiers contenus dans <filename>/etc/apt/apt.conf.d/</filename> constituent les instructions de configuration d'APT. APT les inclura dans l'ordre alphabétique, de sorte que les derniers pourront modifier un élément de configuration défini dans l'un des premiers."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "This structure brings some flexibility to the machine administrator and to the package maintainers. Indeed, the administrator can easily modify the configuration of the software by adding a ready-made file in the directory in question without having to change an existing file. Package maintainers use the same approach when they need to adapt the configuration of another software to ensure that it perfectly co-exists with theirs. However, the Debian policy explicitly forbids modifying configuration files of other packages — only users are allowed to do this. Remember that during a package upgrade, the user gets to choose the version of the configuration file that should be kept when a modification has been detected. Any external modification of the file would trigger that request, which would disturb the administrator, who is sure not to have changed anything."
+#, no-c-format
 msgid "This structure brings some flexibility to the machine administrator and to the package maintainers. Indeed, the administrator can easily modify the configuration of the software by adding a ready-made file in the directory in question without having to change an existing file. Package maintainers use the same approach when they need to adapt the configuration of another software to ensure that it perfectly co-exists with theirs. The Debian policy explicitly forbids modifying configuration files of other packages — only users are allowed to do this. Remember that during a package upgrade, the user gets to choose the version of the configuration file that should be kept when a modification has been detected. Any external modification of the file would trigger that request, which would disturb the administrator, who is sure not to have changed anything."
-msgstr "Cette structure apporte une certaine souplesse à l'administrateur de la machine et aux mainteneurs de paquets. En effet, l'administrateur peut facilement modifier la configuration du logiciel en déposant un fichier tout prêt dans le répertoire en question sans devoir modifier de fichier existant. Les mainteneurs de paquets ont la même problématique lorsqu'ils doivent adapter la configuration d'un autre logiciel pour assurer une parfaite cohabitation avec le leur. Mais la charte Debian interdit explicitement toute modification de fichiers de configuration relevant d'autres paquets, interdiction justifiée par le fait que seuls les utilisateurs sont habilités à intervenir ainsi. Rappelons en effet que <command>dpkg</command> invite l'utilisateur, lors d'une installation, à choisir la version du fichier de configuration qu'il souhaite conserver lorsqu'une modification y est détectée. Toute modification externe du fichier déclencherait une telle requête, qui ne manquerait pas de perturber l'administrateur certain de n'avoir rien altéré."
+msgstr "Cette structure apporte une certaine souplesse à l'administrateur de la machine et aux mainteneurs de paquets. En effet, l'administrateur peut facilement modifier la configuration du logiciel en déposant un fichier tout prêt dans le répertoire en question sans devoir modifier de fichier existant. Les mainteneurs de paquets ont la même problématique lorsqu'ils doivent adapter la configuration d'un autre logiciel pour assurer une parfaite cohabitation avec le leur. La charte Debian interdit explicitement toute modification de fichiers de configuration relevant d'autres paquets, interdiction justifiée par le fait que seuls les utilisateurs sont habilités à intervenir ainsi. Rappelons en effet que <command>dpkg</command> invite l'utilisateur, lors d'une installation, à choisir la version du fichier de configuration qu'il souhaite conserver lorsqu'une modification y est détectée. Toute modification externe du fichier déclencherait une telle requête, qui ne manquerait pas de perturber l'administrateur certain de n'avoir rien altéré."
 
 #. Tag: para
 #, no-c-format
@@ -1160,8 +1146,7 @@ msgid "Without a <filename>.d</filename> directory, it is impossible for an exte
 msgstr "En l'absence de répertoire <filename>.d</filename>, il est impossible à un paquet externe d'adapter les réglages d'un logiciel sans en modifier le fichier de configuration. Il doit alors inviter l'utilisateur à intervenir lui-même, en documentant les opérations à effectuer dans le fichier <filename>/usr/share/doc/<replaceable>paquet</replaceable>/README.Debian</filename>."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Depending on the application, the <filename>.d</filename> directory is used directly or managed by an external script which will concatenate all the files to create the configuration file itself. It is important to execute the script after any change in that directory so that the most recent modifications are taken into account. In the same way, it is important not to work directly in the configuration file created automatically, since everything would be lost at the next execution of the script. Choosing one method (<filename>.d</filename> directory used directly or a file generated from that directory) is usually imposed by implementation constraints, but in both cases the gains in terms of configuration flexibility more than make up for the small complications that they entail. The Exim 4 mail server is an example of the generated file method: it can be configured through several files (<filename>/etc/exim4/conf.d/*</filename>) which are concatenated into <filename>/var/lib/exim4/config.autogenerated</filename> by the <command>update-exim4.conf</command> command."
+#, no-c-format
 msgid "Depending on the application, the <filename>.d</filename> directory is used directly or managed by an external script which will concatenate all the files to create the configuration file itself. It is important to execute the script after any change in that directory so that the most recent modifications are taken into account. In the same way, it is important not to work directly in the configuration file created automatically, since everything would be lost at the next execution of the script. The chosen method (<filename>.d</filename> directory used directly or a file generated from that directory) is usually dictated by implementation constraints, but in both cases the gains in terms of configuration flexibility more than make up for the small complications that they entail. The Exim 4 mail server is an example of the generated file method: it can be configured through several files (<filename>/etc/exim4/conf.d/*</filename>) which are concatenated into <filename>/var/lib/exim4/config.autogenerated</filename> by the <command>update-exim4.conf</command> command."
 msgstr "Selon les applications, le répertoire <filename>.d</filename> est directement exploité, ou géré par un script externe qui en concaténera tous les fichiers pour créer le fichier de configuration à proprement parler. Il est alors important d'exécuter ce script après toute intervention dans ce répertoire pour que les plus récentes modifications soient prises en compte. De même, on prendra soin de ne pas travailler directement sur le fichier de configuration construit automatiquement, sous peine de tout perdre lors de l'exécution suivante du script. Le choix de la méthode (répertoire <filename>.d</filename> utilisé directement ou fichier généré à partir de ce répertoire) est généralement dicté par des contraintes de mise en œuvre, mais dans les deux cas les gains en terme de souplesse de configuration compensent largement les petites complications induites. Comme exemple de la méthode du fichier généré, on peut citer le serveur de messagerie Exim 4, dont la configuration peut être découpée en plusieurs fichiers (<filename>/etc/exim4/conf.d/*</filename>) qui sont agrégés en un seul (<filename>/var/lib/exim4/config.autogenerated</filename>) par la commande <command>update-exim4.conf</command>."
 
@@ -1181,10 +1166,9 @@ msgid "<primary>APT</primary><secondary><foreignphrase>pinning</foreignphrase></
 msgstr "<primary>APT</primary><secondary><foreignphrase>pinning</foreignphrase></secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>reinstallation</primary>"
+#, no-c-format
 msgid "<primary>pinning, APT pinning</primary>"
-msgstr "<primary>réinstallation</primary>"
+msgstr "<primary>étiquetage, APT pinning</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1227,15 +1211,14 @@ msgid "APT will never install an older version of a package (that is, a package 
 msgstr "APT refusera toujours d'installer une version antérieure d'un paquet (portant un numéro de version inférieur à celui de la version actuelle), sauf si la priorité du paquet concerné est supérieure à 1000. APT installera toujours la version de priorité la plus élevée. Si deux versions ont la même priorité, APT installe la plus récente (de numéro de version le plus grand). Si deux paquets de même version ont la même priorité mais diffèrent par leurs contenus, APT installe la version qui n'est pas installée (cette règle doit couvrir le cas d'une mise à jour de paquet sans incrément — normalement indispensable — du numéro de révision)."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "In more concrete terms, a package whose priority is less than 0 will never be installed. A package with a priority ranging between 0 and 100 will only be installed if no other version of the package is already installed. With a priority between 100 and 500, the package will only be installed if there is no other newer version installed or available in another distribution. A package of priority between 500 and 990 will only be installed if there is no newer version installed or available in the target distribution. With a priority between 990 and 1000, the package will be installed except if the installed version is newer. A priority greater than 1000 will always lead to the installation of the package even if it forces APT to downgrade to an older version."
+#, no-c-format
 msgid "In more concrete terms, a package whose priority is less than 0 will never be installed. A package with a priority ranging between 0 and 100 will only be installed if no other version of the package is already installed. With a priority between 100 and 500, the package will only be installed if there is no other newer version installed or available in another distribution. A package of priority between 501 and 990 will only be installed if there is no newer version installed or available in the target distribution. With a priority between 990 and 1000, the package will be installed except if the installed version is newer. A priority greater than 1000 will always lead to the installation of the package even if it forces APT to downgrade to an older version."
-msgstr "Concrètement, un paquet de priorité inférieure à 0 ne sera jamais installé. Un paquet de priorité comprise entre 0 et 100 ne sera installé que si aucune autre version du même paquet n'est installée. Avec une priorité comprise entre 100 et 500, le paquet ne sera installé que s'il n'en existe aucune version plus récente, installée ou disponible dans une autre distribution. Un paquet de priorité entre 500 et 990 ne sera installé qu'à défaut de version plus récente, installée ou disponible dans la distribution cible. Une priorité entre 990 et 1000 fera installer le paquet, sauf si la version installée est plus récente. Une priorité supérieure à 1000 provoquera l'installation du paquet, même si cela force APT à installer une version plus ancienne que la version actuelle."
+msgstr "Concrètement, un paquet de priorité inférieure à 0 ne sera jamais installé. Un paquet de priorité comprise entre 0 et 100 ne sera installé que si aucune autre version du même paquet n'est installée. Avec une priorité comprise entre 100 et 500, le paquet ne sera installé que s'il n'en existe aucune version plus récente, installée ou disponible dans une autre distribution. Un paquet de priorité entre 501 et 990 ne sera installé qu'à défaut de version plus récente, installée ou disponible dans la distribution cible. Une priorité entre 990 et 1000 fera installer le paquet, sauf si la version installée est plus récente. Une priorité supérieure à 1000 provoquera l'installation du paquet, même si cela force APT à installer une version plus ancienne que la version actuelle."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "When APT checks <filename>/etc/apt/preferences</filename>, it first takes into account the most specific entries (often those specifying the concerned package), then the more generic ones (including for example all the packages of a distribution). If several generic entries exist, the first match is used. The available selection criteria include the package's name and the source providing it. Every package source is identified by the information contained in a <filename>Release</filename> file that APT downloads together with the <filename>Packages</filename> files. It specifies the origin (usually “Debian” for the packages of official mirrors, but it can also be a person's or an organization's name for third-parties repositories). It also gives the name of the distribution (usually <emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis> for the standard distributions provided by Debian) together with its version (for example 5.0 for Debian <emphasis role=\"distribution\">Lenny</emphasis>). Let's have a look at its syntax through some realistic case studies of this mechanism."
-msgstr "Quand APT consulte le fichier <filename>/etc/apt/preferences</filename>, il prend d'abord en compte les entrées les plus précises (souvent, celles spécifiant le paquet concerné) puis les plus génériques (incluant par exemple tous les paquets d'une distribution). Si plusieurs entrées génériques existent, la première correspondant au paquet dont on cherche la priorité est utilisée. Les critères de sélection disponibles comprennent notamment le nom du paquet et la source d'où il provient. Chaque source de paquets est identifiée par un ensemble d'informations contenues dans un fichier <filename>Release</filename>, qu'APT télécharge en même temps que les fichiers <filename>Packages.gz</filename>. Ce dernier spécifie l'origine (habituellement « Debian » pour les paquets des miroirs officiels, mais il peut s'agir du nom d'une personne ou d'un organisme proposant une archive de paquets Debian) ; il précise également le nom de la distribution (habituellement <emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> ou <emphasis role=\"distribution\">Experimental</emphasis> pour les distributions standards fournies par Debian) ainsi que sa version (par exemple 5.0 pour Debian <emphasis role=\"distribution\">Lenny</emphasis>). Étudions-en la syntaxe précise au travers de quelques cas vraisemblables d'emploi de ce mécanisme."
+msgstr "Quand APT consulte le fichier <filename>/etc/apt/preferences</filename>, il prend d'abord en compte les entrées les plus précises (souvent, celles spécifiant le paquet concerné) puis les plus génériques (incluant par exemple tous les paquets d'une distribution). Si plusieurs entrées génériques existent, la première correspondant au paquet dont on cherche la priorité est utilisée. Les critères de sélection disponibles comprennent notamment le nom du paquet et la source d'où il provient. Chaque source de paquets est identifiée par un ensemble d'informations contenues dans un fichier <filename>Release</filename>, qu'APT télécharge en même temps que les fichiers <filename>Packages.gz</filename>. Ce dernier spécifie l'origine (habituellement « Debian » pour les paquets des miroirs officiels, mais il peut s'agir du nom d'une personne ou d'un organisme proposant une archive de paquets Debian) ; il précise également le nom de la distribution (habituellement <emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> ou <emphasis role=\"distribution\">Experimental</emphasis> pour les distributions standards fournies par Debian) ainsi que sa version (par exemple 7.2 pour la deuxième mise à jour de Debian <emphasis role=\"distribution\">Wheezy</emphasis>). Étudions-en la syntaxe précise au travers de quelques cas vraisemblables d'emploi de ce mécanisme."
 
 #. Tag: title
 #, no-c-format
@@ -1357,27 +1340,24 @@ msgid "Working with Several Distributions"
 msgstr "Travailler avec plusieurs distributions"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "<command>aptitude</command> being such a marvelous tool, it is tempting to pick packages coming from other distributions. For example, after having installed a <emphasis role=\"distribution\">Stable</emphasis> system, you might want to try out a software package available in <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> without diverging too much from the system's initial state."
+#, no-c-format
 msgid "<command>apt-get</command> being such a marvelous tool, it is tempting to pick packages coming from other distributions. For example, after having installed a <emphasis role=\"distribution\">Stable</emphasis> system, you might want to try out a software package available in <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> without diverging too much from the system's initial state."
-msgstr "L'outil formidable qu'est <command>aptitude</command> incite fortement à mettre en place des paquets provenant d'autres distributions. Ainsi, après avoir installé une version <emphasis role=\"distribution\">Stable</emphasis>, vous voulez tester un logiciel présent dans <emphasis role=\"distribution\">Testing</emphasis> ou <emphasis role=\"distribution\">Unstable</emphasis>, sans trop vous éloigner de son état initial."
+msgstr "L'outil formidable qu'est <command>apt-get</command> incite fortement à mettre en place des paquets provenant d'autres distributions. Ainsi, après avoir installé une version <emphasis role=\"distribution\">Stable</emphasis>, vous voulez tester un logiciel présent dans <emphasis role=\"distribution\">Testing</emphasis> ou <emphasis role=\"distribution\">Unstable</emphasis>, sans trop vous éloigner de son état initial."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Even if you will occasionally encounter problems while mixing packages from different distributions, <command>aptitude</command> manages such coexistence very well and limits risks very effectively. The best way to proceed is to list all distributions used in <filename>/etc/apt/sources.list</filename> (some people always put the three distributions, but remember that <emphasis role=\"distribution\">Unstable</emphasis> is reserved for experienced users) and to define your reference distribution with the <literal>APT::Default-Release</literal> parameter (see <xref linkend=\"section.apt-mise-a-jour\" />)."
+#, no-c-format
 msgid "Even if you will occasionally encounter problems while mixing packages from different distributions, <command>apt-get</command> manages such coexistence very well and limits risks very effectively. The best way to proceed is to list all distributions used in <filename>/etc/apt/sources.list</filename> (some people always put the three distributions, but remember that <emphasis role=\"distribution\">Unstable</emphasis> is reserved for experienced users) and to define your reference distribution with the <literal>APT::Default-Release</literal> parameter (see <xref linkend=\"sect.apt-upgrade\" />)."
-msgstr "Même si vous n'êtes pas complètement à l'abri de bogues d'interactions entre les paquets de différentes distributions, <command>aptitude</command> se révèle fort heureusement très habile pour gérer une telle cohabitation et en minimiser les risques. La meilleure manière de procéder est de préciser toutes les distributions employées dans le fichier <filename>/etc/apt/sources.list</filename> (certains y placent toujours les trois distributions, mais rappelons que l'utilisation d'<emphasis role=\"distribution\">Unstable</emphasis> est réservée aux utilisateurs expérimentés) et de préciser votre distribution de référence avec le paramètre <literal>APT::Default-Release</literal> (voir <xref linkend=\"section.apt-mise-a-jour\" />)."
+msgstr "Même si vous n'êtes pas complètement à l'abri de bogues d'interactions entre les paquets de différentes distributions, <command>apt-get</command> se révèle fort heureusement très habile pour gérer une telle cohabitation et en minimiser les risques. La meilleure manière de procéder est de préciser toutes les distributions employées dans le fichier <filename>/etc/apt/sources.list</filename> (certains y placent toujours les trois distributions, mais rappelons que l'utilisation d'<emphasis role=\"distribution\">Unstable</emphasis> est réservée aux utilisateurs expérimentés) et de préciser votre distribution de référence avec le paramètre <literal>APT::Default-Release</literal> (voir <xref linkend=\"sect.apt-upgrade\" />)."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Let's suppose that <emphasis role=\"distribution\">Stable</emphasis> is your reference distribution but that <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> are also listed in your <filename>sources.list</filename> file. In this case, you can use <command>aptitude install <replaceable>package</replaceable>/testing</command> to install a package from <emphasis role=\"distribution\">Testing</emphasis>. If the installation fails due to some unsatisfiable dependencies, let it solve those dependencies within <emphasis role=\"distribution\">Testing</emphasis> by adding the <literal>-t testing</literal> parameter. The same obviously applies to <emphasis role=\"distribution\">Unstable</emphasis>."
+#, no-c-format
 msgid "Let's suppose that <emphasis role=\"distribution\">Stable</emphasis> is your reference distribution but that <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> are also listed in your <filename>sources.list</filename> file. In this case, you can use <command>apt-get install <replaceable>package</replaceable>/testing</command> to install a package from <emphasis role=\"distribution\">Testing</emphasis>. If the installation fails due to some unsatisfiable dependencies, let it solve those dependencies within <emphasis role=\"distribution\">Testing</emphasis> by adding the <literal>-t testing</literal> parameter. The same obviously applies to <emphasis role=\"distribution\">Unstable</emphasis>."
-msgstr "Supposons que <emphasis role=\"distribution\">Stable</emphasis> soit votre distribution de référence, mais que <emphasis role=\"distribution\">Testing</emphasis> et <emphasis role=\"distribution\">Unstable</emphasis> apparaissent également dans votre fichier <filename>sources.list</filename>. Dans ce cas, vous pouvez employer <command>aptitude install <replaceable>paquet</replaceable>/testing</command> pour installer un paquet depuis <emphasis role=\"distribution\">Testing</emphasis>. Si l'installation échoue parce que certaines dépendances ne peuvent pas être satisfaites, autorisez-le à satisfaire ces dernières dans <emphasis role=\"distribution\">Testing</emphasis> en ajoutant le paramètre <literal>-t testing</literal>. Il en ira évidemment de même pour <emphasis role=\"distribution\">Unstable</emphasis>."
+msgstr "Supposons que <emphasis role=\"distribution\">Stable</emphasis> soit votre distribution de référence, mais que <emphasis role=\"distribution\">Testing</emphasis> et <emphasis role=\"distribution\">Unstable</emphasis> apparaissent également dans votre fichier <filename>sources.list</filename>. Dans ce cas, vous pouvez employer <command>apt-get install <replaceable>paquet</replaceable>/testing</command> pour installer un paquet depuis <emphasis role=\"distribution\">Testing</emphasis>. Si l'installation échoue parce que certaines dépendances ne peuvent pas être satisfaites, autorisez-le à satisfaire ces dernières dans <emphasis role=\"distribution\">Testing</emphasis> en ajoutant le paramètre <literal>-t testing</literal>. Il en ira évidemment de même pour <emphasis role=\"distribution\">Unstable</emphasis>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "In this situation, upgrades (<command>upgrade</command> and <command>dist-upgrade</command>) are done within <emphasis role=\"distribution\">Stable</emphasis> except for packages already upgraded to another distribution: those will follow updates available in the other distributions. We'll explain this behavior with the help of the default priorities set by APT below. Do not hesitate to use <command>apt-cache policy</command> (see sidebar) to verify the given priorities."
-msgstr "Dans cette situation, les mises à jour (« <command>safe-upgrade</command> » et « <command>dist-upgrade</command> ») ont lieu dans le cadre de <emphasis role=\"distribution\">Stable</emphasis> sauf pour les paquets mis à jours depuis une autre distribution : ces derniers suivront les dernières évolutions dans celles-là. Nous donnons ci-dessous l'explication de ce comportement grâce aux priorités automatiques employées par APT. N'hésitez pas à employer <command>apt-cache policy</command> (voir encadré) pour vérifier les priorités indiquées."
+msgstr "Dans cette situation, les mises à jour (« <command>upgrade</command> » et « <command>dist-upgrade</command> ») ont lieu dans le cadre de <emphasis role=\"distribution\">Stable</emphasis> sauf pour les paquets mis à jours depuis une autre distribution : ces derniers suivront les dernières évolutions dans celles-là. Nous donnons ci-dessous l'explication de ce comportement grâce aux priorités automatiques employées par APT. N'hésitez pas à employer <command>apt-cache policy</command> (voir encadré) pour vérifier les priorités indiquées."
 
 #. Tag: para
 #, no-c-format
@@ -1462,17 +1442,12 @@ msgid "<primary><command>aptitude why</command></primary>"
 msgstr "<primary><command>aptitude why</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "People might want to know why an automatically installed package is present on the system. To get this information from the command line, you can use <command>aptitude why <replaceable>package</replaceable></command> (<command>apt-get</command> has no similar feature):"
-msgstr "Il arrive que l'on veuille savoir pourquoi un paquet automatiquement installé est présent sur le système. Pour obtenir cette information directement depuis la ligne de commande, on peut employer <command>aptitude why <replaceable>paquet</replaceable></command> :"
+msgstr "Il arrive que l'on veuille savoir pourquoi un paquet automatiquement installé est présent sur le système. Pour obtenir cette information directement depuis la ligne de commande, on peut employer <command>aptitude why <replaceable>paquet</replaceable></command> (<command>apt-get</command> ne dispose pas de cette fonctionnalité) :"
 
 #. Tag: screen
-#, fuzzy, no-c-format
-#| msgid ""
-#| "<computeroutput>$ </computeroutput><userinput> aptitude why python-debian</userinput>\n"
-#| "<computeroutput>i   aptitude         Recommends apt-xapian-index         \n"
-#| "i A apt-xapian-index Depends    python-debian (&gt;= 0.1.15)</computeroutput>\n"
-#| "      "
+#, no-c-format
 msgid ""
 "$ <userinput>aptitude why python-debian</userinput>\n"
 "i   aptitude         Recommends apt-xapian-index         \n"
@@ -1501,10 +1476,9 @@ msgid "<primary><command>debfoster</command></primary>"
 msgstr "<primary><command>debfoster</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Before <command>aptitude</command> came to life with its tracking of automatic packages, there were two utilities producing lists of unnecessary packages: <command>deborphan</command> and <command>debfoster</command>."
+#, no-c-format
 msgid "In days where <command>apt-get</command> and <command>aptitude</command> were not able to track automatic packages, there were two utilities producing lists of unnecessary packages: <command>deborphan</command> and <command>debfoster</command>."
-msgstr "Avant l'apparition d'<command>aptitude</command> et de son suivi des paquets automatiques, il existait deux utilitaires qui permettaient de déterminer une liste de paquets non nécessaires, <command>deborphan</command> et <command>debfoster</command>."
+msgstr "Avant l'apparition du suivi des paquets automatiques par <command>apt-get</command> et <command>aptitude</command>, il existait deux utilitaires qui permettaient de déterminer une liste de paquets non nécessaires, <command>deborphan</command> et <command>debfoster</command>."
 
 #. Tag: para
 #, no-c-format
@@ -1512,9 +1486,9 @@ msgid "<command>deborphan</command> is the most rudimentary of both. It simply s
 msgstr "<command>deborphan</command>, le plus rudimentaire des deux, recherche simplement dans les sections <literal>libs</literal> et <literal>oldlibs</literal> (à défaut d'instructions supplémentaires) les paquets actuellement installés dont aucun autre paquet installé ne dépend. Cette liste peut ensuite servir de point de départ pour supprimer les paquets inutiles."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<command>debfoster</command> has a more elaborate approach, very similar to APT's one: it maintains a list of packages that have been explicitly installed, and remembers what packages are really required between each invocation. If new packages appear on the system and if <command>debfoster</command> doesn't know them as required packages, they will be shown on the screen together with a list of their dependencies. The program then offers a choice: remove the package (possibly together with those that depend on it), mark it as explicitly required, or ignore it temporarily."
-msgstr "<command>debfoster</command> a une approche plus évoluée, qui se rapproche un peu de celle d'<command>aptitude</command> : il maintient une liste de paquets installés explicitement, et se rappelle d'une invocation sur l'autre quels paquets sont réellement requis. Si de nouveaux paquets sont apparus sur le système, et que <command>debfoster</command> ne les connaît pas comme des paquets requis, ils seront présentés à l'écran, ainsi qu'une liste de leurs dépendances. Le programme propose alors un choix, permettant de supprimer le paquet (ainsi que ceux dont il dépend, le cas échéant), de le marquer comme explicitement requis, ou de l'ignorer temporairement."
+msgstr "<command>debfoster</command> a une approche plus évoluée, qui se rapproche un peu de celle d'APT : il maintient une liste de paquets installés explicitement, et se rappelle d'une invocation sur l'autre quels paquets sont réellement requis. Si de nouveaux paquets sont apparus sur le système, et que <command>debfoster</command> ne les connaît pas comme des paquets requis, ils seront présentés à l'écran, ainsi qu'une liste de leurs dépendances. Le programme propose alors un choix, permettant de supprimer le paquet (ainsi que ceux dont il dépend, le cas échéant), de le marquer comme explicitement requis, ou de l'ignorer temporairement."
 
 #. Tag: title
 #, no-c-format
@@ -1587,10 +1561,9 @@ msgid "<primary><command>aptitude search</command></primary>"
 msgstr "<primary><command>aptitude search</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The <command>apt-cache</command> command can do keyword-based package searches with <command>apt-cache search <replaceable>keyword</replaceable></command>. It can also display the headers of the package's available versions with <command>apt-cache show <replaceable>package</replaceable></command>. This command provides the package's description, its dependencies, the name of its maintainer, etc. Note that <command>aptitude search</command> and <command>aptitude show</command> work in the same way. <indexterm><primary><command>apt-cache show</command></primary></indexterm><indexterm><primary><command>apt-cache search</command></primary></indexterm><indexterm><primary><command>aptitude show</command></primary></indexterm><indexterm><primary><command>aptitude search</command></primary></indexterm>"
+#, no-c-format
 msgid "The <command>apt-cache</command> command can do keyword-based package searches with <command>apt-cache search <replaceable>keyword</replaceable></command>. It can also display the headers of the package's available versions with <command>apt-cache show <replaceable>package</replaceable></command>. This command provides the package's description, its dependencies, the name of its maintainer, etc. Note that <command>aptitude search</command> and <command>aptitude show</command> work in the same way."
-msgstr "Le programme <command>apt-cache</command> permet notamment de rechercher des paquets à l'aide de mots-clés, en tapant <command>apt-cache search <replaceable>mot-clé</replaceable></command>. On peut aussi consulter les en-têtes des différentes versions disponibles d'un paquet avec <command>apt-cache show <replaceable>paquet</replaceable></command>. Cette commande produira la description du paquet ainsi que ses dépendances, le nom de son mainteneur, etc. Signalons que <command>aptitude search</command> et <command>aptitude show</command> fonctionnent de manière similaire. <indexterm><primary><command>apt-cache show</command></primary></indexterm> <indexterm><primary><command>apt-cache search</command></primary></indexterm> <indexterm><primary><command>aptitude show</command></primary></indexterm> <indexterm><primary><command>aptitude search</command></primary></indexterm>"
+msgstr "Le programme <command>apt-cache</command> permet notamment de rechercher des paquets à l'aide de mots-clés, en tapant <command>apt-cache search <replaceable>mot-clé</replaceable></command>. On peut aussi consulter les en-têtes des différentes versions disponibles d'un paquet avec <command>apt-cache show <replaceable>paquet</replaceable></command>. Cette commande produira la description du paquet ainsi que ses dépendances, le nom de son mainteneur, etc. Signalons que <command>aptitude search</command> et <command>aptitude show</command> fonctionnent de manière similaire."
 
 #. Tag: title
 #, no-c-format
@@ -1653,10 +1626,9 @@ msgid "<primary><command>apt-cache pkgnames</command></primary>"
 msgstr "<primary><command>apt-cache pkgnames</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Some features are more rarely used. For instance, <command>apt-cache policy</command> displays the priorities of package sources as well as those of individual packages. Another example is <command>apt-cache dumpavail</command> which displays the headers of all available versions of all packages. <command>apt-cache pkgnames</command> displays the list of all the packages which appear at least once in the cache.<indexterm><primary><command>apt-cache policy</command></primary></indexterm><indexterm><primary><command>apt-cache dumpavail</command></primary></indexterm>"
+#, no-c-format
 msgid "Some features are more rarely used. For instance, <command>apt-cache policy</command> displays the priorities of package sources as well as those of individual packages. Another example is <command>apt-cache dumpavail</command> which displays the headers of all available versions of all packages. <command>apt-cache pkgnames</command> displays the list of all the packages which appear at least once in the cache."
-msgstr "Certaines fonctions ne servent que bien plus rarement. Ainsi, <command>apt-cache policy</command> permet de consulter les priorités des différentes sources de paquets ainsi que celles des paquets qui bénéficient d'un traitement particulier. On peut encore citer <command>apt-cache dumpavail</command> qui affiche les en-têtes de toutes les versions disponibles de tous les paquets. <command>apt-cache pkgnames</command> affiche une liste de tous les paquets existants dans la mémoire <emphasis>cache</emphasis>. <indexterm><primary><command>apt-cache policy</command></primary></indexterm> <indexterm><primary><command>apt-cache dumpavail</command></primary></indexterm>"
+msgstr "Certaines fonctions ne servent que bien plus rarement. Ainsi, <command>apt-cache policy</command> permet de consulter les priorités des différentes sources de paquets ainsi que celles des paquets qui bénéficient d'un traitement particulier. On peut encore citer <command>apt-cache dumpavail</command> qui affiche les en-têtes de toutes les versions disponibles de tous les paquets. <command>apt-cache pkgnames</command> affiche une liste de tous les paquets existants dans la mémoire <emphasis>cache</emphasis>."
 
 #. Tag: title
 #, no-c-format
@@ -1729,9 +1701,9 @@ msgid "Most of <command>aptitude</command>'s features are accessible via the int
 msgstr "La plupart des fonctionnalités d'<command>aptitude</command> sont accessibles aussi bien par l'interface interactive que par la ligne de commande, et cette ligne de commande ne dépaysera pas trop les habitués d'<command>apt-get</command> et <command>apt-cache</command>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The advanced features of <command>aptitude</command> are also available on the command-line. You can use the same package search patterns as in the interactive version. For example, if you want to cleanup the list of “manually installed” packages, and if you know that none of the locally installed programs require any particular libraries or Perl modules, you can mark the corresponding packages as automatic with a single command:"
-msgstr "Mais les fonctionnalités évoluées d'<command>aptitude</command> se retrouvent également sur la ligne de commande. On retrouve ainsi les mêmes motifs de recherche de paquets qu'en version interactive. Ainsi, si on veut faire dans les paquets le ménage des paquets « automatiques », et qu'on sait qu'aucun programme localement installé n'a besoin de bibliothèques particulières ou de modules Perl, on pourra marquer les paquets correspondants comme automatiques en une seule commande :"
+msgstr "Les fonctionnalités évoluées d'<command>aptitude</command> se retrouvent également sur la ligne de commande. On retrouve ainsi les mêmes motifs de recherche de paquets qu'en version interactive. Ainsi, si on veut faire dans les paquets le ménage des paquets « automatiques », et qu'on sait qu'aucun programme localement installé n'a besoin de bibliothèques particulières ou de modules Perl, on pourra marquer les paquets correspondants comme automatiques en une seule commande :"
 
 #. Tag: screen
 #, no-c-format
@@ -1756,25 +1728,22 @@ msgid "Managing Recommendations, Suggestions and Tasks"
 msgstr "Gestion des recommandations, suggestions et tâches"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Another interesting feature of <command>aptitude</command> is the fact that it respects recommendations between packages while still giving users the choice not to install them on a case by case basis. For example, the <emphasis role=\"pkg\">gnome</emphasis> package recommends <emphasis role=\"pkg\">gdebi</emphasis> (among others). When you select the former for installation, the latter will also be selected (and marked as automatic if not already installed on the system). Typing <keycombo><keycap>g</keycap></keycombo> will make it obvious: <emphasis role=\"pkg\">gdebi</emphasis> appears on the summary screen of pending actions in the list of packages installed automatically to satisfy dependencies. However, you can decide not to install it by deselecting it before confirming the operations."
-msgstr "Un autre intérêt d'<command>aptitude</command> est qu'il respecte les recommandations entre paquets tout en permettant à l'utilisateur de ne pas les installer au cas par cas. Ainsi, le paquet <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> recommande (entre autres) <emphasis role=\"pkg\">gnome-accessibility</emphasis>. Si l'on sélectionne le premier pour l'installation, le second sera également sélectionné (et marqué comme automatique s'il n'est pas déjà présent sur le système). Un appui sur <keycombo><keycap>g</keycap></keycombo> permet de s'en rendre compte : <emphasis role=\"pkg\">gnome-accessibility</emphasis> figure sur l'écran de résumé des actions en attente dans la liste des paquets ajoutés automatiquement pour satisfaire des dépendances. On peut cependant décider de ne pas l'installer, en le désélectionnant avant de valider les opérations."
+msgstr "Un autre intérêt d'<command>aptitude</command> est qu'il respecte les recommandations entre paquets tout en permettant à l'utilisateur de ne pas les installer au cas par cas. Ainsi, le paquet <emphasis role=\"pkg\">gnome</emphasis> recommande (entre autres) <emphasis role=\"pkg\">gdebi</emphasis>. Si l'on sélectionne le premier pour l'installation, le second sera également sélectionné (et marqué comme automatique s'il n'est pas déjà présent sur le système). Un appui sur <keycombo><keycap>g</keycap></keycombo> permet de s'en rendre compte : <emphasis role=\"pkg\">gdebi</emphasis> figure sur l'écran de résumé des actions en attente dans la liste des paquets ajoutés automatiquement pour satisfaire des dépendances. On peut cependant décider de ne pas l'installer, en le désélectionnant avant de valider les opérations."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Note that this recommendation tracking feature does not apply to upgrades. For instance, if a new version of <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> recommends a package that it did not recommend formerly, the package won't be marked for installation. However, it will be listed on the upgrade screen so that the administrator can still select it for installation."
+#, no-c-format
 msgid "Note that this recommendation tracking feature does not apply to upgrades. For instance, if a new version of <emphasis role=\"pkg\">gnome</emphasis> recommends a package that it did not recommend formerly, the package won't be marked for installation. However, it will be listed on the upgrade screen so that the administrator can still select it for installation."
-msgstr "On notera que cette fonction de suivi des recommandations ne s'applique pas lors d'une mise à jour. Ainsi, si une nouvelle version de <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> recommande un paquet qu'il ne recommandait pas auparavant, il ne sera pas marqué pour l'installation. En revanche il sera mentionné dans l'écran de mise à jour, afin de vous laisser la possibilité de l'installer malgré tout."
+msgstr "On notera que cette fonction de suivi des recommandations ne s'applique pas lors d'une mise à jour. Ainsi, si une nouvelle version de <emphasis role=\"pkg\">gnome</emphasis> recommande un paquet qu'il ne recommandait pas auparavant, il ne sera pas marqué pour l'installation. En revanche il sera mentionné dans l'écran de mise à jour, afin de vous laisser la possibilité de l'installer malgré tout."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Suggestions between packages are also taken into account, but in a manner adapted to their specific status. For example, since <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> suggests <emphasis role=\"pkg\">gnome-audio</emphasis>, the latter will be displayed on the summary screen of pending actions (in the section of packages suggested by other packages). This way, it is visible and the administrator can decide whether to take the suggestion into account or not. Since it is only a suggestion and not a dependency or a recommendation, the package will not be selected automatically — its selection requires a manual intervention from the user (thus, the package will not be marked as automatic)."
+#, no-c-format
 msgid "Suggestions between packages are also taken into account, but in a manner adapted to their specific status. For example, since <emphasis role=\"pkg\">gnome</emphasis> suggests <emphasis role=\"pkg\">dia-gnome</emphasis>, the latter will be displayed on the summary screen of pending actions (in the section of packages suggested by other packages). This way, it is visible and the administrator can decide whether to take the suggestion into account or not. Since it is only a suggestion and not a dependency or a recommendation, the package will not be selected automatically — its selection requires a manual intervention from the user (thus, the package will not be marked as automatic)."
-msgstr "Les suggestions entre paquets sont également prises en compte, mais de manière adaptée à leur statut particulier. Ainsi, comme <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> suggère <emphasis role=\"pkg\">gnome-audio</emphasis>, ce dernier sera listé sur l'écran de résumé des actions (dans la section des paquets qui sont suggérés par d'autres paquets), afin qu'il soit visible et que l'administrateur puisse décider de tenir compte, ou non, de la suggestion. Mais comme il s'agit d'une simple suggestion et non d'une dépendance ou recommandation, le paquet ne sera pas sélectionné, et sa sélection devra être manuelle (et le paquet ne sera donc pas marqué comme automatique)."
+msgstr "Les suggestions entre paquets sont également prises en compte, mais de manière adaptée à leur statut particulier. Ainsi, comme <emphasis role=\"pkg\">gnome</emphasis> suggère <emphasis role=\"pkg\">dia-gnome</emphasis>, ce dernier sera listé sur l'écran de résumé des actions (dans la section des paquets qui sont suggérés par d'autres paquets), afin qu'il soit visible et que l'administrateur puisse décider de tenir compte, ou non, de la suggestion. Mais comme il s'agit d'une simple suggestion et non d'une dépendance ou recommandation, le paquet ne sera pas sélectionné, et sa sélection devra être manuelle (et le paquet ne sera donc pas marqué comme automatique)."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "In the same spirit, remember that <command>aptitude</command> makes intelligent use of the concept of task. Since tasks are displayed as categories in the screens of package lists, you can either select a full task for installation or removal, or browse the list of packages included in the task to select a smaller subset."
+#, no-c-format
 msgid "In the same spirit, remember that <command>aptitude</command> makes intelligent use of the concept of task. Since tasks are displayed as categories in the screens of packages lists, you can either select a full task for installation or removal, or browse the list of packages included in the task to select a smaller subset."
 msgstr "Dans la même veine, rappelons qu'<emphasis role=\"pkg\">aptitude</emphasis> exploite intelligemment le concept de tâche. Ces tâches étant affichées comme des catégories dans les écrans de listes de paquets, on peut soit choisir une tâche complète à installer ou supprimer, soit consulter la liste des paquets inclus dans une tâche afin d'en sélectionner un sous-ensemble plus limité."
 
@@ -1834,22 +1803,19 @@ msgid "<primary>package</primary><secondary>seal</secondary>"
 msgstr "<primary>paquet</primary><secondary>scellement</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>pacakage</primary><secondary>signature</secondary>"
+#, no-c-format
 msgid "<primary>package</primary><secondary>signature</secondary>"
 msgstr "<primary>paquet</primary><secondary>signature</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>signature</primary><secondary>of a package</secondary>"
+#, no-c-format
 msgid "<primary>signature</primary><secondary>package signature</secondary>"
 msgstr "<primary>signature</primary><secondary>d'un paquet</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>installation</primary><secondary>of packages</secondary>"
+#, no-c-format
 msgid "<primary>authentication</primary><secondary>package authentication</secondary>"
-msgstr "<primary>installation</primary><secondary>de paquets</secondary>"
+msgstr "<primary>authentification</primary><secondary>de paquets</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1882,9 +1848,9 @@ msgid "<primary><filename>Release.gpg</filename></primary>"
 msgstr "<primary><filename>Release.gpg</filename></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The trusted keys are managed with the <command>apt-key</command> command found in the <emphasis role=\"pkg\">apt</emphasis> package. This program maintains a keyring of GnuPG public keys, which are used to verify signatures in the <filename>Release.gpg</filename> files available on the mirrors. It can be used to add new keys manually (when non-official mirrors are needed). Generally however, only the official Debian keys are needed. These keys are automatically kept up-to-date by the <emphasis role=\"pkg\">debian-archive-keyring</emphasis> package (which puts the corresponding keyrings in <filename>/etc/apt/trusted.gpg.d</filename>). However, the first installation of this particular package requires caution: even if the package is signed like any other, the signature cannot be verified externally. Cautious administrators should therefore check the fingerprints of imported keys before trusting them to install new packages:"
-msgstr "La gestion des clés de confiance se fait grâce au programme <command>apt-key</command>, fourni par le paquet <emphasis role=\"pkg\">apt</emphasis>. Ce programme maintient à jour un trousseau de clés publiques GnuPG, qui sont utilisées pour vérifier les signatures des fichiers <filename>Release.gpg</filename> obtenus depuis les miroirs Debian. Il est possible de l'utiliser pour ajouter manuellement des clés supplémentaires (si l'on souhaite ajouter des miroirs autres que les miroirs officiels) ; mais dans le cas le plus courant, on n'a besoin que des clés officielles Debian, qui sont automatiquement maintenues à jour par le paquet <emphasis role=\"pkg\">debian-archive-keyring</emphasis> (qui appelle <command>apt-key</command> lors de son installation et de sa mise à jour). Cependant, la première installation de ce paquet est également sujette à caution, car même s'il est signé comme les autres paquets, cette signature ne peut pas être vérifiée extérieurement. On s'attachera donc à vérifier les empreintes (<foreignphrase>fingerprints</foreignphrase>) des clés importées, avant de leur faire confiance pour installer de nouveaux paquets :"
+msgstr "La gestion des clés de confiance se fait grâce au programme <command>apt-key</command>, fourni par le paquet <emphasis role=\"pkg\">apt</emphasis>. Ce programme maintient à jour un trousseau de clés publiques GnuPG, qui sont utilisées pour vérifier les signatures des fichiers <filename>Release.gpg</filename> obtenus depuis les miroirs Debian. Il est possible de l'utiliser pour ajouter manuellement des clés supplémentaires (si l'on souhaite ajouter des miroirs autres que les miroirs officiels) ; mais dans le cas le plus courant, on n'a besoin que des clés officielles Debian, qui sont automatiquement maintenues à jour par le paquet <emphasis role=\"pkg\">debian-archive-keyring</emphasis> (qui installe les trousseaux de clés dans <filename>/etc/apt/trusted.gpg.d</filename>). Cependant, la première installation de ce paquet est également sujette à caution, car même s'il est signé comme les autres paquets, cette signature ne peut pas être vérifiée extérieurement. On s'attachera donc à vérifier les empreintes (<foreignphrase>fingerprints</foreignphrase>) des clés importées, avant de leur faire confiance pour installer de nouveaux paquets :"
 
 #. Tag: screen
 #, no-c-format
@@ -1926,15 +1892,14 @@ msgid "<primary>trusted key</primary>"
 msgstr "<primary>clé de confiance</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>package</primary><secondary>authenticity check</secondary>"
+#, no-c-format
 msgid "<primary>key</primary><secondary>APT's authentication keys</secondary>"
-msgstr "<primary>paquet</primary><secondary>vérification d'authenticité</secondary>"
+msgstr "<primary>clé</primary><secondary>d'authentification pour APT</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "When a third-party package source is added to the <filename>sources.list</filename> file, APT needs to be told to trust the corresponding GPG authentication key (otherwise it will keep complaining that it can't ensure the authenticity of the packages coming from that repository). The first step is of course to get the public key. More often than not, the key will be provided as a small text file, which we'll call <filename>key.asc</filename> in the following examples."
-msgstr "Lorsqu'une source de paquets tierce est ajoutée au fichier <filename>sources.list</filename> il faut désormais porter à la connaissance de APT la clé de confiance correspondante (sans quoi il se plaindra constamment qu'il ne peut pas vérifier l'authenticité des paquets contenus dans le dépôt concerné). Pour cela, il faut avant tout récupérer la clé en question : la plupart du temps elle sera fournie sous la forme d'un petit fichier texte (qui sera nommé <filename>cle.asc</filename> dans les exemples ci-dessous)."
+msgstr "Lorsqu'une source de paquets tierce est ajoutée au fichier <filename>sources.list</filename> il faut désormais porter à la connaissance de APT la clé de confiance correspondante (sans quoi il se plaindra constamment qu'il ne peut pas vérifier l'authenticité des paquets contenus dans le dépôt concerné). Pour cela, il faut avant tout récupérer la clé publique en question : la plupart du temps elle sera fournie sous la forme d'un petit fichier texte (qui sera nommé <filename>cle.asc</filename> dans les exemples ci-dessous)."
 
 #. Tag: para
 #, no-c-format
@@ -1997,9 +1962,9 @@ msgid "In this section, we will focus on upgrading a <emphasis role=\"distributi
 msgstr "Nous allons ici nous attacher particulièrement à la migration d'un système <emphasis role=\"distribution\">Squeeze</emphasis> en <emphasis role=\"distribution\">Wheezy</emphasis>. Comme toute opération majeure sur un système, cette mise à jour comporte une certaine part de risque, et il est donc vivement conseillé de s'assurer que les données importantes sont sauvegardées avant de s'engager dans la procédure."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Another good habit which makes the upgrade easier (and shorter) is to tidy your installed packages and keep only the ones that are really needed. Helpful tools to do that include <command>aptitude</command>, <command>deborphan</command> and <command>debfoster</command> (see <xref linkend=\"sect.automatic-tracking\" />). For example, you can use the following command, and then use <command>aptitude</command>'s interactive mode to double check and fine-tune the scheduled removals:"
-msgstr "Pour faciliter (et raccourcir) la mise à jour, il est également recommandé de faire un peu de nettoyage dans les paquets installés, pour ne garder que ceux qui sont réellement nécessaires. Pour cela, on mettra à profit les fonctions d'<command>aptitude</command>, éventuellement en conjonction avec <command>deborphan</command> et <command>debfoster</command> (voir <xref linkend=\"aptitude\" />). On pourra par exemple utiliser la commande suivante :"
+msgstr "Pour faciliter (et raccourcir) la mise à jour, il est également recommandé de faire un peu de nettoyage dans les paquets installés, pour ne garder que ceux qui sont réellement nécessaires. Pour cela, on mettra à profit les fonctions d'<command>apt-get</command>, éventuellement en conjonction avec <command>deborphan</command> et <command>debfoster</command> (voir <xref linkend=\"sect.automatic-tracking\" />). On pourra par exemple utiliser la commande suivante :"
 
 #. Tag: screen
 #, no-c-format
@@ -2007,9 +1972,9 @@ msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput
 msgstr "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Now for the upgrading itself. First, you need to change the <filename>/etc/apt/sources.list</filename> file to tell APT to get its packages from <emphasis role=\"distribution\">Wheezy</emphasis> instead of <emphasis role=\"distribution\">Squeeze</emphasis>. If the file only contains references to <emphasis role=\"distribution\">Stable</emphasis> rather than explicit codenames, the change isn't even required, since <emphasis role=\"distribution\">Stable</emphasis> always refers to the latest released version of Debian. In both cases, the database of available packages must be refreshed (with the <command>apt-get update</command> command or the refresh button in <command>synaptic</command>)."
-msgstr "Passons à la mise à jour du système. On commencera par indiquer à APT qu'il doit utiliser <emphasis role=\"distribution\">Squeeze</emphasis> au lieu de <emphasis role=\"distribution\">Lenny</emphasis>, en modifiant le fichier <filename>/etc/apt/sources.list</filename> en conséquence. Si ce fichier ne contient que des références à <emphasis role=\"distribution\">Stable</emphasis> et non à un de ces noms de code, c'est encore plus simple : la modification n'est pas nécessaire, puisque <emphasis role=\"distribution\">Stable</emphasis> est toujours identique à la dernière version publiée de Debian. Dans les deux cas, on n'oubliera pas de rafraîchir la base de données des paquets disponibles (<command>aptitude update</command>, ou le bouton de mise à jour dans <command>synaptic</command>)."
+msgstr "Passons à la mise à jour du système. On commencera par indiquer à APT qu'il doit utiliser <emphasis role=\"distribution\">Wheezy</emphasis> au lieu de <emphasis role=\"distribution\">Squeeze</emphasis>, en modifiant le fichier <filename>/etc/apt/sources.list</filename> en conséquence. Si ce fichier ne contient que des références à <emphasis role=\"distribution\">Stable</emphasis> et non à un de ces noms de code, c'est encore plus simple : la modification n'est pas nécessaire, puisque <emphasis role=\"distribution\">Stable</emphasis> est toujours identique à la dernière version publiée de Debian. Dans les deux cas, on n'oubliera pas de rafraîchir la base de données des paquets disponibles (<command>apt-get update</command>, ou le bouton de mise à jour dans <command>synaptic</command>)."
 
 #. Tag: para
 #, no-c-format
@@ -2017,9 +1982,9 @@ msgid "Once these new package sources are registered, you should first do a mini
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Once this first upgrade is done, it is time to handle the upgrade itself, either with <command>apt-get dist-upgrade</command>, <command>aptitude</command>, or <command>synaptic</command>. You should carefully check the suggested actions before applying them: you might want to add suggested packages or deselect packages which are only recommended and known not to be useful. In any case, the front-end should come up with a scenario ending in a coherent and up-to-date <emphasis role=\"distribution\">Wheezy</emphasis> system. Then, all you need is to do is wait while the required packages are downloaded, answer the Debconf questions and possibly those about locally modified configuration files, and sit back while APT does its magic."
-msgstr "Une fois ces préliminaires accomplis, on pourra passer à la mise à jour proprement dite, que ce soit avec <command>aptitude</command> ou <command>synaptic</command>. On vérifiera les actions à effectuer avant de les déclencher (pour éventuellement ajouter des paquets suggérés, ou désélectionner des paquets qui ne sont que recommandés) ; le frontal devrait dans tous les cas arriver à un scénario dont la situation finale est un système <emphasis role=\"distribution\">Squeeze</emphasis> cohérent et à jour. Il suffira alors de patienter durant le téléchargement des paquets, de répondre aux questions Debconf, et de regarder la magie s'opérer pendant le reste de la procédure en gardant un œil attentif sur les éventuelles questions portant sur le remplacement de fichiers de configuration qui auraient été localement modifiés."
+msgstr "Une fois ces préliminaires accomplis, on pourra passer à la mise à jour proprement dite, que ce soit avec <command>apt-get</command> ou <command>synaptic</command>. On vérifiera les actions à effectuer avant de les déclencher (pour éventuellement ajouter des paquets suggérés, ou désélectionner des paquets qui ne sont que recommandés) ; le frontal devrait dans tous les cas arriver à un scénario dont la situation finale est un système <emphasis role=\"distribution\">Wheezy</emphasis> cohérent et à jour. Il suffira alors de patienter durant le téléchargement des paquets, de répondre aux questions Debconf, et de regarder la magie s'opérer pendant le reste de la procédure en gardant un œil attentif sur les éventuelles questions portant sur le remplacement de fichiers de configuration qui auraient été localement modifiés."
 
 #. Tag: title
 #, no-c-format
@@ -2042,9 +2007,9 @@ msgid "You might sometimes find that the new version of a software doesn't work 
 msgstr "Parfois, la nouvelle version d'un logiciel ne fonctionne plus du tout. C'est par exemple le cas si le logiciel n'est pas très populaire et n'a pas été suffisamment testé ; une mise à jour de dernière minute peut aussi introduire des régressions qui ne sont découvertes qu'après publication. Dans ce cas, le premier réflexe sain est de consulter le système de suivi de bogue à l'adresse <literal>http://bugs.debian.org/<replaceable>paquet</replaceable></literal> pour déterminer si le problème est déjà connu et signalé. Si ce n'est pas le cas, il faut le signaler avec <command>reportbug</command>. Sinon, la lecture du rapport de bogue sera généralement très instructive :"
 
 #. Tag: para
-#, no-c-format, fuzzy
+#, no-c-format
 msgid "sometimes a patch already exists, and it is available on the bug report; you can then recompile a fixed version of the broken package locally (see <xref linkend=\"sect.rebuilding-package\" />);"
-msgstr "on peut y découvrir l'existence d'un correctif qui permet alors de recompiler une version corrigée du paquet Debian (voir <xref linkend=\"sect.rebuilding-package\" />) ;"
+msgstr "on peut y découvrir l'existence d'un correctif qui permet alors de recompiler localement une version corrigée du paquet Debian (voir <xref linkend=\"sect.rebuilding-package\" />) ;"
 
 #. Tag: para
 #, no-c-format
@@ -2057,10 +2022,9 @@ msgid "in yet other cases, a fixed package may have already been prepared and ma
 msgstr "enfin un paquet corrigé peut avoir été préparé par le mainteneur et être disponible en téléchargement."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Depending on the severity of the bug, a new version of the package may be prepared specifically for a new revision of the stable release. When this happens, the fixed package is made available in the <literal>proposed-updates</literal> section of the Debian mirrors (see <xref linkend=\"section.proposed-updates\" />). The corresponding entry can then be temporarily added to the <filename>sources.list</filename> file, and updated packages can be installed with <command>apt-get</command> or <command>aptitude</command>."
+#, no-c-format
 msgid "Depending on the severity of the bug, a new version of the package may be prepared specifically for a new revision of the stable release. When this happens, the fixed package is made available in the <literal>proposed-updates</literal> section of the Debian mirrors (see <xref linkend=\"sect.proposed-updates\" />). The corresponding entry can then be temporarily added to the <filename>sources.list</filename> file, and updated packages can be installed with <command>apt-get</command> or <command>aptitude</command>."
-msgstr "Selon la gravité du bogue, une nouvelle version peut être préparée pour être intégrée dans une nouvelle révision de la version stable. Dans ce cas, un paquet corrigé est peut-être disponible dans la section <literal>proposed-updates</literal> des miroirs Debian (voir <xref linkend=\"section.proposed-updates\" />). On peut alors temporairement ajouter l'entrée correspondante dans son fichier <filename>sources.list</filename> et installer la mise à jour avec <command>apt-get</command> ou <command>aptitude</command>."
+msgstr "Selon la gravité du bogue, une nouvelle version peut être préparée pour être intégrée dans une nouvelle révision de la version stable. Dans ce cas, un paquet corrigé est peut-être disponible dans la section <literal>proposed-updates</literal> des miroirs Debian (voir <xref linkend=\"sect.proposed-updates\" />). On peut alors temporairement ajouter l'entrée correspondante dans son fichier <filename>sources.list</filename> et installer la mise à jour avec <command>apt-get</command> ou <command>aptitude</command>."
 
 #. Tag: para
 #, no-c-format
@@ -2083,7 +2047,7 @@ msgid "While it is of course possible to periodically run a tool to check for av
 msgstr "Bien sûr, il est possible de lancer régulièrement un outil permettant de vérifier l'existence de paquets mis à jour, puis de déclencher l'opération. Cependant, c'est une tâche fastidieuse et répétitive, surtout si l'on a plusieurs machines à administrer. Il existe heureusement des outils permettant d'automatiser une partie des opérations."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The first of these tools is <command>apticron</command>, in the package of the same name. Its main effect is to run a script daily (via <command>cron</command>). The script updates the list of available packages, and, if some installed packages are not in the latest available version, it sends an email with a list of these packages along with the changes that have been made in the new versions. Obviously, this package mostly targets users of Debian <emphasis role=\"distribution\">Stable</emphasis>, since the daily emails would be very long for the faster paced versions of Debian. When updates are available, <command>apticron</command> automatically downloads them. It does not install them — the administrator will still do it — but having the packages already downloaded and available locally (in APT's cache) makes the job faster."
 msgstr "Citons tout d'abord <command>apticron</command>, dans le paquet du même nom. Il s'agit simplement d'un script, appelé quotidiennement par <command>cron</command>, qui met à jour la liste des paquets disponibles et envoie un courrier électronique à une adresse donnée pour lister les paquets qui ne sont pas installés dans leur dernière version, ainsi qu'une description des changements qui ont eu lieu. Ce script vise principalement les utilisateurs de Debian <emphasis role=\"distribution\">Stable</emphasis>, on s'en doute : ces mails seraient quotidiens et vraisemblablement très longs sur les versions plus mobiles de Debian. Lorsque des mises à jour sont disponibles, <command>apticron</command> les télécharge, mais ne les installe pas. L'administrateur peut ainsi exécuter la mise à jour plus rapidement, puisque les paquets sont déjà dans le cache d'APT, il ne sera plus nécessaire d'attendre qu'ils transitent depuis la source de paquets."
 
@@ -2148,9 +2112,9 @@ msgid "<primary><emphasis role=\"pkg\">gnome-packagekit</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">gnome-packagekit</emphasis></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "These tools work very well for servers, but desktop users generally prefer a more interactive system. That is why the “Graphical desktop environment” task installs <emphasis role=\"pkg\">gnome-packagekit</emphasis>. It provides an icon in the notification area of desktop environments when updates are available; clicking on this icon then runs <command>gpk-update-viewer</command>, a simplified interface to perform updates. You can browse through available updates, read the short description of the relevant packages and the corresponding <filename>changelog</filename> entries, and select whether to apply the update or not on a case-by-case basis."
-msgstr "Ces outils conviennent très bien pour des serveurs, mais pour un ordinateur de bureau, on préférera en général un mécanisme plus interactif. C'est pourquoi la tâche « Environnement graphique de bureau » référence <command>update-notifier</command> et <command>update-manager</command>. Le premier est une petite application qui affiche une icône dans la zone de notification d'un environnement de bureau lorsque des mises à jour sont disponibles. Dans ce cas, un clic sur cette icône lance <command>update-manager</command>, une interface simplifiée pour effectuer des mises à jour. Elle permet de naviguer dans les mises à jour disponibles, de lire le <filename>changelog</filename> et la description des paquets concernés, et de décider individuellement si une mise à jour doit être installée ou non. Notons au passage que le paquet fournit des éléments de configuration afin que <filename>/etc/cron.daily/apt</filename> mette à jour la liste des paquets et télécharge les mises à jour disponibles. Loin de la puissance d'<command>aptitude</command> et de <command>synaptic</command>, ce tandem ne gère que les mises à jour des paquets déjà installés, et offre par son interface minimaliste peu de risques de rendre le système incohérent."
+msgstr "Ces outils conviennent très bien pour des serveurs, mais pour un ordinateur de bureau, on préférera en général un mécanisme plus interactif. C'est pourquoi la tâche « Environnement graphique de bureau » référence <command>gnome-packagekit</command>. Ce paquet fournit une petite application qui affiche une icône dans la zone de notification d'un environnement de bureau lorsque des mises à jour sont disponibles. Dans ce cas, un clic sur cette icône lance <command>gpk-update-viewer</command>, une interface simplifiée pour effectuer des mises à jour. Elle permet de naviguer dans les mises à jour disponibles, de lire le <filename>changelog</filename> et la description des paquets concernés, et de décider individuellement si une mise à jour doit être installée ou non."
 
 #. Tag: title
 #, no-c-format
@@ -2163,17 +2127,15 @@ msgid "Automatic Upgrades"
 msgstr "Mise à jour automatique"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>upgrade</primary><secondary>automatic (of the system)</secondary>"
+#, no-c-format
 msgid "<primary>upgrade</primary><secondary>automatic system upgrade</secondary>"
 msgstr "<primary>mise à jour</primary><secondary>automatique du système</secondary>"
 
 # TODO: INTEGRATE ALTERNATE STRING: <primary><foreignphrase>backport</foreignphrase></primary>
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>backport</primary>"
+#, no-c-format
 msgid "<primary>automatic upgrade</primary>"
-msgstr "<primary>rétroportage</primary>"
+msgstr "<primary>automatisation de la mise à jour</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2186,9 +2148,9 @@ msgid "Configuring <command>dpkg</command>"
 msgstr "Configuration de <command>dpkg</command>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "As we have already mentioned (see sidebar <xref linkend=\"sidebar.questions-conffiles\" />), <command>dpkg</command> can be instructed not to ask for confirmation when replacing a configuration file (with the <literal>--force-confdef --force-confold</literal> options). Interactions can, however, have three other sources: some come from APT itself, some are handled by <command>debconf</command>, and some happen on the command line due to package configuration scripts."
-msgstr "Nous avons déjà vu (encadré <xref linkend=\"cadre.questions-conffiles\" />) comment interdire à <command>dpkg</command> de demander confirmation du remplacement d'un fichier de configuration (avec les options <literal>--force-confdef --force-confold</literal>). Il reste trois éléments à prendre en compte : les interactions générées par APT lui-même, celles provenant de <command>debconf</command>, et les interactions en ligne de commande intégrées dans les scripts de configuration des paquets."
+msgstr "Nous avons déjà vu (encadré <xref linkend=\"sidebar.questions-conffiles\" />) comment interdire à <command>dpkg</command> de demander confirmation du remplacement d'un fichier de configuration (avec les options <literal>--force-confdef --force-confold</literal>). Il reste trois éléments à prendre en compte : les interactions générées par APT lui-même, celles provenant de <command>debconf</command>, et les interactions en ligne de commande intégrées dans les scripts de configuration des paquets."
 
 #. Tag: title
 #, no-c-format
@@ -2271,14 +2233,14 @@ msgid "Falcot computers are a heterogeneous system, with machines having various
 msgstr "Les administrateurs de Falcot doivent faire avec un système informatique hétérogène, dont les machines servent des buts différents. Ils choisiront donc pour chaque machine la solution la plus adaptée."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "In practice, the servers running <emphasis role=\"distribution\">Wheezy</emphasis> are configured with the “miracle combination” above, and are kept up to date automatically. Only the most critical servers (the firewalls, for instances) are set up with <command>apticron</command>, so that upgrades always happen under the supervision of an administrator."
-msgstr "En pratique, les serveurs (sous <emphasis role=\"distribution\">Squeeze</emphasis>) utiliseront la « combinaison miracle » évoquée ci-dessus, pour être maintenus à jour automatiquement. Seuls les plus critiques (les pare-feu, par exemple) seront configurés pour utiliser <command>apticron</command>, afin que les mises à jour ne se fassent que sous le contrôle d'un administrateur."
+msgstr "En pratique, les serveurs (sous <emphasis role=\"distribution\">Wheezy</emphasis>) utiliseront la « combinaison miracle » évoquée ci-dessus, pour être maintenus à jour automatiquement. Seuls les plus critiques (les pare-feu, par exemple) seront configurés pour utiliser <command>apticron</command>, afin que les mises à jour ne se fassent que sous le contrôle d'un administrateur."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The office workstations in the administrative services also run <emphasis role=\"distribution\">Wheezy</emphasis>, but they are equipped with <emphasis role=\"pkg\">gnome-packagekit</emphasis>, so that users trigger the upgrades themselves. The rationale for this decision is that if upgrades happen without an explicit action, the behavior of the computer might change unexpectedly, which could cause confusion for the main users."
-msgstr "Les postes bureautiques du service administratif (en <emphasis role=\"distribution\">Squeeze</emphasis> aussi) seront configurés avec le tandem <command>update-notifier</command>/<command>update-manager</command>, de sorte que les utilisateurs pourront déclencher les mises à jour eux-mêmes ; il est en effet important qu'elles se fassent à l'initiative des utilisateurs principaux des ordinateurs, sans quoi des modifications imprévues et silencieuses (donc mystérieuses) pourraient les perturber."
+msgstr "Les postes bureautiques du service administratif (en <emphasis role=\"distribution\">Wheezy</emphasis> aussi) seront configurés avec <emphasis role=\"pkg\">gnome-packagekit</emphasis>, de sorte que les utilisateurs pourront déclencher les mises à jour eux-mêmes ; il est en effet important qu'elles se fassent à l'initiative des utilisateurs principaux des ordinateurs, sans quoi des modifications imprévues et silencieuses (donc mystérieuses) pourraient les perturber."
 
 #. Tag: para
 #, no-c-format
@@ -2311,9 +2273,9 @@ msgid "Some categories of packages are named according to a conventional naming 
 msgstr "Certaines catégories de paquets suivent une nomenclature conventionnelle qui peut permettre de deviner le nom du paquet Debian. Par exemple, pour les modules Perl, la convention dicte qu'un module publié en amont sous le nom <literal>XML::Handler::Composer</literal> sera empaqueté en tant que <emphasis role=\"pkg\">libxml-handler-composer-perl</emphasis>. La bibliothèque permettant d'utiliser le système <command>gconf</command> en Python est empaquetée sous le nom <emphasis role=\"pkg\">python-gconf</emphasis>. Il n'est hélas pas possible d'établir une convention de nommage pour tous les paquets, même si le responsable essaie généralement de rester au plus près du nom choisi par le développeur amont."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "A slightly more successful searching pattern is a plain-text search in package names, but it remains very limited. You can generally find results by searching package descriptions: since each package has a more or less detailed description in addition to its package name, a keyword search in these descriptions will often be useful. <command>apt-cache</command> and <command>axi-cache</command> are the tools of choice for this kind of search; for instance, <command>apt-cache search video</command> will return a list of all packages whose name or description contains the keyword “video”."
-msgstr "On peut aussi effectuer des recherches textuelles sur les noms des paquets, mais cela ne fait pas beaucoup avancer les choses. On n'atteint quelque chose de réellement utilisable qu'avec les recherches sur les descriptions : chaque paquet ayant, en plus de son nom, une description plus ou moins détaillée, une recherche par mots-clés pourra souvent rapporter des résultats. On utilisera pour cela <command>apt-cache</command> ; par exemple, <command>apt-cache search video</command> renverra la liste de tous les paquets contenant le mot-clé « video » dans leur nom ou leur description."
+msgstr "On peut aussi effectuer des recherches textuelles sur les noms des paquets, mais cela ne fait pas beaucoup avancer les choses. On n'atteint quelque chose de réellement utilisable qu'avec les recherches sur les descriptions : chaque paquet ayant, en plus de son nom, une description plus ou moins détaillée, une recherche par mots-clés pourra souvent rapporter des résultats. On utilisera pour cela <command>apt-cache</command> et <command>axi-cache</command> ; par exemple, <command>apt-cache search video</command> renverra la liste de tous les paquets contenant le mot-clé « video » dans leur nom ou leur description."
 
 #. Tag: para
 #, no-c-format
@@ -2321,40 +2283,7 @@ msgid "For more complex searches, a more powerful tool such as <command>aptitude
 msgstr "Si l'on souhaite effectuer des recherches plus complexes, on pourra utiliser <command>aptitude</command>, qui permet de spécifier une expression logique portant sur différents champs des paquets. Par exemple, on pourra obtenir la liste des paquets dont le nom contient <literal>kino</literal>, la description <literal>video</literal> et le nom du responsable <literal>paul</literal> :"
 
 #. Tag: screen
-#, fuzzy, no-c-format
-#| msgid ""
-#| "<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
-#| "<computeroutput>p   kino  - Non-linear editor for Digital Video data\n"
-#| "$ </computeroutput><userinput>aptitude show kino</userinput>\n"
-#| "<computeroutput>Package: kino\n"
-#| "State: not installed\n"
-#| "Version: 1.3.4-1+b1\n"
-#| "Priority: extra\n"
-#| "Section: video\n"
-#| "Maintainer: Paul Brossier &lt;piem@debian.org&gt;\n"
-#| "Uncompressed Size: 9519k\n"
-#| "Depends: libasound2 (&gt; 1.0.18), libatk1.0-0 (&gt;= 1.20.0),\n"
-#| "         libavc1394-0 (&gt;= 0.5.3), libavcodec52 (&gt;= 4:0.5+svn20090706-3) |\n"
-#| "         libavcodec-extra-52 (&gt;= 4:0.5+svn20090706-3), libavformat52\n"
-#| "         […]\n"
-#| "Recommends: ffmpeg, gawk | mawk, curl\n"
-#| "Suggests: udev | hotplug, vorbis-tools, sox, mjpegtools, lame, ffmpeg2theora\n"
-#| "Conflicts: kino-dvtitler, kino-timfx, kinoplus\n"
-#| "Replaces: kino-dvtitler, kino-timfx, kinoplus\n"
-#| "Provides: kino-dvtitler, kino-timfx, kinoplus\n"
-#| "Description: Non-linear editor for Digital Video data\n"
-#| " Kino allows you to record, create, edit, and play movies recorded with\n"
-#| " DV camcorders. This program uses many keyboard commands for fast\n"
-#| " navigating and editing inside the movie.\n"
-#| " \n"
-#| " The kino-timfx, kino-dvtitler and kinoplus sets of plugins, formerly\n"
-#| " distributed as separate packages, are now provided with Kino.\n"
-#| "Homepage: http://www.kinodv.org/\n"
-#| "\n"
-#| "Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
-#| "      interface::x11, role::program, scope::application,\n"
-#| "      suite::gnome, uitoolkit::gtk, use::editing, \n"
-#| "      works-with::video, x11::application</computeroutput>\n"
+#, no-c-format
 msgid ""
 "$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "p   kino  - Non-linear editor for Digital Video data\n"
@@ -2396,28 +2325,26 @@ msgstr ""
 "$ </computeroutput><userinput>aptitude show kino</userinput>\n"
 "<computeroutput>Paquet : kino\n"
 "État: non installé\n"
-"Version : 1.3.4-1+b1\n"
+"Version : 1.3.4-1.3\n"
 "Priorité : supplémentaire\n"
 "Section : video\n"
 "Responsable : Paul Brossier &lt;piem@debian.org&gt;\n"
-"Taille décompressée : 9 519k\n"
-"Dépend: libasound2 (&gt; 1.0.18), libatk1.0-0 (&gt;= 1.20.0),\n"
-"        libavc1394-0 (&gt;= 0.5.3), libavcodec52 (&gt;= 4:0.5+svn20090706-3) |\n"
-"        libavcodec-extra-52 (&gt;= 4:0.5+svn20090706-3), libavformat52\n"
-"        […]\n"
-"Recommande: ffmpeg, gawk | mawk, curl\n"
+"Taille décompressée : 7 936 k\n"
+"Dépend: libasound2 (&gt; 1.0.24.1), libatk1.0-0 (&gt;= 1.12.4), libavc1394-0 (&gt;= 0.5.3), libavcodec53 (&gt;= 4:0.8~beta1~) | libavcodec-extra-53 (&gt;= 4:0.8~beta1~), libavformat53 (&gt;= 4:0.8~beta1~) | libavformat-extra-53\n"
+"         (&gt;= 4:0.8~beta1~), libavutil51 (&gt;= 4:0.8~beta1~) | libavutil-extra-51 (&gt;= 4:0.8~beta1~), libc6 (&gt;= 2.3.2), libcairo2 (&gt;= 1.2.4), libdv4, libfontconfig1 (&gt;= 2.8.0), libfreetype6 (&gt;= 2.2.1), libgcc1 (&gt;=\n"
+"         1:4.1.1), libgdk-pixbuf2.0-0 (&gt;= 2.22.0), libglade2-0 (&gt;= 1:2.6.1), libglib2.0-0 (&gt;= 2.12.0), libgtk2.0-0 (&gt;= 2.24.0), libice6 (&gt;= 1:1.0.0), libiec61883-0 (&gt;= 1.2.0), libpango1.0-0 (&gt;= 1.14.0),\n"
+"         libquicktime2 (&gt;= 2:1.2.2), libraw1394-11, libsamplerate0 (&gt;= 0.1.7), libsm6, libstdc++6 (&gt;= 4.6), libswscale2 (&gt;= 4:0.8~beta1~) | libswscale-extra-2 (&gt;= 4:0.8~beta1~), libx11-6, libxext6, libxml2 (&gt;=\n"
+"         2.7.4), libxv1, zlib1g (&gt;= 1:1.1.4)\n"
+"Recommande: ffmpeg, curl\n"
 "Suggère: udev | hotplug, vorbis-tools, sox, mjpegtools, lame, ffmpeg2theora\n"
 "Est en conflit: kino-dvtitler, kino-timfx, kinoplus\n"
 "Remplace: kino-dvtitler, kino-timfx, kinoplus\n"
 "Fournit: kino-dvtitler, kino-timfx, kinoplus\n"
 "Description : Non-linear editor for Digital Video data\n"
-" Kino allows you to record, create, edit, and play movies recorded with\n"
-" DV camcorders. This program uses many keyboard commands for fast\n"
-" navigating and editing inside the movie. \n"
+" Kino allows you to record, create, edit, and play movies recorded with DV camcorders. This program uses many keyboard commands for fast navigating and editing inside the movie. \n"
 " \n"
-" The kino-timfx, kino-dvtitler and kinoplus sets of plugins, formerly\n"
-" distributed as separate packages, are now provided with Kino.\n"
-"Site : http://www.kinodv.org/\n"
+" The kino-timfx, kino-dvtitler and kinoplus sets of plugins, formerly distributed as separate packages, are now provided with Kino.\n"
+"Site : http://www.kinodv.org/\n"
 "\n"
 "Étiquettes: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "            interface::x11, role::program, scope::application,\n"
@@ -2435,9 +2362,9 @@ msgid "Even these multi-criteria searches are rather unwieldy, which explains wh
 msgstr "Ces recherches multi-critères manquent un peu de flexibilité, et ne sont donc pas toujours utilisées au maximum de leur puissance. Il a donc été mis en place un système de « marqueurs » ou « étiquettes » (en anglais, <foreignphrase>tags</foreignphrase>), qui propose une autre approche de la recherche. Ces étiquettes correspondent à une classification thématique des paquets selon plusieurs axes, appelée « classification à facettes ». Pour reprendre l'exemple de <emphasis role=\"pkg\">kino</emphasis> ci-dessus, on constate que ce paquet se présente sous la forme d'une interface graphique (qui utilise GTK), qu'il s'agit d'un logiciel Gnome, que sa fonction principale est l'édition, et qu'il travaille sur des données de type vidéo."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Browsing this classification can help you to search for a package which corresponds to known needs; even if it returns a (moderate) number of hits, the rest of the search can be done manually. To do that, you can use the <literal>~G</literal> search pattern in <command>aptitude</command>, but it is probably easier to simply navigate the site where tags are managed: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/cloud/\" />"
-msgstr "Il est alors possible de naviguer dans cette classification, à la recherche d'un paquet correspondant aux besoins, ou du moins d'un petit nombre de paquets parmi lesquels on pourra faire le tri manuellement. Pour cela, on pourra soit utiliser le motif de recherche <literal>~G</literal> dans <command>aptitude</command>, soit plus simplement naviguer vers le site qui centralise les étiquettes : <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/cloud/\" /> Si l'on sélectionne les étiquettes <literal>works-with::video</literal> et <literal>use::editing</literal>, on obtient une poignée de paquets, dont les éditeurs vidéo <emphasis role=\"pkg\">kino</emphasis> et <emphasis role=\"pkg\">pitivi</emphasis>. Ce système de classement est appelé à se généraliser et les gestionnaires de paquets intégreront progressivement des interfaces pour rechercher efficacement les logiciels. <indexterm><primary><emphasis role=\"pkg\">debtags</emphasis></primary></indexterm> <indexterm><primary>étiquette</primary></indexterm> <indexterm><primary><foreignphrase>tag</foreignphrase></primary></indexterm>"
+msgstr "Il est alors possible de naviguer dans cette classification, à la recherche d'un paquet correspondant aux besoins, ou du moins d'un petit nombre de paquets parmi lesquels on pourra faire le tri manuellement. Pour cela, on pourra soit utiliser le motif de recherche <literal>~G</literal> dans <command>aptitude</command>, soit plus simplement naviguer vers le site qui centralise les étiquettes : <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/cloud/\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2446,10 +2373,9 @@ msgstr "<primary><emphasis role=\"pkg\">debtags</emphasis></primary>"
 
 # TODO: INTEGRATE ALTERNATE STRING: <primary><foreignphrase>backport</foreignphrase></primary>
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>backport</primary>"
+#, no-c-format
 msgid "<primary>tag</primary>"
-msgstr "<primary>rétroportage</primary>"
+msgstr "<primary>étiquette (tag)</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2472,9 +2398,9 @@ msgid "when the search criteria also include relationships between packages or o
 msgstr "pour des recherches portant également sur les relations entre paquets et le nom du responsable, on pourra utiliser <command>synaptic</command> ;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "when a tag-based search is needed, a good tool is <command>packagesearch</command>, a graphical interface dedicated to searching available packages along several criteria (including the names of the files that they contain). For usage on the command-line, <command>axi-cache</command> will fit the bill."
-msgstr "si l'on souhaite ajouter une recherche par étiquettes, on se dirigera vers <command>packagesearch</command>, interface graphique dont le seul but est de mener des recherches dans la liste des paquets disponibles, selon plusieurs critères ; on peut même chercher des paquets d'après le nom des fichiers qu'ils contiennent ;"
+msgstr "si l'on souhaite ajouter une recherche par étiquettes, on se dirigera vers <command>packagesearch</command>, interface graphique dont le seul but est de mener des recherches dans la liste des paquets disponibles, selon plusieurs critères ; on peut même chercher des paquets d'après le nom des fichiers qu'ils contiennent.  Pour un usage en ligne de commande, on se tournera vers <command>axi-cache</command>."
 
 #. Tag: indexterm
 #, no-c-format
