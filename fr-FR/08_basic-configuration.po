@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-11-26 15:52+0100\n"
-"PO-Revision-Date: 2013-12-03 17:11+0100\n"
+"PO-Revision-Date: 2013-12-03 17:42+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -254,14 +254,12 @@ msgid "The <filename>/etc/environment</filename> file provides the <command>logi
 msgstr "Le fichier <filename>/etc/environment</filename> sert aux programmes <command>login</command>, <command>gdm</command>, ou encore <command>ssh</command> pour créer leurs variables d'environnement."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "These applications do not create these variables directly, but rather via a PAM (<filename>pam_env.so</filename>) module. PAM (Pluggable Authentication Module) is a modular library centralizing the mechanisms for authentication, session initialization, and password management. See <xref linkend=\"section.config-pam\" /> for an example of PAM configuration."
+#, no-c-format
 msgid "These applications do not create these variables directly, but rather via a PAM (<filename>pam_env.so</filename>) module. PAM (Pluggable Authentication Module) is a modular library centralizing the mechanisms for authentication, session initialization, and password management. See <xref linkend=\"sect.config-pam\" /> for an example of PAM configuration."
-msgstr "Ces applications n'effectuent pas cela directement, mais via un module PAM (<filename>pam_env.so</filename>). PAM (<foreignphrase>Pluggable Authentication Module</foreignphrase>, ou module d'authentification connectable) est une bibliothèque modulaire centralisant les mécanismes d'authentification, d'initialisation de sessions et de gestion des mots de passe. Voir <xref linkend=\"section.config-pam\" /> pour un exemple de configuration de PAM."
+msgstr "Ces applications n'effectuent pas cela directement, mais via un module PAM (<filename>pam_env.so</filename>). PAM (<foreignphrase>Pluggable Authentication Module</foreignphrase>, ou module d'authentification connectable) est une bibliothèque modulaire centralisant les mécanismes d'authentification, d'initialisation de sessions et de gestion des mots de passe. Voir <xref linkend=\"sect.config-pam\" /> pour un exemple de configuration de PAM."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The <filename>/etc/default/locale</filename> file works in a similar manner, but does not contain the <varname>LANG</varname> environment variable. This means some PAM users will inherit an environment without localization. Running server programs with regional parameters is generally discouraged; on the other hand, using the implicit regional settings is recommended for programs that open user sessions."
+#, no-c-format
 msgid "The <filename>/etc/default/locale</filename> file works in a similar manner, but contains only the <varname>LANG</varname> environment variable. Thanks to this split, some PAM users can inherit a complete environment without localization. Indeed, it's generally discouraged to run server programs with localization enabled; on the other hand, localization and regional settings are recommended for programs that open user sessions."
 msgstr "<filename>/etc/default/locale</filename> fonctionne de la même manière, mais ne contient que la variable d'environnement <varname>LANG</varname>, de sorte que certains utilisateurs de PAM puissent hériter d'un environnement sans localisation. Il est en effet déconseillé que les programmes serveurs utilisent des paramètres régionaux, alors que les programmes qui ouvrent des sessions pour l'utilisateur sont au contraire tout indiqués pour utiliser des paramètres régionaux implicites."
 
@@ -286,10 +284,9 @@ msgid "<primary>keyboard layout</primary>"
 msgstr "<primary>disposition du clavier</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>router</primary>"
+#, no-c-format
 msgid "<primary>layout, keyboard</primary>"
-msgstr "<primary>routeur</primary>"
+msgstr "<primary>clavier, disposition</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -317,28 +314,24 @@ msgid "<indexterm><primary><literal>azerty</literal></primary></indexterm>The qu
 msgstr "<indexterm><primary><literal>azerty</literal></primary></indexterm> Les questions portent dans l'ordre sur l'apparence du clavier physique (un clavier de PC standard en France sera « PC générique 105 touches (intl) »), puis sur la disposition à choisir (on choisira généralement « France » sauf cas particuliers), puis sur la position de la touche AltGr. Vient enfin une question sur la position à utiliser pour la « touche Compose », qui permet de saisir des caractères spéciaux en combinant des caractères simples. Taper successivement <keycombo action=\"seq\"><keycap>Compose</keycap> <keycap>'</keycap> <keycap>e</keycap></keycombo> produira ainsi un e accent aigu (« é »). Toutes ces combinaisons sont décrites dans le fichier <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> (ou un autre fichier, déterminé en fonction de la locale en cours par la table de correspondance décrite par <filename>/usr/share/X11/locale/compose.dir</filename>). <indexterm><primary><literal>Compose</literal>, touche</primary></indexterm> <indexterm><primary><literal>Meta</literal>, touche</primary></indexterm> <indexterm><primary>touche</primary><secondary><literal>Meta</literal></secondary></indexterm> <indexterm><primary>touche</primary><secondary><literal>Compose</literal></secondary></indexterm>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><literal>eth0</literal></primary>"
+#, no-c-format
 msgid "<primary><literal>Compose</literal>, key</primary>"
-msgstr "<primary><literal>eth0</literal></primary>"
+msgstr "<primary><literal>Compose</literal>, key</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><literal>eth0</literal></primary>"
+#, no-c-format
 msgid "<primary><literal>Meta</literal>, key</primary>"
-msgstr "<primary><literal>eth0</literal></primary>"
+msgstr "<primary><literal>Meta</literal>, key</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>kernel</primary><secondary>installation</secondary>"
+#, no-c-format
 msgid "<primary>key</primary><secondary><literal>Meta</literal></secondary>"
-msgstr "<primary>noyau</primary><secondary>installation</secondary>"
+msgstr "<primary>touche</primary><secondary><literal>Meta</literal></secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>kernel</primary><secondary>external modules</secondary>"
+#, no-c-format
 msgid "<primary>key</primary><secondary><literal>Compose</literal></secondary>"
-msgstr "<primary>noyau</primary><secondary>modules externes</secondary>"
+msgstr "<primary>touche</primary><secondary><literal>Compose</literal></secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -463,10 +456,9 @@ msgid "<primary>10GBASE-T</primary>"
 msgstr "<primary>10GBASE-T</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>RJ45 connector</primary>"
+#, no-c-format
 msgid "<primary>connector, RJ45</primary>"
-msgstr "<primary>connecteur RJ45</primary>"
+msgstr "<primary>RJ45, connecteur</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -479,10 +471,9 @@ msgid "Most modern local networks use the Ethernet protocol, where data is split
 msgstr "La majorité des réseaux locaux actuels sont des réseaux Ethernet qui fonctionnent par trames, c'est-à-dire que les données y circulent de manière non continue, par petits blocs. Le débit varie de 10 Mbit/s pour les cartes Ethernet les plus anciennes, à 10 Gbit/s pour la génération la plus récente (100 Mbit/s étant le débit le plus fréquent à l'heure actuelle). Les câbles correspondants les plus courants sont, selon les débits qu'ils permettent d'acheminer, connus sous les nom de 10BASE-T, 100BASE-T, 1000BASE-T ou 10GBASE-T, dits en « paire torsadée » (<foreignphrase>twisted pair</foreignphrase>), dont chaque extrémité est munie d'un connecteur RJ45 — mais il existe d'autres types de câbles, qui sont surtout utilisés pour les débits à partir du Gbit/s."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>IP address</primary>"
+#, no-c-format
 msgid "<primary>address, IP address</primary>"
-msgstr "<primary>adresse IP</primary>"
+msgstr "<primary>IP, adresse</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -550,10 +541,9 @@ msgid "This chapter focuses on IPv4 addresses, since they are currently the most
 msgstr "À noter que nous nous restreignons dans ce chapitre aux adresses IPv4, les plus couramment utilisées à l'heure actuelle. Les détails du protocole IPv6 seront abordés dans la <xref linkend=\"sect.ipv6\" />, mais les concepts resteront les mêmes."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Since the network is automatically configured during the initial installation, the <filename>/etc/network/interfaces</filename> file already contains a valid configuration. A line starting with <literal>auto</literal> gives a list of interfaces to be automatically configured on boot. This will often be <literal>eth0</literal>, which refers to the first Ethernet card."
+#, no-c-format
 msgid "Since the network is automatically configured during the initial installation, the <filename>/etc/network/interfaces</filename> file already contains a valid configuration. A line starting with <literal>auto</literal> gives a list of interfaces to be automatically configured on boot by <emphasis role=\"pkg\">ifupdown</emphasis> and its <filename>/etc/init.d/networking</filename> init script. This will often be <literal>eth0</literal>, which refers to the first Ethernet card."
-msgstr "Le réseau étant automatiquement réglé lors de l'installation initiale, le fichier <filename>/etc/network/interfaces</filename> contient déjà une configuration valide. Une ligne débutant par <literal>auto</literal> donne la liste des interfaces à configurer automatiquement au démarrage. Souvent, on y trouve <literal>eth0</literal>, qui correspond à la première carte Ethernet."
+msgstr "Le réseau étant automatiquement réglé lors de l'installation initiale, le fichier <filename>/etc/network/interfaces</filename> contient déjà une configuration valide. Une ligne débutant par <literal>auto</literal> donne la liste des interfaces qu'<emphasis role=\"pkg\">ifupdown</emphasis> configure automatiquement au démarrage. Souvent, on y trouve <literal>eth0</literal>, qui correspond à la première carte Ethernet."
 
 #. Tag: indexterm
 #, no-c-format
@@ -566,8 +556,7 @@ msgid "<primary>configuration</primary><secondary>of the network</secondary>"
 msgstr "<primary>configuration</primary><secondary>du réseau</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>interface</primary><secondary>network</secondary>"
+#, no-c-format
 msgid "<primary>interface</primary><secondary>network interface</secondary>"
 msgstr "<primary>interface</primary><secondary>réseau</secondary>"
 
@@ -577,10 +566,9 @@ msgid "<primary><literal>eth0</literal></primary>"
 msgstr "<primary><literal>eth0</literal></primary>"
 
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "<emphasis>CULTURE</emphasis> Names of kernel packages"
+#, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> NetworkManager"
-msgstr "<emphasis>CULTURE</emphasis> Noms des paquets de noyaux"
+msgstr "<emphasis>ALTERNATIVE</emphasis> NetworkManager"
 
 #. Tag: indexterm
 #, no-c-format
@@ -598,16 +586,14 @@ msgid "Ethernet Interface"
 msgstr "Interface Ethernet"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "If the computer has an Ethernet card, the network that is associated with it must be configured by choosing from one of two methods. The simplest method is dynamic configuration with DHCP, and it requires a DHCP server on the local network. It may indicate a desired hostname, corresponding to the <literal>hostname</literal> setting in the example below. The DHCP server then sends configuration settings for the appropriate network. <indexterm><primary>Ethernet</primary></indexterm> <indexterm><primary>DHCP</primary></indexterm>"
+#, no-c-format
 msgid "If the computer has an Ethernet card, the IP network that is associated with it must be configured by choosing from one of two methods. The simplest method is dynamic configuration with DHCP, and it requires a DHCP server on the local network. It may indicate a desired hostname, corresponding to the <literal>hostname</literal> setting in the example below. The DHCP server then sends configuration settings for the appropriate network."
-msgstr "Si l'ordinateur dispose d'une carte réseau Ethernet, il faut configurer le réseau qui y est associé en optant pour l'une de deux méthodes. La configuration dynamique par DHCP, la plus simple, nécessite la présence d'un serveur DHCP sur le réseau local. Elle peut indiquer un nom d'hôte souhaité, ce qui correspond au paramètre facultatif <literal>hostname</literal> dans l'exemple ci-dessous. Le serveur DHCP renvoie alors les paramètres de configuration du réseau qui conviennent. <indexterm><primary>Ethernet</primary></indexterm> <indexterm><primary>DHCP</primary></indexterm>"
+msgstr "Si l'ordinateur dispose d'une carte réseau Ethernet, il faut configurer le réseau qui y est associé en optant pour l'une de deux méthodes. La configuration dynamique par DHCP, la plus simple, nécessite la présence d'un serveur DHCP sur le réseau local. Elle peut indiquer un nom d'hôte souhaité, ce qui correspond au paramètre facultatif <literal>hostname</literal> dans l'exemple ci-dessous. Le serveur DHCP renvoie alors les paramètres de configuration du réseau qui conviennent."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>CUPS</primary>"
+#, no-c-format
 msgid "<primary>DHCP</primary>"
-msgstr "<primary>CUPS</primary>"
+msgstr "<primary>DHCP</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -913,10 +899,9 @@ msgid "In order to do this, the program is structured in two parts: a daemon run
 msgstr "Pour réaliser cela, le logiciel est structuré en deux parties : un démon tournant en root effectue les opérations d'activation et de configuration des interfaces réseau, et une interface utilisateur pilote ce démon. Seuls les membres du groupe « netdev » ont le droit de lui envoyer des directives."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Network Manager knows how to handle various types of connections (DHCP, manual configuration, local network), but only if the configuration is set with the program itself. This is why it will systematically ignore all network interfaces in <filename>/etc/network/interfaces</filename> for which it is not suited. The settings are very strict; details are available in the <filename>/usr/share/doc/network-manager/README.Debian</filename> file. Since Network Manager doesn't give details when no network connections are shown, the easy way is to delete from <filename>/etc/network/interfaces</filename> any configuration for all interfaces that must be managed by Network Manager."
+#, no-c-format
 msgid "Network Manager knows how to handle various types of connections (DHCP, manual configuration, local network), but only if the configuration is set with the program itself. This is why it will systematically ignore all network interfaces in <filename>/etc/network/interfaces</filename> for which it is not suited. Since Network Manager doesn't give details when no network connections are shown, the easy way is to delete from <filename>/etc/network/interfaces</filename> any configuration for all interfaces that must be managed by Network Manager."
-msgstr "Network Manager sait désormais gérer des connexions de divers types (DHCP, configuration manuelle, réseau local seulement), mais seulement si la configuration se fait par son biais. C'est pourquoi il ignorera systématiquement toutes les interfaces réseau dont la configuration dans <filename>/etc/network/interfaces</filename> ne lui convient pas. Les règles sont assez strictes, le fichier <filename>/usr/share/doc/network-manager/README.Debian</filename> les détaille. Le plus simple est encore d'enlever toute configuration pour chaque interface qui doit être gérée par Network Manager. En effet, le logiciel n'indiquera pas pourquoi il n'affiche aucune connexion réseau disponible."
+msgstr "Network Manager sait désormais gérer des connexions de divers types (DHCP, configuration manuelle, réseau local seulement), mais seulement si la configuration se fait par son biais. C'est pourquoi il ignorera systématiquement toutes les interfaces réseau dont la configuration dans <filename>/etc/network/interfaces</filename> ne lui convient pas. Le plus simple est encore d'enlever toute configuration pour chaque interface qui doit être gérée par Network Manager. En effet, le logiciel n'indiquera pas pourquoi il n'affiche aucune connexion réseau disponible."
 
 #. Tag: para
 #, no-c-format
@@ -1065,8 +1050,7 @@ msgid "<primary>name</primary><secondary>resolution</secondary>"
 msgstr "<primary>nom</primary><secondary>résolution</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The mechanism for name resolution in Linux is modular and can use various sources of information declared in the <filename>/etc/nsswitch.conf</filename> file. The entry that involves host name resolution is <literal>hosts</literal>. By default, it contains <literal>dns files</literal>, which means that the system consults the <filename>/etc/hosts</filename> file first, then DNS servers. NIS/NIS+ or LDAP servers are other possible sources."
+#, no-c-format
 msgid "The mechanism for name resolution in Linux is modular and can use various sources of information declared in the <filename>/etc/nsswitch.conf</filename> file. The entry that involves host name resolution is <literal>hosts</literal>. By default, it contains <literal>files dns</literal>, which means that the system consults the <filename>/etc/hosts</filename> file first, then DNS servers. NIS/NIS+ or LDAP servers are other possible sources."
 msgstr "Le mécanisme de résolution de noms de Linux, modulaire, peut s'appuyer sur différentes sources d'informations déclarées dans le fichier <filename>/etc/nsswitch.conf</filename>. L'entrée qui concerne la résolution des noms d'hôtes est <literal>hosts</literal>. Par défaut, elle contient <literal>files dns</literal>, ce qui signifie que le système consulte en priorité le fichier <filename>/etc/hosts</filename> puis interroge les serveurs DNS. Des serveurs NIS/NIS+ ou LDAP forment d'autres sources possibles."
 
@@ -1169,8 +1153,7 @@ msgid "This allows, in the event of DNS changes not yet propagated, to test acce
 msgstr "Cela permet, en cas de changements DNS pas encore propagés, de tester l'accès à un site web avec le nom prévu même si celui-ci n'est pas encore associé à la bonne adresse IP."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Another possible use for DNS redirection is to bypass traffic intended for a specific host to another local machine. For example, if a name server was configured to send ad banners, you could divert traffic to a local host which would bypass these ads resulting in more fluid, less distracting, navigation."
+#, no-c-format
 msgid "Another possible use is to redirect traffic intended for a specific host to the localhost, thus preventing any communication with the given host. For example, hostnames of servers dedicated to serving ads could be diverted which would bypass these ads resulting in more fluid, less distracting, navigation."
 msgstr "Autre emploi original, il est possible de rediriger le trafic destiné à un hôte donné vers la machine locale afin qu'aucune communication avec cet hôte ne soit possible. Les noms de serveurs dédiés à l'envoi de bannières publicitaires pourraient faire l'objet d'une telle mesure, ce qui rendrait la navigation plus fluide et moins distrayante puisque leurs annonces ne pourraient plus être chargées."
 
@@ -1230,10 +1213,9 @@ msgid "<primary>crypt</primary>"
 msgstr "<primary><foreignphrase>crypt</foreignphrase></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "<command>crypt</command> is a one-way function that transforms a string <varname>(A)</varname> into another string <varname>(B)</varname> in a way that <varname>A</varname> cannot be derived from <varname>B</varname>. The only way to identify <varname>A</varname> is to test all possible values, checking each one to determine if transformation by the function will produce <varname>B</varname> or not. It uses up to 8 characters as input (string <varname>A</varname>) and generates a string of 13, printable, ASCII characters (string <varname>B</varname>)."
+#, no-c-format
 msgid "<command>crypt</command> is a one-way function that transforms a string (<varname>A</varname>) into another string (<varname>B</varname>) in a way that <varname>A</varname> cannot be derived from <varname>B</varname>. The only way to identify <varname>A</varname> is to test all possible values, checking each one to determine if transformation by the function will produce <varname>B</varname> or not. It uses up to 8 characters as input (string <varname>A</varname>) and generates a string of 13, printable, ASCII characters (string <varname>B</varname>)."
-msgstr "<command>crypt</command> est une fonction à sens unique qui transforme une chaîne <varname>A</varname> en une autre chaîne <varname>B</varname> de telle sorte qu'à partir de <varname>B</varname>, il ne soit pas possible dans le cas général de retrouver <varname>A</varname>. La seule manière d'identifier <varname>A</varname> est de tester toutes les valeurs possibles, en vérifiant pour chacune si sa transformation par la fonction produit <varname>B</varname> ou non. Elle utilise jusqu'à 8 caractères en entrée (chaîne <varname>A</varname>) et génère une chaîne de 13 caractères ASCII imprimables (chaîne <varname>B</varname>)."
+msgstr "<command>crypt</command> est une fonction à sens unique qui transforme une chaîne (<varname>A</varname>) en une autre chaîne (<varname>B</varname>) de telle sorte qu'à partir de <varname>B</varname>, il ne soit pas possible dans le cas général de retrouver <varname>A</varname>. La seule manière d'identifier <varname>A</varname> est de tester toutes les valeurs possibles, en vérifiant pour chacune si sa transformation par la fonction produit <varname>B</varname> ou non. Elle utilise jusqu'à 8 caractères en entrée (chaîne <varname>A</varname>) et génère une chaîne de 13 caractères ASCII imprimables (chaîne <varname>B</varname>)."
 
 #. Tag: title
 #, no-c-format
@@ -1306,8 +1288,7 @@ msgid "login directory, assigned to the user for storage of their personal files
 msgstr "répertoire de connexion, attribué à l'utilisateur pour qu'il y stocke ses fichiers personnels (la variable d'environnement <varname>$HOME</varname> y pointe habituellement) ;"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "program to execute upon login. This is usually a command interpreter (shell), giving the user free reign. If you specify <command>/bin/false</command> (which does nothing and returns control immediately), the user can not login."
+#, no-c-format
 msgid "program to execute upon login. This is usually a command interpreter (shell), giving the user free rein. If you specify <command>/bin/false</command> (which does nothing and returns control immediately), the user can not login."
 msgstr "programme à exécuter après la connexion. Il s'agit généralement d'un interpréteur de commandes (shell), donnant libre cours à l'utilisateur. Si l'on précise <command>/bin/false</command> (programme qui ne fait rien et rend la main immédiatement), l'utilisateur ne pourra pas se connecter."
 
@@ -1322,8 +1303,7 @@ msgid "<primary>group</primary>"
 msgstr "<primary>groupe</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "A Unix group is an entity including several users so that they can easily share files using the integrated permission system (by having precisely the same rights). You can also restrict use of certain programs to a specific group."
+#, no-c-format
 msgid "A Unix group is an entity including several users so that they can easily share files using the integrated permission system (by benefiting from the same rights). You can also restrict use of certain programs to a specific group."
 msgstr "Un groupe Unix est une entité regroupant plusieurs utilisateurs afin qu'ils puissent facilement se partager des fichiers à l'aide du système de droits intégré (en jouissant justement des mêmes droits). On peut également restreindre l'utilisation de certains programmes à un groupe donné."
 
@@ -1448,10 +1428,9 @@ msgid "<primary>Name Service Switch</primary>"
 msgstr "<primary><foreignphrase>Name Service Switch</foreignphrase></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Instead of using the usual files to manage lists of users and groups, you could use other types of databases, such as LDAP or <command>db</command>, by using an appropriate NSS (Name Service Switch) module. The modules used are listed in the <filename>/etc/nsswitch.conf</filename> file, under the <literal>passwd</literal>, <literal>shadow</literal> and <literal>group</literal> entries. See <xref linkend=\"section.config-nss\" /> for a specific example of the use of an NSS module by LDAP."
+#, no-c-format
 msgid "Instead of using the usual files to manage lists of users and groups, you could use other types of databases, such as LDAP or <command>db</command>, by using an appropriate NSS (Name Service Switch) module. The modules used are listed in the <filename>/etc/nsswitch.conf</filename> file, under the <literal>passwd</literal>, <literal>shadow</literal> and <literal>group</literal> entries. See <xref linkend=\"sect.config-nss\" /> for a specific example of the use of an NSS module by LDAP."
-msgstr "Au lieu d'employer les fichiers habituels pour gérer les listes des utilisateurs et des groupes, on peut recourir à d'autres types de base de données — comme LDAP ou <command>db</command> — en employant un module NSS (<foreignphrase>Name Service Switch</foreignphrase>, ou multiplexeur de service de noms) adéquat. Les listes des modules employés se trouvent dans le fichier <filename>/etc/nsswitch.conf</filename> sous les entrées <literal>passwd</literal>, <literal>shadow</literal> et <literal>group</literal>. Voir la <xref linkend=\"section.config-nss\" /> pour un exemple concret d'emploi du module NSS pour LDAP."
+msgstr "Au lieu d'employer les fichiers habituels pour gérer les listes des utilisateurs et des groupes, on peut recourir à d'autres types de base de données — comme LDAP ou <command>db</command> — en employant un module NSS (<foreignphrase>Name Service Switch</foreignphrase>, ou multiplexeur de service de noms) adéquat. Les listes des modules employés se trouvent dans le fichier <filename>/etc/nsswitch.conf</filename> sous les entrées <literal>passwd</literal>, <literal>shadow</literal> et <literal>group</literal>. Voir la <xref linkend=\"sect.config-nss\" /> pour un exemple concret d'emploi du module NSS pour LDAP."
 
 #. Tag: title
 #, no-c-format
@@ -1464,7 +1443,7 @@ msgid "Groups are listed in the <filename>/etc/group</filename> file, a simple t
 msgstr "La liste des groupes est stockée dans le fichier <filename>/etc/group</filename>, simple base de données textuelle au format comparable à celui de <filename>/etc/passwd</filename>, qui utilise les champs suivants :"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "group name;"
 msgstr "identifiant (le nom du groupe) ;"
 
@@ -1474,7 +1453,7 @@ msgid "password (optional): This is only used to join a group when one is not a 
 msgstr "mot de passe (facultatif) : il ne sert qu'à intégrer un groupe dont on n'est pas habituellement membre (avec la commande <command>newgrp</command> ou <command>sg</command> — voir encadré) ;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<literal>gid</literal>: unique group identification number;"
 msgstr "<literal>gid</literal> : numéro unique identifiant le groupe ;"
 
@@ -1514,10 +1493,9 @@ msgid "Each user may be a member of many groups; one of them is their “main gr
 msgstr "Chaque utilisateur peut donc faire partie de plusieurs groupes ; l'un d'entre eux est son « groupe principal » ; le groupe principal par défaut est mis en place lors de la connexion. Par défaut, chaque fichier qu'il crée lui appartient, ainsi qu'au groupe principal. Cela n'est pas toujours souhaitable : c'est par exemple le cas lors d'un travail dans un répertoire partagé grâce à un groupe différent de son groupe principal. Dans ce cas, l'utilisateur a intérêt à changer temporairement de groupe principal grâce aux commandes <command>newgrp</command> — qui démarre un nouveau shell — ou <command>sg</command> — qui se contente d'exécuter une commande. Ces commandes permettent aussi de rejoindre un groupe dont on ne fait pas partie si le groupe est protégé par un mot de passe connu."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Alternatively, the user can set the <literal>setgid</literal> bit on the directory, which causes files created in that directory to automatically belong to the correct group. For more details, see sidebar <xref linkend=\"cadre.setgid-dir\" />."
+#, no-c-format
 msgid "Alternatively, the user can set the <literal>setgid</literal> bit on the directory, which causes files created in that directory to automatically belong to the correct group. For more details, see sidebar <xref linkend=\"sidebar.setgid-dir\" />."
-msgstr "Une alternative consiste à positionner le bit <literal>setgid</literal> sur le répertoire, ce qui permet aux fichiers créés dans ce répertoire d'appartenir automatiquement au bon groupe. On se référera pour les détails à l'encadré <xref linkend=\"cadre.setgid-dir\" />."
+msgstr "Une alternative consiste à positionner le bit <literal>setgid</literal> sur le répertoire, ce qui permet aux fichiers créés dans ce répertoire d'appartenir automatiquement au bon groupe. On se référera pour les détails à l'encadré <xref linkend=\"sidebar.setgid-dir\" />."
 
 #. Tag: para
 #, no-c-format
@@ -1730,8 +1708,7 @@ msgid "<primary>command line interface</primary>"
 msgstr "<primary>interpréteur de commandes</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>command, interpreter</primary>"
+#, no-c-format
 msgid "<primary>command interpreter</primary>"
 msgstr "<primary>commandes, interpréteur de</primary>"
 
@@ -1841,16 +1818,14 @@ msgid "<emphasis>BACK TO BASICS</emphasis> Environment variables"
 msgstr "<emphasis>B.A.-BA</emphasis> Variables d'environnement"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>environment</primary><secondary>variable</secondary>"
+#, no-c-format
 msgid "<primary>environment</primary><secondary>environment variable</secondary>"
-msgstr "<primary>environnement</primary><secondary>variable de</secondary>"
+msgstr "<primary>environnement</primary><secondary>variable d'environnement</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>environment</primary>"
+#, no-c-format
 msgid "<primary>variable, environment</primary>"
-msgstr "<primary><foreignphrase>environment</foreignphrase></primary>"
+msgstr "<primary>variable d'environnement</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1888,10 +1863,9 @@ msgid "<primary>printing</primary><secondary>configuration</secondary>"
 msgstr "<primary>impression</primary><secondary>configuration</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Printer configuration used to cause a great many headaches for administrators and users alike. These headaches are now mostly a thing of the past, thanks to the creation of <emphasis role=\"pkg\">cups</emphasis>, the free print server using the IPP protocol (Internet Printing Protocol)."
+#, no-c-format
 msgid "Printer configuration used to cause a great many headaches for administrators and users alike. These headaches are now mostly a thing of the past, thanks to <emphasis role=\"pkg\">cups</emphasis>, the free print server using the IPP protocol (Internet Printing Protocol)."
-msgstr "Cette étape a longtemps causé bien des soucis, désormais en passe d'être résolus grâce à l'apparition de <emphasis role=\"pkg\">cups</emphasis>, serveur d'impression libre connaissant le protocole IPP (<foreignphrase>Internet Printing Protocol</foreignphrase>, ou protocole d'impression sur Internet)."
+msgstr "Cette étape a longtemps causé bien des soucis, désormais en passe d'être résolus grâce à <emphasis role=\"pkg\">cups</emphasis>, serveur d'impression libre connaissant le protocole IPP (<foreignphrase>Internet Printing Protocol</foreignphrase>, ou protocole d'impression sur Internet)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1944,10 +1918,9 @@ msgid "<primary>Common Unix Printing System</primary>"
 msgstr "<primary><foreignphrase>Common Unix Printing System</foreignphrase></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "CUPS (Common Unix Printing System) is a trademark filed by the Easy Software Products company, when <command>cups</command> was created. <ulink type=\"block\" url=\"http://www.easysw.com/\" />"
+#, no-c-format
 msgid "CUPS (Common Unix Printing System) is a project (and a trademark) managed by Apple, Inc. <ulink type=\"block\" url=\"http://www.cups.org/\" />"
-msgstr "CUPS (<foreignphrase>Common Unix Printing System</foreignphrase>, ou système d'impression commun sous Unix), est une marque déposée de la société <foreignphrase>Easy Software Products</foreignphrase>, à l'origine de <command>cups</command>. <ulink type=\"block\" url=\"http://www.easysw.com/\" />"
+msgstr "CUPS (<foreignphrase>Common Unix Printing System</foreignphrase>, ou système d'impression commun sous Unix), est un projet (et une marque déposée) de la société Apple. <ulink type=\"block\" url=\"http://www.cups.org/\" />"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -1965,10 +1938,9 @@ msgid "<emphasis>NOTE</emphasis> Obsolescence of <filename>/etc/printcap</filena
 msgstr "<emphasis>ATTENTION</emphasis> Obsolescence de <filename>/etc/printcap</filename>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "<emphasis>cups</emphasis> no longer uses the <filename>/etc/printcap</filename> file, which is now obsolete. Programs that rely upon this file to get a list of available printers will, thus, fail. To avoid this problem, delete this file and make it a symbolic link (see sidebar <xref linkend=\"cadre.lien-symbolique\" />) to <filename>/var/run/cups/printcap</filename>, which is maintained by <emphasis>cups</emphasis> to ensure compatibility."
+#, no-c-format
 msgid "<emphasis>cups</emphasis> no longer uses the <filename>/etc/printcap</filename> file, which is now obsolete. Programs that rely upon this file to get a list of available printers will, thus, fail. To avoid this problem, delete this file and make it a symbolic link (see sidebar <xref linkend=\"sidebar.symbolic-link\" />) to <filename>/var/run/cups/printcap</filename>, which is maintained by <emphasis>cups</emphasis> to ensure compatibility."
-msgstr "<emphasis>cups</emphasis> n'utilise plus le fichier <filename>/etc/printcap</filename>, désormais obsolète. Les programmes qui se fieraient à son contenu pour connaître la liste des imprimantes disponibles feraient donc erreur. Pour éviter ce désagrément, on supprimera ce fichier pour en faire un lien symbolique (voir encadré <xref linkend=\"cadre.lien-symbolique\" />) vers <filename>/var/run/cups/printcap</filename>, fichier maintenu par <emphasis>cups</emphasis> pour assurer la compatibilité."
+msgstr "<emphasis>cups</emphasis> n'utilise plus le fichier <filename>/etc/printcap</filename>, désormais obsolète. Les programmes qui se fieraient à son contenu pour connaître la liste des imprimantes disponibles feraient donc erreur. Pour éviter ce désagrément, on supprimera ce fichier pour en faire un lien symbolique (voir encadré <xref linkend=\"sidebar.symbolic-link\" />) vers <filename>/var/run/cups/printcap</filename>, fichier maintenu par <emphasis>cups</emphasis> pour assurer la compatibilité."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2012,8 +1984,7 @@ msgid "<primary>Master Boot Record</primary>"
 msgstr "<primary><foreignphrase>Master Boot Record</foreignphrase></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The Master Boot Record (MBR) occupies the first 512 bytes of the first hard disk, and is the first thing loaded by the BIOS to hand over control to a program capable of booting the desired operating system. In general, a bootloader is installed in the MBR, removing its previous content."
+#, no-c-format
 msgid "The Master Boot Record (MBR) occupies the first 512 bytes of the first hard disk, and is the first thing loaded by the BIOS to hand over control to a program capable of booting the desired operating system. In general, a bootloader gets installed in the MBR, removing its previous content."
 msgstr "Le <foreignphrase>Master Boot Record</foreignphrase> (MBR, ou enregistrement d'amorçage maître) est la zone des 512 premiers octets du premier disque dur, chargée par le BIOS pour donner la main à un programme capable de démarrer le système d'exploitation voulu. En général, un chargeur d'amorçage s'installe donc sur le MBR en écrasant son contenu antérieur."
 
@@ -2023,10 +1994,9 @@ msgid "Identifying the Disks"
 msgstr "Identifier ses disques"
 
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis>, <emphasis>devfs</emphasis> and <filename>/dev/</filename>"
+#, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis> and <filename>/dev/</filename>"
-msgstr "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis>, <emphasis>devfs</emphasis> et <filename>/dev/</filename>"
+msgstr "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis> et <filename>/dev/</filename>"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -2699,10 +2669,9 @@ msgid "Frequently, several administrators work on the same network. Sharing the 
 msgstr "Bien souvent, plusieurs administrateurs s'occupent du réseau. Partager le mot de passe de l'utilisateur root n'est pas très élégant et ouvre la porte à des abus du fait de l'anonymat de ce compte partagé. La solution à ce problème est le programme <command>sudo</command>, qui permet à certains utilisateurs d'exécuter certaines commandes avec des droits particuliers. Dans son emploi le plus courant <command>sudo</command> permet à un utilisateur de confiance d'exécuter n'importe quelle commande en tant que root. Pour cela l'utilisateur doit simplement exécuter <command>sudo <replaceable>commande</replaceable></command> et s'authentifier à l'aide de son mot de passe personnel."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "When installed, the <emphasis role=\"pkg\">sudo</emphasis> package doesn't give anyone any rights. To delegate such rights, the administrator must use the <command>visudo</command> command, which allows them to modify the <filename>/etc/sudoers</filename> configuration file (here again, this will invoke the <command>vi</command> editor, or any other editor indicated in the <varname>EDITOR</varname> environment variable). Adding a line with <literal><replaceable>username</replaceable> ALL=(ALL) ALL</literal> allows the user in question to execute any command as root."
+#, no-c-format
 msgid "When installed, the <emphasis role=\"pkg\">sudo</emphasis> package gives full root rights to members of the <literal>sudo</literal> Unix group. To delegate other rights, the administrator must use the <command>visudo</command> command, which allows them to modify the <filename>/etc/sudoers</filename> configuration file (here again, this will invoke the <command>vi</command> editor, or any other editor indicated in the <varname>EDITOR</varname> environment variable). Adding a line with <literal><replaceable>username</replaceable> ALL=(ALL) ALL</literal> allows the user in question to execute any command as root."
-msgstr "Quand il s'installe, le paquet <emphasis role=\"pkg\">sudo</emphasis> ne donne aucun droit à personne. Pour en déléguer certains, l'administrateur doit faire appel à la commande <command>visudo</command>, qui permet de modifier le fichier de configuration <filename>/etc/sudoers</filename> (ici encore, cela invoquera l'éditeur de texte <command>vi</command>, ou tout éditeur mentionné dans la variable d'environnement <varname>EDITOR</varname>). L'ajout d'une ligne <literal><replaceable>utilisateur</replaceable> ALL=(ALL) ALL</literal> permettra à l'utilisateur concerné d'exécuter n'importe quelle commande en tant que root."
+msgstr "Quand il s'installe, le paquet <emphasis role=\"pkg\">sudo</emphasis> donne les droits complets de root à tous les utilisateurs membres du groupe Unix <literal>sudo</literal>.  Pour déléguer d'autres droits, l'administrateur doit faire appel à la commande <command>visudo</command>, qui permet de modifier le fichier de configuration <filename>/etc/sudoers</filename> (ici encore, cela invoquera l'éditeur de texte <command>vi</command>, ou tout éditeur mentionné dans la variable d'environnement <varname>EDITOR</varname>). L'ajout d'une ligne <literal><replaceable>utilisateur</replaceable> ALL=(ALL) ALL</literal> permettra à l'utilisateur concerné d'exécuter n'importe quelle commande en tant que root."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2939,10 +2908,9 @@ msgid "<primary><command>updatedb</command></primary>"
 msgstr "<primary><command>updatedb</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>locate</command></primary>"
+#, no-c-format
 msgid "<primary><command>mlocate</command></primary>"
-msgstr "<primary><command>locate</command></primary>"
+msgstr "<primary><command>mlocate</command></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -2990,16 +2958,14 @@ msgid "Recompilation of the kernel is also necessary if you want to use certain 
 msgstr "La recompilation du noyau est aussi nécessaire si l'on souhaite employer certaines fonctionnalités non intégrées dans sa version standard mais disponibles sous forme de correctifs, ou patches."
 
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "<emphasis>GOING FURTHER</emphasis> NSS and system databases"
+#, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> The Debian Kernel Handbook"
-msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Base de données système et NSS"
+msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Le Manuel du noyau Debian"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><emphasis role=\"pkg\">kernel-package</emphasis></primary>"
+#, no-c-format
 msgid "<primary><emphasis role=\"pkg\">debian-kernel-handbook</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">kernel-package</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">debian-kernel-handbook</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3012,10 +2978,9 @@ msgid "Introduction and Prerequisites"
 msgstr "Introduction et prérequis"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Debian manages the kernel in the form of a package, which is not how kernels have traditionally been compiled and installed. Specific tools have therefore been developed for this purpose. They allow easy creation of a Debian package from Linux kernel sources, possibly adding patches along the way. Since the kernel remains under the control of the packaging system, it can then be removed cleanly, or deployed on several machines. Furthermore, the scripts associated with these packages automate the interaction with the bootloader."
+#, no-c-format
 msgid "Unsurprisingly Debian manages the kernel in the form of a package, which is not how kernels have traditionally been compiled and installed. Since the kernel remains under the control of the packaging system, it can then be removed cleanly, or deployed on several machines. Furthermore, the scripts associated with these packages automate the interaction with the bootloader and the initrd generator."
-msgstr "Debian gère le noyau sous forme de paquet. La manière traditionnelle de le compiler et de l'installer n'impliquant pas cela, des outils spécifiques ont été développés. Ils permettent de générer facilement un paquet Debian à partir des sources du noyau Linux ainsi que d'éventuels patches. Les noyaux restant sous le contrôle du système de paquetage, ils peuvent être rapidement supprimés ou déployés sur plusieurs machines. De plus, les scripts associés à ces paquets permettent également une meilleure interaction avec le chargeur de démarrage."
+msgstr "Comme on peut s'y attendre, Debian gère le noyau sous forme de paquet, ce qui n'est pas la manière traditionnelle de le compiler et de l'installer.  Les noyaux restant sous le contrôle du système de paquetage, ils peuvent être rapidement supprimés ou déployés sur plusieurs machines. De plus, les scripts associés à ces paquets permettent également une meilleure interaction avec le chargeur de démarrage et le générateur d'images de démarrage (<foreignphrase>initrd</foreignphrase>)."
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -3055,10 +3020,9 @@ msgid "<primary>kernel</primary><secondary>sources</secondary>"
 msgstr "<primary>noyau</primary><secondary>sources</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>configuration</primary><secondary>of the kernel</secondary>"
+#, no-c-format
 msgid "<primary>source</primary><secondary>of the Linux kernel</secondary>"
-msgstr "<primary>configuration</primary><secondary>du noyau</secondary>"
+msgstr "<primary>sources</primary><secondary>du noyau Linux</secondary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -3066,10 +3030,9 @@ msgid "Like anything that can be useful on a Debian system, the Linux kernel sou
 msgstr "Comme tout ce qui peut être utile sur un système Debian, les sources du noyau Linux sont disponibles en paquet. Pour les récupérer, il faudra donc installer un paquet <emphasis role=\"pkg\">linux-source-<replaceable>version</replaceable></emphasis>. Une requête <command>apt-cache search ^linux-source</command> permet d'obtenir la liste des différentes versions du noyau empaquetées par Debian. Les dernières versions en date sont vraisemblablement disponibles dans la distribution <emphasis role=\"distribution\">Unstable</emphasis> : on peut les y récupérer sans grands risques (surtout si votre APT est configuré conformément aux instructions de la <xref linkend=\"section.apt-mix-distros\" />). Il est à noter que les codes sources contenus dans ces paquets ne correspondent pas exactement à ceux que publient Linus Torvalds et les développeurs noyau : Debian applique en effet un certain nombre de patches — comme toutes les distributions. Ces modifications incluent des correctifs (dont certains concernent des failles de sécurité) qui sont en attente d'intégration dans une version ultérieure du noyau ainsi que quelques fonctionnalités spécifiques à Debian (comme <foreignphrase>cramfs</foreignphrase>, un système de fichiers spécifique pour l'image <filename>initrd</filename>)."
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The remainder of this section focuses on the 2.6.32 version of the Linux kernel, but the examples can, of course, be adapted to the particular version of the kernel that you want."
+#, no-c-format
 msgid "The remainder of this section focuses on the 3.2 version of the Linux kernel, but the examples can, of course, be adapted to the particular version of the kernel that you want."
-msgstr "Dans la suite de cette section, c'est le noyau 2.6.32 qui sera systématiquement retenu. Vous pourrez bien entendu adapter ces exemples à la version particulière du noyau qui vous intéresse."
+msgstr "Dans la suite de cette section, c'est le noyau 3.2 qui sera systématiquement retenu. Vous pourrez bien entendu adapter ces exemples à la version particulière du noyau qui vous intéresse."
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -3077,11 +3040,7 @@ msgid "We assume the <emphasis role=\"pkg\">linux-source-3.2</emphasis> package 
 msgstr "Ainsi donc, le paquet <emphasis role=\"pkg\">linux-source-2.6.32</emphasis> a été installé. Il contient le fichier <filename>/usr/src/linux-source-2.6.32.tar.bz2</filename>, une archive compressée des sources du noyau. Il faut décompacter ces fichiers dans un nouveau répertoire (et non pas directement dans <filename>/usr/src/</filename>, car il n'y a pas besoin de droits particuliers pour compiler un noyau Linux) : <filename>~/kernel/</filename> conviendra."
 
 #. Tag: screen
-#, fuzzy, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
-#| "<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-2.6.32.tar.bz2</userinput>\n"
+#, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
@@ -3089,7 +3048,7 @@ msgid ""
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/linux-source-2.6.32.tar.bz2</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-3.2.tar.bz2</userinput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -3117,10 +3076,9 @@ msgid "<primary>configuration</primary><secondary>of the kernel</secondary>"
 msgstr "<primary>configuration</primary><secondary>du noyau</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><filename>resolv.conf</filename></primary>"
+#, no-c-format
 msgid "<primary><filename>.config</filename></primary>"
-msgstr "<primary><filename>resolv.conf</filename></primary>"
+msgstr "<primary><filename>.config</filename></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3133,16 +3091,11 @@ msgid "When recompiling a more recent version of the kernel (possibly with an ad
 msgstr "Si l'on recompile une version plus récente du noyau (éventuellement dotée d'un patch supplémentaire), le plus probable est qu'on veuille rester aussi près que possible de la configuration standard proposée par Debian. Dans ce cas, et au lieu de tout reconfigurer depuis zéro, il est bon de copier le fichier <filename>/boot/config-<replaceable>version</replaceable></filename> (la version est celle du noyau employé actuellement — <command>uname -r</command> vous la révélera au besoin) en <filename>.config</filename> dans le répertoire des sources du noyau :"
 
 #. Tag: screen
-#, fuzzy, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput>$ </computeroutput><userinput>cp /boot/config-2.6.32-5-686 ~/kernel/linux-source-2.6.32/.config</userinput>\n"
+#, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cp /boot/config-3.2.0-4-amd64 ~/kernel/linux-source-3.2/.config</userinput>\n"
-msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>cp /boot/config-2.6.32-5-686 ~/kernel/linux-source-2.6.32/.config</userinput>\n"
+msgstr "\n<computeroutput>$ </computeroutput><userinput>cp /boot/config-3.2.0-4-amd64 ~/kernel/linux-source-3.2/.config</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -3181,10 +3134,9 @@ msgid "Compiling and Building the Package"
 msgstr "Compilation et génération du paquet"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>make-kpkg</command></primary>"
+#, no-c-format
 msgid "<primary><command>make deb-pkg</command></primary>"
-msgstr "<primary><command>make-kpkg</command></primary>"
+msgstr "<primary><command>make deb-pkg</command></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -3207,13 +3159,7 @@ msgid "The <replaceable>version</replaceable> is defined by the concatenation of
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
-#| "[...]\n"
-#| "<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
-#| "<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb</computeroutput>\n"
+#, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-falcot KDEB_PKGVERSION=1</userinput>\n"
@@ -3227,10 +3173,15 @@ msgid ""
 "</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
+"<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-falcot KDEB_PKGVERSION=1</userinput>\n"
 "[...]\n"
 "<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
-"<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb</computeroutput>\n"
+"<computeroutput>../linux-firmware-image-3.2.46-falcot_1_amd64.deb\n"
+"../linux-headers-3.2.46-falcot_1_amd64.deb\n"
+"../linux-image-3.2.46-falcot_1_amd64.deb\n"
+"../linux-image-3.2.46-falcot-dbg_1_amd64.deb\n"
+"../linux-libc-dev_1_amd64.deb\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -3243,16 +3194,14 @@ msgid "<primary>kernel</primary><secondary>external modules</secondary>"
 msgstr "<primary>noyau</primary><secondary>modules externes</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>modules</primary><secondary>external to the kernel</secondary>"
+#, no-c-format
 msgid "<primary>modules</primary><secondary>external kernel modules</secondary>"
 msgstr "<primary>modules</primary><secondary>externes au noyau</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>sg</command></primary>"
+#, no-c-format
 msgid "<primary><command>dkms</command></primary>"
-msgstr "<primary><command>sg</command></primary>"
+msgstr "<primary><command>dkms</command></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -3303,10 +3252,9 @@ msgid ""
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "<emphasis>NOTE</emphasis> Multiple addresses"
+#, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> module-assistant"
-msgstr "<emphasis>NOTE</emphasis> Adresses multiples"
+msgstr "<emphasis>ALTERNATIVE</emphasis> module-assistant"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3329,16 +3277,14 @@ msgid "<primary>kernel</primary><secondary>patch</secondary>"
 msgstr "<primary>noyau</primary><secondary>patch</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>patch kernel</primary>"
+#, no-c-format
 msgid "<primary>patch of the kernel</primary>"
 msgstr "<primary>patch noyau</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Some features are not included in the standard kernel due to a lack of maturity or to some disagreement between the maintainer of the source code and the kernel maintainers. Such features may be distributed as patches that anyone is free to apply to the kernel sources."
+#, no-c-format
 msgid "Some features are not included in the standard kernel due to a lack of maturity or to some disagreement with the kernel maintainers. Such features may be distributed as patches that anyone is then free to apply to the kernel sources."
-msgstr "Certaines fonctionnalités ne sont pas intégrées au noyau standard faute de stabilité ou d'accord des mainteneurs du noyau. Dans ce cas, il arrive qu'elles soient diffusés sous la forme de correctif (ou patch), que chacun est libre d'appliquer sur les sources du noyau."
+msgstr "Certaines fonctionnalités ne sont pas intégrées au noyau standard faute de stabilité ou d'accord des mainteneurs du noyau. Dans ce cas, il arrive qu'elles soient diffusés sous la forme de correctif (ou patch), que chacun est alors libre d'appliquer sur les sources du noyau."
 
 #. Tag: para
 #, no-c-format
@@ -3351,13 +3297,7 @@ msgid "To apply one or more of these installed patches, use the <command>patch</
 msgstr "Pour appliquer un ou plusieurs des patches installés, il faudra utiliser la commande <command>patch</command> sur le répertoire de sources, puis lancer la compilation du noyau comme précédemment."
 
 #. Tag: screen
-#, fuzzy, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
-#| "<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/qc-usb.tar.bz2</userinput>\n"
-#| "<computeroutput>$ </computeroutput><userinput>ls modules/</userinput>\n"
-#| "<computeroutput>qc-usb</computeroutput>\n"
+#, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-3.2</userinput>\n"
@@ -3366,10 +3306,10 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-grsec</userinput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/qc-usb.tar.bz2</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>ls modules/</userinput>\n"
-"<computeroutput>qc-usb</computeroutput>\n"
+"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-3.2</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>make clean</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-patches/diffs/grsecurity2/grsecurity-2.9.1-3.2.21-201206221855.patch.gz | patch -p1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-grsec</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -3422,10 +3362,9 @@ msgid "Installing with <command>dpkg</command>"
 msgstr "Installation avec <command>dpkg</command>"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Using <command>apt-get</command> is so convenient that it makes it easy to forget about the lower-level tools, but the easiest way of installing a compiled kernel is to use a command such as <command>dpkg -i <replaceable>package</replaceable>.deb</command>, where <literal><replaceable>package</replaceable>.deb</literal> is the name of a <emphasis role=\"pkg\">linux-image</emphasis> package such as <filename>linux-image-2.6.32-falcot_1_i386.deb</filename>."
+#, no-c-format
 msgid "Using <command>apt-get</command> is so convenient that it makes it easy to forget about the lower-level tools, but the easiest way of installing a compiled kernel is to use a command such as <command>dpkg -i <replaceable>package</replaceable>.deb</command>, where <literal><replaceable>package</replaceable>.deb</literal> is the name of a <emphasis role=\"pkg\">linux-image</emphasis> package such as <filename>linux-image-3.2.48-falcot_1_amd64.deb</filename>."
-msgstr "L'emploi fréquent d'<command>apt-get</command> a tendance à faire oublier l'existence de <command>dpkg</command>. Le moyen le plus simple d'installer un noyau compilé soi-même reste pourtant la commande <command>dpkg -i <replaceable>paquet</replaceable>.deb</command>. <literal><replaceable>paquet</replaceable>.deb</literal> représente évidemment le nom d'un paquet <emphasis role=\"pkg\">linux-image</emphasis>, comme par exemple <filename>linux-image-2.6.32-falcot_1_i386.deb</filename>."
+msgstr "L'emploi fréquent d'<command>apt-get</command> a tendance à faire oublier l'existence de <command>dpkg</command>. Le moyen le plus simple d'installer un noyau compilé soi-même reste pourtant la commande <command>dpkg -i <replaceable>paquet</replaceable>.deb</command>. <literal><replaceable>paquet</replaceable>.deb</literal> représente évidemment le nom d'un paquet <emphasis role=\"pkg\">linux-image</emphasis>, comme par exemple <filename>linux-image-3.2.48-falcot_1_amd64.deb</filename>."
 
 #. Tag: para
 #, no-c-format
