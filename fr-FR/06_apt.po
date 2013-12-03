@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-11-26 15:52+0100\n"
-"PO-Revision-Date: 2013-11-29 17:12+0100\n"
+"PO-Revision-Date: 2013-12-03 16:57+0100\n"
 "Last-Translator: Raphaël Hertzog <hertzog@debian.org>\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -178,7 +178,7 @@ msgstr "Le deuxième champ indique l'URL de base de la source (combinée aux nom
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the last field depends on the structure of the repository. In the simplest cases, you can simply indicate a subdirectory (with a required trailing slash) of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL). But in the most common case, the repositories will be structured like a Debian mirror, with multiple distributions each having multiple components. In those cases, name the chosen distribution (by its “codename” — see the list in sidebar <xref linkend=\"sidebar.bruce-perens\" /> — or by the corresponding “suites” — <literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal>), then the components (or sections) to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal> in a typical Debian mirror)."
-msgstr ""
+msgstr "La syntaxe du dernier champ dépend de la structure du dépôt.  Dans les cas les plus simples, il s'agit juste d'indiquer le nom du sous-répertoire (terminé par une barre oblique) contenant la source désirée (cela sera souvent <filename>./</filename> s'il n'y a pas de sous-répertoires — les paquets sont alors directement à l'URL spécifiée).  Mais le cas le plus courant concerne les dépôts structurés comme les miroirs Debian officiels, avec plusieurs distributions elles-mêmes subdivisées en composants.  Dans ce cas, il faut indiquer la distribution choisie (soit par son « nom de code » — voir la liste dans l'encadré <xref linkend=\"sidebar.bruce-perens\" /> — soit par sa « suite » — <literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal>), puis les composants ou sections à activer (sur un miroir Debian standard, ils seront à choisir parmi <literal>main</literal>, <literal>contrib</literal> et <literal>non-free</literal>)."
 
 #. Tag: title
 #, no-c-format
@@ -317,7 +317,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "This file lists all sources of packages associated with the <emphasis role=\"distribution\">Wheezy</emphasis> version of Debian (the current <emphasis role=\"distribution\">Stable</emphasis> as of this writing). We opted to name “wheezy” explicitly instead of using the corresponding “stable“ alias (<literal>stable</literal>, <literal>stable-updates</literal>, <literal>stable-backports</literal>) because we don't want to have the underlying distribution changed outside of our control when the next stable release comes out."
-msgstr ""
+msgstr "Ce fichier liste toutes les sources de paquets associées à la version <emphasis role=\"distribution\">Wheezy</emphasis> de Debian (la version actuellement <emphasis role=\"distribution\">Stable</emphasis> à l'heure où ces lignes sont écrites).  Nous avons pris le parti de nommer <emphasis role=\"distribution\">Wheezy</emphasis> explicitement plutôt que d'utiliser son alias « stable » (<literal>stable</literal>, <literal>stable-updates</literal>, <literal>stable-backports</literal>) pour éviter que le système change spontanément et hors de toute action de notre part lors de la prochaine publication d'une version stable."
 
 #. Tag: title
 #, no-c-format
@@ -342,7 +342,7 @@ msgstr "Le miroir sélectionné pendant l'installation convient généralement p
 #. Tag: para
 #, no-c-format
 msgid "Most packages will come from the “base repository” which contains all packages but is seldom updated (about once every 2 months for a “point release”). The other repositories are partial (they do not contain all packages) and can host updates (packages with newer version) that APT might install. The following sections will explain the purpose and the rules governing each of those repositories."
-msgstr ""
+msgstr "La plupart des paquets vont provenir du « dépôt de base », qui contient tous les paquets mais n'est mis à jour que rarement (environ une fois tous les deux mois pour les mises à jour de stable).  Les autres dépôts sont partiels (ils ne contiennent pas tous les paquets) mais contiennent des mises à jour de paquets qu'APT est capable d'installer.  Les sections suivantes détaillent les principes régissant chacun de ces dépôts."
 
 #. Tag: para
 #, no-c-format
@@ -352,12 +352,12 @@ msgstr "Il est à noter que lorsque la version souhaitée d'un paquet est dispon
 #. Tag: para
 #, no-c-format
 msgid "As a side note, most of what this section says about <emphasis role=\"distribution\">Stable</emphasis> applies equally well to <emphasis role=\"distribution\">Oldstable</emphasis> since the latter is just an older <emphasis role=\"distribution\">Stable</emphasis> that is maintained in parallel."
-msgstr ""
+msgstr "Notons au passage que la plupart de ce que cette section mentionne à propos de <emphasis role=\"distribution\">Stable</emphasis> s'applique également à <emphasis role=\"distribution\">Oldstable</emphasis>, puisque cette dernière distribution est simplement une plus ancienne <emphasis role=\"distribution\">Stable</emphasis> qui reste maintenue en parallèle."
 
 #. Tag: title
 #, no-c-format
 msgid "Security Updates"
-msgstr ""
+msgstr "Mises à jour de sécurité"
 
 #. Tag: indexterm
 #, no-c-format
@@ -377,17 +377,17 @@ msgstr "<primary>mises à jour de sécurité</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The security updates are not hosted on the usual network of Debian mirrors but on <literal>security.debian.org</literal> (on a small set of machines maintained by the <link linkend=\"dsa-team\">Debian System Administrators</link>). This archive contains security updates (prepared by the Debian Security Team and/or by package maintainers) for the <emphasis role=\"distribution\">Stable</emphasis> distribution."
-msgstr ""
+msgstr "Les mises à jour de sécurité ne sont pas hébergées sur le réseau de miroirs Debian habituel, mais sur  <literal>security.debian.org</literal> (qui est concentré sur un petit nombre de serveurs maintenus par l'<link linkend=\"dsa-team\">équipe d'administrateurs système de Debian</link>).  Cette archive contient des mises à jour de sécurité (préparées par l'équipe en charge de la sécurité dans Debian ou par les responsables de paquets) pour la distribution <emphasis role=\"distribution\">Stable</emphasis> distribution."
 
 #. Tag: para
 #, no-c-format
 msgid "The server can also host security updates for <emphasis role=\"distribution\">Testing</emphasis> but this doesn't happen very often since those updates tend to reach <emphasis role=\"distribution\">Testing</emphasis> via the regular flow of updates coming from <emphasis role=\"distribution\">Unstable</emphasis>."
-msgstr ""
+msgstr "Ce serveur peut aussi héberger des mises à jour de sécurité pour <emphasis role=\"distribution\">Testing</emphasis>, mais cela arrive plus rarement ; ces mises à jour atteignent le plus souvent  <emphasis role=\"distribution\">Testing</emphasis> en suivant le cheminement régulier des paquets en provenance d'<emphasis role=\"distribution\">Unstable</emphasis>."
 
 #. Tag: title
 #, no-c-format
 msgid "Stable Updates"
-msgstr ""
+msgstr "Mises à jour de la distribution stable"
 
 #. Tag: indexterm
 #, no-c-format
@@ -407,7 +407,7 @@ msgstr "<primary>mises à jour</primary><secondary>de la distribution stable</se
 #. Tag: para
 #, no-c-format
 msgid "Stable updates are not security sensitive but are deemed important enough to be pushed to users before the next stable point release."
-msgstr ""
+msgstr "Les mises à jour de la distribution stable ne sont pas nécessairement liées à des problèmes de sécurité, mais elles sont tout de même considérées comme suffisamment importantes pour être mises à disposition des utilisateurs avant la prochaine publication d'une version stable mise à jour (<foreignphrase>point release</foreignphrase>)."
 
 #. Tag: para
 #, no-c-format
@@ -417,12 +417,12 @@ msgstr "Ce dépôt va typiquement contenir des correctifs pour des bugs critique
 #. Tag: para
 #, no-c-format
 msgid "In practice, this repository is a subset of the <literal>proposed-updates</literal> repository, carefully selected by the Stable Release Managers."
-msgstr ""
+msgstr "En pratique, il s'agit d'un sous-ensemble du dépôt <literal>proposed-updates</literal>, sélectionné avec soin par les gestionnaires de publication pour stable."
 
 #. Tag: title
 #, no-c-format
 msgid "Proposed Updates"
-msgstr ""
+msgstr "Mises à jour proposées"
 
 #. Tag: indexterm
 #, no-c-format
@@ -442,7 +442,7 @@ msgstr "Une fois publiée, la distribution <emphasis role=\"distribution\">Stabl
 #. Tag: para
 #, no-c-format
 msgid "The security and stable updates documented in the former sections are always included in this repository, but there is more too, because package maintainers also have the opportunity to fix important bugs that do not deserve an immediate release."
-msgstr ""
+msgstr "Les mises à jour de sécurité et les mises à jour de la distribution stable sont toujours incluses dans ce dépôt, mais pas uniquement ; les responsables de paquets ont aussi la possibilité de corriger des problèmes qui sont importants sans toutefois justifier une publication immédiate."
 
 #. Tag: para
 #, no-c-format
@@ -488,7 +488,7 @@ msgstr "Lorsque cette distribution commence à dater, de nombreux logiciels évo
 #. Tag: para
 #, no-c-format
 msgid "The <literal>stable-backports</literal> repository is now available on the usual Debian mirrors. But backports for <emphasis role=\"distribution\">Squeeze</emphasis> are still hosted on a dedicated server (<literal>backports.debian.org</literal>), and requires the following <filename>sources.list</filename> entry:"
-msgstr ""
+msgstr "Le dépôt <literal>stable-backports</literal> est dorénavant disponibles sur les miroirs Debian standards, mais les rétroportages pour <emphasis role=\"distribution\">Squeeze</emphasis> sont toujours hébergés sur un serveur dédié (<literal>backports.debian.org</literal>), et ont besoin de l'entrée suivante dans le fichier <filename>sources.list</filename> :"
 
 #. Tag: indexterm
 #, no-c-format
@@ -498,19 +498,17 @@ msgstr "<primary><literal>backports.debian.org</literal></primary>"
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
-msgstr ""
-"\n"
-"deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
+msgstr "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Backports from <literal>stable-backports</literal> are always created from packages available in <emphasis role=\"distribution\">Testing</emphasis>. This ensures that all installed backports will be upgradable to the corresponding stable version once the next stable release of Debian is available."
-msgstr ""
+msgstr "Les rétroportages de <literal>stable-backports</literal> sont toujours issus de paquets disponibles dans <emphasis role=\"distribution\">Testing</emphasis>, de manière à assurer que tous les rétroportages pourront être mis à jour vers la prochaine version stable lorsqu'elle sera disponible."
 
 #. Tag: para
 #, no-c-format
 msgid "Even though this repository provides newer versions of packages, APT will not install them unless you give explicit instructions to do so (or unless you have already done so with a former version of the given backport):"
-msgstr ""
+msgstr "Bien que ce dépôt fournisse de nouvelles versions des paquets, APT ne va les installer que sur instruction explicite (ou si un paquet concerné a déjà été mis à jour vers une version rétroportée précédente) :"
 
 #. Tag: screen
 #, no-c-format
@@ -584,17 +582,17 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "With this <filename>sources.list</filename> file APT will install packages from <emphasis role=\"distribution\">Unstable</emphasis>. If that is not desired, use the <literal>APT::Default-Release</literal> setting (see <xref linkend=\"sect.apt-upgrade\" />) to instruct APT to pick packages from another distribution (most likely <emphasis role=\"distribution\">Testing</emphasis> in this case)."
-msgstr ""
+msgstr "Avec ce fichier <filename>sources.list</filename>, APT installera des paquets depuis <emphasis role=\"distribution\">Unstable</emphasis>.  Si cela n'est pas souhaitable, il convient d'utiliser l'option de configuration <literal>APT::Default-Release</literal> (voir <xref linkend=\"sect.apt-upgrade\" />) pour indiquer à APT de prendre les paquets dans une autre distribution (vraisemblablement <emphasis role=\"distribution\">Testing</emphasis> dans ce cas)."
 
 #. Tag: para
 #, no-c-format
 msgid "There are good reasons to include all those repositories, even though a single one should be enough. <emphasis role=\"distribution\">Testing</emphasis> users will appreciate the possibility to cherry-pick a fixed package from <emphasis role=\"distribution\">Unstable</emphasis> when the version in <emphasis role=\"distribution\">Testing</emphasis> is affected by an annoying bug. On the opposite, <emphasis role=\"distribution\">Unstable</emphasis> users bitten by unexpected regressions have the possibility to downgrade packages to their (supposedly working) <emphasis role=\"distribution\">Testing</emphasis> version."
-msgstr ""
+msgstr "Il est parfaitement raisonnable d'inclure tous ces dépôts même si un seul suffirait.  Les utilisateurs de <emphasis role=\"distribution\">Testing</emphasis> apprécieront la possibilité de choisir manuellement un paquet corrigé dans <emphasis role=\"distribution\">Unstable</emphasis> lorsque sa version dans <emphasis role=\"distribution\">Testing</emphasis> est affectée par un bug pénible.  À l'opposé, les utilisateurs d'<emphasis role=\"distribution\">Unstable</emphasis> qui découvrent des régressions inattendues pourront rétrograder certains paquets vers la version présente dans <emphasis role=\"distribution\">Testing</emphasis>, qui devrait fonctionner."
 
 #. Tag: para
 #, no-c-format
 msgid "The inclusion of <emphasis role=\"distribution\">Stable</emphasis> is more debatable but it often gives access to some packages which have been removed from the development versions. It also ensures that you get the latest updates for packages which have not been modified since the last stable release."
-msgstr ""
+msgstr "L'inclusion <emphasis role=\"distribution\">Stable</emphasis> est sujette à débat, mais elle donne souvent accès à des paquets qui ont été supprimés des versions de développement.  Elle permet également de profiter des dernières mises à jour des paquets qui n'ont pas encore été modifiés depuis la publication de la dernière version stable."
 
 #. Tag: title
 #, no-c-format
@@ -709,12 +707,12 @@ msgstr "<primary>cache, proxy</primary>"
 #. Tag: para
 #, no-c-format
 msgid "When an entire network of machines is configured to use the same remote server to download the same updated packages, any administrator knows that it would be beneficial to have an intermediate proxy acting as a network-local cache (see sidebar <xref linkend=\"sidebar.cache\" />)."
-msgstr ""
+msgstr "Lorsqu'un réseau complet de machines est configuré pour télécharger les mêmes paquets mis à jour depuis le même serveur distant, tout administrateur sait qu'il serait utile d'utiliser un mandataire (<foreignphrase>proxy</foreignphrase>) configuré comme un cache (voir encadré <xref linkend=\"sidebar.cache\" />)."
 
 #. Tag: para
 #, no-c-format
 msgid "You can configure APT to use a \"standard\" proxy (see <xref linkend=\"sect.apt-config\" /> for the APT side, and <xref linkend=\"sect.http-ftp-proxy\" /> for the proxy side), but the Debian ecosystem offers better options to solve this problem. The dedicated software presented in this section are smarter than a plain proxy cache because they can rely on the specific structure of APT repositories (for instance they know when individual files are obsolete or not, and thus adjust the time during which they are kept)."
-msgstr ""
+msgstr "APT peut être configuré pour utiliser un proxy « standard » (voir d <xref linkend=\"sect.apt-config\" /> pour la configuration d'APT, et  <xref linkend=\"sect.http-ftp-proxy\" /> pour la configuration du proxy lui-même), mais l'écosystème Debian offre de meilleures options pour ce problème.  Les logiciels présentés dans cette section sont dédiés à cette tâche, et peuvent être plus efficaces qu'un proxy générique puisqu'ils peuvent tirer parti de la structure spécifique des dépôts APT (par exemple, ils peuvent savoir quand un fichier devient obsolète, et ainsi ajuster la durée pendant laquelle ce fichier est conservé)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -729,7 +727,7 @@ msgstr "<primary><emphasis role=\"pkg\">apt-cacher-ng</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">apt-cacher</emphasis> and <emphasis role=\"pkg\">apt-cacher-ng</emphasis> work like usual proxy cache servers. APT's <filename>sources.list</filename> is left unchanged, but APT is configured to use them as proxy for outgoing requests."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">apt-cacher</emphasis> et <emphasis role=\"pkg\">apt-cacher-ng</emphasis> fonctionnent comme des proxies standards.  Le fichier <filename>sources.list</filename> d'APT reste inchangé, mais APT est configuré pour utiliser ces logiciels comme proxy lors des requêtes sortantes."
 
 #. Tag: indexterm
 #, no-c-format
@@ -739,7 +737,7 @@ msgstr "<primary><emphasis role=\"pkg\">approx</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">approx</emphasis>, on the other hand, acts like an HTTP server that “mirrors” any number of remote repositories in its top-level URLs. The mapping between those top-level directories and the remote URLs of the repositories is stored in <filename>/etc/approx/approx.conf</filename>:"
-msgstr ""
+msgstr "À l'opposé, <emphasis role=\"pkg\">approx</emphasis> se comporte comme un serveur HTTP qui servirait de miroir pour d'autres dépôts externes, rendus accessibles dans ses URL de plus haut niveau.  La correspondance entre ces répertoires de premier niveau et les adresses distantes des dépôts est maintenue dans le fichier de configuration <filename>/etc/approx/approx.conf</filename> :"
 
 #. Tag: programlisting
 #, no-c-format
@@ -749,11 +747,15 @@ msgid ""
 "debian   http://ftp.debian.org/debian\n"
 "security http://security.debian.org\n"
 msgstr ""
+"\n"
+"# &lt;name&gt; &lt;repository-base-url&gt;\n"
+"debian   http://ftp.debian.org/debian\n"
+"security http://security.debian.org\n"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">approx</emphasis> runs by default on port 9999 via inetd (see <xref linkend=\"sect.inetd\" />) and requires the users to adjust their <filename>sources.list</filename> file to point to the approx server:"
-msgstr ""
+msgstr "Par défaut, <emphasis role=\"pkg\">approx</emphasis> fonctionne avec le port 9999 via inetd (voir <xref linkend=\"sect.inetd\" />), et nécessite que les utilisateurs ajustent leur fichier <filename>sources.list</filename> pour qu'il pointe vers le serveur approx :"
 
 #. Tag: programlisting
 #, no-c-format
@@ -763,6 +765,9 @@ msgid ""
 "deb http://apt.falcot.com:9999/debian wheezy main contrib non-free\n"
 "      "
 msgstr ""
+"# Fichier sources.list utilisant un serveur approx\n"
+"deb http://apt.falcot.com:9999/security wheezy/updates main contrib non-free\n"
+"deb http://apt.falcot.com:9999/debian wheezy main contrib non-free"
 
 #. Tag: title
 #, no-c-format
@@ -909,6 +914,15 @@ msgid ""
 "## Ask apt-get to install the selected packages\n"
 "# <userinput>apt-get dselect-upgrade</userinput>\n"
 msgstr ""
+"## Mettre à jour la base de données des paquets connus par dpkg\n"
+"# <userinput>avail=`mktemp`</userinput>\n"
+"# <userinput>apt-cache dumpavail &gt; \"$avail\"</userinput>\n"
+"# <userinput>dpkg --merge-avail \"$avail\"</userinput>\n"
+"# <userinput>rm -f \"$avail\"</userinput>\n"
+"## Mettre à jour les sélections de dpkg\n"
+"# <userinput>dpkg --set-selections &lt; pkg-list</userinput>\n"
+"## Demander à apt-get d'installer les paquets sélectionnés\n"
+"# <userinput>apt-get dselect-upgrade</userinput>"
 
 #. Tag: para
 #, no-c-format
@@ -946,7 +960,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "This can also be used to exclude packages which would otherwise be installed, for example due to a <literal>Recommends</literal>. In general, the dependency solver will use that information as a hint to look for alternative solutions."
-msgstr ""
+msgstr "Ceci permet également d'exclure des paquets qui seraient installés sinon, par exemple à cause d'un champ <literal>Recommends</literal>.  De manière générale, le résolveur de dépendances utilisera cette information pour ajuster sa recherche de solutions alternatives."
 
 #. Tag: title
 #, no-c-format
@@ -1404,12 +1418,12 @@ msgstr "Suivi des paquets installés automatiquement"
 #. Tag: para
 #, no-c-format
 msgid "One of the essential functionalities of <command>apt-get</command> (which was initially specific to <command>aptitude</command>) is the tracking of packages installed only through dependencies. These packages are called “automatic”, and often include libraries for instance."
-msgstr ""
+msgstr "Une des fonctionnalités essentielles d'<command>apt-get</command> (qui était initialement une spécificité d'<command>aptitude</command>) est le suivi des paquets qui ne sont installés que pour satisfaire des dépendances.  Ces paquets sont dits « automatiques », et ils incluent souvent des bibliothèques."
 
 #. Tag: para
 #, no-c-format
 msgid "With this information, when packages are removed, the package managers can compute a list of automatic packages that are no longer needed (because there's no “manually installed” packages depending on them). <command>apt-get autoremove</command> will get rid of those packages. <command>aptitude</command> does not have this command because it removes them automatically as soon as they are identified. Both programs include a clear message listing the affected packages."
-msgstr ""
+msgstr "Avec cette information, lorsque des paquets sont supprimés, les gestionnaires de paquets peuvent calculer une liste des paquets automatiques qui ne sont plus requis (parce qu'il ne reste plus de paquets installés « manuellement » qui en dépendent).  <command>apt-get autoremove</command> est la commande pour supprimer ces paquets.  <command>aptitude</command> ne dispose pas d'une commande équivalente, parce qu'il supprime ces paquets automatiquement dès qu'ils sont identifiés comme superflus.  Les deux programmes mentionnent clairement les paquets affectés lors de leurs opérations."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1434,7 +1448,7 @@ msgstr "<primary><command>aptitude unmarkauto</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "It is a good habit to mark as automatic any package that you don't need directly so that they are automatically removed when they aren't necessary anymore. <command>apt-mark auto <replaceable>package</replaceable></command> will mark the given package as automatic whereas <command>apt-mark manual <replaceable>package</replaceable></command> does the opposite. <command>aptitude markauto</command> and <command>aptitude unmarkauto</command> work in the same way although they offer more features for marking many packages at once (see <xref linkend=\"sect.aptitude\" />). The console-based interactive interface of <command>aptitude</command> also makes it easy to review the “automatic flag” on many packages."
-msgstr ""
+msgstr "Il est sain d'adopter l'habitude de marquer comme automatique les paquets dont on n'a pas besoin directement, de sorte qu'ils soient automatiquement supprimés lorsqu'ils ne sont plus nécessaires.  <command>apt-mark auto <replaceable>paquet</replaceable></command> marque le paquet concerné comme automatique, et <command>apt-mark manual <replaceable>package</replaceable></command> fait le contraire.  <command>aptitude markauto</command> et <command>aptitude unmarkauto</command> fonctionnent de la même manière, mais offrent plus de fonctionnalités permettant de marquer plusieurs paquets d'un coup (voir <xref linkend=\"sect.aptitude\" />).  L'interface interactive en mode semi-graphique d'<command>aptitude</command> facilite également la maintenance de ce marqueur « automatique » sur de nombreux paquets."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1583,12 +1597,12 @@ msgstr "<primary><emphasis role=\"pkg\">apt-xapian-index</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>apt-cache search</command> is a very rudimentary tool, basically implementing <command>grep</command> on package's descriptions. It often returns too many results or none at all when you include too many keywords."
-msgstr ""
+msgstr "<command>apt-cache search</command> est un outil rudimentaire, qui ne dépasse guère un <command>grep</command> sur les descriptions de paquets.  Il renvoie fréquemment trop de résultats, ou aucun lorsque de trop nombreux mots-clefs lui sont fournis."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>axi-cache search <replaceable>term</replaceable></command>, on the other hand, provides better results, sorted by relevancy. It uses the <emphasis>Xapian</emphasis> search engine and is part of the <emphasis role=\"pkg\">apt-xapian-index</emphasis> package whichs indexes all package information (and more, like the <filename>.desktop</filename> files from all Debian packages). It knows about tags (see sidebar <xref linkend=\"sidebar.debtags\" />) and returns results in a matter of milliseconds."
-msgstr ""
+msgstr "À l'opposé, <command>axi-cache search <replaceable>terme</replaceable></command>, fournit de meilleurs résultats, triés par pertinence.  Cet outil utilise le moteur de recherche <emphasis>Xapian</emphasis> ; il fait partie du paquet <emphasis role=\"pkg\">apt-xapian-index</emphasis>, qui indexe toutes les informations des paquets (mais pas seulement : il indexe également les fichiers <filename>.desktop</filename>, par exemple).  Il sait gérer les étiquettes (voir <xref linkend=\"sidebar.debtags\" />) et son temps de réponse est souvent de l'ordre de quelques millisecondes."
 
 #. Tag: screen
 #, no-c-format
@@ -1609,6 +1623,21 @@ msgid ""
 "`axi-cache more' will give more results\n"
 "      "
 msgstr ""
+"$ <userinput>axi-cache search package use::searching</userinput>\n"
+"105 results found.\n"
+"Results 1-20:\n"
+"100% packagesearch - GUI for searching packages and viewing package information\n"
+"98% debtags - Enables support for package tags\n"
+"94% debian-goodies - Small toolbox-style utilities \n"
+"93% dpkg-awk - Gawk script to parse /var/lib/dpkg/{status,available} and Packages\n"
+"93% goplay - games (and more) package browser using DebTags\n"
+"[...]\n"
+"87% apt-xapian-index - maintenance and search tools for a Xapian index of Debian packages\n"
+"[...]\n"
+"More terms: search debian searching strigi debtags bsearch libbsearch\n"
+"More tags: suite::debian works-with::software:package role::program interface::commandline implemented-in::c++ admin::package-management use::analysing\n"
+"`axi-cache more' will give more results\n"
+"      "
 
 #. Tag: indexterm
 #, no-c-format
@@ -1688,7 +1717,7 @@ msgstr "Pour chercher un paquet, on utilisera <keycombo><keycap>/</keycap></keyc
 #. Tag: para
 #, no-c-format
 msgid "Managing the “automatic flag” of Debian packages (see <xref linkend=\"sect.automatic-tracking\" />) is a breeze with <command>aptitude</command>. It is possible to browse the list of installed packages and mark packages as automatic with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo> or to remove the mark with the <keycombo><keycap>m</keycap></keycombo> key. “Automatic packages” are tagged with an “A” in the list of packages. This feature also offers a simple way to visualize the packages in use on a machine, without all the libraries and dependencies that you don't really care about. The related pattern that can be used with <keycombo><keycap>l</keycap></keycombo> (to activate the filter mode) is <literal>~i!~M</literal>. It specifies that you only want to see installed packages (<literal>~i</literal>) not marked as automatic (<literal>!~M</literal>)."
-msgstr ""
+msgstr "<command>aptitude</command> facilite grandement la gestion du marquage « automatique » des paquets Debian (voir <xref linkend=\"sect.automatic-tracking\" />).  Il permet de parcourir la liste des paquets installés, d'en marquer comme automatiques avec <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo> et d'enlever cette marque avec la touche <keycombo><keycap>m</keycap></keycombo>.  Les paquets « automatiques » sont marqués d'un « A » dans la liste des paquets.  Cette fonctionnalité permet également de visualiser les paquets dont on se sert « consciemment » sur une machine, sans lister toutes les bibliothèques et dépendances qui ne nous intéressent pas.  Le motif de recherche, qui peut être utilisé avec <keycombo><keycap>l</keycap></keycombo> (pour activer le mode filtrage), est <literal>~i!~M</literal>.  Il spécifie de n'afficher que les paquets installés (<literal>~i</literal>) non marqués comme automatiques (<literal>!~M</literal>)."
 
 #. Tag: title
 #, no-c-format
@@ -1880,6 +1909,30 @@ msgid ""
 "      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
 "uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
 msgstr ""
+"# <userinput>apt-key fingerprint</userinput>\n"
+"/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
+"------------------------------------------------------------\n"
+"pub   4096R/473041FA 2010-08-27 [expires: 2018-03-05]\n"
+"      Key fingerprint = 9FED 2BCB DCD2 9CDF 7626  78CB AED4 B06F 4730 41FA\n"
+"uid                  Debian Archive Automatic Signing Key (6.0/squeeze) &lt;ftpmaster@debian.org&gt;\n"
+"\n"
+"/etc/apt/trusted.gpg.d//debian-archive-squeeze-stable.gpg\n"
+"---------------------------------------------------------\n"
+"pub   4096R/B98321F9 2010-08-07 [expires: 2017-08-05]\n"
+"      Key fingerprint = 0E4E DE2C 7F3E 1FC0 D033  800E 6448 1591 B983 21F9\n"
+"uid                  Squeeze Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
+"\n"
+"/etc/apt/trusted.gpg.d//debian-archive-wheezy-automatic.gpg\n"
+"-----------------------------------------------------------\n"
+"pub   4096R/46925553 2012-04-27 [expires: 2020-04-25]\n"
+"      Key fingerprint = A1BD 8E9D 78F7 FE5C 3E65  D8AF 8B48 AD62 4692 5553\n"
+"uid                  Debian Archive Automatic Signing Key (7.0/wheezy) &lt;ftpmaster@debian.org&gt;\n"
+"\n"
+"/etc/apt/trusted.gpg.d//debian-archive-wheezy-stable.gpg\n"
+"--------------------------------------------------------\n"
+"pub   4096R/65FFB764 2012-05-08 [expires: 2019-05-07]\n"
+"      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
+"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
 
 #. Tag: title
 #, no-c-format
@@ -1979,7 +2032,7 @@ msgstr "Passons à la mise à jour du système. On commencera par indiquer à AP
 #. Tag: para
 #, no-c-format
 msgid "Once these new package sources are registered, you should first do a minimal upgrade with <command>apt-get upgrade</command>. By doing the upgrade in two steps, we ease the job of the package management tools and often ensure that we have the latest versions of those, which might have accumulated bugfixes and improvements required to complete the full distribution upgrade."
-msgstr ""
+msgstr "Une fois que ces nouvelles sources de paquets sont déclarées, la première chose à faire est une mise à jour minimale avec <command>apt-get upgrade</command>.  Cette mise à jour en deux temps facilite la tâche des outils de gestion de paquets ; en particulier, cela assure que ces outils eux-mêmes sont dans leur dernière version, et qu'ils disposent donc de correctifs et d'améliorations qui peuvent s'avérer nécessaires lors de la mise à jour complète de la distribution."
 
 #. Tag: para
 #, no-c-format
@@ -2099,7 +2152,7 @@ msgstr "<primary><emphasis role=\"pkg\">unattended-upgrades</emphasis></primary>
 #. Tag: para
 #, no-c-format
 msgid "When this option is enabled, the daily script will execute <command>unattended-upgrade</command> (from the <emphasis role=\"pkg\">unattended-upgrades</emphasis> package) which — as its name suggest — can automatize the upgrade process for some packages (by default it only takes care of security updates, but this can be customized in <filename>/etc/apt/apt.conf.d/50unattended-upgrades</filename>). Note that this option can be set with the help of debconf by running <command>dpkg-reconfigure -plow unattended-upgrades</command>."
-msgstr ""
+msgstr "Lorsque cette option est activée, le script quotidien exécutera <command>unattended-upgrade</command> (dans le paquet <emphasis role=\"pkg\">unattended-upgrades</emphasis>) qui, comme son nom l'indique, automatise le processus de mise à jour pour certains paquets ; par défaut, il ne s'occupe que des mises à jour de sécurité, mais cela est configurable dans le fichier <filename>/etc/apt/apt.conf.d/50unattended-upgrades</filename>).  Notons que cette option peut être activée avec debconf, à l'aide de la commande <command>dpkg-reconfigure -plow unattended-upgrades</command>."
 
 #. Tag: para
 #, no-c-format
@@ -2380,7 +2433,7 @@ msgstr "<primary>étiquette (tag)</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Selecting the <literal>works-with::video</literal> and <literal>use::editing</literal> tags yields a handful of packages, including the <emphasis role=\"pkg\">kino</emphasis> and <emphasis role=\"pkg\">pitivi</emphasis> video editors. This system of classification is bound to be used more and more as time goes on, and package managers will gradually provide efficient search interfaces based on it."
-msgstr ""
+msgstr "Si l'on sélectionne les étiquettes <literal>works-with::video</literal> et <literal>use::editing</literal>, on obtient une poignée de paquets, notamment les logiciels de montage vidéo <emphasis role=\"pkg\">kino</emphasis> et <emphasis role=\"pkg\">pitivi</emphasis>.  Ce système de classification a vocation à être de plus en plus utilisé au fil du temps, à mesure que les outils de gestion de paquets fourniront des interfaces de recherche efficaces qui en tirent parti."
 
 #. Tag: para
 #, no-c-format
@@ -2411,125 +2464,3 @@ msgstr "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
 #, no-c-format
 msgid "finally, when the searches involve complex expressions with logic operations, the tool of choice will be <command>aptitude</command>'s search pattern syntax, which is quite powerful despite being somewhat obscure; it works in both the command-line and the interactive modes."
 msgstr "enfin, si l'on a besoin de construire des requêtes complexes avec des opérateurs logiques, on utilisera la très puissante (mais relativement obscure) syntaxe des motifs de recherche d'<command>aptitude</command>, aussi bien en ligne de commande qu'en mode interactif."
-
-#~ msgid "The syntax of the last field depends on whether the source corresponds to a Debian mirror or not. In the case of a Debian mirror, name the chosen distribution (<literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal> or their current code names — see the list in sidebar <xref linkend=\"cadre.bruce-perens\" />), then the sections to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal>). In all other cases, simply indicate the subdirectory of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL)."
-#~ msgstr "Le dernier champ a une syntaxe variable selon que la source correspond à un miroir Debian ou non. Dans le cas d'un miroir Debian, on nomme la distribution choisie (<literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal> ou leurs noms de code du moment — voir la liste dans l'encadré <xref linkend=\"cadre.bruce-perens\" />) puis les différentes sections souhaitées (choisies parmi <literal>main</literal> , <literal>contrib</literal>, et <literal>non-free</literal>). Dans les autres cas, on indique simplement le sous-répertoire de la source désirée (on y trouve souvent le simple «<filename>./</filename>» dénotant l'absence de sous-répertoire — les paquets sont alors directement à l'URL indiquée)."
-
-#~ msgid "<primary><foreignphrase>main</foreignphrase>, section</primary>"
-#~ msgstr "<primary><foreignphrase>main</foreignphrase>, section</primary>"
-
-#~ msgid "<primary><foreignphrase>contrib</foreignphrase>, section</primary>"
-#~ msgstr "<primary><foreignphrase>contrib</foreignphrase>, section</primary>"
-
-#~ msgid "<primary><foreignphrase>non-free</foreignphrase>, section</primary>"
-#~ msgstr "<primary><foreignphrase>non-free</foreignphrase>, section</primary>"
-
-#~ msgid "Generally, the contents of a standard <filename>sources.list</filename> file can be the following:"
-#~ msgstr "D'une manière générale, le contenu d'un fichier <filename>sources.list</filename> standard pourrait être le suivant:"
-
-#~ msgid "Other Available Official Repositories"
-#~ msgstr "Les autres dépôts officiels disponibles"
-
-#~ msgid "Once ready, the most important updates — those which cannot wait for the next minor Debian release — are published in the <literal>stable-updates</literal> repository (which most systems are expected to use):"
-#~ msgstr "Une fois prêtes, les mises à jour les plus importantes — celles qui ne peuvent pas attendre la publication de la prochaine version mineure — sont intégrées dans un dépôt <literal>stable-updates</literal> qui devrait être activé sur la plupart des systèmes:"
-
-#~ msgid "deb http://ftp.debian.org/debian stable-updates main contrib non-free\n"
-#~ msgstr ""
-#~ "\n"
-#~ "deb http://ftp.fr.debian.org/debian stable-updates main contrib non-free\n"
-
-#~ msgid "The Backports From <literal>backports.debian.org</literal>"
-#~ msgstr "Les rétroportages de <literal>backports.debian.org</literal>"
-
-#~ msgid ""
-#~ "<computeroutput># </computeroutput><userinput>dpkg --set-selections &lt;pkg-list</userinput>\n"
-#~ "<computeroutput># </computeroutput><userinput>apt-get dselect-upgrade</userinput>\n"
-#~ msgstr ""
-#~ "\n"
-#~ "<computeroutput># </computeroutput><userinput>dpkg --set-selections &lt;liste-pkg</userinput>\n"
-#~ "<computeroutput># </computeroutput><userinput>apt-get dselect-upgrade</userinput>\n"
-
-#~ msgid "One of the essential functionalities of <command>aptitude</command> (which has also been integrated to <command>apt-get</command> since <emphasis role=\"distribution\">Lenny</emphasis>) is the tracking of packages installed only through dependencies. These packages are called “automatic” and are tagged with an “A” in the list of packages — they often include libraries for instance. When a package is removed, the corresponding automatic packages are also selected for removal unless another “manually installed” package depends on them. It is possible to mark a package as automatic (with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>) or to remove the mark (<keycombo><keycap>m</keycap></keycombo> key). When maintaining a system with <command>aptitude</command>, it is a good habit to mark as automatic any package that you don't need directly so that they are automatically removed when they aren't necessary anymore. You can either navigate the list of installed packages and play with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>, or apply the flag to entire sections (for example the <literal>libs</literal> section). This habit can help you to keep your system tidy and offers a simple way to visualize the packages in use on a machine, without all the libraries and dependencies that you don't really care about. The related pattern that can be used with <keycombo><keycap>l</keycap></keycombo> (to activate the filter mode) is <literal>~i!~M</literal>. It specifies that you only want to see installed packages (<literal>~i</literal>) not marked as automatic (<literal>!~M</literal>)."
-#~ msgstr "Une des fonctionnalités majeures d'<command>aptitude</command> (qui a été reprise dans la version d'<command>apt-get</command> depuis <emphasis role=\"distribution\">Lenny</emphasis>) est le suivi des paquets qui n'ont été installés que par le jeu des dépendances. Ces paquets sont dits «automatiques» et marqués par un A dans la liste des paquets; on y trouvera souvent des bibliothèques, par exemple. Lorsque l'on supprime un paquet du système, les paquets automatiques correspondants sont également sélectionnés pour la suppression si aucun paquet «manuel» n'est installé. Il est possible de forcer le caractère automatique d'un paquet (par <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>) ou de le désactiver (touche <keycombo><keycap>m</keycap></keycombo>). Une saine habitude, lorsque l'on maintient un système avec <command>aptitude</command>, consiste à marquer comme automatiques tous les paquets dont on n'a pas un besoin direct, afin qu'ils soient automatiquement supprimés lorsqu'ils ne sont plus nécessaires. On pourra pour cela soit naviguer dans la liste des paquets installés et jouer du <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>, soit appliquer cet attribut sur des sections entières (par exemple la section <literal>libs</literal>). Cette habitude, en plus d'aider à garder un système propre, présente l'avantage de permettre de visualiser simplement les paquets en usage sur une machine, sans que cette liste soit polluée par toutes les bibliothèques et dépendances; le motif consacré, à utiliser avec <keycombo><keycap>l</keycap></keycombo> (pour passer en mode filtrage), est <literal>~i!~M</literal>, qui spécifie que l'on ne souhaite afficher que les paquets actuellement installés (<literal>~i</literal>) mais non marqués comme automatiques (<literal>!~M</literal>)."
-
-#~ msgid "<emphasis>WORTH FOLLOWING</emphasis> Recent evolutions of <command>apt-get</command> and <command>aptitude</command>"
-#~ msgstr "<emphasis>À SUIVRE</emphasis> Évolutions récentes de <command>apt-get</command> et <command>aptitude</command>"
-
-#~ msgid "Some of the advantages that <command>aptitude</command> historically had over <command>apt-get</command> have recently disappeared. For instance, since the release of <emphasis role=\"distribution\">Lenny</emphasis>, <command>apt-get</command> memorizes the packages that have been installed only to satisfy dependencies, just like <command>aptitude</command> has always done. It can also follow recommendations expressed by one package on another."
-#~ msgstr "Certains des avantages que présentait historiquement <command>aptitude</command> par rapport à <command>apt-get</command> ont été gommés. En particulier, dans la version <emphasis role=\"distribution\">Lenny</emphasis> de Debian, <command>apt-get</command> mémorise les paquets qui ne sont installés que pour satisfaire les dépendances, de la même manière qu'<command>aptitude</command> l'a toujours fait. Il est également capable de suivre les recommandations exprimées par un paquet sur un autre."
-
-#~ msgid "Among the recent evolutions of <command>aptitude</command>, a new version with a graphical interface is currently being developed. Even if it's available in <emphasis role=\"distribution\">Squeeze</emphasis> (in the separate <emphasis role=\"pkg\">aptitude-gtk</emphasis> package), it's not complete yet and is subject to stability issues."
-#~ msgstr "Parmi les évolutions récentes d'<command>aptitude</command>, citons également l'apparition d'une version avec une interface graphique. Cette fonctionnalité est encore en cours de développement; bien qu'elle soit présente dans <emphasis role=\"distribution\">Squeeze</emphasis> (dans le paquet séparé <emphasis role=\"pkg\">aptitude-gtk</emphasis>), elle n'est pas complète et peut souffrir de défauts de stabilité."
-
-#~ msgid ""
-#~ "<computeroutput># </computeroutput><userinput>apt-key fingerprint</userinput>\n"
-#~ "<computeroutput>/etc/apt/trusted.gpg\n"
-#~ "--------------------\n"
-#~ "pub   1024D/F42584E6 2008-04-06 [expires: 2012-05-15]\n"
-#~ "    Key fingerprint = 7F5A 4445 4C72 4A65 CBCD  4FB1 4D27 0D06 F425 84E6\n"
-#~ "uid                  Lenny Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
-#~ "\n"
-#~ "pub   4096R/55BE302B 2009-01-27 [expires: 2012-12-31]\n"
-#~ "    Key fingerprint = 150C 8614 919D 8446 E01E  83AF 9AA3 8DCD 55BE 302B\n"
-#~ "uid                  Debian Archive Automatic Signing Key (5.0/lenny) &lt;ftpmaster@debian.org&gt;\n"
-#~ "\n"
-#~ "pub   2048R/6D849617 2009-01-24 [expires: 2013-01-23]\n"
-#~ "    Key fingerprint = F6CF DE30 6133 3CE2 A43F  DAF0 DFD9 9330 6D84 9617\n"
-#~ "uid                  Debian-Volatile Archive Automatic Signing Key (5.0/lenny)\n"
-#~ "\n"
-#~ "pub   4096R/B98321F9 2010-08-07 [expires: 2017-08-05]\n"
-#~ "    Key fingerprint = 0E4E DE2C 7F3E 1FC0 D033  800E 6448 1591 B983 21F9\n"
-#~ "uid                  Squeeze Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
-#~ "\n"
-#~ "pub   4096R/473041FA 2010-08-27 [expires: 2018-03-05]\n"
-#~ "    Key fingerprint = 9FED 2BCB DCD2 9CDF 7626  78CB AED4 B06F 4730 41FA\n"
-#~ "uid                  Debian Archive Automatic Signing Key (6.0/squeeze) &lt;ftpmaster@debian.org&gt;\n"
-#~ "\n"
-#~ "</computeroutput>\n"
-#~ msgstr ""
-#~ "\n"
-#~ "<computeroutput># </computeroutput><userinput>apt-key fingerprint</userinput>\n"
-#~ "<computeroutput>/etc/apt/trusted.gpg\n"
-#~ "--------------------\n"
-#~ "pub   1024D/F42584E6 2008-04-06 [expire: 2012-05-15]\n"
-#~ "    Empreinte de la clé = 7F5A 4445 4C72 4A65 CBCD  4FB1 4D27 0D06 F425 84E6\n"
-#~ "uid                  Lenny Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
-#~ "\n"
-#~ "pub   4096R/55BE302B 2009-01-27 [expire: 2012-12-31]\n"
-#~ "    Empreinte de la clé = 150C 8614 919D 8446 E01E  83AF 9AA3 8DCD 55BE 302B\n"
-#~ "uid                  Debian Archive Automatic Signing Key (5.0/lenny) &lt;ftpmaster@debian.org&gt;\n"
-#~ "\n"
-#~ "pub   2048R/6D849617 2009-01-24 [expire: 2013-01-23]\n"
-#~ "    Empreinte de la clé = F6CF DE30 6133 3CE2 A43F  DAF0 DFD9 9330 6D84 9617\n"
-#~ "uid                  Debian-Volatile Archive Automatic Signing Key (5.0/lenny)\n"
-#~ "\n"
-#~ "pub   4096R/B98321F9 2010-08-07 [expire: 2017-08-05]\n"
-#~ "    Empreinte de la clé = 0E4E DE2C 7F3E 1FC0 D033  800E 6448 1591 B983 21F9\n"
-#~ "uid                  Squeeze Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
-#~ "\n"
-#~ "pub   4096R/473041FA 2010-08-27 [expire: 2018-03-05]\n"
-#~ "    Empreinte de la clé = 9FED 2BCB DCD2 9CDF 7626  78CB AED4 B06F 4730 41FA\n"
-#~ "uid                  Debian Archive Automatic Signing Key (6.0/squeeze) &lt;ftpmaster@debian.org&gt;\n"
-#~ "\n"
-#~ "</computeroutput>\n"
-
-#~ msgid "Once these new package sources are registered, you need to upgrade the <emphasis role=\"pkg\">aptitude</emphasis> and <emphasis role=\"pkg\">apt</emphasis> packages; their versions in <emphasis role=\"distribution\">Lenny</emphasis> have some limitations that could compromise the automatic upgrade."
-#~ msgstr "Une fois que ces nouvelles sources de paquets sont référencées, on mettra à jour les paquets <emphasis role=\"pkg\">aptitude</emphasis> et <emphasis role=\"pkg\">apt</emphasis>; les versions fournies dans <emphasis role=\"distribution\">Lenny</emphasis> présentent en effet des limitations qui risqueraient d'interrompre la mise à jour du système."
-
-#~ msgid "Remember to upgrade (or install) the most essential packages listed below, otherwise you might find that your system is unbootable:"
-#~ msgstr "Pour éviter de se retrouver avec un système qui ne démarre plus, on prendra ensuite soin de mettre à jour (ou d'installer) les paquets les plus cruciaux:"
-
-#~ msgid "the bootloader <emphasis role=\"pkg\">grub-pc</emphasis> or <emphasis role=\"pkg\">grub-legacy</emphasis> (sometimes <emphasis role=\"pkg\">lilo</emphasis>);"
-#~ msgstr "le chargeur de démarrage <emphasis role=\"pkg\">grub-pc</emphasis> ou <emphasis role=\"pkg\">grub-legacy</emphasis> (parfois <emphasis role=\"pkg\">lilo</emphasis>);"
-
-#~ msgid "the tools that build the initial ramdisk (initrd): <emphasis role=\"pkg\">initramfs-tools</emphasis>;"
-#~ msgstr "les outils permettant de construire le «disque virtuel d'initialisation» ou <foreignphrase>initrd</foreignphrase>: <emphasis role=\"pkg\">initramfs-tools</emphasis>;"
-
-#~ msgid "the standard library: <emphasis role=\"pkg\">libc6</emphasis> or one of its optimized variants such as <emphasis role=\"pkg\">libc6-i686</emphasis>;"
-#~ msgstr "la bibliothèque standard: <emphasis role=\"pkg\">libc6</emphasis> ou une de ses variantes optimisées pour certains processeurs comme <emphasis role=\"pkg\">libc6-i686</emphasis>;"
-
-#~ msgid "the management system for device files: <emphasis role=\"pkg\">udev</emphasis>;"
-#~ msgstr "le système de gestion des fichiers de périphériques: <emphasis role=\"pkg\">udev</emphasis>;"
-
-#~ msgid "last but not least, the kernel: depending on the hardware, the metapackages to use are <emphasis role=\"pkg\">linux-image-486</emphasis>, <emphasis role=\"pkg\">linux-image-686</emphasis> or <emphasis role=\"pkg\">linux-image-686-bigmem</emphasis>. These packages will only work for the i386 architecture; owners of computers based on different hardware will use other packages, most likely <emphasis role=\"pkg\">linux-image-2.6-amd64</emphasis> for AMD64 or <emphasis role=\"pkg\">linux-image-powerpc*</emphasis> for PowerPC."
-#~ msgstr "enfin, le noyau: on installera, selon le matériel dont on dispose, <emphasis role=\"pkg\">linux-image-486</emphasis>, <emphasis role=\"pkg\">linux-image-686</emphasis> ou <emphasis role=\"pkg\">linux-image-686-bigmem</emphasis>. Ces paquets correspondent uniquement à l'architecture i386, ceux qui disposent d'une machine basée sur une autre architecture devront sélectionner d'autres noyaux (citons notamment <emphasis role=\"pkg\">linux-image-2.6-amd64</emphasis> pour AMD64, et les <emphasis role=\"pkg\">linux-image-powerpc*</emphasis> pour les machines PowerPC)."
