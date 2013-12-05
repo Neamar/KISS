@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-11-26 15:52+0100\n"
-"PO-Revision-Date: 2013-07-09 16:10+0200\n"
+"PO-Revision-Date: 2013-12-05 16:01+0100\n"
 "Last-Translator: Gerold Rupprecht <geroldr@bluewin.ch>\n"
 "Language-Team: raphael@ouaza.com\n"
 "Language: en\n"
@@ -114,7 +114,7 @@ msgstr "Lorsque l'ordinateur démarre, les nombreux messages défilant sur la co
 #. Tag: para
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
-msgstr "En tout premier lieu, le BIOS prend le contrôle de l'ordinateur, détecte les disques, charge le <emphasis>Master Boot Record</emphasis> (enregistrement d'amorçage maître), et l'exécute. Le chargeur d'amorçage prend alors le relais, trouve le noyau sur le disque, le charge et l'exécute. Le noyau s'initialise alors, et se met en devoir de trouver et monter la partition contenant la racine de l'arborescence, et pour enfin démarrer le premier programme: <command>init</command>. Il est fréquent que cette «partition racine» et cet <command>init</command> soient en réalité sur un système de fichiers virtuel qui n'existe qu'en mémoire vive (d'où son nom <foreignphrase>initramfs</foreignphrase>, anciennement appelé <foreignphrase>initrd</foreignphrase> pour <foreignphrase>initialization RAM disk</foreignphrase>). Ce système de fichiers est chargé en mémoire par le chargeur d'amorçage, souvent à partir d'un fichier sur un disque dur ou sur le réseau. Il contient le strict minimum qui peut être requis par le noyau pour charger le «vrai» système de fichiers racine: il peut s'agir de modules de pilotes pour les disques durs ou d'autres périphériques sans lesquels le système ne peut pas démarrer, ou, plus fréquemment, des modules et des scripts d'initialisation permettant d'assembler des grappes RAID, d'ouvrir des partitions chiffrées, d'activer des volumes LVM… Une fois que la partition racine est montée, l'<foreignphrase>initramfs</foreignphrase> passe la main au vrai <command>init</command>, et on revient sur le processus de démarrage standard."
+msgstr "En tout premier lieu, le BIOS prend le contrôle de l'ordinateur, détecte les disques, charge le <emphasis>Master Boot Record</emphasis> (enregistrement d'amorçage maître), et l'exécute. Le chargeur d'amorçage prend alors le relais, trouve le noyau sur le disque, le charge et l'exécute. Le noyau s'initialise alors, et se met en devoir de trouver et monter la partition contenant la racine de l'arborescence, et pour enfin démarrer le premier programme : <command>init</command>. Il est fréquent que cette « partition racine » et cet <command>init</command> soient en réalité sur un système de fichiers virtuel qui n'existe qu'en mémoire vive (d'où son nom <foreignphrase>initramfs</foreignphrase>, anciennement appelé <foreignphrase>initrd</foreignphrase> pour <foreignphrase>initialization RAM disk</foreignphrase>). Ce système de fichiers est chargé en mémoire par le chargeur d'amorçage, souvent à partir d'un fichier sur un disque dur ou sur le réseau. Il contient le strict minimum qui peut être requis par le noyau pour charger le « vrai » système de fichiers racine : il peut s'agir de modules de pilotes pour les disques durs ou d'autres périphériques sans lesquels le système ne peut pas démarrer, ou, plus fréquemment, des modules et des scripts d'initialisation permettant d'assembler des grappes RAID, d'ouvrir des partitions chiffrées, d'activer des volumes LVM… Une fois que la partition racine est montée, l'<foreignphrase>initramfs</foreignphrase> passe la main au vrai <command>init</command>, et on revient sur le processus de démarrage standard."
 
 #. Tag: para
 #, no-c-format
@@ -159,32 +159,32 @@ msgstr "Celui-ci exécute tout un ensemble de processus en suivant les indicatio
 #. Tag: para
 #, no-c-format
 msgid "Among these, you will find successively programs in charge of:"
-msgstr "Parmi ceux-ci, on trouve successivement:"
+msgstr "Parmi ceux-ci, on trouve successivement :"
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the console's keyboard;"
-msgstr "la configuration du clavier de la console;"
+msgstr "la configuration du clavier de la console ;"
 
 #. Tag: para
 #, no-c-format
 msgid "loading drivers: most of the kernel modules are loaded by the kernel itself as the hardware is detected; extra drivers are then loaded automatically when the corresponding modules are listed in <filename>/etc/modules</filename>;"
-msgstr "le chargement des pilotes: la plupart des modules noyau sont chargés par le noyau lui-même en fonction du matériel détecté; certains pilotes peuvent ensuite être systématiquement chargés, les modules correspondants doivent être listés dans <filename>/etc/modules</filename>;"
+msgstr "le chargement des pilotes : la plupart des modules noyau sont chargés par le noyau lui-même en fonction du matériel détecté ; certains pilotes peuvent ensuite être systématiquement chargés, les modules correspondants doivent être listés dans <filename>/etc/modules</filename> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "checking the integrity of filesystems;"
-msgstr "la vérification de l'intégrité des systèmes de fichiers;"
+msgstr "la vérification de l'intégrité des systèmes de fichiers ;"
 
 #. Tag: para
 #, no-c-format
 msgid "mounting local partitions;"
-msgstr "le montage des partitions locales;"
+msgstr "le montage des partitions locales ;"
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the network;"
-msgstr "la configuration du réseau;"
+msgstr "la configuration du réseau ;"
 
 #. Tag: para
 #, no-c-format
@@ -219,7 +219,7 @@ msgstr "Pour éviter cela, on peut protéger le chargeur d'amorçage par un mot 
 #. Tag: para
 #, no-c-format
 msgid "Finally, be aware that most BIOS have a generic password available. Initially intended for troubleshooting for those who have forgotten their password, these passwords are now public and available on the Internet (see for yourself by searching for “generic BIOS passwords” in a search engine). All of these protections will thus impede unauthorized access to the machine without being able to completely prevent it. There's no reliable way to protect a computer if the attacker can physically access it; they could dismount the hard drives to connect them to a computer under their own control anyway, or even steal the entire machine, or erase the BIOS memory to reset the password…"
-msgstr "Sachez enfin que la plupart des BIOS disposent de passe-partout génériques. Prévus à l'origine pour dépanner les distraits qui oublient les leurs, ces mots de passe sont désormais publics et diffusés sur l'Internet (vérifiez vous-même en cherchant <foreignphrase>BIOS generic passwords</foreignphrase> sur un moteur de recherche). Toutes ces protections ralentiront donc l'accès non autorisé à la machine, sans pouvoir l'empêcher totalement. C'est pourquoi il est vain de chercher à protéger un ordinateur si l'attaquant peut y accéder physiquement: il pourra de toute manière démonter les disques durs pour les brancher sur un ordinateur sous son contrôle, voire voler l'ordinateur entier, ou vider la mémoire du BIOS pour remettre à zéro le mot de passe..."
+msgstr "Sachez enfin que la plupart des BIOS disposent de passe-partout génériques. Prévus à l'origine pour dépanner les distraits qui oublient les leurs, ces mots de passe sont désormais publics et diffusés sur l'Internet (vérifiez vous-même en cherchant <foreignphrase>BIOS generic passwords</foreignphrase> sur un moteur de recherche). Toutes ces protections ralentiront donc l'accès non autorisé à la machine, sans pouvoir l'empêcher totalement. C'est pourquoi il est vain de chercher à protéger un ordinateur si l'attaquant peut y accéder physiquement : il pourra de toute manière démonter les disques durs pour les brancher sur un ordinateur sous son contrôle, voire voler l'ordinateur entier, ou vider la mémoire du BIOS pour remettre à zéro le mot de passe..."
 
 #. Tag: title
 #, no-c-format
@@ -255,9 +255,8 @@ msgstr "<primary><emphasis role=\"pkg\">krdc</emphasis></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started. In <emphasis role=\"distribution\">Squeeze</emphasis>, the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
 msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started, but nowadays the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
-msgstr "Après cette phase, <command>init</command> reprend la main et démarre les programmes associés au niveau d'exécution (<foreignphrase>runlevel</foreignphrase>) normal, soit par défaut le niveau 2. Il exécute <command>/etc/init.d/rc 2</command>, script qui démarre tous les services donnés du répertoire <filename>/etc/rc2.d/</filename> débutant par la lettre «S». Le nombre (à deux chiffres) qui suit servait historiquement à classer les services pour les démarrer dans le bon ordre. Dans <emphasis role=\"distribution\">Squeeze</emphasis>, le système de démarrage par défaut utilise <command>insserv</command>, un système de démarrage où l'ordonnancement se fait en fonction des dépendances entre scripts. Chaque script de démarrage déclare ainsi les contraintes qui s'appliquent à lui (par exemple, s'il doit démarrer avant ou après tel autre service); <command>init</command> les lance alors dans un ordre qui satisfait les contraintes. La numérotation statique des scripts n'est donc plus prise en compte (mais ils doivent toujours s'appeler d'un nom composé d'un «S» suivi de deux caractères, suivis à leur tour du véritable nom du script utilisé pour les dépendances). D'une manière générale, les services de base (comme le service de collecte des journaux, <command>rsyslog</command>, ou celui d'attribution des ports, <command>portmap</command>) sont démarrés en premier, suivis par les services standards et l'interface graphique (<command>gdm</command>)."
+msgstr "Après cette phase, <command>init</command> reprend la main et démarre les programmes associés au niveau d'exécution (<foreignphrase>runlevel</foreignphrase>) normal, soit par défaut le niveau 2. Il exécute <command>/etc/init.d/rc 2</command>, script qui démarre tous les services donnés du répertoire <filename>/etc/rc2.d/</filename> débutant par la lettre « S ». Le nombre (à deux chiffres) qui suit servait historiquement à classer les services pour les démarrer dans le bon ordre. Dans <emphasis role=\"distribution\">Squeeze</emphasis>, le système de démarrage par défaut utilise <command>insserv</command>, un système de démarrage où l'ordonnancement se fait en fonction des dépendances entre scripts. Chaque script de démarrage déclare ainsi les contraintes qui s'appliquent à lui (par exemple, s'il doit démarrer avant ou après tel autre service) ; <command>init</command> les lance alors dans un ordre qui satisfait les contraintes. La numérotation statique des scripts n'est donc plus prise en compte (mais ils doivent toujours s'appeler d'un nom composé d'un « S » suivi de deux caractères, suivis à leur tour du véritable nom du script utilisé pour les dépendances). D'une manière générale, les services de base (comme le service de collecte des journaux, <command>rsyslog</command>, ou celui d'attribution des ports, <command>portmap</command>) sont démarrés en premier, suivis par les services standards et l'interface graphique (<command>gdm</command>)."
 
 # Marilyne reviewed up to here
 #. Tag: para
@@ -284,15 +283,13 @@ msgstr "Citons également le processus simplifié contenu dans le paquet <emphas
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The newly arrived <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
 msgid "The <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
-msgstr "Le système <command>upstart</command>, apparu plus récemment, n'est pas encore parfaitement testé sous Debian. Il fonctionne avec des événements plutôt que des niveaux de fonctionnement prédéfinis; les scripts de lancement ne sont plus déclenchés par le changement de <foreignphrase>runlevel</foreignphrase> mais par l'aboutissement des scripts précédents dont ils dépendent. Ce système, initié par Ubuntu, est présent dans Debian <emphasis role=\"distribution\">Squeeze</emphasis> mais n'est pas le système par défaut: il vient en fait en remplacement de <emphasis role=\"package\">sysvinit</emphasis>, et une des tâches lancées par <command>upstart</command> est de lancer les scripts écrits pour les systèmes traditionnels, notamment ceux du paquet <emphasis role=\"package\">sysv-rc</emphasis> (avec le mode de démarrage parallèle comme précédemment)."
+msgstr "Le système <command>upstart</command>, apparu plus récemment, n'est pas encore parfaitement testé sous Debian. Il fonctionne avec des événements plutôt que des niveaux de fonctionnement prédéfinis ; les scripts de lancement ne sont plus déclenchés par le changement de <foreignphrase>runlevel</foreignphrase> mais par l'aboutissement des scripts précédents dont ils dépendent. Ce système, initié par Ubuntu, est présent dans Debian <emphasis role=\"distribution\">Squeeze</emphasis> mais n'est pas le système par défaut : il vient en fait en remplacement de <emphasis role=\"package\">sysvinit</emphasis>, et une des tâches lancées par <command>upstart</command> est de lancer les scripts écrits pour les systèmes traditionnels, notamment ceux du paquet <emphasis role=\"package\">sysv-rc</emphasis> (avec le mode de démarrage parallèle comme précédemment)."
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Another new option is <command>systemd</command>, but it still lacks the maturity needed to be part of <emphasis role=\"distribution\">Squeeze</emphasis>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services."
 msgid "Another new option that is gaining a lot of traction is <command>systemd</command>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services. It also provides backwards compatibility to System V init scripts."
-msgstr "Un autre nouveau venu est <command>systemd</command>, mais il n'a pas encore la maturité nécessaire pour faire partie de <emphasis role=\"distribution\">Squeeze</emphasis>. Son approche est à rebours des précédentes: au lieu de lancer préemptivement tous les services, en se posant la question de l'ordonnancement, <command>systemd</command> fait le choix de les démarrer à la demande, un peu selon le principe d'<command>inetd</command>. Mais cela implique que le système de démarrage doit être mis au courant de la manière dont les services sont rendus disponibles (qu'il s'agisse de serveurs qui écoutent sur le réseau, de systèmes de fichiers ou autres), et nécessite donc une modification partielle desdits services."
+msgstr "Un autre nouveau venu est <command>systemd</command>, mais il n'a pas encore la maturité nécessaire pour faire partie de <emphasis role=\"distribution\">Squeeze</emphasis>. Son approche est à rebours des précédentes : au lieu de lancer préemptivement tous les services, en se posant la question de l'ordonnancement, <command>systemd</command> fait le choix de les démarrer à la demande, un peu selon le principe d'<command>inetd</command>. Mais cela implique que le système de démarrage doit être mis au courant de la manière dont les services sont rendus disponibles (qu'il s'agisse de serveurs qui écoutent sur le réseau, de systèmes de fichiers ou autres), et nécessite donc une modification partielle desdits services."
 
 #. Tag: para
 #, no-c-format
@@ -313,22 +310,22 @@ msgstr "<primary>exécution</primary><secondary>niveau</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>init</command> distinguishes several runlevels, so it can switch from one to another with the <command>telinit <replaceable>new-level</replaceable></command> command. Immediately, <command>init</command> executes <command>/etc/init.d/rc</command> again with the new runlevel. This script will then start the missing services and stop those that are no longer desired. To do this, it refers to the content of the <filename>/etc/rc<replaceable>X</replaceable>.d</filename> (where <replaceable>X</replaceable> represents the new runlevel). Scripts starting with “S” (as in “Start”) are services to be started; those starting with “K” (as in “Kill”) are the services to be stopped. The script does not start any service that was already active in the previous runlevel."
-msgstr "<command>init</command> distingue plusieurs niveaux d'exécution car il peut basculer de l'un à l'autre par la commande <command>telinit <replaceable>nouveau-niveau</replaceable></command>. Dès son invocation, <command>init</command> exécute à nouveau <command>/etc/init.d/rc</command> avec le nouveau niveau d'exécution désiré, script qui démarre à son tour les services manquants et arrête ceux qui ne sont plus souhaités. Pour cela, il se réfère au contenu du répertoire <filename>/etc/rc<replaceable>X</replaceable>.d</filename> (où <replaceable>X</replaceable> représente le nouveau niveau d'exécution). Les scripts débutant par «S» (comme <foreignphrase>Start</foreignphrase>) sont des services à démarrer, ceux débutant par «K» (comme <foreignphrase>Kill</foreignphrase>) sont des services à stopper. Le script évite de redémarrer tout service déjà actif dans le niveau d'exécution précédent."
+msgstr "<command>init</command> distingue plusieurs niveaux d'exécution car il peut basculer de l'un à l'autre par la commande <command>telinit <replaceable>nouveau-niveau</replaceable></command>. Dès son invocation, <command>init</command> exécute à nouveau <command>/etc/init.d/rc</command> avec le nouveau niveau d'exécution désiré, script qui démarre à son tour les services manquants et arrête ceux qui ne sont plus souhaités. Pour cela, il se réfère au contenu du répertoire <filename>/etc/rc<replaceable>X</replaceable>.d</filename> (où <replaceable>X</replaceable> représente le nouveau niveau d'exécution). Les scripts débutant par « S » (comme <foreignphrase>Start</foreignphrase>) sont des services à démarrer, ceux débutant par « K » (comme <foreignphrase>Kill</foreignphrase>) sont des services à stopper. Le script évite de redémarrer tout service déjà actif dans le niveau d'exécution précédent."
 
 #. Tag: para
 #, no-c-format
 msgid "By default, Debian uses four different runlevels:"
-msgstr "Debian utilise par défaut quatre <foreignphrase>runlevels</foreignphrase> différents:"
+msgstr "Debian utilise par défaut quatre <foreignphrase>runlevels</foreignphrase> différents :"
 
 #. Tag: para
 #, no-c-format
 msgid "Level 0 is only used temporarily, while the computer is powering down. As such, it only contains many “K” scripts."
-msgstr "Le niveau 0 n'est utilisé que de manière transitoire, lors de la phase d'extinction de l'ordinateur. Il contient donc de nombreux scripts «K»."
+msgstr "Le niveau 0 n'est utilisé que de manière transitoire, lors de la phase d'extinction de l'ordinateur. Il contient donc de nombreux scripts « K »."
 
 #. Tag: para
 #, no-c-format
 msgid "Level 1, also known as single-user mode, corresponds to the system in degraded mode; it includes only basic services, and is intended for maintenance operations where interactions with ordinary users are not desired."
-msgstr "Le niveau 1, aussi connu sous le nom de <foreignphrase>single-user</foreignphrase>, correspond au système en mode dégradé; il ne contient que les services de base, et est prévu pour les opérations de maintenance en dehors de l'interaction des utilisateurs."
+msgstr "Le niveau 1, aussi connu sous le nom de <foreignphrase>single-user</foreignphrase>, correspond au système en mode dégradé ; il ne contient que les services de base, et est prévu pour les opérations de maintenance en dehors de l'interaction des utilisateurs."
 
 #. Tag: para
 #, no-c-format
@@ -408,7 +405,7 @@ msgstr "<emphasis>VOCABULAIRE</emphasis> Console et terminal"
 #. Tag: para
 #, no-c-format
 msgid "The first computers were usually separated into several, very large parts: the storage enclosure and the central processing unit were separate from the peripheral devices used by the operators to control them. These were part of a separate furniture, the “console”. This term was retained, but its meaning has changed. It has become more or less synonymous with “terminal”, being a keyboard and a screen."
-msgstr "Les premiers ordinateurs étaient habituellement séparés en plusieurs parties, très volumineuses: l'armoire de stockage et l'unité de calcul étaient distinctes des organes de contrôle utilisés par les opérateurs. Ceux-ci constituaient donc un meuble à part, la «console». Ce terme est resté, mais sa signification a évolué. Il est devenu plus ou moins synonyme de «terminal»: un ensemble d'un clavier et d'un écran."
+msgstr "Les premiers ordinateurs étaient habituellement séparés en plusieurs parties, très volumineuses : l'armoire de stockage et l'unité de calcul étaient distinctes des organes de contrôle utilisés par les opérateurs. Ceux-ci constituaient donc un meuble à part, la « console ». Ce terme est resté, mais sa signification a évolué. Il est devenu plus ou moins synonyme de « terminal » : un ensemble d'un clavier et d'un écran."
 
 #. Tag: para
 #, no-c-format
@@ -418,7 +415,7 @@ msgstr "Au fil de l'évolution de l'informatique, les systèmes d'exploitation o
 #. Tag: para
 #, no-c-format
 msgid "By extension, the terms “console” and “terminal” can also refer to a terminal emulator in a graphical X11 session (such as <command>xterm</command>, <command>gnome-terminal</command> or <command>konsole</command>)."
-msgstr "Les termes «console» et «terminal» peuvent aussi, au sens large, désigner un émulateur de terminal dans une session graphique X11 (comme <command>xterm</command>, <command>gnome-terminal</command> ou <command>konsole</command>)."
+msgstr "Les termes « console » et « terminal » peuvent aussi, au sens large, désigner un émulateur de terminal dans une session graphique X11 (comme <command>xterm</command>, <command>gnome-terminal</command> ou <command>konsole</command>)."
 
 #. Tag: title
 #, no-c-format
@@ -464,7 +461,7 @@ msgstr "<primary>distance, connexion</primary>"
 #. Tag: title
 #, no-c-format
 msgid "Secure Remote Login: SSH"
-msgstr "Connexion à distance sécurisée: SSH"
+msgstr "Connexion à distance sécurisée : SSH"
 
 #. Tag: indexterm
 #, no-c-format
@@ -478,9 +475,8 @@ msgstr "<primary><foreignphrase>Secured Shell</foreignphrase></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol, contrary to <emphasis>telnet</emphasis>, was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
 msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
-msgstr "Le protocole <emphasis>SSH</emphasis> (<foreignphrase>Secured Shell</foreignphrase>, ou shell sécurisé), contrairement à <emphasis>telnet</emphasis>, a été conçu dans une optique de sécurité et de fiabilité. Les connexions ainsi mises en place sont sûres: le partenaire est authentifié et tous les échanges sont chiffrés."
+msgstr "Le protocole <emphasis>SSH</emphasis> (<foreignphrase>Secured Shell</foreignphrase>, ou shell sécurisé), contrairement à <emphasis>telnet</emphasis>, a été conçu dans une optique de sécurité et de fiabilité. Les connexions ainsi mises en place sont sûres : le partenaire est authentifié et tous les échanges sont chiffrés."
 
 #. Tag: title
 #, fuzzy, no-c-format
@@ -512,7 +508,7 @@ msgstr "<emphasis>VOCABULAIRE</emphasis> Authentification, chiffrement"
 #. Tag: para
 #, no-c-format
 msgid "When you need to give a client the ability to conduct or trigger actions on a server, security is important. You must ensure the identity of the client; this is authentication. This identity usually consists of a password that must be kept secret, or any other client could get the password. This is the purpose of encryption, which is a form of encoding that allows two systems to communicate confidential information on a public channel while protecting it from being readable to others."
-msgstr "Lorsqu'il s'agit de donner à un client la possibilité d'effectuer ou de déclencher des actions sur un serveur, les implications de sécurité sont importantes. On doit donc s'assurer de l'identité du client; c'est l'authentification. Cette identité consistant souvent en un mot de passe, il faut bien entendu protéger la confidentialité de ce mot de passe, faute de quoi n'importe quel autre client pourra récupérer ce mot de passe; c'est l'objet du chiffrement, qui est une forme de codage permettant à deux systèmes de communiquer des secrets sur un canal public sans qu'ils puissent être interceptés par des tierces parties."
+msgstr "Lorsqu'il s'agit de donner à un client la possibilité d'effectuer ou de déclencher des actions sur un serveur, les implications de sécurité sont importantes. On doit donc s'assurer de l'identité du client ; c'est l'authentification. Cette identité consistant souvent en un mot de passe, il faut bien entendu protéger la confidentialité de ce mot de passe, faute de quoi n'importe quel autre client pourra récupérer ce mot de passe ; c'est l'objet du chiffrement, qui est une forme de codage permettant à deux systèmes de communiquer des secrets sur un canal public sans qu'ils puissent être interceptés par des tierces parties."
 
 #. Tag: para
 #, no-c-format
@@ -574,7 +570,7 @@ msgstr "Le terme <foreignphrase>fork</foreignphrase> (fourche, ou projet dériv�
 #. Tag: para
 #, no-c-format
 msgid "The option to fork a project is a direct result of the very nature of free software; a fork is a healthy event when it enables the continuation of a project as free software (for example in case of license changes). A fork arising from technical or personal disagreements is often a waste of human resources; another resolution would be preferable. Mergers of two projects that previously went through a prior fork are not unheard of."
-msgstr "Cette possibilité provient directement du caractère libre d'un logiciel; un <foreignphrase>fork</foreignphrase> est sain lorsqu'il permet la poursuite du développement sous forme de logiciel libre (en cas de changement de licence par exemple). Un <foreignphrase>fork</foreignphrase> issu d'un désaccord technique ou relationnel est souvent un gâchis de ressources humaines; on lui préférera la résolution du différend. Il n'est d'ailleurs pas rare d'assister à la fusion des branches d'un <foreignphrase>fork</foreignphrase> quand elles font ce constat amer."
+msgstr "Cette possibilité provient directement du caractère libre d'un logiciel ; un <foreignphrase>fork</foreignphrase> est sain lorsqu'il permet la poursuite du développement sous forme de logiciel libre (en cas de changement de licence par exemple). Un <foreignphrase>fork</foreignphrase> issu d'un désaccord technique ou relationnel est souvent un gâchis de ressources humaines ; on lui préférera la résolution du différend. Il n'est d'ailleurs pas rare d'assister à la fusion des branches d'un <foreignphrase>fork</foreignphrase> quand elles font ce constat amer."
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -595,7 +591,7 @@ msgstr "Chaque fois que l'on se connecte par SSH, le serveur distant demande un 
 #. Tag: para
 #, no-c-format
 msgid "The user generates a key pair on the client machine with <command>ssh-keygen -t rsa</command>; the public key is stored in <filename>~/.ssh/id_rsa.pub</filename>, while the corresponding private key is stored in <filename>~/.ssh/id_rsa</filename>. The user then uses <command>ssh-copy-id <replaceable>server</replaceable></command> to add their public key to the <filename>~/.ssh/authorized_keys</filename> file on the server. If the private key was not protected with a “passphrase” at the time of its creation, all subsequent logins on the server will work without a password. Otherwise, the private key must be decrypted each time by entering the passphrase. Fortunately, <command>ssh-agent</command> allows us to keep private keys in memory to not have to regularly re-enter the password. For this, you simply use <command>ssh-add</command> (once per work session) provided that the session is already associated with a functional instance of <command>ssh-agent</command>. Debian activates it by default in graphical sessions, but this can be deactivated by changing <filename>/etc/X11/Xsession.options</filename>. For a console session, you can manually start it with <command>eval $(ssh-agent)</command>."
-msgstr "L'utilisateur génère une biclé sur la machine cliente avec <command>ssh-keygen -t rsa</command>: la clé publique est stockée dans <filename>~/.ssh/id_rsa.pub</filename> tandis que la clé privée correspondante est placée dans <filename>~/.ssh/id_rsa</filename>. L'utilisateur emploie alors <command>ssh-copy-id <replaceable>serveur</replaceable></command> pour ajouter sa clé publique dans le fichier <filename>~/.ssh/authorized_keys</filename> du serveur. Si la clé privée n'a pas, lors de sa création, été protégée par une «phrase de passe» (<foreignphrase>passphrase</foreignphrase>) qui la protège, toutes les connexions au serveur fonctionneront désormais sans mot de passe. Sinon, il faudra à chaque fois déchiffrer la clé privée donc saisir la phrase de passe. Heureusement <command>ssh-agent</command> va nous permettre de garder en mémoire la (ou les) clé(s) privée(s) afin de ne pas devoir régulièrement ressaisir la phrase de protection. Pour cela, il suffit d'invoquer <command>ssh-add</command> (une fois par session de travail) à la condition que la session soit déjà associée à une instance fonctionnelle de <command>ssh-agent</command>. Debian l'active en standard dans les sessions graphiques, mais cela peut se désactiver en modifiant <filename>/etc/X11/Xsession.options</filename>. Pour une session en console, on peut le démarrer manuellement avec <command>eval $(ssh-agent)</command>."
+msgstr "L'utilisateur génère une biclé sur la machine cliente avec <command>ssh-keygen -t rsa</command> : la clé publique est stockée dans <filename>~/.ssh/id_rsa.pub</filename> tandis que la clé privée correspondante est placée dans <filename>~/.ssh/id_rsa</filename>. L'utilisateur emploie alors <command>ssh-copy-id <replaceable>serveur</replaceable></command> pour ajouter sa clé publique dans le fichier <filename>~/.ssh/authorized_keys</filename> du serveur. Si la clé privée n'a pas, lors de sa création, été protégée par une « phrase de passe » (<foreignphrase>passphrase</foreignphrase>) qui la protège, toutes les connexions au serveur fonctionneront désormais sans mot de passe. Sinon, il faudra à chaque fois déchiffrer la clé privée donc saisir la phrase de passe. Heureusement <command>ssh-agent</command> va nous permettre de garder en mémoire la (ou les) clé(s) privée(s) afin de ne pas devoir régulièrement ressaisir la phrase de protection. Pour cela, il suffit d'invoquer <command>ssh-add</command> (une fois par session de travail) à la condition que la session soit déjà associée à une instance fonctionnelle de <command>ssh-agent</command>. Debian l'active en standard dans les sessions graphiques, mais cela peut se désactiver en modifiant <filename>/etc/X11/Xsession.options</filename>. Pour une session en console, on peut le démarrer manuellement avec <command>eval $(ssh-agent)</command>."
 
 #. Tag: title
 #, no-c-format
@@ -605,7 +601,7 @@ msgstr "<emphasis>SÉCURITÉ</emphasis> Protection de la clé privée"
 #. Tag: para
 #, no-c-format
 msgid "Whoever has the private key can login on the account thus configured. This is why access to the private key is protected by a “passphrase”. Someone who acquires a copy of a private key file (for example, <filename>~/.ssh/id_rsa</filename>) still has to know this phrase in order to be able to use it. This additional protection is not, however, impregnable, and if you think that this file has been compromised, it is best to disable that key on the computers in which it has been installed (by removing it from the <filename>authorized_keys</filename> files) and replacing it with a newly generated key."
-msgstr "Quiconque dispose de la clé privée peut se connecter sur le compte ainsi configuré. C'est pourquoi l'accès à la clé privée est protégé par une «phrase de passe». Quelqu'un qui récupérerait une copie d'un fichier abritant une clé privée (par exemple <filename>~/.ssh/id_rsa</filename>) devrait encore retrouver cette phrase avant de pouvoir l'utiliser. Cette protection supplémentaire n'est cependant pas inviolable, et si l'on pense que ce fichier a été compromis il vaut mieux désactiver cette clé sur les ordinateurs où elle a été installée (en la retirant des fichiers <filename>authorized_keys</filename>) et la remplacer par une clé nouvellement générée."
+msgstr "Quiconque dispose de la clé privée peut se connecter sur le compte ainsi configuré. C'est pourquoi l'accès à la clé privée est protégé par une « phrase de passe ». Quelqu'un qui récupérerait une copie d'un fichier abritant une clé privée (par exemple <filename>~/.ssh/id_rsa</filename>) devrait encore retrouver cette phrase avant de pouvoir l'utiliser. Cette protection supplémentaire n'est cependant pas inviolable, et si l'on pense que ce fichier a été compromis il vaut mieux désactiver cette clé sur les ordinateurs où elle a été installée (en la retirant des fichiers <filename>authorized_keys</filename>) et la remplacer par une clé nouvellement générée."
 
 #. Tag: title
 #, no-c-format
@@ -626,7 +622,7 @@ msgstr "Concrètement, chaque fois que OpenSSL était employé pour générer un
 #. Tag: para
 #, no-c-format
 msgid "A more thorough analysis of this incident brings to light that it is the result of multiple (small) problems, both at the OpenSSL project, as well as with the Debian package maintainer. A widely used library like OpenSSL should — without modifications — not generate warnings when tested by <command>valgrind</command>. Furthermore, the code (especially the parts as sensitive as the RNG) should be better commented to prevent such errors. The Debian maintainer, for his part, wanting to validate his modifications with the OpenSSL developers, simply explained his modifications without providing them the corresponding patch to review. He also did not clearly identify himself as the maintainer of the corresponding Debian package. Finally, in his maintenance choices, the maintainer did not clearly document the changes made to the original code; all the modifications are effectively stored in a Subversion repository, but they ended up all lumped into one single patch during creation of the source package."
-msgstr "Une analyse plus poussée de cet incident permet de se rendre compte que c'est le fruit de multiples (petits) problèmes tant au niveau du projet OpenSSL que du mainteneur du paquet Debian. Une bibliothèque aussi largement employée que OpenSSL devrait — sans modifications — ne pas générer d'avertissements lorsque scrutée par <command>valgrind</command>. En outre, le code (en particulier des parties aussi sensibles que le RNG) mériterait d'être mieux commenté pour éviter de telles erreurs. De son côté, le mainteneur Debian, en voulant faire valider sa modification par les développeurs d'OpenSSL, s'est contenté d'expliquer la modification sans fournir de patch qui aurait pu être relu. En outre, il ne s'est pas clairement identifié comme le mainteneur du paquet Debian correspondant. Enfin, dans ses choix de maintenance, le mainteneur ne fait pas clairement ressortir les changements effectués par rapport au logiciel original: toutes les modifications sont certes stockées dans un dépôt Subversion mais elles se retrouvent agglomérées en un seul patch lors de la création du paquet source."
+msgstr "Une analyse plus poussée de cet incident permet de se rendre compte que c'est le fruit de multiples (petits) problèmes tant au niveau du projet OpenSSL que du mainteneur du paquet Debian. Une bibliothèque aussi largement employée que OpenSSL devrait — sans modifications — ne pas générer d'avertissements lorsque scrutée par <command>valgrind</command>. En outre, le code (en particulier des parties aussi sensibles que le RNG) mériterait d'être mieux commenté pour éviter de telles erreurs. De son côté, le mainteneur Debian, en voulant faire valider sa modification par les développeurs d'OpenSSL, s'est contenté d'expliquer la modification sans fournir de patch qui aurait pu être relu. En outre, il ne s'est pas clairement identifié comme le mainteneur du paquet Debian correspondant. Enfin, dans ses choix de maintenance, le mainteneur ne fait pas clairement ressortir les changements effectués par rapport au logiciel original : toutes les modifications sont certes stockées dans un dépôt Subversion mais elles se retrouvent agglomérées en un seul patch lors de la création du paquet source."
 
 #. Tag: para
 #, no-c-format
@@ -641,7 +637,7 @@ msgstr "Utiliser des applications X11 à distance"
 #. Tag: para
 #, no-c-format
 msgid "The SSH protocol allows forwarding of graphical data (“X11” session, from the name of the most widespread graphical system in Unix); the server then keeps a dedicated channel for those data. Specifically, a graphical program executed remotely can be displayed on the X.org server of the local screen, and the whole session (input and display) will be secure. Since this feature allows remote applications to interfere with the local system, it is disabled by default. You can enable it by specifying <literal>X11Forwarding yes</literal> in the server configuration file (<filename>/etc/ssh/sshd_config</filename>). Finally, the user must also request it by adding the <literal>-X</literal> option to the <command>ssh</command> command-line."
-msgstr "Le protocole SSH permet de faire suivre (<foreignphrase>forward</foreignphrase>) les données graphiques (dites «X11», du nom du système graphique le plus répandu sous Unix): le serveur leur réserve alors un canal de données spécifique. Concrètement, une application graphique exécutée à distance peut s'afficher sur le serveur X.org de l'écran local, et toute la session (manipulation comme affichage) sera sécurisée. Cette fonctionnalité donne à une application exécutée à distance de nombreuses possibilités d'interférer sur le système local, elle est donc préventivement désactivée par défaut; on l'activera en précisant <literal>X11Forwarding yes</literal> dans le fichier de configuration <filename>/etc/ssh/sshd_config</filename> du serveur. L'utilisateur pourra ensuite en profiter en spécifiant l'option <literal>-X</literal> de <command>ssh</command>."
+msgstr "Le protocole SSH permet de faire suivre (<foreignphrase>forward</foreignphrase>) les données graphiques (dites « X11 », du nom du système graphique le plus répandu sous Unix) : le serveur leur réserve alors un canal de données spécifique. Concrètement, une application graphique exécutée à distance peut s'afficher sur le serveur X.org de l'écran local, et toute la session (manipulation comme affichage) sera sécurisée. Cette fonctionnalité donne à une application exécutée à distance de nombreuses possibilités d'interférer sur le système local, elle est donc préventivement désactivée par défaut ; on l'activera en précisant <literal>X11Forwarding yes</literal> dans le fichier de configuration <filename>/etc/ssh/sshd_config</filename> du serveur. L'utilisateur pourra ensuite en profiter en spécifiant l'option <literal>-X</literal> de <command>ssh</command>."
 
 #. Tag: title
 #, no-c-format
@@ -655,9 +651,8 @@ msgstr "<primary><foreignphrase>port forwarding</foreignphrase></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Its <literal>-R</literal> and <literal>-L</literal> options allow <command>ssh</command> to create “encrypted tunnels” between two machines, securely forwarding a local TCP port (see sidebar <xref linkend=\"cadre.tcp-udp\" />) to a remote machine or vice versa."
 msgid "Its <literal>-R</literal> and <literal>-L</literal> options allow <command>ssh</command> to create “encrypted tunnels” between two machines, securely forwarding a local TCP port (see sidebar <xref linkend=\"sidebar.tcp-udp\" />) to a remote machine or vice versa."
-msgstr "Ses options <literal>-R</literal> et <literal>-L</literal> permettent à <command>ssh</command> de créer des «tunnels chiffrés» entre deux machines, déportant de manière sécurisée un port TCP (voir l'encadré <xref linkend=\"cadre.tcp-udp\" />) local vers une machine distante ou vice versa."
+msgstr "Ses options <literal>-R</literal> et <literal>-L</literal> permettent à <command>ssh</command> de créer des « tunnels chiffrés » entre deux machines, déportant de manière sécurisée un port TCP (voir l'encadré <xref linkend=\"cadre.tcp-udp\" />) local vers une machine distante ou vice versa."
 
 #. Tag: title
 #, no-c-format
@@ -679,12 +674,12 @@ msgstr "<primary>tunnel SSH</primary> <seealso>VPN</seealso>"
 #. Tag: para
 #, no-c-format
 msgid "The Internet, and most LANs that are connected to it, operate in packet mode and not in connected mode, meaning that a packet issued from one computer to another is going to be stopped at several intermediary routers to find its way to its destination. You can still simulate a connected operation where the stream is encapsulated in normal IP packets. These packets follow their usual route, but the stream is reconstructed unchanged at the destination. We call this a “tunnel”, analogous to a road tunnel in which vehicles drive directly from the entrance (input) to the exit (output) without encountering any intersections, as opposed to a path on the surface that would involve intersections and changing direction."
-msgstr "Le réseau Internet, et la plupart des réseaux locaux qui y sont raccordés, fonctionnent en mode paquet et non en mode connecté, c'est-à-dire qu'un paquet émis depuis un ordinateur en direction d'un autre va s'arrêter sur plusieurs routeurs intermédiaires pour être acheminé jusqu'à sa destination. On peut néanmoins simuler un fonctionnement connecté, selon lequel le flux est encapsulé dans des paquets IP normaux; ces paquets suivent leur chemin habituel, mais le flux est restitué tel quel à destination. On parle alors de «tunnel», par analogie avec un tunnel routier, dans lequel les véhicules roulent directement de l'entrée à la sortie sans rencontrer de carrefours, par opposition au trajet en surface qui impliquerait des intersections et des changements de direction."
+msgstr "Le réseau Internet, et la plupart des réseaux locaux qui y sont raccordés, fonctionnent en mode paquet et non en mode connecté, c'est-à-dire qu'un paquet émis depuis un ordinateur en direction d'un autre va s'arrêter sur plusieurs routeurs intermédiaires pour être acheminé jusqu'à sa destination. On peut néanmoins simuler un fonctionnement connecté, selon lequel le flux est encapsulé dans des paquets IP normaux ; ces paquets suivent leur chemin habituel, mais le flux est restitué tel quel à destination. On parle alors de « tunnel », par analogie avec un tunnel routier, dans lequel les véhicules roulent directement de l'entrée à la sortie sans rencontrer de carrefours, par opposition au trajet en surface qui impliquerait des intersections et des changements de direction."
 
 #. Tag: para
 #, no-c-format
 msgid "You can use this opportunity to add encryption to the tunnel: the stream that flows through it is then unrecognizable from the outside, but it is returned in decrypted form at the exit of the tunnel."
-msgstr "On peut profiter de l'opération pour ajouter du chiffrement au tunnel: le flux qui y circule est alors méconnaissable de l'extérieur, mais il est restauré à son état de flux en clair à la sortie du tunnel."
+msgstr "On peut profiter de l'opération pour ajouter du chiffrement au tunnel : le flux qui y circule est alors méconnaissable de l'extérieur, mais il est restauré à son état de flux en clair à la sortie du tunnel."
 
 #. Tag: para
 #, no-c-format
@@ -699,7 +694,7 @@ msgstr "<command>ssh -R 8000:serveur:25 intermediaire</command> établit égalem
 #. Tag: para
 #, no-c-format
 msgid "In both cases, connections are made to port 25 on the <replaceable>server</replaceable> host, which pass through the SSH tunnel established between the local machine and the <replaceable>intermediary</replaceable> machine. In the first case, the entrance to the tunnel is local port 8000, and the data move towards the <replaceable>intermediary</replaceable> machine before being directed to the <replaceable>server</replaceable> on the “public” network. In the second case, the input and output in the tunnel are reversed; the entrance is port 8000 on the <replaceable>intermediary</replaceable> machine, the output is on the local host, and the data are then directed to the <replaceable>server</replaceable>. In practice, the server is usually either the local machine or the intermediary. That way SSH secures the connection from one end to the other."
-msgstr "Dans les deux cas, il s'agit de créer des connexions vers le port 25 de la machine <replaceable>serveur</replaceable>, qui passent au travers du tunnel SSH établi entre la machine locale et la machine <replaceable>intermediaire</replaceable>. Dans le premier cas, l'entrée du tunnel est le port 8000 local, et les données transitent vers <replaceable>intermediaire</replaceable> avant de se diriger vers <replaceable>serveur</replaceable> sur le réseau «public». Dans le second, l'entrée et la sortie du tunnel sont inversées: l'entrée est le port 8000 d'<replaceable>intermediaire</replaceable>, la sortie est locale, et les données se dirigent ensuite vers <replaceable>serveur</replaceable> depuis la machine locale. En pratique, dans les cas d'usage les plus courants, le serveur est soit la machine locale soit l'intermédiaire."
+msgstr "Dans les deux cas, il s'agit de créer des connexions vers le port 25 de la machine <replaceable>serveur</replaceable>, qui passent au travers du tunnel SSH établi entre la machine locale et la machine <replaceable>intermediaire</replaceable>. Dans le premier cas, l'entrée du tunnel est le port 8000 local, et les données transitent vers <replaceable>intermediaire</replaceable> avant de se diriger vers <replaceable>serveur</replaceable> sur le réseau « public ». Dans le second, l'entrée et la sortie du tunnel sont inversées : l'entrée est le port 8000 d'<replaceable>intermediaire</replaceable>, la sortie est locale, et les données se dirigent ensuite vers <replaceable>serveur</replaceable> depuis la machine locale. En pratique, dans les cas d'usage les plus courants, le serveur est soit la machine locale soit l'intermédiaire."
 
 #. Tag: title
 #, no-c-format
@@ -749,7 +744,7 @@ msgstr "<primary>graphique, bureau déporté</primary>"
 #. Tag: para
 #, no-c-format
 msgid "This tool is mostly used for technical assistance; the administrator can see the errors that the user is facing, and show them the correct course of action without having to stand by them."
-msgstr "Cet outil sert principalement en assistance technique: l'administrateur peut constater les erreurs de l'utilisateur et lui montrer la bonne manipulation sans devoir se déplacer à ses côtés."
+msgstr "Cet outil sert principalement en assistance technique : l'administrateur peut constater les erreurs de l'utilisateur et lui montrer la bonne manipulation sans devoir se déplacer à ses côtés."
 
 #. Tag: indexterm
 #, no-c-format
@@ -768,9 +763,8 @@ msgstr "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "First, the user must authorize sharing their session. The GNOME and KDE graphical desktop environments include, respectively, <command>vino</command> and <command>krfb</command>, which provide a graphical interface that allows sharing an existing session over VNC (found, respectively, in the menus at <menuchoice> <guimenu>System</guimenu> <guisubmenu>Preferences</guisubmenu> <guimenuitem>Remote Desktop</guimenuitem></menuchoice> and <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Desktop Sharing</guimenuitem></menuchoice>). For other graphical desktop environments, the <command>x11vnc</command> command (from the Debian package of the same name) serves the same purpose; you can make it available to the user with an explicit icon."
 msgid "First, the user must authorize sharing their session. The GNOME and KDE graphical desktop environments include, respectively, <command>vino</command> and <command>krfb</command>, which provide a graphical interface that allows sharing an existing session over VNC (both are identified as <emphasis>Desktop Sharing</emphasis> either in the GNOME application list or in the KDE menu). For other graphical desktop environments, the <command>x11vnc</command> command (from the Debian package of the same name) serves the same purpose; you can make it available to the user with an explicit icon."
-msgstr "Il faut tout d'abord que l'utilisateur autorise le partage de sa session. Les environnements de bureau GNOME et KDE incluent à cet effet respectivement <command>vino</command> et <command>krfb</command>, qui offrent une interface graphique permettant de partager, via VNC, une session existante (respectivement dans les menus <menuchoice> <guimenu>Système</guimenu> <guisubmenu>Préférences</guisubmenu> <guimenuitem>Bureau à distance</guimenuitem></menuchoice> et <menuchoice> <guimenu>K</guimenu> <guisubmenu>Configuration</guisubmenu> <guisubmenu>Internet et réseau</guisubmenu> <guimenuitem> Partage de bureau</guimenuitem></menuchoice>). Pour les autres types de session graphique, la commande <command>x11vnc</command> (du paquet Debian éponyme) a le même effet; on pourra la rendre disponible à l'utilisateur via une icône explicite."
+msgstr "Il faut tout d'abord que l'utilisateur autorise le partage de sa session. Les environnements de bureau GNOME et KDE incluent à cet effet respectivement <command>vino</command> et <command>krfb</command>, qui offrent une interface graphique permettant de partager, via VNC, une session existante (respectivement dans les menus <menuchoice> <guimenu>Système</guimenu> <guisubmenu>Préférences</guisubmenu> <guimenuitem>Bureau à distance</guimenuitem></menuchoice> et <menuchoice> <guimenu>K</guimenu> <guisubmenu>Configuration</guisubmenu> <guisubmenu>Internet et réseau</guisubmenu> <guimenuitem> Partage de bureau</guimenuitem></menuchoice>). Pour les autres types de session graphique, la commande <command>x11vnc</command> (du paquet Debian éponyme) a le même effet ; on pourra la rendre disponible à l'utilisateur via une icône explicite."
 
 #. Tag: indexterm
 #, no-c-format
@@ -810,9 +804,8 @@ msgstr "<primary>tunnel SSH</primary> <secondary>VNC</secondary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
 msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"sect.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
-msgstr "Si l'on souhaite se connecter par VNC et qu'on ne veut pas que les données circulent en clair sur le réseau, il est possible d'encapsuler les données dans un tunnel SSH (voir <xref linkend=\"section.ssh-port-forwarding\" />). Il faut simplement savoir que VNC emploie par défaut le port 5900 pour le premier écran (appelé «localhost:0»), 5901 pour le second (appelé «localhost:1»), etc."
+msgstr "Si l'on souhaite se connecter par VNC et qu'on ne veut pas que les données circulent en clair sur le réseau, il est possible d'encapsuler les données dans un tunnel SSH (voir <xref linkend=\"section.ssh-port-forwarding\" />). Il faut simplement savoir que VNC emploie par défaut le port 5900 pour le premier écran (appelé « localhost:0 »), 5901 pour le second (appelé « localhost:1 »), etc."
 
 #. Tag: para
 #, no-c-format
@@ -868,9 +861,8 @@ msgstr "<command>gdm</command>, <command>kdm</command> et <command>xdm</command>
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "VNC also works for mobile users, or company executives, who occasionally need to login from their home to access a remote desktop similar to the one they use at work. The configuration of such a service is more complicated: you first install the <emphasis role=\"pkg\">vnc4server</emphasis> package, change the configuration of the display manager to accept <literal>XDMCP Query</literal> requests (for <command>gdm</command>, this can be done graphically via the <menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Login Screen</guimenuitem></menuchoice> menu and then the “Remote” tab; note that this applies only to <command>gdm</command> and not <command>gdm3</command>, which is the version installed by default in <emphasis role=\"distribution\">Squeeze</emphasis>), and finally, start the VNC server with <command>inetd</command> so that a session is automatically started when a user tries to login. For example, you may add this line to <filename>/etc/inetd.conf</filename>:"
 msgid "VNC also works for mobile users, or company executives, who occasionally need to login from their home to access a remote desktop similar to the one they use at work. The configuration of such a service is more complicated: you first install the <emphasis role=\"pkg\">vnc4server</emphasis> package, change the configuration of the display manager to accept <literal>XDMCP Query</literal> requests (for <command>gdm3</command>, this can be done by adding <literal>Enable=true</literal> in the “xdmcp” section of <filename>/etc/gdm3/daemon.conf</filename>), and finally, start the VNC server with <command>inetd</command> so that a session is automatically started when a user tries to login. For example, you may add this line to <filename>/etc/inetd.conf</filename>:"
-msgstr "VNC sert aussi aux utilisateurs nomades, ou responsables d'entreprises, ayant des besoins ponctuels de connexion depuis chez eux, qui retrouvent ainsi à distance un bureau similaire à celui qu'ils ont au travail. La configuration d'un tel service est plus compliquée: il faut d'abord installer le paquet <emphasis role=\"pkg\">vnc4server</emphasis>, modifier la configuration du gestionnaire d'écran pour accepter les requêtes <literal>XDMCP Query</literal> (pour <command>gdm</command>, cela peut se faire graphiquement via le menu <menuchoice> <guimenu>Système</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Fenêtre de connexion</guimenuitem></menuchoice> puis l'onglet «Distante»; à noter que ceci ne concerne que <command>gdm</command> et non <command>gdm3</command>, qui est la version installée par défaut dans <emphasis role=\"distribution\">Squeeze</emphasis>) et enfin démarrer le serveur VNC via <command>inetd</command> pour qu'une session VNC soit démarrée dès qu'un utilisateur essaie de se connecter. On ajoutera par exemple cette ligne dans <filename>/etc/inetd.conf</filename>:"
+msgstr "VNC sert aussi aux utilisateurs nomades, ou responsables d'entreprises, ayant des besoins ponctuels de connexion depuis chez eux, qui retrouvent ainsi à distance un bureau similaire à celui qu'ils ont au travail. La configuration d'un tel service est plus compliquée : il faut d'abord installer le paquet <emphasis role=\"pkg\">vnc4server</emphasis>, modifier la configuration du gestionnaire d'écran pour accepter les requêtes <literal>XDMCP Query</literal> (pour <command>gdm</command>, cela peut se faire graphiquement via le menu <menuchoice> <guimenu>Système</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Fenêtre de connexion</guimenuitem></menuchoice> puis l'onglet « Distante » ; à noter que ceci ne concerne que <command>gdm</command> et non <command>gdm3</command>, qui est la version installée par défaut dans <emphasis role=\"distribution\">Squeeze</emphasis>) et enfin démarrer le serveur VNC via <command>inetd</command> pour qu'une session VNC soit démarrée dès qu'un utilisateur essaie de se connecter. On ajoutera par exemple cette ligne dans <filename>/etc/inetd.conf</filename> :"
 
 #. Tag: programlisting
 #, no-c-format
@@ -897,7 +889,7 @@ msgstr "Gestion des droits"
 #. Tag: para
 #, no-c-format
 msgid "Linux is definitely a multi-user system, so it is necessary to provide a permission system to control the set of authorized operations on files and directories, which includes all the system resources and devices (on a Unix system, any device is represented by a file or directory). This principle is common to all Unix systems, but a reminder is always useful, especially as there are some interesting and relatively unknown advanced uses."
-msgstr "Linux est résolument multi-utilisateurs; il est donc nécessaire de prévoir un système de permissions contrôlant les opérations autorisées pour chacun sur les fichiers et répertoires, recouvrant toutes les ressources du système (y compris les périphériques: sur un système Unix, tout périphérique est représenté par un fichier ou répertoire). Ce principe est commun à tous les Unix mais un rappel est toujours utile, d'autant qu'il existe quelques usages avancés méconnus et relativement intéressants."
+msgstr "Linux est résolument multi-utilisateurs ; il est donc nécessaire de prévoir un système de permissions contrôlant les opérations autorisées pour chacun sur les fichiers et répertoires, recouvrant toutes les ressources du système (y compris les périphériques : sur un système Unix, tout périphérique est représenté par un fichier ou répertoire). Ce principe est commun à tous les Unix mais un rappel est toujours utile, d'autant qu'il existe quelques usages avancés méconnus et relativement intéressants."
 
 #. Tag: indexterm
 #, no-c-format
@@ -932,17 +924,17 @@ msgstr "<primary>propriétaire</primary><secondary>groupe</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "Each file or directory has specific permissions for three categories of users:"
-msgstr "Chaque fichier ou répertoire dispose de permissions spécifiques pour trois catégories d'utilisateurs:"
+msgstr "Chaque fichier ou répertoire dispose de permissions spécifiques pour trois catégories d'utilisateurs :"
 
 #. Tag: para
 #, no-c-format
 msgid "its owner (symbolized by <literal>u</literal> as in “user”);"
-msgstr "son propriétaire (symbolisé par <literal>u</literal> comme <foreignphrase>user</foreignphrase>);"
+msgstr "son propriétaire (symbolisé par <literal>u</literal> comme <foreignphrase>user</foreignphrase>) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "its owner group (symbolized by <literal>g</literal> as in “group”), representing all the members of the group;"
-msgstr "son groupe propriétaire (symbolisé par <literal>g</literal> comme <foreignphrase>group</foreignphrase>) — représentant tous les utilisateurs membres du groupe;"
+msgstr "son groupe propriétaire (symbolisé par <literal>g</literal> comme <foreignphrase>group</foreignphrase>) — représentant tous les utilisateurs membres du groupe ;"
 
 #. Tag: para
 #, no-c-format
@@ -952,17 +944,17 @@ msgstr "les autres (symbolisés par <literal>o</literal> comme <foreignphrase>ot
 #. Tag: para
 #, no-c-format
 msgid "Three types of rights can be combined:"
-msgstr "Trois types de droits peuvent s'y combiner:"
+msgstr "Trois types de droits peuvent s'y combiner :"
 
 #. Tag: para
 #, no-c-format
 msgid "reading (symbolized by <literal>r</literal> as in “read”);"
-msgstr "lecture (symbolisé par <literal>r</literal> comme <foreignphrase>read</foreignphrase>);"
+msgstr "lecture (symbolisé par <literal>r</literal> comme <foreignphrase>read</foreignphrase>) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "writing (or modifying, symbolized by <literal>w</literal> as in “write”);"
-msgstr "écriture (ou modification, symbolisé par <literal>w</literal> comme <foreignphrase>write</foreignphrase>);"
+msgstr "écriture (ou modification, symbolisé par <literal>w</literal> comme <foreignphrase>write</foreignphrase>) ;"
 
 #. Tag: para
 #, no-c-format
@@ -993,7 +985,7 @@ msgstr "<primary>modification, droit</primary>"
 #. Tag: para
 #, no-c-format
 msgid "In the case of a file, these rights are easily understood: read access allows reading the content (including copying), write access allows changing it, and execute access allows you to run it (which will only work if it's a program)."
-msgstr "Dans le cas d'un fichier, ces droits sont faciles à interpréter: l'accès en lecture permet d'en consulter le contenu (et notamment de le copier), l'accès en écriture de le modifier, et l'accès en exécution permet de tenter de l'exécuter (ce qui ne fonctionnera que s'il s'agit d'un programme)."
+msgstr "Dans le cas d'un fichier, ces droits sont faciles à interpréter : l'accès en lecture permet d'en consulter le contenu (et notamment de le copier), l'accès en écriture de le modifier, et l'accès en exécution permet de tenter de l'exécuter (ce qui ne fonctionnera que s'il s'agit d'un programme)."
 
 #. Tag: title
 #, no-c-format
@@ -1003,7 +995,7 @@ msgstr "<emphasis>SÉCURITÉ</emphasis> Exécutables <literal>setuid</literal> e
 #. Tag: para
 #, no-c-format
 msgid "Two particular rights are relevant to executable files: <literal>setuid</literal> and <literal>setgid</literal> (symbolized with the letter “s”). Note that we frequently speak of “bit”, since each of these boolean values can be represented by a 0 or a 1. These two rights allow any user to execute the program with the rights of the owner or the group, respectively. This mechanism grants access to features requiring higher level permissions than those you would usually have."
-msgstr "Deux droits particuliers concernent les fichiers exécutables: le droit <literal>setuid</literal> et le droit <literal>setgid</literal> (symbolisés par la lettre «s»). Remarquons qu'on parle souvent de «bit» car chacune de ces informations booléennes se représente individuellement par un 0 ou un 1. Ces deux droits permettent à n'importe quel utilisateur d'exécuter le programme en question avec respectivement les droits de son propriétaire ou de son groupe propriétaire. Ce mécanisme donne accès à des fonctionnalités requérant des droits plus élevés que ceux dont on dispose habituellement."
+msgstr "Deux droits particuliers concernent les fichiers exécutables : le droit <literal>setuid</literal> et le droit <literal>setgid</literal> (symbolisés par la lettre « s »). Remarquons qu'on parle souvent de « bit » car chacune de ces informations booléennes se représente individuellement par un 0 ou un 1. Ces deux droits permettent à n'importe quel utilisateur d'exécuter le programme en question avec respectivement les droits de son propriétaire ou de son groupe propriétaire. Ce mécanisme donne accès à des fonctionnalités requérant des droits plus élevés que ceux dont on dispose habituellement."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1050,22 +1042,22 @@ msgstr "<primary><foreignphrase>sticky bit</foreignphrase></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The “sticky” bit (symbolized by the letter “t”) is a permission that is only useful in directories. It is especially used for temporary directories where everybody has write access (such as <filename>/tmp/</filename>): it restricts deletion of files so that only their owner (or the owner of the parent directory) can do it. Lacking this, everyone could delete other users' files in <filename>/tmp/</filename>."
-msgstr "Le bit <foreignphrase>sticky</foreignphrase> (symbolisé par la lettre «t») est un droit qui n'est utile que sur les répertoires. Il est notamment employé pour les répertoires temporaires ouverts en écriture à tous (comme <filename>/tmp/</filename>): il n'autorise la suppression d'un fichier que par son propriétaire ou celui de son répertoire parent. En son absence, tout le monde pourrait supprimer les fichiers d'autrui dans <filename>/tmp/</filename>."
+msgstr "Le bit <foreignphrase>sticky</foreignphrase> (symbolisé par la lettre « t ») est un droit qui n'est utile que sur les répertoires. Il est notamment employé pour les répertoires temporaires ouverts en écriture à tous (comme <filename>/tmp/</filename>) : il n'autorise la suppression d'un fichier que par son propriétaire ou celui de son répertoire parent. En son absence, tout le monde pourrait supprimer les fichiers d'autrui dans <filename>/tmp/</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "Three commands control the permissions associated with a file:"
-msgstr "Trois commandes manipulent les permissions associées à un fichier:"
+msgstr "Trois commandes manipulent les permissions associées à un fichier :"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>chown <replaceable>user</replaceable> <replaceable>file</replaceable></command> changes the owner of the file;"
-msgstr "<command>chown <replaceable>utilisateur</replaceable> <replaceable>fichier</replaceable></command> affecte un nouveau propriétaire à un fichier;"
+msgstr "<command>chown <replaceable>utilisateur</replaceable> <replaceable>fichier</replaceable></command> affecte un nouveau propriétaire à un fichier ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>chgrp <replaceable>group</replaceable> <replaceable>file</replaceable></command> alters the owner group;"
-msgstr "<command>chgrp <replaceable>groupe</replaceable> <replaceable>fichier</replaceable></command> opère sur son groupe propriétaire;"
+msgstr "<command>chgrp <replaceable>groupe</replaceable> <replaceable>fichier</replaceable></command> opère sur son groupe propriétaire ;"
 
 #. Tag: para
 #, no-c-format
@@ -1075,7 +1067,7 @@ msgstr "<command>chmod <replaceable>droits</replaceable> <replaceable>fichier</r
 #. Tag: para
 #, no-c-format
 msgid "There are two ways of presenting rights. Among them, the symbolic representation is probably the easiest to understand and remember. It involves the letter symbols mentioned above. You can define rights for each category of users (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>), by setting them explicitly (with <literal>=</literal>), by adding (<literal>+</literal>), or subtracting (<literal>-</literal>). Thus the <literal>u=rwx,g+rw,o-r</literal> formula gives the owner read, write, and execute rights, adds read and write rights for the owner group, and removes read rights for other users. Rights not altered by the addition or subtraction in such a command remain unmodified. The letter <literal>a</literal>, for “all”, covers all three categories of users, so that <literal>a=rx</literal> grants all three categories the same rights (read and execute, but not write)."
-msgstr "Il existe deux manières de présenter les droits; parmi elles, la représentation symbolique, sans doute la plus simple à comprendre et mémoriser, met en jeu les lettres symboles déjà citées. Pour chaque catégorie d'utilisateurs (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>), on peut définir les droits (<literal>=</literal>), en ajouter (<literal>+</literal>), ou en retrancher (<literal>-</literal>). Ainsi, la formule <literal>u=rwx,g+rw,o-r</literal> donne au propriétaire les droits de lecture, d'écriture, et d'exécution; ajoute au groupe propriétaire les droits de lecture et d'écriture; et supprime le droit de lecture aux autres utilisateurs. Les droits non concernés par les opérations d'ajout ou de retranchement restent inchangés. La lettre <literal>a</literal>, pour <foreignphrase>all</foreignphrase>, recouvre les trois catégories d'utilisateurs, de sorte que <literal>a=rx</literal> donne aux trois catégories les mêmes droits (lecture et exécution, mais pas écriture)."
+msgstr "Il existe deux manières de présenter les droits ; parmi elles, la représentation symbolique, sans doute la plus simple à comprendre et mémoriser, met en jeu les lettres symboles déjà citées. Pour chaque catégorie d'utilisateurs (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>), on peut définir les droits (<literal>=</literal>), en ajouter (<literal>+</literal>), ou en retrancher (<literal>-</literal>). Ainsi, la formule <literal>u=rwx,g+rw,o-r</literal> donne au propriétaire les droits de lecture, d'écriture, et d'exécution ; ajoute au groupe propriétaire les droits de lecture et d'écriture ; et supprime le droit de lecture aux autres utilisateurs. Les droits non concernés par les opérations d'ajout ou de retranchement restent inchangés. La lettre <literal>a</literal>, pour <foreignphrase>all</foreignphrase>, recouvre les trois catégories d'utilisateurs, de sorte que <literal>a=rx</literal> donne aux trois catégories les mêmes droits (lecture et exécution, mais pas écriture)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1106,12 +1098,12 @@ msgstr "<primary>droits</primary><secondary>masque</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The (octal) numeric representation associates each right with a value: 4 for read, 2 for write, and 1 for execute. We associate each combination of rights with the sum of the figures. Each value is then assigned to different categories of users by putting them end to end in the usual order (owner, group, others)."
-msgstr "La représentation numérique octale associe chaque droit à une valeur: 4 pour la lecture, 2 l'écriture, et 1 pour l'exécution. On associe à chaque combinaison de droits la somme de ces chiffres, valeurs qu'on attribue ensuite aux différentes catégories d'utilisateurs en les mettant bout à bout dans l'ordre habituel (propriétaire, groupe, autres)."
+msgstr "La représentation numérique octale associe chaque droit à une valeur : 4 pour la lecture, 2 l'écriture, et 1 pour l'exécution. On associe à chaque combinaison de droits la somme de ces chiffres, valeurs qu'on attribue ensuite aux différentes catégories d'utilisateurs en les mettant bout à bout dans l'ordre habituel (propriétaire, groupe, autres)."
 
 #. Tag: para
 #, no-c-format
 msgid "For instance, the <command>chmod 754 <replaceable>file</replaceable></command> command will set the following rights: read, write and execute for the owner (since 7 = 4 + 2 + 1); read and execute for the group (since 5 = 4 + 1); read-only for others. The <literal>0</literal> means no rights; thus <command>chmod 600 <replaceable>file</replaceable></command> allows for read/write rights for the owner, and no rights for anyone else. The most frequent right combinations are <literal>755</literal> for executable files and directories, and <literal>644</literal> for data files."
-msgstr "La commande <command>chmod 754 <replaceable>fichier</replaceable></command> mettra donc en place les droits suivants: lecture, écriture et exécution au propriétaire (car 7 = 4 + 2 + 1); lecture et exécution au groupe (car 5 = 4 + 1); lecture seule aux autres. Le chiffre <literal>0</literal> correspond à l'absence de droits, ainsi <command>chmod 600 <replaceable>fichier</replaceable></command> ne donne que les droits de lecture/écriture au propriétaire, les autres ne pouvant rien faire du tout. Les droits les plus fréquents sont <literal>755</literal> pour les exécutables et les répertoires, et <literal>644</literal> pour les fichiers de données."
+msgstr "La commande <command>chmod 754 <replaceable>fichier</replaceable></command> mettra donc en place les droits suivants : lecture, écriture et exécution au propriétaire (car 7 = 4 + 2 + 1) ; lecture et exécution au groupe (car 5 = 4 + 1) ; lecture seule aux autres. Le chiffre <literal>0</literal> correspond à l'absence de droits, ainsi <command>chmod 600 <replaceable>fichier</replaceable></command> ne donne que les droits de lecture/écriture au propriétaire, les autres ne pouvant rien faire du tout. Les droits les plus fréquents sont <literal>755</literal> pour les exécutables et les répertoires, et <literal>644</literal> pour les fichiers de données."
 
 #. Tag: para
 #, no-c-format
@@ -1121,7 +1113,7 @@ msgstr "Pour représenter le cas échéant les droits spéciaux, on pourra préf
 #. Tag: para
 #, no-c-format
 msgid "Note that the use of octal notation only allows to set all the rights at once on a file; you can not use it to simply add a new right, such as read access for the group owner, since you must take into account the existing rights and compute the new corresponding numerical value."
-msgstr "On notera que l'utilisation de la notation numérique octale ne permet que de modifier en bloc l'ensemble des droits sur un fichier; on ne peut pas l'utiliser pour se contenter d'ajouter par exemple le droit en lecture pour le groupe propriétaire, puisqu'il faut obligatoirement prendre en compte les droits existants et calculer la nouvelle valeur numérique correspondante."
+msgstr "On notera que l'utilisation de la notation numérique octale ne permet que de modifier en bloc l'ensemble des droits sur un fichier ; on ne peut pas l'utiliser pour se contenter d'ajouter par exemple le droit en lecture pour le groupe propriétaire, puisqu'il faut obligatoirement prendre en compte les droits existants et calculer la nouvelle valeur numérique correspondante."
 
 #. Tag: title
 #, no-c-format
@@ -1136,7 +1128,7 @@ msgstr "Il arrive que l'on doive changer les permissions de toute une arborescen
 #. Tag: para
 #, no-c-format
 msgid "The distinction between directories and files sometimes causes problems with recursive operations. That's why the “X” letter has been introduced in the symbolic representation of rights. It represents a right to execute which applies only to directories (and not to files lacking this right). Thus, <command>chmod -R a+X <replaceable>directory</replaceable></command> will only add execute rights for all categories of users (<literal>a</literal>) for all of the sub-directories and files for which at least one category of user (even if their sole owner) already has execute rights."
-msgstr "La distinction entre répertoires et fichiers pose souvent problème lors des opérations récursives. C'est la raison de l'introduction de la lettre «X» dans la représentation symbolique des droits. Elle représente un droit d'exécution qui ne concerne que les répertoires (mais pas les fichiers ne disposant pas encore de ce droit). Ainsi, <command>chmod -R a+X <replaceable>répertoire</replaceable></command> n'ajoutera les droits d'exécution pour toutes les catégories d'utilisateurs (<literal>a</literal>) qu'à tous les sous-répertoires et aux fichiers sur lesquels au moins une catégorie d'utilisateurs (ne serait-ce que leur seul propriétaire) a déjà les droits d'exécution."
+msgstr "La distinction entre répertoires et fichiers pose souvent problème lors des opérations récursives. C'est la raison de l'introduction de la lettre « X » dans la représentation symbolique des droits. Elle représente un droit d'exécution qui ne concerne que les répertoires (mais pas les fichiers ne disposant pas encore de ce droit). Ainsi, <command>chmod -R a+X <replaceable>répertoire</replaceable></command> n'ajoutera les droits d'exécution pour toutes les catégories d'utilisateurs (<literal>a</literal>) qu'à tous les sous-répertoires et aux fichiers sur lesquels au moins une catégorie d'utilisateurs (ne serait-ce que leur seul propriétaire) a déjà les droits d'exécution."
 
 #. Tag: title
 #, no-c-format
@@ -1146,7 +1138,7 @@ msgstr "<emphasis>ASTUCE</emphasis> Changer l'utilisateur et le groupe"
 #. Tag: para
 #, no-c-format
 msgid "Frequently you want to change the group of a file at the same time that you change the owner. The <command>chown</command> command has a special syntax for that: <command>chown <replaceable>user</replaceable>:<replaceable>group</replaceable></command>"
-msgstr "On souhaite souvent changer le groupe d'un fichier en même temps qu'on change celui-ci de propriétaire. La commande <command>chown</command> propose donc une syntaxe spéciale pour cela: <command>chown <replaceable>utilisateur</replaceable>:<replaceable>groupe</replaceable></command>"
+msgstr "On souhaite souvent changer le groupe d'un fichier en même temps qu'on change celui-ci de propriétaire. La commande <command>chown</command> propose donc une syntaxe spéciale pour cela : <command>chown <replaceable>utilisateur</replaceable>:<replaceable>groupe</replaceable></command>"
 
 #. Tag: title
 #, no-c-format
@@ -1156,7 +1148,7 @@ msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> <command>umask</command>"
 #. Tag: para
 #, no-c-format
 msgid "When an application creates a file, it assigns indicative permissions, knowing that the system automatically removes certain rights, given by the command <command>umask</command>. Enter <command>umask</command> in a shell; you will see a mask such as <computeroutput>0022</computeroutput>. This is simply an octal representation of the rights to be systematically removed (in this case, the write right for the group and other users)."
-msgstr "Lorsqu'une application crée un fichier, elle lui donne des permissions indicatives, sachant que le système retire automatiquement certains droits, donnés par la commande <command>umask</command>. Saisissez <command>umask</command> dans un shell; vous observerez un masque tel que <computeroutput>0022</computeroutput>. Ce n'est qu'une représentation octale des droits à retirer systématiquement (en l'occurrence, les droits en écriture pour le groupe et les autres utilisateurs)."
+msgstr "Lorsqu'une application crée un fichier, elle lui donne des permissions indicatives, sachant que le système retire automatiquement certains droits, donnés par la commande <command>umask</command>. Saisissez <command>umask</command> dans un shell ; vous observerez un masque tel que <computeroutput>0022</computeroutput>. Ce n'est qu'une représentation octale des droits à retirer systématiquement (en l'occurrence, les droits en écriture pour le groupe et les autres utilisateurs)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1210,9 +1202,8 @@ msgstr "Aucune interface n'étant parfaite, on est par ailleurs tenté de recour
 
 #. Tag: title
 #, fuzzy, no-c-format
-#| msgid "Administrating On a Web Interface: <command>webmin</command>"
 msgid "Administrating on a Web Interface: <command>webmin</command>"
-msgstr "Administrer sur interface web: <command>webmin</command>"
+msgstr "Administrer sur interface web : <command>webmin</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1232,9 +1223,8 @@ msgstr "Malheureusement, <command>webmin</command> ne fait plus partie de Debian
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the packages included in <emphasis role=\"distribution\">Sarge</emphasis>, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
 msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the original Debian packages, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
-msgstr "Il existe toutefois un paquet non officiel, distribué sur le site <literal>webmin.com</literal>. Contrairement aux paquets intégrés dans <emphasis role=\"distribution\">Sarge</emphasis>, ce dernier est monolithique: tous les modules de configuration sont installés et activés par défaut même si le service correspondant n'est pas installé sur la machine."
+msgstr "Il existe toutefois un paquet non officiel, distribué sur le site <literal>webmin.com</literal>. Contrairement aux paquets intégrés dans <emphasis role=\"distribution\">Sarge</emphasis>, ce dernier est monolithique : tous les modules de configuration sont installés et activés par défaut même si le service correspondant n'est pas installé sur la machine."
 
 #. Tag: title
 #, no-c-format
@@ -1244,72 +1234,72 @@ msgstr "<emphasis>SÉCURITÉ</emphasis> Mot de passe root"
 #. Tag: para
 #, no-c-format
 msgid "On first login, identification is conduced with the root username and its usual password. It is recommended to change the password used for <command>webmin</command> as soon as possible, so that if it is compromised, the root password for the server will not be involved, even if this confers important administrative rights to the machine."
-msgstr "À la première connexion, l'identification s'effectue avec l'identifiant root et son mot de passe habituel. Il est cependant recommandé de changer dès que possible le mot de passe employé pour <command>webmin</command>; ainsi, une compromission de celui-ci n'impliquera pas le mot de passe de root, même si elle confère des droits administratifs importants sur la machine."
+msgstr "À la première connexion, l'identification s'effectue avec l'identifiant root et son mot de passe habituel. Il est cependant recommandé de changer dès que possible le mot de passe employé pour <command>webmin</command> ; ainsi, une compromission de celui-ci n'impliquera pas le mot de passe de root, même si elle confère des droits administratifs importants sur la machine."
 
 #. Tag: para
 #, no-c-format
 msgid "Beware! Since <command>webmin</command> has so many features, a malicious user accessing it could compromise the security of the entire system. In general, interfaces of this kind are not recommended for important systems with strong security constraints (firewall, sensitive servers, etc.)."
-msgstr "Attention! <command>webmin</command> étant fonctionnellement très riche, un utilisateur malveillant y accédant pourra vraisemblablement compromettre la sécurité de tout le système. D'une manière générale, les interfaces de ce type sont déconseillées sur les systèmes importants, aux contraintes de sécurité élevées (pare-feu, serveurs sensibles, etc.)."
+msgstr "Attention ! <command>webmin</command> étant fonctionnellement très riche, un utilisateur malveillant y accédant pourra vraisemblablement compromettre la sécurité de tout le système. D'une manière générale, les interfaces de ce type sont déconseillées sur les systèmes importants, aux contraintes de sécurité élevées (pare-feu, serveurs sensibles, etc.)."
 
 #. Tag: para
 #, no-c-format
 msgid "Webmin is used through a web interface, but it does not require Apache to be installed. Essentially, this software has its own integrated mini web server. This server listens by default on port 10000 and accepts secure HTTP connections."
-msgstr "Webmin s'emploie par le biais d'une interface web mais il ne nécessite pas pour autant d'avoir Apache installé: en effet, ce logiciel dispose d'un mini-serveur web dédié. Ce dernier écoute par défaut sur le port 10000 et accepte les connexions HTTP sécurisées."
+msgstr "Webmin s'emploie par le biais d'une interface web mais il ne nécessite pas pour autant d'avoir Apache installé : en effet, ce logiciel dispose d'un mini-serveur web dédié. Ce dernier écoute par défaut sur le port 10000 et accepte les connexions HTTP sécurisées."
 
 #. Tag: para
 #, no-c-format
 msgid "Included modules cover a wide variety of services, among which:"
-msgstr "Les modules intégrés couvrent une large palette de services, citons notamment:"
+msgstr "Les modules intégrés couvrent une large palette de services, citons notamment :"
 
 #. Tag: para
 #, no-c-format
 msgid "all base services: creation of users and groups, management of <filename>crontab</filename> files, init scripts, viewing of logs, etc."
-msgstr "tous les services de base: créer des utilisateurs et des groupes, gérer les fichiers <filename>crontab</filename>, les scripts d'initialisation, consulter les logs, etc."
+msgstr "tous les services de base : créer des utilisateurs et des groupes, gérer les fichiers <filename>crontab</filename>, les scripts d'initialisation, consulter les logs, etc."
 
 #. Tag: para
 #, no-c-format
 msgid "bind: DNS server configuration (name service);"
-msgstr "bind: configuration du serveur DNS (service de noms);"
+msgstr "bind : configuration du serveur DNS (service de noms) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "postfix: SMTP server configuration (e-mail);"
-msgstr "postfix: configuration du serveur SMTP (courrier électronique);"
+msgstr "postfix : configuration du serveur SMTP (courrier électronique) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "inetd: configuration of the <command>inetd</command> super-server;"
-msgstr "inetd: configuration du super-serveur <command>inetd</command>;"
+msgstr "inetd : configuration du super-serveur <command>inetd</command> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "quota: user quota management;"
-msgstr "quota: gestion des quotas utilisateur;"
+msgstr "quota : gestion des quotas utilisateur ;"
 
 #. Tag: para
 #, no-c-format
 msgid "dhcpd: DHCP server configuration;"
-msgstr "dhcpd: configuration du serveur DHCP;"
+msgstr "dhcpd : configuration du serveur DHCP ;"
 
 #. Tag: para
 #, no-c-format
 msgid "proftpd: FTP server configuration;"
-msgstr "proftpd: configuration du serveur FTP;"
+msgstr "proftpd : configuration du serveur FTP ;"
 
 #. Tag: para
 #, no-c-format
 msgid "samba: Samba file server configuration;"
-msgstr "samba: configuration du serveur de fichiers Samba;"
+msgstr "samba : configuration du serveur de fichiers Samba ;"
 
 #. Tag: para
 #, no-c-format
 msgid "software: installation or removal of software from Debian packages and system updates."
-msgstr "software: installation ou suppression de logiciels à partir des paquets Debian et mise à jour du système."
+msgstr "software : installation ou suppression de logiciels à partir des paquets Debian et mise à jour du système."
 
 #. Tag: para
 #, no-c-format
 msgid "The administration interface is available in a web browser at <literal>https://localhost:10000</literal>. Beware! Not all the modules are directly usable. Sometimes they must be configured by specifying the locations of the corresponding configuration files and some executable files (program). Frequently the system will politely prompt you when it fails to activate a requested module."
-msgstr "L'interface d'administration est accessible depuis un navigateur web à l'adresse <literal>https://localhost:10000</literal>. Attention! tous les modules ne sont pas directement exploitables; il faut parfois les configurer en précisant les emplacements du fichier de configuration concerné et de quelques exécutables. Souvent, le système vous y invite poliment lorsqu'il n'arrive pas à faire fonctionner le module demandé."
+msgstr "L'interface d'administration est accessible depuis un navigateur web à l'adresse <literal>https://localhost:10000</literal>. Attention ! tous les modules ne sont pas directement exploitables ; il faut parfois les configurer en précisant les emplacements du fichier de configuration concerné et de quelques exécutables. Souvent, le système vous y invite poliment lorsqu'il n'arrive pas à faire fonctionner le module demandé."
 
 #. Tag: title
 #, fuzzy, no-c-format
@@ -1331,7 +1321,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Configuring Packages: <command>debconf</command>"
-msgstr "Configuration des paquets: <command>debconf</command>"
+msgstr "Configuration des paquets : <command>debconf</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1351,7 +1341,7 @@ msgstr "De nombreux paquets s'auto-configurent après avoir demandé quelques é
 #. Tag: para
 #, no-c-format
 msgid "For most cases, these settings are very simple; only a few important variables in the configuration file are changed. These variables are often grouped between two “demarcation” lines so that reconfiguration of the package only impacts the enclosed area. In other cases, reconfiguration will not change anything if the script detects a manual modification of the configuration file, in order to preserve these human interventions (because the script can't ensure that its own modifications will not disrupt the existing settings)."
-msgstr "Dans la plupart des cas, ces réglages sont très simples: seules quelques variables importantes du fichier de configuration sont modifiées. Ces variables sont parfois regroupées entre deux lignes «démarcatrices» de sorte qu'une reconfiguration du paquet limite sa portée sur la zone qu'elles délimitent. Dans d'autres cas, une reconfiguration ne changera rien si le script détecte une modification manuelle du fichier de configuration, l'objectif étant bien évidemment de préserver ces interventions humaines (le script se considère alors incapable d'assurer que ses propres modifications ne perturberont pas l'existant)."
+msgstr "Dans la plupart des cas, ces réglages sont très simples : seules quelques variables importantes du fichier de configuration sont modifiées. Ces variables sont parfois regroupées entre deux lignes « démarcatrices » de sorte qu'une reconfiguration du paquet limite sa portée sur la zone qu'elles délimitent. Dans d'autres cas, une reconfiguration ne changera rien si le script détecte une modification manuelle du fichier de configuration, l'objectif étant bien évidemment de préserver ces interventions humaines (le script se considère alors incapable d'assurer que ses propres modifications ne perturberont pas l'existant)."
 
 #. Tag: title
 #, no-c-format
@@ -1361,7 +1351,7 @@ msgstr "<emphasis>CHARTE DEBIAN</emphasis> Préserver les modifications"
 #. Tag: para
 #, no-c-format
 msgid "The Debian Policy expressly stipulates that everything should be done to preserve manual changes made to a configuration file, so more and more scripts take precautions when editing configuration files. The general principle is simple: the script will only make changes if it knows the status of the configuration file, which is verified by comparing the checksum of the file against that of the last automatically generated file. If they are the same, the script is authorized to change the configuration file. Otherwise, it determines that the file has been changed and asks what action it should take (install the new file, save the old file, or try to integrate the new changes with the existing file). This precautionary principle has long been unique to Debian, but other distributions have gradually begun to embrace it."
-msgstr "La charte Debian demandant expressément de tout faire pour préserver au maximum les changements manuels apportés aux fichiers de configuration, de plus en plus de scripts modifiant ces derniers prennent des précautions. Le principe général est simple: le script n'effectue des modifications que s'il connaît l'état du fichier de configuration, vérification effectuée par comparaison de la somme de contrôle du fichier avec celle du dernier fichier produit automatiquement. Si elles correspondent, le script s'autorise à modifier le fichier de configuration. Dans le cas contraire, il considère qu'on y est intervenu et demande quelle action il doit effectuer (installer le nouveau fichier, conserver l'ancien, ou tenter d'intégrer les nouvelles modifications au fichier existant). Ce principe de précaution fut longtemps propre à Debian, mais les autres distributions l'embrassent peu à peu."
+msgstr "La charte Debian demandant expressément de tout faire pour préserver au maximum les changements manuels apportés aux fichiers de configuration, de plus en plus de scripts modifiant ces derniers prennent des précautions. Le principe général est simple : le script n'effectue des modifications que s'il connaît l'état du fichier de configuration, vérification effectuée par comparaison de la somme de contrôle du fichier avec celle du dernier fichier produit automatiquement. Si elles correspondent, le script s'autorise à modifier le fichier de configuration. Dans le cas contraire, il considère qu'on y est intervenu et demande quelle action il doit effectuer (installer le nouveau fichier, conserver l'ancien, ou tenter d'intégrer les nouvelles modifications au fichier existant). Ce principe de précaution fut longtemps propre à Debian, mais les autres distributions l'embrassent peu à peu."
 
 #. Tag: para
 #, no-c-format
@@ -1408,112 +1398,112 @@ msgstr "Le démon <command>rsyslogd</command> a pour charge de collecter les mes
 #. Tag: para
 #, no-c-format
 msgid "Each log message is associated with an application subsystem (called “facility” in the documentation):"
-msgstr "Chaque message de log est associé à un sous-système applicatif (nommé <foreignphrase>facility</foreignphrase> dans la documentation):"
+msgstr "Chaque message de log est associé à un sous-système applicatif (nommé <foreignphrase>facility</foreignphrase> dans la documentation) :"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>auth</literal> and <literal>authpriv</literal>: for authentication;"
-msgstr "<literal>auth</literal> et <literal>authpriv</literal>: concernent l'authentification;"
+msgstr "<literal>auth</literal> et <literal>authpriv</literal> : concernent l'authentification ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>cron</literal>: comes from task scheduling services, <command>cron</command> and <command>atd</command>;"
-msgstr "<literal>cron</literal>: provient des services de planification de tâches, <command>cron</command> et <command>atd</command>;"
+msgstr "<literal>cron</literal> : provient des services de planification de tâches, <command>cron</command> et <command>atd</command> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>daemon</literal>: affects a daemon without any special classification (DNS, NTP, etc.);"
-msgstr "<literal>daemon</literal>: concerne un démon sans classification particulière (serveur DNS, NTP, etc.);"
+msgstr "<literal>daemon</literal> : concerne un démon sans classification particulière (serveur DNS, NTP, etc.) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ftp</literal>: concerns the FTP server;"
-msgstr "<literal>ftp</literal>: concerne le serveur FTP;"
+msgstr "<literal>ftp</literal> : concerne le serveur FTP ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>kern</literal>: message coming from the kernel;"
-msgstr "<literal>kern</literal>: message provenant du noyau;"
+msgstr "<literal>kern</literal> : message provenant du noyau ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>lpr</literal>: comes from the printing subsystem;"
-msgstr "<literal>lpr</literal>: provient du sous-système d'impression;"
+msgstr "<literal>lpr</literal> : provient du sous-système d'impression ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>mail</literal>: comes from the e-mail subsystem;"
-msgstr "<literal>mail</literal>: provient de la messagerie électronique;"
+msgstr "<literal>mail</literal> : provient de la messagerie électronique ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>news</literal>: Usenet subsystem message (especially from an NNTP — Network News Transfer Protocol — server that manages newsgroups);"
-msgstr "<literal>news</literal>: message du sous-système Usenet (notamment du serveur NNTP — <foreignphrase>Network News Transfer Protocol</foreignphrase>, ou protocole de transfert des nouvelles sur le réseau — gérant les forums de discussion);"
+msgstr "<literal>news</literal> : message du sous-système Usenet (notamment du serveur NNTP — <foreignphrase>Network News Transfer Protocol</foreignphrase>, ou protocole de transfert des nouvelles sur le réseau — gérant les forums de discussion) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>syslog</literal>: messages from the <command>syslogd</command> server, itself;"
-msgstr "<literal>syslog</literal>: message du serveur <command>syslogd</command> lui-même;"
+msgstr "<literal>syslog</literal> : message du serveur <command>syslogd</command> lui-même ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>user</literal>: user messages (generic);"
-msgstr "<literal>user</literal>: messages utilisateur (générique);"
+msgstr "<literal>user</literal> : messages utilisateur (générique) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>uucp</literal>: messages from the UUCP server (Unix to Unix Copy Program, an old protocol notably used to distribute e-mail messages);"
-msgstr "<literal>uucp</literal>: messages du sous-système UUCP (<foreignphrase>Unix to Unix Copy Program</foreignphrase>, ou programme de copie d'Unix à Unix, un vieux protocole employé pour faire circuler entre autres des messages électroniques);"
+msgstr "<literal>uucp</literal> : messages du sous-système UUCP (<foreignphrase>Unix to Unix Copy Program</foreignphrase>, ou programme de copie d'Unix à Unix, un vieux protocole employé pour faire circuler entre autres des messages électroniques) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>local0</literal> to <literal>local7</literal>: reserved for local use."
-msgstr "<literal>local0</literal> à <literal>local7</literal>: réservés pour les utilisations locales."
+msgstr "<literal>local0</literal> à <literal>local7</literal> : réservés pour les utilisations locales."
 
 #. Tag: para
 #, no-c-format
 msgid "Each message is also associated with a priority level. Here is the list in decreasing order:"
-msgstr "À chaque message est également associé un niveau de priorité. En voici la liste par ordre décroissant:"
+msgstr "À chaque message est également associé un niveau de priorité. En voici la liste par ordre décroissant :"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>emerg</literal>: “Help!” There's an emergency, the system is probably unusable."
-msgstr "<literal>emerg</literal>: «Au secours!» Le système est probablement inutilisable;"
+msgstr "<literal>emerg</literal> : « Au secours ! » Le système est probablement inutilisable ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>alert</literal>: hurry up, any delay can be dangerous, action must be taken immediately;"
-msgstr "<literal>alert</literal>: vite, il y a péril en la demeure, des actions doivent être entreprises immédiatement;"
+msgstr "<literal>alert</literal> : vite, il y a péril en la demeure, des actions doivent être entreprises immédiatement ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>crit</literal>: conditions are critical;"
-msgstr "<literal>crit</literal>: les conditions sont critiques;"
+msgstr "<literal>crit</literal> : les conditions sont critiques ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>err</literal>: error;"
-msgstr "<literal>err</literal>: erreur;"
+msgstr "<literal>err</literal> : erreur ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>warn</literal>: warning (potential error);"
-msgstr "<literal>warn</literal>: avertissement (erreur potentielle);"
+msgstr "<literal>warn</literal> : avertissement (erreur potentielle) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>notice</literal>: conditions are normal, but the message is important;"
-msgstr "<literal>notice</literal>: condition normale mais message significatif;"
+msgstr "<literal>notice</literal> : condition normale mais message significatif ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>info</literal>: informative message;"
-msgstr "<literal>info</literal>: message informatif;"
+msgstr "<literal>info</literal> : message informatif ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>debug</literal>: debugging message."
-msgstr "<literal>debug</literal>: message de débogage."
+msgstr "<literal>debug</literal> : message de débogage."
 
 #. Tag: title
 #, no-c-format
@@ -1523,7 +1513,7 @@ msgstr "Le fichier de configuration"
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the <filename>/etc/rsyslog.conf</filename> file is detailed in the <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, but there is also HTML documentation available in the <emphasis role=\"pkg\">rsyslog-doc</emphasis> package (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>). The overall principle is to write “selector” and “action” pairs. The selector defines all relevant messages, and the actions describes how to deal with them."
-msgstr "La syntaxe complexe du fichier <filename>/etc/rsyslog.conf</filename> est détaillée dans la page de manuel <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> mais aussi dans la documentation HTML disponible dans le paquet <emphasis role=\"pkg\">rsyslog-doc</emphasis> (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>). Le principe global est d'écrire des paires «sélecteur» et «action». Le sélecteur définit l'ensemble des messages concernés, et l'action décrit comment le traiter."
+msgstr "La syntaxe complexe du fichier <filename>/etc/rsyslog.conf</filename> est détaillée dans la page de manuel <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> mais aussi dans la documentation HTML disponible dans le paquet <emphasis role=\"pkg\">rsyslog-doc</emphasis> (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>). Le principe global est d'écrire des paires « sélecteur » et « action ». Le sélecteur définit l'ensemble des messages concernés, et l'action décrit comment le traiter."
 
 #. Tag: title
 #, no-c-format
@@ -1533,7 +1523,7 @@ msgstr "Syntaxe du sélecteur"
 #. Tag: para
 #, no-c-format
 msgid "The selector is a semicolon-separated list of <literal><replaceable>subsystem</replaceable>.<replaceable>priority</replaceable></literal> pairs (example: <literal>auth.notice;mail.info</literal>). An asterisk may represent all subsystems or all priorities (examples: <literal>*.alert</literal> or <literal>mail.*</literal>). Several subsystems can be grouped, by separating them with a comma (example: <literal>auth,mail.info</literal>). The priority indicated also covers messages of equal or higher priority; thus <literal>auth.alert</literal> indicates the <literal>auth</literal> subsystem messages of <literal>alert</literal> or <literal>emerg</literal> priority. Prefixed with an exclamation point (!), it indicates the opposite, in other words the strictly lower priorities; <literal>auth.!notice</literal>, thus, indicates messages issued from <literal>auth</literal>, with <literal>info</literal> or <literal>debug</literal> priority. Prefixed with an equal sign (=), it corresponds to precisely and only the priority indicated (<literal>auth.=notice</literal> only concerns messages from <literal>auth</literal> with <literal>notice</literal> priority)."
-msgstr "Le sélecteur est une liste (ayant pour séparateur le point-virgule) de couples <literal><replaceable>sous-système</replaceable></literal>.<literal><replaceable>priorité</replaceable></literal> (exemple: <literal>auth.notice;mail.info</literal>). L'astérisque peut y représenter tous les sous-systèmes ou toutes les priorités (exemples: <literal>*.alert</literal> ou <literal>mail.*</literal>). On peut regrouper plusieurs sous-systèmes en les séparant par une virgule (exemple: <literal>auth,mail.info</literal>). La priorité indiquée recouvre aussi les messages de priorité supérieure ou égale: <literal>auth.alert</literal> désigne donc les messages du sous-système <literal>auth</literal> de priorités <literal>alert</literal> ou <literal>emerg</literal>. Préfixée par un point d'exclamation, elle désignera au contraire les priorités strictement inférieures: <literal>auth.!notice</literal> désignera donc les messages issus de <literal>auth</literal> et de priorité <literal>info</literal> ou <literal>debug</literal>. Préfixée par un signe égal, elle correspondra exactement à la seule priorité indiquée (<literal>auth.=notice</literal> ne concernera donc que les messages de <literal>auth</literal> de priorité <literal>notice</literal>)."
+msgstr "Le sélecteur est une liste (ayant pour séparateur le point-virgule) de couples <literal><replaceable>sous-système</replaceable></literal>.<literal><replaceable>priorité</replaceable></literal> (exemple : <literal>auth.notice;mail.info</literal>). L'astérisque peut y représenter tous les sous-systèmes ou toutes les priorités (exemples : <literal>*.alert</literal> ou <literal>mail.*</literal>). On peut regrouper plusieurs sous-systèmes en les séparant par une virgule (exemple : <literal>auth,mail.info</literal>). La priorité indiquée recouvre aussi les messages de priorité supérieure ou égale : <literal>auth.alert</literal> désigne donc les messages du sous-système <literal>auth</literal> de priorités <literal>alert</literal> ou <literal>emerg</literal>. Préfixée par un point d'exclamation, elle désignera au contraire les priorités strictement inférieures : <literal>auth.!notice</literal> désignera donc les messages issus de <literal>auth</literal> et de priorité <literal>info</literal> ou <literal>debug</literal>. Préfixée par un signe égal, elle correspondra exactement à la seule priorité indiquée (<literal>auth.=notice</literal> ne concernera donc que les messages de <literal>auth</literal> de priorité <literal>notice</literal>)."
 
 #. Tag: para
 #, no-c-format
@@ -1563,7 +1553,7 @@ msgstr "<primary>nommé, tube</primary>"
 #. Tag: para
 #, no-c-format
 msgid "A named pipe is a particular type of file that operates like a traditional pipe (the pipe that you make with the “|” symbol on the command line), but via a file. This mechanism has the advantage of being able to relate two unrelated processes. Anything written to a named pipe blocks the process that writes until another process attempts to read the data written. This second process reads the data written by the first, which can then resume execution."
-msgstr "Un tube nommé est un type particulier de fichier fonctionnant comme un tube traditionnel (le <foreignphrase>pipe</foreignphrase> que l'on crée à l'aide du symbole «|» sur la ligne de commande), mais par l'intermédiaire d'un fichier. Ce mécanisme a l'avantage de pouvoir mettre en relation deux processus n'ayant aucun rapport de parenté. Toute écriture dans un tube nommé bloque le processus qui écrit jusqu'à ce qu'un autre processus tente d'y lire des données. Ce dernier lira alors les données écrites par l'autre partie, qui pourra donc reprendre son exécution."
+msgstr "Un tube nommé est un type particulier de fichier fonctionnant comme un tube traditionnel (le <foreignphrase>pipe</foreignphrase> que l'on crée à l'aide du symbole « | » sur la ligne de commande), mais par l'intermédiaire d'un fichier. Ce mécanisme a l'avantage de pouvoir mettre en relation deux processus n'ayant aucun rapport de parenté. Toute écriture dans un tube nommé bloque le processus qui écrit jusqu'à ce qu'un autre processus tente d'y lire des données. Ce dernier lira alors les données écrites par l'autre partie, qui pourra donc reprendre son exécution."
 
 #. Tag: para
 #, no-c-format
@@ -1573,37 +1563,37 @@ msgstr "Un tel fichier se crée avec la commande <command>mkfifo</command>."
 #. Tag: para
 #, no-c-format
 msgid "The various possible actions are:"
-msgstr "Les différentes actions possibles sont:"
+msgstr "Les différentes actions possibles sont :"
 
 #. Tag: para
 #, no-c-format
 msgid "add the message to a file (example: <filename>/var/log/messages</filename>);"
-msgstr "ajouter le message à un fichier (exemple: <filename>/var/log/messages</filename>);"
+msgstr "ajouter le message à un fichier (exemple : <filename>/var/log/messages</filename>) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "send the message to a remote <command>syslog</command> server (example: <literal>@log.falcot.com</literal>);"
-msgstr "envoyer le message à un serveur <command>syslog</command> distant (exemple: <literal>@log.falcot.com</literal>);"
+msgstr "envoyer le message à un serveur <command>syslog</command> distant (exemple : <literal>@log.falcot.com</literal>) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "send the message to an existing named pipe (example: <literal>|/dev/xconsole</literal>);"
-msgstr "envoyer le message dans un tube nommé préexistant (exemple: <literal>|/dev/xconsole</literal>);"
+msgstr "envoyer le message dans un tube nommé préexistant (exemple : <literal>|/dev/xconsole</literal>) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "send the message to one or more users, if they are logged in (example: <literal>root,rhertzog</literal>);"
-msgstr "envoyer le message à un ou plusieurs utilisateurs s'ils sont connectés (exemple: <literal>root,rhertzog</literal>);"
+msgstr "envoyer le message à un ou plusieurs utilisateurs s'ils sont connectés (exemple : <literal>root,rhertzog</literal>) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "send the message to all logged in users (example: <literal>*</literal>);"
-msgstr "envoyer le message à tous les utilisateurs connectés (exemple: <literal>*</literal>);"
+msgstr "envoyer le message à tous les utilisateurs connectés (exemple : <literal>*</literal>) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "write the message in a text console (example: <literal>/dev/tty8</literal>)."
-msgstr "écrire le message sur une console texte (exemple: <literal>/dev/tty8</literal>)."
+msgstr "écrire le message sur une console texte (exemple : <literal>/dev/tty8</literal>)."
 
 #. Tag: title
 #, no-c-format
@@ -1623,7 +1613,7 @@ msgstr "C'est une bonne idée que d'enregistrer les logs les plus importants sur
 #. Tag: para
 #, no-c-format
 msgid "To accept log messages sent by other machines, you must reconfigure <emphasis>rsyslog</emphasis>: in practice, it is sufficient to activate the ready-for-use entries in <filename>/etc/rsyslog.conf</filename> (<literal>$ModLoad imudp</literal> and <literal>$UDPServerRun 514</literal>)."
-msgstr "Pour accepter les messages de log envoyés par d'autres machines, il faut reconfigurer <emphasis>rsyslog</emphasis>: dans la pratique il suffit d'activer des directives prêtes à l'emploi qui sont déjà présentes dans <filename>/etc/rsyslog.conf</filename> (<literal>$ModLoad imudp</literal> et <literal>$UDPServerRun 514</literal>)."
+msgstr "Pour accepter les messages de log envoyés par d'autres machines, il faut reconfigurer <emphasis>rsyslog</emphasis> : dans la pratique il suffit d'activer des directives prêtes à l'emploi qui sont déjà présentes dans <filename>/etc/rsyslog.conf</filename> (<literal>$ModLoad imudp</literal> et <literal>$UDPServerRun 514</literal>)."
 
 #. Tag: title
 #, no-c-format
@@ -1633,7 +1623,7 @@ msgstr "Le super-serveur <command>inetd</command>"
 #. Tag: para
 #, no-c-format
 msgid "Inetd (often called “Internet super-server”) is a server of servers. It executes rarely used servers on demand, so that they do not have to run continuously."
-msgstr "Inetd (souvent appelé «super-serveur Internet») est en réalité un serveur de serveurs, employé pour invoquer à la demande les serveurs rarement employés qui ne fonctionnent donc pas en permanence."
+msgstr "Inetd (souvent appelé « super-serveur Internet ») est en réalité un serveur de serveurs, employé pour invoquer à la demande les serveurs rarement employés qui ne fonctionnent donc pas en permanence."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1648,7 +1638,7 @@ msgstr "<primary>super-serveur</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/inetd.conf</filename> file lists these servers and their usual ports. The <command>inetd</command> command listens to all of them; when it detects a connection to any such port, it executes the corresponding server program."
-msgstr "Le fichier <filename>/etc/inetd.conf</filename> donne la liste de ces serveurs et de leurs ports habituels, qu'<command>inetd</command> écoute tous; dès qu'il détecte une connexion sur l'un d'entre eux, il exécute le programme du serveur correspondant."
+msgstr "Le fichier <filename>/etc/inetd.conf</filename> donne la liste de ces serveurs et de leurs ports habituels, qu'<command>inetd</command> écoute tous ; dès qu'il détecte une connexion sur l'un d'entre eux, il exécute le programme du serveur correspondant."
 
 #. Tag: title
 #, no-c-format
@@ -1658,12 +1648,12 @@ msgstr "<emphasis>CHARTE DEBIAN</emphasis> Enregistrer un service dans <filename
 #. Tag: para
 #, no-c-format
 msgid "Packages frequently want to register a new server in the <filename>/etc/inetd.conf</filename> file, but Debian Policy prohibits any package from modifying a configuration file that it doesn't own. This is why the <command>updated-inetd</command> script (in the package with the same name) was created: It manages the configuration file, and other packages can thus use it to register a new server to the super-server's configuration."
-msgstr "Les paquets souhaiteraient parfois enregistrer un nouveau serveur dans le fichier <filename>/etc/inetd.conf</filename>, mais la charte Debian interdit à tout paquet de modifier un fichier de configuration qui ne relève pas de lui. C'est pourquoi le script <command>update-inetd</command> (du paquet éponyme) a été créé: il a à sa charge le fichier de configuration, et les autres paquets peuvent ainsi l'employer pour demander au super-serveur de prendre en compte un nouveau serveur."
+msgstr "Les paquets souhaiteraient parfois enregistrer un nouveau serveur dans le fichier <filename>/etc/inetd.conf</filename>, mais la charte Debian interdit à tout paquet de modifier un fichier de configuration qui ne relève pas de lui. C'est pourquoi le script <command>update-inetd</command> (du paquet éponyme) a été créé : il a à sa charge le fichier de configuration, et les autres paquets peuvent ainsi l'employer pour demander au super-serveur de prendre en compte un nouveau serveur."
 
 #. Tag: para
 #, no-c-format
 msgid "Each significant line of the <filename>/etc/inetd.conf</filename> file describes a server through seven fields (separated by spaces):"
-msgstr "Chaque ligne significative du fichier <filename>/etc/inetd.conf</filename> décrit un service par sept champs (séparés par des blancs):"
+msgstr "Chaque ligne significative du fichier <filename>/etc/inetd.conf</filename> décrit un service par sept champs (séparés par des blancs) :"
 
 #. Tag: para
 #, no-c-format
@@ -1673,18 +1663,17 @@ msgstr "Le numéro du port TCP ou UDP, ou le nom du service (qui est associé à
 #. Tag: para
 #, no-c-format
 msgid "The socket type: <literal>stream</literal> for a TCP connection, <literal>dgram</literal> for UDP datagrams."
-msgstr "Le type de <foreignphrase>socket</foreignphrase>: <literal>stream</literal> pour une connexion TCP, <literal>dgram</literal> pour des datagrammes UDP;"
+msgstr "Le type de <foreignphrase>socket</foreignphrase> : <literal>stream</literal> pour une connexion TCP, <literal>dgram</literal> pour des datagrammes UDP ;"
 
 #. Tag: para
 #, no-c-format
 msgid "The protocol: <literal>tcp</literal> or <literal>udp</literal>."
-msgstr "Le protocole: <literal>tcp</literal> ou <literal>udp</literal>."
+msgstr "Le protocole : <literal>tcp</literal> ou <literal>udp</literal>."
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The options: two possible values: <literal>wait</literal> or <literal>nowait</literal>, to tell <command>inetd</command> whether it should wait or not for the end of the launched process before accepting another connection. For TCP connections, easily multiplexable, you can usually use <literal>nowait</literal>. For programs responding over UDP, you should use <literal>nowait</literal> only if the server is capable of managing several connections in parallel. You can suffix this field with a period, followed by the maximum number of connections authorized per minute (the default limit is 40)."
 msgid "The options: two possible values: <literal>wait</literal> or <literal>nowait</literal>, to tell <command>inetd</command> whether it should wait or not for the end of the launched process before accepting another connection. For TCP connections, easily multiplexable, you can usually use <literal>nowait</literal>. For programs responding over UDP, you should use <literal>nowait</literal> only if the server is capable of managing several connections in parallel. You can suffix this field with a period, followed by the maximum number of connections authorized per minute (the default limit is 256)."
-msgstr "Les options: deux valeurs sont possibles: <literal>wait</literal> ou <literal>nowait</literal>, pour signifier à <command>inetd</command> qu'il doit, ou non, attendre la fin du processus lancé avant d'accepter une autre connexion. Pour les connexions TCP, facilement multiplexables, on pourra généralement utiliser <literal>nowait</literal>. Pour les programmes répondant sur UDP, il ne faut retenir <literal>nowait</literal> que si le serveur est capable de gérer plusieurs connexions en parallèle. On pourra suffixer ce champ d'un point suivi du nombre maximum de connexions autorisées par minute (la limite par défaut étant de 40)."
+msgstr "Les options : deux valeurs sont possibles : <literal>wait</literal> ou <literal>nowait</literal>, pour signifier à <command>inetd</command> qu'il doit, ou non, attendre la fin du processus lancé avant d'accepter une autre connexion. Pour les connexions TCP, facilement multiplexables, on pourra généralement utiliser <literal>nowait</literal>. Pour les programmes répondant sur UDP, il ne faut retenir <literal>nowait</literal> que si le serveur est capable de gérer plusieurs connexions en parallèle. On pourra suffixer ce champ d'un point suivi du nombre maximum de connexions autorisées par minute (la limite par défaut étant de 40)."
 
 #. Tag: para
 #, no-c-format
@@ -1699,7 +1688,7 @@ msgstr "Le chemin complet du programme serveur à exécuter."
 #. Tag: para
 #, no-c-format
 msgid "The arguments: this is a complete list of the program's arguments, including its own name (<literal>argv[0]</literal> in C)."
-msgstr "Les arguments: il s'agit de la liste complète des arguments du programme, y compris son propre nom (<literal>argv[0]</literal> en C)."
+msgstr "Les arguments : il s'agit de la liste complète des arguments du programme, y compris son propre nom (<literal>argv[0]</literal> en C)."
 
 #. Tag: para
 #, no-c-format
@@ -1777,7 +1766,7 @@ msgstr "Cette dernière incarnation d'un super-serveur offre des possibilités i
 #. Tag: title
 #, no-c-format
 msgid "Scheduling Tasks with <command>cron</command> and <command>atd</command>"
-msgstr "Planification de tâches: <command>cron</command> et <command>atd</command>"
+msgstr "Planification de tâches : <command>cron</command> et <command>atd</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1803,27 +1792,27 @@ msgstr "<primary>planification de commandes</primary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>cron</command> is the daemon responsible for executing scheduled and recurring commands (every day, every week, etc.); <command>atd</command> is that which deals with commands to be executed a single time, but at a specific moment in the future."
-msgstr "<command>cron</command> est le démon en charge d'exécuter des commandes planifiées et récurrentes (chaque jour, chaque semaine, etc.); <command>atd</command> est celui qui s'occupe des commandes à exécuter une seule fois, à un instant précis et futur."
+msgstr "<command>cron</command> est le démon en charge d'exécuter des commandes planifiées et récurrentes (chaque jour, chaque semaine, etc.) ; <command>atd</command> est celui qui s'occupe des commandes à exécuter une seule fois, à un instant précis et futur."
 
 #. Tag: para
 #, no-c-format
 msgid "In a Unix system, many tasks are scheduled for regular execution:"
-msgstr "Dans un système Unix, de nombreuses tâches sont régulièrement planifiées:"
+msgstr "Dans un système Unix, de nombreuses tâches sont régulièrement planifiées :"
 
 #. Tag: para
 #, no-c-format
 msgid "rotating the logs;"
-msgstr "la rotation des logs;"
+msgstr "la rotation des logs ;"
 
 #. Tag: para
 #, no-c-format
 msgid "updating the database for the <command>locate</command> program;"
-msgstr "la mise à jour de la base de données du programme <command>locate</command>;"
+msgstr "la mise à jour de la base de données du programme <command>locate</command> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "back-ups;"
-msgstr "les sauvegardes;"
+msgstr "les sauvegardes ;"
 
 #. Tag: para
 #, no-c-format
@@ -1853,22 +1842,22 @@ msgstr "L'utilisateur root dispose de sa <emphasis>crontab</emphasis> personnell
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>cron</emphasis> package includes by default some scheduled commands that execute:"
-msgstr "Le paquet <emphasis>cron</emphasis> propose par défaut des commandes planifiées qui exécutent:"
+msgstr "Le paquet <emphasis>cron</emphasis> propose par défaut des commandes planifiées qui exécutent :"
 
 #. Tag: para
 #, no-c-format
 msgid "programs in the <filename>/etc/cron.hourly/</filename> directory once per hour;"
-msgstr "une fois par heure les programmes du répertoire <filename>/etc/cron.hourly/</filename>;"
+msgstr "une fois par heure les programmes du répertoire <filename>/etc/cron.hourly/</filename> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "programs in <filename>/etc/cron.daily/</filename> once per day;"
-msgstr "une fois par jour les programmes du répertoire <filename>/etc/cron.daily/</filename>;"
+msgstr "une fois par jour les programmes du répertoire <filename>/etc/cron.daily/</filename> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "programs in <filename>/etc/cron.weekly/</filename> once per week;"
-msgstr "une fois par semaine les programmes du répertoire <filename>/etc/cron.weekly/</filename>;"
+msgstr "une fois par semaine les programmes du répertoire <filename>/etc/cron.weekly/</filename> ;"
 
 #. Tag: para
 #, no-c-format
@@ -1899,32 +1888,32 @@ msgstr "<emphasis>ASTUCE</emphasis> Raccourcis textuels pour <command>cron</comm
 #. Tag: para
 #, no-c-format
 msgid "<command>cron</command> recognizes some abbreviations which replace the first five fields in a <filename>crontab</filename> entry. They correspond to the most classic scheduling options:"
-msgstr "Des abréviations, qui remplacent les cinq premiers champs d'une entrée de <filename>crontab</filename>, décrivent les planifications les plus classiques. Les voici:"
+msgstr "Des abréviations, qui remplacent les cinq premiers champs d'une entrée de <filename>crontab</filename>, décrivent les planifications les plus classiques. Les voici :"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@yearly</literal>: once per year (January 1, at 00:00);"
-msgstr "<literal>@yearly</literal>: une fois par an (le premier janvier à 0 h 00);"
+msgstr "<literal>@yearly</literal> : une fois par an (le premier janvier à 0 h 00) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@monthly</literal>: once per month (the 1st of the month, at 00:00);"
-msgstr "<literal>@monthly</literal>: une fois par mois (le premier du mois à 0 h 00);"
+msgstr "<literal>@monthly</literal> : une fois par mois (le premier du mois à 0 h 00) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@weekly</literal>: once per week (Sunday at 00:00);"
-msgstr "<literal>@weekly</literal>: une fois par semaine (le dimanche à 0 h 00);"
+msgstr "<literal>@weekly</literal> : une fois par semaine (le dimanche à 0 h 00) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@daily</literal>: once per day (at 00:00);"
-msgstr "<literal>@daily</literal>: une fois par jour (à 0 h 00);"
+msgstr "<literal>@daily</literal> : une fois par jour (à 0 h 00) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@hourly</literal>: once per hour (at the beginning of each hour)."
-msgstr "<literal>@hourly</literal>: une fois par heure (au début de chaque heure)."
+msgstr "<literal>@hourly</literal> : une fois par heure (au début de chaque heure)."
 
 #. Tag: title
 #, no-c-format
@@ -1944,37 +1933,37 @@ msgstr "On prendra cependant soin, si l'ordre dans lequel les différentes tâch
 #. Tag: para
 #, no-c-format
 msgid "Each significant line of a <emphasis>crontab</emphasis> describes a scheduled command with the six (or seven) following fields:"
-msgstr "Chaque ligne significative d'une <emphasis>crontab</emphasis> décrit une commande planifiée grâce aux six (ou sept) champs suivants:"
+msgstr "Chaque ligne significative d'une <emphasis>crontab</emphasis> décrit une commande planifiée grâce aux six (ou sept) champs suivants :"
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the minute (number from 0 to 59);"
-msgstr "la condition sur les minutes (nombres compris de 0 à 59);"
+msgstr "la condition sur les minutes (nombres compris de 0 à 59) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the hour (from 0 to 23);"
-msgstr "la condition sur les heures (de 0 à 23);"
+msgstr "la condition sur les heures (de 0 à 23) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the day of the month (from 1 to 31);"
-msgstr "la condition sur le jour du mois (de 1 à 31);"
+msgstr "la condition sur le jour du mois (de 1 à 31) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the month (from 1 to 12);"
-msgstr "la condition sur le mois (de 1 à 12);"
+msgstr "la condition sur le mois (de 1 à 12) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the day of the week (from 0 to 7, 1 corresponding to Monday, Sunday being represented by both 0 and 7; it is also possible to use the first three letters of the name of the day of the week in English, such as <literal>Sun</literal>, <literal>Mon</literal>, etc.);"
-msgstr "la condition sur le jour de la semaine (de 0 à 7, le 1 correspondant au lundi — le dimanche est représenté à la fois par 0 et par 7; il est également possible d'employer les trois premières lettre du nom du jour en anglais comme <literal>Sun</literal>, <literal>Mon</literal>, etc.);"
+msgstr "la condition sur le jour de la semaine (de 0 à 7, le 1 correspondant au lundi — le dimanche est représenté à la fois par 0 et par 7 ; il est également possible d'employer les trois premières lettre du nom du jour en anglais comme <literal>Sun</literal>, <literal>Mon</literal>, etc.) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "the user name under whose identity the command must be executed (in the <filename>/etc/crontab</filename> file and in the fragments located in <filename>/etc/cron.d/</filename>, but not in the users' own crontab files);"
-msgstr "le nom d'utilisateur sous lequel la commande devra s'exécuter (dans le fichier <filename>/etc/crontab</filename> et dans les fragments déposés dans <filename>/etc/cron.d/</filename>, mais pas les crontabs des utilisateurs);"
+msgstr "le nom d'utilisateur sous lequel la commande devra s'exécuter (dans le fichier <filename>/etc/crontab</filename> et dans les fragments déposés dans <filename>/etc/cron.d/</filename>, mais pas les crontabs des utilisateurs) ;"
 
 #. Tag: para
 #, no-c-format
@@ -1989,7 +1978,7 @@ msgstr "Tous les détails sont documentés dans la page de manuel <citerefentry>
 #. Tag: para
 #, no-c-format
 msgid "Each value can be expressed in the form of a list of possible values (separated by commas). The syntax <literal>a-b</literal> describes the interval of all the values between <literal>a</literal> and <literal>b</literal>. The syntax <literal>a-b/c</literal> describes the interval with an increment of <literal>c</literal> (example: <literal>0-10/2</literal> means <literal>0,2,4,6,8,10</literal>). An asterisk <literal>*</literal> is a wildcard, representing all possible values."
-msgstr "Chaque condition peut s'exprimer sous la forme d'une énumération de valeurs possibles (séparées par des virgules). La syntaxe <literal>a-b</literal> décrit l'intervalle de toutes les valeurs comprises entre <literal>a</literal> et <literal>b</literal>. La syntaxe <literal>a-b/c</literal> décrit un intervalle avec un incrément de <literal>c</literal> (exemple: <literal>0-10/2</literal> correspond à <literal>0,2,4,6,8,10</literal>). Le joker <literal>*</literal> représente toutes les valeurs possibles."
+msgstr "Chaque condition peut s'exprimer sous la forme d'une énumération de valeurs possibles (séparées par des virgules). La syntaxe <literal>a-b</literal> décrit l'intervalle de toutes les valeurs comprises entre <literal>a</literal> et <literal>b</literal>. La syntaxe <literal>a-b/c</literal> décrit un intervalle avec un incrément de <literal>c</literal> (exemple : <literal>0-10/2</literal> correspond à <literal>0,2,4,6,8,10</literal>). Le joker <literal>*</literal> représente toutes les valeurs possibles."
 
 #. Tag: title
 #, no-c-format
@@ -2047,7 +2036,7 @@ msgstr "<primary><command>at</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <command>at</command> executes a command at a specified moment in the future. It takes the desired time and date as command-line parameters, and the command to be executed in its standard input. The command will be executed as if it had been entered in the current shell. <command>at</command> even takes care to retain the current environment, in order to reproduce the same conditions when it executes the command. The time is indicated by following the usual conventions: <literal>16:12</literal> or <literal>4:12pm</literal> represents 4:12 pm. The date can be specified in several European and Western formats, including <literal>DD.MM.YY</literal> (<literal>27.07.12</literal> thus representing 27 July 2012), <literal>YYYY-MM-DD</literal> (this same date being expressed as <literal>2012-07-27</literal>), <literal>MM/DD/[CC]YY</literal> (ie., <literal>12/25/12</literal> or <literal>12/25/2012</literal> will be December 25, 2012), or simple <literal>MMDD[CC]YY</literal> (so that <literal>122512</literal> or <literal>12252012</literal> will, likewise, represent December 25, 2012). Without it, the command will be executed as soon as the clock reaches the time indicated (the same day, or tomorrow if that time has already passed on the same day). You can also simply write “today” or “tomorrow”, which is self-explanatory."
-msgstr "La commande <command>at</command> prévoit l'exécution d'une commande à un moment ultérieur. Elle prend l'horaire et la date prévus en paramètres sur sa ligne de commande, et la commande à exécuter sur son entrée standard. La commande sera exécutée comme si elle avait été saisie dans un interpréteur de commandes. <command>at</command> conserve d'ailleurs l'environnement courant afin de pouvoir travailler exactement dans les mêmes conditions que celles de la planification. L'horaire est indiqué en suivant les conventions habituelles: <literal>16:12</literal> représente 16 h 12. La date peut être précisée au format <literal>JJ.MM.AA</literal> (<literal>27.07.11</literal> représentant ainsi 27 juillet 2011) ou <literal>AAAA-MM-JJ</literal> (cette même date étant alors représentée par <literal>2011-07-27</literal>). En son absence, la commande sera exécutée dès que l'horloge atteindra l'heure signalée (le jour même ou le lendemain). On peut encore écrire explicitement <foreignphrase>today</foreignphrase> (aujourd'hui) ou <foreignphrase>tomorrow</foreignphrase> (demain)."
+msgstr "La commande <command>at</command> prévoit l'exécution d'une commande à un moment ultérieur. Elle prend l'horaire et la date prévus en paramètres sur sa ligne de commande, et la commande à exécuter sur son entrée standard. La commande sera exécutée comme si elle avait été saisie dans un interpréteur de commandes. <command>at</command> conserve d'ailleurs l'environnement courant afin de pouvoir travailler exactement dans les mêmes conditions que celles de la planification. L'horaire est indiqué en suivant les conventions habituelles : <literal>16:12</literal> représente 16 h 12. La date peut être précisée au format <literal>JJ.MM.AA</literal> (<literal>27.07.11</literal> représentant ainsi 27 juillet 2011) ou <literal>AAAA-MM-JJ</literal> (cette même date étant alors représentée par <literal>2011-07-27</literal>). En son absence, la commande sera exécutée dès que l'horloge atteindra l'heure signalée (le jour même ou le lendemain). On peut encore écrire explicitement <foreignphrase>today</foreignphrase> (aujourd'hui) ou <foreignphrase>tomorrow</foreignphrase> (demain)."
 
 #. Tag: screen
 #, fuzzy, no-c-format
@@ -2079,12 +2068,12 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "An alternative syntax postpones the execution for a given duration: <command>at now + <replaceable>number</replaceable> <replaceable>period</replaceable></command>. The <replaceable>period</replaceable> can be <literal>minutes</literal>, <literal>hours</literal>, <literal>days</literal>, or <literal>weeks</literal>. The <replaceable>number</replaceable> simply indicates the number of said units that must elapse before execution of the command."
-msgstr "Une autre syntaxe permet d'exprimer une durée d'attente: <command>at now + <replaceable>nombre</replaceable> <replaceable>période</replaceable></command>. La <replaceable>période</replaceable> peut valoir <literal>minutes</literal>, <literal>hours</literal> (heures), <literal>days</literal> (jours) ou <literal>weeks</literal> (semaines). Le <replaceable>nombre</replaceable> indique simplement le nombre de ces unités qui doivent s'écouler avant exécution de la commande."
+msgstr "Une autre syntaxe permet d'exprimer une durée d'attente : <command>at now + <replaceable>nombre</replaceable> <replaceable>période</replaceable></command>. La <replaceable>période</replaceable> peut valoir <literal>minutes</literal>, <literal>hours</literal> (heures), <literal>days</literal> (jours) ou <literal>weeks</literal> (semaines). Le <replaceable>nombre</replaceable> indique simplement le nombre de ces unités qui doivent s'écouler avant exécution de la commande."
 
 #. Tag: para
 #, no-c-format
 msgid "To cancel a task scheduled by <command>cron</command>, simply run <command>crontab -e</command> and delete the corresponding line in the <emphasis>crontab</emphasis> file. For <command>at</command> tasks, it is almost as easy: run <command>atrm <replaceable>task-number</replaceable></command>. The task number is indicated by the <command>at</command> command when you scheduled it, but you can find it again with the <command>atq</command> command, which gives the current list of scheduled tasks."
-msgstr "Pour annuler une tâche planifiée pour <command>cron</command>, il suffit, lors d'un appel à <command>crontab -e</command>, de supprimer la ligne correspondante dans la <emphasis>crontab</emphasis> où la tâche est définie. Pour les tâches <command>at</command>, c'est à peine plus complexe: il suffit d'exécuter la commande <command>atrm <replaceable>numéro-de-tâche</replaceable></command>. Le numéro de tâche est indiqué par la commande <command>at</command> lors de la planification mais on pourra le retrouver grâce à la commande <command>atq</command>, qui donne la liste des commandes actuellement planifiées."
+msgstr "Pour annuler une tâche planifiée pour <command>cron</command>, il suffit, lors d'un appel à <command>crontab -e</command>, de supprimer la ligne correspondante dans la <emphasis>crontab</emphasis> où la tâche est définie. Pour les tâches <command>at</command>, c'est à peine plus complexe : il suffit d'exécuter la commande <command>atrm <replaceable>numéro-de-tâche</replaceable></command>. Le numéro de tâche est indiqué par la commande <command>at</command> lors de la planification mais on pourra le retrouver grâce à la commande <command>atq</command>, qui donne la liste des commandes actuellement planifiées."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2099,7 +2088,7 @@ msgstr "<primary><command>atq</command></primary>"
 #. Tag: title
 #, no-c-format
 msgid "Scheduling Asynchronous Tasks: <command>anacron</command>"
-msgstr "Planification asynchrone: <command>anacron</command>"
+msgstr "Planification asynchrone : <command>anacron</command>"
 
 #. Tag: para
 #, no-c-format
@@ -2114,7 +2103,7 @@ msgstr "<primary><command>anacron</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Please note that <command>anacron</command> will frequently execute such activity a few minutes after booting the machine, which can render the computer less responsive. This is why the tasks in the <filename>/etc/anacrontab</filename> file are started with the <command>nice</command> command, which reduces their execution priority and thus limits their impact on the rest of the system. Beware, the format of this file is not the same as that of <filename>/etc/crontab</filename>; if you have particular needs for <command>anacron</command>, see the <citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page."
-msgstr "Attention, <command>anacron</command> fera fréquemment exécuter cette activité en retard quelques minutes après le démarrage de la machine, ce qui peut en perturber la réactivité. C'est pourquoi les tâches du fichier <filename>/etc/anacrontab</filename> sont démarrées sous la commande <command>nice</command>, qui réduit leur priorité d'exécution et limitera donc l'impression de lenteur du reste du système. Attention, le format de ce fichier n'est pas le même que celui de <filename>/etc/crontab</filename>; si vous avez des besoins particulier avec <command>anacron</command>, consultez la page de manuel <citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry>."
+msgstr "Attention, <command>anacron</command> fera fréquemment exécuter cette activité en retard quelques minutes après le démarrage de la machine, ce qui peut en perturber la réactivité. C'est pourquoi les tâches du fichier <filename>/etc/anacrontab</filename> sont démarrées sous la commande <command>nice</command>, qui réduit leur priorité d'exécution et limitera donc l'impression de lenteur du reste du système. Attention, le format de ce fichier n'est pas le même que celui de <filename>/etc/crontab</filename> ; si vous avez des besoins particulier avec <command>anacron</command>, consultez la page de manuel <citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry>."
 
 #. Tag: title
 #, no-c-format
@@ -2124,17 +2113,17 @@ msgstr "<emphasis>B.A.-BA</emphasis> Priorité, <command>nice</command>"
 #. Tag: para
 #, no-c-format
 msgid "Unix systems (and thus Linux) are multi-tasking and multi-user systems. Indeed, several processes can run in parallel, and be owned by different users: the kernel mediates access to the resources between the different processes. As a part of this task, it has a concept of priority, which allows it to favor certain processes over others, as needed. When you know that a process can run in low priority, you can indicate so by running it with <command>nice <replaceable>program</replaceable></command>. The program will then have a smaller share of the CPU, and will have a smaller impact on other running processes. Of course, if no other processes needs to run, the program will not be artificially held back."
-msgstr "Les systèmes Unix (et donc Linux) sont éminemment multi-tâches et multi-utilisateurs. Plusieurs processus peuvent en effet tourner en parallèle, appartenant à plusieurs utilisateurs différents, le noyau se chargeant d'assurer la répartition des ressources entre les différents processus. Il gère pour cela une notion de priorité, qui lui permet de favoriser certains processus au détriment d'autres selon les besoins. Lorsque l'on sait qu'un processus peut tourner en basse priorité, on peut le signaler lors de son lancement, en utilisant <command>nice <replaceable>programme</replaceable></command> (<foreignphrase>nice</foreignphrase> signifiant «gentil, agréable»). Le programme disposera alors d'une proportion amoindrie des ressources du système, il perturbera donc moins les autres processus s'ils ont besoin de fonctionner. Bien entendu, si aucun autre processus n'a besoin de ressources, le programme ne sera pas artificiellement ralenti."
+msgstr "Les systèmes Unix (et donc Linux) sont éminemment multi-tâches et multi-utilisateurs. Plusieurs processus peuvent en effet tourner en parallèle, appartenant à plusieurs utilisateurs différents, le noyau se chargeant d'assurer la répartition des ressources entre les différents processus. Il gère pour cela une notion de priorité, qui lui permet de favoriser certains processus au détriment d'autres selon les besoins. Lorsque l'on sait qu'un processus peut tourner en basse priorité, on peut le signaler lors de son lancement, en utilisant <command>nice <replaceable>programme</replaceable></command> (<foreignphrase>nice</foreignphrase> signifiant « gentil, agréable »). Le programme disposera alors d'une proportion amoindrie des ressources du système, il perturbera donc moins les autres processus s'ils ont besoin de fonctionner. Bien entendu, si aucun autre processus n'a besoin de ressources, le programme ne sera pas artificiellement ralenti."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>nice</command> works with levels of “niceness”: the positive levels (from 1 to 19) progressively lower the priority, while the negative levels (from -1 to -20) will increase it — but only root can use these negative levels. Unless otherwise indicated (see the <citerefentry><refentrytitle>nice</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page), <command>nice</command> increases the current level by 10."
-msgstr "<command>nice</command> fonctionne avec des niveaux de «gentillesse»: les niveaux positifs (de 1 à 19) rendent progressivement un processus moins prioritaire, les niveaux négatifs (de -1 à -20) le rendent au contraire plus avide de ressources — mais seul le super-utilisateur est autorisé à utiliser ces niveaux négatifs. Sauf indication contraire (voir la page de manuel <citerefentry><refentrytitle>nice</refentrytitle> <manvolnum>1</manvolnum></citerefentry>), <command>nice</command> utilise le niveau 10."
+msgstr "<command>nice</command> fonctionne avec des niveaux de « gentillesse » : les niveaux positifs (de 1 à 19) rendent progressivement un processus moins prioritaire, les niveaux négatifs (de -1 à -20) le rendent au contraire plus avide de ressources — mais seul le super-utilisateur est autorisé à utiliser ces niveaux négatifs. Sauf indication contraire (voir la page de manuel <citerefentry><refentrytitle>nice</refentrytitle> <manvolnum>1</manvolnum></citerefentry>), <command>nice</command> utilise le niveau 10."
 
 #. Tag: para
 #, no-c-format
 msgid "If you discover that an already running task should have been started with <command>nice</command> it is not too late to fix it; the <command>renice</command> command changes the priority of an already running process, in either direction (but reducing the “niceness” of a process is reserved to the root user)."
-msgstr "Si l'on s'aperçoit qu'une tâche déjà lancée aurait dû l'être avec <command>nice</command>, il n'est pas trop tard pour réagir: la commande <command>renice</command> permet de changer la priorité d'un processus déjà existant, dans un sens ou dans l'autre (mais diminuer la «gentillesse» d'un processus est réservé au super-utilisateur)."
+msgstr "Si l'on s'aperçoit qu'une tâche déjà lancée aurait dû l'être avec <command>nice</command>, il n'est pas trop tard pour réagir : la commande <command>renice</command> permet de changer la priorité d'un processus déjà existant, dans un sens ou dans l'autre (mais diminuer la « gentillesse » d'un processus est réservé au super-utilisateur)."
 
 #. Tag: para
 #, no-c-format
@@ -2189,7 +2178,7 @@ msgstr "Le programme <command>setquota</command> peut être employé dans un scr
 #. Tag: para
 #, no-c-format
 msgid "The quota system allows you to set four limits:"
-msgstr "Le système de quotas permet de définir quatre limites:"
+msgstr "Le système de quotas permet de définir quatre limites :"
 
 #. Tag: para
 #, no-c-format
@@ -2204,7 +2193,7 @@ msgstr "deux limites (<foreignphrase>soft</foreignphrase> et <foreignphrase>hard
 #. Tag: para
 #, no-c-format
 msgid "A “soft” limit can be temporarily exceeded; the user will simply be warned that they are exceeding the quota by the <command>warnquota</command> command, which is usually invoked by <command>cron</command>. A “hard” limit can never be exceeded: the system will refuse any operation that will cause a hard quota to be exceeded."
-msgstr "Une limite <foreignphrase>soft</foreignphrase> peut être franchie temporairement; l'utilisateur sera simplement averti de son dépassement de quota par le programme <command>warnquota</command>, habituellement invoqué par <command>cron</command>. Une limite <foreignphrase>hard</foreignphrase> ne peut jamais être franchie: le système refusera toute opération provoquant un dépassement du quota dur."
+msgstr "Une limite <foreignphrase>soft</foreignphrase> peut être franchie temporairement ; l'utilisateur sera simplement averti de son dépassement de quota par le programme <command>warnquota</command>, habituellement invoqué par <command>cron</command>. Une limite <foreignphrase>hard</foreignphrase> ne peut jamais être franchie : le système refusera toute opération provoquant un dépassement du quota dur."
 
 #. Tag: title
 #, no-c-format
@@ -2229,7 +2218,7 @@ msgstr "Le système de fichiers découpe le disque dur en blocs, petites zones c
 #. Tag: para
 #, no-c-format
 msgid "A block can be used either to store the real data of a file, or for meta-data used by the filesystem. Among this meta-data, you will especially find the inodes. An inode uses a block on the hard drive (but this block is not taken into consideration in the block quota, only in the inode quota), and contains both the information on the file to which it corresponds (name, owner, permissions, etc.) and the pointers to the data blocks that are actually used. For very large files that occupy more blocks than it is possible to reference in a single inode, there is an indirect block system; the inode references a list of blocks that do not directly contain data, but another list of blocks."
-msgstr "Un bloc peut être utilisé soit pour stocker des données réelles du fichier, soit des méta-données utilisées par le système de fichiers. Parmi ces méta-données, on trouve notamment les <foreignphrase>inodes</foreignphrase> (terme parfois traduit par «i-nœuds» mais généralement laissé tel quel). Un inode utilise un bloc sur le disque (mais ce bloc n'est pas pris en compte dans le quota de blocs, seulement dans le quota d'inodes), et contient à la fois des informations sur le fichier qu'il concerne (nom, propriétaire, permissions etc.) et des pointeurs vers les blocs de données réellement utilisés. Pour les fichiers volumineux occupant plus de blocs qu'il n'est possible de référencer dans un seul inode, il y a même un système de blocs indirects: l'inode référence une liste de blocs ne contenant pas directement des données mais une autre liste de blocs."
+msgstr "Un bloc peut être utilisé soit pour stocker des données réelles du fichier, soit des méta-données utilisées par le système de fichiers. Parmi ces méta-données, on trouve notamment les <foreignphrase>inodes</foreignphrase> (terme parfois traduit par « i-nœuds » mais généralement laissé tel quel). Un inode utilise un bloc sur le disque (mais ce bloc n'est pas pris en compte dans le quota de blocs, seulement dans le quota d'inodes), et contient à la fois des informations sur le fichier qu'il concerne (nom, propriétaire, permissions etc.) et des pointeurs vers les blocs de données réellement utilisés. Pour les fichiers volumineux occupant plus de blocs qu'il n'est possible de référencer dans un seul inode, il y a même un système de blocs indirects : l'inode référence une liste de blocs ne contenant pas directement des données mais une autre liste de blocs."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2239,7 +2228,7 @@ msgstr "<primary><command>warnquota</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "With the <command>edquota -t</command> command, you can define a maximum authorized “grace period” within which a soft limit may be exceeded. After this period, the soft limit will be treated like a hard limit, and the user will have to reduce their disk space usage to within this limit in order to be able to write anything to the hard drive."
-msgstr "On peut définir, par la commande <command>edquota -t</command>, une «période de grâce» maximale autorisée pour un dépassement de limite <foreignphrase>soft</foreignphrase>. Ce délai écoulé, la limite <foreignphrase>soft</foreignphrase> se comportera comme une limite <foreignphrase>hard</foreignphrase> et l'utilisateur devra donc repasser sous elle pour pouvoir à nouveau écrire quoi que ce soit sur le disque."
+msgstr "On peut définir, par la commande <command>edquota -t</command>, une « période de grâce » maximale autorisée pour un dépassement de limite <foreignphrase>soft</foreignphrase>. Ce délai écoulé, la limite <foreignphrase>soft</foreignphrase> se comportera comme une limite <foreignphrase>hard</foreignphrase> et l'utilisateur devra donc repasser sous elle pour pouvoir à nouveau écrire quoi que ce soit sur le disque."
 
 #. Tag: title
 #, no-c-format
@@ -2249,7 +2238,7 @@ msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Systématiser un quota pour le
 #. Tag: para
 #, no-c-format
 msgid "To automatically setup a quota for new users, you have to configure a template user (with <command>edquota</command> or <command>setquota</command>) and indicate their user name in the <varname>QUOTAUSER</varname> variable in the <filename>/etc/adduser.conf</filename> file. This quota configuration will then be automatically applied to each new user created with the <command>adduser</command> command."
-msgstr "Pour instaurer un quota systématique chez les nouveaux utilisateurs, il faut le configurer sur un utilisateur «modèle» (avec <command>edquota</command> ou <command>setquota</command>) et indiquer son nom dans la variable <varname>QUOTAUSER</varname> du fichier <filename>/etc/adduser.conf</filename>. Ce paramétrage sera alors automatiquement repris pour chaque nouvel utilisateur créé avec la commande <command>adduser</command>."
+msgstr "Pour instaurer un quota systématique chez les nouveaux utilisateurs, il faut le configurer sur un utilisateur « modèle » (avec <command>edquota</command> ou <command>setquota</command>) et indiquer son nom dans la variable <varname>QUOTAUSER</varname> du fichier <filename>/etc/adduser.conf</filename>. Ce paramétrage sera alors automatiquement repris pour chaque nouvel utilisateur créé avec la commande <command>adduser</command>."
 
 #. Tag: para
 #, no-c-format
@@ -2268,9 +2257,8 @@ msgstr "<primary>restauration</primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Many programs exist, such as <command>amanda</command>, a client/server system featuring many options, whose configuration is rather difficult. <command>BackupPC</command> is also a client/server solution, but with a web interface for configuration which makes it more user-friendly. Dozens of other Debian packages are dedicated to backup solutions, as you can easily confirm with <command>apt-cache search backup</command>."
 msgid "Many programs exist, such as <command>amanda</command>, <command>bacula</command>, <command>BackupPC</command>. Those are client/server system featuring many options, whose configuration is rather difficult. Some of them provide user-friendly web interfaces to mitigate this. But Debian contains dozens of other backup software covering all possible use cases, as you can easily confirm with <command>apt-cache search backup</command>."
-msgstr "De nombreux logiciels existent: citons <command>amanda</command>, un système client/serveur doté de nombreuses options, mais plutôt difficile à configurer. <command>BackupPC</command> est également client/serveur, mais dispose d'une interface de configuration web qui le rend plus simple d'accès. Des dizaines d'autres paquets Debian sont dédiés à des solutions de sauvegarde, comme vous le montrera la commande <command>apt-cache search backup</command>."
+msgstr "De nombreux logiciels existent : citons <command>amanda</command>, un système client/serveur doté de nombreuses options, mais plutôt difficile à configurer. <command>BackupPC</command> est également client/serveur, mais dispose d'une interface de configuration web qui le rend plus simple d'accès. Des dizaines d'autres paquets Debian sont dédiés à des solutions de sauvegarde, comme vous le montrera la commande <command>apt-cache search backup</command>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2296,7 +2284,7 @@ msgstr "Plutôt que de détailler le fonctionnement de certains d'entre eux, nou
 #. Tag: para
 #, no-c-format
 msgid "At Falcot Corp, backups have two goals: recovering erroneously deleted files, and quickly restoring any computer (server or desktop) whose hard drive has failed."
-msgstr "Chez Falcot SA, les sauvegardes répondent à deux besoins: récupérer des fichiers supprimés par erreur et remettre en route rapidement tout ordinateur (serveur ou bureautique) dont le disque dur subit une panne."
+msgstr "Chez Falcot SA, les sauvegardes répondent à deux besoins : récupérer des fichiers supprimés par erreur et remettre en route rapidement tout ordinateur (serveur ou bureautique) dont le disque dur subit une panne."
 
 #. Tag: title
 #, no-c-format
@@ -2362,7 +2350,7 @@ msgstr "<primary><emphasis role=\"pkg\">dirvish</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "This backup mechanism is easily implemented with the <command>dirvish</command> program. It uses a backup storage space (“bank” in its vocabulary) in which it places timestamped copies of sets of backup files (these sets are called “vaults” in the dirvish documentation)."
-msgstr "Ce mécanisme de sauvegarde se met facilement en place à l'aide du programme <command>dirvish</command>. Il emploie un espace de stockage des sauvegardes (<foreignphrase>bank</foreignphrase>, dans son vocabulaire) dans lequel il place les différentes copies horodatées des ensembles de fichiers sauvegardés (ces ensembles sont nommés <foreignphrase>vaults</foreignphrase>, donc «chambre forte», dans la documentation de dirvish)."
+msgstr "Ce mécanisme de sauvegarde se met facilement en place à l'aide du programme <command>dirvish</command>. Il emploie un espace de stockage des sauvegardes (<foreignphrase>bank</foreignphrase>, dans son vocabulaire) dans lequel il place les différentes copies horodatées des ensembles de fichiers sauvegardés (ces ensembles sont nommés <foreignphrase>vaults</foreignphrase>, donc « chambre forte », dans la documentation de dirvish)."
 
 #. Tag: para
 #, no-c-format
@@ -2459,7 +2447,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The above example specifies the set of files to back up: these are files on the machine <emphasis>rivendell.falcot.com</emphasis> (for local data backup, simply specify the name of the local machine as indicated by <command>hostname</command>), especially those in the root tree (<literal>tree: /</literal>), except those listed in <literal>exclude</literal>. The backup will be limited to the contents of one filesystem (<literal>xdev: 1</literal>). It will not include files from other mount points. An index of saved files will be generated (<literal>index: gzip</literal>), and the image will be named according to the current date (<literal>image-default: %Y%m%d</literal>)."
-msgstr "L'exemple ci-dessus précise l'ensemble de fichiers à sauvegarder: il s'agit de fichiers sur la machine <emphasis>rivendell.falcot.com</emphasis> (pour une sauvegarde de données locales, il faut simplement préciser le nom de la machine locale tel que <command>hostname</command> le rapporte), en particulier ceux qui sont dans l'arborescence racine (<literal>tree: /</literal>) à l'exclusion de ceux listés dans <literal>exclude</literal>. La sauvegarde restera limitée au contenu d'un seul système de fichiers (<literal>xdev: 1</literal>), elle n'inclura pas les fichiers d'autres montages. Un index des fichiers sauvegardés sera généré (<literal>index: gzip</literal>) et l'image sera nommée selon la date du jour (<literal>image-default: %Y%m%d</literal>)."
+msgstr "L'exemple ci-dessus précise l'ensemble de fichiers à sauvegarder : il s'agit de fichiers sur la machine <emphasis>rivendell.falcot.com</emphasis> (pour une sauvegarde de données locales, il faut simplement préciser le nom de la machine locale tel que <command>hostname</command> le rapporte), en particulier ceux qui sont dans l'arborescence racine (<literal>tree: /</literal>) à l'exclusion de ceux listés dans <literal>exclude</literal>. La sauvegarde restera limitée au contenu d'un seul système de fichiers (<literal>xdev: 1</literal>), elle n'inclura pas les fichiers d'autres montages. Un index des fichiers sauvegardés sera généré (<literal>index: gzip</literal>) et l'image sera nommée selon la date du jour (<literal>image-default: %Y%m%d</literal>)."
 
 #. Tag: para
 #, no-c-format
@@ -2500,7 +2488,7 @@ msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Sauvegarde SQL, LDAP"
 #. Tag: para
 #, no-c-format
 msgid "Many services (such as SQL or LDAP databases) can not be backed up by simply copying their files (unless they are properly interrupted during creation of the backups, which is frequently problematic, since they are intended to be available at all times). As such, it is necessary to use an “export” mechanism to create a “data dump” that can be safely backed up. These are often quite large, but they compress well. To reduce the storage space required, you will only store a complete text file per week, and a <command>diff</command> each day, which is created with a command of the type <command>diff <replaceable>file_from_yesterday</replaceable> <replaceable>file_from_today</replaceable></command>. The <command>xdelta</command> program produces incremental differences from binary dumps."
-msgstr "De nombreux services (comme les bases de données SQL ou LDAP) ne peuvent pas être sauvegardés simplement en copiant leurs fichiers (sauf s'ils sont correctement interrompus durant la sauvegarde, ce qui pose souvent problème car ils sont prévus pour être disponibles en permanence). Il est alors nécessaire de faire appel à une procédure «d'export» des données, dont on sauvegardera alors le <foreignphrase>dump</foreignphrase>. Souvent volumineux, celui-ci se prête cependant bien à la compression. Pour réduire l'espace de stockage nécessaire, on ne stockera qu'un fichier texte complet par semaine et un <command>diff</command> chaque jour, ce dernier étant obtenu par une commande du type <command>diff <replaceable>fichier-de-la-veille</replaceable> <replaceable>fichier-du-jour</replaceable></command>. Le programme <command>xdelta</command> produira les différences incrémentales des <foreignphrase>dumps</foreignphrase> binaires."
+msgstr "De nombreux services (comme les bases de données SQL ou LDAP) ne peuvent pas être sauvegardés simplement en copiant leurs fichiers (sauf s'ils sont correctement interrompus durant la sauvegarde, ce qui pose souvent problème car ils sont prévus pour être disponibles en permanence). Il est alors nécessaire de faire appel à une procédure « d'export » des données, dont on sauvegardera alors le <foreignphrase>dump</foreignphrase>. Souvent volumineux, celui-ci se prête cependant bien à la compression. Pour réduire l'espace de stockage nécessaire, on ne stockera qu'un fichier texte complet par semaine et un <command>diff</command> chaque jour, ce dernier étant obtenu par une commande du type <command>diff <replaceable>fichier-de-la-veille</replaceable> <replaceable>fichier-du-jour</replaceable></command>. Le programme <command>xdelta</command> produira les différences incrémentales des <foreignphrase>dumps</foreignphrase> binaires."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2541,12 +2529,12 @@ msgstr "<primary>TAR</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Historically, the simplest means of making a backup on Unix was to store a <emphasis>TAR</emphasis> archive on a tape. The <command>tar</command> command even got its name from “Tape ARchive”."
-msgstr "Historiquement, le moyen le plus simple de réaliser une sauvegarde sous Unix était de stocker sur bande une archive au format <emphasis>TAR</emphasis>. La commande <command>tar</command> tire d'ailleurs son nom de <foreignphrase>Tape ARchive</foreignphrase> («archive sur bande»)."
+msgstr "Historiquement, le moyen le plus simple de réaliser une sauvegarde sous Unix était de stocker sur bande une archive au format <emphasis>TAR</emphasis>. La commande <command>tar</command> tire d'ailleurs son nom de <foreignphrase>Tape ARchive</foreignphrase> (« archive sur bande »)."
 
 #. Tag: title
 #, no-c-format
 msgid "Hot Plugging: <emphasis>hotplug</emphasis>"
-msgstr "Branchements «à chaud»: <emphasis>hotplug</emphasis>"
+msgstr "Branchements « à chaud » : <emphasis>hotplug</emphasis>"
 
 #. Tag: title
 #, no-c-format
@@ -2560,9 +2548,8 @@ msgstr ""
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The <emphasis>hotplug</emphasis> kernel subsystem loads drivers for peripherals that can be hotplugged. This includes USB peripherals (increasingly common), PCMCIA (common expansion cards for laptops), IEEE 1394 (also called “Firewire” or “I-Link”), some SATA hard drives, and even, for some high-end servers, PCI or SCSI devices. The kernel has a database that associates each device ID with the required driver. This database is used during boot to load all the drivers for the peripheral devices detected on the different buses mentioned, but also when an additional hotplug device is connected. Once a driver is loaded, a message is sent to <command>udevd</command> so it will be able to create the corresponding entry in <filename>/dev/</filename>."
 msgid "The kernel has a database that associates each device ID with the required driver. This database is used during boot to load all the drivers for the peripheral devices detected on the different buses, but also when an additional hotplug device is connected. Once the device is ready for use, a message is sent to <command>udevd</command> so it will be able to create the corresponding entry in <filename>/dev/</filename>."
-msgstr "Le sous-système <emphasis>hotplug</emphasis> du noyau permet de charger les pilotes des périphériques qui peuvent se connecter à chaud. Cela inclut les périphériques USB (de plus en plus répandus), PCMCIA (souvent des cartes d'extension pour ordinateurs portables), IEEE 1394 (aussi connu sous l'appellation «Firewire» ou «I-Link»), certains disques SATA, et même, pour certains serveurs haut de gamme, les périphériques SCSI ou PCI. Le noyau dispose d'une base de données associant à chaque identifiant de périphérique le pilote requis. Cette base de données est employée au démarrage de l'ordinateur pour charger tous les pilotes des périphériques détectés sur les différents bus mentionnés, mais aussi lors de l'insertion à chaud d'un périphérique supplémentaire. Une fois le pilote chargé, un message est envoyé à <command>udevd</command> afin que celui-ci puisse créer l'entrée correspondante dans <filename>/dev/</filename>."
+msgstr "Le sous-système <emphasis>hotplug</emphasis> du noyau permet de charger les pilotes des périphériques qui peuvent se connecter à chaud. Cela inclut les périphériques USB (de plus en plus répandus), PCMCIA (souvent des cartes d'extension pour ordinateurs portables), IEEE 1394 (aussi connu sous l'appellation « Firewire » ou « I-Link »), certains disques SATA, et même, pour certains serveurs haut de gamme, les périphériques SCSI ou PCI. Le noyau dispose d'une base de données associant à chaque identifiant de périphérique le pilote requis. Cette base de données est employée au démarrage de l'ordinateur pour charger tous les pilotes des périphériques détectés sur les différents bus mentionnés, mais aussi lors de l'insertion à chaud d'un périphérique supplémentaire. Une fois le pilote chargé, un message est envoyé à <command>udevd</command> afin que celui-ci puisse créer l'entrée correspondante dans <filename>/dev/</filename>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2603,7 +2590,7 @@ msgstr "La problématique du nommage"
 #. Tag: para
 #, no-c-format
 msgid "Before the appearance of hotplug connections, it was easy to assign a fixed name to a device. It was based simply on the position of the devices on their respective bus. But this is not possible when such devices can come and go on the bus. The typical case is the use of a digital camera and a USB key, both of which appear to the computer as disk drives. The first one connected may be <filename>/dev/sdb</filename> and the second <filename>/dev/sdc</filename> (with <filename>/dev/sda</filename> representing the computer's own hard drive). The device name is not fixed; it depends on the order in which devices are connected."
-msgstr "Avant l'introduction des branchements à chaud, il était simple de donner un nom fixe à un périphérique. On se basait simplement sur le positionnement des périphériques dans leur bus respectif. Mais si les périphériques apparaissent et disparaissent sur le bus, ce n'est plus possible. L'exemple typique est l'emploi d'un appareil photo numérique et d'une clé USB: tous les deux apparaissent comme des disques, le premier branché pourra être <filename>/dev/sdb</filename> et le second <filename>/dev/sdc</filename> (avec <filename>/dev/sda</filename> représentant le disque dur). Le nom du périphérique n'est donc pas fixe, il dépend de l'ordre dans lequel ils ont été connectés."
+msgstr "Avant l'introduction des branchements à chaud, il était simple de donner un nom fixe à un périphérique. On se basait simplement sur le positionnement des périphériques dans leur bus respectif. Mais si les périphériques apparaissent et disparaissent sur le bus, ce n'est plus possible. L'exemple typique est l'emploi d'un appareil photo numérique et d'une clé USB : tous les deux apparaissent comme des disques, le premier branché pourra être <filename>/dev/sdb</filename> et le second <filename>/dev/sdc</filename> (avec <filename>/dev/sda</filename> représentant le disque dur). Le nom du périphérique n'est donc pas fixe, il dépend de l'ordre dans lequel ils ont été connectés."
 
 #. Tag: para
 #, no-c-format
@@ -2623,12 +2610,12 @@ msgstr "<emphasis>EN PRATIQUE</emphasis> Gestion des cartes réseau"
 #. Tag: para
 #, no-c-format
 msgid "Many computers have multiple network cards (sometimes two wired interfaces and a wifi interface), and with <emphasis>hotplug</emphasis> support on most bus types, the 2.6 kernel no longer guarantees fixed naming of network interfaces. But a user who wants to configure their network in <filename>/etc/network/interfaces</filename> needs a fixed name!"
-msgstr "De nombreux ordinateurs intègrent plusieurs cartes réseau (parfois deux interfaces filaires et une interface wifi) et avec l'intégration de la prise en charge de <emphasis>hotplug</emphasis> sur la plupart des types de bus, le noyau 2.6 n'offre plus de garantie de nommage fixe sur ces interfaces réseau. Pourtant l'utilisateur qui veut configurer son réseau dans <filename>/etc/network/interfaces</filename> a besoin d'un nom fixe!"
+msgstr "De nombreux ordinateurs intègrent plusieurs cartes réseau (parfois deux interfaces filaires et une interface wifi) et avec l'intégration de la prise en charge de <emphasis>hotplug</emphasis> sur la plupart des types de bus, le noyau 2.6 n'offre plus de garantie de nommage fixe sur ces interfaces réseau. Pourtant l'utilisateur qui veut configurer son réseau dans <filename>/etc/network/interfaces</filename> a besoin d'un nom fixe !"
 
 #. Tag: para
 #, no-c-format
 msgid "It would be difficult to ask every user to create their own <emphasis>udev</emphasis> rules to address this problem. This is why <emphasis>udev</emphasis> was configured in a rather peculiar manner; on first boot (and, more generally, each time that a new network card appears) it uses the name of the network interface and its MAC address to create new rules that will reassign the same name on subsequent boots. These rules are stored in <filename>/etc/udev/rules.d/70-persistent-net.rules</filename>."
-msgstr "Il serait pénible de demander à chaque utilisateur de se créer ses propres règles <emphasis>udev</emphasis> pour régler ce problème, c'est pourquoi <emphasis>udev</emphasis> a été configuré d'une manière un peu particulière: au premier démarrage (et plus généralement à chaque fois qu'une carte jamais rencontrée apparaît) il utilise le nom de l'interface réseau et son adresse MAC pour créer des nouvelles règles qui, aux prochains redémarrages, seront employées pour réattribuer systématiquement les mêmes noms. Ces règles sont stockées dans <filename>/etc/udev/rules.d/70-persistent-net.rules</filename>."
+msgstr "Il serait pénible de demander à chaque utilisateur de se créer ses propres règles <emphasis>udev</emphasis> pour régler ce problème, c'est pourquoi <emphasis>udev</emphasis> a été configuré d'une manière un peu particulière : au premier démarrage (et plus généralement à chaque fois qu'une carte jamais rencontrée apparaît) il utilise le nom de l'interface réseau et son adresse MAC pour créer des nouvelles règles qui, aux prochains redémarrages, seront employées pour réattribuer systématiquement les mêmes noms. Ces règles sont stockées dans <filename>/etc/udev/rules.d/70-persistent-net.rules</filename>."
 
 #. Tag: para
 #, no-c-format
@@ -2648,57 +2635,57 @@ msgstr "Lorsqu'<emphasis>udev</emphasis> est informé par le noyau de l'appariti
 #. Tag: para
 #, no-c-format
 msgid "Armed with all of this information, <emphasis>udev</emphasis> then consults all of the rules contained in <filename>/etc/udev/rules.d/</filename> and <filename>/lib/udev/rules.d/</filename>. In this process it decides how to name the device, what symbolic links to create (to give it alternative names), and what commands to execute. All of these files are consulted, and the rules are all evaluated sequentially (except when a file uses “GOTO” directives). Thus, there may be several rules that correspond to a given event."
-msgstr "Armé de toutes ces informations, <emphasis>udev</emphasis> consulte l'ensemble de règles contenu dans <filename>/etc/udev/rules.d/</filename> et <filename>/lib/udev/rules.d/</filename> et décide à partir de cela du nom à attribuer au périphérique, des liens symboliques à créer (pour offrir des noms alternatifs) ainsi que des commandes à exécuter. Tous les fichiers sont consultés et les règles sont toutes évaluées séquentiellement (sauf quand un fichier fait appel à des constructions de type «GOTO»). Ainsi il peut y avoir plusieurs règles qui correspondent à un événement donné."
+msgstr "Armé de toutes ces informations, <emphasis>udev</emphasis> consulte l'ensemble de règles contenu dans <filename>/etc/udev/rules.d/</filename> et <filename>/lib/udev/rules.d/</filename> et décide à partir de cela du nom à attribuer au périphérique, des liens symboliques à créer (pour offrir des noms alternatifs) ainsi que des commandes à exécuter. Tous les fichiers sont consultés et les règles sont toutes évaluées séquentiellement (sauf quand un fichier fait appel à des constructions de type « GOTO »). Ainsi il peut y avoir plusieurs règles qui correspondent à un événement donné."
 
 #. Tag: para
 #, no-c-format
 msgid "The syntax of rules files is quite simple: each row contains selection criteria and variable assignments. The former are used to select events for which there is a need to react, and the latter defines the action to take. They are all simply separated with commas, and the operator implicitly differentiates between a selection criterion (with comparison operators, such as <literal>==</literal> or <literal>!=</literal>) or an assignment directive (with operators such as <literal>=</literal>, <literal>+=</literal> or <literal>:=</literal>)."
-msgstr "La syntaxe des fichiers de règles est assez simple: chaque ligne contient des critères de sélection et des directives d'affectation. Les premiers permettent de sélectionner les événements sur lesquels il faudra réagir et les seconds définissent l'action à effectuer. Tous sont simplement séparés par des virgules et c'est l'opérateur qui désigne s'il s'agit d'un critère de sélection (pour les opérateurs de comparaison <literal>==</literal> ou <literal>!=</literal>) ou d'une directive d'affectation (pour les opérateurs <literal>=</literal>, <literal>+=</literal> ou <literal>:=</literal>)."
+msgstr "La syntaxe des fichiers de règles est assez simple : chaque ligne contient des critères de sélection et des directives d'affectation. Les premiers permettent de sélectionner les événements sur lesquels il faudra réagir et les seconds définissent l'action à effectuer. Tous sont simplement séparés par des virgules et c'est l'opérateur qui désigne s'il s'agit d'un critère de sélection (pour les opérateurs de comparaison <literal>==</literal> ou <literal>!=</literal>) ou d'une directive d'affectation (pour les opérateurs <literal>=</literal>, <literal>+=</literal> ou <literal>:=</literal>)."
 
 #. Tag: para
 #, no-c-format
 msgid "Comparison operators are used on the following variables:"
-msgstr "Les opérateurs de comparaisons s'emploient sur les variables suivantes:"
+msgstr "Les opérateurs de comparaisons s'emploient sur les variables suivantes :"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>KERNEL</literal>: the name that the kernel assigns to the device;"
-msgstr "<literal>KERNEL</literal>: le nom que le noyau affecte au périphérique;"
+msgstr "<literal>KERNEL</literal> : le nom que le noyau affecte au périphérique ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ACTION</literal>: the action corresponding to the event (“add” when a device has been added, “remove” when it has been removed);"
-msgstr "<literal>ACTION</literal>: l'action correspondant à l'événement («add» pour l'ajout d'un périphérique, «remove» pour la suppression);"
+msgstr "<literal>ACTION</literal> : l'action correspondant à l'événement (« add » pour l'ajout d'un périphérique, « remove » pour la suppression) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>DEVPATH</literal>: the path of the device's <filename>/sys/</filename> entry;"
-msgstr "<literal>DEVPATH</literal>: le chemin de l'entrée correspondant au périphérique dans <filename>/sys/</filename>;"
+msgstr "<literal>DEVPATH</literal> : le chemin de l'entrée correspondant au périphérique dans <filename>/sys/</filename> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SUBSYSTEM</literal>: the kernel subsystem which generated the request (there are many, but a few examples are “usb”, “ide”, “net”, “firmware”, etc.);"
-msgstr "<literal>SUBSYSTEM</literal>: le sous-système du noyau à l'origine de la demande (ils sont nombreux mais citons par exemple «usb», «ide», «net», «firmware», etc.);"
+msgstr "<literal>SUBSYSTEM</literal> : le sous-système du noyau à l'origine de la demande (ils sont nombreux mais citons par exemple « usb », « ide », « net », « firmware », etc.) ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ATTR{<replaceable>attribut</replaceable>}</literal>: file contents of the <replaceable>attribute</replaceable> file in the <filename>/sys/<replaceable>$devpath</replaceable>/</filename> directory of the device. This is where you find the MAC address and other bus specific identifiers;"
-msgstr "<literal>ATTR{<replaceable>attribut</replaceable>}</literal>: contenu du fichier <replaceable>attribut</replaceable> dans le répertoire <filename>/sys/<replaceable>$devpath</replaceable>/</filename> du périphérique. C'est ici que l'on va trouver les adresses MAC et autres identifiants spécifiques à chaque bus;"
+msgstr "<literal>ATTR{<replaceable>attribut</replaceable>}</literal> : contenu du fichier <replaceable>attribut</replaceable> dans le répertoire <filename>/sys/<replaceable>$devpath</replaceable>/</filename> du périphérique. C'est ici que l'on va trouver les adresses MAC et autres identifiants spécifiques à chaque bus ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>KERNELS</literal>, <literal>SUBSYSTEMS</literal> and <literal>ATTRS{<replaceable>attributes</replaceable>}</literal> are variations that will try to match the different options on one of the parent devices of the current device;"
-msgstr "<literal>KERNELS</literal>, <literal>SUBSYSTEMS</literal> et <literal>ATTRS{<replaceable>attribut</replaceable>}</literal> sont des variantes qui vont chercher à faire correspondre les différentes options sur un des périphériques parents du périphérique actuel;"
+msgstr "<literal>KERNELS</literal>, <literal>SUBSYSTEMS</literal> et <literal>ATTRS{<replaceable>attribut</replaceable>}</literal> sont des variantes qui vont chercher à faire correspondre les différentes options sur un des périphériques parents du périphérique actuel ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>PROGRAM</literal>: delegates the test to the indicated program (true if it returns 0, false if not). The content of the program's standard output is stored so that it can be reused by the <literal>RESULT</literal> test;"
-msgstr "<literal>PROGRAM</literal>: délègue le test au programme indiqué (vrai s'il renvoie 0, faux sinon). Le contenu de la sortie standard du programme est stocké afin de pouvoir l'utiliser dans le cadre du test <literal>RESULT</literal>;"
+msgstr "<literal>PROGRAM</literal> : délègue le test au programme indiqué (vrai s'il renvoie 0, faux sinon). Le contenu de la sortie standard du programme est stocké afin de pouvoir l'utiliser dans le cadre du test <literal>RESULT</literal> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>RESULT</literal>: execute tests on the standard output stored during the last call to <literal>PROGRAM</literal>."
-msgstr "<literal>RESULT</literal>: effectue des tests sur la sortie standard du dernier appel à <literal>PROGRAM</literal>."
+msgstr "<literal>RESULT</literal> : effectue des tests sur la sortie standard du dernier appel à <literal>PROGRAM</literal>."
 
 #. Tag: para
 #, no-c-format
@@ -2708,67 +2695,67 @@ msgstr "Les opérandes de droite peuvent employer certaines expressions de motif
 #. Tag: para
 #, no-c-format
 msgid "Regarding the assignment operators, <literal>=</literal> assigns a value (and replaces the current value); in the case of a list, it is emptied and contains only the value assigned. <literal>:=</literal> does the same, but prevents later changes to the same variable. As for <literal>+=</literal>, it adds an item to a list. The following variables can be changed:"
-msgstr "En ce qui concerne les opérateurs d'affectation, <literal>=</literal> affecte une valeur (et remplace la valeur actuelle), s'il s'agit d'une liste elle est vidée et ne contient plus que la valeur affectée. <literal>:=</literal> fait de même mais empêche les modifications subséquentes de cette même variable. Quant à <literal>+=</literal>, il ajoute une valeur dans une liste. Voici les variables qui peuvent être modifiées:"
+msgstr "En ce qui concerne les opérateurs d'affectation, <literal>=</literal> affecte une valeur (et remplace la valeur actuelle), s'il s'agit d'une liste elle est vidée et ne contient plus que la valeur affectée. <literal>:=</literal> fait de même mais empêche les modifications subséquentes de cette même variable. Quant à <literal>+=</literal>, il ajoute une valeur dans une liste. Voici les variables qui peuvent être modifiées :"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>NAME</literal>: the device filename to be created in <filename>/dev/</filename>. Only the first assignment counts; the others are ignored;"
-msgstr "<literal>NAME</literal>: le nom du fichier de périphérique à créer dans <filename>/dev/</filename>. Seule la première affectation compte, les autres sont ignorées;"
+msgstr "<literal>NAME</literal> : le nom du fichier de périphérique à créer dans <filename>/dev/</filename>. Seule la première affectation compte, les autres sont ignorées ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SYMLINK</literal>: the list of symbolic links that will point to the same device;"
-msgstr "<literal>SYMLINK</literal>: la liste des noms symboliques qui pointeront sur le même périphérique;"
+msgstr "<literal>SYMLINK</literal> : la liste des noms symboliques qui pointeront sur le même périphérique ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>OWNER</literal>, <literal>GROUP</literal> and <literal>MODE</literal> define the user and group that owns the device, as well as the associated permission;"
-msgstr "<literal>OWNER</literal>, <literal>GROUP</literal> et <literal>MODE</literal> définissent l'utilisateur et le groupe propriétaire du périphérique ainsi que les permissions associées;"
+msgstr "<literal>OWNER</literal>, <literal>GROUP</literal> et <literal>MODE</literal> définissent l'utilisateur et le groupe propriétaire du périphérique ainsi que les permissions associées ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>RUN</literal>: the list of programs to execute in response to this event."
-msgstr "<literal>RUN</literal>: la liste des programmes à exécuter en réponse à cet événement."
+msgstr "<literal>RUN</literal> : la liste des programmes à exécuter en réponse à cet événement."
 
 #. Tag: para
 #, no-c-format
 msgid "The values assigned to these variables may use a number of substitutions:"
-msgstr "Les valeurs affectées à ces variables peuvent employer un certain nombre de substitutions:"
+msgstr "Les valeurs affectées à ces variables peuvent employer un certain nombre de substitutions :"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$kernel</literal> or <literal>%k</literal>: equivalent to <literal>KERNEL</literal>;"
-msgstr "<literal>$kernel</literal> ou <literal>%k</literal>: équivalent de <literal>KERNEL</literal>;"
+msgstr "<literal>$kernel</literal> ou <literal>%k</literal> : équivalent de <literal>KERNEL</literal> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$number</literal> or <literal>%n</literal>: the order number of the device, for example, for <literal>sda3</literal>, it would be “3”;"
-msgstr "<literal>$number</literal> ou <literal>%n</literal>: le numéro d'ordre du périphérique, par exemple «3» pour <literal>sda3</literal>;"
+msgstr "<literal>$number</literal> ou <literal>%n</literal> : le numéro d'ordre du périphérique, par exemple « 3 » pour <literal>sda3</literal> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$devpath</literal> or <literal>%p</literal>: equivalent to <literal>DEVPATH</literal>;"
-msgstr "<literal>$devpath</literal> ou <literal>%p</literal>: équivalent de <literal>DEVPATH</literal>;"
+msgstr "<literal>$devpath</literal> ou <literal>%p</literal> : équivalent de <literal>DEVPATH</literal> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$attr{<replaceable>attribute</replaceable>}</literal> or <literal>%s{<replaceable>attribute</replaceable>}</literal>: equivalent to <literal>ATTRS{<replaceable>attribute</replaceable>}</literal>;"
-msgstr "<literal>$attr{<replaceable>attribut</replaceable>}</literal> ou <literal>%s{<replaceable>attribut</replaceable>}</literal>: équivalent de <literal>ATTRS{<replaceable>attribut</replaceable>}</literal>;"
+msgstr "<literal>$attr{<replaceable>attribut</replaceable>}</literal> ou <literal>%s{<replaceable>attribut</replaceable>}</literal> : équivalent de <literal>ATTRS{<replaceable>attribut</replaceable>}</literal> ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$major</literal> or <literal>%M</literal>: the kernel major number of the device;"
-msgstr "<literal>$major</literal> ou <literal>%M</literal>: le numéro majeur du périphérique;"
+msgstr "<literal>$major</literal> ou <literal>%M</literal> : le numéro majeur du périphérique ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$minor</literal> or <literal>%m</literal>: the kernel minor number of the device;"
-msgstr "<literal>$minor</literal> ou <literal>%m</literal>: le numéro mineur du périphérique;"
+msgstr "<literal>$minor</literal> ou <literal>%m</literal> : le numéro mineur du périphérique ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$result</literal> or <literal>%c</literal>: the string output by the last program invoked by <literal>PROGRAM</literal>;"
-msgstr "<literal>$result</literal> ou <literal>%c</literal>: la chaîne renvoyée par le dernier programme invoqué par <literal>PROGRAM</literal>;"
+msgstr "<literal>$result</literal> ou <literal>%c</literal> : la chaîne renvoyée par le dernier programme invoqué par <literal>PROGRAM</literal> ;"
 
 #. Tag: para
 #, no-c-format
