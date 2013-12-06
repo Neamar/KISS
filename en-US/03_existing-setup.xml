@@ -75,11 +75,11 @@
       notifications so that the servers can be autodiscovered by the
       Mac OSX clients.</para>
 
-      <indexterm><primary>AppleTalk</primary></indexterm> <para>Older
-      Mac OS networks (before Mac OSX) used a different protocol
+      <indexterm><primary>AppleTalk</primary></indexterm>
+      <para>Older Mac OS networks (before Mac OSX) used a different protocol
       called AppleTalk.  For environments involving machines using
-      this protocol, Netatalk, also provides the AppleTalk protocol
-      (it started as only a reimplementation of that protocol). It
+      this protocol, Netatalk also provides the AppleTalk protocol
+      (in fact, it started as a reimplementation of that protocol). It
       ensures the operation of the file server and print queues, as
       well as time server (clock synchronization). Its router function
       allows interconnection with AppleTalk networks.</para>
@@ -271,7 +271,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.13 seconds</computeroutput>
       <literal>lmde</literal>, etc.)</para>
 
       <para>Likewise, it is interesting to analyze the contents of the
-      <filename>/usr/local/</filename> directory, which intended to contain
+      <filename>/usr/local/</filename> directory, whose purpose is to contain
       programs compiled and installed manually. Listing software installed
       in this manner is instructive, since this raises questions on the
       reasons for not using the corresponding Debian package, if such a
@@ -320,10 +320,9 @@ Nmap done: 1 IP address (1 host up) scanned in 0.13 seconds</computeroutput>
       to find this information.</para>
 
       <sidebar>
-        <title><emphasis>HARDWARE</emphasis> Next-generation PC</title>
-        <indexterm><primary>Itanium</primary></indexterm>
+        <title><emphasis>HARDWARE</emphasis> 64 bit PC vs 32 bit PC</title>
         <indexterm><primary>amd64</primary></indexterm>
-        <indexterm><primary>ia64</primary></indexterm>
+        <indexterm><primary>i386</primary></indexterm>
 
 	<para>Most recent computers have 64 bit Intel or AMD
 	processors, compatible with older 32 bit processors; the
@@ -332,8 +331,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.13 seconds</computeroutput>
 	capabilities of these new processors. This is why Debian
 	provides the “amd64” architecture, which works for recent AMD
 	chips as well as Intel “em64t” processors (including most of
-	the Core series), which are very similar to AMD64.  Debian
-	also provides the “ia64” architecture for Intel Itanium chips.</para>
+	the Core series), which are very similar to AMD64.</para>
       </sidebar>
 
       <table colsep="1" id="tab-corresp">
