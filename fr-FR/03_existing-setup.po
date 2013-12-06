@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-11-26 15:52+0100\n"
+"POT-Creation-Date: 2013-12-06 19:36+0100\n"
 "PO-Revision-Date: 2013-07-17 12:08+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
@@ -134,7 +134,7 @@ msgstr "<primary>ia64</primary>"
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "Netatalk is a program which uses the Appletalk protocol (running on a Linux kernel) and allows Debian to interface with a Mac OS network. It ensures the operation of the file server and print queues, as well as time server (clock synchronization). Its router function allows interconnection with Appletalk networks."
-msgid "Older Mac OS networks (before Mac OSX) used a different protocol called AppleTalk. For environments involving machines using this protocol, Netatalk, also provides the AppleTalk protocol (it started as only a reimplementation of that protocol). It ensures the operation of the file server and print queues, as well as time server (clock synchronization). Its router function allows interconnection with AppleTalk networks."
+msgid "Older Mac OS networks (before Mac OSX) used a different protocol called AppleTalk. For environments involving machines using this protocol, Netatalk also provides the AppleTalk protocol (in fact, it started as a reimplementation of that protocol). It ensures the operation of the file server and print queues, as well as time server (clock synchronization). Its router function allows interconnection with AppleTalk networks."
 msgstr "Le logiciel Netatalk, employant le protocole Appletalk (lui-même géré par le noyau Linux), interfacera Debian avec un réseau Mac OS. Il assure les fonctions de serveur de fichiers et de files d'impression ainsi que de temps (synchronisation des horloges). Sa fonction de routeur permet d'interconnecter des réseaux Appletalk."
 
 #. Tag: title
@@ -349,7 +349,7 @@ msgstr "Ce fichier <filename>sources.list</filename> est souvent un bon indicate
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "Likewise, it is interesting to analyze the contents of the directory <filename>/usr/local/</filename>, intended to contain programs compiled and installed manually. Listing software installed in this manner is instructive, since this raises questions on the reasons for not using the corresponding Debian package, if such a package exists."
-msgid "Likewise, it is interesting to analyze the contents of the <filename>/usr/local/</filename> directory, which intended to contain programs compiled and installed manually. Listing software installed in this manner is instructive, since this raises questions on the reasons for not using the corresponding Debian package, if such a package exists."
+msgid "Likewise, it is interesting to analyze the contents of the <filename>/usr/local/</filename> directory, whose purpose is to contain programs compiled and installed manually. Listing software installed in this manner is instructive, since this raises questions on the reasons for not using the corresponding Debian package, if such a package exists."
 msgstr "De même, il est intéressant d'analyser le contenu du répertoire <filename>/usr/local/</filename>, prévu pour contenir des programmes compilés et installés manuellement. Répertorier les logiciels installés de cette manière est riche d'enseignements, car cela incite à s'interroger sur la raison justifiant le non-emploi du paquet Debian correspondant — si un tel paquet existe."
 
 #. Tag: title
@@ -400,14 +400,10 @@ msgid "<xref linkend=\"tab-corresp\" xrefstyle=\"select: label nopage\" /> is no
 msgstr "Le <xref linkend=\"tab-corresp\" xrefstyle=\"select: label nopage\" /> ne prétend pas être exhaustif mais pourra vous aider. Dans tous les cas, la documentation d'origine de l'ordinateur vous renseignera de manière plus certaine."
 
 #. Tag: title
-#, no-c-format
-msgid "<emphasis>HARDWARE</emphasis> Next-generation PC"
+#, fuzzy, no-c-format
+#| msgid "<emphasis>HARDWARE</emphasis> Next-generation PC"
+msgid "<emphasis>HARDWARE</emphasis> 64 bit PC vs 32 bit PC"
 msgstr "<emphasis>MATÉRIEL</emphasis> PC de dernière génération"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>Itanium</primary>"
-msgstr "<primary>Itanium</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -415,14 +411,15 @@ msgid "<primary>amd64</primary>"
 msgstr "<primary>amd64</primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>ia64</primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary>ia64</primary>"
+msgid "<primary>i386</primary>"
 msgstr "<primary>ia64</primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "Most recent computers have 64 bit Intel or AMD processors, compatible with older 32 bit processors; the software compiled for “i386” architecture thus works. On the other hand, this compatibility mode does not fully exploit the capabilities of these new processors. This is why Debian provides software for “ia64” architecture for Intel Itanium chips and “amd64” for AMD chips. This last also works with Intel “em64t” processors, which are very similar to AMD64 processors."
-msgid "Most recent computers have 64 bit Intel or AMD processors, compatible with older 32 bit processors; the software compiled for “i386” architecture thus works. On the other hand, this compatibility mode does not fully exploit the capabilities of these new processors. This is why Debian provides the “amd64” architecture, which works for recent AMD chips as well as Intel “em64t” processors (including most of the Core series), which are very similar to AMD64. Debian also provides the “ia64” architecture for Intel Itanium chips."
+msgid "Most recent computers have 64 bit Intel or AMD processors, compatible with older 32 bit processors; the software compiled for “i386” architecture thus works. On the other hand, this compatibility mode does not fully exploit the capabilities of these new processors. This is why Debian provides the “amd64” architecture, which works for recent AMD chips as well as Intel “em64t” processors (including most of the Core series), which are very similar to AMD64."
 msgstr "La plupart des ordinateurs récents sont pourvus de processeurs 64 bits d'Intel ou d'AMD, compatibles avec les anciens processeurs 32 bits: les logiciels compilés pour architecture «i386» fonctionneront donc. En revanche, ce mode compatibilité ne met pas à profit les capacités de ces nouveaux processeurs. C'est pourquoi Debian prévoit les architectures «ia64» pour les processeurs Itanium d'Intel et «amd64» pour ceux d'AMD. Cette dernière prend également en charge les processeurs «em64t» d'Intel, très similaires aux AMD64."
 
 #. Tag: title
@@ -591,6 +588,9 @@ msgstr "Installer les services sélectionnés"
 #, no-c-format
 msgid "Prior to jumping in to this exercise with both feet, it is strongly recommended that you read the remainder of this book. After that you will have a more precise understanding of how to configure the expected services."
 msgstr "Avant de se lancer corps et âme dans cet exercice, il est fortement recommandé de consulter le reste de ce livre, grâce auquel vous aurez une idée plus précise sur la manière de configurer les services prévus."
+
+#~ msgid "<primary>Itanium</primary>"
+#~ msgstr "<primary>Itanium</primary>"
 
 #~ msgid "hppa"
 #~ msgstr "hppa"
