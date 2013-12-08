@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-10-31T14:54:17\n"
-"PO-Revision-Date: 2013-12-03 17:29+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2013-12-08 21:37+0200\n"
+"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
 "Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -1352,6 +1352,12 @@ msgstr ""
 #, no-c-format
 msgid "<filename>/sys/</filename> in particular is designed to provide access to internal kernel objects, especially those representing the various devices in the system. The kernel can, thus, share various pieces of information: the status of each device (for example, if it is in energy saving mode), whether it is a removable device, etc. Note that <filename>/sys/</filename> has only existed since kernel version 2.6."
 msgstr ""
+"<filename>/sys/</filename> em particular, é projetado para fornecer acesso a "
+"objetos de kernel interno, especialmente aqueles que representam os "
+"diversos dispositivos no sistema. O kernel pode, assim, partilhar vários "
+"pedaços de informação: o status de cada dispositivo (por exemplo, se está no "
+"modo de poupança de energia), seja um dispositivo removível, etc. Note-se "
+"que <filename>/sys/</filename> só existe desde a versão do kernel 2.6."
 
 #. Tag: para
 #, no-c-format
@@ -1418,6 +1424,13 @@ msgstr "<primary>nome</primary><secondary>resolução</secondary>"
 #, no-c-format
 msgid "The mechanism for name resolution in Linux is modular and can use various sources of information declared in the <filename>/etc/nsswitch.conf</filename> file. The entry that involves host name resolution is <literal>hosts</literal>. By default, it contains <literal>dns files</literal>, which means that the system consults the <filename>/etc/hosts</filename> file first, then DNS servers. NIS/NIS+ or LDAP servers are other possible sources."
 msgstr ""
+"O mecanismo para resolução de nomes no Linux é modular e pode usar várias "
+"fontes de informação declarada no arquivo "
+"<filename>/etc/nsswitch.conf</filename>. A entrada que envolve a resolução "
+"de nomes de host é <literal>hosts</literal>. Por padrão, contém "
+"<literal>arquivos de DNS</literal>, o que significa que o sistema consulta o "
+"arquivo <filename>/etc/hosts</filename> primeiro, então os servidores DNS. "
+"NIS / NIS + ou LDAP servidores são outras fontes possíveis."
 
 #. Tag: title
 #, no-c-format
@@ -1428,6 +1441,11 @@ msgstr "<emphasis>NOTA</emphasis> NSS e DNS"
 #, no-c-format
 msgid "Be aware that the commands specifically intended to query DNS (especially <command>host</command>) do not use the standard name resolution mechanism (NSS). As a consequence, they do not take into consideration <filename>/etc/nsswitch.conf</filename>, and thus, not <filename>/etc/hosts</filename> either."
 msgstr ""
+"Esteja ciente de que os comandos destinados especificamente a consulta DNS "
+"(especialmente <command>host</command>) não utilize o mecanismo de resolução "
+"de nome padrão (NSS). Como conseqüência, eles não levam em consideração "
+"<filename>/etc/nsswitch.conf</filename> e, portanto, não "
+"<filename>/etc/hosts</filename> também."
 
 #. Tag: title
 #, no-c-format
@@ -1448,11 +1466,20 @@ msgstr "<primary>Domain Name Service</primary>"
 #, no-c-format
 msgid "DNS (Domain Name Service) is a distributed and hierarchical service mapping names to IP addresses, and vice-versa. Specifically, it can turn a human-friendly name such as <literal>www.eyrolles.com</literal> into the actual IP address, <literal>213.244.11.247</literal>."
 msgstr ""
+"DNS (Domain Name System - Sistema de Nomes de Domínios) é um mapeamento de "
+"serviço distribuída e hierárquica nomes para endereços IP e vice-versa. "
+"Especificamente, ele pode transformar um nome amigável como "
+"<literal>www.eyrolles.com</literal> no endereço IP real, "
+"<literal>213.244.11.247</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "To access DNS information, a DNS server must be available to relay requests. Falcot Corp has its own, but an individual user is more likely to use the DNS servers provided by their ISP."
 msgstr ""
+"Para acessar informações de DNS, um servidor DNS deve estar disponível para "
+"solicitações de retransmissão. Falcot Corp tem a sua própria, mas um usuário "
+"individual é mais propensos a usar os servidores DNS fornecidos pelo seu "
+"ISP."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1468,6 +1495,10 @@ msgstr "<primary><literal>nameserver</literal></primary>"
 #, no-c-format
 msgid "The DNS servers to be used are indicated in the <filename>/etc/resolv.conf</filename>, one per line, with the <literal>nameserver</literal> keyword preceding an IP address, as in the following example."
 msgstr ""
+"Os servidores DNS a ser usado são indicados no "
+"<filename>/etc/resolv.conf</filename>, um por linha, com a palavra-chave "
+"<literal>nameserver</literal> precede um endereço IP, como no exemplo a "
+"seguir."
 
 #. Tag: programlisting
 #, no-c-format
@@ -1491,11 +1522,24 @@ msgstr "O arquivo <filename>/etc/hosts</filename>"
 #, no-c-format
 msgid "If there is no name server on the local network, it is still possible to establish a small table mapping IP addresses and machine hostnames in the <filename>/etc/hosts</filename> file, usually reserved for local network stations. The syntax of this file is very simple: each line indicates a specific IP address followed by the list of any associated names (the first being “completely qualified”, meaning it includes the domain name)."
 msgstr ""
+"Se não houver nenhum nome do servidor na rede local, é ainda possível "
+"estabelecer uma pequena tabela de mapeamento de endereços IP e nomes de "
+"máquina no <filename>/etc/hosts</filename>, normalmente reservados para as "
+"estações da rede local. A sintaxe deste arquivo é muito simples: cada linha "
+"indica um endereço IP específico, seguido pela lista de quaisquer "
+"denominações associadas (sendo o primeiro \"completamente qualificado\", ou "
+"seja, inclui o nome de domínio)."
 
 #. Tag: para
 #, no-c-format
 msgid "This file is available even during network outages or when DNS servers are unreachable, but will only really be useful when duplicated on all the machines on the network. The slightest alteration in correspondence will require the file to be updated everywhere. This is why <filename>/etc/hosts</filename> generally only contains the most important entries."
 msgstr ""
+"Este arquivo está disponível mesmo durante interrupções de rede ou quando os "
+"servidores DNS são inacessíveis, mas realmente só serão úteis quando "
+"duplicados em todas as máquinas na rede. A menor alteração em "
+"correspondência exigirá o arquivo a ser atualizado em todos os lugares. É "
+"por isso que <filename>/etc/hosts</filename> geralmente contém apenas as "
+"entradas mais importantes."
 
 #. Tag: para
 #, no-c-format
@@ -1514,21 +1558,33 @@ msgstr "<emphasis>DICA</emphasis> Ignorando o DNS"
 #, no-c-format
 msgid "Since applications check the <filename>/etc/hosts</filename> file before querying DNS, it is possible to include information in there that is different from what the DNS would return, and therefore to bypass normal DNS-based name resolution."
 msgstr ""
+"Desde que os aplicativos verificar o <filename>/etc/hosts</filename> antes "
+"de consultar o DNS, é possível incluir informações que é diferente do que o "
+"DNS retornaria e, portanto, ignorar a resolução de nome DNS com base em "
+"normal."
 
 #. Tag: para
 #, no-c-format
 msgid "This allows, in the event of DNS changes not yet propagated, to test access to a website with the intended name even if this name is not properly mapped to the correct IP address yet."
 msgstr ""
+"Isso permite que, em caso de alterações DNS ainda não propagadas, para "
+"testar o acesso a um Web site com o nome pretendido, mesmo que este nome não "
+"está devidamente mapeado para o endereço IP correto ainda."
 
 #. Tag: para
 #, no-c-format
 msgid "Another possible use for DNS redirection is to bypass traffic intended for a specific host to another local machine. For example, if a name server was configured to send ad banners, you could divert traffic to a local host which would bypass these ads resulting in more fluid, less distracting, navigation."
 msgstr ""
+"Outro uso possível para redirecionamento de DNS é para ignorar o tráfego "
+"destinado para um host específico para outra máquina local. Por exemplo, se "
+"um nome do servidor foi configurado para enviar banners de anúncio, você "
+"poderia desviar o tráfego para um host local que iria ignorar esses "
+"anúncios, resultando em mais fluido, menos distração, navegação."
 
 #. Tag: title
 #, no-c-format
 msgid "User and Group Databases"
-msgstr ""
+msgstr "Usuário e grupo bancos de dados"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1554,6 +1610,12 @@ msgstr "<primary>banco de dados</primary><secondary>de grupos</secondary>"
 #, no-c-format
 msgid "The list of users is usually stored in the <filename>/etc/passwd</filename> file, while the <filename>/etc/shadow</filename> file stores encrypted passwords. Both are text files, in a relatively simple format, which can be read and modified with a text editor. Each user is listed there on a line with several fields separated with a colon (“<literal>:</literal>”)."
 msgstr ""
+"A lista de usuários é normalmente armazenada no "
+"<filename>/etc/passwd</filename>, enquanto o "
+"<filename>/etc/shadow</filename> armazena senhas criptografadas. Ambos são "
+"arquivos de texto, em um formato relativamente simples, que podem ser lidos "
+"e modificados com um editor de texto. Cada usuário está listado lá em uma "
+"linha com vários campos separados por dois-pontos (“<literal>:</literal>”)."
 
 #. Tag: title
 #, no-c-format
@@ -1564,6 +1626,14 @@ msgstr "<emphasis>NOTA</emphasis> Editando arquivos do sistema"
 #, no-c-format
 msgid "The system files mentioned in this chapter are all plain text files, and can be edited with a text editor. Considering their importance to core system functionality, it is always a good idea to take extra precautions when editing system files. First, always make a copy or backup of a system file before opening or altering it. Second, on servers or machines where more than one person could potentially access the same file at the same time, take extra steps to guard against file corruption."
 msgstr ""
+"Os arquivos de sistema mencionados neste capítulo são todos os arquivos de "
+"texto simples e podem ser editados com um editor de texto. Considerando sua "
+"importância para a funcionalidade de núcleo do sistema, é sempre uma boa "
+"idéia tomar precauções extras ao editar arquivos do sistema. Primeiro, "
+"sempre faça uma cópia ou backup de um arquivo de sistema antes de abrir ou "
+"alterar isso. Em segundo lugar, em servidores ou máquinas, onde mais de uma "
+"pessoa potencialmente poderia acessar o mesmo arquivo ao mesmo tempo, tome "
+"medidas extras para proteção contra corrupção de arquivo."
 
 #. Tag: para
 #, no-c-format
