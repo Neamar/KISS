@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-06 19:36+0100\n"
-"PO-Revision-Date: 2013-12-09 15:56+0100\n"
+"PO-Revision-Date: 2013-12-09 16:24+0100\n"
 "Last-Translator: Raphaël Hertzog <hertzog@debian.org>\n"
 "Language-Team: None\n"
 "Language: fr-FR\n"
@@ -163,12 +163,12 @@ msgstr "Recenser et identifier les services"
 #. Tag: para
 #, no-c-format
 msgid "As simple as it seems, this step is essential. A serious administrator truly knows the principal roles of each server, but such roles can change, and sometimes experienced users may have installed “wild” services. Knowing that they exist will at least allow you to decide what to do with them, rather than delete them haphazardly."
-msgstr "Aussi simple qu'elle paraisse, cette étape est indispensable. Un administrateur sérieux connaît vraisemblablement les rôles principaux de chaque serveur, mais ceux-ci évoluent et quelques utilisateurs expérimentés auront parfois installé des services «sauvages». Connaître leur existence vous permettra au moins de décider de leur sort au lieu de les supprimer par mégarde."
+msgstr "Aussi simple qu'elle paraisse, cette étape est indispensable. Un administrateur sérieux connaît vraisemblablement les rôles principaux de chaque serveur, mais ceux-ci évoluent et quelques utilisateurs expérimentés auront parfois installé des services « sauvages ». Connaître leur existence vous permettra au moins de décider de leur sort au lieu de les supprimer par mégarde."
 
 #. Tag: para
 #, no-c-format
 msgid "For this purpose, it is wise to inform your users of the project before migrating the server. To involve them in the project, it may be useful to install the most common free software programs on their desktops prior to migration, which they will come across again after the migration to Debian; Libre Office and the Mozilla suite are the best examples here."
-msgstr "À ce titre, il est souhaitable d'informer vos utilisateurs de votre projet quelque temps avant la migration effective du serveur. Pour les impliquer dans le projet, il pourra être utile d'installer sur les postes bureautiques les logiciels libres les plus courants qu'ils seront amenés à retrouver lors de la migration des postes de travail sous Debian; on pense bien entendu à Libre Office et aux logiciels de la suite Mozilla."
+msgstr "À ce titre, il est souhaitable d'informer vos utilisateurs de votre projet quelque temps avant la migration effective du serveur. Pour les impliquer dans le projet, il pourra être utile d'installer sur les postes bureautiques les logiciels libres les plus courants qu'ils seront amenés à retrouver lors de la migration des postes de travail sous Debian ; on pense bien entendu à Libre Office et aux logiciels de la suite Mozilla."
 
 #. Tag: title
 #, no-c-format
@@ -178,7 +178,7 @@ msgstr "Réseau et processus"
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><command>nmap</command></primary></indexterm> The <command>nmap</command> tool (in the package with the same name) will quickly identify Internet services hosted by a network connected machine without even requiring to log in to it. Simply call the following command on another machine connected to the same network:"
-msgstr "<indexterm><primary><command>nmap</command></primary></indexterm> L'outil <command>nmap</command> (paquet Debian du même nom) identifiera rapidement les services Internet hébergés par une machine reliée au réseau sans même nécessiter de s'y connecter (<command>login</command>). Il suffit d'invoquer la commande suivante sur une autre machine connectée au même réseau:"
+msgstr "<indexterm><primary><command>nmap</command></primary></indexterm> L'outil <command>nmap</command> (paquet Debian du même nom) identifiera rapidement les services Internet hébergés par une machine reliée au réseau sans même nécessiter de s'y connecter (<command>login</command>). Il suffit d'invoquer la commande suivante sur une autre machine connectée au même réseau :"
 
 #. Tag: screen
 #, no-c-format
@@ -228,12 +228,12 @@ msgstr "Certaines commandes réseau peuvent travailler en IPv4 ou en IPv6. C'est
 #. Tag: para
 #, no-c-format
 msgid "If the server is a Unix machine offering shell accounts to users, it is interesting to determine if processes are executed in the background in the absence of their owner. The command <command>ps auxw</command> displays a list of all processes with their user identity. By checking this information against the output of the <command>who</command> command, which gives a list of logged in users, it is possible to identify rogue or undeclared servers or programs running in the background. Looking at <filename>crontabs</filename> (tables listing automatic actions scheduled by users) will often provide interesting information on functions fulfilled by the server (a complete explanation of <command>cron</command> is available in <xref linkend=\"sect.task-scheduling-cron-atd\" />)."
-msgstr "Si le serveur est une machine Unix offrant un compte shell aux utilisateurs, il est intéressant de déterminer si des processus s'exécutent en tâche de fond, en l'absence de leur propriétaire. La commande <command>ps auxw</command> affiche tous les processus et leur identifiant utilisateur associé. En croisant ces informations avec la sortie de la commande <command>who</command> (donnant la liste des utilisateurs connectés), il est possible de retrouver d'éventuels serveurs sauvages ou des programmes fonctionnant en tâche de fond. La consultation des tables de processus planifiés (<filename>crontabs</filename>) fournira souvent des renseignements intéressants sur les fonctions remplies par le serveur (l'explication complète des commandes de <command>cron</command> se trouve dans la section «Planification de tâches» du <xref linkend=\"unix-services\" />)."
+msgstr "Si le serveur est une machine Unix offrant un compte shell aux utilisateurs, il est intéressant de déterminer si des processus s'exécutent en tâche de fond, en l'absence de leur propriétaire. La commande <command>ps auxw</command> affiche tous les processus et leur identifiant utilisateur associé. En croisant ces informations avec la sortie de la commande <command>who</command> (donnant la liste des utilisateurs connectés), il est possible de retrouver d'éventuels serveurs sauvages ou des programmes fonctionnant en tâche de fond. La consultation des tables de processus planifiés (<filename>crontabs</filename>) fournira souvent des renseignements intéressants sur les fonctions remplies par le serveur (l'explication complète des commandes de <command>cron</command> se trouve dans la section « Planification de tâches » du <xref linkend=\"unix-services\" />)."
 
 #. Tag: para
 #, no-c-format
 msgid "In any case, it is essential to backup your servers: this allows recovery of information after the fact, when users will report specific problems due to the migration."
-msgstr "Dans tous les cas, il est indispensable de prévoir une sauvegarde du serveur: elle permettra de récupérer des informations a posteriori, quand les utilisateurs feront état de problèmes concrets dus à la migration."
+msgstr "Dans tous les cas, il est indispensable de prévoir une sauvegarde du serveur : elle permettra de récupérer des informations a posteriori, quand les utilisateurs feront état de problèmes concrets dus à la migration."
 
 #. Tag: title
 #, no-c-format
@@ -253,7 +253,7 @@ msgstr "Pour des machines Unix, la configuration se trouve habituellement sous <
 #. Tag: para
 #, no-c-format
 msgid "For data managing services (such as databases), it is strongly recommended to export the data to a standard format that will be easily imported by the new software. Such a format is usually in text mode and documented; it may be, for example, an SQL dump for a database, or an LDIF file for an LDAP server."
-msgstr "Pour les services gérant des données (comme les bases de données), il est fortement recommandé d'exporter celles-ci dans un format standard, plus facile à reprendre par le nouveau logiciel. Un tel format est généralement en mode texte et documenté: il s'agira par exemple d'un <foreignphrase>dump</foreignphrase> SQL pour une base de données et d'un fichier LDIF pour un serveur LDAP."
+msgstr "Pour les services gérant des données (comme les bases de données), il est fortement recommandé d'exporter celles-ci dans un format standard, plus facile à reprendre par le nouveau logiciel. Un tel format est généralement en mode texte et documenté : il s'agira par exemple d'un <foreignphrase>dump</foreignphrase> SQL pour une base de données et d'un fichier LDIF pour un serveur LDAP."
 
 #. Tag: title
 #, no-c-format
@@ -308,7 +308,7 @@ msgstr "Un coup d'œil au fichier <filename>/etc/apt/sources.list</filename> mon
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sources.list</filename> file is often a good indicator: the majority of administrators keep, at least in comments, the list of APT sources that were previously used. But you should not forget that sources used in the past might have been deleted, and that some random packages grabbed on the Internet might have been manually installed (with the <command>dpkg</command> command). In this case, the machine is misleading in its appearance of “standard” Debian. This is why you should pay attention to any indication that will give away the presence of external packages (appearance of <filename>deb</filename> files in unusual directories, package version numbers with a special suffix indicating that it originated from outside the Debian project, such as <literal>ubuntu</literal> or <literal>lmde</literal>, etc.)"
-msgstr "Ce fichier <filename>sources.list</filename> est souvent un bon indicateur: la majorité des administrateurs gardent au moins en commentaires les sources APT employées par le passé. Mais il est toujours possible que des sources employées par le passé aient été supprimées, voire que l'ancien administrateur ait installé manuellement (avec <command>dpkg</command>) des paquets téléchargés sur l'Internet. Dans ce cas, la machine trompe par son apparence de Debian «standard». C'est pourquoi il convient d'être attentif à tout indice pouvant trahir la présence de paquets externes (apparition de fichiers <filename>.deb</filename> dans des répertoires inhabituels, numéros de version de paquet dotés d'un suffixe particulier représentant l'origine du paquet — comme <literal>ubuntu</literal> ou <literal>lmde</literal>, etc.)"
+msgstr "Ce fichier <filename>sources.list</filename> est souvent un bon indicateur : la majorité des administrateurs gardent au moins en commentaires les sources APT employées par le passé. Mais il est toujours possible que des sources employées par le passé aient été supprimées, voire que l'ancien administrateur ait installé manuellement (avec <command>dpkg</command>) des paquets téléchargés sur l'Internet. Dans ce cas, la machine trompe par son apparence de Debian « standard ». C'est pourquoi il convient d'être attentif à tout indice pouvant trahir la présence de paquets externes (apparition de fichiers <filename>.deb</filename> dans des répertoires inhabituels, numéros de version de paquet dotés d'un suffixe particulier représentant l'origine du paquet — comme <literal>ubuntu</literal> ou <literal>lmde</literal>, etc.)"
 
 #. Tag: para
 #, no-c-format
@@ -328,7 +328,7 @@ msgstr "Le paquet <emphasis role=\"pkg\">cruft</emphasis> permet de répertorier
 #. Tag: para
 #, no-c-format
 msgid "Be careful to not blindly delete everything that <command>cruft</command> might list!"
-msgstr "Attention à ne pas supprimer aveuglément tout ce que <command>cruft</command> pourrait lister!"
+msgstr "Attention à ne pas supprimer aveuglément tout ce que <command>cruft</command> pourrait lister !"
 
 #. Tag: title
 #, no-c-format
@@ -378,7 +378,7 @@ msgstr "<primary>i386</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Most recent computers have 64 bit Intel or AMD processors, compatible with older 32 bit processors; the software compiled for “i386” architecture thus works. On the other hand, this compatibility mode does not fully exploit the capabilities of these new processors. This is why Debian provides the “amd64” architecture, which works for recent AMD chips as well as Intel “em64t” processors (including most of the Core series), which are very similar to AMD64."
-msgstr "La plupart des ordinateurs récents sont pourvus de processeurs 64 bits d'Intel ou d'AMD, compatibles avec les anciens processeurs 32 bits: les logiciels compilés pour architecture «i386» fonctionneront donc. En revanche, ce mode compatibilité ne met pas à profit les capacités de ces nouveaux processeurs. C'est pourquoi Debian dispose de l'architecture «amd64», qui gère les processeurs récents d'AMD ainsi que les processeurs « em64t » d'Intel (y compris la plupart des processeurs de la famille « Core »)."
+msgstr "La plupart des ordinateurs récents sont pourvus de processeurs 64 bits d'Intel ou d'AMD, compatibles avec les anciens processeurs 32 bits : les logiciels compilés pour architecture « i386 » fonctionneront donc. En revanche, ce mode compatibilité ne met pas à profit les capacités de ces nouveaux processeurs. C'est pourquoi Debian dispose de l'architecture « amd64 », qui gère les processeurs récents d'AMD ainsi que les processeurs « em64t » d'Intel (y compris la plupart des processeurs de la famille « Core »)."
 
 #. Tag: title
 #, no-c-format
