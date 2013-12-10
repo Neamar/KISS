@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-11-26 15:52+0100\n"
+"POT-Creation-Date: 2013-12-10 10:58+0100\n"
 "PO-Revision-Date: 2013-07-09 15:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: None\n"
@@ -151,8 +151,14 @@ msgstr "Divers CD-Rom ciblent chacun des usages différents: <emphasis>netinst</
 
 #. Tag: para
 #, no-c-format
-msgid "There used to also be a <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only provided the installer, and which required all the Debian packages (including the base system) to be downloaded. Since its image only took up 35 MB, it was meant to be burnt on a “business card” type CD-ROM. This CD-ROM is no longer provided for Wheezy: providing it required extra work for the maintainers of the installer, for very little actual use compared to the <emphasis>netinst</emphasis> CD-ROMs."
+msgid "Debian also used to provide a <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only contained the installer, and which required all the Debian packages (including the base system) to be downloaded. Since its image only took up 35 MB, it was meant to be burnt on a “business card” type CD-ROM. This CD-ROM is no longer provided for Wheezy: the debian-installer developers estimated that the work required to maintain that image was no longer worth it. Furthermore, the <filename>mini.iso</filename> image that they already provide as by-product of the installer is very similar."
 msgstr ""
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary>partitioning</primary>"
+msgid "<primary><filename>mini.iso</filename></primary>"
+msgstr "<primary>partitionnement</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -167,7 +173,7 @@ msgstr "La plupart des CD-Rom et DVD-Rom d'installation correspondent à une seu
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a <emphasis>netinst</emphasis> CD-ROM image for the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
-msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a CD-ROM image for the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
+msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a CD-ROM image combining the <emphasis>netinst</emphasis> images of the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
 msgstr "Mais quelques images CD-Rom/DVD-Rom présentent la particularité de fonctionner sur plusieurs architectures. On trouve ainsi une image de CD-Rom <emphasis>netinst</emphasis> pour les architectures <emphasis>i386</emphasis> et <emphasis>amd64</emphasis>. Il existe aussi une image de DVD-Rom comprenant l'installateur et une sélection de paquets binaires pour <emphasis>i386</emphasis> et <emphasis>amd64</emphasis>, ainsi que les paquets sources correspondants."
 
 #. Tag: indexterm
@@ -346,7 +352,7 @@ msgstr "La différence fondamentale entre un système 32 et 64 bits est la taill
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype and the plugin for handling Java applets in web browsers, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions with all the necessary libraries, and often to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. This is very demanding for a relatively small gain. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
-msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions of all the necessary libraries (see <xref linkend=\"sect.multi-arch\" />), and often to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
+msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions of all the necessary libraries (see <xref linkend=\"sect.multi-arch\" />), and sometimes to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
 msgstr "Pour un poste bureautique (où quelques pour cent de performance sont négligeables), on sera plus sensible au fait que certains logiciels propriétaires ne sont pas disponibles en version 64 bits (comme Skype et le greffon gérant les applets Java dans le navigateur web, par exemple). Il est techniquement possible de les faire fonctionner sur le système 64 bits, mais il faudra installer les versions 32 bits de toutes les bibliothèques nécessaires et éventuellement faire usage de <command>setarch</command> ou <command>linux32</command> (dans le paquet <emphasis role=\"pkg\">util-linux</emphasis>) pour tromper les applications sur la nature du système. C'est très contraignant pour un gain relativement faible. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
 
 #. Tag: title
@@ -1259,8 +1265,9 @@ msgid "This phase in the Debian installation process detects the operating syste
 msgstr "Cette phase du programme d'installation Debian détecte les systèmes d'exploitation déjà installés sur l'ordinateur, et ajoute automatiquement des choix correspondants dans le menu de démarrage; mais tous les programmes d'installation ne font pas de même."
 
 #. Tag: para
-#, no-c-format
-msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
+#, fuzzy, no-c-format
+#| msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
+msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch08s07.html\" />"
 msgstr "En particulier, si l'on installe (ou réinstalle) Windows par la suite, le chargeur de démarrage sera écrasé. Debian sera alors toujours présent sur le disque dur, mais plus accessible par le menu de démarrage. Il faudra alors démarrer sur le système d'installation de Debian en mode <userinput>rescue</userinput> pour remettre en place un chargeur de démarrage moins exclusif. L'opération est décrite en détail dans le manuel d'installation. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
 
 #. Tag: para
