@@ -105,15 +105,17 @@
       disks will be sufficient for most installations, since they
       contain the most used software.</para>
 
-      <para>There used to also be a <emphasis>businesscard</emphasis>
-      or <emphasis>bizcard</emphasis> CD-ROM, which only provided the
+      <para>Debian also used to provide a <emphasis>businesscard</emphasis>
+      or <emphasis>bizcard</emphasis> CD-ROM, which only contained the
       installer, and which required all the Debian packages (including
       the base system) to be downloaded. Since its image only took up
       35 MB, it was meant to be burnt on a “business card” type
-      CD-ROM.  This CD-ROM is no longer provided for Wheezy: providing
-      it required extra work for the maintainers of the installer, for
-      very little actual use compared to the
-      <emphasis>netinst</emphasis> CD-ROMs.</para>
+      CD-ROM. This CD-ROM is no longer provided for Wheezy: the debian-installer
+      developers estimated that the work required to maintain that image
+      was no longer worth it. Furthermore, the <filename>mini.iso</filename>
+      image that they already provide as by-product of the installer is
+      very similar.</para>
+      <indexterm><primary><filename>mini.iso</filename></primary></indexterm>
 
       <sidebar>
         <title><emphasis>TIP</emphasis> Multi-architecture disks</title>
@@ -124,7 +126,8 @@
 	the computer on which you wish to install them.</para>
 
 	<para>Some CD/DVD-ROM images can work on several
-	architectures. We thus have a CD-ROM image for the
+	architectures. We thus have a CD-ROM image combining the
+	<emphasis>netinst</emphasis> images of the
 	<emphasis>i386</emphasis> and <emphasis>amd64</emphasis>
 	architectures. There is also a DVD-ROM image that contains the
 	installer and a selection of binary packages for
@@ -287,7 +290,7 @@
 	example). It is technically possible to make them work on 64 bit
 	systems, but you have to install the 32 bit versions of all the
 	necessary libraries (see <xref linkend="sect.multi-arch" />), and
-	often to use <command>setarch</command> or
+	sometimes to use <command>setarch</command> or
 	<command>linux32</command> (in the <emphasis
 	role="pkg">util-linux</emphasis> package) to trick applications
 	regarding the nature of the system.
@@ -412,7 +415,7 @@
         </mediaobject>
       </figure>
     </section>
-    <section id="sect.install-pays">
+    <section id="sect.install-country">
       <title>Selecting the country</title>
       <indexterm><primary>choice</primary><secondary>of country</secondary></indexterm>
 
@@ -437,7 +440,7 @@
         </mediaobject>
       </figure>
     </section>
-    <section id="sect.install-clavier">
+    <section id="sect.install-keyboard">
       <title>Selecting the keyboard layout</title>
       <indexterm><primary>keyboard layout</primary></indexterm>
       <indexterm><primary>layout, keyboard</primary></indexterm>
@@ -459,7 +462,7 @@
         </mediaobject>
       </figure>
     </section>
-    <section id="sect.install-detection-cdrom">
+    <section id="sect.install-detect-hardware">
       <title>Detecting Hardware</title>
 
       <para>This step is completely automatic in the vast majority of
@@ -477,7 +480,7 @@
       installer offers the choice to load a kernel module (for instance
       from a USB key) corresponding to the CD-ROM driver.</para>
     </section>
-    <section id="sect.install-chargement-composants">
+    <section id="sect.install-load-components">
       <title>Loading Components</title>
 
       <para>With the contents of the CD now available, the installer
@@ -486,7 +489,7 @@
       the network card), as well as all the components of the installation
       program.</para>
     </section>
-    <section id="sect.install-detection-reseau">
+    <section id="sect.install-detect-network">
       <title>Detecting Network Hardware</title>
 
       <para>This automatic step tries to identify the network card and load
@@ -501,7 +504,7 @@
       <emphasis>netinst</emphasis> installations, since the Debian
       packages must be loaded from the network.</para>
     </section>
-    <section id="sect.install-config-reseau">
+    <section id="sect.install-network-config">
       <title>Configuring the Network</title>
       <indexterm><primary>configuration</primary><secondary>network</secondary><tertiary>static</tertiary></indexterm>
       <indexterm><primary>configuration</primary><secondary>network</secondary><tertiary>DHCP</tertiary></indexterm>
@@ -540,7 +543,7 @@
 	the IP address, netmask, and broadcast address).</para>
       </sidebar>
     </section>
-    <section id="sect.install-config-horloge">
+    <section id="sect.install-clock-config">
       <title>Configuring the Clock</title>
 
       <para>If the network is available, the system's internal clock is
@@ -611,7 +614,7 @@
         </mediaobject>
       </figure>
     </section>
-    <section id="sect.install-detection-disques">
+    <section id="sect.install-detect-disks">
       <title>Detecting Disks and Other Devices</title>
 
       <para>This step automatically detects the hard drives on which Debian
@@ -894,7 +897,7 @@
           </listitem>
         </itemizedlist>
       </section>
-      <section id="sect.installation-software-raid">
+      <section id="sect.install-software-raid">
         <title>Configuring Multidisk Devices (Software RAID)</title>
         <indexterm><primary>Software RAID</primary></indexterm>
         <indexterm><primary>device</primary><secondary>multi-disk device</secondary></indexterm>
@@ -934,7 +937,7 @@
 	<para>For further details on RAID functions, please refer to <xref
 	linkend="sect.raid-soft"/>.</para>
       </section>
-      <section id="sect.installation-lvm">
+      <section id="sect.install-lvm">
         <title>Configuring the Logical Volume Manager (LVM)</title>
         <indexterm><primary>LVM</primary><secondary>during installation</secondary></indexterm>
         <indexterm><primary>Logical Volume Manager</primary><secondary>during installation</secondary></indexterm>
@@ -1202,7 +1205,7 @@
 	<userinput>rescue</userinput> mode to set up a less exclusive
 	bootloader. This operation is described in detail in the
 	installation manual. <ulink type="block"
-	url="http://www.debian.org/releases/stable/i386/ch08s07.html"/></para>
+	url="http://www.debian.org/releases/stable/amd64/ch08s07.html"/></para>
       </sidebar>
 
       <para>By default, the menu proposed by GRUB contains all the
