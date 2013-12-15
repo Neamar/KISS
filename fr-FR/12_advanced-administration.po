@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Debian Administrator's Handbook\n"
-"POT-Creation-Date: 2013-11-26 15:52+0100\n"
+"POT-Creation-Date: 2013-12-15 20:19+0100\n"
 "PO-Revision-Date: 2013-07-09 16:18+0200\n"
 "Last-Translator: Gerold Rupprecht <geroldr@bluewin.ch>\n"
 "Language-Team: English translators <rapael.hertzog@>\n"
@@ -92,7 +92,7 @@ msgstr "<emphasis>PERSPECTIVE</emphasis> Btrfs combine LVM et RAID"
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "While LVM and RAID are two distinct kernel subsystems that come between the disk block devices and their filesystems, <emphasis>btrfs</emphasis> is a new filesystem, initially developed at Oracle, that purports to combine the featuresets of LVM and RAID and much more. It is mostly functional, although still tagged “experimental” because its development is incomplete (some features aren't implemented yet). <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
-msgid "While LVM and RAID are two distinct kernel subsystems that come between the disk block devices and their filesystems, <emphasis>btrfs</emphasis> is a new filesystem, initially developed at Oracle, that purports to combine the featuresets of LVM and RAID and much more. It is mostly functional, and although it's still tagged “experimental” because its development is incomplete (some features aren't implemented yet), it has already seen some use in production environments. <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
+msgid "While LVM and RAID are two distinct kernel subsystems that come between the disk block devices and their filesystems, <emphasis>btrfs</emphasis> is a new filesystem, initially developed at Oracle, that purports to combine the featuresets of LVM and RAID and much more. It is mostly functional, and although it is still tagged “experimental” because its development is incomplete (some features aren't implemented yet), it has already seen some use in production environments. <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
 msgstr "Alors que LVM et RAID sont deux sous-systèmes distincts du noyau qui viennent s'intercaler entre les périphériques blocs des disques et les systèmes de fichiers, <emphasis>btrfs</emphasis> est un nouveau système de fichiers initié par Oracle qui combine les fonctionnalités de LVM et RAID, et plus encore. Bien que fonctionnel, il est encore marqué d'un sceau «expérimental», car son développement n'est pas achevé (certaines fonctionnalités ne sont pas encore implémentées). <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
 
 #. Tag: para
@@ -121,8 +121,9 @@ msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Independent</foreignphrase> o
 msgstr "<emphasis>CULTURE</emphasis> <foreignphrase>Independent</foreignphrase> ou <foreignphrase>inexpensive</foreignphrase>?"
 
 #. Tag: para
-#, no-c-format
-msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it's now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavory flavour of cheapness."
+#, fuzzy, no-c-format
+#| msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it's now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavory flavour of cheapness."
+msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it is now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavory flavour of cheapness."
 msgstr "Le I de RAID signifiait à l'origine <foreignphrase>inexpensive</foreignphrase> (bon marché), car le RAID permet d'obtenir une nette augmentation de la sécurité des données sans investir dans des disques hors de prix. Peut-être pour des considérations d'image, on a tendance à préférer <foreignphrase>independent</foreignphrase>, qui n'a pas la connotation de bricolage associée au bon marché."
 
 #. Tag: para
@@ -148,7 +149,7 @@ msgstr "Différents niveaux de RAID"
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "RAID has actually several levels, differentiated by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks; seen the other way, more disks will be needed to store the same amount of data."
-msgid "RAID is actually not a single system, but a range of systems identified by their levels; the levels by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks for a given set of disks; seen the other way, more disks will be needed to store a given amount of data."
+msgid "RAID is actually not a single system, but a range of systems identified by their levels; the levels differ by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks for a given set of disks; seen the other way, more disks will be needed to store a given amount of data."
 msgstr "On distingue plusieurs niveaux de RAID, selon le degré de redondance qu'ils proposent. Plus la redondance est élevée, plus la résistance aux pannes sera forte, puisque le système pourra continuer à fonctionner avec un plus grand nombre de disques en panne; la contrepartie est que le volume utile de données devient plus restreint (ou, pour voir les choses différemment, qu'il sera nécessaire d'avoir plus de disques pour stocker la même quantité de données)."
 
 #. Tag: term
@@ -425,7 +426,7 @@ msgid ""
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
 "mdadm: array /dev/md0 started.\n"
 "# </computeroutput><userinput>mdadm --query /dev/md0</userinput>\n"
-"<computeroutput>/dev/md0: 7.100GiB raid0 2 devices, 0 spares. Use mdadm --detail for more detail.\n"
+"<computeroutput>/dev/md0: 8.00GiB raid0 2 devices, 0 spares. Use mdadm --detail for more detail.\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md0</userinput>\n"
 "<computeroutput>/dev/md0:\n"
 "        Version : 1.2\n"
@@ -609,7 +610,7 @@ msgid ""
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
 "mdadm: array /dev/md1 started.\n"
 "# </computeroutput><userinput>mdadm --query /dev/md1</userinput>\n"
-"<computeroutput>/dev/md1: 3.100GiB raid1 2 devices, 0 spares. Use mdadm --detail for more detail.\n"
+"<computeroutput>/dev/md1: 4.00GiB raid1 2 devices, 0 spares. Use mdadm --detail for more detail.\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "        Version : 1.2\n"
@@ -811,7 +812,7 @@ msgstr ""
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "The contents of the volume are still accessible (and, if it's mounted, the applications don't notice a thing), but the data safety isn't assured anymore: should the <filename>sdg</filename> disk fail in turn, the data would be lost. We want to avoid that risk, so we'll replace the failed disk with a new one, <filename>sdi</filename>:"
-msgid "The contents of the volume are still accessible (and, if it's mounted, the applications don't notice a thing), but the data safety isn't assured anymore: should the <filename>sdd</filename> disk fail in turn, the data would be lost. We want to avoid that risk, so we'll replace the failed disk with a new one, <filename>sdf</filename>:"
+msgid "The contents of the volume are still accessible (and, if it is mounted, the applications don't notice a thing), but the data safety isn't assured anymore: should the <filename>sdd</filename> disk fail in turn, the data would be lost. We want to avoid that risk, so we'll replace the failed disk with a new one, <filename>sdf</filename>:"
 msgstr "Le contenu du volume reste accessible (et, s'il est monté, les applications ne s'aperçoivent de rien), mais la sécurité des données n'est plus assurée: si le disque <filename>sdg</filename> venait à tomber en panne, les données seraient perdues. Pour éviter ce risque, nous allons remplacer ce disque par un neuf, <filename>sdi</filename>:"
 
 #. Tag: screen
@@ -1015,7 +1016,7 @@ msgstr "Sauvegarde de la configuration"
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "Most of the meta-data concerning RAID volumes are saved directly on the disks that make up these arrays, so that the kernel can detect the arrays and their components and assemble them automatically when the system starts up. However, backing up this configuration is encouraged, because this detection isn't fail-proof, and it's only expected that it will fail precisely in sensitive circumstances. In our example, if the <filename>sdh</filename> disk failure had been real (instead of simulated) and the system had been restarted without removing this <filename>sdh</filename> disk, this disk could start working again due to having been probed during the reboot. The kernel would then have three physical elements, each claiming to contain half of the same RAID volume. Another source of confusion can come when RAID volumes from two servers are consolidated onto one server only. If these arrays were running normally before the disks were moved, the kernel would be able to detect and reassemble the pairs properly; but if the moved disks had been aggregated into an <filename>md1</filename> on the old server, and the new server already has an <filename>md1</filename>, one of the mirrors would be renamed."
-msgid "Most of the meta-data concerning RAID volumes are saved directly on the disks that make up these arrays, so that the kernel can detect the arrays and their components and assemble them automatically when the system starts up. However, backing up this configuration is encouraged, because this detection isn't fail-proof, and it's only expected that it will fail precisely in sensitive circumstances. In our example, if the <filename>sde</filename> disk failure had been real (instead of simulated) and the system had been restarted without removing this <filename>sde</filename> disk, this disk could start working again due to having been probed during the reboot. The kernel would then have three physical elements, each claiming to contain half of the same RAID volume. Another source of confusion can come when RAID volumes from two servers are consolidated onto one server only. If these arrays were running normally before the disks were moved, the kernel would be able to detect and reassemble the pairs properly; but if the moved disks had been aggregated into an <filename>md1</filename> on the old server, and the new server already has an <filename>md1</filename>, one of the mirrors would be renamed."
+msgid "Most of the meta-data concerning RAID volumes are saved directly on the disks that make up these arrays, so that the kernel can detect the arrays and their components and assemble them automatically when the system starts up. However, backing up this configuration is encouraged, because this detection isn't fail-proof, and it is only expected that it will fail precisely in sensitive circumstances. In our example, if the <filename>sde</filename> disk failure had been real (instead of simulated) and the system had been restarted without removing this <filename>sde</filename> disk, this disk could start working again due to having been probed during the reboot. The kernel would then have three physical elements, each claiming to contain half of the same RAID volume. Another source of confusion can come when RAID volumes from two servers are consolidated onto one server only. If these arrays were running normally before the disks were moved, the kernel would be able to detect and reassemble the pairs properly; but if the moved disks had been aggregated into an <filename>md1</filename> on the old server, and the new server already has an <filename>md1</filename>, one of the mirrors would be renamed."
 msgstr "La plupart des méta-données concernant les volumes RAID sont sauvegardées directement sur les disques qui les composent, de sorte que le noyau peut détecter les différents ensembles avec leurs composants, et les assembler automatiquement lors du démarrage du système. Cela dit, il convient de sauvegarder cette configuration, car cette détection n'est pas infaillible, et aura tendance à faillir précisément en période sensible. Si dans notre exemple la panne du disque <filename>sdh</filename> était réelle (et non simulée), et qu'on redémarrait le système sans en retirer le disque <filename>sdh</filename>, ce disque pourrait, à la faveur du redémarrage, «retomber en marche». Le noyau aurait alors trois éléments physiques, chacun prétendant représenter la moitié du même volume RAID. Une autre source de confusion peut subvenir si l'on consolide des volumes RAID de deux serveurs sur un seul. Si ces ensembles étaient en fonctionnement normal avant le déplacement des disques, le noyau saura reconstituer les paires correctement. Mais pour peu que les disques déplacés soient agrégés en un <filename>/dev/md1</filename>, et qu'il existe également un <filename>md1</filename> sur le serveur consolidé, l'un des miroirs sera contraint de changer de nom."
 
 #. Tag: para
@@ -1275,8 +1276,7 @@ msgid ""
 "<computeroutput>  Writing physical volume data to disk \"/dev/sdb2\"\n"
 "  Physical volume \"/dev/sdb2\" successfully created\n"
 "# </computeroutput><userinput>pvdisplay</userinput>\n"
-"<computeroutput>pvdisplay \n"
-"  \"/dev/sdb2\" is a new physical volume of \"4.00 GiB\"\n"
+"<computeroutput>  \"/dev/sdb2\" is a new physical volume of \"4.00 GiB\"\n"
 "  --- NEW Physical volume ---\n"
 "  PV Name               /dev/sdb2\n"
 "  VG Name               \n"
@@ -1298,8 +1298,7 @@ msgid ""
 "  Writing physical volume data to disk \"/dev/sdf2\"\n"
 "  Physical volume \"/dev/sdf2\" successfully created\n"
 "# </computeroutput><userinput>pvdisplay -C</userinput>\n"
-"<computeroutput>root@mirwiz:~# pvdisplay -C\n"
-"  PV         VG   Fmt  Attr PSize PFree\n"
+"<computeroutput>  PV         VG   Fmt  Attr PSize PFree\n"
 "  /dev/sdb2       lvm2 a--  4.00g 4.00g\n"
 "  /dev/sdc3       lvm2 a--  3.09g 3.09g\n"
 "  /dev/sdd        lvm2 a--  4.00g 4.00g\n"
@@ -1451,8 +1450,9 @@ msgstr ""
 "  vg_normal     3   0   0 wz--n- 12,30g 12,30g</computeroutput>\n"
 
 #. Tag: para
-#, no-c-format
-msgid "Here again, commands are rather straightforward (and <command>vgdisplay</command> proposes two output formats). Note that it's quite possible to use two partitions of the same physical disk into two different VGs. Note also that we used a <filename>vg_</filename> prefix to name our VGs, but it's nothing more than a convention."
+#, fuzzy, no-c-format
+#| msgid "Here again, commands are rather straightforward (and <command>vgdisplay</command> proposes two output formats). Note that it's quite possible to use two partitions of the same physical disk into two different VGs. Note also that we used a <filename>vg_</filename> prefix to name our VGs, but it's nothing more than a convention."
+msgid "Here again, commands are rather straightforward (and <command>vgdisplay</command> proposes two output formats). Note that it is quite possible to use two partitions of the same physical disk into two different VGs. Note also that we used a <filename>vg_</filename> prefix to name our VGs, but it is nothing more than a convention."
 msgstr "Ici encore, les commandes sont relativement simples (et <command>vgdisplay</command> présente deux formats de sortie). Notons que rien n'empêche de placer deux partitions d'un même disque physique dans deux VG différents; le préfixe <filename>vg_</filename> utilisé ici est une convention, mais n'est pas obligatoire."
 
 #. Tag: para
@@ -2151,8 +2151,9 @@ msgstr "Bochs est une autre machine virtuelle libre mais elle ne fonctionne que 
 
 # Changed to improve readability
 #. Tag: para
-#, no-c-format
-msgid "VMWare is a proprietary virtual machine; being one of the oldest out there, it's also one of the most widely-known. It works on principles similar to QEMU. VMWare proposes advanced features such as snapshotting a running virtual machine. <ulink type=\"block\" url=\"http://www.vmware.com/\" />"
+#, fuzzy, no-c-format
+#| msgid "VMWare is a proprietary virtual machine; being one of the oldest out there, it's also one of the most widely-known. It works on principles similar to QEMU. VMWare proposes advanced features such as snapshotting a running virtual machine. <ulink type=\"block\" url=\"http://www.vmware.com/\" />"
+msgid "VMWare is a proprietary virtual machine; being one of the oldest out there, it is also one of the most widely-known. It works on principles similar to QEMU. VMWare proposes advanced features such as snapshotting a running virtual machine. <ulink type=\"block\" url=\"http://www.vmware.com/\" />"
 msgstr "VMWare est une machine virtuelle propriétaire. C'est la plus ancienne et par conséquent une des plus connues. Elle fonctionne selon un mécanisme similaire à QEMU et dispose de fonctionnalités avancées comme la possibilité de faire des <foreignphrase>snapshots</foreignphrase> (copies instantanées d'une machine virtuelle en fonctionnement). <ulink type=\"block\" url=\"http://www.vmware.com/fr/\" />"
 
 #. Tag: para
@@ -2567,10 +2568,9 @@ msgid "<emphasis>TOOL</emphasis> ConVirt"
 msgstr "<emphasis>OUTIL</emphasis> ConVirt"
 
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "ConVirt (in the <emphasis role=\"pkg\">convirt</emphasis> package, previously XenMan) is a graphical interface allowing controlling Xen domains installed on a machine. It provides most of the features of the <command>xm</command> command."
-msgid "ConVirt (in the <emphasis role=\"pkg\">convirt</emphasis> package, previously XenMan) is a graphical interface allowing controlling Xen domains installed on a machine. It provides most of the features of the <command>xm</command> command. Note that due to bugs and a slackening of development, <emphasis role=\"pkg\">convirt</emphasis>, which was included in <emphasis role=\"distribution\">Squeeze</emphasis>, has been removed and is no longer present in <emphasis role=\"distribution\">Wheezy</emphasis>."
-msgstr "ConVirt (dans le paquet <emphasis role=\"pkg\">convirt</emphasis>, anciennement connu sous le nom de XenMan) propose une interface graphique permettant de contrôler les domaines Xen installés sur une machine. La plupart des fonctions de <command>xm</command> sont accessibles."
+#, no-c-format
+msgid "OpenXenManager (in the <emphasis role=\"pkg\">openxenmanager</emphasis> package) is a graphical interface allowing remote management of Xen domains via Xen's API. It can thus control Xen domains remotely. It provides most of the features of the <command>xm</command> command."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2603,8 +2603,9 @@ msgid "Xen has many more features than we can describe in these few paragraphs. 
 msgstr "Xen offre de nombreuses fonctions avancées que que nous ne pouvons pas décrire dans ces quelques paragraphes. En particulier, le système est relativement dynamique, et l'on peut modifier différents paramètres d'un domaine (mémoire allouée, disques durs rendus disponibles, comportement de l'ordonnanceur des tâches, etc.) pendant le fonctionnement de ce domaine. On peut même migrer un domU entre des machines, sans l'éteindre ni perdre les connexions réseau! On se rapportera, pour ces aspects avancés, à la documentation de Xen. <ulink type=\"block\" url=\"http://www.xen.org/support/documentation.html\" />"
 
 #. Tag: para
-#, no-c-format
-msgid "Even though it's used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantage of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
+#, fuzzy, no-c-format
+#| msgid "Even though it's used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantage of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
+msgid "Even though it is used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantage of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
 msgstr "Bien qu'il soit utilisé pour construire des «machines virtuelles», LXC<indexterm><primary>LXC</primary></indexterm> n'est pas à proprement parler une solution de virtualisation. C'est en réalité un système permettant d'isoler des ensembles de processus sur un même système. Il tire parti pour cela d'un ensemble d'évolutions récentes du noyau Linux, regroupées sous le nom de <foreignphrase>control groups</foreignphrase>, et qui permettent de donner des visions différentes de certains aspects du système à des ensembles de processus appelés groupes. Parmi ces aspects du système figurent notamment les identifiants de processus, la configuration réseau et les points de montage. Un groupe de processus ainsi isolés n'aura pas accès aux autres processus du système, et son accès au système de fichiers pourra être restreint à un sous-ensemble prédéfini. Il aura également accès à sa propre interface réseau, sa table de routage, éventuellement à un sous-ensemble des périphériques présents, etc."
 
 #. Tag: para
@@ -2626,7 +2627,7 @@ msgstr "Contrairement au fonctionnement «habituel» des émulateurs ou des virt
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "the <emphasis role=\"distribution\">Squeeze</emphasis> standard kernel does not allow limiting the amount of memory available to a container; this feature exists, and can be enabled by rebuilding the kernel with the <foreignphrase>Memory Resource Controller</foreignphrase> option, but it is still considered somewhat experimental, and it has a (slight) cost on overall system performance, which is why it's disabled by default;"
-msgid "the <emphasis role=\"distribution\">Wheezy</emphasis> standard kernel does not allow limiting the amount of memory available to a container; the feature exists, and is built in the kernel, but it's disabled by default because it has a (slight) cost on overall system performance; however, enabling it is a simple matter of setting the <command>cgroup_enable=memory</command> kernel at boot time;"
+msgid "the <emphasis role=\"distribution\">Wheezy</emphasis> standard kernel does not allow limiting the amount of memory available to a container; the feature exists, and is built in the kernel, but it is disabled by default because it has a (slight) cost on overall system performance; however, enabling it is a simple matter of setting the <command>cgroup_enable=memory</command> kernel command-line option at boot time;"
 msgstr "il n'est pas possible, avec le noyau standard de Squeeze, de limiter la mémoire accessible à un conteneur; cette fonction n'est pas activée par défaut car elle est en cours de stabilisation et qu'elle a un (léger) coût sur les performances du système, mais il est possible de l'obtenir en compilant son noyau soi-même en activant l'option <foreignphrase>Memory Resource Controller</foreignphrase>;"
 
 #. Tag: para
@@ -2792,6 +2793,21 @@ msgstr "Mise en place du système"
 msgid "Let us now set up the filesystem to be used by the container. Since this “virtual machine” will not run directly on the hardware, some tweaks are required when compared to a standard filesystem, especially as far as the kernel, devices and consoles are concerned. Fortunately, the <emphasis role=\"pkg\">lxc</emphasis> includes scripts that mostly automate this configuration. For instance, the following commands (which require the <emphasis role=\"pkg\">debootstrap</emphasis> package) will install a Debian container:"
 msgstr "Nous allons maintenant mettre en place le système de fichiers qui sera utilisé par le conteneur. Comme cette «machine virtuelle» ne fonctionnera pas directement sur le matériel, certains ajustements sont nécessaires par rapport à un système de fichiers classique, notamment en ce qui concerne le noyau, les périphériques et les consoles. Fort heureusement, le paquet <emphasis role=\"pkg\">lxc</emphasis> contient des scripts qui automatisent en grande partie cette mise en place. Ainsi, pour créer un conteneur Debian, on pourra utiliser les commandes suivantes (qui auront besoin du paquet <emphasis role=\"pkg\">debootstrap</emphasis>):"
 
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>BEWARE</emphasis> Bugs in default <literal>debian</literal> template"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <command>/usr/share/lxc/templates/lxc-debian</command> template creation script provided in the initial <emphasis role=\"distribution\">Wheezy</emphasis> package (aka <emphasis role=\"pkg\">lxc</emphasis> 0.8.0~rc1-8+deb7u1) suffers from numerous problems. The most important one is that it relies on the <command>live-debconfig</command> program which is not available in <emphasis role=\"distribution\">Wheezy</emphasis> but only in newer versions of Debian. <ulink type=\"block\" url=\"http://bugs.debian.org/680469\" /> <ulink type=\"block\" url=\"http://bugs.debian.org/686747\" />"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "At the time of writing, there was no good solution and no usable work-around, except to use an alternate template creation script as suggested in the LXC page on the wiki. Further updates of lxc might fix this though. <ulink type=\"block\" url=\"https://wiki.debian.org/LXC#RootFS_creation\" />"
+msgstr ""
+
 #. Tag: screen
 #, fuzzy, no-c-format
 #| msgid ""
@@ -2809,15 +2825,19 @@ msgstr "Nous allons maintenant mettre en place le système de fichiers qui sera 
 #| "root@scouzmir:~# </computeroutput>\n"
 #| "        "
 msgid ""
-"<computeroutput>root@mirwiz:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
-"</userinput><computeroutput>root@mirwiz:~# </computeroutput><userinput>/usr/share/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/\n"
-"</userinput><computeroutput>[...]\n"
+"<computeroutput>root@mirwiz:~# </computeroutput><userinput>lxc-create -n testlxc -t debian\n"
+"</userinput><computeroutput>Note: Usually the template option is called with a configuration\n"
+"file option too, mostly to configure the network.\n"
+"For more information look at lxc.conf (5)\n"
+"\n"
 "Downloading minimal system...\n"
-"I: Retrieving InRelease\n"
+"I: Retrieving Release\n"
+"I: Retrieving Release.gpg\n"
 "I: Checking Release signature\n"
 "[...]\n"
 "0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.\n"
-"rm: cannot remove `/etc/lxc/auto/': Is a directory\n"
+"'debian' template installed\n"
+"'testlxc' created\n"
 "root@mirwiz:~# </computeroutput>\n"
 "        "
 msgstr ""
@@ -2976,8 +2996,9 @@ msgid "<primary>KVM</primary>"
 msgstr "<primary>KVM</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "KVM, which stands for <emphasis>Kernel-based Virtual Machine</emphasis>, is first and foremost a kernel module providing most of the infrastructure that can be used by a virtualizer, but it is not a virtualizer by itself. Actual control for the virtualization is handled by a QEMU-based application. Don't worry if this section mentions <command>qemu-*</command> commands: it's still about KVM."
+#, fuzzy, no-c-format
+#| msgid "KVM, which stands for <emphasis>Kernel-based Virtual Machine</emphasis>, is first and foremost a kernel module providing most of the infrastructure that can be used by a virtualizer, but it is not a virtualizer by itself. Actual control for the virtualization is handled by a QEMU-based application. Don't worry if this section mentions <command>qemu-*</command> commands: it's still about KVM."
+msgid "KVM, which stands for <emphasis>Kernel-based Virtual Machine</emphasis>, is first and foremost a kernel module providing most of the infrastructure that can be used by a virtualizer, but it is not a virtualizer by itself. Actual control for the virtualization is handled by a QEMU-based application. Don't worry if this section mentions <command>qemu-*</command> commands: it is still about KVM."
 msgstr "KVM (<foreignphrase>Kernel-based Virtual Machine</foreignphrase>, «Machine Virtuelle basée sur le Noyau») est avant tout un module noyau facilitant la mise en place de machines virtuelles. L'application que l'on utilise pour démarrer et contrôler ces machines virtuelles est dérivée de QEMU. Ne vous étonnez donc pas si l'on fait appel à des commandes <command>qemu-*</command> dans cette section traitant de KVM!"
 
 #. Tag: para
@@ -3111,7 +3132,7 @@ msgid ""
 "               --name testkvm            <co id=\"virtinst.name\"></co>\n"
 "               --ram 1024                <co id=\"virtinst.ram\"></co>\n"
 "               --disk /srv/kvm/testkvm.qcow,format=qcow2,size=10 <co id=\"virtinst.disk\"></co>\n"
-"               --cdrom /srv/isos/debian-wheezy-DI-b4-amd64-netinst.iso    <co id=\"virtinst.cdrom\"></co>\n"
+"               --cdrom /srv/isos/debian-7.2.0-amd64-netinst.iso  <co id=\"virtinst.cdrom\"></co>\n"
 "               --network bridge=br0      <co id=\"virtinst.network\"></co>\n"
 "               --vnc                     <co id=\"virtinst.vnc\"></co>\n"
 "               --os-type linux           <co id=\"virtinst.os\"></co>\n"
@@ -3325,12 +3346,12 @@ msgstr "Toutes ces commandes prennent en paramètre un identifiant de machine vi
 
 #. Tag: title
 #, no-c-format
-msgid "Installting an RPM based system in Debian with yum"
+msgid "Installing an RPM based system in Debian with yum"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "If the Xen image is meant to run a Debian (or one of its derivatives), the domU can be initialized with <command>debootstrap</command>, as described above. But if the domU is to be installed with an RPM-based system (such as Fedora, CentOS or Scientific Linux), the setup will need to be done using the <command>yum</command> utility (which is packaged in Debian)."
+msgid "If the virtual machine is meant to run a Debian (or one of its derivatives), the system can be initialized with <command>debootstrap</command>, as described above. But if the virtual machine is to be installed with an RPM-based system (such as Fedora, CentOS or Scientific Linux), the setup will need to be done using the <command>yum</command> utility (available in the package of the same name)."
 msgstr ""
 
 #. Tag: para
@@ -3678,7 +3699,7 @@ msgstr "<emphasis>DOCUMENTATION</emphasis> Annexe du manuel de l'installateur"
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "The installation guide, available online, includes detailed documentation on the use of a preseed file in an appendix. It also includes a detailed and commented sample file, which can serve as a base for local customizations. <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/i386/apb.html\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/example-preseed.txt\" />"
-msgid "The installation guide, available online, includes detailed documentation on the use of a preseed file in an appendix. It also includes a detailed and commented sample file, which can serve as a base for local customizations. <ulink type=\"block\" url=\"http://www.debian.org/releases/wheezy/i386/apb.html\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/wheezy/example-preseed.txt\" />"
+msgid "The installation guide, available online, includes detailed documentation on the use of a preseed file in an appendix. It also includes a detailed and commented sample file, which can serve as a base for local customizations. <ulink type=\"block\" url=\"http://www.debian.org/releases/wheezy/amd64/apb.html\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/wheezy/example-preseed.txt\" />"
 msgstr "L'utilisation d'un fichier de préconfiguration est très bien documentée dans une annexe du manuel de l'installateur que l'on trouve en ligne. Il fournit également un exemple détaillé et commenté d'un fichier de préconfiguration que l'on pourra reprendre et adapter à sa guise. <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/i386/apb.html\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/example-preseed.txt\" />"
 
 #. Tag: title
@@ -3699,7 +3720,7 @@ msgstr "Démarrage depuis le réseau"
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "When a computer is booted from the network, the server sending the initialization elements also defines the boot parameters. Thus, the change needs to be made in the PXE configuration for the boot server; more specifically, in its <filename>/tftpboot/pxelinux.cfg/default</filename> configuration file. Setting up network boot is a prerequisite; see the Installation Guide for details. <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/i386/ch04s05.html\" />"
-msgid "When a computer is booted from the network, the server sending the initialization elements also defines the boot parameters. Thus, the change needs to be made in the PXE configuration for the boot server; more specifically, in its <filename>/tftpboot/pxelinux.cfg/default</filename> configuration file. Setting up network boot is a prerequisite; see the Installation Guide for details. <ulink type=\"block\" url=\"http://www.debian.org/releases/wheezy/i386/ch04s05.html\" />"
+msgid "When a computer is booted from the network, the server sending the initialization elements also defines the boot parameters. Thus, the change needs to be made in the PXE configuration for the boot server; more specifically, in its <filename>/tftpboot/pxelinux.cfg/default</filename> configuration file. Setting up network boot is a prerequisite; see the Installation Guide for details. <ulink type=\"block\" url=\"http://www.debian.org/releases/wheezy/amd64/ch04s05.html\" />"
 msgstr "Lorsqu'on démarre un ordinateur depuis le réseau, c'est le serveur chargé d'envoyer les éléments de démarrage qui définit les paramètres de démarrage. C'est donc la configuration PXE sur le serveur de démarrage qu'il faut aller modifier, et en particulier le fichier <filename>/tftpboot/pxelinux.cfg/default</filename>. La mise en place du démarrage par le réseau est un prérequis; elle est détaillée dans le manuel d'installation. <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/i386/ch04s05.html\" />"
 
 #. Tag: title
@@ -3913,7 +3934,7 @@ msgstr "Générer une image ISO"
 #. Tag: para
 #, fuzzy, no-c-format
 #| msgid "Once we have written a configuration file and defined our profiles, the remaining step is to invoke <command>build-simple-cdd --conf simple-cdd.conf</command>. After a few minutes, we get the required image in <filename>images/debian-6.0-i386-CD-1.iso</filename>."
-msgid "Once we have written a configuration file and defined our profiles, the remaining step is to invoke <command>build-simple-cdd --conf simple-cdd.conf</command>. After a few minutes, we get the required image in <filename>images/debian-7.0-i386-CD-1.iso</filename>."
+msgid "Once we have written a configuration file and defined our profiles, the remaining step is to invoke <command>build-simple-cdd --conf simple-cdd.conf</command>. After a few minutes, we get the required image in <filename>images/debian-7.0-amd64-CD-1.iso</filename>."
 msgstr "Une fois le fichier de configuration rédigé, et les profils correctement définis, il ne reste donc plus qu'à invoquer <command>build-simple-cdd --conf simple-cdd.conf</command>. Après quelques minutes on obtient alors l'image souhaitée: <filename>images/debian-6.0-i386-CD-1.iso</filename>"
 
 #. Tag: para
@@ -4431,6 +4452,11 @@ msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Tests distants avec NRPE"
 #, no-c-format
 msgid "Many Nagios plugins allow checking some parameters local to a host; if many machines need these checks while a central installation gathers them, the NRPE (<emphasis>Nagios Remote Plugin Executor</emphasis>) plugin needs to be deployed. The <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> package needs to be installed on the Nagios server, and <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> on the hosts where local tests need to run. The latter gets its configuration from <filename>/etc/nagios/nrpe.cfg</filename>. This file should list the tests that can be started remotely, and the IP addresses of the machines allowed to trigger them. On the Nagios side, enabling these remote tests is a simple matter of adding matching services using the new <emphasis>check_nrpe</emphasis> command."
 msgstr "De nombreux greffons de Nagios permettent de vérifier l'état de certains paramètres locaux d'une machine. Si l'on souhaite effectuer ces vérifications sur de nombreuses machines tout en centralisant les résultats sur une seule installation, il faut employer le greffon NRPE (<foreignphrase>Nagios Remote Plugin Executor</foreignphrase>). On installe <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> sur le serveur Nagios et <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> sur les machines sur lesquels on veut exécuter certains tests locaux. Ce dernier se configure par le biais du fichier <filename>/etc/nagios/nrpe.cfg</filename>. On y indique les tests que l'on peut démarrer à distance ainsi que les adresses IP des machines qui sont autorisées à les déclencher. Du côté de Nagios, il suffit d'ajouter les services correspondants en faisant appel à la nouvelle commande <emphasis>check_nrpe</emphasis>."
+
+#, fuzzy
+#~| msgid "ConVirt (in the <emphasis role=\"pkg\">convirt</emphasis> package, previously XenMan) is a graphical interface allowing controlling Xen domains installed on a machine. It provides most of the features of the <command>xm</command> command."
+#~ msgid "ConVirt (in the <emphasis role=\"pkg\">convirt</emphasis> package, previously XenMan) is a graphical interface allowing controlling Xen domains installed on a machine. It provides most of the features of the <command>xm</command> command. Note that due to bugs and a slackening of development, <emphasis role=\"pkg\">convirt</emphasis>, which was included in <emphasis role=\"distribution\">Squeeze</emphasis>, has been removed and is no longer present in <emphasis role=\"distribution\">Wheezy</emphasis>."
+#~ msgstr "ConVirt (dans le paquet <emphasis role=\"pkg\">convirt</emphasis>, anciennement connu sous le nom de XenMan) propose une interface graphique permettant de contrôler les domaines Xen installés sur une machine. La plupart des fonctions de <command>xm</command> sont accessibles."
 
 #~ msgid "<primary><command>Bochs</command></primary>"
 #~ msgstr "<primary><command>Bochs</command></primary>"
