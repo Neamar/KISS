@@ -43,15 +43,11 @@
     role="distribution">Stable</emphasis> distribution; this operation
     is called “backporting”. As usual, care should be taken, before
     undertaking such a task, to check whether it has been done
-    already.  For versions of Debian up to <emphasis
-    role="distribution">Squeeze</emphasis>, that could be checked at
-    the <literal>backports.debian.org</literal> site.  Since then, the
-    backports have been merged into the main archive, so the
-    information about whether a package has already been backported or
-    not is displayed on the Package Tracking System page for that
-    package. <ulink type="block"
-    url="http://packages.qa.debian.org/"/>
-    <indexterm><primary>backport</primary></indexterm></para>
+    already — a quick look on the Package Tracking System's page for
+    that package will reveal that information.
+    <ulink type="block" url="http://packages.qa.debian.org/"/>
+    <indexterm><primary>backport</primary></indexterm>
+    </para>
     <section>
       <title>Getting the Sources</title>
 
@@ -100,14 +96,14 @@
       so that the rebuilt packages can be distinguished from the original
       packages provided by Debian. Assuming the current version is
       <literal>3.6.16-2</literal>, we can create version
-      <literal>3.6.16-2.falcot1</literal>, which clearly indicates the
+      <literal>3.6.16-2falcot1</literal>, which clearly indicates the
       origin of the package. This makes the package version number higher
       than the one provided by Debian, so that the package will easily
       install as an update do the original package. Such a change is best
       effected with the <command>dch</command> command (<emphasis>Debian
       CHangelog</emphasis>) from the <emphasis
       role="pkg">devscripts</emphasis> package, with an command such as
-      <command>dch -v 3.6.16-2.falcot1</command>. This invokes a
+      <command>dch --local falcot</command>. This invokes a
       text editor (<command>sensible-editor</command> — this should be
       your favorite editor if it's mentioned in the
       <varname>VISUAL</varname> or <varname>EDITOR</varname> environment
@@ -861,7 +857,7 @@ release_label = Internal Packages
 	  isolated environment), and checks that none of these
 	  operations leads to an error.  It can help in detecting
 	  missing dependencies, and it also detects when files are
-	  left over even if the package is purged.</para>
+	  incorrectly left over after the package got purged.</para>
         </section>
         <section>
           <title>devscripts</title>
@@ -1054,8 +1050,8 @@ release_label = Internal Packages
 	<para>Once the registration on <literal>nm.debian.org</literal> has
 	been validated by the advocate, an <emphasis>Application
 	Manager</emphasis> is assigned to the candidate. The application
-	manager will, from then on, follow procedures and validate the
-	various steps that the process includes.</para>
+	manager will then drive the process through multiple pre-defined
+	steps and checks.</para>
 
 	<para>The first verification is an identity check. If you already
 	have a key signed by two Debian developers, this step is easy;

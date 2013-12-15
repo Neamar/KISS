@@ -59,7 +59,7 @@
       <emphasis>btrfs</emphasis> is a new filesystem, initially
       developed at Oracle, that purports to combine the featuresets of
       LVM and RAID and much more. It is mostly functional, and
-      although it's still tagged “experimental” because its
+      although it is still tagged “experimental” because its
       development is incomplete (some features aren't implemented
       yet), it has already seen some use in production environments.
       <ulink type="block" url="http://btrfs.wiki.kernel.org/"/></para>
@@ -98,7 +98,7 @@
 	<para>The I in RAID initially stood for
 	<emphasis>inexpensive</emphasis>, because RAID allowed a drastic
 	increase in data safety without requiring investing in expensive
-	high-end disks. Probably due to image concerns, however, it's now
+	high-end disks. Probably due to image concerns, however, it is now
 	more customarily considered to stand for
 	<emphasis>independent</emphasis>, which doesn't have the unsavory
 	flavour of cheapness.</para>
@@ -137,7 +137,7 @@
         <title>Different RAID Levels</title>
 
 	<para>RAID is actually not a single system, but a range of
-	systems identified by their levels; the levels by their layout
+	systems identified by their levels; the levels differ by their layout
 	and the amount of redundancy they provide. The more redundant,
 	the more failure-proof, since the system will be able to keep
 	working with more failed disks. The counterpart is that the
@@ -385,7 +385,7 @@
 <computeroutput>mdadm: Defaulting to version 1.2 metadata
 mdadm: array /dev/md0 started.
 # </computeroutput><userinput>mdadm --query /dev/md0</userinput>
-<computeroutput>/dev/md0: 7.100GiB raid0 2 devices, 0 spares. Use mdadm --detail for more detail.
+<computeroutput>/dev/md0: 8.00GiB raid0 2 devices, 0 spares. Use mdadm --detail for more detail.
 # </computeroutput><userinput>mdadm --detail /dev/md0</userinput>
 <computeroutput>/dev/md0:
         Version : 1.2
@@ -472,7 +472,7 @@ Continue creating array? </computeroutput><userinput>y</userinput>
 <computeroutput>mdadm: Defaulting to version 1.2 metadata
 mdadm: array /dev/md1 started.
 # </computeroutput><userinput>mdadm --query /dev/md1</userinput>
-<computeroutput>/dev/md1: 3.100GiB raid1 2 devices, 0 spares. Use mdadm --detail for more detail.
+<computeroutput>/dev/md1: 4.00GiB raid1 2 devices, 0 spares. Use mdadm --detail for more detail.
 # </computeroutput><userinput>mdadm --detail /dev/md1</userinput>
 <computeroutput>/dev/md1:
         Version : 1.2
@@ -600,7 +600,7 @@ Working Devices : 1
        1       8       64        -      faulty spare   /dev/sde</computeroutput>
 </screen>
 
-	<para>The contents of the volume are still accessible (and, if it's
+	<para>The contents of the volume are still accessible (and, if it is
 	mounted, the applications don't notice a thing), but the data
 	safety isn't assured anymore: should the <filename>sdd</filename>
 	disk fail in turn, the data would be lost. We want to avoid that
@@ -689,7 +689,7 @@ Working Devices : 2
 	can detect the arrays and their components and assemble them
 	automatically when the system starts up. However, backing up this
 	configuration is encouraged, because this detection isn't
-	fail-proof, and it's only expected that it will fail precisely in
+	fail-proof, and it is only expected that it will fail precisely in
 	sensitive circumstances. In our example, if the
 	<filename>sde</filename> disk failure had been real (instead of
 	simulated) and the system had been restarted without removing this
@@ -892,8 +892,7 @@ ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f674
 <computeroutput>  Writing physical volume data to disk "/dev/sdb2"
   Physical volume "/dev/sdb2" successfully created
 # </computeroutput><userinput>pvdisplay</userinput>
-<computeroutput>pvdisplay 
-  "/dev/sdb2" is a new physical volume of "4.00 GiB"
+<computeroutput>  "/dev/sdb2" is a new physical volume of "4.00 GiB"
   --- NEW Physical volume ---
   PV Name               /dev/sdb2
   VG Name               
@@ -915,8 +914,7 @@ ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f674
   Writing physical volume data to disk "/dev/sdf2"
   Physical volume "/dev/sdf2" successfully created
 # </computeroutput><userinput>pvdisplay -C</userinput>
-<computeroutput>root@mirwiz:~# pvdisplay -C
-  PV         VG   Fmt  Attr PSize PFree
+<computeroutput>  PV         VG   Fmt  Attr PSize PFree
   /dev/sdb2       lvm2 a--  4.00g 4.00g
   /dev/sdc3       lvm2 a--  3.09g 3.09g
   /dev/sdd        lvm2 a--  4.00g 4.00g
@@ -973,9 +971,9 @@ ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f674
 
 	<para>Here again, commands are rather straightforward (and
 	<command>vgdisplay</command> proposes two output formats). Note
-	that it's quite possible to use two partitions of the same physical
+	that it is quite possible to use two partitions of the same physical
 	disk into two different VGs. Note also that we used a
-	<filename>vg_</filename> prefix to name our VGs, but it's nothing
+	<filename>vg_</filename> prefix to name our VGs, but it is nothing
 	more than a convention.</para>
 
 	<para>We now have two “virtual disks”, sized about 8 GB and
@@ -1501,7 +1499,7 @@ Disk identifier: 0x00039a9f
       </listitem>
       <listitem>
 	<para>VMWare is a proprietary virtual machine; being one of the
-	oldest out there, it's also one of the most widely-known. It works
+	oldest out there, it is also one of the most widely-known. It works
 	on principles similar to QEMU. VMWare proposes advanced features
 	such as snapshotting a running virtual machine. <ulink type="block"
 	url="http://www.vmware.com/"/></para>
@@ -1887,15 +1885,10 @@ testxen login: </computeroutput>
       <sidebar>
         <title><emphasis>TOOL</emphasis> ConVirt</title>
 
-	<para>ConVirt (in the <emphasis role="pkg">convirt</emphasis>
-	package, previously XenMan) is a graphical interface allowing
-	controlling Xen domains installed on a machine. It provides
-	most of the features of the <command>xm</command> command.
-	Note that due to bugs and a slackening of development,
-	<emphasis role="pkg">convirt</emphasis>, which was included in
-	<emphasis role="distribution">Squeeze</emphasis>, has been
-	removed and is no longer present in <emphasis
-	role="distribution">Wheezy</emphasis>.
+	<para>OpenXenManager (in the <emphasis role="pkg">openxenmanager</emphasis>
+	package) is a graphical interface allowing remote management
+	of Xen domains via Xen's API. It can thus control Xen domains remotely. It
+	provides most of the features of the <command>xm</command> command.
 	</para>
       </sidebar>
 
@@ -1950,7 +1943,7 @@ testxen login: </computeroutput>
     <section id="sect.lxc">
       <title>LXC</title>
 
-      <para>Even though it's used to build “virtual machines”, LXC
+      <para>Even though it is used to build “virtual machines”, LXC
       <indexterm><primary>LXC</primary></indexterm> is not, strictly
       speaking, a virtualization system, but a system to isolate groups of
       processes from each other even though they all run on the same host.
@@ -1993,11 +1986,11 @@ testxen login: </computeroutput>
 	    <para>the <emphasis role="distribution">Wheezy</emphasis>
 	    standard kernel does not allow limiting the amount of
 	    memory available to a container; the feature exists, and
-	    is built in the kernel, but it's disabled by default
+	    is built in the kernel, but it is disabled by default
 	    because it has a (slight) cost on overall system
 	    performance; however, enabling it is a simple matter of
 	    setting the <command>cgroup_enable=memory</command> kernel
-	    at boot time;</para>
+	    command-line option at boot time;</para>
           </listitem>
           <listitem>
 	    <para>since the kernel is shared among the host system and the
@@ -2144,15 +2137,41 @@ iface br0 inet static
 	role="pkg">debootstrap</emphasis> package) will install a Debian
 	container:</para>
 
-        <screen><computeroutput>root@mirwiz:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/
-</userinput><computeroutput>root@mirwiz:~# </computeroutput><userinput>/usr/share/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/
-</userinput><computeroutput>[...]
+	<sidebar>
+	  <title><emphasis>BEWARE</emphasis> Bugs in default <literal>debian</literal> template</title>
+
+	  <para>The <command>/usr/share/lxc/templates/lxc-debian</command>
+	  template creation script provided in the initial <emphasis
+	  role="distribution">Wheezy</emphasis> package (aka <emphasis
+	  role="pkg">lxc</emphasis> 0.8.0~rc1-8+deb7u1) suffers from
+	  numerous problems. The most important one is that it relies on
+	  the <command>live-debconfig</command> program which is not
+	  available in <emphasis role="distribution">Wheezy</emphasis> but
+	  only in newer versions of Debian.
+	  <ulink type="block" url="http://bugs.debian.org/680469" />
+	  <ulink type="block" url="http://bugs.debian.org/686747" />
+	  </para>
+	  <para>At the time of writing, there was no good solution and no
+	  usable work-around, except to use an alternate template creation
+	  script as suggested in the LXC page on the wiki. Further updates
+	  of lxc might fix this though.
+	  <ulink type="block" url="https://wiki.debian.org/LXC#RootFS_creation" />
+	  </para>
+	</sidebar>
+
+        <screen><computeroutput>root@mirwiz:~# </computeroutput><userinput>lxc-create -n testlxc -t debian
+</userinput><computeroutput>Note: Usually the template option is called with a configuration
+file option too, mostly to configure the network.
+For more information look at lxc.conf (5)
+
 Downloading minimal system...
-I: Retrieving InRelease
+I: Retrieving Release
+I: Retrieving Release.gpg
 I: Checking Release signature
 [...]
 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-rm: cannot remove `/etc/lxc/auto/': Is a directory
+'debian' template installed
+'testlxc' created
 root@mirwiz:~# </computeroutput>
         </screen>
 
@@ -2307,7 +2326,7 @@ root@testlxc:~# </computeroutput></screen>
       most of the infrastructure that can be used by a virtualizer, but it
       is not a virtualizer by itself. Actual control for the virtualization
       is handled by a QEMU-based application. Don't worry if this section
-      mentions <command>qemu-*</command> commands: it's still about
+      mentions <command>qemu-*</command> commands: it is still about
       KVM.</para>
 
       <para>Unlike other virtualization systems, KVM was merged into the
@@ -2424,7 +2443,7 @@ root@mirwiz:~# </computeroutput></screen>
                --name testkvm            <co id="virtinst.name"/>
                --ram 1024                <co id="virtinst.ram"/>
                --disk /srv/kvm/testkvm.qcow,format=qcow2,size=10 <co id="virtinst.disk"/>
-               --cdrom /srv/isos/debian-wheezy-DI-b4-amd64-netinst.iso    <co id="virtinst.cdrom"/>
+               --cdrom /srv/isos/debian-7.2.0-amd64-netinst.iso  <co id="virtinst.cdrom"/>
                --network bridge=br0      <co id="virtinst.network"/>
                --vnc                     <co id="virtinst.vnc"/>
                --os-type linux           <co id="virtinst.os"/>
@@ -2600,14 +2619,15 @@ root@server's password: </computeroutput>
 	parameter.</para>
       </section>
       <section>
-        <title>Installting an RPM based system in Debian with yum</title>
+        <title>Installing an RPM based system in Debian with yum</title>
 
-	<para>If the Xen image is meant to run a Debian (or one of its
-	derivatives), the domU can be initialized with
+	<para>If the virtual machine is meant to run a Debian (or one of its
+	derivatives), the system can be initialized with
 	<command>debootstrap</command>, as described above.  But if
-	the domU is to be installed with an RPM-based system (such as
+	the virtual machine is to be installed with an RPM-based system (such as
 	Fedora, CentOS or Scientific Linux), the setup will need to be
-	done using the <command>yum</command> utility (which is packaged in Debian).</para>
+	done using the <command>yum</command> utility (available in the package
+	of the same name).</para>
 	
 	<para>The procedure requires setting up a
 	<filename>yum.conf</filename> file containing the necessary
@@ -2968,7 +2988,7 @@ tokeep=5
 	  documentation on the use of a preseed file in an appendix. It
 	  also includes a detailed and commented sample file, which can
 	  serve as a base for local customizations. <ulink type="block"
-	  url="http://www.debian.org/releases/wheezy/i386/apb.html"/>
+	  url="http://www.debian.org/releases/wheezy/amd64/apb.html"/>
 	  <ulink type="block"
 	  url="http://www.debian.org/releases/wheezy/example-preseed.txt"/></para>
         </sidebar>
@@ -2990,7 +3010,7 @@ tokeep=5
 	  <filename>/tftpboot/pxelinux.cfg/default</filename> configuration
 	  file. Setting up network boot is a prerequisite; see the
 	  Installation Guide for details. <ulink type="block"
-	  url="http://www.debian.org/releases/wheezy/i386/ch04s05.html"/></para>
+	  url="http://www.debian.org/releases/wheezy/amd64/ch04s05.html"/></para>
         </section>
         <section>
           <title>Preparing a Bootable USB Key</title>
@@ -3212,7 +3232,7 @@ append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap
 	profiles, the remaining step is to invoke <command>build-simple-cdd
 	--conf simple-cdd.conf</command>. After a few minutes, we get the
 	required image in
-	<filename>images/debian-7.0-i386-CD-1.iso</filename>.</para>
+	<filename>images/debian-7.0-amd64-CD-1.iso</filename>.</para>
       </section>
     </section>
   </section>

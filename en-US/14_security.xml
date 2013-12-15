@@ -190,13 +190,12 @@
     </sidebar>
 
     <para>The Linux kernel embeds the <emphasis>netfilter</emphasis>
-    firewall (and has done so since the Linux 2.4 days). It can be
-    controlled from user-space with the <command>iptables</command>
-    and <command>ip6tables</command> commands.  The difference between
-    these two commands is that the former acts on the IPv4 network,
-    whereas the latter acts on IPv6. Since both network protocol
-    stacks will probably be around for many years, both tools will
-    need to be used in parallel.</para>
+    firewall. It can be controlled from user-space with the
+    <command>iptables</command> and <command>ip6tables</command> commands.
+    The difference between these two commands is that the former acts on
+    the IPv4 network, whereas the latter acts on IPv6. Since both network
+    protocol stacks will probably be around for many years, both tools
+    will need to be used in parallel.</para>
     <indexterm><primary><command>iptables</command></primary></indexterm>
     <indexterm><primary><command>ip6tables</command></primary></indexterm>
     <section id="sect.netfilter">
@@ -420,7 +419,7 @@
       table to operate on (by default, <literal>filter</literal>).</para>
       <indexterm><primary><command>iptables</command></primary></indexterm>
       <indexterm><primary><command>ip6tables</command></primary></indexterm>
-      <section id="sect.commandes-iptables">
+      <section id="sect.iptables-command">
         <title>Commands</title>
 
 	<para>The <literal>-N
@@ -453,7 +452,7 @@
 	default action, or “policy”, for a given chain; note that only
 	standard chains can have such a policy.</para>
       </section>
-      <section id="sect.regles-iptables">
+      <section id="sect.iptables-rules">
         <title>Rules</title>
         <indexterm><primary>filtering rule</primary></indexterm>
 
@@ -549,7 +548,7 @@
 	redirected.</para>
       </section>
     </section>
-    <section id="sect.creer-regles">
+    <section id="sect.creating-rules">
       <title>Creating Rules</title>
 
       <para>Each rule creation requires one invocation of
@@ -606,7 +605,7 @@
       configuring the firewall according to the rules that have been
       defined. Its modular architecture gives it the ability to generate
       scripts targeting different systems (<command>iptables</command> for
-      Linux 2.4/2.6/3, <command>ipf</command> for FreeBSD and
+      Linux, <command>ipf</command> for FreeBSD and
       <command>pf</command> for OpenBSD).</para>
 
       <para>Versions of the <emphasis role="pkg">fwbuilder</emphasis>
@@ -619,7 +618,7 @@
 <computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>
 </screen>
     </section>
-    <section id="sect.installation-regles-boot">
+    <section id="sect.install-rules-at-boot">
       <title>Installing the Rules at Each Boot</title>
 
       <para>If the firewall is meant to protect an intermittent PPP network
@@ -757,11 +756,11 @@ iface eth0 inet static
         <indexterm><primary>logs</primary><secondary>display</secondary></indexterm>
       </sidebar>
     </section>
-    <section id="sect.surveillance-activite">
+    <section id="sect.monitoring-activity">
       <title>Monitoring Activity</title>
       <indexterm><primary>monitoring</primary><secondary>activity</secondary></indexterm>
       <indexterm><primary>activity, monitoring</primary></indexterm>
-      <section id="sect.surveillance-temps-reel">
+      <section id="sect.real-time-monitoring">
         <title>In Real Time</title>
 
 	<para><command>top</command> is an interactive tool that displays a
@@ -797,7 +796,7 @@ iface eth0 inet static
 
         <indexterm><primary><command>gnome-system-monitor</command></primary></indexterm>
       </section>
-      <section id="sect.surveillance-historique">
+      <section id="sect.monitoring-history">
         <title>History</title>
         <indexterm><primary>activity, history</primary></indexterm>
 
@@ -1024,7 +1023,7 @@ iface eth0 inet static
         </sidebar>
       </section>
     </section>
-    <section id="sect.detection-intrusion">
+    <section id="sect.intrusion-detection">
       <title>Detecting Intrusion (IDS/NIDS)</title>
       <indexterm><primary>detection, intrusion</primary></indexterm>
       <indexterm><primary>intrusion detection</primary></indexterm>
@@ -1126,7 +1125,7 @@ iface eth0 inet static
   <section id="sect.selinux">
     <title>Introduction to SELinux</title>
     <indexterm><primary>SELinux</primary></indexterm>
-    <section id="sect.selinux-principes">
+    <section id="sect.selinux-principles">
       <title>Principles</title>
 
       <para>SELinux (<emphasis>Security Enhanced Linux</emphasis>) is a
@@ -1252,7 +1251,7 @@ iface eth0 inet static
 	context.</para>
       </sidebar>
     </section>
-    <section id="sect.selinux-mise-en-route">
+    <section id="sect.selinux-setup">
       <title>Setting Up SELinux</title>
 
       <para>SELinux support is built into the standard kernels provided by
@@ -1297,7 +1296,7 @@ iface eth0 inet static
       (which avoids new non-labeled files created while SELinux was not yet
       active and while the labeling was going on).</para>
     </section>
-    <section id="sect.selinux-gestion">
+    <section id="sect.selinux-management">
       <title>Managing an SELinux System</title>
       <indexterm><primary><command>semodule</command></primary></indexterm>
       <indexterm><primary><command>semanage</command></primary></indexterm>
@@ -1489,7 +1488,7 @@ user_u          user       s0         s0               user_r
 </screen>
       </section>
     </section>
-    <section id="sect.selinux-adaptation-regles">
+    <section id="sect.selinux-custom-rules">
       <title>Adapting the Rules</title>
 
       <para>Since the SELinux policy is modular, it might be interesting to

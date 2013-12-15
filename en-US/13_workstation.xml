@@ -165,19 +165,14 @@
       picked <command>gdm3</command> as a display manager too. The
       <filename>/etc/gdm3/daemon.conf</filename> configuration file
       has many options (the list can be found in the
-      <filename>/usr/share/gdm/gdm.schemas</filename> schema file).
-      Up to <emphasis role="distribution">Squeeze</emphasis>, some of
-      these options could be set by <command>gdmsetup</command>, a
-      graphical interface for <command>gdm3</command> configuration
-      that could be run from the
-      <menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu>
-      <guimenuitem>Display screen</guimenuitem></menuchoice> menu in
-      the GNOME desktop.  This tool is no longer available in
-      <emphasis role="distribution">Wheezy</emphasis>.  Some of its
-      functionality (in particular the configuration of automatic
-      logins) can be found in GNOME's control center; the rest of the
-      <command>gdm3</command> configuration is controlled by the
-      <filename>/etc/gdm3/greeter.gsettings</filename> file.</para>
+      <filename>/usr/share/gdm/gdm.schemas</filename> schema file)
+      to control its behaviour while
+      <filename>/etc/gdm3/greeter.gsettings</filename> contains
+      settings for the greeter “session” (more than just a login
+      window, it's a limited desktop with power management and
+      accessibility related tools). Note that some of the most
+      useful settings for end-users can be tweaked with GNOME's
+      control center.</para>
 
     </section>
     <section>
@@ -326,17 +321,16 @@
 
 	<para>The Debian developers have kept a close eye on this
 	project and <filename>.desktop</filename> files can be
-	generated from the Debian menu system. However, neither GNOME
-	nor KDE use the Debian menu. They both prefer keeping complete
-	control over their menus.  Up to <emphasis
-	role="distribution">Squeeze</emphasis>, it used to be possible
-	to enable a “Debian” submenu containing the official menu as
-	maintained by Debian: in GNOME, the menu editor (in the
+	generated from the Debian menu system (with the help
+	of the <emphasis role="pkg">menu-xdg</emphasis> package).
+	However, neither GNOME nor KDE use the Debian menu. They
+	both prefer keeping complete control over their menus. Note
+	that only GNOME Classic has a proper menu, the default GNOME
+	session uses GNOME Shell which got rid of the applications
+	menu entirely. In GNOME Classic, the menu editor (in the
 	<emphasis role="pkg">alacarte</emphasis> package) is available
 	by right-clicking on the panel menu, then choosing “Edit
-	menus”.  The menu-editing process is still available in
-	<emphasis role="distribution">Wheezy</emphasis>, but the
-	Debian submenu is no longer available.</para>
+	menus”.</para>
       </sidebar>
 
       <para>The administrator can also have a say in the process and in the
@@ -424,8 +418,10 @@
       data in DConf) and GConf (the old system used in GNOME 2.x, and
       still used by a few GNOME 3.x applications).  These registries
       can be queried and edited with the <command>gsettings</command>,
-      <command>dconf-editor</command> and
-      <command>gconftool-2</command> command-line tools. The
+      <command>dconf</command> and
+      <command>gconftool-2</command> command-line tools, or by the
+      <command>dconf-editor</command> and <command>gconf-editor</command>
+      graphical user interfaces. The
       administrator can therefore change users' configuration with a
       simple script. The following website lists all information of
       interest to an administrator tasked to manage GNOME
@@ -434,7 +430,7 @@
       type="block"
       url="http://library.gnome.org/admin/deployment-guide/"/></para>
       <indexterm><primary><command>gsettings</command></primary></indexterm>
-      <indexterm><primary><command>dconf-editor</command></primary></indexterm>
+      <indexterm><primary><command>dconf</command></primary></indexterm>
       <indexterm><primary><command>gconf</command></primary></indexterm>
       <indexterm><primary><command>gconftool-2</command></primary></indexterm>
     </section>
@@ -494,7 +490,9 @@
       </figure>
 
       <para>Another desktop environment provided in Wheezy is LXDE,
-      which focuses on the “lightweight” aspect.</para>
+      which focuses on the “lightweight” aspect. It can be installed
+      with the help of the <emphasis role="pkg">lxde</emphasis>
+      meta-package.</para>
       <indexterm><primary>LXDE</primary></indexterm>
     </section>
   </section>
@@ -756,25 +754,22 @@
         <title>Working in Groups: <foreignphrase>groupware</foreignphrase></title>
         <indexterm><primary><emphasis>groupware</emphasis></primary></indexterm>
 
-	<para>A previous edition of this book mentioned
-	<emphasis>PHPGroupware</emphasis>, but this software is no
-	longer in Debian… It is no longer actively maintained, and no
-	existing version was compatible with the PHP version 5.3
-	included in Debian <emphasis
-	role="distribution">Squeeze</emphasis> (or later versions),
-	which is why the Debian maintainer asked for the package to be
-	removed. <ulink type="block"
-	url="http://www.phpgroupware.org/"/></para>
+	<para>Groupware tools tend to be relatively complex
+	to maintain because they aggregate multiple tools and
+	have requirements that are not always easy to reconcile in
+	the context of an integrated distribution. Thus there
+	is a long list of groupware that were once available
+	in Debian but have been dropped for lack of maintainers
+	or incompatibility with other (newer) software in Debian.
+	It has been the case of PHPGroupware, eGroupware, and
+	Kolab.
+	<ulink type="block" url="http://www.phpgroupware.org/"/>
+	<ulink type="block" url="http://www.egroupware.org/"/>
+	<ulink type="block" url="http://www.kolab.org/"/>
+	</para>
 	<indexterm><primary>PHPGroupware</primary></indexterm>
-
-	<para><emphasis>eGroupware</emphasis> was also mentioned, but it
-	too went the way of PHPGroupware, but for different reasons. The
-	software is still maintained by the company that develops it, but
-	no volunteer has stepped up to ensure its maintenance within
-	Debian. Should you still wish to use it, the project itself
-	provides Debian packages. <ulink type="block"
-	url="http://www.egroupware.org/"/></para>
         <indexterm><primary>eGroupware</primary></indexterm>
+	<indexterm><primary>Kolab</primary></indexterm>
 
 	<para>All is not lost though. Many of the features
 	traditionally provided by “groupware” software are
@@ -784,15 +779,11 @@
 	server. A good example for such a server is Kolab, that can
 	integrate into KDE (Kontact, Kmail, and so on), the Horde
 	webmail, Thunderbird (via a plugin) and even into Microsoft
-	Outlook. Kolab was part of Debian <emphasis
-	role="distribution">Squeeze</emphasis> (<emphasis
-	role="pkg">kolab*</emphasis> packages). Unfortunately, the
-	Kolab server too was unmaintained and dropped from Debian, so
-	it's no longer in <emphasis
-	role="distribution">Wheezy</emphasis> (the clients and plugins
-	that use it are still there).<ulink type="block"
-	url="http://www.kolab.org/"/></para>
-	<indexterm><primary>Kolab</primary></indexterm>
+	Outlook. More interestingly, Citadel (in the <emphasis
+	role="pkg">citadel-suite</emphasis> package) and Sogo (in the
+	<emphasis role="pkg">sogo</emphasis> package) are alternatives
+	that are available in Debian Wheezy.</para>
+
       </section>
       <section>
         <title>Instant Messaging Systems</title>
@@ -984,8 +975,9 @@
       Microsoft tools such as Word and Excel, but these are so complex
       that replacements were hard to develop. The situation changed
       when the OpenOffice.org project started (following Sun's release
-      of the StarOffice code under a free license), and the appearance
-      of Libre Office as a variant. The GNOME and KDE projects are
+      of the StarOffice code under a free license). Nowadays Debian
+      contains Libre Officie, a fork of OpenOffice.org.
+      The GNOME and KDE projects are
       still working on their offerings (GNOME Office and Calligra Suite), and
       the friendly competition leads to interesting results. For
       instance, the Gnumeric spreadsheet (part of GNOME Office) is
@@ -1055,7 +1047,7 @@
       role="pkg">hyphen-*</emphasis> and <emphasis
       role="pkg">mythes-*</emphasis>.  Note that Calligra Suite used
       to be called KOffice, and the <emphasis
-      role="pkg">koffice</emphasis> package is a transition
+      role="pkg">koffice</emphasis> package is a transitional
       package.</para>
     </section>
   </section>
@@ -1105,7 +1097,7 @@
     drives.  <command>winecfg</command> has some sane defaults and can
     autodetect some more drives; note that even if you have a
     dual-boot system, you should not point the <literal>C:</literal>
-    at where the Windows partition is mounted in Debian, as Wine is
+    drive at where the Windows partition is mounted in Debian, as Wine is
     likely to overwrite some of the data on that partition, making
     Windows unusable.  Other settings can be kept to their default
     values.  To run Windows programs, you will first need to install

@@ -325,7 +325,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
       <emphasis>dotfiles</emphasis>, have long proliferated to the
       point that these directories can be quite cluttered with them.
       Fortunately, an effort led collectively under the
-      FreeDesktop.org umbrella has led to the “XDG Base Directory
+      FreeDesktop.org umbrella has resulted in the “XDG Base Directory
       Specification”, a convention that aims at cleaning up these
       files and directory.  This specification states that
       configuration files should be stored under
@@ -336,8 +336,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
       (especially graphical ones) have started following it.</para>
 
       <para>Graphical desktops usually display the contents of the
-      <filename>~/Desktop/</filename> directory (or
-      <filename>~/Bureau/</filename> or whatever the appropriate
+      <filename>~/Desktop/</filename> directory (or whatever the appropriate
       translation is for systems not configured in English) on the desktop
       (ie, what's visible on screen once all applications are closed or
       iconized).</para>
@@ -363,7 +362,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
     it? Are the network parameters properly configured? All these questions
     isolate an appropriate layer and focus on a potential source of the
     problem.</para>
-    <section id="sect.materiel">
+    <section id="sect.hardware">
       <title>The Deepest Layer: the Hardware</title>
       <indexterm><primary>IDE</primary></indexterm>
       <indexterm><primary>SCSI</primary></indexterm>
@@ -479,7 +478,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
       board. PCI specifications evolve, and old main boards are not
       guaranteed to handle newer PCI devices.</para>
     </section>
-    <section id="sect.noyau">
+    <section id="sect.kernel">
       <title>The Kernel</title>
 
       <para>Both the BIOS and the bootloader only run for a few seconds
@@ -505,7 +504,7 @@ tmpfs                   514208    269136    245072  53% /dev/shm
   </section>
   <section id="sect.kernel-role-and-tasks">
     <title>Some Tasks Handled by the Kernel</title>
-    <section id="sect.pilotage-materiel">
+    <section id="sect.hardware-drivers">
       <title>Driving the Hardware</title>
 
       <para>The kernel is, first and foremost, tasked with controlling the
@@ -579,7 +578,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       (<filename>/dev/snd/*</filename>), serial ports
       (<filename>/dev/ttyS*</filename>), and so on.</para>
     </section>
-    <section id="sect.systemes-fichiers">
+    <section id="sect.filesystems">
       <title>Filesystems</title>
       <indexterm><primary>filesystem</primary></indexterm>
       <indexterm><primary>system, filesystem</primary></indexterm>
@@ -641,7 +640,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       shields users from having to care: files remain accessible in their
       usual hierarchical way.</para>
     </section>
-    <section id="sect.fonctions-partagees">
+    <section id="sect.shared-functions">
       <title>Shared Functions</title>
 
       <para>Since a number of the same functions are used by all software,
@@ -655,7 +654,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       instance, transport could be over any combination of local or
       wireless networks, or over a telephone landline.</para>
     </section>
-    <section id="sect.gestion-processus">
+    <section id="sect.process-management">
       <title>Managing Processes</title>
       <indexterm><primary><emphasis>pid</emphasis></primary></indexterm>
 
@@ -731,7 +730,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
     processes are actually started by users because a standard system
     routinely has several “daemon” processes running before the user
     even opens a session. Daemon processes are user-space processes.</para>
-    <section id="sect.rappels-processus">
+    <section id="sect.process-basics">
       <title>Process</title>
       <indexterm><primary><command>init</command></primary></indexterm>
 
@@ -916,7 +915,7 @@ Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth
       <para>It is quite standard for a typical Unix-like system to make use
       of all these mechanisms to various degrees.</para>
     </section>
-    <section id="sect.bibliotheques">
+    <section id="sect.libraries">
       <title>Libraries</title>
       <indexterm><primary>library (of functions)</primary></indexterm>
 
