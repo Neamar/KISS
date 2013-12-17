@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-17 10:27+0100\n"
-"PO-Revision-Date: 2013-12-17 10:27+0100\n"
+"POT-Creation-Date: 2013-12-17 16:23+0100\n"
+"PO-Revision-Date: 2013-12-17 16:23+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -1485,7 +1485,7 @@ msgid "<computeroutput># </computeroutput><userinput>xen-create-image --hostname
 "--------------------\n"
 "Hostname       :  testxen\n"
 "Distribution   :  wheezy\n"
-"Mirror         :  http://ftp.fr.debian.org/debian/\n"
+"Mirror         :  http://ftp.debian.org/debian/\n"
 "Partitions     :  swap            128Mb (swap)\n"
 "                  /               2G    (ext3)\n"
 "Image type     :  sparse\n"
@@ -2277,9 +2277,9 @@ msgstr ""
 msgid "The procedure requires setting up a <filename>yum.conf</filename> file containing the necessary parameters, including the path to the source RPM repositories, the path to the plugin configuration, and the destination folder. For this example, we will assume that the environment will be stored in /var/tmp/yum-bootstrap. The file /var/tmp/yum-bootstrap/yum.conf file should look like this:"
 msgstr ""
 
-#. Tag: screen
+#. Tag: programlisting
 #, no-c-format
-msgid "<userinput>[main]\n"
+msgid "[main]\n"
 "reposdir=/var/tmp/yum-bootstrap/repos.d\n"
 "pluginconfpath=/var/tmp/yum-bootstrap/pluginconf.d\n"
 "cachedir=/var/cache/yum\n"
@@ -2295,7 +2295,7 @@ msgid "<userinput>[main]\n"
 "obsoletes=1\n"
 "gpgcheck=1\n"
 "plugins=1\n"
-"metadata_expire=1800</userinput>"
+"metadata_expire=1800"
 msgstr ""
 
 #. Tag: para
@@ -2303,9 +2303,9 @@ msgstr ""
 msgid "The <filename>/var/tmp/yum-bootstrap/repos.d</filename> directory should contain the descriptions of the RPM source repositories, just as in <filename>/etc/yum.repo.d</filename> in an already installed RPM-based system. Here is an example for a CentOS 6 installation:"
 msgstr ""
 
-#. Tag: screen
+#. Tag: programlisting
 #, no-c-format
-msgid "<userinput>[base]\n"
+msgid "[base]\n"
 "name=CentOS-6 - Base\n"
 "#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/\n"
 "mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os\n"
@@ -2332,7 +2332,7 @@ msgid "<userinput>[base]\n"
 "mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=centosplus\n"
 "gpgcheck=1\n"
 "gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6\n"
-"</userinput>"
+""
 msgstr ""
 
 #. Tag: para
@@ -2340,12 +2340,12 @@ msgstr ""
 msgid "Finally, <filename>pluginconf.d/installonlyn.conf</filename> file should contain the following:"
 msgstr ""
 
-#. Tag: screen
+#. Tag: programlisting
 #, no-c-format
-msgid "<userinput>[main]\n"
+msgid "[main]\n"
 "enabled=1\n"
 "tokeep=5\n"
-"</userinput>"
+""
 msgstr ""
 
 #. Tag: para

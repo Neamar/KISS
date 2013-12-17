@@ -1729,7 +1729,7 @@ General Information
 --------------------
 Hostname       :  testxen
 Distribution   :  wheezy
-Mirror         :  http://ftp.fr.debian.org/debian/
+Mirror         :  http://ftp.debian.org/debian/
 Partitions     :  swap            128Mb (swap)
                   /               2G    (ext3)
 Image type     :  sparse
@@ -2630,7 +2630,7 @@ root@server's password: </computeroutput>
 	/var/tmp/yum-bootstrap/yum.conf file should look like
 	this:</para>
 	
-<screen><userinput>[main]
+<programlisting>[main]
 reposdir=/var/tmp/yum-bootstrap/repos.d
 pluginconfpath=/var/tmp/yum-bootstrap/pluginconf.d
 cachedir=/var/cache/yum
@@ -2646,7 +2646,7 @@ exactarch=1
 obsoletes=1
 gpgcheck=1
 plugins=1
-metadata_expire=1800</userinput></screen>
+metadata_expire=1800</programlisting>
 
 	    <para>The
 	    <filename>/var/tmp/yum-bootstrap/repos.d</filename>
@@ -2656,7 +2656,7 @@ metadata_expire=1800</userinput></screen>
 	    installed RPM-based system. Here is an example for a
 	    CentOS 6 installation:</para>
 
-<screen><userinput>[base]
+<programlisting>[base]
 name=CentOS-6 - Base
 #baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/
 mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os
@@ -2683,15 +2683,15 @@ name=CentOS-6 - Plus
 mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=centosplus
 gpgcheck=1
 gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6
-</userinput></screen>
+</programlisting>
 
 	    <para>Finally,
 	    <filename>pluginconf.d/installonlyn.conf</filename> file
 	    should contain the following:</para>
-<screen><userinput>[main]
+<programlisting>[main]
 enabled=1
 tokeep=5
-</userinput></screen>
+</programlisting>
 
 	    <para>Once all this is setup, make sure the
 	    <command>rpm</command> databases are correctly

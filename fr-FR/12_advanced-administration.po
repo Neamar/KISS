@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: The Debian Administrator's Handbook\n"
 "POT-Creation-Date: 2013-12-17 10:27+0100\n"
-"PO-Revision-Date: 2013-12-17 10:48+0100\n"
+"PO-Revision-Date: 2013-12-17 16:01+0100\n"
 "Last-Translator: Raphaël Hertzog <hertzog@debian.org>\n"
 "Language-Team: none\n"
 "Language: fr-FR\n"
@@ -1908,7 +1908,7 @@ msgid ""
 "--------------------\n"
 "Hostname       :  testxen\n"
 "Distribution   :  wheezy\n"
-"Mirror         :  http://ftp.fr.debian.org/debian/\n"
+"Mirror         :  http://ftp.debian.org/debian/\n"
 "Partitions     :  swap            128Mb (swap)\n"
 "                  /               2G    (ext3)\n"
 "Image type     :  sparse\n"
@@ -1935,7 +1935,7 @@ msgstr ""
 "--------------------\n"
 "Hostname       :  testxen\n"
 "Distribution   :  wheezy\n"
-"Mirror         :  http://ftp.fr.debian.org/debian/\n"
+"Mirror         :  http://ftp.debian.org/debian/\n"
 "Partitions     :  swap            128Mb (swap)\n"
 "                  /               2G    (ext3)\n"
 "Image type     :  sparse\n"
@@ -2866,10 +2866,10 @@ msgstr "Si la machine virtuelle doit faire fonctione Debian (ou une de ses déri
 msgid "The procedure requires setting up a <filename>yum.conf</filename> file containing the necessary parameters, including the path to the source RPM repositories, the path to the plugin configuration, and the destination folder. For this example, we will assume that the environment will be stored in /var/tmp/yum-bootstrap. The file /var/tmp/yum-bootstrap/yum.conf file should look like this:"
 msgstr "La procédure nécessite de metter en place un fichier <filename>yum.conf</filename> avec les paramètres requis, notamment le chemin vers les dépôts RPM, le chemin de la configuration des greffons, et le répertoire cible. Pour cet exemple, nous supposerons que l'environnement sera stockée dans <filename>/var/tmp/yum-bootstrap/</filename>. Le fichier <filename>/var/tmp/yum-bootstrap/yum.conf</filename> devrait ressembler à ceci :"
 
-#. Tag: screen
+#. Tag: programlisting
 #, no-c-format
 msgid ""
-"<userinput>[main]\n"
+"[main]\n"
 "reposdir=/var/tmp/yum-bootstrap/repos.d\n"
 "pluginconfpath=/var/tmp/yum-bootstrap/pluginconf.d\n"
 "cachedir=/var/cache/yum\n"
@@ -2885,9 +2885,9 @@ msgid ""
 "obsoletes=1\n"
 "gpgcheck=1\n"
 "plugins=1\n"
-"metadata_expire=1800</userinput>"
+"metadata_expire=1800"
 msgstr ""
-"<userinput>[main]\n"
+"[main]\n"
 "reposdir=/var/tmp/yum-bootstrap/repos.d\n"
 "pluginconfpath=/var/tmp/yum-bootstrap/pluginconf.d\n"
 "cachedir=/var/cache/yum\n"
@@ -2903,17 +2903,17 @@ msgstr ""
 "obsoletes=1\n"
 "gpgcheck=1\n"
 "plugins=1\n"
-"metadata_expire=1800</userinput>"
+"metadata_expire=1800"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/var/tmp/yum-bootstrap/repos.d</filename> directory should contain the descriptions of the RPM source repositories, just as in <filename>/etc/yum.repo.d</filename> in an already installed RPM-based system. Here is an example for a CentOS 6 installation:"
 msgstr "Le répertoire <filename>/var/tmp/yum-bootstrap/repos.d</filename> devrait contenir la description des dépôts RPM source, similaire à ce que l'on trouverait dans <filename>/etc/yum.repo.d</filename> sur un système RPM déjà installé. Voici un exemple pour une installation de CentOS 6 :"
 
-#. Tag: screen
+#. Tag: programlisting
 #, no-c-format
 msgid ""
-"<userinput>[base]\n"
+"[base]\n"
 "name=CentOS-6 - Base\n"
 "#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/\n"
 "mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os\n"
@@ -2940,9 +2940,8 @@ msgid ""
 "mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=centosplus\n"
 "gpgcheck=1\n"
 "gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6\n"
-"</userinput>"
 msgstr ""
-"<userinput>[base]\n"
+"[base]\n"
 "name=CentOS-6 - Base\n"
 "#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/\n"
 "mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os\n"
@@ -2969,25 +2968,22 @@ msgstr ""
 "mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=centosplus\n"
 "gpgcheck=1\n"
 "gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6\n"
-"</userinput>"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, <filename>pluginconf.d/installonlyn.conf</filename> file should contain the following:"
 msgstr "Enfin, <filename>pluginconf.d/installonlyn.conf</filename> devrait contenir ceci :"
 
-#. Tag: screen
+#. Tag: programlisting
 #, no-c-format
 msgid ""
-"<userinput>[main]\n"
+"[main]\n"
 "enabled=1\n"
 "tokeep=5\n"
-"</userinput>"
 msgstr ""
-"<userinput>[main]\n"
+"[main]\n"
 "enabled=1\n"
 "tokeep=5\n"
-"</userinput>"
 
 #. Tag: para
 #, no-c-format

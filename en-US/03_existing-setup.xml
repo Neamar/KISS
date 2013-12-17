@@ -305,34 +305,10 @@ Nmap done: 1 IP address (1 host up) scanned in 0.13 seconds</computeroutput>
       cases, we can narrow down the possibilities according to the
       previously used system.</para>
 
-      <figure>
-        <title>Installing the appropriate Debian version</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="images/existing-setup-3.png" width="50%"/>
-          </imageobject>
-        </mediaobject>
-      </figure>
-
       <para><xref linkend="tab-corresp" xrefstyle="select: label nopage"/> is not
       intended to be exhaustive, but may be helpful. In any case, the
       original documentation for the computer is the most reliable source
       to find this information.</para>
-
-      <sidebar>
-        <title><emphasis>HARDWARE</emphasis> 64 bit PC vs 32 bit PC</title>
-        <indexterm><primary>amd64</primary></indexterm>
-        <indexterm><primary>i386</primary></indexterm>
-
-	<para>Most recent computers have 64 bit Intel or AMD
-	processors, compatible with older 32 bit processors; the
-	software compiled for “i386” architecture thus works. On the
-	other hand, this compatibility mode does not fully exploit the
-	capabilities of these new processors. This is why Debian
-	provides the “amd64” architecture, which works for recent AMD
-	chips as well as Intel “em64t” processors (including most of
-	the Core series), which are very similar to AMD64.</para>
-      </sidebar>
 
       <table colsep="1" id="tab-corresp">
         <title>Matching operating system and architecture</title>
@@ -399,6 +375,21 @@ Nmap done: 1 IP address (1 host up) scanned in 0.13 seconds</computeroutput>
           </tbody>
         </tgroup>
       </table>
+
+      <sidebar>
+        <title><emphasis>HARDWARE</emphasis> 64 bit PC vs 32 bit PC</title>
+        <indexterm><primary>amd64</primary></indexterm>
+        <indexterm><primary>i386</primary></indexterm>
+
+	<para>Most recent computers have 64 bit Intel or AMD
+	processors, compatible with older 32 bit processors; the
+	software compiled for “i386” architecture thus works. On the
+	other hand, this compatibility mode does not fully exploit the
+	capabilities of these new processors. This is why Debian
+	provides the “amd64” architecture, which works for recent AMD
+	chips as well as Intel “em64t” processors (including most of
+	the Core series), which are very similar to AMD64.</para>
+      </sidebar>
     </section>
     <section>
       <title>Installing and Configuring the Selected Services</title>

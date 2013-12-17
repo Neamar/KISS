@@ -1502,7 +1502,7 @@ drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/share/doc/gnupg/
 -rw-r--r-- root/root       690 2012-02-20 18:41 ./usr/share/doc/gnupg/README.Debian
 -rw-r--r-- root/root      1418 2012-02-20 18:41 ./usr/share/doc/gnupg/TODO.Debian
 [...]
-$ </computeroutput><userinput>dpkg -I /var/cache/apt/archives/</userinput>
+$ </computeroutput><userinput>dpkg -I /var/cache/apt/archives/gnupg_1.4.12-7_amd64.deb</userinput>
 <computeroutput> new debian package, version 2.0.
  size 1952176 bytes: control archive=3312 bytes.
     1449 bytes,    30 lines      control              
@@ -1630,7 +1630,7 @@ $ </computeroutput><userinput>dpkg --compare-versions 2.6.0pre3-1 lt 2.6.0-1</us
 <computeroutput># </computeroutput><userinput>dpkg --print-architecture</userinput>
 <computeroutput>amd64
 # </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>
-<computeroutput>#</computeroutput><userinput>dpkg -i gcc-4.7-base_4.7.2-5_armhf.deb</userinput>
+<computeroutput># </computeroutput><userinput>dpkg -i gcc-4.7-base_4.7.2-5_armhf.deb</userinput>
 <computeroutput>dpkg: error processing gcc-4.7-base_4.7.2-5_armhf.deb (--install):
  package architecture (armhf) does not match system (amd64)
 Errors were encountered while processing:
