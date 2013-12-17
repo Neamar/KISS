@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-15 20:19+0100\n"
-"PO-Revision-Date: 2013-12-17 01:30+0100\n"
+"PO-Revision-Date: 2013-12-17 10:48+0100\n"
 "Last-Translator: Raphaël Hertzog <hertzog@debian.org>\n"
 "Language-Team: None\n"
 "Language: fr-FR\n"
@@ -1388,43 +1388,3 @@ msgstr "<primary><foreignphrase>Windows Terminal Server</foreignphrase></primary
 msgid "The VNC software provides similar features, with the added benefit of also working with many operating systems. Linux VNC clients and servers are described in <xref linkend=\"sect.remote-login\" />."
 msgstr "Le logiciel VNC offre des fonctions similaires et fonctionne en outre avec de nombreux systèmes d'exploitation. Les clients et serveurs VNC pour Linux sont traités dans la <xref linkend=\"sect.remote-login\" />."
 
-#, fuzzy
-#~| msgid "<primary><command>gconf</command></primary>"
-#~ msgid "<primary><command>dconf-editor</command></primary>"
-#~ msgstr "<primary><command>gconf</command></primary>"
-
-#, fuzzy
-#~| msgid "A previous edition of this book mentioned <emphasis>PHPGroupware</emphasis>, but this software is no longer in Debian… It is no longer actively maintained, and no existing version was compatible with the PHP version 5.3 included in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, which is why the Debian maintainer asked for the package to be removed. <ulink type=\"block\" url=\"http://www.phpgroupware.org/\" />"
-#~ msgid "A previous edition of this book mentioned <emphasis>PHPGroupware</emphasis>, but this software is no longer in Debian… It is no longer actively maintained, and no existing version was compatible with the PHP version 5.3 included in Debian <emphasis role=\"distribution\">Squeeze</emphasis> (or later versions), which is why the Debian maintainer asked for the package to be removed. <ulink type=\"block\" url=\"http://www.phpgroupware.org/\" />"
-#~ msgstr "La version précédente de ce livre mentionnait <emphasis>PHPGroupware</emphasis> mais ce logiciel ne fait plus partie de Debian... le projet n'est plus très activement maintenu et aucune version existante n'était compatible avec PHP 5.3 que Debian <emphasis role=\"distribution\">Squeeze</emphasis> embarque. Le mainteneur Debian a donc demandé la suppression du paquet. <ulink type=\"block\" url=\"http://www.phpgroupware.org/\" />"
-
-#~ msgid "<emphasis>eGroupware</emphasis> was also mentioned, but it too went the way of PHPGroupware, but for different reasons. The software is still maintained by the company that develops it, but no volunteer has stepped up to ensure its maintenance within Debian. Should you still wish to use it, the project itself provides Debian packages. <ulink type=\"block\" url=\"http://www.egroupware.org/\" />"
-#~ msgstr "<emphasis>eGroupware</emphasis> avait également été mentionné, malheureusement lui aussi a subi le même sort que PHPGroupware. Les raisons sont différentes, le logiciel est toujours activement maintenu par la société qui le développe mais aucun volontaire n'a souhaité en assurer la maintenance au sein de Debian. Si vous souhaitez utiliser ce logiciel, il convient d'installer les paquets Debian fournis par le projet lui-même. <ulink type=\"block\" url=\"http://www.egroupware.org/\" />"
-
-#~ msgid "<emphasis>ALTERNATIVE</emphasis> gdm vs. gdm3"
-#~ msgstr "<emphasis>ALTERNATIVE</emphasis> gdm vs gdm3"
-
-#~ msgid "A fresh installation of <emphasis role=\"distribution\">Squeeze</emphasis> sets up <emphasis role=\"pkg\">gdm3</emphasis>. On the other hand, a system upgraded to <emphasis role=\"distribution\">Squeeze</emphasis> from a previous version of Debian will usually have <emphasis role=\"pkg\">gdm</emphasis> (the 2.x version). Version 3 is a full rewrite, but it is still rather young: many of the options provided by previous versions have been removed, and the <command>gdmsetup</command> configuration interface is much more limited in scope. This explains why both versions are available in <emphasis role=\"distribution\">Squeeze</emphasis>. Note, however, the 2.x versions will be removed from the next stable Debian release. It makes sense to anticipate the migration and install <emphasis role=\"pkg\">gdm3</emphasis> straight away if the missing features are not important to you."
-#~ msgstr "Lors d'une installation fraîche de <emphasis role=\"distribution\">Squeeze</emphasis> c'est <emphasis role=\"pkg\">gdm3</emphasis> qui est installé. Par contre un ancien système mis à jour vers <emphasis role=\"distribution\">Squeeze</emphasis> disposera habituellement de <emphasis role=\"pkg\">gdm</emphasis> (en version 2.x). La version 3 est une récriture complète mais souffre de sa jeunesse: de nombreuses options présentes dans la version précédente n'existent plus et l'interface graphique de configuration (<command>gdmsetup</command>) est nettement plus limitée. C'est pour cette raison que les deux versions co-existent dans <emphasis role=\"distribution\">Squeeze</emphasis>. Mais la version 2.x ne sera plus présente dans la prochaine version stable. Autant anticiper la migration, et installer <emphasis role=\"pkg\">gdm3</emphasis>, si les fonctionnalités manquantes ne vous concernent pas."
-
-#~ msgid "These changes occurred after Debian <emphasis role=\"distribution\">Squeeze</emphasis> was frozen, which explains why the repositories still contain OpenOffice.org… but Libre Office is already available in the <literal>backports.debian.org</literal> package repository, as well as in more recent versions of Debian."
-#~ msgstr "Ces changements sont intervenus après le gel de Debian <emphasis role=\"distribution\">Squeeze</emphasis> et cette dernière intègre donc encore OpenOffice.org... mais Libre Office est déjà disponible dans le dépôt <literal>backports.debian.org</literal> ainsi que dans les versions de développement."
-
-#~ msgid "The simplest way of using Wine is with an instance of Microsoft Windows already installed on an existing partition (which will be the case on machines dual-booting with this system). When no installed Windows version is available, Wine works in a less complete way, and fewer programs will be able to run."
-#~ msgstr "Le plus simple pour utiliser Wine est de disposer d'une partition comportant déjà une installation de Microsoft Windows (ce qui est le cas pour toute machine sur laquelle Linux est installé en double amorçage avec ce système Windows). Si la machine ne dispose pas d'une version fonctionnelle de Windows, Wine fonctionnera un peu moins bien, et sera capable d'encadrer moins de programmes."
-
-#~ msgid "The Windows partition must first be mounted (for instance under <filename>/windows/</filename>), and the <command>wine</command> user must have read and write access. The following <filename>fstab</filename> entry grants this access to all users:"
-#~ msgstr "Il faut au préalable s'assurer que la partition Windows est montée (par exemple sous <filename>/windows/</filename>) et accessible en lecture/écriture à l'utilisateur qui emploie <command>wine</command>. L'entrée de fichier <filename>fstab</filename> ci-dessous donne cet accès en écriture à tous les utilisateurs:"
-
-#~ msgid ""
-#~ "\n"
-#~ "/dev/hda1 /windows fat defaults,uid=1000,gid=100,umask=002,nls=iso8859-1 0 0\n"
-#~ msgstr ""
-#~ "\n"
-#~ "/dev/hda1 /windows fat defaults,uid=1000,gid=100,umask=002,nls=iso8859-1 0 0\n"
-
-#~ msgid "<primary><command>winesetup</command></primary>"
-#~ msgstr "<primary><command>winesetup</command></primary>"
-
-#~ msgid "The user then needs to run <command>winecfg</command> and configure <filename>/windows/</filename> to be used as the <literal>C:</literal> drive. Other settings can be kept to their default values. Running Windows programs then becomes a simple matter of running <command>wine <replaceable>/windows/.../program.exe</replaceable></command>."
-#~ msgstr "Il reste ensuite à l'utilisateur à exécuter <command>winecfg</command> pour configurer l'usage de <filename>/windows/</filename> comme lecteur <literal>C:</literal> et à accepter les réglages par défaut. Il pourra ensuite exécuter les programmes Windows en exécutant simplement la commande <command>wine <replaceable>/windows/.../program.exe</replaceable></command>."
