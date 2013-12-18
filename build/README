@@ -3,6 +3,9 @@ The various scripts are relatively self-explanatory.
 Howto build the book published by Eyrolles:
 $ ./build/build-pdf --opts="-p dblatex/eyrolles.xsl" --lang=fr-FR
 
+Howto build the PDF for lulu.com:
+$ ./build/build-pdf --opts="-P full.bleed=1" --lang=en-US
+
 TODO
 ----
 - Improve librement.sty / dblatex so that frenchb does not try to add

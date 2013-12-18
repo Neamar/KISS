@@ -35,7 +35,7 @@
 <xsl:param name="doc.toc.show">1</xsl:param>
 
 <!-- The number of levels that are numbered -->
-<xsl:param name="doc.section.depth">3</xsl:param>
+<xsl:param name="doc.section.depth">2</xsl:param>
 
 <!-- The number of levels that are included in the TOC -->
 <xsl:param name="toc.section.depth">3</xsl:param>
@@ -146,8 +146,11 @@ actual page. By default the page is centered as required in this mode.
       <l:template name="page.citation" text=" (page %p)"/>
       <l:template name="sidebar" text="« %t »"/>
     </l:context>
+    <l:context name="xref-number-and-title">
+      <l:template name="chapter" text=" chapitre %n, « %t »"/>
+      <l:template name="section" text=" section %n, « %t »"/>
+    </l:context>
   </l:l10n>
-
 </l:i18n>
 
 </xsl:stylesheet>
