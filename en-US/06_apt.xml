@@ -1986,7 +1986,7 @@ uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.o
     run daily (and non-interactively) by <command>cron</command>. To
     control its behavior, use APT configuration variables (which are
     therefore stored in a file under
-    <filename>/etc/apt/apt.conf.d/</filename>). The main three variables
+    <filename>/etc/apt/apt.conf.d/</filename>). The main variables
     are:</para>
     <variablelist>
       <varlistentry>
@@ -2015,7 +2015,7 @@ uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.o
           <literal>APT::Periodic::AutocleanInterval</literal>
         </term>
         <listitem>
-	  <para>This last option covers a feature that
+	  <para>This option covers a feature that
 	  <command>apticron</command> doesn't have. It controls how often
 	  obsolete packages (those not referenced by any distribution
 	  anymore) are removed from the APT cache. This keeps the APT cache

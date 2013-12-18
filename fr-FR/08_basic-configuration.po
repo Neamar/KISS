@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-11-26 15:52+0100\n"
-"PO-Revision-Date: 2013-12-04 17:07+0100\n"
+"PO-Revision-Date: 2013-12-18 22:38+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -186,7 +186,7 @@ msgstr "À chaque locale sont normalement associés un « jeu de caractères �
 #. Tag: para
 #, no-c-format
 msgid "The most popular encodings for latin-based languages were limited to 256 characters because they opted to use a single byte for each character. Since 256 characters was not enough to cover all European languages, multiple encodings were needed, and that's how we ended up with <emphasis>ISO-8859-1</emphasis> (also known as “Latin 1”) up to <emphasis>ISO-8859-15</emphasis> (also known as “Latin 9”), among others."
-msgstr "Les encodages les plus populaires pour les langues à alphabet latin utilisaient un octet par caractère, et étaient de ce fait limités à 256 caractères.  Comme cette limitation à 256 caractères ne permettait pas de couvrir toutes les langues en usage en Europe, plusieurs encodages indépendants étaient requis, ce qui a mené à une multitude de jeux de caractères, notamment la série des <emphasis>ISO-8859-1</emphasis> (connu comme « Latin 1 ») à <emphasis>ISO-8859-15</emphasis> (« Latin 9 »)."
+msgstr "Les encodages les plus populaires pour les langues à alphabet latin utilisaient un octet par caractère et étaient de ce fait limités à 256 caractères.  Comme cette limitation à 256 caractères ne permettait pas de couvrir toutes les langues en usage en Europe, plusieurs encodages indépendants étaient requis, ce qui a mené à une multitude de jeux de caractères, notamment la série des <emphasis>ISO-8859-1</emphasis> (connu comme « Latin 1 ») à <emphasis>ISO-8859-15</emphasis> (« Latin 9 »)."
 
 #. Tag: para
 #, no-c-format
@@ -211,7 +211,7 @@ msgstr "<primary>Unicode</primary>"
 #. Tag: para
 #, no-c-format
 msgid "This is the encoding that should generally be used, and is thus the default on Debian systems."
-msgstr "Il s'agit de l'encodage généralement recommandé, et de la valeur par défaut sur les systèmes Debian."
+msgstr "Il s'agit de l'encodage généralement recommandé et de la valeur par défaut sur les systèmes Debian."
 
 #. Tag: para
 #, no-c-format
@@ -291,7 +291,7 @@ msgstr "<primary>clavier, disposition</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Even if the keyboard layout is managed differently in console and graphical mode, Debian offers a single configuration interface that works for both: it's based on debconf and is implemented in the <emphasis role=\"pkg\">keyboard-configuration</emphasis> package. Thus the <command>dpkg-reconfigure keyboard-configuration</command> command can be used at any time to reset the keyboard layout."
-msgstr "Bien que la disposition du clavier soit gérée différemment entre la console texte et le mode graphique, Debian fournit une interface de configuration unique qui fonctionne pour les deux modes : cette interface est basée sur Debconf, et fournie par le paquet <emphasis role=\"pkg\">keyboard-configuration</emphasis>. Ainsi, la commande <command>dpkg-reconfigure keyboard-configuration</command> peut être utilisée à tout instant pour reconfigurer la disposition de clavier."
+msgstr "Bien que la disposition du clavier soit gérée différemment entre la console texte et le mode graphique, Debian fournit une interface de configuration unique qui fonctionne pour les deux modes : cette interface est basée sur Debconf et fournie par le paquet <emphasis role=\"pkg\">keyboard-configuration</emphasis>. Ainsi, la commande <command>dpkg-reconfigure keyboard-configuration</command> peut être utilisée à tout instant pour reconfigurer la disposition de clavier."
 
 #. Tag: indexterm
 #, no-c-format
@@ -346,7 +346,7 @@ msgstr "Migration vers UTF-8"
 #. Tag: para
 #, no-c-format
 msgid "The generalization of UTF-8 encoding has been a long awaited solution to numerous difficulties with interoperability, since it facilitates international exchange and removes the arbitrary limits on characters that can be used in a document. The one drawback is that it had to go through a rather difficult transition phase. Since it could not be completely transparent (that is, it could not happen at the same time all over the world), two conversion operations were required: one on file contents, and the other on filenames. Fortunately, the bulk of this migration has been completed and we discuss it largely for reference."
-msgstr "La généralisation de l'encodage UTF-8 a constitué une solution longtemps attendue à de nombreux problèmes d'interopérabilité, puisqu'elle facilite les échanges internationaux et lève les limites arbitraires sur les caractères que l'on peut utiliser dans un document. L'inconvénient est qu'il a fallu passer par une phase de conversion un peu rebutante, d'autant qu'elle n'aurait pu être totalement transparente que si elle avait été synchronisée dans le monde entier, et que deux opérations de conversion étaient en réalité à prévoir : l'une sur le contenu des fichiers, l'autre sur leur nom. Fort heureusement, le plus gros de cette migration est passé, et nous la citons principalement pour référence."
+msgstr "La généralisation de l'encodage UTF-8 a constitué une solution longtemps attendue à de nombreux problèmes d'interopérabilité, puisqu'elle facilite les échanges internationaux et lève les limites arbitraires sur les caractères que l'on peut utiliser dans un document. L'inconvénient est qu'il a fallu passer par une phase de conversion un peu rebutante, d'autant qu'elle n'aurait pu être totalement transparente que si elle avait été synchronisée dans le monde entier et que deux opérations de conversion étaient en réalité à prévoir : l'une sur le contenu des fichiers, l'autre sur leur nom. Fort heureusement, le plus gros de cette migration est passé et nous la citons principalement pour référence."
 
 #. Tag: title
 #, no-c-format
@@ -361,7 +361,7 @@ msgstr "Lorsqu'un texte est transmis (ou stocké) sans information d'encodage, i
 #. Tag: para
 #, no-c-format
 msgid "Thus, if a French text appears normal with the exception of accented letters and certain symbols which appear to be replaced with sequences of characters like “Ã©” or Ã¨” or “Ã§”, it is probably a file encoded as UTF-8 but interpreted as ISO-8859-1 or ISO-8859-15. This is a sign of a local installation that has not yet been migrated to UTF-8. If, instead, you see question marks instead of accented letters — even if these question marks seem to also replace a character that should have followed the accented letter — it is likely that your installation is already configured for UTF-8 and that you have been sent a document encoded in Western ISO."
-msgstr "Ainsi, si un texte français apparaît normal à l'exception des lettres accentuées et de certains symboles, qui semblent remplacés par des séquences du type « Ã© » ou « Ã¨ » ou « Ã§ », il s'agit vraisemblablement d'un texte encodé en UTF-8 mais interprété comme ISO-8859-1 ou ISO-8859-15. C'est le symptôme d'une installation locale non encore migrée vers UTF-8. Si en revanche vous voyez apparaître des points d'interrogation à la place de lettres accentuées, voire que ces points d'interrogation semblent remplacer également un caractère qui aurait dû suivre cette lettre accentuée, il est probable que votre installation soit déjà configurée en UTF-8, et que l'on vous ait envoyé un document encodé en ISO-8859-*."
+msgstr "Ainsi, si un texte français apparaît normal à l'exception des lettres accentuées et de certains symboles, qui semblent remplacés par des séquences du type « Ã© » ou « Ã¨ » ou « Ã§ », il s'agit vraisemblablement d'un texte encodé en UTF-8 mais interprété comme ISO-8859-1 ou ISO-8859-15. C'est le symptôme d'une installation locale non encore migrée vers UTF-8. Si en revanche vous voyez apparaître des points d'interrogation à la place de lettres accentuées, voire que ces points d'interrogation semblent remplacer également un caractère qui aurait dû suivre cette lettre accentuée, il est probable que votre installation soit déjà configurée en UTF-8 et que l'on vous ait envoyé un document encodé en ISO-8859-*."
 
 #. Tag: para
 #, no-c-format
@@ -371,12 +371,12 @@ msgstr "Voilà pour les cas « simples ». Ces cas n'apparaissent que pour les
 #. Tag: para
 #, no-c-format
 msgid "In more complex configurations, which, for example, involve two environments corresponding to two different languages that do not use the same alphabet, you often get completely illegible results — a series of abstract symbols that have nothing to do with each other. This is especially common with Asian languages due to their numerous languages and writing systems. The Japanese word <foreignphrase>mojibake</foreignphrase> has been adopted to describe this phenomenon. When it appears, diagnosis is more complex and the simplest solution is often to simply migrate to UTF-8 on both sides."
-msgstr "Dans les configurations plus complexes, où interviennent par exemple deux environnements correspondant à deux langues différentes n'utilisant pas le même alphabet, on obtient souvent des résultats illisibles, succession de symboles abstraits n'ayant rien à voir les uns avec les autres. Comme cette situation était particulièrement fréquente en Asie du fait de la multiplicité des langues et des systèmes d'écriture, l'usage a consacré le mot japonais <foreignphrase>mojibake</foreignphrase> pour désigner ce phénomène. Lorsqu'il apparaît, le diagnostic est plus complexe, et la solution la plus simple est souvent de migrer vers UTF-8 de part et d'autre."
+msgstr "Dans les configurations plus complexes, où interviennent par exemple deux environnements correspondant à deux langues différentes n'utilisant pas le même alphabet, on obtient souvent des résultats illisibles, succession de symboles abstraits n'ayant rien à voir les uns avec les autres. Comme cette situation était particulièrement fréquente en Asie du fait de la multiplicité des langues et des systèmes d'écriture, l'usage a consacré le mot japonais <foreignphrase>mojibake</foreignphrase> pour désigner ce phénomène. Lorsqu'il apparaît, le diagnostic est plus complexe et la solution la plus simple est souvent de migrer vers UTF-8 de part et d'autre."
 
 #. Tag: para
 #, no-c-format
 msgid "As far as file names are concerned, the migration can be relatively simple. The <command>convmv</command> tool (in the package with the same name) was created specifically for this purpose; it allows renaming files from one encoding to another. The use of this tool is relatively simple, but we recommend doing it in two steps to avoid surprises. The following example illustrates a UTF-8 environment containing directory names encoded in ISO-8859-15, and the use of <command>convmv</command> to rename them."
-msgstr "En ce qui concerne les noms de fichiers, la migration pourra être relativement simple. L'outil <command>convmv</command> (dans le paquet du même nom) a été précisément écrit à cet effet : il permet de renommer les fichiers d'un encodage à un autre. Son invocation est relativement simple, mais nous recommandons de l'effectuer en deux étapes pour éviter des surprises. L'exemple qui suit illustre un environnement UTF-8 contenant encore des répertoires dont le nom est encodé en ISO-8859-15, et une utilisation de <command>convmv</command> pour leur renommage."
+msgstr "En ce qui concerne les noms de fichiers, la migration pourra être relativement simple. L'outil <command>convmv</command> (dans le paquet du même nom) a été précisément écrit à cet effet : il permet de renommer les fichiers d'un encodage à un autre. Son invocation est relativement simple, mais nous recommandons de l'effectuer en deux étapes pour éviter des surprises. L'exemple qui suit illustre un environnement UTF-8 contenant encore des répertoires dont le nom est encodé en ISO-8859-15 et une utilisation de <command>convmv</command> pour leur renommage."
 
 #. Tag: screen
 #, no-c-format
@@ -483,7 +483,7 @@ msgstr "<primary>adresse IP</primary>"
 #. Tag: para
 #, no-c-format
 msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2001:0db8:13bb:0002:0000:0000:0000:0020, or 2001:db8:13bb:2::20 for short)."
-msgstr "Une adresse IP est un numéro employé pour identifier une interface réseau d'un ordinateur sur le réseau local ou sur l'Internet. Dans la version d'IP actuellement la plus répandue (IPv4), ce numéro se code sur 32 bits et se représente habituellement comme 4 nombres séparés par des points (ex : <literal>192.168.0.1</literal>), chaque nombre pouvant varier de 0 à 255 (représentant ainsi 8 bits de données). La version suivante du protocole, IPv6, étend cet espace d'adressage à 128 bits, une adresse étant représentée sous forme de nombres hexadécimaux séparés par des deux-points (ex: 2002:58bf:13bb:0002:0000:0000:0020, que l'on peut abréger en 2002:58bf:13bb:2::20)."
+msgstr "Une adresse IP est un numéro employé pour identifier une interface réseau d'un ordinateur sur le réseau local ou sur Internet. Dans la version d'IP actuellement la plus répandue (IPv4), ce numéro se code sur 32 bits et se représente habituellement comme 4 nombres séparés par des points (ex : <literal>192.168.0.1</literal>), chaque nombre pouvant varier de 0 à 255 (représentant ainsi 8 bits de données). La version suivante du protocole, IPv6, étend cet espace d'adressage à 128 bits, une adresse étant représentée sous forme de nombres hexadécimaux séparés par des deux-points (ex: 2002:58bf:13bb:0002:0000:0000:0020, que l'on peut abréger en 2002:58bf:13bb:2::20)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -523,7 +523,7 @@ msgstr "<primary>passerelle</primary>"
 #. Tag: para
 #, no-c-format
 msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyzes incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
-msgstr "Un routeur est une machine reliant plusieurs réseaux entre eux. Tout le trafic y parvenant est réorienté sur le bon réseau. Pour cela, le routeur analyse les paquets entrants et les redirige en fonction des adresses IP de leurs destinataires. Le routeur est souvent qualifié de passerelle ; il s'agit alors habituellement d'une machine qui permet de sortir d'un réseau local (vers un réseau étendu comme l'Internet)."
+msgstr "Un routeur est une machine reliant plusieurs réseaux entre eux. Tout le trafic y parvenant est réorienté sur le bon réseau. Pour cela, le routeur analyse les paquets entrants et les redirige en fonction des adresses IP de leurs destinataires. Le routeur est souvent qualifié de passerelle ; il s'agit alors habituellement d'une machine qui permet de sortir d'un réseau local (vers un réseau étendu comme Internet)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -538,7 +538,7 @@ msgstr "L'adresse de <foreignphrase>broadcast</foreignphrase> (diffusion), spéc
 #. Tag: para
 #, no-c-format
 msgid "This chapter focuses on IPv4 addresses, since they are currently the most commonly used. The details of the IPv6 protocol are approached in <xref linkend=\"sect.ipv6\" />, but the concepts remain the same."
-msgstr "À noter que nous nous restreignons dans ce chapitre aux adresses IPv4, les plus couramment utilisées à l'heure actuelle. Les détails du protocole IPv6 seront abordés dans la <xref linkend=\"sect.ipv6\" />, mais les concepts resteront les mêmes."
+msgstr "Notez que nous nous restreignons dans ce chapitre aux adresses IPv4, les plus couramment utilisées à l'heure actuelle. Les détails du protocole IPv6 seront abordés dans la <xref linkend=\"sect.ipv6\" />, mais les concepts resteront les mêmes."
 
 #. Tag: para
 #, no-c-format
@@ -578,7 +578,7 @@ msgstr "<primary><emphasis role=\"pkg\">network-manager</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "If Network Manager is particularly recommended in roaming setups (see <xref linkend=\"sect.roaming-network-config\" />), it's also perfectly usable as the default network management tool. You can create “System connections” that are used as soon as the computer boots either manually with a <filename>.ini</filename>-like file in <filename>/etc/NetworkManager/system-connections/</filename> or through a graphical tool (<command>nm-connection-editor</command>). Just remember to deactivate all entries in <filename>/etc/network/interfaces</filename> if you want Network Manager to handle them. <ulink type=\"block\" url=\"http://wiki.gnome.org/NetworkManager/SystemSettings\" /> <ulink type=\"block\" url=\"http://projects.gnome.org/NetworkManager/developers/api/09/ref-settings.html\" />"
-msgstr "Si Network Manager est particulièrement recommandé pour des environnements mobiles ou itinérants (voir <xref linkend=\"sect.roaming-network-config\" />), il est également parfaitement utilisable en tant qu'outil par défaut pour la gestion du réseau.  Il est possible de créer des « connexions système », qui sont activées dès que l'ordinateur démarre, soit en créant à la main un fichier à la syntaxe <filename>.ini</filename> dans <filename>/etc/NetworkManager/system-connections/</filename>, soit à travers d'un outil graphique (<command>nm-connection-editor</command>).  Il faut simplement se rappeler de désactiver toutes les entrées de <filename>/etc/network/interfaces</filename> pour que Network Manager s'occupe de ces interfaces.  <ulink type=\"block\" url=\"http://wiki.gnome.org/NetworkManager/SystemSettings\" /> <ulink type=\"block\" url=\"http://projects.gnome.org/NetworkManager/developers/api/09/ref-settings.html\" />"
+msgstr "Si Network Manager est particulièrement recommandé pour des environnements mobiles ou itinérants (voir <xref linkend=\"sect.roaming-network-config\" />), il est également parfaitement utilisable en tant qu'outil par défaut pour la gestion du réseau.  Il est possible de créer des « connexions système », qui sont activées dès que l'ordinateur démarre, soit en créant à la main un fichier à la syntaxe <filename>.ini</filename> dans <filename>/etc/NetworkManager/system-connections/</filename>, soit à travers un outil graphique (<command>nm-connection-editor</command>).  Il faut simplement se rappeler de désactiver toutes les entrées de <filename>/etc/network/interfaces</filename> pour que Network Manager s'occupe de ces interfaces.  <ulink type=\"block\" url=\"http://wiki.gnome.org/NetworkManager/SystemSettings\" /> <ulink type=\"block\" url=\"http://projects.gnome.org/NetworkManager/developers/api/09/ref-settings.html\" />"
 
 #. Tag: title
 #, no-c-format
@@ -588,7 +588,7 @@ msgstr "Interface Ethernet"
 #. Tag: para
 #, no-c-format
 msgid "If the computer has an Ethernet card, the IP network that is associated with it must be configured by choosing from one of two methods. The simplest method is dynamic configuration with DHCP, and it requires a DHCP server on the local network. It may indicate a desired hostname, corresponding to the <literal>hostname</literal> setting in the example below. The DHCP server then sends configuration settings for the appropriate network."
-msgstr "Si l'ordinateur dispose d'une carte réseau Ethernet, il faut configurer le réseau qui y est associé en optant pour l'une de deux méthodes. La configuration dynamique par DHCP, la plus simple, nécessite la présence d'un serveur DHCP sur le réseau local. Elle peut indiquer un nom d'hôte souhaité, ce qui correspond au paramètre facultatif <literal>hostname</literal> dans l'exemple ci-dessous. Le serveur DHCP renvoie alors les paramètres de configuration du réseau qui conviennent."
+msgstr "Si l'ordinateur dispose d'une carte réseau Ethernet, il faut configurer le réseau qui y est associé en optant pour l'une de deux méthodes. La configuration dynamique par DHCP, la plus simple, nécessite la présence d'un serveur DHCP sur le réseau local. Elle peut indiquer un nom d'hôte souhaité, ce qui correspond au paramètre facultatif <literal>hostname</literal> dans l'exemple qui suit. Le serveur DHCP renvoie alors les paramètres de configuration du réseau qui conviennent."
 
 #. Tag: indexterm
 #, no-c-format
@@ -687,7 +687,7 @@ msgstr "<primary>modem</primary><secondary>RTC</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "A point to point (PPP) connection establishes an intermittent connection; this is the most common solution for connections made with a telephone modem (“PSTN modem”, since the connection goes over the public switched telephone network)."
-msgstr "Une connexion point à point (PPP) établit une connexion intermittente, c'est donc la solution la plus souvent employée pour les connexions par modem téléphonique (sur le réseau téléphonique commuté RTC)."
+msgstr "Une connexion point à point (PPP) établit une connexion intermittente ; c'est donc la solution la plus souvent employée pour les connexions par modem téléphonique (sur le réseau téléphonique commuté RTC)."
 
 #. Tag: para
 #, no-c-format
@@ -846,7 +846,7 @@ msgstr "Modem fonctionnant avec DHCP"
 #. Tag: para
 #, no-c-format
 msgid "When a modem is connected to the computer by an Ethernet cable (crossover cable) you typically configure a network connection by DHCP on the computer; the modem automatically acts as a gateway by default and takes care of routing (meaning that it manages the network traffic between the computer and the Internet)."
-msgstr "Lorsque le modem est connecté à l'ordinateur par un câble Ethernet (croisé), il fait le plus souvent office de serveur DHCP (c'est parfois une option de configuration à activer sur le modem). Il suffit alors à l'ordinateur de configurer une connexion réseau par DHCP ; le modem s'inscrit automatiquement comme passerelle par défaut et prend en charge le travail de routage (c'est-à-dire qu'il gère le trafic réseau entre l'ordinateur et l'Internet)."
+msgstr "Lorsque le modem est connecté à l'ordinateur par un câble Ethernet (croisé), il fait le plus souvent office de serveur DHCP (c'est parfois une option de configuration à activer sur le modem). Il suffit alors à l'ordinateur de configurer une connexion réseau par DHCP ; le modem s'inscrit automatiquement comme passerelle par défaut et prend en charge le travail de routage (c'est-à-dire qu'il gère le trafic réseau entre l'ordinateur et Internet)."
 
 #. Tag: title
 #, no-c-format
@@ -861,7 +861,7 @@ msgstr "<primary>câble croisé</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Computer network cards expect to receive data on specific wires in the cable, and send their data on others. When you connect a computer to a local network, you usually connect a cable (straight or crossover) between the network card and a repeater or switch. However, if you want to connect two computers directly (without an intermediary switch or repeater), you must route the signal sent by one card to the receiving side of the other card, and vice-versa. This is the purpose of a crossover cable, and the reason it is used."
-msgstr "Les cartes réseau des ordinateurs s'attendent à recevoir les données sur un brin particulier du câble et les envoyer sur un autre. Lorsqu'on relie un ordinateur à un réseau local, on branche habituellement un câble (droit ou décroisé) entre la carte réseau et un répétiteur ou un commutateur, qui est prévu pour. Cependant, si l'on souhaite relier deux ordinateurs directement (c'est-à-dire sans répétiteur/commutateur intermédiaire), il faut acheminer le signal émis par une carte vers le brin de réception de l'autre carte, et réciproquement ; c'est là l'objet (et la nécessité) d'un câble croisé."
+msgstr "Les cartes réseau des ordinateurs s'attendent à recevoir les données sur un brin particulier du câble et les envoyer sur un autre. Lorsqu'on relie un ordinateur à un réseau local, on branche habituellement un câble (droit ou décroisé) entre la carte réseau et un répétiteur ou un commutateur, qui est prévu pour. Cependant, si l'on souhaite relier deux ordinateurs directement (c'est-à-dire sans répétiteur/commutateur intermédiaire), il faut acheminer le signal émis par une carte vers le brin de réception de l'autre carte et réciproquement ; c'est là l'objet (et la nécessité) d'un câble croisé."
 
 #. Tag: para
 #, no-c-format
@@ -886,7 +886,7 @@ msgstr "<primary>réseau</primary><secondary>configuration itinérante</secondar
 #. Tag: para
 #, no-c-format
 msgid "Many Falcot engineers have a laptop computer that, for professional purposes, they also use at home. The network configuration to use differs according to location. At home, it may be a wifi network (protected by a WEP key), while the workplace uses a wired network for greater security and more bandwidth."
-msgstr "De nombreux ingénieurs de Falcot disposent d'un ordinateur portable professionnel qu'ils emploient aussi bien chez eux qu'au travail. Bien entendu la configuration réseau à employer n'est pas la même selon l'endroit. À la maison, c'est un réseau wifi (protégé par une clé WEP) et au travail c'est un réseau filaire offrant plus de sécurité et plus de débit."
+msgstr "De nombreux ingénieurs de Falcot disposent d'un ordinateur portable professionnel qu'ils emploient aussi bien chez eux qu'au travail. Bien entendu, la configuration réseau à employer n'est pas la même selon l'endroit. À la maison, c'est un réseau wifi (protégé par une clé WEP) et au travail, c'est un réseau filaire offrant plus de sécurité et plus de débit."
 
 #. Tag: para
 #, no-c-format
@@ -896,7 +896,7 @@ msgstr "Pour éviter de devoir manuellement activer ou désactiver les interface
 #. Tag: para
 #, no-c-format
 msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this daemon. PolicyKit handles the required authorizations to control this program and Debian configured PolicyKit in such a way so that members of the netdev group can add or change Network Manager connections."
-msgstr "Pour réaliser cela, le logiciel est structuré en deux parties : un démon tournant en root effectue les opérations d'activation et de configuration des interfaces réseau, et une interface utilisateur pilote ce démon.  La gestion des droits d'accès est confiée à PolicyKit ; la configuration proposée par Debian spécifie que seuls les membres du groupe « netdev » ont le droit de créer ou modifier les connexions de Network Manager."
+msgstr "Pour réaliser cela, le logiciel est structuré en deux parties : un démon tournant en root effectue les opérations d'activation et de configuration des interfaces réseau, et une interface utilisateur pilote ce démon.  La gestion des droits d'accès est confiée à PolicyKit ; la configuration proposée par Debian spécifie que seuls les membres du groupe <literal>netdev</literal> ont le droit de créer ou modifier les connexions de Network Manager."
 
 #. Tag: para
 #, no-c-format
@@ -946,7 +946,7 @@ msgstr "<primary>attribution des noms</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The purpose of assigning names to IP numbers is to make them easier for people to remember. In reality, an IP address identifies a network interface associated with a device such as a network card. Since each machine can have several network cards, and several interfaces on each card, one single computer can have several names in the domain name system."
-msgstr "Affubler de noms les numéros IP vise à en faciliter la mémorisation par l'humain. En réalité, une adresse IP identifie une interface réseau — un périphérique associé à une carte réseau ou assimilé ; chaque machine peut donc en compter plusieurs, et par conséquent recevoir plusieurs noms dans le système responsable de leur attribution : le DNS."
+msgstr "Affubler de noms les numéros IP vise à en faciliter la mémorisation par l'humain. En réalité, une adresse IP identifie une interface réseau — un périphérique associé à une carte réseau ou assimilé ; chaque machine peut donc en compter plusieurs et, par conséquent, recevoir plusieurs noms dans le système responsable de leur attribution : le DNS."
 
 #. Tag: para
 #, no-c-format
@@ -1087,7 +1087,7 @@ msgstr "Le DNS (<foreignphrase>Domain Name Service</foreignphrase>, ou service d
 #. Tag: para
 #, no-c-format
 msgid "To access DNS information, a DNS server must be available to relay requests. Falcot Corp has its own, but an individual user is more likely to use the DNS servers provided by their ISP."
-msgstr "Pour accéder aux informations du DNS, il faut disposer d'un serveur DNS relayant les requêtes. Falcot SA a les siens, mais un particulier fait normalement appel aux serveurs DNS de son fournisseur d'accès à l'Internet."
+msgstr "Pour accéder aux informations du DNS, il faut disposer d'un serveur DNS relayant les requêtes. Falcot SA a les siens, mais un particulier fait normalement appel aux serveurs DNS de son fournisseur d'accès à Internet."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1101,8 +1101,8 @@ msgstr "<primary><literal>nameserver</literal></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The DNS servers to be used are indicated in the <filename>/etc/resolv.conf</filename>, one per line, with the <literal>nameserver</literal> keyword preceding an IP address, as in the following example."
-msgstr "Les serveurs DNS à employer sont donnés dans le fichier <filename>/etc/resolv.conf</filename> à raison d'un par ligne, le terme <literal>nameserver</literal> y précédant l'adresse IP, comme dans l'exemple suivant."
+msgid "The DNS servers to be used are indicated in the <filename>/etc/resolv.conf</filename>, one per line, with the <literal>nameserver</literal> keyword preceding an IP address, as in the following example:"
+msgstr "Les serveurs DNS à employer sont donnés dans le fichier <filename>/etc/resolv.conf</filename> à raison d'un par ligne, le terme <literal>nameserver</literal> y précédant l'adresse IP, comme dans l'exemple suivant :"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1135,7 +1135,7 @@ msgstr "Ce fichier est disponible même en cas de panne réseau ou quand les ser
 #. Tag: para
 #, no-c-format
 msgid "This file will be sufficient for a small network not connected to the Internet, but with 5 machines or more, it is recommended to install a proper DNS server."
-msgstr "Pour un petit réseau non connecté à l'Internet, ce fichier suffira, mais à partir de cinq machines il est recommandé d'installer un serveur DNS en bonne et due forme."
+msgstr "Pour un petit réseau non connecté à Internet, ce fichier suffira, mais à partir de cinq machines il est recommandé d'installer un serveur DNS en bonne et due forme."
 
 #. Tag: title
 #, no-c-format
@@ -1460,7 +1460,7 @@ msgstr "<literal>gid</literal> : numéro unique identifiant le groupe ;"
 #. Tag: para
 #, no-c-format
 msgid "list of members: list of names of users who are members of the group, separated by commas."
-msgstr "liste des membres : liste des identifiants d'utilisateurs membres du groupe, séparée par des virgules."
+msgstr "liste des membres : liste des identifiants d'utilisateurs membres du groupe, séparés par des virgules."
 
 #. Tag: title
 #, no-c-format
@@ -1500,7 +1500,7 @@ msgstr "Une alternative consiste à positionner le bit <literal>setgid</literal>
 #. Tag: para
 #, no-c-format
 msgid "The <command>id</command> command displays the current state of a user, with their personal identifier (<varname>uid</varname> variable), current main group (<varname>gid</varname> variable), and the list of groups to which they belong (<varname>groups</varname> variable)."
-msgstr "La commande <command>id</command> permet de vérifier à tout instant son identifiant personnel (variable <varname>uid</varname>), le groupe principal actuel (variable <varname>gid</varname>), et la liste des groupes dont on fait partie (variable <varname>groupes</varname>)."
+msgstr "La commande <command>id</command> permet de vérifier à tout instant son identifiant personnel (variable <varname>uid</varname>), le groupe principal actuel (variable <varname>gid</varname>) et la liste des groupes dont on fait partie (variable <varname>groupes</varname>)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1810,7 +1810,7 @@ msgstr "Le tilde permet également d'accéder au répertoire de connexion d'un a
 #. Tag: para
 #, no-c-format
 msgid "In addition to these common scripts, each user can create their own <filename>~/.bashrc</filename> and <filename>~/.bash_profile</filename> to configure their shell. The most common changes are the addition of aliases; these are words that are automatically replaced with the execution of a command, which makes it faster to invoke that command. For instance, you could create the <literal>la</literal> alias for the command <command>ls -la | less</command> command; then you only have to type <command>la</command> to inspect the contents of a directory in detail."
-msgstr "En plus de ces scripts communs à tous, chaque utilisateur peut se créer des fichiers <filename>~/.bashrc</filename> et <filename>~/.bash_profile</filename> pour personnaliser son shell. Les ajouts les plus courants sont la mise en place d'alias, mots automatiquement remplacés avant exécution de la commande, ce qui accélère la saisie. On pourra ainsi créer un alias <literal>la</literal> pour la commande <command>ls -la | less</command>, et se contenter de saisir <command>la</command> pour inspecter en détail le contenu d'un répertoire."
+msgstr "En plus de ces scripts communs à tous, chaque utilisateur peut se créer des fichiers <filename>~/.bashrc</filename> et <filename>~/.bash_profile</filename> pour personnaliser son shell. Les ajouts les plus courants sont la mise en place d'alias, mots automatiquement remplacés avant exécution de la commande, ce qui accélère la saisie. On pourra ainsi créer un alias <literal>la</literal> pour la commande <command>ls -la | less</command> et se contenter de saisir <command>la</command> pour inspecter en détail le contenu d'un répertoire."
 
 #. Tag: title
 #, no-c-format
@@ -1920,7 +1920,7 @@ msgstr "<primary><foreignphrase>Common Unix Printing System</foreignphrase></pri
 #. Tag: para
 #, no-c-format
 msgid "CUPS (Common Unix Printing System) is a project (and a trademark) managed by Apple, Inc. <ulink type=\"block\" url=\"http://www.cups.org/\" />"
-msgstr "CUPS (<foreignphrase>Common Unix Printing System</foreignphrase>, ou système d'impression commun sous Unix), est un projet (et une marque déposée) de la société Apple. <ulink type=\"block\" url=\"http://www.cups.org/\" />"
+msgstr "CUPS (<foreignphrase>Common Unix Printing System</foreignphrase>, ou système d'impression commun sous Unix) est un projet (et une marque déposée) de la société Apple. <ulink type=\"block\" url=\"http://www.cups.org/\" />"
 
 #. Tag: para
 #, no-c-format
@@ -2001,7 +2001,7 @@ msgstr "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis> et <filename>/dev
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/dev/</filename> directory traditionally houses so-called “special” files, intended to represent system peripherals (see sidebar <xref linkend=\"sidebar.special-files\" />). Once upon a time, it used to contain all special files that could potentially be used. This approach had a number of drawbacks among which the fact that it restricted the number of devices that one could use (due to the hardcoded list of names), and that it was impossible to know which special files were actually useful."
-msgstr "Le répertoire <filename>/dev/</filename> abrite traditionnellement des fichiers dits « spéciaux », destinés à représenter les périphériques du système (voir encadré <xref linkend=\"sidebar.special-files\" />).  À une lointaine époque, il contenait des fichiers spéciaux correspondant à tous les périphériques possibles.  Cette structure statique présentait un certain nombre d'inconvénients, notamment parce qu'elle restreignait le nombre de périphériques utilisables (puisque leur liste était codée en dur), et qu'elle empêchait de savoir quels fichiers spéciaux correspondaient à un périphérique existant."
+msgstr "Le répertoire <filename>/dev/</filename> abrite traditionnellement des fichiers dits « spéciaux », destinés à représenter les périphériques du système (voir encadré <xref linkend=\"sidebar.special-files\" />).  À une lointaine époque, il contenait des fichiers spéciaux correspondant à tous les périphériques possibles.  Cette structure statique présentait un certain nombre d'inconvénients, notamment parce qu'elle restreignait le nombre de périphériques utilisables (puisque leur liste était codée en dur) et qu'elle empêchait de savoir quels fichiers spéciaux correspondaient à un périphérique existant."
 
 #. Tag: para
 #, no-c-format
@@ -2011,7 +2011,7 @@ msgstr "De nos jours, les fichiers spéciaux sont gérés de manière entièreme
 #. Tag: para
 #, no-c-format
 msgid "The kernel communicates lots of information about any newly added device and hands out a pair of major/minor numbers to identify it. With this <command>udevd</command> can create the special file under the name and with the permissions that it wants. It can also create aliases and do additional actions (initialization or registration tasks for example). <command>udevd</command>'s behavior is driven by a large set of (customizable) rules."
-msgstr "Le noyau fournit de nombreuses informations à propos d'un périphérique lors de son ajout, et y ajoute une paire d'identifiants (majeur/mineur).  <command>udevd</command> utilise ces informations pour créer le fichier spécial sous le nom voulu, et avec les permissions les plus pertinentes.  Il peut aussi créer des alias et lancer des actions supplémentaires (par exemple des tâches d'initialisation ou d'enregistrement).  Le comportement d'<command>udevd</command> est régi par un vaste ensemble de règles (personnalisables)."
+msgstr "Le noyau fournit de nombreuses informations à propos d'un périphérique lors de son ajout et y ajoute une paire d'identifiants (majeur/mineur).  <command>udevd</command> utilise ces informations pour créer le fichier spécial sous le nom voulu et avec les permissions les plus pertinentes.  Il peut aussi créer des alias et lancer des actions supplémentaires (par exemple des tâches d'initialisation ou d'enregistrement).  Le comportement d'<command>udevd</command> est régi par un vaste ensemble de règles (personnalisables)."
 
 #. Tag: para
 #, no-c-format
@@ -2021,7 +2021,7 @@ msgstr "Il est ainsi possible, en utilisant les noms affectés de manière dynam
 #. Tag: para
 #, no-c-format
 msgid "Previously, some kernel modules did automatically load when you tried to access the corresponding device file; henceforth, the peripheral's special file no longer exists prior to loading the module, which is no big deal, since most modules are loaded on boot thanks to automatic hardware detection. But for undetectable peripherals (such as older disk drives or PS/2 mice), this doesn't work. Consider adding the modules, <literal>floppy</literal>, <literal>psmouse</literal> and <literal>mousedev</literal> to <filename>/etc/modules</filename> in order to force loading them on boot."
-msgstr "Auparavant, certains modules noyau se chargeaient automatiquement lorsqu'on tentait d'accéder au périphérique correspondant ; désormais le fichier spécial du périphérique n'existe plus avant d'avoir chargé le module… ce qui n'est pas très grave puisque la plupart des modules sont chargés au démarrage grâce à la détection automatique du matériel.  Mais pour des périphériques non détectables (comme le bon vieux lecteur de disquettes ou la souris PS/2), cela ne fonctionne pas.  Pensez donc à ajouter les modules <literal>floppy</literal>, <literal>psmouse</literal> et <literal>mousedev</literal> dans <filename>/etc/modules</filename> afin de forcer leur chargement au démarrage."
+msgstr "Auparavant, certains modules noyau se chargeaient automatiquement lorsqu'on tentait d'accéder au périphérique correspondant ; désormais, le fichier spécial du périphérique n'existe plus avant d'avoir chargé le module… ce qui n'est pas très grave puisque la plupart des modules sont chargés au démarrage grâce à la détection automatique du matériel.  Mais pour des périphériques non détectables (comme le bon vieux lecteur de disquettes ou la souris PS/2), cela ne fonctionne pas.  Pensez donc à ajouter les modules <literal>floppy</literal>, <literal>psmouse</literal> et <literal>mousedev</literal> dans <filename>/etc/modules</filename> afin de forcer leur chargement au démarrage."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2036,7 +2036,7 @@ msgstr "<primary>nom</primary><secondary>des disques durs</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "Configuration of the bootloader must identify the different hard drives and their partitions. Linux uses “block” special files stored in the <filename>/dev/</filename> directory, for this purpose. Historically, <filename>/dev/hda</filename> was the master disk on the first IDE controller, and <filename>/dev/hdb</filename> its first slave, <filename>/dev/hdc</filename> and <filename>/dev/hdd</filename> being, respectively, the master and slave disks on the second IDE controller, and so on down for any others. <filename>/dev/sda</filename> corresponded to the first SCSI drive, <filename>/dev/sdb</filename> being the second, etc. Since Debian <emphasis role=\"distribution\">Squeeze</emphasis>, this naming scheme has been unified by the Linux kernel, and all hard drives (IDE/PATA, SATA, SCSI, USB, IEEE 1394) are now represented by <filename>/dev/sd*</filename>."
-msgstr "La configuration du chargeur d'amorçage doit identifier les différents disques et leurs partitions. Linux emploie pour cela un système de fichiers spéciaux (dits en mode « bloc »), stockés dans le répertoire <filename>/dev/</filename>. Historiquement, <filename>/dev/hda</filename> était le disque maître du premier contrôleur IDE, et <filename>/dev/hdb</filename> son disque esclave, <filename>/dev/hdc</filename> et <filename>/dev/hdd</filename> respectivement les disques maître et esclave du deuxième contrôleur IDE, et ainsi de suite pour les autres. <filename>/dev/sda</filename> correspondait au premier disque dur SCSI, <filename>/dev/sdb</filename> au deuxième, etc. Ce schéma de nommage a été réunifié depuis le noyau Linux présent dans <emphasis role=\"distribution\">Squeeze</emphasis>, et tous les disques durs (IDE/PATA, SATA, SCSI, USB, IEEE 1394) sont dorénavant représentés par des <filename>/dev/sd*</filename>."
+msgstr "La configuration du chargeur d'amorçage doit identifier les différents disques et leurs partitions. Linux emploie pour cela un système de fichiers spéciaux (dits en mode « bloc »), stockés dans le répertoire <filename>/dev/</filename>. Historiquement, <filename>/dev/hda</filename> était le disque maître du premier contrôleur IDE et <filename>/dev/hdb</filename> son disque esclave, <filename>/dev/hdc</filename> et <filename>/dev/hdd</filename> respectivement les disques maître et esclave du deuxième contrôleur IDE, et ainsi de suite pour les autres. <filename>/dev/sda</filename> correspondait au premier disque dur SCSI, <filename>/dev/sdb</filename> au deuxième, etc. Ce schéma de nommage a été réunifié depuis le noyau Linux présent dans <emphasis role=\"distribution\">Squeeze</emphasis> et tous les disques durs (IDE/PATA, SATA, SCSI, USB, IEEE 1394) sont dorénavant représentés par des <filename>/dev/sd*</filename>."
 
 #. Tag: para
 #, no-c-format
@@ -2046,7 +2046,7 @@ msgstr "Chaque partition est représentée par un numéro d'ordre au sein du dis
 #. Tag: para
 #, no-c-format
 msgid "The PC architecture (or “i386”) is limited to four “primary” partitions per disk. To go beyond this limitation, one of them must be created as an “extended” partition, and it can then contain additional “secondary” partitions. These secondary partitions must be numbered from 5. Thus the first secondary partition could be <filename>/dev/sda5</filename>, followed by <filename>/dev/sda6</filename>, etc."
-msgstr "L'architecture PC (ou « i386 ») est limitée à quatre partitions « primaires » par disque. Pour outrepasser cette limitation, l'une d'entre elles sera créée comme une partition « étendue », et pourra alors contenir des partitions « secondaires ». Ces dernières portent toujours un numéro supérieur ou égal à 5. La première partition secondaire pourra donc être <filename>/dev/sda5</filename>, suivie de <filename>/dev/sda6</filename>, etc."
+msgstr "L'architecture PC (ou « i386 ») est limitée à quatre partitions « primaires » par disque. Pour outrepasser cette limitation, l'une d'entre elles sera créée comme une partition « étendue » et pourra alors contenir des partitions « secondaires ». Ces dernières portent toujours un numéro supérieur ou égal à 5. La première partition secondaire pourra donc être <filename>/dev/sda5</filename>, suivie de <filename>/dev/sda6</filename>, etc."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2153,7 +2153,7 @@ msgstr "<primary><foreignphrase>Linux Loader</foreignphrase></primary>"
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>LILO</emphasis> (LInux LOader) is the oldest bootloader — solid but rustic. It writes the physical address of the kernel to boot on the MBR, which is why each update to LILO (or its configuration file) must be followed by the command <command>lilo</command>. Forgetting to do so will render a system unable to boot if the old kernel was removed or replaced as the new one will not be in the same location on the disk."
-msgstr "<emphasis>LILO</emphasis> (<foreignphrase>LInux LOader</foreignphrase>, ou chargeur de Linux) est le plus ancien chargeur d'amorçage, solide mais rustique. Il écrit dans le MBR l'adresse physique du noyau à démarrer, c'est pourquoi chaque mise à jour de celui-ci (ou du fichier de configuration de LILO) doit être suivie de la commande <command>lilo</command>. L'oublier produira un système incapable de démarrer si l'ancien noyau a été supprimé ou remplacé, puisque le nouveau ne sera pas au même emplacement sur le disque."
+msgstr "<emphasis>LILO</emphasis> (<foreignphrase>LInux LOader</foreignphrase>, ou chargeur de Linux) est le plus ancien chargeur d'amorçage, solide mais rustique. Il écrit dans le MBR l'adresse physique du noyau à démarrer ; c'est pourquoi chaque mise à jour de celui-ci (ou du fichier de configuration de LILO) doit être suivie de la commande <command>lilo</command>. L'oublier produira un système incapable de démarrer si l'ancien noyau a été supprimé ou remplacé, puisque le nouveau ne sera pas au même emplacement sur le disque."
 
 #. Tag: para
 #, no-c-format
@@ -2260,7 +2260,7 @@ msgstr "Les partitions portent aussi un nom spécifique à GRUB. Lorsque l'on ut
 #. Tag: para
 #, no-c-format
 msgid "GRUB 2 configuration is stored in <filename>/boot/grub/grub.cfg</filename>, but this file (in Debian) is generated from others. Be careful not to modify it by hand, since such local modifications will be lost the next time <command>update-grub</command> is run (which may occur upon update of various packages). The most common modifications of the <filename>/boot/grub/grub.cfg</filename> file (to add command line parameters to the kernel or change the duration that the menu is displayed, for example) are made through the variables in <filename>/etc/default/grub</filename>. To add entries to the menu, you can either create a <filename>/boot/grub/custom.cfg</filename> file or modify the <filename>/etc/grub.d/50_custom</filename> file. For more complex configurations, you can modify other files in <filename>/etc/grub.d</filename>, or add to them; these scripts should return configuration snippets, possibly by making use of external programs. These scripts are the ones that will update the list of kernels to boot: <filename>10_linux</filename> takes into consideration the installed Linux kernels; <filename>20_linux_xen</filename> takes into account Xen virtual systems, and <filename>30_os-prober</filename> lists other operating systems (Windows, Mac OSX, Hurd)."
-msgstr "La configuration de GRUB 2 est stockée dans <filename>/boot/grub/grub.cfg</filename>, mais ce fichier est (sous Debian) généré à partir d'autres. On prendra donc garde de ne pas le modifier à la main, sous peine de voir ces modifications locales perdues à la prochaine invocation de <command>update-grub</command> (qui peut se faire lors d'une mise à jour de différents paquets). Les modifications les plus courantes du fichier <filename>/boot/grub/grub.cfg</filename> (pour ajouter des paramètres de ligne de commande au noyau ou changer la durée d'affichage du menu, par exemple) se font par le biais des variables définies dans <filename>/etc/default/grub</filename>. Pour ajouter des entrées dans le menu, on pourra soit créer un fichier <filename>/boot/grub/custom.cfg</filename> soit modifier le fichier <filename>/etc/grub.d/50_custom</filename>. Pour des personnalisations plus complexes, on pourra modifier les autres fichiers de <filename>/etc/grub.d/</filename>, ou en ajouter ; il s'agit de scripts qui doivent renvoyer des extraits de configuration, en s'appuyant éventuellement sur des programmes externes. Ce sont ces scripts qui vont mettre à jour la liste des noyaux à démarrer : <filename>10_linux</filename> prend en compte les noyaux Linux installés, <filename>20_linux_xen</filename> prend en compte les systèmes de virtualisation Xen, et <filename>30_os-prober</filename> prend en compte d'autres systèmes d'exploitation (Windows, Mac OSX, Hurd)."
+msgstr "La configuration de GRUB 2 est stockée dans <filename>/boot/grub/grub.cfg</filename>, mais ce fichier est (sous Debian) généré à partir d'autres. On prendra donc garde de ne pas le modifier à la main, sous peine de voir ces modifications locales perdues à la prochaine invocation de <command>update-grub</command> (qui peut se faire lors d'une mise à jour de différents paquets). Les modifications les plus courantes du fichier <filename>/boot/grub/grub.cfg</filename> (pour ajouter des paramètres de ligne de commande au noyau ou changer la durée d'affichage du menu, par exemple) se font par le biais des variables définies dans <filename>/etc/default/grub</filename>. Pour ajouter des entrées dans le menu, on pourra soit créer un fichier <filename>/boot/grub/custom.cfg</filename>, soit modifier le fichier <filename>/etc/grub.d/50_custom</filename>. Pour des personnalisations plus complexes, on pourra modifier les autres fichiers de <filename>/etc/grub.d/</filename>, ou en ajouter ; il s'agit de scripts qui doivent renvoyer des extraits de configuration, en s'appuyant éventuellement sur des programmes externes. Ce sont ces scripts qui vont mettre à jour la liste des noyaux à démarrer : <filename>10_linux</filename> prend en compte les noyaux Linux installés, <filename>20_linux_xen</filename> prend en compte les systèmes de virtualisation Xen et <filename>30_os-prober</filename> prend en compte d'autres systèmes d'exploitation (Windows, Mac OS X, Hurd)."
 
 #. Tag: title
 #, no-c-format
@@ -2275,12 +2275,12 @@ msgstr "<primary><command>yaboot</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Yaboot is the bootloader used by old Macintosh computers using PowerPC processors. They do not boot like PCs, but rely on a “bootstrap” partition, from which the BIOS (or OpenFirmware) executes the loader, and on which the <command>ybin</command> program installs <command>yaboot</command> and its configuration file. You will only need to run this command again if the <filename>/etc/yaboot.conf</filename> is modified (it is duplicated on the bootstrap partition, and <command>yaboot</command> knows how to find the position of the kernels on the disks)."
-msgstr "Yaboot est le chargeur de démarrage employé par les anciens Macintosh utilisant des processeurs PowerPC. Ils n'amorcent pas comme les PC, mais recourent à une partition d'amorçage (<foreignphrase>bootstrap</foreignphrase>), à partir de laquelle le BIOS (ou <foreignphrase>OpenFirmware</foreignphrase>) exécute le chargeur, et sur laquelle le programme <command>ybin</command> installe <command>yaboot</command> et son fichier de configuration. On n'exécutera à nouveau cette commande qu'en cas de modification du fichier <filename>/etc/yaboot.conf</filename> (il est en effet dupliqué sur la partition de <foreignphrase>bootstrap</foreignphrase>, et <command>yaboot</command> sait retrouver la position des noyaux sur les disques)."
+msgstr "Yaboot est le chargeur de démarrage employé par les anciens Macintosh utilisant des processeurs PowerPC. Ils n'amorcent pas comme les PC, mais recourent à une partition d'amorçage (<foreignphrase>bootstrap</foreignphrase>), à partir de laquelle le BIOS (ou <foreignphrase>OpenFirmware</foreignphrase>) exécute le chargeur et sur laquelle le programme <command>ybin</command> installe <command>yaboot</command> et son fichier de configuration. On n'exécutera à nouveau cette commande qu'en cas de modification du fichier <filename>/etc/yaboot.conf</filename> (il est en effet dupliqué sur la partition de <foreignphrase>bootstrap</foreignphrase> et <command>yaboot</command> sait retrouver la position des noyaux sur les disques)."
 
 #. Tag: para
 #, no-c-format
 msgid "Before executing <command>ybin</command>, you must first have a valid <filename>/etc/yaboot.conf</filename>. The following is an example of a minimal configuration. <indexterm><primary><command>ybin</command></primary></indexterm>"
-msgstr "Avant d'exécuter <command>ybin</command> il faut disposer d'un fichier <filename>/etc/yaboot.conf</filename> valide. L'exemple ci-dessous pourrait constituer un fichier minimal. <indexterm><primary><command>ybin</command></primary></indexterm>"
+msgstr "Avant d'exécuter <command>ybin</command>, il faut disposer d'un fichier <filename>/etc/yaboot.conf</filename> valide. L'exemple ci-dessous pourrait constituer un fichier minimal. <indexterm><primary><command>ybin</command></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -2411,7 +2411,7 @@ msgstr "La commande <command>ln -s <replaceable>cible</replaceable> <replaceable
 #. Tag: para
 #, no-c-format
 msgid "If the target does not exist, then the link is “broken” and accessing it will result in an error indicating that the target file does not exist. If the link points to another link, you will have a “chain” of links that turns into a “cycle” if one of the targets points to one of its predecessors. In this case, accessing one of the links in the cycle will result in a specific error (“too many levels of symbolic links”); this means the kernel gave up after several rounds of the cycle."
-msgstr "Si la cible n'existe pas, alors le lien est « cassé » et y accéder renverra une erreur indiquant que le fichier demandé n'existe pas. Si le lien pointe sur un autre lien, on obtient une « chaîne » de liens qui se transforme en « cycle » si l'un des liens cibles pointe sur l'un de ses prédécesseurs. Dans ce cas accéder à l'un des liens du cycle renverra une erreur spécifique (« Trop de niveaux de liens symboliques » — c'est l'aveu d'échec du noyau après avoir parcouru le cycle un grand nombre de fois)."
+msgstr "Si la cible n'existe pas, alors le lien est « cassé » et y accéder renverra une erreur indiquant que le fichier demandé n'existe pas. Si le lien pointe sur un autre lien, on obtient une « chaîne » de liens qui se transforme en « cycle » si l'un des liens cibles pointe sur l'un de ses prédécesseurs. Dans ce cas, accéder à l'un des liens du cycle renverra une erreur spécifique (« Trop de niveaux de liens symboliques » — c'est l'aveu d'échec du noyau après avoir parcouru le cycle un grand nombre de fois)."
 
 #. Tag: para
 #, no-c-format
@@ -2486,12 +2486,12 @@ msgstr "Il existe en réalité deux sources de temps dans un ordinateur. La cart
 #. Tag: para
 #, no-c-format
 msgid "In practice, there is a problem, since the CMOS clock is nothing more than a counter and contains no information regarding the time zone. There is a choice to make regarding its interpretation: either the system considers it runs in universal time (UTC, formerly GMT), or in local time. This choice could be a simple shift, but things are actually more complicated: as a result of daylight saving time, this offset is not constant. The result is that the system has no way to determine whether the offset is correct, especially around periods of time change. Since it is always possible to reconstruct local time from universal time and the timezone information, we strongly recommend using the CMOS clock in universal time."
-msgstr "En pratique, il se pose un problème, car l'horloge CMOS n'est qu'un compteur, et ne contient pas d'informations de fuseau horaire. Il y a donc un choix à faire sur son interprétation : soit le système considère qu'il s'agit de temps universel (UTC, anciennement GMT), soit qu'il s'agit d'heure locale. Ce choix pourrait n'être qu'un simple décalage, mais les choses se compliquent : par suite des considérations d'heure d'été, ce décalage n'est pas constant ; la conséquence est que le système n'a au démarrage aucun moyen de savoir si le décalage est correct, notamment aux alentours des périodes de changement d'heure. Comme il est toujours possible de reconstruire l'heure locale en fonction de l'heure universelle et du fuseau horaire, nous recommandons donc vivement d'adopter une horloge CMOS en temps universel."
+msgstr "En pratique, il se pose un problème, car l'horloge CMOS n'est qu'un compteur et ne contient pas d'informations de fuseau horaire. Il y a donc un choix à faire sur son interprétation : soit le système considère qu'il s'agit de temps universel (UTC, anciennement GMT), soit qu'il s'agit d'heure locale. Ce choix pourrait n'être qu'un simple décalage, mais les choses se compliquent : par suite des considérations d'heure d'été, ce décalage n'est pas constant ; la conséquence est que le système n'a au démarrage aucun moyen de savoir si le décalage est correct, notamment aux alentours des périodes de changement d'heure. Comme il est toujours possible de reconstruire l'heure locale en fonction de l'heure universelle et du fuseau horaire, nous recommandons donc vivement d'adopter une horloge CMOS en temps universel."
 
 #. Tag: para
 #, no-c-format
 msgid "Unfortunately, Windows systems in their default configuration ignore this recommendation; they keep the CMOS clock on local time, applying time changes when booting the computer by trying to guess during time changes if the change has already been applied or not. This works relatively well, as long as the system has only Windows running on it. But when a computer has several systems (whether it be a “dual-boot” configuration or running other systems via virtual machine), chaos ensues, with no means to determine if the time is correct. If you absolutely must retain Windows on a computer, you should either configure it to keep the CMOS clock as UTC (setting the registry key <literal>HKLM\\SYSTEM\\CurrentControlSet\\Control\\TimeZoneInformation\\RealTimeIsUniversal</literal> to “1” as a DWORD), or use <command>hwclock --localtime --set</command> on the Debian system to set the hardware clock and mark it as tracking the local time (and make sure to manually check your clock in spring and autumn)."
-msgstr "Hélas, les systèmes Windows (dans leur configuration par défaut) ignorent cette recommandation ; ils maintiennent l'horloge CMOS en heure locale, et appliquent des décalages au démarrage de l'ordinateur en essayant de deviner lors de changements d'heure si le changement a déjà été appliqué précédemment ou non. Cela fonctionne relativement bien lorsque l'ordinateur ne fonctionne que sous un seul Windows, mais dès que l'ordinateur utilise plusieurs systèmes (que ce soit en <foreignphrase>dual-boot</foreignphrase> ou grâce à des machines virtuelles), une cacophonie s'ensuit, aucun n'ayant de moyen de savoir si l'heure locale est correcte. Si l'on doit absolument garder un Windows sur un ordinateur, on devra soit le configurer pour stocker l'heure en temps universel dans l'horloge matérielle (en réglant la valeur de la clef <literal>HKLM\\\\SYSTEM\\\\CurrentControlSet\\\\Control\\\\TimeZoneInformation\\\\RealTimeIsUniversal</literal> au DWORD « 1 » dans la base de registre), soit désactiver <literal>UTC</literal> dans le fichier <filename>/etc/default/rcS</filename> (et prendre soin de vérifier manuellement l'horloge au printemps et à l'automne)."
+msgstr "Hélas, les systèmes Windows (dans leur configuration par défaut) ignorent cette recommandation ; ils maintiennent l'horloge CMOS en heure locale et appliquent des décalages au démarrage de l'ordinateur en essayant de deviner lors de changements d'heure si le changement a déjà été appliqué précédemment ou non. Cela fonctionne relativement bien lorsque l'ordinateur ne fonctionne que sous un seul Windows, mais dès que l'ordinateur utilise plusieurs systèmes (que ce soit en <foreignphrase>dual-boot</foreignphrase> ou grâce à des machines virtuelles), une cacophonie s'ensuit, aucun n'ayant de moyen de savoir si l'heure locale est correcte. Si l'on doit absolument garder un Windows sur un ordinateur, on devra soit le configurer pour stocker l'heure en temps universel dans l'horloge matérielle (en réglant la valeur de la clé <literal>HKLM\\\\SYSTEM\\\\CurrentControlSet\\\\Control\\\\TimeZoneInformation\\\\RealTimeIsUniversal</literal> au DWORD « 1 » dans la base de registres), soit désactiver <literal>UTC</literal> dans le fichier <filename>/etc/default/rcS</filename> (et prendre soin de vérifier manuellement l'horloge au printemps et à l'automne)."
 
 #. Tag: title
 #, no-c-format
@@ -2531,12 +2531,12 @@ msgstr "<primary><foreignphrase>Network</foreignphrase></primary><secondary><for
 #. Tag: para
 #, no-c-format
 msgid "NTP (Network Time Protocol) allows a machine to synchronize with others fairly accurately, taking into consideration the delays induced by the transfer of information over the network and other possible offsets."
-msgstr "NTP (<foreignphrase>Network Time Protocol</foreignphrase>, ou protocole d'heure en réseau), permet à une machine de se synchroniser sur une autre en prenant en compte de manière relativement précise les délais induits par le transfert de l'information sur le réseau et les autres décalages possibles."
+msgstr "NTP (<foreignphrase>Network Time Protocol</foreignphrase>, ou protocole d'heure en réseau) permet à une machine de se synchroniser sur une autre en prenant en compte de manière relativement précise les délais induits par le transfert de l'information sur le réseau et les autres décalages possibles."
 
 #. Tag: para
 #, no-c-format
 msgid "While there are numerous NTP servers on the Internet, the more popular ones may be overloaded. This is why we recommend using the <emphasis>pool.ntp.org</emphasis> NTP server, which is, in reality, a group of machines that have agreed to serve as public NTP servers. You could even limit use to a sub-group specific to a country, with, for example, <emphasis>us.pool.ntp.org</emphasis> for the United States, or <emphasis>ca.pool.ntp.org</emphasis> for Canada, etc."
-msgstr "Bien qu'il existe de nombreux serveurs NTP sur l'Internet, les plus connus peuvent être surchargés. C'est pourquoi il est recommandé d'employer le serveur NTP <emphasis>pool.ntp.org</emphasis> — c'est en réalité une collection de machines qui ont accepté de jouer le rôle de serveur NTP public. On peut même se limiter à un sous-ensemble spécifique à un pays, avec par exemple <emphasis>fr.pool.ntp.org</emphasis> pour la France."
+msgstr "Bien qu'il existe de nombreux serveurs NTP sur Internet, les plus connus peuvent être surchargés. C'est pourquoi il est recommandé d'employer le serveur NTP <emphasis>pool.ntp.org</emphasis> — c'est en réalité une collection de machines qui ont accepté de jouer le rôle de serveur NTP public. On peut même se limiter à un sous-ensemble spécifique à un pays, avec par exemple <emphasis>fr.pool.ntp.org</emphasis> pour la France."
 
 #. Tag: para
 #, no-c-format
@@ -2571,7 +2571,7 @@ msgstr "Pour les serveurs"
 #. Tag: para
 #, no-c-format
 msgid "Servers are only rarely rebooted, and it is very important for their system time to be correct. To permanently maintain correct time, you would install a local NTP server, a service offered in the <emphasis role=\"pkg\">ntp</emphasis> package. In its default configuration, the server will synchronize with <emphasis>pool.ntp.org</emphasis> and provide time in response to requests coming from the local network. You can configure it by editing the <filename>/etc/ntp.conf</filename> file, the most significant alteration being the NTP server to which it refers. If the network has a lot of servers, it may be interesting to have one local time server which synchronizes with the public servers and is used as a time source by the other servers of the network."
-msgstr "Les serveurs ne redémarrent que très rarement, et il est très important que leur heure système soit juste. Pour conserver une heure correcte en permanence, on installera un serveur NTP local, service proposé par le paquet <emphasis role=\"pkg\">ntp</emphasis>. Dans sa configuration par défaut, le serveur se synchronisera sur <emphasis>pool.ntp.org</emphasis> et fournira l'heure à qui la lui demande sur le réseau local. On le configurera à travers le fichier <filename>/etc/ntp.conf</filename> ; l'élément le plus intéressant à changer est le serveur NTP de référence. Si le réseau compte beaucoup de serveurs, il peut être intéressant de n'avoir qu'un seul serveur qui se synchronise sur les serveurs publics, les autres se synchronisant sur lui."
+msgstr "Les serveurs ne redémarrent que très rarement et il est très important que leur heure système soit juste. Pour conserver une heure correcte en permanence, on installera un serveur NTP local, service proposé par le paquet <emphasis role=\"pkg\">ntp</emphasis>. Dans sa configuration par défaut, le serveur se synchronisera sur <emphasis>pool.ntp.org</emphasis> et fournira l'heure à qui la lui demandera sur le réseau local. On le configurera à travers le fichier <filename>/etc/ntp.conf</filename> ; l'élément le plus intéressant à changer est le serveur NTP de référence. Si le réseau compte beaucoup de serveurs, il peut être intéressant de n'avoir qu'un seul serveur qui se synchronise sur les serveurs publics, les autres se synchronisant sur lui."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2606,7 +2606,7 @@ msgstr "<primary>DCF-77</primary>"
 #. Tag: para
 #, no-c-format
 msgid "If time synchronization is particularly crucial to your network, it is possible to equip a server with a GPS module (which will use the time from GPS satellites) or a DCF-77 module (which will sync time with the atomic clock near Frankfurt, Germany). In this case, the configuration of the NTP server is a little more complicated, and prior consultation of the documentation is an absolute necessity."
-msgstr "Si la synchronisation horaire est cruciale dans votre réseau, il est possible d'équiper un serveur d'un module GPS (qui demandera l'heure aux satellites GPS) ou DCF-77 (qui la captera sur une horloge atomique installée près de Francfort). Dans ces cas, la configuration du serveur NTP est un peu plus compliquée, et la consultation de sa documentation, un préalable absolument nécessaire."
+msgstr "Si la synchronisation horaire est cruciale dans votre réseau, il est possible d'équiper un serveur d'un module GPS (qui demandera l'heure aux satellites GPS) ou DCF-77 (qui la captera sur une horloge atomique installée près de Francfort). Dans ces cas, la configuration du serveur NTP est un peu plus compliquée et la consultation de sa documentation un préalable absolument nécessaire."
 
 #. Tag: title
 #, no-c-format
@@ -2636,7 +2636,7 @@ msgstr "<primary><command>logrotate</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Log files can grow, fast, and it is necessary to archive them. The most common scheme is a rotating archive: the log file is regularly archived, and only the latest <replaceable>X</replaceable> archives are retained. <command>logrotate</command>, the program responsible for these rotations, follows directives given in the <filename>/etc/logrotate.conf</filename> file and all of the files in the <filename>/etc/logrotate.d/</filename> directory. The administrator may modify these files, if they wish to adapt the log rotation policy defined by Debian. The <citerefentry><refentrytitle>logrotate</refentrytitle> <manvolnum>1</manvolnum></citerefentry> man page describes all of the options available in these configuration files. You may want to increase the number of files retained in log rotation, or move the log files to a specific directory dedicated to archiving them rather than delete them. You could also send them by e-mail to archive them elsewhere."
-msgstr "Les fichiers de logs prenant rapidement du volume, il est nécessaire de les archiver. On emploie en général une archive « tournante » : le fichier de log est régulièrement archivé, et seules ses <replaceable>X</replaceable> dernières archives sont conservées. <command>logrotate</command>, le programme chargé de ces rotations, suit les directives données dans le fichier <filename>/etc/logrotate.conf</filename> et tous ceux du répertoire <filename>/etc/logrotate.d/</filename>. L'administrateur peut modifier ces fichiers s'il souhaite adapter la politique de rotation des logs définie par Debian. La page de manuel <citerefentry><refentrytitle>logrotate</refentrytitle><manvolnum>1</manvolnum></citerefentry> décrit toutes les options autorisées dans ces fichiers de configuration. Il peut être intéressant d'augmenter le nombre de fichiers conservés dans la rotation des logs, ou de déplacer les fichiers de logs dans un répertoire spécifique dédié à l'archivage au lieu de les supprimer. On peut encore les envoyer par courrier électronique pour les archiver ailleurs."
+msgstr "Les fichiers de logs prenant rapidement du volume, il est nécessaire de les archiver. On emploie en général une archive « tournante » : le fichier de log est régulièrement archivé et seules ses <replaceable>X</replaceable> dernières archives sont conservées. <command>logrotate</command>, le programme chargé de ces rotations, suit les directives données dans le fichier <filename>/etc/logrotate.conf</filename> et tous ceux du répertoire <filename>/etc/logrotate.d/</filename>. L'administrateur peut modifier ces fichiers s'il souhaite adapter la politique de rotation des logs définie par Debian. La page de manuel <citerefentry><refentrytitle>logrotate</refentrytitle><manvolnum>1</manvolnum></citerefentry> décrit toutes les options autorisées dans ces fichiers de configuration. Il peut être intéressant d'augmenter le nombre de fichiers conservés dans la rotation des logs, ou de déplacer les fichiers de logs dans un répertoire spécifique dédié à l'archivage au lieu de les supprimer. On peut encore les envoyer par courrier électronique pour les archiver ailleurs."
 
 #. Tag: para
 #, no-c-format
@@ -2666,7 +2666,7 @@ msgstr "<primary><command>sudo</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Frequently, several administrators work on the same network. Sharing the root passwords is not very elegant, and opens the door for abuse due to the anonymity such sharing creates. The solution to this problem is the <command>sudo</command> program, which allows certain users to execute certain commands with special rights. In the most common use case, <command>sudo</command> allows a trusted user to execute any command as root. To do so, the user simply executes <command>sudo <replaceable>command</replaceable></command> and authenticates using their personal password."
-msgstr "Bien souvent, plusieurs administrateurs s'occupent du réseau. Partager le mot de passe de l'utilisateur root n'est pas très élégant et ouvre la porte à des abus du fait de l'anonymat de ce compte partagé. La solution à ce problème est le programme <command>sudo</command>, qui permet à certains utilisateurs d'exécuter certaines commandes avec des droits particuliers. Dans son emploi le plus courant <command>sudo</command> permet à un utilisateur de confiance d'exécuter n'importe quelle commande en tant que root. Pour cela l'utilisateur doit simplement exécuter <command>sudo <replaceable>commande</replaceable></command> et s'authentifier à l'aide de son mot de passe personnel."
+msgstr "Bien souvent, plusieurs administrateurs s'occupent du réseau. Partager le mot de passe de l'utilisateur root n'est pas très élégant et ouvre la porte à des abus du fait de l'anonymat de ce compte partagé. La solution à ce problème est le programme <command>sudo</command>, qui permet à certains utilisateurs d'exécuter certaines commandes avec des droits particuliers. Dans son emploi le plus courant <command>sudo</command> permet à un utilisateur de confiance d'exécuter n'importe quelle commande en tant que root. Pour cela, l'utilisateur doit simplement exécuter <command>sudo <replaceable>commande</replaceable></command> et s'authentifier à l'aide de son mot de passe personnel."
 
 #. Tag: para
 #, no-c-format
@@ -2716,7 +2716,7 @@ msgstr "<emphasis>B.A.-BA</emphasis> Montage et démontage"
 #. Tag: para
 #, no-c-format
 msgid "In a Unix-like system such as Debian, files are organized in a single tree-like hierarchy of directories. The <filename>/</filename> directory is called the “root directory”; all additional directories are sub-directories within this root. “Mounting” is the action of including the content of a peripheral device (often a hard drive) into the system's general file tree. As a consequence, if you use a separate hard drive to store users' personal data, this disk will have to be “mounted” in the <filename>/home/</filename> directory. The root filesystem is always mounted at boot by the kernel; other devices are often mounted later during the startup sequence or manually with the <command>mount</command> command."
-msgstr "Dans un système de type Unix comme Debian, les fichiers sont organisés dans une arborescence unique de répertoires. Le répertoire <filename>/</filename> est appelé la racine, et tous les autres sont des sous-répertoires plus ou moins directs de cette racine. Le « montage » est l'action d'intégrer le contenu d'un périphérique (souvent un disque dur) à l'arborescence générale du système. Ainsi, si l'on utilise un disque séparé pour stocker les données personnelles des utilisateurs, ce disque sera « monté » dans le répertoire <filename>/home/</filename>. Le système de fichiers racine est toujours monté par le noyau. Lors de l'initialisation de l'ordinateur, d'autres périphériques y sont souvent intégrés à l'aide de la commande <command>mount</command>."
+msgstr "Dans un système de type Unix comme Debian, les fichiers sont organisés dans une arborescence unique de répertoires. Le répertoire <filename>/</filename> est appelé la racine et tous les autres sont des sous-répertoires plus ou moins directs de cette racine. Le « montage » est l'action d'intégrer le contenu d'un périphérique (souvent un disque dur) à l'arborescence générale du système. Ainsi, si l'on utilise un disque séparé pour stocker les données personnelles des utilisateurs, ce disque sera « monté » dans le répertoire <filename>/home/</filename>. Le système de fichiers racine est toujours monté par le noyau. Lors de l'initialisation de l'ordinateur, d'autres périphériques y sont souvent intégrés à l'aide de la commande <command>mount</command>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2726,7 +2726,7 @@ msgstr "<primary><command>mount</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Some removable devices are automatically mounted when connected, especially when using the GNOME, KDE or other graphical desktop environments. Others have to be mounted manually by the user. Likewise, they must be unmounted (removed from the file tree). Normal users do not usually have permission to execute the <command>mount</command> and <command>umount</command> commands. The administrator can, however, authorize these operations (independently for each mount point) by including the <literal>user</literal> option in the <filename>/etc/fstab</filename> file."
-msgstr "Certains périphériques amovibles sont montés automatiquement lors de leur branchement, notamment dans les environnements de bureau GNOME et KDE. Les autres devront être montés manuellement par l'utilisateur. Il faudra également que celui-ci puisse les démonter (ou retirer de l'arborescence) ; c'est d'ailleurs un préalable nécessaire à l'éjection de certains d'entre eux, comme les CD-Roms. Les utilisateurs normaux ne sont normalement pas habilités à employer les commandes <command>mount</command> et <command>umount</command>. L'administrateur peut toutefois autoriser ces opérations (indépendamment pour chaque point de montage) en positionnant l'option <literal>user</literal> dans le fichier <filename>/etc/fstab</filename>."
+msgstr "Certains périphériques amovibles sont montés automatiquement lors de leur branchement, notamment dans les environnements de bureau GNOME et KDE. Les autres devront être montés manuellement par l'utilisateur. Il faudra également que celui-ci puisse les démonter (ou retirer de l'arborescence) ; c'est d'ailleurs un préalable nécessaire à l'éjection de certains d'entre eux, comme les CD-Rom. Les utilisateurs normaux ne sont normalement pas habilités à employer les commandes <command>mount</command> et <command>umount</command>. L'administrateur peut toutefois autoriser ces opérations (indépendamment pour chaque point de montage) en positionnant l'option <literal>user</literal> dans le fichier <filename>/etc/fstab</filename>."
 
 #. Tag: para
 #, no-c-format
@@ -2736,12 +2736,12 @@ msgstr "La commande <command>mount</command> peut s'employer sans arguments (ell
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/fstab</filename> file gives a list of all possible mounts that happen either automatically on boot or manually for removable storage devices. Each mount point is described by a line with several space-separated fields: <indexterm><primary><filename>fstab</filename></primary></indexterm> <indexterm><primary><filename>/etc/fstab</filename></primary></indexterm>"
-msgstr "Le fichier <filename>/etc/fstab</filename> donne la liste de tous les montages possibles (effectués automatiquement au démarrage ou à exécuter manuellement pour les périphériques amovibles). Chaque point de montage y est détaillé sur une ligne par plusieurs champs séparés par des blancs, et qui sont : <indexterm><primary><filename>fstab</filename></primary></indexterm> <indexterm><primary><filename>/etc/fstab</filename></primary></indexterm>"
+msgstr "Le fichier <filename>/etc/fstab</filename> donne la liste de tous les montages possibles (effectués automatiquement au démarrage ou à exécuter manuellement pour les périphériques amovibles). Chaque point de montage y est détaillé sur une ligne par plusieurs champs séparés par des blancs, qui sont : <indexterm><primary><filename>fstab</filename></primary></indexterm> <indexterm><primary><filename>/etc/fstab</filename></primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "device to mount: this can be a local partition (hard drive, CD-ROM) or a remote filesystem (such as NFS)."
-msgstr "périphérique à monter : il peut s'agir d'une partition locale (disque dur, CD-Rom) ou d'un système de fichiers distant (tel que NFS)."
+msgstr "Périphérique à monter : il peut s'agir d'une partition locale (disque dur, CD-Rom) ou d'un système de fichiers distant (tel que NFS)."
 
 #. Tag: para
 #, no-c-format
@@ -2751,12 +2751,12 @@ msgstr "Ce champ est fréquemment remplacé par l'identifiant unique du système
 #. Tag: para
 #, no-c-format
 msgid "mount point: this is the location on the local filesystem where the device, remote system, or partition will be mounted."
-msgstr "point de montage : c'est l'endroit de l'arborescence où ce système de fichiers sera rendu accessible ;"
+msgstr "Point de montage : c'est l'endroit de l'arborescence où ce système de fichiers sera rendu accessible."
 
 #. Tag: para
 #, no-c-format
 msgid "type: this field defines the filesystem used on the mounted device. <literal>ext4</literal>, <literal>ext3</literal>, <literal>vfat</literal>, <literal>ntfs</literal>, <literal>btrfs</literal>, <literal>xfs</literal> are a few examples."
-msgstr "type : ce champ définit le système de fichiers employé sur le périphérique.  <literal>ext4</literal>, <literal>ext3</literal>, <literal>vfat</literal>, <literal>ntfs</literal>, <literal>reiserfs</literal>, <literal>xfs</literal> en sont quelques exemples."
+msgstr "Type : ce champ définit le système de fichiers employé sur le périphérique.  <literal>ext4</literal>, <literal>ext3</literal>, <literal>vfat</literal>, <literal>ntfs</literal>, <literal>reiserfs</literal>, <literal>xfs</literal> en sont quelques exemples."
 
 #. Tag: title
 #, no-c-format
@@ -2766,17 +2766,17 @@ msgstr "<emphasis>B.A.-BA</emphasis> NFS, un système de fichiers réseau"
 #. Tag: para
 #, no-c-format
 msgid "NFS is a network filesystem; under Linux, it allows transparent access to remote files by including them in the local filesystem."
-msgstr "NFS — <foreignphrase>Network File System</foreignphrase> — est un système de fichiers réseau ; sous Linux il permet d'accéder de manière transparente à des fichiers distants en les intégrant dans l'arborescence du système."
+msgstr "NFS — <foreignphrase>Network File System</foreignphrase> — est un système de fichiers réseau ; sous Linux, il permet d'accéder de manière transparente à des fichiers distants en les intégrant dans l'arborescence du système."
 
 #. Tag: para
 #, no-c-format
 msgid "A complete list of known filesystems is available in the <citerefentry><refentrytitle>mount</refentrytitle> <manvolnum>8</manvolnum></citerefentry> man page. The <literal>swap</literal> special value is for swap partitions; the <literal>auto</literal> special value tells the <command>mount</command> program to automatically detect the filesystem (which is especially useful for disk readers and USB keys, since each one might have a different filesystem);"
-msgstr "La liste complète des systèmes de fichiers reconnus est disponible dans la page de manuel <citerefentry><refentrytitle>mount</refentrytitle><manvolnum>8</manvolnum></citerefentry>. La valeur spéciale <literal>swap</literal> sert aux partitions d'échange ; la valeur spéciale <literal>auto</literal> demande au programme <command>mount</command> de détecter automatiquement le système de fichiers (ce qui est surtout utile pour les lecteurs de disquettes et les clefs USB, car chacune peut abriter un système de fichiers différent) ;"
+msgstr "La liste complète des systèmes de fichiers reconnus est disponible dans la page de manuel <citerefentry><refentrytitle>mount</refentrytitle><manvolnum>8</manvolnum></citerefentry>. La valeur spéciale <literal>swap</literal> sert aux partitions d'échange ; la valeur spéciale <literal>auto</literal> demande au programme <command>mount</command> de détecter automatiquement le système de fichiers (ce qui est surtout utile pour les lecteurs de disquettes et les clés USB, car chacune peut abriter un système de fichiers différent)."
 
 #. Tag: para
 #, no-c-format
 msgid "options: there are many of them, depending on the filesystem, and they are documented in the <command>mount</command> man page. The most common are"
-msgstr "options : elles sont nombreuses, dépendent du système de fichiers, et sont documentées dans la page de manuel de <command>mount</command>. Les plus courantes sont"
+msgstr "Options : elles sont nombreuses, dépendent du système de fichiers et sont documentées dans la page de manuel de <command>mount</command>. En voici les plus courantes :"
 
 #. Tag: para
 #, no-c-format
@@ -2801,12 +2801,12 @@ msgstr "<literal>defaults</literal> correspond à l'ensemble d'options (<literal
 #. Tag: para
 #, no-c-format
 msgid "backup: this field is almost always set to <literal>0</literal>. When it is <literal>1</literal>, it tells the <command>dump</command> tool that the partition contains data that is to be backed up."
-msgstr "sauvegarde : ce champ est presque toujours à <literal>0</literal>. Lorsqu'il vaut <literal>1</literal>, il indique à l'utilitaire <command>dump</command> que la partition contient des données à sauvegarder ;"
+msgstr "Sauvegarde : ce champ est presque toujours à <literal>0</literal>. Lorsqu'il vaut <literal>1</literal>, il indique à l'utilitaire <command>dump</command> que la partition contient des données à sauvegarder."
 
 #. Tag: para
 #, no-c-format
 msgid "check order: this last field indicates whether the integrity of the filesystem should be checked on boot, and in which order this check should be executed. If it is <literal>0</literal>, no check is conducted. The root filesystem should have the value <literal>1</literal>, while other permanent filesystems get the value <literal>2</literal>."
-msgstr "ordre de vérification : ce dernier champ indique si l'intégrité du système de fichiers doit être vérifiée au démarrage et dans quel ordre cette vérification doit avoir lieu. S'il est à <literal>0</literal>, aucune vérification n'est faite. Le système de fichiers racine doit avoir la valeur <literal>1</literal>, les autres systèmes de fichiers permanents du système recevront la valeur <literal>2</literal>."
+msgstr "Ordre de vérification : ce dernier champ indique si l'intégrité du système de fichiers doit être vérifiée au démarrage et dans quel ordre cette vérification doit avoir lieu. S'il est à <literal>0</literal>, aucune vérification n'est faite. Le système de fichiers racine doit avoir la valeur <literal>1</literal>, les autres systèmes de fichiers permanents du système recevront la valeur <literal>2</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -2885,7 +2885,7 @@ msgstr "<primary>auto-monteur</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Other auto-mounting utilities exist, such as <command>automount</command> in the <emphasis>autofs</emphasis> package."
-msgstr "D'autres auto-monteurs existent, comme par exemple <command>automount</command> du paquet <emphasis>autofs</emphasis>."
+msgstr "D'autres auto-monteurs existent, par exemple <command>automount</command> du paquet <emphasis>autofs</emphasis>."
 
 #. Tag: para
 #, no-c-format
@@ -2950,7 +2950,7 @@ msgstr "<emphasis>ATTENTION</emphasis> Mises à jour de sécurité"
 #. Tag: para
 #, no-c-format
 msgid "If you choose to compile your own kernel, you must accept the consequences: Debian cannot ensure security updates for your custom kernel. By keeping the kernel provided by Debian, you benefit from updates prepared by the Debian Project's security team."
-msgstr "Si l'on choisit de compiler son propre noyau, il faut en accepter les conséquences : Debian n'assurera pas les mises à jour de sécurité de ce noyau. En restant avec un noyau fourni par Debian, on bénéficie des mises à jour préparées par l'équipe sécurité du projet Debian."
+msgstr "Si l'on choisit de compiler son propre noyau, il faut en accepter les conséquences : Debian n'assurera pas les mises à jour de sécurité de ce noyau. En restant avec un noyau fourni par Debian, on bénéficie des mises à jour préparées par l'équipe sécurité du projet."
 
 #. Tag: para
 #, no-c-format
@@ -3000,7 +3000,7 @@ msgstr "<primary><emphasis role=\"pkg\">kernel-package</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Before the Linux build system gained the ability to build proper Debian packages, the recommended way to build such packages was to use <command>make-kpkg</command> from the <emphasis role=\"pkg\">kernel-package</emphasis> package."
-msgstr "À l'époque où le système de compilation du noyau Linux ne permettait pas encore de créer directement des paquets Debian, la manière recommandée de créer ces paquets était d'utiliser l'outil <command>make-kpkg</command> fourni par le paquet <emphasis role=\"pkg\">kernel-package</emphasis>.\""
+msgstr "À l'époque où le système de compilation du noyau Linux ne permettait pas encore de créer directement des paquets Debian, la manière recommandée de créer ces paquets était d'utiliser l'outil <command>make-kpkg</command> fourni par le paquet <emphasis role=\"pkg\">kernel-package</emphasis>."
 
 #. Tag: title
 #, no-c-format
@@ -3056,7 +3056,7 @@ msgstr "<emphasis>CULTURE</emphasis> Emplacement des sources du noyau"
 #. Tag: para
 #, no-c-format
 msgid "Traditionally, Linux kernel sources would be placed in <filename>/usr/src/linux/</filename> thus requiring root permissions for compilation. However, working with administrator rights should be avoided when not needed. There is a <literal>src</literal> group that allows members to work in this directory, but working in <filename>/usr/src/</filename> should be avoided nevertheless. By keeping the kernel sources in a personal directory, you get security on all counts: no files in <filename>/usr/</filename> unknown to the packaging system, and no risk of misleading programs that read <filename>/usr/src/linux</filename> when trying to gather information on the used kernel."
-msgstr "Traditionnellement, les sources du noyau Linux ont toujours été placées sous <filename>/usr/src/linux/</filename>, nécessitant donc les droits root pour la compilation. Comme vous le savez, il faut pourtant éviter de travailler inutilement avec les droits de l'administrateur. Il existe bien un groupe <literal>src</literal> qui permet à ses membres de travailler dans ce répertoire, mais on évitera malgré tout de recourir à <filename>/usr/src/</filename>. En conservant les sources du noyau dans un répertoire personnel, vous optez pour la sécurité à tout point de vue : pas de fichiers inconnus du système de paquetage dans <filename>/usr/</filename>, et pas de risque d'induire en erreur les programmes qui scrutent <filename>/usr/src/linux/</filename> pour obtenir des informations sur le noyau employé."
+msgstr "Traditionnellement, les sources du noyau Linux ont toujours été placées sous <filename>/usr/src/linux/</filename>, nécessitant donc les droits root pour la compilation. Comme vous le savez, il faut pourtant éviter de travailler inutilement avec les droits de l'administrateur. Il existe bien un groupe <literal>src</literal> qui permet à ses membres de travailler dans ce répertoire, mais on évitera malgré tout de recourir à <filename>/usr/src/</filename>. En conservant les sources du noyau dans un répertoire personnel, vous optez pour la sécurité à tout point de vue : pas de fichiers inconnus du système de paquetage dans <filename>/usr/</filename>, ni de risque d'induire en erreur les programmes qui scrutent <filename>/usr/src/linux/</filename> pour obtenir des informations sur le noyau employé."
 
 #. Tag: title
 #, no-c-format
@@ -3113,7 +3113,7 @@ msgstr "Les autres interfaces ont un fonctionnement similaire, mais inscrit dans
 #. Tag: para
 #, no-c-format
 msgid "When using one of those configuration interfaces, it's always a good idea to start from a reasonable default configuration. The kernel provides such configurations in <filename>arch/<replaceable>arch</replaceable>/configs/*_defconfig</filename> and you can put your selected configuration in place with a command like <command>make x86_84_defconfig</command> (in the case of a 64-bit PC) or <command>make i386_defconfig</command> (in the case of a 32-bit PC)."
-msgstr "Lorsque l'on utilise une de ces interfaces de configuration, il est généralement conseillé de partir d'une configuration par défaut raisonnable.  Le noyau fournit de telles configurations dans <filename>arch/<replaceable>architecture</replaceable>/configs/*_defconfig</filename>, et il est possible de les mettre en place avec une commande telle que <command>make x86_84_defconfig</command> (pour un PC 64 bits) ou <command>make i386_defconfig</command> (pour un PC 32 bits)."
+msgstr "Lorsque l'on utilise une de ces interfaces de configuration, il est généralement conseillé de partir d'une configuration par défaut raisonnable.  Le noyau fournit de telles configurations dans <filename>arch/<replaceable>architecture</replaceable>/configs/*_defconfig</filename> et il est possible de les mettre en place avec une commande telle que <command>make x86_84_defconfig</command> (pour un PC 64 bits) ou <command>make i386_defconfig</command> (pour un PC 32 bits)."
 
 #. Tag: title
 #, no-c-format
@@ -3143,17 +3143,17 @@ msgstr "<emphasis>ATTENTION</emphasis> Nettoyer avant de recommencer"
 #. Tag: para
 #, no-c-format
 msgid "If you have already compiled once in the directory and wish to rebuild everything from scratch (for example because you substantially changed the kernel configuration), you will have to run <command>make clean</command> to remove the compiled files. <command>make distclean</command> removes even more generated files, including your <filename>.config</filename> file too, so make sure to backup it first."
-msgstr "Si vous avez déjà construit un noyau dans le répertoire, et que vous voulez tout reconstruire depuis zéro (par exemple après avoir changé la configuration du noyau de manière substantielle), il faudra lancer <command>make clean</command>, qui supprimera les fichiers compilés.  <command>make distclean</command> fait un ménage encore plus fort et supprime tous les fichiers générés, y compris votre <filename>.config</filename> ; faites-en une sauvegarde au préalable !"
+msgstr "Si vous avez déjà construit un noyau dans le répertoire et si vous voulez tout reconstruire depuis zéro (par exemple après avoir changé la configuration du noyau de manière substantielle), il faudra lancer <command>make clean</command>, qui supprimera les fichiers compilés.  <command>make distclean</command> fait un ménage encore plus fort et supprime tous les fichiers générés, y compris votre <filename>.config</filename> ; faites-en une sauvegarde au préalable !"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the kernel configuration is ready, a simple <command>make deb-pkg</command> will generate up to 5 Debian packages: <emphasis role=\"pkg\">linux-image-<replaceable>version</replaceable></emphasis> that contains the kernel image and the associated modules, <emphasis role=\"pkg\">linux-headers-<replaceable>version</replaceable></emphasis> which contains the header files required to build external modules, <emphasis role=\"pkg\">linux-firmware-image-<replaceable>version</replaceable></emphasis> which contains the firmware files needed by some drivers, <emphasis role=\"pkg\">linux-image-<replaceable>version</replaceable>-dbg</emphasis> which contains the debugging symbols for the kernel image and its modules, and <emphasis role=\"pkg\">linux-libc-dev</emphasis> which contains headers relevant to some user space libraries like GNU glibc."
-msgstr "Une fois que la configuration du noyau est prête, la commande <command>make deb-pkg</command> va créer jusqu'à 5 paquets Debian : <emphasis role=\"pkg\">linux-image-<replaceable>version</replaceable></emphasis>, qui contient le noyau lui-même et les modules associés ; <emphasis role=\"pkg\">linux-headers-<replaceable>version</replaceable></emphasis>, qui contient les fichiers d'en-tête nécessaires pour construire des modules externes ; <emphasis role=\"pkg\">linux-firmware-image-<replaceable>version</replaceable></emphasis>, qui contient des fichiers de microcode requis par certains pilotes de périphériques ; <emphasis role=\"pkg\">linux-image-<replaceable>version</replaceable>-dbg</emphasis>, qui contient les symboles de débogage pour l'image du noyau et ses modules ; et <emphasis role=\"pkg\">linux-libc-dev</emphasis>, qui contient les fichiers d'en-têtes requis pour certaines bibliothèques de code en espace utilisateur, telles que la bibliothèque C standard de GNU (glibc)."
+msgstr "Une fois que la configuration du noyau est prête, la commande <command>make deb-pkg</command> va créer jusqu'à 5 paquets Debian : <emphasis role=\"pkg\">linux-image-<replaceable>version</replaceable></emphasis>, qui contient le noyau lui-même et les modules associés ; <emphasis role=\"pkg\">linux-headers-<replaceable>version</replaceable></emphasis>, qui contient les fichiers d'en-tête nécessaires pour construire des modules externes ; <emphasis role=\"pkg\">linux-firmware-image-<replaceable>version</replaceable></emphasis>, qui contient des fichiers de microcode requis par certains pilotes de périphériques ; <emphasis role=\"pkg\">linux-image-<replaceable>version</replaceable>-dbg</emphasis>, qui contient les symboles de débogage pour l'image du noyau et ses modules ; <emphasis role=\"pkg\">linux-libc-dev</emphasis>, qui contient les fichiers d'en-têtes requis pour certaines bibliothèques de code en espace utilisateur, telles que la bibliothèque C standard de GNU (glibc)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <replaceable>version</replaceable> is defined by the concatenation of the upstream version (as defined by the variables <literal>VERSION</literal>, <literal>PATCHLEVEL</literal>, <literal>SUBLEVEL</literal> and <literal>EXTRAVERSION</literal> in the <filename>Makefile</filename>), of the <literal>LOCALVERSION</literal> configuration parameter, and of the <literal>LOCALVERSION</literal> environment variable. The package version reuses the same version string with an appended revision that is regularly incremented (and stored in <filename>.version</filename>), except if you override it with the <literal>KDEB_PKGVERSION</literal> environment variable."
-msgstr "La <replaceable>version</replaceable> est construite à partir de la version amont (définie par les variables <literal>VERSION</literal>, <literal>PATCHLEVEL</literal>, <literal>SUBLEVEL</literal> et <literal>EXTRAVERSION</literal> dans le fichier <filename>Makefile</filename>), du paramètre de configuration <literal>LOCALVERSION</literal>, et de la variable d'environnement <literal>LOCALVERSION</literal>.  La version du paquet réutilise la même chaîne de version, avec une révision qui est régulièrement incrémentée (et stockée dans le fichier <filename>.version</filename>), sauf si elle est explicitement surchargée par la variable d'environnement <literal>KDEB_PKGVERSION</literal>."
+msgstr "La <replaceable>version</replaceable> est construite à partir de la version amont (définie par les variables <literal>VERSION</literal>, <literal>PATCHLEVEL</literal>, <literal>SUBLEVEL</literal> et <literal>EXTRAVERSION</literal> dans le fichier <filename>Makefile</filename>), du paramètre de configuration <literal>LOCALVERSION</literal> et de la variable d'environnement <literal>LOCALVERSION</literal>.  La version du paquet réutilise la même chaîne de version, avec une révision qui est régulièrement incrémentée (et stockée dans le fichier <filename>.version</filename>), sauf si elle est explicitement surchargée par la variable d'environnement <literal>KDEB_PKGVERSION</literal>."
 
 #. Tag: screen
 #, no-c-format
@@ -3289,7 +3289,7 @@ msgstr "<primary><emphasis role=\"pkg\">module-assistant</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Before DKMS, <emphasis role=\"pkg\">module-assistant</emphasis> was the simplest solution to build and deploy kernel modules. It can still be used, in particular for packages lacking DKMS integration: with a simple command like <command>module-assistant auto-install virtualbox</command> (or <command>m-a a-i virtualbox</command> for short), the modules are compiled for the current kernel, put in a new Debian package, and that package gets installed on the fly."
-msgstr "Avant l'apparition de DKMS, la solution la plus simple pour construire et déployer des modules du noyau était <emphasis role=\"pkg\">module-assistant</emphasis>.  Cette solution est toujours disponibles, en particulier pour les paquets qui ne proposent pas (encore) une intégration avec DKMS : avec une simple commande telle que <command>module-assistant auto-install virtualbox</command> (ou même sa version raccourcie, <command>m-a a-i virtualbox</command>), les modules sont construits pour le noyau courant, puis empaquetés dans un nouveau paquet Debian, qui est lui-même installé à la volée."
+msgstr "Avant l'apparition de DKMS, la solution la plus simple pour construire et déployer des modules du noyau était <emphasis role=\"pkg\">module-assistant</emphasis>.  Cette solution est toujours disponible, en particulier pour les paquets qui ne proposent pas (encore) une intégration avec DKMS : avec une simple commande telle que <command>module-assistant auto-install virtualbox</command> (ou même sa version raccourcie, <command>m-a a-i virtualbox</command>), les modules sont construits pour le noyau courant, puis empaquetés dans un nouveau paquet Debian, qui est lui-même installé à la volée."
 
 #. Tag: title
 #, no-c-format
@@ -3309,7 +3309,7 @@ msgstr "<primary>patch noyau</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Some features are not included in the standard kernel due to a lack of maturity or to some disagreement with the kernel maintainers. Such features may be distributed as patches that anyone is then free to apply to the kernel sources."
-msgstr "Certaines fonctionnalités ne sont pas intégrées au noyau standard faute de stabilité ou d'accord des mainteneurs du noyau. Dans ce cas, il arrive qu'elles soient diffusés sous la forme de correctif (ou patch), que chacun est alors libre d'appliquer sur les sources du noyau."
+msgstr "Certaines fonctionnalités ne sont pas intégrées au noyau standard faute de stabilité ou d'accord des mainteneurs du noyau. Dans ce cas, il arrive qu'elles soient diffusées sous la forme de correctif (ou patch), que chacun est alors libre d'appliquer sur les sources du noyau."
 
 #. Tag: para
 #, no-c-format
@@ -3389,9 +3389,9 @@ msgstr "Installation avec <command>dpkg</command>"
 #. Tag: para
 #, no-c-format
 msgid "Using <command>apt-get</command> is so convenient that it makes it easy to forget about the lower-level tools, but the easiest way of installing a compiled kernel is to use a command such as <command>dpkg -i <replaceable>package</replaceable>.deb</command>, where <literal><replaceable>package</replaceable>.deb</literal> is the name of a <emphasis role=\"pkg\">linux-image</emphasis> package such as <filename>linux-image-3.2.48-falcot_1_amd64.deb</filename>."
-msgstr "L'emploi fréquent d'<command>apt-get</command> a tendance à faire oublier l'existence de <command>dpkg</command>. Le moyen le plus simple d'installer un noyau compilé soi-même reste pourtant la commande <command>dpkg -i <replaceable>paquet</replaceable>.deb</command>. <literal><replaceable>paquet</replaceable>.deb</literal> représente évidemment le nom d'un paquet <emphasis role=\"pkg\">linux-image</emphasis>, comme par exemple <filename>linux-image-3.2.48-falcot_1_amd64.deb</filename>."
+msgstr "L'emploi fréquent d'<command>apt-get</command> a tendance à faire oublier l'existence de <command>dpkg</command>. Le moyen le plus simple d'installer un noyau compilé soi-même reste pourtant la commande <command>dpkg -i <replaceable>paquet</replaceable>.deb</command>. <literal><replaceable>paquet</replaceable>.deb</literal> représente évidemment le nom d'un paquet <emphasis role=\"pkg\">linux-image</emphasis>, par exemple <filename>linux-image-3.2.48-falcot_1_amd64.deb</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "The configuration steps described in this chapter are basic and can lead both to a server system or a workstation, and it can be massively duplicated in semi-automated ways. However, it is not enough by itself to provide a fully configured system. A few pieces are still in need of configuration, starting with low-level programs known as the “Unix services”."
-msgstr "La configuration de base obtenue peut aussi bien devenir un serveur qu'un poste de bureautique et elle est reproductible en masse de façon semi-automatisée. Une machine en disposant n'est toutefois pas encore adaptée à un usage donné, c'est pourquoi l'administrateur doit à présent compléter la préparation. Pour cela il commencera par mettre en place les couches logicielles basses appelées « services Unix »."
+msgstr "La configuration de base obtenue peut aussi bien devenir un serveur qu'un poste de bureautique et elle est reproductible en masse de façon semi-automatisée. Une machine en disposant n'est toutefois pas encore adaptée à un usage donné, c'est pourquoi l'administrateur doit à présent compléter la préparation. Pour cela, il commencera par mettre en place les couches logicielles basses appelées « services Unix »."
