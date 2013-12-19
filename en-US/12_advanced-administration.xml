@@ -368,10 +368,6 @@
           </listitem>
         </itemizedlist>
 
-	<para>We're going to use these physical elements to build two
-	volumes, one RAID-0 and one mirror (RAID-1). Let's start with the
-	RAID-0 volume:</para>
-
         <sidebar>
           <title><emphasis>NOTE</emphasis> Identifying existing RAID volumes</title>
 
@@ -380,6 +376,10 @@
 	  should be taken not to name it the same as an existing
 	  volume.</para>
         </sidebar>
+
+	<para>We're going to use these physical elements to build two
+	volumes, one RAID-0 and one mirror (RAID-1). Let's start with the
+	RAID-0 volume:</para>
 
         <screen><computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb /dev/sdc</userinput>
 <computeroutput>mdadm: Defaulting to version 1.2 metadata
@@ -1563,7 +1563,7 @@ Disk identifier: 0x00039a9f
 	paravirt_ops interface, the patches were only progressively merged
 	into the official kernel. The merge was completed in Linux 3.0.
 	<ulink type="block"
-	url="http://wiki.xensource.com/xenwiki/XenParavirtOps"/></para>
+	url="http://wiki.xenproject.org/wiki/XenParavirtOps"/></para>
 
 	<para>Since <emphasis role="distribution">Wheezy</emphasis> is
 	based on version 3.2 of the Linux kernel, the standard
@@ -1573,7 +1573,7 @@ Disk identifier: 0x00039a9f
 	patching that was required for <emphasis
 	role="distribution">Squeeze</emphasis> and earlier versions of
 	Debian is no more. <ulink type="block"
-	url="http://wiki.xen.org/xenwiki/XenKernelFeatures"/></para>
+	url="http://wiki.xenproject.org/wiki/Xen_Kernel_Feature_Matrix"/></para>
       </sidebar>
 
       <para>Using Xen under Debian requires three components:</para>
