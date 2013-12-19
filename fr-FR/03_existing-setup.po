@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-17 16:23+0100\n"
-"PO-Revision-Date: 2013-12-17 16:25+0100\n"
+"PO-Revision-Date: 2013-12-18 17:46+0100\n"
 "Last-Translator: Raphaël Hertzog <hertzog@debian.org>\n"
 "Language-Team: None\n"
 "Language: fr-FR\n"
@@ -98,7 +98,7 @@ msgstr "<primary>Avahi</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Mac OS machines provide, and are able to use, network services such as file servers and printer sharing. These services are published on the local network, which allows other machines to discover them and make use of them without any manual configuration, using the Bonjour implementation of the Zeroconf protocol suite. Debian includes another implementation, called Avahi, which provides the same functionality."
-msgstr "Les machines Mac OS savent fournir et utiliser des services réseaux comme le partage de fichiers et d'imprimantes. Ces services sont annoncés sur le réseau local, ce qui permet aux autres machines de les découvrir et de les exploiter sans aucune configuration manuelle. Bonjour est l'implémentation d'Apple du protocole Zeroconf qui rend tout cela possible. Debian inclut une autre implémentation, Avahi, qui fournit les mêmes fonctionnalités."
+msgstr "Les machines Mac OS savent fournir et utiliser des services réseau comme le partage de fichiers et d'imprimantes. Ces services sont annoncés sur le réseau local, ce qui permet aux autres machines de les découvrir et de les exploiter sans aucune configuration manuelle. Bonjour est l'implémentation d'Apple du protocole Zeroconf qui rend tout cela possible. Debian inclut une autre implémentation, Avahi, qui fournit les mêmes fonctionnalités."
 
 #. Tag: indexterm
 #, no-c-format
@@ -138,7 +138,7 @@ msgstr "Enfin, NFS et NIS, eux aussi compris, garantiront les interactions avec 
 #. Tag: title
 #, no-c-format
 msgid "Coexistence of Debian with MacOS, Windows and Unix systems"
-msgstr "Cohabitation de Debian avec MacOS, Windows et les systèmes Unix"
+msgstr "Cohabitation de Debian avec Mac OS, Windows et les systèmes Unix"
 
 #. Tag: title
 #, no-c-format
@@ -303,12 +303,12 @@ msgstr "Le programme <command>apt-show-versions</command> (du paquet Debian épo
 #. Tag: para
 #, no-c-format
 msgid "A glance at the <filename>/etc/apt/sources.list</filename> file will show where the installed Debian packages likely came from. If many unknown sources appear, the administrator may choose to completely reinstall the computer's system to ensure optimal compatibility with the software provided by Debian."
-msgstr "Un coup d'œil au fichier <filename>/etc/apt/sources.list</filename> montrera la provenance probable des paquets Debian déjà installés. Si beaucoup de sources inconnues apparaissent, l'administrateur pourra choisir de réinstaller complètement l'ordinateur pour s'assurer une compatibilité optimale avec les logiciels fournis par Debian."
+msgstr "Un coup d'œil au fichier <filename>/etc/apt/sources.list</filename> montrera la provenance probable des paquets Debian déjà installés. Si beaucoup de sources inconnues apparaissent, l'administrateur pourra choisir de réinstaller complètement l'ordinateur pour assurer une compatibilité optimale avec les logiciels fournis par Debian."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sources.list</filename> file is often a good indicator: the majority of administrators keep, at least in comments, the list of APT sources that were previously used. But you should not forget that sources used in the past might have been deleted, and that some random packages grabbed on the Internet might have been manually installed (with the <command>dpkg</command> command). In this case, the machine is misleading in its appearance of “standard” Debian. This is why you should pay attention to any indication that will give away the presence of external packages (appearance of <filename>deb</filename> files in unusual directories, package version numbers with a special suffix indicating that it originated from outside the Debian project, such as <literal>ubuntu</literal> or <literal>lmde</literal>, etc.)"
-msgstr "Ce fichier <filename>sources.list</filename> est souvent un bon indicateur : la majorité des administrateurs gardent au moins en commentaires les sources APT employées par le passé. Mais il est toujours possible que des sources employées par le passé aient été supprimées, voire que l'ancien administrateur ait installé manuellement (avec <command>dpkg</command>) des paquets téléchargés sur l'Internet. Dans ce cas, la machine trompe par son apparence de Debian « standard ». C'est pourquoi il convient d'être attentif à tout indice pouvant trahir la présence de paquets externes (apparition de fichiers <filename>.deb</filename> dans des répertoires inhabituels, numéros de version de paquet dotés d'un suffixe particulier représentant l'origine du paquet — comme <literal>ubuntu</literal> ou <literal>lmde</literal>, etc.)"
+msgstr "Ce fichier <filename>sources.list</filename> est souvent un bon indicateur : la majorité des administrateurs gardent au moins en commentaires les sources APT employées par le passé. Mais il est toujours possible que des sources employées par le passé aient été supprimées, voire que l'ancien administrateur ait installé manuellement (avec <command>dpkg</command>) des paquets téléchargés sur Internet. Dans ce cas, la machine trompe par son apparence de Debian « standard ». C'est pourquoi il convient d'être attentif à tout indice pouvant trahir la présence de paquets externes (apparition de fichiers <filename>.deb</filename> dans des répertoires inhabituels, numéros de version de paquet dotés d'un suffixe particulier représentant l'origine du paquet — comme <literal>ubuntu</literal> ou <literal>lmde</literal>, etc.)"
 
 #. Tag: para
 #, no-c-format
@@ -323,7 +323,7 @@ msgstr "<emphasis>DÉCOUVERTE</emphasis> <emphasis role=\"pkg\">cruft</emphasis>
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">cruft</emphasis> package proposes to list the available files that are not owned by any package. It has some filters (more or less effective, and more or less up to date) to avoid reporting some legitimate files (files generated by Debian packages, or generated configuration files not managed by <command>dpkg</command>, etc.)."
-msgstr "Le paquet <emphasis role=\"pkg\">cruft</emphasis> permet de répertorier tous les fichiers présents sur le disque qui ne sont affectés à aucun paquet. Il dispose de quelques filtres (plus ou moins efficaces, et plus ou moins à jour) pour éviter d'afficher certains de ces fichiers qui existent légitimement (fichiers générés par les paquets Debian, ou fichiers de configuraton gérés en dehors du contrôle de <command>dpkg</command>, etc.)."
+msgstr "Le paquet <emphasis role=\"pkg\">cruft</emphasis> permet de répertorier tous les fichiers présents sur le disque qui ne sont affectés à aucun paquet. Il dispose de quelques filtres (plus ou moins efficaces et plus ou moins à jour) pour éviter d'afficher certains de ces fichiers qui existent légitimement (fichiers générés par les paquets Debian, ou fichiers de configuraton gérés en dehors du contrôle de <command>dpkg</command>, etc.)."
 
 #. Tag: para
 #, no-c-format
