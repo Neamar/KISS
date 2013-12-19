@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-11-26 15:52+0100\n"
-"PO-Revision-Date: 2013-12-16 14:12+0100\n"
+"PO-Revision-Date: 2013-12-19 17:12+0100\n"
 "Last-Translator: Gerold Rupprecht <geroldr@bluewin.ch>\n"
 "Language-Team: raphael@ouaza.com\n"
 "Language: en\n"
@@ -109,17 +109,17 @@ msgstr "<primary>démarrage</primary><secondary>du système</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "When you boot the computer, the many messages scrolling by on the console display many automatic initializations and configurations that are being executed. Sometimes you may wish to slightly alter how this stage works, which means that you need to understand it well. That is the purpose of this section."
-msgstr "Lorsque l'ordinateur démarre, les nombreux messages défilant sur la console révèlent de nombreuses initialisations et configurations automatiques. Parfois, il est souhaitable de modifier légèrement le déroulement de cette étape, ce qui implique de bien la comprendre. C'est l'objet de cette section."
+msgstr "Lorsque l'ordinateur démarre, les messages défilant sur la console révèlent de nombreuses initialisations et configurations automatiques. Parfois, il est souhaitable de modifier légèrement le déroulement de cette étape, ce qui implique de bien la comprendre. C'est l'objet de cette section."
 
 #. Tag: para
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
-msgstr "En tout premier lieu, le BIOS prend le contrôle de l'ordinateur, détecte les disques, charge le <emphasis>Master Boot Record</emphasis> (enregistrement d'amorçage maître), et l'exécute. Le chargeur d'amorçage prend alors le relais, trouve le noyau sur le disque, le charge et l'exécute. Le noyau s'initialise alors, et se met en devoir de trouver et monter la partition contenant la racine de l'arborescence, et pour enfin démarrer le premier programme : <command>init</command>. Il est fréquent que cette « partition racine » et cet <command>init</command> soient en réalité sur un système de fichiers virtuel qui n'existe qu'en mémoire vive (d'où son nom <foreignphrase>initramfs</foreignphrase>, anciennement appelé <foreignphrase>initrd</foreignphrase> pour <foreignphrase>initialization RAM disk</foreignphrase>). Ce système de fichiers est chargé en mémoire par le chargeur d'amorçage, souvent à partir d'un fichier sur un disque dur ou sur le réseau. Il contient le strict minimum qui peut être requis par le noyau pour charger le « vrai » système de fichiers racine : il peut s'agir de modules de pilotes pour les disques durs ou d'autres périphériques sans lesquels le système ne peut pas démarrer, ou, plus fréquemment, des modules et des scripts d'initialisation permettant d'assembler des grappes RAID, d'ouvrir des partitions chiffrées, d'activer des volumes LVM… Une fois que la partition racine est montée, l'<foreignphrase>initramfs</foreignphrase> passe la main au vrai <command>init</command>, et on revient sur le processus de démarrage standard."
+msgstr "En tout premier lieu, le BIOS prend le contrôle de l'ordinateur, détecte les disques, charge le <emphasis>Master Boot Record</emphasis> (enregistrement d'amorçage maître) et l'exécute. Le chargeur d'amorçage prend alors le relais, trouve le noyau sur le disque, le charge et l'exécute. Le noyau s'initialise alors et se met en devoir de trouver et monter la partition contenant la racine de l'arborescence pour enfin démarrer le premier programme : <command>init</command>. Il est fréquent que cette « partition racine » et cet <command>init</command> soient en réalité sur un système de fichiers virtuel qui n'existe qu'en mémoire vive (d'où son nom <foreignphrase>initramfs</foreignphrase>, anciennement appelé <foreignphrase>initrd</foreignphrase> pour <foreignphrase>initialization RAM disk</foreignphrase>). Ce système de fichiers est chargé en mémoire par le chargeur d'amorçage, souvent à partir d'un fichier sur un disque dur ou sur le réseau. Il contient le strict minimum qui peut être requis par le noyau pour charger le « vrai » système de fichiers racine : il peut s'agir de modules de pilotes pour les disques durs ou d'autres périphériques sans lesquels le système ne peut pas démarrer, ou, plus fréquemment, des modules et des scripts d'initialisation permettant d'assembler des grappes RAID, d'ouvrir des partitions chiffrées, d'activer des volumes LVM… Une fois que la partition racine est montée, l'<foreignphrase>initramfs</foreignphrase> passe la main au vrai <command>init</command> et on revient sur le processus de démarrage standard."
 
 #. Tag: para
 #, no-c-format
 msgid "The “real init” is currently provided by <emphasis role=\"pkg\">sysv-rc</emphasis> (“System V”) and this section documents this init system."
-msgstr "Le « vrai init » est actuellement fourni par <emphasis role=\"pkg\">sysv-rc</emphasis> (« <foreignphrase>System V</foreignphrase>), sur lequel cette section se focalise."
+msgstr "Le « vrai init » est actuellement fourni par <emphasis role=\"pkg\">sysv-rc</emphasis> (« <foreignphrase>System V</foreignphrase> »), sur lequel cette section se focalise."
 
 #. Tag: title
 #, no-c-format
@@ -129,7 +129,7 @@ msgstr "<emphasis>CAS PARTICULIER</emphasis> Le démarrage sur le réseau"
 #. Tag: para
 #, no-c-format
 msgid "In some configurations, the BIOS may be configured not to execute the MBR, but to seek its equivalent on the network, making it possible to build computers without a hard drive, or which are completely reinstalled on each boot. This option is not available on all hardware and it generally requires an appropriate combination of BIOS and network card."
-msgstr "Dans certaines configurations, le BIOS peut être configuré pour ne pas exécuter le MBR mais aller chercher son équivalent sur le réseau, ce qui permet par exemple de construire des ordinateurs sans disque dur, ou qui se réinstallent complètement à chaque démarrage. Cette possibilité n'est pas offerte par tous les matériels, et il faut généralement une combinaison adaptée du BIOS et de la carte réseau."
+msgstr "Dans certaines configurations, le BIOS peut être configuré pour ne pas exécuter le MBR mais aller chercher son équivalent sur le réseau, ce qui permet par exemple de construire des ordinateurs sans disque dur, ou qui se réinstallent complètement à chaque démarrage. Cette possibilité n'est pas offerte par tous les matériels et il faut généralement une combinaison adaptée du BIOS et de la carte réseau."
 
 #. Tag: para
 #, no-c-format
@@ -219,7 +219,7 @@ msgstr "Pour éviter cela, on peut protéger le chargeur d'amorçage par un mot 
 #. Tag: para
 #, no-c-format
 msgid "Finally, be aware that most BIOS have a generic password available. Initially intended for troubleshooting for those who have forgotten their password, these passwords are now public and available on the Internet (see for yourself by searching for “generic BIOS passwords” in a search engine). All of these protections will thus impede unauthorized access to the machine without being able to completely prevent it. There's no reliable way to protect a computer if the attacker can physically access it; they could dismount the hard drives to connect them to a computer under their own control anyway, or even steal the entire machine, or erase the BIOS memory to reset the password…"
-msgstr "Sachez enfin que la plupart des BIOS disposent de passe-partout génériques. Prévus à l'origine pour dépanner les distraits qui oublient les leurs, ces mots de passe sont désormais publics et diffusés sur l'Internet (vérifiez vous-même en cherchant <foreignphrase>BIOS generic passwords</foreignphrase> sur un moteur de recherche). Toutes ces protections ralentiront donc l'accès non autorisé à la machine, sans pouvoir l'empêcher totalement. C'est pourquoi il est vain de chercher à protéger un ordinateur si l'attaquant peut y accéder physiquement : il pourra de toute manière démonter les disques durs pour les brancher sur un ordinateur sous son contrôle, voire voler l'ordinateur entier, ou vider la mémoire du BIOS pour remettre à zéro le mot de passe..."
+msgstr "Sachez enfin que la plupart des BIOS disposent de passe-partout génériques. Prévus à l'origine pour dépanner les distraits qui oublient les leurs, ces mots de passe sont désormais publics et diffusés sur Internet (vérifiez vous-même en cherchant <foreignphrase>BIOS generic passwords</foreignphrase> sur un moteur de recherche). Toutes ces protections ralentiront donc l'accès non autorisé à la machine, sans pouvoir l'empêcher totalement. C'est pourquoi il est vain de chercher à protéger un ordinateur si l'attaquant peut y accéder physiquement : il pourra de toute manière démonter les disques durs pour les brancher sur un ordinateur sous son contrôle, voire voler l'ordinateur entier, ou vider la mémoire du BIOS pour remettre à zéro le mot de passe..."
 
 #. Tag: title
 #, no-c-format
@@ -260,7 +260,7 @@ msgstr "Après cette phase, <command>init</command> reprend la main et démarre 
 #. Tag: para
 #, no-c-format
 msgid "This dependency-based boot system makes it possible to automate re-numbering, which could be rather tedious if it had to be done manually, and it limits the risks of human error, since scheduling is conducted according to the parameters that are indicated. Another benefit is that services can be started in parallel when they are independent from one another, which can accelerate the boot process."
-msgstr "Ce système de démarrage par dépendances permet d'automatiser des renumérotations qui pourraient s'avérer fastidieuses si elles devaient être faites manuellement, et il prévient les erreurs humaines, puisque l'ordonnancement se fait en fonction des contraintes exprimées. Il présente également l'avantage supplémentaire de permettre le démarrage de plusieurs services en parallèle, si plusieurs scripts sont indépendants entre eux, ce qui peut accélérer la séquence de démarrage."
+msgstr "Ce système de démarrage par dépendances permet d'automatiser des renumérotations qui pourraient s'avérer fastidieuses si elles devaient être faites manuellement et il prévient les erreurs humaines, puisque l'ordonnancement se fait en fonction des contraintes exprimées. Il présente également l'avantage supplémentaire de permettre le démarrage de plusieurs services en parallèle, si plusieurs scripts sont indépendants entre eux, ce qui peut accélérer la séquence de démarrage."
 
 #. Tag: title
 #, no-c-format
@@ -280,12 +280,12 @@ msgstr "Citons également le processus simplifié contenu dans le paquet <emphas
 #. Tag: para
 #, no-c-format
 msgid "The <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Wheezy</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
-msgstr "Le système <command>upstart</command>, apparu plus récemment, n'est pas encore parfaitement testé sous Debian. Il est basé sur les événements ; les scripts de lancement ne sont plus exécutés de manière séquentielle mais en réponse à des événements comme l'aboutissement d'autres scripts dont ils dépendent. Ce système, initié par Ubuntu, est présent dans Debian <emphasis role=\"distribution\">Wheezy</emphasis> mais n'est pas le système par défaut : il vient en fait en remplacement de <emphasis role=\"package\">sysvinit</emphasis>, et une des tâches lancées par <command>upstart</command> est de lancer les scripts écrits pour les systèmes traditionnels, notamment ceux du paquet <emphasis role=\"package\">sysv-rc</emphasis>."
+msgstr "Le système <command>upstart</command>, apparu plus récemment, n'est pas encore parfaitement testé sous Debian. Il est basé sur les événements ; les scripts de lancement ne sont plus exécutés de manière séquentielle mais en réponse à des événements comme l'aboutissement d'autres scripts dont ils dépendent. Ce système, initié par Ubuntu, est présent dans Debian <emphasis role=\"distribution\">Wheezy</emphasis> mais n'est pas le système par défaut : il vient en fait en remplacement de <emphasis role=\"package\">sysvinit</emphasis> et une des tâches lancées par <command>upstart</command> est de lancer les scripts écrits pour les systèmes traditionnels, notamment ceux du paquet <emphasis role=\"package\">sysv-rc</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "Another new option that is gaining a lot of traction is <command>systemd</command>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services. It also provides backwards compatibility to System V init scripts."
-msgstr "Un autre nouveau venu est <command>systemd</command>, dont on parle beaucoup.  Son approche est à l'opposé des systèmes précédents : au lieu de lancer systématiquement tous les services, et d'avoir à traiter du problème de leur ordonnancement, <command>systemd</command> fait le choix de les démarrer à la demande, un peu selon le principe d'<command>inetd</command>.  Mais cela implique que le système de démarrage doit être mis au courant de la manière dont les services sont rendus disponibles (qu'il s'agisse de serveurs qui écoutent sur le réseau, de systèmes de fichiers ou autres), et nécessite donc une modification partielle desdits services.  <command>systemd</command> fournit aussi une couche de compatibilité pour les scripts d'initialisation System V existants."
+msgstr "Un autre nouveau venu est <command>systemd</command>, dont on parle beaucoup.  Son approche est à l'opposé des systèmes précédents : au lieu de lancer systématiquement tous les services et d'avoir à traiter du problème de leur ordonnancement, <command>systemd</command> fait le choix de les démarrer à la demande, un peu selon le principe d'<command>inetd</command>.  Mais cela implique que le système de démarrage soit mis au courant de la manière dont les services sont rendus disponibles (qu'il s'agisse de serveurs qui écoutent sur le réseau, de systèmes de fichiers ou autres) et nécessite donc une modification partielle desdits services.  <command>systemd</command> fournit aussi une couche de compatibilité pour les scripts d'initialisation System V existants."
 
 #. Tag: para
 #, no-c-format
@@ -321,7 +321,7 @@ msgstr "Le niveau 0 n'est utilisé que de manière transitoire, lors de la phase
 #. Tag: para
 #, no-c-format
 msgid "Level 1, also known as single-user mode, corresponds to the system in degraded mode; it includes only basic services, and is intended for maintenance operations where interactions with ordinary users are not desired."
-msgstr "Le niveau 1, aussi connu sous le nom de <foreignphrase>single-user</foreignphrase>, correspond au système en mode dégradé ; il ne contient que les services de base, et est prévu pour les opérations de maintenance en dehors de l'interaction des utilisateurs."
+msgstr "Le niveau 1, aussi connu sous le nom de <foreignphrase>single-user</foreignphrase>, correspond au système en mode dégradé ; il ne contient que les services de base et est prévu pour les opérations de maintenance en dehors de l'interaction des utilisateurs."
 
 #. Tag: para
 #, no-c-format
@@ -381,7 +381,7 @@ msgstr "<primary>redémarrage des services</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The maintainer scripts for Debian packages will sometimes restart certain services to ensure their availability or get them to take certain options into account. The command that controls a service — <command>/etc/init.d/<replaceable>service</replaceable> <replaceable>operation</replaceable></command> — doesn't take runlevel into consideration, assumes (wrongly) that the service is currently being used, and may thus initiate incorrect operations (starting a service that was deliberately stopped, or stopping a service that is already stopped, etc.). Debian therefore introduced the <command>invoke-rc.d</command> program: this program must be used by maintainer scripts to run services initialization scripts and it will only execute the necessary commands. Note that, contrary to common usage, the <filename>.d</filename> suffix is used here in a program name, and not in a directory."
-msgstr "Les scripts de configuration des paquets Debian redémarrent parfois certains services pour assurer leur disponibilité ou leur faire prendre en compte certaines nouvelles options. La commande de manipulation d'un service <command>/etc/init.d/<replaceable>service</replaceable> <replaceable>opération</replaceable></command> ne prend pas en compte le niveau d'exécution, suppose (à tort) que le service est actuellement employé, et peut donc effectuer des opérations inadéquates (démarrage d'un service volontairement arrêté, ou arrêt d'un service déjà stoppé, etc.). Debian a donc introduit le programme <command>invoke-rc.d</command>, auquel les scripts de configuration doivent recourir pour appeler les scripts d'initialisation des services. Il n'exécutera que les commandes nécessaires. Attention, contrairement à l'usage, le suffixe <filename>.d</filename> est ici employé sur un nom de programme et non pas sur un répertoire."
+msgstr "Les scripts de configuration des paquets Debian redémarrent parfois certains services pour assurer leur disponibilité ou leur faire prendre en compte certaines nouvelles options. La commande de manipulation d'un service <command>/etc/init.d/<replaceable>service</replaceable> <replaceable>opération</replaceable></command> ne prend pas en compte le niveau d'exécution, suppose (à tort) que le service est actuellement employé et peut donc effectuer des opérations inadéquates (démarrage d'un service volontairement arrêté, ou arrêt d'un service déjà stoppé, etc.). Debian a donc introduit le programme <command>invoke-rc.d</command>, auquel les scripts de configuration doivent recourir pour appeler les scripts d'initialisation des services. Il n'exécutera que les commandes nécessaires. Attention, contrairement à l'usage, le suffixe <filename>.d</filename> est ici employé sur un nom de programme et non pas sur un répertoire."
 
 #. Tag: para
 #, no-c-format
@@ -491,7 +491,7 @@ msgstr "<primary><command>rsh</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Before SSH, <emphasis>Telnet</emphasis> and <emphasis>RSH</emphasis> were the main tools used to login remotely. They are now largely obsolete and should no longer be used even if Debian still provides them."
-msgstr "Avant l'apparition de SSH, <emphasis>Telnet</emphasis> et <emphasis>RSH</emphasis> étaient les outils les plus largement utilisés pour se connecter à distance.  Ils sont maintenant véritablement obsolètes, et ne devraient plus être utilisés (même si Debian continue de les fournir)."
+msgstr "Avant l'apparition de SSH, <emphasis>Telnet</emphasis> et <emphasis>RSH</emphasis> étaient les outils les plus largement utilisés pour se connecter à distance.  Ils sont maintenant véritablement obsolètes et ne devraient plus être utilisés (même si Debian continue de les fournir)."
 
 #. Tag: title
 #, no-c-format
@@ -501,7 +501,7 @@ msgstr "<emphasis>VOCABULAIRE</emphasis> Authentification, chiffrement"
 #. Tag: para
 #, no-c-format
 msgid "When you need to give a client the ability to conduct or trigger actions on a server, security is important. You must ensure the identity of the client; this is authentication. This identity usually consists of a password that must be kept secret, or any other client could get the password. This is the purpose of encryption, which is a form of encoding that allows two systems to communicate confidential information on a public channel while protecting it from being readable to others."
-msgstr "Lorsqu'il s'agit de donner à un client la possibilité d'effectuer ou de déclencher des actions sur un serveur, les implications de sécurité sont importantes. On doit donc s'assurer de l'identité du client ; c'est l'authentification. Cette identité consistant souvent en un mot de passe, il faut bien entendu protéger la confidentialité de ce mot de passe, faute de quoi n'importe quel autre client pourra récupérer ce mot de passe ; c'est l'objet du chiffrement, qui est une forme de codage permettant à deux systèmes de communiquer des secrets sur un canal public sans qu'ils puissent être interceptés par des tierces parties."
+msgstr "Lorsqu'il s'agit de donner à un client la possibilité d'effectuer ou de déclencher des actions sur un serveur, les implications de sécurité sont importantes. On doit donc s'assurer de l'identité du client ; c'est l'authentification. Cette identité consistant souvent en un mot de passe, il faut bien entendu protéger la confidentialité de ce dernier, faute de quoi n'importe quel autre client pourra le récupérer ; c'est l'objet du chiffrement, qui est une forme de codage permettant à deux systèmes de communiquer des secrets sur un canal public sans qu'ils puissent être interceptés par des tierces parties."
 
 #. Tag: para
 #, no-c-format
@@ -516,14 +516,12 @@ msgstr "SSH offre encore deux services de transfert de fichiers. <command>scp</c
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>\n"
-msgstr ""
-"\n"
-"<computeroutput>$ </computeroutput><userinput>scp fichier machine:/tmp/</userinput>\n"
+msgstr "<computeroutput>$ </computeroutput><userinput>scp fichier machine:/tmp/</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>sftp</command> is an interactive command, similar to <command>ftp</command>. In a single session, <command>sftp</command> can transfer several files, and it is possible to manipulate remote files with it (delete, rename, change permissions, etc.)."
-msgstr "<command>sftp</command> est un programme interactif très similaire à <command>ftp</command>. Ainsi une même session <command>sftp</command> peut transférer plusieurs fichiers, et il est possible d'y manipuler les fichiers distants (supprimer, changer leur nom ou leurs droits, etc.)."
+msgstr "<command>sftp</command> est un programme interactif très similaire à <command>ftp</command>. Ainsi, une même session <command>sftp</command> peut transférer plusieurs fichiers et il est possible d'y manipuler les fichiers distants (supprimer, changer leur nom ou leurs droits, etc.)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -538,7 +536,7 @@ msgstr "<primary><command>sftp</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Debian uses OpenSSH, a free version of SSH maintained by the <command>OpenBSD</command> project (a free operating system based on the BSD kernel, focused on security) and fork of the original SSH software developed by the SSH Communications Security Corp company, of Finland. This company initially developed SSH as free software, but eventually decided to continue its development under a proprietary license. The OpenBSD project then created OpenSSH to maintain a free version of SSH."
-msgstr "Debian emploie OpenSSH, version libre de SSH maintenue par le projet <command>OpenBSD</command> (un système d'exploitation libre basé sur un noyau BSD, et qui se focalise sur la sécurité) et <foreignphrase>fork</foreignphrase> du logiciel SSH originel développé par la société finlandaise SSH Communications Security Corp. Celle-ci, qui en avait débuté le développement sous la forme d'un logiciel libre, avait en effet décidé de le poursuivre sous une licence propriétaire. Le projet OpenBSD créa donc OpenSSH pour maintenir une version libre de SSH."
+msgstr "Debian emploie OpenSSH, version libre de SSH maintenue par le projet <command>OpenBSD</command> (un système d'exploitation libre basé sur un noyau BSD et qui se focalise sur la sécurité) et <foreignphrase>fork</foreignphrase> du logiciel SSH originel développé par la société finlandaise SSH Communications Security Corp. Celle-ci, qui en avait débuté le développement sous la forme d'un logiciel libre, avait en effet décidé de le poursuivre sous une licence propriétaire. Le projet OpenBSD créa donc OpenSSH pour maintenir une version libre de SSH."
 
 #. Tag: indexterm
 #, no-c-format
@@ -593,7 +591,7 @@ msgstr "<emphasis>SÉCURITÉ</emphasis> Protection de la clé privée"
 #. Tag: para
 #, no-c-format
 msgid "Whoever has the private key can login on the account thus configured. This is why access to the private key is protected by a “passphrase”. Someone who acquires a copy of a private key file (for example, <filename>~/.ssh/id_rsa</filename>) still has to know this phrase in order to be able to use it. This additional protection is not, however, impregnable, and if you think that this file has been compromised, it is best to disable that key on the computers in which it has been installed (by removing it from the <filename>authorized_keys</filename> files) and replacing it with a newly generated key."
-msgstr "Quiconque dispose de la clé privée peut se connecter sur le compte ainsi configuré. C'est pourquoi l'accès à la clé privée est protégé par une « phrase de passe ». Quelqu'un qui récupérerait une copie d'un fichier abritant une clé privée (par exemple <filename>~/.ssh/id_rsa</filename>) devrait encore retrouver cette phrase avant de pouvoir l'utiliser. Cette protection supplémentaire n'est cependant pas inviolable, et si l'on pense que ce fichier a été compromis il vaut mieux désactiver cette clé sur les ordinateurs où elle a été installée (en la retirant des fichiers <filename>authorized_keys</filename>) et la remplacer par une clé nouvellement générée."
+msgstr "Quiconque dispose de la clé privée peut se connecter sur le compte ainsi configuré. C'est pourquoi l'accès à la clé privée est protégé par une « phrase de passe ». Quelqu'un qui récupérerait une copie d'un fichier abritant une clé privée (par exemple <filename>~/.ssh/id_rsa</filename>) devrait encore retrouver cette phrase avant de pouvoir l'utiliser. Cette protection supplémentaire n'est cependant pas inviolable et si l'on pense que ce fichier a été compromis, il vaut mieux désactiver cette clé sur les ordinateurs où elle a été installée (en la retirant des fichiers <filename>authorized_keys</filename>) et la remplacer par une clé nouvellement générée."
 
 #. Tag: title
 #, no-c-format
@@ -603,12 +601,12 @@ msgstr "<emphasis>CULTURE</emphasis> Faille OpenSSL de Debian <emphasis role=\"d
 #. Tag: para
 #, no-c-format
 msgid "The OpenSSL library, as initially provided in Debian <emphasis role=\"distribution\">Etch</emphasis>, had a serious problem in its random number generator (RNG). Indeed, the Debian maintainer had made a change so that applications using it would no longer generate warnings when analyzed by memory testing tools like <command>valgrind</command>. Unfortunately, this change also meant that the RNG was employing only one source of entropy corresponding to the process number (PID) whose 32,000 possible values do not offer enough randomness. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
-msgstr "La bibliothèque OpenSSL telle qu'initialement fournie dans Debian <emphasis role=\"distribution\">Etch</emphasis> souffrait d'un grave problème dans son générateur de nombres aléatoires (RNG, <foreignphrase>Random Number Generator</foreignphrase>). Le mainteneur Debian avait en effet effectué une modification afin que la bibliothèque ne soit pas la source d'avertissements pour des programmes l'utilisant et qui seraient analysés par des outils vérificateurs de mémoire comme <command>valgrind</command>. Malheureusement, ce changement a également eu pour conséquence que le RNG n'employait plus qu'une seule source d'aléas correspondant au numéro du processus (PID) dont le nombre est très restreint (environ 32000). <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
+msgstr "La bibliothèque OpenSSL telle qu'initialement fournie dans Debian <emphasis role=\"distribution\">Etch</emphasis> souffrait d'un grave problème dans son générateur de nombres aléatoires (RNG, <foreignphrase>Random Number Generator</foreignphrase>). Le mainteneur Debian avait en effet effectué une modification afin que la bibliothèque ne soit pas la source d'avertissements pour des programmes l'utilisant et qui seraient analysés par des outils vérificateurs de mémoire comme <command>valgrind</command>. Malheureusement, ce changement a également eu pour conséquence que le RNG n'employait plus qu'une seule source d'aléas correspondant au numéro du processus (PID) dont le nombre est très restreint (environ 32 000). <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Specifically, whenever OpenSSL was used to generate a key, it always produced a key within a known set of hundreds of thousands of keys (32,000 multiplied by a small number of key lengths). This affected SSH keys, SSL keys, and X.509 certificates used by numerous applications, such as OpenVPN. A cracker had only to try all of the keys to gain unauthorized access. To reduce the impact of the problem, the SSH daemon was modified to refuse problematic keys that are listed in the <emphasis role=\"pkg\">openssh-blacklist</emphasis> and <emphasis role=\"pkg\">openssh-blacklist-extra</emphasis> packages. Additionally, the <command>ssh-vulnkey</command> command allows identification of possibly compromised keys in the system."
-msgstr "Concrètement, chaque fois que OpenSSL était employé pour générer une clé, il produisait systématiquement une clé comprise dans un ensemble connu de quelques centaines de milliers de clés (32000, multipliées par un petit nombre de longueurs de clés). Cela affectait les clés SSH, SSL et les certificats X.509 employés par de nombreuses applications comme OpenVPN. Un pirate n'avait plus qu'à essayer toutes les clés pour essayer d'obtenir un accès non-autorisé. Pour réduire l'impact du problème, le démon SSH a été modifié pour refuser les clés problématiques qui sont recensées dans les paquets <emphasis role=\"pkg\">openssh-blacklist</emphasis> et <emphasis role=\"pkg\">openssh-blacklist-extra</emphasis>. De plus, le programme <command>ssh-vulnkey</command> permet d'identifier d'éventuelles clés compromises présentes sur le système."
+msgstr "Concrètement, chaque fois que OpenSSL était employé pour générer une clé, il produisait systématiquement une clé comprise dans un ensemble connu de quelques centaines de milliers de clés (32 000, multipliées par un petit nombre de longueurs de clés). Cela affectait les clés SSH, SSL et les certificats X.509 employés par de nombreuses applications comme OpenVPN. Un pirate n'avait plus qu'à essayer toutes les clés pour essayer d'obtenir un accès non-autorisé. Pour réduire l'impact du problème, le démon SSH a été modifié pour refuser les clés problématiques qui sont recensées dans les paquets <emphasis role=\"pkg\">openssh-blacklist</emphasis> et <emphasis role=\"pkg\">openssh-blacklist-extra</emphasis>. De plus, le programme <command>ssh-vulnkey</command> permet d'identifier d'éventuelles clés compromises présentes sur le système."
 
 #. Tag: para
 #, no-c-format
@@ -618,7 +616,7 @@ msgstr "Une analyse plus poussée de cet incident permet de se rendre compte que
 #. Tag: para
 #, no-c-format
 msgid "It is difficult under such conditions to find the corrective measures to prevent such incidents from recurring. The lesson to be learned here is that every divergence Debian introduces to upstream software must be justified, documented, submitted to the upstream project when possible, and widely publicized. It is from this perspective that the new source package format (“3.0 (quilt)”) and the Debian patch tracker were developed. <ulink type=\"block\" url=\"http://patch-tracker.debian.org\" />"
-msgstr "Difficile dans ces conditions de trouver des mesures correctives pour éviter que de tels incidents ne se reproduisent. La leçon retenue est que chaque divergence introduite par Debian par rapport au logiciel amont doit être justifiée, documentée, soumise au projet amont lorsque possible, et largement publiée. C'est dans cette optique qu'ont été développés le nouveau format de paquet source (\"3.0 (quilt)\") et le service de consultation des patchs Debian. <ulink type=\"block\" url=\"http://patch-tracker.debian.org\" />"
+msgstr "Difficile dans ces conditions de trouver des mesures correctives pour éviter que de tels incidents ne se reproduisent. La leçon retenue est que chaque divergence introduite par Debian par rapport au logiciel amont doit être justifiée, documentée, soumise au projet amont lorsque possible et largement publiée. C'est dans cette optique qu'ont été développés le nouveau format de paquet source (\"3.0 (quilt)\") et le service de consultation des patchs Debian. <ulink type=\"block\" url=\"http://patch-tracker.debian.org\" />"
 
 #. Tag: title
 #, no-c-format
@@ -628,7 +626,7 @@ msgstr "Utiliser des applications X11 à distance"
 #. Tag: para
 #, no-c-format
 msgid "The SSH protocol allows forwarding of graphical data (“X11” session, from the name of the most widespread graphical system in Unix); the server then keeps a dedicated channel for those data. Specifically, a graphical program executed remotely can be displayed on the X.org server of the local screen, and the whole session (input and display) will be secure. Since this feature allows remote applications to interfere with the local system, it is disabled by default. You can enable it by specifying <literal>X11Forwarding yes</literal> in the server configuration file (<filename>/etc/ssh/sshd_config</filename>). Finally, the user must also request it by adding the <literal>-X</literal> option to the <command>ssh</command> command-line."
-msgstr "Le protocole SSH permet de faire suivre (<foreignphrase>forward</foreignphrase>) les données graphiques (dites « X11 », du nom du système graphique le plus répandu sous Unix) : le serveur leur réserve alors un canal de données spécifique. Concrètement, une application graphique exécutée à distance peut s'afficher sur le serveur X.org de l'écran local, et toute la session (manipulation comme affichage) sera sécurisée. Cette fonctionnalité donne à une application exécutée à distance de nombreuses possibilités d'interférer sur le système local, elle est donc préventivement désactivée par défaut ; on l'activera en précisant <literal>X11Forwarding yes</literal> dans le fichier de configuration <filename>/etc/ssh/sshd_config</filename> du serveur. L'utilisateur pourra ensuite en profiter en spécifiant l'option <literal>-X</literal> de <command>ssh</command>."
+msgstr "Le protocole SSH permet de faire suivre (<foreignphrase>forward</foreignphrase>) les données graphiques (dites « X11 », du nom du système graphique le plus répandu sous Unix) : le serveur leur réserve alors un canal de données spécifique. Concrètement, une application graphique exécutée à distance peut s'afficher sur le serveur X.org de l'écran local et toute la session (manipulation comme affichage) sera sécurisée. Cette fonctionnalité donne à une application exécutée à distance de nombreuses possibilités d'interférer sur le système local, elle est donc préventivement désactivée par défaut ; on l'activera en précisant <literal>X11Forwarding yes</literal> dans le fichier de configuration <filename>/etc/ssh/sshd_config</filename> du serveur. L'utilisateur pourra ensuite en profiter en spécifiant l'option <literal>-X</literal> de <command>ssh</command>."
 
 #. Tag: title
 #, no-c-format
@@ -663,7 +661,7 @@ msgstr "<primary>tunnel SSH</primary><seealso>VPN</seealso>"
 #. Tag: para
 #, no-c-format
 msgid "The Internet, and most LANs that are connected to it, operate in packet mode and not in connected mode, meaning that a packet issued from one computer to another is going to be stopped at several intermediary routers to find its way to its destination. You can still simulate a connected operation where the stream is encapsulated in normal IP packets. These packets follow their usual route, but the stream is reconstructed unchanged at the destination. We call this a “tunnel”, analogous to a road tunnel in which vehicles drive directly from the entrance (input) to the exit (output) without encountering any intersections, as opposed to a path on the surface that would involve intersections and changing direction."
-msgstr "Le réseau Internet, et la plupart des réseaux locaux qui y sont raccordés, fonctionnent en mode paquet et non en mode connecté, c'est-à-dire qu'un paquet émis depuis un ordinateur en direction d'un autre va s'arrêter sur plusieurs routeurs intermédiaires pour être acheminé jusqu'à sa destination. On peut néanmoins simuler un fonctionnement connecté, selon lequel le flux est encapsulé dans des paquets IP normaux ; ces paquets suivent leur chemin habituel, mais le flux est restitué tel quel à destination. On parle alors de « tunnel », par analogie avec un tunnel routier, dans lequel les véhicules roulent directement de l'entrée à la sortie sans rencontrer de carrefours, par opposition au trajet en surface qui impliquerait des intersections et des changements de direction."
+msgstr "Le réseau Internet et la plupart des réseaux locaux qui y sont raccordés fonctionnent en mode paquet et non en mode connecté, c'est-à-dire qu'un paquet émis depuis un ordinateur en direction d'un autre va s'arrêter sur plusieurs routeurs intermédiaires pour être acheminé jusqu'à sa destination. On peut néanmoins simuler un fonctionnement connecté, selon lequel le flux est encapsulé dans des paquets IP normaux ; ces paquets suivent leur chemin habituel, mais le flux est restitué tel quel à destination. On parle alors de « tunnel », par analogie avec un tunnel routier, dans lequel les véhicules roulent directement de l'entrée à la sortie sans rencontrer de carrefours, par opposition au trajet en surface qui impliquerait des intersections et des changements de direction."
 
 #. Tag: para
 #, no-c-format
@@ -683,7 +681,7 @@ msgstr "<command>ssh -R 8000:serveur:25 intermediaire</command> établit égalem
 #. Tag: para
 #, no-c-format
 msgid "In both cases, connections are made to port 25 on the <replaceable>server</replaceable> host, which pass through the SSH tunnel established between the local machine and the <replaceable>intermediary</replaceable> machine. In the first case, the entrance to the tunnel is local port 8000, and the data move towards the <replaceable>intermediary</replaceable> machine before being directed to the <replaceable>server</replaceable> on the “public” network. In the second case, the input and output in the tunnel are reversed; the entrance is port 8000 on the <replaceable>intermediary</replaceable> machine, the output is on the local host, and the data are then directed to the <replaceable>server</replaceable>. In practice, the server is usually either the local machine or the intermediary. That way SSH secures the connection from one end to the other."
-msgstr "Dans les deux cas, il s'agit de créer des connexions vers le port 25 de la machine <replaceable>serveur</replaceable>, qui passent au travers du tunnel SSH établi entre la machine locale et la machine <replaceable>intermediaire</replaceable>. Dans le premier cas, l'entrée du tunnel est le port 8000 local, et les données transitent vers <replaceable>intermediaire</replaceable> avant de se diriger vers <replaceable>serveur</replaceable> sur le réseau « public ». Dans le second, l'entrée et la sortie du tunnel sont inversées : l'entrée est le port 8000 d'<replaceable>intermediaire</replaceable>, la sortie est locale, et les données se dirigent ensuite vers <replaceable>serveur</replaceable> depuis la machine locale. En pratique, dans les cas d'usage les plus courants, le serveur est soit la machine locale soit l'intermédiaire."
+msgstr "Dans les deux cas, il s'agit de créer des connexions vers le port 25 de la machine <replaceable>serveur</replaceable>, qui passent au travers du tunnel SSH établi entre la machine locale et la machine <replaceable>intermediaire</replaceable>. Dans le premier cas, l'entrée du tunnel est le port 8000 local et les données transitent vers <replaceable>intermediaire</replaceable> avant de se diriger vers <replaceable>serveur</replaceable> sur le réseau « public ». Dans le second, l'entrée et la sortie du tunnel sont inversées : l'entrée est le port 8000 d'<replaceable>intermediaire</replaceable>, la sortie est locale et les données se dirigent ensuite vers <replaceable>serveur</replaceable> depuis la machine locale. En pratique, dans les cas d'usage les plus courants, le serveur est soit la machine locale, soit l'intermédiaire."
 
 #. Tag: title
 #, no-c-format
@@ -793,12 +791,12 @@ msgstr "<primary>tunnel SSH</primary> <secondary>VNC</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"sect.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
-msgstr "Si l'on souhaite se connecter par VNC et qu'on ne veut pas que les données circulent en clair sur le réseau, il est possible d'encapsuler les données dans un tunnel SSH (voir <xref linkend=\"sect.ssh-port-forwarding\" />). Il faut simplement savoir que VNC emploie par défaut le port 5900 pour le premier écran (appelé « localhost:0 »), 5901 pour le second (appelé « localhost:1 »), etc."
+msgstr "Si l'on souhaite se connecter par VNC et si on ne veut pas que les données circulent en clair sur le réseau, il est possible de les encapsuler dans un tunnel SSH (voir <xref linkend=\"sect.ssh-port-forwarding\" />). Il faut simplement savoir que VNC emploie par défaut le port 5900 pour le premier écran (appelé « localhost:0 »), 5901 pour le second (appelé « localhost:1 »), etc."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>ssh -L localhost:5901:localhost:5900 -N -T <replaceable>machine</replaceable></command> command creates a tunnel between local port 5901 in the localhost interface and port 5900 of the <replaceable>machine</replaceable> host. The first “localhost” restricts SSH to listening to only that interface on the local machine. The second “localhost” indicates the interface on the remote machine which will receive the network traffic entering in “localhost:5901”. Thus <command>vncviewer localhost:1</command> will connect the VNC client to the remote screen, even though you indicate the name of the local machine."
-msgstr "La commande <command>ssh -L localhost:5901:localhost:5900 -N -T <replaceable>machine</replaceable></command> crée un tunnel entre le port local 5901 de l'interface localhost et le port 5900 de l'ordinateur <replaceable>machine</replaceable>. Le premier \"localhost\" contraint SSH à n'écouter, sur la machine locale, que sur cette interface. Le second \"localhost\" désigne l'interface de la machine distante à laquelle SSH communiquera le trafic réseau expédié à \"localhost:5901\". Ainsi <command>vncviewer localhost:1</command> connectera le client VNC à l'écran distant bien que l'on indique le nom de la machine locale."
+msgstr "La commande <command>ssh -L localhost:5901:localhost:5900 -N -T <replaceable>machine</replaceable></command> crée un tunnel entre le port local 5901 de l'interface <command>localhost</command> et le port 5900 de l'ordinateur <replaceable>machine</replaceable>. Le premier <command>localhost</command> contraint SSH à n'écouter, sur la machine locale, que sur cette interface. Le second <command>localhost</command> désigne l'interface de la machine distante à laquelle SSH communiquera le trafic réseau expédié à <literal>localhost:5901</literal>. Ainsi <command>vncviewer localhost:1</command> connectera le client VNC à l'écran distant bien que l'on indique le nom de la machine locale."
 
 #. Tag: para
 #, no-c-format
@@ -875,7 +873,7 @@ msgstr "Gestion des droits"
 #. Tag: para
 #, no-c-format
 msgid "Linux is definitely a multi-user system, so it is necessary to provide a permission system to control the set of authorized operations on files and directories, which includes all the system resources and devices (on a Unix system, any device is represented by a file or directory). This principle is common to all Unix systems, but a reminder is always useful, especially as there are some interesting and relatively unknown advanced uses."
-msgstr "Linux est résolument multi-utilisateurs ; il est donc nécessaire de prévoir un système de permissions contrôlant les opérations autorisées pour chacun sur les fichiers et répertoires, recouvrant toutes les ressources du système (y compris les périphériques : sur un système Unix, tout périphérique est représenté par un fichier ou répertoire). Ce principe est commun à tous les Unix mais un rappel est toujours utile, d'autant qu'il existe quelques usages avancés méconnus et relativement intéressants."
+msgstr "Linux est résolument multi-utilisateur ; il est donc nécessaire de prévoir un système de permissions contrôlant les opérations autorisées pour chacun sur les fichiers et répertoires, recouvrant toutes les ressources du système (y compris les périphériques : sur un système Unix, tout périphérique est représenté par un fichier ou répertoire). Ce principe est commun à tous les Unix mais un rappel est toujours utile, d'autant qu'il existe quelques usages avancés méconnus et relativement intéressants."
 
 #. Tag: indexterm
 #, no-c-format
@@ -970,7 +968,7 @@ msgstr "<primary>exécution, droit</primary>"
 #. Tag: para
 #, no-c-format
 msgid "In the case of a file, these rights are easily understood: read access allows reading the content (including copying), write access allows changing it, and execute access allows you to run it (which will only work if it's a program)."
-msgstr "Dans le cas d'un fichier, ces droits sont faciles à interpréter : l'accès en lecture permet d'en consulter le contenu (et notamment de le copier), l'accès en écriture de le modifier, et l'accès en exécution permet de tenter de l'exécuter (ce qui ne fonctionnera que s'il s'agit d'un programme)."
+msgstr "Dans le cas d'un fichier, ces droits sont faciles à interpréter : l'accès en lecture permet d'en consulter le contenu (et notamment de le copier), l'accès en écriture de le modifier et l'accès en exécution permet de tenter de l'exécuter (ce qui ne fonctionnera que s'il s'agit d'un programme)."
 
 #. Tag: title
 #, no-c-format
@@ -1000,12 +998,12 @@ msgstr "Un programme <literal>setuid</literal> root s'exécutant systématiqueme
 #. Tag: para
 #, no-c-format
 msgid "A directory is handled differently. Read access gives the right to consult the list of its entries (files and directories), write access allows creating or deleting files, and execute access allows crossing through it (especially to go there with the <command>cd</command> command). Being able to cross through a directory without being able to read it gives permission to access the entries therein that are known by name, but not to find them if you do not know their existence or their exact name."
-msgstr "Un répertoire est traité différemment. L'accès en lecture donne le droit de consulter la liste de ses entrées, l'accès en écriture celui d'y créer ou supprimer des fichiers, et l'accès en exécution de le traverser (et notamment de s'y rendre avec la commande <command>cd</command>). Pouvoir traverser un répertoire sans le lire donne le droit d'accéder à celles de ses entrées dont on connaît le nom, mais pas de les trouver si on ignore leur existence ou leur nom exact."
+msgstr "Un répertoire est traité différemment. L'accès en lecture donne le droit de consulter la liste de ses entrées, l'accès en écriture celui d'y créer ou supprimer des fichiers et l'accès en exécution de le traverser (et notamment de s'y rendre avec la commande <command>cd</command>). Pouvoir traverser un répertoire sans le lire donne le droit d'accéder à celles de ses entrées dont on connaît le nom, mais pas de les trouver si on ignore leur existence ou leur nom exact."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <literal>setgid</literal> directory and <emphasis>sticky bit</emphasis>"
-msgstr "<emphasis>SÉCURITÉ</emphasis> Répertoire <literal>setgid</literal> et <foreignphrase>sticky bit</foreignphrase>"
+msgstr "<emphasis>SÉCURITÉ</emphasis> Répertoire <literal>setgid</literal> et sticky bit"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1025,22 +1023,22 @@ msgstr "<primary><foreignphrase>sticky bit</foreignphrase></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The “sticky” bit (symbolized by the letter “t”) is a permission that is only useful in directories. It is especially used for temporary directories where everybody has write access (such as <filename>/tmp/</filename>): it restricts deletion of files so that only their owner (or the owner of the parent directory) can do it. Lacking this, everyone could delete other users' files in <filename>/tmp/</filename>."
-msgstr "Le bit <foreignphrase>sticky</foreignphrase> (symbolisé par la lettre « t ») est un droit qui n'est utile que sur les répertoires. Il est notamment employé pour les répertoires temporaires ouverts en écriture à tous (comme <filename>/tmp/</filename>) : il n'autorise la suppression d'un fichier que par son propriétaire ou celui de son répertoire parent. En son absence, tout le monde pourrait supprimer les fichiers d'autrui dans <filename>/tmp/</filename>."
+msgstr "Le bit <literal>sticky</literal> (symbolisé par la lettre « t ») est un droit qui n'est utile que sur les répertoires. Il est notamment employé pour les répertoires temporaires ouverts en écriture à tous (comme <filename>/tmp/</filename>) : il n'autorise la suppression d'un fichier que par son propriétaire ou celui de son répertoire parent. En son absence, tout le monde pourrait supprimer les fichiers d'autrui dans <filename>/tmp/</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "Three commands control the permissions associated with a file:"
-msgstr "Trois commandes manipulent les permissions associées à un fichier :"
+msgstr "Trois commandes manipulent les permissions associées à un fichier."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>chown <replaceable>user</replaceable> <replaceable>file</replaceable></command> changes the owner of the file;"
-msgstr "<command>chown <replaceable>utilisateur</replaceable> <replaceable>fichier</replaceable></command> affecte un nouveau propriétaire à un fichier ;"
+msgstr "<command>chown <replaceable>utilisateur</replaceable> <replaceable>fichier</replaceable></command> affecte un nouveau propriétaire à un fichier."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>chgrp <replaceable>group</replaceable> <replaceable>file</replaceable></command> alters the owner group;"
-msgstr "<command>chgrp <replaceable>groupe</replaceable> <replaceable>fichier</replaceable></command> opère sur son groupe propriétaire ;"
+msgstr "<command>chgrp <replaceable>groupe</replaceable> <replaceable>fichier</replaceable></command> opère sur son groupe propriétaire."
 
 #. Tag: para
 #, no-c-format
@@ -1050,7 +1048,7 @@ msgstr "<command>chmod <replaceable>droits</replaceable> <replaceable>fichier</r
 #. Tag: para
 #, no-c-format
 msgid "There are two ways of presenting rights. Among them, the symbolic representation is probably the easiest to understand and remember. It involves the letter symbols mentioned above. You can define rights for each category of users (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>), by setting them explicitly (with <literal>=</literal>), by adding (<literal>+</literal>), or subtracting (<literal>-</literal>). Thus the <literal>u=rwx,g+rw,o-r</literal> formula gives the owner read, write, and execute rights, adds read and write rights for the owner group, and removes read rights for other users. Rights not altered by the addition or subtraction in such a command remain unmodified. The letter <literal>a</literal>, for “all”, covers all three categories of users, so that <literal>a=rx</literal> grants all three categories the same rights (read and execute, but not write)."
-msgstr "Il existe deux manières de présenter les droits ; parmi elles, la représentation symbolique, sans doute la plus simple à comprendre et mémoriser, met en jeu les lettres symboles déjà citées. Pour chaque catégorie d'utilisateurs (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>), on peut définir les droits (<literal>=</literal>), en ajouter (<literal>+</literal>), ou en retrancher (<literal>-</literal>). Ainsi, la formule <literal>u=rwx,g+rw,o-r</literal> donne au propriétaire les droits de lecture, d'écriture, et d'exécution ; ajoute au groupe propriétaire les droits de lecture et d'écriture ; et supprime le droit de lecture aux autres utilisateurs. Les droits non concernés par les opérations d'ajout ou de retranchement restent inchangés. La lettre <literal>a</literal>, pour <foreignphrase>all</foreignphrase>, recouvre les trois catégories d'utilisateurs, de sorte que <literal>a=rx</literal> donne aux trois catégories les mêmes droits (lecture et exécution, mais pas écriture)."
+msgstr "Il existe deux manières de présenter les droits ; parmi elles, la représentation symbolique, sans doute la plus simple à comprendre et mémoriser, met en jeu les lettres symboles déjà citées. Pour chaque catégorie d'utilisateurs (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>), on peut définir les droits (<literal>=</literal>), en ajouter (<literal>+</literal>), ou en retrancher (<literal>-</literal>). Ainsi, la formule <literal>u=rwx,g+rw,o-r</literal> donne au propriétaire les droits de lecture, d'écriture et d'exécution ; ajoute au groupe propriétaire les droits de lecture et d'écriture ; et supprime le droit de lecture aux autres utilisateurs. Les droits non concernés par les opérations d'ajout ou de retranchement restent inchangés. La lettre <literal>a</literal>, pour <foreignphrase>all</foreignphrase>, recouvre les trois catégories d'utilisateurs, de sorte que <literal>a=rx</literal> donne aux trois catégories les mêmes droits (lecture et exécution, mais pas écriture)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1080,12 +1078,12 @@ msgstr "<primary>droits</primary><secondary>représentation octale</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The (octal) numeric representation associates each right with a value: 4 for read, 2 for write, and 1 for execute. We associate each combination of rights with the sum of the figures. Each value is then assigned to different categories of users by putting them end to end in the usual order (owner, group, others)."
-msgstr "La représentation numérique octale associe chaque droit à une valeur : 4 pour la lecture, 2 l'écriture, et 1 pour l'exécution. On associe à chaque combinaison de droits la somme de ces chiffres, valeurs qu'on attribue ensuite aux différentes catégories d'utilisateurs en les mettant bout à bout dans l'ordre habituel (propriétaire, groupe, autres)."
+msgstr "La représentation numérique octale associe chaque droit à une valeur : 4 pour la lecture, 2 pour l'écriture et 1 pour l'exécution. On associe à chaque combinaison de droits la somme de ces chiffres, valeurs qu'on attribue ensuite aux différentes catégories d'utilisateurs en les mettant bout à bout dans l'ordre habituel (propriétaire, groupe, autres)."
 
 #. Tag: para
 #, no-c-format
 msgid "For instance, the <command>chmod 754 <replaceable>file</replaceable></command> command will set the following rights: read, write and execute for the owner (since 7 = 4 + 2 + 1); read and execute for the group (since 5 = 4 + 1); read-only for others. The <literal>0</literal> means no rights; thus <command>chmod 600 <replaceable>file</replaceable></command> allows for read/write rights for the owner, and no rights for anyone else. The most frequent right combinations are <literal>755</literal> for executable files and directories, and <literal>644</literal> for data files."
-msgstr "La commande <command>chmod 754 <replaceable>fichier</replaceable></command> mettra donc en place les droits suivants : lecture, écriture et exécution au propriétaire (car 7 = 4 + 2 + 1) ; lecture et exécution au groupe (car 5 = 4 + 1) ; lecture seule aux autres. Le chiffre <literal>0</literal> correspond à l'absence de droits, ainsi <command>chmod 600 <replaceable>fichier</replaceable></command> ne donne que les droits de lecture/écriture au propriétaire, les autres ne pouvant rien faire du tout. Les droits les plus fréquents sont <literal>755</literal> pour les exécutables et les répertoires, et <literal>644</literal> pour les fichiers de données."
+msgstr "La commande <command>chmod 754 <replaceable>fichier</replaceable></command> mettra donc en place les droits suivants : lecture, écriture et exécution au propriétaire (car 7 = 4 + 2 + 1) ; lecture et exécution au groupe (car 5 = 4 + 1) ; lecture seule aux autres. Le chiffre <literal>0</literal> correspond à l'absence de droits, ainsi <command>chmod 600 <replaceable>fichier</replaceable></command> ne donne que les droits de lecture/écriture au propriétaire, les autres ne pouvant rien faire du tout. Les droits les plus fréquents sont <literal>755</literal> pour les exécutables ou les répertoires et <literal>644</literal> pour les fichiers de données."
 
 #. Tag: para
 #, no-c-format
@@ -1170,7 +1168,7 @@ msgstr "<primary>administration, interfaces</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Using a graphical interface for administration is interesting in various circumstances. An administrator does not necessarily know all the configuration details for all their services, and doesn't always have the time to go seeking out the documentation on the matter. A graphical interface for administration can thus accelerate the deployment of a new service. It can also simplify the setup of services which are hard to configure."
-msgstr "Recourir à une interface graphique d'administration est intéressant dans différentes circonstances. Un administrateur ne connaît pas nécessairement tous les détails de configuration de tous ses services, et n'a pas forcément le temps de se documenter à leur sujet. Une interface graphique d'administration accélérera donc le déploiement d'un nouveau service. Par ailleurs, elle pourra simplifier la mise en place des réglages des services les plus pénibles à configurer."
+msgstr "Recourir à une interface graphique d'administration est intéressant dans différentes circonstances. Un administrateur ne connaît pas nécessairement tous les détails de configuration de tous ses services et n'a pas forcément le temps de se documenter à leur sujet. Une interface graphique d'administration accélérera donc le déploiement d'un nouveau service. Par ailleurs, elle pourra simplifier la mise en place des réglages des services les plus pénibles à configurer."
 
 #. Tag: para
 #, no-c-format
@@ -1225,7 +1223,7 @@ msgstr "Attention ! <command>webmin</command> étant fonctionnellement très ri
 #. Tag: para
 #, no-c-format
 msgid "Webmin is used through a web interface, but it does not require Apache to be installed. Essentially, this software has its own integrated mini web server. This server listens by default on port 10000 and accepts secure HTTP connections."
-msgstr "Webmin s'emploie par le biais d'une interface web mais il ne nécessite pas pour autant d'avoir Apache installé : en effet, ce logiciel dispose d'un mini-serveur web dédié. Ce dernier écoute par défaut sur le port 10000 et accepte les connexions HTTP sécurisées."
+msgstr "Webmin s'emploie par le biais d'une interface web mais il ne nécessite pas pour autant d'avoir Apache installé : en effet, ce logiciel dispose d'un mini-serveur web dédié. Ce dernier écoute par défaut sur le port 10 000 et accepte les connexions HTTP sécurisées."
 
 #. Tag: para
 #, no-c-format
@@ -1295,7 +1293,7 @@ msgstr "<primary><emphasis role=\"pkg\">gnome-control-center</emphasis></primary
 #. Tag: para
 #, no-c-format
 msgid "The GNOME project also provides multiple administration interfaces that are usually accessible via the “Settings” entry in the user menu on the top right. <command>gnome-control-center</command> is the main program that brings them all together but many of the system wide configuration tools are effectively provided by other packages (<emphasis role=\"pkg\">accountsservice</emphasis>, <emphasis role=\"pkg\">system-config-printer</emphasis>, etc.). Easy to use, these applications cover only a limited number of base services: user management, time configuration, network configuration, printer configuration, and so on."
-msgstr "Le projet GNOME fournit également plusieurs interfaces d'administration, généralement accessébles via l'entrée « Paramètres système » du menu utilisateur en haut à droite de l'écran.  <command>gnome-control-center</command> est l'outil principal qui les rassemble, mais beaucoup des outils de configuration du système lui-même sont en réalité fournis par d'autres paquets (<emphasis role=\"pkg\">accountsservice</emphasis>, <emphasis role=\"pkg\">system-config-printer</emphasis>, etc.).  Ces applications sont faciles d'usage, mais ne couvrent qu'un petite partie des services de base : gestion des utilisateurs, configuration de l'horloge, du réseau, des imprimantes, etc."
+msgstr "Le projet GNOME fournit également plusieurs interfaces d'administration, généralement accessibles via l'entrée « Paramètres système » du menu utilisateur en haut à droite de l'écran.  <command>gnome-control-center</command> est l'outil principal qui les rassemble, mais beaucoup des outils de configuration du système lui-même sont en réalité fournis par d'autres paquets (<emphasis role=\"pkg\">accountsservice</emphasis>, <emphasis role=\"pkg\">system-config-printer</emphasis>, etc.).  Ces applications sont faciles d'usage, mais ne couvrent qu'un petite partie des services de base : gestion des utilisateurs, configuration de l'horloge, du réseau, des imprimantes, etc."
 
 #. Tag: title
 #, no-c-format
@@ -1445,7 +1443,7 @@ msgstr "À chaque message est également associé un niveau de priorité. En voi
 #. Tag: para
 #, no-c-format
 msgid "<literal>emerg</literal>: “Help!” There's an emergency, the system is probably unusable."
-msgstr "<literal>emerg</literal> : « Au secours ! » Le système est probablement inutilisable ;"
+msgstr "<literal>emerg</literal> : « Au secours ! » le système est probablement inutilisable ;"
 
 #. Tag: para
 #, no-c-format
@@ -1490,7 +1488,7 @@ msgstr "Le fichier de configuration"
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the <filename>/etc/rsyslog.conf</filename> file is detailed in the <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, but there is also HTML documentation available in the <emphasis role=\"pkg\">rsyslog-doc</emphasis> package (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>). The overall principle is to write “selector” and “action” pairs. The selector defines all relevant messages, and the actions describes how to deal with them."
-msgstr "La syntaxe complexe du fichier <filename>/etc/rsyslog.conf</filename> est détaillée dans la page de manuel <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> mais aussi dans la documentation HTML disponible dans le paquet <emphasis role=\"pkg\">rsyslog-doc</emphasis> (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>). Le principe global est d'écrire des paires « sélecteur » et « action ». Le sélecteur définit l'ensemble des messages concernés, et l'action décrit comment le traiter."
+msgstr "La syntaxe complexe du fichier <filename>/etc/rsyslog.conf</filename> est détaillée dans la page de manuel <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> mais aussi dans la documentation HTML disponible dans le paquet <emphasis role=\"pkg\">rsyslog-doc</emphasis> (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>). Le principe global est d'écrire des paires « sélecteur » et « action ». Le sélecteur définit l'ensemble des messages concernés et l'action décrit comment le traiter."
 
 #. Tag: title
 #, no-c-format
@@ -1505,7 +1503,7 @@ msgstr "Le sélecteur est une liste (ayant pour séparateur le point-virgule) de
 #. Tag: para
 #, no-c-format
 msgid "Each element in the list on the selector overrides previous elements. It is thus possible to restrict a set or to exclude certain elements from it. For example, <literal>kern.info;kern.!err</literal> means messages from the kernel with priority between <literal>info</literal> and <literal>warn</literal>. The <literal>none</literal> priority indicates the empty set (no priorities), and may serve to exclude a subsystem from a set of messages. Thus, <literal>*.crit;kern.none</literal> indicates all the messages of priority equal to or higher than <literal>crit</literal> not coming from the kernel."
-msgstr "Au sein du sélecteur, chaque élément de la liste surcharge les éléments précédents. Il est donc possible de restreindre un ensemble ou d'en exclure certains éléments. À titre d'exemple, <literal>kern.info;kern.!err</literal> définit les messages du noyau de priorité comprise entre <literal>info</literal> et <literal>warn</literal>. La priorité <literal>none</literal> désigne l'ensemble vide (aucune des priorités), et peut servir pour exclure un sous-système d'un ensemble de messages. Ainsi, <literal>*.crit;kern.none</literal> désigne tous les messages de priorité supérieure ou égale à <literal>crit</literal> ne provenant pas du noyau."
+msgstr "Au sein du sélecteur, chaque élément de la liste surcharge les éléments précédents. Il est donc possible de restreindre un ensemble ou d'en exclure certains éléments. À titre d'exemple, <literal>kern.info;kern.!err</literal> définit les messages du noyau de priorité comprise entre <literal>info</literal> et <literal>warn</literal>. La priorité <literal>none</literal> désigne l'ensemble vide (aucune des priorités) et peut servir pour exclure un sous-système d'un ensemble de messages. Ainsi, <literal>*.crit;kern.none</literal> désigne tous les messages de priorité supérieure ou égale à <literal>crit</literal> ne provenant pas du noyau."
 
 #. Tag: title
 #, no-c-format
@@ -1625,7 +1623,7 @@ msgstr "<emphasis>CHARTE DEBIAN</emphasis> Enregistrer un service dans <filename
 #. Tag: para
 #, no-c-format
 msgid "Packages frequently want to register a new server in the <filename>/etc/inetd.conf</filename> file, but Debian Policy prohibits any package from modifying a configuration file that it doesn't own. This is why the <command>updated-inetd</command> script (in the package with the same name) was created: It manages the configuration file, and other packages can thus use it to register a new server to the super-server's configuration."
-msgstr "Les paquets souhaiteraient parfois enregistrer un nouveau serveur dans le fichier <filename>/etc/inetd.conf</filename>, mais la charte Debian interdit à tout paquet de modifier un fichier de configuration qui ne relève pas de lui. C'est pourquoi le script <command>update-inetd</command> (du paquet éponyme) a été créé : il a à sa charge le fichier de configuration, et les autres paquets peuvent ainsi l'employer pour demander au super-serveur de prendre en compte un nouveau serveur."
+msgstr "Les paquets souhaiteraient parfois enregistrer un nouveau serveur dans le fichier <filename>/etc/inetd.conf</filename>, mais la charte Debian interdit à tout paquet de modifier un fichier de configuration qui ne relève pas de lui. C'est pourquoi le script <command>update-inetd</command> (du paquet éponyme) a été créé : il a à sa charge le fichier de configuration et les autres paquets peuvent ainsi l'employer pour demander au super-serveur de prendre en compte un nouveau serveur."
 
 #. Tag: para
 #, no-c-format
@@ -1927,7 +1925,7 @@ msgstr "la condition sur le mois (de 1 à 12) ;"
 #. Tag: para
 #, no-c-format
 msgid "the value for the day of the week (from 0 to 7, 1 corresponding to Monday, Sunday being represented by both 0 and 7; it is also possible to use the first three letters of the name of the day of the week in English, such as <literal>Sun</literal>, <literal>Mon</literal>, etc.);"
-msgstr "la condition sur le jour de la semaine (de 0 à 7, le 1 correspondant au lundi — le dimanche est représenté à la fois par 0 et par 7 ; il est également possible d'employer les trois premières lettre du nom du jour en anglais comme <literal>Sun</literal>, <literal>Mon</literal>, etc.) ;"
+msgstr "la condition sur le jour de la semaine (de 0 à 7, le 1 correspondant au lundi — le dimanche est représenté à la fois par 0 et par 7 ; il est également possible d'employer les trois premières lettres du nom du jour en anglais comme <literal>Sun</literal>, <literal>Mon</literal>, etc.) ;"
 
 #. Tag: para
 #, no-c-format
@@ -2054,7 +2052,7 @@ msgstr "Planification asynchrone : <command>anacron</command>"
 #. Tag: para
 #, no-c-format
 msgid "<command>anacron</command> is the daemon that completes <command>cron</command> for computers that are not on at all times. Since regular tasks are usually scheduled for the middle of the night, they will never be executed if the computer is off at that time. The purpose of <command>anacron</command> is to execute them, taking into account periods in which the computer is not working."
-msgstr "<command>anacron</command> est le démon qui complète <command>cron</command> pour les ordinateurs non allumés en permanence. Les tâches régulières étant habituellement planifiées au milieu de la nuit, elles ne seront jamais exécutées si la machine est éteinte à ce moment-là. La fonction d'<command>anacron</command> est de les exécuter en prenant en compte les périodes où l'ordinateur ne fonctionnait pas."
+msgstr "<command>anacron</command> est le démon qui complète <command>cron</command> pour les ordinateurs non allumés en permanence. Les tâches régulières étant habituellement planifiées au milieu de la nuit, elles ne seront jamais exécutées si la machine est éteinte à ce moment-là. La fonction d'<command>anacron</command> est de les exécuter en prenant en compte les périodes où l'ordinateur ne fonctionne pas."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2064,7 +2062,7 @@ msgstr "<primary><command>anacron</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Please note that <command>anacron</command> will frequently execute such activity a few minutes after booting the machine, which can render the computer less responsive. This is why the tasks in the <filename>/etc/anacrontab</filename> file are started with the <command>nice</command> command, which reduces their execution priority and thus limits their impact on the rest of the system. Beware, the format of this file is not the same as that of <filename>/etc/crontab</filename>; if you have particular needs for <command>anacron</command>, see the <citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page."
-msgstr "Attention, <command>anacron</command> fera fréquemment exécuter cette activité en retard quelques minutes après le démarrage de la machine, ce qui peut en perturber la réactivité. C'est pourquoi les tâches du fichier <filename>/etc/anacrontab</filename> sont démarrées sous la commande <command>nice</command>, qui réduit leur priorité d'exécution et limitera donc l'impression de lenteur du reste du système. Attention, le format de ce fichier n'est pas le même que celui de <filename>/etc/crontab</filename> ; si vous avez des besoins particulier avec <command>anacron</command>, consultez la page de manuel <citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry>."
+msgstr "Attention, <command>anacron</command> fera fréquemment exécuter cette activité en retard quelques minutes après le démarrage de la machine, ce qui peut en perturber la réactivité. C'est pourquoi les tâches du fichier <filename>/etc/anacrontab</filename> sont démarrées sous la commande <command>nice</command>, qui réduit leur priorité d'exécution et limitera donc l'impression de lenteur du reste du système. Attention, le format de ce fichier n'est pas le même que celui de <filename>/etc/crontab</filename> ; si vous avez des besoins particuliers avec <command>anacron</command>, consultez la page de manuel <citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry>."
 
 #. Tag: title
 #, no-c-format
@@ -2074,7 +2072,7 @@ msgstr "<emphasis>B.A.-BA</emphasis> Priorité, <command>nice</command>"
 #. Tag: para
 #, no-c-format
 msgid "Unix systems (and thus Linux) are multi-tasking and multi-user systems. Indeed, several processes can run in parallel, and be owned by different users: the kernel mediates access to the resources between the different processes. As a part of this task, it has a concept of priority, which allows it to favor certain processes over others, as needed. When you know that a process can run in low priority, you can indicate so by running it with <command>nice <replaceable>program</replaceable></command>. The program will then have a smaller share of the CPU, and will have a smaller impact on other running processes. Of course, if no other processes needs to run, the program will not be artificially held back."
-msgstr "Les systèmes Unix (et donc Linux) sont éminemment multi-tâches et multi-utilisateurs. Plusieurs processus peuvent en effet tourner en parallèle, appartenant à plusieurs utilisateurs différents, le noyau se chargeant d'assurer la répartition des ressources entre les différents processus. Il gère pour cela une notion de priorité, qui lui permet de favoriser certains processus au détriment d'autres selon les besoins. Lorsque l'on sait qu'un processus peut tourner en basse priorité, on peut le signaler lors de son lancement, en utilisant <command>nice <replaceable>programme</replaceable></command> (<foreignphrase>nice</foreignphrase> signifiant « gentil, agréable »). Le programme disposera alors d'une proportion amoindrie des ressources du système, il perturbera donc moins les autres processus s'ils ont besoin de fonctionner. Bien entendu, si aucun autre processus n'a besoin de ressources, le programme ne sera pas artificiellement ralenti."
+msgstr "Les systèmes Unix (et donc Linux) sont éminemment multi-tâches et multi-utilisateurs. Plusieurs processus peuvent en effet tourner en parallèle, appartenant à plusieurs utilisateurs différents, le noyau se chargeant d'assurer la répartition des ressources entre les différents processus. Il gère pour cela une notion de priorité, qui lui permet de favoriser certains processus au détriment d'autres selon les besoins. Lorsque l'on sait qu'un processus peut tourner en basse priorité, on le signale lors de son lancement, en utilisant <command>nice <replaceable>programme</replaceable></command> (<foreignphrase>nice</foreignphrase> signifiant « gentil, agréable »). Le programme disposera alors d'une proportion amoindrie des ressources du système, il perturbera donc moins les autres processus s'ils ont besoin de fonctionner. Bien entendu, si aucun autre processus n'a besoin de ressources, le programme ne sera pas artificiellement ralenti."
 
 #. Tag: para
 #, no-c-format
@@ -2089,7 +2087,7 @@ msgstr "Si l'on s'aperçoit qu'une tâche déjà lancée aurait dû l'être avec
 #. Tag: para
 #, no-c-format
 msgid "Installation of the <emphasis role=\"pkg\">anacron</emphasis> package deactivates execution by <command>cron</command> of the scripts in the <filename>/etc/cron.hourly/</filename>, <filename>/etc/cron.daily/</filename>, <filename>/etc/cron.weekly/</filename>, and <filename>/etc/cron.monthly/</filename> directories. This avoids their double execution by <command>anacron</command> and <command>cron</command>. The <command>cron</command> command remains active and will continue to handle the other scheduled tasks (especially those scheduled by users)."
-msgstr "L'installation du paquet <emphasis role=\"pkg\">anacron</emphasis> désactive l'exécution par <command>cron</command> des scripts des fichiers <filename>/etc/cron.hourly/</filename>, <filename>/etc/cron.daily/</filename>, <filename>/etc/cron.weekly/</filename>, et <filename>/etc/cron.monthly/</filename>. On évite ainsi qu'ils soient pris en compte à la fois par <command>anacron</command> et par <command>cron</command>. Mais <command>cron</command> reste actif et se chargera encore d'exécuter les autres commandes planifiées (notamment par les utilisateurs)."
+msgstr "L'installation du paquet <emphasis role=\"pkg\">anacron</emphasis> désactive l'exécution par <command>cron</command> des scripts des fichiers <filename>/etc/cron.hourly/</filename>, <filename>/etc/cron.daily/</filename>, <filename>/etc/cron.weekly/</filename> et <filename>/etc/cron.monthly/</filename>. On évite ainsi qu'ils soient pris en compte à la fois par <command>anacron</command> et par <command>cron</command>. Mais <command>cron</command> reste actif et se chargera encore d'exécuter les autres commandes planifiées (notamment par les utilisateurs)."
 
 #. Tag: title
 #, no-c-format
@@ -2144,12 +2142,12 @@ msgstr "Le système de quotas permet de définir quatre limites :"
 #. Tag: para
 #, no-c-format
 msgid "two limits (called “soft” and “hard”) refer to the number of blocks consumed. If the filesystem was created with a block-size of 1 kibibyte, a block contains 1024 bytes from the same file. Unsaturated blocks thus induce losses of disk space. A quota of 100 blocks, which theoretically allows storage of 102,400 bytes, will however be saturated with just 100 files of 500 bytes each, only representing 50,000 bytes in total."
-msgstr "deux limites (<foreignphrase>soft</foreignphrase> et <foreignphrase>hard</foreignphrase>, respectivement douce et dure) concernent le nombre de blocs consommés. Si le système de fichiers a été créé avec une taille de bloc de 1 kilo-octet, un bloc contient 1024 octets du même fichier. Les blocs non saturés induisent donc des pertes d'espace disque. Un quota de 100 blocs, qui permet théoriquement de stocker 102 400 octets, sera pourtant saturé par 100 fichiers de 500 octets, ne représentant que 50 000 octets au total."
+msgstr "Deux limites (<foreignphrase>soft</foreignphrase> et <foreignphrase>hard</foreignphrase>, respectivement douce et dure) concernent le nombre de blocs consommés. Si le système de fichiers a été créé avec une taille de bloc de 1 kilo-octet, un bloc contient 1 024 octets du même fichier. Les blocs non saturés induisent donc des pertes d'espace disque. Un quota de 100 blocs, qui permet théoriquement de stocker 102 400 octets, sera pourtant saturé par 100 fichiers de 500 octets, ne représentant que 50 000 octets au total."
 
 #. Tag: para
 #, no-c-format
 msgid "two limits (soft and hard) refer to the number of inodes used. Each file occupies at least one inode to store information about it (permissions, owner, timestamp of last access, etc.). It is thus a limit on the number of user files."
-msgstr "deux limites (<foreignphrase>soft</foreignphrase> et <foreignphrase>hard</foreignphrase>) concernent le nombre d'<foreignphrase>inodes</foreignphrase> employés. Chaque fichier consomme au moins un <foreignphrase>inode</foreignphrase> pour stocker les informations le concernant (droits, propriétaires, date de dernier accès, etc.). Il s'agit donc d'une limite sur le nombre de fichiers de l'utilisateur."
+msgstr "Deux limites (<foreignphrase>soft</foreignphrase> et <foreignphrase>hard</foreignphrase>) concernent le nombre d'<foreignphrase>inodes</foreignphrase> employés. Chaque fichier consomme au moins un <foreignphrase>inode</foreignphrase> pour stocker les informations le concernant (droits, propriétaires, date de dernier accès, etc.). Il s'agit donc d'une limite sur le nombre de fichiers de l'utilisateur."
 
 #. Tag: para
 #, no-c-format
@@ -2174,12 +2172,12 @@ msgstr "<primary><foreignphrase>inode</foreignphrase></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The filesystem divides the hard drive into blocks — small contiguous areas. The size of these blocks is defined during creation of the filesystem, and generally varies between 1 and 8 kibibytes."
-msgstr "Le système de fichiers découpe le disque dur en blocs, petites zones contiguës. La taille de ces blocs est déterminée lors de la création du système de fichiers, et varie généralement entre 1 et 8 ko."
+msgstr "Le système de fichiers découpe le disque dur en blocs, petites zones contiguës. La taille de ces blocs est déterminée lors de la création du système de fichiers et varie généralement entre 1 et 8 ko."
 
 #. Tag: para
 #, no-c-format
 msgid "A block can be used either to store the real data of a file, or for meta-data used by the filesystem. Among this meta-data, you will especially find the inodes. An inode uses a block on the hard drive (but this block is not taken into consideration in the block quota, only in the inode quota), and contains both the information on the file to which it corresponds (name, owner, permissions, etc.) and the pointers to the data blocks that are actually used. For very large files that occupy more blocks than it is possible to reference in a single inode, there is an indirect block system; the inode references a list of blocks that do not directly contain data, but another list of blocks."
-msgstr "Un bloc peut être utilisé soit pour stocker des données réelles du fichier, soit des méta-données utilisées par le système de fichiers. Parmi ces méta-données, on trouve notamment les <foreignphrase>inodes</foreignphrase> (terme parfois traduit par « i-nœuds » mais généralement laissé tel quel). Un inode utilise un bloc sur le disque (mais ce bloc n'est pas pris en compte dans le quota de blocs, seulement dans le quota d'inodes), et contient à la fois des informations sur le fichier qu'il concerne (nom, propriétaire, permissions etc.) et des pointeurs vers les blocs de données réellement utilisés. Pour les fichiers volumineux occupant plus de blocs qu'il n'est possible de référencer dans un seul inode, il y a même un système de blocs indirects : l'inode référence une liste de blocs ne contenant pas directement des données mais une autre liste de blocs."
+msgstr "Un bloc peut être utilisé soit pour stocker des données réelles du fichier, soit des méta-données utilisées par le système de fichiers. Parmi ces méta-données, on trouve notamment les <foreignphrase>inodes</foreignphrase> (terme parfois traduit par « i-nœuds » mais généralement laissé tel quel). Un inode utilise un bloc sur le disque (mais ce bloc n'est pas pris en compte dans le quota de blocs, seulement dans le quota d'inodes) et contient à la fois des informations sur le fichier qu'il concerne (nom, propriétaire, permissions etc.) et des pointeurs vers les blocs de données réellement utilisés. Pour les fichiers volumineux occupant plus de blocs qu'il n'est possible d'en référencer dans un seul inode, il y a même un système de blocs indirects : l'inode référence une liste de blocs ne contenant pas directement des données mais une autre liste de blocs."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2309,7 +2307,7 @@ msgstr "<primary><emphasis role=\"pkg\">dirvish</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "This backup mechanism is easily implemented with the <command>dirvish</command> program. It uses a backup storage space (“bank” in its vocabulary) in which it places timestamped copies of sets of backup files (these sets are called “vaults” in the dirvish documentation)."
-msgstr "Ce mécanisme de sauvegarde se met facilement en place à l'aide du programme <command>dirvish</command>. Il emploie un espace de stockage des sauvegardes (<foreignphrase>bank</foreignphrase>, dans son vocabulaire) dans lequel il place les différentes copies horodatées des ensembles de fichiers sauvegardés (ces ensembles sont nommés <foreignphrase>vaults</foreignphrase>, donc « chambre forte », dans la documentation de dirvish)."
+msgstr "Ce mécanisme de sauvegarde se met facilement en place à l'aide du programme <command>dirvish</command>. Il emploie un espace de stockage des sauvegardes (<foreignphrase>bank</foreignphrase>, dans son vocabulaire) dans lequel il place les différentes copies horodatées des ensembles de fichiers sauvegardés (ces ensembles sont nommés <foreignphrase>vaults</foreignphrase>, donc « chambre forte », dans la documentation de <command>dirvish</command>)."
 
 #. Tag: para
 #, no-c-format
@@ -2358,7 +2356,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The <literal>bank</literal> setting indicates the directory in which the backups are stored. The <literal>exclude</literal> setting allows you to indicate files (or file types) to exclude from the backup. The <literal>Runall</literal> is a list of file sets to backup with a time-stamp for each set, which allows you to assign the correct date to the copy, in case the backup is not triggered at precisely the assigned time. You have to indicate a time just before the actual execution time (which is, by default, 10:04 pm in Debian, according to <filename>/etc/cron.d/dirvish</filename>). Finally, the <literal>expire-default</literal> and <literal>expire-rule</literal> settings define the expiration policy for backups. The above example keeps forever backups that are generated on the first Sunday of each quarter, deletes after one year those from the first Sunday of each month, and after 3 months those from other Sundays. Other daily backups are kept for 15 days. The order of the rules does matter, Dirvish uses the last matching rule, or the <literal>expire-default</literal> one if no other <literal>expire-rule</literal> matches."
-msgstr "Le paramètre <literal>bank</literal> indique le répertoire dans lequel les sauvegardes sont stockées. Le paramètre <literal>exclude</literal> permet d'indiquer des fichiers (ou des formes de noms de fichiers) à exclure de la sauvegarde. Le paramètre <literal>Runall</literal> est la liste des ensembles de fichiers à sauvegarder avec un horodatage pour chaque ensemble, ce dernier permet simplement d'attribuer la bonne date à la copie au cas où la sauvegarde ne se déclencherait pas exactement à l'heure prévue. Il faut indiquer un horaire légèrement inférieur à l'horaire réel d'exécution (qui est 22h04 par défaut sur un système Debian, selon <filename>/etc/cron.d/dirvish</filename>). Enfin les paramètres <literal>expire-default</literal> et <literal>expire-rule</literal> définissent la politique d'expiration (donc de conservation) des sauvegardes. L'exemple ci-dessus conserve pour toujours les sauvegardes générées le premier dimanche de chaque trimestre, détruit après un an celles du premier dimanche de chaque mois et après 3 mois celles des autres dimanches. Les autres sauvegardes quotidiennes sont conservées 15 jours. L'ordre des règles compte, dirvish emploie la dernière règle qui correspond, ou celle mentionnée dans <literal>expire-default</literal> si aucune des règles de <literal>expire-rule</literal> ne correspond."
+msgstr "Le paramètre <literal>bank</literal> indique le répertoire dans lequel les sauvegardes sont stockées. Le paramètre <literal>exclude</literal> permet d'indiquer des fichiers (ou des formes de noms de fichiers) à exclure de la sauvegarde. Le paramètre <literal>Runall</literal> est la liste des ensembles de fichiers à sauvegarder avec un horodatage pour chaque ensemble, ce dernier permet simplement d'attribuer la bonne date à la copie au cas où la sauvegarde ne se déclencherait pas exactement à l'heure prévue. Il faut indiquer un horaire légèrement inférieur à l'horaire réel d'exécution (qui est 22h04 par défaut sur un système Debian, selon <filename>/etc/cron.d/dirvish</filename>). Enfin les paramètres <literal>expire-default</literal> et <literal>expire-rule</literal> définissent la politique d'expiration (donc de conservation) des sauvegardes. L'exemple ci-dessus conserve pour toujours les sauvegardes générées le premier dimanche de chaque trimestre, détruit après un an celles du premier dimanche de chaque mois et après 3 mois celles des autres dimanches. Les autres sauvegardes quotidiennes sont conservées 15 jours. L'ordre des règles compte : dirvish emploie la dernière règle qui correspond, ou celle mentionnée dans <literal>expire-default</literal> si aucune des règles de <literal>expire-rule</literal> ne correspond."
 
 #. Tag: title
 #, no-c-format
@@ -2421,7 +2419,7 @@ msgstr "<emphasis>EN PRATIQUE</emphasis> Sauvegarde distante par SSH"
 #. Tag: para
 #, no-c-format
 msgid "When dirvish needs to save data to a remote machine, it will use <command>ssh</command> to connect to it, and will start <command>rsync</command> as a server. This requires the root user to be able to automatically connect to it. The use of an SSH authentication key allows precisely that (see <xref linkend=\"sect.ssh-key-based-auth\" />)."
-msgstr "Lorsque dirvish doit sauvegarder des données d'une machine distante, il va employer <command>ssh</command> pour s'y connecter et y démarrer <command>rsync</command> en tant que serveur. Cela nécessite donc que l'utilisateur root puisse se connecter automatiquement à la machine en question. L'emploi d'une clé d'authentification SSH permet précisément cela (voir <xref linkend=\"sect.ssh-key-based-auth\" />)."
+msgstr "Lorsque <command>dirvish</command> doit sauvegarder des données d'une machine distante, il va employer <command>ssh</command> pour s'y connecter et y démarrer <command>rsync</command> en tant que serveur. Cela nécessite donc que l'utilisateur root puisse se connecter automatiquement à la machine en question. L'emploi d'une clé d'authentification SSH permet précisément cela (voir <xref linkend=\"sect.ssh-key-based-auth\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -2431,7 +2429,7 @@ msgstr "Restauration des machines non sauvegardées"
 #. Tag: para
 #, no-c-format
 msgid "Desktop computers, which are not backed up, will be easy to reinstall from custom DVD-ROMs prepared with <emphasis>Simple-CDD</emphasis> (see <xref linkend=\"sect.simple-cdd\" />). Since this performs an installation from scratch, it loses any customization that can have been made after the initial installation. This is fine since the systems are all hooked to a central LDAP directory for accounts and most desktop applications are preconfigured thanks to dconf (see <xref linkend=\"sect.gnome-desktop\" /> for more information about this)."
-msgstr "Les ordinateurs bureautiques, qui ne sont pas sauvegardés, pourront être réinstallés à partir des DVD-Rom personnalisés préparés avec <emphasis>Simple-CDD</emphasis> (voir <xref linkend=\"sect.simple-cdd\" />).  Comme il s'agit d'une installation à partir de zéro, cela perdra toute configuration qui aura été faite après l'installation initiale ; cela ne pose pas de problème, puisque tous les systèmes sont connectés à un annuaire LDAP qui centralise les comptes utilisateurs, et la plupart des applications bureautiques sont préconfigurées par le biais de dconf (voir <xref linkend=\"sect.gnome-desktop\" /> à ce propos)."
+msgstr "Les ordinateurs bureautiques, qui ne sont pas sauvegardés, pourront être réinstallés à partir des DVD-Rom personnalisés préparés avec <emphasis>Simple-CDD</emphasis> (voir <xref linkend=\"sect.simple-cdd\" />).  Comme il s'agit d'une installation à partir de zéro, cela perdra toute configuration qui aura été faite après l'installation initiale ; cela ne pose pas de problème, puisque tous les systèmes sont connectés à un annuaire LDAP qui centralise les comptes utilisateurs et la plupart des applications bureautiques sont préconfigurées par le biais de <command>dconf</command> (voir <xref linkend=\"sect.gnome-desktop\" /> à ce propos)."
 
 #. Tag: para
 #, no-c-format
@@ -2552,7 +2550,7 @@ msgstr "Avant l'introduction des branchements à chaud, il était simple de donn
 #. Tag: para
 #, no-c-format
 msgid "Additionally, more and more drivers use dynamic values for devices' major/minor numbers, which makes it impossible to have static entries for the given devices, since these essential characteristics may vary after a reboot."
-msgstr "En outre de plus en plus de pilotes emploient des numéros majeur/mineur dynamiques, ce qui fait qu'il est impossible d'avoir une entrée statique pour le périphérique, puisque ces caractéristiques essentielles peuvent varier après un redémarrage de l'ordinateur."
+msgstr "En outre, de plus en plus de pilotes emploient des numéros majeur/mineur dynamiques, ce qui fait qu'il est impossible d'avoir une entrée statique pour le périphérique, puisque ces caractéristiques essentielles peuvent varier après un redémarrage de l'ordinateur."
 
 #. Tag: para
 #, no-c-format
@@ -2582,7 +2580,7 @@ msgstr "Ce mécanisme a des effets de bord qu'il est bon de connaître. Considé
 #. Tag: title
 #, no-c-format
 msgid "How <emphasis>udev</emphasis> Works"
-msgstr "Fonctionnement de <emphasis>udev</emphasis>"
+msgstr "Fonctionnement de udev"
 
 #. Tag: para
 #, no-c-format
@@ -2592,7 +2590,7 @@ msgstr "Lorsqu'<emphasis>udev</emphasis> est informé par le noyau de l'appariti
 #. Tag: para
 #, no-c-format
 msgid "Armed with all of this information, <emphasis>udev</emphasis> then consults all of the rules contained in <filename>/etc/udev/rules.d/</filename> and <filename>/lib/udev/rules.d/</filename>. In this process it decides how to name the device, what symbolic links to create (to give it alternative names), and what commands to execute. All of these files are consulted, and the rules are all evaluated sequentially (except when a file uses “GOTO” directives). Thus, there may be several rules that correspond to a given event."
-msgstr "Armé de toutes ces informations, <emphasis>udev</emphasis> consulte l'ensemble de règles contenu dans <filename>/etc/udev/rules.d/</filename> et <filename>/lib/udev/rules.d/</filename> et décide à partir de cela du nom à attribuer au périphérique, des liens symboliques à créer (pour offrir des noms alternatifs) ainsi que des commandes à exécuter. Tous les fichiers sont consultés et les règles sont toutes évaluées séquentiellement (sauf quand un fichier fait appel à des constructions de type « GOTO »). Ainsi il peut y avoir plusieurs règles qui correspondent à un événement donné."
+msgstr "Armé de toutes ces informations, <emphasis>udev</emphasis> consulte l'ensemble de règles contenu dans <filename>/etc/udev/rules.d/</filename> et <filename>/lib/udev/rules.d/</filename> et décide à partir de cela du nom à attribuer au périphérique, des liens symboliques à créer (pour offrir des noms alternatifs), ainsi que des commandes à exécuter. Tous les fichiers sont consultés et les règles sont toutes évaluées séquentiellement (sauf quand un fichier fait appel à des constructions de type « GOTO »). Ainsi, il peut y avoir plusieurs règles qui correspondent à un événement donné."
 
 #. Tag: para
 #, no-c-format
@@ -2652,7 +2650,7 @@ msgstr "Les opérandes de droite peuvent employer certaines expressions de motif
 #. Tag: para
 #, no-c-format
 msgid "Regarding the assignment operators, <literal>=</literal> assigns a value (and replaces the current value); in the case of a list, it is emptied and contains only the value assigned. <literal>:=</literal> does the same, but prevents later changes to the same variable. As for <literal>+=</literal>, it adds an item to a list. The following variables can be changed:"
-msgstr "En ce qui concerne les opérateurs d'affectation, <literal>=</literal> affecte une valeur (et remplace la valeur actuelle), s'il s'agit d'une liste elle est vidée et ne contient plus que la valeur affectée. <literal>:=</literal> fait de même mais empêche les modifications subséquentes de cette même variable. Quant à <literal>+=</literal>, il ajoute une valeur dans une liste. Voici les variables qui peuvent être modifiées :"
+msgstr "En ce qui concerne les opérateurs d'affectation, <literal>=</literal> affecte une valeur (et remplace la valeur actuelle) ; s'il s'agit d'une liste elle est vidée et ne contient plus que la valeur affectée. <literal>:=</literal> fait de même mais empêche les modifications subséquentes de cette même variable. Quant à <literal>+=</literal>, il ajoute une valeur dans une liste. Voici les variables qui peuvent être modifiées :"
 
 #. Tag: para
 #, no-c-format
@@ -2843,7 +2841,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "To create a new rule, you can use tests on the device's variables, as well as those of one of the parent devices. The above case allows us to create two rules like these:"
-msgstr "Pour constituer une ligne de règle on peut employer des tests sur les variables du périphérique ainsi que celles d'un seul des périphériques parents. L'exemple ci-dessus permet par exemple de créer deux règles comme celles-ci:"
+msgstr "Pour constituer une ligne de règle, on peut employer des tests sur les variables du périphérique ainsi que celles d'un seul des périphériques parents. L'exemple ci-dessus permet par exemple de créer deux règles comme celles-ci:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2868,12 +2866,12 @@ msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Déboguer la configuration de 
 #. Tag: para
 #, no-c-format
 msgid "Like many daemons, <command>udevd</command> stores logs in <filename>/var/log/daemon.log</filename>. But it is not very verbose by default, and it's usually not enough to understand what's happening. The <command>udevadm control --log-priority=info</command> command increases the verbosity level and solves this problem. <command>udevadm control --log-priority=err</command> returns to the default verbosity level."
-msgstr "Comme beaucoup de démons, <command>udevd</command> enregistre des traces dans <filename>/var/log/daemon.log</filename>. Mais il n'est pas très verbeux par défaut, et cela ne permet que rarement de comprendre ce qu'il fait. La commande <command>sudo udevadm control --log-priority=info</command> augmente le niveau de verbosité courant et résout ce problème. <command>udevadm control --log-priority=err</command> remet en place la verbosité par défaut."
+msgstr "Comme beaucoup de démons, <command>udevd</command> enregistre des traces dans <filename>/var/log/daemon.log</filename>. Mais il n'est pas très verbeux par défaut et cela ne permet que rarement de comprendre ce qu'il fait. La commande <command>sudo udevadm control --log-priority=info</command> augmente le niveau de verbosité courant et résout ce problème. <command>udevadm control --log-priority=err</command> remet en place le niveau par défaut."
 
 #. Tag: title
 #, no-c-format
 msgid "Power Management: Advanced Configuration and Power Interface (ACPI)"
-msgstr "Gestion de l'énergie : <foreignphrase>Advanced Configuration and Power Interface</foreignphrase> (ACPI)"
+msgstr "Gestion de l'énergie : Advanced Configuration and Power Interface (ACPI)"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2928,7 +2926,7 @@ msgstr "<primary><foreignphrase>Advanced Power Management</foreignphrase></prima
 #. Tag: para
 #, no-c-format
 msgid "APM (Advanced Power Management) is the ancestor of ACPI in the power management world. While Debian still provides <command>apmd</command> (the counterpart to <command>acpid</command> for the APM standard), the official Debian kernel no longer supports APM so you'll have to run a custom kernel if you really need it for some old computer."
-msgstr "L'ancêtre d'ACPI est APM (<foreignphrase>Advanced Power Management</foreignphrase>).  Debian continue de fournir <command>apmd</command> (l'équivalent de <command>acpid</command> dans le monde APM), le noyau Debian officiel ne supporte plus APM ; il vous faudra donc utiliser un noyau personnalisé si vous avez réellement besoin d'APM (par exemple pour un vieil ordinateur)."
+msgstr "L'ancêtre d'ACPI est APM (<foreignphrase>Advanced Power Management</foreignphrase>).  Debian continue de fournir <command>apmd</command> (l'équivalent de <command>acpid</command> dans le monde APM) mais le noyau Debian officiel ne gère plus APM ; il vous faudra donc utiliser un noyau personnalisé si vous avez réellement besoin d'APM (par exemple pour un vieil ordinateur)."
 
 #. Tag: title
 #, no-c-format
