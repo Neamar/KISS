@@ -47,8 +47,4 @@ actual page. By default the page is centered as required in this mode.
   </xsl:if>
 </xsl:param>
 
-<xsl:template match="literal">
-  <xsl:call-template name="inline.monoseq"/>
-</xsl:template>
-
 </xsl:stylesheet>

@@ -23,7 +23,12 @@
 <xsl:param name="insert.link.page.number">yes</xsl:param>
 
 <!-- Misc rendering options -->
-<!-- Avoid line overflows when hyphenations are missing -->
+<xsl:param name="make.year.ranges">1</xsl:param>
+<xsl:param name="make.single.year.ranges">1</xsl:param>
+
+<!-- Hyphenation related, try to avoid line overflows but still
+     have good hyphenation -->
+<xsl:param name="monoseq.hyphenation">0</xsl:param>
 <xsl:param name="hyphenation.setup">sloppy</xsl:param>
 
 <!-- Support scaling of listings -->
@@ -94,12 +99,16 @@ actual page. By default the page is centered as required in this mode.
 <xsl:param name="figure.emptypage">images/debian.png</xsl:param>
 <xsl:param name="ulink.block.symbol">\ding{232}</xsl:param>
 
-<xsl:template match="command|parameter|option">
+<xsl:template match="command|parameter|option|citerefentry">
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
 <xsl:template match="literal">
   <xsl:call-template name="inline.sansseq"/>
+</xsl:template>
+
+<xsl:template match="sidebar//literal">
+  <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
 <xsl:template match="replaceable">
@@ -147,8 +156,10 @@ actual page. By default the page is centered as required in this mode.
       <l:template name="sidebar" text="« %t »"/>
     </l:context>
     <l:context name="xref-number-and-title">
+      <!-- Don't start with capital letters -->
       <l:template name="chapter" text=" chapitre %n, « %t »"/>
       <l:template name="section" text=" section %n, « %t »"/>
+      <l:template name="appendix" text=" annexe %n, « %t »"/>
     </l:context>
   </l:l10n>
 </l:i18n>

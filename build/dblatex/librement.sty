@@ -95,7 +95,7 @@
   \stdmaketitle
   \noindent
   \textbf{\DBKtitle \\}
-  \ifx\DBKauthor\empty\else{by \DBKauthor \\}\fi
+  \ifx\DBKauthor\empty\else{\DBKauthor \\}\fi
   \hspace{0pt}\\
   %\ifthenelse{\equal{\DBKedition}{}}{}{Edition \DBKedition \\}
   \ifthenelse{\equal{\DBKpubdate}{}}{}{Published \DBKpubdate \\}
@@ -151,13 +151,13 @@
     \rput(-\outermargin,0){%
       \psline[linewidth=0.4pt](-5mm,0)(\pgnboffset,0)
       \psline[linewidth=0.4pt](-5mm,-0.3mm)(\pgnboffset,-0.3mm)
-      \Rput[r](\pgnboffset,-3mm){\foliofont\thepage}
+      \Rput[r](\pgnboffset,-2.5mm){\foliofont\thepage}
       \psline[linewidth=0.4pt](-5mm,-5mm)(\pgnboffset,-5mm)
       \psline[linewidth=0.4pt](-5mm,-5.3mm)(\pgnboffset,-5.3mm)
       \ifdefined\DBKtitle
-        \Rput[l](\footertxtoffset,-3mm){\footfont \DBKtitle}
+        \Rput[l](\footertxtoffset,-2.5mm){\footfont \DBKtitle}
       \else
-        \Rput[l](\footertxtoffset,-3mm){\footfont Book title undefined!}
+        \Rput[l](\footertxtoffset,-2.5mm){\footfont Book title undefined!}
       \fi
     }
   }
@@ -165,10 +165,10 @@
     \rput(\outermargin,0){%
       \psline[linewidth=0.4pt](5mm,0)(-\pgnboffset,0)
       \psline[linewidth=0.4pt](5mm,-0.3mm)(-\pgnboffset,-0.3mm)
-      \Rput[l](-\pgnboffset,-3mm){\foliofont\thepage}
+      \Rput[l](-\pgnboffset,-2.5mm){\foliofont\thepage}
       \psline[linewidth=0.4pt](5mm,-5mm)(-\pgnboffset,-5mm)
       \psline[linewidth=0.4pt](5mm,-5.3mm)(-\pgnboffset,-5.3mm)
-      \Rput[r](-\footertxtoffset,-3mm){\footfont \chaptertitle{}}
+      \Rput[r](-\footertxtoffset,-2.5mm){\footfont \chaptertitle{}}
     }
   }
 }
@@ -179,13 +179,13 @@
     \rput(-\outermargin,0){%
       \psline[linewidth=0.4pt](-5mm,0)(\pgnboffset,0)
       \psline[linewidth=0.4pt](-5mm,-0.3mm)(\pgnboffset,-0.3mm)
-      \Rput[r](\pgnboffset,-3mm){\foliofont\thepage}
+      \Rput[r](\pgnboffset,-2.5mm){\foliofont\thepage}
       \psline[linewidth=0.4pt](-5mm,-5mm)(\pgnboffset,-5mm)
       \psline[linewidth=0.4pt](-5mm,-5.3mm)(\pgnboffset,-5.3mm)
       \ifdefined\DBKtitle
-        \Rput[l](\footertxtoffset,-3mm){\footfont \DBKtitle}
+        \Rput[l](\footertxtoffset,-2.5mm){\footfont \DBKtitle}
       \else
-        \Rput[l](\footertxtoffset,-3mm){\footfont Book title undefined!}
+        \Rput[l](\footertxtoffset,-2.5mm){\footfont Book title undefined!}
       \fi
     }
   }
@@ -193,13 +193,13 @@
     \rput(\outermargin,0){%
       \psline[linewidth=0.4pt](5mm,0)(-\pgnboffset,0)
       \psline[linewidth=0.4pt](5mm,-0.3mm)(-\pgnboffset,-0.3mm)
-      \Rput[l](-\pgnboffset,-3mm){\foliofont\thepage}
+      \Rput[l](-\pgnboffset,-2.5mm){\foliofont\thepage}
       \psline[linewidth=0.4pt](5mm,-5mm)(-\pgnboffset,-5mm)
       \psline[linewidth=0.4pt](5mm,-5.3mm)(-\pgnboffset,-5.3mm)
       \ifnum\c@chapter=0
-        \Rput[r](-\footertxtoffset,-3mm){\footfont \chaptertitle{}}
+        \Rput[r](-\footertxtoffset,-2.5mm){\footfont \chaptertitle{}}
       \else
-        \Rput[r](-\footertxtoffset,-3mm){\footfont \@chapapp{} \thechapter{} — \chaptertitle{}}
+        \Rput[r](-\footertxtoffset,-2.5mm){\footfont \@chapapp{} \thechapter{} — \chaptertitle{}}
       \fi
     }
   }
@@ -508,10 +508,10 @@
   \fontspec[Mapping=tex-text]{DejaVu Sans}}%
 }
 \newcommand\foliofont{%
-\sffamily  \fontsize{6}{8}\selectfont%
+\sffamily  \fontsize{7}{9}\selectfont%
 }
 \newcommand\footfont{%
-\sffamily  \fontsize{6}{8}\selectfont%
+\sffamily  \fontsize{7}{9}\selectfont%
 }
 %
 \newcommand\literal[1]{%
