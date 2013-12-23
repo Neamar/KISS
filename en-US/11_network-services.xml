@@ -228,7 +228,7 @@ inet_interfaces = all
 inet_protocols = all
 </programlisting>
       </example>
-      <sidebar role="important">
+      <sidebar>
         <title><emphasis>SECURITY</emphasis> <emphasis>Snake oil</emphasis> SSL certificates</title>
 
 	<para>The <emphasis>snake oil</emphasis> certificates, like the
@@ -252,7 +252,7 @@ inet_protocols = all
       to local users. Postfix provides two interesting features for
       handling virtual domains.</para>
 
-      <sidebar role="important">
+      <sidebar>
         <title><emphasis>CAUTION</emphasis> Virtual domains and canonical domains</title>
 
 	<para>None of the virtual domains must be referenced in the
@@ -306,7 +306,7 @@ contact@falcotsbrand.com    laure@falcot.com, sophie@falcot.com
       <section>
         <title>Virtual Mailbox Domains</title>
 
-        <sidebar role="important">
+        <sidebar>
           <title><emphasis>CAUTION</emphasis> Combined virtual domain?</title>
 
 	  <para>Postfix does not allow using the same domain in both
@@ -1289,7 +1289,7 @@ relay_host = [mail.falcot.com]
       virtual host will be used if no host matching the request sent by the
       client is found.</para>
 
-      <sidebar role="important">
+      <sidebar>
         <title><emphasis>CAUTION</emphasis> First virtual host</title>
 
 	<para>Requests concerning unknown virtual hosts will always be
@@ -1511,7 +1511,7 @@ AuthUserFile /etc/apache2/authfiles/htpasswd-private
 </programlisting>
         </example>
 
-        <sidebar role="important">
+        <sidebar>
           <title><emphasis>SECURITY</emphasis> No security</title>
 
 	  <para>The authentication system used in the above example
@@ -1624,7 +1624,7 @@ LoadPlugin="tooltips"
       readable reports that include full machine names instead of raw IP
       addresses.</para>
 
-      <sidebar role="important">
+      <sidebar>
         <title><emphasis>SECURITY</emphasis> Access to statistics</title>
 
 	<para>AWStats makes its statistics available on the website with no
@@ -1986,7 +1986,7 @@ options lockd nlm_udpport=2045 nlm_tcpport=2045
       <citerefentry><refentrytitle>exports</refentrytitle>
       <manvolnum>5</manvolnum></citerefentry> manual page.</para>
 
-      <sidebar role="important">
+      <sidebar>
         <title><emphasis>CAUTION</emphasis> First installation</title>
 
 	<para>The <filename>/etc/init.d/nfs-kernel-server</filename> boot
