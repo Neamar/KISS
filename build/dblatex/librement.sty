@@ -40,6 +40,10 @@
 %% Use only the basic dblatex LaTeX commands for more freedom
 \usepackage{dbk_core}
 
+% Don't add extra spacing for lists
+\setlist[itemize]{itemsep=0pt,topsep=0pt}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt}
+
 % Default page setup if not already done by geometry
 \@ifpackageloaded{geometry}{}{
 \usepackage{geometry}[includeheadfoot,right=1.3cm,left=1.6cm,top=1.3cm,bottom=1.3cm,]
@@ -358,6 +362,7 @@
 }
 
 % Workaround pour un bogue de dblatex ?
+\floatstyle{plaintop}
 \newfloat{example}{ht}{loe}[chapter]
 \floatname{example}{\examplename}
 %%%\newenvironment{example}{}{}

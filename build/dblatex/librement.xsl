@@ -21,6 +21,8 @@
 
 <xsl:template name="user.params.set">
   <xsl:apply-imports />
+  <xsl:text>\widowpenalty=10000&#10;</xsl:text>
+  <xsl:text>\clubpenalty=10000&#10;</xsl:text>
   <xsl:if test="$figure.emptypage">
     <xsl:text>\def\DBKEmptyPagePicture{</xsl:text>
     <xsl:value-of select="$figure.emptypage" />
