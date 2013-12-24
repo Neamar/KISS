@@ -104,4 +104,16 @@
   <xsl:text>}</xsl:text>
 </xsl:template>
 
+<xsl:template match="*" mode="pagenumber.markup">
+  <xsl:text>\pageref*{</xsl:text>
+  <xsl:value-of select="(@id|@xml:id)[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
+<xsl:template match="*" mode="page.citation">
+<xsl:text> {\color{textgray} </xsl:text>
+<xsl:apply-imports />
+<xsl:text>}</xsl:text>
+</xsl:template>
+
 </xsl:stylesheet>

@@ -120,8 +120,9 @@ actual page. By default the page is centered as required in this mode.
 </xsl:template>
 
 <!-- Extend/override generated texts:
-     - override page citation text to "(page %p)"
+     - override page citation text to "page %p"
      - auto-add quotes for xref to sidebar
+     - don't start with capital letters
 -->
 <xsl:param name="local.l10n.xml" select="document('')"/>
 <l:i18n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
@@ -130,8 +131,14 @@ actual page. By default the page is centered as required in this mode.
     <l:gentext key="minitoc" text="Contents"/>
     <l:gentext key="keywordset" text="Keywords"/>
     <l:context name="xref">
-      <l:template name="page.citation" text=" (page %p)"/>
+      <l:template name="page.citation" text=" page %p"/>
       <l:template name="sidebar" text="“%t”"/>
+    </l:context>
+    <l:context name="xref-number-and-title">
+      <!-- Don't start with capital letters -->
+      <l:template name="chapter" text=" chapter %n, “%t”"/>
+      <l:template name="section" text=" section %n, “%t”"/>
+      <l:template name="appendix" text=" appendix %n, “%t”"/>
     </l:context>
   </l:l10n>
 
@@ -139,7 +146,7 @@ actual page. By default the page is centered as required in this mode.
     <l:gentext key="minitoc" text="Contenidos"/>
     <l:gentext key="keywordset" text="Palabras clave"/>
     <l:context name="xref">
-      <l:template name="page.citation" text=" (p&#225;gina %p)"/>
+      <l:template name="page.citation" text=" p&#225;gina %p"/>
       <l:template name="sidebar" text="«%t»"/>
     </l:context>
     <l:context name="xref-number-and-title">
@@ -152,7 +159,7 @@ actual page. By default the page is centered as required in this mode.
     <l:gentext key="minitoc" text="Sommaire"/>
     <l:gentext key="keywordset" text="Mots-cl&#233;s"/>
     <l:context name="xref">
-      <l:template name="page.citation" text=" (page %p)"/>
+      <l:template name="page.citation" text=" page %p"/>
       <l:template name="sidebar" text="« %t »"/>
     </l:context>
     <l:context name="xref-number-and-title">
