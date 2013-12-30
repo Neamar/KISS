@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2012-07-29T20:56:34\n"
-"PO-Revision-Date: 2013-08-31 23:51+0800\n"
+"PO-Revision-Date: 2013-12-30 18:17+0100\n"
 "Last-Translator: Emfox Zhou <emfox@debian.org>\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -407,7 +407,7 @@ msgstr "<command>&gt;&gt;</command>：大于。"
 #. Tag: para
 #, no-c-format
 msgid "In a list of conditions to be met, the comma serves as a separator. In logic, its meaning would be interpreted as “and”. In conditions, the vertical bar (“|”) expresses “or” in logic (it is an inclusive “or”, as opposed to meaning “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
-msgstr "在列表中必须满足一个条件,那就是逗号作为分隔符。逻辑上，就是“和”的意思。在这种条件下， 垂直分隔条 “|” 表示 “或" 的逻辑意思（它是一个包容性的”或”，意思就是 “要么”/“或”）。它比“和”具有更高的优先级，它可以根据需要多次的使用。因此，依赖“(A或B) 和 C” 写成 <command>A | B，C</command>。相比之下，表达“A或(B和C)”应写成“（A或B），（A或C）”，因为<literal>取决于</literal>的字段不能容忍括号改变逻辑运算符“或”和“与”之间的逻辑优先级顺序。因此，这将被写入<command>A|B，A|C</command>。<ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
+msgstr "在列表中必须满足一个条件,那就是逗号作为分隔符。逻辑上，就是“和”的意思。在这种条件下， 垂直分隔条 “|” 表示 “或” 的逻辑意思（它是一个包容性的”或”，意思就是 “要么”/“或”）。它比“和”具有更高的优先级，它可以根据需要多次的使用。因此，依赖“(A或B) 和 C” 写成 <command>A | B，C</command>。相比之下，表达“A或(B和C)”应写成“（A或B），（A或C）”，因为<literal>取决于</literal>的字段不能容忍括号改变逻辑运算符“或”和“与”之间的逻辑优先级顺序。因此，这将被写入<command>A|B，A|C</command>。<ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -580,9 +580,9 @@ msgid "It is essential to clearly distinguish meta-packages from virtual package
 msgstr "这里必须明确的从虚拟软件包里面区分出元软件包。元软件包是真实的元件包（包含真实的<filename>.deb</filename>文件），其唯一目的是用来表示依赖性关系。"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Virtual packages, however, do not exist physically; they are only a means of identifying real packages based on common, logical criteria (service provided, compatibility with a standard program or a pre-existing package, etc.)."
-msgstr "尽管如此，虚拟软件包并不实际存在，它们仅仅指的是验证基于公共逻辑标准的实际软件包（服务预备，和标准程序或者是已存在的软件包的兼容性,等等）。
+msgstr "尽管如此，虚拟软件包并不实际存在，它们仅仅指的是验证基于公共逻辑标准的实际软件包（服务预备，和标准程序或者是已存在的软件包的兼容性,等等）。"
 
 #. Tag: title
 #, no-c-format
@@ -1879,7 +1879,7 @@ msgstr "这个情况下，你应该知道<command>rpm</command>程序是如何�
 #. Tag: para
 #, no-c-format
 msgid "On the other hand, the <emphasis role=\"pkg\">alien</emphasis> utility can convert RPM packages into Debian packages, and vice versa."
-msgstr "另一方面，<emphasis role=\"\pkg">alien</emphasis> 可以把RPM软件包转换成Debian软件包，反之亦然。"
+msgstr "另一方面，<emphasis role=\"pkg\">alien</emphasis> 可以把RPM软件包转换成Debian软件包，反之亦然。"
 
 #. Tag: title
 #, no-c-format
