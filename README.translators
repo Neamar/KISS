@@ -58,16 +58,16 @@ messages:
 * zh-CN: Review of chapter 3
 
 Take care to work on the most appropriate branch too. Currently
-it's "squeeze/master" since that's the stable maintenance branch
+it's "wheezy/master" since that's the stable maintenance branch
 for the current release of the book. If you already have downloaded the
-repository, use "git checkout squeeze/master" to change the current
+repository, use "git checkout wheezy/master" to change the current
 branch. Otherwise you can use one of those commands to clone the
 repository and start on the correct branch:
 
 Read-only anonymous access:
-$ git clone git://anonscm.debian.org/debian-handbook/debian-handbook.git -b squeeze/master
+$ git clone git://anonscm.debian.org/debian-handbook/debian-handbook.git -b wheezy/master
 SSH access for contributors with Write access:
-$ git clone git+ssh://git.debian.org/git/debian-handbook/debian-handbook.git -b squeeze/master
+$ git clone git+ssh://git.debian.org/git/debian-handbook/debian-handbook.git -b wheezy/master
 
 How to start a new translation
 ------------------------------
@@ -117,6 +117,16 @@ $ git commit -m "pt-BR: Updated translation"
 Depending on the workflow used by your translation team, you can either
 push your work directly or make it available to your translation
 coordinator that will integrate it for you.
+
+If you use a plain text editor, please double check that you haven't
+broken the PO files. Here's an example checking
+pt-BR/01_the-debian-project.po where some issues are detected:
+
+$ msgfmt -c -o /dev/null --statistics pt-BR/01_the-debian-project.po
+pt-BR/01_the-debian-project.po:1432: 'msgid' and 'msgstr' entries do not both end with '\n'
+msgfmt: found 1 fatal error
+348 translated messages, 100 fuzzy translations, 9 untranslated messages.
+$ msgcat pt-BR/01_the-debian-project.po >/dev/null
 
 Translating pictures and schemas
 --------------------------------
