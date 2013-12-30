@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-10-31T14:54:18\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2013-12-30 18:18+0100\n"
 "Last-Translator: wing.W <dabouw@gmail.com>\n"
 "Language-Team: None\n"
@@ -189,8 +189,9 @@ msgid "A firewall can be restricted to one particular machine (as opposed to a c
 msgstr "防火墙可以应用在个别机器上（相对于整个网络而言），在这些情况中其角色是过滤或限制对一些服务的访问，或阻止用户有意或无意安装的流氓软件对外部的连接。"
 
 #. Tag: para
-#, no-c-format
-msgid "The Linux 2.6 kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
+#, fuzzy, no-c-format
+#| msgid "The Linux 2.6 kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
+msgid "The Linux kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
 msgstr "Linux 2.6 内核嵌入了 <emphasis>netfilter</emphasis> 防火墙。可以使用用户空间的 <command>iptables</command> 和 <command>ip6tables</command> 命令控制。这两个命令直接的区别在于前者作用在 IPv4 网络，而后者作用在 IPv6。由于两种网络协议可能在多年内共存，这就需要同时使用两个工具。"
 
 #. Tag: indexterm
@@ -379,23 +380,27 @@ msgid "<literal>RETURN</literal>: interrupt processing of the current chain, and
 msgstr "<literal>返回</literal>：中断当前链的处理过程，并返回调用链；如果当前链是一个标准链，并且没有调用链，默认（有<command>iptables</command>中 <literal>-P</literal> 定义）就会执行该链。"
 
 #. Tag: para
-#, no-c-format
-msgid "<literal>SNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Source NAT</emphasis> (extra options describe the exact changes to apply);"
+#, fuzzy, no-c-format
+#| msgid "<literal>SNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Source NAT</emphasis> (extra options describe the exact changes to apply);"
+msgid "<literal>SNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis> — NAT support for IPv6 appeared in the Linux 3.7 kernel): apply <emphasis>Source NAT</emphasis> (extra options describe the exact changes to apply);"
 msgstr "<literal>SNAT</literal>（仅存在于 <literal>nat</literal> 表中，即只在 IPv4 中）：申请<emphasis>源 NAT</emphasis>（额外选项描述申请改变）；"
 
 #. Tag: para
-#, no-c-format
-msgid "<literal>DNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Destination NAT</emphasis> (extra options describe the exact changes to apply);"
+#, fuzzy, no-c-format
+#| msgid "<literal>DNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Destination NAT</emphasis> (extra options describe the exact changes to apply);"
+msgid "<literal>DNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis>): apply <emphasis>Destination NAT</emphasis> (extra options describe the exact changes to apply);"
 msgstr "<literal>DNAT</literal>（仅存在于 <literal>nat</literal> 表中，即只在 IPv4 中）：申请 <emphasis>目的地 NAT</emphasis>（额外选项描述申请改变）；"
 
 #. Tag: para
-#, no-c-format
-msgid "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>masquerading</emphasis> (a special case of <emphasis>Source NAT</emphasis>);"
+#, fuzzy, no-c-format
+#| msgid "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>masquerading</emphasis> (a special case of <emphasis>Source NAT</emphasis>);"
+msgid "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis>): apply <emphasis>masquerading</emphasis> (a special case of <emphasis>Source NAT</emphasis>);"
 msgstr "<literal>MASQUERADE</literal>（仅存在于 <literal>nat</literal> 表中，即只在 IPv4 中）：申请 <emphasis>伪装</emphasis>（ <emphasis>源 NAT</emphasis>的一个特例）；"
 
 #. Tag: para
-#, no-c-format
-msgid "<literal>REDIRECT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): redirect a packet to a given port of the firewall itself; this can be used to set up a transparent web proxy that works with no configuration on the client side, since the client thinks it connects to the recipient whereas the communications actually go through the proxy."
+#, fuzzy, no-c-format
+#| msgid "<literal>REDIRECT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): redirect a packet to a given port of the firewall itself; this can be used to set up a transparent web proxy that works with no configuration on the client side, since the client thinks it connects to the recipient whereas the communications actually go through the proxy."
+msgid "<literal>REDIRECT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis>): redirect a packet to a given port of the firewall itself; this can be used to set up a transparent web proxy that works with no configuration on the client side, since the client thinks it connects to the recipient whereas the communications actually go through the proxy."
 msgstr "<literal>重定向（REDIRECT）</literal>（仅存在于 <literal>nat</literal> 表中，即只在 IPv4 中）：将数据包重定向到防火墙的指定端口；它可以用来设置透明网络代理，而不需要在客户端进行配置，客户端认为它在连接至接受者，而实际上它是通过代理通信。"
 
 #. Tag: para
@@ -419,8 +424,9 @@ msgid "Commands"
 msgstr "命令"
 
 #. Tag: para
-#, no-c-format
-msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable><replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable><replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable><replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
+#, fuzzy, no-c-format
+#| msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable><replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable><replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable><replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
+msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable> <replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable> <replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable> <replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable> <replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable> <replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
 msgstr "<literal>-N <replaceable>chain</replaceable></literal> 选项创建一个新链。<literal>-X <replaceable>chain</replaceable></literal> 删除不使用的空链。<literal>-A <replaceable>chain</replaceable><replaceable>rule</replaceable></literal> 在指定链的末尾添加规则。<literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal> 选项在规则 <replaceable>rule_num</replaceable> 前插入一条规则。<literal>-D <replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal>（或者<literal>-D <replaceable>chain</replaceable><replaceable>rule</replaceable></literal>）选项用来删除链中的一条规则；第一个语法根据号码指明要删除的规则，后者通过内容。<literal>-F <replaceable>chain</replaceable></literal> 选项冲掉一个链（删除所有规则）；如果没有指明规则，则删除表中的所有规则。<literal>-L <replaceable>chain</replaceable></literal> 选项列出表中的规则。<literal>-P <replaceable>chain</replaceable><replaceable>action</replaceable></literal> 选项对指定的链定义默认操作，或“策略”；注意只有标准链可以设置该规则。"
 
 #. Tag: title
@@ -429,8 +435,9 @@ msgid "Rules"
 msgstr "规则"
 
 #. Tag: para
-#, no-c-format
-msgid "Each rule is expressed as <literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable><replaceable>action_options</replaceable></literal>. If several conditions are described in the same rule, then the criterion is the conjunction (logical <emphasis>and</emphasis>) of the conditions, which is at least as restrictive as each individual condition."
+#, fuzzy, no-c-format
+#| msgid "Each rule is expressed as <literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable><replaceable>action_options</replaceable></literal>. If several conditions are described in the same rule, then the criterion is the conjunction (logical <emphasis>and</emphasis>) of the conditions, which is at least as restrictive as each individual condition."
+msgid "Each rule is expressed as <literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable> <replaceable>action_options</replaceable></literal>. If several conditions are described in the same rule, then the criterion is the conjunction (logical <emphasis>and</emphasis>) of the conditions, which is at least as restrictive as each individual condition."
 msgstr "每个规则可表示为：<literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable><replaceable>action_options</replaceable></literal>。如果同一规则中描述了几个条件，则判断条件是它们的结合（逻辑上的<emphasis>与</emphasis>），比每一个单独的条件限制要严格。"
 
 #. Tag: para
@@ -479,13 +486,15 @@ msgid "<literal>--log-tcp-sequence</literal>, <literal>--log-tcp-options</litera
 msgstr "<literal>--log-tcp-sequence</literal>，<literal>--log-tcp-options</literal> 和 <literal>--log-ip-options</literal> 指定需附加的消息数据：相对应的 TCP 序列号码，TCP 选项，和 IP 选项。"
 
 #. Tag: para
-#, no-c-format
-msgid "The <literal>DNAT</literal> action (only available for IPv4) provides the <literal>--to-destination <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> option to indicate the new destination IP address and/or port. Similarly, <literal>SNAT</literal> provides <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> to indicate the new source IP address and/or port."
+#, fuzzy, no-c-format
+#| msgid "The <literal>DNAT</literal> action (only available for IPv4) provides the <literal>--to-destination <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> option to indicate the new destination IP address and/or port. Similarly, <literal>SNAT</literal> provides <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> to indicate the new source IP address and/or port."
+msgid "The <literal>DNAT</literal> action provides the <literal>--to-destination <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> option to indicate the new destination IP address and/or port. Similarly, <literal>SNAT</literal> provides <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> to indicate the new source IP address and/or port."
 msgstr "<literal>DNAT</literal> 操作（仅对 IPv4有用）提供<literal>--to-destination <replaceable>address</replaceable>：<replaceable>port</replaceable></literal> 选项指明新的目的地 IP 地址和端口号。类似地，<literal>SNAT</literal> 提供了 <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> 用以指明新的源 IP 地址和端口号。"
 
 #. Tag: para
-#, no-c-format
-msgid "The <literal>REDIRECT</literal> action (only available for IPv4) provides the <literal>--to-ports <replaceable>port(s)</replaceable></literal> option to indicate the port, or port range, where the packets should be redirected."
+#, fuzzy, no-c-format
+#| msgid "The <literal>REDIRECT</literal> action (only available for IPv4) provides the <literal>--to-ports <replaceable>port(s)</replaceable></literal> option to indicate the port, or port range, where the packets should be redirected."
+msgid "The <literal>REDIRECT</literal> action (only available if NAT is available — on <emphasis role=\"distribution\">Wheezy</emphasis>, this means IPv4 only) provides the <literal>--to-ports <replaceable>port(s)</replaceable></literal> option to indicate the port, or port range, where the packets should be redirected."
 msgstr "<literal>重定向（REDIRECT）</literal> 操作（仅对 IPv4有效）提供了<literal>--to-ports <replaceable>port(s)</replaceable></literal> 选项用以指明数据包需重定向的端口，或者端口范围。"
 
 #. Tag: title
@@ -544,8 +553,9 @@ msgid "<primary><command>fwbuilder</command></primary>"
 msgstr "<primary><command>fwbuilder</command></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "<command>fwbuilder</command> can then generate a script configuring the firewall according to the rules that have been defined. Its modular architecture gives it the ability to generate scripts targeting different systems (<command>iptables</command> for Linux 2.4/2.6, <command>ipf</command> for FreeBSD and <command>pf</command> for OpenBSD)."
+#, fuzzy, no-c-format
+#| msgid "<command>fwbuilder</command> can then generate a script configuring the firewall according to the rules that have been defined. Its modular architecture gives it the ability to generate scripts targeting different systems (<command>iptables</command> for Linux 2.4/2.6, <command>ipf</command> for FreeBSD and <command>pf</command> for OpenBSD)."
+msgid "<command>fwbuilder</command> can then generate a script configuring the firewall according to the rules that have been defined. Its modular architecture gives it the ability to generate scripts targeting different systems (<command>iptables</command> for Linux, <command>ipf</command> for FreeBSD and <command>pf</command> for OpenBSD)."
 msgstr "然后 <command>fwbuilder</command> 可以根据已定义的规则产生配置防火墙的脚本。它模块化的架构可以为不同的目标系统产生脚本（Linux 2.4/2.6 上 <command>iptables</command> ， FreeBSD 上 <command>ipf</command>，OpenBSD 上 <command>pf</command>）。"
 
 #. Tag: para
@@ -612,8 +622,9 @@ msgid "<primary>monitoring</primary>"
 msgstr "<primary>监视</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can enable the detection of intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
+#, fuzzy, no-c-format
+#| msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can enable the detection of intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
+msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can help detecting intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
 msgstr "监视是安全策略不可或缺的一部分，有几个原因。其中，保护的目的通常不限于确保数据机密性，也包括服务的有效性。因此就有必要检测一切正常，并及时侦测异常行为或者所呈现的服务质量的改变。监视活动可以发现入侵尝试并在他们导致严重后果之前迅速反应。本节回顾一些可以用于监视 Debian 系统的工具。因此，它补充了在 <xref linkend=\"advanced-administration\" /> 中一般系统监视部分。"
 
 #. Tag: title
@@ -766,35 +777,10 @@ msgstr "<command>top</command> 是一个很灵活的工具，手册页中详列�
 msgid "The <command>gnome-system-monitor</command> and <command>qps</command> graphical tools are similar to <command>top</command> and they provide roughly the same features."
 msgstr "<command>gnome-system-monitor</command> 和 <command>qps</command> 图形工具和 <command>top</command> 类似，并提供大体上相同的特性。"
 
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>TIP</emphasis> Visual representations of activity"
-msgstr "<emphasis>提示</emphasis> 活动的可视化表示"
-
-#. Tag: para
-#, no-c-format
-msgid "For more visual (and entertaining) representations of a computer's activity, one should investigate the <emphasis role=\"pkg\">lavaps</emphasis>, <emphasis role=\"pkg\">bubblemon</emphasis> and <emphasis role=\"pkg\">bubblefishymon</emphasis> packages. <command>lavaps</command> displays running processes as the wax bubbles in a lava-lamp. <emphasis>bubblemon</emphasis> is a desktop panel applet representing the amount of used memory and the processor usage as an aquarium with bubbles. <command>bubblefishymon</command> is rather similar, but it also adds fish representing network traffic (and even a duck)."
-msgstr "对于更多计算机活动可视化（有趣）的表示方法，可以研究 <emphasis role=\"pkg\">lavaps</emphasis>，<emphasis role=\"pkg\">bubblemon</emphasis> 和 <emphasis role=\"pkg\">bubblefishymon</emphasis> 几个软件包。<command>lavaps</command> 将进程显示为熔岩灯中的蜡泡。<emphasis>bubblemon</emphasis> 是一个桌面应用，可以将处理器和内存用量显示成鱼缸里的气泡。<command>bubblefishymon</command> 比较相似，但是它用鱼（鸭子）表示网络流量。"
-
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gnome-system-monitor</command></primary>"
 msgstr "<primary><command>gnome-system-monitor</command></primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>lavaps</command></primary>"
-msgstr "<primary><command>lavaps</command></primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>bubblefishymon</command></primary>"
-msgstr "<primary><command>bubblefishymon</command></primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis>bubblemon</emphasis></primary>"
-msgstr "<primary><emphasis>bubblemon</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -827,8 +813,9 @@ msgid "There are many dedicated tools for this task. Most can fetch data via SNM
 msgstr "有很多专门工具可用于此类任务。很多可以通过 SNMP（<emphasis>简单网络管理协议</emphasis>）获取数据，集中信息。这样的好处之一是可以从非通用计算机，例如专用的网络路由器或者交换机上获取数据。"
 
 #. Tag: para
-#, no-c-format
-msgid "This book deals with Munin in some detail (see <xref linkend=\"section.munin\" />) as part of <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />. Debian also provides a similar tool, <emphasis role=\"pkg\">cacti</emphasis>. Its deployment is slightly more complex, since it is based solely on SNMP. Despite having a web interface, grasping the concepts involved in configuration still requires some effort. Reading the HTML documentation (<filename>/usr/share/doc/cacti/html/index.html</filename>) should be considered a prerequisite."
+#, fuzzy, no-c-format
+#| msgid "This book deals with Munin in some detail (see <xref linkend=\"section.munin\" />) as part of <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />. Debian also provides a similar tool, <emphasis role=\"pkg\">cacti</emphasis>. Its deployment is slightly more complex, since it is based solely on SNMP. Despite having a web interface, grasping the concepts involved in configuration still requires some effort. Reading the HTML documentation (<filename>/usr/share/doc/cacti/html/index.html</filename>) should be considered a prerequisite."
+msgid "This book deals with Munin in some detail (see <xref linkend=\"sect.munin\" />) as part of <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />. Debian also provides a similar tool, <emphasis role=\"pkg\">cacti</emphasis>. Its deployment is slightly more complex, since it is based solely on SNMP. Despite having a web interface, grasping the concepts involved in configuration still requires some effort. Reading the HTML documentation (<filename>/usr/share/doc/cacti/html/index.html</filename>) should be considered a prerequisite."
 msgstr "本书对 Munin 某些方面进行详细介绍（参考 <xref linkend=\"section.munin\" />） 作为 <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />的一部分。Debian 也提供了类似工具，<emphasis role=\"pkg\">cacti</emphasis>。部署稍微有些复杂，它只基于 SNMP。尽管有网页界面，掌握配置中涉及的概念仍然需要一些努力。要阅读相关的文档作为基础（<filename>/usr/share/doc/cacti/html/index.html</filename>）。"
 
 #. Tag: title
@@ -1092,8 +1079,9 @@ msgid "Prelude brings centralized monitoring of security information. Its modula
 msgstr "Prelude 将各种安全信息集中化。它的模块结构包含了服务器（<emphasis role=\"pkg\">prelude-manager</emphasis> 中的<emphasis>管理器</emphasis>）收集由各种类型的 <emphasis>传感器（sensors）</emphasis> 产生的警报信息。"
 
 #. Tag: para
-#, no-c-format
-msgid "Snort can be configured as such a sensor. Other possibilities include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) which monitors log files (in a manner similar to <command>logcheck</command>, described in <xref linkend=\"section.logcheck\" />)."
+#, fuzzy, no-c-format
+#| msgid "Snort can be configured as such a sensor. Other possibilities include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) which monitors log files (in a manner similar to <command>logcheck</command>, described in <xref linkend=\"section.logcheck\" />)."
+msgid "Snort can be configured as such a sensor. Other possibilities include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) which monitors log files (in a manner similar to <command>logcheck</command>, described in <xref linkend=\"sect.logcheck\" />)."
 msgstr "Snort 可以配置成此类传感器。其他的工具包括 <emphasis>prelude-lml</emphasis>（<emphasis>Log Monitor Lackey</emphasis>），它监视日志文件（以类似 <command>logcheck</command> 的方式，其细节在 <xref linkend=\"section.logcheck\" /> 中）。"
 
 #. Tag: indexterm
@@ -1162,8 +1150,9 @@ msgid "In practice, during login, the user gets assigned a default security cont
 msgstr "实际上，在登录期间，用户被赋予默认的安全上下文（取决于它们的角色）。这定义了当前域，以及所有新的子进程的域。如果想要改变当前角色和相关联的域，就必须调用 <command>newrole -r <replaceable>role_r</replaceable> -t <replaceable>domain_t</replaceable></command>（一个指定角色通常只能被赋予一个域，<literal>-t</literal> 参数可以忽略）。该命令需要口令授权。这个特性可以禁止程序自动切换角色。在 SELinux 策略中，这种改变只能是显式的。"
 
 #. Tag: para
-#, no-c-format
-msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labeling). Domain's rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labeled with the given type)."
+#, fuzzy, no-c-format
+#| msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labeling). Domain's rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labeled with the given type)."
+msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labeling). Domains' rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labeled with the given type)."
 msgstr "显然，权限并不能适用于所有的<emphasis>对象</emphasis>（文件，目录，套接字，设备，等等）。它们可能随对象而变化。为了实现这一目标，每种对象都和一种<emphasis>类型</emphasis>相关联（称为标记）。域权限进而通过对各种类型（间接地对标识为各种类型的对象）允许或不允许操作的集合表示。"
 
 #. Tag: title
@@ -1172,13 +1161,15 @@ msgid "<emphasis>EXTRA</emphasis> Domains and types are equivalent"
 msgstr "<emphasis>补充</emphasis>域和类型等效"
 
 #. Tag: para
-#, no-c-format
-msgid "Internally, a domain is just a type, but a type that only applies to processes. That's why domains are suffixed with <literal>_t</literal> just like object's types."
+#, fuzzy, no-c-format
+#| msgid "Internally, a domain is just a type, but a type that only applies to processes. That's why domains are suffixed with <literal>_t</literal> just like object's types."
+msgid "Internally, a domain is just a type, but a type that only applies to processes. That's why domains are suffixed with <literal>_t</literal> just like objects' types."
 msgstr "在内部，域只是类型，但是类型只适用于进程。这就是为什么域后缀如同对象类型使用<literal>_t</literal>。"
 
 #. Tag: para
-#, no-c-format
-msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
+#, fuzzy, no-c-format
+#| msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
+msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches to the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
 msgstr "默认情况下，程序从唤起它的用户继承域，但是标准 SELinux 政策限制了许多重要的程序只能在指定的域运行。为了实现这一目的，这些可执行文件被标识为指定类型（例如<command>ssh</command> 被标识成 <literal>ssh_exec_t</literal>，当程序被唤起，它会自动切换到 <literal>ssh_t</literal> 域）。这种自动域转换机制，使得它可以仅授予每个程序所需要的权利。这是 SELinux 的基本原理。"
 
 #. Tag: title
@@ -1276,8 +1267,9 @@ msgid "The <command>aptitude install selinux-basics selinux-policy-default</comm
 msgstr "<command>aptitude install selinux-basics selinux-policy-default</command> 命令会自动安装配置 SELinux 系统所需要的软件包。"
 
 #. Tag: para
-#, no-c-format
-msgid "The <emphasis role=\"pkg\">selinux-policy-default</emphasis> package contains a set of standard rules. By default, this policy only restricts access for a few broadly exposed services. The user sessions are not restricted and it is thus unlikely that SELinux would block legitimate user operations. However, this does enhance the security of system services running on the machine. To setup a policy equivalent to the old “strict” rules, you just have to disable the <literal>unconfined</literal> module (modules management is detailed further in this section)."
+#, fuzzy, no-c-format
+#| msgid "The <emphasis role=\"pkg\">selinux-policy-default</emphasis> package contains a set of standard rules. By default, this policy only restricts access for a few broadly exposed services. The user sessions are not restricted and it is thus unlikely that SELinux would block legitimate user operations. However, this does enhance the security of system services running on the machine. To setup a policy equivalent to the old “strict” rules, you just have to disable the <literal>unconfined</literal> module (modules management is detailed further in this section)."
+msgid "The <emphasis role=\"pkg\">selinux-policy-default</emphasis> package contains a set of standard rules. By default, this policy only restricts access for a few widely exposed services. The user sessions are not restricted and it is thus unlikely that SELinux would block legitimate user operations. However, this does enhance the security of system services running on the machine. To setup a policy equivalent to the old “strict” rules, you just have to disable the <literal>unconfined</literal> module (modules management is detailed further in this section)."
 msgstr "<emphasis role=\"pkg\">selinux-policy-default</emphasis> 软件包含有一套标准规则。默认情况，这些策略只是限制了几个广泛暴露的服务。用户会话没有被限制，也不会阻止合法用户的操作。然而，它也确实增强了运行机器的系统服务安全。要设置和之前的“严格”规则等效的策略，只需禁用 <literal>unconfined</literal> 模块（模块管理将在后面详细讨论）。"
 
 #. Tag: para
@@ -2488,3 +2480,18 @@ msgstr "同时，攻击者也下载了一对额外文件，<filename>/tmp/pt</fi
 #, no-c-format
 msgid "In this example, the whole intrusion has been reconstructed, and it can be deduced that the attacker has been able to take advantage of the compromised system for about three days; but the most important element in the analysis is that the vulnerability has been identified, and the administrator can be sure that the new installation really does fix the vulnerability."
 msgstr "本例中，整个入侵过程被重构。可以推断，攻击者已经能够利用被侵入的系统三天左右；分析的成果在于漏洞已经被识别出来，并且管理员可以确保在下一次安装时确实修复了该漏洞。"
+
+#~ msgid "<emphasis>TIP</emphasis> Visual representations of activity"
+#~ msgstr "<emphasis>提示</emphasis> 活动的可视化表示"
+
+#~ msgid "For more visual (and entertaining) representations of a computer's activity, one should investigate the <emphasis role=\"pkg\">lavaps</emphasis>, <emphasis role=\"pkg\">bubblemon</emphasis> and <emphasis role=\"pkg\">bubblefishymon</emphasis> packages. <command>lavaps</command> displays running processes as the wax bubbles in a lava-lamp. <emphasis>bubblemon</emphasis> is a desktop panel applet representing the amount of used memory and the processor usage as an aquarium with bubbles. <command>bubblefishymon</command> is rather similar, but it also adds fish representing network traffic (and even a duck)."
+#~ msgstr "对于更多计算机活动可视化（有趣）的表示方法，可以研究 <emphasis role=\"pkg\">lavaps</emphasis>，<emphasis role=\"pkg\">bubblemon</emphasis> 和 <emphasis role=\"pkg\">bubblefishymon</emphasis> 几个软件包。<command>lavaps</command> 将进程显示为熔岩灯中的蜡泡。<emphasis>bubblemon</emphasis> 是一个桌面应用，可以将处理器和内存用量显示成鱼缸里的气泡。<command>bubblefishymon</command> 比较相似，但是它用鱼（鸭子）表示网络流量。"
+
+#~ msgid "<primary><command>lavaps</command></primary>"
+#~ msgstr "<primary><command>lavaps</command></primary>"
+
+#~ msgid "<primary><command>bubblefishymon</command></primary>"
+#~ msgstr "<primary><command>bubblefishymon</command></primary>"
+
+#~ msgid "<primary><emphasis>bubblemon</emphasis></primary>"
+#~ msgstr "<primary><emphasis>bubblemon</emphasis></primary>"

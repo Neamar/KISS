@@ -1,14 +1,13 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-06-01T20:23:57\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2013-03-28 11:33+0200\n"
 "Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
-"/debian-handbook/11_network-services/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects/debian-handbook/11_network-services/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
@@ -54,11 +53,7 @@ msgstr "Serviços de Rede: Postfix, Apache, NFS, Samba, Squid, LDAP"
 #. Tag: para
 #, no-c-format
 msgid "Network services are the programs that users interact with directly in their daily work. They're the tip of the information system iceberg, and this chapter focuses on them; the hidden parts they rely on are the infrastructure we already described."
-msgstr ""
-"Serviços de rede são programas que os usuários interagem diretamente no seu "
-"dia-a-dia. Eles são a ponta do icebergue da informação, e este capítulo foca "
-"neles; as partes escondidas nas quais eles dependem são a infraestrutura "
-"que nós já descrevemos."
+msgstr "Serviços de rede são programas que os usuários interagem diretamente no seu dia-a-dia. Eles são a ponta do icebergue da informação, e este capítulo foca neles; as partes escondidas nas quais eles dependem são a infraestrutura que nós já descrevemos."
 
 #. Tag: title
 #, no-c-format
@@ -68,17 +63,19 @@ msgstr "Servidor de Correio Eletrônico"
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators selected Postfix for the electronic mail server, due to its reliability and its ease of configuration. Indeed, its design enforces that each task is implemented in a process with the minimum set of required permissions, which is a great mitigation measure against security problems."
-msgstr ""
-"Os administradores da Falcot Corp selecionaram o Postfiz como servidor de "
-"correio eletrônico, devido a sua confiabilidade e fácil configuração. De "
-"fato, seu projeto reforça que cada tarefa é implementada em um processo com "
-"um conjunto mínimo de permissões, que é uma medida de mitigação contra "
-"problemas de segurança."
+msgstr "Os administradores da Falcot Corp selecionaram o Postfiz como servidor de correio eletrônico, devido a sua confiabilidade e fácil configuração. De fato, seu projeto reforça que cada tarefa é implementada em um processo com um conjunto mínimo de permissões, que é uma medida de mitigação contra problemas de segurança."
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>mail</primary><secondary>electronic</secondary>"
-msgstr "<primary>correio</primary><secondary>eletrônico</secondary>"
+#, fuzzy, no-c-format
+#| msgid "<primary>file</primary><secondary>server</secondary>"
+msgid "<primary>email</primary><secondary>server</secondary>"
+msgstr "<primary>arquivo</primary><secondary>servidor</secondary>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary>alias</primary>"
+msgid "<primary>mail server</primary>"
+msgstr "<primary>aliás</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -98,39 +95,17 @@ msgstr "<primary>Exim</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Debian uses Exim4 as the default email server (which is why the initial installation includes Exim4). The configuration is provided by a separate package, <emphasis role=\"pkg\">exim4-config</emphasis>, and automatically customized based on the answers to a set of Debconf questions very similar to the questions asked by the <emphasis role=\"pkg\">postfix</emphasis> package."
-msgstr ""
-"O Debian utiliza os Exim4 como o servidor de e-mail padrão (eis o porque da "
-"instalação inicial incluir o Exim4). A configuração é provida por um pacote "
-"diferente, <emphasis role=\"pkg\">exim4-config</emphasis>, e automaticamente "
-"customizado baseado nas respostas de um conjunto de questões no Debconf "
-"muito similar as questões feitas pelo pacote <emphasis "
-"role=\"pkg\">postfix</emphasis>."
+msgstr "O Debian utiliza os Exim4 como o servidor de e-mail padrão (eis o porque da instalação inicial incluir o Exim4). A configuração é provida por um pacote diferente, <emphasis role=\"pkg\">exim4-config</emphasis>, e automaticamente customizado baseado nas respostas de um conjunto de questões no Debconf muito similar as questões feitas pelo pacote <emphasis role=\"pkg\">postfix</emphasis>."
 
 #. Tag: para
 #, fuzzy, no-c-format
-msgid "The configuration can be either in one single file (<filename>/etc/exim4/exim4.conf.template</filename>) or split across a number of configuration snippets stored under <filename>/etc/exim4/conf.d/</filename>. In both cases, the files are not used directly by Exim4, but they are aggregated or parsed (by the <command>update-exim4.conf</command> command) into the authoritative file, <filename>/etc/exim4/exim4.conf.template</filename> (which is compiled to <filename>/var/lib/exim4/config.autogenerated</filename>, when Exim4 starts). <command>update-exim4.conf</command> allows replacing some tags in the configuration snippets by data deducted from the answers to the Debconf questions."
-msgstr ""
-"A configuração pode ser tanto em um único arquivo "
-"(<filename>/etc/exim4/exim4.conf.template</filename>) ou divido em alguns "
-"trechos de configuração armazenados em "
-"<filename>/etc/exim4/conf.d/</filename>. Em ambos os casos, os arquivos não "
-"são utilizados diretamente pelo Exim4, mas eles são agregados ou analisados "
-"(pelo comando <command>update-exim4.conf</command>) dentro do arquivo de "
-"autoridade, <filename>/etc/exim4/exim4.conf.template</filename> (que é "
-"compilado para <filename>/var/lib/exim4/config.autogenerated</filename>, "
-"quando o Exim4 inicia). <command>update-exim4.conf</command> permite "
-"substituir algumas tags nos trechos de configuração por dados deduzidos das "
-"respostas às questões do Debconf."
+msgid "The configuration can be either in one single file (<filename>/etc/exim4/exim4.conf.template</filename>) or split across a number of configuration snippets stored under <filename>/etc/exim4/conf.d/</filename>. In both cases, the files are used by <command>update-exim4.conf</command> as templates to generate <filename>/var/lib/exim4/config.autogenerated</filename>. The latter is the file used by Exim4. Thanks to this mechanism, values obtained through Exim's debconf configuration — which are stored in <filename>/etc/exim4/update-exim4.conf.conf</filename> — can be injected in Exim's configuration file, even when the administrator or another package has altered the default Exim configuration."
+msgstr "A configuração pode ser tanto em um único arquivo (<filename>/etc/exim4/exim4.conf.template</filename>) ou divido em alguns trechos de configuração armazenados em <filename>/etc/exim4/conf.d/</filename>. Em ambos os casos, os arquivos não são utilizados diretamente pelo Exim4, mas eles são agregados ou analisados (pelo comando <command>update-exim4.conf</command>) dentro do arquivo de autoridade, <filename>/etc/exim4/exim4.conf.template</filename> (que é compilado para <filename>/var/lib/exim4/config.autogenerated</filename>, quando o Exim4 inicia). <command>update-exim4.conf</command> permite substituir algumas tags nos trechos de configuração por dados deduzidos das respostas às questões do Debconf."
 
 #. Tag: para
 #, no-c-format
 msgid "The Exim4 configuration file syntax has its peculiarities and its learning curve; however, once these peculiarities are understood, Exim4 is a very complete and powerful email server, as evidenced by the tens of pages of documentation. <ulink type=\"block\" url=\"http://www.exim.org/docs.html\" />"
-msgstr ""
-"A sintaxe do arquivo de configuração do Exim4 tem suas particularidades e "
-"sua curva de aprendizado, contudo, uma vez que essas particularidades são "
-"compreendidas, o Exim4 se torna um servidor de e-mail muito completo e "
-"poderoso, como evidenciado pelas suas muitas páginas de documentação. <ulink "
-"type=\"block\" url=\"http://www.exim.org/docs.html\" />"
+msgstr "A sintaxe do arquivo de configuração do Exim4 tem suas particularidades e sua curva de aprendizado, contudo, uma vez que essas particularidades são compreendidas, o Exim4 se torna um servidor de e-mail muito completo e poderoso, como evidenciado pelas suas muitas páginas de documentação. <ulink type=\"block\" url=\"http://www.exim.org/docs.html\" />"
 
 #. Tag: title
 #, no-c-format
@@ -138,14 +113,10 @@ msgid "Installing Postfix"
 msgstr "Instalando o Postfix"
 
 #. Tag: para
-#, no-c-format
-msgid "The <emphasis role=\"pkg\">postfix</emphasis> package includes the main SMTP daemon. Other packages (such as <emphasis role=\"pkg\">postfix-ldap</emphasis> and <emphasis role=\"pkg\">postfix-pgsql</emphasis>) add extra functionality to Postfix, including access to mapping databases. You should only install them if you know you need them."
-msgstr ""
-"O pacote <emphasis role=\"pkg\">postfix</emphasis> incluí um o daemon SMTP "
-"principal. Outros pacotes (como o <emphasis role=\"pkg\">postfix-"
-"ldap</emphasis> e <emphasis role=\"pkg\">postfix-pgsql</emphasis>) adicional "
-"funcionalidades extras ao Postfix, incluindo a bancos de dados de "
-"mapeamento. Você só deve instalá-los se souber que você precisa dos mesmos."
+#, fuzzy, no-c-format
+#| msgid "The <emphasis role=\"pkg\">postfix</emphasis> package includes the main SMTP daemon. Other packages (such as <emphasis role=\"pkg\">postfix-ldap</emphasis> and <emphasis role=\"pkg\">postfix-pgsql</emphasis>) add extra functionality to Postfix, including access to mapping databases. You should only install them if you know you need them."
+msgid "The <emphasis role=\"pkg\">postfix</emphasis> package includes the main SMTP daemon. Other packages (such as <emphasis role=\"pkg\">postfix-ldap</emphasis> and <emphasis role=\"pkg\">postfix-pgsql</emphasis>) add extra functionality to Postfix, including access to mapping databases. You should only install them if you know that you need them."
+msgstr "O pacote <emphasis role=\"pkg\">postfix</emphasis> incluí um o daemon SMTP principal. Outros pacotes (como o <emphasis role=\"pkg\">postfix-ldap</emphasis> e <emphasis role=\"pkg\">postfix-pgsql</emphasis>) adicional funcionalidades extras ao Postfix, incluindo a bancos de dados de mapeamento. Você só deve instalá-los se souber que você precisa dos mesmos."
 
 #. Tag: title
 #, no-c-format
@@ -170,18 +141,12 @@ msgstr "<primary>server</primary><secondary>SMTP</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "SMTP (<emphasis>Simple Mail Transfer Protocol</emphasis>) is the protocol used by mail servers to exchange and route emails."
-msgstr ""
-"SMTP (<emphasis>Protocolo Simples para Transferência de Correio</emphasis>) "
-"é um protocolo usado por servidores de e-mail para intercambiar e rotear "
-"e-mails."
+msgstr "SMTP (<emphasis>Protocolo Simples para Transferência de Correio</emphasis>) é um protocolo usado por servidores de e-mail para intercambiar e rotear e-mails."
 
 #. Tag: para
 #, no-c-format
 msgid "Several Debconf questions are asked during the installation of the package. The answers allow generating a first version of the <filename>/etc/postfix/main.cf</filename> configuration file."
-msgstr ""
-"Diversas questões Debconf são feitas durante o processo de instalação do "
-"pacote. As respostas permitem gerar a primeira versão do arquivo de "
-"configuração <filename>/etc/postfix/main.cf</filename>."
+msgstr "Diversas questões Debconf são feitas durante o processo de instalação do pacote. As respostas permitem gerar a primeira versão do arquivo de configuração <filename>/etc/postfix/main.cf</filename>."
 
 #. Tag: para
 #, no-c-format
@@ -201,11 +166,7 @@ msgstr "<primary>ISP, Provedor de Internet</primary>"
 #. Tag: para
 #, no-c-format
 msgid "ISP is the acronym for “Internet Service Provider”. It covers an entity, often a commercial company, that provides Internet connections and the associated basic services (email, news and so on)."
-msgstr ""
-"ISP é acrônico para \"Internet Service Provider\" (Provedor de Serviços de "
-"Internet). Isto cobre uma entidade, normalmente uma empresa, que provê "
-"conexões a internet e seus serviços básicos associados (e-mail, notícias e "
-"assim por diante)."
+msgstr "ISP é acrônico para \"Internet Service Provider\" (Provedor de Serviços de Internet). Isto cobre uma entidade, normalmente uma empresa, que provê conexões a internet e seus serviços básicos associados (e-mail, notícias e assim por diante)."
 
 #. Tag: para
 #, no-c-format
@@ -214,7 +175,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "One of the extra questions asks for all the domain names related to this machine. The default list includes its full name as well as a few synonyms for <literal>localhost</literal>, but the main <literal>falcot.com</literal> domain needs to be added by hand. More generally, this question should usually be answered with all the domain names for which this machine should serve as an MX server; in other words, all the domain names for which the DNS says this machine will accept email. This information ends up in the <literal>mydestination</literal> variable of the main Postfix configuration file, <filename>/etc/postfix/main.cf</filename>."
+msgid "One of the extra questions asks for all the domain names related to this machine. The default list includes its full name as well as a few synonyms for <literal>localhost</literal>, but the main <literal>falcot.com</literal> domain needs to be added by hand. More generally, this question should usually be answered with all the domain names for which this machine should serve as an MX server; in other words, all the domain names for which the DNS says that this machine will accept email. This information ends up in the <literal>mydestination</literal> variable of the main Postfix configuration file — <filename>/etc/postfix/main.cf</filename>."
 msgstr ""
 
 #. Tag: indexterm
@@ -240,31 +201,17 @@ msgstr "<emphasis>EXTRA</emphasis> Consultando os registros MX"
 #. Tag: para
 #, no-c-format
 msgid "When the DNS does not have an MX record for a domain, the email server will try sending the messages to the host itself, by using the matching A record (or AAAA in IPv6)."
-msgstr ""
-"Quando o DNS não contém um registro MX para o domínio, o servidor e-mail "
-"tentará enviar as mensagens para o hospedeiro em si, usando o registro "
-"correspondente A (ou AAAA em IPv6)."
+msgstr "Quando o DNS não contém um registro MX para o domínio, o servidor e-mail tentará enviar as mensagens para o hospedeiro em si, usando o registro correspondente A (ou AAAA em IPv6)."
 
 #. Tag: para
 #, no-c-format
 msgid "In some cases, the installation can also ask what networks should be allowed to send email via the machine. In its default configuration, Postfix only accepts emails coming from the machine itself; the local network will usually be added. The Falcot Corp administrators added <literal>192.168.0.0/16</literal> to the default answer. If the question is not asked, the relevant variable in the configuration file is <literal>mynetworks</literal>, as seen in the example below."
-msgstr ""
-"Em alguns casos, a instalação pode perguntar quais redes devem ser "
-"permitidas a enviar e-mail usando a máquina. Em sua configuração padrão, o "
-"Postfix somente aceita e-mails vindo da máquina em si, a rede local "
-"normalmente será adicionada. Os administradores da Falcot Corp adicionaram "
-"<literal>192.168.0.0/16</literal> na pergunta padrão. Se a questão não é "
-"feita, a variável relevante no arquivo de configuração é "
-"<literal>mynetworks</literal>, como visto no exemplo abaixo."
+msgstr "Em alguns casos, a instalação pode perguntar quais redes devem ser permitidas a enviar e-mail usando a máquina. Em sua configuração padrão, o Postfix somente aceita e-mails vindo da máquina em si, a rede local normalmente será adicionada. Os administradores da Falcot Corp adicionaram <literal>192.168.0.0/16</literal> na pergunta padrão. Se a questão não é feita, a variável relevante no arquivo de configuração é <literal>mynetworks</literal>, como visto no exemplo abaixo."
 
 #. Tag: para
 #, no-c-format
 msgid "Local email can also be delivered through <command>procmail</command>. This tool allows users to sort their incoming email according to rules stored in their <filename>~/.procmailrc</filename> file."
-msgstr ""
-"E-mails locais podem ser enviados através do comando "
-"<command>procmail</command>. Esta ferramenta permite aos usuários "
-"organizarem seus e-mail de entrada de acordo com a regras armazenadas em seu "
-"arquivo <filename>~/.procmailrc</filename>."
+msgstr "E-mails locais podem ser enviados através do comando <command>procmail</command>. Esta ferramenta permite aos usuários organizarem seus e-mail de entrada de acordo com a regras armazenadas em seu arquivo <filename>~/.procmailrc</filename>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -284,10 +231,7 @@ msgstr "<primary>filtrando e-mails</primary>"
 #. Tag: para
 #, no-c-format
 msgid "After this first step, the administrators got the following configuration file; it will be used as a starting point for adding some extra functionality in the next sections."
-msgstr ""
-"Após este primeiro passo, os administradores conseguiram o seguinte arquivo "
-"de configuração; ele será usado como ponto de partida para adicionarmos "
-"funcionalidades extras nas próximas seções."
+msgstr "Após este primeiro passo, os administradores conseguiram o seguinte arquivo de configuração; ele será usado como ponto de partida para adicionarmos funcionalidades extras nas próximas seções."
 
 #. Tag: title
 #, no-c-format
@@ -296,8 +240,10 @@ msgstr "Arquivo inicial <filename>/etc/postfix/main.cf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# See /usr/share/postfix/main.cf.dist for a commented, more complete version\n"
+"\n"
 "\n"
 "# Debian specific:  Specifying a file name will cause the first\n"
 "# line of that file to be used as the name.  The Debian default\n"
@@ -313,12 +259,14 @@ msgid "\n"
 "# Uncomment the next line to generate \"delayed mail\" warnings\n"
 "#delay_warning_time = 4h\n"
 "\n"
+"readme_directory = no\n"
+"\n"
 "# TLS parameters\n"
 "smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem\n"
 "smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key\n"
 "smtpd_use_tls=yes\n"
-"smtpd_tls_session_cache_database = btree:${queue_directory}/smtpd_scache\n"
-"smtp_tls_session_cache_database = btree:${queue_directory}/smtp_scache\n"
+"smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache\n"
+"smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache\n"
 "\n"
 "# See /usr/share/doc/postfix/TLS_README.gz in the postfix-doc package for\n"
 "# information on enabling SSL in the smtp client.\n"
@@ -327,15 +275,14 @@ msgid "\n"
 "alias_maps = hash:/etc/aliases\n"
 "alias_database = hash:/etc/aliases\n"
 "myorigin = /etc/mailname\n"
-"mydestination = mail.falcot.com, falcot.com, localhost, localhost.localdomain\n"
+"mydestination = mail.falcot.com, falcot.com, localhost.localdomain, localhost\n"
 "relayhost = \n"
-"mynetworks = 127.0.0.0/8 192.168.0.0/16\n"
+"mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 192.168.0.0/16\n"
 "mailbox_command = procmail -a \"$EXTENSION\"\n"
 "mailbox_size_limit = 0\n"
 "recipient_delimiter = +\n"
 "inet_interfaces = all\n"
 "inet_protocols = all\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -366,12 +313,7 @@ msgstr "<primary>domínio virtual</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The mail server can receive emails addressed to other domains besides the main domain; these are then known as virtual domains. In most cases where this happens, the emails are not ultimately destined to local users. Postfix provides two interesting features for handling virtual domains."
-msgstr ""
-"O servidor de e-mails pode receber e-mails de outros domínios além do "
-"domínio principal; estes são conhecidos como domínios virtuais. Na maioria "
-"dos casos quando isto ocorre, os e-mails não ultimamente destinados aos "
-"usuários locais. O Postfix provê duas funcionalidades interessantes para "
-"manipular domínios virtuais."
+msgstr "O servidor de e-mails pode receber e-mails de outros domínios além do domínio principal; estes são conhecidos como domínios virtuais. Na maioria dos casos quando isto ocorre, os e-mails não ultimamente destinados aos usuários locais. O Postfix provê duas funcionalidades interessantes para manipular domínios virtuais."
 
 #. Tag: title
 #, no-c-format
@@ -381,11 +323,7 @@ msgstr "<emphasis>CUIDADO</emphasis> Domínios virtuais e domínios canônicos"
 #. Tag: para
 #, no-c-format
 msgid "None of the virtual domains must be referenced in the <literal>mydestination</literal> variable; this variable only contains the names of the “canonical” domains directly associated to the machine and its local users."
-msgstr ""
-"Nenhum dos domínios virtuais deve ser referenciado na variável "
-"<literal>mydestination</literal>; está variável somente contém os nomes "
-"\"canônicos\"  dos domínios diretamente associados a máquina e seus usuários "
-"locais."
+msgstr "Nenhum dos domínios virtuais deve ser referenciado na variável <literal>mydestination</literal>; está variável somente contém os nomes \"canônicos\"  dos domínios diretamente associados a máquina e seus usuários locais."
 
 #. Tag: title
 #, no-c-format
@@ -393,13 +331,15 @@ msgid "Virtual Alias Domains"
 msgstr ""
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>alias</primary>"
-msgstr "<primary>aliás</primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary>alias</primary><secondary>virtual domain</secondary>"
+msgid "<primary>alias</primary><secondary>virtual alias domain</secondary>"
+msgstr "<primary>aliás</primary><secondary>domínio virtual</secondary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>alias</primary><secondary>virtual domain</secondary>"
+#, fuzzy, no-c-format
+#| msgid "<primary>alias</primary><secondary>virtual domain</secondary>"
+msgid "<primary>virtual domain</primary><secondary>virtual alias domain</secondary>"
 msgstr "<primary>aliás</primary><secondary>domínio virtual</secondary>"
 
 #. Tag: para
@@ -410,24 +350,23 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Such a domain is enabled by adding its name to the <literal>virtual_alias_domains</literal> variable, and referencing an address mapping file in the <literal>virtual_alias_maps</literal> variable."
-msgstr ""
-"Tal domínio é ativado ao se adicionar seu nome a variável "
-"<literal>virtual_alias_domains</literal>, e referenciar um arquivo de mapa "
-"de endereços a variável <literal>virtual_alias_maps</literal>."
+msgstr "Tal domínio é ativado ao se adicionar seu nome a variável <literal>virtual_alias_domains</literal>, e referenciar um arquivo de mapa de endereços a variável <literal>virtual_alias_maps</literal>."
 
 #. Tag: title
 #, no-c-format
 msgid "Directives to add in the <filename>/etc/postfix/main.cf</filename> file"
-msgstr ""
-"Diretivas para serem adicionadas no arquivo "
-"<filename>/etc/postfix/main.cf</filename>"
+msgstr "Diretivas para serem adicionadas no arquivo <filename>/etc/postfix/main.cf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "\n"
-"virtual_alias_domains = falcotsbrand.tm.fr\n"
+#, fuzzy, no-c-format
+#| msgid ""
+#| "\n"
+#| "virtual_alias_domains = falcotsbrand.tm.fr\n"
+#| "virtual_alias_maps = hash:/etc/postfix/virtual\n"
+msgid ""
+"\n"
+"virtual_alias_domains = falcotsbrand.com\n"
 "virtual_alias_maps = hash:/etc/postfix/virtual\n"
-""
 msgstr ""
 "\n"
 "virtual_alias_domains = falcotsbrand.tm.fr\n"
@@ -435,7 +374,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>/etc/postfix/virtual</filename> file describes mapping with a rather straightforward syntax: each line contains two fields separated by whitespace; the first field is the alias name, the second field is a list of email addresses where it redirects. The special <literal>@domain.tm.fr</literal> syntax covers all remaining aliases in a domain."
+msgid "The <filename>/etc/postfix/virtual</filename> file describes mapping with a rather straightforward syntax: each line contains two fields separated by whitespace; the first field is the alias name, the second field is a list of email addresses where it redirects. The special <literal>@domain.com</literal> syntax covers all remaining aliases in a domain."
 msgstr ""
 
 #. Tag: title
@@ -445,15 +384,15 @@ msgstr "Arquivo de exemplo <filename>/etc/postfix/virtual</filename>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
-"webmaster@falcotsbrand.tm.fr  jean@falcot.com\n"
-"contact@falcotsbrand.tm.fr    laure@falcot.com, sophie@falcot.com\n"
+msgid ""
+"\n"
+"webmaster@falcotsbrand.com  jean@falcot.com\n"
+"contact@falcotsbrand.com    laure@falcot.com, sophie@falcot.com\n"
 "# The alias below is generic and covers all addresses within \n"
-"# the falcotsbrand.tm.fr domain not otherwise covered by this file.\n"
+"# the falcotsbrand.com domain not otherwise covered by this file.\n"
 "# These addresses forward email to the same user name in the\n"
 "# falcot.com domain.\n"
-"@falcotsbrand.tm.fr           @falcot.com\n"
-""
+"@falcotsbrand.com           @falcot.com\n"
 msgstr ""
 
 #. Tag: title
@@ -476,6 +415,12 @@ msgstr ""
 msgid "<primary>mailbox, virtual domain</primary>"
 msgstr ""
 
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary>alias</primary><secondary>virtual domain</secondary>"
+msgid "<primary>virtual domain</primary><secondary>virtual mailbox domain</secondary>"
+msgstr "<primary>aliás</primary><secondary>domínio virtual</secondary>"
+
 #. Tag: para
 #, no-c-format
 msgid "Messages addressed to a virtual mailbox domain are stored in mailboxes not assigned to a local system user."
@@ -488,16 +433,16 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>virtual_uid_maps</literal> parameter (respectively <literal>virtual_gid_maps</literal>) references the file containing the mapping between the email address and the system user (respectively group) that “owns” the corresponding mailbox. To get all mailboxes owned by the same owner/group, the syntax is <literal>static:5000</literal>."
+msgid "The <literal>virtual_uid_maps</literal> parameter (respectively <literal>virtual_gid_maps</literal>) references the file containing the mapping between the email address and the system user (respectively group) that “owns” the corresponding mailbox. To get all mailboxes owned by the same owner/group, the <literal>static:5000</literal> syntax assigns a fixed UID/GID (of value 5000 here)."
 msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "virtual_mailbox_domains = falcot.org\n"
 "virtual_mailbox_maps = hash:/etc/postfix/vmailbox\n"
 "virtual_mailbox_base = /var/mail/vhosts\n"
-""
 msgstr ""
 "\n"
 "virtual_mailbox_domains = falcot.org\n"
@@ -516,14 +461,14 @@ msgstr "O arquivo <filename>/etc/postfix/vmailbox</filename>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Jean's email is stored as maildir, with\n"
 "# one file per email in a dedicated directory\n"
 "jean@falcot.org falcot.org/jean/\n"
 "# Sophie's email is stored in a traditional \"mbox\" file,\n"
 "# with all mails concatenated into one single file\n"
 "sophie@falcot.org falcot.org/sophie\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -546,11 +491,6 @@ msgstr "<emphasis>CULTURA</emphasis> O problema do spam"
 msgid "<primary>spam</primary>"
 msgstr "<primary>spam</primary>"
 
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>spammer</primary>"
-msgstr "<primary>spammer</primary>"
-
 #. Tag: para
 #, no-c-format
 msgid "“Spam” is a generic term used to designate all the unsolicited commercial emails (also known as UCEs) that flood our electronic mailboxes; the unscrupulous individuals sending them are known as spammers. They care little about the nuisance they cause, since sending an email costs very little, and only a very small percentage of recipients need to be attracted by the offers for the spamming operation to make more money than it costs. The process is mostly automated, and any email address made public (for instance, on a web forum, or on the archives of a mailing list, or on a blog, and so on) will be discovered by the spammers' robots, and subjected to a never-ending stream of unsolicited messages."
@@ -569,9 +509,7 @@ msgstr "Restrições de Acesso Baseados no IP"
 #. Tag: para
 #, no-c-format
 msgid "The <literal>smtpd_client_restrictions</literal> directive controls which machines are allowed to communicate with the email server."
-msgstr ""
-"A diretiva <literal>smtpd_client_restrictions</literal> controla quais "
-"máquinas tem permissão para se comunicar com o servidor de e-mail."
+msgstr "A diretiva <literal>smtpd_client_restrictions</literal> controla quais máquinas tem permissão para se comunicar com o servidor de e-mail."
 
 #. Tag: title
 #, no-c-format
@@ -580,13 +518,13 @@ msgstr "Restrições Baseadas no Endereço do Cliente"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtpd_client_restrictions = permit_mynetworks,\n"
 "    warn_if_reject reject_unknown_client,\n"
 "    check_client_access hash:/etc/postfix/access_clientip,\n"
 "    reject_rbl_client sbl-xbl.spamhaus.org,\n"
 "    reject_rbl_client list.dsbl.org\n"
-""
 msgstr ""
 "\n"
 "smtpd_client_restrictions = permit_mynetworks,\n"
@@ -603,10 +541,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The <literal>permit_mynetworks</literal> directive, used as the first rule, accepts all emails coming from a machine in the local network (as defined by the <emphasis>mynetworks</emphasis> configuration variable)."
-msgstr ""
-"A diretiva <literal>permit_mynetworks</literal>, usada como primeira regra, "
-"aceita e-mails vindos de uma máquina na rede local (como definido na "
-"variável de configuração <emphasis>mynetworks</emphasis>)."
+msgstr "A diretiva <literal>permit_mynetworks</literal>, usada como primeira regra, aceita e-mails vindos de uma máquina na rede local (como definido na variável de configuração <emphasis>mynetworks</emphasis>)."
 
 #. Tag: para
 #, no-c-format
@@ -661,24 +596,17 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Prudence therefore recommends including in the white list all the trusted servers from which many emails are usually received."
-msgstr ""
-"A prudência recomenda a inclusão de todos os servidores confiáveis na lista "
-"branca de onde muito e-mail são geralmente recebidos."
+msgstr "A prudência recomenda a inclusão de todos os servidores confiáveis na lista branca de onde muito e-mail são geralmente recebidos."
 
 #. Tag: title
 #, no-c-format
 msgid "Checking the Validity of the <literal>EHLO</literal> or <literal>HELO</literal> Commands"
-msgstr ""
-"Verificando a Validade dos Comandos <literal>EHLO</literal> ou "
-"<literal>HELO</literal>"
+msgstr "Verificando a Validade dos Comandos <literal>EHLO</literal> ou <literal>HELO</literal>"
 
 #. Tag: para
 #, no-c-format
 msgid "Each SMTP exchange starts with a <literal>HELO</literal> (or <literal>EHLO</literal>) command, followed by the name of the sending email server; checking the validity of this name can be interesting."
-msgstr ""
-"Toda troca SMTP começa com um comando <literal>HELO</literal> (ou "
-"<literal>EHLO</literal>), seguido do nome do servidor de e-mail enviante; "
-"verificar a validade deste nome pode ser interessante."
+msgstr "Toda troca SMTP começa com um comando <literal>HELO</literal> (ou <literal>EHLO</literal>), seguido do nome do servidor de e-mail enviante; verificar a validade deste nome pode ser interessante."
 
 #. Tag: indexterm
 #, no-c-format
@@ -696,13 +624,28 @@ msgid "Restrictions on the name announced in <literal>EHLO</literal>"
 msgstr ""
 
 #. Tag: programlisting
-#, no-c-format
-msgid "\n"
-"smtpd_helo_restrictions = permit_mynetworks, reject_invalid_hostname,\n"
+#, fuzzy, no-c-format
+#| msgid ""
+#| "\n"
+#| "smtpd_client_restrictions = permit_mynetworks,\n"
+#| "    warn_if_reject reject_unknown_client,\n"
+#| "    check_client_access hash:/etc/postfix/access_clientip,\n"
+#| "    reject_rbl_client sbl-xbl.spamhaus.org,\n"
+#| "    reject_rbl_client list.dsbl.org\n"
+msgid ""
+"\n"
+"smtpd_helo_restrictions = permit_mynetworks,\n"
+"    reject_invalid_hostname,\n"
 "    check_helo_access hash:/etc/postfix/access_helo,\n"
-"    reject_non_fqdn_hostname, warn_if_reject reject_unknown_hostname\n"
-""
+"    reject_non_fqdn_hostname,\n"
+"    warn_if_reject reject_unknown_hostname\n"
 msgstr ""
+"\n"
+"smtpd_client_restrictions = permit_mynetworks,\n"
+"    warn_if_reject reject_unknown_client,\n"
+"    check_client_access hash:/etc/postfix/access_clientip,\n"
+"    reject_rbl_client sbl-xbl.spamhaus.org,\n"
+"    reject_rbl_client list.dsbl.org\n"
 
 #. Tag: para
 #, no-c-format
@@ -727,10 +670,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Every message has a sender, announced by the <literal>MAIL FROM</literal> command of the SMTP protocol; again, this information can be validated in several different ways."
-msgstr ""
-"Toda mensagem tem um remetente, anunciado pelo comando <literal>MAIL "
-"FROM</literal> do protocolo SMTP; novamente esta informação pode ser "
-"validada de diversas maneiras."
+msgstr "Toda mensagem tem um remetente, anunciado pelo comando <literal>MAIL FROM</literal> do protocolo SMTP; novamente esta informação pode ser validada de diversas maneiras."
 
 #. Tag: indexterm
 #, no-c-format
@@ -740,8 +680,7 @@ msgstr "<primary><literal>MAIL FROM</literal></primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>email</primary><secondary>filtering on the sender</secondary>"
-msgstr ""
-"<primary>e-mail</primary><secondary>filtrando pelo remetente</secondary>"
+msgstr "<primary>e-mail</primary><secondary>filtrando pelo remetente</secondary>"
 
 #. Tag: title
 #, no-c-format
@@ -750,12 +689,12 @@ msgstr "Verificações do Remetente"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtpd_sender_restrictions = \n"
 "    check_sender_access hash:/etc/postfix/access_sender,\n"
 "    reject_unknown_sender_domain, reject_unlisted_sender,\n"
 "    reject_non_fqdn_sender\n"
-""
 msgstr ""
 "\n"
 "smtpd_sender_restrictions = \n"
@@ -786,11 +725,7 @@ msgstr "Aceitando e Rejeitando Baseado no Destinatário"
 #. Tag: para
 #, no-c-format
 msgid "Each email has at least one recipient, announced with the <literal>RCPT TO</literal> command in the SMTP protocol. These addresses also warrant validation, even if that may be less relevant than the checks made on the sender address."
-msgstr ""
-"Todo e-mail tem ao menos um destinatário, anunciado com o comando "
-"<literal>RCPT TO</literal> no protocolo SMTP. Estes endereços também são "
-"passíveis de validação, mesmo que sejam menos relevantes do que as "
-"verificações feitas no endereço do remetente."
+msgstr "Todo e-mail tem ao menos um destinatário, anunciado com o comando <literal>RCPT TO</literal> no protocolo SMTP. Estes endereços também são passíveis de validação, mesmo que sejam menos relevantes do que as verificações feitas no endereço do remetente."
 
 #. Tag: indexterm
 #, no-c-format
@@ -800,8 +735,7 @@ msgstr "<primary>RCPT TO</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>email</primary><secondary>filtering on the recipient</secondary>"
-msgstr ""
-"<primary>e-mail</primary><secondary>filtrando pelo destinatário</secondary>"
+msgstr "<primary>e-mail</primary><secondary>filtrando pelo destinatário</secondary>"
 
 #. Tag: title
 #, no-c-format
@@ -810,11 +744,11 @@ msgstr "Verificações pelo Destinatário"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtpd_recipient_restrictions = permit_mynetworks, \n"
 "    reject_unauth_destination, reject_unlisted_recipient, \n"
 "    reject_non_fqdn_recipient\n"
-""
 msgstr ""
 "\n"
 "smtpd_recipient_restrictions = permit_mynetworks, \n"
@@ -823,7 +757,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>reject_unauth_destination</literal> is the basic rule that requires outside messages to be addressed to us; messages sent to an address not served by this server are rejected. Without this rule, a server becomes an open relay that allows spammers to sent unsolicited emails; this rule is therefore strongly recommended, and it will be located near the beginning of the list for preference, so as to avoid other rules to authorize the message to pass through before its destination has been checked."
+msgid "<literal>reject_unauth_destination</literal> is the basic rule that requires outside messages to be addressed to us; messages sent to an address not served by this server are rejected. Without this rule, a server becomes an open relay that allows spammers to sent unsolicited emails; this rule is therefore mandatory, and it will be best included near the beginning of the list, so that no other rules may authorize the message before its destination has been checked."
 msgstr ""
 
 #. Tag: para
@@ -853,9 +787,9 @@ msgstr "Verificações pelo <literal>DATA</literal>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtpd_data_restrictions = reject_unauth_pipelining\n"
-""
 msgstr ""
 "\n"
 "smtpd_data_restrictions = reject_unauth_pipelining\n"
@@ -882,23 +816,13 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "A final advantage to this choice is that the rules can accumulate information during the various stages of SMTP; this allows defining more fine-grained permissions, such as rejecting a non-local connection if it announces itself with a local sender."
+msgid "A final advantage to this choice is that the rules can accumulate information during the various stages of the SMTP exchange; this allows defining more fine-grained permissions, such as rejecting a non-local connection if it announces itself with a local sender."
 msgstr ""
 
 #. Tag: title
 #, no-c-format
 msgid "Filtering Based on the Message Contents"
 msgstr "Filtrando Baseado no Conteúdo da Mensagem"
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>QUICK LOOK</emphasis> Regexp tables"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "The <filename>/usr/share/doc/postfix-doc/examples/header_checks.gz</filename> file contains many explanatory comments and can be used as a starting point for creating the <filename>/etc/postfix/header_checks</filename> and <filename>/etc/postfix/body_checks</filename> files."
-msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -912,10 +836,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "header_checks = regexp:/etc/postfix/header_checks\n"
 "body_checks = regexp:/etc/postfix/body_checks\n"
-""
 msgstr ""
 
 #. Tag: indexterm
@@ -930,15 +854,25 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
+msgid "<emphasis>QUICK LOOK</emphasis> Regexp tables"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <filename>/usr/share/doc/postfix-doc/examples/header_checks.gz</filename> file contains many explanatory comments and can be used as a starting point for creating the <filename>/etc/postfix/header_checks</filename> and <filename>/etc/postfix/body_checks</filename> files."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
 msgid "Example <filename>/etc/postfix/header_checks</filename> file"
 msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "/^X-Mailer: GOTO Sarbacane/ REJECT I fight spam (GOTO Sarbacane)\n"
 "/^Subject: *Your email contains VIRUSES/ DISCARD virus notification\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -988,16 +922,16 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once <emphasis role=\"pkg\">postgrey</emphasis> is installed, it runs as a daemon and listens on port 60000. Postfix can then be configured to use it, by adding the <literal>check_policy_service</literal> parameter as an extra restriction:"
+msgid "Once <emphasis role=\"pkg\">postgrey</emphasis> is installed, it runs as a daemon and listens on port 10023. Postfix can then be configured to use it, by adding the <literal>check_policy_service</literal> parameter as an extra restriction:"
 msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtpd_recipient_restrictions = permit_mynetworks,\n"
 "    [...]\n"
-"    check_policy_service inet:127.0.0.1:60000\n"
-""
+"    check_policy_service inet:127.0.0.1:10023\n"
 msgstr ""
 
 #. Tag: para
@@ -1032,27 +966,22 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis>GOING FURTHER</emphasis> Selective greylisting with <emphasis role=\"pkg\">whitelister</emphasis>"
+msgid "<emphasis>GOING FURTHER</emphasis> Selective greylisting with <emphasis role=\"pkg\">milter-greylist</emphasis>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The drawbacks of greylisting can be mitigated by only using greylisting on the subset of clients that are already considered as probable sources of spam (because they are listed in a DNS black-list). This service is provided by <emphasis role=\"pkg\">whitelister</emphasis>, another access policy daemon for Postfix that can be used as a filter just before Postgrey. If the client is not listed in any black-list, Whitelister tells Postfix to accept the message; otherwise, Whitelister's reply is that it has no opinion, and the message goes on to the next rule in the ruleset (which will usually be the call to Postgrey). Whitelister listens on port 10000 by default."
-msgstr ""
-
-#. Tag: programlisting
-#, no-c-format
-msgid "\n"
-"smtpd_recipient_restrictions = permit_mynetworks,\n"
-"    [...]\n"
-"    check_policy_service inet:127.0.0.1:10000,\n"
-"    check_policy_service inet:127.0.0.1:60000\n"
-""
+msgid "The drawbacks of greylisting can be mitigated by only using greylisting on the subset of clients that are already considered as probable sources of spam (because they are listed in a DNS black-list). This is not possible with <emphasis role=\"pkg\">postgrey</emphasis> but <emphasis role=\"pkg\">milter-greylist</emphasis> can be used in such a way."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Since Whitelister never triggers a definitive rejection, using aggressive DNS black-lists becomes reasonable, including those listing all dynamic IP addresses from ISP clients (such as <literal>dynablock.njabl.org</literal> or <literal>dul.dnsbl.sorbs.net</literal>). This can be configured with the <literal>rbl</literal> parameter in the <filename>/etc/whitelister.conf</filename> configuration file."
+msgid "In that scenario, since DNS black-lists never triggers a definitive rejection, it becomes reasonable to use aggressive black-lists, including those listing all dynamic IP addresses from ISP clients (such as <literal>pbl.spamhaus.org</literal> or <literal>dul.dnsbl.sorbs.net</literal>)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Since milter-greylist uses Sendmail's milter interface, the postfix side of its configuration is limited to “<literal>smtpd_milters = unix:/var/milter-greylist/milter-greylist.sock</literal>”. The <citerefentry><refentrytitle>greylist.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page documents <filename>/etc/milter-greylist/greylist.conf</filename> and the numerous ways to configure milter-greylist."
 msgstr ""
 
 #. Tag: title
@@ -1077,18 +1006,17 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "smtpd_restriction_classes = greylisting, aggressive, permissive\n"
+msgid ""
+"smtpd_restriction_classes = greylisting, aggressive, permissive\n"
 "\n"
-"greylisting = check_policy_service inet:127.0.0.1:10000,\n"
-"        check_policy_service inet:127.0.0.1:60000\n"
+"greylisting = check_policy_service inet:127.0.0.1:10023\n"
 "aggressive = reject_rbl_client sbl-xbl.spamhaus.org,\n"
-"        check_policy_service inet:127.0.0.1:60000\n"
+"        check_policy_service inet:127.0.0.1:10023\n"
 "permissive = permit\n"
 "\n"
 "smtpd_recipient_restrictions = permit_mynetworks,\n"
 "        reject_unauth_destination,\n"
 "        check_recipient_access hash:/etc/postfix/recipient_access\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1098,7 +1026,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Unfiltered addresses\n"
 "postmaster@falcot.com  permissive\n"
 "support@falcot.com     permissive\n"
@@ -1112,7 +1041,6 @@ msgid "\n"
 "\n"
 "# Greylisting by default\n"
 "falcot.com             greylisting\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1167,24 +1095,23 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once the <emphasis role=\"pkg\">clamav-milter</emphasis> is installed, the <filename>/etc/default/clamav-milter</filename> file must be edited, so that the milter is configured to run on a TCP port rather than on the default named socket:"
+msgid "Once the <emphasis role=\"pkg\">clamav-milter</emphasis> package is installed, the milter should be reconfigured to run on a TCP port rather than on the default named socket. This can be achieved with <command>dpkg-reconfigure clamav-milter</command>. When prompted for the “Communication interface with Sendmail”, answer “<literal>inet:10002@127.0.0.1</literal>”."
 msgstr ""
 
-#. Tag: programlisting
+#. Tag: title
+#, fuzzy, no-c-format
+#| msgid "<emphasis>CULTURE</emphasis> The spam problem"
+msgid "<emphasis>NOTE</emphasis> Real TCP port vs named socket"
+msgstr "<emphasis>CULTURA</emphasis> O problema do spam"
+
+#. Tag: para
 #, no-c-format
-msgid "\n"
-"SOCKET=inet:10002@127.0.0.1\n"
-""
+msgid "The reason why we use a real TCP port rather than the named socket is that the postfix daemons often run chrooted and do not have access to the directory hosting the named socket. You could also decide to keep using a named socket and pick a location within the chroot (<filename>/var/spool/postfix/</filename>)."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "This new configuration is taken into account by running <command>/etc/init.d/clamav-milter restart</command>."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "The standard ClamAV configuration fits most situations, but some important parameters can still be customized with <command>dpkg-reconfigure clamav-base</command>. Similarly, running <command>dpkg-reconfigure clamav-milter</command> allows defining the mail filter's behavior in some detail."
+msgid "The standard ClamAV configuration fits most situations, but some important parameters can still be customized with <command>dpkg-reconfigure clamav-base</command>."
 msgstr ""
 
 #. Tag: para
@@ -1194,10 +1121,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Virus check with clamav-milter\n"
 "smtpd_milters = inet:[127.0.0.1]:10002\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1242,8 +1169,9 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
-"<computeroutput># </computeroutput><userinput>saslpasswd2 -h `postconf -h myhostname` -f /var/spool/postfix/etc/sasldb2 -c jean</userinput>\n"
+msgid ""
+"\n"
+"<computeroutput># </computeroutput><userinput>saslpasswd2 -u `postconf -h myhostname` -f /var/spool/postfix/etc/sasldb2 -c jean</userinput>\n"
 "<computeroutput>[... type jean's password twice ...]</computeroutput>"
 msgstr ""
 
@@ -1264,7 +1192,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Enable SASL authentication\n"
 "smtpd_sasl_auth_enable = yes\n"
 "# Define the SASL authentication domain to use\n"
@@ -1276,7 +1205,6 @@ msgid "\n"
 "    permit_sasl_authenticated,\n"
 "    reject_unauth_destination,\n"
 "[...]\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1291,23 +1219,23 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtp_sasl_auth_enable = yes\n"
 "smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\n"
 "relay_host = [mail.falcot.com]\n"
-""
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>/etc/postfix/sasl_passwd</filename> file needs to contain the username and password to use for authenticating on the <literal>smtp.falcot.com</literal> server. Here's an example:"
+msgid "The <filename>/etc/postfix/sasl_passwd</filename> file needs to contain the username and password to use for authenticating on the <literal>mail.falcot.com</literal> server. Here's an example:"
 msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "[mail.falcot.com]   joe:LyinIsji\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1322,7 +1250,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The Falcot Corp administrators decided to use the Apache HTTP server, included in Debian <emphasis role=\"distribution\">Squeeze</emphasis> at version 2.2.16."
+msgid "The Falcot Corp administrators decided to use the Apache HTTP server, included in Debian <emphasis role=\"distribution\">Wheezy</emphasis> at version 2.2.22."
 msgstr ""
 
 #. Tag: indexterm
@@ -1336,9 +1264,10 @@ msgid "<primary>server</primary><secondary>web</secondary>"
 msgstr ""
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>web, server</primary>"
-msgstr ""
+#, fuzzy, no-c-format
+#| msgid "<primary>spammer</primary>"
+msgid "<primary>web server</primary>"
+msgstr "<primary>spammer</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1387,7 +1316,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The Falcot administrators also install <emphasis role=\"pkg\">libapache2-mod-php5</emphasis> so as to include the PHP support in Apache. This causes <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> to be removed, and <emphasis role=\"pkg\">apache2-mpm-prefork</emphasis> to be installed in its stead, since PHP only works under that particular MPM."
+msgid "The Falcot administrators also install <emphasis role=\"pkg\">libapache2-mod-php5</emphasis> so as to include the PHP support in Apache. This causes <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> to be removed, and <emphasis role=\"pkg\">apache2-mpm-prefork</emphasis> to be installed instead, since PHP only works under that particular MPM."
 msgstr ""
 
 #. Tag: title
@@ -1465,6 +1394,17 @@ msgstr ""
 msgid "Apache 2.2 includes the SSL module required for secure HTTP (HTTPS) out of the box. It just needs to be enabled with <command>a2enmod ssl</command>, then the required directives have to be added to the configuration files. A configuration example is provided in <filename>/usr/share/doc/apache2.2-common/examples/apache2/extra/httpd-ssl.conf.gz</filename>. <ulink type=\"block\" url=\"http://httpd.apache.org/docs/2.2/mod/mod_ssl.html\" />"
 msgstr ""
 
+#. Tag: para
+#, no-c-format
+msgid "Some extra care must be taken if you want to favor SSL connections with <emphasis>Perfect Forward Secrecy</emphasis> (those connections use ephemeral session keys ensuring that a compromission of the server's secret key does not result in the compromission of old encrypted traffic that could have been stored while sniffing on the network). Have a look at Mozilla's recommandations in particular: <ulink type=\"block\" url=\"https://wiki.mozilla.org/Security/Server_Side_TLS#Apache\" />"
+msgstr ""
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><emphasis>nfs-user-server</emphasis></primary>"
+msgid "<primary><emphasis>Perfect Forward Secrecy</emphasis></primary>"
+msgstr "<primary><emphasis>nfs-user-server</emphasis></primary>"
+
 #. Tag: title
 #, no-c-format
 msgid "Configuring Virtual Hosts"
@@ -1517,7 +1457,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Starting with Debian <emphasis role=\"distribution\">Squeeze</emphasis>, the Apache server supports an SSL protocol extension called <emphasis>Server Name Indication</emphasis> (SNI). This extension allows the browser to send the hostname of the web server during the establishment of the SSL connection, much earlier than the HTTP request itself, which was previously used to identify the requested virtual host among those hosted on the same server (with the same IP address and port). This allows Apache to select the most appropriate SSL certificate for the transaction to proceed."
+msgid "The Apache server supports an SSL protocol extension called <emphasis>Server Name Indication</emphasis> (SNI). This extension allows the browser to send the hostname of the web server during the establishment of the SSL connection, much earlier than the HTTP request itself, which was previously used to identify the requested virtual host among those hosted on the same server (with the same IP address and port). This allows Apache to select the most appropriate SSL certificate for the transaction to proceed."
 msgstr ""
 
 #. Tag: para
@@ -1532,12 +1472,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "&lt;IfModule mod_ssl.c&gt;\n"
 "    NameVirtualHost *:443\n"
 "    Listen 443\n"
 "&lt;/IfModule&gt;\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1557,13 +1497,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "&lt;VirtualHost *:80&gt;\n"
 "ServerName www.falcot.org\n"
 "ServerAlias falcot.org\n"
 "DocumentRoot /srv/www/www.falcot.org\n"
 "&lt;/VirtualHost&gt;\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1578,13 +1518,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# New log format including (virtual) host name\n"
 "LogFormat \"%v %h %l %u %t \\\"%r\\\" %&gt;s %b \\\"%{Referer}i\\\" \\\"%{User-Agent}i\\\"\" vhost\n"
 "\n"
 "# Now let's use this \"vhost\" format by default\n"
 "CustomLog /var/log/apache2/access.log vhost\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1594,13 +1534,31 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "This section briefly reviews some of the commonly-used Apache configuration directives. <indexterm><primary>Apache directives</primary></indexterm> <indexterm><primary>directives, Apache</primary></indexterm>"
+msgid "This section briefly reviews some of the commonly-used Apache configuration directives."
 msgstr ""
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary>spammer</primary>"
+msgid "<primary>Apache directives</primary>"
+msgstr "<primary>spammer</primary>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary>directory, LDAP</primary>"
+msgid "<primary>directives, Apache</primary>"
+msgstr "<primary>diretório, LDAP</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The main configuration file usually includes several <literal>Directory</literal> blocks; they allow specifying different behaviors for the server depending on the location of the file being served. Such a block commonly includes <literal>Options</literal> and <literal>AllowOverride</literal> directives. <indexterm><primary><literal>Options</literal>, Apache directive</primary></indexterm>"
+msgid "The main configuration file usually includes several <literal>Directory</literal> blocks; they allow specifying different behaviors for the server depending on the location of the file being served. Such a block commonly includes <literal>Options</literal> and <literal>AllowOverride</literal> directives."
 msgstr ""
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><literal>HELO</literal></primary>"
+msgid "<primary><literal>Options</literal>, Apache directive</primary>"
+msgstr "<primary><literal>HELO</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1614,23 +1572,29 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "&lt;Directory /var/www&gt;\n"
 "Options Includes FollowSymlinks\n"
 "AllowOverride All\n"
 "DirectoryIndex index.php index.html index.htm\n"
 "&lt;/Directory&gt;\n"
-""
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>DirectoryIndex</literal> directive contains a list of files to try when the client request matches a directory. The first existing file in the list is used and sent as a response. <indexterm><primary><literal>DirectoryIndex</literal>, Apache directive</primary></indexterm>"
+msgid "The <literal>DirectoryIndex</literal> directive contains a list of files to try when the client request matches a directory. The first existing file in the list is used and sent as a response."
 msgstr ""
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><literal>DATA</literal></primary>"
+msgid "<primary><literal>DirectoryIndex</literal>, Apache directive</primary>"
+msgstr "<primary><literal>DATA</literal></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "<indexterm><primary><literal>Options</literal>, Apache directive</primary></indexterm> The <literal>Options</literal> directive is followed by a list of options to enable. The <literal>None</literal> value disables all options; correspondingly, <literal>All</literal> enables them all except <literal>MultiViews</literal>. Available options include:"
+msgid "The <literal>Options</literal> directive is followed by a list of options to enable. The <literal>None</literal> value disables all options; correspondingly, <literal>All</literal> enables them all except <literal>MultiViews</literal>. Available options include:"
 msgstr ""
 
 #. Tag: para
@@ -1710,12 +1674,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "Require valid-user\n"
 "AuthName \"Private directory\"\n"
 "AuthType Basic\n"
 "AuthUserFile /etc/apache2/authfiles/htpasswd-private\n"
-""
 msgstr ""
 "\n"
 "Require valid-user\n"
@@ -1740,7 +1704,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>htpasswd /etc/apache2/authfiles/htpasswd-private <replaceable>user</replaceable>\n"
 "</userinput><computeroutput>New password:\n"
 "Re-type new password:\n"
@@ -1760,8 +1725,26 @@ msgstr "<primary>restrição de acesso web</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>Allow from</literal> and <literal>Deny from</literal> directives control access restrictions for a directory (and its subdirectories, recursively). <indexterm><primary>Apache directives</primary></indexterm> <indexterm><primary>directives, Apache</primary></indexterm> <indexterm><primary><literal>Allow from</literal>, Apache directive</primary></indexterm> <indexterm><primary><literal>Deny from</literal>, Apache directive</primary></indexterm> <indexterm><primary><literal>Order</literal>, Apache directive</primary></indexterm>"
+msgid "The <literal>Allow from</literal> and <literal>Deny from</literal> directives control access restrictions for a directory (and its subdirectories, recursively)."
 msgstr ""
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><literal>DATA</literal></primary>"
+msgid "<primary><literal>Allow from</literal>, Apache directive</primary>"
+msgstr "<primary><literal>DATA</literal></primary>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><literal>DATA</literal></primary>"
+msgid "<primary><literal>Deny from</literal>, Apache directive</primary>"
+msgstr "<primary><literal>DATA</literal></primary>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><literal>HELO</literal></primary>"
+msgid "<primary><literal>Order</literal>, Apache directive</primary>"
+msgstr "<primary><literal>HELO</literal></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1780,11 +1763,11 @@ msgstr "Rejeita por padrão mas permite da rede local"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "Order deny,allow\n"
 "Allow from 192.168.0.0/16\n"
 "Deny from all\n"
-""
 msgstr ""
 "\n"
 "Order deny,allow\n"
@@ -1817,33 +1800,47 @@ msgid "<primary>web logs analyzer</primary>"
 msgstr ""
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>logs</primary><secondary>web, analyzer</secondary>"
-msgstr ""
+#, fuzzy, no-c-format
+#| msgid "<primary>file</primary><secondary>server</secondary>"
+msgid "<primary>logs</primary><secondary>web logs analyzer</secondary>"
+msgstr "<primary>arquivo</primary><secondary>servidor</secondary>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary>alias</primary>"
+msgid "<primary>analyzer of web logs</primary>"
+msgstr "<primary>aliás</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The first configuration step is the creation of the <filename>/etc/awstats/awstats.conf</filename> file. The <filename>/usr/share/doc/awstats/examples/awstats.model.conf.gz</filename> template is a recommended starting point, and the Falcot administrators keep it unchanged apart from the following parameters:"
+msgid "The first configuration step is the customization of the <filename>/etc/awstats/awstats.conf</filename> file. The Falcot administrators keep it unchanged apart from the following parameters:"
 msgstr ""
 
 #. Tag: programlisting
-#, no-c-format
-msgid "\n"
+#, fuzzy, no-c-format
+#| msgid ""
+#| "\n"
+#| "LogFile=\"/var/log/apache2/access.log\"\n"
+#| "LogFormat = \"%virtualname %host %other %logname %time1 %methodurl %code %bytesd %refererquot %uaquot\"\n"
+#| "SiteDomain=\"www.falcot.com\"\n"
+#| "HostAliases=\"falcot.com REGEX[^.*\\.falcot\\.com$]\"\n"
+#| "DNSLookup=1\n"
+#| "DirData=\"/var/lib/awstats\"\n"
+#| "DirIcons=\"/awstats-icon\"\n"
+#| "DirLang=\"/usr/share/awstats/lang\"\n"
+#| "LoadPlugin=\"tooltips\"\n"
+msgid ""
+"\n"
 "LogFile=\"/var/log/apache2/access.log\"\n"
 "LogFormat = \"%virtualname %host %other %logname %time1 %methodurl %code %bytesd %refererquot %uaquot\"\n"
 "SiteDomain=\"www.falcot.com\"\n"
 "HostAliases=\"falcot.com REGEX[^.*\\.falcot\\.com$]\"\n"
 "DNSLookup=1\n"
-"DirData=\"/var/lib/awstats\"\n"
-"DirIcons=\"/awstats-icon\"\n"
-"DirLang=\"/usr/share/awstats/lang\"\n"
 "LoadPlugin=\"tooltips\"\n"
-""
 msgstr ""
 "\n"
 "LogFile=\"/var/log/apache2/access.log\"\n"
-"LogFormat = \"%virtualname %host %other %logname %time1 %methodurl %code %"
-"bytesd %refererquot %uaquot\"\n"
+"LogFormat = \"%virtualname %host %other %logname %time1 %methodurl %code %bytesd %refererquot %uaquot\"\n"
 "SiteDomain=\"www.falcot.com\"\n"
 "HostAliases=\"falcot.com REGEX[^.*\\.falcot\\.com$]\"\n"
 "DNSLookup=1\n"
@@ -1884,43 +1881,16 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "Include \"/etc/awstats/awstats.conf\"\n"
 "SiteDomain=\"www.falcot.org\"\n"
 "HostAliases=\"falcot.org\"\n"
-""
 msgstr ""
 "\n"
 "Include \"/etc/awstats/awstats.conf\"\n"
 "SiteDomain=\"www.falcot.org\"\n"
 "HostAliases=\"falcot.org\"\n"
-
-#. Tag: para
-#, no-c-format
-msgid "This will only work if the <filename>/etc/awstats/awstats.conf</filename> file does not contain any <literal>Include</literal> directive, since AWStats cannot handle multi-level inclusions; unfortunately, the default file provided by Debian does contain such a directive."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "To have this new virtual host taken into account, the <filename>/etc/cron.d/awstats</filename> needs to be edited to add an invocation such as the following: <command>/usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update</command>"
-msgstr ""
-
-#. Tag: title
-#, no-c-format
-msgid "The <filename>/etc/cron.d/awstats</filename> file"
-msgstr "O arquivo <filename>/etc/cron.d/awstats</filename>"
-
-#. Tag: programlisting
-#, no-c-format
-msgid "\n"
-"0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache2/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null \n"
-""
-msgstr ""
-"\n"
-"0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f "
-"/etc/awstats/awstats.conf -a -r /var/log/apache2/access.log ] &amp;&amp; "
-"/usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; "
-"/usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null \n"
 
 #. Tag: para
 #, no-c-format
@@ -1929,9 +1899,9 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "Alias /awstats-icon/ /usr/share/awstats/icon/\n"
-""
 msgstr ""
 "\n"
 "Alias /awstats-icon/ /usr/share/awstats/icon/\n"
@@ -1948,34 +1918,14 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In order for the statistics to take all the logs into account, <emphasis>AWStats</emphasis> needs to be run right before the Apache log files are rotated. This can be achieved by adding a <literal>prerotate</literal> directive to the <filename>/etc/logrotate.d/apache2</filename> file:"
+msgid "In order for the statistics to take all the logs into account, <emphasis>AWStats</emphasis> needs to be run right before the Apache log files are rotated. Looking at the <literal>prerotate</literal> directive of <filename>/etc/logrotate.d/apache2</filename> file, this can be solved by putting a symlink to <filename>/usr/share/awstats/tools/update.sh</filename> in <filename>/etc/logrotate.d/httpd-prerotate</filename>:"
 msgstr ""
 
-#. Tag: programlisting
+#. Tag: screen
 #, no-c-format
-msgid "\n"
-"/var/log/apache2/*.log {\n"
-"  weekly\n"
-"  missingok\n"
-"  rotate 52\n"
-"  compress\n"
-"  delaycompress\n"
-"  notifempty\n"
-"  create 644 root adm\n"
-"  sharedscripts\n"
-"  prerotate\n"
-"    su - www-data -c \"/usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt; /dev/null\"\n"
-"    su - www-data -c \"/usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt; /dev/null\"\n"
-"  endscript\n"
-"  postrotate\n"
-"    if [ -f /var/run/apache2.pid ]; then\n"
-"      /etc/init.d/apache2 restart &gt; /dev/null\n"
-"    fi\n"
-"  endscript\n"
-"}\n"
-""
-msgstr ""
+msgid ""
 "\n"
+"$ <userinput>cat /etc/logrotate.d/apache2</userinput>\n"
 "/var/log/apache2/*.log {\n"
 "  weekly\n"
 "  missingok\n"
@@ -1985,22 +1935,23 @@ msgstr ""
 "  notifempty\n"
 "  create 644 root adm\n"
 "  sharedscripts\n"
-"  prerotate\n"
-"    su - www-data -c \"/usr/lib/cgi-bin/awstats.pl -config=awstats -update "
-"&gt; /dev/null\"\n"
-"    su - www-data -c \"/usr/lib/cgi-bin/awstats.pl -config=www.falcot.org "
-"-update &gt; /dev/null\"\n"
-"  endscript\n"
 "  postrotate\n"
-"    if [ -f /var/run/apache2.pid ]; then\n"
-"      /etc/init.d/apache2 restart &gt; /dev/null\n"
-"    fi\n"
+"    /etc/init.d/apache2 reload &gt; /dev/null\n"
+"  endscript\n"
+"  prerotate\n"
+"    if [ -d /etc/logrotate.d/httpd-prerotate ]; then \\\n"
+"      run-parts /etc/logrotate.d/httpd-prerotate; \\\n"
+"    fi; \\\n"
 "  endscript\n"
 "}\n"
+"$ <userinput>sudo mkdir -p /etc/logrotate.d/httpd-prerotate</userinput>\n"
+"$ <userinput>sudo ln -sf /usr/share/awstats/tools/update.sh \\\n"
+"  /etc/logrotate.d/httpd-prerotate/awstats</userinput>\n"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Note also that the log files created by <command>logrotate</command> need to be readable by everyone, especially AWStats. In the above example, this is ensured by the <literal>create 644 root adm</literal> line."
+msgid "Note also that the log files created by <command>logrotate</command> need to be readable by everyone, especially AWStats. In the above example, this is ensured by the <literal>create 644 root adm</literal> line (instead of the default <literal>640</literal> permissions)."
 msgstr ""
 
 #. Tag: title
@@ -2030,7 +1981,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Many FTP servers are available in Debian (<emphasis role=\"pkg\">ftpd</emphasis>, <emphasis role=\"pkg\">proftpd</emphasis>, <emphasis role=\"pkg\">wu-ftpd</emphasis> and so on). The Falcot Corp administrators picked <emphasis role=\"pkg\">vsftpd</emphasis> because they only use the FTP server to distribute a few files (including a Debian package repository); since they don't need advanced features, they chose to focus on the security aspects."
+msgid "Many FTP servers are available in Debian (<emphasis role=\"pkg\">ftpd</emphasis>, <emphasis role=\"pkg\">proftpd-basic</emphasis>, <emphasis role=\"pkg\">pyftpd</emphasis> and so on). The Falcot Corp administrators picked <emphasis role=\"pkg\">vsftpd</emphasis> because they only use the FTP server to distribute a few files (including a Debian package repository); since they don't need advanced features, they chose to focus on the security aspects."
 msgstr ""
 
 #. Tag: indexterm
@@ -2040,7 +1991,7 @@ msgstr "<primary><emphasis role=\"pkg\">vsftpd</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Installing the package creates an <literal>ftp</literal> system user. This account is always used for anonymous FTP connections, and its home directory (<filename>/home/ftp/</filename>) is the root of the tree made available to users connecting to this service. The default configuration (in <filename>/etc/vsftpd.conf</filename>) is very restrictive: it only allows read-only anonymous access (since the <literal>write_enable</literal> and <literal>anon_upload_enable</literal> options are disabled), and local users cannot connect with their usual username and password and access their own files (<literal>local_enable</literal> option). However, this default configuration is well-suited to the needs at Falcot Corp."
+msgid "Installing the package creates an <literal>ftp</literal> system user. This account is always used for anonymous FTP connections, and its home directory (<filename>/srv/ftp/</filename>) is the root of the tree made available to users connecting to this service. The default configuration (in <filename>/etc/vsftpd.conf</filename>) is very restrictive: it only allows read-only anonymous access (since the <literal>write_enable</literal> and <literal>anon_upload_enable</literal> options are disabled), and local users cannot connect with their usual username and password and access their own files (<literal>local_enable</literal> option). However, this default configuration is well-suited to the needs at Falcot Corp."
 msgstr ""
 
 #. Tag: title
@@ -2061,9 +2012,7 @@ msgstr "<primary>NFS</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>Network</emphasis></primary><secondary><emphasis>File System</emphasis></secondary>"
-msgstr ""
-"<primary><emphasis>Rede</emphasis></primary><secondary><emphasis>Sistema de "
-"Arquivos</emphasis></secondary>"
+msgstr "<primary><emphasis>Rede</emphasis></primary><secondary><emphasis>Sistema de Arquivos</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2092,7 +2041,7 @@ msgstr "<emphasis>DOCUMENTAÇÃO</emphasis> NFS HOWTO"
 
 #. Tag: para
 #, no-c-format
-msgid "The NFS HOWTO is full of interesting information, including methods for optimizing performance. It also describes a way to secure NFS transfers with an SSH tunnel; however, that technique precludes the use of <command>lockd</command>). <ulink type=\"block\" url=\"http://nfs.sourceforge.net/nfs-howto/\" />"
+msgid "Even though it is relatively old, the NFS HOWTO is full of interesting information, including methods for optimizing performance. It also describes a way to secure NFS transfers with an SSH tunnel; however, that technique precludes the use of <command>lockd</command>. <ulink type=\"block\" url=\"http://nfs.sourceforge.net/nfs-howto/\" />"
 msgstr ""
 
 #. Tag: title
@@ -2192,13 +2141,27 @@ msgstr "O arquivo <filename>/etc/default/nfs-kernel-server</filename>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Number of servers to start up\n"
 "RPCNFSDCOUNT=8\n"
 "\n"
-"# Options for rpc.mountd\n"
-"RPCMOUNTDOPTS=\"-p 2048\"\n"
-""
+"# Runtime priority of server (see nice(1))\n"
+"RPCNFSDPRIORITY=0\n"
+"\n"
+"# Options for rpc.mountd.\n"
+"# If you have a port-based firewall, you might want to set up\n"
+"# a fixed port here using the --port option. For more information, \n"
+"# see rpc.mountd(8) or http://wiki.debian.org/SecuringNFS\n"
+"# To disable NFSv4 on the server, specify '--no-nfs-version 4' here\n"
+"RPCMOUNTDOPTS=\"--manage-gids --port 2048\"\n"
+"\n"
+"# Do you want to start the svcgssd daemon? It is only required for Kerberos\n"
+"# exports. Valid alternatives are \"yes\" and \"no\"; the default is \"no\".\n"
+"NEED_SVCGSSD=\n"
+"\n"
+"# Options for rpc.svcgssd.\n"
+"RPCSVCGSSDOPTS=\n"
 msgstr ""
 
 #. Tag: title
@@ -2208,16 +2171,27 @@ msgstr "O arquivo <filename>/etc/default/nfs-common</filename>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
-"# Options for rpc.statd.\n"
-"#   Should rpc.statd listen on a specific port?\n"
-"#   If so, set this variable to a statd argument like: \"--port 1000\".\n"
-"STATDOPTS=\"-p 2046 -o 2047\"\n"
+msgid ""
 "\n"
-"# Are you _sure_ that your kernel does or does not need a lockd daemon?\n"
-"# If so, set this variable to either \"yes\" or \"no\".\n"
-"NEED_LOCKD=\n"
-""
+"# If you do not set values for the NEED_ options, they will be attempted\n"
+"# autodetected; this should be sufficient for most people. Valid alternatives\n"
+"# for the NEED_ options are \"yes\" and \"no\".\n"
+"\n"
+"# Do you want to start the statd daemon? It is not needed for NFSv4.\n"
+"NEED_STATD=\n"
+"\n"
+"# Options for rpc.statd.\n"
+"#   Should rpc.statd listen on a specific port? This is especially useful\n"
+"#   when you have a port-based firewall. To use a fixed port, set this\n"
+"#   this variable to a statd argument like: \"--port 4000 --outgoing-port 4001\".\n"
+"#   For more information, see rpc.statd(8) or http://wiki.debian.org/SecuringNFS\n"
+"STATDOPTS=\"--port 2046 --outgoing-port 2047\"\n"
+"\n"
+"# Do you want to start the idmapd daemon? It is only needed for NFSv4.\n"
+"NEED_IDMAPD=\n"
+"\n"
+"# Do you want to start the gssd daemon? It is required for Kerberos mounts.\n"
+"NEED_GSSD=\n"
 msgstr ""
 
 #. Tag: para
@@ -2237,9 +2211,9 @@ msgstr "O arquivo <filename>/etc/modprobe.d/lockd</filename>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "options lockd nlm_udpport=2045 nlm_tcpport=2045\n"
-""
 msgstr ""
 "\n"
 "options lockd nlm_udpport=2045 nlm_tcpport=2045\n"
@@ -2259,23 +2233,6 @@ msgstr "Servidor NFS"
 msgid "The NFS server is part of the Linux kernel; in kernels provided by Debian it is built as a kernel module. If the NFS server is to be run automatically on boot, the <emphasis role=\"pkg\">nfs-kernel-server</emphasis> package should be installed; it contains the relevant start-up scripts."
 msgstr ""
 
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>ALTERNATIVE</emphasis> The <emphasis>nfs-user-server</emphasis> server"
-msgstr ""
-"<emphasis>ALTERNATIVA</emphasis> O servidor <emphasis>nfs-user-"
-"server</emphasis>"
-
-#. Tag: para
-#, no-c-format
-msgid "<emphasis>nfs-user-server</emphasis> is an NFS server running as a traditional server, with a user-space program and not a kernel module. This version of NFS is mostly obsolete since the kernel-based NFS server is now mature and reliable."
-msgstr ""
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis>nfs-user-server</emphasis></primary>"
-msgstr "<primary><emphasis>nfs-user-server</emphasis></primary>"
-
 #. Tag: para
 #, no-c-format
 msgid "The NFS server configuration file, <filename>/etc/exports</filename>, lists the directories that are made available over the network (<emphasis>exported</emphasis>). For each NFS share, only the given list of machines is granted access. More fine-grained access control can be obtained with a few options. The syntax for this file is quite simple:"
@@ -2293,9 +2250,9 @@ msgstr "<primary><filename>/etc/exports</filename></primary>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "/directory/to/share machine1(option1,option2,...) machine2(...) ...\n"
-""
 msgstr ""
 "\n"
 "/directory/to/share machine1(option1,option2,...) machine2(...) ...\n"
@@ -2322,7 +2279,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In order to not give root access to the filesystem to any NFS client, all queries appearing to come from a root user are considered by the server as coming from the <literal>anonymous</literal> user. This behavior corresponds to the <literal>root_squash</literal> option, and is enabled by default. The <literal>no_root_squash</literal> option, which disables this behavior, is risky and should only be used in controlled environments. The <literal>anonuid=<replaceable>uid</replaceable></literal> and <literal>anongid=<replaceable>gid</replaceable></literal> options allow specifying another fake user to be used instead of <literal>anonymous</literal>."
+msgid "In order to not give root access to the filesystem to any NFS client, all queries appearing to come from a root user are considered by the server as coming from the <literal>nobody</literal> user. This behavior corresponds to the <literal>root_squash</literal> option, and is enabled by default. The <literal>no_root_squash</literal> option, which disables this behavior, is risky and should only be used in controlled environments. The <literal>anonuid=<replaceable>uid</replaceable></literal> and <literal>anongid=<replaceable>gid</replaceable></literal> options allow specifying another fake user to be used instead of UID/GID 65534 (which corresponds to user <literal>nobody</literal> and group <literal>nogroup</literal>)."
 msgstr ""
 
 #. Tag: para
@@ -2342,13 +2299,12 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>/etc/init.d/nfs-kernel-server start</userinput>\n"
-""
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>/etc/init.d/nfs-kernel-server "
-"start</userinput>\n"
+"<computeroutput># </computeroutput><userinput>/etc/init.d/nfs-kernel-server start</userinput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -2376,13 +2332,16 @@ msgid "Manually mounting with the <command>mount</command> command"
 msgstr "Montando manualmente com o comando <command>mount</command>"
 
 #. Tag: screen
-#, no-c-format
-msgid "\n"
-"<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid arrakis.interne.falcot.com:/srv/shared /shared</userinput>"
+#, fuzzy, no-c-format
+#| msgid ""
+#| "\n"
+#| "<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid arrakis.interne.falcot.com:/srv/shared /shared</userinput>"
+msgid ""
+"\n"
+"<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid arrakis.internal.falcot.com:/srv/shared /shared</userinput>"
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid "
-"arrakis.interne.falcot.com:/srv/shared /shared</userinput>"
+"<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid arrakis.interne.falcot.com:/srv/shared /shared</userinput>"
 
 #. Tag: title
 #, no-c-format
@@ -2390,17 +2349,20 @@ msgid "NFS entry in the <filename>/etc/fstab</filename> file"
 msgstr "Entrada NFS no arquivo <filename>/etc/fstab</filename>"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "\n"
-"arrakis.interne.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
-""
+#, fuzzy, no-c-format
+#| msgid ""
+#| "\n"
+#| "arrakis.interne.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
+msgid ""
+"\n"
+"arrakis.internal.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
 msgstr ""
 "\n"
 "arrakis.interne.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
 
 #. Tag: para
 #, no-c-format
-msgid "The entry described above mounts, at system startup, the <filename>/srv/shared/</filename> NFS directory from the <literal>arrakis</literal> server into the local <filename>/shared/</filename> directory. Read-write access is requested (hence the <literal>rw</literal> parameter). The <literal>nosuid</literal> option is a protection measure that wipes any <literal>setuid</literal> or <literal>setgit</literal> bit from programs stored on the share. If the NFS share is only meant to store documents, another recommended option is <literal>noexec</literal>, which prevents executing programs stored on the share."
+msgid "The entry described above mounts, at system startup, the <filename>/srv/shared/</filename> NFS directory from the <literal>arrakis</literal> server into the local <filename>/shared/</filename> directory. Read-write access is requested (hence the <literal>rw</literal> parameter). The <literal>nosuid</literal> option is a protection measure that wipes any <literal>setuid</literal> or <literal>setgid</literal> bit from programs stored on the share. If the NFS share is only meant to store documents, another recommended option is <literal>noexec</literal>, which prevents executing programs stored on the share."
 msgstr ""
 
 #. Tag: para
@@ -2415,7 +2377,7 @@ msgstr "Configurando um Compartilhamento Windows com o Samba"
 
 #. Tag: para
 #, no-c-format
-msgid "Samba is a suite of tools handling the SMB protocol (now called “CIFS”) on Linux. This protocol is used by Windows for network shares and shared printers."
+msgid "Samba is a suite of tools handling the SMB protocol (also known as “CIFS”) on Linux. This protocol is used by Windows for network shares and shared printers."
 msgstr ""
 
 #. Tag: indexterm
@@ -2440,7 +2402,7 @@ msgstr "<primary>CIFS</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Samba can also act as an NT domain controller. This is an outstanding tool for ensuring seamless integration of Linux servers and the office desktop machines still running Windows."
+msgid "Samba can also act as an Windows domain controller. This is an outstanding tool for ensuring seamless integration of Linux servers and the office desktop machines still running Windows."
 msgstr ""
 
 #. Tag: title
@@ -2488,6 +2450,11 @@ msgstr ""
 msgid "SWAT is very user-friendly; its interface includes an assistant that allows defining the server's role in three questions. All global options can still be configured, as well as those for all the existing shares, and of course new shares can be added. Each option comes with a link to the relevant documentation."
 msgstr ""
 
+#. Tag: para
+#, no-c-format
+msgid "Unfortunately SWAT is no longer actively maintained and will be dropped from the next version of Debian, known as <emphasis role=\"distribution\">Jessie</emphasis>."
+msgstr ""
+
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> Going further"
@@ -2504,9 +2471,10 @@ msgid "<primary>domain controller</primary>"
 msgstr "<primary>controle de domínio</primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>NT domain</primary>"
-msgstr "<primary>domínio NT</primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary>Windows share</primary>"
+msgid "<primary>Windows domain</primary>"
+msgstr "<primary>Compartilhamento Windows</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2520,7 +2488,7 @@ msgstr "<emphasis>FERRAMENTA</emphasis> Autenticando com um Servidor Windows"
 
 #. Tag: para
 #, no-c-format
-msgid "Winbind gives system administrators the option of using a Windows NT server as an authentication server. Winbind also integrates cleanly with PAM and NSS. This allows setting up Linux machines where all users of an NT domain automatically get an account."
+msgid "Winbind gives system administrators the option of using a Windows server as an authentication server. Winbind also integrates cleanly with PAM and NSS. This allows setting up Linux machines where all users of a Windows domain automatically get an account."
 msgstr ""
 
 #. Tag: indexterm
@@ -2560,23 +2528,8 @@ msgstr "<primary>WINS</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The next question is about whether servers should be started by <command>inetd</command> or as stand-alone daemons. Using <command>inetd</command> is only interesting when Samba is rarely used; the Falcot administrators therefore picked stand-alone daemons."
+msgid "The last question is about whether servers should be started by <command>inetd</command> or as stand-alone daemons. Using <command>inetd</command> is only interesting when Samba is rarely used; the Falcot administrators therefore picked stand-alone daemons."
 msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Finally, the package proposes creating a <filename>/var/lib/samba/passdb.tdb</filename> file for storing encrypted passwords; this option was accepted, since this system is much more efficient than the standard <filename>/etc/samba/smbpasswd</filename> text file."
-msgstr ""
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><filename>smbpasswd</filename></primary>"
-msgstr "<primary><filename>smbpasswd</filename></primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><filename>/etc/samba/smbpasswd</filename></primary>"
-msgstr "<primary><filename>/etc/samba/smbpasswd</filename></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -2595,7 +2548,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "[global]\n"
 "\n"
 "## Browsing/Identification ###\n"
@@ -2626,7 +2580,7 @@ msgid "\n"
 "\n"
 "# If you are using encrypted passwords, Samba will need to know what\n"
 "# password database type you are using.\n"
-"   passdb backend = tdbsam guest\n"
+"   passdb backend = tdbsam\n"
 "\n"
 "[...]\n"
 "\n"
@@ -2645,17 +2599,6 @@ msgid "\n"
 "# cups-client package.\n"
 "   printing = cups <co id=\"smb.conf.printing\"></co>\n"
 "   printcap name = cups\n"
-"   \n"
-"[...]\n"
-"\n"
-"######## File sharing ########\n"
-"\n"
-"# Name mangling options\n"
-";   preserve case = yes\n"
-";   short preserve case = yes\n"
-"\n"
-"unix charset=ISO8859-1 <co id=\"smb.conf.charset\"></co>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -2676,11 +2619,6 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Specifies the printing system in use; in our case, CUPS."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Specifies the character set and encoding used for file names under Linux. The default value is UTF8 (Unicode)."
 msgstr ""
 
 #. Tag: title
@@ -2730,12 +2668,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "domain logons = yes              <co id=\"smb.conf.domainlogons\"></co>\n"
 "preferred master = yes           \n"
 "logon path = \\\\%L\\profiles\\%U    <co id=\"smb.conf.logonpath\"></co>\n"
 "logon script = scripts/logon.bat <co id=\"smb.conf.logonscript\"></co>\n"
-""
 msgstr ""
 "\n"
 "domain logons = yes              <co id=\"smb.conf.domainlogons\"></co>\n"
@@ -2770,11 +2708,11 @@ msgstr "O arquivo <filename>logon.bat</filename>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "net time \\\\ARRAKIS /set /yes\n"
 "net use H: /home\n"
 "net use U: \\\\ARRAKIS\\utils\n"
-""
 msgstr ""
 "\n"
 "net time \\\\ARRAKIS /set /yes\n"
@@ -2784,13 +2722,12 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Two extra shares, and their associated directories, were also created:"
-msgstr ""
-"Dois compartilhamentos extras, e seus diretórios associados, também foram "
-"criados:"
+msgstr "Dois compartilhamentos extras, e seus diretórios associados, também foram criados:"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "[netlogon]\n"
 "comment = Network Logon Service\n"
 "path = /var/lib/samba/netlogon\n"
@@ -2803,7 +2740,6 @@ msgid "\n"
 "path = /var/lib/samba/profiles\n"
 "read only = No\n"
 "profile acls = Yes\n"
-""
 msgstr ""
 "\n"
 "[netlogon]\n"
@@ -2831,7 +2767,7 @@ msgstr "Cliente Samba"
 
 #. Tag: para
 #, no-c-format
-msgid "The client features in Samba allow a Linux machine to access Windows shares and shared printers. The required programs are available in the <emphasis role=\"pkg\">smbfs</emphasis> and <emphasis role=\"pkg\">smbclient</emphasis> packages."
+msgid "The client features in Samba allow a Linux machine to access Windows shares and shared printers. The required programs are available in the <emphasis role=\"pkg\">cifs-utils</emphasis> and <emphasis role=\"pkg\">smbclient</emphasis> packages."
 msgstr ""
 
 #. Tag: indexterm
@@ -2840,8 +2776,9 @@ msgid "<primary><emphasis>smbclient</emphasis></primary>"
 msgstr "<primary><emphasis>smbclient</emphasis></primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis>smbfs</emphasis></primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary><emphasis>smbfs</emphasis></primary>"
+msgid "<primary><emphasis>cifs-utils</emphasis></primary>"
 msgstr "<primary><emphasis>smbfs</emphasis></primary>"
 
 #. Tag: title
@@ -2860,16 +2797,22 @@ msgid "Mounting Windows Shares"
 msgstr "Montando Compartilhamentos Windows"
 
 #. Tag: para
-#, no-c-format
-msgid "The <command>smbmount</command> command allows mounting a Windows share into the Linux filesystem hierarchy."
-msgstr ""
-"O comando <command>smbmount</command> permite montar um compartilhamento "
-"Windows na hierarquia do sistema de arquivos do Linux."
+#, fuzzy, no-c-format
+#| msgid "The <command>smbmount</command> command allows mounting a Windows share into the Linux filesystem hierarchy."
+msgid "The <command>mount</command> command allows mounting a Windows share into the Linux filesystem hierarchy (with the help of <command>mount.cifs</command> provided by <emphasis role=\"pkg\">cifs-utils</emphasis>)."
+msgstr "O comando <command>smbmount</command> permite montar um compartilhamento Windows na hierarquia do sistema de arquivos do Linux."
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>smbmount</command></primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary><command>smbmount</command></primary>"
+msgid "<primary><command>mount.cifs</command></primary>"
 msgstr "<primary><command>smbmount</command></primary>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary>Windows share</primary>"
+msgid "<primary>Windows share, mounting</primary>"
+msgstr "<primary>Compartilhamento Windows</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -2877,25 +2820,28 @@ msgid "Mounting a Windows share"
 msgstr "Montando um compartilhamento Windows"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "\n"
-"smbmount //arrakis/shared /shared -o credentials=/usr/local/etc/smb-credentials\n"
-""
+#, fuzzy, no-c-format
+#| msgid ""
+#| "\n"
+#| "smbmount //arrakis/shared /shared -o credentials=/usr/local/etc/smb-credentials\n"
+msgid ""
+"\n"
+"mount -t cifs //arrakis/shared /shared \\\n"
+"      -o credentials=/etc/smb-credentials\n"
 msgstr ""
 "\n"
-"smbmount //arrakis/shared /shared -o credentials=/usr/local/etc/smb-"
-"credentials\n"
+"smbmount //arrakis/shared /shared -o credentials=/usr/local/etc/smb-credentials\n"
 
 #. Tag: para
-#, no-c-format
-msgid "The <filename>/usr/local/etc/smb-credentials</filename> file (which must not be readable by users) has the following format:"
-msgstr ""
-"O arquivo <filename>/usr/local/etc/smb-credentials</filename> (o qual não "
-"deve ser legível pelos usuários) tem o seguinte formato:"
+#, fuzzy, no-c-format
+#| msgid "The <filename>/usr/local/etc/smb-credentials</filename> file (which must not be readable by users) has the following format:"
+msgid "The <filename>/etc/smb-credentials</filename> file (which must not be readable by users) has the following format:"
+msgstr "O arquivo <filename>/usr/local/etc/smb-credentials</filename> (o qual não deve ser legível pelos usuários) tem o seguinte formato:"
 
 #. Tag: programlisting
 #, fuzzy, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "username = <replaceable>user</replaceable>\n"
 "password = <replaceable>password</replaceable>"
 msgstr ""
@@ -2905,48 +2851,31 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Other options can be specified on the command-line; their full list is available in the <citerefentry><refentrytitle>smbmount</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page. Two options in particular can be interesting: <literal>uid</literal> and <literal>gid</literal> allow forcing the owner and group of files available on the mount, so as not to restrict access to root."
+msgid "Other options can be specified on the command-line; their full list is available in the <citerefentry><refentrytitle>mount.cifs</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page. Two options in particular can be interesting: <literal>uid</literal> and <literal>gid</literal> allow forcing the owner and group of files available on the mount, so as not to restrict access to root."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>smbumount</command> command unmounts an SMB share."
-msgstr ""
-"O comando <command>smbumount</command> desmonta um compartilhamento SMB."
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>ALTERNATIVE</emphasis> Using <command>mount</command> for a Windows share"
-msgstr ""
-"<emphasis>ALTERNATIVA</emphasis> Usando <command>mount</command> para um "
-"compartilhamento Windows"
-
-#. Tag: para
-#, no-c-format
-msgid "The <command>mount</command> command itself does not handle CIFS; however, when asked to mount an unknown filesystem type, it tries delegating the task to a <command>mount.<replaceable>type</replaceable></command>. Since the <emphasis role=\"pkg\">smbfs</emphasis> package does provide a <command>mount.cifs</command> command, it then becomes possible to mount a Windows share with the standard <command>mount</command> command:"
+msgid "A mount of a Windows share can also be configured in <filename>/etc/fstab</filename>:"
 msgstr ""
 
 #. Tag: programlisting
-#, no-c-format
-msgid "\n"
-"mount -t cifs -o credentials=/usr/local/etc/smb-credentials //<replaceable>server</replaceable>/shared /shared\n"
-""
+#, fuzzy, no-c-format
+#| msgid ""
+#| "\n"
+#| "smbmount //arrakis/shared /shared -o credentials=/usr/local/etc/smb-credentials\n"
+msgid ""
+"\n"
+"//<replaceable>server</replaceable>/shared /shared cifs credentials=/etc/smb-credentials\n"
 msgstr ""
 "\n"
-"mount -t cifs -o credentials=/usr/local/etc/smb-credentials "
-"//<replaceable>server</replaceable>/shared /shared\n"
+"smbmount //arrakis/shared /shared -o credentials=/usr/local/etc/smb-credentials\n"
 
 #. Tag: para
-#, no-c-format
-msgid "This also allows configuring an SMB mount in the standard <filename>/etc/fstab</filename> file:"
-msgstr ""
-
-#. Tag: programlisting
-#, no-c-format
-msgid "\n"
-"//<replaceable>server</replaceable>/shared /shared cifs credentials=/usr/local/etc/smb-credentials\n"
-""
-msgstr ""
+#, fuzzy, no-c-format
+#| msgid "Manually mounting with the <command>mount</command> command"
+msgid "Unmounting a SMB/CIFS share is done with the standard <command>umount</command> command."
+msgstr "Montando manualmente com o comando <command>mount</command>"
 
 #. Tag: title
 #, no-c-format
@@ -2969,37 +2898,41 @@ msgid "Here are the required steps:"
 msgstr "Aqui estão os passos necessários:"
 
 #. Tag: para
-#, no-c-format
-msgid "Enter the CUPS configuration interface:"
-msgstr "Entrar na interface de configuração do CUPS:"
-
-#. Tag: para
-#, no-c-format
-msgid "<literal>http://localhost:631/admin</literal>."
+#, fuzzy, no-c-format
+#| msgid "<literal>http://localhost:631/admin</literal>."
+msgid "Enter the CUPS configuration interface: <literal>http://localhost:631/admin</literal>"
 msgstr "<literal>http://localhost:631/admin</literal>."
 
 #. Tag: para
 #, no-c-format
-msgid "Click on “Add Printer”, then enter the data relevant to this printer."
+msgid "Click on “Add Printer”."
 msgstr ""
-"Clique no “Add Printer”, então entre com os dados relevantes para esta "
-"impressora."
 
 #. Tag: para
-#, no-c-format
-msgid "When choosing the printer device, pick “Windows Printer via SAMBA”."
-msgstr ""
-"Quando escolhendo o dispositivo de impressora, escolha “Windows Printer via "
-"SAMBA”."
+#, fuzzy, no-c-format
+#| msgid "When choosing the printer device, pick “Windows Printer via SAMBA”."
+msgid "Choose the printer device, pick “Windows Printer via SAMBA”."
+msgstr "Quando escolhendo o dispositivo de impressora, escolha “Windows Printer via SAMBA”."
 
 #. Tag: para
-#, no-c-format
-msgid "The URI describing the printer looks like the following:"
+#, fuzzy, no-c-format
+#| msgid "The URI describing the printer looks like the following:"
+msgid "Enter the connection URI for the network printer. It should look like the following:"
 msgstr "A URI descrevendo a impressora se pare com o seguinte:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>smb://<replaceable>user</replaceable>:<replaceable>password</replaceable>@<replaceable>server</replaceable>/<replaceable>printer</replaceable></literal>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Enter the name that will uniquely identify this printer. Then enter the description and location of the printer. Those are the strings that will be shown to end users to help them identify the printers."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Indicate the manufacturer/model of the printer, or directly provide a working printer description file (PPD)."
 msgstr ""
 
 #. Tag: para
@@ -3079,7 +3012,8 @@ msgstr "O arquivo <filename>/etc/squid/squid.conf</filename> (trecho)"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS\n"
 "\n"
 "# Example rule allowing access from your local networks. Adapt\n"
@@ -3090,7 +3024,6 @@ msgid "\n"
 "http_access allow localhost\n"
 "# And finally deny all other access to this proxy\n"
 "http_access deny all\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3110,9 +3043,9 @@ msgstr "<primary><command>squidGuard</command></primary>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "redirect_program /usr/bin/squidGuard -c /etc/squid/squidGuard.conf \n"
-""
 msgstr ""
 "\n"
 "redirect_program /usr/bin/squidGuard -c /etc/squid/squidGuard.conf \n"
@@ -3124,7 +3057,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The filter is enabled with the <command>/etc/init.d/squid reload</command> command. However, since the <emphasis role=\"pkg\">squidguard</emphasis> package does no filtering by default, it is the administrator's task to define the policy. This can be done by customizing the <filename>/etc/squid/squidGuard.conf</filename> file."
+msgid "The filter is enabled with the <command>/etc/init.d/squid reload</command> command. However, since the <emphasis role=\"pkg\">squidguard</emphasis> package does no filtering by default, it is the administrator's task to define the policy. This can be done by creating the <filename>/etc/squid/squidGuard.conf</filename> file (using <filename>/etc/squidguard/squidGuard.conf.default</filename> as template if required)."
 msgstr ""
 
 #. Tag: para
@@ -3199,7 +3132,7 @@ msgstr "<primary><emphasis>slapd</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Installing <emphasis role=\"pkg\">slapd</emphasis> normally asks a few <command>debconf</command> questions; this configuration phase can be forced by the <command>dpkg-reconfigure slapd</command> command."
+msgid "Installing <emphasis role=\"pkg\">slapd</emphasis> is usually non-interactive unless you have configured debconf to display questions with lower priorities. Nevertheless, it is debconf-enabled, and thus a simple <command>dpkg-reconfigure slapd</command> can reconfigure the LDAP database:"
 msgstr ""
 
 #. Tag: para
@@ -3260,13 +3193,12 @@ msgstr "<primary>LDIF</primary>"
 #. Tag: para
 #, no-c-format
 msgid "A minimal database is now configured, as demonstrated by the following query:"
-msgstr ""
-"Um base de dados miníma está configurada agora, como demonstrado pela "
-"seguinte consulta:"
+msgstr "Um base de dados miníma está configurada agora, como demonstrado pela seguinte consulta:"
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>ldapsearch -x -b dc=falcot,dc=com</userinput>\n"
 "<computeroutput># extended LDIF\n"
 "#\n"
@@ -3298,15 +3230,12 @@ msgid "\n"
 "# numResponses: 3\n"
 "# numEntries: 2\n"
 "</computeroutput>\n"
-""
 msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "The query returned two objects: the organization itself, and the administrative user."
-msgstr ""
-"A consulta retornour dois objetos: a organização em si, e o usuário "
-"administrativo."
+msgstr "A consulta retornour dois objetos: a organização em si, e o usuário administrativo."
 
 #. Tag: title
 #, no-c-format
@@ -3330,7 +3259,7 @@ msgstr "<primary><emphasis role=\"pkg\">migrationtools</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Once the package is installed, the <filename>/etc/migrationtools/migrate_common.ph</filename> must be edited; the <varname>IGNORE_UID_BELOW</varname> and <varname>IGNORE_GID_BELOW</varname> options need to be enabled (uncommenting them is enough)."
+msgid "Once the package is installed, the <filename>/etc/migrationtools/migrate_common.ph</filename> must be edited; the <varname>IGNORE_UID_BELOW</varname> and <varname>IGNORE_GID_BELOW</varname> options need to be enabled (uncommenting them is enough), and <varname>DEFAULT_MAIL_DOMAIN</varname>/<varname>DEFAULT_BASE</varname> need to be updated."
 msgstr ""
 
 #. Tag: para
@@ -3340,16 +3269,14 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>cd /usr/share/migrationtools</userinput>\n"
 "<computeroutput># </computeroutput><userinput>LDAPADD=\"/usr/bin/ldapadd -c\" ETC_ALIASES=/dev/null ./migrate_all_online.sh</userinput>\n"
-""
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>cd "
-"/usr/share/migrationtools</userinput>\n"
-"<computeroutput># </computeroutput><userinput>LDAPADD=\"/usr/bin/ldapadd -c\" "
-"ETC_ALIASES=/dev/null ./migrate_all_online.sh</userinput>\n"
+"<computeroutput># </computeroutput><userinput>cd /usr/share/migrationtools</userinput>\n"
+"<computeroutput># </computeroutput><userinput>LDAPADD=\"/usr/bin/ldapadd -c\" ETC_ALIASES=/dev/null ./migrate_all_online.sh</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -3433,13 +3360,14 @@ msgstr "<emphasis>FERRAMENTA</emphasis> Navegando em diretório LDAP"
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>luma</command> command (in the package of the same name) is a graphical tool allowing to browse and edit an LDAP database. It's an interesting tool that provides an administrator with a good overview of the hierarchical structure of the LDAP data."
+msgid "The <command>jxplorer</command> command (in the package of the same name) is a graphical tool allowing to browse and edit an LDAP database. It's an interesting tool that provides an administrator with a good overview of the hierarchical structure of the LDAP data."
 msgstr ""
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>luma</command></primary>"
-msgstr "<primary><command>luma</command></primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary><command>portmapper</command></primary>"
+msgid "<primary><command>jxplorer</command></primary>"
+msgstr "<primary><command>portmapper</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3463,7 +3391,7 @@ msgstr "Configurando o NSS"
 
 #. Tag: para
 #, no-c-format
-msgid "The NSS system (Name Service Switch, see sidebar <xref linkend=\"cadre.intro-nss\" />) is a modular system designed to define or fetch information for system directories. Using LDAP as a source of data for NSS requires installing the <emphasis role=\"pkg\">libnss-ldap</emphasis> package. Its installation asks a few questions; the answers are summarized in <xref linkend=\"tab-libnss-ldap\" xrefstyle=\"select: label nopage\" />."
+msgid "The NSS system (Name Service Switch, see sidebar <xref linkend=\"sidebar.intro-nss\" />) is a modular system designed to define or fetch information for system directories. Using LDAP as a source of data for NSS requires installing the <emphasis role=\"pkg\">libnss-ldap</emphasis> package. Its installation asks a few questions; the answers are summarized in <xref linkend=\"tab-libnss-ldap\" xrefstyle=\"select: label nopage\" />."
 msgstr ""
 
 #. Tag: indexterm
@@ -3508,8 +3436,18 @@ msgstr "O banco de dados LDAP precisa de um login?"
 
 #. Tag: entry
 #, no-c-format
-msgid "no "
-msgstr "não"
+msgid "Special LDAP privileges for root"
+msgstr ""
+
+#. Tag: entry
+#, no-c-format
+msgid "yes"
+msgstr ""
+
+#. Tag: entry
+#, no-c-format
+msgid "Make the configuration file readable/writeable by its owner only"
+msgstr ""
 
 #. Tag: entry
 #, no-c-format
@@ -3533,7 +3471,8 @@ msgstr "O arquivo <filename>/etc/nsswitch.conf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# /etc/nsswitch.conf\n"
 "#\n"
 "# Example configuration of GNU Name Service Switch functionality.\n"
@@ -3552,13 +3491,12 @@ msgid "\n"
 "ethers: ldap db files\n"
 "rpc: ldap db files\n"
 "\n"
-"netgroup: files\n"
-""
+"netgroup: ldap files\n"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>ldap</command> module is usually inserted before others, and it will therefore be queried first. The notable exception is the <literal>hosts</literal> service since contacting the LDAP server requires consulting DNS first (to resolve <literal>ldap.falcot.com</literal>). Without this exception, a hostname query would try to ask the LDAP server; this would trigger a name resolution for the LDAP server, and so on in an infinite loop. As for the <literal>netgroup</literal> services, it is not yet handled by the LDAP module."
+msgid "The <command>ldap</command> module is usually inserted before others, and it will therefore be queried first. The notable exception is the <literal>hosts</literal> service since contacting the LDAP server requires consulting DNS first (to resolve <literal>ldap.falcot.com</literal>). Without this exception, a hostname query would try to ask the LDAP server; this would trigger a name resolution for the LDAP server, and so on in an infinite loop."
 msgstr ""
 
 #. Tag: para
@@ -3583,7 +3521,7 @@ msgstr "Configurando o PAM"
 
 #. Tag: para
 #, no-c-format
-msgid "This section describes a PAM configuration (see sidebar <xref linkend=\"cadre.intro-pam\" />) that will allow applications to perform the required authentications against the LDAP database."
+msgid "This section describes a PAM configuration (see sidebar <xref linkend=\"sidebar.intro-pam\" />) that will allow applications to perform the required authentications against the LDAP database."
 msgstr ""
 
 #. Tag: title
@@ -3619,9 +3557,7 @@ msgstr "Permitir a conta administrativa do LDAP se comportar como o root local?"
 #. Tag: entry
 #, no-c-format
 msgid "Yes. This allows using the usual <command>passwd</command> command for changing passwords stored in the LDAP database."
-msgstr ""
-"Sim. Isto permite usar o comando usual <command>passwd</command> para "
-"modificar as senhas armazenadas no banco de dados LDAP."
+msgstr "Sim. Isto permite usar o comando usual <command>passwd</command> para modificar as senhas armazenadas no banco de dados LDAP."
 
 #. Tag: entry
 #, no-c-format
@@ -3632,6 +3568,16 @@ msgstr "O banco de dados LDAP necessita estar logado?"
 #, no-c-format
 msgid "the LDAP database administrative password"
 msgstr "A senha do banco de dados administrativo LDAP"
+
+#. Tag: entry
+#, no-c-format
+msgid "Local encryption algorithm to use for passwords"
+msgstr ""
+
+#. Tag: entry
+#, no-c-format
+msgid "crypt"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3691,9 +3637,7 @@ msgstr "Configurando o Servidor"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><foreignphrase>OpenSSL</foreignphrase></primary><secondary>creating keys</secondary>"
-msgstr ""
-"<primary><foreignphrase>OpenSSL</foreignphrase></primary><secondary>criando "
-"chaves</secondary>"
+msgstr "<primary><foreignphrase>OpenSSL</foreignphrase></primary><secondary>criando chaves</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3702,38 +3646,36 @@ msgstr "<primary>par de chaves</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The first step is to create a key pair (comprising a public key and a private key) for the LDAP server. This necessitates installing the <emphasis role=\"pkg\">openssl</emphasis> package. Running <command>/usr/lib/ssl/misc/CA.pl -newcert</command> asks a few mundane questions (location, organization name and so on). The answer to the “common name” question <emphasis>must</emphasis> be the fully-qualified hostname for the LDAP server; in our case, <literal>ldap.falcot.com</literal>."
+msgid "The first step is to create a key pair (comprising a public key and a private key) for the LDAP server. The Falcot administrators reuse <emphasis>easy-rsa</emphasis> to generate it (see <xref linkend=\"sect.easy-rsa\" />). Running <command>./build-server-key ldap.falcot.com</command> asks a few mundane questions (location, organization name and so on). The answer to the “common name” question <emphasis>must</emphasis> be the fully-qualified hostname for the LDAP server; in our case, <literal>ldap.falcot.com</literal>."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "This command creates a certificate in the <filename>newcert.pem</filename> file; the corresponding private key is stored in <filename>newkey.pem</filename>."
+msgid "This command creates a certificate in the <filename>keys/ldap.falcot.com.crt</filename> file; the corresponding private key is stored in <filename>keys/ldap.falcot.com.key</filename>."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Now these keys have to be installed in their standard location:"
-msgstr "Agora essas chaves devem ser instalados em sua localização padrão:"
+msgid "Now these keys have to be installed in their standard location, and we must make sure that the private file is readable by the LDAP server which runs under the <literal>openldap</literal> user identity:"
+msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
-"<computeroutput># </computeroutput><userinput>mv newkey.pem /etc/ssl/private/ldap-key.pem</userinput>\n"
-"<computeroutput># </computeroutput><userinput>chmod 0600 /etc/ssl/private/ldap-key.pem</userinput>\n"
-"<computeroutput># </computeroutput><userinput>mv newcert.pem /etc/ssl/certs/ldap-cert.pem</userinput>\n"
-""
-msgstr ""
+msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>mv newkey.pem /etc/ssl/private"
-"/ldap-key.pem</userinput>\n"
-"<computeroutput># </computeroutput><userinput>chmod 0600 /etc/ssl/private"
-"/ldap-key.pem</userinput>\n"
-"<computeroutput># </computeroutput><userinput>mv newcert.pem /etc/ssl/certs"
-"/ldap-cert.pem</userinput>\n"
+"# <userinput>adduser openldap ssl-cert</userinput>\n"
+"Adding user `openldap' to group `ssl-cert' ...\n"
+"Adding user openldap to group ssl-cert\n"
+"Done.\n"
+"# <userinput>mv keys/ldap.falcot.com.key /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
+"# <userinput>chown root:ssl-cert /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
+"# <userinput>chmod 0640 /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
+"# <userinput>mv newcert.pem /etc/ssl/certs/ldap.falcot.com.pem</userinput>\n"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>slapd</command> daemon also needs to be told to use these keys for encryption; this involves adding the following directives to the <filename>/etc/ldap/slapd.conf</filename> file:"
+msgid "The <command>slapd</command> daemon also needs to be told to use these keys for encryption. The LDAP server configuration is managed dynamically: the configuration can be updated with normal LDAP operations on the <literal>cn=config</literal> object hierarchy, and the server updates <filename>/etc/ldap/slapd.d</filename> in real time to make the configuration persistent. <command>ldapmodify</command> is thus the right tool to update the configuration:"
 msgstr ""
 
 #. Tag: title
@@ -3741,20 +3683,55 @@ msgstr ""
 msgid "Configuring <command>slapd</command> for encryption"
 msgstr "Configurando <command>slapd</command> para criptografia"
 
-#. Tag: programlisting
+#. Tag: screen
 #, no-c-format
-msgid "\n"
-"# TLS support\n"
-"TLSCipherSuite HIGH\n"
-"TLSCertificateFile /etc/ssl/certs/ldap-cert.pem\n"
-"TLSCertificateKeyFile /etc/ssl/private/ldap-key.pem\n"
-""
-msgstr ""
+msgid ""
 "\n"
-"# TLS support\n"
-"TLSCipherSuite HIGH\n"
-"TLSCertificateFile /etc/ssl/certs/ldap-cert.pem\n"
-"TLSCertificateKeyFile /etc/ssl/private/ldap-key.pem\n"
+"# <userinput>cat &gt;ssl.ldif &lt;&lt;END\n"
+"dn: cn=config\n"
+"changetype: modify\n"
+"add: olcTLSCertificateFile\n"
+"olcTLSCertificateFile: /etc/ssl/certs/ldap.falcot.com.pem\n"
+"-\n"
+"add: olcTLSCertificateKeyFile\n"
+"olcTLSCertificateKeyFile: /etc/ssl/private/ldap.falcot.com.key\n"
+"-\n"
+"END</userinput>\n"
+"# <userinput>ldapmodify -Y EXTERNAL -H ldapi:/// -f ssl.ldif</userinput>\n"
+"SASL/EXTERNAL authentication started\n"
+"SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth\n"
+"SASL SSF: 0\n"
+"modifying entry \"cn=config\"\n"
+msgstr ""
+
+#. Tag: title
+#, fuzzy, no-c-format
+#| msgid "<emphasis>TOOL</emphasis> Browsing an LDAP directory"
+msgid "<emphasis>TOOL</emphasis> <command>ldapvi</command> to edit an LDAP directory"
+msgstr "<emphasis>FERRAMENTA</emphasis> Navegando em diretório LDAP"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><command>luma</command></primary>"
+msgid "<primary><command>ldapvi</command></primary>"
+msgstr "<primary><command>luma</command></primary>"
+
+#. Tag: para
+#, no-c-format
+msgid "With <command>ldapvi</command>, you can display an LDIF output of any part of the LDAP directory, make some changes in the text editor, and let the tool do the corresponding LDAP operations for you."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "It is thus a convenient way to update the configuration of the LDAP server, simply by editing the <literal>cn=config</literal> hierarchy."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid ""
+"\n"
+"# <userinput>ldapvi -Y EXTERNAL -h ldapi:/// -b cn=config</userinput>\n"
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -3768,39 +3745,53 @@ msgstr "O nome <filename>/etc/default/slapd</filename>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
-"# Default location of the slapd.conf file\n"
+msgid ""
+"\n"
+"# Default location of the slapd.conf file or slapd.d cn=config directory. If\n"
+"# empty, use the compiled-in default (/etc/ldap/slapd.d with a fallback to\n"
+"# /etc/ldap/slapd.conf).\n"
 "SLAPD_CONF=\n"
 "\n"
 "# System account to run the slapd server under. If empty the server\n"
 "# will run as root.\n"
-"SLAPD_USER=\n"
+"SLAPD_USER=\"openldap\"\n"
 "\n"
 "# System group to run the slapd server under. If empty the server will\n"
 "# run in the primary group of its user.\n"
-"SLAPD_GROUP=\n"
+"SLAPD_GROUP=\"openldap\"\n"
 "\n"
 "# Path to the pid file of the slapd server. If not set the init.d script\n"
-"# will try to figure it out from $SLAPD_CONF (/etc/ldap/slapd.conf)\n"
+"# will try to figure it out from $SLAPD_CONF (/etc/ldap/slapd.conf by\n"
+"# default)\n"
 "SLAPD_PIDFILE=\n"
-"\n"
-"# Configure if the slurpd daemon should be started. Possible values:\n"
-"# - yes:   Always start slurpd\n"
-"# - no:    Never start slurpd\n"
-"# - auto:  Start slurpd if a replica option is found in slapd.conf\n"
-"# (default)\n"
-"SLURPD_START=auto\n"
 "\n"
 "# slapd normally serves ldap only on all TCP-ports 389. slapd can also\n"
 "# service requests on TCP-port 636 (ldaps) and requests via unix\n"
 "# sockets.\n"
 "# Example usage:\n"
+"# SLAPD_SERVICES=\"ldap://127.0.0.1:389/ ldaps:/// ldapi:///\"\n"
 "SLAPD_SERVICES=\"ldaps:/// ldapi:///\"\n"
 "\n"
-"# Additional options to pass to slapd and slurpd\n"
+"# If SLAPD_NO_START is set, the init script will not start or restart\n"
+"# slapd (but stop will still work).  Uncomment this if you are\n"
+"# starting slapd via some other means or if you don't want slapd normally\n"
+"# started at boot.\n"
+"#SLAPD_NO_START=1\n"
+"\n"
+"# If SLAPD_SENTINEL_FILE is set to path to a file and that file exists,\n"
+"# the init script will not start or restart slapd (but stop will still\n"
+"# work).  Use this for temporarily disabling startup of slapd (when doing\n"
+"# maintenance, for example, or through a configuration management system)\n"
+"# when you don't want to edit a configuration file.\n"
+"SLAPD_SENTINEL_FILE=/etc/ldap/noslapd\n"
+"\n"
+"# For Kerberos authentication (via SASL), slapd by default uses the system\n"
+"# keytab file (/etc/krb5.keytab).  To use a different keytab file,\n"
+"# uncomment this line and change the path.\n"
+"#export KRB5_KTNAME=/etc/krb5.keytab\n"
+"\n"
+"# Additional options to pass to slapd\n"
 "SLAPD_OPTIONS=\"\"\n"
-"SLURPD_OPTIONS=\"\"\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -3810,12 +3801,30 @@ msgstr "Configurando o Cliente"
 
 #. Tag: para
 #, no-c-format
-msgid "On the client side, the configuration for the <emphasis>libpam-ldap</emphasis> and <emphasis>libnss-ldap</emphasis> modules needs to be modified by adding the <literal>ssl on</literal> directive to the <filename>/etc/pam_ldap.conf</filename> and <filename>/etc/libnss-ldap.conf</filename> configuration files."
+msgid "On the client side, the configuration for the <emphasis>libpam-ldap</emphasis> and <emphasis>libnss-ldap</emphasis> modules needs to be modified to use an <literal>ldaps://</literal> URI."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "LDAP clients also need to be able to authenticate the server by knowing its public key. This requires installing a copy of the key (for instance as <filename>/etc/ssl/certs/ldap-cert.pem</filename>), and reference the location of this copy in the <filename>/etc/ldap/ldap.conf</filename> file."
+msgid "LDAP clients also need to be able to authenticate the server. In a X.509 public key infrastructure, public certificates are signed by the key of a certificate authority (CA). With <emphasis>easy-rsa</emphasis>, the Falcot administrators have created their own CA and they now need to configure the system to trust the signatures of Falcot's CA. This can be done by putting the CA certificate in <filename>/usr/local/share/ca-certificates</filename> and running <command>update-ca-certificates</command>."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid ""
+"\n"
+"# <userinput>cp keys/ca.crt /usr/local/share/ca-certificates/falcot.crt</userinput>\n"
+"# <userinput>update-ca-certificates</userinput>\n"
+"Updating certificates in /etc/ssl/certs... 1 added, 0 removed; done.\n"
+"Running hooks in /etc/ca-certificates/update.d....\n"
+"Adding debian:falcot.pem\n"
+"done.\n"
+"done.\n"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Last but not least, the default LDAP URI and default base DN used by the various command line tools can be modified in <filename>/etc/ldap/ldap.conf</filename>. This will save quite some typing."
 msgstr ""
 
 #. Tag: title
@@ -3825,7 +3834,8 @@ msgstr "O arquivo <filename>/etc/ldap/ldap.conf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "#\n"
+msgid ""
+"#\n"
 "# LDAP Defaults\n"
 "#\n"
 "\n"
@@ -3839,11 +3849,128 @@ msgid "#\n"
 "#TIMELIMIT      15\n"
 "#DEREF          never\n"
 "\n"
-"TLS_CACERT /etc/ssl/certs/ldap-cert.pem\n"
-""
+"# TLS certificates (needed for GnuTLS)\n"
+"TLS_CACERT      /etc/ssl/certs/ca-certificates.crt\n"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter sampled only a fraction of the available server software; however, most of the common network services were described. Now it is time for an even more technical chapter: we'll go into deeper detail for some concepts, describe massive deployments and virtualization."
 msgstr ""
+
+#~ msgid "<primary>mail</primary><secondary>electronic</secondary>"
+#~ msgstr "<primary>correio</primary><secondary>eletrônico</secondary>"
+
+#~ msgid "The <filename>/etc/cron.d/awstats</filename> file"
+#~ msgstr "O arquivo <filename>/etc/cron.d/awstats</filename>"
+
+#~ msgid ""
+#~ "\n"
+#~ "0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache2/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null \n"
+#~ msgstr ""
+#~ "\n"
+#~ "0,10,20,30,40,50 * * * * www-data [ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache2/access.log ] &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt;/dev/null &amp;&amp; /usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt;/dev/null \n"
+
+#~ msgid ""
+#~ "\n"
+#~ "/var/log/apache2/*.log {\n"
+#~ "  weekly\n"
+#~ "  missingok\n"
+#~ "  rotate 52\n"
+#~ "  compress\n"
+#~ "  delaycompress\n"
+#~ "  notifempty\n"
+#~ "  create 644 root adm\n"
+#~ "  sharedscripts\n"
+#~ "  prerotate\n"
+#~ "    su - www-data -c \"/usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt; /dev/null\"\n"
+#~ "    su - www-data -c \"/usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt; /dev/null\"\n"
+#~ "  endscript\n"
+#~ "  postrotate\n"
+#~ "    if [ -f /var/run/apache2.pid ]; then\n"
+#~ "      /etc/init.d/apache2 restart &gt; /dev/null\n"
+#~ "    fi\n"
+#~ "  endscript\n"
+#~ "}\n"
+#~ msgstr ""
+#~ "\n"
+#~ "/var/log/apache2/*.log {\n"
+#~ "  weekly\n"
+#~ "  missingok\n"
+#~ "  rotate 52\n"
+#~ "  compress\n"
+#~ "  delaycompress\n"
+#~ "  notifempty\n"
+#~ "  create 644 root adm\n"
+#~ "  sharedscripts\n"
+#~ "  prerotate\n"
+#~ "    su - www-data -c \"/usr/lib/cgi-bin/awstats.pl -config=awstats -update &gt; /dev/null\"\n"
+#~ "    su - www-data -c \"/usr/lib/cgi-bin/awstats.pl -config=www.falcot.org -update &gt; /dev/null\"\n"
+#~ "  endscript\n"
+#~ "  postrotate\n"
+#~ "    if [ -f /var/run/apache2.pid ]; then\n"
+#~ "      /etc/init.d/apache2 restart &gt; /dev/null\n"
+#~ "    fi\n"
+#~ "  endscript\n"
+#~ "}\n"
+
+#~ msgid "<emphasis>ALTERNATIVE</emphasis> The <emphasis>nfs-user-server</emphasis> server"
+#~ msgstr "<emphasis>ALTERNATIVA</emphasis> O servidor <emphasis>nfs-user-server</emphasis>"
+
+#~ msgid "<primary>NT domain</primary>"
+#~ msgstr "<primary>domínio NT</primary>"
+
+#~ msgid "<primary><filename>smbpasswd</filename></primary>"
+#~ msgstr "<primary><filename>smbpasswd</filename></primary>"
+
+#~ msgid "<primary><filename>/etc/samba/smbpasswd</filename></primary>"
+#~ msgstr "<primary><filename>/etc/samba/smbpasswd</filename></primary>"
+
+#~ msgid "The <command>smbumount</command> command unmounts an SMB share."
+#~ msgstr "O comando <command>smbumount</command> desmonta um compartilhamento SMB."
+
+#~ msgid "<emphasis>ALTERNATIVE</emphasis> Using <command>mount</command> for a Windows share"
+#~ msgstr "<emphasis>ALTERNATIVA</emphasis> Usando <command>mount</command> para um compartilhamento Windows"
+
+#~ msgid ""
+#~ "\n"
+#~ "mount -t cifs -o credentials=/usr/local/etc/smb-credentials //<replaceable>server</replaceable>/shared /shared\n"
+#~ msgstr ""
+#~ "\n"
+#~ "mount -t cifs -o credentials=/usr/local/etc/smb-credentials //<replaceable>server</replaceable>/shared /shared\n"
+
+#~ msgid "Enter the CUPS configuration interface:"
+#~ msgstr "Entrar na interface de configuração do CUPS:"
+
+#~ msgid "Click on “Add Printer”, then enter the data relevant to this printer."
+#~ msgstr "Clique no “Add Printer”, então entre com os dados relevantes para esta impressora."
+
+#~ msgid "no "
+#~ msgstr "não"
+
+#~ msgid "Now these keys have to be installed in their standard location:"
+#~ msgstr "Agora essas chaves devem ser instalados em sua localização padrão:"
+
+#~ msgid ""
+#~ "\n"
+#~ "<computeroutput># </computeroutput><userinput>mv newkey.pem /etc/ssl/private/ldap-key.pem</userinput>\n"
+#~ "<computeroutput># </computeroutput><userinput>chmod 0600 /etc/ssl/private/ldap-key.pem</userinput>\n"
+#~ "<computeroutput># </computeroutput><userinput>mv newcert.pem /etc/ssl/certs/ldap-cert.pem</userinput>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<computeroutput># </computeroutput><userinput>mv newkey.pem /etc/ssl/private/ldap-key.pem</userinput>\n"
+#~ "<computeroutput># </computeroutput><userinput>chmod 0600 /etc/ssl/private/ldap-key.pem</userinput>\n"
+#~ "<computeroutput># </computeroutput><userinput>mv newcert.pem /etc/ssl/certs/ldap-cert.pem</userinput>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "# TLS support\n"
+#~ "TLSCipherSuite HIGH\n"
+#~ "TLSCertificateFile /etc/ssl/certs/ldap-cert.pem\n"
+#~ "TLSCertificateKeyFile /etc/ssl/private/ldap-key.pem\n"
+#~ msgstr ""
+#~ "\n"
+#~ "# TLS support\n"
+#~ "TLSCipherSuite HIGH\n"
+#~ "TLSCertificateFile /etc/ssl/certs/ldap-cert.pem\n"
+#~ "TLSCertificateKeyFile /etc/ssl/private/ldap-key.pem\n"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-10-31T14:54:18\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2012-07-13 18:41-0200\n"
 "Last-Translator: Aputsiaq Niels Janussen <aj@isit.gl>\n"
 "Language-Team: Dansk <dansk@dansk-gruppen.dk>\n"
@@ -190,7 +190,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The Linux 2.6 kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
+msgid "The Linux kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
 msgstr ""
 
 #. Tag: indexterm
@@ -380,22 +380,22 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>SNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Source NAT</emphasis> (extra options describe the exact changes to apply);"
+msgid "<literal>SNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis> — NAT support for IPv6 appeared in the Linux 3.7 kernel): apply <emphasis>Source NAT</emphasis> (extra options describe the exact changes to apply);"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>DNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>Destination NAT</emphasis> (extra options describe the exact changes to apply);"
+msgid "<literal>DNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis>): apply <emphasis>Destination NAT</emphasis> (extra options describe the exact changes to apply);"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): apply <emphasis>masquerading</emphasis> (a special case of <emphasis>Source NAT</emphasis>);"
+msgid "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis>): apply <emphasis>masquerading</emphasis> (a special case of <emphasis>Source NAT</emphasis>);"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<literal>REDIRECT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4): redirect a packet to a given port of the firewall itself; this can be used to set up a transparent web proxy that works with no configuration on the client side, since the client thinks it connects to the recipient whereas the communications actually go through the proxy."
+msgid "<literal>REDIRECT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis>): redirect a packet to a given port of the firewall itself; this can be used to set up a transparent web proxy that works with no configuration on the client side, since the client thinks it connects to the recipient whereas the communications actually go through the proxy."
 msgstr ""
 
 #. Tag: para
@@ -420,7 +420,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable><replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable><replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable><replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable><replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable><replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
+msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable> <replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable> <replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable> <replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable> <replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable> <replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
 msgstr ""
 
 #. Tag: title
@@ -430,7 +430,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Each rule is expressed as <literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable><replaceable>action_options</replaceable></literal>. If several conditions are described in the same rule, then the criterion is the conjunction (logical <emphasis>and</emphasis>) of the conditions, which is at least as restrictive as each individual condition."
+msgid "Each rule is expressed as <literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable> <replaceable>action_options</replaceable></literal>. If several conditions are described in the same rule, then the criterion is the conjunction (logical <emphasis>and</emphasis>) of the conditions, which is at least as restrictive as each individual condition."
 msgstr ""
 
 #. Tag: para
@@ -480,12 +480,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>DNAT</literal> action (only available for IPv4) provides the <literal>--to-destination <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> option to indicate the new destination IP address and/or port. Similarly, <literal>SNAT</literal> provides <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> to indicate the new source IP address and/or port."
+msgid "The <literal>DNAT</literal> action provides the <literal>--to-destination <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> option to indicate the new destination IP address and/or port. Similarly, <literal>SNAT</literal> provides <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> to indicate the new source IP address and/or port."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>REDIRECT</literal> action (only available for IPv4) provides the <literal>--to-ports <replaceable>port(s)</replaceable></literal> option to indicate the port, or port range, where the packets should be redirected."
+msgid "The <literal>REDIRECT</literal> action (only available if NAT is available — on <emphasis role=\"distribution\">Wheezy</emphasis>, this means IPv4 only) provides the <literal>--to-ports <replaceable>port(s)</replaceable></literal> option to indicate the port, or port range, where the packets should be redirected."
 msgstr ""
 
 #. Tag: title
@@ -545,7 +545,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<command>fwbuilder</command> can then generate a script configuring the firewall according to the rules that have been defined. Its modular architecture gives it the ability to generate scripts targeting different systems (<command>iptables</command> for Linux 2.4/2.6, <command>ipf</command> for FreeBSD and <command>pf</command> for OpenBSD)."
+msgid "<command>fwbuilder</command> can then generate a script configuring the firewall according to the rules that have been defined. Its modular architecture gives it the ability to generate scripts targeting different systems (<command>iptables</command> for Linux, <command>ipf</command> for FreeBSD and <command>pf</command> for OpenBSD)."
 msgstr ""
 
 #. Tag: para
@@ -604,7 +604,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can enable the detection of intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
+msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can help detecting intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
 msgstr ""
 
 #. Tag: title
@@ -757,34 +757,9 @@ msgstr ""
 msgid "The <command>gnome-system-monitor</command> and <command>qps</command> graphical tools are similar to <command>top</command> and they provide roughly the same features."
 msgstr ""
 
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>TIP</emphasis> Visual representations of activity"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "For more visual (and entertaining) representations of a computer's activity, one should investigate the <emphasis role=\"pkg\">lavaps</emphasis>, <emphasis role=\"pkg\">bubblemon</emphasis> and <emphasis role=\"pkg\">bubblefishymon</emphasis> packages. <command>lavaps</command> displays running processes as the wax bubbles in a lava-lamp. <emphasis>bubblemon</emphasis> is a desktop panel applet representing the amount of used memory and the processor usage as an aquarium with bubbles. <command>bubblefishymon</command> is rather similar, but it also adds fish representing network traffic (and even a duck)."
-msgstr ""
-
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gnome-system-monitor</command></primary>"
-msgstr ""
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>lavaps</command></primary>"
-msgstr ""
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>bubblefishymon</command></primary>"
-msgstr ""
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis>bubblemon</emphasis></primary>"
 msgstr ""
 
 #. Tag: title
@@ -819,7 +794,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "This book deals with Munin in some detail (see <xref linkend=\"section.munin\" />) as part of <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />. Debian also provides a similar tool, <emphasis role=\"pkg\">cacti</emphasis>. Its deployment is slightly more complex, since it is based solely on SNMP. Despite having a web interface, grasping the concepts involved in configuration still requires some effort. Reading the HTML documentation (<filename>/usr/share/doc/cacti/html/index.html</filename>) should be considered a prerequisite."
+msgid "This book deals with Munin in some detail (see <xref linkend=\"sect.munin\" />) as part of <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />. Debian also provides a similar tool, <emphasis role=\"pkg\">cacti</emphasis>. Its deployment is slightly more complex, since it is based solely on SNMP. Despite having a web interface, grasping the concepts involved in configuration still requires some effort. Reading the HTML documentation (<filename>/usr/share/doc/cacti/html/index.html</filename>) should be considered a prerequisite."
 msgstr ""
 
 #. Tag: title
@@ -1074,7 +1049,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Snort can be configured as such a sensor. Other possibilities include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) which monitors log files (in a manner similar to <command>logcheck</command>, described in <xref linkend=\"section.logcheck\" />)."
+msgid "Snort can be configured as such a sensor. Other possibilities include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) which monitors log files (in a manner similar to <command>logcheck</command>, described in <xref linkend=\"sect.logcheck\" />)."
 msgstr ""
 
 #. Tag: indexterm
@@ -1144,7 +1119,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labeling). Domain's rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labeled with the given type)."
+msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labeling). Domains' rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labeled with the given type)."
 msgstr ""
 
 #. Tag: title
@@ -1154,12 +1129,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Internally, a domain is just a type, but a type that only applies to processes. That's why domains are suffixed with <literal>_t</literal> just like object's types."
+msgid "Internally, a domain is just a type, but a type that only applies to processes. That's why domains are suffixed with <literal>_t</literal> just like objects' types."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches in the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
+msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches to the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
 msgstr ""
 
 #. Tag: title
@@ -1251,7 +1226,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <emphasis role=\"pkg\">selinux-policy-default</emphasis> package contains a set of standard rules. By default, this policy only restricts access for a few broadly exposed services. The user sessions are not restricted and it is thus unlikely that SELinux would block legitimate user operations. However, this does enhance the security of system services running on the machine. To setup a policy equivalent to the old “strict” rules, you just have to disable the <literal>unconfined</literal> module (modules management is detailed further in this section)."
+msgid "The <emphasis role=\"pkg\">selinux-policy-default</emphasis> package contains a set of standard rules. By default, this policy only restricts access for a few widely exposed services. The user sessions are not restricted and it is thus unlikely that SELinux would block legitimate user operations. However, this does enhance the security of system services running on the machine. To setup a policy equivalent to the old “strict” rules, you just have to disable the <literal>unconfined</literal> module (modules management is detailed further in this section)."
 msgstr ""
 
 #. Tag: para

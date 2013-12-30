@@ -1,13 +1,14 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-11-26 15:52+0100\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2013-11-26 15:52+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -934,7 +935,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "After this initial phase, the maintenance cycle truly begins: preparing updates to follow the latest version of the Debian Policy, fixing bugs reported by users, and including new “upstream” versions of the program which naturally continues to develop simultaneously. For instance, at the time of the initial packaging, the program was at version 1.2.3. After some months of development, the original authors release a new stable version, numbered 1.4.0. At this point, the Debian maintainer should update the package, so that users can benefit from its latest stable version)."
+msgid "After this initial phase, the maintenance cycle truly begins: preparing updates to follow the latest version of the Debian Policy, fixing bugs reported by users, and including new “upstream” versions of the program which naturally continues to develop simultaneously. For instance, at the time of the initial packaging, the program was at version 1.2.3. After some months of development, the original authors release a new stable version, numbered 1.4.0. At this point, the Debian maintainer should update the package, so that users can benefit from its latest stable version."
 msgstr ""
 
 #. Tag: indexterm
@@ -1224,7 +1225,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "One might wonder why it is relevant to mention the users among those who work within the Debian project, but the answer is a definite yes: they play a critical role in the project. Far from being “passive”, some of our users run development versions of Debian and regularly file bug reports to indicate problems. Others go even further and submit ideas for improvements, by filing a bug report with a severity level of “wishlist”, or even submit corrections to the source code, called “patches” (see sidebar <xref linkend=\"sidebar.patch\" />)."
+msgid "One might wonder if it is relevant to mention the users among those who work within the Debian project, but the answer is a definite yes: they play a critical role in the project. Far from being “passive”, some users run development versions of Debian and regularly file bug reports to indicate problems. Others go even further and submit ideas for improvements, by filing a bug report with a severity level of “wishlist”, or even submit corrections to the source code, called “patches” (see sidebar <xref linkend=\"sidebar.patch\" />)."
 msgstr ""
 
 #. Tag: title
@@ -1294,7 +1295,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Additionally, numerous satisfied users of the service offered by Debian like to make a contribution of their own to the project. As not everyone has appropriate levels of expertise in programming, they may choose to assist with the translation and review of documentation. There are language-specific mailing lists for various languages. For French, for instance, it is <email>debian-l10n-french@lists.debian.org</email>. <ulink type=\"block\" url=\"http://www.debian.org/intl/french/\" />"
+msgid "Additionally, numerous satisfied users of the service offered by Debian like to make a contribution of their own to the project. As not everyone has appropriate levels of expertise in programming, they may choose to assist with the translation and review of documentation. There are language-specific mailing lists to coordinate this work. <ulink type=\"block\" url=\"https://lists.debian.org/i18n.html\" /> <ulink type=\"block\" url=\"http://www.debian.org/international/\" />"
 msgstr ""
 
 #. Tag: title
@@ -1375,7 +1376,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new &gt;file.patch</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1386,7 +1386,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old &lt;file.patch</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1774,9 +1773,14 @@ msgstr ""
 msgid "<primary>lists</primary><secondary>mailing lists</secondary>"
 msgstr ""
 
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>mailing lists</primary>"
+msgstr ""
+
 #. Tag: para
 #, no-c-format
-msgid "<indexterm><primary>mailing lists</primary></indexterm>The mailing lists are, without a doubt, the best testimony to activity on a project, since they keep track of everything that happens. Some statistics (from 2012) regarding our mailing lists speak for themselves: Debian hosts more than 260 lists, totaling 190,000 individual subscriptions. The 22,000 messages sent each month generate 600,000 e-mails daily."
+msgid "The mailing lists are, without a doubt, the best testimony to activity on a project, since they keep track of everything that happens. Some statistics (from 2012) regarding our mailing lists speak for themselves: Debian hosts more than 260 lists, totaling 190,000 individual subscriptions. The 22,000 messages sent each month generate 600,000 e-mails daily."
 msgstr ""
 
 #. Tag: para
@@ -1896,7 +1900,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "As arleady mentioned, the Debian project evolves in a very distributed, very organic way. As a consequence, it may be difficult at times to stay in touch with what happens within the project without being overwhelmed with a never-ending flood of notifications."
+msgid "As already mentioned, the Debian project evolves in a very distributed, very organic way. As a consequence, it may be difficult at times to stay in touch with what happens within the project without being overwhelmed with a never-ending flood of notifications."
 msgstr ""
 
 #. Tag: para
@@ -1926,7 +1930,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "For more information about the evolution of Debian and what is happening at some point in time in various teams, there's also the <email>debian-devel-announce@lists.debian.org</email> list. As its name implies, the announcements it carries will probably be more interesting to developers, but it also allows interested parties to keep an eye on what happens in more concrete terms than just when a stable version is released. While <email>debian-announce</email> gives news about the user-visible results, <email>debian-devel-announce</email> gives news about how these results are produced. As a side note, “d-d-a” (as it is sometimes referred to) is one of the two mandatory lists that Debian developers must be subscribed to."
+msgid "For more information about the evolution of Debian and what is happening at some point in time in various teams, there's also the <email>debian-devel-announce@lists.debian.org</email> list. As its name implies, the announcements it carries will probably be more interesting to developers, but it also allows interested parties to keep an eye on what happens in more concrete terms than just when a stable version is released. While <email>debian-announce</email> gives news about the user-visible results, <email>debian-devel-announce</email> gives news about how these results are produced. As a side note, “d-d-a” (as it is sometimes referred to) is the only list that Debian developers must be subscribed to."
 msgstr ""
 
 #. Tag: indexterm
@@ -2281,11 +2285,6 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "Chronological path of a program packaged by Debian"
-msgstr ""
-
-#. Tag: title
-#, no-c-format
 msgid "<emphasis>CULTURE</emphasis> GNOME and KDE, graphical desktop environments"
 msgstr ""
 
@@ -2294,3 +2293,7 @@ msgstr ""
 msgid "GNOME (GNU Network Object Model Environment) and KDE (K Desktop Environment) are the two most popular graphical desktop environments in the free software world. A desktop environment is a set of programs grouped together to allow easy management of the most common operations through a graphical interface. They generally include a file manager, office suite, web browser, e-mail program, multimedia accessories, etc. The most visible difference resides in the choice of the graphical library used: GNOME has chosen GTK+ (free software licensed under the LGPL), and KDE has selected Qt (a company-backed project, available nowadays both under the GPL and a commercial license). <ulink type=\"block\" url=\"http://www.gnome.org/\" /> <ulink type=\"block\" url=\"http://www.kde.org/\" />"
 msgstr ""
 
+#. Tag: title
+#, no-c-format
+msgid "Chronological path of a program packaged by Debian"
+msgstr ""

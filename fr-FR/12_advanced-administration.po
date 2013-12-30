@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Debian Administrator's Handbook\n"
-"POT-Creation-Date: 2013-12-17 10:27+0100\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2013-12-20 18:32+0100\n"
 "Last-Translator: Raphaël Hertzog <hertzog@debian.org>\n"
 "Language-Team: none\n"
@@ -328,11 +328,6 @@ msgstr "sur le disque <filename>sdd</filename>, seule la partition <filename>sdd
 msgid "finally, a <filename>sde</filename> disk, still 4 GB, entirely available."
 msgstr "enfin, un disque <filename>sde</filename>, toujours de 4 Go, est entièrement disponible."
 
-#. Tag: para
-#, no-c-format
-msgid "We're going to use these physical elements to build two volumes, one RAID-0 and one mirror (RAID-1). Let's start with the RAID-0 volume:"
-msgstr "Nous allons construire sur ces éléments physiques deux volumes, l'un en RAID-0, l'autre en miroir. Commençons par le RAID-0 :"
-
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Identifying existing RAID volumes"
@@ -342,6 +337,11 @@ msgstr "<emphasis>NOTE</emphasis> Identifier les volumes RAID existants"
 #, no-c-format
 msgid "The <filename>/proc/mdstat</filename> file lists existing volumes and their states. When creating a new RAID volume, care should be taken not to name it the same as an existing volume."
 msgstr "Le fichier <filename>/proc/mdstat</filename> liste les volumes existants et leur état. On prendra soin lors de la création d'un nouveau volume RAID de ne pas essayer de le nommer avec le nom d'un volume existant."
+
+#. Tag: para
+#, no-c-format
+msgid "We're going to use these physical elements to build two volumes, one RAID-0 and one mirror (RAID-1). Let's start with the RAID-0 volume:"
+msgstr "Nous allons construire sur ces éléments physiques deux volumes, l'un en RAID-0, l'autre en miroir. Commençons par le RAID-0 :"
 
 #. Tag: screen
 #, no-c-format
@@ -3989,4 +3989,3 @@ msgstr "<emphasis>POUR ALLER PLUS LOIN</emphasis> Tests distants avec NRPE"
 #, no-c-format
 msgid "Many Nagios plugins allow checking some parameters local to a host; if many machines need these checks while a central installation gathers them, the NRPE (<emphasis>Nagios Remote Plugin Executor</emphasis>) plugin needs to be deployed. The <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> package needs to be installed on the Nagios server, and <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> on the hosts where local tests need to run. The latter gets its configuration from <filename>/etc/nagios/nrpe.cfg</filename>. This file should list the tests that can be started remotely, and the IP addresses of the machines allowed to trigger them. On the Nagios side, enabling these remote tests is a simple matter of adding matching services using the new <emphasis>check_nrpe</emphasis> command."
 msgstr "De nombreux greffons de Nagios permettent de vérifier l'état de certains paramètres locaux d'une machine. Si l'on souhaite effectuer ces vérifications sur de nombreuses machines tout en centralisant les résultats sur une seule installation, il faut employer le greffon NRPE (<foreignphrase>Nagios Remote Plugin Executor</foreignphrase>). On installe <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> sur le serveur Nagios et <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> sur les machines sur lesquelles on veut exécuter certains tests locaux. Ce dernier se configure par le biais du fichier <filename>/etc/nagios/nrpe.cfg</filename>. On y indique les tests que l'on peut démarrer à distance ainsi que les adresses IP des machines qui sont autorisées à les déclencher. Du côté de Nagios, il suffit d'ajouter les services correspondants en faisant appel à la nouvelle commande <emphasis>check_nrpe</emphasis>."
-

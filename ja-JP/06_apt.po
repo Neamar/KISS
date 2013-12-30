@@ -1,13 +1,14 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-10-31T14:54:17\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2012-10-31T14:54:17\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -49,7 +50,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, the features of which Falcot Corp administrators studied with enthusiasm."
+msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, that Falcot Corp administrators studied with enthusiasm."
 msgstr ""
 
 #. Tag: para
@@ -69,7 +70,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.gz</filename> or <filename>Packages.bz2</filename> files (in case of a source of binary packages) and <filename>Sources.gz</filename> or <filename>Sources.bz2</filename> files (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"encadre.apt-pdiff\" />)."
+msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.{gz,bz2,lzma,xz}</filename> files (in case of a source of binary packages) and <filename>Sources.{gz,bz2,lzma,xz}</filename> (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"sidebar.apt-pdiff\" />)."
 msgstr ""
 
 #. Tag: indexterm
@@ -109,7 +110,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "A <filename>.gz</filename> extension refers to a file compressed with the <command>gzip</command> utility. <command>gzip</command> is the fast and efficient traditional Unix utility to compress files. Newer tools achieve better rates of compression but require more calculation time to compress a file. Among them, and by order of appearance, there are <command>bzip2</command> (generating files with a <filename>.bz2</filename> extension), <command>lzma</command> (generating <filename>.lzma</filename> files) and <command>xz</command> (generating <filename>.xz</filename> files)."
+msgid "A <filename>.gz</filename> extension refers to a file compressed with the <command>gzip</command> utility. <command>gzip</command> is the fast and efficient traditional Unix utility to compress files. Newer tools achieve better rates of compression but require more resources (computation time and memory) to compress and uncompress a file. Among them, and by order of appearance, there are <command>bzip2</command> (generating files with a <filename>.bz2</filename> extension), <command>lzma</command> (generating <filename>.lzma</filename> files) and <command>xz</command> (generating <filename>.xz</filename> files)."
 msgstr ""
 
 #. Tag: title
@@ -124,7 +125,7 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>source of packages</primary>"
+msgid "<primary>source</primary><secondary>of packages</secondary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -135,6 +136,11 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/sources.list</filename></primary>"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Syntax"
 msgstr ""
 
 #. Tag: para
@@ -159,89 +165,67 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM based installations, although this is less frequent, since network-based installation methods are more and more common."
+msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM/DVD-ROM/Blu-ray disc based installations, although this is less frequent, since network-based installation methods are more and more common."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The syntax of the last field depends on whether the source corresponds to a Debian mirror or not. In the case of a Debian mirror, name the chosen distribution (<literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal> or their current code names — see the list in sidebar <xref linkend=\"cadre.bruce-perens\" />), then the sections to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal>). In all other cases, simply indicate the subdirectory of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL)."
+msgid "The syntax of the last field depends on the structure of the repository. In the simplest cases, you can simply indicate a subdirectory (with a required trailing slash) of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL). But in the most common case, the repositories will be structured like a Debian mirror, with multiple distributions each having multiple components. In those cases, name the chosen distribution (by its “codename” — see the list in sidebar <xref linkend=\"sidebar.bruce-perens\" /> — or by the corresponding “suites” — <literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal>), then the components (or sections) to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal> in a typical Debian mirror)."
 msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis>VOCABULARY</emphasis> The <foreignphrase>main</foreignphrase>, <foreignphrase>contrib</foreignphrase> and <foreignphrase>non-free</foreignphrase> archives"
+msgid "<emphasis>VOCABULARY</emphasis> The <literal>main</literal>, <literal>contrib</literal> and <literal>non-free</literal> archives"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgid "<primary>section</primary><secondary><literal>main</literal></secondary>"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary><foreignphrase>main</foreignphrase>, section</primary>"
+msgid "<primary><literal>main</literal>, section</primary>"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>section</primary><secondary><foreignphrase>contrib</foreignphrase></secondary>"
+msgid "<primary>section</primary><secondary><literal>contrib</literal></secondary>"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary><foreignphrase>contrib</foreignphrase>, section</primary>"
+msgid "<primary><literal>contrib</literal>, section</primary>"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>section</primary><secondary><foreignphrase>non-free</foreignphrase></secondary>"
+msgid "<primary>section</primary><secondary><literal>non-free</literal></secondary>"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary><foreignphrase>non-free</foreignphrase>, section</primary>"
+msgid "<primary><literal>non-free</literal>, section</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>component (of a repository)</primary>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Debian uses three sections to differentiate packages according to the licenses chosen by the authors of each work. <foreignphrase>Main</foreignphrase> (the main archive) gathers all packages which fully comply with the Debian Free Software Guidelines."
+msgid "Debian uses three sections to differentiate packages according to the licenses chosen by the authors of each work. <literal>Main</literal> gathers all packages which fully comply with the Debian Free Software Guidelines."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <foreignphrase>non-free</foreignphrase> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed without restrictions. This archive, which is not officially part of Debian, is a service for users who could need some of those programs — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
+msgid "The <literal>non-free</literal> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed without restrictions. This archive, which is not officially part of Debian, is a service for users who could need some of those programs — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<foreignphrase>Contrib</foreignphrase> (contributions) is a stock of open source software which cannot function without some non-free elements. These elements can be software from the <foreignphrase>non-free</foreignphrase> section, or non-free files such as game ROMs, BIOS of consoles, etc. <foreignphrase>Contrib</foreignphrase> also includes free software whose compilation requires proprietary elements. This was initially the case for the OpenOffice.org office suite, which used to require a proprietary Java environment."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Generally, the contents of a standard <filename>sources.list</filename> file can be the following:"
-msgstr ""
-
-#. Tag: title
-#, no-c-format
-msgid "<filename>/etc/apt/sources.list</filename> file"
-msgstr ""
-
-#. Tag: programlisting
-#, no-c-format
-msgid "# Security updates\n"
-"deb http://security.debian.org/ stable/updates main contrib non-free\n"
-"deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
-"\n"
-"# Debian mirror\n"
-"deb http://ftp.debian.org/debian stable main contrib non-free\n"
-"deb-src http://ftp.debian.org/debian stable main contrib non-free\n"
-""
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "This file lists all sources of packages associated with the stable version of Debian. If you would like to use <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, you will of course have to add (or replace them with) the appropriate lines. When the desired version of a package is available on several mirrors, the first one listed in the <filename>sources.list</filename> file will be used. For this reason, non-official sources are usually added at the end of the file."
+msgid "<literal>Contrib</literal> (contributions) is a set of open source software which cannot function without some non-free elements. These elements can be software from the <literal>non-free</literal> section, or non-free files such as game ROMs, BIOS of consoles, etc. <literal>Contrib</literal> also includes free software whose compilation requires proprietary elements. This was initially the case for the OpenOffice.org office suite, which used to require a proprietary Java environment."
 msgstr ""
 
 #. Tag: title
@@ -251,7 +235,59 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "If many package sources are referenced, it can be useful to split them in multiple files. Each part is then stored in <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> (see sidebar <xref linkend=\"cadre-repertoire.d\" />)."
+msgid "If many package sources are referenced, it can be useful to split them in multiple files. Each part is then stored in <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> (see sidebar <xref linkend=\"sidebar.directory.d\" />)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>apt-cdrom</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <literal>cdrom</literal> entries describe the CD/DVD-ROMs you have. Contrary to other entries, a CD-ROM is not always available since it has to be inserted into the drive and since only one disc can be read at a time. For those reasons, these sources are managed in a slightly different way, and need to be added with the <command>apt-cdrom</command> program, usually executed with the <literal>add</literal> parameter. The latter will then request the disc to be inserted in the drive and will browse its contents looking for <filename>Packages</filename> files. It will use these files to update its database of available packages (this operation is usually done by the <command>apt-get update</command> command). From then on, APT can require the disc to be inserted if it needs one of its packages."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Repositories for <emphasis role=\"distribution\">Stable</emphasis> Users"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Here is a standard <filename>sources.list</filename> for a system running the <emphasis role=\"distribution\">Stable</emphasis> version of Debian:"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian Stable"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid ""
+"# Security updates\n"
+"deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ wheezy/updates main contrib non-free\n"
+"\n"
+"## Debian mirror\n"
+"\n"
+"# Base repository\n"
+"deb http://ftp.debian.org/debian wheezy main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy main contrib non-free\n"
+"\n"
+"# Stable updates\n"
+"deb http://ftp.debian.org/debian wheezy-updates main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-updates main contrib non-free\n"
+"\n"
+"# Stable backports\n"
+"deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This file lists all sources of packages associated with the <emphasis role=\"distribution\">Wheezy</emphasis> version of Debian (the current <emphasis role=\"distribution\">Stable</emphasis> as of this writing). We opted to name “wheezy” explicitly instead of using the corresponding “stable“ alias (<literal>stable</literal>, <literal>stable-updates</literal>, <literal>stable-backports</literal>) because we don't want to have the underlying distribution changed outside of our control when the next stable release comes out."
 msgstr ""
 
 #. Tag: title
@@ -274,24 +310,59 @@ msgstr ""
 msgid "The mirror selected during installation is generally suitable since its selection is based on the country. However, if the download is a little slow, or after a move, you can try running the application available in the <emphasis role=\"pkg\">apt-spy</emphasis> package."
 msgstr ""
 
-#. Tag: indexterm
+#. Tag: para
 #, no-c-format
-msgid "<primary><command>apt-cdrom</command></primary>"
+msgid "Most packages will come from the “base repository” which contains all packages but is seldom updated (about once every 2 months for a “point release”). The other repositories are partial (they do not contain all packages) and can host updates (packages with newer version) that APT might install. The following sections will explain the purpose and the rules governing each of those repositories."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>sources.list</filename> file contains several other entry types: some describe the Debian CD-ROMs you have. Contrary to other entries, a CD-ROM is not always available since it has to be inserted into the drive and since only one disc can be read at a time — consequently, these sources are managed in a slightly different way. These entries need to be added with the <command>apt-cdrom</command> program, usually executed with the <literal>add</literal> parameter. The latter will then request the disc to be inserted in the drive and will browse its contents looking for <filename>Packages</filename> files. It will use these files to update its database of available packages (this is usually done by the <command>aptitude update</command> command). From then on, APT can require the disc to be inserted if it needs one of its packages."
+msgid "Note that when the desired version of a package is available on several repositories, the first one listed in the <filename>sources.list</filename> file will be used. For this reason, non-official sources are usually added at the end of the file."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "As a side note, most of what this section says about <emphasis role=\"distribution\">Stable</emphasis> applies equally well to <emphasis role=\"distribution\">Oldstable</emphasis> since the latter is just an older <emphasis role=\"distribution\">Stable</emphasis> that is maintained in parallel."
 msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "Other Available Official Repositories"
+msgid "Security Updates"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>security.debian.org</literal></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>security updates</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>updates</primary><secondary>security updates</secondary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The security updates are not hosted on the usual network of Debian mirrors but on <literal>security.debian.org</literal> (on a small set of machines maintained by the <link linkend=\"dsa-team\">Debian System Administrators</link>). This archive contains security updates (prepared by the Debian Security Team and/or by package maintainers) for the <emphasis role=\"distribution\">Stable</emphasis> distribution."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The server can also host security updates for <emphasis role=\"distribution\">Testing</emphasis> but this doesn't happen very often since those updates tend to reach <emphasis role=\"distribution\">Testing</emphasis> via the regular flow of updates coming from <emphasis role=\"distribution\">Unstable</emphasis>."
 msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis role=\"distribution\">Stable</emphasis> Updates"
+msgid "Stable Updates"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>stable updates</primary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -299,46 +370,69 @@ msgstr ""
 msgid "<primary><literal>stable-updates</literal></primary>"
 msgstr ""
 
-#. Tag: para
+#. Tag: indexterm
 #, no-c-format
-msgid "Once published, the <emphasis role=\"distribution\">Stable</emphasis> distribution is only updated about once every 2 months in order to integrate the security updates published on <literal>security.debian.org</literal>."
+msgid "<primary>updates</primary><secondary>stable updates</secondary>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "This minor release can also include updates for packages that have to evolve over time... like <emphasis role=\"pkg\">spamassassin</emphasis>'s spam detection rules, <emphasis role=\"pkg\">clamav</emphasis>'s virus database, or the daylight-saving rules of all timezones (<emphasis role=\"pkg\">tzdata</emphasis>)."
+msgid "Stable updates are not security sensitive but are deemed important enough to be pushed to users before the next stable point release."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "All those updates are prepared in a repository known as <literal>proposed-updates</literal>. Anyone can use this repository to test those updates before their official publication. The extract below uses the <literal>squeeze-proposed-updates</literal> alias which is both more explicit and more consistent since <literal>lenny-proposed-updates</literal> also exists (for the <emphasis role=\"distribution\">Oldstable</emphasis> updates):"
-msgstr ""
-
-#. Tag: programlisting
-#, no-c-format
-msgid "deb http://ftp.debian.org/debian squeeze-proposed-updates main contrib non-free\n"
-""
+msgid "This repository will typically contain fixes for critical bugs which could not be fixed before release or which have been introduced by subsequent updates. Depending on the urgency, it can also contain updates for packages that have to evolve over time… like <emphasis role=\"pkg\">spamassassin</emphasis>'s spam detection rules, <emphasis role=\"pkg\">clamav</emphasis>'s virus database, or the daylight-saving rules of all timezones (<emphasis role=\"pkg\">tzdata</emphasis>)."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once ready, the most important updates — those which cannot wait for the next minor Debian release — are published in the <literal>stable-updates</literal> repository (which most systems are expected to use):"
-msgstr ""
-
-#. Tag: programlisting
-#, no-c-format
-msgid "deb http://ftp.debian.org/debian stable-updates main contrib non-free\n"
-""
+msgid "In practice, this repository is a subset of the <literal>proposed-updates</literal> repository, carefully selected by the Stable Release Managers."
 msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "The Backports From <literal>backports.debian.org</literal>"
+msgid "Proposed Updates"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary><literal>backports.debian.org</literal></primary>"
+msgid "<primary><literal>proposed-updates</literal></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>stable-proposed-updates</literal></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Once published, the <emphasis role=\"distribution\">Stable</emphasis> distribution is only updated about once every 2 months. The <literal>proposed-updates</literal> repository is where the expected updates are prepared (under the supervision of the Stable Release Managers)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The security and stable updates documented in the former sections are always included in this repository, but there is more too, because package maintainers also have the opportunity to fix important bugs that do not deserve an immediate release."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Anyone can use this repository to test those updates before their official publication. The extract below uses the <literal>wheezy-proposed-updates</literal> alias which is both more explicit and more consistent since <literal>squeeze-proposed-updates</literal> also exists (for the <emphasis role=\"distribution\">Oldstable</emphasis> updates):"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Stable Backports"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>stable-backports</literal></primary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -346,20 +440,105 @@ msgstr ""
 msgid "<primary>backport</primary>"
 msgstr ""
 
-#. Tag: para
+#. Tag: indexterm
 #, no-c-format
-msgid "Unsurprisingly, the <literal>backports.debian.org</literal> server hosts “package backports”. The term refers to a package of some recent software which has been recompiled for an older distribution, generally for <emphasis role=\"distribution\">Stable</emphasis>. When the distribution becomes a little dated, numerous software projects have released new versions that are not integrated into the current <emphasis role=\"distribution\">Stable</emphasis> (which is only modified to address the most critical problems, such as security problems). Since the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> distributions can be more risky, some volunteers sometimes offer recompilations of recent software applications for <emphasis role=\"distribution\">Stable</emphasis>, which has the advantage to limit potential instability to a small number of chosen packages. <ulink type=\"block\" url=\"http://backports.debian.org/\" />"
+msgid "<primary>updates</primary><secondary>backports</secondary>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>sources.list</filename> entry for backports targeting the <emphasis role=\"distribution\">Squeeze</emphasis> distribution is the following:"
+msgid "The <literal>stable-backports</literal> repository hosts “package backports”. The term refers to a package of some recent software which has been recompiled for an older distribution, generally for <emphasis role=\"distribution\">Stable</emphasis>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When the distribution becomes a little dated, numerous software projects have released new versions that are not integrated into the current <emphasis role=\"distribution\">Stable</emphasis> (which is only modified to address the most critical problems, such as security problems). Since the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> distributions can be more risky, package maintainers sometimes offer recompilations of recent software applications for <emphasis role=\"distribution\">Stable</emphasis>, which has the advantage to limit potential instability to a small number of chosen packages. <ulink type=\"block\" url=\"http://backports.debian.org\" />"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The <literal>stable-backports</literal> repository is now available on the usual Debian mirrors. But backports for <emphasis role=\"distribution\">Squeeze</emphasis> are still hosted on a dedicated server (<literal>backports.debian.org</literal>), and requires the following <filename>sources.list</filename> entry:"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><literal>backports.debian.org</literal></primary>"
 msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
-""
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Backports from <literal>stable-backports</literal> are always created from packages available in <emphasis role=\"distribution\">Testing</emphasis>. This ensures that all installed backports will be upgradable to the corresponding stable version once the next stable release of Debian is available."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Even though this repository provides newer versions of packages, APT will not install them unless you give explicit instructions to do so (or unless you have already done so with a former version of the given backport):"
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid ""
+"\n"
+"$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Repositories for <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis> Users"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Here is a standard <filename>sources.list</filename> for a system running the <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> version of Debian:"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis>"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid ""
+"\n"
+"# Unstable\n"
+"deb http://ftp.debian.org/debian unstable main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian unstable main contrib non-free\n"
+"\n"
+"# Testing\n"
+"deb http://ftp.debian.org/debian testing main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian testing main contrib non-free\n"
+"\n"
+"# Stable\n"
+"deb http://ftp.debian.org/debian stable main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian stable main contrib non-free\n"
+"\n"
+"# Security updates\n"
+"deb http://security.debian.org/ stable/updates main contrib non-free\n"
+"deb http://security.debian.org/ testing/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "With this <filename>sources.list</filename> file APT will install packages from <emphasis role=\"distribution\">Unstable</emphasis>. If that is not desired, use the <literal>APT::Default-Release</literal> setting (see <xref linkend=\"sect.apt-upgrade\" />) to instruct APT to pick packages from another distribution (most likely <emphasis role=\"distribution\">Testing</emphasis> in this case)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "There are good reasons to include all those repositories, even though a single one should be enough. <emphasis role=\"distribution\">Testing</emphasis> users will appreciate the possibility to cherry-pick a fixed package from <emphasis role=\"distribution\">Unstable</emphasis> when the version in <emphasis role=\"distribution\">Testing</emphasis> is affected by an annoying bug. On the opposite, <emphasis role=\"distribution\">Unstable</emphasis> users bitten by unexpected regressions have the possibility to downgrade packages to their (supposedly working) <emphasis role=\"distribution\">Testing</emphasis> version."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "The inclusion of <emphasis role=\"distribution\">Stable</emphasis> is more debatable but it often gives access to some packages which have been removed from the development versions. It also ensures that you get the latest updates for packages which have not been modified since the last stable release."
 msgstr ""
 
 #. Tag: title
@@ -385,7 +564,6 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -410,7 +588,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>mentors.debian.net</literal> site is also interesting, since it gathers packages created by candidates to the status of official Debian developer or by volunteers who wish to create Debian packages without going through that process of integration. These packages are made available without any guarantee regarding their quality; make sure that you check their origin and integrity and then test them before you consider using them in production."
+msgid "The <literal>mentors.debian.net</literal> site is also interesting, since it gathers source packages created by candidates to the status of official Debian developer or by volunteers who wish to create Debian packages without going through that process of integration. These packages are made available without any guarantee regarding their quality; make sure that you check their origin and integrity and then test them before you consider using them in production."
 msgstr ""
 
 #. Tag: title
@@ -455,6 +633,79 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
+msgid "Caching Proxy for Debian Packages"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>proxy cache</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>cache, proxy</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When an entire network of machines is configured to use the same remote server to download the same updated packages, any administrator knows that it would be beneficial to have an intermediate proxy acting as a network-local cache (see sidebar <xref linkend=\"sidebar.cache\" />)."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "You can configure APT to use a \"standard\" proxy (see <xref linkend=\"sect.apt-config\" /> for the APT side, and <xref linkend=\"sect.http-ftp-proxy\" /> for the proxy side), but the Debian ecosystem offers better options to solve this problem. The dedicated software presented in this section are smarter than a plain proxy cache because they can rely on the specific structure of APT repositories (for instance they know when individual files are obsolete or not, and thus adjust the time during which they are kept)."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">apt-cacher</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">apt-cacher-ng</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis role=\"pkg\">apt-cacher</emphasis> and <emphasis role=\"pkg\">apt-cacher-ng</emphasis> work like usual proxy cache servers. APT's <filename>sources.list</filename> is left unchanged, but APT is configured to use them as proxy for outgoing requests."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">approx</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis role=\"pkg\">approx</emphasis>, on the other hand, acts like an HTTP server that “mirrors” any number of remote repositories in its top-level URLs. The mapping between those top-level directories and the remote URLs of the repositories is stored in <filename>/etc/approx/approx.conf</filename>:"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid ""
+"\n"
+"# &lt;name&gt; &lt;repository-base-url&gt;\n"
+"debian   http://ftp.debian.org/debian\n"
+"security http://security.debian.org\n"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis role=\"pkg\">approx</emphasis> runs by default on port 9999 via inetd (see <xref linkend=\"sect.inetd\" />) and requires the users to adjust their <filename>sources.list</filename> file to point to the approx server:"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid ""
+"# Sample sources.list pointing to a local approx server\n"
+"deb http://apt.falcot.com:9999/security wheezy/updates main contrib non-free\n"
+"deb http://apt.falcot.com:9999/debian wheezy main contrib non-free\n"
+"      "
+msgstr ""
+
+#. Tag: title
+#, no-c-format
 msgid "<command>aptitude</command> and <command>apt-get</command> Commands"
 msgstr ""
 
@@ -470,12 +721,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first interface — command-line based — which was developed within the project."
+msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first front end — command-line based — which was developed within the project."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Numerous other graphical interfaces then appeared as external projects: <command>synaptic</command>, <command>aptitude</command> (which includes both a text mode interface and a graphical one — even if not complete yet), <command>wajig</command>, etc. The most recommended interface, <command>aptitude</command>, is the one used during the installation of Debian. Since its command-line syntax is very similar to <command>apt-get</command>'s, we will be focusing on <command>aptitude</command> in the examples given in this section. When there are major differences between <command>aptitude</command> and <command>apt-get</command>, these differences will be detailed."
+msgid "Numerous other graphical interfaces then appeared as external projects: <command>synaptic</command>, <command>aptitude</command> (which includes both a text mode interface and a graphical one — even if not complete yet), <command>wajig</command>, etc. The most recommended interface, <command>apt-get</command>, is the one used during the installation of Debian, and the one that we will use in the examples given in this section. Note however that <command>aptitude</command>'s command-line syntax is very similar. When there are major differences between <command>apt-get</command> and <command>aptitude</command>, these differences will be detailed."
 msgstr ""
 
 #. Tag: title
@@ -485,7 +736,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "For any work with APT, the list of available packages needs to be updated; this can be done simply through <command>aptitude update</command>. Depending on the speed of your connection, the operation can take a while since it involves downloading a certain number of <filename>Packages.(gz|bz2)</filename> files (or even <filename>Sources.(gz|bz2)</filename>), which have gradually become bigger and bigger as Debian has developed (more than 8 MB for the largest <filename>Packages.gz</filename> — from the <literal>main</literal> section). Of course, installing from a CD-ROM set does not require any downloading — in this case, the operation is very fast."
+msgid "For any work with APT, the list of available packages needs to be updated; this can be done simply through <command>apt-get update</command>. Depending on the speed of your connection, the operation can take a while since it involves downloading a certain number of <filename>Packages</filename>/<filename>Sources</filename>/<filename>Translation-<replaceable>language-code</replaceable></filename> files, which have gradually become bigger and bigger as Debian has developed (at least 10 MB of data for the <literal>main</literal> section). Of course, installing from a CD-ROM set does not require any downloading — in this case, the operation is very fast."
 msgstr ""
 
 #. Tag: indexterm
@@ -515,7 +766,7 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>installation</primary><secondary>of packages</secondary>"
+msgid "<primary>installation</primary><secondary>package installation</secondary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -525,7 +776,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "With APT, packages can be added or removed from the system, respectively with <command>aptitude install <replaceable>package</replaceable></command> and <command>aptitude remove <replaceable>package</replaceable></command>. In both cases, APT will automatically install the necessary dependencies or delete the packages which depend on the package that is being removed. The <command>aptitude purge <replaceable>package</replaceable></command> or <command>apt-get purge <replaceable>package</replaceable></command> commands involve a complete uninstallation — the configuration files are also deleted."
+msgid "With APT, packages can be added or removed from the system, respectively with <command>apt-get install <replaceable>package</replaceable></command> and <command>apt-get remove <replaceable>package</replaceable></command>. In both cases, APT will automatically install the necessary dependencies or delete the packages which depend on the package that is being removed. The <command>apt-get purge <replaceable>package</replaceable></command> command involves a complete uninstallation — the configuration files are also deleted."
 msgstr ""
 
 #. Tag: indexterm
@@ -576,7 +827,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -586,14 +836,21 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>dpkg --set-selections &lt;pkg-list</userinput>\n"
-"<computeroutput># </computeroutput><userinput>apt-get dselect-upgrade</userinput>\n"
-""
+msgid ""
+"## Update dpkg's database of known packages\n"
+"# <userinput>avail=`mktemp`</userinput>\n"
+"# <userinput>apt-cache dumpavail &gt; \"$avail\"</userinput>\n"
+"# <userinput>dpkg --merge-avail \"$avail\"</userinput>\n"
+"# <userinput>rm -f \"$avail\"</userinput>\n"
+"## Update dpkg's selections\n"
+"# <userinput>dpkg --set-selections &lt; pkg-list</userinput>\n"
+"## Ask apt-get to install the selected packages\n"
+"# <userinput>apt-get dselect-upgrade</userinput>\n"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The first command registers the list of packages you wish to install, then the <command>apt-get</command> invocation executes the required operations! <command>aptitude</command> does not have this command."
+msgid "The first commands records the list of available packages in the dpkg database, then <command>dpkg --set-selections</command> restores the selection of packages that you wish to install, and the <command>apt-get</command> invocation executes the required operations! <command>aptitude</command> does not have this command."
 msgstr ""
 
 #. Tag: title
@@ -603,7 +860,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "It is possible to ask <command>aptitude</command> (or <command>apt-get</command>) to install certain packages and remove others on the same command line by adding a suffix. With an <command>aptitude install</command> command, add “<literal>-</literal>” to the names of the packages you wish to remove. With an <command>aptitude remove</command> command, add “<literal>+</literal>” to the names of the packages you wish to install."
+msgid "It is possible to ask <command>apt-get</command> (or <command>aptitude</command>) to install certain packages and remove others on the same command line by adding a suffix. With an <command>apt-get install</command> command, add “<literal>-</literal>” to the names of the packages you wish to remove. With an <command>apt-get remove</command> command, add “<literal>+</literal>” to the names of the packages you wish to install."
 msgstr ""
 
 #. Tag: para
@@ -613,11 +870,16 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>aptitude install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
+msgid ""
+"# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
 "[...]\n"
-"<computeroutput># </computeroutput><userinput>aptitude remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
+"# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
 "[...]\n"
-""
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This can also be used to exclude packages which would otherwise be installed, for example due to a <literal>Recommends</literal>. In general, the dependency solver will use that information as a hint to look for alternative solutions."
 msgstr ""
 
 #. Tag: title
@@ -638,7 +900,6 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -658,7 +919,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "If the file <filename>sources.list</filename> mentions several distributions, it is possible to give the version of the package to install. A specific version number can be requested with <command>aptitude install <replaceable>package</replaceable>=<replaceable>version</replaceable></command>, but indicating its distribution of origin (<emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>) — with <command>aptitude install <replaceable>package</replaceable>/<replaceable>distribution</replaceable></command> — is usually preferred. With this command, it is possible to go back to an older version of a package (if for instance you know that it works well), provided that it is still available in one of the sources referenced by the <filename>sources.list</filename> file. Otherwise the <literal>snapshot.debian.org</literal> archive can come to the rescue (see sidebar <xref linkend=\"cadre.snapshot.debian.org\" />)."
+msgid "If the file <filename>sources.list</filename> mentions several distributions, it is possible to give the version of the package to install. A specific version number can be requested with <command>apt-get install <replaceable>package</replaceable>=<replaceable>version</replaceable></command>, but indicating its distribution of origin (<emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>) — with <command>apt-get install <replaceable>package</replaceable>/<replaceable>distribution</replaceable></command> — is usually preferred. With this command, it is possible to go back to an older version of a package (if for instance you know that it works well), provided that it is still available in one of the sources referenced by the <filename>sources.list</filename> file. Otherwise the <literal>snapshot.debian.org</literal> archive can come to the rescue (see sidebar <xref linkend=\"sidebar.snapshot.debian.org\" />)."
 msgstr ""
 
 #. Tag: title
@@ -668,8 +929,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>aptitude install spamassassin/unstable</userinput>\n"
-""
+msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
 msgstr ""
 
 #. Tag: title
@@ -679,7 +939,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "APT keeps a copy of each downloaded <filename>.deb</filename> file in the directory <filename>/var/cache/apt/archives/</filename>. In case of frequent updates, this directory can quickly take a lot of disk space with several versions of each package; you should regularly sort through them. Two commands can be used: <command>aptitude clean</command> entirely empties the directory; <command>aptitude autoclean</command> only removes packages which cannot be downloaded (because they have disappeared from the Debian mirror) and are therefore clearly useless (the configuration parameter <literal>APT::Clean-Installed</literal> can prevent the removal of <filename>.deb</filename> files that are currently installed)."
+msgid "APT keeps a copy of each downloaded <filename>.deb</filename> file in the directory <filename>/var/cache/apt/archives/</filename>. In case of frequent updates, this directory can quickly take a lot of disk space with several versions of each package; you should regularly sort through them. Two commands can be used: <command>apt-get clean</command> entirely empties the directory; <command>apt-get autoclean</command> only removes packages which cannot be downloaded (because they have disappeared from the Debian mirror) and are therefore clearly useless (the configuration parameter <literal>APT::Clean-Installed</literal> can prevent the removal of <filename>.deb</filename> files that are currently installed)."
 msgstr ""
 
 #. Tag: title
@@ -689,42 +949,7 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>upgrade</primary><secondary>of the system</secondary>"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Regular upgrades are recommended, because they include the latest security updates. To upgrade, use <command>aptitude safe-upgrade</command> or <command>apt-get upgrade</command> (of course after <command>aptitude update</command>). This command looks for installed packages which can be upgraded without removing any packages. In other words, the goal is to ensure the least intrusive upgrade possible. <command>apt-get</command> is slightly more demanding than <command>aptitude</command> because it will refuse to install packages which were not installed beforehand."
-msgstr ""
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>TIP</emphasis> Incremental upgrade"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "As we explained earlier, the aim of the <command>aptitude update</command> command is to download for each package source the corresponding <filename>Packages</filename> (or <filename>Sources</filename>) file. However, even after a <command>bzip2</command> compression, these files can remain rather large (the <filename>Packages.bz2</filename> for the <foreignphrase>main</foreignphrase> section of <emphasis role=\"distribution\">Squeeze</emphasis> takes more than 8 MB). If you wish to upgrade regularly, these downloads can take up a lot of time."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "A “new feature” (available since <emphasis role=\"distribution\">Etch</emphasis>) is that APT can now download the changes since the previous update, as opposed to the entire file. To achieve this, official Debian mirrors distribute different files which list the differences between one version of the <filename>Packages</filename> file and the following version. They are generated at each update of the archives and a history of one week is kept. Each of these “diff” files only takes a few dozen kilobytes for <emphasis role=\"distribution\">Unstable</emphasis>, so that the amount of data downloaded by a weekly <command>aptitude update</command> is often divided by 10. For distributions like <emphasis role=\"distribution\">Stable</emphasis> and <emphasis role=\"distribution\">Testing</emphasis>, which change less, the gain is even more noticeable."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "However, it can sometimes be of interest to force the download of the entire <filename>Packages.bz2</filename> file, especially when the last upgrade is very old and when the mechanism of incremental differences would not contribute much. This can also be interesting when network access is very fast but when the processor of the machine to upgrade is rather slow, since the time saved on the download is more than lost when the computer calculates the new versions of these files (starting with the older versions and applying the downloaded differences). To do that, you can use the configuration parameter <literal>Acquire::Pdiffs</literal> and set it to <literal>false</literal>."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "<command>aptitude</command> will generally select the most recent version number (except for <emphasis role=\"distribution\">Experimental</emphasis> packages, which are ignored by default whatever their version number). If you specified <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> in your <filename>sources.list</filename>, <command>aptitude safe-upgrade</command> will switch most of your <emphasis role=\"distribution\">Stable</emphasis> system to <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, which might not be what you intended."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "To tell <command>aptitude</command> to use a specific distribution when searching for upgraded packages, you need to use the option <literal>-t</literal> or <literal>--target-release</literal>, followed by the name of the distribution you want (for example: <command>aptitude -t stable safe-upgrade</command>). To avoid specifying this option every time you use <command>aptitude</command>, you can add <literal>APT::Default-Release \"stable\";</literal> in the file <filename>/etc/apt/apt.conf.d/local</filename>."
+msgid "<primary>upgrade</primary><secondary>system upgrade</secondary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -739,12 +964,37 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "For more important upgrades, such as the change from one major Debian version to the next, you need to use <command>aptitude full-upgrade</command> (the option used to be named <literal>dist-upgrade</literal>, for “distribution upgrade”). With this instruction, <command>aptitude</command> will complete the upgrade even if it has to remove some obsolete packages or install new dependencies. This is also the command used by users who work daily with the Debian <emphasis role=\"distribution\">Unstable</emphasis> release and follow its evolution day by day. It is so simple that it hardly needs explanation: APT's reputation is based on this great functionality."
+msgid "Regular upgrades are recommended, because they include the latest security updates. To upgrade, use <command>apt-get upgrade</command> or <command>aptitude safe-upgrade</command> (of course after <command>apt-get update</command>). This command looks for installed packages which can be upgraded without removing any packages. In other words, the goal is to ensure the least intrusive upgrade possible. <command>apt-get</command> is slightly more demanding than <command>aptitude</command> because it will refuse to install packages which were not installed beforehand."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>TIP</emphasis> Incremental upgrade"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<command>aptitude dist-upgrade</command> is still available as a synonym for <command>aptitude full-upgrade</command>; <command>apt-get</command> only recognizes the former."
+msgid "As we explained earlier, the aim of the <command>apt-get update</command> command is to download for each package source the corresponding <filename>Packages</filename> (or <filename>Sources</filename>) file. However, even after a <command>bzip2</command> compression, these files can remain rather large (the <filename>Packages.bz2</filename> for the <foreignphrase>main</foreignphrase> section of <emphasis role=\"distribution\">Wheezy</emphasis> takes more than 5 MB). If you wish to upgrade regularly, these downloads can take up a lot of time."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "To speed up the process APT can download “diff” files containing the changes since the previous update, as opposed to the entire file. To achieve this, official Debian mirrors distribute different files which list the differences between one version of the <filename>Packages</filename> file and the following version. They are generated at each update of the archives and a history of one week is kept. Each of these “diff” files only takes a few dozen kilobytes for <emphasis role=\"distribution\">Unstable</emphasis>, so that the amount of data downloaded by a weekly <command>aptitude update</command> is often divided by 10. For distributions like <emphasis role=\"distribution\">Stable</emphasis> and <emphasis role=\"distribution\">Testing</emphasis>, which change less, the gain is even more noticeable."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "However, it can sometimes be of interest to force the download of the entire <filename>Packages</filename> file, especially when the last upgrade is very old and when the mechanism of incremental differences would not contribute much. This can also be interesting when network access is very fast but when the processor of the machine to upgrade is rather slow, since the time saved on the download is more than lost when the computer calculates the new versions of these files (starting with the older versions and applying the downloaded differences). To do that, you can use the configuration parameter <literal>Acquire::Pdiffs</literal> and set it to <literal>false</literal>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>apt-get</command> will generally select the most recent version number (except for packages from <emphasis role=\"distribution\">Experimental</emphasis> and <emphasis role=\"distribution\">stable-backports</emphasis>, which are ignored by default whatever their version number). If you specified <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> in your <filename>sources.list</filename>, <command>apt-get upgrade</command> will switch most of your <emphasis role=\"distribution\">Stable</emphasis> system to <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, which might not be what you intended."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "To tell <command>apt-get</command> to use a specific distribution when searching for upgraded packages, you need to use the <literal>-t</literal> or <literal>--target-release</literal> option, followed by the name of the distribution you want (for example: <command>apt-get -t stable upgrade</command>). To avoid specifying this option every time you use <command>apt-get</command>, you can add <literal>APT::Default-Release \"stable\";</literal> in the file <filename>/etc/apt/apt.conf.d/local</filename>."
 msgstr ""
 
 #. Tag: indexterm
@@ -760,6 +1010,16 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude full-upgrade</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For more important upgrades, such as the change from one major Debian version to the next, you need to use <command>apt-get dist-upgrade</command> (“distribution upgrade”). With this instruction, <command>apt-get</command> will complete the upgrade even if it has to remove some obsolete packages or install new dependencies. This is also the command used by users who work daily with the Debian <emphasis role=\"distribution\">Unstable</emphasis> release and follow its evolution day by day. It is so simple that it hardly needs explanation: APT's reputation is based on this great functionality."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>aptitude full-upgrade</command> is <command>aptitude</command>'s corresponding command although <command>dist-upgrade</command> is also recognized (but deprecated)."
 msgstr ""
 
 #. Tag: title
@@ -789,7 +1049,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "If the Web can only be accessed through a proxy, add a line like <literal>Acquire::http::proxy \"http://<replaceable>yourproxy</replaceable>:3128\"</literal>. For an FTP proxy, write <literal>Acquire::ftp::proxy \"ftp://<replaceable>yourproxy</replaceable>\"</literal>. To discover more configuration options, read the <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page with the command <command>man apt.conf</command> (for details on manual pages, see next chapter)."
+msgid "If the Web can only be accessed through a proxy, add a line like <literal>Acquire::http::proxy \"http://<replaceable>yourproxy</replaceable>:3128\"</literal>. For an FTP proxy, write <literal>Acquire::ftp::proxy \"ftp://<replaceable>yourproxy</replaceable>\"</literal>. To discover more configuration options, read the <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page with the <command>man apt.conf</command> command (for details on manual pages, see <xref linkend=\"sect.manual-pages\" />)."
 msgstr ""
 
 #. Tag: title
@@ -809,7 +1069,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "This structure brings some flexibility to the machine administrator and to the package maintainers. Indeed, the administrator can easily modify the configuration of the software by adding a ready-made file in the directory in question without having to change an existing file. Package maintainers use the same approach when they need to adapt the configuration of another software to ensure that it perfectly co-exists with theirs. However, the Debian policy explicitly forbids modifying configuration files of other packages — only users are allowed to do this. Remember that during a package upgrade, the user gets to choose the version of the configuration file that should be kept when a modification has been detected. Any external modification of the file would trigger that request, which would disturb the administrator, who is sure not to have changed anything."
+msgid "This structure brings some flexibility to the machine administrator and to the package maintainers. Indeed, the administrator can easily modify the configuration of the software by adding a ready-made file in the directory in question without having to change an existing file. Package maintainers use the same approach when they need to adapt the configuration of another software to ensure that it perfectly co-exists with theirs. The Debian policy explicitly forbids modifying configuration files of other packages — only users are allowed to do this. Remember that during a package upgrade, the user gets to choose the version of the configuration file that should be kept when a modification has been detected. Any external modification of the file would trigger that request, which would disturb the administrator, who is sure not to have changed anything."
 msgstr ""
 
 #. Tag: para
@@ -819,7 +1079,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Depending on the application, the <filename>.d</filename> directory is used directly or managed by an external script which will concatenate all the files to create the configuration file itself. It is important to execute the script after any change in that directory so that the most recent modifications are taken into account. In the same way, it is important not to work directly in the configuration file created automatically, since everything would be lost at the next execution of the script. Choosing one method (<filename>.d</filename> directory used directly or a file generated from that directory) is usually imposed by implementation constraints, but in both cases the gains in terms of configuration flexibility more than make up for the small complications that they entail. The Exim 4 mail server is an example of the generated file method: it can be configured through several files (<filename>/etc/exim4/conf.d/*</filename>) which are concatenated into <filename>/var/lib/exim4/config.autogenerated</filename> by the <command>update-exim4.conf</command> command."
+msgid "Depending on the application, the <filename>.d</filename> directory is used directly or managed by an external script which will concatenate all the files to create the configuration file itself. It is important to execute the script after any change in that directory so that the most recent modifications are taken into account. In the same way, it is important not to work directly in the configuration file created automatically, since everything would be lost at the next execution of the script. The chosen method (<filename>.d</filename> directory used directly or a file generated from that directory) is usually dictated by implementation constraints, but in both cases the gains in terms of configuration flexibility more than make up for the small complications that they entail. The Exim 4 mail server is an example of the generated file method: it can be configured through several files (<filename>/etc/exim4/conf.d/*</filename>) which are concatenated into <filename>/var/lib/exim4/config.autogenerated</filename> by the <command>update-exim4.conf</command> command."
 msgstr ""
 
 #. Tag: title
@@ -839,7 +1099,17 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
+msgid "<primary>pinning, APT pinning</primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
 msgid "<primary>package</primary><secondary>priority</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>priority</primary><secondary>package priority</secondary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -859,12 +1129,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "APT defines several default priorities. Each installed package version has a priority of 100. A non-installed version has a priority of 500 by default, but it can jump to 990 if it is part of the target release (defined with the <literal>-t</literal> command-line option or the <literal>APT::Target-Release</literal> configuration directive)."
+msgid "APT defines several default priorities. Each installed package version has a priority of 100. A non-installed version has a priority of 500 by default, but it can jump to 990 if it is part of the target release (defined with the <literal>-t</literal> command-line option or the <literal>APT::Default-Release</literal> configuration directive)."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "You can modify the priorities by adding entries in the file <filename>/etc/apt/preferences</filename> with the names of the affected packages, their version, their origin and their new priority."
+msgid "You can modify the priorities by adding entries in the <filename>/etc/apt/preferences</filename> file with the names of the affected packages, their version, their origin and their new priority."
 msgstr ""
 
 #. Tag: para
@@ -874,12 +1144,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In more concrete terms, a package whose priority is less than 0 will never be installed. A package with a priority ranging between 0 and 100 will only be installed if no other version of the package is already installed. With a priority between 100 and 500, the package will only be installed if there is no other newer version installed or available in another distribution. A package of priority between 500 and 990 will only be installed if there is no newer version installed or available in the target distribution. With a priority between 990 and 1000, the package will be installed except if the installed version is newer. A priority greater than 1000 will always lead to the installation of the package even if it forces APT to downgrade to an older version."
+msgid "In more concrete terms, a package whose priority is less than 0 will never be installed. A package with a priority ranging between 0 and 100 will only be installed if no other version of the package is already installed. With a priority between 100 and 500, the package will only be installed if there is no other newer version installed or available in another distribution. A package of priority between 501 and 990 will only be installed if there is no newer version installed or available in the target distribution. With a priority between 990 and 1000, the package will be installed except if the installed version is newer. A priority greater than 1000 will always lead to the installation of the package even if it forces APT to downgrade to an older version."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "When APT checks <filename>/etc/apt/preferences</filename>, it first takes into account the most specific entries (often those specifying the concerned package), then the more generic ones (including for example all the packages of a distribution). If several generic entries exist, the first match is used. The available selection criteria include the package's name and the source providing it. Every package source is identified by the information contained in a <filename>Release</filename> file that APT downloads together with the <filename>Packages.gz</filename> files. It specifies the origin (usually “Debian” for the packages of official mirrors, but it can also be a person's or an organization's name for third-parties repositories). It also gives the name of the distribution (usually <emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis> for the standard distributions provided by Debian) together with its version (for example 5.0 for Debian <emphasis role=\"distribution\">Lenny</emphasis>). Let's have a look at its syntax through some realistic case studies of this mechanism."
+msgid "When APT checks <filename>/etc/apt/preferences</filename>, it first takes into account the most specific entries (often those specifying the concerned package), then the more generic ones (including for example all the packages of a distribution). If several generic entries exist, the first match is used. The available selection criteria include the package's name and the source providing it. Every package source is identified by the information contained in a <filename>Release</filename> file that APT downloads together with the <filename>Packages</filename> files. It specifies the origin (usually “Debian” for the packages of official mirrors, but it can also be a person's or an organization's name for third-parties repositories). It also gives the name of the distribution (usually <emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis> for the standard distributions provided by Debian) together with its version (for example 5.0 for Debian <emphasis role=\"distribution\">Lenny</emphasis>). Let's have a look at its syntax through some realistic case studies of this mechanism."
 msgstr ""
 
 #. Tag: title
@@ -894,10 +1164,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: *\n"
+msgid ""
+"Package: *\n"
 "Pin: release a=experimental\n"
 "Pin-Priority: 500\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -907,14 +1177,14 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: *\n"
+msgid ""
+"Package: *\n"
 "Pin: release a=stable\n"
 "Pin-Priority: 900\n"
 "\n"
 "Package: *\n"
 "Pin: release o=Debian\n"
 "Pin-Priority: -10\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -924,15 +1194,15 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Let's now assume that you have a server with several local programs depending on the version 5.10 of Perl and that you want to ensure that upgrades will not install another version of it. You could use this entry:"
+msgid "Let's now assume that you have a server with several local programs depending on the version 5.14 of Perl and that you want to ensure that upgrades will not install another version of it. You could use this entry:"
 msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: perl\n"
-"Pin: version 5.10*\n"
+msgid ""
+"Package: perl\n"
+"Pin: version 5.14*\n"
 "Pin-Priority: 1001\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -967,12 +1237,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Explanation: The package xserver-xorg-video-intel provided\n"
+msgid ""
+"Explanation: The package xserver-xorg-video-intel provided\n"
 "Explanation: in experimental can be used safely\n"
 "Package: xserver-xorg-video-intel\n"
 "Pin: release a=experimental\n"
 "Pin-Priority: 500\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -982,22 +1252,22 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<command>aptitude</command> being such a marvelous tool, it is tempting to pick packages coming from other distributions. For example, after having installed a <emphasis role=\"distribution\">Stable</emphasis> system, you might want to try out a software package available in <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> without diverging too much from the system's initial state."
+msgid "<command>apt-get</command> being such a marvelous tool, it is tempting to pick packages coming from other distributions. For example, after having installed a <emphasis role=\"distribution\">Stable</emphasis> system, you might want to try out a software package available in <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> without diverging too much from the system's initial state."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Even if you will occasionally encounter problems while mixing packages from different distributions, <command>aptitude</command> manages such coexistence very well and limits risks very effectively. The best way to proceed is to list all distributions used in <filename>/etc/apt/sources.list</filename> (some people always put the three distributions, but remember that <emphasis role=\"distribution\">Unstable</emphasis> is reserved for experienced users) and to define your reference distribution with the <literal>APT::Default-Release</literal> parameter (see <xref linkend=\"section.apt-mise-a-jour\" />)."
+msgid "Even if you will occasionally encounter problems while mixing packages from different distributions, <command>apt-get</command> manages such coexistence very well and limits risks very effectively. The best way to proceed is to list all distributions used in <filename>/etc/apt/sources.list</filename> (some people always put the three distributions, but remember that <emphasis role=\"distribution\">Unstable</emphasis> is reserved for experienced users) and to define your reference distribution with the <literal>APT::Default-Release</literal> parameter (see <xref linkend=\"sect.apt-upgrade\" />)."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Let's suppose that <emphasis role=\"distribution\">Stable</emphasis> is your reference distribution but that <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> are also listed in your <filename>sources.list</filename> file. In this case, you can use <command>aptitude install <replaceable>package</replaceable>/testing</command> to install a package from <emphasis role=\"distribution\">Testing</emphasis>. If the installation fails due to some unsatisfiable dependencies, let it solve those dependencies within <emphasis role=\"distribution\">Testing</emphasis> by adding the <literal>-t testing</literal> parameter. The same obviously applies to <emphasis role=\"distribution\">Unstable</emphasis>."
+msgid "Let's suppose that <emphasis role=\"distribution\">Stable</emphasis> is your reference distribution but that <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> are also listed in your <filename>sources.list</filename> file. In this case, you can use <command>apt-get install <replaceable>package</replaceable>/testing</command> to install a package from <emphasis role=\"distribution\">Testing</emphasis>. If the installation fails due to some unsatisfiable dependencies, let it solve those dependencies within <emphasis role=\"distribution\">Testing</emphasis> by adding the <literal>-t testing</literal> parameter. The same obviously applies to <emphasis role=\"distribution\">Unstable</emphasis>."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In this situation, upgrades (<command>safe-upgrade</command> and <command>dist-upgrade</command>) are done within <emphasis role=\"distribution\">Stable</emphasis> except for packages already upgraded to an other distribution: those will follow updates available in the other distributions. We'll explain this behavior with the help of the default priorities set by APT below. Do not hesitate to use <command>apt-cache policy</command> (see sidebar) to verify the given priorities."
+msgid "In this situation, upgrades (<command>upgrade</command> and <command>dist-upgrade</command>) are done within <emphasis role=\"distribution\">Stable</emphasis> except for packages already upgraded to another distribution: those will follow updates available in the other distributions. We'll explain this behavior with the help of the default priorities set by APT below. Do not hesitate to use <command>apt-cache policy</command> (see sidebar) to verify the given priorities."
 msgstr ""
 
 #. Tag: para
@@ -1027,10 +1297,99 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: *\n"
+msgid ""
+"Package: *\n"
 "Pin: release a=unstable\n"
 "Pin-Priority: 490\n"
-""
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Tracking Automatically Installed Packages"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "One of the essential functionalities of <command>apt-get</command> (which was initially specific to <command>aptitude</command>) is the tracking of packages installed only through dependencies. These packages are called “automatic”, and often include libraries for instance."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "With this information, when packages are removed, the package managers can compute a list of automatic packages that are no longer needed (because there's no “manually installed” packages depending on them). <command>apt-get autoremove</command> will get rid of those packages. <command>aptitude</command> does not have this command because it removes them automatically as soon as they are identified. Both programs include a clear message listing the affected packages."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>apt-mark auto</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>apt-mark manual</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>aptitude markauto</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>aptitude unmarkauto</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "It is a good habit to mark as automatic any package that you don't need directly so that they are automatically removed when they aren't necessary anymore. <command>apt-mark auto <replaceable>package</replaceable></command> will mark the given package as automatic whereas <command>apt-mark manual <replaceable>package</replaceable></command> does the opposite. <command>aptitude markauto</command> and <command>aptitude unmarkauto</command> work in the same way although they offer more features for marking many packages at once (see <xref linkend=\"sect.aptitude\" />). The console-based interactive interface of <command>aptitude</command> also makes it easy to review the “automatic flag” on many packages."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>aptitude why</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "People might want to know why an automatically installed package is present on the system. To get this information from the command line, you can use <command>aptitude why <replaceable>package</replaceable></command> (<command>apt-get</command> has no similar feature):"
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid ""
+"$ <userinput>aptitude why python-debian</userinput>\n"
+"i   aptitude         Recommends apt-xapian-index         \n"
+"i A apt-xapian-index Depends    python-debian (&gt;= 0.1.15)\n"
+"      "
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>ALTERNATIVE</emphasis> <command>deborphan</command> and <command>debfoster</command>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>deborphan</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>debfoster</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "In days where <command>apt-get</command> and <command>aptitude</command> were not able to track automatic packages, there were two utilities producing lists of unnecessary packages: <command>deborphan</command> and <command>debfoster</command>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>deborphan</command> is the most rudimentary of both. It simply scans the <literal>libs</literal> and <literal>oldlibs</literal> sections (in the absence of supplementary instructions) looking for the packages that are currently installed and that no other packages depends on. The resulting list can then serve as a basis to remove unneeded packages."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>debfoster</command> has a more elaborate approach, very similar to APT's one: it maintains a list of packages that have been explicitly installed, and remembers what packages are really required between each invocation. If new packages appear on the system and if <command>debfoster</command> doesn't know them as required packages, they will be shown on the screen together with a list of their dependencies. The program then offers a choice: remove the package (possibly together with those that depend on it), mark it as explicitly required, or ignore it temporarily."
 msgstr ""
 
 #. Tag: title
@@ -1065,7 +1424,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>apt-cache</command> command can display much of the information stored in APT's internal database. This information is a sort of cache since it is gathered from the different sources listed in the <filename>sources.list</filename> file. This happens during the <command>aptitude update</command> operation."
+msgid "The <command>apt-cache</command> command can display much of the information stored in APT's internal database. This information is a sort of cache since it is gathered from the different sources listed in the <filename>sources.list</filename> file. This happens during the <command>apt-get update</command> operation."
 msgstr ""
 
 #. Tag: title
@@ -1083,14 +1442,94 @@ msgstr ""
 msgid "In the case of APT, the reference <filename>Packages</filename> files are those located on Debian mirrors. That said, it would be very ineffective to go through the network for every search that we might want to do in the database of available packages. That is why APT stores a copy of those files (in <filename>/var/lib/apt/lists/</filename>) and searches are done within those local files. Similarly, <filename>/var/cache/apt/archives/</filename> contains a cache of already downloaded packages to avoid downloading them again if you need to reinstall them after a removal."
 msgstr ""
 
-#. Tag: para
+#. Tag: indexterm
 #, no-c-format
-msgid "The <command>apt-cache</command> command can do keyword-based package searches with <command>apt-cache search <replaceable>keyword</replaceable></command>. It can also display the headers of the package's available versions with <command>apt-cache show <replaceable>package</replaceable></command>. This command provides the package's description, its dependencies, the name of its maintainer, etc. Note that <command>aptitude search</command> and <command>aptitude show</command> work in the same way. <indexterm><primary><command>apt-cache show</command></primary></indexterm><indexterm><primary><command>apt-cache search</command></primary></indexterm><indexterm><primary><command>aptitude show</command></primary></indexterm><indexterm><primary><command>aptitude search</command></primary></indexterm>"
+msgid "<primary><command>apt-cache show</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>apt-cache search</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>aptitude show</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>aptitude search</command></primary>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Some features are more rarely used. For instance, <command>apt-cache policy</command> displays the priorities of package sources as well as those of individual packages. Another example is <command>apt-cache dumpavail</command> which displays the headers of all available versions of all packages. <command>apt-cache pkgnames</command> displays the list of all the packages which appear at least once in the cache.<indexterm><primary><command>apt-cache policy</command></primary></indexterm><indexterm><primary><command>apt-cache dumpavail</command></primary></indexterm>"
+msgid "The <command>apt-cache</command> command can do keyword-based package searches with <command>apt-cache search <replaceable>keyword</replaceable></command>. It can also display the headers of the package's available versions with <command>apt-cache show <replaceable>package</replaceable></command>. This command provides the package's description, its dependencies, the name of its maintainer, etc. Note that <command>aptitude search</command> and <command>aptitude show</command> work in the same way."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "<emphasis>ALTERNATIVE</emphasis> <command>axi-cache</command>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>axi-cache</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">apt-xapian-index</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>apt-cache search</command> is a very rudimentary tool, basically implementing <command>grep</command> on package's descriptions. It often returns too many results or none at all when you include too many keywords."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<command>axi-cache search <replaceable>term</replaceable></command>, on the other hand, provides better results, sorted by relevancy. It uses the <emphasis>Xapian</emphasis> search engine and is part of the <emphasis role=\"pkg\">apt-xapian-index</emphasis> package whichs indexes all package information (and more, like the <filename>.desktop</filename> files from all Debian packages). It knows about tags (see sidebar <xref linkend=\"sidebar.debtags\" />) and returns results in a matter of milliseconds."
+msgstr ""
+
+#. Tag: screen
+#, no-c-format
+msgid ""
+"$ <userinput>axi-cache search package use::searching</userinput>\n"
+"105 results found.\n"
+"Results 1-20:\n"
+"100% packagesearch - GUI for searching packages and viewing package information\n"
+"98% debtags - Enables support for package tags\n"
+"94% debian-goodies - Small toolbox-style utilities \n"
+"93% dpkg-awk - Gawk script to parse /var/lib/dpkg/{status,available} and Packages\n"
+"93% goplay - games (and more) package browser using DebTags\n"
+"[...]\n"
+"87% apt-xapian-index - maintenance and search tools for a Xapian index of Debian packages\n"
+"[...]\n"
+"More terms: search debian searching strigi debtags bsearch libbsearch\n"
+"More tags: suite::debian works-with::software:package role::program interface::commandline implemented-in::c++ admin::package-management use::analysing\n"
+"`axi-cache more' will give more results\n"
+"      "
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>apt-cache policy</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>apt-cache dumpavail</command></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>apt-cache pkgnames</command></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Some features are more rarely used. For instance, <command>apt-cache policy</command> displays the priorities of package sources as well as those of individual packages. Another example is <command>apt-cache dumpavail</command> which displays the headers of all available versions of all packages. <command>apt-cache pkgnames</command> displays the list of all the packages which appear at least once in the cache."
 msgstr ""
 
 #. Tag: title
@@ -1148,47 +1587,9 @@ msgstr ""
 msgid "To search for a package, you can type <keycombo><keycap>/</keycap></keycombo> followed by a search pattern. This pattern matches the name of the package, but can also be applied to the description (if preceded by <literal>~d</literal>), to the section (with <literal>~s</literal>) or to other characteristics detailed in the documentation. The same patterns can filter the list of displayed packages: type the <keycombo><keycap>l</keycap></keycombo> key (as in <foreignphrase>limit</foreignphrase>) and enter the pattern."
 msgstr ""
 
-#. Tag: title
-#, no-c-format
-msgid "Tracking Automatically Installed Packages"
-msgstr ""
-
 #. Tag: para
 #, no-c-format
-msgid "One of the essential functionalities of <command>aptitude</command> (which has also been integrated to <command>apt-get</command> since <emphasis role=\"distribution\">Lenny</emphasis>) is the tracking of packages installed only through dependencies. These packages are called “automatic” and are tagged with an “A” in the list of packages — they often include libraries for instance. When a package is removed, the corresponding automatic packages are also selected for removal unless another “manually installed” package depends on them. It is possible to mark a package as automatic (with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>) or to remove the mark (<keycombo><keycap>m</keycap></keycombo> key). When maintaining a system with <command>aptitude</command>, it is a good habit to mark as automatic any package that you don't need directly so that they are automatically removed when they aren't necessary anymore. You can either navigate the list of installed packages and play with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo>, or apply the flag to entire sections (for example the <literal>libs</literal> section). This habit can help you to keep your system tidy and offers a simple way to visualize the packages in use on a machine, without all the libraries and dependencies that you don't really care about. The related pattern that can be used with <keycombo><keycap>l</keycap></keycombo> (to activate the filter mode) is <literal>~i!~M</literal>. It specifies that you only want to see installed packages (<literal>~i</literal>) not marked as automatic (<literal>!~M</literal>)."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "People might want to know why an automatically installed package is present on the system. To get this information from the command-line, you can use <command>aptitude why <replaceable>package</replaceable></command>:"
-msgstr ""
-
-#. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput> aptitude why python-debian</userinput>\n"
-"<computeroutput>i   aptitude         Recommends apt-xapian-index         \n"
-"i A apt-xapian-index Depends    python-debian (&gt;= 0.1.15)</computeroutput>\n"
-"      "
-msgstr ""
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>aptitude why</command></primary>"
-msgstr ""
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>WORTH FOLLOWING</emphasis> Recent evolutions of <command>apt-get</command> and <command>aptitude</command>"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Some of the advantages that <command>aptitude</command> historically had over <command>apt-get</command> have recently disappeared. For instance, since the release of <emphasis role=\"distribution\">Lenny</emphasis>, <command>apt-get</command> memorizes the packages that have been installed only to satisfy dependencies, just like <command>aptitude</command> has always done. It can also follow recommendations expressed by one package on another."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Among the recent evolutions of <command>aptitude</command>, a new version with a graphical interface is currently being developed. Even if it's available in <emphasis role=\"distribution\">Squeeze</emphasis> (in the separate <emphasis role=\"pkg\">aptitude-gtk</emphasis> package), it's not complete yet and is subject to stability issues."
+msgid "Managing the “automatic flag” of Debian packages (see <xref linkend=\"sect.automatic-tracking\" />) is a breeze with <command>aptitude</command>. It is possible to browse the list of installed packages and mark packages as automatic with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo> or to remove the mark with the <keycombo><keycap>m</keycap></keycombo> key. “Automatic packages” are tagged with an “A” in the list of packages. This feature also offers a simple way to visualize the packages in use on a machine, without all the libraries and dependencies that you don't really care about. The related pattern that can be used with <keycombo><keycap>l</keycap></keycombo> (to activate the filter mode) is <literal>~i!~M</literal>. It specifies that you only want to see installed packages (<literal>~i</literal>) not marked as automatic (<literal>!~M</literal>)."
 msgstr ""
 
 #. Tag: title
@@ -1203,13 +1604,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The advanced features of <command>aptitude</command> are also available on the command-line. You can use the same package search patterns as in the interactive version. For example, if you want to run the previously suggested cleanup of “automatic” packages, and if you know that none of the locally installed programs require any particular libraries or Perl modules, you can mark the corresponding packages as automatic with a single command:"
+msgid "The advanced features of <command>aptitude</command> are also available on the command-line. You can use the same package search patterns as in the interactive version. For example, if you want to cleanup the list of “manually installed” packages, and if you know that none of the locally installed programs require any particular libraries or Perl modules, you can mark the corresponding packages as automatic with a single command:"
 msgstr ""
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
-""
 msgstr ""
 
 #. Tag: para
@@ -1224,47 +1624,27 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis>ALTERNATIVE</emphasis> <command>deborphan</command> and <command>debfoster</command>"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Before <command>aptitude</command> came to life with its tracking of automatic packages, there were two utilities producing lists of unnecessary packages: <command>deborphan</command> and <command>debfoster</command>."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "<command>deborphan</command> is the most rudimentary of both. It simply scans the <literal>libs</literal> and <literal>oldlibs</literal> sections (in the absence of supplementary instructions) looking for the packages that are currently installed and that no other packages depends on. The resulting list can then serve as a basis to remove unneeded packages."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "<command>debfoster</command> has a more elaborate approach, very similar to <command>aptitude</command>'s: it maintains a list of packages that have been explicitly installed, and remembers what packages are really required between each invocation. If new packages appear on the system and if <command>debfoster</command> doesn't know them as required packages, they will be shown on the screen together with a list of their dependencies. The program then offers a choice: remove the package (possibly together with those that depend on it), mark it as explicitly required, or ignore it temporarily."
-msgstr ""
-
-#. Tag: title
-#, no-c-format
 msgid "Managing Recommendations, Suggestions and Tasks"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Another interesting feature of <command>aptitude</command> is the fact that it respects recommendations between packages while still giving users the choice not to install them on a case by case basis. For example, the <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> package recommends <emphasis role=\"pkg\">gnome-accessibility</emphasis> (among others). When you select the former for installation, the latter will also be selected (and marked as automatic if not already installed on the system). Typing <keycombo><keycap>g</keycap></keycombo> will make it obvious: <emphasis role=\"pkg\">gnome-accessibility</emphasis> appears on the summary screen of pending actions in the list of packages installed automatically to satisfy dependencies. However, you can decide not to install it by deselecting it before confirming the operations."
+msgid "Another interesting feature of <command>aptitude</command> is the fact that it respects recommendations between packages while still giving users the choice not to install them on a case by case basis. For example, the <emphasis role=\"pkg\">gnome</emphasis> package recommends <emphasis role=\"pkg\">gdebi</emphasis> (among others). When you select the former for installation, the latter will also be selected (and marked as automatic if not already installed on the system). Typing <keycombo><keycap>g</keycap></keycombo> will make it obvious: <emphasis role=\"pkg\">gdebi</emphasis> appears on the summary screen of pending actions in the list of packages installed automatically to satisfy dependencies. However, you can decide not to install it by deselecting it before confirming the operations."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Note that this recommendation tracking feature does not apply to upgrades. For instance, if a new version of <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> recommends a package that it did not recommend formerly, the package won't be marked for installation. However, it will be listed on the upgrade screen so that the administrator can still select it for installation."
+msgid "Note that this recommendation tracking feature does not apply to upgrades. For instance, if a new version of <emphasis role=\"pkg\">gnome</emphasis> recommends a package that it did not recommend formerly, the package won't be marked for installation. However, it will be listed on the upgrade screen so that the administrator can still select it for installation."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Suggestions between packages are also taken into account, but in a manner adapted to their specific status. For example, since <emphasis role=\"pkg\">gnome-desktop-environment</emphasis> suggests <emphasis role=\"pkg\">gnome-audio</emphasis>, the latter will be displayed on the summary screen of pending actions (in the section of packages suggested by other packages). This way, it is visible and the administrator can decide whether to take the suggestion into account or not. Since it is only a suggestion and not a dependency or a recommendation, the package will not be selected automatically — its selection requires a manual intervention from the user (thus, the package will not be marked as automatic)."
+msgid "Suggestions between packages are also taken into account, but in a manner adapted to their specific status. For example, since <emphasis role=\"pkg\">gnome</emphasis> suggests <emphasis role=\"pkg\">dia-gnome</emphasis>, the latter will be displayed on the summary screen of pending actions (in the section of packages suggested by other packages). This way, it is visible and the administrator can decide whether to take the suggestion into account or not. Since it is only a suggestion and not a dependency or a recommendation, the package will not be selected automatically — its selection requires a manual intervention from the user (thus, the package will not be marked as automatic)."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In the same spirit, remember that <command>aptitude</command> makes intelligent use of the concept of task. Since tasks are displayed as categories in the screens of package lists, you can either select a full task for installation or removal, or browse the list of packages included in the task to select a smaller subset."
+msgid "In the same spirit, remember that <command>aptitude</command> makes intelligent use of the concept of task. Since tasks are displayed as categories in the screens of packages lists, you can either select a full task for installation or removal, or browse the list of packages included in the task to select a smaller subset."
 msgstr ""
 
 #. Tag: title
@@ -1324,12 +1704,17 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>pacakage</primary><secondary>signature</secondary>"
+msgid "<primary>package</primary><secondary>signature</secondary>"
 msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>signature</primary><secondary>of a package</secondary>"
+msgid "<primary>signature</primary><secondary>package signature</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>authentication</primary><secondary>package authentication</secondary>"
 msgstr ""
 
 #. Tag: para
@@ -1347,38 +1732,53 @@ msgstr ""
 msgid "<primary><command>apt-key</command></primary>"
 msgstr ""
 
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">debian-archive-keyring</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>/etc/apt/trusted.gpg.d/</filename></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>Release.gpg</filename></primary>"
+msgstr ""
+
 #. Tag: para
 #, no-c-format
-msgid "The trusted keys are managed with the <command>apt-key</command> command found in the <emphasis role=\"pkg\">apt</emphasis> package. This program maintains a keyring of GnuPG public keys, which are used to verify signatures in the <filename>Release.gpg</filename> files available on the mirrors. It can be used to add new keys manually (when non-official mirrors are needed). Generally however, only the official Debian keys are needed. These keys are automatically kept up-to-date by the <emphasis role=\"pkg\">debian-archive-keyring</emphasis> package (which invokes <command>apt-key</command> when it is installed or upgraded). However, the first installation of this particular package requires caution: even if the package is signed like any other, the signature cannot be verified externally. Cautious administrators should therefore check the fingerprints of imported keys before trusting them to install new packages:"
+msgid "The trusted keys are managed with the <command>apt-key</command> command found in the <emphasis role=\"pkg\">apt</emphasis> package. This program maintains a keyring of GnuPG public keys, which are used to verify signatures in the <filename>Release.gpg</filename> files available on the mirrors. It can be used to add new keys manually (when non-official mirrors are needed). Generally however, only the official Debian keys are needed. These keys are automatically kept up-to-date by the <emphasis role=\"pkg\">debian-archive-keyring</emphasis> package (which puts the corresponding keyrings in <filename>/etc/apt/trusted.gpg.d</filename>). However, the first installation of this particular package requires caution: even if the package is signed like any other, the signature cannot be verified externally. Cautious administrators should therefore check the fingerprints of imported keys before trusting them to install new packages:"
 msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-key fingerprint</userinput>\n"
-"<computeroutput>/etc/apt/trusted.gpg\n"
-"--------------------\n"
-"pub   1024D/F42584E6 2008-04-06 [expires: 2012-05-15]\n"
-"    Key fingerprint = 7F5A 4445 4C72 4A65 CBCD  4FB1 4D27 0D06 F425 84E6\n"
-"uid                  Lenny Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
-"\n"
-"pub   4096R/55BE302B 2009-01-27 [expires: 2012-12-31]\n"
-"    Key fingerprint = 150C 8614 919D 8446 E01E  83AF 9AA3 8DCD 55BE 302B\n"
-"uid                  Debian Archive Automatic Signing Key (5.0/lenny) &lt;ftpmaster@debian.org&gt;\n"
-"\n"
-"pub   2048R/6D849617 2009-01-24 [expires: 2013-01-23]\n"
-"    Key fingerprint = F6CF DE30 6133 3CE2 A43F  DAF0 DFD9 9330 6D84 9617\n"
-"uid                  Debian-Volatile Archive Automatic Signing Key (5.0/lenny)\n"
-"\n"
-"pub   4096R/B98321F9 2010-08-07 [expires: 2017-08-05]\n"
-"    Key fingerprint = 0E4E DE2C 7F3E 1FC0 D033  800E 6448 1591 B983 21F9\n"
-"uid                  Squeeze Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
-"\n"
+msgid ""
+"# <userinput>apt-key fingerprint</userinput>\n"
+"/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
+"------------------------------------------------------------\n"
 "pub   4096R/473041FA 2010-08-27 [expires: 2018-03-05]\n"
-"    Key fingerprint = 9FED 2BCB DCD2 9CDF 7626  78CB AED4 B06F 4730 41FA\n"
+"      Key fingerprint = 9FED 2BCB DCD2 9CDF 7626  78CB AED4 B06F 4730 41FA\n"
 "uid                  Debian Archive Automatic Signing Key (6.0/squeeze) &lt;ftpmaster@debian.org&gt;\n"
 "\n"
-"</computeroutput>\n"
-""
+"/etc/apt/trusted.gpg.d//debian-archive-squeeze-stable.gpg\n"
+"---------------------------------------------------------\n"
+"pub   4096R/B98321F9 2010-08-07 [expires: 2017-08-05]\n"
+"      Key fingerprint = 0E4E DE2C 7F3E 1FC0 D033  800E 6448 1591 B983 21F9\n"
+"uid                  Squeeze Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
+"\n"
+"/etc/apt/trusted.gpg.d//debian-archive-wheezy-automatic.gpg\n"
+"-----------------------------------------------------------\n"
+"pub   4096R/46925553 2012-04-27 [expires: 2020-04-25]\n"
+"      Key fingerprint = A1BD 8E9D 78F7 FE5C 3E65  D8AF 8B48 AD62 4692 5553\n"
+"uid                  Debian Archive Automatic Signing Key (7.0/wheezy) &lt;ftpmaster@debian.org&gt;\n"
+"\n"
+"/etc/apt/trusted.gpg.d//debian-archive-wheezy-stable.gpg\n"
+"--------------------------------------------------------\n"
+"pub   4096R/65FFB764 2012-05-08 [expires: 2019-05-07]\n"
+"      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
+"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
 msgstr ""
 
 #. Tag: title
@@ -1391,9 +1791,14 @@ msgstr ""
 msgid "<primary>trusted key</primary>"
 msgstr ""
 
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>key</primary><secondary>APT's authentication keys</secondary>"
+msgstr ""
+
 #. Tag: para
 #, no-c-format
-msgid "When a third-party package source is added to the <filename>sources.list</filename> file, APT needs to be told about the corresponding GPG trusted key (otherwise it will keep complaining that it can't ensure the authenticity of the packages coming from that repository). The first step is of course to get the public key. More often than not, the key will be provided as a small text file, which we'll call <filename>key.asc</filename> in the following examples."
+msgid "When a third-party package source is added to the <filename>sources.list</filename> file, APT needs to be told to trust the corresponding GPG authentication key (otherwise it will keep complaining that it can't ensure the authenticity of the packages coming from that repository). The first step is of course to get the public key. More often than not, the key will be provided as a small text file, which we'll call <filename>key.asc</filename> in the following examples."
 msgstr ""
 
 #. Tag: para
@@ -1401,9 +1806,14 @@ msgstr ""
 msgid "To add the key to the trusted keyring, the administrator can run <command>apt-key add &lt; key.asc</command>. Another way is to use the <command>synaptic</command> graphical interface: its “Authentication” tab in the <menuchoice><guimenu>Settings</guimenu> <guisubmenu>Repositories</guisubmenu></menuchoice> menu gives the possibility of importing a key from the <filename>key.asc</filename> file."
 msgstr ""
 
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">gui-apt-key</emphasis></primary>"
+msgstr ""
+
 #. Tag: para
 #, no-c-format
-msgid "For people who would want a dedicated application and more details on the trusted keys, it is possible to use <command>gui-apt-key</command> (in the package of the same name), a small graphical user interface which manages the trusted keyring. <indexterm><primary><emphasis role=\"pkg\">gui-apt-key</emphasis></primary></indexterm>"
+msgid "For people who would want a dedicated application and more details on the trusted keys, it is possible to use <command>gui-apt-key</command> (in the package of the same name), a small graphical user interface which manages the trusted keyring."
 msgstr ""
 
 #. Tag: para
@@ -1418,7 +1828,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "One of the best-known features of Debian is its ability to upgrade an installed system from one stable release to the next: <foreignphrase>dist-upgrade</foreignphrase> — a well-known phrase — has largely contributed to the project's reputation. With a few precautions, upgrading a computer can take as little as a few, or a few dozen, minutes depending on the download speed from the package repositories."
+msgid "One of the best-known features of Debian is its ability to upgrade an installed system from one stable release to the next: <foreignphrase>dist-upgrade</foreignphrase> — a well-known phrase — has largely contributed to the project's reputation. With a few precautions, upgrading a computer can take as little as a few minutes, or a few dozen minutes, depending on the download speed from the package repositories."
 msgstr ""
 
 #. Tag: title
@@ -1443,68 +1853,37 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Release notes are available online: the release notes for the current stable release have a dedicated URL, while older release notes can be found with their codenames: <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/releasenotes\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/lenny/releasenotes\" />"
+msgid "Release notes are available online: the release notes for the current stable release have a dedicated URL, while older release notes can be found with their codenames: <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/releasenotes\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/releasenotes\" />"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In this section, we will focus on upgrading a <emphasis role=\"distribution\">Lenny</emphasis> system to <emphasis role=\"distribution\">Squeeze</emphasis>. This is a major operation on a system; as such, it is never 100% risk-free, and should not be attempted before all important data has been backed up."
+msgid "In this section, we will focus on upgrading a <emphasis role=\"distribution\">Squeeze</emphasis> system to <emphasis role=\"distribution\">Wheezy</emphasis>. This is a major operation on a system; as such, it is never 100% risk-free, and should not be attempted before all important data has been backed up."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Another good habit which makes the upgrade easier (and shorter) is to tidy your installed packages and keep only the ones that are really needed. Helpful tools to do that include <command>aptitude</command>, <command>deborphan</command> and <command>debfoster</command> (see <xref linkend=\"aptitude\" />). For example, you can use the following command:"
+msgid "Another good habit which makes the upgrade easier (and shorter) is to tidy your installed packages and keep only the ones that are really needed. Helpful tools to do that include <command>aptitude</command>, <command>deborphan</command> and <command>debfoster</command> (see <xref linkend=\"sect.automatic-tracking\" />). For example, you can use the following command, and then use <command>aptitude</command>'s interactive mode to double check and fine-tune the scheduled removals:"
 msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>deborphan | xargs aptitude remove</userinput>\n"
-""
+msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Now for the upgrading itself. First, you need to change the <filename>/etc/apt/sources.list</filename> file to tell APT to get its packages from <emphasis role=\"distribution\">Squeeze</emphasis> instead of <emphasis role=\"distribution\">Lenny</emphasis>. If the file only contains references to <emphasis role=\"distribution\">Stable</emphasis> rather than explicit codenames, the change isn't even required, since <emphasis role=\"distribution\">Stable</emphasis> always refers to the latest released version of Debian. In both cases, the database of available packages must be refreshed (with the <command>aptitude update</command> command or the refresh button in <command>synaptic</command>)."
+msgid "Now for the upgrading itself. First, you need to change the <filename>/etc/apt/sources.list</filename> file to tell APT to get its packages from <emphasis role=\"distribution\">Wheezy</emphasis> instead of <emphasis role=\"distribution\">Squeeze</emphasis>. If the file only contains references to <emphasis role=\"distribution\">Stable</emphasis> rather than explicit codenames, the change isn't even required, since <emphasis role=\"distribution\">Stable</emphasis> always refers to the latest released version of Debian. In both cases, the database of available packages must be refreshed (with the <command>apt-get update</command> command or the refresh button in <command>synaptic</command>)."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once these new package sources are registered, you need to upgrade the <emphasis role=\"pkg\">aptitude</emphasis> and <emphasis role=\"pkg\">apt</emphasis> packages; their versions in <emphasis role=\"distribution\">Lenny</emphasis> have some limitations that could compromise the automatic upgrade."
+msgid "Once these new package sources are registered, you should first do a minimal upgrade with <command>apt-get upgrade</command>. By doing the upgrade in two steps, we ease the job of the package management tools and often ensure that we have the latest versions of those, which might have accumulated bugfixes and improvements required to complete the full distribution upgrade."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Remember to upgrade (or install) the most essential packages listed below, otherwise you might find that your system is unbootable:"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "the bootloader <emphasis role=\"pkg\">grub-pc</emphasis> or <emphasis role=\"pkg\">grub-legacy</emphasis> (sometimes <emphasis role=\"pkg\">lilo</emphasis>);"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "the tools that build the initial ramdisk (initrd): <emphasis role=\"pkg\">initramfs-tools</emphasis>;"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "the standard library: <emphasis role=\"pkg\">libc6</emphasis> or one of its optimized variants such as <emphasis role=\"pkg\">libc6-i686</emphasis>;"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "the management system for device files: <emphasis role=\"pkg\">udev</emphasis>;"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "last but not least, the kernel: depending on the hardware, the metapackages to use are <emphasis role=\"pkg\">linux-image-486</emphasis>, <emphasis role=\"pkg\">linux-image-686</emphasis> or <emphasis role=\"pkg\">linux-image-686-bigmem</emphasis>. These packages will only work for the i386 architecture; owners of computers based on different hardware will use other packages, most likely <emphasis role=\"pkg\">linux-image-2.6-amd64</emphasis> for AMD64 or <emphasis role=\"pkg\">linux-image-powerpc*</emphasis> for PowerPC."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Once these first steps are done, it is time to handle the upgrade itself, either with <command>aptitude</command> or <command>synaptic</command>. You should carefully check the suggested actions before applying them: you might want to add suggested packages or deselect packages which are only recommended and known not to be useful. In any case, the front-end should come up with a scenario ending in a coherent and up-to-date <emphasis role=\"distribution\">Squeeze</emphasis> system. Then, all you need is to do is wait while the required packages are downloaded, answer the Debconf questions and possibly those about locally modified configuration files, and sit back while APT does its magic."
+msgid "Once this first upgrade is done, it is time to handle the upgrade itself, either with <command>apt-get dist-upgrade</command>, <command>aptitude</command>, or <command>synaptic</command>. You should carefully check the suggested actions before applying them: you might want to add suggested packages or deselect packages which are only recommended and known not to be useful. In any case, the front-end should come up with a scenario ending in a coherent and up-to-date <emphasis role=\"distribution\">Wheezy</emphasis> system. Then, all you need is to do is wait while the required packages are downloaded, answer the Debconf questions and possibly those about locally modified configuration files, and sit back while APT does its magic."
 msgstr ""
 
 #. Tag: title
@@ -1544,7 +1923,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Depending on the severity of the bug, a new version of the package may be prepared specifically for a new revision of the stable release. When this happens, the fixed package is made available in the <literal>proposed-updates</literal> section of the Debian mirrors (see <xref linkend=\"section.proposed-updates\" />). The corresponding entry can then be temporarily added to the <filename>sources.list</filename> file, and updated packages can be installed with <command>apt-get</command> or <command>aptitude</command>."
+msgid "Depending on the severity of the bug, a new version of the package may be prepared specifically for a new revision of the stable release. When this happens, the fixed package is made available in the <literal>proposed-updates</literal> section of the Debian mirrors (see <xref linkend=\"sect.proposed-updates\" />). The corresponding entry can then be temporarily added to the <filename>sources.list</filename> file, and updated packages can be installed with <command>apt-get</command> or <command>aptitude</command>."
 msgstr ""
 
 #. Tag: para
@@ -1569,12 +1948,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The first of these tools is <command>apticron</command>, in the package of the same name. Its main effect is to run a script daily (via <command>cron</command>). The script updates the list of available packages, and, if some installed packages are not in the latest available version, it sends an email with a list of these packages along with the changes that have been made in the new versions. Obviously, this package mostly targets users of Debian <emphasis role=\"distribution\">Stable</emphasis>, since the daily emails would be very long for the more mobile versions of Debian. When updates are available, <command>apticron</command> automatically downloads them. It does not install them — the administrator will still do it — but having the packages already downloaded and available locally (in APT's cache) makes the job faster."
+msgid "The first of these tools is <command>apticron</command>, in the package of the same name. Its main effect is to run a script daily (via <command>cron</command>). The script updates the list of available packages, and, if some installed packages are not in the latest available version, it sends an email with a list of these packages along with the changes that have been made in the new versions. Obviously, this package mostly targets users of Debian <emphasis role=\"distribution\">Stable</emphasis>, since the daily emails would be very long for the faster paced versions of Debian. When updates are available, <command>apticron</command> automatically downloads them. It does not install them — the administrator will still do it — but having the packages already downloaded and available locally (in APT's cache) makes the job faster."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Administrators in charge of several computers will no doubt appreciate being informed of pending upgrades, but the upgrades themselves are still as tedious as they used to be, which is where the <filename>/etc/cron.daily/apt</filename> script (in the <emphasis role=\"pkg\">apt</emphasis> package) comes in handy. This script is also run daily (and non-interactively) by <command>cron</command>. To control its behavior, use APT configuration variables (which are therefore stored in a file under <filename>/etc/apt/apt.conf.d/</filename>). The main three variables are:"
+msgid "Administrators in charge of several computers will no doubt appreciate being informed of pending upgrades, but the upgrades themselves are still as tedious as they used to be, which is where the <filename>/etc/cron.daily/apt</filename> script (in the <emphasis role=\"pkg\">apt</emphasis> package) comes in handy. This script is also run daily (and non-interactively) by <command>cron</command>. To control its behavior, use APT configuration variables (which are therefore stored in a file under <filename>/etc/apt/apt.conf.d/</filename>). The main variables are:"
 msgstr ""
 
 #. Tag: term
@@ -1604,7 +1983,22 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "This last option covers a feature that <command>apticron</command> doesn't have. It controls how often obsolete packages (those not referenced by any distribution anymore) are removed from the APT cache. This keeps the APT cache at a reasonable size and means that you don't need to worry about that task."
+msgid "This option covers a feature that <command>apticron</command> doesn't have. It controls how often obsolete packages (those not referenced by any distribution anymore) are removed from the APT cache. This keeps the APT cache at a reasonable size and means that you don't need to worry about that task."
+msgstr ""
+
+#. Tag: term
+#, no-c-format
+msgid "<literal>APT::Periodic::Unattended-Upgrade</literal>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">unattended-upgrades</emphasis></primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When this option is enabled, the daily script will execute <command>unattended-upgrade</command> (from the <emphasis role=\"pkg\">unattended-upgrades</emphasis> package) which — as its name suggest — can automatize the upgrade process for some packages (by default it only takes care of security updates, but this can be customized in <filename>/etc/apt/apt.conf.d/50unattended-upgrades</filename>). Note that this option can be set with the help of debconf by running <command>dpkg-reconfigure -plow unattended-upgrades</command>."
 msgstr ""
 
 #. Tag: para
@@ -1612,14 +2006,19 @@ msgstr ""
 msgid "Other options can allow you to control the cache cleaning behavior with more precision. They are not listed here, but they are described in the <filename>/etc/cron.daily/apt</filename> script."
 msgstr ""
 
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">gnome-packagekit</emphasis></primary>"
+msgstr ""
+
 #. Tag: para
 #, no-c-format
-msgid "These tools work very well for servers, but desktop users generally prefer a more interactive system. That is why the “Graphical desktop environment” task installs <command>update-notifier</command> and <command>update-manager</command>. The former displays an icon in the notification area of desktop environments when updates are available; clicking on this icon then runs <command>update-manager</command>, a simplified interface to perform updates. You can browse through available updates, read the description of the relevant packages and their <filename>changelog</filename>, and select whether to apply the update or not on a case-by-case basis. Note that these packages contain configuration data for <filename>/etc/cron.daily/apt</filename> so that it refreshes the lists of available packages and downloads the relevant ones. The <command>update-notifier</command>/<command>update-manager</command> combination is far from having as many features as <command>aptitude</command> and <command>synaptic</command>, since it only handles the upgrades of packages which are already installed; as a consequence, its minimalistic interface leaves little room for mistakes, and therefore little risk of breaking the system."
+msgid "These tools work very well for servers, but desktop users generally prefer a more interactive system. That is why the “Graphical desktop environment” task installs <emphasis role=\"pkg\">gnome-packagekit</emphasis>. It provides an icon in the notification area of desktop environments when updates are available; clicking on this icon then runs <command>gpk-update-viewer</command>, a simplified interface to perform updates. You can browse through available updates, read the short description of the relevant packages and the corresponding <filename>changelog</filename> entries, and select whether to apply the update or not on a case-by-case basis."
 msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "Upgrading with <command>update-manager</command>"
+msgid "Upgrading with <command>gpk-update-viewer</command>"
 msgstr ""
 
 #. Tag: title
@@ -1629,7 +2028,12 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>upgrade</primary><secondary>automatic (of the system)</secondary>"
+msgid "<primary>upgrade</primary><secondary>automatic system upgrade</secondary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>automatic upgrade</primary>"
 msgstr ""
 
 #. Tag: para
@@ -1644,7 +2048,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "As we have already mentioned (see sidebar <xref linkend=\"cadre.questions-conffiles\" />), <command>dpkg</command> can be instructed not to ask for confirmation when replacing a configuration file (with the <literal>--force-confdef --force-confold</literal> options). Interactions can, however, have three other sources: some come from APT itself, some are handled by <command>debconf</command>, and some happen on the command line due to package configuration scripts."
+msgid "As we have already mentioned (see sidebar <xref linkend=\"sidebar.questions-conffiles\" />), <command>dpkg</command> can be instructed not to ask for confirmation when replacing a configuration file (with the <literal>--force-confdef --force-confold</literal> options). Interactions can, however, have three other sources: some come from APT itself, some are handled by <command>debconf</command>, and some happen on the command line due to package configuration scripts."
 msgstr ""
 
 #. Tag: title
@@ -1709,9 +2113,9 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "export DEBIAN_FRONTEND=noninteractive\n"
+msgid ""
+"export DEBIAN_FRONTEND=noninteractive\n"
 "yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
-""
 msgstr ""
 
 #. Tag: title
@@ -1726,12 +2130,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In practice, the servers running <emphasis role=\"distribution\">Squeeze</emphasis> are configured with the “miracle combination” above, and are kept up to date automatically. Only the most critical servers (the firewalls, for instances) are set up with <command>apticron</command>, so that upgrades always happen under the supervision of an administrator."
+msgid "In practice, the servers running <emphasis role=\"distribution\">Wheezy</emphasis> are configured with the “miracle combination” above, and are kept up to date automatically. Only the most critical servers (the firewalls, for instances) are set up with <command>apticron</command>, so that upgrades always happen under the supervision of an administrator."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The office workstations in the administrative services also run <emphasis role=\"distribution\">Squeeze</emphasis>, but they are configured with the <command>update-notifier</command>/<command>update-manager</command> combination, so that users trigger the upgrades themselves. The rationale for this decision is that if upgrades happen without an explicit action, the behavior of the computer might change unexpectedly, which could cause confusion for the main users."
+msgid "The office workstations in the administrative services also run <emphasis role=\"distribution\">Wheezy</emphasis>, but they are equipped with <emphasis role=\"pkg\">gnome-packagekit</emphasis>, so that users trigger the upgrades themselves. The rationale for this decision is that if upgrades happen without an explicit action, the behavior of the computer might change unexpectedly, which could cause confusion for the main users."
 msgstr ""
 
 #. Tag: para
@@ -1766,7 +2170,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "A slightly more successful searching pattern is a plain-text search in package names, but it remains very limited. You can generally find results by searching package descriptions: since each package has a more or less detailed description in addition to its package name, a keyword search in these descriptions will often be useful. <command>apt-cache</command> is the tool of choice for this kind of search; for instance, <command>apt-cache search video</command> will return a list of all packages whose name or description contains the keyword “video”."
+msgid "A slightly more successful searching pattern is a plain-text search in package names, but it remains very limited. You can generally find results by searching package descriptions: since each package has a more or less detailed description in addition to its package name, a keyword search in these descriptions will often be useful. <command>apt-cache</command> and <command>axi-cache</command> are the tools of choice for this kind of search; for instance, <command>apt-cache search video</command> will return a list of all packages whose name or description contains the keyword “video”."
 msgstr ""
 
 #. Tag: para
@@ -1776,21 +2180,23 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
-"<computeroutput>p   kino  - Non-linear editor for Digital Video data\n"
-"$ </computeroutput><userinput>aptitude show kino</userinput>\n"
-"<computeroutput>Package: kino\n"
+msgid ""
+"$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
+"p   kino  - Non-linear editor for Digital Video data\n"
+"$ <userinput>aptitude show kino</userinput>\n"
+"Package: kino                            \n"
 "State: not installed\n"
-"Version: 1.3.4-1+b1\n"
+"Version: 1.3.4-1.3\n"
 "Priority: extra\n"
 "Section: video\n"
 "Maintainer: Paul Brossier &lt;piem@debian.org&gt;\n"
-"Uncompressed Size: 9519k\n"
-"Depends: libasound2 (&gt; 1.0.18), libatk1.0-0 (&gt;= 1.20.0),\n"
-"         libavc1394-0 (&gt;= 0.5.3), libavcodec52 (&gt;= 4:0.5+svn20090706-3) |\n"
-"         libavcodec-extra-52 (&gt;= 4:0.5+svn20090706-3), libavformat52\n"
+"Architecture: amd64\n"
+"Uncompressed Size: 7936 k\n"
+"Depends: libasound2 (&gt; 1.0.24.1), libatk1.0-0 (&gt;= 1.12.4),\n"
+"         libavc1394-0 (&gt;= 0.5.3), libavcodec53 (&gt;= 4:0.8~beta1~) |\n"
+"         libavcodec-extra-53 (&gt;= 4:0.8~beta1~), libavformat53\n"
 "         […]\n"
-"Recommends: ffmpeg, gawk | mawk, curl\n"
+"Recommends: ffmpeg, curl\n"
 "Suggests: udev | hotplug, vorbis-tools, sox, mjpegtools, lame, ffmpeg2theora\n"
 "Conflicts: kino-dvtitler, kino-timfx, kinoplus\n"
 "Replaces: kino-dvtitler, kino-timfx, kinoplus\n"
@@ -1802,13 +2208,12 @@ msgid "<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo
 " \n"
 " The kino-timfx, kino-dvtitler and kinoplus sets of plugins, formerly\n"
 " distributed as separate packages, are now provided with Kino.\n"
-"Homepage: http://www.kinodv.org/\n"
+"Homepage: http://www.kinodv.org/\n"
 "\n"
 "Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "      interface::x11, role::program, scope::application,\n"
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
-"      works-with::video, x11::application</computeroutput>\n"
-""
+"      works-with::video, x11::application\n"
 msgstr ""
 
 #. Tag: para
@@ -1823,7 +2228,22 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Browsing this classification can help you to search for a package which corresponds to known needs; even if it returns a (moderate) number of hits, the rest of the search can be done manually. To do that, you can use the <literal>~G</literal> search pattern in <command>aptitude</command>, but it is probably easier to simply navigate the site where tags are managed: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/cloud/\" /> Selecting the <literal>works-with::video</literal> and <literal>use::editing</literal> tags yields a handful of packages, including the <emphasis role=\"pkg\">kino</emphasis> and <emphasis role=\"pkg\">pitivi</emphasis> video editors. This system of classification is bound to be used more and more as time goes on, and package managers will gradually provide efficient search interfaces based on it. <indexterm><primary><emphasis role=\"pkg\">debtags</emphasis></primary></indexterm> <indexterm><primary>tag</primary></indexterm>"
+msgid "Browsing this classification can help you to search for a package which corresponds to known needs; even if it returns a (moderate) number of hits, the rest of the search can be done manually. To do that, you can use the <literal>~G</literal> search pattern in <command>aptitude</command>, but it is probably easier to simply navigate the site where tags are managed: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/cloud/\" />"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><emphasis role=\"pkg\">debtags</emphasis></primary>"
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>tag</primary>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Selecting the <literal>works-with::video</literal> and <literal>use::editing</literal> tags yields a handful of packages, including the <emphasis role=\"pkg\">kino</emphasis> and <emphasis role=\"pkg\">pitivi</emphasis> video editors. This system of classification is bound to be used more and more as time goes on, and package managers will gradually provide efficient search interfaces based on it."
 msgstr ""
 
 #. Tag: para
@@ -1843,7 +2263,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "when a tag-based search is needed, a good tool is <command>packagesearch</command>, a graphical interface dedicated to searching available packages along several criteria (including the names of the files that they contain);"
+msgid "when a tag-based search is needed, a good tool is <command>packagesearch</command>, a graphical interface dedicated to searching available packages along several criteria (including the names of the files that they contain). For usage on the command-line, <command>axi-cache</command> will fit the bill."
 msgstr ""
 
 #. Tag: indexterm
@@ -1855,4 +2275,3 @@ msgstr ""
 #, no-c-format
 msgid "finally, when the searches involve complex expressions with logic operations, the tool of choice will be <command>aptitude</command>'s search pattern syntax, which is quite powerful despite being somewhat obscure; it works in both the command-line and the interactive modes."
 msgstr ""
-

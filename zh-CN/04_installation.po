@@ -1,16 +1,17 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-05-09T20:00:15\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2013-03-27 22:54+0800\n"
 "Last-Translator: TianHua <regal2u@gmail.com>\n"
 "Language-Team: None\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -63,8 +64,9 @@ msgid "Installing a computer is always simpler when you are familiar with the wa
 msgstr "当你熟悉了计算机工作的方式安装过程是很简单的。否则请移步到 <xref linkend=\"short-remedial-course\" />。"
 
 #. Tag: para
-#, no-c-format
-msgid "The installer for <emphasis role=\"distribution\">Squeeze</emphasis> is based on <command>debian-installer</command>. Its modular design enables it to work in various scenarios and allows it to evolve and adapt to changes. Despite the limitations implied by the need to support a large number of architectures, this installer is very accessible to beginners, since it assists users at each stage of the process. Automatic hardware detection, guided partitioning, and graphical user interfaces have solved most of the problems that newbies used to face."
+#, fuzzy, no-c-format
+#| msgid "The installer for <emphasis role=\"distribution\">Squeeze</emphasis> is based on <command>debian-installer</command>. Its modular design enables it to work in various scenarios and allows it to evolve and adapt to changes. Despite the limitations implied by the need to support a large number of architectures, this installer is very accessible to beginners, since it assists users at each stage of the process. Automatic hardware detection, guided partitioning, and graphical user interfaces have solved most of the problems that newbies used to face."
+msgid "The installer for <emphasis role=\"distribution\">Wheezy</emphasis> is based on <command>debian-installer</command>. Its modular design enables it to work in various scenarios and allows it to evolve and adapt to changes. Despite the limitations implied by the need to support a large number of architectures, this installer is very accessible to beginners, since it assists users at each stage of the process. Automatic hardware detection, guided partitioning, and graphical user interfaces have solved most of the problems that newbies used to face in the early years of Debian."
 msgstr "<emphasis role=\"distribution\">Squeeze</emphasis>的安装程序基于<command>debian-installer</command>。它的模块化设计使安装程序能适应各种情况，并可随机改变。尽管受到需要支持多种架构的限制，本安装程序对于新手还是具有很好的可操作性，基于它对用户在各个过程中的帮助。自动化的硬件检测，分区引导，和图形用户界面，已经解决了新手需要面对的大部分问题。"
 
 #. Tag: indexterm
@@ -78,18 +80,21 @@ msgid "<primary><command>debian-installer</command></primary>"
 msgstr "<primary><command>debian-installer</command></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Installation requires 56 MB of RAM (Random Access Memory) and at least 650 MB of hard drive space. All Falcot computers meet these criteria. Note, however, that these figures apply to the installation of a very limited system without a graphical desktop. A minimum of 512 MB of RAM and 5 GB of hard drive space are really recommended for a basic office desktop workstation."
+#, fuzzy, no-c-format
+#| msgid "Installation requires 56 MB of RAM (Random Access Memory) and at least 650 MB of hard drive space. All Falcot computers meet these criteria. Note, however, that these figures apply to the installation of a very limited system without a graphical desktop. A minimum of 512 MB of RAM and 5 GB of hard drive space are really recommended for a basic office desktop workstation."
+msgid "Installation requires 80 MB of RAM (Random Access Memory) and at least 700 MB of hard drive space. All Falcot computers meet these criteria. Note, however, that these figures apply to the installation of a very limited system without a graphical desktop. A minimum of 512 MB of RAM and 5 GB of hard drive space are really recommended for a basic office desktop workstation."
 msgstr "安装硬件需求至少需要 56MB 内存和 650MB 的硬盘空间。所有 Falcot 电脑都符合这些标准。但是请注意,这样的配置只能安装非常有限的没有图形化桌面的系统。 一部办公桌面环境的工作站需要至少 512MB 内存和 5GB 的硬盘空间。"
 
 #. Tag: title
-#, no-c-format
-msgid "<emphasis>BEWARE</emphasis> Upgrading from Lenny"
+#, fuzzy, no-c-format
+#| msgid "<emphasis>BEWARE</emphasis> Upgrading from Lenny"
+msgid "<emphasis>BEWARE</emphasis> Upgrading from Squeeze"
 msgstr "<emphasis>注意</emphasis>从 Lenny 升级"
 
 #. Tag: para
-#, no-c-format
-msgid "If you already have Debian Lenny installed on your computer, this chapter is not for you! Unlike other distributions, Debian allows updating a system from one version to the next without having to reinstall the system. Reinstalling, in addition to being unnecessary, could even be dangerous, since it could remove already installed programs."
+#, fuzzy, no-c-format
+#| msgid "If you already have Debian Lenny installed on your computer, this chapter is not for you! Unlike other distributions, Debian allows updating a system from one version to the next without having to reinstall the system. Reinstalling, in addition to being unnecessary, could even be dangerous, since it could remove already installed programs."
+msgid "If you already have Debian Squeeze installed on your computer, this chapter is not for you! Unlike other distributions, Debian allows updating a system from one version to the next without having to reinstall the system. Reinstalling, in addition to being unnecessary, could even be dangerous, since it could remove already installed programs."
 msgstr "如果你已经在你的计算机上安装了 Debian 的 Lenny 发行版，本章就不适合你了！不同于其他发行版，Debian 允许用户从一个版本无须重装就能更新到下一个版本。重新安装带来的麻烦就是，某些软件不是必需的，更糟的是，可能会移除已经安装的程序。"
 
 #. Tag: para
@@ -133,14 +138,27 @@ msgid "Installing from a CD-ROM/DVD-ROM"
 msgstr "从CD-ROM/DVD-ROM安装"
 
 #. Tag: para
-#, no-c-format
-msgid "The most widely used installation media is CD-ROM (or DVD-ROM, which behaves exactly the same way): the computer is booted from this media, and the installation program takes over."
+#, fuzzy, no-c-format
+#| msgid "The most widely used installation media is CD-ROM (or DVD-ROM, which behaves exactly the same way): the computer is booted from this media, and the installation program takes over."
+msgid "The most widely used installation method is from a CD-ROM (or DVD-ROM, which behaves exactly the same way): the computer is booted from this media, and the installation program takes over."
 msgstr "最常见的安装介质是CD光驱（或者DVD光驱，都一样）：计算机从此处引导，然后安装程序接管。"
 
 #. Tag: para
-#, no-c-format
-msgid "Various CD-ROMs have different purposes: <emphasis>netinst</emphasis> (network installation) contains the installer and the base Debian system; all other programs are then downloaded. Its “image”, that is the ISO-9660 filesystem that contains the exact contents of the disk, only takes up about 150 MB. Then we have the <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only provides the installer, and which requires all the Debian packages (including the base system) to be downloaded. Since its image only takes up 35 MB, it can be burnt on a “business card” type CD-ROM, from which it takes its name. Finally, the complete set offers all packages and allows for installation on a computer that has no Internet access; it requires around 50 CD-ROMs (or eight DVD-ROMs, or two Blu-ray disks). But the programs are divided among the disks according to their popularity and importance; the first three disks will be sufficient for most installations, since they contain the most used software."
+#, fuzzy, no-c-format
+#| msgid "Various CD-ROMs have different purposes: <emphasis>netinst</emphasis> (network installation) contains the installer and the base Debian system; all other programs are then downloaded. Its “image”, that is the ISO-9660 filesystem that contains the exact contents of the disk, only takes up about 150 MB. Then we have the <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only provides the installer, and which requires all the Debian packages (including the base system) to be downloaded. Since its image only takes up 35 MB, it can be burnt on a “business card” type CD-ROM, from which it takes its name. Finally, the complete set offers all packages and allows for installation on a computer that has no Internet access; it requires around 50 CD-ROMs (or eight DVD-ROMs, or two Blu-ray disks). But the programs are divided among the disks according to their popularity and importance; the first three disks will be sufficient for most installations, since they contain the most used software."
+msgid "Various CD-ROM families have different purposes: <emphasis>netinst</emphasis> (network installation) contains the installer and the base Debian system; all other programs are then downloaded. Its “image”, that is the ISO-9660 filesystem that contains the exact contents of the disk, only takes up about 150 to 250 MB (depending on architecture). On the other hand, the complete set offers all packages and allows for installation on a computer that has no Internet access; it requires around 70 CD-ROMs (or 10 DVD-ROMs, or two Blu-ray disks). But the programs are divided among the disks according to their popularity and importance; the first three disks will be sufficient for most installations, since they contain the most used software."
 msgstr "各种CD-镜像有不同的作用：<emphasis>netinst</emphasis>（网络安装）包括了安装程序和基本Debian系统；所有其他程序就需要下载了。镜像是 ISO-9660 文件系统格式，包括了磁盘的实际组件，只有大概 150MB。然后是<emphasis>businesscard</emphasis> 或者 <emphasis>bizcard</emphasis> CD 镜像，这两种只提供安装程序，需要的所有包（包括 Debian 的基本系统）都需要下载。由于它的镜像只有 35MB，顾名思义，可以把它刻到\"business card\" 类型的 CD 上。最后，对于提供了所有安装包，并且允许在没有互联网连接情况下的安装；需要50张 CD（或者 8 张DVD，或者两张蓝光盘）。按照安装包的流行度和重要性，他们分别被放在不同的镜像盘里；头三张盘将满足大部分的安装需要，他们包含了最常用的软件。"
+
+#. Tag: para
+#, no-c-format
+msgid "Debian also used to provide a <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only contained the installer, and which required all the Debian packages (including the base system) to be downloaded. Since its image only took up 35 MB, it was meant to be burnt on a “business card” type CD-ROM. This CD-ROM is no longer provided for Wheezy: the debian-installer developers estimated that the work required to maintain that image was no longer worth it. Furthermore, the <filename>mini.iso</filename> image that they already provide as by-product of the installer is very similar."
+msgstr ""
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary>partitioning</primary>"
+msgid "<primary><filename>mini.iso</filename></primary>"
+msgstr "<primary>分区</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -153,8 +171,9 @@ msgid "Most installation CD- and DVD-ROMs work only with a specific hardware arc
 msgstr "大部分安装 CD 和 DVD 光驱只适合于特定的硬件架构。如果你希望下载完整镜像，你必须仔细选择适合你硬件架构的那种。"
 
 #. Tag: para
-#, no-c-format
-msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a <emphasis>netinst</emphasis> CD-ROM image for the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
+#, fuzzy, no-c-format
+#| msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a <emphasis>netinst</emphasis> CD-ROM image for the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
+msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a CD-ROM image combining the <emphasis>netinst</emphasis> images of the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
 msgstr "有些 CD/DVD 镜像能够适合各种计算机架构。其中CD-ROM 镜像 <emphasis>netinst</emphasis> 可以适应 <emphasis>i386</emphasis> 和 <emphasis>amd64</emphasis> 体系架构。还有一种 DVD 镜像，也包括了安装程序和对应 <emphasis>i386</emphasis> 和 <emphasis>amd64</emphasis> 的二进制安装包选项，以及相应的源代码包。"
 
 #. Tag: indexterm
@@ -194,16 +213,6 @@ msgstr "为了获得 Debian CD-ROM 镜像，你可以下载并刻度到光盘上
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis>IN PRACTICE</emphasis> Debian on CD-ROM"
-msgstr "<emphasis>实践</emphasis> CD-ROM 上的 Debian"
-
-#. Tag: para
-#, no-c-format
-msgid "<indexterm><primary>CD-ROM vendor</primary></indexterm> Debian CD-/DVD-ROMs can also be purchased; Raphaël Hertzog proposes some on his blog, where 10% of the profit is donated to the Debian Project, the remainder of which allows him to devote more time to Debian. <ulink type=\"block\" url=\"http://www.debian.org/CD/vendors/\" /> <ulink type=\"block\" url=\"http://raphaelhertzog.com/go/debian-cd/\" />"
-msgstr "<indexterm><primary>CD-ROM vendor</primary></indexterm> Debian CD-/DVD 光盘 也可以购买; Raphaël Hertzog 在其博客上有一些建议, 10%的利润捐赠给 Debian 基金会，剩下的让他能够花更多的时间专注于 Debian 项目。<ulink type=\"block\" url=\"http://www.debian.org/CD/vendors/\" /> <ulink type=\"block\" url=\"http://raphaelhertzog.com/go/debian-cd/\" />"
-
-#. Tag: title
-#, no-c-format
 msgid "Booting from a USB Key"
 msgstr "从U盘引导"
 
@@ -218,18 +227,21 @@ msgid "Since recent computers are able to boot from USB devices, you can also in
 msgstr "自从计算机可以通过 USB 设备引导以来，你也能通过 U 盘来安装 Debian 了（其实就是个小小的闪盘）。然而，不是所有的 BIOS 都一样的；有的能够引导 USB 2.0 设备，其他的只能引导 USB 1.1。 除此外，U 盘必须有512 比特的引导扇区，这虽是个普通的需求， 但在你买的 U盘包装上是不会被注明的。"
 
 #. Tag: para
-#, no-c-format
-msgid "The installation manual explains how to create a USB key that contains the <command>debian-installer</command>. The procedure has been significantly simplified with <emphasis role=\"distribution\">Squeeze</emphasis>, since the ISO images for i386 and amd64 architectures are hybrid images that can boot from a CD-ROM as as well as from a USB key."
+#, fuzzy, no-c-format
+#| msgid "The installation manual explains how to create a USB key that contains the <command>debian-installer</command>. The procedure has been significantly simplified with <emphasis role=\"distribution\">Squeeze</emphasis>, since the ISO images for i386 and amd64 architectures are hybrid images that can boot from a CD-ROM as as well as from a USB key."
+msgid "The installation manual explains how to create a USB key that contains the <command>debian-installer</command>. The procedure has been significantly simplified for the <emphasis role=\"distribution\">Squeeze</emphasis> release compared to the previous versions; the ISO images for i386 and amd64 architectures are now hybrid images that can boot from a CD-ROM as well as from a USB key."
 msgstr "安装首次说明了怎样做一个包含<command>debian-installer</command>的 U 盘。<emphasis role=\"发行版\">Squeeze</emphasis>的安装过程被相当地简化了， 因为i386 和 amd64 架构的 ISO 镜像是混合的， 从 U 盘引导像从 CD 引导一样。"
 
 #. Tag: para
-#, no-c-format
-msgid "You must first identify the peripheral name of the USB key (ex: <literal>/dev/sdb</literal>); the simplest means to do this is to check the messages issued by the kernel using the <command>dmesg</command> command. Then you must copy the previously downloaded ISO image (for example debian-6.0.0-amd64-i386-netinst.iso) with the command <command>cat debian-6.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command>. This command requires administrator rights, since it directly accesses the USB key peripheral and blindly erases its content."
+#, fuzzy, no-c-format
+#| msgid "You must first identify the peripheral name of the USB key (ex: <literal>/dev/sdb</literal>); the simplest means to do this is to check the messages issued by the kernel using the <command>dmesg</command> command. Then you must copy the previously downloaded ISO image (for example debian-6.0.0-amd64-i386-netinst.iso) with the command <command>cat debian-6.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command>. This command requires administrator rights, since it directly accesses the USB key peripheral and blindly erases its content."
+msgid "You must first identify the device name of the USB key (ex: <literal>/dev/sdb</literal>); the simplest means to do this is to check the messages issued by the kernel using the <command>dmesg</command> command. Then you must copy the previously downloaded ISO image (for example debian-7.0.0-amd64-i386-netinst.iso) with the command <command>cat debian-7.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command>. This command requires administrator rights, since it accesses the USB key directly and blindly erases its content."
 msgstr "你首先要定义 U 盘的设备名(例如: <literal>/dev/sdb</literal>)；最简单的方法就是用命令 <command>dmesg</command>去检查由内核产生的日志 。然后复制之前下载的 ISO 镜像覆盖到 U 盘(比如debian-6.0.0-amd64-i386-netinst.iso)，用命令 <command>cat debian-6.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command>。这条命令需要管理员权限，因为这个过程直接覆盖 U 盘内容。"
 
 #. Tag: para
-#, no-c-format
-msgid "A more detailed explanation is available in the installation manual. Among other things, it describes an alternative method of preparing a USB key that is more complex, but that allows to customize the installer's default options (those set in the kernel command line). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s03.html\" />"
+#, fuzzy, no-c-format
+#| msgid "A more detailed explanation is available in the installation manual. Among other things, it describes an alternative method of preparing a USB key that is more complex, but that allows to customize the installer's default options (those set in the kernel command line). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s03.html\" />"
+msgid "A more detailed explanation is available in the installation manual. Among other things, it describes an alternative method of preparing a USB key that is more complex, but that allows to customize the installer's default options (those set in the kernel command line). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch04s03.html\" />"
 msgstr "在安装手册上有更详尽的解释。在其他方面，描述了一种准备 U 盘可选的方法，那更复杂，但允许定制默认安装选项（在内核命令行上设定）。<ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s03.html\" />"
 
 #. Tag: title
@@ -253,18 +265,21 @@ msgid "<primary>installation</primary><secondary><emphasis>TFTP installation</em
 msgstr "<primary>安装</primary><secondary><emphasis>TFTP 安装</emphasis></secondary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Many BIOSes allow booting directly from the network by downloading the kernel to boot. This method (which has several names, such as <acronym>PXE</acronym> or <acronym>TFTP</acronym> boot) can be a life-saver if the computer does not have a CD-ROM reader, or if the BIOS can't boot from such media."
+#, fuzzy, no-c-format
+#| msgid "Many BIOSes allow booting directly from the network by downloading the kernel to boot. This method (which has several names, such as <acronym>PXE</acronym> or <acronym>TFTP</acronym> boot) can be a life-saver if the computer does not have a CD-ROM reader, or if the BIOS can't boot from such media."
+msgid "Many BIOSes allow booting directly from the network by downloading a kernel and a minimal filesystem image. This method (which has several names, such as <acronym>PXE</acronym> or <acronym>TFTP</acronym> boot) can be a life-saver if the computer does not have a CD-ROM reader, or if the BIOS can't boot from such media."
 msgstr "许多的 BIOS 允许直接从网络引导下载内核去启动。这种方法（有其他不同的说法，比如 <acronym>PXE</acronym> 或者 <acronym>TFTP</acronym> 引导）就是最后的救命稻草了如果计算机没有 CD-ROM 光驱，或者 BIOS 不能从这些介质引导的话。"
 
 #. Tag: para
-#, no-c-format
-msgid "This installation method works in two steps. First, while booting the computer, the BIOS (or the network card) issues a BOOTP/DHCP request to automatically acquire an IP address. When a BOOTP or DHCP server returns a response, it includes a filename, as well as network settings. After having configured the network, the client computer then issues a TFPT (Trivial File Transfer Protocol) request for a file whose name was previously indicated. Once this file is acquired, it is executed as though it were a bootloader. This then launches the Debian installation program, which is executed as though it were running from the hard drive, a CD-ROM, or a USB key."
+#, fuzzy, no-c-format
+#| msgid "This installation method works in two steps. First, while booting the computer, the BIOS (or the network card) issues a BOOTP/DHCP request to automatically acquire an IP address. When a BOOTP or DHCP server returns a response, it includes a filename, as well as network settings. After having configured the network, the client computer then issues a TFPT (Trivial File Transfer Protocol) request for a file whose name was previously indicated. Once this file is acquired, it is executed as though it were a bootloader. This then launches the Debian installation program, which is executed as though it were running from the hard drive, a CD-ROM, or a USB key."
+msgid "This installation method works in two steps. First, while booting the computer, the BIOS (or the network card) issues a BOOTP/DHCP request to automatically acquire an IP address. When a BOOTP or DHCP server returns a response, it includes a filename, as well as network settings. After having configured the network, the client computer then issues a TFTP (Trivial File Transfer Protocol) request for a file whose name was previously indicated. Once this file is acquired, it is executed as though it were a bootloader. This then launches the Debian installation program, which is executed as though it were running from the hard drive, a CD-ROM, or a USB key."
 msgstr "这种安装方法分两个步骤。第一，当引导计算机时， BIOS （或者网卡） 引发一个 BOOTP/DHCP 请求自动获取 IP 地址。当 BOOTP 或 DHCP 服务器返回相应后，包括一个文件名，以及网络设定。在配置网络后，客户端计算机然后产生一个 TFTP （简单文件传输协议） 请求，文件名是之前获得的。这个文件一获得，及被当做一个引导程序被执行。然后启动 Debian 安装程序，这与从硬盘， CD-ROM， U盘引导运行安装一样。"
 
 #. Tag: para
-#, no-c-format
-msgid "All the details of this method are available in the installation guide (“Preparing files for TFTP Net Booting” section). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch05s01.html#boot-tftp\" /><ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s05.html\" />"
+#, fuzzy, no-c-format
+#| msgid "All the details of this method are available in the installation guide (“Preparing files for TFTP Net Booting” section). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch05s01.html#boot-tftp\" /><ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s05.html\" />"
+msgid "All the details of this method are available in the installation guide (“Preparing files for TFTP Net Booting” section). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch05s01.html#boot-tftp\" /><ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch04s05.html\" />"
 msgstr "所有该方法的细节都在安装引导手册里（“准备文件用 TFTP 网络引导”章节）。<ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch05s01.html#boot-tftp\" /><ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch04s05.html\" />"
 
 #. Tag: title
@@ -273,8 +288,9 @@ msgid "Other Installation Methods"
 msgstr "其他安装方式"
 
 #. Tag: para
-#, no-c-format
-msgid "When we have to deploy customized installations for a large number of computers, we generally choose an automated rather than a manual installation method. Depending on the situation and the complexity of the installations to be made, we can use FAI (Fully Automatic Installer, described in <xref linkend=\"fai\" />), or even a customized installation CD with preseeding (see <xref linkend=\"d-i-preseeding\" />)."
+#, fuzzy, no-c-format
+#| msgid "When we have to deploy customized installations for a large number of computers, we generally choose an automated rather than a manual installation method. Depending on the situation and the complexity of the installations to be made, we can use FAI (Fully Automatic Installer, described in <xref linkend=\"fai\" />), or even a customized installation CD with preseeding (see <xref linkend=\"d-i-preseeding\" />)."
+msgid "When we have to deploy customized installations for a large number of computers, we generally choose an automated rather than a manual installation method. Depending on the situation and the complexity of the installations to be made, we can use FAI (Fully Automatic Installer, described in <xref linkend=\"sect.fai\" />), or even a customized installation CD with preseeding (see <xref linkend=\"sect.d-i-preseeding\" />)."
 msgstr "当我们必须为一大批计算机部署定制的安装时，相比手动安装我们会选择自动化安装。依照安装的场景和复杂度，我们可以使用 FAI (完全自动安装，参阅 <xref linkend=\"fai\" /> ) ，甚至定制的安装中使用的 CD (参阅<xref linkend=\"d-i-preseeding\" />)。"
 
 #. Tag: title
@@ -293,8 +309,9 @@ msgid "Once the BIOS has begun booting from the CD- or DVD-ROM, the Isolinux boo
 msgstr "一旦 BIOS 开始从 CD-/DVD-ROM 引导，就出现 Isolinux 引导程序界面。这时， Linux 内核还没有加载;菜单让你选择内核开始引导，同时可以加上参数以满足你的需求。"
 
 #. Tag: para
-#, no-c-format
-msgid "For a standard installation, you only need to choose “Install” or “Graphical install” (with the arrows), then press the <keycap>Enter</keycap> key to initiate the remainder of the installation process. If the DVD-ROM is a “Multi-arch” disk (such as the one included with this book), and the machine has an Intel or AMD 64 bit processor, the menu options “64 bit install” and “64 bit graphical install” enable the installation of the 64 bit variant (<emphasis>amd64</emphasis>) instead of the default 32 bit variant (<emphasis>i386</emphasis>). In practice, the 64 bit version is only relevant on a server rather than a desktop workstation, since it will cause difficulties with the use of certain non-free software that are released only as binaries."
+#, fuzzy, no-c-format
+#| msgid "For a standard installation, you only need to choose “Install” or “Graphical install” (with the arrows), then press the <keycap>Enter</keycap> key to initiate the remainder of the installation process. If the DVD-ROM is a “Multi-arch” disk (such as the one included with this book), and the machine has an Intel or AMD 64 bit processor, the menu options “64 bit install” and “64 bit graphical install” enable the installation of the 64 bit variant (<emphasis>amd64</emphasis>) instead of the default 32 bit variant (<emphasis>i386</emphasis>). In practice, the 64 bit version is only relevant on a server rather than a desktop workstation, since it will cause difficulties with the use of certain non-free software that are released only as binaries."
+msgid "For a standard installation, you only need to choose “Install” or “Graphical install” (with the arrow keys), then press the <keycap>Enter</keycap> key to initiate the remainder of the installation process. If the DVD-ROM is a “Multi-arch” disk (such as the one included with this book), and the machine has an Intel or AMD 64 bit processor, the menu options “64 bit install” and “64 bit graphical install” enable the installation of the 64 bit variant (<emphasis>amd64</emphasis>) instead of the default 32 bit variant (<emphasis>i386</emphasis>). In practice, the 64 bit version can almost always be used: most recent processors are 64 bit processors and the 64 bit version deals better with the large amount of RAM that new computers tend to have."
 msgstr "对于标准的安装过程，你需要选择“安装”或者“图形化安装”（有箭头指示）。然后按下 <keycap>Enter</keycap> 键开始安装。如果 DVD-ROM 是 \"Multi-arch\" 磁盘，计算机有 Intel 或者 AMD 64 位处理器，菜单项 \"64 位安装\" 和 \"64位图形化安装\" 将进行替代默认 32位(<emphasis>i386</emphasis>) 的 64位(<emphasis>amd64</emphasis>) 安装。实际上，64位在服务器上比在桌面工作站上跑的多，因为某些非自由软件只有32位的二进制版本。"
 
 #. Tag: title
@@ -318,13 +335,15 @@ msgid "<primary>32/64 bits, choice</primary>"
 msgstr "<primary>32/64 的选择</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The fundamental difference between 32 and 64 bit systems is the size of memory addresses. In theory, a 32 bit system can not work with more than 4 GB of RAM (2<superscript>32</superscript> bytes). In practice, it is possible to work around this limitation by using the <literal>686-bigmem</literal> kernel variant, so long as the processor handles the PAE (Physical Address Extension) functionality. Using it does have a notable influence on system performance, however. This is why it is useful to use the 64 bit mode on a server with a large amount of RAM."
+#, fuzzy, no-c-format
+#| msgid "The fundamental difference between 32 and 64 bit systems is the size of memory addresses. In theory, a 32 bit system can not work with more than 4 GB of RAM (2<superscript>32</superscript> bytes). In practice, it is possible to work around this limitation by using the <literal>686-bigmem</literal> kernel variant, so long as the processor handles the PAE (Physical Address Extension) functionality. Using it does have a notable influence on system performance, however. This is why it is useful to use the 64 bit mode on a server with a large amount of RAM."
+msgid "The fundamental difference between 32 and 64 bit systems is the size of memory addresses. In theory, a 32 bit system can not work with more than 4 GB of RAM (2<superscript>32</superscript> bytes). In practice, it is possible to work around this limitation by using the <literal>686-pae</literal> kernel variant, so long as the processor handles the PAE (Physical Address Extension) functionality. Using it does have a notable influence on system performance, however. This is why it is useful to use the 64 bit mode on a server with a large amount of RAM."
 msgstr "32和64位系统不同的基础是内存地址的长度。理论上，32位的系统只能在 4 GB （<superscript>32</superscript> 字节）内存范围内工作。实际上，在此限制下可以使用各种 <literal>686-bigmem</literal> 版本的内核，这是因为处理器有可以处理 PAE （物理地址扩展） 的功能。显然这样使用的话对系统性能会产生一定的提升。这也是为什么在一台有大内存的服务器上使用 64 位模式是很有用的。"
 
 #. Tag: para
-#, no-c-format
-msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype and the plugin for handling Java applets in web browsers, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions with all the necessary libraries, and often to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. This is very demanding for a relatively small gain. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
+#, fuzzy, no-c-format
+#| msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype and the plugin for handling Java applets in web browsers, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions with all the necessary libraries, and often to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. This is very demanding for a relatively small gain. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
+msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions of all the necessary libraries (see <xref linkend=\"sect.multi-arch\" />), and sometimes to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
 msgstr "对于办公室的计算机而言(那里对性能不是很注重的地方)，你必须注意到某些商业软件没有64位的版本(比如 Skype 和 Java 在浏览器里的插件)。虽然用技术手段也可以让它们在 64位 系统上运行，但你必须安装 32位 版本必须依赖的库文件，并经常使用 <command>setarch</command> 或者 <command>linux32</command> 命令 (在软件包 <emphasis role=\"pkg\">util-linux</emphasis> 里)  去欺骗系统环境。这有点得不偿失。 <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
 
 #. Tag: title
@@ -343,8 +362,9 @@ msgid "If the computer is already running Windows, it is not necessary to delete
 msgstr "如果计算机已经安装了 Windows，不需要为了安装 Debian 而删除 Windows。你可以在不同的分区使用双系统，并选择启动时默认运行哪一个。这种配置即\"双系统\"，安装 Debian 时可以完成设置。这会在安装过程的硬盘分区设置时完成，同时设置引导分区。"
 
 #. Tag: para
-#, no-c-format
-msgid "If you already have a working Windows system, you can even do without the recovery CD-ROM; Debian offers a Windows program that will download a light Debian installer and set it up on the hard disk. You then only need to reboot the computer and choose between normal Windows boot or booting the installation program. You can also find it on a dedicated website with a rather explicit name... <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
+#, fuzzy, no-c-format
+#| msgid "If you already have a working Windows system, you can even do without the recovery CD-ROM; Debian offers a Windows program that will download a light Debian installer and set it up on the hard disk. You then only need to reboot the computer and choose between normal Windows boot or booting the installation program. You can also find it on a dedicated website with a rather explicit name... <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
+msgid "If you already have a working Windows system, you can even avoid using a CD-ROM; Debian offers a Windows program that will download a light Debian installer and set it up on the hard disk. You then only need to reboot the computer and choose between normal Windows boot or booting the installation program. You can also find it on a dedicated website with a rather explicit name… <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
 msgstr "如果你已经有一个运行的 Windows 系统，你甚至不需要 CD-ROM 刻录光驱；Debian 提供了一个 Windows 程序，可以用来下载 Debian 安装程序并在硬盘上安装。然后仅仅需要重启计算机并选择正常的 Windows 引导或者引导安装程序。你可以在后面的网站上找到相关信息。..<ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />\""
 
 #. Tag: title
@@ -368,8 +388,9 @@ msgid "<primary>boot</primary><secondary>loader</secondary>"
 msgstr "<primary>引导</primary><secondary>加载程序</secondary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The bootloader is a low-level program that is responsible for booting the Linux kernel just after the BIOS passes off its control. To handle this task, it must be able to locate the Linux kernel to boot on the disk. On i386/amd64 architectures, the two most used programs to perform this task are LILO, the older of the two, and GRUB, a more modern challenger. Isolinux and Syslinux are alternatives frequently used to boot from removable media."
+#, fuzzy, no-c-format
+#| msgid "The bootloader is a low-level program that is responsible for booting the Linux kernel just after the BIOS passes off its control. To handle this task, it must be able to locate the Linux kernel to boot on the disk. On i386/amd64 architectures, the two most used programs to perform this task are LILO, the older of the two, and GRUB, a more modern challenger. Isolinux and Syslinux are alternatives frequently used to boot from removable media."
+msgid "The bootloader is a low-level program that is responsible for booting the Linux kernel just after the BIOS passes off its control. To handle this task, it must be able to locate the Linux kernel to boot on the disk. On the i386 and amd64 architectures, the two most used programs to perform this task are LILO, the older of the two, and GRUB, its modern replacement. Isolinux and Syslinux are alternatives frequently used to boot from removable media."
 msgstr "引导程序是底层的程序，在离开 BIOS 的控制后引导 Linux 内核的。为了完成这个任务，必须加载硬盘上的内核。在 i386/amd64 架构的计算机上，完成这个任务使用的最多的两种程序是更古老的 LILO，更现在点的 GRUB， Isolinux 和 Syslinux 是可选的经常用来从可移除介质上来引导的。"
 
 #. Tag: para
@@ -388,8 +409,9 @@ msgid "Boot screen"
 msgstr "引导界面"
 
 #. Tag: para
-#, no-c-format
-msgid "Once booted, the installation program guides you step by step throughout the process. This section presents each of these steps in detail. Here we follow the process of an installation from a Multi-Arch DVD-ROM; other types of installlations, (<emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis>) may be slightly different. We will also address installation in graphical mode, but this differs from “classic” installation only in appearance."
+#, fuzzy, no-c-format
+#| msgid "Once booted, the installation program guides you step by step throughout the process. This section presents each of these steps in detail. Here we follow the process of an installation from a Multi-Arch DVD-ROM; other types of installlations, (<emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis>) may be slightly different. We will also address installation in graphical mode, but this differs from “classic” installation only in appearance."
+msgid "Once booted, the installation program guides you step by step throughout the process. This section presents each of these steps in detail. Here we follow the process of an installation from a Multi-Arch DVD-ROM (more specifically, the beta4 version of the installer for Wheezy); <emphasis>netinst</emphasis> installations, as well as the final release of the installer, may look slightly different. We will also address installation in graphical mode, but the only difference from “classic” (text-mode) installation is in the visual appearance."
 msgstr "一旦引导后，安装程序会一步步地引导你整个过程。本节展示每个步骤的细节。这里我们会以从多架构 DVD-ROM 的安装过程开始；其他类型的安装， (<emphasis>netinst</emphasis> 或者 <emphasis>businesscard</emphasis>) 会有些略有不同。我们也会说明图形化安装模式，但这和 经典 模式的安装只是界面的不同而已。"
 
 #. Tag: title
@@ -419,8 +441,8 @@ msgstr "在安装过程中一些步骤需要输入信息，这些屏幕有一些
 
 #. Tag: para
 #, no-c-format
-msgid "In graphical mode, you can use the mouse."
-msgstr "在图形界面模式下，你可以使用鼠标。"
+msgid "In graphical mode, you can use the mouse as you would normally on an installed graphical desktop."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
@@ -433,8 +455,9 @@ msgid "<primary>choice</primary><secondary>of country</secondary>"
 msgstr "<primary>选择</primary><secondary>国家</secondary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The second step consists in choosing your country. Associated with the language, this information enables the program to offer the most appropriate keyboard layout. This will also influence the configuration of the time zone. In the United States, a standard QWERTY keyboard is suggested, and a choice of appropriate time zones is offered."
+#, fuzzy, no-c-format
+#| msgid "The second step consists in choosing your country. Associated with the language, this information enables the program to offer the most appropriate keyboard layout. This will also influence the configuration of the time zone. In the United States, a standard QWERTY keyboard is suggested, and a choice of appropriate time zones is offered."
+msgid "The second step consists in choosing your country. Combined with the language, this information enables the program to offer the most appropriate keyboard layout. This will also influence the configuration of the time zone. In the United States, a standard QWERTY keyboard is suggested, and a choice of appropriate time zones is offered."
 msgstr "第二步包含于选择你的国家。和语言相关，这个信息让程序提供最多的相应的键盘布局。这也会影响时区的配置。在美国，建议选择标准的 QWERTY 键盘，相应的时区选择也提供了。"
 
 #. Tag: title
@@ -444,12 +467,13 @@ msgstr "选择键盘布局"
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>keyboard</primary><secondary>layout</secondary>"
-msgstr "<primary>键盘</primary><secondary>布局</secondary>"
+msgid "<primary>keyboard layout</primary>"
+msgstr "<primary>键盘模式</primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>keyboard layout</primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary>keyboard layout</primary>"
+msgid "<primary>layout, keyboard</primary>"
 msgstr "<primary>键盘模式</primary>"
 
 #. Tag: para
@@ -483,8 +507,9 @@ msgid "Loading Components"
 msgstr "加载组件"
 
 #. Tag: para
-#, no-c-format
-msgid "With the contents of the CD now available, the installer downloads all the files necessary to continue with its work. This includes additional drivers for the remaining hardware (especially the network card), as well as all the components of the installation program."
+#, fuzzy, no-c-format
+#| msgid "With the contents of the CD now available, the installer downloads all the files necessary to continue with its work. This includes additional drivers for the remaining hardware (especially the network card), as well as all the components of the installation program."
+msgid "With the contents of the CD now available, the installer loads all the files necessary to continue with its work. This includes additional drivers for the remaining hardware (especially the network card), as well as all the components of the installation program."
 msgstr "CD 的内容现在准备好了，安装程序会下载所有需要的文件继续完成它的工作。这包括剩下的硬件的驱动（特别是网卡），以及所有安装程序的组件。"
 
 #. Tag: title
@@ -493,13 +518,15 @@ msgid "Detecting Network Hardware"
 msgstr "检测网络硬件"
 
 #. Tag: para
-#, no-c-format
-msgid "This automatic step tries to identify the network card and load the corresponding module. If automatic detection fails, you can manually select the module to load. If no module works, it is possible to load a specific module from a removable peripheral. This last solution is usually only needed if the appropriate driver is not included in the standard Linux kernel, but available elsewhere, such as the manufacturer's website."
+#, fuzzy, no-c-format
+#| msgid "This automatic step tries to identify the network card and load the corresponding module. If automatic detection fails, you can manually select the module to load. If no module works, it is possible to load a specific module from a removable peripheral. This last solution is usually only needed if the appropriate driver is not included in the standard Linux kernel, but available elsewhere, such as the manufacturer's website."
+msgid "This automatic step tries to identify the network card and load the corresponding module. If automatic detection fails, you can manually select the module to load. If no module works, it is possible to load a specific module from a removable device. This last solution is usually only needed if the appropriate driver is not included in the standard Linux kernel, but available elsewhere, such as the manufacturer's website."
 msgstr "这一步自动尝试侦测网卡并加载相应的模块。如果自动检测失败，你可以手动选择模块加载。如果模块不工作，也能从可移除的外设加载特定模块。如果相应的驱动不包含在标准的 Linux 内核里，这通常就是最后的解决方案了，但除此之外，就是厂商网站上的驱动了。"
 
 #. Tag: para
-#, no-c-format
-msgid "This step must absolutely be successful for <emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis> installations, since the Debian packages must be loaded from the network."
+#, fuzzy, no-c-format
+#| msgid "This step must absolutely be successful for <emphasis>netinst</emphasis> or <emphasis>businesscard</emphasis> installations, since the Debian packages must be loaded from the network."
+msgid "This step must absolutely be successful for <emphasis>netinst</emphasis> installations, since the Debian packages must be loaded from the network."
 msgstr "<emphasis>netinst</emphasis> 或者 <emphasis>businesscard</emphasis> 安装这步必须绝对成功 ，因为 Debian 的安装包必须从网络加载。"
 
 #. Tag: title
@@ -518,8 +545,9 @@ msgid "<primary>configuration</primary><secondary>network</secondary><tertiary>D
 msgstr "<primary>配置</primary><secondary>网络</secondary><tertiary>DHCP</tertiary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Eager to automate the process as much as possible, the installer attempts an automatic DHCP network configuration. If this fails, it offers more choices: try again with a normal DHCP configuration, attempt DHCP configuration by declaring the name of the machine, or set up a static network configuration."
+#, fuzzy, no-c-format
+#| msgid "Eager to automate the process as much as possible, the installer attempts an automatic DHCP network configuration. If this fails, it offers more choices: try again with a normal DHCP configuration, attempt DHCP configuration by declaring the name of the machine, or set up a static network configuration."
+msgid "In order to automate the process as much as possible, the installer attempts an automatic network configuration by DHCP (for IPv4) and by IPv6 network discovery. If this fails, it offers more choices: try again with a normal DHCP configuration, attempt DHCP configuration by declaring the name of the machine, or set up a static network configuration."
 msgstr "为了尽可能的自动安装，安装程序尝试着自动 DHCP 网络配置。如果失败，它会提供更多选项；再次尝试正常的 DHCP 配置，试图以声明机器名尝试 DHCP 配置，或者设置静态网络配置。"
 
 #. Tag: para
@@ -553,8 +581,9 @@ msgid "Configuring the Clock"
 msgstr "配置时钟"
 
 #. Tag: para
-#, no-c-format
-msgid "If the network is available, the system's internal clock is updated (in a one-shot way) from an NTP server. This way the timestamps on logs will be correct from the first boot. For them to remain consistently precise over time, an NTP daemon needs to be set up after initial installation (see <xref linkend=\"section.synchronisation-horaire\" />)."
+#, fuzzy, no-c-format
+#| msgid "If the network is available, the system's internal clock is updated (in a one-shot way) from an NTP server. This way the timestamps on logs will be correct from the first boot. For them to remain consistently precise over time, an NTP daemon needs to be set up after initial installation (see <xref linkend=\"section.synchronisation-horaire\" />)."
+msgid "If the network is available, the system's internal clock is updated (in a one-shot way) from an NTP server. This way the timestamps on logs will be correct from the first boot. For them to remain consistently precise over time, an NTP daemon needs to be set up after initial installation (see <xref linkend=\"sect.time-synchronization\" />)."
 msgstr "如果网络是正常的，系统的内部时钟从网络时间服务器更新(一次性)。这种方式在系统第一次启动时时间戳在日志上记录是正确的。为了一直保持精确的时间，需要在初始安装后设置 NTP 精灵进程( 参看 <xref linkend=\"section.synchronisation-horaire\" />)。"
 
 #. Tag: title
@@ -643,8 +672,9 @@ msgid "The partitioning step is traditionally difficult for new users. It is nec
 msgstr "一般来说分区对新用户有一定难度。需要定义各种划分的磁盘分区，在上面建Linux 文件系统和虚拟内存。这是件复杂的任务，如果你想保存这个硬盘上的另一个系统。本质上，你只要确定不要修改分区表(也不要修改分区大小就不会损坏数据)。"
 
 #. Tag: para
-#, no-c-format
-msgid "Fortunately, the partitioning software has an “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
+#, fuzzy, no-c-format
+#| msgid "Fortunately, the partitioning software has an “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
+msgid "Fortunately, the partitioning software has a “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
 msgstr "幸运的是，分区软件有引导模式，给予用户最常用的分区建议，你能够简单的去验证。"
 
 #. Tag: title
@@ -653,8 +683,9 @@ msgid "Choice of partitioning mode"
 msgstr "分区模式的选择"
 
 #. Tag: para
-#, no-c-format
-msgid "The first screen in the partitioning tool offers the choice of using an entire hard drive to create various partitions. For a (new) computer which will solely use Linux, this option is clearly the simplest, and you can choose the option “Guided - use entire disk”. If the computer has two hard drives for two operating systems, setting one drive for each is also a solution that can facilitate partitioning. In both of these cases, the next screen offers to choose the disk where Linux will be installed by selecting the corresponding entry (for example, “SCSI3 (0,0,0) (sda) - 12.9 GB ATA VBOX HARDDISK”). You then start guided partitioning."
+#, fuzzy, no-c-format
+#| msgid "The first screen in the partitioning tool offers the choice of using an entire hard drive to create various partitions. For a (new) computer which will solely use Linux, this option is clearly the simplest, and you can choose the option “Guided - use entire disk”. If the computer has two hard drives for two operating systems, setting one drive for each is also a solution that can facilitate partitioning. In both of these cases, the next screen offers to choose the disk where Linux will be installed by selecting the corresponding entry (for example, “SCSI3 (0,0,0) (sda) - 12.9 GB ATA VBOX HARDDISK”). You then start guided partitioning."
+msgid "The first screen in the partitioning tool offers the choice of using an entire hard drive to create various partitions. For a (new) computer which will solely use Linux, this option is clearly the simplest, and you can choose the option “Guided - use entire disk”. If the computer has two hard drives for two operating systems, setting one drive for each is also a solution that can facilitate partitioning. In both of these cases, the next screen offers to choose the disk where Linux will be installed by selecting the corresponding entry (for example, “SCSI1 (0,0,0) (sda) - 12.9 GB ATA VBOX HARDDISK”). You then start guided partitioning."
 msgstr "分区工具提供的第一个屏幕里首选项是使用整个硬盘分成各种分区。对于新的单独使用 Linux 的计算机来说，这个最简单，你可以选择  引导--使用整个硬盘。如果计算机为两个系统准备了两块硬盘，每块硬盘装一个系统这样分区就容易多了。这些方案中，下一步显示选择安装 Linux 的硬盘开始分区(例如, “SCSI3 (0,0,0) (sda) - 12.9 GB ATA VBOX HARDDISK”).  然后你就开始分区了。"
 
 #. Tag: title
@@ -688,8 +719,9 @@ msgid "The guided partitioning tool offers three partitioning methods, which cor
 msgstr "引导分区工具工具依据不同的用途提供了三种分区方法。"
 
 #. Tag: para
-#, no-c-format
-msgid "The first method is called “All in one partition”. The entire Linux system tree is stored in a single filesystem, corresponding to the root <filename>/</filename> directory. This simple and robust partitioning fits perfectly for personal or single-user systems. In fact, two partitions will be created: the first will house the complete system, the second the virtual memory (swap)."
+#, fuzzy, no-c-format
+#| msgid "The first method is called “All in one partition”. The entire Linux system tree is stored in a single filesystem, corresponding to the root <filename>/</filename> directory. This simple and robust partitioning fits perfectly for personal or single-user systems. In fact, two partitions will be created: the first will house the complete system, the second the virtual memory (swap)."
+msgid "The first method is called “All files in one partition”. The entire Linux system tree is stored in a single filesystem, corresponding to the root <filename>/</filename> directory. This simple and robust partitioning fits perfectly for personal or single-user systems. In fact, two partitions will be created: the first will house the complete system, the second the virtual memory (swap)."
 msgstr "第一第一种方法是 “都在一个分区”。整个 Linux  系统都存在于单个文件系统下，即根 <filename>/</filename>  文件夹。这个对于个人或单用户系统来说简单也实用。实际上，会建两个分区；第一个是整个系统，第二个是虚拟内存(交换分区)。"
 
 #. Tag: para
@@ -698,8 +730,9 @@ msgid "The second method, “Separate <filename>/home/</filename> partition”, 
 msgstr "第二个方法， “单独的 <filename>/home/</filename> 分区”,很类似，但文件系统层次分成两个；一个包含了 Linux 系统(<filename>/</filename>)，第二个包含了 “home 文件夹”(意味着用户数据，文件和子文件夹存在于 <filename>/home/</filename> 下面)。"
 
 #. Tag: para
-#, no-c-format
-msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>, and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
+#, fuzzy, no-c-format
+#| msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>, and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
+msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>), and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
 msgstr "最后一种分区方法，称为“分离 <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, 和 <filename>/tmp</filename> 分区”,适合于服务器和多用户系统。它把文件树分到许多分区： 除了根 (<filename>/</filename>) 和用户 (<filename>/home/</filename>) 分区，还有这些分区，应用软件  (<filename>/usr/</filename>)，服务器软件数据  (<filename>/var/</filename>, 和临时文件 (<filename>/tmp/</filename>)。这样分区有几个优势。用户不会因为使用完所有可用硬盘空间而锁定整个服务器 (他们只能用完<filename>/tmp/</filename> 和 <filename>/home/</filename>)。守护进程的数据(尤其是日志)不会再填满系统的其余部分。”"
 
 #. Tag: title
@@ -718,8 +751,9 @@ msgid "<primary>file</primary><secondary>system</secondary>"
 msgstr "<primary>文件</primary><secondary>系统</secondary>"
 
 #. Tag: para
-#, no-c-format
-msgid "A filesystem defines the way in which data is organized on the hard drive. Each existing filesystem has its merits and limitations. Some are more robust, others more effective: if you know your needs well, choosing the most appropriate filesystem is possible. Various comparisons have already been made; it seems that ReiserFS is particularly efficient for reading many small files; <emphasis>XFS</emphasis>, in turn, works faster with large files. <emphasis>Ext3</emphasis>, the default filesystem for Debian, is a good compromise, based on the two previous versions of filesystems historically used in Linux (<emphasis>ext</emphasis> and <emphasis>ext2</emphasis>). You could also choose its successor <emphasis>ext4</emphasis>, which overcomes certain limitations of <emphasis>ext3</emphasis> and is particularly appropriate for very large capacity hard drives. If you are particularly brave, you could experiment with the very promising <emphasis>btrfs</emphasis>, which includes numerous features that require, to this day, the use of LVM and/or RAID."
+#, fuzzy, no-c-format
+#| msgid "A filesystem defines the way in which data is organized on the hard drive. Each existing filesystem has its merits and limitations. Some are more robust, others more effective: if you know your needs well, choosing the most appropriate filesystem is possible. Various comparisons have already been made; it seems that ReiserFS is particularly efficient for reading many small files; <emphasis>XFS</emphasis>, in turn, works faster with large files. <emphasis>Ext3</emphasis>, the default filesystem for Debian, is a good compromise, based on the two previous versions of filesystems historically used in Linux (<emphasis>ext</emphasis> and <emphasis>ext2</emphasis>). You could also choose its successor <emphasis>ext4</emphasis>, which overcomes certain limitations of <emphasis>ext3</emphasis> and is particularly appropriate for very large capacity hard drives. If you are particularly brave, you could experiment with the very promising <emphasis>btrfs</emphasis>, which includes numerous features that require, to this day, the use of LVM and/or RAID."
+msgid "A filesystem defines the way in which data is organized on the hard drive. Each existing filesystem has its merits and limitations. Some are more robust, others more effective: if you know your needs well, choosing the most appropriate filesystem is possible. Various comparisons have already been made; it seems that ReiserFS is particularly efficient for reading many small files; <emphasis>XFS</emphasis>, in turn, works faster with large files. <emphasis>Ext4</emphasis>, the default filesystem for Debian, is a good compromise, based on the three previous versions of filesystems historically used in Linux (<emphasis>ext</emphasis>, <emphasis>ext2</emphasis> and <emphasis>ext3</emphasis>). <emphasis>Ext4</emphasis> overcomes certain limitations of <emphasis>ext3</emphasis> and is particularly appropriate for very large capacity hard drives. Another option would be to experiment with the very promising <emphasis>btrfs</emphasis>, which includes numerous features that require, to this day, the use of LVM and/or RAID."
 msgstr "文件系统定义了数据在硬盘上的组织方式。每个文件系统有它的优点和局限性。有些更健壮，有些更注重实际；如果你清楚你的需求，那选到最适合你的系统也是可能的。已经做过各种比较，似乎 ReiserFS 对于许多小文件的读比较高效；<emphasis>XFS</emphasis>，对于大文件的处理更有优势。 <emphasis>Ext3</emphasis>，Debian 的默认文件系统， 与之前 Linux 使用两个文件系统相比是一个好的选择(<emphasis>ext</emphasis> 和 <emphasis>ext2</emphasis>)。你也可以选择它的后来者 <emphasis>ext4</emphasis>，它克服了 <emphasis>ext3</emphasis> 的某些限制,尤其适合非常大容量的硬盘。如果你特别勇敢，你可以尝试非常有前景的  <emphasis>btrfs</emphasis>，它包括了当今 LVM 和/或者 RAID 的使用中的许多的特性。"
 
 #. Tag: para
@@ -728,8 +762,9 @@ msgid "A journalized filesystem (such as <emphasis>ext3</emphasis>, <emphasis>ex
 msgstr "日志型文件系统 (比如 <emphasis>ext3</emphasis>, <emphasis>ext4</emphasis>, <emphasis>btrfs</emphasis>, <emphasis>reiserfs</emphasis>, 或者 <emphasis>xfs</emphasis>)  需要特殊的措施,在突然异常中断后不需要分析整个硬盘情况下，使得文件系统可以返回到前一个正常的状态（ <emphasis>ext2</emphasis> 的情况也是如此）。这个功能实现方法是，在实际执行操作前通过日志记录操作的描述。如果操作被打断，可以通过日志实现 “回放” 。相反地，如果中断发生在日志的更新过程中，最后请求的变化被简单忽略；将要写入的数据会丢失，但硬盘上没有变化的数据它们会保持一致。这就是这个文件系统的事务机制。"
 
 #. Tag: para
-#, no-c-format
-msgid "After choosing the type of partition, the software calculates a suggestion, and describes it on the screen; the user can then modify it if needed. You can, in particular, choose another filesystem if the standard choice (<emphasis>ext3</emphasis>) isn't appropriate. In most cases, however, the proposed partitioning is reasonable and it can be accepted by selecting the “Finish partitioning and write changes to disk” entry."
+#, fuzzy, no-c-format
+#| msgid "After choosing the type of partition, the software calculates a suggestion, and describes it on the screen; the user can then modify it if needed. You can, in particular, choose another filesystem if the standard choice (<emphasis>ext3</emphasis>) isn't appropriate. In most cases, however, the proposed partitioning is reasonable and it can be accepted by selecting the “Finish partitioning and write changes to disk” entry."
+msgid "After choosing the type of partition, the software calculates a suggestion, and describes it on the screen; the user can then modify it if needed. You can, in particular, choose another filesystem if the standard choice (<emphasis>ext4</emphasis>) isn't appropriate. In most cases, however, the proposed partitioning is reasonable and it can be accepted by selecting the “Finish partitioning and write changes to disk” entry."
 msgstr "选择完分区类型后，软件会统计并显示所有分区相关信息；用户可以根据实际需要进行修改。特别是如果默认的文件系统 (<emphasis>ext3</emphasis>) 不符合你需求的话你可以选另一种文件系统。然而，大部分情况下，规划的分区是合理的直接确认选项 “完成分区并把改变写入磁盘”就可以了。"
 
 #. Tag: title
@@ -908,8 +943,9 @@ msgid "We will only describe level 1 RAID, which is the simplest to implement. T
 msgstr "这里我们仅描述 RAID 1，是最简单的实现。第一个步骤是在两块不同的硬盘上创建两个相同大小的分区位于，为他们标上 “物理卷 RAID”。"
 
 #. Tag: para
-#, no-c-format
-msgid "You must then choose “Configure software RAID” in the partitioning tool to combine these two partitions into a new virtual disk and select “Create MD device” in the configuration screen. You then need to answer a series of questions about this new device. The first question asks about the RAID level to use, which in our case will be “RAID1”. The second question asks about the number of active devices — two in our case, which is the number of partitions that needs to be included in this MD device. The third question is about the number of spare devices — 0; we have not planned any additional disk to take over for a possible defective disk. The last question requires you to choose the partitions for the RAID peripheral — these would be the two that we have set aside for this purpose (make sure you only select the partitions that explicitly mention “raid”)."
+#, fuzzy, no-c-format
+#| msgid "You must then choose “Configure software RAID” in the partitioning tool to combine these two partitions into a new virtual disk and select “Create MD device” in the configuration screen. You then need to answer a series of questions about this new device. The first question asks about the RAID level to use, which in our case will be “RAID1”. The second question asks about the number of active devices — two in our case, which is the number of partitions that needs to be included in this MD device. The third question is about the number of spare devices — 0; we have not planned any additional disk to take over for a possible defective disk. The last question requires you to choose the partitions for the RAID peripheral — these would be the two that we have set aside for this purpose (make sure you only select the partitions that explicitly mention “raid”)."
+msgid "You must then choose “Configure software RAID” in the partitioning tool to combine these two partitions into a new virtual disk and select “Create MD device” in the configuration screen. You then need to answer a series of questions about this new device. The first question asks about the RAID level to use, which in our case will be “RAID1”. The second question asks about the number of active devices — two in our case, which is the number of partitions that needs to be included in this MD device. The third question is about the number of spare devices — 0; we have not planned any additional disk to take over for a possible defective disk. The last question requires you to choose the partitions for the RAID device — these would be the two that we have set aside for this purpose (make sure you only select the partitions that explicitly mention “raid”)."
 msgstr "然后你在分区工具里选择 “配置软件 RAID” 把这两个分区结合成一个新的虚拟硬盘，接着选 “创建 MD 设备” 。然后你需要回答一系列关于新设备的问题。首先是问使用 RAID 的哪个层级，这里选 RAID1.第二个问题问激活设备数 -- 这里选 2，在 MD 设备里包括设备数量。第三个问题是关于备用设备数 - 0；我们没有额外磁盘以备为接管可能会坏掉的硬盘。最后的问题需要你选择分区作为 RAID 设备--即我们为此目的已经设置好的两个分区(确定你只选了明确称为  “raid” 的分区)。"
 
 #. Tag: para
@@ -918,8 +954,9 @@ msgid "Back to the main menu, a new virtual “RAID” disk appears. This disk i
 msgstr "返回主菜单，一个新的虚拟 \"RAID\"  盘会出现。这个虚拟盘显示为一个分区，它不能被删除，但我们可以把它当作其他任何分区一样使用。"
 
 #. Tag: para
-#, no-c-format
-msgid "For further details on RAID functions, please refer to <xref linkend=\"section.raid-soft\" />."
+#, fuzzy, no-c-format
+#| msgid "For further details on RAID functions, please refer to <xref linkend=\"section.raid-soft\" />."
+msgid "For further details on RAID functions, please refer to <xref linkend=\"sect.raid-soft\" />."
 msgstr "关于 RAID 功能的深入细节，请移步至<xref linkend=\"section.raid-soft\" />。 "
 
 #. Tag: title
@@ -938,8 +975,9 @@ msgid "<primary>Logical Volume Manager</primary><secondary>during installation</
 msgstr "<primary>逻辑卷管理</primary><secondary>在安装过程中</secondary>"
 
 #. Tag: para
-#, no-c-format
-msgid "LVM allows you to create “virtual” partitions that span over several disks. The benefits are twofold: the size of the partitions are no longer limited by individual disks but by their cumulative volume, and you can at any time increase the size of an existing partition by adding an additional disk when needed."
+#, fuzzy, no-c-format
+#| msgid "LVM allows you to create “virtual” partitions that span over several disks. The benefits are twofold: the size of the partitions are no longer limited by individual disks but by their cumulative volume, and you can at any time increase the size of an existing partition by adding an additional disk when needed."
+msgid "LVM allows you to create “virtual” partitions that span over several disks. The benefits are twofold: the size of the partitions are no longer limited by individual disks but by their cumulative volume, and you can resize existing partitions at any time, possibly after adding an additional disk when needed."
 msgstr "LVM 让你可以在几块磁盘上创建 “虚拟” 分区。有双重优点：分区大小不再受限于每块磁盘的容量而是他们的数倍，可以在你需要的时候任意增加一块额外的磁盘增加已经存在的分区容量。"
 
 #. Tag: para
@@ -973,8 +1011,9 @@ msgid "This technique works in a very simple way: each volume, whether physical 
 msgstr "这项技术工作方式很简单：每个卷，不管是物理卷还是逻辑卷，对应到 LVM 它们都被划成相同大小的块。增加新硬盘以创建新的物理卷，这些新的块被关联到任意的卷组。所有卷组上的分区会因而扩展更多空间。"
 
 #. Tag: para
-#, no-c-format
-msgid "The partitioning tool configures LVM in several steps. First you must create on the existing disks the partitions that will be “physical volumes for LVM”. To activate LVM, you need to choose “Configure the Logical Volume Manager (LVM)”, then on the same configuration screen “Create a volume group”, to which you will associate the existing physical volumes. Finally, you can create logical volumes within this volume group. Note that the automatic partitioning system is able to do all of this implementation."
+#, fuzzy, no-c-format
+#| msgid "The partitioning tool configures LVM in several steps. First you must create on the existing disks the partitions that will be “physical volumes for LVM”. To activate LVM, you need to choose “Configure the Logical Volume Manager (LVM)”, then on the same configuration screen “Create a volume group”, to which you will associate the existing physical volumes. Finally, you can create logical volumes within this volume group. Note that the automatic partitioning system is able to do all of this implementation."
+msgid "The partitioning tool configures LVM in several steps. First you must create on the existing disks the partitions that will be “physical volumes for LVM”. To activate LVM, you need to choose “Configure the Logical Volume Manager (LVM)”, then on the same configuration screen “Create a volume group”, to which you will associate the existing physical volumes. Finally, you can create logical volumes within this volume group. Note that the automatic partitioning system can perform all these steps automatically."
 msgstr "分区工具配置 LVM 有几个步骤。首先，你必须在"
 
 #. Tag: para
@@ -983,8 +1022,9 @@ msgid "In the partitioning menu, each physical volume will appear as a disk with
 msgstr "在分区菜单，每个物理卷会作为一个单一分区的磁盘出现，这个分区不能被删除，但你可以使用它了。"
 
 #. Tag: para
-#, no-c-format
-msgid "The usage of LVM is described in further detail in <xref linkend=\"section.lvm\" />."
+#, fuzzy, no-c-format
+#| msgid "The usage of LVM is described in further detail in <xref linkend=\"section.lvm\" />."
+msgid "The usage of LVM is described in further detail in <xref linkend=\"sect.lvm\" />."
 msgstr "LVM 作用的深入介绍请移步至<xref linkend=\"section.lvm\" />。 "
 
 #. Tag: title
@@ -1058,8 +1098,9 @@ msgid "<primary>system</primary><secondary>base</secondary>"
 msgstr "<primary>系统</primary><secondary>基础</secondary>"
 
 #. Tag: para
-#, no-c-format
-msgid "This step, which doesn't require any user interaction, installs the Debian “base system” packages. This includes the <command>dpkg</command> and <command>apt</command> tools, which manage Debian packages, as well as the utilities necessary to boot the system and start using it. The Debian packages are read from the disk (if using a <emphasis>netinst</emphasis> CD or a complete CD-/DVD-ROM) or downloaded (when using a <emphasis>businesscard</emphasis> installation disk)."
+#, fuzzy, no-c-format
+#| msgid "This step, which doesn't require any user interaction, installs the Debian “base system” packages. This includes the <command>dpkg</command> and <command>apt</command> tools, which manage Debian packages, as well as the utilities necessary to boot the system and start using it. The Debian packages are read from the disk (if using a <emphasis>netinst</emphasis> CD or a complete CD-/DVD-ROM) or downloaded (when using a <emphasis>businesscard</emphasis> installation disk)."
+msgid "This step, which doesn't require any user interaction, installs the Debian “base system” packages. This includes the <command>dpkg</command> and <command>apt</command> tools, which manage Debian packages, as well as the utilities necessary to boot the system and start using it."
 msgstr "这一步，不需要任何交互，安装 Debian  “基本系统” 软件包。这包括管理 Debian 软件包的 <command>dpkg</command> 和 <command>apt</command> 命令，如引导系统并使用的工具一样。 Debian 包会从光盘(如果使用 <emphasis>netinst</emphasis> CD 或者 完整的 CD-/DVD-ROM)读取安装 或者下载后(如果使用 <emphasis>businesscard</emphasis> 安装盘)安装。"
 
 #. Tag: title
@@ -1098,8 +1139,9 @@ msgid "If the installer detects a Debian installation disk in the CD/DVD reader,
 msgstr "如果安装程序发现 Debian 安装光盘在光驱里，它不需要去配置 APT 以在网络上寻找需要安装的软件包: APT 是通过配置后自动读取包不需要从移动光驱获取。如果光驱也是 APT 源的一部分，软件会提供 “搜索” 其他光盘以安装提及的包。"
 
 #. Tag: para
-#, no-c-format
-msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing successively a country and a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian server)."
+#, fuzzy, no-c-format
+#| msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing successively a country and a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian server)."
+msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing first a country, then a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian master archive)."
 msgstr "如果需要从网络获得软件包，后面两个问题允许选择一个服务器去下载这些包，选择一个国家和该国可用的镜像(镜像是指包含有所有 Debian 安装包副本的公共服务器)。"
 
 #. Tag: title
@@ -1213,13 +1255,15 @@ msgid "This phase in the Debian installation process detects the operating syste
 msgstr "在 Debian 安装过程中检测到已经安装的操作系统时，会自动把它加到引导菜单项中，但不是所有的安装程序都能这么做。"
 
 #. Tag: para
-#, no-c-format
-msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
+#, fuzzy, no-c-format
+#| msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
+msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch08s07.html\" />"
 msgstr "特别地，如果你以后安装 (或重新安装) Windows ，引导程序会被覆盖。 Debian 仍然在硬盘上，但在引导菜单里不再能被操作了。你必须用 <userinput>拯救</userinput> 模式去重新安装这一引导程序来引导已经存在的 Debian 系统。这一操作的描述细节在安装手册里。 <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
 
 #. Tag: para
-#, no-c-format
-msgid "By default, the menu proposed by GRUB contains all the installed Linux kernels, as well as any other detected operating systems. This is why you should accept the offer to install it in the Master Boot Record. Since keeping older kernel versions preserves the ability to boot the same system if the most recently installed kernel is defective or poorly adapted to the hardware, it is best to always keep at least three older versions."
+#, fuzzy, no-c-format
+#| msgid "By default, the menu proposed by GRUB contains all the installed Linux kernels, as well as any other detected operating systems. This is why you should accept the offer to install it in the Master Boot Record. Since keeping older kernel versions preserves the ability to boot the same system if the most recently installed kernel is defective or poorly adapted to the hardware, it is best to always keep at least three older versions."
+msgid "By default, the menu proposed by GRUB contains all the installed Linux kernels, as well as any other operating systems that were detected. This is why you should accept the offer to install it in the Master Boot Record. Since keeping older kernel versions preserves the ability to boot the same system if the most recently installed kernel is defective or poorly adapted to the hardware, it often makes sense to keep a few older kernel versions installed."
 msgstr "默认情况下，GRUB 显示菜单包括了所有已检测到操作系统的 Linux 内核。这就是为什么你要接受安装它到主引导扇区的原因。保存旧的内核的好处在于，当你的新内核不能在硬件上工作良好时，还能用旧内核正常引导系统，所以最好保存最近三个版本的内核。"
 
 #. Tag: para
@@ -1228,8 +1272,9 @@ msgid "GRUB is the default bootloader installed by Debian thanks to its technica
 msgstr "由于 GRUB 的技术优势，GRUB 是 Debian 的默认引导程序：它能识别大部分的文件系统，因此在每次安装新内核之后无须作更新，这是由于引导时 GRUB 是通过读取配置文件找到新内核的实际位置的。版本 1 的 GRUB （又被称为\"Grub Legacy\"）不能处理有 LVM  和 软件 RAID 的情况；版本 2 默认支持，更全面。某些情况推荐使用LILO（另一种引导程序），安装程序会自动提示的。"
 
 #. Tag: para
-#, no-c-format
-msgid "For more information on configuring GRUB, please refer to <xref linkend=\"section.config-grub\" />."
+#, fuzzy, no-c-format
+#| msgid "For more information on configuring GRUB, please refer to <xref linkend=\"section.config-grub\" />."
+msgid "For more information on configuring GRUB, please refer to <xref linkend=\"sect.config-grub\" />."
 msgstr "关于配置GRUB的更多信息，请移步至<xref linkend=\"section.config-grub\" />。"
 
 #. Tag: title
@@ -1258,8 +1303,9 @@ msgid "After the First Boot"
 msgstr "在首次启动之后"
 
 #. Tag: para
-#, no-c-format
-msgid "If you activated the task “Graphical desktop environment”, the computer will display the <command>gdm</command> login manager."
+#, fuzzy, no-c-format
+#| msgid "If you activated the task “Graphical desktop environment”, the computer will display the <command>gdm</command> login manager."
+msgid "If you activated the task “Graphical desktop environment”, the computer will display the <command>gdm3</command> login manager."
 msgstr "如果你选择”图形桌面环境“，系统将显示<command>gdm</command>登录管理器。"
 
 #. Tag: title
@@ -1278,8 +1324,9 @@ msgid "Installing Additional Software"
 msgstr "安装附加软件"
 
 #. Tag: para
-#, no-c-format
-msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop enviroment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (<menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Synaptic Package Manager</guimenuitem></menuchoice>)."
+#, fuzzy, no-c-format
+#| msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop enviroment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (<menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Synaptic Package Manager</guimenuitem></menuchoice>)."
+msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (“Synaptic Package Manager” in the menus)."
 msgstr "对于安装过程中已选配置的安装软件，已安装的软件不一定是机器实际组成的。这样的话，你要使用包管理工具提炼选择已安装的包。两个最常用的工具(如果选择了 “图形化桌面环境” 就表示已安装了) 是 <command>apt</command>(从命令行执行) 和 <command>synaptic</command> (<menuchoice><guimenu>系统</guimenu> <guisubmenu>管理</guisubmenu> <guimenuitem>Synaptic 包管理</guimenuitem></menuchoice>)  。"
 
 #. Tag: para
@@ -1303,8 +1350,9 @@ msgid "<emphasis>TIP</emphasis> Debian thinks of speakers of non-English languag
 msgstr "<emphasis>技巧</emphasis> Debian 顾及非英语用户"
 
 #. Tag: para
-#, no-c-format
-msgid "Several tasks are dedicated to the localization of the system in other languages beyond English. They include translated documentation, dictionaries, and various other packages useful for speakers speakers of different languages. The appropriate task is automatically selected if a non-English language was chosen during installation."
+#, fuzzy, no-c-format
+#| msgid "Several tasks are dedicated to the localization of the system in other languages beyond English. They include translated documentation, dictionaries, and various other packages useful for speakers speakers of different languages. The appropriate task is automatically selected if a non-English language was chosen during installation."
+msgid "Several tasks are dedicated to the localization of the system in other languages beyond English. They include translated documentation, dictionaries, and various other packages useful for speakers of different languages. The appropriate task is automatically selected if a non-English language was chosen during installation."
 msgstr "某些任务致力于系统的本地化用英语之外的其他语言。它们包括翻译文档，词典，和各种对其他不同语言使用者有用的各种软件包。在安装过程中如果选择了非英语语言相应的任务会自动显示该语言。"
 
 #. Tag: title
@@ -1353,7 +1401,19 @@ msgid "<primary>safe-upgrade</primary>"
 msgstr "<primary>安全升级</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"section.apt-mise-a-jour\" />."
+#, fuzzy, no-c-format
+#| msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"section.apt-mise-a-jour\" />."
+msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"sect.apt-upgrade\" />."
 msgstr "首先一般需要 <command>aptitude safe-upgrade</command>（通常用来自动更新安装程序的命令），特别是从上一个稳定的 Debian 正式版更新的话，需要注意可能出现的安全问题。标准的 Debian 配置工具<command>debconf</command>来更新，可能会涉及额外的问题。以 <command>aptitude</command> 进行更新的更多信息，请参阅 <xref linkend=\"section.apt-mise-a-jour\" />."
 
+#~ msgid "<emphasis>IN PRACTICE</emphasis> Debian on CD-ROM"
+#~ msgstr "<emphasis>实践</emphasis> CD-ROM 上的 Debian"
+
+#~ msgid "<indexterm><primary>CD-ROM vendor</primary></indexterm> Debian CD-/DVD-ROMs can also be purchased; Raphaël Hertzog proposes some on his blog, where 10% of the profit is donated to the Debian Project, the remainder of which allows him to devote more time to Debian. <ulink type=\"block\" url=\"http://www.debian.org/CD/vendors/\" /> <ulink type=\"block\" url=\"http://raphaelhertzog.com/go/debian-cd/\" />"
+#~ msgstr "<indexterm><primary>CD-ROM vendor</primary></indexterm> Debian CD-/DVD 光盘 也可以购买; Raphaël Hertzog 在其博客上有一些建议, 10%的利润捐赠给 Debian 基金会，剩下的让他能够花更多的时间专注于 Debian 项目。<ulink type=\"block\" url=\"http://www.debian.org/CD/vendors/\" /> <ulink type=\"block\" url=\"http://raphaelhertzog.com/go/debian-cd/\" />"
+
+#~ msgid "In graphical mode, you can use the mouse."
+#~ msgstr "在图形界面模式下，你可以使用鼠标。"
+
+#~ msgid "<primary>keyboard</primary><secondary>layout</secondary>"
+#~ msgstr "<primary>键盘</primary><secondary>布局</secondary>"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-06-01T20:23:57\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2013-12-30 18:14+0100\n"
 "Last-Translator: wing.W <dabouw@gmail.com>\n"
 "Language-Team: None\n"
@@ -112,6 +112,11 @@ msgstr "当启动计算机时，控制台上滚动的大量信息显示许多初
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
 msgstr "首先，BIOS 控制电脑，探测磁盘，加载<emphasis>Master Boot Record</emphasis>，并执行启动加载器。启动程序接手后，找到磁盘上的内核，加载并执行。然后，内核被初始化，并开始寻找和挂载包含根文件系统的分区，最后执行第一个程序－<command>init</command>。根分区和启动程序<command>init</command>常常驻留在仅存在于 RAM 中的虚拟文件系统（正如它的名字，“initramfs”，一般称之为“initrd”初始内存磁盘）。启动加载器将文件加载到内存中，文件通常位于硬盘或者源于网络。它包含了内核需要的最少裸信息，以便用来加载“真正”的根文件系统：可能是硬盘上的驱动模块，或者其他系统启动必须的设备，或者是初始化脚本和组织 RAID 阵列的模块，打开加密分区，激活 LVM ，等等。一旦根分区挂载，initramfs　就会把控制权交到真正的启动程序，机器则回到标准的启动过程。"
+
+#. Tag: para
+#, no-c-format
+msgid "The “real init” is currently provided by <emphasis role=\"pkg\">sysv-rc</emphasis> (“System V”) and this section documents this init system."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
@@ -229,8 +234,9 @@ msgid "Kernel modules also have options that can be configured by putting some f
 msgstr "内核模块也有一些选项，可以通过在 <filename>/etc/modprobe.d/</filename> 中放置一些文件配置。这些选项通过诸如此类的语法定义：<literal>选项 <replaceable>模块名字</replaceable> <replaceable>选项名字</replaceable>=<replaceable>选项值</replaceable></literal>。如果有必要，一些选项可以通过单独的定向命令指示。"
 
 #. Tag: para
-#, no-c-format
-msgid "These configuration files are intended for <command>modprobe</command> — the program that loads a kernel module with its dependencies (modules can indeed call other modules). This program is provided by the <emphasis role=\"pkg\">module-init-tools</emphasis> package."
+#, fuzzy, no-c-format
+#| msgid "These configuration files are intended for <command>modprobe</command> — the program that loads a kernel module with its dependencies (modules can indeed call other modules). This program is provided by the <emphasis role=\"pkg\">module-init-tools</emphasis> package."
+msgid "These configuration files are intended for <command>modprobe</command> — the program that loads a kernel module with its dependencies (modules can indeed call other modules). This program is provided by the <emphasis role=\"pkg\">kmod</emphasis> package."
 msgstr "这些配置文件用于 <command>modprobe</command> -一个用来加载内核模块以及相关模块的程序（实际上，模块可以调用其他模块）。这个程序由 <emphasis role=\"pkg\">module-init-tools</emphasis> 程序包提供。"
 
 #. Tag: indexterm
@@ -239,13 +245,15 @@ msgid "<primary><command>modprobe</command></primary>"
 msgstr "<primary><command>modprobe</command></primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary><emphasis role=\"pkg\">krdc</emphasis></primary>"
+msgid "<primary><emphasis role=\"pkg\">kmod</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">krdc</emphasis></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started. In <emphasis role=\"distribution\">Squeeze</emphasis>, the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
+#, fuzzy, no-c-format
+#| msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started. In <emphasis role=\"distribution\">Squeeze</emphasis>, the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
+msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started, but nowadays the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
 msgstr "这个阶段之后，<command>init</command> 接管并开始执行默认运行等级的程序（通常默认运行等级是２）。它执行 <command>/etc/init.d/rc 2</command>，这是一个运行<filename>/etc/rc2.d/</filename>文件中列出的所有以“S”打头服务的脚本。后面的两位数历史上曾被用于定义服务开始的顺序。在<emphasis role=\"distribution\">Squeeze</emphasis>中，默认的启动系统使用<command>insserv</command>，它会自动按照脚本依赖关系来调度一切。每个启动脚本要声明启动和停止服务的条件（例如，它是不是要在另一个服务启动之前或之后才能开始）；然后<command>init</command> 通过符合这些条件的顺序加载。脚本的数字无需再考虑（但是，他们必须以“S”打头，接着是两个字符和用于脚本依赖关系的名字）。通常，基础服务（像日志进程<command>rsyslog</command>，或者端口映射<command>portmap</command>）首先启动，随之启动标准服务和图形界面（<command>gdm</command>）。"
 
 #. Tag: para
@@ -259,28 +267,27 @@ msgid "<emphasis>ALTERNATIVE</emphasis> Other boot systems"
 msgstr "<emphasis>选择</emphasis> 其他启动系统 "
 
 #. Tag: para
-#, no-c-format
-msgid "This book describes the boot system used by default in Debian (as implemented by <emphasis role=\"pkg\">sysvinit</emphasis> package), which is derived and inherited from <emphasis>System V</emphasis> Unix systems, but there are others."
+#, fuzzy, no-c-format
+#| msgid "This book describes the boot system used by default in Debian (as implemented by <emphasis role=\"pkg\">sysvinit</emphasis> package), which is derived and inherited from <emphasis>System V</emphasis> Unix systems, but there are others."
+msgid "This book describes the boot system used by default in Debian (as implemented by the <emphasis role=\"pkg\">sysvinit</emphasis> package), which is derived and inherited from <emphasis>System V</emphasis> Unix systems, but there are others. <emphasis role=\"distribution\">Jessie</emphasis> will likely come with another init system by default since the current one is no longer suited to the dynamic nature of computing."
 msgstr "本书描述 Debian 默认的启动系统（由 <emphasis role=\"pkg\">sysvinit</emphasis> 软件包执行），它从<emphasis>System V</emphasis>　Unix 系统派生和继承而来，但是还有其他的系统。"
 
 #. Tag: para
-#, no-c-format
-msgid "In the original <emphasis>System V</emphasis>, and in versions of Debian up to <emphasis role=\"distribution\">Lenny</emphasis>, the execution order of initialization scripts was defined only by the names of the <filename>/etc/rc*.d/S*</filename> symbolic links (and <filename>/etc/rc*.d/K*</filename> upon shutdown). This behavior can be re-established by setting <literal>CONCURRENCY=none</literal> in the <filename>/etc/default/rcS</filename> file."
-msgstr "一般而言，<emphasis>System V</emphasis>，在直到 Debian 版本<emphasis role=\"distribution\">Lenny</emphasis>之前，初始化脚本的执行顺序仅仅由<filename>/etc/rc*.d/S*</filename>符号链接（关机则是<filename>/etc/rc*.d/K*</filename>）的名字定义。可以通过设置<filename>/etc/default/rcS</filename>文件中的<literal>CONCURRENCY=none</literal>来重新建立这种方式。"
-
-#. Tag: para
-#, no-c-format
-msgid "<emphasis role=\"pkg\">file-rc</emphasis> is another boot system with a very simple process. It keeps the principle of runlevels, but replaces the directories and symbolic links with a configuration file, which indicates to <command>init</command> the processes that must be started and their launch order"
+#, fuzzy, no-c-format
+#| msgid "<emphasis role=\"pkg\">file-rc</emphasis> is another boot system with a very simple process. It keeps the principle of runlevels, but replaces the directories and symbolic links with a configuration file, which indicates to <command>init</command> the processes that must be started and their launch order"
+msgid "<emphasis role=\"pkg\">file-rc</emphasis> is a boot system with a very simple process. It keeps the principle of runlevels, but replaces the directories and symbolic links with a configuration file, which indicates to <command>init</command> the processes that must be started and their launch order."
 msgstr "<emphasis role=\"pkg\">file-rc</emphasis> 是另外一个过程很简单的启动系统。它保留运行等级的原则，但是用配置文件取代了目录和符号链接，来告诉<command>init</command>哪些进程必须启动及其顺序。"
 
 #. Tag: para
-#, no-c-format
-msgid "The newly arrived <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
+#, fuzzy, no-c-format
+#| msgid "The newly arrived <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
+msgid "The <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Wheezy</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
 msgstr "新晋<command>upstart</command>系统在 Debian上测试表现还不完美。它基于事件：启动脚本不是按顺序执行，而是作为其他事件（例如依赖脚本执行完成）的响应。这个系统由 Ubuntu 发起，在 Debian <emphasis role=\"distribution\">Squeeze</emphasis>中出现，但不是默认的；它实际上是用来取代<emphasis role=\"pkg\">sysvinit</emphasis>，<command>upstart</command>需要完成的任务之一是运行为传统系统而写的脚本，特别是那些包含在<emphasis role=\"pkg\">sysv-rc</emphasis>软件包中的。"
 
 #. Tag: para
-#, no-c-format
-msgid "Another new option is <command>systemd</command>, but it still lacks the maturity needed to be part of <emphasis role=\"distribution\">Squeeze</emphasis>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services."
+#, fuzzy, no-c-format
+#| msgid "Another new option is <command>systemd</command>, but it still lacks the maturity needed to be part of <emphasis role=\"distribution\">Squeeze</emphasis>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services."
+msgid "Another new option that is gaining a lot of traction is <command>systemd</command>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services. It also provides backwards compatibility to System V init scripts."
 msgstr "另一个新的选择是<command>systemd</command>，但是要成为<emphasis role=\"distribution\">Squeeze</emphasis>的一部分，它还不成熟。它使用的方法和之前的系统是相反的；<command>systemd</command> 在有需要时才启动服务，而不是预先启动所有的服务，并处理其调度问题，一定程度上类似<command>inetd</command>。但是，这要求启动系统必须知道服务是如何生效的（可以通过套结字，文件系统，或者其他方法），也就需要对这些服务做小改动。"
 
 #. Tag: para
@@ -424,9 +431,10 @@ msgid "<emphasis>BACK TO BASICS</emphasis> Client, server"
 msgstr "<emphasis>回到基础</emphasis> 客户，服务器"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>client/server architecture</primary>"
-msgstr "<primary>客户/服务器　架构</primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary>server</primary><secondary>client/server architecture</secondary>"
+msgid "<primary>client</primary><secondary>client/server architecture</secondary>"
+msgstr "<primary>服务器</primary><secondary>客户/服务器　架构</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -450,38 +458,46 @@ msgstr "<primary>远程登录</primary>"
 
 #. Tag: title
 #, no-c-format
-msgid "Remote Login: <command>telnet</command>"
-msgstr "远程登录： <command>telnet</command>"
+msgid "Secure Remote Login: SSH"
+msgstr "安全远程登录：SSH"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>SSH</primary>"
+msgstr "<primary>SSH</primary>"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Secure Shell</primary>"
+msgstr "<primary>Secure Shell</primary>"
+
+#. Tag: para
+#, fuzzy, no-c-format
+#| msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol, contrary to <emphasis>telnet</emphasis>, was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
+msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
+msgstr "<emphasis>SSH</emphasis> （安全界面）协议，相对于<emphasis>telnet</emphasis>，设计之初就考虑了安全和可靠性。使用 SSH 连接是安全的：合作者需要经过授权并且所有交换的数据都经过加密。"
+
+#. Tag: title
+#, fuzzy, no-c-format
+#| msgid "<emphasis>CULTURE</emphasis> SSH compared to RSH"
+msgid "<emphasis>CULTURE</emphasis> Telnet and RSH are obsolete"
+msgstr "<emphasis>文化</emphasis> SSH 对比 RSH"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>telnet</command></primary>"
 msgstr "<primary><command>telnet</command></primary>"
 
-#. Tag: para
-#, no-c-format
-msgid "The <emphasis>telnet</emphasis> protocol, the oldest remote login service, is the worst in terms of security. Data and passwords are sent in clear text — that is, not encrypted — leaving them vulnerable to anyone snooping on the network. If necessary, take care to remove this obsolete service, that is no longer installed by default:"
-msgstr "<emphasis>telnet</emphasis> 协议是最老的远程登录服务，在安全方面最差。数据和密码使用明文传输－即未做任何加密－这使得他们很容易受到网络窥探。如果有必要，小心移除这个废弃的服务，它不再被默认安装："
-
-#. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get remove telnetd</userinput>\n"
-msgstr "<computeroutput># </computeroutput><userinput>apt-get remove telnetd</userinput>\n"
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><command>rsync</command></primary>"
+msgid "<primary><command>rsh</command></primary>"
+msgstr "<primary><command>rsync</command></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "There is, however, an adaptation that corrects its most crippling defects; it uses SSL (Secure Socket Layer) to authenticate the partner and encrypt communications. The <emphasis>telnetd-ssl</emphasis> and <emphasis>telnet-ssl</emphasis> packages provide, respectively, the server and client software."
-msgstr "然而，有一个纠正了大部分严重缺陷的改进版；它使用 SSL （安全套接层协议）授权和加密通信。<emphasis>telnetd-ssl</emphasis> 和 <emphasis>telnet-ssl</emphasis> 软件包提供相应的服务和客户软件。"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis>telnet-ssl</emphasis></primary>"
-msgstr "<primary><emphasis>telnet-ssl</emphasis></primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis>telnetd-ssl</emphasis></primary>"
-msgstr "<primary><emphasis>telnetd-ssl</emphasis></primary>"
+msgid "Before SSH, <emphasis>Telnet</emphasis> and <emphasis>RSH</emphasis> were the main tools used to login remotely. They are now largely obsolete and should no longer be used even if Debian still provides them."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
@@ -497,46 +513,6 @@ msgstr "当你需要赋给客户在服务器执行或发起行动的能力时，
 #, no-c-format
 msgid "Authentication and encryption are often mentioned together, both because they are frequently used together, and because they are usually implemented with similar mathematical concepts."
 msgstr "授权和加密经常被同时提及，而且也频频同时使用，因为他们通常使用相似的数学算法概念实现。"
-
-#. Tag: title
-#, no-c-format
-msgid "Secure Remote Login: SSH"
-msgstr "安全远程登录：SSH"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>SSH</primary>"
-msgstr "<primary>SSH</primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>Secure Shell</primary>"
-msgstr "<primary>Secure Shell</primary>"
-
-#. Tag: para
-#, no-c-format
-msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol, contrary to <emphasis>telnet</emphasis>, was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
-msgstr "<emphasis>SSH</emphasis> （安全界面）协议，相对于<emphasis>telnet</emphasis>，设计之初就考虑了安全和可靠性。使用 SSH 连接是安全的：合作者需要经过授权并且所有交换的数据都经过加密。"
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>CULTURE</emphasis> SSH compared to RSH"
-msgstr "<emphasis>文化</emphasis> SSH 对比 RSH"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>RSH</primary>"
-msgstr "<primary>RSH</primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>Remote Shell</primary>"
-msgstr "<primary>远程界面 Shell</primary>"
-
-#. Tag: para
-#, no-c-format
-msgid "SSH tools provide secure variants of the programs from the classic RSH (Remote Shell) family — <command>rsh</command>, <command>rlogin</command>, and <command>rcp</command>. These are still available in the <emphasis role=\"pkg\">rsh-server</emphasis> and <emphasis role=\"pkg\">rsh-client</emphasis> packages, but their usage is strongly discouraged."
-msgstr "SSH 工具提供了经典  RSH （远程登录界面）家族的安全变种－ <command>rsh</command> ，<command>rlogin</command> ，和 <command>rcp</command>。他们还存在于<emphasis role=\"pkg\">rsh-server</emphasis> 和 <emphasis role=\"pkg\">rsh-client</emphasis> 软件包中，但是不鼓励使用他们。"
 
 #. Tag: para
 #, no-c-format
@@ -594,29 +570,10 @@ msgid "The option to fork a project is a direct result of the very nature of fre
 msgstr "项目分岔也是自由软件本身特性产生的结果；如果能使自由软件继续发展，那么分岔也是一种好事（例如万一软件许可证变化）。源自技术或者个人意见不统一的分岔常常是浪费资源；推荐其他的解决方案。之前分岔的项目再次合并也不是未曾听说。"
 
 #. Tag: para
-#, no-c-format
-msgid "Since <emphasis role=\"distribution\">Etch</emphasis>, OpenSSH is split into two packages. The client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
+#, fuzzy, no-c-format
+#| msgid "Since <emphasis role=\"distribution\">Etch</emphasis>, OpenSSH is split into two packages. The client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
+msgid "OpenSSH is split into two packages: the client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
 msgstr "从<emphasis role=\"distribution\">Etch</emphasis>之后， OpenSSH 分成了两个软件包。客户端在<emphasis role=\"pkg\">openssh-client</emphasis> 软件包，服务器端在 <emphasis role=\"pkg\">openssh-server</emphasis> 软件包中。 <emphasis role=\"pkg\">ssh</emphasis> 元包依赖两部分并简化安装（<command>apt-get install ssh</command>）。"
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>GOING FURTHER</emphasis> Hardware acceleration for SSH"
-msgstr "<emphasis>进阶</emphasis> 硬件加速 SSH"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>OpenSSL</primary><secondary>hardware acceleration</secondary>"
-msgstr "<primary>OpenSSL</primary><secondary>硬件加速</secondary>"
-
-#. Tag: para
-#, no-c-format
-msgid "Some hardware provides native support of mathematical functions used by encryption, which can speed up the required calculations, thus increasing performance of some tools (and lightening the load on the main processor). These tools notably include the OpenSSL library, which is in turn used by OpenSSH."
-msgstr "有些硬件提供了加密函数的本地支持，它可以加速计算，因此可以提高某些工具的表现（并减少主处理器的负荷）。这些工具包含 OpenSSL 库，反过来又为 OpenSSL 所用。"
-
-#. Tag: para
-#, no-c-format
-msgid "Although a project for standardization of drivers is underway (notably at the kernel level), the variety of hardware is still managed inequitably and heterogeneously. For example, the Padlock system included in Via C3 processors is only partially supported. While the Linux kernel does offer various encryption algorithms, the OpenSSL 0.9.8 library in <emphasis role=\"distribution\">Squeeze</emphasis> only handles delegation of AES encryption to the hardware dedicated to that purpose, but not the SHA algorithms; you have to recompile it with a patch. <ulink type=\"block\" url=\"http://www.logix.cz/michal/devel/padlock/\" />"
-msgstr "虽然驱动标准化项目正在进行（尤其在内核层），但是对多样化硬件的管理仍然参差不齐。例如，在威盛 C3 处理器上的 Padlock 系统仅被部分支持。而 Linux 内核确实提供了多样的加密算法，在 <emphasis role=\"distribution\">Squeeze</emphasis> 中的OpenSSL 0.9.8 库仅仅把 AES 加密委托给硬件，不包括 SHA 算法；要使用补丁重新编译才行。 <ulink type=\"block\" url=\"http://www.logix.cz/michal/devel/padlock/\" />"
 
 #. Tag: title
 #, no-c-format
@@ -649,8 +606,9 @@ msgid "<emphasis>CULTURE</emphasis> OpenSSL flaw in Debian <emphasis role=\"dist
 msgstr "<emphasis>文化</emphasis> OpenSSL 在 Debian <emphasis role=\"distribution\">Etch</emphasis>上的缺陷"
 
 #. Tag: para
-#, no-c-format
-msgid "The OpenSSL library, as initially provided in Debian <emphasis role=\"distribution\">Etch</emphasis>, had a serious problem in its random number generator (RNG). Indeed, the Debian maintainer had made a change in order for the library to not be the source of warnings for programs using it and that would be analyzed by memory testing tools like <command>valgrind</command>. Unfortunately, this change also meant that the RNG was employing only one source of entropy corresponding to the process number (PID) whose 32,000 possible values do not offer enough randomness. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
+#, fuzzy, no-c-format
+#| msgid "The OpenSSL library, as initially provided in Debian <emphasis role=\"distribution\">Etch</emphasis>, had a serious problem in its random number generator (RNG). Indeed, the Debian maintainer had made a change in order for the library to not be the source of warnings for programs using it and that would be analyzed by memory testing tools like <command>valgrind</command>. Unfortunately, this change also meant that the RNG was employing only one source of entropy corresponding to the process number (PID) whose 32,000 possible values do not offer enough randomness. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
+msgid "The OpenSSL library, as initially provided in Debian <emphasis role=\"distribution\">Etch</emphasis>, had a serious problem in its random number generator (RNG). Indeed, the Debian maintainer had made a change so that applications using it would no longer generate warnings when analyzed by memory testing tools like <command>valgrind</command>. Unfortunately, this change also meant that the RNG was employing only one source of entropy corresponding to the process number (PID) whose 32,000 possible values do not offer enough randomness. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
 msgstr "最初在 Debian <emphasis role=\"distribution\">Etch</emphasis>中提供的OpenSSL 库，在随机数生成器（RNG）上有一个严重的缺陷。实际上，Debian 维护者为了不让该库成为报警源做了一些改变并使用了诸如 <command>valgrind</command>内存测试工具。不幸的是，这种变化意味着RNG 使用了仅仅一个与进程号（PID）对应的种子，而进程号的32000种可能值并没有提供足够的随机性。<ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
 
 #. Tag: para
@@ -689,8 +647,9 @@ msgid "<primary>port forwarding</primary>"
 msgstr "<primary>端口转发</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Its <literal>-R</literal> and <literal>-L</literal> options allow <command>ssh</command> to create “encrypted tunnels” between two machines, securely forwarding a local TCP port (see sidebar <xref linkend=\"cadre.tcp-udp\" />) to a remote machine or vice versa."
+#, fuzzy, no-c-format
+#| msgid "Its <literal>-R</literal> and <literal>-L</literal> options allow <command>ssh</command> to create “encrypted tunnels” between two machines, securely forwarding a local TCP port (see sidebar <xref linkend=\"cadre.tcp-udp\" />) to a remote machine or vice versa."
+msgid "Its <literal>-R</literal> and <literal>-L</literal> options allow <command>ssh</command> to create “encrypted tunnels” between two machines, securely forwarding a local TCP port (see sidebar <xref linkend=\"sidebar.tcp-udp\" />) to a remote machine or vice versa."
 msgstr " <literal>-R</literal> 和 <literal>-L</literal> 选项允许 <command>ssh</command> 在两台机器上建立“加密”通道，安全转发一个本地TCP 端口（参考 <xref linkend=\"cadre.tcp-udp\" />）到远程机器，反之亦然。"
 
 #. Tag: title
@@ -699,8 +658,15 @@ msgid "<emphasis>VOCABULARY</emphasis> Tunnel"
 msgstr "<emphasis>词汇</emphasis> 隧道"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>tunnel SSH</primary><seealso>VPN</seealso>"
+#, fuzzy, no-c-format
+#| msgid "<primary>tunnel SSH</primary><seealso>VPN</seealso>"
+msgid "<primary>tunnel (SSH)</primary><seealso>VPN</seealso>"
+msgstr "<primary>隧道SSH</primary><seealso>VPN</seealso>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary>tunnel SSH</primary><seealso>VPN</seealso>"
+msgid "<primary>SSH tunnel</primary><seealso>VPN</seealso>"
 msgstr "<primary>隧道SSH</primary><seealso>VPN</seealso>"
 
 #. Tag: para
@@ -794,8 +760,9 @@ msgid "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "First, the user must authorize sharing their session. The GNOME and KDE graphical desktop environments include, respectively, <command>vino</command> and <command>krfb</command>, which provide a graphical interface that allows sharing an existing session over VNC (found, respectively, in the menus at <menuchoice> <guimenu>System</guimenu> <guisubmenu>Preferences</guisubmenu> <guimenuitem>Remote Desktop</guimenuitem></menuchoice> and <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Desktop Sharing</guimenuitem></menuchoice>). For other graphical desktop environments, the <command>x11vnc</command> command (from the Debian package of the same name) serves the same purpose; you can make it available to the user with an explicit icon."
+#, fuzzy, no-c-format
+#| msgid "First, the user must authorize sharing their session. The GNOME and KDE graphical desktop environments include, respectively, <command>vino</command> and <command>krfb</command>, which provide a graphical interface that allows sharing an existing session over VNC (found, respectively, in the menus at <menuchoice> <guimenu>System</guimenu> <guisubmenu>Preferences</guisubmenu> <guimenuitem>Remote Desktop</guimenuitem></menuchoice> and <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Desktop Sharing</guimenuitem></menuchoice>). For other graphical desktop environments, the <command>x11vnc</command> command (from the Debian package of the same name) serves the same purpose; you can make it available to the user with an explicit icon."
+msgid "First, the user must authorize sharing their session. The GNOME and KDE graphical desktop environments include, respectively, <command>vino</command> and <command>krfb</command>, which provide a graphical interface that allows sharing an existing session over VNC (both are identified as <emphasis>Desktop Sharing</emphasis> either in the GNOME application list or in the KDE menu). For other graphical desktop environments, the <command>x11vnc</command> command (from the Debian package of the same name) serves the same purpose; you can make it available to the user with an explicit icon."
 msgstr "首先，用户必须共享他们的会话。GNOME 和KDE 图形桌面环境对应 <command>vino</command> and <command>krfb</command>，提供图形接口允许通过VNC 共享已有会话（可以在相应的菜单选项中找到<menuchoice> <guimenu>System</guimenu> <guisubmenu>Preferences</guisubmenu> <guimenuitem>Remote Desktop</guimenuitem></menuchoice> and <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Desktop Sharing</guimenuitem></menuchoice>）。对于其他图形桌面环境， <command>x11vnc</command> （Debian 中的同名软件包）提供同样的用途；可以建立桌面图标供用户使用。"
 
 #. Tag: indexterm
@@ -819,8 +786,9 @@ msgid "<primary><emphasis role=\"pkg\">xvnc4viewer</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">xvnc4viewer</emphasis></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "When the graphical session is made available by VNC, the administrator must connect to it with a VNC client. GNOME has <command>vinagre</command> and <command>tsclient</command> for that, while KDE includes <command>krdc</command> (in the menu at <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Remote Desktop Client</guimenuitem></menuchoice>). There are other VNC clients that use the command line, such as <command>xvnc4viewer</command> in the Debian package of the same name. Once connected, the administrator can see what's going on, work on the machine remotely, and show the user how to proceed."
+#, fuzzy, no-c-format
+#| msgid "When the graphical session is made available by VNC, the administrator must connect to it with a VNC client. GNOME has <command>vinagre</command> and <command>tsclient</command> for that, while KDE includes <command>krdc</command> (in the menu at <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Remote Desktop Client</guimenuitem></menuchoice>). There are other VNC clients that use the command line, such as <command>xvnc4viewer</command> in the Debian package of the same name. Once connected, the administrator can see what's going on, work on the machine remotely, and show the user how to proceed."
+msgid "When the graphical session is made available by VNC, the administrator must connect to it with a VNC client. GNOME has <command>vinagre</command> and <command>remmina</command> for that, while KDE includes <command>krdc</command> (in the menu at <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Remote Desktop Client</guimenuitem></menuchoice>). There are other VNC clients that use the command line, such as <command>xvnc4viewer</command> in the Debian package of the same name. Once connected, the administrator can see what's going on, work on the machine remotely, and show the user how to proceed."
 msgstr "通过VNC使图形会话生效后，管理员要连接VNC 客户端。GNOME 中可以用 <command>vinagre</command> 和 <command>tsclient</command> ，KDE 中 <command>krdc</command> （在菜单 <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Remote Desktop Client</guimenuitem></menuchoice>）。也有其他一些使用命令行的VNC 客户端，例如Debian 中与命令<command>xvnc4viewer</command> 同名的软件包。一旦连接，管理员可以看到发生了什么，远程工作并给用户演示如何处理。"
 
 #. Tag: title
@@ -834,8 +802,9 @@ msgid "<primary>SSH tunnel</primary><secondary>VNC</secondary>"
 msgstr "<primary>SSH 隧道</primary><secondary>VNC</secondary>"
 
 #. Tag: para
-#, no-c-format
-msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
+#, fuzzy, no-c-format
+#| msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
+msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"sect.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
 msgstr "如果想要通过 VNC 进行连接，不会想要数据在网络上通过明文传输，可以通过SSH 隧道封装数据（参考<xref linkend=\"section.ssh-port-forwarding\" />）。只需知道VNC 对第一个屏幕默认使用端口5900 （称为“localhost:0”），对第二个（称为“localhost:1”）使用5901 ，等等，以此类推。"
 
 #. Tag: para
@@ -869,6 +838,12 @@ msgid "<primary><command>xdm</command></primary>"
 msgstr "<primary><command>xdm</command></primary>"
 
 #. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><command>gdm</command></primary>"
+msgid "<primary><command>lightdm</command></primary>"
+msgstr "<primary><command>gdm</command></primary>"
+
+#. Tag: indexterm
 #, no-c-format
 msgid "<primary>manager</primary><secondary>display manager</secondary>"
 msgstr "<primary>管理器</primary><secondary>显示管理器</secondary>"
@@ -879,13 +854,15 @@ msgid "<primary>display manager</primary>"
 msgstr "<primary>显示管理器</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "<command>gdm</command>, <command>kdm</command> and <command>xdm</command> are Display Managers. They take control of the graphical interface shortly after boot in order to provide the user a login screen. Once the user has logged in, they execute the programs needed to start a graphical work session."
+#, fuzzy, no-c-format
+#| msgid "<command>gdm</command>, <command>kdm</command> and <command>xdm</command> are Display Managers. They take control of the graphical interface shortly after boot in order to provide the user a login screen. Once the user has logged in, they execute the programs needed to start a graphical work session."
+msgid "<command>gdm</command>, <command>kdm</command>, <command>lightdm</command>, and <command>xdm</command> are Display Managers. They take control of the graphical interface shortly after boot in order to provide the user a login screen. Once the user has logged in, they execute the programs needed to start a graphical work session."
 msgstr "<command>gdm</command>, <command>kdm</command> 和 <command>xdm</command> 都是显示管理器。他们在系统启动之后短暂的接管图形接口并提供登录。一旦用户登录，他们执行程序启动图形会话。"
 
 #. Tag: para
-#, no-c-format
-msgid "VNC also works for mobile users, or company executives, who occasionally need to login from their home to access a remote desktop similar to the one they use at work. The configuration of such a service is more complicated: you first install the <emphasis role=\"pkg\">vnc4server</emphasis> package, change the configuration of the display manager to accept <literal>XDMCP Query</literal> requests (for <command>gdm</command>, this can be done graphically via the <menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Login Screen</guimenuitem></menuchoice> menu and then the “Remote” tab; note that this applies only to <command>gdm</command> and not <command>gdm3</command>, which is the version installed by default in <emphasis role=\"distribution\">Squeeze</emphasis>), and finally, start the VNC server with <command>inetd</command> so that a session is automatically started when a user tries to login. For example, you may add this line to <filename>/etc/inetd.conf</filename>:"
+#, fuzzy, no-c-format
+#| msgid "VNC also works for mobile users, or company executives, who occasionally need to login from their home to access a remote desktop similar to the one they use at work. The configuration of such a service is more complicated: you first install the <emphasis role=\"pkg\">vnc4server</emphasis> package, change the configuration of the display manager to accept <literal>XDMCP Query</literal> requests (for <command>gdm</command>, this can be done graphically via the <menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Login Screen</guimenuitem></menuchoice> menu and then the “Remote” tab; note that this applies only to <command>gdm</command> and not <command>gdm3</command>, which is the version installed by default in <emphasis role=\"distribution\">Squeeze</emphasis>), and finally, start the VNC server with <command>inetd</command> so that a session is automatically started when a user tries to login. For example, you may add this line to <filename>/etc/inetd.conf</filename>:"
+msgid "VNC also works for mobile users, or company executives, who occasionally need to login from their home to access a remote desktop similar to the one they use at work. The configuration of such a service is more complicated: you first install the <emphasis role=\"pkg\">vnc4server</emphasis> package, change the configuration of the display manager to accept <literal>XDMCP Query</literal> requests (for <command>gdm3</command>, this can be done by adding <literal>Enable=true</literal> in the “xdmcp” section of <filename>/etc/gdm3/daemon.conf</filename>), and finally, start the VNC server with <command>inetd</command> so that a session is automatically started when a user tries to login. For example, you may add this line to <filename>/etc/inetd.conf</filename>:"
 msgstr "VNC 也能用于移动用户，或者公司高管，偶尔需要从家里登入到办公类似的远程桌面。此类服务的配置更复杂一些：首先要安装 <emphasis role=\"pkg\">vnc4server</emphasis> 软件包，改变显示管理器配置，接受<literal>XDMCP Query</literal> 请求（对 <command>gdm</command>而言，可以通过图形界面中的菜单 <menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Login Screen</guimenuitem></menuchoice> 然后，“Remote”标签页；注意这些只适用于<command>gdm</command> 而不是默认安装的 <command>gdm3</command>， <emphasis role=\"distribution\">Squeeze</emphasis>），最后使用<command>inetd</command> 启动VNC 服务，为了在用户登录时，会话自动启动，可以将该行加入<filename>/etc/inetd.conf</filename>:"
 
 #. Tag: programlisting
@@ -999,9 +976,10 @@ msgid "<primary>modification, right</primary>"
 msgstr "<primary>修改权限</primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>execution</primary><secondary>right</secondary>"
-msgstr "<primary>执行</primary><secondary>权限</secondary>"
+#, fuzzy, no-c-format
+#| msgid "<primary>modification, right</primary>"
+msgid "<primary>execution, right</primary>"
+msgstr "<primary>修改权限</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1034,14 +1012,21 @@ msgid "Since a <literal>setuid</literal> root program is systematically run unde
 msgstr "由于 <literal>setuid</literal> 根程序在系统层以超级用户的身份运行，有必要确定其安全性和可靠性。实际上，如果用户可以侵入该程序并调用自己设定的命令，就有可能伪装成超级用户并获取系统的所有权限。"
 
 #. Tag: para
-#, no-c-format
-msgid "A directory is handled differently. Read access gives the right to consult the list of its entries (files and directories), write access allows creating or deleting files, and execute access allows crossing through it (especially to go there with the <command>cd</command> command). Being able to cross through a directory without being able to read it gives permission to access the entries therein that are known by name, but not to find them if you do not know that they exist or under what name."
+#, fuzzy, no-c-format
+#| msgid "A directory is handled differently. Read access gives the right to consult the list of its entries (files and directories), write access allows creating or deleting files, and execute access allows crossing through it (especially to go there with the <command>cd</command> command). Being able to cross through a directory without being able to read it gives permission to access the entries therein that are known by name, but not to find them if you do not know that they exist or under what name."
+msgid "A directory is handled differently. Read access gives the right to consult the list of its entries (files and directories), write access allows creating or deleting files, and execute access allows crossing through it (especially to go there with the <command>cd</command> command). Being able to cross through a directory without being able to read it gives permission to access the entries therein that are known by name, but not to find them if you do not know their existence or their exact name."
 msgstr "目录的处理方式有所不同。读操作允许查询它包含的条目（文件盒目录）清单，写操作允许创建和删除文件，执行操作允许进入它（可以使用 <command>cd</command> 命令进入）。能进入目录而不能读取意味着可以通过名字读取条目，但是在不知道名字及其否存在的情况下却无法找到他们。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <literal>setgid</literal> directory and <emphasis>sticky bit</emphasis>"
 msgstr "<emphasis>安全</emphasis> <literal>setgid</literal> 目录和 <emphasis>粘着位</emphasis>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><literal>setgid</literal>, right</primary>"
+msgid "<primary><literal>setgid</literal> directory</primary>"
+msgstr "<primary><literal>setgid</literal>，权限</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1104,9 +1089,10 @@ msgid "<primary>octal representation of rights</primary>"
 msgstr "<primary>权限的八进制表示</primary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>rights, octal representation</primary>"
-msgstr "<primary>权限，八进制表示</primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary>rights</primary><secondary>mask</secondary>"
+msgid "<primary>rights</primary><secondary>octal representation</secondary>"
+msgstr "<primary>权限</primary><secondary>掩码</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1214,8 +1200,9 @@ msgid "Since no interface is perfect, you may be tempted to try several solution
 msgstr "既然没有介面是完美的，就有可能要尝试多种解决方案。而不同的工具有时在处理方法上是不兼容的，所以这种情况应尽量避免。即使他们都想做的很灵活，并尝试着将配置文件作为单一参考，也不总是能整合外部变化。"
 
 #. Tag: title
-#, no-c-format
-msgid "Administrating On a Web Interface: <command>webmin</command>"
+#, fuzzy, no-c-format
+#| msgid "Administrating On a Web Interface: <command>webmin</command>"
+msgid "Administrating on a Web Interface: <command>webmin</command>"
 msgstr "从Web 介面进行管理 <command>webmin</command>"
 
 #. Tag: indexterm
@@ -1229,13 +1216,15 @@ msgid "This is, without a doubt, one of the most successful administration inter
 msgstr "毋庸置疑，这是最成功的管理介面。它是透过网络浏览器的模块化系统，覆盖了广泛的领域和工具。而且，它是国际化的并且可以在多种语言中使用。"
 
 #. Tag: para
-#, no-c-format
-msgid "Sadly, <command>webmin</command> is no longer part of Debian since <emphasis role=\"distribution\">Etch</emphasis>. Its Debian maintainer — Jaldhar H. Vyas — removed the packages he created because he no longer had the time required to maintain them at an acceptable quality level. Nobody has officially taken over, so <emphasis role=\"distribution\">Squeeze</emphasis> does not have the <command>webmin</command> package."
+#, fuzzy, no-c-format
+#| msgid "Sadly, <command>webmin</command> is no longer part of Debian since <emphasis role=\"distribution\">Etch</emphasis>. Its Debian maintainer — Jaldhar H. Vyas — removed the packages he created because he no longer had the time required to maintain them at an acceptable quality level. Nobody has officially taken over, so <emphasis role=\"distribution\">Squeeze</emphasis> does not have the <command>webmin</command> package."
+msgid "Sadly, <command>webmin</command> is no longer part of Debian. Its Debian maintainer — Jaldhar H. Vyas — removed the packages he created because he no longer had the time required to maintain them at an acceptable quality level. Nobody has officially taken over, so <emphasis role=\"distribution\">Wheezy</emphasis> does not have the <command>webmin</command> package."
 msgstr "不幸的是，从 <emphasis role=\"distribution\">Etch</emphasis>之后， <command>webmin</command> 就不在是Debian 的一部分。Debian 的维护者Jaldhar H. Vyas－移除了他创建的软件包，因为他已经没有时间来维护这些软件包到可接受的质量水平。没人正式接手，这样 <emphasis role=\"distribution\">Squeeze</emphasis> 中就没有了 <command>webmin</command> 软件包。"
 
 #. Tag: para
-#, no-c-format
-msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the packages included in <emphasis role=\"distribution\">Sarge</emphasis>, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
+#, fuzzy, no-c-format
+#| msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the packages included in <emphasis role=\"distribution\">Sarge</emphasis>, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
+msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the original Debian packages, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
 msgstr "然而，在 <literal>webmin.com</literal> 网站上有一个非官方的软件包。与<emphasis role=\"distribution\">Sarge</emphasis>中的软件包不同，这个软件包是单体的：它所有的配置模块都被默认安装和激活，即使是相应的服务在机器上没有安装。"
 
 #. Tag: title
@@ -1314,19 +1303,21 @@ msgid "The administration interface is available in a web browser at <literal>ht
 msgstr "管理界面可以通过在网络浏览器中输入地址 <literal>https://localhost:10000</literal>。注意！不是所有的模块都是直接可用的。有些必须通过指定相应的配置文件和可执行文件（程序）。如果没能启动请求的模块，系统往往会给出提示。"
 
 #. Tag: title
-#, no-c-format
-msgid "<emphasis>ALTERNATIVE</emphasis> <emphasis>gnome-system-tools</emphasis>"
-msgstr "<emphasis>其他的选择</emphasis> <emphasis>gnome系统工具</emphasis>"
+#, fuzzy, no-c-format
+#| msgid "<emphasis>ALTERNATIVE</emphasis> Other boot systems"
+msgid "<emphasis>ALTERNATIVE</emphasis> GNOME control center"
+msgstr "<emphasis>选择</emphasis> 其他启动系统 "
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis role=\"pkg\">gnome-system-tools</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">gnome系统工具</emphasis></primary>"
+#, fuzzy, no-c-format
+#| msgid "<primary><emphasis role=\"pkg\">tsclient</emphasis></primary>"
+msgid "<primary><emphasis role=\"pkg\">gnome-control-center</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">tsclient</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The GNOME project also provides a graphical administration interface in the <emphasis role=\"pkg\">gnome-system-tools</emphasis> package. Installed by default for a desktop system, it includes applications that can be found in the menu at <menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu></menuchoice>. Easy to use, these applications cover only a limited number of base services: user and group management, time configuration, network configuration, disk management, and management of startup services."
-msgstr "GNOME 系统在也提供了 <emphasis role=\"pkg\">gnome-system-tools</emphasis> 其中提供了图形管理界面。对桌面系统默认安装，它在菜单<menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu></menuchoice>中包含了一些应用程序。容易上手，这些程序只包括了有限的基本服务：用户和组管理，时间配置，网络配置，磁盘管理，启动服务管理。"
+msgid "The GNOME project also provides multiple administration interfaces that are usually accessible via the “Settings” entry in the user menu on the top right. <command>gnome-control-center</command> is the main program that brings them all together but many of the system wide configuration tools are effectively provided by other packages (<emphasis role=\"pkg\">accountsservice</emphasis>, <emphasis role=\"pkg\">system-config-printer</emphasis>, etc.). Easy to use, these applications cover only a limited number of base services: user management, time configuration, network configuration, printer configuration, and so on."
+msgstr ""
 
 #. Tag: title
 #, no-c-format
@@ -1389,8 +1380,9 @@ msgid "<primary>files</primary><secondary>log files</secondary>"
 msgstr "<primary>文件</primary><secondary>日志文件</secondary>"
 
 #. Tag: indexterm
-#, no-c-format
-msgid "<primary>logs</primary><secondary>distribution</secondary>"
+#, fuzzy, no-c-format
+#| msgid "<primary>logs</primary><secondary>distribution</secondary>"
+msgid "<primary>logs</primary><secondary>dispatching</secondary>"
 msgstr "<primary>日志</primary><secondary>发行版</secondary>"
 
 #. Tag: title
@@ -1399,29 +1391,10 @@ msgid "Principle and Mechanism"
 msgstr "原则和机制"
 
 #. Tag: para
-#, no-c-format
-msgid "The <command>rsyslogd</command> daemon is responsible for collecting service messages coming from applications and the kernel, then distributing them into log files (usually stored in the <filename>/var/log/</filename> directory). It obeys the <filename>/etc/rsyslog.conf</filename> configuration file."
+#, fuzzy, no-c-format
+#| msgid "The <command>rsyslogd</command> daemon is responsible for collecting service messages coming from applications and the kernel, then distributing them into log files (usually stored in the <filename>/var/log/</filename> directory). It obeys the <filename>/etc/rsyslog.conf</filename> configuration file."
+msgid "The <command>rsyslogd</command> daemon is responsible for collecting service messages coming from applications and the kernel, then dispatching them into log files (usually stored in the <filename>/var/log/</filename> directory). It obeys the <filename>/etc/rsyslog.conf</filename> configuration file."
 msgstr "<command>rsyslogd</command> 守护进程负责收集来自应用程序和内核系统的信息，然后写入日志文件（通常储存在 <filename>/var/log/</filename> 目录）。受 <filename>/etc/rsyslog.conf</filename> 配置文件控制"
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>SUPPLEMENTS</emphasis> Moving from sysklogd to rsyslog"
-msgstr "<emphasis>补充</emphasis> 从sysklogd 到 rsyslog"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis role=\"pkg\">sysklogd</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">sysklogd</emphasis></primary>"
-
-#. Tag: para
-#, no-c-format
-msgid "Debian <emphasis role=\"distribution\">Squeeze</emphasis> installs <emphasis role=\"pkg\">rsyslog</emphasis> by default, while older versions (up to <emphasis role=\"distribution\">Etch</emphasis>, but not <emphasis role=\"distribution\">Lenny</emphasis>) used <emphasis role=\"pkg\">sysklogd</emphasis>. The transition was not automatic, and in the case of an upgrade from <emphasis role=\"distribution\">Etch</emphasis>, <emphasis role=\"pkg\">rsyslog</emphasis> should be installed manually if you want to keep in sync with Debian's default choice."
-msgstr "Debian  <emphasis role=\"distribution\">Squeeze</emphasis> 默认安装 <emphasis role=\"pkg\">rsyslog</emphasis> 。老版本（直到 <emphasis role=\"distribution\">Etch</emphasis>，不包括 <emphasis role=\"distribution\">Lenny</emphasis>）使用 <emphasis role=\"pkg\">sysklogd</emphasis>。在从 <emphasis role=\"distribution\">Etch</emphasis>升级后，不会自动转换，如果想和Debian默认设置保持同步，需要手动安装 <emphasis role=\"pkg\">rsyslog</emphasis>。"
-
-#. Tag: para
-#, no-c-format
-msgid "Migration from one to the other is painless, since the default configuration is very similar, and the syntax of the older <filename>/etc/syslog.conf</filename> is compatible with the new <filename>/etc/rsyslog.conf</filename>."
-msgstr "从一个转移到另一个不会有任何不适，他们的默认配置十分相似，老文件<filename>/etc/syslog.conf</filename> 的语法格式和新 <filename>/etc/rsyslog.conf</filename>文件是兼容的。"
 
 #. Tag: para
 #, no-c-format
@@ -1699,8 +1672,9 @@ msgid "The protocol: <literal>tcp</literal> or <literal>udp</literal>."
 msgstr "协议： <literal>tcp</literal> 或 <literal>udp</literal>。"
 
 #. Tag: para
-#, no-c-format
-msgid "The options: two possible values: <literal>wait</literal> or <literal>nowait</literal>, to tell <command>inetd</command> whether it should wait or not for the end of the launched process before accepting another connection. For TCP connections, easily multiplexable, you can usually use <literal>nowait</literal>. For programs responding over UDP, you should use <literal>nowait</literal> only if the server is capable of managing several connections in parallel. You can suffix this field with a period, followed by the maximum number of connections authorized per minute (the default limit is 40)."
+#, fuzzy, no-c-format
+#| msgid "The options: two possible values: <literal>wait</literal> or <literal>nowait</literal>, to tell <command>inetd</command> whether it should wait or not for the end of the launched process before accepting another connection. For TCP connections, easily multiplexable, you can usually use <literal>nowait</literal>. For programs responding over UDP, you should use <literal>nowait</literal> only if the server is capable of managing several connections in parallel. You can suffix this field with a period, followed by the maximum number of connections authorized per minute (the default limit is 40)."
+msgid "The options: two possible values: <literal>wait</literal> or <literal>nowait</literal>, to tell <command>inetd</command> whether it should wait or not for the end of the launched process before accepting another connection. For TCP connections, easily multiplexable, you can usually use <literal>nowait</literal>. For programs responding over UDP, you should use <literal>nowait</literal> only if the server is capable of managing several connections in parallel. You can suffix this field with a period, followed by the maximum number of connections authorized per minute (the default limit is 256)."
 msgstr "选项：两个可选值： <literal>wait</literal> 或 <literal>nowait</literal>，来告诉 <command>inetd</command> 他是否应该等到运行进程执行完毕，再接受另一个连接。对于TCP 连接，很容易复用，一般可使用 <literal>nowait</literal>。对于通过UDP连接的程序，只有在服务器能同时并行处理连接的时候才使用 <literal>nowait</literal> 。可以在该区段用句号结尾，带上每秒最大允许的连接数（默认限制是４０）。"
 
 #. Tag: para
@@ -1729,10 +1703,14 @@ msgid "Excerpt from <filename>/etc/inetd.conf</filename>"
 msgstr "摘自 <filename>/etc/inetd.conf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, fuzzy, no-c-format
+#| msgid ""
+#| "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
+#| "finger stream tcp nowait  nobody     /usr/sbin/tcpd     /usr/sbin/in.fingerd\n"
+#| "ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
 msgid ""
 "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
-"finger stream tcp nowait  nobody     /usr/sbin/tcpd     /usr/sbin/in.fingerd\n"
+"finger stream tcp nowait  nobody     /usr/sbin/tcpd     in.fingerd\n"
 "ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
 msgstr ""
 "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
@@ -1745,8 +1723,9 @@ msgid "<primary><command>tcpd</command></primary>"
 msgstr "<primary><command>tcpd</command></primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The <command>tcpd</command> program is frequently used in the <filename>/etc/inetd.conf</filename> file. It allows limiting incoming connections by applying access control rules, documented in the <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, and which are configured in the <filename>/etc/hosts.allow</filename> and <filename>/etc/hosts.deny</filename> files. Once it has been determined that the connection is authorized, <command>tcpd</command> executes the real server (like <command>/usr/bin/in.fingerd</command> in our example)."
+#, fuzzy, no-c-format
+#| msgid "The <command>tcpd</command> program is frequently used in the <filename>/etc/inetd.conf</filename> file. It allows limiting incoming connections by applying access control rules, documented in the <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, and which are configured in the <filename>/etc/hosts.allow</filename> and <filename>/etc/hosts.deny</filename> files. Once it has been determined that the connection is authorized, <command>tcpd</command> executes the real server (like <command>/usr/bin/in.fingerd</command> in our example)."
+msgid "The <command>tcpd</command> program is frequently used in the <filename>/etc/inetd.conf</filename> file. It allows limiting incoming connections by applying access control rules, documented in the <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, and which are configured in the <filename>/etc/hosts.allow</filename> and <filename>/etc/hosts.deny</filename> files. Once it has been determined that the connection is authorized, <command>tcpd</command> executes the real server (like <command>in.fingerd</command> in our example). It is worth noting that <command>tcpd</command> relies on the name under which it was invoked (that is the first argument, <literal>argv[0]</literal>) to identify the real program to run. So you should not start the arguments list with <literal>tcpd</literal> but with the program that must be wrapped."
 msgstr " <command>tcpd</command> 程序通常用在 <filename>/etc/inetd.conf</filename> 文件中。通过制定访问规则，它能限制接入连接，在 <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> 手册中有介绍，可以使用 <filename>/etc/hosts.allow</filename> 和 <filename>/etc/hosts.deny</filename> 文件对其进行配置。一旦它确定连接已经获得授权， <command>tcpd</command> 就会执行真正的服务命令（像我们例子中的<command>/usr/bin/in.fingerd</command> ）。"
 
 #. Tag: title
@@ -1775,8 +1754,9 @@ msgid "<emphasis>ALTERNATIVE</emphasis> Other <command>inetd</command> commands"
 msgstr "<emphasis>另外的选择</emphasis> 其他 <command>inetd</command> 命令"
 
 #. Tag: para
-#, no-c-format
-msgid "There is no lack of alternatives. In addition to <emphasis role=\"pkg\">openbsd-inetd</emphasis> and <emphasis role=\"pkg\">netkit-inetd</emphasis> already mentioned, there are <emphasis role=\"pkg\">inetutils-inetd</emphasis>, <emphasis role=\"pkg\">micro-inetd</emphasis>, <emphasis role=\"pkg\">rlinetd</emphasis> and <emphasis role=\"pkg\">xinetd</emphasis>."
+#, fuzzy, no-c-format
+#| msgid "There is no lack of alternatives. In addition to <emphasis role=\"pkg\">openbsd-inetd</emphasis> and <emphasis role=\"pkg\">netkit-inetd</emphasis> already mentioned, there are <emphasis role=\"pkg\">inetutils-inetd</emphasis>, <emphasis role=\"pkg\">micro-inetd</emphasis>, <emphasis role=\"pkg\">rlinetd</emphasis> and <emphasis role=\"pkg\">xinetd</emphasis>."
+msgid "While Debian installs <emphasis role=\"pkg\">openbsd-inetd</emphasis> by default, there is no lack of alternatives: we can mention <emphasis role=\"pkg\">inetutils-inetd</emphasis>, <emphasis role=\"pkg\">micro-inetd</emphasis>, <emphasis role=\"pkg\">rlinetd</emphasis> and <emphasis role=\"pkg\">xinetd</emphasis>."
 msgstr "还有不少其他选择。除了之前提到的 <emphasis role=\"pkg\">openbsd-inetd</emphasis> 和 <emphasis role=\"pkg\">netkit-inetd</emphasis> ，还有 <emphasis role=\"pkg\">inetutils-inetd</emphasis>, <emphasis role=\"pkg\">micro-inetd</emphasis>, <emphasis role=\"pkg\">rlinetd</emphasis> 和 <emphasis role=\"pkg\">xinetd</emphasis>。"
 
 #. Tag: para
@@ -1885,8 +1865,9 @@ msgid "programs in <filename>/etc/cron.monthly/</filename> once per month."
 msgstr " 在 <filename>/etc/cron.monthly/</filename> 目录中包含每月运行的程序；"
 
 #. Tag: para
-#, no-c-format
-msgid "Many Debian packages rely on this service, they put maintenance scripts in these directories, which ensure optimal operation of their services."
+#, fuzzy, no-c-format
+#| msgid "Many Debian packages rely on this service, they put maintenance scripts in these directories, which ensure optimal operation of their services."
+msgid "Many Debian packages rely on this service: by putting maintenance scripts in these directories, they ensure optimal operation of their services."
 msgstr "许多软件包都依赖于该服务，他们把维护脚本放在这些目录中，用来优化服务运行。"
 
 #. Tag: title
@@ -2057,10 +2038,18 @@ msgid "The <command>at</command> executes a command at a specified moment in the
 msgstr " <command>at</command> 执行在未来某一时刻指定的命令。它将预定的时间和日期作为命令行参数，带上要执行的命令作为标准输入。如果进入当前的命令介面（shell)，命令就会执行。 <command>at</command> 命令甚至会保存当前的环境，以便重建执行命令时的条件。时间使用下面的方法标记： <literal>16:12</literal> 或者 <literal>4:12pm</literal> 代表 4:12 pm。日期可以用几种欧式和西式方法表示： <literal>DD.MM.YY</literal> （<literal>27.07.12</literal> 表示２０１２年７月２７号），<literal>YYYY-MM-DD</literal> （相同的日期用 <literal>2012-07-27</literal>表示），<literal>MM/DD/[CC]YY</literal> （例， <literal>12/25/12</literal> 或者 <literal>12/25/2012</literal> 就是２０１２年１２月２５号），或者简单点 <literal>MMDD[CC]YY</literal> （ <literal>122512</literal> 或者 <literal>12252012</literal> 类似地，也表示２０１２年１２月２５号）。如果没有日期选项，一旦到达标记时间（当天，如果已经过了当天的设定时间，就改在明天），命令就会运行。也可以使用“today”或者“tomorrow”来明确的指示今天或者明天。"
 
 #. Tag: screen
-#, no-c-format
+#, fuzzy, no-c-format
+#| msgid ""
+#| "\n"
+#| "<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>\n"
+#| "<computeroutput>&gt; </computeroutput><userinput>echo \"Don't forget to wish a Happy Birthday to Raphaël!\" \\</userinput>\n"
+#| "<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
+#| "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
+#| "<computeroutput>warning: commands will be executed using /bin/sh\n"
+#| "job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
 msgid ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.14 &lt;&lt;END</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>echo \"Don't forget to wish a Happy Birthday to Raphaël!\" \\</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
@@ -2266,14 +2255,21 @@ msgid "<primary>restoration</primary>"
 msgstr "<primary>恢复</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "Many programs exist, such as <command>amanda</command>, a client/server system featuring many options, whose configuration is rather difficult. <command>BackupPC</command> is also a client/server solution, but with a web interface for configuration which makes it more user-friendly. Dozens of other Debian packages are dedicated to backup solutions, as you can easily confirm with <command>apt-cache search backup</command>."
+#, fuzzy, no-c-format
+#| msgid "Many programs exist, such as <command>amanda</command>, a client/server system featuring many options, whose configuration is rather difficult. <command>BackupPC</command> is also a client/server solution, but with a web interface for configuration which makes it more user-friendly. Dozens of other Debian packages are dedicated to backup solutions, as you can easily confirm with <command>apt-cache search backup</command>."
+msgid "Many programs exist, such as <command>amanda</command>, <command>bacula</command>, <command>BackupPC</command>. Those are client/server system featuring many options, whose configuration is rather difficult. Some of them provide user-friendly web interfaces to mitigate this. But Debian contains dozens of other backup software covering all possible use cases, as you can easily confirm with <command>apt-cache search backup</command>."
 msgstr "有很多可用程序，例如 <command>amanda</command>，基于客户／服务系统提供了很多选项，配置起来相对困难。 <command>BackupPC</command> 也是客户／服务方案，但是使用更加友好的网页界面进行配置。大量其他的Debian 软件包可用于备份方案，可以通过 <command>apt-cache search backup</command>来搜索并选择。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>amanda</command></primary>"
 msgstr "<primary><command>amanda</command></primary>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><command>at</command></primary>"
+msgid "<primary><command>bacula</command></primary>"
+msgstr "<primary><command>at</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2296,8 +2292,9 @@ msgid "Backing Up with <command>rsync</command>"
 msgstr "使用 <command>rsync</command>备份"
 
 #. Tag: para
-#, no-c-format
-msgid "Backups on tape having been deemed too slow and costly, data will be backed up on hard drives on a dedicated server, on which the use of software RAID (see <xref linkend=\"section.raid-soft\" />) will protect the data from hard drive failure. Desktop computers are not backed up individually, but users are advised that their personal account on their department's file server will be backed up. The <command>rsync</command> command (from the package of the same name) is used daily to back up these different servers."
+#, fuzzy, no-c-format
+#| msgid "Backups on tape having been deemed too slow and costly, data will be backed up on hard drives on a dedicated server, on which the use of software RAID (see <xref linkend=\"section.raid-soft\" />) will protect the data from hard drive failure. Desktop computers are not backed up individually, but users are advised that their personal account on their department's file server will be backed up. The <command>rsync</command> command (from the package of the same name) is used daily to back up these different servers."
+msgid "Backups on tape having been deemed too slow and costly, data will be backed up on hard drives on a dedicated server, on which the use of software RAID (see <xref linkend=\"sect.raid-soft\" />) will protect the data from hard drive failure. Desktop computers are not backed up individually, but users are advised that their personal account on their department's file server will be backed up. The <command>rsync</command> command (from the package of the same name) is used daily to back up these different servers."
 msgstr "用磁带备份太慢而且成本太高，将数据备份到专用电脑的硬盘，该电脑可以使用软件RAID （参考see <xref linkend=\"section.raid-soft\" />）在硬盘失效时可以保护数据。桌面计算机不用单独备份，但是建议备份用户在部门文件服务器上的文件。 <command>rsync</command> 命令（源于同名软件包）用来每天备份不同的服务器。"
 
 #. Tag: indexterm
@@ -2461,8 +2458,9 @@ msgid "<emphasis>IN PRACTICE</emphasis> Remote backup over SSH"
 msgstr "<emphasis>实践</emphasis>　使用SSH远程备份"
 
 #. Tag: para
-#, no-c-format
-msgid "When dirvish needs to save data to a remote machine, it will use <command>ssh</command> to connect to it, and will start <command>rsync</command> as a server. This requires the root user to be able to automatically connect to it. The use of an SSH authentication key allows precisely that (see <xref linkend=\"section.ssh-cle-auth\" />)."
+#, fuzzy, no-c-format
+#| msgid "When dirvish needs to save data to a remote machine, it will use <command>ssh</command> to connect to it, and will start <command>rsync</command> as a server. This requires the root user to be able to automatically connect to it. The use of an SSH authentication key allows precisely that (see <xref linkend=\"section.ssh-cle-auth\" />)."
+msgid "When dirvish needs to save data to a remote machine, it will use <command>ssh</command> to connect to it, and will start <command>rsync</command> as a server. This requires the root user to be able to automatically connect to it. The use of an SSH authentication key allows precisely that (see <xref linkend=\"sect.ssh-key-based-auth\" />)."
 msgstr "当dirvish 备份程序需要把数据保存到远程机器上，它会使用 <command>ssh</command> 来连接，并启动 <command>rsync</command> 服务。这要求超级用户能自动连接。使用SSH 授权秘钥恰恰可以满足这一条件（ 参考<xref linkend=\"section.ssh-cle-auth\" />）。"
 
 #. Tag: title
@@ -2472,23 +2470,8 @@ msgstr "不使用备份恢复系统"
 
 #. Tag: para
 #, no-c-format
-msgid "Desktop computers, which are not backed up, will be easy to regenerate from CD-ROMs made by the <command>mondo</command> program. These bootable CD-ROMs allow complete re-installation of the machine's system. But beware: files that are not part of the system or the user's home directory will not, themselves, be backed up by <command>mondo</command>. This includes, for example, users' local <emphasis>crontabs</emphasis>, as well as any changes made to system configuration since the preparation of the CD-ROM."
-msgstr "没有备份的桌面电脑，可以很容易的使用 <command>mondo</command> 程序做CD-ROM来重新创建。这种可启动光盘能完全重装系统。但是要注意：非系统文件或者用户目录将不会备份。其中包括例如，用户自身的<emphasis>crontabs</emphasis>，和准备光盘时系统配置上的任何改变。"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>mondo</command></primary>"
-msgstr "<primary><command>mondo</command></primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>backup</primary><secondary>on CD-ROM</secondary>"
-msgstr "<primary>备份</primary><secondary>光盘</secondary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>CD-ROM</primary><secondary>backup on CD-ROM</secondary>"
-msgstr "<primary>光盘</primary><secondary>备份光盘</secondary>"
+msgid "Desktop computers, which are not backed up, will be easy to reinstall from custom DVD-ROMs prepared with <emphasis>Simple-CDD</emphasis> (see <xref linkend=\"sect.simple-cdd\" />). Since this performs an installation from scratch, it loses any customization that can have been made after the initial installation. This is fine since the systems are all hooked to a central LDAP directory for accounts and most desktop applications are preconfigured thanks to dconf (see <xref linkend=\"sect.gnome-desktop\" /> for more information about this)."
+msgstr ""
 
 #. Tag: para
 #, no-c-format
@@ -2509,6 +2492,12 @@ msgstr "许多服务（例如SQL 或者LDAP 数据库）不能通过简单的拷
 #, no-c-format
 msgid "<primary><command>xdelta</command></primary>"
 msgstr "<primary><command>xdelta</command></primary>"
+
+#. Tag: indexterm
+#, fuzzy, no-c-format
+#| msgid "<primary><command>ucf</command></primary>"
+msgid "<primary><command>diff</command></primary>"
+msgstr "<primary><command>ucf</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2552,7 +2541,13 @@ msgstr "介绍"
 
 #. Tag: para
 #, no-c-format
-msgid "The <emphasis>hotplug</emphasis> kernel subsystem loads drivers for peripherals that can be hotplugged. This includes USB peripherals (increasingly common), PCMCIA (common expansion cards for laptops), IEEE 1394 (also called “Firewire” or “I-Link”), some SATA hard drives, and even, for some high-end servers, PCI or SCSI devices. The kernel has a database that associates each device ID with the required driver. This database is used during boot to load all the drivers for the peripheral devices detected on the different buses mentioned, but also when an additional hotplug device is connected. Once a driver is loaded, a message is sent to <command>udevd</command> so it will be able to create the corresponding entry in <filename>/dev/</filename>."
+msgid "The <emphasis>hotplug</emphasis> kernel subsystem dynamically handles the addition and removal of devices, by loading the appropriate drivers and by creating the corresponding device files (with the help of <command>udevd</command>). With modern hardware and virtualization, almost everything can be hotplugged: from the usual USB/PCMCIA/IEEE 1394 peripherals to SATA hard drives, but also the CPU and the memory."
+msgstr ""
+
+#. Tag: para
+#, fuzzy, no-c-format
+#| msgid "The <emphasis>hotplug</emphasis> kernel subsystem loads drivers for peripherals that can be hotplugged. This includes USB peripherals (increasingly common), PCMCIA (common expansion cards for laptops), IEEE 1394 (also called “Firewire” or “I-Link”), some SATA hard drives, and even, for some high-end servers, PCI or SCSI devices. The kernel has a database that associates each device ID with the required driver. This database is used during boot to load all the drivers for the peripheral devices detected on the different buses mentioned, but also when an additional hotplug device is connected. Once a driver is loaded, a message is sent to <command>udevd</command> so it will be able to create the corresponding entry in <filename>/dev/</filename>."
+msgid "The kernel has a database that associates each device ID with the required driver. This database is used during boot to load all the drivers for the peripheral devices detected on the different buses, but also when an additional hotplug device is connected. Once the device is ready for use, a message is sent to <command>udevd</command> so it will be able to create the corresponding entry in <filename>/dev/</filename>."
 msgstr " <emphasis>热插拔</emphasis> 内核子系统装载支持热插拔的外围设备启动。包括越来越多的USB 设备，PCMCIA（便携电脑扩展卡），IEEE 1394 （也称为“Firewire”或者“I-Link”），一些SATA 硬盘，有些高端服务器上的PCI 或SCSI 设备。内核中有一个数据库将每个设备的ID 和需要的驱动关联。启动时，使用该数据库加载探测到的不同总线上的所有设备驱动和后加的热插拔设备驱动。一旦加载了驱动，会向 <command>udevd</command> 发送消息，并在 <filename>/dev/</filename>创建相应的入口。"
 
 #. Tag: indexterm
@@ -2913,9 +2908,10 @@ msgid "Like many daemons, <command>udevd</command> stores logs in <filename>/var
 msgstr "如同许多守护进程， <command>udevd</command> 将日志存储在<filename>/var/log/daemon.log</filename>中。但是默认情况下它的内容不是很明晰，而且很难理解到底发生了什么。<command>udevadm control --log-priority=info</command> 命令会增加日志解释说明。 <command>udevadm control --log-priority=err</command> 会返回默认解释等级。"
 
 #. Tag: title
-#, no-c-format
-msgid "Power Management"
-msgstr "电源管理"
+#, fuzzy, no-c-format
+#| msgid "Modern power savings: Advanced Configuration and Power Interface (ACPI)"
+msgid "Power Management: Advanced Configuration and Power Interface (ACPI)"
+msgstr "现代节能方法：高级配置和电源接口（Advanced Configuration and Power Interface－ACPI）"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2928,54 +2924,37 @@ msgid "<primary>management, power management</primary>"
 msgstr "<primary>管理，电源管理</primary>"
 
 #. Tag: para
-#, no-c-format
-msgid "The topic of power management is often problematic. Indeed, properly suspending the computer requires that all the computer's device drivers know how to put them to standby, and that they properly reconfigure the devices upon waking. Unfortunately, there are still many devices unable to sleep well under Linux, because their manufacturers have not provided the required specifications."
+#, fuzzy, no-c-format
+#| msgid "The topic of power management is often problematic. Indeed, properly suspending the computer requires that all the computer's device drivers know how to put them to standby, and that they properly reconfigure the devices upon waking. Unfortunately, there are still many devices unable to sleep well under Linux, because their manufacturers have not provided the required specifications."
+msgid "The topic of power management is often problematic. Indeed, properly suspending the computer requires that all the computer's device drivers know how to put them to standby, and that they properly reconfigure the devices upon waking. Unfortunately, there are still a few devices unable to sleep well under Linux, because their manufacturers have not provided the required specifications."
 msgstr "电源管理常常引起问题。实际上，挂起计算机要求所有设备驱动将其设备置于待机，而且在唤醒之后重新配置设备。不幸的是，还有很多设备不能在Linux系统下待机，因为这些设备的制造商并没用提供开发驱动所需的信息。"
 
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>WORTH FOLLOWING</emphasis> Software suspend"
-msgstr "<emphasis>值得一试</emphasis> 软件挂起"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>standby</primary>"
-msgstr "<primary>待机</primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>software suspend</primary>"
-msgstr "<primary>软件挂起</primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>suspend</primary>"
-msgstr "<primary>挂起</primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>hibernation</primary>"
-msgstr "<primary>休眠</primary>"
-
 #. Tag: para
-#, no-c-format
-msgid "The software suspend banner rallies several recent efforts to integrate reliable hibernation under Linux, on disk or in memory. Recent kernels are relatively reliable in that regard, when used in cooperation with tools of the <emphasis role=\"pkg\">uswsusp</emphasis> package. Unfortunately the problems related to hibernation are not yet ancient history, and you should run tests on your hardware before putting too much faith in its ability to wake from suspend."
-msgstr "软件挂起方法在磁盘或内存中集成了Linux下最近几种可靠的休眠尝试。在这方面，如果和 <emphasis role=\"pkg\">uswsusp</emphasis> 工具软件包结合使用，最新的内核已经相当可靠。可惜，与休眠相关的问题并不是一个古老的话题，在完全相信它能从挂起恢复之前，最好是在自己的硬件上测试一下。"
+#, fuzzy, no-c-format
+#| msgid "The <emphasis role=\"pkg\">apmd</emphasis> package provides a daemon that looks for events connected to energy management (switching between AC and battery power on a laptop, etc.), and allows you to run specific commands in response."
+msgid "Linux supports ACPI (Advanced Configuration and Power Interface) — the most recent standard in power management. The <emphasis role=\"pkg\">acpid</emphasis> package provides a daemon that looks for power management related events (switching between AC and battery power on a laptop, etc.) and that can execute various commands in response."
+msgstr " <emphasis role=\"pkg\">apmd</emphasis> 软件包提供一个守护进程来监测与电源管理相关的事件（便携电脑上，在交流和电池电源之间的切换，等），并允许运行相应的命令作为响应。"
 
-#. Tag: para
+#. Tag: indexterm
 #, no-c-format
-msgid "For those who want to learn more about how standby works with ACPI, Matthew Garrett has an excellent article about this in his blog. <ulink type=\"block\" url=\"http://www.advogato.org/article/913.html\" /> <indexterm><primary>Garrett, Matthew</primary></indexterm> <indexterm><primary>Matthew Garrett</primary></indexterm>"
-msgstr "对于想要详细了解ACPI中待机是如何工作的读者，Matthew Garrett在其博客中有一篇很好的介绍文章。<ulink type=\"block\" url=\"http://www.advogato.org/article/913.html\" /> <indexterm><primary>Garrett, Matthew</primary></indexterm> <indexterm><primary>Matthew Garrett</primary></indexterm>"
+msgid "<primary>ACPI</primary>"
+msgstr "<primary>ACPI</primary>"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary>Advanced Configuration and Power Interface</primary>"
+msgstr "<primary>高级配置与电源管理</primary>"
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><command>acpid</command></primary>"
+msgstr "<primary><command>acpid</command></primary>"
 
 #. Tag: title
-#, no-c-format
-msgid "Advanced Power Management (APM)"
-msgstr "高级电源管理（APM）"
-
-#. Tag: para
-#, no-c-format
-msgid "APM (Advanced Power Management) control is present in all Debian kernels, but disabled by default. To activate it, you add the <literal>apm=on</literal> option to the kernel parameters passed at boot time. With LILO, you would add the <literal>append=\"apm=on\"</literal> directive to the block indicating which image to boot (in the <filename>/etc/lilo.conf</filename> file), and relaunch <command>lilo</command>. With GRUB2, you simply add <literal>apm=on</literal> to the <literal>GRUB_CMDLINE_LINUX=</literal> variable in <filename>/etc/default/grub</filename>, and run <command>update-grub</command> to regenerate the contents of the boot menu."
-msgstr "所有的Debian 内核都提供了APM (Advanced Power Management) 控制，但是默认情况下是关闭的。要激活它，需要在启动时将 <literal>apm=on</literal> 选项参数传递给内核。如果使用LILO，应添加 <literal>append=\"apm=on\"</literal> 命令到指定启动镜像的文件行（在文件 <filename>/etc/lilo.conf</filename> 中），并重启 <command>lilo</command>。在GRUB2中，只需给文件 <filename>/etc/default/grub</filename>中的变量 <literal>GRUB_CMDLINE_LINUX=</literal> 添加 <literal>apm=on</literal> ，并运行 <command>update-grub</command> 来重新生成启动菜单。"
+#, fuzzy, no-c-format
+#| msgid "<emphasis>HARDWARE</emphasis> Apple and power management"
+msgid "<emphasis>CULTURE</emphasis> Advanced Power Management (APM)"
+msgstr "<emphasis>硬件</emphasis> 苹果（Apple ）和电源管理"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2989,125 +2968,187 @@ msgstr "<primary>高级电源管理</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The <emphasis role=\"pkg\">apmd</emphasis> package provides a daemon that looks for events connected to energy management (switching between AC and battery power on a laptop, etc.), and allows you to run specific commands in response."
-msgstr " <emphasis role=\"pkg\">apmd</emphasis> 软件包提供一个守护进程来监测与电源管理相关的事件（便携电脑上，在交流和电池电源之间的切换，等），并允许运行相应的命令作为响应。"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>apmd</command></primary>"
-msgstr "<primary><command>apmd</command></primary>"
-
-#. Tag: para
-#, no-c-format
-msgid "These days, APM is really only justified on older computers that do not support ACPI properly. In all other cases, ACPI should be used."
-msgstr "如今，APM 只存在于那些不支持ACPI 的旧电脑上。所有的情况下都应当使用ACPI。"
+msgid "APM (Advanced Power Management) is the ancestor of ACPI in the power management world. While Debian still provides <command>apmd</command> (the counterpart to <command>acpid</command> for the APM standard), the official Debian kernel no longer supports APM so you'll have to run a custom kernel if you really need it for some old computer."
+msgstr ""
 
 #. Tag: title
-#, no-c-format
-msgid "Modern power savings: Advanced Configuration and Power Interface (ACPI)"
-msgstr "现代节能方法：高级配置和电源接口（Advanced Configuration and Power Interface－ACPI）"
-
-#. Tag: para
-#, no-c-format
-msgid "Linux supports ACPI (Advanced Configuration and Power Interface) — the most recent standard in power management. More powerful and flexible, it is also more complicated to implement. The <emphasis role=\"pkg\">acpid</emphasis> package is the counterpart to <emphasis role=\"pkg\">apmd</emphasis> for the ACPI world."
-msgstr "Linux 支持ACPI －现今使用最为广泛的电源管理方法。更加强大和灵活，执行起来也更加复杂。 <emphasis role=\"pkg\">acpid</emphasis> 是使用ACPI 与 <emphasis role=\"pkg\">apmd</emphasis> 相对应的软件包。"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>ACPI</primary>"
-msgstr "<primary>ACPI</primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>Advanced Configuration and Power Interface</primary>"
-msgstr "<primary>高级配置与电源管理</primary>"
-
-#. Tag: para
-#, no-c-format
-msgid "If you know that your BIOS correctly manages ACPI, then this should be preferred over APM (removed upon update of the BIOS). When moving from one to the other, you must take care to remove the <emphasis role=\"pkg\">apmd</emphasis> package, since keeping it alongside with <emphasis role=\"pkg\">acpid</emphasis> could cause problems (and vice-versa)."
-msgstr "如果BIOS 能很好的管理ACPI，那么推荐使用BIOS 而非APM （更新BIOS后会被移除）。当从一个工具包转向另一个时，要移除 <emphasis role=\"pkg\">apmd</emphasis> 软件包，因为把它和 <emphasis role=\"pkg\">acpid</emphasis>放在一起用会产生问题（反之亦然）。"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>acpid</command></primary>"
-msgstr "<primary><command>acpid</command></primary>"
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>ATTENTION</emphasis> Graphics card and standby"
+#, fuzzy, no-c-format
+#| msgid "<emphasis>ATTENTION</emphasis> Graphics card and standby"
+msgid "<emphasis>BEWARE</emphasis> Graphics card and standby"
 msgstr "<emphasis>注意</emphasis> 显卡和待机"
 
 #. Tag: para
-#, no-c-format
-msgid "The graphics card driver often has a problem with standby. In case of trouble, it is a good idea to test the latest version of the X.org graphics server."
+#, fuzzy, no-c-format
+#| msgid "The graphics card driver often has a problem with standby. In case of trouble, it is a good idea to test the latest version of the X.org graphics server."
+msgid "The graphics card driver is often the problematic drivers when standby doesn't work properly. In that case, it is a good idea to test the latest version of the X.org graphics server."
 msgstr "显卡驱动对待机支持常常产生问题。为了避免产生问题，最好用最新版本的X.org图形服务器进行测试。"
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>HARDWARE</emphasis> Apple and power management"
-msgstr "<emphasis>硬件</emphasis> 苹果（Apple ）和电源管理"
-
-#. Tag: para
-#, no-c-format
-msgid "On Apple Powerbooks (thus PowerPC processors), <emphasis role=\"pkg\">apmd</emphasis> should be replaced with <emphasis role=\"pkg\">pmud</emphasis>."
-msgstr "在 Apple Powerbooks （使用PowerPC 处理器）上，应当使用 <emphasis role=\"pkg\">apmd</emphasis> 替代 <emphasis role=\"pkg\">pmud</emphasis>。"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><command>pmud</command></primary>"
-msgstr "<primary><command>pmud</command></primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>Powerbook</primary>"
-msgstr "<primary>Powerbook</primary>"
-
-#. Tag: title
-#, no-c-format
-msgid "Laptop Extension Cards: PCMCIA"
-msgstr "便携式电脑扩展卡：PCMCIA"
-
-#. Tag: para
-#, no-c-format
-msgid "PCMCIA card drivers are built into the kernel as modules since kernel version 2.6.13. On a system running Debian <emphasis role=\"distribution\">Squeeze</emphasis>, you simply have to install the user space support contained in the <emphasis role=\"pkg\">pcmciautils</emphasis> package."
-msgstr "在 2.6.13版本之后的内核都嵌入了PCMCIA 驱动模块。在运行Debian  <emphasis role=\"distribution\">Squeeze</emphasis>的系统上，只需安装 <emphasis role=\"pkg\">pcmciautils</emphasis> 软件包就能提供用户空间支持。"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis role=\"pkg\">pcmciautils</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">pcmciautils</emphasis></primary>"
-
-#. Tag: para
-#, no-c-format
-msgid "The <emphasis role=\"pkg\">wireless-tools</emphasis> package is also necessary for good management of Wifi cards."
-msgstr "想要很好的管理无线网卡，则需要使用<emphasis role=\"pkg\">wireless-tools</emphasis> 软件包。"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis>wireless-tools</emphasis></primary>"
-msgstr "<primary><emphasis>wireless-tools</emphasis></primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>wifi</primary>"
-msgstr "<primary>wifi</primary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>network</primary><secondary>wireless</secondary>"
-msgstr "<primary>网络</primary><secondary>无线网</secondary>"
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary>wireless network</primary>"
-msgstr "<primary>无线网络</primary>"
-
-#. Tag: para
-#, no-c-format
-msgid "Every time you connect or remove a card, the daemon configures or deconfigures it, by executing a script in the <filename>/etc/pcmcia/</filename> directory, which gets its settings from the <filename>/etc/pcmcia/*.opts</filename> files. These files have been slightly adapted to work with a Debian system; the configuration of the network is delegated to <command>ifup</command> if the <filename>/etc/pcmcia/network.opts</filename> file does not take care of it. The same is true for configuration of a wireless network, which can be specified in <filename>/etc/network/interfaces</filename> instead of <filename>/etc/pcmcia/wireless.opts</filename>. The <filename>/usr/share/doc/wireless-tools/README.Debian</filename> file also describes the syntax to use."
-msgstr "每次接入和移除板卡，守护进程通过执行 <filename>/etc/pcmcia/</filename> 目录中的脚本来配置和解除配置，脚本从<filename>/etc/pcmcia/*.opts</filename> 文件收集信息。这些文件为适应Debian 系统稍稍做了更改；如果 <filename>/etc/pcmcia/network.opts</filename> 文件不处理网络配置，就会指派给 <command>ifup</command> 处理。配置无线网络也是如此，在 <filename>/etc/network/interfaces</filename> 中指明，而非 <filename>/etc/pcmcia/wireless.opts</filename>。 <filename>/usr/share/doc/wireless-tools/README.Debian</filename> 文件详细描述了使用语法。"
 
 #. Tag: para
 #, no-c-format
 msgid "After this overview of basic services common to many Unix systems, we will focus on the environment of the administered machines: the network. Many services are required for the network to work properly. They will be discussed in the next chapter."
 msgstr "在介绍了这么多Unix 系统上通用的基本服务之后，接下来关注管理机器的运行环境：网络。许多服务都需要网络的支持。这些会在下一章讨论。"
+
+#~ msgid "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
+#~ msgstr "<primary><emphasis role=\"pkg\">module-init-tools</emphasis></primary>"
+
+#~ msgid "In the original <emphasis>System V</emphasis>, and in versions of Debian up to <emphasis role=\"distribution\">Lenny</emphasis>, the execution order of initialization scripts was defined only by the names of the <filename>/etc/rc*.d/S*</filename> symbolic links (and <filename>/etc/rc*.d/K*</filename> upon shutdown). This behavior can be re-established by setting <literal>CONCURRENCY=none</literal> in the <filename>/etc/default/rcS</filename> file."
+#~ msgstr "一般而言，<emphasis>System V</emphasis>，在直到 Debian 版本<emphasis role=\"distribution\">Lenny</emphasis>之前，初始化脚本的执行顺序仅仅由<filename>/etc/rc*.d/S*</filename>符号链接（关机则是<filename>/etc/rc*.d/K*</filename>）的名字定义。可以通过设置<filename>/etc/default/rcS</filename>文件中的<literal>CONCURRENCY=none</literal>来重新建立这种方式。"
+
+#~ msgid "<primary>client/server architecture</primary>"
+#~ msgstr "<primary>客户/服务器　架构</primary>"
+
+#~ msgid "Remote Login: <command>telnet</command>"
+#~ msgstr "远程登录： <command>telnet</command>"
+
+#~ msgid "The <emphasis>telnet</emphasis> protocol, the oldest remote login service, is the worst in terms of security. Data and passwords are sent in clear text — that is, not encrypted — leaving them vulnerable to anyone snooping on the network. If necessary, take care to remove this obsolete service, that is no longer installed by default:"
+#~ msgstr "<emphasis>telnet</emphasis> 协议是最老的远程登录服务，在安全方面最差。数据和密码使用明文传输－即未做任何加密－这使得他们很容易受到网络窥探。如果有必要，小心移除这个废弃的服务，它不再被默认安装："
+
+#~ msgid "<computeroutput># </computeroutput><userinput>apt-get remove telnetd</userinput>\n"
+#~ msgstr "<computeroutput># </computeroutput><userinput>apt-get remove telnetd</userinput>\n"
+
+#~ msgid "There is, however, an adaptation that corrects its most crippling defects; it uses SSL (Secure Socket Layer) to authenticate the partner and encrypt communications. The <emphasis>telnetd-ssl</emphasis> and <emphasis>telnet-ssl</emphasis> packages provide, respectively, the server and client software."
+#~ msgstr "然而，有一个纠正了大部分严重缺陷的改进版；它使用 SSL （安全套接层协议）授权和加密通信。<emphasis>telnetd-ssl</emphasis> 和 <emphasis>telnet-ssl</emphasis> 软件包提供相应的服务和客户软件。"
+
+#~ msgid "<primary><emphasis>telnet-ssl</emphasis></primary>"
+#~ msgstr "<primary><emphasis>telnet-ssl</emphasis></primary>"
+
+#~ msgid "<primary><emphasis>telnetd-ssl</emphasis></primary>"
+#~ msgstr "<primary><emphasis>telnetd-ssl</emphasis></primary>"
+
+#~ msgid "<primary>RSH</primary>"
+#~ msgstr "<primary>RSH</primary>"
+
+#~ msgid "<primary>Remote Shell</primary>"
+#~ msgstr "<primary>远程界面 Shell</primary>"
+
+#~ msgid "SSH tools provide secure variants of the programs from the classic RSH (Remote Shell) family — <command>rsh</command>, <command>rlogin</command>, and <command>rcp</command>. These are still available in the <emphasis role=\"pkg\">rsh-server</emphasis> and <emphasis role=\"pkg\">rsh-client</emphasis> packages, but their usage is strongly discouraged."
+#~ msgstr "SSH 工具提供了经典  RSH （远程登录界面）家族的安全变种－ <command>rsh</command> ，<command>rlogin</command> ，和 <command>rcp</command>。他们还存在于<emphasis role=\"pkg\">rsh-server</emphasis> 和 <emphasis role=\"pkg\">rsh-client</emphasis> 软件包中，但是不鼓励使用他们。"
+
+#~ msgid "<emphasis>GOING FURTHER</emphasis> Hardware acceleration for SSH"
+#~ msgstr "<emphasis>进阶</emphasis> 硬件加速 SSH"
+
+#~ msgid "<primary>OpenSSL</primary><secondary>hardware acceleration</secondary>"
+#~ msgstr "<primary>OpenSSL</primary><secondary>硬件加速</secondary>"
+
+#~ msgid "Some hardware provides native support of mathematical functions used by encryption, which can speed up the required calculations, thus increasing performance of some tools (and lightening the load on the main processor). These tools notably include the OpenSSL library, which is in turn used by OpenSSH."
+#~ msgstr "有些硬件提供了加密函数的本地支持，它可以加速计算，因此可以提高某些工具的表现（并减少主处理器的负荷）。这些工具包含 OpenSSL 库，反过来又为 OpenSSL 所用。"
+
+#~ msgid "Although a project for standardization of drivers is underway (notably at the kernel level), the variety of hardware is still managed inequitably and heterogeneously. For example, the Padlock system included in Via C3 processors is only partially supported. While the Linux kernel does offer various encryption algorithms, the OpenSSL 0.9.8 library in <emphasis role=\"distribution\">Squeeze</emphasis> only handles delegation of AES encryption to the hardware dedicated to that purpose, but not the SHA algorithms; you have to recompile it with a patch. <ulink type=\"block\" url=\"http://www.logix.cz/michal/devel/padlock/\" />"
+#~ msgstr "虽然驱动标准化项目正在进行（尤其在内核层），但是对多样化硬件的管理仍然参差不齐。例如，在威盛 C3 处理器上的 Padlock 系统仅被部分支持。而 Linux 内核确实提供了多样的加密算法，在 <emphasis role=\"distribution\">Squeeze</emphasis> 中的OpenSSL 0.9.8 库仅仅把 AES 加密委托给硬件，不包括 SHA 算法；要使用补丁重新编译才行。 <ulink type=\"block\" url=\"http://www.logix.cz/michal/devel/padlock/\" />"
+
+#~ msgid "<primary>execution</primary><secondary>right</secondary>"
+#~ msgstr "<primary>执行</primary><secondary>权限</secondary>"
+
+#~ msgid "<primary>rights, octal representation</primary>"
+#~ msgstr "<primary>权限，八进制表示</primary>"
+
+#~ msgid "<emphasis>ALTERNATIVE</emphasis> <emphasis>gnome-system-tools</emphasis>"
+#~ msgstr "<emphasis>其他的选择</emphasis> <emphasis>gnome系统工具</emphasis>"
+
+#~ msgid "<primary><emphasis role=\"pkg\">gnome-system-tools</emphasis></primary>"
+#~ msgstr "<primary><emphasis role=\"pkg\">gnome系统工具</emphasis></primary>"
+
+#~ msgid "The GNOME project also provides a graphical administration interface in the <emphasis role=\"pkg\">gnome-system-tools</emphasis> package. Installed by default for a desktop system, it includes applications that can be found in the menu at <menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu></menuchoice>. Easy to use, these applications cover only a limited number of base services: user and group management, time configuration, network configuration, disk management, and management of startup services."
+#~ msgstr "GNOME 系统在也提供了 <emphasis role=\"pkg\">gnome-system-tools</emphasis> 其中提供了图形管理界面。对桌面系统默认安装，它在菜单<menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu></menuchoice>中包含了一些应用程序。容易上手，这些程序只包括了有限的基本服务：用户和组管理，时间配置，网络配置，磁盘管理，启动服务管理。"
+
+#~ msgid "<emphasis>SUPPLEMENTS</emphasis> Moving from sysklogd to rsyslog"
+#~ msgstr "<emphasis>补充</emphasis> 从sysklogd 到 rsyslog"
+
+#~ msgid "<primary><emphasis role=\"pkg\">sysklogd</emphasis></primary>"
+#~ msgstr "<primary><emphasis role=\"pkg\">sysklogd</emphasis></primary>"
+
+#~ msgid "Debian <emphasis role=\"distribution\">Squeeze</emphasis> installs <emphasis role=\"pkg\">rsyslog</emphasis> by default, while older versions (up to <emphasis role=\"distribution\">Etch</emphasis>, but not <emphasis role=\"distribution\">Lenny</emphasis>) used <emphasis role=\"pkg\">sysklogd</emphasis>. The transition was not automatic, and in the case of an upgrade from <emphasis role=\"distribution\">Etch</emphasis>, <emphasis role=\"pkg\">rsyslog</emphasis> should be installed manually if you want to keep in sync with Debian's default choice."
+#~ msgstr "Debian  <emphasis role=\"distribution\">Squeeze</emphasis> 默认安装 <emphasis role=\"pkg\">rsyslog</emphasis> 。老版本（直到 <emphasis role=\"distribution\">Etch</emphasis>，不包括 <emphasis role=\"distribution\">Lenny</emphasis>）使用 <emphasis role=\"pkg\">sysklogd</emphasis>。在从 <emphasis role=\"distribution\">Etch</emphasis>升级后，不会自动转换，如果想和Debian默认设置保持同步，需要手动安装 <emphasis role=\"pkg\">rsyslog</emphasis>。"
+
+#~ msgid "Migration from one to the other is painless, since the default configuration is very similar, and the syntax of the older <filename>/etc/syslog.conf</filename> is compatible with the new <filename>/etc/rsyslog.conf</filename>."
+#~ msgstr "从一个转移到另一个不会有任何不适，他们的默认配置十分相似，老文件<filename>/etc/syslog.conf</filename> 的语法格式和新 <filename>/etc/rsyslog.conf</filename>文件是兼容的。"
+
+#~ msgid "Desktop computers, which are not backed up, will be easy to regenerate from CD-ROMs made by the <command>mondo</command> program. These bootable CD-ROMs allow complete re-installation of the machine's system. But beware: files that are not part of the system or the user's home directory will not, themselves, be backed up by <command>mondo</command>. This includes, for example, users' local <emphasis>crontabs</emphasis>, as well as any changes made to system configuration since the preparation of the CD-ROM."
+#~ msgstr "没有备份的桌面电脑，可以很容易的使用 <command>mondo</command> 程序做CD-ROM来重新创建。这种可启动光盘能完全重装系统。但是要注意：非系统文件或者用户目录将不会备份。其中包括例如，用户自身的<emphasis>crontabs</emphasis>，和准备光盘时系统配置上的任何改变。"
+
+#~ msgid "<primary><command>mondo</command></primary>"
+#~ msgstr "<primary><command>mondo</command></primary>"
+
+#~ msgid "<primary>backup</primary><secondary>on CD-ROM</secondary>"
+#~ msgstr "<primary>备份</primary><secondary>光盘</secondary>"
+
+#~ msgid "<primary>CD-ROM</primary><secondary>backup on CD-ROM</secondary>"
+#~ msgstr "<primary>光盘</primary><secondary>备份光盘</secondary>"
+
+#~ msgid "Power Management"
+#~ msgstr "电源管理"
+
+#~ msgid "<emphasis>WORTH FOLLOWING</emphasis> Software suspend"
+#~ msgstr "<emphasis>值得一试</emphasis> 软件挂起"
+
+#~ msgid "<primary>standby</primary>"
+#~ msgstr "<primary>待机</primary>"
+
+#~ msgid "<primary>software suspend</primary>"
+#~ msgstr "<primary>软件挂起</primary>"
+
+#~ msgid "<primary>suspend</primary>"
+#~ msgstr "<primary>挂起</primary>"
+
+#~ msgid "<primary>hibernation</primary>"
+#~ msgstr "<primary>休眠</primary>"
+
+#~ msgid "The software suspend banner rallies several recent efforts to integrate reliable hibernation under Linux, on disk or in memory. Recent kernels are relatively reliable in that regard, when used in cooperation with tools of the <emphasis role=\"pkg\">uswsusp</emphasis> package. Unfortunately the problems related to hibernation are not yet ancient history, and you should run tests on your hardware before putting too much faith in its ability to wake from suspend."
+#~ msgstr "软件挂起方法在磁盘或内存中集成了Linux下最近几种可靠的休眠尝试。在这方面，如果和 <emphasis role=\"pkg\">uswsusp</emphasis> 工具软件包结合使用，最新的内核已经相当可靠。可惜，与休眠相关的问题并不是一个古老的话题，在完全相信它能从挂起恢复之前，最好是在自己的硬件上测试一下。"
+
+#~ msgid "For those who want to learn more about how standby works with ACPI, Matthew Garrett has an excellent article about this in his blog. <ulink type=\"block\" url=\"http://www.advogato.org/article/913.html\" /> <indexterm><primary>Garrett, Matthew</primary></indexterm> <indexterm><primary>Matthew Garrett</primary></indexterm>"
+#~ msgstr "对于想要详细了解ACPI中待机是如何工作的读者，Matthew Garrett在其博客中有一篇很好的介绍文章。<ulink type=\"block\" url=\"http://www.advogato.org/article/913.html\" /> <indexterm><primary>Garrett, Matthew</primary></indexterm> <indexterm><primary>Matthew Garrett</primary></indexterm>"
+
+#~ msgid "Advanced Power Management (APM)"
+#~ msgstr "高级电源管理（APM）"
+
+#~ msgid "APM (Advanced Power Management) control is present in all Debian kernels, but disabled by default. To activate it, you add the <literal>apm=on</literal> option to the kernel parameters passed at boot time. With LILO, you would add the <literal>append=\"apm=on\"</literal> directive to the block indicating which image to boot (in the <filename>/etc/lilo.conf</filename> file), and relaunch <command>lilo</command>. With GRUB2, you simply add <literal>apm=on</literal> to the <literal>GRUB_CMDLINE_LINUX=</literal> variable in <filename>/etc/default/grub</filename>, and run <command>update-grub</command> to regenerate the contents of the boot menu."
+#~ msgstr "所有的Debian 内核都提供了APM (Advanced Power Management) 控制，但是默认情况下是关闭的。要激活它，需要在启动时将 <literal>apm=on</literal> 选项参数传递给内核。如果使用LILO，应添加 <literal>append=\"apm=on\"</literal> 命令到指定启动镜像的文件行（在文件 <filename>/etc/lilo.conf</filename> 中），并重启 <command>lilo</command>。在GRUB2中，只需给文件 <filename>/etc/default/grub</filename>中的变量 <literal>GRUB_CMDLINE_LINUX=</literal> 添加 <literal>apm=on</literal> ，并运行 <command>update-grub</command> 来重新生成启动菜单。"
+
+#~ msgid "<primary><command>apmd</command></primary>"
+#~ msgstr "<primary><command>apmd</command></primary>"
+
+#~ msgid "These days, APM is really only justified on older computers that do not support ACPI properly. In all other cases, ACPI should be used."
+#~ msgstr "如今，APM 只存在于那些不支持ACPI 的旧电脑上。所有的情况下都应当使用ACPI。"
+
+#~ msgid "Linux supports ACPI (Advanced Configuration and Power Interface) — the most recent standard in power management. More powerful and flexible, it is also more complicated to implement. The <emphasis role=\"pkg\">acpid</emphasis> package is the counterpart to <emphasis role=\"pkg\">apmd</emphasis> for the ACPI world."
+#~ msgstr "Linux 支持ACPI －现今使用最为广泛的电源管理方法。更加强大和灵活，执行起来也更加复杂。 <emphasis role=\"pkg\">acpid</emphasis> 是使用ACPI 与 <emphasis role=\"pkg\">apmd</emphasis> 相对应的软件包。"
+
+#~ msgid "If you know that your BIOS correctly manages ACPI, then this should be preferred over APM (removed upon update of the BIOS). When moving from one to the other, you must take care to remove the <emphasis role=\"pkg\">apmd</emphasis> package, since keeping it alongside with <emphasis role=\"pkg\">acpid</emphasis> could cause problems (and vice-versa)."
+#~ msgstr "如果BIOS 能很好的管理ACPI，那么推荐使用BIOS 而非APM （更新BIOS后会被移除）。当从一个工具包转向另一个时，要移除 <emphasis role=\"pkg\">apmd</emphasis> 软件包，因为把它和 <emphasis role=\"pkg\">acpid</emphasis>放在一起用会产生问题（反之亦然）。"
+
+#~ msgid "On Apple Powerbooks (thus PowerPC processors), <emphasis role=\"pkg\">apmd</emphasis> should be replaced with <emphasis role=\"pkg\">pmud</emphasis>."
+#~ msgstr "在 Apple Powerbooks （使用PowerPC 处理器）上，应当使用 <emphasis role=\"pkg\">apmd</emphasis> 替代 <emphasis role=\"pkg\">pmud</emphasis>。"
+
+#~ msgid "<primary><command>pmud</command></primary>"
+#~ msgstr "<primary><command>pmud</command></primary>"
+
+#~ msgid "<primary>Powerbook</primary>"
+#~ msgstr "<primary>Powerbook</primary>"
+
+#~ msgid "Laptop Extension Cards: PCMCIA"
+#~ msgstr "便携式电脑扩展卡：PCMCIA"
+
+#~ msgid "PCMCIA card drivers are built into the kernel as modules since kernel version 2.6.13. On a system running Debian <emphasis role=\"distribution\">Squeeze</emphasis>, you simply have to install the user space support contained in the <emphasis role=\"pkg\">pcmciautils</emphasis> package."
+#~ msgstr "在 2.6.13版本之后的内核都嵌入了PCMCIA 驱动模块。在运行Debian  <emphasis role=\"distribution\">Squeeze</emphasis>的系统上，只需安装 <emphasis role=\"pkg\">pcmciautils</emphasis> 软件包就能提供用户空间支持。"
+
+#~ msgid "<primary><emphasis role=\"pkg\">pcmciautils</emphasis></primary>"
+#~ msgstr "<primary><emphasis role=\"pkg\">pcmciautils</emphasis></primary>"
+
+#~ msgid "The <emphasis role=\"pkg\">wireless-tools</emphasis> package is also necessary for good management of Wifi cards."
+#~ msgstr "想要很好的管理无线网卡，则需要使用<emphasis role=\"pkg\">wireless-tools</emphasis> 软件包。"
+
+#~ msgid "<primary><emphasis>wireless-tools</emphasis></primary>"
+#~ msgstr "<primary><emphasis>wireless-tools</emphasis></primary>"
+
+#~ msgid "<primary>wifi</primary>"
+#~ msgstr "<primary>wifi</primary>"
+
+#~ msgid "<primary>network</primary><secondary>wireless</secondary>"
+#~ msgstr "<primary>网络</primary><secondary>无线网</secondary>"
+
+#~ msgid "<primary>wireless network</primary>"
+#~ msgstr "<primary>无线网络</primary>"
+
+#~ msgid "Every time you connect or remove a card, the daemon configures or deconfigures it, by executing a script in the <filename>/etc/pcmcia/</filename> directory, which gets its settings from the <filename>/etc/pcmcia/*.opts</filename> files. These files have been slightly adapted to work with a Debian system; the configuration of the network is delegated to <command>ifup</command> if the <filename>/etc/pcmcia/network.opts</filename> file does not take care of it. The same is true for configuration of a wireless network, which can be specified in <filename>/etc/network/interfaces</filename> instead of <filename>/etc/pcmcia/wireless.opts</filename>. The <filename>/usr/share/doc/wireless-tools/README.Debian</filename> file also describes the syntax to use."
+#~ msgstr "每次接入和移除板卡，守护进程通过执行 <filename>/etc/pcmcia/</filename> 目录中的脚本来配置和解除配置，脚本从<filename>/etc/pcmcia/*.opts</filename> 文件收集信息。这些文件为适应Debian 系统稍稍做了更改；如果 <filename>/etc/pcmcia/network.opts</filename> 文件不处理网络配置，就会指派给 <command>ifup</command> 处理。配置无线网络也是如此，在 <filename>/etc/network/interfaces</filename> 中指明，而非 <filename>/etc/pcmcia/wireless.opts</filename>。 <filename>/usr/share/doc/wireless-tools/README.Debian</filename> 文件详细描述了使用语法。"

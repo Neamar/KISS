@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2012-10-31T14:54:17\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2012-07-29T20:56:35\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
@@ -65,7 +65,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Before you can understand what is really going on when there is a problem, you need to know the theoretical role played by each program involved in the problem. To do this, the best reflex to have is consult their documentation; but since these documentats are many and widely dispersed, you should know all the places where they can be found."
+msgid "Before you can understand what is really going on when there is a problem, you need to know the theoretical role played by each program involved in the problem. To do this, the best reflex to have is consult their documentation; but since these documentations are many and can be scattered far and wide, you should know all the places where they can be found."
 msgstr ""
 
 #. Tag: title
@@ -100,17 +100,17 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "This acronym stands for “Read the F**king Manual”, but can also be expanded in a friendlier variant, “Read the Fine Manual”. This phrase is sometimes used in (terse) responses to questions from newbies. It is rather abrupt, and betrays a certain annoyance at a question asked by someone who has not even bothered to read the documentation. Some say that this classic response is better than no response at all (since it indicates that the documentation contains the information sought), or than a more verbose and angry answer."
+msgid "This acronym stands for “Read the F***ing Manual”, but can also be expanded in a friendlier variant, “Read the Fine Manual”. This phrase is sometimes used in (terse) responses to questions from newbies. It is rather abrupt, and betrays a certain annoyance at a question asked by someone who has not even bothered to read the documentation. Some say that this classic response is better than no response at all (since it indicates that the documentation contains the information sought), or than a more verbose and angry answer."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In any case, if someone responds “RTFM” to you, it is often wise not to take offense. Since this answer may be perceived as vexing, you might want to try and avoid receiving it. If the information that you need is not in the manual, which can happen, you might want to say so, preferably in your initial question. You should also describe the various steps that you have personally taken to find information before you raised a question on a forum. You can, before using forums, follow a few common sense recommendations, which have been listed by Eric Raymond. <ulink type=\"block\" url=\"http://catb.org/~esr/faqs/smart-questions.html\" />"
+msgid "In any case, if someone responds “RTFM” to you, it is often wise not to take offense. Since this answer may be perceived as vexing, you might want to try and avoid receiving it. If the information that you need is not in the manual, which can happen, you might want to say so, preferably in your initial question. You should also describe the various steps that you have personally taken to find information before you raised a question on a forum. Following Eric Raymond's guidelines is a good way to avoid the most common mistakes and get useful answers. <ulink type=\"block\" url=\"http://catb.org/~esr/faqs/smart-questions.html\" />"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Manual pages, while relatively terse, contain a great deal of essential information. We will quickly go over the command for viewing them. Simply type <command>man <replaceable>manual-page</replaceable></command> — the manual page usually goes by the same name as the command whose documentation is sought. For example, to learn about the possible options for the <command>cp</command> command, you would type the <command>man cp</command> command at the shell prompt (see sidebar)."
+msgid "Manual pages, while relatively terse in style, contain a great deal of essential information. We will quickly go over the command for viewing them. Simply type <command>man <replaceable>manual-page</replaceable></command> — the manual page usually goes by the same name as the command whose documentation is sought. For example, to learn about the possible options for the <command>cp</command> command, you would type the <command>man cp</command> command at the shell prompt (see sidebar)."
 msgstr ""
 
 #. Tag: title
@@ -145,7 +145,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Man pages not only document programs accessible from the command line, but also configuration files, system calls, C library functions, and so forth. Sometimes names can collide. For example, the shell's <command>read</command> command has the same name as the system call <function>read</function>. This is why manual pages are organized in numbered sections:"
+msgid "Man pages not only document programs accessible from the command line, but also configuration files, system calls, C library functions, and so forth. Sometimes names can collide. For example, the shell's <command>read</command> command has the same name as the <function>read</function> system call. This is why manual pages are organized in numbered sections:"
 msgstr ""
 
 #. Tag: para
@@ -165,12 +165,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "devices (under Unix, these are special files, usually placed in the <filename>/dev/</filename> directory);"
+msgid "devices (on Unix-like systems, these are special files, usually placed in the <filename>/dev/</filename> directory);"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "config files (formats and conventions);"
+msgid "configuration files (formats and conventions);"
 msgstr ""
 
 #. Tag: para
@@ -228,7 +228,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Of course, if you do not know the names of the commands, the manual is not going to be of much use to you. This is the purpose of the <command>apropos</command> command, which helps you conduct a search in the manual pages, or more specifically in their short descriptions. Each manual page begins essentially with a one line summary. <command>apropos</command> returns a list of manual pages that mention the keyword(s) requested. If you choose them well, you will find the name of the command that you need."
+msgid "Of course, if you do not know the names of the commands, the manual is not going to be of much use to you. This is the purpose of the <command>apropos</command> command, which helps you conduct a search in the manual pages, or more specifically in their short descriptions. Each manual page begins essentially with a one line summary. <command>apropos</command> returns a list of manual pages whose summary mentions the requested keyword(s). If you choose them well, you will find the name of the command that you need."
 msgstr ""
 
 #. Tag: title
@@ -350,7 +350,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In the <filename>/usr/share/doc/<replaceable>package</replaceable>/</filename> directory there are also some files provided by Debian and which complete the documentation by specifying the package's particularities or improvements compared to a traditional installation of the software. The <filename>README.Debian</filename> file also indicates all of the adaptations that were made to comply with the Debian Policy. The <filename>changelog.Debian.gz</filename> file allows the user to follow the modifications made to the package over time: it is very useful to try to understand what has changed between two installed versions that do not have the same behavior. Finally, there is sometimes a <filename>NEWS.Debian.gz</filename> file which documents the major changes in the program that may directly concern the administrator."
+msgid "The <filename>/usr/share/doc/<replaceable>package</replaceable>/</filename> directory also contains some files provided by Debian which complete the documentation by specifying the package's particularities or improvements compared to a traditional installation of the software. The <filename>README.Debian</filename> file also indicates all of the adaptations that were made to comply with the Debian Policy. The <filename>changelog.Debian.gz</filename> file allows the user to follow the modifications made to the package over time: it is very useful to try to understand what has changed between two installed versions that do not have the same behavior. Finally, there is sometimes a <filename>NEWS.Debian.gz</filename> file which documents the major changes in the program that may directly concern the administrator."
 msgstr ""
 
 #. Tag: title
@@ -360,7 +360,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In most cases, free software programs have websites that are used to distribute it and to unite the community of its developers and users. These sites are frequently loaded with relevant information in various forms: official documentation, FAQ (Frequently Asked Questions), mailing list archives, etc. Often, problems that you may have have already been the subject of many questions; the FAQ or mailing list archives may have a solution for it. A good mastery of search engines will prove immensely valuable to find relevant pages quickly (by restricting the search to the Internet domain or sub-domain dedicated to the program). If the search returns too many pages or if the results do not match what you seek, you can add the keyword <userinput>debian</userinput> to limit results and target relevant information."
+msgid "In most cases, free software programs have websites that are used to distribute it and to bring together the community of its developers and users. These sites are frequently loaded with relevant information in various forms: official documentation, FAQ (Frequently Asked Questions), mailing list archives, etc. Often, problems that you may have have already been the subject of many questions; the FAQ or mailing list archives may have a solution for it. A good mastery of search engines will prove immensely valuable to find relevant pages quickly (by restricting the search to the Internet domain or sub-domain dedicated to the program). If the search returns too many pages or if the results do not match what you seek, you can add the keyword <userinput>debian</userinput> to limit results and target relevant information."
 msgstr ""
 
 #. Tag: title
@@ -380,7 +380,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "If you do not know the address for the software's website, there are various means of getting it. First, check if there is a <literal>Homepage</literal> field in the package's meta-information (<command>apt-cache show <replaceable>package</replaceable></command>). Alternately, the package description may contain a link to the program's official website. If no URL is indicated, look at <filename>/usr/share/doc/<replaceable>package</replaceable>/copyright</filename>. The Debian maintainer generally indicates in this file where they got the program's source code, and this is likely to be the website that you need to find. If at this stage your search is still unfruitful, consult a free software directory, such as Freecode.com (formerly Freshmeat.net) or Framasoft, or search directly with a search engine, such as Google or Yahoo. <ulink type=\"block\" url=\"http://freecode.com/\" /> <ulink type=\"block\" url=\"http://framasoft.org/\" />"
+msgid "If you do not know the address for the software's website, there are various means of getting it. First, check if there is a <literal>Homepage</literal> field in the package's meta-information (<command>apt-cache show <replaceable>package</replaceable></command>). Alternately, the package description may contain a link to the program's official website. If no URL is indicated, look at <filename>/usr/share/doc/<replaceable>package</replaceable>/copyright</filename>. The Debian maintainer generally indicates in this file where they got the program's source code, and this is likely to be the website that you need to find. If at this stage your search is still unfruitful, consult a free software directory, such as Freecode.com (formerly Freshmeat.net), or search directly with a search engine, such as Google or Yahoo. <ulink type=\"block\" url=\"http://freecode.com/\" />"
 msgstr ""
 
 #. Tag: indexterm
@@ -400,7 +400,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "You might also want to check the Debian wiki, a collaborative website where anybody, even simple visitors, can make suggestions directly from their browsers. It is used as much by developers so as to design and specify their projects, as by users who share their knowledge by writing documents collaboratively. <ulink type=\"block\" url=\"http://wiki.debian.org/\" />"
+msgid "You might also want to check the Debian wiki, a collaborative website where anybody, even simple visitors, can make suggestions directly from their browsers. It is used equally by developers who design and specify their projects, and by users who share their knowledge by writing documents collaboratively. <ulink type=\"block\" url=\"http://wiki.debian.org/\" />"
 msgstr ""
 
 #. Tag: title
@@ -415,22 +415,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "A howto is a document that describes, in concrete terms and step by step, how to reach a predefined goal. The covered goals are relatively varied, but often technical in nature: for example, setting up IP Masquerading, configuring software RAID, installing a Samba server, etc. These documents often attempt to cover all of the potential problems likely to occur during the implementation of a given technology."
+msgid "A howto is a document that describes, in concrete terms and step by step, “how to” reach a predefined goal. The covered goals are relatively varied, but often technical in nature: for example, setting up IP Masquerading, configuring software RAID, installing a Samba server, etc. These documents often attempt to cover all of the potential problems likely to occur during the implementation of a given technology."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "Many such tutorials are managed by the Linux Documentation Project (LDP), whose website hosts all of these documents:<ulink type=\"block\" url=\"http://www.tldp.org/\" />"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "To view them locally, just install the <emphasis role=\"pkg\">doc-linux-html</emphasis> package. Local HTML versions will then be available in the <filename>/usr/share/doc/HOWTO/</filename> directory."
-msgstr ""
-
-#. Tag: indexterm
-#, no-c-format
-msgid "<primary><emphasis>doc-linux-html</emphasis></primary>"
 msgstr ""
 
 #. Tag: indexterm
@@ -445,7 +435,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Take these documents with a grain of salt. They are often several years old; the information they contain is sometimes obsolete. This phenomenon is even more frequent for their translations, since updates are neither systematic nor instant after the publication of a new version of the original documents. This is part of the joys of working in a volunteer environment and without constraints..."
+msgid "These documents should be taken with a grain of salt. They are often several years old; the information they contain is sometimes obsolete. This phenomenon is even more frequent for their translations, since updates are neither systematic nor instant after the publication of a new version of the original documents. This is part of the joys of working in a volunteer environment and without constraints…"
 msgstr ""
 
 #. Tag: title
@@ -475,7 +465,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Thus, the <emphasis>apt-howto-fr</emphasis> package contains the French translation of the howto for <emphasis>APT</emphasis>. Likewise, the packages <emphasis>quick-reference-fr</emphasis> and <emphasis>debian-reference-fr</emphasis> (Debian reference) are the French versions of the references guides for Debian (initially written in English by Osamu Aoki)."
+msgid "For instance, the <emphasis>apt-howto-fr</emphasis> package contains the French translation of the howto for <emphasis>APT</emphasis>. Likewise, the <emphasis>quick-reference-fr</emphasis> and <emphasis>debian-reference-fr</emphasis> packages are the French versions of the reference guides for Debian (initially written in English by Osamu Aoki)."
 msgstr ""
 
 #. Tag: title
@@ -500,7 +490,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Then, you should look at the software's official documentation — refer to the previous section to identify the various existing documentation sources. The command <command>dpkg -L <replaceable>package</replaceable></command> gives a list of files included in the package; you can therefore quickly identify the available documentation (as well as the configuration files, located in <filename>/etc/</filename>). <command>dpkg -s <replaceable>package</replaceable></command> produces the package headers and shows any possible recommended or suggested packages; in there, you can find documentation or a utility that will ease the configuration of the software."
+msgid "Then, you should look at the software's official documentation — refer to the previous section to identify the various existing documentation sources. The <command>dpkg -L <replaceable>package</replaceable></command> command gives a list of files included in the package; you can therefore quickly identify the available documentation (as well as the configuration files, located in <filename>/etc/</filename>). <command>dpkg -s <replaceable>package</replaceable></command> displays the package meta-data and shows any possible recommended or suggested packages; in there, you can find documentation or a utility that will ease the configuration of the software."
 msgstr ""
 
 #. Tag: para
@@ -530,7 +520,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "A daemon somewhat complicates one's understanding of a situation, since it does not interact directly with the administrator. To check that a daemon is actually working, you need to test it. For example, to check the Apache (web server) daemon, test it with an HTTP request."
+msgid "Understanding what a daemon does is somewhat more complicated, since it does not interact directly with the administrator. To check that a daemon is actually working, you need to test it. For example, to check the Apache (web server) daemon, test it with an HTTP request."
 msgstr ""
 
 #. Tag: para
@@ -560,7 +550,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<command>rsyslogd</command> is special: it collects logs (internal system messages) that are sent to it by other programs. Each log entry is associated with a subsystem (e-mail, kernel, authentication, etc.) and a priority, two bits of information that <command>rsyslogd</command> processes to decide on what to do. The log message may be recorded in various log files, and/or sent to an administration console. The details are defined in the <filename>/etc/rsyslog.conf</filename> configuration file (documented in the manual page of the same name)."
+msgid "<command>rsyslogd</command> is special: it collects logs (internal system messages) that are sent to it by other programs. Each log entry is associated with a subsystem (e-mail, kernel, authentication, etc.) and a priority; <command>rsyslogd</command> processes these two pieces of information to decide on what to do. The log message may be recorded in various log files, and/or sent to an administration console. The details are defined in the <filename>/etc/rsyslog.conf</filename> configuration file (documented in the manual page of the same name)."
 msgstr ""
 
 #. Tag: para
@@ -585,7 +575,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Any preventive operation begins by regularly consulting the most relevant server logs. You can thus diagnose problems before they are even reported by disgruntled users. Indeed users may sometimes wait for a problem to reoccur over several days before reporting it. You can use a specific tool to analyze the content of the larger log files. You can find such utilities for web servers (such as <command>analog</command>, <command>awstats</command>, <command>webalizer</command> for Apache), for FTP servers, for proxy/cache servers, for firewalls, for e-mail servers, for DNS servers, and even for print servers. Some of these utilities operate in a modular manner and allow analysis of several types of log files. This is the case of <command>lire</command> or also <command>modlogan</command>. Other tools, such as <command>logcheck</command> (a software discussed in <xref linkend=\"security\" />), scan these files to search for alerts to be dealt with."
+msgid "As a preventive operation, the administrator should regularly read the most relevant server logs. They can thus diagnose problems before they are even reported by disgruntled users. Indeed users may sometimes wait for a problem to occur repeatedly over several days before reporting it. In many cases, there are specific tools to analyze the contents of the larger log files. In particular, such utilities exist for web servers (such as <command>analog</command>, <command>awstats</command>, <command>webalizer</command> for Apache), for FTP servers, for proxy/cache servers, for firewalls, for e-mail servers, for DNS servers, and even for print servers. Some of these utilities operate in a modular manner and allow analysis of several types of log files. This is the case of <command>lire</command> or also <command>modlogan</command>. Other tools, such as <command>logcheck</command> (a software discussed in <xref linkend=\"security\" />), scan these files in search of alerts to be dealt with."
 msgstr ""
 
 #. Tag: indexterm
@@ -660,12 +650,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Once you have met those two conditions, you can think of describing your problem to the mailing list. Include as much relevant information as possible: various tests conducted, documentation consulted, how you attempted to diagnose the problem, the packages concerned or those that may be involved, etc. Check the Debian Bug Tracking System (BTS, described in sidebar <xref linkend=\"cadre.bts\" />) for similar problems, and mention the results of that search, providing links to bugs found. BTS starts on: <ulink type=\"block\" url=\"http://www.debian.org/Bugs/index.html\" />"
+msgid "Once those two conditions are met, you can think of describing your problem to the mailing list. Include as much relevant information as possible: various tests conducted, documentation consulted, how you attempted to diagnose the problem, the packages concerned or those that may be involved, etc. Check the Debian Bug Tracking System (BTS, described in sidebar <xref linkend=\"sidebar.bts\" />) for similar problems, and mention the results of that search, providing links to bugs found. BTS starts on: <ulink type=\"block\" url=\"http://www.debian.org/Bugs/index.html\" />"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The more courteous and precise you have been, the greater your chances are of getting an answer, or, at least, some elements of response. If you receive relevant information by private e-mail, think of summarizing this information publicly so that others can benefit. Allow the list's archives, searched through various search engines, to show the resolution for others who may have the same question."
+msgid "The more courteous and precise you have been, the greater your chances are of getting an answer, or, at least, some elements of response. If you receive relevant information by private e-mail, think of summarizing this information publicly so that others can benefit. This also allows the list's archives, searched through various search engines, to show the resolution for others who may have the same question."
 msgstr ""
 
 #. Tag: title

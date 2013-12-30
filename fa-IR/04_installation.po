@@ -1,13 +1,14 @@
-# 
+#
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-11-26 15:52+0100\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2013-11-26 15:52+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -144,7 +145,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "There used to also be a <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only provided the installer, and which required all the Debian packages (including the base system) to be downloaded. Since its image only took up 35 MB, it was meant to be burnt on a “business card” type CD-ROM. This CD-ROM is no longer provided for Wheezy: providing it required extra work for the maintainers of the installer, for very little actual use compared to the <emphasis>netinst</emphasis> CD-ROMs."
+msgid "Debian also used to provide a <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only contained the installer, and which required all the Debian packages (including the base system) to be downloaded. Since its image only took up 35 MB, it was meant to be burnt on a “business card” type CD-ROM. This CD-ROM is no longer provided for Wheezy: the debian-installer developers estimated that the work required to maintain that image was no longer worth it. Furthermore, the <filename>mini.iso</filename> image that they already provide as by-product of the installer is very similar."
+msgstr ""
+
+#. Tag: indexterm
+#, no-c-format
+msgid "<primary><filename>mini.iso</filename></primary>"
 msgstr ""
 
 #. Tag: title
@@ -159,7 +165,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a CD-ROM image for the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
+msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a CD-ROM image combining the <emphasis>netinst</emphasis> images of the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
 msgstr ""
 
 #. Tag: indexterm
@@ -195,16 +201,6 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "To acquire Debian CD-ROM images, you may of course download them and burn them to disk. You may also purchase them, and, thus, provide the project with a little financial support. Check the website to see the list of CD-ROM image vendors and download sites. <ulink type=\"block\" url=\"http://www.debian.org/CD/index.html\" />"
-msgstr ""
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>IN PRACTICE</emphasis> Debian on CD-ROM"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "<indexterm><primary>CD-ROM vendor</primary></indexterm> Debian CD-/DVD-ROMs can also be purchased; Raphaël Hertzog proposes some on his blog, where 10% of the profit is donated to the Debian Project, the remainder of which allows him to devote more time to Debian. <ulink type=\"block\" url=\"http://www.debian.org/CD/vendors/\" /> <ulink type=\"block\" url=\"http://raphaelhertzog.com/go/debian-cd/\" />"
 msgstr ""
 
 #. Tag: title
@@ -329,7 +325,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions of all the necessary libraries (see <xref linkend=\"sect.multi-arch\" />), and often to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
+msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions of all the necessary libraries (see <xref linkend=\"sect.multi-arch\" />), and sometimes to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
 msgstr ""
 
 #. Tag: title
@@ -1219,7 +1215,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
+msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch08s07.html\" />"
 msgstr ""
 
 #. Tag: para
@@ -1284,7 +1280,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (<menuchoice><guimenu>Applications</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Synaptic Package Manager</guimenuitem></menuchoice> or <menuchoice><guimenu>Applications</guimenu> <guisubmenu>System</guisubmenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Synaptic Package Manager</guimenuitem></menuchoice>)."
+msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (“Synaptic Package Manager” in the menus)."
 msgstr ""
 
 #. Tag: para
@@ -1361,4 +1357,3 @@ msgstr ""
 #, no-c-format
 msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"sect.apt-upgrade\" />."
 msgstr ""
-
