@@ -4,15 +4,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2013-04-09 11:20+0200\n"
-"Last-Translator: Georg Käsler <gkaesler@gmx.de>\n"
-"Language-Team: Debian Administrator-Handbuch (Übersetzer)\n"
+"PO-Revision-Date: 2014-01-07 19:48+0200\n"
+"Last-Translator: Carsten Bachert <caba@bachert.info>\n"
+"Language-Team: German <http://debian.weblate.org/projects/debian-handbook"
+"/92_short-remedial-course/de-DE/>\n"
 "Language: de-DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 1.9-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -85,10 +86,21 @@ msgid "Browsing the Directory Tree and Managing Files"
 msgstr "Den Verzeichnisbaum durchsuchen und Dateien verwalten"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Once a session is open, the <command>pwd</command> command (<emphasis>print working directory</emphasis>) displays the current location in the filesystem. The current directory is changed with the <command>cd <replaceable>directory</replaceable></command> command (<command>cd</command> is for <emphasis>change directory</emphasis>). The parent directory is always called <literal>..</literal> (two dots), whereas the current directory is also known as <literal>.</literal> (one dot). The <command>ls</command> command allows <emphasis>listing</emphasis> the contents of a directory. If no parameters are given, it operates on the current directory."
 msgid "Once a session is open, the <command>pwd</command> command (which stands for <emphasis>print working directory</emphasis>) displays the current location in the filesystem. The current directory is changed with the <command>cd <replaceable>directory</replaceable></command> command (<command>cd</command> is for <emphasis>change directory</emphasis>). The parent directory is always called <literal>..</literal> (two dots), whereas the current directory is also known as <literal>.</literal> (one dot). The <command>ls</command> command allows <emphasis>listing</emphasis> the contents of a directory. If no parameters are given, it operates on the current directory."
-msgstr "Sobald eine Sitzung gestartet ist, zeigt der Befehl <command>pwd</command> (<emphasis>print working directory</emphasis>) die derzeitige Position im Dateisystem an. Das aktuelle Verzeichnis kann mit dem Befehl <command>cd <replaceable>verzeichnis</replaceable></command> (<command>cd</command> steht für <emphasis>change directory</emphasis>) gewechselt werden. Das übergeordnete Verzeichnis heißt immer <literal>..</literal> (zwei Punkte), während das aktuelle Verzeichnis auch als <literal>.</literal> (ein Punkt) bekannt ist. Der Befehl <command>ls</command> (<emphasis>list</emphasis>) zeigt den Inhalt eines Verzeichnisses an. Wenn keine zusätzlichen Parameter angegeben werden, wird das aktuelle Verzeichnis angezeigt."
+msgstr ""
+"Sobald eine Sitzung gestartet ist, zeigt der Befehl <command>pwd</command> "
+"(das steht für <emphasis>print working directory</emphasis>) die derzeitige "
+"Position im Dateisystem an. Das aktuelle Verzeichnis kann mit dem Befehl "
+"<command>cd <replaceable>verzeichnis</replaceable></command> "
+"(<command>cd</command> steht für <emphasis>change directory</emphasis>) "
+"gewechselt werden. Das übergeordnete Verzeichnis heißt immer "
+"<literal>..</literal> (zwei Punkte), während das aktuelle Verzeichnis auch "
+"als <literal>.</literal> (ein Punkt) bekannt ist. Der Befehl "
+"<command>ls</command> (<emphasis>list</emphasis>) zeigt den Inhalt eines "
+"Verzeichnisses an. Wenn keine zusätzlichen Parameter angegeben werden, wird "
+"das aktuelle Verzeichnis angezeigt."
 
 #. Tag: screen
 #, no-c-format
@@ -191,10 +203,18 @@ msgid "The <command>find <replaceable>directory</replaceable> <replaceable>crite
 msgstr "Der Befehl <command>find <replaceable>verzeichnis</replaceable> <replaceable>kriterien</replaceable></command> sucht verschiedenen Kriterien entsprechend in der Verzeichnishierarchie unterhalb von <replaceable>verzeichnis</replaceable> nach Dateien. Das am häufigsten verwendete Kriterium ist  <literal>-name <replaceable>name</replaceable></literal>: mit ihm kann eine Datei namentlich gesucht werden."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> command searches the contents of the files and extracts the lines matching the regular expression (see sidebar <xref linkend=\"encadre.expression-rationnelle\" />). Adding the <literal>-r</literal> option enables a recursive search on all files contained in the directory passed as a parameter. This allows looking for a file when only a part of the contents are known."
 msgid "The <command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> command searches the contents of the files and extracts the lines matching the regular expression (see sidebar <xref linkend=\"sidebar.regexp\" />). Adding the <literal>-r</literal> option enables a recursive search on all files contained in the directory passed as a parameter. This allows looking for a file when only a part of the contents are known."
-msgstr "Der Befehl <command>grep <replaceable>ausdruck</replaceable> <replaceable>dateien</replaceable></command> durchsucht den Inhalt der Dateien und exzerpiert die Zeilen, die dem regulären Ausdruck entsprechen (siehe <xref linkend=\"encadre.expression-rationnelle\" /> in der Seitenleiste). Das Hinzufügen der Option <literal>-r</literal> bewirkt eine rekursive Suche in allen Dateien des Verzeichnisses, das als Parameter angegeben wird. So ist es möglich, nach einer Datei zu suchen, wenn nur ein Teil ihres Inhalts bekannt ist."
+msgstr ""
+"Der Befehl <command>grep <replaceable>ausdruck</replaceable> "
+"<replaceable>dateien</replaceable></command> durchsucht den Inhalt der "
+"Dateien und exzerpiert die Zeilen, die dem regulären Ausdruck entsprechen "
+"(siehe <xref linkend=\"sidebar.regexp\" /> in der Seitenleiste). Das "
+"Hinzufügen der Option <literal>-r</literal> bewirkt eine rekursive Suche in "
+"allen Dateien des Verzeichnisses, das als Parameter angegeben wird. So ist "
+"es möglich, nach einer Datei zu suchen, wenn nur ein Teil ihres Inhalts "
+"bekannt ist."
 
 #. Tag: title
 #, no-c-format
@@ -207,10 +227,26 @@ msgid "The <command>ps aux</command> command lists the processes currently runni
 msgstr "Der Befehl <command>ps aux</command> listet die Prozesse auf, die gerade laufen, und ermöglicht es, sie anhand ihrer <emphasis>pid</emphasis> (process id) zu identifizieren. Wenn die <emphasis>pid</emphasis> eines Prozesses bekannt ist, kann man ihm mit dem Befehl <command>kill -<replaceable>signal</replaceable> <replaceable>pid</replaceable></command> ein Signal schicken (falls der Prozess dem aktuellen Benutzer gehört). Es gibt verschiedene Signale; am häufigsten werden <literal>TERM</literal> (eine Aufforderung aufzuhören) und <literal>KILL</literal> (ein harter Abbruch) verwendet."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The command interpreter can also run programs in the background if the command ends with “&amp;”. By using the ampersand, the user resumes control of the shell immediately even though the command is still running (hidden from the user; as a background process). The <command>jobs</command> command lists the processes running in the background; running <command>fg %<replaceable>job-number</replaceable></command> (for <emphasis>foreground</emphasis>) restores a job to the foreground. When a command is running in the foreground (either because it was started normally, or brought back to the foreground with <command>fg</command>), the <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> key pair pauses the process and resumes control of the command-line. The process can then be restarted in the background with <command>bg %<replaceable>job-number</replaceable></command> (for <foreignphrase>background</foreignphrase>)."
 msgid "The command interpreter can also run programs in the background if the command ends with “&amp;”. By using the ampersand, the user resumes control of the shell immediately even though the command is still running (hidden from the user; as a background process). The <command>jobs</command> command lists the processes running in the background; running <command>fg %<replaceable>job-number</replaceable></command> (for <emphasis>foreground</emphasis>) restores a job to the foreground. When a command is running in the foreground (either because it was started normally, or brought back to the foreground with <command>fg</command>), the <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> key combination pauses the process and resumes control of the command-line. The process can then be restarted in the background with <command>bg %<replaceable>job-number</replaceable></command> (for <foreignphrase>background</foreignphrase>)."
-msgstr "Der Befehlsinterpreter kann auch Programme im Hintergrund ausführen, wenn der Befehl mit „&amp;“ endet. Durch Verwendung dieses Und-Zeichens übernimmt der Benutzer sofort wieder die Kontrolle über das Terminal, obwohl der Befehl noch läuft (vor dem Benutzer verborgen als Hintergrundprozess). Der Befehl <command>jobs</command> listet die im Hintergrund laufenden Prozesse auf; das Ausführen von <command>fg %<replaceable>job-nummer</replaceable></command> (für <emphasis>foreground</emphasis>) stellt einen Job wieder im Vordergrund her. Wenn ein Befehl im Vordergrund läuft (weil er entweder normal gestartet wurde oder mit <command>fg</command> wieder in den Vordergrund gebracht wurde), hält das Tastenpaar <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> den Prozess an und stellt die Kontrolle über die Befehlszeile wieder her. Der Prozess kann dann im Hintergrund mit <command>bg %<replaceable>job-nummer</replaceable></command> (für <foreignphrase>background</foreignphrase>) fortgesetzt werden."
+msgstr ""
+"Der Befehlsinterpreter kann auch Programme im Hintergrund ausführen, wenn "
+"der Befehl mit „&amp;“ endet. Durch Verwendung dieses Und-Zeichens übernimmt "
+"der Benutzer sofort wieder die Kontrolle über das Terminal, obwohl der "
+"Befehl noch läuft (vor dem Benutzer verborgen als Hintergrundprozess). Der "
+"Befehl <command>jobs</command> listet die im Hintergrund laufenden Prozesse "
+"auf; das Ausführen von <command>fg %<replaceable>job-"
+"nummer</replaceable></command> (für <emphasis>foreground</emphasis>) stellt "
+"einen Job wieder im Vordergrund her. Wenn ein Befehl im Vordergrund läuft "
+"(weil er entweder normal gestartet wurde oder mit <command>fg</command> "
+"wieder in den Vordergrund gebracht wurde), hält die Tastenkombination "
+"<keycombo "
+"action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> den "
+"Prozess an und stellt die Kontrolle über die Befehlszeile wieder her. Der "
+"Prozess kann dann im Hintergrund mit <command>bg %<replaceable>job-"
+"nummer</replaceable></command> (für "
+"<foreignphrase>background</foreignphrase>) fortgesetzt werden."
 
 #. Tag: title
 #, no-c-format
@@ -223,7 +259,7 @@ msgid "The <command>free</command> command displays information on memory; <comm
 msgstr "Der Befehl <command>free</command> zeigt Informationen über den Speicher; <command>df</command> (<emphasis>disk free</emphasis>) meldet den verfügbaren Speicherplatz auf jeder im Dateisystem eingehängten Platte. Seine Option <literal>-h</literal> (für <emphasis>human readable</emphasis>) rechnet die Größen in eine leichter lesbare Einheit um (üblicherweise Mebibytes oder Gibibytes). In ähnlicher Weise versteht der Befehl <command>free</command> die Optionen <literal>-m</literal> und <literal>-g</literal> und zeigt seine Daten dementsprechend entweder in Mebibytes oder Gibibytes an."
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>free</userinput>\n"
@@ -258,19 +294,20 @@ msgid ""
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>free</userinput>\n"
-"<computeroutput>             total       used       free     shared    buffers     cached\n"
+"<computeroutput>             total       used       free     shared    "
+"buffers     cached\n"
 "Mem:       1028420    1009624      18796          0      47404     391804\n"
 "-/+ buffers/cache:     570416     458004\n"
 "Swap:      2771172     404588    2366584\n"
 "$ </computeroutput><userinput>df</userinput>\n"
-"<computeroutput>Filesystem           1K-blocks      Used Available Use% Mounted on\n"
+"<computeroutput>Filesystem           1K-blocks      Used Available Use% "
+"Mounted on\n"
 "/dev/sda2              9614084   4737916   4387796  52% /\n"
 "tmpfs                   514208         0    514208   0% /lib/init/rw\n"
 "udev                     10240       100     10140   1% /dev\n"
 "tmpfs                   514208    269136    245072  53% /dev/shm\n"
 "/dev/sda5             44552904  36315896   7784380  83% /home\n"
-"</computeroutput>\n"
-"      "
+"</computeroutput>"
 
 #. Tag: para
 #, no-c-format
@@ -401,16 +438,31 @@ msgid "The contents of a user's home directory is not standardized, but there ar
 msgstr "Der Inhalt des Home-Verzeichnisses eines Benutzers ist nicht standardisiert, es gibt aber einige beachtenswerte Gepflogenheiten. Eine ist, dass das Home-Verzeichnis eines Benutzers oft durch eine Tilde („~“) bezeichnet wird. Das ist nützlich zu wissen, denn Befehlszeileninterpreter ersetzen die Tilde automatisch durch das korrekte Verzeichnis (normalerweise <filename>/home/<replaceable>benutzer</replaceable>/</filename>)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Application configuration files are often stored directly under the user's home directory, but their names usually start with a dot (for instance, the <command>mutt</command> email client stores its configuration in <filename>~/.muttrc</filename>). Filenames that start with a dot are hidden by default, and <command>ls</command> only lists them when the <literal>-a</literal> option is used."
 msgid "Traditionnally, application configuration files are often stored directly under the user's home directory, but their names usually start with a dot (for instance, the <command>mutt</command> email client stores its configuration in <filename>~/.muttrc</filename>). Note that filenames that start with a dot are hidden by default; and <command>ls</command> only lists them when the <literal>-a</literal> option is used, and graphical file managers need to be told to display hidden files."
-msgstr "Die Konfigurationsdateien der Anwendungen werden häufig direkt im Home-Verzeichnis des Benutzers gespeichert, jedoch beginnen ihre Namen gewöhnlich mit einem Punkt (zum Beispiel speichert der E-Mail-Client <command>mutt</command> seine Konfiguration in <filename>~/.muttrc</filename>). Dateinamen, die mit einem Punkt beginnen, sind standardmäßig unsichtbar, und <command>ls</command> führt sie nur auf, wenn die Option <literal>-a</literal> benutzt wird."
+msgstr ""
+"Die Konfigurationsdateien der Anwendungen werden häufig direkt im Home-"
+"Verzeichnis des Benutzers gespeichert, jedoch beginnen ihre Namen gewöhnlich "
+"mit einem Punkt (zum Beispiel speichert der E-Mail-Client "
+"<command>mutt</command> seine Konfiguration in "
+"<filename>~/.muttrc</filename>). Achten Sie darauf: Dateinamen, die mit "
+"einem Punkt beginnen, sind standardmäßig unsichtbar, und "
+"<command>ls</command> führt sie nur auf, wenn die Option "
+"<literal>-a</literal> benutzt wird und bei Dateimanagern muß dies auch "
+"explizit eingestellt werden."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Some programs use multiple configuration files organized in one directory (for instance, <filename>~/.evolution/</filename>). Some applications (such as the Iceweasel web browser) also use their directory to store a cache of downloaded data. This means that those directories can end up using a lot of disk space."
 msgid "Some programs also use multiple configuration files organized in one directory (for instance, <filename>~/.ssh/</filename>). Some applications (such as the Iceweasel web browser) also use their directory to store a cache of downloaded data. This means that those directories can end up using a lot of disk space."
-msgstr "Einige Programme verwenden mehrere in einem Verzeichnis organisierte Konfigurationsdateien (zum Beispiel <filename>~/.evolution/</filename>). Einige Anwendungen (wie zum Beispiel der Web-Browser Iceweasel) benutzen ihr Verzeichnis auch, um einen Cache heruntergeladener Daten zu speichern. Dies bedeutet, dass diese Verzeichnisse schließlich sehr viel Speicherplatz belegen können."
+msgstr ""
+"Einige Programme verwenden auch mehrere in einem Verzeichnis organisierte "
+"Konfigurationsdateien (zum Beispiel <filename>~/.ssh/</filename>). Einige "
+"Anwendungen (wie zum Beispiel der Web-Browser Iceweasel) benutzen ihr "
+"Verzeichnis auch, um einen Cache heruntergeladener Daten zu speichern. Dies "
+"bedeutet, dass diese Verzeichnisse schließlich sehr viel Speicherplatz "
+"belegen können."
 
 #. Tag: para
 #, no-c-format
