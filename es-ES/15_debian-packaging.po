@@ -5,15 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2013-06-05 10:14+0200\n"
+"PO-Revision-Date: 2014-01-08 23:29+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
-"Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook/15_debian-packaging/es-ES/>\n"
+"Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
+"/15_debian-packaging/es-ES/>\n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.6-dev\n"
+"X-Generator: Weblate 1.9-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -66,10 +67,26 @@ msgid "Rebuilding a Package from its Sources"
 msgstr "Recompilación de un paquete desde sus fuentes"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Rebuilding a binary package is required under several sets of circumstances. In some cases, the administrator needs a software feature that requires the software to be compiled from sources, with a particular compilation option; in others, the software as packaged in the installed version of Debian is not recent enough. In the latter case, the administrator will usually build a more recent package taken from a newer version of Debian — such as <emphasis role=\"distribution\">Testing</emphasis> or even <emphasis role=\"distribution\">Unstable</emphasis> — so that this new package works in their <emphasis role=\"distribution\">Stable</emphasis> distribution; this operation is called “backporting”. As usual, care should be taken, before undertaking such a task, to check whether it has been done already. This can be checked at the <literal>backports.debian.org</literal> site. <indexterm><primary>backport</primary></indexterm>"
 msgid "Rebuilding a binary package is required under several sets of circumstances. In some cases, the administrator needs a software feature that requires the software to be compiled from sources, with a particular compilation option; in others, the software as packaged in the installed version of Debian is not recent enough. In the latter case, the administrator will usually build a more recent package taken from a newer version of Debian — such as <emphasis role=\"distribution\">Testing</emphasis> or even <emphasis role=\"distribution\">Unstable</emphasis> — so that this new package works in their <emphasis role=\"distribution\">Stable</emphasis> distribution; this operation is called “backporting”. As usual, care should be taken, before undertaking such a task, to check whether it has been done already — a quick look on the Package Tracking System's page for that package will reveal that information. <ulink type=\"block\" url=\"http://packages.qa.debian.org/\" /> <indexterm><primary>backport</primary></indexterm>"
-msgstr "Son varias las cirunstancias bajo las que es necesario reconstruir un paquete binario. En algunos casos, el administrador necesita una funcionalidad del software para la que necesitará compilarlo desde sus fuentes con alguna opción de compilación particular; en otras, el software empaquetado para la versión de Debian instalada no es suficientemente reciente. En el último caso, el administrador generalmente compilará un paquete más reciente que obtendrá de una versión más reciente de Debian — como <emphasis role=\"distribution\">Testing</emphasis> o inclusive <emphasis role=\"distribution\">Unstable</emphasis> — para que este nuevo paquete funcione con su distribución <emphasis role=\"distribution\">Stable</emphasis>; esta operación es llamada «retroadaptación» («backporting»). Como siempre, antes de embarcarse en esta tarea, se debe revisar si no fue hecha ya. Puede hacerlo en el sitio <literal>backports.debian.org</literal>. <indexterm><primary>retroadaptación</primary></indexterm>"
+msgstr ""
+"Son varias las cirunstancias bajo las que es necesario reconstruir un "
+"paquete binario. En algunos casos, el administrador necesita una "
+"funcionalidad del software para la que necesitará compilarlo desde sus "
+"fuentes con alguna opción de compilación particular; en otras, el software "
+"empaquetado para la versión de Debian instalada no es suficientemente "
+"reciente. En el último caso, el administrador generalmente compilará un "
+"paquete más reciente que obtendrá de una versión más reciente de Debian — "
+"como <emphasis role=\"distribution\">Testing</emphasis> o inclusive <emphasis "
+"role=\"distribution\">Unstable</emphasis> — para que este nuevo paquete "
+"funcione con su distribución <emphasis "
+"role=\"distribution\">Stable</emphasis>; esta operación es llamada "
+"«retroadaptación» («backporting»). Como siempre, antes de embarcarse en esta "
+"tarea, se debe revisar si no fue hecha ya — revise rápidamente la página de "
+"este paquete en el sistema de seguimiento de paquetes para encontrar esta "
+"información. <ulink type=\"block\" url=\"http://packages.qa.debian.org/\" /> "
+"<indexterm><primary>backport</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -87,22 +104,53 @@ msgid "Making Changes"
 msgstr "Realización de cambios"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The source of the package is now available in a directory named after the source package and its version (for instance, <emphasis>samba-3.0.24</emphasis>); this is where we'll work on our local changes."
 msgid "The source of the package is now available in a directory named after the source package and its version (for instance, <emphasis>samba-3.6.16</emphasis>); this is where we'll work on our local changes."
-msgstr "Ahora tiene las fuentes del paquete disponibles en un directorio cuyo nombre coincide con el paquete fuente y su versión (por ejemplo: <emphasis>samba-3.0.24</emphasis>); allí es donde trabajaremos en nuestros cambios locales."
+msgstr ""
+"Ahora tiene las fuentes del paquete disponibles en un directorio cuyo nombre "
+"coincide con el paquete fuente y su versión (por ejemplo: "
+"<emphasis>samba-3.6.16</emphasis>); allí es donde trabajaremos en nuestros "
+"cambios locales."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The first thing to do is to change the package version number, so that the rebuilt packages can be distinguished from the original packages provided by Debian. Assuming the current version is <literal>3.0.24-6</literal>, we can create version <literal>3.0.24-6.falcot1</literal>, which clearly indicates the origin of the package. This makes the package version number higher than the one provided by Debian, so that the package will easily install as an update do the original package. Such a change is best effected with the <command>dch</command> command (<emphasis>Debian CHangelog</emphasis>) from the <emphasis role=\"pkg\">devscripts</emphasis> package, with an invocation such as <command>dch -v 3.0.24-6.falcot1</command>. This invocation invokes a text editor (<command>sensible-editor</command> — this should be your favorite editor if it's mentioned in the <varname>VISUAL</varname> or <varname>EDITOR</varname> environment variables, and default editor otherwise) to allow documenting the differences brought by this rebuild. This editor shows us that <command>dch</command> really did change the <filename>debian/changelog</filename> file."
 msgid "The first thing to do is to change the package version number, so that the rebuilt packages can be distinguished from the original packages provided by Debian. Assuming the current version is <literal>3.6.16-2</literal>, we can create version <literal>3.6.16-2falcot1</literal>, which clearly indicates the origin of the package. This makes the package version number higher than the one provided by Debian, so that the package will easily install as an update do the original package. Such a change is best effected with the <command>dch</command> command (<emphasis>Debian CHangelog</emphasis>) from the <emphasis role=\"pkg\">devscripts</emphasis> package, with an command such as <command>dch --local falcot</command>. This invokes a text editor (<command>sensible-editor</command> — this should be your favorite editor if it's mentioned in the <varname>VISUAL</varname> or <varname>EDITOR</varname> environment variables, and the default editor otherwise) to allow documenting the differences brought by this rebuild. This editor shows us that <command>dch</command> really did change the <filename>debian/changelog</filename> file."
-msgstr "Lo primero que debemos hacer es cambiar el número de versión del paquete para que podamos distinguir el paquete recompilado del paquete original que provee Debian. Si asumimos que la versión actual es <literal>3.0.24-6</literal> podemos crear la versión <literal>3.0.24-6.falcot1</literal>, que indica claramente el origen del paquete. Esto además hace que el número de versión del paquete sea mayor al del que provee Debian para que el paquete se instalará fácilmente como una actualización al paquete original. La mejor forma de realizar dicho cambio es con el programa <command>dch</command> (por <emphasis>cambios Debian</emphasis>: «Debian CHangelog») del paquete <emphasis role=\"pkg\">devscripts</emphasis> ejecutando algo similar a <command>dch -v 3.0.24-6.falcot1</command>. Esta ejecución invoca un editor de texto (<command>sensible-editor</command> — este debería ser tu editor favorito si es mencionado en las variables de entorno <varname>VISUAL</varname> o <varname>EDITOR</varname> o el editor predeterminado de lo contrario) que nos permitirá documentar las diferencias introducidas en esta recompilación. Este editor nos mostrará que <command>dch</command> realmente cambió el archivo <filename>debian/changelog</filename>."
+msgstr ""
+"Lo primero que debemos hacer es cambiar el número de versión del paquete "
+"para que podamos distinguir el paquete recompilado del paquete original que "
+"provee Debian. Si asumimos que la versión actual es "
+"<literal>3.6.16-2</literal> podemos crear la versión "
+"<literal>3.6.16-2falcot1</literal>, que indica claramente el origen del "
+"paquete. Esto además hace que el número de versión del paquete sea mayor al "
+"del que provee Debian para que el paquete se instalará fácilmente como una "
+"actualización al paquete original. La mejor forma de realizar dicho cambio "
+"es con el programa <command>dch</command> (por <emphasis>cambios "
+"Debian</emphasis>: «Debian CHangelog») del paquete <emphasis "
+"role=\"pkg\">devscripts</emphasis> ejecutando algo similar a <command>dch "
+"--local falcot1</command>. Esto invoca un editor de texto (<command"
+">sensible-editor</command> — este debería ser tu editor favorito si es "
+"mencionado en las variables de entorno <varname>VISUAL</varname> o "
+"<varname>EDITOR</varname> o el editor predeterminado de lo contrario) que "
+"nos permitirá documentar las diferencias introducidas en esta recompilación. "
+"Este editor nos mostrará que <command>dch</command> realmente cambió el "
+"archivo <filename>debian/changelog</filename>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "When a change in build options is required, changes are made to <filename>debian/rules</filename>, which drives the steps in the package build process. In the simplest cases, the lines concerning the initial configuration (<literal>./configure …</literal>) or the actual build (<literal>$(MAKE) …</literal> or <literal>make …</literal>) are easy to spot. If these commands are not explicitly called, they are probably a side effect of another explicit command, in which case please refer to their documentation to learn more about how to change the default behavior."
 msgid "When a change in build options is required, the changes need to be made in <filename>debian/rules</filename>, which drives the steps in the package build process. In the simplest cases, the lines concerning the initial configuration (<literal>./configure …</literal>) or the actual build (<literal>$(MAKE) …</literal> or <literal>make …</literal>) are easy to spot. If these commands are not explicitly called, they are probably a side effect of another explicit command, in which case please refer to their documentation to learn more about how to change the default behavior."
-msgstr "Cuando necesitamos cambiar las opciones de compilación, debemos realizar cambios a <filename>debian/rules</filename>, el cual se encarga de todos los pasos en el proceso de compilación del paquete. En los casos más simples, es sencillo encontrar las líneas sobre la configuración inicial (<literal>./configure …</literal>) o la compilación en sí (<literal>$(MAKE) …</literal> o <literal>make …</literal>). Si no se ejecutan específicamente estos programas probablemente son un efecto secundario de otra orden explícita, en cuyo caso refiérase a la documentación de las mismas para aprender cómo cambiar el comportamiento predeterminado."
+msgstr ""
+"Cuando necesitamos cambiar las opciones de compilación, debemos realizar "
+"cambios a <filename>debian/rules</filename>, el cual se encarga de todos los "
+"pasos en el proceso de compilación del paquete. En los casos más simples, "
+"es sencillo encontrar las líneas sobre la configuración inicial "
+"(<literal>./configure …</literal>) o la compilación en sí (<literal>$(MAKE) "
+"…</literal> o <literal>make …</literal>). Si no se ejecutan específicamente "
+"estos programas probablemente son un efecto secundario de otra orden "
+"explícita, en cuyo caso refiérase a la documentación de las mismas para "
+"aprender cómo cambiar el comportamiento predeterminado."
 
 #. Tag: para
 #, no-c-format
@@ -110,10 +158,24 @@ msgid "Depending on the local changes to the packages, an update may also be req
 msgstr "Dependiendo de los cambios locales a los paquetes, también podría necesitar actualizar el archivo <filename>debian/control</filename>, que contiene una descripción de los paquetes generados. En particular, este paquete contiene líneas <literal>Build-Depends</literal> que controlan la lista de dependencias que se deben cumplir en el momento de compilar un paquete. Éstas líneas generalmente hacen referencia a las versiones de los paquetes que se encuentran en la distribución de la que proveen los paquetes fuente pero que pueden no estar disponibles en la distribución en la que estamos recompilando. No hay una forma automatizada para determinar si una dependencia es real o sólo está presente para garantizar que sólo se intente compilar con la última versión de una biblioteca — esta es la única forma de forzar que <emphasis>autobuilder</emphasis> utilice una versión específica de un paquete durante su compilación, por lo que los desarrolladores Debian frecuentemente utilizan dependencias de compilación con versiones estrictas."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "If you know for sure that these build-dependencies are too strict, you should feel free to relax them locally. Reading the files which document the standard way of building the software — these files are often called <filename>INSTALL</filename> — will help you figure out the appropriate dependencies. Ideally, all dependencies should be satisfiable from the distribution used for the rebuild; if they are not, a recursive process starts, whereby the packages mentioned in the <literal>Build-Depends</literal> field must be backported before the target package can be. Some packages may not need backporting, and can be installed as-is during the build process (a notable example is <emphasis role=\"pkg\">debhelper</emphasis>). Note that the backporting process can quickly become complex if you are not vigilant. Therefore, backports should be kept to a strict minimum when possible."
 msgid "If you know for sure that these build-dependencies are too strict, you should feel free to relax them locally. Reading the files which document the standard way of building the software — these files are often called <filename>INSTALL</filename> — will help you figure out the appropriate dependencies. Ideally, all dependencies should be satisfiable from the distribution used for the rebuild; if they are not, a recursive process starts, whereby the packages mentioned in the <literal>Build-Depends</literal> field must be backported before the target package can be. Some packages may not need backporting, and can be installed as-is during the build process (a notable example is <emphasis role=\"pkg\">debhelper</emphasis>). Note that the backporting process can quickly become complex if you are not careful. Therefore, backports should be kept to a strict minimum when possible."
-msgstr "Si está seguro que estas dependencias de compilación son muy estrictas, siéntase libre de relajarlas localmente. Lea los archivos que documentan la forma estándar de compilar el software — generalmente estos archivos son llamados <filename>INSTALL</filename> — le ayudarán a encontrar las dependencias adecuadas. Idealmente, podrá satisfacer todas las dependencias en la distribución que utilice para recompilar; de lo contrario, comienza un proceso recursivo en el que debemos retroadaptar los paquetes mencionados en el campo <literal>Build-Depends</literal> antes de poder finalizar con el paquete deseado. Algunos paquetes pueden no necesitar ser retroadaptados y puede instalarlos tal cual durante el proceso de compilación (un ejemplo notable es <emphasis role=\"pkg\">debhelper</emphasis>). Sepa que el proceso de retroadaptación puede volverse muy complejo rápidamente si no tiene cuidado. Por lo tanto, debe mantener al mínimo las retroadaptaciones siempre que sea posible."
+msgstr ""
+"Si está seguro que estas dependencias de compilación son muy estrictas, "
+"siéntase libre de relajarlas localmente. Lea los archivos que documentan la "
+"forma estándar de compilar el software — generalmente estos archivos son "
+"llamados <filename>INSTALL</filename> — le ayudarán a encontrar las "
+"dependencias adecuadas. Idealmente, podrá satisfacer todas las dependencias "
+"en la distribución que utilice para recompilar; de lo contrario, comienza un "
+"proceso recursivo en el que debemos retroadaptar los paquetes mencionados "
+"en el campo <literal>Build-Depends</literal> antes de poder finalizar con el "
+"paquete deseado. Algunos paquetes pueden no necesitar ser retroadaptados y "
+"puede instalarlos tal cual durante el proceso de compilación (un ejemplo "
+"notable es <emphasis role=\"pkg\">debhelper</emphasis>). Sepa que el proceso "
+"de retroadaptación puede volverse muy complejo rápidamente si no tiene "
+"cuidado. Por lo tanto, debe mantener al mínimo las retroadaptaciones siempre "
+"que sea posible."
 
 #. Tag: title
 #, no-c-format
@@ -157,10 +219,23 @@ msgid "<emphasis>TOOL</emphasis> <command>fakeroot</command>"
 msgstr "<emphasis>HERRAMIENTA</emphasis> <command>fakeroot</command>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "In essence, the package creation process is a simple matter of gathering in an archive a set of existing (or build) files; most of the files will end up being owned by <emphasis>root</emphasis> in the archive. However, building the whole package under this user would imply increased risks; fortunately, this can be avoided with the <command>fakeroot</command> command. This tool can be used to run a program and give it the impression that it runs as <emphasis>root</emphasis> and creates files with arbitrary ownership and permissions. When the program creates the archive that will become the Debian package, it is tricked into creating an archive containing files marked as belonging to arbitrary owners, including <emphasis>root</emphasis>. This setup is so convenient that <command>dpkg-buildpackage</command> uses <command>fakeroot</command> by default when building packages."
 msgid "In essence, the package creation process is a simple matter of gathering in an archive a set of existing (or built) files; most of the files will end up being owned by <emphasis>root</emphasis> in the archive. However, building the whole package under this user would imply increased risks; fortunately, this can be avoided with the <command>fakeroot</command> command. This tool can be used to run a program and give it the impression that it runs as <emphasis>root</emphasis> and creates files with arbitrary ownership and permissions. When the program creates the archive that will become the Debian package, it is tricked into creating an archive containing files marked as belonging to arbitrary owners, including <emphasis>root</emphasis>. This setup is so convenient that <command>dpkg-buildpackage</command> uses <command>fakeroot</command> by default when building packages."
-msgstr "En esencia, el proceso de creación de un paquete es simple cuestión de reunir en un compendio un conjunto de archivos existentes (o compilados); en dicho compendio <emphasis>root</emphasis> será el dueño de la mayoría de los archivos del compendio. Sin embargo, crear todo el paquete bajo este usuario aumentaría los riesgos; afortunadamente, podemos evitar esto con el programa <command>fakeroot</command>. Podemos utilizar esta herramienta para ejecutar un programa y darle la impresión que está ejecutando como <emphasis>root</emphasis> y crea archivos con permisos y dueños arbitrarios. Cuando el programa crea el compendio que será el paquete Debian, se lo engaña para que cree un compendio con archivos con dueños arbitrarios, incluyendo <emphasis>root</emphasis>. Esta configuración es tan conveniente que <command>dpkg-buildpackage</command> utiliza <command>fakeroot</command> de forma predeterminada cuando genera paquetes."
+msgstr ""
+"En esencia, el proceso de creación de un paquete es simple cuestión de "
+"reunir en un compendio un conjunto de archivos existentes (o compilados); en "
+"dicho compendio <emphasis>root</emphasis> será el dueño de la mayoría de "
+"los archivos del compendio. Sin embargo, crear todo el paquete bajo este "
+"usuario aumentaría los riesgos; afortunadamente, podemos evitar esto con el "
+"programa <command>fakeroot</command>. Podemos utilizar esta herramienta para "
+"ejecutar un programa y darle la impresión que está ejecutando como "
+"<emphasis>root</emphasis> y crea archivos con permisos y dueños arbitrarios. "
+"Cuando el programa crea el compendio que será el paquete Debian, se lo "
+"engaña para que cree un compendio con archivos con dueños arbitrarios, "
+"incluyendo <emphasis>root</emphasis>. Esta configuración es tan conveniente "
+"que <command>dpkg-buildpackage</command> utiliza <command>fakeroot</command> "
+"de forma predeterminada cuando genera paquetes."
 
 #. Tag: para
 #, no-c-format
@@ -368,10 +443,21 @@ msgstr ""
 "export DEBFULLNAME=\"Raphael Hertzog\"\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <command>dh_make</command> command created a <filename>debian</filename> subdirectory with many files. Some are required, in particular <filename>rules</filename>, <filename>control</filename>, <filename>changelog</filename> and <filename>copyright</filename>. Files with the <filename>.ex</filename> extension are example files that can used by modifying them (and removing the extension) when appropriate. When they are not needed, removing them is recommended. The <filename>compat</filename> file should be kept, since it is required for the correct functioning of the <emphasis>debhelper</emphasis> suite of programs (all beginning with the <command>dh_</command> prefix) used at various stages of the package build process."
 msgid "The <command>dh_make</command> command created a <filename>debian</filename> subdirectory with many files. Some are required, in particular <filename>rules</filename>, <filename>control</filename>, <filename>changelog</filename> and <filename>copyright</filename>. Files with the <filename>.ex</filename> extension are example files that can be used by modifying them (and removing the extension) when appropriate. When they are not needed, removing them is recommended. The <filename>compat</filename> file should be kept, since it is required for the correct functioning of the <emphasis>debhelper</emphasis> suite of programs (all beginning with the <command>dh_</command> prefix) used at various stages of the package build process."
-msgstr "El programa <command>dh_make</command> crea un subdirectorio <filename>debian</filename> con muchos archivos. Algunos son necesarios, en particular <filename>rules</filename>, <filename>control</filename>, <filename>changelog</filename> y <filename>copyright</filename>. Los archivos con extensión <filename>.ex</filename> son archivos de ejemplo que puede utilizar modificándolos (y eliminando la extensión) cuando necesite. Si no los necesita, le recomendamos eliminarlos. Debe mantener el archivo <filename>compat</filename> ya que es necesario para que funcione correctamente la suite de programas <emphasis>debhelper</emphasis> (todos los que comienzan con el prefijo <command>dh_</command>) que son utilizados en varias etapas del proceso de creación del paquete."
+msgstr ""
+"El programa <command>dh_make</command> crea un subdirectorio "
+"<filename>debian</filename> con muchos archivos. Algunos son necesarios, en "
+"particular <filename>rules</filename>, <filename>control</filename>, "
+"<filename>changelog</filename> y <filename>copyright</filename>. Los "
+"archivos con extensión <filename>.ex</filename> son archivos de ejemplo que "
+"puede utilizar modificándolos (y eliminando la extensión) cuando necesite. "
+"Si no los necesita, le recomendamos eliminarlos. Debe mantener el archivo "
+"<filename>compat</filename> ya que es necesario para que funcione "
+"correctamente la suite de programas <emphasis>debhelper</emphasis> (todos "
+"los que comienzan con el prefijo <command>dh_</command>) que son utilizados "
+"en varias etapas del proceso de creación del paquete."
 
 #. Tag: para
 #, no-c-format
@@ -497,13 +583,18 @@ msgid "<primary><filename>Makefile</filename></primary>"
 msgstr "<primary><filename>Makefile</filename></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "A <filename>Makefile</filename> file is a script used by the <command>make</command> program; it describes rules for how to build a set of files from each other in a tree of dependencies (for instance, a program can be build from a set of source files). The <filename>Makefile</filename> file describes these rules in the following format:"
 msgid "A <filename>Makefile</filename> file is a script used by the <command>make</command> program; it describes rules for how to build a set of files from each other in a tree of dependencies (for instance, a program can be built from a set of source files). The <filename>Makefile</filename> file describes these rules in the following format:"
-msgstr "Un archivo <filename>Makefile</filename> es un script utilizado por el programa <command>make</command>; describe las reglas para crear un conjunto de archivos desde otros en un árbol de dependencias (por ejemplo, podemos compilar un programa desde un conjunto de archivos fuente). El archivo <filename>Makefile</filename> describe estas reglas en el siguiente formato:"
+msgstr ""
+"Un archivo <filename>Makefile</filename> es un script utilizado por el "
+"programa <command>make</command>; describe las reglas para crear un conjunto "
+"de archivos desde otros en un árbol de dependencias (por ejemplo, podemos "
+"compilar un programa desde un conjunto de archivos fuente). El archivo "
+"<filename>Makefile</filename> describe estas reglas en el siguiente formato:"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "target: sources\n"
@@ -516,15 +607,19 @@ msgid ""
 "        command2\n"
 msgstr ""
 "\n"
-"objetivo: fuentes\n"
+"objetivo: fuente1 fuente 2 ...\n"
 "        orden1\n"
 "        orden2\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The interpretation of such a rule is as follows: if one of the files of <literal>sources</literal> is more recent than the <literal>target</literal> file, then the target needs to be generated, using <command>command1</command> and <command>command2</command>."
 msgid "The interpretation of such a rule is as follows: if one of the <literal>source*</literal> files is more recent than the <literal>target</literal> file, then the target needs to be generated, using <command>command1</command> and <command>command2</command>."
-msgstr "La interpretación de esta regla es como sigue: si uno de los archivos <literal>fuentes</literal> es más reciente que el archivo <literal>objetivo</literal>, entonces es necesario generar el objetivo utilizando <command>orden1</command> y <command>orden2</command>."
+msgstr ""
+"La interpretación de esta regla es como sigue: si uno de los archivos "
+"<literal>fuente*</literal> es más reciente que el archivo "
+"<literal>objetivo</literal>, entonces es necesario generar el objetivo "
+"utilizando <command>orden1</command> y <command>orden2</command>."
 
 #. Tag: para
 #, no-c-format
@@ -551,10 +646,16 @@ msgstr ""
 "data/* usr/share/falcot-data/\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "At this point, the package can be created. We will however add a lick of paint. Since the administrators want the documents to be easily accessed from the Help menus of graphical desktop environment, we create an entry in the Debian menu system. This is simply done by renaming the <filename>debian/menu.ex</filename> without its extension and editing it as follows:"
 msgid "At this point, the package can be created. We will however add a lick of paint. Since the administrators want the documents to be easily accessed from the Help menus of graphical desktop environments, we create an entry in the Debian menu system. This is simply done by renaming the <filename>debian/menu.ex</filename> without its extension and editing it as follows:"
-msgstr "En este punto, podemos crear el paqute. Sin embargo, agregaremos una capa de pintura. Debido a que los administradores desean que se pueda acceder fácilmente a los documentos desde el menú de ayuda del entorno gráfico de escritorio, crearemos un elemento en el sistema de menús Debian. Haremos esto simplemente cambiando el nombre de <filename>debian/menu.ex</filename> para eliminar su extensión y editándolo como sigue:"
+msgstr ""
+"En este punto, podemos crear el paqute. Sin embargo, agregaremos una capa de "
+"pintura. Debido a que los administradores desean que se pueda acceder "
+"fácilmente a los documentos desde el menú de ayuda de los entornos gráficos "
+"de escritorio, crearemos un elemento en el sistema de menús Debian. Haremos "
+"esto simplemente cambiando el nombre de <filename>debian/menu.ex</filename> "
+"para eliminar su extensión y editándolo como sigue:"
 
 #. Tag: title
 #, no-c-format
@@ -743,10 +844,15 @@ msgstr ""
 "release_label = Internal Packages\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "One decision worth noting is the generation of <filename>Release</filename> files for each archive. This can help manage package installation priorities using the <filename>/etc/apt/preferences</filename> configuration file (see chapter on APT configuration for details)."
 msgid "One decision worth noting is the generation of <filename>Release</filename> files for each archive. This can help manage package installation priorities using the <filename>/etc/apt/preferences</filename> configuration file (see <xref linkend=\"sect.apt.priorities\" /> for details)."
-msgstr "Una decisión importante es la generación de archivos <filename>Release</filename> para cada repositorio. Esto puede ayudar a gestionar las prioridades de instalación utilizando el archivo de configuración <filename>/etc/apt/preferences</filename> (revise el capítulo sobre la configuración de APT para más detalles)."
+msgstr ""
+"Una decisión importante es la generación de archivos "
+"<filename>Release</filename> para cada repositorio. Esto puede ayudar a "
+"gestionar las prioridades de instalación utilizando el archivo de "
+"configuración <filename>/etc/apt/preferences</filename> (revise el <xref "
+"linkend=\"sect.apt.priorities\" /> para más detalles)."
 
 #. Tag: title
 #, no-c-format
@@ -849,21 +955,26 @@ msgid "This tool is only a helper, and it sometimes gets it wrong (for instance,
 msgstr "Esta herramienta es sólo una ayuda y a veces está equivocada (por ejemplo, como la normativa Debian cambia con el tiempo, <command>lintian</command> a veces está desactualizado). No es exhaustiva: no debe interpretar el no obtener ningún error Lintian como prueba de que el paquete es perfecto; como máximo, éste evita los errores más comunes."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <command>lintian</command> Program"
 msgid "The <command>piuparts</command> Program"
-msgstr "El programa <command>lintian</command>"
+msgstr "El programa <command>piuparts</command>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>dput</command></primary>"
 msgid "<primary><command>piuparts</command></primary>"
-msgstr "<primary><command>dput</command></primary>"
+msgstr "<primary><command>piuparts</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This is another important tool: it automates the installation, upgrade, removal and purge of a package (in an isolated environment), and checks that none of these operations leads to an error. It can help in detecting missing dependencies, and it also detects when files are incorrectly left over after the package got purged."
 msgstr ""
+"Esta es otra herramienta importante: automatiza la instalación, "
+"actualización, eliminación y purga de un paquete (en un entorno aislado) y "
+"revisa que ninguna de estas operaciones genere un error. Puede ayudar a "
+"detectar dependencias faltantes y también detecta cuando un archivo no "
+"elimina archivos que debería luego de ser purgado."
 
 #. Tag: title
 #, no-c-format
@@ -1071,16 +1182,33 @@ msgid "The first (real) step consists in finding a sponsor or advocate; this mea
 msgstr "El primer paso (real) consiste en encontrar un patrocinador («sponsor») o partidario («advocate»); esto significa un desarrollador oficial dispuesto a manifestar que aceptar <emphasis>X</emphasis> sería algo bueno para Debian. Esto generalmente implica que el candidato ha participado en la comunidad y que se apreció su trabajo. Si el candidato es tímido y no promocionó su trabajo públicamente, pueden intentar convencer a un desarrollador Debian para que lo patrocine mostrándole su trabajo en privado."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "At the same time, the candidate must generate a public/private RSA key pair <indexterm><primary>key pair</primary></indexterm> with GnuPG, which should be signed by at least one official Debian developer. The signature authenticates the name on the key. Effectively, during a key signing party, each participant must show an identity card together with their key identifiers. This step makes the link between the human and the keys official. This signature thus requires meeting in real life. If you have not yet met any Debian developers in a public free software conference, you can explicitly seek developers living nearby using the list on the following webpage as a starting point. <ulink type=\"block\" url=\"http://wiki.debian.org/Keysigning\" />"
 msgid "At the same time, the candidate must generate a public/private RSA key pair <indexterm><primary>key pair</primary></indexterm> with GnuPG, which should be signed by at least two official Debian developers. The signature authenticates the name on the key. Effectively, during a key signing party, each participant must show an official identification (usually an ID card or passport) together with their key identifiers. This step makes the link between the human and the keys official. This signature thus requires meeting in real life. If you have not yet met any Debian developers in a public free software conference, you can explicitly seek developers living nearby using the list on the following webpage as a starting point. <ulink type=\"block\" url=\"http://wiki.debian.org/Keysigning\" />"
-msgstr "Al mismo tiempo, el candidato debe generar un par de llaves pública/privada <indexterm><primary>par de llaves</primary></indexterm> con GnuPG, que deben ser firmadas por al menos un desarrollador Debian oficial. La firma autentica el nombre en la llave. Efectivamente, durante una fiesta de firma de llaves, cada participante debe mostrar una tarjeta de identificación junto con sus identificadores de llaves. Este paso hace oficial el enlace entre la persona y las llaves. Esta firma, por lo tanto, requiere encontrarse en la vida real. Si no encuentra ningún desarrollador Debian en una conferencia pública de software libre, puede buscar explícitamente desarrolladores que vivan cerca utilizando la lista en la siguiente página web como punto de partida. <ulink type=\"block\" url=\"http://wiki.debian.org/Keysigning\" />"
+msgstr ""
+"Al mismo tiempo, el candidato debe generar un par de llaves pública/privada "
+"<indexterm><primary>par de llaves</primary></indexterm> con GnuPG, que deben "
+"ser firmadas por al menos dos desarrolladores Debian oficiales. La firma "
+"autentica el nombre en la llave. Efectivamente, durante una fiesta de firma "
+"de llaves, cada participante debe mostrar identificación oficial "
+"(generalmente un pasaporte o documento de identidad) junto con sus "
+"identificadores de llaves. Este paso hace oficial el enlace entre la persona "
+"y las llaves. Esta firma, por lo tanto, requiere encontrarse en la vida "
+"real. Si no encuentra ningún desarrollador Debian en una conferencia pública "
+"de software libre, puede buscar explícitamente desarrolladores que vivan "
+"cerca utilizando la lista en la siguiente página web como punto de partida. "
+"<ulink type=\"block\" url=\"http://wiki.debian.org/Keysigning\" />"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Once the registration on <literal>nm.debian.org</literal> has been validated by the advocate, an <emphasis>Application Manager</emphasis> is assigned to the candidate. The application manager will, from there on, follow procedures and validate the various steps that the process includes."
 msgid "Once the registration on <literal>nm.debian.org</literal> has been validated by the advocate, an <emphasis>Application Manager</emphasis> is assigned to the candidate. The application manager will then drive the process through multiple pre-defined steps and checks."
-msgstr "Una vez que el patrocinador validó la registración en <literal>nm.debian.org</literal>, se le asigna al candidato un <emphasis>Gestor de aplicación</emphasis> («Application Manager»). El gestor de apliación, de allí en adelante, seguirá los procedimientos y validará los varios pasos que incluye el proceso."
+msgstr ""
+"Una vez que el patrocinador validó la registración en "
+"<literal>nm.debian.org</literal>, se le asigna al candidato un "
+"<emphasis>Gestor de aplicación</emphasis> («Application Manager»). El gestor "
+"de aplicación, de allí en adelante, dirigirá el proceso a través de varios "
+"pasos y validaciones predeterminados."
 
 #. Tag: para
 #, no-c-format
@@ -1143,10 +1271,14 @@ msgid "Finally, the examiner checks the candidate's technical (packaging) skills
 msgstr "Finalmente, el examinador revisa las habilidades técnicas (empaquetado) del candidato con un cuestionario detallado. No se permiten respuestas incorrectas, pero no hay límite de tiempo para responder. Toda la documentación está disponible y se permiten varios intentos si las primeras respuestas no son satisfactorias. Este paso no intenta discriminar, sino garantizar al menos un mínimo común de conocimiento para todos los nuevos contribuyentes."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "This step is known as the <emphasis>Tasks &amp; Skills</emphasis> step in the examiners' jargon. <indexterm><primary><emphasis>Tasks &amp; Skills</emphasis></primary></indexterm>"
 msgid "This step is known as the <emphasis>Tasks &amp; Skills</emphasis> step (T&amp;S for short) in the examiners' jargon. <indexterm><primary><emphasis>Tasks &amp; Skills</emphasis></primary></indexterm>"
-msgstr "En la jerga de los examinadores, se conoce a este paso como <emphasis>tareas y habilidades</emphasis> («Tasks &amp; Skills»). <indexterm><primary><emphasis>Tasks &amp; Skills</emphasis></primary></indexterm>"
+msgstr ""
+"En la jerga de los examinadores, se conoce a este paso como <emphasis>tareas "
+"y habilidades</emphasis> (abreviado «T&amp;S» por «Tasks &amp; Skills»). "
+"<indexterm><primary><emphasis>Tasks &amp; "
+"Skills</emphasis></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
