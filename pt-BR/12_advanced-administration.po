@@ -4,10 +4,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2013-12-10 18:24+0200\n"
+"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"PO-Revision-Date: 2014-01-09 04:10+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects/debian-handbook/12_advanced-administration/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"/debian-handbook/12_advanced-administration/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
@@ -71,16 +72,32 @@ msgid "RAID and LVM"
 msgstr "RAID e LVM"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<xref linkend=\"installation\" /> presented these technologies from the point of view of the installer, and how it integrated them to make their deployment easy from the start. After the initial installation, an administrator must be able to handle evolving storage space needs without having to resort to an expensive reinstallation. They must therefore master the required tools for manipulating RAID and LVM volumes."
 msgid "<xref linkend=\"installation\" /> presented these technologies from the point of view of the installer, and how it integrated them to make their deployment easy from the start. After the initial installation, an administrator must be able to handle evolving storage space needs without having to resort to an expensive reinstallation. They must therefore understand the required tools for manipulating RAID and LVM volumes."
-msgstr "<xref linkend=\"installation\" /> apresentou estas tecnologias a partir do ponto de vista do instalador e como o integra-las para fazer a sua implantação fácil desde o início. Após a instalação inicial, o administrador deve ser capaz de lidar com as necessidades de espaço de armazenamento em evolução, sem ter que recorrer a uma cara reinstalação. Devem, portanto, dominar as ferramentas necessárias para manipular volumes RAID e LVM."
+msgstr ""
+"<xref linkend=\"installation\" /> apresentou estas tecnologias do ponto de "
+"vista do instalador e como ele as integrou para fazer a sua implantação "
+"fácil desde o início. Após a instalação inicial, um administrador deve ser "
+"capaz de lidar com as necessidades de espaço de armazenamento em evolução, "
+"sem ter que recorrer a uma reinstalação cara. Devem, portanto, compreender "
+"as ferramentas necessárias para manipular volumes RAID e LVM."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "RAID and LVM are both techniques to abstract the mounted volumes from their physical counterparts (actual hard-disk drives or partitions thereof); the former secures the data by introducing redundancy, the latter makes data management more flexible and independent of the actual size of the underlying disks. In both cases, the system ends up with new block devices, which can be used to create filesystems or swap space, without necessarily having them mapped to one physical disk. RAID and LVM come from quite different backgrounds, but their functionality can overlap somewhat, which is why they are often mentioned together."
 msgid "RAID and LVM are both techniques to abstract the mounted volumes from their physical counterparts (actual hard-disk drives or partitions thereof); the former secures the data against hardware failure by introducing redundancy, the latter makes volume management more flexible and independent of the actual size of the underlying disks. In both cases, the system ends up with new block devices, which can be used to create filesystems or swap space, without necessarily having them mapped to one physical disk. RAID and LVM come from quite different backgrounds, but their functionality can overlap somewhat, which is why they are often mentioned together."
-msgstr "RAID e LVM são duas técnicas para abstrair os volumes montados a partir de suas contrapartes físicas (reais unidades de disco rígido ou partições do mesmo), o primeiro protegendo os dados através da introdução de redundância, o último fazendo o gerenciamento de dados mais flexível e independente do tamanho real nos discos. Em ambos os casos, o sistema acaba com novos volumes (partições, blocos), que podem ser utilizados para criar sistemas de arquivos ou espaço de troca, sem necessariamente ter eles mapeados em um disco físico. LVM e RAID vêm de origens bem diferentes, mas sua funcionalidade pode sobrepor-se um pouco, é por isso que eles são muitas vezes mencionados juntos."
+msgstr ""
+"RAID e LVM são duas técnicas para abstrair os volumes montados a partir de "
+"seus equivalentes físicos (reais unidades de disco rígido ou partições do "
+"mesmo), o primeiro protege os dados de falhas no hardware através da "
+"introdução de redundância, o último torna o gerenciamento de volumes mais "
+"flexível e independente do tamanho real nos discos. Em ambos os casos, o "
+"sistema acaba com novos volumes (partições, blocos), que podem ser usados "
+"para criar sistemas de arquivos ou espaço de troca, sem necessariamente ter "
+"eles mapeados em um disco físico. LVM e RAID vêm de origens bem diferentes, "
+"mas sua funcionalidade pode sobrepor-se um pouco, é por isso que eles são "
+"muitas vezes mencionados juntos."
 
 #. Tag: title
 #, no-c-format
@@ -88,10 +105,18 @@ msgid "<emphasis>PERSPECTIVE</emphasis> Btrfs combines LVM and RAID"
 msgstr "<emphasis>PERSPECTIVE</emphasis> Btrfs combina LVM e RAID"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "While LVM and RAID are two distinct kernel subsystems that come between the disk block devices and their filesystems, <emphasis>btrfs</emphasis> is a new filesystem, initially developed at Oracle, that purports to combine the featuresets of LVM and RAID and much more. It is mostly functional, although still tagged “experimental” because its development is incomplete (some features aren't implemented yet). <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
 msgid "While LVM and RAID are two distinct kernel subsystems that come between the disk block devices and their filesystems, <emphasis>btrfs</emphasis> is a new filesystem, initially developed at Oracle, that purports to combine the featuresets of LVM and RAID and much more. It is mostly functional, and although it is still tagged “experimental” because its development is incomplete (some features aren't implemented yet), it has already seen some use in production environments. <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
-msgstr "Enquanto LVM e RAID são dois subsistemas do kernel distintos que estão entre os dispositivos de bloco do disco e seus sistemas de arquivos, <emphasis>Btrfs</emphasis> é um novo sistema de arquivos, desenvolvido inicialmente pela Oracle, que pretende combinar os conjuntos de recursos de LVM e RAID e muito mais. É sobretudo funcional, embora ainda definido como \"experimental\", pois seu desenvolvimento é incompleto (alguns recursos ainda não estão implementados). <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
+msgstr ""
+"Enquanto LVM e RAID são dois subsistemas do kernel distintos que estão entre "
+"os dispositivos de bloco do disco e seus sistemas de arquivos, "
+"<emphasis>Btrfs</emphasis> é um novo sistema de arquivos, desenvolvido "
+"inicialmente pela Oracle, que pretende combinar os conjuntos de recursos de "
+"LVM e RAID e muito mais. É sobretudo funcional, embora ainda seja definido "
+"como \"experimental\", pois seu desenvolvimento é incompleto (alguns recursos "
+"ainda não estão implementados). <ulink type=\"block\" "
+"url=\"http://btrfs.wiki.kernel.org/\" />"
 
 #. Tag: para
 #, no-c-format
@@ -144,10 +169,17 @@ msgid "Different RAID Levels"
 msgstr "Diferentes Níveis de RAID"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "RAID has actually several levels, differentiated by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks; seen the other way, more disks will be needed to store the same amount of data."
 msgid "RAID is actually not a single system, but a range of systems identified by their levels; the levels differ by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks for a given set of disks; seen the other way, more disks will be needed to store a given amount of data."
-msgstr "RAID tem realmente vários níveis, diferenciados por sua disposição e da quantidade de redundância que eles fornecem. Quanto mais redundante, mais à prova de falhas, uma vez que o sistema será capaz de continuar a trabalhar com mais discos de falha. A contrapartida é que reduz o espaço utilizável; visto de outra forma, mais discos serão necessários para armazenar a mesma quantidade de dados."
+msgstr ""
+"RAID não é na verdade um único sistema, mas vários sistemas identificados "
+"por seus níveis; os níveis diferem por sua disposição e quantidade de "
+"redundância que eles fornecem. Quanto mais redundante, mais à prova de "
+"falhas, uma vez que o sistema será capaz de continuar a trabalhar quando "
+"mais discos falharem. A contrapartida é que reduz o espaço utilizável para "
+"um dado conjunto de discos; visto de outra forma, mais discos serão "
+"necessários para armazenar a mesma quantidade de dados."
 
 #. Tag: term
 #, no-c-format
@@ -315,28 +347,33 @@ msgid "Our example will be a server with a number of disks, some of which are al
 msgstr "Nossos exemplo será um servidor com um número de discos, sendo que alguns já estão em uso, e o resto está disponível para a configuração do RAID. Nós inicialmente temos os seguintes discos e partições:"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "the <filename>sda</filename> disk, 4 GB, is entirely available;"
 msgid "the <filename>sdb</filename> disk, 4 GB, is entirely available;"
-msgstr "o disco <filename>sda</filename>, 4 GB, estão disponíveis;"
+msgstr "o disco <filename>sdb</filename>, 4 GB, está completamente disponível;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "the <filename>sde</filename> disk, 4 GB, is also entirely available;"
 msgid "the <filename>sdc</filename> disk, 4 GB, is also entirely available;"
-msgstr "o disco <filename>sde</filename>, 4 GB, também estão disponíveis;"
+msgstr ""
+"o disco <filename>sdc</filename>, 4 GB, também está completamente "
+"disponível;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "on the <filename>sdg</filename> disk, only partition <filename>sdg2</filename> (about 4 GB) is available;"
 msgid "on the <filename>sdd</filename> disk, only partition <filename>sdd2</filename> (about 4 GB) is available;"
-msgstr "no disco <filename>sdg</filename>, somente a partição <filename>sdg2</filename> (cerca de 4 GB) está disponível;"
+msgstr ""
+"no disco <filename>sdd</filename>, somente a partição "
+"<filename>sdd2</filename> (cerca de 4 GB) está disponível;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "finally, a <filename>sdh</filename> disk, still 4 GB, entirely available."
 msgid "finally, a <filename>sde</filename> disk, still 4 GB, entirely available."
-msgstr "finalmente, o disco <filename>sdh</filename>, ainda com 4 GB, disponíveis."
+msgstr ""
+"finalmente, um disco <filename>sde</filename>, ainda com 4 GB, disponível."
 
 #. Tag: title
 #, no-c-format
@@ -354,7 +391,7 @@ msgid "We're going to use these physical elements to build two volumes, one RAID
 msgstr "Iremos usar estes elementos físicos para criar dois volumes, um RAID-0 e um espelho (RAID-1). Comecemos com o volume RAID-0:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb /dev/sdc</userinput>\n"
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
@@ -415,11 +452,13 @@ msgid ""
 "/dev/md0        7.9G  146M  7.4G   2% /srv/raid-0\n"
 "</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>\n"
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 "
+"--level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>\n"
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
 "mdadm: array /dev/md0 started.\n"
 "# </computeroutput><userinput>mdadm --query /dev/md0</userinput>\n"
-"<computeroutput>/dev/md0: 8.00GiB raid0 2 devices, 0 spares. Use mdadm --detail for more detail.\n"
+"<computeroutput>/dev/md0: 8.00GiB raid0 2 devices, 0 spares. Use mdadm "
+"--detail for more detail.\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md0</userinput>\n"
 "<computeroutput>/dev/md0:\n"
 "        Version : 1.2\n"
@@ -471,7 +510,8 @@ msgstr ""
 "This filesystem will be automatically checked every 26 mounts or\n"
 "180 days, whichever comes first.  Use tune2fs -c or -i to override.\n"
 "# </computeroutput><userinput>mkdir /srv/raid-0</userinput>\n"
-"<computeroutput># </computeroutput><userinput>mount /dev/md0 /srv/raid-0</userinput>\n"
+"<computeroutput># </computeroutput><userinput>mount /dev/md0 "
+"/srv/raid-0</userinput>\n"
 "<computeroutput># </computeroutput><userinput>df -h /srv/raid-0</userinput>\n"
 "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
 "/dev/md0              8.0G  249M  7.4G   4% /srv/raid-0</computeroutput>\n"
@@ -487,7 +527,7 @@ msgid "Creation of a RAID-1 follows a similar fashion, the differences only bein
 msgstr "A criação do RAID-1 segue estilo similar, as diferenças somente serão notadas após a criação:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdd2 /dev/sde</userinput>\n"
 "<computeroutput>mdadm: Note: this array has metadata at the start and\n"
@@ -533,43 +573,49 @@ msgid ""
 "[...]\n"
 "</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdg2 /dev/sdh</userinput>\n"
-"<computeroutput>mdadm: largest drive (/dev/sdg2) exceed size (4194240K) by more than 1%\n"
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 "
+"--level=1 --raid-devices=2 /dev/sdd2 /dev/sde</userinput>\n"
+"<computeroutput>mdadm: Note: this array has metadata at the start and\n"
+"    may not be suitable as a boot device.  If you plan to\n"
+"    store '/boot' on this device please ensure that\n"
+"    your boot-loader understands md/v1.x metadata, or use\n"
+"    --metadata=0.90\n"
+"mdadm: largest drive (/dev/sdd2) exceeds size (4192192K) by more than 1%\n"
 "Continue creating array? </computeroutput><userinput>y</userinput>\n"
-"<computeroutput>mdadm: array /dev/md1 started.\n"
+"<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
+"mdadm: array /dev/md1 started.\n"
 "# </computeroutput><userinput>mdadm --query /dev/md1</userinput>\n"
-"<computeroutput>/dev/md1: 4.00GiB raid1 2 devices, 0 spares. Use mdadm --detail for more detail.\n"
+"<computeroutput>/dev/md1: 4.00GiB raid1 2 devices, 0 spares. Use mdadm "
+"--detail for more detail.\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "        Version : 1.2\n"
-"  Creation Time : Thu Sep 30 15:39:13 2010\n"
+"  Creation Time : Thu Jan 17 16:13:04 2013\n"
 "     Raid Level : raid1\n"
-"     Array Size : 4194240 (4.00 GiB 4.29 GB)\n"
-"  Used Dev Size : 4194240 (4.00 GiB 4.29 GB)\n"
+"     Array Size : 4192192 (4.00 GiB 4.29 GB)\n"
+"  Used Dev Size : 4192192 (4.00 GiB 4.29 GB)\n"
 "   Raid Devices : 2\n"
 "  Total Devices : 2\n"
 "    Persistence : Superblock is persistent\n"
 "\n"
-"    Update Time : Thu Sep 30 15:39:26 2010\n"
-"          State : active, resyncing\n"
+"    Update Time : Thu Jan 17 16:13:04 2013\n"
+"          State : clean, resyncing (PENDING) \n"
 " Active Devices : 2\n"
 "Working Devices : 2\n"
 " Failed Devices : 0\n"
 "  Spare Devices : 0\n"
 "\n"
-" Rebuild Status : 10% complete\n"
-"\n"
-"           Name : squeeze:1  (local to host squeeze)\n"
-"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
-"         Events : 27\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 0\n"
 "\n"
 "    Number   Major   Minor   RaidDevice State\n"
-"       0       8       98        0      active sync   /dev/sdg2\n"
-"       1       8      112        1      active sync   /dev/sdh\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       1       8       64        1      active sync   /dev/sde\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "[...]\n"
-"          State : active\n"
+"          State : clean\n"
 "[...]\n"
 "</computeroutput>\n"
 
@@ -629,7 +675,7 @@ msgid "Now let's see what happens when one of the elements of the RAID-1 array f
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sde</userinput>\n"
 "<computeroutput>mdadm: set /dev/sde faulty in /dev/md1\n"
@@ -653,27 +699,29 @@ msgid ""
 "\n"
 "       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sdh</userinput>\n"
-"<computeroutput>mdadm: set /dev/sdh faulty in /dev/md1\n"
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail "
+"/dev/sde</userinput>\n"
+"<computeroutput>mdadm: set /dev/sde faulty in /dev/md1\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "[...]\n"
-"    Update Time : Thu Sep 30 15:45:50 2010\n"
-"          State : active, degraded\n"
+"    Update Time : Thu Jan 17 16:14:09 2013\n"
+"          State : active, degraded \n"
 " Active Devices : 1\n"
 "Working Devices : 1\n"
 " Failed Devices : 1\n"
 "  Spare Devices : 0\n"
 "\n"
-"           Name : squeeze:1  (local to host squeeze)\n"
-"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
-"         Events : 35\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 19\n"
 "\n"
 "    Number   Major   Minor   RaidDevice State\n"
-"       0       8       98        0      active sync   /dev/sdg2\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
 "       1       0        0        1      removed\n"
 "\n"
-"       2       8      112        -      faulty spare  /dev/sdh</computeroutput>\n"
+"       1       8       64        -      faulty spare   "
+"/dev/sde</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -681,7 +729,7 @@ msgid "The contents of the volume are still accessible (and, if it is mounted, t
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdf</userinput>\n"
 "<computeroutput>mdadm: added /dev/sdf\n"
@@ -732,8 +780,9 @@ msgid ""
 "\n"
 "       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdi</userinput>\n"
-"<computeroutput>mdadm: added /dev/sdi\n"
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add "
+"/dev/sdf</userinput>\n"
+"<computeroutput>mdadm: added /dev/sdf\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "[...]\n"
@@ -741,45 +790,46 @@ msgstr ""
 "  Total Devices : 3\n"
 "    Persistence : Superblock is persistent\n"
 "\n"
-"    Update Time : Thu Sep 30 15:52:29 2010\n"
-"          State : active, degraded, recovering\n"
+"    Update Time : Thu Jan 17 16:15:32 2013\n"
+"          State : clean, degraded, recovering \n"
 " Active Devices : 1\n"
 "Working Devices : 2\n"
 " Failed Devices : 1\n"
 "  Spare Devices : 1\n"
 "\n"
-" Rebuild Status : 45% complete\n"
+" Rebuild Status : 28% complete\n"
 "\n"
-"           Name : squeeze:1  (local to host squeeze)\n"
-"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
-"         Events : 53\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 26\n"
 "\n"
 "    Number   Major   Minor   RaidDevice State\n"
-"       0       8       98        0      active sync   /dev/sdg2\n"
-"       3       8      128        1      spare rebuilding   /dev/sdi\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       2       8       80        1      spare rebuilding   /dev/sdf\n"
 "\n"
-"       2       8      112        -      faulty spare   /dev/sdh\n"
+"       1       8       64        -      faulty spare   /dev/sde\n"
 "# </computeroutput><userinput>[...]</userinput>\n"
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "[...]\n"
-"    Update Time : Thu Sep 30 15:52:35 2010\n"
-"          State : active\n"
+"    Update Time : Thu Jan 17 16:16:36 2013\n"
+"          State : clean \n"
 " Active Devices : 2\n"
 "Working Devices : 2\n"
 " Failed Devices : 1\n"
 "  Spare Devices : 0\n"
 "\n"
-"           Name : squeeze:1  (local to host squeeze)\n"
-"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
-"         Events : 71\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 41\n"
 "\n"
 "    Number   Major   Minor   RaidDevice State\n"
-"       0       8       98        0      active sync   /dev/sdg2\n"
-"       1       8      128        1      active sync   /dev/sdi\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       2       8       80        1      active sync   /dev/sdf\n"
 "\n"
-"       2       8      112        -      faulty spare   /dev/sdh</computeroutput>\n"
+"       1       8       64        -      faulty spare   "
+"/dev/sde</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -787,7 +837,7 @@ msgid "Here again, the kernel automatically triggers a reconstruction phase duri
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sde</userinput>\n"
 "<computeroutput>mdadm: hot removed /dev/sde from /dev/md1\n"
@@ -798,14 +848,16 @@ msgid ""
 "       0       8       50        0      active sync   /dev/sdd2\n"
 "       2       8       80        1      active sync   /dev/sdf</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sdh</userinput>\n"
-"<computeroutput>mdadm: hot removed /dev/sdh from /dev/md1\n"
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove "
+"/dev/sde</userinput>\n"
+"<computeroutput>mdadm: hot removed /dev/sde from /dev/md1\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "[...]\n"
 "    Number   Major   Minor   RaidDevice State\n"
-"       0       8       98        0      active sync   /dev/sdg2\n"
-"       1       8      128        1      active sync   /dev/sdi</computeroutput>\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       2       8       80        1      active sync   "
+"/dev/sdf</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -833,7 +885,7 @@ msgid "<command>mdadm</command> configuration file"
 msgstr "<command>mdadm</command> arquivo de configuração"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "# mdadm.conf\n"
 "#\n"
@@ -866,8 +918,10 @@ msgstr ""
 "# Please refer to mdadm.conf(5) for information about this file.\n"
 "#\n"
 "\n"
-"# by default, scan all partitions (/proc/partitions) for MD superblocks.\n"
-"# alternatively, specify devices to scan, using wildcards if desired.\n"
+"# by default (built-in), scan all partitions (/proc/partitions) and all\n"
+"# containers for MD superblocks. alternatively, specify devices to scan, "
+"using\n"
+"# wildcards if desired.\n"
 "DEVICE /dev/sd*\n"
 "\n"
 "# auto-create devices with Debian standard permissions\n"
@@ -879,8 +933,14 @@ msgstr ""
 "# instruct the monitoring daemon where to send mail alerts\n"
 "MAILADDR root\n"
 "\n"
-"ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
-"ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432\n"
+"# definitions of existing MD arrays\n"
+"ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 "
+"UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
+"ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 "
+"UUID=6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"\n"
+"# This configuration was auto-generated on Thu, 17 Jan 2013 16:21:01 +0100\n"
+"# by mkconf 3.2.5-3\n"
 
 #. Tag: para
 #, no-c-format
@@ -898,15 +958,18 @@ msgid "Fortunately, these lines can be generated automatically:"
 msgstr "Felizmente, estas linhas podem ser geradas automaticamente:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
 "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
 "ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
-"<computeroutput>ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
-"ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432</computeroutput>\n"
+"<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief "
+"/dev/md?</userinput>\n"
+"<computeroutput>ARRAY /dev/md0 metadata=1.2 name=squeeze:0 "
+"UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
+"ARRAY /dev/md1 metadata=1.2 name=squeeze:1 "
+"UUID=20a8419b:41612750:b9171cfe:00d9a432</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -979,10 +1042,10 @@ msgid "on the <filename>sdc</filename> disk, a <filename>sdc3</filename> partiti
 msgstr "no disco <filename>sdc</filename>, uma partição <filename>sdc3</filename>, 3 GB;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "the <filename>sdd</filename> disk, 4 GB, in fully available;"
 msgid "the <filename>sdd</filename> disk, 4 GB, is fully available;"
-msgstr "o disco <filename>sdd</filename>, 4 GB, completamente disponíveis;"
+msgstr "o disco <filename>sdd</filename>, 4 GB, está completamente disponível;"
 
 #. Tag: para
 #, no-c-format
@@ -1010,7 +1073,7 @@ msgid "First, we prepare the physical volumes using <command>pvcreate</command>:
 msgstr "Primeiro, nós preparamos o volumes físicos utilizando <command>pvcreate</command>:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
@@ -1064,7 +1127,8 @@ msgstr ""
 "  Allocated PE          0\n"
 "  PV UUID               9JuaGR-W7jc-pNgj-NU4l-2IX1-kUJ7-m8cRim\n"
 "\n"
-"# </computeroutput><userinput>for i in sdc3 sdd sdf1 sdf2 ; do pvcreate /dev/$i ; done</userinput>\n"
+"# </computeroutput><userinput>for i in sdc3 sdd sdf1 sdf2 ; do pvcreate "
+"/dev/$i ; done</userinput>\n"
 "<computeroutput>  Physical volume \"/dev/sdc3\" successfully created\n"
 "  Physical volume \"/dev/sdd\" successfully created\n"
 "  Physical volume \"/dev/sdf1\" successfully created\n"
@@ -1088,7 +1152,7 @@ msgid "Now let's assemble these physical elements into VGs using <command>vgcrea
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput>  No volume groups found\n"
@@ -1125,7 +1189,8 @@ msgid ""
 "</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
-"<computeroutput># </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 /dev/sdf1</userinput>\n"
+"<computeroutput># </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 "
+"/dev/sdf1</userinput>\n"
 "<computeroutput>  Volume group \"vg_critical\" successfully created\n"
 "# </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput>  --- Volume group ---\n"
@@ -1149,7 +1214,8 @@ msgstr ""
 "  Free  PE / Size       2084 / 8.14 GB\n"
 "  VG UUID               6eG6BW-MmJE-KB0J-dsB2-52iL-N6eD-1paeo8\n"
 "\n"
-"# </computeroutput><userinput>vgcreate vg_normal /dev/sdc3 /dev/sdd /dev/sdf2</userinput>\n"
+"# </computeroutput><userinput>vgcreate vg_normal /dev/sdc3 /dev/sdd "
+"/dev/sdf2</userinput>\n"
 "<computeroutput>  Volume group \"vg_normal\" successfully created\n"
 "# </computeroutput><userinput>vgdisplay -C</userinput>\n"
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree\n"
@@ -1167,7 +1233,7 @@ msgid "We now have two “virtual disks”, sized about 8 GB and 12 GB, respec
 msgstr "Nós agora temos dois \"discos virtuais\", com o tamanho de 8 GB e 12 GB, respectivamente.Vamos transformá-los em \"partições virtuais\" (LVs). Isto envolve o comando <command>lvcreate</command>, e uma sintaxe um pouco mais complexa:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
@@ -1201,17 +1267,20 @@ msgid ""
 "  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
-"<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
+"<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G "
+"vg_critical</userinput>\n"
 "<computeroutput>  Logical volume \"lv_files\" created\n"
 "# </computeroutput><userinput>lvdisplay</userinput>\n"
 "<computeroutput>  --- Logical volume ---\n"
-"  LV Name                /dev/vg_critical/lv_files\n"
+"  LV Path                /dev/vg_critical/lv_files\n"
+"  LV Name                lv_files\n"
 "  VG Name                vg_critical\n"
-"  LV UUID                4QLhl3-2cON-jRgQ-X4eT-93J4-6Ox9-GyRx3M\n"
+"  LV UUID                J3V0oE-cBYO-KyDe-5e0m-3f70-nv0S-kCWbpT\n"
 "  LV Write Access        read/write\n"
+"  LV Creation host, time mirwiz, 2013-01-17 17:05:13 +0100\n"
 "  LV Status              available\n"
 "  # open                 0\n"
-"  LV Size                5.00 GB\n"
+"  LV Size                5.00 GiB\n"
 "  Current LE             1280\n"
 "  Segments               2\n"
 "  Allocation             inherit\n"
@@ -1219,15 +1288,20 @@ msgstr ""
 "  - currently set to     256\n"
 "  Block device           253:0\n"
 "\n"
-"# </computeroutput><userinput>lvcreate -n lv_base -L 1G vg_critical</userinput>\n"
+"# </computeroutput><userinput>lvcreate -n lv_base -L 1G "
+"vg_critical</userinput>\n"
 "<computeroutput>  Logical volume \"lv_base\" created\n"
-"# </computeroutput><userinput>lvcreate -n lv_backups -L 12G vg_normal</userinput>\n"
+"# </computeroutput><userinput>lvcreate -n lv_backups -L 12G "
+"vg_normal</userinput>\n"
 "<computeroutput>  Logical volume \"lv_backups\" created\n"
 "# </computeroutput><userinput>lvdisplay -C</userinput>\n"
-"<computeroutput>  LV         VG          Attr   LSize  Origin Snap%  Move Log Copy%  Convert\n"
-"  lv_base    vg_critical -wi-a-  1.00G\n"
-"  lv_files   vg_critical -wi-a-  5.00G\n"
-"  lv_backups vg_normal   -wi-a- 12.00G</computeroutput>\n"
+"<computeroutput>  LV         VG          Attr     LSize  Pool Origin Data%  "
+"Move Log Copy%  Convert\n"
+"  lv_base    vg_critical -wi-a---  1.00g "
+"                                          \n"
+"  lv_files   vg_critical -wi-a---  5.00g "
+"                                          \n"
+"  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -2660,10 +2734,12 @@ msgid "Unlike other virtualization systems, KVM was merged into the Linux kernel
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "With Red Hat actively supporting its development, KVM looks poised to become the reference for Linux virtualization."
 msgid "With Red Hat actively supporting its development, KVM has more or less become the reference for Linux virtualization."
-msgstr "Com a Red Hat ativamente suportando seu desenvolvimento, o KVM parece pronto para se tornar a referência em virtualização do Linux."
+msgstr ""
+"Com a Red Hat ativamente suportando seu desenvolvimento, o KVM se tornou "
+"mais ou menos a referência na virtualização do Linux."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2756,7 +2832,7 @@ msgid "Let us now start the installation process for the virtual machine, and ha
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
 #| "               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
@@ -2798,22 +2874,26 @@ msgid ""
 "to the console to complete the installation process.\n"
 "</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
+"<computeroutput># </computeroutput><userinput>virt-install --connect "
+"qemu:///system  <co id=\"virtinst.connect\"></co>\n"
 "               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
 "               --name testkvm            <co id=\"virtinst.name\"></co>\n"
 "               --ram 1024                <co id=\"virtinst.ram\"></co>\n"
-"               --disk /srv/kvm/testkvm.qcow,format=qcow2,size=10 <co id=\"virtinst.disk\"></co>\n"
-"               --cdrom /srv/isos/debian-6.0.0-amd64-DVD-1.iso    <co id=\"virtinst.cdrom\"></co>\n"
+"               --disk /srv/kvm/testkvm.qcow,format=qcow2,size=10 <co "
+"id=\"virtinst.disk\"></co>\n"
+"               --cdrom /srv/isos/debian-7.2.0-amd64-netinst.iso    <co "
+"id=\"virtinst.cdrom\"></co>\n"
 "               --network bridge=br0      <co id=\"virtinst.network\"></co>\n"
 "               --vnc                     <co id=\"virtinst.vnc\"></co>\n"
 "               --os-type linux           <co id=\"virtinst.os\"></co>\n"
-"               --os-variant debiansqueeze\n"
+"               --os-variant debianwheeze\n"
 "</userinput><computeroutput>\n"
 "Starting install...\n"
 "Allocating 'testkvm.qcow'             |  10 GB     00:00\n"
 "Creating domain...                    |    0 B     00:00\n"
 "Cannot open display:\n"
-"Run 'virt-viewer --help' to see a full list of available command line options.\n"
+"Run 'virt-viewer --help' to see a full list of available command line "
+"options.\n"
 "Domain installation still in progress. You can reconnect\n"
 "to the console to complete the installation process.\n"
 "</computeroutput>\n"
