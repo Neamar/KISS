@@ -5,15 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2013-09-25 22:45+0200\n"
+"PO-Revision-Date: 2014-01-13 18:05+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects/debian-handbook/10_network-infrastructure/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"/debian-handbook/10_network-infrastructure/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.7-dev\n"
+"X-Generator: Weblate 1.9-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -166,10 +167,10 @@ msgid "<primary>IP address</primary><secondary>private</secondary>"
 msgstr "<primary>endereço IP</primary><secondary>privado</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>private, IP address</primary>"
 msgid "<primary>private IP address</primary>"
-msgstr "<primary>privado, endereço IP</primary>"
+msgstr "<primary>endereço IP privado</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -354,14 +355,16 @@ msgid "Public Key Infrastructure: <emphasis>easy-rsa</emphasis>"
 msgstr "Infraestrutura de Chaves Públicas: <emphasis>easy-rsa</emphasis>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>PKI (Public Key Infrastructure)</primary>"
-msgstr "<primary>PKI (Public Key Infrastructure)</primary>"
+msgstr ""
+"<primary>PKI (Public Key Infrastructure - Infraestrutura de Chave "
+"Pública)</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>Public Key Infrastructure</primary>"
-msgstr "<primary>Public Key Infrastructure</primary>"
+msgstr "<primary>Infraestrutura de Chave Pública</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -425,7 +428,7 @@ msgid "They then store the required parameters into the <filename>vars</filename
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>vim vars\n"
@@ -448,7 +451,8 @@ msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>vim vars\n"
 "</userinput><computeroutput>$ </computeroutput><userinput>grep KEY_ vars\n"
-"</userinput><computeroutput>export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`\n"
+"</userinput><computeroutput>export KEY_CONFIG=`$EASY_RSA/whichopensslcnf "
+"$EASY_RSA`\n"
 "export KEY_DIR=\"$EASY_RSA/keys\"\n"
 "echo NOTE: If you run ./clean-all, I will be doing a rm -rf on $KEY_DIR\n"
 "export KEY_SIZE=1024\n"
@@ -459,7 +463,8 @@ msgstr ""
 "export KEY_ORG=\"Falcot Corp\"\n"
 "export KEY_EMAIL=\"admin@falcot.com\"\n"
 "$ </computeroutput><userinput>. ./vars\n"
-"</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a rm -rf on /home/rhertzog/pki-falcot/keys\n"
+"</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a "
+"rm -rf on /home/rhertzog/pki-falcot/keys\n"
 "$ </computeroutput><userinput>./clean-all\n"
 "</userinput>\n"
 
@@ -469,7 +474,7 @@ msgid "The next step is the creation of the CA's key pair itself (the two parts 
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-ca</userinput>\n"
@@ -525,7 +530,7 @@ msgid "The certificate for the VPN server can now be created, as well as the Dif
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-key-server vpn.falcot.com\n"
@@ -578,7 +583,8 @@ msgid ""
 "</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>./build-key-server vpn.falcot.com\n"
+"<computeroutput>$ </computeroutput><userinput>./build-key-server "
+"vpn.falcot.com\n"
 "</userinput><computeroutput>Generating a 1024 bit RSA private key\n"
 "...............++++++\n"
 "...........++++++\n"
@@ -618,11 +624,13 @@ msgstr ""
 "Sign the certificate? [y/n]:</computeroutput><userinput>y\n"
 "</userinput><computeroutput>\n"
 "\n"
-"1 out of 1 certificate requests certified, commit? [y/n]</computeroutput><userinput>y\n"
+"1 out of 1 certificate requests certified, commit? "
+"[y/n]</computeroutput><userinput>y\n"
 "</userinput><computeroutput>Write out database with 1 new entries\n"
 "Data Base Updated\n"
 "$ </computeroutput><userinput>./build-dh\n"
-"</userinput><computeroutput>Generating DH parameters, 1024 bit long safe prime, generator 2\n"
+"</userinput><computeroutput>Generating DH parameters, 1024 bit long safe "
+"prime, generator 2\n"
 "This is going to take a long time\n"
 "..............+.......+.................................++*++*++*\n"
 "</computeroutput>\n"
@@ -633,7 +641,7 @@ msgid "The following step creates certificates for the VPN clients; one certific
 msgstr "O próximo passo cria certificados para os clientes VPN; um certificado é necessário para cada computar ou pessoa ser autorizada a usar a VPN:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-key JoeSmith\n"
@@ -678,7 +686,8 @@ msgstr ""
 "Locality Name (eg, city) [Saint-Étienne]:\n"
 "Organization Name (eg, company) [Falcot Corp]:\n"
 "Organizational Unit Name (eg, section) []:\n"
-"Common Name (eg, your name or your server's hostname) [JoeSmith]:</computeroutput><userinput>Joe Smith\n"
+"Common Name (eg, your name or your server's hostname) "
+"[JoeSmith]:</computeroutput><userinput>Joe Smith\n"
 "</userinput><computeroutput>Name []:\n"
 "Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com\n"
 "</userinput><computeroutput>[…]</computeroutput>"
@@ -794,16 +803,16 @@ msgid "IPsec, despite being the standard in IP VPNs, is rather more involved in 
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>ISC</primary>"
 msgid "<primary>IKE</primary>"
-msgstr "<primary>ISC</primary>"
+msgstr "<primary>IKE</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>packet</primary><secondary>IP</secondary>"
 msgid "<primary>IPsec</primary><secondary>IPsec Key Exchange</secondary>"
-msgstr "<primary>pacote</primary><secondary>IP</secondary>"
+msgstr "<primary>IPsec</primary><secondary>Troca de chaves IPsec</secondary>"
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
