@@ -5,13 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2013-12-30 18:18+0100\n"
-"Last-Translator: wing.W <dabouw@gmail.com>\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2014-01-09 17:17+0200\n"
+"Last-Translator: Emfox Zhou <emfox@debian.org>\n"
+"Language-Team: Chinese (China) <http://debian.weblate.org/projects/debian-"
+"handbook/14_security/zh-CN/>\n"
+"Language: zh-CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 1.9-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -51,7 +54,9 @@ msgstr "<emphasis>注意</emphasis> 本章所涉及范围"
 #. Tag: para
 #, no-c-format
 msgid "Security is a vast and very sensitive subject, so we cannot claim to describe it in any kind of comprehensive manner in the course of a single chapter. We will only delineate a few important points and describe some of the tools and methods that can be of use in the security domain. For further reading, literature abounds, and entire books have been devoted to the subject. An excellent starting point would be <citetitle>Linux Server Security</citetitle> by Michael D. Bauer (published by O'Reilly)."
-msgstr "安全是一个很广泛并且敏感的题目，很难在一个章节的课程中来明确全面地表述。此处只划定几个重点，介绍一些可以用于安全领域的工具和方法。更深层次的读物，作品，书籍比比皆是。一本很好的入门书籍是<citetitle>Linux 服务器安全</citetitle>（<citetitle>Linux Server Security</citetitle> by Michael D. Bauer published by O'Reilly）。"
+msgstr ""
+"安全是一个很广泛并且敏感的题目，很难在一个章节的课程中来明确全面地表述。此处只划定几个重点，介绍一些可以用于安全领域的工具和方法。更深层次的读物，作品，"
+"书籍比比皆是。一本很好的入门书籍是<citetitle>Linux 服务器安全</citetitle>（由 O'Reilly 出版）。"
 
 #. Tag: para
 #, no-c-format
@@ -161,7 +166,9 @@ msgstr "<primary>包</primary><secondary>IP</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "A <emphasis>firewall</emphasis> is a piece of computer equipment with hardware and/or software that sorts the incoming or outgoing network packets (coming to or from a local network) and only lets through those matching certain predefined conditions."
-msgstr "<emphasis>防火墙</emphasis>是计算机设备的一部分，该设备使用硬件和（或者）软件分拣流入和流出的网络数据包（源自或者源于局域网），并且只允许符合预定义条件的包通过。 "
+msgstr ""
+"<emphasis>防火墙</emphasis>是计算机设备的一部分，该设备使用硬件和（或者）软件分拣流入和流出的网络数据包（源自或者源于局域网），并且"
+"只允许符合预定义条件的包通过。"
 
 #. Tag: para
 #, no-c-format
@@ -189,10 +196,13 @@ msgid "A firewall can be restricted to one particular machine (as opposed to a c
 msgstr "防火墙可以应用在个别机器上（相对于整个网络而言），在这些情况中其角色是过滤或限制对一些服务的访问，或阻止用户有意或无意安装的流氓软件对外部的连接。"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The Linux 2.6 kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
 msgid "The Linux kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
-msgstr "Linux 2.6 内核嵌入了 <emphasis>netfilter</emphasis> 防火墙。可以使用用户空间的 <command>iptables</command> 和 <command>ip6tables</command> 命令控制。这两个命令直接的区别在于前者作用在 IPv4 网络，而后者作用在 IPv6。由于两种网络协议可能在多年内共存，这就需要同时使用两个工具。"
+msgstr ""
+"Linux 内核嵌入了 <emphasis>netfilter</emphasis> 防火墙。可以使用用户空间的 "
+"<command>iptables</command> 和 <command>ip6tables</command> "
+"命令控制。这两个命令直接的区别在于前者作用在 IPv4 网络，而后者作用在 IPv6。由于两种网络协议可能在多年内共存，这就需要同时使用两个工具。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -377,7 +387,9 @@ msgstr "<replaceable>链名（chain_name）</replaceable>：跳转到指定链�
 #. Tag: para
 #, no-c-format
 msgid "<literal>RETURN</literal>: interrupt processing of the current chain, and return to the calling chain; in case the current chain is a standard one, there's no calling chain, so the default action (defined with the <literal>-P</literal> option to <command>iptables</command>) is executed instead;"
-msgstr "<literal>返回</literal>：中断当前链的处理过程，并返回调用链；如果当前链是一个标准链，并且没有调用链，默认（有<command>iptables</command>中 <literal>-P</literal> 定义）就会执行该链。"
+msgstr ""
+"<literal>返回</literal>：中断当前链的处理过程，并返回调用链；如果当前链是一个标准链，并且没有调用链，默认（有<command>ipt"
+"ables</command>中 <literal>-P</literal> 定义）就会执行该链；"
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -770,7 +782,7 @@ msgstr "当系统过载时，<command>top</command> 是一个很好的工具，�
 #. Tag: para
 #, no-c-format
 msgid "<command>top</command> is a very flexible tool and its manual page gives details on how to customize its display and adapt it to one's personal needs and habits."
-msgstr "<command>top</command> 是一个很灵活的工具，手册页中详列了如何定制显示并让其适于个人需求和习惯"
+msgstr "<command>top</command> 是一个很灵活的工具，手册页中详列了如何定制显示并让其适于个人需求和习惯。"
 
 #. Tag: para
 #, no-c-format
@@ -866,7 +878,10 @@ msgstr "<emphasis>进阶</emphasis> 防止上游变化"
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is useful in detecting changes to files coming from a Debian package, but it will be useless if the package itself is compromised, for instance if the Debian mirror is compromised. Protecting against this class of attacks involves using APT's digital signature verification system (see <xref linkend=\"sect.package-authentication\" />), and taking care to only install packages from a certified origin."
-msgstr "<command>debsums</command> 可以用来侦测源于 Debian 软件包的变化，但是如果软件包本身有问题，它就不起作用了，例如 Debian 被攻破。可以使用 APT 数字签名验证系统防止此类攻击（参考  <xref linkend=\"sect.package-authentication\" />），并只从已认证的源安装软件包"
+msgstr ""
+"<command>debsums</command> 可以用来侦测源于 Debian 软件包的变化，但是如果软件包本身有问题，它就不起作用了，例如 "
+"Debian 被攻破。可以使用 APT 数字签名验证系统防止此类攻击（参考  <xref linkend=\"sect.package-"
+"authentication\" />），并只从已认证的源安装软件包。"
 
 #. Tag: para
 #, no-c-format
@@ -926,7 +941,9 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Note that this example uses the <command>grep-status</command> command from the <emphasis role=\"pkg\">dctrl-tools</emphasis> package, which is not installed by default."
-msgstr "注意本例使用 <emphasis role=\"pkg\">dctrl-tools</emphasis> 软件包中的 <command>grep-status</command> 命令，该命令默认情况下没有安装"
+msgstr ""
+"注意本例使用 <emphasis role=\"pkg\">dctrl-tools</emphasis> 软件包中的 <command>grep-"
+"status</command> 命令，该命令默认情况下没有安装。"
 
 #. Tag: title
 #, no-c-format
@@ -1259,7 +1276,8 @@ msgstr "设置 SELinux"
 #. Tag: para
 #, no-c-format
 msgid "SELinux support is built into the standard kernels provided by Debian. The core Unix tools support SELinux without any modifications. It is thus relatively easy to enable SELinux."
-msgstr "SELinux 支持嵌入到 Debian 提供的标准内核中。Unix 核心工具无需修改就支持 SELinux。因此，启用 SELinux 也相对容易"
+msgstr ""
+"SELinux 支持嵌入到 Debian 提供的标准内核中。Unix 核心工具无需修改就支持 SELinux。因此，启用 SELinux 也相对容易。"
 
 #. Tag: para
 #, no-c-format
@@ -2372,7 +2390,7 @@ msgstr "也会列出最近创建，修改和读取的文件；"
 #. Tag: para
 #, no-c-format
 msgid "the <command>strings</command> command helps identifying programs installed by the attacker, by extracting text strings from a binary;"
-msgstr "<command>strings</command> 通过从二进制中提取字符串，可辅助用于识别攻击者安装的程序。"
+msgstr "<command>strings</command> 通过从二进制中提取字符串，可辅助用于识别攻击者安装的程序；"
 
 #. Tag: para
 #, no-c-format
