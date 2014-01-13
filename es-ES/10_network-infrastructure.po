@@ -5,15 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2013-10-13 08:48+0200\n"
-"Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
-"Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook/10_network-infrastructure/es-ES/>\n"
+"PO-Revision-Date: 2014-01-13 18:10+0200\n"
+"Last-Translator: Adrià García-Alzórriz <adria@fsfe.org>\n"
+"Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
+"/10_network-infrastructure/es-ES/>\n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.7\n"
+"X-Generator: Weblate 1.9-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -166,16 +167,28 @@ msgid "<primary>IP address</primary><secondary>private</secondary>"
 msgstr "<primary>Dirección IP</primary><secondary>privada</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>private, IP address</primary>"
 msgid "<primary>private IP address</primary>"
 msgstr "<primary>privada, dirección IP</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "RFC 1918 defines three ranges of IPv4 addresses not meant to be routed on the Internet but only used in local networks. The first one, <literal>10.0.0.0/8</literal> (see sidebar <xref linkend=\"sidebar.rappels-reseau\" />), is a class-A range (with 2<superscript>24</superscript> IP addresses). The second one, <literal>172.16.0.0/12</literal>, gathers 16 class-B ranges (<literal>172.16.0.0/16</literal> to <literal>172.31.0.0/16</literal>), each containing 2<superscript>16</superscript> IP addresses. Finally, <literal>192.168.0.0/16</literal> is a class-B range (grouping 256 class-C ranges, <literal>192.168.0.0/24</literal> to <literal>192.168.255.0/24</literal>, with 256 IP addresses each). <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
 msgid "RFC 1918 defines three ranges of IPv4 addresses not meant to be routed on the Internet but only used in local networks. The first one, <literal>10.0.0.0/8</literal> (see sidebar <xref linkend=\"sidebar.networking-basics\" />), is a class-A range (with 2<superscript>24</superscript> IP addresses). The second one, <literal>172.16.0.0/12</literal>, gathers 16 class-B ranges (<literal>172.16.0.0/16</literal> to <literal>172.31.0.0/16</literal>), each containing 2<superscript>16</superscript> IP addresses. Finally, <literal>192.168.0.0/16</literal> is a class-B range (grouping 256 class-C ranges, <literal>192.168.0.0/24</literal> to <literal>192.168.255.0/24</literal>, with 256 IP addresses each). <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
-msgstr "El RFC 1918 define tres rangos de direcciones IPv4 que no deben ser viables en Internet sino sólo utilizadas en redes locales. El primero, <literal>10.0.0.0/8</literal> (revise el recuadro <xref linkend=\"sidebar.rappels-reseau\" />) es un rango clase A (con 2<superscript>24</superscript> direcciones IP). El segundo, <literal>172.16.0.0/12</literal>, reúne 16 rangos clase B (<literal>172.16.0.0/16</literal> a <literal>172.31.0.0/16</literal>), cada uno de los cuales contiene 2<superscript>16</superscript> direcciones IP. Finalmente, <literal>192.168.0.0/16</literal> es un rango clase B (agrupando 256 rangos clase C, <literal>192.168.0.0/24</literal> a <literal>192.168.255.0/24</literal>, con 256 direcciones IP cada uno). <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
+msgstr ""
+"El RFC 1918 define tres rangos de direcciones IPv4 que no deben ser viables "
+"en Internet sino sólo utilizadas en redes locales. El primero, "
+"<literal>10.0.0.0/8</literal> (revise el recuadro <xref linkend=\"sidebar"
+".networking-basics\" />) es un rango clase A (con "
+"2<superscript>24</superscript> direcciones IP). El segundo, "
+"<literal>172.16.0.0/12</literal>, reúne 16 rangos clase B "
+"(<literal>172.16.0.0/16</literal> a <literal>172.31.0.0/16</literal>), cada "
+"uno de los cuales contiene 2<superscript>16</superscript> direcciones IP. "
+"Finalmente, <literal>192.168.0.0/16</literal> es un rango clase B (agrupando "
+"256 rangos clase C, <literal>192.168.0.0/24</literal> a "
+"<literal>192.168.255.0/24</literal>, con 256 direcciones IP cada uno). "
+"<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
 
 #. Tag: para
 #, no-c-format
@@ -223,10 +236,16 @@ msgid "<primary>port forwarding</primary>"
 msgstr "<primary>redirección de puertos</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "A concrete application of DNAT is <emphasis>port forwarding</emphasis>. Incoming connections to a given port of a machine are forwarded to a port on another machine. Other solutions may exist for achieving a similar effect, though, especially at the application level with <command>ssh</command> (see <xref linkend=\"section.ssh-port-forwarding\" />) or <command>redir</command>."
 msgid "A concrete application of DNAT is <emphasis>port forwarding</emphasis>. Incoming connections to a given port of a machine are forwarded to a port on another machine. Other solutions may exist for achieving a similar effect, though, especially at the application level with <command>ssh</command> (see <xref linkend=\"sect.ssh-port-forwarding\" />) or <command>redir</command>."
-msgstr "Una aplicación concreta de DNAT es <emphasis>redirección de puertos</emphasis> («port forwarding»). Las conexiones entrantes a un puerto dado de una máquina son redireccionados a un puerto en otra máquina. Sin embargo, pueden existir otras soluciones para conseguir un efecto similar, especialmente a nivel de aplicación con <command>ssh</command> (revise la <xref linkend=\"section.ssh-port-forwarding\" />) o <command>redir</command>."
+msgstr ""
+"Una aplicación concreta de DNAT es <emphasis>redirección de "
+"puertos</emphasis> («port forwarding»). Las conexiones entrantes a un puerto "
+"dado de una máquina son redireccionados a un puerto en otra máquina. Sin "
+"embargo, pueden existir otras soluciones para conseguir un efecto similar, "
+"especialmente a nivel de aplicación con <command>ssh</command> (revise la "
+"<xref linkend=\"sect.ssh-port-forwarding\" />) o <command>redir</command>."
 
 #. Tag: para
 #, no-c-format
@@ -427,7 +446,7 @@ msgid "They then store the required parameters into the <filename>vars</filename
 msgstr "Luego almacenan los parámetros necesarios en el archivo <filename>vars</filename>, especialmente aquellos cuyos nombres comienzan con <literal>KEY_</literal>; estas variables luego son integradas en el entorno:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>vim vars\n"
@@ -468,10 +487,11 @@ msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>vim vars\n"
 "</userinput><computeroutput>$ </computeroutput><userinput>grep KEY_ vars\n"
-"</userinput><computeroutput>export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`\n"
+"</userinput><computeroutput>export KEY_CONFIG=`$EASY_RSA/whichopensslcnf "
+"$EASY_RSA`\n"
 "export KEY_DIR=\"$EASY_RSA/keys\"\n"
 "echo NOTE: If you run ./clean-all, I will be doing a rm -rf on $KEY_DIR\n"
-"export KEY_SIZE=1024\n"
+"export KEY_SIZE=2048\n"
 "export KEY_EXPIRE=3650\n"
 "export KEY_COUNTRY=\"FR\"\n"
 "export KEY_PROVINCE=\"Loire\"\n"
@@ -479,7 +499,8 @@ msgstr ""
 "export KEY_ORG=\"Falcot Corp\"\n"
 "export KEY_EMAIL=\"admin@falcot.com\"\n"
 "$ </computeroutput><userinput>. ./vars\n"
-"</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a rm -rf on /home/rhertzog/pki-falcot/keys\n"
+"</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a "
+"rm -rf on /home/rhertzog/pki-falcot/keys\n"
 "$ </computeroutput><userinput>./clean-all\n"
 "</userinput>\n"
 
@@ -489,7 +510,7 @@ msgid "The next step is the creation of the CA's key pair itself (the two parts 
 msgstr "El siguiente paso es crear el par de llaves en sí de la CA (durante este paso se almacenarán las dos partes del par de llaves en <filename>keys/ca.crt</filename> y <filename>keys/ca.key</filename>):"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>./build-ca</userinput>\n"
@@ -541,7 +562,7 @@ msgid ""
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-ca</userinput>\n"
-"<computeroutput>Generating a 1024 bit RSA private key\n"
+"<computeroutput>Generating a 2048 bit RSA private key\n"
 "..............................................++++++\n"
 ".......................++++++\n"
 "writing new private key to 'ca.key'\n"
@@ -569,7 +590,7 @@ msgid "The certificate for the VPN server can now be created, as well as the Dif
 msgstr "Ahora puede crear el certificado para el servidor VPN, así como también los parámetros Diffie-Hellman necesarios en el servidor para la conexión SSL/TLS. Se identifica el servidor VPN por su nombre DNS <literal>vpn.falcot.com</literal>; se reutiliza este nombre para los archivos de llaves generados (<filename>keys/vpn.falcot.com.crt</filename> para el certificado público, <filename>keys/vpn.falcot.com.key</filename> para la llave privada):"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>./build-key-server vpn.falcot.com\n"
@@ -672,8 +693,9 @@ msgid ""
 "</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>./build-key-server vpn.falcot.com\n"
-"</userinput><computeroutput>Generating a 1024 bit RSA private key\n"
+"<computeroutput>$ </computeroutput><userinput>./build-key-server "
+"vpn.falcot.com\n"
+"</userinput><computeroutput>Generating a 2048 bit RSA private key\n"
 "...............++++++\n"
 "...........++++++\n"
 "writing new private key to 'vpn.falcot.com.key'\n"
@@ -712,11 +734,13 @@ msgstr ""
 "Sign the certificate? [y/n]:</computeroutput><userinput>y\n"
 "</userinput><computeroutput>\n"
 "\n"
-"1 out of 1 certificate requests certified, commit? [y/n]</computeroutput><userinput>y\n"
+"1 out of 1 certificate requests certified, commit? "
+"[y/n]</computeroutput><userinput>y\n"
 "</userinput><computeroutput>Write out database with 1 new entries\n"
 "Data Base Updated\n"
 "$ </computeroutput><userinput>./build-dh\n"
-"</userinput><computeroutput>Generating DH parameters, 1024 bit long safe prime, generator 2\n"
+"</userinput><computeroutput>Generating DH parameters, 2048 bit long safe "
+"prime, generator 2\n"
 "This is going to take a long time\n"
 "..............+.......+.................................++*++*++*\n"
 "</computeroutput>\n"
@@ -813,15 +837,47 @@ msgid "Configuring the OpenVPN Server"
 msgstr "Configuración del servidor OpenVPN"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "By default, the OpenVPN initialization script tries starting all virtual private networks defined in <filename>/etc/openvpn/*.conf</filename>. Setting up a VPN server is therefore a matter of storing a corresponding configuration file in this directory. A good starting point is <filename>/usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz</filename>, which leads to a rather standard server. Of course, some parameters need to be adapted: <literal>ca</literal>, <literal>cert</literal>, <literal>key</literal> and <literal>dh</literal> need to describe the selected locations (respectively, <literal>/etc/ssl/certs/Falcot_CA.crt</literal>, <literal>/etc/ssl/vpn.falcot.com.crt</literal>, <literal>/etc/ssl/private/vpn.falcot.com.key</literal> and <literal>/etc/openvpn/dh1024.pem</literal>). The <literal>server 10.8.0.0 255.255.255.0</literal> directive defines the subnet to be used by the VPN; the server uses the first IP address in that range (<literal>10.8.0.1</literal>) and the rest of the addresses are allocated to clients."
 msgid "By default, the OpenVPN initialization script tries starting all virtual private networks defined in <filename>/etc/openvpn/*.conf</filename>. Setting up a VPN server is therefore a matter of storing a corresponding configuration file in this directory. A good starting point is <filename>/usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz</filename>, which leads to a rather standard server. Of course, some parameters need to be adapted: <literal>ca</literal>, <literal>cert</literal>, <literal>key</literal> and <literal>dh</literal> need to describe the selected locations (respectively, <literal>/etc/ssl/certs/Falcot_CA.crt</literal>, <literal>/etc/ssl/vpn.falcot.com.crt</literal>, <literal>/etc/ssl/private/vpn.falcot.com.key</literal> and <literal>/etc/openvpn/dh2048.pem</literal>). The <literal>server 10.8.0.0 255.255.255.0</literal> directive defines the subnet to be used by the VPN; the server uses the first IP address in that range (<literal>10.8.0.1</literal>) and the rest of the addresses are allocated to clients."
-msgstr "El script de inicialización de OpenVPN intenta, de forma predeterminada, iniciar todas las redes privadas virtuales definidas en <filename>/etc/openvpn/*.conf</filename>. Configurar un servidor VPN entonces es cuestión de almacenar el archivo de configuración correspondiente en este directorio. Un buen punto de partida es <filename>/usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz</filename> que lleva a un servidor bastante estándar. Por supuesto necesitará adaptar algunos parámetros: <literal>ca</literal>, <literal>cert</literal>, <literal>key</literal> y <literal>dh</literal> describirán las ubicaciones seleccionadas para cada uno (respectivamente: <literal>/etc/ssl/certs/Falcot_CA.crt</literal>, <literal>/etc/ssl/vpn.falcot.com.crt</literal>, <literal>/etc/ssl/private/vpn.falcot.com.key</literal> y <literal>/etc/openvpn/dh1024.pem</literal>). La directiva <literal>server 10.8.0.0 255.255.255.0</literal> define la subred utilizada por la VPN; el servidor utilizará la primera dirección IP en el rango (<literal>10.8.0.1</literal>) y se asignarán a los clientes el resto de las direcciones."
+msgstr ""
+"El script de inicialización de OpenVPN intenta, de forma predeterminada, "
+"iniciar todas las redes privadas virtuales definidas en "
+"<filename>/etc/openvpn/*.conf</filename>. Configurar un servidor VPN "
+"entonces es cuestión de almacenar el archivo de configuración "
+"correspondiente en este directorio. Un buen punto de partida es "
+"<filename>/usr/share/doc/openvpn/examples/sample-config-"
+"files/server.conf.gz</filename> que lleva a un servidor bastante estándar. "
+"Por supuesto necesitará adaptar algunos parámetros: <literal>ca</literal>, "
+"<literal>cert</literal>, <literal>key</literal> y <literal>dh</literal> "
+"describirán las ubicaciones seleccionadas para cada uno (respectivamente: "
+"<literal>/etc/ssl/certs/Falcot_CA.crt</literal>, "
+"<literal>/etc/ssl/vpn.falcot.com.crt</literal>, "
+"<literal>/etc/ssl/private/vpn.falcot.com.key</literal> y "
+"<literal>/etc/openvpn/dh2048.pem</literal>). La directiva <literal>server "
+"10.8.0.0 255.255.255.0</literal> define la subred utilizada por la VPN; el "
+"servidor utilizará la primera dirección IP en el rango "
+"(<literal>10.8.0.1</literal>) y se asignarán a los clientes el resto de las "
+"direcciones."
 
 #. Tag: para
 #, no-c-format
 msgid "With this configuration, starting OpenVPN creates the virtual network interface, usually under the <literal>tun0</literal> name. However, firewalls are often configured at the same time as the real network interfaces, which happens before OpenVPN starts. Good practice therefore recommends creating a persistent virtual network interface, and configuring OpenVPN to use this pre-existing interface. This further allows choosing the name for this interface. To this end, <command>openvpn --mktun --dev vpn --dev-type tun</command> creates a virtual network interface named <literal>vpn</literal> with type <literal>tun</literal>; this command can easily be integrated in the firewall configuration script, or in an <literal>up</literal> directive of the <filename>/etc/network/interfaces</filename> file. The OpenVPN configuration file must also be updated accordingly, with the <literal>dev vpn</literal> and <literal>dev-type tun</literal> directives."
-msgstr "Con esta configuración, iniciar OpenVPN crea una interfaz de red virtual generalmente con el nombre <literal>tun0</literal>. Sin embargo, usualmente se configuran los firewalls al mismo tiempo que las interfaces de red reales, lo que ocurre antes que inicie OpenVPN. La creación de una interfaz de red virtual persistente, y configurar OpenVPN para que la utilice, es una buena práctica recomendada. Esto además permite elegir el nombre de esta interfaz. A tal efecto, <command>openvpn -mktun -dev vpn -dev-type tun</command> crea una interfaz de red virtual llamada <literal>vpn</literal> de tipo <literal>tun</literal>; puede integrar fácilmente esta orden en el script de configuración del firewall o en la directiva <literal>up</literal> del archivo <filename>/etc/network/interfaces</filename>. Debe actualizar también el archivo de configuración de OpenVPN de forma acorde, con las directivas <literal>dev vpn</literal> y <literal>dev-type tun</literal>."
+msgstr ""
+"Con esta configuración, el iniciar OpenVPN crea una interfaz de red virtual "
+"generalmente con el nombre <literal>tun0</literal>. Sin embargo, normalmente "
+"se configuran los firewalls al mismo tiempo que las interfaces de red "
+"reales, lo que ocurre antes que inicie OpenVPN. La creación de una interfaz "
+"de red virtual persistente, y configurar OpenVPN para que la utilice, es una "
+"buena práctica recomendada. Esto además permite elegir el nombre de esta "
+"interfaz. A tal efecto, <command>openvpn -mktun -dev vpn -dev-type "
+"tun</command> crea una interfaz de red virtual llamada "
+"<literal>vpn</literal> de tipo <literal>tun</literal>; puede integrar "
+"fácilmente esta orden en el script de configuración del firewall o en la "
+"directiva <literal>up</literal> del archivo "
+"<filename>/etc/network/interfaces</filename>. Debe actualizar también el "
+"archivo de configuración de OpenVPN de forma acorde, con las directivas "
+"<literal>dev vpn</literal> y <literal>dev-type tun</literal>."
 
 #. Tag: para
 #, no-c-format
@@ -844,10 +900,17 @@ msgid "If the VPN should not be started automatically on boot, set the <literal>
 msgstr "Si no se debe iniciar la VPN automáticamente durante el inicio, configure la directiva <literal>AUTOSTART</literal> como <literal>none</literal> en el archivo <filename>/etc/default/openvpn</filename>. Siempre es posible iniciar o detener una conexión VPN dada con <command>/etc/init.d/openvpn start <replaceable>nombre</replaceable></command> y <command>/etc/init.d/openvpn stop <replaceable>nombre</replaceable></command> (donde la conexión <replaceable>nombre</replaceable> coincide con aquella definida en <filename>/etc/openvpn/<replaceable>nombre</replaceable>.conf</filename>)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> package contains an extension to Network Manager (see <xref linkend=\"sect.config-reseau-itinerante\" />) that allows managing OpenVPN virtual private networks. This allows every user to configure OpenVPN connections graphically and to control them from the network management icon. <indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
 msgid "The <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> package contains an extension to Network Manager (see <xref linkend=\"sect.roaming-network-config\" />) that allows managing OpenVPN virtual private networks. This allows every user to configure OpenVPN connections graphically and to control them from the network management icon. <indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
-msgstr "El paquete <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> contiene una extensión para Network Manager (revise la <xref linkend=\"sect.config-reseau-itinerante\" />) que permite administrar redes privadas virtuales OpenVPN. Esto permite que cada usuario configure gráficamente sus conexiones OpenVPN y las controle desde el ícono del gestor de red. <indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
+msgstr ""
+"El paquete <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> "
+"contiene una extensión para Network Manager (revise la <xref linkend=\"sect"
+".roaming-network-config\" />) que permite administrar redes privadas "
+"virtuales OpenVPN. Esto permite que cada usuario configure gráficamente sus "
+"conexiones OpenVPN y las controle desde el ícono del gestor de red. "
+"<indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-"
+"gnome</emphasis></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
