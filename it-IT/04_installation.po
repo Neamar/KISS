@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2014-01-09 00:37+0200\n"
+"PO-Revision-Date: 2014-01-14 15:57+0200\n"
 "Last-Translator: Calogero Lo Leggio <kalos@nerdrug.org>\n"
-"Language-Team: <debian-l10n-italian@lists.debian.org>\n"
+"Language-Team: Italian <debian-l10n-italian@lists.debian.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +47,11 @@ msgstr "Rilevamento dell'hardware"
 #. Tag: para
 #, no-c-format
 msgid "To use Debian, you need to install it on a computer; this task is taken care of by the <emphasis>debian-installer</emphasis> program. A proper installation involves many operations. This chapter reviews them in their chronological order."
-msgstr "Per poter utilizzare Debian, è necessario installarla in un computer. Questa operazione viene gestita dal programma <emphasis>debian-installer</emphasis>. Una corretta installazione coinvolge molte operazioni. In questo capitolo verranno esaminate in ordine cronologico."
+msgstr ""
+"Per poter utilizzare Debian, è necessario installarla in un computer. Questa "
+"operazione viene gestita dal programma <emphasis>debian-"
+"installer</emphasis>. Una corretta installazione coinvolge molte operazioni. "
+"In questo capitolo verranno esaminate in ordine cronologico."
 
 #. Tag: indexterm
 #, no-c-format
@@ -67,7 +71,18 @@ msgstr "L'installazione di un computer è sempre più semplice, se si ha familia
 #. Tag: para
 #, no-c-format
 msgid "The installer for <emphasis role=\"distribution\">Wheezy</emphasis> is based on <command>debian-installer</command>. Its modular design enables it to work in various scenarios and allows it to evolve and adapt to changes. Despite the limitations implied by the need to support a large number of architectures, this installer is very accessible to beginners, since it assists users at each stage of the process. Automatic hardware detection, guided partitioning, and graphical user interfaces have solved most of the problems that newbies used to face in the early years of Debian."
-msgstr "Il programma di installazione per <emphasis role=\"distribution\">Wheezy</emphasis> è basato su <command>debian-installer</command>. La sua struttura modulare gli permette di funzionare in diversi scenari ed evolvere adattandosi facilmente ai cambiamenti. Nonostante le limitazioni date dalla necessità di supportare un numero elevato di architetture, il programma di installazione è molto semplice da utilizzare, anche per i principianti, dato che fornisce assistenza in ogni fase del processo d'installazione. Il riconoscimento automatico dell'hardware, il partizionamento del disco guidato e le interfacce grafiche hanno risolto la maggior parte dei problemi che affliggevano i neofiti nelle precedenti versioni di Debian."
+msgstr ""
+"Il programma di installazione per <emphasis "
+"role=\"distribution\">Wheezy</emphasis> è basato su <command>debian-"
+"installer</command>. La sua struttura modulare gli permette di funzionare in "
+"diversi scenari ed evolvere adattandosi facilmente ai cambiamenti. "
+"Nonostante le limitazioni date dalla necessità di supportare un numero "
+"elevato di architetture, il programma di installazione è molto semplice da "
+"utilizzare, anche per i principianti, dato che fornisce assistenza in ogni "
+"fase del processo d'installazione. Il riconoscimento automatico "
+"dell'hardware, il partizionamento del disco guidato e le interfacce grafiche "
+"hanno risolto la maggior parte dei problemi che affliggevano i neofiti "
+"nelle prime versioni di Debian."
 
 #. Tag: indexterm
 #, no-c-format
@@ -142,12 +157,34 @@ msgstr "Il supporto di installazione più utilizzato è il CD-ROM (o DVD-ROM, ch
 #. Tag: para
 #, no-c-format
 msgid "Various CD-ROM families have different purposes: <emphasis>netinst</emphasis> (network installation) contains the installer and the base Debian system; all other programs are then downloaded. Its “image”, that is the ISO-9660 filesystem that contains the exact contents of the disk, only takes up about 150 to 250 MB (depending on architecture). On the other hand, the complete set offers all packages and allows for installation on a computer that has no Internet access; it requires around 70 CD-ROMs (or 10 DVD-ROMs, or two Blu-ray disks). But the programs are divided among the disks according to their popularity and importance; the first three disks will be sufficient for most installations, since they contain the most used software."
-msgstr "Vengono distribuiti svariati CD-ROM che hanno scopi diversi: <emphasis>netinst</emphasis> (installazione via rete) contiene il programma di installazione e il sistema di base Debian; tutti gli altri programmi verranno scaricati in seguito. La sua «immagine» è un file system ISO-9660 con al suo interno l'esatto contenuto del disco, occupa solamente dai 150 ai 250 MB (dipende dall'architettura). Infine, la serie completa include tutti i pacchetti e permette l'installazione su un computer che non ha accesso a Internet, ma richiede circa 70 CD-ROM (o 10 DVD-ROM o due dischi Blu-ray). I programmi sono però divisi tra i dischi in base alla loro popolarità e importanza; i primi tre dischi saranno sufficienti per la maggior parte delle installazioni, in quanto contengono il software più utilizzato."
+msgstr ""
+"Vengono distribuiti svariate tipologie di CD-ROM che hanno scopi diversi: "
+"<emphasis>netinst</emphasis> (installazione via rete) contiene il programma "
+"di installazione e il sistema di base Debian; tutti gli altri programmi "
+"verranno scaricati in seguito. La sua «immagine» è un file system ISO-9660 "
+"con al suo interno l'esatto contenuto del disco, occupa solamente dai 150 ai "
+"250 MB (dipende dall'architettura). D'altro canto, la serie completa "
+"include tutti i pacchetti e permette l'installazione su un computer che non "
+"ha accesso a Internet, ma richiede circa 70 CD-ROM (o 10 DVD-ROM o due "
+"dischi Blu-ray). I programmi sono però divisi tra i dischi in base alla loro "
+"popolarità e importanza; i primi tre dischi saranno sufficienti per la "
+"maggior parte delle installazioni, in quanto contengono il software più "
+"utilizzato."
 
 #. Tag: para
 #, no-c-format
 msgid "Debian also used to provide a <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only contained the installer, and which required all the Debian packages (including the base system) to be downloaded. Since its image only took up 35 MB, it was meant to be burnt on a “business card” type CD-ROM. This CD-ROM is no longer provided for Wheezy: the debian-installer developers estimated that the work required to maintain that image was no longer worth it. Furthermore, the <filename>mini.iso</filename> image that they already provide as by-product of the installer is very similar."
-msgstr "Debian distribuisce anche il CD-ROM <emphasis>businesscard</emphasis> o <emphasis>bizcard</emphasis>, che include solo il programma di installazione e che richiede che tutti i pacchetti Debian (compreso il sistema di base) debbano essere scaricati. Dal momento che la sua immagine occupa solo 35 MB, può essere masterizzato su un «biglietto da visita» di tipo CD-ROM. Questo CD-ROM non viene più distribuito con Wheezy: gli sviluppatori del debian-installer hanno stimato che il lavoro necessario per mantenere questa immagine è tanto e non ne vale la pena. Inoltre è molto simile all'immagine <filename>mini.iso</filename> che viene già fornita come sotto-prodotto del programma d'installazione."
+msgstr ""
+"Debian distribuiva anche il CD-ROM <emphasis>businesscard</emphasis> o "
+"<emphasis>bizcard</emphasis>, che includeva solo il programma di "
+"installazione e che richiedeva che tutti i pacchetti Debian (compreso il "
+"sistema di base) dovessero essere scaricati. Dal momento che la sua immagine "
+"occupava solo 35 MB, era pensata per essere masterizzato su un CD-ROM del "
+"tipo «biglietto da visita». Questo CD-ROM non viene più distribuito con "
+"Wheezy: gli sviluppatori del debian-installer hanno stimato che il lavoro "
+"necessario per mantenere questa immagine è tanto e non ne vale la pena. "
+"Inoltre è molto simile all'immagine <filename>mini.iso</filename> che viene "
+"già fornita come sotto-prodotto del programma d'installazione."
 
 #. Tag: indexterm
 #, no-c-format
@@ -167,7 +204,14 @@ msgstr "La maggior parte dei CD e DVD-ROM di installazione funzionano solo su un
 #. Tag: para
 #, no-c-format
 msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a CD-ROM image combining the <emphasis>netinst</emphasis> images of the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
-msgstr "Alcune immagini CD/DVD-ROM possono funzionare su diverse architetture. Abbiamo così l'immagine CD-ROM <emphasis>netinst</emphasis> per le architetture <emphasis>i386</emphasis> e <emphasis>amd64</emphasis>. C'è anche un'immagine DVD-ROM che contiene il programma di installazione e una selezione di pacchetti binari per <emphasis>i386</emphasis> e <emphasis>amd64</emphasis>, così come i pacchetti sorgenti corrispondenti."
+msgstr ""
+"Alcune immagini CD/DVD-ROM possono funzionare su diverse architetture. "
+"Abbiamo così un'immagine CD-ROM che combina le immagini "
+"<emphasis>netinst</emphasis> per le architetture <emphasis>i386</emphasis> e "
+"<emphasis>amd64</emphasis>. C'è anche un'immagine DVD-ROM che contiene il "
+"programma di installazione e una selezione di pacchetti binari per "
+"<emphasis>i386</emphasis> e <emphasis>amd64</emphasis>, così come i "
+"pacchetti sorgenti corrispondenti."
 
 #. Tag: indexterm
 #, no-c-format
@@ -257,7 +301,12 @@ msgstr "<primary>installazione</primary><secondary><emphasis>installazione da TF
 #. Tag: para
 #, no-c-format
 msgid "Many BIOSes allow booting directly from the network by downloading a kernel and a minimal filesystem image. This method (which has several names, such as <acronym>PXE</acronym> or <acronym>TFTP</acronym> boot) can be a life-saver if the computer does not have a CD-ROM reader, or if the BIOS can't boot from such media."
-msgstr "Molti BIOS permettono l'avvio direttamente dalla rete, scaricando il kernel da avviare. Questo metodo (che ha diversi nomi, come <acronym>PXE</acronym> o <acronym>TFTP</acronym> boot) può essere un salvavita se il computer non dispone di un lettore CD-ROM, o se il BIOS non prevede l'avvio da tali supporti."
+msgstr ""
+"Molti BIOS permettono l'avvio direttamente dalla rete, scaricando un kernel "
+"e un'immagine minimale del file system. Questo metodo (che ha diversi nomi, "
+"come <acronym>PXE</acronym> o <acronym>TFTP</acronym> boot) può essere un "
+"salvavita se il computer non dispone di un lettore CD-ROM, o se il BIOS non "
+"prevede l'avvio da tali supporti."
 
 #. Tag: para
 #, no-c-format
@@ -277,7 +326,14 @@ msgstr "Altri metodi d'installazione"
 #. Tag: para
 #, no-c-format
 msgid "When we have to deploy customized installations for a large number of computers, we generally choose an automated rather than a manual installation method. Depending on the situation and the complexity of the installations to be made, we can use FAI (Fully Automatic Installer, described in <xref linkend=\"sect.fai\" />), or even a customized installation CD with preseeding (see <xref linkend=\"sect.d-i-preseeding\" />)."
-msgstr "Quando si devono mettere in atto installazioni personalizzate per un gran numero di computer, in genere si sceglie un sistema automatico piuttosto che un metodo di installazione manuale. A seconda della situazione e della complessità delle installazioni da realizzare, si può usare FAI (Fully Automatic Installer, descritto in <xref linkend=\"sect.fai\" />), o un CD d'installazione personalizzato con la preconfigurazione (vedere <xref linkend=\"sect.d-i-preseeding\" />)."
+msgstr ""
+"Quando si devono mettere in atto installazioni personalizzate per un gran "
+"numero di computer, in genere si sceglie un sistema automatico piuttosto che "
+"un metodo di installazione manuale. A seconda della situazione e della "
+"complessità delle installazioni da realizzare, si può usare FAI (Fully "
+"Automatic Installer, descritto nella <xref linkend=\"sect.fai\" />), o un CD "
+"d'installazione personalizzato con la preconfigurazione (vedere la <xref "
+"linkend=\"sect.d-i-preseeding\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -297,7 +353,18 @@ msgstr "Una volta che il BIOS ha iniziato la fase di avvio dal CD o DVD-ROM, com
 #. Tag: para
 #, no-c-format
 msgid "For a standard installation, you only need to choose “Install” or “Graphical install” (with the arrow keys), then press the <keycap>Enter</keycap> key to initiate the remainder of the installation process. If the DVD-ROM is a “Multi-arch” disk (such as the one included with this book), and the machine has an Intel or AMD 64 bit processor, the menu options “64 bit install” and “64 bit graphical install” enable the installation of the 64 bit variant (<emphasis>amd64</emphasis>) instead of the default 32 bit variant (<emphasis>i386</emphasis>). In practice, the 64 bit version can almost always be used: most recent processors are 64 bit processors and the 64 bit version deals better with the large amount of RAM that new computers tend to have."
-msgstr "Per un'installazione standard, è sufficiente scegliere «Install» o «Graphical install» (utilizzando le frecce), quindi premere il tasto <keycap>Invio</keycap> per avviare il processo d'installazione. Se il DVD-ROM è un disco «multi-architettura» (come quello incluso in questo libro), e la macchina ha un processore Intel o AMD a 64 bit, le opzioni del menu d'installazione «64 bit install» e «64 bit graphical install» abilita l'installazione della variante a 64 bit (<emphasis>amd64</emphasis>) al posto della variante predefinita a 32 bit (<emphasis>i386</emphasis>). In pratica, può essere usata quasi sempre la versione a 64 bit: la maggior parte dei processori recenti sono a 64 bit e la versione a 64 bit gestisce meglio la grande quantità di RAM che tendono ad avere i nuovi computer."
+msgstr ""
+"Per un'installazione standard, è sufficiente scegliere «Install» o "
+"«Graphical install» (utilizzando le frecce), quindi premere il tasto "
+"<keycap>Invio</keycap> per avviare il processo d'installazione. Se il DVD-"
+"ROM è un disco «multi-architettura» (come quello incluso in questo libro), e "
+"la macchina ha un processore Intel o AMD a 64 bit, le opzioni del menu "
+"d'installazione «64 bit install» e «64 bit graphical install» abilitano "
+"l'installazione della variante a 64 bit (<emphasis>amd64</emphasis>) al "
+"posto della variante predefinita a 32 bit (<emphasis>i386</emphasis>). In "
+"pratica, può essere usata quasi sempre la versione a 64 bit: la maggior "
+"parte dei processori recenti sono a 64 bit e la versione a 64 bit gestisce "
+"meglio la grande quantità di RAM che tendono ad avere i nuovi computer."
 
 #. Tag: title
 #, no-c-format
@@ -327,7 +394,18 @@ msgstr "La differenza fondamentale tra i sistemi a 32 ed a 64 bit è la dimensio
 #. Tag: para
 #, no-c-format
 msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions of all the necessary libraries (see <xref linkend=\"sect.multi-arch\" />), and sometimes to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
-msgstr "Per un computer d'ufficio (dove una differenza di pochi punti percentuali in termini di prestazioni è trascurabile), è necessario tenere a mente che alcuni programmi proprietari non sono disponibili in versioni a 64 bit (come Skype per esempio). È tecnicamente possibile farli funzionare su sistemi a 64 bit, ma è necessario installare le versioni a 32 bit insieme a tutte le librerie necessarie (si veda <xref linkend=\"sect.multi-arch\" />), e spesso è necessario utilizzare i comandi <command>setarch</command> o <command>linux32</command> (nel pacchetto <emphasis role=\"pkg\">util-linux</emphasis>) per ingannare le applicazioni sulla natura del sistema. Questo metodo è molto laborioso e permette un guadagno relativamente piccolo. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
+msgstr ""
+"Per un computer d'ufficio (dove una differenza di pochi punti percentuali in "
+"termini di prestazioni è trascurabile), è necessario tenere a mente che "
+"alcuni programmi proprietari non sono disponibili in versioni a 64 bit (come "
+"Skype per esempio). È tecnicamente possibile farli funzionare su sistemi a "
+"64 bit, ma è necessario installare le versioni a 32 bit di tutte le librerie "
+"necessarie (si veda <xref linkend=\"sect.multi-arch\" />), e a volte è "
+"necessario utilizzare i comandi <command>setarch</command> o "
+"<command>linux32</command> (nel pacchetto <emphasis role=\"pkg\">util-"
+"linux</emphasis>) per ingannare le applicazioni sulla natura del sistema. "
+"<indexterm><primary><command>setarch</command></primary></indexterm> "
+"<indexterm><primary><command>linux32</command></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -372,17 +450,39 @@ msgstr "<primary>boot</primary><secondary>loader</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The bootloader is a low-level program that is responsible for booting the Linux kernel just after the BIOS passes off its control. To handle this task, it must be able to locate the Linux kernel to boot on the disk. On the i386 and amd64 architectures, the two most used programs to perform this task are LILO, the older of the two, and GRUB, its modern replacement. Isolinux and Syslinux are alternatives frequently used to boot from removable media."
-msgstr "Il bootloader è un programma a basso livello che è responsabile dell'avvio del kernel Linux, subito dopo che il BIOS gli abbia ceduto il controllo. Per gestire questo compito, deve essere in grado di individuare sul disco il kernel Linux per l'avvio. Sulle architetture i386 e amd64, i due programmi più utilizzati per eseguire questa operazione sono LILO, il più vecchio dei due, e GRUB, un'alternativa più moderna. Isolinux e syslinux sono alternative utilizzate frequentemente per l'avvio da supporti rimovibili."
+msgstr ""
+"Il bootloader è un programma a basso livello che è responsabile dell'avvio "
+"del kernel Linux, subito dopo che il BIOS gli ha ceduto il controllo. Per "
+"gestire questo compito, deve essere in grado di individuare sul disco il "
+"kernel Linux per l'avvio. Sulle architetture i386 e amd64, i due programmi "
+"più utilizzati per eseguire questa operazione sono LILO, il più vecchio dei "
+"due, e GRUB, la soluzione più moderna che lo sostituisce. Isolinux e "
+"Syslinux sono alternative utilizzate frequentemente per l'avvio da supporti "
+"rimovibili."
 
 #. Tag: para
 #, no-c-format
 msgid "Each menu entry hides a specific boot command line, which can be configured as needed by pressing the <keycap>TAB</keycap> key before validating the entry and booting. The “Help” menu entry displays the old command line interface, where the <keycap>F1</keycap> to <keycap>F10</keycap> keys display different help screens detailing the various options available at the prompt. You will rarely need to use this option except in very specific cases."
-msgstr "Ogni voce di menu nasconde una specifica riga di comando di avvio, che può essere configurata in base alle esigenze premendo il tasto <keycap>TAB</keycap> prima di convalidare l'avvio. La voce del menu «Help» visualizza la vecchia interfaccia a riga di comando, dove i tasti da <keycap>F1</keycap> a <keycap>F10</keycap> visualizzano diverse schermate di aiuto, andando nel dettaglio delle varie opzioni disponibili al prompt. Si avrà raramente la necessità di utilizzare queste opzioni, se non in casi molto specifici."
+msgstr ""
+"Ogni voce di menu nasconde una specifica riga di comando di avvio, che può "
+"essere configurata in base alle esigenze premendo il tasto "
+"<keycap>TAB</keycap> prima di convalidare l'avvio. La voce del menu «Help» "
+"visualizza la vecchia interfaccia a riga di comando, dove i tasti da "
+"<keycap>F1</keycap> a <keycap>F10</keycap> visualizzano diverse schermate di "
+"aiuto, andando nel dettaglio delle varie opzioni disponibili al prompt. Si "
+"avrà raramente la necessità di utilizzare queste opzioni, se non in casi "
+"molto specifici."
 
 #. Tag: para
 #, no-c-format
 msgid "The “expert” mode (accessible in the “Advanced Options” menu) details all possible options in the process of installation, and allows navigation between the various steps without them happening automatically in sequence. Be careful, this very verbose mode can be confusing due to the multitude of configuration choices that it offers."
-msgstr "La modalità «expert» (accessibile dal menu «Advanced Options») abilita, nel dettaglio, tutte le opzioni possibili nel processo d'installazione e consente di spostarsi tra le varie fasi senza che vengano obbligatoriamente eseguite in sequenza. Attenzione, questa modalità molto dettagliata può essere fonte di confusione a causa della moltitudine di opzioni di configurazione che offre."
+msgstr ""
+"La modalità «expert» (accessibile dal menu «Advanced Options») abilita, nel "
+"dettaglio, tutte le opzioni possibili nel processo d'installazione e "
+"consente di spostarsi tra le varie fasi senza che vengano obbligatoriamente "
+"eseguite in sequenza. Attenzione, questa modalità molto dettagliata può "
+"essere fonte di confusione a causa della moltitudine di opzioni di "
+"configurazione che offre."
 
 #. Tag: title
 #, no-c-format
@@ -422,7 +522,9 @@ msgstr "Alcuni passaggi del processo d'installazione richiedono l'immissione di 
 #. Tag: para
 #, no-c-format
 msgid "In graphical mode, you can use the mouse as you would normally on an installed graphical desktop."
-msgstr "Nella modalità grafica, è possibile utilizzare il mouse, come si farebbe normalmente su un ambiente  desktop grafico installato."
+msgstr ""
+"Nella modalità grafica, è possibile utilizzare il mouse, come si farebbe "
+"normalmente su un ambiente desktop grafico installato."
 
 #. Tag: title
 #, no-c-format
@@ -437,7 +539,12 @@ msgstr "<primary>scelta</primary><secondary>del paese</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The second step consists in choosing your country. Combined with the language, this information enables the program to offer the most appropriate keyboard layout. This will also influence the configuration of the time zone. In the United States, a standard QWERTY keyboard is suggested, and a choice of appropriate time zones is offered."
-msgstr "Il secondo passo consiste nella scelta del paese. Associate alla lingua, questa informazione consente al programma di proporre la mappatura della tastiera più indicata. Questo influenzerà anche la configurazione del fuso orario. Negli Stati Uniti, viene suggerita una tastiera QWERTY standard e una lista di fusi orari appropriati."
+msgstr ""
+"Il secondo passo consiste nella scelta del paese. Insieme alla lingua, "
+"questa informazione consente al programma di proporre la mappatura della "
+"tastiera più indicata. Questo influenzerà anche la configurazione del fuso "
+"orario. Negli Stati Uniti, viene suggerita una tastiera QWERTY standard e "
+"una lista di fusi orari appropriati."
 
 #. Tag: title
 #, no-c-format
@@ -487,7 +594,11 @@ msgstr "Caricamento dei componenti"
 #. Tag: para
 #, no-c-format
 msgid "With the contents of the CD now available, the installer loads all the files necessary to continue with its work. This includes additional drivers for the remaining hardware (especially the network card), as well as all the components of the installation program."
-msgstr "Ora che il contenuto del CD è disponibile, il programma di installazione scarica tutti i file necessari per continuare il suo lavoro. Questo comprende i driver aggiuntivi per l'hardware rimanente (in particolare la scheda di rete), nonché tutti i componenti del programma di installazione."
+msgstr ""
+"Ora che il contenuto del CD è disponibile, il programma di installazione "
+"carica tutti i file necessari per continuare il suo lavoro. Questo comprende "
+"i driver aggiuntivi per l'hardware rimanente (in particolare la scheda di "
+"rete), nonché tutti i componenti del programma di installazione."
 
 #. Tag: title
 #, no-c-format
@@ -557,7 +668,12 @@ msgstr "Configurazione dell'orologio"
 #. Tag: para
 #, no-c-format
 msgid "If the network is available, the system's internal clock is updated (in a one-shot way) from an NTP server. This way the timestamps on logs will be correct from the first boot. For them to remain consistently precise over time, an NTP daemon needs to be set up after initial installation (see <xref linkend=\"sect.time-synchronization\" />)."
-msgstr "Se la rete è disponibile, l'orologio interno del sistema sarà aggiornato (solo la prima volta) da un server NTP. In questo modo l'ora dei log sarà corretta dal primo avvio. Se si vuole rimanere costantemente con un orario sincronizzato, deve essere impostato un demone NTP dopo l'installazione iniziale (vedere <xref linkend=\"sect.time-synchronization\" />)."
+msgstr ""
+"Se la rete è disponibile, l'orologio interno del sistema sarà aggiornato "
+"(solo la prima volta) da un server NTP. In questo modo l'ora dei log sarà "
+"corretta dal primo avvio. Se si vuole rimanere costantemente con un orario "
+"sincronizzato, deve essere impostato un demone NTP dopo l'installazione "
+"iniziale (vedere la <xref linkend=\"sect.time-synchronization\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -722,7 +838,23 @@ msgstr "<primary>file</primary><secondary>system</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "A filesystem defines the way in which data is organized on the hard drive. Each existing filesystem has its merits and limitations. Some are more robust, others more effective: if you know your needs well, choosing the most appropriate filesystem is possible. Various comparisons have already been made; it seems that ReiserFS is particularly efficient for reading many small files; <emphasis>XFS</emphasis>, in turn, works faster with large files. <emphasis>Ext4</emphasis>, the default filesystem for Debian, is a good compromise, based on the three previous versions of filesystems historically used in Linux (<emphasis>ext</emphasis>, <emphasis>ext2</emphasis> and <emphasis>ext3</emphasis>). <emphasis>Ext4</emphasis> overcomes certain limitations of <emphasis>ext3</emphasis> and is particularly appropriate for very large capacity hard drives. Another option would be to experiment with the very promising <emphasis>btrfs</emphasis>, which includes numerous features that require, to this day, the use of LVM and/or RAID."
-msgstr "Un file system definisce il modo in cui i dati sono organizzati nel disco rigido. Ogni file system esistente ha pregi e difetti. Alcuni sono più robusti, altri più efficienti: se si conoscono bene le esigenze, è possibile scegliere il file system più appropriato. Sono stati fatti diversi confronti, e sembra che ReiserFS sia particolarmente efficiente per la lettura di molti file di piccole dimensioni; <emphasis>XFS</emphasis>, invece, lavora più velocemente con i file di grandi dimensioni. <emphasis>Ext4</emphasis> è il filesystem predefinito di Debian ed è un buon compromesso, basato sulle tre precedenti versioni dei file system storicamente usati su Linux (<emphasis>ext</emphasis> <emphasis>ext2</emphasis> e <emphasis>ext3</emphasis>). <emphasis>Ext4</emphasis> supera certe limitazioni di <emphasis>ext3</emphasis> ed è particolarmente indicato per i dischi molto grandi. Un'altra opzione potrebbe essere sperimentare il molto promettente <emphasis>btrfs</emphasis>, che include molte delle funzionalità che, al momento, richiedono l'uso di LVM e/o RAID."
+msgstr ""
+"Un file system definisce il modo in cui i dati sono organizzati nel disco "
+"rigido. Ogni file system esistente ha pregi e difetti. Alcuni sono più "
+"robusti, altri più efficienti: se si conoscono bene le proprie esigenze, è "
+"possibile scegliere il file system più appropriato. Sono stati fatti diversi "
+"confronti, e sembra che ReiserFS sia particolarmente efficiente per la "
+"lettura di molti file di piccole dimensioni; <emphasis>XFS</emphasis>, "
+"invece, lavora più velocemente con i file di grandi dimensioni. "
+"<emphasis>Ext4</emphasis> è il file system predefinito di Debian ed è un "
+"buon compromesso, basato sulle tre precedenti versioni dei file system "
+"storicamente usati su Linux (<emphasis>ext</emphasis> "
+"<emphasis>ext2</emphasis> e <emphasis>ext3</emphasis>). "
+"<emphasis>Ext4</emphasis> supera certe limitazioni di "
+"<emphasis>ext3</emphasis> ed è particolarmente indicato per i dischi molto "
+"grandi. Un'altra opzione potrebbe essere sperimentare il molto promettente "
+"<emphasis>btrfs</emphasis>, che include molte delle funzionalità che, al "
+"momento, richiedono l'uso di LVM o RAID."
 
 #. Tag: para
 #, no-c-format
@@ -912,7 +1044,20 @@ msgstr "Verrà descritto solo il RAID livello 1, che è il più semplice da impl
 #. Tag: para
 #, no-c-format
 msgid "You must then choose “Configure software RAID” in the partitioning tool to combine these two partitions into a new virtual disk and select “Create MD device” in the configuration screen. You then need to answer a series of questions about this new device. The first question asks about the RAID level to use, which in our case will be “RAID1”. The second question asks about the number of active devices — two in our case, which is the number of partitions that needs to be included in this MD device. The third question is about the number of spare devices — 0; we have not planned any additional disk to take over for a possible defective disk. The last question requires you to choose the partitions for the RAID device — these would be the two that we have set aside for this purpose (make sure you only select the partitions that explicitly mention “raid”)."
-msgstr "Per combinare queste due partizioni in un nuovo disco virtuale è necessario scegliere «Configurare il RAID software» nel programma di partizionamento e selezionare «Creare un dispositivo MD» nella schermata di configurazione. Sarà necessario rispondere ad una serie di domande su questo nuovo dispositivo. La prima domanda riguarda il livello RAID da utilizzare, che in questo caso sarà «RAID1». La seconda domanda chiede il numero di dispositivi attivi — due nel nostro caso, ovvero il numero di partizioni che deve essere incluso in questo dispositivo MD. La terza domanda riguarda il numero di dispositivi di ricambio — 0; dato che non si sono pianificati dischi aggiuntivi per rimpiazzare un possibile disco difettoso. L'ultima domanda chiede di scegliere le partizioni per i dispositivi RAID — ovvero le due partizioni accantonate per lo scopo (bisogna assicurarsi di selezionare solo le partizioni che riportano esplicitamente «raid»)."
+msgstr ""
+"Per combinare queste due partizioni in un nuovo disco virtuale è necessario "
+"scegliere «Configurare il RAID software» nel programma di partizionamento e "
+"selezionare «Creare un dispositivo MD» nella schermata di configurazione. "
+"Sarà necessario rispondere ad una serie di domande su questo nuovo "
+"dispositivo. La prima domanda riguarda il livello RAID da utilizzare, che in "
+"questo caso sarà «RAID1». La seconda domanda chiede il numero di "
+"dispositivi attivi: due nel nostro caso, ovvero il numero di partizioni che "
+"deve essere incluso in questo dispositivo MD. La terza domanda riguarda il "
+"numero di dispositivi di ricambio: 0, dato che non si sono pianificati "
+"dischi aggiuntivi per rimpiazzare un possibile disco difettoso. L'ultima "
+"domanda chiede di scegliere le partizioni per i dispositivi RAID: ovvero le "
+"due partizioni accantonate per lo scopo (bisogna assicurarsi di selezionare "
+"solo le partizioni che riportano esplicitamente «raid»)."
 
 #. Tag: para
 #, no-c-format
@@ -922,7 +1067,9 @@ msgstr "Tornando al menu principale, comparirà un nuovo disco virtuale «RAID»
 #. Tag: para
 #, no-c-format
 msgid "For further details on RAID functions, please refer to <xref linkend=\"sect.raid-soft\" />."
-msgstr "Per ulteriori informazioni sulle funzionalità RAID, si faccia riferimento a <xref linkend=\"sect.raid-soft\" />."
+msgstr ""
+"Per ulteriori informazioni sulle funzionalità RAID, si faccia riferimento "
+"alla <xref linkend=\"sect.raid-soft\" />."
 
 #. Tag: title
 #, no-c-format
@@ -942,7 +1089,13 @@ msgstr "<primary>Logical Volume Manager</primary><secondary>durante l'installazi
 #. Tag: para
 #, no-c-format
 msgid "LVM allows you to create “virtual” partitions that span over several disks. The benefits are twofold: the size of the partitions are no longer limited by individual disks but by their cumulative volume, and you can resize existing partitions at any time, possibly after adding an additional disk when needed."
-msgstr "LVM permette di creare partizioni «virtuali» che si possono estendere su più dischi. Questo comporta un duplice vantaggio: la dimensione delle partizioni non è più limitata dalla dimensione dei singoli dischi, ma dal loro volume cumulativo, ed è possibile aumentare, in qualsiasi momento, la dimensione di una partizione esistente con l'aggiunta di un altro disco quando necessario."
+msgstr ""
+"LVM permette di creare partizioni «virtuali» che si possono estendere su più "
+"dischi. Questo comporta un duplice vantaggio: la dimensione delle "
+"partizioni non è più limitata dalla dimensione dei singoli dischi, ma dal "
+"loro volume cumulativo, ed è possibile ridimensionare, in qualsiasi momento, "
+"la dimensione di una partizione esistente con l'aggiunta di un altro disco "
+"quando necessario."
 
 #. Tag: para
 #, no-c-format
@@ -977,7 +1130,15 @@ msgstr "Questa tecnica funziona in modo molto semplice: ogni volume, sia esso fi
 #. Tag: para
 #, no-c-format
 msgid "The partitioning tool configures LVM in several steps. First you must create on the existing disks the partitions that will be “physical volumes for LVM”. To activate LVM, you need to choose “Configure the Logical Volume Manager (LVM)”, then on the same configuration screen “Create a volume group”, to which you will associate the existing physical volumes. Finally, you can create logical volumes within this volume group. Note that the automatic partitioning system can perform all these steps automatically."
-msgstr "Il programma di partizionamento consente di configurare LVM in più fasi. In primo luogo è necessario creare sui dischi esistenti le partizioni che saranno «Volumi fisici per LVM». Per attivare LVM, è necessario scegliere «Configurare il Logical Volume Manager (LVM)», quindi nella stessa schermata di configurazione «Creare gruppi di volumi», a cui associare i volumi fisici esistenti. Infine, è possibile creare dei volumi logici all'interno di questo gruppo di volumi. Si noti che il sistema di partizionamento automatico è in grado di automatizzare tutta questa fase."
+msgstr ""
+"Il programma di partizionamento consente di configurare LVM in più fasi. In "
+"primo luogo è necessario creare sui dischi esistenti le partizioni che "
+"saranno «volumi fisici per LVM». Per attivare LVM, è necessario scegliere "
+"«Configurare il Logical Volume Manager (LVM)», quindi nella stessa schermata "
+"di configurazione «Creare gruppi di volumi», a cui associare i volumi "
+"fisici esistenti. Infine, è possibile creare dei volumi logici all'interno "
+"di questo gruppo di volumi. Si noti che il sistema di partizionamento "
+"automatico è in grado di automatizzare tutta questa fase."
 
 #. Tag: para
 #, no-c-format
@@ -987,7 +1148,9 @@ msgstr "Nel menu di partizionamento, ogni volume fisico apparirà come un disco 
 #. Tag: para
 #, no-c-format
 msgid "The usage of LVM is described in further detail in <xref linkend=\"sect.lvm\" />."
-msgstr "L'uso di LVM è descritto in modo più dettagliato in <xref linkend=\"sect.lvm\" />."
+msgstr ""
+"L'uso di LVM è descritto in modo più dettagliato nella <xref "
+"linkend=\"sect.lvm\" />."
 
 #. Tag: title
 #, no-c-format
@@ -1202,7 +1365,11 @@ msgstr "<primary>GRUB</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The bootloader is the first program started by the BIOS. This program loads the Linux kernel into memory and then executes it. It often offers a menu that allows the user to choose the kernel to load and/or the operating system to boot."
-msgstr "Il bootloader è il primo programma avviato dal BIOS. Questo programma carica in memoria il kernel di Linux e lo esegue. Spesso consente all'utente, tramite menu, di scegliere il kernel da caricare o il sistema operativo da avviare."
+msgstr ""
+"Il bootloader è il primo programma avviato dal BIOS. Questo programma carica "
+"in memoria il kernel di Linux e lo esegue. Spesso consente all'utente, "
+"tramite menu, di scegliere il kernel da caricare o il sistema operativo da "
+"avviare."
 
 #. Tag: title
 #, no-c-format
@@ -1232,7 +1399,9 @@ msgstr "GRUB è il bootloader predefinito installato da Debian, grazie alla sua 
 #. Tag: para
 #, no-c-format
 msgid "For more information on configuring GRUB, please refer to <xref linkend=\"sect.config-grub\" />."
-msgstr "Per avere più informazioni sulla configurazione di GRUB, si faccia riferimento a <xref linkend=\"sect.config-grub\" />."
+msgstr ""
+"Per avere più informazioni sulla configurazione di GRUB, si faccia "
+"riferimento alla <xref linkend=\"sect.config-grub\" />."
 
 #. Tag: title
 #, no-c-format
@@ -1282,7 +1451,15 @@ msgstr "Installazione di software aggiuntivo"
 #. Tag: para
 #, no-c-format
 msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (“Synaptic Package Manager” in the menus)."
-msgstr "I pacchetti installati corrispondono ai profili selezionati durante l'installazione ma non necessariamente all'uso che veramente verrà fatto della macchina. Per questo motivo potrebbe essere una buona idea utilizzare un programma di gestione dei pacchetti per regolare la lista dei pacchetti installati. I due strumenti più utilizzati (che sono installati se è stato attivato il profilo «Ambiente desktop grafico») sono <command>apt</command> (accessibile da riga di comando) e <command>synaptic</command> (“Gestore Pacchetti Synaptic“ nel menu)."
+msgstr ""
+"I pacchetti installati corrispondono ai profili selezionati durante "
+"l'installazione ma non necessariamente all'uso che veramente verrà fatto "
+"della macchina. Per questo motivo potrebbe essere una buona idea utilizzare "
+"un programma di gestione dei pacchetti per regolare la lista dei pacchetti "
+"installati. I due strumenti più utilizzati (che sono installati se è stato "
+"attivato il profilo «Ambiente desktop grafico») sono <command>apt</command> "
+"(accessibile da riga di comando) e <command>synaptic</command> (“Gestore "
+"pacchetti Synaptic“ nel menu)."
 
 #. Tag: para
 #, no-c-format
@@ -1357,7 +1534,16 @@ msgstr "<primary>safe-upgrade</primary>"
 #. Tag: para
 #, no-c-format
 msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"sect.apt-upgrade\" />."
-msgstr "È solitamente necessario un primo <command>aptitude safe-upgrade</command> (un comando usato per aggiornare automaticamente tutti i programmi installati), specialmente per eventuali aggiornamenti di sicurezza distribuiti dopo il rilascio dall'ultima versione stabile di Debian. Questi aggiornamenti possono comportare domande aggiuntive poste attraverso <command>debconf</command>, lo strumento di configurazione predefinito di Debian. Per ulteriori informazioni su come <command>aptitude</command> effettua questi aggiornamenti, fare riferimento a <xref linkend=\"sect.apt-upgrade\" />."
+msgstr ""
+"È solitamente necessario un primo <command>aptitude safe-upgrade</command> "
+"(un comando usato per aggiornare automaticamente tutti i programmi "
+"installati), specialmente per eventuali aggiornamenti di sicurezza "
+"distribuiti dopo il rilascio dall'ultima versione stabile di Debian. Questi "
+"aggiornamenti possono comportare domande aggiuntive poste attraverso "
+"<command>debconf</command>, lo strumento di configurazione predefinito di "
+"Debian. Per ulteriori informazioni su come <command>aptitude</command> "
+"effettua questi aggiornamenti, fare riferimento alla <xref linkend=\"sect"
+".apt-upgrade\" />."
 
 #~ msgid "<emphasis>IN PRACTICE</emphasis> Debian on CD-ROM"
 #~ msgstr "<emphasis>IN PRATICA</emphasis> Debian su CD-ROM"
