@@ -4,15 +4,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2013-05-11 15:56+0200\n"
-"Last-Translator: Georg Käsler <gkaesler@gmx.de>\n"
-"Language-Team: Übersetzungsteam\n"
-"Language: de\n"
+"PO-Revision-Date: 2014-01-14 10:31+0200\n"
+"Last-Translator: Adrià García-Alzórriz <adria@fsfe.org>\n"
+"Language-Team: German <http://debian.weblate.org/projects/debian-handbook"
+"/12_advanced-administration/de-DE/>\n"
+"Language: de-DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.6.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 1.9-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -73,7 +74,14 @@ msgstr "RAID und LVM"
 #, fuzzy, no-c-format
 #| msgid "<xref linkend=\"installation\" /> presented these technologies from the point of view of the installer, and how it integrated them to make their deployment easy from the start. After the initial installation, an administrator must be able to handle evolving storage space needs without having to resort to an expensive reinstallation. They must therefore master the required tools for manipulating RAID and LVM volumes."
 msgid "<xref linkend=\"installation\" /> presented these technologies from the point of view of the installer, and how it integrated them to make their deployment easy from the start. After the initial installation, an administrator must be able to handle evolving storage space needs without having to resort to an expensive reinstallation. They must therefore understand the required tools for manipulating RAID and LVM volumes."
-msgstr "<xref linkend=\"installation\" /> hat diese Techniken aus der Sicht des Installationsprogramms dargestellt und wie es sie so integriert, dass ihr Einsatz von Beginn an einfach ist. Nach der anfänglichen Installation muss ein Administrator in der Lage sein, neu auftretendem Bedarf an Speicherplatz zu begegnen, ohne auf eine aufwändige Neuinstallation zurückgreifen zu müssen. Er muss daher die Hilfsprogramme zur Handhabung von RAID- und LVM-Volumes beherrschen."
+msgstr ""
+"<xref linkend=\"installation\" /> hat diese Techniken aus der Sicht des "
+"Installationsprogramms dargestellt und wie es sie so integriert, dass ihr "
+"Einsatz von Beginn an einfach ist. Nach der anfänglichen Installation muss "
+"ein Administrator in der Lage sein, neu auftretendem Bedarf an Speicherplatz "
+"zu begegnen, ohne auf eine aufwändige Neuinstallation zurückgreifen zu "
+"müssen. Er muss daher die Hilfsprogramme zur Handhabung von RAID- und LVM-"
+"Volumes verstehenden."
 
 #. Tag: para
 #, fuzzy, no-c-format
@@ -315,28 +323,34 @@ msgid "Our example will be a server with a number of disks, some of which are al
 msgstr "Als Beispiel nehmen wir einen Server mit einer Anzahl von Platten, von denen einige bereits benutzt werden, während der Rest für die Einrichtung des RAID zur Verfügung steht. Zu Beginn haben wir die folgenden Platten und Partitionen:"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "the <filename>sda</filename> disk, 4 GB, is entirely available;"
 msgid "the <filename>sdb</filename> disk, 4 GB, is entirely available;"
-msgstr "die Platte <filename>sda</filename>, 4 GB, ist vollständig verfügbar;"
+msgstr "die Platte <filename>sdb</filename>, 4 GB, ist vollständig verfügbar;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "the <filename>sde</filename> disk, 4 GB, is also entirely available;"
 msgid "the <filename>sdc</filename> disk, 4 GB, is also entirely available;"
-msgstr "die Platte <filename>sde</filename>, 4 GB, ist ebenfalls vollständig verfügbar;"
+msgstr ""
+"die Platte <filename>sdc</filename>, 4 GB, ist ebenfalls vollständig "
+"verfügbar;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "on the <filename>sdg</filename> disk, only partition <filename>sdg2</filename> (about 4 GB) is available;"
 msgid "on the <filename>sdd</filename> disk, only partition <filename>sdd2</filename> (about 4 GB) is available;"
-msgstr "auf der Platte <filename>sdg</filename> ist nur die Partition <filename>sdg2</filename> (ungefähr 4 GB) verfügbar;"
+msgstr ""
+"auf der Platte <filename>sdd</filename> ist nur die Partition "
+"<filename>sdg2</filename> (ungefähr 4 GB) verfügbar;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "finally, a <filename>sdh</filename> disk, still 4 GB, entirely available."
 msgid "finally, a <filename>sde</filename> disk, still 4 GB, entirely available."
-msgstr "schließlich ist die Platte <filename>sdh</filename>, ebenfalls 4 GB, vollständig verfügbar."
+msgstr ""
+"schließlich ist die Platte <filename>sde</filename>, ebenfalls 4 GB, "
+"vollständig verfügbar."
 
 #. Tag: title
 #, no-c-format
@@ -956,13 +970,20 @@ msgstr ""
 "       2       8      112        -      faulty spare   /dev/sdh</computeroutput>\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Here again, the kernel automatically triggers a reconstruction phase during which the volume, although still accessible, is in a degraded mode. Once the reconstruction is over, the RAID array is back to a normal state. One can then tell the system that the <filename>sdh</filename> disk is about to be removed from the array, so as to end up with a classical RAID mirror on two disks:"
 msgid "Here again, the kernel automatically triggers a reconstruction phase during which the volume, although still accessible, is in a degraded mode. Once the reconstruction is over, the RAID array is back to a normal state. One can then tell the system that the <filename>sde</filename> disk is about to be removed from the array, so as to end up with a classical RAID mirror on two disks:"
-msgstr "Auch in diesem Fall löst der Kernel automatisch eine Rekonstruktionsphase aus, während der sich der Datenträger in eingeschränktem Zustand befindet, auch wenn er weiterhin zugänglich ist. Sobald die Rekonstruktion vorüber ist, befindet sich die RAID-Anordnung wieder in normalem Zustand. Man kann dem System dann mitteilen, dass die Platte <filename>sdh</filename> aus der Anordnung entfernt werden wird, um so zu einem typischen RAID-Spiegel auf zwei Platten zu gelangen:"
+msgstr ""
+"Auch in diesem Fall löst der Kernel automatisch eine Rekonstruktionsphase "
+"aus, während der sich der Datenträger in eingeschränktem Zustand befindet, "
+"auch wenn er weiterhin zugänglich ist. Sobald die Rekonstruktion vorüber "
+"ist, befindet sich die RAID-Anordnung wieder in normalem Zustand. Man kann "
+"dem System dann mitteilen, dass die Platte <filename>sde</filename> aus der "
+"Anordnung entfernt werden wird, um so zu einem typischen RAID-Spiegel auf "
+"zwei Platten zu gelangen:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sdh</userinput>\n"
 #| "<computeroutput>mdadm: hot removed /dev/sdh from /dev/md1\n"
@@ -982,14 +1003,16 @@ msgid ""
 "       0       8       50        0      active sync   /dev/sdd2\n"
 "       2       8       80        1      active sync   /dev/sdf</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sdh</userinput>\n"
-"<computeroutput>mdadm: hot removed /dev/sdh from /dev/md1\n"
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove "
+"/dev/sde</userinput>\n"
+"<computeroutput>mdadm: hot removed /dev/sde from /dev/md1\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "[...]\n"
 "    Number   Major   Minor   RaidDevice State\n"
 "       0       8       98        0      active sync   /dev/sdg2\n"
-"       1       8      128        1      active sync   /dev/sdi</computeroutput>\n"
+"       1       8      128        1      active sync   "
+"/dev/sdi</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1002,10 +1025,30 @@ msgid "Backing up the Configuration"
 msgstr "Die Konfiguration sichern"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Most of the meta-data concerning RAID volumes are saved directly on the disks that make up these arrays, so that the kernel can detect the arrays and their components and assemble them automatically when the system starts up. However, backing up this configuration is encouraged, because this detection isn't fail-proof, and it's only expected that it will fail precisely in sensitive circumstances. In our example, if the <filename>sdh</filename> disk failure had been real (instead of simulated) and the system had been restarted without removing this <filename>sdh</filename> disk, this disk could start working again due to having been probed during the reboot. The kernel would then have three physical elements, each claiming to contain half of the same RAID volume. Another source of confusion can come when RAID volumes from two servers are consolidated onto one server only. If these arrays were running normally before the disks were moved, the kernel would be able to detect and reassemble the pairs properly; but if the moved disks had been aggregated into an <filename>md1</filename> on the old server, and the new server already has an <filename>md1</filename>, one of the mirrors would be renamed."
 msgid "Most of the meta-data concerning RAID volumes are saved directly on the disks that make up these arrays, so that the kernel can detect the arrays and their components and assemble them automatically when the system starts up. However, backing up this configuration is encouraged, because this detection isn't fail-proof, and it is only expected that it will fail precisely in sensitive circumstances. In our example, if the <filename>sde</filename> disk failure had been real (instead of simulated) and the system had been restarted without removing this <filename>sde</filename> disk, this disk could start working again due to having been probed during the reboot. The kernel would then have three physical elements, each claiming to contain half of the same RAID volume. Another source of confusion can come when RAID volumes from two servers are consolidated onto one server only. If these arrays were running normally before the disks were moved, the kernel would be able to detect and reassemble the pairs properly; but if the moved disks had been aggregated into an <filename>md1</filename> on the old server, and the new server already has an <filename>md1</filename>, one of the mirrors would be renamed."
-msgstr "Die meisten Meta-Daten, die RAID-Datenträger betreffen, werden direkt auf den Platten gespeichert, aus denen diese Anordnungen bestehen, so dass der Kernel diese Anordnungen und ihre Komponenten erkennen und sie selbsttätig zusammenstellen kann, wenn das System hochfährt. Es wird jedoch empfohlen, eine Sicherungskopie dieser Konfiguration zu erstellen, da diese Erkennung nicht ausfallsicher ist, und da sie voraussichtlich gerade in einer prekären Situation ausfallen wird. Wenn in unserem Beispiel der Ausfall der Platte <filename>sdh</filename> tatsächlich stattgefunden hätte (statt ihn nur zu simulieren) und das System neu gestartet worden wäre, ohne die Platte <filename>sdh</filename> zu entfernen, würde diese Platte möglicherweise wieder funktionieren, da sie während des Neustarts überprüft worden wäre. Der Kernel hätte dann drei physische Komponenten, von denen jede angeblich eine Hälfte desselben RAID-Volumes enthält. Weitere Verwirrung könnte entstehen, wenn RAID-Datenträger von zwei Servern auf einem zusammengefasst werden. Falls diese Anordnungen vor ihrem Umzug normal funktionierten, wäre der Kernel in der Lage, die Paare korrekt zu erkennen und neu zusammenzustellen. Falls die verlegten Platten jedoch auf dem vorherigen Server zu einem <filename>md1</filename> zusammengefasst waren, und der jetzige Server bereits ein <filename>md1</filename> hat, würde einer der Spiegel umbenannt werden."
+msgstr ""
+"Die meisten Meta-Daten, die RAID-Datenträger betreffen, werden direkt auf "
+"den Platten gespeichert, aus denen diese Anordnungen bestehen, so dass der "
+"Kernel diese Anordnungen und ihre Komponenten erkennen und sie selbsttätig "
+"zusammenstellen kann, wenn das System hochfährt. Es wird jedoch empfohlen, "
+"eine Sicherungskopie dieser Konfiguration zu erstellen, da diese Erkennung "
+"nicht ausfallsicher ist, und da sie voraussichtlich gerade in einer prekären "
+"Situation ausfallen wird. Wenn in unserem Beispiel der Ausfall der Platte "
+"<filename>sde</filename> tatsächlich stattgefunden hätte (statt ihn nur zu "
+"simulieren) und das System neu gestartet worden wäre, ohne die Platte "
+"<filename>sde</filename> zu entfernen, würde diese Platte möglicherweise "
+"wieder funktionieren, da sie während des Neustarts überprüft worden wäre. "
+"Der Kernel hätte dann drei physische Komponenten, von denen jede angeblich "
+"eine Hälfte desselben RAID-Volumes enthält. Weitere Verwirrung könnte "
+"entstehen, wenn RAID-Datenträger von zwei Servern auf einem zusammengefasst "
+"werden. Falls diese Anordnungen vor ihrem Umzug normal funktionierten, wäre "
+"der Kernel in der Lage, die Paare korrekt zu erkennen und neu "
+"zusammenzustellen. Falls die verlegten Platten jedoch auf dem vorherigen "
+"Server zu einem <filename>md1</filename> zusammengefasst waren, und der "
+"jetzige Server bereits ein <filename>md1</filename> hat, würde einer der "
+"Spiegel umbenannt werden."
 
 #. Tag: para
 #, no-c-format
@@ -1092,7 +1135,14 @@ msgstr ""
 #, fuzzy, no-c-format
 #| msgid "One of the most useful details is the <literal>DEVICE</literal> option, which lists the devices where the system will automatically look for components of RAID volumes at start-up time. In our example, we replaced the default value, <literal>partitions</literal>, with an explicit list of device files, since we chose to use entire disks and not only partitions, for some volumes."
 msgid "One of the most useful details is the <literal>DEVICE</literal> option, which lists the devices where the system will automatically look for components of RAID volumes at start-up time. In our example, we replaced the default value, <literal>partitions containers</literal>, with an explicit list of device files, since we chose to use entire disks and not only partitions, for some volumes."
-msgstr "Einer der nützlichsten Bestandteile ist die Option <literal>DEVICE</literal>, mit der die Geräte aufgelistet werden, bei denen das System beim Start selbstständig nach Komponenten des RAID-Volumes suchen soll. In unserem Beispiel haben wir die Voreinstellung <literal>partitions</literal> durch eine eindeutige Liste mit Gerätedateien ersetzt, da wir uns entschieden haben, für einige Datenträger ganze Platten und nicht nur Partitionen zu verwenden."
+msgstr ""
+"Einer der nützlichsten Bestandteile ist die Option "
+"<literal>DEVICE</literal>, mit der die Geräte aufgelistet werden, bei denen "
+"das System beim Start selbstständig nach Komponenten des RAID-Volumes suchen "
+"soll. In unserem Beispiel haben wir die Voreinstellung <literal>partitions "
+"containers</literal> durch eine eindeutige Liste mit Gerätedateien ersetzt, "
+"da wir uns entschieden haben, für einige Datenträger ganze Platten und nicht "
+"nur Partitionen zu verwenden."
 
 #. Tag: para
 #, no-c-format
@@ -1105,7 +1155,7 @@ msgid "Fortunately, these lines can be generated automatically:"
 msgstr "Glücklicherweise können diese Zeilen automatisch erstellt werden:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
 #| "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
@@ -1115,9 +1165,12 @@ msgid ""
 "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
 "ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
-"<computeroutput>ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
-"ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432</computeroutput>\n"
+"<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief "
+"/dev/md?</userinput>\n"
+"<computeroutput>ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 "
+"UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
+"ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 "
+"UUID=6ec558ca:0c2c94a0:19bca283:95f6746</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1623,7 +1676,7 @@ msgid "To make things easier, convenience symbolic links are also created in dir
 msgstr "Zur Vereinfachung werden zudem bequeme symbolische Verknüpfungen in den Verzeichnissen angelegt, die den VGs entsprechen:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
 #| "<computeroutput>total 0\n"
@@ -1641,13 +1694,15 @@ msgid ""
 "<computeroutput>total 0\n"
 "lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_backups -&gt; ../dm-2</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
+"<computeroutput># </computeroutput><userinput>ls -l "
+"/dev/vg_critical</userinput>\n"
 "<computeroutput>total 0\n"
-"lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_base -&gt; ../dm-1\n"
-"lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_files -&gt; ../dm-0\n"
+"lrwxrwxrwx 1 root root 7  17 Jan.  17:05 lv_base -&gt; ../dm-1\n"
+"lrwxrwxrwx 1 root root 7  17 Jan.  17:05 lv_files -&gt; ../dm-0\n"
 "# </computeroutput><userinput>ls -l /dev/vg_normal</userinput>\n"
 "<computeroutput>total 0\n"
-"lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_backups -&gt; ../dm-2</computeroutput>\n"
+"lrwxrwxrwx 1 root root 7  17 Jan.  17:05 lv_backups -&gt; "
+"../dm-2</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -2089,16 +2144,16 @@ msgid "<primary><emphasis>Bochs</emphasis></primary>"
 msgstr "<primary><emphasis>VMware</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgid "<primary><emphasis>QEMU</emphasis></primary>"
-msgstr "<primary><emphasis>VMware</emphasis></primary>"
+msgstr "<primary><emphasis>QEMU</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgid "<primary><emphasis>VirtualBox</emphasis></primary>"
-msgstr "<primary><emphasis>VMware</emphasis></primary>"
+msgstr "<primary><emphasis>VirtualBox</emphasis></primary>"
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
