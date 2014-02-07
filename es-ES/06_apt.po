@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-01-12 19:39+0200\n"
+"PO-Revision-Date: 2014-02-07 23:24+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-"
 "handbook/06_apt/es-ES/>\n"
@@ -148,7 +148,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Filling in the <filename>sources.list</filename> File"
-msgstr "Completando el archivo <filename>sources.list</filename>"
+msgstr "Contenido del archivo <filename>sources.list</filename>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -218,7 +218,7 @@ msgstr ""
 #, no-c-format
 msgid "The syntax of the last field depends on the structure of the repository. In the simplest cases, you can simply indicate a subdirectory (with a required trailing slash) of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL). But in the most common case, the repositories will be structured like a Debian mirror, with multiple distributions each having multiple components. In those cases, name the chosen distribution (by its “codename” — see the list in sidebar <xref linkend=\"sidebar.bruce-perens\" /> — or by the corresponding “suites” — <literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal>), then the components (or sections) to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal> in a typical Debian mirror)."
 msgstr ""
-"La sintáxis del último campo depende de la estructura del repositorio. En "
+"La sintaxis del último campo depende de la estructura del repositorio. En "
 "los casos más simples, puede indicar un subdirectorio (con la barra final "
 "necesaria) del origen deseado (generalmente suele ser "
 "«<filename>./</filename>» que hace referencia a la ausencia de un "
@@ -368,7 +368,7 @@ msgstr ""
 msgid "Repositories for <emphasis role=\"distribution\">Stable</emphasis> Users"
 msgstr ""
 "Repositorios para usuarios de <emphasis "
-"role=\"distribution\">stable</emphasis>"
+"role=\"distribution\">Stable</emphasis>"
 
 #. Tag: para
 #, no-c-format
@@ -377,7 +377,7 @@ msgid "Here is a standard <filename>sources.list</filename> for a system running
 msgstr ""
 "Este es un archivo <filename>sources.list</filename> estándar para un "
 "sistema que ejecuta la versión <emphasis "
-"role=\"distribution\">stable</emphasis> de Debian:"
+"role=\"distribution\">Stable</emphasis> de Debian:"
 
 #. Tag: title
 #, no-c-format
@@ -440,7 +440,7 @@ msgid "This file lists all sources of packages associated with the <emphasis rol
 msgstr ""
 "Este archivo enumera todos los orígenes de paquetes asociados con la versión "
 "<emphasis role=\"distribution\">Wheezy</emphasis> de Debian (la versión "
-"<emphasis role=\"distribution\">stable</emphasis> cuando esto fue escrito). "
+"<emphasis role=\"distribution\">Stable</emphasis> cuando esto fue escrito). "
 "Decidimos utilizar «wheezy» explícitamente en lugar del alias «stable» "
 "correspondiente (<literal>stable</literal>, <literal>stable-"
 "updates</literal>, <literal>stable-backports</literal>) ya que no deseamos "
@@ -494,9 +494,9 @@ msgstr ""
 msgid "As a side note, most of what this section says about <emphasis role=\"distribution\">Stable</emphasis> applies equally well to <emphasis role=\"distribution\">Oldstable</emphasis> since the latter is just an older <emphasis role=\"distribution\">Stable</emphasis> that is maintained in parallel."
 msgstr ""
 "Como nota adicional, la mayoría de lo que diga esta sección sobre <emphasis "
-"role=\"distribution\">stable</emphasis> también es aplicable a <emphasis "
-"role=\"distribution\">oldstable</emphasis> ya que esta última es sólo una "
-"versión <emphasis role=\"distribution\">stable</emphasis> más antigua que se "
+"role=\"distribution\">Stable</emphasis> también es aplicable a <emphasis "
+"role=\"distribution\">Oldstable</emphasis> ya que esta última es sólo una "
+"versión <emphasis role=\"distribution\">Stable</emphasis> más antigua que se "
 "mantiene en paralelo."
 
 #. Tag: title
@@ -534,23 +534,23 @@ msgstr ""
 "team\">Administradores de sistemas de Debian</link>). Este compendio contiene "
 "las actualizaciones de seguridad (preparadas por el equipo de seguridad de "
 "Debian, «Debian Security Team», y/o por los encargados de los paquetes) para "
-"la distribución <emphasis role=\"distribution\">stable</emphasis>."
+"la distribución <emphasis role=\"distribution\">Stable</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "The server can also host security updates for <emphasis role=\"distribution\">Testing</emphasis> but this doesn't happen very often since those updates tend to reach <emphasis role=\"distribution\">Testing</emphasis> via the regular flow of updates coming from <emphasis role=\"distribution\">Unstable</emphasis>."
 msgstr ""
 "El servidor también puede contener actualizaciones de seguridad para "
-"<emphasis role=\"distribution\">testing</emphasis>, pero esto no sucede "
+"<emphasis role=\"distribution\">Testing</emphasis>, pero esto no sucede "
 "frecuentemente ya que dichas actualizaciones suelen llegar a <emphasis "
-"role=\"distribution\">testing</emphasis> a través del flujo normal de "
+"role=\"distribution\">Testing</emphasis> a través del flujo normal de "
 "actualizaciones provenientes de <emphasis "
-"role=\"distribution\">unstable</emphasis>."
+"role=\"distribution\">Unstable</emphasis>."
 
 #. Tag: title
 #, no-c-format
 msgid "Stable Updates"
-msgstr "Actualizaciones de «stable»"
+msgstr "Actualizaciones de Stable"
 
 #. Tag: indexterm
 #, no-c-format
@@ -659,7 +659,7 @@ msgstr "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib no
 #. Tag: title
 #, no-c-format
 msgid "Stable Backports"
-msgstr "Retroadaptaciones para «stable»"
+msgstr "Retroadaptaciones para Stable"
 
 #. Tag: indexterm
 #, no-c-format
@@ -733,7 +733,7 @@ msgstr ""
 "Siempre se crean las retroadaptaciones de <literal>stable-"
 "backports</literal> de los paquetes disponibles en <emphasis "
 "role=\"distribution\">Testing</emphasis>. Esto asegura que todas las "
-"retroadaptaciones isntaladas se actualizarán a la versión estable "
+"retroadaptaciones instaladas se actualizarán a la versión estable "
 "correspondiente cuando se encuentre disponible la siguiente versión estable "
 "de Debian."
 
@@ -1686,7 +1686,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Managing Package Priorities"
-msgstr "Gestionando las prioridades de los paquetes"
+msgstr "Gestión de prioridades de los paquetes"
 
 #. Tag: para
 #, no-c-format
@@ -1800,7 +1800,9 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Priority of <emphasis role=\"distribution\">experimental</emphasis>"
-msgstr "<emphasis>CASO ESPECÍFICO</emphasis> La prioridad de <emphasis role=\"distribution\">experimental</emphasis>"
+msgstr ""
+"<emphasis>CASO ESPECÍFICO</emphasis> La prioridad de <emphasis "
+"role=\"distribution\">Experimental</emphasis>"
 
 #. Tag: para
 #, no-c-format
@@ -1920,7 +1922,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Working with Several Distributions"
-msgstr "Trabajar con varias distribuciones"
+msgstr "Trabajo con varias distribuciones"
 
 #. Tag: para
 #, no-c-format
@@ -2487,7 +2489,7 @@ msgstr "Tenga cuidado que si algunos paquetes son marcados como automáticos y n
 #. Tag: title
 #, no-c-format
 msgid "Managing Recommendations, Suggestions and Tasks"
-msgstr "Administrando recomendaciones, sugerencias y tareas"
+msgstr "Administración de recomendaciones, sugerencias y tareas"
 
 #. Tag: para
 #, no-c-format
@@ -2589,7 +2591,7 @@ msgstr "gestor de paquetes <command>synaptic</command>"
 #. Tag: title
 #, no-c-format
 msgid "Checking Package Authenticity"
-msgstr "Comprobando la autenticidad de un paquete"
+msgstr "Comprobación de la autenticidad de un paquete"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2791,7 +2793,7 @@ msgstr "Una vez que las llaves apropiadas se ecuentran en el conjunto, APT revis
 #. Tag: title
 #, no-c-format
 msgid "Upgrading from One Stable Distribution to the Next"
-msgstr "Actualizando de una distribución estable a la siguiente"
+msgstr "Actualización de una distribución estable a la siguiente"
 
 #. Tag: para
 #, no-c-format
@@ -2917,7 +2919,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Handling Problems after an Upgrade"
-msgstr "Afrontando problemas tras una actualización"
+msgstr "Manejo de problemas tras una actualización"
 
 #. Tag: para
 #, no-c-format
@@ -2971,7 +2973,7 @@ msgstr "A veces el paquete corregido no está disponible en esta sección porque
 #. Tag: title
 #, no-c-format
 msgid "Keeping a System Up to Date"
-msgstr "Manteniendo un sistema actualizado"
+msgstr "Manutención de un sistema actualizado"
 
 #. Tag: para
 #, no-c-format
@@ -3187,7 +3189,7 @@ msgstr "Para reconfigurar <command>debconf</command> utilice <command>dpkg-recon
 #. Tag: title
 #, no-c-format
 msgid "Handling Command Line Interactions"
-msgstr "Gestionando interacciones de línea de órdenes"
+msgstr "Manejo de interacciones de línea de órdenes"
 
 #. Tag: para
 #, no-c-format
@@ -3266,7 +3268,7 @@ msgstr "En el laboratorio, las pocas máquinas que utilizan <emphasis role=\"dis
 #. Tag: title
 #, no-c-format
 msgid "Searching for Packages"
-msgstr "Buscar paquetes"
+msgstr "Búsqueda de paquetes"
 
 #. Tag: para
 #, no-c-format
