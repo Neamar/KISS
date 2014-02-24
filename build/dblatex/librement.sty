@@ -263,12 +263,12 @@
       \begin{minipage}[t]{4cm}
         \ifx\relax#2\relax
           \begin{tabular}[t]{@{}p{4cm}@{}}
-            \titreencadrefont\raggedleft#3\tabularnewline
+            \titreencadrefont\raggedleft\textbf{#3}\tabularnewline
           \end{tabular}%
         \else
           \begin{tabular}[t]{@{}p{4cm}@{}}
             \raggedleft\surtitreencadrefont\textsc{#2}\tabularnewline\hline
-            \titreencadrefont\raggedleft#3\tabularnewline
+            \titreencadrefont\raggedleft\textbf{#3}\tabularnewline
           \end{tabular}%
         \fi
       \end{minipage}%
@@ -387,19 +387,21 @@
 
 % couleur
 \usepackage{xcolor}
-\definecolor{textgray}{gray}{.4}
+\definecolor{textgray}{gray}{.5}
 
 % chapos
 \def\@highlights{}
 \newenvironment{highlight}{%
-  \begin{minipage}{.8\linewidth}
+  \begin{minipage}{\linewidth}
     \itshape
 }{\end{minipage}}
 \newcommand\highlights[1]{%
   \renewcommand\@highlights{%
     \par\vspace{2.5cm}
-    \begin{minipage}{.8\linewidth}
+    \begin{minipage}{\linewidth}
+      \begin{flushleft}
       \itshape #1
+      \end{flushleft}
     \end{minipage}%
   }%
 }
@@ -459,7 +461,7 @@
 \sffamily  \fontsize{8}{10}\selectfont
 }
 \newcommand\foliominitocfont{%
-\sffamily  \fontsize{10}{12}\selectfont
+\sffamily  \fontsize{10}{12}\color{textgray}\selectfont
 }
 \newcommand\chapitrenumfont{%
 \sffamily  \fontsize{28}{30}\selectfont
@@ -498,15 +500,17 @@
   \fontsize{7}{7}\selectfont
 }
 \newcommand\surtitreencadrefont{%
-  \fontsize{9}{11}\selectfont
-\sffamily  \bfseries
+  \fontsize{7}{9}\selectfont
+\sffamily
 }
 \newcommand\titreencadrefont{%
   \fontsize{9}{11}\selectfont
-\sffamily}
+\sffamily
+}
 \newcommand\encadrefont{%
   \fontsize{9}{11}\selectfont
-\sffamily}
+\sffamily
+}
 \newcommand\urlfont{%
   {% \relsize{-2}
     % 

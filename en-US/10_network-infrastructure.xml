@@ -1564,28 +1564,26 @@ $TTL    604800
   </section>
   <section id="sect.dhcp">
     <title>DHCP</title>
-    <section id="sect.dhcp-presentation">
-      <title>Presentation</title>
 
-      <para>DHCP (for <emphasis>Dynamic Host Configuration
-      Protocol</emphasis>) is a protocol by which a machine can
-      automatically get its network configuration when it boots. This
-      allows centralizing the management of network configurations, and
-      ensuring that all desktop machines get similar settings.</para>
-      <indexterm><primary>DHCP</primary></indexterm>
-      <indexterm><primary>Dynamic Host Configuration Protocol</primary></indexterm>
-      <indexterm><primary>network</primary><secondary>DHCP configuration</secondary></indexterm>
+    <para>DHCP (for <emphasis>Dynamic Host Configuration
+    Protocol</emphasis>) is a protocol by which a machine can
+    automatically get its network configuration when it boots. This
+    allows centralizing the management of network configurations, and
+    ensuring that all desktop machines get similar settings.</para>
+    <indexterm><primary>DHCP</primary></indexterm>
+    <indexterm><primary>Dynamic Host Configuration Protocol</primary></indexterm>
+    <indexterm><primary>network</primary><secondary>DHCP configuration</secondary></indexterm>
 
-      <para>A DHCP server provides many network-related parameters. The
-      most common of these is an IP address and the network where the
-      machine belongs, but it can also provide other information, such as
-      DNS servers, WINS servers, NTP servers, and so on.</para>
+    <para>A DHCP server provides many network-related parameters. The
+    most common of these is an IP address and the network where the
+    machine belongs, but it can also provide other information, such as
+    DNS servers, WINS servers, NTP servers, and so on.</para>
 
-      <para>The Internet Software Consortium (also involved in developing
-      <command>bind</command>) is the main author of the DHCP server. The
-      matching Debian package is <emphasis
-      role="pkg">isc-dhcp-server</emphasis>.</para>
-    </section>
+    <para>The Internet Software Consortium (also involved in developing
+    <command>bind</command>) is the main author of the DHCP server. The
+    matching Debian package is <emphasis
+    role="pkg">isc-dhcp-server</emphasis>.</para>
+
     <section id="sect.dhcp-config">
       <title>Configuring</title>
 

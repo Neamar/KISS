@@ -103,7 +103,7 @@ actual page. By default the page is centered as required in this mode.
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
-<xsl:template match="literal">
+<xsl:template match="literal|guimenu|guimenuitem|guisubmenu|keycap">
   <xsl:call-template name="inline.sansseq"/>
 </xsl:template>
 

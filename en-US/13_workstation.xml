@@ -498,560 +498,557 @@
     </section>
   </section>
   <section id="sect.main-desktop-tools">
-    <title>Tools</title>
+    <title>Email</title>
+    <indexterm><primary>email</primary><secondary>software</secondary></indexterm>
     <section>
-      <title>Email</title>
-      <indexterm><primary>email</primary><secondary>software</secondary></indexterm>
-      <section>
-        <title>Evolution</title>
-        <indexterm><primary>Evolution</primary></indexterm>
+      <title>Evolution</title>
+      <indexterm><primary>Evolution</primary></indexterm>
 
-        <sidebar>
-          <title><emphasis>COMMUNITY</emphasis> <emphasis>Popular</emphasis> packages</title>
+      <sidebar>
+	<title><emphasis>COMMUNITY</emphasis> <emphasis>Popular</emphasis> packages</title>
 
-	  <para>Installing the <emphasis
-	  role="pkg">popularity-contest</emphasis> package enables
-	  participation in an automated survey that informs the Debian
-	  project about the most popular packages. A script is run weekly
-	  by <command>cron</command> which sends (by HTTP or email) an
-	  anonymized list of the installed packages and the latest access
-	  date for the files they contain. This allows differentiating,
-	  among the installed packages, those that are actually
-	  used.</para>
-          <indexterm><primary><emphasis role="pkg">popularity-contest</emphasis></primary></indexterm>
-          <indexterm><primary>popularity of packages</primary></indexterm>
-          <indexterm><primary>package</primary><secondary>popularity</secondary></indexterm>
+	<para>Installing the <emphasis
+	role="pkg">popularity-contest</emphasis> package enables
+	participation in an automated survey that informs the Debian
+	project about the most popular packages. A script is run weekly
+	by <command>cron</command> which sends (by HTTP or email) an
+	anonymized list of the installed packages and the latest access
+	date for the files they contain. This allows differentiating,
+	among the installed packages, those that are actually
+	used.</para>
+	<indexterm><primary><emphasis role="pkg">popularity-contest</emphasis></primary></indexterm>
+	<indexterm><primary>popularity of packages</primary></indexterm>
+	<indexterm><primary>package</primary><secondary>popularity</secondary></indexterm>
 
-	  <para>This information is a great help to the Debian project. It
-	  is used to determine which packages should go on the first
-	  installation disks. The installation data is also an important
-	  factor used to decide whether to remove a package with very few
-	  users from the distribution. We heartily recommend installing the
-	  <emphasis role="pkg">popularity-contest</emphasis> package, and
-	  participating to the survey.</para>
+	<para>This information is a great help to the Debian project. It
+	is used to determine which packages should go on the first
+	installation disks. The installation data is also an important
+	factor used to decide whether to remove a package with very few
+	users from the distribution. We heartily recommend installing the
+	<emphasis role="pkg">popularity-contest</emphasis> package, and
+	participating to the survey.</para>
 
-	  <para>The collected data are made public every day. <ulink
-	  type="block" url="http://popcon.debian.org/"/></para>
+	<para>The collected data are made public every day. <ulink
+	type="block" url="http://popcon.debian.org/"/></para>
 
-	  <para>These statistics can also help choose between two packages
-	  that would seem otherwise equivalent. Choosing the more popular
-	  package increases the probability of making a good choice.</para>
-        </sidebar>
+	<para>These statistics can also help choose between two packages
+	that would seem otherwise equivalent. Choosing the more popular
+	package increases the probability of making a good choice.</para>
+      </sidebar>
 
-	<para>Evolution is the GNOME email client and can be installed with
-	<command>apt-get install evolution</command>. Evolution goes beyond
-	a simple email client, and also provides a calendar, an address
-	book, a task list, and a memo (free-form note) application. Its
-	email component includes a powerful message indexing system, and
-	allows for the creation of virtual folders based on search queries
-	on all archived messages. In other words, all messages are stored
-	the same way but displayed in a folder-based organization, each
-	folder containing messages that match a set of filtering
-	criteria.</para>
-
-        <figure>
-          <title>The Evolution email software</title>
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="images/evolution.png" scalefit="1" width="70%"/>
-            </imageobject>
-          </mediaobject>
-        </figure>
-
-	<para>An extension to Evolution allows integration to a Microsoft
-	Exchange email system; the required package is <emphasis
-	role="pkg">evolution-exchange</emphasis>.</para>
-        <indexterm><primary><emphasis role="pkg">evolution-exchange</emphasis></primary></indexterm>
-      </section>
-      <section>
-        <title>KMail</title>
-        <indexterm><primary>KMail</primary></indexterm>
-
-	<para>The KDE email software can be installed with <command>apt-get
-	install kmail</command>. KMail only handles email, but it belongs
-	to a software suite called KDE-PIM (for <emphasis>Personal
-	Information Manager</emphasis>) that includes features such as
-	address books, a calendar component, and so on. KMail has all the
-	features one would expect from an excellent email client.</para>
-
-        <figure>
-          <title>The KMail email software</title>
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="images/kmail.png" scalefit="1" width="70%"/>
-            </imageobject>
-          </mediaobject>
-        </figure>
-      </section>
-      <section>
-        <title>Thunderbird and Icedove</title>
-
-	<para>This email software, included in the <emphasis
-	role="pkg">icedove</emphasis> package, is part of the Mozilla
-	software suite. Various localization sets are available in
-	<emphasis role="pkg">icedove-l10n-*</emphasis> packages; the
-	<emphasis role="pkg">enigmail</emphasis> extension handles message
-	encrypting and signing (alas, it is not available in all
-	languages).</para>
-
-        <figure>
-          <title>The Icedove email software</title>
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="images/icedove.png" scalefit="1" width="70%"/>
-            </imageobject>
-          </mediaobject>
-        </figure>
-        <indexterm><primary>Thunderbird, Mozilla</primary></indexterm>
-        <indexterm><primary>Mozilla</primary><secondary>Thunderbird</secondary></indexterm>
-
-	<para>Thunderbird is one of the best email clients, and it seems to
-	be a great success, just like Mozilla Firefox.</para>
-
-	<para>Strictly speaking, Debian <emphasis
-	role="distribution">Wheezy</emphasis> contains Icedove, and not
-	Thunderbird, for legal reasons we will detail in the “Iceweasel,
-	Firefox and others” section later on; but apart from their names
-	(and icons), there are no real differences between them.</para>
-      </section>
-    </section>
-    <section>
-      <title>Web Browsers</title>
-      <indexterm><primary>Web browser</primary></indexterm>
-      <indexterm><primary>browser, Web</primary></indexterm>
-
-      <para>Epiphany, the web browser in the GNOME suite, uses the WebKit
-      display engine developed by Apple for its Safari browser. The
-      relevant package is <emphasis
-      role="pkg">epiphany-browser</emphasis>.</para>
-      <indexterm><primary>WebKit</primary></indexterm>
-      <indexterm><primary>Epiphany</primary></indexterm>
-
-      <para>Konqueror, the KDE file manager, also behaves as a web browser.
-      It uses the KDE-specific KHTML rendering engine; KHTML is an
-      excellent engine, as witnessed by the fact that Apple's WebKit is
-      based on KHTML. Konqueror is available in the <emphasis
-      role="pkg">konqueror</emphasis> package.
-      <indexterm><primary>Konqueror</primary></indexterm></para>
-
-      <para>Users not satisfied by either of the above can use Iceweasel.
-      This browser, available in the <emphasis
-      role="pkg">iceweasel</emphasis> package, uses the Mozilla project's
-      Gecko renderer, with a thin and extensible interface on top.
-      <indexterm><primary>Gecko</primary></indexterm>
-      <indexterm><primary>Mozilla</primary><secondary>Firefox</secondary></indexterm>
-      <indexterm><primary>Firefox, Mozilla</primary></indexterm></para>
+      <para>Evolution is the GNOME email client and can be installed with
+      <command>apt-get install evolution</command>. Evolution goes beyond
+      a simple email client, and also provides a calendar, an address
+      book, a task list, and a memo (free-form note) application. Its
+      email component includes a powerful message indexing system, and
+      allows for the creation of virtual folders based on search queries
+      on all archived messages. In other words, all messages are stored
+      the same way but displayed in a folder-based organization, each
+      folder containing messages that match a set of filtering
+      criteria.</para>
 
       <figure>
-        <title>The Iceweasel web browser</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="images/iceweasel.png" scalefit="1" width="70%"/>
-          </imageobject>
-        </mediaobject>
+	<title>The Evolution email software</title>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="images/evolution.png" scalefit="1" width="70%"/>
+	  </imageobject>
+	</mediaobject>
       </figure>
 
-      <sidebar id="sidebar.firefox-iceweasel">
-        <title><emphasis>CULTURE</emphasis> Iceweasel, Firefox and others</title>
-        <indexterm><primary>Iceweasel</primary></indexterm>
-        <indexterm><primary>Icedove</primary></indexterm>
+      <para>An extension to Evolution allows integration to a Microsoft
+      Exchange email system; the required package is <emphasis
+      role="pkg">evolution-exchange</emphasis>.</para>
+      <indexterm><primary><emphasis role="pkg">evolution-exchange</emphasis></primary></indexterm>
+    </section>
+    <section>
+      <title>KMail</title>
+      <indexterm><primary>KMail</primary></indexterm>
 
-	<para>Many users will no doubt be surprised by the absence of
-	Mozilla Firefox in the Debian <emphasis
-	role="distribution">Wheezy</emphasis> menus. No need to panic: the
-	<emphasis role="pkg">iceweasel</emphasis> package contains
-	Iceweasel, which is basically Firefox under another name.</para>
+      <para>The KDE email software can be installed with <command>apt-get
+      install kmail</command>. KMail only handles email, but it belongs
+      to a software suite called KDE-PIM (for <emphasis>Personal
+      Information Manager</emphasis>) that includes features such as
+      address books, a calendar component, and so on. KMail has all the
+      features one would expect from an excellent email client.</para>
 
-	<para>The rationale behind this renaming is a result of the usage
-	rules imposed by the Mozilla Foundation on the
-	<trademark>Firefox</trademark> registered trademark: any software
-	named Firefox must use the official Firefox logo and icons.
-	However, since these elements are not released under a free
-	license, Debian cannot distribute them in its
-	<emphasis>main</emphasis> section. Rather than moving the whole
-	browser to <emphasis>non-free</emphasis>, the package maintainer
-	chose to use a different name.</para>
+      <figure>
+	<title>The KMail email software</title>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="images/kmail.png" scalefit="1" width="70%"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+    </section>
+    <section>
+      <title>Thunderbird and Icedove</title>
 
-	<para>The <command>firefox</command> command still exists in the
-	<emphasis role="pkg">iceweasel</emphasis> package, but only for
-	compatibility with tools that would try to use it.</para>
+      <para>This email software, included in the <emphasis
+      role="pkg">icedove</emphasis> package, is part of the Mozilla
+      software suite. Various localization sets are available in
+      <emphasis role="pkg">icedove-l10n-*</emphasis> packages; the
+      <emphasis role="pkg">enigmail</emphasis> extension handles message
+      encrypting and signing (alas, it is not available in all
+      languages).</para>
 
-	<para>For similar reasons, the <trademark>Thunderbird</trademark>
-	email client was renamed to Icedove in a similar fashion.</para>
-      </sidebar>
-      <indexterm><primary>Mozilla</primary><secondary>Firefox</secondary></indexterm>
-      <indexterm><primary>Firefox, Mozilla</primary></indexterm>
+      <figure>
+	<title>The Icedove email software</title>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="images/icedove.png" scalefit="1" width="70%"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <indexterm><primary>Thunderbird, Mozilla</primary></indexterm>
+      <indexterm><primary>Mozilla</primary><secondary>Thunderbird</secondary></indexterm>
+
+      <para>Thunderbird is one of the best email clients, and it seems to
+      be a great success, just like Mozilla Firefox.</para>
+
+      <para>Strictly speaking, Debian <emphasis
+      role="distribution">Wheezy</emphasis> contains Icedove, and not
+      Thunderbird, for legal reasons we will detail in the “Iceweasel,
+      Firefox and others” section later on; but apart from their names
+      (and icons), there are no real differences between them.</para>
+    </section>
+  </section>
+  <section>
+    <title>Web Browsers</title>
+    <indexterm><primary>Web browser</primary></indexterm>
+    <indexterm><primary>browser, Web</primary></indexterm>
+
+    <para>Epiphany, the web browser in the GNOME suite, uses the WebKit
+    display engine developed by Apple for its Safari browser. The
+    relevant package is <emphasis
+    role="pkg">epiphany-browser</emphasis>.</para>
+    <indexterm><primary>WebKit</primary></indexterm>
+    <indexterm><primary>Epiphany</primary></indexterm>
+
+    <para>Konqueror, the KDE file manager, also behaves as a web browser.
+    It uses the KDE-specific KHTML rendering engine; KHTML is an
+    excellent engine, as witnessed by the fact that Apple's WebKit is
+    based on KHTML. Konqueror is available in the <emphasis
+    role="pkg">konqueror</emphasis> package.
+    <indexterm><primary>Konqueror</primary></indexterm></para>
+
+    <para>Users not satisfied by either of the above can use Iceweasel.
+    This browser, available in the <emphasis
+    role="pkg">iceweasel</emphasis> package, uses the Mozilla project's
+    Gecko renderer, with a thin and extensible interface on top.
+    <indexterm><primary>Gecko</primary></indexterm>
+    <indexterm><primary>Mozilla</primary><secondary>Firefox</secondary></indexterm>
+    <indexterm><primary>Firefox, Mozilla</primary></indexterm></para>
+
+    <figure>
+      <title>The Iceweasel web browser</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="images/iceweasel.png" scalefit="1" width="70%"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+
+    <sidebar id="sidebar.firefox-iceweasel">
+      <title><emphasis>CULTURE</emphasis> Iceweasel, Firefox and others</title>
+      <indexterm><primary>Iceweasel</primary></indexterm>
+      <indexterm><primary>Icedove</primary></indexterm>
+
+      <para>Many users will no doubt be surprised by the absence of
+      Mozilla Firefox in the Debian <emphasis
+      role="distribution">Wheezy</emphasis> menus. No need to panic: the
+      <emphasis role="pkg">iceweasel</emphasis> package contains
+      Iceweasel, which is basically Firefox under another name.</para>
+
+      <para>The rationale behind this renaming is a result of the usage
+      rules imposed by the Mozilla Foundation on the
+      <trademark>Firefox</trademark> registered trademark: any software
+      named Firefox must use the official Firefox logo and icons.
+      However, since these elements are not released under a free
+      license, Debian cannot distribute them in its
+      <emphasis>main</emphasis> section. Rather than moving the whole
+      browser to <emphasis>non-free</emphasis>, the package maintainer
+      chose to use a different name.</para>
+
+      <para>The <command>firefox</command> command still exists in the
+      <emphasis role="pkg">iceweasel</emphasis> package, but only for
+      compatibility with tools that would try to use it.</para>
+
+      <para>For similar reasons, the <trademark>Thunderbird</trademark>
+      email client was renamed to Icedove in a similar fashion.</para>
+    </sidebar>
+    <indexterm><primary>Mozilla</primary><secondary>Firefox</secondary></indexterm>
+    <indexterm><primary>Firefox, Mozilla</primary></indexterm>
+
+    <sidebar>
+      <title><emphasis>CULTURE</emphasis> Mozilla</title>
+
+      <para>Netscape Navigator was the standard browser when the web
+      started reaching the masses, but it was progressively left behind
+      when Microsoft Internet Explorer came around. Faced with this
+      failure, Netscape (the company) decided to “free” its source
+      code, by releasing it under a free license, to give it a second
+      life. This was the beginning of the Mozilla project. After many
+      years of development, the results are more than satisfying: the
+      Mozilla project brought forth an HTML rendering engine (called
+      Gecko) that is among the most standard-compliant. This rendering
+      engine is in particular used by the Mozilla Firefox browser, which
+      is one of the most successful browsers, with a fast-growing user
+      base.</para>
+      <indexterm><primary>Mozilla</primary></indexterm>
+      <indexterm><primary>Netscape</primary></indexterm>
+    </sidebar>
+
+    <para><emphasis role="distribution">Wheezy</emphasis> also brings a
+    relative newcomer on the web browser scene, Chromium (available in
+    the <emphasis role="pkg">chromium-browser</emphasis> package). This
+    browser is developed by Google at such a fast pace that maintaining a
+    single version of it across the whole lifespan of Debian <emphasis
+    role="distribution">Wheezy</emphasis> is unlikely to be possible.
+    Its clear purpose is to make web services more attractive, both by
+    optimizing the browser for performance and by increasing the user's
+    security. The free code that powers Chromium is also used by its
+    proprietary version called Google Chrome.</para>
+  </section>
+  <section>
+    <title>Development</title>
+    <section>
+      <title>Tools for GTK+ on GNOME</title>
+
+      <para>Anjuta (in the <emphasis role="pkg">anjuta</emphasis>
+      package) is a development environment optimized for creating GTK+
+      applications for GNOME. Glade (in the <emphasis
+      role="pkg">glade</emphasis> package) is an application designed to
+      create GTK+ graphical interfaces for GNOME and save them in an XML
+      file. These XML files can then be loaded by the
+      <emphasis>libglade</emphasis> shared library, which can dynamically
+      recreate the saved interfaces; such a feature can be interesting,
+      for instance for plugins that require dialogs.</para>
+      <indexterm><primary>Anjuta</primary></indexterm>
+      <indexterm><primary>Glade</primary></indexterm>
+
+      <para>The scope of Anjuta is to combine, in a modular way, all the
+      features one would expect from an integrated development
+      environment.</para>
+    </section>
+    <section>
+      <title>Tools for Qt on KDE</title>
+
+      <para>The equivalent applications for KDE are KDevelop (in the
+      <emphasis role="pkg">kdevelop</emphasis> package) for the
+      development environment, and Qt Designer (in the <emphasis
+      role="pkg">qt4-designer</emphasis> package) for the design of
+      graphical interfaces for Qt applications on KDE.</para>
+
+      <para>The next versions of these applications should be better
+      integrated together, thanks to the KParts component system.</para>
+      <indexterm><primary>KDevelop</primary></indexterm>
+      <indexterm><primary>Qt</primary><secondary>Designer</secondary></indexterm>
+    </section>
+  </section>
+  <section>
+    <title>Collaborative Work</title>
+    <indexterm><primary>Collaborative Work</primary></indexterm>
+    <section>
+      <title>Working in Groups: <foreignphrase>groupware</foreignphrase></title>
+      <indexterm><primary><emphasis>groupware</emphasis></primary></indexterm>
+
+      <para>Groupware tools tend to be relatively complex
+      to maintain because they aggregate multiple tools and
+      have requirements that are not always easy to reconcile in
+      the context of an integrated distribution. Thus there
+      is a long list of groupware that were once available
+      in Debian but have been dropped for lack of maintainers
+      or incompatibility with other (newer) software in Debian.
+      It has been the case of PHPGroupware, eGroupware, and
+      Kolab.
+      <ulink type="block" url="http://www.phpgroupware.org/"/>
+      <ulink type="block" url="http://www.egroupware.org/"/>
+      <ulink type="block" url="http://www.kolab.org/"/>
+      </para>
+      <indexterm><primary>PHPGroupware</primary></indexterm>
+      <indexterm><primary>eGroupware</primary></indexterm>
+      <indexterm><primary>Kolab</primary></indexterm>
+
+      <para>All is not lost though. Many of the features
+      traditionally provided by “groupware” software are
+      increasingly integrated into “standard” software. This is
+      reducing the requirement for specific, specialized groupware
+      software. On the other hand, this usually requires a specific
+      server. A good example for such a server is Kolab, that can
+      integrate into KDE (Kontact, Kmail, and so on), the Horde
+      webmail, Thunderbird (via a plugin) and even into Microsoft
+      Outlook. More interestingly, Citadel (in the <emphasis
+      role="pkg">citadel-suite</emphasis> package) and Sogo (in the
+      <emphasis role="pkg">sogo</emphasis> package) are alternatives
+      that are available in Debian <emphasis
+      role="distribution">Wheezy</emphasis>.</para>
+
+    </section>
+    <section>
+      <title>Instant Messaging Systems</title>
+      <indexterm><primary>messaging</primary><secondary>instant</secondary></indexterm>
+
+      <para>When setting up an internal instant messaging system for a
+      company, the obvious choice is Jabber: its protocol is an open
+      standard (XMPP), and there is no shortage of features. The messages
+      can be encrypted, which can be a real bonus, and gateways can be
+      set up between a Jabber server and other instant messaging networks
+      such as ICQ, AIM, Yahoo, MSN, and so on.</para>
+      <indexterm><primary>Jabber</primary></indexterm>
+      <indexterm><primary>XMPP</primary></indexterm>
+      <indexterm><primary>ICQ</primary></indexterm>
+      <indexterm><primary>AIM</primary></indexterm>
+      <indexterm><primary><emphasis>Messenger</emphasis></primary></indexterm>
 
       <sidebar>
-        <title><emphasis>CULTURE</emphasis> Mozilla</title>
+	<title><emphasis>ALTERNATIVE</emphasis> Internet Relay Chat</title>
 
-	<para>Netscape Navigator was the standard browser when the web
-	started reaching the masses, but it was progressively left behind
-	when Microsoft Internet Explorer came around. Faced with this
-	failure, Netscape (the company) decided to “free” its source
-	code, by releasing it under a free license, to give it a second
-	life. This was the beginning of the Mozilla project. After many
-	years of development, the results are more than satisfying: the
-	Mozilla project brought forth an HTML rendering engine (called
-	Gecko) that is among the most standard-compliant. This rendering
-	engine is in particular used by the Mozilla Firefox browser, which
-	is one of the most successful browsers, with a fast-growing user
-	base.</para>
-        <indexterm><primary>Mozilla</primary></indexterm>
-        <indexterm><primary>Netscape</primary></indexterm>
+	<para>IRC can also be considered, instead of Jabber. This system
+	is more centered around the concept of channels, the name of
+	which starts with a hash sign <literal>#</literal>. Each channel
+	is usually targeted at a specific topic and any number of people
+	can join a channel to discuss it (but users can still have
+	one-to-one private conversations if needed). The IRC protocol is
+	older, and does not allow end-to-end encryption of the messages;
+	it is still possible to encrypt the communications between the
+	users and the server by tunneling the IRC protocol inside
+	SSL.</para>
+	<indexterm><primary>IRC</primary></indexterm>
+	<indexterm><primary><foreignphrase>Internet Relay Chat</foreignphrase></primary></indexterm>
+
+	<para>IRC clients are a bit more complex, and they usually
+	provide many features that are of limited use in a corporate
+	environment. For instance, channel “operators” are users
+	endowed with the ability to kick other users from a channel, or
+	even ban them permanently, when the normal discussion is
+	disrupted.</para>
+
+	<para>Since the IRC protocol is very old, many clients are
+	available to cater for many user groups; examples include XChat
+	and Smuxi (graphical clients based on GTK+), Irssi (text mode),
+	Erc (integrated to Emacs), Chatzilla (in the Mozilla software
+	suite), and so on.</para>
       </sidebar>
-
-      <para><emphasis role="distribution">Wheezy</emphasis> also brings a
-      relative newcomer on the web browser scene, Chromium (available in
-      the <emphasis role="pkg">chromium-browser</emphasis> package). This
-      browser is developed by Google at such a fast pace that maintaining a
-      single version of it across the whole lifespan of Debian <emphasis
-      role="distribution">Wheezy</emphasis> is unlikely to be possible.
-      Its clear purpose is to make web services more attractive, both by
-      optimizing the browser for performance and by increasing the user's
-      security. The free code that powers Chromium is also used by its
-      proprietary version called Google Chrome.</para>
-    </section>
-    <section>
-      <title>Development</title>
-      <section>
-        <title>Tools for GTK+ on GNOME</title>
-
-	<para>Anjuta (in the <emphasis role="pkg">anjuta</emphasis>
-	package) is a development environment optimized for creating GTK+
-	applications for GNOME. Glade (in the <emphasis
-	role="pkg">glade</emphasis> package) is an application designed to
-	create GTK+ graphical interfaces for GNOME and save them in an XML
-	file. These XML files can then be loaded by the
-	<emphasis>libglade</emphasis> shared library, which can dynamically
-	recreate the saved interfaces; such a feature can be interesting,
-	for instance for plugins that require dialogs.</para>
-        <indexterm><primary>Anjuta</primary></indexterm>
-        <indexterm><primary>Glade</primary></indexterm>
-
-	<para>The scope of Anjuta is to combine, in a modular way, all the
-	features one would expect from an integrated development
-	environment.</para>
-      </section>
-      <section>
-        <title>Tools for Qt on KDE</title>
-
-	<para>The equivalent applications for KDE are KDevelop (in the
-	<emphasis role="pkg">kdevelop</emphasis> package) for the
-	development environment, and Qt Designer (in the <emphasis
-	role="pkg">qt4-designer</emphasis> package) for the design of
-	graphical interfaces for Qt applications on KDE.</para>
-
-	<para>The next versions of these applications should be better
-	integrated together, thanks to the KParts component system.</para>
-        <indexterm><primary>KDevelop</primary></indexterm>
-        <indexterm><primary>Qt</primary><secondary>Designer</secondary></indexterm>
-      </section>
-    </section>
-    <section>
-      <title>Collaborative Work</title>
-      <indexterm><primary>Collaborative Work</primary></indexterm>
-      <section>
-        <title>Working in Groups: <foreignphrase>groupware</foreignphrase></title>
-        <indexterm><primary><emphasis>groupware</emphasis></primary></indexterm>
-
-	<para>Groupware tools tend to be relatively complex
-	to maintain because they aggregate multiple tools and
-	have requirements that are not always easy to reconcile in
-	the context of an integrated distribution. Thus there
-	is a long list of groupware that were once available
-	in Debian but have been dropped for lack of maintainers
-	or incompatibility with other (newer) software in Debian.
-	It has been the case of PHPGroupware, eGroupware, and
-	Kolab.
-	<ulink type="block" url="http://www.phpgroupware.org/"/>
-	<ulink type="block" url="http://www.egroupware.org/"/>
-	<ulink type="block" url="http://www.kolab.org/"/>
-	</para>
-	<indexterm><primary>PHPGroupware</primary></indexterm>
-        <indexterm><primary>eGroupware</primary></indexterm>
-	<indexterm><primary>Kolab</primary></indexterm>
-
-	<para>All is not lost though. Many of the features
-	traditionally provided by “groupware” software are
-	increasingly integrated into “standard” software. This is
-	reducing the requirement for specific, specialized groupware
-	software. On the other hand, this usually requires a specific
-	server. A good example for such a server is Kolab, that can
-	integrate into KDE (Kontact, Kmail, and so on), the Horde
-	webmail, Thunderbird (via a plugin) and even into Microsoft
-	Outlook. More interestingly, Citadel (in the <emphasis
-	role="pkg">citadel-suite</emphasis> package) and Sogo (in the
-	<emphasis role="pkg">sogo</emphasis> package) are alternatives
-	that are available in Debian <emphasis
-	role="distribution">Wheezy</emphasis>.</para>
-
-      </section>
-      <section>
-        <title>Instant Messaging Systems</title>
-        <indexterm><primary>messaging</primary><secondary>instant</secondary></indexterm>
-
-	<para>When setting up an internal instant messaging system for a
-	company, the obvious choice is Jabber: its protocol is an open
-	standard (XMPP), and there is no shortage of features. The messages
-	can be encrypted, which can be a real bonus, and gateways can be
-	set up between a Jabber server and other instant messaging networks
-	such as ICQ, AIM, Yahoo, MSN, and so on.</para>
-        <indexterm><primary>Jabber</primary></indexterm>
-        <indexterm><primary>XMPP</primary></indexterm>
-        <indexterm><primary>ICQ</primary></indexterm>
-        <indexterm><primary>AIM</primary></indexterm>
-        <indexterm><primary><emphasis>Messenger</emphasis></primary></indexterm>
-
-        <sidebar>
-          <title><emphasis>ALTERNATIVE</emphasis> Internet Relay Chat</title>
-
-	  <para>IRC can also be considered, instead of Jabber. This system
-	  is more centered around the concept of channels, the name of
-	  which starts with a hash sign <literal>#</literal>. Each channel
-	  is usually targeted at a specific topic and any number of people
-	  can join a channel to discuss it (but users can still have
-	  one-to-one private conversations if needed). The IRC protocol is
-	  older, and does not allow end-to-end encryption of the messages;
-	  it is still possible to encrypt the communications between the
-	  users and the server by tunneling the IRC protocol inside
-	  SSL.</para>
-          <indexterm><primary>IRC</primary></indexterm>
-          <indexterm><primary><foreignphrase>Internet Relay Chat</foreignphrase></primary></indexterm>
-
-	  <para>IRC clients are a bit more complex, and they usually
-	  provide many features that are of limited use in a corporate
-	  environment. For instance, channel “operators” are users
-	  endowed with the ability to kick other users from a channel, or
-	  even ban them permanently, when the normal discussion is
-	  disrupted.</para>
-
-	  <para>Since the IRC protocol is very old, many clients are
-	  available to cater for many user groups; examples include XChat
-	  and Smuxi (graphical clients based on GTK+), Irssi (text mode),
-	  Erc (integrated to Emacs), Chatzilla (in the Mozilla software
-	  suite), and so on.</para>
-        </sidebar>
-
-        <sidebar>
-          <title><emphasis>QUICK LOOK</emphasis> Video conferencing with Ekiga</title>
-
-	  <para>Ekiga (formerly GnomeMeeting) is the most prominent
-	  application for Linux video conferencing. It is both stable and
-	  functional, and is very easily used on a local network; setting
-	  up the service on a global network is much more complex when the
-	  firewalls involved lack explicit support for the H323 and/or SIP
-	  teleconferencing protocols with all their quirks.</para>
-          <indexterm><primary>video conference</primary></indexterm>
-          <indexterm><primary>H323</primary></indexterm>
-
-	  <para>If only one Ekiga client is to run behind the firewall, the
-	  configuration is rather straightforward, and only involves
-	  forwarding a few ports to the dedicated host: TCP port 1720
-	  (listening for incoming connections), TCP port 5060 (for SIP),
-	  TCP ports 30000 to 30010 (for control of open connections) and
-	  UDP ports 5000 to 5013 (for audio and video data transmission and
-	  registration to an H323 proxy).</para>
-          <indexterm><primary>GnomeMeeting</primary></indexterm>
-          <indexterm><primary>Ekiga</primary></indexterm>
-
-	  <para>When several Ekiga clients are to run behind the firewall,
-	  complexity increases notably. An H323 proxy (for instance the
-	  <emphasis role="pkg">gnugk</emphasis> package) must be set up,
-	  and its configuration is far from simple.</para>
-          <indexterm><primary><emphasis role="pkg">gnugk</emphasis></primary></indexterm>
-        </sidebar>
-        <section>
-          <title>Configuring the Server</title>
-
-	  <para>Setting up a Jabber server is rather straightforward. After
-	  installing the <emphasis role="pkg">ejabberd</emphasis> package,
-	  executing <command>dpkg-reconfigure ejabberd</command> will allow
-	  customizing the default domain, and create an administrator
-	  account. Note that the Jabber server needs a valid DNS name to
-	  point at it, so some network administration can be required
-	  beforehand. The Falcot Corp administrators picked
-	  <literal>jabber.falcot.com</literal> for that purpose.</para>
-
-	  <para>Once this initial set up is over, the service configuration
-	  can be controlled through a web interface accessible at
-	  <literal>http://jabber.falcot.com:5280/admin/</literal>. The
-	  requested username and password are those that were given earlier
-	  during the initial configuration. Note that the username must be
-	  qualified with the configured domain: the
-	  <literal>admin</literal> account becomes
-	  <literal>admin@jabber.falcot.com</literal>.</para>
-
-	  <para>The web interface removes the need to edit a configuration
-	  file, but does not always make the task easier, since many
-	  options have a peculiar syntax that needs to be known.
-	  <filename>/usr/share/doc/ejabberd/guide.html</filename> is
-	  therefore a recommended read.</para>
-        </section>
-        <section>
-          <title>Jabber Clients</title>
-          <indexterm><primary>client</primary><secondary>Jabber</secondary></indexterm>
-          <indexterm><primary>Jabber</primary><secondary>clients</secondary></indexterm>
-
-	  <para>GNOME provides Empathy (in the similarly-named package), a
-	  minimalist client that integrates in the notification area of the
-	  desktop (on the top-right corner in the default GNOME
-	  configuration). It also supports many instant messaging protocols
-	  beyond Jabber.</para>
-          <indexterm><primary>Empathy</primary></indexterm>
-
-	  <para>KDE provides Kopete (in the package of the same name).</para>
-          <indexterm><primary>Kopete</primary></indexterm>
-        </section>
-      </section>
-      <section>
-        <title>Collaborative Work With FusionForge</title>
-        <indexterm><primary>FusionForge</primary></indexterm>
-
-	<para>FusionForge is a collaborative development tool with some
-	ancestry in SourceForge, a hosting service for free software
-	projects. It takes the same overall approach based on the standard
-	development model for free software. The software itself has kept
-	evolving after the SourceForge code went proprietary. Its initial
-	authors, VA Software, decided not to release any more free
-	versions. The same happened again when the first fork (GForge)
-	followed the same path. Since various people and organizations have
-	participated in development, the current FusionForge also includes
-	features targeting a more traditional approach to development, as
-	well as projects not purely concerned with software
-	development.</para>
-        <indexterm><primary>SourceForge</primary></indexterm>
-
-	<para>FusionForge can be seen as an amalgamation of several tools
-	dedicated to manage, track and coordinate projects. These tools can
-	be roughly classified into three families:</para>
-        <itemizedlist>
-          <listitem>
-	    <para><emphasis>communication</emphasis>: web forums,
-	    mailing-list manager, announcement system allowing a project to
-	    publish news;</para>
-          </listitem>
-          <listitem>
-	    <para><emphasis>tracking</emphasis>: task tracker to control
-	    progress and schedule tasks, trackers for bugs (or patches or
-	    feature requests, or any other kind of “ticket”),
-	    surveys;</para>
-          </listitem>
-          <listitem>
-	    <para><emphasis>sharing</emphasis>: documentation manager to
-	    provide a single central point for documents related to a
-	    project, generic file release manager, dedicated website for
-	    each project.</para>
-          </listitem>
-        </itemizedlist>
-
-	<para>Since FusionForge is largely targeting development projects,
-	it also integrates many tools such as CVS, Subversion, Git, Bazaar,
-	Darcs, Mercurial and Arch for source control management or
-	“configuration management” or “version control” — this
-	process has many names. These programs keep a history of all the
-	revisions of all tracked files (often source code files), with all
-	the changes they go through, and they can merge modifications when
-	several developers work simultaneously on the same part of a
-	project.</para>
-
-	<para>Most of these tools are accessible, or even managed, through
-	a web interface, with a fine-grained permission system, and email
-	notifications for some events.</para>
-
-        <para>Unfortunately, FusionForge was in a state of flux when
-	<emphasis role="distribution">Wheezy</emphasis> was frozen,
-	and so it is not present in standard <emphasis
-	role="distribution">Wheezy</emphasis>; at the time of this
-	writing, backports are not available yet, but they are
-	expected to appear soon.</para>
-      </section>
-    </section>
-    <section>
-      <title>Office Suites</title>
-      <indexterm><primary>office suite</primary></indexterm>
-      <indexterm><primary>suite, office</primary></indexterm>
-
-      <para>Office software has long been seen as lacking in the free
-      software world. Users have long asked for replacements for
-      Microsoft tools such as Word and Excel, but these are so complex
-      that replacements were hard to develop. The situation changed
-      when the OpenOffice.org project started (following Sun's release
-      of the StarOffice code under a free license). Nowadays Debian
-      contains Libre Office, a fork of OpenOffice.org.
-      The GNOME and KDE projects are
-      still working on their offerings (GNOME Office and Calligra Suite), and
-      the friendly competition leads to interesting results. For
-      instance, the Gnumeric spreadsheet (part of GNOME Office) is
-      even better than OpenOffice.org/Libre Office in some domains,
-      notably the precision of its calculations. On the word
-      processing front, the OpenOffice.org and Libre Office suites
-      still lead the way.</para>
-      <indexterm><primary>OpenOffice.org</primary></indexterm>
-      <indexterm><primary>StarOffice</primary></indexterm>
-      <indexterm><primary>Libre Office</primary></indexterm>
-      <indexterm><primary>GNOME Office</primary></indexterm>
-      <indexterm><primary>Calligra Suite</primary></indexterm>
-      <indexterm><primary>KOffice</primary></indexterm>
-      <indexterm><primary>Gnumeric</primary></indexterm>
-
-      <para>Another important feature for users is the ability to
-      import Word and Excel documents received from contacts or found
-      in archives.  Even though all office suites have filters which
-      allow working on these formats, only the ones found in
-      OpenOffice.org and Libre Office are functional enough for daily
-      use.</para>
 
       <sidebar>
-        <title><emphasis>THE BROADER VIEW</emphasis> Libre Office replaces OpenOffice.org</title>
+	<title><emphasis>QUICK LOOK</emphasis> Video conferencing with Ekiga</title>
 
-	<para>OpenOffice.org contributors have set up a foundation
-	(<emphasis>The Document Foundation</emphasis>) to foster project
-	development. The idea had been discussed for some time, but the
-	actual trigger was Oracle's acquisition of Sun. The new ownership
-	made the future of OpenOffice under Oracle uncertain. Since Oracle
-	declined to join the foundation, the developers had to give up on
-	the OpenOffice.org name. The software is now known as
-	<emphasis>Libre Office</emphasis>.  After a period of relative
-	stagnation on the OpenOffice.org front, Oracle decided to
-	migrate the code and associated rights to the Apache Software
-	Foundation, and OpenOffice is now an Apache project.</para>
+	<para>Ekiga (formerly GnomeMeeting) is the most prominent
+	application for Linux video conferencing. It is both stable and
+	functional, and is very easily used on a local network; setting
+	up the service on a global network is much more complex when the
+	firewalls involved lack explicit support for the H323 and/or SIP
+	teleconferencing protocols with all their quirks.</para>
+	<indexterm><primary>video conference</primary></indexterm>
+	<indexterm><primary>H323</primary></indexterm>
 
-	<para>Debian <emphasis role="distribution">Squeeze</emphasis>
-	contained OpenOffice.org due to the timing of events… but
-	Libre Office was rapidly made available in the
-	<literal>backports.debian.org</literal> package repository.
-	Debian <emphasis role="distribution">Wheezy</emphasis>
-	includes only Libre Office, and the <emphasis
-	role="pkg">openoffice.org*</emphasis> packages are merely
-	transitional packages.  The OpenOffice software suite as
-	published by the Apache Software Foundation is not currently
-	available in Debian.</para>
+	<para>If only one Ekiga client is to run behind the firewall, the
+	configuration is rather straightforward, and only involves
+	forwarding a few ports to the dedicated host: TCP port 1720
+	(listening for incoming connections), TCP port 5060 (for SIP),
+	TCP ports 30000 to 30010 (for control of open connections) and
+	UDP ports 5000 to 5013 (for audio and video data transmission and
+	registration to an H323 proxy).</para>
+	<indexterm><primary>GnomeMeeting</primary></indexterm>
+	<indexterm><primary>Ekiga</primary></indexterm>
 
+	<para>When several Ekiga clients are to run behind the firewall,
+	complexity increases notably. An H323 proxy (for instance the
+	<emphasis role="pkg">gnugk</emphasis> package) must be set up,
+	and its configuration is far from simple.</para>
+	<indexterm><primary><emphasis role="pkg">gnugk</emphasis></primary></indexterm>
       </sidebar>
-      <indexterm><primary>Word, Microsoft</primary></indexterm>
-      <indexterm><primary>Excel, Microsoft</primary></indexterm>
-      <indexterm><primary>Microsoft</primary><secondary>Word</secondary></indexterm>
-      <indexterm><primary>Microsoft</primary><secondary>Excel</secondary></indexterm>
+      <section>
+	<title>Configuring the Server</title>
 
-      <para>Libre Office, Calligra Suite and GNOME Office are,
-      respectively, available in the <emphasis
-      role="pkg">libreoffice</emphasis>, <emphasis
-      role="pkg">calligra</emphasis> and <emphasis
-      role="pkg">gnome-office</emphasis> Debian
-      packages. Language-specific packs for Libre Office are
-      distributed in separate packages: <emphasis
-      role="pkg">libreoffice-l10n-*</emphasis> and <emphasis
-      role="pkg">libreoffice-help-*</emphasis> most notably; some
-      features such as spelling dictionaries, hyphenation patterns and
-      thesauri are in separate packages, such as <emphasis
-      role="pkg">myspell-*</emphasis>, <emphasis
-      role="pkg">hyphen-*</emphasis> and <emphasis
-      role="pkg">mythes-*</emphasis>.  Note that Calligra Suite used
-      to be called KOffice, and the <emphasis
-      role="pkg">koffice</emphasis> package is a transitional
-      package.</para>
+	<para>Setting up a Jabber server is rather straightforward. After
+	installing the <emphasis role="pkg">ejabberd</emphasis> package,
+	executing <command>dpkg-reconfigure ejabberd</command> will allow
+	customizing the default domain, and create an administrator
+	account. Note that the Jabber server needs a valid DNS name to
+	point at it, so some network administration can be required
+	beforehand. The Falcot Corp administrators picked
+	<literal>jabber.falcot.com</literal> for that purpose.</para>
+
+	<para>Once this initial set up is over, the service configuration
+	can be controlled through a web interface accessible at
+	<literal>http://jabber.falcot.com:5280/admin/</literal>. The
+	requested username and password are those that were given earlier
+	during the initial configuration. Note that the username must be
+	qualified with the configured domain: the
+	<literal>admin</literal> account becomes
+	<literal>admin@jabber.falcot.com</literal>.</para>
+
+	<para>The web interface removes the need to edit a configuration
+	file, but does not always make the task easier, since many
+	options have a peculiar syntax that needs to be known.
+	<filename>/usr/share/doc/ejabberd/guide.html</filename> is
+	therefore a recommended read.</para>
+      </section>
+      <section>
+	<title>Jabber Clients</title>
+	<indexterm><primary>client</primary><secondary>Jabber</secondary></indexterm>
+	<indexterm><primary>Jabber</primary><secondary>clients</secondary></indexterm>
+
+	<para>GNOME provides Empathy (in the similarly-named package), a
+	minimalist client that integrates in the notification area of the
+	desktop (on the top-right corner in the default GNOME
+	configuration). It also supports many instant messaging protocols
+	beyond Jabber.</para>
+	<indexterm><primary>Empathy</primary></indexterm>
+
+	<para>KDE provides Kopete (in the package of the same name).</para>
+	<indexterm><primary>Kopete</primary></indexterm>
+      </section>
     </section>
+    <section>
+      <title>Collaborative Work With FusionForge</title>
+      <indexterm><primary>FusionForge</primary></indexterm>
+
+      <para>FusionForge is a collaborative development tool with some
+      ancestry in SourceForge, a hosting service for free software
+      projects. It takes the same overall approach based on the standard
+      development model for free software. The software itself has kept
+      evolving after the SourceForge code went proprietary. Its initial
+      authors, VA Software, decided not to release any more free
+      versions. The same happened again when the first fork (GForge)
+      followed the same path. Since various people and organizations have
+      participated in development, the current FusionForge also includes
+      features targeting a more traditional approach to development, as
+      well as projects not purely concerned with software
+      development.</para>
+      <indexterm><primary>SourceForge</primary></indexterm>
+
+      <para>FusionForge can be seen as an amalgamation of several tools
+      dedicated to manage, track and coordinate projects. These tools can
+      be roughly classified into three families:</para>
+      <itemizedlist>
+	<listitem>
+	  <para><emphasis>communication</emphasis>: web forums,
+	  mailing-list manager, announcement system allowing a project to
+	  publish news;</para>
+	</listitem>
+	<listitem>
+	  <para><emphasis>tracking</emphasis>: task tracker to control
+	  progress and schedule tasks, trackers for bugs (or patches or
+	  feature requests, or any other kind of “ticket”),
+	  surveys;</para>
+	</listitem>
+	<listitem>
+	  <para><emphasis>sharing</emphasis>: documentation manager to
+	  provide a single central point for documents related to a
+	  project, generic file release manager, dedicated website for
+	  each project.</para>
+	</listitem>
+      </itemizedlist>
+
+      <para>Since FusionForge is largely targeting development projects,
+      it also integrates many tools such as CVS, Subversion, Git, Bazaar,
+      Darcs, Mercurial and Arch for source control management or
+      “configuration management” or “version control” — this
+      process has many names. These programs keep a history of all the
+      revisions of all tracked files (often source code files), with all
+      the changes they go through, and they can merge modifications when
+      several developers work simultaneously on the same part of a
+      project.</para>
+
+      <para>Most of these tools are accessible, or even managed, through
+      a web interface, with a fine-grained permission system, and email
+      notifications for some events.</para>
+
+      <para>Unfortunately, FusionForge was in a state of flux when
+      <emphasis role="distribution">Wheezy</emphasis> was frozen,
+      and so it is not present in standard <emphasis
+      role="distribution">Wheezy</emphasis>; at the time of this
+      writing, backports are not available yet, but they are
+      expected to appear soon.</para>
+    </section>
+  </section>
+  <section>
+    <title>Office Suites</title>
+    <indexterm><primary>office suite</primary></indexterm>
+    <indexterm><primary>suite, office</primary></indexterm>
+
+    <para>Office software has long been seen as lacking in the free
+    software world. Users have long asked for replacements for
+    Microsoft tools such as Word and Excel, but these are so complex
+    that replacements were hard to develop. The situation changed
+    when the OpenOffice.org project started (following Sun's release
+    of the StarOffice code under a free license). Nowadays Debian
+    contains Libre Office, a fork of OpenOffice.org.
+    The GNOME and KDE projects are
+    still working on their offerings (GNOME Office and Calligra Suite), and
+    the friendly competition leads to interesting results. For
+    instance, the Gnumeric spreadsheet (part of GNOME Office) is
+    even better than OpenOffice.org/Libre Office in some domains,
+    notably the precision of its calculations. On the word
+    processing front, the OpenOffice.org and Libre Office suites
+    still lead the way.</para>
+    <indexterm><primary>OpenOffice.org</primary></indexterm>
+    <indexterm><primary>StarOffice</primary></indexterm>
+    <indexterm><primary>Libre Office</primary></indexterm>
+    <indexterm><primary>GNOME Office</primary></indexterm>
+    <indexterm><primary>Calligra Suite</primary></indexterm>
+    <indexterm><primary>KOffice</primary></indexterm>
+    <indexterm><primary>Gnumeric</primary></indexterm>
+
+    <para>Another important feature for users is the ability to
+    import Word and Excel documents received from contacts or found
+    in archives.  Even though all office suites have filters which
+    allow working on these formats, only the ones found in
+    OpenOffice.org and Libre Office are functional enough for daily
+    use.</para>
+
+    <sidebar>
+      <title><emphasis>THE BROADER VIEW</emphasis> Libre Office replaces OpenOffice.org</title>
+
+      <para>OpenOffice.org contributors have set up a foundation
+      (<emphasis>The Document Foundation</emphasis>) to foster project
+      development. The idea had been discussed for some time, but the
+      actual trigger was Oracle's acquisition of Sun. The new ownership
+      made the future of OpenOffice under Oracle uncertain. Since Oracle
+      declined to join the foundation, the developers had to give up on
+      the OpenOffice.org name. The software is now known as
+      <emphasis>Libre Office</emphasis>.  After a period of relative
+      stagnation on the OpenOffice.org front, Oracle decided to
+      migrate the code and associated rights to the Apache Software
+      Foundation, and OpenOffice is now an Apache project.</para>
+
+      <para>Debian <emphasis role="distribution">Squeeze</emphasis>
+      contained OpenOffice.org due to the timing of events… but
+      Libre Office was rapidly made available in the
+      <literal>backports.debian.org</literal> package repository.
+      Debian <emphasis role="distribution">Wheezy</emphasis>
+      includes only Libre Office, and the <emphasis
+      role="pkg">openoffice.org*</emphasis> packages are merely
+      transitional packages.  The OpenOffice software suite as
+      published by the Apache Software Foundation is not currently
+      available in Debian.</para>
+
+    </sidebar>
+    <indexterm><primary>Word, Microsoft</primary></indexterm>
+    <indexterm><primary>Excel, Microsoft</primary></indexterm>
+    <indexterm><primary>Microsoft</primary><secondary>Word</secondary></indexterm>
+    <indexterm><primary>Microsoft</primary><secondary>Excel</secondary></indexterm>
+
+    <para>Libre Office, Calligra Suite and GNOME Office are,
+    respectively, available in the <emphasis
+    role="pkg">libreoffice</emphasis>, <emphasis
+    role="pkg">calligra</emphasis> and <emphasis
+    role="pkg">gnome-office</emphasis> Debian
+    packages. Language-specific packs for Libre Office are
+    distributed in separate packages: <emphasis
+    role="pkg">libreoffice-l10n-*</emphasis> and <emphasis
+    role="pkg">libreoffice-help-*</emphasis> most notably; some
+    features such as spelling dictionaries, hyphenation patterns and
+    thesauri are in separate packages, such as <emphasis
+    role="pkg">myspell-*</emphasis>, <emphasis
+    role="pkg">hyphen-*</emphasis> and <emphasis
+    role="pkg">mythes-*</emphasis>.  Note that Calligra Suite used
+    to be called KOffice, and the <emphasis
+    role="pkg">koffice</emphasis> package is a transitional
+    package.</para>
   </section>
   <section id="sect.windows-emulation">
     <title>Emulating Windows: Wine</title>
