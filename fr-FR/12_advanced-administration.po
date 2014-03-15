@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: The Debian Administrator's Handbook\n"
 "POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2014-01-09 08:31+0100\n"
+"PO-Revision-Date: 2014-03-15 15:01+0100\n"
 "Last-Translator: Raphaël Hertzog <hertzog@debian.org>\n"
 "Language-Team: none\n"
 "Language: fr-FR\n"
@@ -817,7 +817,7 @@ msgstr "Sauvegarde de la configuration"
 #. Tag: para
 #, no-c-format
 msgid "Most of the meta-data concerning RAID volumes are saved directly on the disks that make up these arrays, so that the kernel can detect the arrays and their components and assemble them automatically when the system starts up. However, backing up this configuration is encouraged, because this detection isn't fail-proof, and it is only expected that it will fail precisely in sensitive circumstances. In our example, if the <filename>sde</filename> disk failure had been real (instead of simulated) and the system had been restarted without removing this <filename>sde</filename> disk, this disk could start working again due to having been probed during the reboot. The kernel would then have three physical elements, each claiming to contain half of the same RAID volume. Another source of confusion can come when RAID volumes from two servers are consolidated onto one server only. If these arrays were running normally before the disks were moved, the kernel would be able to detect and reassemble the pairs properly; but if the moved disks had been aggregated into an <filename>md1</filename> on the old server, and the new server already has an <filename>md1</filename>, one of the mirrors would be renamed."
-msgstr "La plupart des méta-données concernant les volumes RAID sont sauvegardées directement sur les disques qui les composent, de sorte que le noyau peut détecter les différents ensembles avec leurs composants et les assembler automatiquement lors du démarrage du système. Cela dit, il convient de sauvegarder cette configuration, car cette détection n'est pas infaillible et aura tendance à faillir précisément en période sensible. Si dans notre exemple la panne du disque <filename>sde</filename> était réelle, et si on redémarrait le système sans en le retirer, ce disque pourrait, à la faveur du redémarrage, « retomber en marche ». Le noyau aurait alors trois éléments physiques, chacun prétendant représenter la moitié du même volume RAID. Une autre source de confusion peut subvenir si l'on consolide des volumes RAID de deux serveurs sur un seul. Si ces ensembles étaient en fonctionnement normal avant le déplacement des disques, le noyau saura reconstituer les paires correctement. Mais pour peu que les disques déplacés soient agrégés en un <filename>/dev/md1</filename> et qu'il existe également un <filename>md1</filename> sur le serveur consolidé, l'un des miroirs sera contraint de changer de nom."
+msgstr "La plupart des méta-données concernant les volumes RAID sont sauvegardées directement sur les disques qui les composent, de sorte que le noyau peut détecter les différents ensembles avec leurs composants et les assembler automatiquement lors du démarrage du système. Cela dit, il convient de sauvegarder cette configuration, car cette détection n'est pas infaillible et aura tendance à faillir précisément en période sensible. Si dans notre exemple la panne du disque <filename>sde</filename> était réelle, et si on redémarrait le système sans le retirer, ce disque pourrait, à la faveur du redémarrage, « retomber en marche ». Le noyau aurait alors trois éléments physiques, chacun prétendant représenter la moitié du même volume RAID. Une autre source de confusion peut subvenir si l'on consolide des volumes RAID de deux serveurs sur un seul. Si ces ensembles étaient en fonctionnement normal avant le déplacement des disques, le noyau saura reconstituer les paires correctement. Mais pour peu que les disques déplacés soient agrégés en un <filename>/dev/md1</filename> et qu'il existe également un <filename>md1</filename> sur le serveur consolidé, l'un des miroirs sera contraint de changer de nom."
 
 #. Tag: para
 #, no-c-format
@@ -2380,7 +2380,7 @@ msgstr "Signalons que le script de création de template Debian accepte une opti
 #. Tag: para
 #, no-c-format
 msgid "The newly-created filesystem now contains a minimal Debian system, and by default the container shares the network device with the host system. Since this is not really wanted, we will edit the container's configuration file (<filename>/var/lib/lxc/testlxc/config</filename>) and add a few <literal>lxc.network.*</literal> entries:"
-msgstr "Le système de fichiers nouvellement créé contient désormais un système Debian minimal. Le conteneur associé partage, par défaut, le périphériquer réseau avec le système hôte. Puisque cela n'est pas vraiment souhaitable, nous éditerons le fichier de configuration du conteneur (<filename>/var/lib/lxc/testlxc/config</filename>) et ajouterons ces quelques directives <literal>lxc.network.*</literal> :"
+msgstr "Le système de fichiers nouvellement créé contient désormais un système Debian minimal. Le conteneur associé partage, par défaut, le périphérique réseau avec le système hôte. Puisque cela n'est pas vraiment souhaitable, nous éditerons le fichier de configuration du conteneur (<filename>/var/lib/lxc/testlxc/config</filename>) et ajouterons ces quelques directives <literal>lxc.network.*</literal> :"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2572,7 +2572,7 @@ msgstr "<primary><emphasis role=\"pkg\">virtinst</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "We first install the required packages, with <command>apt-get install qemu-kvm libvirt-bin virtinst virt-manager virt-viewer</command>. <emphasis role=\"pkg\">libvirt-bin</emphasis> provides the <command>libvirtd</command> daemon, which allows (potentially remote) management of the virtual machines running of the host, and starts the required VMs when the host boots. In addition, this package provides the <command>virsh</command> command-line tool, which allows controlling the <command>libvirtd</command>-managed machines."
-msgstr "Installons donc tous les paquets requis avec <command>apt-get install qemu-kvm libvirt-bin virtinst virtual-manager virt-viewer</command>. <emphasis role=\"pkg\">libvirt-bin</emphasis> fournit le démon <command>libvirtd</command> qui sert à de gérer des machines virtuelles (éventuellement à distance) et qui va mettre en route les machines virtuelles requises au démarrage du serveur. En outre, le paquet fournit <command>virsh</command> un outil en ligne de commande qui permet de contrôler les machines virtuelles gérées par <command>libvirtd</command>."
+msgstr "Installons donc tous les paquets requis avec <command>apt-get install qemu-kvm libvirt-bin virtinst virtual-manager virt-viewer</command>. <emphasis role=\"pkg\">libvirt-bin</emphasis> fournit le démon <command>libvirtd</command> qui sert à gérer des machines virtuelles (éventuellement à distance) et qui va mettre en route les machines virtuelles requises au démarrage du serveur. En outre, le paquet fournit <command>virsh</command> un outil en ligne de commande qui permet de contrôler les machines virtuelles gérées par <command>libvirtd</command>."
 
 #. Tag: para
 #, no-c-format
@@ -2587,7 +2587,7 @@ msgstr "Tout comme avec Xen ou LXC, la configuration la plus courante pour des s
 #. Tag: para
 #, no-c-format
 msgid "Alternatively, and in the default configuration provided by KVM, the virtual machine is assigned a private address (in the 192.168.122.0/24 range), and NAT is set up so that the VM can access the outside network."
-msgstr "Alternativement, la configuration par défaut employée par KVM est d'attribuer une addresse privée à la machine virtuelle (dans la plage 192.168.122.0/24) et de faire du NAT pour que la machine ait un accès au réseau extérieur."
+msgstr "Alternativement, la configuration par défaut employée par KVM est d'attribuer une adresse privée à la machine virtuelle (dans la plage 192.168.122.0/24) et de faire du NAT pour que la machine ait un accès au réseau extérieur."
 
 #. Tag: para
 #, no-c-format
@@ -2685,7 +2685,7 @@ msgstr "L'option <literal>--connect</literal> permet d'indiquer l'hyperviseur à
 #. Tag: para
 #, no-c-format
 msgid "Since KVM is managed the same way as QEMU, the <literal>--virt-type kvm</literal> allows specifying the use of KVM even though the URL looks like QEMU."
-msgstr "KVM se gérant de manière similaire à QEMU, l'option <literal>--virt-type kvm</literal> précise que l'on souhaite employer KVM même si l'URL de connection précise indique QEMU."
+msgstr "KVM se gérant de manière similaire à QEMU, l'option <literal>--virt-type kvm</literal> précise que l'on souhaite employer KVM même si l'URL de connexion précise indique QEMU."
 
 #. Tag: para
 #, no-c-format
@@ -2700,7 +2700,7 @@ msgstr "L'option <literal>--ram</literal> définit la quantité de mémoire vive
 #. Tag: para
 #, no-c-format
 msgid "The <literal>--disk</literal> specifies the location of the image file that is to represent our virtual machine's hard disk; that file is created, unless present, with a size (in GB) specified by the <literal>size</literal> parameter. The <literal>format</literal> parameter allows choosing among several ways of storing the image file. The default format (<literal>raw</literal>) is a single file exactly matching the disk's size and contents. We picked a more advanced format here, that is specific to QEMU and allows starting with a small file that only grows when the virtual machine starts actually using space."
-msgstr "L'option <literal>--disk</literal> indique l'emplacement du fichier image qui va représenter le disque dur de notre machine virtuelle. Si le fichier n'existe pas, il est créé en respectant la taille en Go indiquée dans le paramètre <literal>size</literal>. Le paramère <literal>format</literal> permet de stocker le disque virtuel de différentes manières. Le format par défaut (<literal>raw</literal>) est un fichier de la taille exacte du disque, copie exacte de son contenu. Le format retenu ici est un peu plus avancé (et spécifique à QEMU) et permet de démarrer avec un petit fichier dont la taille augmente au fur et à mesure que l'espace disque est réellement utilisé par la machine virtuelle."
+msgstr "L'option <literal>--disk</literal> indique l'emplacement du fichier image qui va représenter le disque dur de notre machine virtuelle. Si le fichier n'existe pas, il est créé en respectant la taille en Go indiquée dans le paramètre <literal>size</literal>. Le paramètre <literal>format</literal> permet de stocker le disque virtuel de différentes manières. Le format par défaut (<literal>raw</literal>) est un fichier de la taille exacte du disque, copie exacte de son contenu. Le format retenu ici est un peu plus avancé (et spécifique à QEMU) et permet de démarrer avec un petit fichier dont la taille augmente au fur et à mesure que l'espace disque est réellement utilisé par la machine virtuelle."
 
 #. Tag: para
 #, no-c-format
@@ -2903,8 +2903,8 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>/var/tmp/yum-bootstrap/repos.d</filename> directory should contain the descriptions of the RPM source repositories, just as in <filename>/etc/yum.repo.d</filename> in an already installed RPM-based system. Here is an example for a CentOS 6 installation:"
-msgstr "Le répertoire <filename>/var/tmp/yum-bootstrap/repos.d</filename> devrait contenir la description des dépôts RPM source, similaire à ce que l'on trouverait dans <filename>/etc/yum.repo.d</filename> sur un système RPM déjà installé. Voici un exemple pour une installation de CentOS 6 :"
+msgid "The <filename>/var/tmp/yum-bootstrap/repos.d</filename> directory should contain the descriptions of the RPM source repositories, just as in <filename>/etc/yum.repos.d</filename> in an already installed RPM-based system. Here is an example for a CentOS 6 installation:"
+msgstr "Le répertoire <filename>/var/tmp/yum-bootstrap/repos.d</filename> devrait contenir la description des dépôts RPM source, similaire à ce que l'on trouverait dans <filename>/etc/yum.repos.d</filename> sur un système RPM déjà installé. Voici un exemple pour une installation de CentOS 6 :"
 
 #. Tag: programlisting
 #, no-c-format

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-11-26 15:52+0100\n"
-"PO-Revision-Date: 2014-02-24 09:40+0100\n"
+"PO-Revision-Date: 2014-03-15 14:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "Language: \n"
@@ -146,7 +146,7 @@ msgstr "Certains de ces numéros — standardisés par l'IANA (<foreignphrase>In
 #. Tag: para
 #, no-c-format
 msgid "When a local network uses a private address range (not routable on the Internet), the gateway needs to implement <emphasis>address masquerading</emphasis> so that the machines on the network can communicate with the outside world. The masquerading operation is a kind of proxy operating on the network level: each outgoing connection from an internal machine is replaced with a connection from the gateway itself (since the gateway does have an external, routable address), the data going through the masqueraded connection is sent to the new one, and the data coming back in reply is sent through to the masqueraded connection to the internal machine. The gateway uses a range of dedicated TCP ports for this purpose, usually with very high numbers (over 60000). Each connection coming from an internal machine then appears to the outside world as a connection coming from one of these reserved ports."
-msgstr "Lorsqu'un réseau local utilise une plage d'adresses privées (non routables sur Internet), la passerelle doit effectuer du <emphasis>masquerading</emphasis> (masquage d'adresses IP) pour que ses machines puissent communiquer avec l'extérieur. L'opération consiste à remplacer chaque connexion sortante par une connexion provenant de la passerelle elle-même (disposant, elle, d'une adresse valable sur le réseau externe) puis à faire suivre les données reçues en réponse à la machine ayant initié la connexion. Pour mener à bien cette tâche, la passerelle dispose d'une plage de ports TCP dédiés au <foreignphrase>masquerading</foreignphrase> (il s'agit souvent de numéros de port très élevés, supérieurs à 60 000). Chaque nouvelle connexion issue d'une machine interne apparaîtra à l'extérieur comme provenant de l'un de ces ports réservés. Lorsque la passerelle reçoit une réponse sur l'un d'entre eux, elle sait à quelle machine la faire suivre."
+msgstr "Lorsqu'un réseau local utilise une plage d'adresses privées (non routables sur Internet), la passerelle doit effectuer du <emphasis>masquerading</emphasis> (masquage d'adresses IP) pour que ses machines puissent communiquer avec l'extérieur. L'opération consiste à remplacer chaque connexion sortante par une connexion provenant de la passerelle elle-même (disposant, elle, d'une adresse valable sur le réseau externe) puis à faire suivre les données reçues en réponse à la machine ayant initiée la connexion. Pour mener à bien cette tâche, la passerelle dispose d'une plage de ports TCP dédiés au <foreignphrase>masquerading</foreignphrase> (il s'agit souvent de numéros de port très élevés, supérieurs à 60 000). Chaque nouvelle connexion issue d'une machine interne apparaîtra à l'extérieur comme provenant de l'un de ces ports réservés. Lorsque la passerelle reçoit une réponse sur l'un d'entre eux, elle sait à quelle machine la faire suivre."
 
 #. Tag: indexterm
 #, no-c-format
@@ -343,7 +343,7 @@ msgstr "<primary>TLS</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The SSL protocol (<emphasis>Secure Socket Layer</emphasis>) was invented by Netscape to secure connections to web servers. It was later standardized by IETF under the acronym TLS (<emphasis>Transport Layer Security</emphasis>); TLS is very similar to SSLv3 with only a few fixes and improvements."
-msgstr "SSL (<foreignphrase>Secure Socket Layer</foreignphrase>) est un protocole inventé par Netscape pour sécuriser les connections aux serveurs Web. Plus tard il a été standardisé par l'IETF sous le nom de TLS (<foreignphrase>Transport Layer Security</foreignphrase>). TLS n'est rien d'autre que SSLv3 avec quelques corrections et améliorations."
+msgstr "SSL (<foreignphrase>Secure Socket Layer</foreignphrase>) est un protocole inventé par Netscape pour sécuriser les connexions aux serveurs Web. Plus tard il a été standardisé par l'IETF sous le nom de TLS (<foreignphrase>Transport Layer Security</foreignphrase>). TLS n'est rien d'autre que SSLv3 avec quelques corrections et améliorations."
 
 #. Tag: title
 #, no-c-format
