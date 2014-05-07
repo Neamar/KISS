@@ -5,15 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2013-04-09 14:29+0200\n"
-"Last-Translator: Denis Doria <denisdoria@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects/debian-handbook/92_short-remedial-course/pt_BR/>\n"
+"PO-Revision-Date: 2014-05-06 21:07+0200\n"
+"Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
+"/debian-handbook/92_short-remedial-course/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 1.5-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 1.9\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -86,10 +87,20 @@ msgid "Browsing the Directory Tree and Managing Files"
 msgstr "Navegando na Árvore de Diretórios e Gestão de Arquivos"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Once a session is open, the <command>pwd</command> command (<emphasis>print working directory</emphasis>) displays the current location in the filesystem. The current directory is changed with the <command>cd <replaceable>directory</replaceable></command> command (<command>cd</command> is for <emphasis>change directory</emphasis>). The parent directory is always called <literal>..</literal> (two dots), whereas the current directory is also known as <literal>.</literal> (one dot). The <command>ls</command> command allows <emphasis>listing</emphasis> the contents of a directory. If no parameters are given, it operates on the current directory."
 msgid "Once a session is open, the <command>pwd</command> command (which stands for <emphasis>print working directory</emphasis>) displays the current location in the filesystem. The current directory is changed with the <command>cd <replaceable>directory</replaceable></command> command (<command>cd</command> is for <emphasis>change directory</emphasis>). The parent directory is always called <literal>..</literal> (two dots), whereas the current directory is also known as <literal>.</literal> (one dot). The <command>ls</command> command allows <emphasis>listing</emphasis> the contents of a directory. If no parameters are given, it operates on the current directory."
-msgstr "Uma vez que uma sessão é aberta, o comando <command>pwd</command> (<emphasis>print working directory</emphasis>) mostra a localização atual do sistema de arquivos. O diretório atual é alterada com o comando <command>cd<replaceable> cd </replaceable> </command> (<command>cd</command> é para alterar de diretório <emphasis>change directory</emphasis>). O diretório pai é sempre chamado <literal> ..</literal> (dois pontos), enquanto o diretório atual também é conhecido como <literal>.</literal> (ponto). O <command>ls</command> permite <emphasis>listar</emphasis> o conteúdo de um diretório. Se nenhum parâmetro é dado, ele opera no diretório atual."
+msgstr ""
+"Uma vez que uma sessão é aberta, o comando <command>pwd</command> (que "
+"significa <emphasis>print working directory</emphasis> - imprimir o "
+"diretório de trabalho) mostra a localização atual do sistema de arquivos. O "
+"diretório atual é alterado com o comando <command>cd "
+"<replaceable>diretório</replaceable></command> (<command>cd</command> serve "
+"para <emphasis>change directory</emphasis> - alterar diretório). O diretório "
+"pai é sempre chamado <literal>..</literal> (dois pontos), enquanto o "
+"diretório atual também é conhecido como <literal>.</literal> (ponto). O "
+"<command>ls</command> permite <emphasis>listar</emphasis> o conteúdo de um "
+"diretório. Se nenhum parâmetro é dado, ele opera no diretório atual."
 
 #. Tag: screen
 #, no-c-format
@@ -192,10 +203,17 @@ msgid "The <command>find <replaceable>directory</replaceable> <replaceable>crite
 msgstr "O comando <command>find<replaceable>diretório</replaceable><replaceable>critérios</replaceable></command> procura por arquivos embaixo da hierarquia de <replaceable>diretório</replaceable> de acordo com vários critérios. A maioria dos critérios mais comuns <literal>-name<replaceable>name</replaceable></literal>: permite procurar por um arquivos pelo seu nome."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> command searches the contents of the files and extracts the lines matching the regular expression (see sidebar <xref linkend=\"encadre.expression-rationnelle\" />). Adding the <literal>-r</literal> option enables a recursive search on all files contained in the directory passed as a parameter. This allows looking for a file when only a part of the contents are known."
 msgid "The <command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> command searches the contents of the files and extracts the lines matching the regular expression (see sidebar <xref linkend=\"sidebar.regexp\" />). Adding the <literal>-r</literal> option enables a recursive search on all files contained in the directory passed as a parameter. This allows looking for a file when only a part of the contents are known."
-msgstr "O comando <command>grep <replaceable>expression</replaceable> <replaceable>arquivos</replaceable></command> procura por conteudos nos arquivos e extrai as linhas correspondentes nas expressão regular (veja na barra lateral <xref linkend=\"encadre.expression-rationnelle\" />). Adicionando a opção <literal>-r</literal> habilita a procura recursiva em todos os arquivos contidos no diretório passado como um parâmetro. Isto permite procura por um arquivo quando somente um aparte do conteúdo é conhecido."
+msgstr ""
+"O comando <command>grep <replaceable>expressão</replaceable> "
+"<replaceable>arquivos</replaceable></command> procura o conteúdo nos "
+"arquivos e extrai as linhas correspondentes nas expressão regular (veja na "
+"barra lateral <xref linkend=\"sidebar.regexp\"/>). Adicionando a opção "
+"<literal>-r</literal> habilita a procura recursiva em todos os arquivos "
+"contidos no diretório passado como um parâmetro. Isto permite procura por um "
+"arquivo quando somente uma parte do conteúdo é conhecido."
 
 #. Tag: title
 #, no-c-format
@@ -208,10 +226,26 @@ msgid "The <command>ps aux</command> command lists the processes currently runni
 msgstr "O comando <command>ps aux </command> lista os processos rodando atualmente e permite identificá-los pelo <emphasis>pid</emphasis> (identificador do processo).Uma vez que o processo<emphasis>pid</emphasis> é conhecido, o comando  <command>kill -<replaceable>signal</replaceable><replaceable>pid</replaceable></command> permite enviar um sinal (este processo precisa pertencer ao usuário corrente). Existem muitos sinais; os mais usados comumente são <literal>TERM</literal> (uma requisição para terminar) e <literal>KILL</literal> (matar o processo à força)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The command interpreter can also run programs in the background if the command ends with “&amp;”. By using the ampersand, the user resumes control of the shell immediately even though the command is still running (hidden from the user; as a background process). The <command>jobs</command> command lists the processes running in the background; running <command>fg %<replaceable>job-number</replaceable></command> (for <emphasis>foreground</emphasis>) restores a job to the foreground. When a command is running in the foreground (either because it was started normally, or brought back to the foreground with <command>fg</command>), the <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> key pair pauses the process and resumes control of the command-line. The process can then be restarted in the background with <command>bg %<replaceable>job-number</replaceable></command> (for <foreignphrase>background</foreignphrase>)."
 msgid "The command interpreter can also run programs in the background if the command ends with “&amp;”. By using the ampersand, the user resumes control of the shell immediately even though the command is still running (hidden from the user; as a background process). The <command>jobs</command> command lists the processes running in the background; running <command>fg %<replaceable>job-number</replaceable></command> (for <emphasis>foreground</emphasis>) restores a job to the foreground. When a command is running in the foreground (either because it was started normally, or brought back to the foreground with <command>fg</command>), the <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> key combination pauses the process and resumes control of the command-line. The process can then be restarted in the background with <command>bg %<replaceable>job-number</replaceable></command> (for <foreignphrase>background</foreignphrase>)."
-msgstr "O interpretador de comando também pode rodar programas em segundo plano se o comando terminar com “&amp;”. Ao utilizar o  \"e comercial\", o usuário retorna o controle para o shell imediatamente desde que o comando continue rodando (oculto para o usuário; como um processo em segundo plano). O comando <command>jobs</command> lista os trabalhos rodando em segundo plano; executando <command>fg %<replaceable>número do trabalho</replaceable></command> (para <emphasis>foreground</emphasis>) restaura o trabalho para o primeiro plano. Quando um comando está rodando, estas teclas <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> interrompe os processos  e retorna o controle para a linha de comando. Os processos também podem ser restartados em segundo plano com o comando <command>bg %<replaceable>numero do processo</replaceable></command> (para <foreignphrase>background</foreignphrase>."
+msgstr ""
+"O interpretador de comando também pode rodar programas em segundo plano se o "
+"comando terminar com “&amp;”. Ao utilizar o  \"e comercial\", o usuário "
+"retorna o controle para o shell imediatamente desde que o comando continue "
+"rodando (oculto para o usuário; como um processo em segundo plano). O "
+"comando <command>jobs</command> lista os trabalhos rodando em segundo plano; "
+"executando <command>fg %<replaceable>número do "
+"trabalho</replaceable></command> (para <emphasis>foreground</emphasis> - "
+"primeiro plano) restaura o trabalho para o primeiro plano. Quando um comando "
+"está rodando em primeiro plano (ou porque ele foi iniciado normalmente, ou "
+"trazido de volta para o primeiro plano com <command>fg</command>), a "
+"combinação de teclas <keycombo action=\"simul\""
+"><keycap>Control</keycap><keycap>Z</keycap></keycombo> interrompe os "
+"processos e retorna o controle para a linha de comando. O processo pode "
+"então ser reiniciado em segundo plano com o comando <command>bg "
+"%<replaceable>numero do processo</replaceable></command> (para "
+"<foreignphrase>background</foreignphrase> - segundo plano)."
 
 #. Tag: title
 #, no-c-format
@@ -224,7 +258,7 @@ msgid "The <command>free</command> command displays information on memory; <comm
 msgstr "O comando <command>free</command> exibe informações sobre a memória; o <command>df</command>(<emphasis>disk free</emphasis>) exibe relatórios sobre o espaço disponível no disco em cada um dos discos montados no sistema de arquivo. A opção <literal>-h</literal> (para <emphasis>leitura humana</emphasis> converte os tamanhos para uma unidade mais legível). De um modo semelhante, o <command>free</command> entende as opções <literal>-m</literal> e <literal>-g</literal>, e mostra estes dados tanto em megabytes ou em gigabytes, respectivamente."
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>free</userinput>\n"
@@ -259,19 +293,20 @@ msgid ""
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>free</userinput>\n"
-"<computeroutput>             total       used       free     shared    buffers     cached\n"
+"<computeroutput>             total       used       free     shared    "
+"buffers     cached\n"
 "Mem:       1028420    1009624      18796          0      47404     391804\n"
 "-/+ buffers/cache:     570416     458004\n"
 "Swap:      2771172     404588    2366584\n"
 "$ </computeroutput><userinput>df</userinput>\n"
-"<computeroutput>Filesystem           1K-blocks      Used Available Use% Mounted on\n"
+"<computeroutput>Filesystem           1K-blocks      Used Available Use% "
+"Mounted on\n"
 "/dev/sda2              9614084   4737916   4387796  52% /\n"
 "tmpfs                   514208         0    514208   0% /lib/init/rw\n"
 "udev                     10240       100     10140   1% /dev\n"
 "tmpfs                   514208    269136    245072  53% /dev/shm\n"
 "/dev/sda5             44552904  36315896   7784380  83% /home\n"
-"</computeroutput>\n"
-"      "
+"</computeroutput>"
 
 #. Tag: para
 #, no-c-format
@@ -607,7 +642,7 @@ msgid "Example of information provided by <command>lspci</command> and <command>
 msgstr "Exemplo de informação provida pelo <command>lspci</command> e <command>lsusb</command>"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>lspci</userinput>\n"
@@ -649,12 +684,17 @@ msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>lspci</userinput>\n"
 "<computeroutput>[...]\n"
-"00:02.1 Display controller: Intel Corporation Mobile 915GM/GMS/910GML Express Graphics Controller (rev 03)\n"
-"00:1c.0 PCI bridge: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) PCI Express Port 1 (rev 03)\n"
-"00:1d.0 USB Controller: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #1 (rev 03)\n"
+"00:02.1 Display controller: Intel Corporation Mobile 915GM/GMS/910GML "
+"Express Graphics Controller (rev 03)\n"
+"00:1c.0 PCI bridge: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) "
+"PCI Express Port 1 (rev 03)\n"
+"00:1d.0 USB Controller: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family)"
+" USB UHCI #1 (rev 03)\n"
 "[...]\n"
-"01:00.0 Ethernet controller: Broadcom Corporation NetXtreme BCM5751 Gigabit Ethernet PCI Express (rev 01)\n"
-"02:03.0 Network controller: Intel Corporation PRO/Wireless 2200BG Network Connection (rev 05)\n"
+"01:00.0 Ethernet controller: Broadcom Corporation NetXtreme BCM5751 Gigabit "
+"Ethernet PCI Express (rev 01)\n"
+"02:03.0 Network controller: Intel Corporation PRO/Wireless 2200BG Network "
+"Connection (rev 05)\n"
 "$ </computeroutput><userinput>lsusb</userinput>\n"
 "<computeroutput>Bus 005 Device 004: ID 413c:a005 Dell Computer Corp.\n"
 "Bus 005 Device 008: ID 413c:9001 Dell Computer Corp.\n"
@@ -662,8 +702,7 @@ msgstr ""
 "Bus 005 Device 006: ID 046d:c03d Logitech, Inc.\n"
 "[...]\n"
 "Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth\n"
-"</computeroutput>\n"
-"      "
+"</computeroutput>"
 
 #. Tag: para
 #, no-c-format
@@ -831,7 +870,7 @@ msgid "A “daemon” is a process started automatically by the boot sequence. I
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Daemon, demon, a derogatory term?"
 msgstr "<emphasis>VOCABULÁRIO</emphasis> Daemon, demon, um termo depreciativo?"
 
