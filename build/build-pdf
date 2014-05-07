@@ -19,7 +19,9 @@ parse_options "$@"
 
 if [ ! -e tmp/$OPT_lang/xml ] || [ -z "$OPT_skip" ]; then
     publican build --config=publican-pdf.cfg --formats=xml --langs=$OPT_lang
-    sed -i -e "s/<book/<book lang=\"${OPT_lang}\"/" tmp/$OPT_lang/xml/debian-handbook.xml
+    if ! grep "<book " tmp/$OPT_lang/xml/debian-handbook.xml | grep -q "lang="; then
+	sed -i -e "s/<book/<book lang=\"${OPT_lang}\"/" tmp/$OPT_lang/xml/debian-handbook.xml
+    fi
 fi
 
 cp -a build/dblatex tmp/$OPT_lang/xml/
