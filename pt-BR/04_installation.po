@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-05-07 23:42+0200\n"
+"PO-Revision-Date: 2014-05-12 01:50+0200\n"
 "Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/04_installation/pt_BR/>\n"
@@ -64,7 +64,10 @@ msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Um curso rápido no apêndice"
 #. Tag: para
 #, no-c-format
 msgid "Installing a computer is always simpler when you are familiar with the way it works. If you are not, make a quick detour to <xref linkend=\"short-remedial-course\" /> before reading this chapter."
-msgstr "Instalar um computador é sempre mais fácil quando você está familiarizado com seu funcionamento. Se você não está, faça um retorno rápido para <xref linkend=\"short-remedial-course\" /> antes de ler este capítulo."
+msgstr ""
+"Instalar um computador é sempre mais simples quando você está familiarizado "
+"com seu funcionamento. Se você não está, faça um desvio rápido para <xref "
+"linkend=\"short-remedial-course\" /> antes de ler este capítulo."
 
 #. Tag: para
 #, no-c-format
@@ -1199,10 +1202,15 @@ msgid "<primary>Logical Volume Manager</primary><secondary>during installation</
 msgstr "<primary>Logical Volume Manager</primary><secondary>durante a instalação</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "LVM allows you to create “virtual” partitions that span over several disks. The benefits are twofold: the size of the partitions are no longer limited by individual disks but by their cumulative volume, and you can at any time increase the size of an existing partition by adding an additional disk when needed."
 msgid "LVM allows you to create “virtual” partitions that span over several disks. The benefits are twofold: the size of the partitions are no longer limited by individual disks but by their cumulative volume, and you can resize existing partitions at any time, possibly after adding an additional disk when needed."
-msgstr "LVM permite criar partições \"virtuais\" que se estendem ao longo de vários discos. Os benefícios são dois: o tamanho das partições não estão limitados por discos individuais, mas estão pelo seu volume, e você pode a qualquer momento aumentar o tamanho de uma partição existente acrescentando um disco adicional quando necessário."
+msgstr ""
+"LVM permite criar partições \"virtuais\" que se estendem ao longo de vários "
+"discos. Os benefícios são dois: o tamanho das partições não estão limitados "
+"pelos discos individuais, mas pelo seu volume cumulativo, e você pode "
+"redimensionar as partições existentes a qualquer momento possivelmente "
+"depois de adicionarum disco adicional quando necessário."
 
 #. Tag: para
 #, no-c-format
@@ -1235,10 +1243,18 @@ msgid "This technique works in a very simple way: each volume, whether physical 
 msgstr "Esta técnica funciona de uma forma simples: cada volume, físico ou lógico, é dividido em blocos de mesmo tamanho, que \"are made to correspond\" pelo LVM. A adição de um novo disco causará a criação de um novo volume físico, e estes novos blocos podem ser associados a qualquer grupo de volumes. Todas as partições no grupo de volumes que é então expandido terão espaço adicional no qual elas poderão se extender."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The partitioning tool configures LVM in several steps. First you must create on the existing disks the partitions that will be “physical volumes for LVM”. To activate LVM, you need to choose “Configure the Logical Volume Manager (LVM)”, then on the same configuration screen “Create a volume group”, to which you will associate the existing physical volumes. Finally, you can create logical volumes within this volume group. Note that the automatic partitioning system is able to do all of this implementation."
 msgid "The partitioning tool configures LVM in several steps. First you must create on the existing disks the partitions that will be “physical volumes for LVM”. To activate LVM, you need to choose “Configure the Logical Volume Manager (LVM)”, then on the same configuration screen “Create a volume group”, to which you will associate the existing physical volumes. Finally, you can create logical volumes within this volume group. Note that the automatic partitioning system can perform all these steps automatically."
-msgstr "A ferramenta de particionamento configura o LVM em vários passos. Primeiro você deve criar nos discos existentes as partições que serão \"volumes físicos para o LVM\". Para ativar o LVM, você vai precisar escolher \"Configurar o Logical Volume Manager (LVM)\", então na mesma tela de configuração \"Criar um volume group\", para o qual você vai associar os volumes físicos existentes. Finalmente, você pode criar volumes lógicos dentro do volume group. Note que o sistema de particionamento automático é capaz de fazer toda esta implementação."
+msgstr ""
+"A ferramenta de particionamento configura o LVM em vários passos. Primeiro "
+"você deve criar nos discos existentes as partições que serão \"volumes "
+"físicos para o LVM\". Para ativar o LVM, você precisa escolher \"Configurar "
+"o Logical Volume Manager (LVM)\", então na mesma tela de configuração \""
+"Criar um grupo de volumes\", para o qual você irá associar os volumes "
+"físicos existentes. Finalmente, você pode criar volumes lógicos dentro do "
+"grupo de volume. Note que o sistema de particionamento automático pode "
+"realizar todos estes passos automaticamente."
 
 #. Tag: para
 #, no-c-format
@@ -1246,10 +1262,11 @@ msgid "In the partitioning menu, each physical volume will appear as a disk with
 msgstr "No menu de particionamento, cada volume lógico vai aparecer como um disco com uma única partição que não pode ser apagada, mas que você pode usar da forma que desejar."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The usage of LVM is described in further detail in <xref linkend=\"section.lvm\" />."
 msgid "The usage of LVM is described in further detail in <xref linkend=\"sect.lvm\" />."
-msgstr "O uso de LVM é descrito em mais detalhes em <xref linkend=\"section.lvm\" />."
+msgstr ""
+"O uso de LVM é descrito em mais detalhes em <xref linkend=\"sect.lvm\"/>."
 
 #. Tag: title
 #, no-c-format
@@ -1322,10 +1339,15 @@ msgid "<primary>system</primary><secondary>base</secondary>"
 msgstr "<primary>sistema</primary><secondary>básico</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "This step, which doesn't require any user interaction, installs the Debian “base system” packages. This includes the <command>dpkg</command> and <command>apt</command> tools, which manage Debian packages, as well as the utilities necessary to boot the system and start using it. The Debian packages are read from the disk (if using a <emphasis>netinst</emphasis> CD or a complete CD-/DVD-ROM) or downloaded (when using a <emphasis>businesscard</emphasis> installation disk)."
 msgid "This step, which doesn't require any user interaction, installs the Debian “base system” packages. This includes the <command>dpkg</command> and <command>apt</command> tools, which manage Debian packages, as well as the utilities necessary to boot the system and start using it."
-msgstr "Este passo, que não requer qualquer interação com o usuário, instala os pacotes do \"sistema básico\" do Debian. Isto inclui as ferramentas <command>dpkg</command> e <command>apt</command>, que gerenciam os pacotes Debian, assim como os utilitários necessários para iniciar o sistema e começar a usá-lo. Os pacotes Debian são lidos do disco (se estiver se usando um CD <emphasis>netinst</emphasis> ou um CD-/DVD-ROM completo) ou baixado (quando usando um disco de instalação <emphasis>businesscard</emphasis>)."
+msgstr ""
+"Este passo, que não requer qualquer interação com o usuário, instala os "
+"pacotes do \"sistema básico\" do Debian. Isto inclui as ferramentas "
+"<command>dpkg</command> e <command>apt</command>, que gerenciam os pacotes "
+"Debian, assim como os utilitários necessários para iniciar o sistema e "
+"começar a usá-lo."
 
 #. Tag: title
 #, no-c-format
@@ -1363,10 +1385,15 @@ msgid "If the installer detects a Debian installation disk in the CD/DVD reader,
 msgstr "Se o instalador detecta um disco de instalação do Debian no leitor de CD/DVD, não é necessário configurar o APT para procurar por pacotes na rede: o APT é configurado automaticamente para ler os pacotes do dispositivo de mídia removível. Se o disco é parte de um conjunto, o software vai se oferecer para \"explorar\" outros discos para guardar uma referância de todos os pacotes guardados neles."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing successively a country and a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian master archive)."
 msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing first a country, then a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian master archive)."
-msgstr "Se for preciso obter pacotes da rede, as próximas duas perguntas servem para escolher um servidor do qual baixar estes pacotes, escolhendo sucessivamente um país e um espelho disponível no país (um espelho é um servidor público hospedando cópias de todos os arquivos de um \"Debian master archive\")."
+msgstr ""
+"Se for preciso obter pacotes da rede, as próximas duas perguntas servem para "
+"escolher um servidor do qual irá baixar estes pacotes, escolhendo primeiro "
+"um país, então um espelho disponível no país (um espelho é um servidor "
+"público hospedando cópias de todos os arquivos de um servidor de arquivos "
+"primário do Debian)."
 
 #. Tag: title
 #, no-c-format
@@ -1479,16 +1506,30 @@ msgid "This phase in the Debian installation process detects the operating syste
 msgstr "Esta fase no processo de instalação do Debian detecta os sistemas operacionais que já estão instalados no computador, e adiciona as entradas correspondentes automaticamente no menu de boot, mas nem todos os programas de instalação fazem isto."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
 msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch08s07.html\" />"
-msgstr "Em particular, se você instala (ou reinstala) o Windows após, o carregador de boot vai ser apagado. O Debian ainda vai estar no seu disco rígido, mas vai ficar inacessível a partir do menu de boot. Você então vai ter que iniciar o sistema de instalação Debian em mode de <userinput>recuperação</userinput> para configurar um carregador de boot menos exclusivista. Esta operação é descrita em detalhes no manual de instalação. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/i386/ch08s07.html\" />"
+msgstr ""
+"Em particular, se você instala (ou reinstala) o Windows depois, o carregador "
+"de boot será apagado. O Debian ainda vai estar no seu disco rígido, mas vai "
+"ficar inacessível a partir do menu de boot. Você então terá que iniciar o "
+"sistema de instalação Debian em modo de <userinput>recuperação</userinput> "
+"para configurar um carregador de boot menos exclusivista. Esta operação é "
+"descrita em detalhes no manual de instalação. <ulink type=\"block\" url=\""
+"http://www.debian.org/releases/stable/amd64/ch08s07.html\" />"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "By default, the menu proposed by GRUB contains all the installed Linux kernels, as well as any other detected operating systems. This is why you should accept the offer to install it in the Master Boot Record. Since keeping older kernel versions preserves the ability to boot the same system if the most recently installed kernel is defective or poorly adapted to the hardware, it is best to always keep at least three older versions."
 msgid "By default, the menu proposed by GRUB contains all the installed Linux kernels, as well as any other operating systems that were detected. This is why you should accept the offer to install it in the Master Boot Record. Since keeping older kernel versions preserves the ability to boot the same system if the most recently installed kernel is defective or poorly adapted to the hardware, it often makes sense to keep a few older kernel versions installed."
-msgstr "Por padrão, o menu proposto pelo GRUB contém todos os núcleos Linux instalados, assim como todos os outros sistemas operacionais detectados. É por isto que você deve aceitar a proposta de instalar o GRUB no seu \"Master Boot Record\". Como manter versões de núcleos antigas preserva a habilidade de iniciar o mesmo sistema se o núcleo novo der defeito ou não se adaptar bem ao seu hardware, é melhor sempre manter pelo menos três versões antigas."
+msgstr ""
+"Por padrão, o menu proposto pelo GRUB contém todos os núcleos Linux "
+"instalados, assim como todos os outros sistemas operacionais que foram "
+"detectados. É por isto que você deve aceitar a proposta de instalar o GRUB "
+"no seu \"Master Boot Record\". Como manter versões de núcleos antigas "
+"preserva a habilidade de iniciar o mesmo sistema se o núcleo recentemente "
+"instalado der defeito ou não se adaptar bem ao seu hardware, é melhor manter "
+"algumas versões antigas instaladas."
 
 #. Tag: para
 #, no-c-format
@@ -1496,10 +1537,12 @@ msgid "GRUB is the default bootloader installed by Debian thanks to its technica
 msgstr "GRUB é o carregador de boot padrão instalado no Debian devido à sua superioridade técnica: funciona com a maioria dos sistemas de arquivos e portanto não necessita de uma atualização após cada instalação de novo núcleo, já que ele lê sua configuração durante o boot e acha a posição exata do novo núcleo. A Versão 1 do GRUB (conhecida agora como \"Grub Legacy\") não lida com todas as combinações de LVM e RAID em software; a versão 2, instalada por padrão, é mais completa. Podem haver ainda situações onde é mais recomendado instalar o LILO (outro carregador de boot); o instalador vai sugerir isto automaticamente."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "For more information on configuring GRUB, please refer to <xref linkend=\"section.config-grub\" />."
 msgid "For more information on configuring GRUB, please refer to <xref linkend=\"sect.config-grub\" />."
-msgstr "Para mais informações sobre configuração do GRUB, favor ler <xref linkend=\"section.config-grub\" />."
+msgstr ""
+"Para mais informações sobre configuração do GRUB, leia <xref linkend=\"sect"
+".config-grub\" />."
 
 #. Tag: title
 #, no-c-format
@@ -1527,10 +1570,13 @@ msgid "After the First Boot"
 msgstr "Depois do primeiro Boot"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "If you activated the task “Graphical desktop environment”, the computer will display the <command>gdm</command> login manager."
 msgid "If you activated the task “Graphical desktop environment”, the computer will display the <command>gdm3</command> login manager."
-msgstr "Se você ativou a tarefa \"ambiente de área de trabalho gráfico\" (\"Graphical desktop environment\"), o computador vai exibir o gestor de login <command>gdm</command>."
+msgstr ""
+"Se você ativou a tarefa \"Ambiente de área de trabalho gráfico\" (\""
+"Graphical desktop environment\"), o computador vai exibir o gestor de login "
+"<command>gdm3</command>."
 
 #. Tag: title
 #, no-c-format
@@ -1548,10 +1594,18 @@ msgid "Installing Additional Software"
 msgstr "Instalando Software adicional"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (<menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Synaptic Package Manager</guimenuitem></menuchoice>)."
 msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (“Synaptic Package Manager” in the menus)."
-msgstr "Os pacotes instalados correspondem aos perfis selecionados durante a instalação, mas não necessariamente ao uso que realmente vai ser feito da máquina. Desta forma, você pode querer usar o pacote uma ferramenta de gestão de pacotes para refina a seleção dos pacotes instalados. As duas ferramentas mais frequentemente usadas (que vão estar instaladas se o perfil \"ambiente de área de trabalho\" (\"Graphical desktop environment\") tiver sido escolhido) são o <command>apt</command> (acessível pela linha de comando) e o <command>synaptic</command> (<menuchoice><guimenu>Sistema</guimenu> <guisubmenu>Administração</guisubmenu> <guimenuitem>Gestor de Pacotes Synaptic</guimenuitem></menuchoice>)."
+msgstr ""
+"Os pacotes instalados correspondem aos perfis selecionados durante a "
+"instalação, mas não necessariamente ao uso que realmente vai ser feito da "
+"máquina. Desta forma, você pode querer usar uma ferramenta de gerenciamento "
+"de pacotes para refina a seleção dos pacotes instalados. As duas ferramentas "
+"mais frequentemente usadas (que estarão instaladas se o perfil \"Ambiente de "
+"área de trabalho\" (\"Graphical desktop environment\") tiver sido escolhido) "
+"são o <command>apt</command> (acessível pela linha de comando) e o "
+"<command>synaptic</command> (\"Gestor de Pacotes Synaptic\" nos menus)."
 
 #. Tag: para
 #, no-c-format
@@ -1624,10 +1678,18 @@ msgid "<primary>safe-upgrade</primary>"
 msgstr "<primary>safe-upgrade</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"section.apt-mise-a-jour\" />."
 msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"sect.apt-upgrade\" />."
-msgstr "Um primeiro <command>aptitude safe-upgrade</command> (um comando usado para automaticamente atualizar programas instalados) é geralmente necessário, especialmente devido a possíveis atualizações de segurança lançadas desde o lançamento da última versão estável do Debian. Estas atualizações podem envolver algumas questões adicionais via <command>debconf</command>, a ferramenta de configuração padrão do Debian. Para mais informações sobre estas atualizações conduzidas pelo <command>aptitude</command>, favor verificar <xref linkend=\"section.apt-mise-a-jour\" />."
+msgstr ""
+"Um primeiro <command>aptitude safe-upgrade</command> (um comando usado para "
+"atualizar automaticamente os programas instalados) é geralmente necessário, "
+"especialmente devido a possíveis atualizações de segurança lançadas desde o "
+"lançamento da última versão estável do Debian. Estas atualizações podem "
+"envolver algumas questões adicionais via <command>debconf</command>, a "
+"ferramenta de configuração padrão do Debian. Para mais informações sobre "
+"estas atualizações conduzidas pelo <command>aptitude</command>, verifique em "
+"<xref linkend=\"sect.apt-upgrade\"/>."
 
 #~ msgid "<emphasis>IN PRACTICE</emphasis> Debian on CD-ROM"
 #~ msgstr "<emphasis>NA PRÁTICA</emphasis> Debian no CD-ROM"
