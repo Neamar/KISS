@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-05-14 22:22+0200\n"
+"PO-Revision-Date: 2014-05-18 02:46+0200\n"
 "Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/01_the-debian-project/pt_BR/>\n"
@@ -208,10 +208,16 @@ msgid "<primary>subproject</primary>"
 msgstr "<primary>subprojeto</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "All of the Debian tools operate in this direction: <command>debian-cd</command> has for a long time now allowed the creation of a set of CD-ROMs bearing only pre-selected packages; <command>debian-installer</command> is also a modular installer, easily adapted to special needs. <command>APT</command> will install packages from various origins, while guaranteeing the overall cohesion of the system."
 msgid "All the Debian tools operate in this direction: <command>debian-cd</command> has for a long time now allowed the creation of a set of CD-ROMs containing only a pre-selected set of packages; <command>debian-installer</command> is also a modular installer, easily adapted to special needs. <command>APT</command> will install packages from various origins, while guaranteeing the overall consistency of the system."
-msgstr "Todas ferramentas Debian operam neste sentido: <command>debian-cd</command> tem por muito tempo permitido criar um conjunto de CD-ROMs tendo apenas pacotes pré-selecionados; <command>debian-installer</command> é também um instalador modular, facilmente adaptado para necessidades especiais. <command>APT</command> irá instalar pacotes a partir de várias origens, garantindo ao mesmo tempo a coesão geral do sistema."
+msgstr ""
+"Todas as ferramentas Debian operam neste sentido: <command>debian-"
+"cd</command> tem por muito tempo permitido criar um conjunto de CD-ROMs "
+"contendo apenas um conjunto de pacotes pré-selecionados; <command>debian-"
+"installer</command> é também um instalador modular, facilmente adaptado para "
+"necessidades especiais. <command>APT</command> irá instalar pacotes a partir "
+"de várias origens, garantindo ao mesmo tempo a consistência do sistema."
 
 #. Tag: title
 #, no-c-format
@@ -224,10 +230,14 @@ msgid "<primary><command>debian-cd</command></primary>"
 msgstr "<primary><command>debian-cd</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<command>debian-cd</command> creates CD-ROM ISO installation images ready for use. Raphaël Hertzog is the author of the latest rewrite, but maintenance is essentially conducted by Steve McIntyre. Any matter regarding this software is discussed (in English) on the <email>debian-cd@lists.debian.org</email> mailing list."
 msgid "<command>debian-cd</command> creates ISO images of installation media (CD, DVD, Blu-Ray, etc.) ready for use. Any matter regarding this software is discussed (in English) on the <email>debian-cd@lists.debian.org</email> mailing list."
-msgstr "<command>debian-cd</command> cria imagens ISO de CD-ROM de instalação prontas para usar. Raphaël Hertzog é o autor da última reescrita da aplicação, mas a manutenção é essencialmente feita por Steve McIntyre. Qualquer questão sobre este softwares é discutido (em inglês) na lista de discussão <email>debian-cd@lists.debian.org</email>."
+msgstr ""
+"<command>debian-cd</command> cria imagens ISO de mídias de instalação (CD, "
+"DVD, Blu-Ray, etc.) prontas para usar. Qualquer questão sobre este softwares "
+"é discutido (em inglês) na lista de discussão <email>debian-"
+"cd@lists.debian.org</email>."
 
 #. Tag: title
 #, no-c-format
@@ -250,10 +260,14 @@ msgid "<primary>processor</primary>"
 msgstr "<primary>processador</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Most software available in Debian is written in portable programming languages: the same source code can compile on various architectures. In effect, an executable binary, always compiled for a specific architecture, will not usually function on the other architectures."
 msgid "Most software available in Debian is written in portable programming languages: the same source code can be compiled for various architectures. In effect, an executable binary, always compiled for a specific architecture, will not usually function on the other architectures."
-msgstr "A maioria dos softwares disponíveis no Debian é escrita em linguagens de programação portáveis: o mesmo código fonte pode ser compilado em várias arquiteturas. Na realidade, um binário executável, sempre compilado para uma arquitetura específica, geralmente não funcionará em outras arquiteturas."
+msgstr ""
+"A maioria dos softwares disponíveis no Debian é escrita em linguagens de "
+"programação portáveis: o mesmo código fonte pode ser compilado para várias "
+"arquiteturas. Na realidade, um binário executável, sempre compilado para uma "
+"arquitetura específica, geralmente não funcionará em outras arquiteturas."
 
 #. Tag: para
 #, no-c-format
@@ -261,10 +275,10 @@ msgid "Recall that each program is created by writing source code; this source c
 msgstr "Lembre-se que cada programa é criado escrevendo o código fonte, este código-fonte é um arquivo texto composto de instruções em uma dada linguagem de programação. Antes de você poder usar o software, é necessário compilar o código fonte, o que significa transformar o código em um binário (uma série de instruções de máquina executável pelo processador). Cada linguagem de programação tem um compilador específico para executar essa operação (por exemplo, <command>gcc</command> para a linguagem de programação C)."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>name</primary><secondary>codename</secondary>"
 msgid "<primary>source</primary><secondary>code</secondary>"
-msgstr "<primary>nome</primary><secondary>codinome</secondary>"
+msgstr "<primary>fonte</primary><secondary>código</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -292,10 +306,15 @@ msgid "<primary><command>debian-installer</command></primary>"
 msgstr "<primary><command>debian-installer</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<command>debian-installer</command> is the name of the Debian installation program. Its modular design allows it to be used in a broad range of installation scenarios. The development work is coordinated on the <email>debian-boot@lists.debian.org</email> mailing list under the direction of Otavio Salvador and Joey Hess."
 msgid "<command>debian-installer</command> is the name of the Debian installation program. Its modular design allows it to be used in a broad range of installation scenarios. The development work is coordinated on the <email>debian-boot@lists.debian.org</email> mailing list under the direction of Joey Hess and Cyril Brulebois."
-msgstr "<command>debian-installer</command> é o nome do programa de instalação do Debian. A sua concepção modular permite que seja usada em uma ampla variedade de cenários de instalação. O trabalho de desenvolvimento é coordenado na lista de discussão <email>debian-boot@lists.debian.org</email> sob a direção de Otávio Salvador e Joey Hess."
+msgstr ""
+"<command>debian-installer</command> é o nome do programa de instalação do "
+"Debian. A sua concepção modular permite que seja usada em uma ampla "
+"variedade de cenários de instalação. O trabalho de desenvolvimento é "
+"coordenado na lista de discussão <email>debian-boot@lists.debian.org</email> "
+"sob a direção de Joey Hess e Cyril Brulebois."
 
 #. Tag: title
 #, no-c-format
@@ -364,6 +383,16 @@ msgstr "Além da SPI. váriassociações locais colaboram estreitamente com o De
 #, no-c-format
 msgid "While the list of trusted organizations is rather short, there are many more Debian-related associations whose goal is to promote Debian: <emphasis>Debian France</emphasis>, <emphasis>Debian-UK</emphasis>, <emphasis>Debian-ES</emphasis>, <emphasis>debian.ch</emphasis>, and others around the world. Do not hesitate to join your local association and support the project! <ulink type=\"block\" url=\"http://wiki.debian.org/Teams/Auditor/Organizations\" /> <ulink type=\"block\" url=\"http://france.debian.net/\" /> <ulink type=\"block\" url=\"http://wiki.earth.li/DebianUKSociety\" /> <ulink type=\"block\" url=\"http://www.debian-es.org/\" /> <ulink type=\"block\" url=\"http://debian.ch/\" />"
 msgstr ""
+"Embora a lista de organizações de confiança é bastante curta, existem muitas "
+"mais associações relacionadas com o Debian, cujo objetivo é promover o "
+"Debian: <emphasis>Debian France</emphasis>, <emphasis>Debian-UK</emphasis>, "
+"<emphasis>Debian-ES</emphasis>, <emphasis>debian.ch</emphasis> e outras ao "
+"redor do mundo. Não hesite em participar da sua associação local e apoiar o "
+"projeto! <ulink type=\"block\" url=\"http://wiki.debian.org/Teams/Auditor/"
+"Organizations\"/><ulink type=\"block\" url=\"http://france.debian.net/\"/> <"
+"ulink type=\"block\" url=\"http://wiki.earth.li/DebianUKSociety\"/> <ulink "
+"type=\"block\" url=\"http://www.debian-es.org/\"/><ulink type=\"block\" url="
+"\"http://debian.ch/\"/>"
 
 #. Tag: title
 #, no-c-format
@@ -2008,17 +2037,27 @@ msgstr "Outras equipes gerenciam os pacotes mais importantes, a fim de garantir 
 #. Tag: title
 #, no-c-format
 msgid "Follow Debian News"
-msgstr ""
+msgstr "Siga as notícias do Debian"
 
 #. Tag: para
 #, no-c-format
 msgid "As already mentioned, the Debian project evolves in a very distributed, very organic way. As a consequence, it may be difficult at times to stay in touch with what happens within the project without being overwhelmed with a never-ending flood of notifications."
 msgstr ""
+"Como já mencionado, o projeto Debian evolui muito distribuído, de forma "
+"muito orgânica. Como consequência, pode ser difícil às vezes para ficar em "
+"contato com o que acontece dentro do projeto sem ser sobrecarregado por uma "
+"torrente interminável de notificações."
 
 #. Tag: para
 #, no-c-format
 msgid "If you only want the most important news about Debian, you probably should subscribe to the <email>debian-announce@lists.debian.org</email> list. This is a very low-traffic list (around a dozen messages a year), and only gives the most important announcements, such as the availability of a new stable release, the election of a new Project Leader, or the yearly Debian Conference."
 msgstr ""
+"Se você quer somente as notícias mais importantes sobre o Debian, você "
+"provavelmente deve se inscrever na lista <email>debian-"
+"announce@lists.debian.org</email>. Esta é uma lista de muito baixo tráfego ("
+"cerca de uma dúzia de mensagens por ano), e apenas dá os anúncios mais "
+"importantes, tais como a disponibilidade de uma nova versão estável, a "
+"eleição de um novo líder do projeto, ou a conferência anual do Debian."
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
