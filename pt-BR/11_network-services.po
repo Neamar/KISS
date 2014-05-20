@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-05-21 04:14+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-05-21 17:29+0200\n"
+"Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -125,10 +125,15 @@ msgid "Installing Postfix"
 msgstr "Instalando o Postfix"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <emphasis role=\"pkg\">postfix</emphasis> package includes the main SMTP daemon. Other packages (such as <emphasis role=\"pkg\">postfix-ldap</emphasis> and <emphasis role=\"pkg\">postfix-pgsql</emphasis>) add extra functionality to Postfix, including access to mapping databases. You should only install them if you know you need them."
 msgid "The <emphasis role=\"pkg\">postfix</emphasis> package includes the main SMTP daemon. Other packages (such as <emphasis role=\"pkg\">postfix-ldap</emphasis> and <emphasis role=\"pkg\">postfix-pgsql</emphasis>) add extra functionality to Postfix, including access to mapping databases. You should only install them if you know that you need them."
-msgstr "O pacote <emphasis role=\"pkg\">postfix</emphasis> incluí um o daemon SMTP principal. Outros pacotes (como o <emphasis role=\"pkg\">postfix-ldap</emphasis> e <emphasis role=\"pkg\">postfix-pgsql</emphasis>) adicional funcionalidades extras ao Postfix, incluindo a bancos de dados de mapeamento. Você só deve instalá-los se souber que você precisa dos mesmos."
+msgstr ""
+"O pacote <emphasis role=\"pkg\">postfix</emphasis> incluí um o daemon SMTP "
+"principal. Outros pacotes (como o <emphasis role=\"pkg\">postfix-"
+"ldap</emphasis> e <emphasis role=\"pkg\">postfix-pgsql</emphasis>) adicionam "
+"funcionalidades extras ao Postfix, incluindo acesso a bancos de dados. Você "
+"só deve instalá-los se souber que precisa dos mesmos."
 
 #. Tag: title
 #, no-c-format
@@ -164,6 +169,23 @@ msgstr "Diversas questões Debconf são feitas durante o processo de instalaçã
 #, no-c-format
 msgid "The first question deals with the type of setup. Only two of the proposed answers are relevant in case of an Internet-connected server, “Internet site” and “Internet with smarthost”. The former is appropriate for a server that receives incoming email and sends outgoing email directly to its recipients, and is therefore well-adapted to the Falcot Corp case. The latter is appropriate for a server receiving incoming email normally, but that sends outgoing email through an intermediate SMTP server — the “smarthost” — rather than directly to the recipient's server. This is mostly useful for individuals with a dynamic IP address, since many email servers reject messages coming straight from such an IP address. In this case, the smarthost will usually be the ISP's SMTP server, which is always configured to accept email coming from the ISP's customers and forward it appropriately. This setup (with a smarthost) is also relevant for servers that are not permanently connected to the internet, since it avoids having to manage a queue of undeliverable messages that need to be retried later."
 msgstr ""
+"A primeira pergunta é sobre qual o tipo de instalação. Apenas duas das "
+"respostas propostas são relevantes no caso de um servidor conectado à "
+"Internet , \"site de Internet\" e \"Internet com smarthost\". O primeiro é "
+"apropriado para um servidor que recebe e-mails entrantes e envia e-mails "
+"saintes diretamente aos seus destinatários, e portanto é se adapta bem ao "
+"caso da Falcot Corp . o último é apropriado para um servidor que recebe e-"
+"mails recebidos normalmente, mas que envia e-mails saintes através de um "
+"servidor SMTP intermediário - o \"smarthost\" - ao invés de diretamente para "
+"o servidor do destinatário . Isto é útil para os indivíduos com um endereço "
+"IP dinâmico , uma vez que muitos servidores de e-mail rejeitam mensagens "
+"diretas do referido endereço IP. Neste caso, o smarthost será geralmente o "
+"servidor SMTP do ISP, que é sempre configurado para aceitar e-mail "
+"proveniente de clientes do ISP e transmiti-los de forma adequada. Esta "
+"configuração (com um smarthost) também é relevante para os servidores que "
+"não estão permanentemente conectados à internet, uma vez que se evita ter de "
+"gerenciar uma fila de mensagens não entregues que precisam ser repetida mais "
+"tarde."
 
 #. Tag: title
 #, no-c-format
@@ -184,6 +206,14 @@ msgstr "ISP é acrônico para \"Internet Service Provider\" (Provedor de Serviç
 #, no-c-format
 msgid "The second question deals with the full name of the machine, used to generate email addresses from a local user name; the full name of the machine ends up as the part after the at-sign (“@”). In the case of Falcot, the answer should be <literal>mail.falcot.com</literal>. This is the only question asked by default, but the configuration it leads to is not complete enough for the needs of Falcot, which is why the administrators run <command>dpkg-reconfigure postfix</command> so as to be able to customize more parameters."
 msgstr ""
+"A segunda questão diz respeito ao nome completo da máquina, utilizada para "
+"gerar os endereços de e-mail a partir de um nome de usuário local; o nome "
+"completo da máquina acaba como a parte após o arroba (\"@\"). No caso da "
+"Falcot, a resposta deveria ser <literal>mail.falcot.com</literal>. Esta é a "
+"única pergunta feita por padrão, mas a configuração gerada não é completa o "
+"suficiente para as necessidades de Falcot, razão pela qual os "
+"administradores executam o <command>dpkg-reconfigure postfix</command>, para "
+"personalizar mais parâmetros."
 
 #. Tag: para
 #, no-c-format
@@ -343,16 +373,18 @@ msgid "Virtual Alias Domains"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>alias</primary><secondary>virtual domain</secondary>"
 msgid "<primary>alias</primary><secondary>virtual alias domain</secondary>"
-msgstr "<primary>aliás</primary><secondary>domínio virtual</secondary>"
+msgstr "<primary>aliás</primary><secondary>alias de domínio virtual</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>alias</primary><secondary>virtual domain</secondary>"
 msgid "<primary>virtual domain</primary><secondary>virtual alias domain</secondary>"
-msgstr "<primary>aliás</primary><secondary>domínio virtual</secondary>"
+msgstr ""
+"<primary>domínio virtual</primary><secondary>alias de domínio "
+"virtual</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -370,7 +402,7 @@ msgid "Directives to add in the <filename>/etc/postfix/main.cf</filename> file"
 msgstr "Diretivas para serem adicionadas no arquivo <filename>/etc/postfix/main.cf</filename>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "virtual_alias_domains = falcotsbrand.tm.fr\n"
@@ -381,7 +413,7 @@ msgid ""
 "virtual_alias_maps = hash:/etc/postfix/virtual\n"
 msgstr ""
 "\n"
-"virtual_alias_domains = falcotsbrand.tm.fr\n"
+"virtual_alias_domains = falcotsbrand.com\n"
 "virtual_alias_maps = hash:/etc/postfix/virtual\n"
 
 #. Tag: para
@@ -428,10 +460,12 @@ msgid "<primary>mailbox, virtual domain</primary>"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>alias</primary><secondary>virtual domain</secondary>"
 msgid "<primary>virtual domain</primary><secondary>virtual mailbox domain</secondary>"
-msgstr "<primary>aliás</primary><secondary>domínio virtual</secondary>"
+msgstr ""
+"<primary>domínio virtual</primary><secondary>domínio virtual de caixas de "
+"correio</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -636,7 +670,7 @@ msgid "Restrictions on the name announced in <literal>EHLO</literal>"
 msgstr ""
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "smtpd_client_restrictions = permit_mynetworks,\n"
@@ -653,11 +687,11 @@ msgid ""
 "    warn_if_reject reject_unknown_hostname\n"
 msgstr ""
 "\n"
-"smtpd_client_restrictions = permit_mynetworks,\n"
-"    warn_if_reject reject_unknown_client,\n"
-"    check_client_access hash:/etc/postfix/access_clientip,\n"
-"    reject_rbl_client sbl-xbl.spamhaus.org,\n"
-"    reject_rbl_client list.dsbl.org\n"
+"smtpd_helo_restrictions = permit_mynetworks,\n"
+"    reject_invalid_hostname,\n"
+"    check_helo_access hash:/etc/postfix/access_helo,\n"
+"    reject_non_fqdn_hostname,\n"
+"    warn_if_reject reject_unknown_hostname\n"
 
 #. Tag: para
 #, no-c-format
@@ -1111,10 +1145,10 @@ msgid "Once the <emphasis role=\"pkg\">clamav-milter</emphasis> package is insta
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>CULTURE</emphasis> The spam problem"
 msgid "<emphasis>NOTE</emphasis> Real TCP port vs named socket"
-msgstr "<emphasis>CULTURA</emphasis> O problema do spam"
+msgstr "<emphasis>NOTA</emphasis> Porta TCP real versus soquete nomeado"
 
 #. Tag: para
 #, no-c-format
@@ -1276,10 +1310,10 @@ msgid "<primary>server</primary><secondary>web</secondary>"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>spammer</primary>"
 msgid "<primary>web server</primary>"
-msgstr "<primary>spammer</primary>"
+msgstr "<primary>servidor web</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1412,10 +1446,10 @@ msgid "Some extra care must be taken if you want to favor SSL connections with <
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>nfs-user-server</emphasis></primary>"
 msgid "<primary><emphasis>Perfect Forward Secrecy</emphasis></primary>"
-msgstr "<primary><emphasis>nfs-user-server</emphasis></primary>"
+msgstr "<primary><emphasis>Perfect Forward Secrecy</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -1550,16 +1584,16 @@ msgid "This section briefly reviews some of the commonly-used Apache configurati
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>spammer</primary>"
 msgid "<primary>Apache directives</primary>"
-msgstr "<primary>spammer</primary>"
+msgstr "<primary>Diretivas do Apache</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>directory, LDAP</primary>"
 msgid "<primary>directives, Apache</primary>"
-msgstr "<primary>diretório, LDAP</primary>"
+msgstr "<primary>diretivas Apache</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1567,10 +1601,10 @@ msgid "The main configuration file usually includes several <literal>Directory</
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><literal>HELO</literal></primary>"
 msgid "<primary><literal>Options</literal>, Apache directive</primary>"
-msgstr "<primary><literal>HELO</literal></primary>"
+msgstr "<primary><literal>Opções</literal>, diretivas do Apache</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1599,10 +1633,11 @@ msgid "The <literal>DirectoryIndex</literal> directive contains a list of files 
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><literal>DATA</literal></primary>"
 msgid "<primary><literal>DirectoryIndex</literal>, Apache directive</primary>"
-msgstr "<primary><literal>DATA</literal></primary>"
+msgstr ""
+"<primary><literal>DirectoryIndex</literal>, diretivas do Apache</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1741,22 +1776,22 @@ msgid "The <literal>Allow from</literal> and <literal>Deny from</literal> direct
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><literal>DATA</literal></primary>"
 msgid "<primary><literal>Allow from</literal>, Apache directive</primary>"
-msgstr "<primary><literal>DATA</literal></primary>"
+msgstr "<primary><literal>Allow from</literal>, diretivas do Apache</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><literal>DATA</literal></primary>"
 msgid "<primary><literal>Deny from</literal>, Apache directive</primary>"
-msgstr "<primary><literal>DATA</literal></primary>"
+msgstr "<primary><literal>Deny from</literal>, diretivas do Apache</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><literal>HELO</literal></primary>"
 msgid "<primary><literal>Order</literal>, Apache directive</primary>"
-msgstr "<primary><literal>HELO</literal></primary>"
+msgstr "<primary><literal>Order</literal>, diretivas do Apache</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1812,16 +1847,18 @@ msgid "<primary>web logs analyzer</primary>"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>file</primary><secondary>server</secondary>"
 msgid "<primary>logs</primary><secondary>web logs analyzer</secondary>"
-msgstr "<primary>arquivo</primary><secondary>servidor</secondary>"
+msgstr ""
+"<primary>registros</primary><secondary>analisador de registros "
+"web</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>alias</primary>"
 msgid "<primary>analyzer of web logs</primary>"
-msgstr "<primary>aliás</primary>"
+msgstr "<primary>analisador de registros web</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1829,7 +1866,7 @@ msgid "The first configuration step is the customization of the <filename>/etc/a
 msgstr ""
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "LogFile=\"/var/log/apache2/access.log\"\n"
@@ -1852,13 +1889,11 @@ msgid ""
 msgstr ""
 "\n"
 "LogFile=\"/var/log/apache2/access.log\"\n"
-"LogFormat = \"%virtualname %host %other %logname %time1 %methodurl %code %bytesd %refererquot %uaquot\"\n"
+"LogFormat = \"%virtualname %host %other %logname %time1 %methodurl %code %"
+"bytesd %refererquot %uaquot\"\n"
 "SiteDomain=\"www.falcot.com\"\n"
 "HostAliases=\"falcot.com REGEX[^.*\\.falcot\\.com$]\"\n"
 "DNSLookup=1\n"
-"DirData=\"/var/lib/awstats\"\n"
-"DirIcons=\"/awstats-icon\"\n"
-"DirLang=\"/usr/share/awstats/lang\"\n"
 "LoadPlugin=\"tooltips\"\n"
 
 #. Tag: para
@@ -2047,7 +2082,7 @@ msgid "NFS is a very useful tool, but its shortcomings must be kept in mind espe
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> NFS HOWTO"
 msgstr "<emphasis>DOCUMENTAÇÃO</emphasis> NFS HOWTO"
 
@@ -2344,7 +2379,7 @@ msgid "Manually mounting with the <command>mount</command> command"
 msgstr "Montando manualmente com o comando <command>mount</command>"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid arrakis.interne.falcot.com:/srv/shared /shared</userinput>"
@@ -2353,7 +2388,8 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid arrakis.internal.falcot.com:/srv/shared /shared</userinput>"
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid arrakis.interne.falcot.com:/srv/shared /shared</userinput>"
+"<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid "
+"arrakis.internal.falcot.com:/srv/shared /shared</userinput>"
 
 #. Tag: title
 #, no-c-format
@@ -2361,7 +2397,7 @@ msgid "NFS entry in the <filename>/etc/fstab</filename> file"
 msgstr "Entrada NFS no arquivo <filename>/etc/fstab</filename>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "arrakis.interne.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
@@ -2370,7 +2406,7 @@ msgid ""
 "arrakis.internal.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
 msgstr ""
 "\n"
-"arrakis.interne.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
+"arrakis.internal.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
 
 #. Tag: para
 #, no-c-format
@@ -2483,10 +2519,10 @@ msgid "<primary>domain controller</primary>"
 msgstr "<primary>controle de domínio</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>Windows share</primary>"
 msgid "<primary>Windows domain</primary>"
-msgstr "<primary>Compartilhamento Windows</primary>"
+msgstr "<primary>Domínio Windows</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2788,10 +2824,10 @@ msgid "<primary><emphasis>smbclient</emphasis></primary>"
 msgstr "<primary><emphasis>smbclient</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>smbfs</emphasis></primary>"
 msgid "<primary><emphasis>cifs-utils</emphasis></primary>"
-msgstr "<primary><emphasis>smbfs</emphasis></primary>"
+msgstr "<primary><emphasis>cifs-utils</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -2809,22 +2845,26 @@ msgid "Mounting Windows Shares"
 msgstr "Montando Compartilhamentos Windows"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <command>smbmount</command> command allows mounting a Windows share into the Linux filesystem hierarchy."
 msgid "The <command>mount</command> command allows mounting a Windows share into the Linux filesystem hierarchy (with the help of <command>mount.cifs</command> provided by <emphasis role=\"pkg\">cifs-utils</emphasis>)."
-msgstr "O comando <command>smbmount</command> permite montar um compartilhamento Windows na hierarquia do sistema de arquivos do Linux."
+msgstr ""
+"O comando <command>mount</command> permite montar um compartilhamento "
+"Windows na hierarquia do sistema de arquivos do Linux (com a ajuda do "
+"<command>mount.cifs</command> fornecido pelo <emphasis role=\"pkg\">cifs-"
+"utils</emphasis>)."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>smbmount</command></primary>"
 msgid "<primary><command>mount.cifs</command></primary>"
-msgstr "<primary><command>smbmount</command></primary>"
+msgstr "<primary><command>mount.cifs</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>Windows share</primary>"
 msgid "<primary>Windows share, mounting</primary>"
-msgstr "<primary>Compartilhamento Windows</primary>"
+msgstr "<primary>Compartilhamento Windows, montagem</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -2832,7 +2872,7 @@ msgid "Mounting a Windows share"
 msgstr "Montando um compartilhamento Windows"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "smbmount //arrakis/shared /shared -o credentials=/usr/local/etc/smb-credentials\n"
@@ -2842,24 +2882,27 @@ msgid ""
 "      -o credentials=/etc/smb-credentials\n"
 msgstr ""
 "\n"
-"smbmount //arrakis/shared /shared -o credentials=/usr/local/etc/smb-credentials\n"
+"mount -t cifs //arrakis/shared /shared \\\n"
+"      -o credentials=/etc/smb-credentials\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <filename>/usr/local/etc/smb-credentials</filename> file (which must not be readable by users) has the following format:"
 msgid "The <filename>/etc/smb-credentials</filename> file (which must not be readable by users) has the following format:"
-msgstr "O arquivo <filename>/usr/local/etc/smb-credentials</filename> (o qual não deve ser legível pelos usuários) tem o seguinte formato:"
+msgstr ""
+"O arquivo <filename>/etc/smb-credentials</filename> (o qual não deve ser "
+"legível pelos usuários) tem o seguinte formato:"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "\n"
 "username = <replaceable>user</replaceable>\n"
 "password = <replaceable>password</replaceable>"
 msgstr ""
 "\n"
-"username = <replaceable>usuário</replaceable>\n"
-"password = <replaceable>senha</replaceable>"
+"username = <replaceable>user</replaceable>\n"
+"password = <replaceable>password</replaceable>"
 
 #. Tag: para
 #, no-c-format
@@ -2872,7 +2915,7 @@ msgid "A mount of a Windows share can also be configured in <filename>/etc/fstab
 msgstr ""
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "smbmount //arrakis/shared /shared -o credentials=/usr/local/etc/smb-credentials\n"
@@ -2881,13 +2924,16 @@ msgid ""
 "//<replaceable>server</replaceable>/shared /shared cifs credentials=/etc/smb-credentials\n"
 msgstr ""
 "\n"
-"smbmount //arrakis/shared /shared -o credentials=/usr/local/etc/smb-credentials\n"
+"//<replaceable>servidor</replaceable>/shared /shared cifs credentials=/etc"
+"/smb-credentials\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Manually mounting with the <command>mount</command> command"
 msgid "Unmounting a SMB/CIFS share is done with the standard <command>umount</command> command."
-msgstr "Montando manualmente com o comando <command>mount</command>"
+msgstr ""
+"Desmontando um compartilhamento SMB/CIFS é feito com o comando padrão "
+"<command>umount</command>."
 
 #. Tag: title
 #, no-c-format
@@ -2910,10 +2956,12 @@ msgid "Here are the required steps:"
 msgstr "Aqui estão os passos necessários:"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<literal>http://localhost:631/admin</literal>."
 msgid "Enter the CUPS configuration interface: <literal>http://localhost:631/admin</literal>"
-msgstr "<literal>http://localhost:631/admin</literal>."
+msgstr ""
+"Entre na interface de configuração do CUPS: "
+"<literal>http://localhost:631/admin</literal>"
 
 #. Tag: para
 #, no-c-format
@@ -2921,16 +2969,20 @@ msgid "Click on “Add Printer”."
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "When choosing the printer device, pick “Windows Printer via SAMBA”."
 msgid "Choose the printer device, pick “Windows Printer via SAMBA”."
-msgstr "Quando escolhendo o dispositivo de impressora, escolha “Windows Printer via SAMBA”."
+msgstr ""
+"Selecione o dispositivo de impressora, escolha “Impressora Windows via "
+"SAMBA”."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The URI describing the printer looks like the following:"
 msgid "Enter the connection URI for the network printer. It should look like the following:"
-msgstr "A URI descrevendo a impressora se pare com o seguinte:"
+msgstr ""
+"Insira a conexão URI para a impressora de rede. Deve se parecer com o "
+"seguinte:"
 
 #. Tag: para
 #, no-c-format
@@ -3351,7 +3403,7 @@ msgid "the administrative password"
 msgstr "a senha administrativa"
 
 #. Tag: entry
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Create DUAConfigProfile"
 msgstr "Criar DUAConfigProfile"
 
@@ -3376,10 +3428,10 @@ msgid "The <command>jxplorer</command> command (in the package of the same name)
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>portmapper</command></primary>"
 msgid "<primary><command>jxplorer</command></primary>"
-msgstr "<primary><command>portmapper</command></primary>"
+msgstr "<primary><command>jxplorer</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3467,9 +3519,9 @@ msgid "LDAP account for root"
 msgstr "Conta LDAP para root"
 
 #. Tag: entry
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "LDAP root account password"
-msgstr "A senha da conta de root LDAP"
+msgstr "A senha da conta de root do LDAP"
 
 #. Tag: para
 #, no-c-format
@@ -3717,16 +3769,18 @@ msgid ""
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>TOOL</emphasis> Browsing an LDAP directory"
 msgid "<emphasis>TOOL</emphasis> <command>ldapvi</command> to edit an LDAP directory"
-msgstr "<emphasis>FERRAMENTA</emphasis> Navegando em diretório LDAP"
+msgstr ""
+"<emphasis>FERRAMENTA</emphasis> <command>ldapvi</command> para editar um "
+"diretório LDAP"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>luma</command></primary>"
 msgid "<primary><command>ldapvi</command></primary>"
-msgstr "<primary><command>luma</command></primary>"
+msgstr "<primary><command>ldapvi</command></primary>"
 
 #. Tag: para
 #, no-c-format

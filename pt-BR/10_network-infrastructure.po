@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-01-13 18:05+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"PO-Revision-Date: 2014-05-20 17:35+0200\n"
+"Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/10_network-infrastructure/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.9-dev\n"
+"X-Generator: Weblate 1.9\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -815,10 +815,10 @@ msgid "<primary>IPsec</primary><secondary>IPsec Key Exchange</secondary>"
 msgstr "<primary>IPsec</primary><secondary>Troca de chaves IPsec</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>host</command></primary>"
 msgid "<primary><command>setkey</command></primary>"
-msgstr "<primary><command>host</command></primary>"
+msgstr "<primary><command>setkey</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -983,7 +983,7 @@ msgid "The <filename>/etc/ppp/ip-up.d/falcot</filename> file"
 msgstr "O arquivo <filename>/etc/ppp/ip-up.d/falcot</filename>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "\n"
 "# Create the route to the Falcot network\n"
@@ -993,9 +993,9 @@ msgid ""
 "fi\n"
 msgstr ""
 "\n"
-"# Create the route to the Falcot network\n"
+"# Criar a rota para a rede Falcot\n"
 "if [ \"$6\" = \"falcot\" ]; then\n"
-"  # 192.168.0.0/24 is the (remote) Falcot network\n"
+"  # 192.168.0.0/24 é a rede (remota) Falcot\n"
 "  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
 "fi\n"
 
@@ -1005,7 +1005,7 @@ msgid "The <filename>/etc/ppp/ip-down.d/falcot</filename> file"
 msgstr "O arquivo <filename>/etc/ppp/ip-down.d/falcot</filename>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "\n"
 "# Delete the route to the Falcot network\n"
@@ -1015,9 +1015,9 @@ msgid ""
 "fi\n"
 msgstr ""
 "\n"
-"# Delete the route to the Falcot network\n"
+"# Excluir a rota para a rede Falcot\n"
 "if [ \"$6\" = \"falcot\" ]; then\n"
-"  # 192.168.0.0/24 is the (remote) Falcot network\n"
+"  # 192.168.0.0/24 é a rede (remota) Falcot\n"
 "  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
 "fi\n"
 
@@ -1258,16 +1258,16 @@ msgid "<primary>routing</primary><secondary>advanced</secondary>"
 msgstr "<primary>roteamento</primary><secondary>avançado</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>traffic</primary><secondary>limitation</secondary>"
 msgid "<primary>traffic</primary><secondary>control</secondary>"
-msgstr "<primary>tráfego</primary><secondary>limitando</secondary>"
+msgstr "<primary>tráfego</primary><secondary>controle</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>control, of traffic</primary>"
 msgid "<primary>control of traffic</primary>"
-msgstr "<primary>controle, de tráfego</primary>"
+msgstr "<primary>controle de tráfego</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -1305,10 +1305,10 @@ msgid "<primary><command>wondershaper</command></primary>"
 msgstr "<primary><command>wondershaper</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>limitation, of traffic</primary>"
 msgid "<primary>limitation of traffic</primary>"
-msgstr "<primary>limitando, o tráfego</primary>"
+msgstr "<primary>limitação de tráfego</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1349,9 +1349,9 @@ msgid "In the PPP case, creating a script that calls <command>wondershaper</comm
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Optimal configuration"
-msgstr "<emphasis>APROFUNDANDO</emphasis> Configuração optimal"
+msgstr "<emphasis>INDO ALÉM</emphasis> Configuração ideal"
 
 #. Tag: para
 #, no-c-format
@@ -1470,31 +1470,31 @@ msgid "Quagga is a set of daemons cooperating to define the routing tables to be
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>OSPF</primary>"
 msgstr "<primary>OSPF</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>BGP</primary>"
 msgstr "<primary>BGP</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>RIP</primary>"
 msgstr "<primary>RIP</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>ISC</primary>"
 msgid "<primary>IS-IS</primary>"
-msgstr "<primary>ISC</primary>"
+msgstr "<primary>IS-IS</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>Freenet6</primary>"
 msgid "<primary>BABEL wireless mesh routing</primary>"
-msgstr "<primary>Freenet6</primary>"
+msgstr "<primary>BABEL, roteamento mesh sem fio</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1522,16 +1522,16 @@ msgid "<primary><command>ripngd</command></primary>"
 msgstr "<primary><command>ripngd</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>ripd</command></primary>"
 msgid "<primary><command>isisd</command></primary>"
-msgstr "<primary><command>ripd</command></primary>"
+msgstr "<primary><command>isisd</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>bgpd</command></primary>"
 msgid "<primary><command>babeld</command></primary>"
-msgstr "<primary><command>bgpd</command></primary>"
+msgstr "<primary><command>babeld</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1589,7 +1589,7 @@ msgid "Example of IPv6 configuration"
 msgstr "Exemplo de configuração IPv6"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "\n"
 "iface eth0 inet6 static\n"
@@ -1605,10 +1605,10 @@ msgstr ""
 "iface eth0 inet6 static\n"
 "    address 2001:db8:1234:5::1:1\n"
 "    netmask 64\n"
-"    # Disabling auto-configuration\n"
-"    # up echo 0 &gt;/proc/sys/net/ipv6/conf/all/autoconf\n"
-"    # The router is auto-configured and has no fixed address\n"
-"    # (/proc/sys/net/ipv6/conf/all/accept_ra). If it had:\n"
+"    # Desativar autoconfiguração\n"
+"    # autoconf 0\n"
+"    # O roteador é autoconfigurado e não tem endereço fixo\n"
+"    # (accept_ra 1). Se a tinha:\n"
 "    # gateway 2001:db8:1234:5::1\n"
 
 #. Tag: para
@@ -1636,7 +1636,7 @@ msgid ""
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>TIP</emphasis> Programs built with IPv6"
 msgstr "<emphasis>DICA</emphasis> Programas construídos com IPv6"
 
@@ -1671,10 +1671,10 @@ msgid "Tunneling"
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>CAUTION</emphasis> IPv6 and firewalls"
 msgid "<emphasis>CAUTION</emphasis> IPv6 tunneling and firewalls"
-msgstr "<emphasis>CUIDADO</emphasis> IPv6 e firewalls"
+msgstr "<emphasis>ATENÇÃO</emphasis> Tunelamento IPv6 e firewalls"
 
 #. Tag: para
 #, no-c-format
@@ -1692,10 +1692,10 @@ msgid "<primary>Freenet6</primary>"
 msgstr "<primary>Freenet6</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>QoS</primary>"
 msgid "<primary>Gogo6</primary>"
-msgstr "<primary>QoS</primary>"
+msgstr "<primary>Gogo6</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1708,7 +1708,7 @@ msgid "IPv6 connectivity is proposed to all machines on a local network by addin
 msgstr ""
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "host_type=router\n"
@@ -1722,7 +1722,7 @@ msgid ""
 msgstr ""
 "\n"
 "host_type=router\n"
-"prefix_len=48\n"
+"prefixlen=56\n"
 "if_prefix=eth0\n"
 
 #. Tag: para
@@ -1816,16 +1816,16 @@ msgid "<literal>NS</literal>: maps a name to a name server. Each domain must hav
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>zone</primary><secondary>DNS</secondary>"
 msgid "<primary>record</primary><secondary>DNS</secondary>"
-msgstr "<primary>zona</primary><secondary>DNS</secondary>"
+msgstr "<primary>registro</primary><secondary>DNS</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>DNS</primary>"
 msgid "<primary>DNS record</primary>"
-msgstr "<primary>DNS</primary>"
+msgstr "<primary>registro DNS</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1903,16 +1903,16 @@ msgid "<primary><literal>in-addr.arpa</literal></primary>"
 msgstr "<primary><literal>in-addr.arpa</literal></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><literal>in-addr.arpa</literal></primary>"
 msgid "<primary><literal>ip6.arpa</literal></primary>"
-msgstr "<primary><literal>in-addr.arpa</literal></primary>"
+msgstr "<primary><literal>ip6.arpa</literal></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>TCP, port</primary>"
 msgid "<primary>nibble format</primary>"
-msgstr "<primary>TCP, porta</primary>"
+msgstr "<primary>formato nibble</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1955,7 +1955,7 @@ msgid "<primary><filename>/etc/bind/named.conf</filename></primary>"
 msgstr "<primary><filename>/etc/bind/named.conf</filename></primary>"
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Excerpt of <filename>/etc/bind/named.conf.local</filename>"
 msgstr "Trecho do <filename>/etc/bind/named.conf.local</filename>"
 
@@ -2014,7 +2014,7 @@ msgid "Excerpt of <filename>/etc/bind/db.falcot.com</filename>"
 msgstr "Trecho do <filename>/etc/bind/db.falcot.com</filename>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "; falcot.com Zone \n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
@@ -2061,7 +2061,7 @@ msgstr ""
 "@       IN      NS      ns\n"
 "@       IN      NS      ns0.xname.org.\n"
 "\n"
-"interne IN      NS      192.168.0.2\n"
+"internal IN      NS      192.168.0.2\n"
 "\n"
 "@       IN      A       212.94.201.10\n"
 "@       IN      MX      5 mail\n"
@@ -2090,7 +2090,7 @@ msgid "Excerpt of <filename>/etc/bind/db.192.168</filename>"
 msgstr "Trecho do <filename>/etc/bind/db.192.168</filename>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "; Reverse zone for 192.168.0.0/16\n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
@@ -2115,22 +2115,22 @@ msgstr ""
 "; Reverse zone for 192.168.0.0/16\n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
 "$TTL    604800\n"
-"@       IN      SOA     ns.interne.falcot.com. admin.falcot.com. (\n"
+"@       IN      SOA     ns.internal.falcot.com. admin.falcot.com. (\n"
 "                        20040121        ; Serial\n"
 "                         604800         ; Refresh\n"
 "                          86400         ; Retry\n"
 "                        2419200         ; Expire\n"
 "                         604800 )       ; Negative Cache TTL\n"
 "\n"
-"        IN      NS      ns.interne.falcot.com.\n"
+"        IN      NS      ns.internal.falcot.com.\n"
 "\n"
 "; 192.168.0.1 -&gt; arrakis\n"
-"1.0     IN      PTR     arrakis.interne.falcot.com.\n"
+"1.0     IN      PTR     arrakis.internal.falcot.com.\n"
 "; 192.168.0.2 -&gt; neptune\n"
-"2.0     IN      PTR     neptune.interne.falcot.com.\n"
+"2.0     IN      PTR     neptune.internal.falcot.com.\n"
 "\n"
 "; 192.168.3.1 -&gt; pau\n"
-"1.3     IN      PTR     pau.interne.falcot.com.\n"
+"1.3     IN      PTR     pau.internal.falcot.com.\n"
 
 #. Tag: title
 #, no-c-format
@@ -2148,7 +2148,7 @@ msgid "<primary>DHCP</primary>"
 msgstr "<primary>DHCP</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>Dynamic Host Configuration Protocol</primary>"
 msgstr "<primary>Dynamic Host Configuration Protocol</primary>"
 
@@ -2320,7 +2320,7 @@ msgid "Other options, documented in the <citerefentry><refentrytitle>netstat</re
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>netstat -tupan</userinput>\n"
@@ -2345,21 +2345,36 @@ msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>netstat -tupan</userinput>\n"
 "<computeroutput>Active Internet connections (servers and established)\n"
-"Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name\n"
-"tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2224/sshd       \n"
-"tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      994/exim4       \n"
-"tcp        0      0 192.168.1.241:22        192.168.1.128:47372     ESTABLISHED 2944/sshd: roland [\n"
-"tcp        0      0 192.168.1.241:22        192.168.1.128:32970     ESTABLISHED 2232/sshd: roland [\n"
-"tcp6       0      0 :::22                   :::*                    LISTEN      2224/sshd       \n"
-"tcp6       0      0 ::1:25                  :::*                    LISTEN      994/exim4       \n"
-"udp        0      0 0.0.0.0:68              0.0.0.0:*                           633/dhclient    \n"
-"udp        0      0 192.168.1.241:123       0.0.0.0:*                           764/ntpd        \n"
-"udp        0      0 127.0.0.1:123           0.0.0.0:*                           764/ntpd        \n"
-"udp        0      0 0.0.0.0:123             0.0.0.0:*                           764/ntpd        \n"
-"udp6       0      0 fe80::a00:27ff:fe6c:123 :::*                                764/ntpd        \n"
-"udp6       0      0 2002:52e0:87e4:0:a0:123 :::*                                764/ntpd        \n"
-"udp6       0      0 ::1:123                 :::*                                764/ntpd        \n"
-"udp6       0      0 :::123                  :::*                                764/ntpd        \n"
+"Proto Recv-Q Send-Q Local Address           Foreign Address         "
+"State       PID/Program name\n"
+"tcp        0      0 0.0.0.0:22              0.0.0.0:*               "
+"LISTEN      2224/sshd       \n"
+"tcp        0      0 127.0.0.1:25            0.0.0.0:*               "
+"LISTEN      994/exim4       \n"
+"tcp        0      0 192.168.1.241:22        192.168.1.128:47372     "
+"ESTABLISHED 2944/sshd: roland [\n"
+"tcp        0      0 192.168.1.241:22        192.168.1.128:32970     "
+"ESTABLISHED 2232/sshd: roland [\n"
+"tcp6       0      0 :::22                   :::*                    "
+"LISTEN      2224/sshd       \n"
+"tcp6       0      0 ::1:25                  :::*                    "
+"LISTEN      994/exim4       \n"
+"udp        0      0 0.0.0.0:68              0.0.0.0:*"
+"                           633/dhclient    \n"
+"udp        0      0 192.168.1.241:123       0.0.0.0:*"
+"                           764/ntpd        \n"
+"udp        0      0 127.0.0.1:123           0.0.0.0:*"
+"                           764/ntpd        \n"
+"udp        0      0 0.0.0.0:123             0.0.0.0:*"
+"                           764/ntpd        \n"
+"udp6       0      0 fe80::a00:27ff:fe6c:123 :::*"
+"                                764/ntpd        \n"
+"udp6       0      0 2002:52e0:87e4:0:a0:123 :::*"
+"                                764/ntpd        \n"
+"udp6       0      0 ::1:123                 :::*"
+"                                764/ntpd        \n"
+"udp6       0      0 :::123                  :::*"
+"                                764/ntpd        \n"
 "</computeroutput>"
 
 #. Tag: para
@@ -2458,7 +2473,7 @@ msgid "As expected, the SSH and Exim4 applications are listed. Note that not all
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Sniffers: <command>tcpdump</command> and <command>wireshark</command>"
 msgstr "Sniffers: <command>tcpdump</command> e <command>wireshark</command>"
 
