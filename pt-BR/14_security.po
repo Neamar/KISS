@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-05-21 18:53+0200\n"
-"Last-Translator: Éverton Arruda <root@earruda.eti.br>\n"
+"PO-Revision-Date: 2014-05-21 18:54+0200\n"
+"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/14_security/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -1817,7 +1817,18 @@ msgstr "Se o módulo introduz novos tipos, deve declará-los com as directivas c
 #. Tag: para
 #, no-c-format
 msgid "Those interfaces define the <literal>myapp_t</literal> type as a process domain that should be used by any executable labeled with <literal>myapp_exec_t</literal>. Implicitly, this adds an <literal>exec_type</literal> attribute on those objects, which in turn allows other modules to grant rights to execute those programs: for instance, the <literal>userdomain</literal> module allows processes with domains <literal>user_t</literal>, <literal>staff_t</literal>, and <literal>sysadm_t</literal> to execute them. The domains of other confined applications will not have the rights to execute them, unless the rules grant them similar rights (this is the case, for example, of <command>dpkg</command> with its <literal>dpkg_t</literal> domain)."
-msgstr "Estas interfaces definem o tipo <literal>myapp_t</literal> como uma área processo que deve ser utilizada por qualquer executável rotulado com <literal>myapp_exec_t</literal>. Implicitamente, isso adiciona um atributo <literal>exec_type</literal> sobre esses objetos, que por sua vez permite que outros módulos de concessão de direitos para executar esses programas: por exemplo, o módulo <literal>userdomain</literal>, permite que os processos com domínios <literal>user_t</literal>, <literal>staff_t</literal> e <literal>sysadm_t</literal> execute os. Os domínios de outras aplicações confinadas não terão direitos para executar los, a menos que as regras lhes concedem direitos semelhantes (este é o caso, por exemplo, do dpkg com o seu domínio dpkg_t)."
+msgstr ""
+"Estas interfaces definem o tipo <literal>myapp_t</literal> como uma área "
+"processo que deve ser utilizada por qualquer executável rotulado com "
+"<literal>myapp_exec_t</literal>. Implicitamente, isso adiciona um atributo "
+"<literal>exec_type</literal> sobre esses objetos, que por sua vez permite "
+"que outros módulos de concessão de direitos para executar esses programas: "
+"por exemplo, o módulo <literal>userdomain</literal>, permite que os "
+"processos com domínios <literal>user_t</literal>, <literal>staff_t</literal> "
+"e <literal>sysadm_t</literal> execute os. Os domínios de outras aplicações "
+"confinadas não terão direitos para executar los, a menos que as regras lhes "
+"concedem direitos semelhantes (este é o caso, por exemplo, do "
+"<command>dpkg</command> com o seu domínio <literal>dpkg_t</literal>)."
 
 #. Tag: para
 #, no-c-format
@@ -2092,7 +2103,20 @@ msgstr "Um atacante mais avançado vai além disso. Um cenário de desastre pode
 #. Tag: para
 #, no-c-format
 msgid "At this point, the attacker has enough freedom of movement that they often install an IRC <emphasis>bot</emphasis> (a robot that connects to an IRC server and can be controlled by this channel). This bot is often used to share illegal files (unauthorized copies of movies or software, and so on). A determined attacker may want to go even further. The <literal>www-data</literal> account does not allow full access to the machine, and the attacker will try to obtain administrator privileges. Now, this should not be possible, but if the web application was not up-to-date, chances are that the kernel and other programs are outdated too; this sometimes follows a decision from the administrator who, despite knowing about the vulnerability, neglected to upgrade the system since there are no local users. The attacker can then take advantage of this second vulnerability to get root access."
-msgstr "Neste ponto, o invasor tem bastante liberdade de movimento que muitas vezes instalar um robô IRC (um robô que se conecta a um servidor IRC e pode ser controlado por este canal). Este robô é freqüentemente usado para compartilhamento de arquivos ilegais (cópias não autorizadas de filmes ou software, entre outros). Um determinado invasor pode querer ir ainda mais longe. O conta <literal>www-data</literal> não permite o acesso total à máquina, e o invasor vai tentar obter privilégios de administrador. Ora, isso não deve ser possível, mas se a aplicação web não está atualizada, as chances são de que os programas do kernel e outros também estejam desatualizados, o que às vezes se segue uma decisão do administrador que, apesar de saber sobre a vulnerabilidade, negligenciado para atualizar o sistema, pois não existem usuários locais. O atacante pode então aproveitar essa segunda vulnerabilidade para obter acesso root."
+msgstr ""
+"Neste ponto, o invasor tem bastante liberdade de movimento que muitas vezes "
+"instalar um IRC <emphasis>bot</emphasis> (um robô que se conecta a um "
+"servidor IRC e pode ser controlado por este canal). Este robô é "
+"freqüentemente usado para compartilhamento de arquivos ilegais (cópias não "
+"autorizadas de filmes ou software, entre outros). Um determinado invasor "
+"pode querer ir ainda mais longe. A conta <literal>www-data</literal> não "
+"permite o acesso total à máquina, e o invasor vai tentar obter privilégios "
+"de administrador. Ora, isso não deve ser possível, mas se a aplicação web "
+"não está atualizada, as chances são de que os programas do kernel e outros "
+"também estejam desatualizados, o que às vezes se segue uma decisão do "
+"administrador que, apesar de saber sobre a vulnerabilidade, negligenciado "
+"para atualizar o sistema, pois não existem usuários locais. O atacante pode "
+"então aproveitar essa segunda vulnerabilidade para obter acesso root."
 
 #. Tag: title
 #, no-c-format
