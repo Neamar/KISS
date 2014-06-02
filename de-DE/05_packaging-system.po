@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-01-05 13:00+0200\n"
-"Last-Translator: Carsten Bachert <caba@bachert.info>\n"
-"Language-Team: German <http://debian.weblate.org/projects/debian-handbook"
+"PO-Revision-Date: 2014-06-16 00:05+0200\n"
+"Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
+"Language-Team: German <https://debian.weblate.org/projects/debian-handbook"
 "/05_packaging-system/de-DE/>\n"
 "Language: de-DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.9-dev\n"
+"X-Generator: Weblate 1.10-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -72,16 +72,35 @@ msgid "<primary><command>ar</command></primary>"
 msgstr "<primary><command>ar</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command>. This seemingly trivial property is important for portability and disaster recovery."
 msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command> (sometimes <command>xz</command> or <command>bzip2</command>). This seemingly trivial property is important for portability and disaster recovery."
-msgstr "Das Debian-Paketformat ist so gestaltet, dass sein Inhalt auf jedem Unixsystem entpackt werden kann, das über die klassischen Befehle <command>ar</command>, <command>tar</command> und <command>gzip</command> verfügt. Diese scheinbar belanglose Eigenschaft ist wichtig für die Portierbarkeit und Wiederherstellung."
+msgstr ""
+"Das Debian-Paketformat ist so gestaltet, dass sein Inhalt auf jedem "
+"Unixsystem entpackt werden kann, das über die klassischen Befehle "
+"<command>ar</command>, <command>tar</command> und <command>gzip</command> ("
+"manchmal auch <command>xz</command> oder <command>bzip2</command>) verfügt. "
+"Diese eigentlich triviale Anforderung ist wichtig für die Portierbarkeit und "
+"Wiederherstellung."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
 msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command>/<command>xz</command>/<command>bzip2</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
-msgstr "Nehmen Sie zum Beispiel an, dass Sie aus Versehen das Programm <command>dpkg</command> gelöscht haben, und dass Sie daher keine Debian-Pakete mehr installieren können. Da <command>dpkg</command> selbst ein Debian-Paket ist, sieht es so aus, als ob ihr System erledigt sei... Zum Glück kennen Sie das Format eines Pakets und können daher die <filename>.deb</filename>-Datei des <emphasis role=\"pkg\">dpkg</emphasis>-Pakets herunterladen und es manuell installieren (siehe Seitenleiste „HILFSPROGRAMME“). Wenn durch ein Missgeschick eines oder mehrere der Programme <command>ar</command>, <command>tar</command> oder <command>gzip</command> verschwunden sind, brauchen Sie nur das fehlende Programm von einem anderen System zu kopieren (da jedes von ihnen auf vollständig autonome Weise ohne Abhängigkeiten arbeitet, reicht eine einfache Kopie aus)."
+msgstr ""
+"Nehmen Sie zum Beispiel an, dass Sie aus Versehen das Programm "
+"<command>dpkg</command> gelöscht haben, und dass Sie daher keine Debian-"
+"Pakete mehr installieren können. Da <command>dpkg</command> selbst ein "
+"Debian-Paket ist, sieht es so aus, als ob ihr System erledigt sei... Zum "
+"Glück kennen Sie das Format eines Pakets und können daher die "
+"<filename>.deb</filename>-Datei des <emphasis role=\"pkg\">dpkg</emphasis>-"
+"Pakets herunterladen und es manuell installieren (siehe Seitenleiste "
+"„HILFSPROGRAMME“). Wenn durch ein Missgeschick eines oder mehrere der "
+"Programme <command>ar</command>, <command>tar</command> oder "
+"<command>gzip</command>/<command>xz</command>/<command>bzip2</command> "
+"verschwunden sind, brauchen Sie nur das fehlende Programm von einem anderen "
+"System zu kopieren (da jedes von ihnen auf vollständig autonome Weise ohne "
+"Abhängigkeiten arbeitet, reicht einfaches Kopieren)."
 
 #. Tag: title
 #, no-c-format
@@ -109,13 +128,31 @@ msgid "<command>APT</command> is a group of programs that allows the execution o
 msgstr "<command>APT</command> ist eine Gruppe von Programmen, die es ermöglichen, Veränderungen auf höherer Ebene des Systems durchzuführen: ein Paket zu installieren oder zu entfernen (und dabei Abhängigkeiten erfüllt zu halten), das System zu aktualisieren, die verfügbaren Pakete aufzulisten usw."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents its many other operations. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the archive <filename>data.tar.gz</filename> in the system's root (<filename>/</filename>):"
 msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents all its other features. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the <filename>data.tar.gz</filename> archive in the system's root (<filename>/</filename>):"
-msgstr "<indexterm><primary><command>ar</command></primary></indexterm> Das Paket <command>ar</command> ermöglicht es, mit Dateien, die diesen Namen tragen, umzugehen: <command>ar t <replaceable>archiv</replaceable></command> zeigt eine Liste der in einem solchen Archiv enthaltenen Dateien an, <command>ar x <replaceable>archiv</replaceable></command> entpackt die Dateien aus dem Archiv in das aktuelle Arbeitsverzeichnis, <command>ar d <replaceable>archiv</replaceable> <replaceable>datei</replaceable></command> löscht eine Datei aus dem Archiv usw. Seine Handbuchseite (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) dokumentiert noch viele weitere Arbeitsgänge. <command>ar</command> ist ein sehr elementares Werkzeug, das ein Unix-Administrator nur selten benutzen wird. Stattdessen verwenden Administratoren üblicherweise <command>tar</command>, ein höher entwickeltes Programm für das Archiv- und Dateimanagement. Daher ist es einfach, <command>dpkg</command> wieder herzustellen, falls es versehentlich gelöscht wurde. Sie brauchen nur das Debian-Paket herunterzuladen und seinen Inhalt aus dem Archiv <filename>data.tar.gz</filename> in das Wurzelverzeichnis des Systems (<filename>/</filename>) zu entpacken:"
+msgstr ""
+"<indexterm><primary><command>ar</command></primary></indexterm> Das Paket "
+"<command>ar</command> ermöglicht es, mit Dateien, die diesen Namen tragen, "
+"umzugehen: <command>ar t <replaceable>archiv</replaceable></command> zeigt "
+"eine Liste der in einem solchen Archiv enthaltenen Dateien an, <command>ar x "
+"<replaceable>archiv</replaceable></command> entpackt die Dateien aus dem "
+"Archiv in das aktuelle Arbeitsverzeichnis, <command>ar d "
+"<replaceable>archiv</replaceable> <replaceable>datei</replaceable></command> "
+"löscht eine Datei aus dem Archiv usw. Die zugehörige Handbuchseite (<citerefe"
+"ntry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>"
+") dokumentiert noch viele andere Funkionen. <command>ar</command> ist ein "
+"sehr rudimentäres Werkzeug, das ein Unix-Administrator nur selten benutzen "
+"wird. Stattdessen verwenden Administratoren üblicherweise "
+"<command>tar</command>, ein höher entwickeltes Programm für das Archiv- und "
+"Dateimanagement. Daher ist es einfach, <command>dpkg</command> wieder "
+"herzustellen, falls es versehentlich gelöscht wurde. Sie brauchen nur das "
+"Debian-Paket herunterzuladen und seinen Inhalt aus dem Archiv "
+"<filename>data.tar.gz</filename> in das Wurzelverzeichnis des Systems "
+"(<filename>/</filename>) zu entpacken:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput># </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
@@ -126,8 +163,10 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
-"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>"
+"<computeroutput># </computeroutput><userinput>ar x "
+"dpkg_1.16.10_amd64.deb</userinput>\n"
+"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf "
+"data.tar.gz</userinput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -145,10 +184,12 @@ msgid "Sometimes this notation is also used to remove ambiguities, for example t
 msgstr "Manchmal wird diese Ausdrucksweise auch verwendet um Mehrdeutigkeiten zu beseitigen, um zum Beispiel zwischen dem Befehl <command>printf</command>, der in <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry> beschrieben ist, und der Funktion <function>printf</function> in der Programmiersprache C, auf die sich <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry> bezieht, zu unterscheiden."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"section.manuel\" />)."
 msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"sect.manual-pages\" />)."
-msgstr "<xref linkend=\"solving-problems\" /> erläutert Handbuchseiten ausführlicher  (siehe <xref linkend=\"section.manuel\" />)."
+msgstr ""
+"<xref linkend=\"solving-problems\" /> erläutert Handbuchseiten "
+"ausführlicher  (siehe <xref linkend=\"sect.manual-pages\" />)."
 
 #. Tag: para
 #, no-c-format
