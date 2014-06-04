@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-05-21 17:29+0200\n"
+"PO-Revision-Date: 2014-06-06 15:16+0200\n"
 "Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.9\n"
+"X-Generator: Weblate 1.10-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -219,6 +219,16 @@ msgstr ""
 #, no-c-format
 msgid "One of the extra questions asks for all the domain names related to this machine. The default list includes its full name as well as a few synonyms for <literal>localhost</literal>, but the main <literal>falcot.com</literal> domain needs to be added by hand. More generally, this question should usually be answered with all the domain names for which this machine should serve as an MX server; in other words, all the domain names for which the DNS says that this machine will accept email. This information ends up in the <literal>mydestination</literal> variable of the main Postfix configuration file — <filename>/etc/postfix/main.cf</filename>."
 msgstr ""
+"Uma das questões extras pede para todos os nomes de domínio relacionados com "
+"esta máquina. A lista padrão inclui o seu nome completo, bem como alguns "
+"sinônimos para <literal>localhost</literal>, mas o principal domínio "
+"<literal>falcot.com</literal> precisa ser adicionado manualmente. De modo "
+"geral, esta questão deve ser respondida normalmente com todos os nomes de "
+"domínio para que esta máquina deve servir como um servidor MX; em outras "
+"palavras, todos os nomes de domínio para o qual o DNS diz que esta máquina "
+"vai aceitar e-mail. Esta informação acaba na variável "
+"<literal>mydestination</literal> do principal arquivo de configuração do "
+"Postfix - <filename>/etc/postfix/main.cf</filename>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -233,7 +243,7 @@ msgstr "<primary>MX</primary><secondary>servidor</secondary>"
 #. Tag: title
 #, no-c-format
 msgid "Role of the DNS <emphasis>MX</emphasis> record while sending a mail"
-msgstr ""
+msgstr "Papel do registro <emphasis>MX</emphasis> no DNS ao enviar um e-mail"
 
 #. Tag: title
 #, no-c-format
@@ -326,16 +336,69 @@ msgid ""
 "inet_interfaces = all\n"
 "inet_protocols = all\n"
 msgstr ""
+"\n"
+"# See /usr/share/postfix/main.cf.dist for a commented, more complete "
+"version\n"
+"\n"
+"\n"
+"# Debian specific:  Specifying a file name will cause the first\n"
+"# line of that file to be used as the name.  The Debian default\n"
+"# is /etc/mailname.\n"
+"#myorigin = /etc/mailname\n"
+"\n"
+"smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)\n"
+"biff = no\n"
+"\n"
+"# appending .domain is the MUA's job.\n"
+"append_dot_mydomain = no\n"
+"\n"
+"# Uncomment the next line to generate \"delayed mail\" warnings\n"
+"#delay_warning_time = 4h\n"
+"\n"
+"readme_directory = no\n"
+"\n"
+"# TLS parameters\n"
+"smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem\n"
+"smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key\n"
+"smtpd_use_tls=yes\n"
+"smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache\n"
+"smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache\n"
+"\n"
+"# See /usr/share/doc/postfix/TLS_README.gz in the postfix-doc package for\n"
+"# information on enabling SSL in the smtp client.\n"
+"\n"
+"myhostname = mail.falcot.com\n"
+"alias_maps = hash:/etc/aliases\n"
+"alias_database = hash:/etc/aliases\n"
+"myorigin = /etc/mailname\n"
+"mydestination = mail.falcot.com, falcot.com, localhost.localdomain, "
+"localhost\n"
+"relayhost = \n"
+"mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 192.168.0.0/16\n"
+"mailbox_command = procmail -a \"$EXTENSION\"\n"
+"mailbox_size_limit = 0\n"
+"recipient_delimiter = +\n"
+"inet_interfaces = all\n"
+"inet_protocols = all\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <emphasis>Snake oil</emphasis> SSL certificates"
 msgstr ""
+"<emphasis>SEGURANÇA</emphasis> Certificados SSL <emphasis>Snake "
+"oil</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>snake oil</emphasis> certificates, like the <emphasis>snake oil</emphasis> “medicine” sold by unscrupulous quacks in old times, have absolutely no value, since they are generated similarly on all Debian systems, with the same “private” part. They should only be used for testing purposes, and normal service must use real certificates; these can be generated with the procedure described in <xref linkend=\"sect.easy-rsa\" />."
 msgstr ""
+"Os certificados <emphasis>snake oil</emphasis>, como o \"remédio\" <emphasis>"
+"óleo de cobra</emphasis> vendido por charlatães sem escrúpulos nos velhos "
+"tempos, não tem absolutamente nenhum valor, já que eles são gerados de forma "
+"semelhante em todos os sistemas Debian, com a mesma parte \"privada\". Eles "
+"só devem ser usados para fins de teste e, em serviço normal deve utilizar "
+"certificados reais; estes podem ser gerados com o procedimento descrito no <"
+"xref linkend=\"sect.easy-rsa\" />."
 
 #. Tag: title
 #, no-c-format
@@ -370,7 +433,7 @@ msgstr "Nenhum dos domínios virtuais deve ser referenciado na variável <litera
 #. Tag: title
 #, no-c-format
 msgid "Virtual Alias Domains"
-msgstr ""
+msgstr "Alias de domínios virtuais"
 
 #. Tag: indexterm
 #, no-c-format
@@ -390,6 +453,8 @@ msgstr ""
 #, no-c-format
 msgid "A virtual alias domain only contains aliases, i.e. addresses that only forward emails to other addresses."
 msgstr ""
+"Um alias de domínio virtual contém somente aliases, isto é, endereços que "
+"encaminham unicamente os e-mails para outros endereços."
 
 #. Tag: para
 #, no-c-format
@@ -420,6 +485,12 @@ msgstr ""
 #, no-c-format
 msgid "The <filename>/etc/postfix/virtual</filename> file describes mapping with a rather straightforward syntax: each line contains two fields separated by whitespace; the first field is the alias name, the second field is a list of email addresses where it redirects. The special <literal>@domain.com</literal> syntax covers all remaining aliases in a domain."
 msgstr ""
+"O arquivo <filename>/etc/postfix/virtuais</filename> descreve o mapeamento "
+"com uma sintaxe bastante simples: cada linha contém dois campos separados "
+"por espaços em branco; o primeiro campo é o nome do alias, o segundo campo é "
+"uma lista de endereços de e-mail onde ele redireciona. A sintaxe especial "
+"<literal>@domain.com</literal> abrange todos os aliases restantes em um "
+"domínio."
 
 #. Tag: title
 #, no-c-format
@@ -438,26 +509,40 @@ msgid ""
 "# falcot.com domain.\n"
 "@falcotsbrand.com           @falcot.com\n"
 msgstr ""
+"\n"
+"webmaster@falcotsbrand.com  jean@falcot.com\n"
+"contact@falcotsbrand.com    laure@falcot.com, sophie@falcot.com\n"
+"# The alias below is generic and covers all addresses within \n"
+"# the falcotsbrand.com domain not otherwise covered by this file.\n"
+"# These addresses forward email to the same user name in the\n"
+"# falcot.com domain.\n"
+"@falcotsbrand.com           @falcot.com\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Virtual Mailbox Domains"
-msgstr ""
+msgstr "Domínios Virtuais de Caixa de Correio"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Combined virtual domain?"
-msgstr ""
+msgstr "<emphasis>ATENÇÃO</emphasis> Domínio virtual combinado?"
 
 #. Tag: para
 #, no-c-format
 msgid "Postfix does not allow using the same domain in both <literal>virtual_alias_domains</literal> and <literal>virtual_mailbox_domains</literal>. However, every domain of <literal>virtual_mailbox_domains</literal> is implicitly included in <literal>virtual_alias_domains</literal>, which makes it possible to mix aliases and mailboxes within a virtual domain."
 msgstr ""
+"O Postfix não permitir o uso do mesmo domínio, tanto "
+"<literal>virtual_alias_domains</literal> e "
+"<literal>virtual_mailbox_domains</literal>. No entanto, todos os domínios da "
+"<literal>virtual_mailbox_domains</literal> está implicitamente incluído no "
+"<literal>virtual_alias_domains</literal>, o que torna possível misturar "
+"aliases e caixas de correio dentro de um domínio virtual."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mailbox, virtual domain</primary>"
-msgstr ""
+msgstr "<primary>domínio virtual de caixas de correio</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -471,16 +556,32 @@ msgstr ""
 #, no-c-format
 msgid "Messages addressed to a virtual mailbox domain are stored in mailboxes not assigned to a local system user."
 msgstr ""
+"As mensagens endereçadas a um domínio de caixa de correio virtual são "
+"armazenadas em caixas de correio não atribuídos a um usuário do sistema "
+"local."
 
 #. Tag: para
 #, no-c-format
 msgid "Enabling a virtual mailbox domain requires naming this domain in the <literal>virtual_mailbox_domains</literal> variable, and referencing a mailbox mapping file in <literal>virtual_mailbox_maps</literal>. The <literal>virtual_mailbox_base</literal> parameter contains the directory under which the mailboxes will be stored."
 msgstr ""
+"Ativando uma caixa de correio de domínio virtual requer nomear este domínio "
+"na variável <literal>virtual_mailbox_domains</literal>, e referenciando um "
+"arquivo de mapeamento de caixa de correio no "
+"<literal>virtual_mailbox_maps</literal>. O parâmetro "
+"<literal>virtual_mailbox_base</literal> contém o diretório sob o qual as "
+"caixas de correio serão armazenadas."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>virtual_uid_maps</literal> parameter (respectively <literal>virtual_gid_maps</literal>) references the file containing the mapping between the email address and the system user (respectively group) that “owns” the corresponding mailbox. To get all mailboxes owned by the same owner/group, the <literal>static:5000</literal> syntax assigns a fixed UID/GID (of value 5000 here)."
 msgstr ""
+"O parâmetro <literal>virtual_uid_maps</literal> "
+"(<literal>virtual_gid_maps</literal> respectivamente) faz referência ao "
+"arquivo que contém o mapeamento entre o endereço de e-mail e o usuário do "
+"sistema (grupo respectivamente) que \"possui\" a caixa correspondente. Para "
+"obter todas as caixas de correio de propriedade do mesmo dono/grupo, a "
+"sintaxe <literal>static:5000</literal> atribui um UID/GID fixo (de valor "
+"5000 aqui)."
 
 #. Tag: programlisting
 #, no-c-format
@@ -499,6 +600,20 @@ msgstr ""
 #, no-c-format
 msgid "Again, the syntax of the <filename>/etc/postfix/vmailbox</filename> file is quite straightforward: two fields separated with whitespace. The first field is an email address within one of the virtual domains, and the second field is the location of the associated mailbox (relative to the directory specified in <emphasis>virtual_mailbox_base</emphasis>). If the mailbox name ends with a slash (<literal>/</literal>), the emails will be stored in the <emphasis>maildir</emphasis> format; otherwise, the traditional <emphasis>mbox</emphasis> format will be used. The <emphasis>maildir</emphasis> format uses a whole directory to store a mailbox, each individual message being stored in a separate file. In the <emphasis>mbox</emphasis> format, on the other hand, the whole mailbox is stored in one file, and each line starting with “<literal>From </literal>” (<literal>From</literal> followed by a space) signals the start of a new message."
 msgstr ""
+"Novamente, a sintaxe do arquivo <filename>/etc/postfix/vmailbox</filename> é "
+"bastante simples: dois campos separados por espaço em branco. O primeiro "
+"campo é um endereço de e-mail dentro de um dos domínios virtuais, e o "
+"segundo campo é a localização da caixa de correio associada (relativo ao "
+"diretório especificado no <emphasis>virtual_mailbox_base</emphasis>). Se o "
+"nome da caixa de correio termina com uma barra (<literal>/</literal>), os e-"
+"mails serão armazenados no formato <emphasis>maildir</emphasis>; caso "
+"contrário, o tradicional formato <emphasis> mbox</emphasis> será usado. O "
+"formato <emphasis>maildir</emphasis> usa um diretório inteiro para armazenar "
+"a caixa de correio, cada mensagem que está sendo armazenada em um arquivo "
+"separado. No formato <emphasis>mbox</emphasis>, por outro lado, toda a caixa "
+"de correio é armazenado em um arquivo, e cada linha começando com \"<literal>"
+"De </literal>\" (<literal>De</literal> seguido de um espaço) indica o início "
+"de uma nova mensagem."
 
 #. Tag: title
 #, no-c-format
@@ -516,6 +631,13 @@ msgid ""
 "# with all mails concatenated into one single file\n"
 "sophie@falcot.org falcot.org/sophie\n"
 msgstr ""
+"\n"
+"# Os e-mails de Jean são armazenados como maildir, com\n"
+"# um arquivo por e-mail em um diretório dedicado\n"
+"jean@falcot.org falcot.org/jean/\n"
+"# Os e-mails de Sophie são armazenados em um arquivo tradicional \"mbox\",\n"
+"# com todos os e-mails concatenados em um arquivo único\n"
+"sophie@falcot.org falcot.org/sophie\n"
 
 #. Tag: title
 #, no-c-format
@@ -526,6 +648,10 @@ msgstr "Restrições para Recebimento e Envio"
 #, no-c-format
 msgid "The growing number of unsolicited bulk emails (<emphasis>spam</emphasis>) requires being increasingly strict when deciding which emails a server should accept. This section presents some of the strategies included in Postfix."
 msgstr ""
+"O crescente número de e-mails em massa não solicitados "
+"(<emphasis>spams</emphasis>) requer cada vez ser mais rigoroso ao decidir "
+"quais e-mails um servidor deve aceitar. Esta seção apresenta algumas das "
+"estratégias incluídas no Postfix."
 
 #. Tag: title
 #, no-c-format
@@ -541,11 +667,28 @@ msgstr "<primary>spam</primary>"
 #, no-c-format
 msgid "“Spam” is a generic term used to designate all the unsolicited commercial emails (also known as UCEs) that flood our electronic mailboxes; the unscrupulous individuals sending them are known as spammers. They care little about the nuisance they cause, since sending an email costs very little, and only a very small percentage of recipients need to be attracted by the offers for the spamming operation to make more money than it costs. The process is mostly automated, and any email address made public (for instance, on a web forum, or on the archives of a mailing list, or on a blog, and so on) will be discovered by the spammers' robots, and subjected to a never-ending stream of unsolicited messages."
 msgstr ""
+"\"Spam\" é um termo genérico usado para designar todos os e-mails comerciais "
+"não solicitadas (também conhecidas como UCEs) que inundam nossas caixas de "
+"correio eletrônico; indivíduos sem escrúpulos que os enviam são conhecidos "
+"como spammers. Eles pouco se importam com o incômodo que causam já que os "
+"custos de envio de e-mail custa muito pouco e precisam somente atrair para "
+"suas ofertas uma percentagem muito pequena de quem os recebe para que a "
+"operação de spam gere mais dinheiro do que custa. O processo é praticamente "
+"todo automatizado, e qualquer endereço de e-mail tornado público (por "
+"exemplo, em um fórum na web, ou nos arquivos de uma lista de discussão, ou "
+"em um blog, e assim por diante) será descoberto pelos robôs dos spammers, e "
+"submetido para um fluxo interminável de mensagens não solicitadas."
 
 #. Tag: para
 #, no-c-format
 msgid "All system administrators try to face this nuisance with spam filters, but of course spammers keep adjusting to try to work around these filters. Some even rent networks of machines compromised by a worm from various crime syndicates. Recent statistics estimate that up to 95% of all emails circulating on the Internet are spam!"
 msgstr ""
+"Todos os administradores de sistema tentam enfrentar esse incômodo com "
+"filtros de spam, mas os spammers, claro, mantém os ajustes para tentar "
+"contornar esses filtros. Alguns até mesmo alugam redes de máquinas "
+"comprometidas por um worm de vários sindicatos do crime. Estatísticas "
+"recentes estimam que até 95% de todos os e-mails que circulam na Internet "
+"são spam!"
 
 #. Tag: title
 #, no-c-format
@@ -583,6 +726,11 @@ msgstr ""
 #, no-c-format
 msgid "When a variable contains a list of rules, as in the example above, these rules are evaluated in order, from the first to the last. Each rule can accept the message, reject it, or leave the decision to a following rule. As a consequence, order matters, and simply switching two rules can lead to a widely different behavior."
 msgstr ""
+"Quando uma variável contém uma lista de regras, como no exemplo acima, essas "
+"regras são avaliadas em ordem, desde a primeira até a última. Cada regra "
+"pode aceitar a mensagem, rejeitá-la, ou deixar a decisão para a seguinte "
+"regra. Como consequência, a ordem importa e simplesmente mudar duas regras "
+"pode levar a um comportamento completamente diferente."
 
 #. Tag: para
 #, no-c-format
@@ -622,7 +770,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RBL</primary>"
-msgstr ""
+msgstr "<primary>RBL</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -632,7 +780,7 @@ msgstr "<primary>Lista Negra Remota</primary>"
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> White list and RBLs"
-msgstr ""
+msgstr "<emphasis>DICA</emphasis> Listas brancas e RBLs"
 
 #. Tag: para
 #, no-c-format
@@ -878,7 +1026,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Enabling content-based filters"
-msgstr ""
+msgstr "Habilitação de filtros baseados em conteúdo"
 
 #. Tag: programlisting
 #, no-c-format
@@ -887,11 +1035,14 @@ msgid ""
 "header_checks = regexp:/etc/postfix/header_checks\n"
 "body_checks = regexp:/etc/postfix/body_checks\n"
 msgstr ""
+"\n"
+"header_checks = regexp:/etc/postfix/header_checks\n"
+"body_checks = regexp:/etc/postfix/body_checks\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>email</primary><secondary>filtering on contents</secondary>"
-msgstr ""
+msgstr "<primary>e-mail</primary><secondary>filtro de conteúdo</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -902,6 +1053,7 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> Regexp tables"
 msgstr ""
+"<emphasis>OLHADA RÁPIDA</emphasis> Tabelas de expressões regulares (regexp)"
 
 #. Tag: para
 #, no-c-format
@@ -920,11 +1072,14 @@ msgid ""
 "/^X-Mailer: GOTO Sarbacane/ REJECT I fight spam (GOTO Sarbacane)\n"
 "/^Subject: *Your email contains VIRUSES/ DISCARD virus notification\n"
 msgstr ""
+"\n"
+"/^X-Mailer: GOTO Sarbacane/ REJECT I fight spam (GOTO Sarbacane)\n"
+"/^Subject: *Your email contains VIRUSES/ DISCARD virus notification\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Regular expression"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BASICO</emphasis> Expressão regular"
 
 #. Tag: para
 #, no-c-format
@@ -950,11 +1105,12 @@ msgstr ""
 #, no-c-format
 msgid "Setting Up <foreignphrase>greylisting</foreignphrase>"
 msgstr ""
+"Configurando \"listas cinzas\" (<foreignphrase>greylisting</foreignphrase>)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>greylisting</primary>"
-msgstr ""
+msgstr "<primary>greylisting</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -979,6 +1135,10 @@ msgid ""
 "    [...]\n"
 "    check_policy_service inet:127.0.0.1:10023\n"
 msgstr ""
+"\n"
+"smtpd_recipient_restrictions = permit_mynetworks,\n"
+"    [...]\n"
+"    check_policy_service inet:127.0.0.1:10023\n"
 
 #. Tag: para
 #, no-c-format
@@ -993,7 +1153,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Shortcomings of greylisting"
-msgstr ""
+msgstr "<emphasis>NA PRÁTICA</emphasis> Desvantagens das listas cinzas"
 
 #. Tag: para
 #, no-c-format
@@ -1014,6 +1174,8 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Selective greylisting with <emphasis role=\"pkg\">milter-greylist</emphasis>"
 msgstr ""
+"<emphasis>INDO MAIS LONGE</emphasis> greylisting seletivas com <emphasis "
+"role=\"pkg\">milter-greylist</emphasis>"
 
 #. Tag: para
 #, no-c-format
@@ -1033,7 +1195,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Customizing Filters Based On the Recipient"
-msgstr ""
+msgstr "Personalização de filtros baseados no destinatário"
 
 #. Tag: para
 #, no-c-format
@@ -1048,7 +1210,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Defining restriction classes in <filename>main.cf</filename>"
-msgstr ""
+msgstr "Definição de classes de restrição em <filename>main.cf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1064,11 +1226,21 @@ msgid ""
 "        reject_unauth_destination,\n"
 "        check_recipient_access hash:/etc/postfix/recipient_access\n"
 msgstr ""
+"smtpd_restriction_classes = greylisting, aggressive, permissive\n"
+"\n"
+"greylisting = check_policy_service inet:127.0.0.1:10023\n"
+"aggressive = reject_rbl_client sbl-xbl.spamhaus.org,\n"
+"        check_policy_service inet:127.0.0.1:10023\n"
+"permissive = permit\n"
+"\n"
+"smtpd_recipient_restrictions = permit_mynetworks,\n"
+"        reject_unauth_destination,\n"
+"        check_recipient_access hash:/etc/postfix/recipient_access\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/postfix/recipient_access</filename> file"
-msgstr ""
+msgstr "O arquivo <filename>/etc/postfix/recipient_access</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1088,16 +1260,30 @@ msgid ""
 "# Greylisting by default\n"
 "falcot.com             greylisting\n"
 msgstr ""
+"\n"
+"# Unfiltered addresses\n"
+"postmaster@falcot.com  permissive\n"
+"support@falcot.com     permissive\n"
+"sales-asia@falcot.com  permissive\n"
+"\n"
+"# Aggressive filtering for some privileged users\n"
+"joe@falcot.com         aggressive\n"
+"\n"
+"# Special rule for the mailing-list manager\n"
+"sympa@falcot.com       reject_unverified_sender\n"
+"\n"
+"# Greylisting by default\n"
+"falcot.com             greylisting\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Integrating an Antivirus"
-msgstr ""
+msgstr "Integração com um antivírus"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>antivirus</primary>"
-msgstr ""
+msgstr "<primary>antivírus</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1112,12 +1298,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>clamav</command></primary>"
-msgstr ""
+msgstr "<primary><command>clamav</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>clamav-milter</command></primary>"
-msgstr ""
+msgstr "<primary><command>clamav-milter</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1127,12 +1313,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> A milter for Spamassassin"
-msgstr ""
+msgstr "<emphasis>OLHADA RÁPIDA</emphasis> Um milter para Spamassassin"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">spamass-milter</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">spamass-milter</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1172,6 +1358,9 @@ msgid ""
 "# Virus check with clamav-milter\n"
 "smtpd_milters = inet:[127.0.0.1]:10002\n"
 msgstr ""
+"\n"
+"# Verificação de vírus com clamav-milter\n"
+"smtpd_milters = inet:[127.0.0.1]:10002\n"
 
 #. Tag: para
 #, no-c-format
@@ -1181,7 +1370,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Testing the antivirus"
-msgstr ""
+msgstr "<emphasis>NA PRÁTICA</emphasis> Testando o antivírus"
 
 #. Tag: para
 #, no-c-format
@@ -1201,7 +1390,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Authenticated SMTP"
-msgstr ""
+msgstr "SMTP autenticado"
 
 #. Tag: para
 #, no-c-format
@@ -1234,7 +1423,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Enabling SASL in <filename>/etc/postfix/main.cf</filename>"
-msgstr ""
+msgstr "Ativando o SASL no <filename>/etc/postfix/main.cf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1256,7 +1445,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Authenticated SMTP client"
-msgstr ""
+msgstr "<emphasis>EXTRA</emphasis> Cliente SMTP autenticado"
 
 #. Tag: para
 #, no-c-format
@@ -1264,13 +1453,17 @@ msgid "Most email clients are able to authenticate to an SMTP server before send
 msgstr ""
 
 #. Tag: programlisting
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "\n"
 "smtp_sasl_auth_enable = yes\n"
 "smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\n"
 "relay_host = [mail.falcot.com]\n"
 msgstr ""
+"\n"
+"smtp_sasl_auth_enable = yes\n"
+"smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\n"
+"relay_host = [mail.falcot.com]\n"
 
 #. Tag: para
 #, no-c-format
@@ -1283,6 +1476,8 @@ msgid ""
 "\n"
 "[mail.falcot.com]   joe:LyinIsji\n"
 msgstr ""
+"\n"
+"[mail.falcot.com]   joe:LyinIsji\n"
 
 #. Tag: para
 #, no-c-format
@@ -1292,7 +1487,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Web Server (HTTP)"
-msgstr ""
+msgstr "Servidor web (HTTP)"
 
 #. Tag: para
 #, no-c-format
@@ -3172,7 +3367,7 @@ msgstr "<primary>OpenLDAP</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>directory, LDAP</primary>"
-msgstr "<primary>diretório, LDAP</primary>"
+msgstr "<primary>diretório LDAP</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3248,6 +3443,10 @@ msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Formato LDIF"
 #, no-c-format
 msgid "An LDIF file (<emphasis>LDAP Data Interchange Format</emphasis>) is a portable text file describing the contents of an LDAP database (or a portion thereof); this can then be used to inject the data into any other LDAP server."
 msgstr ""
+"Um arquivo LDIF (<emphasis>formato de intercâmbios de dados LDAP</emphasis> -"
+" LDAP Data Interchange Format) é um arquivo de texto portável que descreve o "
+"conteúdo de uma base de dados LDAP (ou uma parte da mesma); pode ser "
+"utilizada para injetar dados em outro servidor LDAP."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3375,7 +3574,7 @@ msgstr "<literal>dc=falcot,dc=com</literal>"
 #. Tag: entry
 #, no-c-format
 msgid "LDAP server hostname"
-msgstr ""
+msgstr "Nome do servidor LDAP"
 
 #. Tag: entry
 #, no-c-format
@@ -3557,6 +3756,26 @@ msgid ""
 "\n"
 "netgroup: ldap files\n"
 msgstr ""
+"\n"
+"# /etc/nsswitch.conf\n"
+"#\n"
+"# Example configuration of GNU Name Service Switch functionality.\n"
+"# If you have the `glibc-doc' and `info' packages installed, try:\n"
+"# `info libc \"Name Service Switch\"' for information about this file.\n"
+"\n"
+"passwd: ldap compat\n"
+"group: ldap compat\n"
+"shadow: ldap compat\n"
+"\n"
+"hosts: files dns ldap\n"
+"networks: ldap files\n"
+"\n"
+"protocols: ldap db files\n"
+"services: ldap db files\n"
+"ethers: ldap db files\n"
+"rpc: ldap db files\n"
+"\n"
+"netgroup: ldap files\n"
 
 #. Tag: para
 #, no-c-format
@@ -3602,6 +3821,13 @@ msgstr ""
 #, no-c-format
 msgid "The LDAP module for PAM is provided by the <emphasis role=\"pkg\">libpam-ldap</emphasis> package. Installing this package asks a few questions very similar to those in <emphasis role=\"pkg\">libnss-ldap</emphasis>; some configuration parameters (such as the URI for the LDAP server) are even actually shared with the <emphasis role=\"pkg\">libnss-ldap</emphasis> package. Answers are summarized in <xref linkend=\"tab-libpam-ldap\" xrefstyle=\"select: label nopage\" />."
 msgstr ""
+"O módulo LDAP para PAM é provido pelo pacote <emphasis role=\"pkg\">libpam-"
+"ldap</emphasis>. A instalação deste pacote realiza umas poucas perguntas "
+"muito parecidas \"aquelas no pacote <emphasis role=\"pkg\">libnss-"
+"ldap</emphasis>; alguns parâmetros de configuração (como o URI do servidor "
+"LDAP) são inclusive compartilhados com o pacote <emphasis role=\"pkg\""
+">libnss-ldap</emphasis>. As respostas são resumidas em<xref linkend=\"tab-"
+"libpam-ldap\" xrefstyle=\"select: label nopage\" />."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3611,7 +3837,7 @@ msgstr "<primary><emphasis>libpam-ldap</emphasis></primary>"
 #. Tag: title
 #, no-c-format
 msgid "Configuration of <emphasis>libpam-ldap</emphasis>"
-msgstr "Configurando o <emphasis>libpam-ldap</emphasis>"
+msgstr "Configuração do <emphasis>libpam-ldap</emphasis>"
 
 #. Tag: entry
 #, no-c-format

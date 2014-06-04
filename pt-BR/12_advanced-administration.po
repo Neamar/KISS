@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-01-09 04:10+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <http://debian.weblate.org/projects"
+"PO-Revision-Date: 2014-06-04 22:28+0200\n"
+"Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/12_advanced-administration/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.9-dev\n"
+"X-Generator: Weblate 1.10-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -34,7 +34,7 @@ msgstr "FAI"
 #. Tag: keyword
 #, no-c-format
 msgid "Preseeding"
-msgstr ""
+msgstr "Pré-configuração"
 
 #. Tag: keyword
 #, no-c-format
@@ -1334,7 +1334,7 @@ msgid "Logical volumes, once created, end up as block device files in <filename>
 msgstr "Volumes lógicos, quando criados, são representados como dispositivos de blocos no <filename>/dev/mapper/</filename>:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 "<computeroutput>total 0\n"
@@ -1350,14 +1350,18 @@ msgid ""
 msgstr ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 "<computeroutput>total 0\n"
-"crw-rw---- 1 root root  10, 59  5 oct.  17:40 control\n"
-"lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_critical-lv_base -&gt; ../dm-1\n"
-"lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_critical-lv_files -&gt; ../dm-0\n"
-"lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_normal-lv_backups -&gt; ../dm-2\n"
+"crw------T 1 root root 10, 236 Jan 17 16:52 control\n"
+"lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_critical-lv_base -&gt; ../dm-"
+"1\n"
+"lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_critical-lv_files -&gt; ../dm-"
+"0\n"
+"lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_normal-lv_backups -&gt; ../dm-"
+"2\n"
 "# </computeroutput><userinput>ls -l /dev/dm-*</userinput>\n"
-"<computeroutput>brw-rw---- 1 root disk 253,  0  5 oct.  18:14 /dev/dm-0\n"
-"brw-rw---- 1 root disk 253,  1  5 oct.  18:14 /dev/dm-1\n"
-"brw-rw---- 1 root disk 253,  2  5 oct.  18:14 /dev/dm-2</computeroutput>\n"
+"<computeroutput>brw-rw---T 1 root disk 253, 0 Jan 17 17:05 /dev/dm-0\n"
+"brw-rw---T 1 root disk 253, 1 Jan 17 17:05 /dev/dm-1\n"
+"brw-rw---T 1 root disk 253, 2 Jan 17 17:05 /dev/dm-2\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -1380,7 +1384,7 @@ msgid "To make things easier, convenience symbolic links are also created in dir
 msgstr "Para simplificar, links simbólicos são convenientemente criados em diretórios que coincidem com os VGs:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
 "<computeroutput>total 0\n"
@@ -1390,13 +1394,15 @@ msgid ""
 "<computeroutput>total 0\n"
 "lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_backups -&gt; ../dm-2</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
+"<computeroutput># </computeroutput><userinput>ls -l "
+"/dev/vg_critical</userinput>\n"
 "<computeroutput>total 0\n"
-"lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_base -&gt; ../dm-1\n"
-"lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_files -&gt; ../dm-0\n"
+"lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_base -&gt; ../dm-1\n"
+"lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_files -&gt; ../dm-0\n"
 "# </computeroutput><userinput>ls -l /dev/vg_normal</userinput>\n"
 "<computeroutput>total 0\n"
-"lrwxrwxrwx 1 root root 7  5 oct.  18:14 lv_backups -&gt; ../dm-2</computeroutput>\n"
+"lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_backups -&gt; "
+"../dm-2</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1404,7 +1410,7 @@ msgid "The LVs can then be used exactly like standard partitions:"
 msgstr "Os LVs então podem ser utilizados exatamente como partições padrão:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
 "<computeroutput>mke2fs 1.42.5 (29-Jul-2012)\n"
@@ -1427,20 +1433,23 @@ msgid ""
 "/dev/vg_critical/lv_files   /srv/files      ext4\n"
 "/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
-"<computeroutput>mke2fs 1.41.12 (17-May-2010)\n"
+"<computeroutput># </computeroutput><userinput>mkfs.ext4 "
+"/dev/vg_normal/lv_backups</userinput>\n"
+"<computeroutput>mke2fs 1.42.5 (29-Jul-2012)\n"
 "Filesystem label=\n"
 "OS type: Linux\n"
 "Block size=4096 (log=2)\n"
 "[...]\n"
-"This filesystem will be automatically checked every 34 mounts or\n"
-"180 days, whichever comes first.  Use tune2fs -c or -i to override.\n"
+"Creating journal (32768 blocks): done\n"
+"Writing superblocks and filesystem accounting information: done \n"
 "# </computeroutput><userinput>mkdir /srv/backups</userinput>\n"
-"<computeroutput># </computeroutput><userinput>mount /dev/vg_normal/lv_backups /srv/backups</userinput>\n"
-"<computeroutput># </computeroutput><userinput>df -h /srv/backups</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_normal-lv_backups\n"
-"                       12G  159M   12G   2% /srv/backups\n"
+"<computeroutput># </computeroutput><userinput>mount /dev/vg_normal/"
+"lv_backups /srv/backups</userinput>\n"
+"<computeroutput># </computeroutput><userinput>df -h /srv/backups</userinput>"
+"\n"
+"<computeroutput>Filesystem                        Size  Used Avail Use% "
+"Mounted on\n"
+"/dev/mapper/vg_normal-lv_backups   12G  158M   12G   2% /srv/backups\n"
 "# </computeroutput><userinput>[...]</userinput>\n"
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>cat /etc/fstab</userinput>\n"
@@ -1465,7 +1474,7 @@ msgid "Even though the ability to aggregate partitions or physical disks is conv
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
 "<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
@@ -1494,32 +1503,39 @@ msgid ""
 "/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_files\n"
-"                      5.0G  4.6G  142M  98% /srv/files\n"
+"<computeroutput>Filesystem                        Size  Used Avail Use% "
+"Mounted on\n"
+"/dev/mapper/vg_critical-lv_files  5.0G  4.6G  146M  97% /srv/files\n"
 "# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
-"<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert\n"
-"  lv_files vg_critical -wi-ao 5.00g\n"
+"<computeroutput>  LV       VG          Attr     LSize Pool Origin Data%  "
+"Move Log Copy%  Convert\n"
+"  lv_files vg_critical -wi-ao-- 5.00g\n"
 "# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
-"  vg_critical   2   2   0 wz--n- 8.14g 2.14g\n"
-"# </computeroutput><userinput>lvresize -L 7G vg_critical/lv_files</userinput>\n"
+"  vg_critical   2   2   0 wz--n- 8.09g 2.09g\n"
+"# </computeroutput><userinput>lvresize -L 7G vg_critical/lv_files</userinput>"
+"\n"
 "<computeroutput>  Extending logical volume lv_files to 7.00 GB\n"
 "  Logical volume lv_files successfully resized\n"
 "# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
-"<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert\n"
-"  lv_files vg_critique -wi-ao 7.00g\n"
-"# </computeroutput><userinput>resize2fs /dev/vg_critical/lv_files</userinput>\n"
-"<computeroutput>resize2fs 1.41.12 (17-May-2010)\n"
-"Filesystem at /dev/vg_critical/lv_files is mounted on /srv/files; on-line resizing required\n"
-"old desc_blocks = 1, new_desc_blocks = 1\n"
-"Performing an on-line resize of /dev/vg_critical/lv_files to 1835008 (4k) blocks.\n"
+"<computeroutput>  LV       VG          Attr     LSize Pool Origin Data%  "
+"Move Log Copy%  Convert\n"
+"  lv_files vg_critical -wi-ao-- 7.00g\n"
+"# </computeroutput><userinput>resize2fs /dev/vg_critical/lv_files</userinput>"
+"\n"
+"<computeroutput>resize2fs 1.42.5 (29-Jul-2012)\n"
+"Filesystem at /dev/vg_critical/lv_files is mounted on /srv/files; on-line "
+"resizing required\n"
+"old_desc_blocks = 1, new_desc_blocks = 1\n"
+"Performing an on-line resize of /dev/vg_critical/lv_files to 1835008 (4k) "
+"blocks.\n"
 "The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.\n"
 "\n"
 "# </computeroutput><userinput>df -h /srv/files/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_files\n"
-"                      6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
+"<computeroutput>Filesystem                        Size  Used Avail Use% "
+"Mounted on\n"
+"/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% "
+"/srv/files</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -1542,7 +1558,7 @@ msgid "We could proceed in a similar fashion to extend the volume hosting the da
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 "<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
@@ -1552,12 +1568,11 @@ msgid ""
 "  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_base\n"
-"                     1008M  835M  123M  88% /srv/base\n"
+"<computeroutput>Sist. Arq.           Tam. Usado Disp. Uso% Montado em\n"
+"/dev/mapper/vg_critical-lv_base 1008M  854M  104M  90% /srv/base\n"
 "# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
-"<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
-"  vg_critical   2   2   0 wz--n- 8.14g 144.00m</computeroutput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree \n"
+"  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1565,7 +1580,7 @@ msgid "No matter, since LVM allows adding physical volumes to existing volume gr
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
 #| "<computeroutput>  Physical volume \"/dev/sdb1\" successfully created\n"
@@ -1595,8 +1610,10 @@ msgid ""
 "<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% /srv/base</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
-"<computeroutput>  Physical volume \"/dev/sdb1\" successfully created\n"
+"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>"
+"\n"
+"<computeroutput>  Writing physical volume data to disk \"/dev/sdb1\"\n"
+"  Physical volume \"/dev/sdb1\" successfully created\n"
 "# </computeroutput><userinput>vgextend vg_critical /dev/sdb1</userinput>\n"
 "<computeroutput>  Volume group \"vg_critical\" successfully extended\n"
 "# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
@@ -1605,9 +1622,10 @@ msgstr ""
 "# </computeroutput><userinput>[...]</userinput>\n"
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>df -h /srv/base/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_base\n"
-"                      2.0G  835M  1.1G  44% /srv/base</computeroutput>\n"
+"<computeroutput>Filesystem                       Size  Used Avail Use% "
+"Mounted on\n"
+"/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% "
+"/srv/base</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -1635,10 +1653,10 @@ msgid "There are a few simple cases where the question doesn't really arise. If 
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>NOTE</emphasis> Spare disks"
 msgid "<emphasis>NOTE</emphasis> If performance matters…"
-msgstr "<emphasis>NOTA</emphasis> Discos de reposição"
+msgstr "<emphasis>NOTA</emphasis> Se o rendimento importa…"
 
 #. Tag: para
 #, no-c-format
@@ -1773,34 +1791,34 @@ msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgstr "<primary><emphasis>VMWare</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgid "<primary><emphasis>Bochs</emphasis></primary>"
-msgstr "<primary><emphasis>VMWare</emphasis></primary>"
+msgstr "<primary><emphasis>Bochs</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgid "<primary><emphasis>QEMU</emphasis></primary>"
-msgstr "<primary><emphasis>VMWare</emphasis></primary>"
+msgstr "<primary><emphasis>QEMU</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgid "<primary><emphasis>VirtualBox</emphasis></primary>"
-msgstr "<primary><emphasis>VMWare</emphasis></primary>"
+msgstr "<primary><emphasis>VirtualBox</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgid "<primary><emphasis>KVM</emphasis></primary>"
-msgstr "<primary><emphasis>VMWare</emphasis></primary>"
+msgstr "<primary><emphasis>KVM</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgid "<primary><emphasis>LXC</emphasis></primary>"
-msgstr "<primary><emphasis>VMWare</emphasis></primary>"
+msgstr "<primary><emphasis>LXC</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1808,10 +1826,12 @@ msgid "QEMU is a software emulator for a full computer; performances are far fro
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Bochs is another free virtual machine, but it only emulates the i386 architecture."
 msgid "Bochs is another free virtual machine, but it only emulates the x86 architectures (i386 and amd64)."
-msgstr "Bochs é outro máquina virtual livre, mas somente simula arquiteturas i386."
+msgstr ""
+"Bochs é outra máquina virtual livre, mas somente emula as arquiteturas x86 ("
+"i386 e amd64)."
 
 #. Tag: para
 #, no-c-format
@@ -1975,7 +1995,7 @@ msgid "Once these choices are made, we can create the image for our future Xen d
 msgstr "Assim que essas escolhas são feitas, podemos criar uma imagem para o nosso futuro Xen domU:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>xen-create-image --hostname=testxen</userinput>\n"
 #| "<computeroutput>\n"
@@ -2030,19 +2050,22 @@ msgid ""
 "Root Password   :  48su67EW\n"
 "</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>xen-create-image --hostname=testxen</userinput>\n"
+"<computeroutput># </computeroutput><userinput>xen-create-image --hostname "
+"testxen --dhcp --dir /srv/testxen --size=2G --dist=wheezy "
+"--role=udev</userinput>\n"
 "<computeroutput>\n"
+"[...]\n"
 "General Information\n"
 "--------------------\n"
 "Hostname       :  testxen\n"
-"Distribution   :  squeeze\n"
-"Mirror         :  http://ftp.us.debian.org/debian/\n"
+"Distribution   :  wheezy\n"
+"Mirror         :  http://ftp.debian.org/debian/\n"
 "Partitions     :  swap            128Mb (swap)\n"
-"                  /               4Gb   (ext3)\n"
+"                  /               2G    (ext3)\n"
 "Image type     :  sparse\n"
 "Memory size    :  128Mb\n"
-"Kernel path    :  /boot/vmlinuz-2.6.32-5-xen-686\n"
-"Initrd path    :  /boot/initrd.img-2.6.32-5-xen-686\n"
+"Kernel path    :  /boot/vmlinuz-3.2.0-4-686-pae\n"
+"Initrd path    :  /boot/initrd.img-3.2.0-4-686-pae\n"
 "[...]\n"
 "Logfile produced at:\n"
 "         /var/log/xen-tools/testxen.log\n"
@@ -2050,10 +2073,10 @@ msgstr ""
 "Installation Summary\n"
 "---------------------\n"
 "Hostname        :  testxen\n"
-"Distribution    :  squeeze\n"
+"Distribution    :  wheezy\n"
 "IP-Address(es)  :  dynamic\n"
-"RSA Fingerprint :  25:6b:6b:c7:84:03:9e:8b:82:da:84:c0:08:cd:29:94\n"
-"Root Password   :  52emxRmM\n"
+"RSA Fingerprint :  0a:6e:71:98:95:46:64:ec:80:37:63:18:73:04:dd:2b\n"
+"Root Password   :  48su67EW\n"
 "</computeroutput>\n"
 
 #. Tag: para
@@ -2112,7 +2135,7 @@ msgid "After rebooting to make sure the bridge is automatically created, we can 
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
 #| "<computeroutput>Name                            ID Mem VCPUs  State   Time(s)\n"
@@ -2137,15 +2160,20 @@ msgid ""
 "testxen                                      1   128     1     -b----      1.1</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
-"<computeroutput>Name                            ID Mem VCPUs  State   Time(s)\n"
-"Domain-0                         0 940     1 r-----   3896.9\n"
+"<computeroutput>Name                                        ID   Mem "
+"VCPUs      State   Time(s)\n"
+"Domain-0                                     0   463     1     r-----      9."
+"8\n"
 "# </computeroutput><userinput>xm create testxen.cfg</userinput>\n"
 "<computeroutput>Using config file \"/etc/xen/testxen.cfg\".\n"
 "Started domain testxen (id=1)\n"
 "# </computeroutput><userinput>xm list</userinput>\n"
-"<computeroutput>Name                            ID Mem VCPUs  State   Time(s)\n"
-"Domain-0                         0 873     1 r-----   3917.1\n"
-"testxen                          1 128     1 -b----      3.7</computeroutput>\n"
+"<computeroutput>Name                                        ID   Mem "
+"VCPUs      State   Time(s)\n"
+"Domain-0                                     0   366     1     r-----     11."
+"4\n"
+"testxen                                      1   128     1     -b----      "
+"1.1</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -2168,7 +2196,7 @@ msgid "Voilà! Our virtual machine is starting up. We can access it in one of tw
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
 #| "<computeroutput>[...]\n"
@@ -2187,13 +2215,11 @@ msgid ""
 "\n"
 "testxen login: </computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
-"<computeroutput>[...]\n"
-"Starting enhanced syslogd: rsyslogd.\n"
-"Starting periodic command scheduler: cron.\n"
-"Starting OpenBSD Secure Shell server: sshd.\n"
+"<computeroutput># </computeroutput><userinput>xm console testxen</userinput>"
 "\n"
-"Debian GNU/Linux 6.0 testxen hvc0\n"
+"<computeroutput>[...]\n"
+"\n"
+"Debian GNU/Linux 7.0 testxen hvc0\n"
 "\n"
 "testxen login: </computeroutput>\n"
 
@@ -2213,10 +2239,10 @@ msgid "Sometimes one wishes to start a domU system and get to its console straig
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>TOOL</emphasis> ConVirt"
 msgid "<emphasis>TOOL</emphasis> OpenXenManager"
-msgstr "<emphasis>FERRAMENTAS</emphasis> ConVirt"
+msgstr "<emphasis>FERRAMENTA</emphasis> OpenXenManager"
 
 #. Tag: para
 #, no-c-format
@@ -2443,7 +2469,7 @@ msgid "At the time of writing, there was no good solution and no usable work-aro
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
 #| "</userinput><computeroutput>root@scouzmir:~# </computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/\n"
@@ -2476,18 +2502,23 @@ msgid ""
 "root@mirwiz:~# </computeroutput>\n"
 "        "
 msgstr ""
-"<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
-"</userinput><computeroutput>root@scouzmir:~# </computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/\n"
-"</userinput><computeroutput>debootstrap is /usr/sbin/debootstrap\n"
-"Checking cache download in /var/cache/lxc/debian/rootfs-i386 ... \n"
+"<computeroutput>root@mirwiz:~# </computeroutput><userinput>lxc-create -n "
+"testlxc -t debian\n"
+"</userinput><computeroutput>Note: Usually the template option is called with "
+"a configuration\n"
+"file option too, mostly to configure the network.\n"
+"For more information look at lxc.conf (5)\n"
+"\n"
+"debootstrap is /usr/sbin/debootstrap\n"
+"Checking cache download in /var/cache/lxc/debian/rootfs-wheezy-amd64 ... \n"
 "Downloading debian minimal ...\n"
 "I: Retrieving Release\n"
-"I: Retrieving Packages\n"
+"I: Retrieving Release.gpg\n"
 "[...]\n"
-" Removing any system startup links for /etc/init.d/hwclockfirst.sh ...\n"
-"   /etc/rcS.d/S08hwclockfirst.sh\n"
 "Root password is 'root', please change !\n"
-"root@scouzmir:~# </computeroutput>\n"
+"'debian' template installed\n"
+"'testlxc' created\n"
+"root@mirwiz:~# </computeroutput>\n"
 "        "
 
 #. Tag: para
@@ -2544,7 +2575,7 @@ msgid "Now that our virtual machine image is ready, let's start the container:"
 msgstr "Agora que nossa imagem da máquina virtual está pronta, vamos inicializar o contêiner:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc\n"
 #| "</userinput><computeroutput>INIT: version 2.86 booting\n"
@@ -2626,38 +2657,15 @@ msgid ""
 "root      1413  0.0  0.0  14572   884 tty4     Ss+  09:39   0:00 /sbin/getty 38400 tty4 linux\n"
 "root@testlxc:~# </computeroutput>"
 msgstr ""
-"<computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc\n"
-"</userinput><computeroutput>INIT: version 2.86 booting\n"
-"Activating swap...done.\n"
-"Cleaning up ifupdown....\n"
-"Checking file systems...fsck 1.41.3 (12-Oct-2008)\n"
-"done.\n"
-"Setting kernel variables (/etc/sysctl.conf)...done.\n"
-"Mounting local filesystems...done.\n"
-"Activating swapfile swap...done.\n"
-"Setting up networking....\n"
-"Configuring network interfaces...Internet Systems Consortium DHCP Client V3.1.1\n"
-"Copyright 2004-2008 Internet Systems Consortium.\n"
-"All rights reserved.\n"
-"For info, please visit http://www.isc.org/sw/dhcp/\n"
+"<computeroutput>root@mirwiz:~# </computeroutput><userinput>lxc-start --"
+"daemon --name=testlxc\n"
+"</userinput><computeroutput>root@mirwiz:~# </computeroutput><userinput>lxc-"
+"console -n testlxc\n"
+"</userinput><computeroutput>Debian GNU/Linux 7 testlxc tty1\n"
 "\n"
-"Listening on LPF/eth0/52:54:00:99:01:01\n"
-"Sending on   LPF/eth0/52:54:00:99:01:01\n"
-"Sending on   Socket/fallback\n"
-"DHCPDISCOVER on eth0 to 255.255.255.255 port 67 interval 4\n"
-"DHCPOFFER from 192.168.1.2\n"
-"DHCPREQUEST on eth0 to 255.255.255.255 port 67\n"
-"DHCPACK from 192.168.1.2\n"
-"bound to 192.168.1.243 -- renewal in 1392 seconds.\n"
-"done.\n"
-"INIT: Entering runlevel: 3\n"
-"Starting OpenBSD Secure Shell server: sshd.\n"
-"\n"
-"Debian GNU/Linux 5.0 scouzmir console\n"
-"\n"
-"scouzmir login: </computeroutput><userinput>root\n"
-"</userinput><computeroutput>Password: \n"
-"Linux scouzmir 2.6.32-5-686 #1 SMP Tue Mar 8 21:36:00 UTC 2011 i686\n"
+"testlxc login: </computeroutput><userinput>root</userinput><computeroutput>\n"
+"Password: \n"
+"Linux testlxc 3.2.0-4-amd64 #1 SMP Debian 3.2.46-1+deb7u1 x86_64\n"
 "\n"
 "The programs included with the Debian GNU/Linux system are free software;\n"
 "the exact distribution terms for each program are described in the\n"
@@ -2665,18 +2673,28 @@ msgstr ""
 "\n"
 "Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent\n"
 "permitted by applicable law.\n"
-"scouzmir:~# </computeroutput><userinput>ps auxwf</userinput>\n"
-"<computeroutput>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\n"
-"root         1  0.0  0.2   1984   680 ?        Ss   08:44   0:00 init [3]  \n"
-"root       197  0.0  0.1   2064   364 ?        Ss   08:44   0:00 dhclient3 -pf /var/run/dhclient.eth0.pid -lf /var/lib/dhcp3/dhclien\n"
-"root       286  0.1  0.4   2496  1256 console  Ss   08:44   0:00 /bin/login --     \n"
-"root       291  0.7  0.5   2768  1504 console  S    08:46   0:00  \\_ -bash\n"
-"root       296  0.0  0.3   2300   876 console  R+   08:46   0:00      \\_ ps auxwf\n"
-"root       287  0.0  0.2   1652   560 tty1     Ss+  08:44   0:00 /sbin/getty 38400 tty1 linux\n"
-"root       288  0.0  0.2   1652   560 tty2     Ss+  08:44   0:00 /sbin/getty 38400 tty2 linux\n"
-"root       289  0.0  0.2   1652   556 tty3     Ss+  08:44   0:00 /sbin/getty 38400 tty3 linux\n"
-"root       290  0.0  0.2   1652   560 tty4     Ss+  08:44   0:00 /sbin/getty 38400 tty4 linux\n"
-"scouzmir:~# </computeroutput>"
+"root@testlxc:~# </computeroutput><userinput>ps auxwf</userinput>\n"
+"<computeroutput>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   "
+"TIME COMMAND\n"
+"root         1  0.0  0.0  10644   824 ?        Ss   09:38   0:00 init [3]  \n"
+"root      1232  0.0  0.2   9956  2392 ?        Ss   09:39   0:00 dhclient -v "
+"-pf /run/dhclient.eth0.pid \n"
+"root      1379  0.0  0.1  49848  1208 ?        Ss   09:39   0:00 /usr/sbin/"
+"sshd\n"
+"root      1409  0.0  0.0  14572   892 console  Ss+  09:39   0:00 /sbin/getty "
+"38400 console\n"
+"root      1410  0.0  0.1  52368  1688 tty1     Ss   09:39   0:00 /bin/login "
+"--     \n"
+"root      1414  0.0  0.1  17876  1848 tty1     S    09:42   0:00  \\_ -bash\n"
+"root      1418  0.0  0.1  15300  1096 tty1     R+   09:42   0:00      \\_ ps "
+"auxf\n"
+"root      1411  0.0  0.0  14572   892 tty2     Ss+  09:39   0:00 /sbin/getty "
+"38400 tty2 linux\n"
+"root      1412  0.0  0.0  14572   888 tty3     Ss+  09:39   0:00 /sbin/getty "
+"38400 tty3 linux\n"
+"root      1413  0.0  0.0  14572   884 tty4     Ss+  09:39   0:00 /sbin/getty "
+"38400 tty4 linux\n"
+"root@testlxc:~# </computeroutput>"
 
 #. Tag: para
 #, no-c-format
@@ -2980,7 +2998,7 @@ msgid "Now that the installation is done, let us see how to handle the available
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all\n"
 " Id Name                 State\n"
@@ -2988,7 +3006,8 @@ msgid ""
 "  - testkvm              shut off\n"
 "</userinput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all\n"
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --"
+"all\n"
 " Id Name                 State\n"
 "----------------------------------\n"
 "  - testkvm              shut off\n"
@@ -3000,12 +3019,13 @@ msgid "Let's start our test virtual machine:"
 msgstr "Vamos iniciar nossa máquina virtual de teste:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
 "</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
+"<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start "
+"testkvm\n"
 "</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
 
 #. Tag: para
