@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-06-07 02:59+0200\n"
+"PO-Revision-Date: 2014-06-09 21:18+0200\n"
 "Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
@@ -423,7 +423,7 @@ msgstr "O servidor de e-mails pode receber e-mails de outros domínios além do 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Virtual domains and canonical domains"
-msgstr "<emphasis>CUIDADO</emphasis> Domínios virtuais e domínios canônicos"
+msgstr "<emphasis>ATENÇÃO</emphasis> Domínios virtuais e domínios canônicos"
 
 #. Tag: para
 #, no-c-format
@@ -1441,6 +1441,18 @@ msgid ""
 "    reject_unauth_destination,\n"
 "[...]\n"
 msgstr ""
+"\n"
+"# Enable SASL authentication\n"
+"smtpd_sasl_auth_enable = yes\n"
+"# Define the SASL authentication domain to use\n"
+"smtpd_sasl_local_domain = $myhostname\n"
+"[...]\n"
+"# Adding permit_sasl_authenticated before reject_unauth_destination\n"
+"# allows relaying mail sent by SASL-authenticated users\n"
+"smtpd_recipient_restrictions = permit_mynetworks,\n"
+"    permit_sasl_authenticated,\n"
+"    reject_unauth_destination,\n"
+"[...]\n"
 
 #. Tag: title
 #, no-c-format
@@ -1497,12 +1509,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apache</command></primary>"
-msgstr ""
+msgstr "<primary><command>apache</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>web</secondary>"
-msgstr ""
+msgstr "<primary>servidor</primary><secondary>web</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1513,17 +1525,17 @@ msgstr "<primary>servidor web</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>HTTP</secondary>"
-msgstr ""
+msgstr "<primary>servidor</primary><secondary>HTTP</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>HTTP</primary><secondary>server</secondary>"
-msgstr ""
+msgstr "<primary>HTTP</primary><secondary>servidor</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Other web servers"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVA</emphasis> Outros servidores web"
 
 #. Tag: para
 #, no-c-format
@@ -1533,17 +1545,17 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">nginx</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">nginx</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">lighttpd</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">lighttpd</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing Apache"
-msgstr ""
+msgstr "Instalação do Apache"
 
 #. Tag: para
 #, no-c-format
@@ -1564,16 +1576,18 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Execution under the <literal>www-data</literal> user"
 msgstr ""
+"<emphasis>SEGURANÇA</emphasis> Execução sob o usuário <literal>www-"
+"data</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>www-data</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>www-data</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>suexec</primary>"
-msgstr ""
+msgstr "<primary>suexec</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1588,7 +1602,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">apache2-mpm-itk</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">apache2-mpm-itk</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1598,7 +1612,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> List of modules"
-msgstr ""
+msgstr "<emphasis>OLHADA RÁPIDA</emphasis> Lista de módulos"
 
 #. Tag: para
 #, no-c-format
@@ -1618,17 +1632,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Adding support for SSL"
-msgstr ""
+msgstr "<emphasis>INDO ALÉM</emphasis> Compatibilidade com SSL"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>HTTPS</primary>"
-msgstr ""
+msgstr "<primary>HTTPS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>HTTP</primary><secondary>secure</secondary>"
-msgstr ""
+msgstr "<primary>HTTP</primary><secondary>seguro</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1649,17 +1663,17 @@ msgstr "<primary><emphasis>Perfect Forward Secrecy</emphasis></primary>"
 #. Tag: title
 #, no-c-format
 msgid "Configuring Virtual Hosts"
-msgstr ""
+msgstr "Configuração de servidores virtuais"
 
 #. Tag: para
 #, no-c-format
 msgid "A virtual host is an extra identity for the web server."
-msgstr ""
+msgstr "Um servidor virtual é uma identidade adicional para o servidor web."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual host</primary>"
-msgstr ""
+msgstr "<primary>host virtual</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1679,7 +1693,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> First virtual host"
-msgstr ""
+msgstr "<emphasis>ATENÇÃO</emphasis> Primeiro servidor virtual"
 
 #. Tag: para
 #, no-c-format
@@ -1689,12 +1703,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> Apache supports SNI"
-msgstr ""
+msgstr "<emphasis>OLHADA RÁPIDA</emphasis> Suporte Apache ao SNI"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Server Name Indication</primary>"
-msgstr ""
+msgstr "<primary>Server Name Indication</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1720,6 +1734,11 @@ msgid ""
 "    Listen 443\n"
 "&lt;/IfModule&gt;\n"
 msgstr ""
+"\n"
+"&lt;IfModule mod_ssl.c&gt;\n"
+"    NameVirtualHost *:443\n"
+"    Listen 443\n"
+"&lt;/IfModule&gt;\n"
 
 #. Tag: para
 #, no-c-format
@@ -1735,6 +1754,7 @@ msgstr ""
 #, no-c-format
 msgid "The <filename>/etc/apache2/sites-available/www.falcot.org</filename> file"
 msgstr ""
+"o arquivo <filename>/etc/apache2/sites-available/www.falcot.org</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1746,6 +1766,12 @@ msgid ""
 "DocumentRoot /srv/www/www.falcot.org\n"
 "&lt;/VirtualHost&gt;\n"
 msgstr ""
+"\n"
+"&lt;VirtualHost *:80&gt;\n"
+"ServerName www.falcot.org\n"
+"ServerAlias falcot.org\n"
+"DocumentRoot /srv/www/www.falcot.org\n"
+"&lt;/VirtualHost&gt;\n"
 
 #. Tag: para
 #, no-c-format
@@ -1755,7 +1781,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/apache2/conf.d/customlog</filename> file"
-msgstr ""
+msgstr "O arquivo <filename>/etc/apache2/conf.d/customlog</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1767,11 +1793,18 @@ msgid ""
 "# Now let's use this \"vhost\" format by default\n"
 "CustomLog /var/log/apache2/access.log vhost\n"
 msgstr ""
+"\n"
+"# New log format including (virtual) host name\n"
+"LogFormat \"%v %h %l %u %t \\\"%r\\\" %&gt;s %b \\\"%{Referer}i\\\" \\\""
+"%{User-Agent}i\\\"\" vhost\n"
+"\n"
+"# Now let's use this \"vhost\" format by default\n"
+"CustomLog /var/log/apache2/access.log vhost\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Common Directives"
-msgstr ""
+msgstr "Diretivas comuns"
 
 #. Tag: para
 #, no-c-format
@@ -1804,12 +1837,12 @@ msgstr "<primary><literal>Opções</literal>, diretivas do Apache</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>AllowOverride</literal>, Apache directive</primary>"
-msgstr ""
+msgstr "<primary><literal>AllowOverride</literal>, diretiva Apache</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Directory block"
-msgstr ""
+msgstr "Bloco Directory"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1821,6 +1854,12 @@ msgid ""
 "DirectoryIndex index.php index.html index.htm\n"
 "&lt;/Directory&gt;\n"
 msgstr ""
+"\n"
+"&lt;Directory /var/www&gt;\n"
+"Options Includes FollowSymlinks\n"
+"AllowOverride All\n"
+"DirectoryIndex index.php index.html index.htm\n"
+"&lt;/Directory&gt;\n"
 
 #. Tag: para
 #, no-c-format
@@ -1873,6 +1912,8 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <filename>.htaccess</filename> file"
 msgstr ""
+"<emphasis>DE VOLTA AO BÁSICO</emphasis> Arquivo "
+"<filename>.htaccess</filename>"
 
 #. Tag: para
 #, no-c-format
@@ -1882,7 +1923,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>.htaccess</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>.htaccess</filename></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1897,12 +1938,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Requiring Authentication"
-msgstr ""
+msgstr "Autenticação obrigatória"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>web authentication</primary>"
-msgstr ""
+msgstr "<primary>autenticação web</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1912,7 +1953,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<filename>.htaccess</filename> file requiring authentication"
-msgstr ""
+msgstr "Arquivo <filename>.htaccess</filename> para autenticação obrigatária"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1954,6 +1995,13 @@ msgid ""
 "Adding password for user <replaceable>user</replaceable>\n"
 "</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>htpasswd /etc/apache2/authfiles"
+"/htpasswd-private <replaceable>user</replaceable>\n"
+"</userinput><computeroutput>New password:\n"
+"Re-type new password:\n"
+"Adding password for user <replaceable>user</replaceable>\n"
+"</computeroutput>"
 
 #. Tag: title
 #, no-c-format
@@ -2039,7 +2087,7 @@ msgstr "<primary><emphasis>AWStats</emphasis></primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>web logs analyzer</primary>"
-msgstr ""
+msgstr "<primary>analisador de registros web</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2119,7 +2167,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "AWStats configuration file for a virtual host"
-msgstr ""
+msgstr "Arquivo de configuração dO AWStats para um servidor virtual"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2156,7 +2204,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Log file rotation"
-msgstr ""
+msgstr "<emphasis>ATENÇÃO</emphasis> Rotação dos arquivos de registro"
 
 #. Tag: para
 #, no-c-format
@@ -2190,6 +2238,29 @@ msgid ""
 "$ <userinput>sudo ln -sf /usr/share/awstats/tools/update.sh \\\n"
 "  /etc/logrotate.d/httpd-prerotate/awstats</userinput>\n"
 msgstr ""
+"\n"
+"$ <userinput>cat /etc/logrotate.d/apache2</userinput>\n"
+"/var/log/apache2/*.log {\n"
+"  weekly\n"
+"  missingok\n"
+"  rotate 52\n"
+"  compress\n"
+"  delaycompress\n"
+"  notifempty\n"
+"  create 644 root adm\n"
+"  sharedscripts\n"
+"  postrotate\n"
+"    /etc/init.d/apache2 reload &gt; /dev/null\n"
+"  endscript\n"
+"  prerotate\n"
+"    if [ -d /etc/logrotate.d/httpd-prerotate ]; then \\\n"
+"      run-parts /etc/logrotate.d/httpd-prerotate; \\\n"
+"    fi; \\\n"
+"  endscript\n"
+"}\n"
+"$ <userinput>sudo mkdir -p /etc/logrotate.d/httpd-prerotate</userinput>\n"
+"$ <userinput>sudo ln -sf /usr/share/awstats/tools/update.sh \\\n"
+"  /etc/logrotate.d/httpd-prerotate/awstats</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -2204,7 +2275,7 @@ msgstr "Servidor de Arquivos FTP"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>FTP (<emphasis>File Transfer Protocol</emphasis>)</primary>"
-msgstr ""
+msgstr "<primary>FTP (<emphasis>File Transfer Protocol</emphasis>)</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2289,7 +2360,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Securing NFS"
-msgstr ""
+msgstr "Proteção do NFS"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2319,7 +2390,7 @@ msgstr "<primary>RPC</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>Remote Procedure Call</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>Remote Procedure Call</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2405,6 +2476,27 @@ msgid ""
 "# Options for rpc.svcgssd.\n"
 "RPCSVCGSSDOPTS=\n"
 msgstr ""
+"\n"
+"# Number of servers to start up\n"
+"RPCNFSDCOUNT=8\n"
+"\n"
+"# Runtime priority of server (see nice(1))\n"
+"RPCNFSDPRIORITY=0\n"
+"\n"
+"# Options for rpc.mountd.\n"
+"# If you have a port-based firewall, you might want to set up\n"
+"# a fixed port here using the --port option. For more information, \n"
+"# see rpc.mountd(8) or http://wiki.debian.org/SecuringNFS\n"
+"# To disable NFSv4 on the server, specify '--no-nfs-version 4' here\n"
+"RPCMOUNTDOPTS=\"--manage-gids --port 2048\"\n"
+"\n"
+"# Do you want to start the svcgssd daemon? It is only required for Kerberos\n"
+"# exports. Valid alternatives are \"yes\" and \"no\"; the default is \"no\"."
+"\n"
+"NEED_SVCGSSD=\n"
+"\n"
+"# Options for rpc.svcgssd.\n"
+"RPCSVCGSSDOPTS=\n"
 
 #. Tag: title
 #, no-c-format
@@ -2435,6 +2527,29 @@ msgid ""
 "# Do you want to start the gssd daemon? It is required for Kerberos mounts.\n"
 "NEED_GSSD=\n"
 msgstr ""
+"\n"
+"# If you do not set values for the NEED_ options, they will be attempted\n"
+"# autodetected; this should be sufficient for most people. Valid "
+"alternatives\n"
+"# for the NEED_ options are \"yes\" and \"no\".\n"
+"\n"
+"# Do you want to start the statd daemon? It is not needed for NFSv4.\n"
+"NEED_STATD=\n"
+"\n"
+"# Options for rpc.statd.\n"
+"#   Should rpc.statd listen on a specific port? This is especially useful\n"
+"#   when you have a port-based firewall. To use a fixed port, set this\n"
+"#   this variable to a statd argument like: \"--port 4000 --outgoing-port "
+"4001\".\n"
+"#   For more information, see rpc.statd(8) or http://wiki.debian.org/"
+"SecuringNFS\n"
+"STATDOPTS=\"--port 2046 --outgoing-port 2047\"\n"
+"\n"
+"# Do you want to start the idmapd daemon? It is only needed for NFSv4.\n"
+"NEED_IDMAPD=\n"
+"\n"
+"# Do you want to start the gssd daemon? It is required for Kerberos mounts.\n"
+"NEED_GSSD=\n"
 
 #. Tag: para
 #, no-c-format
@@ -2532,7 +2647,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> First installation"
-msgstr "<emphasis>CUIDADO</emphasis> Primeira instalação"
+msgstr "<emphasis>ATENÇÃO</emphasis> Primeira instalação"
 
 #. Tag: para
 #, no-c-format
@@ -2782,7 +2897,7 @@ msgstr "Configurando Manualmente"
 #. Tag: title
 #, no-c-format
 msgid "Changes to <filename>smb.conf</filename>"
-msgstr ""
+msgstr "Mudanças no <filename>smb.conf</filename>"
 
 #. Tag: para
 #, no-c-format
@@ -2843,6 +2958,59 @@ msgid ""
 "   printing = cups <co id=\"smb.conf.printing\"></co>\n"
 "   printcap name = cups\n"
 msgstr ""
+"\n"
+"[global]\n"
+"\n"
+"## Browsing/Identification ###\n"
+"\n"
+"# Change this to the workgroup/NT-domain name your Samba server will part "
+"of\n"
+"   workgroup = FALCOTNET\n"
+"\n"
+"# server string is the equivalent of the NT Description field\n"
+"   server string = %h server (Samba %v)\n"
+"\n"
+"# Windows Internet Name Serving Support Section:\n"
+"# WINS Support - Tells the NMBD component of Samba to enable its WINS "
+"Server\n"
+"   wins support = yes <co id=\"smb.conf.wins\"></co>\n"
+"\n"
+"[...]\n"
+"\n"
+"####### Authentication #######\n"
+"\n"
+"# \"security = user\" is always a good idea. This will require a Unix "
+"account\n"
+"# in this server for every user accessing the server. See\n"
+"# /usr/share/doc/samba-doc/htmldocs/Samba3-HOWTO/ServerType.html \n"
+"# in the samba-doc package for details.\n"
+"   security = user <co id=\"smb.conf.security\"></co>\n"
+"\n"
+"# You may wish to use password encryption.  See the section on\n"
+"# 'encrypt passwords' in the smb.conf(5) manpage before enabling.\n"
+"   encrypt passwords = true\n"
+"\n"
+"# If you are using encrypted passwords, Samba will need to know what\n"
+"# password database type you are using.\n"
+"   passdb backend = tdbsam\n"
+"\n"
+"[...]\n"
+"\n"
+"########## Printing ##########\n"
+"\n"
+"# If you want to automatically load your printer list rather\n"
+"# than setting them up individually then you'll need this\n"
+"   load printers = yes <co id=\"smb.conf.loadprinters\"></co>\n"
+"\n"
+"# lpr(ng) printing. You may wish to override the location of the\n"
+"# printcap file\n"
+";   printing = bsd\n"
+";   printcap name = /etc/printcap\n"
+"\n"
+"# CUPS printing.  See also the cupsaddsmb(8) manpage in the\n"
+"# cups-client package.\n"
+"   printing = cups <co id=\"smb.conf.printing\"></co>\n"
+"   printcap name = cups\n"
 
 #. Tag: para
 #, no-c-format
@@ -2887,7 +3055,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Switching to Domain Controller"
-msgstr ""
+msgstr "Trocando a um controlador de domínio"
 
 #. Tag: para
 #, no-c-format
@@ -2897,12 +3065,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>roaming profiles</primary>"
-msgstr ""
+msgstr "<primary>perfil móvel</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>profiles, roaming</primary>"
-msgstr ""
+msgstr "<primary>móveis, perfis</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3143,7 +3311,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>printing</primary><secondary>network</secondary>"
-msgstr ""
+msgstr "<primary>impressão</primary><secondary>rede</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -3161,7 +3329,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Click on “Add Printer”."
-msgstr ""
+msgstr "Clique em \"Adicionar Impressora\"."
 
 #. Tag: para
 #, no-c-format
@@ -3183,6 +3351,9 @@ msgstr ""
 #, no-c-format
 msgid "<literal>smb://<replaceable>user</replaceable>:<replaceable>password</replaceable>@<replaceable>server</replaceable>/<replaceable>printer</replaceable></literal>."
 msgstr ""
+"<literal>smb://<replaceable>usuário</replaceable>:<replaceable>senha</replace"
+"able>@<replaceable>servidor</replaceable>/<replaceable>impressora</replaceabl"
+"e></literal>."
 
 #. Tag: para
 #, no-c-format
@@ -3284,6 +3455,17 @@ msgid ""
 "# And finally deny all other access to this proxy\n"
 "http_access deny all\n"
 msgstr ""
+"\n"
+"# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS\n"
+"\n"
+"# Example rule allowing access from your local networks. Adapt\n"
+"# to list your (internal) IP networks from where browsing should\n"
+"# be allowed\n"
+"acl our_networks src 192.168.1.0/24 192.168.2.0/24\n"
+"http_access allow our_networks\n"
+"http_access allow localhost\n"
+"# And finally deny all other access to this proxy\n"
+"http_access deny all\n"
 
 #. Tag: title
 #, no-c-format
@@ -3417,7 +3599,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Database backend to use: “HDB”."
-msgstr ""
+msgstr "Banco de dados para utilizar: \"HDB\"."
 
 #. Tag: para
 #, no-c-format
@@ -3494,6 +3676,39 @@ msgid ""
 "# numEntries: 2\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>ldapsearch -x -b "
+"dc=falcot,dc=com</userinput>\n"
+"<computeroutput># extended LDIF\n"
+"#\n"
+"# LDAPv3\n"
+"# base &lt;dc=falcot,dc=com&gt; with scope sub\n"
+"# filter: (objectclass=*)\n"
+"# requesting: ALL\n"
+"#\n"
+"\n"
+"# falcot.com\n"
+"dn: dc=falcot,dc=com\n"
+"objectClass: top\n"
+"objectClass: dcObject\n"
+"objectClass: organization\n"
+"o: Falcot Corp\n"
+"dc: falcot\n"
+"\n"
+"# admin, falcot.com\n"
+"dn: cn=admin,dc=falcot,dc=com\n"
+"objectClass: simpleSecurityObject\n"
+"objectClass: organizationalRole\n"
+"cn: admin\n"
+"description: LDAP administrator\n"
+"\n"
+"# search result\n"
+"search: 2\n"
+"result: 0 Success\n"
+"\n"
+"# numResponses: 3\n"
+"# numEntries: 2\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -3564,7 +3779,7 @@ msgstr "Resposta"
 #. Tag: entry
 #, no-c-format
 msgid "X.500 naming context"
-msgstr ""
+msgstr "Contexto de nome X.500"
 
 #. Tag: entry
 #, no-c-format
@@ -3594,7 +3809,7 @@ msgstr "<literal>cn=admin,dc=falcot,dc=com</literal>"
 #. Tag: entry
 #, no-c-format
 msgid "Bind credentials"
-msgstr ""
+msgstr "Credenciais Bind"
 
 #. Tag: entry
 #, no-c-format
@@ -3705,7 +3920,7 @@ msgstr ""
 #. Tag: entry
 #, no-c-format
 msgid "yes"
-msgstr ""
+msgstr "sim"
 
 #. Tag: entry
 #, no-c-format
@@ -3791,6 +4006,8 @@ msgstr ""
 #, no-c-format
 msgid "<literal><replaceable>service</replaceable>: ldap [NOTFOUND=return] files</literal>."
 msgstr ""
+"<literal><replaceable>serviço</replaceable>: ldap [NOTFOUND=return] "
+"files</literal>."
 
 #. Tag: para
 #, no-c-format
@@ -3810,7 +4027,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Broken authentication"
-msgstr "<emphasis>CUIDADO</emphasis> Autenticação quebrada"
+msgstr "<emphasis>ATENÇÃO</emphasis> Autenticação quebrada"
 
 #. Tag: para
 #, no-c-format
@@ -3962,6 +4179,17 @@ msgid ""
 "# <userinput>chmod 0640 /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
 "# <userinput>mv newcert.pem /etc/ssl/certs/ldap.falcot.com.pem</userinput>\n"
 msgstr ""
+"\n"
+"# <userinput>adduser openldap ssl-cert</userinput>\n"
+"Adding user `openldap' to group `ssl-cert' ...\n"
+"Adding user openldap to group ssl-cert\n"
+"Done.\n"
+"# <userinput>mv keys/ldap.falcot.com.key "
+"/etc/ssl/private/ldap.falcot.com.key</userinput>\n"
+"# <userinput>chown root:ssl-cert "
+"/etc/ssl/private/ldap.falcot.com.key</userinput>\n"
+"# <userinput>chmod 0640 /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
+"# <userinput>mv newcert.pem /etc/ssl/certs/ldap.falcot.com.pem</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -3993,6 +4221,22 @@ msgid ""
 "SASL SSF: 0\n"
 "modifying entry \"cn=config\"\n"
 msgstr ""
+"\n"
+"# <userinput>cat &gt;ssl.ldif &lt;&lt;END\n"
+"dn: cn=config\n"
+"changetype: modify\n"
+"add: olcTLSCertificateFile\n"
+"olcTLSCertificateFile: /etc/ssl/certs/ldap.falcot.com.pem\n"
+"-\n"
+"add: olcTLSCertificateKeyFile\n"
+"olcTLSCertificateKeyFile: /etc/ssl/private/ldap.falcot.com.key\n"
+"-\n"
+"END</userinput>\n"
+"# <userinput>ldapmodify -Y EXTERNAL -H ldapi:/// -f ssl.ldif</userinput>\n"
+"SASL/EXTERNAL authentication started\n"
+"SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth\n"
+"SASL SSF: 0\n"
+"modifying entry \"cn=config\"\n"
 
 #. Tag: title
 #, no-c-format
@@ -4024,6 +4268,8 @@ msgid ""
 "\n"
 "# <userinput>ldapvi -Y EXTERNAL -h ldapi:/// -b cn=config</userinput>\n"
 msgstr ""
+"\n"
+"# <userinput>ldapvi -Y EXTERNAL -h ldapi:/// -b cn=config</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -4085,6 +4331,53 @@ msgid ""
 "# Additional options to pass to slapd\n"
 "SLAPD_OPTIONS=\"\"\n"
 msgstr ""
+"\n"
+"# Default location of the slapd.conf file or slapd.d cn=config directory. "
+"If\n"
+"# empty, use the compiled-in default (/etc/ldap/slapd.d with a fallback to\n"
+"# /etc/ldap/slapd.conf).\n"
+"SLAPD_CONF=\n"
+"\n"
+"# System account to run the slapd server under. If empty the server\n"
+"# will run as root.\n"
+"SLAPD_USER=\"openldap\"\n"
+"\n"
+"# System group to run the slapd server under. If empty the server will\n"
+"# run in the primary group of its user.\n"
+"SLAPD_GROUP=\"openldap\"\n"
+"\n"
+"# Path to the pid file of the slapd server. If not set the init.d script\n"
+"# will try to figure it out from $SLAPD_CONF (/etc/ldap/slapd.conf by\n"
+"# default)\n"
+"SLAPD_PIDFILE=\n"
+"\n"
+"# slapd normally serves ldap only on all TCP-ports 389. slapd can also\n"
+"# service requests on TCP-port 636 (ldaps) and requests via unix\n"
+"# sockets.\n"
+"# Example usage:\n"
+"# SLAPD_SERVICES=\"ldap://127.0.0.1:389/ ldaps:/// ldapi:///\"\n"
+"SLAPD_SERVICES=\"ldaps:/// ldapi:///\"\n"
+"\n"
+"# If SLAPD_NO_START is set, the init script will not start or restart\n"
+"# slapd (but stop will still work).  Uncomment this if you are\n"
+"# starting slapd via some other means or if you don't want slapd normally\n"
+"# started at boot.\n"
+"#SLAPD_NO_START=1\n"
+"\n"
+"# If SLAPD_SENTINEL_FILE is set to path to a file and that file exists,\n"
+"# the init script will not start or restart slapd (but stop will still\n"
+"# work).  Use this for temporarily disabling startup of slapd (when doing\n"
+"# maintenance, for example, or through a configuration management system)\n"
+"# when you don't want to edit a configuration file.\n"
+"SLAPD_SENTINEL_FILE=/etc/ldap/noslapd\n"
+"\n"
+"# For Kerberos authentication (via SASL), slapd by default uses the system\n"
+"# keytab file (/etc/krb5.keytab).  To use a different keytab file,\n"
+"# uncomment this line and change the path.\n"
+"#export KRB5_KTNAME=/etc/krb5.keytab\n"
+"\n"
+"# Additional options to pass to slapd\n"
+"SLAPD_OPTIONS=\"\"\n"
 
 #. Tag: title
 #, no-c-format
@@ -4113,6 +4406,15 @@ msgid ""
 "done.\n"
 "done.\n"
 msgstr ""
+"\n"
+"# <userinput>cp keys/ca.crt /usr/local/share/ca-"
+"certificates/falcot.crt</userinput>\n"
+"# <userinput>update-ca-certificates</userinput>\n"
+"Updating certificates in /etc/ssl/certs... 1 added, 0 removed; done.\n"
+"Running hooks in /etc/ca-certificates/update.d....\n"
+"Adding debian:falcot.pem\n"
+"done.\n"
+"done.\n"
 
 #. Tag: para
 #, no-c-format
@@ -4144,6 +4446,22 @@ msgid ""
 "# TLS certificates (needed for GnuTLS)\n"
 "TLS_CACERT      /etc/ssl/certs/ca-certificates.crt\n"
 msgstr ""
+"#\n"
+"# LDAP Defaults\n"
+"#\n"
+"\n"
+"# See ldap.conf(5) for details\n"
+"# This file should be world readable but not world writable.\n"
+"\n"
+"BASE   dc=falcot,dc=com\n"
+"URI    ldaps://ldap.falcot.com\n"
+"\n"
+"#SIZELIMIT      12\n"
+"#TIMELIMIT      15\n"
+"#DEREF          never\n"
+"\n"
+"# TLS certificates (needed for GnuTLS)\n"
+"TLS_CACERT      /etc/ssl/certs/ca-certificates.crt\n"
 
 #. Tag: para
 #, no-c-format
