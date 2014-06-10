@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-02-07 23:26+0200\n"
+"PO-Revision-Date: 2014-06-10 21:00+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
-"Language-Team: Spanish <http://debian.weblate.org/projects/debian-"
+"Language-Team: Spanish <https://debian.weblate.org/projects/debian-"
 "handbook/14_security/es-ES/>\n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.9-dev\n"
+"X-Generator: Weblate 1.10-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -134,7 +134,22 @@ msgstr "Estos ejemplos podrán parecer extremos, sin embargo, serían una respue
 #. Tag: para
 #, no-c-format
 msgid "In most cases, the information system can be segmented in consistent and mostly independent subsets. Each subsystem will have its own requirements and constraints, and so the risk assessment and the design of the security policy should be undertaken separately for each. A good principle to keep in mind is that a short and well-defined perimeter is easier to defend than a long and winding frontier. The network organization should also be designed accordingly: the sensitive services should be concentrated on a small number of machines, and these machines should only be accessible via a minimal number of check-points; securing these check-points will be easier than securing all the sensitive machines against the entirety of the outside world. It is at this point that the usefulness of network filtering (including by firewalls) becomes apparent. This filtering can be implemented with dedicated hardware, but a possibly simpler and more flexible solution is to use a software firewall such as the one integrated in the Linux kernel."
-msgstr "En la mayoría de los casos, el sistema de información puede ser segmentado en subconjuntos coherentes y en su mayoría independientes. Cada subsistema tendrá sus propios requisitos y limitaciones, por lo que se deberá llevar a cabo la evaluación de riesgos y el diseño de la política de seguridad por separado para cada uno. Un buen principio a tener en cuenta es que un perímetro corto y bien definido es más fácil de defender que una frontera larga y sinuosa. Se debe diseñar en cosencuencia también la organización de la red: se deben concentrar los servicios sensibles en un pequeño número de máquinas y estas máquinas sólo deben ser accesibles a través de un número mínimo de puntos de control, asegurar estos puntos de control será más fácil que asegurar todas la máquinas sensibles contra la totalidad del mundo exterior. Es en este punto que se hace evidente la utilidad del filtrado de red (incluyendo los firewalls). Puede implementar este filtrado con hardware dedicado, pero posiblemente una solución más simple y flexible sea utilizar un firewall en software como el que se integra en el núcleo Linux."
+msgstr ""
+"En la mayoría de los casos, el sistema de información puede ser segmentado "
+"en subconjuntos coherentes y en su mayoría independientes. Cada subsistema "
+"tendrá sus propios requisitos y limitaciones, por lo que se deberá llevar a "
+"cabo la evaluación de riesgos y el diseño de la política de seguridad por "
+"separado para cada uno. Un buen principio a tener en cuenta es que un "
+"perímetro corto y bien definido es más fácil de defender que una frontera "
+"larga y sinuosa. Se debe diseñar en consecuencia también la organización de "
+"la red: se deben concentrar los servicios sensibles en un pequeño número de "
+"máquinas y estas máquinas sólo deben ser accesibles a través de un número "
+"mínimo de puntos de control, asegurar estos puntos de control será más fácil "
+"que asegurar todas la máquinas sensibles contra la totalidad del mundo "
+"exterior. Es en este punto que se hace evidente la utilidad del filtrado de "
+"red (incluyendo los firewalls). Puede implementar este filtrado con hardware "
+"dedicado, pero posiblemente una solución más simple y flexible sea utilizar "
+"un firewall en software como el que se integra en el núcleo Linux."
 
 #. Tag: title
 #, no-c-format
@@ -2227,7 +2242,20 @@ msgstr "Las consecuencias de una intrusión tendrán varios niveles de obviedad 
 #. Tag: para
 #, no-c-format
 msgid "A more advanced attacker will go beyond that. A disaster scenario could go on in the following fashion: the attacker gains the ability to execute commands as the <literal>www-data</literal> user, but executing a command requires many manipulations. To make their life easier, they install other web applications specially designed to remotely execute many kinds of commands, such as browsing the filesystem, examining permissions, uploading or downloading files, executing commands, and even provide a network shell. Often, the vulnerability will allow running a <command>wget</command> command that will download some malware into <filename>/tmp/</filename>, then executing it. The malware is often downloaded from a foreign website that was previously compromised, in order to cover tracks and make it harder to follow the scent to the actual origin of the attack."
-msgstr "Un atacante más avanzado irá más allá. Un escenario desastroso podría ser como sigue: el atacante obtiene la habilidad de ejecutar programas como el usuario <literal>www-data</literal>, pero ejecutar una orden necesita demasiadas manipulaciones. Para hacer su tarea más sencilla, instala otra aplicación web diseñada específicamente para ejecutar remotamente muchas órdenes distntas, como navegar el sistema de archivos, examinar permisos, subir o descargar archivos, ejecutar programas o inclusive proveer una consola de red. Generalmente, la vulnerabilidad le permitirá ejecutar <command>wget</command> para descargar algún malware en <filename>/tmp/</filename> y luego ejecutarlo. Usualmente se descarga dicho malware de un sitio web extranjero que fue comprometido con anterioridad y servirá para cubrir sus huellas y hacer más difícil rastrear el origen real del ataque."
+msgstr ""
+"Un atacante más avanzado irá más allá. Un escenario desastroso podría ser "
+"como sigue: el atacante obtiene la habilidad de ejecutar programas como el "
+"usuario <literal>www-data</literal>, pero ejecutar una orden necesita "
+"demasiadas manipulaciones. Para hacer su tarea más sencilla, instala otra "
+"aplicación web diseñada específicamente para ejecutar remotamente muchas "
+"órdenes distintas, como navegar el sistema de archivos, examinar permisos, "
+"subir o descargar archivos, ejecutar programas o inclusive proveer una "
+"consola de red. Generalmente, la vulnerabilidad le permitirá ejecutar "
+"<command>wget</command> para descargar algún malware en "
+"<filename>/tmp/</filename> y luego ejecutarlo. Usualmente se descarga dicho "
+"malware de un sitio web extranjero que fue comprometido con anterioridad y "
+"servirá para cubrir sus huellas y hacer más difícil rastrear el origen real "
+"del ataque."
 
 #. Tag: para
 #, no-c-format
@@ -2480,7 +2508,12 @@ msgstr "Puede parecer tentandor analizar el equipo mientras ejecuta, especialmen
 #. Tag: para
 #, no-c-format
 msgid "If such a hot analysis is still required, care should be taken to only use known-good programs. A good way to do that would be to have a rescue CD with pristine programs, or a read-only network share. However, even those countermeasures may not be enough if the kernel itself is compromised."
-msgstr "Si necesita dicho análsis en caliente, debe tener cuidado de sólo utilizar programas en los que sabe que puede confiar. Una buena forma de hacer esto sería tener un CD de rescate con programas impolutos, o un espacio de red compartido en modo de solo lectura. Sin embargo, aún estas medidas pueden no ser suficientes si el núcleo en sí fue comprometido."
+msgstr ""
+"Si necesita dicho análisis en caliente, debe tener cuidado de sólo utilizar "
+"programas en los que sabe que puede confiar. Una buena forma de hacer esto "
+"sería tener un CD de rescate con programas impolutos, o un espacio de red "
+"compartido en modo de solo lectura. Sin embargo, aún estas medidas pueden no "
+"ser suficientes si el núcleo en sí fue comprometido."
 
 #. Tag: para
 #, no-c-format

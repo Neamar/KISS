@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-02-07 23:24+0200\n"
+"PO-Revision-Date: 2014-06-10 19:44+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
-"Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
+"Language-Team: Spanish <https://debian.weblate.org/projects/debian-handbook"
 "/05_packaging-system/es-ES/>\n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.9-dev\n"
+"X-Generator: Weblate 1.10-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -651,7 +651,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Conflicts: the <literal>Conflicts</literal> field"
-msgstr "Conflitos: el campo <literal>Conflicts</literal>"
+msgstr "Conflictos: el campo <literal>Conflicts</literal>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -994,7 +994,16 @@ msgstr "<primary><filename>control.tar.gz</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "In addition to the <filename>control</filename> file, the <filename>control.tar.gz</filename> archive for each Debian package may contain a number of scripts, called by <command>dpkg</command> at different stages in the processing of a package. The Debian Policy describes the possible cases in detail, specifying the scripts called and the arguments that they receive. These sequences may be complicated, since if one of the scripts fails, <command>dpkg</command> will try to return to a satisfactory state by canceling the installation or removal in progress (insofar as it is possible)."
-msgstr "Además del archivo <filename>control</filename>, el compendio <filename>control.tar.gz</filename> de cada paquete Debian puede contener una cantidad de scripts que serán ejecutados por <command>dpkg</command> en diferentes etapas del procesamiento de un paquete. La Normativa Debian describe lo casos posibles en detalle, especificando los scripts que serán llamados y los argumentos que recibirán. Estas secuencias pueden ser complicadas ya que si falla uno de los scripts <command>dpkg</command> intentará volver a un estado satisfactorio cancelando la instalación o eliminación en curso (siempre que sea posible)."
+msgstr ""
+"Además del archivo <filename>control</filename>, el compendio "
+"<filename>control.tar.gz</filename> de cada paquete Debian puede contener "
+"una cantidad de scripts que serán ejecutados por <command>dpkg</command> en "
+"diferentes etapas del procesamiento de un paquete. La Normativa Debian "
+"describe los casos posibles en detalle, especificando los scripts que serán "
+"llamados y los argumentos que recibirán. Estas secuencias pueden ser "
+"complicadas ya que si falla uno de los scripts <command>dpkg</command> "
+"intentará volver a un estado satisfactorio cancelando la instalación o "
+"eliminación en curso (siempre que sea posible)."
 
 #. Tag: title
 #, no-c-format
@@ -1090,7 +1099,12 @@ msgstr "En una actualización, <command>dpkg</command> ejecuta <command>old-post
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> updates all of the internal data (file list, configuration scripts, etc.) and removes the backups of the replaced files. This is the point of no return: <command>dpkg</command> no longer has access to all of the elements necessary to return to the previous state."
-msgstr "<command>dpkg</command> actualiza toda su información interna (lista de archivos, scripts de configuración, etc.) y elimina los respalos de los archivos reemplazados. Este es el punto sin retorno: <command>dpkg</command> ya no tiene acceso a todos los elementos necesarios para volver al estado anterior."
+msgstr ""
+"<command>dpkg</command> actualiza toda su información interna (lista de "
+"archivos, scripts de configuración, etc.) y elimina los respaldos de los "
+"archivos reemplazados. Este es el punto sin retorno: <command>dpkg</command> "
+"ya no tiene acceso a todos los elementos necesarios para volver al estado "
+"anterior."
 
 #. Tag: para
 #, no-c-format
@@ -1631,7 +1645,7 @@ msgstr ""
 "desea sólo un paquete fuente. Estos compendios también puede comprimirse con "
 "<command>bzip2</command> o <command>xz</command> en lugar de "
 "<command>gzip</command> (<command>dpkg-source</command> acepta también "
-"<command>lzma</command> pero no es aceptados en el archivo oficial), lo que "
+"<command>lzma</command> pero no es aceptado en el archivo oficial), lo que "
 "ahorra espacio en disco y recursos de red. Finalmente, se reemplaza el "
 "parche monolítico <filename>.diff.gz</filename> por un compendio "
 "<filename>.debian.tar.gz</filename> que contiene las instrucciones de "

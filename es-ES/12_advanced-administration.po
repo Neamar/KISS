@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-02-07 23:25+0200\n"
+"PO-Revision-Date: 2014-06-10 20:31+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
-"Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook"
+"Language-Team: Spanish <https://debian.weblate.org/projects/debian-handbook"
 "/12_advanced-administration/es-ES/>\n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.9-dev\n"
+"X-Generator: Weblate 1.10-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -1256,7 +1256,14 @@ msgstr "El contenido de estas dos últimas líneas no depende de la lista de dis
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary>LVM</primary></indexterm> LVM, the <emphasis>Logical Volume Manager</emphasis>, is another approach to abstracting logical volumes from their physical supports, which focuses on increasing flexibility rather than increasing reliability. LVM allows changing a logical volume transparently as far as the applications are concerned; for instance, it is possible to add new disks, migrate the data to them, and remove the old disks, without unmounting the volume."
-msgstr "<indexterm><primary>LVM</primary></indexterm>, el <emphasis>gestor de volúmenes lógicos</emphasis> («Logical Volume Manager»), es otra forma de abstraer volúmenes lógicos de su soporte físico, que se enfoca en mayor flexibilidad en lugar de aumentar confiabilidad. LVM permite modificar un volumen lógico de forma transparente a las aplicaciones; por ejemplo, es posible agregar nuevos discos, migrar sus datos y eliminar discos antiguos sin desmontar el volumen."
+msgstr ""
+"<indexterm><primary>LVM</primary></indexterm> LVM, el <emphasis>gestor de "
+"volúmenes lógicos</emphasis> («Logical Volume Manager»), es otra forma de "
+"abstraer volúmenes lógicos de su soporte físico, que se enfoca en mayor "
+"flexibilidad en lugar de aumentar confiabilidad. LVM permite modificar un "
+"volumen lógico de forma transparente a las aplicaciones; por ejemplo, es "
+"posible agregar nuevos discos, migrar sus datos y eliminar discos antiguos "
+"sin desmontar el volumen."
 
 #. Tag: title
 #, no-c-format
@@ -2145,7 +2152,7 @@ msgstr "<emphasis>NOTA</emphasis> Si el rendimiento importa…"
 #, no-c-format
 msgid "If input/output speed is of the essence, especially in terms of access times, using LVM and/or RAID in one of the many combinations may have some impact on performances, and this may influence decisions as to which to pick. However, these differences in performance are really minor, and will only be measurable in a few use cases. If performance matters, the best gain to be obtained would be to use non-rotating storage media (<indexterm><primary>SSD</primary></indexterm><emphasis>solid-state drives</emphasis> or SSDs); their cost per megabyte is higher than that of standard hard disk drives, and their capacity is usually smaller, but they provide excellent performance for random accesses. If the usage pattern includes many input/output operations scattered all around the filesystem, for instance for databases where complex queries are routinely being run, then the advantage of running them on an SSD far outweigh whatever could be gained by picking LVM over RAID or the reverse. In these situations, the choice should be determined by other considerations than pure speed, since the performance aspect is most easily handled by using SSDs."
 msgstr ""
-"Si la velocidad de entrada/salida es escencial, especialmente en cuanto a "
+"Si la velocidad de entrada/salida es esencial, especialmente en cuanto a "
 "tiempos de acceso, utilizar LVM y/o RAID es una de las numerosas "
 "combinaciones que tendrán impacto en el rendimiento y esto influenciará las "
 "decisiones sobre cuál elegir. Sin embargo, estas diferencias de rendimiento "
@@ -2285,7 +2292,24 @@ msgstr "El razonamiento para la primera división (<filename>md0</filename> y lo
 #. Tag: para
 #, no-c-format
 msgid "The rationale for the second split (<filename>md1</filename> vs. <filename>md2</filename>) is less clear-cut, and more related to acknowledging that the future is uncertain. When the workstation is first assembled, the exact storage requirements are not necessarily known with perfect precision; they can also evolve over time. In our case, we can't know in advance the actual storage space requirements for video rushes and complete video clips. If one particular clip needs a very large amount of rushes, and the VG dedicated to redundant data is less than halfway full, we can re-use some of its unneeded space. We can remove one of the physical volumes, say <filename>md2</filename> from <filename>vg_raid</filename> and either assign it to <filename>vg_bulk</filename> directly (if the expected duration of the operation is short enough that we can live with the temporary drop in performance), or undo the RAID setup on <filename>md2</filename> and integrate its components <filename>sda6</filename> and <filename>sdc6</filename> into the bulk VG (which grows by 200 GB instead of 100 GB); the <filename>lv_rushes</filename> logical volume can then be grown according to requirements."
-msgstr "El razonamiento para la segunda división (<filename>md1</filename> vs. <filename>md2</filename>) es menos estricto y está más relacionado con el reconocimiento que el futuro es incierto. Cuando se ensambló el equipo, no se conocían exactamente los requisitos; también puede evolucionar con el tiempo. En nuestro caso, no podemos saber por adelantado la necesidad de espacio de almacenamiento de cada tipo de videos. Si un video en particular necesita una gran cantidad de videos sin editar, y el VG dedicado para datos redundantes no tiene más de la mitad del espacio disponible, podemos reutilizar parte de su espacio innecesario. Podemos quitar uno de los volúmenes físicos, por ejemplo <filename>md2</filename> de <filename>vg_raid</filename> y asignarlo a <filename>vg_bulk</filename> direcamente (si la duración esperada de la operación es suficientemente corta como para que no nos preocupe la pérdida temporal de rendimiento), o deshacer la configuración RAID en <filename>md2</filename> e integrar sus componentes <filename>sda6</filename> y <filename>sdc6</filename> en el VG (que crecerá 200 GB en lugar de 100 GB); luego podremos aumentar el volumen lógico <filename>lv_rushes</filename> según se necesite."
+msgstr ""
+"El razonamiento para la segunda división (<filename>md1</filename> vs. "
+"<filename>md2</filename>) es menos estricto y está más relacionado con el "
+"reconocimiento que el futuro es incierto. Cuando se ensambló el equipo, no "
+"se conocían exactamente los requisitos; también puede evolucionar con el "
+"tiempo. En nuestro caso, no podemos saber por adelantado la necesidad de "
+"espacio de almacenamiento de cada tipo de videos. Si un video en particular "
+"necesita una gran cantidad de videos sin editar, y el VG dedicado para datos "
+"redundantes no tiene más de la mitad del espacio disponible, podemos "
+"reutilizar parte de su espacio innecesario. Podemos quitar uno de los "
+"volúmenes físicos, por ejemplo <filename>md2</filename> de "
+"<filename>vg_raid</filename> y asignarlo a <filename>vg_bulk</filename> "
+"directamente (si la duración esperada de la operación es suficientemente "
+"corta como para que no nos preocupe la pérdida temporal de rendimiento), o "
+"deshacer la configuración RAID en <filename>md2</filename> e integrar sus "
+"componentes <filename>sda6</filename> y <filename>sdc6</filename> en el VG ("
+"que crecerá 200 GB en lugar de 100 GB); luego podremos aumentar el volumen "
+"lógico <filename>lv_rushes</filename> según se necesite."
 
 #. Tag: para
 #, no-c-format
@@ -3516,7 +3540,11 @@ msgstr "Primero instalaremos los paquetes necesarios con <command>apt-get instal
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">virtinst</emphasis> package provides <command>virt-install</command>, which allows creating virtual machines from the command line. Finally, <emphasis role=\"pkg\">virt-viewer</emphasis> allows accessing a VM's graphical console."
-msgstr "El paquete <emphasis role=\"pkg\">virtinst</emphasis> provee <command>virt-install</command>, que permite crear máquinas virtuales desde una constola. Finalmente, <emphasis role=\"pkg\">virt-viewer</emphasis> permite acceder a la consola gráfica de una VM."
+msgstr ""
+"El paquete <emphasis role=\"pkg\">virtinst</emphasis> provee <command>virt-"
+"install</command>, que permite crear máquinas virtuales desde una consola. "
+"Finalmente, <emphasis role=\"pkg\">virt-viewer</emphasis> permite acceder a "
+"la consola gráfica de una VM."
 
 #. Tag: para
 #, no-c-format
@@ -4580,7 +4608,7 @@ msgstr ""
 "provistos por una máquina permite anticipar saturación y la actualización "
 "necesaria que le seguirá; por el otro, alertar a los administradores tan "
 "pronto como un servicio no esté disponible o no fucione correctamente "
-"significa que se podrán solucionar más rápidamente aquiellos problemas que "
+"significa que se podrán solucionar más rápidamente aquellos problemas que "
 "sucedan."
 
 #. Tag: para
