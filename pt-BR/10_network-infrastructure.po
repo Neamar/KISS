@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-05-20 17:35+0200\n"
+"PO-Revision-Date: 2014-06-11 22:32+0200\n"
 "Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/10_network-infrastructure/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.9\n"
+"X-Generator: Weblate 1.10-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -190,7 +190,7 @@ msgstr "<primary>NAT</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Network</primary><secondary>Address Translation</secondary>"
-msgstr ""
+msgstr "<primary>Rede</primary><secondary>Tradução de Endereços</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -828,7 +828,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> IPsec and NAT"
-msgstr "<emphasis>CUIDADO</emphasis> IPsec e NAT"
+msgstr "<emphasis>ATENÇÃO</emphasis> IPsec e NAT"
 
 #. Tag: para
 #, no-c-format
@@ -843,7 +843,7 @@ msgstr "<primary>NAT-T</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NAT Traversal</primary>"
-msgstr ""
+msgstr "<primary>NAT Traversal</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -1049,7 +1049,7 @@ msgstr "Configurando o Servidor"
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> PPTP and firewalls"
-msgstr "<emphasis>CUIDADO</emphasis> PPTP e firewalls"
+msgstr "<emphasis>ATENÇÃO</emphasis> PPTP e firewalls"
 
 #. Tag: para
 #, no-c-format
@@ -1121,6 +1121,57 @@ msgid ""
 "localip 192.168.0.199\n"
 "remoteip 192.168.0.200-250\n"
 msgstr ""
+"\n"
+"# TAG: speed\n"
+"#\n"
+"#       Specifies the speed for the PPP daemon to talk at.\n"
+"#\n"
+"speed 115200\n"
+"\n"
+"# TAG: option\n"
+"#\n"
+"#       Specifies the location of the PPP options file.\n"
+"#       By default PPP looks in '/etc/ppp/options'\n"
+"#\n"
+"option /etc/ppp/pptpd-options\n"
+"\n"
+"# TAG: debug\n"
+"#\n"
+"#       Turns on (more) debugging to syslog\n"
+"#\n"
+"# debug\n"
+"\n"
+"# TAG: localip\n"
+"# TAG: remoteip\n"
+"#\n"
+"#       Specifies the local and remote IP address ranges.\n"
+"#\n"
+"#       You can specify single IP addresses separated by commas or you can\n"
+"#       specify ranges, or both. For example:\n"
+"#\n"
+"#               192.168.0.234,192.168.0.245-249,192.168.0.254\n"
+"#\n"
+"#       IMPORTANT RESTRICTIONS:\n"
+"#\n"
+"#       1. No spaces are permitted between commas or within addresses.\n"
+"#\n"
+"#       2. If you give more IP addresses than MAX_CONNECTIONS, it will\n"
+"#          start at the beginning of the list and go until it gets\n"
+"#          MAX_CONNECTIONS IPs. Others will be ignored.\n"
+"#\n"
+"#       3. No shortcuts in ranges! ie. 234-8 does not mean 234 to 238,\n"
+"#          you must type 234-238 if you mean this.\n"
+"#\n"
+"#       4. If you give a single localIP, that's ok - all local IPs will\n"
+"#          be set to the given one. You MUST still give at least one remote\n"
+"#          IP for each simultaneous client.\n"
+"#\n"
+"#localip 192.168.0.234-238,192.168.0.245\n"
+"#remoteip 192.168.1.234-238,192.168.1.245\n"
+"#localip 10.0.1.1\n"
+"#remoteip 10.0.1.2-100\n"
+"localip 192.168.0.199\n"
+"remoteip 192.168.0.200-250\n"
 
 #. Tag: para
 #, no-c-format
@@ -1166,6 +1217,37 @@ msgid ""
 "proxyarp\n"
 "lock\n"
 msgstr ""
+"\n"
+"## turn pppd syslog debugging on\n"
+"#debug\n"
+"\n"
+"## change 'servername' to whatever you specify as your server name in chap-"
+"secrets\n"
+"name pptp\n"
+"## change the domainname to your local domain\n"
+"domain falcot.com\n"
+"\n"
+"## these are reasonable defaults for WinXXXX clients\n"
+"## for the security related settings\n"
+"# The Debian pppd package now supports both MSCHAP and MPPE, so enable them\n"
+"# here. Please note that the kernel support for MPPE must also be present!\n"
+"auth\n"
+"require-chap\n"
+"require-mschap\n"
+"require-mschap-v2\n"
+"require-mppe-128\n"
+"\n"
+"## Fill in your addresses\n"
+"ms-dns 192.168.0.1\n"
+"ms-wins 192.168.0.1\n"
+"\n"
+"## Fill in your netmask\n"
+"netmask 255.255.255.0\n"
+"\n"
+"## some defaults\n"
+"nodefaultroute\n"
+"proxyarp\n"
+"lock\n"
 
 #. Tag: para
 #, no-c-format
@@ -1186,6 +1268,11 @@ msgid ""
 "vpn             pptp    f@Lc3au     *\n"
 "FALCOT\\\\vpn     pptp    f@Lc3au     *\n"
 msgstr ""
+"\n"
+"# Secrets for authentication using CHAP\n"
+"# client        server  secret      IP addresses\n"
+"vpn             pptp    f@Lc3au     *\n"
+"FALCOT\\\\vpn     pptp    f@Lc3au     *\n"
 
 #. Tag: title
 #, no-c-format
@@ -1246,6 +1333,8 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> LARTC — <emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis>"
 msgstr ""
+"<emphasis>CULTURA</emphasis> LARTC — <emphasis>Roteamento avançado e "
+"controle de tráfego do Linux</emphasis>"
 
 #. Tag: para
 #, no-c-format
@@ -1371,37 +1460,37 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Normal-Service (0);"
-msgstr ""
+msgstr "Normal-Service (0); (serviço normal)"
 
 #. Tag: para
 #, no-c-format
 msgid "Minimize-Cost (2);"
-msgstr ""
+msgstr "Minimize-Cost (2); (minimizar custo)"
 
 #. Tag: para
 #, no-c-format
 msgid "Maximize-Reliability (4);"
-msgstr ""
+msgstr "Maximize-Reliability (4); (maximizar confiabilidade)"
 
 #. Tag: para
 #, no-c-format
 msgid "Maximize-Throughput (8);"
-msgstr ""
+msgstr "Maximize-Throughput (8); (maximizar vazão)"
 
 #. Tag: para
 #, no-c-format
 msgid "Minimize-Delay (16)."
-msgstr ""
+msgstr "Minimize-Delay (16). (minimizar retardo)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ToS</primary>"
-msgstr ""
+msgstr "<primary>ToS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Type of Service</primary>"
-msgstr ""
+msgstr "<primary>Tipo de Serviço</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1624,7 +1713,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "IPv6 privacy extensions"
-msgstr ""
+msgstr "Extensões de privacidade IPv6"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1634,6 +1723,10 @@ msgid ""
 "    # Prefer the randomly assigned addresses for outgoing connections.\n"
 "    privext 2\n"
 msgstr ""
+"\n"
+"iface eth0 inet6 auto\n"
+"    # Prefer the randomly assigned addresses for outgoing connections.\n"
+"    privext 2\n"
 
 #. Tag: title
 #, no-c-format
@@ -1668,7 +1761,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Tunneling"
-msgstr ""
+msgstr "Túneis"
 
 #. Tag: title
 #, no-c-format
@@ -1748,7 +1841,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Domain Name Servers (DNS)"
-msgstr ""
+msgstr "Servidores de nomes de domínio (DNS)"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1758,7 +1851,7 @@ msgstr "<primary>DNS</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>name</secondary>"
-msgstr ""
+msgstr "<primary>servidor</primary><secondary>nome</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1789,11 +1882,15 @@ msgstr ""
 #, no-c-format
 msgid "<literal>A</literal>: IPv4 address. <indexterm><primary>A, DNS record</primary></indexterm>"
 msgstr ""
+"<literal>A</literal>: endereço IPv4. <indexterm><primary>A, registro "
+"DNS</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>CNAME</literal>: alias (<emphasis>canonical name</emphasis>). <indexterm><primary>CNAME, DNS record</primary></indexterm>"
 msgstr ""
+"<literal>CNAME</literal>: alias (<emphasis>nome canônico</emphasis>). "
+"<indexterm><primary>CNAME, registro DNS</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
@@ -1809,6 +1906,8 @@ msgstr ""
 #, no-c-format
 msgid "<literal>AAAA</literal>: IPv6 address. <indexterm><primary>AAAA, DNS record</primary></indexterm>"
 msgstr ""
+"<literal>AAAA</literal>: endereço IPv6. <indexterm><primary>AAAA, registro "
+"DNS</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
@@ -1885,17 +1984,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Names of reverse zones"
-msgstr ""
+msgstr "<emphasis>ATENÇÃO</emphasis> Nomes de zonas inversas"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>zone</primary><secondary>reverse</secondary>"
-msgstr ""
+msgstr "<primary>zona</primary><secondary>reversa</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>reverse zone</primary>"
-msgstr ""
+msgstr "<primary>zona reversa</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2077,7 +2176,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Syntax of a name"
-msgstr "<emphasis>CUIDADO</emphasis> Sintaxe de um nome"
+msgstr "<emphasis>ATENÇÃO</emphasis> Sintaxe de um nome"
 
 #. Tag: para
 #, no-c-format
@@ -2214,6 +2313,39 @@ msgid ""
 "    ddns-domainname \"internal.falcot.com\";\n"
 "}\n"
 msgstr ""
+"\n"
+"#\n"
+"# Sample configuration file for ISC dhcpd for Debian\n"
+"#\n"
+"\n"
+"# The ddns-updates-style parameter controls whether or not the server will\n"
+"# attempt to do a DNS update when a lease is confirmed. We default to the\n"
+"# behavior of the version 2 packages ('none', since DHCP v2 didn't\n"
+"# have support for DDNS.)\n"
+"ddns-update-style interim;\n"
+"\n"
+"# option definitions common to all supported networks...\n"
+"option domain-name \"internal.falcot.com\";\n"
+"option domain-name-servers ns.internal.falcot.com;\n"
+"\n"
+"default-lease-time 600;\n"
+"max-lease-time 7200;\n"
+"\n"
+"# If this DHCP server is the official DHCP server for the local\n"
+"# network, the authoritative directive should be uncommented.\n"
+"authoritative;\n"
+"\n"
+"# Use this to send dhcp log messages to a different log file (you also\n"
+"# have to hack syslog.conf to complete the redirection).\n"
+"log-facility local7;\n"
+"\n"
+"# My subnet\n"
+"subnet 192.168.0.0 netmask 255.255.255.0 {\n"
+"    option routers 192.168.0.1;\n"
+"    option broadcast-address 192.168.0.255;\n"
+"    range 192.168.0.128 192.168.0.254;\n"
+"    ddns-domainname \"internal.falcot.com\";\n"
+"}\n"
 
 #. Tag: title
 #, no-c-format
@@ -2466,6 +2598,71 @@ msgid ""
 "Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>nmap mirwiz</userinput>\n"
+"<computeroutput>\n"
+"nmap 192.168.1.30\n"
+"\n"
+"Starting Nmap 6.00 ( http://nmap.org ) at 2013-11-13 11:00 CET\n"
+"Nmap scan report for mirwiz (192.168.1.30)\n"
+"Host is up (0.000015s latency).\n"
+"Not shown: 997 closed ports\n"
+"PORT      STATE SERVICE\n"
+"22/tcp    open  ssh\n"
+"111/tcp   open  rpcbind\n"
+"10000/tcp open  snet-sensor-mgmt\n"
+"\n"
+"Nmap done: 1 IP address (1 host up) scanned in 0.12 seconds\n"
+"# </computeroutput><userinput>nmap -A localhost</userinput>\n"
+"<computeroutput>\n"
+"Starting Nmap 6.00 ( http://nmap.org ) at 2013-11-13 10:54 CET\n"
+"Nmap scan report for localhost (127.0.0.1)\n"
+"Host is up (0.000084s latency).\n"
+"Other addresses for localhost (not scanned): 127.0.0.1\n"
+"Not shown: 996 closed ports\n"
+"PORT      STATE SERVICE VERSION\n"
+"22/tcp    open  ssh     OpenSSH 6.0p1 Debian 4 (protocol 2.0)\n"
+"| ssh-hostkey: 1024 ea:47:e5:04:a0:b8:70:29:c2:94:3d:fe:a8:b8:b4:02 (DSA)\n"
+"|_2048 81:5c:a4:56:ff:c0:bf:0d:cd:e6:cc:48:2f:15:78:ea (RSA)\n"
+"25/tcp    open  smtp    Exim smtpd 4.80\n"
+"| smtp-commands: mirwiz.internal.placard.fr.eu.org Hello localhost "
+"[127.0.0.1], SIZE 52428800, 8BITMIME, PIPELINING, HELP, \n"
+"|_ Commands supported: AUTH HELO EHLO MAIL RCPT DATA NOOP QUIT RSET HELP \n"
+"111/tcp   open  rpcbind\n"
+"| rpcinfo: \n"
+"|   program version   port/proto  service\n"
+"|   100000  2,3,4        111/tcp  rpcbind\n"
+"|   100000  2,3,4        111/udp  rpcbind\n"
+"|   100024  1          40114/tcp  status\n"
+"|_  100024  1          55628/udp  status\n"
+"10000/tcp open  http    MiniServ 1.660 (Webmin httpd)\n"
+"| ndmp-version: \n"
+"|_  ERROR: Failed to get host information from server\n"
+"|_http-methods: No Allow or Public header in OPTIONS response (status code "
+"200)\n"
+"|_http-title: Site doesn't have a title (text/html; Charset=iso-8859-1).\n"
+"No exact OS matches for host (If you know what OS is running on it, see "
+"http://nmap.org/submit/ ).\n"
+"TCP/IP fingerprint:\n"
+"OS:SCAN(V=6.00%E=4%D=11/13%OT=22%CT=1%CU=40107%PV=N%DS=0%DC=L%G=Y%TM=52834C\n"
+"OS:9E%P=x86_64-unknown-linux-gnu)SEQ(SP=102%GCD=1%ISR=105%TI=Z%CI=Z%II=I%TS\n"
+"OS:=8)OPS(O1=M400CST11NW5%O2=M400CST11NW5%O3=M400CNNT11NW5%O4=M400CST11NW5%\n"
+"OS:O5=M400CST11NW5%O6=M400CST11)WIN(W1=8000%W2=8000%W3=8000%W4=8000%W5=8000\n"
+"OS:%W6=8000)ECN(R=Y%DF=Y%T=41%W=8018%O=M400CNNSNW5%CC=Y%Q=)T1(R=Y%DF=Y%T=41\n"
+"OS:%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=41%W=0%S=A%A=Z%F=R%O=\n"
+"OS:%RD=0%Q=)T5(R=Y%DF=Y%T=41%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=41%\n"
+"OS:W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=41%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=\n"
+"OS:)U1(R=Y%DF=N%T=41%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%\n"
+"OS:DFI=N%T=41%CD=S)\n"
+"\n"
+"Network Distance: 0 hops\n"
+"Service Info: Host: mirwiz.internal.placard.fr.eu.org; OS: Linux; CPE: "
+"cpe:/o:linux:kernel\n"
+"\n"
+"OS and Service detection performed. Please report any incorrect results at "
+"http://nmap.org/submit/ .\n"
+"Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
