@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-06-09 21:18+0200\n"
+"PO-Revision-Date: 2014-06-13 15:07+0200\n"
 "Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
@@ -741,6 +741,18 @@ msgstr "A diretiva <literal>permit_mynetworks</literal>, usada como primeira reg
 #, no-c-format
 msgid "The second directive would normally reject emails coming from machines without a completely valid DNS configuration. Such a valid configuration means that the IP address can be resolved to a name, and that this name, in turn, resolves to the IP address. This restriction is often too strict, since many email servers do not have a reverse DNS for their IP address. This explains why the Falcot administrators prepended the <literal>warn_if_reject</literal> modifier to the <literal>reject_unknown_client</literal> directive: this modifier turns the rejection into a simple warning recorded in the logs. The administrators can then keep an eye on the number of messages that would be rejected if the rule were actually enforced, and make an informed decision later if they wish to enable such enforcement."
 msgstr ""
+"A segunda diretiva normalmente rejeitaria e-mails provenientes de máquinas "
+"sem uma configuração de DNS completamente válido. Tal configuração válida "
+"significa que o endereço IP pode ser resolvida para um nome, e que esse "
+"nome, por sua vez, resolve o endereço IP. Essa restrição é muitas vezes "
+"demasiada rigorosa, uma vez que muitos servidores de e-mail não tem um DNS "
+"reverso para o seu endereço IP. Isso explica por que os administradores da "
+"Falcot prefixaram o modificador <literal>warn_if_reject</literal> para a "
+"diretiva <literal>reject_unknown_client</literal>: este modificador "
+"transforma a rejeição em uma simples advertência registrada nos logs. Os "
+"administradores podem, em seguida, manter um olho sobre o número de "
+"mensagens que seriam rejeitadas se a regra fosse realmente cumprida, e tomar "
+"uma decisão informada mais tarde, se quiser ativar essa aplicação."
 
 #. Tag: title
 #, no-c-format
@@ -751,21 +763,45 @@ msgstr "<emphasis>DICA</emphasis> tabelas de <emphasis>acesso</emphasis>"
 #, no-c-format
 msgid "The restriction criteria include administrator-modifiable tables listing combinations of senders, IP addresses, and allowed or forbidden hostnames. These tables can be created from an uncompressed copy of the <filename>/usr/share/doc/postfix-doc/examples/access.gz</filename> file. This model is self-documented in its comments, which means each table describes its own syntax."
 msgstr ""
+"Os critérios de restrição incluem tabelas administrativas modificáveis "
+"listando combinações de remetentes, endereços IP e nomes de host permitidos "
+"ou proibidos. Essas tabelas podem ser criadas a partir de uma cópia "
+"descompactada do <filename>/usr/share/doc/postfix-"
+"doc/examples/access.gz</filename>. Este modelo é auto-documentado em suas "
+"observações, o que significa que cada tabela descreve sua própria sintaxe."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/postfix/access_clientip</filename> table lists IP addresses and networks; <filename>/etc/postfix/access_helo</filename> lists domain names; <filename>/etc/postfix/access_sender</filename> contains sender email addresses. All these files need to be turned into hash-tables (a format optimized for fast access) after each change, with the <command>postmap /etc/postfix/<replaceable>file</replaceable></command> command."
 msgstr ""
+"A tabela <filename>/etc/postfix/access_clientip</filename> lista os "
+"endereços IP e redes; <filename>/etc/postfix/access_helo</filename> lista "
+"nomes de domínio; <filename>/etc/postfix/access_sender</filename> contém "
+"endereços de e-mail do remetente. Todos esses arquivos precisam ser "
+"transformados em tabelas-hash (um formato otimizado para acesso rápido) após "
+"cada alteração, com o comando <command>postmap "
+"/etc/postfix/<replaceable>arquivo</replaceable></command>."
 
 #. Tag: para
 #, no-c-format
 msgid "The third directive allows the administrator to set up a black list and a white list of email servers, stored in the <filename>/etc/postfix/access_clientip</filename> file. Servers in the white list are considered as trusted, and the emails coming from there therefore do not go through the following filtering rules."
 msgstr ""
+"A terceira diretiva permite ao administrador criar uma lista negra e uma "
+"lista branca de servidores de e-mail, armazenados em "
+"<filename>/etc/postfix/access_clientip</filename>. Servidores na lista "
+"branca são considerados de confiança e os e-mails vindos de lá, portanto, "
+"não passam pelas regras seguintes de filtragem."
 
 #. Tag: para
 #, no-c-format
 msgid "The last two rules reject any message coming from a server listed in one of the indicated black lists. RBL is an acronym for <emphasis>Remote Black List</emphasis>; there are several such lists, but they all list badly configured servers that spammers use to relay their emails, as well as unexpected mail relays such as machines infected with worms or viruses."
 msgstr ""
+"As últimas duas regras rejeitam qualquer mensagem proveniente de um servidor "
+"listados em uma das listas negras indicadas. RBL é um acrônimo para "
+"<emphasis>Remote Black List</emphasis> (Lista Negra Remota); existem várias "
+"dessas listas, mas todas elas listam servidores mal configurados em que os "
+"spammers usam para transmitir seus e-mails, bem como encaminham e-mails "
+"inesperados bem como máquinas infectadas com worms ou vírus."
 
 #. Tag: indexterm
 #, no-c-format
@@ -786,6 +822,10 @@ msgstr "<emphasis>DICA</emphasis> Listas brancas e RBLs"
 #, no-c-format
 msgid "Black lists sometimes include a legitimate server that has been suffering an incident. In these situations, all emails coming from one of these servers would be rejected unless the server is listed in a whitelist defined by <filename>/etc/postfix/access_clientip</filename>."
 msgstr ""
+"Listas negras, por vezes, incluem um servidor legítimo que tem sofrido um "
+"incidente. Nestas situações, todos os e-mails provenientes de um desses "
+"servidores seria rejeitado a menos que o servidor esteja listado em uma "
+"lista branca definida em <filename>/etc/postfix/access_clientip</filename>."
 
 #. Tag: para
 #, no-c-format
@@ -815,7 +855,7 @@ msgstr "<primary><literal>EHLO</literal></primary>"
 #. Tag: title
 #, no-c-format
 msgid "Restrictions on the name announced in <literal>EHLO</literal>"
-msgstr ""
+msgstr "Restrições no nome anunciado com <literal>EHLO</literal>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -845,11 +885,27 @@ msgstr ""
 #, no-c-format
 msgid "The first <literal>permit_mynetworks</literal> directive allows all machines on the local network to introduce themselves freely. This is important, because some email programs do not respect this part of the SMTP protocol adequately enough, and they can introduce themselves with nonsensical names."
 msgstr ""
+"A primeira diretiva <literal>permit_mynetworks</literal> permite que todas "
+"as máquinas da rede local se apresentem livremente. Isso é importante, "
+"porque alguns programas de e-mail não respeitam essa parte do protocolo SMTP "
+"de forma suficientemente correta e podem se apresentar com nomes sem sentido."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>reject_invalid_hostname</literal> rule rejects emails when the <literal>EHLO</literal> announce lists a syntactically incorrect hostname. The <literal>reject_non_fqdn_hostname</literal> rule rejects messages when the announced hostname is not a fully-qualified domain name (including a domain name as well as a host name). The <literal>reject_unknown_hostname</literal> rule rejects messages if the announced name does not exist in the DNS. Since this last rule unfortunately leads to too many rejections, the administrators turned its effect to a simple warning with the <literal>warn_if_reject</literal> modifier as a first step; they may decide to remove this modifier at a later stage, after auditing the results of this rule."
 msgstr ""
+"A regra <literal>reject_invalid_hostname</literal> rejeita e-mails quando o "
+"anuncio <literal>EHLO</literal> lista um nome de host incorreto "
+"sintaticamente. A regra <literal>reject_non_fqdn_hostname</literal> rejeita "
+"mensagens quando o nome do host anunciado não é um nome de domínio "
+"totalmente qualificado (incluindo um nome de domínio, bem como um nome de "
+"host). A regra <literal>reject_unknown_hostname</literal> rejeita mensagens "
+"se o nome anunciado não existe no DNS. Uma vez que esta última regra "
+"infelizmente leva a muitas rejeições,os administradores converteram seu "
+"efeito em uma simples advertência com o modificador "
+"<literal>warn_if_reject</literal> como um primeiro passo; eles podem decidir "
+"remover este modificador em uma etapa posterior, após a auditoria dos "
+"resultados desta regra."
 
 #. Tag: para
 #, no-c-format
