@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-06-17 02:17+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-06-17 15:39+0200\n"
+"Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/01_the-debian-project/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -2553,6 +2553,12 @@ msgstr "<primary>Planeta Debian</primary>"
 #, no-c-format
 msgid "A more informal source of information can also be found on Planet Debian, which aggregates articles posted by Debian contributors on their respective blogs. While the contents do not deal exclusively with Debian development, they provide a view into what is happening in the community and what its members are up to. <ulink type=\"block\" url=\"http://planet.debian.org/\" />"
 msgstr ""
+"Pode encontrar também uma fonte de informações no Planeta Debian, que agrega "
+"artigos postados por colaboradores do Debian em seus respectivos blogs. "
+"Embora o conteúdo não lidam exclusivamente com o desenvolvimento do Debian, "
+"eles fornecem uma visão sobre o que está acontecendo na comunidade e quais "
+"seus membros estão fazendo. <ulink type=\"block\" url=\""
+"http://planet.debian.org/\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2600,6 +2606,15 @@ msgstr "<primary>redes</primary><secondary>redes sociais</secondary>"
 #, no-c-format
 msgid "The project is also well represented on social networks. While Debian only has an official presence on platforms built with free software (like the Identi.ca microblogging platform, powered by <emphasis>pump.io</emphasis>), there are many Debian contributors who are animating Twitter accounts, Facebook pages, Google+ pages, and more. <ulink type=\"block\" url=\"https://identi.ca/debian\" /> <ulink type=\"block\" url=\"https://twitter.com/debian\" /> <ulink type=\"block\" url=\"https://www.facebook.com/debian\" /> <ulink type=\"block\" url=\"https://plus.google.com/111711190057359692089\" />"
 msgstr ""
+"O projeto também está bem representado nas redes sociais. Enquanto o Debian "
+"só tem uma presença oficial nas plataformas construídas com software livre ("
+"como a plataforma de microblogging Identi.ca, que funciona com "
+"<emphasis>pump.io</emphasis>), há muitos colaboradores Debian que mantém "
+"contas de Twitter, páginas do Facebook, páginas Google+ e muito mais. <ulink "
+"type=\"block\" url=\"https://identi.ca/debian\" /> <ulink type=\"block\" url="
+"\"https://twitter.com/debian\" /> <ulink type=\"block\" url =\""
+"https://www.facebook.com/debian\"/> <ulink type=\"block\" url=\""
+"https://plus.google.com/111711190057359692089\" />"
 
 #. Tag: title
 #, no-c-format
@@ -2766,10 +2781,19 @@ msgid "The <emphasis role=\"distribution\">Unstable</emphasis> Status"
 msgstr "O Estado <emphasis role=\"distribution\">Instável</emphasis>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Let us turn back to the case of a typical package. The maintainer creates an initial package, which they compile for the <emphasis role=\"distribution\">Unstable</emphasis> version and place on the <literal>ftp-master.debian.org</literal> server. This first event involves inspection and validation from the ftpmasters. The software is then available in the <emphasis role=\"distribution\">Unstable</emphasis> distribution, which is risky, but chosen by users who are more concerned with staying close to the cutting edge, with more up to date packages, than they are worried about serious bugs. They discover the program and then test it."
 msgid "Let us turn back to the case of a typical package. The maintainer creates an initial package, which they compile for the <emphasis role=\"distribution\">Unstable</emphasis> version and place on the <literal>ftp-master.debian.org</literal> server. This first event involves inspection and validation from the ftpmasters. The software is then available in the <emphasis role=\"distribution\">Unstable</emphasis> distribution, which is the “cutting edge” distribution chosen by users who are more concerned with having up to date packages than worried about serious bugs. They discover the program and then test it."
-msgstr "Vamos voltar para o caso do pacote típico. O mantenedor cria um pacote inicial, que compila para versão <emphasis role=\"distribution\">Instável</emphasis> e coloca no servidor <literal>ftp-master.debian.org</literal>.Este primeiro evento envolve a inspeção e validação dos ftpmasters. O software estará disponível na distribuição <emphasis role=\"distribution\">Instável</emphasis> , que é arriscada, mas escolhida pelos usuários que estão mais preocupados em permanecer perto da vanguarda, com pacotes de data até mais recente , do que eles estão preocupados com erros graves. Eles descobrem o programa e, em seguida, testam."
+msgstr ""
+"Vamos voltar para o caso do pacote típico. O mantenedor cria um pacote "
+"inicial, que compila para versão <emphasis role=\"distribution\""
+">Instável</emphasis> e coloca no servidor <literal>ftp-"
+"master.debian.org</literal>.Este primeiro evento envolve a inspeção e "
+"validação dos ftpmasters. O software então é disponível na distribuição <"
+"emphasis role=\"distribution\">Instável</emphasis> , que é a distribuição de "
+"ponta escolhida pelos usuários que estão mais preocupados em manter seus "
+"pacotes atualizados invés de aborrecidos com bugs graves. Eles descobrem o "
+"programa e o testam."
 
 #. Tag: para
 #, no-c-format
@@ -2777,10 +2801,22 @@ msgid "If they encounter bugs, they report them to the package's maintainer. The
 msgstr "Se encontrarem bugs, reportam para o mantenedor do pacote. O mantenedor então elabora regularmente versões corrigidas que envia (por upload) para o servidor."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Every newly updated package is updated on all Debian mirrors around the world within less than six hours. The users then test the corrections and search for other problems resulting from the modifications. Several updates may then occur rapidly. During these times, autobuilder robots come into action. Most frequently, the maintainer has only one traditional PC and has compiled his package on i386 architecture (or amd64); the autobuilders take over and automatically compile versions for all the other architectures. Some compilations may fail; the maintainer will then receive a bug report indicating the problem, which is then to be corrected in the next versions. When the bug is discovered by a specialist for the architecture in question, the bug report may come with a patch ready to use."
 msgid "Every newly updated package is updated on all Debian mirrors around the world within six hours. The users then test the corrections and search for other problems resulting from the modifications. Several updates may then occur rapidly. During these times, autobuilder robots come into action. Most frequently, the maintainer has only one traditional PC and has compiled his package on the amd64 (or i386) architecture; the autobuilders take over and automatically compile versions for all the other architectures. Some compilations may fail; the maintainer will then receive a bug report indicating the problem, which is then to be corrected in the next versions. When the bug is discovered by a specialist for the architecture in question, the bug report may come with a patch ready to use."
-msgstr "Cada pacote recém-atualizado é atualizado em todos os espelhos do Debian ao redor do mundo em menos de seis horas. Os usuários então testam as correções e procuram outros problemas resultantes das modificações. Várias atualizações podem então ocorrer rapidamente. Durante estes tempos, os robôs autobuilder entram em ação. Na maioria das vezes, o mantenedor tem apenas um PC tradicional e compilou seu pacote na arquitetura i386 (ou amd64); os autobuilders assumem o comando e automaticamente compila versões para todas as outras arquiteturas. Algumas compilações poderão falhar; o mantenedor receberá um relatório de bug indicando o problema que é, então, para ser corrigido nas próximas versões. Quando o erro é descoberto por um especialista para a arquitetura em questão, o relatório de bug pode vir com um patch pronto para uso."
+msgstr ""
+"Cada pacote recém-atualizado é atualizado em todos os espelhos do Debian ao "
+"redor do mundo em seis horas. Os usuários então testam as correções e "
+"procuram outros problemas resultantes das modificações. Várias atualizações "
+"então podem ocorrer rapidamente. Durante esses momentos, os robôs de "
+"compilação automática (autobuilder) entram em ação. Na maioria das vezes, o "
+"mantenedor tem apenas um PC tradicional e compilou seu pacote na arquitetura "
+"amd64 (ou i386); os autobuilders assumem o comando e compila automaticamente "
+"versões para todas as outras arquiteturas. Algumas compilações podem falhar; "
+"o mantenedor receberá um relatório de bug indicando o problema que é "
+"corrigido nas próximas versões. Quando o erro é descoberto por um "
+"especialista para a arquitetura em questão, o relatório de bug pode vir com "
+"um patch pronto para uso."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2813,16 +2849,25 @@ msgid "<emphasis>buildd</emphasis> is the abbreviation of “build daemon”. Th
 msgstr "<emphasis> buildd </emphasis> é a abreviação de \"build daemon\". Este programa automaticamente recompila novas versões de pacotes Debian nas arquiteturas em que está hospedado (compilação cruzada nem sempre é suficiente)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Thus, to produce binaries for the <literal>sparc</literal> architecture, the project has <literal>sparc</literal> machines available (specifically, Sun brand). The program <emphasis>buildd</emphasis> runs on them continuously to create package binaries for <literal>sparc</literal> from source packages sent by Debian developers."
 msgid "Thus, to produce binaries for the <literal>sparc</literal> architecture, the project has <literal>sparc</literal> machines available (specifically, Sun brand). The <emphasis>buildd</emphasis> program runs on them continuously and creates binary packages for <literal>sparc</literal> from source packages sent by Debian developers."
-msgstr "Assim, para produzir binários para a arquitetura <literal>sparc </literal> , o projeto tem máquinas <literal> sparc </literal> disponíveis (especificamente, a marca Sun). O programa <emphasis> buildd </emphasis> é executado nelas continuamente para criar os binários de pacotes para <literal> sparc </literal> de pacotes fonte enviados por desenvolvedores da Debian."
+msgstr ""
+"Assim, para produzir binários para a arquitetura <literal>sparc</literal>, o "
+"projeto tem máquinas <literal>sparc</literal> disponíveis (especificamente, "
+"da marca Sun). O programa <emphasis>buildd</emphasis> é executado nelas "
+"continuamente e cria os pacotes de binários para <literal>sparc</literal> do "
+"pacotes fonte enviados pelos desenvolvedores Debian."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "This software is used on all the computers serving autobuilders for Debian. By extension, the term <emphasis>buildd</emphasis> frequently is used to refer to these machines, which are generally reserved solely for this purpose."
 msgid "This software is used on all the computers serving as autobuilders for Debian. By extension, the term <emphasis>buildd</emphasis> frequently is used to refer to these machines, which are generally reserved solely for this purpose."
-msgstr "Este software é usado em todos os computadores que servem os autobuilders para o Debian. Por extensão, o termo <emphasis> buildd </emphasis> é freqüentemente usado para se referir a estas máquinas, que geralmente são reservados exclusivamente para esta finalidade."
+msgstr ""
+"Este software é usado em todos os computadores que servem como autobuilders "
+"para o Debian. Por extensão, o termo <emphasis>buildd</emphasis> é "
+"frequentemente usado para se referir a estas máquinas, que geralmente são "
+"reservadas somente para este propósito."
 
 #. Tag: title
 #, no-c-format
@@ -2865,10 +2910,24 @@ msgid "<emphasis>NOTE</emphasis> Limitations of <emphasis role=\"distribution\">
 msgstr "<emphasis> NOTA </emphasis> Limitações da <emphasis role=\"distribution\">Teste </emphasis>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Very interesting in principle, <emphasis role=\"distribution\">Testing</emphasis> poses some practical problems: the tangle of cross-dependencies between packages is such that a package can never move there completely on its own. With packages all depending upon each other, it is necessary to move a large number simultaneously, which is impossible when some are uploading updates regularly. On the other hand, the script identifying the families of related packages works hard to create them (this would be an NP-complete problem, for which, fortunately, we know some good heuristics). This is why we can manually interact with and guide this script by suggesting groups of packages, or imposing the inclusion of certain packages in a group, even if this temporarily breaks some dependencies. This functionality is accessible to the Release Managers and their assistants."
 msgid "While very interesting in principle, <emphasis role=\"distribution\">Testing</emphasis> does have some practical problems: the tangle of cross-dependencies between packages is such that a package can rarely move there completely on its own. With packages all depending upon each other, it is sometimes necessary to migrate a large number of packages simultaneously, which is impossible when some are uploading updates regularly. On the other hand, the script identifying the families of related packages works hard to create them (this would be an NP-complete problem, for which, fortunately, we know some good heuristics). This is why we can manually interact with and guide this script by suggesting groups of packages, or imposing the inclusion of certain packages in a group, even if this temporarily breaks some dependencies. This functionality is accessible to the Release Managers and their assistants."
-msgstr "Muito interessante, em princípio, <emphasis role=\"distribution\">Teste </emphasis> coloca alguns problemas práticos: o emaranhado de informações cruzadas das dependências entre os pacotes é tal que um pacote nunca pode mudar para lá totalmente por conta própria. Com todos os pacotes, dependendo uns dos outros, é necessário se mover um grande número simultaneamente, o que é impossível quando alguns são atualizações carregadas regularmente. Por outro lado, o script de identificação das famílias de pacotes relacionados trabalha duro para criá-los (isso seria um problema NP-completo, para o que, felizmente, sabemos de algumas boas heurísticas bons). É por isso que podemos interagir manualmente com e orientar esse script, sugerindo grupos de pacotes, ou impor a inclusão de certos pacotes em um grupo, mesmo que temporariamente quebre algumas dependências. Esta funcionalidade é acessível para os gerentes de lançamento e os seus assistentes."
+msgstr ""
+"Muito interessante em princípio, a <emphasis role=\"distribution\""
+">Teste</emphasis> coloca alguns problemas práticos: o emaranhado de "
+"dependências entre os pacotes é tal que um pacote raramente pode mover-se "
+"para lá totalmente por conta própria. Com os pacotes, dependendo uns dos "
+"outros, as vezes é necessário uma grande quantidade de pacotes "
+"simultaneamente, o que é impossível quando alguns são atualizados "
+"regularmente. Por outro lado, o script de identificação das famílias de "
+"pacotes relacionados trabalha duro para criá-los (isso seria um problema NP-"
+"completo, para o que, felizmente, sabemos de algumas boas heurísticas). É "
+"por isso que podemos interagir manualmente com e orientar esse script, "
+"sugerindo grupos de pacotes, ou impor a inclusão de certos pacotes em um "
+"grupo, mesmo que temporariamente quebre algumas dependências. Esta "
+"funcionalidade é acessível para os gerentes de lançamento e os seus "
+"assistentes."
 
 #. Tag: para
 #, no-c-format
@@ -2906,10 +2965,24 @@ msgid "The Promotion from <emphasis role=\"distribution\">Testing</emphasis> to 
 msgstr "A Promoção de <emphasis role=\"distribution\">Teste </emphasis> para <emphasis role=\"distribution\"> Estável </emphasis>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Let us suppose that our package is now included in <emphasis role=\"distribution\">Testing</emphasis>. While it has room for improvement, the maintainer thereof must continue to improve it and restart the process from <emphasis role=\"distribution\">Unstable</emphasis> (but its later inclusion in <emphasis role=\"distribution\">Testing</emphasis> is generally faster: If it has not changed significantly, all of its dependencies are already available). When it reaches perfection, the maintainer has completed their work. The next step is the inclusion in the <emphasis role=\"distribution\">Stable</emphasis> distribution, which is, in reality, a simple copy of <emphasis role=\"distribution\">Testing</emphasis> at a moment chosen by the Release Manager. Ideally this decision is made when the installer is ready, and when no program in <emphasis role=\"distribution\">Testing</emphasis> has any known critical bugs."
 msgid "Let us suppose that our package is now included in <emphasis role=\"distribution\">Testing</emphasis>. As long as it has room for improvement, its maintainer must continue to improve it and restart the process from <emphasis role=\"distribution\">Unstable</emphasis> (but its later inclusion in <emphasis role=\"distribution\">Testing</emphasis> is generally faster: unless it changed significantly, all of its dependencies are already available). When it reaches perfection, the maintainer has completed their work. The next step is the inclusion in the <emphasis role=\"distribution\">Stable</emphasis> distribution, which is, in reality, a simple copy of <emphasis role=\"distribution\">Testing</emphasis> at a moment chosen by the Release Manager. Ideally this decision is made when the installer is ready, and when no program in <emphasis role=\"distribution\">Testing</emphasis> has any known critical bugs."
-msgstr "Vamos supor que o nosso pacote está agora incluído no <emphasis role=\"distribution\">Teste </emphasis>. Embora tenha espaço para melhorias, o mantenedor do mesmo deve continuar a melhorá-lo e reiniciar o processo de <emphasis role=\"distribution\"> Instável </emphasis> (mas a sua inclusão posterior no <emphasis role=\"distribution\">Teste</emphasis> é geralmente mais rápido: Se ele não se alterou significativamente, todas suas dependências já estão disponíveis). Quando se atinge a perfeição, o mantenedor tenha concluído seu trabalho. O próximo passo é a inclusão na distribuição <emphasis role=\"distribution\"> Estável </emphasis> , que é, na realidade, uma simples cópia de <emphasis role=\"distribution\"> Teste</emphasis> em um momento escolhido pelo gerente de lançamento. Idealmente, esta decisão é tomada quando o instalador está pronto, e quando nenhum programa em <emphasis role=\"distribution\">Teste </emphasis> tem todos os bugs críticos conhecidos ."
+msgstr ""
+"Vamos supor que o nosso pacote agora está incluído no <emphasis role=\""
+"distribution\">Teste</emphasis>. Embora tenha espaço para melhorias, o "
+"mantenedor do mesmo deve continuar a melhorá-lo e reiniciar o processo a "
+"partir da <emphasis role=\"distribution\">Instável</emphasis> (mas a sua "
+"inclusão posterior na <emphasis role=\"distribution\">Teste</emphasis> é "
+"geralmente mais rápido: a menos que tenha mudanças significativas, todas "
+"suas dependências já estão disponíveis). Quando se atinge a perfeição, o "
+"mantenedor conclui seu trabalho. O próximo passo é a inclusão na "
+"distribuição <emphasis role=\"distribution\">Estável</emphasis>, que é, na "
+"realidade, uma cópia simples da <emphasis role=\"distribution\"> "
+"Teste</emphasis> em um momento escolhido pelo Gerente de Lançamento. "
+"Idealmente esta decisão é tomada quando o instalador está pronto, e quando "
+"nenhum programa na <emphasis role=\"distribution\">Teste</emphasis> tem "
+"qualquer bugs críticos conhecidos."
 
 #. Tag: para
 #, no-c-format
@@ -2942,10 +3015,28 @@ msgid "After the release of a new stable version, the Stable Release Manager man
 msgstr "Após o lançamento de uma nova versão estável, o gerente da distribuição estável gerencia todo o desenvolvimento posterior (chamado de \"revisões\", ex: 5.0.1, 5.0.2, 5.0.3 para a versão 5.0). Essas atualizações incluem sistematicamente todos os patches de segurança. Eles também incluem as correções mais importantes (o mantenedor de um pacote deve comprovar a gravidade do problema que deseja corrigir a fim de ter suas atualizações incluídas)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "End of the journey: Our hypothetical package is now included in the stable distribution. This journey, not without its difficulties, explains the significant delays separating the Debian Stable releases. This contributes, over all, to its reputation for quality. Furthermore, the majority of users are satisfied using one of the three distributions simultaneously available. The system administrators, concerned above all, for the stability of their servers, mock the latest version of GNOME; They can choose Debian <emphasis role=\"distribution\">Stable</emphasis>, and they will be satisfied. End users, more interested in the latest versions of GNOME or KDE than in rock-solid stability, will find Debian <emphasis role=\"distribution\">Testing</emphasis> to be a good compromise between a lack of serious problems and relatively up to date software. Finally, developers and more experienced users may blaze the trail, testing all the latest developments in Debian <emphasis role=\"distribution\">Unstable</emphasis> right out of the gate, at the risk of suffering the headaches and bugs inherent in any new version of a program. To each their own Debian!"
 msgid "At the end of the journey, our hypothetical package is now included in the stable distribution. This journey, not without its difficulties, explains the significant delays separating the Debian Stable releases. This contributes, over all, to its reputation for quality. Furthermore, the majority of users are satisfied using one of the three distributions simultaneously available. The system administrators, concerned above all about the stability of their servers, don't need the latest and greatest version of GNOME; they can choose Debian <emphasis role=\"distribution\">Stable</emphasis>, and they will be satisfied. End users, more interested in the latest versions of GNOME or KDE than in rock-solid stability, will find Debian <emphasis role=\"distribution\">Testing</emphasis> to be a good compromise between a lack of serious problems and relatively up to date software. Finally, developers and more experienced users may blaze the trail, testing all the latest developments in Debian <emphasis role=\"distribution\">Unstable</emphasis> right out of the gate, at the risk of suffering the headaches and bugs inherent in any new version of a program. To each their own Debian!"
-msgstr "Fim da viagem: Nosso pacote hipotético agora está incluído na distribuição estável. Esta viagem, não sem dificuldades, explica os atrasos significativos que separam os lançamentos do Debian . Isso contribui, sobretudo, para sua reputação de qualidade. Além disso, a maioria dos utilizadores é satisfeita usando uma das três distribuições simultaneamente disponíveis. O sistema de administradores, preocupado acima de tudo, para a estabilidade de seus servidores, desdenha da última versão do GNOME, pois eles podem escolher o Debian <emphasis role=\"distribution\">estável </emphasis> , e eles serão saciados. Os usuários finais, mais interessados nas versões mais recentes do GNOME ou KDE do que em sólida estabilidade, encontrará o Debian <emphasis role=\"distribution\">Teste </emphasis> para ter um bom compromisso entre a ausência de problemas graves e relativamente , os softwares mais atuais . Finalmente, os desenvolvedores e usuários mais experientes podem desbravar a trilha, testando todos os últimos desenvolvimentos no Debian <emphasis role=\"distribution\"> Instável </emphasis> direto da passagem, correndo o risco de sofrer as dores de cabeça e erros inerentes a qualquer nova versão de um programa. Cada um com seu Debian !"
+msgstr ""
+"No fim da viagem: Nosso pacote hipotético está agora incluído na "
+"distribuição estável. Esta viagem, não sem dificuldades, explica os atrasos "
+"significativos que separam os lançamentos do Debian Estável. Isso contribui, "
+"sobretudo, para sua reputação de qualidade. Além disso, a maioria dos "
+"usuários está satisfeita usando uma das três distribuições simultaneamente "
+"disponíveis. Os administradores de sistema, preocupados acima de tudo com a "
+"estabilidade de seus servidores, não precisam da última e melhor versão do "
+"GNOME; eles podem escolher o Debian <emphasis role=\"distribution\""
+">Estável</emphasis>, e estarão satisfeitos. Os usuários finais, mais "
+"interessados nas versões mais recentes do GNOME ou KDE do que em uma "
+"estabilidade sólida, encontrarão o Debian <emphasis role=\"distribution\""
+">Teste</emphasis> para ter um bom compromisso entre a ausência de problemas "
+"graves e softwares relativamente mais atuais. Finalmente, os desenvolvedores "
+"e usuários mais experientes podem desbravar a trilha, testando todos os "
+"últimos desenvolvimentos no Debian <emphasis role=\"distribution\""
+">Instável</emphasis> direto da fonte, correndo o risco de sofrer as dores de "
+"cabeça e erros inerentes a qualquer nova versão de um programa. Cada um com "
+"o seu Debian!"
 
 #. Tag: title
 #, no-c-format
@@ -2953,10 +3044,22 @@ msgid "<emphasis>CULTURE</emphasis> GNOME and KDE, graphical desktop environment
 msgstr "<emphasis>CULTURA</emphasis> GNOME and KDE, ambientes gráficos de desktop"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "GNOME (GNU Network Object Model Environment) and KDE (K Desktop Environment) are the two most popular graphical desktop environments in the free software world. A desktop environment is a set of programs grouped together to allow easy management of the most common operations through a graphical interface. They generally include a file manager, office suite, web browser, e-mail program, multimedia accessories, etc. The most visible difference resides in the choice of the graphical library used: GNOME has chosen GTK+ (free software licensed under the LGPL), and KDE has selected Qt (from the company, Trolltech, who released it under the GPL license). <ulink type=\"block\" url=\"http://www.gnome.org/\" /> <ulink type=\"block\" url=\"http://www.kde.org/\" />"
 msgid "GNOME (GNU Network Object Model Environment) and KDE (K Desktop Environment) are the two most popular graphical desktop environments in the free software world. A desktop environment is a set of programs grouped together to allow easy management of the most common operations through a graphical interface. They generally include a file manager, office suite, web browser, e-mail program, multimedia accessories, etc. The most visible difference resides in the choice of the graphical library used: GNOME has chosen GTK+ (free software licensed under the LGPL), and KDE has selected Qt (a company-backed project, available nowadays both under the GPL and a commercial license). <ulink type=\"block\" url=\"http://www.gnome.org/\" /> <ulink type=\"block\" url=\"http://www.kde.org/\" />"
-msgstr "GNOME (GNU _Network Object Model Environment) e KDE (K Desktop Environment) são os dois mais populares ambientes gráficos de desktop no mundo do software livre . Um ambiente de desktop é um conjunto de programas agrupados para permitir o fácil gerenciamento das operações mais comuns através de uma interface gráfica. Eles geralmente incluem um gerenciador de arquivos, suíte de escritório, navegador web, programa de e-mail, acessórios multimídia, etc. A diferença mais visível reside na escolha da biblioteca gráfica utilizada: GNOME escolheu GTK + (software livre licenciado sob a LGPL), KDE selecionou Qt (de uma empresa, a Trolltech, que lançou-o sob a licença GPL). <ulink type=\"block\" url=\"http://www.gnome.org/\" /> <ulink type=\"block\" url=\"http://www.kde.org/\" />"
+msgstr ""
+"GNOME (GNU Network Object Model Environment) e KDE (K Desktop Environment) "
+"são os dois ambientes gráficos mais populares de desktop no mundo do "
+"software livre. Um ambiente de desktop é um conjunto de programas agrupados "
+"para permitir o fácil gerenciamento das operações mais comuns através de uma "
+"interface gráfica. Eles geralmente incluem um gerenciador de arquivos, suíte "
+"de escritório, navegador web, programa de e-mail, acessórios multimídia, "
+"etc. A diferença mais visível reside na escolha da biblioteca gráfica "
+"utilizada: GNOME escolheu GTK + (software livre licenciado sob a LGPL), e o "
+"KDE selecionou o Qt (um projeto mantido por uma empresa, agora licenciada "
+"sob a licença GPL euma licença comercial). <ulink type=\"block\" url=\""
+"http://www.gnome.org/\" /> <ulink type=\"block\" url=\"http://www.kde.org/\" "
+"/>"
 
 #. Tag: title
 #, no-c-format
