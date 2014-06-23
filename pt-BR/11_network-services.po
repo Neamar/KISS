@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-06-19 10:10+0200\n"
+"PO-Revision-Date: 2014-06-24 20:57+0200\n"
 "Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
@@ -70,7 +70,7 @@ msgstr "Os administradores da Falcot Corp selecionaram o Postfiz como servidor d
 #, no-c-format
 #| msgid "<primary>file</primary><secondary>server</secondary>"
 msgid "<primary>email</primary><secondary>server</secondary>"
-msgstr "<primary>correio</primary><secondary>servidor de</secondary> "
+msgstr "<primary>correio</primary><secondary>servidor de</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -911,11 +911,17 @@ msgstr ""
 #, no-c-format
 msgid "Using <literal>permit_mynetworks</literal> as the first rule has an interesting side effect: the following rules only apply to hosts outside the local network. This allows blacklisting all hosts that announce themselves as part of the <literal>falcot.com</literal>, for instance by adding a <literal>falcot.com REJECT You're not in our network!</literal> line to the <filename>/etc/postfix/access_helo</filename> file."
 msgstr ""
+"Usando <literal>permit_mynetworks</literal> como a primeira regra tem um "
+"efeito colateral interessante: as regras seguintes aplicam-se apenas aos "
+"hosts fora da rede local. Isso permite bloquear todos os hosts que se "
+"anunciam como parte do <literal>falcot.com</literal>, por exemplo, "
+"adicionando uma linha <literal>falcot.com REJECT Você não é da nossa "
+"rede!</literal> para o arquivo <filename>/etc/postfix/access_helo</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "Accepting or Refusing Based on the Announced Sender"
-msgstr ""
+msgstr "Aceitando ou recusando baseado em remetente anunciado"
 
 #. Tag: para
 #, no-c-format
@@ -956,16 +962,32 @@ msgstr ""
 #, no-c-format
 msgid "The <filename>/etc/postfix/access_sender</filename> table maps some special treatment to some senders. This usually means listing some senders into a white list or a black list."
 msgstr ""
+"A tabela <filename>/etc/postfix/access_sender</filename> mapeia algum "
+"tratamento especial a alguns remetentes. Isso geralmente significa listar "
+"alguns remetentes em uma lista branca ou uma lista negra."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>reject_unknown_sender_domain</literal> rule requires a valid sender domain, since it is needed for a valid address. The <literal>reject_unlisted_sender</literal> rule rejects local senders if the address does not exist; this prevents emails from being sent from an invalid address in the <literal>falcot.com</literal> domain, and messages emanating from <literal>joe.bloggs@falcot.com</literal> are only accepted if such an address really exists."
 msgstr ""
+"A regra <literal>reject_unknown_sender_domain</literal> exige um domínio "
+"remetente válido, uma vez que é necessário para um endereço válido. A regra "
+"<literal>reject_unlisted_sender</literal> rejeita remetentes locais se o "
+"endereço não existe; isso impede que e-mails sejam enviados a partir de um "
+"endereço inválido no domínio <literal>falcot.com</literal>, e as mensagens "
+"que emanam de <literal>joe.bloggs@falcot.com</literal> são apenas aceitos se "
+"tal endereço realmente existe."
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the <literal>reject_non_fqdn_sender</literal> rule rejects emails purporting to come from addresses without a fully-qualified domain name. In practice, this means rejecting emails coming from <literal>user@machine</literal>: the address must be announced as either <literal>user@machine.example.com</literal> or <literal>user@example.com</literal>."
 msgstr ""
+"Finalmente, a regra <literal>reject_non_fqdn_sender</literal> rejeita e-"
+"mails que pretendem vir de endereços sem um nome de domínio totalmente "
+"qualificado. Na prática, isso significa rejeitar e-mails vindos de um "
+"usuário <literal>@máquina</literal>: o endereço deve ser anunciado como "
+"<literal>user@machine.example.com</literal> ou "
+"<literal>user@example.com</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -1009,11 +1031,26 @@ msgstr ""
 #, no-c-format
 msgid "<literal>reject_unauth_destination</literal> is the basic rule that requires outside messages to be addressed to us; messages sent to an address not served by this server are rejected. Without this rule, a server becomes an open relay that allows spammers to sent unsolicited emails; this rule is therefore mandatory, and it will be best included near the beginning of the list, so that no other rules may authorize the message before its destination has been checked."
 msgstr ""
+"<literal>reject_unauth_destination</literal> é a regra básica que exige "
+"mensagens externas a serem endereçadas para nós; mensagens enviadas para um "
+"endereço não servido por este servidor são rejeitadas. Sem esta regra, um "
+"servidor se torna um retransmissor aberto que permite que spammers enviar e-"
+"mails não solicitados; esta regra é, portanto, obrigatória, e vai ser melhor "
+"incluí-lo perto do início da lista, de forma que nenhuma outra regra pode "
+"autorizar a mensagem antes de seu destino ser verificado."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>reject_unlisted_recipient</literal> rule rejects messages sent to non-existing local users, which makes sense. Finally, the <literal>reject_non_fqdn_recipient</literal> rule rejects non-fully-qualified addresses; this makes it impossible to send an email to <literal>jean</literal> or <literal>jean@machine</literal>, and requires using the full address instead, such as <literal>jean@machine.falcot.com</literal> or <literal>jean@falcot.com</literal>."
 msgstr ""
+"A regra <literal>reject_unlisted_recipient</literal> rejeita mensagens "
+"enviadas para usuários locais não-existentes, o que faz sentido. Finalmente, "
+"a regra <literal>reject_non_fqdn_recipient</literal> rejeita endereços não "
+"totalmente qualificados; isso faz com que seja impossível para enviar um e-"
+"mail para <literal>jean</literal> ou <literal>jean@máquina</literal>, e em "
+"vez disso requer o uso do endereço completo, como "
+"<literal>jean@machine.falcot.com</literal> ou "
+"<literal>jean@falcot.com</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -1024,6 +1061,9 @@ msgstr "Restrições Associadas ao Comando <literal>DATA</literal>"
 #, no-c-format
 msgid "The <literal>DATA</literal> command of SMTP is emitted before the contents of the message. It doesn't provide any information per se, apart from announcing what comes next. It can still be subjected to checks."
 msgstr ""
+"O comando <literal>DATA</literal> do SMTP é emitido antes do conteúdo da "
+"mensagem. Ele não fornece qualquer informação, por si só, além de anunciar o "
+"que vem a seguir. Pode ainda ser submetidos a verificações."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1048,6 +1088,12 @@ msgstr ""
 #, no-c-format
 msgid "The <literal>reject_unauth_pipelining</literal> directives causes the message to be rejected if the sending party sends a command before the reply to the previous command has been sent. This guards against a common optimization used by spammer robots, since they usually don't care a fig about replies and only focus on sending as many emails as possible in as short a time as possible."
 msgstr ""
+"A diretiva <literal>reject_unauth_pipelining</literal> faz com que a "
+"mensagem seja rejeitada se o remetente envia um comando antes da resposta ao "
+"comando anterior foi enviado. Isso evita uma otimização comum usada por "
+"robôs de spammers, uma vez que eles geralmente não se importam em nada pelas "
+"respostas e se concentram apenas no envio de tantos e-mails quanto possível "
+"em tão curto espaço de tempo possível."
 
 #. Tag: title
 #, no-c-format
@@ -1058,16 +1104,30 @@ msgstr "Aplicando as Restrições"
 #, no-c-format
 msgid "Although the above commands validate information at various stages of the SMTP exchange, Postfix only sends the actual rejection as a reply to the <literal>RCPT TO</literal> command."
 msgstr ""
+"Embora os comandos acima validam as informações em vários estágios de troca "
+"SMTP, o Postfix só envia uma rejeição real como uma resposta ao comando "
+"<literal>RCPT TO</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "This means that even if the message is rejected due to an invalid <literal>EHLO</literal> command, Postfix knows the sender and the recipient when announcing the rejection. It can then log a more explicit message than it could if the transaction had been interrupted from the start. In addition, a number of SMTP clients do not expect failures on the early SMTP commands, and these clients will be less disturbed by this late rejection."
 msgstr ""
+"Isto significa que mesmo se a mensagem for rejeitada devido a um comando "
+"<literal>EHLO</literal> inválido, o Postfix conhece o remetente e o "
+"destinatário ao anunciar a rejeição. Então ele pode registrar uma mensagem "
+"mais explícita do que ele poderia se a transação havia sido interrompida "
+"desde o início. Além disso, um número de clientes SMTP não esperam falhas "
+"nos comandos SMTP iniciais, e esses clientes serão menos perturbados por "
+"esta rejeição tardia."
 
 #. Tag: para
 #, no-c-format
 msgid "A final advantage to this choice is that the rules can accumulate information during the various stages of the SMTP exchange; this allows defining more fine-grained permissions, such as rejecting a non-local connection if it announces itself with a local sender."
 msgstr ""
+"A vantagem final para esta escolha é que as regras podem acumular informação "
+"durante as várias fases do intercâmbio SMTP; este permite definir permissões "
+"mais refinadas, como a rejeição de uma conexão não-local se ele se anuncia "
+"com um remetente local."
 
 #. Tag: title
 #, no-c-format
@@ -1078,6 +1138,10 @@ msgstr "Filtrando Baseado no Conteúdo da Mensagem"
 #, no-c-format
 msgid "The validation and restriction system would not be complete without a way to apply checks to the message contents. Postfix differentiates the checks applying on the email headers from those applying to the email body."
 msgstr ""
+"O sistema de validação e restrição não seria completa sem uma maneira de "
+"aplicar verificações para o conteúdo da mensagem. O Postfix diferencia as "
+"verificações praticadas nos cabeçalhos de e-mail dos que se aplicam ao corpo "
+"do e-mail."
 
 #. Tag: title
 #, no-c-format
@@ -1104,6 +1168,10 @@ msgstr "<primary>e-mail</primary><secondary>filtro de conteúdo</secondary>"
 #, no-c-format
 msgid "Both files contain a list of regular expressions (commonly known as <emphasis>regexps</emphasis> or <emphasis>regexes</emphasis>) and associated actions to be triggered when the email headers (or body) match the expression."
 msgstr ""
+"Ambos os arquivos contêm uma lista de expressões regulares (comumente "
+"conhecido como <emphasis>regexps</emphasis> ou <emphasis>regexes</emphasis>) "
+"e ações associadas a serem acionadas quando os cabeçalhos de e-mail (ou "
+"corpo) coincidir com a expressão."
 
 #. Tag: title
 #, no-c-format
@@ -1115,11 +1183,16 @@ msgstr ""
 #, no-c-format
 msgid "The <filename>/usr/share/doc/postfix-doc/examples/header_checks.gz</filename> file contains many explanatory comments and can be used as a starting point for creating the <filename>/etc/postfix/header_checks</filename> and <filename>/etc/postfix/body_checks</filename> files."
 msgstr ""
+"O arquivo <filename>/usr/share/doc/postfix-"
+"doc/examples/header_checks.gz</filename> contém muitos comentários "
+"explicativos e podem ser usados como ponto de partida para a criação dos "
+"arquivos <filename>/etc/postfix/header_checks</filename> e "
+"<filename>/etc/postfix/body_checks</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "Example <filename>/etc/postfix/header_checks</filename> file"
-msgstr ""
+msgstr "Exemplos do arquivo <filename>/etc/postfix/header_checks</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1141,21 +1214,46 @@ msgstr "<emphasis>DE VOLTA AO BASICO</emphasis> Expressão regular"
 #, no-c-format
 msgid "The <emphasis>regular expression</emphasis> term (shortened to <emphasis>regexp</emphasis> or <emphasis>regex</emphasis>) references a generic notation for expressing a description of the contents and/or structure of a string of characters. Certain special characters allow defining alternatives (for instance, <literal>foo|bar</literal> matches either “foo” or “bar”), sets of allowed characters (for instance, <literal>[0-9]</literal> means any digit, and <literal>.</literal> — a dot — means any character), quantifications (<literal>s?</literal> matches either <literal>s</literal> or the empty string, in other words 0 or 1 occurrence of <literal>s</literal>; <literal>s+</literal> matches one or more consecutive <literal>s</literal> characters; and so on). Parentheses allow grouping search results."
 msgstr ""
+"o termo <emphasis>expressão regular</emphasis> (abreviado como "
+"<emphasis>regexp</emphasis> ou <emphasis>regex</emphasis>) faz referência a "
+"uma notação genérica para expressar uma descrição do conteúdo e/ou da "
+"estrutura de um conjunto de caracteres. Alguns caracteres especiais permitem "
+"a definição de alternativas (por exemplo, <literal>foo|bar</literal> "
+"corresponde a \"foo\" ou \"bar\"), conjuntos de caracteres permitidos (por "
+"exemplo, <literal>[0-9]</literal > significa qualquer dígito, e "
+"<literal>.</literal> - um ponto - significa qualquer caractere), "
+"quantificações (<literal>s:</literal> corresponde ou <literal>s</literal> ou "
+"a cadeia vazia, em outras palavras 0 ou 1 ocorrência de <literal>s</literal>"
+", <literal>s+</literal> corresponde a um ou mais caracteres "
+"<literal>s</literal> consecutivos, e assim por diante). Parênteses permite o "
+"agrupamento dos resultados da pesquisa."
 
 #. Tag: para
 #, no-c-format
 msgid "The precise syntax of these expressions varies across the tools using them, but the basic features are similar. <ulink type=\"block\" url=\"http://en.wikipedia.org/wiki/Regular_expression\" />"
 msgstr ""
+"A sintaxe precisa dessas expressões varia entre as ferramentas que as usam, "
+"mas as características básicas são semelhantes. <ulink type=\"block\" url=\""
+"http://en.wikipedia.org/wiki/Regular_expression\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The first one checks the header mentioning the email software; if <literal>GOTO Sarbacane</literal> (a bulk email software) is found, the message is rejected. The second expression controls the message subject; if it mentions a virus notification, we can decide not to reject the message but to discard it immediately instead."
 msgstr ""
+"O primeiro verifica o cabeçalho mencionando o software de e-mail; a mensagem "
+"será rejeitada se <literal>GOTO Sarbacane</literal> (um software de e-mail "
+"em massa) for encontrado. A segunda expressão controla o assunto da mensagem;"
+" se menciona uma notificação de vírus, podemos decidir não rejeitar a "
+"mensagem, mas descartá-lo imediatamente."
 
 #. Tag: para
 #, no-c-format
 msgid "Using these filters is a double-edged sword, because it is easy to make the rules too generic and to lose legitimate emails as a consequence. In these cases, not only the messages will be lost, but their senders will get unwanted (and annoying) error messages."
 msgstr ""
+"Usando esses filtros é uma espada de dois gumes, porque é fácil de fazer as "
+"regras demasiadamente genéricas e como consequência perder e-mails "
+"legítimos. Nestes casos, não apenas as mensagens serão perdidas, mas seus "
+"remetentes receberão mensagens de erro indesejadas (e chatas)."
 
 #. Tag: title
 #, no-c-format
