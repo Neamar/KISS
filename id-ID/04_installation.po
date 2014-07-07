@@ -1,1359 +1,1359 @@
 #
-# AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Samsul Ma'arif <samsul@samsul.web.id>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2012-10-31T14:54:17\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2014-07-07 08:19+0700\n"
+"Last-Translator: Samsul Ma'arif <samsul@samsul.web.id>\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
-"Content-Type: application/x-publican; charset=UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Installation"
-msgstr ""
+msgstr "Instalasi"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Partitioning"
-msgstr ""
+msgstr "Pemartisian"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Formatting"
-msgstr ""
+msgstr "Pemformatan"
 
 #. Tag: keyword
 #, no-c-format
 msgid "File System"
-msgstr ""
+msgstr "Sistem berkas"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Boot Sector"
-msgstr ""
+msgstr "Boot Sector"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Hardware Detection"
-msgstr ""
+msgstr "Deteksi Perangkat Keras"
 
 #. Tag: para
 #, no-c-format
 msgid "To use Debian, you need to install it on a computer; this task is taken care of by the <emphasis>debian-installer</emphasis> program. A proper installation involves many operations. This chapter reviews them in their chronological order."
-msgstr ""
+msgstr "Untuk menggunakan Debian, Anda perlu menginstallnya ke sebuah komputer; tugas ini dikerjakan oleh program <emphasis>debian-installer</emphasis>. Instalasi yang benar melibatkan beberapa operasi. Bab ini mengulasnya secara kronologis."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>of the system</secondary>"
-msgstr ""
+msgstr "<primary>istalasi</primary><secondary>sistem</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> A catch-up course in the appendices"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Mengejar ketertinggalan dalam susulan"
 
 #. Tag: para
 #, no-c-format
 msgid "Installing a computer is always simpler when you are familiar with the way it works. If you are not, make a quick detour to <xref linkend=\"short-remedial-course\" /> before reading this chapter."
-msgstr ""
+msgstr "Menginstall komputer selalu lebih sederhana ketika Anda familiar dengan caranya bekerja. Jika tidak, memutarlah sejenak ke <xref linkend=\"short-remedial-course\" /> sebelum membaca bab ini."
 
 #. Tag: para
 #, no-c-format
 msgid "The installer for <emphasis role=\"distribution\">Wheezy</emphasis> is based on <command>debian-installer</command>. Its modular design enables it to work in various scenarios and allows it to evolve and adapt to changes. Despite the limitations implied by the need to support a large number of architectures, this installer is very accessible to beginners, since it assists users at each stage of the process. Automatic hardware detection, guided partitioning, and graphical user interfaces have solved most of the problems that newbies used to face in the early years of Debian."
-msgstr ""
+msgstr "Installer untuk <emphasis role=\"distribution\">Wheezy</emphasis> berbasis  <command>debian-installer</command>. Desainnya yang modular memungkinkan untuk bekerja dalam berbagai skenario dan mengizinkan melibatkan dan mengadaptasi perubahan. Kendatipun batasannya tersirat pada kebutuhan untuk mendukung arsitektur yang besar, installer ini sangat mudah diakses oleh pemula, karena installer ini memandu pengguna pada setiap tahap proses. Deteksi perangkat keras otomatis, pemanduan partisi, dan antar muka pengguna grafis telah memecahkan kebanyakan masalah yang dihadapi newbie Debian pada tahun-tahun awal."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installer</primary>"
-msgstr ""
+msgstr "<primary>installer</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debian-installer</command></primary>"
-msgstr ""
+msgstr "<primary><command>debian-installer</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Installation requires 80 MB of RAM (Random Access Memory) and at least 700 MB of hard drive space. All Falcot computers meet these criteria. Note, however, that these figures apply to the installation of a very limited system without a graphical desktop. A minimum of 512 MB of RAM and 5 GB of hard drive space are really recommended for a basic office desktop workstation."
-msgstr ""
+msgstr "Instalasi memerlukan RAM (Random Access Memory) 80 MB dan setidaknya ruang kosong hard drive 700 MB. Seluruh komputer Falcot memenuhi kriteria ini. Catat, meskipun, gambaran ini berlaku untuk instalasi sistem desktop terbatas tanpa antar muka grafis. Minimal RAM 512 MB dan ruang hard drive 5 GB sangat direkomendasikan untuk sebuah workstation desktop kantor dasar."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Upgrading from Squeeze"
-msgstr ""
+msgstr "<emphasis>HATI-HATI</emphasis> Upgrade dari Squeeze"
 
 #. Tag: para
 #, no-c-format
 msgid "If you already have Debian Squeeze installed on your computer, this chapter is not for you! Unlike other distributions, Debian allows updating a system from one version to the next without having to reinstall the system. Reinstalling, in addition to being unnecessary, could even be dangerous, since it could remove already installed programs."
-msgstr ""
+msgstr "Jika Anda telah menginstall Debian Squeeze di komputer Anda, bab ini bukan untuk Anda! Tidak seperti distribusi lainnya, Debian mengizinkan perbaruan sistem dari suatu versi ke versi selanjutnya tanpa perlu menginstall ulang sistemnya. Menginstall ulang, menjadi tidak perlu, bahkan bisa menjadi berbahaya, karena dapat membuang program yang telah terinstall."
 
 #. Tag: para
 #, no-c-format
 msgid "The upgrade process will be described in <xref linkend=\"sect.dist-upgrade\" />."
-msgstr ""
+msgstr "Proses upgrade akan dijelaskan di <xref linkend=\"sect.dist-upgrade\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Installation Methods"
-msgstr ""
+msgstr "Metode Instalasi"
 
 #. Tag: para
 #, no-c-format
 msgid "A Debian system can be installed from several types of media, as long as the BIOS of the machine allows it. You can for instance boot with a CD-ROM, a USB key, or even through a network."
-msgstr ""
+msgstr "Sistem Debian dapat diinstall dari beberapa tipe media, sejauh BIOS mesinnya memerbolehkannya. Anda dapat membootnya dari CD-ROM, USB Key, atau bahkan melalui jaringan."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> BIOS, the hardware/software interface"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> BIOS, antarmuka hardware/software"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>BIOS</primary>"
-msgstr ""
+msgstr "<primary>BIOS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Basic Input/Output System</primary>"
-msgstr ""
+msgstr "<primary>Basic Input/Output System</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "BIOS (which stands for Basic Input/Output System) is a software that is included in the motherboard (the electronic board connecting all peripherals) and executed when the computer is booted, in order to load an operating system (via an adapted bootloader). It stays in the background to provide an interface between the hardware and the software (in our case, the Linux kernel)."
-msgstr ""
+msgstr "BIOS (singkatan dari Basic Input/Output System) ialah perangkat lunak yang disertakan di motherboard (papan elektronik yang menghubungkan seluruh peripheral) dan dieksekusi ketika memboot komputer, untuk memuat sebuah sistem operasi (melalui bootloader yang diadaptasi). Berada di background untuk menyediakan antarmuka antara perangkat keras dan perangkat lunak (dalam hal ini, kernel Linux)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing from a CD-ROM/DVD-ROM"
-msgstr ""
+msgstr "Menginstall dari CD-ROM/DVD-ROM"
 
 #. Tag: para
 #, no-c-format
 msgid "The most widely used installation method is from a CD-ROM (or DVD-ROM, which behaves exactly the same way): the computer is booted from this media, and the installation program takes over."
-msgstr ""
+msgstr "Pada umumnya metode instalasi ialah dari CD-ROM (atau DVD-ROM, yang mungkin caranya sama saja): komputer diboot dari media ini, dan program instalasi mengambil alih."
 
 #. Tag: para
 #, no-c-format
 msgid "Various CD-ROM families have different purposes: <emphasis>netinst</emphasis> (network installation) contains the installer and the base Debian system; all other programs are then downloaded. Its “image”, that is the ISO-9660 filesystem that contains the exact contents of the disk, only takes up about 150 to 250 MB (depending on architecture). On the other hand, the complete set offers all packages and allows for installation on a computer that has no Internet access; it requires around 70 CD-ROMs (or 10 DVD-ROMs, or two Blu-ray disks). But the programs are divided among the disks according to their popularity and importance; the first three disks will be sufficient for most installations, since they contain the most used software."
-msgstr ""
+msgstr "Berbagai keluarga CD-ROM memiliki tujuan berbeda: <emphasis>netinst</emphasis> (instalasi berbasis jaringan) berisi installer dan sistem Debian dasar; seluruh program kemudian diunduh. “Citra” ini, itulah sistem berkas ISO-9660 yang berisi konten disk yang sebenarnya, hanya mengambil sekitar 150 hingga 250 (tergantung arsitekturnya). Di sisi lain, set lengkapnya menawarkan seluruh paket dan dapat untuk diinstall pada komputer yang tak ada koneksi Internet; memerlukan sekitar 70 CD-ROM (atau 10 DVD-ROM, atau dua disk Blu-ray). Namun programnya dibagi pada disk berdasarkan popularitas dan kepentingannya; tiga disk yang pertama akan penting untuk kebanyakan instalasi, karena berisi perangkat lunak yang paling sering digunakan."
 
 #. Tag: para
 #, no-c-format
 msgid "Debian also used to provide a <emphasis>businesscard</emphasis> or <emphasis>bizcard</emphasis> CD-ROM, which only contained the installer, and which required all the Debian packages (including the base system) to be downloaded. Since its image only took up 35 MB, it was meant to be burnt on a “business card” type CD-ROM. This CD-ROM is no longer provided for Wheezy: the debian-installer developers estimated that the work required to maintain that image was no longer worth it. Furthermore, the <filename>mini.iso</filename> image that they already provide as by-product of the installer is very similar."
-msgstr ""
+msgstr "Debian juga menyediakan CD-ROM <emphasis>businesscard</emphasis> atau <emphasis>bizcard</emphasis>, yang hanya berisi installer, dan yang perlu mengunduh seluruh paket Debian (termasuk sistem dasar). Karena citra ini hanya berukuran 35 MB, dimaksudkan untuk dibakar pada CD-ROM bertipe “business card”. CD-ROM ini tak lagi disediakan untuk Wheezy: pengembang debian-installer memerkirakan pengerjaan untuk mengelola citra tersebut tak lagi bernilai. Lebih jauh, citra <filename>mini.iso</filename> yang telah disediakan sebagai produk installer sangatlah mirip."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>mini.iso</filename></primary>"
-msgstr ""
+msgstr "<primary><fillename>mini.iso</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Multi-architecture disks"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> Disk multi-arsitektur"
 
 #. Tag: para
 #, no-c-format
 msgid "Most installation CD- and DVD-ROMs work only with a specific hardware architecture. If you wish to download the complete images, you must take care to choose those which work on the hardware of the computer on which you wish to install them."
-msgstr ""
+msgstr "Kebanyakan CD- adan DVD-ROM instalasi hanya bekerja dengan arsitektur perangkat keras yang spesifik. Jika Anda ingin mengunduh citra yang lengkap, Anda harus memilih yang akan bekerja pada perangkat keras komputer yang yang akan Anda install."
 
 #. Tag: para
 #, no-c-format
 msgid "Some CD/DVD-ROM images can work on several architectures. We thus have a CD-ROM image combining the <emphasis>netinst</emphasis> images of the <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. There is also a DVD-ROM image that contains the installer and a selection of binary packages for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis>, as well as the corresponding source packages."
-msgstr ""
+msgstr "Beberapa citra CD/DVD-ROM dapat bekerja pada beberapa arsitektur. Kami memiliki citra CD-ROM yang menggabungkan citra <emphasis>netinst</emphasis> arsitektur <emphasis>i386</emphasis> dan <emphasis>amd64</emphasis>. Ada juga citra DVD-ROM yang berisi installer dan pilihan paket biner untuk <emphasis>i386</emphasis> dan <emphasis>amd64</emphasis>, sebagaimana paket sumber yang sesuai."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary>installation CD-ROM</secondary>"
-msgstr ""
+msgstr "<primary>CD-ROM</primary><secondary>CD-ROM instalasi</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary><emphasis>netinst CD-ROM</emphasis></secondary>"
-msgstr ""
+msgstr "<primary>CD-ROM</primary><secondary><emphasis>netinst CD-ROM</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CD-ROM</primary><secondary><emphasis>businesscard CD-ROM</emphasis></secondary>"
-msgstr ""
+msgstr "<primary>CD-ROM</primary><secondary><emphasis>businesscard CD-ROM</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary>installation DVD-ROM</secondary>"
-msgstr ""
+msgstr "<primary>DVD-ROM</primary><secondary>installation DVD-ROM</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary><emphasis>netinst DVD-ROM</emphasis></secondary>"
-msgstr ""
+msgstr "<primary>DVD-ROM</primary><secondary><emphasis>netinst DVD-ROM</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DVD-ROM</primary><secondary><emphasis>businesscard DVD-ROM</emphasis></secondary>"
-msgstr ""
+msgstr "<primary>DVD-ROM</primary><secondary><emphasis>businesscard DVD-ROM</emphasis></secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To acquire Debian CD-ROM images, you may of course download them and burn them to disk. You may also purchase them, and, thus, provide the project with a little financial support. Check the website to see the list of CD-ROM image vendors and download sites. <ulink type=\"block\" url=\"http://www.debian.org/CD/index.html\" />"
-msgstr ""
+msgstr "Untuk mendapatkan citra CD-ROM Debian, tentu saja Anda mungkin mendunduh dan membakarnya ke disk. Anda juga dapat memesannya, dan, itu, mendukung proyek dengan finansial kecil. Periksa website untuk melihat daftar penyedia citra CD-ROM dan situs unduh. <ulink type=\"block\" url=\"http://www.debian.org/CD/index.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Booting from a USB Key"
-msgstr ""
+msgstr "Booting dari USB Key"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>USB key</primary>"
-msgstr ""
+msgstr "<primary>USB key</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Since recent computers are able to boot from USB devices, you can also install Debian from a USB key (this is nothing more than a small flash-memory disk). Be aware, however, that not all BIOSes are the same; some are able to boot from USB 2.0 devices, while others only work with USB 1.1. Besides, the USB key must have 512-bytes sectors, and this feature, while common, is never documented on the packaging of the keys you find for sale."
-msgstr ""
+msgstr "Karena komputer terbaru dapat memboot dari perangkat USB, Anda dapat juga menginstall Debian dari sebuah USB Key (tak lebih dari sebuah memori-flash kecil). Berhati-hatilah, meskipun, tidak seluruh BIOS itu sama; beberapa dapat memboot dari perangkat USB 2.0, yang lainnya hanya dapat dapat dengan USB 1.1. Di samping itu, USB key harus memiliki 512-byte sektor, dan fitur ini, yang umum, tidak pernah terdokumentasi pada paket yang Anda beli."
 
 #. Tag: para
 #, no-c-format
 msgid "The installation manual explains how to create a USB key that contains the <command>debian-installer</command>. The procedure has been significantly simplified for the <emphasis role=\"distribution\">Squeeze</emphasis> release compared to the previous versions; the ISO images for i386 and amd64 architectures are now hybrid images that can boot from a CD-ROM as well as from a USB key."
-msgstr ""
+msgstr "Panduan instalasi menjelaskan bagaimana membuat sebuah USB key yang memuat <command>debian-installer</command>. Prosedurnya telah dipermudah secara signifikan untuk rilis <emphasis role=\"distribution\">Squeeze</emphasis> dibandingkan dengan versi sebelumnya; citra ISO untuk arsitektur i386 dan amd64 sekarang citra hybrid yang dapat memboot dari CD-ROM sebagaimana dari USB key."
 
 #. Tag: para
 #, no-c-format
 msgid "You must first identify the device name of the USB key (ex: <literal>/dev/sdb</literal>); the simplest means to do this is to check the messages issued by the kernel using the <command>dmesg</command> command. Then you must copy the previously downloaded ISO image (for example debian-7.0.0-amd64-i386-netinst.iso) with the command <command>cat debian-7.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command>. This command requires administrator rights, since it accesses the USB key directly and blindly erases its content."
-msgstr ""
+msgstr "Anda harus mengidentifikasi nama perangkat USB key (mis: <literal>/dev/sdb</literal>); hal termudah untuk melakukan ini ialah dengan memeriksa pesan yang dikeluarkan oleh kernel dengan menggunakan perintah <command>dmesg</command>. Kemudian Anda harus menyalis citra ISO yang diunduh sebelumnya (contoh debian-7.0.0-amd64-i386-netinst.iso) dengan perintah <command>cat debian-7.0.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command>. Perintah ini memerlukan hak akses administrator, karena mengakses USB key secara langsung dan menghapus seluruh isinya."
 
 #. Tag: para
 #, no-c-format
 msgid "A more detailed explanation is available in the installation manual. Among other things, it describes an alternative method of preparing a USB key that is more complex, but that allows to customize the installer's default options (those set in the kernel command line). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch04s03.html\" />"
-msgstr ""
+msgstr "Penjelasan lebih detail tersedia di panduan instalasi. Antara lain, menjelaskan metode alternatif untuk menyiapkan USB key yang lebih kompleks, namun mengizinkan untuk mengostumisasi pilihan bawaan installer (yang diset pada baris perintah kernel). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch04s03.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing through Network Booting"
-msgstr ""
+msgstr "Instalasi melalui Booting Jaringan"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary><emphasis>netboot installation</emphasis></secondary>"
-msgstr ""
+msgstr "<primary>installation</primary><secondary><emphasis>netboot installation</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary><emphasis>PXE installation</emphasis></secondary>"
-msgstr ""
+msgstr "<primary>installation</primary><secondary><emphasis>PXE installation</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary><emphasis>TFTP installation</emphasis></secondary>"
-msgstr ""
+msgstr "<primary>installation</primary><secondary><emphasis>TFTP installation</emphasis></secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Many BIOSes allow booting directly from the network by downloading a kernel and a minimal filesystem image. This method (which has several names, such as <acronym>PXE</acronym> or <acronym>TFTP</acronym> boot) can be a life-saver if the computer does not have a CD-ROM reader, or if the BIOS can't boot from such media."
-msgstr ""
+msgstr "Kebanyakan BIOS mengizinkan booting langsung dari jaringan dengan mengunduh kernel dan citra sistem berkas. Metode ini (yang memiliki beberapa nama, seperti <acronym>PXE</acronym> atau <acronym>FTFP</acronym> boot) dapat menjadi penyelamat-hidup jika komputer tidak memiliki pembaca CD-ROM, atau jika BIOS tidak dapat boot dari media apapun."
 
 #. Tag: para
 #, no-c-format
 msgid "This installation method works in two steps. First, while booting the computer, the BIOS (or the network card) issues a BOOTP/DHCP request to automatically acquire an IP address. When a BOOTP or DHCP server returns a response, it includes a filename, as well as network settings. After having configured the network, the client computer then issues a TFTP (Trivial File Transfer Protocol) request for a file whose name was previously indicated. Once this file is acquired, it is executed as though it were a bootloader. This then launches the Debian installation program, which is executed as though it were running from the hard drive, a CD-ROM, or a USB key."
-msgstr ""
+msgstr "Metode instalasi ini bekerja dalam dua langkah. Pertama, ketika booting komputer, BIOS (atau kartu jaringan) mengeluarkan permintaan BOOTP/DHCP untuk mendapatkan alamat IP secara otomatis. Ketika BOOTP atau server DHCP memberikan respon, beserta nama berkas, sebagaimana pengaturan jaringan. Setelah jaringan diatur, komputer klien mengeluarkan permintaan TFTP (Trivial File Transfer Protocol) untuk sebuah berkas yang namanya diindikasikan sebelumnya. Setelah berkas ini didapatkan, berkas tersebut dieksekusi sebagai bootloader. Berkas ini kemudian memulai program instalasi Debian, yang dieksekusi sebagaimana ketika dieksekusi dari perangkat keras, CD-ROM, atau USB key."
 
 #. Tag: para
 #, no-c-format
 msgid "All the details of this method are available in the installation guide (“Preparing files for TFTP Net Booting” section). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch05s01.html#boot-tftp\" /><ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch04s05.html\" />"
-msgstr ""
+msgstr "Seluruh rincian metode ini tersedia pada panduan instalasi (bagian “Persiapan berkas untuk TFTP Net Booting”). <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch05s01.html#boot-tftp\" /><ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch04s05.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Other Installation Methods"
-msgstr ""
+msgstr "Metode Instalasi Lain"
 
 #. Tag: para
 #, no-c-format
 msgid "When we have to deploy customized installations for a large number of computers, we generally choose an automated rather than a manual installation method. Depending on the situation and the complexity of the installations to be made, we can use FAI (Fully Automatic Installer, described in <xref linkend=\"sect.fai\" />), or even a customized installation CD with preseeding (see <xref linkend=\"sect.d-i-preseeding\" />)."
-msgstr ""
+msgstr "Ketika kita harus mendeploy instalasi khusus untuk banyak komputer, umumnya kita memilih yang terotomatis ketimbang metode instalasi manual. Tergantung pada situasi dan kerumitan instalasi yang dibauat, kita dapat menggunakan FAI (Instalasi Penuh Otomatis, dijelaskan di <xref linkend=\"sect.fai\" />), atau bahkan CD instalasi khusus dengan preseed (lihat <xref linkend=\"sect.d-i-preseeding\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing, Step by Step"
-msgstr ""
+msgstr "Menginstall, Selangkah demi Selangkah"
 
 #. Tag: title
 #, no-c-format
 msgid "Booting and Starting the Installer"
-msgstr ""
+msgstr "Booting dan Memulai Penginstall"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the BIOS has begun booting from the CD- or DVD-ROM, the Isolinux bootloader menu appears. At this stage, the Linux kernel is not yet loaded; this menu allows you to choose the kernel to boot and enter possible parameters to be transferred to it in the process."
-msgstr ""
+msgstr "Sekali BIOS mulai memboot dari CD- atau DVD-ROM, menu bootloader Isolinux muncul. Pada tahap ini, kernel Linux belum dimuat; menu ini mengizinkan Anda untuk memilih kernel untuk diboot dan memasukkan parameter yang memungkinkan untuk dikirim ke proses."
 
 #. Tag: para
 #, no-c-format
 msgid "For a standard installation, you only need to choose “Install” or “Graphical install” (with the arrow keys), then press the <keycap>Enter</keycap> key to initiate the remainder of the installation process. If the DVD-ROM is a “Multi-arch” disk (such as the one included with this book), and the machine has an Intel or AMD 64 bit processor, the menu options “64 bit install” and “64 bit graphical install” enable the installation of the 64 bit variant (<emphasis>amd64</emphasis>) instead of the default 32 bit variant (<emphasis>i386</emphasis>). In practice, the 64 bit version can almost always be used: most recent processors are 64 bit processors and the 64 bit version deals better with the large amount of RAM that new computers tend to have."
-msgstr ""
+msgstr "Untuk instalasi standar, Anda hanya perlu memilih “Install” atau “Graphical Install” (dengan tombol arah), kemudian tekan tombol <keycap>Enter</keycap> untuk memulai proses instalasi selanjutnya. Jika DVD-ROMnya ialah disk “Multi-arch” (seperti yang disertakan dalam buku ini), dan mesinnya memiliki prosesor Inter atau AMD 64 bit, pilihan menu “64 bit install” dan “64 bit graphical install” memungkinkan instalasi varian 64 bit (<emphasis>amd64</emphasis>) daripada varian bawaan yang 32 bit (<emphasis>i386</emphasis>). Dalam prakteknya, versi 64 bit hampir selalu dapat digunakan: kebanyakan prosesor terbaru ialah prosesor 64 bit dan versi 64 bit menangani lebih baik dengan jumlah RAM besar yang cenderung dimiliki oleh komputer baru."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> 32 or 64 bits?"
-msgstr ""
+msgstr "<emphasis>LEBIH JAUH</emphasis> 32 atau 64 bit?"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PAE</primary>"
-msgstr ""
+msgstr "<primary>PAE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Physical Address Extension</primary>"
-msgstr ""
+msgstr "<primary>Physical Address Extension</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>32/64 bits, choice</primary>"
-msgstr ""
+msgstr "<primary>pilihan, 32/64 bits</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The fundamental difference between 32 and 64 bit systems is the size of memory addresses. In theory, a 32 bit system can not work with more than 4 GB of RAM (2<superscript>32</superscript> bytes). In practice, it is possible to work around this limitation by using the <literal>686-pae</literal> kernel variant, so long as the processor handles the PAE (Physical Address Extension) functionality. Using it does have a notable influence on system performance, however. This is why it is useful to use the 64 bit mode on a server with a large amount of RAM."
-msgstr ""
+msgstr "Perbedaan mendasar antara sistem 32 dan 64 bit ialah ukuran pengalamatan memoti. Pada teorinya, sebuah sistem 32 bit tidak dapat bekerja dengan RAM lebih dari 4 GB (2<superscript>32</superscript> bytes). Pada prakteknya, memungkinkan untuk bekerja pada batasan ini dengan menggunakan varian kernel <literal>686-pae</literal>, sejauh prosesor dapat menangani fungsionalitas PAE (Physical Address Extension). Meskipun, menggunakan sistem 32 bit ini pengaruhnya penting terhadap kinerja sistem. Itulah mengapa sangat berguna untuk menggunakan mode 64 bit pada server dengan jumlah RAM yang besar."
 
 #. Tag: para
 #, no-c-format
 msgid "For an office computer (where a few percent difference in performance is negligible), you must keep in mind that some proprietary programs are not available in 64 bit versions (such as Skype, for example). It is technically possible to make them work on 64 bit systems, but you have to install the 32 bit versions of all the necessary libraries (see <xref linkend=\"sect.multi-arch\" />), and sometimes to use <command>setarch</command> or <command>linux32</command> (in the <emphasis role=\"pkg\">util-linux</emphasis> package) to trick applications regarding the nature of the system. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
-msgstr ""
+msgstr "Untuk komputer kantor (di mana beberapa persen perbedaan performanya tak berarti), Anda harus tetap memikirkan bahwa beberapa program proprietary tak tersedia untuk versi 64 bit (seperti Skype, sebagai contoh). Secara teknis memungkinkan untuk membuatnya bekerja pada sistem 64 bit, namun Anda harus menginstall versi 32 bit seluruh pustaka yang diperlukan (lihat <xref linkend=\"sect.multi-arch\" />), dan kadang-kadang menggunakan <command>setarch</command> atau <command>linux32</command> (dalam paket <emphasis role=\"pkg\">util-linux</emphasis>) untuk mengelabuhi aplikasi mengenai sifat sistem. <indexterm><primary><command>setarch</command></primary></indexterm> <indexterm><primary><command>linux32</command></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Installation alongside an existing Windows system"
-msgstr ""
+msgstr "<emphasis>PRAKTEKNYA</emphasis> Instalasi di samping sistem Windows yang sudah ada"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dual boot</primary>"
-msgstr ""
+msgstr "<primary>dual boot</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If the computer is already running Windows, it is not necessary to delete the system in order to install Debian. You can have both systems at once, each installed on a separate disk or partition, and choose which to start when booting the computer. This configuration is often called “dual boot”, and the Debian installation system can set it up. This is done during the hard drive partitioning stage of installation and while setting up the bootloader (see the sidebars in those sections)."
-msgstr ""
+msgstr "Jika komputer telah berjalan Windows, tak perlu menghapus sistem untuk menginstall Debian. Anda dapat memiliki kedua sistem bersamaan, masing-masing terinstall pada disk atau partisi yang berbeda, dan pilih mana yang akan dimulai ketika memboot komputer. Konfigurasi ini biasanya disebut “dual boot”, dan instalasi sistem Debian dapat mengaturnya. Hal ini dilakukan selama tahap pemartisian perangkat dan ketika mengatur bootloader (lihat bilah sisi pada bagian itu)."
 
 #. Tag: para
 #, no-c-format
 msgid "If you already have a working Windows system, you can even avoid using a CD-ROM; Debian offers a Windows program that will download a light Debian installer and set it up on the hard disk. You then only need to reboot the computer and choose between normal Windows boot or booting the installation program. You can also find it on a dedicated website with a rather explicit name… <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
-msgstr ""
+msgstr "Jika Anda telah memiliki sistem Windows, Anda bahkan dapat menghindari penggunaan CD-ROM; Debia menawarkan sebuah program Windows yang akan mengunduh installer Debian yang ringan dan mengaturnya pada hard disk. Selanjutnya Anda hanya perlu mereboot komputer dan memilih antara boot Windows normal atau memboot program instalasi. Anda juga dapat menemukannya pada  website yang didedikasikan dengan nama eksplisit... <ulink type=\"block\" url=\"http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\"block\" url=\"http://www.goodbye-microsoft.com/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Boot loader"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Boot loader"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>loader</primary><secondary>bootloader</secondary>"
-msgstr ""
+msgstr "<primary>loader</primary><secondary>bootloader</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bootloader</primary>"
-msgstr ""
+msgstr "<primary>bootloader</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>boot</primary><secondary>loader</secondary>"
-msgstr ""
+msgstr "<primary>boot</primary><secondary>loader</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The bootloader is a low-level program that is responsible for booting the Linux kernel just after the BIOS passes off its control. To handle this task, it must be able to locate the Linux kernel to boot on the disk. On the i386 and amd64 architectures, the two most used programs to perform this task are LILO, the older of the two, and GRUB, its modern replacement. Isolinux and Syslinux are alternatives frequently used to boot from removable media."
-msgstr ""
+msgstr "Bootloader ialah program level-rendah yang bertanggung jawab untuk booting kernel Linux setelah BIOS melalui kontrolnya. Untuk menangani tugas ini, bootloader harus dapat menemukan kernel Linux untuk diboot pada cakram. Pada arsitektur i386 dan amd64, dua program yang kebanyakan digunakan untuk melakukan tugas ini ialah LILO, yang lebih tua dari keduanya, dan GRUB, penggantinya yang lebih modern. Isolinux dan Syslinux ialah alternatif yang seringkali digunakan untuk memboot dari removable media."
 
 #. Tag: para
 #, no-c-format
 msgid "Each menu entry hides a specific boot command line, which can be configured as needed by pressing the <keycap>TAB</keycap> key before validating the entry and booting. The “Help” menu entry displays the old command line interface, where the <keycap>F1</keycap> to <keycap>F10</keycap> keys display different help screens detailing the various options available at the prompt. You will rarely need to use this option except in very specific cases."
-msgstr ""
+msgstr "Setiap entri menu tersembunyi baris perintah boot yang spesifik, yang dapat dikonfigurasi sesuai kebutuhan dengan menekan tombol <keycap>TAB</keycap> sebelum memvalidasi entri dan booting. Menu “Bantuan” menampilkan antarmuka baris perintah lawas, di mana tombol <keycap>F1</keycap> ke <keycap>F10</keycap> menampilkan layar bantuan yang berbeda menjelaskan berbagai pilihan yang tersedia. Anda akan jarang menggunakan pilihan ini kecuali pada kasus yang spesifik."
 
 #. Tag: para
 #, no-c-format
 msgid "The “expert” mode (accessible in the “Advanced Options” menu) details all possible options in the process of installation, and allows navigation between the various steps without them happening automatically in sequence. Be careful, this very verbose mode can be confusing due to the multitude of configuration choices that it offers."
-msgstr ""
+msgstr "Mode “mahir” (dapat diakses pada menu “Pilihan Tingkat Mahir”) menjelaskan seluruh pilihan yang memungkinkan pada proses instalasi, dan mengizinkan navigasi berbagai langkah tanpa terjadi secara otomatis dalam urutannya. Berhati-hatilah, mode sangat bising ini dapat memusingkan karena banyaknya pilihan konfigurasi yang ditawarkan."
 
 #. Tag: title
 #, no-c-format
 msgid "Boot screen"
-msgstr ""
+msgstr "Layar boot"
 
 #. Tag: para
 #, no-c-format
 msgid "Once booted, the installation program guides you step by step throughout the process. This section presents each of these steps in detail. Here we follow the process of an installation from a Multi-Arch DVD-ROM (more specifically, the beta4 version of the installer for Wheezy); <emphasis>netinst</emphasis> installations, as well as the final release of the installer, may look slightly different. We will also address installation in graphical mode, but the only difference from “classic” (text-mode) installation is in the visual appearance."
-msgstr ""
+msgstr "Setelah booting, program instalasi memandu Anda selangkah demi selangkah melalui proses. Bagian ini menyajikan setiap langkah ini secara detil. Di sini kita mengikuti proses sebuah instalasi dari DVD-ROM Multi-Arch (lebih spesifiknya, versi beta4 installer untuk Wheezy); instalasi <emphasis>netinst</emphasis>, sebagaimana rilis final installer, mungkin nampak sedikit berbeda. Wikia juga akan berbicara instalasi mode grafis, namun hanya perbedaan dari instalasi “classic” (mode-teks) dalam tampilan visual."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting the language"
-msgstr ""
+msgstr "Memilih bahasa"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>choice</primary><secondary>of language</secondary>"
-msgstr ""
+msgstr "<primary>pilihan</primary><secondary>bahasa</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The installation program begins in English, but the first step allows the user to choose the language that will be used in the rest of the process. Choosing French, for example, will provide an installation entirely translated into French (and a system configured in French as a result). This choice is also used to define more relevant default choices in subsequent stages (notably the keyboard layout)."
-msgstr ""
+msgstr "Program instalasi dimulai dengan bahasa Inggris, namun langkah pertama memungkinkan pengguna memilih bahasa yang akan digunakan pada seluruh proses. Memilih Prancis, misalnya, akan menyediakan instalasi yang seluruhnya telah diterjemahkan ke dalam bahasa Prancis (dan hasilnya sistem terkonfigurasi dalam bahasa Prancis). Pilihan ini juga dapat digunakan untuk menentukan pilihan bawaan yang sesuai pada langkah berikut (terutama tata letak papan tik). "
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Navigating with the keyboard"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Navigasi dengan papan tik"
 
 #. Tag: para
 #, no-c-format
 msgid "Some steps in the installation process require you to enter information. These screens have several areas that may “have focus” (text entry area, checkboxes, list of choices, OK and Cancel buttons), and the <keycap>TAB</keycap> key allows you to move from one to another."
-msgstr ""
+msgstr "Beberapa langkah proses instalasi memerlukan Anda untuk memasukkan informasi. Layar ini memiliki beberapa area yang mungkin “memiliki fokuss” (area entri teks, cekbox, daftar pilihan, tombol OK dan Batal), dan tombol <keycap>TAB</keycap> memungkinkan Anda berpindah dari satu ke yang lainnya."
 
 #. Tag: para
 #, no-c-format
 msgid "In graphical mode, you can use the mouse as you would normally on an installed graphical desktop."
-msgstr ""
+msgstr "Pada mode grafis, Anda dapat menggunakan tetikus sebagaimana biasanya pada deskto grafis yang terinstall."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting the country"
-msgstr ""
+msgstr "Memilih negara"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>choice</primary><secondary>of country</secondary>"
-msgstr ""
+msgstr "<primary>pilihan</primary><secondary>negara</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The second step consists in choosing your country. Combined with the language, this information enables the program to offer the most appropriate keyboard layout. This will also influence the configuration of the time zone. In the United States, a standard QWERTY keyboard is suggested, and a choice of appropriate time zones is offered."
-msgstr ""
+msgstr "Langkah kedua berisi pemilihan negara Anda. Digabungkan dengan bahasa, informasi ini mengaktifkan program yang menawarkan tata letak papan tik yang sesuai. Hal ini juga memengaruihi konfigurasi zona waktu. Di Amerika Serikat, papan tik yang disarankan ialah standar QWERTY, dan pilihan zona waktu yang sesuai ditawarkan."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting the keyboard layout"
-msgstr ""
+msgstr "Memilih tata letak papan tik"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard layout</primary>"
-msgstr ""
+msgstr "<primary>tata letak papan tik</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>layout, keyboard</primary>"
-msgstr ""
+msgstr "<primary>tata letak, papan tik</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The proposed “American English” keyboard corresponds to the usual QWERTY layout."
-msgstr ""
+msgstr "Usulan papan tik “American English” biasanya sesuai dengan tata letak QWERTY."
 
 #. Tag: title
 #, no-c-format
 msgid "Choice of keyboard"
-msgstr ""
+msgstr "Pilihan papan tik"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Hardware"
-msgstr ""
+msgstr "Mendeteksi Perangkat Keras"
 
 #. Tag: para
 #, no-c-format
 msgid "This step is completely automatic in the vast majority of cases. The installer detects your hardware, and tries to identify the CD-ROM drive used in order to access its content. It loads the modules corresponding to the various hardware components detected, and then “mounts” the CD-ROM in order to read it. The previous steps were completely contained in the boot image included on the CD, a file of limited size and loaded into memory by the BIOS when booting from the CD."
-msgstr ""
+msgstr "Langkah ini sepenuhnya otomatis dalam berbagai kasus umumnya. Installer mendeteksi perangkat keras, dan mencoba mengidentifikasi cakram CD-ROM yang digunakan untuk mengakses isinya. Memuat modul yang sesuai dengan berbagai komponen perangkat keras yang terdeteksi, dan kemudian “mounts” CD-ROM untuk membacanya. Langkah sebelumnya sepenuhnya merupakan isi dari citra boot yang disertakan dalam CD, berkas yang berukuran terbatas dan dimuat ke dalam memori oleh BIOS ketika booting dari CD."
 
 #. Tag: para
 #, no-c-format
 msgid "The installer can work with the vast majority of drives, especially standard ATAPI peripherals (sometimes called IDE and EIDE). However, if detection of the CD-ROM reader fails, the installer offers the choice to load a kernel module (for instance from a USB key) corresponding to the CD-ROM driver."
-msgstr ""
+msgstr "Installer dapat bekerja dengan sebagian besar drive, khsusnya periferal standar ATAPI (kadang-kadang disebut IDE dan EIDE). Akan tetapi, jika deteksi pembaca CD-ROM gagal, installer menawarkan pilihan untuk memuat modul kernel (misalnya dari USB key) sesuai dengan penggerak CD-ROM."
 
 #. Tag: title
 #, no-c-format
 msgid "Loading Components"
-msgstr ""
+msgstr "Memuat Komponen"
 
 #. Tag: para
 #, no-c-format
 msgid "With the contents of the CD now available, the installer loads all the files necessary to continue with its work. This includes additional drivers for the remaining hardware (especially the network card), as well as all the components of the installation program."
-msgstr ""
+msgstr "Sekarang konten CD telah tersedia, installer memuat seluruh berkas yang diperlukan untuk melanjutkan pekerjaannya. Termasuk penggerak tambahannya untuk perangkat keras selanjutnya (khususnya kartu jaringan), sebagaimana komponen program instalasi."
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Network Hardware"
-msgstr ""
+msgstr "Mendeteksi Perangkat Keras Jaringan"
 
 #. Tag: para
 #, no-c-format
 msgid "This automatic step tries to identify the network card and load the corresponding module. If automatic detection fails, you can manually select the module to load. If no module works, it is possible to load a specific module from a removable device. This last solution is usually only needed if the appropriate driver is not included in the standard Linux kernel, but available elsewhere, such as the manufacturer's website."
-msgstr ""
+msgstr "Langkah otomatis ini mencoba mengidentifikasi kartu jaringan dan memuat modul yang sesuai. Jika deteksi otomatis gagal, Anda dapat memilih modul untuk dimuat secara manual. Jika tidak ada modul yang bekerja, masih memungkinkan untuk memuat modul spesifik dari perangkat removable. Solusi terakhir ini biasanya hanya diperlukan jika penggerak yang cocok tidak disertakan dalam kernel Linux standar, namun tersedia di tempat lain, misalnya website pabriknya."
 
 #. Tag: para
 #, no-c-format
 msgid "This step must absolutely be successful for <emphasis>netinst</emphasis> installations, since the Debian packages must be loaded from the network."
-msgstr ""
+msgstr "Langkah ini seharusnya sangat berhasil untuk istalasi <emphasis>netinst</emphasis>, karena paket Debian harus dimuat dari jaringan."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Network"
-msgstr ""
+msgstr "Mengonfigurasi Jaringan"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>network</secondary><tertiary>static</tertiary>"
-msgstr ""
+msgstr "<primary>konfigurasi</primary><secondary>jaringan</secondary><tertiary>statik</tertiary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>network</secondary><tertiary>DHCP</tertiary>"
-msgstr ""
+msgstr "<primary>konfigurasi</primary><secondary>jaringan</secondary><tertiary>DHCP</tertiary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In order to automate the process as much as possible, the installer attempts an automatic network configuration by DHCP (for IPv4) and by IPv6 network discovery. If this fails, it offers more choices: try again with a normal DHCP configuration, attempt DHCP configuration by declaring the name of the machine, or set up a static network configuration."
-msgstr ""
+msgstr "Untuk sebanyak mungkin mengotomasi proses, installer berusaha mengotomasi konfigurasi jarigan dengan DHCP (untuk IPv4) dan dengan menemukan jaringan IPv4, Jika ini gagal, akan menawarkan pilihan lainnya: coba lagi dengan konfigurasi DHCP normal, mencoba konfigurasi DHCP dengan mendeklarasikan nama mesin, atau atur konfigurasi jaringan statis."
 
 #. Tag: para
 #, no-c-format
 msgid "This last option requires an IP address, a subnet mask, an IP address for a potential gateway, a machine name, and a domain name."
-msgstr ""
+msgstr "Pilihan terakhir ii memerlukan sebuah alamat IP, sebuah subnet mask, dan alamat IP untuk gateway potensial, nama mesin, dan nama domain."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Configuration without DHCP"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> Konfigurasi tanpa DHCP"
 
 #. Tag: para
 #, no-c-format
 msgid "If the local network is equipped with a DHCP server that you do not wish to use because you prefer to define a static IP address for the machine during installation, you can add the <userinput>netcfg/use_dhcp=false</userinput> option when booting from the CD-ROM. You just need to go to the desired menu entry by pressing the <keycap>TAB</keycap> key and add the desired option before pressing the <keycap>Enter</keycap> key."
-msgstr ""
+msgstr "Jika jarigan lokal dilengkapi dengan server DHCP yang tidak ingin Anda gunakan karena Anda lebih memilih alamat IP statis untuk mesin sepanjang instalasi, Anda dapat menambahka pilihan <userinput>netcfg/use_dhcp=false</userinput> ketika booting dari CD-ROM. Anda hanya perlu menuju ke menu yang diinginkan dengan menekan tombol <keycap>TAB</keycap> dan tambahkan pilihan yang diinginkan sebelum menekan tombol <keycap>Enter</keycap>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Do not improvise"
-msgstr ""
+msgstr "<emphasis>HATI-HATI</emphasis> Jangan berimprovisasi"
 
 #. Tag: para
 #, no-c-format
 msgid "Many local area networks are based on an implicit assumption that all machines can be trusted, and inadequate configuration of a single computer will often perturb the whole network. As a result, do not connect your machine to a network without first agreeing with its administrator on the appropriate settings (for example, the IP address, netmask, and broadcast address)."
-msgstr ""
+msgstr "Kebanyakan jaringan lokal ialah berdasarkan asumsi bahwa seluruh mesin dapat dipercaya, dan konfigurasi yang tak memadai dari sebuah komputer akan sering mengusik seluruh jaringan. Jadi, jangan hubungkan mesin Anda ke jaringan tanpa persetujuan administrator lebih dahulu pada pengaturan yang sesuai (contoh, alamat IP, netmask, dan alamat broadcast)."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Clock"
-msgstr ""
+msgstr "Mengonfigurasi Jam"
 
 #. Tag: para
 #, no-c-format
 msgid "If the network is available, the system's internal clock is updated (in a one-shot way) from an NTP server. This way the timestamps on logs will be correct from the first boot. For them to remain consistently precise over time, an NTP daemon needs to be set up after initial installation (see <xref linkend=\"sect.time-synchronization\" />)."
-msgstr ""
+msgstr "Jika jaringan tersedia, sistem waktu internal diperbaru (singkatnya) dari sebuah server NTP. Cara ini pertanda waktu pada log akan di perbaiki dari booting pertama. Untuk hal tersebut agar waktu tepat secara konsisten, sebuah daemon NTP perlu diatur setelah instalasi awal (lihat <xref linkend=\"sect.time-synchronization\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "Administrator Password"
-msgstr ""
+msgstr "Kata Sandi Administrator"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>account</primary><secondary>administrator account</secondary>"
-msgstr ""
+msgstr "<primary>akun</primary><secondary>akun administrator</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The super-user root account, reserved for the machine's administrator, is automatically created during installation; this is why a password is requested. A confirmation (or two identical entries) will prevent any entry error which would later be difficult to amend."
-msgstr ""
+msgstr "Akun super-user root, dimiliki oleh administrator mesin, dibuat secara otomatis selama instalasi; oleh sebab itu kata sandi diperlukan. Konfirmasi (atau entri yang sama) akan menghindari kesalahan entri yang di kemudian hari akansulit untuk diubah."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Administrator password"
-msgstr ""
+msgstr "<emphasis>KEAMANAN</emphasis> Kata sandi administrator"
 
 #. Tag: para
 #, no-c-format
 msgid "The root user's password should be long (6 characters or more) and impossible to guess. Indeed, any computer (and a fortiori any server) connected to the Internet is regularly targeted by automated connection attempts with the most obvious passwords. Sometimes it may even be subject to dictionary attacks, in which many combinations of words and numbers are tested as password. Avoid using the names of children or parents, dates of birth, etc.: many of your co-workers might know them, and you rarely want to give them free access to the computer in question."
-msgstr ""
+msgstr "Kata sandi pengguna root harus panjang (6 karakter atau lebih) dan tak mungkin ditebak. Memang, beberapa komputer (dan fortiori beberapa server) yang terhubung ke Internet umumnya dijadikan target oleh koneksi otomatis yang berupaya dengan kata sandi paling umum. Kadang kadang bahkan dijadikan subjek pada serangan kamus, yang banyak kombinasi kata dan angka sebagai kata sandi. Hindari penggunaan nama anak atau orang tua, tanggal lahir, dll.: kebanyakan rekan kerja Anda mungkin telah mengenal mereka, dan Anda jarang ingin memberikan akses bebas pada komputer dengan pertanyaan."
 
 #. Tag: para
 #, no-c-format
 msgid "These remarks are equally applicable for other user passwords, but the consequences of a compromised account are less drastic for users without administrative rights."
-msgstr ""
+msgstr "Komentar ini sesuai untuk diterapkan pada kata sandi pengguna lain, namun konsekuensi akun yang terkompromi kurang drastis untuk pengguna tanpa hak administratif."
 
 #. Tag: para
 #, no-c-format
 msgid "If inspiration is lacking, do not hesitate to use password generators, such as <command>pwgen</command> (in the package of the same name)."
-msgstr ""
+msgstr "Jika tak ada inspirasi, jangan ragu untuk menggunakan generator password, seperti <command>pwgen</command> (dalam paket dengan nama yang sama)."
 
 #. Tag: title
 #, no-c-format
 msgid "Creating the First User"
-msgstr ""
+msgstr "Membuat pengguna Pertama"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian also imposes the creation of a standard user account so that the administrator doesn't get into the bad habit of working as root. The precautionary principle essentially means that each task is performed with the minimum required rights, in order to limit the damage caused by human error. This is why the installer will ask for the complete name of this first user, their username, and their password (twice, to prevent the risk of erroneous input)."
-msgstr ""
+msgstr "Debian juga menimpakan pembuatan akun pengguna standar agar administrator tidak mendapat kebiasaan yang buruk bekerja sebagai root. Prinsip kehati-hatian pada dasarnya bermakna bahwa setiap tugas dikerjakan dengan hak minimal, agar meminimalisir bahaya yang disebabkan oleh kesalahan manusia. Inilah mengapa installer akan meminta untuk melengkapi nama pengguna pertama, nama penggunanya, dan kata sandinya (dua kali, untuk mendhindari kesalahan input)."
 
 #. Tag: title
 #, no-c-format
 msgid "Name of the first user"
-msgstr ""
+msgstr "Nama pengguna pertama"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Disks and Other Devices"
-msgstr ""
+msgstr "Mendeteksi Disk dan Device Lain"
 
 #. Tag: para
 #, no-c-format
 msgid "This step automatically detects the hard drives on which Debian may be installed. They will be presented in the next step: partitioning."
-msgstr ""
+msgstr "Langkah ini secara otomatis mendeteksi perangkat keras yang mungkin diinstali Debian. Akan disajikan pada langkah selanjutnya: pemartisian."
 
 #. Tag: title
 #, no-c-format
 msgid "Starting the Partitioning Tool"
-msgstr ""
+msgstr "Memulai Alat Pemartisi"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partitioning</primary>"
-msgstr ""
+msgstr "<primary>pemartisian</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Uses of partitioning"
-msgstr ""
+msgstr "<emphasis>KULTUR</emphasis> Penggunaan pemartisi"
 
 #. Tag: para
 #, no-c-format
 msgid "Partitioning, an indispensable step in installation, consists in dividing the available space on the hard drives (each subdivision thereof being called a “partition”) according to the data to be stored on it and the use for which the computer is intended. This step also includes choosing the filesystems to be used. All of these decisions will have an influence on performance, data security, and the administration of the server."
-msgstr ""
+msgstr "Pematisian, langkah yang sangat diperlukan dalam instalasi, berupa pembagian ruang yang tersedia pada hard drive (setiap bagian akan disebut “partisi”) berdasarkan data yang akan disimpan padanya dan penggunaan dimaksud pada komputer."
 
 #. Tag: para
 #, no-c-format
 msgid "The partitioning step is traditionally difficult for new users. It is necessary to define the various portions of the disks (or “partitions”) on which the Linux filesystems and virtual memory (swap) will be stored. This task is complicated if another operating system that you want to keep is already on the machine. Indeed, you will then have to make sure that you do not alter its partitions (or that you resize them without causing damage)."
-msgstr ""
+msgstr "Langkah pemartisian secara tradisional sulit untuk pengguna baru. Perlu menentukan berbagai prosi untuk cakram (atau “partisi”) di mana sistem berkas Linux dan memori virtual (swap) akan disimpan. Tugas ini rumit jika sistem operasi lain yang ingin Anda biarkan telah ada di mesin. Memang, Anda perlu memastikan tidak mengubah partisi tersebut (atau mengubah ukurannya tanpa menyebabkan bahaya)."
 
 #. Tag: para
 #, no-c-format
 msgid "Fortunately, the partitioning software has a “guided” mode which recommends partitions for the user to make — in most cases, you can simply validate the software's suggestions."
-msgstr ""
+msgstr "Untungnya, perangkat lunak pemartisi memiliki mode “terpandu” yang merekomendasikan pemartisian pada pengguna untuk membuat - dalam banyak kasus, Anda dapat memvalidasi saran perangkat lunak. "
 
 #. Tag: title
 #, no-c-format
 msgid "Choice of partitioning mode"
-msgstr ""
+msgstr "Pilihan mode pemartisi"
 
 #. Tag: para
 #, no-c-format
 msgid "The first screen in the partitioning tool offers the choice of using an entire hard drive to create various partitions. For a (new) computer which will solely use Linux, this option is clearly the simplest, and you can choose the option “Guided - use entire disk”. If the computer has two hard drives for two operating systems, setting one drive for each is also a solution that can facilitate partitioning. In both of these cases, the next screen offers to choose the disk where Linux will be installed by selecting the corresponding entry (for example, “SCSI1 (0,0,0) (sda) - 12.9 GB ATA VBOX HARDDISK”). You then start guided partitioning."
-msgstr ""
+msgstr "Layar pertama dalam alat pemartisi menawarkan pilihan menggunakan seluruh hard drive untuk membuat berbagai partisi. Untuk komputer (baru) yang akan sepenuhnya menggunakan Linux, pilihan ini jelas paling sederhana, dan Anda dapat mengambil pilihan “Terpandu - gunakan seluruh cakram”. Jika komputer memiliki dua hard drive untuk dua sistem operasi, pengaturan satu drive juga solusi untuk memfasilitasi pemartisian. Dalam kedua kasus ini, layar selanjutnya menawarkan untuk memilih cakram di mana Linux akan diinstall dengan memilih entri yang sesuai (sebagai contoh, “SCSI1 (0,0,0) (sda) - 12.9 GB ATA VBOX HARDDISK”). Anda kemudian memulai pemartisian terpandu."
 
 #. Tag: title
 #, no-c-format
 msgid "Disk to use for guided partitioning"
-msgstr ""
+msgstr "Disk yang digunakan untuk pemartisian terpandu"
 
 #. Tag: para
 #, no-c-format
 msgid "Guided partitioning can also set up LVM logical volumes instead of partitions (see below). Since the remainder of the operation is the same, we will not go over the option “Guided - use entire disk and set up LVM” (encrypted or not)."
-msgstr ""
+msgstr "Pemartisian terpandu juga dapat mengatur volume logikal LVM daripada partisi (lihat di bawah). Karena operasinya sama, kita tidak akan masuk ke pilihan “Terpandu - gunakan seluruh cakram dan atur LVM” (terkenkripsi atau tidak)."
 
 #. Tag: para
 #, no-c-format
 msgid "In other cases, when Linux must work alongside other already existing partitions, you need to choose manual partitioning."
-msgstr ""
+msgstr "Dalam kasus lain, ketka Linux harus berdampingan dengan partisi lain yang sudah ada, Anda perlu memilih pemartisian manual."
 
 #. Tag: title
 #, no-c-format
 msgid "Guided partitioning"
-msgstr ""
+msgstr "Pemartisian terpandu"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partitioning</primary><secondary>guided partitioning</secondary>"
-msgstr ""
+msgstr "<primary>pemartisian</primary><secondary>pemartisian terpandu</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The guided partitioning tool offers three partitioning methods, which correspond to different usages."
-msgstr ""
+msgstr "Alat pemandu pemartisian menawarkan tiga metode pemartisian, yang sesuai dengan penggunaan yang berbeda."
 
 #. Tag: para
 #, no-c-format
 msgid "The first method is called “All files in one partition”. The entire Linux system tree is stored in a single filesystem, corresponding to the root <filename>/</filename> directory. This simple and robust partitioning fits perfectly for personal or single-user systems. In fact, two partitions will be created: the first will house the complete system, the second the virtual memory (swap)."
-msgstr ""
+msgstr "Metode pertama di sebut “Seluruh berkas dalam satu partisi”. Seluruh sistem Linux tersimpan dalam satu sistem berkas, menyesuaikan dengan direktori root <filename>/</filename>. Sederhana dan pemartisi yang tangguh sangat cocok untuk personal atau pengguna-tunggal sistem. Kenyataannya, dua partisi akan dibuat: pertama sebagai tempat sistem lengkap, yang kedua memori virtual (swap)."
 
 #. Tag: para
 #, no-c-format
 msgid "The second method, “Separate <filename>/home/</filename> partition”, is similar, but splits the file hierarchy in two: one partition contains the Linux system (<filename>/</filename>), and the second contains “home directories” (meaning user data, in files and subdirectories available under <filename>/home/</filename>)."
-msgstr ""
+msgstr "Metode ketua, “Partisi <filename>/home/</filename> terpisah”, mirip, namun memecah hirarki berkas menjadi dua: satu partisi berisi sistem Linux (<filename>/</filename>), dan yang kedua berisi “direktori home” (maksudnya data pengguna, dalam berkas dan subdirektori tersedia di bawah <filename>/home/</filename>)."
 
 #. Tag: para
 #, no-c-format
 msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>), and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
-msgstr ""
+msgstr "Metode pemartisian terakhir, disebut “Partisi <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, dan <filename>/tmp</filename> terpisah”, cocok untuk server dan sistem multi-pengguna. Membagi pohon berkas ke beberapa partisi: selain partisi (<filename>/</filename>) dan akun pengguna (<filename>/home/</filename>), juga memiliki partisi untuk aplikasi (<filename>/usr/</filename>), data perangkat lunak server (<filename>/var/</filename>), dan berkas sementara (<filename>/</filename>). Pembagian ini memiliki beberapa keuntungan. Pengguna tidak dapat mengunci server dengan menggunakan seluruh ruang cakram keras yang tersedia (mereka dapat mengisi (<filename>/tmp/</filename>) dan (<filename>/home/</filename>). Data daemon (khususnya log) tidak lagi dapat melog seluruh sistem."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Choosing a filesystem"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Memilih sistem berkas"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>system</primary><secondary>filesystem</secondary>"
-msgstr ""
+msgstr "<primary>sistem</primary><secondary>sistem berkas</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>system</secondary>"
-msgstr ""
+msgstr "<primary>berkas</primary><secondary>sistem</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A filesystem defines the way in which data is organized on the hard drive. Each existing filesystem has its merits and limitations. Some are more robust, others more effective: if you know your needs well, choosing the most appropriate filesystem is possible. Various comparisons have already been made; it seems that ReiserFS is particularly efficient for reading many small files; <emphasis>XFS</emphasis>, in turn, works faster with large files. <emphasis>Ext4</emphasis>, the default filesystem for Debian, is a good compromise, based on the three previous versions of filesystems historically used in Linux (<emphasis>ext</emphasis>, <emphasis>ext2</emphasis> and <emphasis>ext3</emphasis>). <emphasis>Ext4</emphasis> overcomes certain limitations of <emphasis>ext3</emphasis> and is particularly appropriate for very large capacity hard drives. Another option would be to experiment with the very promising <emphasis>btrfs</emphasis>, which includes numerous features that require, to this day, the use of LVM and/or RAID."
-msgstr ""
+msgstr "Setelah menentukan sistem berkas dengan bagaimana diorganisasikan pada hard drive. Setiap sistem berkas yang ada memiliki ukuran dan batasannya. Beberapa lebih tangguh, lainya lebih efisien: jika Anda memahami dengan baik keperluan Anda, memungkinkan memilih sistem berkas yang sesuai. Berbagai perbandingan telah dibuat; nampaknya ReiserFS sangat efisien untuk membaca beberapa berkas kecil; <emphasis>XFS</emphasis>, pada gilirannya, bekerja lebih cepat dengan berkas besar. <emphasis>Ext4</emphasis>, sistem berkas bawaan Debian, ialah pilihan yang baik, berdasarkan ketiga versi sistem berkas sebelumnya secara historis digunakan di Linux (<emphasis>ext</emphasis>, <emphasis>ext2</emphasis>, dan <emphasis>ext3</emphasis>). <emphasis>Ext4</emphasis> mengatasi batasan tertentu dari <emphasis>ext3</emphasis> dan terutama sesuai untuk hard drive berkapasitas besar. Pilihan lain akan berkeksperimen dengan sangat menjanjikan <emphasis>btrfs</emphasis> yang menyertakan banyak fitur yang diperlukan, dalam hal ini, penggunaan LVM dan/atau RAID."
 
 #. Tag: para
 #, no-c-format
 msgid "A journalized filesystem (such as <emphasis>ext3</emphasis>, <emphasis>ext4</emphasis>, <emphasis>btrfs</emphasis>, <emphasis>reiserfs</emphasis>, or <emphasis>xfs</emphasis>) takes special measures to make it possible to return to a prior consistent state after an abrupt interruption without completely analyzing the entire disk (as was the case with the <emphasis>ext2</emphasis> system). This functionality is carried out by filling in a journal that describes the operations to conduct prior to actually executing them. If an operation is interrupted, it will be possible to “replay” it from the journal. Conversely, if an interruption occurs during an update of the journal, the last requested change is simply ignored; the data being written could be lost, but since the data on the disk has not changed, they have remained coherent. This is nothing more nor less than a transactional mechanism applied to the filesystem."
-msgstr ""
+msgstr " Sistem berkas berjurnal (seperti <emphasis>ext3</emphasis>, <emphasis>ext4</emphasis>, <emphasis>btrfs</emphasis>, <emphasis>reiserfs</emphasis>, atau <emphasis>xfs</emphasis>) mengambil tindakan khusus untuk memungkinkan kembali ke keadaan konsistem sebelumnya setelah tiba-tiba gangguan tanpa menganalisa seluruh cakram (sebagaimana kasus pada sistem berkas  <emphasis>ext2</emphasis>). Fungsionalitas ini dilakukan dengan mengisi jurnal yang menjelaskan operasi sebelum untuk benar-benar mengeksekusinya. "
 
 #. Tag: para
 #, no-c-format
 msgid "After choosing the type of partition, the software calculates a suggestion, and describes it on the screen; the user can then modify it if needed. You can, in particular, choose another filesystem if the standard choice (<emphasis>ext4</emphasis>) isn't appropriate. In most cases, however, the proposed partitioning is reasonable and it can be accepted by selecting the “Finish partitioning and write changes to disk” entry."
-msgstr ""
+msgstr "Setelah memilih tipe partisi, perangkat lungak menghitung saran, dan menjelaskannya di layar; pengguna dapat memodifikasinya jika diperlukan. Terutama, Anda dapat memilih sistem berkas lainnya jika pilihan standar (<emphasis>ext4</emphasis>) tidak cocok. Dalam banyak kasus, akan tetapi, partisi yang disarankan cukup layak dan dapat diterima dengan memilih entri “Selesai pemartisian dan tulis perubahan ke cakram”."
 
 #. Tag: title
 #, no-c-format
 msgid "Validating partitioning"
-msgstr ""
+msgstr "Validasi pemartisian"
 
 #. Tag: title
 #, no-c-format
 msgid "Manual Partitioning"
-msgstr ""
+msgstr "Pemartisian Manual"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partitioning</primary><secondary>manual partitioning</secondary>"
-msgstr ""
+msgstr "<primary>pemartisian</primary><secondary>pemartisian manual</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Manual partitioning allows greater flexibility, allowing the user to choose the purpose and size of each partition. Furthermore, this mode is unavoidable if you wish to use software RAID."
-msgstr ""
+msgstr "Pemartisian manual memungkinkan fleksibilitas yang lebih, mengizinkan pengguna memilih tujuan dan ukuran setiap partisi. Lebih jauh, mode ini diharuskan jika Anda ingin menggunakan perangkat lunak RAID."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Shrinking a Windows partition."
-msgstr ""
+msgstr "<emphasis>PRAKTEKNYA</emphasis> Mereduksi partisi Windows"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>resize a partition</primary>"
-msgstr ""
+msgstr "<primary>mengubah ukuran partisi</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>shrink a partition</primary>"
-msgstr ""
+msgstr "<primary>mereduksi partisi</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To install Debian alongside an existing operating system (Windows or other), you must have some available hard drive space that is not being used by the other system in order to be able to create the partitions dedicated to Debian. In most cases, this means shrinking a Windows partition and reusing the freed space."
-msgstr ""
+msgstr "Untuk menginstall Debian berdampingan dengan sistem operasi yang sudah ada (Windows atau lainnya), Anda harus memiliki ruang kosong hard drive yang tersedia yang tidak sedang digunakan oleh sistem operasi lain agar dapat membuat partisi khusus untuk Debian. Dalam banyak kasus, ini artinya mengecilkan partisi Windows dan menggunakan ulang ruang yang dikosongkan."
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian installer allows this operation when using the manual mode for partitioning. You only need to choose the Windows partition and enter its new size (this works the same with both FAT and NTFS partitions)."
-msgstr ""
+msgstr "Installer Debian mengizinkan operasi ini ketika menggunakan pemartisian mode manual. Anda hanya perlu memilih partisi Windows dan masukkan ukuran yang baru (berlaku sama untuk partisi FAT dan NTFS)."
 
 #. Tag: para
 #, no-c-format
 msgid "The first screen displays the available disks, their partitions, and any possible free space that has not yet been partitioned. You can select each displayed element; pressing the <keycap>Enter</keycap> key then gives a list of possible actions."
-msgstr ""
+msgstr "Layar pertama menampilkan cakram yang tersedia, partisinya, dan kemungkinan ruang kosong yang belum dipartisi. Anda dapat memilih setiap elemen yang ditampilkan; menekan tombol <keycap>Enter</keycap> kemudian muncul daftar aksi yang mungkin."
 
 #. Tag: para
 #, no-c-format
 msgid "You can erase all partitions on a disk by selecting it."
-msgstr ""
+msgstr "Anda dapat menghapus seluruh partisi dengan memilihnya."
 
 #. Tag: para
 #, no-c-format
 msgid "When selecting free space on a disk, you can manually create a new partition. You can also do this with guided partitioning, which is an interesting solution for a disk that already contains another operating system, but which you may wish to partition for Linux in a standard manner. See the previous section for more details on guided partitioning."
-msgstr ""
+msgstr "Ketika memilih ruang kosong di cakram, Anda dapat membuat partisi baru secara manual. Anda juga dapat melakukannya dengan pemartisian terpandu, yang merupakan solusi yang menarik untuk cakram yang telah berisi sistem operasi lain, namun Anda mungkin ingin memartisi untuk Linux dengan cara standar. Lihat bagian sebelumnya untuk penjelasan detail tentang pemartisian terpandu."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Mount point"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasi> Titik kaits"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mount point</primary>"
-msgstr ""
+msgstr "<primary>titik kait</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The mount point is the directory tree that will house the contents of the filesystem on the selected partition. Thus, a partition mounted at <filename>/home/</filename> is traditionally intended to contain user data."
-msgstr ""
+msgstr "Titik kait ialah pohon direktori yang akan memuat konten sistem berkas pada partisi yang terpilih. Demikian, partisi yang dikaitkan pada <filename>/home/</filename> secara tradisional bertujuan untuk bersisi data pengguna."
 
 #. Tag: para
 #, no-c-format
 msgid "When this directory is named “<filename>/</filename>”, it is known as the <emphasis>root</emphasis> of the file tree, and therefore the root of the partition that will actually host the Debian system."
-msgstr ""
+msgstr "Ketika direktori di beri nama “<filename>/</filename>”, disebut juga <filename>root</filename> dari pohon berkas, dan di sanalah akar partisi yang sesungguhnya memuat sistem Debian. "
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Virtual memory, swap"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Memori virtual, swap"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual memory</primary>"
-msgstr ""
+msgstr "<primary>memori virtual</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>swap</primary>"
-msgstr ""
+msgstr "<primary>swap</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>swap partition</secondary>"
-msgstr ""
+msgstr "<primary>partisi</primary><secondary>partisi swap</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>swap partition</primary>"
-msgstr ""
+msgstr "<primary>partisi swap</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Virtual memory allows the Linux kernel, when lacking sufficient memory (RAM), to free a bit of storage by storing the parts of the RAM that have been inactive for some time on the swap partition of the hard disk."
-msgstr ""
+msgstr "Memori virtual mengizinkan kernel Linux, ketika kehabisan memori (RAM), untuk membebaskan ruangan dengan menyimpan bagian RAM yang telah tidak aktif selama beberapa waktu ke partisi swap di hard disk."
 
 #. Tag: para
 #, no-c-format
 msgid "To simulate the additional memory, Windows uses a swap file that is directly contained in a filesystem. Conversely, Linux uses a partition dedicated to this purpose, hence the term “swap partition”."
-msgstr ""
+msgstr "Untuk mensimulasikan memori tambahan, Windows menggunakan berkas swap yang secara langsung terisi pada sistem berkas. Sebaliknya, Linux menggunakan partisi khusus untuk tujuan tersebut, maka istilahnya “partisi swap”."
 
 #. Tag: para
 #, no-c-format
 msgid "When choosing a partition, you can indicate the manner in which you are going to use it:"
-msgstr ""
+msgstr "Ketika memilih partisi, Anda dapat menentukan cara yang akan anda gunakan padanya:"
 
 #. Tag: para
 #, no-c-format
 msgid "format it and include it in the file tree by choosing a mount point;"
-msgstr ""
+msgstr "memformat dan menyertakannya pada pohon berkas dengan memilih titik kait;"
 
 #. Tag: para
 #, no-c-format
 msgid "use it as a swap partition;"
-msgstr ""
+msgstr "gunakan sebagai parsisi swap;"
 
 #. Tag: para
 #, no-c-format
 msgid "make it into a “physical volume for encryption” (to protect the confidentiality of data on certain partitions, see below);"
-msgstr ""
+msgstr "buatnya ke dalam sebuah “volume fisikal untuk dienkripsi” (untuk melindungi confidentalitas data pada beberapa partisi, lihat di bawah ini);"
 
 #. Tag: para
 #, no-c-format
 msgid "make it a “physical volume for LVM” (this concept is discussed in greater detail later in this chapter);"
-msgstr ""
+msgstr "buat sebuah “volume fisikal untuk LVM” (konsep ini dibahas lebih detil pada bab ini);"
 
 #. Tag: para
 #, no-c-format
 msgid "use it as a RAID device (see later in this chapter);"
-msgstr ""
+msgstr "gunakan sebagai perangkat RAID (lihat nanti di bab ini);"
 
 #. Tag: para
 #, no-c-format
 msgid "or the choice not to use it, and therefore leave it unchanged."
-msgstr ""
+msgstr "atau pilihan untuk tidak menggunakannya, dan karenanya biarkan tak diubah."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring Multidisk Devices (Software RAID)"
-msgstr ""
+msgstr "Mengonfigurasi Perangkat Multidisk (Perangkat Lunak RAID)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Software RAID</primary>"
-msgstr ""
+msgstr "<primary>Perangkat Lunak RAID</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>device</primary><secondary>multi-disk device</secondary>"
-msgstr ""
+msgstr "<primary>device</primary><secondary>multi-disk device</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Some types of RAID allow the duplication of information stored on hard drives to prevent data loss in the event of a hardware problem affecting one of them. Level 1 RAID keeps a simple, identical copy (mirror) of a hard drive on another drive, while level 5 RAID splits redundant data over several disks, thus allowing the complete reconstruction of a failing drive."
-msgstr ""
+msgstr "Beberapa tipe RAID mengizinkan duplikasi informasi yang terseimpan pada hard drive untuk menghindari kehilangan data ketika terjadi masalah perangkat keras berakibat pada salah satunya. RAID Level 1 sederhana, salinan identik (mirror) sebuah hard drive pada yang lainnya, sedangkan RAID level 5 membagi data yang berlebihan pada beberapa camram, hal tersebut memungkinkan rekonstruksi lengkap pada drive yang gagal."
 
 #. Tag: para
 #, no-c-format
 msgid "We will only describe level 1 RAID, which is the simplest to implement. The first step involves creating two partitions of identical size located on two different hard drives, and to label them “physical volume for RAID”."
-msgstr ""
+msgstr "kita hanya akan membahas RAID level 1, yang termudah untuk diimplementasikan. Langkah pertama melibatkan pembuatan dua partisi dengan ukuran sama pada dua hard drive yang berbeda, dan beri label “volume fisikal untuk RAID”."
 
 #. Tag: para
 #, no-c-format
 msgid "You must then choose “Configure software RAID” in the partitioning tool to combine these two partitions into a new virtual disk and select “Create MD device” in the configuration screen. You then need to answer a series of questions about this new device. The first question asks about the RAID level to use, which in our case will be “RAID1”. The second question asks about the number of active devices — two in our case, which is the number of partitions that needs to be included in this MD device. The third question is about the number of spare devices — 0; we have not planned any additional disk to take over for a possible defective disk. The last question requires you to choose the partitions for the RAID device — these would be the two that we have set aside for this purpose (make sure you only select the partitions that explicitly mention “raid”)."
-msgstr ""
+msgstr "Kemudian Anda perlu memilih “Mengonfigurasi perangkat lunak RAID” pada alat pemartisi untuk mengombinasikan kedua partisi ke dalam cakram virtual baru dan pilih “Buat device MD” pada layar konfigurasi. Kemudian Anda perlu menjawab beberapa pertanyaan tentang perangkat baru ini. Pertanyaan pertama menanyakan tentang level RAID yang digunakan, dalam kasus kita akan berupa “RAID1”. Pertanyaan kedua tentang jumlah device (perangkat) yang aktif - dua dalam hal ini, yang merupakan jumlah partisi yang perlu disertakan dalam perangkat MD ini. Pertanyaan ketiga tentang jumlah perangkat yang dipisah - 0; kita tidak merencanakan untuk penambahan cakram untuk menangani kemungkinan kerusakan cakram. Pertanyaan terakhir Anda perlu memilih partisi untuk perangkat RAID - ini berupa keduanya yang kita atur untuk tujuan ini (pastikan Anda hanya memilih partisi yang secara eksplisit menyebutkan “raid”)."
 
 #. Tag: para
 #, no-c-format
 msgid "Back to the main menu, a new virtual “RAID” disk appears. This disk is presented with a single partition which can not be deleted, but whose use we can choose (just like for any other partition)."
-msgstr ""
+msgstr "Kembali ke menu utama, cakram virtual “RAID” baru muncul. Cakram ini tersaji dengan sebuah partisi yang tidak dapat dihapus, namun kita dapat memilih siapa yang akan menggunakan (seperti untuk partisi lainnya)."
 
 #. Tag: para
 #, no-c-format
 msgid "For further details on RAID functions, please refer to <xref linkend=\"sect.raid-soft\" />."
-msgstr ""
+msgstr "Untuk detail lebih jauh tentang fungsionalitas RAID, silahkan merujuk ke <xref linkend=\"sect.raid-soft\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Logical Volume Manager (LVM)"
-msgstr ""
+msgstr "Mengonfigurasi Logicam Volume Manager (LVM)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LVM</primary><secondary>during installation</secondary>"
-msgstr ""
+msgstr "<primary>LVM</primary><secondary>selama instalasi</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Logical Volume Manager</primary><secondary>during installation</secondary>"
-msgstr ""
+msgstr "<primary>Logical Volume Manager</primary><secondary>selama instalasi</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "LVM allows you to create “virtual” partitions that span over several disks. The benefits are twofold: the size of the partitions are no longer limited by individual disks but by their cumulative volume, and you can resize existing partitions at any time, possibly after adding an additional disk when needed."
-msgstr ""
+msgstr "LVM memungkinkan Anda untuk membuat partisi “virtual” yang merentang sepanjang beberapa cakram. Kelebihannya ada dua: ukuran partisi tidak lagi dibatasi oleh cakram individual namun oleh volume kumulatif, dan Anda dapat mengupah ukuran partisi yang sudah ada kapanpun, mungkin setelah menambah cakram tambahan ketika diperlukan."
 
 #. Tag: para
 #, no-c-format
 msgid "LVM uses a particular terminology: a virtual partition is a “logical volume”, which is part of a “volume group”, or an association of several “physical volumes”. Each of these terms in fact corresponds to a “real” partition (or a software RAID device)."
-msgstr ""
+msgstr "LVM menggunakan beberapa terminologi: partisi virtual ialah “volume logikal”, bagian dari “grup volume”, atau sebuah asosiasi beberapa “volumen fisikal”. Setiap terminologi ini bersesuai dengan partisi ”real” (atau sebuah device perangkat lunak RAID)." 
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>volume</primary><secondary>logical volume</secondary>"
-msgstr ""
+msgstr "<primary>volume</primary><secondary>volume logikal</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>volume</primary><secondary>physical volume</secondary>"
-msgstr ""
+msgstr "<primary>volume</primary><secondary>volume fisikal</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>of volumes</secondary>"
-msgstr ""
+msgstr "<primary>grup</primary><secondary>volume</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>volume</primary><secondary>group</secondary>"
-msgstr ""
+msgstr "<primary>volume</primary><secondary>grup</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This technique works in a very simple way: each volume, whether physical or logical, is split into blocks of the same size, which are made to correspond by LVM. The addition of a new disk will cause the creation of a new physical volume, and these new blocks can be associated to any volume group. All of the partitions in the volume group that is thus expanded will have additional space into which they can extend."
-msgstr ""
+msgstr "Teknik ini bekerja dengan cara sederhana: setiap volume, entah itu fisikal atau logikal, dibagi pada blok dengan ukuran sama, yang dibuat sesuai oleh LVM. Penambahan cakram baru akan mengakibatkan pembuatan volumen fisikal baru, dan blok baru ini dapat diasosiasikan pada beberapa grup volume. Seluruh partisi pada grup volume yang diperluas akan memiliki ruang tambahan ke dalam grup yang dapat diperluas."
 
 #. Tag: para
 #, no-c-format
 msgid "The partitioning tool configures LVM in several steps. First you must create on the existing disks the partitions that will be “physical volumes for LVM”. To activate LVM, you need to choose “Configure the Logical Volume Manager (LVM)”, then on the same configuration screen “Create a volume group”, to which you will associate the existing physical volumes. Finally, you can create logical volumes within this volume group. Note that the automatic partitioning system can perform all these steps automatically."
-msgstr ""
+msgstr "Alat pemartisi mengonfigurasi LVM pada beberapa langkah. Pertama Anda harus membuat cakram yang ada partisi yang akan menjadi “volume fisikal untuk LVM”, Anda perlu memilih “Mengonfigurasi Logical Volume Manager (LVM)”, kemudian pada layar konfigurasi yang sama “Buat group volume”, ke yang akan diasosiasikan volume fisikal yang sudah ada. Akhirnya, Anda dapat membuat volume logikal denga grup volume ini. Catatan bahwa sistem pemartisi otomatis dapat melakukan seluruh langkah ini secara otomatis."
 
 #. Tag: para
 #, no-c-format
 msgid "In the partitioning menu, each physical volume will appear as a disk with a single partition which can not be deleted, but that you can use as desired."
-msgstr ""
+msgstr "Pada menu pemartisi, setiap volume fisikal akan nampak sebagai cakram dengan satu partisi yang tidak dapat dihapus, namun dapat Anda gunakan sesuka Anda."
 
 #. Tag: para
 #, no-c-format
 msgid "The usage of LVM is described in further detail in <xref linkend=\"sect.lvm\" />."
-msgstr ""
+msgstr "Penggunaan LVM dijelaskan lebih detail pada <xref linkend=\"sect.lvm\" />."
 
 #. Tag: title
 #, no-c-format
 msgid "Setting Up Encrypted Partitions"
-msgstr ""
+msgstr "Mengatur Partisi Terenkripsi"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LUKS</primary>"
-msgstr ""
+msgstr "<primary>LUKS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dm-crypt</primary>"
-msgstr ""
+msgstr "<primary>dm-crypt</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>encrypted</secondary>"
-msgstr ""
+msgstr "<primary>partisi</primary><secondary>terenkripsi</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition encryption</primary>"
-msgstr ""
+msgstr "<primary>enkripsi partisi</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>confidentiality</primary><secondary>files</secondary>"
-msgstr ""
+msgstr "<primary>kerahasiaan</primary><secondary>berkas</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>confidentiality</secondary>"
-msgstr ""
+msgstr "<primary>berkas</primary><secondary>kerahasiaan</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To guarantee the confidentiality of your data, for instance in the event of the loss or theft of your computer or a hard drive, it is possible to encrypt the data on some partitions. This feature can be added underneath any filesystem, since, as for LVM, Linux (and more particularly the dm-crypt driver) uses the Device Mapper to create a virtual partition (whose content is protected) based on an underlying partition that will store the data in an encrypted form (thanks to LUKS, Linux Unified Key Setup, a standard format that enables the storage of encrypted data as well as meta-information that indicates the encryption algorithms used)."
-msgstr ""
+msgstr "Untuk menjamin kerahasiaan data Anda, misalnya ketika kehilangan atau pencurian komputer atau hard drive Anda, adalah mungkin untuk mengenkripsi data pada beberapa partisi. Fitur ini dapat ditambahkan di bawah beberapa sistem berkas, misalnya, untuk LVM, Linux (dan khususnya penggerak dm-crypt) menggunakan Device Mapper untuk membuat partisi virtual (yang isinya diproteksi) berdasarkan pada partisi pokok yang akan menyimpan data dalam bentuk terenkripsi (terima kasih untuk LUKS, Linux Unified Key Setup, format standar yang mengaktifkan enkripsi data pada penyimpanan sebagaimana informasi-meta yang menunjukkan penggunaan algoritma enkripsi)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Encrypted swap partition"
-msgstr ""
+msgstr "<emphasis>KEAMANAN</emphasis> Partisi swap terenkripsi"
 
 #. Tag: para
 #, no-c-format
 msgid "When an encrypted partition is used, the encryption key is stored in memory (RAM). Since retrieving this key allows the decryption of the data, it is of utmost importance to avoid leaving a copy of this key that would be accessible to the possible thief of the computer or hard drive, or to a maintenance technician. This is however something that can easily occur with a laptop, since when hibernating the contents of RAM is stored on the swap partition. If this partition isn't encrypted, the thief may access the key and use it to decrypt the data from the encrypted partitions. This is why, when you use encrypted partitions, it is imperative to also encrypt the swap partition!"
-msgstr ""
+msgstr "Ketika enkripsi partisi digunakan, kunci enkripsi tersimpan di memori (RAM). Karena pengambilan kunci memungkinkan dekripsi data, sangat pentin untuk menghindari meninggalkan salinan kunci ini yang mungkin dapat diakses oleh pencuri komputer atau hard drive, atau teknisi pemeliharaan. Inilah mengapa sesuatu yang sangat mudah terjadi ketika laptop, karena ketika hibernasi isi RAM tersimpan pada partisi swap. Jika partisi tidak terenkripsi, pencuri mungkin dapat mengakses kodenya dan menggunakannya untuk mendekripsi data dari partisi yang terenkripsi. Inilah alasannya, ketika Anda menggunakan partisi terenkripsi, sangat penting juga untuk mengenkripsi partisi swap!"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian installer will warn the user if they try to make an encrypted partition while the swap partition isn't encrypted."
-msgstr ""
+msgstr "Installer Debian akan memeringatkan pengguna jika mereka mencoba untuk membuat partisi terenkripsi namun partisi swap tidak dienkripsi."
 
 #. Tag: para
 #, no-c-format
 msgid "To create an encrypted partition, you must first assign an available partition for this purpose. To do so, select a partition and indicate that it is to be used as a “physical volume for encryption”. After partitioning the disk containing the physical volume to be made, choose “Configure encrypted volumes”. The software will then propose to initialize the physical volume with random data (making the localization of the real data more difficult), and will ask you to enter an “encryption passphrase”, which you will have to enter every time you boot your computer in order to access the content of the encrypted partition. Once this step has been completed, and you have returned to the partitioning tool menu, a new partition will be available in an “encrypted volume”, which you can then configure just like any other partition. In most cases, this partition is used as a physical volume for LVM so as to protect several partitions (LVM logical volumes) with the same encryption key, including the swap partition (see sidebar)."
-msgstr ""
+msgstr "Untuk membuat partisi terenkripsi, Anda harus menentukan partisi yang tersedia untuk tujuan ini. Untuk melakukannya, memilih partisi dan menunjukkan bahwa digunakan sebagai “volume fisikal untuk enkripsi”. Setelah membuat partisi carkran merbsi volume fisikal, pilih “Konfigurasi volume terenkripsi”. Perangkat lunak kemudian akan mengajukan inisialisasi volume fisikal dengan data acak (membuat lokalisasi data yang nyata menjadi lebih sulit), dan akan meminta anda untuk memasukkan sebuah “passphrase enkripsi”, yang harus Anda masukkan setiap Anda memboot komputer agar mengakses isi dari partisi terenkripsi. Sekali langkah ini terlewati, dan Anda telah kembali pada menu alat pemartisian, partisi baru akan tersedia di “volume terenkripsi”, yang kemudian dapat Anda konfigurasi seperti partisi lainnya. Dalam banyak kasus, partisi ini digunakan sebagai volume fisikal untuk LVM jadi seperti memroteksi beberapa partisi (volume logikal LVM) dengan kunci enkripsi yang sama, termasuk partisi swap (lihat bilah sisi)."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the Base System"
-msgstr ""
+msgstr "Menginstall Basis Sistem"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>system</primary><secondary>base</secondary>"
-msgstr ""
+msgstr "<primary>sistem</primary><secondary>basis</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This step, which doesn't require any user interaction, installs the Debian “base system” packages. This includes the <command>dpkg</command> and <command>apt</command> tools, which manage Debian packages, as well as the utilities necessary to boot the system and start using it."
-msgstr ""
+msgstr "Langkah ini, yang tidak memerlukan interaksi penggunak, menginstall paket Debian “sistem dasar”. Termasuk alat <command>dpkg</command> dan <command>apt</command>, yang mengatur paket Debian, sebagaimana yang diperlukan untuk memboot sistem dan mulai menggunakannya."
 
 #. Tag: title
 #, no-c-format
 msgid "Installation of the base system"
-msgstr ""
+msgstr "Menginstall sistem dasar"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Package Manager (<command>apt</command>)"
-msgstr ""
+msgstr "Mengonfigurasi Manajer Paket (<command>apt</command>)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>initial configuration of APT</secondary>"
-msgstr ""
+msgstr "<primary>konfigurasi</primary><secondary>konfigurasi awal APT</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>initial configuration</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>konfigurasi awal</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In order to be able to install additional software, APT needs to be configured and told where to find Debian packages. This step is as automated as possible. It starts with a question asking if it must use a network source for packages, or if it should only look for packages on the CD-ROM."
-msgstr ""
+msgstr "Agar dapat menginstall paket perangkat lunak tambahan, APT perlu dikonfigurasi dan diberi tahu dimana lokasi paket Debian. Langkah ini mungkin terotomasi. Dimulai dengan pertanyaan jika harus menggunakan sumber jaringan untuk paket, atau hanya melihat paket yang ada pada CD-ROM."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Debian CD-ROM in the drive"
-msgstr ""
+msgstr "<emphasis>CATATAN</emphasis> CD-ROM Debian di drive"
 
 #. Tag: para
 #, no-c-format
 msgid "If the installer detects a Debian installation disk in the CD/DVD reader, it is not necessary to configure APT to go looking for packages on the network: APT is automatically configured to read packages from a removable media drive. If the disk is part of a set, the software will offer to “explore” other disks in order to reference all of the packages stored on them."
-msgstr ""
+msgstr "Jika installer mendeteksi cakram instalasi Debian pada pembaca CD/DVD, tidak perlu mengonfigurasi APT untuk mencari paket pada jaringan: APT secara otomatis dikonfigurasi untuk membaca paket dari drive removable media. Jika cakram termasuk bagiannya, perangkat lunak akan menawarkan untuk “menjelajah” cakram lain agar mereferensikan seluruh paket yang tersimpan di dalamnya."
 
 #. Tag: para
 #, no-c-format
 msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing first a country, then a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian master archive)."
-msgstr ""
+msgstr "Jika diminta untuk mendapatkan paket dari jaringan, dua pertanyaan selanjutnya memungkinkan untuk memilih server mana untuk mengunduh paket tersebut, pertama dengan memilih negara, kemudian cermin yang tersedia pada negara tersebut (sebuah cermin ialah salinan hosting server publik seluruh berkas arsip master Debian)."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting a Debian mirror"
-msgstr ""
+msgstr "Memilih mirror Debian"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the program proposes to use an HTTP proxy. If there is no proxy, Internet access will be direct. If you type <literal>http://proxy.falcot.com:3128</literal>, APT will use the Falcot <foreignphrase>proxy/cache</foreignphrase>, a “Squid” program. You can find these settings by checking the configurations of a web browser on another machine connected to the same network."
-msgstr ""
+msgstr "Akhirnya, program menawarkan untuk menggunakan proxy HTTP. Jika tidak ada proxy, akses Internet akan langsung. Jika Anda mengetik <literal>http://proxy.falcot.com:3128</literal>, APT akan menggunakan <foreignphrase>proxy/cache</foreignphrase> Falcot, sebuah program “Squid”. Anda dapat menemukan pengaturan ini dengan memeriksa konfigurasi peramban web pada mesin lain yang terhubung pada jaringan yang sama."
 
 #. Tag: para
 #, no-c-format
 msgid "The files <filename>Packages.gz</filename> and <filename>Sources.gz</filename> are then automatically downloaded to update the list of packages recognized by APT."
-msgstr ""
+msgstr "Berkas <filename>Packages.gz</filename> dan <filename>Sources.gz</filename> kemudian diunduh secara otomatis untuk memerbarui daftar paket yang dikenali oleh APT."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> HTTP proxy"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Proxy HTTP"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>proxy</primary>"
-msgstr ""
+msgstr "<primary>proxy</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>proxy cache</primary>"
-msgstr ""
+msgstr "<primary>proxy cache</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>cache, proxy</primary>"
-msgstr ""
+msgstr "<primary>cache, proxy</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Squid</primary>"
-msgstr ""
+msgstr "<primary>Squid</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "An HTTP proxy is a server that forwards an HTTP request for network users. It sometimes helps to speed up downloads by keeping a copy of files that have been transferred through it (we then speak of proxy/cache). In some cases, it is the only means of accessing an external web server; in such cases it is essential to answer the corresponding question during installation for the program to be able to download the Debian packages through it."
-msgstr ""
+msgstr "Proxy HTTP ialah server yang meneruskan permintaan HTTP untuk jaringan pengguna. Terkadang hal ini membantu memercepat unduhan dengan menyimpan salinan berkas yang telah ditransfer melaluinya (kemudian kita bicara pada proxy/cache). Pada beberapa kasus, ini hanya bermaksud mengakses sebuah web server eksternal; pada sebuah kasus sangat perlu menjawab pertanyaan yang sesuai sepanjang instalasi program agar dapat mengunduh paket Debian melaluinya."
 
 #. Tag: para
 #, no-c-format
 msgid "Squid is the name of the server software used by Falcot Corp to offer this service."
-msgstr ""
+msgstr "Squid ialah nama perangkat lunak server yang digunakan Falcot Corp untuk menawarkan layanan ini."
 
 #. Tag: title
 #, no-c-format
 msgid "Debian Package Popularity Contest"
-msgstr ""
+msgstr "Paket Debian Kontes Popularitas"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian system contains a package called <emphasis role=\"pkg\">popularity-contest</emphasis>, whose purpose is to compile package usage statistics. Each week, this program collects information on the packages installed and those used recently, and anonymously sends this information to the Debian project servers. The project can then use this information to determine the relative importance of each package, which influences the priority that will be granted to them. In particular, the most “popular” packages will be included in the installation CD-ROM, which will facilitate their access for users who do not wish to download them or to purchase a complete set."
-msgstr ""
+msgstr "Sistem Debian berisi paket yang disebut <emphasis role=\"pkg\">popularity-contest</emphasis>, yang bertujuan untuk menyusun statistik penggunaan paket. Setiap minggu, program ini mengumpulkan informasi paket yang terinstall dan yang baru digunakan, dan mengirim informasi ini ke server Debian secara tanpa nama. Proyek dapat menggunakan informasi ini untuk menentukan kepentingan relatif setiap paket, yang memengaruhi prioritas yang akan diberikan padanya. Khususnya paket yang paling “populer” akan disertakan pada CD-ROM instalasi, yang akan menfasilitasi akses mereka yang tidak ingin mengunduh atau membeli set lengkap."
 
 #. Tag: para
 #, no-c-format
 msgid "This package is only activated on demand, out of respect for the confidentiality of users' usage."
-msgstr ""
+msgstr "Paket ini hanya diaktifkan ketika diminta, untuk menghargai kerahasiaan penggunaan pengguna."
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting Packages for Installation"
-msgstr ""
+msgstr "Memilih Paket untuk Diinstall"
 
 #. Tag: para
 #, no-c-format
 msgid "The following step allows you to choose the purpose of the machine in very broad terms; the ten suggested tasks correspond to lists of packages to be installed. The list of the packages that will actually be installed will be fine-tuned and completed later on, but this provides a good starting point in a simple manner."
-msgstr ""
+msgstr "Langkah selanjutnya mengizinkan Anda untuk memilih tujuan mesin dalam istilah yang sangat luas; sepuluh saran tugas menyesuaikan daftar paket yang akan diinstall. Daftar paket yang akan diinstall akan disempurnakan dan dilengkapi kemudian, namun ini menyediakan permulaan yang bagus dalam cara yang sederhana."
 
 #. Tag: para
 #, no-c-format
 msgid "Some packages are also automatically installed according to the hardware detected (thanks to the program <command>discover-pkginstall</command> from the <emphasis role=\"pkg\">discover</emphasis> package). For instance, if a VirtualBox virtual machine is detected, the program will install the <emphasis role=\"pkg\">virtualbox-ose-guest-dkms</emphasis> package, allowing for better integration of the virtual machine with the host system."
-msgstr ""
+msgstr "Beberapa paket juga diinstall secara otomatis berdasarkan perangkat kerang yang terdeteksi (terima kasih program <command>discover-pkginstall</command> dari paket <emphasis role=\"pkg\">discover</emphasis>). Misalnya, jika mesin virtual VirtualBox terdeteksi, program akan menginstall paket <emphasis role=\"pkg\">virtualbox-ose-guest-dkms</emphasis>, mengizinkan integrasi yang lebih baik antara mesin virtual dengan sistem host."
 
 #. Tag: title
 #, no-c-format
 msgid "Task choices"
-msgstr ""
+msgstr "Pilihan tugas"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the GRUB Bootloader"
-msgstr ""
+msgstr "Menginstall Bootloader GRUB"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB</primary>"
-msgstr ""
+msgstr "<primary>GRUB</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The bootloader is the first program started by the BIOS. This program loads the Linux kernel into memory and then executes it. It often offers a menu that allows the user to choose the kernel to load and/or the operating system to boot."
-msgstr ""
+msgstr "Bootloader ialah program pertama yang dimulai oleh BIOS. Program ini memuat kernel Linux ke dalam memori kemudian mengeksekusinya. Seringkali menawarkan menu yang meungkinkan pengguna untuk memilih kernel untuk dimuat dan/atau sistem operasi yang diboot."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Bootloader and dual boot"
-msgstr ""
+msgstr "<emphasis>HATI-HATI</emphasis> Bootloader dan dual boot"
 
 #. Tag: para
 #, no-c-format
 msgid "This phase in the Debian installation process detects the operating systems that are already installed on the computer, and automatically adds corresponding entries in the boot menu, but not all installation programs do this."
-msgstr ""
+msgstr "Pada fase ini instalasi Debian mendeteksi sistem operasi yang telah terinstall di komputer, dan secara otomatis menambahkannya pada menu boot, namun tidak semua program instalasi melakukan ini."
 
 #. Tag: para
 #, no-c-format
 msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch08s07.html\" />"
-msgstr ""
+msgstr "Khususnya, jika Anda menginstall (atau menginstall ulang) Windows setelah itu, bootloader akan dihapus. Debian masih akan di hard drive, namun tidak lagi dapat diakses dari menu boot. Anda kemudian harus memboot sistem instalasi Debian dalam mode <userinput>rescue</userinput> untuk mengatur bootloader kurang ekslusif. Operasi ini dijelaskan lebih detil pada manual instalasi. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch08s07.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "By default, the menu proposed by GRUB contains all the installed Linux kernels, as well as any other operating systems that were detected. This is why you should accept the offer to install it in the Master Boot Record. Since keeping older kernel versions preserves the ability to boot the same system if the most recently installed kernel is defective or poorly adapted to the hardware, it often makes sense to keep a few older kernel versions installed."
-msgstr ""
+msgstr "Secara bawaan, menu yang ditawarkan GRUB berisi seluruh kernel Linux yang terinstall, sebagaimana sistem operasi lainnya yang terdeteksi. Itulah mengapa Anda harus menerima tawaran untuk menginstallnya pada Master Boot Record. Karena memertahankan versi lama kernel menjaga kemampuan untuk memboot sistem yang sama jika kernel yang baru diinstall tidak sempurna atau adaptasi ke perangkat kerasnya buruk, seringkali masuk akal untuk membiarkan beberapa kernel versi lama terinstall."
 
 #. Tag: para
 #, no-c-format
 msgid "GRUB is the default bootloader installed by Debian thanks to its technical superiority: it works with most filesystems and therefore doesn't require an update after each installation of a new kernel, since it reads its configuration during boot and finds the exact position of the new kernel. Version 1 of GRUB (now known as “Grub Legacy”) couldn't handle all combinations of LVM and software RAID; version 2, installed by default, is more complete. There may still be situations where it is more recommendable to install LILO (another bootloader); the installer will suggest it automatically."
-msgstr ""
+msgstr "GRUB ialah bootloader bawaan yang terinstall oleh Debian terima kasih untuk superioritas teknisnya: bekerja dengan kebanyakan sistem berkas dan tidak memerlukan perbaruan setiap kali instalasi kernel baru, karena dia membaca konfigurasinya ketika boot dan menemukan posisi yang tepat dari kernel baru. GRUB versi 1 (sekarang dikenal dengan “Grub Legacy”) tidak dapat menangani seluruh kombinasi LVM dan perangkat lunak RAID; versi 2 diinsal sebagai bawaan, lebih lengkap. Mungkin masih ada siatuasi yang lebih direkomendasikan untuk menginstall LILO (bootloader lain); installer akan menyarankannya secara otomatis."
 
 #. Tag: para
 #, no-c-format
 msgid "For more information on configuring GRUB, please refer to <xref linkend=\"sect.config-grub\" />."
-msgstr ""
+msgstr "Untuk informasi selengkapnya mengonfigurasi GRUB, silahkan merujuk ke <xref linkend=\"sect.config-grub\" />."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Bootloaders and architectures"
-msgstr ""
+msgstr "<emphasis>HATI-HATI</emphasis> Bootloader dan arsitektur"
 
 #. Tag: para
 #, no-c-format
 msgid "LILO and GRUB, which are mentioned in this chapter, are bootloaders for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. If you install Debian on another architecture, you will need to use another bootloader. Among others, we can cite <command>yaboot</command> or <command>quik</command> for <emphasis>powerpc</emphasis>, <command>silo</command> for <emphasis>sparc</emphasis>, <command>elilo</command> for <emphasis>ia64</emphasis>, <command>aboot</command> for <emphasis>alpha</emphasis>, <command>arcboot</command> for <emphasis>mips</emphasis>, <command>atari-bootstrap</command> or <command>vme-lilo</command> for <emphasis>m68k</emphasis>."
-msgstr ""
+msgstr "LILO dan GRUB, yang telah disebutkan di bab ini, ialah bootloader untuk arsitektur <emphasis>i386</emphasis> dan <emphasis>amd64</emphasis>. Jika Anda menginstall Debian pada arsitektur lain, Anda perlu mengnggunakan bootloader lain. Di antaranya, kita dapat menyebut <command>yaboot</command> atau <command>quik</command> untuk <emphasis>powerpc</emphasis>, <command>silo</command> atau <emphasis>sparc</emphasis>, <command>elilo</command> untuk <emphasis>ia64</emphasis>, <command>aboot</command> untuk <emphasis>alpha</emphasis>, <command>arcboot</command> untuk <emphasis>mips</emphasis>, <command>atari-bootstrap</command> atau <command>vme-lilo</command> untuk <emphasis>m68k</emphasis>."
 
 #. Tag: title
 #, no-c-format
 msgid "Finishing the Installation and Rebooting"
-msgstr ""
+msgstr "Menyelesaikan Instalasi dan Memboot Ulang"
 
 #. Tag: para
 #, no-c-format
 msgid "The installation is now complete, the program invites you to remove the CD-ROM from the reader and to restart the computer."
-msgstr ""
+msgstr "Instalasi sekarang selesai, program meminta Anda untuk melepaskan CD-ROM dari pembaca dan menyalakan ulang komputer."
 
 #. Tag: title
 #, no-c-format
 msgid "After the First Boot"
-msgstr ""
+msgstr "Setelah Boot Pertama"
 
 #. Tag: para
 #, no-c-format
 msgid "If you activated the task “Graphical desktop environment”, the computer will display the <command>gdm3</command> login manager."
-msgstr ""
+msgstr "Jika Anda mengaktifkan tugas “Lingkungan dektop grafis”, komputer akan menampilkan login manajer <command>gdm3</command>."
 
 #. Tag: title
 #, no-c-format
 msgid "First boot"
-msgstr ""
+msgstr "Boot pertama"
 
 #. Tag: para
 #, no-c-format
 msgid "The user that has already been created can then log in and begin working immediately."
-msgstr ""
+msgstr "Pengguna yang telah dibuat kemudian dapat masuk dan mulai berkerja."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing Additional Software"
-msgstr ""
+msgstr "Menginstall Perangkat Lunak Tambahan"
 
 #. Tag: para
 #, no-c-format
 msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (“Synaptic Package Manager” in the menus)."
-msgstr ""
+msgstr "Paket terinstall menyesuaikan profil yang terpilih ketika instalasi, namun tidak perlu untuk menggunakan yang akan dibuat oleh mesin. Misalnya, Anda mungkin ingin menggunakan alat manajemen paket untuk membersihkan pilihan paket yang telah terinstall. Dua alat yang paling sering digunakan (yang terinstall jika profil “Lingkungan desktop grafis” telah dipilih) ialah <command>apt</command> (dapat diakses dari baris perintah) dan <command>synaptic</command> (“Synaptic Manajer Paket” di menu)."
 
 #. Tag: para
 #, no-c-format
 msgid "To facilitate the installation of coherent groups of programs, Debian creates “tasks” that are dedicated to specific uses (mail server, file server, etc.). You already had the opportunity to select them during installation, and you can access them again thanks to package management tools such as <command>aptitude</command> (the tasks are listed in a distinct section) and <command>synaptic</command> (through the menu <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Mark Packages by Task…</guimenuitem> </menuchoice>)."
-msgstr ""
+msgstr "Untuk memfasilitasi instalasi kelompok program yang koheren, Debian membuat “tasks” yang didedikasikan untuk penggunaan khusus (mail server, server berkas, dll.). Anda telah memiliki kesempata untuk memilihnya ketika instalasi, dan anda dapat mengaksesnya lagi terima kasih pada alat manajemen paket seperti <command>aptitude</command> (tasks terdaftar pada bagian yang berbeda) dan <command>synaptic</command> (melalui menu <menuchoice> <guimenu>Sunting</guimenu> <guimenuitem>Tandai Paket dengan Task…</guimenuitem> </menuchoice>)."
 
 #. Tag: para
 #, no-c-format
 msgid "Aptitude is an interface to APT in full-screen text mode. It allows the user to browse the list of available packages according to various categories (installed or not-installed packages, by task, by section, etc.), and to view all of the information available on each of them (dependencies, conflicts, description, etc.). Each package can be marked “install” (to be installed, <keycap>+</keycap> key) or “remove” (to be removed, <keycap>-</keycap> key). All of these operations will be conducted simultaneously once you've confirmed them by pressing the <keycap>g</keycap> key (“g” for “go!”). If you have forgotten some programs, no worries; you will be able to run <command>aptitude</command> again once the initial installation has been completed."
-msgstr ""
+msgstr "Aptitude ialah interaktif untuk APT dalam mode teks layar-penuh. Memungkinkan pengguna untuk menjelajah daftar paket tersedia berdasarkan berbagai kategori (paket terinstall atau tak terinstall, berdasarkan task, pilihan, dll.), dan menampilkan seluruh setiap paket informasi yang tersedia (ketergantungan, konflik, penjelasan, dll.). Setiap paket dapat ditandai “install” (untuk diinstall, tombol <keycap>+</keycap>), atau “remove” (untuk dibuang, tombol <keycap>-</keycap>). Seluruh operasi ini dapat dilakukan secara simultan setelah Anda mengonfirmasi dengan menekan tombol <keycap>g</keycap> (“g” untuk “go!”). Jika Anda lupa beberapa program, tak usah khawatir, Anda akan dapat menjalankann <keycap>aptitude</keycap> lagi setelah instalasi tadi telah selesai."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>aptitude</primary>"
-msgstr ""
+msgstr "<primary>aptitude</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Debian thinks of speakers of non-English languages"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> Debian memikirkan pengucap selain bahasa Inggris"
 
 #. Tag: para
 #, no-c-format
 msgid "Several tasks are dedicated to the localization of the system in other languages beyond English. They include translated documentation, dictionaries, and various other packages useful for speakers of different languages. The appropriate task is automatically selected if a non-English language was chosen during installation."
-msgstr ""
+msgstr "Beberapa tugas didedikasikan untuk lokalisasi sistem dalam bahasa selain bahasa Inggris. Mereka menyertakan dokumentasi yang diterjemahkan, kamus, dan berbagai paket bahasa yang berguna untuk penutur yang berbeda bahasa. Tugas yang sesuai secara otomatis terpilih jika bahasa selain bahasa Inggris telah dipilih selama instalasi."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <command>dselect</command>, the old interface to install packages"
-msgstr ""
+msgstr "<emphasis>KULTUR</emphasis> <command>dselect</command>, antarmuka lama untuk menginstall paket"
 
 #. Tag: para
 #, no-c-format
 msgid "Before <command>aptitude</command>, the standard program to select packages to be installed was <command>dselect</command>, the old graphical interface associated with <command>dpkg</command>. A difficult program for beginners to use, it is not recommended."
-msgstr ""
+msgstr "Sebelum <command>aptitude</command>, program standar untuk memilih paket ialah <command>dselect</command>, antarmuka grafis lama terkait dengan <command>dpkg</command>. Program yang sulit digunakan oleh pemula, program ini tidak direkomendasikan."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dselect</command></primary>"
-msgstr ""
+msgstr "<primary><command>dselect</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Of course, it is possible not to select any task to be installed. In this case, you can manually install the desired software with the <command>apt-get</command> or <command>aptitude</command> command (which are both accessible from the command line)."
-msgstr ""
+msgstr "Tentu saja, memungkinkan untuk tidak memilih tugas untuk diinstall. Dalam kasus ini, Anda dapat menginstall secara manual perangkat lunak yang diinginkan dengan perintah <command>apt-get</command> atau <command>aptitude</command> (yang dapat diakses dari baris perintah)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Package dependencies, conflicts"
-msgstr ""
+msgstr "<emphasis>KOSA KATA</emphasis> Ketergantungan paket, konlik"
 
 #. Tag: para
 #, no-c-format
 msgid "In the Debian packaging lingo, a “dependency” is another package necessary for the proper functioning of the package in question. Conversely, a “conflict” is a package that can not be installed side-by-side with another."
-msgstr ""
+msgstr "Dalam bahasa khas paket Debian, “ketergantungan” ialah paket lain yang diperlukan agar suatu paket dapat berfungsi dengan baik. Sebaliknya, “konflik” ialah paket yang tidak dapat diinstall berdampingan dengan paket lain."
 
 #. Tag: para
 #, no-c-format
 msgid "These concepts are discussed in greater detail in <xref linkend=\"packaging-system\" />."
-msgstr ""
+msgstr "Konsept ini dibahas lebih detil di <xref linkend=\"packaging-system\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Upgrading the System"
-msgstr ""
+msgstr "Mengupgrade sistem"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>safe-upgrade</primary>"
-msgstr ""
+msgstr "<primary>safe-upgrade</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"sect.apt-upgrade\" />."
-msgstr ""
+msgstr "Sebagai permulaan <command>aptitude safe-upgrade</command> (perintah yang digunakan untuk memerbarui program terinstall) umumnya diperlukan, khususnya pembaruan keamanan yang ditemukan ketika rilis terkini versi stable Debian. Pembaruan ini mungkin melibatkan beberapa pertanyaan melalui <command>debconf</command>, alat konfigutasi standar Debian. Untuk informasi lebih jauh mengenai pembaruan ini dilakukan oleh <command>aptitude</command>, silahkan merujuk ke <xref linkend=\"sect.apt-upgrade\" />."
