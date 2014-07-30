@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import fr.neamar.summon.dataprovider.AliasProvider;
 import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.ContactProvider;
