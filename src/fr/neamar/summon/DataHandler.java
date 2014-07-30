@@ -52,6 +52,9 @@ public class DataHandler extends BroadcastReceiver {
 		if (prefs.getBoolean("enable-search", true)) {
 			providers.add(new SearchProvider(context));
 		}
+		if (prefs.getBoolean("enable-search", true)) {
+			providers.add(new SearchProvider(context));
+		}
 		if (prefs.getBoolean("enable-toggles", true)) {
 			providers.add(new ToggleProvider(context));
 		}
@@ -65,9 +68,9 @@ public class DataHandler extends BroadcastReceiver {
 
 	/**
 	 * Get records for this query.
-	 * 
+	 *
 	 * @param query
-	 * 
+	 *
 	 * @return ordered list of records
 	 */
 	public ArrayList<Holder> getResults(Context context, String query) {
@@ -117,7 +120,7 @@ public class DataHandler extends BroadcastReceiver {
 	 * May return null if no items were ever selected (app first use)<br />
 	 * May return an empty set if the providers are not done building records,
 	 * in this case it is probably a good idea to call this function 500ms after
-	 * 
+	 *
 	 * @return
 	 */
 	protected ArrayList<Holder> getHistory(Context context) {
@@ -147,7 +150,7 @@ public class DataHandler extends BroadcastReceiver {
 	/**
 	 * Return most used items.<br />
 	 * May return null if no items were ever selected (app first use)
-	 * 
+	 *
 	 * @return
 	 */
 	protected ArrayList<Holder> getFavorites(Context context) {
@@ -156,7 +159,7 @@ public class DataHandler extends BroadcastReceiver {
 		// Read history
 		ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, 5);
 
-		
+
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
 			Holder holder = getHolder(ids.get(i).record);
@@ -164,7 +167,7 @@ public class DataHandler extends BroadcastReceiver {
 				favorites.add(holder);
 			}
 		}
-		
+
 
 
 		return favorites;
@@ -193,7 +196,7 @@ public class DataHandler extends BroadcastReceiver {
 				return providers.get(i).findById(id);
 			}
 		}
-			
+
 		return null;
 	}
 }
