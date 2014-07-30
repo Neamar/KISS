@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-05-20 17:16+0200\n"
-"Last-Translator: Krisley Bernardo <krisley.bernardo@outlook.com>\n"
+"PO-Revision-Date: 2014-08-04 19:50+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.9\n"
+"X-Generator: Weblate 1.10-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -142,10 +142,22 @@ msgid "<primary><command>locale-gen</command></primary>"
 msgstr "<primary><command>locale-gen</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "A locale is a group of regional settings. This includes not only the language for text, but also the format for displaying numbers, dates, times, and monetary sums, as well as the method for alphabetical comparison (for alphabetically ordering items, to include accented characters, where applicable). Although each of these parameters can be specified independently from the others, we generally will use one locale, which is a coherent set of values for these parameters corresponding to a “region” in the broadest sense. These locales are usually indicated under the form, <literal><replaceable>language-code</replaceable>_<replaceable>COUNTRY-CODE</replaceable></literal>, sometimes with a suffix to specify the character set and encoding to be used. This enables consideration of idiomatic or typographical differences between different regions with a common language."
 msgid "A locale is a group of regional settings. This includes not only the language for text, but also the format for displaying numbers, dates, times, and monetary sums, as well as the alphabetical comparison rules (to properly account for accented characters). Although each of these parameters can be specified independently from the others, we generally use a locale, which is a coherent set of values for these parameters corresponding to a “region” in the broadest sense. These locales are usually indicated under the form, <literal><replaceable>language-code</replaceable>_<replaceable>COUNTRY-CODE</replaceable></literal>, sometimes with a suffix to specify the character set and encoding to be used. This enables consideration of idiomatic or typographical differences between different regions with a common language."
-msgstr "Um \"locale\" é um grupo de configurações regionais. Isto inclui não apenas o idioma do texto, mas também o formato para exibir números, datas, horas e valores monetários, assim como o método de comparação alfabética ( para itens ordenados alfabeticamente, quando aplicável). Embora cada um destes parâmetros possa ser especificado independentemente dos outros, geralmente usamos um \"locale\", que é um conjunto coerente de valores para estes parâmetros correspondendo a uma \"região\" no sentido amplo. Estes \"locales\" são usualmente indicados na forma, <literal><replaceable>código-de-idioma</replaceable>_<replaceable>CÓDIGO-DE-PAÍS</replaceable></literal>, algumas vezes com um sufixo para especificar o conjunto de caracteres e codificação a ser usado. Isto habilita considerações de diferenças idiomáticas ou tipográficas entre regiões com uma linguagem em comum."
+msgstr ""
+"Um \"locale\" é um grupo de configurações regionais. Isto inclui não apenas "
+"o idioma do texto, mas também o formato para exibir números, datas, horas e "
+"valores monetários, assim como as regras de comparação alfabéticas (para "
+"considerar corretamente os caracteres acentuados). Embora cada um destes "
+"parâmetros possa ser especificado independentemente dos outros, geralmente "
+"usamos um \"locale\", que é um conjunto coerente de valores para estes "
+"parâmetros correspondendo a uma \"região\" no sentido amplo. Estes \""
+"locales\" são usualmente indicados na forma, <literal><replaceable>código-de-"
+"idioma</replaceable>_<replaceable>CÓDIGO-DE-PAÍS</replaceable></literal>, "
+"algumas vezes com um sufixo para especificar o conjunto de caracteres e "
+"codificação a ser usado. Isto habilita considerações de diferenças "
+"idiomáticas ou tipográficas entre regiões com uma linguagem em comum."
 
 #. Tag: title
 #, no-c-format
@@ -193,12 +205,21 @@ msgid "The most popular encodings for latin-based languages were limited to 256 
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Working with foreign languages often implied regular switches between various encodings and character sets. Furthermore, writing multilingual documents led to further, almost intractable problems. Unicode (a super-catalog of nearly all writing systems from all of the world's languages) was created to work around this problem. One of Unicode's encodings, UTF-8, retains all 128 ASCII symbols (7-bit codes), but handles other characters differently. The others are preceded by a sequence of “escape” characters with a variable length. This allows encoding all Unicode characters on a sequence of one or more octets."
 msgid "Working with foreign languages often implied regular switches between various encodings and character sets. Furthermore, writing multilingual documents led to further, almost intractable problems. Unicode (a super-catalog of nearly all writing systems from all of the world's languages) was created to work around this problem. One of Unicode's encodings, UTF-8, retains all 128 ASCII symbols (7-bit codes), but handles other characters differently. Those are preceded by a specific escape sequence of a few bits, which implicitly defines the length of the character. This allows encoding all Unicode characters on a sequence of one or more bytes. Its use has been popularized by the fact that it's the default encoding in XML documents."
 msgstr ""
-"Trabalhar com línguas estrangeiras comumente implica trocar regularmente entre várias codificações e conjuntos de caracteres.\n"
-"Além disso, escrever um documento diversas linguás leva a mais, quase intratáveis problemas. Unicode (um super catálogo de quase todos os sistemas de escrita de todas as línguas do mundo) foi criado para contornar este problema. Uma das codificações Unicode, UTF-8, retém todos os 128 símbolos ASCII (códigos 7-bits), mas lida com outros caracteres diferentemente. Os outros são precedidos por uma sequência do carácter \"escape\" com um tamanho variado. Isto permite codificar todos os caracteres Unicode com uma sequência de um ou mais octetos."
+"Trabalhar com línguas estrangeiras comumente implica trocar regularmente "
+"entre várias codificações e conjuntos de caracteres. Além disso, escrever um "
+"documento em diversas linguas leva a problemas maiores, quase intratáveis. "
+"Unicode (um super catálogo de quase todos os sistemas de escrita de todas as "
+"línguas do mundo) foi criado para contornar este problema. Uma das "
+"codificações Unicode, UTF-8, retém todos os 128 símbolos ASCII (códigos "
+"7-bits), mas lida com outros caracteres diferentemente. Estes outros são "
+"precedidos por uma sequencia de escape específica de poucos bits, que "
+"implicitamente define o tamanho do caractere. Isto permite a codificação de "
+"todos os caracteres Unicode em uma sequência de um ou mais bytes. Seu uso "
+"foi popularizado pelo fato de ser a codificação padrão em documentos XML."
 
 #. Tag: indexterm
 #, no-c-format
@@ -221,22 +242,46 @@ msgid "This is the encoding that should generally be used, and is thus the defau
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <emphasis role=\"pkg\">locales</emphasis> package includes all the elements required for proper functioning of “localization” for various applications. During installation, this package will ask a few questions in order to choose supported languages. This set of supported languages can be changed by running <command>dpkg-reconfigure locales</command>."
 msgid "The <emphasis role=\"pkg\">locales</emphasis> package includes all the elements required for proper functioning of “localization” of various applications. During installation, this package will ask to select a set of supported languages. This set can be changed at any time by running <command>dpkg-reconfigure locales</command> as root."
-msgstr "O pacote <emphasis role=\"pkg\">locales</emphasis> incluí todos os elementos necessários para seu funcionamento correto da \"localização\" de várias aplicativos. Durante a instalação, este pacote perguntará algumas questões de maneira a escolher o suporte de línguas. Este conjunto de línguas pode ser alterado executando o comando <command>dpkg-reconfigure locales</command>."
+msgstr ""
+"O pacote <emphasis role=\"pkg\">locales</emphasis> inclui todos os elementos "
+"necessários para o funcionamento correto da \"localização\" de vários "
+"aplicativos. Durante a instalação, este pacote vai pedir que você selecione "
+"um conjunto de idiomas suportados. Este conjunto de idiomas pode ser "
+"alterado executando o comando <command>dpkg-reconfigure locales</command> "
+"como o root."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "You will be asked, first, to choose what “locales” to include. Selecting all English locales (meaning those beginning with“<literal>en_US</literal>”) is a reasonable choice. Do not hesitate to choose other locales if the machine will host foreign users. This list of known locales on the system is stored in the <filename>/etc/locale.gen</filename> file. It is possible to edit this file by hand, but you should run <command>locale-gen</command> after any modifications. It will generate the necessary files for the proper functioning of added locales and remove any obsolete files."
 msgid "The first question invites you to select “locales” to support. Selecting all English locales (meaning those beginning with “<literal>en_US</literal>”) is a reasonable choice. Do not hesitate to choose other locales if the machine will host foreign users. The list of locales enabled on the system is stored in the <filename>/etc/locale.gen</filename> file. It is possible to edit this file by hand, but you should run <command>locale-gen</command> after any modifications. It will generate the necessary files for the added locales to work, and remove any obsolete files."
-msgstr "Você será perguntado, primeiro, para escolher quais \"localidades\" serão incluídas. Selecionando todas as localidades inglesas (o que significa todos aqueles que começam com “<literal>en_US</literal>”) é uma escolha sensata. Não hesite em escolher outras localidades se a máquina for hospedar usuários estrangeiros. A lista de localidades do sistema estão armazenadas no arquivo <filename>/etc/locale.gen</filename>. É possível editar este arquivo manualmente, mas você deveria executar <command>locale-gen</command> após algumas modificações. Ele gerará os arquivos necessários para o funcionamento correto da inclusão das localidades e remoção dos arquivos obsoletos."
+msgstr ""
+"A primeira pergunta pede a você para selecionar os “locales” a suportar. "
+"Selecionar todos os locales do inglês (ou seja, aqueles começados com "
+"“<literal>en_US</literal>”) é uma escolha sensata. Não hesite em escolher "
+"outras localidades se a máquina for hospedar usuários estrangeiros. A lista "
+"de localidades habilitados no sistema estão armazenadas no arquivo "
+"<filename>/etc/locale.gen</filename>. É possível editar este arquivo "
+"manualmente, mas você deveria executar <command>locale-gen</command> após "
+"qualquer modificação. Ele gerará os arquivos necessários para que a adição "
+"de locales funcione e vai remover quaisquer arquivos obsoletos."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The second question, entitled “Set default locale”, requests a default locale. The recommended choice in the U.S.A. is “<literal>en_US.UTF-8</literal>”. British English speakers will prefer “<literal>en_GB.UTF-8</literal>”, and Canadians will prefer either <literal>en_CA.UTF-8</literal>” or, for French, “<literal>fr_CA.UTF-8</literal>”. The <filename>/etc/default/locale</filename> file will then be modified to set the default locale for the environment variable, <varname>LANG</varname>."
 msgid "The second question, entitled “Default locale for the system environment”, requests a default locale. The recommended choice in the U.S.A. is “<literal>en_US.UTF-8</literal>”. British English speakers will prefer “<literal>en_GB.UTF-8</literal>”, and Canadians will prefer either “<literal>en_CA.UTF-8</literal>” or, for French, “<literal>fr_CA.UTF-8</literal>”. The <filename>/etc/default/locale</filename> file will then be modified to store this choice. From there, it's picked up by all user sessions since PAM will inject its content in the <varname>LANG</varname> environment variable."
-msgstr "A segunda pergunta, \"Set default locale\" (\"configurar locale padrão\"), pede um locale padrão. A escolha recomendada no Brasil é \"<literal>pt_BR.UTF-8</literal>\". Portugueses de portugal vão preferir \"<literal>pt_PT.UTF-8</literal>\" e franceses, \"<literal>fr_CA.UTF-8</literal>\". O arquivo <filename>/etc/default/locale</filename> vai ser então modificado para configurar o locale padrão para a variável de ambiente, <varname>LANG</varname>."
+msgstr ""
+"A segunda pergunta, \"Default locale for the system environment\" (\"locale "
+"padrão para o ambiente do sistema\"), pede um locale padrão. A escolha "
+"recomendada no Brasil é \"<literal>pt_BR.UTF-8</literal>\". Portugueses de "
+"portugal vão preferir \"<literal>pt_PT.UTF-8</literal>\" e franceses, \""
+"<literal>fr.UTF-8</literal>\". O arquivo "
+"<filename>/etc/default/locale</filename> vai ser então modificado para "
+"armazenar esta escolha. E a partir dele, a escolha será selecionada por "
+"todas a ssessões de usuário, já que o PAM vai injetar seu conteúdo na "
+"variável de ambiente <varname>LANG</varname>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -264,16 +309,28 @@ msgid "The <filename>/etc/environment</filename> file provides the <command>logi
 msgstr "O arquivo <filename>/etc/environment</filename> dá aos programas <command>login</command>, <command>gdm</command>, ou até mesmo <command>ssh</command> as variáveis de ambiente corretas a serem criadas."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "These applications do not create these variables directly, but rather via a PAM (<filename>pam_env.so</filename>) module. PAM (Pluggable Authentication Module) is a modular library centralizing the mechanisms for authentication, session initialization, and password management. See <xref linkend=\"section.config-pam\" /> for an example of PAM configuration."
 msgid "These applications do not create these variables directly, but rather via a PAM (<filename>pam_env.so</filename>) module. PAM (Pluggable Authentication Module) is a modular library centralizing the mechanisms for authentication, session initialization, and password management. See <xref linkend=\"sect.config-pam\" /> for an example of PAM configuration."
-msgstr "Estes aplicativos não criam essas variáveis diretamente, mas sim via um módulo PAM (<filename>pam_env.so</filename>). PAM (Pluggable Authentication Module - Módulo de autenticação plugável) é uma biblioteca centralizadora de mecanismos para autenticação, inicialização de sessão, e gerenciamento de senhas. Veja <xref linkend=\"section.config-pam\" />  para um exemplo da configuração do PAM."
+msgstr ""
+"Estes aplicativos não criam essas variáveis diretamente, mas sim via um "
+"módulo PAM (<filename>pam_env.so</filename>). PAM (Pluggable Authentication "
+"Module - Módulo de autenticação plugável) é uma biblioteca centralizadora de "
+"mecanismos para autenticação, inicialização de sessão, e gerenciamento de "
+"senhas. Veja <xref linkend=\"sect.config-pam\" />  para um exemplo da "
+"configuração do PAM."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <filename>/etc/default/locale</filename> file works in a similar manner, but does not contain the <varname>LANG</varname> environment variable. This means some PAM users will inherit an environment without localization. Running server programs with regional parameters is generally discouraged; on the other hand, using the implicit regional settings is recommended for programs that open user sessions."
 msgid "The <filename>/etc/default/locale</filename> file works in a similar manner, but contains only the <varname>LANG</varname> environment variable. Thanks to this split, some PAM users can inherit a complete environment without localization. Indeed, it's generally discouraged to run server programs with localization enabled; on the other hand, localization and regional settings are recommended for programs that open user sessions."
-msgstr "O arquivo <filename>/etc/default/locale</filename> funciona de maneira similar, mas não contém a variável do ambiente <varname>LANG</varname>. Isto significa que os usuários do PAM herdarão um ambiente sem regionalização. Executar um programa servidor com os parâmetros regionais é geralmente desaconselhado; por outro lado, usar configurações implicitamente regionais é recomendado para programas que abram sessões para usuários."
+msgstr ""
+"O arquivo <filename>/etc/default/locale</filename> funciona de maneira "
+"similar, mas contém apenas a variável de ambiente <varname>LANG</varname>. "
+"Graças a esta divisão, alguns usuários PAM podem herdar um ambiente sem "
+"localização. Na verdade, é desencorajado executar programas servidores com "
+"localização habilitada; por outro lado, configurações regionais e de "
+"localização são recomendadas para programas que  abrem sessões de usuário."
 
 #. Tag: indexterm
 #, no-c-format
