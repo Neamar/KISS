@@ -10,6 +10,7 @@ import android.widget.Toast;
 import fr.neamar.summon.QueryInterface;
 import fr.neamar.summon.record.AppRecord;
 import fr.neamar.summon.record.ContactRecord;
+import fr.neamar.summon.record.PhoneRecord;
 import fr.neamar.summon.record.Record;
 import fr.neamar.summon.record.SearchRecord;
 import fr.neamar.summon.record.SettingRecord;
@@ -33,7 +34,7 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	}
 
 	public int getViewTypeCount() {
-		return 5;
+		return 6;
 	}
 
 	public int getItemViewType(int position) {
@@ -47,6 +48,10 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 			return 3;
 		else if (records.get(position) instanceof SettingRecord)
 			return 4;
+		else if (records.get(position) instanceof SettingRecord)
+			return 4;
+		else if (records.get(position) instanceof PhoneRecord)
+			return 5;
 		else
 			return -1;
 	}

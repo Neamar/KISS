@@ -14,6 +14,7 @@ import fr.neamar.summon.dataprovider.AppProvider;
 import fr.neamar.summon.dataprovider.ContactProvider;
 import fr.neamar.summon.dataprovider.Provider;
 import fr.neamar.summon.dataprovider.SearchProvider;
+import fr.neamar.summon.dataprovider.PhoneProvider;
 import fr.neamar.summon.dataprovider.SettingProvider;
 import fr.neamar.summon.dataprovider.ToggleProvider;
 import fr.neamar.summon.db.DBHelper;
@@ -52,8 +53,8 @@ public class DataHandler extends BroadcastReceiver {
 		if (prefs.getBoolean("enable-search", true)) {
 			providers.add(new SearchProvider(context));
 		}
-		if (prefs.getBoolean("enable-search", true)) {
-			providers.add(new SearchProvider(context));
+		if (prefs.getBoolean("enable-phone", true)) {
+			providers.add(new PhoneProvider(context));
 		}
 		if (prefs.getBoolean("enable-toggles", true)) {
 			providers.add(new ToggleProvider(context));

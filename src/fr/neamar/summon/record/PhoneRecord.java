@@ -32,19 +32,12 @@ public class PhoneRecord extends Record {
 
 	@Override
 	public void doLaunch(Context context, View v) {
-		Intent phone = new Intent(Intent.ACTION_WEB_SEARCH);
-		phone.putExtra(SearchManager.QUERY, phoneHolder.phone);
+		Intent phone = new Intent(Intent.ACTION_CALL);
+		phone.setData(Uri.parse("tel:" + phoneHolder.phone));
+
 		phone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-		try {
-			context.startActivity(phone);
-		} catch (ActivityNotFoundException e) {
-			// This exception gets thrown if Google Phone has been deactivated:
-			Uri uri = Uri.parse("http://www.google.com/#q=" + phoneHolder.phone);
-			phone = new Intent(Intent.ACTION_VIEW, uri);
-			phone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			context.startActivity(phone);
-		}
+		context.startActivity(phone);
 	}
 
 }

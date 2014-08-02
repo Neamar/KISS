@@ -16,6 +16,7 @@ import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.SearchHolder;
 import fr.neamar.summon.holder.SettingHolder;
 import fr.neamar.summon.holder.ToggleHolder;
+import fr.neamar.summon.holder.PhoneHolder;
 
 public abstract class Record {
 	/**
@@ -31,7 +32,7 @@ public abstract class Record {
 
 	/**
 	 * How to display this record ?
-	 * 
+	 *
 	 * @param context
 	 * @param convertView
 	 *            a view to be recycled
@@ -51,25 +52,25 @@ public abstract class Record {
 	/**
 	 * How to launch this record ? Most probably, will fire an intent. This
 	 * function must call recordLaunch()
-	 * 
+	 *
 	 * @param context
 	 */
 	public abstract void doLaunch(Context context, View v);
-	
+
 	/**
 	 * How to launch this record "quickly" ? Most probably, same as doLaunch().
 	 * Override to define another behavior.
-	 * 
+	 *
 	 * @param context
 	 */
 	public void fastLaunch(Context context)
 	{
 		this.launch(context, null);
 	}
-	
+
 	/**
 	 * Return the icon for this Record, or null if non existing.
-	 * 
+	 *
 	 * @param context
 	 */
 	public Drawable getDrawable(Context context)
@@ -79,7 +80,7 @@ public abstract class Record {
 
 	/**
 	 * Helper function to get a view
-	 * 
+	 *
 	 * @param context
 	 * @param id
 	 * @return the view specified by the id
@@ -92,7 +93,7 @@ public abstract class Record {
 
 	/**
 	 * Enrich text for display. Put text requiring highlighting between {}
-	 * 
+	 *
 	 * @param text
 	 * @return text displayable on a textview
 	 */
@@ -102,7 +103,7 @@ public abstract class Record {
 
 	/**
 	 * Put this item in application history
-	 * 
+	 *
 	 * @param context
 	 */
 	protected void recordLaunch(Context context) {
@@ -127,6 +128,8 @@ public abstract class Record {
 			return new SettingRecord((SettingHolder) holder);
 		else if (holder instanceof ToggleHolder)
 			return new ToggleRecord((ToggleHolder) holder);
+		else if (holder instanceof PhoneHolder)
+			return new PhoneRecord((PhoneHolder) holder);
 
 		Log.e("log", "Unable to create record for specified holder.");
 		return null;

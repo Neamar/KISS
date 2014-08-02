@@ -38,3 +38,6 @@ Each data types uses three classes :
 
 Controlling the workflow is *SummonActivity*, intializing the UI, dispatching the query to the providers and ordering the results according to their relevance and user search history.
 
+### Adding new content sources
+This is clearly not as easy as it ought to be.
+
