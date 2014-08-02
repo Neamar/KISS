@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import fr.neamar.summon.R;
@@ -34,6 +35,9 @@ public class SearchRecord extends Record {
 	public void doLaunch(Context context, View v) {
 		Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
 		search.putExtra(SearchManager.QUERY, searchHolder.query);
+        // In the latest Google Now version, ACTION_WEB_SEARCH is broken when used with FLAG_ACTIVITY_NEW_TASK.
+        // Adding FLAG_ACTIVITY_CLEAR_TASK seems to fix the problem.
+        search.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
 		try {
