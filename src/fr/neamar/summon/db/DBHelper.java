@@ -105,7 +105,7 @@ public class DBHelper {
 			// String[] selectionArgs, String groupBy, String having, String
 			// orderBy)
 			Cursor cursor = db.query("history", new String[] { "record", "COUNT(*) AS count" },
-					"query LIKE ?", new String[] { query + "%" }, "record", null, "COUNT(*) DESC", "20");
+					"query LIKE ?", new String[] { query + "%" }, "record", null, "COUNT(*) DESC", "10");
 			records = readCursor(cursor);
 			db.close();
 		}
