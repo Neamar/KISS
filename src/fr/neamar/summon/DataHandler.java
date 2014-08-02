@@ -27,7 +27,7 @@ public class DataHandler extends BroadcastReceiver {
 	public String currentQuery;
 
 	/**
-	 * List all knowns providers
+	 * List all known providers
 	 */
 	private ArrayList<Provider> providers = new ArrayList<Provider>();
 	private int providersLoaded = 0;
