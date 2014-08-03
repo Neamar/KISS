@@ -1,112 +1,114 @@
 #
-# AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Samsul Ma'arif <samsul@samsul.web.id>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2012-10-31T14:54:17\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2014-08-03 20:38+0700\n"
+"Last-Translator: Samsul Ma'arif <samsul@samsul.web.id>\n"
+"Language-Team: Indonesian <debian-l10n-indonesian@lists.debian.org>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
-"Content-Type: application/x-publican; charset=UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.5\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Binary package"
-msgstr ""
+msgstr "Paket biner"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Source package"
-msgstr ""
+msgstr "Paket sumber"
 
 #. Tag: keyword
 #, no-c-format
 msgid "dpkg"
-msgstr ""
+msgstr "dpkg"
 
 #. Tag: keyword
 #, no-c-format
 msgid "dependencies"
-msgstr ""
+msgstr "ketergantungan"
 
 #. Tag: keyword
 #, no-c-format
 msgid "conflict"
-msgstr ""
+msgstr "konflik"
 
 #. Tag: title
 #, no-c-format
 msgid "Packaging System: Tools and Fundamental Principles"
-msgstr ""
+msgstr "Sistem Pemaketan: Alat dan Prinsip Dasar"
 
 #. Tag: para
 #, no-c-format
 msgid "As a Debian system administrator, you will routinely handle <filename>.deb</filename> packages, since they contain consistent functional units (applications, documentation, etc.), whose installation and maintenance they facilitate. It is therefore a good idea to know what they are and how to use them."
-msgstr ""
+msgstr "Sebagai administrator sistem Debian, Anda akan sering menangani paket <filename>.deb</filename>, mereka berisi unit fungsional yang konsisten (aplikasi, dokumentasi, dll.), yang instalasi dan perawatannya difasilitasi mereka. Oleh karena itu, ide bagus untuk mengentahui apa dan bagaimana menggunakannya."
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the source code, as well as instructions for building binary packages."
-msgstr ""
+msgstr "Bab ini menjelaskan struktur dan isi paket “biner”dan “sumber”. Dahulu berkas <filename>.deb</filename>, dapat digunakan secara langsung oleh <command>dpkg</command>, ketika kemudian berisi kode sumber, sebagaimana petunjuk untuk membuat paket biner."
 
 #. Tag: title
 #, no-c-format
 msgid "Structure of a Binary Package"
-msgstr ""
+msgstr "Struktur Paket Biner"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>binary package</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>paket biner</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ar</command></primary>"
-msgstr ""
+msgstr "<primary><command>ar</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command> (sometimes <command>xz</command> or <command>bzip2</command>). This seemingly trivial property is important for portability and disaster recovery."
-msgstr ""
+msgstr "Format paket Debian didesain agar kontennya dapat diekstrak pada berbagai sistem Unix yang memiliki perintah klasik <command>ar</command>, <command>tar</command>, dan <command>gzip</command> (terkadang <command>xz</command> or <command>bzip2</command>). Properti yang nampak sepele ini penting untuk kesesuaian dan pemulihan bahaya."
 
 #. Tag: para
 #, no-c-format
 msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command>/<command>xz</command>/<command>bzip2</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
-msgstr ""
+msgstr "Bayangkan, misalnya, secara tidak sengaja menghapus program <command>dpkg</dpkg>, dan karenanya Anda tidak dapat menginstall paket Debian lagi. <command>dpkg</command> merupakan paket Debian itu sendiri, yang mengerjakan sistem Anda... Untungnya, Anda tahu format paketnya dan karenanya dapat mengunduh berkas <filename>.deb</filename> untuk paket <emphasis role=\"pkg\">dpkg</emphasis> dan menginstall-nya secara manual (lihat “ALAT” di samping). Jika sedang tak beruntung satu atau lebih dari program <command>ar</command>, <command>tar</command> atau <command>gzip</command>/<command>xz</command>/<command>bzip2</command> telah hilang, Anda hanya perlu menyalinnnya dari sistem lain (karena setiap program tersebut sepenuhnya bertindak secara sendiri-sendiri, tanpa ketergantungan, cukup dengan menyalinnya)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOLS</emphasis> <command>dpkg</command>, <command>APT</command> and <command>ar</command>"
-msgstr ""
+msgstr "<emphasis>ALAT</emphasis> <command>dpkg</command>, <command>APT</command> dan <command>ar</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg</command></primary>"
-msgstr ""
+msgstr "<primary><command>dpkg</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary>"
-msgstr ""
+msgstr "<primary>APT</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is the program that handles <filename>.deb</filename> files, notably extracting, analyzing, and unpacking them."
-msgstr ""
+msgstr "<command>dpkg</command> ialah program yang menangani berkas <filename>.deb</filename>, khususnya mengekstrak, menganalisa, dan membongkarnya."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>APT</command> is a group of programs that allows the execution of higher-level modifications to the system: installing or removing a package (while keeping dependencies satisfied), updating the system, listing the available packages, etc."
-msgstr ""
+msgstr "<command>APT</command> ialah kelompok program yang mengizinkan eksekusi modifikasi level-tinggi pada sistem: menginstall atau membuang paket (juga menjaga terpenuhinya ketergantungan), meng-update sistem, mendaftar paket yang tersedia, dll."
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents all its other features. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the <filename>data.tar.gz</filename> archive in the system's root (<filename>/</filename>):"
-msgstr ""
+msgstr "<indexterm><primary><command>ar</command></primary></indexterm> Sebagaimana untuk program <command>ar</command>, menangani berkas dengan nama yang sama: <command>ar t <replaceable>archive</replaceable></command> menampilkan daftar berkas yang berada pada sebuah arsip, <command>ar x <replaceable>archive</replaceable></command> mengekstrak berkas dari arsip ke lokasi direktori saat ini, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> menghapus berkas dari arsip, dll. Man page-nya (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) mendokumentasikan seluruh fitur-fiturnya. <command>ar</command> ialah alat yang belum sempurna yang digunakan oleh administrator Unix hanya pada saat tertentu, namun admin sering menggunakan <command>tar</command>, program arsip dan pengelola berkas yang lebih evolutif. Itulah alasannya mudah untuk mengembalikan <command>dpkg</command> saat terjadi kesalahan penghapusan. Anda hanya perlu mengunduh paket Debian dan mengekstrak kontennya dari arsip <filename>data.tar.gz</filename> ke sistem root (<filename>/</filename>):"
 
 #. Tag: screen
 #, no-c-format
@@ -115,31 +117,34 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb</userinput>\n"
 "<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb</userinput>\n"
+"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Man page notation"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Notasi man page"
 
 #. Tag: para
 #, no-c-format
 msgid "It can be confusing for beginners to find references to “<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>” in the literature. This is generally a convenient means of referring to the man page entitled <literal>ar</literal> in section 1."
-msgstr ""
+msgstr "Mungkin membingungkan bagi pemula untuk menemukan referensi “<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>” pada literatur tersebut. Umumnya maksud kesesuaiannya merujuk pada man page yang berjudul <literal>ar</literal> pada bagian 1."
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes this notation is also used to remove ambiguities, for example to distinguish between the <command>printf</command> command that can also be indicated by <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry> and the <function>printf</function> function in the C programming language, which can also be referred to as <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry>."
-msgstr ""
+msgstr "Terkadang notasi ini juga digunakan untuk menghilangkan ambiguasi, sebagai contoh perbedaan antara perintah <command>printf</command> yang juga dapat ditujukkan oleh <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry> dan fungsi <function>printf</function> pada bahasa pemrograman C, yang dapat direferensikan sebagai <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry>."
 
 #. Tag: para
 #, no-c-format
 msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"sect.manual-pages\" />)."
-msgstr ""
+msgstr "<xref linkend=\"solving-problems\" /> membahas halaman manual pada detail yang lebih jauh (lihat <xref linkend=\"sect.manual-pages\" />)."
 
 #. Tag: para
 #, no-c-format
 msgid "Have a look at the content of a <filename>.deb</filename> file:"
-msgstr ""
+msgstr "Lihatlah isi berkas <filename>.deb</filename>:"
 
 #. Tag: screen
 #, no-c-format
@@ -179,61 +184,95 @@ msgid ""
 "$ </computeroutput><userinput>cat debian-binary</userinput>\n"
 "<computeroutput>2.0</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.16.10_amd64.deb</userinput>\n"
+"<computeroutput>debian-binary\n"
+"control.tar.gz\n"
+"data.tar.gz\n"
+"$ </computeroutput><userinput>ar x dpkg_1.16.10_i386.deb</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>control.tar.gz  data.tar.gz  debian-binary  dpkg_1.16.10_i386.deb\n"
+"$ </computeroutput><userinput>tar tzf data.tar.gz | head -n 15</userinput>\n"
+"<computeroutput>./\n"
+"./var/\n"
+"./var/lib/\n"
+"./var/lib/dpkg/\n"
+"./var/lib/dpkg/updates/\n"
+"./var/lib/dpkg/alternatives/\n"
+"./var/lib/dpkg/info/\n"
+"./var/lib/dpkg/parts/\n"
+"./usr/\n"
+"./usr/share/\n"
+"./usr/share/locale/\n"
+"./usr/share/locale/sv/\n"
+"./usr/share/locale/sv/LC_MESSAGES/\n"
+"./usr/share/locale/sv/LC_MESSAGES/dpkg.mo\n"
+"./usr/share/locale/it/\n"
+"$ </computeroutput><userinput>tar tzf control.tar.gz</userinput>\n"
+"<computeroutput>./\n"
+"./conffiles\n"
+"./preinst\n"
+"./md5sums\n"
+"./control\n"
+"./postrm\n"
+"./prerm\n"
+"./postinst\n"
+"$ </computeroutput><userinput>cat debian-binary</userinput>\n"
+"<computeroutput>2.0</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "As you can see, the <command>ar</command> archive of a Debian package is comprised of three files:"
-msgstr ""
+msgstr "Seperti yang dapat Anda lihat, arsip <command>ar</command> pada paket Debian mengompres tiga berkas:"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>debian-binary</filename>. This is a text file which simply indicates the version of the <filename>.deb</filename> file used (in 2013: version 2.0)."
-msgstr ""
+msgstr "<filename>debian-binary</filename>. Ini ialah berkas teks yang sesungguhnya mengindikasikan versi berkas <filename>.deb</filename> yang digunakan (pada 2013:version 2.0)."
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information, like the name and version of the package. Some of this meta-information allows package management tools to determine if it is possible to install or uninstall it, for example according to the list of packages already on the machine."
-msgstr ""
+msgstr "<filename>control.tar.gz</filename>. Arsip ini berisi seluruh informasi-meta yang tersedia, seperti nama dan versi paket. Beberapa informasi-meta ini memungkinkan alat manajemen paket untuk menentukan jika memungkinkan untuk menginstall atau menguninstallnya, contohnya berdasarkan daftar paket yang telah ada di mesin."
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>data.tar.gz</filename>. This archive contains all of the files to be extracted from the package; this is where the executable files, documentation, etc., are all stored. Some packages may use other compression formats, in which case the file will be named differently (<filename>data.tar.bz2</filename> for bzip2, <filename>data.tar.xz</filename> for XZ, <filename>data.tar.lzma</filename> for LZMA)."
-msgstr ""
+msgstr "<filename>data.tar.gz</filename>. Arsip ini berisi semua berkas yang akan diekstrak dari paket; di mana berkas executable, dokumentasi, dll., tersimpan. Beberapa paket mungkin menggunakan format kompresi yang lain, yang dalam hal tersebut berkas akan diberi nama yang berbeda (<filename>data.tar.bz2</filename> untuk bzip2, <filename>data.tar.xz</filename> untuk XZ, <filename>data.tar.lzma</filename> untuk LZMA)."
 
 #. Tag: title
 #, no-c-format
 msgid "Package Meta-Information"
-msgstr ""
+msgstr "Informasi-Meta Paket"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package meta-information</primary>"
-msgstr ""
+msgstr "<primary>package meta-information</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>meta-information</secondary>"
-msgstr ""
+msgstr "<primary>package</primary><secondary>meta-information</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian package is not only an archive of files intended for installation. It is part of a larger whole, and it describes its relationship with other Debian packages (dependencies, conflicts, suggestions). It also provides scripts that enable the execution of commands at different stages in the package's lifecycle (installation, removal, upgrades). These data used by the package management tools are not part of the packaged software, but are, within the package, what is called its “meta-information” (information about other information)."
-msgstr ""
+msgstr "Paket Debian tak hanya sebuah arsip dari berkas yang dimaksudkan untuk instalasi. Merupakan bagian dari keseluruhan yang lebih besar, dan menjelaskan hubungannya dengan paket Debian lainnya (ketergantungan, konflik, saran). Juga menyediakan skrip yang mengaktifkan eksekusi perintah pada langkah berbeda pada siklus hidup paket (instalasi, penghapusan, pembaruan). Data yang digunakan oleh alat manajer paket ini bukan bagian dari paket perangkat lunak, namun, termasuk dalam paket, yang disebut “meta-information” (informasi tentang informasi lain)."
 
 #. Tag: title
 #, no-c-format
 msgid "Description: the <filename>control</filename> File"
-msgstr ""
+msgstr "Penjelasan: Berkas <filename>control</filename>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>control</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>control</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This file uses a structure similar to email headers (as defined by RFC 2822). For example, for <emphasis role=\"pkg\">apt</emphasis>, the <filename>control</filename> file looks like the following:"
-msgstr ""
+msgstr "Berkas ini menggunakan struktur yang mirip dengan header email (sebagaimana didefinisikan oleh RFC 2822). Contohnya, untuk berkas <emphasis role=\"pkg\">apt</emphasis>, the <filename>control</filename> nampak sebagai berikut:"
 
 #. Tag: screen
 #, no-c-format
@@ -277,676 +316,714 @@ msgid ""
 "SHA1: 6a271487ceee6f6d7bc4c47a8a16f49c26e4ca04\n"
 "SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
+"<computeroutput>Package: apt\n"
+"Version: 0.9.7.9\n"
+"Installed-Size: 3271\n"
+"Maintainer: APT Development Team &lt;deity@lists.debian.org&gt;\n"
+"Architecture: amd64\n"
+"Replaces: manpages-pl (&lt;&lt; 20060617-3~)\n"
+"Depends: libapt-pkg4.12 (&gt;= 0.9.7.9), libc6 (&gt;= 2.4), libgcc1 (&gt;= 1:4.1.1), libstdc++6 (&gt;= 4.6), debian-archive-keyring, gnupg\n"
+"Suggests: aptitude | synaptic | wajig, dpkg-dev, apt-doc, xz-utils, python-apt\n"
+"Conflicts: python-apt (&lt;&lt; 0.7.93.2~)\n"
+"Description-en: commandline package manager\n"
+" This package provides commandline tools for searching and\n"
+" managing as well as querying information about packages\n"
+" as a low-level access to all features of the libapt-pkg library.\n"
+" .\n"
+" These include:\n"
+"  * apt-get for retrieval of packages and information about them\n"
+"    from authenticated sources and for installation, upgrade and\n"
+"    removal of packages together with their dependencies\n"
+"  * apt-cache for querying available information about installed\n"
+"    as well as installable packages\n"
+"  * apt-cdrom to use removable media as a source for packages\n"
+"  * apt-config as an interface to the configuration settings\n"
+"  * apt-key as an interface to manage authentication keys\n"
+"Description-md5: 9fb97a88cb7383934ef963352b53b4a7\n"
+"Tag: admin::package-management, hardware::storage, hardware::storage:cd,\n"
+" implemented-in::c++, interface::commandline, network::client,\n"
+" protocol::ftp, protocol::http, protocol::ipv6, role::program,\n"
+" suite::debian, use::downloading, use::searching,\n"
+" works-with::software:package\n"
+"Section: admin\n"
+"Priority: important\n"
+"Filename: pool/main/a/apt/apt_0.9.7.9_amd64.deb\n"
+"Size: 1253524\n"
+"MD5sum: 00a128b2eb2b08f4ecee7fe0d7e3c1c4\n"
+"SHA1: 6a271487ceee6f6d7bc4c47a8a16f49c26e4ca04\n"
+"SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> RFC — Internet standards"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> RFC — Internet standards"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RFC</primary>"
-msgstr ""
+msgstr "<primary>RFC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Request For Comments</primary>"
-msgstr ""
+msgstr "<primary>Permintaan Untuk Komentar</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "RFC is the abbreviation of “Request For Comments”. An RFC is generally a technical document that describes what will become an Internet standard. Before becoming standardized and frozen, these standards are submitted for public review (hence their name). The IETF (Internet Engineering Task Force) decides on the evolution of the status of these documents (proposed standard, draft standard, or standard)."
-msgstr ""
+msgstr "RFC ialah singkatan dari “Request For Comments”. Sebuah RFC umumnya ialah dokumen teknis yang menjelasan apa yang akan menjadi standar Internet. Sebelum menjadi terstandar dan paten, standar ini dikirim untuk ditinjau oleh umum (karenanya nama mereka demikian). IETF (Internet Engineering Task Force) memutuskan evolusi status dari dokumen tersebut (pengajuan standar, konsep standar, atau standar)."
 
 #. Tag: para
 #, no-c-format
 msgid "RFC 2026 defines the process for standardization of Internet protocols. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
-msgstr ""
+msgstr "RFC 2026 menjelaskan proses standarisasi protokol Internet. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Dependencies: the <literal>Depends</literal> Field"
-msgstr ""
+msgstr "Ketergantungan: Field <literal>Depends</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dependency</primary>"
-msgstr ""
+msgstr "<primary>ketergantungan</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Depends</literal>, header field</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>dependency</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>ketergantungan</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the package to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
-msgstr ""
+msgstr "Ketergantungan dijabarkan pada field <literal>Depends</literal> pada header paket. Ini ialah daftar syarat yang harus dipenuhi agar paket dapat bekerja dengan baik — informasi ini digunakan oleh alat seperti <command>apt</command> agar menginstall pustaka yang diperlukan, dalam versi yang sesuai, yang diperlukan oleh paket yang akan diinstall. Untuk setiap ketergantungan, memungkinkan untuk membatasi jarak paket tertentu yang memenuhi syarat. Dengan kata lain, memungkinkan untuk mengekspresikan fakta yang diperlukan paket <emphasis role=\"pkg\">libc6</emphasis> versi yang sama atau lebih dari “2.3.4” (tertulis “<command>libc6 (&gt;= 2.3.4)</command>”). Operator perbandingan versi sebagai berikut:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;&lt;</command>: less than;"
-msgstr ""
+msgstr "<command>&lt;&lt;</command>: kurang dari;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;=</command>: less than or equal to;"
-msgstr ""
+msgstr "<command>&lt;=</command>: kurang atau sama dengan;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>=</command>: equal to (note that “<literal>2.6.1</literal>” is not equal to “<literal>2.6.1-1</literal>”);"
-msgstr ""
+msgstr "<command>=</command>: sama dengan (catat bahwa “<literal>2.6.1</literal>” tidak sama dengan “<literal>2.6.1-1</literal>”);"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;=</command>: greater than or equal to;"
-msgstr ""
+msgstr "<command>&gt;=</command>: lebih dari atau sama dengan;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;&gt;</command>: greater than."
-msgstr ""
+msgstr "<command>&gt;&gt;</command>: lebih dari."
 
 #. Tag: para
 #, no-c-format
 msgid "In a list of conditions to be met, the comma serves as a separator. It must be interpreted as a logical “and”. In conditions, the vertical bar (“|”) expresses a logical “or” (it is an inclusive “or”, not an exclusive “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
-msgstr ""
+msgstr "Dalam daftar syarat yang harus dipenuhi, koma berfungsi sebagai pemisah. Harus diinterpretasikan sebagai logika “dan”. Dalam kondisi, garis tegak (“|”) mengekspresikan logika “atau” (merupakan inklusif “or”, bukan eksklusif “either/or”). Membawa prioritas yang lebih besar dari “dan”, dapat digunakan sesering mungkin bilamana diperlukan. Nah, ketergantungan “(A atau B) dan C” ditulis <command>A | B, C</command>. Perbedaannya, ekspresi “A atau (B dan C)” harus ditulis “(A atau B) dan (A atau C)”, karena field <literal>Depends</literal> tidak dapat menolelir tanda kurung yang dapat mengubah urutan prioritas antara operator logikal “atau” dan “dan”. Harus ditulis <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>meta-package</primary>"
-msgstr ""
+msgstr "<primary>meta-package</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The dependencies system is a good mechanism for guaranteeing the operation of a program, but it has another use with “meta-packages”. These are empty packages that only describe dependencies. They facilitate the installation of a consistent group of programs preselected by the meta-package maintainer; as such, <command>apt-get install <replaceable>meta-package</replaceable></command> will automatically install all of these programs using the meta-package's dependencies. The <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde-full</emphasis> and <emphasis role=\"pkg\">linux-image-amd64</emphasis> packages are examples of meta-packages."
-msgstr ""
+msgstr "Sistem ketergantungan islah mekanisme yang baik untuk menjamin operasi program, namun memiliki kegunaan lain dengan “meta-packages”. Ini adalah paket kosong yang hanya menjelaskan ketergantungan. Mereka memfasilitasi instalasi kelompok program yang konsistem yang dipilih sebelumnya oleh pengelola meta-package; seperti, <command>apt-get install <replaceable>meta-package</replaceable></command> akan secara otomatis menginstall seluruh program ini menggunakan ketergantungan meta-package. <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde-full</emphasis> dan <emphasis role=\"pkg\">linux-image-amd64</emphasis> merupakan contoh paket-meta."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, a more demanding <literal>Depends</literal>"
-msgstr ""
+msgstr "<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, lebih mendesak <literal>Depends</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pre-Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Pre-Depends</literal>, header field</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>pre-dependency</primary>"
-msgstr ""
+msgstr "<primary>pre-dependency</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "“Pre-dependencies”, which are listed in the “<literal>Pre-Depends</literal>” field in the package headers, complete the normal dependencies; their syntax is identical. A normal dependency indicates that the package in question must be unpacked and configured before configuration of the package declaring the dependency. A pre-dependency stipulates that the package in question must be unpacked and configured before execution of the pre-installation script of the package declaring the pre-dependency, that is before its installation."
-msgstr ""
+msgstr "“Pre-dependencies”, yang terdaftar di field “<literal>Pre-Depends</literal>” di header paket, melengkapi ketergantungan normal; syntaxnya mirip. Ketergantungan normal dimaksudkan paket yang diperlukan harus dibongkar dan dikonfigurasi sebelum konfigurasi paket menjelaskan ketergantungan. Sebuah pre-dependency menetapkan bahwa paket yang diperlukan harus dibongkar dan dikonfigurasi sebelum eksekusi skrip pre-instalation paket menjelaskan pre-dependency, sebelum instalasinya."
 
 #. Tag: para
 #, no-c-format
 msgid "A pre-dependency is very demanding for <command>apt</command>, because it adds a strict constraint on the ordering of the packages to install. As such, pre-dependencies are discouraged unless absolutely necessary. It is even recommended to consult other developers on <email>debian-devel@lists.debian.org</email> before adding a pre-dependency. It is generally possible to find another solution as a work-around."
-msgstr ""
+msgstr "Sebuah pre-dependency sangat diperlukan untuk <command>apt</command>, karena menambahkan pembatas yang ketat pada pengurutan paket untuk diinstall. Demikian, pre-dependencies diabaikan kecuali benar-benar sangat diperlukan. Bahkan direkomendasikan untuk berkonsultasi ke pengembang lain pada <email>debian-devel@lists.debian.org</email> sebelum menambahkan sebuah pre-dependency. Umumnya memungkinkan untuk menemukan solusi lain sebagai sebuah kerja-sama."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Recommends</literal>, <literal>Suggests</literal>, and <literal>Enhances</literal> fields"
-msgstr ""
+msgstr "<emphasis>DEBIAN POLICY</emphasis> field <literal>Rekomendasi</literal>, <literal>Saran</literal>, dan <literal>Peningkatan</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Recommends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Rekomendasi</literal>, header field</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Suggests</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Saran</literal>, header field</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Recommends</literal> and <literal>Suggests</literal> fields describe dependencies that are not compulsory. The “recommended” dependencies, the most important, considerably improve the functionality offered by the package but are not indispensable to its operation. The “suggested” dependencies, of secondary importance, indicate that certain packages may complement and increase their respective utility, but it is perfectly reasonable to install one without the others."
-msgstr ""
+msgstr "Field <literal>Rekomendasi</literal> dan <literal>Saran</literal> menjelaskan ketergantungan yang tidak wajib. Ketergantungan “direkomendasikan”, paling penting, sangat meningkatkan fungsionalitas yang ditawarkan oleh paket namun tak terlalu diperlukan oleh operasinya. Ketergantungan “disarankan”, lebih penting, menunjukkan bahwa beberapa paket mungkin melengkapi dan meningkatkan utilitasnya, namun sangat beralasan untuk menginstallnya tanpa yang lain."
 
 #. Tag: para
 #, no-c-format
 msgid "You should always install the “recommended” packages, unless you know exactly why you do not need them. Conversely, it is not necessary to install “suggested” packages unless you know why you need them."
-msgstr ""
+msgstr "Anda harus selalu menginstall paket “direkomendasikan”, kecuali Anda benar-benar tahu mengapa Anda tidak memerlukannya. Sebaliknya, tidak perlu menginstall paket “disarankan” kecuali Anda mengerti kenapa Anda memerlukannya."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Enhances</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Peningkatan</literal>, header field</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Enhances</literal> field also describes a suggestion, but in a different context. It is indeed located in the suggested package, and not in the package that benefits from the suggestion. Its interest lies in that it is possible to add a suggestion without having to modify the package that is concerned. Thus, all add-ons, plug-ins, and other extensions of a program can then appear in the list of suggestions related to the software. Although it has existed for several years, this last field is still largely ignored by programs such as <command>apt-get</command> or <command>synaptic</command>. Its purpose is for a suggestion made by the <literal>Enhances</literal> field to appear to the user in addition to the traditional suggestions — found in the <literal>Suggests</literal> field."
-msgstr ""
+msgstr "Field <literal>Peningkatan</literal> juga menjelaskan sebuah saran, namun dalam konteks yang berbeda. Sebenarnya berada di paket yang disarankan, dan bukan dalam paket yang menguntungkan dari saran. Menariknya terletak pada bahwa adalah mungkin untuk menambahkan saran tanpa perlu memodifikasi paket yang diperhatikan. Dengan demikian, semua add-on, plugin, dan ekstensi lain dari sebuah program dapat muncul pada daftar saran yang berhubungan dengan perangka lunak. Meskipun hal ini telah ada selama beberapa tahun, field terakhir ini umumnya diabaikan oleh program seperti <command>apt-get</command> atau <command>synaptic</command>. Tujuannya ialah untuk saran yang dibuat oleh field <literal>Peningkatan</literal> untuk menampilkan saran tradisional kepada pengguna — ditemukan di field <literal>Saran</literal>."
 
 #. Tag: title
 #, no-c-format
 msgid "Conflicts: the <literal>Conflicts</literal> field"
-msgstr ""
+msgstr "Konflik: field <literal>Konflik</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>conflicts</primary>"
-msgstr ""
+msgstr "<primary>conflicts</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Conflicts</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Konflik</literal>, header field</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>conflict</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>konflik</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Conflicts</literal> field indicates when a package cannot be installed simultaneously with another. The most common reasons for this are that both packages include a file of the same name, or provide the same service on the same TCP port, or would hinder each other's operation."
-msgstr ""
+msgstr "Field <literal>Konflik</literal> menandakan ketika paket tidak dapat diinstall secara simultan dengan paket lain. Alasan yang paling umum untuk hal ini ialah kedua paket menyertakan berkas dengan nama yang sama, atau menyediakan layanan yang sama pada port TCP yang sama, atau akan menghalangi operasi satu sama lain."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> will refuse to install a package if it triggers a conflict with an already installed package, except if the new package specifies that it will “replace” the installed package, in which case <command>dpkg</command> will choose to replace the old package with the new one. <command>apt-get</command> always follows your instructions: if you choose to install a new package, it will automatically offer to uninstall the package that poses a problem."
-msgstr ""
+msgstr "<command>dpkg</command> akan menolak menginstall paket jika menimbulkan konflik dengan paket yang telah terinstall, kecuali paket yang baru menetapkan akan \"mengganti\" paket terinstall, yang dalam kasus tersebut <command>dpkg</command> akan memilih untuk mengganti paket lama dengan yang baru. <command>apt-get</command> selalu mengikuti instruksi Anda: jika Anda memilih untuk menginstall paket baru, akan secara otomatis menawarkan untuk menguinstall paket yang menimbulkan masalah."
 
 #. Tag: title
 #, no-c-format
 msgid "Incompatibilities: the <literal>Breaks</literal> Field"
-msgstr ""
+msgstr "Ketidakcocokan: Field <literal>Break</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>incompatibilities</primary>"
-msgstr ""
+msgstr "<primary>incompatibilities</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Breaks</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Breaks</literal>, header field</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>incompatibility</secondary>"
-msgstr ""
+msgstr "<primary>package</primary><secondary>incompatibility</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Breaks</literal> field has an effect similar to that of the <literal>Conflicts</literal> field, but with a special meaning. It signals that the installation of a package will “break” another package (or particular versions of it). In general, this incompatibility between two packages is transitory, and the <literal>Breaks</literal> relationship specifically refers to the incompatible versions."
-msgstr ""
+msgstr "Field <literal>Break</literal> (rusak) memiliki efek yang mirip dengan field <literal>Konflik</literal>, namun memiliki makna khusus. Ini menandakan bahwa instalasi paket akan “merusak” paket lain (atau beberapa versinya). Secara umum, ketidakcocokan antara kedua paket ini bersifat fana, dan hubungan <literal>Break</literal> secara khusus mengacu pada ketidakcocokan versi."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> will refuse to install a package that breaks an already installed package, and <command>apt-get</command> will try to resolve the problem by updating the package that would be broken to a newer version (which is assumed to be fixed and, thus, compatible again)."
-msgstr ""
+msgstr "<command>dpkg</command> akan menolak menginstall paket yang merusak paket terinstall, dan <command>apt-get</command> akan mencoba menyelesaikan masalahnya dengan memerbarui paket yang akan rusak dengan versi yang lebih baru (yang diasumsikan diperbaiki dan, demikian, cocok kembali)."
 
 #. Tag: para
 #, no-c-format
 msgid "This type of situation may occur in the case of updates without backwards compatibility: this is the case if the new version no longer functions with the older version, and causes a malfunction in another program without making special provisions. The <literal>Breaks</literal> field prevents the user from running into these problems."
-msgstr ""
+msgstr "Situasi semacam ini mungkin terjadi ketika pembaruan tanpa kompabilitas ke belakang: hal ini terjadi jika versi baru tidak lagi dapat berfungsi dengan versi lama, dan menimbulkan tidak berfungsi di program lain tanpa membuat ketentuan khusus. Field <literal>Breaks</literal> menghalangi pengguna untuk masuk ke masalah ini."
 
 #. Tag: title
 #, no-c-format
 msgid "Provided Items: the <literal>Provides</literal> Field"
-msgstr ""
+msgstr "Item Disediakan: Field <literal>Provides</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Provides</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Provides</literal>, header field</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This field introduces the very interesting concept of a “virtual package”. It has many roles, but two are of particular importance. The first role consists in using a virtual package to associate a generic service with it (the package “provides” the service). The second indicates that a package completely replaces another, and that for this purpose it can also satisfy the dependencies that the other would satisfy. It is thus possible to create a substitution package without having to use the same package name."
-msgstr ""
+msgstr "Field ini memerkenalkan konsep yang sangat menarik dari sebuah “paket virtual”. Memiliki banyak aturan, namun dua yang terkadang penting. Aturan pertama berupa penggunaan paket virtual menghubungkan layanan umum dengannya (paket “menyediakan” layanan). Kedua menandakan bahwa paket menggantikan yang lainnya, dan dan dengan tujuan ini dapat juga memenuhi ketergantungan yang dipenuhi lainnya. Memungkinkan untuk membuat pengganti paket tanpa menggunakan nama paket yang sama."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Meta-package and virtual package"
-msgstr ""
+msgstr "<emphasis>KOSAKATA</emphasis> Paket-Meta dan paket virtual"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>virtual package</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>paket virtual</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual package</primary>"
-msgstr ""
+msgstr "<primary>paket virtual</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "It is essential to clearly distinguish meta-packages from virtual packages. The former are real packages (including real <filename>.deb</filename> files), whose only purpose is to express dependencies."
-msgstr ""
+msgstr "Sangat penting untuk membedakan secara jelas paket-meta dari paket virtual. Yang pertama ialah paket nyata (termasuk berkas <filename>.deb</filename> asli), yang hanya bertujuan untuk mengekspresikan ketergantungan."
 
 #. Tag: para
 #, no-c-format
 msgid "Virtual packages, however, do not exist physically; they are only a means of identifying real packages based on common, logical criteria (service provided, compatibility with a standard program or a pre-existing package, etc.)."
-msgstr ""
+msgstr "Paket virtual, di sisi lain, tidak eksis secara fisik; hanya dimaksudkan untuk mengidentifikasi paket nyata berdasarkan hal yang umum, kriteria logis (layanan yang disediakan, kecocokan dengan standar program atau paket yang belum ada, dll.)."
 
 #. Tag: title
 #, no-c-format
 msgid "Providing a “Service”"
-msgstr ""
+msgstr "Menyediakan sebuah “Layanan”"
 
 #. Tag: para
 #, no-c-format
 msgid "Let us discuss the first case in greater detail with an example: all mail servers, such as <emphasis role=\"pkg\">postfix</emphasis> or <emphasis role=\"pkg\">sendmail</emphasis> are said to “provide” the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. Thus, any package that needs this service to be functional (e.g. a mailing list manager, such as <emphasis role=\"pkg\">smartlist</emphasis> or <emphasis role=\"pkg\">sympa</emphasis>) simply states in its dependencies that it requires a <emphasis role=\"pkg\">mail-transport-agent</emphasis> instead of specifying a large yet incomplete list of possible solutions (e.g. <command>postfix | sendmail | exim4 | …</command>). Furthermore, it is useless to install two mail servers on the same machine, which is why each of these packages declares a conflict with the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. The conflict with itself is ignored by the system, but this technique will prohibit the installation of two mail servers side by side."
-msgstr ""
+msgstr "Mari membahas kasus pertama secara lebih mendetail dengan sebuah contoh: seluruh server mail, seperti <emphasis role=\"pkg\">postfix</emphasis> atau <emphasis role=\"pkg\">sendmail</emphasis> dikatakan “menyediakan” paket virtual <emphasis role=\"pkg\">mail-transport-agent</emphasis>. Nah, beberapa paket memerlukan layanan ini agar berfungsi (mis. manajer mailing list, seperti <emphasis role=\"pkg\">smartlist</emphasis> atau <emphasis role=\"pkg\">sympa</emphasis>) hanya perlu menyatakan ketergantungannya memerlukan <emphasis role=\"pkg\">mail-transport-agent</emphasis> daripada menentukan daftar banyak solusi yang memungkinkan namun tak lengkap (mis. <command>postfix | sendmail | exim4 | …</command>). Lebih jauh, sangat tidak berguna untuk menginstall server mail di mesin yang sama, itulah mengapa setiap paket ini menjelaskan konflik dengan paket virtual <emphasis role=\"pkg\">mail-transport-agent</emphasis>. Konflik dengannya diabaikan oleh sistem, namun teknik ini akan menghalangi instalasi dua server mail berdampingan."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> List of virtual packages"
-msgstr ""
+msgstr "<emphasis>DEBIAN POLICY</emphasis> Daftar paket virtual"
 
 #. Tag: para
 #, no-c-format
 msgid "For virtual packages to be useful, everyone must agree on their name. This is why they are standardized in the Debian Policy. The list includes among others <emphasis role=\"pkg\">mail-transport-agent</emphasis> for mail servers, <emphasis role=\"pkg\">c-compiler</emphasis> for C programming language compilers, <emphasis role=\"pkg\">www-browser</emphasis> for web browsers, <emphasis role=\"pkg\">httpd</emphasis> for web servers, <emphasis role=\"pkg\">ftp-server</emphasis> for FTP servers, <emphasis role=\"pkg\">x-terminal-emulator</emphasis> for terminal emulators in graphical mode (<command>xterm</command>), and <emphasis role=\"pkg\">x-window-manager</emphasis> for window managers."
-msgstr ""
+msgstr "Agar paket virtual bermanfaat, setiap orang harus setuju dengan penamaannya. Oleh karena itu, hal ini terstandarisasi di Debian Policy. Termasuk di antaranya <emphasis role=\"pkg\">mail-transport-agent</emphasis> untuk server mail, <emphasis role=\"pkg\">c-compiler</emphasis> untuk compiler bahasa pemrograman C, <emphasis role=\"pkg\">www-browser</emphasis> untuk peramban web, <emphasis role=\"pkg\">httpd</emphasis> untuk server web, <emphasis role=\"pkg\">ftp-server</emphasis> untuk server FTP, <emphasis role=\"pkg\">x-terminal-emulator</emphasis> untuk emulator terminal dalam mode grafis (<command>xterm</command>), dan <emphasis role=\"pkg\">x-window-manager</emphasis> untuk manajer jendela."
 
 #. Tag: para
 #, no-c-format
 msgid "The full list can be found on the Web. <ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt\" />"
-msgstr ""
+msgstr "Daftar lengkapnya dapat ditemukan di web. <ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Interchangeability with Another Package"
-msgstr ""
+msgstr "Ketergantian dengan Paket Lain"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Provides</literal> field is again interesting when the content of a package is included in a larger package. For example, the <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> Perl module was an optional module in Perl 5.6, and has been integrated as standard in Perl 5.8 (and later versions, such as 5.14 present in <emphasis role=\"distribution\">Wheezy</emphasis>). As such, the package <emphasis role=\"pkg\">perl</emphasis> has since version 5.8 declared <literal>Provides: libdigest-md5-perl</literal> so that the dependencies on this package are met if the user has Perl 5.8 (or newer). The <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> package itself has eventually been deleted, since it no longer had any purpose when old Perl versions were removed."
-msgstr ""
+msgstr "Field <literal>Provides</literal> menarik juga ketika isi sebuah paket disertakan dalam paket yang lebih besar. Contohnya, <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> Perl module ialah modul pilihan di Perl 5.6, dan telah terintegrasi sebagai standar di Perl 5.8 (dan versi berikutnya, seperti 5.14 tersedia di <emphasis role=\"distribution\">Wheezy</emphasis>). Sebagaimana, dimiliki paket <emphasis role=\"pkg\">perl</emphasis> sejak versi 5.8 dideklarasikan <literal>Provides: libdigest-md5-perl</literal> jadi ketergantungan paket ini terpenuhi jika pengguna memiliki Perl 5.8 (atau lebih baru). Paket <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> sendiri telah dihapus, karena tak lagi memiliki manfaat ketika Perl vers lama telah dihapus."
 
 #. Tag: title
 #, no-c-format
 msgid "Use of a <literal>Provides</literal> field in order to not break dependencies"
-msgstr ""
+msgstr "Penggunaan field <literal>Provides</literal> untuk mengabaikan ketergantungan"
 
 #. Tag: para
 #, no-c-format
 msgid "This feature is very useful, since it is never possible to anticipate the vagaries of development, and it is necessary to be able to adjust to renaming, and other automatic replacement, of obsolete software."
-msgstr ""
+msgstr "Fitur ini sangat berguna, karena tak mungkin untuk mengantisipasi lika-liku pengembangan, dan perlu untuk mengatur penamaan, dan penggantian otomatis lainnya, dari perangkat lunak yang usang."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Perl, a programming language"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Perl, sebuah bahasa pemrograman"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Perl</primary>"
-msgstr ""
+msgstr "<primary>Perl</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CPAN</primary>"
-msgstr ""
+msgstr "<primary>CPAN</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Perl (Practical Extraction and Report Language) is a very popular programming language. It has many ready-to-use modules that cover a vast spectrum of applications, and that are distributed by the CPAN (Comprehensive Perl Archive Network) servers, an exhaustive network of Perl packages. <ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
-msgstr ""
+msgstr "Perl (Practical Extraction and Report Language) merupakan bahasa pemrograman yang sangat populer. Memiliki banyak modul yang siap digunakan yang mencakup spektrum luas dari aplikasi, dan distribusikan oleh server CPAN (Comprehensive Perl Archive Network), sebuah jaringan paket Perl yang lengkap. <ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Since it is an interpreted language, a program written in Perl does not require compilation prior to execution. This is why they are called “Perl scripts”."
-msgstr ""
+msgstr "Karena merupakan bahasa interprete, program yang ditulis dalam Perl tidak memerlukan kompilasi untuk dieksekusi. Oleh karena itu, mereka disebut “Perl scripts”."
 
 #. Tag: title
 #, no-c-format
 msgid "Current Limitations"
-msgstr ""
+msgstr "Batasan Saat Ini"
 
 #. Tag: para
 #, no-c-format
 msgid "Virtual packages suffer from some limitations, the most significant of which being the absence of a version number. To return to the previous example, a dependency such as <literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal>, despite the presence of Perl 5.10, will never be considered as satisfied by the packaging system — while in fact it most likely is satisfied. Unaware of this, the package system chooses the least risky option, assuming that the versions do not match."
-msgstr ""
+msgstr "Paket virtual memiliki beberapa batasan, yang paling signifikan ialah ketiadaan nomor versi. Kembali ke contoh sebelumnya, ketergantungan seperti <literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal>, kendatipun kehadiran Perl 5.10, tidak akan pernah dianggap memuaskan oleh sistem pemaketan — ketika kenyataannya kemungkinan besar memuaskan. Tanpa menyadari ini, sistem paket mengambil pilihan yang paling beresiko, mengasumsikan bahwa versinya tidak cocok."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Virtual package versions"
-msgstr ""
+msgstr "<emphasis>LEBIH JAUH</emphasis> Versi paket virtual"
 
 #. Tag: para
 #, no-c-format
 msgid "Although today virtual packages can't have versions, this will not necessarily always be the case. Indeed, <command>apt</command> is already able to manage the versions of virtual packages and it is likely that <command>dpkg</command> eventually will too. We will then be able to write fields such as <literal>Provides: libstorable-perl (= 1.7)</literal> to indicate that a package provides the same functionality as <emphasis role=\"pkg\">libstorable-perl</emphasis> in its 1.7 version."
-msgstr ""
+msgstr "Meskipun paket virtual sekarang tidak memiliki versi, hal ini tak selalu menjadi masalah. Sebenarnya, <command>apt</command> telah dapat mengatur versi paket virtual dan demikian pula <command>dpkg</command>. Kita kemudian akan dapt menulis field seperti <literal>Provides: libstorable-perl (= 1.7)</literal> untuk menunjukkan bahwa paket menyediakan fungsi yang sama dengan <emphasis role=\"pkg\">libstorable-perl</emphasis> pada versi 1.7."
 
 #. Tag: title
 #, no-c-format
 msgid "Replacing Files: The <literal>Replaces</literal> Field"
-msgstr ""
+msgstr "Mengganti Berkas: Field <literal>Replaces</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>replacement</primary>"
-msgstr ""
+msgstr "<primary>pengganti</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Replaces</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Replaces</literal>, header field</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>replacement</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>pengganti</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Replaces</literal> field indicates that the package contains files that are also present in another package, but that the package is legitimately entitled to replace them. Without this specification, <command>dpkg</command> fails, stating that it can not overwrite the files of another package (in fact, it is possible to force it to do so with the <literal>--force-overwrite</literal> option). This allows identification of potential problems and requires the maintainer to study the matter prior to choosing whether to add such a field."
-msgstr ""
+msgstr "Field <literal>Replaces</literal> menunjukkan bahwa paket berisi berkas yang juga ada di paket lain, namun paket tersebut secara sah menggantinya. Tanpa spesifikasi ini, <command>dpkg</command> gagal, menunjukkan bahwa dpkg tidak dapat mengganti berkas dari paket lain (sebenarnya, memungkinkan untuk memaksanya dengan pilihan <literal>--force-overwrite</literal>). Hal ini memungkinkan mengidentifikasi potensi masalah dan maintainer perlu memelajari apakah perlu untuk menambahkan sebuah field."
 
 #. Tag: para
 #, no-c-format
 msgid "The use of this field is justified when package names change or when a package is included in another. This also happens when the maintainer decides to distribute files differently among various binary packages produced from the same source package: a replaced file no longer belongs to the old package, but only to the new one."
-msgstr ""
+msgstr "Penggunaan field ini adil ketika nama paket berganti atau ketika paket di sertakan pada paket lainnya. Hal ini juga terjadi ketika maintainer memutuskan untuk mendistribusikan berkas dengan cara yang berbeda antara berbagai paket biner yang dibuat dari paket sumber yang sama: pengganti berkas tidak lagi dimiliki paket lama, namun hanya yang baru."
 
 #. Tag: para
 #, no-c-format
 msgid "If all of the files in an installed package have been replaced, the package is considered to be removed. Finally, this field also encourages <command>dpkg</command> to remove the replaced package where there is a conflict."
-msgstr ""
+msgstr "Jika seluruh berkas pada paket terinstall telah diganti, paket tersebut dianggap perlu untuk dihapus. Akhirnya, field ini juga mendorong <command>dpkg</command> untuk menghapus paket yang diganti ketika ada konflik."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> The <literal>Tag</literal> field"
-msgstr ""
+msgstr "<emphasis>LEBIH JAUH</emphasis> Field <literal>Tag</literal>"
 
 #. Tag: para
 #, no-c-format
 msgid "In the <emphasis role=\"pkg\">apt</emphasis> example above, we can see the presence of a field that we have not yet described, the <literal>Tag</literal> field. This field does not describe a relationship between packages, but is simply a way of categorizing a package in a thematic taxonomy. This classification of packages according to several criteria (type of interface, programming language, domain of application, etc.) has been available for a long time. Despite this, not all packages have accurate tags and it is not yet integrated in all Debian tools; <command>aptitude</command> displays these tags, and allows them to be used as search criteria. For those who are repelled by <command>aptitude</command>'s search criteria, the following website allows navigation of the tag database: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
-msgstr ""
+msgstr "Pada contoh <emphasis role=\"pkg\">apt</emphasis> di atas, kita dapat melihat ada field yang belum dijelaskan, field <literal>Tag</literal>. Field ini tidak menjelaskan hubungan antara paket, namun cara mudah memberi kategori paket dalam taksonomi tematik. Klasifikasi paket ini berdasarkan beberapa kriteria (tipe antarmuka, bahasa pemrograman, domain aplikasi, dll.) terlah tersedia sejak lama. Meskipun demikian, tidak semua paket memiliki tag yang akurat dan belum terintegrasi dalam semua alat-alat Debian; <command>aptitude</command> menampilkan tag ini, dan mengizinkannya menggunakan sebagai kriteria pencarian. Untuk paket yang diabaikan oleh kriteria pencarian <command>aptitude</command>, website berikut menyediakan navigasi dari basisdata tag: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuration Scripts"
-msgstr ""
+msgstr "Skrip Konfigurasi"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>postinst</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>postinst</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>preinst</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>preinst</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>postrm</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>postrm</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>prerm</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>prerm</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>control.tar.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>control.tar.gz</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition to the <filename>control</filename> file, the <filename>control.tar.gz</filename> archive for each Debian package may contain a number of scripts, called by <command>dpkg</command> at different stages in the processing of a package. The Debian Policy describes the possible cases in detail, specifying the scripts called and the arguments that they receive. These sequences may be complicated, since if one of the scripts fails, <command>dpkg</command> will try to return to a satisfactory state by canceling the installation or removal in progress (insofar as it is possible)."
-msgstr ""
+msgstr "Selain berkas <filename>control</filename>, arsip <filename>control.tar.gz</filename> untuk setiap paket Debian berisi beberapa skrip, dipanggil oleh <command>dpkg</command> pada langkah yang berbeda ketika memroses sebuah paket. Debian Policy menjelaskan kemungkinan kasusnya secara mendetail, menentukan pemanggilan skrip dan argumen yang mereka terima. Langkah ini bisa jadi rumit, kareja jika salah satu skrip gagal, <command>dpkg</command> akan mencoba kembali ke kondisi yang memuaskan dengan membatalkan instalasi atau penghapusan berlangsung (ketika memungkinkan)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command>'s database"
-msgstr ""
+msgstr "<emphasis>LEBIH JAUH</emphasis> basisdata <command>dpkg</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/var/lib/dpkg/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/var/lib/dpkg/</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dpkg</primary><secondary>database</secondary>"
-msgstr ""
+msgstr "<primary>dpkg</primary><secondary>basisdata</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All of the configuration scripts for installed packages are stored in the <filename>/var/lib/dpkg/info/</filename> directory, in the form of a file prefixed with the package's name. This directory also includes a file with the <filename>.list</filename> extension for each package, containing the list of files that belong to that package."
-msgstr ""
+msgstr "Seluruh skrip konfigurasi untuk paket terinstall disimpan di folder <filename>/var/lib/dpkg/info/</filename>, dalam bentuk berkas yang diawali dengan nama paketnya. Direktori ini juga menyertakan berkas dengan ekstensi <filename>.list</filename> untuk setiap paket, berisi daftar berkas yang dimiliki paket tersebut."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/var/lib/dpkg/status</filename> file contains a series of data blocks (in the format of the famous mail headers, RFC 2822) describing the status of each package. The information from the <filename>control</filename> file of the installed packages is also replicated there."
-msgstr ""
+msgstr "Berkas <filename>/var/lib/dpkg/status</filename> berisi beberapa seri blok data (dalam format mail header yang terkenal, RFC 2822) menjelaskan status setiap paket. Informasi dari berkas <filename>control</filename> paket terinstall juga direplikasi di sana."
 
 #. Tag: para
 #, no-c-format
 msgid "In general, the <filename>preinst</filename> script is executed prior to installation of the package, while the <filename>postinst</filename> follows it. Likewise, <filename>prerm</filename> is invoked before removal of a package and <filename>postrm</filename> afterwards. An update of a package is equivalent to removal of the previous version and installation of the new one. It is not possible to describe in detail all the possible scenarios here, but we will discuss the most common two: an installation/update and a removal."
-msgstr ""
+msgstr "Umumnya, skrip <filename>preinst</filename> dieksekusi sebelum instalasi paket, sedangkan <filename>postinst</filename> mengikutinya. Begitu pula, <filename>prerm</filename> dipanggil sebelum penghapusan sebuah paket dan <filename>postrm</filename> setelahnya. Pembaruan sebuah paket sama dengan penghapusan versi sebelumnya dan instalasi yang baru. Tidak memungkinkan untuk menjelaskan secara mendetail seluruh kemungkinan skenario di sini, namun kita akan membahas dua yang paling umum: instalasi/pembaruan dan penghapusan."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Symbolic names of the scripts"
-msgstr ""
+msgstr "<emphasis>PERHATIAN</emphasis> Nama simbolis dari skrip"
 
 #. Tag: para
 #, no-c-format
 msgid "The sequences described in this section call configuration scripts by specific names, such as <command>old-prerm</command> or <command>new-postinst</command>. They are, respectively, the <command>prerm</command> script contained in the old version of the package (installed before the update) and the <command>postinst</command> script contained in the new version (installed by the update)."
-msgstr ""
+msgstr "Langkah yang dijelaskan di bagian ini memanggil skrip konfigurasi dengan nama yang spesifik, seperti <command>old-prerm</command> atau <command>new-postinst</command>. Mereka, masing-masing, skrip <command>prerm</command> di paket versi lama (terinstall sebelum pembaharuan) dan skrip <command>postinst</command> di paket versi baru (terinstall oleh pembaharuan)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> State diagrams"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> Diagram kondisi"
 
 #. Tag: para
 #, no-c-format
 msgid "Manoj Srivastava made these diagrams explaining how the configuration scripts are called by <command>dpkg</command>. Similar diagrams have also been developed by the Debian Women project; they are a bit simpler to understand, but less complete. <ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
-msgstr ""
+msgstr "Manoj Srivastava membuat diagram ini menjelaskan bagaimana skrip konfigurasi dipanggil oleh <command>dpkg</command>. Diagram serupa juga telah dikembangkan oleh proyek Debian Women; mereka sedikit lebih sederhana untuk dipahami, namun kurang lengkap. <ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Installation and Upgrade"
-msgstr ""
+msgstr "Instalasi dan Pembaharuan"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg</command></primary><secondary>internal operation</secondary>"
-msgstr ""
+msgstr "<primary><command>dpkg</command></primary><secondary>operasi internal</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is what happens during an installation (or an update):"
-msgstr ""
+msgstr "Inilah yang terjadi selama instalasi (atau pembaharuan):"
 
 #. Tag: para
 #, no-c-format
 msgid "For an update, <command>dpkg</command> calls the <command>old-prerm upgrade <replaceable>new-version</replaceable></command>."
-msgstr ""
+msgstr "Untuk pembaharuan, <command>dpkg</command> memanggil <command>old-prerm upgrade <replaceable>new-version</replaceable></command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Still for an update, <command>dpkg</command> then executes <command>new-preinst upgrade <replaceable>old-version</replaceable></command>; for a first installation, it executes <command>new-preinst install</command>. It may add the old version in the last parameter, if the package has already been installed and removed since (but not purged, the configuration files having been retained)."
-msgstr ""
+msgstr "Masih untuk pembaharuan, <command>dpkg</command> kemudian mengeksekusi <command>new-preinst upgrade <replaceable>versi-lama</replaceable></command>; untuk instalasi permulaan, mengeksekusi <command>new-preinst install</command>. Mungkin ditambahkan versi lama di akhir parameter, jika paket telah terinstall dan dihapus karenanya (namun tidak di-purge, berkas konfigurasi dipertahankan)."
 
 #. Tag: para
 #, no-c-format
 msgid "The new package files are then unpacked. If a file already exists, it is replaced, but a backup copy is temporarily made."
-msgstr ""
+msgstr "Berkas-berkas paket baru kemudian dibongkar. Jika berkas telah ada, diganti, namun salinan backup dibuat untuk sementara."
 
 #. Tag: para
 #, no-c-format
 msgid "For an update, <command>dpkg</command> executes <command>old-postrm upgrade <replaceable>new-version</replaceable></command>."
-msgstr ""
+msgstr "Untuk sebuah pembaharuan, <command>dpkg</command> mengeksekusi <command>old-postrm upgrade <replaceable>versi-baru</replaceable></command>."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> updates all of the internal data (file list, configuration scripts, etc.) and removes the backups of the replaced files. This is the point of no return: <command>dpkg</command> no longer has access to all of the elements necessary to return to the previous state."
-msgstr ""
+msgstr "<command>dpkg</command> memerbarui semua data internal (daftar berkas, skrip konfigurasi, dll.) dan membuang backup berkas yang tergantikan. Inilah maksud dari tidak ada kembali: <command>dpkg</command> tidak lagi dapat mengakses elemen yang diperlukan untuk kembali ke kondisi sebelumnya."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> will update the configuration files, asking the user to decide if it is unable to automatically manage this task. The details of this procedure are discussed in <xref linkend=\"sect.conffiles\" />."
-msgstr ""
+msgstr "<command>dpkg</command> akan memerbarui berkas konfigurasi, menanyakan pengguna untuk memutuskan jika tidak dapat secara otomatis mengatur tugas ini. Prosedur ini dibahas secara mendetail di <xref linkend=\"sect.conffiles\" />."
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, <command>dpkg</command> configures the package by executing <command>new-postinst configure <replaceable>last-version-configured</replaceable></command>."
-msgstr ""
+msgstr "Akhirnya, <command>dpkg</command> mengonfigurasi paket dengan mengeksekusi <command>new-postinst configure <replaceable>versi-terbaru-terkonfigurasi</replaceable></command>."
 
 #. Tag: title
 #, no-c-format
 msgid "Package Removal"
-msgstr ""
+msgstr "Penghapusan Paket"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is what happens during a package removal:"
-msgstr ""
+msgstr "Inilah yang terjadi selama penghapusan sebuah paket:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> calls <command>prerm remove</command>."
-msgstr ""
+msgstr "<command>dpkg</command> memanggil <command>prerm remove</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> removes all of the package's files, with the exception of the configuration files and configuration scripts."
-msgstr ""
+msgstr "<command>dpkg</command> menghapus seluruh berkas paket, dengan pengecualian berkas konfigurasi dan skrip konfigurasi."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> executes <command>postrm remove</command>. All of the configuration scripts, except <filename>postrm</filename>, are removed. If the user has not used the “purge” option, the process stops here."
-msgstr ""
+msgstr "<command>dpkg</command> mengeksekusi <command>postrm remove</command>. Semua skrip konfigurasi, kecuali <filename>postrm</filename>, dihapus. Jika pengguna tidak menggunakan pilihan “purge”, prosesnya berhenti di sini."
 
 #. Tag: para
 #, no-c-format
 msgid "For a complete purge of the package (command issued with <command>dpkg --purge</command> or <command>dpkg -P</command>), the configuration files are also deleted, as well as a certain number of copies (<filename>*.dpkg-tmp</filename>, <filename>*.dpkg-old</filename>, <filename>*.dpkg-new</filename>) and temporary files; <command>dpkg</command> then executes <command>postrm purge</command>."
-msgstr ""
+msgstr "Untuk sebuah purge (pemusnahan) maksimal paket (perintah dengan <command>dpkg --purge</command> atau <command>dpkg -P</command>), berkas konfigurasi juga dihapus, sebagaimana beberapa salinannya (<filename>*.dpkg-tmp</filename>, <filename>*.dpkg-old</filename>, <filename>*.dpkg-new</filename>) dan berkas sementara; <command>dpkg</command> kemudian mengeksekusi <command>postrm purge</command>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Purge, a complete removal"
-msgstr ""
+msgstr "<emphasis>KOSAKATA</emphasis> Purge, penghapusan maksimal"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>purge of a package</primary>"
-msgstr ""
+msgstr "<primary>mem-purge sebuah paket</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When a Debian package is removed, the configuration files are retained in order to facilitate possible re-installation. Likewise, the data generated by a daemon (such as the content of an LDAP server directory, or the content of a database for an SQL server) are usually retained."
-msgstr ""
+msgstr "Ketika sebuah paket Debian dihapus, berkas konfigurasi dipertahankan agar memfasilitasi kemungkinan instalasi ulang. Demikian pula data yang dihasilkan oleh sebuah daemon (seperti konten sebuah direktori server LDAP, atau konten sebuah basisdata untuk server SQL) biasaya dipertahankan."
 
 #. Tag: para
 #, no-c-format
 msgid "To remove all data associated with a package, it is necessary to “purge” the package with the command, <command>dpkg -P <replaceable>package</replaceable></command>, <command>apt-get remove --purge <replaceable>package</replaceable></command> or <command>aptitude purge <replaceable>package</replaceable></command>."
-msgstr ""
+msgstr "Untuk menghapus seluruh data yang berhubungan dengan sebuah paket, perlu mem-“purge” paket dengan perintah, <command>dpkg -P <replaceable>paket</replaceable></command>, <command>apt-get remove --purge <replaceable>paket</replaceable></command> atau <command>aptitude purge <replaceable>paket</replaceable></command>. "
 
 #. Tag: para
 #, no-c-format
 msgid "Given the definitive nature of such data removal, purge should not be taken lightly."
-msgstr ""
+msgstr "Sifat alami yang diberikan semacam penghapusan data, purge tidak seharusnya dianggap enteng."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>config</filename>, <command>debconf</command> script</primary>"
-msgstr ""
+msgstr "<primary><filename>config</filename>, <command>debconf</command> script</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The four scripts detailed above are complemented by a <filename>config</filename> script, provided by packages using <command>debconf</command> to acquire information from the user for configuration. During installation, this script defines in detail the questions asked by <command>debconf</command>. The responses are recorded in the <command>debconf</command> database for future reference. The script is generally executed by <command>apt</command> prior to installing packages one by one in order to group all the questions and ask them all to the user at the beginning of the process. The pre- and post-installation scripts can then use this information to operate according to the user's wishes."
-msgstr ""
+msgstr "Empat skrip yang dijelaskan di atas dilengkapi oleh skrip <filename>config</filename>, disediakan oleh paket menggunakan <command>debconf</command> untuk mendapatkan informasi dari pengguna untuk konfigurasi. Selama instalasi, skrip ini menentukan secara mendetail pertanyaan yang diminta oleh <command>debconf</command>. Responnya direkaom dalam basisdata <command>debconf</command> untuk preferensi mendatang. Skrip umumnya dieksekusi oleh <command>apt</command> sebelum instalasi paket satu demi satu agar mengelompokkan pertanyaan dan memintanya semua ke pengguna pada awal proses. Skrip instalasi pre- dan post- kemudian dapat menggunakan informasi ini untuk beroperasi berdasarkan keinginan pengguna."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> <command>debconf</command>"
-msgstr ""
+msgstr "<emphasis>ALAT</emphasis> <command>debconf</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debconf</command></primary>"
-msgstr ""
+msgstr "<primary><command>debconf</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debconf</command> was created to resolve a recurring problem in Debian. All Debian packages unable to function without a minimum of configuration used to ask questions with calls to the <command>echo</command> and <command>read</command> commands in <filename>postinst</filename> shell scripts (and other similar scripts). But this also means that during a large installation or update the user must stay with their computer to respond to various questions that may arise at any time. These manual interactions have now been almost entirely dispensed with, thanks to the <command>debconf</command> tool."
-msgstr ""
+msgstr "<command>debconf</command> telah dibuat untuk menyelesaikan permasalahan yang berulang di Debian. Seluruh paket Debian tidak dapat berfungsi tanpa konfigurasi minimum yang seharusnya diminta dengan memanggil perintah <command>echo</command> dan <command>read</command> dalam <filename>postinst</filename> skrip shell (dan skrip lain yang serupa). Namun ini juga bermaksud bahwa selama instalasi atau pembaharuan pengguna harus bersama komputernya untuk merespon berbagai pertanyaan yang mungkin muncul kapan saja. Interaksi manual ini hampir seluruhnya telah ditiadakan, terimakasih untuk alat <command>debconf</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debconf</command> has many interesting features: it requires the developer to specify user interaction; it allows localization of all the strings displayed to users (all translations are stored in the <filename>templates</filename> file describing the interactions); it has different frontends to display the questions to the user (text mode, graphical mode, non-interactive); and it allows creation of a central database of responses to share the same configuration with several computers... but the most important is that it is now possible to present all of the questions in a row to the user, prior to starting a long installation or update process. The user can go about their business while the system handles the installation on its own, without having to stay there staring at the screen waiting for questions."
-msgstr ""
+msgstr "<command>debconf</command> memiliki banyak fitur menarik: pengembang perlu menentukan interaksi pengguna; menyediakan lokalisasi seluruh string yang ditampilkan ke pengguna (seluruh terjemahan disimpan di berkas <filename>templates</filename> menjelaskan interaksi); memiliki antarmuka berbeda untuk menampilkan pertanyaan ke pengguna (mode teks, mode grafis, non-interaktif); dan mengizinkan pembuatan basisdata sentral dari respon untuk berbagi konfigurasi yang sama dengan beberapa komputer... namun hal yang paling penting ialah sekarang memungkinkan seluruh pertanyaan dalam satu baris kepada pengguna, sebelum memulai instalasi atau proses pembaharuan yang panjang. Pengguna dapat pergi dengan urusan mereka ketika sistem menangani instalasinya sendiri, tanpa perlu berada di depan layar menanti pertanyaan."
 
 #. Tag: title
 #, no-c-format
 msgid "Checksums, List of Configuration Files"
-msgstr ""
+msgstr "Checksums, Daftar Berkas Konfigurasi"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>md5sums</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>md5sums</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>conffiles</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>conffiles</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>checksums</primary>"
-msgstr ""
+msgstr "<primary>checksums</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>files</primary><secondary>configuration files</secondary>"
-msgstr ""
+msgstr "<primary>berkas-berkas</primary><secondary>berkas-berkas konfigurasi</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>files</secondary>"
-msgstr ""
+msgstr "<primary>konfigurasi</primary><secondary>berkas-berkas</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition to the maintainer scripts and control data already mentioned in the previous sections, the <filename>control.tar.gz</filename> archive of a Debian package may contain other interesting files. The first, <filename>md5sums</filename>, contains the MD5 checksums for all of the package's files. Its main advantage is that it allows a tool such as <command>debsums</command> (which we will study in <xref linkend=\"sect.debsums\" />) to check if these files have been modified since their installation. Note that when this file doesn't exist, <command>dpkg</command> will generate it dynamically at installation time (and store it in the dpkg database just like other control files)."
-msgstr ""
+msgstr "Tambahan pula untuk maintainer skrip dan kontrol data telah disebutkan di bagian sebelumnya, arsip <filename>control.tar.gz</filename> dari sebuah paket Debian mungkin berisi berkas-berkas lain yang menarik. Pertama <filename>md5sums</filename>, berisi MD5 checksums untuk seluruh berkas paket. Kegunaan utamanya ialah mengizinkan alat semacam <command>debsums</command> (yang akan dipelajari di <xref linkend=\"sect.debsums\" />) untuk memeriksa jika berkas telah dimodifikasi sejak instalasinya. Catat bahwa ketika berkas ini tidak ada, <command>dpkg</command> akan membuatnya pada saat instalasi (dan menyimpannya di basisdata dpkg seperti berkas kontrol lainnya)."
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>conffiles</filename> lists package files that must be handled as configuration files. Configuration files can be modified by the administrator, and <command>dpkg</command> will try to preserve those changes during a package update."
-msgstr ""
+msgstr "<filename>conffiles</filename> mendaftar berkas paket yang harus ditangani sebagai berkas konfigurasi. Berkas-berkas konfigurasi dapat dimodifikasi oleh administrator, dan <command>dpkg</command> akan memertahankan perubahan tersebut ketika pembaharuan paket."
 
 #. Tag: para
 #, no-c-format
 msgid "In effect, in this situation, <command>dpkg</command> behaves as intelligently as possible: if the standard configuration file has not changed between the two versions, it does nothing. If, however, the file has changed, it will try to update this file. Two cases are possible: either the administrator has not touched this configuration file, in which case <command>dpkg</command> automatically installs the new version; or the file has been modified, in which case <command>dpkg</command> asks the administrator which version they wish to use (the old one with modifications, or the new one provided with the package). To assist in making this decision, <command>dpkg</command> offers to display a “<command>diff</command>” that shows the difference between the two versions. If the user chooses to retain the old version, the new one will be stored in the same location in a file with the <filename>.dpkg-dist</filename> suffix. If the user chooses the new version, the old one is retained in a file with the <filename>.dpkg-old</filename> suffix. Another available action consists of momentarily interrupting <command>dpkg</command> to edit the file and attempt to re-instate the relevant modifications (previously identified with <command>diff</command>)."
-msgstr ""
+msgstr "Efeknya, dalam situasi ini, <command>dpkg</command> bertindak secerdas mungkin: jika berkas konfigurasi standar tidak berubah antara kedua versi, tidak dilakukan apapu. Akan tetapi, jika berkas telah berubah, akan mencoba untuk memebarui berkas ini. Duah kasus yang mungkin: antara administrator tidak menyentuh berkas konfigurasi ini, dalam hal ini <command>dpkg</command> menginstall versi baru secara otomatis; atau berkas telah dimodifikasi, dalam hal ini <command>dpkg</command> meminta administrator versi mana yang ingin digunakan (versi lama yang dimodifikasi, atau yang baru yang disediakan oleh paket). Untuk membantu memutuskan, <command>dpkg</command> menawarkan untuk menampilkan sebuah “<command>diff</command>” yang menunjukkan perbedaan antara dua versi. Jika pengguna memilin untuk memertahankan versi lama, yang baru akan disimpan di lokasi yang sama dalam berkas dengan akhiran <filename>.dpkg-dist</filename>. Jika pengguna memilih versi baru, yang lama akan dipertahankan dalam sebuah berkas dengan akhiran <filename>.dpkg-old</filename>. Yang lainnya aksi yang tesedia berisi mengganggu sesaat <command>dpkg</command> untuk menyunting berkas dan berusaha mengatur kembali modifikasi yang sesuai (sebelumnya teridentifikasi oleh <command>diff</command>)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Avoiding the configuration file questions"
-msgstr ""
+msgstr "<emphasis>LEBIH JAUH</emphasis> Menghindari pertanyaan berkas konfigurasi"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> handles configuration file updates, but, while doing so, regularly interrupts its work to ask for input from the administrator. This makes it less than enjoyable for those who wish to run updates in a non-interactive manner. This is why this program offers options that allow the system to respond automatically according to the same logic: <command>--force-confold</command> retains the old version of the file; <command>--force-confnew</command> will use the new version of the file (these choices are respected, even if the file has not been changed by the administrator, which only rarely has the desired effect). Adding the <command>--force-confdef</command> option tells <command>dpkg</command> to decide by itself when possible (in other words, when the original configuration file has not been touched), and only uses <command>--force-confnew</command> or <command>--force-confold</command> for other cases."
-msgstr ""
+msgstr "<command>dpkg</command> menangani pembaharuan berkas konfigurasi, namun, ketika melakukannya, seringkali menginterupsi pekerjaannya untuk meinta masukan dari administrator. Hal ini membuat kurang menarik untuk mereka yang ingin menjalankan pembaharuan dengan cara non-interaktif. Oleh karena itu, program ini menawarkan pilihan yang memungkinkan sistem merespon secara otomatis berdasarkan logika yang sama: <command>--force-confold</command> memertahankan berkas versi lama; <command>--force-confnew</command> akan menggunakan berkas versi baru (pilihan ini masing-masing, bahkan jika berkas tidak diubah oleh administrator, yang jarang sekali efeknya diinginkan). Menambahkan pilihan <command>--force-confdef</command> menunjukkan <command>dpkg</command> untuk memutuskan sendiri ketika dimungkinkan (dengan kata lain, ketika berkas konfigurasi asli belum disentuh), dan hanya menggunakan <command>--force-confnew</command> atau <command>--force-confold</command> untuk kasus lain."
 
 #. Tag: para
 #, no-c-format
 msgid "These options apply to <command>dpkg</command>, but most of the time the administrator will work directly with the <command>aptitude</command> or <command>apt-get</command> programs. It is, thus, necessary to know the syntax used to indicate the options to pass to the <command>dpkg</command> command (their command line interfaces are very similar)."
-msgstr ""
+msgstr "Pilihan ini berlaku untuk <command>dpkg</command>, namun sering kali administrator langsung bekerja dengan program <command>aptitude</command> atau <command>apt-get</command>. Nah, penting untuk mengetahui sintaks yang digunakan untuk mengindikasikan pilihan yang dilalui ke perintah <command>dpkg</command> (antarmuka baris perintahnya sangat mirip)."
 
 #. Tag: screen
 #, no-c-format
@@ -954,11 +1031,13 @@ msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "These options can be stored directly in <command>apt</command>'s configuration. To do so, simply write the following line in the <filename>/etc/apt/apt.conf.d/local</filename> file:"
-msgstr ""
+msgstr "Pilihan ini dapat disimpan secara langsung di konfigurasi <command>apt</command>. Untuk melakukannya, tulis baris berikut di berkas <filename>/etc/apt/apt.conf.d/local</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -966,76 +1045,78 @@ msgid ""
 "\n"
 "DPkg::options { \"--force-confdef\"; \"--force-confold\"; }\n"
 msgstr ""
+"\n"
+"DPkg::options { \"--force-confdef\"; \"--force-confold\"; }\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Including this option in the configuration file means that it will also be used in a graphical interface such as <command>aptitude</command>."
-msgstr ""
+msgstr "Termasuk pilihan ini di berkas konfigurasi berarti bahwa ini juga digunakan di antar muka grafis seperti <command>aptitude</command>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Force dpkg to ask configuration file questions"
-msgstr ""
+msgstr "<emphasis>LEBIH JAUH</emphasis> Paksa dpkg untuk menanyakan permintaan berkas konfigurasi"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>--force-confask</command> option requires <command>dpkg</command> to display the questions about the configuration files, even in cases where they would not normally be necessary. Thus, when reinstalling a package with this option, <command>dpkg</command> will ask the questions again for all of the configuration files modified by the administrator. This is very convenient, especially for reinstalling the original configuration file if it has been deleted and no other copy is available: a normal re-installation won't work, because <command>dpkg</command> considers removal as a form of legitimate modification, and, thus, doesn't install the desired configuration file."
-msgstr ""
+msgstr "Pilihan <command>--force-confask</command> memerlukan <command>dpkg</command> untuk menampilkan pertanyaan tentang berkas konfigurasi, bahkan ketika mereka normalnya tidak diperlukan. Yaitu, ketika menginstall ulang sebuah paket dengan pilihan ini, <command>dpkg</command> akan menanyakannya lagi untuk seluruh berkas konfigurasi yang dimodifikasi oleh administrator. Ini sangat mudah, khususnya untuk menginstall ulang berkas konfigurasi asli jika telah dihapus dan salinannya tidak tersedia: penginstal-ulangan tidak bekerja, karena <command>dpkg</command> memutuskan penghapusan sebagai bentuk legitimasi modifikasi, dan, hal tersebut, tidak menginstall berkas konfigurasi yang diinginkan."
 
 #. Tag: title
 #, no-c-format
 msgid "Structure of a Source Package"
-msgstr ""
+msgstr "Struktur sebuah Paket Sumber"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>source package</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>paket sumber</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>source</primary><secondary>package</secondary>"
-msgstr ""
+msgstr "<primary>sumber</primary><secondary>paket</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DSC file</primary>"
-msgstr ""
+msgstr "<primary>Berkas DSC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>diff.gz</filename> file</primary>"
-msgstr ""
+msgstr "<primary><filename>diff.gz</filename> file</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>debian.tar.gz</filename> file</primary>"
-msgstr ""
+msgstr "<primary><filename>debian.tar.gz</filename> file</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>orig.tar.gz</filename> file</primary>"
-msgstr ""
+msgstr "<primary><filename>orig.tar.gz</filename> file</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A source package is usually comprised of three files, a <filename>.dsc</filename>, a <filename>.orig.tar.gz</filename>, and a <filename>.debian.tar.gz</filename> (or <filename>.diff.gz</filename>). They allow creation of binary packages (<filename>.deb</filename> files described above) from the source code files of the program, which are written in a programming language."
-msgstr ""
+msgstr "Sebuah paket sumber biasanya berisi tiga berkas, <filename>.dsc</filename>, <filename>.orig.tar.gz</filename>, dan <filename>.debian.tar.gz</filename> (atau <filename>.diff.gz</filename>). Mereka memungkinkan pembuatan paket biner (berkas <filename>.deb</filename> dijelaskan di atas) dari berkas kode sumber program, yang ditulis dengan sebuah bahasa pemrograman."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.dsc</filename> (Debian Source Control) file is a short text file containing an RFC 2822 header (just like the <filename>control</filename> file studied in <xref linkend=\"sect.control\" />) which describes the source package and indicates which other files are part thereof. It is signed by its maintainer, which guarantees authenticity. See <xref linkend=\"sect.package-authentication\" /> for further details on this subject."
-msgstr ""
+msgstr "Berkas <filename>.dsc</filename> (Debian Source Control) ialah berkas teks pendek berisi header RFC 2822 (seperti berkas <filename>control</filename> yang dipelajari di <xref linkend=\"sect.control\" />) yang menjelaskan paket sumber dan menunjukkan berkas mana yang merupakan bagiannya. Ditanda tangani oleh maintainernya, yang menjamin otentitasnya. Lihat <xref linkend=\"sect.package-authentication\" /> untuk detail lebih jauh pada hal tersebut."
 
 #. Tag: title
 #, no-c-format
 msgid "A <filename>.dsc</filename> file"
-msgstr ""
+msgstr "Berkas <filename>.dsc</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1079,171 +1160,209 @@ msgid ""
 "=qnbh\n"
 "-----END PGP SIGNATURE-----\n"
 msgstr ""
+"\n"
+"-----BEGIN PGP SIGNED MESSAGE-----\n"
+"Hash: SHA256\n"
+"\n"
+"Format: 3.0 (quilt)\n"
+"Source: zim\n"
+"Binary: zim\n"
+"Architecture: all\n"
+"Version: 0.48-1\n"
+"Maintainer: Emfox Zhou &lt;emfox@debian.org&gt;\n"
+"Uploaders: Raphaël Hertzog &lt;hertzog@debian.org&gt;\n"
+"Homepage: http://zim-wiki.org\n"
+"Standards-Version: 3.9.0\n"
+"Vcs-Browser: http://svn.debian.org/wsvn/collab-maint/deb-maint/zim/trunk?op=log\n"
+"Vcs-Svn: svn://svn.debian.org/collab-maint/deb-maint/zim/trunk\n"
+"Build-Depends: debhelper (&gt;= 7.4.12), python-support (&gt;= 0.8), xdg-utils, python (&gt;= 2.5), libgtk2.0-0 (&gt;= 2.6), python-gtk2, python-xdg, python-simplejson | python (&gt;= 2.6)\n"
+"Checksums-Sha1: \n"
+" bd84fa5104de5ed85a49723d26b350856de93217 966899 zim_0.48.orig.tar.gz\n"
+" 352111ff372a20579664416c9abd4970839835b3 9615 zim_0.48-1.debian.tar.gz\n"
+"Checksums-Sha256: \n"
+" 77d8df7dc89b233fdc3aab1a8ad959c6888881ae160770f50bf880a56e02f895 966899 zim_0.48.orig.tar.gz\n"
+" 0fceab5d3b099075cd38c225fa4002d893c1cdf4bbcc51d1391a34248e1e1a22 9615 zim_0.48-1.debian.tar.gz\n"
+"Files: \n"
+" 88cfc18c0c7339528d5f5f463647bb5f 966899 zim_0.48.orig.tar.gz\n"
+" 608b6e74aa14252dfc6236ab184bdb0c 9615 zim_0.48-1.debian.tar.gz\n"
+"\n"
+"-----BEGIN PGP SIGNATURE-----\n"
+"Version: GnuPG v1.4.10 (GNU/Linux)\n"
+"Comment: Signed by Raphael Hertzog\n"
+"\n"
+"iQEcBAEBCAAGBQJMSUAfAAoJEAOIHavrwpq5qjUIAKmM8p86GcHYTxMmKENoBUoW\n"
+"UPi5R7DzrLMbFrUXKgXWLvEKQTXpmkJhh2aSWq2iY+5piBSHwMiITfaBTpdTRvzU\n"
+"5nT/n9MlF8sJFESet/NgZaMPFDzWUbIy5aYbuG1TXmn/7XiDrBaQGiVqKkVLPrqc\n"
+"yWhsotn3JNKIjbPDW/DjImYyKD5RZpXrbVjuIgDT1E6yxtNYwUyBlK0cx/GITNep\n"
+"uV48hsT8cj0paqVXl5+P9Ww8XIE3clxNpE/45/tvKvkqGOeysc6OPAqsIw6HYFY9\n"
+"0EnvMTfMpeQOA68ZqsNpUjomv5r/EGwdCbAWo5iJDsZzXQ1Feh6iSNrjv3yeRzg=\n"
+"=qnbh\n"
+"-----END PGP SIGNATURE-----\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Build-Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Build-Depends</literal>, header field</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the source package also has dependencies (<literal>Build-Depends</literal>) completely distinct from those of binary packages, since they indicate tools required to compile the software in question and construct its binary package."
-msgstr ""
+msgstr "Catat bahwa paket sumber juga memiliki ketergantungan (<literal>Build-Depends</literal>) sangat berbeda dari paket binernya, karena mereka menunjukkan alat yang diperlukan untuk mengompilasi perangkat lunak yang diminta dan membangun paket binernya."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Distinct namespaces"
-msgstr ""
+msgstr "<emphasis>PERHATIAN</emphasis> Perbedaan namespaces"
 
 #. Tag: para
 #, no-c-format
 msgid "It is important to note here that there is no required correspondence between the name of the source package and that of the binary package(s) that it generates. It is easy enough to understand if you know that each source package may generate several binary packages. This is why the <filename>.dsc</filename> file has the <literal>Source</literal> and <literal>Binary</literal> fields to explicitly name the source package and store the list of binary packages that it generates."
-msgstr ""
+msgstr "Penting untuk dicatat di sini bahwa tidak ada keharusan sesuai antara nama paket sumber dan paket biner yang dihasilkannya. Cukup mudah dipahami jika Anda mengetahui bahwa setiap paket sumber mungkin menghasilkan beberapa paket biner. Itulah mengapa berkas <filename>.dsc</filename> memiliki field <literal>Source</literal> dan <literal>Binary</literal> untuk secara eksplisit memberi nama paket sumber dan menyimpan daftar paket biner yang dihasilkannya."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Why divide into several packages"
-msgstr ""
+msgstr "<emphasis>KULTUR</emphasis> Mengapa dibagi ke beberapa paket"
 
 #. Tag: para
 #, no-c-format
 msgid "Quite frequently, a source package (for a given software) can generate several binary packages. The split is justified by the possibility to use (parts of) the software in different contexts. Consider a shared library, it may be installed to make an application work (for example, <emphasis role=\"pkg\">libc6</emphasis>), or it can be installed to develop a new program (<emphasis role=\"pkg\">libc6-dev</emphasis> will then be the correct package). We find the same logic for client/server services where we want to install the server part on one machine and the client part on others (this is the case, for example, of <emphasis role=\"pkg\">openssh-server</emphasis> and <emphasis role=\"pkg\">openssh-client</emphasis>)."
-msgstr ""
+msgstr "Cukup sering, sebuah paket sumber (untuk perangkat lunak tertentu) dapat menghasilkan beberapa paket biner. Pembagian ini dibenarkan oleh kemungkinan untuk menggunakan (bagian dari) perangkat lunak dalam konteks yang berbeda. Menilik shared library, mungkin diinstall agar aplikasi dapat berjalan (contohnya, <emphasis role=\"pkg\">libc6</emphasis>), atau dapat diinstall untuk mengembangkan sebuah program (<emphasis role=\"pkg\">libc6-dev</emphasis> kemudian menjadi paket yang tepat). Kami menemukan logika yang sama untuk layanan klien/server di mana kita ingin menginstall bagian server pada satu mesin dan bagian klien di yang lainnya (begini kasusnya, sebagai contoh, dari <emphasis role=\"pkg\">openssh-server</emphasis> dan <emphasis role=\"pkg\">openssh-client</emphasis>). "
 
 #. Tag: para
 #, no-c-format
 msgid "Just as frequently, the documentation is provided in a dedicated package: the user may install it independently from the software, and may at any time choose to remove it to save disk space. Additionally, this also saves disk space on the Debian mirrors, since the documentation package will be shared amongst all of the architectures (instead of having the documentation duplicated in the packages for each architecture)."
-msgstr ""
+msgstr "Seperti sering kali, dokumentasi disediakan dalam paket khusus: pengguna dapat menginstallnya secara independen dari perangkat lunak, dan dan dapat menghapusnya kapan saja untuk menghemat ruang disk. Selain itu, ini juga menghemat ruang disk pada mirror Debian, karena paket dokumentasi akan dibagi antara seluruh arsitektur (ketimbang dokumentasi dibuat dobel pada paket untuk setiap arsitektur)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>PERSPECTIVE</emphasis> Different source package formats"
-msgstr ""
+msgstr "<emphasis>PERSPECTIVE</emphasis> Berbeda format paket sumber"
 
 #. Tag: para
 #, no-c-format
 msgid "Originally there was only one source package format. This is the <literal>1.0</literal> format, which associates an <filename>.orig.tar.gz</filename> archive to a <filename>.diff.gz</filename> “debianization” patch (there is also a variant, consisting of a single <filename>.tar.gz</filename> archive, which is automatically used if no <filename>.orig.tar.gz</filename> is available)."
-msgstr ""
+msgstr "Aslinya hanya ada satu format paket sumber. Inilah format <literal>1.0</literal>, yang menghubungkan arsip <filename>.orig.tar.gz</filename> ke <filename>.diff.gz</filename> patch “debianisasi” (ada juga varian, berisi sebuah arsip <filename>.tar.gz</filename>, yang secara otomatis digunakan jika tidak ada arsip <filename>.orig.tar.gz</filename>)."
 
 #. Tag: para
 #, no-c-format
 msgid "Since Debian <emphasis role=\"distribution\">Squeeze</emphasis>, Debian developers have the option to use new formats that correct many problems of the historical format. Format <literal>3.0 (quilt)</literal> can combine multiple upstream archives in the same source package: in addition to the usual <filename>.orig.tar.gz</filename>, supplementary <filename>.orig-<replaceable>component</replaceable>.tar.gz</filename> archives can be included. This is useful with software that are distributed in several upstream components but for which a single source package is desired. These archives can also be compressed with <command>bzip2</command> or <command>xz</command> rather than <command>gzip</command> (<command>lzma</command> is also supported by <command>dpkg-source</command> but not accepted into the official archive), which saves disk space and network resources. Finally, the monolithic patch, <filename>.diff.gz</filename> is replaced by a <filename>.debian.tar.gz</filename> archive containing the compiling instructions and a set of upstream patches contributed by the package maintainer. These last are recorded in a format compatible with <command>quilt</command> — a tool that facilitates the management of a series of patches."
-msgstr ""
+msgstr "Sejak Debian <emphasis role=\"distribution\">Squeeze</emphasis>, developer Debian memiliki pilihan untuk menggunakan format baru yang memerbaiki banyak masalah pada sejarah formatnya. Format <literal>3.0 (quilt)</literal> dapat menggabungkan beberapa arsip upstream dalam paket sumber yang sama: sebagai tambahan ke arsip biasa <filename>.orig.tar.gz</filename>, tambahannya arsip <filename>.orig-<replaceable>component</replaceable>.tar.gz</filename> dapat juga disertakan. Hal ini berguna dengan perangkat lunak yang didistribusikan pada beberapa komponen upstream namun untuk paket sumber tunggal yang diminta. Arsip ini juga dapat dikompres dengan <command>bzip2</command> atau <command>xz</command> daripada <command>gzip</command> (<command>lzma</command> juga didukung oleh <command>dpkg-source</command> namun tidak diterima ke arsip resmi), yang menghemat ruang disk dan sumber daya jaringan. Akhirnya, patch monolitik, <filename>.diff.gz</filename> diganti dengan arsip <filename>.debian.tar.gz</filename> berisi instruksi kompilasi dan beberapa patch upstream yang disumbangkan oleh maintainer paket. Yang terakhir ini direkam dalam format yang cocok dengan <command>quilt</command> - sebuah alat yang memfasilitasi pengelolaan beberapa seri patch."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.orig.tar.gz</filename> file is an archive containing the source code as provided by the original developer. Debian package maintainers are asked to not modify this archive in order to be able to easily check the origin and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
-msgstr ""
+msgstr "Berkas <filename>.orig.tar.gz</filename> adalah sebuah arsip berisi kode sumber yang disediakan oleh pengembang aslinya. Maintainer paket Debian diminta untuk tidak memodifikasi arsip ini agar mudah memeriksa keaslian dan integritas berkas (pembandingan dengan checksum) dan menghormati keinginan beberapa penulis."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.debian.tar.gz</filename> contains all of the modifications made by the Debian maintainer, especially the addition of a <filename>debian</filename> directory containing the instructions to execute to construct a Debian package."
-msgstr ""
+msgstr "<filename>.debian.tar.gz</filename> bersisi seluruh modifikasi yang dibuat oleh maintainer Debian, khususnya tambahan direktori <fillename>debian</filename> berisi instruksi untuk eksekusi pembangunan sebuah paket Debian."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Decompressing a source package"
-msgstr ""
+msgstr "<emphasis>ALAT</emphasis> Mendekompress sebuah paket sumber"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg-source</command></primary>"
-msgstr ""
+msgstr "<primary><command>dpkg-source</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>decompressing, source package</primary>"
-msgstr ""
+msgstr "<primary>decompressing, paket sumber</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>uncompressing, source package</primary>"
-msgstr ""
+msgstr "<primary>uncompressing, paket sumber</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>unpacking</primary><secondary>source package</secondary>"
-msgstr ""
+msgstr "<primary>membongkar</primary><secondary>paket sumber</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you have a source package, you can use the <command>dpkg-source</command> command (from the <emphasis>dpkg-dev</emphasis> package) to decompress it:"
-msgstr ""
+msgstr "Jika Anda memiliki sebuah paket sumber, Anda dapat menggunakan perintah <command>dpkg-source</command> (dari paket <emphasis>dpkg-dev</emphasis>) untuk mendekompressnya:"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "You can also use <command>apt-get</command> to download a source package and unpack it right away. It requires that the appropriate <emphasis>deb-src</emphasis> lines be present in the <filename>/etc/apt/sources.list</filename> file, however (for further details, see <xref linkend=\"sect.apt-sources.list\" />). These are used to list the “sources” of source packages (meaning the servers on which a group of source packages are hosted)."
-msgstr ""
+msgstr "Anda juga dapat menggunakan <command>apt-get</command> untuk mengunduh paket sumber dan membongkarnya saat itu juga. Hal ini memerlukan baris <emphasis>deb-src</emphasis> yang sesuai di berkas <filename>/etc/apt/sources.list</filename>, akan tetapi (untuk detail lebih jauh, lihat <xref linkend=\"sect.apt-sources.list\" />). Hal ini diperlukan untuk mendaftar “sumber” paket sumber (maksudnya server di mana kelompok paket sumber di simpan)."
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Usage within Debian"
-msgstr ""
+msgstr "Penggunaannya dalam Debian"
 
 #. Tag: para
 #, no-c-format
 msgid "The source package is the foundation of everything in Debian. All Debian packages come from a source package, and each modification in a Debian package is the consequence of a modification made to the source package. The Debian maintainers work with the source package, knowing, however, the consequences of their actions on the binary packages. The fruits of their labors are thus found in the source packages available from Debian: you can easily go back to them and everything stems from them."
-msgstr ""
+msgstr "Paket sumber adalah dasar dari segalanya di Debian. Seluruh paket Debian datang dari paket sumber, dan setiap perubahan dalam paket Debian ialah konsekuensi dari modifikasi yang dibuat untuk paket sumber. Maintainer Debian bekerja dengan paket sumber, mengatahui, namun, konsekuensi aksi mereka pada paket binernya. Buah dari pekerjaan mereka ialah yang ditemukan di paket sumber yang tersedia dari Debian: Anda dapat dengan mudah kembali ke mereka dan apapun berasal dari mereka."
 
 #. Tag: para
 #, no-c-format
 msgid "When a new version of a package (source package and one or more binary packages) arrives on the Debian server, the source package is the most important. Indeed, it will then be used by a network of machines of different architectures for compilation on the various architectures supported by Debian. The fact that the developer also sends one or more binary packages for a given architecture (usually i386 or amd64) is relatively unimportant, since these could just as well have been automatically generated."
-msgstr ""
+msgstr "Ketika versi baru sebuah paket (paket sumber dan satu atau lebih paket biner) ada di server Debian, paket sumberlah yang paling penting. Sebenarnya, ini akan digunakan oleh jaringan mesin yang berbeda arsitekturnya untuk dikompilasi di berbagai arsitektur yang didukung oleh Debian. Kenyataannya pengembang juga mengirim satu atau beberapa paket biner untuk arsitektur khusus (biasanya i386 atau amd64) relatif tidak penting, karena hal ini juga telah dihasilkan secara otomatis."
 
 #. Tag: title
 #, no-c-format
 msgid "Manipulating Packages with <command>dpkg</command>"
-msgstr ""
+msgstr "Manipulasi Paket dengan <command>dpkg</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is the base command for handling Debian packages on the system. If you have <filename>.deb</filename> packages, it is <command>dpkg</command> that allows installation or analysis of their contents. But this program only has a partial view of the Debian universe: it knows what is installed on the system, and whatever it is given on the command line, but knows nothing of the other available packages. As such, it will fail if a dependency is not met. Tools such as <command>apt-get</command>, on the contrary, will create a list of dependencies to install everything as automatically as possible."
-msgstr ""
+msgstr "<command>dpkg</command> adalah perintah dasar untuk menangani paket Debian pada sistem. Jika Anda memiliki paket <filename>.deb</filename>, adalah <command>dpkg</command> yang mengizinkan instalasi atau analisa isinya. Namun program ini hanya memiliki sebagaian pandangan pada dunia Debian: dia tau apa yang terinstall di sistem, dan apapun yang diberikan di baris perintah, namun tidak mengetahui paket lain yang tersedia. Dengan demikian, dia akan gagal jika ketergantungan tidak dipenuhi. Alat semacam <command>apt-get</command>, sebaliknya, akan membuat daftar ketergantungan untuk menginstall apapun seotomatis mungkin."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> <command>dpkg</command> or <command>apt-get</command>?"
-msgstr ""
+msgstr "<emphasis>CATATAN</emphasis> <command>dpkg</command> atau <command>apt-get</command>?"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> should be seen as a system tool (backend), and <command>apt-get</command> as a tool closer to the user, which overcomes the limitations of the former. These tools work together, each one with its particularities, suited to specific tasks."
-msgstr ""
+msgstr "<command>dpkg</command> harus dilihat sebagai alat sistem (backend>, dan <command>apt-get</command> sebagai sebuah alat yang paling dekat dengan pengguna, yang mengatasi batasan sebelumnya. Alat-alat ini bekerja bersama-sama, setiap kekhasannya, berlaku untuk tugas khusus."
 
 #. Tag: title
 #, no-c-format
 msgid "Installing Packages"
-msgstr ""
+msgstr "Menginstall Paket"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>package installation</secondary>"
-msgstr ""
+msgstr "<primary>instalasi</primary><secondary>instalasi paket</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>installation</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>instalasi</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is, above all, the tool for installing an already available Debian package (because it does not download anything). To do this, we use its <literal>-i</literal> or <literal>--install</literal> option."
-msgstr ""
+msgstr "<command>dpkg</command> ialah, semua yang di atas, alat untuk menginstall paket Debian yang telah ada (karena dia tidak mengunduh apapun). Untuk melakukannya, kita menggunakan pilihan <literal>-i</literal> atau <literal>--install</literal>."
 
 #. Tag: title
 #, no-c-format
 msgid "Installation of a package with <command>dpkg</command>"
-msgstr ""
+msgstr "Instalasi sebuah paket dengan <command>dpkg</command>"
 
 #. Tag: screen
 #, no-c-format
@@ -1256,16 +1375,23 @@ msgid ""
 "Setting up man-db (2.6.2-1) ...\n"
 "Building database of manual pages ... </computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.6.2-1_amd64.deb</userinput>\n"
+"<computeroutput>(Sedang membaca basisdata ... 96357 berkas dan direktori telah terinstall.)\n"
+"Persiapan untuk mengganti man-db 2.6.1-3 (menggunakan man-db_2.6.2-1_amd64.deb) ...\n"
+"Membongkar pengganti man-db ...\n"
+"Sedang menata man-db (2.6.2-1) ...\n"
+"Sedang membangun basisdata halaman manual ... </computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "We can see the different steps performed by <command>dpkg</command>; we know, thus, at what point any error may have occurred. The installation can also be effected in two stages: first unpacking, then configuration. <command>apt-get</command> takes advantage of this, limiting the number of calls to <command>dpkg</command> (since each call is costly, due to loading of the database in memory, especially the list of already installed files)."
-msgstr ""
+msgstr "Kita dapat melihat perbedaan langkah yang dilakukan oleh <command>dpkg</command>; kita tahu, pada titik apa kerusakan akan terjadi. Instalasi juga dapat berakibat pada dua langkah: pertama pembongkaran, kemudian konfigurasi. <command>apt-get</command> mengambil manfaat ini, membatasi jumlah panggilan ke <command>dpkg</command> (karena setiap panggilan itu berharga, disebabkan oleh pemuatan basisdata di memori, khususnya daftar paket yang telah terinstall)."
 
 #. Tag: title
 #, no-c-format
 msgid "Separate unpacking and configuration"
-msgstr ""
+msgstr "Memisahkan unpacking dan konfigurasi"
 
 #. Tag: screen
 #, no-c-format
@@ -1279,21 +1405,29 @@ msgid ""
 "<computeroutput>Setting up man-db (2.6.2-1) ...\n"
 "Building database of manual pages ...</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.6.2-1_amd64.deb</userinput>\n"
+"<computeroutput>(Sedang membaca basisdata ... 96357 berkas dan direktori telah terinstall.)\n"
+"Persiapan untuk mengganti man-db 2.6.2-1 (menggunakan man-db_2.6.2-1_amd64.deb) ...\n"
+"Sedang membongkar pengganti man-db ...\n"
+"# </computeroutput><userinput> dpkg --configure man-db</userinput>\n"
+"<computeroutput>Menata man-db (2.6.2-1) ...\n"
+"Sedang membangun basisdata halaman manual ...</computeroutput>\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>unpacking</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>unpacking</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>unpacking</primary><secondary>binary package</secondary>"
-msgstr ""
+msgstr "<primary>unpacking</primary><secondary>paket biner</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes <command>dpkg</command> will fail to install a package and return an error; if the user orders it to ignore this, it will only issue a warning; it is for this reason that we have the different <literal>--force-*</literal> options. The <command>dpkg --force-help</command> command, or documentation of this command, will give a complete list of these options. The most frequent error, which you are bound to encounter sooner or later, is a file collision. When a package contains a file that is already installed by another package, <command>dpkg</command> will refuse to install it. The following messages will then appear:"
-msgstr ""
+msgstr "Terkadang <command>dpkg</command> gagal menginstall paket dan menghasilkan error; jika pengguna memerintahkan untuk mengabaikannya, ini hanya akan menghasilkan peringatan; untuk alasan inilah kita memiliki pilihan <literal>--force-*</literal> yang berbeda. Perintah <command>dpkg --force-help</command>, atau dokumentasi perintah ini, akan memberikan daftar lengkap pilihan tersebut. Error yang sering, yang akan Anda temukan cepat atau lambat, ialah tabrakan berkas. Ketika sebuah paket berisi berkas yang telah terinstall oleh paket lain, <command>dpkg</command> akan menolak menginstallnya. Persan berikut kemudian akan nampak:"
 
 #. Tag: screen
 #, no-c-format
@@ -1303,31 +1437,35 @@ msgid ""
 "dpkg: error processing /var/cache/apt/archives/libgdm_3.8.3-2_amd64.deb (--unpack):\n"
 " trying to overwrite '/usr/bin/gdmflexiserver', which is also in package gdm3 3.4.1-9</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>Unpacking libgdm (from .../libgdm_3.8.3-2_amd64.deb) ...\n"
+"dpkg: error processing /var/cache/apt/archives/libgdm_3.8.3-2_amd64.deb (--unpack):\n"
+" trying to overwrite '/usr/bin/gdmflexiserver', which is also in package gdm3 3.4.1-9</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "In this case, if you think that replacing this file is not a significant risk to the stability of your system (which is usually the case), you can use the option <literal>--force-overwrite</literal>, which tells <command>dpkg</command> to ignore this error and overwrite the file."
-msgstr ""
+msgstr "Dalam kasus ini, jika Anda merasa bahwa mengganti berkas ini bukan resiko yang signifikan pada stabilitas sistem Anda (yang merupakan kasus umumnya), Anda dapat menggunakan pilihan <literal>--force-overwrite</literal>, meminta <command>dpkg</command> untuk mengabaikan kesalahan dan meng-overwrite berkas tersebut."
 
 #. Tag: para
 #, no-c-format
 msgid "While there are many available <literal>--force-*</literal> options, only <literal>--force-overwrite</literal> is likely to be used regularly. These options only exist for exceptional situations, and it is better to leave them alone as much as possible in order to respect the rules imposed by the packaging mechanism. Do not forget, these rules ensure the consistency and stability of your system."
-msgstr ""
+msgstr "Ada banyak pilihan <literal>--force-*</literal> yang tersedia, hanya <literal>--force-overwrite</literal> yang mungkin paling sering digunakan. Pilihan ini hanya ada untuk situasi khusus, dan sebaiknya mengabaikannya sebisa mungkin untuk menghormati peraturan yang dibuat oleh mekanisme paket. Jangan lupa, peraturan ini untuk memastikan konsistensi dan stabilitas sistem Anda."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Effective use of <literal>--force-*</literal>"
-msgstr ""
+msgstr "<emphasis>PERHATIAN</emphasis> Efektivitas penggunaan <literal>--force-*</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>broken dependency</primary>"
-msgstr ""
+msgstr "<primary>ketergantungan rusak</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you are not careful, the use of an option <literal>--force-*</literal> can lead to a system where the APT family of commands will refuse to function. In effect, some of these options allow installation of a package when a dependency is not met, or when there is a conflict. The result is an inconsistent system from the point of view of dependencies, and the APT commands will refuse to execute any action except those that will bring the system back to a consistent state (this often consists of installing the missing dependency or removing a problematic package). This often results in a message like this one, obtained after installing a new version of <emphasis role=\"pkg\">rdesktop</emphasis> while ignoring its dependency on a newer version of the <emphasis role=\"pkg\">libc6</emphasis>:"
-msgstr ""
+msgstr "Jika Anda tidak berhati-hati, penggunaan pilihan <literal>--force-*</literal> dapat berakibat ke sistem di mana perintah dari keluarta APT tidak akan berfungsi. Efeknya, beberapa pilihan ini mengizinkan instalasi sebuah paket ketika ketergantungan tidak dipenuhi, atau ketika ada konflik. Hasilnya ialah sistem yang tak konsisten dari sudut pandang ketergantungan, dan perintah APT tidak akan mengeksekusi aksi kecuali yang akan mengembalikan sistem kembali ke kondisi konsisten (hal in sering berupa instalasi ketergantungan yang hilang atau menghapus paket bermasalah). Hal ini sering menghasilkan pesan seperti yang satu ini, didapatkan setelah instalasi versi baru <emphasis role=\"pkg\">rdesktop</emphasis> ketika mengabaikan ketergantungannya pada versi baru <emphasis role=\"pkg\">libc6</emphasis>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1340,46 +1478,53 @@ msgid ""
 "E: missing dependencies. Try to use the option -f.\n"
 "  "
 msgstr ""
+"# apt-get dist-upgrade\n"
+"[...]\n"
+"You can run \"apt-get -f install\" to correct these problems.\n"
+"The following packages contain unmet dependencies:\n"
+"  rdesktop: Depends on: libc6 (&gt;= 2.5) but 2.3.6.ds1-13etch7 is installed\n"
+"E: missing dependencies. Try to use the option -f.\n"
+"  "
 
 #. Tag: para
 #, no-c-format
 msgid "A courageous administrator who is certain of the correctness of their analysis may choose to ignore a dependency or conflict and use the corresponding <literal>--force-*</literal> option. In this case, if they want to be able to continue to use <command>apt-get</command> or <command>aptitude</command>, they must edit <filename>/var/lib/dpkg/status</filename> to delete/modify the dependency, or conflict, that they chose to override."
-msgstr ""
+msgstr "Seorang administrator yang berani yakin akan kebenaran analisanya mungkin akan memilih untuk mengabaikan ketergantungan atau konflik dan menggunakan pilihan <literal>--fore-*</literal>. Dalam kasus ini, jika meraka ingin dapat melanjutkan menggunakan <command>apt-get</command> atau <command>aptitude</command>, mereka harus menyunting <filename>/var/lib/dpkg/status</filename> untuk menghapus/memodifikasi ketergantungan, atau konflik, yang mereka pilih untuk dikesampingkan."
 
 #. Tag: para
 #, no-c-format
 msgid "This manipulation is an ugly hack, and should never be used, except in the most extreme case of necessity. Quite frequently, a more fitting solution is to recompile the package that's causing the problem (see <xref linkend=\"sect.rebuilding-package\" />) or use a new version (potentially corrected) from a repository such as the <literal>stable-backports</literal> one (see <xref linkend=\"sect.backports\" />)."
-msgstr ""
+msgstr "Manipulasi ini ialah hacking yang buruk, dan sebaiknya tidak pernah digunakan, kecuali pada kasus keadaan yang paling ekstrim. Cukup sering, solusi yang paling tepat adalah mengompilasi ulang paket yang menyebabkan masalah (lihat <xref linkend=\"sect.rebuilding-package\" />) atau gunakan versi terbaru (kemungkinan telah diperbaiki) dari repositori seperti salah satunya <literal>stable-backports</literal> (lihat <xref linkend=\"sect.backports\" />)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>removing a package</primary>"
-msgstr ""
+msgstr "<primary>penghapusan paket</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>purging a package</primary>"
-msgstr ""
+msgstr "<primary>mem-purge paket</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>removal</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>penghapusan</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>purge</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>purge</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Invoking <command>dpkg</command> with the <literal>-r</literal> or <literal>--remove</literal> option, followed by the name of a package, removes that package. This removal is, however, not complete: all of the configuration files, maintainer scripts, log files (system logs) and other user data handled by the package remain. That way disabling the program is easily done by uninstalling it, and it's still possible to quickly reinstall it with the same configuration. To completely remove everything associated with a package, use the <literal>-P</literal> or <literal>--purge</literal> option, followed by the package name."
-msgstr ""
+msgstr "Menjalankan <command>dpkg</command> dengan pilihan <literal>-r</literal> atau <literal>--remove</literal>, diikuti dengan nama paket, menghapus paket tersebut. Akan tetapi, penghapusan ini tidak lengkap: seluruh berkas konfigurasi, skrip maintainer, berkas-berkas log (sistem log) dan data pengguna lain ditangani oleh paket tertinggal. Oleh sebab itu, menonaktifkan program dapat dilakukan dengan meng-uninstall-nya, dan masih memungkinkan menginstall ulangnya dengan cepat menggunakan konfigurasi yang sama. Untuk menghapus apapun yang berhubungan dengan sebuah paket, gunakan pilihan <literal>-P</literal> or <literal>--purge</literal>, diikuti dengan nama paket."
 
 #. Tag: title
 #, no-c-format
 msgid "Removal and purge of the <emphasis>debian-cd</emphasis> package"
-msgstr ""
+msgstr "Menghapus dan purge paket <emphasis>debian-cd</emphasis>"
 
 #. Tag: screen
 #, no-c-format
@@ -1392,46 +1537,53 @@ msgid ""
 "Removing debian-cd ...\n"
 "Purging configuration files for debian-cd ...</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
+"<computeroutput>(Reading database ... 97747 files and directories currently installed.)\n"
+"Removing debian-cd ...\n"
+"# </computeroutput><userinput>dpkg -P debian-cd</userinput>\n"
+"<computeroutput>(Reading database ... 97401 files and directories currently installed.)\n"
+"Removing debian-cd ...\n"
+"Purging configuration files for debian-cd ...</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Querying <command>dpkg</command>'s Database and Inspecting <filename>.deb</filename> Files"
-msgstr ""
+msgstr "Melakukan Queri ke Basisdata <command>dpkg</command> dan Memeriksa Berkas <filename>.deb</filename>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>status</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>status</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>file list</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>daftar berkas</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>content inspection</secondary>"
-msgstr ""
+msgstr "<primary>paket</primary><secondary>pemeriksaan isi</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Option syntax"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Syntax pilihan"
 
 #. Tag: para
 #, no-c-format
 msgid "Most options are available in a “long” version (one or more relevant words, preceded by a double dash) and a “short” version (a single letter, often the initial of one word from the long version, and preceded by a single dash). This convention is so common that it is a POSIX standard."
-msgstr ""
+msgstr "Kebanyakan pilihan tersedia dalam versi “panjang” (satu atau lebih kata yang sesuai, didahului oleh dua tanda hubung) dan versi “pendek” (satu huruf, seringkali berupa awalan huruf dari versi panjangnya, didahului oleh satu tanda hubung). Ini meruupakan kaidah umum yang berupa standar POSIX."
 
 #. Tag: para
 #, no-c-format
 msgid "Before concluding this section, we will study <command>dpkg</command> options that query the internal database in order to obtain information. Giving first the long options and then corresponding short options (that will evidently take the same possible arguments) we cite <literal>--listfiles <replaceable>package</replaceable></literal> (or <literal>-L</literal>), which lists the files installed by this package; <literal>--search <replaceable>file</replaceable></literal> (or <literal>-S</literal>), which finds the package(s) containing the file; <literal>--status <replaceable>package</replaceable></literal> (or <literal>-s</literal>), which displays the headers of an installed package; <literal>--list</literal> (or <literal>-l</literal>), which displays the list of packages known to the system and their installation status; <literal>--contents <replaceable>file.deb</replaceable></literal> (or <literal>-c</literal>), which lists the files in the Debian package specified; <literal>--info<replaceable> file.deb </replaceable></literal> (or <literal>-I</literal>), which displays the headers of this Debian package."
-msgstr ""
+msgstr "Sebelum menyimpulkan bagian ini, kita akan memelajari pilihan <command>dpkg</command> yang melakukan query ke basisdata internal agar mendapatkan informasi. Pertama memberikan pilihan panjang dan kemudian pilihan pendeknya yang sesuai (yang pastinya akan memiliki argumen yang sama) kita kutip <literal>--listfiles <replaceable>paket</replaceable></literal> (atau <literal>-L</literal>), menampilkan daftar berkas yang terinstall oleh paket tersebut; <literal>--search <replaceable>berkas</replaceable></literal> (atau <literal>-S</literal>), mencari paket yang berisi berkas tersebut; <literal>--status <replaceable>paket</replaceable></literal> (atau <literal>-s</literal>), menampilkan header sebuah paket yang terinstall; <literal>--list</literal> (atau <literal>-l</literal>), menampilkan daftar paket yang diketahui sistem dan status instalasinya; <literal>--contents <replaceable>berkas.deb</replaceable></literal> (atau <literal>-c</literal>), menampilkan daftar berkas dalam paket Debian yang ditentukan; <literal>--info<replaceable> berkas.deb </replaceable></literal> (atau <literal>-I</literal>), menampilkan header paket Debian tersebut."
 
 #. Tag: title
 #, no-c-format
 msgid "Various queries with <command>dpkg</command>"
-msgstr ""
+msgstr "Berbagai queri dengan <command>dpkg</command>"
 
 #. Tag: screen
 #, no-c-format
@@ -1551,26 +1703,140 @@ msgid ""
 "  with the proposed OpenPGP Internet standard as described in RFC 4880.\n"
 "[...]</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
+"<computeroutput>/.\n"
+"/usr\n"
+"/usr/sbin\n"
+"/usr/sbin/update-passwd\n"
+"/usr/share\n"
+"/usr/share/man\n"
+"/usr/share/man/ru\n"
+"/usr/share/man/ru/man8\n"
+"/usr/share/man/ru/man8/update-passwd.8.gz\n"
+"/usr/share/man/pl\n"
+"/usr/share/man/pl/man8\n"
+"/usr/share/man/pl/man8/update-passwd.8.gz\n"
+"/usr/share/man/man8\n"
+"/usr/share/man/man8/update-passwd.8.gz\n"
+"/usr/share/man/fr\n"
+"/usr/share/man/fr/man8\n"
+"/usr/share/man/fr/man8/update-passwd.8.gz\n"
+"/usr/share/doc-base\n"
+"/usr/share/doc-base/users-and-groups\n"
+"/usr/share/base-passwd\n"
+"/usr/share/base-passwd/passwd.master\n"
+"/usr/share/base-passwd/group.master\n"
+"/usr/share/lintian\n"
+"/usr/share/lintian/overrides\n"
+"/usr/share/lintian/overrides/base-passwd\n"
+"/usr/share/doc\n"
+"/usr/share/doc/base-passwd\n"
+"/usr/share/doc/base-passwd/copyright\n"
+"/usr/share/doc/base-passwd/users-and-groups.html\n"
+"/usr/share/doc/base-passwd/changelog.gz\n"
+"/usr/share/doc/base-passwd/users-and-groups.txt.gz\n"
+"/usr/share/doc/base-passwd/README\n"
+"$ </computeroutput><userinput>dpkg -S /bin/date</userinput>\n"
+"<computeroutput>coreutils: /bin/date\n"
+"$ </computeroutput><userinput>dpkg -s coreutils</userinput>\n"
+"<computeroutput>Package: coreutils\n"
+"Essential: yes\n"
+"Status: install ok installed\n"
+"Priority: required\n"
+"Section: utils\n"
+"Installed-Size: 13822\n"
+"Maintainer: Michael Stone &lt;mstone@debian.org&gt;\n"
+"Architecture: amd64\n"
+"Multi-Arch: foreign\n"
+"Version: 8.13-3.5\n"
+"Replaces: mktemp, timeout\n"
+"Depends: dpkg (&gt;= 1.15.4) | install-info\n"
+"Pre-Depends: libacl1 (&gt;= 2.2.51-8), libattr1 (&gt;= 1:2.4.46-8), libc6 (&gt;= 2.7), libselinux1 (&gt;= 1.32)\n"
+"Conflicts: timeout\n"
+"Description: GNU core utilities\n"
+" This package contains the basic file, shell and text manipulation\n"
+" utilities which are expected to exist on every operating system.\n"
+" .\n"
+" Specifically, this package includes:\n"
+" arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp\n"
+" csplit cut date dd df dir dircolors dirname du echo env expand expr\n"
+" factor false flock fmt fold groups head hostid id install join link ln\n"
+" logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup nproc od\n"
+" paste pathchk pinky pr printenv printf ptx pwd readlink rm rmdir runcon\n"
+" sha*sum seq shred sleep sort split stat stty sum sync tac tail tee test\n"
+" timeout touch tr true truncate tsort tty uname unexpand uniq unlink\n"
+" users vdir wc who whoami yes\n"
+"Homepage: http://gnu.org/software/coreutils\n"
+"$ </computeroutput><userinput>dpkg -l 'b*'</userinput>\n"
+"<computeroutput>Desired=Unknown/Install/Remove/Purge/Hold\n"
+"| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend\n"
+"|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)\n"
+"||/ Name         Version        Architecture   Description\n"
+"+++-============-==============-==============-================================\n"
+"un  backupninja  &lt;none&gt;                        (no description available)\n"
+"un  base         &lt;none&gt;                        (no description available)\n"
+"un  base-config  &lt;none&gt;                        (no description available)\n"
+"ii  base-files   7.1            amd64          Debian base system miscellaneous\n"
+"ii  base-passwd  3.5.26         amd64          Debian base system master passwo\n"
+"[...]\n"
+"$ </computeroutput><userinput>dpkg -c /var/cache/apt/archives/gnupg_1.4.12-7_amd64.deb</userinput>\n"
+"<computeroutput>drwxr-xr-x root/root         0 2013-01-02 19:28 ./\n"
+"drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/\n"
+"drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/share/\n"
+"drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/share/doc/\n"
+"drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/share/doc/gnupg/\n"
+"-rw-r--r-- root/root      3258 2012-01-20 10:51 ./usr/share/doc/gnupg/TODO\n"
+"-rw-r--r-- root/root       308 2011-12-02 18:34 ./usr/share/doc/gnupg/FAQ\n"
+"-rw-r--r-- root/root      3543 2012-02-20 18:41 ./usr/share/doc/gnupg/Upgrading_From_PGP.txt\n"
+"-rw-r--r-- root/root       690 2012-02-20 18:41 ./usr/share/doc/gnupg/README.Debian\n"
+"-rw-r--r-- root/root      1418 2012-02-20 18:41 ./usr/share/doc/gnupg/TODO.Debian\n"
+"[...]\n"
+"$ </computeroutput><userinput>dpkg -I /var/cache/apt/archives/gnupg_1.4.12-7_amd64.deb</userinput>\n"
+"<computeroutput> new debian package, version 2.0.\n"
+" size 1952176 bytes: control archive=3312 bytes.\n"
+"    1449 bytes,    30 lines      control              \n"
+"    4521 bytes,    65 lines      md5sums              \n"
+"     479 bytes,    13 lines   *  postinst             #!/bin/sh\n"
+"     473 bytes,    13 lines   *  preinst              #!/bin/sh\n"
+" Package: gnupg\n"
+" Version: 1.4.12-7\n"
+" Architecture: amd64\n"
+" Maintainer: Debian GnuPG-Maintainers &lt;pkg-gnupg-maint@lists.alioth.debian.org&gt;\n"
+" Installed-Size: 4627\n"
+" Depends: libbz2-1.0, libc6 (&gt;= 2.4), libreadline6 (&gt;= 6.0), libusb-0.1-4 (&gt;= 2:0.1.12), zlib1g (&gt;= 1:1.1.4), dpkg (&gt;= 1.15.4) | install-info, gpgv\n"
+" Recommends: libldap-2.4-2 (&gt;= 2.4.7), gnupg-curl\n"
+" Suggests: gnupg-doc, xloadimage | imagemagick | eog, libpcsclite1\n"
+" Section: utils\n"
+" Priority: important\n"
+" Multi-Arch: foreign\n"
+" Homepage: http://www.gnupg.org\n"
+" Description: GNU privacy guard - a free PGP replacement\n"
+"  GnuPG is GNU's tool for secure communication and data storage.\n"
+"  It can be used to encrypt data and to create digital signatures.\n"
+"  It includes an advanced key management facility and is compliant\n"
+"  with the proposed OpenPGP Internet standard as described in RFC 4880.\n"
+"[...]</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Comparison of versions"
-msgstr ""
+msgstr "<emphasis>LEBIH JAUH</emphasis> Perbandingan versi"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>version, comparison</primary>"
-msgstr ""
+msgstr "<primary>versi, perbandingan</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>comparison of versions</primary>"
-msgstr ""
+msgstr "<primary>perbandingan versi</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Since <command>dpkg</command> is the program for handling Debian packages, it also provides the reference implementation of the logic of comparing version numbers. This is why it has a <literal>--compare-versions</literal> option, usable by external programs (especially configuration scripts executed by <command>dpkg</command> itself). This option requires three parameters: a version number, a comparison operator, and a second version number. The different possible operators are <literal>lt</literal> (strictly less than), <literal>le</literal> (less than or equal to), <literal>eq</literal> (equal), <literal>ne</literal> (not equal), <literal>ge</literal> (greater than or equal to), and <literal>gt</literal> (strictly greater than). If the comparison is correct, <command>dpkg</command> returns 0 (success); if not, it gives a non-zero return value (indicating failure)."
-msgstr ""
+msgstr "Karena <command>dpkg</command> merupakan program untuk menangani paket Debian, program ini juga menyediakan referensi implementasi logika perbandingan nomor versi. Oleh karena itu, program ini memiliki pilihan <literal>--compare-versions</literal>, dapat digunakan oleh program eksternal (khususnya skrip konfigurasi yang dieksekusi oleh <command>dpkg</command> itu sendiri). Pilihan ini memerlukan tiga parameter: nomor versi, operator perbandingan, dan nomor versi kedua. Perbedaan operasi yang mungkin ialah <literal>lt</literal> (kurang dari), <literal>le</literal> (kurang dari atau sama dengan), <literal>eq</literal> (sama dengan), <literal>ne</literal> (tidak sama dengan), <literal>ge</literal> (lebih besar atau sama dengan), dan <literal>gt</literal> (lebih besar dari). Jika perbandingan benar, <command>dpkg</command> menghasilkan 0 (sukses); jika tidak, akan menghasilkan nilai non-zero (menandakan kegagalan)."
 
 #. Tag: screen
 #, no-c-format
@@ -1586,11 +1852,21 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
 "<computeroutput>1</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 gt 1.1-4</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>0\n"
+"$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 lt 1.1-4</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>1\n"
+"$ </computeroutput><userinput>dpkg --compare-versions 2.6.0pre3-1 lt 2.6.0-1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>1</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Note the unexpected failure of the last comparison: for <command>dpkg</command>, <literal>pre</literal>, usually denoting a pre-release, has no particular meaning, and this program compares the alphabetic characters in the same way as the numbers (a &lt; b &lt; c ...), in alphabetical order. This is why it considers “<literal>0pre3</literal>” to be greater than “<literal>0</literal>”. When we want a package's version number to indicate that it is a pre-release, we use the tilde character, “<literal>~</literal>”:"
-msgstr ""
+msgstr "Catat kesalahan yang tidak diinginkan pada perbandingan terakhir: untuk <command>dpkg</command>, <literal>pre</literal>, biasanya menandakan pre-release, tidak memiliki makna khusus, program ini membandingkan karakter alfabetis dengan cara yang sama dengan angka (a &lt; b &lt; c ...), dalam urutan alfabet. Karenanya “<literal>0pre3</literal>” lebih besar dari “<literal>0</literal>”. Ketika kita ingin nomor versi paket menunjukkan bahwa pre-release, kita menggunakan karakter tilde, “<literal>~</literal>”:"
 
 #. Tag: screen
 #, no-c-format
@@ -1600,51 +1876,55 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
 "<computeroutput>0</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 2.6.0~pre3-1 lt 2.6.0-1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>0</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<command>dpkg</command>'s Log File"
-msgstr ""
+msgstr "Berkas Log <command>dpkg</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> keeps a log of all of its actions in <filename>/var/log/dpkg.log</filename>. This log is extremely verbose, since it details every one of the stages through which packages handled by <command>dpkg</command> go. In addition to offering a way to track dpkg's behavior, it helps, above all, to keep a history of the development of the system: one can find the exact moment when each package has been installed or updated, and this information can be extremely useful in understanding a recent change in behavior. Additionally, all versions being recorded, it is easy to cross-check the information with the <filename>changelog.Debian.gz</filename> for packages in question, or even with online bug reports."
-msgstr ""
+msgstr "<command>dpkg</command> menyimpan semua log aksi-aksinya di <filename>/var/log/dpkg.log</filename>. Log ini sangat ramai, mendetail setiap langkah melalui setiap paket yang ditangai oleh <command>dpkg</command>. Menawarkan sebuah cara untuk melacak tingkah lagu dpkg, membantu, seluruhnya di atas, untuk menyimpan sejarah pengembangan sistem: salah satunya dapat menemukan momen yang tepat ketika setiap paket terinstall atau diperbaharui, dan informasi ini dapat menjadi sangat berguna dalam memahami perubahan terakhir dalam tingkah lakunya. Dan lagi, semua versi sedang direkam, sangat mudah untuk cross-check informasi dengan <filename>changelog.Debian.gz</filename> untuk paket yang diminta, atau bahkan dengan laporan kutu daring."
 
 #. Tag: title
 #, no-c-format
 msgid "Multi-Arch Support"
-msgstr ""
+msgstr "Dukungan Multi-Arch"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Multi-Arch</primary>"
-msgstr ""
+msgstr "<primary>Multi-Arch</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>architecture</primary><secondary>multi-arch support</secondary>"
-msgstr ""
+msgstr "<primary>arsitektur</primary><secondary>dukungan multi-arch</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All Debian packages have an <literal>Architecture</literal> field in their control information. This field can contain either “<literal>all</literal>” (for packages that are architecture independent) or the name of the architecture that it targets (like “amd64”, “armhf”, …). In the latter case, by default, <command>dpkg</command> will only accept to install the package if its architecture matches the host's architecture as returned by <command>dpkg --print-architecture</command>."
-msgstr ""
+msgstr "Semua paket Debian memiliki sebuah field <literal>Architecture</literal> dalam informasi control mereka. Field ini dapat berisi antara “<literal>all</literal>” (untuk paket yang arsitekturnya independen) atau nama arsitektur targetnya (seperti “amd64”, “armhf”, …). Dalam kasus terakhir, secara bawaan, <command>dpkg</command> hanya akan menerima untuk menginstall paket jika arsitekturnya cocok dengan arsitektur host sebagaimana yang dihasilkan oleh <command>dpkg --print-architecture</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "This restriction ensures that users do not end up with binaries compiled for an incorrect architecture. Everything would be perfect except that (some) computers can run binaries for multiple architectures, either natively (an “amd64“ system can run “i386” binaries) or through emulators."
-msgstr ""
+msgstr "Batasan ini memastikan bahwa pengguna tidak berakhir dengan berkas biner yang dikompilasi untuk arsitektur yang salah. Segalanya akan menjadi sempurna kecuali (beberapa) komputer dapat menjalankan berkas biner untuk arsitektur yang bermacam-macam, atau secara native (sebuah sistem “amd64“ dapat menjalankan biner “i386”) atau melalui emulator."
 
 #. Tag: title
 #, no-c-format
 msgid "Enabling Multi-Arch"
-msgstr ""
+msgstr "Mengaktifkan Multi-Arch"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command>'s multi-arch support allows users to define “foreign architectures” that can be installed on the current system. This is simply done with <command>dpkg --add-architecture</command> like in the example below. There's a corresponding <command>dpkg --remove-architecture</command> to drop support of a foreign architecture, but it can only be used when no packages of this architecture remain."
-msgstr ""
+msgstr "Dukungan multi-arch <command>dpkg</command> mengizinkan pengguna untuk menentukan “arsitektur asing” yang dapat diinstall pada sistem terkini. Hal ini dapat dengan mudah dilakukan dengan <command>dpkg --add-architecture</command> seperti contoh di bawah ini. Ada <command>dpkg --remove-architecture</command> yang sesuai untuk menghilangkah dukungan ke arsitektur asing, namun hanya dapat digunakan ketika tidak ada paket dengan arsitektur ini."
 
 #. Tag: screen
 #, no-c-format
@@ -1674,51 +1954,76 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
 "<computeroutput>armhf</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>dpkg --print-architecture</userinput>\n"
+"<computeroutput>amd64\n"
+"# </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg -i gcc-4.7-base_4.7.2-5_armhf.deb</userinput>\n"
+"<computeroutput>dpkg: error processing gcc-4.7-base_4.7.2-5_armhf.deb (--install):\n"
+" package architecture (armhf) does not match system (amd64)\n"
+"Errors were encountered while processing:\n"
+" gcc-4.7-base_4.7.2-5_armhf.deb\n"
+"# </computeroutput><userinput>dpkg --add-architecture armhf</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg --add-architecture armel</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
+"<computeroutput>armhf\n"
+"armel\n"
+"# </computeroutput><userinput>dpkg -i gcc-4.7-base_4.7.2-5_armhf.deb</userinput>\n"
+"<computeroutput>Selecting previously unselected package gcc-4.7-base:armhf.\n"
+"(Reading database ... 97399 files and directories currently installed.)\n"
+"Unpacking gcc-4.7-base:armhf (from gcc-4.7-base_4.7.2-5_armhf.deb) ...\n"
+"Setting up gcc-4.7-base:armhf (4.7.2-5) ...\n"
+"# </computeroutput><userinput>dpkg --remove-architecture armhf</userinput>\n"
+"<computeroutput>dpkg: error: cannot remove architecture 'armhf' currently in use by the database\n"
+"# </computeroutput><userinput>dpkg --remove-architecture armel</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
+"<computeroutput>armhf</computeroutput>\n"
+
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> APT's multi-arch support"
-msgstr ""
+msgstr "<emphasis>CATATAN</emphasis> Dukungan multi-arch APT"
 
 #. Tag: para
 #, no-c-format
 msgid "APT will automatically detect when dpkg has been configured to support foreign architectures and will start downloading the corresponding <filename>Packages</filename> files durings its update process."
-msgstr ""
+msgstr "APT akan secara otomatis mendeteksi ketika dpkg telah dikonfigurasi untuk mendukung arsitektur asing dan akan memulai mengunduh berkas <filename>Paket</filename> yang sesuai selama proses pembaharuannya."
 
 #. Tag: para
 #, no-c-format
 msgid "Foreign packages can then be installed with <command>apt-get install <replaceable>package</replaceable>:<replaceable>architecture</replaceable></command>."
-msgstr ""
+msgstr "Paket asing kemudian dapat diinstall dengan <command>apt-get install <replaceable>paket</replaceable>:<replaceable>arsitektur</replaceable></command>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Using proprietary i386 binaries on amd64"
-msgstr ""
+msgstr "<emphasis>DALAM PRAKTEKNYA</emphasis> Menggunakan biner i386 proprietary pada amd64"
 
 #. Tag: para
 #, no-c-format
 msgid "There are multiple use cases for multi-arch, but the most popular one is the possibility to execute 32 bit binaries (i386) on 64 bit systems (amd64), in particular since several popular proprietary applications (like Skype) are only provided in 32 bit versions."
-msgstr ""
+msgstr "Ada banyak kasus penggunaan multi-arch, namun yang paling umum ialah kemungkinan untuk mengeksekusi biner 32 bit (i386) pada sistem 64 bit (amd64), seringkali karena beberapa aplikasi proprietary populer (seperti Skype) hanya disediakan dalam versi 43 bit."
 
 #. Tag: para
 #, no-c-format
 msgid "Before multi-arch, when you wanted to uses a 32 bit appliction on a 64 bit system, you had to install <emphasis role=\"pkg\">ia32-libs</emphasis> to have 32 bit versions of the most popular libraries. That package was a huge hack that repackaged 32 bit libraries in an “amd64” package."
-msgstr ""
+msgstr "Sebelum multi-arch, ketika Anda ingin menggunakan aplikasi 32 bit pada sebuah sistem 64 bit, Anda harus menginstall <emphasis role=\"pkg\">ia32-libs</emphasis> untuk mendapatkan versi 32 bit pustaka yang paling populer. Paket tersebut merupakan usaha yang besar memaketkan ulang pustaka 32 bit dalam paket “amd64”."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">ia32-libs</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">ia32-libs</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Multi-Arch Related Changes"
-msgstr ""
+msgstr "Perubahan Terkait Multi-Arch"
 
 #. Tag: para
 #, no-c-format
 msgid "To make multi-arch actually useful and usable, libraries had to be repackaged and moved to an architecture-specific directory so that multiple copies (targeting different architectures) can be installed alongside. Such updated packages contain the “<literal>Multi-Arch: same</literal>” header field to tell the packaging system that the various architectures of the package can be safely co-installed (and that those packages can only satisfy dependencies of packages of the same architecture). Since multi-arch made its debut in Debian Wheezy, not all libraries have been converted yet (but all libraries which were embedded in <emphasis role=\"pkg\">ia32-libs</emphasis> do!)."
-msgstr ""
+msgstr "Untuk membuat multi-arch benar-benar dapat berguna dan bermanfaat, pustaka harus dipaketkan ulang dan dipindahkan ke arsitektur-spesifik agar beberapa salinan (menargetkan arsitektur yang berbeda) dapat diinstall bersamaan. Seperti pembaruan paket berisi field header “<literal>Multi-Arch: same</literal>” untuk memberitahu sistem pemaketan bahwa berbagai arsitektur paket dapat diinstall bersamaan (dan paket tersebut hanya dapat memenuhi ketergantungan paket dengan arsitektur yang sama). Karena multi-arch memulai debutnya di Debian Wheezy, belum semua pustaka telah dikonversikan (namun semua pustaka yang embedded di <emphasis role=\"pkg\">ia32-libs</emphasis> bisa!"
 
 #. Tag: screen
 #, no-c-format
@@ -1736,61 +2041,73 @@ msgid ""
 "$ <userinput>dpkg -S /usr/share/doc/gcc-4.7-base/copyright</userinput>\n"
 "gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/copyright\n"
 msgstr ""
+"\n"
+"$ <userinput>dpkg -s gcc-4.7-base</userinput>\n"
+"dpkg-query: error: --status needs a valid package name but 'gcc-4.7-base' is not: ambiguous package name 'gcc-4.7-base' with more than one installed instance\n"
+"\n"
+"Use --help for help about querying packages.\n"
+"$ <userinput>dpkg -s gcc-4.7-base:amd64 gcc-4.7-base:armhf | grep ^Multi</userinput>\n"
+"Multi-Arch: same\n"
+"Multi-Arch: same\n"
+"$ <userinput>dpkg -L libgcc1:amd64 |grep .so</userinput>\n"
+"/lib/x86_64-linux-gnu/libgcc_s.so.1\n"
+"$ <userinput>dpkg -S /usr/share/doc/gcc-4.7-base/copyright</userinput>\n"
+"gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/copyright\n"
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that <literal>Multi-Arch: same</literal> packages must have their names qualified with their architecture to be unambiguously identifiable. They also have the possibility to share files with other instances of the same package; <command>dpkg</command> ensures that all packages have bit-for-bit identical files when they are shared. Last but not least, all instances of a package must have the same version. They must thus be upgraded together."
-msgstr ""
+msgstr "Tidak pantas bahwa paket <literal>Multi-Arch: same</literal> harus memiliki nama yang dipenuhi dengan arsitekturnya dapat diidentifikasi tak membingungkan. Mereka juga memiliki kemungkinan untuk berbagi berkas dengan instance lain dari paket yang sama; <command>dpkg</command> memastikan bahwa seluruh paket memiliki bit-untuk-bit berkas-berkas identik ketika mereka berbagi. Tidak kurang pentingnya, seluruh instance paket harus memiliki versi yang sama. Mereka harus diperbaharui bersama-sama."
 
 #. Tag: para
 #, no-c-format
 msgid "Multi-Arch support also brings some interesting challenges in the way dependencies are handled. Satisfying a dependency requires either a package marked “<literal>Multi-Arch: foreign</literal>” or a package whose architecture matches the one of the package declaring the dependency (in this dependency resolution process, architecture-independent packages are assumed to be of the same architecture than the host). A dependency can also be weakened to allow any architecture to fulfill it, with the <literal><replaceable>package</replaceable>:any</literal> syntax, but foreign packages can only satisfy such a dependency if they are marked “<literal>Multi-Arch: allowed</literal>”."
-msgstr ""
+msgstr "Dukungan Multi-Arch juga membawa beberapa tantangan yang menarik dalam cara ketergantungan ditangani. Memenuhi ketergantungan memerlukan antara paket yang ditandai “<literal>Multi-Arch: foreign</literal>” atau paket yang arsitekturnya cocok dengan salah satu paket yang menyatakan ketergantungannya (dalam proses pemenuhan ketergantungan ini, paket independen-arsitektur diasumsikan sama dengan arsitektur host). Ketergantungan juga dapat dilemahkan untuk mengizinkan berbagai arsitektur untuk memenuhinya, dengan siktaks <literal><replaceable>package</replaceable>:any</literal>, namun paket asing hanya dapat memenuhi sebuah ketergantungan jika mereka ditandai “<literal>Multi-Arch: allowed</literal>”."
 
 #. Tag: title
 #, no-c-format
 msgid "Coexistence with Other Packaging Systems"
-msgstr ""
+msgstr "Kebersamaan dengan Sistem Paket Lain"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RPM</primary>"
-msgstr ""
+msgstr "<primary>RPM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Red Hat Package Manager</primary>"
-msgstr ""
+msgstr "<primary>Manajer Paket Red Hat</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>alien</command></primary>"
-msgstr ""
+msgstr "<primary><command>alien</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian packages are not the only software packages used in the free software world. The main competitor is the RPM format of the Red Hat Linux distribution and its many derivatives. Red Hat is a very popular, commercial distribution. It is thus common for software provided by third parties to be offered as RPM packages rather than Debian."
-msgstr ""
+msgstr "Paket Debian bukan hanya satu-satunya paket perangkat lunak yang digunakan dalam dunia perangkat lunak bebas. Kompetitor utamanya ialah format RPM dari distribusi Linux Red Hat dan banyak keturunannya. Red Hat sangat populer, distribusi komersial. Perangkat lunak yang disediakan oleh pihak ketiga umumnya ditawarkan sebagai paket RPM daripada Debian."
 
 #. Tag: para
 #, no-c-format
 msgid "In this case, you should know that the program <command>rpm</command>, which handles RPM packages, is available as a Debian package, so it is possible to use this package format on Debian. Care should be taken, however, to limit these manipulations to extract the information from a package or to verify its integrity. It is, in truth, unreasonable to use <command>rpm</command> to install an RPM on a Debian system; RPM uses its own database, separate from those of native software (such as <command>dpkg</command>). This is why it is not possible to ensure a stable coexistence of two packaging systems."
-msgstr ""
+msgstr "Dalam kasus ini, Anda harus tahu program <command>rpm</command>, yang menangani paket RPM, tersedia sebagai sebuah paket Debian, jadi memungkinkan untuk menggunakan format paket ini di Debian. Kepedulian harus diambil, akan tetapi, untuk membatasi manipulasi ini untuk mengekstrak informasi dari sebuah paket atau verifikasi integritasnya. Sebenarnya, tak beralasan untuk menggunakan <command>rpm</command> untuk menginstall sebuah paket RPM pada sistem Debian; RPM menggunakan basisdatanya sendiri, terpisah dari perangkat lunak aslinya (seperti <command>dpkg</command>). Oleh karenanya, tidak mungkin untuk memastikan stabilitas kebersamaan dua sistem pemaketan."
 
 #. Tag: para
 #, no-c-format
 msgid "On the other hand, the <emphasis role=\"pkg\">alien</emphasis> utility can convert RPM packages into Debian packages, and vice versa."
-msgstr ""
+msgstr "Di samping itu, utilitas <emphasis role=\"pkg\">alien</emphasis> dapat mengonversi paket RPM ke paket Debian, dan sebaliknya."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> Encouraging the adoption of <filename>.deb</filename>"
-msgstr ""
+msgstr "<emphasis>KOMUNITAS</emphasis> Menganjurkan adopsi dari <filename>.deb</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you regularly use the <command>alien</command> program to install RPM packages coming from one of your providers, do not hesitate to write to them and amicably express your strong preference for the <filename>.deb</filename> format. Note that the format of the package is not everything: a <filename>.deb</filename> package built with <command>alien</command> or prepared for a version of Debian different than that which you use, or even for a derivative distribution like Ubuntu, would probably not offer the same level of quality and integration as a package specifically developed for Debian <emphasis role=\"distribution\">Wheezy</emphasis>."
-msgstr ""
+msgstr "Jika Anda sering menggunakan program <command>alien</command> untuk menginstall paket RPM dari salah satu provider anda, jangan ragu untuk menulis buat mereka dan ekspresikan preferensi Anda secara damai untuk format <filename>.deb</filename>. Catat bahwa format paket bukanlah segalanya: sebuah paket  <filename>.deb</filename> dibangun dengan <command>alien</command> atau yang dipersiapkan untuk versi Debiannya berbeda dengan yang Anda gunakan, atau bahkan untuk distribusi turunan seperti Ubuntu, mungkin tidak menawarkan level kualitas dan integrasi sebagai paket yang dikembangkan secara spesifik untuk Debian <emphasis role=\"distribution\">Wheezy</emphasis>."
 
 #. Tag: screen
 #, no-c-format
@@ -1801,18 +2118,23 @@ msgid ""
 "$ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>\n"
 "<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>fakeroot alien --to-deb phpMyAdmin-2.0.5-2.noarch.rpm</userinput> \n"
+"<computeroutput>phpmyadmin_2.0.5-2_all.deb generated\n"
+"$ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>\n"
+"<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "You will find that this process is extremely simple. You must know, however, that the package generated does not have any dependency information, since the dependencies in the two packaging formats don't have systematic correspondence. The administrator must thus manually ensure that the converted package will function correctly, and this is why Debian packages thus generated should be avoided as much as possible. Fortunately, Debian has the largest collection of software packages of all distributions, and it is likely that whatever you seek is already in there."
-msgstr ""
+msgstr "Anda akan tahu bahwa proses ini sangatlah sederhana. Anda harus tahu, akan tetapi, bahwa paket yang dihasilkan tidak memiliki informasi ketergantungan, karena ketergantungan dalam dua format pemaketan tidak memiliki korespondensi yang sistematis. Administrator harus memastikan secara manual bahwa paket yang dikonversi dapat berfungsi dengan benar, dan itulah kenapa paket Debian yang di-generate dihindari sebisa mungkin. Untungnya, Debian memiliki koleksi paling banyak paket perangkat lunak dari seluruh distribusi, dan sepertinya apapun yang Anda cari telah ada di sana."
 
 #. Tag: para
 #, no-c-format
 msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program handles other packaging formats, especially the one used by the Slackware distribution (it is made of a simple <filename>tar.gz</filename> archive)."
-msgstr ""
+msgstr "Melihat man page untuk perintah <command>alien</command>, Anda juga akan mencatat bahwa program ini menangani format pemaketan lain, khususnya satu yang digunakan oleh distribusi Slackware (membuat arsip <filename>tar.gz</filename> sederhana)."
 
 #. Tag: para
 #, no-c-format
 msgid "The stability of the software deployed using the <command>dpkg</command> tool contributes to Debian's fame. The APT suite of tools, described in the following chapter, preserves this advantage, while relieving the administrator from managing the status of packages, a necessary but difficult task."
-msgstr ""
+msgstr "Stabilitas perangkat lunak yang disebar menggunakan peralatan <command>dpkg</command> berkontribusi ke popularitas Debian. Peralatan APT suite, dijelaskan pada bab berikutnya, menjaga manfaatnya, yang membantu administrator mengatur status paket, perlu namun tugas yang sulit."
