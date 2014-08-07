@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-08-04 19:50+0200\n"
+"PO-Revision-Date: 2014-08-13 22:26+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
@@ -379,34 +379,47 @@ msgid "<primary><emphasis>keyboard-configuration</emphasis></primary>"
 msgstr "<primary><emphasis>keyboard-configuration</emphasis></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<indexterm><primary><literal>azerty</literal></primary></indexterm>The questions are relevant to the physical keyboard layout (a standard PC keyboard in the US will be a “Generic 104 key”), then the layout to choose (generally “US”), and then the position of the AltGr key (right Alt). Finally comes the question of the key to use for the “Compose key”, which allows for entering special characters by combining keystrokes. Type successively <keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> and produce an e-acute (“é”). All these combinations are described in the <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> file (or another file, determined according to the current locale indicated by <filename>/usr/share/X11/locale/compose.dir</filename>). <indexterm><primary><literal>Compose</literal>, key</primary></indexterm> <indexterm><primary><literal>Meta</literal>, key</primary></indexterm> <indexterm><primary>key</primary><secondary><literal>Meta</literal></secondary></indexterm> <indexterm><primary>key</primary><secondary><literal>Compose</literal></secondary></indexterm>"
 msgid "<indexterm><primary><literal>azerty</literal></primary></indexterm>The questions are relevant to the physical keyboard layout (a standard PC keyboard in the US will be a “Generic 104 key”), then the layout to choose (generally “US”), and then the position of the AltGr key (right Alt). Finally comes the question of the key to use for the “Compose key”, which allows for entering special characters by combining keystrokes. Type successively <keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> and produce an e-acute (“é”). All these combinations are described in the <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> file (or another file, determined according to the current locale indicated by <filename>/usr/share/X11/locale/compose.dir</filename>)."
-msgstr "<indexterm><primary><literal>azerty</literal></primary></indexterm>As perguntas são relevantes para a disposição do teclado físico (um teclado PC padrão nos EUA será um \"Generic 104 key\"), e depois a disposição para escolher (geralmente \"US\"), e por fim a posição da tecla AltGr (Alt da direita). Finalmente vem a pergunta da tecla a usar para a \"Compose key\", que permite a entrada de caracteres especiais combinando conjuntos de teclas. Digite sucessivamente <keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> e produza um e-agudo (\"é\"). Todas estas combinações são descritas no arquivo <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> (ou outro arquivo, determinado de acordo com o locale atual indicado por <filename>/usr/share/X11/locale/compose.dir</filename>). <indexterm><primary><literal>Compose</literal>, tecla</primary></indexterm> <indexterm><primary><literal>Meta</literal>, tecla</primary></indexterm> <indexterm><primary>tecla</primary><secondary><literal>Meta</literal></secondary></indexterm> <indexterm><primary>tecla</primary><secondary><literal>Compose</literal></secondary></indexterm>"
+msgstr ""
+"<indexterm><primary><literal>azerty</literal></primary></indexterm>As "
+"perguntas são relevantes para a disposição do teclado físico (um teclado PC "
+"padrão nos EUA será um \"Generic 104 key\"), e depois a disposição para "
+"escolher (geralmente \"US\"), e por fim a posição da tecla AltGr (Alt da "
+"direita). Finalmente vem a pergunta da tecla a usar para a \"Compose key\", "
+"que permite a entrada de caracteres especiais combinando conjuntos de "
+"teclas. Digite sucessivamente <keycombo action=\"seq\""
+"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> e "
+"produza um e-agudo (\"é\"). Todas estas combinações são descritas no arquivo "
+"<filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> (ou outro "
+"arquivo, determinado de acordo com o locale atual indicado por "
+"<filename>/usr/share/X11/locale/compose.dir</filename>)."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><literal>eth0</literal></primary>"
 msgid "<primary><literal>Compose</literal>, key</primary>"
-msgstr "<primary><literal>eth0</literal></primary>"
+msgstr "<primary><literal>Compose</literal>, tecla</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><literal>eth0</literal></primary>"
 msgid "<primary><literal>Meta</literal>, key</primary>"
-msgstr "<primary><literal>eth0</literal></primary>"
+msgstr "<primary><literal>Meta</literal>, tecla</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>kernel</primary><secondary>installation</secondary>"
 msgid "<primary>key</primary><secondary><literal>Meta</literal></secondary>"
-msgstr "<primary>núcleo</primary><secondary>instalação</secondary>"
+msgstr "<primary>tecla</primary><secondary><literal>Meta</literal></secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>kernel</primary><secondary>external modules</secondary>"
 msgid "<primary>key</primary><secondary><literal>Compose</literal></secondary>"
-msgstr "<primary>núcleo</primary><secondary>módulos externos</secondary>"
+msgstr ""
+"<primary>tecla</primary><secondary><literal>Compose</literal></secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -439,9 +452,14 @@ msgid "Thus, if a French text appears normal with the exception of accented lett
 msgstr "Então, se um texto em francês aparenta estar normal com exceção das letras acentuadas e de certos símbolos que parece terem sido substituídos com sequencias de caracteres como \"Ã©\" ou \"Ã¨\" ou \"Ã§\", provavelmente este é um texto codificado com UTF-8 mas interpretado como ISO-8859-1 ou ISO-8859-15. Este é um sinal de uma instalação local que ainda não foi migrada para UTF-8. Se, ao invés disto, você vê interrogações no lugar de letras acentuadas — mesmo se estas interrogações parecem substituir também um caractere que deve estar depois de uma letra acentuada — é provável que sua instalação já esteja configurada para UTF-8 e que você tenha recebido um documento codificado em ISO ocidental."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "So much for “simple” cases. These cases only appear in Western culture, since Unicode (and UTF-8) was designed to maximize the common points with historical encodings for Western languages based on the Latin alphabet, which allows recognition of parts of the text even when some characters are missing."
-msgstr "Tanto para casos \"simples\". Estes casos aparecem apenas na cultura ocidental, uma vez que o Unicode (e UTF-8) foram projetados para maximizar os pontos em comum com codificações ocidentais baseadas no alfabeto Latino, que permite o reconhecimento de partes do texto mesmo quando alguns caracteres estão faltando."
+msgstr ""
+"Tanto para casos \"simples\". Estes casos aparecem apenas na cultura "
+"ocidental, uma vez que o Unicode (e UTF-8) foram projetados para maximizar "
+"os pontos em comum com codificações de idiomas ocidentais baseadas no "
+"alfabeto Latino, que permite o reconhecimento de partes do texto mesmo "
+"quando alguns caracteres estão faltando."
 
 #. Tag: para
 #, no-c-format
@@ -485,10 +503,18 @@ msgstr ""
 "<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "For the file content, conversion procedures are more complex due to the vast variety of existing file formats. Some file formats include encoding information that facilitates the tasks of the software used to treat them; it is sufficient, then, to open these files and re-save them specifying UTF-8 encoding. In other cases, you have to specify the original encoding (ISO-8859-1 or “Western”, or ISO-8859-15 or “Western (European)”, according to the formulations) when opening the file."
 msgid "For the file content, conversion procedures are more complex due to the vast variety of existing file formats. Some file formats include encoding information that facilitates the tasks of the software used to treat them; it is sufficient, then, to open these files and re-save them specifying UTF-8 encoding. In other cases, you have to specify the original encoding (ISO-8859-1 or “Western”, or ISO-8859-15 or “Western (Euro)”, according to the formulations) when opening the file."
-msgstr "Para o conteúdo dos arquivos, os procedimentos de conversão são mais complexos devido à vasta variedade de formatos de arquivos existentes. Alguns formatos de arquivos incluem informação de codificação que facilita a tarefa de softwares usados para tratá-los; é suficiente, portanto, abrir estes arquivos e regravá-los especificando a codificação UTF-8. Em outros casos, você tem que especificar a codificação original (ISO-8859-1 ou “Ocidental”, ou ISO-8859-15 ou “Ocidental (Europeu)”, de acordo com as formulações) quando abrir o arquivo."
+msgstr ""
+"Para o conteúdo dos arquivos, os procedimentos de conversão são mais "
+"complexos devido à vasta variedade de formatos de arquivos existentes. "
+"Alguns formatos de arquivos incluem informação de codificação que facilita a "
+"tarefa de softwares usados para tratá-los; é suficiente, portanto, abrir "
+"estes arquivos e regravá-los especificando a codificação UTF-8. Em outros "
+"casos, você tem que especificar a codificação original (ISO-8859-1 ou "
+"“Ocidental”, ou ISO-8859-15 ou “Ocidental (Euro)”, de acordo com as "
+"formulações) quando abrir o arquivo."
 
 #. Tag: para
 #, no-c-format
@@ -533,10 +559,10 @@ msgid "<primary>10GBASE-T</primary>"
 msgstr "<primary>10GBASE-T</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>RJ45 connector</primary>"
 msgid "<primary>connector, RJ45</primary>"
-msgstr "<primary>conector RJ45</primary>"
+msgstr "<primary>conector, RJ45</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -549,10 +575,10 @@ msgid "Most modern local networks use the Ethernet protocol, where data is split
 msgstr "A maioria das redes locais modernas usam o protocolo Ethernet, onde dados são quebrados em pequenos blocos chamados quadros (frames, em inglês) e transmitidos através do fio um quadro por vez. As velocidades de transmissão de dados variam de 10 Mb/s para placas Ethernet antigas a 10 Gb/s nas mais novas (com as taxas mais comuns atualmente crescendo de 100 Mb/s a 1 Gb/s). Os cabos mais amplamente usados são chamados 10BASE-T, 100BASE-T, 1000BASE-T ou 10GBASE-T dependendo da vazão que eles podem fornecer confiavelmente (o T significa \"twisted pair\", ou \"par trançado\"); estes cabos terminam num conector RJ45. Existem outros tipos de cabos, usados normalmente para velocidades acima de 1 Gb/s."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>IP address</primary>"
 msgid "<primary>address, IP address</primary>"
-msgstr "<primary>endereço IP</primary>"
+msgstr "<primary>endereço, endereço IP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -560,10 +586,20 @@ msgid "<primary>IP address</primary>"
 msgstr "<primary>endereço IP</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2001:db8:13bb:0002:0000:0000:0020, or 2001:db8:13bb:2::20 for short)."
 msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2001:0db8:13bb:0002:0000:0000:0000:0020, or 2001:db8:13bb:2::20 for short)."
-msgstr "Um endereço IP é um número usado para identificar uma interface de rede num computador em uma rede local ou na internet. Na sua versão mais utilizada atualmente (IPv4), este número é codificado em 32 bits, e é normalmente representado como 4 números separados por pontos (e.g. <literal>192.168.0.1</literal>), cada número entre 0 e 255 (inclusive, o que corresponde a 8 bits de dados). A próxima versão do protocolo, IPv6, extende este espaço de endereçamento para 128 bits, e os endereços são geralmente representados como séries de números hexadecimais separados por dois-pontos (e.g., 2001:db8:13bb:0002:0000:0000:0020, ou 2001:db8:13bb:2::20 resumidamente)."
+msgstr ""
+"Um endereço IP é um número usado para identificar uma interface de rede num "
+"computador em uma rede local ou na internet. Na sua versão mais utilizada "
+"atualmente (IPv4), este número é codificado em 32 bits, e é normalmente "
+"representado como 4 números separados por pontos (e.g. "
+"<literal>192.168.0.1</literal>), cada número entre 0 e 255 (inclusive, o que "
+"corresponde a 8 bits de dados). A próxima versão do protocolo, IPv6, extende "
+"este espaço de endereçamento para 128 bits, e os endereços são geralmente "
+"representados como séries de números hexadecimais separados por dois-pontos ("
+"e.g., 2001:0db8:13bb:0002:0000:0000:0000:0020, ou 2001:db8:13bb:2::20 "
+"resumidamente)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -586,10 +622,17 @@ msgid "A subnet mask (netmask) defines in its binary code which portion of an IP
 msgstr "Uma máscara de subrede (máscara de rede) define no seu código binário que porções de um endereço IP correspondem à rede, e o restante especifica a máquina. No exemplo de configurar um endereço IPv4 estático dado aqui, a máscara de subrede, <literal>255.255.255.0</literal> (24 “1”s seguidos de 8 “0”s na representação binária) indica que os primeiros 24 bits do endereço IP correspondem ao endereço de rede, e os outros 8 são específicos da máquina. Em IPv6, por legibilidade, apenas os números  “1”s são mostrados; a máscara de rede para uma rede IPv6 poderia ser, portanto, <literal>64</literal>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the number of bits affected to the network part in an IP address. The example network would thus be written: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb::/64</literal>."
 msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the number of bits affected to the network part in an IP address. The example network would thus be written: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb:2::/64</literal>."
-msgstr "O endereço de rede é um endereço IP no qual a parte descrevendo o número da máquina é 0. O intervalo de endereços IPv4 em uma rede é às vezes indicado pela sintaxe, <emphasis>a.b.c.d/x</emphasis>, onde <emphasis>a.b.c.d</emphasis> é o endereço de rede e <emphasis>x</emphasis> é o número de bits afetados pela parte da rede no endereço IP. A rede de exemplo pode então ser escrita: <literal>192.168.0.0/24</literal>. A sintaxe é similar no IPv6: <literal>2001:db8:13bb::/64</literal>."
+msgstr ""
+"O endereço de rede é um endereço IP no qual a parte descrevendo o número da "
+"máquina é 0. O intervalo de endereços IPv4 em uma rede é às vezes indicado "
+"pela sintaxe, <emphasis>a.b.c.d/x</emphasis>, onde "
+"<emphasis>a.b.c.d</emphasis> é o endereço de rede e <emphasis>x</emphasis> é "
+"o número de bits afetados pela parte da rede no endereço IP. A rede de "
+"exemplo pode então ser escrita: <literal>192.168.0.0/24</literal>. A sintaxe "
+"é similar no IPv6: <literal>2001:db8:13bb:2::/64</literal>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -622,10 +665,17 @@ msgid "This chapter focuses on IPv4 addresses, since they are currently the most
 msgstr "Este capítulo foca nos endereços IPv4, já que eles são os mais comumente usados. Os detalhes sobre o protocolo IPv6 são discutidos aqui <xref linkend=\"sect.ipv6\" />, mas os conceitos se mantém os mesmos."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Since the network is automatically configured during the initial installation, the <filename>/etc/network/interfaces</filename> file already contains a valid configuration. A line starting with <literal>auto</literal> gives a list of interfaces to be automatically configured on boot. This will often be <literal>eth0</literal>, which refers to the first Ethernet card."
 msgid "Since the network is automatically configured during the initial installation, the <filename>/etc/network/interfaces</filename> file already contains a valid configuration. A line starting with <literal>auto</literal> gives a list of interfaces to be automatically configured on boot by <emphasis role=\"pkg\">ifupdown</emphasis> and its <filename>/etc/init.d/networking</filename> init script. This will often be <literal>eth0</literal>, which refers to the first Ethernet card."
-msgstr "Já que a rede é automaticamente configurado durante a instalação inicial, o arquivo <filename>/etc/network/interfaces</filename> já contém uma configuração válida. Uma linha começando com <literal>auto</literal> provê uma lista de interfaces que são configuradas automaticamente na inicialização. Comumente será <literal>eth0</literal>, o qual se refere a primeira placa de rede."
+msgstr ""
+"Já que a rede é automaticamente configurada durante a instalação inicial, o "
+"arquivo <filename>/etc/network/interfaces</filename> já contém uma "
+"configuração válida. Uma linha começando com <literal>auto</literal> provê "
+"uma lista de interfaces que são configuradas automaticamente na "
+"inicialização pelo <emphasis role=\"pkg\">ifupdown</emphasis> e seu script "
+"de início <filename>/etc/init.d/networking</filename>. Comumente será "
+"<literal>eth0</literal>, o qual se refere a primeira placa de rede."
 
 #. Tag: indexterm
 #, no-c-format
@@ -638,10 +688,10 @@ msgid "<primary>configuration</primary><secondary>of the network</secondary>"
 msgstr "<primary>configuração</primary><secondary>da rede</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>interface</primary><secondary>network</secondary>"
 msgid "<primary>interface</primary><secondary>network interface</secondary>"
-msgstr "<primary>interface</primary><secondary>rede</secondary>"
+msgstr "<primary>interface</primary><secondary>interface de rede</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -649,10 +699,10 @@ msgid "<primary><literal>eth0</literal></primary>"
 msgstr "<primary><literal>eth0</literal></primary>"
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>CULTURE</emphasis> Names of kernel packages"
 msgid "<emphasis>ALTERNATIVE</emphasis> NetworkManager"
-msgstr "<emphasis>CULTURA</emphasis> Nomes dos pacotes do núcleo"
+msgstr "<emphasis>ALTERNATIVO</emphasis> NetworkManager"
 
 #. Tag: indexterm
 #, no-c-format
@@ -670,10 +720,16 @@ msgid "Ethernet Interface"
 msgstr "Interface de Rede"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "If the computer has an Ethernet card, the network that is associated with it must be configured by choosing from one of two methods. The simplest method is dynamic configuration with DHCP, and it requires a DHCP server on the local network. It may indicate a desired hostname, corresponding to the <literal>hostname</literal> setting in the example below. The DHCP server then sends configuration settings for the appropriate network. <indexterm><primary>Ethernet</primary></indexterm> <indexterm><primary>DHCP</primary></indexterm>"
 msgid "If the computer has an Ethernet card, the IP network that is associated with it must be configured by choosing from one of two methods. The simplest method is dynamic configuration with DHCP, and it requires a DHCP server on the local network. It may indicate a desired hostname, corresponding to the <literal>hostname</literal> setting in the example below. The DHCP server then sends configuration settings for the appropriate network."
-msgstr "Se o computador tem uma placa Ethernet, a rede que é associada com ele deve ser configurada escolhendo um de dois métodos. O método mais simples é a configuração dinâmica com DHCP, e requer um servidor DHCP na rede local. Ele pode indicar um hostname (\"nome de máquina\") desejado, correspondendo à configuração de <literal>hostname</literal> no exemplo abaixo. O servidor DHCP então manda as configurações para a rede apropriada.<indexterm><primary>Ethernet</primary></indexterm> <indexterm><primary>DHCP</primary></indexterm>"
+msgstr ""
+"Se o computador tem uma placa Ethernet, a rede IP que é associada a ela deve "
+"ser configurada escolhendo um de dois métodos. O método mais simples é a "
+"configuração dinâmica com DHCP, e requer um servidor DHCP na rede local. Ele "
+"pode indicar um hostname (\"nome de máquina\") desejado, correspondendo à "
+"configuração de <literal>hostname</literal> no exemplo abaixo. O servidor "
+"DHCP então manda as configurações para a rede apropriada."
 
 #. Tag: indexterm
 #, no-c-format
