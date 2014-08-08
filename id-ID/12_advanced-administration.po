@@ -5,28 +5,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2012-10-31T14:54:18\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2014-08-31 13:37+0200\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Indonesian <https://debian.weblate.org/projects/debian-"
+"handbook/12_advanced-administration/id/>\n"
+"Language: id-ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 1.10-dev\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "RAID"
-msgstr ""
+msgstr "RAID"
 
 #. Tag: keyword
 #, no-c-format
 msgid "LVM"
-msgstr ""
+msgstr "LVM"
 
 #. Tag: keyword
 #, no-c-format
 msgid "FAI"
-msgstr ""
+msgstr "FAI"
 
 #. Tag: keyword
 #, no-c-format
@@ -36,87 +39,148 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Monitoring"
-msgstr ""
+msgstr "Pemantauan"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Virtualization"
-msgstr ""
+msgstr "Virtualisasi"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Xen"
-msgstr ""
+msgstr "Xen"
 
 #. Tag: keyword
 #, no-c-format
 msgid "LXC"
-msgstr ""
+msgstr "LXC"
 
 #. Tag: title
 #, no-c-format
 msgid "Advanced Administration"
-msgstr ""
+msgstr "Administrasi Tingkat Lanjut"
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter revisits some aspects we already described, with a different perspective: instead of installing one single computer, we will study mass-deployment systems; instead of creating RAID or LVM volumes at install time, we'll learn to do it by hand so we can later revise our initial choices. Finally, we will discuss monitoring tools and virtualization techniques. As a consequence, this chapter is more particularly targeting professional administrators, and focuses somewhat less on individuals responsible for their home network."
 msgstr ""
+"Bab ini meninjau kembali beberapa aspek yang telah kami uraikan, dengan "
+"perspektif yang berbeda: alih-alih memasang pada sebuah komputer, kita akan "
+"mempelajari sistem deployment masal; alih-alih membuat volume RAID atau LVM "
+"pada saat instalasi, kita akan belajar melakukannya secara manual sehingga "
+"nanti kita dapat merevisi pilihan awal kita. Akhirnya, kita akan "
+"mendiskusikan perkakas pemantauan dan teknik virtualisasi. Sebagai "
+"konsekuensinya, bab ini secara lebih khusus menarget para administrator "
+"profesional, and sedikit kurang brfokus pada para individu yang "
+"bertanggungjawab atas jaringan rumahan mereka."
 
 #. Tag: title
 #, no-c-format
 msgid "RAID and LVM"
-msgstr ""
+msgstr "RAID dan LVM"
 
 #. Tag: para
 #, no-c-format
 msgid "<xref linkend=\"installation\" /> presented these technologies from the point of view of the installer, and how it integrated them to make their deployment easy from the start. After the initial installation, an administrator must be able to handle evolving storage space needs without having to resort to an expensive reinstallation. They must therefore understand the required tools for manipulating RAID and LVM volumes."
 msgstr ""
+"<xref linkend=\"installation\" /> mempresentasikan teknologi ini dari sudut "
+"pandang pemasang, dan bagaimana itu mengintegrasikan mereka untuk membuat "
+"deployment mereka mudah dari awal. Setelah instalasi awal, seorang "
+"administrator mesti bisa menangani keperluan ruang penyimpanan yang "
+"berkembang tanpa mesti mengandalkan instalasi ulang yang mahal. Maka mereka "
+"mesti paham peralatan yang diperlukan untuk memanipulasi volume RAID dan LVM."
 
 #. Tag: para
 #, no-c-format
 msgid "RAID and LVM are both techniques to abstract the mounted volumes from their physical counterparts (actual hard-disk drives or partitions thereof); the former secures the data against hardware failure by introducing redundancy, the latter makes volume management more flexible and independent of the actual size of the underlying disks. In both cases, the system ends up with new block devices, which can be used to create filesystems or swap space, without necessarily having them mapped to one physical disk. RAID and LVM come from quite different backgrounds, but their functionality can overlap somewhat, which is why they are often mentioned together."
 msgstr ""
+"RAID dan LVM adalah teknik untuk mengabstrakkan volume yang dikait dari "
+"pasangan fisik mereka (yaitu hard disk atau partisi); yang pertama "
+"mengamankan data dari kegagalan perangkat keras dengan memperkenalkan "
+"redundansi, yang belakangan membuat manajemen volume lebih luwes dan tak "
+"bergantung kepada ukuran sebenarnya dari disk yang mendasarinya. Dalam kedua "
+"kasus, sistem pada akhirnya mendapat perangkat blok baru, yang dapat dipakai "
+"untuk membuat sistem berkas atau ruang swap, tanpa perlu mereka dipetakan ke "
+"satu disk fisik. RAID dan LVM datang dari latar belakang yang cukup berbeda, "
+"tapi fungsionalitas mereka sebagian dapat bertumpang tindih, sehingga mereka "
+"sering disinggung bersama-sama."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>PERSPECTIVE</emphasis> Btrfs combines LVM and RAID"
-msgstr ""
+msgstr "<emphasis>PERSPEKTIF</emphasis> Btrfs menggabung LVM dan RAID"
 
 #. Tag: para
 #, no-c-format
 msgid "While LVM and RAID are two distinct kernel subsystems that come between the disk block devices and their filesystems, <emphasis>btrfs</emphasis> is a new filesystem, initially developed at Oracle, that purports to combine the featuresets of LVM and RAID and much more. It is mostly functional, and although it is still tagged “experimental” because its development is incomplete (some features aren't implemented yet), it has already seen some use in production environments. <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
 msgstr ""
+"Walaupun LVM dan RAID adalah dua subsistem kernel yang berbeda, yang hadir "
+"di antara perangkat blok disk dan sistem berkas mereka, "
+"<emphasis>btrfs</emphasis> adalah suatu sistem berkas baru, yang pada "
+"awalnya dikembangkan di Oracle, yang bertujuan menggabung set fitur dari LVM "
+"dan RAID serta lebih banyak lagi. Sebagian besar sudah berfungsi, dan "
+"walaupun masih di-tag \"eksperimental\" karena pengembangannya belum lengkap "
+"(beberapa fitur belum diimplementasi), itu telah terpakai dalam lingkungan "
+"produksi. <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Among the noteworthy features are the ability to take a snapshot of a filesystem tree at any point in time. This snapshot copy doesn't initially use any disk space, the data only being duplicated when one of the copies is modified. The filesystem also handles transparent compression of files, and checksums ensure the integrity of all stored data."
 msgstr ""
+"Diantara fitur yang menarik adalah kemampuan membuat snapshot dari suatu "
+"pohon sistem berkas pada sebarang waktu. Snapshot ini pada awalnya tak "
+"memakai sebarang ruang disk, data hanya diduplikasi ketika satu dari salinan-"
+"salinan dimodifikasi. Sistem berkas juga menangani kompresi transparan dari "
+"berkas, dan checksum memastikan integritas dari semua data yang disimpan."
 
 #. Tag: para
 #, no-c-format
 msgid "In both the RAID and LVM cases, the kernel provides a block device file, similar to the ones corresponding to a hard disk drive or a partition. When an application, or another part of the kernel, requires access to a block of such a device, the appropriate subsystem routes the block to the relevant physical layer. Depending on the configuration, this block can be stored on one or several physical disks, and its physical location may not be directly correlated to the location of the block in the logical device."
 msgstr ""
+"Pada kedua kasus RAID dan LVM, kernel menyediakan suatu berkas perangkat "
+"blok, mirip dengan yang berkaitan dengan suatu hard disk atau suatu partisi. "
+"Ketika suatu aplikasi, atau bagian lain dari kernel, meminta akses ke suatu "
+"blok dari perangkat seperti itu, subsistem yang sesuai mengarahkan blok ke "
+"lapisan fisik yang relevan. Bergantung kepada konfigurasi, blok ini dapat "
+"disimpan pada satu atau beberapa disk fisik, dan lokasi fisiknya mungkin tak "
+"berkorelasi langsung ke lokasi blok dalam perangkat lojik."
 
 #. Tag: title
 #, no-c-format
 msgid "Software RAID"
-msgstr ""
+msgstr "RAID Perangkat Lunak"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID <indexterm><primary>RAID</primary></indexterm> means <emphasis>Redundant Array of Independent Disks</emphasis>. The goal of this system is to prevent data loss in case of hard disk failure. The general principle is quite simple: data are stored on several physical disks instead of only one, with a configurable level of redundancy. Depending on this amount of redundancy, and even in the event of an unexpected disk failure, data can be losslessly reconstructed from the remaining disks."
 msgstr ""
+"RAID <indexterm><primary>RAID</primary></indexterm> adalah <emphasis>"
+"Redundant Array of Independent Disks</emphasis>. Tujuan dari sistem ini "
+"adalah untuk mencegah kehilangan data dalam kasus kegagalan hard disk. "
+"Prinsip umumnya cukup sederhana: data disimpan pada beberapa disk fisik alih-"
+"alih hanya satu, dengan tingkat redundansi yang dapat dikonfigurasi. "
+"Bergantung kepada banyaknya redundansi ini, dan bahkan dalam kejadian "
+"kegagalan disk yang tak terduga, data dapat direkonstruksi tanpa adanya "
+"kehilangan dari disk sisanya."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Independent</foreignphrase> or <foreignphrase>inexpensive</foreignphrase>?"
 msgstr ""
+"<emphasis>KULTUR</emphasis> <foreignphrase>Independen</foreignphrase> atau "
+"<foreignphrase>tidak mahal</foreignphrase>?"
 
 #. Tag: para
 #, no-c-format
 msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it is now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavory flavour of cheapness."
 msgstr ""
+"I dalam RAID pada awalnya merupakan singkatan dari <emphasis>inexpensive ("
+"tidak mahal)</emphasis>, karena RAID memungkinkan kenaikan drastis "
+"keselamatan data tanpa memerlukan investasi disk canggih yang mahal. Namun "
+"mungkin karena masalah citra, kini lebih umum dianggap singkatan dari "
+"<emphasis>independen</emphasis>, yang tak membawa kesan murahan yang tak "
+"menarik."
 
 #. Tag: para
 #, no-c-format
@@ -156,7 +220,7 @@ msgstr ""
 #. Tag: term
 #, no-c-format
 msgid "RAID-0"
-msgstr ""
+msgstr "RAID-0"
 
 #. Tag: para
 #, no-c-format
@@ -171,7 +235,7 @@ msgstr ""
 #. Tag: term
 #, no-c-format
 msgid "RAID-1"
-msgstr ""
+msgstr "RAID-1"
 
 #. Tag: para
 #, no-c-format
@@ -216,7 +280,7 @@ msgstr ""
 #. Tag: term
 #, no-c-format
 msgid "RAID-4"
-msgstr ""
+msgstr "RAID-4"
 
 #. Tag: para
 #, no-c-format
@@ -231,7 +295,7 @@ msgstr ""
 #. Tag: term
 #, no-c-format
 msgid "RAID-5"
-msgstr ""
+msgstr "RAID-5"
 
 #. Tag: para
 #, no-c-format
@@ -246,7 +310,7 @@ msgstr ""
 #. Tag: term
 #, no-c-format
 msgid "RAID-6"
-msgstr ""
+msgstr "RAID-6"
 
 #. Tag: para
 #, no-c-format
@@ -261,7 +325,7 @@ msgstr ""
 #. Tag: term
 #, no-c-format
 msgid "RAID-1+0"
-msgstr ""
+msgstr "RAID-1+0"
 
 #. Tag: para
 #, no-c-format
@@ -712,7 +776,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "LVM Concepts"
-msgstr ""
+msgstr "Konsep LVM"
 
 #. Tag: para
 #, no-c-format
@@ -1282,32 +1346,32 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>VMWare</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>VMWare</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>Bochs</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>Bochs</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>QEMU</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>QEMU</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>VirtualBox</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>VirtualBox</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>KVM</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>KVM</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>LXC</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>LXC</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1735,7 +1799,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Network Configuration"
-msgstr ""
+msgstr "Konfigurasi Jaringan"
 
 #. Tag: para
 #, no-c-format
@@ -1980,7 +2044,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>KVM</primary>"
-msgstr ""
+msgstr "<primary>KVM</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2000,7 +2064,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>virt-install</command></primary>"
-msgstr ""
+msgstr "<primary><command>virt-install</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2010,7 +2074,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>libvirt</primary>"
-msgstr ""
+msgstr "<primary>libvirt</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2182,7 +2246,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>virsh</command></primary>"
-msgstr ""
+msgstr "<primary><command>virsh</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2304,6 +2368,23 @@ msgid ""
 "plugins=1\n"
 "metadata_expire=1800"
 msgstr ""
+"[main]\n"
+"reposdir=/var/tmp/yum-bootstrap/repos.d\n"
+"pluginconfpath=/var/tmp/yum-bootstrap/pluginconf.d\n"
+"cachedir=/var/cache/yum\n"
+"installroot=/path/to/destination/domU/install\n"
+"exclude=$exclude\n"
+"keepcache=1\n"
+"#debuglevel=4  \n"
+"#errorlevel=4\n"
+"pkgpolicy=newest\n"
+"distroverpkg=centos-release\n"
+"tolerant=1\n"
+"exactarch=1\n"
+"obsoletes=1\n"
+"gpgcheck=1\n"
+"plugins=1\n"
+"metadata_expire=1800"
 
 #. Tag: para
 #, no-c-format
@@ -2354,6 +2435,9 @@ msgid ""
 "enabled=1\n"
 "tokeep=5\n"
 msgstr ""
+"[main]\n"
+"enabled=1\n"
+"tokeep=5\n"
 
 #. Tag: para
 #, no-c-format
@@ -2368,12 +2452,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Automated Installation"
-msgstr ""
+msgstr "Pemasangan Otomatis"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>deployment</primary>"
-msgstr ""
+msgstr "<primary>deployment</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2408,12 +2492,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Fully Automatic Installer (FAI)"
-msgstr ""
+msgstr "Fully Automatic Installer (FAI, Pemasang Otomatis Sepenuhnya)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Fully Automatic Installer (FAI)</primary>"
-msgstr ""
+msgstr "<primary>Fully Automatic Installer (FAI)</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2538,7 +2622,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debconf</command></primary>"
-msgstr ""
+msgstr "<primary><command>debconf</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2680,7 +2764,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>debian-cd</primary>"
-msgstr ""
+msgstr "<primary>debian-cd</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2775,7 +2859,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>build-simple-cdd</command></primary>"
-msgstr ""
+msgstr "<primary><command>build-simple-cdd</command></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -2865,7 +2949,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Zabbix</primary>"
-msgstr ""
+msgstr "<primary>Zabbix</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2880,7 +2964,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Icinga</primary>"
-msgstr ""
+msgstr "<primary>Icinga</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2895,7 +2979,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Munin</primary>"
-msgstr ""
+msgstr "<primary>Munin</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3013,7 +3097,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Nagios</primary>"
-msgstr ""
+msgstr "<primary>Nagios</primary>"
 
 #. Tag: para
 #, no-c-format
