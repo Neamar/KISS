@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-08-13 22:26+0200\n"
+"PO-Revision-Date: 2014-08-24 04:38+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
@@ -832,10 +832,18 @@ msgid "A point to point (PPP) connection establishes an intermittent connection;
 msgstr "Uma conexão ponto a ponto (PPP) cria uma conexão intermitente; está é a solução mais comum para conexão feitas com um modem telefônico (\"modem PSTN\", já que a conexão vai pela rede de telefonia)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "A connection by telephone modem requires an account with an access provider, including a telephone number, username, password, and, sometimes the authentication protocol to be used. Such a connection is configured using the <command>pppconfig</command> tool in the Debian package of the same name. By default, it uses the access provider's connection. When in doubt about the authentication protocol, choose <emphasis>PAP</emphasis>: it is offered by the majority of Internet service providers."
 msgid "A connection by telephone modem requires an account with an access provider, including a telephone number, username, password, and, sometimes the authentication protocol to be used. Such a connection is configured using the <command>pppconfig</command> tool in the Debian package of the same name. By default, it sets up a connection named <literal>provider</literal> (as in Internet service provider). When in doubt about the authentication protocol, choose <emphasis>PAP</emphasis>: it is offered by the majority of Internet service providers."
-msgstr "Uma conexão via modem telefônico precisa de uma conta com um provedor de acesso, incluindo um número telefônico, usuário, senha e às vezes o protocolo de autenticação a ser usado. tal conexão é configurada usando a ferramenta <command>pppconfig</command> do pacote Debian de mesmo nome. Por padrão, ele usa a conexão do provedor de acesso. Quando em dúvida sobre o protocolo de autenticação, escolha <emphasis>PAP</emphasis>: ele é o oferecido pela maioria dos provedores de acesso a Internet."
+msgstr ""
+"Uma conexão via modem telefônico precisa de uma conta com um provedor de "
+"acesso, incluindo um número telefônico, usuário, senha e às vezes o "
+"protocolo de autenticação a ser usado. tal conexão é configurada usando a "
+"ferramenta <command>pppconfig</command> do pacote Debian de mesmo nome. Por "
+"padrão, ela configura uma conexão chamada <literal>provider</literal> (de "
+"provedor de acesso). Quando em dúvida sobre o protocolo de autenticação, "
+"escolha <emphasis>PAP</emphasis>: ele é o oferecido pela maioria dos "
+"provedores de acesso a Internet."
 
 #. Tag: indexterm
 #, no-c-format
@@ -903,10 +911,17 @@ msgid "<primary>ADSL, modem</primary>"
 msgstr "<primary>ADSL, modem</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The generic term “ADSL modem” covers a multitude of devices with very different functions. The modems that are simplest to use with Linux are those that have an Ethernet interface. These tend to be popular; ADSL Internet service providers lend (or lease) a “box” with Ethernet interfaces more and more frequently, instead of those with USB interfaces. According to the type of modem, the configuration required can vary widely."
 msgid "The generic term “ADSL modem” covers a multitude of devices with very different functions. The modems that are simplest to use with Linux are those that have an Ethernet interface (and not only a USB interface). These tend to be popular; most ADSL Internet service providers lend (or lease) a “box” with Ethernet interfaces. Depending on the type of modem, the configuration required can vary widely."
-msgstr "O termo genérico \"modem ADSL\" cobre uma infinidade de dispositivos com fuções muito diferentes. Os modems que são os mais simples de usar com Linux são aqueles que tem uma interface Ethernet. Estes tendem a ser bastatne populares; provedores de serviços internet ADSL emprestam ou fazem \"leasing\" de uma \"caixa\" com interfaces Ethernet mais e mais frequentemente, ao invés daquelas com interface USB. de acordo com o tipo do modem, a configuração requerida pode variar grandemente."
+msgstr ""
+"O termo genérico \"modem ADSL\" cobre uma infinidade de dispositivos com "
+"fuções muito diferentes. Os modems que são os mais simples de usar com Linux "
+"são aqueles que tem uma interface Ethernet (e não aqueles que só tem "
+"interface USB). Estes tendem a ser bastatne populares; a maioria dos "
+"provedores de serviços internet ADSL emprestam ou fazem \"leasing\" de um "
+"aparelho com interfaces Ethernet. Dependendo do tipo de modem, a "
+"configuração necessária pode variar grandemente."
 
 #. Tag: title
 #, no-c-format
@@ -1038,26 +1053,29 @@ msgid "To avoid having to manually connect or disconnect the corresponding netwo
 msgstr "Para evitar ter que conectar ou desconectar manualmente as interface de rede correspondentes, os administradores instalaram o pacote <emphasis role=\"pkg\">network-manager</emphasis> nestas \"roaming machines\". Com este software o usuário pode mudar de uma rede para outra usando um pequeno ícone exibido na área de notificação de suas área de trabalho gráficas. Ao clicar nestes ícones é exibida uma lista de redes disponíveis (com e sem fios), para o usuário simplesmente escolher qual ele deseja usar. O programa grava a configuração das redes que o usuário já tenha usado e automaticamente troca para a melhor rede disponível quando a rede atual cai."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this daemon. Only members of the “netdev” group have permissions to control this program."
 msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this daemon. PolicyKit handles the required authorizations to control this program and Debian configured PolicyKit in such a way so that members of the netdev group can add or change Network Manager connections."
-msgstr "Para fazer isto, o programa é estruturado em duas partes: um daemon rodando como root cuida da ativação e configuração das interfaces de rede e uma interface de usuário controla este daemon. Apenas membros do grupo “netdev” tem permissão para controlar este programa."
+msgstr ""
+"Para fazer isto, o programa é estruturado em duas partes: um daemon rodando "
+"como root cuida da ativação e configuração das interfaces de rede e uma "
+"interface de usuário controla este daemon. O PolicyKit cuida das "
+"autorizações necessárias para controlar este programa e o Debian configura o "
+"PolicyKit de forma que os membros do grupo netdev possam adicionar ou mudar "
+"as conexões do Network Manager."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Network Manager knows how to handle various types of connections (DHCP, manual configuration, local network), but only if the configuration is set with the program itself. This is why it will systematically ignore all network interfaces in <filename>/etc/network/interfaces</filename> for which it is not suited. Since Network Manager doesn't give details when no network connections are shown, the easy way is to delete from <filename>/etc/network/interfaces</filename> any configuration for all interfaces that must be managed by Network Manager."
 msgstr ""
-"O administrador da rede sabe como manipular vários tipos de conexões\n"
-"(DHCP, manual, rede local), mas apenas se a configuração for ajustada\n"
-"com o próprio programa. É por isto que ele vai ignorar\n"
-"sistematicamente todas as interfaces de rede no\n"
-"<filename>/etc/network/interfaces</filename> para as quais ele não foi\n"
-"projetado. Os ajustes são bastante estritos; detalhes estão\n"
-"disponíveis no arquivo <filename>/usr/share/doc/network-manager/README.Debian</\n"
-"filename>. Como o Network Manager não dá detalhes quando nenhuma\n"
-"conexão de rede é mostrada, a form fácil de apagar do\n"
-"<filename>/etc/network/interfaces</filename> quaisquer configurações\n"
-"de todas as interfaces que devem ser gerenciadas pelo Network Manager."
+"O Network Manager sabe como manipular vários tipos de conexões (DHCP, "
+"manual, rede local), mas apenas se a configuração for ajustada com o próprio "
+"programa. É por isto que ele vai ignorar sistematicamente todas as "
+"interfaces de rede no <filename>/etc/network/interfaces</filename> para as "
+"quais ele não foi projetado. Já que o Network Manager não dá detalhes quando "
+"nenhuma conexão de rede é mostrada, a forma fácil é apagar do "
+"<filename>/etc/network/interfaces</filename> quaisquer configurações de "
+"todas as interfaces que devem ser gerenciadas pelo Network Manager."
 
 #. Tag: para
 #, no-c-format
@@ -1075,9 +1093,13 @@ msgid "<primary><emphasis role=\"pkg\">guessnet</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">guessnet</emphasis></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "More advanced users may want to try the <emphasis role=\"pkg\">guessnet</emphasis> package for automatic network configuration. A group of test scripts determine which network profile should be activated and configure it on the fly."
-msgstr "Usuários mais avançados talvez queiram usar o pacote <emphasis role=\"pkg\">guessnet</emphasis> para configuração automática de rede. Um grupo de scripts determina qual o perfil de rede deve ser ativado e configura a rede na hora."
+msgstr ""
+"Usuários mais avançados talvez queiram usar o pacote <emphasis role=\"pkg\""
+">guessnet</emphasis> para configuração automática de rede. Um grupo de "
+"scripts determina qual o perfil de rede deve ser ativado e configura a rede "
+"na hora."
 
 #. Tag: para
 #, no-c-format
@@ -1209,7 +1231,14 @@ msgstr "<primary>nome</primary><secondary>resolução</secondary>"
 #, fuzzy, no-c-format
 #| msgid "The mechanism for name resolution in Linux is modular and can use various sources of information declared in the <filename>/etc/nsswitch.conf</filename> file. The entry that involves host name resolution is <literal>hosts</literal>. By default, it contains <literal>dns files</literal>, which means that the system consults the <filename>/etc/hosts</filename> file first, then DNS servers. NIS/NIS+ or LDAP servers are other possible sources."
 msgid "The mechanism for name resolution in Linux is modular and can use various sources of information declared in the <filename>/etc/nsswitch.conf</filename> file. The entry that involves host name resolution is <literal>hosts</literal>. By default, it contains <literal>files dns</literal>, which means that the system consults the <filename>/etc/hosts</filename> file first, then DNS servers. NIS/NIS+ or LDAP servers are other possible sources."
-msgstr "O mecanismo para resolução de nomes no Linux é modular e pode usar várias fontes de informação declarada no arquivo <filename>/etc/nsswitch.conf</filename>. A entrada que envolve a resolução de nomes de host é <literal>hosts</literal>. Por padrão, contém <literal>arquivos de DNS</literal>, o que significa que o sistema consulta o arquivo <filename>/etc/hosts</filename> primeiro, então os servidores DNS. NIS / NIS + ou LDAP servidores são outras fontes possíveis."
+msgstr ""
+"O mecanismo para resolução de nomes no Linux é modular e pode usar várias "
+"fontes de informação declarada no arquivo "
+"<filename>/etc/nsswitch.conf</filename>. A entrada que envolve a resolução "
+"de nomes de host é <literal>hosts</literal>. Por padrão, contém <literal>"
+"files dns</literal>, o que significa que o sistema consulta o arquivo "
+"<filename>/etc/hosts</filename> primeiro, então os servidores DNS. NIS / NIS "
+"+ ou LDAP servidores são outras fontes possíveis."
 
 #. Tag: title
 #, no-c-format
@@ -1257,10 +1286,14 @@ msgid "<primary><literal>nameserver</literal></primary>"
 msgstr "<primary><literal>nameserver</literal></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The DNS servers to be used are indicated in the <filename>/etc/resolv.conf</filename>, one per line, with the <literal>nameserver</literal> keyword preceding an IP address, as in the following example."
 msgid "The DNS servers to be used are indicated in the <filename>/etc/resolv.conf</filename>, one per line, with the <literal>nameserver</literal> keyword preceding an IP address, as in the following example:"
-msgstr "Os servidores DNS a ser usado são indicados no <filename>/etc/resolv.conf</filename>, um por linha, com a palavra-chave <literal>nameserver</literal> precede um endereço IP, como no exemplo a seguir."
+msgstr ""
+"Os servidores DNS a serem usados são indicados no "
+"<filename>/etc/resolv.conf</filename>, um por linha, com a palavra-chave "
+"<literal>nameserver</literal> seguida por um endereço IP, como no exemplo a "
+"seguir:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1311,10 +1344,15 @@ msgid "This allows, in the event of DNS changes not yet propagated, to test acce
 msgstr "Isso permite que, em caso de alterações DNS ainda não propagadas, para testar o acesso a um Web site com o nome pretendido, mesmo que este nome não está devidamente mapeado para o endereço IP correto ainda."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Another possible use for DNS redirection is to bypass traffic intended for a specific host to another local machine. For example, if a name server was configured to send ad banners, you could divert traffic to a local host which would bypass these ads resulting in more fluid, less distracting, navigation."
 msgid "Another possible use is to redirect traffic intended for a specific host to the localhost, thus preventing any communication with the given host. For example, hostnames of servers dedicated to serving ads could be diverted which would bypass these ads resulting in more fluid, less distracting, navigation."
-msgstr "Outro uso possível para redirecionamento de DNS é para ignorar o tráfego destinado para um host específico para outra máquina local. Por exemplo, se um nome do servidor foi configurado para enviar banners de anúncio, você poderia desviar o tráfego para um host local que iria ignorar esses anúncios, resultando em mais fluido, menos distração, navegação."
+msgstr ""
+"Outro uso possível é o redirecionamento de tráfico feito de uma máquina "
+"específica para o localhost, evitando assim qualquer comunicação com a dada "
+"máquina. Por exemplo, nomes de hosts de servidores dedicados a fornecer "
+"propaganda podem ser desviados o que evitaria estas propagandas tornando a "
+"navegação mais fluida e menos dispersa."
 
 #. Tag: title
 #, no-c-format
@@ -1372,10 +1410,18 @@ msgid "<primary>crypt</primary>"
 msgstr "<primary>crypt</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<command>crypt</command> is a one-way function that transforms a string <varname>(A)</varname> into another string <varname>(B)</varname> in a way that <varname>A</varname> cannot be derived from <varname>B</varname>. The only way to identify <varname>A</varname> is to test all possible values, checking each one to determine if transformation by the function will produce <varname>B</varname> or not. It uses up to 8 characters as input (string <varname>A</varname>) and generates a string of 13, printable, ASCII characters (string <varname>B</varname>)."
 msgid "<command>crypt</command> is a one-way function that transforms a string (<varname>A</varname>) into another string (<varname>B</varname>) in a way that <varname>A</varname> cannot be derived from <varname>B</varname>. The only way to identify <varname>A</varname> is to test all possible values, checking each one to determine if transformation by the function will produce <varname>B</varname> or not. It uses up to 8 characters as input (string <varname>A</varname>) and generates a string of 13, printable, ASCII characters (string <varname>B</varname>)."
-msgstr "<command>crypt</command> é uma função unidirecional que transforma uma string <varname>(A)</varname> em outra string <varname>(B)</varname> de forma que <varname>A</varname> não possa ser derivada de <varname>B</varname>. A única forma de identificar <varname>A</varname> é testando todos os valores possíveis, verificando cada um para determinar se a transformação pela função vai produzir <varname>B</varname> ou não. Ele usa até 8 caracteres como entrada (string <varname>A</varname>) e gera uma string de 13 caracteres ASCII, imprimível (string <varname>B</varname>)."
+msgstr ""
+"<command>crypt</command> é uma função unidirecional que transforma uma "
+"string (<varname>A</varname>) em outra string (<varname>B</varname>) de "
+"forma que <varname>A</varname> não possa ser derivada de <varname>B</varname>"
+". A única forma de identificar <varname>A</varname> é testando todos os "
+"valores possíveis, verificando cada um para determinar se a transformação "
+"pela função vai produzir <varname>B</varname> ou não. Ele usa até 8 "
+"caracteres como entrada (string <varname>A</varname>) e gera uma string de "
+"13 caracteres ASCII, imprimível (string <varname>B</varname>)."
 
 #. Tag: title
 #, no-c-format
@@ -1423,10 +1469,15 @@ msgid "login, for example <literal>rhertzog</literal>;"
 msgstr "login, por exemplo <literal>rhertzog</literal>;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "password: this is a password encrypted by a one-way function, either <command>crypt</command> or <command>md5</command>. The special value “<literal>x</literal>” indicates that the encrypted password is stored in <filename>/etc/shadow</filename>;"
 msgid "password: this is a password encrypted by a one-way function (<command>crypt</command>), relying on <literal>DES</literal>, <literal>MD5</literal>, <literal>SHA-256</literal> or <literal>SHA-512</literal>. The special value “<literal>x</literal>” indicates that the encrypted password is stored in <filename>/etc/shadow</filename>;"
-msgstr "password: esta é uma função só de ida de senha criptografada, tanto com <command>crypt</command> quanto com <command>md5</command>. O valor especial “<literal>x</literal>” indica que a senha criptografada é armazenada no <filename>/etc/shadow</filename>;"
+msgstr ""
+"password: é uma senha criptografada por uma função unidirecional "
+"(<command>crypt</command>), que se baseia em <literal>DES</literal>, "
+"<literal>MD5</literal>, <literal>SHA-256</literal> ou "
+"<literal>SHA-512</literal>. O valor especial “<literal>x</literal>” indica "
+"que a senha criptografada é armazenada em <filename>/etc/shadow</filename>;"
 
 #. Tag: para
 #, no-c-format
@@ -1489,10 +1540,10 @@ msgid "The <filename>/etc/shadow</filename> file contains the following fields:"
 msgstr "O arquivo <filename>/etc/shadow</filename> contém os seguintes campos:"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "login"
 msgid "login;"
-msgstr "login"
+msgstr "login;"
 
 #. Tag: para
 #, no-c-format
@@ -1505,9 +1556,12 @@ msgid "several fields managing password expiration."
 msgstr "diversos campos controlam a expiração da senha."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> <filename>/etc/passwd</filename>, <filename>/etc/shadow</filename> and <filename>/etc/group</filename> file formats"
-msgstr "<emphasis>DOCUMENTAÇÃO</emphasis> <filename>/etc/passwd</filename>, <filename>/etc/shadow</filename> e <filename>/etc/group</filename> formatos de arquivo"
+msgstr ""
+"<emphasis>DOCUMENTAÇÃO</emphasis> formatos de arquivos de "
+"<filename>/etc/passwd</filename>, <filename>/etc/shadow</filename> e "
+"<filename>/etc/group</filename>"
 
 #. Tag: para
 #, no-c-format
@@ -1605,10 +1659,10 @@ msgid "Groups are listed in the <filename>/etc/group</filename> file, a simple t
 msgstr "Grupos são listados no arquivo <filename>/etc/group</filename>, um banco de dados de texto simples em um formato similar ao arquivo <filename>/etc/passwd</filename>, com os seguintes campos:"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "group name"
 msgid "group name;"
-msgstr "nome do grupo"
+msgstr "nome do grupo;"
 
 #. Tag: para
 #, no-c-format
@@ -1616,10 +1670,10 @@ msgid "password (optional): This is only used to join a group when one is not a 
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<literal>uid</literal>: unique number identifying each user;"
 msgid "<literal>gid</literal>: unique group identification number;"
-msgstr "<literal>uid</literal>: identificar numérico único para cada usuário;"
+msgstr "<literal>gid</literal>: identificar numérico único para cada grupo;"
 
 #. Tag: para
 #, no-c-format
@@ -1872,10 +1926,10 @@ msgid "<primary>command line interface</primary>"
 msgstr "<primary>interface de linha de comando</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>command, interpreter</primary>"
 msgid "<primary>command interpreter</primary>"
-msgstr "<primary>comando, interpretador</primary>"
+msgstr "<primary>interpretador de comandos</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1983,16 +2037,16 @@ msgid "<emphasis>BACK TO BASICS</emphasis> Environment variables"
 msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Variáveis de ambiente"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>environment</primary><secondary>variable</secondary>"
 msgid "<primary>environment</primary><secondary>environment variable</secondary>"
-msgstr "<primary>ambiente</primary><secondary>variável</secondary>"
+msgstr "<primary>ambiente</primary><secondary>variável de ambiente</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>environment</primary>"
 msgid "<primary>variable, environment</primary>"
-msgstr "<primary>ambiente</primary>"
+msgstr "<primary>variável, ambiente</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2115,9 +2169,9 @@ msgid "<primary><filename>printcap</filename></primary>"
 msgstr "<primary><filename>printcap</filename></primary>"
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Configuring the Bootloader"
-msgstr "Configurando o Bootloader"
+msgstr "Configurando o carregador de boot (bootloader)"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2160,10 +2214,12 @@ msgid "Identifying the Disks"
 msgstr "Identificando os Discos"
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis>, <emphasis>devfs</emphasis> and <filename>/dev/</filename>"
 msgid "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis> and <filename>/dev/</filename>"
-msgstr "<emphasis>CULTURA</emphasis> <emphasis>udev</emphasis>, <emphasis>devfs</emphasis> e <filename>/dev/</filename>"
+msgstr ""
+"<emphasis>CULTURA</emphasis> <emphasis>udev</emphasis> e "
+"<filename>/dev/</filename>"
 
 #. Tag: para
 #, no-c-format
@@ -2981,7 +3037,7 @@ msgid "Example <filename>/etc/fstab</filename> file:"
 msgstr "Exemplo do arquivo <filename>/etc/fstab</filename>:"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "\n"
 "# /etc/fstab: static file system information.\n"
@@ -2999,7 +3055,8 @@ msgstr ""
 "\n"
 "# /etc/fstab: static file system information.\n"
 "#\n"
-"# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;\n"
+"# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;"
+"       &lt;dump&gt;  &lt;pass&gt;\n"
 "proc            /proc           proc    defaults        0       0\n"
 "# / was on /dev/sda1 during installation\n"
 "UUID=c964222e-6af1-4985-be04-19d7c764d0a7 / ext3 errors=remount-ro 0 1\n"
@@ -3075,10 +3132,10 @@ msgid "<primary><command>updatedb</command></primary>"
 msgstr "<primary><command>updatedb</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>locate</command></primary>"
 msgid "<primary><command>mlocate</command></primary>"
-msgstr "<primary><command>locate</command></primary>"
+msgstr "<primary><command>mlocate</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3126,16 +3183,17 @@ msgid "Recompilation of the kernel is also necessary if you want to use certain 
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>GOING FURTHER</emphasis> NSS and system databases"
 msgid "<emphasis>GOING FURTHER</emphasis> The Debian Kernel Handbook"
-msgstr "<emphasis>APROFUNDANDO</emphasis> NSS e banco de dados do sistema"
+msgstr "<emphasis>APROFUNDANDO</emphasis> Manual do Kernel do Debian"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis role=\"pkg\">kernel-package</emphasis></primary>"
 msgid "<primary><emphasis role=\"pkg\">debian-kernel-handbook</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">kernel-package</emphasis></primary>"
+msgstr ""
+"<primary><emphasis role=\"pkg\">debian-kernel-handbook</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format

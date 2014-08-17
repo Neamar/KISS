@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-07-30 23:16+0200\n"
-"Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
+"PO-Revision-Date: 2014-08-17 12:39+0200\n"
+"Last-Translator: Carsten Bachert <caba@bachert.info>\n"
 "Language-Team: German <https://debian.weblate.org/projects/debian-"
 "handbook/06_apt/de-DE/>\n"
 "Language: de-DE\n"
@@ -1710,7 +1710,7 @@ msgid "<primary>APT</primary><secondary><foreignphrase>pinning</foreignphrase></
 msgstr "<primary>APT</primary><secondary><foreignphrase>pinning</foreignphrase></secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>reinstallation</primary>"
 msgid "<primary>pinning, APT pinning</primary>"
 msgstr "<primary>pinning, APT pinning</primary>"
@@ -2048,14 +2048,14 @@ msgstr ""
 "automatisch\" genannt und beinhalten beispielsweise oft Bibliotheken."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "With this information, when packages are removed, the package managers can compute a list of automatic packages that are no longer needed (because there's no “manually installed” packages depending on them). <command>apt-get autoremove</command> will get rid of those packages. <command>aptitude</command> does not have this command because it removes them automatically as soon as they are identified. Both programs include a clear message listing the affected packages."
 msgstr ""
 "Wenn Pakete entfernt werden, können Paketbetreuer mit dieser Information "
 "eine Liste der automatischen installierten Pakete erstellen, die nicht "
 "länger benötigt werden (weil es keine manuell installierten Pakete mehr "
 "gibt, die von diesen abhängen). Mit <command>apt-get autoremove</command> "
-"kann man diese Pakete loswerden. command>aptitude</command> kennt diesen "
+"kann man diese Pakete loswerden. <command>aptitude</command> kennt diesen "
 "Befehl nicht, da es diese automatisch entfernt, sobald sie erkannt werden. "
 "Beide Programme zeigen die betroffenen Pakete in einer übersichtlichen List "
 "an."
@@ -2696,7 +2696,7 @@ msgstr ""
 "Installation neuer Pakete vertrauen:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "# <userinput>apt-key fingerprint</userinput>\n"
 "/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
@@ -2924,7 +2924,7 @@ msgstr ""
 "komplette Aktualisierung der Distribution durchzuführen."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Once these first steps are done, it is time to handle the upgrade itself, either with <command>aptitude</command> or <command>synaptic</command>. You should carefully check the suggested actions before applying them: you might want to add suggested packages or deselect packages which are only recommended and known not to be useful. In any case, the front-end should come up with a scenario ending in a coherent and up-to-date <emphasis role=\"distribution\">Squeeze</emphasis> system. Then, all you need is to do is wait while the required packages are downloaded, answer the Debconf questions and possibly those about locally modified configuration files, and sit back while APT does its magic."
 msgid "Once this first upgrade is done, it is time to handle the upgrade itself, either with <command>apt-get dist-upgrade</command>, <command>aptitude</command>, or <command>synaptic</command>. You should carefully check the suggested actions before applying them: you might want to add suggested packages or deselect packages which are only recommended and known not to be useful. In any case, the front-end should come up with a scenario ending in a coherent and up-to-date <emphasis role=\"distribution\">Wheezy</emphasis> system. Then, all you need is to do is wait while the required packages are downloaded, answer the Debconf questions and possibly those about locally modified configuration files, and sit back while APT does its magic."
 msgstr ""
@@ -2978,10 +2978,18 @@ msgid "in yet other cases, a fixed package may have already been prepared and ma
 msgstr "und in wieder anderen Fällen könnte der Paketbetreuer bereits ein korrigiertes Paket gebaut und veröffentlicht haben."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Depending on the severity of the bug, a new version of the package may be prepared specifically for a new revision of the stable release. When this happens, the fixed package is made available in the <literal>proposed-updates</literal> section of the Debian mirrors (see <xref linkend=\"section.proposed-updates\" />). The corresponding entry can then be temporarily added to the <filename>sources.list</filename> file, and updated packages can be installed with <command>apt-get</command> or <command>aptitude</command>."
 msgid "Depending on the severity of the bug, a new version of the package may be prepared specifically for a new revision of the stable release. When this happens, the fixed package is made available in the <literal>proposed-updates</literal> section of the Debian mirrors (see <xref linkend=\"sect.proposed-updates\" />). The corresponding entry can then be temporarily added to the <filename>sources.list</filename> file, and updated packages can be installed with <command>apt-get</command> or <command>aptitude</command>."
-msgstr "Abhängig von der Schwere eines Fehlers, kann eine neue Paketversion speziell für die nächste Ausgabe der Stable Veröffentlichung vorbereitet werden. Sollte dies der Fall sein, wird das korrigierte Paket im Bereich <literal>proposed-updates</literal> der Debian Spiegelserver bereitgestellt (siehe <xref linkend=\"section.proposed-updates\" />). Der entsprechende Eintrag kann dann temporär der Datei <filename>sources.list</filename> hinzugefügt werden. Aktualisierte Pakete können mit <command>apt-get</command> oder <command>aptitude</command> installiert werden."
+msgstr ""
+"Abhängig von der Schwere eines Fehlers, kann eine neue Paketversion speziell "
+"für die nächste Ausgabe der Stable Veröffentlichung vorbereitet werden. "
+"Sollte dies der Fall sein, wird das korrigierte Paket im Bereich <literal"
+">proposed-updates</literal> der Debian Spiegelserver bereitgestellt (siehe <"
+"xref linkend=\"sect.proposed-updates\" />). Der entsprechende Eintrag kann "
+"dann temporär der Datei <filename>sources.list</filename> hinzugefügt "
+"werden. Aktualisierte Pakete können mit <command>apt-get</command> oder "
+"<command>aptitude</command> installiert werden."
 
 #. Tag: para
 #, no-c-format
@@ -3004,16 +3012,38 @@ msgid "While it is of course possible to periodically run a tool to check for av
 msgstr "Natürlich ist es möglich, regelmäßig ein Programm auszuführen, das nach verfügbaren Aktualisierungen sucht und diese installiert. Allerdings ist eine solch wiederkehrende Aufgabe mühsam, speziell dann, wenn sie auf vielen Maschinen ausgeführt werden muss. Glücklicherweise lassen sich solch lästige Aufgaben teilweise automatisieren, eine Reihe von Werkzeugen dazu wurde bereits entwickelt."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The first of these tools is <command>apticron</command>, in the package of the same name. Its main effect is to run a script daily (via <command>cron</command>). The script updates the list of available packages, and, if some installed packages are not in the latest available version, it sends an email with a list of these packages along with the changes that have been made in the new versions. Obviously, this package mostly targets users of Debian <emphasis role=\"distribution\">Stable</emphasis>, since the daily emails would be very long for the more mobile versions of Debian. When updates are available, <command>apticron</command> automatically downloads them. It does not install them — the administrator will still do it — but having the packages already downloaded and available locally (in APT's cache) makes the job faster."
 msgid "The first of these tools is <command>apticron</command>, in the package of the same name. Its main effect is to run a script daily (via <command>cron</command>). The script updates the list of available packages, and, if some installed packages are not in the latest available version, it sends an email with a list of these packages along with the changes that have been made in the new versions. Obviously, this package mostly targets users of Debian <emphasis role=\"distribution\">Stable</emphasis>, since the daily emails would be very long for the faster paced versions of Debian. When updates are available, <command>apticron</command> automatically downloads them. It does not install them — the administrator will still do it — but having the packages already downloaded and available locally (in APT's cache) makes the job faster."
-msgstr "Das erste dieser Werkzeuge ist <command>apticron</command> im Paket gleichen Namens. Seine Hauptaufgabe ist, täglich ein Skript (via <command>cron</command>) auszuführen. Das Skript aktualisiert die Liste der verfügbaren Pakete und schickt, falls ein installiertes Paket nicht in der aktuellsten Version vorliegt, eine E-Mail mit der Liste dieser Pakete zusammen mit den Änderungen in den neuen Versionen. Offenkundig richtet sich dieses Paket an Anwender von Debian <emphasis role=\"distribution\">Stable</emphasis>, da tägliche E-Mails für die sich häufiger ändernden Versionen von Debian doch sehr lang würden. Sind Aktualisierungen verfügbar, lädt <command>apticron</command> sie automatisch herunter. Es installiert sie nicht – das ist dem Administrator überlassen – aber dass die Pakete bereits heruntergeladen und lokal verfügbar (im Zwischenspeicher von APT) sind, beschleunigt die Aufgabe."
+msgstr ""
+"Das erste dieser Werkzeuge ist <command>apticron</command> im Paket gleichen "
+"Namens. Seine Hauptaufgabe ist, täglich ein Skript (via "
+"<command>cron</command>) auszuführen. Das Skript aktualisiert die Liste der "
+"verfügbaren Pakete und schickt, falls ein installiertes Paket nicht in der "
+"aktuellsten Version vorliegt, eine E-Mail mit der Liste dieser Pakete "
+"zusammen mit den Änderungen in den neuen Versionen. Offenkundig richtet sich "
+"dieses Paket an Anwender von Debian <emphasis role=\"distribution\""
+">Stable</emphasis>, da tägliche E-Mails für die sich häufiger ändernden "
+"Versionen von Debian doch sehr lang würden. Sind Aktualisierungen verfügbar, "
+"lädt <command>apticron</command> sie automatisch herunter. Es installiert "
+"sie nicht – das ist dem Administrator überlassen – aber dass die Pakete "
+"bereits heruntergeladen und lokal verfügbar (im Zwischenspeicher von APT) "
+"sind, beschleunigt die Aufgabe."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Administrators in charge of several computers will no doubt appreciate being informed of pending upgrades, but the upgrades themselves are still as tedious as they used to be, which is where the <filename>/etc/cron.daily/apt</filename> script (in the <emphasis role=\"pkg\">apt</emphasis> package) comes in handy. This script is also run daily (and non-interactively) by <command>cron</command>. To control its behavior, use APT configuration variables (which are therefore stored in a file under <filename>/etc/apt/apt.conf.d/</filename>). The main three variables are:"
 msgid "Administrators in charge of several computers will no doubt appreciate being informed of pending upgrades, but the upgrades themselves are still as tedious as they used to be, which is where the <filename>/etc/cron.daily/apt</filename> script (in the <emphasis role=\"pkg\">apt</emphasis> package) comes in handy. This script is also run daily (and non-interactively) by <command>cron</command>. To control its behavior, use APT configuration variables (which are therefore stored in a file under <filename>/etc/apt/apt.conf.d/</filename>). The main variables are:"
-msgstr "Administratoren, die für viele Computer zuständig sind, werden es ohne Zweifel schätzen, über anstehende Aktualisierungen informiert zu werden, das Durchführen der Aktualisierungen selbst bleibt aber weiterhin mühsam. An dieser Stelle wird das Skript <filename>/etc/cron.daily/apt</filename> (aus dem <emphasis role=\"pkg\">apt</emphasis> Paket) interessant. Dieses Skript wird ebenfalls täglich durch <command>cron</command> ausgeführt (nicht-interaktiv). Um sein Verhalten zu bestimmen, verwenden Sie APT Konfigurationsvariablen (gespeichert in einer Datei unter <filename>/etc/apt/apt.conf.d/</filename>). Die drei Hauptvariablen sind:"
+msgstr ""
+"Administratoren, die für viele Computer zuständig sind, werden es ohne "
+"Zweifel schätzen, über anstehende Aktualisierungen informiert zu werden, das "
+"Durchführen der Aktualisierungen selbst bleibt aber weiterhin mühsam. An "
+"dieser Stelle wird das Skript <filename>/etc/cron.daily/apt</filename> (aus "
+"dem <emphasis role=\"pkg\">apt</emphasis> Paket) interessant. Dieses Skript "
+"wird ebenfalls täglich durch <command>cron</command> ausgeführt (nicht-"
+"interaktiv). Um sein Verhalten zu bestimmen, verwenden Sie APT "
+"Konfigurationsvariablen (gespeichert in einer Datei unter "
+"<filename>/etc/apt/apt.conf.d/</filename>). Die Hauptvariablen sind:"
 
 #. Tag: term
 #, no-c-format
@@ -3041,27 +3071,42 @@ msgid "<literal>APT::Periodic::AutocleanInterval</literal>"
 msgstr "<literal>APT::Periodic::AutocleanInterval</literal>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "This last option covers a feature that <command>apticron</command> doesn't have. It controls how often obsolete packages (those not referenced by any distribution anymore) are removed from the APT cache. This keeps the APT cache at a reasonable size and means that you don't need to worry about that task."
 msgid "This option covers a feature that <command>apticron</command> doesn't have. It controls how often obsolete packages (those not referenced by any distribution anymore) are removed from the APT cache. This keeps the APT cache at a reasonable size and means that you don't need to worry about that task."
-msgstr "Die letzte Option deckt ein Merkmal ab, über das <command>apticron</command> nicht verfügt. Sie bestimmt, wie häufig veraltete Pakete (die von keiner Veröffentlichung mehr referenziert werden) aus dem Zwischenspeicher von APT entfernt werden. Dies hält den Zwischenspeicher von APT auf einer sinnvollen Größe und entlastet Sie davon, sich Gedanken um diese Aufgabe machen zu müssen."
+msgstr ""
+"Die Option deckt ein Merkmal ab, über das <command>apticron</command> nicht "
+"verfügt. Sie bestimmt, wie häufig veraltete Pakete (die von keiner "
+"Veröffentlichung mehr referenziert werden) aus dem Zwischenspeicher von APT "
+"entfernt werden. Dies hält den Zwischenspeicher von APT auf einer sinnvollen "
+"Größe und entlastet Sie davon, sich Gedanken um diese Aufgabe machen zu "
+"müssen."
 
 #. Tag: term
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<literal>APT::Periodic::Download-Upgradeable-Packages</literal>"
 msgid "<literal>APT::Periodic::Unattended-Upgrade</literal>"
-msgstr "<literal>APT::Periodic::Download-Upgradeable-Packages</literal>"
+msgstr "<literal>APT::Periodic::Unattended-Upgrade</literal>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
 msgid "<primary><emphasis role=\"pkg\">unattended-upgrades</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">Paketsuche</emphasis></primary>"
+msgstr ""
+"<primary><emphasis role=\"pkg\">unattended-upgrades</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When this option is enabled, the daily script will execute <command>unattended-upgrade</command> (from the <emphasis role=\"pkg\">unattended-upgrades</emphasis> package) which — as its name suggest — can automatize the upgrade process for some packages (by default it only takes care of security updates, but this can be customized in <filename>/etc/apt/apt.conf.d/50unattended-upgrades</filename>). Note that this option can be set with the help of debconf by running <command>dpkg-reconfigure -plow unattended-upgrades</command>."
 msgstr ""
+"Wenn diese Option ausgewählt wurde führt das tägliche Script (aus <emphasis "
+"role=\"pkg\">unattended-upgrades</emphasis>) den Befehl <command>unattended-"
+"upgrade</command> durch. Wie der Name erwarten lässt, automatisiert sie den "
+"Updat-Prozess für einige Pakete. In der Voreinstellung sind dies die "
+"Security-Pakete; kann aber über <filename>/etc/apt/apt.conf.d/50unattended-"
+"upgrades</filename> bestimmt werden. Beachte, dass dies auch über <command"
+">dpkg-reconfigure -plow unattended-upgrades</command> konfiguriert werden "
+"kann."
 
 #. Tag: para
 #, no-c-format
@@ -3069,10 +3114,10 @@ msgid "Other options can allow you to control the cache cleaning behavior with m
 msgstr "Andere Optionen gestatten es Ihnen, das Aufräumen des Zwischenspeichers gezielter zu steuern. Diese Optionen werden hier nicht aufgeführt, werden aber im Skript <filename>/etc/cron.daily/apt</filename> beschrieben."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
 msgid "<primary><emphasis role=\"pkg\">gnome-packagekit</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">Paketsuche</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">gnome-packagekit</emphasis></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
