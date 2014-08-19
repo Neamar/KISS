@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-08-17 12:39+0200\n"
-"Last-Translator: Carsten Bachert <caba@bachert.info>\n"
+"PO-Revision-Date: 2014-09-04 00:23+0200\n"
+"Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
 "Language-Team: German <https://debian.weblate.org/projects/debian-"
 "handbook/06_apt/de-DE/>\n"
 "Language: de-DE\n"
@@ -1766,7 +1766,17 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "APT will never install an older version of a package (that is, a package whose version number is lower than the one of the currently installed package) except if its priority is higher than 1000. APT will always install the highest priority package which follows this constraint. If two packages have the same priority, APT installs the newest one (whose version number is the highest). If two packages of same version have the same priority but differ in their content, APT installs the version that is not installed (this rule has been created to cover the case of a package update without the increment of the revision number, which is usually required)."
-msgstr "APT installiert keine ältere Version eines Pakets (das heißt, ein Paket, dessen Versionsnummer niedriger ist als die des gegenwärtig installierten Paketes), außer wenn deren Priorität höher als 1000 ist. APT installiert immer das Paket mit der höchsten Priorität, das dieser Bedingung entspricht. Falls zwei Pakete dieselbe Priorität haben, installiert APT das neuere (das, mit der höheren Versionsnummer). Falls zwei Pakete mit der derselben Version und derselben Priorität, unterschiedlichen Inhalt haben, installiert APT die Version, die nicht installiert ist. (Diese Regel wurde entworfen, um den Fall einer Paket-Aktualisierung ohne die eigentlich nötige Erhöhung der Revisionsnummer abzudecken.)"
+msgstr ""
+"APT installiert keine ältere Version eines Pakets (das heißt, ein Paket, "
+"dessen Versionsnummer niedriger ist als die des gegenwärtig installierten "
+"Paketes), außer wenn deren Priorität höher als 1000 ist. APT installiert "
+"immer das Paket mit der höchsten Priorität, das dieser Bedingung entspricht. "
+"Falls zwei Pakete dieselbe Priorität haben, installiert APT das neuere (das, "
+"mit der höheren Versionsnummer). Falls zwei Pakete mit der derselben Version "
+"und derselben Priorität, unterschiedlichen Inhalt haben, installiert APT die "
+"Version, die nicht installiert ist. (Diese Regel wurde entworfen, um den "
+"Fall einer Paket-Aktualisierung ohne die eigentlich nötige Erhöhung der "
+"Revisionsnummer abzudecken)."
 
 #. Tag: para
 #, no-c-format
@@ -1914,7 +1924,11 @@ msgstr "<primary><literal>Pin-Priority</literal></primary>"
 #. Tag: para
 #, no-c-format
 msgid "There is no official syntax to put comments in the <filename>/etc/apt/preferences</filename> file, but some textual descriptions can be provided by putting one or more “<literal>Explanation</literal>” fields at the start of each entry:"
-msgstr "Es existiert keine offzielle Syntax für Kommentare in der <filename>/etc/apt/preferences</filename> Datei, aber Beschreibungen lassen sich mittels einer oder mehrerer “<literal>Explanation</literal>” Felder zu Beginn jedes Eintrags einfügen: "
+msgstr ""
+"Es existiert keine offzielle Syntax für Kommentare in der "
+"<filename>/etc/apt/preferences</filename> Datei, aber Beschreibungen lassen "
+"sich mittels einer oder mehrerer “<literal>Explanation</literal>” Felder zu "
+"Beginn jedes Eintrags einfügen:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2434,7 +2448,15 @@ msgstr "<emphasis>DOKUMENTATION</emphasis> <command>aptitude</command>"
 #. Tag: para
 #, no-c-format
 msgid "This section does not cover the finer details of using <command>aptitude</command>, it rather focuses on giving you a survival kit to use it. <command>aptitude</command> is rather well documented and we advise you to use its complete manual available in the <emphasis role=\"pkg\">aptitude-doc-en</emphasis> package. <ulink type=\"block\" url=\"file:///usr/share/doc/aptitude/html/en/index.html\" />"
-msgstr "Dieser Abschnitt beschäftigt sich nicht mit den Feinheiten der Benutzung von <command>aptitude</command>, stattdessen liegt der Schwerpunkt darin, Ihnen ein \"Überlebenspaket\" für dessen Benutzung an die Hand zu geben. <command>aptitude</command> ist ziemlich umfassend dokumentiert, deswegen legen wir Ihnen die Nutzung des umfassenden Handbuches, verfügbar unter <emphasis role=\"pkg\">aptitude-doc-en</emphasis> package. <ulink type=\"block\" url=\"file:///usr/share/doc/aptitude/html/en/index.html\" />, ans Herz (Anm. d. Übers.: Aktuell leider nicht auf Deutsch verfügbar)."
+msgstr ""
+"Dieser Abschnitt beschäftigt sich nicht mit den Feinheiten der Benutzung von "
+"<command>aptitude</command>, stattdessen liegt der Schwerpunkt darin, Ihnen "
+"ein \"Überlebenspaket\" für dessen Benutzung an die Hand zu geben. "
+"<command>aptitude</command> ist ziemlich umfassend dokumentiert, deswegen "
+"legen wir Ihnen die Nutzung des umfassenden Handbuches, verfügbar unter <"
+"emphasis role=\"pkg\">aptitude-doc-en</emphasis> package. <ulink type=\""
+"block\" url=\"file:///usr/share/doc/aptitude/html/en/index.html\" />, ans "
+"Herz (Anm. d. Übers.: Aktuell leider nicht auf Deutsch verfügbar.)"
 
 #. Tag: para
 #, no-c-format
@@ -3120,16 +3142,27 @@ msgid "<primary><emphasis role=\"pkg\">gnome-packagekit</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">gnome-packagekit</emphasis></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "These tools work very well for servers, but desktop users generally prefer a more interactive system. That is why the “Graphical desktop environment” task installs <command>update-notifier</command> and <command>update-manager</command>. The former displays an icon in the notification area of desktop environments when updates are available; clicking on this icon then runs <command>update-manager</command>, a simplified interface to perform updates. You can browse through available updates, read the description of the relevant packages and their <filename>changelog</filename>, and select whether to apply the update or not on a case-by-case basis. Note that these packages contain configuration data for <filename>/etc/cron.daily/apt</filename> so that it refreshes the lists of available packages and downloads the relevant ones. The <command>update-notifier</command>/<command>update-manager</command> combination is far from having as many features as <command>aptitude</command> and <command>synaptic</command>, since it only handles the upgrades of packages which are already installed; as a consequence, its minimalistic interface leaves little room for mistakes, and therefore little risk of breaking the system."
 msgid "These tools work very well for servers, but desktop users generally prefer a more interactive system. That is why the “Graphical desktop environment” task installs <emphasis role=\"pkg\">gnome-packagekit</emphasis>. It provides an icon in the notification area of desktop environments when updates are available; clicking on this icon then runs <command>gpk-update-viewer</command>, a simplified interface to perform updates. You can browse through available updates, read the short description of the relevant packages and the corresponding <filename>changelog</filename> entries, and select whether to apply the update or not on a case-by-case basis."
-msgstr "Diese Werkzeuge eignen sich sehr gut für Server, aber Anwender von Arbeitsplatzrechnen bevorzugen üblicherweise ein interaktiveres System. Aus diesem Grund installiert die Programmgruppe \"Desktop-Umgebung“ (Arbeitsplatzrechner)\" <command>update-notifier</command> und <command>update-manager</command>. Das erste blendet ein Symbol im Benachrichtigungsfeld der Benutzeroberfläche ein, sobald Aktualisierungen verfügbar sind. Das Anklicken dieses Symbols startet dann <command>update-manager</command>, eine vereinfachte Oberfläche, um die Aktualisierung durchzuführen. Sie können die Liste der verfügbaren Aktualisierungen durchblättern, die Beschreibungen der betroffenen Pakete und deren <filename>changelog</filename> lesen und auswählen, welche Pakete Sie aktualisieren wollen und welche nicht. Beachten Sie, dass beide Pakete Konfigurationsdaten für <filename>/etc/cron.daily/apt</filename> enthalten, damit die Listen der verfügbaren Pakete aktualisiert und betroffene Pakete heruntergeladen werden können. Die Kombination <command>update-notifier</command>/<command>update-manager</command> ist weit vom Funktionsumfang von <command>aptitude</command> und <command>synaptic</command> entfernt, da sie nur Aktualisierungen für bereits installierte Pakete behandeln, dafür lässt die minimalistische Oberfläche kaum Raum für Fehler und birgt daher wenig Gefahr, das System zu beschädigen."
+msgstr ""
+"Diese Werkzeuge eignen sich sehr gut für Server, aber Anwender von "
+"Arbeitsplatzrechnen bevorzugen üblicherweise ein interaktiveres System. Aus "
+"diesem Grund installiert die Programmgruppe \"Desktop-Umgebung“ "
+"(Arbeitsplatzrechner)\" <emphasis role=\"pkg\">gnome-packagekit</emphasis>. "
+"Dieses blended ein Icon im Benachrichtigungsfeld der Desktop-Umgebung ein, "
+"sobald Updates verfügbar sind; ein Klick auf das Icon startet <command>gpk-"
+"update-viewer</command>, eine vereinfachte Benutzerschnittstelle zur "
+"Durchführung von Updates. Sie können die verfügbaren Aktualisierungen "
+"durchblättern, die Kurzbeschreibung der interessanten Pakete und die "
+"entsprechenden Einträge im <filename>changelog</filename> lesen und von Fall "
+"zu Fall entscheiden, ob der Update durchgeführt werden soll."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Upgrading with <command>update-manager</command>"
 msgid "Upgrading with <command>gpk-update-viewer</command>"
-msgstr "Aktualisieren mit <command>update-manager</command>"
+msgstr "Aktualisieren mit <command>gpk-update-viewer</command>"
 
 #. Tag: title
 #, no-c-format
@@ -3137,16 +3170,17 @@ msgid "Automatic Upgrades"
 msgstr "Automatische Aktualisierungen"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>upgrade</primary><secondary>automatic (of the system)</secondary>"
 msgid "<primary>upgrade</primary><secondary>automatic system upgrade</secondary>"
-msgstr "<primary>Aktualisierung</primary><secondary>automatische (des Systems)</secondary>"
+msgstr ""
+"<primary>upgrade</primary><secondary>automatic system upgrade</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>backport</primary>"
 msgid "<primary>automatic upgrade</primary>"
-msgstr "<primary>Rückportierung (Backport)</primary>"
+msgstr "<primary>automatisches Upgrade</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3156,13 +3190,20 @@ msgstr "Da Falcot Corp über viele Rechner aber nur über wenig IT-Personal verf
 #. Tag: title
 #, no-c-format
 msgid "Configuring <command>dpkg</command>"
-msgstr " <command>dpkg</command> konfigurieren"
+msgstr "<command>dpkg</command> konfigurieren"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "As we have already mentioned (see sidebar <xref linkend=\"cadre.questions-conffiles\" />), <command>dpkg</command> can be instructed not to ask for confirmation when replacing a configuration file (with the <literal>--force-confdef --force-confold</literal> options). Interactions can, however, have three other sources: some come from APT itself, some are handled by <command>debconf</command>, and some happen on the command line due to package configuration scripts."
 msgid "As we have already mentioned (see sidebar <xref linkend=\"sidebar.questions-conffiles\" />), <command>dpkg</command> can be instructed not to ask for confirmation when replacing a configuration file (with the <literal>--force-confdef --force-confold</literal> options). Interactions can, however, have three other sources: some come from APT itself, some are handled by <command>debconf</command>, and some happen on the command line due to package configuration scripts."
-msgstr "Wie bereits erwähnt (siehe Seitenleiste <xref linkend=\"cadre.questions-conffiles\" />), kann <command>dpkg</command> angewiesen werden, keine Bestätigung vor dem  Ersetzen einer Konfigurationsdatei einzuholen (mittels der <literal>--force-confdef --force-confold</literal> Option). Indes können Interaktionen drei andere Ursachen haben: Einige kommen von APT selbst, andere handhabt <command>debconf</command> und wieder andere kommen von der Befehlszeile ausgelöst durch Paket-Konfigurationsskripte."
+msgstr ""
+"Wie bereits erwähnt (siehe Seitenleiste <xref linkend=\"sidebar.questions-"
+"conffiles\" />), kann <command>dpkg</command> angewiesen werden, keine "
+"Bestätigung vor dem  Ersetzen einer Konfigurationsdatei einzuholen (mittels "
+"der <literal>--force-confdef --force-confold</literal> Option). Indes können "
+"Interaktionen drei andere Ursachen haben: Einige kommen von APT selbst, "
+"andere handhabt <command>debconf</command> und wieder andere kommen von der "
+"Befehlszeile ausgelöst durch Paket-Konfigurationsskripte."
 
 #. Tag: title
 #, no-c-format
@@ -3244,16 +3285,29 @@ msgid "Falcot computers are a heterogeneous system, with machines having various
 msgstr "Die Rechner von Falcot haben vielfältige Aufgaben und bilden ein heterogenes System. Aus diesem Grund wählen die Administratoren die am besten geeignete Lösung für jeden Rechner."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "In practice, the servers running <emphasis role=\"distribution\">Squeeze</emphasis> are configured with the “miracle combination” above, and are kept up to date automatically. Only the most critical servers (the firewalls, for instances) are set up with <command>apticron</command>, so that upgrades always happen under the supervision of an administrator."
 msgid "In practice, the servers running <emphasis role=\"distribution\">Wheezy</emphasis> are configured with the “miracle combination” above, and are kept up to date automatically. Only the most critical servers (the firewalls, for instances) are set up with <command>apticron</command>, so that upgrades always happen under the supervision of an administrator."
-msgstr "Im Betrieb sind Server, auf denen <emphasis role=\"distribution\">Squeeze</emphasis> läuft, mit der \"Wunderkombination\" konfiguriert und werden automatisch aktuell gehalten. Nur die kritischsten Server (die Firewalls zum Beispiel) sind mit <command>apticron</command> konfiguriert, so dass Aktualisierungen nur unter Aufsicht der Administratoren durchgeführt werden."
+msgstr ""
+"Im Betrieb sind Server, auf denen <emphasis role=\"distribution\""
+">Wheezy</emphasis> läuft, mit der \"Wunderkombination\" konfiguriert und "
+"werden automatisch aktuell gehalten. Nur die kritischsten Server (die "
+"Firewalls zum Beispiel) sind mit <command>apticron</command> konfiguriert, "
+"so dass Aktualisierungen nur unter Aufsicht der Administratoren durchgeführt "
+"werden."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The office workstations in the administrative services also run <emphasis role=\"distribution\">Squeeze</emphasis>, but they are configured with the <command>update-notifier</command>/<command>update-manager</command> combination, so that users trigger the upgrades themselves. The rationale for this decision is that if upgrades happen without an explicit action, the behavior of the computer might change unexpectedly, which could cause confusion for the main users."
 msgid "The office workstations in the administrative services also run <emphasis role=\"distribution\">Wheezy</emphasis>, but they are equipped with <emphasis role=\"pkg\">gnome-packagekit</emphasis>, so that users trigger the upgrades themselves. The rationale for this decision is that if upgrades happen without an explicit action, the behavior of the computer might change unexpectedly, which could cause confusion for the main users."
-msgstr "Auf den Arbeitsplatzrechnern in der Verwaltung läuft ebenfalls <emphasis role=\"distribution\">Squeeze</emphasis>, allerdings sind sie mit der <command>update-notifier</command>/<command>update-manager</command> Kombination konfiguriert, so dass die Anwender die Aktualisierungen selbst durchführen können. Der Grund dafür ist, dass wenn Aktualisierungen unbemerkt durchgeführt werden, sich das Verhalten des Computers plötzlich und unerwartet ändern kann, was die Anwender verwirren könnte."
+msgstr ""
+"Auf den Arbeitsplatzrechnern in der Verwaltung läuft ebenfalls <emphasis "
+"role=\"distribution\">Wheezy</emphasis>, allerdings sind sie mit <emphasis "
+"role=\"pkg\">gnome-packagekit</emphasis> ausgestattet, so dass die Anwender "
+"die Aktualisierungen selbst durchführen können. Der Grund dafür ist, dass "
+"wenn Aktualisierungen unbemerkt durchgeführt werden, sich das Verhalten des "
+"Computers plötzlich und unerwartet ändern kann, was die Anwender verwirren "
+"könnte."
 
 #. Tag: para
 #, no-c-format
@@ -3286,10 +3340,19 @@ msgid "Some categories of packages are named according to a conventional naming 
 msgstr "In einigen Kategorien folgen Paketnamen festgelegten Namensschemen, diese Schemen zu kennen erlaubt es oft, den exakten Paketnamen zu erahnen. Beispielsweise besagt die Namenskonvention für Perl Module, dass ein Modul namens <literal>XML::Handler::Composer</literal> als <emphasis role=\"pkg\">libxml-handler-composer-perl</emphasis> paketiert werden sollte. Die Bibliothek, die Python die Nutzung des <command>gconf</command> Systems ermöglicht, ist als <emphasis role=\"pkg\">python-gconf</emphasis> paketiert. Leider ist es nicht möglich, ein einheitliches Namensschema für alle Pakete festzulegen, obwohl die Paketbetreuer normalerweise der Wahl der vorgelagerten Entwickler folgen."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "A slightly more successful searching pattern is a plain-text search in package names, but it remains very limited. You can generally find results by searching package descriptions: since each package has a more or less detailed description in addition to its package name, a keyword search in these descriptions will often be useful. <command>apt-cache</command> is the tool of choice for this kind of search; for instance, <command>apt-cache search video</command> will return a list of all packages whose name or description contains the keyword “video”."
 msgid "A slightly more successful searching pattern is a plain-text search in package names, but it remains very limited. You can generally find results by searching package descriptions: since each package has a more or less detailed description in addition to its package name, a keyword search in these descriptions will often be useful. <command>apt-cache</command> and <command>axi-cache</command> are the tools of choice for this kind of search; for instance, <command>apt-cache search video</command> will return a list of all packages whose name or description contains the keyword “video”."
-msgstr "Eine etwas erfolgreicheres Suchschema ist die Volltextsuche über die Paketnamen, wenn auch immer noch stark beschränkt. Im Allgemeinen lassen sich Resultate durch die Suche in den Paketbeschreibungen erzielen: Da jedes Paket über eine mehr oder weniger detailierte Beschreibung verfügt, wird eine Schlagwortsuche in diesen Beschreibungen oftmals erfolgreich sein. <command>apt-cache</command> ist das Mittel der Wahl für diese Art der Suche; beispielsweise liefert <command>apt-cache search video</command> eine Liste aller Pakete deren Name oder Beschreibung das Schlagwort \"video\" enthält."
+msgstr ""
+"Eine etwas erfolgreicheres Suchschema ist die Volltextsuche über die "
+"Paketnamen, wenn auch immer noch stark beschränkt. Im Allgemeinen lassen "
+"sich Resultate durch die Suche in den Paketbeschreibungen erzielen: Da jedes "
+"Paket über eine mehr oder weniger detailierte Beschreibung verfügt, wird "
+"eine Schlagwortsuche in diesen Beschreibungen oftmals erfolgreich sein. "
+"<command>apt-cache</command> und <command>axi-cache</command> sind das "
+"Mittel der Wahl für diese Art der Suche; beispielsweise liefert <command>apt-"
+"cache search video</command> eine Liste aller Pakete deren Name oder "
+"Beschreibung das Schlagwort \"video\" enthält."
 
 #. Tag: para
 #, no-c-format
@@ -3297,7 +3360,7 @@ msgid "For more complex searches, a more powerful tool such as <command>aptitude
 msgstr "Komplexere Suchen erfordern ein mächtigeres Werkzeug wie <command>aptitude</command>. <command>aptitude</command> erlaubt es Ihnen, nach logischen Ausdrücken, basierend auf den Metadatenfeldern der Pakete zu suchen. Beispielsweise sucht der folgende Befehl nach Paketen, deren Name <literal>kino</literal> enthält, deren Beschreibung <literal>video</literal> enthält und deren Betreuernamen <literal>paul</literal> enthält:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 #| "<computeroutput>p   kino  - Non-linear editor for Digital Video data\n"
@@ -3366,22 +3429,24 @@ msgid ""
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
 "      works-with::video, x11::application\n"
 msgstr ""
-"<computeroutput>$ </computeroutput><userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
-"<computeroutput>p   kino  - Non-linear editor for Digital Video data\n"
-"$ </computeroutput><userinput>aptitude show kino</userinput>\n"
-"<computeroutput>Package: kino\n"
+"$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
+"p   kino  - Non-linear editor for Digital Video data\n"
+"$ <userinput>aptitude show kino</userinput>\n"
+"Package: kino                            \n"
 "State: not installed\n"
-"Version: 1.3.4-1+b1\n"
+"Version: 1.3.4-1.3\n"
 "Priority: extra\n"
 "Section: video\n"
 "Maintainer: Paul Brossier &lt;piem@debian.org&gt;\n"
-"Uncompressed Size: 9519k\n"
-"Depends: libasound2 (&gt; 1.0.18), libatk1.0-0 (&gt;= 1.20.0),\n"
-"         libavc1394-0 (&gt;= 0.5.3), libavcodec52 (&gt;= 4:0.5+svn20090706-3) |\n"
-"         libavcodec-extra-52 (&gt;= 4:0.5+svn20090706-3), libavformat52\n"
+"Architecture: amd64\n"
+"Uncompressed Size: 7936 k\n"
+"Depends: libasound2 (&gt; 1.0.24.1), libatk1.0-0 (&gt;= 1.12.4),\n"
+"         libavc1394-0 (&gt;= 0.5.3), libavcodec53 (&gt;= 4:0.8~beta1~) |\n"
+"         libavcodec-extra-53 (&gt;= 4:0.8~beta1~), libavformat53\n"
 "         […]\n"
-"Recommends: ffmpeg, gawk | mawk, curl\n"
-"Suggests: udev | hotplug, vorbis-tools, sox, mjpegtools, lame, ffmpeg2theora\n"
+"Recommends: ffmpeg, curl\n"
+"Suggests: udev | hotplug, vorbis-tools, sox, mjpegtools, lame, "
+"ffmpeg2theora\n"
 "Conflicts: kino-dvtitler, kino-timfx, kinoplus\n"
 "Replaces: kino-dvtitler, kino-timfx, kinoplus\n"
 "Provides: kino-dvtitler, kino-timfx, kinoplus\n"
@@ -3392,12 +3457,12 @@ msgstr ""
 " \n"
 " The kino-timfx, kino-dvtitler and kinoplus sets of plugins, formerly\n"
 " distributed as separate packages, are now provided with Kino.\n"
-"Homepage: http://www.kinodv.org/\n"
+"Homepage: http://www.kinodv.org/\n"
 "\n"
 "Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "      interface::x11, role::program, scope::application,\n"
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
-"      works-with::video, x11::application</computeroutput>\n"
+"      works-with::video, x11::application\n"
 
 #. Tag: para
 #, no-c-format
@@ -3410,27 +3475,40 @@ msgid "Even these multi-criteria searches are rather unwieldy, which explains wh
 msgstr "Selbst die Mehrfachkriterien Suchen sind unhandlich, was erklärt, warum sie seltener genutzt werden, als sie eigentlich genutzt werden könnten. Aus diesem Grund wurde ein neues Markierungssystem entwickelt, das einen neuen Suchansatz zur Verfügung stellt. Pakete erhalten Markierungen aus einer thematischen Gliederung über verschiedene Anwendungsbereiche, bekannt als \"Facettenklassifikation\". Im Falle von <emphasis role=\"pkg\">kino</emphasis> wie oben, besagen die Markierungen, dass Kino eine Gnome-basierte Software  ist, die Videodaten verarbeitet und deren Hauptzweck die Bearbeitung ist."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Browsing this classification can help you to search for a package which corresponds to known needs; even if it returns a (moderate) number of hits, the rest of the search can be done manually. To do that, you can use the <literal>~G</literal> search pattern in <command>aptitude</command>, but it is probably easier to simply navigate the site where tags are managed: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/cloud/\" /> Selecting the <literal>works-with::video</literal> and <literal>use::editing</literal> tags yields a handful of packages, including the <emphasis role=\"pkg\">kino</emphasis> and <emphasis role=\"pkg\">pitivi</emphasis> video editors. This system of classification is bound to be used more and more as time goes on, and package managers will gradually provide efficient search interfaces based on it. <indexterm><primary><emphasis role=\"pkg\">debtags</emphasis></primary></indexterm> <indexterm><primary>tag</primary></indexterm>"
 msgid "Browsing this classification can help you to search for a package which corresponds to known needs; even if it returns a (moderate) number of hits, the rest of the search can be done manually. To do that, you can use the <literal>~G</literal> search pattern in <command>aptitude</command>, but it is probably easier to simply navigate the site where tags are managed: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/cloud/\" />"
-msgstr "Das Durchsuchen der Gliederung kann bei der Suche nach dem Paket, das bekannten Anforderungen entspricht, helfen. Selbst wenn sie eine moderate Anzahl an Treffern liefert, kann der Rest der Suche manuell fortgesetzt werden. Dazu können Sie das <literal>~G</literal> Suchmuster in <command>aptitude</command> nutzen. Es ist aber wahrscheinlich einfacher, zu der Site zu navigieren, wo die Markierungen verwaltet werden: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/cloud/\" /> Die Auswahl der <literal>works-with::video</literal> und <literal>use::editing</literal> Markierungen liefert eine Handvoll von Paketen, darunter die <emphasis role=\"pkg\">kino</emphasis> und <emphasis role=\"pkg\">pitivi</emphasis> Videoeditoren. Dieses Gliederungssystem wächst mit der Zeit und die Paketverwalter werden zunehmend darauf basierende Suchoberflächen bereitstellen. <indexterm><primary><emphasis role=\"pkg\">debtags</emphasis></primary></indexterm> <indexterm><primary>Markierung</primary></indexterm>"
+msgstr ""
+"Das Durchsuchen der Gliederung kann bei der Suche nach dem Paket, das "
+"bekannten Anforderungen entspricht, helfen. Selbst wenn sie eine moderate "
+"Anzahl an Treffern liefert, kann der Rest der Suche manuell fortgesetzt "
+"werden. Dazu können Sie das <literal>~G</literal> Suchmuster in "
+"<command>aptitude</command> nutzen. Es ist aber wahrscheinlich einfacher, zu "
+"der Site zu navigieren, wo die Markierungen verwaltet werden: <ulink type=\""
+"block\" url=\"http://debtags.alioth.debian.org/cloud/\" />"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis role=\"pkg\">packagesearch</emphasis></primary>"
 msgid "<primary><emphasis role=\"pkg\">debtags</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">Paketsuche</emphasis></primary>"
+msgstr "<primary><emphasis role=\"pkg\">debtags</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>backport</primary>"
 msgid "<primary>tag</primary>"
-msgstr "<primary>Rückportierung (Backport)</primary>"
+msgstr "<primary>Schlagwort (tag)</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Selecting the <literal>works-with::video</literal> and <literal>use::editing</literal> tags yields a handful of packages, including the <emphasis role=\"pkg\">kino</emphasis> and <emphasis role=\"pkg\">pitivi</emphasis> video editors. This system of classification is bound to be used more and more as time goes on, and package managers will gradually provide efficient search interfaces based on it."
 msgstr ""
+"Die Schlagworte <literal>works-with::video</literal> and "
+"<literal>use::editing</literal> liefern eine handvoll Pakete, unter anderem "
+"die Video-Bearbeitungsprogramme <emphasis role=\"pkg\">kino</emphasis> und <"
+"emphasis role=\"pkg\">pitivi</emphasis>. Dieses Klassifizierungssystem wird "
+"immer stärker genutzt werden und die Paket-Verantwortlichen werden nach und "
+"nach effiziente Suchen auf dieser Grundlage zur Verfügung stellen."
 
 #. Tag: para
 #, no-c-format
@@ -3448,10 +3526,15 @@ msgid "when the search criteria also include relationships between packages or o
 msgstr "wenn die Suche ebenfalls Beziehungen zwischen Paketen und andere Metadaten wie den Betreuernamen umfasst, wird <command>synaptic</command> nützlicher sein;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "when a tag-based search is needed, a good tool is <command>packagesearch</command>, a graphical interface dedicated to searching available packages along several criteria (including the names of the files that they contain);"
 msgid "when a tag-based search is needed, a good tool is <command>packagesearch</command>, a graphical interface dedicated to searching available packages along several criteria (including the names of the files that they contain). For usage on the command-line, <command>axi-cache</command> will fit the bill."
-msgstr "wenn eine Markierungs-basierte Suche nötig ist, ist <command>packagesearch</command> ein gutes Werkzeug: eine grafische Oberfläche zur Suche verfügbarer Pakete neben verschiedenen anderen Kriterien (inklusive der Namen der enthaltenen Dateien);"
+msgstr ""
+"wenn eine Markierungs-basierte Suche nötig ist, ist "
+"<command>packagesearch</command> ein gutes Werkzeug: eine grafische "
+"Oberfläche zur Suche verfügbarer Pakete neben verschiedenen anderen "
+"Kriterien (inklusive der Namen der enthaltenen Dateien). Auf der "
+"Kommandozeile erledigt <command>axi-cache</command> diese Aufgabe."
 
 #. Tag: indexterm
 #, no-c-format
