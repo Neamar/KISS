@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-08-05 15:50+0200\n"
+"PO-Revision-Date: 2014-09-03 14:26+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
@@ -1270,16 +1270,33 @@ msgstr "<primary>greylisting</primary>"
 #, no-c-format
 msgid "“Greylisting” is a filtering technique according to which a message is initially rejected with a temporary error code, and only accepted on a further try after some delay. This filtering is particularly efficient against spam sent by the many machines infected by worms and viruses, since these software rarely act as full SMTP agents (by checking the error code and retrying failed messages later), especially since many of the harvested addresses are really invalid and retrying would only mean losing time."
 msgstr ""
+"“lista cinza” é uma técnica de filtragem na qual uma mensagem é inicialmente "
+"rejeitada com um código de error temporário, e é aceita apenas numa segunda "
+"tentativa após algum atraso. Esta filtragem é particularmente eficiente "
+"contra spam enviado de muitas máquinas infectadas por worms e vírus, já que "
+"este software raramente age como um agente SMTP completo (verificando o "
+"código de erro e tentando mandar a mensagem novamente mais tarde), "
+"especialmente se muitos dos endereços \"harvested\" são na verdade inválidos "
+"e tentar de novo seria apenas uma perda de tempo."
 
 #. Tag: para
 #, no-c-format
 msgid "Postfix doesn't provide greylisting natively, but there is a feature by which the decision to accept or reject a given message can be delegated to an external program. The <emphasis role=\"pkg\">postgrey</emphasis> package contains just such a program, designed to interface with this access policy delegation service."
 msgstr ""
+"Postfix não fornece lista cinza nativamente, mas existe uma funcionalidade "
+"na qual a decisão de aceitar ou rejeitar uma dada mensagem pode ser delegada "
+"a um programa externo. O pacote <emphasis role=\"pkg\">postgrey</emphasis> "
+"contém tal programa, feito para ser uma interface com este serviço de "
+"delegação de políticas de acesso."
 
 #. Tag: para
 #, no-c-format
 msgid "Once <emphasis role=\"pkg\">postgrey</emphasis> is installed, it runs as a daemon and listens on port 10023. Postfix can then be configured to use it, by adding the <literal>check_policy_service</literal> parameter as an extra restriction:"
 msgstr ""
+"Uma vez o <emphasis role=\"pkg\">postgrey</emphasis> estando instalado, ele "
+"roda como um daemon e ouve na porta 10023. O Postfix pode então ser "
+"configurado para usá-lo. adicionando o parâmetro "
+"<literal>check_policy_service</literal> como uma restrição extra:"
 
 #. Tag: programlisting
 #, no-c-format

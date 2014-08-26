@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-08-24 04:38+0200\n"
+"PO-Revision-Date: 2014-09-12 04:16+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
@@ -203,6 +203,13 @@ msgstr "Historicamente, cada localidade tem associado um \"conjunto de caractere
 #, no-c-format
 msgid "The most popular encodings for latin-based languages were limited to 256 characters because they opted to use a single byte for each character. Since 256 characters was not enough to cover all European languages, multiple encodings were needed, and that's how we ended up with <emphasis>ISO-8859-1</emphasis> (also known as “Latin 1”) up to <emphasis>ISO-8859-15</emphasis> (also known as “Latin 9”), among others."
 msgstr ""
+"As codificações mais populares para idiomas latinos são limitadas a 256 "
+"caracteres pois ele optaram po rusar um único byte para cada caractere. Uma "
+"vez que 256 caracteres não é o suficiente para cobrir todas as línguas "
+"européias, codificações múltiplas são necessárias, e assim nós acabamos com "
+"<emphasis>ISO-8859-1</emphasis> (também conhecido como “Latin 1”) até o "
+"<emphasis>ISO-8859-15</emphasis> (também conhecido como “Latin 9”), entre "
+"outros."
 
 #. Tag: para
 #, no-c-format
@@ -240,6 +247,8 @@ msgstr "<primary>Unicode</primary>"
 #, no-c-format
 msgid "This is the encoding that should generally be used, and is thus the default on Debian systems."
 msgstr ""
+"Esta é a codificação que deve ser geralmente usada, e é portanto a padrão "
+"nos sistemas Debian."
 
 #. Tag: para
 #, no-c-format
@@ -362,6 +371,12 @@ msgstr "<primary>leiaute, teclado</primary>"
 #, no-c-format
 msgid "Even if the keyboard layout is managed differently in console and graphical mode, Debian offers a single configuration interface that works for both: it's based on debconf and is implemented in the <emphasis role=\"pkg\">keyboard-configuration</emphasis> package. Thus the <command>dpkg-reconfigure keyboard-configuration</command> command can be used at any time to reset the keyboard layout."
 msgstr ""
+"Mesmo com o layout do teclado sendo gerenciado diferentemente nos modos "
+"console e gráfico, o Debian oferece uma interface de configuração única que "
+"funciona para ambos: é baseada no debconf e é implementada no pacote <"
+"emphasis role=\"pkg\">keyboard-configuration</emphasis>. Portanto, o comando "
+"<command>dpkg-reconfigure keyboard-configuration</command> pode ser usado a "
+"qualquer momento para reconfigurar o layout do teclado."
 
 #. Tag: indexterm
 #, no-c-format
@@ -713,6 +728,19 @@ msgstr "<primary><emphasis role=\"pkg\">network-manager</emphasis></primary>"
 #, no-c-format
 msgid "If Network Manager is particularly recommended in roaming setups (see <xref linkend=\"sect.roaming-network-config\" />), it's also perfectly usable as the default network management tool. You can create “System connections” that are used as soon as the computer boots either manually with a <filename>.ini</filename>-like file in <filename>/etc/NetworkManager/system-connections/</filename> or through a graphical tool (<command>nm-connection-editor</command>). Just remember to deactivate all entries in <filename>/etc/network/interfaces</filename> if you want Network Manager to handle them. <ulink type=\"block\" url=\"http://wiki.gnome.org/NetworkManager/SystemSettings\" /> <ulink type=\"block\" url=\"http://projects.gnome.org/NetworkManager/developers/api/09/ref-settings.html\" />"
 msgstr ""
+"Mesmo o Network Manager sendo particularmente recomendado em situações de "
+"roaming (veja <xref linkend=\"sect.roaming-network-config\" />), ele é "
+"também perfeitamente útil como ferramenta de gerencia de redes padrão. Você "
+"pode criar “conexões de sistema” que são usadas assim que o computador liga "
+"tanto manualmente quando com um arquivo estilo <filename>.ini</filename> em "
+"<filename>/etc/NetworkManager/system-connections/</filename> ou através de "
+"uma ferramenta gráfica (<command>nm-connection-editor</command>). Somente "
+"lembre de desativar todas as entradas em "
+"<filename>/etc/network/interfaces</filename> se você quiser que o Network "
+"Manager menipule elas. <ulink type=\"block\" url=\""
+"http://wiki.gnome.org/NetworkManager/SystemSettings\" /> <ulink type=\""
+"block\" url=\"http://projects.gnome.org/NetworkManager/developers/api/09/ref-"
+"settings.html\" />"
 
 #. Tag: title
 #, no-c-format
@@ -1026,11 +1054,18 @@ msgstr "Placas de rede de computadores esperam receber dados em certos fios do c
 #, no-c-format
 msgid "Note that this distinction is becoming less relevant over time, as modern network cards are able do detect the type of cable present and adapt accordingly, so it won't be unusual that both kinds of cable will work in a given location."
 msgstr ""
+"Note que esta distinção está se tornando cada vez mais irrelevante, já que "
+"placas de rede modernas são capazes de detectar o tipo de cabo presente e se "
+"adaptar a ele. Portanto, não é raro que ambos os tipos de cabo funcionem em "
+"vários locais."
 
 #. Tag: para
 #, no-c-format
 msgid "Most “ADSL routers” on the market can be used like this, as do most of the ADSL modems provided by Internet services providers."
 msgstr ""
+"A maioria dos “roteadores ADSL” no mercado podem ser usados desta forma, "
+"assim como a maioria dos modens ADSL fornecidos por provedores de serviço de "
+"Internet."
 
 #. Tag: title
 #, no-c-format
@@ -1228,7 +1263,7 @@ msgid "<primary>name</primary><secondary>resolution</secondary>"
 msgstr "<primary>nome</primary><secondary>resolução</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The mechanism for name resolution in Linux is modular and can use various sources of information declared in the <filename>/etc/nsswitch.conf</filename> file. The entry that involves host name resolution is <literal>hosts</literal>. By default, it contains <literal>dns files</literal>, which means that the system consults the <filename>/etc/hosts</filename> file first, then DNS servers. NIS/NIS+ or LDAP servers are other possible sources."
 msgid "The mechanism for name resolution in Linux is modular and can use various sources of information declared in the <filename>/etc/nsswitch.conf</filename> file. The entry that involves host name resolution is <literal>hosts</literal>. By default, it contains <literal>files dns</literal>, which means that the system consults the <filename>/etc/hosts</filename> file first, then DNS servers. NIS/NIS+ or LDAP servers are other possible sources."
 msgstr ""
@@ -1498,11 +1533,17 @@ msgstr "<literal>GECOS</literal>: campo de dados contendo normalmente o nome com
 #, no-c-format
 msgid "login directory, assigned to the user for storage of their personal files (the environment variable <varname>$HOME</varname> generally points here);"
 msgstr ""
+"diretório de login, atribuído ao usuário para armazenar arquivos pessoais (a "
+"variável de ambiente <varname>$HOME</varname> geralmente aponta para ele);"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "program to execute upon login. This is usually a command interpreter (shell), giving the user free rein. If you specify <command>/bin/false</command> (which does nothing and returns control immediately), the user can not login."
 msgstr ""
+"programa para executar no login. Em geral é um interpretador de comandos "
+"(shell), dando ao usuário \"free rein\". Se você especificar "
+"<command>/bin/false</command> (que não faz nada e devolve o controle "
+"imediatamente), o usuário não vai conseguir logar."
 
 #. Tag: title
 #, no-c-format
@@ -3216,10 +3257,12 @@ msgid "The upstream Linux sources contain everything needed to build a Debian pa
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>CULTURE</emphasis> Names of kernel packages"
 msgid "<emphasis>CULTURE</emphasis> The good old days of <emphasis role=\"pkg\">kernel-package</emphasis>"
-msgstr "<emphasis>CULTURA</emphasis> Nomes dos pacotes do núcleo"
+msgstr ""
+"<emphasis>CULTURA</emphasis> Os bons e velhos tempos do <emphasis role=\""
+"pkg\">kernel-package</emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3247,10 +3290,10 @@ msgid "<primary>kernel</primary><secondary>sources</secondary>"
 msgstr "<primary>núcleo</primary><secondary>fontes</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>configuration</primary><secondary>of the kernel</secondary>"
 msgid "<primary>source</primary><secondary>of the Linux kernel</secondary>"
-msgstr "<primary>configuração</primary><secondary>do núcleo</secondary>"
+msgstr "<primary>fonte</primary><secondary>do núcleo Linux</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -3268,7 +3311,7 @@ msgid "We assume the <emphasis role=\"pkg\">linux-source-3.2</emphasis> package 
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
@@ -3279,8 +3322,10 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-3.2.tar.bz2</userinput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-2.6.32.tar.bz2</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd "
+"~/kernel</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-"
+"source-3.2.tar.bz2</userinput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -3308,10 +3353,10 @@ msgid "<primary>configuration</primary><secondary>of the kernel</secondary>"
 msgstr "<primary>configuração</primary><secondary>do núcleo</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><filename>resolv.conf</filename></primary>"
 msgid "<primary><filename>.config</filename></primary>"
-msgstr "<primary><filename>resolv.conf</filename></primary>"
+msgstr "<primary><filename>.config</filename></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3324,7 +3369,7 @@ msgid "When recompiling a more recent version of the kernel (possibly with an ad
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>cp /boot/config-2.6.32-5-686 ~/kernel/linux-source-2.6.32/.config</userinput>\n"
@@ -3333,7 +3378,8 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>cp /boot/config-3.2.0-4-amd64 ~/kernel/linux-source-3.2/.config</userinput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>cp /boot/config-2.6.32-5-686 ~/kernel/linux-source-2.6.32/.config</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cp /boot/config-3.2.0-4-amd64 "
+"~/kernel/linux-source-3.2/.config</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -3356,10 +3402,12 @@ msgid "When using one of those configuration interfaces, it's always a good idea
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>SECURITY</emphasis> <filename>/etc/shadow</filename> file security"
 msgid "<emphasis>TIP</emphasis> Dealing with outdated <filename>.config</filename> files"
-msgstr "<emphasis>SEGURANÇA</emphasis> <filename>/etc/shadow</filename> segurança de arquivos"
+msgstr ""
+"<emphasis>TIP</emphasis> Lidando com arquivos <filename>.config</filename> "
+"desatualizados"
 
 #. Tag: para
 #, no-c-format
@@ -3372,10 +3420,10 @@ msgid "Compiling and Building the Package"
 msgstr "Compilando e Construindo um Pacote"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>make-kpkg</command></primary>"
 msgid "<primary><command>make deb-pkg</command></primary>"
-msgstr "<primary><command>make-kpkg</command></primary>"
+msgstr "<primary><command>make deb-pkg</command></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -3398,7 +3446,7 @@ msgid "The <replaceable>version</replaceable> is defined by the concatenation of
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
@@ -3418,10 +3466,16 @@ msgid ""
 "</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
+"<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-"
+"falcot KDEB_PKGVERSION=1</userinput>\n"
 "[...]\n"
 "<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
-"<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb</computeroutput>\n"
+"<computeroutput>../linux-firmware-image-3.2.46-falcot_1_amd64.deb\n"
+"../linux-headers-3.2.46-falcot_1_amd64.deb\n"
+"../linux-image-3.2.46-falcot_1_amd64.deb\n"
+"../linux-image-3.2.46-falcot-dbg_1_amd64.deb\n"
+"../linux-libc-dev_1_amd64.deb\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -3434,16 +3488,17 @@ msgid "<primary>kernel</primary><secondary>external modules</secondary>"
 msgstr "<primary>núcleo</primary><secondary>módulos externos</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>modules</primary><secondary>external to the kernel</secondary>"
 msgid "<primary>modules</primary><secondary>external kernel modules</secondary>"
-msgstr "<primary>módulos</primary><secondary>externos ao núcleo</secondary>"
+msgstr ""
+"<primary>módulos</primary><secondary>módulos do núcleo externos</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>sg</command></primary>"
 msgid "<primary><command>dkms</command></primary>"
-msgstr "<primary><command>sg</command></primary>"
+msgstr "<primary><command>dkms</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3494,10 +3549,10 @@ msgid ""
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>NOTE</emphasis> Multiple addresses"
 msgid "<emphasis>ALTERNATIVE</emphasis> module-assistant"
-msgstr "<emphasis>NOTA</emphasis> Múltiplos endereços"
+msgstr "<emphasis>ALTERNATIVA</emphasis>module-assistant"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3520,10 +3575,10 @@ msgid "<primary>kernel</primary><secondary>patch</secondary>"
 msgstr "<primary>núcleo</primary><secondary>patch</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>patch kernel</primary>"
 msgid "<primary>patch of the kernel</primary>"
-msgstr "<primary>patch núcleo</primary>"
+msgstr "<primary>patch do núcleo</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3541,7 +3596,7 @@ msgid "To apply one or more of these installed patches, use the <command>patch</
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
@@ -3556,10 +3611,14 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-grsec</userinput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/qc-usb.tar.bz2</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>ls modules/</userinput>\n"
-"<computeroutput>qc-usb</computeroutput>\n"
+"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-"
+"source-3.2</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>make clean</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-"
+"patches/diffs/grsecurity2/grsecurity-2.9.1-3.2.21-201206221855.patch.gz | "
+"patch -p1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>make deb-pkg "
+"LOCALVERSION=-grsec</userinput>\n"
 
 #. Tag: para
 #, no-c-format

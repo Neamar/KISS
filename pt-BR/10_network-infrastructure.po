@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-06-14 04:38+0200\n"
+"PO-Revision-Date: 2014-09-03 14:36+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/10_network-infrastructure/pt_BR/>\n"
@@ -188,11 +188,40 @@ msgstr "<primary>endereço IP privado</primary>"
 #, no-c-format
 msgid "RFC 1918 defines three ranges of IPv4 addresses not meant to be routed on the Internet but only used in local networks. The first one, <literal>10.0.0.0/8</literal> (see sidebar <xref linkend=\"sidebar.networking-basics\" />), is a class-A range (with 2<superscript>24</superscript> IP addresses). The second one, <literal>172.16.0.0/12</literal>, gathers 16 class-B ranges (<literal>172.16.0.0/16</literal> to <literal>172.31.0.0/16</literal>), each containing 2<superscript>16</superscript> IP addresses. Finally, <literal>192.168.0.0/16</literal> is a class-B range (grouping 256 class-C ranges, <literal>192.168.0.0/24</literal> to <literal>192.168.255.0/24</literal>, with 256 IP addresses each). <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
 msgstr ""
+"A RFC 1918 define três intervalos de endereços IPv4 que não devem ser "
+"roteados na Internet mas apenas usados em redes locais. O primeiro, "
+"<literal>10.0.0.0/8</literal> (veja na barra lateral <xref linkend=\"sidebar"
+".networking-basics\" />), é um intervalo de classe A (com "
+"2<superscript>24</superscript> endereços IP). O segundo, "
+"<literal>172.16.0.0/12</literal>, trás 16 intervalos de classe B "
+"(<literal>172.16.0.0/16</literal> a <literal>172.31.0.0/16</literal>), cada "
+"um contendo 2<superscript>16</superscript> endereços IP. Finalmente, "
+"<literal>192.168.0.0/16</literal> é um intervalo de classe B (agrupando 256 "
+"intervalos de classe C, <literal>192.168.0.0/24</literal> a "
+"<literal>192.168.255.0/24</literal>, com 256 endereços IP cada). <ulink type="
+"\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The gateway can also perform two kinds of <emphasis>network address translation</emphasis> (or NAT for short). The first kind, <emphasis>Destination NAT</emphasis> (DNAT) is a technique to alter the destination IP address (and/or the TCP or UDP port) for a (generally) incoming connection. The connection tracking mechanism also alters the following packets in the same connection to ensure continuity in the communication. The second kind of NAT is <emphasis>Source NAT</emphasis> (SNAT), of which <emphasis>masquerading</emphasis> is a particular case; SNAT alters the source IP address (and/or the TCP or UDP port) of a (generally) outgoing connection. As for DNAT, all the packets in the connection are appropriately handled by the connection tracking mechanism. Note that NAT is only relevant for IPv4 and its limited address space; in IPv6, the wide availability of addresses greatly reduces the usefulness of NAT by allowing all “internal” addresses to be directly routable on the Internet (this does not imply that internal machines are accessible, since intermediary firewalls can filter traffic)."
 msgstr ""
+"O gateway também pode realizar dois tipos de NAT (<emphasis>network address "
+"translation</emphasis> ou tradução de endereço de rede). O primeiro tipo, "
+"DNAT (<emphasis>Destination NAT</emphasis> ou NAT no destino) é uma técnica "
+"para alterar o endereço IP de destino (e/ou a porta TCP ou UDP) para uma "
+"conexão (geralmente) entrando. O mecanismo de rastreio de conexão também "
+"altera os seguintes pacotes na mesma conexão para garantir a continuidade na "
+"comunicação. O segundo tipo de NAT é o SNAT (<emphasis>Source NAT</emphasis> "
+"ou NAT na origem), do qual <emphasis>masquerading</emphasis> (ou "
+"mascaramento) é um caso particular; SNAT altera o endereço IP de origem (e/"
+"ou a porta TCP ou UDP) de uma conexão (geramente) saindo. Assim como no "
+"DNAT, todos os pacotes na conexão são apropriadamente manipulados pelo "
+"mecanismo de rastreio de conexão. Observe que o NAT só é relevante para o "
+"IPv4 e seu espaço de endereços limitado; no IPv6, a ampla disponibilidade de "
+"endereços reduz grandemente a utilidade de NAT permitindo que todo endereço "
+"\"interno\" possa ser diretamente roteável na Internet (isto não implica que "
+"as máquinas internas serão acessíveis, uma vez que firewalls intermediários "
+"possam filtrar o tráfego)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -238,11 +267,20 @@ msgstr "<primary>encaminhamento de porta</primary>"
 #, no-c-format
 msgid "A concrete application of DNAT is <emphasis>port forwarding</emphasis>. Incoming connections to a given port of a machine are forwarded to a port on another machine. Other solutions may exist for achieving a similar effect, though, especially at the application level with <command>ssh</command> (see <xref linkend=\"sect.ssh-port-forwarding\" />) or <command>redir</command>."
 msgstr ""
+"Uma aplicação concreta do DNAT é o <emphasis>port forwarding</emphasis> ("
+"encaminhamento de portas). Conexões chegando numa porta de uma máquina são "
+"direcionadas para uma porta de outra máquina. Outras soluções podem existir "
+"para se chegar a um efeito similar, entretanto. Especialmente no nível de "
+"aplicação com <command>ssh</command> (veja em <xref linkend=\"sect.ssh-port-"
+"forwarding\" />) ou <command>redir</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Enough theory, let's get practical. Turning a Debian system into a gateway is a simple matter of enabling the appropriate option in the Linux kernel, by way of the <filename>/proc/</filename> virtual filesystem:"
 msgstr ""
+"Chega de teoria, vamos para a prática. Fazer do Debian um gateway é "
+"simplesmente habilitar a opção apropriada no núcleo Linux, através do "
+"sistema de arquivos virtual <filename>/proc/</filename>:"
 
 #. Tag: screen
 #, no-c-format
@@ -257,6 +295,10 @@ msgstr ""
 #, no-c-format
 msgid "This option can also be automatically enabled on boot if <filename>/etc/sysctl.conf</filename> sets the <literal>net.ipv4.conf.default.forwarding</literal> option to <literal>1</literal>."
 msgstr ""
+"Esta opção também pode ser automaticamente habilitada no boot se em "
+"<filename>/etc/sysctl.conf</filename> a opção "
+"<literal>net.ipv4.conf.default.forwarding</literal> estiver com valor "
+"<literal>1</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -280,16 +322,27 @@ msgstr ""
 #, no-c-format
 msgid "The same effect can be obtained for IPv6 by simply replacing <literal>ipv4</literal> with <literal>ipv6</literal> in the manual command and using the <literal>net.ipv6.conf.all.forwarding</literal> line in <filename>/etc/sysctl.conf</filename>."
 msgstr ""
+"O mesmo efeito pode ser obtido para o IPv6 simplesmente substituindo o "
+"<literal>ipv4</literal> por <literal>ipv6</literal> no comando manual e "
+"usando a linha <literal>net.ipv6.conf.all.forwarding</literal> em "
+"<filename>/etc/sysctl.conf</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "Enabling IPv4 masquerading is a slightly more complex operation that involves configuring the <emphasis>netfilter</emphasis> firewall."
 msgstr ""
+"Habilitando mascaramento IPv4 é uma operação um pouco mais complexa que "
+"envolve configurar o firewall <emphasis>netfilter</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "Similarly, using NAT (for IPv4) requires configuring <emphasis>netfilter</emphasis>. Since the primary purpose of this component is packet filtering, the details are listed in <xref linkend=\"security\" xrefstyle=\"select: label quotedtitle nopage\" /> (see <xref linkend=\"sect.firewall-packet-filtering\" />)."
 msgstr ""
+"Similarmente, o uso do NAT (para IPv4) requer a configuração do "
+"<emphasis>netfilter</emphasis>. Uma vez que o objetivo primário deste "
+"componente é filtragem de pacotes, os detalhes são listados em <xref linkend="
+"\"security\" xrefstyle=\"select: label quotedtitle nopage\" /> (veja em <"
+"xref linkend=\"sect.firewall-packet-filtering\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -300,6 +353,11 @@ msgstr "Rede Privada Virtual"
 #, no-c-format
 msgid "A <emphasis>Virtual Private Network</emphasis> (VPN for short) is a way to link two different local networks through the Internet by way of a tunnel; the tunnel is usually encrypted for confidentiality. VPNs are often used to integrate a remote machine within a company's local network."
 msgstr ""
+"Uma <emphasis>Rede Privada Virtual</emphasis> (ou VPN, de Virtual Private "
+"Network) é uma forma de conectar duas redes locais diferentes através de um "
+"túnel pela internet; o túnel é normalmente criptografado para "
+"confidencialidade. VPNs são em geral usadas para integrar uma máquina remota "
+"numa rede local de uma empresa."
 
 #. Tag: indexterm
 #, no-c-format

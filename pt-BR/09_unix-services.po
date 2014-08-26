@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-08-26 13:35+0200\n"
-"Last-Translator: Ezequiel Santos <zeckg@hotmail.com>\n"
+"PO-Revision-Date: 2014-09-03 14:38+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -316,16 +316,37 @@ msgstr ""
 "iniciados e sua ordem de inicialização."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The newly arrived <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
 msgid "The <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Wheezy</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
-msgstr "O recém-chegado sistema <command>upstart</command> ainda não está perfeitamente testado no Debian. Ele é baseado em eventos: scripts de inicialização não são mais executados em uma ordem sequencial, mas em resposta a eventos como a conclusão de um outro script do qual eles são dependentes. Este sistema, iniciado pelo Ubuntu, está presente no Debian <emphasis role=\"distribution\">Squeeze</emphasis>, mas não é o padrão; ele vem, de fato, como um substituto para o <emphasis role=\"pkg\"> sysvinit</emphasis>, e uma das funções iniciadas pelo <command>upstart</command> é iniciar os scripts escritos para sistemas tradicionais, especialmente aqueles do pacote <emphasis role=\"pkg\">sysv-rc</emphasis>."
+msgstr ""
+"O recém-chegado sistema <command>upstart</command> ainda não está "
+"perfeitamente testado no Debian. Ele é baseado em eventos: scripts de "
+"inicialização não são mais executados em uma ordem sequencial, mas em "
+"resposta a eventos como a conclusão de um outro script do qual eles são "
+"dependentes. Este sistema, iniciado pelo Ubuntu, está presente no Debian <"
+"emphasis role=\"distribution\">Wheezy</emphasis>, mas não é o padrão; ele "
+"vem, de fato, como um substituto para o <emphasis role=\"pkg\""
+">sysvinit</emphasis>, e uma das funções iniciadas pelo "
+"<command>upstart</command> é iniciar os scripts escritos para sistemas "
+"tradicionais, especialmente aqueles do pacote <emphasis role=\"pkg\">sysv-"
+"rc</emphasis>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Another new option is <command>systemd</command>, but it still lacks the maturity needed to be part of <emphasis role=\"distribution\">Squeeze</emphasis>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services."
 msgid "Another new option that is gaining a lot of traction is <command>systemd</command>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services. It also provides backwards compatibility to System V init scripts."
-msgstr "Uma outra nova opção é o <command>systemd</command>, mas não tem ainda a  maturidade necessária para ser parte do <emphasis role=\"distribution\">Squeeze</emphasis>. Sua abordagem é oposta aos sistemas anteriores, em vez de carregar antecipadamente todos os serviços, e ter que lidar com a questão de planejamento,<command>systemd</command> ele escolhe para iniciar os serviços sob demanda, aproximadamente ao longo do principal <command>inetd</command>.Porém isso significa que o sistema de inicialização deve ser capaz de conhecer como os serviços são disponibilizados (que poderia ser através de um soquete, um sistema de arquivos, ou outros), e portanto, requer pequenas modificações desses serviços."
+msgstr ""
+"Uma outra nova opção que está ganhando muita força é o "
+"<command>systemd</command>. Sua abordagem é oposta aos sistemas anteriores, "
+"em vez de carregar antecipadamente todos os serviços, e ter que lidar com a "
+"questão de planejamento,o <command>systemd</command> opta por iniciar os "
+"serviços sob demanda, mais ou menos como o <command>inetd</command> faz. "
+"Porém isso significa que o sistema de inicialização deve ser capaz de saber "
+"como os serviços são disponibilizados (que poderia ser através de um "
+"soquete, um sistema de arquivos, ou outros), e portanto, requerer pequenas "
+"modificações desses serviços. Ele também fornece retrocompatibilidade com os "
+"scripts System V."
 
 #. Tag: para
 #, no-c-format
@@ -468,10 +489,11 @@ msgid "<emphasis>BACK TO BASICS</emphasis> Client, server"
 msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Cliente, servidor"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>server</primary><secondary>client/server architecture</secondary>"
 msgid "<primary>client</primary><secondary>client/server architecture</secondary>"
-msgstr "<primary>servidor</primary><secondary>arquitetura cliente/servidor</secondary>"
+msgstr ""
+"<primary>cliente</primary><secondary>arquitetura cliente/servidor</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -504,21 +526,24 @@ msgid "<primary>SSH</primary>"
 msgstr "<primary>SSH</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>Secure Shell</primary>"
 msgstr "<primary>Secure Shell</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol, contrary to <emphasis>telnet</emphasis>, was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
 msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
-msgstr "O protocolo <emphasis>SSH</emphasis> (Secure SHell), ao contrário do <emphasis>telnet</emphasis>, foi projetado com segurança e confiabilidade em mente. Conexões usando SSH estão seguras: o parceiro é autenticado e todas as trocas de dados criptografadas."
+msgstr ""
+"O protocolo <emphasis>SSH</emphasis> (Secure SHell) foi projetado com "
+"segurança e confiabilidade em mente. Conexões usando SSH estão seguras: o "
+"parceiro é autenticado e todas as trocas de dados criptografadas."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>CULTURE</emphasis> SSH compared to RSH"
 msgid "<emphasis>CULTURE</emphasis> Telnet and RSH are obsolete"
-msgstr "<emphasis>CULTURA</emphasis> SSH comparado ao RSH"
+msgstr "<emphasis>CULTURA</emphasis> Telnet e RSH estão obsoletos"
 
 #. Tag: indexterm
 #, no-c-format
@@ -526,10 +551,10 @@ msgid "<primary><command>telnet</command></primary>"
 msgstr "<primary><command>telnet</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>rsync</command></primary>"
 msgid "<primary><command>rsh</command></primary>"
-msgstr "<primary><command>rsync</command></primary>"
+msgstr "<primary><command>rsh</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -557,9 +582,11 @@ msgid "SSH also offers two file transfer services. <command>scp</command> is a c
 msgstr "SSH também oferece dois serviços de transferência de arquivo. <command>scp</command> é uma ferramenta de linha de comando que pode ser usada como <command>cp</command>, exceto que qualquer caminho a outra máquina é prefixado com o nome da máquina, seguido por dois-pontos."
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>\n"
-msgstr "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>\n"
+msgstr ""
+"<computeroutput>$ </computeroutput><userinput>scp arquivo "
+"máquina:/tmp/</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -607,10 +634,15 @@ msgid "The option to fork a project is a direct result of the very nature of fre
 msgstr "A opção de dividir um projeto é um resultado direto da própria natureza do software livre, uma divisão é um evento saudável, quando se permite a continuação de um projeto como software livre (por exemplo, em caso de alterações de licença). Uma divisão decorrente de divergências técnicas ou pessoais é muitas vezes um desperdício de recursos humanos; outra resolução seria preferível. Fusões de dois projetos que já passaram por uma divisão anterior não são desconhecidos."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Since <emphasis role=\"distribution\">Etch</emphasis>, OpenSSH is split into two packages. The client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
 msgid "OpenSSH is split into two packages: the client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
-msgstr "Desde o <emphasis role=\"distribution\">Etch</emphasis>, o OpenSSH é dividido em dois pacotes. A parte do cliente está no pacote <emphasis role=\"pkg\">openssh-client</emphasis>, e o pacote do servidor está no <emphasis role=\"pkg\">openssh-server</emphasis>. O meta-pacote <emphasis role=\"pkg\">ssh</emphasis> depende de ambas as partes e facilita a instalação de ambos (<command>apt-get install ssh</command>)."
+msgstr ""
+"O OpenSSH é dividido em dois pacotes. A parte do cliente está no pacote <"
+"emphasis role=\"pkg\">openssh-client</emphasis>, e o pacote do servidor está "
+"no <emphasis role=\"pkg\">openssh-server</emphasis>. O meta-pacote <emphasis "
+"role=\"pkg\">ssh</emphasis> depende de ambas as partes e facilita a "
+"instalação de ambos (<command>apt-get install ssh</command>)."
 
 #. Tag: title
 #, no-c-format
