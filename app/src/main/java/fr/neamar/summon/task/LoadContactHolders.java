@@ -1,13 +1,14 @@
 package fr.neamar.summon.task;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import fr.neamar.summon.holder.ContactHolder;
 
 public class LoadContactHolders extends LoadHolders<ContactHolder> {
@@ -92,10 +93,17 @@ public class LoadContactHolders extends LoadHolders<ContactHolder> {
 				}
 			}
 
-			// If not available, add all.
+			// If not available, add all (excluding duplicates).
 			if (!hasPrimary) {
+				HashMap<String, Boolean> added = new HashMap<String, Boolean>();
 				for (int j = 0; j < phones.size(); j++) {
-					contacts.add(phones.get(j));
+					String uniqueKey = phones.get(j).phone.replaceAll("[ \\.\\(\\)]", "");
+					uniqueKey = uniqueKey.replaceAll("^\\+33", "0");
+					uniqueKey = uniqueKey.replaceAll("^\\+1", "0");
+					if(!added.containsKey(uniqueKey)) {
+						added.put(uniqueKey, true);
+						contacts.add(phones.get(j));
+					}
 				}
 			}
 		}
