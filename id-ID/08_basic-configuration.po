@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-09-17 02:50+0700\n"
+"PO-Revision-Date: 2014-09-23 02:41+0700\n"
 "Last-Translator: Samsul Ma'arif <samsul@samsul.web.id>\n"
 "Language-Team: Indonesian <debian-l10n-indonesian@lists.debian.org>\n"
 "Language: \n"
@@ -142,7 +142,7 @@ msgstr "<primary><command>locale-gen</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "A locale is a group of regional settings. This includes not only the language for text, but also the format for displaying numbers, dates, times, and monetary sums, as well as the alphabetical comparison rules (to properly account for accented characters). Although each of these parameters can be specified independently from the others, we generally use a locale, which is a coherent set of values for these parameters corresponding to a “region” in the broadest sense. These locales are usually indicated under the form, <literal><replaceable>language-code</replaceable>_<replaceable>COUNTRY-CODE</replaceable></literal>, sometimes with a suffix to specify the character set and encoding to be used. This enables consideration of idiomatic or typographical differences between different regions with a common language."
-msgstr ""
+msgstr "Sebuah locale ialah sekelompok pengaturan regional. Termasuk tidak hanya bahasa untuk teks, tetapi juga format untuk menampilkan angka, tanggal, waktu, dan penjumlahan keuangan, sebagaimana peraturan perbandingan alfabet (untuk menangani karakter beraksen dengan tepat). Meskipun setiap parameter ini dapat ditentukan secara independen satu sama lain, umumnya kita menggunakan sebuah locale, yang merupakan seperangkat nilai koheren untuk parameter ini sesuai dengan “region” dalam arti luas. Locale ini biasanya ditentukan dalam bentuk, <literal><replaceable>kode-bahasa</replaceable>_<replaceable>KODE-NEGARA</replaceable></literal>, terkadang dengan akhiran untuk menentukan set karakter dan encoding yang digunakan. Memungkinkan pertimbangan perbedaan idiomatik atau tipografi antara region yang berbeda dengan sebuah bahasa umum."
 
 #. Tag: title
 #, no-c-format
@@ -428,7 +428,7 @@ msgstr "Mengonfigurasi Jaringan"
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Essential network concepts (Ethernet, IP address, subnet, broadcast)."
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Konsep penting jaringan (Ethernet, alamat IP, subnet, broadcast)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -469,7 +469,7 @@ msgstr "<primary>konektor RJ45</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Most modern local networks use the Ethernet protocol, where data is split into small blocks called frames and transmitted on the wire one frame at a time. Data speeds vary from 10 Mb/s for older Ethernet cards to 10 Gb/s in the newest cards (with the most common rate currently growing from 100 Mb/s to 1 Gb/s). The most widely used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T depending on the throughput they can reliably provide (the T stands for “twisted pair”); those cables end in an RJ45 connector. There are other cable types, used mostly for speeds above 1 Gb/s."
-msgstr ""
+msgstr "Kebanyakan jaringan lokal modern menggunakan protokol Ethernet, di mana data dibagi ke dalam blok kecil yang disebut bingkai dan ditransmisikan pada kabel satu bingkai sekali transmisi. Kecepatan data bervariasi dari 10 Mb/s untuk kartu Ethernet tua ke 10 Gb/s pada kartu terbaru (dengan kecepatan paling umum sedang berkembang dari 100 Mb/s ke 1 Gb/s). Kabel yang paling sering digunakan adalah 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T tergantung pada kapasitas yang dapat mereka tampung (T berarti “twisted pair”); kabel tersebut berujung pada konektor RJ45. Ada tipe kabel lain, paling banyak digunakan untuk kecepatan di atas 1 Gb/s."
 
 #. Tag: indexterm
 #, no-c-format
@@ -484,7 +484,7 @@ msgstr "<primary>alamat IP</primary>"
 #. Tag: para
 #, no-c-format
 msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2001:0db8:13bb:0002:0000:0000:0000:0020, or 2001:db8:13bb:2::20 for short)."
-msgstr ""
+msgstr "Alamat IP adalah sebuah angka yang digunakan untuk mengidentifikasi antarmuka jaringan pada sebuah komputer dalam jaringan lokal atau Internet. Saat ini versi IP (IPv4) yang paling banyak digunakan, nomor ini di-encode dalam 32 bit, dan biasanya direpresentasikan sebagai 4 nomor dipisahkan oleh titik (mis. <literal>192.168.0.1</literal>), setiap nomor dapat diisi antara 0 dan 255 (inklusif, yang sama dengan data 8 bit). Protokol versi berikutnya, IPv6, memerluas ruang pengalamatan ke 128 bit, dan alamat umumnya direpresentasikan sebagai serangkaian nomor heksadesimal dipisahkan oleh titik dua (mis., 2001:0db8:13bb:0002:0000:0000:0000:0020, atau 2001:db8:13bb:2::20 pendeknya)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -504,12 +504,12 @@ msgstr "<primary>jaringan</primary><secondary>alamat</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "A subnet mask (netmask) defines in its binary code which portion of an IP address corresponds to the network, the remainder specifying the machine. In the example of configuring a static IPv4 address given here, the subnet mask, <literal>255.255.255.0</literal> (24 “1”s followed by 8 “0”s in binary representation) indicates that the first 24 bits of the IP address correspond to the network address, and the other 8 are specific to the machine. In IPv6, for readability, only the number of “1”s is expressed; the netmask for an IPv6 network could, thus, be <literal>64</literal>."
-msgstr ""
+msgstr "Sebuah subnet mask (netmask) menentukan kode binernya yang merupakan bagian dari alamat IP berhubungan dengan jaringan, pengingatnya menentukan mesin. Dalam contoh konfigurasi alamat IPv4 statis yang diberikan di sini, subnet mask, <literal>255.255.255.0</literal> (24-nya “1” diikuti oleh 8-nya “0” dalam representasi biner) menunjukkan bahwa 24 bit yang pertama dari alamat IP berupa alamat jaringan, dan 8 lainnya spesifik ke mesin. Dalam IPv6, agar terbaca, hanya angka “1” yang dinyatakan; netmask untuk jaringan IPv6 berupa <literal>64</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the number of bits affected to the network part in an IP address. The example network would thus be written: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb:2::/64</literal>."
-msgstr ""
+msgstr "Alamat jaringan merupakan alamat IP yang bagian yang menjelaskan nomor mesinnya berupa 0. Range alamat IPv4 dalam jaringan lengkap seringkali ditentukan oleh sintaks, <emphasis>a.b.c.d/e</emphasis>, di mana <emphasis>a.b.c.d</emphasis> merupakan alamat jaringan dan <emphasis>e</emphasis> adalah jumlah bit berpengaruh terhadap bagian jaringan dalam alamat IP. Contoh jaringan tersebut tertulis: <literal>192.168.0.0/24</literal>. Sintaks yang mirip dalam IPv6: <literal>2001:db8:13bb:2::/64</literal>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -524,7 +524,7 @@ msgstr "<primary>bridge</primary>"
 #. Tag: para
 #, no-c-format
 msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyzes incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
-msgstr ""
+msgstr "Router adalah mesin yang menghubungkan beberapa jaringan satu sama lain. Seluruh trafik yang melalui router diarahkan ke jaringan yang tepat. Untuk melakukan ini, router menganalisa paket datang dan meneruskannya berdasarkan alamat IP tujuannya. Router seringkali disebut juga gateway; dalam konfigurasi ini, dia bekerja sebagai sebuah mesin yang membantu menjangkau jaringan lokal (menuju jaringan lainnya, seperti Internet)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -534,17 +534,17 @@ msgstr "<primary>broadcast</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The special broadcast address connects all the stations in a network. Almost never “routed”, it only functions on the network in question. Specifically, it means that a data packet addressed to the broadcast never passes through the router."
-msgstr ""
+msgstr "Alamat broadcast khusus menghubungkan seluruh stasiun dalam sebuah jaringan. Hampir tak pernah “diroute”, dia hanya berfungsi pada jaringan tersebut. Secara spesifik, berarti bahwa paket data yang dialamatkan ke broadcast tidak pernah dilewatkan ke router."
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter focuses on IPv4 addresses, since they are currently the most commonly used. The details of the IPv6 protocol are approached in <xref linkend=\"sect.ipv6\" />, but the concepts remain the same."
-msgstr ""
+msgstr "Bab ini fokus pada alamat IPv4, karena saat ini mereka yang paling umum digunakan. Rincian tentang protokol IPv6 pendekatannya ada di <xref linkend=\"sect.ipv6\" />, namun konsepnya sama saja."
 
 #. Tag: para
 #, no-c-format
 msgid "Since the network is automatically configured during the initial installation, the <filename>/etc/network/interfaces</filename> file already contains a valid configuration. A line starting with <literal>auto</literal> gives a list of interfaces to be automatically configured on boot by <emphasis role=\"pkg\">ifupdown</emphasis> and its <filename>/etc/init.d/networking</filename> init script. This will often be <literal>eth0</literal>, which refers to the first Ethernet card."
-msgstr ""
+msgstr "Karena jaringan secara otomatis dikonfigurasi selama instalasi awal, berkas <filename>/etc/network/interfaces</filename> telah berisi konfigurasi yang tepat. Sebuah baris yang dimulai dengan <literal>auto</literal> merupakan antarmuka yang dikonfigurasi secara otomatis ketika booting oleh <emphasis role=\"pkg\">ifupdown</emphasis> dan skrip init-nya <filename>/etc/init.d/networking</filename>. Ini seringkali berupa <literal>eth0</literal>, yang mengacu pada kartu jaringan pertama."
 
 #. Tag: indexterm
 #, no-c-format
@@ -559,7 +559,7 @@ msgstr "<primary>konfigurasi</primary><secondary>jaringan</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>interface</primary><secondary>network interface</secondary>"
-msgstr "<primary>interface</primary><secondary>network interface</secondary>"
+msgstr "<primary>antar muka</primary><secondary>antar muka jaringan</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -579,7 +579,7 @@ msgstr "<primary><emphasis role=\"pkg\">network-manager</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "If Network Manager is particularly recommended in roaming setups (see <xref linkend=\"sect.roaming-network-config\" />), it's also perfectly usable as the default network management tool. You can create “System connections” that are used as soon as the computer boots either manually with a <filename>.ini</filename>-like file in <filename>/etc/NetworkManager/system-connections/</filename> or through a graphical tool (<command>nm-connection-editor</command>). Just remember to deactivate all entries in <filename>/etc/network/interfaces</filename> if you want Network Manager to handle them. <ulink type=\"block\" url=\"http://wiki.gnome.org/NetworkManager/SystemSettings\" /> <ulink type=\"block\" url=\"http://projects.gnome.org/NetworkManager/developers/api/09/ref-settings.html\" />"
-msgstr ""
+msgstr "Jika Network Manager direkomendasikan dalam pengaturan roaming (lihat <xref linkend=\"sect.roaming-network-config\" />), dia juga sangat berguna sebagai pengatur jaringan standar. Anda dapat membuat “Koneksi sistem” yang digunakan sesegera setelah komputer boot entah itu secara manual dengan berkas mirip <filename>.ini</filename> dalam <filename>/etc/NetworkManager/system-connections/</filename> atau melalui tool grafis (<command>nm-connection-editor</command>). Ingatlah untuk menonaktifkan seluruh entri dalam <filename>/etc/network/interfaces</filename> jika Anda ingin Network Manager menanganinya. <ulink type=\"block\" url=\"http://wiki.gnome.org/NetworkManager/SystemSettings\" /> <ulink type=\"block\" url=\"http://projects.gnome.org/NetworkManager/developers/api/09/ref-settings.html\" />"
 
 #. Tag: title
 #, no-c-format
@@ -589,7 +589,7 @@ msgstr "Antarmuka Ethernet"
 #. Tag: para
 #, no-c-format
 msgid "If the computer has an Ethernet card, the IP network that is associated with it must be configured by choosing from one of two methods. The simplest method is dynamic configuration with DHCP, and it requires a DHCP server on the local network. It may indicate a desired hostname, corresponding to the <literal>hostname</literal> setting in the example below. The DHCP server then sends configuration settings for the appropriate network."
-msgstr ""
+msgstr "Jika komputer memiliki sebuah kartu Ethernet, jaringan IP yang bersesuaian dengannya harus dikonfigurasi dengan memilih salah satu metode. Metode yang paling sederhana adalah konfigurasi dinamis dengan DHCP, dan dia memerlukan server DHCP pada jaringan lokal. Ini mungkin menunjukkan hostname yang diinginkan, berhubungan dengan pengaturan <literal>hostname</literal> dalam contoh berikut. Server DHCP kemudian mengirimkan pengaturan konfigurasi untuk jaringan yang sesuai."
 
 #. Tag: indexterm
 #, no-c-format
@@ -617,7 +617,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "A “static” configuration must indicate network settings in a fixed manner. This includes at least the IP address and subnet mask; network and broadcast addresses are also sometimes listed. A router connecting to the exterior will be specified as a gateway."
-msgstr ""
+msgstr "Konfigurasi “statis” harus menunjukkan pengaturan jaringan secara tetap. Termasuk setidaknya alamat IP dan subnet mask; jaringan dan alamat broadcast kadang juga termasuk. Sebuah router menghubungkan ke jaringan luar akan disebut gateway."
 
 #. Tag: title
 #, no-c-format
@@ -653,12 +653,12 @@ msgstr "<emphasis>CATATAN</emphasis> Banyak alamat"
 #. Tag: para
 #, no-c-format
 msgid "It is possible not only to associate several interfaces to a single, physical network card, but also several IP addresses to a single interface. Remember also that an IP address may correspond to any number of names via DNS, and that a name may also correspond to any number of numerical IP addresses."
-msgstr ""
+msgstr "Mungkin saja tidak hanya mengasosiasikan beberapa antarmuka ke kartu jaringan tunggal, namun juga beberapa alamat IP ke satu antarmuka. Ingat juga bahwa alamat IP dapat bersesuaian ke beberapa nama melalui DNS, dan bahwa sebuah nama dapat pula bersesuaian ke beberapa alamat IP numerik."
 
 #. Tag: para
 #, no-c-format
 msgid "As you can guess, the configurations can be rather complex, but these options are only used in very special cases. The examples cited here are typical of the usual configurations."
-msgstr ""
+msgstr "Seperti yang dapat Anda kira, konfigurasi dapat menjadi agak kompleks, namun pilihan ini hanya digunakan dalam kasus yang sangat khusus. Contoh yang dikutip di sini berupa konfigurasi yang tak biasa."
 
 #. Tag: title
 #, no-c-format
@@ -688,12 +688,12 @@ msgstr "<primary>modem</primary><secondary>PSTN</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "A point to point (PPP) connection establishes an intermittent connection; this is the most common solution for connections made with a telephone modem (“PSTN modem”, since the connection goes over the public switched telephone network)."
-msgstr ""
+msgstr "Koneksi point to pont (PPP) berlangsung sebuah koneksi yang berselang-seling; ini adalah solusi umum untuk koneksi yang dibuat dengan modem telepon (“PSTN modem”, karena koneksi melalui kabel jaringan telepon publik)."
 
 #. Tag: para
 #, no-c-format
 msgid "A connection by telephone modem requires an account with an access provider, including a telephone number, username, password, and, sometimes the authentication protocol to be used. Such a connection is configured using the <command>pppconfig</command> tool in the Debian package of the same name. By default, it sets up a connection named <literal>provider</literal> (as in Internet service provider). When in doubt about the authentication protocol, choose <emphasis>PAP</emphasis>: it is offered by the majority of Internet service providers."
-msgstr ""
+msgstr "Koneksi dengan modem telepon memerlukan sebuah akun dengan akses provider, termasuk nomor telepon, nama pengguna, dan kata sandi, dan, terkadang protokol otentikasi yang digunakan. Koneksi dikonfigurasi menggunakan peralatan <command>pppconfig</command> dalam paket Debian dengan nama yang sama. Secara standar, dia mengatur nama koneksi <literal>provider</literal> (sebagai penyedia layanan Internet). Ketika ragu tentang protokol otentikasi, pilih <emphasis>PAP</emphasis>: ini ditawarkan oleh kebanyakan penyedia layanan Internet."
 
 #. Tag: indexterm
 #, no-c-format
@@ -708,7 +708,7 @@ msgstr "<primary>PAP</primary>"
 #. Tag: para
 #, no-c-format
 msgid "After configuration, it is possible to connect using the <command>pon</command> command (giving it the name of the connection as a parameter, when the default value of <literal>provider</literal> is not appropriate). The link is disconnected with the <command>poff</command> command. These two commands can be executed by the root user, or by any other user, provided they are in the <literal>dip</literal> group."
-msgstr ""
+msgstr "Setelah konfigurasi, adalah mungkin untuk menghubungkan dengan perintah <command>pon</command> (berikan nama koneksi sebagai parameter, ketika nilai standar dari <literal>provider</literal> tidak cocok). Link diputus dengan perintah <command>poff</command>. Kedua perintah ini dapat dieksekusi oleh root, atau pengguna lain, yang ada dalam group <literal>dip</literal>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -738,77 +738,77 @@ msgstr "<primary>connection</primary><secondary>on demand</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>diald</command> is an on-demand connection service that automatically establishes a connection when needed, by detecting an outgoing IP packet and disconnecting after a period of inactivity."
-msgstr ""
+msgstr "<command>diald</command> merupakan sebuah layanan koneksi on-demand yang secara otomatis membuat koneksi ketika dibutuhkan, dengan mendeteksi paket IP ke luar dan memutuskannya setelah beberapa saat tidak aktif."
 
 #. Tag: title
 #, no-c-format
 msgid "Connecting through an ADSL Modem"
-msgstr ""
+msgstr "Menghubungkan melalui modem ADSL"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connection</primary><secondary>by ADSL modem</secondary>"
-msgstr ""
+msgstr "<primary>koneksi</primary><secondary>dengan modem ADSL</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modem</primary><secondary>ADSL</secondary>"
-msgstr ""
+msgstr "<primary>modem</primary><secondary>ADSL</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ADSL, modem</primary>"
-msgstr ""
+msgstr "<primary>ADSL, modem</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The generic term “ADSL modem” covers a multitude of devices with very different functions. The modems that are simplest to use with Linux are those that have an Ethernet interface (and not only a USB interface). These tend to be popular; most ADSL Internet service providers lend (or lease) a “box” with Ethernet interfaces. Depending on the type of modem, the configuration required can vary widely."
-msgstr ""
+msgstr "Istilah generik “ADSL modem” mencakup berbagai perangkat dengan fungsi yang sangat berbeda. Modem yang paling sederhana untuk digunakan dengan Linux adalah yang memiliki antarmuka Ethernet (dan tak hanya antarmuka USB). Ini menjadi populer; kebanyakan penyedia layanan meminjamkan (atau sewa) sebuah “box” ADSL dengan antarmuka Ethernet. Tergantung pada tipe modem, konfigurasi yang diperlukan dapat bermacam-macam."
 
 #. Tag: title
 #, no-c-format
 msgid "Modems Supporting PPPOE"
-msgstr ""
+msgstr "Modem Mendukung PPPOE"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPPOE</primary>"
-msgstr ""
+msgstr "<primary>PPPOE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pppoeconf</command></primary>"
-msgstr ""
+msgstr "<primary><command>pppoeconf</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Some Ethernet modems work with the PPPOE protocol (Point to Point Protocol over Ethernet). The <command>pppoeconf</command> tool (from the package with the same name) will configure the connection. To do so, it modifies the <filename>/etc/ppp/peers/dsl-provider</filename> file with the settings provided and records the login information in the <filename>/etc/ppp/pap-secrets</filename> and <filename>/etc/ppp/chap-secrets</filename> files. It is recommended to accept all modifications that it proposes."
-msgstr ""
+msgstr "Beberapa modem Ethernet bekerja dengan protokol PPPOE (Point to Point Protocol over Ethernet). Alat <command>pppoeconf</command> (dari paket dengan nama yang sama) akan mengonfigurasi koneksi. Untuk melakukannya, dia memodifikasi berkas <filename>/etc/ppp/peers/dsl-provider</filename> dengan pengaturan yang disediakan dan merekam informasi login di berkas <filename>/etc/ppp/pap-secrets</filename> dan <filename>/etc/ppp/chap-secrets</filename>. Disarankan untuk menerima seluruh modifikasi yang ditawarkan."
 
 #. Tag: para
 #, no-c-format
 msgid "Once this configuration is complete, you can open the ADSL connection with the command, <command>pon dsl-provider</command> and disconnect with <command>poff dsl-provider</command>."
-msgstr ""
+msgstr "Setelah konfigurasinya lengkap, Anda dapat membuka koneksi ADSL dengan perintah, <command>pon dsl-provider</command> dan memutuskannya dengan <command>poff dsl-provider</command>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>dsl-provider</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>dsl-provider</literal></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Starting <command>ppp</command> via <command>init</command>"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> Memulai <command>ppp</command> melalui <command>init</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>init</command></primary>"
-msgstr ""
+msgstr "<primary><command>init</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "PPP connections over ADSL are, by definition, intermittent. Since they are usually not billed according to time, there are few downsides to the temptation of keeping them always open; one simple means to do so is to use the <command>init</command> process to control the connection. All that's needed is to add a line such as the following at the end of the <filename>/etc/inittab</filename> file; then, any time the connection is disconnected, <command>init</command> will reconnect it."
-msgstr ""
+msgstr "Koneksi PPP melalui ADSL, secara definisi, berselang-seling. Karena mereka biasanya tidak dibayar berdasarkan waktu, beberapa downside condong menjaganya tetap terbuka; satu cara sederhana untuk melakukannya adalah dengan menggunakan proses <command>init</command> untuk mengontrol koneksi. Semua yang diperlukan adalah dengan menambahkan baris berikut pada akhir berkas <filename>/etc/inittab</filename>; kemudian, kapan pun koneksi terputus, <command>init</command> akan menyambungkannya lagi."
 
 #. Tag: programlisting
 #, no-c-format
@@ -816,116 +816,118 @@ msgid ""
 "\n"
 "adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
 msgstr ""
+"\n"
+"adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Most ADSL connections disconnect on a daily basis, but this method reduces the duration of the interruption."
-msgstr ""
+msgstr "Kebanyakan koneksi ADSL terputus per hari, namun metode ini mengurangi durasi interupsi."
 
 #. Tag: title
 #, no-c-format
 msgid "Modems Supporting PPTP"
-msgstr ""
+msgstr "Modem Mendukung PPTP"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPTP</primary>"
-msgstr ""
+msgstr "<primary>PPTP</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The PPTP (Point-to-Point Tunneling Protocol) protocol was created by Microsoft. Deployed at the beginning of ADSL, it was quickly replaced by PPPOE. If this protocol is forced on you, see <xref linkend=\"network-infrastructure\" /> in the section about virtual private networks detailing PPTP."
-msgstr ""
+msgstr "Protokol PPTP (Point-to-Point Tunneling Protocol) dibuat oleh Microsoft. Dilepas pada permulaan ADSL, ini telah diganti secara cepat oleh PPPOE. Jika protokol ini memaksa Anda, lihat <xref linkend=\"network-infrastructure\" /> dalam bagian tentang jaringan privat virtual merinci PPTP."
 
 #. Tag: title
 #, no-c-format
 msgid "Modems Supporting DHCP"
-msgstr ""
+msgstr "Modem Mendukung DHCP"
 
 #. Tag: para
 #, no-c-format
 msgid "When a modem is connected to the computer by an Ethernet cable (crossover cable) you typically configure a network connection by DHCP on the computer; the modem automatically acts as a gateway by default and takes care of routing (meaning that it manages the network traffic between the computer and the Internet)."
-msgstr ""
+msgstr "Ketika sebuah modem terhubung ke komputer dengan sebuah kabel Ethernet (kabel crossover) Anda secara khusus mengonfigurasi koneksi jaringan dengan DHCP pada komputer; modem secara otomatis bertindak sebagai gateway secara default dan menangani routing (berarti dia mengatur traffik jaringan antara komputer dan Internet)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Crossover cable for a direct Ethernet connection"
-msgstr ""
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Kabel crossover untuk koneksi Ethernet langsung"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>crossover cable</primary>"
-msgstr ""
+msgstr "<primary>kabel crossover</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Computer network cards expect to receive data on specific wires in the cable, and send their data on others. When you connect a computer to a local network, you usually connect a cable (straight or crossover) between the network card and a repeater or switch. However, if you want to connect two computers directly (without an intermediary switch or repeater), you must route the signal sent by one card to the receiving side of the other card, and vice-versa. This is the purpose of a crossover cable, and the reason it is used."
-msgstr ""
+msgstr "Kartu jaringan komputer berharap menerima data pada kawat khusus dalam kabel, dan mengirim datanya ke yang lainnya. Ketika menghubungkan komputer ke jaringan lokal, Anda biasanya menghubungkan sebuah kabel (straight atau crossover) antara kartu jaringan dan sebuah repeater atau switch. Akan tetapi, jika Anda ingin menghubungkan dua komputer secara langsung (tanpa perantara switch atau repeater), Anda harus me-route sinyal terkirim oleh satu kartu ke sisi penerima kartu lain, dan sebaliknya. Ini adalah tujuan kabel crossover, dan alasannya dipergunakan."
 
 #. Tag: para
 #, no-c-format
 msgid "Note that this distinction is becoming less relevant over time, as modern network cards are able do detect the type of cable present and adapt accordingly, so it won't be unusual that both kinds of cable will work in a given location."
-msgstr ""
+msgstr "Catat bahwa perbedaan ini menjadi kurang relevan seiring berjalannya waktu, kartu jaringan modern dapat mendeteksi tipe kabel yang ada dan mengadaptasi yang sesuai dengannya, jadi tidak akan menjadi tak biasa kedua jenis kabel akan bekerja pada lokasi yang diberikan."
 
 #. Tag: para
 #, no-c-format
 msgid "Most “ADSL routers” on the market can be used like this, as do most of the ADSL modems provided by Internet services providers."
-msgstr ""
+msgstr "Kebanyakan “ADSL routers” di pasaran dapat digunakan seperti ini, sebagaimana kebanyakan modem ADSL disediakan oleh penyedia layanan Internet."
 
 #. Tag: title
 #, no-c-format
 msgid "Automatic Network Configuration for Roaming Users"
-msgstr ""
+msgstr "Konfigurasi Jaringan Otomatis untuk Pengguna Luar"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>roaming configuration</secondary>"
-msgstr ""
+msgstr "<primary>jaringan</primary><secondary>konfigurasi roaming</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Many Falcot engineers have a laptop computer that, for professional purposes, they also use at home. The network configuration to use differs according to location. At home, it may be a wifi network (protected by a WEP key), while the workplace uses a wired network for greater security and more bandwidth."
-msgstr ""
+msgstr "Beberapa insinyur Falcot memiliki komputer laptop, untuk tujuan professional, mereka juga menggunakannya di rumah. Konfigurasi jaringan yang digunakan berbeda berdasarkan lokasinya. Di rumah, mungkin berupa jaringan wifi (dilindungi oleh sebuah kunci WEP), ketika di tempat kerja menggunakan jaringan kabel untuk alasan keamanan dan bandwidth yang lebih."
 
 #. Tag: para
 #, no-c-format
 msgid "To avoid having to manually connect or disconnect the corresponding network interfaces, administrators installed the <emphasis role=\"pkg\">network-manager</emphasis> package on these roaming machines. This software enables a user to easily switch from one network to another using a small icon displayed in the notification area of their graphical desktop. Clicking on this icon displays a list of available networks (both wired and wireless), so they can simply choose the network they wish to use. The program saves the configuration for the networks to which the user has already connected, and automatically switches to the best available network when the current connection drops."
-msgstr ""
+msgstr "Untuk menghindari penghubungan dan pemutusan masing-masing antarmuka jaringan, administrator menginstall paket <emphasis role=\"pkg\">network-manager</emphasis> pada mesin roaming tersebut. Perangkat lunak ini memungkinkan pengguna unguk secara mudah berganti dari satu jaringan ke yang lainnya menggunakan sebuah ikon kecil yang ditampilkan pada area notifikasi dari desktop grafis mereka. Melakukan klik pada ikon ini menampilkan daftar jaringan tersedia (kabel dan wireless), agar mereka dapat memilih jaringan yang ingin mereka gunakan dengan mudah. Program menyimpan konfigurasi untuk jaringan yang telah dihubungkan oleh pengguna, dan secara otomatis berganti ke jaringan terbaik yang tersedia ketika koneksi terkini lenyap."
 
 #. Tag: para
 #, no-c-format
 msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this daemon. PolicyKit handles the required authorizations to control this program and Debian configured PolicyKit in such a way so that members of the netdev group can add or change Network Manager connections."
-msgstr ""
+msgstr "Untuk melakukan ini, struktur program diatur dalam dua bagian: sebuah daemon dijalankan sebagai root menangani aktivasi dan konfigurasi antarmuka jaringan dan antarmuka pengguna mengontrol daemon ini. PoricyKit menangani otorisasi yang diperlukan untuk mengontrol program ini dan Debian mengonfigurasi PolicyKit sedemikian rupa sehingga anggota group netdev dapat menambahkan atau mengubah koneksi Network Manager."
 
 #. Tag: para
 #, no-c-format
 msgid "Network Manager knows how to handle various types of connections (DHCP, manual configuration, local network), but only if the configuration is set with the program itself. This is why it will systematically ignore all network interfaces in <filename>/etc/network/interfaces</filename> for which it is not suited. Since Network Manager doesn't give details when no network connections are shown, the easy way is to delete from <filename>/etc/network/interfaces</filename> any configuration for all interfaces that must be managed by Network Manager."
-msgstr ""
+msgstr "Network Manager mengetahui bagaimana menangani berbagai tipe koneksi (DHCP, konfigurasi manual, jaringan lokal), namun hanya jika konfigurasi diatur dengan program itu sendiri. Oleh karena itu, dia akan mengabaikan seluruh antarmuka jaringan secara sistematis di <filename>/etc/network/interfaces</filename> untuk yang tidak cocok. Karena Network Manager tidak memberikan rincian ketika tidak ada jaringan yang muncul, cara termudahnya adalah dengan menghapusnya dari <filename>/etc/network/interfaces</filename> beberapa konfigurasi untuk seluruh antarmuka yang harus diatur oleh Network Manager."
 
 #. Tag: para
 #, no-c-format
 msgid "Note that this program is installed by default when the “Desktop Environment” task is chosen during initial installation."
-msgstr ""
+msgstr "Catat bahwa program ini diinstall secara standar ketika “Desktop Environment” dipilih ketika instalasi awal."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Configuration by “network profile”"
-msgstr ""
+msgstr "<emphasis>ALTERNATIF</emphasis> Konfigurasi dengan “profil jaringan”"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">guessnet</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">guessnet</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "More advanced users may want to try the <emphasis role=\"pkg\">guessnet</emphasis> package for automatic network configuration. A group of test scripts determine which network profile should be activated and configure it on the fly."
-msgstr ""
+msgstr "Pengguna yang lebih mahir mungkin ingin mencoba paket <emphasis role=\"pkg\">guessnet</emphasis> untuk konfigurasi jaringan otomatis. Sekelompok skrip test menentukan profil jaringan mana yang akan diaktifkan dan mengonfigurasinya dengan cepat."
 
 #. Tag: para
 #, no-c-format
 msgid "Users who prefer to manually select a network profile will prefer the <emphasis role=\"pkg\">netenv</emphasis> program, found in the package of the same name."
-msgstr ""
+msgstr "Pengguna yang lebih memilih secara manual profil jaringan akan lebih memilih program <emphasis role=\"pkg\">netenv</emphasis>, ditemukan pada paket dengan nama yang sama."
 
 #. Tag: title
 #, no-c-format
