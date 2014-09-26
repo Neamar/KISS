@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-09-03 14:38+0200\n"
+"PO-Revision-Date: 2014-09-26 12:54+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
@@ -694,10 +694,20 @@ msgid "<emphasis>CULTURE</emphasis> OpenSSL flaw in Debian <emphasis role=\"dist
 msgstr "<emphasis>CULTURA</emphasis> Falha do OpenSSL no Debian <emphasis role=\"distribution\">Etch</emphasis>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The OpenSSL library, as initially provided in Debian <emphasis role=\"distribution\">Etch</emphasis>, had a serious problem in its random number generator (RNG). Indeed, the Debian maintainer had made a change in order for the library to not be the source of warnings for programs using it and that would be analyzed by memory testing tools like <command>valgrind</command>. Unfortunately, this change also meant that the RNG was employing only one source of entropy corresponding to the process number (PID) whose 32,000 possible values do not offer enough randomness. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
 msgid "The OpenSSL library, as initially provided in Debian <emphasis role=\"distribution\">Etch</emphasis>, had a serious problem in its random number generator (RNG). Indeed, the Debian maintainer had made a change so that applications using it would no longer generate warnings when analyzed by memory testing tools like <command>valgrind</command>. Unfortunately, this change also meant that the RNG was employing only one source of entropy corresponding to the process number (PID) whose 32,000 possible values do not offer enough randomness. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
-msgstr "A biblioteca OpenSSL, como inicialmente previsto no Debian <emphasis role=\"distribution\">Etch</emphasis>,tinha um grave problema no seu gerador de número aleatório (RNG). De fato, o mantenedor Debian tinha feito uma mudança para que a biblioteca não fosse a fonte de advertências para os programas que o utilizam e que seriam analisados por ferramentas de teste de memória como <command>valgrind</command>.Infelizmente, esta mudança também significou que o RNG estava empregando apenas uma fonte de entropia que corresponde ao número do processo (PID), cujos 32.000 possíveis valores não oferecem aleatoriedade suficiente.<ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
+msgstr ""
+"A biblioteca OpenSSL, como era inicialmente fornecida no Debian <emphasis "
+"role=\"distribution\">Etch</emphasis>, tinha um grave problema no seu "
+"gerador de número aleatório (Random Number Generator - RNG). De fato, o "
+"mantenedor Debian tinha feito uma mudança para que aplicações usando ela não "
+"gerassem avisos quando analisadas por ferramentas de teste de memória como "
+"<command>valgrind</command>.Infelizmente, esta mudança também significou que "
+"o RNG estava empregando apenas uma fonte de entropia que corresponde ao "
+"número do processo (PID), cujos 32.000 possíveis valores não oferecem "
+"aleatoriedade suficiente. <ulink type=\"block\" url=\""
+"http://www.debian.org/security/2008/dsa-1571\" />"
 
 #. Tag: para
 #, no-c-format
@@ -752,13 +762,13 @@ msgid "<emphasis>VOCABULARY</emphasis> Tunnel"
 msgstr "<emphasis>VOCABULÁRIO</emphasis> Túnel"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>tunnel SSH</primary><seealso>VPN</seealso>"
 msgid "<primary>tunnel (SSH)</primary><seealso>VPN</seealso>"
-msgstr "<primary>túnel SSH</primary><seealso>VPN</seealso>"
+msgstr "<primary>túnel (SSH)</primary><seealso>VPN</seealso>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>tunnel SSH</primary><seealso>VPN</seealso>"
 msgid "<primary>SSH tunnel</primary><seealso>VPN</seealso>"
 msgstr "<primary>túnel SSH</primary><seealso>VPN</seealso>"
@@ -929,10 +939,10 @@ msgid "<primary><command>xdm</command></primary>"
 msgstr "<primary><command>xdm</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>gdm</command></primary>"
 msgid "<primary><command>lightdm</command></primary>"
-msgstr "<primary><command>gdm</command></primary>"
+msgstr "<primary><command>lightdm</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1015,9 +1025,9 @@ msgid "Each file or directory has specific permissions for three categories of u
 msgstr "Cada arquivo ou diretório têm permissões específicas para três categorias de usuários:"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "its owner (symbolized by <literal>u</literal> as in “user”);"
-msgstr "seu dono (simbolizado por <literal>u</literal> como em “user”);"
+msgstr "seu dono (simbolizado por <literal>u</literal> como em \"user\");"
 
 #. Tag: para
 #, no-c-format
@@ -1065,10 +1075,10 @@ msgid "<primary>modification, right</primary>"
 msgstr "<primary>modificação, direito</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>modification, right</primary>"
 msgid "<primary>execution, right</primary>"
-msgstr "<primary>modificação, direito</primary>"
+msgstr "<primary>execução, direito de</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1106,15 +1116,17 @@ msgid "A directory is handled differently. Read access gives the right to consul
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <literal>setgid</literal> directory and <emphasis>sticky bit</emphasis>"
-msgstr "<emphasis>SEGURANÇA</emphasis> <literal>setgid</literal> diretório e <emphasis>sticky bit</emphasis>"
+msgstr ""
+"<emphasis>SEGURANÇA</emphasis> <literal>setgid</literal> diretório e "
+"<emphasis>sticky bit</emphasis>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><literal>setgid</literal>, right</primary>"
 msgid "<primary><literal>setgid</literal> directory</primary>"
-msgstr "<primary><literal>setgid</literal>, direito</primary>"
+msgstr "<primary><literal>setgid</literal>diretório</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1177,10 +1189,10 @@ msgid "<primary>octal representation of rights</primary>"
 msgstr "<primary>representação octal dos direitos</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>service</primary><secondary>restart</secondary>"
 msgid "<primary>rights</primary><secondary>octal representation</secondary>"
-msgstr "<primary>serviço</primary><secondary>reiniciar</secondary>"
+msgstr "<primary>direitos</primary><secondary>reresentação octal</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1288,10 +1300,10 @@ msgid "Since no interface is perfect, you may be tempted to try several solution
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Administrating On a Web Interface: <command>webmin</command>"
 msgid "Administrating on a Web Interface: <command>webmin</command>"
-msgstr "Administrando Por uma Interface Web: <command>webmin</command>"
+msgstr "Administrando por uma Interface Web: <command>webmin</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1389,16 +1401,17 @@ msgid "The administration interface is available in a web browser at <literal>ht
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>ALTERNATIVE</emphasis> Other boot systems"
 msgid "<emphasis>ALTERNATIVE</emphasis> GNOME control center"
-msgstr "<emphasis>ALTERNATIVAS</emphasis> Outros sistemas de inicializações"
+msgstr "<emphasis>ALTERNATIVA</emphasis> centro de controle GNOME"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis role=\"pkg\">tsclient</emphasis></primary>"
 msgid "<primary><emphasis role=\"pkg\">gnome-control-center</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">tsclient</emphasis></primary>"
+msgstr ""
+"<primary><emphasis role=\"pkg\">gnome-control-center</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1466,10 +1479,10 @@ msgid "<primary>files</primary><secondary>log files</secondary>"
 msgstr "<primary>arquivos</primary><secondary>arquivos de log</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>logs</primary><secondary>distribution</secondary>"
 msgid "<primary>logs</primary><secondary>dispatching</secondary>"
-msgstr "<primary>logs</primary><secondary>distribuição</secondary>"
+msgstr "<primary>logs</primary><secondary>despachar</secondary>"
 
 #. Tag: title
 #, no-c-format
@@ -1742,9 +1755,12 @@ msgid "Each significant line of the <filename>/etc/inetd.conf</filename> file de
 msgstr "Cada linha significativa do arquivo <filename>/etc/inetd.conf</filename> descreve um servidor através de sete campos (separados por espaços):"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The TCP or UDP port number, or the service name (which is mapped to a standard port number with the information contained in the <filename>/etc/services</filename> file)."
-msgstr "O número da porta TCP ou UDP, ou do serviço de nomes (o qual é mapeado para o número da porta padrão com a informação contida no arquivo <filename>/etc/services</filename>)."
+msgstr ""
+"O número da porta TCP ou UDP, ou o nome do serviço (o qual é mapeado para o "
+"número da porta padrão com a informação contida no arquivo "
+"<filename>/etc/services</filename>)."
 
 #. Tag: para
 #, no-c-format
@@ -1762,9 +1778,9 @@ msgid "The options: two possible values: <literal>wait</literal> or <literal>now
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The user name of the user under whose identity the server will run."
-msgstr "O nome do usuário do usuário o qual a identidade o servidor executará."
+msgstr "O nome de usuário do usuário cuja identidade o servidor executará."
 
 #. Tag: para
 #, no-c-format
@@ -1787,7 +1803,7 @@ msgid "Excerpt from <filename>/etc/inetd.conf</filename>"
 msgstr "Excerto do <filename>/etc/inetd.conf</filename>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
 #| "finger stream tcp nowait  nobody     /usr/sbin/tcpd     /usr/sbin/in.fingerd\n"
@@ -1798,7 +1814,7 @@ msgid ""
 "ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
 msgstr ""
 "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
-"finger stream tcp nowait  nobody     /usr/sbin/tcpd     /usr/sbin/in.fingerd\n"
+"finger stream tcp nowait  nobody     /usr/sbin/tcpd     in.fingerd\n"
 "ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
 
 #. Tag: indexterm
