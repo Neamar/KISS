@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-09-12 04:16+0200\n"
+"PO-Revision-Date: 2014-09-26 12:47+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
@@ -1537,11 +1537,11 @@ msgstr ""
 "variável de ambiente <varname>$HOME</varname> geralmente aponta para ele);"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "program to execute upon login. This is usually a command interpreter (shell), giving the user free rein. If you specify <command>/bin/false</command> (which does nothing and returns control immediately), the user can not login."
 msgstr ""
 "programa para executar no login. Em geral é um interpretador de comandos "
-"(shell), dando ao usuário \"free rein\". Se você especificar "
+"(shell), deixando o usuário com \"rédea solta\". Se você especificar "
 "<command>/bin/false</command> (que não faz nada e devolve o controle "
 "imediatamente), o usuário não vai conseguir logar."
 
@@ -1556,9 +1556,13 @@ msgid "<primary>group</primary>"
 msgstr "<primary>grupo</primary>"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "A Unix group is an entity including several users so that they can easily share files using the integrated permission system (by benefiting from the same rights). You can also restrict use of certain programs to a specific group."
 msgstr ""
+"Um grupo do Unix é uma entidade que contém vários usuários de forma que eles "
+"possam compartilhar arquivos facilmente usando o sistema de permissões "
+"integrado (\"by benefiting\" dos mesmos direitos). Você também pode "
+"restringir o uso de certos programas a um grupo específico."
 
 #. Tag: title
 #, no-c-format
@@ -1618,6 +1622,14 @@ msgstr "<emphasis>SEGURANÇA</emphasis> <filename>/etc/shadow</filename> seguran
 #, no-c-format
 msgid "<filename>/etc/shadow</filename>, unlike its alter-ego, <filename>/etc/passwd</filename>, cannot be read by regular users. Any encrypted password stored in <filename>/etc/passwd</filename> is readable by anybody; a cracker could try to “break” (or reveal) a password by one of several “brute force” methods which, simply put, guess at commonly used combinations of characters. This attack — called a \"dictionary attack\" — is no longer possible on systems using <filename>/etc/shadow</filename>."
 msgstr ""
+"<filename>/etc/shadow</filename>, ao contrário do seu alter-ego, "
+"<filename>/etc/passwd</filename>, não pode ser lido por usuários normais. "
+"Qualquer senha criptografada armazenada em <filename>/etc/passwd</filename> "
+"pode ser lida por todo mundo; um cracker pode tentar \"quebrar\" (ou revelar)"
+" uma senha através de um dos vários métodos \"força bruta\" que, de forma "
+"geral, tantam adivinhar uma combinação muito usada de caracteres. Este "
+"ataque — chamado de \"ataque de dicionário\" — não é mais possível em "
+"sistemas usando o <filename>/etc/shadow</filename>."
 
 #. Tag: title
 #, no-c-format
