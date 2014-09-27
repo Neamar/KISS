@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-09-27 04:35+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-10-02 15:52+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -1675,6 +1675,13 @@ msgstr ""
 #, no-c-format
 msgid "Finally, the <command>chage</command> (CHange AGE) command allows the administrator to change the password expiration settings (the <literal>-l <replaceable>user</replaceable></literal> option will list the current settings). You can also force the expiration of a password using the <command>passwd -e <replaceable>user</replaceable></command> command, which will require the user to change their password the next time they log in."
 msgstr ""
+"Finalmente, o comando <command>chage</command> (CHange AGE) permite ao "
+"administrador alterar as configurações de expiração da senha (a opção "
+"<literal>-l <replaceable>user</replaceable></literal> irá listar as "
+"configurações corrente). Vocẽ também pode forçar a expiração da senha usando "
+"o comando <command>passwd -e <replaceable>user</replaceable></command>, o "
+"qual irá requerer que o usuário altere sua senha na próxima vez que iniciar "
+"uma sessão."
 
 #. Tag: title
 #, no-c-format
@@ -1695,6 +1702,15 @@ msgstr "<primary>conta</primary><secondary>desativar</secondary>"
 #, no-c-format
 msgid "You may find yourself needing to “disable an account” (lock out a user), as a disciplinary measure, for the purposes of an investigation, or simply in the event of a prolonged or definitive absence of a user. A disabled account means the user cannot login or gain access to the machine. The account remains intact on the machine and no files or data are deleted; it is simply inaccessible. This is accomplished by using the command <command>passwd -l <replaceable>user</replaceable></command> (lock). Re-enabling the account is done in similar fashion, with the <literal>-u</literal> option (unlock)."
 msgstr ""
+"Você pode necessitar “desabilitar uma conta” (bloquear um usuário), como uma "
+"medida disciplinar, para propósitos de uma investigação, ou simplesmente no "
+"caso de uma prolongada ou definitiva ausência de um usuário. Uma conta "
+"desabilitada significa que o usuário não pode iniciar uma sessão ou ganhar "
+"acesso a máquina. A conta permanece intacta na máquina e nenhum arquivo ou "
+"dado é apagado; ela é simplesmente inacessível. Isso é feito usando o "
+"comando <command>passwd -l <replaceable>user</replaceable></command> "
+"(bloqueio). Reabilitar a conta é feito de maneira similar, com a opção "
+"<literal>-u</literal> (desbloqueio)."
 
 #. Tag: title
 #, no-c-format
@@ -1704,12 +1720,20 @@ msgstr "<emphasis>APROFUNDANDO</emphasis> NSS e banco de dados do sistema"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Name Service Switch</primary>"
-msgstr ""
+msgstr "<primary>Name Service Switch</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Instead of using the usual files to manage lists of users and groups, you could use other types of databases, such as LDAP or <command>db</command>, by using an appropriate NSS (Name Service Switch) module. The modules used are listed in the <filename>/etc/nsswitch.conf</filename> file, under the <literal>passwd</literal>, <literal>shadow</literal> and <literal>group</literal> entries. See <xref linkend=\"sect.config-nss\" /> for a specific example of the use of an NSS module by LDAP."
 msgstr ""
+"Ao invés de usar os arquivos usuais para gerenciar listas de usuários e "
+"grupos, você pode usar outros tipos de banco de dados, como LDAP ou "
+"<command>db</command>, usando o módulo NSS (Name Service Switch) apropriado. "
+"Os módulos usados estão listados no arquivo "
+"<filename>/etc/nsswitch.conf</filename>, sob as entradas "
+"<literal>passwd</literal>, <literal>shadow</literal> e "
+"<literal>group</literal>. Veja <xref linkend=\"sect.config-nss\" /> para um "
+"exemplo específico de uso do módulo NSS pelo LDAP."
 
 #. Tag: title
 #, no-c-format
@@ -1731,6 +1755,9 @@ msgstr "nome do grupo;"
 #, no-c-format
 msgid "password (optional): This is only used to join a group when one is not a usual member (with the <command>newgrp</command> or <command>sg</command> commands, see sidebar);"
 msgstr ""
+"senha (opcional): Isso só é usado para participar de um grupo quando não se "
+"é um membro usual (com os comandos <command>newgrp</command> ou "
+"<command>sg</command>, veja barra lateral);"
 
 #. Tag: para
 #, no-c-format
@@ -1742,6 +1769,8 @@ msgstr "<literal>gid</literal>: identificar numérico único para cada grupo;"
 #, no-c-format
 msgid "list of members: list of names of users who are members of the group, separated by commas."
 msgstr ""
+"lista de membros: lista de nomes de usuários que são membros do grupo, "
+"separados por vírgulas."
 
 #. Tag: title
 #, no-c-format
@@ -1772,16 +1801,36 @@ msgstr "<primary>grupo</primary><secondary>mudança</secondary>"
 #, no-c-format
 msgid "Each user may be a member of many groups; one of them is their “main group”. A user's main group is, by default, created during initial user configuration. By default, each file that a user creates belongs to them, as well as to their main group. This is not always desirable; for example, when the user needs to work in a directory shared by a group other than their main group. In this case, the user needs to change their main group using one of the following commands: <command>newgrp</command>, which starts a new shell, or <command>sg</command>, which simply executes a command using the supplied alternate group. These commands also allow the user to join a group to which they do not belong. If the group is password protected, they will need to supply the appropriate password before the command is executed."
 msgstr ""
+"Cada usuário pode ser membro de muitos grupos; um deles é seu “grupo "
+"principal”. O grupo principal de um usuário é, por padrão, criado durante a "
+"configuração inicial do usuário. Por padrão, cada arquivo que o usuário "
+"criar pertencerá a eles, assim como ao seu grupo principal. Isso nem sempre "
+"é desejável; por exemplo, quando o usuário precisa trabalhar em um diretório "
+"compartilhado por um grupo diferente de seu grupo principal. Neste caso, o "
+"usuário precisa alterar seu grupo principal usando os seguintes comandos: "
+"<command>newgrp</command>, o qual inicia um novo shell, ou "
+"<command>sg</command>, o qual simplesmente executa um comando usando o grupo "
+"alternativo fornecido. Esses comandos também permitem ao usuário participar "
+"de um grupo o qual ele não pertence. Se o grupo é protegido por senha, ele "
+"terá de fornecer a senha apropriada antes de o comando ser executado."
 
 #. Tag: para
 #, no-c-format
 msgid "Alternatively, the user can set the <literal>setgid</literal> bit on the directory, which causes files created in that directory to automatically belong to the correct group. For more details, see sidebar <xref linkend=\"sidebar.setgid-dir\" />."
 msgstr ""
+"Alternativamente, o usuário pode definir o bit <literal>setgid</literal> no "
+"diretório, o que causa aos arquivos criados neste diretório serem "
+"automaticamente pertencentes ao grupo correto. Para mais detalhes, veja a "
+"barra lateral <xref linkend=\"sidebar.setgid-dir\" />."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>id</command> command displays the current state of a user, with their personal identifier (<varname>uid</varname> variable), current main group (<varname>gid</varname> variable), and the list of groups to which they belong (<varname>groups</varname> variable)."
 msgstr ""
+"O comando <command>id</command> exibe o estado corrente de um usuário, com "
+"sua identidade pessoal(variável <varname>uid</varname>), grupo principal "
+"corrente (variável <varname>gid</varname>), e a lista de grupos aos quais "
+"pertence (variável <varname>groups</varname>)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1797,6 +1846,13 @@ msgstr "<primary><filename>/etc/group</filename></primary>"
 #, no-c-format
 msgid "The <command>addgroup</command> and <command>delgroup</command> commands add or delete a group, respectively. The <command>groupmod</command> command modifies a group's information (its <literal>gid</literal> or identifier). The command <command>passwd -g <replaceable>group</replaceable></command> changes the password for the group, while the <command>passwd -r -g <replaceable>group</replaceable></command> command deletes it."
 msgstr ""
+"Os comandos <command>addgroup</command> e <command>delgroup</command> "
+"adicionam ou apagam um grupo, respectivamente. O comando "
+"<command>groupmod</command> modifica a informação do grupo (seu "
+"<literal>gid</literal> ou identificador). O comando <command>passwd -g "
+"<replaceable>grupo</replaceable></command> altera a senha para o grupo, "
+"enquanto o comando <command>passwd -r -g "
+"<replaceable>grupo</replaceable></command> o apaga."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1847,6 +1903,14 @@ msgstr "<primary><command>getent</command></primary>"
 #, no-c-format
 msgid "The <command>getent</command> (get entries) command checks the system databases the standard way, using the appropriate library functions, which in turn call the NSS modules configured in the <filename>/etc/nsswitch.conf</filename> file. The command takes one or two arguments: the name of the database to check, and a possible search key. Thus, the command <command>getent passwd rhertzog</command> will give the information from the user database regarding the user <literal>rhertzog</literal>."
 msgstr ""
+"O comando <command>getent</command> (obter entradas) faz a checagem padrão "
+"do banco de dados do sistemas, usando as funções de biblioteca apropriadas, "
+"as quais, por sua vez, chamam os módulos NSS configurados  no arquivo "
+"<filename>/etc/nsswitch.conf</filename>. O comando recebe um ou dois "
+"argumentos: o nome do banco de dados a ser checado, e uma possível chave de "
+"busca. Assim, o comando <command>getent passwd rhertzog</command> dará as "
+"informações do banco de dados do usuário em relação ao "
+"usuário<literal>rhertzog</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -1867,6 +1931,10 @@ msgstr "<primary>criação</primary><secondary>de contas de usuários</secondary
 #, no-c-format
 msgid "One of the first actions an administrator needs to do when setting up a new machine is to create user accounts. This is typically done using the <command>adduser</command> command which takes a user-name for the new user to be created, as an argument."
 msgstr ""
+"Uma das primeiras ações que um administrador precisa fazer enquanto "
+"configura uma nova máquina é criar contas de usuário. Isso é tipicamente "
+"feito usando o comando <command>adduser</command> o qual recebe um nome-de-"
+"usuário para o novo usuário a ser criado, como um argumento."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1877,6 +1945,15 @@ msgstr "<primary><command>adduser</command></primary>"
 #, no-c-format
 msgid "The <command>adduser</command> command asks a few questions before creating the account, but its usage is fairly straightforward. Its configuration file, <filename>/etc/adduser.conf</filename>, includes all the interesting settings: it can be used to automatically set a quota for each new user by creating a user template, or to change the location of user accounts; the latter is rarely useful, but it comes in handy when you have a large number of users and want to divide their accounts over several disks, for instance. You can also choose a different default shell."
 msgstr ""
+"O comando <command>adduser</command> faz algumas perguntas antes de criar a "
+"conta, mas seu uso é bastante simples. Seu arquivo de configuração, "
+"<filename>/etc/adduser.conf</filename>, inclui todas as configurações "
+"interessantes: ele pode ser usado para automaticamente definir uma cota para "
+"cada novo usuário, criando um modelo de usuário, ou para alterar a "
+"localização das contas de usuário; essa última é raramente útil, mas se "
+"torna interessante quando você tem um grande número de usuários e quer "
+"dividir suas contas por vários discos, por exemplo. Você pode também "
+"escolher um shell padrão diferente."
 
 #. Tag: title
 #, no-c-format
@@ -1897,6 +1974,9 @@ msgstr "O termo \"cota\" se refere a um limite de recursos da máquina que um us
 #, no-c-format
 msgid "The creation of an account populates the user's home directory with the contents of the <filename>/etc/skel/</filename> template. This provides the user with a set of standard directories and configuration files."
 msgstr ""
+"A criação de uma conta povoa o diretório home do usuário com o conteudo do "
+"template de <filename>/etc/skel/</filename>. Isso provê ao usuário um "
+"conjunto padrão de diretórios e arquivos de configuração."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1912,6 +1992,13 @@ msgstr "<primary>adicionar um usuário a um grupo</primary>"
 #, no-c-format
 msgid "In some cases, it will be useful to add a user to a group (other than their default “main” group) in order to grant them additional permissions. For example, a user who is included in the <emphasis>audio</emphasis> group can access audio devices (see sidebar “Device access permissions”). This can be achieved with a command such as <command>adduser <replaceable>user</replaceable> <replaceable>group</replaceable></command>."
 msgstr ""
+"Em alguns casos, será útil adicionar um usuário em um grupo (diferente do "
+"grupo principal padrão) em razão de garantir a ele permissões adicionais. "
+"Por exemplo, um usuário que seja incluído no grupo <emphasis>audio</emphasis>"
+" pode acessar dispositivos de audio (veja barra lateral “Permissão de acesso "
+"a dispositivos”). Isso pode ser alcançável com um comando como o <command>"
+"adduser <replaceable>usuário</replaceable> "
+"<replaceable>grupo</replaceable></command>."
 
 #. Tag: title
 #, no-c-format
@@ -1962,16 +2049,38 @@ msgstr "<primary><command>mknod</command></primary>"
 #, no-c-format
 msgid "Each hardware peripheral device is represented under Unix with a special file, usually stored in the file tree under <filename>/dev/</filename> (DEVices). Two types of special files exist according to the nature of the device: “character mode” and “block mode” files, each mode allowing for only a limited number of operations. While character mode limits interaction with read/write operations, block mode also allows seeking within the available data. Finally, each special file is associated with two numbers (“major” and “minor”) that identify the device to the kernel in a unique manner. Such a file, created by the <command>mknod</command> command, simply contains a symbolic (and more human-friendly) name."
 msgstr ""
+"Cada dispositivo periférico de hardware é representado sob o Unix como um "
+"arquivo especial, usualmente armazenado na árvore de arquivos sob "
+"<filename>/dev/</filename> (DEVices). Existem dois tipos de arquivos "
+"especiais, de acordo com a natureza do dispositivos: arquivos “modo caracter”"
+" e “modo bloco”, cada modo permite apenas um limitado número de operações. "
+"Enquanto o modo caracter limita a interação com operações de leitura/"
+"escrita, o modo bloco também permite a busca dentro dos dados disponíveis. "
+"Finalmente, cada arquivo especial é associado com dois numeros (“major” and "
+"“minor”) que identifica o dispositivo no kernel de maneira única. Esse tipo "
+"de arquivo, criado pelo comando <command>mknod</command>, simplesmente "
+"contém um nome simbólico (e mais amigável para humanos)."
 
 #. Tag: para
 #, no-c-format
 msgid "The permissions of a special file map to the permissions necessary to access the device itself. Thus, a file such as <filename>/dev/mixer</filename>, representing the audio mixer, only has read/write permissions for the root user and members of the <literal>audio</literal> group. Only these users can operate the audio mixer."
 msgstr ""
+"As permissões de um arquivo especial mapeiam as permissões necessárias para "
+"acessar o próprio dispositivo. Assim,,um arquivo como o "
+"<filename>/dev/mixer</filename>, representando o mixador de audio, apenas "
+"tem permissões de leitura/escrita para o usuário root e membros do grupo "
+"<literal>audio</literal>. Apenas esses usuários podem operar o mixador de "
+"audio."
 
 #. Tag: para
 #, no-c-format
 msgid "It should be noted that the combination of <emphasis role=\"pkg\">udev</emphasis>, <emphasis role=\"pkg\">consolekit</emphasis> and <emphasis role=\"pkg\">policykit</emphasis> can add additional permissions to allow users physically connected to the console (and not through the network) to access to certain devices."
 msgstr ""
+"Deve ser notado que a combinação de <emphasis role=\"pkg\">udev</emphasis>, <"
+"emphasis role=\"pkg\">consolekit</emphasis> e <emphasis role=\"pkg\""
+">policykit</emphasis> pode somar permissões adicionais a usuários "
+"fisicamente conectados ao console (e não através da rede) acessarem certos "
+"dispositivos."
 
 #. Tag: title
 #, no-c-format
@@ -3701,6 +3810,12 @@ msgstr ""
 #, no-c-format
 msgid "The configuration steps described in this chapter are basic and can lead both to a server system or a workstation, and it can be massively duplicated in semi-automated ways. However, it is not enough by itself to provide a fully configured system. A few pieces are still in need of configuration, starting with low-level programs known as the “Unix services”."
 msgstr ""
+"As etapas de configuração descritas neste capítulo são básicas e podem levar "
+"tanto a um sistema servidor ou a uma estação de trabalho, e podem ser "
+"massivamente duplicadas em modos semi-automatizados. Contudo, não é "
+"suficiente por si só para prover um sistema completamente configurado. "
+"Algumas peças ainda precisam ser configuradas, começando por programas de "
+"baixo nivel (low-level) conhecidos como “Unix services”."
 
 #~ msgid "<primary>Latin 0</primary>"
 #~ msgstr "<primary>Latin 0</primary>"
