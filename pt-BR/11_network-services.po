@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-09-03 14:26+0200\n"
+"PO-Revision-Date: 2014-10-01 17:43+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
@@ -1315,11 +1315,21 @@ msgstr ""
 #, no-c-format
 msgid "Each time Postfix reaches this rule in the ruleset, it will connect to the <command>postgrey</command> daemon and send it information concerning the relevant message. On its side, Postgrey considers the IP address/sender/recipient triplet and checks in its database whether that same triplet has been seen recently. If so, Postgrey replies that the message should be accepted; if not, the reply indicates that the message should be temporarily rejected, and the triplet gets recorded in the database."
 msgstr ""
+"Cada vez que o Postfix alcança esta regra no conjunto de regras, ele irá se "
+"conectar ao daemon <command>postgrey</command> e enviar a ele informações a "
+"respeito de mensagens relevantes. Do seu lado, o Postgrey, considera a "
+"tripla endereço IP/remetente/destinatário e verifica em seu banco de dados "
+"se a mesma tripla foi vista recentemente. Se sim, o Postgrey responde que a "
+"mensagem foi aceita; se não, a resposta indica que a mensagem deve ser "
+"rejeitada temporariamente, e a tripla é registrada no banco de dados."
 
 #. Tag: para
 #, no-c-format
 msgid "The main disadvantage of greylisting is that legitimate messages get delayed, which is not always acceptable. It also increases the burden on servers that send many legitimate emails."
 msgstr ""
+"A principal desvantagem de listas cinza é que mensagens legítimas podem ser "
+"atrasadas, o que nem sempre é aceitável. também aumenta a carga em "
+"servidores que mandam muitos email legítimos."
 
 #. Tag: title
 #, no-c-format
