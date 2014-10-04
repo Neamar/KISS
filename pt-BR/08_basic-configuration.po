@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-03 18:09+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-10-04 16:56+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -2145,7 +2145,7 @@ msgstr ""
 "um script)."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>DISCOVERY</emphasis> Other shells, other scripts"
 msgstr "<emphasis>DISCOVERY</emphasis> Outros shells, outros scripts"
 
@@ -2153,6 +2153,12 @@ msgstr "<emphasis>DISCOVERY</emphasis> Outros shells, outros scripts"
 #, no-c-format
 msgid "Each command interpreter has a specific syntax and its own configuration files. Thus, <command>zsh</command> uses <filename>/etc/zshrc</filename> and <filename>/etc/zshenv</filename>; <command>csh</command> uses <filename>/etc/csh.cshrc</filename>, <filename>/etc/csh.login</filename> and <filename>/etc/csh.logout</filename>. The man pages for these programs document which files they use."
 msgstr ""
+"Cada interpretador de comando tem uma sintaxe específica e seus próprios "
+"arquivos de configuração. Assim, <command>zsh</command> usa "
+"<filename>/etc/zshrc</filename> e <filename>/etc/zshenv</filename>; "
+"<command>csh</command> usa <filename>/etc/csh.cshrc</filename>, "
+"<filename>/etc/csh.login</filename> e <filename>/etc/csh.logout</filename>. "
+"As páginas de manual desses programas documentam quais arquivos eles usam."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2168,6 +2174,9 @@ msgstr "<primary><command>csh</command></primary>"
 #, no-c-format
 msgid "For <command>bash</command>, it is useful to activate “automatic completion” in the <filename>/etc/bash.bashrc</filename> file (simply uncomment a few lines)."
 msgstr ""
+"Para o <command>bash</command>, é útil ativar “preenchimento automático” no "
+"arquivo <filename>/etc/bash.bashrc</filename> (simplesmente descomentando "
+"algumas linhas)."
 
 #. Tag: title
 #, no-c-format
@@ -2183,11 +2192,22 @@ msgstr "<primary>preenchimento automático</primary>"
 #, no-c-format
 msgid "Many command interpreters provide a completion feature, which allows the shell to automatically complete a partially typed command name or argument when the user hits the <keycap>Tab</keycap> key. This lets users work more efficiently and be less error-prone."
 msgstr ""
+"Muitos interpretadores de comando fornecem o recurso de complementação, o "
+"qual permite ao shell completar automaticamente um nome de comando "
+"parcialmente digitado ou argumento quando o usuário pressiona a tecla "
+"<keycap>Tab</keycap>. Isso faz com que os usuários trabalhem com mais "
+"eficiência e sejam menos propensos a erros."
 
 #. Tag: para
 #, no-c-format
 msgid "This function is very powerful and flexible. It is possible to configure its behavior according to each command. Thus, the first argument following <command>apt-get</command> will be proposed according to the syntax of this command, even if it does not match any file (in this case, the possible choices are <literal>install</literal>, <literal>remove</literal>, <literal>upgrade</literal>, etc.)."
 msgstr ""
+"Essa função é muito poderosa e flexível. É possível configurar seu "
+"comportamento de acordo com cada comando. Assim, o primeiro argumento "
+"seguido de <command>apt-get</command> irá ser proposto de acordo com a "
+"sintaxe deste comando, mesmo que não coincida com nenhum arquivo (neste "
+"caso, as opções possíveis são <literal>install</literal>, "
+"<literal>remove</literal>, <literal>upgrade</literal>, etc.)."
 
 #. Tag: title
 #, no-c-format
@@ -2208,16 +2228,33 @@ msgstr "<primary>til</primary>"
 #, no-c-format
 msgid "The tilde is often used to indicate the directory to which the environment variable, <varname>HOME</varname>, points (being the user's home directory, such as <filename>/home/rhertzog/</filename>). Command interpreters automatically make the substitution: <filename>~/hello.txt</filename> becomes <filename>/home/rhertzog/hello.txt</filename>."
 msgstr ""
+"O til geralmente é usado para indicar o diretório o qual a variável de "
+"ambiente, <varname>HOME</varname>, aponta (sendo o diretório home do "
+"usuário, como por exemplo <filename>/home/rhertzog/</filename>). "
+"Interpretadores de comando automaticamente fazem a substituição: "
+"<filename>~/hello.txt</filename> se torna "
+"<filename>/home/rhertzog/hello.txt</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "The tilde also allows access to another user's home directory. Thus, <filename>~rmas/bonjour.txt</filename> is synonymous with <filename>/home/rmas/bonjour.txt</filename>."
 msgstr ""
+"O til também permite acesso para o diretório home de outro usuário. Assim, "
+"<filename>~rmas/bonjour.txt</filename> é sinônimo de "
+"<filename>/home/rmas/bonjour.txt</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "In addition to these common scripts, each user can create their own <filename>~/.bashrc</filename> and <filename>~/.bash_profile</filename> to configure their shell. The most common changes are the addition of aliases; these are words that are automatically replaced with the execution of a command, which makes it faster to invoke that command. For instance, you could create the <literal>la</literal> alias for the command <command>ls -la | less</command> command; then you only have to type <command>la</command> to inspect the contents of a directory in detail."
 msgstr ""
+"Em adição a esses scripts comuns, cada usuário pode criar seu próprio "
+"<filename>~/.bashrc</filename> e  <filename>~/.bash_profile</filename> para "
+"configurar seu shell. As mudanças mais comuns são a adição de \"aliases\"; "
+"palavras que são automaticamente substituidas pela execução de um comando, o "
+"que faz ficar mais rápido a invocação desse comando. Por exemplo, você "
+"poderia criar o \"alias\" <literal>la</literal> para o comando <command>ls -"
+"la | less</command>; assim você tem apenas que digitar <command>la</command> "
+"para inspecionar o conteúdo do diretório detalhadamente."
 
 #. Tag: title
 #, no-c-format
@@ -2240,11 +2277,25 @@ msgstr "<primary>variável, ambiente</primary>"
 #, no-c-format
 msgid "Environment variables allow storage of global settings for the shell or various other programs called. They are contextual (each process has its own set of environment variables) but inheritable. This last characteristic offers the possibility for a login shell to declare variables which will be passed down to all programs it executes."
 msgstr ""
+"Variáveis de ambiente permitem o armazenamento de configurações globais para "
+"o shell ou vários outros programas executados. Elas são contextuais (cada "
+"processo têm seu próprio conjunto de variáveis de ambiente) porém "
+"hereditárias. Essa última característica oferece a possibilidade para o "
+"shell de login declarar variáveis as quais irão ser repassadas para todos os "
+"programas que ele executa."
 
 #. Tag: para
 #, no-c-format
 msgid "Setting default environment variables is an important element of shell configuration. Leaving aside the variables specific to a shell, it is preferable to place them in the <filename>/etc/environment</filename> file, since it is used by the various programs likely to initiate a shell session. Variables typically defined there include <varname>ORGANIZATION</varname>, which usually contains the name of the company or organization, and <varname>HTTP_PROXY</varname>, which indicates the existence and location of an HTTP proxy."
 msgstr ""
+"Definir as variáveis de ambiente padrão é um elemento importante da "
+"configuração do shell. Deixando de lado as variáveis específicas do shell, é "
+"preferível colocá-las no arquivo <filename>/etc/environment</filename>, já "
+"que ele é usado por vários programas passíveis de iniciar uma sessão do "
+"shell. Variáveis tipicamente definidas lá incluem "
+"<varname>ORGANIZATION</varname>, a qual usualmente contém o nome da compania "
+"ou organização, e <varname>HTTP_PROXY</varname>, a qual indica a existência "
+"e localização de um proxy HTTP."
 
 #. Tag: title
 #, no-c-format
