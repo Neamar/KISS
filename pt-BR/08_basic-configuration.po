@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-05 15:30+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-10-07 16:20+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -2306,6 +2306,13 @@ msgstr "<emphasis>DICA</emphasis> Todos os shells configurados identicamente"
 #, no-c-format
 msgid "Users often want to configure their login and interactive shells in the same way. To do this, they choose to interpret (or “source”) the content from <filename>~/.bashrc</filename> in the <filename>~/.bash_profile</filename> file. It is possible to do the same with files common to all users (by calling <filename>/etc/bash.bashrc</filename> from <filename>/etc/profile</filename>)."
 msgstr ""
+"Os usuários geralmente querem configurar seu login e shell interativo de "
+"maneira similar. Para fazer isso, eles escolhem interpretar (ou “fonte”) o "
+"contéudo de <filename>~/.bashrc</filename> no arquivo "
+"<filename>~/.bash_profile</filename>. É possível fazer a mesma coisa com "
+"arquivos comuns a todos os usuários (referenciando "
+"<filename>/etc/bash.bashrc</filename> a partir de "
+"<filename>/etc/profile</filename>)."
 
 #. Tag: title
 #, no-c-format
@@ -2326,6 +2333,10 @@ msgstr "<primary>imprimindo</primary><secondary>configuração</secondary>"
 #, no-c-format
 msgid "Printer configuration used to cause a great many headaches for administrators and users alike. These headaches are now mostly a thing of the past, thanks to <emphasis role=\"pkg\">cups</emphasis>, the free print server using the IPP protocol (Internet Printing Protocol)."
 msgstr ""
+"A configuração de impressora geralmente causava muitas dores de cabeça para "
+"administradores e usuários. Essas dores de cabeça são agora quase que uma "
+"coisa do passado, obrigado ao <emphasis role=\"pkg\">cups</emphasis>, o "
+"servidor de impressão usando o protocolo IPP (Internet Printing Protocol)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2346,6 +2357,17 @@ msgstr "<primary><command>cups</command></primary>"
 #, no-c-format
 msgid "This program is divided over several Debian packages: <emphasis role=\"pkg\">cups</emphasis> is the central print server; <emphasis role=\"pkg\">cups-bsd</emphasis> is a compatibility layer allowing use of commands from the traditional BSD printing system (<command>lpd</command> daemon, <command>lpr</command> and <command>lpq</command> commands, etc.); <emphasis role=\"pkg\">cups-client</emphasis> contains a group of programs to interact with the server (block or unblock a printer, view or delete print jobs in progress, etc.); and finally, <emphasis role=\"pkg\">cups-driver-gutenprint</emphasis> contains a collection of additional printer drivers for <command>cups</command>."
 msgstr ""
+"Esse programa é dividido em vários pacotes Debian: <emphasis role=\"pkg\""
+">cups</emphasis> é o servidor de impressão central; <emphasis role=\"pkg\""
+">cups-bsd</emphasis> é uma camada de compatibilidade que permite o uso de "
+"comandos a partir do daemon do sistema de impressão BSD tradicional ("
+"comandos <command>lpd</command>, <command>lpr</command> e "
+"<command>lpq</command>, etc.); <emphasis role=\"pkg\">cups-client</emphasis> "
+"contém um grupo de programas para interagir com o servidor (bloquear ou "
+"desbloquear uma impressora, ver ou apagar trabalhos de impressão em "
+"execução, etc.); e finalmente, <emphasis role=\"pkg\">cups-driver-"
+"gutenprint</emphasis> contém uma coleção de drivers de impressora adicionais "
+"para o <command>cups</command>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2381,11 +2403,22 @@ msgstr "<primary>Common Unix Printing System</primary>"
 #, no-c-format
 msgid "CUPS (Common Unix Printing System) is a project (and a trademark) managed by Apple, Inc. <ulink type=\"block\" url=\"http://www.cups.org/\" />"
 msgstr ""
+"CUPS (Common Unix Printing System) é um projeto (e uma marca registrada) "
+"gerenciado pela Apple, Inc. <ulink type=\"block\" url=\"http://www.cups.org/"
+"\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "After installation of these different packages, <command>cups</command> is administered easily through a web interface accessible at the local address: <literal>http://localhost:631/</literal>. There you can add printers (including network printers), remove, and administer them. You can also administer <command>cups</command> with the <command>system-config-printer</command> graphical interface (from the Debian package of the same name), which is installed by default if the “Desktop environment” task is chosen."
 msgstr ""
+"Após a instalação desses diferentes pacotes, <command>cups</command> é "
+"facilmente administrado através da interface web acessível pelo endereço "
+"local: <literal>http://localhost:631/</literal>. Lá você pode adicionar "
+"impressoras (incluindo impressoras na rede), remover, e administra-las. Você "
+"também pode administrar o <command>cups</command> com a interface gráfica "
+"<command>system-config-printer</command> (a partir do pacote Debian de mesmo "
+"nome), o qual é instalado por padrão se a tarefa “ambiente Desktop” for "
+"escolhida."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2401,6 +2434,13 @@ msgstr "<emphasis>NOTA</emphasis> Obsolescência do <filename>/etc/printcap</fil
 #, no-c-format
 msgid "<emphasis>cups</emphasis> no longer uses the <filename>/etc/printcap</filename> file, which is now obsolete. Programs that rely upon this file to get a list of available printers will, thus, fail. To avoid this problem, delete this file and make it a symbolic link (see sidebar <xref linkend=\"sidebar.symbolic-link\" />) to <filename>/var/run/cups/printcap</filename>, which is maintained by <emphasis>cups</emphasis> to ensure compatibility."
 msgstr ""
+"<emphasis>cups</emphasis> não mais usa o arquivo "
+"<filename>/etc/printcap</filename>, que agora é obsoleto. Os programas que "
+"dependem deste arquivo para obter uma lista de impressoras disponíveis irão, "
+"assim, falhar. Para evitar esse problema, apague esse arquivo e faça um link "
+"simbólico (veja barra lateral <xref linkend=\"sidebar.symbolic-link\" />) "
+"para <filename>/var/run/cups/printcap</filename>, o qual é mantido pelo "
+"<emphasis>cups</emphasis> para garantir compatibilidade."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2426,6 +2466,11 @@ msgstr "<primary>carregador de inicialização</primary>"
 #, no-c-format
 msgid "It is probably already functional, but it is always good to know how to configure and install the bootloader in case it disappears from the Master Boot Record. This can occur after installation of another operating system, such as Windows. The following information can also help you to modify the bootloader configuration if needed."
 msgstr ""
+"Isso provavelmente já é funcional, mas é sempre bom saber configurar e "
+"instalar o carregador de inicialização em caso dele desaparecer da MBR ("
+"Master Boot Record). Isso pode ocorrer depois da instalação de outro sistema "
+"operacional, como o Windows. A seguinte informação pode também ajudar você a "
+"modificar a configuração do carregador de inicialização caso necessário."
 
 #. Tag: title
 #, no-c-format
@@ -2446,6 +2491,11 @@ msgstr "<primary>Master Boot Record</primary>"
 #, no-c-format
 msgid "The Master Boot Record (MBR) occupies the first 512 bytes of the first hard disk, and is the first thing loaded by the BIOS to hand over control to a program capable of booting the desired operating system. In general, a bootloader gets installed in the MBR, removing its previous content."
 msgstr ""
+"A MBR (Master Boot Record) ocupa os primeiros 512 bytes do primeiro disco "
+"rígido, e é a primeira coisa carregada pela BIOS para entregar o controle a "
+"um programa capaz de inicializar o sistema operacional desejado. Em geral, "
+"um carregador de inicialização fica instalado dentro da MBR, removendo seu "
+"conteúdo prévio."
 
 #. Tag: title
 #, no-c-format
@@ -2464,6 +2514,14 @@ msgstr ""
 #, no-c-format
 msgid "The <filename>/dev/</filename> directory traditionally houses so-called “special” files, intended to represent system peripherals (see sidebar <xref linkend=\"sidebar.special-files\" />). Once upon a time, it used to contain all special files that could potentially be used. This approach had a number of drawbacks among which the fact that it restricted the number of devices that one could use (due to the hardcoded list of names), and that it was impossible to know which special files were actually useful."
 msgstr ""
+"O diretório <filename>/dev/</filename> tradicionalmente hospeda os chamados "
+"arquivos “especiais”, destinados a representar os periféricos do sistema ("
+"veja barra lateral <xref linkend=\"sidebar.special-files\" />). Tempos "
+"atrás, era usado para armazenar todos os arquivos especiais que "
+"potencialmente poderiam ser usados. Essa abordagem tinha uma série de "
+"inconvenientes entre os quais o fato de restringir o número de dispositivos "
+"que alguém poderia usar (devido a lista de nomes codificados), e que era "
+"impossível saber quais arquivos especiais eram realmente úteis."
 
 #. Tag: para
 #, no-c-format
