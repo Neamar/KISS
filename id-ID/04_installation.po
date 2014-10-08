@@ -5,13 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-08-06 09:45+0200\n"
-"Last-Translator: Samsul Ma'arif <samsul@samsul.web.id>\n"
-"Language-Team: Indonesian\n"
-"Language: id\n"
+"PO-Revision-Date: 2014-10-14 13:43+0200\n"
+"Last-Translator: Michal Čihař <michal@cihar.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/debian-"
+"handbook/04_installation/id/>\n"
+"Language: id-ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 1.10-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -726,7 +729,15 @@ msgstr "Setelah menentukan sistem berkas dengan bagaimana diorganisasikan pada h
 #. Tag: para
 #, no-c-format
 msgid "A journalized filesystem (such as <emphasis>ext3</emphasis>, <emphasis>ext4</emphasis>, <emphasis>btrfs</emphasis>, <emphasis>reiserfs</emphasis>, or <emphasis>xfs</emphasis>) takes special measures to make it possible to return to a prior consistent state after an abrupt interruption without completely analyzing the entire disk (as was the case with the <emphasis>ext2</emphasis> system). This functionality is carried out by filling in a journal that describes the operations to conduct prior to actually executing them. If an operation is interrupted, it will be possible to “replay” it from the journal. Conversely, if an interruption occurs during an update of the journal, the last requested change is simply ignored; the data being written could be lost, but since the data on the disk has not changed, they have remained coherent. This is nothing more nor less than a transactional mechanism applied to the filesystem."
-msgstr " Sistem berkas berjurnal (seperti <emphasis>ext3</emphasis>, <emphasis>ext4</emphasis>, <emphasis>btrfs</emphasis>, <emphasis>reiserfs</emphasis>, atau <emphasis>xfs</emphasis>) mengambil tindakan khusus untuk memungkinkan kembali ke keadaan konsistem sebelumnya setelah tiba-tiba gangguan tanpa menganalisa seluruh cakram (sebagaimana kasus pada sistem berkas  <emphasis>ext2</emphasis>). Fungsionalitas ini dilakukan dengan mengisi jurnal yang menjelaskan operasi sebelum untuk benar-benar mengeksekusinya. "
+msgstr ""
+"Sistem berkas berjurnal (seperti <emphasis>ext3</emphasis>, "
+"<emphasis>ext4</emphasis>, <emphasis>btrfs</emphasis>, "
+"<emphasis>reiserfs</emphasis>, atau <emphasis>xfs</emphasis>) mengambil "
+"tindakan khusus untuk memungkinkan kembali ke keadaan konsistem sebelumnya "
+"setelah tiba-tiba gangguan tanpa menganalisa seluruh cakram (sebagaimana "
+"kasus pada sistem berkas  <emphasis>ext2</emphasis>). Fungsionalitas ini "
+"dilakukan dengan mengisi jurnal yang menjelaskan operasi sebelum untuk benar-"
+"benar mengeksekusinya."
 
 #. Tag: para
 #, no-c-format
