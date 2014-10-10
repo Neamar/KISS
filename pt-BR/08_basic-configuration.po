@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-09 02:39+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-10-10 15:39+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -2540,16 +2540,41 @@ msgstr ""
 #, no-c-format
 msgid "The kernel communicates lots of information about any newly added device and hands out a pair of major/minor numbers to identify it. With this <command>udevd</command> can create the special file under the name and with the permissions that it wants. It can also create aliases and do additional actions (initialization or registration tasks for example). <command>udevd</command>'s behavior is driven by a large set of (customizable) rules."
 msgstr ""
+"O kernel comunica um monte de informação sobre qualquer novo dispositivo "
+"adicionado e define um par de números major/minor para identificá-lo. Com "
+"esse <command>udevd</command> é possível criar um arquivo especial sob o "
+"nome e com as permissões que ele quiser. Ele também pode criar "
+"apelidos(aliases) e fazer ações adicionais (inicialização ou registro de "
+"tarefas por exemplo). O comportamento do <command>udevd</command> é "
+"comandado por um grande conjunto de regras (customizáveis)."
 
 #. Tag: para
 #, no-c-format
 msgid "With dynamically assigned names, you can thus keep the same name for a given device, regardless of the connector used or the connection order, which is especially useful when you use various USB peripherals. The first partition on the first hard drive can then be called <filename>/dev/sda1</filename> for backwards compatibility, or <filename>/dev/root-partition</filename> if you prefer, or even both at the same time since <command>udevd</command> can be configured to automatically create a symbolic link."
 msgstr ""
+"Com nomes atribuídos dinamicamente, você pode assim manter um mesmo nome "
+"para um determinado dispositivo, independentemente do conector utilizado ou "
+"a ordem da conexão, o que é especialmente útil quando você usa vários "
+"periféricos USB. A primeira partição no primeiro disco rígido pode então ser "
+"chamada de <filename>/dev/sda1</filename> por questões de compatibilidade, "
+"ou <filename>/dev/root-partition</filename> se você preferir, ou ainda as "
+"duas opções ao mesmo tempo já que o <command>udevd</command> pode ser "
+"configurado para automaticamente criar uma ligação simbólica."
 
 #. Tag: para
 #, no-c-format
 msgid "Previously, some kernel modules did automatically load when you tried to access the corresponding device file; henceforth, the peripheral's special file no longer exists prior to loading the module, which is no big deal, since most modules are loaded on boot thanks to automatic hardware detection. But for undetectable peripherals (such as older disk drives or PS/2 mice), this doesn't work. Consider adding the modules, <literal>floppy</literal>, <literal>psmouse</literal> and <literal>mousedev</literal> to <filename>/etc/modules</filename> in order to force loading them on boot."
 msgstr ""
+"Anteriormente, alguns módulos do kernel eram carregados automaticamente "
+"quando você tentava acessar o arquivo do dispositivo correspondente; hoje em "
+"dia, o arquivo especial do periférico não existe antes do carregamento do "
+"módulo, o que não é um grande problema, já que a maioria dos módulos são "
+"carregados na inicialização, graças à detecção automática de hardware. Porém "
+"para periféricos não detectados (como antigos drives de disco ou mouse PS/2)"
+", isso não funciona. Considere adicionar os módulos, "
+"<literal>floppy</literal>, <literal>psmouse</literal> e "
+"<literal>mousedev</literal> no <filename>/etc/modules</filename> para forçar "
+"o carregamento deles na inicialização."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2565,16 +2590,41 @@ msgstr "<primary>nomes</primary><secondary>dos discos rígidos</secondary>"
 #, no-c-format
 msgid "Configuration of the bootloader must identify the different hard drives and their partitions. Linux uses “block” special files stored in the <filename>/dev/</filename> directory, for this purpose. Historically, <filename>/dev/hda</filename> was the master disk on the first IDE controller, and <filename>/dev/hdb</filename> its first slave, <filename>/dev/hdc</filename> and <filename>/dev/hdd</filename> being, respectively, the master and slave disks on the second IDE controller, and so on down for any others. <filename>/dev/sda</filename> corresponded to the first SCSI drive, <filename>/dev/sdb</filename> being the second, etc. Since Debian <emphasis role=\"distribution\">Squeeze</emphasis>, this naming scheme has been unified by the Linux kernel, and all hard drives (IDE/PATA, SATA, SCSI, USB, IEEE 1394) are now represented by <filename>/dev/sd*</filename>."
 msgstr ""
+"A configuração do carregador de inicialização tem que identificar os "
+"diferentes discos rígidos e suas partições. O Linux usa arquivos “block” "
+"especiais arqmazenados no diretório <filename>/dev/</filename>, para esse "
+"propósito. Historicamente, <filename>/dev/hda</filename> era o disco "
+"principal (master) na primeira controladora IDE, e "
+"<filename>/dev/hdb</filename> seu primeiro secundário (slave), "
+"<filename>/dev/hdc</filename> e <filename>/dev/hdd</filename> sendo, "
+"respectivamente, os discos principal (master) e secundário (slave) na "
+"segunda controladora IDE, e assim por diante para os seguintes. "
+"<filename>/dev/sda</filename> corresponde ao primeiro drive SCSI, "
+"<filename>/dev/sdb</filename> sendo o segundo, etc. A partir do Debian <"
+"emphasis role=\"distribution\">Squeeze</emphasis>, esse esquema de nomeação "
+"foi unificado pelo kernel Linux, e todos os discos rígidos (IDE/PATA, SATA, "
+"SCSI, USB, IEEE 1394) são agora representados por "
+"<filename>/dev/sd*</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "Each partition is represented by its number on the disk on which it resides: for instance, <filename>/dev/sda1</filename> is the first partition on the first disk, and <filename>/dev/sdb3</filename> is the third partition on the second disk."
 msgstr ""
+"Cada partição é representada por seu número no disco no qual reside: por "
+"exemplo, <filename>/dev/sda1</filename> é a primeira partição do primeiro "
+"disco, e <filename>/dev/sdb3</filename> é a terceira partição do segundo "
+"disco."
 
 #. Tag: para
 #, no-c-format
 msgid "The PC architecture (or “i386”) is limited to four “primary” partitions per disk. To go beyond this limitation, one of them must be created as an “extended” partition, and it can then contain additional “secondary” partitions. These secondary partitions must be numbered from 5. Thus the first secondary partition could be <filename>/dev/sda5</filename>, followed by <filename>/dev/sda6</filename>, etc."
 msgstr ""
+"A arquitetura PC (ou “i386”) é limitada a quatro partições “primarias” por "
+"disco. Para ir além desta limitação, uma delas deve ser criada como uma "
+"partição “estendida”, e assim conter partições “secundárias” adicionais. "
+"Essas partições secundárias devem ser numeradas a partir de 5. Assim a "
+"primeira partição secundária poderia ser <filename>/dev/sda5</filename>, "
+"seguida por <filename>/dev/sda6</filename>, etc."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2595,6 +2645,16 @@ msgstr "<primary>partição</primary><secondary>secundária</secondary>"
 #, no-c-format
 msgid "It is not always easy to remember what disk is connected to which SATA controller, or in third position in the SCSI chain, especially since the naming of hotplugged hard drives (which includes among others most SATA disks and external disks) can change from one boot to another. Fortunately, <command>udev</command> creates, in addition to <filename>/dev/sd*</filename>, symbolic links with a fixed name, which you could then use if you wished to identify a hard drive in a non-ambiguous manner. These symbolic links are stored in <filename>/dev/disk/by-id</filename>. On a machine with two physical disks, for example, one could find the following:"
 msgstr ""
+"Nem sempre é fácil lembrar qual disco está conectado a qual controladora "
+"SATA, ou na terceira posição da cadeia SCSI, especialmente a partir da "
+"nomeação de discos rígidos \"hotplugged\" (que inclui, entre outros, a "
+"maioria dos discos SATA e discos externos) que podem mudar de uma "
+"inicialização para outra. Felizmente, o <command>udev</command> cria, em "
+"adição ao <filename>/dev/sd*</filename>, ligações simbólicas com um nome "
+"fixo, o qual você poderia, então, usar se você deseja identificar um disco "
+"rígido de maneira não ambigua. Essas ligações simbólicas são armazenadas em "
+"<filename>/dev/disk/by-id</filename>. Em uma máquina com dois discos "
+"físicos, por exemplo, pode-se encontrar o seguinte:"
 
 #. Tag: screen
 #, no-c-format
@@ -2657,11 +2717,19 @@ msgstr ""
 #, no-c-format
 msgid "Note that some disks are listed several times (because they behave simultaneously as ATA disks and SCSI disks), but the relevant information is mainly in the model and serial numbers of the disks, from which you can find the peripheral file."
 msgstr ""
+"Note que alguns discos são listados várias vezes (porquê eles se comportam "
+"simultaneamente como discos ATA e discos SCSI), porém a informação relevante "
+"são principalmente os números \"model\" e \"serial\" dos discos, a partir "
+"dos quais você pode encontrar o arquivo periférico."
 
 #. Tag: para
 #, no-c-format
 msgid "The example configuration files given in the following sections are based on the same setup: a single SATA disk, where the first partition is an old Windows installation and the second contains Debian GNU/Linux."
 msgstr ""
+"Os arquivos de configuração de exemplo dados nas seções seguintes são "
+"baseados na mesma configuração: um único disco SATA, onde a primeira "
+"partição é uma antiga instalação Windows e a segunda contém o Debian "
+"GNU/Linux."
 
 #. Tag: title
 #, no-c-format
@@ -2682,6 +2750,13 @@ msgstr "<primary>Carregador Linux</primary>"
 #, no-c-format
 msgid "<emphasis>LILO</emphasis> (LInux LOader) is the oldest bootloader — solid but rustic. It writes the physical address of the kernel to boot on the MBR, which is why each update to LILO (or its configuration file) must be followed by the command <command>lilo</command>. Forgetting to do so will render a system unable to boot if the old kernel was removed or replaced as the new one will not be in the same location on the disk."
 msgstr ""
+"O <emphasis>LILO</emphasis> (LInux LOader) é o carregador de inicialização "
+"mais antigo — sólido, porém rústico. Ele escreve o endereço físico do kernel "
+"a ser carregado na MBR, o que faz com que a cada atualização do LILO (ou de "
+"seu arquivo de configuração) deva ser seguida pelo comando "
+"<command>lilo</command>. Esquecendo de fazer, isso fará com que o sistema "
+"seja incapaz de inicializar, se o antigo kernel foi removido ou substituído, "
+"já que o novo não estará no mesmo local no disco."
 
 #. Tag: para
 #, no-c-format
