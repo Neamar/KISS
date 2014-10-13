@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-09 02:44+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-10-17 14:58+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -120,6 +120,8 @@ msgstr "Primeiro, a BIOS pega o controle sobre o computador, detectando discos, 
 #, no-c-format
 msgid "The “real init” is currently provided by <emphasis role=\"pkg\">sysv-rc</emphasis> (“System V”) and this section documents this init system."
 msgstr ""
+"O “init real” é atualmente fornecido pelo <emphasis role=\"pkg\">sysv-"
+"rc</emphasis> (“System V”) e essa seção documenta esse sistema init."
 
 #. Tag: title
 #, no-c-format
@@ -560,6 +562,10 @@ msgstr "<primary><command>rsh</command></primary>"
 #, no-c-format
 msgid "Before SSH, <emphasis>Telnet</emphasis> and <emphasis>RSH</emphasis> were the main tools used to login remotely. They are now largely obsolete and should no longer be used even if Debian still provides them."
 msgstr ""
+"Antes do SSH, <emphasis>Telnet</emphasis> e <emphasis>RSH</emphasis> eram as "
+"principais ferramentas usadas para fazer login remotamente. Elas são agora "
+"totalmente obsoletas e não devem mais ser usadas, mesmo que o Debian ainda "
+"forneça elas."
 
 #. Tag: title
 #, no-c-format
@@ -740,6 +746,17 @@ msgstr "Usando Aplicações X11 Remotamente"
 #, no-c-format
 msgid "The SSH protocol allows forwarding of graphical data (“X11” session, from the name of the most widespread graphical system in Unix); the server then keeps a dedicated channel for those data. Specifically, a graphical program executed remotely can be displayed on the X.org server of the local screen, and the whole session (input and display) will be secure. Since this feature allows remote applications to interfere with the local system, it is disabled by default. You can enable it by specifying <literal>X11Forwarding yes</literal> in the server configuration file (<filename>/etc/ssh/sshd_config</filename>). Finally, the user must also request it by adding the <literal>-X</literal> option to the <command>ssh</command> command-line."
 msgstr ""
+"O protocolo SSH permite o encaminhamento de dados gráficos (sessão “X11”, a "
+"partir do nome do sistema gráfico mais difundido no Unix); o servidor então "
+"mantém um canal dedicado para esses dados. Especificamente, um programa "
+"gráfico executado remotamente pode ser exibido no servidor X.org da tela "
+"local, e toda a sessão (entrada e exibição) será segura. Como essa "
+"funcionalidade permite que aplicações remotas interfiram com o sistema "
+"local, ela é desabilitada por padrão. Você pode habilitá-la especificando "
+"<literal>X11Forwarding yes</literal> no arquivo de configuração do servidor "
+"(<filename>/etc/ssh/sshd_config</filename>). Finalmente, o usuário tem que "
+"também requisitá-la adicionando a opção <literal>-X</literal> na linha de "
+"comando do <command>ssh</command>."
 
 #. Tag: title
 #, no-c-format
@@ -755,6 +772,10 @@ msgstr "<primary>encaminhamento de porta</primary>"
 #, no-c-format
 msgid "Its <literal>-R</literal> and <literal>-L</literal> options allow <command>ssh</command> to create “encrypted tunnels” between two machines, securely forwarding a local TCP port (see sidebar <xref linkend=\"sidebar.tcp-udp\" />) to a remote machine or vice versa."
 msgstr ""
+"Suas opções <literal>-R</literal> e <literal>-L</literal> permitem ao "
+"<command>ssh</command> criar “túneis criptografados” entre duas máquinas, "
+"encaminhando com segurança uma porta TCP local (veja barra lateral <xref "
+"linkend=\"sidebar.tcp-udp\" />) para uma máquina remota ou vice versa."
 
 #. Tag: title
 #, no-c-format
@@ -777,26 +798,64 @@ msgstr "<primary>túnel SSH</primary><seealso>VPN</seealso>"
 #, no-c-format
 msgid "The Internet, and most LANs that are connected to it, operate in packet mode and not in connected mode, meaning that a packet issued from one computer to another is going to be stopped at several intermediary routers to find its way to its destination. You can still simulate a connected operation where the stream is encapsulated in normal IP packets. These packets follow their usual route, but the stream is reconstructed unchanged at the destination. We call this a “tunnel”, analogous to a road tunnel in which vehicles drive directly from the entrance (input) to the exit (output) without encountering any intersections, as opposed to a path on the surface that would involve intersections and changing direction."
 msgstr ""
+"A Internet, e a maioria das LANs que estão conectadas a ela, operam em modo "
+"pacote (packet) e não em modo conectado (connected), o que significa que um "
+"pacote emitido de um computador para outro fará paradas em vários roteadores "
+"intermediários para encontrar seu destino. Você pode ainda simular uma "
+"operação de conectação (connected) aonde o fluxo (stream) é encapsulada em "
+"pacotes IP normais. Esses pacotes seguem sua rota usual, mas o fluxo (stream)"
+" é rescontruído sem mudanças até o destino. Nós chamamos isso de “túnel”, em "
+"analogia a uma estrada com túnel aonde veículos vão diretamente da entrada "
+"(input) para a saída (output) sem encontrarem nenhum cruzamento, em oposição "
+"a um caminho na superfície que envolveria interseções e mudanças de direção."
 
 #. Tag: para
 #, no-c-format
 msgid "You can use this opportunity to add encryption to the tunnel: the stream that flows through it is then unrecognizable from the outside, but it is returned in decrypted form at the exit of the tunnel."
 msgstr ""
+"Você pode usar essa oportunidade para adicionar criptografia ao túnel: o "
+"fluxo (stream) que flui através dele seria então irreconhecível por quem "
+"está de fora, mas retornaria ao forma sem criptografia na saída do túnel."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>ssh -L 8000:server:25 intermediary</command> establishes an SSH session with the <replaceable>intermediary</replaceable> host and listens to local port 8000 (see <xref linkend=\"figure.ssh-L\" />). For any connection established on this port, <command>ssh</command> will initiate a connection from the <replaceable>intermediary</replaceable> computer to port 25 on the <replaceable>server</replaceable>, and will bind both connections together."
 msgstr ""
+"<command>ssh -L 8000:server:25 intermediary</command> estabeleceuma sessão "
+"SSH com a máquina <replaceable>intermediary</replaceable> e escuta pela "
+"porta local 8000 (veja <xref linkend=\"figure.ssh-L\" />). Para qualquer "
+"conexão estabelecida por esta porta, <command>ssh</command> irá iniciar uma "
+"conexão a partir do computador <replaceable>intermediary</replaceable> na "
+"porta 25 no <replaceable>server</replaceable>, e irá ligar as duas conexões."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>ssh -R 8000:server:25 intermediary</command> also establishes an SSH session to the <replaceable>intermediary</replaceable> computer, but it is on this machine that <command>ssh</command> listens to port 8000 (see <xref linkend=\"figure.ssh-R\" />). Any connection established on this port will cause <command>ssh</command> to open a connection from the local machine on to port 25 of the <replaceable>server</replaceable>, and to bind both connections together."
 msgstr ""
+"<command>ssh -R 8000:server:25 intermediary</command> também estabelece uma "
+"sessão SSH com o computador <replaceable>intermediary</replaceable>, mas "
+"nessa máquina que o <command>ssh</command> ouve na porta 8000 (veja <xref "
+"linkend=\"figure.ssh-R\" />). Qualquer conexão estabelecida nesta porta fará "
+"com que o <command>ssh</command> abrir uma conexão a partir da máquina local "
+"na porta 25 do <replaceable>server</replaceable>, e fazer a ligação das duas "
+"conexões."
 
 #. Tag: para
 #, no-c-format
 msgid "In both cases, connections are made to port 25 on the <replaceable>server</replaceable> host, which pass through the SSH tunnel established between the local machine and the <replaceable>intermediary</replaceable> machine. In the first case, the entrance to the tunnel is local port 8000, and the data move towards the <replaceable>intermediary</replaceable> machine before being directed to the <replaceable>server</replaceable> on the “public” network. In the second case, the input and output in the tunnel are reversed; the entrance is port 8000 on the <replaceable>intermediary</replaceable> machine, the output is on the local host, and the data are then directed to the <replaceable>server</replaceable>. In practice, the server is usually either the local machine or the intermediary. That way SSH secures the connection from one end to the other."
 msgstr ""
+"Nos dois casos, as conexões são feitas pela porta 25 na máquina (host) "
+"<replaceable>server</replaceable>, que passa pelo túnel SSH estabelecido "
+"entre a máquina local e a máquina <replaceable>intermediary</replaceable>. "
+"No primeiro caso, a entrada do túnel é a porta local 8000, e os dados se "
+"movem em direção a máquina <replaceable>intermediary</replaceable> antes de "
+"ser direcionada ao <replaceable>server</replaceable> na rede “pública”. No "
+"segundo caso, a entrada e saída do túnel é revertida; a entrada é a porta "
+"8000 na máquina <replaceable>intermediary</replaceable>, a saída é na "
+"máquina (host) local, e os dados são então direcionados para o  "
+"<replaceable>server</replaceable>. Na prática, o servidor é usualmente a "
+"máquina local ou a intermediária. Dessa forma o SSH mantém segura a conexão "
+"a conexão de uma ponta a outra."
 
 #. Tag: title
 #, no-c-format
@@ -817,6 +876,8 @@ msgstr "Usando Ambientes Gráficos Remotamente"
 #, no-c-format
 msgid "VNC (Virtual Network Computing) allows remote access to graphical desktops."
 msgstr ""
+"O VNC (Virtual Network Computing) permite o acesso remoto ao ambiente de "
+"trabalho (desktops) gráfico."
 
 #. Tag: indexterm
 #, no-c-format
@@ -824,9 +885,9 @@ msgid "<primary>VNC</primary>"
 msgstr "<primary>VNC</primary>"
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>Virtual Network Computing</primary>"
-msgstr ""
+msgstr "<primary>Virtual Network Computing</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -847,6 +908,9 @@ msgstr "<primary>ambiente, ambiente gráfico remoto</primary>"
 #, no-c-format
 msgid "This tool is mostly used for technical assistance; the administrator can see the errors that the user is facing, and show them the correct course of action without having to stand by them."
 msgstr ""
+"Essa ferramenta é, na maioria das vezes, usada para assistência técnica; o "
+"administrador pode ver os erros com os quais o usuário está enfrentando, e "
+"mostrar a eles um curso de ação correto, sem estar fisicamente presente."
 
 #. Tag: indexterm
 #, no-c-format
