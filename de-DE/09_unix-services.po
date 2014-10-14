@@ -4,16 +4,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-06-29 22:59+0200\n"
+"PO-Revision-Date: 2014-11-18 23:49+0200\n"
 "Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
-"Language-Team: German <https://debian.weblate.org/projects/debian-handbook"
-"/09_unix-services/de-DE/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/debian-handbook"
+"/09_unix-services/de/>\n"
 "Language: de-DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.10-dev\n"
+"X-Generator: Weblate 2.1-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -221,7 +221,18 @@ msgstr "Um dieses zu verhindern, kann man den Boot-Loader selbst mit einem Passw
 #. Tag: para
 #, no-c-format
 msgid "Finally, be aware that most BIOS have a generic password available. Initially intended for troubleshooting for those who have forgotten their password, these passwords are now public and available on the Internet (see for yourself by searching for “generic BIOS passwords” in a search engine). All of these protections will thus impede unauthorized access to the machine without being able to completely prevent it. There's no reliable way to protect a computer if the attacker can physically access it; they could dismount the hard drives to connect them to a computer under their own control anyway, or even steal the entire machine, or erase the BIOS memory to reset the password…"
-msgstr "Schließlich sollten Sie beachten, dass die meisten BIOS ein voreingestelltes Passwort haben. Ursprünglich dazu gedacht, denen zu helfen, die ihr Passwort vergessen haben, sind diese Passwörter inzwischen öffentlich bekannt und im Internet verfügbar (sehen Sie selbst, indem sie in einer Suchmaschine „Standard-Passwörter“ eingeben). Alle diese Sicherheitsmaßnahmen können daher zwar den unbefugten Zugriff auf den Rechner erschweren, ihn aber nicht vollständig verhindern. Es gibt keinen zuverlässigen Weg, einen Computer zu schützen, falls der Angreifer physisch auf ihn zugreifen kann; er könnte die Festplatten ausbauen, um sie an einen Rechner unter seiner Kontrolle anzuschließen oder das ganze Gerät stehlen oder den BIOS-Speicher löschen, um so das Passwort zurückzusetzen..."
+msgstr ""
+"Schließlich sollten Sie beachten, dass die meisten BIOS ein voreingestelltes "
+"Passwort haben. Ursprünglich dazu gedacht, denen zu helfen, die ihr Passwort "
+"vergessen haben, sind diese Passwörter inzwischen öffentlich bekannt und im "
+"Internet verfügbar (sehen Sie selbst, indem sie in einer Suchmaschine "
+"„Standard-Passwörter“ eingeben). Alle diese Sicherheitsmaßnahmen können "
+"daher zwar den unbefugten Zugriff auf den Rechner erschweren, ihn aber nicht "
+"vollständig verhindern. Es gibt keinen zuverlässigen Weg, einen Computer zu "
+"schützen, falls der Angreifer physisch auf ihn zugreifen kann; er könnte die "
+"Festplatten ausbauen, um sie an einen Rechner unter seiner Kontrolle "
+"anzuschließen oder das ganze Gerät stehlen oder den BIOS-Speicher löschen, "
+"um so das Passwort zurückzusetzen…"
 
 #. Tag: title
 #, no-c-format
@@ -320,16 +331,37 @@ msgstr ""
 "Prozesse und ihre Startreihenfolge angibt."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The newly arrived <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Squeeze</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
 msgid "The <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Wheezy</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
-msgstr "Das kürzlich erschienene System <command>upstart</command> ist auf Debian noch nicht vollständig erprobt. Es arbeitet ereignisbasiert: Initialisierungsskripten werden nicht mehr der Reihe nach ausgeführt, sondern als Reaktion auf Ereignisse, wie zum Beispiel die Ausführung eines anderen Skripts, von dem sie abhängen. Dieses von Ubuntu eingeführte System ist in Debian <emphasis role=\"distribution\">Squeeze</emphasis> vorhanden, aber nicht als Standard eingestellt. Es ist ein Nachfolger für <emphasis role=\"pkg\">sysvinit</emphasis>, und eine der von <command>upstart</command> ausgeführten Aufgaben besteht darin, die für traditionelle Systeme geschriebenen Skripten zu starten, insbesondere die aus dem Paket <emphasis role=\"pkg\">sysv-rc</emphasis>."
+msgstr ""
+"Der Befehl <command>upstart</command> ist auf Debian immer noch nicht "
+"vollständig ausgetestet. Es arbeitet ereignisbasiert: "
+"Initialisierungsskripten werden nicht mehr der Reihe nach ausgeführt, "
+"sondern als Reaktion auf Ereignisse, wie zum Beispiel die Ausführung eines "
+"anderen Skripts, von dem sie abhängen. Dieses von Ubuntu eingeführte System "
+"ist in Debian <emphasis role=\"distribution\">Wheezy</emphasis> vorhanden, "
+"aber nicht als Standard eingestellt. Es ist ein Nachfolger für <emphasis "
+"role=\"pkg\">sysvinit</emphasis>, und eine der von <command>upstart</command>"
+" ausgeführten Aufgaben besteht darin, die für traditionelle Systeme "
+"geschriebenen Skripten zu starten, insbesondere die aus dem Paket <emphasis "
+"role=\"pkg\">sysv-rc</emphasis>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Another new option is <command>systemd</command>, but it still lacks the maturity needed to be part of <emphasis role=\"distribution\">Squeeze</emphasis>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services."
 msgid "Another new option that is gaining a lot of traction is <command>systemd</command>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services. It also provides backwards compatibility to System V init scripts."
-msgstr "Eine weitere neue Option ist <command>systemd</command>, das jedoch noch nicht genügend ausgereift ist, um Teil von <emphasis role=\"distribution\">Squeeze</emphasis> zu sein. Seine Vorgehensweise ist derjenigen der vorhergehenden Systeme entgegengesetzt. Statt vorsorglich alle Dienste zu starten und dabei die Frage der zeitlichen Reihenfolge lösen zu müssen, startet <command>systemd</command> Dienste nach Bedarf, in etwa entsprechend dem Prinzip von <command>inetd</command>. Dies bedeutet jedoch, dass das Bootsystem wissen muss, wie Dienste bereitgestellt werden (dies könnte durch ein Socket, ein Dateisystem oder etwas anderes erfolgen), und folglich jeweils kleine Anpassungen dieser Dienste erforderlich macht."
+msgstr ""
+"Eine weitere neue Option, <command>systemd</command>, gewinnt immer mehr "
+"Zuspruch. Seine Vorgehensweise ist derjenigen der vorhergehenden Systeme "
+"entgegengesetzt. Statt vorsorglich alle Dienste zu starten und dabei die "
+"Frage der zeitlichen Reihenfolge lösen zu müssen, startet "
+"<command>systemd</command> Dienste nach Bedarf, in etwa entsprechend dem "
+"Prinzip von <command>inetd</command>. Dies bedeutet jedoch, dass das "
+"Bootsystem wissen muss, wie Dienste bereitgestellt werden (dies könnte durch "
+"einen Socket, ein Dateisystem oder etwas anderes erfolgen), und folglich "
+"jeweils kleine Anpassungen dieser Dienste erforderlich macht. "
+"Rückwärtskompatibilität zu den init-Skripten von System V ist gegeben."
 
 #. Tag: para
 #, no-c-format
@@ -472,10 +504,11 @@ msgid "<emphasis>BACK TO BASICS</emphasis> Client, server"
 msgstr "<emphasis>ZURÜCK ZU DEN GRUNDLAGEN</emphasis> Client, Server"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>server</primary><secondary>client/server architecture</secondary>"
 msgid "<primary>client</primary><secondary>client/server architecture</secondary>"
-msgstr "<primary>Server</primary><secondary>Client-Server-Architektur</secondary>"
+msgstr ""
+"<primary>client</primary><secondary>client/server Architektur</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -513,16 +546,20 @@ msgid "<primary>Secure Shell</primary>"
 msgstr "<primary>Secure Shell</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol, contrary to <emphasis>telnet</emphasis>, was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
 msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
-msgstr "Das <emphasis>SSH</emphasis>-Protokoll (Secure SHell) wurde im Gegensatz zu <emphasis>telnet</emphasis> unter Beachtung von Sicherheit und Zuverlässigkeit entwickelt. Verbindungen unter Verwendung von SSH sind sicher: der Partner wird authentifiziert und aller Datenaustausch erfolgt verschlüsselt."
+msgstr ""
+"Das <emphasis>SSH</emphasis>-Protokoll (Secure SHell) wurden Sicherheit und "
+"Zuverlässigkeit bereits im Entwurf berücksichtigt. Verbindungen auf der "
+"Basis von SSH sind sicher: der Partner ist authentifiziert und jeglicher "
+"Datenverkehr erfolgt verschlüsselt."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>CULTURE</emphasis> SSH compared to RSH"
 msgid "<emphasis>CULTURE</emphasis> Telnet and RSH are obsolete"
-msgstr "<emphasis>KULUTUR</emphasis> SSH im Vergleich zu RSH"
+msgstr "<emphasis>KULTUR</emphasis> Telnet und RSH sind veraltet"
 
 #. Tag: indexterm
 #, no-c-format
@@ -530,15 +567,19 @@ msgid "<primary><command>telnet</command></primary>"
 msgstr "<primary><command>telnet</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>rsync</command></primary>"
 msgid "<primary><command>rsh</command></primary>"
-msgstr "<primary><command>rsync</command></primary>"
+msgstr "<primary><command>rsh</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Before SSH, <emphasis>Telnet</emphasis> and <emphasis>RSH</emphasis> were the main tools used to login remotely. They are now largely obsolete and should no longer be used even if Debian still provides them."
 msgstr ""
+"Vor SSH waren <emphasis>Telnet</emphasis> und <emphasis>RSH</emphasis> die "
+"wesentlichen Werkzeuge um sich aus der Ferne einzuloggen. Heute sind sie "
+"weitestgehend überflüssig und sollten nicht weiter benutzt werden, auch wenn "
+"Debian sie immer noch zur Verfügung stellt."
 
 #. Tag: title
 #, no-c-format
@@ -611,10 +652,15 @@ msgid "The option to fork a project is a direct result of the very nature of fre
 msgstr "Die Option, ein Vorhaben abzuspalten, ist eine direkte Folge der Eigenart freier Software; eine Abspaltung ist ein heilsamer Vorgang, wenn sie die Fortführung eines Vorhabens als freie Software ermöglicht (zum Beispiel im Falle von Lizenzänderungen). Dagegen ist eine Abspaltung, die sich aus technischen oder persönlichen Meinungsverschiedenheiten ergibt, häufig eine Verschwendung menschlicher Ressourcen; eine andere Lösung wäre vorzuziehen. Auch der Zusammenschluss zweier Vorhaben, die früher durch eine Abspaltung gegangen sind, ist nicht gänzlich unbekannt."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Since <emphasis role=\"distribution\">Etch</emphasis>, OpenSSH is split into two packages. The client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
 msgid "OpenSSH is split into two packages: the client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
-msgstr "Seit <emphasis role=\"distribution\">Etch</emphasis> ist OpenSSH in zwei Pakete aufgeteilt. Der Client-Teil befindet sich im Paket <emphasis role=\"pkg\">openssh-client</emphasis> und der Server-Teil im Paket <emphasis role=\"pkg\">openssh-server</emphasis>. Das Metapaket <emphasis role=\"pkg\">ssh</emphasis> ist von beiden Teilen abhängig und erleichtert die Installation beider (<command>apt-get install ssh</command>)."
+msgstr ""
+"OpenSSH ist in zwei Pakete aufgeteilt: der Client-Teil befindet sich im "
+"Paket <emphasis role=\"pkg\">openssh-client</emphasis> und der Server-Teil "
+"im Paket <emphasis role=\"pkg\">openssh-server</emphasis>. Das Metapaket <"
+"emphasis role=\"pkg\">ssh</emphasis> ist von beiden Teilen abhängig und "
+"erleichtert die Installation beider (<command>apt-get install ssh</command>)."
 
 #. Tag: title
 #, no-c-format
@@ -647,10 +693,21 @@ msgid "<emphasis>CULTURE</emphasis> OpenSSL flaw in Debian <emphasis role=\"dist
 msgstr "<emphasis>KULTUR</emphasis> OpenSSL-Schwachstelle in Debian <emphasis role=\"distribution\">Etch</emphasis>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The OpenSSL library, as initially provided in Debian <emphasis role=\"distribution\">Etch</emphasis>, had a serious problem in its random number generator (RNG). Indeed, the Debian maintainer had made a change in order for the library to not be the source of warnings for programs using it and that would be analyzed by memory testing tools like <command>valgrind</command>. Unfortunately, this change also meant that the RNG was employing only one source of entropy corresponding to the process number (PID) whose 32,000 possible values do not offer enough randomness. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
 msgid "The OpenSSL library, as initially provided in Debian <emphasis role=\"distribution\">Etch</emphasis>, had a serious problem in its random number generator (RNG). Indeed, the Debian maintainer had made a change so that applications using it would no longer generate warnings when analyzed by memory testing tools like <command>valgrind</command>. Unfortunately, this change also meant that the RNG was employing only one source of entropy corresponding to the process number (PID) whose 32,000 possible values do not offer enough randomness. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
-msgstr "Die OpenSSL-Bibliothek, die ursprünglich mit Debian <emphasis role=\"distribution\">Etch</emphasis> bereitgestellt wurde, hatte ein gravierendes Problem in ihrem Zufallszahlengenerator (RNG). Der zuständige Debian-Betreuer hatte eine Änderung vorgenommen, damit die Bibliothek bei Programmen, die sie verwendeten, keine Warnmeldungen hervorrief, die dann von Programmen zur Fehleranalyse wie zum Beispiel <command>valgrind</command> untersucht werden würden. Leider hatte diese Änderung auch zur Folge, dass der Zufallszahlengenerator nur eine Entropie-Quelle in Abhängigkeit von der Prozesskennung (PID) benutzte, deren 32.000 mögliche Werte keinen ausreichenden Grad an Zufälligkeit boten. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
+msgstr ""
+"Die OpenSSL-Bibliothek, die ursprünglich mit Debian <emphasis role=\""
+"distribution\">Etch</emphasis> bereitgestellt wurde, hatte ein gravierendes "
+"Problem in ihrem Zufallszahlengenerator (RNG). In der Tat hatte der "
+"zuständige Debian-Betreuer eine Änderung vorgenommen, damit Anwendungen, die "
+"ihn verwenden, keine Warnmeldungen mehr verursachen, wenn sie von Werkzeugen "
+"für das Memory Management wie zum Beispiel <command>valgrind</command> "
+"analysiert werden. Leider hatte diese Änderung auch zur Folge, dass der "
+"Zufallszahlengenerator nur eine Entropie-Quelle in Abhängigkeit von der "
+"Prozesskennung (PID) benutzte, deren 32.000 mögliche Werte keinen "
+"ausreichenden Grad an Zufälligkeit boten. <ulink type=\"block\" url=\""
+"http://www.debian.org/security/2008/dsa-1571\" />"
 
 #. Tag: para
 #, no-c-format
@@ -688,10 +745,15 @@ msgid "<primary>port forwarding</primary>"
 msgstr "<primary>Port-Weiterleitung</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Its <literal>-R</literal> and <literal>-L</literal> options allow <command>ssh</command> to create “encrypted tunnels” between two machines, securely forwarding a local TCP port (see sidebar <xref linkend=\"cadre.tcp-udp\" />) to a remote machine or vice versa."
 msgid "Its <literal>-R</literal> and <literal>-L</literal> options allow <command>ssh</command> to create “encrypted tunnels” between two machines, securely forwarding a local TCP port (see sidebar <xref linkend=\"sidebar.tcp-udp\" />) to a remote machine or vice versa."
-msgstr "Die Optionen <literal>-R</literal> und <literal>-L</literal> des Befehls <command>ssh</command> ermöglichen es, „verschlüsselte Tunnel“ zwischen zwei Rechnern zu erstellen, und so einen lokalen TCP-Port (siehe <xref linkend=\"cadre.tcp-udp\" /> in der Seitenleiste) sicher an einen entfernten Rechner weiterzuleiten und umgekehrt."
+msgstr ""
+"Die Optionen <literal>-R</literal> und <literal>-L</literal> des Befehls "
+"<command>ssh</command> ermöglichen es, „verschlüsselte Tunnel“ zwischen zwei "
+"Rechnern zu erstellen, und so einen lokalen TCP-Port (siehe <xref linkend=\""
+"sidebar.tcp-udp\" /> in der Seitenleiste) sicher an einen entfernten Rechner "
+"weiterzuleiten und umgekehrt."
 
 #. Tag: title
 #, no-c-format
@@ -699,13 +761,13 @@ msgid "<emphasis>VOCABULARY</emphasis> Tunnel"
 msgstr "<emphasis>WÖRTERVERZEICHNIS</emphasis> Tunnel"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>tunnel SSH</primary><seealso>VPN</seealso>"
 msgid "<primary>tunnel (SSH)</primary><seealso>VPN</seealso>"
-msgstr "<primary>Tunnel SSH</primary><seealso>VPN</seealso>"
+msgstr "<primary>Tunnel (SSH)</primary><seealso>VPN</seealso>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>tunnel SSH</primary><seealso>VPN</seealso>"
 msgid "<primary>SSH tunnel</primary><seealso>VPN</seealso>"
 msgstr "<primary>Tunnel SSH</primary><seealso>VPN</seealso>"
@@ -801,10 +863,19 @@ msgid "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "First, the user must authorize sharing their session. The GNOME and KDE graphical desktop environments include, respectively, <command>vino</command> and <command>krfb</command>, which provide a graphical interface that allows sharing an existing session over VNC (found, respectively, in the menus at <menuchoice> <guimenu>System</guimenu> <guisubmenu>Preferences</guisubmenu> <guimenuitem>Remote Desktop</guimenuitem></menuchoice> and <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Desktop Sharing</guimenuitem></menuchoice>). For other graphical desktop environments, the <command>x11vnc</command> command (from the Debian package of the same name) serves the same purpose; you can make it available to the user with an explicit icon."
 msgid "First, the user must authorize sharing their session. The GNOME and KDE graphical desktop environments include, respectively, <command>vino</command> and <command>krfb</command>, which provide a graphical interface that allows sharing an existing session over VNC (both are identified as <emphasis>Desktop Sharing</emphasis> either in the GNOME application list or in the KDE menu). For other graphical desktop environments, the <command>x11vnc</command> command (from the Debian package of the same name) serves the same purpose; you can make it available to the user with an explicit icon."
-msgstr "Zunächst muss der Benutzer den Zugriff auf seine Sitzung erlauben. Die grafischen Arbeitsumgebungen GNOME und KDE enthalten <command>vino</command> beziehungsweise <command>krfb</command>, die eine grafische Schnittstelle bereitstellen, über die der Zugriff auf eine bestehende Sitzung mittels VNC möglich ist (im Menü zu finden unter <menuchoice> <guimenu>System</guimenu> <guisubmenu>Einstellungen</guisubmenu> <guimenuitem>Entfernter Bildschirm</guimenuitem></menuchoice> beziehungsweise <menuchoice> <guimenu>K-Menü</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Krfb - Arbeitsfläche freigeben</guimenuitem></menuchoice>). Bei anderen grafischen Arbeitsumgebungen dient der Befehl <command>x11vnc</command> (aus dem gleichnamigen Debian-Paket) diesem Zweck; man kann ihn für den Benutzer über ein besonderes Icon verfügbar machen."
+msgstr ""
+"Zunächst muss der Benutzer den Zugriff auf seine Sitzung erlauben. Die "
+"grafischen Arbeitsumgebungen GNOME und KDE enthalten <command>vino</command> "
+"beziehungsweise <command>krfb</command>, die eine grafische Schnittstelle "
+"bereitstellen, über die der Zugriff auf eine bestehende Sitzung mittels VNC "
+"möglich ist (beide werden bezeichnet als <emphasis>Entfernter "
+"Bildschirm</emphasis> sowohl in der Anwendungsübersicht von GNOME als auch "
+"im KDE Menü). Bei anderen grafischen Arbeitsumgebungen dient der Befehl "
+"<command>x11vnc</command> (aus dem gleichnamigen Debian-Paket) diesem Zweck; "
+"man kann ihn für den Benutzer über ein besonderes Icon verfügbar machen."
 
 #. Tag: indexterm
 #, no-c-format
@@ -827,10 +898,21 @@ msgid "<primary><emphasis role=\"pkg\">xvnc4viewer</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">xvnc4viewer</emphasis></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "When the graphical session is made available by VNC, the administrator must connect to it with a VNC client. GNOME has <command>vinagre</command> and <command>tsclient</command> for that, while KDE includes <command>krdc</command> (in the menu at <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Remote Desktop Client</guimenuitem></menuchoice>). There are other VNC clients that use the command line, such as <command>xvnc4viewer</command> in the Debian package of the same name. Once connected, the administrator can see what's going on, work on the machine remotely, and show the user how to proceed."
 msgid "When the graphical session is made available by VNC, the administrator must connect to it with a VNC client. GNOME has <command>vinagre</command> and <command>remmina</command> for that, while KDE includes <command>krdc</command> (in the menu at <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Remote Desktop Client</guimenuitem></menuchoice>). There are other VNC clients that use the command line, such as <command>xvnc4viewer</command> in the Debian package of the same name. Once connected, the administrator can see what's going on, work on the machine remotely, and show the user how to proceed."
-msgstr "Wenn die grafische Sitzung durch VNC freigeschaltet wurde, muss sich der Administrator über einen VNC-Client mit ihr verbinden. GNOME verfügt zu diesem Zweck über <command>vinagre</command> und <command>tsclient</command>, während KDE <command>krdc</command> enthält (im Menü unter <menuchoice> <guimenu>K-Menü</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Krdc - Verbindung zu Fremdrechner</guimenuitem></menuchoice>). Es gibt weitere VNC-Clients, die die Befehlszeile verwenden, wie zum Beispiel <command>xvnc4viewer</command> im gleichnamigen Debian-Paket. Sobald die Verbindung hergestellt ist, kann der Administrator sehen, was vorgeht, kann aus der Ferne auf dem Rechner arbeiten und dem Benutzer zeigen, wie er vorgehen soll."
+msgstr ""
+"Wenn die grafische Sitzung durch VNC freigeschaltet wurde, muss sich der "
+"Administrator über einen VNC-Client mit ihr verbinden. GNOME verfügt zu "
+"diesem Zweck über <command>vinagre</command> und <command>remmina</command>, "
+"während KDE <command>krdc</command> enthält (im Menü unter <menuchoice> "
+"<guimenu>K-Menü</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>"
+"Krdc - Verbindung zu Fremdrechner</guimenuitem></menuchoice>). Es gibt "
+"weitere VNC-Clients, die die Befehlszeile verwenden, wie zum Beispiel "
+"<command>xvnc4viewer</command> im gleichnamigen Debian-Paket. Sobald die "
+"Verbindung hergestellt ist, kann der Administrator sehen, was vorgeht, kann "
+"aus der Ferne auf dem Rechner arbeiten und dem Benutzer zeigen, wie er "
+"vorgehen soll."
 
 #. Tag: title
 #, no-c-format
@@ -843,10 +925,16 @@ msgid "<primary>SSH tunnel</primary><secondary>VNC</secondary>"
 msgstr "<primary>SSH-Tunnel</primary><secondary>VNC</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
 msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"sect.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
-msgstr "Falls Sie über VNC eine Verbindung herstellen, Ihre Daten aber nicht im Klartext über das Netzwerk schicken wollen, können Sie sie in einem SSH-Tunnel verbergen (siehe <xref linkend=\"section.ssh-port-forwarding\" />). Sie müssen nur wissen, dass VNC standardmäßig den Port 5900 für den ersten Bildschirm („localhost:0“ genannt), 5901 für den zweiten („localhost:1“ genannt) usw. verwendet."
+msgstr ""
+"Falls Sie über VNC eine Verbindung herstellen, Ihre Daten aber nicht im "
+"Klartext über das Netzwerk schicken wollen, können Sie sie in einem SSH-"
+"Tunnel verbergen (siehe <xref linkend=\"sect.ssh-port-forwarding\" />). Sie "
+"müssen nur wissen, dass VNC standardmäßig den Port 5900 für den ersten "
+"Bildschirm („localhost:0“ genannt), 5901 für den zweiten („localhost:1“ "
+"genannt) usw. verwendet."
 
 #. Tag: para
 #, no-c-format
@@ -879,10 +967,10 @@ msgid "<primary><command>xdm</command></primary>"
 msgstr "<primary><command>xdm</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>gdm</command></primary>"
 msgid "<primary><command>lightdm</command></primary>"
-msgstr "<primary><command>gdm</command></primary>"
+msgstr "<primary><command>lightdm</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -895,16 +983,34 @@ msgid "<primary>display manager</primary>"
 msgstr "<primary>Display Manager</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<command>gdm</command>, <command>kdm</command> and <command>xdm</command> are Display Managers. They take control of the graphical interface shortly after boot in order to provide the user a login screen. Once the user has logged in, they execute the programs needed to start a graphical work session."
 msgid "<command>gdm</command>, <command>kdm</command>, <command>lightdm</command>, and <command>xdm</command> are Display Managers. They take control of the graphical interface shortly after boot in order to provide the user a login screen. Once the user has logged in, they execute the programs needed to start a graphical work session."
-msgstr "<command>gdm</command>, <command>kdm</command> und <command>xdm</command> sind Display Manager. Sie übernehmen kurz nach dem Hochfahren die Kontrolle über die grafische Schnittstelle, um dem Benutzer einen Anmeldebildschirm bereitzustellen. Sobald der Benutzer sich angemeldet hat, führen sie die zum Starten einer grafischen Arbeitssitzung erforderlichen Programme aus."
+msgstr ""
+"<command>gdm</command>, <command>kdm</command>, <command>lightdm</command> "
+"und <command>xdm</command> sind Display Manager. Sie übernehmen kurz nach "
+"dem Hochfahren die Kontrolle über die grafische Schnittstelle, um dem "
+"Benutzer einen Anmeldebildschirm bereitzustellen. Sobald der Benutzer sich "
+"angemeldet hat, führen sie die zum Starten einer grafischen Arbeitssitzung "
+"erforderlichen Programme aus."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "VNC also works for mobile users, or company executives, who occasionally need to login from their home to access a remote desktop similar to the one they use at work. The configuration of such a service is more complicated: you first install the <emphasis role=\"pkg\">vnc4server</emphasis> package, change the configuration of the display manager to accept <literal>XDMCP Query</literal> requests (for <command>gdm</command>, this can be done graphically via the <menuchoice><guimenu>System</guimenu> <guisubmenu>Administration</guisubmenu> <guimenuitem>Login Screen</guimenuitem></menuchoice> menu and then the “Remote” tab; note that this applies only to <command>gdm</command> and not <command>gdm3</command>, which is the version installed by default in <emphasis role=\"distribution\">Squeeze</emphasis>), and finally, start the VNC server with <command>inetd</command> so that a session is automatically started when a user tries to login. For example, you may add this line to <filename>/etc/inetd.conf</filename>:"
 msgid "VNC also works for mobile users, or company executives, who occasionally need to login from their home to access a remote desktop similar to the one they use at work. The configuration of such a service is more complicated: you first install the <emphasis role=\"pkg\">vnc4server</emphasis> package, change the configuration of the display manager to accept <literal>XDMCP Query</literal> requests (for <command>gdm3</command>, this can be done by adding <literal>Enable=true</literal> in the “xdmcp” section of <filename>/etc/gdm3/daemon.conf</filename>), and finally, start the VNC server with <command>inetd</command> so that a session is automatically started when a user tries to login. For example, you may add this line to <filename>/etc/inetd.conf</filename>:"
-msgstr "VNC funktioniert auch für mobile Anwender oder für Angestellte, die sich gelegentlich von zu Hause aus anmelden müssen, um auf einen entfernten Bildschirm ähnlich dem an ihrem Arbeitsplatz zuzugreifen. Die Konfigurierung eines derartigen Dienstes ist komplizierter: zunächst installieren Sie das Paket <emphasis role=\"pkg\">vnc4server</emphasis>, passen die Konfiguration des Display Managers dahingehend an, dass er Anfragen an <literal>XDMCP Query</literal> annimmt (für <command>gdm</command> kann dies grafisch über das Menü <menuchoice><guimenu>System</guimenu> <guisubmenu>Systemverwaltung</guisubmenu> <guimenuitem>Anmeldefenster</guimenuitem></menuchoice> und dann den Reiter „Entfernt“ geschehen; beachten Sie, dass dies nur für <command>gdm</command> gilt und nicht für <command>gdm3</command>, die Version, die standardmäßig in <emphasis role=\"distribution\">Squeeze</emphasis> installiert ist) und starten schließlich den VNC-Server mit <command>inetd</command>, so dass eine Sitzung automatisch beginnt, wenn ein Benutzer sich anzumelden versucht. Sie können zum Beispiel folgende Zeile zu <filename>/etc/inetd.conf</filename> hinzufügen:"
+msgstr ""
+"VNC funktioniert auch für mobile Anwender oder für Angestellte, die sich "
+"gelegentlich von zu Hause aus anmelden müssen, um auf einen entfernten "
+"Bildschirm ähnlich dem an ihrem Arbeitsplatz zuzugreifen. Die Konfiguration "
+"eines derartigen Dienstes ist komplizierter: zunächst installieren Sie das "
+"Paket <emphasis role=\"pkg\">vnc4server</emphasis>, passen die Konfiguration "
+"des Display Managers dahingehend an, dass er Anfragen an <literal>XDMCP "
+"Query</literal> annimmt (für <command>gdm3</command> kann dies durch "
+"Hinzufügen von <literal>Enable=true</literal> im Abschnitt “xdmcp” von "
+"<filename>/etc/gdm3/daemon.conf</filename>) und starten schließlich den VNC-"
+"Server mit <command>inetd</command>, so dass eine Sitzung automatisch "
+"beginnt, wenn ein Benutzer sich anzumelden versucht. Sie können zum Beispiel "
+"folgende Zeile zu <filename>/etc/inetd.conf</filename> hinzufügen:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1004,23 +1110,23 @@ msgstr "Ausführen (symbolisiert durch <literal>x</literal> wie in „eXecute“
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>read, right</primary>"
-msgstr "<primary>Lesen, Recht</primary>"
+msgstr "<primary>Lesen, Berechtigung</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>write, right</primary>"
-msgstr "<primary>Schreiben, Recht</primary>"
+msgstr "<primary>Schreiben, Berechtigung</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modification, right</primary>"
-msgstr "<primary>Ändern, Recht</primary>"
+msgstr "<primary>Ändern, Berechtigung</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>modification, right</primary>"
 msgid "<primary>execution, right</primary>"
-msgstr "<primary>Ändern, Recht</primary>"
+msgstr "<primary>Ausführen, Berechtigung</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1053,10 +1159,18 @@ msgid "Since a <literal>setuid</literal> root program is systematically run unde
 msgstr "Da ein Root-Programm mit <literal>setuid</literal> durchgängig unter der Identität des Super-Users läuft, ist es sehr wichtig sicherzustellen, dass es sicher und verlässlich ist. Ein Benutzer, dem es gelingt, es zu unterlaufen, um einen Befehl seiner Wahl aufzurufen, könnte sich anschließend als Root-Benutzer ausgeben und so alle Rechte an dem System erlangen."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "A directory is handled differently. Read access gives the right to consult the list of its entries (files and directories), write access allows creating or deleting files, and execute access allows crossing through it (especially to go there with the <command>cd</command> command). Being able to cross through a directory without being able to read it gives permission to access the entries therein that are known by name, but not to find them if you do not know that they exist or under what name."
 msgid "A directory is handled differently. Read access gives the right to consult the list of its entries (files and directories), write access allows creating or deleting files, and execute access allows crossing through it (especially to go there with the <command>cd</command> command). Being able to cross through a directory without being able to read it gives permission to access the entries therein that are known by name, but not to find them if you do not know their existence or their exact name."
-msgstr "Ein Verzeichnis wird anders gehandhabt. Lesezugriff gewährt das Recht, die Liste der Einträge (Dateien und Verzeichnisse) durchzugehen, Schreibzugriff erlaubt es, Dateien zu erstellen oder zu löschen, und Ausführungszugriff erlaubt es, es zu durchqueren (insbesondere dorthin mit dem Befehl <command>cd</command> zu gehen). Ein Verzeichnis durchqueren zu können, ohne es lesen zu können, ermöglicht es, auf diejenigen darin enthaltenen Einträge zuzugreifen, die namentlich bekannt sind, aber nicht, sie zu finden, wenn Sie nicht wissen, dass sie vorhanden sind oder wie sie heißen."
+msgstr ""
+"Ein Verzeichnis wird anders gehandhabt. Lesezugriff gewährt das Recht, die "
+"Liste der Einträge (Dateien und Verzeichnisse) durchzugehen, Schreibzugriff "
+"erlaubt es, Dateien zu erstellen oder zu löschen, und Ausführungszugriff "
+"erlaubt es, es zu durchqueren (insbesondere dorthin mit dem Befehl "
+"<command>cd</command> zu gehen). Die Berechtigung, ohne ein Verzeichnis zu "
+"lesen auf dessen Inhalt zugreifen zu können, gestattet Zugriff auf "
+"namentlich bekannte Dateien, nicht jedoch auf solche von denen man nichts "
+"weiß oder deren genauen Namen man nicht kennt."
 
 #. Tag: title
 #, no-c-format
@@ -1064,10 +1178,10 @@ msgid "<emphasis>SECURITY</emphasis> <literal>setgid</literal> directory and <em
 msgstr "<emphasis>SICHERHEIT</emphasis> <literal>setgid</literal>-Verzeichnis und <emphasis>Sticky-Bit</emphasis>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><literal>setgid</literal>, right</primary>"
 msgid "<primary><literal>setgid</literal> directory</primary>"
-msgstr "<primary><literal>setgid</literal>, Recht</primary>"
+msgstr "<primary><literal>setgid</literal> Verzeichnis</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1130,10 +1244,11 @@ msgid "<primary>octal representation of rights</primary>"
 msgstr "<primary>Oktale Darstellung von Berechtigungen</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>rights</primary><secondary>mask</secondary>"
 msgid "<primary>rights</primary><secondary>octal representation</secondary>"
-msgstr "<primary>Berechtigungen</primary><secondary>Maske</secondary>"
+msgstr ""
+"<primary>Berechtigungen</primary><secondary>oktale Darstellung</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1241,10 +1356,10 @@ msgid "Since no interface is perfect, you may be tempted to try several solution
 msgstr "Da keine Schnittstelle vollkommen ist, könnten Sie versucht sein, verschiedene Lösungen auszuprobieren. Dies sollte jedoch möglichst vermieden werden, da verschiedene Programme manchmal in ihren Funktionsweisen zueinander inkompatibel sind. Selbst wenn sie alle darauf abzielen, sehr flexibel zu sein, und versuchen, die Konfigurationsdatei als ihren einzigen Bezugspunkt zu verwenden, sind sie nicht immer in der Lage, auch externe Veränderungen einzubeziehen."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Administrating On a Web Interface: <command>webmin</command>"
 msgid "Administrating on a Web Interface: <command>webmin</command>"
-msgstr "Administrieren mit einer Webschnittstelle: <command>webmin</command>"
+msgstr "Administrieren über eine Webschnittstelle: <command>webmin</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1257,16 +1372,27 @@ msgid "This is, without a doubt, one of the most successful administration inter
 msgstr "Dies ist ohne Zweifel eine der erfolgreichsten Administrations-Schnittstellen. Es ist ein modulares System, das mittels eines Webbrowsers bedient wird und ein weites Spektrum an Bereichen und Werkzeugen abdeckt. Darüber hinaus ist es internationalisiert und in vielen Sprachen verfügbar."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Sadly, <command>webmin</command> is no longer part of Debian since <emphasis role=\"distribution\">Etch</emphasis>. Its Debian maintainer — Jaldhar H. Vyas — removed the packages he created because he no longer had the time required to maintain them at an acceptable quality level. Nobody has officially taken over, so <emphasis role=\"distribution\">Squeeze</emphasis> does not have the <command>webmin</command> package."
 msgid "Sadly, <command>webmin</command> is no longer part of Debian. Its Debian maintainer — Jaldhar H. Vyas — removed the packages he created because he no longer had the time required to maintain them at an acceptable quality level. Nobody has officially taken over, so <emphasis role=\"distribution\">Wheezy</emphasis> does not have the <command>webmin</command> package."
-msgstr "Leider ist <command>webmin</command> seit <emphasis role=\"distribution\">Etch</emphasis> nicht mehr in Debian enthalten. Sein Debian-Betreuer - Jaldhar H. Vyas - hat die Pakete, die er erstellt hatte, entfernt, da er nicht mehr die erforderliche Zeit hatte, um sie auf einem akzeptablen Qualitätsniveau zu halten. Kein anderer hat die Aufgabe offiziell übernommen, daher enthält <emphasis role=\"distribution\">Squeeze</emphasis> das Paket <command>webmin</command> nicht."
+msgstr ""
+"Leider ist <command>webmin</command> nicht mehr in Debian enthalten. Sein "
+"Debian-Betreuer - Jaldhar H. Vyas - hat die Pakete, die er erstellt hatte, "
+"entfernt, da er nicht mehr die erforderliche Zeit hatte, um sie auf einem "
+"akzeptablen Qualitätsniveau zu halten. Kein anderer hat die Aufgabe "
+"offiziell übernommen, daher enthält <emphasis role=\"distribution\""
+">Wheezy</emphasis> das Paket <command>webmin</command> nicht."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the packages included in <emphasis role=\"distribution\">Sarge</emphasis>, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
 msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the original Debian packages, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
-msgstr "Auf der Webseite <literal>webmin.com</literal> ist jedoch ein inoffizielles Paket veröffentlicht. Im Gegensatz zu den in <emphasis role=\"distribution\">Sarge</emphasis> enthaltenen Paketen, ist dieses Paket monolithisch; alle seine Konfigurierungsmodule werden standardmäßig installiert und aktiviert, selbst wenn der dazugehörige Dienst auf dem Rechner nicht installiert ist."
+msgstr ""
+"Auf der Webseite <literal>webmin.com</literal> ist jedoch ein inoffizielles "
+"Paket veröffentlicht. Im Gegensatz zu den originalen Debian Paketen, ist "
+"dieses Paket monolithisch; alle seine Konfigurationsmodule werden "
+"standardmäßig installiert und aktiviert, selbst wenn der dazugehörige Dienst "
+"auf dem Rechner nicht installiert ist."
 
 #. Tag: title
 #, no-c-format
@@ -1344,21 +1470,32 @@ msgid "The administration interface is available in a web browser at <literal>ht
 msgstr "Die Administrations-Schnittstelle ist in einem Webbrowser über die Adresse <literal>https://localhost:10000</literal> zu erreichen. Vorsicht! Nicht alle Module sind unmittelbar nutzbar. Manchmal müssen sie durch die Angabe der Speicherorte der jeweiligen Konfigurationsdateien und einiger ausführbarer Dateien (Programme) konfiguriert werden. Häufig wird das System Sie freundlich hierauf hinweisen, wenn es ihm nicht gelingt, ein gewünschtes Modul zu aktivieren."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>ALTERNATIVE</emphasis> Other boot systems"
 msgid "<emphasis>ALTERNATIVE</emphasis> GNOME control center"
-msgstr "<emphasis>ALTERNATIVE</emphasis> Andere Bootsysteme"
+msgstr "<emphasis>ALTERNATIVE</emphasis> GNOME control center"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis role=\"pkg\">tsclient</emphasis></primary>"
 msgid "<primary><emphasis role=\"pkg\">gnome-control-center</emphasis></primary>"
-msgstr "<primary><emphasis role=\"pkg\">tsclient</emphasis></primary>"
+msgstr ""
+"<primary><emphasis role=\"pkg\">gnome-control-center</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The GNOME project also provides multiple administration interfaces that are usually accessible via the “Settings” entry in the user menu on the top right. <command>gnome-control-center</command> is the main program that brings them all together but many of the system wide configuration tools are effectively provided by other packages (<emphasis role=\"pkg\">accountsservice</emphasis>, <emphasis role=\"pkg\">system-config-printer</emphasis>, etc.). Easy to use, these applications cover only a limited number of base services: user management, time configuration, network configuration, printer configuration, and so on."
 msgstr ""
+"Das Projekt GNOME stellt vielfache Verwaltungsschnittstellen zur Verfügung, "
+"die normalerweise über den Settings-Eintrag im User-Menü oben rechts "
+"zugänglich sind. <command>gnome-control-center</command>ist das "
+"übergreifende Hauptprogramm, aber viele der systemweiten "
+"Konfigurationswerkzeuge werden tatsächlich von anderen Paketen (<emphasis "
+"role=\"pkg\">accountsservice</emphasis>, <emphasis role=\"pkg\">system-"
+"config-printer</emphasis>, etc.) zur Verfügung gestellt. Einfach gehalten in "
+"der Benutzung, stellen diese Anwendungen nur eine begrenzte Zahl an "
+"Basisdiensten zur Verfügung: Benutzerverwaltung, Zeit-, Netzwerk-, "
+"Druckerkonfiguration und so weiter."
 
 #. Tag: title
 #, no-c-format
@@ -1421,21 +1558,26 @@ msgid "<primary>files</primary><secondary>log files</secondary>"
 msgstr "<primary>Dateien</primary><secondary>Protokolldateien</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>logs</primary><secondary>distribution</secondary>"
 msgid "<primary>logs</primary><secondary>dispatching</secondary>"
-msgstr "<primary>Protokolle</primary><secondary>Distribution</secondary>"
+msgstr "<primary>Protokolle</primary><secondary>verteilen</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Principle and Mechanism"
-msgstr "Prinzip und Ablauf"
+msgstr "Prinzip und Mechanismus"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <command>rsyslogd</command> daemon is responsible for collecting service messages coming from applications and the kernel, then distributing them into log files (usually stored in the <filename>/var/log/</filename> directory). It obeys the <filename>/etc/rsyslog.conf</filename> configuration file."
 msgid "The <command>rsyslogd</command> daemon is responsible for collecting service messages coming from applications and the kernel, then dispatching them into log files (usually stored in the <filename>/var/log/</filename> directory). It obeys the <filename>/etc/rsyslog.conf</filename> configuration file."
-msgstr "Der <command>rsyslogd</command>-Daemon ist für das Sammeln von Meldungen zuständig, die von den Anwendungen und vom Kernel kommen, und für ihre weitere Verteilung in Protokolldateien (die normalerweise im Verzeichnis <filename>/var/log/</filename> gespeichert werden). Er richtet sich nach der Konfigurationsdatei <filename>/etc/rsyslog.conf</filename>."
+msgstr ""
+"Der <command>rsyslogd</command>-Daemon ist für das Sammeln von Meldungen "
+"zuständig, die von den Anwendungen und vom Kernel kommen, und für ihre "
+"Verteilung auf weitere Protokolldateien (die normalerweise im Verzeichnis "
+"<filename>/var/log/</filename> gespeichert werden). Er richtet sich nach der "
+"Konfigurationsdatei <filename>/etc/rsyslog.conf</filename>."
 
 #. Tag: para
 #, no-c-format
@@ -1515,7 +1657,9 @@ msgstr "<literal>emerg</literal>: „Hilfe!“ Es gibt einen Notfall, das System
 #. Tag: para
 #, no-c-format
 msgid "<literal>alert</literal>: hurry up, any delay can be dangerous, action must be taken immediately;"
-msgstr "<literal>alert</literal>: Beeilung! Jede Verzögerung kann gefährlich sein, es muss sofort etwas unternommen werden."
+msgstr ""
+"<literal>alert</literal>: Beeilung! Jede Verzögerung kann gefährlich sein, "
+"es muss sofort etwas unternommen werden;"
 
 #. Tag: para
 #, no-c-format
@@ -1713,10 +1857,20 @@ msgid "The protocol: <literal>tcp</literal> or <literal>udp</literal>."
 msgstr "Das Protokoll: <literal>tcp</literal> oder <literal>udp</literal>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The options: two possible values: <literal>wait</literal> or <literal>nowait</literal>, to tell <command>inetd</command> whether it should wait or not for the end of the launched process before accepting another connection. For TCP connections, easily multiplexable, you can usually use <literal>nowait</literal>. For programs responding over UDP, you should use <literal>nowait</literal> only if the server is capable of managing several connections in parallel. You can suffix this field with a period, followed by the maximum number of connections authorized per minute (the default limit is 40)."
 msgid "The options: two possible values: <literal>wait</literal> or <literal>nowait</literal>, to tell <command>inetd</command> whether it should wait or not for the end of the launched process before accepting another connection. For TCP connections, easily multiplexable, you can usually use <literal>nowait</literal>. For programs responding over UDP, you should use <literal>nowait</literal> only if the server is capable of managing several connections in parallel. You can suffix this field with a period, followed by the maximum number of connections authorized per minute (the default limit is 256)."
-msgstr "Die Optionen: zwei mögliche Werte: <literal>wait</literal> oder <literal>nowait</literal>, um <command>inetd</command> mitzuteilen, ob er auf das Ende des gestarteten Prozesses warten soll, bevor er eine andere Verbindung annimmt, oder nicht. Für TCP-Verbindungen, die einen Kanal leicht mehrfach nutzen können, können Sie normalerweise <literal>nowait</literal> verwenden. Für Programme, die über UDP antworten, sollten Sie <literal>nowait</literal> nur dann verwenden, wenn der Server in der Lage ist, mehrere Verbindungen parallel zu verwalten. Sie können an dieses Feld einen Punkt anhängen, gefolgt von der Höchstzahl der Verbindungen, die pro Minute erlaubt ist (der Standardgrenzwert ist 40)."
+msgstr ""
+"Die Optionen: zwei mögliche Werte: <literal>wait</literal> oder "
+"<literal>nowait</literal>, um <command>inetd</command> mitzuteilen, ob er "
+"auf das Ende des gestarteten Prozesses warten soll, bevor er eine andere "
+"Verbindung annimmt, oder nicht. Für TCP-Verbindungen, die einen Kanal leicht "
+"mehrfach nutzen können, können Sie normalerweise <literal>nowait</literal> "
+"verwenden. Für Programme, die über UDP antworten, sollten Sie "
+"<literal>nowait</literal> nur dann verwenden, wenn der Server in der Lage "
+"ist, mehrere Verbindungen parallel zu verwalten. Sie können an dieses Feld "
+"einen Punkt anhängen, gefolgt von der Höchstzahl der Verbindungen, die pro "
+"Minute erlaubt ist (der Standardgrenzwert ist 256)."
 
 #. Tag: para
 #, no-c-format
@@ -1744,7 +1898,7 @@ msgid "Excerpt from <filename>/etc/inetd.conf</filename>"
 msgstr "Auszug aus <filename>/etc/inetd.conf</filename>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
 #| "finger stream tcp nowait  nobody     /usr/sbin/tcpd     /usr/sbin/in.fingerd\n"
@@ -1755,7 +1909,7 @@ msgid ""
 "ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
 msgstr ""
 "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
-"finger stream tcp nowait  nobody     /usr/sbin/tcpd     /usr/sbin/in.fingerd\n"
+"finger stream tcp nowait  nobody     /usr/sbin/tcpd     in.fingerd\n"
 "ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
 
 #. Tag: indexterm
@@ -1764,10 +1918,25 @@ msgid "<primary><command>tcpd</command></primary>"
 msgstr "<primary><command>tcpd</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <command>tcpd</command> program is frequently used in the <filename>/etc/inetd.conf</filename> file. It allows limiting incoming connections by applying access control rules, documented in the <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, and which are configured in the <filename>/etc/hosts.allow</filename> and <filename>/etc/hosts.deny</filename> files. Once it has been determined that the connection is authorized, <command>tcpd</command> executes the real server (like <command>/usr/bin/in.fingerd</command> in our example)."
 msgid "The <command>tcpd</command> program is frequently used in the <filename>/etc/inetd.conf</filename> file. It allows limiting incoming connections by applying access control rules, documented in the <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, and which are configured in the <filename>/etc/hosts.allow</filename> and <filename>/etc/hosts.deny</filename> files. Once it has been determined that the connection is authorized, <command>tcpd</command> executes the real server (like <command>in.fingerd</command> in our example). It is worth noting that <command>tcpd</command> relies on the name under which it was invoked (that is the first argument, <literal>argv[0]</literal>) to identify the real program to run. So you should not start the arguments list with <literal>tcpd</literal> but with the program that must be wrapped."
-msgstr "Das Programm <command>tcpd</command> wird in <filename>/etc/inetd.conf</filename> häufig benutzt. Es ermöglicht es, ankommende Verbindungen durch die Verwendung von Zugangskontrollregeln einzuschränken, die auf der Handbuchseite <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> dokumentiert sind, und die in den Dateien <filename>/etc/hosts.allow</filename> und <filename>/etc/hosts.deny</filename> konfiguriert sind. Sobald geklärt ist, dass die Verbindung autorisiert ist, führt <command>tcpd</command>  den wirklichen Server aus (wie <command>/usr/bin/in.fingerd</command> in unserem Beispiel)."
+msgstr ""
+"Das Programm <command>tcpd</command> wird in "
+"<filename>/etc/inetd.conf</filename> häufig benutzt. Es ermöglicht es, "
+"ankommende Verbindungen durch die Verwendung von Zugangskontrollregeln "
+"einzuschränken, die auf der Handbuchseite <citerefentry><refentrytitle>hosts_"
+"access</refentrytitle><manvolnum>5</manvolnum></citerefentry> dokumentiert "
+"sind, und die in den Dateien <filename>/etc/hosts.allow</filename> und "
+"<filename>/etc/hosts.deny</filename> konfiguriert sind. Sobald feststeht, "
+"dass die Verbindung autorisiert ist, führt <command>tcpd</command>  den "
+"eigentlich zuständigen Server aus (wie <command>/usr/bin/in.fingerd</command>"
+" in unserem Beispiel). Es ist wichtig anzumerken, dass "
+"<command>tcpd</command> auf den Namen zurückgreift, mit welchem es "
+"aufgerufen wurde (das ist das erste Argument, <literal>argv[0]</literal>), "
+"um das tatsächlich auszuführende Programm zu ermitteln. Sie sollten deshalb "
+"die Parameterliste nicht mit <literal>tcpd</literal> beginnen, sondern mit "
+"dem Programm, zu dem umgeleitet werden soll."
 
 #. Tag: title
 #, no-c-format
@@ -1795,10 +1964,15 @@ msgid "<emphasis>ALTERNATIVE</emphasis> Other <command>inetd</command> commands"
 msgstr "<emphasis>ALTERNATIVE</emphasis> Weitere <command>inetd</command> Befehle"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "There is no lack of alternatives. In addition to <emphasis role=\"pkg\">openbsd-inetd</emphasis> and <emphasis role=\"pkg\">netkit-inetd</emphasis> already mentioned, there are <emphasis role=\"pkg\">inetutils-inetd</emphasis>, <emphasis role=\"pkg\">micro-inetd</emphasis>, <emphasis role=\"pkg\">rlinetd</emphasis> and <emphasis role=\"pkg\">xinetd</emphasis>."
 msgid "While Debian installs <emphasis role=\"pkg\">openbsd-inetd</emphasis> by default, there is no lack of alternatives: we can mention <emphasis role=\"pkg\">inetutils-inetd</emphasis>, <emphasis role=\"pkg\">micro-inetd</emphasis>, <emphasis role=\"pkg\">rlinetd</emphasis> and <emphasis role=\"pkg\">xinetd</emphasis>."
-msgstr "Es herrscht kein Mangel an Alternativen. Zusätzlich zu den bereits erwähnten <emphasis role=\"pkg\">openbsd-inetd</emphasis> und <emphasis role=\"pkg\">netkit-inetd</emphasis> gibt es <emphasis role=\"pkg\">inetutils-inetd</emphasis>, <emphasis role=\"pkg\">micro-inetd</emphasis>, <emphasis role=\"pkg\">rlinetd</emphasis> und <emphasis role=\"pkg\">xinetd</emphasis>."
+msgstr ""
+"Debian installiert zwar standardmäßig <emphasis role=\"pkg\">openbsd-"
+"inetd</emphasis>, aber es gibt genügend Alternativen: <emphasis role=\"pkg\""
+">inetutils-inetd</emphasis>, <emphasis role=\"pkg\">micro-inetd</emphasis>, <"
+"emphasis role=\"pkg\">rlinetd</emphasis> and <emphasis role=\"pkg\""
+">xinetd</emphasis> um nur einige zu nennen."
 
 #. Tag: para
 #, no-c-format
@@ -1906,10 +2080,13 @@ msgid "programs in <filename>/etc/cron.monthly/</filename> once per month."
 msgstr "monatlich Programme in <filename>/etc/cron.monthly/</filename>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Many Debian packages rely on this service, they put maintenance scripts in these directories, which ensure optimal operation of their services."
 msgid "Many Debian packages rely on this service: by putting maintenance scripts in these directories, they ensure optimal operation of their services."
-msgstr "Viele Debian-Pakete sind auf diesen Dienst angewiesen; sie legen Wartungsskripten in diese Verzeichnisse, die den optimalen Betrieb ihrer Dienste sicherstellen."
+msgstr ""
+"Viele Debian-Pakete sind auf diesen Dienst angewiesen: indem sie "
+"Wartungsskripten in diese Verzeichnisse legen, stellen sie den optimalen "
+"Betrieb ihrer Dienste sicher."
 
 #. Tag: title
 #, no-c-format
@@ -2079,7 +2256,7 @@ msgid "The <command>at</command> executes a command at a specified moment in the
 msgstr "<command>at</command> führt einen Befehl zu einem festgelegten Zeitpunkt in der Zukunft aus. Es nimmt in seiner Standardeingabe die gewünschte Zeit und das gewünschte Datum sowie den auszuführenden Befehl als Befehlszeilenparameter an. Der Befehl wird dann ausgeführt, als sei er in der aktuellen Shell eingegeben worden. <command>at</command> sorgt sogar dafür, dass die gegenwärtige Umgebungseinstellung festgehalten wird, um die gleichen Bedingungen zu reproduzieren, wenn es den Befehl ausführt. Die Zeit wird nach folgenden Regeln eingegeben: <literal>16:12</literal> oder <literal>4:12pm</literal> bedeuten 16:12 Uhr. Das Datum kann in verschiedenen europäischen und westlichen Formaten angegeben werden, unter anderem als <literal>DD.MM.YY</literal> (<literal>27.07.12</literal>, also dem 27. Juli 2012 entsprechend), <literal>YYYY-MM-DD</literal> (was dasselbe Datum in der Form <literal>2012-07-27</literal> ist), <literal>MM/DD/[CC]YY</literal> (d.h. <literal>12/25/12</literal> oder <literal>12/25/2012</literal> ist der 25. Dezember 2012) oder einfach <literal>MMDD[CC]YY</literal> (so dass <literal>122512</literal> oder <literal>12252012</literal> jeweils den 25. Dezember 2012 darstellen). Ohne diese Angabe wird der Befehl ausgeführt, sobald die Uhr die angegebene Zeit erreicht (am selben Tag oder morgen, falls diese Zeit am selben Tag bereits vorüber ist). Sie können auch einfach „today“ oder „tomorrow“ schreiben, was unmittelbar verständlich ist."
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>\n"
@@ -2098,9 +2275,12 @@ msgid ""
 "job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>\n"
-"<computeroutput>&gt; </computeroutput><userinput>echo \"Vergiss nicht, Raphaël zum Geburtstag zu gratulieren!\" \\</userinput>\n"
-"<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.14 "
+"&lt;&lt;END</userinput>\n"
+"<computeroutput>&gt; </computeroutput><userinput>echo \"Heute hat Raphaël "
+"Geburtstag!\" \\</userinput>\n"
+"<computeroutput>&gt; </computeroutput><userinput>  | mail "
+"lolando@debian.org</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
 "<computeroutput>warning: commands will be executed using /bin/sh\n"
 "job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
@@ -2173,7 +2353,7 @@ msgstr "Das Installieren des Pakets <emphasis role=\"pkg\">anacron</emphasis> de
 #. Tag: title
 #, no-c-format
 msgid "Quotas"
-msgstr "Quota"
+msgstr "Quoten"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2296,10 +2476,17 @@ msgid "<primary>restoration</primary>"
 msgstr "<primary>Wiederherstellung</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Many programs exist, such as <command>amanda</command>, a client/server system featuring many options, whose configuration is rather difficult. <command>BackupPC</command> is also a client/server solution, but with a web interface for configuration which makes it more user-friendly. Dozens of other Debian packages are dedicated to backup solutions, as you can easily confirm with <command>apt-cache search backup</command>."
 msgid "Many programs exist, such as <command>amanda</command>, <command>bacula</command>, <command>BackupPC</command>. Those are client/server system featuring many options, whose configuration is rather difficult. Some of them provide user-friendly web interfaces to mitigate this. But Debian contains dozens of other backup software covering all possible use cases, as you can easily confirm with <command>apt-cache search backup</command>."
-msgstr "Es gibt viele Programme, wie zum Beispiel <command>amanda</command>, ein Client/Server-System mit zahlreichen Optionen, deren Konfigurierung recht schwierig ist. <command>BackupPC</command> ist auch ein Client/Server-Lösungskonzept, jedoch mit einer Web-Schnittstelle für die Konfigurierung, die es benutzerfreundlicher macht. Dutzende weiterer Debian-Pakete dienen als Lösungskonzepte zur Erstellung von Sicherheitskopien, wie Sie leicht mit dem Befehl <command>apt-cache search backup</command> nachprüfen können."
+msgstr ""
+"Es gibt viele Programme, wie zum Beispiel <command>amanda</command>, "
+"<command>bacula</command>, <command>BackupPC</command>. Das sind Client"
+"/Server-Systeme mit vielen Optionen, deren Konfiguration ziemlich schwierig "
+"ist. Einige davon bieten benutzerfreundliche Webschnittstellen, um das zu "
+"vereinfachen. Debian enthält dutzende weitere Backup-Pakete die alle "
+"möglichen Anwendungsfälle abdecken, wie man leicht mit dem Befehl <command"
+">apt-cache search backup</command> feststellen kann."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2307,10 +2494,10 @@ msgid "<primary><command>amanda</command></primary>"
 msgstr "<primary><command>amanda</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>at</command></primary>"
 msgid "<primary><command>bacula</command></primary>"
-msgstr "<primary><command>at</command></primary>"
+msgstr "<primary><command>bacula</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2333,10 +2520,19 @@ msgid "Backing Up with <command>rsync</command>"
 msgstr "Datensicherung mit <command>rsync</command>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Backups on tape having been deemed too slow and costly, data will be backed up on hard drives on a dedicated server, on which the use of software RAID (see <xref linkend=\"section.raid-soft\" />) will protect the data from hard drive failure. Desktop computers are not backed up individually, but users are advised that their personal account on their department's file server will be backed up. The <command>rsync</command> command (from the package of the same name) is used daily to back up these different servers."
 msgid "Backups on tape having been deemed too slow and costly, data will be backed up on hard drives on a dedicated server, on which the use of software RAID (see <xref linkend=\"sect.raid-soft\" />) will protect the data from hard drive failure. Desktop computers are not backed up individually, but users are advised that their personal account on their department's file server will be backed up. The <command>rsync</command> command (from the package of the same name) is used daily to back up these different servers."
-msgstr "Da Bandsicherungen als zu langsam und teuer erachtet wurden, werden die Daten auf den Festplatten eines speziell hierfür bestimmten Servers gesichert, auf dem die Verwendung eines Software-RAIDs (siehe <xref linkend=\"section.raid-soft\" />) die Daten vor einem Festplattenausfall schützt. Arbeitsplatzrechner werden nicht individuell gesichert, sondern Benutzer darüber informiert, dass ihr persönliches Konto auf dem Dateiserver ihrer Abteilung gesichert wird. Der Befehl <command>rsync</command> (aus dem gleichnamigen Paket) wird täglich zur Sicherung dieser verschiedenen Server benutzt."
+msgstr ""
+"Da Bandsicherungen als zu langsam und teuer erachtet wurden, werden die "
+"Daten auf den Festplatten eines speziell hierfür bestimmten Servers "
+"gesichert, auf dem die Verwendung eines Software-RAIDs (siehe <xref linkend="
+"\"sect.raid-soft\" />) die Daten vor einem Festplattenausfall schützt. "
+"Arbeitsplatzrechner werden nicht individuell gesichert, sondern Benutzer "
+"darüber informiert, dass ihr persönliches Konto auf dem Dateiserver ihrer "
+"Abteilung gesichert wird. Der Befehl <command>rsync</command> (aus dem "
+"gleichnamigen Paket) wird täglich zur Sicherung dieser verschiedenen Server "
+"benutzt."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2499,10 +2695,16 @@ msgid "<emphasis>IN PRACTICE</emphasis> Remote backup over SSH"
 msgstr "<emphasis>IN DER PRAXIS</emphasis> Dateisicherung aus der Ferne über SSH"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "When dirvish needs to save data to a remote machine, it will use <command>ssh</command> to connect to it, and will start <command>rsync</command> as a server. This requires the root user to be able to automatically connect to it. The use of an SSH authentication key allows precisely that (see <xref linkend=\"section.ssh-cle-auth\" />)."
 msgid "When dirvish needs to save data to a remote machine, it will use <command>ssh</command> to connect to it, and will start <command>rsync</command> as a server. This requires the root user to be able to automatically connect to it. The use of an SSH authentication key allows precisely that (see <xref linkend=\"sect.ssh-key-based-auth\" />)."
-msgstr "Wenn dirvish Daten auf einen entfernten Rechner sichern muss, verwendet es <command>ssh</command>, um sich mit ihm zu verbinden, und startet <command>rsync</command> als Server. Dies setzt voraus, dass der Root-Benutzer sich automatisch mit ihm verbinden kann. Genau dies ist bei der Verwendung eines SSH-Legitimierungsschlüssels möglich (siehe <xref linkend=\"section.ssh-cle-auth\" />)."
+msgstr ""
+"Wenn dirvish Daten auf einen entfernten Rechner sichern muss, verwendet es "
+"<command>ssh</command>, um sich mit ihm zu verbinden, und startet "
+"<command>rsync</command> als Server. Dies setzt voraus, dass der Root-"
+"Benutzer sich automatisch mit ihm verbinden kann. Genau dies ist bei der "
+"Verwendung eines SSH-Legitimierungsschlüssels möglich (siehe <xref linkend=\""
+"sect.ssh-key-based-auth\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -2513,6 +2715,15 @@ msgstr "Rechner ohne Sicherheitskopien wiederherstellen"
 #, no-c-format
 msgid "Desktop computers, which are not backed up, will be easy to reinstall from custom DVD-ROMs prepared with <emphasis>Simple-CDD</emphasis> (see <xref linkend=\"sect.simple-cdd\" />). Since this performs an installation from scratch, it loses any customization that can have been made after the initial installation. This is fine since the systems are all hooked to a central LDAP directory for accounts and most desktop applications are preconfigured thanks to dconf (see <xref linkend=\"sect.gnome-desktop\" /> for more information about this)."
 msgstr ""
+"Desktop-Computer die nicht gesichert werden, können sehr einfach "
+"neuinstalliert werden mit Hilfe einer mit <emphasis>Simple-CDD</emphasis> "
+"vorbereiteten, angepassten DVD-ROM (siehe <xref linkend=\"sect.simple-cdd\" "
+"/>). Da dies eine Neuinstallation ist, gehen alle Anpassungen verloren, die "
+"eventuell nach der Erstinstallation vorgenommen worden waren. Das macht aber "
+"nichts, weil die Systeme alle mit einem zentralen LDAP-Verzeichnis für "
+"Benutzerkonten verknüpft sind und die meisten Desktop-Anwendungen sind dank "
+"dconf vorkonfiguriert (siehe <xref linkend=\"sect.gnome-desktop\" /> für "
+"mehr Information dazu)."
 
 #. Tag: para
 #, no-c-format
@@ -2584,12 +2795,27 @@ msgstr "Einführung"
 #, no-c-format
 msgid "The <emphasis>hotplug</emphasis> kernel subsystem dynamically handles the addition and removal of devices, by loading the appropriate drivers and by creating the corresponding device files (with the help of <command>udevd</command>). With modern hardware and virtualization, almost everything can be hotplugged: from the usual USB/PCMCIA/IEEE 1394 peripherals to SATA hard drives, but also the CPU and the memory."
 msgstr ""
+"Das Kernel-Subsystem <emphasis>hotplug</emphasis> steuert das Anschließen "
+"und Wegnehmen von Geräten, indem die passenden Treiber geladen und die "
+"zugehörigen Gerätedateien (mit Hilfe von <command>udevd</command>) erzeugt "
+"werden. Mit moderner Hardware und Virtualisierung kann fast alles im Betrieb "
+"angeschlossen und entfernt werden: nicht nur die üblichen via USB/PCMCIA/"
+"IEEE oder 1394 angeschlossenen Peripheriegeräte, sondern auch SATA-"
+"Festplatten genauso wie die CPU und der Hauptspeicher."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <emphasis>hotplug</emphasis> kernel subsystem loads drivers for peripherals that can be hotplugged. This includes USB peripherals (increasingly common), PCMCIA (common expansion cards for laptops), IEEE 1394 (also called “Firewire” or “I-Link”), some SATA hard drives, and even, for some high-end servers, PCI or SCSI devices. The kernel has a database that associates each device ID with the required driver. This database is used during boot to load all the drivers for the peripheral devices detected on the different buses mentioned, but also when an additional hotplug device is connected. Once a driver is loaded, a message is sent to <command>udevd</command> so it will be able to create the corresponding entry in <filename>/dev/</filename>."
 msgid "The kernel has a database that associates each device ID with the required driver. This database is used during boot to load all the drivers for the peripheral devices detected on the different buses, but also when an additional hotplug device is connected. Once the device is ready for use, a message is sent to <command>udevd</command> so it will be able to create the corresponding entry in <filename>/dev/</filename>."
-msgstr "Das <emphasis>Hotplug</emphasis>-Subsystem des Kernels lädt Treiber für Peripheriegeräte, die im laufenden Betrieb gewechselt werden können. Dies schließt USB-Geräte (zunehmend verbreitet), PCMCIA (übliche Erweiterungskarten für Laptops), IEEE 1394 (auch „Firewire“ oder „I-Link“ genannt), einige SATA-Festplatten und für manche Spitzenserver sogar PCI- und SCSI-Geräte ein. Der Kernel verfügt über eine Datenbank, die jeder Geräte-ID den erforderlichen Treiber zuordnet. Diese Datenbank wird während des Hochfahrens dazu benutzt, alle Treiber für die Peripheriegeräte zu laden, die auf den verschiedenen oben genannten Bussen erkannt wurden, aber auch wenn ein zusätzliches Hotplug-Gerät verbunden wird. Sobald ein Treiber geladen ist, wird eine Nachricht an <command>udevd</command> geschickt, so dass es einen entsprechenden Eintrag in <filename>/dev/</filename> erstellen kann."
+msgstr ""
+"Der Kernel verfügt über eine Datenbank, die jeder Geräte-ID den "
+"erforderlichen Treiber zuordnet. Diese Datenbank wird während des "
+"Hochfahrens dazu benutzt, alle Treiber für die Peripheriegeräte zu laden, "
+"die auf den verschiedenen oben genannten Bussen erkannt wurden, aber auch "
+"wenn ein zusätzliches Hotplug-Gerät verbunden wird. Sobald das Gerät "
+"einsatzbereit ist, wird eine Nachricht an <command>udevd</command> "
+"geschickt, so dass es einen entsprechenden Eintrag in "
+"<filename>/dev/</filename> erstellen kann."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2659,7 +2885,21 @@ msgstr "Es wäre schwierig, jeden Benutzer zu bitten, seine eigenen <emphasis>ud
 #. Tag: para
 #, no-c-format
 msgid "This mechanism has some side effects that you should know about. Let's consider the case of computer that has only one PCI network card. The network interface is named <literal>eth0</literal>, logically. Now say the card breaks down, and the administrator replaces it; the new card will have a new MAC address. Since the old card was assigned the name, <literal>eth0</literal>, the new one will be assigned <literal>eth1</literal>, even though the <literal>eth0</literal> card is gone for good (and the network will not be functional because <filename>/etc/network/interfaces</filename> likely configures an <literal>eth0</literal> interface). In this case, it is enough to simply delete the <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> file before rebooting the computer. The new card will then be given the expected <literal>eth0</literal> name."
-msgstr "Dieses Vorgehen hat einige Nebenwirkungen, die Sie kennen sollten. Nehmen wir den Fall eines Rechners, der nur eine PCI-Netzwerkkarte hat. Die Netzwerkschnittstelle heißt natürlich <literal>eth0</literal>. Nun nehmen wir an, dass die Karte ausfällt und vom Administrator ersetzt wird; die neue Karte wird eine neue MAC-Adresse haben. Da der alten Karte die Bezeichnung <literal>eth0</literal> zugewiesen war, wir der neuen <literal>eth1</literal> zugewiesen, obwohl die alte für immer fort ist (und das Netzwerk wird nicht funktionieren, weil <filename>/etc/network/interfaces</filename> voraussichtlich eine <literal>eth0</literal>-Schnittstelle konfigurieren wird). In diesem Fall genügt es, einfach vor einem Neustart des Rechners die Datei <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> zu löschen. Der neuen Karte wird dann die gewünschte Bezeichnung <literal>eth0</literal> gegeben."
+msgstr ""
+"Dieses Vorgehen hat einige Nebenwirkungen, die Sie kennen sollten. Nehmen "
+"wir den Fall eines Rechners, der nur eine PCI-Netzwerkkarte hat. Die "
+"Netzwerkschnittstelle heißt natürlich <literal>eth0</literal>. Nun nehmen "
+"wir an, dass die Karte ausfällt und vom Administrator ersetzt wird; die neue "
+"Karte wird eine neue MAC-Adresse haben. Da der alten Karte die Bezeichnung "
+"<literal>eth0</literal> zugewiesen war, wir der neuen <literal>eth1</literal>"
+" zugewiesen, obwohl <literal>eth0</literal> für immer fort ist (und das "
+"Netzwerk wird nicht funktionieren, weil "
+"<filename>/etc/network/interfaces</filename> voraussichtlich eine "
+"<literal>eth0</literal>-Schnittstelle konfigurieren wird). In diesem Fall "
+"genügt es, einfach vor einem Neustart des Rechners die Datei "
+"<filename>/etc/udev/rules.d/70-persistent-net.rules</filename> zu löschen. "
+"Der neuen Karte wird dann die gewünschte Bezeichnung <literal>eth0</literal> "
+"gegeben."
 
 #. Tag: title
 #, no-c-format
@@ -2949,10 +3189,11 @@ msgid "Like many daemons, <command>udevd</command> stores logs in <filename>/var
 msgstr "Wie viele Daemons, so speichert auch <command>udevd</command> Protokolle in <filename>/var/log/daemon.log</filename>. Jedoch sind sie standardmäßig nicht sehr ausführlich und reichen gewöhnlich nicht aus, um zu verstehen, was vor sich geht. Der Befehl <command>udevadm control --log-priority=info</command> erhöht den Grad der Ausführlichkeit und behebt dieses Problem. <command>udevadm control --log-priority=err</command> setzt ihn wieder auf den ursprünglichen Ausführlichkeitsgrad zurück."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Modern power savings: Advanced Configuration and Power Interface (ACPI)"
 msgid "Power Management: Advanced Configuration and Power Interface (ACPI)"
-msgstr "Modernes Energiesparen: Advanced Configuration and Power Interface (ACPI)"
+msgstr ""
+"Modernes Energiemanagement: Advanced Configuration and Power Interface (ACPI)"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2965,16 +3206,29 @@ msgid "<primary>management, power management</primary>"
 msgstr "<primary>Verwaltung, Energieverwaltung</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The topic of power management is often problematic. Indeed, properly suspending the computer requires that all the computer's device drivers know how to put them to standby, and that they properly reconfigure the devices upon waking. Unfortunately, there are still many devices unable to sleep well under Linux, because their manufacturers have not provided the required specifications."
 msgid "The topic of power management is often problematic. Indeed, properly suspending the computer requires that all the computer's device drivers know how to put them to standby, and that they properly reconfigure the devices upon waking. Unfortunately, there are still a few devices unable to sleep well under Linux, because their manufacturers have not provided the required specifications."
-msgstr "Das Thema Energieverwaltung ist häufig mit Problemen verbunden. So erfordert das ordnungsgemäße Versetzen des Rechners in den Bereitschaftsbetrieb, dass alle Gerätetreiber des Rechners wissen, wie die Geräte in Stand-by versetzt werden, und dass sie sie bei der erneuten Betriebsaufnahme wieder ordnungsgemäß konfigurieren. Leider gibt es noch viele Geräte, die unter Linux nicht korrekt in den Wartebetrieb übergehen, da ihre Hersteller die erforderlichen Spezifikationen nicht bereitgestellt haben."
+msgstr ""
+"Das Thema Energieverwaltung ist häufig mit Problemen verbunden. So erfordert "
+"das ordnungsgemäße Versetzen des Rechners in den Bereitschaftsbetrieb, dass "
+"alle Gerätetreiber des Rechners wissen, wie die Geräte in Stand-by versetzt "
+"werden, und dass sie sie bei der erneuten Betriebsaufnahme wieder "
+"ordnungsgemäß konfigurieren. Leider gibt es noch einige wenige Geräte, die "
+"unter Linux nicht korrekt in den Wartebetrieb übergehen, da ihre Hersteller "
+"die erforderlichen Spezifikationen nicht bereitgestellt haben."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <emphasis role=\"pkg\">apmd</emphasis> package provides a daemon that looks for events connected to energy management (switching between AC and battery power on a laptop, etc.), and allows you to run specific commands in response."
 msgid "Linux supports ACPI (Advanced Configuration and Power Interface) — the most recent standard in power management. The <emphasis role=\"pkg\">acpid</emphasis> package provides a daemon that looks for power management related events (switching between AC and battery power on a laptop, etc.) and that can execute various commands in response."
-msgstr "Das Paket <emphasis role=\"pkg\">apmd</emphasis> stellt einen Daemon bereit, der nach Ereignissen Ausschau hält, die mit der Energieverwaltung in Zusammenhang stehen (das Umschalten zwischen Netz- und Batteriebetrieb bei einem Laptop usw.), und ermöglicht es Ihnen, als Reaktion hierauf bestimmte Befehle auszuführen."
+msgstr ""
+"Linux unterstützt ACPI (Advanced Configuration and Power Interface) - den "
+"jüngsten Standard für Powermanagement. Das Paket <emphasis role=\"pkg\""
+">acpid</emphasis> stellt einen Dämon zur Verfügung, der nach Ereignissen im "
+"Zusammenhang mit dem Powermanagement Ausschau hält (das Umschalten zwischen "
+"Netz- und Batteriebetrieb bei einem Laptop usw.), und der diverse Befehle "
+"als Reaktion darauf ausführen kann."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2992,10 +3246,10 @@ msgid "<primary><command>acpid</command></primary>"
 msgstr "<primary><command>acpid</command></primary>"
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>HARDWARE</emphasis> Apple and power management"
 msgid "<emphasis>CULTURE</emphasis> Advanced Power Management (APM)"
-msgstr "<emphasis>HARDWARE</emphasis> Apple und Energieverwaltung"
+msgstr "<emphasis>KULTUR</emphasis> Advanced Power Management (APM)"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3011,18 +3265,27 @@ msgstr "<primary>Advanced Power Management</primary>"
 #, no-c-format
 msgid "APM (Advanced Power Management) is the ancestor of ACPI in the power management world. While Debian still provides <command>apmd</command> (the counterpart to <command>acpid</command> for the APM standard), the official Debian kernel no longer supports APM so you'll have to run a custom kernel if you really need it for some old computer."
 msgstr ""
+"APM (Advanced Powermanagement) ist der Vorgänger von ACPI in der Welt des "
+"Powermanagements. Obwohl Debian noch immer den Befehl <command>apmd</command>"
+" (dem Gegenstück zu <command>acpid</command> für den APM-Standard) kennt, "
+"unterstützt der offizielle Debian-Kernel APM nicht länger, so dass Sie einen "
+"angepassten Kernel betreiben müssen, wenn sie es tatsächlich noch für einen "
+"alten Computer benötigen."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>ATTENTION</emphasis> Graphics card and standby"
 msgid "<emphasis>BEWARE</emphasis> Graphics card and standby"
-msgstr "<emphasis>ACHTUNG</emphasis> Grafikkarte und Bereitschaftsbetrieb"
+msgstr "<emphasis>VORSICHT</emphasis> Grafikkarte und Bereitschaftsbetrieb"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The graphics card driver often has a problem with standby. In case of trouble, it is a good idea to test the latest version of the X.org graphics server."
 msgid "The graphics card driver is often the culprit when standby doesn't work properly. In that case, it is a good idea to test the latest version of the X.org graphics server."
-msgstr "Der Grafikkartentreiber hat häufig ein Problem mit dem Bereitschaftsbetrieb. Bei Schwierigkeiten empfiehlt es sich, die jüngste Version des X.org-Grafikservers auszuprobieren."
+msgstr ""
+"Der Grafikkartentreiber ist häufig die Ursache, wenn der  "
+"Bereitschaftsbetrieb nicht sauber funktioniert. In diesem Fall empfiehlt es "
+"sich, die jüngste Version des X.org-Grafikservers auszuprobieren."
 
 #. Tag: para
 #, no-c-format

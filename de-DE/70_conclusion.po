@@ -5,15 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2013-03-24 12:56+0200\n"
-"Last-Translator: Carsten Bachert <caba@bachert.info>\n"
-"Language-Team: German <http://debian.weblate.org/projects/debian-handbook/70_conclusion/de-DE/>\n"
+"PO-Revision-Date: 2014-11-04 00:59+0200\n"
+"Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/debian-"
+"handbook/70_conclusion/de/>\n"
 "Language: de-DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.5-dev\n"
+"X-Generator: Weblate 2.0-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -46,26 +47,55 @@ msgid "Upcoming Developments"
 msgstr "Zukünftige Entwicklungen"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Weeks (or months) before a new version of Debian is released, the Release Manager picks the codename for the next version. Now that Debian version 6.0 is out, the developers are already busy working on the next version, codenamed <emphasis role=\"distribution\">Wheezy</emphasis>…"
 msgid "Weeks (or months) before a new version of Debian is released, the Release Manager picks the codename for the next version. Now that Debian version 7 is out, the developers are already busy working on the next version, codenamed <emphasis role=\"distribution\">Jessie</emphasis>…"
-msgstr "Wochen (oder Monate) bevor eine neue Version von Debian erscheint, wählt der Release Manager einen Codenamen für die nächste Version. Jetzt da Debian Version 6.0 erschienen ist, sind die Entwickler bereits mit Arbeiten an der kommenden Version, Codename <emphasis role=\"distribution\">Wheezy</emphasis>, beschäftigt…"
+msgstr ""
+"Wochen (oder Monate) bevor eine neue Version von Debian erscheint, wählt der "
+"Release Manager einen Codenamen für die nächste Version. Jetzt da Debian "
+"Version 7 erschienen ist, sind die Entwickler bereits mit Arbeiten an der "
+"kommenden Version, Codename <emphasis role=\"distribution\">Jessie</emphasis>"
+", beschäftigt…"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "There's no official list of planned changes, and Debian never makes promises relating to technical goals of the coming versions. However, a few development trends can already be noted, and there are many reasons to believe they will turn into concrete results in the new version."
 msgid "There's no official list of planned changes, and Debian never makes promises relating to technical goals of the coming versions. However, a few development trends can already be noted, and we can try some bets on what might happen (or not)."
-msgstr "Es gibt keine offizielle Liste geplanter Änderungen und Debian macht niemals Versprechen bezüglich technischer Ziele kommender Versionen. Trotzdem sind einige Trends der Entwicklung bereits erkennbar und es gibt viele Gründe anzunehmen, dass diese als konkrete Resultate in die kommende Version einfließen werden."
+msgstr ""
+"Es gibt keine offizielle Liste geplanter Änderungen und Debian macht niemals "
+"Versprechen bezüglich technischer Ziele kommender Versionen. Trotzdem sind "
+"einige Trends der Entwicklung bereits erkennbar und wir können versuchen "
+"vorherzusagen, was kommen wird (oder auch nicht).."
 
 #. Tag: para
 #, no-c-format
 msgid "The default “init” process (<command>sysvinit</command>) will hopefully be replaced by a more modern system such as <command>upstart</command> or <command>systemd</command>. Some ports will be gone: <literal>s390</literal> has been superseded by <literal>s390x</literal>, <literal>sparc</literal> and <literal>ia64</literal> might follow as they suffer from multiple problems (lack of recent hardware, lack of Debian porters, lack of upstream support, etc.). <command>dpkg</command> will gain a <command>--verify</command> command that renders <command>debsums</command> mostly obsolete."
 msgstr ""
+"Der standardmäßige \"init\"-Prozess  (<command>sysvinit</command>) wird "
+"hoffentlich durch ein moderneres Sytem wie <command>upstart</command> oder "
+"<command>systemd</command> ersetzt werden. Einige Portierungen werden "
+"verschwinden: <literal>s390</literal> wurde schon ersetzt durch  "
+"<literal>s390x</literal>, <literal>sparc</literal> und "
+"<literal>ia64</literal> werden vielleicht folgen, da sie mit verschiedenen "
+"Schwierigkeiten zu kämpfen haben (, fehlende aktuelle Hardware, keine Debian-"
+"Portierer, fehlende Aufwärtsunterstützung usw). <command>dpkg</command> wird "
+"um <command>--verify</command> erweitert werden, was "
+"<command>debsums</command> weitgehend überflüssig machen wird."
 
 #. Tag: para
 #, no-c-format
 msgid "Of course, all the main software suites will have had a major release. Apache 2.4 (or newer) will have a strong impact on deployed websites as many configuration files will have to be updated. The Linux kernel is likely to have a much improved container support (with user namespaces, paving the path towards more secure containers). And the latest version of the various desktops will bring better usability and new features. GNOME 3 will be much more polished and the fans of the good old GNOME 2 will be pleased with the inclusion of <ulink url=\"http://mate-desktop.org/\">MATE</ulink> in Debian."
 msgstr ""
+"Natürlich werden alle wesentlichen Software-Suiten in neuen Versionen "
+"vorliegen. Apache 2.4 (oder höher) wird sich stark auf veröffentlichte "
+"Webseiten auswirken, da viele Konfigurationsdateien aktualisiert werden "
+"müssen. Der Linux-Kernel wird wahrscheinlich eine deutlich bessere Container-"
+"Unterstützung erhalten (mit Benutzernamensräumen, die die den Weg hin zu "
+"sichereren Containern bereiten). Und die neuesten Versíonen der "
+"verschiedenen Desktops werden höhere Benutzerfreundlichkeit mitbringen und "
+"neue Funktionalitäten. GNOME 3 wird viel geschmeidiger sein und die Anhänger "
+"des guten alten GNOME 2 werden mit der Einbindung von <ulink url=\"http"
+"://mate-desktop.org/\">MATE</ulink> erfreut werden."
 
 #. Tag: title
 #, no-c-format
@@ -73,10 +103,15 @@ msgid "Debian's Future"
 msgstr "Debians Zukunft"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "In addition to these internal developments, one can reasonably expect new Debian-based distributions to come to light, thanks to the growing popularity of <emphasis>debian-installer</emphasis> and its flexibility. New specialized subprojects will also be started, in order to widen Debian's reach to new horizons."
 msgid "In addition to these internal developments, one can reasonably expect new Debian-based distributions to come to light, as many tools keep making this task easier. New specialized subprojects will also be started, in order to widen Debian's reach to new horizons."
-msgstr "Zusätzlich zu diesen internen Entwicklungen, kann man realistischerweise erwarten, dass dank der wachsenen Beliebtheit und der Flexibilität von <emphasis>debian-installer</emphasis> weitere Debian-basierte Distributionen das Licht der Welt erblicken werden. Neue spezialisierte Unterprojekte werden gestartet, um die Verbreitung Debians zu neuen Horizonten zu erreichen."
+msgstr ""
+"Zusätzlich zu diesen internen Entwicklungen kann man mit gutem Grund "
+"erwarten, dass neue Debian-basierte Distributionen das Licht der Welt "
+"erblicken werden, denn viele Werkzeuge erleichtern diese Aufgabe. Spezielle "
+"neue Unterprojekte werden gestartet, um neue Wege zur Verbreitung Debians zu "
+"erschließen."
 
 #. Tag: para
 #, no-c-format
@@ -84,10 +119,14 @@ msgid "The Debian user community will increase, and new contributors will join t
 msgstr "Die Debian-Gemeinschaft wird wachsen. Neue Helfer werden sich dem Projekt anschließen... Vielleicht bist du ja unter ihnen!"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The Debian project is stronger than ever, and well on its way towards its goal of an universal distribution; the inside joke within the Debian community is about <foreignphrase>World Domination</foreignphrase>."
 msgid "The Debian project is stronger than ever, and well on its way towards its goal of a universal distribution; the inside joke within the Debian community is about <foreignphrase>World Domination</foreignphrase>."
-msgstr "Das Debian-Projekt ist stärker als jemals zuvor und hat schon einen guten Teil des Weges bis zur universellen Distribution hinter sich gebracht. Der Insiderwitz innerhalb der Debian-Gemeinde spricht von der <foreignphrase>Weltherrschaft</foreignphrase> (World Domination)."
+msgstr ""
+"Das Debian-Projekt ist stärker als jemals zuvor und hat schon einen guten "
+"Teil des Weges bis zur universellen Distribution hinter sich gebracht. Der "
+"Insiderwitz innerhalb der Debian-Gemeinde spricht von der "
+"<foreignphrase>Weltherrschaft</foreignphrase> (World Domination)."
 
 #. Tag: para
 #, no-c-format
@@ -95,15 +134,21 @@ msgid "In spite of its old age and its respectable size, Debian keeps on growing
 msgstr "Trotz seines Alters und seiner respektablen Größe wächst Debian weiter in alle möglichen (manchmal unerwarteten) Richtungen. Mitwirkende sind voller Ideen, und Diskussionen auf Entwicklungs-Mailinglisten, selbst wenn sie wie Gezänk aussehen, verstärken den Schwung. Debian wird manchmal verglichen mit einem schwarzen Loch einer so starken Dichte, dass jedes neue freie Softwareprojekt angezogen wird."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Beyond the apparent satisfaction of most Debian users, a deep trend is becoming more and more indisputable: people are increasingly realising that collaborating, rather than doing business solo, leads to better results for everyone. Such is the rationale used by distributions merging into Debian by way of subprojects."
 msgid "Beyond the apparent satisfaction of most Debian users, a deep trend is becoming more and more indisputable: people are increasingly realising that collaborating, rather than working alone in their corner, leads to better results for everyone. Such is the rationale used by distributions merging into Debian by way of subprojects."
-msgstr "Über die offenbare Zufriedenheit der meisten Debian-Benutzer hinaus wird ein starker Trend mehr und mehr unumstritten: Die Menschen erkennen zusehends, dass eine Zusammenarbeit anstelle einzeln vor sich hinzuarbeiten, zu besseren Ergebnissen für alle führt. Das ist das Grundprinzip von Distributionen, die sich in Debian als Unterprojekte einfügen."
+msgstr ""
+"Neben der offensichtlichen Zufriedenheit der meisten Debian-Benutzer "
+"zeichnet sich unbestreitbar ein starker Trend ab: Die Leute erkennen "
+"zusehends, dass bessere Ergebnisse erzielt werdne können, wenn man "
+"zusammenarbeitet, alleine vor sich hinzuarbeiten. Und das ist auch das "
+"Grundprinzip von Distributionen, die sich in Debian als Unterprojekte "
+"einklinken."
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian project is therefore not threatened by extinction…"
-msgstr "Das Debian-Projekt ist daher nicht vom Aussterben bedroht..."
+msgstr "Das Debian-Projekt ist daher nicht vom Aussterben bedroht…"
 
 #. Tag: title
 #, no-c-format
@@ -111,21 +156,46 @@ msgid "Future of this Book"
 msgstr "Die Zukunft des Buches"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "We would like this book to evolve in the spirit of free software. We therefore welcome contributions, remarks, suggestions, and criticism. Please direct them to Raphaël (<email>hertzog@debian.org</email>) or Roland (<email>lolando@debian.org</email>). The website will be used to gather all information relevant to its evolution. <ulink type=\"block\" url=\"http://debian-handbook.info/\" />"
 msgid "We would like this book to evolve in the spirit of free software. We therefore welcome contributions, remarks, suggestions, and criticism. Please direct them to Raphaël (<email>hertzog@debian.org</email>) or Roland (<email>lolando@debian.org</email>). For actionable feedback, feel free to open bug reports against the <literal>debian-handbook</literal> Debian package. The website will be used to gather all information relevant to its evolution, and you will find there information on how to contribute, in particular if you want to translate this book to make it available to an even larger public than today. <ulink type=\"block\" url=\"http://debian-handbook.info/\" />"
-msgstr "Wir würden gerne sehen, wie sich dieses Buch im Geist der Freien Software entwickelt. Deshalb begrüßen wir Beiträge, Hinweise, Vorschläge und Kritik. Bitte leiten Sie diese an Raphaël (<email>hertzog@debian.org</email>) oder Roland (<email>lolando@debian.org</email>). Die Internet-Seite wird genutzt um alle für die Weiterentwicklung des Buches relevanten Informationen anzusammeln. <ulink type=\"block\" url=\"http://debian-handbook.info/\" />"
+msgstr ""
+"Wir würden gerne sehen, wie sich dieses Buch im Geist der Freien Software "
+"entwickelt. Deshalb begrüßen wir Beiträge, Hinweise, Vorschläge und Kritik. "
+"Bitte richten Sie diese an Raphaël (<email>hertzog@debian.org</email>) oder "
+"Roland (<email>lolando@debian.org</email>). Für nachvollziehbare "
+"Rückmeldungen sollten Sie Fehlermeldungen zu dem Paket <literal>debian-"
+"handbook</literal> verfassen. Die Internet-Seite wird genutzt um alle für "
+"die Weiterentwicklung des Buches relevanten Informationen zu sammeln und "
+"dort finden Sie auch Informationen, wie Sie sich beteiligen können, ganz "
+"besonders wenn Sie das Buch übersetzen wollen, um es einem noch größeren "
+"Publikum zugänglich zu machen. <ulink type=\"block\" url=\"http://debian-"
+"handbook.info/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "We tried to integrate most of what our experience at Debian taught us, so that anyone can use this distribution and take the best advantage of it as soon as possible. We hope this book contributes to making Debian less confusing and more popular, and we welcome publicity around it!"
-msgstr "Wir versuchten möglichst viel Erfahrung, die wir bei der Arbeit mit Debian erlangt haben einzubringen, so dass jeder diese Distribution nutzen und so schnell wie möglich die für ihn größten Vorteile daraus ziehen kann. Wir hoffen, dass dieses Buch einen Beitrag dazu leistet, Debian weniger verwirrend und populärer zu machen, und wir begrüßen Werbung dafür."
+msgstr ""
+"Wir versuchten möglichst viel Erfahrung, die wir bei der Arbeit mit Debian "
+"erlangt haben einzubringen, so dass jeder diese Distribution nutzen und so "
+"schnell wie möglich die für ihn größten Vorteile daraus ziehen kann. Wir "
+"hoffen, dass dieses Buch einen Beitrag dazu leistet, Debian weniger "
+"verwirrend und populärer zu machen, und wir freuen uns über jede Werbung "
+"dafür!"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "We'd like to conclude on a personal note. Writing (and translating) this book took a considerable amount of time out of our usual professional activity. Since we're both freelance consultants, any new source of income grants us the freedom to spend more time improving Debian; we hope this book to be successful and to contribute to this. In the meantime, feel free to retain our services! <ulink type=\"block\" url=\"http://www.freexian.com\" /><ulink type=\"block\" url=\"http://www.gnurandal.com\" />"
 msgid "We'd like to conclude on a personal note. Writing (and translating) this book took a considerable amount of time out of our usual professional activity. Since we're both freelance consultants, any new source of income grants us the freedom to spend more time improving Debian; we hope this book to be successful and to contribute to this. In the meantime, feel free to retain our services! <ulink type=\"block\" url=\"http://www.freexian.com\" /> <ulink type=\"block\" url=\"http://www.gnurandal.com\" />"
-msgstr "Wir würden gerne mit einer persönlichen Bemerkung schließen. Schreiben (und Übersetzen) dieses Buches verschlang ganz schön viel Zeit, die wir sonst in unseren Beruf stecken. Da wir beide freiberufliche Berater sind, garantiert uns jede neue Einkommensquelle die Freiheit, mehr Zeit mit der Verbesserung von Debian zu verbringen; wir hoffen, dass dieses Buch erfolgreich ist und dazu beitragen wird. Bis es so weit ist, beauftragen Sie uns gerne!<ulink type=\"block\" url=\"http://www.freexian.com\" /><ulink type=\"block\" url=\"http://www.gnurandal.com\" />"
+msgstr ""
+"Wir würden gerne mit einer persönlichen Bemerkung schließen. Das Schreiben ("
+"und Übersetzen) dieses Buches verschlang ganz schön viel Zeit, die wir sonst "
+"in unseren Beruf hätten stecken können. Da wir beide freiberuflich tätig "
+"sind, verschafft uns jede neue Einkommensquelle den nötigen Freiraum, mehr "
+"Zeit in die Verbesserung von Debian zu stecken; wir hoffen, dass dieses Buch "
+"erfolgreich ist und uns dabei helfen wird. Bis es so weit ist, können Sie "
+"uns gerne beauftragen!<ulink type=\"block\" url=\"http://www.freexian.com\" "
+"/><ulink type=\"block\" url=\"http://www.gnurandal.com\" />"
 
 #. Tag: para
 #, no-c-format

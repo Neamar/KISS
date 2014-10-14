@@ -4,16 +4,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2014-06-29 23:22+0200\n"
+"PO-Revision-Date: 2014-11-14 22:40+0200\n"
 "Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
-"Language-Team: German <https://debian.weblate.org/projects/debian-handbook"
-"/12_advanced-administration/de-DE/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/debian-handbook"
+"/12_advanced-administration/de/>\n"
 "Language: de-DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.10-dev\n"
+"X-Generator: Weblate 2.1-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -58,7 +58,7 @@ msgstr "LXC"
 #. Tag: title
 #, no-c-format
 msgid "Advanced Administration"
-msgstr "Weitergehende Verwaltung"
+msgstr "Erweiterte Verwaltung"
 
 #. Tag: para
 #, no-c-format
@@ -71,7 +71,7 @@ msgid "RAID and LVM"
 msgstr "RAID und LVM"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<xref linkend=\"installation\" /> presented these technologies from the point of view of the installer, and how it integrated them to make their deployment easy from the start. After the initial installation, an administrator must be able to handle evolving storage space needs without having to resort to an expensive reinstallation. They must therefore master the required tools for manipulating RAID and LVM volumes."
 msgid "<xref linkend=\"installation\" /> presented these technologies from the point of view of the installer, and how it integrated them to make their deployment easy from the start. After the initial installation, an administrator must be able to handle evolving storage space needs without having to resort to an expensive reinstallation. They must therefore understand the required tools for manipulating RAID and LVM volumes."
 msgstr ""
@@ -81,13 +81,24 @@ msgstr ""
 "ein Administrator in der Lage sein, neu auftretendem Bedarf an Speicherplatz "
 "zu begegnen, ohne auf eine aufwändige Neuinstallation zurückgreifen zu "
 "müssen. Er muss daher die Hilfsprogramme zur Handhabung von RAID- und LVM-"
-"Volumes verstehenden."
+"Volumes verstehen."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "RAID and LVM are both techniques to abstract the mounted volumes from their physical counterparts (actual hard-disk drives or partitions thereof); the former secures the data by introducing redundancy, the latter makes data management more flexible and independent of the actual size of the underlying disks. In both cases, the system ends up with new block devices, which can be used to create filesystems or swap space, without necessarily having them mapped to one physical disk. RAID and LVM come from quite different backgrounds, but their functionality can overlap somewhat, which is why they are often mentioned together."
 msgid "RAID and LVM are both techniques to abstract the mounted volumes from their physical counterparts (actual hard-disk drives or partitions thereof); the former secures the data against hardware failure by introducing redundancy, the latter makes volume management more flexible and independent of the actual size of the underlying disks. In both cases, the system ends up with new block devices, which can be used to create filesystems or swap space, without necessarily having them mapped to one physical disk. RAID and LVM come from quite different backgrounds, but their functionality can overlap somewhat, which is why they are often mentioned together."
-msgstr "Sowohl RAID als auch LVM sind Verfahren, um die eingehängten Speicherbereiche von ihren physischen Entsprechungen (Festplatten oder ihre Partitionen) zu lösen, wobei ersteres die Daten durch redundante Speicherung sichert und letzteres die Datenverwaltung flexibler und unabhängig von der tatsächlichen Größe der zugrunde liegenden Speicherplatten macht. In beiden Fällen führt dies zu einem System mit neuen Blockgeräten, die zur Erstellung von Dateisystemen oder Auslagerungsspeicher verwendet werden können, ohne diese notwendigerweise einer physischen Speicherplatte zuordnen zu müssen. RAID und LVM haben recht unterschiedliche Ursprünge, ihre Funktionsweise überschneidet sich jedoch teilweise, weshalb sie häufig gemeinsam erwähnt werden."
+msgstr ""
+"Sowohl RAID als auch LVM sind Verfahren, um die eingehängten "
+"Speicherbereiche von ihren physischen Entsprechungen (Festplatten oder ihre "
+"Partitionen) zu lösen, wobei ersteres die Daten durch redundante Speicherung "
+"vor einem Hardwareausfall schützt und letzteres die Datenverwaltung "
+"flexibler und unabhängig von der tatsächlichen Größe der zugrunde liegenden "
+"Speicherplatten macht. In beiden Fällen führt dies zu einem System mit neuen "
+"Blockgeräten, die zur Erstellung von Dateisystemen oder Auslagerungsspeicher "
+"verwendet werden können, ohne diese notwendigerweise einer physischen "
+"Speicherplatte zuordnen zu müssen. RAID und LVM haben recht unterschiedliche "
+"Ursprünge, ihre Funktionsweise überschneidet sich jedoch teilweise, weshalb "
+"sie häufig gemeinsam erwähnt werden."
 
 #. Tag: title
 #, no-c-format
@@ -95,10 +106,19 @@ msgid "<emphasis>PERSPECTIVE</emphasis> Btrfs combines LVM and RAID"
 msgstr "<emphasis>AUSBLICK</emphasis> Btrfs vereint LVM und RAID"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "While LVM and RAID are two distinct kernel subsystems that come between the disk block devices and their filesystems, <emphasis>btrfs</emphasis> is a new filesystem, initially developed at Oracle, that purports to combine the featuresets of LVM and RAID and much more. It is mostly functional, although still tagged “experimental” because its development is incomplete (some features aren't implemented yet). <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
 msgid "While LVM and RAID are two distinct kernel subsystems that come between the disk block devices and their filesystems, <emphasis>btrfs</emphasis> is a new filesystem, initially developed at Oracle, that purports to combine the featuresets of LVM and RAID and much more. It is mostly functional, and although it is still tagged “experimental” because its development is incomplete (some features aren't implemented yet), it has already seen some use in production environments. <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
-msgstr "Während LVM und RAID zwei unterschiedliche Subsysteme des Kernels sind, die zwischen den Blockgeräten und ihren Dateisystemen liegen, ist <emphasis>btrfs</emphasis> ein neues Dateisystem, das ursprünglich bei Oracle entwickelt wurde und darauf abzielt, die Funktionen von LVM und RAID und noch vieles mehr zu vereinen. Es ist weitgehend funktionsfähig, wird aber noch als „experimentell“ bezeichnet, da seine Entwicklung noch nicht abgeschlossen ist (einige Funktionsmerkmale sind noch nicht umgesetzt). <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
+msgstr ""
+"Während LVM und RAID zwei unterschiedliche Subsysteme des Kernels sind, die "
+"zwischen den Blockgeräten und ihren Dateisystemen liegen, ist "
+"<emphasis>btrfs</emphasis> ein neues Dateisystem, das ursprünglich bei "
+"Oracle entwickelt wurde und darauf abzielt, die Funktionen von LVM und RAID "
+"und noch vieles mehr zu vereinen. Es ist weitgehend funktionsfähig, wird "
+"aber noch als „experimentell“ bezeichnet, da seine Entwicklung noch nicht "
+"abgeschlossen ist (einige Funktionsmerkmale sind noch nicht umgesetzt), und "
+"hat auch seine Brauchbarkeit schon in Produktionsumgebungen unter Beweis "
+"gestellt. <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
 
 #. Tag: para
 #, no-c-format
@@ -126,10 +146,16 @@ msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Independent</foreignphrase> o
 msgstr "<emphasis>KULTUR</emphasis> <foreignphrase>Unabhängig</foreignphrase> oder <foreignphrase>preiswert</foreignphrase>?"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it's now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavory flavour of cheapness."
 msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it is now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavory flavour of cheapness."
-msgstr "Das I in RAID stand ursprünglich für <emphasis>inexpensive</emphasis> (preiswert), da RAID eine erhebliche Steigerung der Datensicherheit ermöglichte, ohne in teure und hochwertige Platten investieren zu müssen. Wahrscheinlich aus Imagegründen ist es inzwischen jedoch üblicher, es als Abkürzung für  <emphasis>independent</emphasis> (unabhängig) anzusehen, das nicht den unangenehmen Beigeschmack des Billigen hat."
+msgstr ""
+"Das I in RAID stand ursprünglich für <emphasis>inexpensive</emphasis> "
+"(preiswert), da RAID eine erhebliche Steigerung bzgl. der Datensicherheit "
+"ermöglichte, ohne in teure und hochwertige Platten investieren zu müssen. "
+"Wahrscheinlich aus Imagegründen ist es inzwischen jedoch üblicher, es als "
+"Abkürzung für  <emphasis>independent</emphasis> (unabhängig) anzusehen, das "
+"nicht den unangenehmen Beigeschmack des Billigen hat."
 
 #. Tag: para
 #, no-c-format
@@ -140,11 +166,21 @@ msgstr "RAID kann entweder mit speziell hierfür vorgesehener Hardware eingerich
 #, no-c-format
 msgid "When RAID is implemented by hardware, its configuration generally happens within the BIOS setup tool, and the kernel will consider a RAID array as a single disk, which will work as a standard physical disk, although the device name may be different. For instance, the kernel in <emphasis role=\"distribution\">Squeeze</emphasis> made some hardware RAID arrays available as <filename>/dev/cciss/c0d0</filename>; the kernel in <emphasis role=\"distribution\">Wheezy</emphasis> changed this name to the more natural <filename>/dev/sda</filename>, but other RAID controllers may still behave differently."
 msgstr ""
+"Wenn RAID von der Hardware zur Verfügung gestellt wird, wird die "
+"Konfiguration im Allgemeinen innerhalb des Bios-Setup durchgeführt und der "
+"Kernel hält das RAID-Array für eine einzelne Festplatte die als "
+"physikalische Platte darstellt, obwohl der Gerätename sich davon "
+"unterscheidet. Zum Beispiel stellt der Kernel in <emphasis role=\""
+"distribution\">Squeeze</emphasis> einige Hardware-RAID-Arrays als  "
+"<filename>/dev/cciss/c0d0</filename> zur Verfügung; der Kernel in <emphasis "
+"role=\"distribution\">Wheezy</emphasis> änderte diesen Namen in die "
+"näherliegende Bezeichnung<filename>/dev/sda</filename>, aber bei anderen "
+"RAID-Kontrollern kann es sich anders verhalten."
 
 #. Tag: para
 #, no-c-format
 msgid "We only focus on software RAID in this book."
-msgstr ""
+msgstr "Wir betrachten in diesem Buch nur Software-RAID."
 
 #. Tag: title
 #, no-c-format
@@ -152,10 +188,17 @@ msgid "Different RAID Levels"
 msgstr "Unterschiedliche RAID-Stufen"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "RAID has actually several levels, differentiated by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks; seen the other way, more disks will be needed to store the same amount of data."
 msgid "RAID is actually not a single system, but a range of systems identified by their levels; the levels differ by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks for a given set of disks; seen the other way, more disks will be needed to store a given amount of data."
-msgstr "RAID hat von Haus aus unterschiedliche Stufen, die sich in ihrem Aufbau unterscheiden und in dem Ausmaß der Redundanz, die sie bereitstellen. Je redundanter desto ausfallsicherer, da das System mit einer höheren Anzahl ausgefallener Platten weiter funktionieren kann. Die Kehrseite ist, dass der verfügbare Platz geringer wird; oder anders ausgedrückt, es werden mehr Platten benötigt, um dieselbe Datenmenge zu speichern."
+msgstr ""
+"RAID existiert in der Tat in mehreren Ausprägungen, gekennzeichnet durch "
+"ihre Level. Diese Level unterscheiden sich in ihrem Aufbau und in dem Ausmaß "
+"der Redundanz, die sie bereitstellen. Je mehr Redundanzen, desto "
+"ausfallsicherer, da das System auch mit mehreren ausgefallenen Platten immer "
+"noch funktioniert. Die Kehrseite ist, dass der verfügbare Platz bei "
+"gegebener Anzahl an Platten geringer wird; oder anders ausgedrückt, es "
+"werden mehr Platten benötigt, um dieselbe Datenmenge zu speichern."
 
 #. Tag: term
 #, no-c-format
@@ -368,7 +411,7 @@ msgid "We're going to use these physical elements to build two volumes, one RAID
 msgstr "Wir werden diese physischen Komponenten zur Einrichtung zweier Volumes verwenden, eines RAID-0 und eines Spiegels (RAID-1). Wir beginnen mit dem RAID-0-Volume:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>\n"
 #| "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
@@ -490,23 +533,25 @@ msgid ""
 "/dev/md0        7.9G  146M  7.4G   2% /srv/raid-0\n"
 "</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sda /dev/sde</userinput>\n"
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 "
+"--level=0 --raid-devices=2 /dev/sdb /dev/sdc</userinput>\n"
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
 "mdadm: array /dev/md0 started.\n"
 "# </computeroutput><userinput>mdadm --query /dev/md0</userinput>\n"
-"<computeroutput>/dev/md0: 8.00GiB raid0 2 devices, 0 spares. Use mdadm --detail for more detail.\n"
+"<computeroutput>/dev/md0: 8.00GiB raid0 2 devices, 0 spares. Use mdadm --"
+"detail for more detail.\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md0</userinput>\n"
 "<computeroutput>/dev/md0:\n"
 "        Version : 1.2\n"
-"  Creation Time : Thu Sep 30 15:21:15 2010\n"
+"  Creation Time : Thu Jan 17 15:56:55 2013\n"
 "     Raid Level : raid0\n"
-"     Array Size : 8388480 (8.00 GiB 8.59 GB)\n"
+"     Array Size : 8387584 (8.00 GiB 8.59 GB)\n"
 "   Raid Devices : 2\n"
 "  Total Devices : 2\n"
 "    Persistence : Superblock is persistent\n"
 "\n"
-"    Update Time : Thu Sep 30 15:21:15 2010\n"
-"          State : active\n"
+"    Update Time : Thu Jan 17 15:56:55 2013\n"
+"          State : clean \n"
 " Active Devices : 2\n"
 "Working Devices : 2\n"
 " Failed Devices : 0\n"
@@ -514,48 +559,60 @@ msgstr ""
 "\n"
 "     Chunk Size : 512K\n"
 "\n"
-"           Name : squeeze:0  (local to host squeeze)\n"
-"           UUID : 0012a273:cbdb8b83:0ee15f7f:aec5e3c3\n"
+"           Name : mirwiz:0  (local to host mirwiz)\n"
+"           UUID : bb085b35:28e821bd:20d697c9:650152bb\n"
 "         Events : 0\n"
 "\n"
 "    Number   Major   Minor   RaidDevice State\n"
-"       0       8        0        0      active sync   /dev/sda\n"
-"       1       8       64        1      active sync   /dev/sde\n"
+"       0       8       16        0      active sync   /dev/sdb\n"
+"       1       8       32        1      active sync   /dev/sdc\n"
 "# </computeroutput><userinput>mkfs.ext4 /dev/md0</userinput>\n"
-"<computeroutput>\n"
-"mke2fs 1.41.12 (17-May-2010)\n"
+"<computeroutput>mke2fs 1.42.5 (29-Jul-2012)\n"
 "Filesystem label=\n"
 "OS type: Linux\n"
 "Block size=4096 (log=2)\n"
 "Fragment size=4096 (log=2)\n"
-"Stride=0 blocks, Stripe width=0 blocks\n"
-"524288 inodes, 2097152 blocks\n"
-"104857 blocks (5.00%) reserved for the super user\n"
+"Stride=128 blocks, Stripe width=256 blocks\n"
+"524288 inodes, 2096896 blocks\n"
+"104844 blocks (5.00%) reserved for the super user\n"
 "First data block=0\n"
 "Maximum filesystem blocks=2147483648\n"
-"55 block groups\n"
+"64 block groups\n"
 "32768 blocks per group, 32768 fragments per group\n"
-"8160 inodes per group\n"
+"8192 inodes per group\n"
 "Superblock backups stored on blocks: \n"
-"        32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632\n"
+"       32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632\n"
 "\n"
-"Writing inode tables: done\n"
+"Allocating group tables: done                            \n"
+"Writing inode tables: done                            \n"
 "Creating journal (32768 blocks): done\n"
-"Writing superblocks and filesystem accounting information: done\n"
-"\n"
-"This filesystem will be automatically checked every 26 mounts or\n"
-"180 days, whichever comes first.  Use tune2fs -c or -i to override.\n"
+"Writing superblocks and filesystem accounting information: done \n"
 "# </computeroutput><userinput>mkdir /srv/raid-0</userinput>\n"
-"<computeroutput># </computeroutput><userinput>mount /dev/md0 /srv/raid-0</userinput>\n"
+"<computeroutput># </computeroutput><userinput>mount /dev/md0 "
+"/srv/raid-0</userinput>\n"
 "<computeroutput># </computeroutput><userinput>df -h /srv/raid-0</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/md0              8.0G  249M  7.4G   4% /srv/raid-0</computeroutput>\n"
+"<computeroutput>Filesystem      Size  Used Avail Use% Mounted on\n"
+"/dev/md0        7.9G  146M  7.4G   2% /srv/raid-0\n"
+"</computeroutput>\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <command>mdadm --create</command> command requires several parameters: the name of the volume to create (<filename>/dev/md*</filename>, with MD standing for <foreignphrase>Multiple Device</foreignphrase>), the RAID level, the number of disks (which is compulsory despite being mostly meaningful only with RAID-1 and above), and the physical drives to use. Once the device is created, we can use it like we'd use a normal partition, create a filesystem on it, mount that filesystem, and so on. Note that our creation of a RAID-0 volume on <filename>md0</filename> is nothing but coincidence, and the numbering of the array doesn't need to be correlated to the chosen amount of redundancy."
 msgid "The <command>mdadm --create</command> command requires several parameters: the name of the volume to create (<filename>/dev/md*</filename>, with MD standing for <foreignphrase>Multiple Device</foreignphrase>), the RAID level, the number of disks (which is compulsory despite being mostly meaningful only with RAID-1 and above), and the physical drives to use. Once the device is created, we can use it like we'd use a normal partition, create a filesystem on it, mount that filesystem, and so on. Note that our creation of a RAID-0 volume on <filename>md0</filename> is nothing but coincidence, and the numbering of the array doesn't need to be correlated to the chosen amount of redundancy. It's also possible to create named RAID arrays, by giving <command>mdadm</command> parameters such as <filename>/dev/md/linear</filename> instead of <filename>/dev/md0</filename>."
-msgstr "Der Befehl <command>mdadm --create</command> erfordert mehrere Parameter: den Namen des zu erstellenden Volumes (<filename>/dev/md*</filename>, wobei MD <foreignphrase>Multiple Device</foreignphrase> bedeutet), die RAID-Stufe, die Anzahl der Platten (die in jedem Fall angegeben werden muss, obwohl dies nur bei RAID-1 oder höher Sinn macht) und die zu verwendenden physischen Laufwerke. Nachdem das Gerät erstellt ist, können wir es wie eine normale Partition verwenden, auf ihm ein Dateisystem einrichten, dieses Dateisystem einhängen und so weiter. Man beachte, dass unsere Einrichtung eines RAID-0-Volumes auf <filename>md0</filename> nur Zufall ist, und dass die Nummerierung der Anordnung nicht der gewählten Redundanzstufe entsprechen muss."
+msgstr ""
+"Der Befehl <command>mdadm --create</command> erfordert mehrere Parameter: "
+"den Namen des zu erstellenden Volumes (<filename>/dev/md*</filename>, wobei "
+"MD <foreignphrase>Multiple Device</foreignphrase> bedeutet), die RAID-Stufe, "
+"die Anzahl der Platten (die in jedem Fall angegeben werden muss, obwohl dies "
+"nur bei RAID-1 oder höher Sinn macht) und die zu verwendenden physischen "
+"Laufwerke. Nachdem das Gerät erstellt ist, können wir es wie eine normale "
+"Partition verwenden, auf ihm ein Dateisystem einrichten, dieses Dateisystem "
+"einhängen und so weiter. Man beachte, dass unsere Einrichtung eines RAID-0-"
+"Volumes auf <filename>md0</filename> nur Zufall ist, und dass die "
+"Nummerierung der Anordnung nicht der gewählten Redundanzstufe entsprechen "
+"muss. Man kann auch einen benannten RAID-Verbund erstellen, indem man "
+"<command>mdadm</command> Parameter wie <filename>/dev/md/linear</filename> "
+"statt <filename>/dev/md0</filename> mitgibt."
 
 #. Tag: para
 #, no-c-format
@@ -563,7 +620,7 @@ msgid "Creation of a RAID-1 follows a similar fashion, the differences only bein
 msgstr "Die Erstellung eines RAID-1 erfolgt auf ähnliche Weise; die Unterschiede machen sich erst nach der Erstellung bemerkbar:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdg2 /dev/sdh</userinput>\n"
 #| "<computeroutput>mdadm: largest drive (/dev/sdg2) exceed size (4194240K) by more than 1%\n"
@@ -649,43 +706,49 @@ msgid ""
 "[...]\n"
 "</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdg2 /dev/sdh</userinput>\n"
-"<computeroutput>mdadm: largest drive (/dev/sdg2) exceed size (4194240K) by more than 1%\n"
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 "
+"--level=1 --raid-devices=2 /dev/sdd2 /dev/sde</userinput>\n"
+"<computeroutput>mdadm: Note: this array has metadata at the start and\n"
+"    may not be suitable as a boot device.  If you plan to\n"
+"    store '/boot' on this device please ensure that\n"
+"    your boot-loader understands md/v1.x metadata, or use\n"
+"    --metadata=0.90\n"
+"mdadm: largest drive (/dev/sdd2) exceeds size (4192192K) by more than 1%\n"
 "Continue creating array? </computeroutput><userinput>y</userinput>\n"
-"<computeroutput>mdadm: array /dev/md1 started.\n"
+"<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
+"mdadm: array /dev/md1 started.\n"
 "# </computeroutput><userinput>mdadm --query /dev/md1</userinput>\n"
-"<computeroutput>/dev/md1: 4.00GiB raid1 2 devices, 0 spares. Use mdadm --detail for more detail.\n"
+"<computeroutput>/dev/md1: 4.00GiB raid1 2 devices, 0 spares. Use mdadm --"
+"detail for more detail.\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "        Version : 1.2\n"
-"  Creation Time : Thu Sep 30 15:39:13 2010\n"
+"  Creation Time : Thu Jan 17 16:13:04 2013\n"
 "     Raid Level : raid1\n"
-"     Array Size : 4194240 (4.00 GiB 4.29 GB)\n"
-"  Used Dev Size : 4194240 (4.00 GiB 4.29 GB)\n"
+"     Array Size : 4192192 (4.00 GiB 4.29 GB)\n"
+"  Used Dev Size : 4192192 (4.00 GiB 4.29 GB)\n"
 "   Raid Devices : 2\n"
 "  Total Devices : 2\n"
 "    Persistence : Superblock is persistent\n"
 "\n"
-"    Update Time : Thu Sep 30 15:39:26 2010\n"
-"          State : active, resyncing\n"
+"    Update Time : Thu Jan 17 16:13:04 2013\n"
+"          State : clean, resyncing (PENDING) \n"
 " Active Devices : 2\n"
 "Working Devices : 2\n"
 " Failed Devices : 0\n"
 "  Spare Devices : 0\n"
 "\n"
-" Rebuild Status : 10% complete\n"
-"\n"
-"           Name : squeeze:1  (local to host squeeze)\n"
-"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
-"         Events : 27\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 0\n"
 "\n"
 "    Number   Major   Minor   RaidDevice State\n"
-"       0       8       98        0      active sync   /dev/sdg2\n"
-"       1       8      112        1      active sync   /dev/sdh\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       1       8       64        1      active sync   /dev/sde\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "[...]\n"
-"          State : active\n"
+"          State : clean\n"
 "[...]\n"
 "</computeroutput>\n"
 
@@ -745,7 +808,7 @@ msgid "Now let's see what happens when one of the elements of the RAID-1 array f
 msgstr "Nun wollen wir sehen, was passiert, wenn eine der Komponenten der RAID-1-Anordnung ausfällt. Mit <command>mdadm</command>, genauer gesagt mit seiner Option <literal>--fail</literal>, lässt sich ein derartiger Plattenausfall simulieren:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sdh</userinput>\n"
 #| "<computeroutput>mdadm: set /dev/sdh faulty in /dev/md1\n"
@@ -791,36 +854,44 @@ msgid ""
 "\n"
 "       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sdh</userinput>\n"
-"<computeroutput>mdadm: set /dev/sdh faulty in /dev/md1\n"
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail "
+"/dev/sde</userinput>\n"
+"<computeroutput>mdadm: set /dev/sde faulty in /dev/md1\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "[...]\n"
-"    Update Time : Thu Sep 30 15:45:50 2010\n"
-"          State : active, degraded\n"
+"    Update Time : Thu Jan 17 16:14:09 2013\n"
+"          State : active, degraded \n"
 " Active Devices : 1\n"
 "Working Devices : 1\n"
 " Failed Devices : 1\n"
 "  Spare Devices : 0\n"
 "\n"
-"           Name : squeeze:1  (local to host squeeze)\n"
-"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
-"         Events : 35\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 19\n"
 "\n"
 "    Number   Major   Minor   RaidDevice State\n"
-"       0       8       98        0      active sync   /dev/sdg2\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
 "       1       0        0        1      removed\n"
 "\n"
-"       2       8      112        -      faulty spare  /dev/sdh</computeroutput>\n"
+"       1       8       64        -      faulty spare   "
+"/dev/sde</computeroutput>\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The contents of the volume are still accessible (and, if it's mounted, the applications don't notice a thing), but the data safety isn't assured anymore: should the <filename>sdg</filename> disk fail in turn, the data would be lost. We want to avoid that risk, so we'll replace the failed disk with a new one, <filename>sdi</filename>:"
 msgid "The contents of the volume are still accessible (and, if it is mounted, the applications don't notice a thing), but the data safety isn't assured anymore: should the <filename>sdd</filename> disk fail in turn, the data would be lost. We want to avoid that risk, so we'll replace the failed disk with a new one, <filename>sdf</filename>:"
-msgstr "Der Inhalt des Datenträgers ist weiterhin zugänglich (und falls er eingehängt ist, bemerken die Anwendungen nichts), aber die Sicherheit der Daten ist nicht mehr gewährleistet: sollte die Platte <filename>sdg</filename> ebenfalls ausfallen, wären die Daten verloren. Wir möchten dieses Risiko vermeiden und werden daher die ausgefallene Platte durch eine neue, <filename>sdi</filename>, ersetzen:"
+msgstr ""
+"Der Inhalt des Datenträgers ist weiterhin zugänglich (und falls er "
+"eingehängt ist, bemerken die Anwendungen nichts), aber die Sicherheit der "
+"Daten ist nicht mehr gewährleistet: sollte die Platte "
+"<filename>sdd</filename> ebenfalls ausfallen, wären die Daten verloren. Wir "
+"möchten dieses Risiko vermeiden und werden daher die ausgefallene Platte "
+"durch eine neue, <filename>sdf</filename>, ersetzen:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdi</userinput>\n"
 #| "<computeroutput>mdadm: added /dev/sdi\n"
@@ -920,8 +991,9 @@ msgid ""
 "\n"
 "       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdi</userinput>\n"
-"<computeroutput>mdadm: added /dev/sdi\n"
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add "
+"/dev/sdf</userinput>\n"
+"<computeroutput>mdadm: added /dev/sdf\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "[...]\n"
@@ -929,45 +1001,46 @@ msgstr ""
 "  Total Devices : 3\n"
 "    Persistence : Superblock is persistent\n"
 "\n"
-"    Update Time : Thu Sep 30 15:52:29 2010\n"
-"          State : active, degraded, recovering\n"
+"    Update Time : Thu Jan 17 16:15:32 2013\n"
+"          State : clean, degraded, recovering \n"
 " Active Devices : 1\n"
 "Working Devices : 2\n"
 " Failed Devices : 1\n"
 "  Spare Devices : 1\n"
 "\n"
-" Rebuild Status : 45% complete\n"
+" Rebuild Status : 28% complete\n"
 "\n"
-"           Name : squeeze:1  (local to host squeeze)\n"
-"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
-"         Events : 53\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 26\n"
 "\n"
 "    Number   Major   Minor   RaidDevice State\n"
-"       0       8       98        0      active sync   /dev/sdg2\n"
-"       3       8      128        1      spare rebuilding   /dev/sdi\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       2       8       80        1      spare rebuilding   /dev/sdf\n"
 "\n"
-"       2       8      112        -      faulty spare   /dev/sdh\n"
+"       1       8       64        -      faulty spare   /dev/sde\n"
 "# </computeroutput><userinput>[...]</userinput>\n"
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
 "<computeroutput>/dev/md1:\n"
 "[...]\n"
-"    Update Time : Thu Sep 30 15:52:35 2010\n"
-"          State : active\n"
+"    Update Time : Thu Jan 17 16:16:36 2013\n"
+"          State : clean \n"
 " Active Devices : 2\n"
 "Working Devices : 2\n"
 " Failed Devices : 1\n"
 "  Spare Devices : 0\n"
 "\n"
-"           Name : squeeze:1  (local to host squeeze)\n"
-"           UUID : 20a8419b:41612750:b9171cfe:00d9a432\n"
-"         Events : 71\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 41\n"
 "\n"
 "    Number   Major   Minor   RaidDevice State\n"
-"       0       8       98        0      active sync   /dev/sdg2\n"
-"       1       8      128        1      active sync   /dev/sdi\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       2       8       80        1      active sync   /dev/sdf\n"
 "\n"
-"       2       8      112        -      faulty spare   /dev/sdh</computeroutput>\n"
+"       1       8       64        -      faulty spare   "
+"/dev/sde</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1061,7 +1134,7 @@ msgid "<command>mdadm</command> configuration file"
 msgstr "Konfigurationsdatei <command>mdadm</command>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "# mdadm.conf\n"
 #| "#\n"
@@ -1115,8 +1188,10 @@ msgstr ""
 "# Please refer to mdadm.conf(5) for information about this file.\n"
 "#\n"
 "\n"
-"# by default, scan all partitions (/proc/partitions) for MD superblocks.\n"
-"# alternatively, specify devices to scan, using wildcards if desired.\n"
+"# by default (built-in), scan all partitions (/proc/partitions) and all\n"
+"# containers for MD superblocks. alternatively, specify devices to scan, "
+"using\n"
+"# wildcards if desired.\n"
 "DEVICE /dev/sd*\n"
 "\n"
 "# auto-create devices with Debian standard permissions\n"
@@ -1128,18 +1203,24 @@ msgstr ""
 "# instruct the monitoring daemon where to send mail alerts\n"
 "MAILADDR root\n"
 "\n"
-"ARRAY /dev/md0 metadata=1.2 name=squeeze:0 UUID=6194b63f:69a40eb5:a79b7ad3:c91f20ee\n"
-"ARRAY /dev/md1 metadata=1.2 name=squeeze:1 UUID=20a8419b:41612750:b9171cfe:00d9a432\n"
+"# definitions of existing MD arrays\n"
+"ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:"
+"650152bb\n"
+"ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:"
+"95f67464\n"
+"\n"
+"# This configuration was auto-generated on Thu, 17 Jan 2013 16:21:01 +0100\n"
+"# by mkconf 3.2.5-3\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "One of the most useful details is the <literal>DEVICE</literal> option, which lists the devices where the system will automatically look for components of RAID volumes at start-up time. In our example, we replaced the default value, <literal>partitions</literal>, with an explicit list of device files, since we chose to use entire disks and not only partitions, for some volumes."
 msgid "One of the most useful details is the <literal>DEVICE</literal> option, which lists the devices where the system will automatically look for components of RAID volumes at start-up time. In our example, we replaced the default value, <literal>partitions containers</literal>, with an explicit list of device files, since we chose to use entire disks and not only partitions, for some volumes."
 msgstr ""
-"Einer der nützlichsten Bestandteile ist die Option "
-"<literal>DEVICE</literal>, mit der die Geräte aufgelistet werden, bei denen "
-"das System beim Start selbstständig nach Komponenten des RAID-Volumes suchen "
-"soll. In unserem Beispiel haben wir die Voreinstellung <literal>partitions "
+"Einer der nützlichsten Bestandteile ist die Option <literal>DEVICE</literal>"
+", mit der die Geräte aufgelistet werden, bei denen das System beim Start "
+"selbstständig nach Komponenten des RAID-Volumes suchen soll. In unserem "
+"Beispiel haben wir die Voreinstellung <literal>partitions "
 "containers</literal> durch eine eindeutige Liste mit Gerätedateien ersetzt, "
 "da wir uns entschieden haben, für einige Datenträger ganze Platten und nicht "
 "nur Partitionen zu verwenden."
@@ -1193,10 +1274,16 @@ msgid "This flexibility is attained by a level of abstraction involving three co
 msgstr "Diese Flexibilität wird durch eine Abstraktionsstufe erreicht, zu der drei Konzepte gehören."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "First, the PV (<emphasis>Physical Volume</emphasis>) is the entity closest to the hardware: it can be partitions on a disk, or a full disk, or even any other block device. Note that when a physical element is set up to be a PV for LVM, it should only be accessed via LVM, otherwise the system will get confused."
 msgid "First, the PV (<emphasis>Physical Volume</emphasis>) is the entity closest to the hardware: it can be partitions on a disk, or a full disk, or even any other block device (including, for instance, a RAID array). Note that when a physical element is set up to be a PV for LVM, it should only be accessed via LVM, otherwise the system will get confused."
-msgstr "Das PV (<emphasis>Physical Volume</emphasis>) ist das Element, das der Hardware am nächsten ist: es kann aus Partitionen auf einer Platte bestehen, aus einer ganzen Platte oder auch aus jedem anderen Blockgerät. Man beachte, dass auf eine physische Komponente, wenn sie als PV für einen LVM eingerichtet ist, nur über den LVM zugegriffen wird, da das System sonst verwirrt wird."
+msgstr ""
+"Das PV (<emphasis>Physical Volume</emphasis>) ist das Element, das der "
+"Hardware am nächsten ist: es kann aus Partitionen auf einer Platte bestehen, "
+"aus einer ganzen Platte oder auch aus jedem anderen Blockgerät ("
+"einschließlich beispielsweise einem RAID-Verbund). Man beachte, dass auf "
+"eine physische Komponente, wenn sie als PV für einen LVM eingerichtet ist, "
+"nur über den LVM zugegriffen wird, da das System sonst verwirrt wird."
 
 #. Tag: para
 #, no-c-format
@@ -1204,16 +1291,31 @@ msgid "A number of PVs can be clustered in a VG (<emphasis>Volume Group</emphasi
 msgstr "Eine Anzahl von PVs kann zu einer VG (<emphasis>Volume Group</emphasis>) zusammengefasst werden, die als virtuelle und erweiterbare Platte angesehen werden kann. VGs sind abstrakt und erscheinen nicht in einer Gerätedatei in der <filename>/dev</filename>-Hierarchie, so dass nicht die Gefahr besteht, dass sie direkt benutzt werden."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The third kind of object is the LV (<emphasis>Logical Volume</emphasis>), which is a chunk of a VG; if we keep the VG-as-disk analogy, the LV compares to a partition. The LV appear as block device with an entry in <filename>/dev</filename>, and it can be used as any other physical partition can be (most commonly, to host a filesystem or swap space)."
 msgid "The third kind of object is the LV (<emphasis>Logical Volume</emphasis>), which is a chunk of a VG; if we keep the VG-as-disk analogy, the LV compares to a partition. The LV appears as a block device with an entry in <filename>/dev</filename>, and it can be used as any other physical partition can be (most commonly, to host a filesystem or swap space)."
-msgstr "Die dritte Art von Objekten ist das LV (<emphasis>Logical Volume</emphasis>), das aus einer Menge von VGs besteht. Wenn wir die Analogie beibehalten, dass eine VG eine Platte ist, kann das LV als eine Partition angesehen werden. Das LV erscheint als Blockgerät mit einem Eintrag in <filename>/dev</filename>, und es kann wie jede andere physische Partition verwendet werden (am häufigsten, um ein Dateisystem oder Auslagerungsspeicher aufzunehmen)."
+msgstr ""
+"Die dritte Art von Objekten ist das LV (<emphasis>Logical Volume</emphasis>)"
+", das aus einer Menge von VGs besteht. Wenn wir die Analogie beibehalten, "
+"dass eine VG eine Platte ist, kann das LV als eine Partition angesehen "
+"werden. Das LV erscheint als Blockgerät mit einem Eintrag in "
+"<filename>/dev</filename>, und es kann wie jede andere physische Partition "
+"verwendet werden (am häufigsten, um ein Dateisystem oder "
+"Auslagerungsspeicher aufzunehmen)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The important thing is that the splitting of a VG into LVs is entirely independent of its physical components (the PVs). A VG with only a single physical component (a disk for instance) can be split into a dozen logical volumes; similarly, a VG can use several physical disks and appear as a single large logical volume. The only constraint is that obviously the total size allocated to LVs can't be bigger than the total capacity of the PVs in the volume group."
 msgid "The important thing is that the splitting of a VG into LVs is entirely independent of its physical components (the PVs). A VG with only a single physical component (a disk for instance) can be split into a dozen logical volumes; similarly, a VG can use several physical disks and appear as a single large logical volume. The only constraint, obviously, is that the total size allocated to LVs can't be bigger than the total capacity of the PVs in the volume group."
-msgstr "Wichtig ist, dass das Aufteilen einer VG in LVs von ihren physischen Komponenten (den PVs) völlig unabhängig ist. Eine VG, die nur aus einer einzelnen physischen Komponente besteht (zum Beispiel einer Platte), kann in ein Dutzend logischer Volumes unterteilt werden. In ähnlicher Weise kann eine VG mehrere physische Platten verwenden und dennoch als ein einziges großes logisches Volume erscheinen. Die einzige Beschränkung besteht darin, dass die Gesamtgröße, die den LVs zugeteilt ist, natürlich nicht größer als die Gesamtkapazität der PVs in dieser Volumegruppe sein kann."
+msgstr ""
+"Wichtig ist, dass das Aufteilen einer VG in LVs von ihren physischen "
+"Komponenten (den PVs) völlig unabhängig ist. Eine VG, die nur aus einer "
+"einzelnen physischen Komponente besteht (zum Beispiel einer Platte), kann in "
+"ein Dutzend logischer Volumes unterteilt werden. In ähnlicher Weise kann "
+"eine VG mehrere physische Platten verwenden und dennoch als ein einziges "
+"großes logisches Volume erscheinen. Die einzige Beschränkung besteht darin, "
+"dass die Gesamtgröße, die den LVs zugeteilt ist, offensichtlich nicht größer "
+"als die Gesamtkapazität der PVs in dieser Volumegruppe sein kann."
 
 #. Tag: para
 #, no-c-format
@@ -1246,7 +1348,7 @@ msgid "on the <filename>sdc</filename> disk, a <filename>sdc3</filename> partiti
 msgstr "auf der Platte <filename>sdc</filename> eine Partition <filename>sdc3</filename>, 3 GB;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "the <filename>sdd</filename> disk, 4 GB, in fully available;"
 msgid "the <filename>sdd</filename> disk, 4 GB, is fully available;"
 msgstr "die Platte <filename>sdd</filename>, 4 GB, vollständig verfügbar;"
@@ -1277,7 +1379,7 @@ msgid "First, we prepare the physical volumes using <command>pvcreate</command>:
 msgstr "Zunächst erstellen wir mit <command>pvcreate</command> die physischen Volumes:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 #| "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
@@ -1345,34 +1447,41 @@ msgid ""
 "</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
-"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
-"<computeroutput>  Physical volume \"/dev/sdb2\" successfully created\n"
+"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>"
+"\n"
+"<computeroutput>  Writing physical volume data to disk \"/dev/sdb2\"\n"
+"  Physical volume \"/dev/sdb2\" successfully created\n"
 "# </computeroutput><userinput>pvdisplay</userinput>\n"
-"<computeroutput>\n"
-"  \"/dev/sdb2\" is a new physical volume of \"4,00 GiB\"\n"
+"<computeroutput>  \"/dev/sdb2\" is a new physical volume of \"4.00 GiB\"\n"
 "  --- NEW Physical volume ---\n"
 "  PV Name               /dev/sdb2\n"
-"  VG Name\n"
+"  VG Name               \n"
 "  PV Size               4.00 GiB\n"
 "  Allocatable           NO\n"
-"  PE Size (KByte)       0\n"
+"  PE Size               0   \n"
 "  Total PE              0\n"
 "  Free PE               0\n"
 "  Allocated PE          0\n"
-"  PV UUID               9JuaGR-W7jc-pNgj-NU4l-2IX1-kUJ7-m8cRim\n"
+"  PV UUID               0zuiQQ-j1Oe-P593-4tsN-9FGy-TY0d-Quz31I\n"
 "\n"
-"# </computeroutput><userinput>for i in sdc3 sdd sdf1 sdf2 ; do pvcreate /dev/$i ; done</userinput>\n"
-"<computeroutput>  Physical volume \"/dev/sdc3\" successfully created\n"
+"# </computeroutput><userinput>for i in sdc3 sdd sdf1 sdf2 ; do pvcreate "
+"/dev/$i ; done</userinput>\n"
+"<computeroutput>  Writing physical volume data to disk \"/dev/sdc3\"\n"
+"  Physical volume \"/dev/sdc3\" successfully created\n"
+"  Writing physical volume data to disk \"/dev/sdd\"\n"
 "  Physical volume \"/dev/sdd\" successfully created\n"
+"  Writing physical volume data to disk \"/dev/sdf1\"\n"
 "  Physical volume \"/dev/sdf1\" successfully created\n"
+"  Writing physical volume data to disk \"/dev/sdf2\"\n"
 "  Physical volume \"/dev/sdf2\" successfully created\n"
 "# </computeroutput><userinput>pvdisplay -C</userinput>\n"
 "<computeroutput>  PV         VG   Fmt  Attr PSize PFree\n"
-"  /dev/sdb2       lvm2 a-   4.00g 4.00g\n"
-"  /dev/sdc3       lvm2 a-   3.09g 3.09g\n"
-"  /dev/sdd        lvm2 a-   4.00g 4.00g\n"
-"  /dev/sdf1       lvm2 a-   4.10g 4.10g\n"
-"  /dev/sdf2       lvm2 a-   5.22g 5.22g</computeroutput>\n"
+"  /dev/sdb2       lvm2 a--  4.00g 4.00g\n"
+"  /dev/sdc3       lvm2 a--  3.09g 3.09g\n"
+"  /dev/sdd        lvm2 a--  4.00g 4.00g\n"
+"  /dev/sdf1       lvm2 a--  4.10g 4.10g\n"
+"  /dev/sdf2       lvm2 a--  5.22g 5.22g\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1385,7 +1494,7 @@ msgid "Now let's assemble these physical elements into VGs using <command>vgcrea
 msgstr "Wir wollen jetzt diese physischen Komponenten mit dem Befehl <command>vgcreate</command> zu VGs zusammenfügen. Dabei nehmen wir nur PVs von den schnellen Platten in eine VG namens <filename>vg_critical</filename> auf; die andere VG, <filename>vg_normal</filename>, enthält dagegen auch langsamere Komponenten."
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 #| "<computeroutput># </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 /dev/sdf1</userinput>\n"
@@ -1454,12 +1563,14 @@ msgid ""
 "</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
-"<computeroutput># </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 /dev/sdf1</userinput>\n"
+"<computeroutput>  No volume groups found\n"
+"# </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 "
+"/dev/sdf1</userinput>\n"
 "<computeroutput>  Volume group \"vg_critical\" successfully created\n"
 "# </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput>  --- Volume group ---\n"
 "  VG Name               vg_critical\n"
-"  System ID\n"
+"  System ID             \n"
 "  Format                lvm2\n"
 "  Metadata Areas        2\n"
 "  Metadata Sequence No  1\n"
@@ -1471,25 +1582,34 @@ msgstr ""
 "  Max PV                0\n"
 "  Cur PV                2\n"
 "  Act PV                2\n"
-"  VG Size               8.14 GB\n"
-"  PE Size               4.00 MB\n"
-"  Total PE              2084\n"
-"  Alloc PE / Size       0 / 0\n"
-"  Free  PE / Size       2084 / 8.14 GB\n"
-"  VG UUID               6eG6BW-MmJE-KB0J-dsB2-52iL-N6eD-1paeo8\n"
+"  VG Size               8.09 GiB\n"
+"  PE Size               4.00 MiB\n"
+"  Total PE              2071\n"
+"  Alloc PE / Size       0 / 0   \n"
+"  Free  PE / Size       2071 / 8.09 GiB\n"
+"  VG UUID               bpq7zO-PzPD-R7HW-V8eN-c10c-S32h-f6rKqp\n"
 "\n"
-"# </computeroutput><userinput>vgcreate vg_normal /dev/sdc3 /dev/sdd /dev/sdf2</userinput>\n"
+"# </computeroutput><userinput>vgcreate vg_normal /dev/sdc3 /dev/sdd "
+"/dev/sdf2</userinput>\n"
 "<computeroutput>  Volume group \"vg_normal\" successfully created\n"
 "# </computeroutput><userinput>vgdisplay -C</userinput>\n"
-"<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree\n"
-"  vg_critical   2   0   0 wz--n-  8.14g  8.14g\n"
-"  vg_normal     3   0   0 wz--n- 12.30g 12.30g</computeroutput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree \n"
+"  vg_critical   2   0   0 wz--n-  8.09g  8.09g\n"
+"  vg_normal     3   0   0 wz--n- 12.30g 12.30g\n"
+"</computeroutput>\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Here again, commands are rather straightforward (and <command>vgdisplay</command> proposes two output formats). Note that it's quite possible to use two partitions of the same physical disk into two different VGs. Note also that we used a <filename>vg_</filename> prefix to name our VGs, but it's nothing more than a convention."
 msgid "Here again, commands are rather straightforward (and <command>vgdisplay</command> proposes two output formats). Note that it is quite possible to use two partitions of the same physical disk into two different VGs. Note also that we used a <filename>vg_</filename> prefix to name our VGs, but it is nothing more than a convention."
-msgstr "Auch hier sind die Befehle recht einfach (und bei <command>vgdisplay</command> kann zwischen zwei Ausgabeformaten gewählt werden). Man beachte, dass es durchaus möglich ist, zwei Partitionen derselben physischen Platte in zwei unterschiedlichen VGs zu verwenden. Außerdem beachte man, dass wir bei der Benennung unserer VGs zwar das Präfix <filename>vg_</filename> benutzt haben, dass dies aber lediglich eine Gewohnheit ist."
+msgstr ""
+"Auch hier sind die Befehle recht einfach (und bei "
+"<command>vgdisplay</command> kann zwischen zwei Ausgabeformaten gewählt "
+"werden). Man beachte, dass es durchaus möglich ist, zwei Partitionen "
+"derselben physischen Platte in zwei unterschiedlichen VGs zu verwenden. "
+"Außerdem beachte man, dass wir bei der Benennung unserer VGs zwar das Präfix "
+"<filename>vg_</filename> benutzt haben, dass dies aber lediglich eine "
+"Gewohnheit ist."
 
 #. Tag: para
 #, no-c-format
@@ -1497,7 +1617,7 @@ msgid "We now have two “virtual disks”, sized about 8 GB and 12 GB, respec
 msgstr "Wir haben jetzt zwei „virtuelle Platten“ mit einer Größe von etwa 8 GB und 12 GB. Wir wollen sie jetzt in „virtuelle Partitionen“ (LVs) unterteilen. Dies geschieht mit dem Befehl <command>lvcreate</command> und einer etwas komplizierteren Syntax:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 #| "<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
@@ -1560,17 +1680,20 @@ msgid ""
 "  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
-"<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
+"<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G "
+"vg_critical</userinput>\n"
 "<computeroutput>  Logical volume \"lv_files\" created\n"
 "# </computeroutput><userinput>lvdisplay</userinput>\n"
 "<computeroutput>  --- Logical volume ---\n"
-"  LV Name                /dev/vg_critical/lv_files\n"
+"  LV Path                /dev/vg_critical/lv_files\n"
+"  LV Name                lv_files\n"
 "  VG Name                vg_critical\n"
-"  LV UUID                4QLhl3-2cON-jRgQ-X4eT-93J4-6Ox9-GyRx3M\n"
+"  LV UUID                J3V0oE-cBYO-KyDe-5e0m-3f70-nv0S-kCWbpT\n"
 "  LV Write Access        read/write\n"
+"  LV Creation host, time mirwiz, 2013-01-17 17:05:13 +0100\n"
 "  LV Status              available\n"
 "  # open                 0\n"
-"  LV Size                5.00 GB\n"
+"  LV Size                5.00 GiB\n"
 "  Current LE             1280\n"
 "  Segments               2\n"
 "  Allocation             inherit\n"
@@ -1578,15 +1701,20 @@ msgstr ""
 "  - currently set to     256\n"
 "  Block device           253:0\n"
 "\n"
-"# </computeroutput><userinput>lvcreate -n lv_base -L 1G vg_critical</userinput>\n"
+"# </computeroutput><userinput>lvcreate -n lv_base -L 1G "
+"vg_critical</userinput>\n"
 "<computeroutput>  Logical volume \"lv_base\" created\n"
-"# </computeroutput><userinput>lvcreate -n lv_backups -L 12G vg_normal</userinput>\n"
+"# </computeroutput><userinput>lvcreate -n lv_backups -L 12G "
+"vg_normal</userinput>\n"
 "<computeroutput>  Logical volume \"lv_backups\" created\n"
 "# </computeroutput><userinput>lvdisplay -C</userinput>\n"
-"<computeroutput>  LV         VG          Attr   LSize  Origin Snap%  Move Log Copy%  Convert\n"
-"  lv_base    vg_critical -wi-a-  1.00G\n"
-"  lv_files   vg_critical -wi-a-  5.00G\n"
-"  lv_backups vg_normal   -wi-a- 12.00G</computeroutput>\n"
+"<computeroutput>  LV         VG          Attr     LSize  Pool Origin Data%  "
+"Move Log Copy%  Convert\n"
+"  lv_base    vg_critical -wi-a---  "
+"1.00g                                           \n"
+"  lv_files   vg_critical -wi-a---  "
+"5.00g                                           \n"
+"  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1619,7 +1747,7 @@ msgid "Logical volumes, once created, end up as block device files in <filename>
 msgstr "Logische Volumes werden nach ihrer Erstellung zu Blockgerätedateien in <filename>/dev/mapper/</filename>:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 #| "<computeroutput>total 0\n"
@@ -1646,14 +1774,18 @@ msgid ""
 msgstr ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 "<computeroutput>total 0\n"
-"crw-rw---- 1 root root  10, 59  5 oct.  17:40 control\n"
-"lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_critical-lv_base -&gt; ../dm-1\n"
-"lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_critical-lv_files -&gt; ../dm-0\n"
-"lrwxrwxrwx 1 root root       7  5 oct.  18:14 vg_normal-lv_backups -&gt; ../dm-2\n"
+"crw------T 1 root root 10, 236 Jan 17 16:52 control\n"
+"lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_critical-lv_base -&gt; ../dm-"
+"1\n"
+"lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_critical-lv_files -&gt; ../dm-"
+"0\n"
+"lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_normal-lv_backups -&gt; ../dm-"
+"2\n"
 "# </computeroutput><userinput>ls -l /dev/dm-*</userinput>\n"
-"<computeroutput>brw-rw---- 1 root disk 253,  0  5 oct.  18:14 /dev/dm-0\n"
-"brw-rw---- 1 root disk 253,  1  5 oct.  18:14 /dev/dm-1\n"
-"brw-rw---- 1 root disk 253,  2  5 oct.  18:14 /dev/dm-2</computeroutput>\n"
+"<computeroutput>brw-rw---T 1 root disk 253, 0 Jan 17 17:05 /dev/dm-0\n"
+"brw-rw---T 1 root disk 253, 1 Jan 17 17:05 /dev/dm-1\n"
+"brw-rw---T 1 root disk 253, 2 Jan 17 17:05 /dev/dm-2\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -1710,7 +1842,7 @@ msgid "The LVs can then be used exactly like standard partitions:"
 msgstr "Die LVs können genau wie Standard-Partitionen benutzt werden:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
 #| "<computeroutput>mke2fs 1.41.12 (17-May-2010)\n"
@@ -1755,20 +1887,23 @@ msgid ""
 "/dev/vg_critical/lv_files   /srv/files      ext4\n"
 "/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
-"<computeroutput>mke2fs 1.41.12 (17-May-2010)\n"
+"<computeroutput># </computeroutput><userinput>mkfs.ext4 "
+"/dev/vg_normal/lv_backups</userinput>\n"
+"<computeroutput>mke2fs 1.42.5 (29-Jul-2012)\n"
 "Filesystem label=\n"
 "OS type: Linux\n"
 "Block size=4096 (log=2)\n"
 "[...]\n"
-"This filesystem will be automatically checked every 34 mounts or\n"
-"180 days, whichever comes first.  Use tune2fs -c or -i to override.\n"
+"Creating journal (32768 blocks): done\n"
+"Writing superblocks and filesystem accounting information: done \n"
 "# </computeroutput><userinput>mkdir /srv/backups</userinput>\n"
-"<computeroutput># </computeroutput><userinput>mount /dev/vg_normal/lv_backups /srv/backups</userinput>\n"
-"<computeroutput># </computeroutput><userinput>df -h /srv/backups</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_normal-lv_backups\n"
-"                       12G  159M   12G   2% /srv/backups\n"
+"<computeroutput># </computeroutput><userinput>mount /dev/vg_normal/"
+"lv_backups /srv/backups</userinput>\n"
+"<computeroutput># </computeroutput><userinput>df -h /srv/backups</userinput>"
+"\n"
+"<computeroutput>Filesystem                        Size  Used Avail Use% "
+"Mounted on\n"
+"/dev/mapper/vg_normal-lv_backups   12G  158M   12G   2% /srv/backups\n"
 "# </computeroutput><userinput>[...]</userinput>\n"
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>cat /etc/fstab</userinput>\n"
@@ -1793,7 +1928,7 @@ msgid "Even though the ability to aggregate partitions or physical disks is conv
 msgstr "Wenn auch die Fähigkeit, Partitionen oder physische Platten zusammenzufassen, praktisch ist, so ist dies doch nicht der wichtigste Vorteil, den LVM bietet. Die Flexibilität, die er mit sich bringt, wird erst im Laufe der Zeit richtig deutlich, wenn sich die Anforderungen weiterentwickeln. In unserem Beispiel wollen wir annehmen, dass neue große Dateien gespeichert werden müssen, und dass das für den Dateiserver reservierte LV für sie zu klein ist. Da wir noch nicht allen in <filename>vg_critical</filename> verfügbaren Platz verwendet haben, können wir <filename>lv_files</filename> vergrößern. Zu diesem Zweck benutzen wir den Befehl <command>lvresize</command> und anschließend <command>resize2fs</command>, um das Dateisystem entsprechend anzupassen:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
 #| "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
@@ -1850,32 +1985,39 @@ msgid ""
 "/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_files\n"
-"                      5.0G  4.6G  142M  98% /srv/files\n"
+"<computeroutput>Filesystem                        Size  Used Avail Use% "
+"Mounted on\n"
+"/dev/mapper/vg_critical-lv_files  5.0G  4.6G  146M  97% /srv/files\n"
 "# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
-"<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert\n"
-"  lv_files vg_critical -wi-ao 5.00g\n"
+"<computeroutput>  LV       VG          Attr     LSize Pool Origin Data%  "
+"Move Log Copy%  Convert\n"
+"  lv_files vg_critical -wi-ao-- 5.00g\n"
 "# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
-"  vg_critical   2   2   0 wz--n- 8.14g 2.14g\n"
-"# </computeroutput><userinput>lvresize -L 7G vg_critical/lv_files</userinput>\n"
+"  vg_critical   2   2   0 wz--n- 8.09g 2.09g\n"
+"# </computeroutput><userinput>lvresize -L 7G vg_critical/lv_files</userinput>"
+"\n"
 "<computeroutput>  Extending logical volume lv_files to 7.00 GB\n"
 "  Logical volume lv_files successfully resized\n"
 "# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
-"<computeroutput>  LV       VG          Attr   LSize Origin Snap%  Move Log Copy%  Convert\n"
-"  lv_files vg_critique -wi-ao 7.00g\n"
-"# </computeroutput><userinput>resize2fs /dev/vg_critical/lv_files</userinput>\n"
-"<computeroutput>resize2fs 1.41.12 (17-May-2010)\n"
-"Filesystem at /dev/vg_critical/lv_files is mounted on /srv/files; on-line resizing required\n"
-"old desc_blocks = 1, new_desc_blocks = 1\n"
-"Performing an on-line resize of /dev/vg_critical/lv_files to 1835008 (4k) blocks.\n"
+"<computeroutput>  LV       VG          Attr     LSize Pool Origin Data%  "
+"Move Log Copy%  Convert\n"
+"  lv_files vg_critical -wi-ao-- 7.00g\n"
+"# </computeroutput><userinput>resize2fs /dev/vg_critical/lv_files</userinput>"
+"\n"
+"<computeroutput>resize2fs 1.42.5 (29-Jul-2012)\n"
+"Filesystem at /dev/vg_critical/lv_files is mounted on /srv/files; on-line "
+"resizing required\n"
+"old_desc_blocks = 1, new_desc_blocks = 1\n"
+"Performing an on-line resize of /dev/vg_critical/lv_files to 1835008 (4k) "
+"blocks.\n"
 "The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.\n"
 "\n"
 "# </computeroutput><userinput>df -h /srv/files/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_files\n"
-"                      6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
+"<computeroutput>Filesystem                        Size  Used Avail Use% "
+"Mounted on\n"
+"/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% "
+"/srv/files</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -1898,7 +2040,7 @@ msgid "We could proceed in a similar fashion to extend the volume hosting the da
 msgstr "Wir könnten in ähnlicher Weise vorgehen, um den Datenträger zu erweitern, auf dem sich die Datenbank befindet. Nur haben wir hier die Grenze des für die VG verfügbaren Platzes erreicht:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 #| "<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
@@ -1916,12 +2058,12 @@ msgid ""
 "  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_base\n"
-"                     1008M  835M  123M  88% /srv/base\n"
+"<computeroutput>Filesystem                       Size  Used Avail Use% "
+"Mounted on\n"
+"/dev/mapper/vg_critical-lv_base 1008M  854M  104M  90% /srv/base\n"
 "# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
-"<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
-"  vg_critical   2   2   0 wz--n- 8.14g 144.00m</computeroutput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree \n"
+"  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1929,7 +2071,7 @@ msgid "No matter, since LVM allows adding physical volumes to existing volume gr
 msgstr "Das macht nichts, da es mit LVM möglich ist, physische Datenträger zu bestehenden Volume-Gruppen hinzuzufügen. Wir könnten zum Beispiel festgestellt haben, dass die Partition <filename>sdb1</filename>, die bisher außerhalb des LVM verwendet wurde, nur Archivdateien enthält, die nach <filename>lv_backups</filename> verschoben werden könnten. Wir können sie dann neu verwenden und in die Volume-Gruppe integrieren und so zusätzlichen Platz gewinnen. Hierzu dient der Befehl <command>vgextend</command>. Natürlich muss die Partition zunächst als physischer Datenträger eingerichtet werden. Sobald die VG erweitert worden ist, können wir ähnliche Befehle wie zuvor verwenden, um zunächst das logische Volume und anschließend das Dateisystem zu vergrößern:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
 #| "<computeroutput>  Physical volume \"/dev/sdb1\" successfully created\n"
@@ -1959,8 +2101,10 @@ msgid ""
 "<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% /srv/base</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
-"<computeroutput>  Physical volume \"/dev/sdb1\" successfully created\n"
+"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>"
+"\n"
+"<computeroutput>  Writing physical volume data to disk \"/dev/sdb1\"\n"
+"  Physical volume \"/dev/sdb1\" successfully created\n"
 "# </computeroutput><userinput>vgextend vg_critical /dev/sdb1</userinput>\n"
 "<computeroutput>  Volume group \"vg_critical\" successfully extended\n"
 "# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
@@ -1969,9 +2113,10 @@ msgstr ""
 "# </computeroutput><userinput>[...]</userinput>\n"
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>df -h /srv/base/</userinput>\n"
-"<computeroutput>Filesystem            Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_base\n"
-"                      2.0G  835M  1.1G  44% /srv/base</computeroutput>\n"
+"<computeroutput>Filesystem                       Size  Used Avail Use% "
+"Mounted on\n"
+"/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% "
+"/srv/base</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -1999,21 +2144,51 @@ msgid "There are a few simple cases where the question doesn't really arise. If 
 msgstr "Es gibt einige einfache Fälle, in denen sich diese Frage nicht wirklich stellt. Wenn es erforderlich ist, Daten vor Hardwareausfällen zu schützen, wird natürlich RAID auf einer redundanten Anordnung von Platten eingerichtet, da LVM dieses Problem nicht wirklich anspricht. Falls andererseits Bedarf an einem flexiblen Speichersystem besteht, bei dem die Datenträger von der physischen Anordnung der Platten unabhängig sind, hilft RAID nicht viel, und die Wahl fällt natürlich auf LVM."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>NOTE</emphasis> Spare disks"
 msgid "<emphasis>NOTE</emphasis> If performance matters…"
-msgstr "<emphasis>HINWEIS</emphasis> Reserveplatten"
+msgstr "<emphasis>HINWEIS</emphasis> Wenn es auf Performance ankommt…"
 
 #. Tag: para
 #, no-c-format
 msgid "If input/output speed is of the essence, especially in terms of access times, using LVM and/or RAID in one of the many combinations may have some impact on performances, and this may influence decisions as to which to pick. However, these differences in performance are really minor, and will only be measurable in a few use cases. If performance matters, the best gain to be obtained would be to use non-rotating storage media (<indexterm><primary>SSD</primary></indexterm><emphasis>solid-state drives</emphasis> or SSDs); their cost per megabyte is higher than that of standard hard disk drives, and their capacity is usually smaller, but they provide excellent performance for random accesses. If the usage pattern includes many input/output operations scattered all around the filesystem, for instance for databases where complex queries are routinely being run, then the advantage of running them on an SSD far outweigh whatever could be gained by picking LVM over RAID or the reverse. In these situations, the choice should be determined by other considerations than pure speed, since the performance aspect is most easily handled by using SSDs."
 msgstr ""
+"Wenn es auf die Schreib-/Lese-Geschwindigkeit ankommt, vor allem auf die "
+"Zugriffszeit, dann hat die Verwendung von LVM und/oder RAID in einer seiner "
+"vielen Ausprägungen möglicherweise Einfluss auf die Performance. Das kann "
+"die Entscheidung, welche Lösung gewählt werden soll, beeinflussen. Jedoch "
+"sind diese Unterschiede in der Perormance gering und nur in wenigen Fällen "
+"messbar. Wenn es auf Performance ankommt, kann man mit nicht drehenden "
+"Speichermedien die besten Resultate erzielen "
+"(<indexterm><primary>SSD</primary></indexterm><emphasis>solid-state "
+"drives</emphasis> or SSDs); Dabei sind die Kosten pro Megabyte höher als bei "
+"Standardplatten und ihre Kapazität ist üblicherweise geringer, aber sie "
+"bieten ausgezeichnete Performance bei zufällig verteilten Zugriffen. Wenn "
+"das Nutzungsprofil viele Lese-/Schreibzugriffe über das ganze Dateisystem "
+"verteilt beinhaltet, dann ist der Vorteil, wenn sie auf SSD ausgeführt "
+"werden, weit größer, als das, was Sie gewinnen können, wenn Sie LVM einem "
+"RAID vorziehen oder umgekehrt. In diesen Fällen, sollte die Entscheidung "
+"nach anderen Kriterien als der reinen Zugriffsgeschwindigkeit erfolgen, denn "
+"Geschwindigkeitsanforderungen werden am besten bei Verwendung von SSDs "
+"erfüllt."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The third notable use case is when one just wants to aggregate two disks into one volume, either for performance reasons or to have a single filesystem that is larger than any of the available disks. This case can be addressed both by a RAID-0 (or even linear-RAID) and by an LVM volume. When in this situation, and barring extra constraints (keeping in line with the rest of the computers if they only use RAID), the configuration of choice will often be LVM. The initial set up is slightly more complex, but that slight increase in complexity more than makes up for the extra flexibility that LVM brings if the requirements change or if new disks need to be added."
 msgid "The third notable use case is when one just wants to aggregate two disks into one volume, either for performance reasons or to have a single filesystem that is larger than any of the available disks. This case can be addressed both by a RAID-0 (or even linear-RAID) and by an LVM volume. When in this situation, and barring extra constraints (for instance, keeping in line with the rest of the computers if they only use RAID), the configuration of choice will often be LVM. The initial set up is barely more complex, and that slight increase in complexity more than makes up for the extra flexibility that LVM brings if the requirements change or if new disks need to be added."
-msgstr "Der dritte bemerkenswerte Anwendungsfall liegt vor, wenn man einfach zwei Platten zu einem Datenträger zusammenfassen möchte, entweder aus Gründen der Leistung oder um ein einziges Dateisystem zu haben, das größer als jede der verfügbaren Platten ist. Dieser Fall kann sowohl mit einem RAID-0 (oder sogar einem linearen RAID) als auch mit einem LVM-Volume gelöst werden. In dieser Situation, und falls es keine weiteren Einschränkungen gibt (zum Beispiel, mit den übrigen Rechnern konform zu bleiben, falls diese nur RAID verwenden), wird häufig LVM die Konfiguration der Wahl sein. Die anfängliche Einrichtung ist etwas komplizierter, aber dieser etwas höhere Grad an Schwierigkeit wird durch die außergewöhnliche Flexibilität, die LVM bietet, wenn sich die Anforderungen ändern oder wenn neue Platten hinzugefügt werden müssen, mehr als wett gemacht."
+msgstr ""
+"Der dritte bemerkenswerte Anwendungsfall liegt vor, wenn man einfach zwei "
+"Platten zu einem Datenträger zusammenfassen möchte, entweder aus Gründen der "
+"Leistung oder um ein einziges Dateisystem zu haben, das größer als jede der "
+"verfügbaren Platten ist. Dieser Fall kann sowohl mit einem RAID-0 (oder "
+"sogar einem linearen RAID) als auch mit einem LVM-Volume gelöst werden. In "
+"dieser Situation, und falls es keine sonstigen Anforderungen gibt (zum "
+"Beispiel, mit den übrigen Rechnern konform zu bleiben, falls diese nur RAID "
+"verwenden), wird häufig LVM die Konfiguration der Wahl sein. Die anfängliche "
+"Einrichtung ist kaum komplizierter, aber die etwas höhere Komplexität wird "
+"durch die außergewöhnliche Flexibilität wettgemacht, die LVM bietet, wenn "
+"sich die Anforderungen ändern oder wenn neue Platten hinzugefügt werden "
+"müssen."
 
 #. Tag: para
 #, no-c-format
@@ -2138,10 +2313,10 @@ msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgstr "<primary><emphasis>VMware</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgid "<primary><emphasis>Bochs</emphasis></primary>"
-msgstr "<primary><emphasis>VMware</emphasis></primary>"
+msgstr "<primary><emphasis>Bochs</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2156,40 +2331,62 @@ msgid "<primary><emphasis>VirtualBox</emphasis></primary>"
 msgstr "<primary><emphasis>VirtualBox</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgid "<primary><emphasis>KVM</emphasis></primary>"
-msgstr "<primary><emphasis>VMware</emphasis></primary>"
+msgstr "<primary><emphasis>KVM</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><emphasis>VMWare</emphasis></primary>"
 msgid "<primary><emphasis>LXC</emphasis></primary>"
-msgstr "<primary><emphasis>VMware</emphasis></primary>"
+msgstr "<primary><emphasis>LXC</emphasis></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "QEMU is a software emulator for a full computer; performances are far from the speed one could achieve running natively, but this allows running unmodified or experimental operating systems on the emulated hardware. It also allows emulating a different hardware architecture: for instance, an <emphasis>i386</emphasis> system can emulate an <emphasis>arm</emphasis> computer. QEMU is free software. <ulink type=\"block\" url=\"http://www.qemu.org/\" />"
 msgid "QEMU is a software emulator for a full computer; performances are far from the speed one could achieve running natively, but this allows running unmodified or experimental operating systems on the emulated hardware. It also allows emulating a different hardware architecture: for instance, an <emphasis>amd64</emphasis> system can emulate an <emphasis>arm</emphasis> computer. QEMU is free software. <ulink type=\"block\" url=\"http://www.qemu.org/\" />"
-msgstr "QEMU ist ein Software-Emulator eines vollständigen Rechners. Die Leistungen sind weit geringer als die Geschwindigkeit, die man mit einer tatsächlichen Ausführung erreichen könnte, aber mit ihm ist es möglich, nicht modifizierte oder experimentelle Betriebssysteme auf der emulierten Hardware auszuführen. Mit ihm kann man auch eine andere Hardware-Architektur emulieren: so kann zum Beispiel ein <emphasis>i386</emphasis>-System einen <emphasis>arm</emphasis>-Rechner emulieren. QEMU ist freie Software. <ulink type=\"block\" url=\"http://www.qemu.org/\" />"
+msgstr ""
+"QEMU ist ein Software-Emulator eines vollständigen Rechners. Die Leistungen "
+"sind weit geringer als die Geschwindigkeit, die man mit einer tatsächlichen "
+"Ausführung erreichen könnte, aber mit ihm ist es möglich, nicht modifizierte "
+"oder experimentelle Betriebssysteme auf der emulierten Hardware auszuführen. "
+"Mit ihm kann man auch eine andere Hardware-Architektur emulieren: so kann "
+"zum Beispiel ein <emphasis>amd64</emphasis>-System einen "
+"<emphasis>arm</emphasis>-Rechner emulieren. QEMU ist freie Software. <ulink "
+"type=\"block\" url=\"http://www.qemu.org/\" />"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Bochs is another free virtual machine, but it only emulates the i386 architecture."
 msgid "Bochs is another free virtual machine, but it only emulates the x86 architectures (i386 and amd64)."
-msgstr "Bochs ist ein weiterer freier virtueller Rechner, der jedoch nur die i386-Architektur emuliert."
+msgstr ""
+"Bochs ist eine weitere freie virtuelle Maschine, die jedoch nur die x86-"
+"Architektur emuliert (i386 and amd64)t."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "VMWare is a proprietary virtual machine; being one of the oldest out there, it's also one of the most widely-known. It works on principles similar to QEMU. VMWare proposes advanced features such as snapshotting a running virtual machine. <ulink type=\"block\" url=\"http://www.vmware.com/\" />"
 msgid "VMWare is a proprietary virtual machine; being one of the oldest out there, it is also one of the most widely-known. It works on principles similar to QEMU. VMWare proposes advanced features such as snapshotting a running virtual machine. <ulink type=\"block\" url=\"http://www.vmware.com/\" />"
-msgstr "VMware ist ein proprietärer virtueller Rechner; da er einer der ältesten ist, ist er auch einer der bekanntesten. Er funktioniert nach ähnlichen Prinzipien wie QEMU. VMware bietet erweiterte Funktionen wie Schnappschüsse eines laufenden virtuellen Rechners. <ulink type=\"block\" url=\"http://www.vmware.com/\" />"
+msgstr ""
+"VMware ist ein proprietärer virtueller Rechner; da er einer der ältesten "
+"ist, ist er auch einer der bekanntesten. Er funktioniert nach ähnlichen "
+"Prinzipien wie QEMU. VMware bietet erweiterte Funktionen wie Schnappschüsse "
+"eines laufenden virtuellen Rechners. <ulink type=\"block\" url=\""
+"http://www.vmware.com/\" />"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "VirtualBox is a virtual machine that is mostly free software (although some extra components are under a proprietary license). Although younger than VMWare and restricted to the i386 and amd64 architectures, it shows promise; it already allows snapshotting, for instance. VirtualBox has been part of Debian since <emphasis role=\"distribution\">Lenny</emphasis>. <ulink type=\"block\" url=\"http://www.virtualbox.org/\" />"
 msgid "VirtualBox is a virtual machine that is mostly free software (although some extra components are available under a proprietary license). It's younger than VMWare and restricted to the i386 and amd64 architectures, but it still includes some snapshotting and other interesting features. VirtualBox has been part of Debian since <emphasis role=\"distribution\">Lenny</emphasis>. <ulink type=\"block\" url=\"http://www.virtualbox.org/\" />"
-msgstr "VirtualBox ist ein virtueller Rechner, der überwiegend aus freier Software besteht (wobei jedoch einige zusätzliche Komponenten unter einer proprietären Lizenz stehen). Obwohl er jünger als VMware und auf die i386- und amd64-Architekturen beschränkt ist, ist er vielversprechend. Er ermöglicht zum Beispiel bereits Schnappschüsse. VirtualBox ist seit <emphasis role=\"distribution\">Lenny</emphasis> in Debian enthalten. <ulink type=\"block\" url=\"http://www.virtualbox.org/\" />"
+msgstr ""
+"VirtualBox ist eine virtuelle Maschine, die überwiegend aus freier Software "
+"besteht (wobei jedoch einige zusätzliche Komponenten unter einer "
+"proprietären Lizenz stehen). Sie ist jünger als VMware und auf die i386- und "
+"amd64-Architekturen beschränkt, aber sie enthält einige Snapshot- und andere "
+"Features. VirtualBox ist seit <emphasis role=\"distribution\""
+">Lenny</emphasis> in Debian enthalten. <ulink type=\"block\" url=\""
+"http://www.virtualbox.org/\" />"
 
 #. Tag: para
 #, no-c-format
@@ -2212,16 +2409,32 @@ msgid "Xen was initially developed as a set of patches that lived out of the off
 msgstr "Xen ist ursprünglich als Satz von Patches entwickelt worden, die außerhalb der offiziellen Baumstruktur standen und nicht mit dem Linux-Kernel integriert waren. Zur gleichen Zeit benötigten mehrere aufkommenden Virtualisierungssysteme (einschließlich KVM) einige allgemeine virtualisierungsbezogene Funktionen zur Erleichterung ihrer Integration, und der Linux-Kernel bekam diesen Satz von Funktionen (als <emphasis>paravirt_ops</emphasis>- oder <emphasis>pv_ops</emphasis>-Schnittstelle bekannt). Da die Xen-Patches einige Funktionsweisen dieser Schnittstelle duplizierten, konnten sie nicht offiziell akzeptiert werden."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Xensource, the company behind Xen, therefore had to port Xen to this new framework, so that the Xen patches could be merged into the official Linux kernel. That meant a lot of code rewrite, and although Xensource soon had a working version based on the paravirt_ops interface, the patches were only progressively merged into the official kernel. The merge was completed in Linux 3.0. <ulink type=\"block\" url=\"http://wiki.xensource.com/xenwiki/XenParavirtOps\" />"
 msgid "Xensource, the company behind Xen, therefore had to port Xen to this new framework, so that the Xen patches could be merged into the official Linux kernel. That meant a lot of code rewrite, and although Xensource soon had a working version based on the paravirt_ops interface, the patches were only progressively merged into the official kernel. The merge was completed in Linux 3.0. <ulink type=\"block\" url=\"http://wiki.xenproject.org/wiki/XenParavirtOps\" />"
-msgstr "Xensource, das Unternehmen, das hinter Xen steht, musste daher Xen auf dieses neue System portieren, so dass die Xen-Patches mit dem offiziellen Linux-Kernel zusammengeführt werden konnten. Dies bedeutete, dass eine Menge Code umgeschrieben werden musste, und obwohl Xensource bald eine funktionierende Version hatte, die auf der paravirt_ops-Schnittstelle basierte, wurden die Patches nur schrittweise mit dem offiziellen Kernel zusammengeführt. Die Zusammenführung war mit Linux 3.0 abgeschlossen. <ulink type=\"block\" url=\"http://wiki.xensource.com/xenwiki/XenParavirtOps\" />"
+msgstr ""
+"Xensource, das Unternehmen, das hinter Xen steht, musste daher Xen auf "
+"dieses neue System portieren, so dass die Xen-Patches mit dem offiziellen "
+"Linux-Kernel zusammengeführt werden konnten. Dies bedeutete, dass eine Menge "
+"Code umgeschrieben werden musste, und obwohl Xensource bald eine "
+"funktionierende Version hatte, die auf der paravirt_ops-Schnittstelle "
+"basierte, wurden die Patches nur schrittweise mit dem offiziellen Kernel "
+"zusammengeführt. Die Zusammenführung war mit Linux 3.0 abgeschlossen. <ulink "
+"type=\"block\" url=\"http://wiki.xenproject.org/wiki/XenParavirtOps\" />"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Although <emphasis role=\"distribution\">Squeeze</emphasis> is based on version 2.6.32 of the Linux kernel, a version including the Xen patches from Xensource is also available in the <emphasis role=\"pkg\">linux-image-2.6-xen-686</emphasis> and <emphasis role=\"pkg\">linux-image-2.6-xen-amd64</emphasis> packages. This distribution-specific patching means that the available featureset depends on the distribution; discrepancies in the versions of the code, or even integration of code still under development into some distributions also mean differences in the supported features. This problem should be greatly reduced now that Xen has been officially merged into Linux. <ulink type=\"block\" url=\"http://wiki.xen.org/xenwiki/XenKernelFeatures\" />"
 msgid "Since <emphasis role=\"distribution\">Wheezy</emphasis> is based on version 3.2 of the Linux kernel, the standard <emphasis role=\"pkg\">linux-image-686-pae</emphasis> and <emphasis role=\"pkg\">linux-image-amd64</emphasis> packages include the necessary code, and the distribution-specific patching that was required for <emphasis role=\"distribution\">Squeeze</emphasis> and earlier versions of Debian is no more. <ulink type=\"block\" url=\"http://wiki.xenproject.org/wiki/Xen_Kernel_Feature_Matrix\" />"
-msgstr "Obwohl <emphasis role=\"distribution\">Squeeze</emphasis> auf der Version 2.6.32 des Linux-Kernels basiert, ist mit den Paketen <emphasis role=\"pkg\">linux-image-2.6-xen-686</emphasis> und <emphasis role=\"pkg\">linux-image-2.6-xen-amd64</emphasis> auch eine Version verfügbar, die die Xen-Patches von Xensource enthält. Dieses distributionsspezifische Patchen bedeutet, dass der verfügbare Funktionsumfang von der Distribution abhängt; Unstimmigkeiten in den Codeversionen oder gar die Integration von Code, der sich noch in der Entwicklung befindet, in einige Distributionen führen auch zu Unterschieden in den unterstützten Funktionen. Dieses Problem sollte inzwischen deutlich geringer sein, seit Xen offiziell mit Linux zusammengeführt worden ist. <ulink type=\"block\" url=\"http://wiki.xen.org/xenwiki/XenKernelFeatures\" />"
+msgstr ""
+"Da <emphasis role=\"distribution\">Wheezy</emphasis> auf der Version 3.2 des "
+"Linux-Kernels basiert, enthalten die Standardpakete <emphasis role=\"pkg\""
+">linux-image-686-pae</emphasis> und <emphasis role=\"pkg\">linux-image-"
+"amd64</emphasis> bereits die nötigen Programmzeilen und die "
+"distributionsspezifischen Patches, die für <emphasis role=\"distribution\""
+">Squeeze</emphasis> und frühere Versionen von Debian noch erforderlich "
+"waren, werden nicht mehr benötigt.  <ulink type=\"block\" url=\""
+"http://wiki.xenproject.org/wiki/Xen_Kernel_Feature_Matrix\" />"
 
 #. Tag: para
 #, no-c-format
@@ -2244,10 +2457,15 @@ msgid "<emphasis>CULTURE</emphasis> Xen and non-Linux kernels"
 msgstr "<emphasis>KULTUR</emphasis> Xen und Nicht-Linux-Kernel"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Xen requires modifications to all the operating systems one wants to run on it; not all kernels have the same level of maturity in this regard. Many are fully-functional, both as dom0 and domU: Linux 2.6 (as patched by Debian) and 3.0, NetBSD 4.0 and later, and OpenSolaris. Others, such as OpenBSD 4.0, FreeBSD 8 and Plan 9, only work as a domU."
 msgid "Xen requires modifications to all the operating systems one wants to run on it; not all kernels have the same level of maturity in this regard. Many are fully-functional, both as dom0 and domU: Linux 3.0 and later, NetBSD 4.0 and later, and OpenSolaris. Others, such as OpenBSD 4.0, FreeBSD 8 and Plan 9, only work as a domU."
-msgstr "Xen erfordert Anpassungen bei allen Betriebssystemen, die man darauf laufen lassen möchte; nicht alle Kernel haben in dieser Hinsicht den gleichen Grad an Reife. Viele sind voll funktionsfähig, sowohl als dom0 als auch als domU: Linux 2.6 (mit dem Patch von Debian) und 3.0, NetBSD4.0 und später sowie OpenSolaris. Andere, wie zum Beispiel OpenBSD 4.0, FreeBSD 8 und Plan 9 funktionieren nur als domU."
+msgstr ""
+"Xen erfordert Anpassungen bei allen Betriebssystemen, die man darauf laufen "
+"lassen möchte; nicht alle Kernel haben in dieser Hinsicht den gleichen Grad "
+"an Reife. Viele sind voll funktionsfähig, sowohl als dom0 als auch als domU: "
+"Linux 3.0 und später, NetBSD 4.0 und später sowie OpenSolaris. Andere, wie "
+"zum Beispiel OpenBSD 4.0, FreeBSD 8 und Plan 9 funktionieren nur als domU."
 
 #. Tag: para
 #, no-c-format
@@ -2255,15 +2473,21 @@ msgid "However, if Xen can rely on the hardware functions dedicated to virtualiz
 msgstr "Wenn Xen sich jedoch auf die speziell für eine Virtualisierung vorgesehenen Hardwarefunktionen (die es nur bei neueren Prozessoren gibt) stützen kann, können selbst nicht modifizierte Betriebssysteme (einschließlich Windows) als domU laufen."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The hypervisor itself. According to the available hardware, the appropriate package will be either <emphasis role=\"pkg\">xen-hypervisor-4.0-i386</emphasis> or <emphasis role=\"pkg\">xen-hypervisor-4.0-amd64</emphasis>."
 msgid "The hypervisor itself. According to the available hardware, the appropriate package will be either <emphasis role=\"pkg\">xen-hypervisor-4.1-i386</emphasis> or <emphasis role=\"pkg\">xen-hypervisor-4.1-amd64</emphasis>."
-msgstr "Der Hypervisor an sich. Je nach verfügbarer Hardware ist das entsprechende Paket entweder <emphasis role=\"pkg\">xen-hypervisor-4.0-i386</emphasis> oder <emphasis role=\"pkg\">xen-hypervisor-4.0-amd64</emphasis>."
+msgstr ""
+"Der Hypervisor an sich. Je nach verfügbarer Hardware ist das entsprechende "
+"Paket entweder <emphasis role=\"pkg\">xen-hypervisor-4.01-i386</emphasis> "
+"oder <emphasis role=\"pkg\">xen-hypervisor-4.1-amd64</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "A kernel that runs on that hypervisor. Any kernel more recent than 3.0 will do, including the 3.2 version present in <emphasis role=\"distribution\">Wheezy</emphasis>."
 msgstr ""
+"Ein Kernel, der auf diesem Hypervisor läuft. Jeder jüngere Kernel als 3.0 "
+"läuft, einschließlich der Version 3.2 in <emphasis role=\"distribution\""
+">Wheezy</emphasis>."
 
 #. Tag: para
 #, no-c-format
@@ -2271,10 +2495,25 @@ msgid "The i386 architecture also requires a standard library with the appropria
 msgstr "Die i386-Architektur erfordert zudem eine Standardbibliothek mit passenden Patches, um Xen nutzen zu können; diese befindet sich im Paket <emphasis role=\"pkg\">libc6-xen</emphasis>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "In order to avoid the hassle of selecting these components by hand, a few convenience packages (such as <emphasis role=\"pkg\">xen-linux-system-2.6.32-5-xen-686</emphasis> and variants) have been made available; they all pull in a known-good combination of the appropriate hypervisor and kernel packages. The hypervisor also brings <emphasis role=\"pkg\">xen-utils-4.0</emphasis>, which contains tools to control the hypervisor from the dom0. This in turn brings the appropriate standard library. During the installation of all that, configuration scripts also create a new entry in the Grub bootloader menu, so as to start the chosen kernel in a Xen dom0. Note however that this entry is not usually set to be the first one in the list, and will therefore not be selected by default. If that is not the desired behavior, the following commands will change it:"
 msgid "In order to avoid the hassle of selecting these components by hand, a few convenience packages (such as <emphasis role=\"pkg\">xen-linux-system-686-pae</emphasis> and <emphasis role=\"pkg\">xen-linux-system-amd64</emphasis>) have been made available; they all pull in a known-good combination of the appropriate hypervisor and kernel packages. The hypervisor also brings <emphasis role=\"pkg\">xen-utils-4.1</emphasis>, which contains tools to control the hypervisor from the dom0. This in turn brings the appropriate standard library. During the installation of all that, configuration scripts also create a new entry in the Grub bootloader menu, so as to start the chosen kernel in a Xen dom0. Note however that this entry is not usually set to be the first one in the list, and will therefore not be selected by default. If that is not the desired behavior, the following commands will change it:"
-msgstr "Um den Aufwand der manuellen Auswahl dieser Komponenten zu vermeiden, stehen einige Pakete zur Erhöhung der Benutzerfreundlichkeit bereit (wie zum Beispiel <emphasis role=\"pkg\">xen-linux-system-2.6.32-5-xen-686</emphasis> und seine Varianten); sie alle installieren eine als gut bekannte Kombination aus passendem Hypervisor und Kernelpaketen. Der Hypervisor bringt zudem das Paket <emphasis role=\"pkg\">xen-utils-4.0</emphasis> mit sich, das Hilfsprogramme zur Steuerung des Hypervisors von dom0 aus enthält. Dieses wiederum bringt die passende Standardbibliothek mit sich. Während der Installation all dieser Komponenten erstellen Konfigurationsskripten außerdem einen neuen Eintrag im Menü des Grub Boot-Loaders, mit dem der ausgewählte Kernel in einer Xen dom0 gestartet wird. Man beachte jedoch, dass dieser Eintrag gewöhnlich nicht zuoberst in der Liste steht und deshalb nicht standardmäßig ausgewählt wird. Falls dies nicht das erwünschte Verhalten ist, kann es mit folgenden Befehlen verändert werden:"
+msgstr ""
+"Um den Aufwand der manuellen Auswahl dieser Komponenten zu vermeiden, stehen "
+"komfortablerweise einige fertige Pakete bereit (wie zum Beispiel <emphasis "
+"role=\"pkg\">xen-linux-system-686-pae</emphasis> und <emphasis role=\"pkg\""
+">xen-linux-system-amd64</emphasis>); sie alle installieren eine als gut "
+"bekannte Kombination aus passendem Hypervisor und Kernelpaketen. Der "
+"Hypervisor bringt zudem das Paket <emphasis role=\"pkg\">xen-"
+"utils-4.1</emphasis> mit sich, das Hilfsprogramme zur Steuerung des "
+"Hypervisors von dom0 aus enthält. Dieses wiederum bringt die passende "
+"Standardbibliothek mit sich. Während der Installation all dieser Komponenten "
+"erstellen Konfigurationsskripten außerdem einen neuen Eintrag im Menü des "
+"Grub Boot-Loaders, mit dem der ausgewählte Kernel in einer Xen dom0 "
+"gestartet wird. Man beachte jedoch, dass dieser Eintrag gewöhnlich nicht "
+"zuoberst in der Liste steht und deshalb nicht standardmäßig ausgewählt wird. "
+"Falls dies nicht das erwünschte Verhalten ist, kann es mit folgenden "
+"Befehlen verändert werden:"
 
 #. Tag: screen
 #, no-c-format
@@ -2308,10 +2547,15 @@ msgid "<literal>--size</literal> and <literal>--swap</literal>, to define the si
 msgstr "<literal>--size</literal> und <literal>--swap</literal>, um die Größe der „virtuellen Platten“ zu definieren, die der domU zur Verfügung stehen;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<literal>--debootstrap</literal>, to cause the new system to be installed with <command>debootstrap</command>; in that case, the <literal>--dist</literal> option will also most often be used (with a distribution name such as <emphasis role=\"distribution\">squeeze</emphasis>)."
 msgid "<literal>--debootstrap</literal>, to cause the new system to be installed with <command>debootstrap</command>; in that case, the <literal>--dist</literal> option will also most often be used (with a distribution name such as <emphasis role=\"distribution\">wheezy</emphasis>)."
-msgstr "<literal>--debootstrap</literal>, um zu veranlassen, dass das neue System mit <command>debootstrap</command> installiert wird; in diesem Fall wird meistens auch die Option <literal>--dist</literal> verwendet (mit dem Namen einer Distribution wie zum Beispiel <emphasis role=\"distribution\">squeeze</emphasis>)."
+msgstr ""
+"<literal>--debootstrap</literal>, um zu veranlassen, dass das neue System "
+"mit <command>debootstrap</command> installiert wird; in diesem Fall wird "
+"meistens auch die Option <literal>--dist</literal> verwendet (mit dem Namen "
+"einer Distribution wie zum Beispiel <emphasis role=\"distribution\""
+">wheezy</emphasis>)."
 
 #. Tag: title
 #, no-c-format
@@ -2349,7 +2593,7 @@ msgid "Once these choices are made, we can create the image for our future Xen d
 msgstr "Nachdem diese Entscheidungen getroffen sind, können wir das Abbild der zukünftigen Xen-domU erstellen:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>xen-create-image --hostname=testxen</userinput>\n"
 #| "<computeroutput>\n"
@@ -2404,19 +2648,22 @@ msgid ""
 "Root Password   :  48su67EW\n"
 "</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>xen-create-image --hostname=testxen</userinput>\n"
+"<computeroutput># </computeroutput><userinput>xen-create-image --hostname "
+"testxen --dhcp --dir /srv/testxen --size=2G --dist=wheezy "
+"--role=udev</userinput>\n"
 "<computeroutput>\n"
+"[...]\n"
 "General Information\n"
 "--------------------\n"
 "Hostname       :  testxen\n"
-"Distribution   :  squeeze\n"
-"Mirror         :  http://ftp.us.debian.org/debian/\n"
+"Distribution   :  wheezy\n"
+"Mirror         :  http://ftp.debian.org/debian/\n"
 "Partitions     :  swap            128Mb (swap)\n"
-"                  /               4Gb   (ext3)\n"
+"                  /               2G    (ext3)\n"
 "Image type     :  sparse\n"
 "Memory size    :  128Mb\n"
-"Kernel path    :  /boot/vmlinuz-2.6.32-5-xen-686\n"
-"Initrd path    :  /boot/initrd.img-2.6.32-5-xen-686\n"
+"Kernel path    :  /boot/vmlinuz-3.2.0-4-686-pae\n"
+"Initrd path    :  /boot/initrd.img-3.2.0-4-686-pae\n"
 "[...]\n"
 "Logfile produced at:\n"
 "         /var/log/xen-tools/testxen.log\n"
@@ -2424,10 +2671,10 @@ msgstr ""
 "Installation Summary\n"
 "---------------------\n"
 "Hostname        :  testxen\n"
-"Distribution    :  squeeze\n"
+"Distribution    :  wheezy\n"
 "IP-Address(es)  :  dynamic\n"
-"RSA Fingerprint :  25:6b:6b:c7:84:03:9e:8b:82:da:84:c0:08:cd:29:94\n"
-"Root Password   :  52emxRmM\n"
+"RSA Fingerprint :  0a:6e:71:98:95:46:64:ec:80:37:63:18:73:04:dd:2b\n"
+"Root Password   :  48su67EW\n"
 "</computeroutput>\n"
 
 #. Tag: para
@@ -2461,10 +2708,19 @@ msgid "These three networking nodes involve a number of interfaces with unusual 
 msgstr "Zu diesen drei Netzknoten gehören eine Reihe von Schnittstellen mit ungewöhnlichen Bezeichnungen, wie zum Beispiel <filename>vif*</filename>, <filename>veth*</filename>, <filename>peth*</filename> und <filename>xenbr0</filename>. Der Xen-Hypervisor ordnet sie gemäß dem an, was auch immer als Layout festgelegt worden ist, unter der Kontrolle der Hilfsprogramme auf der Anwenderebene. Da die NAT- und Routing-Modelle besonderen Fällen vorbehalten sind, beschäftigen wir uns hier nur mit dem Bridging-Modell."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The standard configuration of the Xen packages does not change the system-wide network configuration. However, the <command>xend</command> daemon is configured to integrate virtual network interfaces into any pre-existing network bridge (with <filename>xenbr0</filename> taking precedence if several such bridges exist). We must therefore set up a bridge in <filename>/etc/network/interfaces</filename> (which requires installing the <emphasis role=\"pkg\">bridge-utils</emphasis> package, which is why the <emphasis role=\"pkg\">xen-utils-4.0</emphasis> package recommends it) to replace the existing eth0 entry:"
 msgid "The standard configuration of the Xen packages does not change the system-wide network configuration. However, the <command>xend</command> daemon is configured to integrate virtual network interfaces into any pre-existing network bridge (with <filename>xenbr0</filename> taking precedence if several such bridges exist). We must therefore set up a bridge in <filename>/etc/network/interfaces</filename> (which requires installing the <emphasis role=\"pkg\">bridge-utils</emphasis> package, which is why the <emphasis role=\"pkg\">xen-utils-4.1</emphasis> package recommends it) to replace the existing eth0 entry:"
-msgstr "Die Standardkonfiguration der Xen-Pakete verändert die systemweite Netzwerk-Konfiguration nicht. Jedoch ist der <command>xend</command>-Daemon so konfiguriert, dass er virtuelle Netzwerkschnittstellen in eine bereits bestehende Netzwerkbrücke integriert (wobei <filename>xenbr0</filename> Vorrang erhält, falls es mehrere solcher Brücken gibt). Wir müssen daher eine Brücke in <filename>/etc/network/interfaces</filename> einrichten (wozu das Paket <emphasis role=\"pkg\">bridge-utils</emphasis> installiert werden muss, weshalb es vom Paket <emphasis role=\"pkg\">xen-utils-4.0</emphasis> empfohlen wird), um den bestehenden eth0-Eintrag zu ersetzen:"
+msgstr ""
+"Die Standardkonfiguration der Xen-Pakete verändert die systemweite Netzwerk-"
+"Konfiguration nicht. Jedoch ist der <command>xend</command>-Daemon so "
+"konfiguriert, dass er virtuelle Netzwerkschnittstellen in eine bereits "
+"bestehende Netzwerkbrücke integriert (wobei <filename>xenbr0</filename> "
+"Vorrang erhält, falls es mehrere solcher Brücken gibt). Wir müssen daher "
+"eine Brücke in <filename>/etc/network/interfaces</filename> einrichten (wozu "
+"das Paket <emphasis role=\"pkg\">bridge-utils</emphasis> installiert werden "
+"muss, weshalb es vom Paket <emphasis role=\"pkg\">xen-utils-4.1</emphasis> "
+"empfohlen wird), um den bestehenden eth0-Eintrag zu ersetzen:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2487,7 +2743,7 @@ msgid "After rebooting to make sure the bridge is automatically created, we can 
 msgstr "Nach einem Neustart, um sicherzustellen, dass die Brücke automatisch erstellt wird, können wir jetzt die domU mit den Xen-Steuerprogrammen starten, insbesondere mit dem Befehl <command>xm</command>. Mit diesem Befehl ist es möglich, Verschiedenes mit den Domains zu machen, unter anderem sie aufzulisten und sie zu starten oder zu beenden."
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
 #| "<computeroutput>Name                            ID Mem VCPUs  State   Time(s)\n"
@@ -2512,15 +2768,20 @@ msgid ""
 "testxen                                      1   128     1     -b----      1.1</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
-"<computeroutput>Name                            ID Mem VCPUs  State   Time(s)\n"
-"Domain-0                         0 940     1 r-----   3896.9\n"
+"<computeroutput>Name                                        ID   Mem "
+"VCPUs      State   Time(s)\n"
+"Domain-0                                     0   463     1     r-----      9."
+"8\n"
 "# </computeroutput><userinput>xm create testxen.cfg</userinput>\n"
 "<computeroutput>Using config file \"/etc/xen/testxen.cfg\".\n"
 "Started domain testxen (id=1)\n"
 "# </computeroutput><userinput>xm list</userinput>\n"
-"<computeroutput>Name                            ID Mem VCPUs  State   Time(s)\n"
-"Domain-0                         0 873     1 r-----   3917.1\n"
-"testxen                          1 128     1 -b----      3.7</computeroutput>\n"
+"<computeroutput>Name                                        ID   Mem "
+"VCPUs      State   Time(s)\n"
+"Domain-0                                     0   366     1     r-----     11."
+"4\n"
+"testxen                                      1   128     1     -b----      "
+"1.1</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -2543,7 +2804,7 @@ msgid "Voilà! Our virtual machine is starting up. We can access it in one of tw
 msgstr "Voilà! Unser virtueller Rechner startet. Wir können auf ihn auf zweifache Art zugreifen. Der normale Weg besteht darin, sich mit ihm „aus der Ferne“ über das Netzwerk zu verbinden, wie wir es auch bei einem wirklichen Rechner tun würden; hierzu ist es normalerweise erforderlich, entweder einen DHCP-Server oder eine DNS-Konfiguration einzurichten. Der andere Weg, der der einzige sein könnte, falsch die Netzwerk-Konfiguration nicht korrekt war, besteht darin, über den Befehl <command>xm console</command> die Konsole <filename>hvc0</filename> zu benutzen:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
 #| "<computeroutput>[...]\n"
@@ -2562,13 +2823,11 @@ msgid ""
 "\n"
 "testxen login: </computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
-"<computeroutput>[...]\n"
-"Starting enhanced syslogd: rsyslogd.\n"
-"Starting periodic command scheduler: cron.\n"
-"Starting OpenBSD Secure Shell server: sshd.\n"
+"<computeroutput># </computeroutput><userinput>xm console testxen</userinput>"
 "\n"
-"Debian GNU/Linux 6.0 testxen hvc0\n"
+"<computeroutput>[...]\n"
+"\n"
+"Debian GNU/Linux 7.0 testxen hvc0\n"
 "\n"
 "testxen login: </computeroutput>\n"
 
@@ -2588,16 +2847,21 @@ msgid "Sometimes one wishes to start a domU system and get to its console straig
 msgstr "Manchmal möchte man ein domU-System starten und direkt zu seiner Konsole gelangen; deshalb kann dem Befehl <command>xm create</command> der Schalter <literal>-c</literal> übergeben werden. Wenn man eine domU mit diesem Schalter startet, werden während des Hochfahrens des Systems alle Meldungen angezeigt."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>TOOL</emphasis> ConVirt"
 msgid "<emphasis>TOOL</emphasis> OpenXenManager"
-msgstr "<emphasis>HILFSPROGRAMM</emphasis> ConVirt"
+msgstr "<emphasis>TOOL</emphasis> OpenXenManager"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "ConVirt (in the <emphasis role=\"pkg\">convirt</emphasis> package, previously XenMan) is a graphical interface allowing controlling Xen domains installed on a machine. It provides most of the features of the <command>xm</command> command."
 msgid "OpenXenManager (in the <emphasis role=\"pkg\">openxenmanager</emphasis> package) is a graphical interface allowing remote management of Xen domains via Xen's API. It can thus control Xen domains remotely. It provides most of the features of the <command>xm</command> command."
-msgstr "ConVirt (im Paket <emphasis role=\"pkg\">convirt</emphasis>, früher XenMan) ist eine grafische Schnittstelle, mit der man die auf einem Rechner installierten Xen-Domains steuern kann. Sie stellt die meisten Funktionen des Befehls <command>xm</command> bereit."
+msgstr ""
+"OpenXenManager (im Paket <emphasis role=\"pkg\">openxenmanager</emphasis>) "
+"ist ein grafisches Interface das entfernte Verwaltung von Xen Domänen über "
+"das API von Xen ermöglicht. Es kann so Xen Domänen aus der Ferne "
+"kontrollieren. Es stellt den Großteil der Funktionalität des Befehls "
+"<command>xm</command> zur Verfügung."
 
 #. Tag: para
 #, no-c-format
@@ -2630,16 +2894,47 @@ msgid "Xen has many more features than we can describe in these few paragraphs. 
 msgstr "Xen verfügt über wesentlich mehr Funktionen als wir in diesen wenigen Absätzen beschreiben können. Vor allem ist das System sehr dynamisch, und viele Parameter einer Domain (wie zum Beispiel der Umfang des zugewiesenen Speichers, die sichtbaren Festplatten, das Verhalten der Aufgabensteuerung und so weiter) können eingestellt werden, selbst wenn die Domain läuft. Eine domU kann sogar auf einen anderen Server verschoben werden, ohne abgeschaltet zu werden und ohne ihre Netzwerkverbindungen zu verlieren! Die Hauptinformationsquelle für alle diese weitergehenden Aspekte ist die offizielle Xen-Dokumentation. <ulink type=\"block\" url=\"http://www.xen.org/support/documentation.html\" />"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Even though it's used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantage of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
 msgid "Even though it is used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantage of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
-msgstr "Obwohl es dazu benutzt wird, „virtuelle Rechner“ zu erstellen, ist LXC  <indexterm><primary>LXC</primary></indexterm> genaugenommen kein Virtualisierungssystem, sondern ein System, um Gruppen von Prozessen voneinander zu isolieren, obwohl sie alle auf demselben Host laufen. Es macht sich eine Reihe neuerer Entwicklungen im Linux-Kernel zunutze, die gemeinhin als <emphasis>Kontrollgruppen</emphasis> bekannt sind, mit denen verschiedene Sätze von Prozessen, die „Gruppen“ genannt werden, bestimmte Aspekte des Gesamtsystems auf unterschiedliche Weise sehen. Dies gilt vor allem für Aspekte wie die Prozesskennungen, die Netzwerkonfiguration und die Einhängepunkte. Eine derartige Gruppe isolierter Prozesse hat keinerlei Zugriff auf die anderen Prozesse des Systems, und ihre Zugriffe auf das Dateisystem können auf einen bestimmten Teilbereich eingegrenzt werden. Sie kann auch ihre eigene Netzwerkschnittstelle und Routing-Tabelle haben, und möglicherweise ist sie so konfiguriert, dass sie nur einen Teil der auf dem System verfügbaren Geräte sieht."
+msgstr ""
+"Obwohl es dazu benutzt wird, „virtuelle Rechner“ zu erstellen, ist LXC  "
+"<indexterm><primary>LXC</primary></indexterm> genaugenommen kein "
+"Virtualisierungssystem, sondern ein System, um Gruppen von Prozessen "
+"voneinander zu isolieren, obwohl sie alle auf demselben Host laufen. Es "
+"macht sich eine Reihe neuerer Entwicklungen im Linux-Kernel zunutze, die "
+"gemeinhin als <emphasis>Kontrollgruppen</emphasis> bekannt sind, mit denen "
+"verschiedene Sätze von Prozessen, die „Gruppen“ genannt werden, bestimmte "
+"Aspekte des Gesamtsystems auf unterschiedliche Weise sehen. Dies gilt vor "
+"allem für Aspekte wie die Prozesskennungen, die Netzwerkonfiguration und die "
+"Einhängepunkte. Eine derartige Gruppe isolierter Prozesse hat keinerlei "
+"Zugriff auf die anderen Prozesse des Systems, und ihre Zugriffe auf das "
+"Dateisystem können auf einen bestimmten Teilbereich eingegrenzt werden. Sie "
+"kann auch ihre eigene Netzwerkschnittstelle und Routing-Tabelle haben, und "
+"möglicherweise ist sie so konfiguriert, dass sie nur einen Teil der auf dem "
+"System verfügbaren Geräte sieht."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "These features can be combined to isolate a whole process family starting from the <command>init</command> process, and the resulting set looks very much like a virtual machine. The official name for such a setup is a “container” (hence the LXC moniker: <emphasis>LinuX Containers</emphasis>), but a rather important difference with “real” virtual machines such as provided by Xen or KVM is that there's no second kernel; the container uses the very same kernel as the host system. This has both pros and cons: advantages include the total lack of overhead and therefore performance costs, and the fact that the kernel has a global vision of all the processes running on the system, so the scheduling can be more efficient than it would be if two independent kernels were to schedule different task sets. Chief among the inconveniences is the impossibility to run a different kernel in a container (whether a different Linux version or a different operating system altogether)."
 msgid "These features can be combined to isolate a whole process family starting from the <command>init</command> process, and the resulting set looks very much like a virtual machine. The official name for such a setup is a “container” (hence the LXC moniker: <emphasis>LinuX Containers</emphasis>), but a rather important difference with “real” virtual machines such as provided by Xen or KVM is that there's no second kernel; the container uses the very same kernel as the host system. This has both pros and cons: advantages include excellent performance due to the total lack of overhead, and the fact that the kernel has a global vision of all the processes running on the system, so the scheduling can be more efficient than it would be if two independent kernels were to schedule different task sets. Chief among the inconveniences is the impossibility to run a different kernel in a container (whether a different Linux version or a different operating system altogether)."
-msgstr "Diese Funktionen können kombiniert werden, um eine ganze Prozessfamilie, vom <command>init</command>-Prozess angefangen, zu isolieren, und die sich daraus ergebende Gruppe sieht einem virtuellen Rechner sehr ähnlich. Die offizielle Bezeichnung für eine derartige Anordnung ist ein „Container“ (daher der Name LXC: <emphasis>LinuX Containers</emphasis>), jedoch besteht ein wichtiger Unterschied zu einem „wirklichen“ virtuellen Rechner, wie einem der durch Xen oder KVM bereitgestellt wird, darin, dass es keinen zweiten Kernel gibt; der Container verwendet denselben Kernel wie das Host-System. Dies hat Vor- und Nachteile: zu den Vorteilen gehören die völlige Abwesenheit von Overhead- und damit Leistungsbelastungen, und die Tatsache, dass der Kernel einen vollständigen Überblick über alle Prozesse hat, die auf dem System laufen, wodurch die Steuerung effizienter sein kann, als wenn zwei unabhängige Kernel verschiedene Aufgabensätze steuern würden. Zu den Nachteilen gehört vor allem, dass man in einem Container keinen anderen Kernel laufen lassen kann (sei dies eine andere Linux-Version oder ein völlig anderes Betriebssystem)."
+msgstr ""
+"Diese Funktionen können kombiniert werden, um eine ganze Prozessfamilie, vom "
+"<command>init</command>-Prozess angefangen, zu isolieren, und die sich "
+"daraus ergebende Gruppe sieht einem virtuellen Rechner sehr ähnlich. Die "
+"offizielle Bezeichnung für eine derartige Anordnung ist ein „Container“ ("
+"daher der Name LXC: <emphasis>LinuX Containers</emphasis>), jedoch besteht "
+"ein wichtiger Unterschied zu einem „wirklichen“ virtuellen Rechner, wie "
+"einem der durch Xen oder KVM bereitgestellt wird, darin, dass es keinen "
+"zweiten Kernel gibt; der Container verwendet denselben Kernel wie das Host-"
+"System. Dies hat Vor- und Nachteile: zu den Vorteilen gehören die exzellente "
+"Performance aufgrund fehlender Last durch Overhead, und die Tatsache, dass "
+"der Kernel einen vollständigen Überblick über alle Prozesse hat, die auf dem "
+"System laufen, wodurch die Steuerung effizienter sein kann, als wenn zwei "
+"unabhängige Kernel verschiedene Aufgabensätze steuern würden. Zu den "
+"Nachteilen gehört vor allem, dass man in einem Container keinen anderen "
+"Kernel laufen lassen kann (sei dies eine andere Linux-Version oder ein "
+"völlig anderes Betriebssystem)."
 
 #. Tag: title
 #, no-c-format
@@ -2652,10 +2947,17 @@ msgid "LXC containers do not provide the level of isolation achieved by heavier 
 msgstr "LXC-Container bieten nicht den Grad an Isolierung, der mit schwergewichtigeren Emulatoren oder Virtualisierern erreicht wird. Insbesondere:"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "the <emphasis role=\"distribution\">Squeeze</emphasis> standard kernel does not allow limiting the amount of memory available to a container; this feature exists, and can be enabled by rebuilding the kernel with the <foreignphrase>Memory Resource Controller</foreignphrase> option, but it is still considered somewhat experimental, and it has a (slight) cost on overall system performance, which is why it's disabled by default;"
 msgid "the <emphasis role=\"distribution\">Wheezy</emphasis> standard kernel does not allow limiting the amount of memory available to a container; the feature exists, and is built in the kernel, but it is disabled by default because it has a (slight) cost on overall system performance; however, enabling it is a simple matter of setting the <command>cgroup_enable=memory</command> kernel command-line option at boot time;"
-msgstr "ermöglicht es der Standard-Kernel bei <emphasis role=\"distribution\">Squeeze</emphasis> nicht, den Umfang des Speichers, der einem Container zur Verfügung steht, zu begrenzen; es gibt diese Funktion, und sie kann aktiviert werden, indem man den Kernel mit der Option <foreignphrase>Memory Resource Controller</foreignphrase> neu kompiliert, aber sie gilt noch als ziemlich experimentell und führt zu einer (leichten) Belastung der allgemeinen Systemleistung, weshalb sie standardmäßig deaktiviert ist;"
+msgstr ""
+"ermöglicht es der Standard-Kernel bei <emphasis role=\"distribution\""
+">Wheezy</emphasis> nicht, den Umfang des Speichers, der einem Container zur "
+"Verfügung steht, zu begrenzen; es gibt diese Funktion, und sie kann "
+"aktiviert werden, aber sie ist per Voreinstellung deaktiviert, weil sie die "
+"Gesamtperformance des Systems belastet; es ist aber einfach, sie mit der "
+"Kommandozeilenoption <command>cgroup_enable=memory</command> beim "
+"Bootvorgang einzuschalten;"
 
 #. Tag: para
 #, no-c-format
@@ -2815,28 +3117,55 @@ msgid "Setting Up the System"
 msgstr "Das System einrichten"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Let us now set up the filesystem to be used by the container. Since this “virtual machine” will not run directly on the hardware, some tweaks are required when compared to a standard filesystem, especially as far as the kernel, devices and consoles are concerned. Fortunately, the <emphasis role=\"pkg\">lxc</emphasis> includes scripts that mostly automate this configuration. For instance, the following commands (which require the <emphasis role=\"pkg\">debootstrap</emphasis> package) will install a Debian container:"
 msgid "Let us now set up the filesystem to be used by the container. Since this “virtual machine” will not run directly on the hardware, some tweaks are required when compared to a standard filesystem, especially as far as the kernel, devices and consoles are concerned. Fortunately, the <emphasis role=\"pkg\">lxc</emphasis> includes scripts that mostly automate this configuration. For instance, the following commands (which require the <emphasis role=\"pkg\">debootstrap</emphasis> and <emphasis role=\"pkg\">rsync</emphasis> packages) will install a Debian container:"
-msgstr "Lassen Sie uns jetzt das von dem Container zu verwendende Dateisystem einrichten. Da dieser „virtuelle Rechner“ nicht direkt auf der Hardware laufen wird, sind im Vergleich zu einem Standard-Dateisystem einige Feineinstellungen vorzunehmen, insbesondere was den Kernel, die Geräte und Konsolen betrifft. Glücklicherweise enthält das Paket <emphasis role=\"pkg\">lxc</emphasis> Skripten, die diese Konfigurierung weitestgehend automatisieren. So installieren zum Beispiel die folgenden Befehle (die das Paket <emphasis role=\"pkg\">debootstrap</emphasis> erfordern) einen Debian-Container:"
+msgstr ""
+"Lassen Sie uns jetzt das von dem Container zu verwendende Dateisystem "
+"einrichten. Da dieser „virtuelle Rechner“ nicht direkt auf der Hardware "
+"laufen wird, sind im Vergleich zu einem Standard-Dateisystem einige "
+"Feineinstellungen vorzunehmen, insbesondere was den Kernel, die Geräte und "
+"Konsolen betrifft. Glücklicherweise enthält das Paket <emphasis role=\"pkg\""
+">lxc</emphasis> Skripten, die diese Konfigurierung weitestgehend "
+"automatisieren. So installieren zum Beispiel die folgenden Befehle (die das "
+"Paket  <emphasis role=\"pkg\">debootstrap</emphasis> und <emphasis role=\""
+"pkg\">rsync</emphasis> erfordern) einen Debian-Container:"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Bugs in default <literal>debian</literal> template"
 msgstr ""
+"<emphasis>VORSICHT</emphasis> Fehler im standradmäßig mitgelieferten "
+"<literal>Debian</literal> Beispiel"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>/usr/share/lxc/templates/lxc-debian</command> template creation script provided in the initial <emphasis role=\"distribution\">Wheezy</emphasis> package (aka <emphasis role=\"pkg\">lxc</emphasis> 0.8.0~rc1-8+deb7u1) suffers from numerous problems. The most important one is that it relies on the <command>live-debconfig</command> program which is not available in <emphasis role=\"distribution\">Wheezy</emphasis> but only in newer versions of Debian. <ulink type=\"block\" url=\"http://bugs.debian.org/680469\" /> <ulink type=\"block\" url=\"http://bugs.debian.org/686747\" />"
 msgstr ""
+"Das Skript zur Erzeugung des Beispiels <command>/usr/share/lxc/templates/lxc-"
+"debian</command> das im ursprünglich ausgelieferten <emphasis role=\""
+"distribution\">Wheezy</emphasis>-Paket (auch bekannt als <emphasis role=\""
+"pkg\">lxc</emphasis> 0.8.0~rc1-8+deb7u1) krankt an mancherlei Problemen. Das "
+"schwerwiegendste davon ist, dass es auf dem Programm <command>live-"
+"debconfig</command> aufsetzt, welches in <emphasis role=\"distribution\""
+">Wheezy</emphasis> gar nicht enthalten ist, sondern nur späteren Debian-"
+"Versionen. <ulink type=\"block\" url=\"http://bugs.debian.org/680469\" /> <"
+"ulink type=\"block\" url=\"http://bugs.debian.org/686747\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "At the time of writing, there was no good solution and no usable work-around, except to use an alternate template creation script. Further updates of lxc might fix this though. This section assumes that <command>/usr/share/lxc/templates/lxc-debian</command> matches the upstream provided script: <ulink type=\"block\" url=\"https://github.com/lxc/lxc/raw/master/templates/lxc-debian.in\" />"
 msgstr ""
+"Zur Zeit, da diese Zeilen geschrieben werden, gibt es keine befriedigende "
+"Lösung und keinen brauchbaren Workaround, außer den, ein anderes Skript zur "
+"Erstellung des Besipiels zu verwenden. Zukünfige Aktualisierungen von lxc "
+"werden dies eventuell korrigieren. Dieser Abschnitt unterstellt,dass "
+"<command>/usr/share/lxc/templates/lxc-debian</command> mit dem zukünftig "
+"mitgelieferte Skript übereinstimmt: <ulink type=\"block\" url=\""
+"https://github.com/lxc/lxc/raw/master/templates/lxc-debian.in\" />"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
 #| "</userinput><computeroutput>root@scouzmir:~# </computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/\n"
@@ -2869,18 +3198,23 @@ msgid ""
 "root@mirwiz:~# </computeroutput>\n"
 "        "
 msgstr ""
-"<computeroutput>root@scouzmir:~# </computeroutput><userinput>mkdir /var/lib/lxc/testlxc/\n"
-"</userinput><computeroutput>root@scouzmir:~# </computeroutput><userinput>/usr/lib/lxc/templates/lxc-debian -p /var/lib/lxc/testlxc/\n"
-"</userinput><computeroutput>debootstrap is /usr/sbin/debootstrap\n"
-"Checking cache download in /var/cache/lxc/debian/rootfs-i386 ... \n"
+"<computeroutput>root@mirwiz:~# </computeroutput><userinput>lxc-create -n "
+"testlxc -t debian\n"
+"</userinput><computeroutput>Note: Usually the template option is called with "
+"a configuration\n"
+"file option too, mostly to configure the network.\n"
+"For more information look at lxc.conf (5)\n"
+"\n"
+"debootstrap is /usr/sbin/debootstrap\n"
+"Checking cache download in /var/cache/lxc/debian/rootfs-wheezy-amd64 ... \n"
 "Downloading debian minimal ...\n"
 "I: Retrieving Release\n"
-"I: Retrieving Packages\n"
+"I: Retrieving Release.gpg\n"
 "[...]\n"
-" Removing any system startup links for /etc/init.d/hwclockfirst.sh ...\n"
-"   /etc/rcS.d/S08hwclockfirst.sh\n"
 "Root password is 'root', please change !\n"
-"root@scouzmir:~# </computeroutput>\n"
+"'debian' template installed\n"
+"'testlxc' created\n"
+"root@mirwiz:~# </computeroutput>\n"
 "        "
 
 #. Tag: para
@@ -2892,11 +3226,22 @@ msgstr "Man beachte, dass das Dateisystem zunächst in <filename>/var/cache/lxc<
 #, no-c-format
 msgid "Note that the debian template creation script accepts an <option>--arch</option> option to specify the architecture of the system to be installed and a <option>--release</option> option if you want to install something else than the current stable release of Debian. You can also set the <literal>MIRROR</literal> environment variable to point to a local Debian mirror."
 msgstr ""
+"Man beachte, dass das Skript zum Erstellen des Debian Beispiels eine Option "
+"<option>--arch</option> akzeptiert, um die Architaktur anzugeben, die "
+"Installiert werden soll, sowie eine Option <option>--release</option>, wenn "
+"Sie etwas anderes als das aktuelle \"stable\" Release von Debian "
+"installieren wollen. Sie können auch die Umgebungsvariable "
+"<literal>MIRROR</literal> auf einen lokalen Debain Spiegel zeigen lassen."
 
 #. Tag: para
 #, no-c-format
 msgid "The newly-created filesystem now contains a minimal Debian system, and by default the container shares the network device with the host system. Since this is not really wanted, we will edit the container's configuration file (<filename>/var/lib/lxc/testlxc/config</filename>) and add a few <literal>lxc.network.*</literal> entries:"
 msgstr ""
+"Das neu erstellte Dateisystem enthält jetzt ein minimales Debian-System, und "
+"per Voreinstellung teilt der Container die Netzwerkschnittstelle mit dem "
+"Wirtssystem. Da wir das nicht wollen, editieren wir die Konfigurationsdatei "
+"des Containers (<filename>/var/lib/lxc/testlxc/config</filename>) und fügen "
+"einige <literal>lxc.network.*</literal>-Einträge hinzu:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2920,11 +3265,12 @@ msgstr "Diese Einträge bedeuten jeweils, dass eine virtuelle Schnittstelle in d
 #, no-c-format
 msgid "Another useful entry in that file is the setting of the hostname:"
 msgstr ""
+"Ein anderer nützlicher Eintrag in dieser Datei ist die Angabe des Hostnamens:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "lxc.utsname = testlxc\n"
-msgstr ""
+msgstr "lxc.utsname = testlxc\n"
 
 #. Tag: title
 #, no-c-format
@@ -2937,7 +3283,7 @@ msgid "Now that our virtual machine image is ready, let's start the container:"
 msgstr "Nun, da das Abbild unseres virtuellen Rechners fertig ist, wollen wir den Container starten:"
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc\n"
 #| "</userinput><computeroutput>INIT: version 2.86 booting\n"
@@ -3019,38 +3365,15 @@ msgid ""
 "root      1413  0.0  0.0  14572   884 tty4     Ss+  09:39   0:00 /sbin/getty 38400 tty4 linux\n"
 "root@testlxc:~# </computeroutput>"
 msgstr ""
-"<computeroutput>root@scouzmir:~# </computeroutput><userinput>lxc-start --name=testlxc\n"
-"</userinput><computeroutput>INIT: version 2.86 booting\n"
-"Activating swap...done.\n"
-"Cleaning up ifupdown....\n"
-"Checking file systems...fsck 1.41.3 (12-Oct-2008)\n"
-"done.\n"
-"Setting kernel variables (/etc/sysctl.conf)...done.\n"
-"Mounting local filesystems...done.\n"
-"Activating swapfile swap...done.\n"
-"Setting up networking....\n"
-"Configuring network interfaces...Internet Systems Consortium DHCP Client V3.1.1\n"
-"Copyright 2004-2008 Internet Systems Consortium.\n"
-"All rights reserved.\n"
-"For info, please visit http://www.isc.org/sw/dhcp/\n"
+"<computeroutput>root@mirwiz:~# </computeroutput><userinput>lxc-start --"
+"daemon --name=testlxc\n"
+"</userinput><computeroutput>root@mirwiz:~# </computeroutput><userinput>lxc-"
+"console -n testlxc\n"
+"</userinput><computeroutput>Debian GNU/Linux 7 testlxc tty1\n"
 "\n"
-"Listening on LPF/eth0/52:54:00:99:01:01\n"
-"Sending on   LPF/eth0/52:54:00:99:01:01\n"
-"Sending on   Socket/fallback\n"
-"DHCPDISCOVER on eth0 to 255.255.255.255 port 67 interval 4\n"
-"DHCPOFFER from 192.168.1.2\n"
-"DHCPREQUEST on eth0 to 255.255.255.255 port 67\n"
-"DHCPACK from 192.168.1.2\n"
-"bound to 192.168.1.243 -- renewal in 1392 seconds.\n"
-"done.\n"
-"INIT: Entering runlevel: 3\n"
-"Starting OpenBSD Secure Shell server: sshd.\n"
-"\n"
-"Debian GNU/Linux 5.0 scouzmir console\n"
-"\n"
-"scouzmir login: </computeroutput><userinput>root\n"
-"</userinput><computeroutput>Password: \n"
-"Linux scouzmir 2.6.32-5-686 #1 SMP Tue Mar 8 21:36:00 UTC 2011 i686\n"
+"testlxc login: </computeroutput><userinput>root</userinput><computeroutput>\n"
+"Password: \n"
+"Linux testlxc 3.2.0-4-amd64 #1 SMP Debian 3.2.46-1+deb7u1 x86_64\n"
 "\n"
 "The programs included with the Debian GNU/Linux system are free software;\n"
 "the exact distribution terms for each program are described in the\n"
@@ -3058,36 +3381,66 @@ msgstr ""
 "\n"
 "Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent\n"
 "permitted by applicable law.\n"
-"scouzmir:~# </computeroutput><userinput>ps auxwf</userinput>\n"
-"<computeroutput>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\n"
-"root         1  0.0  0.2   1984   680 ?        Ss   08:44   0:00 init [3]  \n"
-"root       197  0.0  0.1   2064   364 ?        Ss   08:44   0:00 dhclient3 -pf /var/run/dhclient.eth0.pid -lf /var/lib/dhcp3/dhclien\n"
-"root       286  0.1  0.4   2496  1256 console  Ss   08:44   0:00 /bin/login --     \n"
-"root       291  0.7  0.5   2768  1504 console  S    08:46   0:00  \\_ -bash\n"
-"root       296  0.0  0.3   2300   876 console  R+   08:46   0:00      \\_ ps auxwf\n"
-"root       287  0.0  0.2   1652   560 tty1     Ss+  08:44   0:00 /sbin/getty 38400 tty1 linux\n"
-"root       288  0.0  0.2   1652   560 tty2     Ss+  08:44   0:00 /sbin/getty 38400 tty2 linux\n"
-"root       289  0.0  0.2   1652   556 tty3     Ss+  08:44   0:00 /sbin/getty 38400 tty3 linux\n"
-"root       290  0.0  0.2   1652   560 tty4     Ss+  08:44   0:00 /sbin/getty 38400 tty4 linux\n"
-"scouzmir:~# </computeroutput>"
+"root@testlxc:~# </computeroutput><userinput>ps auxwf</userinput>\n"
+"<computeroutput>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   "
+"TIME COMMAND\n"
+"root         1  0.0  0.0  10644   824 ?        Ss   09:38   0:00 init [3]  \n"
+"root      1232  0.0  0.2   9956  2392 ?        Ss   09:39   0:00 dhclient -v "
+"-pf /run/dhclient.eth0.pid \n"
+"root      1379  0.0  0.1  49848  1208 ?        Ss   09:39   0:00 /usr/sbin/"
+"sshd\n"
+"root      1409  0.0  0.0  14572   892 console  Ss+  09:39   0:00 /sbin/getty "
+"38400 console\n"
+"root      1410  0.0  0.1  52368  1688 tty1     Ss   09:39   0:00 /bin/login "
+"--     \n"
+"root      1414  0.0  0.1  17876  1848 tty1     S    09:42   0:00  \\_ -bash\n"
+"root      1418  0.0  0.1  15300  1096 tty1     R+   09:42   0:00      \\_ ps "
+"auxf\n"
+"root      1411  0.0  0.0  14572   892 tty2     Ss+  09:39   0:00 /sbin/getty "
+"38400 tty2 linux\n"
+"root      1412  0.0  0.0  14572   888 tty3     Ss+  09:39   0:00 /sbin/getty "
+"38400 tty3 linux\n"
+"root      1413  0.0  0.0  14572   884 tty4     Ss+  09:39   0:00 /sbin/getty "
+"38400 tty4 linux\n"
+"root@testlxc:~# </computeroutput>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "We are now in the container; our access to the processes is restricted to only those started from the container itself, and our access to the filesystem is similarly restricted to the dedicated subset of the full filesystem (<filename>/var/lib/lxc/testlxc/rootfs</filename>), in which root's password is initially set to <literal>root</literal>."
 msgid "We are now in the container; our access to the processes is restricted to only those started from the container itself, and our access to the filesystem is similarly restricted to the dedicated subset of the full filesystem (<filename>/var/lib/lxc/testlxc/rootfs</filename>). We can exit the console with <keycombo action=\"simul\"><keycap>Control</keycap> <keycap>a</keycap></keycombo> <keycombo><keycap>q</keycap></keycombo>."
-msgstr "Wir befinden uns nun in dem Container; unser Zugriff auf die Prozesse ist auf die beschränkt, die vom Container selbst gestartet wurden, und unser Zugriff auf das Dateisystem ist in ähnlicher Weise auf die zugehörige Teilmenge des gesamten Dateisystems (<filename>/var/lib/lxc/testlxc/rootfs</filename>) beschränkt, in der das Passwort für Root anfänglich auf <literal>root</literal> eingestellt ist."
+msgstr ""
+"Wir befinden uns nun in dem Container; unser Zugriff auf diejenigen Prozesse "
+"beschränkt, die vom Container selbst gestartet wurden, und unser Zugriff auf "
+"das Dateisystem ist in ähnlicher Weise auf die zugehörige Teilmenge des "
+"gesamten Dateisystems (<filename>/var/lib/lxc/testlxc/rootfs</filename>) "
+"eingeschränkt. Wir können die Konsole mit <keycombo action=\"simul\""
+"><keycap>Control</keycap> <keycap>a</keycap></keycombo> "
+"<keycombo><keycap>q</keycap></keycombo> wieder verlassen."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Should we want to run the container as a background process, we would invoke <command>lxc-start</command> with the <option>--daemon</option> option. We can then interrupt the container with a command such as <command>lxc-kill --name=testlxc</command>."
 msgid "Note that we ran the container as a background process, thanks to the <option>--daemon</option> option of <command>lxc-start</command>. We can interrupt the container with a command such as <command>lxc-kill --name=testlxc</command>."
-msgstr "Falls wir den Container als Hintergrundprozess laufen lassen möchten, würden wir den Befehl <command>lxc-start</command> mit der Option <option>--daemon</option> aufrufen. Wir können den Container dann mit einem Befehl wie <command>lxc-kill --name=testlxc</command> schließen."
+msgstr ""
+"Beachten Sie, dass wir den Container beim Aufruf von <command>lxc-"
+"start</command>  durch die Option <option>--daemon</option> als "
+"Hintergrundprozess laufen lassen. Wir können den Container dann mit einem "
+"Befehl wie <command>lxc-kill --name=testlxc</command> schließen."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The <emphasis role=\"pkg\">lxc</emphasis> package contains an initialization script that can automatically start one or several containers when the host boots; its configuration file, <filename>/etc/default/lxc</filename>, is relatively straightforward; note that the container configuration files need to be stored in <filename>/etc/lxc/</filename>; many users may prefer symbolic links, such as can be created with <command>ln -s /var/lib/lxc/testlxc/config /etc/lxc/testlxc.config</command>."
 msgid "The <emphasis role=\"pkg\">lxc</emphasis> package contains an initialization script that can automatically start one or several containers when the host boots; its configuration file, <filename>/etc/default/lxc</filename>, is relatively straightforward; note that the container configuration files need to be stored in <filename>/etc/lxc/auto/</filename>; many users may prefer symbolic links, such as can be created with <command>ln -s /var/lib/lxc/testlxc/config /etc/lxc/auto/testlxc.config</command>."
-msgstr "Das Paket <emphasis role=\"pkg\">lxc</emphasis> enthält ein Initialisierungsskript, das beim Hochfahren des Hosts automatisch einen oder mehrere Container starten kann; seine Konfigurationsdatei <filename>/etc/default/lxc</filename> ist recht einfach. Man beachte, dass die Konfigurationsdateien der Container in <filename>/etc/lxc/</filename> gespeichert werden müssen; viele Benutzer bevorzugen möglicherweise symbolische Verknüpfungen, wie sie mit dem Befehl <command>ln -s /var/lib/lxc/testlxc/config /etc/lxc/testlxc.config</command> erstellt werden können."
+msgstr ""
+"Das Paket <emphasis role=\"pkg\">lxc</emphasis> enthält ein "
+"Initialisierungsskript, das beim Hochfahren des Hosts automatisch einen oder "
+"mehrere Container starten kann; seine Konfigurationsdatei "
+"<filename>/etc/default/lxc</filename> ist recht einfach. Man beachte, dass "
+"die Konfigurationsdateien der Container in "
+"<filename>/etc/lxc/auto/</filename> gespeichert werden müssen; viele "
+"Benutzer bevorzugen möglicherweise symbolische Verknüpfungen, wie sie mit "
+"dem Befehl <command>ln -s /var/lib/lxc/testlxc/config "
+"/etc/lxc/auto/testlxc.config</command> erstellt werden können."
 
 #. Tag: title
 #, no-c-format
@@ -3120,10 +3473,17 @@ msgid "<primary>KVM</primary>"
 msgstr "<primary>KVM</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "KVM, which stands for <emphasis>Kernel-based Virtual Machine</emphasis>, is first and foremost a kernel module providing most of the infrastructure that can be used by a virtualizer, but it is not a virtualizer by itself. Actual control for the virtualization is handled by a QEMU-based application. Don't worry if this section mentions <command>qemu-*</command> commands: it's still about KVM."
 msgid "KVM, which stands for <emphasis>Kernel-based Virtual Machine</emphasis>, is first and foremost a kernel module providing most of the infrastructure that can be used by a virtualizer, but it is not a virtualizer by itself. Actual control for the virtualization is handled by a QEMU-based application. Don't worry if this section mentions <command>qemu-*</command> commands: it is still about KVM."
-msgstr "KVM, das  <emphasis>Kernel-based Virtual Machine</emphasis> bedeutet, ist in erster Linie ein Kernel-Modul, das den größten Teil der Infrastruktur bereitstellt, die von einem Virtualisierungsprogramm benutzt werden kann, ist jedoch selbst kein Virtualisierungsprogramm. Die eigentliche Steuerung der Virtualisierung wird von einer Anwendung auf der Grundlage von QEMU vorgenommen. Machen Sie sich nichts daraus, dass dieser Abschnitt <command>qemu-*</command>-Befehle nennt: er betrifft trotzdem KVM."
+msgstr ""
+"KVM, das  <emphasis>Kernel-based Virtual Machine</emphasis> bedeutet, ist in "
+"erster Linie ein Kernel-Modul, das den größten Teil der Infrastruktur "
+"bereitstellt, die von einem Virtualisierungsprogramm benutzt werden kann, "
+"ist jedoch selbst kein Virtualisierungsprogramm. Die eigentliche Steuerung "
+"der Virtualisierung wird von einer Anwendung auf der Grundlage von QEMU "
+"vorgenommen. Wundern Sie sich nicht, dass dieser Abschnitt über "
+"<command>qemu-*</command>-Befehle spricht: er handelt dennoch von KVM."
 
 #. Tag: para
 #, no-c-format
@@ -3131,10 +3491,12 @@ msgid "Unlike other virtualization systems, KVM was merged into the Linux kernel
 msgstr "Im Gegensatz zu anderen Virtualisierungssystemen war KVM von Anfang an Teil des Linux-Kernels. Seine Entwickler entschieden sich, die für eine Virtualisierung vorgesehenen Prozessor-Befehlssätze (Intel-VT und AMD-V) zu nutzen, wodurch KVM leichtgewichtig, elegant und ressourcenschonend bleibt. Die Kehrseite ist natürlich, dass KVM hauptsächlich auf i386- und amd64-Prozessoren läuft und zwar nur auf denen, die so neu sind, dass sie über diese Befehlssätze verfügen. Sie können sicher sein, dass Sie einen derartigen Prozessor haben, wenn unter den CPU-Flags in der Datei <filename>/proc/cpuinfo</filename> „vmx“ oder „svm“ aufgeführt ist."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "With Red Hat actively supporting its development, KVM looks poised to become the reference for Linux virtualization."
 msgid "With Red Hat actively supporting its development, KVM has more or less become the reference for Linux virtualization."
-msgstr "Mit aktiver Unterstützung seiner Entwicklung durch Red Hat scheint KVM im Begriff zu sein, zur Referenz für Linux-Virtualisierung zu werden."
+msgstr ""
+"Mit aktiver Unterstützung seiner Entwicklung durch Red Hat scheint KVM auf "
+"dem Wege zu sein, zur Referenz für Linux-Virtualisierung zu werden."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3177,10 +3539,13 @@ msgid "The <emphasis role=\"pkg\">virtinst</emphasis> package provides <command>
 msgstr "Das Paket <emphasis role=\"pkg\">virtinst</emphasis> stellt den Befehl <command>virt-install</command> bereit, mit dem es möglich ist, virtuelle Rechner von der Befehlszeile aus zu erstellen. Und schließlich ermöglicht  <emphasis role=\"pkg\">virt-viewer</emphasis> den Zugriff auf die grafische Konsole eines virtuellen Rechners."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Just as in Xen and LXC, the most frequent network configuration involves a bridge grouping the network interfaces of the virtual machines (see <xref linkend=\"section.lxc.network\" />)."
 msgid "Just as in Xen and LXC, the most frequent network configuration involves a bridge grouping the network interfaces of the virtual machines (see <xref linkend=\"sect.lxc.network\" />)."
-msgstr "Genauso wie in Xen und LXC gehört zu der häufigsten Netzwerkkonfiguration eine Bridge, mit der die Netzwerkschnittstellen der virtuellen Rechner zusammengefasst werden (siehe <xref linkend=\"section.lxc.network\" />)."
+msgstr ""
+"Genauso wie in Xen und LXC gehört zu der häufigsten Netzwerkkonfiguration "
+"eine Bridge, mit der die Netzwerkschnittstellen der virtuellen Rechner "
+"zusammengefasst werden (siehe <xref linkend=\"sect.lxc.network\" />)."
 
 #. Tag: para
 #, no-c-format
@@ -3203,10 +3568,16 @@ msgid "Creating a virtual machine is very similar to installing a normal system,
 msgstr "Die Erstellung eines virtuellen Rechners ist der Installation eines normalen Systems sehr ähnlich, außer dass die Eigenschaften des virtuellen Rechners in einer scheinbar endlosen Befehlszeile beschrieben werden."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Practically speaking, this means we will use the Debian installer, by booting the virtual machine on a virtual DVD-ROM drive that maps to a Debian DVD image stored on the host system. The VM will export its graphical console over the VNC protocol (see <xref linkend=\"section.bureau-distant\" /> for details), which will allow us to control the installation process."
 msgid "Practically speaking, this means we will use the Debian installer, by booting the virtual machine on a virtual DVD-ROM drive that maps to a Debian DVD image stored on the host system. The VM will export its graphical console over the VNC protocol (see <xref linkend=\"sect.remote-desktops\" /> for details), which will allow us to control the installation process."
-msgstr "In der Praxis bedeutet dies, dass wir das Debian-Installationsprogramm verwenden, indem wir den virtuellen Rechner auf einem virtuellen DVD-ROM-Laufwerk hochfahren, dem ein auf dem Host-System gespeichertes DVD-Abbild von Debian zugeordnet ist. Der virtuelle Rechner exportiert seine grafische Konsole über das VNC-Protokoll (für Einzelheiten siehe <xref linkend=\"section.bureau-distant\" />), so dass wir den Installationsprozess steuern können."
+msgstr ""
+"In der Praxis bedeutet dies, dass wir das Debian-Installationsprogramm "
+"verwenden, indem wir den virtuellen Rechner auf einem virtuellen DVD-ROM-"
+"Laufwerk hochfahren, dem ein auf dem Host-System gespeichertes DVD-Abbild "
+"von Debian zugeordnet ist. Der virtuelle Rechner exportiert seine grafische "
+"Konsole über das VNC-Protokoll (für Einzelheiten siehe <xref linkend=\"sect"
+".remote-desktops\" />), so dass wir den Installationsprozess steuern können."
 
 #. Tag: para
 #, no-c-format
@@ -3222,6 +3593,13 @@ msgid ""
 "\n"
 "root@mirwiz:~# </computeroutput>"
 msgstr ""
+"<computeroutput>root@mirwiz:~# </computeroutput><userinput>mkdir "
+"/srv/kvm</userinput>\n"
+"<computeroutput>root@mirwiz:~# </computeroutput><userinput>virsh pool-create-"
+"as srv-kvm dir --target /srv/kvm</userinput>\n"
+"<computeroutput>Pool srv-kvm created\n"
+"\n"
+"root@mirwiz:~# </computeroutput>"
 
 #. Tag: para
 #, no-c-format
@@ -3229,7 +3607,7 @@ msgid "Let us now start the installation process for the virtual machine, and ha
 msgstr "Wir wollen jetzt mit dem Installationsprozess für den virtuellen Rechner beginnen und uns die wichtigsten Optionen des Befehls <command>virt-install</command> ansehen. Der Befehl registriert den virtuellen Rechner und seine Parameter in libvirtd und startet ihn dann, so dass seine Installierung fortgesetzt werden kann."
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
 #| "               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
@@ -3271,22 +3649,26 @@ msgid ""
 "to the console to complete the installation process.\n"
 "</computeroutput>\n"
 msgstr ""
-"<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
+"<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///"
+"system  <co id=\"virtinst.connect\"></co>\n"
 "               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
 "               --name testkvm            <co id=\"virtinst.name\"></co>\n"
 "               --ram 1024                <co id=\"virtinst.ram\"></co>\n"
-"               --disk /srv/kvm/testkvm.qcow,format=qcow2,size=10 <co id=\"virtinst.disk\"></co>\n"
-"               --cdrom /srv/isos/debian-6.0.0-amd64-DVD-1.iso    <co id=\"virtinst.cdrom\"></co>\n"
+"               --disk /srv/kvm/testkvm.qcow,format=qcow2,size=10 <co id=\""
+"virtinst.disk\"></co>\n"
+"               --cdrom /srv/isos/debian-7.2.0-amd64-netinst.iso  <co id=\""
+"virtinst.cdrom\"></co>\n"
 "               --network bridge=br0      <co id=\"virtinst.network\"></co>\n"
 "               --vnc                     <co id=\"virtinst.vnc\"></co>\n"
 "               --os-type linux           <co id=\"virtinst.os\"></co>\n"
-"               --os-variant debiansqueeze\n"
+"               --os-variant debianwheezy\n"
 "</userinput><computeroutput>\n"
 "Starting install...\n"
 "Allocating 'testkvm.qcow'             |  10 GB     00:00\n"
 "Creating domain...                    |    0 B     00:00\n"
 "Cannot open display:\n"
-"Run 'virt-viewer --help' to see a full list of available command line options.\n"
+"Run 'virt-viewer --help' to see a full list of available command line "
+"options.\n"
 "Domain installation still in progress. You can reconnect\n"
 "to the console to complete the installation process.\n"
 "</computeroutput>\n"
@@ -3327,10 +3709,20 @@ msgid "The <literal>--network</literal> specifies how the virtual network card i
 msgstr "Mit <literal>--network</literal> wird festgelegt, wie sich die virtuelle Netzwerkkarte in die Netzwerkkonfiguration des Hosts integriert. Das voreingestellte Verhalten (das in unserem Beispiel ausdrücklich erzwungen wird) besteht darin, sie in eine bereits bestehende Netzwerk-Bridge einzubinden. Falls es eine derartige Bridge nicht gibt, kann der virtuelle Rechner das physische Netzwerk nur über NAT erreichen, das heißt, dass er eine Adresse in einem privaten Teilnetzbereich erhält (192.168.122.0/24)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<literal>--vnc</literal> states that the graphical console should be made available using VNC. The default behavior for the associated VNC server is to only listen on the local interface; if the VNC client is to be run on a different host, establishing the connection will require setting up an SSH tunnel (see <xref linkend=\"section.ssh-port-forwarding\" />). Alternatively, the <literal>--vnclisten=0.0.0.0</literal> can be used so that the VNC server is accessible from all interfaces; note that if you do that, you really should design your firewall accordingly."
 msgid "<literal>--vnc</literal> states that the graphical console should be made available using VNC. The default behavior for the associated VNC server is to only listen on the local interface; if the VNC client is to be run on a different host, establishing the connection will require setting up an SSH tunnel (see <xref linkend=\"sect.ssh-port-forwarding\" />). Alternatively, the <literal>--vnclisten=0.0.0.0</literal> can be used so that the VNC server is accessible from all interfaces; note that if you do that, you really should design your firewall accordingly."
-msgstr "<literal>--vnc</literal> gibt an, dass die grafische Konsole unter Verwendung von VNC zur Verfügung gestellt werden soll. Das voreingestellte Verhalten des zugeordneten VNC-Servers besteht darin, nur an der lokalen Schnittstelle auf Eingaben zu warten. Fall der VNC-Client auf einem anderen Host laufen soll, muss zur Herstellung der Verbindung ein SSH-Tunnel eingerichtet werden (siehe <xref linkend=\"section.ssh-port-forwarding\" />). Alternativ kann <literal>--vnclisten=0.0.0.0</literal> verwendet werden, so dass von allen Schnittstellen aus auf den VNC-Server zugegriffen werden kann. Man beachte jedoch, dass in diesem Fall die Firewall wirklich entsprechend eingestellt werden sollte."
+msgstr ""
+"<literal>--vnc</literal> gibt an, dass die grafische Konsole unter "
+"Verwendung von VNC zur Verfügung gestellt werden soll. Das voreingestellte "
+"Verhalten des zugeordneten VNC-Servers besteht darin, nur an der lokalen "
+"Schnittstelle auf Eingaben zu warten. Fall der VNC-Client auf einem anderen "
+"Host laufen soll, muss zur Herstellung der Verbindung ein SSH-Tunnel "
+"eingerichtet werden (siehe <xref linkend=\"sect.ssh-port-forwarding\" />). "
+"Alternativ kann <literal>--vnclisten=0.0.0.0</literal> verwendet werden, so "
+"dass von allen Schnittstellen aus auf den VNC-Server zugegriffen werden "
+"kann. Man beachte jedoch, dass in diesem Fall die Firewall wirklich "
+"entsprechend eingestellt werden sollte."
 
 #. Tag: para
 #, no-c-format
@@ -3464,17 +3856,29 @@ msgstr "Alle diese Unterbefehle erfordern als einen ihrer Parameter die Kennung 
 #. Tag: title
 #, no-c-format
 msgid "Installing an RPM based system in Debian with yum"
-msgstr ""
+msgstr "Ein RPM-basiertes System in Debian mit yum installieren"
 
 #. Tag: para
 #, no-c-format
 msgid "If the virtual machine is meant to run a Debian (or one of its derivatives), the system can be initialized with <command>debootstrap</command>, as described above. But if the virtual machine is to be installed with an RPM-based system (such as Fedora, CentOS or Scientific Linux), the setup will need to be done using the <command>yum</command> utility (available in the package of the same name)."
 msgstr ""
+"Wenn auf der virtuellen Maschine ein Debian-System (oder eines seiner "
+"Derivate) laufen soll, kann das System mit <command>debootstrap</command> "
+"aufgesetzt werden, wie oben beschrieben. Soll aber auf der virtuellen "
+"Maschine ein RPM-basiertes System laufen, dann muss es mit dem Utility "
+"<command>yum</command> (aus dem gleichnamigen Paket) installiert werden."
 
 #. Tag: para
 #, no-c-format
 msgid "The procedure requires setting up a <filename>yum.conf</filename> file containing the necessary parameters, including the path to the source RPM repositories, the path to the plugin configuration, and the destination folder. For this example, we will assume that the environment will be stored in <filename>/var/tmp/yum-bootstrap</filename>. The file <filename>/var/tmp/yum-bootstrap/yum.conf</filename> file should look like this:"
 msgstr ""
+"Bei deisem Vorgehen muss man eine Konfigurationsdatei "
+"<filename>yum.conf</filename> mit den nötigen Parametern erstellen, "
+"einschließlich des Pfades zu den RPM-Repositorien mit den Quellen, dem Pfad "
+"zu der Plugin-Konfiguration und dem Ziel-Verzeichnis. Für dieses Beispiel "
+"nehmen wir an, dass die Umgebung in <filename>/var/tmp/yum-"
+"bootstrap</filename> gespeichert ist. Die Datei <filename>/var/tmp/yum-"
+"bootstrap/yum.conf</filename> sollte folgendermaßen aussehen:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -3497,11 +3901,32 @@ msgid ""
 "plugins=1\n"
 "metadata_expire=1800"
 msgstr ""
+"[main]\n"
+"reposdir=/var/tmp/yum-bootstrap/repos.d\n"
+"pluginconfpath=/var/tmp/yum-bootstrap/pluginconf.d\n"
+"cachedir=/var/cache/yum\n"
+"installroot=/path/to/destination/domU/install\n"
+"exclude=$exclude\n"
+"keepcache=1\n"
+"#debuglevel=4  \n"
+"#errorlevel=4\n"
+"pkgpolicy=newest\n"
+"distroverpkg=centos-release\n"
+"tolerant=1\n"
+"exactarch=1\n"
+"obsoletes=1\n"
+"gpgcheck=1\n"
+"plugins=1\n"
+"metadata_expire=1800"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/var/tmp/yum-bootstrap/repos.d</filename> directory should contain the descriptions of the RPM source repositories, just as in <filename>/etc/yum.repos.d</filename> in an already installed RPM-based system. Here is an example for a CentOS 6 installation:"
 msgstr ""
+"Das Verzeichnis <filename>/var/tmp/yum-bootstrap/repos.d</filename> sollte "
+"die Beschreibung der RPM-Quell-Repositorien enthalten, genauso wie in "
+"<filename>/etc/yum.repos.d</filename> in einem bereits installierten RPM-"
+"basierten System. Hier ein Beispiel für ein CentOS 6 installation:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -3534,11 +3959,44 @@ msgid ""
 "gpgcheck=1\n"
 "gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6\n"
 msgstr ""
+"[base]\n"
+"name=CentOS-6 - Base\n"
+"#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/\n"
+"mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basear"
+"ch&amp;repo=os\n"
+"gpgcheck=1\n"
+"gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6\n"
+"   \n"
+"[updates]\n"
+"name=CentOS-6 - Updates\n"
+"#baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/\n"
+"mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basear"
+"ch&amp;repo=updates\n"
+"gpgcheck=1\n"
+"gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6\n"
+"\n"
+"[extras]\n"
+"name=CentOS-6 - Extras\n"
+"#baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/\n"
+"mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basear"
+"ch&amp;repo=extras\n"
+"gpgcheck=1\n"
+"gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6\n"
+"\n"
+"[centosplus]\n"
+"name=CentOS-6 - Plus\n"
+"#baseurl=http://mirror.centos.org/centos/$releasever/centosplus/$basearch/\n"
+"mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basear"
+"ch&amp;repo=centosplus\n"
+"gpgcheck=1\n"
+"gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, <filename>pluginconf.d/installonlyn.conf</filename> file should contain the following:"
 msgstr ""
+"Und schlussendlich sollte <filename>pluginconf.d/installonlyn.conf</filename>"
+" folgendes enthalten:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -3547,16 +4005,25 @@ msgid ""
 "enabled=1\n"
 "tokeep=5\n"
 msgstr ""
+"[main]\n"
+"enabled=1\n"
+"tokeep=5\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Once all this is setup, make sure the <command>rpm</command> databases are correctly initialized, with a command such as <command>rpm --rebuilddb</command>. An installation of CentOS 6 is then a matter of the following:"
 msgstr ""
+"Wenn dann alles aufgesetzt ist, muss sichergestellt werden, dass die "
+"<command>rpm</command>-Datenbanken richtig initialisiert sind, z.B. mit "
+"einem Befehl wie <command>rpm --rebuilddb</command>. Eine Installation von "
+"CentOS 6 ist dann nur noch eine Frage von:"
 
 #. Tag: screen
 #, no-c-format
 msgid "<userinput>yum -c /var/tmp/yum-bootstrap/yum.conf -y install coreutils basesystem centos-release yum-basearchonly initscripts</userinput>"
 msgstr ""
+"<userinput>yum -c /var/tmp/yum-bootstrap/yum.conf -y install coreutils "
+"basesystem centos-release yum-basearchonly initscripts</userinput>"
 
 #. Tag: title
 #, no-c-format
@@ -3589,10 +4056,28 @@ msgid "Each of these solutions has its pros and cons: SystemImager works indepen
 msgstr "Jede dieser Lösungen hat ihre Vor- und Nachteile: SystemImager arbeitet unabhängig von einem bestimmten Paketsystem, wodurch es ihm möglich ist, eine große Anzahl von Rechnern, die mehrere unterschiedliche Linux-Distributionen verwenden, zu verwalten. Es enthält auch ein Aktualisierungssystem, das keine Neuinstallation erfordert, jedoch kann dieses Aktualisierungssystem nur zuverlässig funktionieren, wenn die Rechner nicht unabhängig von ihm modifiziert werden; mit anderen Worten, der Benutzer darf selbst keinerlei Software aktualisieren oder irgendeine andere Software installieren. Ebenso dürfen Sicherheitsaktualisierungen nicht automatisiert werden, da auch sie durch das zentrale Bezugsabbild gehen müssen, das SystemImager unterhält. Für diese Lösung ist es außerdem erforderlich, dass die Zielrechner einheitlich sind, da sonst zahlreiche unterschiedliche Abbilder aufbewahrt und verwaltet werden müssten (eine i386-Abbild würde nicht zu einem PowerPC-Rechner passen und so weiter)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "On the other hand, an automated installation using debian-installer can adapt to the specifics of each machine: the installer will fetch the appropriate kernel and software packages from the relevant repositories, detect available hardware, partition the whole hard disk to take advantage of all the available space, install the corresponding Debian system, and set up an appropriate bootloader. However, the standard installer will only install standard Debian versions, with the base system and a set of pre-selected “tasks”; this precludes installing a particular system with non-packaged applications. Fulfilling this particular need requires customizing the installer… Fortunately, the installer is very modular, and there are tools to automate most of the work required for this customization, most importantly simple-CDD (CDD being an acronym for <emphasis>Custom Debian Derivatives</emphasis>). Even the simple-CDD solution, however, only handles initial installations; this is usually not a problem since the APT tools allow efficient deployment of updates later on."
 msgid "On the other hand, an automated installation using debian-installer can adapt to the specifics of each machine: the installer will fetch the appropriate kernel and software packages from the relevant repositories, detect available hardware, partition the whole hard disk to take advantage of all the available space, install the corresponding Debian system, and set up an appropriate bootloader. However, the standard installer will only install standard Debian versions, with the base system and a set of pre-selected “tasks”; this precludes installing a particular system with non-packaged applications. Fulfilling this particular need requires customizing the installer… Fortunately, the installer is very modular, and there are tools to automate most of the work required for this customization, most importantly simple-CDD (CDD being an acronym for <emphasis>Custom Debian Derivative</emphasis>). Even the simple-CDD solution, however, only handles initial installations; this is usually not a problem since the APT tools allow efficient deployment of updates later on."
-msgstr "Demgegenüber kann eine automatische Installation unter Verwendung des Debian-Installationsprogramms an die Besonderheiten jedes Rechners angepasst werden: das Installationsprogramm holt die geeigneten Kernel und Softwarepakete von den passenden Repositories, erkennt die verfügbare Hardware, partitioniert die gesamte Festplatte zur Nutzung des verfügbaren Speicherplatzes, installiert das entsprechende Debian-System und richtet den passenden Boot-Loader ein. Jedoch installiert das Standard-Installationsprogramm nur Standard-Debian-Systeme mit dem Grundsystem und einem Satz vorausgewählter „Aufgaben“; die Installation eines bestimmten Systems mit Anwendungen, die nicht im Paketsystem enthalten sind, ist ausgeschlossen. Um dieses besondere Erfordernis zu erfüllen, muss das Installationsprogramm angepasst werden... Glücklicherweise ist das Installationsprogramm sehr modular, und es gibt Hilfsprogramme, um den größten Teil der für diese Anpassung erforderlichen Arbeit zu automatisieren, vor allem Simple-CDD (CDD ist ein Akronym für <emphasis>Custom Debian Derivatives</emphasis>). Jedoch handhabt selbst die Lösung mit Simple-CDD nur anfängliche Installationen; dies ist gewöhnlich kein Problem, da die Hilfsprogramme von APT später effiziente Aktualisierungen ermöglichen."
+msgstr ""
+"Demgegenüber kann eine automatische Installation unter Verwendung des Debian-"
+"Installationsprogramms an die Besonderheiten jedes Rechners angepasst werden:"
+" das Installationsprogramm holt die geeigneten Kernel und Softwarepakete von "
+"den passenden Repositories, erkennt die verfügbare Hardware, partitioniert "
+"die gesamte Festplatte zur Nutzung des verfügbaren Speicherplatzes, "
+"installiert das entsprechende Debian-System und richtet den passenden Boot-"
+"Loader ein. Jedoch installiert das Standard-Installationsprogramm nur "
+"Standard-Debian-Systeme mit dem Grundsystem und einem Satz vorausgewählter "
+"„Aufgaben“; die Installation eines bestimmten Systems mit Anwendungen, die "
+"nicht im Paketsystem enthalten sind, ist ausgeschlossen. Um dieses besondere "
+"Erfordernis zu erfüllen, muss das Installationsprogramm angepasst werden... "
+"Glücklicherweise ist das Installationsprogramm sehr modular, und es gibt "
+"Hilfsprogramme, um den größten Teil der für diese Anpassung erforderlichen "
+"Arbeit zu automatisieren, vor allem Simple-CDD (CDD ist ein Akronym für "
+"<emphasis>Custom Debian Derivative</emphasis>). Jedoch handhabt selbst die "
+"Lösung mit Simple-CDD nur anfängliche Installationen; dies ist gewöhnlich "
+"kein Problem, da die Hilfsprogramme von APT später effiziente "
+"Aktualisierungen ermöglichen."
 
 #. Tag: para
 #, no-c-format
@@ -3735,10 +4220,25 @@ msgid "<primary><command>debconf</command></primary>"
 msgstr "<primary><command>debconf</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Preseeding allows to provide a set of answers to Debconf questions at installation time, but these answers are static and do not evolve as time passes. Since already-installed machines may need upgrading, and new answers may become required, the <filename>/etc/debconf.conf</filename> configuration file can be set up so that Debconf uses external data sources (such as an LDAP directory server, or a remote file mounted via NFS or Samba). Several external data sources can be defined at the same time, and they complement one another. The local database is still used (for read-write access), but the remote databases are usually restricted to reading. The <citerefentry><refentrytitle>debconf.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page describes all the possibilities in detail."
 msgid "Preseeding allows to provide a set of answers to Debconf questions at installation time, but these answers are static and do not evolve as time passes. Since already-installed machines may need upgrading, and new answers may become required, the <filename>/etc/debconf.conf</filename> configuration file can be set up so that Debconf uses external data sources (such as an LDAP directory server, or a remote file accessed via NFS or Samba). Several external data sources can be defined at the same time, and they complement one another. The local database is still used (for read-write access), but the remote databases are usually restricted to reading. The <citerefentry><refentrytitle>debconf.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page describes all the possibilities in detail."
-msgstr "Preeseeding ermöglicht es, zur Zeit der Installation einen Satz von Antworten auf Fragen von Debconf bereitzustellen, jedoch sind diese Antworten statisch und entwickeln sich im Laufe der Zeit nicht weiter. Da bereits installierte Rechner möglicherweise aktualisiert werden müssen, und neue Antworten erforderlich werden, kann die Konfigurationsdatei <filename>/etc/debconf.conf</filename> so eingerichtet werden, dass Debconf externe Datenquellen benutzt (wie zum Beispiel einen LDAP-Verzeichnis-Server oder eine entfernte Datei, die über NFS oder Samba eingehängt ist). Mehrere externe Datenquellen können gleichzeitig festgelegt werden, und sie ergänzen einander. Die lokale Datenbank wird weiterhin (für Lese- und Schreibzugriff) genutzt, während die entfernten Datenbanken gewöhnlich nur gelesen werden können. Die Handbuchseite <citerefentry><refentrytitle>debconf.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> beschreibt alle Möglichkeiten im Detail."
+msgstr ""
+"Preeseeding ermöglicht es, zur Zeit der Installation einen Satz von "
+"Antworten auf Fragen von Debconf bereitzustellen, jedoch sind diese "
+"Antworten statisch und entwickeln sich im Laufe der Zeit nicht weiter. Da "
+"bereits installierte Rechner möglicherweise aktualisiert werden müssen, und "
+"neue Antworten erforderlich werden, kann die Konfigurationsdatei "
+"<filename>/etc/debconf.conf</filename> so eingerichtet werden, dass Debconf "
+"externe Datenquellen benutzt (wie zum Beispiel einen LDAP-Verzeichnis-Server "
+"oder eine entfernte Datei, die über NFS oder Samba zugegriffen wird). "
+"Mehrere externe Datenquellen können gleichzeitig festgelegt werden, und sie "
+"ergänzen einander. Die lokale Datenbank wird weiterhin (für Lese- und "
+"Schreibzugriff) genutzt, während die entfernten Datenbanken gewöhnlich nur "
+"gelesen werden können. Die Handbuchseite "
+"<citerefentry><refentrytitle>debconf.conf</refentrytitle> "
+"<manvolnum>5</manvolnum></citerefentry> beschreibt alle Möglichkeiten im "
+"Detail."
 
 #. Tag: title
 #, no-c-format
@@ -3796,10 +4296,14 @@ msgid "third, the type of question;"
 msgstr "das dritte die Art der Frage;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "the fourth and last field contains the value for the answer; note that it must be separated from the third field with a single space, so that the value can start with whitespace."
 msgid "the fourth and last field contains the value for the answer. Note that it must be separated from the third field with a single space; if there are more than one, the following space characters are considered part of the value."
-msgstr "das vierte und letzte Feld enthält den Begriff der Antwort; man beachte, dass es vom dritten Feld durch ein einzelnes Leerzeichen getrennt sein muss, so dass der Begriff mit einem Leerraum beginnen kann."
+msgstr ""
+"das vierte und letzte Feld enthält den Eingabewert für die Antwort. Man "
+"beachte, dass es vom dritten Feld durch ein einzelnes Leerzeichen getrennt "
+"sein muss; gibts es weitere, so werden alle folgenden Leerzeichen als Teil "
+"des Eingabewerts betrachtet."
 
 #. Tag: para
 #, no-c-format
@@ -3812,10 +4316,16 @@ msgid "<emphasis>DOCUMENTATION</emphasis> Installation guide appendix"
 msgstr "<emphasis>DOKUMENTATION</emphasis> Anhang zur Installationsanleitung"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "The installation guide, available online, includes detailed documentation on the use of a preseed file in an appendix. It also includes a detailed and commented sample file, which can serve as a base for local customizations. <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/i386/apb.html\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/example-preseed.txt\" />"
 msgid "The installation guide, available online, includes detailed documentation on the use of a preseed file in an appendix. It also includes a detailed and commented sample file, which can serve as a base for local customizations. <ulink type=\"block\" url=\"http://www.debian.org/releases/wheezy/amd64/apb.html\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/wheezy/example-preseed.txt\" />"
-msgstr "Die Installationsanleitung, die online zur Verfügung steht, enthält in einem Anhang eine ausführliche Dokumentation zum Einsatz einer Preseed-Datei. Sie enthält auch eine detaillierte und kommentierte Beispieldatei, die als Grundlage für lokale Anpassungen dienen kann. <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/i386/apb.html\" /> <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/example-preseed.txt\" />"
+msgstr ""
+"Die Installationsanleitung, die online zur Verfügung steht, enthält in einem "
+"Anhang eine ausführliche Dokumentation zum Einsatz einer Preseed-Datei. Sie "
+"enthält auch eine detaillierte und kommentierte Beispieldatei, die als "
+"Grundlage für lokale Anpassungen dienen kann. <ulink type=\"block\" url=\""
+"http://www.debian.org/releases/wheezy/amd64/apb.html\" /> <ulink type=\""
+"block\" url=\"http://www.debian.org/releases/wheezy/example-preseed.txt\" />"
 
 #. Tag: title
 #, no-c-format
@@ -3833,10 +4343,18 @@ msgid "Booting From the Network"
 msgstr "Aus dem Netzwerk hochfahren"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "When a computer is booted from the network, the server sending the initialization elements also defines the boot parameters. Thus, the change needs to be made in the PXE configuration for the boot server; more specifically, in its <filename>/tftpboot/pxelinux.cfg/default</filename> configuration file. Setting up network boot is a prerequisite; see the Installation Guide for details. <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/i386/ch04s05.html\" />"
 msgid "When a computer is booted from the network, the server sending the initialization elements also defines the boot parameters. Thus, the change needs to be made in the PXE configuration for the boot server; more specifically, in its <filename>/tftpboot/pxelinux.cfg/default</filename> configuration file. Setting up network boot is a prerequisite; see the Installation Guide for details. <ulink type=\"block\" url=\"http://www.debian.org/releases/wheezy/amd64/ch04s05.html\" />"
-msgstr "Wenn ein Rechner aus dem Netzwerk hochgefahren wird, legt der Server, der die Initialisierungselemente sendet, auch die Boot-Parameter fest. Daher müssen die Änderungen in der PXE-Konfiguration für den Boot-Server vorgenommen werden; genauer gesagt in seiner Konfigurationsdatei <filename>/tftpboot/pxelinux.cfg/default</filename>. Voraussetzung hierfür ist, dass das Hochfahren aus dem Netzwerk eingerichtet wird; siehe die Installationsanleitung für Einzelheiten. <ulink type=\"block\" url=\"http://www.debian.org/releases/squeeze/i386/ch04s05.html\" />"
+msgstr ""
+"Wenn ein Rechner aus dem Netzwerk hochgefahren wird, legt der Server, der "
+"die Initialisierungselemente sendet, auch die Boot-Parameter fest. Daher "
+"müssen die Änderungen in der PXE-Konfiguration für den Boot-Server "
+"vorgenommen werden; genauer gesagt in seiner Konfigurationsdatei "
+"<filename>/tftpboot/pxelinux.cfg/default</filename>. Voraussetzung hierfür "
+"ist, dass das Hochfahren aus dem Netzwerk eingerichtet wird; siehe die "
+"Installationsanleitung für Einzelheiten. <ulink type=\"block\" url=\""
+"http://www.debian.org/releases/wheezy/amd64/ch04s05.html\" />"
 
 #. Tag: title
 #, no-c-format
@@ -3844,10 +4362,14 @@ msgid "Preparing a Bootable USB Key"
 msgstr "Einen bootfähigen USB-Stick herstellen"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Once a bootable key has been prepared (see <xref linkend=\"section.install-usb\" />), a few extra operations are needed. Assuming the key contents are available under <filename>/media/usbdisk/</filename>:"
 msgid "Once a bootable key has been prepared (see <xref linkend=\"sect.install-usb\" />), a few extra operations are needed. Assuming the key contents are available under <filename>/media/usbdisk/</filename>:"
-msgstr "Nachdem ein bootfähiger Stick hergestellt worden ist (siehe <xref linkend=\"section.install-usb\" />), sind einige zusätzliche Arbeitsgänge erforderlich. Angenommen der Inhalt des Sticks liegt unter <filename>/media/usbdisk/</filename> bereit:"
+msgstr ""
+"Nachdem ein bootfähiger Stick hergestellt worden ist (siehe <xref linkend=\""
+"sect.install-usb\" />), sind einige zusätzliche Arbeitsgänge erforderlich. "
+"Angenommen der Inhalt des Sticks liegt unter "
+"<filename>/media/usbdisk/</filename> bereit:"
 
 #. Tag: para
 #, no-c-format
@@ -3889,10 +4411,28 @@ msgid "A USB key is a read-write media, so it was easy for us to add a file ther
 msgstr "Ein USB-Stick ist ein Lese- und Schreibmedium, von daher war es für uns einfach, auf ihm eine Datei hinzuzufügen und einige Parameter zu ändern. Im Falle einer CD-ROM ist dieser Vorgang komplizierter, da wir ein vollständiges ISO-Abbild neu erstellen müssen. Diese Aufgabe wird von <emphasis role=\"pkg\">debian-cd</emphasis> erledigt, jedoch ist dieses Hilfsprogramm in der Anwendung recht umständlich: es benötigt einen lokalen Spiegel, und es erfordert das Verständnis aller Optionen, die <filename>/usr/share/debian-cd/CONF.sh</filename> bietet; selbst dann noch muss <command>make</command> mehrmals aufgerufen werden. Es ist daher empfehlenswert, <filename>/usr/share/debian-cd/README</filename> durchzulesen."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Having said that, debian-cd always operates in a similar way: an “image” directory with the exact contents of the CD-ROM is generated, then converted to an ISO file with a tool such as <command>genisoimage</command>, <command>mkisofs</command> or <command>xorriso</command>. The image directory is finalized after debian-cd's <command>make image-trees</command> step. At that point, we insert the preseed file into the appropriate directory (usually <filename>$TDIR/squeeze/CD1/</filename>, $TDIR being one of the parameters defined by the <filename>CONF.sh</filename> configuration file). The CD-ROM uses <command>isolinux</command> as its bootloader, and its configuration file must be adapted from what debian-cd generated, in order to insert the required boot parameters (the specific file is <filename>$TDIR/squeeze/boot1/isolinux/isolinux.cfg</filename>). Then the “normal” process can be resumed, and we can go on to generating the ISO image with <command>make image CD=1</command> (or <command>make images</command> if several CD-ROMs are generated)."
 msgid "Having said that, debian-cd always operates in a similar way: an “image” directory with the exact contents of the CD-ROM is generated, then converted to an ISO file with a tool such as <command>genisoimage</command>, <command>mkisofs</command> or <command>xorriso</command>. The image directory is finalized after debian-cd's <command>make image-trees</command> step. At that point, we insert the preseed file into the appropriate directory (usually <filename>$TDIR/wheezy/CD1/</filename>, $TDIR being one of the parameters defined by the <filename>CONF.sh</filename> configuration file). The CD-ROM uses <command>isolinux</command> as its bootloader, and its configuration file must be adapted from what debian-cd generated, in order to insert the required boot parameters (the specific file is <filename>$TDIR/wheezy/boot1/isolinux/isolinux.cfg</filename>). Then the “normal” process can be resumed, and we can go on to generating the ISO image with <command>make image CD=1</command> (or <command>make images</command> if several CD-ROMs are generated)."
-msgstr "Allerdings funktioniert debian-cd stets auf ähnliche Weise: ein „Abbild“-Verzeichnis mit dem genauen Inhalt der CD-ROM wird erzeugt und dann mit einem Hilfsprogramm wie <command>genisoimage</command>, <command>mkisofs</command> oder <command>xorriso</command> in eine ISO-Datei umgewandelt. Das Abbildverzeichnis ist endgültig fertiggestellt, nachdem in debian-cd der Schritt <command>make image-trees</command> ausgeführt wurde. An dieser Stelle fügen wir die Preseed-Datei in das passende Verzeichnis ein (normalerweise <filename>$TDIR/squeeze/CD1/</filename>, wobei $TDIR einer der Parameter ist, die durch die Konfigurationsdatei <filename>CONF.sh</filename> festgelegt werden). Die CD-ROM benutzt <command>isolinux</command> als ihren Boot-Loader, und seine Konfigurationsdatei muss dem angepasst werden, was mit debian-cd erzeugt worden ist, um die erforderlichen Boot-Parameter einzufügen (die konkrete Datei heißt <filename>$TDIR/squeeze/boot1/isolinux/isolinux.cfg</filename>). Anschließend kann der „normale“ Ablauf wieder aufgenommen werden, und wir können dazu übergehen, mit <command>make image CD=1</command> das ISO-Abbild zu erzeugen (oder mit <command>make images</command>, falls mehrere CD-ROMs erzeugt werden)."
+msgstr ""
+"Allerdings funktioniert debian-cd stets auf ähnliche Weise: ein „Abbild“-"
+"Verzeichnis mit dem genauen Inhalt der CD-ROM wird erzeugt und dann mit "
+"einem Hilfsprogramm wie <command>genisoimage</command>, "
+"<command>mkisofs</command> oder <command>xorriso</command> in eine ISO-Datei "
+"umgewandelt. Das Abbildverzeichnis ist endgültig fertiggestellt, nachdem in "
+"debian-cd der Schritt <command>make image-trees</command> ausgeführt wurde. "
+"An dieser Stelle fügen wir die Preseed-Datei in das passende Verzeichnis ein "
+"(normalerweise <filename>$TDIR/wheezy/CD1/</filename>, wobei $TDIR einer der "
+"Parameter ist, die durch die Konfigurationsdatei <filename>CONF.sh</filename>"
+" festgelegt werden). Die CD-ROM benutzt <command>isolinux</command> als "
+"ihren Boot-Loader, und seine Konfigurationsdatei muss dem angepasst werden, "
+"was mit debian-cd erzeugt worden ist, um die erforderlichen Boot-Parameter "
+"einzufügen (die konkrete Datei heißt "
+"<filename>$TDIR/wheezy/boot1/isolinux/isolinux.cfg</filename>). Anschließend "
+"kann der „normale“ Ablauf wieder aufgenommen werden, und wir können dazu "
+"übergehen, mit <command>make image CD=1</command> das ISO-Abbild zu erzeugen "
+"(oder mit <command>make images</command>, falls mehrere CD-ROMs erzeugt "
+"werden)."
 
 #. Tag: title
 #, no-c-format
@@ -4045,16 +4585,28 @@ msgid "Generating an ISO Image"
 msgstr "Ein ISO-Abbild erzeugen"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Once we have written a configuration file and defined our profiles, the remaining step is to invoke <command>build-simple-cdd --conf simple-cdd.conf</command>. After a few minutes, we get the required image in <filename>images/debian-6.0-i386-CD-1.iso</filename>."
 msgid "Once we have written a configuration file and defined our profiles, the remaining step is to invoke <command>build-simple-cdd --conf simple-cdd.conf</command>. After a few minutes, we get the required image in <filename>images/debian-7.0-amd64-CD-1.iso</filename>."
-msgstr "Nachdem wir eine Konfigurationsdatei geschrieben und unsere Profile festgelegt haben, besteht der verbleibende Schritt darin, den Befehl <command>build-simple-cdd --conf simple-cdd.conf</command> aufzurufen. Nach einigen Minuten erhalten wir in <filename>images/debian-6.0-i386-CD-1.iso</filename> das erwünschte Abbild."
+msgstr ""
+"Nachdem wir eine Konfigurationsdatei geschrieben und unsere Profile "
+"festgelegt haben, besteht der verbleibende Schritt darin, den Befehl <command"
+">build-simple-cdd --conf simple-cdd.conf</command> aufzurufen. Nach einigen "
+"Minuten erhalten wir in <filename>images/debian-7.0-amd64-CD-1.iso</filename>"
+" das erwünschte Abbild."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Monitoring is a generic term, and the various involved activities have several goals: on the one hand, following usage of the resources provided by a machine allows anticipating saturation and the subsequent required upgrades; on the other hand, alerting the administrator as soon as a service is unavailable or not working properly means the problem can be fixed earlier."
 msgid "Monitoring is a generic term, and the various involved activities have several goals: on the one hand, following usage of the resources provided by a machine allows anticipating saturation and the subsequent required upgrades; on the other hand, alerting the administrator as soon as a service is unavailable or not working properly means that the problems that do happen can be fixed sooner."
-msgstr "Monitoring ist ein allgemeiner Ausdruck, und die verschiedenen damit verbundenen Aktivitäten haben mehrere Ziele: einerseits ist es durch die Verfolgung der Ressourcennutzung eines Rechners möglich, seine volle Auslastung und die daraufhin erforderlichen Nachrüstungen vorherzusehen; andererseits kann ein Problem frühzeitiger behoben werden, wenn der Administrator informiert wird, sobald ein Dienst nicht verfügbar ist oder nicht richtig funktioniert."
+msgstr ""
+"Monitoring ist ein allgemeiner Ausdruck, und die verschiedenen damit "
+"verbundenen Aktivitäten haben mehrere Ziele: einerseits ist es durch die "
+"Verfolgung der Ressourcennutzung eines Rechners möglich, seine volle "
+"Auslastung und die daraufhin erforderlichen Nachrüstungen vorherzusehen; "
+"andererseits kann ein auftretendes Problem frühzeitiger behoben werden, wenn "
+"der Administrator informiert wird, sobald ein Dienst nicht verfügbar ist "
+"oder nicht richtig funktioniert."
 
 #. Tag: para
 #, no-c-format
@@ -4072,10 +4624,22 @@ msgid "<primary>Zabbix</primary>"
 msgstr "<primary>Zabbix</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Although Munin and Nagios are in very common use, they are not the only players in the monitoring field, and each of them only handles half of the task (graphing on one side, alerting on the other). Zabbix, on the other hand, integrates both parts of monitoring; it also has a web interface for configuring the most common aspects. It has grown by leaps and bounds during the last few years, and can now be considered a viable contender. <ulink type=\"block\" url=\"http://www.zabbix.org/\" />"
 msgid "Although Munin and Nagios are in very common use, they are not the only players in the monitoring field, and each of them only handles half of the task (graphing on one side, alerting on the other). Zabbix, on the other hand, integrates both parts of monitoring; it also has a web interface for configuring the most common aspects. It has grown by leaps and bounds during the last few years, and can now be considered a viable contender; unfortunately, Zabbix isn't present in Debian <emphasis role=\"distribution\">Wheezy</emphasis> due to timing issues in the release process, but packages will be provided as backports or in unofficial repositories. <ulink type=\"block\" url=\"http://www.zabbix.org/\" />"
-msgstr "Obwohl Munin und Nagios sehr weit verbreitet sind, sind sie nicht die einzigen Akteure auf dem Gebiet des Monitoring, und jedes von ihnen erledigt nur eine Hälfte der Aufgabe (grafische Darstellungen auf der einen Seite und Warnungen auf der anderen). Zabbix integriert dagegen beide Teile des Monitorings; es hat außerdem eine Web-Schnittstelle zur Konfigurierung der häufigsten Aspekte. Es hat sich in den vergangenen Jahren rasant weiterentwickelt und kann inzwischen als ernster Herausforderer angesehen werden. <ulink type=\"block\" url=\"http://www.zabbix.org/\" />"
+msgstr ""
+"Obwohl Munin und Nagios sehr weit verbreitet sind, sind sie nicht die "
+"einzigen Akteure auf dem Gebiet des Monitoring, und jedes von ihnen erledigt "
+"nur eine Hälfte der Aufgabe (grafische Darstellungen auf der einen Seite und "
+"Warnungen auf der anderen). Zabbix integriert dagegen beide Teile des "
+"Monitorings; es hat außerdem eine Web-Schnittstelle zur Konfigurierung der "
+"häufigsten Aspekte. Es hat sich in den vergangenen Jahren rasant "
+"weiterentwickelt und muss inzwischen leider als ernst zu nehmender "
+"Herausforderer angesehen werden. Zabbix ist wegen zeitlicher "
+"Abstimmungsprobleme im Freigabeverfahren nicht in Debian <emphasis role=\""
+"distribution\">Wheezy</emphasis> enthalten, aber die Pakete werden als "
+"Rückportierung oder in nicht offilziellen Repositorien zur Verfügung "
+"gestellt werden. <ulink type=\"block\" url=\"http://www.zabbix.org/\" />"
 
 #. Tag: title
 #, no-c-format
@@ -4120,7 +4684,28 @@ msgstr "Der erste Schritt besteht darin, das Paket <emphasis role=\"pkg\">munin-
 #. Tag: para
 #, no-c-format
 msgid "When the package is installed, a set of active plugins is determined based on the available software and the current configuration of the host. However, this autoconfiguration depends on a feature that each plugin must provide, and it is usually a good idea to review and tweak the results by hand. It would be interesting to have comprehensive documentation for each plugin, but unfortunately there's no such official documentation. However, all plugins are scripts and most are rather simple and well-commented. Browsing <filename>/etc/munin/plugins/</filename> is therefore a good way of getting an idea of what each plugin is about and determining which should be removed. Similarly, enabling an interesting plugin found in <filename>/usr/share/munin/plugins/</filename> is a simple matter of setting up a symbolic link with <command>ln -sf /usr/share/munin/plugins/<replaceable>plugin</replaceable> /etc/munin/plugins/</command>. Note that when a plugin name ends with an underscore “_”, the plugin requires a parameter. This parameter must be stored in the name of the symbolic link; for instance, the “if_” plugin must be enabled with a <filename>if_eth0</filename> symbolic link, and it will monitor network traffic on the eth0 interface."
-msgstr "Wenn das Paket installiert ist, wird in Abhängigkeit von der verfügbaren Software und der aktuellen Konfiguration des Hosts ein Satz aktiver Plugins festgelegt. Diese Autokonfiguration hängt jedoch von einer Funktion ab, die jedes Plugin bereitstellen muss, und es empfiehlt sich normalerweise, die Ergebnisse zu überprüfen und von Hand nachzustellen. Es wäre sicherlich interessant, für jedes Plugin eine ausführliche Dokumentation zu haben, aber leider gibt es keine offiziellen Anleitungen. Alle Plugins sind jedoch Skripten, und die meisten von ihnen sind recht einfach aufgebaut und ausführlich kommentiert. Das Durchsuchen von <filename>/etc/munin/plugins/</filename> ist daher eine gute Methode, um eine Vorstellung davon zu bekommen, worum es bei jedem Plugin geht, und welche entfernt werden sollten. Ebenso lässt sich ein interessantes Plugin, das man in <filename>/usr/share/munin/plugins/</filename> gefunden hat, einfach durch die Erstellung einer symbolischen Verknüpfung mit dem Befehl <command>ln -sf /usr/share/munin/plugins/<replaceable>plugin</replaceable> /etc/munin/plugins/</command> aktivieren."
+msgstr ""
+"Wenn das Paket installiert ist, wird in Abhängigkeit von der verfügbaren "
+"Software und der aktuellen Konfiguration des Hosts ein Satz aktiver Plugins "
+"festgelegt. Diese Autokonfiguration hängt jedoch von einer Funktion ab, die "
+"jedes Plugin bereitstellen muss, und es empfiehlt sich normalerweise, die "
+"Ergebnisse zu überprüfen und von Hand nachzustellen. Es wäre sicherlich "
+"interessant, für jedes Plugin eine ausführliche Dokumentation zu haben, aber "
+"leider gibt es keine offiziellen Anleitungen. Alle Plugins sind jedoch "
+"Skripten, und die meisten von ihnen sind recht einfach aufgebaut und "
+"ausführlich kommentiert. Das Durchsuchen von "
+"<filename>/etc/munin/plugins/</filename> ist daher eine gute Methode, um "
+"eine Vorstellung davon zu bekommen, worum es bei jedem Plugin geht, und "
+"welche entfernt werden sollten. Ebenso lässt sich ein interessantes Plugin, "
+"das man in <filename>/usr/share/munin/plugins/</filename> gefunden hat, "
+"einfach durch die Erstellung einer symbolischen Verknüpfung mit dem Befehl "
+"<command>ln -sf /usr/share/munin/plugins/<replaceable>plugin</replaceable> "
+"/etc/munin/plugins/</command> aktivieren. Beachten Sie, dass ein Plugin, "
+"dessen Name mit einem Unterstrich \"_\" endet, einen Parameter erwartet. "
+"Dieser Parameter muss im Namen des symbolischen Linksangegeben werden; "
+"beispielsweise muss das \"if_\" plugin mit einem symbolischen Link "
+"<filename>if_eth0</filename> aktiviert werden, damit es den Netzwerkverkehr "
+"auf der Schnittstelle eth0 überwacht."
 
 #. Tag: para
 #, no-c-format

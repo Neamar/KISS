@@ -4,16 +4,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-08 14:33+0200\n"
+"PO-Revision-Date: 2014-11-20 22:51+0200\n"
 "Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
-"Language-Team: German <https://debian.weblate.org/projects/debian-handbook"
-"/08_basic-configuration/de-DE/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/debian-handbook"
+"/08_basic-configuration/de/>\n"
 "Language: de-DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.10-dev\n"
+"X-Generator: Weblate 2.1-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -1896,7 +1896,7 @@ msgstr "<emphasis>ZURÜCK ZU DEN GRUNDLAGEN</emphasis> Quota"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quota</primary>"
-msgstr "<primary>Quota</primary>"
+msgstr "<primary>quota</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3249,7 +3249,14 @@ msgstr "NFS ist ein Netzwerk-Dateisystem; unter Linux ermöglicht es einen trans
 #. Tag: para
 #, no-c-format
 msgid "A complete list of known filesystems is available in the <citerefentry><refentrytitle>mount</refentrytitle> <manvolnum>8</manvolnum></citerefentry> man page. The <literal>swap</literal> special value is for swap partitions; the <literal>auto</literal> special value tells the <command>mount</command> program to automatically detect the filesystem (which is especially useful for disk readers and USB keys, since each one might have a different filesystem);"
-msgstr "Eine vollständige Liste bekannter Dateisysteme steht auf der Handbuchseite  <citerefentry><refentrytitle>mount</refentrytitle> <manvolnum>8</manvolnum></citerefentry> zur Verfügung. Der besondere Wert <literal>swap</literal> gilt für Swap-Partitionen; der besondere Wert <literal>auto</literal> weist das Programm <command>mount</command> an, das Dateisystem selbstständig zu ermitteln (was besonders bei Laufwerken und USB-Sticks hilfreich ist, da jedes ein anderes Dateisystem haben kann)."
+msgstr ""
+"Eine vollständige Liste bekannter Dateisysteme steht auf der Handbuchseite  "
+"<citerefentry><refentrytitle>mount</refentrytitle> "
+"<manvolnum>8</manvolnum></citerefentry> zur Verfügung. Der besondere Wert "
+"<literal>swap</literal> gilt für Swap-Partitionen; der besondere Wert "
+"<literal>auto</literal> weist das Programm <command>mount</command> an, das "
+"Dateisystem selbstständig zu ermitteln (was besonders bei Laufwerken und USB-"
+"Sticks hilfreich ist, da jedes ein anderes Dateisystem haben kann);"
 
 #. Tag: para
 #, no-c-format
@@ -3391,7 +3398,7 @@ msgid "<primary><command>updatedb</command></primary>"
 msgstr "<primary><command>updatedb</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>locate</command></primary>"
 msgid "<primary><command>mlocate</command></primary>"
 msgstr "<primary><command>mlocate</command></primary>"
@@ -3747,15 +3754,25 @@ msgstr ""
 "<command>make i386_defconfig</command> (Im Falle eines 32-bit-PCs) einbinden."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>SECURITY</emphasis> <filename>/etc/shadow</filename> file security"
 msgid "<emphasis>TIP</emphasis> Dealing with outdated <filename>.config</filename> files"
-msgstr "<emphasis>SICHERHEIT</emphasis> Dateisicherheit von <filename>/etc/shadow</filename>"
+msgstr ""
+"<emphasis>TIP</emphasis> Umgang mit veralteten "
+"<filename>.config</filename>-Dateien"
 
 #. Tag: para
 #, no-c-format
 msgid "When you provide a <filename>.config</filename> file that has been generated with another (usually older) kernel version, you will have to update it. You can do so with <command>make oldconfig</command>, it will interactively ask you the questions corresponding to the new configuration options. If you want to use the default answer to all those questions you can use <command>make olddefconfig</command>. With <command>make oldnoconfig</command>, it will assume a negative answer to all questions."
 msgstr ""
+"Wenn Sie eine <filename>.config</filename>-Datei verwenden wollen, die mit "
+"einer anderen (üblicherweise älteren) Kernel-Version erzeut wurde, müssen "
+"sie diese aktualisieren. Das geht entweder mit <command>make "
+"oldconfig</command>, wobei Sie interaktiv nach den neuen "
+"Konfigurationsoptionen gefragt werden. Wollen sie alle Optionen mit "
+"Standardwerten belegen, können Sie das mit <command>make "
+"olddefconfig</command> tun. Mit <command>make oldnoconfig</command> werden "
+"alle Fragen verneint."
 
 #. Tag: title
 #, no-c-format
@@ -3763,10 +3780,10 @@ msgid "Compiling and Building the Package"
 msgstr "Das Paket kompilieren und erstellen"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>make-kpkg</command></primary>"
 msgid "<primary><command>make deb-pkg</command></primary>"
-msgstr "<primary><command>make-kpkg</command></primary>"
+msgstr "<primary><command>make deb-pkg</command></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -3777,19 +3794,50 @@ msgstr "<emphasis>HINWEIS</emphasis> Vor der Neuerstellung aufräumen"
 #, no-c-format
 msgid "If you have already compiled once in the directory and wish to rebuild everything from scratch (for example because you substantially changed the kernel configuration), you will have to run <command>make clean</command> to remove the compiled files. <command>make distclean</command> removes even more generated files, including your <filename>.config</filename> file too, so make sure to backup it first."
 msgstr ""
+"Wenn Sie den Inhalt eines Verzeichnisses schon einmal übersetzt hatten und "
+"alles noch einmal neu erstellen wollen, vielleicht, weil Sie fundamentale "
+"Änderungen der Kernelkonfiguration vorgenommen haben, dann müssen Sie "
+"<command>make clean</command> ausführen, um alle übersetzten Dateien zu "
+"löschen. <command>make distclean</command>  entfernt noch mehr generierte "
+"Dateien, einschließlich Ihrer <filename>.config</filename>-Datei, also "
+"machen Sie zuvor besser ein Backup."
 
 #. Tag: para
 #, no-c-format
 msgid "Once the kernel configuration is ready, a simple <command>make deb-pkg</command> will generate up to 5 Debian packages: <emphasis role=\"pkg\">linux-image-<replaceable>version</replaceable></emphasis> that contains the kernel image and the associated modules, <emphasis role=\"pkg\">linux-headers-<replaceable>version</replaceable></emphasis> which contains the header files required to build external modules, <emphasis role=\"pkg\">linux-firmware-image-<replaceable>version</replaceable></emphasis> which contains the firmware files needed by some drivers, <emphasis role=\"pkg\">linux-image-<replaceable>version</replaceable>-dbg</emphasis> which contains the debugging symbols for the kernel image and its modules, and <emphasis role=\"pkg\">linux-libc-dev</emphasis> which contains headers relevant to some user space libraries like GNU glibc."
 msgstr ""
+"Ist die Kernelkonfiguration fertig, generieren Sie mit <command>make deb-"
+"pkg</command> bis zu fünf Debian-Pakete: <emphasis role=\"pkg\">linux-"
+"image-<replaceable>version</replaceable></emphasis> enthält das Kernelabbild "
+"und die zugehörigen Module, <emphasis role=\"pkg\">linux-"
+"headers-<replaceable>version</replaceable></emphasis>, das die Header-"
+"Dateien, die benötigt werden, um externe Module Module zu erstellen, <"
+"emphasis role=\"pkg\">linux-firmware-"
+"image-<replaceable>version</replaceable></emphasis> enthält die Firmware-"
+"Dateien, die von manchen Treibern benöigt werden,   <emphasis role=\"pkg\""
+">linux-image-<replaceable>version</replaceable>-dbg</emphasis> mit den "
+"Symbolen für das Debugging der Kernel-Images und deren Module und <emphasis "
+"role=\"pkg\">linux-libc-dev</emphasis>, das die relevanten Header für einige "
+"Bibliotheken des User-Space, wie die glibc von GNU, bereithält."
 
 #. Tag: para
 #, no-c-format
 msgid "The <replaceable>version</replaceable> is defined by the concatenation of the upstream version (as defined by the variables <literal>VERSION</literal>, <literal>PATCHLEVEL</literal>, <literal>SUBLEVEL</literal> and <literal>EXTRAVERSION</literal> in the <filename>Makefile</filename>), of the <literal>LOCALVERSION</literal> configuration parameter, and of the <literal>LOCALVERSION</literal> environment variable. The package version reuses the same version string with an appended revision that is regularly incremented (and stored in <filename>.version</filename>), except if you override it with the <literal>KDEB_PKGVERSION</literal> environment variable."
 msgstr ""
+"Die <replaceable>Version</replaceable> wird definiert durch das "
+"Zusammenfügen der \"upstream\"-Version (wie sie von den Variablen "
+"<literal>VERSION</literal>, <literal>PATCHLEVEL</literal>, "
+"<literal>SUBLEVEL</literal> and <literal>EXTRAVERSION</literal> in "
+"<filename>Makefile</filename>) festgelegt wird, vom Konfigurationsparameter "
+"<literal>LOCALVERSION</literal>, und von der Umgebungsvariable "
+"<literal>LOCALVERSION</literal>. Die Paket-Version nutzt die gleiche "
+"Versionszeichenkette mit einer angehängten Revisionsnummer die regelmäßig "
+"erhöht (und in  <filename>.version</filename> gespeichert) wird, es sei "
+"denn, Sie überschreiben sie mit der Umgebungsvariable "
+"<literal>KDEB_PKGVERSION</literal>."
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
@@ -3809,10 +3857,16 @@ msgid ""
 "</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>fakeroot make-kpkg --append-to-version -falcot --revision 1 --initrd kernel-image</userinput> \n"
+"<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-"
+"falcot KDEB_PKGVERSION=1</userinput>\n"
 "[...]\n"
 "<computeroutput>$ </computeroutput><userinput>ls ../*.deb</userinput>\n"
-"<computeroutput>../linux-image-2.6.32-falcot_1_i386.deb</computeroutput>\n"
+"<computeroutput>../linux-firmware-image-3.2.46-falcot_1_amd64.deb\n"
+"../linux-headers-3.2.46-falcot_1_amd64.deb\n"
+"../linux-image-3.2.46-falcot_1_amd64.deb\n"
+"../linux-image-3.2.46-falcot-dbg_1_amd64.deb\n"
+"../linux-libc-dev_1_amd64.deb\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -3825,22 +3879,29 @@ msgid "<primary>kernel</primary><secondary>external modules</secondary>"
 msgstr "<primary>Kernel</primary><secondary>externe Module</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>modules</primary><secondary>external to the kernel</secondary>"
 msgid "<primary>modules</primary><secondary>external kernel modules</secondary>"
-msgstr "<primary>Module</primary><secondary>außerhalb des Kernels</secondary>"
+msgstr "<primary>Module</primary><secondary>externe Kernel Module</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>sg</command></primary>"
 msgid "<primary><command>dkms</command></primary>"
-msgstr "<primary><command>sg</command></primary>"
+msgstr "<primary><command>dkms</command></primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Some modules are maintained outside of the official Linux kernel. To use them, they must be compiled alongside the matching kernel. A number of common third party modules are provided by Debian in dedicated packages: <emphasis role=\"pkg\">lustre-source</emphasis> for the Lustre filesystem, <emphasis role=\"pkg\">qc-usb-source</emphasis> for the drivers for some USB webcams (Logitech QuickCam Express), etc."
 msgid "Some modules are maintained outside of the official Linux kernel. To use them, they must be compiled alongside the matching kernel. A number of common third party modules are provided by Debian in dedicated packages, such as <emphasis role=\"pkg\">virtualbox-source</emphasis> (kernel support for the VirtualBox virtualization solution) or <emphasis role=\"pkg\">oss4-source</emphasis> (Open Sound System, some alternative audio drivers)."
-msgstr "Einige Module werden außerhalb des offiziellen Linux-Kernels gehalten. Um sie verwenden zu können, müssen sie neben dem passenden Kernel kompiliert werden. Eine Anzahl gebräuchlicher Fremdmodule wird von Debian in speziellen Paketen bereitgestellt: <emphasis role=\"pkg\">lustre-source</emphasis> für das Lustre-Dateisystem, <emphasis role=\"pkg\">qc-usb-source</emphasis> für die Treiber einiger USB-Webcams (Logitech QuickCam Express) usw."
+msgstr ""
+"Einige Module werden außerhalb des offiziellen Linux-Kernels verwaltet. Um "
+"sie verwenden zu können, müssen sie neben dem passenden Kernel kompiliert "
+"werden. Eine Anzahl gebräuchlicher Fremdmodule wird von Debian in speziellen "
+"Paketen bereitgestellt: <emphasis role=\"pkg\">virtualbox-source</emphasis> "
+"(Kernel-Unterstützung für die Virtualisierungslösung VirtualBox) oder <"
+"emphasis role=\"pkg\">oss4-source</emphasis> (Open Sound System, einige "
+"alternative Audiotreiber)."
 
 #. Tag: para
 #, no-c-format
@@ -3851,6 +3912,20 @@ msgstr "Diese externen Pakete sind zahlreich und vielfältig, und wir werden sie
 #, no-c-format
 msgid "For example, let's look at the <emphasis role=\"pkg\">virtualbox-source</emphasis> package: after installation, a <filename>.tar.bz2</filename> of the module's sources is stored in <filename>/usr/src/</filename>. While we could manually extract the tarball and build the module, in practice we prefer to automate all this using DKMS. Most modules offer the required DKMS integration in a package ending with a <literal>-dkms</literal> suffix. In our case, installing <emphasis role=\"pkg\">virtualbox-dkms</emphasis> is all that is needed to compile the kernel module for the current kernel provided that we have the <emphasis role=\"pkg\">linux-headers-*</emphasis> package matching the installed kernel. For instance, if you use <emphasis role=\"pkg\">linux-images-amd64</emphasis>, you would also install <emphasis role=\"pkg\">linux-headers-amd64</emphasis>."
 msgstr ""
+"Schauen wir beispielsweise auf das <emphasis role=\"pkg\">virtualbox-"
+"source</emphasis>-Paket: nach der Installation wird ein "
+"<filename>.tar.bz2</filename> mit den Quellen der Module in "
+"<filename>/usr/src/</filename> abgelegt. Obwohl wir das tar-Paket händisch "
+"entpacken und das Modul erzeugen könnten, tun wir das in der Praxis lieber "
+"automatisch mittels DKMS. Die meisten Module bieten bereits die nötige DKMS-"
+"Integration in einem Paket mit der Endung <literal>-dkms</literal> an. In "
+"unserem Fall müssen wir lediglich <emphasis role=\"pkg\">virtualbox-"
+"dkms</emphasis> installieren um das Kernelmodul für den aktuellen Kernel zu "
+"übersetzen, vorausgesetzt, wir haben das Paket <emphasis role=\"pkg\">linux-"
+"headers-*</emphasis> passend zum installierten Kernel. Wenn Sie "
+"beispielsweise <emphasis role=\"pkg\">linux-images-amd64</emphasis> "
+"benutzen, würden Sie entsprechend <emphasis role=\"pkg\">linux-headers-"
+"amd64</emphasis> installieren."
 
 #. Tag: screen
 #, no-c-format
@@ -3884,12 +3959,42 @@ msgid ""
 "[...]\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>sudo apt-get install "
+"virtualbox-dkms</userinput>\n"
+"<computeroutput>\n"
+"[...]\n"
+"Loading new virtualbox-4.1.18 DKMS files...\n"
+"First Installation: checking all kernels...\n"
+"Building only for 3.2.0-4-amd64\n"
+"Building initial module for 3.2.0-4-amd64\n"
+"Done.\n"
+"\n"
+"vboxdrv:\n"
+"Running module version sanity check.\n"
+" - Original module\n"
+"   - No original module exists within this kernel\n"
+" - Installation\n"
+"   - Installing to /lib/modules/3.2.0-4-amd64/updates/dkms/\n"
+"[...]\n"
+"DKMS: install completed.\n"
+"$ </computeroutput><userinput>sudo dkms status</userinput>\n"
+"<computeroutput>virtualbox, 4.1.18, 3.2.0-4-amd64, x86_64: installed\n"
+"virtualbox-guest, 4.1.18, 3.2.0-4-amd64, x86_64: installed\n"
+"$ </computeroutput><userinput>sudo modinfo vboxdrv</userinput>\n"
+"<computeroutput>filename:       "
+"/lib/modules/3.2.0-4-amd64/updates/dkms/vboxdrv.ko\n"
+"version:        4.1.18_Debian (0x00190000)\n"
+"license:        GPL\n"
+"description:    Oracle VM VirtualBox Support Driver\n"
+"[...]\n"
+"</computeroutput>\n"
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>NOTE</emphasis> Multiple addresses"
 msgid "<emphasis>ALTERNATIVE</emphasis> module-assistant"
-msgstr "<emphasis>HINWEIS</emphasis> Mehrfache Adressen"
+msgstr "<emphasis>ALTERNATIVE</emphasis> module-assistant"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3900,6 +4005,13 @@ msgstr "<primary><emphasis role=\"pkg\">module-assistant</emphasis></primary>"
 #, no-c-format
 msgid "Before DKMS, <emphasis role=\"pkg\">module-assistant</emphasis> was the simplest solution to build and deploy kernel modules. It can still be used, in particular for packages lacking DKMS integration: with a simple command like <command>module-assistant auto-install virtualbox</command> (or <command>m-a a-i virtualbox</command> for short), the modules are compiled for the current kernel, put in a new Debian package, and that package gets installed on the fly."
 msgstr ""
+"Vor DKMS war der <emphasis role=\"pkg\">module-assistant</emphasis> der "
+"einfachste Weg, einen Kernel zu bauen und zu verteilen. Er kann immer noch "
+"verwendet werden, besonders für Pakete die keine DKMS-Integration bieten: "
+"mit einem einfachen Befehl, wie <command>module-assistant auto-install "
+"virtualbox</command> (oder kurz <command>m-a a-i virtualbox</command>), "
+"werden die Module für den eingesetzten Kernel übersetzt, in ein Debian-Paket "
+"verschnürt und im gleichen Atemzug installiert."
 
 #. Tag: title
 #, no-c-format
@@ -3912,16 +4024,20 @@ msgid "<primary>kernel</primary><secondary>patch</secondary>"
 msgstr "<primary>Kernel</primary><secondary>Patch</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>patch kernel</primary>"
 msgid "<primary>patch of the kernel</primary>"
-msgstr "<primary>Kernel patchen</primary>"
+msgstr "<primary>Patchen des Kernel</primary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Some features are not included in the standard kernel due to a lack of maturity or to some disagreement between the maintainer of the source code and the kernel maintainers. Such features may be distributed as patches that anyone is free to apply to the kernel sources."
 msgid "Some features are not included in the standard kernel due to a lack of maturity or to some disagreement with the kernel maintainers. Such features may be distributed as patches that anyone is then free to apply to the kernel sources."
-msgstr "Einige Leistungsmerkmale sind im Standardkernel nicht enthalten, da sie entweder noch nicht ausgereift sind, oder da es Meinungsverschiedenheiten zwischen dem Entwickler des Quellcodes und den Kernelbetreuern gibt. Solche Merkmale können als Patches verbreitet werden, die dann jeder auf die Kernelquellen anwenden kann."
+msgstr ""
+"Einige Funktionen sind im Standardkernel nicht enthalten, da sie entweder "
+"noch nicht ausgereift sind, oder auch wegen fehlender Übereinstimmung mit "
+"dem Entwickler. Solche Funktionen können als Patches verteilt werden, die "
+"dann jeder auf die Kernelquellen anwenden kann."
 
 #. Tag: para
 #, no-c-format
@@ -3934,7 +4050,7 @@ msgid "To apply one or more of these installed patches, use the <command>patch</
 msgstr "Um einen oder mehrere dieser installierten Patches anzuwenden, rufen Sie den Befehl <command>patch</command> im Quellenverzeichnis auf und beginnen dann wie oben beschrieben mit der Kompilierung des Kernels."
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
@@ -3949,10 +4065,14 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-grsec</userinput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>tar xjf /usr/src/qc-usb.tar.bz2</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>ls modules/</userinput>\n"
-"<computeroutput>qc-usb</computeroutput>\n"
+"<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-"
+"source-3.2</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>make clean</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-"
+"patches/diffs/grsecurity2/grsecurity-2.9.1-3.2.21-201206221855.patch.gz | "
+"patch -p1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>make deb-pkg "
+"LOCALVERSION=-grsec</userinput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -3998,6 +4118,12 @@ msgstr "Die Konfigurierungsskripten des Pakets erstellen selbsttätig ein initrd
 #, no-c-format
 msgid "Most of those tasks are offloaded to hook scripts in the <filename>/etc/kernel/*.d/</filename> directories. For instance, the integration with <command>grub</command> relies on <filename>/etc/kernel/postinst.d/zz-update-grub</filename> and <filename>/etc/kernel/postrm.d/zz-update-grub</filename> to call <command>update-grub</command> when kernels are installed or removed."
 msgstr ""
+"Die meisten der Aufgaben werden an \"hook scripts\" in den "
+"<filename>/etc/kernel/*.d/</filename>-Verzeichnissen übergeben. Zum Beispiel "
+"fußt die Einbindung von <command>grub</command> darauf, dass "
+"<filename>/etc/kernel/postinst.d/zz-update-grub</filename> und "
+"<filename>/etc/kernel/postrm.d/zz-update-grub</filename> <command>update-"
+"grub</command> aufrufen, wenn ein Kernel installiert oder deinstalliert wird."
 
 #. Tag: title
 #, no-c-format
@@ -4005,10 +4131,17 @@ msgid "Installing with <command>dpkg</command>"
 msgstr "Mit <command>dpkg</command> installieren"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "Using <command>apt-get</command> is so convenient that it makes it easy to forget about the lower-level tools, but the easiest way of installing a compiled kernel is to use a command such as <command>dpkg -i <replaceable>package</replaceable>.deb</command>, where <literal><replaceable>package</replaceable>.deb</literal> is the name of a <emphasis role=\"pkg\">linux-image</emphasis> package such as <filename>linux-image-2.6.32-falcot_1_i386.deb</filename>."
 msgid "Using <command>apt-get</command> is so convenient that it makes it easy to forget about the lower-level tools, but the easiest way of installing a compiled kernel is to use a command such as <command>dpkg -i <replaceable>package</replaceable>.deb</command>, where <literal><replaceable>package</replaceable>.deb</literal> is the name of a <emphasis role=\"pkg\">linux-image</emphasis> package such as <filename>linux-image-3.2.48-falcot_1_amd64.deb</filename>."
-msgstr "Die Verwendung von <command>apt-get</command> ist so komfortabel, dass man dabei leicht die Hilfsprogramme auf den unteren Ebenen vergisst. Aber am einfachsten ist es, einen kompilierten Kernel mit einem Befehl wie <command>dpkg -i <replaceable>paket</replaceable>.deb</command> zu installieren, wobei <literal><replaceable>paket</replaceable>.deb</literal> der Name eines <emphasis role=\"pkg\">linux-image</emphasis>-Pakets ist, wie zum Beispiel <filename>linux-image-2.6.32-falcot_1_i386.deb</filename>."
+msgstr ""
+"Die Verwendung von <command>apt-get</command> ist so komfortabel, dass man "
+"dabei leicht die Hilfsprogramme auf den unteren Ebenen vergisst. Aber am "
+"einfachsten ist es, einen kompilierten Kernel mit einem Befehl wie <command>"
+"dpkg -i <replaceable>paket</replaceable>.deb</command> zu installieren, "
+"wobei <literal><replaceable>paket</replaceable>.deb</literal> der Name eines "
+"<emphasis role=\"pkg\">linux-image</emphasis>-Pakets ist, wie zum Beispiel "
+"<filename>linux-image-3.2.48-falcot_1_amd64.deb</filename>."
 
 #. Tag: para
 #, no-c-format
