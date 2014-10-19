@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-08 14:21+0200\n"
+"PO-Revision-Date: 2014-10-19 10:56+0700\n"
 "Last-Translator: Samsul Ma'arif <samsul@samsul.web.id>\n"
 "Language-Team: Indonesian <debian-l10n-indonesian@lists.debian.org>\n"
 "Language: \n"
@@ -1186,7 +1186,7 @@ msgstr "<primary>basisdata</primary><secondary>kelompok</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The list of users is usually stored in the <filename>/etc/passwd</filename> file, while the <filename>/etc/shadow</filename> file stores encrypted passwords. Both are text files, in a relatively simple format, which can be read and modified with a text editor. Each user is listed there on a line with several fields separated with a colon (“<literal>:</literal>”)."
-msgstr ""
+msgstr "Daftar pengguna biasanya disimpan di berkas <filename>/etc/passwd</filename>, ketika berkas <filename>/etc/shadow</filename> menyimpan kata sandi terenkripsi. Keduanya berupa berkas teks, dalam format yang relatif sederhana, yang dapat dibaca dan dimodifikasi dengan teks editor. Setiap pengguna terdaftar di sana dalam sebuah baris dengan beberapa field dipisahkan dengan titik dua (“<literal>:</literal>”)."
 
 #. Tag: title
 #, no-c-format
@@ -1196,17 +1196,17 @@ msgstr "<emphasis>CATATAN</emphasis> Menyunting berkas sistem"
 #. Tag: para
 #, no-c-format
 msgid "The system files mentioned in this chapter are all plain text files, and can be edited with a text editor. Considering their importance to core system functionality, it is always a good idea to take extra precautions when editing system files. First, always make a copy or backup of a system file before opening or altering it. Second, on servers or machines where more than one person could potentially access the same file at the same time, take extra steps to guard against file corruption."
-msgstr ""
+msgstr "Berkas sistem yang disebutkan di bab ini seluruhnya berupa berkas teks polos, dan dapat disunting dengan teks editor. Memertimbangkan betapa penting fungsionalitasnya ke sistem inti, sebaiknya lebih berhati-hati ketika menyunting berkas sistem. Pertama, selalu buat salinan atau backup dari berkas sistem sebelum membuka atau menyuntingnya. Kedua, pada server atau mesin di mana lebih dari satu orang yang mungkin mengakses berkas yang sama, lakukan beberapa langkah untuk melindungi dari korupsi berkas."
 
 #. Tag: para
 #, no-c-format
 msgid "For this purpose, it is enough to use the <command>vipw</command> command to edit the <filename>/etc/passwd</filename> file, or <command>vigr</command> to edit <filename>/etc/group</filename>. These commands lock the file in question prior to running the text editor, (<command>vi</command> by default, unless the <varname>EDITOR</varname> environment variable has been altered). The <literal>-s</literal> option in these commands allows editing the corresponding <foreignphrase>shadow</foreignphrase> file."
-msgstr ""
+msgstr "Untuk tujuan ini, cukup gunakan perintah <command>vipw</command> untuk menyunting berkas <filename>/etc/passwd</filename>, atau <command>vigr</command> untuk menyunting <filename>/etc/group</filename>. Perintah ini mengunci berkas yang dimaksud setelah menjalankan teks editor, (secara default <command>vi</command>, kecuali variabel lingkungan <varname>EDITOR</varname> telah diubah). Pilihan <literal>-s</literal> pada perintah ini mengizinkan penyuntingan berkas <foreignphrase>shadow</foreignphrase> yang sesuai."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Crypt, a one-way function"
-msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Crypt, fungsi sejalan"
+msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Crypt, fungsi searah"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1216,7 +1216,7 @@ msgstr "<primary>crypt</primary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>crypt</command> is a one-way function that transforms a string (<varname>A</varname>) into another string (<varname>B</varname>) in a way that <varname>A</varname> cannot be derived from <varname>B</varname>. The only way to identify <varname>A</varname> is to test all possible values, checking each one to determine if transformation by the function will produce <varname>B</varname> or not. It uses up to 8 characters as input (string <varname>A</varname>) and generates a string of 13, printable, ASCII characters (string <varname>B</varname>)."
-msgstr ""
+msgstr "<command>crypt</command> merupakan fungsi searah yang mengubah string (<varname>A</varname>) ke string lain (<varname>B</varname>) di mana <varname>A</varname> tidak dapat diturunkan dari <varname>B</varname>. Satu-satunya cara mengidentifikasi <varname>A</varname> ialah dengan mengetes semua variabel yang mungkin, memeriksa satu per satu apakah perubahan fungsi akan menghasilkan <varname>B</varname> atau tidak. Menggunakan hingga 8 karakter sebagai masukan (string <varname>A</varname>) dan menghasilkan satu dari 13 string, dapat tercetak, karakter ASCII (string <varname>B</varname>)." 
 
 #. Tag: title
 #, no-c-format
@@ -1226,7 +1226,7 @@ msgstr "Daftar Pengguna: <filename>/etc/passwd</filename>"
 #. Tag: para
 #, no-c-format
 msgid "Here is the list of fields in the <filename>/etc/passwd</filename> file:"
-msgstr ""
+msgstr "Berikut ini daftar field dalam berkas <filename>/etc/passwd</filename>:"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1261,37 +1261,37 @@ msgstr "<primary><literal>login</literal></primary>"
 #. Tag: para
 #, no-c-format
 msgid "login, for example <literal>rhertzog</literal>;"
-msgstr ""
+msgstr "login, contohnya <literal>rhertzog</literal>;"
 
 #. Tag: para
 #, no-c-format
 msgid "password: this is a password encrypted by a one-way function (<command>crypt</command>), relying on <literal>DES</literal>, <literal>MD5</literal>, <literal>SHA-256</literal> or <literal>SHA-512</literal>. The special value “<literal>x</literal>” indicates that the encrypted password is stored in <filename>/etc/shadow</filename>;"
-msgstr ""
+msgstr "password: kata sandi ini terenkripsi oleh fungsi searah (<command>crypt</command>), menggunakan <literal>DES</literal>, <literal>MD5</literal>, <literal>SHA-256</literal> atau <literal>SHA-512</literal>. Nilai khusus “<literal>x</literal>” menandakan bahwa kata sandi terenkripsi disimpan di <filename>/etc/shadow</filename>;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>uid</literal>: unique number identifying each user;"
-msgstr ""
+msgstr "<literal>uid</literal>: nomor identifikasi unik tiap pengguna;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>gid</literal>: unique number for the user's main group (Debian creates a specific group for each user by default);"
-msgstr ""
+msgstr "<literal>gid</literal>: nomor unik untuk kelompok utama pengguna (secara default Debian membuat kelompok khusus untuk tiap pengguna);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>GECOS</literal>: data field usually containing the user's full name;"
-msgstr ""
+msgstr "<literal>GECOS</literal>: field data biasanya berisi nama lengkap pengguna;"
 
 #. Tag: para
 #, no-c-format
 msgid "login directory, assigned to the user for storage of their personal files (the environment variable <varname>$HOME</varname> generally points here);"
-msgstr ""
+msgstr "direktori login, diberikan ke pengguna ruang untuk berkas pribadi mereka (variabel lingkungan <varname>$HOME</varname> umumnya mengarah ke sini);"
 
 #. Tag: para
 #, no-c-format
 msgid "program to execute upon login. This is usually a command interpreter (shell), giving the user free rein. If you specify <command>/bin/false</command> (which does nothing and returns control immediately), the user can not login."
-msgstr ""
+msgstr "program yang dieksekusi ketika login. Ini biasanya berupa perintah interpreter (shell), memberikan kebebasan pada pengguna. Jika Anda menentukan <command>/bin/false</command> (yang tak melakukan apapun dan mengembalikan kontrol seketika), pengguna tidak dapat login."
 
 #. Tag: title
 #, no-c-format
@@ -1306,12 +1306,12 @@ msgstr "<primary>kelompok</primary>"
 #. Tag: para
 #, no-c-format
 msgid "A Unix group is an entity including several users so that they can easily share files using the integrated permission system (by benefiting from the same rights). You can also restrict use of certain programs to a specific group."
-msgstr ""
+msgstr "Sebuah kelompok Unix merupakan sebuah entitas termasuk beberapa pengguna jadi mereka dapat berbagi secara mudah menggunakan sistem hak akses terintegrasi (dengan memanfaatkan hak yang sama). Anda dapat juga menghalangi penggunaan beberapa program ke kelompok tertentu."
 
 #. Tag: title
 #, no-c-format
 msgid "The Hidden and Encrypted Password File: <filename>/etc/shadow</filename>"
-msgstr ""
+msgstr "Berkas Kata Sandi Tersembunyi dan Terenkripsi: <filename>/etc/shadow</filename>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1326,7 +1326,7 @@ msgstr "<primary><filename>/etc/shadow</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/shadow</filename> file contains the following fields:"
-msgstr ""
+msgstr "Berkas <filename>/etc/shadow</filename> berisi field-field berikut:"
 
 #. Tag: para
 #, no-c-format
@@ -1336,37 +1336,37 @@ msgstr "login;"
 #. Tag: para
 #, no-c-format
 msgid "encrypted password;"
-msgstr "encrypted password;"
+msgstr "kata sandi terenkripsi;"
 
 #. Tag: para
 #, no-c-format
 msgid "several fields managing password expiration."
-msgstr ""
+msgstr "beberapa field mengelola masa kadaluarsa kata sandi."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> <filename>/etc/passwd</filename>, <filename>/etc/shadow</filename> and <filename>/etc/group</filename> file formats"
-msgstr ""
+msgstr "<emphasis>DOKUMENTASI</emphasis> Format berkas <filename>/etc/passwd</filename>, <filename>/etc/shadow</filename> dan <filename>/etc/group</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "These formats are documented in the following man pages: <citerefentry><refentrytitle>passwd</refentrytitle><manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>shadow</refentrytitle><manvolnum>5</manvolnum></citerefentry>, and <citerefentry><refentrytitle>group</refentrytitle><manvolnum>5</manvolnum></citerefentry>."
-msgstr ""
+msgstr "Format berikut didokumentasikan dalam man pages berikut: <citerefentry><refentrytitle>passwd</refentrytitle><manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>shadow</refentrytitle><manvolnum>5</manvolnum></citerefentry>, and <citerefentry><refentrytitle>group</refentrytitle><manvolnum>5</manvolnum></citerefentry>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <filename>/etc/shadow</filename> file security"
-msgstr "<emphasis>KEAMANAN</emphasis> keamanan berkas <filename>/etc/shadow</filename>"
+msgstr "<emphasis>KEAMANAN</emphasis> Keamanan berkas <filename>/etc/shadow</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>/etc/shadow</filename>, unlike its alter-ego, <filename>/etc/passwd</filename>, cannot be read by regular users. Any encrypted password stored in <filename>/etc/passwd</filename> is readable by anybody; a cracker could try to “break” (or reveal) a password by one of several “brute force” methods which, simply put, guess at commonly used combinations of characters. This attack — called a \"dictionary attack\" — is no longer possible on systems using <filename>/etc/shadow</filename>."
-msgstr ""
+msgstr "<filename>/etc/shadow</filename>, tak seperti rivalnya, <filename>/etc/passwd</filename>, tidak dapat dibaca oleh pengguna biasa. Katasandi terenkripsi yang tersimpan di <filename>/etc/passwd</filename> dapat dibaca oleh siapa saja; seorang cracker dapat mencoba untuk “merusak” (atau mengambil) password dengan salah satu metode “brute force” yang, mencoba menebak kombinasi karakter yang biasa digunakan. Serangan ini — disebut \"dictionary attack\" — tak lagi mungkin pada sistem yang menggunakan <filename>/etc/shadow</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "Modifying an Existing Account or Password"
-msgstr ""
+msgstr "Memodifikasi Akun atau Password yang Ada"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1391,12 +1391,12 @@ msgstr "<primary>password</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The following commands allow modification of the information stored in specific fields of the user databases: <command>passwd</command> permits a regular user to change their password, which in turn, updates the <filename>/etc/shadow</filename> file; <command>chfn</command> (CHange Full Name), reserved for the super-user (root), modifies the <literal>GECOS</literal> field. <command>chsh</command> (CHange SHell) allows the user to change their login shell, however available choices will be limited to those listed in <filename>/etc/shells</filename>; the administrator, on the other hand, is not bound by this restriction and can set the shell to any program of their choosing."
-msgstr ""
+msgstr "Perintah berikut memungkinkan modifikasi informasi tersimpan pada field spesifik pada basisdata pengguna: <command>passwd</command> mengizinkan pengguna mengganti password mereka, di mana ketika dijalankan, memerbarui berkas <filename>/etc/shadow</filename>; <command>chfn</command> (CHange Full Name), milik pengguna-super (root), memodifikasi field <literal>GECOS</literal>. <command>chsh</command> (CHange SHell) mengizinkan pengguna untuk mengubah shell login mereka, akan tetapi pilihan yang tersedia terbatas yang terdaftar pada <filename>/etc/shells</filename>; di samping itu, administrator tidak terikat pada batasan ini dan dapat mengatur shell ke program pilihan mereka."
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the <command>chage</command> (CHange AGE) command allows the administrator to change the password expiration settings (the <literal>-l <replaceable>user</replaceable></literal> option will list the current settings). You can also force the expiration of a password using the <command>passwd -e <replaceable>user</replaceable></command> command, which will require the user to change their password the next time they log in."
-msgstr ""
+msgstr "Akhirnya, perintah <command>chage</command> (CHange AGE) mengizinkan administrator mengubah pengaturan masa kadaluarsa password (pilihan <literal>-l <replaceable>pengguna</replaceable></literal> akan menampilkan pengaturan kini). Anda dapat pula memaksa masa kadaluarsa password menggunakan perintah <command>passwd -e <replaceable>pengguna</replaceable></command>, di mana pengguna perlu mengganti password mereka ketika login berikutnya."
 
 #. Tag: title
 #, no-c-format
@@ -1416,7 +1416,7 @@ msgstr "<primary>akun</primary><secondary>nonaktif</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "You may find yourself needing to “disable an account” (lock out a user), as a disciplinary measure, for the purposes of an investigation, or simply in the event of a prolonged or definitive absence of a user. A disabled account means the user cannot login or gain access to the machine. The account remains intact on the machine and no files or data are deleted; it is simply inaccessible. This is accomplished by using the command <command>passwd -l <replaceable>user</replaceable></command> (lock). Re-enabling the account is done in similar fashion, with the <literal>-u</literal> option (unlock)."
-msgstr ""
+msgstr "Anda mungkin perlu “menonaktifkan sebuah akun” (mengunci seorang pengguna), sebagai tindakan disipliner, untuk tujuan investigasi, atau ketika saat berkepanjangan atau ketidakpastian kehadiran penguna. Akun dinonaktifkan berarti pengguna tidak dapat login atau mendapatkan akses ke mesin. Akun tetap ada pada mesin dan tidak ada berkas atau data yang dihapus; hanya tidak dapat diakses. Hal ini dapat dilakukan dengan perintah <command>passwd -l <replaceable>pengguna</replaceable></command> (lock). Mengaktifkan kembali akun diaktifkan dengan cara yang mirip, dengan pilihan (unlock) <literal>-u</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -1431,7 +1431,7 @@ msgstr "<primary>Name Service Switch</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Instead of using the usual files to manage lists of users and groups, you could use other types of databases, such as LDAP or <command>db</command>, by using an appropriate NSS (Name Service Switch) module. The modules used are listed in the <filename>/etc/nsswitch.conf</filename> file, under the <literal>passwd</literal>, <literal>shadow</literal> and <literal>group</literal> entries. See <xref linkend=\"sect.config-nss\" /> for a specific example of the use of an NSS module by LDAP."
-msgstr ""
+msgstr "Daripada menggunakan berkas yang biasanya untuk mengelola daftar pengguna dan kelompok, Anda dapat menggunakan tipe basisdata lain, seperti LDAP atau <command>db</command>, dengan menggunakan modul NSS (Name Service Switch) yang cocok. Modul yang diguankan terdaftar di berkas <filename>/etc/nsswitch.conf</filename>, di bawah entri <literal>passwd</literal>, <literal>shadow</literal> dan <literal>group</literal>. Lihat <xref linkend=\"sect.config-nss\" /> untuk sebuah contoh spesifik penggunaan modul NSS dengan LDAP."
 
 #. Tag: title
 #, no-c-format
@@ -1441,7 +1441,7 @@ msgstr "Daftar Kelompok: <filename>/etc/group</filename>"
 #. Tag: para
 #, no-c-format
 msgid "Groups are listed in the <filename>/etc/group</filename> file, a simple textual database in a format similar to that of the <filename>/etc/passwd</filename> file, with the following fields:"
-msgstr ""
+msgstr "Kelompok terdaftar di berkas <filename>/etc/group</filename>, basisdata tekstuan sederhana dalam format mirip berkas <filename>/etc/passwd</filename>, dengan field sebagai berikut:"
 
 #. Tag: para
 #, no-c-format
@@ -1451,17 +1451,17 @@ msgstr "group name;"
 #. Tag: para
 #, no-c-format
 msgid "password (optional): This is only used to join a group when one is not a usual member (with the <command>newgrp</command> or <command>sg</command> commands, see sidebar);"
-msgstr ""
+msgstr "password (pilihan): Ini hanya digunakan untuk menggabungkan kelompok ketika bukan kelompok biasa (dengan perintah <command>newgrp</command> atau <command>sg</command>, lihat bilah tepi);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>gid</literal>: unique group identification number;"
-msgstr ""
+msgstr "<literal>gid</literal>: nomor identifikasi unik kelompok;"
 
 #. Tag: para
 #, no-c-format
 msgid "list of members: list of names of users who are members of the group, separated by commas."
-msgstr ""
+msgstr "daftar anggota: daftar nama penggua yang merupakan anggota kelompok, dipisahkan dengan koma."
 
 #. Tag: title
 #, no-c-format
@@ -1491,17 +1491,17 @@ msgstr "<primary>group</primary><secondary>change</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "Each user may be a member of many groups; one of them is their “main group”. A user's main group is, by default, created during initial user configuration. By default, each file that a user creates belongs to them, as well as to their main group. This is not always desirable; for example, when the user needs to work in a directory shared by a group other than their main group. In this case, the user needs to change their main group using one of the following commands: <command>newgrp</command>, which starts a new shell, or <command>sg</command>, which simply executes a command using the supplied alternate group. These commands also allow the user to join a group to which they do not belong. If the group is password protected, they will need to supply the appropriate password before the command is executed."
-msgstr ""
+msgstr "Setiap pengguna mungkin anggota dari beberapa kelompok; salah satunya “kelompok utama” mereka. Kelompok utama pengguna secara standar, dibuat ketika konfigurasi awal pengguna. Secara standar, setiap berkas yang dibuat pengguna adalah milik mereka, sebagaimana kelompok utama mereka. Hal ini tidak selalu diinginkan; contohnya, ketika penggua bekerja pada direktori yang dibagi dengan kelompok selain kelompok utama mereka. Dalam hal ini, pengguna perlu mengubah kelompok utama mereka menggunakan perintah berikut; <command>newgrp</command>, yang memulai shell baru, atau <command>sg</command>, yang mengeksekusi perintah menggunakan kelompok alternatif yang diberikan. Perintah ini juga mengizinkan pengguna ke kelompok yang bukan miliknya. Jika kelompok diproteksi password, mereka perlu memasukkan password yang sesuai sebelum perintah dieksekusi."
 
 #. Tag: para
 #, no-c-format
 msgid "Alternatively, the user can set the <literal>setgid</literal> bit on the directory, which causes files created in that directory to automatically belong to the correct group. For more details, see sidebar <xref linkend=\"sidebar.setgid-dir\" />."
-msgstr ""
+msgstr "Alternatifnya, pengguna dapat mengatur bit <literal>setgid</literal> pada direktori, akibatnya berkas yang dibuat dalam direktori tersebut secara otomatis dimilik oleh kelompok yang tepat. Untuk lebih rincinya, lihat bilah tepi <xref linkend=\"sidebar.setgid-dir\" />."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>id</command> command displays the current state of a user, with their personal identifier (<varname>uid</varname> variable), current main group (<varname>gid</varname> variable), and the list of groups to which they belong (<varname>groups</varname> variable)."
-msgstr ""
+msgstr "Perintah <command>id</command> menampilkan kondisi terkini pengguna, dengan indentifier personal mereka (variabel <varname>uid</varname>), kelompok utama saat ini (variabel <varname>gid</varname>), dan daftar kelompok milik mereka (variabel <varname>groups</varname>)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1516,7 +1516,7 @@ msgstr "<primary><filename>/etc/group</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <command>addgroup</command> and <command>delgroup</command> commands add or delete a group, respectively. The <command>groupmod</command> command modifies a group's information (its <literal>gid</literal> or identifier). The command <command>passwd -g <replaceable>group</replaceable></command> changes the password for the group, while the <command>passwd -r -g <replaceable>group</replaceable></command> command deletes it."
-msgstr ""
+msgstr "Perintah <command>addgroup</command> dan <command>delgroup</command> menambah dan menghapus kelompok, masing-masing. Perintah <command>groupmod</command> memodifikasi informasi kelompok (<literal>gid</literal>-nya atau identifier). Perintah <command>passwd -g <replaceable>kelompok</replaceable></command> mengubah password untuk kelompok, sedangkan perintah <command>passwd -r -g <replaceable>kelompok</replaceable></command> menghapusnya."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1566,7 +1566,7 @@ msgstr "<primary><command>getent</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <command>getent</command> (get entries) command checks the system databases the standard way, using the appropriate library functions, which in turn call the NSS modules configured in the <filename>/etc/nsswitch.conf</filename> file. The command takes one or two arguments: the name of the database to check, and a possible search key. Thus, the command <command>getent passwd rhertzog</command> will give the information from the user database regarding the user <literal>rhertzog</literal>."
-msgstr ""
+msgstr "Perintah <command>getent</command> (get entries) memeriksa basisdata sistem dengan cara standar, menggunakan fungsi pustaka yang sesuai, di mana akan memanggil modul NSS yang dikonfigurasi di berkas <filename>/etc/nsswitch.conf</filename>. Perintah mengambil satu atau dua argumen: nama basisdata untuk diperiksa, dan kata kunci yang mungkin. Nah, perintah <command>getent passwd rhertzog</command> akan memberikan informasi dari basisdata pengguna terkait pengguna <literal>rhertzog</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -1586,7 +1586,7 @@ msgstr "<primary>pembuatan</primary><secondary>akun pengguna</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "One of the first actions an administrator needs to do when setting up a new machine is to create user accounts. This is typically done using the <command>adduser</command> command which takes a user-name for the new user to be created, as an argument."
-msgstr ""
+msgstr "Salah satu aksi pertama yang perlu administrator lakukan ketika mengatur mesin baru ialah membuat akun pengguna. Hal ini dapat dilakukan dengan perintah <command>adduser</command> di mana nama-pengguna untuk pengguna baru akan dibuat, sebagai sebuah argumen."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1596,7 +1596,7 @@ msgstr "<primary><command>adduser</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <command>adduser</command> command asks a few questions before creating the account, but its usage is fairly straightforward. Its configuration file, <filename>/etc/adduser.conf</filename>, includes all the interesting settings: it can be used to automatically set a quota for each new user by creating a user template, or to change the location of user accounts; the latter is rarely useful, but it comes in handy when you have a large number of users and want to divide their accounts over several disks, for instance. You can also choose a different default shell."
-msgstr ""
+msgstr "Perintah <command>adduser</command> menanyakan beberapa hal sebelum membuat akun, namun penggunaannya cukup mudah. Berkas konfigurasinya, <filename>/etc/adduser.conf</filename>, menyertakan pengaturan yang menarik: dia dapat digunakan untuk secara otomatis mengatur quota untuk setiap pengguna dengna membuat template pengguna, atau mengganti lokasi akun pengguna; yang berikutnya jarang digunakan, namun akan memudahkan ketika Anda memiliki banyak pengguna dan ingin membagi akun mereka pada beberapa cakram, misalnya. Anda juga dapat memilih shell standar yang berbeda."
 
 #. Tag: title
 #, no-c-format
@@ -1611,12 +1611,12 @@ msgstr "<primary>quota</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The term “quota” refers to a limit on machine resources that a user is allowed to use. This frequently refers to disk space."
-msgstr ""
+msgstr "Istilah “quota” mengacu pada batasan pada sumberdaya mesin yang diperbolehkan digunakan oleh pengguna. Hal ini sering kali mengacu pada ruang diska."
 
 #. Tag: para
 #, no-c-format
 msgid "The creation of an account populates the user's home directory with the contents of the <filename>/etc/skel/</filename> template. This provides the user with a set of standard directories and configuration files."
-msgstr ""
+msgstr "Pembuatan sebuah akun mengumpulkan direktori home pengguna dengan konten berkas templat <filename>/etc/skel/</filename>. Menyediakan pengguna dengan set direktori standar dan berkas konfigurasinya."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1631,7 +1631,7 @@ msgstr "<primary>menambahkan pengguna ke kelompok</primary>"
 #. Tag: para
 #, no-c-format
 msgid "In some cases, it will be useful to add a user to a group (other than their default “main” group) in order to grant them additional permissions. For example, a user who is included in the <emphasis>audio</emphasis> group can access audio devices (see sidebar “Device access permissions”). This can be achieved with a command such as <command>adduser <replaceable>user</replaceable> <replaceable>group</replaceable></command>."
-msgstr ""
+msgstr "Dalam beberapa kasus, hal ini akan berguna untuk menambahkan pengguna ke sebuah kelompok (di samping kelompok “utama” mereka) agar dapat memberi mereka hak akses tambahan. Misalnya, seorang pengguna yang disertakan dalam kelompok <emphasis>audio</emphasis> dapat mengakses perangkat audio (lihat bilah tepi “Izin hak akses perangkat”). Hal ini dapat dilakukan dengan perintah seperti <command>adduser <replaceable>pengguna</replaceable> <replaceable>kelompok</replaceable></command>."
 
 #. Tag: title
 #, no-c-format
@@ -1681,17 +1681,17 @@ msgstr "<primary><command>mknod</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Each hardware peripheral device is represented under Unix with a special file, usually stored in the file tree under <filename>/dev/</filename> (DEVices). Two types of special files exist according to the nature of the device: “character mode” and “block mode” files, each mode allowing for only a limited number of operations. While character mode limits interaction with read/write operations, block mode also allows seeking within the available data. Finally, each special file is associated with two numbers (“major” and “minor”) that identify the device to the kernel in a unique manner. Such a file, created by the <command>mknod</command> command, simply contains a symbolic (and more human-friendly) name."
-msgstr ""
+msgstr "Setiap perangkat periferal hardware direpresentasikan di Unix dengan berkas khusus, biasanya disimpan dalam pohon berkas di bawah <filename>/dev/</filename> (DEVices). Dua tipe berkas khusus ada berdasarkan sifat alami perangkat: berkas “mode karakter” dan  “mode blok”, setiap mode terbatas hanya pada beberapa operasi. Mode karakter membatasi interaksi dengan operasi membaca/menulis, mode blok juga dapat mencari dalam data yang tersedia. Akhirnya, setiap berkas khusus diasosiasikan dengan dua nomor (“major” dan “minor”) yang mengidentifikasi perangkat ke kernel dengan cara yang unik. Seperti berkas, dibuat oleh perintah <command>mknod</command>, berisi nama simbolik (dan lebih mudah dikenali manusia)."
 
 #. Tag: para
 #, no-c-format
 msgid "The permissions of a special file map to the permissions necessary to access the device itself. Thus, a file such as <filename>/dev/mixer</filename>, representing the audio mixer, only has read/write permissions for the root user and members of the <literal>audio</literal> group. Only these users can operate the audio mixer."
-msgstr ""
+msgstr "Hak akses berkas khusus dipetakan ke hak akses yang diperlukan untuk mengakses perangkat itu sendiri. Nah, sebuah berkas seperti <filename>/dev/mixer</filename>, merepresentasikan audio mixer, hanya root yang memiliki hak akses baca/tulis dan anggota kelompok <literal>audio</literal>. Hanya pengguna ini yang dapat mengoperasikan audio mixer."
 
 #. Tag: para
 #, no-c-format
 msgid "It should be noted that the combination of <emphasis role=\"pkg\">udev</emphasis>, <emphasis role=\"pkg\">consolekit</emphasis> and <emphasis role=\"pkg\">policykit</emphasis> can add additional permissions to allow users physically connected to the console (and not through the network) to access to certain devices."
-msgstr ""
+msgstr "Perlu dicatat bahwa kombinasi <emphasis role=\"pkg\">udev</emphasis>, <emphasis role=\"pkg\">consolekit</emphasis> dan <emphasis role=\"pkg\">policykit</emphasis> dapat menambahkan hak akses tambahan yang mengizinkan pengguna yang secara fisik terhubung ke konsol (dan tidak melalui jaringan) untuk mengakses perangkat tertentu."
 
 #. Tag: title
 #, no-c-format
