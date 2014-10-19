@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-13 15:08+0200\n"
-"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
+"PO-Revision-Date: 2014-10-30 23:13+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.10-dev\n"
+"X-Generator: Weblate 2.0-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -2921,11 +2921,24 @@ msgstr "<primary><command>yaboot</command></primary>"
 #, no-c-format
 msgid "Yaboot is the bootloader used by old Macintosh computers using PowerPC processors. They do not boot like PCs, but rely on a “bootstrap” partition, from which the BIOS (or OpenFirmware) executes the loader, and on which the <command>ybin</command> program installs <command>yaboot</command> and its configuration file. You will only need to run this command again if the <filename>/etc/yaboot.conf</filename> is modified (it is duplicated on the bootstrap partition, and <command>yaboot</command> knows how to find the position of the kernels on the disks)."
 msgstr ""
+"Yaboot é o carregador de boot usado por computadores Macintosh antigos que "
+"usam processadores PowerPC. Eles não iniciam como PCs, mas sim usando uma "
+"partição “bootstrap”, a partir da qual a BIOS (ou OpenFirmware) executa o "
+"carregador, e na qual o programa <command>ybin</command> instala o "
+"<command>yaboot</command> e seu arquivo de configuração. Você vai precisar "
+"executar apenas este comando de novo se o "
+"<filename>/etc/yaboot.conf</filename> for modificado (ele é duplicado na "
+"partição bootstrap, e o <command>yaboot</command> sabe como encontrar a "
+"posição do núcleo (kernel) nos discos)."
 
 #. Tag: para
 #, no-c-format
 msgid "Before executing <command>ybin</command>, you must first have a valid <filename>/etc/yaboot.conf</filename>. The following is an example of a minimal configuration. <indexterm><primary><command>ybin</command></primary></indexterm>"
 msgstr ""
+"Antes de executar o <command>ybin</command>, você deve primeiro ter um "
+"<filename>/etc/yaboot.conf</filename> válido. O seguinte é um exemplo de uma "
+"configuração minimalista. "
+"<indexterm><primary><command>ybin</command></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -3007,6 +3020,7 @@ msgstr ""
 #, no-c-format
 msgid "Other Configurations: Time Synchronization, Logs, Sharing Access…"
 msgstr ""
+"Outras Configurações: Sincronização de tempo, Logs, Compartilhando acesso…"
 
 #. Tag: para
 #, no-c-format
