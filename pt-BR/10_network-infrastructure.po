@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-09 02:36+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-10-30 13:45+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/10_network-infrastructure/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.10-dev\n"
+"X-Generator: Weblate 2.0-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -402,11 +402,26 @@ msgstr "<primary>OpenVPN</primary>"
 #, no-c-format
 msgid "OpenVPN is a piece of software dedicated to creating virtual private networks. Its setup involves creating virtual network interfaces on the VPN server and on the client(s); both <literal>tun</literal> (for IP-level tunnels) and <literal>tap</literal> (for Ethernet-level tunnels) interfaces are supported. In practice, <literal>tun</literal> interfaces will most often be used except when the VPN clients are meant to be integrated into the server's local network by way of an Ethernet bridge."
 msgstr ""
+"O OpenVPN é um pedaço de software dedicado a criar redes virtuais privadas. "
+"Sua configuração envolve a criação de interfaces de rede virtual em um "
+"servidor VPN e no(s) cliente(s); ambas interfaces <literal>tun</literal> ("
+"para túneis IP-level) e <literal>tap</literal> (para túneis Ethernet-level) "
+"são suportadas. Na pratica, a interface <literal>tun</literal> irá "
+"geralmente ser a mais usada, excerto quando os clientes VPN forem feitos "
+"para serem integrados na rede local do servidor por meio de uma ponte "
+"(brigde) Ethernet."
 
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN relies on OpenSSL for all the SSL/TLS cryptography and associated features (confidentiality, authentication, integrity, non-repudiation). It can be configured either with a shared private key or using X.509 certificates based on a public key infrastructure. The latter configuration is strongly preferred since it allows greater flexibility when faced with a growing number of roaming users accessing the VPN."
 msgstr ""
+"O OpenVPN depende do OpenSSL para criptografia SSL/TLS e funcionalidades "
+"associadas (confidencialidade, autenticação, integridade, não-repudio). Ele "
+"pode ser configurado tanto com uma chave privada compartilhada, como usando "
+"um certificado X.509  baseado em uma infraestrutura de chave pública. Essa "
+"última configuração é fortemente preferida já que permite grande "
+"flexibilidade quando lida com um crescente número de usuários \"roaming\" "
+"acessando a VPN."
 
 #. Tag: title
 #, no-c-format
@@ -427,6 +442,11 @@ msgstr "<primary>TLS</primary>"
 #, no-c-format
 msgid "The SSL protocol (<emphasis>Secure Socket Layer</emphasis>) was invented by Netscape to secure connections to web servers. It was later standardized by IETF under the acronym TLS (<emphasis>Transport Layer Security</emphasis>); TLS is very similar to SSLv3 with only a few fixes and improvements."
 msgstr ""
+"O protocolo SSL (<emphasis>Secure Socket Layer</emphasis>) foi inventado "
+"pela Netscape para dar segurança nas conexões com servidores web. Ele foi, "
+"depois, padronizado pela IETF sob o acrônimo TLS (<emphasis>Transport Layer "
+"Security</emphasis>); TLS é muito similar ao SSLv3 com apenas algumas "
+"correções e aprimoramentos."
 
 #. Tag: title
 #, no-c-format
@@ -474,6 +494,17 @@ msgstr "<primary>par de chaves</primary>"
 #, no-c-format
 msgid "The RSA algorithm is widely used in public-key cryptography. It involves a “key pair”, comprised of a private and a public key. The two keys are closely linked to each other, and their mathematical properties are such that a message encrypted with the public key can only be decrypted by someone knowing the private key, which ensures confidentiality. In the opposite direction, a message encrypted with the private key can be decrypted by anyone knowing the public key, which allows authenticating the origin of a message since only someone with access to the private key could generate it. When associated with a digital hash function (MD5, SHA1, or a more recent variant), this leads to a signature mechanism that can be applied to any message."
 msgstr ""
+"O algorítimo RSA é amplamente usado em criptografia de chave pública. Trata-"
+"se de um “par de chaves”, composto de uma chave privada e uma chave pública. "
+"As duas chaves são intimamente ligadas uma a outra, e suas propriedades "
+"matemáticas são tais que uma mensagem criptografada com a chave pública só "
+"pode ser descriptografada por alguém que conhece a chave privada, o que "
+"garante confidencialidade. Na direção oposta, uma mensagem criptografada com "
+"a chave privada pode ser descriptografada por qualquer um que saiba a chave "
+"pública, o que permite autenticar a origem da mensagem já que apenas alguém "
+"com acesso a chave privada poderia gerá-la. Quando associada a uma função "
+"digital hash (MD5, SHA1, ou uma variante mais recente), isso leva a um "
+"mecanismo de assinatura que pode ser aplicado a qualquer mensagem."
 
 #. Tag: para
 #, no-c-format
@@ -505,6 +536,9 @@ msgstr ""
 #, no-c-format
 msgid "They then store the required parameters into the <filename>vars</filename> file, especially those named with a <literal>KEY_</literal> prefix; these variables are then integrated into the environment:"
 msgstr ""
+"Eles então armazenam os parâmetros requeridos dentro do arquivo "
+"<filename>vars</filename>, especialmente aqueles nomeados com o prefixo "
+"<literal>KEY_</literal>; essas variáveis são então integradas ao ambiente:"
 
 #. Tag: screen
 #, no-c-format
@@ -551,6 +585,9 @@ msgstr ""
 #, no-c-format
 msgid "The next step is the creation of the CA's key pair itself (the two parts of the key pair will be stored under <filename>keys/ca.crt</filename> and <filename>keys/ca.key</filename> during this step):"
 msgstr ""
+"O próximo passo é a criação do próprio par de chaves CA (as duas partes do "
+"par de chaves será armazenada sob <filename>keys/ca.crt</filename> e "
+"<filename>keys/ca.key</filename> durante esse passo):"
 
 #. Tag: screen
 #, no-c-format
@@ -607,6 +644,12 @@ msgstr ""
 #, no-c-format
 msgid "The certificate for the VPN server can now be created, as well as the Diffie-Hellman parameters required for the server side of an SSL/TLS connection. The VPN server is identified by its DNS name <literal>vpn.falcot.com</literal>; this name is re-used for the generated key files (<filename>keys/vpn.falcot.com.crt</filename> for the public certificate, <filename>keys/vpn.falcot.com.key</filename>for the private key):"
 msgstr ""
+"O certificado para o servidor VPN pode, agora, ser criado, assim como os "
+"parâmetros Diffie-Hellman necessários para o lado do servidor em uma conexão "
+"SSL/TLS. O servidor VPN é identificado pelo seu nome DNS "
+"<literal>vpn.falcot.com</literal>; esse nome é reutilizado nos arquivos de "
+"chave gerados (<filename>keys/vpn.falcot.com.crt</filename> para certificado "
+"público, <filename>keys/vpn.falcot.com.key</filename> para chave privada):"
 
 #. Tag: screen
 #, no-c-format
@@ -805,6 +848,14 @@ msgstr "Configurando o Cliente OpenVPN"
 #, no-c-format
 msgid "Setting up an OpenVPN client also requires creating a configuration file in <filename>/etc/openvpn/</filename>. A standard configuration can be obtained by using <filename>/usr/share/doc/openvpn/examples/sample-config-files/client.conf</filename> as a starting point. The <literal>remote vpn.falcot.com 1194</literal> directive describes the address and port of the OpenVPN server; the <literal>ca</literal>, <literal>cert</literal> and <literal>key</literal> also need to be adapted to describe the locations of the key files."
 msgstr ""
+"Configurar um cliente OpenVPN também requer a criação de um arquivo de "
+"configuração em <filename>/etc/openvpn/</filename>. Uma configuração padrão "
+"pode ser obtida usando <filename>/usr/share/doc/openvpn/examples/sample-"
+"config-files/client.conf</filename> como ponto de partida. A diretiva "
+"<literal>remote vpn.falcot.com 1194</literal> descreve o endereço e porta do "
+"servidor OpenVPN; <literal>ca</literal>, <literal>cert</literal> and "
+"<literal>key</literal> também precisam ser adaptadas para descrever a "
+"localização dos arquivos com as chaves."
 
 #. Tag: para
 #, no-c-format

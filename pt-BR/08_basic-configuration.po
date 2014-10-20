@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-30 23:13+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-10-31 13:20+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -3026,6 +3026,10 @@ msgstr ""
 #, no-c-format
 msgid "The many elements listed in this section are good to know for anyone who wants to master all aspects of configuration of the GNU/Linux system. They are, however, treated briefly and frequently refer to the documentation."
 msgstr ""
+"Os muitos elementos listados nesta seção são importantes para quem quer "
+"dominar todos os aspectos de configuração de um sistema GNU/Linux. Eles são, "
+"contudo, tratados superficialmente e frequentemente se referem a "
+"documentação."
 
 #. Tag: title
 #, no-c-format
@@ -3061,21 +3065,48 @@ msgstr "<primary><command>ln</command></primary>"
 #, no-c-format
 msgid "A symbolic link is a pointer to another file. When you access it, the file to which it points is opened. Removal of the link will not cause deletion of the file to which it points. Likewise, it does not have its own set of permissions, but rather retains the permissions of its target. Finally, it can point to any type of file: directories, special files (sockets, named pipes, device files, etc.), even other symbolic links."
 msgstr ""
+"Uma ligação simbólica é um ponteiro para outro arquivo. Quando você a "
+"acessa, o arquivo para o qual ela aponta é aberto. A remoção da ligação não "
+"irá causar o apagar do arquivo para o qual ela aponta. Da mesma forma, ela "
+"não tem sua própria configuração de permissões, mas mantém as permissões de "
+"seu alvo. Finalmente, ela pode apontar para qualquer tipo de arquivo: "
+"diretórios, arquivos especiais (sockets, named pipes, device files, etc.), e "
+"até mesmo outras ligações simbólicas."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>ln -s <replaceable>target</replaceable> <replaceable>link-name</replaceable></command> command creates a symbolic link, named <replaceable>link-name</replaceable>, pointing to <replaceable>target</replaceable>."
 msgstr ""
+"O comando <command>ln -s <replaceable>alvo</replaceable> <replaceable>nome-"
+"da-ligação</replaceable></command> cria uma ligação simbõlica, nomeada "
+"<replaceable>nome-da-ligação</replaceable>, apontando para "
+"<replaceable>alvo</replaceable>."
 
 #. Tag: para
 #, no-c-format
 msgid "If the target does not exist, then the link is “broken” and accessing it will result in an error indicating that the target file does not exist. If the link points to another link, you will have a “chain” of links that turns into a “cycle” if one of the targets points to one of its predecessors. In this case, accessing one of the links in the cycle will result in a specific error (“too many levels of symbolic links”); this means the kernel gave up after several rounds of the cycle."
 msgstr ""
+"Se o alvo não existir, então a ligação estará “quebrada” e acessá-la irá "
+"resultar em um erro, indicando que o arquivo alvo não existe. Se a ligação "
+"aponta para outra ligação, você terá uma “corrente” de ligações que se "
+"tornará em um “ciclo” se um dos alvos apontar para um de seus antecessores. "
+"Neste caso, ao acessar uma das ligações do ciclo irá resultar em um erro "
+"específico (“muitos níveis de ligações simbólicas”); isso significa que o "
+"kernel desistiu após várias voltas pelo ciclo."
 
 #. Tag: para
 #, no-c-format
 msgid "The timezone, configured during initial installation, is a configuration item for the <emphasis role=\"pkg\">tzdata</emphasis> package. To modify it, use the <command>dpkg-reconfigure tzdata</command> command, which allows you to choose the timezone to be used in an interactive manner. Its configuration is stored in the <filename>/etc/timezone</filename> file. Additionally, the corresponding file in the <filename>/usr/share/zoneinfo</filename> directory is copied in <filename>/etc/localtime</filename>; this file contains the rules governing the dates where daylight saving time is active, for countries that use it."
 msgstr ""
+"O \"timezone\", configurado durante a instalação inicial, é um item da "
+"configuração do pacote <emphasis role=\"pkg\">tzdata</emphasis>. Para "
+"modificá-lo, use o comando <command>dpkg-reconfigure tzdata</command>, o "
+"qual permite a você escolher o \"timezone\" a ser usado de maneira "
+"interativa. Sua configuração é armazenada no arquivo "
+"<filename>/etc/timezone</filename>. Adicionalmente, o arquivo correspondente "
+"no diretório <filename>/usr/share/zoneinfo</filename> é copiado para "
+"<filename>/etc/localtime</filename>; esse arquivo contém as regras que "
+"governam as datas aonde o horário de verão é ativado, para países que o usam."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3105,7 +3136,7 @@ msgstr "<primary>DST</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>daylight saving time</primary>"
-msgstr ""
+msgstr "<primary>horário de verão</primary>"
 
 #. Tag: para
 #, no-c-format

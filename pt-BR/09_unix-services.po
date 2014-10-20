@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-19 02:15+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-10-28 13:27+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.10-dev\n"
+"X-Generator: Weblate 2.0-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -885,7 +885,7 @@ msgid "<primary>VNC</primary>"
 msgstr "<primary>VNC</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>Virtual Network Computing</primary>"
 msgstr "<primary>Virtual Network Computing</primary>"
 
@@ -931,6 +931,15 @@ msgstr "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
 #, no-c-format
 msgid "First, the user must authorize sharing their session. The GNOME and KDE graphical desktop environments include, respectively, <command>vino</command> and <command>krfb</command>, which provide a graphical interface that allows sharing an existing session over VNC (both are identified as <emphasis>Desktop Sharing</emphasis> either in the GNOME application list or in the KDE menu). For other graphical desktop environments, the <command>x11vnc</command> command (from the Debian package of the same name) serves the same purpose; you can make it available to the user with an explicit icon."
 msgstr ""
+"Primeiro, o usuário tem que autorizar o compartilhamento de sua sessão. Os "
+"ambientes gráfico GNOME e KDE  incluem, respectivamente, "
+"<command>vino</command> e <command>krfb</command>, os quais fornecem uma "
+"interface gráfica que permite o compartilhamento de uma sessão existente "
+"através do VNC (ambos são identificados como <emphasis>Desktop "
+"Sharing</emphasis> tanto na lista de aplicações GNOME quanto no menu KDE). "
+"Para outros ambientes gráficos, o comando <command>x11vnc</command> (do "
+"pacote Debian de mesmo nome) serve ao mesmo propósito; você pode fazê-lo "
+"disponível para o usuário com um icone explícito."
 
 #. Tag: indexterm
 #, no-c-format
@@ -956,6 +965,16 @@ msgstr "<primary><emphasis role=\"pkg\">xvnc4viewer</emphasis></primary>"
 #, no-c-format
 msgid "When the graphical session is made available by VNC, the administrator must connect to it with a VNC client. GNOME has <command>vinagre</command> and <command>remmina</command> for that, while KDE includes <command>krdc</command> (in the menu at <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Remote Desktop Client</guimenuitem></menuchoice>). There are other VNC clients that use the command line, such as <command>xvnc4viewer</command> in the Debian package of the same name. Once connected, the administrator can see what's going on, work on the machine remotely, and show the user how to proceed."
 msgstr ""
+"Quando a sessão gráfica se torna disponível através do VNC, o administrador "
+"tem que fazer a conexão com ele com o cliente VNC. O GNOME tem o "
+"<command>vinagre</command> e o <command>remmina</command> para isso, "
+"enquanto o KDE inclui o <command>krdc</command> (no menu em <menuchoice> "
+"<guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Remote "
+"Desktop Client</guimenuitem></menuchoice>). Existem outros clientes VNC que "
+"usam a linha de comando, como o <command>xvnc4viewer</command> no pacote "
+"Debian de mesmo nome. Uma vez conectado, o administrador pode ver o que está "
+"acontecendo, trabalhar na máquina remotamente, e orientar o usuário como "
+"proceder."
 
 #. Tag: title
 #, no-c-format
@@ -971,11 +990,26 @@ msgstr "<primary>túnel SSH</primary><secondary>VNC</secondary>"
 #, no-c-format
 msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"sect.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
 msgstr ""
+"Se você quer fazer a conexão pelo VNC, e você não quer que seus dados sejam "
+"enviados em texto puro pela rede, é possível encapsular os dados através de "
+"um túnel SSH (veja <xref linkend=\"sect.ssh-port-forwarding\" />). Você "
+"simplesmente tem que saber que o VNC usa a porta 5900 por padrão para a "
+"primeira tela (called “localhost:0”), 5901 para a segunda (called "
+"“localhost:1”), etc."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>ssh -L localhost:5901:localhost:5900 -N -T <replaceable>machine</replaceable></command> command creates a tunnel between local port 5901 in the localhost interface and port 5900 of the <replaceable>machine</replaceable> host. The first “localhost” restricts SSH to listening to only that interface on the local machine. The second “localhost” indicates the interface on the remote machine which will receive the network traffic entering in “localhost:5901”. Thus <command>vncviewer localhost:1</command> will connect the VNC client to the remote screen, even though you indicate the name of the local machine."
 msgstr ""
+"O comando <command>ssh -L localhost:5901:localhost:5900 -N -T "
+"<replaceable>máquina</replaceable></command> cria um túnel entre a porta "
+"local 5901 na interface localhost e a porta 5900 da "
+"<replaceable>máquina</replaceable> \"host\". O primeiro “localhost” "
+"restringe o SSH a ouvir apenas nesta interface na máquina local. O segundo "
+"“localhost” indica a interface na máquina remota a qual irá receber o "
+"tráfego de rede entrando em “localhost:5901”. Assim <command>vncviewer "
+"localhost:1</command> irá conectar o cliente VNC a tela remota, mesmo que "
+"você indique o nome da máquina local."
 
 #. Tag: para
 #, no-c-format
@@ -985,7 +1019,7 @@ msgstr "Quando uma sessão VNC é fechada, lembre-se de fechar o túnel por tamb
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Display manager"
-msgstr ""
+msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis>Gerenciador de tela"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1012,21 +1046,39 @@ msgstr "<primary><command>lightdm</command></primary>"
 #, no-c-format
 msgid "<primary>manager</primary><secondary>display manager</secondary>"
 msgstr ""
+"<primary>gerenciador</primary><secondary>gerenciador de tela</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>display manager</primary>"
-msgstr ""
+msgstr "<primary>gerenciador de tela</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>gdm</command>, <command>kdm</command>, <command>lightdm</command>, and <command>xdm</command> are Display Managers. They take control of the graphical interface shortly after boot in order to provide the user a login screen. Once the user has logged in, they execute the programs needed to start a graphical work session."
 msgstr ""
+"<command>gdm</command>, <command>kdm</command>, <command>lightdm</command>, "
+"and <command>xdm</command> são Gerenciadores de Tela. Eles tomam controle da "
+"interface gráfica brevemente depois a inicialização para prover ao usuário "
+"uma tela de login. Uma vez que o usuário tenha feito o login, eles executam "
+"os programas necessários para iniciar uma sessão gráfica de trabalho."
 
 #. Tag: para
 #, no-c-format
 msgid "VNC also works for mobile users, or company executives, who occasionally need to login from their home to access a remote desktop similar to the one they use at work. The configuration of such a service is more complicated: you first install the <emphasis role=\"pkg\">vnc4server</emphasis> package, change the configuration of the display manager to accept <literal>XDMCP Query</literal> requests (for <command>gdm3</command>, this can be done by adding <literal>Enable=true</literal> in the “xdmcp” section of <filename>/etc/gdm3/daemon.conf</filename>), and finally, start the VNC server with <command>inetd</command> so that a session is automatically started when a user tries to login. For example, you may add this line to <filename>/etc/inetd.conf</filename>:"
 msgstr ""
+"VNC também funciona para usuários móveis, ou executivos da empresa, os quais "
+"ocasionalmente precisam fazer o login a partir de suas casas para acessar um "
+"ambiente de trabalho remoto similar ao que eles usam no trabalho. A "
+"configuração desse tipo de serviço é mais complicada: você primeiro instala "
+"o pacote <emphasis role=\"pkg\">vnc4server</emphasis>, altera a configuração "
+"do gerenciador de tela para aceitar requisições do <literal>XDMCP "
+"Query</literal> (no <command>gdm3</command>, isso pode ser feito adicionando "
+"<literal>Enable=true</literal> na sessão “xdmcp” do "
+"<filename>/etc/gdm3/daemon.conf</filename>), e finalmente, iniciar o "
+"servidor VNC com <command>inetd</command> para que a sessão seja iniciada "
+"automaticamente quando o usuário tentar fazer o login. Por exemplo, você "
+"pode adicionar essa linha ao <filename>/etc/inetd.conf</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1037,6 +1089,17 @@ msgstr "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query 
 #, no-c-format
 msgid "Redirecting incoming connections to the display manager solves the problem of authentication, because only users with local accounts will pass the <command>gdm</command> login screen (or equivalent <command>kdm</command>, <command>xdm</command>, etc.). As this operation allows multiple simultaneous logins without any problem (provided the server is powerful enough), it can even be used to provide complete desktops for mobile users (or for less powerful desktop systems, configured as thin clients). Users simply login to the server's screen with <command>vncviewer <replaceable>server</replaceable>:50</command>, because the port used is 5950."
 msgstr ""
+"Redirecionando as conexões de entrada para o gerenciador de tela resolve o "
+"problema de autenticação, porque apenas usuários com contas locais irão "
+"passar pela tela de login do <command>gdm</command> (ou os equivalentes "
+"<command>kdm</command>, <command>xdm</command>, etc.). Como essa operação "
+"permite múltiplos logins simultâneos sem qualquer problema (sendo o servidor "
+"suficientemente poderoso), ele pode ser usado até para fornecer um ambiente "
+"de trabalho completo para usuários móveis (ou para menos poderosos sistema "
+"de ambiente de trabalho, configurado como 'thin clients'). Os usuários "
+"simplesmente fazem o login na tela do servidor com <command>vncviewer "
+"<replaceable>server</replaceable>:50</command>, porque a porta usada é a "
+"5950."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1052,6 +1115,13 @@ msgstr "Gerenciando Direitos"
 #, no-c-format
 msgid "Linux is definitely a multi-user system, so it is necessary to provide a permission system to control the set of authorized operations on files and directories, which includes all the system resources and devices (on a Unix system, any device is represented by a file or directory). This principle is common to all Unix systems, but a reminder is always useful, especially as there are some interesting and relatively unknown advanced uses."
 msgstr ""
+"O Linux é definitivamente um sistema multi-usuário, então é necessário "
+"prover um sistema de permissões para controlar um conjunto de operações "
+"autorizadas em arquivos e diretórios, o que inclui todos os recursos e "
+"dispositivos do sistema (em um sistema Unix, qualquer dispositivo é "
+"representado por um arquivo ou diretório). Esse princípio é comum a todos os "
+"sistemas Unix, porém o lembrete é sempre útil, especialmente porquê existem "
+"alguns interessantes e relativamente avançados usos desconhecidos."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1148,6 +1218,10 @@ msgstr "<primary>execução, direito de</primary>"
 #, no-c-format
 msgid "In the case of a file, these rights are easily understood: read access allows reading the content (including copying), write access allows changing it, and execute access allows you to run it (which will only work if it's a program)."
 msgstr ""
+"No caso de um arquivo,essas permissões são facilmente compreendidas: acesso "
+"de leitura permite ler o conteúdo (incluindo copia), acesso a escrita "
+"permite alterá-lo, e permissão de executar permite rodá-lo (o que apenas irá "
+"funcionar se ele for um programa)."
 
 #. Tag: title
 #, no-c-format
@@ -1158,6 +1232,14 @@ msgstr "<emphasis>SEGURANÇA</emphasis> executáveis <literal>setuid</literal> e
 #, no-c-format
 msgid "Two particular rights are relevant to executable files: <literal>setuid</literal> and <literal>setgid</literal> (symbolized with the letter “s”). Note that we frequently speak of “bit”, since each of these boolean values can be represented by a 0 or a 1. These two rights allow any user to execute the program with the rights of the owner or the group, respectively. This mechanism grants access to features requiring higher level permissions than those you would usually have."
 msgstr ""
+"Duas permissões em particular são relevantes em relação a arquivos "
+"executáveis: <literal>setuid</literal> e <literal>setgid</literal> ("
+"simbolizados pela letra “s”). Note que nós, frequentemente falamos de “bit”, "
+"já que cada um desses valores boleanos podem ser representados por 0 ou 1. "
+"Essas duas permissões permitem que qualquer usuário execute o programa com "
+"os direitos do proprietário ou do grupo, respectivamente. Esse mecanismo "
+"garante acesso a funções que requerem permissões muito restritas, as quais "
+"você geralemente não tem."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1173,11 +1255,24 @@ msgstr "<primary><literal>setgid</literal>, direito</primary>"
 #, no-c-format
 msgid "Since a <literal>setuid</literal> root program is systematically run under the super-user identity, it is very important to ensure it is secure and reliable. Indeed, a user who would manage to subvert it to call a command of their choice could then impersonate the root user and have all rights on the system."
 msgstr ""
+"Como um programa com <literal>setuid</literal> root é sistematicamente "
+"executado com a identidade de super usuário, é muito importante garantir que "
+"ele seja seguro e confiável. Na verdade, um usuário que conseguisse subvertê-"
+"lo a chamar um comando de sua escolha poderia então representar o usuário "
+"root e ter todos os direitos no sistema."
 
 #. Tag: para
 #, no-c-format
 msgid "A directory is handled differently. Read access gives the right to consult the list of its entries (files and directories), write access allows creating or deleting files, and execute access allows crossing through it (especially to go there with the <command>cd</command> command). Being able to cross through a directory without being able to read it gives permission to access the entries therein that are known by name, but not to find them if you do not know their existence or their exact name."
 msgstr ""
+"Um diretório é gerenciado de maneira diferente. O acesso a leitura dá o "
+"direito de consultar a lista de suas entradas (arquivos e diretórios), "
+"acesso a escrita permite criar e apagar arquivos, e acesso a execução "
+"permite navegar por ele (especialmente para usar o comando  "
+"<command>cd</command>). Sendo possível navegar pelo diretório sem ser capaz "
+"de lê-lo, dá a permissão de acessar as entradas dentro dele que são "
+"conhecidas por nome, mas não para encontrá-las se você não sabe de sua "
+"existência ou nome exato."
 
 #. Tag: title
 #, no-c-format
@@ -1196,6 +1291,13 @@ msgstr "<primary><literal>setgid</literal>diretório</primary>"
 #, no-c-format
 msgid "The <literal>setgid</literal> bit also applies to directories. Any newly-created item in such directories is automatically assigned the owner group of the parent directory, instead of inheriting the creator's main group as usual. This setup avoids the user having to change its main group (with the <command>newgrp</command> command) when working in a file tree shared between several users of the same dedicated group."
 msgstr ""
+"O bit <literal>setgid</literal> também é aplicável em diretórios. Qualquer "
+"recém-criado item em um diretório desses é automaticamente atribuído ao "
+"grupo do dono do diretório pai, ao invés de herdar o grupo principal do "
+"criador, como de costume. Essa configuração evita que o usuário tenha que "
+"alterar seu grupo principal (com o comando <command>newgrp</command>) "
+"enquanto trabalha em uma árvore de arquivos compartilhada entre vários "
+"usuários do mesmo dedicado grupo."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1206,6 +1308,12 @@ msgstr "<primary>sticky bit</primary>"
 #, no-c-format
 msgid "The “sticky” bit (symbolized by the letter “t”) is a permission that is only useful in directories. It is especially used for temporary directories where everybody has write access (such as <filename>/tmp/</filename>): it restricts deletion of files so that only their owner (or the owner of the parent directory) can do it. Lacking this, everyone could delete other users' files in <filename>/tmp/</filename>."
 msgstr ""
+"O “sticky” bit (simbolizado pela letra “t”) é uma permissão que é útil "
+"apenas em diretórios. Ele é especialmente usado para diretórios temporários "
+"aonde todos tem acesso a escrita (como em <filename>/tmp/</filename>): ele "
+"restringe o apagar de arquivos para que apenas seu dono (ou o dono do "
+"diretório pai) possa apagá-lo. Sem isso, qualquer um poderia apagar arquivos "
+"de outros usuários em <filename>/tmp/</filename>."
 
 #. Tag: para
 #, no-c-format
@@ -1216,16 +1324,22 @@ msgstr "Três comandos controlam as permissões associadas a um arquivo:"
 #, no-c-format
 msgid "<command>chown <replaceable>user</replaceable> <replaceable>file</replaceable></command> changes the owner of the file;"
 msgstr ""
+"<command>chown <replaceable>usuário</replaceable> "
+"<replaceable>arquivo</replaceable></command> muda o dono do arquivo;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>chgrp <replaceable>group</replaceable> <replaceable>file</replaceable></command> alters the owner group;"
 msgstr ""
+"<command>chgrp <replaceable>grupo</replaceable> "
+"<replaceable>arquivo</replaceable></command> altera o grupo;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>chmod <replaceable>rights</replaceable> <replaceable>file</replaceable></command> changes the permissions for the file."
 msgstr ""
+"<command>chmod <replaceable>direitos</replaceable> "
+"<replaceable>arquivo</replaceable></command> muda as permissões do arquivo."
 
 #. Tag: para
 #, no-c-format
@@ -1287,6 +1401,9 @@ msgstr "<emphasis>DICA</emphasis> Operação recursiva"
 #, no-c-format
 msgid "Sometimes we have to change rights for an entire file tree. All the commands above have a <literal>-R</literal> option to operate recursively in sub-directories."
 msgstr ""
+"Algumas vezes nós temos que mudar os direitos de toda árvore de arquivo. "
+"Todos os comandos acima tem a opção <literal>-R</literal> para operar "
+"recursivamente em sub-diretórios."
 
 #. Tag: para
 #, no-c-format
@@ -1302,6 +1419,10 @@ msgstr "<emphasis>DICA</emphasis> Alterando o usuário e o grupo"
 #, no-c-format
 msgid "Frequently you want to change the group of a file at the same time that you change the owner. The <command>chown</command> command has a special syntax for that: <command>chown <replaceable>user</replaceable>:<replaceable>group</replaceable></command>"
 msgstr ""
+"Frequentemente você quer mudar o grupo de um arquivo ao mesmo tempo que você "
+"muda o dono. O comando <command>chown</command> tem uma sintaxe especial "
+"para isso: <command>chown "
+"<replaceable>usuário</replaceable>:<replaceable>grupo</replaceable></command>"
 
 #. Tag: title
 #, no-c-format
