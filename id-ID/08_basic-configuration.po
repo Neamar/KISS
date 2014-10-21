@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-19 10:56+0700\n"
+"PO-Revision-Date: 2014-10-21 10:06+0700\n"
 "Last-Translator: Samsul Ma'arif <samsul@samsul.web.id>\n"
 "Language-Team: Indonesian <debian-l10n-indonesian@lists.debian.org>\n"
 "Language: \n"
@@ -1701,9 +1701,9 @@ msgstr "Lingkungan Shell"
 #. Tag: para
 #, no-c-format
 msgid "Command interpreters (or shells) are frequently a user's first point of contact with the computer, and they must therefore be rather friendly. Most of them use initialization scripts that allow configuration of their behavior (automatic completion, prompt text, etc.)."
-msgstr ""
+msgstr "Perintah interpreter (atau shell) biasanya merupakan kontak pertama pengguna dengan komputer, dan mereka haruslan lebih bersahabat. Kebanyakan dari mereka menggunakan skrip inisiasi yang memungkinkan konfigurasi kebiasaan mereka (pelengkapan otomatis, teks prompt, dll.)."
 
-#. Tag: indexterm
+# Tag: indexterm
 #, no-c-format
 msgid "<primary>command line interface</primary>"
 msgstr "<primary>antarmuka baris perintah</primary>"
@@ -1726,7 +1726,7 @@ msgstr "<primary><command>bash</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>bash</command>, the standard shell, uses the <filename>/etc/bash.bashrc</filename> initialization script for “interactive” shells, and <filename>/etc/profile</filename> for “login” shells."
-msgstr ""
+msgstr "<command>bash</command>, standar shell, gunakan skrip inisiasi <filename>/etc/bash.bashrc</filename> untuk shell “interactif”, dan <filename>/etc/profile</filename> untuk shell “login”."
 
 #. Tag: title
 #, no-c-format
@@ -1736,7 +1736,7 @@ msgstr "<emphasis>KEMBALI KE DASAR</emphasis> Shell login dan shell (non) intera
 #. Tag: para
 #, no-c-format
 msgid "In simple terms, a login shell is invoked when you log in to the console either locally or remotely via <command>ssh</command>, or when you run an explicit <command>bash --login</command> command. Regardless of whether it's a login shell or not, a shell can be interactive (in an <command>xterm</command>-type terminal for instance); or non-interactive (when executing a script)."
-msgstr ""
+msgstr "Dalam istilah yang sederhana, shell login dipanggil ketika Anda log in ke konsol entah itu secara lokal atau remote melalui <command>ssh</command>, atau ketika Anda menjalankan perintah <command>bash --login</command> secara eksplisit. Tergantung apakah berupa shell login atau bukan, sebuah shell dapat menjadi interaktif (dalam sebuah terminal bertipe-<command>xterm</command> misalnya); atau non-interaktif (ketika mengeksekusi sebuah skrip)."
 
 #. Tag: title
 #, no-c-format
@@ -1746,7 +1746,7 @@ msgstr "<emphasis>PENEMUAN</emphasis> Shell lain, skrip lain"
 #. Tag: para
 #, no-c-format
 msgid "Each command interpreter has a specific syntax and its own configuration files. Thus, <command>zsh</command> uses <filename>/etc/zshrc</filename> and <filename>/etc/zshenv</filename>; <command>csh</command> uses <filename>/etc/csh.cshrc</filename>, <filename>/etc/csh.login</filename> and <filename>/etc/csh.logout</filename>. The man pages for these programs document which files they use."
-msgstr ""
+msgstr "Setiap perintah interpreter memiliki sintaks spesifik dan berkas konfigurasinya. Nah, <command>zsh</command> menggunakan <filename>/etc/zshrc</filename> dan <filename>/etc/zshenv</filename>; <command>csh</command> menggunakan <filename>/etc/csh.cshrc</filename>, <filename>/etc/csh.login</filename> dan <filename>/etc/csh.logout</filename>. Laman man untuk program ini mencatat berkas mana yang mereka gunakan."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1761,7 +1761,7 @@ msgstr "<primary><command>csh</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "For <command>bash</command>, it is useful to activate “automatic completion” in the <filename>/etc/bash.bashrc</filename> file (simply uncomment a few lines)."
-msgstr ""
+msgstr "Untuk <command>bash</command>, sebaiknya aktifkan “pelengkapan otomatis” dalam berkas <filename>/etc/bash.bashrc</filename> (dengan menghapus komentar beberapa baris)."
 
 #. Tag: title
 #, no-c-format
@@ -1776,12 +1776,12 @@ msgstr "<primary>pelengkapan otomatis</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Many command interpreters provide a completion feature, which allows the shell to automatically complete a partially typed command name or argument when the user hits the <keycap>Tab</keycap> key. This lets users work more efficiently and be less error-prone."
-msgstr ""
+msgstr "Beberapa perintah interpreter menyediakan fitur pelengkapan otomatis, yang memungkinkan shell secara otomatis melengkapi sebagian nama perintah yang diketik atau argumen ketika pengguna menekan tombol <keycap>Tab</keycap>. Hal ini memudahkan pengguna bekerja lebih efisien dan tidak lagi rawan-kesalahan."
 
 #. Tag: para
 #, no-c-format
 msgid "This function is very powerful and flexible. It is possible to configure its behavior according to each command. Thus, the first argument following <command>apt-get</command> will be proposed according to the syntax of this command, even if it does not match any file (in this case, the possible choices are <literal>install</literal>, <literal>remove</literal>, <literal>upgrade</literal>, etc.)."
-msgstr ""
+msgstr "Fungsi ini sangat powerful dan fleksibel. Memungkinkan pula untuk mengonfigurasi tingkah-lakunya berdasarkan setiap perintah. Nah, argumen pertama yang mengikuti <command>apt-get</command> akan diajukan berdasarkan sintaks perintah ini, bahkan jika tidak cocok dengan beberapa berkas (dalam hal ini, kemungkinan pilihan ialah <literal>install</literal>, <literal>remove</literal>, <literal>upgrade</literal>, dll.)."
 
 #. Tag: title
 #, no-c-format
@@ -1801,17 +1801,17 @@ msgstr "<primary>tilde</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The tilde is often used to indicate the directory to which the environment variable, <varname>HOME</varname>, points (being the user's home directory, such as <filename>/home/rhertzog/</filename>). Command interpreters automatically make the substitution: <filename>~/hello.txt</filename> becomes <filename>/home/rhertzog/hello.txt</filename>."
-msgstr ""
+msgstr "Tilde biasanya digunakan untuk menunjukkan direktori di mana variabel lingkungan, <varname>HOME</varname>, mengarah (menjadi direktori home pengguna, seperti <filename>/home/rhertzog/</filename>). Perintah interpreter secara otomatis mengganti: <filename>~/hello.txt</filename> menjadi <filename>/home/rhertzog/hello.txt</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "The tilde also allows access to another user's home directory. Thus, <filename>~rmas/bonjour.txt</filename> is synonymous with <filename>/home/rmas/bonjour.txt</filename>."
-msgstr ""
+msgstr "Tilde juga mengizinkan akses ke direktori home pengguna lain. Nah, <filename>~rmas/bonjour.txt</filename> sinonim dengan <filename>/home/rmas/bonjour.txt</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "In addition to these common scripts, each user can create their own <filename>~/.bashrc</filename> and <filename>~/.bash_profile</filename> to configure their shell. The most common changes are the addition of aliases; these are words that are automatically replaced with the execution of a command, which makes it faster to invoke that command. For instance, you could create the <literal>la</literal> alias for the command <command>ls -la | less</command> command; then you only have to type <command>la</command> to inspect the contents of a directory in detail."
-msgstr ""
+msgstr "Sebagai tambahan skrip umum ini, setiap pengguna dapat membuat <filename>~/.bashrc</filename> dan <filename>~/.bash_profile</filename> mereka sendiri untuk mengonfigurasi shell mereka. Perubahan paling umum ialah penambahan alias; merupakan kata yang secara otomatis diganti dengan eksekusi sebuah perintah, membuatnya lebih cepat menjalankan perintah tersebut. Misalnya, Anda dapat membuat alias <literal>la</literal> untuk perintah <command>ls -la | less</command>; kemudian Anda hanya perlu mengetik <command>la</command> untuk melihat isi direktori secara rinci."
 
 #. Tag: title
 #, no-c-format
@@ -1831,12 +1831,12 @@ msgstr "<primary>variabel, lingkungan</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Environment variables allow storage of global settings for the shell or various other programs called. They are contextual (each process has its own set of environment variables) but inheritable. This last characteristic offers the possibility for a login shell to declare variables which will be passed down to all programs it executes."
-msgstr ""
+msgstr "Variabel lingkungan mengizinkan penyimpanan pengaturan global untuk shell atau berbagai program yang dipanggil. Mereka kontekstual (setiap proses memiliki set lingkungan variabel mereka sendiri) namun dapat diturunkan. Karakteristik terakhir menawarkan kemungkinan untuk shell login untuk menyatakan variabel yang akan dilalui semua program yang dieksekusi."
 
 #. Tag: para
 #, no-c-format
 msgid "Setting default environment variables is an important element of shell configuration. Leaving aside the variables specific to a shell, it is preferable to place them in the <filename>/etc/environment</filename> file, since it is used by the various programs likely to initiate a shell session. Variables typically defined there include <varname>ORGANIZATION</varname>, which usually contains the name of the company or organization, and <varname>HTTP_PROXY</varname>, which indicates the existence and location of an HTTP proxy."
-msgstr ""
+msgstr "Pengaturan variabel lingkungan standar merupakan elemen penting dari konfigurasi shell. Membiarkan variabel spesifik ke sebuah shell, sebaiknya disimpan dalam berkas <filename>/etc/environment</filename>, karena dia digunakan oleh berbagai program untuk menginisiasi sesi shell. Variabel khususnya ditentukan di sana termasuk <varname>ORGANIZATION</varname>, di mana biasanya berisi nama perusahaan atau organisasi, dan <varname>HTTP_PROXY</varname>, di mana menunjukkan ada tidaknya dan lokasi sebuah proxy HTTP."
 
 #. Tag: title
 #, no-c-format
@@ -1846,7 +1846,7 @@ msgstr "<emphasis>TIP</emphasis> Semua shell terkonfigurasi identik"
 #. Tag: para
 #, no-c-format
 msgid "Users often want to configure their login and interactive shells in the same way. To do this, they choose to interpret (or “source”) the content from <filename>~/.bashrc</filename> in the <filename>~/.bash_profile</filename> file. It is possible to do the same with files common to all users (by calling <filename>/etc/bash.bashrc</filename> from <filename>/etc/profile</filename>)."
-msgstr ""
+msgstr "Pengguna seringkali ingin mengonfigurasi shell login dan interaktifnya dalam cara yang sama. Untuk melakukannya, mereka memilih untuk meng-interpret (atau “source”) konten dari <filename>~/.bashrc</filename> dalam berkas <filename>~/.bash_profile</filename>. Memungkinkan pula dilakukan hal yang sama dengan berkas umum untuk semua pengguna (dengan memanggil <filename>/etc/bash.bashrc</filename> dari <filename>/etc/profile</filename>)."
 
 #. Tag: title
 #, no-c-format
