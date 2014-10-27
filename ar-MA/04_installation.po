@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-07 21:54+0000\n"
+"PO-Revision-Date: 2014-10-27 12:30+0000\n"
 "Last-Translator: Mohamed Amine <med@mailoo.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -414,9 +414,9 @@ msgstr ""
 "أولا يجب تحديد اسم الجهاز الخاص بمفتاح الـ USB (<literal>/dev/sdb</literal> "
 "مثلاً)، أسهل طريقة لذلك هي فحص رسائل النواة باستخدام الأمر "
 "<command>dmesg</command>، ثم نسخ صورة القرص المُنزّلة سابقا "
-"(debian-7.6.0-amd64-i386-netinst.iso مثلاً) باستخدام الأمر <command>cat "
-"debian-7.6.0-amd64-i386-netinst.iso &gt;/dev/sdb; sync</command> بصلاحيات "
-"الجدر، لأنه يصل إلى مفتاح الـ USB مباشرة ويمسح محتواه."
+"(debian-7.7.0-amd64-netinst.iso مثلاً) باستخدام الأمر <command>cat "
+"debian-7.7.0-amd64-netinst.iso &gt;/dev/sdb; sync</command> بصلاحيات الجدر، "
+"لأنه يصل إلى مفتاح الـ USB مباشرة ويمسح محتواه."
 
 #. Tag: para
 #, no-c-format
@@ -480,7 +480,7 @@ msgstr ""
 "كهذا."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This installation method works in two steps. First, while booting the "
 "computer, the BIOS (or the network card) issues a BOOTP/DHCP request to "
@@ -492,9 +492,9 @@ msgid ""
 "This then launches the Debian installation program, which is executed as "
 "though it were running from the hard drive, a CD-ROM, or a USB key."
 msgstr ""
-"تعمل هذه الطريقة على مرحلتين. أولاً يرسل البيوس (أو بطاقة الشبكة) طلب BOOTP/"
-"DHCP أثناء إقلاع الحاسوب، للحصول آليا على عنوان IP. يتضمن الرد الذي يرسله "
-"خادوم BOOTP أو DHCP، اسم ملف بالإضافة لإعدادت الشبكة. بعد ضبط الشبكة يرسل "
+"تعمل هذه الطريقة على مرحلتين. أولاً يُرسل البيوس (أو بطاقة الشبكة) طلب BOOTP/"
+"DHCP أثناء إقلاع الحاسوب، للحصول آليا على عنوان IP. عندما يرد خادوم BOOTP أو "
+"DHCP فإنه ردّه يتضمن اسم ملف بالإضافة لإعدادت الشبكة. بعد ضبط الشبكة يرسل "
 "الحاسوب العميل طلب TFTP (Trivial File Transfer Protocol) للحصول على الملف "
 "الذي أشير لاسمه سابقًا، لينفذه كمحمّل إقلاع لتشغيل برنامج تثبيت دبيان كما لو "
 "كان ذلك من خلال قرص صلب أو قرص مضغوط أو مفتاح USB."
@@ -520,7 +520,7 @@ msgid "Other Installation Methods"
 msgstr "طرائق أخرى للتثبيت"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "When we have to deploy customized installations for a large number of "
 "computers, we generally choose an automated rather than a manual "
@@ -530,8 +530,10 @@ msgid ""
 "installation CD with preseeding (see <xref linkend=\"sect.d-i-preseeding\" /"
 ">)."
 msgstr ""
-"عندما يتعلق الأمر بنشر تثبيت مخصص على عدة حواسيب، نختار عموما طريقة آلية عوض "
-"اليدوية. "
+"يمكن استخدام FAI (المُتبّث الآلي كُلّيّة Fully Automatic Installer، المُفصّل "
+"في الباب <xref linkend=\"sect.fai\" />)، أو حتى تثبيت مُخصّص  من خلال القرص "
+"المضغوط بتضبيطات مُسبقة (أنظر الباب <xref linkend=\"sect.d-i-preseeding\" "
+"/>)."
 
 #. Tag: title
 #, no-c-format
@@ -556,7 +558,7 @@ msgstr ""
 "نواة الإقلاع و إدخال الخيارات الممكنة، التي ستنقل للنواة خلال عملية التثبيت."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "For a standard installation, you only need to choose “Install” or “Graphical "
 "install” (with the arrow keys), then press the <keycap>Enter</keycap> key to "
@@ -570,20 +572,20 @@ msgid ""
 "version deals better with the large amount of RAM that new computers tend to "
 "have."
 msgstr ""
-"من أجل تثبيت معياري، يكفي أن تختار « Install » أو « Graphical install » ("
+"من أجل تثبيت معياري، يكفي اختيار « Install » أو « Graphical install » ("
 "بواسطة أزرار الأسهم)، ثم الضغط على زر <keycap>Enter</keycap> لبدء عملية "
-"التثبيت. إذا كان الـ DVD-ROM « متعدد المعماريات Multi-arch » (مثل الذي يأتي "
-"مع هذا الكتاب)، والحاسوب يتوفر على معالج Intel أو AMD 64 bit، فإن الخيارات « "
-"64 bit install » و « 64 bit graphical install » في القائمة، تسمح بتثبيت "
-"تنويعة 64 بت (<emphasis>amd64</emphasis>) عوض تنويعة 32 بت المبدئية "
-"(<emphasis>i386</emphasis>). عمليًا، يمكن استخدام تنويعة 64 بت في أغلب "
-"الحالات: المعالجات الحديثة هي معالجات 64 بت، هذه التنويعة تتعامل بشكل أفضل "
+"التثبيت. إذا كان الـ DVD-ROM « متعدد البُنى Multi-arch » (مثل الذي يأتي مع "
+"هذا الكتاب)، والحاسوب يتوفر على معالج Intel أو AMD 64 bit، فإن الخيارات « 64 "
+"bit install » و « 64 bit graphical install » في القائمة، تسمح بتثبيت تنويعة "
+"64 bit (<emphasis>amd64</emphasis>) عوض تنويعة 32 bit المبدئية "
+"(<emphasis>i386</emphasis>). عمليًا، يمكن استخدام تنويعة 64 bit في أغلب "
+"الحالات: المعالجات الحديثة هي معالجات 64 bit، هذه التنويعة تتعامل بشكل أفضل "
 "مع الحجم الكبير للذاكرة التي تتوفر عليها الحواسيب الحديثة."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> 32 or 64 bits?"
-msgstr "<emphasis>GOING FURTHER</emphasis> 32 or 64 bits؟"
+msgstr "<emphasis>التعمق أكثر</emphasis> 32 أو 64 bits"
 
 #. Tag: indexterm
 #, no-c-format
@@ -593,12 +595,12 @@ msgstr "<primary>PAE</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Physical Address Extension</primary>"
-msgstr ""
+msgstr "<primary>Physical Address Extension مُلحق العنونة الفعلية</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>32/64 bits, choice</primary>"
-msgstr ""
+msgstr "<primary>خيار، 32/64 bits</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -621,7 +623,7 @@ msgstr ""
 "خادوم ذو حجم كبير للذاكرة."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "For an office computer (where a few percent difference in performance is "
 "negligible), you must keep in mind that some proprietary programs are not "
@@ -634,12 +636,13 @@ msgid ""
 "<indexterm><primary><command>setarch</command></primary></indexterm> "
 "<indexterm><primary><command>linux32</command></primary></indexterm>"
 msgstr ""
-"بالنسبة لحاسوب مكتبي (حيث )، يجب الأخد في الإعتبار أن بعض البرامج المملوكة "
-"لا تتوفرة على إصدار 64 بت (مثل سكايب). تقنيا يمكن تشغيلها على أنظمة 64 بت، "
-"لكن يجب تثبيت إصدار 32 بت لجميع المكتبات الضرورية (أنظر<xref linkend=\"sect."
-"multi-arch\" /> )، وأحيانًا استخدام <command>setarch</command> أو "
-"<command>linux32</command> (في الحزمة <emphasis role=\"pkg\">util-linux</"
-"emphasis>) لخداع التطبيقات حول طبيعة النظام. "
+"بالنسبة لحاسوب مكتبي (حيث الاختلاف الضئيل في الآداء غير مهم)، يجب الأخد في "
+"الاعتبار أن بعض البرامج المملوكة لا تتوفرة على إصدار 64 bit (مثل سكايب). "
+"تقنيًا يمكن تشغيل هذه البرامج على أنظمة 64 bit، لكن يجب تثبيت إصدار 32 bit "
+"لجميع المكتبات الضرورية (أنظر الباب <xref linkend=\"sect.multi-arch\" /> )، "
+"وربما استخدام <command>setarch</command> أو <command>linux32</command> ("
+"المضمنان في الحزمة <emphasis role=\"pkg\">util-linux</emphasis>) لخداع "
+"التطبيقات حول طبيعة النظام. "
 "<indexterm><primary><command>setarch</command></primary></indexterm> "
 "<indexterm><primary><command>linux32</command></primary></indexterm>"
 
@@ -648,7 +651,7 @@ msgstr ""
 msgid ""
 "<emphasis>IN PRACTICE</emphasis> Installation alongside an existing Windows "
 "system"
-msgstr ""
+msgstr "<emphasis>عمليًا</emphasis> التثبيت بجانب نظام وبندوز موجود مسبقًا"
 
 #. Tag: indexterm
 #, no-c-format
@@ -673,7 +676,7 @@ msgstr ""
 "مرحلتي تجزيء القرص الصلب وإعداد محمّل الإقلاع (أنظر حواشي هذا الباب)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "If you already have a working Windows system, you can even avoid using a CD-"
 "ROM; Debian offers a Windows program that will download a light Debian "
@@ -685,9 +688,9 @@ msgid ""
 "com/\" />"
 msgstr ""
 "إن كان لديك ويندوز قابل للإستخدام، يمكن تفادي استعمال القرص المضغوط؛ يوفر "
-"دبيان برنامجًا لويندوز يقوم بتنزيل نسخة مخفضة من مُثبّت دبيان على القرص "
-"الصلب... ثم تحتاج فقط إلى إعادة تشغيل الحاسوب واختيار بين الإقلاع العادي "
-"لويندوز أو إقلاع برنامج التثبيت.  <ulink type=\"block\" url=\""
+"دبيان برنامجًا لويندوز يقوم بتنزيل نسخة مخفضة من مُثبّت دبيان وإعداده على "
+"القرص الصلب، ثم تحتاج فقط إلى إعادة تشغيل الحاسوب والاختيار بين الإقلاع "
+"العادي لويندوز أو إقلاع برنامج التثبيت.  <ulink type=\"block\" url=\""
 "http://ftp.debian.org/debian/tools/win32-loader/stable/\" /> <ulink type=\""
 "block\" url=\"http://www.goodbye-microsoft.com/\" />"
 
@@ -767,7 +770,7 @@ msgid "Boot screen"
 msgstr "شاشة الإقلاع"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Once booted, the installation program guides you step by step throughout the "
 "process. This section presents each of these steps in detail. Here we follow "
@@ -778,12 +781,11 @@ msgid ""
 "the only difference from “classic” (text-mode) installation is in the visual "
 "appearance."
 msgstr ""
-"بمجرد أن يُقلع، يرشدك برنامج التثبيت خطوة بخطوة طوال العملية. يعرض هذا القسم "
-"كل هذه الخطوات بالتفصيل. سنتبع هنا عملية التثبيت من خلال DVD-ROM متعدد "
-"المعماريات (تحديدًا الإصدار الإصدار 7.6.0)؛ التثبيت <emphasis>netinst "
-"الشبكي</emphasis> بالإضافة للإصدارة النهائية للمُثبّت، قد يبدوان مختلفين بعض "
-"الشيء. سنتطرق أيضًا للتثبيت بالوضع الرسومي، الذي يختلف عن الوضع النصي « "
-"classic » في المظهر فقط."
+"بمجرد الإقلاع، يُرشدك برنامج التثبيت خطوة بخطوة طوال العملية. يعرض هذا القسم "
+"كل هذه الخطوات بالتفصيل. سنتّبع هنا عملية التثبيت من خلال DVD-ROM متعدّد البُ"
+"نى (تحديدًا الإصدار 7.7)؛ أنواع التثبيت الأخرى يمكن أن تكون مختلفة قليلاً. "
+"سنتطرق أيضًا للتثبيت بالوضع الرسومي، الذي يختلف عن الوضع النصي « classic » "
+"في المظهر فقط."
 
 #. Tag: title
 #, no-c-format
@@ -817,21 +819,23 @@ msgid "<emphasis>BACK TO BASICS</emphasis> Navigating with the keyboard"
 msgstr ""
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Some steps in the installation process require you to enter information. "
 "These screens have several areas that may “have focus” (text entry area, "
 "checkboxes, list of choices, OK and Cancel buttons), and the <keycap>TAB</"
 "keycap> key allows you to move from one to another."
 msgstr ""
-"بعض الخطوات في عملية التثبيت تتطلب ادخال معلومات. لدى هذه الشاشات عدة منطاق"
+"تتطلب بعض خطوات عملية التثبيت إدخال المعلومات. يمكن لهذه الشاشات « التركيز » "
+"على عدة مناطق (منطقة إدخال النص و خانات التأشير و لائحة الخيارات و أزرار "
+"الموافقة والإلغاء) يمكن التنقل بينها باستخدام الزر <keycap>TAB</keycap>."
 
 #. Tag: para
 #, no-c-format
 msgid ""
 "In graphical mode, you can use the mouse as you would normally on an "
 "installed graphical desktop."
-msgstr ""
+msgstr "يمكن استخدام الفأرة في الوضع الرسومي مثلما تستخدم في سطح المكتب."
 
 #. Tag: title
 #, no-c-format
@@ -841,10 +845,10 @@ msgstr "اختيار البلد"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>choice</primary><secondary>of country</secondary>"
-msgstr ""
+msgstr "<primary>اختيار</primary><secondary>البلد</secondary>"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The second step consists in choosing your country. Combined with the "
 "language, this information enables the program to offer the most appropriate "
@@ -852,10 +856,13 @@ msgid ""
 "zone. In the United States, a standard QWERTY keyboard is suggested, and a "
 "choice of appropriate time zones is offered."
 msgstr ""
-"الخطوة الثانية تتعلق باختيار البلد. تمكن هذه المعلومة مجتمعة مع اللغة "
+"الخطوة الثانية تتمثل في اختيار البلد. تمكن هذه المعلومة بالإضافة للغة "
 "المختارة، برامج التثبيت من اقتراح تخطيط لوحة المفاتيح المناسب بالإضافة "
 "للمنطقة الزمنية. في حالة اختيار العربية وبلد من المنطقة العربية، التخطيط "
-"العربي هو المُقترح في الغالب باستثناء بعض البلدان، ..."
+"العربي هو المُقترح لأغلب البلدان، لكن تخطيط QWERTY المعياري هو المستخدم "
+"مبدئيًا، يمكن التبديل بينه وبين التخطيط العربي باستخدام الزر Alt+Shif أو "
+"إحدى التركبيات التي يقترحها المُثبّت. تُحدّد المنطقة الزمنية بناءً على البلد "
+"المختار."
 
 #. Tag: title
 #, no-c-format
@@ -877,7 +884,7 @@ msgstr "<primary>تخطيط، لوحة المفاتيح</primary>"
 msgid ""
 "The proposed “American English” keyboard corresponds to the usual QWERTY "
 "layout."
-msgstr ""
+msgstr "لوحة المفاتيح « العربية » المقترحة تتوافق مع التخطيط Arabic QWERTY."
 
 #. Tag: title
 #, no-c-format
@@ -890,7 +897,7 @@ msgid "Detecting Hardware"
 msgstr "كشف العتاد"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This step is completely automatic in the vast majority of cases. The "
 "installer detects your hardware, and tries to identify the CD-ROM drive used "
@@ -902,9 +909,9 @@ msgid ""
 msgstr ""
 "في أغلب الحالات هذه الخطوة آلية بالكامل. يكشف المُثبّت العتاد، ويحاول التعرّ"
 "ف على محرك الأقراص المستخدم، للوصول لمحتواه. يُحمّل المُثبّت الوحدات "
-"الموافقة لمكونات العتاد المُكتشَف، ثم يصل القرص المضغوط لقراءته. بما أن "
-"الخطوات السابقة مضمنة بالكامل في القرص الذي أقلع منه، يُحمّل البيوس في "
-"الذاكرة ملفًا محدود الحجم أثناء إقلاع القرص."
+"الموافقة لمكونات العتاد المُكتشَف، ثم « يَصِلُ » القرص المضغوط لقراءته. بما "
+"أن الخطوات السابقة مضمنة بالكامل في القرص الذي أُقلع منه، يُحمّل البيوس ملفً"
+"ا محدود الحجم في الذاكرة أثناء إقلاع القرص."
 
 #. Tag: para
 #, no-c-format
@@ -977,6 +984,7 @@ msgid ""
 "<primary>configuration</primary><secondary>network</"
 "secondary><tertiary>static</tertiary>"
 msgstr ""
+"<primary>ضبط</primary><secondary>شبكة</secondary><tertiary>ثابت</tertiary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -984,6 +992,7 @@ msgid ""
 "<primary>configuration</primary><secondary>network</"
 "secondary><tertiary>DHCP</tertiary>"
 msgstr ""
+"<primary>ضبط</primary><secondary>شبكة</secondary><tertiary>DHCP</tertiary>"
 
 #. Tag: para
 #, no-c-format
@@ -997,8 +1006,8 @@ msgstr ""
 "لتكون العملية آلية قدر الإمكان، يحاول المُثبّت ضبط الشبكة آليًا بواسطة DHCP ("
 "لـ IPv4) و مكتشف الشبكة لـ IPv6. إن فشلت هذه العملية، تُقترح المزيد من "
 "الخيارات: محاولة تهيئة الشبكة آليًا مجدّدًا، محاولة تهيئة الشبكة آليًا مجدّدً"
-"ا أو محاولة تهيئة الشبكة آليًا مجدّدًا مع اسم مضيف DHCP أو هيّء الشبكة يدويً"
-"ا (« configuration » مترجمة « تهيئة » في المُثبّت)."
+"ا أو محاولة تهيئة الشبكة آليًا مجدّدًا مع اسم مضيف DHCP أو هيّء الشبكة "
+"يدويًا."
 
 #. Tag: para
 #, no-c-format
@@ -1007,7 +1016,7 @@ msgid ""
 "potential gateway, a machine name, and a domain name."
 msgstr ""
 "الخيار الأخير يتطلب عنوان IP و subnet mask و عنوان IP البوابة و كل من اسم "
-"الآلة و النطاق."
+"الحاسوب و النطاق."
 
 #. Tag: title
 #, no-c-format
@@ -1025,7 +1034,7 @@ msgid ""
 "before pressing the <keycap>Enter</keycap> key."
 msgstr ""
 "إن كانت الشبكة المحلية مُجهّزة بخادوم DHCP ولا تريد استخدامه لتفضيلك تحديد "
-"عنوان ثابت للآلة أثناء التثبيت، يمكن إضافة الخيار "
+"عنوان ثابت للحاسوب أثناء التثبيت، يمكن إضافة الخيار "
 "<userinput>netcfg/use_dhcp=false</userinput> عند الإقلاع من القرص. تحتاج فقط "
 "تحديد المدخلة المرغوبة من القائمة بالضغط على الزر <keycap>TAB</keycap> و "
 "إضافة الخيار المرغوب قبل الضغط على الزر <keycap>Enter</keycap>."
@@ -1036,7 +1045,7 @@ msgid "<emphasis>BEWARE</emphasis> Do not improvise"
 msgstr "<emphasis>تنبيه</emphasis> لا ترتجل"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Many local area networks are based on an implicit assumption that all "
 "machines can be trusted, and inadequate configuration of a single computer "
@@ -1044,7 +1053,11 @@ msgid ""
 "machine to a network without first agreeing with its administrator on the "
 "appropriate settings (for example, the IP address, netmask, and broadcast "
 "address)."
-msgstr "ترتكز العديد من الشبكات المحلية على "
+msgstr ""
+"ترتكز العديد من الشبكات المحلية على افتراض  ضمني يتمثل في الثقة بجميع الآلات،"
+" أيُّ تضبيط غير ملائم لحاسوب يتسبب في اضطراب كامل الشبكة. لهذا لا يجب ربط "
+"حاسوبك بشبكة دون اتفاق مُسبق مع مديرها حول الإعدادات المناسبة (مثلا، عنوان "
+"الـ IP و قناع الشبكة و عنوان البث)."
 
 #. Tag: title
 #, no-c-format
@@ -1331,7 +1344,7 @@ msgstr ""
 "الملفات و الأدلّة الثانوية المتوفرة تحت <filename>/home/</filename>)."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The last partitioning method, called “Separate <filename>/home</filename>, "
 "<filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</"
@@ -1346,17 +1359,18 @@ msgid ""
 "filename>). The daemon data (especially logs) can no longer clog up the rest "
 "of the system."
 msgstr ""
-"الطريقة الأخيرة للتجزيء تسمى « الأجزاء <filename>/home</filename> و "
+"الطريقة الأخيرة للتجزيء، المسماة « الأجزاء <filename>/home</filename> و "
 "<filename>/usr</filename> و <filename>/var</filename> و "
-"<filename>/tmp</filename> منفصلة » وهي ملائمة للخوادم والأنظمة متعددة "
-"المستخدمين وتتمثل في تجزيء شجرة الملفات إلى عدة جزاء: بالإضافة لجزء الجدر "
+"<filename>/tmp</filename> منفصلة » ملائمة للخوادم والأنظمة متعددة المستخدمين "
+"وتتمثل في تجزيء شجرة الملفات إلى عدة جزاء: بالإضافة لجزء الجدر "
 "(<filename>/</filename>) وجزء حسابات المستخدمين "
 "(<filename>/home/</filename>)، توفر أيضًا جزءًا للتطبيقات "
 "(<filename>/usr/</filename>) و لبيانات برمجيات الخوادم "
 "(<filename>/var/</filename>) و للملفات المؤقتة (<filename>/tmp/</filename>). "
-"لهذه الأجزاء العديد من المزايا، حيث لا يمكن للمستخدمين إقفال الخادم باستنفاد "
-"كل مساحة القرص الصلب (يمكنهم فقط ملء <filename>/tmp/</filename> و "
-"<filename>/home/</filename>). بيانات العفريت (daemon data) (السجلات خاصة)"
+"لهذه الأجزاء العديد من المزايا، حيث لا يمكن للمستخدمين إقفال الخادوم بسبب "
+"استنفاد مساحة القرص الصلب (يمكنهم فقط ملء <filename>/tmp/</filename> و "
+"<filename>/home/</filename>). بيانات العفريت (daemon data) (السجلات خاصة) لا "
+"يمكنها اقفال باقي النظام."
 
 #. Tag: title
 #, no-c-format
@@ -1406,7 +1420,7 @@ msgstr ""
 "العديد من الميزات التي تتطلب إلى يومنا هذا استخدام LVM أو RAID."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "A journalized filesystem (such as <emphasis>ext3</emphasis>, <emphasis>ext4</"
 "emphasis>, <emphasis>btrfs</emphasis>, <emphasis>reiserfs</emphasis>, or "
@@ -1422,12 +1436,17 @@ msgid ""
 "disk has not changed, they have remained coherent. This is nothing more nor "
 "less than a transactional mechanism applied to the filesystem."
 msgstr ""
-"تتخذ أنظمة الملفات المزودة بقيد (أو سِجلّ) حوادث (journalized filesystem) ("
+"تخذ أنظمة الملفات المزودة بقيد (أو سِجلّ) حوادث (journalized filesystem) ("
 "مثل <emphasis>ext3</emphasis> و <emphasis>ext4</emphasis> و "
 "<emphasis>btrfs</emphasis> و <emphasis>reiserfs</emphasis> و "
 "<emphasis>xfs</emphasis>) تدابير خاصة لضمان العودة إلى حالة سليمة سابقة بعد "
 "انقطاع مفاجئ دون الحاجة إلى تحليل كامل القرص (كما كان الحال مع نظام "
-"<emphasis>ext2</emphasis>). هذه الوظيفة "
+"<emphasis>ext2</emphasis>). تتمّ هذه الوظيفة عن طريق ملء قيْد يصف العمليات "
+"التي سيتم إجرائها قبل تنفيذها فعليًا. في حالة توقّف عملية ما، سيمكن  « إعادة "
+"تشغيلها » من القيْد. وعلى العكس، إن حدث توقّف أثناء تحديث القيْد، يُتجاهل "
+"آخر طلب: يمكن فقدان البيانات التي تكون كتابتها جارية، لكن تبقى البيانات "
+"الموجودة على القرص التي لم يتم تغييرها سليمة. يتعلق الأمر دون زيادة أو نقصان "
+"بآلية المعاملات المطبقة على نظام الملفات."
 
 #. Tag: para
 #, no-c-format
@@ -1475,7 +1494,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Shrinking a Windows partition."
-msgstr ""
+msgstr "<emphasis>عمليًا</emphasis> تقليص جزء ويندوز."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2201,7 +2220,7 @@ msgid ""
 "fine-tuned and completed later on, but this provides a good starting point "
 "in a simple manner."
 msgstr ""
-"تسمح الخطوة التالية على نطاق واسع اختيار نوع التثبيت المراد على الآلة؛ "
+"تسمح الخطوة التالية على نطاق واسع اختيار نوع التثبيت المراد على الحاسوب؛ "
 "المَهمّات العشرة المقترحة تُمثّل قوائم الحزم التي ستُتَبّث. لائحة الحزم "
 "المنتقاة ستُضبط وتُتَبّث لاحقًا، على الرغم من ذلك فإن هذه المرحلة تُقدم نقطة "
 "انطلاق جيدة بطريقة بسيطة."
@@ -2218,9 +2237,9 @@ msgid ""
 msgstr ""
 "بعض الحزم تُتَبّث آليًا حسب العتاد المكشوف (شكرًا لبرنامج <command>discover-"
 "pkginstall</command> المتوفر في الحزمة <emphasis role=\"pkg\""
-">discover</emphasis>). في حالة كشف آلة افتراضية مثلا، سيُتبّث البرنامج "
+">discover</emphasis>). في حالة كشف حاسوب افتراضية مثلا، سيُتبّث البرنامج "
 "الحزمة <emphasis role=\"pkg\">virtualbox-ose-guest-dkms</emphasis> التي "
-"ستسمح بتكامل الآلة الافتراضية مع النظام المضيف."
+"ستسمح بتكامل الحاسوب الافتراضي مع النظام المضيف."
 
 #. Tag: title
 #, no-c-format
@@ -2418,7 +2437,7 @@ msgid ""
 "and <command>synaptic</command> (“Synaptic Package Manager” in the menus)."
 msgstr ""
 "تمثل الحزم المثبّتة لائحة الحزم المنتقاة أثناء التثبيت، لكن ليس بالضرورة "
-"الاستخدام الذي ستوجه إلية الآلة. لذا قد ترغب في استخدام أداة إدارة الحزم "
+"الاستخدام الذي سيوجه إلي الحاسوب. لذا قد ترغب في استخدام أداة إدارة الحزم "
 "لتنقيح لائحة الحزم المُثبّتة. الأداتان الأكثر استخدامًا (التي تُتبّث عند "
 "اختيار « Debian desktop environment ») هما <command>apt</command> (مُتاحة من "
 "سطر الأوامر) و <command>synaptic</command> (« Synaptic Package Manager » في "
