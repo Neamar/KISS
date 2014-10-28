@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-28 13:27+0200\n"
-"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
+"PO-Revision-Date: 2014-10-28 20:31+0200\n"
+"Last-Translator: Willer Gomes Junior <willer@ogomes.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -1345,6 +1345,21 @@ msgstr ""
 #, no-c-format
 msgid "There are two ways of presenting rights. Among them, the symbolic representation is probably the easiest to understand and remember. It involves the letter symbols mentioned above. You can define rights for each category of users (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>), by setting them explicitly (with <literal>=</literal>), by adding (<literal>+</literal>), or subtracting (<literal>-</literal>). Thus the <literal>u=rwx,g+rw,o-r</literal> formula gives the owner read, write, and execute rights, adds read and write rights for the owner group, and removes read rights for other users. Rights not altered by the addition or subtraction in such a command remain unmodified. The letter <literal>a</literal>, for “all”, covers all three categories of users, so that <literal>a=rx</literal> grants all three categories the same rights (read and execute, but not write)."
 msgstr ""
+"Há duas formas de apresentar direitos. Entre eles, a representação simbólica "
+"é provavelmente o mais fácil de entender e lembrar. Ela envolve os símbolos "
+"das letras mencionadas acima. Você pode definir os direitos de cada "
+"categoria de usuários "
+"(<literal>u</literal>/<literal>g</literal>/<literal>o</literal>), definindo-"
+"as explicitamente (com <literal>=</literal>), adicionando "
+"(<literal>+</literal>), ou subtraindo (<literal>-</literal>). Assim, as "
+"permissões <literal>u=rwx,g+rw,o-r</literal> fornecem ao proprietário a "
+"permissão de ler, escrever e executar, acrescenta permissão de ler e "
+"escrever  para o grupo proprietário, e remove a permissão de leitura para "
+"outros usuários. Direitos não alterados pela adição ou subtração de tal "
+"comando não sofresão alterações. A letra <literal>a</literal>, for “all”,  "
+"para \"todos\", abrange as três categorias de usuários, de modo que "
+"<literal>a=rx</literal> concede todas as três categorias os mesmos direitos ("
+"leitura e execução, mas não de escrita)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1376,21 +1391,47 @@ msgstr "<primary>direitos</primary><secondary>reresentação octal</secondary>"
 #, no-c-format
 msgid "The (octal) numeric representation associates each right with a value: 4 for read, 2 for write, and 1 for execute. We associate each combination of rights with the sum of the figures. Each value is then assigned to different categories of users by putting them end to end in the usual order (owner, group, others)."
 msgstr ""
+"A representação numérica (octal) associa cada direito com um valor: 4 para "
+"leitura, 2 para gravação, e um para execução. Nós associamos cada combinação "
+"de direitos com a soma das figuras. Cada valor é então atribuído a "
+"diferentes categorias de usuários, colocando-os de ponta a ponta na ordem "
+"usual (proprietário, grupo, outros)."
 
 #. Tag: para
 #, no-c-format
 msgid "For instance, the <command>chmod 754 <replaceable>file</replaceable></command> command will set the following rights: read, write and execute for the owner (since 7 = 4 + 2 + 1); read and execute for the group (since 5 = 4 + 1); read-only for others. The <literal>0</literal> means no rights; thus <command>chmod 600 <replaceable>file</replaceable></command> allows for read/write rights for the owner, and no rights for anyone else. The most frequent right combinations are <literal>755</literal> for executable files and directories, and <literal>644</literal> for data files."
 msgstr ""
+"Por exemplo, o comando <command>chmod 754 "
+"<replaceable>arquivo</replaceable></command> definirá os seguintes direitos: "
+"leitura, escrita e execução para o proprietário (já que 7 = 4 + 2 + 1); "
+"leitura e execução para o grupo (já que 5 = 4 + 1); para os outros somente "
+"leitura . O <literal>0</literal> significa que não há direitos; assim "
+"<command>chmod 600 <replaceable>arquivo</replaceable></command> concede "
+"direito de leitura e gravação ao proprietário, e nenhum direito para "
+"qualquer outra pessoa. As combinações certas mais freqüentes são "
+"<literal>755</literal> para arquivos executáveis e diretórios, e "
+"<literal>644</literal> para arquivos de dados."
 
 #. Tag: para
 #, no-c-format
 msgid "To represent special rights, you can prefix a fourth digit to this number according to the same principle, where the <literal>setuid</literal>, <literal>setgid</literal> and <literal>sticky</literal> bits are 4, 2 and 1, respectively. <command>chmod 4754</command> will associate the <literal>setuid</literal> bit with the previously described rights."
 msgstr ""
+"Para representar os direitos especiais, você pode prefixar um quarto dígito "
+"para este número de acordo com o mesmo princípio, onde os bits "
+"<literal>setuid</literal>, <literal>setgid</literal> e "
+"<literal>sticky</literal> são 4, 2 e 1, respectivamente, <command>chmod 4754 "
+"</command> associará o <literal>setuid</literal> aos direitos descritos "
+"anteriormente."
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the use of octal notation only allows to set all the rights at once on a file; you can not use it to simply add a new right, such as read access for the group owner, since you must take into account the existing rights and compute the new corresponding numerical value."
 msgstr ""
+"Observe que o uso da notação octal só permite definir todos os direitos de "
+"uma só vez em um arquivo; você não pode usá-lo para simplesmente adicionar "
+"um novo direito, como acesso de leitura para o proprietário do grupo, uma "
+"vez que você deve levar em conta os direitos já existentes e calcular o novo "
+"valor numérico correspondente."
 
 #. Tag: title
 #, no-c-format
