@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-31 14:01+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-11-05 14:17+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/08_basic-configuration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -3142,6 +3142,9 @@ msgstr "<primary>horário de verão</primary>"
 #, no-c-format
 msgid "When you need to temporarily change the timezone, use the <varname>TZ</varname> environment variable, which takes priority over the configured system default:"
 msgstr ""
+"Quando você precisar alterar temporariamente o fuso-horário (timezone), use "
+"a variável de ambiente <varname>TZ</varname>, a qual tem prioridade sobre a "
+"configuração padrão do sistema:"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3232,6 +3235,13 @@ msgstr ""
 #, no-c-format
 msgid "However, if you manage a large network, it is recommended that you install your own NTP server, which will synchronize with the public servers. In this case, all the other machines on your network can use your internal NTP server instead of increasing the load on the public servers. You will also increase homogeneity with your clocks, since all the machines will be synchronized on the same source, and this source is very close in terms of network transfer times."
 msgstr ""
+"Contudo, se você gerencia uma grande rede, é recomendável que você instale "
+"seu próprio servidor NTP, o qual irá sincronizar com os servidores públicos. "
+"Neste caso, todas as outras máquinas de sua rede podem usar seu servidor NTP "
+"interno ao invés de aumentar a carga em servidores públicos. Você irá também "
+"aumentar a homogeneidade com seus relógios, já que todas as máquina serão "
+"sincronizadas pela mesma fonte, e essa fonte está bem próxima em termos de "
+"tempo de transferência de rede."
 
 #. Tag: title
 #, no-c-format
@@ -3242,6 +3252,11 @@ msgstr "Para Estações de Trabalho"
 #, no-c-format
 msgid "Since work stations are regularly rebooted (even if only to save energy), synchronizing them by NTP at boot is enough. To do so, simply install the <emphasis role=\"pkg\">ntpdate</emphasis> package. You can change the NTP server used if needed by modifying the <filename>/etc/default/ntpdate</filename> file."
 msgstr ""
+"Como as estações de trabalho são reinicializadas regularmente (ainda que "
+"apenas para economizar energia), sincronizá-las pelo NTP na inicialização é "
+"o suficiente. Para fazer isso, simplesmente instale o pacote <emphasis role="
+"\"pkg\">ntpdate</emphasis>. Você pode alterar o servidor NTP usado, se "
+"necessário, modificando o arquivo <filename>/etc/default/ntpdate</filename>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3297,6 +3312,12 @@ msgstr "<primary>DCF-77</primary>"
 #, no-c-format
 msgid "If time synchronization is particularly crucial to your network, it is possible to equip a server with a GPS module (which will use the time from GPS satellites) or a DCF-77 module (which will sync time with the atomic clock near Frankfurt, Germany). In this case, the configuration of the NTP server is a little more complicated, and prior consultation of the documentation is an absolute necessity."
 msgstr ""
+"Se a sincronização do horário for particularmente crucial para sua rede, é "
+"possível equipar um servidor com o módulo GPS (o qual irá usar o horário a "
+"partir de satélites GPS) ou o módulo DCF-77 (o qual irá sincronizar o "
+"horário com um relógio atômico perto de Frankfurt, Alemanha). Neste caso, a "
+"configuração do servidor NTP é um pouco mais complicada e uma consulta "
+"prévia a documentação é absolutamente necessária."
 
 #. Tag: title
 #, no-c-format
@@ -3327,6 +3348,22 @@ msgstr "<primary><command>logrotate</command></primary>"
 #, no-c-format
 msgid "Log files can grow, fast, and it is necessary to archive them. The most common scheme is a rotating archive: the log file is regularly archived, and only the latest <replaceable>X</replaceable> archives are retained. <command>logrotate</command>, the program responsible for these rotations, follows directives given in the <filename>/etc/logrotate.conf</filename> file and all of the files in the <filename>/etc/logrotate.d/</filename> directory. The administrator may modify these files, if they wish to adapt the log rotation policy defined by Debian. The <citerefentry><refentrytitle>logrotate</refentrytitle> <manvolnum>1</manvolnum></citerefentry> man page describes all of the options available in these configuration files. You may want to increase the number of files retained in log rotation, or move the log files to a specific directory dedicated to archiving them rather than delete them. You could also send them by e-mail to archive them elsewhere."
 msgstr ""
+"Arquivos de log podem crescer rapidamente e é necessário arquivá-los. O "
+"esquema mais comum é a rotação dos arquivos: o arquivo de log é arquivado "
+"regularmente, e apenas os últimos <replaceable>X</replaceable> arquivos são "
+"mantidos. <command>logrotate</command>, o programa responsável por estas "
+"rotações, segue as diretivas especificadas no arquivo "
+"<filename>/etc/logrotate.conf</filename> e em todos os arquivos dentro do "
+"diretório <filename>/etc/logrotate.d/</filename>. O administrador pode "
+"modificar esses arquivos, se ele quiser adaptar a política de rotação dos "
+"logs definidas pelo Debian. A página de manual do "
+"<citerefentry><refentrytitle>logrotate</refentrytitle> "
+"<manvolnum>1</manvolnum></citerefentry> descreve todas as opções disponíveis "
+"nesses arquivos de configuração. Você pode querer aumentar o número de "
+"arquivos retidos na rotação dos arquivos de log, ou mover os arquivos de log "
+"para um diretório específico, dedicado a arquivá-los ao invés de apagá-los. "
+"Você pode também enviá-los, por email, para arquivá-los em outro lugar "
+"qualquer."
 
 #. Tag: para
 #, no-c-format

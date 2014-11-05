@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-28 20:31+0200\n"
-"Last-Translator: Willer Gomes Junior <willer@ogomes.com>\n"
+"PO-Revision-Date: 2014-11-03 13:19+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -1450,6 +1450,15 @@ msgstr ""
 #, no-c-format
 msgid "The distinction between directories and files sometimes causes problems with recursive operations. That's why the “X” letter has been introduced in the symbolic representation of rights. It represents a right to execute which applies only to directories (and not to files lacking this right). Thus, <command>chmod -R a+X <replaceable>directory</replaceable></command> will only add execute rights for all categories of users (<literal>a</literal>) for all of the sub-directories and files for which at least one category of user (even if their sole owner) already has execute rights."
 msgstr ""
+"A distinção entre diretórios e arquivos às vezes causa problemas com "
+"operações recursivas. Por isso que a letra “X” foi introduzida na "
+"representação simbólica dos direitos. Ela representa o direito de executar, "
+"aplicado apenas a diretórios (e não a arquivos que não tem esse direito). "
+"Assim, <command>chmod -R a+X <replaceable>diretório</replaceable></command> "
+"irá, apenas, adicionar direitos de execução para todas as categorias de "
+"usuários (<literal>a</literal>) para todos os sub-diretórios e arquivos para "
+"os quais ao menos uma categoria de usuário (mesmo que seja a única "
+"proprietária) já tenha direito de execução."
 
 #. Tag: title
 #, no-c-format
@@ -1474,6 +1483,13 @@ msgstr "<emphasis>APROFUNDANDO</emphasis> <command>umask</command>"
 #, no-c-format
 msgid "When an application creates a file, it assigns indicative permissions, knowing that the system automatically removes certain rights, given by the command <command>umask</command>. Enter <command>umask</command> in a shell; you will see a mask such as <computeroutput>0022</computeroutput>. This is simply an octal representation of the rights to be systematically removed (in this case, the write right for the group and other users)."
 msgstr ""
+"Quando uma aplicação cria um arquivo,ela atribui as permissões indicativas, "
+"sabendo que o sistema automaticamente remove certos direitos, devido ao "
+"comando <command>umask</command>. Digite <command>umask</command> em um "
+"shell; você verá uma máscara como <computeroutput>0022</computeroutput>. "
+"Issp é simplesmente uma representação octal  dos direitos a serem "
+"sistematicamente removidos (neste caso, o direito de escrita para o grupo e "
+"outros usuários)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1483,17 +1499,21 @@ msgstr "<primary>umask</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>rights</primary><secondary>mask</secondary>"
-msgstr ""
+msgstr "<primary>direitos</primary><secondary>máscara</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mask</primary><secondary>rights mask</secondary>"
-msgstr ""
+msgstr "<primary>máscara</primary><secondary>direitos máscara</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you give it a new octal value, the <command>umask</command> command modifies the mask. Used in a shell initialization file (for example, <filename>~/.bash_profile</filename>), it will effectively change the default mask for your work sessions."
 msgstr ""
+"Se você der a ela um novo valor octal, o comando <command>umask</command> "
+"modifica a máscara. Usado em um arquivo de inicialização do shell (por "
+"exemplo, <filename>~/.bash_profile</filename>), ele irá efetivamente alterar "
+"a máscara padrão para suas sessões de trabalho."
 
 #. Tag: title
 #, no-c-format
@@ -1514,6 +1534,13 @@ msgstr "<primary>administração, interfaces</primary>"
 #, no-c-format
 msgid "Using a graphical interface for administration is interesting in various circumstances. An administrator does not necessarily know all the configuration details for all their services, and doesn't always have the time to go seeking out the documentation on the matter. A graphical interface for administration can thus accelerate the deployment of a new service. It can also simplify the setup of services which are hard to configure."
 msgstr ""
+"Usar uma interface gráfica para administração é interessante em várias "
+"circunstâncias. Um administrador não necessariamente sabe todos os detalhes "
+"de configuração de todos os serviços, e nem sempre tem tempo para sair "
+"pesquisando na documentação sobre o assunto. Uma interface gráfica para "
+"administração pode assim acelerar a implantação de um novo serviço. Ela pode "
+"ainda simplificar a configuração de serviços os quais são difíceis de "
+"configurar."
 
 #. Tag: para
 #, no-c-format
@@ -1545,6 +1572,12 @@ msgstr ""
 #, no-c-format
 msgid "Sadly, <command>webmin</command> is no longer part of Debian. Its Debian maintainer — Jaldhar H. Vyas — removed the packages he created because he no longer had the time required to maintain them at an acceptable quality level. Nobody has officially taken over, so <emphasis role=\"distribution\">Wheezy</emphasis> does not have the <command>webmin</command> package."
 msgstr ""
+"Infelizmente, <command>webmin</command> não é mais parte do Debian. Seu "
+"mantenedor Debian — Jaldhar H. Vyas — removeu os pacotes que ele criou "
+"porque ele não tinha mais o tempo necessário para mantê-los em um nível de "
+"qualidade aceitável. Ninguém oficialmente assumiu a tarefa, então a <"
+"emphasis role=\"distribution\">Wheezy</emphasis> não tem o pacote "
+"<command>webmin</command>."
 
 #. Tag: para
 #, no-c-format
