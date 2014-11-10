@@ -1,225 +1,579 @@
 #
-# AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Muhammad Saied <msaied93@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2012-06-01T20:23:58\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2014-11-23 06:14+0200\n"
+"Last-Translator: Muhammad Saied <msaied93@gmail.com>\n"
+"Language-Team: Arabic <debian-l10n-arabic@lists.debian.org>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
-"Content-Type: application/x-publican; charset=UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && "
+"n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Lokalize 1.5\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Backport"
-msgstr ""
+msgstr "نقل خلفي"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Rebuild"
-msgstr ""
+msgstr "إعادة بناء"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Source package"
-msgstr ""
+msgstr "حزمة مصدرية"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Archive"
-msgstr ""
+msgstr "أرشيف"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Meta-package"
-msgstr ""
+msgstr "حزمة فوقية"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Debian Developer"
-msgstr ""
+msgstr "مطور دبيان"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Maintainer"
-msgstr ""
+msgstr "مشرف"
 
 #. Tag: title
 #, no-c-format
 msgid "Creating a Debian Package"
-msgstr ""
+msgstr "إنشاء حزمة دبيان"
 
 #. Tag: para
 #, no-c-format
-msgid "It is quite common, for an administrator who has been handling Debian packages in a regular fashion, to eventually feel the need to create their own packages, or to modify an existing package. This chapter aims to answer the most common questions in this field, and provide the required elements to take advantage of the Debian infrastructure in the best way. With any luck, after trying your hand for local packages, you may even feel the need to go further than that and join the Debian project itself!"
+msgid ""
+"It is quite common, for an administrator who has been handling Debian "
+"packages in a regular fashion, to eventually feel the need to create their "
+"own packages, or to modify an existing package. This chapter aims to answer "
+"the most common questions in this field, and provide the required elements to "
+"take advantage of the Debian infrastructure in the best way. With any luck, "
+"after trying your hand for local packages, you may even feel the need to go "
+"further than that and join the Debian project itself!"
 msgstr ""
+"من الشائع جداً، بين مديري النظم الذين يتعاملون مع حزم جبيان بشكل منتظم، أن "
+"يصلوا إلى مرحلة يحتاجون فيها لإنشاء حزم خاصة بهم، أو لتعديل حزمة سابقة. يهدف "
+"هذا الفصل للإجابة عن أكثر الأسئلة شيوعاً في هذا المجال، وتقديم العناصر "
+"اللازمة للاستفادة من بنية دبيان التحتية بأفضل طريقة ممكنة. ومع بعض الحظ، قد "
+"تشعر ‒بعد تجربة مهاراتك في الحزم المحلية‒ بالحاجة للغوص أكثر من ذلك وتنضم "
+"لمشروع دبيان نفسه!"
 
 #. Tag: title
 #, no-c-format
 msgid "Rebuilding a Package from its Sources"
-msgstr ""
+msgstr "إعادة بناء حزمة من المصدر"
 
 #. Tag: para
 #, no-c-format
-msgid "Rebuilding a binary package is required under several sets of circumstances. In some cases, the administrator needs a software feature that requires the software to be compiled from sources, with a particular compilation option; in others, the software as packaged in the installed version of Debian is not recent enough. In the latter case, the administrator will usually build a more recent package taken from a newer version of Debian — such as <emphasis role=\"distribution\">Testing</emphasis> or even <emphasis role=\"distribution\">Unstable</emphasis> — so that this new package works in their <emphasis role=\"distribution\">Stable</emphasis> distribution; this operation is called “backporting”. As usual, care should be taken, before undertaking such a task, to check whether it has been done already — a quick look on the Package Tracking System's page for that package will reveal that information. <ulink type=\"block\" url=\"http://packages.qa.debian.org/\" /> <indexterm><primary>backport</primary></indexterm>"
+msgid ""
+"Rebuilding a binary package is required under several sets of circumstances. "
+"In some cases, the administrator needs a software feature that requires the "
+"software to be compiled from sources, with a particular compilation option; "
+"in others, the software as packaged in the installed version of Debian is not "
+"recent enough. In the latter case, the administrator will usually build a "
+"more recent package taken from a newer version of Debian — such as <emphasis "
+"role=\"distribution\">Testing</emphasis> or even <emphasis "
+"role=\"distribution\">Unstable</emphasis> — so that this new package works in "
+"their <emphasis role=\"distribution\">Stable</emphasis> distribution; this "
+"operation is called “backporting”. As usual, care should be taken, before "
+"undertaking such a task, to check whether it has been done already — a quick "
+"look on the Package Tracking System's page for that package will reveal that "
+"information. <ulink type=\"block\" url=\"http://packages.qa.debian.org/\" /> "
+"<indexterm><primary>backport</primary></indexterm>"
 msgstr ""
+"تحتاج إعادة بناء حزمة ثنائية في عدد من الظروف. في بعض الحالات، يحتاج مدير "
+"النظام ميزة برمجية تتطلب ترجمة البرنامج من المصدر، مع استخدام خيار ترجمة "
+"معين؛ وفي حالات أخرى، لا يكون البرنامج المُحزَّم في النسخة المُبّتة من دبيان "
+"حديثاً بما يكفي. في الحالة الأخيرة، سيعمد مدير النظام عادة لبناء حزمة جديدة "
+"مأخوذة من نسخة دبيان أحدث — مثل <emphasis role=\"distribution\">الاختبارية<"
+"/emphasis> أو حتى <emphasis role=\"distribution\">غير المستقرة</emphasis> — "
+"بحيث تعمل هذه الحزمة الجديدة في توزيعته <emphasis role=\"distribution\">"
+"المستقرة</emphasis>؛ تدعى هذه العملية ”بالنقل الخلفي“ (backporting). كالعادة، "
+"عليك الانتباه، قبل أن تجري هذه المهمة، إلى التحقق من أن أحداً لم يسبقك إليها "
+"— نظرة سريعة على صفحة نظام تتبع الحزم الخاصة بتلك الحزمة ستعطيك هذه المعلومة. "
+"<ulink type=\"block\" url=\"http://packages.qa.debian.org/\" /> <indexterm><"
+"primary>نقل خلفي</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Getting the Sources"
-msgstr ""
+msgstr "الحصول على المصادر"
 
 #. Tag: para
 #, no-c-format
-msgid "Rebuilding a Debian package starts with getting its source code. The easiest way is to use the <command>apt-get source <replaceable>source-package-name</replaceable></command> command. This command requires a <literal>deb-src</literal> line in the <filename>/etc/apt/sources.list</filename> file, and up-to-date index files (i.e. <command>apt-get update</command>). These conditions should already be met if you followed the instructions from the chapter dealing with APT configuration (see <xref linkend=\"sect.apt-sources.list\" />). Note however, that you'll be downloading the source packages from the Debian version mentioned in the <literal>deb-src</literal> line. If you need another version, you may need to download it manually from a Debian mirror or from the web site. This involves fetching two or three files (with extensions <filename>*.dsc</filename> — for <emphasis>Debian Source Control</emphasis> — <filename>*.tar.<replaceable>comp</replaceable></filename>, and sometimes <filename>*.diff.gz</filename> or <filename>*.debian.tar.<replaceable>comp</replaceable></filename> — <replaceable>comp</replaceable> taking one value among <literal>gz</literal>, <literal>bz2</literal>, <literal>lzma</literal> or <literal>xz</literal> depending on the compression tool in use), then run the <command>dpkg-source -x <replaceable>file.dsc</replaceable></command> command. If the <filename>*.dsc</filename> file is directly accessible at a given URL, there's an even simpler way to fetch it all, with the <command>dget <replaceable>URL</replaceable></command> command. This command (which can be found in the <emphasis role=\"pkg\">devscripts</emphasis> package) fetches the <filename>*.dsc</filename> file at the given address, then analyzes its contents, and automatically fetches the file or files referenced within. With the <literal>-x</literal> option, the source package is even unpacked locally after download."
+msgid ""
+"Rebuilding a Debian package starts with getting its source code. The easiest "
+"way is to use the <command>apt-get source <replaceable>source-package-name<"
+"/replaceable></command> command. This command requires a <literal>deb-src<"
+"/literal> line in the <filename>/etc/apt/sources.list</filename> file, and "
+"up-to-date index files (i.e. <command>apt-get update</command>). These "
+"conditions should already be met if you followed the instructions from the "
+"chapter dealing with APT configuration (see <xref "
+"linkend=\"sect.apt-sources.list\" />). Note however, that you'll be "
+"downloading the source packages from the Debian version mentioned in the <"
+"literal>deb-src</literal> line. If you need another version, you may need to "
+"download it manually from a Debian mirror or from the web site. This involves "
+"fetching two or three files (with extensions <filename>*.dsc</filename> — for "
+"<emphasis>Debian Source Control</emphasis> — <filename>*.tar.<replaceable>"
+"comp</replaceable></filename>, and sometimes <filename>*.diff.gz</filename> "
+"or <filename>*.debian.tar.<replaceable>comp</replaceable></filename> — <"
+"replaceable>comp</replaceable> taking one value among <literal>gz</literal>, "
+"<literal>bz2</literal>, <literal>lzma</literal> or <literal>xz</literal> "
+"depending on the compression tool in use), then run the <command>dpkg-source "
+"-x <replaceable>file.dsc</replaceable></command> command. If the <filename>"
+"*.dsc</filename> file is directly accessible at a given URL, there's an even "
+"simpler way to fetch it all, with the <command>dget <replaceable>URL<"
+"/replaceable></command> command. This command (which can be found in the <"
+"emphasis role=\"pkg\">devscripts</emphasis> package) fetches the <filename>"
+"*.dsc</filename> file at the given address, then analyzes its contents, and "
+"automatically fetches the file or files referenced within. With the <literal>"
+"-x</literal> option, the source package is even unpacked locally after "
+"download."
 msgstr ""
+"تبدأ إعادة بناء حزمة دبيان بالحصول على الشفرة المصدرية. أسهل طريقة هي استخدام "
+"الأمر <command>apt-get source <replaceable>source-package-name</replaceable><"
+"/command>. يحتاج هذا الأمر لإضافة سطر <literal>deb-src</literal> في الملف <"
+"filename dir=\"ltr\">/etc/apt/sources.list</filename>، وتحديث ملف الفهارس "
+"(عبر <command>apt-get update</command>). يجب أن تكون هذه الشروط محققة مسبقاً "
+"إذا اتبعت التعليمات من الفصل الذي يتحدث عن إعدادات APT (انظر <xref "
+"linkend=\"sect.apt-sources.list\" />). لكن لاحظ أنك سوف تنزّل الحزم المصدرية "
+"من نسخة دبيان المحددة في سطر <literal>deb-src</literal>. إذا كنت تريد الحصول "
+"عليها من نسخة دبيان أخرى، قد تضطر لتنزيلها يدوياً من مرآة دبيان أو من موقع "
+"الوب. هذا يعني تنزيل ملفين أو ثلاثة (امتداداتها <filename dir=\"ltr\">*.dsc<"
+"/filename> — أي <emphasis>Debian Source Control</emphasis> — و <filename "
+"dir=\"ltr\">*.tar.<replaceable>comp</replaceable></filename> وأحياناً <"
+"filename dir=\"ltr\">*.diff.gz</filename> أو <filename dir=\"ltr\">"
+"*.debian.tar.<replaceable>comp</replaceable></filename> — حيث تأخذ <"
+"replaceable>comp</replaceable> إحدى القيم <literal>gz</literal>، ‏<literal>"
+"bz2</literal>، ‏<literal>lzma</literal> أو <literal>xz</literal> حسب أداة "
+"الضغط المستخدمة)، بعدها استدعاء الأمر <command>dpkg-source -x <replaceable>"
+"file.dsc</replaceable></command>. إذا كان الوصول للملف <filename dir=\"ltr\">"
+"*.dsc</filename> ممكناً بشكل مباشر من عنوان URL، فيمكنك استخدام طريقة أبسط من "
+"هذه للحصول على جميع الملفات، وهي استخدام الأمر <command>dget <replaceable>"
+"URL</replaceable></command>. يجلب هذا الأمر (الذي تجده في الحزمة <emphasis "
+"role=\"pkg\">devscripts</emphasis>) ملف <filename dir=\"ltr\">*.dsc</filename>"
+" من العنوان المحدد، بعدها يحلل محتوياته، ويحضر الملف أو الملفات التي يشار "
+"إليها فيه. وإذا استخدمت الخيار <literal dir=\"ltr\">-x</literal> معه، سيفك لك "
+"الضغط عن الحزمة المصدرية محلياً بعد تنزيلها."
 
 #. Tag: title
 #, no-c-format
 msgid "Making Changes"
-msgstr ""
+msgstr "إجراء التغييرات"
 
 #. Tag: para
 #, no-c-format
-msgid "The source of the package is now available in a directory named after the source package and its version (for instance, <emphasis>samba-3.6.16</emphasis>); this is where we'll work on our local changes."
+msgid ""
+"The source of the package is now available in a directory named after the "
+"source package and its version (for instance, <emphasis>samba-3.6.16<"
+"/emphasis>); this is where we'll work on our local changes."
 msgstr ""
+"أصبح مصدر الحزمة متوفراً الآن في مجلد اسمه يتألف من اسم الحزمة المصدرية "
+"وإصدارها (مثلاً، <emphasis>samba-3.6.16</emphasis>)؛ سنجري تعديلاتنا المحلية "
+"في هذا المجلد."
 
 #. Tag: para
 #, no-c-format
-msgid "The first thing to do is to change the package version number, so that the rebuilt packages can be distinguished from the original packages provided by Debian. Assuming the current version is <literal>3.6.16-2</literal>, we can create version <literal>3.6.16-2falcot1</literal>, which clearly indicates the origin of the package. This makes the package version number higher than the one provided by Debian, so that the package will easily install as an update do the original package. Such a change is best effected with the <command>dch</command> command (<emphasis>Debian CHangelog</emphasis>) from the <emphasis role=\"pkg\">devscripts</emphasis> package, with an command such as <command>dch --local falcot</command>. This invokes a text editor (<command>sensible-editor</command> — this should be your favorite editor if it's mentioned in the <varname>VISUAL</varname> or <varname>EDITOR</varname> environment variables, and the default editor otherwise) to allow documenting the differences brought by this rebuild. This editor shows us that <command>dch</command> really did change the <filename>debian/changelog</filename> file."
+msgid ""
+"The first thing to do is to change the package version number, so that the "
+"rebuilt packages can be distinguished from the original packages provided by "
+"Debian. Assuming the current version is <literal>3.6.16-2</literal>, we can "
+"create version <literal>3.6.16-2falcot1</literal>, which clearly indicates "
+"the origin of the package. This makes the package version number higher than "
+"the one provided by Debian, so that the package will easily install as an "
+"update do the original package. Such a change is best effected with the <"
+"command>dch</command> command (<emphasis>Debian CHangelog</emphasis>) from "
+"the <emphasis role=\"pkg\">devscripts</emphasis> package, with an command "
+"such as <command>dch --local falcot</command>. This invokes a text editor (<"
+"command>sensible-editor</command> — this should be your favorite editor if "
+"it's mentioned in the <varname>VISUAL</varname> or <varname>EDITOR</varname> "
+"environment variables, and the default editor otherwise) to allow documenting "
+"the differences brought by this rebuild. This editor shows us that <command>"
+"dch</command> really did change the <filename>debian/changelog</filename> "
+"file."
 msgstr ""
+"أول شيء تفعله هو تغيير رقم إصدار الحزمة، حتى تميّز الحزم المعاد بناؤها عن "
+"الحزم الأصلية التي توفرها دبيان. على فرض أن الإصدار الحالي هو <literal "
+"dir=\"ltr\">3.6.16-2</literal>، يمكننا إنشاء الإصدار <literal>"
+"3.6.16-2falcot1</literal>، الذي يبيّن منشأ الحزمة بوضوح. هذا يجعل رقم إصدار "
+"الحزمة أعلى من الإصدار الذي توفره دبيان، بحيث يمكن تثبيت الحزمة بسهولة كتحديث "
+"للحزمة الأصلية. أفضل طريقة جراء هذا التغيير هي استخدام الأمر <command>dch<"
+"/command>‏ (<emphasis>Debian CHangelog</emphasis>) من الحزمة <emphasis "
+"role=\"pkg\">devscripts</emphasis>، عبر استدعائه بالشكل <command>dch --local "
+"falcot</command> مثلاً. سيستدعي هذا الأمر محرر نصوص (<command>"
+"sensible-editor</command> — يجب أن يكون هذا محررك الافتراضي إذا كان مذكوراً "
+"في أحد متغيري البيئة <varname>VISUAL</varname> أو <varname>EDITOR</varname> ، "
+"وإلا فسوف يستدعى المحرر الافتراضي) ليسمح لك بتوثيق الاختلاف الذي تقدمه هذه "
+"الإصدارة. يظهر لنا هذا المحرر أن <command>dch</command> قد غيّر <filename>"
+"debian/changelog</filename> بالفعل."
 
 #. Tag: para
 #, no-c-format
-msgid "When a change in build options is required, the changes need to be made in <filename>debian/rules</filename>, which drives the steps in the package build process. In the simplest cases, the lines concerning the initial configuration (<literal>./configure …</literal>) or the actual build (<literal>$(MAKE) …</literal> or <literal>make …</literal>) are easy to spot. If these commands are not explicitly called, they are probably a side effect of another explicit command, in which case please refer to their documentation to learn more about how to change the default behavior."
+msgid ""
+"When a change in build options is required, the changes need to be made in <"
+"filename>debian/rules</filename>, which drives the steps in the package build "
+"process. In the simplest cases, the lines concerning the initial "
+"configuration (<literal>./configure …</literal>) or the actual build (<"
+"literal>$(MAKE) …</literal> or <literal>make …</literal>) are easy to spot. "
+"If these commands are not explicitly called, they are probably a side effect "
+"of another explicit command, in which case please refer to their "
+"documentation to learn more about how to change the default behavior."
 msgstr ""
+"عندما تحتاج تغيير خيارات البناء، يجب إجراء التغيير في <filename>debian/rules<"
+"/filename>، الذي يقود الخطوات المختلفة في عملية بناء الحزمة. في أبسط الحالات، "
+"ستجد السطور التي تتعلق بالإعدادات الافتراضية (<literal dir=\"ltr\">"
+"./configure …</literal>) أو عملية البناء الفعلية (<literal dir=\"ltr\">"
+"$(MAKE) …</literal> or <literal>make …</literal>) بسهولة. إذا لم تُستَدعى هذه "
+"الأوامر صراحة، فالأغلب أن هناك أمر صريح آخر يستدعيها، وفي تلك الحالة عليك "
+"الرجوع إلى وثائق تلك الأوامر حتى تعرف طريقة تغغير السلوك الافتراضي."
 
 #. Tag: para
 #, no-c-format
-msgid "Depending on the local changes to the packages, an update may also be required in the <filename>debian/control</filename> file, which contains a description of the generated packages. In particular, this file contains <literal>Build-Depends</literal> lines controlling the list of dependencies that must be fulfilled at package build time. These often refer to versions of packages contained in the distribution the source package comes from, but which may not be available in the distribution used for the rebuild. There is no automated way to determine if a dependency is real or only specified to guarantee that the build should only be attempted with the latest version of a library — this is the only available way to force an <emphasis>autobuilder</emphasis> to use a given package version during build, which is why Debian maintainers frequently use strictly versioned build-dependencies."
+msgid ""
+"Depending on the local changes to the packages, an update may also be "
+"required in the <filename>debian/control</filename> file, which contains a "
+"description of the generated packages. In particular, this file contains <"
+"literal>Build-Depends</literal> lines controlling the list of dependencies "
+"that must be fulfilled at package build time. These often refer to versions "
+"of packages contained in the distribution the source package comes from, but "
+"which may not be available in the distribution used for the rebuild. There is "
+"no automated way to determine if a dependency is real or only specified to "
+"guarantee that the build should only be attempted with the latest version of "
+"a library — this is the only available way to force an <emphasis>autobuilder<"
+"/emphasis> to use a given package version during build, which is why Debian "
+"maintainers frequently use strictly versioned build-dependencies."
 msgstr ""
+"قد تحتاج تحديث الملف <filename>debian/control</filename> أيضاً اعتماداً على "
+"طبيعة التغييرات المحلية التي أجريتها على الحزمة، يحوي هذا الملف وصفاً للحزم "
+"المولّدة. على وجه الخصوص، يحوي هذا الملف سطور <literal>Build-Depends</literal>"
+" تتحكم بقائمة الاعتماديات التي يجب تلبيتها عند بناء الحزمة. تشير هذه "
+"الاعتماديات غالباً إلى نسخ الحزم الموجودة في التوزيعة التي أتت منها الحزمة "
+"المصدرية، لكنها قد لا تكون متوفرة في التوزيعة المستخدمة للبناء. لا توجد طريقة "
+"مؤتمتة تبيّن هل الاعتمادية حقيقية أم أنها محددة فقط لضمان محاولة البناء "
+"باستخدام آخر نسخة من المكتبة — هذه هي الطريقة الوحيدة المتاحة لإجبار البانيات "
+"الآلية (<emphasis>autobuilder</emphasis>) على استخدام نسخة معينة من الحزمة "
+"أثناء البناء، لذلك يستخدم مشرفو دبيان في كثير من الأحيان اعتماديات لها أرقام "
+"محددة."
 
 #. Tag: para
 #, no-c-format
-msgid "If you know for sure that these build-dependencies are too strict, you should feel free to relax them locally. Reading the files which document the standard way of building the software — these files are often called <filename>INSTALL</filename> — will help you figure out the appropriate dependencies. Ideally, all dependencies should be satisfiable from the distribution used for the rebuild; if they are not, a recursive process starts, whereby the packages mentioned in the <literal>Build-Depends</literal> field must be backported before the target package can be. Some packages may not need backporting, and can be installed as-is during the build process (a notable example is <emphasis role=\"pkg\">debhelper</emphasis>). Note that the backporting process can quickly become complex if you are not careful. Therefore, backports should be kept to a strict minimum when possible."
+msgid ""
+"If you know for sure that these build-dependencies are too strict, you should "
+"feel free to relax them locally. Reading the files which document the "
+"standard way of building the software — these files are often called <"
+"filename>INSTALL</filename> — will help you figure out the appropriate "
+"dependencies. Ideally, all dependencies should be satisfiable from the "
+"distribution used for the rebuild; if they are not, a recursive process "
+"starts, whereby the packages mentioned in the <literal>Build-Depends</literal>"
+" field must be backported before the target package can be. Some packages may "
+"not need backporting, and can be installed as-is during the build process (a "
+"notable example is <emphasis role=\"pkg\">debhelper</emphasis>). Note that "
+"the backporting process can quickly become complex if you are not careful. "
+"Therefore, backports should be kept to a strict minimum when possible."
 msgstr ""
+"إذا كنت متأكداً أن هذه الاعتماديات صارمة أكثر من اللازم، يمكنك تخفيفها "
+"محلياً. ستساعدك قراءة الملفات التي توثق الطريقة المعيارية لبناء البرنامج — "
+"هذه الملفات تدعى <filename>INSTALL</filename> غالباً — على معرفة الاعتماديات "
+"المناسبة. في الحالة المثالية، يجب أن تتمكن من تلبية الاعتماديات ضمن التوزيعة "
+"المستخدمة للبناء؛ إذا لم تتمكن من ذلك، ستبدأ عملية تعاودية، حيث يجب نقل الحزم "
+"المذكورة في الحقل <literal>Build-Depends</literal> خلفاً قبل أن تتمكن من نقل "
+"الحزمة المستهدفة. قد لا تحتاج بعض الحزم أن تنقلها خلفياً، ويمكن تثبيتها كما "
+"هي أثناء عملية البناء (إحدى الأمثلة البارزة هي <emphasis role=\"pkg\">"
+"debhelper</emphasis>). لاحظ أن عملية النقل الخلفي قد تتعقد سريعاً إذا لم تكن "
+"حذراً. لذلك، يجب تقليل المنقولات الخلفية إلى أقل ما يمكن."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Installing <literal>Build-Depends</literal>"
-msgstr ""
+msgstr "<emphasis>تلميح</emphasis> تثبيت <literal>Build-Depends</literal>"
 
 #. Tag: para
 #, no-c-format
-msgid "<indexterm><primary><literal>Build-Depends</literal>, control field</primary></indexterm> <command>apt-get</command> allows installing all packages mentioned in the <literal>Build-Depends</literal> fields of a source package available in a distribution mentioned in a <literal>deb-src</literal> line of the <filename>/etc/apt/sources.list</filename> file. This is a simple matter of running the <command>apt-get build-dep <replaceable>source-package</replaceable></command> command."
+msgid ""
+"<indexterm><primary><literal>Build-Depends</literal>, control field</primary>"
+"</indexterm> <command>apt-get</command> allows installing all packages "
+"mentioned in the <literal>Build-Depends</literal> fields of a source package "
+"available in a distribution mentioned in a <literal>deb-src</literal> line of "
+"the <filename>/etc/apt/sources.list</filename> file. This is a simple matter "
+"of running the <command>apt-get build-dep <replaceable>source-package<"
+"/replaceable></command> command."
 msgstr ""
+"ط<indexterm><primary><literal>Build-Depends</literal>، حقل تحكم</primary><"
+"/indexterm> تسمح <command>apt-get</command> بتثبيت كل الحزم المذكورة في حقول "
+"<literal>Build-Depends</literal> في حزمة مصدرية ما متوفرة في توزيعة مذكورة في "
+"سطر <literal>deb-src</literal> في الملف <filename dir=\"ltr\">"
+"/etc/apt/sources.list</filename>. كل ما تحتاجه هو استدعاء الأمر <command>"
+"apt-get build-dep <replaceable>source-package</replaceable></command>."
 
 #. Tag: title
 #, no-c-format
 msgid "Starting the Rebuild"
-msgstr ""
+msgstr "بدء إعادة البناء"
 
 #. Tag: para
 #, no-c-format
-msgid "When all the needed changes have been applied to the sources, we can start generating the actual binary package (<filename>.deb</filename> file). The whole process is managed by the <command>dpkg-buildpackage</command> command."
+msgid ""
+"When all the needed changes have been applied to the sources, we can start "
+"generating the actual binary package (<filename>.deb</filename> file). The "
+"whole process is managed by the <command>dpkg-buildpackage</command> command."
 msgstr ""
+"بعد تطبيق كل التغييرات التي تحتاجها إلى الكود المصدري، يمكننا توليد الحزمة "
+"الثنائية (ملف <filename dir=\"ltr\">.deb</filename>). يدير الأمر <command>"
+"dpkg-buildpackage</command> العملية كلها."
 
 #. Tag: title
 #, no-c-format
 msgid "Rebuilding a package"
-msgstr ""
+msgstr "إعادة بناء حزمة"
 
 #. Tag: screen
 #, no-c-format
 msgid ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>dpkg-buildpackage -us -uc</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg-buildpackage -us -uc<"
+"/userinput>\n"
 "[...]\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg-buildpackage -us -uc<"
+"/userinput>\n"
+"[...]\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> <command>fakeroot</command>"
-msgstr ""
+msgstr "<emphasis>أدوات</emphasis> <command>fakeroot</command>"
 
 #. Tag: para
 #, no-c-format
-msgid "In essence, the package creation process is a simple matter of gathering in an archive a set of existing (or built) files; most of the files will end up being owned by <emphasis>root</emphasis> in the archive. However, building the whole package under this user would imply increased risks; fortunately, this can be avoided with the <command>fakeroot</command> command. This tool can be used to run a program and give it the impression that it runs as <emphasis>root</emphasis> and creates files with arbitrary ownership and permissions. When the program creates the archive that will become the Debian package, it is tricked into creating an archive containing files marked as belonging to arbitrary owners, including <emphasis>root</emphasis>. This setup is so convenient that <command>dpkg-buildpackage</command> uses <command>fakeroot</command> by default when building packages."
+msgid ""
+"In essence, the package creation process is a simple matter of gathering in "
+"an archive a set of existing (or built) files; most of the files will end up "
+"being owned by <emphasis>root</emphasis> in the archive. However, building "
+"the whole package under this user would imply increased risks; fortunately, "
+"this can be avoided with the <command>fakeroot</command> command. This tool "
+"can be used to run a program and give it the impression that it runs as <"
+"emphasis>root</emphasis> and creates files with arbitrary ownership and "
+"permissions. When the program creates the archive that will become the Debian "
+"package, it is tricked into creating an archive containing files marked as "
+"belonging to arbitrary owners, including <emphasis>root</emphasis>. This "
+"setup is so convenient that <command>dpkg-buildpackage</command> uses <"
+"command>fakeroot</command> by default when building packages."
 msgstr ""
+"في الحقيقة، عملية إنشاء الحزم ما هي إلا تجميع لمجموعة ملفات سابقة (أو مبنية) "
+"في أرشيف واحد؛ ينتهي الحال بمعظم الملفات داخل الأرشيف بأن تصبح ملكاً للمستخدم "
+"<emphasis>root</emphasis>. لكن بناء الحزمة بالكامل تحت صلاحيات هذا المستخدم "
+"يعني زيادة المخاطر؛ لحسن الحظ، يمكنك تفادي ذلك باستخدام الأمر <command>"
+"fakeroot</command>. يمكن استخدام هذه الأداة لتشغيل برنامج وإعطائه انطباعاً "
+"أنه يعمل بصلاحيات <emphasis>root</emphasis> وينشئ ملفات لها ملكية وصلاحيات "
+"كيفيّة. عندما ينشئ البرنامج الأرشيف الذي سيصبح حزمة دبيان، سوف يخدع وينشئ "
+"أرشيفاً يحوي ملفات تنتمي لمالكين غير محددين، بما فيهم <emphasis>root<"
+"/emphasis>. هذه العملية مريحة جداً لدرجة أن <command>dpkg-buildpackage<"
+"/command> يستخدم <command>fakeroot</command> افتراضياً عند بناء الحزم."
 
 #. Tag: para
 #, no-c-format
-msgid "Note that the program is only tricked into “believing” that it operates as a privileged account, and the process actually runs as the user running <command>fakeroot <replaceable>program</replaceable></command> (and the files are actually created with that user's permissions). At no time does it actually get root privileges that it could abuse."
+msgid ""
+"Note that the program is only tricked into “believing” that it operates as a "
+"privileged account, and the process actually runs as the user running <"
+"command>fakeroot <replaceable>program</replaceable></command> (and the files "
+"are actually created with that user's permissions). At no time does it "
+"actually get root privileges that it could abuse."
 msgstr ""
+"لاحظ أن البرنامج يخدع فقط حتى ”يصدق“ أنه يعمل بصلاحيات حساب إداري، لكن "
+"العملية تعمل فعلياً تحت صلاحيات المستخدم الحالي الذي استدعى <command>fakeroot "
+"<replaceable>program</replaceable></command> (وسوف تنشأ الملفات في الحقيقة "
+"بصلاحيات ذلك المستخدم). لا تمنح أي صلاحيات إدارية يستطيع البرنامج إساءة "
+"استخدامها نهائياً."
 
 #. Tag: para
 #, no-c-format
-msgid "The previous command can fail if the <literal>Build-Depends</literal> fields have not been updated, or if the related packages are not installed. In such a case, it is possible to overrule this check by passing the <literal>-d</literal> option to <command>dpkg-buildpackage</command>. However, explicitly ignoring these dependencies runs the risk of the build process failing at a later stage. Worse, the package may seem to build correctly but fail to run properly: some programs automatically disable some of their features when a required library is not available at build time."
+msgid ""
+"The previous command can fail if the <literal>Build-Depends</literal> fields "
+"have not been updated, or if the related packages are not installed. In such "
+"a case, it is possible to overrule this check by passing the <literal>-d<"
+"/literal> option to <command>dpkg-buildpackage</command>. However, explicitly "
+"ignoring these dependencies runs the risk of the build process failing at a "
+"later stage. Worse, the package may seem to build correctly but fail to run "
+"properly: some programs automatically disable some of their features when a "
+"required library is not available at build time."
 msgstr ""
+"قد يفشل الأمر السابق إذا لم تُحدَّث حقول <literal>Build-Depends</literal>، أو "
+"إذا لم تُثبَّت الحزم المناسبة. في هذه الحالات، يمكن تجاوز عملية التحقق عبر "
+"تمرير الخيار <literal dir=\"ltr\">-d</literal> إلى <command>"
+"dpkg-buildpackage</command>. لكن تجاهل هذه الاعتماديات صراحة يعرضك لخطر إخفاق "
+"عملية البناء في مرحلة لاحقة. وأسوأ من ذلك، قد يبدو أن الحزمة تبنى بشكل صحيح "
+"لكنها لا تعمل بشكل سليم لاحقاً: فبعض البرامج تعطّل بعض مزاياها آلياً إذا لم "
+"تعثر على إحدى المكتبات المطلوبة أثناء البناء."
 
 #. Tag: para
 #, no-c-format
-msgid "More often than not, Debian developers use a higher-level program such as <command>debuild</command>; this runs <command>dpkg-buildpackage</command> as usual, but it also adds an invocation of a program that runs many checks to validate the generated package against the Debian policy. This script also cleans up the environment so that local environment variables do not “pollute” the package build. The <command>debuild</command> command is one of the tools in the <emphasis>devscripts</emphasis> suite, which share some consistency and configuration to make the maintainers' task easier."
+msgid ""
+"More often than not, Debian developers use a higher-level program such as <"
+"command>debuild</command>; this runs <command>dpkg-buildpackage</command> as "
+"usual, but it also adds an invocation of a program that runs many checks to "
+"validate the generated package against the Debian policy. This script also "
+"cleans up the environment so that local environment variables do not "
+"“pollute” the package build. The <command>debuild</command> command is one of "
+"the tools in the <emphasis>devscripts</emphasis> suite, which share some "
+"consistency and configuration to make the maintainers' task easier."
 msgstr ""
+"في معظم الأحيان، يستخدم مطورو دبيان برنامجاً عالي المستوى مثل <command>"
+"debuild</command>؛ الذي يستدعي <command>dpkg-buildpackage</command> كالعادة "
+"لكنه يضيف أيضاً استدعاءً لبرنامج يجري عدة فحوصات للتحقق من اتفاق الحزم "
+"المولّدة مع سياسة دبيان. كما يُنظِّف هذا السكربت البيئة بحيث لا ”تُلوّث“ "
+"متغيرات البيئة المحلية عملية بناء الحزمة. الأمر <command>debuild</command> هو "
+"أحد الأدوات من المجموعة <emphasis>devscripts</emphasis>، التي تتناسق مع بعضها "
+"وتشترك في بعض الإعدادات حتى تسهِّل مهمة مشرف الحزمة."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> <command>pbuilder</command>"
-msgstr ""
+msgstr "<emphasis>نظرة سريعة</emphasis> <command>pbuilder</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pbuilder</command></primary>"
-msgstr ""
+msgstr "<primary><command>pbuilder</command></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>pbuilder</command> program (in the similarly named package) allows building a Debian package in a <emphasis>chrooted</emphasis> environment. It first creates a temporary directory containing the minimal system required for building the package (including the packages mentioned in the <emphasis>Build-Depends</emphasis> field). This directory is then used as the root directory (<filename>/</filename>), using the <command>chroot</command> command, during the build process."
+msgid ""
+"The <command>pbuilder</command> program (in the similarly named package) "
+"allows building a Debian package in a <emphasis>chrooted</emphasis> "
+"environment. It first creates a temporary directory containing the minimal "
+"system required for building the package (including the packages mentioned in "
+"the <emphasis>Build-Depends</emphasis> field). This directory is then used as "
+"the root directory (<filename>/</filename>), using the <command>chroot<"
+"/command> command, during the build process."
 msgstr ""
+"يسمح البرنامج <command>pbuilder</command> (في الحزمة ذات الاسم نفسه) ببناء "
+"حزمة دبيان في بيئة لها جذر مختلف (<emphasis>chrooted</emphasis> environment). "
+"ينشئ البرنامج أولاً مجلداً مؤقتاً يحوي النظام المصغر اللازم لبناء الحزمة "
+"(يتضمن الحزم المذكورة في <emphasis>Build-Depends</emphasis> أيضاً). بعدها "
+"يستخدم هذا المجلد كمجلد جذر (<filename>/</filename>) أثناء عملية البناء، وذلك "
+"باستخدام الأمر <command>chroot</command>."
 
 #. Tag: para
 #, no-c-format
-msgid "This tool allows the build process to happen in an environment that is not altered by users' manipulations. This also allows for quick detection of the missing build-dependencies (since the build will fail unless the appropriate dependencies are documented). Finally, it allows building a package for a Debian version that is not the one used by the system as a whole: the machine can be using <emphasis role=\"distribution\">Stable</emphasis> for its normal workload, and a <command>pbuilder</command> running on the same machine can be using <emphasis role=\"distribution\">Unstable</emphasis> for package builds."
+msgid ""
+"This tool allows the build process to happen in an environment that is not "
+"altered by users' manipulations. This also allows for quick detection of the "
+"missing build-dependencies (since the build will fail unless the appropriate "
+"dependencies are documented). Finally, it allows building a package for a "
+"Debian version that is not the one used by the system as a whole: the machine "
+"can be using <emphasis role=\"distribution\">Stable</emphasis> for its normal "
+"workload, and a <command>pbuilder</command> running on the same machine can "
+"be using <emphasis role=\"distribution\">Unstable</emphasis> for package "
+"builds."
 msgstr ""
+"تسمح هذه الأداة بإجراء عملية البناء في بيئة لم تمسها تعديلات المستخدمين. يسمح "
+"هذا باكتشاف اعتماديات البناء المفقودة فوراً (لأن البناء لن ينجح ما لم تكن "
+"الاعتماديات المناسبة موثقة). أخيراً، تسمح هذه الأداة أيضاً ببناء حزمة لنسخة "
+"دبيان تختلف عن النسخة التي يستخدمها النظام ككل: فقد يستخدم الجهاز دبيان <"
+"emphasis role=\"distribution\">المستقرة</emphasis> في أعماله العادية، وتستطيع "
+"<command>pbuilder</command> على الجهاز نفسه استخدام <emphasis "
+"role=\"distribution\">غير المستقرة</emphasis> لبناء الحزم."
 
 #. Tag: title
 #, no-c-format
 msgid "Building your First Package"
-msgstr ""
+msgstr "بناء حزمتك الأولى"
 
 #. Tag: title
 #, no-c-format
 msgid "Meta-Packages or Fake Packages"
-msgstr ""
+msgstr "الحزم الفوقية أو الحزم الزائفة"
 
 #. Tag: para
 #, no-c-format
-msgid "Fake packages and meta-packages are similar, in that they are empty shells that only exist for the effects their meta-data have on the package handling stack."
+msgid ""
+"Fake packages and meta-packages are similar, in that they are empty shells "
+"that only exist for the effects their meta-data have on the package handling "
+"stack."
 msgstr ""
+"تتشابه الحزم الزائفة (fake packages) مع الحزم الفوقية (meta-packages) من "
+"ناحية أن كلاً منها عبارة عن قواقع فارغة تستخدم فقط للاستفادة من تأثير "
+"بياناتها الفوقية على عملية معالجة الحزم."
 
 #. Tag: para
 #, no-c-format
-msgid "The purpose of a fake package is to trick <command>dpkg</command> and <command>apt</command> into believing that some package is installed even though it's only an empty shell. This allows satisfying dependencies on a package when the corresponding software was installed outside the scope of the packaging system. Such a method works, but it should still be avoided whenever possible, since there's no guarantee that the manually installed software behaves exactly like the corresponding package would and other packages depending on it would not work properly."
+msgid ""
+"The purpose of a fake package is to trick <command>dpkg</command> and <"
+"command>apt</command> into believing that some package is installed even "
+"though it's only an empty shell. This allows satisfying dependencies on a "
+"package when the corresponding software was installed outside the scope of "
+"the packaging system. Such a method works, but it should still be avoided "
+"whenever possible, since there's no guarantee that the manually installed "
+"software behaves exactly like the corresponding package would and other "
+"packages depending on it would not work properly."
 msgstr ""
+"الهدف من الحزم الزائفة هو خداع <command>dpkg</command> و<command>apt</command>"
+" حتى يظنّان أن بعض الحزم مثبتة، رغم أنها ليست في الحقيقة إلا قواقع فارغة. هذا "
+"يسمح بتلبية اعتماديات حزمة ما عندما يكون البرنامج المطلوب مُثبّتاً خارج مدى "
+"نظام الحزم. هذه الطريقة ناجحة، لكن يجب تفاديها قدر الإمكان، لأنه لا يُضمَن أن "
+"يعمل البرنامج المُثبّت يدوياً مثل عمل الحزمة الموافقة له تماماً، وقد لا تعمل "
+"الحزم الأخرى التي تعتمد عليه بشكل سليم."
 
 #. Tag: para
 #, no-c-format
-msgid "On the other hand, a meta-package exists mostly as a collection of dependencies, so that installing the meta-package will actually bring in a set of other packages in a single step."
+msgid ""
+"On the other hand, a meta-package exists mostly as a collection of "
+"dependencies, so that installing the meta-package will actually bring in a "
+"set of other packages in a single step."
 msgstr ""
+"من ناحية اخرى، تُمثّل الحزمة الفوقية مجموعة اعتماديات غالباً، حيث ينتج عن "
+"تثبيت الحزمة الفوقية تثبيت مجموعة من الحزم الأخرى بنقلة واحدة."
 
 #. Tag: para
 #, no-c-format
-msgid "Both these kinds of packages can be created by the <command>equivs-control</command> and <command>equivs-build</command> commands (in the <emphasis role=\"pkg\">equivs</emphasis> package). The <command>equivs-control <replaceable>file</replaceable></command> command creates a Debian package header file that should be edited to contain the name of the expected package, its version number, the name of the maintainer, its dependencies, and its description. Other fields without a default value are optional and can be deleted. The <literal>Copyright</literal>, <literal>Changelog</literal>, <literal>Readme</literal> and <literal>Extra-Files</literal> fields are not standard fields in Debian packages; they only make sense within the scope of <command>equivs-build</command>, and they will not be kept in the headers of the generated package."
+msgid ""
+"Both these kinds of packages can be created by the <command>equivs-control<"
+"/command> and <command>equivs-build</command> commands (in the <emphasis "
+"role=\"pkg\">equivs</emphasis> package). The <command>equivs-control <"
+"replaceable>file</replaceable></command> command creates a Debian package "
+"header file that should be edited to contain the name of the expected "
+"package, its version number, the name of the maintainer, its dependencies, "
+"and its description. Other fields without a default value are optional and "
+"can be deleted. The <literal>Copyright</literal>, <literal>Changelog</literal>"
+", <literal>Readme</literal> and <literal>Extra-Files</literal> fields are not "
+"standard fields in Debian packages; they only make sense within the scope of "
+"<command>equivs-build</command>, and they will not be kept in the headers of "
+"the generated package."
 msgstr ""
+"يمكن إنشاء هذين النوعين من الحزم باستخدام الأمرين <command>equivs-control<"
+"/command> و<command>equivs-build</command> (من الحزمة <emphasis "
+"role=\"pkg\">equivs</emphasis>)، ينشئ "
+"الأمر <command>equivs-control</command> ملف ترويسة حزمة دبيان يجب تعديله حتى "
+"يحوي اسم الحزمة المنشأة، ورقم "
+"إصدارها، واسم مشرفها، واعتمادياتها، ووصفها. الحقول الأخرى التي لا تملك قيماً "
+"افتراضية ليست إلزامية ويمكن حذفها. الحقول <literal>Copyright</literal> و<"
+"literal>Changelog</literal> و<literal>Readme</literal> و<literal>Extra-Files<"
+"/literal> ليست حقولاً معيارية في في "
+"حزم دبيان؛ لا معنى لهذه الحقول خارج نطاق <command>equivs-build</command>، "
+"وسوف تُحذَف من ترويسات الحزم المولّدة."
 
 #. Tag: title
 #, no-c-format
 msgid "Header file of the <emphasis>libxml-libxml-perl</emphasis> fake package"
-msgstr ""
+msgstr "ملف ترويسة الحزمة الزائفة <emphasis>libxml-libxml-perl</emphasis>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -242,26 +596,76 @@ msgid ""
 " of the module has been manually compiled &amp; installed in the\n"
 " site_perl directory.\n"
 msgstr ""
+"\n"
+"Section: perl\n"
+"Priority: optional\n"
+"Standards-Version: 3.8.4\n"
+"\n"
+"Package: libxml-libxml-perl\n"
+"Version: 1.57-1\n"
+"Maintainer: Raphael Hertzog &lt;hertzog@debian.org&gt;\n"
+"Depends: libxml2 (&gt;= 2.6.6)\n"
+"Architecture: all\n"
+"Description: Fake package - module manually installed in site_perl\n"
+" This is a fake package to let the packaging system\n"
+" believe that this Debian package is installed. \n"
+" .\n"
+" In fact, the package is not installed since a newer version\n"
+" of the module has been manually compiled &amp; installed in the\n"
+" site_perl directory.\n"
 
 #. Tag: para
 #, no-c-format
-msgid "The next step is to generate the Debian package with the <command>equivs-build <replaceable>file</replaceable></command> command. Voilà: the package is created in the current directory and it can be handled like any other Debian package would."
+msgid ""
+"The next step is to generate the Debian package with the <command>"
+"equivs-build <replaceable>file</replaceable></command> command. Voilà: the "
+"package is created in the current directory and it can be handled like any "
+"other Debian package would."
 msgstr ""
+"الخطوة التالية هي توليد حزمة دبيان باستخدام الأمر <command>equivs-build <"
+"replaceable>file</replaceable></command>. تهانينا: أُنشِئَت الحزمة في المجلد "
+"الحالي ويمكن التعامل معها مثل أي حزمة دبيان أخرى."
 
 #. Tag: title
 #, no-c-format
 msgid "Simple File Archive"
-msgstr ""
+msgstr "أرشيف ملفات بسيط"
 
 #. Tag: para
 #, no-c-format
-msgid "The Falcot Corp administrators need to create a Debian package in order to ease deployment of a set of documents on a large number of machines. The administrator in charge of this task first reads the “New Maintainer's Guide”, then starts working on their first package. <ulink type=\"block\" url=\"http://www.debian.org/doc/maint-guide/\" />"
+msgid ""
+"The Falcot Corp administrators need to create a Debian package in order to "
+"ease deployment of a set of documents on a large number of machines. The "
+"administrator in charge of this task first reads the “New Maintainer's "
+"Guide”, then starts working on their first package. <ulink type=\"block\" "
+"url=\"http://www.debian.org/doc/maint-guide/\" />"
 msgstr ""
+"يحتاج مديرو النظم في شركة فلكوت إنشاء حزمة دبيان لتسهيل نشر مجموعة مستندات "
+"على عدد كبير من الأجهزة. بدأ مدير النظم المسؤول عن هذه المهمة بقراءة ”New "
+"Maintainer's Guide“ (دليل المشرف الجديد)، ثم شرع يعمل على حزمته الأولى. <"
+"ulink type=\"block\" url=\"http://www.debian.org/doc/maint-guide/\" />"
 
 #. Tag: para
 #, no-c-format
-msgid "The first step is creating a <filename>falcot-data-1.0</filename> directory to contain the target source package. The package will logically, be named <literal>falcot-data</literal> and bear the <literal>1.0</literal> version number. The administrator then places the document files in a <filename>data</filename> subdirectory. Then they invoke the <command>dh_make</command> command (from the <emphasis role=\"pkg\">dh-make</emphasis> package) to add files required by the package generation process, which will all be stored in a <filename>debian</filename> subdirectory:"
+msgid ""
+"The first step is creating a <filename>falcot-data-1.0</filename> directory "
+"to contain the target source package. The package will logically, be named <"
+"literal>falcot-data</literal> and bear the <literal>1.0</literal> version "
+"number. The administrator then places the document files in a <filename>data<"
+"/filename> subdirectory. Then they invoke the <command>dh_make</command> "
+"command (from the <emphasis role=\"pkg\">dh-make</emphasis> package) to add "
+"files required by the package generation process, which will all be stored in "
+"a <filename>debian</filename> subdirectory:"
 msgstr ""
+"الخطوة الأولى هي إنشاء مجلد بالاسم <filename>falcot-data-1.0</filename> "
+"لتخزين الحزمة المصدرية. سوف تُسمّى "
+"الحزمة ‒منطقياً‒ <literal>falcot-data</literal> وستحمل رقم الإصدار <literal>"
+"1.0</literal>. بعدها يضع مدير النظام المستندات "
+"في المجلد الفرعي <filename>data</filename>. ثم يستدعي الأمر <command>dh_make<"
+"/command> (من الحزمة <emphasis role=\"pkg\">dh-make</emphasis>) لإضافة "
+"الملفات اللازمة "
+"لعملية توليد الحزمة، التي ستحفظ جميعاً في المجلد الفرعي <filename>debian<"
+"/filename>:"
 
 #. Tag: screen
 #, no-c-format
@@ -270,7 +674,8 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>cd falcot-data-1.0</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>dh_make --native</userinput>\n"
 "<computeroutput>\n"
-"Type of package: single binary, indep binary, multiple binary, library, kernel module, kernel patch or cdbs?\n"
+"Type of package: single binary, indep binary, multiple binary, library, "
+"kernel module, kernel patch or cdbs?\n"
 " [s/i/m/l/k/n/b] </computeroutput><userinput>i</userinput>\n"
 "<computeroutput>\n"
 "Maintainer name : Raphael Hertzog\n"
@@ -282,31 +687,101 @@ msgid ""
 "Usind dpatch    : no\n"
 "Type of Package : Independent\n"
 "Hit &lt;enter&gt; to confirm:\n"
-"Currently there is no top level Makefile. This may require additional tuning.\n"
+"Currently there is no top level Makefile. This may require additional "
+"tuning.\n"
 "Done. Please edit the files in the debian/ subdirectory now. You should also\n"
 "check that the falcot-data Makefiles install into $DESTDIR and not in / .\n"
 "$</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>cd falcot-data-1.0</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>dh_make --native</userinput>\n"
+"<computeroutput>\n"
+"Type of package: single binary, indep binary, multiple binary, library, "
+"kernel module, kernel patch or cdbs?\n"
+" [s/i/m/l/k/n/b] </computeroutput><userinput>i</userinput>\n"
+"<computeroutput>\n"
+"Maintainer name : Raphael Hertzog\n"
+"Email-Address   : hertzog@debian.org\n"
+"Date            : Mon, 11 Apr 2011 15:11:36 +0200\n"
+"Package Name    : falcot-data\n"
+"Version         : 1.0\n"
+"License         : blank\n"
+"Usind dpatch    : no\n"
+"Type of Package : Independent\n"
+"Hit &lt;enter&gt; to confirm:\n"
+"Currently there is no top level Makefile. This may require additional "
+"tuning.\n"
+"Done. Please edit the files in the debian/ subdirectory now. You should also\n"
+"check that the falcot-data Makefiles install into $DESTDIR and not in / .\n"
+"$</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
-msgid "The selected type of package (<emphasis>single binary</emphasis>) indicates that this source package will generate a single binary package depending on the architecture (<literal>Architecture: any</literal>). <emphasis>indep binary</emphasis> acts as a counterpart, and leads to a single binary package that is not dependent on the target architecture (<literal>Architecture: all</literal>). In this case, the latter choice is more relevant since the package only contains documents and no binary programs, so it can be used similarly on computers of all architectures."
+msgid ""
+"The selected type of package (<emphasis>single binary</emphasis>) indicates "
+"that this source package will generate a single binary package depending on "
+"the architecture (<literal>Architecture: any</literal>). <emphasis>indep "
+"binary</emphasis> acts as a counterpart, and leads to a single binary package "
+"that is not dependent on the target architecture (<literal>Architecture: all<"
+"/literal>). In this case, the latter choice is more relevant since the "
+"package only contains documents and no binary programs, so it can be used "
+"similarly on computers of all architectures."
 msgstr ""
+"يُبيِّن النوع المحدد للحزمة (<emphasis>single binary</emphasis>) أن هذه "
+"الحزمة المصدرية ستولد حزمة ثنائية واحدة تعتمد على المعمارية (<literal>"
+"Architecture: any</literal>). أما <emphasis>indep binary</emphasis> فيعمل "
+"بشكل معاكس، وينتج حزمة ثنائية واحدة مستقلة عن المعمارية المستهدفة (<literal>"
+"Architecture: all</literal>). في هذه الحالة، الخيار الثاني أنسب لأن الحزمة "
+"تحوي مستندات فقط ولا تحوي أي برامج تنفيذية، لذلك يمكن استخدامها كما هي على "
+"الحواسيب ذات المعماريات المختلفة."
 
 #. Tag: para
 #, no-c-format
-msgid "The <emphasis>multiple binary</emphasis> type corresponds to a source package leading to several binary packages. A particular case, <emphasis>library</emphasis>, is useful for shared libraries, since they need to follow strict packaging rules. In a similar fashion, <emphasis>kernel module</emphasis> should be restricted to packages containing kernel modules. Finally, <emphasis>cdbs</emphasis> is a specific package build system; it is rather flexible, but it requires some amount of learning. <indexterm><primary>package types</primary></indexterm> <indexterm><primary>package</primary><secondary>types</secondary></indexterm>"
+msgid ""
+"The <emphasis>multiple binary</emphasis> type corresponds to a source package "
+"leading to several binary packages. A particular case, <emphasis>library<"
+"/emphasis>, is useful for shared libraries, since they need to follow strict "
+"packaging rules. In a similar fashion, <emphasis>kernel module</emphasis> "
+"should be restricted to packages containing kernel modules. Finally, <"
+"emphasis>cdbs</emphasis> is a specific package build system; it is rather "
+"flexible, but it requires some amount of learning. <indexterm><primary>"
+"package types</primary></indexterm> <indexterm><primary>package</primary><"
+"secondary>types</secondary></indexterm>"
 msgstr ""
+"النوع <emphasis>multiple binary</emphasis> مخصص للحزم المصدرية التي تنتج عدة "
+"حزم ثنائية. أما الحالة الخاصة، <emphasis>library</emphasis>، فتفيد مع "
+"المكتبات المشتركة، لأنها يجب أن تتقيد بشروط تحزيم صارمة، وكذلك النوع <"
+"emphasis>kernel module</emphasis>، الذي يجب أن يستعمل فقط مع الحزم التي تحوي "
+"وحدات للنواة. أخيراً، <emphasis>cdbs</emphasis> هو نظام خاص لبناء الحزم؛ "
+"يتمتع بمرونة أكبر، ولكنه يحتاج بعض التعلّم. "
+"<indexterm><primary>أنواع الحزم</primary></indexterm> <indexterm><primary>"
+"حزمة</primary><secondary>أنواع</secondary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Maintainer's name and email address"
-msgstr ""
+msgstr "<emphasis>تلميح</emphasis> اسم المشرف وعنوان بريده الإلكتروني"
 
 #. Tag: para
 #, no-c-format
-msgid "Most of the programs involved in package maintenance will look for your name and email address in the <varname>DEBFULLNAME</varname> and <varname>DEBEMAIL</varname> or <varname>EMAIL</varname> environment variables. Defining them once and for all will avoid you having to type them multiple times. If your usual shell is <command>bash</command>, it's a simple matter of adding the following two lines in your <filename>~/.bashrc</filename> and <filename>~/.bash_profile</filename> files (you will obviously replace the values with more relevant ones!):"
+msgid ""
+"Most of the programs involved in package maintenance will look for your name "
+"and email address in the <varname>DEBFULLNAME</varname> and <varname>"
+"DEBEMAIL</varname> or <varname>EMAIL</varname> environment variables. "
+"Defining them once and for all will avoid you having to type them multiple "
+"times. If your usual shell is <command>bash</command>, it's a simple matter "
+"of adding the following two lines in your <filename>~/.bashrc</filename> and "
+"<filename>~/.bash_profile</filename> files (you will obviously replace the "
+"values with more relevant ones!):"
 msgstr ""
+"معظم البرامج التي تعمل في مجال صيانة الحزم تبحث عن اسمك وعنوان بريدك "
+"الإلكتروني في متغيرات البيئة <varname>DEBFULLNAME</varname> و <varname>"
+"DEBEMAIL</varname> أو <varname>EMAIL</varname>. إذا عرّفتَ هذه المتغيرات بشكل "
+"دائم فسترتاح من عناء كتابتها عدة مرات. إذا كنت تستخدم صدفة <command>bash<"
+"/command>، يكفي إضافة السطرين التاليين إلى الملفين <filename dir=\"ltr\">"
+"~/.bashrc</filename> و <filename dir=\"ltr\">~/.bash_profile</filename> (عليك "
+"طبعاً استبدال القيم بما يناسب!):"
 
 #. Tag: programlisting
 #, no-c-format
@@ -315,21 +790,69 @@ msgid ""
 "export EMAIL=\"hertzog@debian.org\"\n"
 "export DEBFULLNAME=\"Raphael Hertzog\"\n"
 msgstr ""
+"\n"
+"export EMAIL=\"hertzog@debian.org\"\n"
+"export DEBFULLNAME=\"Raphael Hertzog\"\n"
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>dh_make</command> command created a <filename>debian</filename> subdirectory with many files. Some are required, in particular <filename>rules</filename>, <filename>control</filename>, <filename>changelog</filename> and <filename>copyright</filename>. Files with the <filename>.ex</filename> extension are example files that can be used by modifying them (and removing the extension) when appropriate. When they are not needed, removing them is recommended. The <filename>compat</filename> file should be kept, since it is required for the correct functioning of the <emphasis>debhelper</emphasis> suite of programs (all beginning with the <command>dh_</command> prefix) used at various stages of the package build process."
+msgid ""
+"The <command>dh_make</command> command created a <filename>debian</filename> "
+"subdirectory with many files. Some are required, in particular <filename>"
+"rules</filename>, <filename>control</filename>, <filename>changelog</filename>"
+" and <filename>copyright</filename>. Files with the <filename>.ex</filename> "
+"extension are example files that can be used by modifying them (and removing "
+"the extension) when appropriate. When they are not needed, removing them is "
+"recommended. The <filename>compat</filename> file should be kept, since it is "
+"required for the correct functioning of the <emphasis>debhelper</emphasis> "
+"suite of programs (all beginning with the <command>dh_</command> prefix) used "
+"at various stages of the package build process."
 msgstr ""
+"أنشأ الأمر <command>dh_make</command> مجلداً فرعياً بالاسم <filename>debian<"
+"/filename> يحوي ملفات عديدة. بعض هذه الملفات ضروري، "
+"خصوصاً <filename>rules</filename> و<filename>control</filename> و<filename>"
+"changelog</filename> و<filename>copyright</filename>. أما الملفات ذات اللاحقة "
+"<filename dir=\"ltr\">.ex</filename> فهي أمثلة يمكن استخدامها بعد تعديلها "
+"(وإزالة اللاحقة) إذا كانت تناسبك. أما إذا لم تكن بحاجة لها، فعليك إزالتها. "
+"لكن حافظ على الملف <filename>compat</filename>، لأنه يلزم لعمل مجموعة برامج <"
+"emphasis>debhelper</emphasis> (كلها تبدأ أسماؤها "
+"بالبادئة <command dir=\"ltr\">dh_</command>) بشكل صحيح، التي تستخدم في "
+"المراحل المختلفة من عملية بناء الحزمة."
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>copyright</filename> file must contain information about the authors of the documents included in the package, and the related license. In our case, these are internal documents and their use is restricted to within the Falcot Corp company. The default <filename>changelog</filename> file is generally appropriate; replacing the “Initial release” with a more verbose explanation and changing the distribution from <literal>unstable</literal> to <literal>internal</literal> is enough. The <filename>control file</filename> was also updated: the section has been changed to <emphasis>misc</emphasis> and the <literal>Homepage</literal>, <literal>Vcs-Git</literal> and <literal>Vcs-Browser</literal> fields were removed. The <literal>Depends</literal> fields was completed with <literal>iceweasel | www-browser</literal> so as to ensure the availability of a web browser able to display the documents in the package."
+msgid ""
+"The <filename>copyright</filename> file must contain information about the "
+"authors of the documents included in the package, and the related license. In "
+"our case, these are internal documents and their use is restricted to within "
+"the Falcot Corp company. The default <filename>changelog</filename> file is "
+"generally appropriate; replacing the “Initial release” with a more verbose "
+"explanation and changing the distribution from <literal>unstable</literal> to "
+"<literal>internal</literal> is enough. The <filename>control file</filename> "
+"was also updated: the section has been changed to <emphasis>misc</emphasis> "
+"and the <literal>Homepage</literal>, <literal>Vcs-Git</literal> and <literal>"
+"Vcs-Browser</literal> fields were removed. The <literal>Depends</literal> "
+"fields was completed with <literal>iceweasel | www-browser</literal> so as to "
+"ensure the availability of a web browser able to display the documents in the "
+"package."
 msgstr ""
+"يجب أن يحوي الملف <filename>copyright</filename> معلومات عن مؤلفي المستندات "
+"المضمنة في الحزمة، والرخصة "
+"الخاصة بها. في حالتنا، هذه المستندات داخلية، واستخدمها محصور ضمن شركة فلكوت. "
+"ملف <filename>changelog</filename> الافتراضي مناسب عموماً؛ يكفي استبدال "
+"”Initial release“ بشرح أوضح وتغيير التوزيعة من <literal>unstable</literal> "
+"إلى <literal>internal</literal>. لقد عدلنا ملف <filename>control file<"
+"/filename> أيضاً: حيث غيرنا القسم إلى <emphasis>misc</emphasis> وحذفنا الحقول "
+"<literal>Homepage</literal> و<literal>Vcs-Git</literal> و<literal>"
+"Vcs-Browser</literal>. "
+"ثم أتممنا الحقل <literal>Depends</literal> بكتابة <literal>iceweasel | "
+"www-browser</literal> حتى نضمن توفر متصفح وب قادر على عرض المستندات في "
+"الحزمة."
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>control</filename> file"
-msgstr ""
+msgstr "ملف <filename>control</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -354,11 +877,30 @@ msgid ""
 " These documents MUST NOT leave the company.\n"
 " Their use is INTERNAL ONLY.\n"
 msgstr ""
+"\n"
+"Source: falcot-data\n"
+"Section: misc\n"
+"Priority: optional\n"
+"Maintainer: Raphael Hertzog &lt;hertzog@debian.org&gt;\n"
+"Build-Depends: debhelper (&gt;= 7.0.50~)\n"
+"Standards-Version: 3.8.4\n"
+"\n"
+"Package: falcot-data\n"
+"Architecture: all\n"
+"Depends: iceweasel | www-browser, ${misc:Depends}\n"
+"Description: Internal Falcot Corp Documentation\n"
+" This package provides several documents describing the internal\n"
+" structure at Falcot Corp.  This includes:\n"
+"  - organization diagram\n"
+"  - contacts for each department.\n"
+" .\n"
+" These documents MUST NOT leave the company.\n"
+" Their use is INTERNAL ONLY.\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>changelog</filename> file"
-msgstr ""
+msgstr "ملف <filename>changelog</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -371,19 +913,31 @@ msgid ""
 "    - internal company structure;\n"
 "    - contacts for each department.\n"
 "\n"
-" -- Raphael Hertzog &lt;hertzog@debian.org&gt;  Mon, 11 Apr 2011 20:46:33 +0200\n"
+" -- Raphael Hertzog &lt;hertzog@debian.org&gt;  Mon, 11 Apr 2011 20:46:33 "
+"+0200\n"
 msgstr ""
+"\n"
+"falcot-data (1.0) internal; urgency=low\n"
+"\n"
+"  * Initial Release.\n"
+"  * Let's start with few documents:\n"
+"    - internal company structure;\n"
+"    - contacts for each department.\n"
+"\n"
+" -- Raphael Hertzog &lt;hertzog@debian.org&gt;  Mon, 11 Apr 2011 20:46:33 "
+"+0200\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>copyright</filename> file"
-msgstr ""
+msgstr "ملف <filename>copyright</filename>"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
-"This work was packaged for Debian by Raphael Hertzog &lt;hertzog@debian.org&gt;\n"
+"This work was packaged for Debian by Raphael Hertzog "
+"&lt;hertzog@debian.org&gt;\n"
 "on Mon, 11 Apr 2011 20:46:33 +0200\n"
 "\n"
 "Copyright:\n"
@@ -394,21 +948,42 @@ msgid ""
 "\n"
 "    All rights reserved.\n"
 msgstr ""
+"\n"
+"This work was packaged for Debian by Raphael Hertzog "
+"&lt;hertzog@debian.org&gt;\n"
+"on Mon, 11 Apr 2011 20:46:33 +0200\n"
+"\n"
+"Copyright:\n"
+"\n"
+"    Copyright (C) 2004-2011 Falcot Corp\n"
+"\n"
+"License:\n"
+"\n"
+"    All rights reserved.\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <filename>Makefile</filename> file"
-msgstr ""
+msgstr "<emphasis>أساسيات</emphasis> ملف <filename>Makefile</filename>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Makefile</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Makefile</filename></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "A <filename>Makefile</filename> file is a script used by the <command>make</command> program; it describes rules for how to build a set of files from each other in a tree of dependencies (for instance, a program can be built from a set of source files). The <filename>Makefile</filename> file describes these rules in the following format:"
+msgid ""
+"A <filename>Makefile</filename> file is a script used by the <command>make<"
+"/command> program; it describes rules for how to build a set of files from "
+"each other in a tree of dependencies (for instance, a program can be built "
+"from a set of source files). The <filename>Makefile</filename> file describes "
+"these rules in the following format:"
 msgstr ""
+"ملف <filename>Makefile</filename> هو سكربت يستخدمه البرنامج <command>make<"
+"/command>؛ يُحدّد هذا السكربت قواعد بناء مجموعة من الملفات تنتج عن شجرة "
+"اعتماديات (مثلاً، يمكن بناء برنامج من ترجمة مجموعة من الملفات المصدرية). يحدد "
+"ملف <filename>Makefile</filename> هذه القواعد بالصيغة االتالية:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -418,26 +993,74 @@ msgid ""
 "        command1\n"
 "        command2\n"
 msgstr ""
+"\n"
+"target: source1 source2 ...\n"
+"        command1\n"
+"        command2\n"
 
 #. Tag: para
 #, no-c-format
-msgid "The interpretation of such a rule is as follows: if one of the <literal>source*</literal> files is more recent than the <literal>target</literal> file, then the target needs to be generated, using <command>command1</command> and <command>command2</command>."
+msgid ""
+"The interpretation of such a rule is as follows: if one of the <literal>"
+"source*</literal> files is more recent than the <literal>target</literal> "
+"file, then the target needs to be generated, using <command>command1</command>"
+" and <command>command2</command>."
 msgstr ""
+"تفسير هذه القواعد كالتالي: إذا كان أحد ملفات <literal dir=\"ltr\">source*<"
+"/literal> أحدث من الملف <literal>target</literal>، عندئذ يجب توليد الهدف "
+"(target) باستخدام <command>command1</command> و <command>command2</command>."
 
 #. Tag: para
 #, no-c-format
-msgid "Note that the command lines must start with a tab character; also note that when a command line starts with a dash character (<literal>-</literal>), failure of the command does not interrupt the whole process."
+msgid ""
+"Note that the command lines must start with a tab character; also note that "
+"when a command line starts with a dash character (<literal>-</literal>), "
+"failure of the command does not interrupt the whole process."
 msgstr ""
+"لاحظ أن سطور الأوامر يجب أن تبدأ بمحرف الجدولة (tab)؛ لاحظ أيضاً أن فشل أحد "
+"سطور الأوامر لن يقاطع العملية كلها إذا كان السطر يبدأ بمحرف <literal>-<"
+"/literal> (dash)."
 
 #. Tag: para
 #, no-c-format
-msgid "The <filename>rules</filename> file usually contains a set of rules used to configure, build and install the software in a dedicated subdirectory (named after the generated binary package). The contents of this subdirectory is then archived within the Debian package as if it were the root of the filesystem. In our case, files will be installed in the <filename>debian/falcot-data/usr/share/falcot-data/</filename> subdirectory, so that installing the generated package will deploy the files under <filename>/usr/share/falcot-data/</filename>. The <filename>rules</filename> file is used as a <filename>Makefile</filename>, with a few standard targets (including <literal>clean</literal> and <literal>binary</literal>, used respectively to clean the source directory and generate the binary package)."
+msgid ""
+"The <filename>rules</filename> file usually contains a set of rules used to "
+"configure, build and install the software in a dedicated subdirectory (named "
+"after the generated binary package). The contents of this subdirectory is "
+"then archived within the Debian package as if it were the root of the "
+"filesystem. In our case, files will be installed in the <filename>"
+"debian/falcot-data/usr/share/falcot-data/</filename> subdirectory, so that "
+"installing the generated package will deploy the files under <filename>"
+"/usr/share/falcot-data/</filename>. The <filename>rules</filename> file is "
+"used as a <filename>Makefile</filename>, with a few standard targets "
+"(including <literal>clean</literal> and <literal>binary</literal>, used "
+"respectively to clean the source directory and generate the binary package)."
 msgstr ""
+"يجوي الملف <filename>rules</filename> عادة مجموعة قواعد تستخدم لضبط وبناء "
+"وتثبيت البرنامج في مجلد فرعي مخصص (يسمى حسب اسم الحزمة الثنائية). بعدها تؤرشف "
+"محتويات هذا المجلد الفرعي في حزمة دبيان كما لو كانت جذر نظام الملفات. في "
+"حالتنا، سوف تثبت الملفات في المجلد الفرعي <filename dir=\"ltr\">"
+"debian/falcot-data/usr/share/falcot-data/</filename>، حتى يؤدي تثبيت الحزمة "
+"المولّدة لنشر الملفات في <filename>/usr/share/falcot-data/</filename>. يستخدم "
+"الملف <filename>rules</filename> كملف <filename>Makefile</filename> فيه بضعة "
+"أهداف قياسية (منها <literal>clean</literal> الذي يستخدم لتنظيف المجلد المصدر، "
+"و<literal>binary</literal> الذي يستخدم لتوليد الحزمة الثنائية)."
 
 #. Tag: para
 #, no-c-format
-msgid "Although this file is the heart of the process, it increasingly contains only the bare minimum for running a standard set of commands provided by the <command>debhelper</command> tool. Such is the case for files generated by <command>dh_make</command>. To install our files, we simply configure the behavior of the <command>dh_install</command> command by creating the following <filename>debian/falcot-data.install</filename> file:"
+msgid ""
+"Although this file is the heart of the process, it increasingly contains only "
+"the bare minimum for running a standard set of commands provided by the <"
+"command>debhelper</command> tool. Such is the case for files generated by <"
+"command>dh_make</command>. To install our files, we simply configure the "
+"behavior of the <command>dh_install</command> command by creating the "
+"following <filename>debian/falcot-data.install</filename> file:"
 msgstr ""
+"رغم أن هذا الملف هو لبُّ العملية، إلا أنه لم يعد يحوي إلا القليل اللازم "
+"لاستدعاء مجموعة قياسية من الأوامر التي توفرها الأداة <command>debhelper<"
+"/command>. وهذه هي حالة الملفات التي يولدها <command>dh_make</command>. "
+"لتثبيت ملفاتنا، علينا فقط ضبط سلوك الأمر <command>dh_install</command> عبر "
+"إنشاء ملف <filename>debian/falcot-data.install</filename> التالي:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -445,16 +1068,27 @@ msgid ""
 "\n"
 "data/* usr/share/falcot-data/\n"
 msgstr ""
+"\n"
+"data/* usr/share/falcot-data/\n"
 
 #. Tag: para
 #, no-c-format
-msgid "At this point, the package can be created. We will however add a lick of paint. Since the administrators want the documents to be easily accessed from the Help menus of graphical desktop environments, we create an entry in the Debian menu system. This is simply done by renaming the <filename>debian/menu.ex</filename> without its extension and editing it as follows:"
+msgid ""
+"At this point, the package can be created. We will however add a lick of "
+"paint. Since the administrators want the documents to be easily accessed from "
+"the Help menus of graphical desktop environments, we create an entry in the "
+"Debian menu system. This is simply done by renaming the <filename>"
+"debian/menu.ex</filename> without its extension and editing it as follows:"
 msgstr ""
+"عند هذه النقطة، يمكننا إنشاء الحزمة، إلا أننا سنضيف لمسة أخيرة. بما أن مديري "
+"النظم يريدون الوصول للمستندات بسهولة من قوائم المساعدة في بيئات سطح المكتب "
+"الرسومية، فسوف ننشئ مدخلة في نظام قوائم دبيان. يتم هذا بسهولة عبر حذف لاحقة "
+"الملف <filename>debian/menu.ex</filename> وتعديله كالتالي:"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>menu</filename> file"
-msgstr ""
+msgstr "ملف <filename>menu</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -467,66 +1101,136 @@ msgid ""
 "  title=\"Internal Falcot Corp Documentation\" \\\n"
 "  command=\"/usr/bin/www-browser /usr/share/falcot-data/index.html\"\n"
 msgstr ""
+"\n"
+"?package(falcot-data):needs=X11|wm section=Help\\\n"
+"  title=\"Internal Falcot Corp Documentation\" \\\n"
+"  command=\"/usr/bin/x-www-browser /usr/share/falcot-data/index.html\"\n"
+"?package(falcot-data):needs=text section=Help\\\n"
+"  title=\"Internal Falcot Corp Documentation\" \\\n"
+"  command=\"/usr/bin/www-browser /usr/share/falcot-data/index.html\"\n"
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>needs</literal> field, when set to <literal>X11|wm</literal> indicates that this entry only makes sense in a graphical interface. It will therefore only be integrated into the menus of the graphical (X11) applications and window managers (hence the <literal>wm</literal>). The <literal>section</literal> field states where in the menu the entry should be displayed. In our case, the entry will be in the Help menu. The <literal>title</literal> field contains the text that will be displayed in the menu. Finally, the <literal>command</literal> field describes the command to run when the user selects the menu entry."
+msgid ""
+"The <literal>needs</literal> field, when set to <literal>X11|wm</literal> "
+"indicates that this entry only makes sense in a graphical interface. It will "
+"therefore only be integrated into the menus of the graphical (X11) "
+"applications and window managers (hence the <literal>wm</literal>). The <"
+"literal>section</literal> field states where in the menu the entry should be "
+"displayed. In our case, the entry will be in the Help menu. The <literal>"
+"title</literal> field contains the text that will be displayed in the menu. "
+"Finally, the <literal>command</literal> field describes the command to run "
+"when the user selects the menu entry."
 msgstr ""
+"يَدلُّ الحقل <literal>needs</literal>، عند إعطائه القيمة <literal>X11|wm<"
+"/literal>، على أن هذه المدخلة قابلة للتطبيق فقط في الواجهات الرسومية. "
+"وبالتالي، سوف تتكامل هذه المدخلة في قوائم التطبيقات الرسومية (أو تطبيقات X11) "
+"ومدير النوافذ (من هنا جاءت <literal>wm</literal>). يحدد الحقل <literal>"
+"section</literal> مكان عرض المدخلة في القائمة. في حالتنا، ستكون المدخلة في "
+"القائمة Help (مساعدة). يحوي الحقل <literal>title</literal> النص الذي سيعرض في "
+"القائمة. أخيراً، يحدد الحقل <literal>command</literal> الأمر الذي سيستدعى "
+"عندما يختار المستخدم هذه المدخلة من القائمة."
 
 #. Tag: para
 #, no-c-format
-msgid "The second entry matches the first one, with slight adaptations adapted to the Linux console text mode."
+msgid ""
+"The second entry matches the first one, with slight adaptations adapted to "
+"the Linux console text mode."
 msgstr ""
+"المدخلة الثانية تطابق الأولى، مع بعض التعديلات حتى تناسب الوضع النصي في "
+"طرفيات لينكس."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> Menu organization"
-msgstr ""
+msgstr "<emphasis>سياسة دبيان</emphasis> تنظيم القوائم"
 
 #. Tag: para
 #, no-c-format
-msgid "The Debian menus are organized in a formal structure, documented in the following text: <ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/menu-policy/\" />"
+msgid ""
+"The Debian menus are organized in a formal structure, documented in the "
+"following text: <ulink type=\"block\" url=\"http://www.debian.org/doc/packagin"
+"g-manuals/menu-policy/\" />"
 msgstr ""
+"تُنظّم قوائم دبيان في بنية نظامية (formal structure)، موثّقة في النص التالي: "
+"<ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/menu-p"
+"olicy/\" />"
 
 #. Tag: para
 #, no-c-format
-msgid "The <literal>section</literal> in a <filename>menu</filename> file should be picked from the list mentioned in this document."
+msgid ""
+"The <literal>section</literal> in a <filename>menu</filename> file should be "
+"picked from the list mentioned in this document."
 msgstr ""
+"يجب اختيار <literal>section</literal> الذي يحدد في ملف <filename>menu<"
+"/filename> من القائمة المذكورة في هذه الوثيقة."
 
 #. Tag: para
 #, no-c-format
-msgid "Simply creating the <filename>debian/menu</filename> file is enough to enable the menu in the package, since the <command>dh_installmenu</command> command is automatically invoked by <command>dh</command> during the package build process."
+msgid ""
+"Simply creating the <filename>debian/menu</filename> file is enough to enable "
+"the menu in the package, since the <command>dh_installmenu</command> command "
+"is automatically invoked by <command>dh</command> during the package build "
+"process."
 msgstr ""
+"يكفي إنشاء الملف <filename>debian/menu</filename> لتفعيل القائمة في الحزمة، "
+"لأن <command>dh</command> يستدعي الأمر <command>dh_installmenu</command> "
+"آلياً أثناء عملية بناء الحزمة."
 
 #. Tag: para
 #, no-c-format
-msgid "Our source package is now ready. All that's left to do is to generate the binary package, with the same method we used previously for rebuilding packages: we run the <command>dpkg-buildpackage -us -uc</command> command from within the <filename>falcot-data-1.0</filename> directory."
+msgid ""
+"Our source package is now ready. All that's left to do is to generate the "
+"binary package, with the same method we used previously for rebuilding "
+"packages: we run the <command>dpkg-buildpackage -us -uc</command> command "
+"from within the <filename>falcot-data-1.0</filename> directory."
 msgstr ""
+"أصبحت حزمتنا المصدرية الآن جاهزة. لم يبقَ إلا توليد الحزمة الثنائية، باستخدام "
+"الطريقة نفسها التي استخدمناها سابقاً لإعادة بناء الحزم: نستدعي الأمر <command>"
+"dpkg-buildpackage -us -uc</command> من داخل المجلد <filename>falcot-data-1.0<"
+"/filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "Creating a Package Repository for APT"
-msgstr ""
+msgstr "إنشاء مستودع حزم للأداة APT"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package archive</primary>"
-msgstr ""
+msgstr "<primary>أرشيف حزم</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-msgid "<primary>package</primary><secondary>Debian</secondary><tertiary>archive of</tertiary>"
+msgid ""
+"<primary>package</primary><secondary>Debian</secondary><tertiary>archive of<"
+"/tertiary>"
 msgstr ""
+"<primary>حزمة</primary><secondary>دبيان</secondary><tertiary>أرشيف</tertiary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Falcot Corp gradually started maintaining a number of Debian packages either locally modified from existing packages or created from scratch to distribute internal data and programs."
+msgid ""
+"Falcot Corp gradually started maintaining a number of Debian packages either "
+"locally modified from existing packages or created from scratch to distribute "
+"internal data and programs."
 msgstr ""
+"بدأت شركة فلكوت تدريجياً بمتابعة صيانة عدد من حزم دبيان، سواء الحزم المعدلة "
+"محلياً عن حزم سابقة، أو حزم منشأة من الصفر لتوزيع بيانات وبرامج داخلية."
 
 #. Tag: para
 #, no-c-format
-msgid "To make deployment easier, they want to integrate these packages in a package archive that can be directly used by APT. For obvious maintenance reasons, they wish to separate internal packages from locally-rebuilt packages. The goal is for the matching entries in a <filename>/etc/apt/sources.list</filename> file to be as follows:"
+msgid ""
+"To make deployment easier, they want to integrate these packages in a package "
+"archive that can be directly used by APT. For obvious maintenance reasons, "
+"they wish to separate internal packages from locally-rebuilt packages. The "
+"goal is for the matching entries in a <filename>/etc/apt/sources.list<"
+"/filename> file to be as follows:"
 msgstr ""
+"يريدون مكاملة هذه الحزم في أرشيف حزم يمكن استخدامه مباشرة عبر APT لتسهيل "
+"عملية التنصيب. ولأسباب واضحة متعلقة بالصيانة، يريدون فصل الحزم الداخلية عن "
+"الحزم التي أعادوا بناءها محلياً. الهدف هو أن تصبح المدخلات الموافقة لهذه "
+"الحزم في ملف <filename dir=\"ltr\">/etc/apt/sources.list</filename> كما يلي:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -535,52 +1239,143 @@ msgid ""
 "deb http://packages.falcot.com/ updates/\n"
 "deb http://packages.falcot.com/ internal/\n"
 msgstr ""
+"\n"
+"deb http://packages.falcot.com/ updates/\n"
+"deb http://packages.falcot.com/ internal/\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mini-dinstall</command></primary>"
-msgstr ""
+msgstr "<primary><command>mini-dinstall</command></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The administrators therefore configure a virtual host on their internal HTTP server, with <filename>/srv/vhosts/packages/</filename> as the root of the associated web space. The management of the archive themselves is delegated to the <command>mini-dinstall</command> command (in the similarly-named package). This tool keeps an eye on an <filename>incoming/</filename> directory (in our case, <filename>/srv/vhosts/packages/mini-dinstall/incoming/</filename>) and waits for new packages there; when a package is uploaded, it is installed into a Debian archive at <filename>/srv/vhosts/packages/</filename>. The <command>mini-dinstall</command> command reads the <filename>*.changes</filename> file created when the Debian package is generated. These files contain a list of all other files associated to the version of the package (<filename>*.deb</filename>, <filename>*.dsc</filename>, <filename>*.diff.gz</filename>/<filename>*.debian.tar.gz</filename>, <filename>*.orig.tar.gz</filename>, or their equivalents with other compression tools), and they allow <command>mini-dinstall</command> to know which files to install. <filename>*.changes</filename> files also contain the name of the target distribution (often <literal>unstable</literal>) mentioned in the latest <filename>debian/changelog</filename> entry, and <command>mini-dinstall</command> uses this information to decide where the package should be installed. This is why administrators must always change this field before building a package, and set it to <literal>internal</literal> or <literal>updates</literal>, depending on the target location. <command>mini-dinstall</command> then generates the files required by APT, such as <filename>Packages.gz</filename>."
+msgid ""
+"The administrators therefore configure a virtual host on their internal HTTP "
+"server, with <filename>/srv/vhosts/packages/</filename> as the root of the "
+"associated web space. The management of the archive themselves is delegated "
+"to the <command>mini-dinstall</command> command (in the similarly-named "
+"package). This tool keeps an eye on an <filename>incoming/</filename> "
+"directory (in our case, <filename>/srv/vhosts/packages/mini-dinstall/incoming/"
+"</filename>) and waits for new packages there; when a package is uploaded, it "
+"is installed into a Debian archive at <filename>/srv/vhosts/packages/<"
+"/filename>. The <command>mini-dinstall</command> command reads the <filename>"
+"*.changes</filename> file created when the Debian package is generated. These "
+"files contain a list of all other files associated to the version of the "
+"package (<filename>*.deb</filename>, <filename>*.dsc</filename>, <filename>"
+"*.diff.gz</filename>/<filename>*.debian.tar.gz</filename>, <filename>"
+"*.orig.tar.gz</filename>, or their equivalents with other compression tools), "
+"and they allow <command>mini-dinstall</command> to know which files to "
+"install. <filename>*.changes</filename> files also contain the name of the "
+"target distribution (often <literal>unstable</literal>) mentioned in the "
+"latest <filename>debian/changelog</filename> entry, and <command>"
+"mini-dinstall</command> uses this information to decide where the package "
+"should be installed. This is why administrators must always change this field "
+"before building a package, and set it to <literal>internal</literal> or <"
+"literal>updates</literal>, depending on the target location. <command>"
+"mini-dinstall</command> then generates the files required by APT, such as <"
+"filename>Packages.gz</filename>."
 msgstr ""
+"أعدّ مديرو النظم إذاً مضيفاً ظاهرياً على مخدم HTTP الداخلي لديهم، مع تحديد <"
+"filename>/srv/vhosts/packages/</filename> كجذر مساحة الوب المرتبطة به. لقد "
+"سلموا عملية إدارة الأرشيفات نفسها إلى الأمر <command>mini-dinstall</command> "
+"(من الحزمة ذات الاسم نفسه). تتابع هذه الأداة مجلد الواردات <filename "
+"dir=\"ltr\">incoming/</filename> (في حالتنا، <filename>"
+"/srv/vhosts/packages/mini-dinstall/incoming/</filename>) "
+"وتنتظر وصول حزم جديدة إليه؛ وعند رفع حزمة جديدة سوف تثبتها في أرشيف دبيان في "
+"<filename>/srv/vhosts/packages/</filename>. يقرأ الأمر <command>"
+"mini-dinstall</command> ملف <filename dir=\"ltr\">*.changes</filename> الذي "
+"ينشأ عند توليد حزم دبيان. تحوي هذه الملفات قائمة "
+"بجميع الملفات الأخرى المرتبطة بهذه النسخة من الحزمة (<filename dir=\"ltr\">"
+"*.deb</filename> و<filename dir=\"ltr\">*.dsc</filename> و<filename "
+"dir=\"ltr\">*.diff.gz</filename>/<filename>*.debian.tar.gz</filename> "
+"و<filename dir=\"ltr\">*.orig.tar.gz</filename> أو مثيلاتها "
+"الناتجة عن استخدام أدوات ضغط مختلفة)، وهي تسمح للأمر <command>mini-dinstall<"
+"/command> بمعرفة الملفات التي "
+"يجب تثبيتها. كما تحوي ملفات <filename dir=\"ltr\">*.changes</filename> اسم "
+"التوزيعة المستهدفة (غالباً <literal>unstable</literal>) الذي يُذكر "
+"في آخر مدخلة من مدخلات <filename>debian/changelog</filename>، حيث يستخدم <"
+"command>mini-dinstall</command> هذه المعلومة ليقرر المكان الذي سيثبت "
+"الحزمة فيه. لذلك يتعيّن على مديري النظم تغيير هذا الحقل دوماً قبل بناء أي "
+"حزمة، وإعطائه القيمة <literal>internal</literal> أو <literal>updates</literal>"
+"، حسب الموقع الهدف. بعدها يولّد <command>mini-dinstall</command> الملفات التي "
+"تحتاجها APT، مثل <filename>Packages.gz</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <command>apt-ftparchive</command>"
-msgstr ""
+msgstr "<emphasis>بدائل</emphasis> <command>apt-ftparchive</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-ftparchive</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-ftparchive</command></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "If <command>mini-dinstall</command> seems too complex for your Debian archive needs, you can also use the <command>apt-ftparchive</command> command. This tool scans the contents of a directory and displays (on its standard output) a matching <filename>Packages</filename> file. In the Falcot Corp case, administrators could upload the packages directly into <filename>/srv/vhosts/packages/updates/</filename> or <filename>/srv/vhosts/packages/internal/</filename>, then run the following commands to create the <filename>Packages.gz</filename> files:"
+msgid ""
+"If <command>mini-dinstall</command> seems too complex for your Debian archive "
+"needs, you can also use the <command>apt-ftparchive</command> command. This "
+"tool scans the contents of a directory and displays (on its standard output) "
+"a matching <filename>Packages</filename> file. In the Falcot Corp case, "
+"administrators could upload the packages directly into <filename>"
+"/srv/vhosts/packages/updates/</filename> or <filename>"
+"/srv/vhosts/packages/internal/</filename>, then run the following commands to "
+"create the <filename>Packages.gz</filename> files:"
 msgstr ""
+"إذا كنت ترى أن <command>mini-dinstall</command> معقدٌ جداً بالنسبة لأرشيف "
+"دبيان الذي تحتاجه، يمكنك أيضاً استخدام الأمر <command>apt-ftparchive</command>"
+". تفحص هذه الأداة محتويات مجلد ما وتعرض (على خرجها القياسي) ملف <filename>"
+"Packages</filename> يوافق هذه المحتويات. في حالة شركة فلكوت، يستطيع مديرو "
+"النظم رفع الحزم مباشرة إلى <filename>/srv/vhosts/packages/updates/</filename> "
+"أو <filename>/srv/vhosts/packages/internal/</filename>، ثمّ استدعاء الأوامر "
+"التالية لإنشاء ملفات <filename>Packages.gz</filename>:"
 
 #. Tag: screen
 #, no-c-format
 msgid ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>cd /srv/vhosts/packages</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages updates &gt;updates/Packages</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>gzip updates/Packages</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages internal &gt;internal/Packages</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>gzip internal/Packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cd /srv/vhosts/packages<"
+"/userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages updates "
+"&gt;updates/Packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>gzip updates/Packages<"
+"/userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages "
+"internal &gt;internal/Packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>gzip internal/Packages<"
+"/userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>cd /srv/vhosts/packages<"
+"/userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages updates "
+"&gt;updates/Packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>gzip updates/Packages<"
+"/userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages "
+"internal &gt;internal/Packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>gzip internal/Packages<"
+"/userinput>\n"
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>apt-ftparchive sources</command> command allows creating <filename>Sources.gz</filename> files in a similar fashion."
+msgid ""
+"The <command>apt-ftparchive sources</command> command allows creating <"
+"filename>Sources.gz</filename> files in a similar fashion."
 msgstr ""
+"يسمح الأمر <command>apt-ftparchive sources</command> بإنشاء ملفات <filename>"
+"Sources.gz</filename> بأسلوب مشابه."
 
 #. Tag: para
 #, no-c-format
-msgid "Configuring <command>mini-dinstall</command> requires setting up a <filename>~/.mini-dinstall.conf</filename> file; in the Falcot Corp case, the contents are as follows:"
+msgid ""
+"Configuring <command>mini-dinstall</command> requires setting up a <filename>"
+"~/.mini-dinstall.conf</filename> file; in the Falcot Corp case, the contents "
+"are as follows:"
 msgstr ""
+"لإعداد <command>mini-dinstall</command> يجب ضبط الملف <filename dir=\"ltr\">"
+"~/.mini-dinstall.conf</filename>؛ كانت المحتويات في حالة شركة فلكوت كالتالي:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -603,418 +1398,911 @@ msgid ""
 "[internal]\n"
 "release_label = Internal Packages\n"
 msgstr ""
+"\n"
+"[DEFAULT]\n"
+"archive_style = flat\n"
+"archivedir = /srv/vhosts/packages\n"
+"\n"
+"verify_sigs = 0\n"
+"mail_to = admin@falcot.com\n"
+"\n"
+"generate_release = 1\n"
+"release_origin = Falcot Corp\n"
+"release_codename = stable\n"
+"\n"
+"[updates]\n"
+"release_label = Recompiled Debian Packages\n"
+"\n"
+"[internal]\n"
+"release_label = Internal Packages\n"
 
 #. Tag: para
 #, no-c-format
-msgid "One decision worth noting is the generation of <filename>Release</filename> files for each archive. This can help manage package installation priorities using the <filename>/etc/apt/preferences</filename> configuration file (see <xref linkend=\"sect.apt.priorities\" /> for details)."
+msgid ""
+"One decision worth noting is the generation of <filename>Release</filename> "
+"files for each archive. This can help manage package installation priorities "
+"using the <filename>/etc/apt/preferences</filename> configuration file (see <"
+"xref linkend=\"sect.apt.priorities\" /> for details)."
 msgstr ""
+"أحد القرارات التي تستحق الذكر هو توليد ملفات <filename>Release</filename> لكل "
+"أرشيف. وهذه تساعد في إدارة أولويات تثبيت الحزم باستخدام ملف الضبط <filename "
+"dir=\"ltr\">/etc/apt/preferences</filename> (انظر <xref "
+"linkend=\"sect.apt.priorities\" /> لمزيد من التفاصيل)."
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis>SECURITY</emphasis> <command>mini-dinstall</command> and permissions"
-msgstr ""
+msgid ""
+"<emphasis>SECURITY</emphasis> <command>mini-dinstall</command> and permissions"
+msgstr "<emphasis>أمن</emphasis> <command>mini-dinstall</command> والصلاحيات"
 
 #. Tag: para
 #, no-c-format
-msgid "Since <command>mini-dinstall</command> has been designed to run as a regular user, there's no need to run it as root. The easiest way is to configure everything within the user account belonging to the administrator in charge of creating the Debian packages. Since only this administrator has the required permissions to put files in the <filename>incoming/</filename> directory, we can deduce that the administrator authenticated the origin of each package prior to deployment and <command>mini-dinstall</command> does not need to do it again. This explains the <literal>verify_sigs = 0</literal> parameter (which means that signatures need not be verified). However, if the contents of packages are sensitive, we can reverse the setting and elect to authenticate with a keyring containing the public keys of persons allowed to create packages (configured with the <literal>extra_keyrings</literal> parameter); <command>mini-dinstall</command> will then check the origin of each incoming package by analyzing the signature integrated to the <filename>*.changes</filename> file."
+msgid ""
+"Since <command>mini-dinstall</command> has been designed to run as a regular "
+"user, there's no need to run it as root. The easiest way is to configure "
+"everything within the user account belonging to the administrator in charge "
+"of creating the Debian packages. Since only this administrator has the "
+"required permissions to put files in the <filename>incoming/</filename> "
+"directory, we can deduce that the administrator authenticated the origin of "
+"each package prior to deployment and <command>mini-dinstall</command> does "
+"not need to do it again. This explains the <literal>verify_sigs = 0</literal> "
+"parameter (which means that signatures need not be verified). However, if the "
+"contents of packages are sensitive, we can reverse the setting and elect to "
+"authenticate with a keyring containing the public keys of persons allowed to "
+"create packages (configured with the <literal>extra_keyrings</literal> "
+"parameter); <command>mini-dinstall</command> will then check the origin of "
+"each incoming package by analyzing the signature integrated to the <filename>"
+"*.changes</filename> file."
 msgstr ""
+"بما أن <command>mini-dinstall</command> مصمم حتى يعمل بصلاحيات المستخدمين "
+"العاديين، فلا حاجة لتشغيله بصلاحيات الجذر. أسهل طريقة هي إعداد كل شيء ضمن "
+"حساب مستخدم يملكه مدير النظام المسؤول عن إنشاء حزم دبيان. بما أن مدير النظام "
+"هذا وحده يملك الصلاحيات اللازمة لوضع الملفات في المجلد <filename dir=\"ltr\">"
+"incoming/</filename>، يمكننا أن نستنتج أن مدير النظام سيتحقق من مصدر كل حزمة "
+"قبل نشرها ولا داعي أن يتحقق منه <command>mini-dinstall</command> ثانية. هذا "
+"يفسر استخدام المتغير <literal dir=\"ltr\">verify_sigs = 0</literal> (الذي "
+"يعني عدم الحاجة للتحقق من التواقيع الرقمية). لكن إذا كانت محتويات الحزم "
+"حساسة، يمكننا عكس الإعدادات واختيار التحقق من الحزم باستخدام حلقة مفاتيح تحوي "
+"المفاتيح العامة للأشخاص الذين يُسمَح لهم بإنشاء الحزم (التي تضبط باستخدام "
+"المتغير <literal>extra_keyrings</literal>)؛ عندها سيتحقق <command>"
+"mini-dinstall</command> من مصدر كل حزمة واردة عبر تحليل التوقيع المدمج في "
+"الملف <filename dir=\"ltr\">*.changes</filename>."
 
 #. Tag: para
 #, no-c-format
-msgid "Invoking <command>mini-dinstall</command> actually starts a daemon in the background. As long as this daemon runs, it will check for new packages in the <filename>incoming/</filename> directory every half-hour; when a new package arrives, it will be moved to the archive and the appropriate <filename>Packages.gz</filename> and <filename>Sources.gz</filename> files will be regenerated. If running a daemon is a problem, <command>mini-dinstall</command> can also be manually invoked in batch mode (with the <literal>-b</literal> option) every time a package is uploaded into the <filename>incoming/</filename> directory. Other possibilities provided by <command>mini-dinstall</command> are documented in its <citerefentry><refentrytitle>mini-dinstall</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page."
+msgid ""
+"Invoking <command>mini-dinstall</command> actually starts a daemon in the "
+"background. As long as this daemon runs, it will check for new packages in "
+"the <filename>incoming/</filename> directory every half-hour; when a new "
+"package arrives, it will be moved to the archive and the appropriate <"
+"filename>Packages.gz</filename> and <filename>Sources.gz</filename> files "
+"will be regenerated. If running a daemon is a problem, <command>"
+"mini-dinstall</command> can also be manually invoked in batch mode (with the "
+"<literal>-b</literal> option) every time a package is uploaded into the <"
+"filename>incoming/</filename> directory. Other possibilities provided by <"
+"command>mini-dinstall</command> are documented in its <citerefentry><"
+"refentrytitle>mini-dinstall</refentrytitle> <manvolnum>1</manvolnum><"
+"/citerefentry> manual page."
 msgstr ""
+"استدعاء <command>mini-dinstall</command> في الواقع يبدأ تشغيل خدمة في "
+"الخلفية. وطالما أن هذه الخدمة تعمل، سوف تفحص ورود حزم جديدة إلى المجلد <"
+"filename dir=\"ltr\">incoming/</filename> كل نصف ساعة؛ عند وصول حزمة جديدة، "
+"سوف تُنقَل إلى الأرشيف ويعاد توليد ملفات <filename>Packages.gz</filename> و <"
+"filename>Sources.gz</filename>المناسبة. إذا كان تشغيل الخدمة يسبب مشكلة، يمكن "
+"أيضاً استدعاء <command>mini-dinstall</command> يدوياً في الوضع اللاتفاعلي (أو "
+"الدفعي batch)، باستخدام الخيار <literal dir=\"ltr\">-b</literal>، في كل مرة "
+"تُرفَع فيها حزمة جديدة إلى المجلد <filename dir=\"ltr\">incoming/</filename>. "
+"الإمكانيات الأخرى التي يوفرها <command>mini-dinstall</command> موثقة في صفحة "
+"الدليل <citerefentry><refentrytitle>mini-dinstall</refentrytitle> <manvolnum>"
+"1</manvolnum></citerefentry>.‎"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Generating a signed archive"
-msgstr ""
+msgstr "<emphasis>إضافة</emphasis> توليد أرشيف موقّع"
 
 #. Tag: para
 #, no-c-format
-msgid "The APT suite checks a chain of cryptographic signatures on the packages it handles before installing them (and has done so since <emphasis role=\"distribution\">Etch</emphasis>), in order to ensure their authenticity (see <xref linkend=\"sect.package-authentication\" />). Private APT archives can then be a problem, since the machines using them will keep displaying warnings about unsigned packages. A diligent administrator will therefore integrate private archives with the secure APT mechanism."
+msgid ""
+"The APT suite checks a chain of cryptographic signatures on the packages it "
+"handles before installing them (and has done so since <emphasis "
+"role=\"distribution\">Etch</emphasis>), in order to ensure their authenticity "
+"(see <xref linkend=\"sect.package-authentication\" />). Private APT archives "
+"can then be a problem, since the machines using them will keep displaying "
+"warnings about unsigned packages. A diligent administrator will therefore "
+"integrate private archives with the secure APT mechanism."
 msgstr ""
+"تتحقق مجموعة APT من سلسلة من التواقيع التشفيرية المطبّقة على الحزم التي "
+"تعالجها قبل تثبيتها (وهي تفعل هذا منذ دبيان <emphasis role=\"distribution\">"
+"إيتش</emphasis>)، حتى تتأكد من أصالتها (انظر <xref "
+"linkend=\"sect.package-authentication\" />). قد تسبب أرشيفات APT الخاصة مشكلة "
+"هنا، لأن الأجهزة التي تستخدمها ستستمر في عرض تحذيرات عن الحزم غير الموقّعة. "
+"سيعمل مدير النظام المتقن لعمله على مكاملة الأرشيفات الخاصة مع آلية secure APT."
 
 #. Tag: para
 #, no-c-format
-msgid "To help with this process, <command>mini-dinstall</command> includes a <literal>release_signscript</literal> configuration option that allows specifying a script to use for generating the signature. A good starting point is the <filename>sign-release.sh</filename> script provided by the <emphasis role=\"pkg\">mini-dinstall</emphasis> package in <filename>/usr/share/doc/mini-dinstall/examples/</filename>; local changes may be relevant."
+msgid ""
+"To help with this process, <command>mini-dinstall</command> includes a <"
+"literal>release_signscript</literal> configuration option that allows "
+"specifying a script to use for generating the signature. A good starting "
+"point is the <filename>sign-release.sh</filename> script provided by the <"
+"emphasis role=\"pkg\">mini-dinstall</emphasis> package in <filename>"
+"/usr/share/doc/mini-dinstall/examples/</filename>; local changes may be "
+"relevant."
 msgstr ""
+"يتضمن <command>mini-dinstall</command> خيار الضبط <literal>"
+"release_signscript</literal> للمساعدة في هذه العملية، حيث يسمح بتحديد سكربت "
+"يستخدم لتوليد التوقيع. يمكن البداية مع السكربت <filename>sign-release.sh<"
+"/filename> الذي توفره الحزمة <emphasis role=\"pkg\">mini-dinstall</emphasis> "
+"في المجلد <filename>/usr/share/doc/mini-dinstall/examples/</filename>؛ قد "
+"تحتاج لإجراء بعض التغييرات المحلية."
 
 #. Tag: title
 #, no-c-format
 msgid "Becoming a Package Maintainer"
-msgstr ""
+msgstr "كيف تصبح مشرف حزم"
 
 #. Tag: title
 #, no-c-format
 msgid "Learning to Make Packages"
-msgstr ""
+msgstr "تعلم إنشاء الحزم"
 
 #. Tag: para
 #, no-c-format
-msgid "Creating a quality Debian package is not always a simple task, and becoming a package maintainer takes some learning, both with theory and practice. It's not a simple matter of building and installing software; rather, the bulk of the complexity comes from understanding the problems and conflicts, and more generally the interactions, with the myriad of other packages available."
+msgid ""
+"Creating a quality Debian package is not always a simple task, and becoming a "
+"package maintainer takes some learning, both with theory and practice. It's "
+"not a simple matter of building and installing software; rather, the bulk of "
+"the complexity comes from understanding the problems and conflicts, and more "
+"generally the interactions, with the myriad of other packages available."
 msgstr ""
+"إنشاء حزم دبيان ذات جودة ليست مهمة بسيطة، وتحتاج إلى بعض التعلم حتى تصبح مشرف "
+"حزم. لا يقتصر الأمر على بناء وتثبيت البرمجيات؛ بل أن معظم التعقيدات تنتج عن "
+"فهم المشاكل والتضاربات، والتفاعلات مع آلاف الحزم الأخرى بشكل عام."
 
 #. Tag: title
 #, no-c-format
 msgid "Rules"
-msgstr ""
+msgstr "القواعد"
 
 #. Tag: para
 #, no-c-format
-msgid "A Debian package must comply with the precise rules compiled in the Debian policy, and each package maintainer must know them. There is no requirement to know them by heart, but rather to know they exist and to refer to them whenever a choice presents a non-trivial alternative. Every Debian maintainer has made mistakes by not knowing about a rule, but this is not a huge problem as soon as the error is fixed when a user reports it as a bug report, which tends to happen fairly soon thanks to advanced users. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/\" />"
+msgid ""
+"A Debian package must comply with the precise rules compiled in the Debian "
+"policy, and each package maintainer must know them. There is no requirement "
+"to know them by heart, but rather to know they exist and to refer to them "
+"whenever a choice presents a non-trivial alternative. Every Debian maintainer "
+"has made mistakes by not knowing about a rule, but this is not a huge problem "
+"as soon as the error is fixed when a user reports it as a bug report, which "
+"tends to happen fairly soon thanks to advanced users. <ulink type=\"block\" "
+"url=\"http://www.debian.org/doc/debian-policy/\" />"
 msgstr ""
+"يجب أن تتبع حزم دبيان القواعد الدقيقة المجموعة في سياسة دبيان، ويجب أن يعرف "
+"كل مشرف حزم هذه القواعد. لا يشترط أن تحفظها عن ظهر قلب، بل أن تعرف أنها "
+"موجودة وأن تعود إليها كلما صعب عليك اتخاذ أحد القرارات. لقد وقع كل مشرف دبيان "
+"في أخطاء نتيجة عدم معرفة إحدى القواعد، لكن هذه ليست مشكلة عظيمة طالما أن "
+"الخطأ سيصحح عندما يبلغ عنه أحد المستخدمين في تقرير علة، وهذا يحدث سريعاً عادة "
+"بفضل المستخدمين المتقدمين. <ulink type=\"block\" "
+"url=\"http://www.debian.org/doc/debian-policy/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Procedures"
-msgstr ""
+msgstr "الروتين"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian Developer's Reference</primary>"
-msgstr ""
+msgstr "<primary>Debian Developer's Reference</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Debian is not a simple collection of individual packages. Everyone's packaging work is part of a collective project; being a Debian developer involves knowing how the Debian project operates as a whole. Every developer will, sooner or later, interact with others. The Debian Developer's Reference (in the <emphasis role=\"pkg\">developers-reference</emphasis> package) summarizes what every developer must know in order to interact as smoothly as possible with the various teams within the project, and to take the best possible advantages of the available resources. This document also enumerates a number of duties a developer is expected to fulfill. <ulink type=\"block\" url=\"http://www.debian.org/doc/developers-reference/\" />"
+msgid ""
+"Debian is not a simple collection of individual packages. Everyone's "
+"packaging work is part of a collective project; being a Debian developer "
+"involves knowing how the Debian project operates as a whole. Every developer "
+"will, sooner or later, interact with others. The Debian Developer's Reference "
+"(in the <emphasis role=\"pkg\">developers-reference</emphasis> package) "
+"summarizes what every developer must know in order to interact as smoothly as "
+"possible with the various teams within the project, and to take the best "
+"possible advantages of the available resources. This document also enumerates "
+"a number of duties a developer is expected to fulfill. <ulink type=\"block\" "
+"url=\"http://www.debian.org/doc/developers-reference/\" />"
 msgstr ""
+"ليس دبيان مجموعة بسيطة من الحزم المفردة. تشكل جهود كل واحد جزءاً من مشروع "
+"تعاوني؛ ولذلك يجب أن تعرف كيف يعمل مشروع دبيان ككل إذا أردت أن تصبح مطور "
+"دبيان. سيتفاعل كل مطور دبيان ‒عاجلاً أم آجلاً‒ مع الآخرين. يُلخّص Debian "
+"Developer's Reference (في الحزمة <emphasis role=\"pkg\">developers-reference<"
+"/emphasis>) ما يجب أن يعرفه كل مطور حتى يتفاعل بسلاسة مع الفرق المختلفة داخل "
+"المشروع، ويستفيد لأقصى حد ممكن من الموارد المتاحة. كما يعدد هذا المرجع مجموعة "
+"من المهام التي يتوقع أن ينجزها المطور. <ulink type=\"block\" "
+"url=\"http://www.debian.org/doc/developers-reference/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Tools"
-msgstr ""
+msgstr "الأدوات"
 
 #. Tag: para
 #, no-c-format
-msgid "Many tools help package maintainers in their work. This section describes them quickly, but does not give the full details, since they all have comprehensive documentation on their own."
+msgid ""
+"Many tools help package maintainers in their work. This section describes "
+"them quickly, but does not give the full details, since they all have "
+"comprehensive documentation on their own."
 msgstr ""
+"هناك أدوات عديدة تساعد مشرفي الحزم على إنجاز أعمالهم. يمرّ هذا القسم عليها "
+"سريعاً، لكن لا يتفصل فيها كثيراً، لأن هناك وثائق شاملة لكل منها."
 
 #. Tag: title
 #, no-c-format
 msgid "The <command>lintian</command> Program"
-msgstr ""
+msgstr "برنامج <command>lintian</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lintian</command></primary>"
-msgstr ""
+msgstr "<primary><command>lintian</command></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "This tool is one of the most important: it's the Debian package checker. It is based on a large array of tests created from the Debian policy, and detects quickly and automatically a great many errors that can be fixed before packages are released."
+msgid ""
+"This tool is one of the most important: it's the Debian package checker. It "
+"is based on a large array of tests created from the Debian policy, and "
+"detects quickly and automatically a great many errors that can be fixed "
+"before packages are released."
 msgstr ""
+"هذه إحدى أهم الأدوات: تفحص هذه الأداة حزم دبيان. هذه الأداة مبنية على مجموعة "
+"كبيرة من الاختبارات من سياسة دبيان، وتكتشف سريعاً وتلقائياً عدداً كبيراً من "
+"الأخطاء التي يمكن تصحيحها قبل إصدار الحزمة."
 
 #. Tag: para
 #, no-c-format
-msgid "This tool is only a helper, and it sometimes gets it wrong (for instance, since the Debian policy changes over time, <command>lintian</command> is sometimes outdated). It is also not exhaustive: not getting any Lintian error should not be interpreted as a proof that the package is perfect; at most, it avoids the most common errors."
+msgid ""
+"This tool is only a helper, and it sometimes gets it wrong (for instance, "
+"since the Debian policy changes over time, <command>lintian</command> is "
+"sometimes outdated). It is also not exhaustive: not getting any Lintian error "
+"should not be interpreted as a proof that the package is perfect; at most, it "
+"avoids the most common errors."
 msgstr ""
+"هذه الأداة للمساعدة فقط، وأحياناً تخطئ (مثلاً، سياسة دبيان تتغير مع الوقت، "
+"ولذلك قد يتخلف <command>lintian</command> أحياناً). كما أنها ليست شاملة: فإذا "
+"لم يظهر Lintain أي أخطاء فلا يجب أن تفهم هذا على أنه برهان على أن الحزمة "
+"مثالية؛ بل هي تتفادى أكثر الأخطاء شيوعاً في أفضل الحالات."
 
 #. Tag: title
 #, no-c-format
 msgid "The <command>piuparts</command> Program"
-msgstr ""
+msgstr "برنامج <command>piuparts</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>piuparts</command></primary>"
-msgstr ""
+msgstr "<primary><command>piuparts</command></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "This is another important tool: it automates the installation, upgrade, removal and purge of a package (in an isolated environment), and checks that none of these operations leads to an error. It can help in detecting missing dependencies, and it also detects when files are incorrectly left over after the package got purged."
+msgid ""
+"This is another important tool: it automates the installation, upgrade, "
+"removal and purge of a package (in an isolated environment), and checks that "
+"none of these operations leads to an error. It can help in detecting missing "
+"dependencies, and it also detects when files are incorrectly left over after "
+"the package got purged."
 msgstr ""
+"هذه أداة مهمة أيضاً: تؤتمت هذه الأداة تثبيت وتحديث وإزالة وتطهير الحزمة (في "
+"بيئة معزولة)، وتتحقق من عدم ظهور أخطاء في أي واحدة من هذه العمليات. يمكنها أن "
+"تساعدك على اكتشاف الاعتماديات المفقودة، كما تكتشف بقاء بعض الملفات بالخطأ بعد "
+"تطهير الحزمة."
 
 #. Tag: title
 #, no-c-format
 msgid "devscripts"
-msgstr ""
+msgstr "devscripts"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">devscripts</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">devscripts</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debuild</command></primary>"
-msgstr ""
+msgstr "<primary><command>debuild</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dch</command></primary>"
-msgstr ""
+msgstr "<primary><command>dch</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>uscan</command></primary>"
-msgstr ""
+msgstr "<primary><command>uscan</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debi</command></primary>"
-msgstr ""
+msgstr "<primary><command>debi</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debc</command></primary>"
-msgstr ""
+msgstr "<primary><command>debc</command></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The <emphasis role=\"pkg\">devscripts</emphasis> package contains many programs helping with a wide array of a Debian developer's job:"
+msgid ""
+"The <emphasis role=\"pkg\">devscripts</emphasis> package contains many "
+"programs helping with a wide array of a Debian developer's job:"
 msgstr ""
+"تحوي الحزمة <emphasis role=\"pkg\">devscripts</emphasis> العديد من البرامج "
+"التي تساعد في نواحي كثيرة من عمل مطوري دبيان:"
 
 #. Tag: para
 #, no-c-format
-msgid "<command>debuild</command> allows generating a package (with <command>dpkg-buildpackage</command>) and running <command>lintian</command> to check its compliance with the Debian policy afterwards."
+msgid ""
+"<command>debuild</command> allows generating a package (with <command>"
+"dpkg-buildpackage</command>) and running <command>lintian</command> to check "
+"its compliance with the Debian policy afterwards."
 msgstr ""
+"يسمح <command>debuild</command> بتوليد حزمة (باستخدام <command>"
+"dpkg-buildpackage</command>) وتشغيل <command>lintian</command> للتحقق من "
+"توافقها مع سياسة دبيان بعد ذلك."
 
 #. Tag: para
 #, no-c-format
-msgid "<command>debclean</command> cleans a source package after a binary package has been generated."
+msgid ""
+"<command>debclean</command> cleans a source package after a binary package "
+"has been generated."
 msgstr ""
+"يُنظّف <command>debclean</command> الحزمة المصدرية بعد توليد الحزمة الثنائية."
 
 #. Tag: para
 #, no-c-format
-msgid "<command>dch</command> allows quick and easy editing of a <filename>debian/changelog</filename> file in a source package."
+msgid ""
+"<command>dch</command> allows quick and easy editing of a <filename>"
+"debian/changelog</filename> file in a source package."
 msgstr ""
+"يسمح <command>dch</command> بتحرير الملف <filename>debian/changelog</filename>"
+" في الحزمة المصدرية بسرعة وسهولة."
 
 #. Tag: para
 #, no-c-format
-msgid "<command>uscan</command> checks whether a new version of a software has been released by the upstream author; this requires a <filename>debian/watch</filename> file with a description of the location of such releases."
+msgid ""
+"<command>uscan</command> checks whether a new version of a software has been "
+"released by the upstream author; this requires a <filename>debian/watch<"
+"/filename> file with a description of the location of such releases."
 msgstr ""
+"يتحقق <command>uscan</command> من إصدار المؤلف الأساسي لنسخة جديدة من "
+"البرنامج؛ هذا يحتاج لملف <filename>debian/watch</filename> يحدد موقع هذه "
+"الإصدارات الجديدة."
 
 #. Tag: para
 #, no-c-format
-msgid "<command>debi</command> allows installing (with <command>dpkg -i</command>) the Debian package that was just generated, and avoid typing its full name and path."
+msgid ""
+"<command>debi</command> allows installing (with <command>dpkg -i</command>) "
+"the Debian package that was just generated, and avoid typing its full name "
+"and path."
 msgstr ""
+"يسمح <command>debi</command> بتثبيت (باستخدام <command>dpkg -i</command>) "
+"حزمة دبيان المولدة، وتجنب كتابة اسمها الكامل ومسارها."
 
 #. Tag: para
 #, no-c-format
-msgid "In a similar fashion, <command>debc</command> allows scanning the contents of the recently-generated package (with <command>dpkg -c</command>), without needing to type its full name and path."
+msgid ""
+"In a similar fashion, <command>debc</command> allows scanning the contents of "
+"the recently-generated package (with <command>dpkg -c</command>), without "
+"needing to type its full name and path."
 msgstr ""
+"كما يسمح <command>debc</command> بأسلوب مشابه بفحص محتويات الحزمة المولدة "
+"(باستخدام <command>dpkg -c</command>)، دون الحاجة لكتابة اسمها الكامل ومسارها."
 
 #. Tag: para
 #, no-c-format
-msgid "<command>bts</command> controls the bug tracking system from the command line; this program automatically generates the appropriate emails."
+msgid ""
+"<command>bts</command> controls the bug tracking system from the command "
+"line; this program automatically generates the appropriate emails."
 msgstr ""
+"يتحكم <command>bts</command> بنظام تتبع العلل من سطر الأوامر؛ حيث يولّد هذا "
+"البرنامج الرسائل البريدية المناسبة آلياً."
 
 #. Tag: para
 #, no-c-format
-msgid "<command>debrelease</command> uploads a recently-generated package to a remote server, without needing to type the full name and path of the related <filename>.changes</filename> file."
+msgid ""
+"<command>debrelease</command> uploads a recently-generated package to a "
+"remote server, without needing to type the full name and path of the related "
+"<filename>.changes</filename> file."
 msgstr ""
+"يرفع <command>debrelease</command> الحزمة المولدة إلى مخدم بعيد، دون الحاجة "
+"لكتابة الاسم الكامل والمسار لملف <filename dir=\"ltr\">.changes</filename> "
+"الخاص بها."
 
 #. Tag: para
 #, no-c-format
-msgid "<command>debsign</command> signs the <filename>*.dsc</filename> and <filename>*.changes</filename> files."
+msgid ""
+"<command>debsign</command> signs the <filename>*.dsc</filename> and <filename>"
+"*.changes</filename> files."
 msgstr ""
+"يوقّع <command>debsign</command> ملفات <filename dir=\"ltr\">*.dsc</filename> "
+"و <filename dir=\"ltr\">*.changes</filename>."
 
 #. Tag: para
 #, no-c-format
-msgid "<command>uupdate</command> automates the creation of a new revision of a package when a new upstream version has been released."
+msgid ""
+"<command>uupdate</command> automates the creation of a new revision of a "
+"package when a new upstream version has been released."
 msgstr ""
+"يؤتمت <command>uupdate</command> إنشاء مراجعة جديدة للحزمة عندما تصدر نسخة "
+"أساسية (upstream version) جديدة."
 
 #. Tag: title
 #, no-c-format
-msgid "<emphasis role=\"pkg\">debhelper</emphasis> and <emphasis role=\"pkg\">dh-make</emphasis>"
+msgid ""
+"<emphasis role=\"pkg\">debhelper</emphasis> and <emphasis role=\"pkg\">"
+"dh-make</emphasis>"
 msgstr ""
+"<emphasis role=\"pkg\">debhelper</emphasis> و <emphasis role=\"pkg\">dh-make<"
+"/emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>debhelper</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>debhelper</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>dh-make</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>dh-make</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Hess, Joey</primary>"
-msgstr ""
+msgstr "<primary>Hess, Joey</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Debhelper is a set of scripts easing the creation of policy-compliant packages; these scripts are invoked from <filename>debian/rules</filename>. Debhelper has been widely adopted within Debian, as evidenced by the fact that it is used by the majority of official Debian packages. All the commands it contains have a <command>dh_</command> prefix. Debhelper is mainly developed by Joey Hess."
+msgid ""
+"Debhelper is a set of scripts easing the creation of policy-compliant "
+"packages; these scripts are invoked from <filename>debian/rules</filename>. "
+"Debhelper has been widely adopted within Debian, as evidenced by the fact "
+"that it is used by the majority of official Debian packages. All the commands "
+"it contains have a <command>dh_</command> prefix. Debhelper is mainly "
+"developed by Joey Hess."
 msgstr ""
+"Debhelper هو مجموعة من السكربتات التي تسهّل إنشاء حزم متوافقة مع السياسة؛ "
+"تستدعى هذه السكربتات من <filename>debian/rules</filename>. لقد اعتمد "
+"Debhelper على نطاق واسع ضمن دبيان، ويشهد على ذلك أنه معظم حزم دبيان الرسمية "
+"تستخدمه. تحوي أسماء كل الأوامر التي يحويها البادئة <command dir=\"ltr\">dh_<"
+"/command>. يعمل Joey Hess بشكل رئيسي على تطوير Debhelper."
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>dh_make</command> script (in the <emphasis>dh-make</emphasis> package) creates files required for generating a Debian package in a directory initially containing the sources for a piece of software. As can be guessed from the name of the program, the generated files use Debhelper by default."
+msgid ""
+"The <command>dh_make</command> script (in the <emphasis>dh-make</emphasis> "
+"package) creates files required for generating a Debian package in a "
+"directory initially containing the sources for a piece of software. As can be "
+"guessed from the name of the program, the generated files use Debhelper by "
+"default."
 msgstr ""
+"ينشئ السكربت <command>dh_make</command> (من الحزمة <emphasis>dh-make<"
+"/emphasis>) الملفات اللازمة لتوليد حزمة دبيان في مجلد يحوي مصادر أحد البرامج. "
+"كما يمكنك أن تخمن من اسم البرنامج، سوف تستخدم الملفات المولدة Debhelper "
+"افتراضياً."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> CDBS"
-msgstr ""
+msgstr "<emphasis>بدائل</emphasis> CDBS"
 
 #. Tag: para
 #, no-c-format
-msgid "<emphasis role=\"pkg\">cdbs</emphasis> is another approach to Debian packaging, based exclusively on an inheritance system across <filename>Makefile</filename> files."
+msgid ""
+"<emphasis role=\"pkg\">cdbs</emphasis> is another approach to Debian "
+"packaging, based exclusively on an inheritance system across <filename>"
+"Makefile</filename> files."
 msgstr ""
+"<emphasis role=\"pkg\">cdbs</emphasis> هو أسلوب آخر لتحزيم البرامج في دبيان، "
+"يعتمد حصراً على نظام وراثة بين ملفات <filename>Makefile</filename>."
 
 #. Tag: para
 #, no-c-format
-msgid "That tool has its advocates, since it avoids duplicating the same list of <command>dh_*</command> commands in the <filename>debian/rules</filename> file. However, Debhelper version 7 introduced the <command>dh</command> command, which itself automates the appropriate sequence of calls to all the individual commands in the correct order, and CDBS has lost most of its appeal since then."
+msgid ""
+"That tool has its advocates, since it avoids duplicating the same list of <"
+"command>dh_*</command> commands in the <filename>debian/rules</filename> "
+"file. However, Debhelper version 7 introduced the <command>dh</command> "
+"command, which itself automates the appropriate sequence of calls to all the "
+"individual commands in the correct order, and CDBS has lost most of its "
+"appeal since then."
 msgstr ""
+"لهذه الأداة أنصارها، لأنها تتجنب تكرار المجموعة نفسها من أوامر <command "
+"dir=\"ltr\">dh_*</command> في ملف <filename>debian/rules</filename>. لكن نسخة "
+"Debhelper 7 قدمت الأمر <command>dh</command>، الذي يؤتمت تسلسل الاستدعاءات "
+"المناسب لكل الأوامر الفردية في الترتيب الصحيح، وقد خسر CDBS معظم جاذبيته منذ "
+"ذلك الوقت."
 
 #. Tag: title
 #, no-c-format
 msgid "<command>dupload</command> and <command>dput</command>"
-msgstr ""
+msgstr "<command>dupload</command> و<command>dput</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dupload</command></primary>"
-msgstr ""
+msgstr "<primary><command>dupload</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dput</command></primary>"
-msgstr ""
+msgstr "<primary><command>dput</command></primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "The <command>dupload</command> and <command>dput</command> commands allow uploading a Debian package to a (possibly remote) server. This allows developers to publish their package on the main Debian server (<literal>ftp-master.debian.org</literal>) so that it can be integrated to the archive and distributed by mirrors. These commands take a <filename>*.changes</filename> file as a parameter, and deduce the other relevant files from its contents."
+msgid ""
+"The <command>dupload</command> and <command>dput</command> commands allow "
+"uploading a Debian package to a (possibly remote) server. This allows "
+"developers to publish their package on the main Debian server (<literal>"
+"ftp-master.debian.org</literal>) so that it can be integrated to the archive "
+"and distributed by mirrors. These commands take a <filename>*.changes<"
+"/filename> file as a parameter, and deduce the other relevant files from its "
+"contents."
 msgstr ""
+"يسمح الأمران <command>dupload</command> و<command>dput</command> برفع حزمة "
+"دبيان إلى مخدم (قد يكون مخدماً بعيداً). يسمح هذا للمطورين بنشر حزمهم على مخدم "
+"دبيان الرئيسي (<literal>ftp-master.debian.org</literal>) بحيث يمكن دمجها في "
+"الأرشيف وتوزيعها على المرايا. يأخذ هذا الأمران ملف <filename dir=\"ltr\">"
+"*.changes</filename> كمتغير، وتستنتج بقية الملفات المطلوبة من محتوياته."
 
 #. Tag: title
 #, no-c-format
 msgid "Acceptance Process"
-msgstr ""
+msgstr "عملية القبول"
 
 #. Tag: para
 #, no-c-format
-msgid "Becoming a Debian developer is not a simple administrative matter. The process is made of several steps, and is as much an initiation as it is a selection process. In any case, it is formalized and well-documented, so anyone can track their progression on the website dedicated to the new member process. <ulink type=\"block\" url=\"http://nm.debian.org/\" />"
+msgid ""
+"Becoming a Debian developer is not a simple administrative matter. The "
+"process is made of several steps, and is as much an initiation as it is a "
+"selection process. In any case, it is formalized and well-documented, so "
+"anyone can track their progression on the website dedicated to the new member "
+"process. <ulink type=\"block\" url=\"http://nm.debian.org/\" />"
 msgstr ""
+"أن تصبح مطور دبيان ليس قضية إدارية بسيطة. تتألف العملية من خطوات عديدة، وهي "
+"عملية انتقاء بقدر أكثر مما هي عملية انضمام. في جميع الحالات، العملية رسمية "
+"وموثقة، ويستطيع أي واحد تتبع تقدمه على الموقع المخصص للوافدين الجدد. <ulink "
+"type=\"block\" url=\"http://nm.debian.org/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Lightweight process for “Debian Maintainers”"
-msgstr ""
+msgstr "<emphasis>إضافة</emphasis> إجراءات أسهل بالنسبة ”لمشرفي دبيان“"
 
 #. Tag: para
 #, no-c-format
-msgid "A “Debian Maintainer” status has recently been introduced. The associated process is quicker, and the privileges granted by this status are only enough to maintain one's own packages. A Debian developer only needs to perform a check on an initial upload, and issue a statement to the effect that they trust the prospective maintainer with the ability to maintain the package on their own."
+msgid ""
+"A “Debian Maintainer” status has recently been introduced. The associated "
+"process is quicker, and the privileges granted by this status are only enough "
+"to maintain one's own packages. A Debian developer only needs to perform a "
+"check on an initial upload, and issue a statement to the effect that they "
+"trust the prospective maintainer with the ability to maintain the package on "
+"their own."
 msgstr ""
+"لقد ظهر لقب ”مشرف دبيان“ (Debian Maintainer، أو DM) منذ فترة قريبة. العملية "
+"المتعلقة به أسرع، والصلاحيات التي تمنحها هذه الرتبة كافية فقط لصيانة حزمتك "
+"الخاصة. يتطلب فقط من أحد مطوري دبيان التحقق مسبقاً من كل الحزم الجديدة، وأن "
+"يصدر بياناً يوضح فيه أنه يثق بقدرة هذا المشرف على إدارة حزمته وحده."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian Maintainer</primary>"
-msgstr ""
+msgstr "<primary>Debian Maintainer (مشرف دبيان)</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Prerequisites"
-msgstr ""
+msgstr "المتطلبات الأولية"
 
 #. Tag: para
 #, no-c-format
-msgid "All candidates are expected to have at least a working knowledge of the English language. This is required at all levels: for the initial communications with the examiner, of course, but also later, since English is the preferred language for most of the documentation; also, package users will be communicating in English when reporting bugs, and they will expect replies in English."
+msgid ""
+"All candidates are expected to have at least a working knowledge of the "
+"English language. This is required at all levels: for the initial "
+"communications with the examiner, of course, but also later, since English is "
+"the preferred language for most of the documentation; also, package users "
+"will be communicating in English when reporting bugs, and they will expect "
+"replies in English."
 msgstr ""
+"يتوقع من كافة المرشحين أن يكون لديهم إلمام باللغة الإنكليزية على الأقل. هذا "
+"مطلوب في المراحل كلها: في التواصل الأولي مع الممتحن طبعاً، لكن ستحتاج لذلك "
+"لاحقاً أيضاً، لأن الإنكليزية هي اللغة المفضلة لمعظم الوثائق؛ كما أن مستخدمي "
+"الحزم سيتواصلون معك بالإنكليزية عند الإبلاغ عن العلل، وسيتوقعون منك الرد "
+"بالإنكليزية أيضاً."
 
 #. Tag: para
 #, no-c-format
-msgid "The other prerequisite deals with motivation. Becoming a Debian developer is a process that only makes sense if the candidate knows that their interest in Debian will last for many months. The acceptance process itself may last for several months, and Debian needs developers for the long haul; each package needs permanent maintenance, and not just an initial upload."
+msgid ""
+"The other prerequisite deals with motivation. Becoming a Debian developer is "
+"a process that only makes sense if the candidate knows that their interest in "
+"Debian will last for many months. The acceptance process itself may last for "
+"several months, and Debian needs developers for the long haul; each package "
+"needs permanent maintenance, and not just an initial upload."
 msgstr ""
+"أما المتطلبات الأخرى فهي تتعلق بالدافع. لا معنى لأن تصبح مطور دبيان إلا إذا "
+"كنت تعرف أن اهتمامك بدبيان سيستمر لشهور عديدة. عملية القبول نفسها قد تستغرق "
+"عدة شهور، ويحتاج دبيان مطورين على المدى الطويل؛ فكل حزمة تحتاج صيانة دائمة، "
+"وليس فقط عند إنشائها أول مرة."
 
 #. Tag: title
 #, no-c-format
 msgid "Registration"
-msgstr ""
+msgstr "التسجيل"
 
 #. Tag: para
 #, no-c-format
-msgid "The first (real) step consists in finding a sponsor or advocate; this means an official developer willing to state that they believe that accepting <emphasis>X</emphasis> would be a good thing for Debian. This usually implies that the candidate has already been active within the community, and that their work has been appreciated. If the candidate is shy and their work is not publicly touted, they can try to convince a Debian developer to advocate them by showing their work in a private way."
+msgid ""
+"The first (real) step consists in finding a sponsor or advocate; this means "
+"an official developer willing to state that they believe that accepting <"
+"emphasis>X</emphasis> would be a good thing for Debian. This usually implies "
+"that the candidate has already been active within the community, and that "
+"their work has been appreciated. If the candidate is shy and their work is "
+"not publicly touted, they can try to convince a Debian developer to advocate "
+"them by showing their work in a private way."
 msgstr ""
+"أولى الخطوات (الحقيقية) هي العثور على كفيل أو نصير (advocate)؛ أي العثور على "
+"مطور دبيان رسمي مستعد للإدلاء بأنه يؤمن أن قبول <emphasis>فلان</emphasis> "
+"سيفيد مشروع دبيان. هذا يعني ضمنياً عادة أن المرشح كان نشطاً من قبل ضمن "
+"المجتمع، وأن أعماله كانت قيّمة. إذا كان المرشّح خجولاً ولم تكن أعماله منشورة "
+"على الملأ، فيمكنه إقناع أحد مطوري دبيان بدعمه عبر عرض أعماله بشكل خاص."
 
 #. Tag: para
 #, no-c-format
-msgid "At the same time, the candidate must generate a public/private RSA key pair <indexterm><primary>key pair</primary></indexterm> with GnuPG, which should be signed by at least two official Debian developers. The signature authenticates the name on the key. Effectively, during a key signing party, each participant must show an official identification (usually an ID card or passport) together with their key identifiers. This step makes the link between the human and the keys official. This signature thus requires meeting in real life. If you have not yet met any Debian developers in a public free software conference, you can explicitly seek developers living nearby using the list on the following webpage as a starting point. <ulink type=\"block\" url=\"http://wiki.debian.org/Keysigning\" />"
+msgid ""
+"At the same time, the candidate must generate a public/private RSA key pair <"
+"indexterm><primary>key pair</primary></indexterm> with GnuPG, which should be "
+"signed by at least two official Debian developers. The signature "
+"authenticates the name on the key. Effectively, during a key signing party, "
+"each participant must show an official identification (usually an ID card or "
+"passport) together with their key identifiers. This step makes the link "
+"between the human and the keys official. This signature thus requires meeting "
+"in real life. If you have not yet met any Debian developers in a public free "
+"software conference, you can explicitly seek developers living nearby using "
+"the list on the following webpage as a starting point. <ulink type=\"block\" "
+"url=\"http://wiki.debian.org/Keysigning\" />"
 msgstr ""
+"في الوقت نفسه، يجب أن يولّد المرشح زوج مفاتيح RSA عام/خاص <indexterm><primary>"
+"key pair</primary></indexterm> باستخدام GnuPG، الذي يجب أن يوقّعه اثنين من "
+"مطوري دبيان الرسميين على الأقل. يضمن التوقيع صحة الاسم المكتوب في المفتاح. في "
+"الواقع، يجب أن يبرز كل مشارك في تجمعات توقيع المفاتيح هوية رسمية (عادة بطاقة "
+"شخصية أو جواز سفر) مع معرّف مفتاحه. هذه الخطوة تجعل الرابطة بينه وبين مفتاحه "
+"رسمية. بالتالي، تحتاج عملية التوقيع هذه للقاء المطورين وجهاً لوجه. إذا لم "
+"تقابل أي مطور دبيان من قبل في أحد مؤتمرات البرمجيات الحرة العامة، فيمكنك "
+"البحث مباشرة عن المطورين الذي يعيشون بالقرب منك باستخدام القائمة في هذه "
+"الصفحة كنقطة انطلاق. <ulink type=\"block\" "
+"url=\"http://wiki.debian.org/Keysigning\" />"
 
 #. Tag: para
 #, no-c-format
-msgid "Once the registration on <literal>nm.debian.org</literal> has been validated by the advocate, an <emphasis>Application Manager</emphasis> is assigned to the candidate. The application manager will then drive the process through multiple pre-defined steps and checks."
+msgid ""
+"Once the registration on <literal>nm.debian.org</literal> has been validated "
+"by the advocate, an <emphasis>Application Manager</emphasis> is assigned to "
+"the candidate. The application manager will then drive the process through "
+"multiple pre-defined steps and checks."
 msgstr ""
+"بعد أن يصادق على تسجيلك في <literal>nm.debian.org</literal> أحد الكفلاء، "
+"سيوكل أحد <emphasis>Application Manager</emphasis> (مديري التطبيقات) بمتابعة "
+"المرشَّح. سيقود مدير التطبيقات بعدها العملية خلال عدة مراحل وفحوصات محددة "
+"مسبقاً. "
 
 #. Tag: para
 #, no-c-format
-msgid "The first verification is an identity check. If you already have a key signed by two Debian developers, this step is easy; otherwise, the application manager will try and guide you in your search for Debian developers close by to organize a meet-up and a key signing. At the very beginning of the process, when the number of developers was small, there was an exception to this procedure which allowed this step to be completed with a digital scan of official identification documents; this is no longer the case."
+msgid ""
+"The first verification is an identity check. If you already have a key signed "
+"by two Debian developers, this step is easy; otherwise, the application "
+"manager will try and guide you in your search for Debian developers close by "
+"to organize a meet-up and a key signing. At the very beginning of the "
+"process, when the number of developers was small, there was an exception to "
+"this procedure which allowed this step to be completed with a digital scan of "
+"official identification documents; this is no longer the case."
 msgstr ""
+"أولى الفحوصات هي التحقق من الهوية. إذا كان لديك مفتاحاً موقعاً من اثنين من "
+"مطوري دبيان، فهذه الخطوة سهلة؛ وإلا فسوف يحاول مدير التطبيقات أن يرشدك في "
+"عملية البحث عن مطوري دبيان قريبين لترتيب لقاء وتوقيع مفاتيح معهم. في بدايات "
+"هذه العملية، عندما كان عدد المطورين صغيراً جداً، كان هناك استثناء لهذا "
+"الإجراء يسمح بإتمام هذه الخطوة عبر إرسال صورة إلكترونية عن وثيقة تعريف شخصية "
+"رسمية؛ لكن هذا لم يعد مسموحاً الآن."
 
 #. Tag: title
 #, no-c-format
 msgid "Accepting the Principles"
-msgstr ""
+msgstr "قبول المبادئ"
 
 #. Tag: para
 #, no-c-format
-msgid "These administrative formalities are followed with philosophical considerations. The point is to make sure that the candidate understands and accepts the social contract and the principles behind Free Software. Joining Debian is only possible if one shares the values that unite the current developers, as expressed in the founding texts (and summarized in <xref linkend=\"the-debian-project\" />)."
+msgid ""
+"These administrative formalities are followed with philosophical "
+"considerations. The point is to make sure that the candidate understands and "
+"accepts the social contract and the principles behind Free Software. Joining "
+"Debian is only possible if one shares the values that unite the current "
+"developers, as expressed in the founding texts (and summarized in <xref "
+"linkend=\"the-debian-project\" />)."
 msgstr ""
+"بعد هذه الرسميات الإدارية تأتي التقييمات الفلسفية. الفكرة هي التأكد أن "
+"المرشّح يفهم العقد الاجتماعي ومبادئ البرمجيات الحرة ويقبل بها. لا يمكن "
+"الانضمام إلى دبيان إلا إذا كان المرء يحمل القيم التي توحد المطورين الحاليين، "
+"كما هي موضحة في النصوص المؤسِّسة (وملخصة في <xref "
+"linkend=\"the-debian-project\" />)."
 
 #. Tag: para
 #, no-c-format
-msgid "In addition, each candidate wishing to join Debian ranks is expected to know the workings of the project, and how to interact appropriately to solve the problems they will doubtless encounter as time passes. All of this information is generally documented in manuals targeting the new maintainers, and in the Debian developer's reference. An attentive reading of this document should be enough to answer the examiner's questions. If the answers are not satisfactory, the candidate will be informed. He will then have to read (again) the relevant documentation before trying again. In the cases where the existing documentation does not contain the appropriate answer for the question, the candidate can usually reach an answer with some practical experience within Debian, or potentially by discussing with other Debian developers. This mechanism ensures that candidates get involved somewhat in Debian before becoming a full part of it. It is a deliberate policy, by which candidates who eventually join the project are integrated as another piece of an infinitely extensible jigsaw puzzle."
+msgid ""
+"In addition, each candidate wishing to join Debian ranks is expected to know "
+"the workings of the project, and how to interact appropriately to solve the "
+"problems they will doubtless encounter as time passes. All of this "
+"information is generally documented in manuals targeting the new maintainers, "
+"and in the Debian developer's reference. An attentive reading of this "
+"document should be enough to answer the examiner's questions. If the answers "
+"are not satisfactory, the candidate will be informed. He will then have to "
+"read (again) the relevant documentation before trying again. In the cases "
+"where the existing documentation does not contain the appropriate answer for "
+"the question, the candidate can usually reach an answer with some practical "
+"experience within Debian, or potentially by discussing with other Debian "
+"developers. This mechanism ensures that candidates get involved somewhat in "
+"Debian before becoming a full part of it. It is a deliberate policy, by which "
+"candidates who eventually join the project are integrated as another piece of "
+"an infinitely extensible jigsaw puzzle."
 msgstr ""
+"بالإضافة إلى ذلك، يُتوقَّع من كل مرشَح ينوي الانضمام لصفوف دبيان أن يعرف "
+"طريقة العمل في المشروع، وكيفية التفاعل بشكل مناسب لحل المشاكل التي ستواجهه لا "
+"ريب مع مرور الوقت. كل هذه المعلومات موثّقة عموماً في الكتيّبات التي تستهدف "
+"المشرفين الجدد، وفي Debian developer reference (مرجع مطوري دبيان). يجب أن "
+"تكفي قراءة هذا المستند بتمعن للإجابة عن جميع أسئلة الفاحص. إذا لم تكن الأجوبة "
+"مرضية، سوف يخبر المرشّح بذلك. بعدها سيتعيّن عليه قراءة الوثائق المناسبة "
+"(ثانية) قبل المحاولة ثانية. إذا لم تكن الإجابة المناسبة عن السؤال موجودة في "
+"أحد الوثائق السابقة، يستطيع المرشّح عادة معرفة الجواب من الخبرة العملية في "
+"دبيان، أو ربما بالنقاش مع بعض مطوري دبيان الآخرين. تضمن هذه الآلية أن ينخرط "
+"المرشّح في دبيان نوعاً ما قبل أن يصبح جزءاً رسمياً منه. هذه السياسة مقصودة، "
+"وهي تجعل المرشحين الذين يقبلون في المشروع من خلالها في النهاية يندمجون مع "
+"الآخرين كقطعة من قطع أحجية تركيب الصور، أحجية تمتد إلى ما لا نهاية."
 
 #. Tag: para
 #, no-c-format
-msgid "This step is usually known as the <emphasis>Philosophy &amp; Procedures</emphasis> (P&amp;P for short) in the lingo of the developers involved in the new member process. <indexterm><primary><emphasis>Philosophy &amp; Procedures</emphasis></primary></indexterm>"
+msgid ""
+"This step is usually known as the <emphasis>Philosophy &amp; Procedures<"
+"/emphasis> (P&amp;P for short) in the lingo of the developers involved in the "
+"new member process. <indexterm><primary><emphasis>Philosophy &amp; "
+"Procedures</emphasis></primary></indexterm>"
 msgstr ""
+"تُعرّف هذه الخطوة باسم <emphasis>Philosophy &amp; Procedures</emphasis> "
+"(الفلسفة والروتين، أو P&amp;P اختصاراً) حسب لغة المطورين المسؤولين عن سير "
+"عملية قبول الأعضاء الجدد. <indexterm><primary><emphasis>Philosophy &amp; "
+"Procedures</emphasis></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Checking Skills"
-msgstr ""
+msgstr "التحقق من المهارات"
 
 #. Tag: para
 #, no-c-format
-msgid "Each application to become an official Debian developer must be justified. Becoming a project member requires showing that this status is legitimate, and that it facilitates the candidate's job in helping Debian. The most common justification is that being granted Debian developer status eases maintenance of a Debian package, but it is not the only one. Some developers join the project to contribute to porting to a specific architecture, others want to improve documentation, and so on."
+msgid ""
+"Each application to become an official Debian developer must be justified. "
+"Becoming a project member requires showing that this status is legitimate, "
+"and that it facilitates the candidate's job in helping Debian. The most "
+"common justification is that being granted Debian developer status eases "
+"maintenance of a Debian package, but it is not the only one. Some developers "
+"join the project to contribute to porting to a specific architecture, others "
+"want to improve documentation, and so on."
 msgstr ""
+"يجب أن يكون كل طلب يقدم على منصب مطور دبيان الرسمي مبرراً. يجب أن يوضح "
+"المرشّح مشروعية طلبه لعضوية في المشروع، وأن حصوله عليها يسهل عمله في مساعدة "
+"دبيان حتى ينضم للمشروع. أكثر المبررات شيوعاً هو أن الحصول على رتبة مطور دبيان "
+"يسهل صيانة إحدى حزم دبيان، لكنه ليس الوحيد. بعض المطورين ينضمون للمشروع "
+"للمساهمة في النقل إلى معمارية معينة، وغيرهم يريدون تحسين الوثائق، وغيرها من "
+"الأسباب."
 
 #. Tag: para
 #, no-c-format
-msgid "This step represents the opportunity for the candidate to state what they intend to do within the Debian project and to show what they have already done towards that end. Debian is a pragmatic project and saying something is not enough, if the actions do not match what is announced. Generally, when the intended role within the project is related to package maintenance, a first version of the prospective package will have to be validated technically and uploaded to the Debian servers by a sponsor among the existing Debian developers."
+msgid ""
+"This step represents the opportunity for the candidate to state what they "
+"intend to do within the Debian project and to show what they have already "
+"done towards that end. Debian is a pragmatic project and saying something is "
+"not enough, if the actions do not match what is announced. Generally, when "
+"the intended role within the project is related to package maintenance, a "
+"first version of the prospective package will have to be validated "
+"technically and uploaded to the Debian servers by a sponsor among the "
+"existing Debian developers."
 msgstr ""
+"هذه الخطوة هي فرصة المرشّح ليبيّن ماذا يريد أن يفعل ضمن مشروع دبيان ويظهر "
+"الأعمال التي أنجزها فعلاً في هذا الصدد. دبيان مشروع عملي/براغماتي (pragmatic) "
+"ولا يقبل الحديث عن شيء إذا لم توافق الأفعال الكلمات. عموماً، عندما يكون الدور "
+"المقصود في المشروع متعلقاً بصيانة حزمة ما، فيجب التحقق تقنياً من نسخة أولية "
+"من هذه الحزمة الجديدة وأن يرفعها أحد الكفلاء من مطوري دبيان السابقين إلى "
+"مخدمات دبيان."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> Sponsoring"
-msgstr ""
+msgstr "<emphasis>مجتمع</emphasis> الكفالة"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>sponsoring</primary>"
-msgstr ""
+msgstr "<primary>كفالة</primary>"
 
 #. Tag: para
 #, no-c-format
-msgid "Debian developers can “sponsor” packages prepared by someone else, meaning that they publish them in the official Debian repositories after having performed a careful review. This mechanism enables external persons, who have not yet gone through the new member process, to contribute occasionally to the project. At the same time, it ensures that all packages included in Debian have always been checked by an official member."
+msgid ""
+"Debian developers can “sponsor” packages prepared by someone else, meaning "
+"that they publish them in the official Debian repositories after having "
+"performed a careful review. This mechanism enables external persons, who have "
+"not yet gone through the new member process, to contribute occasionally to "
+"the project. At the same time, it ensures that all packages included in "
+"Debian have always been checked by an official member."
 msgstr ""
+"يستطيع مطوري دبيان ”كفالة“ (sponsor) الحزم التي يعدها شخص آخر، أي يستطيعون "
+"نشرها في مستودعات دبيان الرسمية بعد مراجعتها بحذر. تسمح هذه الآلية للأفراد "
+"الخارجيين، الذين لم يمروا بعد بعملية انضمام الأعضاء الجدد، بالمساهمة بين "
+"الفينة والأخرى في المشروع. في الوقت نفسه، تضمن هذه الطريقة أن يفحص أحد "
+"الأعضاء الرسميين كل حزمة مضمنة في دبيان."
 
 #. Tag: para
 #, no-c-format
-msgid "Finally, the examiner checks the candidate's technical (packaging) skills with a detailed questionnaire. Bad answers are not permitted, but the answer time is not limited. All the documentation is available and several tries are allowed if the first answers are not satisfactory. This step does not intend to discriminate, but to ensure at least a modicum of knowledge common to new contributors."
+msgid ""
+"Finally, the examiner checks the candidate's technical (packaging) skills "
+"with a detailed questionnaire. Bad answers are not permitted, but the answer "
+"time is not limited. All the documentation is available and several tries are "
+"allowed if the first answers are not satisfactory. This step does not intend "
+"to discriminate, but to ensure at least a modicum of knowledge common to new "
+"contributors."
 msgstr ""
+"أخيراً، يفحص الممتحن مهارات المرشّح التقنية (في التحزيم) في امتحان شامل. "
+"الإجابات الخاطئة ممنوعة، لكن وقت الإجابة غير محدود. كل الوثائق متاحة ويسمح "
+"بإجراء عدة محاولات إذا لم تكن الإجابات جيدة في المرة الأولى. ليس الهدف من هذه "
+"الخطوة إقصاء المرشّح، ولكن الهدف هو ضمان أن جميع المساهمين الجدد يتمتعون ببعض "
+"المعرفة اليسيرة على الأقل."
 
 #. Tag: para
 #, no-c-format
-msgid "This step is known as the <emphasis>Tasks &amp; Skills</emphasis> step (T&amp;S for short) in the examiners' jargon. <indexterm><primary><emphasis>Tasks &amp; Skills</emphasis></primary></indexterm>"
+msgid ""
+"This step is known as the <emphasis>Tasks &amp; Skills</emphasis> step "
+"(T&amp;S for short) in the examiners' jargon. <indexterm><primary><emphasis>"
+"Tasks &amp; Skills</emphasis></primary></indexterm>"
 msgstr ""
+"تُعرَف هذه المرحلة باسم <emphasis>Tasks &amp; Skills</emphasis> (المهام "
+"والمهارات، أو T&amp;S اختصاراً) حسب مصطلحات الفاحصين. <indexterm><primary><"
+"emphasis>Tasks &amp; Skills</emphasis></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Final Approval"
-msgstr ""
+msgstr "القبول النهائي"
 
 #. Tag: para
 #, no-c-format
-msgid "At the very last step, the whole process is reviewed by a DAM (<emphasis>Debian Account Manager</emphasis>). The DAM will review all the information about the candidate that the examiner collected, and makes the decision on whether or not to create an account on the Debian servers. In cases where extra information is required, the account creation may be delayed. Refusals are rather rare if the examiner does a good job of following the process, but they sometimes happen. They are never permanent, and the candidate is free to try again at a later time."
+msgid ""
+"At the very last step, the whole process is reviewed by a DAM (<emphasis>"
+"Debian Account Manager</emphasis>). The DAM will review all the information "
+"about the candidate that the examiner collected, and makes the decision on "
+"whether or not to create an account on the Debian servers. In cases where "
+"extra information is required, the account creation may be delayed. Refusals "
+"are rather rare if the examiner does a good job of following the process, but "
+"they sometimes happen. They are never permanent, and the candidate is free to "
+"try again at a later time."
 msgstr ""
+"في الخطوة الأخيرة، يراجع أحد مديري حسابات دبيان (<emphasis>Debian Account "
+"Manager</emphasis>، أو DAM) العملية كلها. سيراجع مدير الحسابات جميع معلومات "
+"المرشّح التي جمعها الممتحن، ويقرر فتح حساب على مخدمات دبيان أو عدم فتحه. في "
+"حال الحاجة لمزيد من المعلومات، قد يؤخر إنشاء الحساب. الرفض نادر جداً إذا تابع "
+"الفاحص العملية بشكل جيد، لكنه يحدث أحياناً. الرفض ليس قاطعاً أبداً، ويسمح "
+"للمرشّح بالمحاولة ثانية في وقت لاحق."
 
 #. Tag: para
 #, no-c-format
-msgid "The DAM's decision is authoritative and (almost) without appeal, which explains why the people in that seat (currently, Jörg Jaspert, Christoph Berg and Enrico Zini) have often been criticized in the past."
+msgid ""
+"The DAM's decision is authoritative and (almost) without appeal, which "
+"explains why the people in that seat (currently, Jörg Jaspert, Christoph Berg "
+"and Enrico Zini) have often been criticized in the past."
 msgstr ""
+"قرار مدير الحسابات نهائي وغير قابل للنقض (غالباً)، لذلك كان الأشخاص الموكلين "
+"بهذه المهمة (حالياً Jörg Jaspert،‏ Christoph Berg وEnrico Zini) يتعرضون "
+"للكثير من النقد في الماضي."
+
+
