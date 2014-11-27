@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-30 13:45+0200\n"
+"PO-Revision-Date: 2014-12-02 14:44+0200\n"
 "Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/10_network-infrastructure/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.0-dev\n"
+"X-Generator: Weblate 2.1-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -510,16 +510,43 @@ msgstr ""
 #, no-c-format
 msgid "However, anyone can create a key pair, store any identity on it, and pretend to be the identity of their choice. One solution involves the concept of a <emphasis>Certification Authority</emphasis> (CA), formalized by the X.509 standard. This term covers an entity that holds a trusted key pair known as a <emphasis>root certificate</emphasis>. This certificate is only used to sign other certificates (key pairs), after proper steps have been undertaken to check the identity stored on the key pair. Applications using X.509 can then check the certificates presented to them, if they know about the trusted root certificates."
 msgstr ""
+"Contudo, qualquer um pode criar um par de chaves, armazenar qualquer "
+"identidade nele, e fingir ser a identidade de sua escolha. Uma solução "
+"envolve o conceito de uma <emphasis>Certification Authority</emphasis> (CA), "
+"formalizado pelo padrão X.509. Esse termo cobre uma entidade que possui um "
+"par de chaves confiável conhecido como um <emphasis>root "
+"certificate</emphasis>. Esse certificado só é usado para assinar outros "
+"certificados (par de chaves), após os passos apropriados terem sido tomados "
+"para checar a identidade armazenada no par de chaves. Aplicações usando o "
+"X.509 podem então checar os certificados apresentados a elas, se elas "
+"souberem sobre os root certificates confiáveis."
 
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN follows this rule. Since public CAs only emit certificates in exchange for a (hefty) fee, it is also possible to create a private certification authority within the company. For that purpose, OpenVPN provides the <emphasis>easy-rsa</emphasis> tool which serves as an X.509 certification infrastructure. Its implementation is a set of scripts using the <command>openssl</command> command; these scripts can be found under <filename>/usr/share/doc/openvpn/examples/easy-rsa/2.0/</filename>."
 msgstr ""
+"O OpenVPN segue essa regra. Como CAs públicos apenas emitem certificados em "
+"troca troca de uma (pesada) taxa, também é possível criar um certificado de "
+"autoridade privado dentro da companhia. Para esse propósito, OpenVPN fornece "
+"a ferramenta <emphasis>easy-rsa</emphasis> a qual serve como uma "
+"infraestrutura de certificação X.509. Sua implementação é um conjunto de "
+"scripts usando o comando <command>openssl</command>; esses scripts podem ser "
+"encontrados em <filename>/usr/share/doc/openvpn/examples/easy-"
+"rsa/2.0/</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators use this tool to create the required certificates, both for the server and the clients. This allows the configuration of all clients to be similar since they will only have to be set up so as to trust certificates coming from Falcot's local CA. This CA is the first certificate to create; to this end, the administrators copy the directory containing <emphasis>easy-rsa</emphasis> into a more appropriate location, preferably on a machine not connected to the network in order to mitigate the risk of the CA's private key being stolen."
 msgstr ""
+"os adminitradores da Falcot Corp usam essa ferramenta para criar os "
+"certificados necessários, tanto para servidor quanto para clientes. Isso "
+"permite que a configuração de todos os clientes sejam similar já que eles "
+"apenas terão de ser configurados para confiar em certificados vindos da CA "
+"local daFalcot. Esse CA é o primeiro certificado a ser criado; para esse "
+"fim, os administradores copiam o diretório contendo a <emphasis>easy-"
+"rsa</emphasis> para um local mais apropriado, preferencialmente em uma "
+"máquina não conectada a rede, para mitigar o risco da chave privada CA ser "
+"roubada."
 
 #. Tag: screen
 #, no-c-format
@@ -818,6 +845,19 @@ msgstr ""
 #, no-c-format
 msgid "Now all certificates have been created, they need to be copied where appropriate: the root certificate's public key (<filename>keys/ca.crt</filename>) will be stored on all machines (both server and clients) as <filename>/etc/ssl/certs/Falcot_CA.crt</filename>. The server's certificate is installed only on the server (<filename>keys/vpn.falcot.com.crt</filename> goes to <filename>/etc/ssl/vpn.falcot.com.crt</filename>, and <filename>keys/vpn.falcot.com.key</filename> goes to <filename>/etc/ssl/private/vpn.falcot.com.key</filename> with restricted permissions so that only the administrator can read it), with the corresponding Diffie-Hellman parameters (<filename>keys/dh2048.pem</filename>) installed to <filename>/etc/openvpn/dh2048.pem</filename>. Client certificates are installed on the corresponding VPN client in a similar fashion."
 msgstr ""
+"Agora que todos os certificados foram criados, eles precisam ser copiados "
+"para um local apropriado: a chave pública do root certificate "
+"(<filename>keys/ca.crt</filename>) será armazenada em todas as máquinas ("
+"tanto servidor quanto clientes) como "
+"<filename>/etc/ssl/certs/Falcot_CA.crt</filename>. O certificado do servidor "
+"é instalado apenas no servidor (<filename>keys/vpn.falcot.com.crt</filename> "
+"vai para <filename>/etc/ssl/vpn.falcot.com.crt</filename>, e "
+"<filename>keys/vpn.falcot.com.key</filename> vai para "
+"<filename>/etc/ssl/private/vpn.falcot.com.key</filename> com restritivas "
+"permissões para que apenas o administrador possa lê-la), com os parâmetros "
+"Diffie-Hellman correspondentes (<filename>keys/dh2048.pem</filename>) "
+"instalados em <filename>/etc/openvpn/dh2048.pem</filename>. Certificados do "
+"clientes são instalados no cliente VPN correspondente de maneira similar."
 
 #. Tag: title
 #, no-c-format
@@ -828,6 +868,23 @@ msgstr "Configurando o Servidor OpenVPN"
 #, no-c-format
 msgid "By default, the OpenVPN initialization script tries starting all virtual private networks defined in <filename>/etc/openvpn/*.conf</filename>. Setting up a VPN server is therefore a matter of storing a corresponding configuration file in this directory. A good starting point is <filename>/usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz</filename>, which leads to a rather standard server. Of course, some parameters need to be adapted: <literal>ca</literal>, <literal>cert</literal>, <literal>key</literal> and <literal>dh</literal> need to describe the selected locations (respectively, <literal>/etc/ssl/certs/Falcot_CA.crt</literal>, <literal>/etc/ssl/vpn.falcot.com.crt</literal>, <literal>/etc/ssl/private/vpn.falcot.com.key</literal> and <literal>/etc/openvpn/dh2048.pem</literal>). The <literal>server 10.8.0.0 255.255.255.0</literal> directive defines the subnet to be used by the VPN; the server uses the first IP address in that range (<literal>10.8.0.1</literal>) and the rest of the addresses are allocated to clients."
 msgstr ""
+"Por padrão, o script de inicialização do OpenVPN tenta iniciar todas as "
+"redes virtuais privadas definidas em <filename>/etc/openvpn/*.conf</filename>"
+". A configuração de um servidor VPN é portanto uma questão de armazenar o "
+"arquivo de configuração correspondente neste diretório. Um bom ponto de "
+"partida é o <filename>/usr/share/doc/openvpn/examples/sample-config-"
+"files/server.conf.gz</filename>, que orienta em como ter um servidor padrão. "
+"Claro que alguns parâmetros precisam ser adaptados: <literal>ca</literal>, "
+"<literal>cert</literal>, <literal>key</literal> e <literal>dh</literal> "
+"precisam descrever as localizações selecionadas (respectivamente, "
+"<literal>/etc/ssl/certs/Falcot_CA.crt</literal>, "
+"<literal>/etc/ssl/vpn.falcot.com.crt</literal>, "
+"<literal>/etc/ssl/private/vpn.falcot.com.key</literal> e "
+"<literal>/etc/openvpn/dh2048.pem</literal>). A diretiva <literal>server "
+"10.8.0.0 255.255.255.0</literal> define a sub-rede a ser usada pela VPN; a "
+"server usa o primeiro endereço IP nesse intervalo "
+"(<literal>10.8.0.1</literal>) e o resto dos endereços são alocados para os "
+"clientes."
 
 #. Tag: para
 #, no-c-format
@@ -861,11 +918,26 @@ msgstr ""
 #, no-c-format
 msgid "If the VPN should not be started automatically on boot, set the <literal>AUTOSTART</literal> directive to <literal>none</literal> in the <filename>/etc/default/openvpn</filename> file. Starting or stopping a given VPN connection is always possible with the commands <command>/etc/init.d/openpvn start <replaceable>name</replaceable></command> and <command>/etc/init.d/openpvn stop <replaceable>name</replaceable></command> (where the connection <replaceable>name</replaceable> matches the one defined in <filename>/etc/openvpn/<replaceable>name</replaceable>.conf</filename>)."
 msgstr ""
+"Se a VPN não deve ser iniciadas automaticamente na inicialização, configure "
+"a diretiva <literal>AUTOSTART</literal> para <literal>none</literal> no "
+"arquivo <filename>/etc/default/openvpn</filename>. Iniciar ou parar uma "
+"determinada conexão VPN é sempre possível com os comandos "
+"<command>/etc/init.d/openpvn start <replaceable>nome</replaceable></command> "
+"e <command>/etc/init.d/openpvn stop <replaceable>nome</replaceable></command>"
+" (aonde a conexão <replaceable>nome</replaceable> casa com uma definida em "
+"<filename>/etc/openvpn/<replaceable>nome</replaceable>.conf</filename>)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> package contains an extension to Network Manager (see <xref linkend=\"sect.roaming-network-config\" />) that allows managing OpenVPN virtual private networks. This allows every user to configure OpenVPN connections graphically and to control them from the network management icon. <indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
 msgstr ""
+"O pacote <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> "
+"contém uma extensão para o Network Manager (see <xref linkend=\"sect.roaming-"
+"network-config\" />) que permite o gerenciamento de redes virtuais privadas "
+"OpenVPN. Isso permite que todo usuário configure e controle as conexões "
+"OpenVPN graficamente através do ícone de gerenciamento de redes. "
+"<indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-"
+"gnome</emphasis></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -886,6 +958,10 @@ msgstr "<primary>PPP</primary>"
 #, no-c-format
 msgid "There are actually two ways of creating a virtual private network with SSH. The historic one involves establishing a PPP layer over the SSH link. This method is described in a HOWTO document: <ulink type=\"block\" url=\"http://www.tldp.org/HOWTO/ppp-ssh/\" />"
 msgstr ""
+"Existem, na verdade, duas maneiras de criar uma rede virtual privada com "
+"SSH. A mais antiga envolve estabelecer uma camada PPP sobre uma ligação SSH. "
+"Esse método é descrito em um documento HOWTO: <ulink type=\"block\" url=\""
+"http://www.tldp.org/HOWTO/ppp-ssh/\" />"
 
 #. Tag: para
 #, no-c-format
