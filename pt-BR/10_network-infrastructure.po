@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-12-03 02:30+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2014-12-15 14:01+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/10_network-infrastructure/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.1-dev\n"
+"X-Generator: Weblate 2.2-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -890,6 +890,20 @@ msgstr ""
 #, no-c-format
 msgid "With this configuration, starting OpenVPN creates the virtual network interface, usually under the <literal>tun0</literal> name. However, firewalls are often configured at the same time as the real network interfaces, which happens before OpenVPN starts. Good practice therefore recommends creating a persistent virtual network interface, and configuring OpenVPN to use this pre-existing interface. This further allows choosing the name for this interface. To this end, <command>openvpn --mktun --dev vpn --dev-type tun</command> creates a virtual network interface named <literal>vpn</literal> with type <literal>tun</literal>; this command can easily be integrated in the firewall configuration script, or in an <literal>up</literal> directive of the <filename>/etc/network/interfaces</filename> file. The OpenVPN configuration file must also be updated accordingly, with the <literal>dev vpn</literal> and <literal>dev-type tun</literal> directives."
 msgstr ""
+"Com essa configuração, ao iniciar o OpenVPN, é criada uma interface de rede "
+"virtual, usualmente sob o nome de <literal>tun0</literal>. Contudo, "
+"firewalls são geralmente configurados ao mesmo tempo que interfaces de rede "
+"reais, o que acontece antes do OpenVPN ser iniciado. A boa prática então "
+"recomenda a criação de uma interface de rede virtual persistênte, e "
+"configurara o OpenVPN a usar essa pré-existente interface. Isso inclusive "
+"permite a escolha do nome dessa interface. Para esse fim, <command>openvpn --"
+"mktun --dev vpn --dev-type tun</command> cria uma interface de rede virtual "
+"de nome <literal>vpn</literal> do tipo <literal>tun</literal>; esse comando "
+"pode ser facilmente integrado ao script de configuração do firewall, ou na "
+"diretiva <literal>up</literal> do arquivo "
+"<filename>/etc/network/interfaces</filename>. O arquivo de configuração do "
+"OpenVPN deve também ser atualizado em conformidade com as diretivas <literal>"
+"dev vpn</literal> e <literal>dev-type tun</literal>."
 
 #. Tag: para
 #, no-c-format
@@ -967,16 +981,42 @@ msgstr ""
 #, no-c-format
 msgid "The second method is more recent, and was introduced with OpenSSH 4.3; it is now possible for OpenSSH to create virtual network interfaces (<literal>tun*</literal>) on both sides of an SSH connection, and these virtual interfaces can be configured exactly as if they were physical interfaces. The tunneling system must first be enabled by setting <literal>PermitTunnel</literal> to “yes” in the SSH server configuration file (<filename>/etc/ssh/sshd_config</filename>). When establishing the SSH connection, the creation of a tunnel must be explicitly requested with the <literal>-w any:any</literal> option (<literal>any</literal> can be replaced with the desired <literal>tun</literal> device number). This requires the user to have administrator privilege on both sides, so as to be able to create the network device (in other words, the connection must be established as root)."
 msgstr ""
+"O segundo método é mais recente, e foi introduzido no OpenSSH 4.3; agora é "
+"possível para o OpenSSH criar interfaces de rede virtual "
+"(<literal>tun*</literal>) nos dois lados de uma conexão SSH, e essas "
+"interfaces virtuais podem ser configuradas exatamente como se elas fossem "
+"interfaces físicas. O sistema de túnel (\"tunneling\") deve ser primeiro "
+"ativado configurando <literal>PermitTunnel</literal> como “yes” no arquivo "
+"de configuração do servidor SSH (<filename>/etc/ssh/sshd_config</filename>). "
+"Ao estabelecer uma conexão SSH, a criação de um túnel deve ser "
+"explicitamente requisitada com a opção <literal>-w any:any</literal> "
+"(<literal>any</literal> pode ser substituída pelo desejado número de "
+"dispositivo <literal>tun</literal>). Isso requer que o usuário tenha "
+"privilégios de administrador nos dois lados, assim como ser capaz de criar o "
+"dispositivo de rede (em outras palavras, a conexão deve ser estabelecida "
+"como root)."
 
 #. Tag: para
 #, no-c-format
 msgid "Both methods for creating a virtual private network over SSH are quite straightforward. However, the VPN they provide is not the most efficient available; in particular, it does not handle high levels of traffic very well."
 msgstr ""
+"Ambos os métodos para criação de rede virtual privada pelo SSH são bem "
+"simples. Contudo, a VPN que eles implementam não é a mais eficiente "
+"disponível, em particular, ela não lida muito bem com elevados níveis de "
+"tráfego."
 
 #. Tag: para
 #, no-c-format
 msgid "The explanation is that when a TCP/IP stack is encapsulated within a TCP/IP connection (for SSH), the TCP protocol is used twice, once for the SSH connection and once within the tunnel. This leads to problems, especially due to the way TCP adapts to network conditions by altering timeout delays. The following site describes the problem in more detail: <ulink type=\"block\" url=\"http://sites.inka.de/sites/bigred/devel/tcp-tcp.html\" /> VPNs over SSH should therefore be restricted to one-off tunnels with no performance constraints."
 msgstr ""
+"A explicação é que quando uma pilha TCP/IP é encapsulada dentro de uma "
+"conexão TCP/IP (para SSH), o protocolo TCP é usado duas vezes, uma vez para "
+"a conexão SSH e outra dentro do túnel. Isso leva a problemas, especialmente "
+"devido ao modo o TCP se adaptar as condições da rede, alterando os atrasos "
+"de \"timeout\". O seguinte sítio descreve o problema mais detalhadamente: <"
+"ulink type=\"block\" url=\"http://sites.inka.de/sites/bigred/devel/tcp-tcp."
+"html\" /> VPNs sobre SSH deve portanto ser restrita a \"one-off tunnels\" "
+"sem restrições de desempenho."
 
 #. Tag: title
 #, no-c-format
@@ -1030,6 +1070,10 @@ msgstr "<primary><command>setkey</command></primary>"
 #, no-c-format
 msgid "In spite of its status as the reference, the complexity of setting up IPsec restricts its usage in practice. OpenVPN-based solutions will generally be preferred when the required tunnels are neither too many nor too dynamic."
 msgstr ""
+"Apesar do seu status como referência, a complexidade de criação de IPsec "
+"restringe seu uso na prática. As soluções baseadas em OpenVPN irão "
+"geralmente ser preferidas quando os necessários túneis não forem muitos ou "
+"não forem muito dinâmicos."
 
 #. Tag: title
 #, no-c-format
@@ -1040,6 +1084,12 @@ msgstr "<emphasis>ATENÇÃO</emphasis> IPsec e NAT"
 #, no-c-format
 msgid "NATing firewalls and IPsec do not work well together: since IPsec signs the packets, any change on these packets that the firewall might perform will void the signature, and the packets will be rejected at their destination. Various IPsec implementations now include the <emphasis>NAT-T</emphasis> technique (for <emphasis>NAT Traversal</emphasis>), which basically encapsulates the IPsec packet within a standard UDP packet."
 msgstr ""
+"Firewalls que fazem NAT e IPsec não funcionam bem juntos: como o IPsec "
+"assina os pacotes, qualquer alteração nesses pacotes que o firewall possa a "
+"vir fazer irá anular essa assinatura, e assim, os pacotes serão rejeitados "
+"em seu destino. Vários implementações incluem agora a técnica "
+"<emphasis>NAT-T</emphasis> (para <emphasis>NAT Traversal</emphasis>), o que "
+"basicamente encapsula o pacote IPsec dentro de um pacote UDP padrão."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1060,6 +1110,11 @@ msgstr "<emphasis>SEGURANÇA</emphasis> IPsec e firewalls"
 #, no-c-format
 msgid "The standard mode of operation of IPsec involves data exchanges on UDP port 500 for key exchanges (also on UDP port 4500 in case NAT-T is in use). Moreover, IPsec packets use two dedicated IP protocols that the firewall must let through; reception of these packets is based on their protocol numbers, 50 (ESP) and 51 (AH)."
 msgstr ""
+"O modo padrão de operação do IPsec envolve troca de dados pela porta UDP 500 "
+"para troca de chave (também pela porta UDP 4500 caso NAT-T esteja em uso). "
+"Além disso, os pacotes IPsec usam dois protocolos IP dedicados que o "
+"firewall tem que deixar passar; a recepção desses pacotes é baseada nos seus "
+"números de protocolo, 50 (ESP) e 51 (AH)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1090,6 +1145,11 @@ msgstr "PPTP"
 #, no-c-format
 msgid "PPTP (for <emphasis>Point-to-Point Tunneling Protocol</emphasis>) uses two communication channels, one for control data and one for payload data; the latter uses the GRE protocol (<emphasis>Generic Routing Encapsulation</emphasis>). A standard PPP link is then set up over the data exchange channel."
 msgstr ""
+"PPTP (<emphasis>Point-to-Point Tunneling Protocol</emphasis>) usa dois "
+"canais de comunicação, um para controlar dados e um para dados de carga útil "
+"(payload); o último usa o protocolo GRE (<emphasis>Generic Routing "
+"Encapsulation</emphasis>). Um link PPP padrão é então configurado sobre o "
+"canal de troca de dados."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1099,7 +1159,7 @@ msgstr "<primary>PPTP</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Point-to-Point Tunneling Protocol</primary>"
-msgstr ""
+msgstr "<primary>Point-to-Point Tunneling Protocol</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1120,6 +1180,10 @@ msgstr "Configurando o Cliente"
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">pptp-linux</emphasis> package contains an easily-configured PPTP client for Linux. The following instructions take their inspiration from the official documentation: <ulink type=\"block\" url=\"http://pptpclient.sourceforge.net/howto-debian.phtml\" />"
 msgstr ""
+"O pacote <emphasis role=\"pkg\">pptp-linux</emphasis> contém um cliente PPTP "
+"para Linux fácil de configurar. As instruções  a seguir foram inspiradas na "
+"documentação oficial: <ulink type=\"block\" url=\""
+"http://pptpclient.sourceforge.net/howto-debian.phtml\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1130,6 +1194,10 @@ msgstr "<primary><emphasis role=\"pkg\">pptp-linux</emphasis></primary>"
 #, no-c-format
 msgid "The Falcot administrators created several files: <filename>/etc/ppp/options.pptp</filename>, <filename>/etc/ppp/peers/falcot</filename>, <filename>/etc/ppp/ip-up.d/falcot</filename>, and <filename>/etc/ppp/ip-down.d/falcot</filename>."
 msgstr ""
+"Os administradores da Falcot criaram vários arquivos: "
+"<filename>/etc/ppp/options.pptp</filename>, "
+"<filename>/etc/ppp/peers/falcot</filename>, <filename>/etc/ppp/ip-"
+"up.d/falcot</filename>, e <filename>/etc/ppp/ip-down.d/falcot</filename>."
 
 #. Tag: title
 #, no-c-format
@@ -1236,6 +1304,9 @@ msgstr "<emphasis>SEGURANÇA</emphasis> MPPE"
 #, no-c-format
 msgid "Securing PPTP involves using the MPPE feature (<emphasis>Microsoft Point-to-Point Encryption</emphasis>), which is available in official Debian kernels as a module."
 msgstr ""
+"A segurança do PPTP envolve o uso do recurso MPPE (<emphasis>Microsoft Point-"
+"to-Point Encryption</emphasis>), o qual está disponível nos núcleos oficiais "
+"Debian como módulo."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1246,6 +1317,7 @@ msgstr "<primary>MPPE</primary>"
 #, no-c-format
 msgid "<primary>Microsoft</primary><secondary>Point-to-Point Encryption</secondary>"
 msgstr ""
+"<primary>Microsoft</primary><secondary>Point-to-Point Encryption</secondary>"
 
 #. Tag: title
 #, no-c-format
@@ -1261,11 +1333,22 @@ msgstr "<emphasis>ATENÇÃO</emphasis> PPTP e firewalls"
 #, no-c-format
 msgid "Intermediate firewalls need to be configured to let through IP packets using protocol 47 (GRE). Moreover, the PPTP server's port 1723 needs to be open so that the communication channel can happen."
 msgstr ""
+"Firewalls intermediários precisam ser configurados para deixar passar "
+"pacotes IP que usam protocolo 47 (GRE). Além do mais, a porta do servidor "
+"PPTP 1723 precisa estar aberta para que a comunicação pelo canal possa "
+"acontecer."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>pptpd</command> is the PPTP server for Linux. Its main configuration file, <filename>/etc/pptpd.conf</filename>, requires very few changes: <emphasis>localip</emphasis> (local IP address) and <emphasis>remoteip</emphasis> (remote IP address). In the example below, the PPTP server always uses the <literal>192.168.0.199</literal> address, and PPTP clients receive IP addresses from <literal>192.168.0.200</literal> to <literal>192.168.0.250</literal>."
 msgstr ""
+"<command>pptpd</command> é o servidor PPTP para Linux. Seu principal arquivo "
+"de configuração, <filename>/etc/pptpd.conf</filename>, requer muito poucas "
+"alterações: <emphasis>localip</emphasis> (endereço IP local) e "
+"<emphasis>remoteip</emphasis> (endereço IP remoto). No exemplo abaixo, o "
+"servidor PPTP sempre usa o endereço <literal>192.168.0.199</literal>, e os "
+"clientes PPTP recebem endereços IP entre <literal>192.168.0.200</literal> e "
+"<literal>192.168.0.250</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -1383,6 +1466,11 @@ msgstr ""
 #, no-c-format
 msgid "The PPP configuration used by the PPTP server also requires a few changes in <filename>/etc/ppp/pptpd-options</filename>. The important parameters are the server name (<literal>pptp</literal>), the domain name (<literal>falcot.com</literal>), and the IP addresses for DNS and WINS servers."
 msgstr ""
+"A configuração PPP usada pelo servidor PPTP também requer algumas mudanças "
+"em <filename>/etc/ppp/pptpd-options</filename>. Os parâmetros importantes "
+"são o nome do servidor (<literal>pptp</literal>), o nome de domínio "
+"(<literal>falcot.com</literal>), e o endereço IP para os servidores DNS e "
+"WINS."
 
 #. Tag: title
 #, no-c-format
@@ -1459,6 +1547,17 @@ msgstr ""
 #, no-c-format
 msgid "The last step involves registering the <literal>vpn</literal> user (and the associated password) in the <filename>/etc/ppp/chap-secrets</filename> file. Contrary to other instances where an asterisk (<literal>*</literal>) would work, the server name must be filled explicitly here. Furthermore, Windows PPTP clients identify themselves under the <literal><replaceable>DOMAIN</replaceable>\\\\<replaceable>USER</replaceable></literal> form, instead of only providing a user name. This explains why the file also mentions the <literal>FALCOT\\\\vpn</literal> user. It is also possible to specify individual IP addresses for users; an asterisk in this field specifies that dynamic addressing should be used."
 msgstr ""
+"O último passo envolve o registro do usuário <literal>vpn</literal> (e a "
+"senha associada) no arquivo <filename>/etc/ppp/chap-secrets</filename>. Ao "
+"contrário de outras instâncias aonde um asterístico (<literal>*</literal>) "
+"funcionaria, o nome do servidor tem que ser preenchido explícitamente aqui. "
+"Além do mais, clientes Windows PPTP são identificados sob a forma "
+"<literal><replaceable>DOMAIN</replaceable>\\\\"
+"<replaceable>USER</replaceable></literal>, ao invés de apenas fornecer um "
+"nome de usuário. Isso explica o porque do arquivo também mencionar o usuário "
+"<literal>FALCOT\\\\vpn</literal>. Também é possível especificar um endereço "
+"IP individual para usuários; um asterístico neste campo especifica que "
+"endereços dinâmicos devem ser usados."
 
 #. Tag: title
 #, no-c-format
@@ -1489,6 +1588,13 @@ msgstr "<emphasis>SEGURANÇA</emphasis> Vulnerabilidades PPTP"
 #, no-c-format
 msgid "Microsoft's first PPTP implementation drew severe criticism because it had many security vulnerabilities; most have since then been fixed in more recent versions. The configuration documented in this section uses the latest version of the protocol. Be aware though that removing some options (such as <literal>require-mppe-128</literal> and <literal>require-mschap-v2</literal>) would make the service vulnerable again."
 msgstr ""
+"A primeira implementação do PPTP da Microsoft atraiu severas críticas porque "
+"ela tinha várias vulnerabilidades de segurança; a maioria foi, desde então, "
+"consertada em versões mais recentes. A configuração documentada nestas seção "
+"usa a última versão do protocolo. Esteja ciente então de que removendo "
+"algumas das opções (como <literal>require-mppe-128</literal> e <literal"
+">require-mschap-v2</literal>) fará com que o serviço fique vulnerável "
+"novamente."
 
 #. Tag: title
 #, no-c-format
@@ -1504,6 +1610,18 @@ msgstr "Princípio e Mecanismo"
 #, no-c-format
 msgid "<emphasis>Quality of Service</emphasis> (or <emphasis>QoS</emphasis> for short) refers to a set of techniques that guarantee or improve the quality of the service provided to applications. The most popular such technique involves classifying the network traffic into categories, and differentiating the handling of traffic according to which category it belongs to. The main application of this differentiated services concept is <emphasis>traffic shaping</emphasis>, which limits the data transmission rates for connections related to some services and/or hosts so as not to saturate the available bandwidth and starve important other services. Traffic shaping is a particularly good fit for TCP traffic, since this protocol automatically adapts to available bandwidth."
 msgstr ""
+"<emphasis>Quality of Service</emphasis> (ou <emphasis>QoS</emphasis> para "
+"abreviar) se refere a um conjunto de técnicas que garantem ou melhoram a "
+"qualidade do serviço fornecido as aplicações. A mais popular dessas técnicas "
+"envolve a classificação o tráfego de rede em categorias, e a diferenciação "
+"ao manejar esse tráfego de acordo com a categoria que ele pertence. A "
+"principal aplicação desse conceito de diferenciação de serviços é <emphasis>"
+"traffic shaping</emphasis>, o qual limita a taxa de transmissão de dados "
+"para conexões relacionadas a algum serviço e/ou máquinas (hosts) para que "
+"não haja saturação da largura de banda disponível e deixe outros importantes "
+"serviços sem nada. Traffic shaping se encaixa bem particularmente no tráfego "
+"TCP, já que esse protocolo se adapta automaticamente a largura de banda "
+"disponível."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1529,11 +1647,20 @@ msgstr "<primary>serviço</primary><secondary>qualidade</secondary>"
 #, no-c-format
 msgid "It is also possible to alter the priorities on traffic, which allows prioritizing packets related to interactive services (such as <command>ssh</command> and <command>telnet</command>) or to services that only deal with small blocks of data."
 msgstr ""
+"Também é possível alterar as prioridades do tráfego, o que permite priorizar "
+"pacotes relacionados a serviços de interação (com o <command>ssh</command> e "
+"<command>telnet</command>) ou a serviços que lidam apenas com pequenos "
+"blocos de dados."
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian kernels include the features required for QoS along with their associated modules. These modules are many, and each of them provides a different service, most notably by way of special schedulers for the queues of IP packets; the wide range of available scheduler behaviors spans the whole range of possible requirements."
 msgstr ""
+"Os núcleos Debian incluem os recursos necessários para o QoS junto com seus "
+"módulos associados. Esses módulos são muitos, e cada um deles provê um "
+"serviço diferente, principalmente por meio de agendamentos especiais para as "
+"filas de pacotes IP;a ampla gama de comportamentos do agendador disponível "
+"abrange todos os possíveis requerimentos."
 
 #. Tag: title
 #, no-c-format
@@ -1546,6 +1673,10 @@ msgstr ""
 #, no-c-format
 msgid "The <emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis> HOWTO is the reference document covering everything there is to know about network quality of service. <ulink type=\"block\" url=\"http://www.lartc.org/howto/\" />"
 msgstr ""
+"O HOWTO <emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis> é "
+"o documento de referencia que cobre tudo que se deve saber sobre serviço de "
+"qualidade de rede. <ulink type=\"block\" url=\"http://www.lartc.org/howto/\" "
+"/>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1573,6 +1704,10 @@ msgstr "Configurando e implementando"
 #, no-c-format
 msgid "QoS parameters are set through the <command>tc</command> command (provided by the <emphasis role=\"pkg\">iproute</emphasis> package). Since its interface is quite complex, using higher-level tools is recommended."
 msgstr ""
+"Os parametros do QoS são configurados através do comando "
+"<command>tc</command> (fornecido pelo pacote <emphasis role=\"pkg\""
+">iproute</emphasis>). Como sua interface é bem complexa, o uso de "
+"ferramentas de alto nível é recomendado."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1593,6 +1728,10 @@ msgstr "Reduzindo Latências: <command>wondershaper</command>"
 #, no-c-format
 msgid "The main purpose of <command>wondershaper</command> (in the similarly-named package) is to minimize latencies independent of network load. This is achieved by limiting total traffic to a value that falls just short of the link saturation value."
 msgstr ""
+"O principal propósito do <command>wondershaper</command> (em pacote de nome "
+"similar) é minimizar latências independente da carga da rede. Isso é "
+"alcançado limitando o total de tráfego para um valor que seja pouco abaixo "
+"do valor de saturação do link."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1614,11 +1753,25 @@ msgstr "<primary>tráfego</primary><secondary>limitando</secondary>"
 #, no-c-format
 msgid "Once a network interface is configured, setting up this traffic limitation is achieved by running <command>wondershaper <replaceable>interface</replaceable> <replaceable>download_rate</replaceable> <replaceable>upload_rate</replaceable></command>. The interface can be <literal>eth0</literal> or <literal>ppp0</literal> for example, and both rates are expressed in kilobits per second. The <command>wondershaper remove <replaceable>interface</replaceable></command> command disables traffic control on the specified interface."
 msgstr ""
+"Uma vez que a interface de rede esteja configurada, configurar sua limitação "
+"de tráfego e alcançada executando <command>wondershaper "
+"<replaceable>interface</replaceable> <replaceable>taxa_download</replaceable>"
+" <replaceable>taxa_upload</replaceable></command>. A interfacee pode ser "
+"<literal>eth0</literal> ou <literal>ppp0</literal> por exemplo, e ambas as "
+"taxas são expressas em kilobits por segundo. O comando <command>wondershaper "
+"remove <replaceable>interface</replaceable></command> desabilita o controle "
+"de tráfego na interface especificada."
 
 #. Tag: para
 #, no-c-format
 msgid "For an Ethernet connection, this script is best called right after the interface is configured. This is done by adding <literal>up</literal> and <literal>down</literal> directives to the <filename>/etc/network/interfaces</filename> file allowing declared commands to be run, respectively, after the interface is configured and before it is deconfigured. For example:"
 msgstr ""
+"Para uma conexão Ethernet, é melhor chamar esse script logo após que a "
+"interface esteja configurada. Isso é feito adicionando as diretivas "
+"<literal>up</literal> e <literal>down</literal> no arquivo "
+"<filename>/etc/network/interfaces</filename> permitindo que os comandos "
+"declarados sejam executados, respectivamente, após a configuração da "
+"interface e antes que ela seja desconfigurada. Por exemplo:"
 
 #. Tag: title
 #, no-c-format
@@ -1642,6 +1795,9 @@ msgstr ""
 #, no-c-format
 msgid "In the PPP case, creating a script that calls <command>wondershaper</command> in <filename>/etc/ppp/ip-up.d/</filename> will enable traffic control as soon as the connection is up."
 msgstr ""
+"No caso do PPP, criar um script que chame <command>wondershaper</command> em "
+"<filename>/etc/ppp/ip-up.d/</filename> irá abilitar o control de tráfico "
+"assim que a conexão seja feita."
 
 #. Tag: title
 #, no-c-format
@@ -1652,6 +1808,10 @@ msgstr "<emphasis>INDO ALÉM</emphasis> Configuração ideal"
 #, no-c-format
 msgid "The <filename>/usr/share/doc/wondershaper/README.Debian.gz</filename> file describes, in some detail, the configuration method recommended by the package maintainer. In particular, it advises measuring the download and upload speeds so as to best evaluate real limits."
 msgstr ""
+"O arquivo <filename>/usr/share/doc/wondershaper/README.Debian.gz</filename> "
+"descreve, com alguns detalhes, o método de configuração recomendado pelo "
+"mantenedor do pacote. Em particular, ele aconselha a medição da velocidade "
+"de download e upload afim de melhor avaliar os limites reais."
 
 #. Tag: title
 #, no-c-format
@@ -1662,6 +1822,12 @@ msgstr "Configuração Padrão"
 #, no-c-format
 msgid "Barring a specific QoS configuration, the Linux kernel uses the <literal>pfifo_fast</literal> queue scheduler, which provides a few interesting features by itself. The priority of each processed IP packet is based on the ToS field (<emphasis>Type of Service</emphasis>) of this packet; modifying this field is enough to take advantage of the scheduling features. There are five possible values:"
 msgstr ""
+"Salvo uma configuração de QoS específica, o núcleo Linux usa o "
+"<literal>pfifo_fast</literal> para fila do agendador, o qual provê, ele "
+"mesmo, alguns recursos interessantes. A prioridade de cada pacote IP "
+"processado é baseada no campo ToS (<emphasis>Type of Service</emphasis>) "
+"desses pacote; modicar esse campo é o suficiente para tirar vantagem dos "
+"recursos de agendamento. Existem cinco possíveis valores:"
 
 #. Tag: para
 #, no-c-format
@@ -1702,6 +1868,10 @@ msgstr "<primary>Tipo de Serviço</primary>"
 #, no-c-format
 msgid "The ToS field can be set by applications that generate IP packets, or modified on the fly by <emphasis>netfilter</emphasis>. The following rules are sufficient to increase responsiveness for a server's SSH service:"
 msgstr ""
+"O campo ToS pode ser configurado por aplicações que geram pacotes IP, ou "
+"modificado em tempo de execução pelo  <emphasis>netfilter</emphasis>. As "
+"regras a seguir são suficientes para aumentar a capacidade de resposta para "
+"o serviço de um servidor SSH:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1738,6 +1908,12 @@ msgstr "<primary><command>zebra</command></primary>"
 #, no-c-format
 msgid "The reference tool for dynamic routing is currently <command>quagga</command>, from the similarly-named package; it used to be <command>zebra</command> until development of the latter stopped. However, <command>quagga</command> kept the names of the programs for compatibility reasons which explains the <command>zebra</command> commands below."
 msgstr ""
+"A ferramenta de referencia para roteamento dinâmico é atualmente o "
+"<command>quagga</command>, do pacote de nome similar; costumava ser o "
+"<command>zebra</command> até que seu desenvolvimento foi descontinuado. "
+"Contudo, o <command>quagga</command> mantém os nomes dos programas por "
+"questões de compatibilidade, o que explica os comandos "
+"<command>zebra</command> abaixo."
 
 #. Tag: title
 #, no-c-format
@@ -1748,11 +1924,18 @@ msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Roteamento dinâmico"
 #, no-c-format
 msgid "Dynamic routing allows routers to adjust, in real time, the paths used for transmitting IP packets. Each protocol involves its own method of defining routes (shortest path, use routes advertised by peers, and so on)."
 msgstr ""
+"O roteamento dinâmico permite que os roteadores ajustem, em tempo real, os "
+"caminhos usados para transmitir pacotes IP. Cada protocolo envolve um método "
+"próprio para definir rotas (caminhos mais curtos, usam rotas anunciadas "
+"pelos pares, e assim por diante)."
 
 #. Tag: para
 #, no-c-format
 msgid "In the Linux kernel, a route links a network device to a set of machines that can be reached through this device. The <command>route</command> command defines new routes and displays existing ones."
 msgstr ""
+"No núcleo Linux, uma rota \"liga\" um dispositivo de rede a um conjunto de "
+"máquinas que podem ser alcançadas através desse dispositivo. O comando "
+"<command>route</command> define novas rotas e exibe as existentes."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1763,6 +1946,15 @@ msgstr "<primary><command>route</command></primary>"
 #, no-c-format
 msgid "Quagga is a set of daemons cooperating to define the routing tables to be used by the Linux kernel; each routing protocol (most notably BGP, OSPF and RIP) provides its own daemon. The <command>zebra</command> daemon collects information from other daemons and handles static routing tables accordingly. The other daemons are known as <command>bgpd</command>, <command>ospfd</command>, <command>ospf6d</command>, <command>ripd</command>, <command>ripngd</command>, <command>isisd</command>, and <command>babeld</command>."
 msgstr ""
+"Quagga é um conjunto de daemons que cooperam para definir as tabelas de "
+"roteamento a serem usadas pelo núcleo Linux; cada protocolo de roteamento ("
+"mais notadamente BGP, OSPF e RIP) provê seu próprio daemon. O daemon "
+"<command>zebra</command> coleta informações a partir de outros daemons e "
+"lida com as tabelas de roteamento estático em conformidade. Os outros "
+"daemons são conhecidos como <command>bgpd</command>, <command>ospfd</command>"
+", <command>ospf6d</command>, <command>ripd</command>, "
+"<command>ripngd</command>, <command>isisd</command>, e "
+"<command>babeld</command>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1832,11 +2024,27 @@ msgstr "<primary><command>babeld</command></primary>"
 #, no-c-format
 msgid "Daemons are enabled by editing the <filename>/etc/quagga/daemons</filename> file and creating the appropriate configuration file in <filename>/etc/quagga/</filename>; this configuration file must be named after the daemon, with a <filename>.conf</filename> extension, and belong to the <literal>quagga</literal> user and the <literal>quaggavty</literal> group, in order for the <filename>/etc/init.d/quagga</filename> script to invoke the daemon."
 msgstr ""
+"Daemons são habilitados  editando o arquivo "
+"<filename>/etc/quagga/daemons</filename> e criando o arquivo de configuração "
+"apropriado em <filename>/etc/quagga/</filename>; esses arquivos de "
+"configuração devem ser nomeados após o daemon, com extensão "
+"<filename>.conf</filename>, e pertencer ao usuário <literal>quagga</literal> "
+"e grupo <literal>quaggavty</literal> para que o script "
+"<filename>/etc/init.d/quagga</filename> possa invocar o daemon."
 
 #. Tag: para
 #, no-c-format
 msgid "The configuration of each of these daemons requires knowledge of the routing protocol in question. These protocols cannot be described in detail here, but the <emphasis role=\"pkg\">quagga-doc</emphasis> provides ample explanation in the form of an <command>info</command> file. The same contents may be more easily browsed as HTML on the Quagga website: <ulink type=\"block\" url=\"http://www.quagga.net/docs/docs-info.php\" /> In addition, the syntax is very close to a standard router's configuration interface, and network administrators will adapt quickly to <command>quagga</command>."
 msgstr ""
+"A configuração de cada um desses daemons requer conhecimento do protocolo de "
+"roteamento em questão. Esses protocolos não podem ser descritos em detalhes "
+"aqui, mas o <emphasis role=\"pkg\">quagga-doc</emphasis> provê uma ampla "
+"explanação na forma de um arquivo <command>info</command>. O mesmo conteúdo "
+"talvez seja mais fácil de manusear em HTML no website do Quagga: <ulink type="
+"\"block\" url=\"http://www.quagga.net/docs/docs-info.php\" /> em adição, a "
+"sintaxe é muito próxima a configuração padrão da interface do roteador, e "
+"administradores de rede irão se adaptar rapidamente ao "
+"<command>quagga</command>."
 
 #. Tag: title
 #, no-c-format
@@ -1847,16 +2055,34 @@ msgstr "<emphasis>NA PRÁTICA</emphasis> OSPF, BGP ou RIP?"
 #, no-c-format
 msgid "OSPF is generally the best protocol to use for dynamic routing on private networks, but BGP is more common for Internet-wide routing. RIP is rather ancient, and hardly used anymore."
 msgstr ""
+"OSPF é geralmente o melhor protocolo a se usar para roteamento dinâmico em "
+"redes privadas, mas BGP é mais comum para o amplo roteamento da Internet. "
+"RIP é bem antigo, e raramente usado."
 
 #. Tag: para
 #, no-c-format
 msgid "IPv6, successor to IPv4, is a new version of the IP protocol designed to fix its flaws, most notably the scarcity of available IP addresses. This protocol handles the network layer; its purpose is to provide a way to address machines, to convey data to their intended destination, and to handle data fragmentation if needed (in other words, to split packets into chunks with a size that depends on the network links to be used on the path and to reassemble the chunks in their proper order on arrival)."
 msgstr ""
+"IPv6, sucessor do IPv4, é a nova versão do protocolo IP desenhado para "
+"consertar suas falhas, mais notadamente a excasses de endereços IP "
+"disponíveis. Esse protocolo lida com a camada de rede; seu propósito é "
+"fornecer uma maneira de endereçar máquinas, para direcionar dados para o "
+"destino pretendido, e lidar com fragmentação de dados se necessário (em "
+"outras palavras, dividir pacotes em pedaços de tamanho que depende dos links "
+"de rede a serem usados pelo caminho e juntar esses pedaços na ordem "
+"apropriada na chegada)."
 
 #. Tag: para
 #, no-c-format
 msgid "Debian kernels include IPv6 handling in the core kernel (with the exception of some architectures that have it compiled as a module named <literal>ipv6</literal>). Basic tools such as <command>ping</command> and <command>traceroute</command> have their IPv6 equivalents in <command>ping6</command> and <command>traceroute6</command>, available respectively in the <emphasis role=\"pkg\">iputils-ping</emphasis> and <emphasis role=\"pkg\">iputils-tracepath</emphasis> packages."
 msgstr ""
+"Os núcleos Debian incluem o manejo do IPv6 no \"core\" do núcleo (com "
+"exceção de algumas arquiteturas que tem esse suporte compilado como um "
+"módulo de nome <literal>ipv6</literal>). Ferramentas básicas como "
+"<command>ping</command> e <command>traceroute</command> tem seu equivalente "
+"IPv6 como <command>ping6</command> e <command>traceroute6</command>, "
+"disponíveis, respectivamente, nos pacotes <emphasis role=\"pkg\">iputils-"
+"ping</emphasis> e <emphasis role=\"pkg\">iputils-tracepath</emphasis>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1877,6 +2103,11 @@ msgstr "<primary><emphasis role=\"pkg\">iputils-tracepath</emphasis></primary>"
 #, no-c-format
 msgid "The IPv6 network is configured similarly to IPv4, in <filename>/etc/network/interfaces</filename>. But if you want that network to be globally available, you must ensure that you have an IPv6-capable router relaying traffic to the global IPv6 network."
 msgstr ""
+"A rede IPv6 é configurada de maneira similar a IPv4, em "
+"<filename>/etc/network/interfaces</filename>. Mas se você quer que a rede "
+"esteja disponível globalmente, você tem que garantir que você tenha um "
+"roteador de retransmissão de tráfego IPv6 com capacidade para a rede IPv6 "
+"global."
 
 #. Tag: title
 #, no-c-format
@@ -1910,11 +2141,28 @@ msgstr ""
 #, no-c-format
 msgid "IPv6 subnets usually have a netmask of 64 bits. This means that 2<superscript>64</superscript> distinct addresses exist within the subnet. This allows Stateless Address Autoconfiguration (<acronym>SLAAC</acronym>) to pick an address based on the network interface's MAC address. By default, if <acronym>SLAAC</acronym> is activated in your network and IPv6 on your computer, the kernel will automatically find IPv6 routers and configure the network interfaces."
 msgstr ""
+"Sub-redes IPv6 geralmente tem uma máscara de rede de 64 bits. Isso significa "
+"que endereços distintos 2<superscript>64</superscript> existem dentro da sub-"
+"rede. Isso permite a \"Stateless Address Autoconfiguration\" "
+"(<acronym>SLAAC</acronym>) pegar um endereço baseando-se no endereço MAC da "
+"interface de rede. Por padrão, se <acronym>SLAAC</acronym> estiver ativada "
+"em sua rede  e o IPv6 em seu computador, o núcleo irá automaticamente "
+"encontrar os roteadores IPv6 e configurar as interfaces de rede."
 
 #. Tag: para
 #, no-c-format
 msgid "This behavior may have privacy implications. If you switch networks frequently, e.g. with a laptop, you might not want your <acronym>MAC</acronym> address being a part of your public IPv6 address. This makes it easy to identify the same device across networks. A solution to this are IPv6 privacy extensions, which will assign an additional randomly generated address to the interface, periodically change them and prefer them for outgoing connections. Incoming connections can still use the address generated by SLAAC. The following example, for use in <filename>/etc/network/interfaces</filename>, activates these privacy extensions."
 msgstr ""
+"Esse comportamento pode ter implicações de privacidade. Se você muda de rede "
+"com frequência, por exemplo com um laptop, você talvez não queira que seu "
+"endereço <acronym>MAC</acronym> faça parte do seu endereço IPv6 público. "
+"Isso faz com que seja fácil identificar o mesmo dispositivo através das "
+"redes. Uma solução para isso são as extensões de privacidade do IPv6, as "
+"quais irão definir um endereço adicional para a interface de forma "
+"aleatória, periodicamente alterá-lo e usá-los para conexões de saída. "
+"Conexões de entrada podem continuar a usar os endereços gerados pelo SLAAC. "
+"O exemplo a seguir, para uso em <filename>/etc/network/interfaces</filename>"
+", ativa essas extensões de privacidade."
 
 #. Tag: title
 #, no-c-format
@@ -1943,6 +2191,13 @@ msgstr "<emphasis>DICA</emphasis> Programas construídos com IPv6"
 #, no-c-format
 msgid "Many pieces of software need to be adapted to handle IPv6. Most of the packages in Debian have been adapted already, but not all. If your favorite package does not work with IPv6 yet, you can ask for help on the <emphasis>debian-ipv6</emphasis> mailing-list. They might know about an IPv6-aware replacement and could file a bug to get the issue properly tracked. <ulink type=\"block\" url=\"http://lists.debian.org/debian-ipv6/\" />"
 msgstr ""
+"Muitos software precisam ser adaptados para lidar com IPv6. A maioria dos "
+"pacotes no Debian já foram adaptados, mas não todos. Se o seu pacote "
+"favorito ainda não funciona com IPv6, você pode pedir ajuda na lista de "
+"email <emphasis>debian-ipv6</emphasis>. Eles podem saber sobre a "
+"substituição IPv6 consciente e podem reportar um bug para ter o assunto "
+"rastreado de maneira apropriada. <ulink type=\"block\" url=\""
+"http://lists.debian.org/debian-ipv6/\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1963,6 +2218,12 @@ msgstr "<primary><command>ip6tables</command></primary>"
 #, no-c-format
 msgid "IPv6 connections can be restricted, in the same fashion as for IPv4: the standard Debian kernels include an adaptation of <emphasis>netfilter</emphasis> for IPv6. This IPv6-enabled <emphasis>netfilter</emphasis> is configured in a similar fashion to its IPv4 counterpart, except the program to use is <command>ip6tables</command> instead of <command>iptables</command>."
 msgstr ""
+"As conexões IPv6 podem ser restringidas, da mesma maneira que as conexões "
+"IPv4: os núcleos Debian padrão incluem uma adaptação do "
+"<emphasis>netfilter</emphasis> para o IPv6. Esse "
+"<emphasis>netfilter</emphasis> habilitado para IPv6 é configurado de maneira "
+"similar a contraparte IPv4, excerto que o programa a ser usado é o "
+"<command>ip6tables</command> ao invés do <command>iptables</command>."
 
 #. Tag: title
 #, no-c-format
@@ -1979,11 +2240,17 @@ msgstr "<emphasis>ATENÇÃO</emphasis> Tunelamento IPv6 e firewalls"
 #, no-c-format
 msgid "IPv6 tunneling over IPv4 (as opposed to native IPv6) requires the firewall to accept the traffic, which uses IPv4 protocol number 41."
 msgstr ""
+"O encapsulamento do IPv6 sobre o IPv4 (ao contrário do IPv6 nativo) requer "
+"que o firewall aceite o tráfego, o qual usa o protocolo número 41 do IPv4."
 
 #. Tag: para
 #, no-c-format
 msgid "If a native IPv6 connection is not available, the fallback method is to use a tunnel over IPv4. Gogo6 is one (free) provider of such tunnels: <ulink type=\"block\" url=\"http://www.gogo6.com/freenet6/tunnelbroker\" />"
 msgstr ""
+"Se uma conexão IPv6 nativa não está disponível, o método de recuperação "
+"(fallback) é usar o encapsulamento sobre o IPv4. Gogo6 é um fornecedor "
+"(livre) desses encapsulamentos: <ulink type=\"block\" url=\""
+"http://www.gogo6.com/freenet6/tunnelbroker\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2000,11 +2267,22 @@ msgstr "<primary>Gogo6</primary>"
 #, no-c-format
 msgid "To use a Freenet6 tunnel, you need to register for a Freenet6 Pro account on the website, then install the <emphasis role=\"pkg\">gogoc</emphasis> package and configure the tunnel. This requires editing the <filename>/etc/gogoc/gogoc.conf</filename> file: <literal>userid</literal> and <literal>password</literal> lines received by e-mail should be added, and <literal>server</literal> should be replaced with <literal>authenticated.freenet6.net</literal>."
 msgstr ""
+"Para usar o encapsulamento Freenet6, você precisa se registrar no website "
+"abrindo uma conta Freenet6 Pro, e depois instalar o pacote <emphasis role=\""
+"pkg\">gogoc</emphasis> e configurar o encapsulamento. Isso requer editar o "
+"arquivo <filename>/etc/gogoc/gogoc.conf</filename>: as linhas "
+"<literal>userid</literal> e <literal>password</literal> recebidas por email "
+"devem ser adicionadas, e <literal>server</literal> deve ser substituída por "
+"<literal>authenticated.freenet6.net</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "IPv6 connectivity is proposed to all machines on a local network by adding the three following directives to the <filename>/etc/gogoc/gogoc.conf</filename> file (assuming the local network is connected to the eth0 interface):"
 msgstr ""
+"A conectividade IPv6 é oferecida para todas as máquinas de uma rede local "
+"adicionando-se as três seguintes diretivas ao arquivo "
+"<filename>/etc/gogoc/gogoc.conf</filename> (assumindo que a rede local "
+"esteja conectada a interface eth0):"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2043,11 +2321,13 @@ msgstr "<primary><command>radvd</command></primary>"
 #, no-c-format
 msgid "Then run <command>/etc/init.d/gogoc restart</command> and <command>/etc/init.d/radvd start</command>, and the IPv6 network should work."
 msgstr ""
+"Então execute <command>/etc/init.d/gogoc restart</command> e "
+"<command>/etc/init.d/radvd start</command>, e a rede IPv6 deve funcionar."
 
 #. Tag: title
 #, no-c-format
 msgid "Domain Name Servers (DNS)"
-msgstr "Servidores de nomes de domínio (DNS)"
+msgstr "Servidores de Nomes de Domínio (DNS)"
 
 #. Tag: indexterm
 #, no-c-format
