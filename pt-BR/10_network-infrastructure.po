@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-12-15 14:01+0200\n"
+"PO-Revision-Date: 2014-12-31 13:36+0200\n"
 "Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/10_network-infrastructure/pt_BR/>\n"
@@ -909,6 +909,18 @@ msgstr ""
 #, no-c-format
 msgid "Barring further action, VPN clients can only access the VPN server itself by way of the <literal>10.8.0.1</literal> address. Granting the clients access to the local network (192.168.0.0/24), requires adding a <literal>push route 192.168.0.0 255.255.255.0</literal> directive to the OpenVPN configuration so that VPN clients automatically get a network route telling them that this network is reachable by way of the VPN. Furthermore, machines on the local network also need to be informed that the route to the VPN goes through the VPN server (this automatically works when the VPN server is installed on the gateway). Alternatively, the VPN server can be configured to perform IP masquerading so that connections coming from VPN clients appear as if they are coming from the VPN server instead (see <xref linkend=\"sect.gateway\" />)."
 msgstr ""
+"Salvo ações posteriores, clientes VPN só podem acessar o próprio servidor "
+"VPN pelo caminho do endereço <literal>10.8.0.1</literal>. Permitir que os "
+"clientes acessem a rede local (192.168.0.0/24), requer a adição da diretiva "
+"<literal>push route 192.168.0.0 255.255.255.0</literal> a configuração do "
+"OpenVPN para que os clientes VPN automaticamente recebam o roteamento "
+"dizendo a eles que essa rede é alcançável  através da VPN. Além do mais, "
+"máquinas na rede local também precisam ser informadas que a rota para a VPN "
+"passa pelo servidor VPN (isso funciona de maneira automática quando o "
+"servidor VPN é instalado no gateway). Alternativamente, o servidor VPN pode "
+"ser configurado para desempenhar um mascaramento IP, e assim as conexões "
+"vidas de clientes VPN aparecem com se elas viessem do servidor VPN (see <"
+"xref linkend=\"sect.gateway\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -1047,6 +1059,27 @@ msgstr "<primary><command>racoon</command></primary>"
 #, no-c-format
 msgid "IPsec, despite being the standard in IP VPNs, is rather more involved in its implementation. The IPsec engine itself is integrated in the Linux kernel; the required user-space parts, the control and configuration tools, are provided by the <emphasis role=\"pkg\">ipsec-tools</emphasis> package. In concrete terms, each host's <filename>/etc/ipsec-tools.conf</filename> contains the parameters for <emphasis>IPsec tunnels</emphasis> (or <emphasis>Security Associations</emphasis>, in the IPsec terminology) that the host is concerned with; the <command>/etc/init.d/setkey</command> script provides a way to start and stop a tunnel (each tunnel is a secure link to another host connected to the virtual private network). This file can be built by hand from the documentation provided by the <citerefentry><refentrytitle>setkey</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page. However, explicitly writing the parameters for all hosts in a non-trivial set of machines quickly becomes an arduous task, since the number of tunnels grows fast. Installing an IKE daemon (for <emphasis>IPsec Key Exchange</emphasis>) such as <emphasis role=\"pkg\">racoon</emphasis>, <emphasis role=\"pkg\">strongswan</emphasis> or <emphasis role=\"pkg\">openswan</emphasis> makes the process much simpler by bringing administration together at a central point, and more secure by rotating the keys periodically."
 msgstr ""
+"O IPsec, apesar de ser o padrão em VPNs IP, é um pouco mais envolvido em sua "
+"implementação. O próprio mecanismo IPsec é integrado no núcleo Linux; as "
+"partes do espaço usuário necessárias, as ferramentas de controle e "
+"configuração, são fornecidas pelo pacote <emphasis role=\"pkg\">ipsec-"
+"tools</emphasis>. Em termos concretos, o <filename>/etc/ipsec-"
+"tools.conf</filename> de cada máquina contém os parâmetros para os <emphasis>"
+"túneis IPsec</emphasis> (ou <emphasis>Security Associations</emphasis>, na "
+"terminologia IPsec) que o hospedeiro se preocupa; o script "
+"<command>/etc/init.d/setkey</command> fornece uma maneira para iniciar e "
+"parar um túnel (cada túnel é uma ligação segura para outra máquina conectada "
+"a rede virtual privada). Esse arquivo pode ser construído manualmente a "
+"partir da documentação fornecida pela página de manual "
+"<citerefentry><refentrytitle>setkey</refentrytitle> "
+"<manvolnum>8</manvolnum></citerefentry>. Contudo, escrever explicitamente os "
+"parâmetros para todas as máquinas em um conjunto não-trivial de máquinas "
+"rapidamente se torna uma tarefa árdua, já que o número de túneis cresce "
+"rápido. Instalar um daemon IKE (para <emphasis>IPsec Key Exchange</emphasis>)"
+" como o <emphasis role=\"pkg\">racoon</emphasis>, <emphasis role=\"pkg\""
+">strongswan</emphasis> ou <emphasis role=\"pkg\">openswan</emphasis> torna o "
+"processo muito mais simples, por reunir a administração em um ponto central, "
+"e mais seguro por rotacionar as chaves periodicamente."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2306,11 +2339,23 @@ msgstr ""
 #, no-c-format
 msgid "The machine then becomes the access router for a subnet with a 56-bit prefix. Once the tunnel is aware of this change, the local network must be told about it; this implies installing the <command>radvd</command> daemon (from the similarly-named package). This IPv6 configuration daemon has a role similar to <command>dhcpd</command> in the IPv4 world."
 msgstr ""
+"A máquina se torna então o roteador de acesso para a subrede com prefixo 56-"
+"bit. Uma vez que o túnel esteja ciente dessa alteração, a rede local deve "
+"ser avisada sobre isso; isso implica em instalar o daemon "
+"<command>radvd</command> (do pacote de nome similar). Essa configuração IPv6 "
+"do  daemon é toda similar ao <command>dhcpd</command> no mundo IPv4."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/radvd.conf</filename> configuration file must then be created (see <filename>/usr/share/doc/radvd/examples/simple-radvd.conf</filename> as a starting point). In our case, the only required change is the prefix, which needs to be replaced with the one provided by Freenet6; it can be found in the output of the <command>ifconfig</command> command, in the block concerning the <literal>tun</literal> interface."
 msgstr ""
+"O arquivo de configuração <filename>/etc/radvd.conf</filename> deve então "
+"ser criado (veja <filename>/usr/share/doc/radvd/examples/simple-"
+"radvd.conf</filename> como um ponto de partida). No nosso caso, a única "
+"alteração necessária é o prefixo, o qual precisa se substituído pelo "
+"fornecido pela Freenet6; ele pode ser encontrado pela resultado do comando "
+"<command>ifconfig</command>, no bloco referente a interface "
+"<literal>tun</literal>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2343,11 +2388,21 @@ msgstr "<primary>servidor</primary><secondary>nome</secondary>"
 #, no-c-format
 msgid "The <emphasis>Domain Name Service</emphasis> (DNS) is a fundamental component of the Internet: it maps host names to IP addresses (and vice-versa), which allows the use of <literal>www.debian.org</literal> instead of <literal>5.153.231.4</literal> or <literal>2001:41c8:1000:21::21:4</literal>."
 msgstr ""
+"O <emphasis>Domain Name Service</emphasis> (DNS) é um componente fundamental "
+"da Internet: ele mapeia os nomes de máquinas em endereços IP (e vice-versa), "
+"o que permite o uso de <literal>www.debian.org</literal> ao invés de  "
+"<literal>5.153.231.4</literal> ou <literal>2001:41c8:1000:21::21:4</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "DNS records are organized in zones; each zone matches either a domain (or a subdomain) or an IP address range (since IP addresses are generally allocated in consecutive ranges). A primary server is authoritative on the contents of a zone; secondary servers, usually hosted on separate machines, provide regularly refreshed copies of the primary zone."
 msgstr ""
+"O registros do DNS são organizados em zonas; cada zona casa tanto com um "
+"domínio (ou um subdomínio) ou um intervalo de endereço IP (já que endereços "
+"IP são geralmente alocados em intervalos consecutivos). Um servidor primário "
+"é autoritário sobre o conteúdo de uma zona; servidores secundários, "
+"geralmente hospedados em máquinas separadas, fornecem regularmente cópias "
+"atualizadas da zona primária."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2363,6 +2418,8 @@ msgstr "<primary>DNS</primary><secondary>zona</secondary>"
 #, no-c-format
 msgid "Each zone can contain records of various kinds (<emphasis>Resource Records</emphasis>):"
 msgstr ""
+"Cada zona pode conter registros de vários tipos (<emphasis>Resource "
+"Records</emphasis>):"
 
 #. Tag: para
 #, no-c-format
@@ -2382,11 +2439,25 @@ msgstr ""
 #, no-c-format
 msgid "<literal>MX</literal>: <emphasis>mail exchange</emphasis>, an email server. This information is used by other email servers to find where to send email addressed to a given address. Each MX record has a priority. The highest-priority server (with the lowest number) is tried first (see sidebar <xref linkend=\"sidebar.smtp\" />); other servers are contacted in order of decreasing priority if the first one does not reply. <indexterm><primary>MX</primary><secondary>DNS record</secondary></indexterm>"
 msgstr ""
+"<literal>MX</literal>: <emphasis>mail exchange</emphasis>, um servidor de "
+"email. Essa informação é usada por outros servidores de email para saber "
+"para onde enviar o email destinado a um dado endereço. Cada registro MX tem "
+"uma prioridade. O servidor de prioridade mais alta (com o número mais baixo) "
+"é tentado primeiro (veja barra lateral <xref linkend=\"sidebar.smtp\" />); "
+"outros servidores são contactados em uma ordem de prioridade decrescente "
+"caso o primeiro não responda. <indexterm><primary>MX</primary><secondary>"
+"registro DNS</secondary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>PTR</literal>: mapping of an IP address to a name. Such a record is stored in a “reverse DNS” zone named after the IP address range. For example, <literal>1.168.192.in-addr.arpa</literal> is the zone containing the reverse mapping for all addresses in the <literal>192.168.1.0/24</literal> range. <indexterm><primary>PTR, DNS record</primary></indexterm>"
 msgstr ""
+"<literal>PTR</literal>: mapeamento de um endereço IP em um nome. Um registro "
+"desses é armazenado em uma zona de “DNS reverso” nomeada após do intervalo "
+"de endereço IP. Por exemplo, <literal>1.168.192.in-addr.arpa</literal> é a "
+"zona que contém o mapeamento reverso para todos os endereços no intervalo "
+"<literal>192.168.1.0/24</literal>. <indexterm><primary>PTR, registro "
+"DNS</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
@@ -2399,6 +2470,17 @@ msgstr ""
 #, no-c-format
 msgid "<literal>NS</literal>: maps a name to a name server. Each domain must have at least one NS record. These records point at a DNS server that can answer queries concerning this domain; they usually point at the primary and secondary servers for the domain. These records also allow DNS delegation; for instance, the <literal>falcot.com</literal> zone can include an NS record for <literal>internal.falcot.com</literal>, which means that the <literal>internal.falcot.com</literal> zone is handled by another server. Of course, this server must declare an <literal>internal.falcot.com</literal> zone. <indexterm><primary>NS, DNS record</primary></indexterm>"
 msgstr ""
+"<literal>NS</literal>: mapeia um nome para o servidor de nomes. Cada domínio "
+"tem que ter pelo menos um registro NS. Esses registros apontam para um "
+"servidor DNS que pode responder pesquisas relacionadas a esse domínio; eles "
+"usualmente apontam para os servidores primário e secundário do domínio. "
+"Esses registros também permitem delegação DNS; por exemplo, a zona "
+"<literal>falcot.com</literal> pode incluir um registro NS para "
+"<literal>internal.falcot.com</literal>, o que significa que a zona "
+"<literal>internal.falcot.com</literal> é gerenciada por outro servidor. "
+"Claro que, esse servidor tem que declarar uma zona "
+"<literal>internal.falcot.com</literal>. <indexterm><primary>NS, registro "
+"DNS</primary></indexterm>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2416,11 +2498,21 @@ msgstr "<primary>registro DNS</primary>"
 #, no-c-format
 msgid "The reference name server, Bind, was developed and is maintained by ISC (<emphasis>Internet Software Consortium</emphasis>). It is provided in Debian by the <emphasis role=\"pkg\">bind9</emphasis> package. Version 9 brings two major changes compared to previous versions. First, the DNS server can now run under an unprivileged user, so that a security vulnerability in the server does not grant root privileges to the attacker (as was seen repeatedly with versions 8.x)."
 msgstr ""
+"O servidor de nomes de referência, o Bind, foi desenvolvido e é mantido pela "
+"ISC (<emphasis>Internet Software Consortium</emphasis>). Ele é fornecido "
+"pelo Debian pelo pacote <emphasis role=\"pkg\">bind9</emphasis>. A versão 9 "
+"trás duas grandes mudanças comparando com versões anteriores. Primeiro, o "
+"servidor DNS pode agora ser rodado sob um usuário sem privilégios, então uma "
+"vulnerabilidade de segurança no servidor não permiter privilégios de root ao "
+"atacante (como já foi visto repetidamente nas versões 8.x)."
 
 #. Tag: para
 #, no-c-format
 msgid "Furthermore, Bind supports the DNSSEC standard for signing (and therefore authenticating) DNS records, which allows blocking any spoofing of this data during man-in-the-middle attacks."
 msgstr ""
+"Além do mais, o Bind suporta o padrão DNSSEC para assinar (e portanto "
+"autenticação) registros DNS, o que permite bloquear qualquer falsificação (\""
+"spoofing\") de seus dados durante ataques \"man-in-the-middle\"."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2451,6 +2543,11 @@ msgstr "<primary>DNSSEC</primary>"
 #, no-c-format
 msgid "The DNSSEC norm is quite complex; this partly explains why it's not in widespread usage yet (even if it perfectly coexists with DNS servers unaware of DNSSEC). To understand all the ins and outs, you should check the following article. <ulink type=\"block\" url=\"http://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions\" />"
 msgstr ""
+"A norma DNSSEC é bem complexa; isso explica um pouco porque ela não é "
+"amplamente usada ainda (mesmo que ela coexista perfeitamente com servidores "
+"DNS que não estejam cientes da DNSSEC). Para entender todos os meandros, "
+"você deveria ver o seguinte artigo. <ulink type=\"block\" url=\""
+"http://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions\" />"
 
 #. Tag: title
 #, no-c-format
@@ -2466,6 +2563,10 @@ msgstr "Arquivos de configuração para o <command>bind</command>, independente 
 #, no-c-format
 msgid "The Falcot administrators created a primary <literal>falcot.com</literal> zone to store information related to this domain, and a <literal>168.192.in-addr.arpa</literal> zone for reverse mapping of IP addresses in the local networks."
 msgstr ""
+"Os administradores da Falcot criaram uma zona primária "
+"<literal>falcot.com</literal> para armazenar informações relacionadas a este "
+"domínio, e uma zona <literal>168.192.in-addr.arpa</literal> para mapeamento "
+"reverso de endereços IP na rede local."
 
 #. Tag: title
 #, no-c-format
@@ -2503,11 +2604,20 @@ msgstr "<primary>formato nibble</primary>"
 #, no-c-format
 msgid "Reverse zones have a particular name. The zone covering the <literal>192.168.0.0/16</literal> network need to be named <literal>168.192.in-addr.arpa</literal>: the IP address components are reversed, and followed by the <emphasis>in-addr.arpa</emphasis> suffix."
 msgstr ""
+"Zonas reversas tem um nome particular. A zona que cobre a rede "
+"<literal>192.168.0.0/16</literal> precisa ser nomeada como <literal>168.192"
+".in-addr.arpa</literal>: os componentes do endereço IP são invertidos, e "
+"seguidos pelo sufixo <emphasis>in-addr.arpa</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "For IPv6 networks, the suffix is <literal>ip6.arpa</literal> and the IP address components which are reversed are each character in the full hexadecimal representation of the IP address. As such, the <literal>2001:0bc8:31a0::/48</literal> network would use a zone named <literal>0.a.1.3.8.c.b.0.1.0.0.2.ip6.arpa</literal>."
 msgstr ""
+"Para redes IPv6, o sufixo é <literal>ip6.arpa</literal> e os componentes do "
+"endereço IP os quais são invertidos são cada caractere de toda a "
+"representação hexadecimal do endereço IP. Como por exemplo, a rede "
+"<literal>2001:0bc8:31a0::/48</literal> iria usar uma zona de nome "
+"<literal>0.a.1.3.8.c.b.0.1.0.0.2.ip6.arpa</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -2518,6 +2628,13 @@ msgstr "<emphasis>DICA</emphasis> Testando o servidor DNS"
 #, no-c-format
 msgid "The <command>host</command> command (in the <emphasis role=\"pkg\">bind9-host</emphasis> package) queries a DNS server, and can be used to test the server configuration. For example, <command>host machine.falcot.com localhost</command> checks the local server's reply for the <literal>machine.falcot.com</literal> query. The <command>host <replaceable>ipaddress</replaceable> localhost</command> tests the reverse resolution."
 msgstr ""
+"O comando <command>host</command> (do pacote <emphasis role=\"pkg\""
+">bind9-host</emphasis>) faz pesquisa em um servidor DNS, e pode ser usado "
+"para testar a configuração do servidor. Por exemplo, <command>host "
+"machine.falcot.com localhost</command> checa a resposta do servidor local "
+"para a pesquisa por <literal>machine.falcot.com</literal>. O <command>host "
+"<replaceable>ipaddress</replaceable> localhost</command> testa a resolução "
+"reversa."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2528,6 +2645,8 @@ msgstr "<primary><command>host</command></primary>"
 #, no-c-format
 msgid "The following configuration excerpts, taken from the Falcot files, can serve as starting points to configure a DNS server:"
 msgstr ""
+"Os seguintes trecho de configuração, tirados dos arquivos da Falcot, podem "
+"servir como ponto de partida para configurar um servidor DNS:"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2668,6 +2787,13 @@ msgstr "<emphasis>ATENÇÃO</emphasis> Sintaxe de um nome"
 #, no-c-format
 msgid "The syntax of machine names follows strict rules. For instance, <literal>machine</literal> implies <literal>machine.<replaceable>domain</replaceable></literal>. If the domain name should not be appended to a name, said name must be written as <literal>machine.</literal> (with a dot as suffix). Indicating a DNS name outside the current domain therefore requires a syntax such as <literal>machine.otherdomain.com.</literal> (with the final dot)."
 msgstr ""
+"A sintaxe de nomes de máquina seguem regras rígidas. Por exemplo, "
+"<literal>machine</literal> tem que ser "
+"<literal>machine.<replaceable>domain</replaceable></literal>. Se o nome de "
+"domínio não deve ser anexado ao nome, o dito nome tem que ser escrito como "
+"<literal>machine.</literal> (com o ponto como sufixo). Indicar um nome DNS "
+"fora do domínio corrente entretanto requer uma sintaxe como "
+"<literal>machine.otherdomain.com.</literal> (com o ponto final)."
 
 #. Tag: title
 #, no-c-format
@@ -2726,6 +2852,11 @@ msgstr "Apresentação"
 #, no-c-format
 msgid "DHCP (for <emphasis>Dynamic Host Configuration Protocol</emphasis>) is a protocol by which a machine can automatically get its network configuration when it boots. This allows centralizing the management of network configurations, and ensuring that all desktop machines get similar settings."
 msgstr ""
+"DHCP (para <emphasis>Dynamic Host Configuration Protocol</emphasis>) é um "
+"protocolo pelo qual uma máquina pode receber automaticamente sua "
+"configuração de rede no momento de inicialização. Isso permite centralizar o "
+"gerenciamento de configuração de uma rede, e garante que todas as máquinas "
+"recebam configurações similares."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2746,16 +2877,34 @@ msgstr "<primary>rede</primary><secondary>configuração DHCP</secondary>"
 #, no-c-format
 msgid "A DHCP server provides many network-related parameters. The most common of these is an IP address and the network where the machine belongs, but it can also provide other information, such as DNS servers, WINS servers, NTP servers, and so on."
 msgstr ""
+"Um servidor DHCP provê muitos parâmetros relacionados a redes. O mais comum "
+"desses é um endereço IP e a rede a qual a máquina pertence, mas ele pode "
+"também prover outras informações, como servidores DNS, servidores WINS, "
+"servidores NTP, e assim por diante."
 
 #. Tag: para
 #, no-c-format
 msgid "The Internet Software Consortium (also involved in developing <command>bind</command>) is the main author of the DHCP server. The matching Debian package is <emphasis role=\"pkg\">isc-dhcp-server</emphasis>."
 msgstr ""
+"A Internet Software Consortium (também involvida no desenvolvimento do "
+"<command>bind</command>) é a principal autora do servidor DHCP. O pacote "
+"Debian correspondente é o <emphasis role=\"pkg\">isc-dhcp-server</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "The first elements that need to be edited in the DHCP server configuration file (<filename>/etc/dhcp/dhcpd.conf</filename>) are the domain name and the DNS servers. If this server is alone on the local network (as defined by the broadcast propagation), the <literal>authoritative</literal> directive must also be enabled (or uncommented). One also needs to create a <literal>subnet</literal> section describing the local network and the configuration information to be provided. The following example fits a <literal>192.168.0.0/24</literal> local network with a router at <literal>192.168.0.1</literal> serving as the gateway. Available IP addresses are in the range <literal>192.168.0.128</literal> to <literal>192.168.0.254</literal>."
 msgstr ""
+"Os primeiros elementos que precisam ser editados no arquivo de configuração "
+"de um servidor DHCP (<filename>/etc/dhcp/dhcpd.conf</filename>) são o nome "
+"de domínio e os servidores DNS. Se esse servidor é o único na rede local ("
+"como definido pela propagação broadcast), a diretiva "
+"<literal>authoritative</literal> também tem que ser ativada (ou descomentada)"
+". Também é necessário criar uma seção <literal>subnet</literal> descrevendo "
+"a rede local e a informação de configuração a ser fornecida. O exemplo a "
+"seguir descreve uma rede local <literal>192.168.0.0/24</literal> com um "
+"roteador em <literal>192.168.0.1</literal> servindo de gateway. Endereços IP "
+"disponíveis estão no intervalo de <literal>192.168.0.128</literal> até "
+"<literal>192.168.0.254</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -2847,11 +2996,25 @@ msgstr "<primary>DNS</primary><secondary>atualizações automáticas</secondary>
 #, no-c-format
 msgid "A nice feature is the automated registering of DHCP clients in the DNS zone, so that each machine gets a significant name (rather than something impersonal such as <literal>machine-192-168-0-131.internal.falcot.com</literal>). Using this feature requires configuring the DNS server to accept updates to the <literal>internal.falcot.com</literal> DNS zone from the DHCP server, and configuring the latter to submit updates for each registration."
 msgstr ""
+"Um recurso legal é o automatizado registro de clientes DHCP em uma zona DNS, "
+"para que cada máquina receba um nome significativo (ao invés de alguma coisa "
+"impessoal como <literal>machine-192-168-0-131.internal.falcot.com</literal>)"
+". Usar esse recurso requer a configuração do servidor DNS para aceitar "
+"atualizações para a zona DNS <literal>internal.falcot.com</literal> a partir "
+"do servidor DHCP, e configurar esse último para submeter atualizações para "
+"cada registro."
 
 #. Tag: para
 #, no-c-format
 msgid "In the <command>bind</command> case, the <literal>allow-update</literal> directive needs to be added to each of the zones that the DHCP server is to edit (the one for the <literal>internal.falcot.com</literal> domain, and the reverse zone). This directive lists the IP addresses allowed to perform these updates; it should therefore contain the possible addresses of the DHCP server (both the local address and the public address, if appropriate)."
 msgstr ""
+"No caso do <command>bind</command>, a diretiva <literal>allow-"
+"update</literal> precisa ser adicionada a cada uma das zonas que o servidor "
+"DHCP deve editar (uma para o domínio <literal>internal.falcot.com</literal>, "
+"e uma para a zona reversa). Essa diretiva lista o endereço IP que tem "
+"permissão para realizar essas atualizações; ela deve então conter os "
+"possíveis endereços do servidor DHCP (tanto o endereço local quanto o "
+"endereço público, se apropriado)."
 
 #. Tag: programlisting
 #, no-c-format
@@ -2866,11 +3029,23 @@ msgstr ""
 #, no-c-format
 msgid "Beware! A zone that can be modified <emphasis>will</emphasis> be changed by <command>bind</command>, and the latter will overwrite its configuration files at regular intervals. Since this automated procedure produces files that are less human-readable than manually-written ones, the Falcot administrators handle the <literal>internal.falcot.com</literal> domain with a delegated DNS server; this means the <literal>falcot.com</literal> zone file stays firmly under their manual control."
 msgstr ""
+"Esteja atento! Uma zona que pode ser modificada <emphasis>será</emphasis> "
+"alterada pelo <command>bind</command>, e esse último irá sobrescrever seus "
+"arquivos de configuração em intervalos regulares. Como esse procedimento "
+"automatizado produz arquivos que são menos legíveis por humanos que os "
+"escritos manualmente, os administradores da Falcot lidam com o domínio "
+"<literal>internal.falcot.com</literal> com um servidorDNS delegado; isso "
+"significa que o arquivo de zona <literal>falcot.com</literal> continua firme "
+"sob o controle manual."
 
 #. Tag: para
 #, no-c-format
 msgid "The DHCP server configuration excerpt above already includes the directives required for DNS zone updates: they are the <literal>ddns-update-style interim;</literal> and <literal>ddns-domain-name \"internal.falcot.com\";</literal> lines in the block describing the subnet."
 msgstr ""
+"O resumo da configuração do servidor DHCPacima inclui as diretivas "
+"necessárias para atualização da zona DNS: elas são as linhas <literal>ddns-"
+"update-style interim;</literal> e <literal>ddns-domain-name \""
+"internal.falcot.com\";</literal> no bloco que descreve a subrede."
 
 #. Tag: title
 #, no-c-format
@@ -2881,6 +3056,11 @@ msgstr "Ferramentas de Diagnóstico de Rede"
 #, no-c-format
 msgid "When a network application does not run as expected, it is important to be able to look under the hood. Even when everything seems to run smoothly, running a network diagnosis can help ensure everything is working as it should. Several diagnosis tools exists for this purpose; each one operates on a different level."
 msgstr ""
+"Quando uma aplicação de rede não funciona como o esperado, é importante "
+"poder olhar sob o capô. Mesmo quando tudo parece rodar suave, fazer um "
+"diagnóstico da rede pode ajudar a garantir que tudo está funcionando como "
+"deveria. Várias ferramentas de diagósticos existem para esse propósito; cada "
+"uma opera em um nível diferente."
 
 #. Tag: title
 #, no-c-format
@@ -2896,46 +3076,78 @@ msgstr "<primary><command>netstat</command></primary>"
 #, no-c-format
 msgid "Let's first mention the <command>netstat</command> command (in the <emphasis role=\"pkg\">net-tools</emphasis> package); it displays an instant summary of a machine's network activity. When invoked with no argument, this command lists all open connections; this list can be very verbose since it includes many Unix-domain sockets (widely used by daemons) which do not involve the network at all (for example, <literal>dbus</literal> communication, <literal>X11</literal> traffic, and communications between virtual filesystems and the desktop)."
 msgstr ""
+"Vamos primeiro mencionar o comando <command>netstat</command> (do pacote <"
+"emphasis role=\"pkg\">net-tools</emphasis>); ele exibe um sumário momentâneo "
+"da atividade de rede da máquina. Quando invocado sem argumentos, esse "
+"comando lista todas as conexões abertas; essa lista pode ser bem longa já "
+"que inclui muitos sockets Unix-domain (amplamente usados por daemons) os "
+"quais não envolvem a rede de maneira nenhuma (por exemplo, comunicação "
+"<literal>dbus</literal> communication, tráfego <literal>X11</literal> e "
+"comunicações entre sistema de arquivos virtuais e desktop)."
 
 #. Tag: para
 #, no-c-format
 msgid "Common invocations therefore use options that alter <command>netstat</command>'s behavior. The most frequently used options include:"
 msgstr ""
+"Invocações comuns entretanto usam opções que alteram o comportamento do "
+"<command>netstat</command>. As opções mais comumente usadas são:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-t</literal>, which filters the results to only include TCP connections;"
 msgstr ""
+"<literal>-t</literal>, a qual filtra os resultados para incluir apenas "
+"conexões TCP;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-u</literal>, which works similarly for UDP connections; these options are not mutually exclusive, and one of them is enough to stop displaying Unix-domain connections;"
 msgstr ""
+"<literal>-u</literal>, que funciona de maneira similar para conexões UDP; "
+"essas opções não são mutuamente exclusivas, e uma delas é suficiente para "
+"parar de exibir conexões Unix-domain;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-a</literal>, to also list listening sockets (waiting for incoming connections);"
 msgstr ""
+"<literal>-a</literal>, para também listar sockets ativos (esperando por "
+"conexões de entrada);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-n</literal>, to display the results numerically: IP addresses (no DNS resolution), port numbers (no aliases as defined in <filename>/etc/services</filename>) and user ids (no login names);"
 msgstr ""
+"<literal>-n</literal>, para exibir os resultados com números: endereço IP ("
+"sem resolução DNS), números de porta (sem as aliases como definidas em "
+"<filename>/etc/services</filename>) e ids de usuários (sem nomes de login);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-p</literal>, to list the processes involved; this option is only useful when <command>netstat</command> is run as root, since normal users will only see their own processes;"
 msgstr ""
+"<literal>-p</literal>, para listar os processos envolvidos; essa opção só é "
+"útil quando o <command>netstat</command> é executado como root, já que "
+"usuários normais apenas verão seus próprios processos;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-c</literal>, to continuously refresh the list of connections."
 msgstr ""
+"<literal>-c</literal>, para atualizar continuamente a lista de conexões."
 
 #. Tag: para
 #, no-c-format
 msgid "Other options, documented in the <citerefentry><refentrytitle>netstat</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page, provide an even finer control over the displayed results. In practice, the first five options are so often used together that systems and network administrators practically acquired <command>netstat -tupan</command> as a reflex. Typical results, on a lightly loaded machine, may look like the following:"
 msgstr ""
+"Outras opções, documentadas na página de manual "
+"<citerefentry><refentrytitle>netstat</refentrytitle> "
+"<manvolnum>8</manvolnum></citerefentry>, fornecem um controle ainda mais "
+"apurado sobre os resultados exibidos. Na prática,  as cinco primeiras opções "
+"são tão comumente usadas em conjunto que administradores de sistemas e de "
+"redes praticamente usam <command>netstat -tupan</command> como um reflexo. "
+"Resultados típicos em uma máquina levemente carregada devem se parecer com o "
+"seguinte:"
 
 #. Tag: screen
 #, no-c-format
@@ -2999,6 +3211,10 @@ msgstr ""
 #, no-c-format
 msgid "As expected, this lists established connections, two SSH connections in this case, and applications waiting for incoming connections (listed as <literal>LISTEN</literal>), notably the Exim4 email server listening on port 25."
 msgstr ""
+"Como esperado, isso lista conexões estabelecidas, duas conexões SSH neste "
+"caso, e aplicações esperando por conexões de entrada (listadas como "
+"<literal>LISTEN</literal>), notavelmente o o servidor de email Exim4 ouvindo "
+"na porta 25."
 
 #. Tag: title
 #, no-c-format
@@ -3014,11 +3230,27 @@ msgstr "<primary><command>nmap</command></primary>"
 #, no-c-format
 msgid "<command>nmap</command> (in the similarly-named package) is, in a way, the remote equivalent for <command>netstat</command>. It can scan a set of “well-known” ports for one or several remote servers, and list the ports where an application is found to answer to incoming connections. Furthermore, <command>nmap</command> is able to identify some of these applications, sometimes even their version number. The counterpart of this tool is that, since it runs remotely, it cannot provide information on processes or users; however, it can operate on several targets at once."
 msgstr ""
+"<command>nmap</command> (em pacote de nome similar) é, de certa forma, o "
+"equivalente remoto do <command>netstat</command>. ele pode escanear um "
+"conjunto de portas conhecidas (“well-known” ports) em um ou mais servidores "
+"remotos, e listar as portas aonde uma aplicação se encontra para responder a "
+"conexões de entrada. Além do mais, <command>nmap</command> é capaz de "
+"identificar algumas dessas aplicações, algumas vezes até seu número de "
+"versão. A contrapartida dessa ferramenta é que, como ela é executada "
+"remotamente, ela não pode fornecer informações sobre processos ou usuários; "
+"contudo, ela pode operar em vários alvos de uma vez."
 
 #. Tag: para
 #, no-c-format
 msgid "A typical <command>nmap</command> invocation only uses the <literal>-A</literal> option (so that <command>nmap</command> attempts to identify the versions of the server software it finds) followed by one or more IP addresses or DNS names of machines to scan. Again, many more options exist to finely control the behavior of <command>nmap</command>; please refer to the documentation in the <citerefentry> <refentrytitle>nmap</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> manual page."
 msgstr ""
+"Uma invocação típica do <command>nmap</command> apenas usa a opção "
+"<literal>-A</literal> (para que o <command>nmap</command> tente identificar "
+"as versões dos softwares no servidor que ele encontrar) seguido de um ou "
+"mais endereços IP ou nomes DNS das máquinas a escanear. Novamente, existem "
+"muitas outras opções para refinar o comportamento do <command>nmap</command>;"
+" por favor veja a documentação na página de manual <citerefentry> "
+"<refentrytitle>nmap</refentrytitle> <manvolnum>1</manvolnum> </citerefentry>."
 
 #. Tag: screen
 #, no-c-format
@@ -3154,6 +3386,12 @@ msgstr ""
 #, no-c-format
 msgid "As expected, the SSH and Exim4 applications are listed. Note that not all applications listen on all IP addresses; since Exim4 is only accessible on the <literal>lo</literal> loopback interface, it only appears during an analysis of <literal>localhost</literal> and not when scanning <literal>mirwiz</literal> (which maps to the <literal>eth0</literal> interface on the same machine)."
 msgstr ""
+"Como esperado, as aplicações SSH e Exim4 estão listadas. Note que nem todas "
+"as aplicações escutam em todos os endereços  IP; como o Exim4 que só é "
+"acessível pela interface loopback <literal>lo</literal>, ele só aparece "
+"durante uma análise do <literal>localhost</literal> e não quando escaneando "
+"<literal>mirwiz</literal> (a qual mapeia a interface <literal>eth0</literal> "
+"na mesma máquina)."
 
 #. Tag: title
 #, no-c-format
@@ -3164,6 +3402,11 @@ msgstr "Sniffers: <command>tcpdump</command> e <command>wireshark</command>"
 #, no-c-format
 msgid "Sometimes, one needs to look at what actually goes on the wire, packet by packet. These cases call for a “frame analyzer”, more widely known as a <emphasis>sniffer</emphasis>. Such a tool observes all the packets that reach a given network interface, and displays them in a user-friendly way."
 msgstr ""
+"Às vezes, é preciso olhar o que realmente acontece no fio, pacote a pacote. "
+"Nesses casos é necessário invocar um “analizador de quadro”, mais comumente "
+"conhecido como <emphasis>sniffer</emphasis>. Uma ferramenta dessas observa "
+"todos os pacotes que chegam em uma determinada interface de rede, e os exibe "
+"de uma maneira amigável."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3174,6 +3417,11 @@ msgstr "<primary><command>tcpdump</command></primary>"
 #, no-c-format
 msgid "The venerable tool in this domain is <command>tcpdump</command>, available as a standard tool on a wide range of platforms. It allows many kinds of network traffic capture, but the representation of this traffic stays rather obscure. We will therefore not describe it in further detail."
 msgstr ""
+"A venerável ferramenta neste domínio é o <command>tcpdump</command>, "
+"disponível como ferramenta padrão em uma grande variedade de plataformas. "
+"Ela permite muitos tipos de captura de tráfego de rede, mas a representação "
+"desse tráfego se mantém obscura. Nós então não iremos descrevê-la muito "
+"detalhadamente."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3184,6 +3432,17 @@ msgstr "<primary><command>wireshark</command></primary>"
 #, no-c-format
 msgid "A more recent (and more modern) tool, <command>wireshark</command> (in the <emphasis role=\"pkg\">wireshark</emphasis> package), is slowly becoming the new reference in network traffic analysis due to its many decoding modules that allow for a simplified analysis of the captured packets. The packets are displayed graphically with an organization based on the protocol layers. This allows a user to visualize all protocols involved in a packet. For example, given a packet containing an HTTP request, <command>wireshark</command> displays, separately, the information concerning the physical layer, the Ethernet layer, the IP packet information, the TCP connection parameters, and finally the HTTP request itself."
 msgstr ""
+"Uma ferramenta mais recente (e mais moderna), <command>wireshark</command> ("
+"do pacote <emphasis role=\"pkg\">wireshark</emphasis>), está lentamente se "
+"tornando a nova referência em análise de tráfego de rede devido a seus "
+"vários módulos de \"decoding\" que permitem uma análise simplificada dos "
+"pacotes capturados. Os pacotes são exibidos graficamente organizados com "
+"base nas camadas de protocolo. Isso permite ao usuário visualizar todos os "
+"protocolos envolvidos em um pacote. Por exemplo, dado um pacote contendo uma "
+"requisição HTTP, o <command>wireshark</command> exibe, separadamente, a "
+"informação referente a camada física, a camada Ethernet, a informação do "
+"pacote IP, os parâmetros de conexão TCP, e finalmente a própria requisição "
+"HTTP."
 
 #. Tag: title
 #, no-c-format
@@ -3194,6 +3453,9 @@ msgstr "O analisador de tráfego de rede <command>wireshark</command>"
 #, no-c-format
 msgid "In our example, the packets traveling over SSH are filtered out (with the <literal>!tcp.port == 22</literal> filter). The packet currently displayed was developed at the HTTP layer."
 msgstr ""
+"Em nosso exemplo, os pacotes que viajam pelo SSH são filtrados (pelo filtro "
+"<literal>!tcp.port == 22</literal>). O pacote exibido no momento foi "
+"desenvolvido na camada HTTP."
 
 #. Tag: title
 #, no-c-format
@@ -3209,6 +3471,19 @@ msgstr "<primary><command>tshark</command></primary>"
 #, no-c-format
 msgid "When one cannot run a graphical interface, or does not wish to do so for whatever reason, a text-only version of <command>wireshark</command> also exists under the name <command>tshark</command> (in a separate <emphasis role=\"pkg\">tshark</emphasis> package). Most of the capture and decoding features are still available, but the lack of a graphical interface necessarily limits the interactions with the program (filtering packets after they've been captured, tracking of a given TCP connection, and so on). It can still be used as a first approach. If further manipulations are intended and require the graphical interface, the packets can be saved to a file and this file can be loaded into a graphical <command>wireshark</command> running on another machine."
 msgstr ""
+"Se não for possível executar a interface gráfica, ou se não se quer fazer "
+"isso por uma razão qualquer, uma versão modo texto do "
+"<command>wireshark</command> também existe sob o nome de "
+"<command>tshark</command> (em um pacote separado <emphasis role=\"pkg\""
+">tshark</emphasis>). A maioria dos recursos de captura e \"decoding\" ainda "
+"estão disponíveis, mas a ausência da interface gráfica necessariamente "
+"limita as interações com o programa (a filtragem de pacotes depois de terem "
+"sido capturados, rastreio de uma dada conexão TCP, e assim por diante). Mas "
+"ele ainda pode ser usado como primeira abordagem. Se manipulações mais "
+"profundas forem pretendidas e requererem a interface gráfica, os pacotes "
+"podem ser salvos em um arquivo e esse arquivo pode ser carregado no "
+"<command>wireshark</command> gráfico que está sendo executado em outra "
+"máquina."
 
 #. Tag: title
 #, no-c-format
@@ -3229,6 +3504,13 @@ msgstr "<primary><command>tethereal</command></primary>"
 #, no-c-format
 msgid "<command>wireshark</command> seems to be relatively young; however, it is only the new name for a software application previously known as <command>ethereal</command>. When its main developer left the company where he was employed, he was not able to arrange for the transfer of the registered trademark. As an alternative he went for a name change; only the name and the icons for the software actually changed."
 msgstr ""
+"<command>wireshark</command> parece ser relativamente jovem; contudo, é "
+"apenas um nome novo para um aplicativo de software previamente conhecido "
+"como <command>ethereal</command>. Quando seu principal desenvolvedor deixou "
+"a compania aonde estava ele empregado, ele não consegui fazer a "
+"transferência do registro da marca (trademark). Como alternativa ele optou "
+"pela mudança de nome; apenas o nome e os icones do software foram realmente "
+"alterados."
 
 #~ msgid "<primary>traffic control</primary>"
 #~ msgstr "<primary>controle de tráfego</primary>"
