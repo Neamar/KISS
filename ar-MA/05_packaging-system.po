@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-09-27 07:30-0400\n"
+"PO-Revision-Date: 2014-09-29 10:57-0400\n"
 "Last-Translator: Muhammad Saied <msaied93@gmail.com>\n"
 "Language-Team: Arabic <debian-l10n-arabic@lists.debian.org>\n"
 "Language: ar\n"
@@ -54,7 +54,8 @@ msgid ""
 "facilitate. It is therefore a good idea to know what they are and how to use "
 "them."
 msgstr ""
-"بما أنك مدير دبيان، فسوف تتعامل مع حزم <filename>.deb</filename> بشكل متكرر، "
+"بما أنك مدير دبيان، فسوف تتعامل مع حزم <filename dir=\"ltr\">.deb</filename> "
+"بشكل متكرر، "
 "التي تحوي عناصر وظيفية مترابطة (تطبيقات، وثائق... الخ)، تُسهِّل هذه الحزم "
 "تثبيتها وصيانتها. فمن الجيد إذن أن تعرف مما تتألف هذه الحزم وكيف تستخدمها."
 
@@ -67,7 +68,8 @@ msgid ""
 "instructions for building binary packages."
 msgstr ""
 "يصف هذا الفصل بنية ومحتويات الحزم ”الثنائية“ و ”المصدرية“. الأولى هي ملفات <"
-"filename>.deb</filename>، يمكن الاستفادة منها مباشرة باستخدام <command>dpkg<"
+"filename dir=\"ltr\">.deb</filename>، يمكن الاستفادة منها مباشرة باستخدام <"
+"command>dpkg<"
 "/command>، في حين تحوي الأخيرة شفرة البرنامج المصدرية، بالإضافة إلى تعليمات "
 "بناء حزم ثنائية."
 
@@ -88,7 +90,6 @@ msgstr "<primary><command>ar</command></primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command>. This seemingly trivial property is important for portability and disaster recovery."
 msgid ""
 "The Debian package format is designed so that its content may be extracted on "
 "any Unix system that has the classic commands <command>ar</command>, <command>"
@@ -104,7 +105,6 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-#| msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
 msgid ""
 "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> "
 "program, and that you could thus no longer install Debian packages. <command>"
@@ -156,7 +156,8 @@ msgid ""
 "<command>dpkg</command> is the program that handles <filename>.deb</filename> "
 "files, notably extracting, analyzing, and unpacking them."
 msgstr ""
-"<command>dpkg</command> هو البرنامج الذي يعالج ملفات <filename>.deb</filename>"
+"<command>dpkg</command> هو البرنامج الذي يعالج ملفات <filename dir=\"ltr\">"
+".deb</filename>"
 "، بالأخص الاستخراج، والتحليل، وفك الضغط عنها."
 
 #. Tag: para
@@ -173,7 +174,6 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-#| msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents its many other operations. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the archive <filename>data.tar.gz</filename> in the system's root (<filename>/</filename>):"
 msgid ""
 "<indexterm><primary><command>ar</command></primary></indexterm> As for the <"
 "command>ar</command> program, it allows handling files of the same name: <"
@@ -209,10 +209,6 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput># </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
-#| "<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb<"
@@ -263,7 +259,6 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-#| msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"section.manuel\" />)."
 msgid ""
 "<xref linkend=\"solving-problems\" /> discusses manual pages in further "
 "detail (see <xref linkend=\"sect.manual-pages\" />)."
@@ -274,44 +269,10 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Have a look at the content of a <filename>.deb</filename> file:"
-msgstr "لنلقِ نظرة على محتويات ملف <filename>.deb</filename>:"
+msgstr "لنلقِ نظرة على محتويات ملف <filename dir=\"ltr\">.deb</filename>:"
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.15.8.5_i386.deb</userinput>\n"
-#| "<computeroutput>debian-binary\n"
-#| "control.tar.gz\n"
-#| "data.tar.gz\n"
-#| "$ </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
-#| "<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
-#| "<computeroutput>control.tar.gz  data.tar.gz  debian-binary  dpkg_1.15.8.5_i386.deb\n"
-#| "$ </computeroutput><userinput>tar tzf data.tar.gz | head -15</userinput>\n"
-#| "<computeroutput>./\n"
-#| "./var/\n"
-#| "./var/lib/\n"
-#| "./var/lib/dpkg/\n"
-#| "./var/lib/dpkg/updates/\n"
-#| "./var/lib/dpkg/parts/\n"
-#| "./var/lib/dpkg/info/\n"
-#| "./var/lib/dpkg/alternatives/\n"
-#| "./sbin/\n"
-#| "./sbin/start-stop-daemon\n"
-#| "./usr/\n"
-#| "./usr/sbin/\n"
-#| "./usr/sbin/install-info\n"
-#| "./usr/bin/\n"
-#| "./usr/bin/dpkg-split\n"
-#| "$ </computeroutput><userinput>tar tzf control.tar.gz</userinput>\n"
-#| "<computeroutput>./\n"
-#| "./control\n"
-#| "./preinst\n"
-#| "./md5sums\n"
-#| "./conffiles\n"
-#| "./postrm\n"
-#| "./postinst\n"
-#| "$ </computeroutput><userinput>cat debian-binary</userinput>\n"
-#| "<computeroutput>2.0</computeroutput>\n"
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.16.10_amd64.deb<"
 "/userinput>\n"
@@ -397,14 +358,13 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-#| msgid "<filename>debian-binary</filename>. This is a text file which simply indicates the version of the <filename>.deb</filename> file used (in 2011: version 2.0)."
 msgid ""
 "<filename>debian-binary</filename>. This is a text file which simply "
 "indicates the version of the <filename>.deb</filename> file used (in 2013: "
 "version 2.0)."
 msgstr ""
 "<filename>debian-binary</filename>. هذا ملف نصي يشير ببساطة إلى نسخة ملف <"
-"filename>.deb</filename> المستخدم (في 2013: الإصدارة 2.0)."
+"filename dir=\"ltr\">.deb</filename> المستخدم (في 2013: الإصدارة 2.0)."
 
 #. Tag: para
 #, no-c-format
@@ -433,8 +393,9 @@ msgstr ""
 "<filename>data.tar.gz</filename>. يحوي هذا الأرشيف على جميع الملفات التي يجب "
 "استخراجها من الحزمة؛ هذا هو المكان حيث تخزن الملفات التنفيذية، الوثائق، الخ. "
 "قد تستخدم بعض الحزم صيغ ضغط مختلفة، حيث يتغير اسم الملف في تلك الحالة (<"
-"filename>data.tar.bz2</filename> بالنسبة لصيغة bzip2، <filename>data.tar.xz<"
-"/filename> بالنسبة لصيغة XZ، <filename>data.tar.lzma</filename> بالنسبة لصيغة "
+"filename>data.tar.bz2</filename> بالنسبة لصيغة bzip2،‏ <filename>data.tar.xz<"
+"/filename> بالنسبة لصيغة XZ،‏ <filename>data.tar.lzma</filename> بالنسبة "
+"لصيغة "
 "LZMA)."
 
 #. Tag: title
@@ -464,7 +425,8 @@ msgid ""
 "within the package, what is called its “meta-information” (information about "
 "other information)."
 msgstr ""
-"حزمة دبيان ليست مجرد أرشيف ملفات مُعدٌّ للتثبيت. بل هي جزء من كيان أكبر، وهي تصف "
+"حزمة دبيان ليست مجرد أرشيف ملفات مُعدٌّ للتثبيت. بل هي جزء من كيان أكبر، وهي "
+"تصف "
 "العلاقة بينها وبين حزم دبيان الأخرى (اعتماد، تضارب، اقتراح). كما توفر سكربتات "
 "تسمح بتنفيذ الأوامر في مختلف المراحل في دورة حياة الحزمة (تثبيت، إزالة، "
 "تحديث). هذه البيانات التي تستخدمها أدوات إدارة الحزم ليست جزءاً من البرمجية "
@@ -659,42 +621,40 @@ msgstr ""
 "المكتبات المطلوبة، بإصداراتها المناسبة، التي يعتمد عليها البرنامج المثبت. "
 "بالنسبة لكل اعتمادية، يمكن تقييد نطاق إصداراتها التي تحقق الشرط. بكلمات أخرى، "
 "من الممكن التعبير عن حقيقة أننا نحتاج إصدارة أكبر أو تساوي ”2.3.4“ من الحزمة "
-"<emphasis role=\"pkg\">libc6</emphasis> (نكتب ذلك ”<command>libc6 (&gt;= "
-"2.3.4)</command>“). عمليات مقارنة الإصدارات هي كالتالي:"
+"<emphasis role=\"pkg\">libc6</emphasis> (نكتب ذلك ”<command dir=\"ltr\">"
+"libc6(&gt;= 2.3.4)</command>“). عمليات مقارنة الإصدارات هي كالتالي:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;&lt;</command>: less than;"
-msgstr "<command>&lt;&lt;</command>: أقل من؛"
+msgstr "<command dir=\"ltr\">&lt;&lt;</command>: أقل من؛"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;=</command>: less than or equal to;"
-msgstr "<command>&lt;=</command>: أقل من أو يساوي؛"
+msgstr "<command dir=\"ltr\">&lt;=</command>: أقل من أو يساوي؛"
 
 #. Tag: para
 #, no-c-format
-#| msgid "<command>=</command>: equal to (note, “<literal>2.6.1</literal>” is not equal to “<literal>2.6.1-1</literal>”);"
 msgid ""
 "<command>=</command>: equal to (note that “<literal>2.6.1</literal>” is not "
 "equal to “<literal>2.6.1-1</literal>”);"
 msgstr ""
 "<command>=</command>: يساوي (لاحظ أن ”<literal>2.6.1</literal>“ لا يساوي ”<"
-"literal>2.6.1-1‎</literal>“)؛"
+"literal dir=\"ltr\">2.6.1-1‎</literal>“)؛"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;=</command>: greater than or equal to;"
-msgstr "<command>&gt;=</command>: أكبر من أو يساوي؛"
+msgstr "<command dir=\"ltr\">&gt;=</command>: أكبر من أو يساوي؛"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;&gt;</command>: greater than."
-msgstr "<command>&gt;&gt;</command>: أكبر من؛"
+msgstr "<command dir=\"ltr\">&gt;&gt;</command>: أكبر من؛"
 
 #. Tag: para
 #, no-c-format
-#| msgid "In a list of conditions to be met, the comma serves as a separator. In logic, its meaning would be interpreted as “and”. In conditions, the vertical bar (“|”) expresses “or” in logic (it is an inclusive “or”, as opposed to meaning “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 msgid ""
 "In a list of conditions to be met, the comma serves as a separator. It must "
 "be interpreted as a logical “and”. In conditions, the vertical bar (“|”) "
@@ -1043,7 +1003,8 @@ msgid ""
 "files), whose only purpose is to express dependencies."
 msgstr ""
 "من المهم التمييز بوضوح بين الحزم الفوقية وبين الحزم الوهمية. الأولى هي حزم "
-"حقيقية (ولها ملفات <filename>‎.deb</filename> حقيقية)، غرضها الوحيد التصريح "
+"حقيقية (ولها ملفات <filename dir=\"ltr\">‎.deb</filename> حقيقية)، غرضها "
+"الوحيد التصريح "
 "عن اعتماديات."
 
 #. Tag: para
@@ -1167,7 +1128,8 @@ msgstr ""
 "/emphasis>). نتيجة لذلك، أضافت الحزمة <emphasis role=\"pkg\">perl</emphasis> "
 "منذ الإصدار 5.8 التصريح <literal>Provides: libdigest-md5-perl</literal> بحيث "
 "تتم تلبية اعتماد الحزم الأخرى على هذه الحزمة إذا ثبَّت المستخدم بيرل 5.8 (أو "
-"أحدث). لقد حُذِفَت الحزمة <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> "
+"أحدث). لقد حُذِفَت الحزمة <emphasis role=\"pkg\">libdigest-md5-perl</emphasis>"
+" "
 "في النهاية، بما أنه لم يبق لها أي عمل بعد إزالة الإصدارات القديمة من بيرل."
 
 #. Tag: title
@@ -1218,8 +1180,8 @@ msgstr ""
 "جدًا. لها الكثير من الوحدات الجاهزة للاستخدام التي تغطي طيفًا واسعًا من "
 "التطبيقات، والتي توزعها مخدمات CPAN (شبكة أرشيفات بيرل الشاملة، Comprehensive "
 "Perl Archive Network)، وهي شبكة عملاقة لحزم بيرل. <ulink type=\"block\" "
-"url=\"http://www.perl.org/\" /> <ulink type=\"block\" "
-"url=\"http://www.cpan.org/\" />"
+"url=\"http://www.perl.org/‎\" />‎ <ulink type=\"block\" "
+"dir=\"ltr\" url=\"http://www.cpan.org/\" />‎"
 
 #. Tag: para
 #, no-c-format
@@ -1248,7 +1210,8 @@ msgid ""
 "versions do not match."
 msgstr ""
 "تعاني الحزم الوهمية من بعض القيود، أهمها عدم وجود رقم للإصدار. بالعودة إلى "
-"مثالنا السابق، لا يمكن لنظام الحزم أن يعتبر الاعتمادية <literal>Depends: "
+"مثالنا السابق، لا يمكن لنظام الحزم أن يعتبر الاعتمادية <literal dir=\"ltr\">"
+"Depends: "
 "libdigest-md5-perl (&gt;= 1.6)</literal> مثلاً محققة أبداً، حتى مع تثبيت بيرل "
 "5.10 — رغم أنها على الأغلب محققة فعلاً. لكن نظام الحزم لا يدرك هذا، ويفضل "
 "الخيار الأقل مخاطرة، ويفترض أن الإصدارين غير متناسبين."
@@ -1272,7 +1235,8 @@ msgstr ""
 "رغم أن الحزم الوهمية ليس لها إصدارات في الوقت الحاضر، إلا أنه لا يشترط أن "
 "تستمر هذه الحال. وبالفعل، تستطيع <command>apt</command> إدارة إصدارات الحزم "
 "الوهمية الآن ويتوقع أن يدعمها <command>dpkg</command> لاحقاً أيضاً. عندئذ "
-"سنتمكن من كتابة حقول مثل <literal>Provides: libstorable-perl (= 1.7)</literal>"
+"سنتمكن من كتابة حقول مثل <literal dir=\"ltr\">Provides: libstorable-perl (= "
+"1.7)</literal>"
 "‎ للدلالة على أن الحزمة تقدم نفس وظائف الحزمة <emphasis role=\"pkg\">"
 "libstorable-perl</emphasis> في إصدارها 1.7."
 
@@ -1369,7 +1333,7 @@ msgstr ""
 "الوسوم، وتسمح باستخدامها كمعايير للبحث. بالنسبة لمن ينفرون من معايير البحث في "
 "<command>aptitude</command>، يمكنهم التوجه للموقع التالي الذي يسمح بتصفح "
 "قاعدة بيانات هذه الوسوم: <ulink type=\"block\" "
-"url=\"http://debtags.alioth.debian.org/\" />"
+"url=\"http://debtags.alioth.debian.org/\" />‎"
 
 #. Tag: title
 #, no-c-format
@@ -1423,7 +1387,6 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-#| msgid "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command> data directory"
 msgid "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command>'s database"
 msgstr "<emphasis>التعمق أكثر</emphasis> قاعدة بيانات <command>dpkg</command>"
 
@@ -1434,7 +1397,6 @@ msgstr "<primary><filename>/var/lib/dpkg/</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>status</secondary>"
 msgid "<primary>dpkg</primary><secondary>database</secondary>"
 msgstr "<primary>dpkg</primary><secondary>قاعدة بيانات</secondary>"
 
@@ -1449,7 +1411,8 @@ msgid ""
 msgstr ""
 "تُخزَّن جميع سكربتات الإعداد الخاصة بالحزم المثبتة في المجلد <filename>"
 "/var/lib/dpkg/info/</filename>، بشكل ملف مسبوق باسم الحزمة. يحوي هذا المجلد "
-"أيضًا على ملف امتداده <filename>.list</filename> لكل حزمة، يحوي قائمة "
+"أيضًا على ملف امتداده <filename dir=\"ltr\">.list</filename> لكل حزمة، يحوي "
+"قائمة "
 "بالملفات التي تنتمي لتلك الحزمة."
 
 #. Tag: para
@@ -1460,7 +1423,8 @@ msgid ""
 "status of each package. The information from the <filename>control</filename> "
 "file of the installed packages is also replicated there."
 msgstr ""
-"يحتوي الملف <filename>/var/lib/dpkg/status</filename> على سلسلة من كتل "
+"يحتوي الملف <filename dir=\"ltr\">/var/lib/dpkg/status</filename> على سلسلة "
+"من كتل "
 "البيانات (بتنسيق ترويسات البريد الشهير، RFC 2822) تصف حالة كل حزمة. كما "
 "تُنسَخ المعلومات من ملف <filename>control</filename> الخاص بالحزمة المثبتة "
 "هناك أيضًا."
@@ -1533,7 +1497,6 @@ msgstr "التثبيت والتحديث"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>configuration</primary><secondary>files</secondary>"
 msgid ""
 "<primary><command>dpkg</command></primary><secondary>internal operation<"
 "/secondary>"
@@ -1724,7 +1687,6 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary><filename>conffiles</filename></primary>"
 msgid ""
 "<primary><filename>config</filename>, <command>debconf</command> script<"
 "/primary>"
@@ -1831,7 +1793,6 @@ msgstr "<primary><filename>conffiles</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>conflicts</primary>"
 msgid "<primary>checksums</primary>"
 msgstr "<primary>شفرات تحقق</primary>"
 
@@ -1864,8 +1825,8 @@ msgstr ""
 "أولها، <filename>md5sums</filename>، يحوي شفرات MD5 لجميع ملفات الحزمة. "
 "فائدته الأساسية هي أنه يسمح للأدوات مثل <command>debsums</command> (التي "
 "سندرسها في <xref linkend=\"sect.debsums\" />) للتأكد أن هذه الملفات لم "
-"تُعدَّل منذ تثبيتها. لاحظ أنه عند عدم وجود هذا الملف، سوف يولده <command>"
-"dpkg</command> ديناميكياً أثناء عملية التثبيت (ويخزنه في قاعدة بيانات dpkg "
+"تُعدَّل منذ تثبيتها. لاحظ أنه عند عدم وجود هذا الملف، سوف يولده dpkg "
+"ديناميكياً أثناء عملية التثبيت (ويخزنه في قاعدة بيانات dpkg "
 "مثل ملفات التحكم الأخرى)."
 
 #. Tag: para
@@ -1992,9 +1953,6 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "DPkg::Options { \"--force-confdef\"; \"--force-confold\"; }\n"
 msgid ""
 "\n"
 "DPkg::options { \"--force-confdef\"; \"--force-confold\"; }\n"
@@ -2054,7 +2012,6 @@ msgstr "<primary>حزمة</primary><secondary>حزمة مصدرية</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>unpacking</secondary>"
 msgid "<primary>source</primary><secondary>package</secondary>"
 msgstr "<primary>مصدر</primary><secondary>حزمة</secondary>"
 
@@ -2075,13 +2032,11 @@ msgstr "<primary>ملف <filename>diff.gz</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary><filename>control.tar.gz</filename></primary>"
 msgid "<primary><filename>debian.tar.gz</filename> file</primary>"
 msgstr "<primary>ملف <filename>debian.tar.gz</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary><filename>control.tar.gz</filename></primary>"
 msgid "<primary><filename>orig.tar.gz</filename> file</primary>"
 msgstr "<primary>ملف <filename>orig.tar.gz</filename></primary>"
 
@@ -2228,7 +2183,8 @@ msgid ""
 "binary package."
 msgstr ""
 "لاحظ أن الحزمة المصدرية لها اعتماديات أيضاً (<literal>Build-Depends</literal>"
-") تختلف تماماً عن اعتماديات الحزم الثنائية، لأن الاعتماديات هنا تُبيّن الأدوات "
+") تختلف تماماً عن اعتماديات الحزم الثنائية، لأن الاعتماديات هنا تُبيّن "
+"الأدوات "
 "اللازمة لترجمة البرنامج الذي تحويه وبناء حزمته الثنائية."
 
 #. Tag: title
@@ -2396,19 +2352,16 @@ msgstr "<primary><command>dpkg-source</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>virtual package</primary>"
 msgid "<primary>decompressing, source package</primary>"
 msgstr "<primary>فك الضغط، حزمة مصدرية</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>virtual package</primary>"
 msgid "<primary>uncompressing, source package</primary>"
 msgstr "<primary>فك الضغط، حزمة مصدرية</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>binary package</secondary>"
 msgid "<primary>unpacking</primary><secondary>source package</secondary>"
 msgstr "<primary>فك ضغط</primary><secondary>حزمة مصدرية</secondary>"
 
@@ -2518,7 +2471,8 @@ msgstr ""
 "<command>dpkg</command> هو الأمر الأساسي لمعالجة حزم دبيان في النظام. إذا كنت "
 "تملك حزم <filename>‎.deb</filename>، فإن <command>dpkg</command> هو المسؤول "
 "عن تثبيتها أو تحليل محتوياتها. لكن رؤية هذا البرنامج لعالم دبيان جزئية: فهو "
-"يعرف ما هو مُثبَّت على النظام، وما يُعطَى له في سطر الأوامر، لكن لا يعرف شيئاً "
+"يعرف ما هو مُثبَّت على النظام، وما يُعطَى له في سطر الأوامر، لكن لا يعرف "
+"شيئاً "
 "عن الحزم المتوفرة الأخرى. ولذلك فهو يفشل إذا لم تكن الاعتماديات محققة. أما "
 "الأدوات الأخرى مثل <command>apt-get</command>، من ناحية أخرى، سوف تنشئ قائمة "
 "بالاعتماديات لتثبيت كل شيء آلياً قدر المستطاع."
@@ -2551,7 +2505,6 @@ msgstr "تثبيت الحزم"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>unpacking</secondary>"
 msgid ""
 "<primary>installation</primary><secondary>package installation</secondary>"
 msgstr "<primary>تثبيت</primary><secondary>تثبيت حزمة</secondary>"
@@ -2579,17 +2532,6 @@ msgstr "تثبيت حزمة باستخدام <command>dpkg</command>"
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.5.7-4_i386.deb</userinput>\n"
-#| "<computeroutput>(Reading database... 284247 files and directories currently installed.)\n"
-#| "Preparing replacement man-db 2.5.7-3 (using .../man-db_2.5.7-4_i386.deb) ...\n"
-#| "Unpacking the man-db update...\n"
-#| "Configuring man-db (2.5.7-4) ...\n"
-#| "Updating database of manual pages ...\n"
-#| "Processing triggers for “doc-base”...\n"
-#| "Processing 1 modified documentation file(s) \n"
-#| "Recording documents with scrollkeeper ... </computeroutput>\n"
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg -i "
@@ -2635,18 +2577,6 @@ msgstr "فك الضغط والإعداد على مرحلتين"
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.5.7-4_i386.deb</userinput>\n"
-#| "<computeroutput>(Reading database... 284247 files already installed.)\n"
-#| "Preparing replacement of man-db 2.5.7-3 (using .../man-db_2.5.7-4_i386.deb) ...\n"
-#| "Unpacking the man-db update...\n"
-#| "Processing triggers for “doc-base”...\n"
-#| "Treatment of a modified documentation file(s) \n"
-#| "Recording documents with scrollkeeper ... \n"
-#| "# </computeroutput><userinput> dpkg --configure man-db</userinput>\n"
-#| "<computeroutput>Configuring man-db (2.5.7-4) ...\n"
-#| "Updating database of manual pages ...</computeroutput>\n"
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg --unpack "
@@ -2677,7 +2607,6 @@ msgstr "<primary>حزمة</primary><secondary>فك الضغط</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>binary package</secondary>"
 msgid "<primary>unpacking</primary><secondary>binary package</secondary>"
 msgstr "<primary>فك ضغط</primary><secondary>حزمة ثنائية</secondary>"
 
@@ -2704,11 +2633,6 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput>Unpacking libisc52 (from .../libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb) ...\n"
-#| "dpkg : error processing /var/cache/apt/archives/libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb (--unpack) :\n"
-#| " trying to overwrite \"/usr/lib/libisc.so.50\", which is also in package libisc50 1:9.6.1.dfsg.P1-3</computeroutput>\n"
 msgid ""
 "\n"
 "<computeroutput>Unpacking libgdm (from .../libgdm_3.8.3-2_amd64.deb) ...\n"
@@ -2849,7 +2773,6 @@ msgstr "<primary>إزالة حزمة</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>virtual package</primary>"
 msgid "<primary>purging a package</primary>"
 msgstr "<primary>تطهير حزمة</primary>"
 
@@ -2891,14 +2814,6 @@ msgstr "إزالة وتطهير الحزمة <emphasis>debian-cd</emphasis>"
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
-#| "<computeroutput>(Reading database... 14170 files and directories already installed.)\n"
-#| "Removing debian-cd ...\n"
-#| "# </computeroutput><userinput>dpkg -P debian-cd</userinput>\n"
-#| "<computeroutput>(Reading database... 13794 files and directories already installed.)\n"
-#| "Removing debian-cd ...\n"
-#| "Removing debian-cd configuration files...</computeroutput>\n"
 msgid ""
 "<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
 "<computeroutput>(Reading database ... 97747 files and directories currently "
@@ -2951,7 +2866,6 @@ msgstr "<emphasis>أساسيات</emphasis> صيغة الخيارات"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Most options are available in the “long” version (one or more relevant words, preceded by a double dash) or a “short” version (a single letter, often the initial of one word from the long version, and preceded by a single dash). This convention is so common that it is a POSIX standard. <indexterm><primary>POSIX</primary></indexterm> <indexterm><primary>option</primary><secondary>POSIX</secondary></indexterm>"
 msgid ""
 "Most options are available in a “long” version (one or more relevant words, "
 "preceded by a double dash) and a “short” version (a single letter, often the "
@@ -3004,128 +2918,6 @@ msgstr "الاستعلامات المختلفة باستخدام <command>dpkg</
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
-#| "<computeroutput>/.\n"
-#| "/usr\n"
-#| "/usr/sbin\n"
-#| "/usr/sbin/update-passwd\n"
-#| "/usr/share\n"
-#| "/usr/share/man\n"
-#| "/usr/share/man/ru\n"
-#| "/usr/share/man/ru/man8\n"
-#| "/usr/share/man/ru/man8/update-passwd.8.gz\n"
-#| "/usr/share/man/pl\n"
-#| "/usr/share/man/pl/man8\n"
-#| "/usr/share/man/pl/man8/update-passwd.8.gz\n"
-#| "/usr/share/man/man8\n"
-#| "/usr/share/man/man8/update-passwd.8.gz\n"
-#| "/usr/share/man/fr\n"
-#| "/usr/share/man/fr/man8\n"
-#| "/usr/share/man/fr/man8/update-passwd.8.gz\n"
-#| "/usr/share/doc-base\n"
-#| "/usr/share/doc-base/users-and-groups\n"
-#| "/usr/share/base-passwd\n"
-#| "/usr/share/base-passwd/passwd.master\n"
-#| "/usr/share/base-passwd/group.master\n"
-#| "/usr/share/lintian\n"
-#| "/usr/share/lintian/overrides\n"
-#| "/usr/share/lintian/overrides/base-passwd\n"
-#| "/usr/share/doc\n"
-#| "/usr/share/doc/base-passwd\n"
-#| "/usr/share/doc/base-passwd/copyright\n"
-#| "/usr/share/doc/base-passwd/users-and-groups.html\n"
-#| "/usr/share/doc/base-passwd/changelog.gz\n"
-#| "/usr/share/doc/base-passwd/users-and-groups.txt.gz\n"
-#| "/usr/share/doc/base-passwd/README\n"
-#| "$ </computeroutput><userinput>dpkg -S /bin/date</userinput>\n"
-#| "<computeroutput>coreutils: /bin/date\n"
-#| "$ </computeroutput><userinput>dpkg -s coreutils</userinput>\n"
-#| "<computeroutput>Package: coreutils\n"
-#| "Essential: yes\n"
-#| "Status: install ok installed\n"
-#| "Priority: required\n"
-#| "Section: utils\n"
-#| "Installed-Size: 12188\n"
-#| "Maintainer: Michael Stone &lt;mstone@debian.org&gt;\n"
-#| "Architecture: i386\n"
-#| "Version: 8.5-1\n"
-#| "Replaces: mktemp, timeout\n"
-#| "Pre-Depends: libacl1 (&gt;= 2.2.11-1), libattr1 (&gt;= 2.4.41-1), libc6 (&gt;= 2.6), libselinux1 (&gt;= 1.32)\n"
-#| "Conflicts: timeout\n"
-#| "Description: GNU core utilities\n"
-#| " This package contains the basic file, shell and text manipulation\n"
-#| " utilities which are expected to exist on every operating system.\n"
-#| " .\n"
-#| " Specifically, this package includes:\n"
-#| " arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp\n"
-#| " csplit cut date dd df dir dircolors dirname du echo env expand expr\n"
-#| " factor false flock fmt fold groups head hostid id install join link ln\n"
-#| " logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup nproc od\n"
-#| " paste pathchk pinky pr printenv printf ptx pwd readlink rm rmdir runcon\n"
-#| " sha*sum seq shred sleep sort split stat stty sum sync tac tail tee test\n"
-#| " timeout touch tr true truncate tsort tty uname unexpand uniq unlink\n"
-#| " users vdir wc who whoami yes\n"
-#| "Homepage: http://gnu.org/software/coreutils\n"
-#| "$ </computeroutput><userinput>dpkg -l 'b*' | head</userinput>\n"
-#| "<computeroutput>Desired=Unknown/Install/Remove/Purge/Hold\n"
-#| "| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend\n"
-#| "|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)\n"
-#| "||/ Name                   Version    Description\n"
-#| "+++-===================-==========-============================================\n"
-#| "un  backupninja         &lt;none&gt;    (no description available)\n"
-#| "un  base                &lt;none&gt;    (no description available)\n"
-#| "un  base-config         &lt;none&gt;    (no description available)\n"
-#| "ii  base-files          4          Debian base system miscellaneous files\n"
-#| "ii  base-passwd         3.5.11     Debian base system master password and group\n"
-#| "$ </computeroutput><userinput>dpkg -c /var/cache/apt/archives/iceweasel_2.0.0.18-0etch1_i386.deb</userinput>\n"
-#| "<computeroutput>\n"
-#| "drwxr-xr-x root/root         0 2008-11-23 23:18 ./\n"
-#| "drwxr-xr-x root/root         0 2008-11-23 23:16 ./etc/\n"
-#| "drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/\n"
-#| "drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/profile/\n"
-#| "-rw-r--r-- root/root      7138 2006-08-19 08:04 ./etc/iceweasel/profile/bookmarks.html\n"
-#| "-rw-r--r-- root/root       153 2006-09-14 19:13 ./etc/iceweasel/profile/localstore.rdf\n"
-#| "-rw-r--r-- root/root      3287 2005-02-01 18:36 ./etc/iceweasel/profile/search.rdf\n"
-#| "-rw-r--r-- root/root       287 2004-11-30 22:26 ./etc/iceweasel/profile/mimeTypes.rdf\n"
-#| "drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/profile/chrome/\n"
-#| "-rw-r--r-- root/root      1078 2004-11-30 22:26 ./etc/iceweasel/profile/chrome/userChrome-example.css\n"
-#| "-rw-r--r-- root/root       663 2004-11-30 22:26 ./etc/iceweasel/profile/chrome/userContent-example.css\n"
-#| "-rw-r--r-- root/root       347 2004-07-28 23:20 ./etc/iceweasel/profile/prefs.js\n"
-#| "-rw-r--r-- root/root        53 2008-11-23 22:43 ./etc/iceweasel/iceweaselrc\n"
-#| "[...]\n"
-#| "$ </computeroutput><userinput>dpkg -I /var/cache/apt/archives/iceweasel_2.0.0.18-0etch1_i386.deb</userinput>\n"
-#| "<computeroutput> new Debian package, version 2.0.\n"
-#| " size 9126828 bytes : control file = 37297 bytes.\n"
-#| "     346 bytes,     9 lines      conffiles            \n"
-#| "    1255 bytes,    20 lines      control              \n"
-#| "  122920 bytes,  1249 lines      md5sums              \n"
-#| "    1267 bytes,    37 lines   *  postinst             #!/bin/sh\n"
-#| "     293 bytes,     8 lines   *  postrm               #!/bin/sh\n"
-#| "    2763 bytes,    70 lines   *  preinst              #!/bin/sh\n"
-#| "     274 bytes,    12 lines   *  prerm                #!/bin/sh\n"
-#| " Package: iceweasel\n"
-#| " Version: 2.0.0.18-0etch1\n"
-#| " Section: web\n"
-#| " Priority: optional\n"
-#| " Architecture: i386\n"
-#| " Depends: fontconfig, psmisc, debianutils (&gt;= 1.16), libatk1.0-0 (&gt;= 1.12.2), libc6 (&gt;= 2.3.6-6)...\n"
-#| " Suggests: iceweasel-gnome-support (= 2.0.0.18-0etch1), latex-xft-fonts, xprint, mozplugger, libkrb53\n"
-#| " Conflicts: mozilla-firefox (&lt;&lt; 1.5.dfsg-1), firefox (&lt;&lt; 2.0+dfsg-1)\n"
-#| " Replaces: mozilla-firefox, firefox (&lt;&lt; 2.0+dfsg-1)\n"
-#| " Provides: www-browser\n"
-#| " Installed-Size: 26364\n"
-#| " Maintainer: Eric Dorland &lt;eric@debian.org&gt;\n"
-#| " Description: lightweight web browser based on Mozilla\n"
-#| "  Iceweasel is a redesign of the Mozilla browser component, similar to\n"
-#| "  Galeon, K-Meleon and Camino, but written using the XUL user interface\n"
-#| "  language and designed to be lightweight and cross-platform.\n"
-#| "  .\n"
-#| "  This browser is based on the Firefox source-code, with minor\n"
-#| "  modifications. Historically, this browser was previously known as\n"
-#| "  Firebird and Phoenix.\n"
-#| "</computeroutput>\n"
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>"
@@ -3521,7 +3313,7 @@ msgstr ""
 "يحتفظ <command>dpkg</command> بسجل يحفظ جميع أعماله في ‎<filename>"
 "‎/var/log/dpkg.log</filename>. هذا السجل طويل جداً، لأنه يُفصّل كل مرحلة من "
 "المراحل التي تمر بها الحزم التي يعالجها <command>dpkg</command>. بالإضافة إلى "
-"إمكانية تتبع سلوك <command>dpkg</command> عبر هذه السجلات، يمكنها أن تساعد – "
+"إمكانية تتبع سلوك dpkg عبر هذه السجلات، يمكنها أن تساعد – "
 "قبل كل شيء – في متابعة تاريخ تطور النظام: حيث يمكن العثور على اللحظات الدقيقة "
 "التي تم فيها تثبيت أو تحديث كل حزمة، ويمكن أن تكون فائدة هذه المعلومات عظيمة "
 "لفهم التغيرات الحديثة في سلوك النظام. كما تُسجَّل جميع أرقام الإصدارات، "
@@ -3535,13 +3327,11 @@ msgstr "دعم تعدد المعماريات"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>APT</primary>"
 msgid "<primary>Multi-Arch</primary>"
 msgstr "<primary>تعدد المعماريات</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>conflict</secondary>"
 msgid ""
 "<primary>architecture</primary><secondary>multi-arch support</secondary>"
 msgstr "<primary>معمارية</primary><secondary>دعم تعدد المعماريات</secondary>"
@@ -3670,7 +3460,6 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-#| msgid "<emphasis>TIP</emphasis> State diagrams"
 msgid "<emphasis>NOTE</emphasis> APT's multi-arch support"
 msgstr "<emphasis>ملاحظة</emphasis> دعم تعدد المعماريات في APT"
 
@@ -3691,7 +3480,7 @@ msgid ""
 "replaceable>package</replaceable>:<replaceable>architecture</replaceable><"
 "/command>."
 msgstr ""
-"يمكن بعدها تثبيت الحزم الأجنبية عبر "
+"يمكن بعدها تثبيت الحزم الأجنبية باستخدام "
 "<command>apt-get install <replaceable>package</replaceable>:<replaceable>"
 "architecture</replaceable></command>."
 
@@ -3729,7 +3518,6 @@ msgstr ""
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary><command>alien</command></primary>"
 msgid "<primary><emphasis role=\"pkg\">ia32-libs</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">ia32-libs</emphasis></primary>"
 
@@ -3828,7 +3616,7 @@ msgid ""
 "can only satisfy such a dependency if they are marked “<literal>Multi-Arch: "
 "allowed</literal>”."
 msgstr ""
-"كما يُقدِّم تعدد المعماريات أيضاً بعض التحديثات الملفتة في مجال إدارة "
+"كما يُسبِّب تعدد المعماريات أيضاً بعض التحدّيات الملفتة في مجال إدارة "
 "الاعتماديات. لتلبية اعتمادية يجب تثبيت الحزمة عليها علامة ”<literal>"
 "Multi-Arch: foreign</literal>“ أو حزمة تطابق معماريتها معمارية الحزمة التي "
 "تصرح عن الاعتمادية (في عملية حل الاعتماديات هذه، تعتبر معمارية الحزم المستقلة "
