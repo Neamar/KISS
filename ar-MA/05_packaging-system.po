@@ -1,10 +1,10 @@
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Muhammad Saied <msaied93@gmail.com>, 2012, 2014.
+# Muhammad Saied <msaied93@gmail.com>, 2012, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-09-29 10:57-0400\n"
+"PO-Revision-Date: 2015-01-07 11:01-0500\n"
 "Last-Translator: Muhammad Saied <msaied93@gmail.com>\n"
 "Language-Team: Arabic <debian-l10n-arabic@lists.debian.org>\n"
 "Language: ar\n"
@@ -973,8 +973,9 @@ msgid ""
 "the dependencies that the other would satisfy. It is thus possible to create "
 "a substitution package without having to use the same package name."
 msgstr ""
-"يقدم هذا الحقل مفهوم ”الحزمة الوهمية“. لهذا الحقل أدوار عديدة، لكن اثنين منها "
-"لهما أهمية خاصة. يتمثل الدور الأول في استخدام الحزمة الوهمية لربطها مع خدمة "
+"يقدم هذا الحقل مفهوم ”الحزمة الظاهرية“. لهذا الحقل أدوار عديدة، لكن اثنين "
+"منها "
+"لهما أهمية خاصة. يتمثل الدور الأول في استخدام الحزمة الظاهرية لربطها مع خدمة "
 "عامة (الحزمة ”توفر provides“ الخدمة). أما الدور الثاني فهو أن هذا الحقل يشير "
 "إلى أن الحزمة تستبدل حزمة أخرى بالكامل، وأنها تستطيع أيضاً تلبية اعتماديات "
 "الحزم التي تعتمد على الحزمة المُستَبدَلَة. بالتالي، يمكن إنشاء حزمة بديلة دون "
@@ -983,17 +984,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Meta-package and virtual package"
-msgstr "<emphasis>مصطلحات</emphasis> الحزمة الفوقية والحزمة الوهمية"
+msgstr "<emphasis>مصطلحات</emphasis> الحزمة الفوقية والحزمة الظاهرية"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>virtual package</secondary>"
-msgstr "<primary>حزمة</primary><secondary>حزمة وهمية</secondary>"
+msgstr "<primary>حزمة</primary><secondary>حزمة ظاهرية</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual package</primary>"
-msgstr "<primary>حزمة وهمية</primary>"
+msgstr "<primary>حزمة ظاهرية</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1002,7 +1003,7 @@ msgid ""
 "The former are real packages (including real <filename>.deb</filename> "
 "files), whose only purpose is to express dependencies."
 msgstr ""
-"من المهم التمييز بوضوح بين الحزم الفوقية وبين الحزم الوهمية. الأولى هي حزم "
+"من المهم التمييز بوضوح بين الحزم الفوقية وبين الحزم الظاهرية. الأولى هي حزم "
 "حقيقية (ولها ملفات <filename dir=\"ltr\">‎.deb</filename> حقيقية)، غرضها "
 "الوحيد التصريح "
 "عن اعتماديات."
@@ -1015,7 +1016,7 @@ msgid ""
 "provided, compatibility with a standard program or a pre-existing package, "
 "etc.)."
 msgstr ""
-"أما الحزم الوهمية، فلا وجود لها فيزيائياً؛ بل هي مجرد وسيلة لمطابقة الحزم "
+"أما الحزم الظاهرية، فلا وجود لها فيزيائياً؛ بل هي مجرد وسيلة لمطابقة الحزم "
 "الحقيقية اعتماداً على معايير منطقية مشتركة (الخدمات المقدَّمة، التوافق مع "
 "برنامج معياري أو حزمة سابقة، الخ)."
 
@@ -1045,7 +1046,7 @@ msgid ""
 msgstr ""
 "دعنا نناقش الحالة الأولى بتفصيل أكثر من خلال مثال: نقول أن جميع مخدمات البريد "
 "الإلكتروني، مثل <emphasis role=\"pkg\">postfix</emphasis> أو <emphasis "
-"role=\"pkg\">sendmail</emphasis> ”تُقدِّم“ الحزمة الوهمية <emphasis "
+"role=\"pkg\">sendmail</emphasis> ”تُقدِّم“ الحزمة الظاهرية <emphasis "
 "role=\"pkg\"> "
 "mail-transport-agent</emphasis>. بالتالي، أي حزمة تحتاج هذه الخدمة (مثل برامج "
 "إدارة قوائم بريدية، مثل <emphasis role=\"pkg\">smartlist</emphasis> أو "
@@ -1054,14 +1055,15 @@ msgstr ""
 "قائمة "
 "طويلة وغير كاملة للحلول الممكنة (مثل <command>postfix‏ | sendmail‏ | exim4 | "
 "…</command>). بالإضافة لذلك، لا فائدة من تثبيت مخدمي بريد إلكتروني على نفس "
-"الجهاز، ولذلك تصرح كل واحدة من هذه الحزم عن تعارض مع الحزمة الوهمية <emphasis "
+"الجهاز، ولذلك تصرح كل واحدة من هذه الحزم عن تعارض مع الحزمة الظاهرية <"
+"emphasis "
 "role=\"pkg\">mail-transport-agent</emphasis>. يتجاهل النظام التعارض الذاتي، "
 "لكن هذه التقنية تمنع تثبيت أكثر من مخدم بريد إلكتروني واحد على نفس الجهاز."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> List of virtual packages"
-msgstr "<emphasis>سياسة دبيان</emphasis> قائمة الحزم الوهمية"
+msgstr "<emphasis>سياسة دبيان</emphasis> قائمة الحزم الظاهرية"
 
 #. Tag: para
 #, no-c-format
@@ -1077,7 +1079,7 @@ msgid ""
 "command>xterm</command>), and <emphasis role=\"pkg\">x-window-manager<"
 "/emphasis> for window managers."
 msgstr ""
-"حتى تتحقق الفائدة من الحزم الوهمية، يجب أن يتوافق الجميع على أسمائها. لذلك "
+"حتى تتحقق الفائدة من الحزم الظاهرية، يجب أن يتوافق الجميع على أسمائها. لذلك "
 "تجعل سياسة دبيان هذه الحزم قياسية. تتضمن اللائحة <emphasis role=\"pkg\">"
 "mail-transport-agent</emphasis> لمخدمات البريد، و <emphasis role=\"pkg\">"
 "c-compiler</emphasis> لمترجمات لغة C، و <emphasis role=\"pkg\">www-browser<"
@@ -1086,7 +1088,7 @@ msgstr ""
 "role=\"pkg\">ftp-server</emphasis> لمخدمات FTP، و <emphasis role=\"pkg\">"
 "x-terminal-emulator</emphasis> لمحاكيات الطرفية في الوضع الرسومي (<"
 "command>xterm</command>)، و <emphasis role=\"pkg\">x-window-manager<"
-"/emphasis> لبرامج إدارة النوافذ، من بين العديد من الأسماء الأخرى."
+"/emphasis> لبرامج إدارة النوافذ، بالإضافة إلى العديد من الأسماء الأخرى."
 
 #. Tag: para
 #, no-c-format
@@ -1209,7 +1211,7 @@ msgid ""
 "this, the package system chooses the least risky option, assuming that the "
 "versions do not match."
 msgstr ""
-"تعاني الحزم الوهمية من بعض القيود، أهمها عدم وجود رقم للإصدار. بالعودة إلى "
+"تعاني الحزم الظاهرية من بعض القيود، أهمها عدم وجود رقم للإصدار. بالعودة إلى "
 "مثالنا السابق، لا يمكن لنظام الحزم أن يعتبر الاعتمادية <literal dir=\"ltr\">"
 "Depends: "
 "libdigest-md5-perl (&gt;= 1.6)</literal> مثلاً محققة أبداً، حتى مع تثبيت بيرل "
@@ -1219,7 +1221,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Virtual package versions"
-msgstr "<emphasis>التعمق أكثر</emphasis> إصدارات الحزم الوهمية"
+msgstr "<emphasis>التعمق أكثر</emphasis> إصدارات الحزم الظاهرية"
 
 #. Tag: para
 #, no-c-format
@@ -1232,9 +1234,9 @@ msgid ""
 "indicate that a package provides the same functionality as <emphasis "
 "role=\"pkg\">libstorable-perl</emphasis> in its 1.7 version."
 msgstr ""
-"رغم أن الحزم الوهمية ليس لها إصدارات في الوقت الحاضر، إلا أنه لا يشترط أن "
+"رغم أن الحزم الظاهرية ليس لها إصدارات في الوقت الحاضر، إلا أنه لا يشترط أن "
 "تستمر هذه الحال. وبالفعل، تستطيع <command>apt</command> إدارة إصدارات الحزم "
-"الوهمية الآن ويتوقع أن يدعمها <command>dpkg</command> لاحقاً أيضاً. عندئذ "
+"الظاهرية الآن ويتوقع أن يدعمها <command>dpkg</command> لاحقاً أيضاً. عندئذ "
 "سنتمكن من كتابة حقول مثل <literal dir=\"ltr\">Provides: libstorable-perl (= "
 "1.7)</literal>"
 "‎ للدلالة على أن الحزمة تقدم نفس وظائف الحزمة <emphasis role=\"pkg\">"
