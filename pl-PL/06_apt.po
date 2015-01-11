@@ -5,282 +5,318 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2013-02-25 18:24+0200\n"
-"Last-Translator: Bartek Kłosiński <szopa@vp.pl>\n"
+"PO-Revision-Date: 2015-01-10 21:10+0100\n"
+"Last-Translator: Mateusz Kacprzak <mateusz.kacprzak@yandex.ru>\n"
 "Language-Team: Polish <http://debian.weblate.org/projects/debian-handbook/06_apt/pl/>\n"
-"Language: pl-PL\n"
+"Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 1.5-dev\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Bookmarks: 71,90,103,-1,-1,-1,-1,-1,-1,-1\n"
 
+# mateunho
 #. Tag: keyword
 #, no-c-format
 msgid "apt-get"
 msgstr "apt-get"
 
+# mateunho
 #. Tag: keyword
 #, no-c-format
 msgid "apt-cache"
 msgstr "apt-cache"
 
+# mateunho
 #. Tag: keyword
 #, no-c-format
 msgid "aptitude"
 msgstr "aptitude"
 
+# mateunho
 #. Tag: keyword
 #, no-c-format
 msgid "synaptic"
 msgstr "synaptic"
 
+# mateunho
 #. Tag: keyword
 #, no-c-format
 msgid "sources.list"
 msgstr "sources.list"
 
+# mateunho
 #. Tag: keyword
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "apt-cdrom"
 msgstr "apt-cdrom"
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Maintenance and Updates: The APT Tools"
-msgstr "Konserwacja i aktualizacje: Narzędzie APT"
+msgstr "Konserwacja i aktualizacje: Narzędzia APT"
 
+# mateunho
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, the features of which Falcot Corp administrators studied with enthusiasm."
+#, no-c-format
 msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, that Falcot Corp administrators studied with enthusiasm."
-msgstr "Tym co sprawia, że Debian jest tak popularny wśród administratorów jest łatwość instalacji nowych programów oraz prostota uaktualnienia całego systemu. Ta unikatowa zaleta jest spowodowana głównie przez program <emphasis>APT</emphasis>,funkcja którą administratorzy Falcot Corp studiowali z zapałem."
+msgstr "Tym co sprawia, że Debian jest tak popularny wśród administratorów, jest łatwość instalacji nowych programów oraz aktualizowania całego systemu. Ta unikatowa zaleta wynika głównie z zastosowania programu <emphasis>APT</emphasis>, którego administratorzy Falcot Corp uczyli się z zapałem."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary>APT</primary></indexterm> <indexterm><primary>Advanced Package Tool</primary></indexterm> APT is the abbreviation for Advanced Package Tool. What makes this program “advanced” is its approach to packages. It doesn't simply evaluate them individually, but it considers them as a whole and produces the best possible combination of packages depending on what is available and compatible (according to dependencies)."
-msgstr "<indexterm><primary>APT</primary></indexterm> <indexterm><primary>Advanced Package Tool</primary></indexterm> APT jest skrótem od angielskiego Advanced Packaging Tool - Zaawansowane narzędzie zarządzania pakietami. To co sprawia, że program jest 'zaawansowany' jest spojrzeniem na pakiety. Nie przetwarza ich indywidualnie, lecz uważa je za całość i tworzy najlepszą możliwą kombinację pakietów w zależności od tego co jest dostępne i kompatybilne(zgodnie z zależnościami)."
+msgstr "<indexterm><primary>APT</primary></indexterm> <indexterm><primary>Advanced Package Tool</primary></indexterm> APT jest skrótem od angielskiego Advanced Package Tool - Zaawansowane narzędzie zarządzania pakietami. Tym, co sprawia, że program jest 'zaawansowany', jest traktowanie pakietów. Nie przetwarza ich indywidualnie, lecz uważa je za całość i tworzy najlepszą możliwą kombinację pakietów w zależności od tego, co jest dostępne i kompatybilne (zgodnie z zależnościami)."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Package source and source package"
-msgstr "<emphasis> SŁOWNICZEK </emphasis> Źródło pakietu i pakiet źródłowy"
+msgstr "<emphasis>SŁOWNICZEK</emphasis> Źródło pakietu i pakiet źródłowy"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The word <emphasis>source</emphasis> can be ambiguous. A source package — a package containing the source code of a program — should not be confused with a package source — a repository (website, FTP server, CD-ROM, local directory, etc.) which contains packages."
-msgstr "Słowo <emphasis> źródło </emphasis> może być niejednoznaczne. Pakiet źródłowy - pakiet zawierający kod źródłowy programu - nie należy mylić ze źródłem pakietu - repozytorium (strona www, serwer FTP, CD-ROM, lokalny katalog, itp.), które zawiera pakiety."
+msgstr "Słowo <emphasis>źródło</emphasis> może być niejednoznaczne. Pakietu źródłowego — pakietu zawierającego kod źródłowy programu — nie należy mylić ze źródłem pakietu — repozytorium (strona www, serwer FTP, CD-ROM, lokalny katalog, itp.), które zawiera pakiety."
 
+# mateunho
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.gz</filename> or <filename>Packages.bz2</filename> files (in case of a source of binary packages) and <filename>Sources.gz</filename> or <filename>Sources.bz2</filename> files (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"encadre.apt-pdiff\" />)."
 msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.{gz,bz2,lzma,xz}</filename> files (in case of a source of binary packages) and <filename>Sources.{gz,bz2,lzma,xz}</filename> (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"sidebar.apt-pdiff\" />)."
-msgstr "APT trzeba dostarczyć \"listę źródeł pakietów\": plik  <filename>/etc/apt/sources.list</filename> zawiera listę różnych repozytoriów (lub \"źródeł\"), które publikują pakiety Debiana. APT importuje listę paczek opublikowane przez każde ze źródeł. Jest to osiągane przez pobranie plików <filename>Packages.gz</filename> lub <filename>Packages.bz2</filename> (w przypadku źródła dostarczającego pakiety binarne oraz plik <filename>Sources.gz</filename> bądź <filename>Sources.bz2</filename> (w wypadku źródła dostarczającego pakiety źródłowe) i analizę ich zawartość. Gdy stara kopia tych plików jest obecna w systemie, APT może uaktualnić ją przez pobranie jedynie różnic (spójrz na fiszkę <xref linkend=\"encadre.apt-pdiff\" />)."
+msgstr "APTowi trzeba dostarczyć \"listę źródeł pakietów\": plik <filename>/etc/apt/sources.list</filename> będzie zawierał listę różnych repozytoriów (lub \"źródeł\"), które publikują pakiety Debiana. Wtedy APT zaimportuje listę pakietów opublikowanych przez każde ze źródeł. Operacja jest dokonywana przez pobranie plików <filename>Pakiety.{gz,bz2,lzma,xz}</filename> (w przypadku źródła dostarczającego pakiety binarne) i <filename>Źródła.{gz,bz2,lzma,xz}</filename> (w przypadku źródła dostarczającego pakiety źródłowe), a następnie analizę ich zawartość. Gdy stara kopia tych plików jest obecna w systemie, APT może zaktualizować ją przez pobranie jedynie różnic (spójrz na fiszkę <xref linkend=\"sidebar.apt-pdiff\" />)."
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Packages.gz</filename></primary>"
-msgstr "<primary><filename>Packages.gz</filename></primary>"
+msgstr "<primary><filename>Pakiety.gz</filename></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Sources.gz</filename></primary>"
-msgstr "<primary><filename>Sources.gz</filename></primary>"
+msgstr "<primary><filename>Źródła.gz</filename></primary>"
 
+# mateunho
 #. Tag: title
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <command>gzip</command>, <command>bzip2</command>, <command>LZMA</command> and <command>XZ</command> Compression"
-msgstr ""
+msgstr "<emphasis>WRACAJĄC DO PODSTAW</emphasis> <command>gzip</command>, <command>bzip2</command>, <command>LZMA</command> and <command>XZ</command> Kompresja"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gzip</command></primary>"
 msgstr "<primary><command>gzip</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bzip2</command></primary>"
 msgstr "<primary><command>bzip2</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lzma</command></primary>"
 msgstr "<primary><command>lzma</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>xz</command></primary>"
 msgstr "<primary><command>xz</command></primary>"
 
+# mateunho
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "A <filename>.gz</filename> extension refers to a file compressed with the <command>gzip</command> utility. <command>gzip</command> is the fast and efficient traditional Unix utility to compress files. Newer tools achieve better rates of compression but require more calculation time to compress a file. Among them, and by order of appearance, there are <command>bzip2</command> (generating files with a <filename>.bz2</filename> extension), <command>lzma</command> (generating <filename>.lzma</filename> files) and <command>xz</command> (generating <filename>.xz</filename> files)."
 msgid "A <filename>.gz</filename> extension refers to a file compressed with the <command>gzip</command> utility. <command>gzip</command> is the fast and efficient traditional Unix utility to compress files. Newer tools achieve better rates of compression but require more resources (computation time and memory) to compress and uncompress a file. Among them, and by order of appearance, there are <command>bzip2</command> (generating files with a <filename>.bz2</filename> extension), <command>lzma</command> (generating <filename>.lzma</filename> files) and <command>xz</command> (generating <filename>.xz</filename> files)."
-msgstr "Rozszerzenie <filename>.gz</filename> oznacza plik skompresowany za pomocą komendy <command>gzip</command>. <command>gzip</command> jest szybkim i efektywnym tradycyjnym narzędziem Uniksa do kompresji plików. Nowsze narzędzia osiągnają lepsze wskaźniki kompresji, ale wymagają więcej czasu obliczeń do kompresji plików. Wśród nich, oraz w kolejności występowania, jest <command> bzip2 </command> (Generowanie plików z rozszerzeniem <filename>.bz2</filename>), <command> lzma </command> (Generowanie plików <filename>.lzma</filename>) oraz <command>xz</command> (Generowanie plików <filename>.xz</filename>)."
+msgstr "Rozszerzenie <filename>.gz</filename> oznacza plik skompresowany za pomocą narzędzia <command>gzip</command>. <command>gzip</command> jest szybkim i efektywnym tradycyjnym narzędziem Uniksa do kompresji plików. Nowsze narzędzia osiągają lepsze wskaźniki kompresji, ale wymagają więcej zasobów (czasu obliczeniowego i pamięci) do kompresowania i dekompresowania plików. Wśród nich, oraz w kolejności występowania, są <command>bzip2</command> (tworzący pliki z rozszerzeniem <filename>.bz2</filename>), <command>lzma</command> (tworzący pliki <filename>.lzma</filename>) oraz <command>xz</command> (tworzący pliki <filename>.xz</filename>)."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Filling in the <filename>sources.list</filename> File"
 msgstr "Wypełnianie pliku <filename>sources.list</filename>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>sources.list</filename></primary>"
 msgstr "<primary><filename>sources.list</filename></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
 msgid "<primary>source</primary><secondary>of packages</secondary>"
-msgstr "<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>source</primary><secondary>of packages</secondary>"
 
+# mateunho
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>package</primary><secondary>source of</secondary>"
-msgstr ""
+msgstr "<primary>package</primary><secondary>source of</secondary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/sources.list</filename></primary>"
 msgstr "<primary><filename>/etc/apt/sources.list</filename></primary>"
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Składnia"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Each active line of the <filename>/etc/apt/sources.list</filename> file contains the description of a source, made of 3 parts separated by spaces."
 msgstr "Każda aktywna linia pliku <filename>/etc/apt/sources.list</filename> zawiera opis źródła, tworzony z 3 części oddzielonych spacjami."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The first field indicates the source type:"
 msgstr "Pierwsze pole określa rodzaj źródła:"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "“<literal>deb</literal>” for binary packages,"
 msgstr "“<literal>deb</literal>” dla pakietów binarnych,"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "“<literal>deb-src</literal>” for source packages."
 msgstr "“<literal>deb-src</literal>” dla pakietów źródłowych."
 
+# mateunho
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM based installations, although this is less frequent, since network-based installation methods are more and more common."
+#, no-c-format
 msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM/DVD-ROM/Blu-ray disc based installations, although this is less frequent, since network-based installation methods are more and more common."
-msgstr "Drugie pole zawiera adres bazowy źródła (w połączeniu z nazwami w pliku <filename>Packages.gz</filename>, należy podać pełny i ważny adres URL): to może polegać na serwerze lustrzanym Debiana lub w innym archiwum pakietu utworzonego przez stronę trzecią. URL może rozpocząć <literal>file://</literal> wskazując źródło lokalne zainstalowane w systemie hierarchii plików, <literal>http://</literal> wskazuje źródło dostępne z serwera WWW, lub <literal>ftp://</literal> dla źródła dostępnego na serwerze FTP. Adres URL może również rozpocząć <literal>cdrom://</literal> dla instalacji z CD-ROMu, chociaż ta jest rzadsza, ponieważ oparte na sieci metody instalacji są coraz bardziej powszechne."
+msgstr "Drugie pole zawiera bazowy URL źródła (w połączeniu z nazwami w pliku <filename>Pakiety.gz</filename>, stanowi pełny i prawomocny adres URL): może on znajdować się na serwerze lustrzanym Debiana lub w innym archiwum pakietu utworzonego przez stronę trzecią. URL może rozpoczynać się od <literal>file://</literal> wskazując lokalne źródło zainstalowane w systemowej hierarchii plików, <literal>http://</literal> wskazując źródło dostępne z serwera WWW, lub <literal>ftp://</literal> dla źródła dostępnego na serwerze FTP. Adres URL może również rozpoczynać się od <literal>cdrom://</literal> dla instalacji z płyty CD-ROM/DVD-ROM/Blu-ray, chociaż ten jest rzadziej spotykany, ponieważ metody instalacji oparte na sieci są coraz bardziej powszechne."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the last field depends on the structure of the repository. In the simplest cases, you can simply indicate a subdirectory (with a required trailing slash) of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL). But in the most common case, the repositories will be structured like a Debian mirror, with multiple distributions each having multiple components. In those cases, name the chosen distribution (by its “codename” — see the list in sidebar <xref linkend=\"sidebar.bruce-perens\" /> — or by the corresponding “suites” — <literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal>), then the components (or sections) to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal> in a typical Debian mirror)."
-msgstr ""
+msgstr "Składnia ostatniego pola zależy od struktury repozytorium. W najprostszym przypadku, można zwyczajnie wskazać podkatalog (z wymaganym ukośnikiem na końcu) pożądanego źródła (często jest to po prostu “<filename>./</filename>”, które sygnalizuje brak podkatalogu — pakiety są wtedy bezpośrednio pod wskazanym adresem URL). W najczęściej spotykanym przypadku, repozytoria będą miały strukturę serwera lustrzanego Debiana, z wieloma dystrybucjami, z których każda zawiera wiele komponentów. W tych przypadkach należy podać nazwę wybranej dystrybucji (poprzez jej \"nazwę kodową\" — spójrz na listę w fiszce <xref linkend=\"sidebar.bruce-perens\" /> — lub odpowiednie \"wydania\" — <literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal>), a następnie komponenty (lub sekcje) aby aktywować (wybrane spośród <literal>main</literal>, <literal>contrib</literal> i <literal>non-free</literal> na typowym serwerze lustrzanym Debiana)."
 
+# mateunho
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "<emphasis>VOCABULARY</emphasis> The <foreignphrase>main</foreignphrase>, <foreignphrase>contrib</foreignphrase> and <foreignphrase>non-free</foreignphrase> archives"
+#, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> The <literal>main</literal>, <literal>contrib</literal> and <literal>non-free</literal> archives"
-msgstr "<emphasis>SŁOWNICZEK</emphasis> Archiwa <foreignphrase>main</foreignphrase>, <foreignphrase>contrib</foreignphrase> i <foreignphrase>non-free</foreignphrase>"
+msgstr "<emphasis>SŁOWNICZEK</emphasis> Archiwa <literal>main</literal>, <literal>contrib</literal> i <literal>non-free</literal>."
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>section</primary><secondary><literal>main</literal></secondary>"
-msgstr "<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>section</primary><secondary><literal>main</literal></secondary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><command>lzma</command></primary>"
+#, no-c-format
 msgid "<primary><literal>main</literal>, section</primary>"
-msgstr "<primary><command>lzma</command></primary>"
+msgstr "<primary><literal>main</literal>, section</primary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>section</primary><secondary><literal>contrib</literal></secondary>"
-msgstr "<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>section</primary><secondary><literal>contrib</literal></secondary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><filename>sources.list</filename></primary>"
+#, no-c-format
 msgid "<primary><literal>contrib</literal>, section</primary>"
-msgstr "<primary><filename>sources.list</filename></primary>"
+msgstr "<primary><literal>contrib</literal>, section</primary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>section</primary><secondary><literal>non-free</literal></secondary>"
-msgstr "<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>section</primary><secondary><literal>non-free</literal></secondary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><filename>Sources.gz</filename></primary>"
+#, no-c-format
 msgid "<primary><literal>non-free</literal>, section</primary>"
-msgstr "<primary><filename>Sources.gz</filename></primary>"
+msgstr "<primary><literal>non-free</literal>, section</primary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>source of packages</primary>"
+#, no-c-format
 msgid "<primary>component (of a repository)</primary>"
-msgstr "<primary>źródło pakietów</primary>"
+msgstr "<primary>komponent (w repozytorium)</primary>"
 
+# mateunho
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "Debian uses three sections to differentiate packages according to the licenses chosen by the authors of each work. <foreignphrase>Main</foreignphrase> (the main archive) gathers all packages which fully comply with the Debian Free Software Guidelines."
+#, no-c-format
 msgid "Debian uses three sections to differentiate packages according to the licenses chosen by the authors of each work. <literal>Main</literal> gathers all packages which fully comply with the Debian Free Software Guidelines."
-msgstr "Debian używa trzech sekcji do różnicowania pakietów według licencji wybranych przez autorów poszczególnych prac. <foreignphrase>Main</foreignphrase> (główne archiwum) gromadzi wszystkie pakiety, które są w pełni zgodne z Wytycznymi Debiana dotyczącymi Wolnego Oprogramowania (Debian Free Software Guidelines)."
+msgstr "Debian używa trzech sekcji do różnicowania pakietów według licencji wybranych przez autorów poszczególnych prac. <literal>Main</literal> gromadzi wszystkie pakiety w pełni zgodne z Wytycznymi Debiana dotyczącymi Wolnego Oprogramowania (DFSG)."
 
+# mateunho
 #. Tag: para
-#, fuzzy, no-c-format
-#| msgid "The <foreignphrase>non-free</foreignphrase> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed without restrictions. This archive, which is not officially part of Debian, is a service for users who could need some of those programs — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
+#, no-c-format
 msgid "The <literal>non-free</literal> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed without restrictions. This archive, which is not officially part of Debian, is a service for users who could need some of those programs — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
-msgstr "Archiwum <foreignphrase>non-free</foreignphrase> jest inne, ponieważ zawiera oprogramowanie, które nie jest (w całości) dostosowane do tych zasad, ale które mimo to mogą być rozpowszechniane bez ograniczeń. To archiwum, które nie jest oficjalnie częścią Debiana, jest to usługa dla użytkowników, którzy mogą potrzebować niektóre z tych programów - jednak Debian zawsze zaleca nadawać priorytet wolnemu oprogramowaniu. Istnienie tej sekcji stanowi znaczący problem dla Richarda M. Stallmana i przez to Free Software Foundation nie rekomenduje Debian użytkownikom."
+msgstr "Archiwum <literal>non-free</literal> jest inne, ponieważ zawiera oprogramowanie, które nie jest (w całości) dostosowane do tych zasad, ale które mimo to mogą być rozpowszechniane bez ograniczeń. To archiwum, które nie jest oficjalnie częścią Debiana, jest usługą dla użytkowników, którzy mogą potrzebować niektórych z tych programów — jednak Debian zawsze zaleca nadawać priorytet wolnemu oprogramowaniu. Istnienie tej sekcji stanowi znaczący problem dla Richarda M. Stallmana i przez to Free Software Foundation nie rekomenduje Debiana użytkownikom."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "<literal>Contrib</literal> (contributions) is a set of open source software which cannot function without some non-free elements. These elements can be software from the <literal>non-free</literal> section, or non-free files such as game ROMs, BIOS of consoles, etc. <literal>Contrib</literal> also includes free software whose compilation requires proprietary elements. This was initially the case for the OpenOffice.org office suite, which used to require a proprietary Java environment."
-msgstr ""
+msgstr "<literal>Contrib</literal> (kontrybucje) jest zbiorem oprogramowania otwartoźródłowego, które nie może funkcjonować bez pewnych nie-wolnych elementów. Te elementy mogą pochodzić z sekcji <literal>non-free</literal> lub nie-wolnych plików, takich jak ROMy gier, BIOS konsol, itd. <literal>Contrib</literal> zawiera również oprogramowanie, którego kompilacja wymaga własnościowych elementów. Początkowo było tak w przypadku pakietu biurowego OpenOffice.org, który wymagał własnościowego środowiska Java."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <filename>/etc/apt/sources.list.d/*.list</filename> files"
-msgstr ""
+msgstr "<emphasis>WSKAZÓWKA</emphasis> Pliki <filename>/etc/apt/sources.list.d/*.list</filename>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "If many package sources are referenced, it can be useful to split them in multiple files. Each part is then stored in <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> (see sidebar <xref linkend=\"sidebar.directory.d\" />)."
-msgstr ""
+msgstr "Jeżeli wymieniono wiele źródeł pakietów, dla wygody można je podzielić między kilka plików. Każda część jest wtedy przechowana w pliku <filename>/etc/apt/sources.list.d/<replaceable>nazwa_pliku</replaceable>.list</filename> (spójrz na fiszkę <xref linkend=\"sidebar.directory.d\" />)."
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cdrom</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cdrom</command></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The <literal>cdrom</literal> entries describe the CD/DVD-ROMs you have. Contrary to other entries, a CD-ROM is not always available since it has to be inserted into the drive and since only one disc can be read at a time. For those reasons, these sources are managed in a slightly different way, and need to be added with the <command>apt-cdrom</command> program, usually executed with the <literal>add</literal> parameter. The latter will then request the disc to be inserted in the drive and will browse its contents looking for <filename>Packages</filename> files. It will use these files to update its database of available packages (this operation is usually done by the <command>apt-get update</command> command). From then on, APT can require the disc to be inserted if it needs one of its packages."
-msgstr ""
+msgstr "Wpisy <literal>cdrom</literal> opisują CD/DVD-ROMy, które posiadasz. W przeciwieństwie do innych wpisów, CD-ROM nie zawsze jest dostępny, ponieważ musi być włożony do napędu i może być czytany tylko jeden na raz. Z wymienionych powodów, te źródła są zarządzane w nieco inny sposób i muszą być dodawane za pomocą programu <command>apt-cdrom</command>, zazwyczaj uruchamianego z parametrem <literal>add</literal>. W tym przypadku program zażąda włożenia płyty do napędu i przeszuka jej zawartość w poszukiwaniu plików <filename>Pakietów</filename>. Użyje tych plików do zaktualizowania bazy dostępnych pakietów (ta operacja jest zwykle wywoływana komendą <command>apt-get update</command>). Od tej pory APT może wymagać włożenia płyty, jeżeli będzie potrzebował któregoś z tych pakietów."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Repositories for <emphasis role=\"distribution\">Stable</emphasis> Users"
-msgstr ""
+msgstr "Repozytoria dla <emphasis role=\"distribution\">Stabilnych</emphasis> Użytkowników"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Here is a standard <filename>sources.list</filename> for a system running the <emphasis role=\"distribution\">Stable</emphasis> version of Debian:"
-msgstr ""
+msgstr "Poniżej jest standardowy plik <filename>sources.list</filename> dla systemu działającego pod kontrolą <emphasis role=\"distribution\">Stabilnej</emphasis> wersji Debiana:"
 
+# mateunho
 #. Tag: title
-#, fuzzy, no-c-format
-#| msgid "<primary><filename>/etc/apt/sources.list</filename></primary>"
+#, no-c-format
 msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian Stable"
-msgstr "<primary><filename>/etc/apt/sources.list</filename></primary>"
+msgstr "plik <filename>/etc/apt/sources.list</filename> dla użytkowników Stabilnego Debiana"
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid ""
@@ -302,211 +338,261 @@ msgid ""
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
 "deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
 msgstr ""
+"# Aktualizacje bezpieczeństwa\n"
+"deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ wheezy/updates main contrib non-free\n"
+"\n"
+"## Serwer lustrzany Debiana\n"
+"\n"
+"# Repozytorium bazowe\n"
+"deb http://ftp.debian.org/debian wheezy main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy main contrib non-free\n"
+"\n"
+"# Stabilne aktualizacje\n"
+"deb http://ftp.debian.org/debian wheezy-updates main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-updates main contrib non-free\n"
+"\n"
+"# Stabilne wsteczne łatki\n"
+"deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "This file lists all sources of packages associated with the <emphasis role=\"distribution\">Wheezy</emphasis> version of Debian (the current <emphasis role=\"distribution\">Stable</emphasis> as of this writing). We opted to name “wheezy” explicitly instead of using the corresponding “stable“ alias (<literal>stable</literal>, <literal>stable-updates</literal>, <literal>stable-backports</literal>) because we don't want to have the underlying distribution changed outside of our control when the next stable release comes out."
-msgstr ""
+msgstr "Ten plik zawiera listę wszystkich pakietów związanych z wersją Debian <emphasis role=\"distribution\">Wheezy</emphasis> (aktualna <emphasis role=\"distribution\">Stabilna</emphasis> w czasie pisania tego tekstu). Zdecydowaliśmy używać wprost nazwy \"wheezy\" zamiast odpowiadającego pseudonimu \"stabilny\" (<literal>stable</literal>, <literal>stable-updates</literal>, <literal>stable-backports</literal>), ponieważ nie chcemy, aby omawiana dystrybucja zmieniła się bez naszej wiedzy, kiedy pojawi się nowe stabilne wydanie."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> <command>apt-spy</command>"
-msgstr ""
+msgstr "<emphasis>RZUT OKIEM</emphasis> <command>apt-spy</command>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-spy</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-spy</command></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "This software tests the download speed from several Debian mirrors and generates a <filename>sources.list</filename> file which points to the fastest mirror."
-msgstr ""
+msgstr "To oprogramowanie testuje prędkość pobierania z kilku serwerów lustrzanych Debiana i tworzy plik <filename>sources.list</filename>, który wskazuje na najszybszy z nich."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The mirror selected during installation is generally suitable since its selection is based on the country. However, if the download is a little slow, or after a move, you can try running the application available in the <emphasis role=\"pkg\">apt-spy</emphasis> package."
-msgstr ""
+msgstr "Serwer lustrzany wybrany podczas instalacji jest zazwyczaj właściwy, ponieważ jego wybór bazuje na lokalizacji. Jednakże, jeżeli prędkość pobierania jest trochę powolna lub po przeprowadzce, możesz testowo uruchomić aplikację z pakietu <emphasis role=\"pkg\">apt-spy</emphasis>."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Most packages will come from the “base repository” which contains all packages but is seldom updated (about once every 2 months for a “point release”). The other repositories are partial (they do not contain all packages) and can host updates (packages with newer version) that APT might install. The following sections will explain the purpose and the rules governing each of those repositories."
-msgstr ""
+msgstr "Większość pakietów będzie pochodzić z \"repozytorium bazowego\", które zawiera wszystkie pakiety, ale jest rzadko aktualizowane (około raz na 2 miesiące w \"wydaniu kropkowym\"). Inne repozytoria są częściowe (nie zawierają wszystkich pakietów) i mogą zawierać aktualizacje (pakiety w nowszej wersji) do zainstalowania przez APTa. Kolejne sekcje wyjaśnią powody istnienia i prawa rządzące każdym z tych repozytoriów."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Note that when the desired version of a package is available on several repositories, the first one listed in the <filename>sources.list</filename> file will be used. For this reason, non-official sources are usually added at the end of the file."
-msgstr ""
+msgstr "Zauważ, że jeżeli pożądana wersja pakietu jest dostępna w kilku repozytoriach, to zostanie użyte pierwsze z nich występujące w pliku <filename>sources.list</filename>. Z tego powodu nieoficjalne źródła zazwyczaj są dodawane na końcu pliku."
 
+# mateunho
+# Stable jako Stabilny
+# Oldstable jako ... (no dupa) :-/
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "As a side note, most of what this section says about <emphasis role=\"distribution\">Stable</emphasis> applies equally well to <emphasis role=\"distribution\">Oldstable</emphasis> since the latter is just an older <emphasis role=\"distribution\">Stable</emphasis> that is maintained in parallel."
-msgstr ""
+msgstr "Tak na marginesie, większość wiadomości z tej sekcji na temat wydania <emphasis role=\"distribution\">Stabilnego</emphasis> równie dobrze stosuje się do <emphasis role=\"distribution\">Oldstable</emphasis>, ponieważ to tylko starsza wersja <emphasis role=\"distribution\">Stabilnego</emphasis>, która jest utrzymywana równolegle."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Security Updates"
-msgstr ""
+msgstr "Aktualizacje bezpieczeństwa"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><filename>Sources.gz</filename></primary>"
+#, no-c-format
 msgid "<primary><literal>security.debian.org</literal></primary>"
-msgstr "<primary><filename>Sources.gz</filename></primary>"
+msgstr "<primary><literal>security.debian.org</literal></primary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>source of packages</primary>"
+#, no-c-format
 msgid "<primary>security updates</primary>"
-msgstr "<primary>źródło pakietów</primary>"
+msgstr "<primary>security updates</primary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>updates</primary><secondary>security updates</secondary>"
-msgstr "<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>updates</primary><secondary>security updates</secondary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The security updates are not hosted on the usual network of Debian mirrors but on <literal>security.debian.org</literal> (on a small set of machines maintained by the <link linkend=\"dsa-team\">Debian System Administrators</link>). This archive contains security updates (prepared by the Debian Security Team and/or by package maintainers) for the <emphasis role=\"distribution\">Stable</emphasis> distribution."
-msgstr ""
+msgstr "Aktualizacje bezpieczeństwa nie są hostowane w zwyczajnej sieci serwerów lustrzanych Debiana, ale na <literal>security.debian.org</literal> (na małym zbiorze maszyn zarządzanych przez <link linkend=\"dsa-team\">Debian System Administrators</link>). To archiwum zawiera aktualizacje bezpieczeństwa (przygotowane przez  Debian Security Team i/lub przez zarządców pakietów) dla <emphasis role=\"distribution\">Stabilnej</emphasis> dystrybucji."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The server can also host security updates for <emphasis role=\"distribution\">Testing</emphasis> but this doesn't happen very often since those updates tend to reach <emphasis role=\"distribution\">Testing</emphasis> via the regular flow of updates coming from <emphasis role=\"distribution\">Unstable</emphasis>."
-msgstr ""
+msgstr "Serwer może również hostować aktualizacje bezpieczeństwa dla <emphasis role=\"distribution\">Testowego</emphasis>, ale nie zdarza się to zbyt często, ponieważ te aktualizacje docierają do <emphasis role=\"distribution\">Testowego</emphasis> normalnym kanałem aktualizacji pochodzącym od  <emphasis role=\"distribution\">Niestabilnego</emphasis>."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Stable Updates"
-msgstr ""
+msgstr "Stabilne aktualizacje"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>source of packages</primary>"
+#, no-c-format
 msgid "<primary>stable updates</primary>"
-msgstr "<primary>źródło pakietów</primary>"
+msgstr "<primary>stable updates</primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>stable-updates</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>stable-updates</literal></primary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>updates</primary><secondary>stable updates</secondary>"
-msgstr "<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>updates</primary><secondary>stable updates</secondary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Stable updates are not security sensitive but are deemed important enough to be pushed to users before the next stable point release."
-msgstr ""
+msgstr "Stabilne aktualizacje nie są wrażliwe ze względów bezpieczeństwa, ale uważane za wystarczająco ważne, aby udostępnić je użytkownikom przez kolejnym stabilnym wydaniem kropkowym."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "This repository will typically contain fixes for critical bugs which could not be fixed before release or which have been introduced by subsequent updates. Depending on the urgency, it can also contain updates for packages that have to evolve over time… like <emphasis role=\"pkg\">spamassassin</emphasis>'s spam detection rules, <emphasis role=\"pkg\">clamav</emphasis>'s virus database, or the daylight-saving rules of all timezones (<emphasis role=\"pkg\">tzdata</emphasis>)."
-msgstr ""
+msgstr "To repozytorium będzie zwykle zawierać poprawki błędów dla krytycznych błędów, które nie mogły być naprawione przed wydaniem lub pojawiły się pomiędzy kolejnymi aktualizacjami. Zależnie od pilności, może zawierać również aktualizacje dla pakietów, które muszą ewoluować z czasem... jak zasady wykrywania spamu <emphasis role=\"pkg\">spamassassin</emphasis>, baza wirusów <emphasis role=\"pkg\">clamav</emphasis> lub czas letni dla wszystkich stref czasowych (<emphasis role=\"pkg\">tzdata</emphasis>)."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "In practice, this repository is a subset of the <literal>proposed-updates</literal> repository, carefully selected by the Stable Release Managers."
-msgstr ""
+msgstr "W praktyce, to repozytorium jest podzbiorem repozytorium <literal>proposed-updates</literal>, starannie wybranym przez Stable Release Managers."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Proposed Updates"
-msgstr ""
+msgstr "Proponowane Aktualizacje"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><filename>Sources.gz</filename></primary>"
+#, no-c-format
 msgid "<primary><literal>proposed-updates</literal></primary>"
-msgstr "<primary><filename>Sources.gz</filename></primary>"
+msgstr "<primary><literal>proposed-updates</literal></primary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><filename>sources.list</filename></primary>"
+#, no-c-format
 msgid "<primary><literal>stable-proposed-updates</literal></primary>"
-msgstr "<primary><filename>sources.list</filename></primary>"
+msgstr "<primary><literal>stable-proposed-updates</literal></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Once published, the <emphasis role=\"distribution\">Stable</emphasis> distribution is only updated about once every 2 months. The <literal>proposed-updates</literal> repository is where the expected updates are prepared (under the supervision of the Stable Release Managers)."
-msgstr ""
+msgstr "Po opublikowaniu, <emphasis role=\"distribution\">Stabilna</emphasis> dystrybucja jest aktualizowana tylko raz na 2 miesiące. Repozytorium <literal>proposed-updates</literal> jest miejscem, gdzie są przygotowywane spodziewane aktualizacje (pod nadzorem Stable Release Managers)."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The security and stable updates documented in the former sections are always included in this repository, but there is more too, because package maintainers also have the opportunity to fix important bugs that do not deserve an immediate release."
-msgstr ""
+msgstr "Aktualizacje bezpieczeństwa i stabilne opisane w poprzedniej sekcji są zawsze zawarte w tym repozytorium, ale jest też więcej, ponieważ zarządcy pakietów maja również okazję naprawienia ważnych błędów, które nie wymagają natychmiastowego wydania."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Anyone can use this repository to test those updates before their official publication. The extract below uses the <literal>wheezy-proposed-updates</literal> alias which is both more explicit and more consistent since <literal>squeeze-proposed-updates</literal> also exists (for the <emphasis role=\"distribution\">Oldstable</emphasis> updates):"
-msgstr ""
+msgstr "Każdy może używać tego repozytorium do testowania tych aktualizacji przed ich oficjalną publikacją. Wypis poniżej używa pseudonimu <literal>wheezy-proposed-updates</literal>, który jest zarówno bardziej wyraźny i spójny, ponieważ istnieje również <literal>squeeze-proposed-updates</literal> (dla aktualizacji <emphasis role=\"distribution\">Oldstable</emphasis>):"
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
-msgstr ""
+msgstr "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Stable Backports"
-msgstr ""
+msgstr "Stabilne Wsteczne Łatki"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary><filename>Packages.gz</filename></primary>"
+#, no-c-format
 msgid "<primary><literal>stable-backports</literal></primary>"
-msgstr "<primary><filename>Packages.gz</filename></primary>"
+msgstr "<primary><literal>stable-backports</literal></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backport</primary>"
-msgstr ""
+msgstr "<primary>backport</primary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>updates</primary><secondary>backports</secondary>"
-msgstr "<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>updates</primary><secondary>backports</secondary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The <literal>stable-backports</literal> repository hosts “package backports”. The term refers to a package of some recent software which has been recompiled for an older distribution, generally for <emphasis role=\"distribution\">Stable</emphasis>."
-msgstr ""
+msgstr "Repozytorium <literal>stable-backports</literal> hostuje \"wsteczne łatki pakietów\". Termin ten odnosi się do pakietu nowego oprogramowania, które zostało przekompilowane dla starszej dystrybucji, ogólnie dla <emphasis role=\"distribution\">Stabilnej</emphasis>."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "When the distribution becomes a little dated, numerous software projects have released new versions that are not integrated into the current <emphasis role=\"distribution\">Stable</emphasis> (which is only modified to address the most critical problems, such as security problems). Since the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> distributions can be more risky, package maintainers sometimes offer recompilations of recent software applications for <emphasis role=\"distribution\">Stable</emphasis>, which has the advantage to limit potential instability to a small number of chosen packages. <ulink type=\"block\" url=\"http://backports.debian.org\" />"
-msgstr ""
+msgstr "Kiedy dystrybucja staje się trochę podstarzała, wiele projektów związanych z oprogramowaniem wydało nowe wersje, które nie są włączone do aktualnej <emphasis role=\"distribution\">Stabilnej</emphasis> (która jest modyfikowana wyłącznie w celu naprawienia krytycznych problemów, na przykład z bezpieczeństwem). Ponieważ <emphasis role=\"distribution\">Testowa</emphasis> i <emphasis role=\"distribution\">Niestabilna</emphasis> mogą być bardziej ryzykowne, zarządcy pakietów oferują czasem przekompilowane wersje nowych aplikacji dla <emphasis role=\"distribution\">Stabilnej</emphasis>, która ma tą zaletę, że ogranicza potencjalną niestabilność do małej liczby wybranych pakietów. <ulink type=\"block\" url=\"http://backports.debian.org\" />"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The <literal>stable-backports</literal> repository is now available on the usual Debian mirrors. But backports for <emphasis role=\"distribution\">Squeeze</emphasis> are still hosted on a dedicated server (<literal>backports.debian.org</literal>), and requires the following <filename>sources.list</filename> entry:"
-msgstr ""
+msgstr "Repozytorium <literal>stable-backports</literal> jest teraz dostępne na normalnych serwerach lustrzanych Debiana. Ale wsteczne łatki do <emphasis role=\"distribution\">Squeeze</emphasis> są nadal hostowane na dedykowanym serwerze (<literal>backports.debian.org</literal>) i wymagają następującego wpisu w <filename>sources.list</filename>:"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>backports.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>backports.debian.org</literal></primary>"
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
-msgstr ""
+msgstr "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Backports from <literal>stable-backports</literal> are always created from packages available in <emphasis role=\"distribution\">Testing</emphasis>. This ensures that all installed backports will be upgradable to the corresponding stable version once the next stable release of Debian is available."
-msgstr ""
+msgstr "Wsteczne łatki z <literal>stable-backports</literal> są zawsze tworzone z pakietów dostępnych w <emphasis role=\"distribution\">Testowym</emphasis>. To zapewnia, że wszystkie zainstalowane wsteczne łatki będzie można zaktualizować do odpowiedniej stabilnej wersji, kiedy będzie dostępne następne stabilne wydanie Debiana."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Even though this repository provides newer versions of packages, APT will not install them unless you give explicit instructions to do so (or unless you have already done so with a former version of the given backport):"
-msgstr ""
+msgstr "Mimo, że to repozytorium dostarcza nowsze wersje pakietów, APT nie zainstaluje ich do czasu, aż nie wydasz do tego bezpośrednich instrukcji (lub jeżeli już tego nie zrobiłeś z wcześniejszą wersją danej wstecznej łatki):"
 
+# mateunho
 #. Tag: screen
 #, no-c-format
 msgid ""
@@ -514,22 +600,29 @@ msgid ""
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
 "$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
 msgstr ""
+"\n"
+"$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Repositories for <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis> Users"
-msgstr ""
+msgstr "Repozytoria dla użytkowników <emphasis role=\"distribution\">Testowej</emphasis>/<emphasis role=\"distribution\">Niestabilnej</emphasis>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Here is a standard <filename>sources.list</filename> for a system running the <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> version of Debian:"
-msgstr ""
+msgstr "Poniżej jest standardowy plik <filename>sources.list</filename> dla systemu działającego pod kontrolą <emphasis role=\"distribution\">Testowej</emphasis> lub <emphasis role=\"distribution\">Niestabilnej</emphasis> wersji Debiana:"
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis>"
-msgstr ""
+msgstr "plik <filename>/etc/apt/sources.list</filename> dla użytkowników <emphasis role=\"distribution\">Testowego</emphasis>/<emphasis role=\"distribution\">Niestabilnego</emphasis> Debiana"
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid ""
@@ -552,46 +645,73 @@ msgid ""
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
 msgstr ""
+"\n"
+"# Niestabilny\n"
+"deb http://ftp.debian.org/debian unstable main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian unstable main contrib non-free\n"
+"\n"
+"# Testowy\n"
+"deb http://ftp.debian.org/debian testing main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian testing main contrib non-free\n"
+"\n"
+"# Stabilny\n"
+"deb http://ftp.debian.org/debian stable main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian stable main contrib non-free\n"
+"\n"
+"# Aktualizacje bezpieczeństwa\n"
+"deb http://security.debian.org/ stable/updates main contrib non-free\n"
+"deb http://security.debian.org/ testing/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "With this <filename>sources.list</filename> file APT will install packages from <emphasis role=\"distribution\">Unstable</emphasis>. If that is not desired, use the <literal>APT::Default-Release</literal> setting (see <xref linkend=\"sect.apt-upgrade\" />) to instruct APT to pick packages from another distribution (most likely <emphasis role=\"distribution\">Testing</emphasis> in this case)."
-msgstr ""
+msgstr "Używając tego pliku <filename>sources.list</filename> APT będzie instalował pakiety z wersji <emphasis role=\"distribution\">Niestabilnej</emphasis>. Jeżeli nie jest to pożądane, należy użyć ustawienia <literal>APT::Default-Release</literal> (patrz <xref linkend=\"sect.apt-upgrade\" />), które poinstruuje APTa, aby wybierał pakiety z innej dystrybucji (w tym przypadku najprawdopodobniej <emphasis role=\"distribution\">Testowej</emphasis>)."
 
+# mateunho
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "There are good reasons to include all those repositories, even though a single one should be enough. <emphasis role=\"distribution\">Testing</emphasis> users will appreciate the possibility to cherry-pick a fixed package from <emphasis role=\"distribution\">Unstable</emphasis> when the version in <emphasis role=\"distribution\">Testing</emphasis> is affected by an annoying bug. On the opposite, <emphasis role=\"distribution\">Unstable</emphasis> users bitten by unexpected regressions have the possibility to downgrade packages to their (supposedly working) <emphasis role=\"distribution\">Testing</emphasis> version."
-msgstr ""
+msgstr "Istnieją uzasadnione przyczyny, aby załączyć wszystkie te repozytoria, mimo że jedno powinno wystarczyć. Użytkownicy <emphasis role=\"distribution\">Testowego</emphasis> docenią możliwość wybrania naprawionych pakietów z <emphasis role=\"distribution\">Niestabilnego</emphasis> kiedy wersja w <emphasis role=\"distribution\">Testowym</emphasis> jest obarczona denerwującym błędem. Z drugiej strony, użytkownicy <emphasis role=\"distribution\">Niestabilnego</emphasis> nadgryzieni przez niespodziewane regresje mają możliwość pobrania starszych pakietów dla (rzekomo działającej) wersji <emphasis role=\"distribution\">Testowej</emphasis>."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The inclusion of <emphasis role=\"distribution\">Stable</emphasis> is more debatable but it often gives access to some packages which have been removed from the development versions. It also ensures that you get the latest updates for packages which have not been modified since the last stable release."
-msgstr ""
+msgstr "Załączenie <emphasis role=\"distribution\">Stabilnego</emphasis> jest bardziej dyskusyjne, ale zazwyczaj daje dostęp to pakietów, które zostały usunięte z wersji deweloperskich. Zapewnia również dostęp do najnowszych aktualizacji pakietów, które nie zostały zmodyfikowane od ostatniego stabilnego wydania."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "The <emphasis role=\"distribution\">Experimental</emphasis> Repository"
-msgstr ""
+msgstr "Repozytorium <emphasis role=\"distribution\">Eksperymentalne</emphasis>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"distribution\">Experimental</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"distribution\">Eksperymentalne</emphasis></primary>"
 
+# mateunho
+# ref: http://pl.wikipedia.org/wiki/Cykl_%C5%BCycia_programu
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "The archive of <emphasis role=\"distribution\">Experimental</emphasis> packages is present on all Debian mirrors, and contains packages which are not in the <emphasis role=\"distribution\">Unstable</emphasis> version yet because of their substandard quality — they are often software development versions or pre-versions (alpha, beta, release candidate…). A package can also be sent there after undergoing subsequent changes which can generate problems. The maintainer then tries to uncover them thanks to advanced users who can manage important issues. After this first stage, the package is moved into <emphasis role=\"distribution\">Unstable</emphasis>, where it reaches a much larger audience and where it will be tested in much more detail."
-msgstr ""
+msgstr "Archiwum pakietów <emphasis role=\"distribution\">Eksperymentalnych</emphasis> jest dostępne na każdym serwerze lustrzanym Debiana i zawiera pakiety, które jeszcze nie są w wersji <emphasis role=\"distribution\">Niestabilnej</emphasis> z powodu na ich niską jakość — jest to zazwyczaj oprogramowanie w wersji deweloperskiej lub wstępnej (alfa, beta, kandydat do wydania…). Pakiet może być tam również wysłany po przejściu pewnych zmian, które mogą spowodować problemy. Wtedy zarządca stara się je odkryć korzystając z pomocy zaawansowanych użytkowników, którzy dają sobie radę z trudnymi zadaniami. Po tym etapie pakiet jest przeniesiony do <emphasis role=\"distribution\">Niestabilnego</emphasis>, gdzie dociera do znacznie szerszego grona odbiorców i będzie dużo skrupulatniej przetestowany."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"distribution\">Experimental</emphasis> is generally used by users who do not mind breaking their system and then repairing it. This distribution gives the possibility to import a package which a user wants to try or use as the need arises. That is exactly how Debian approaches it, since adding it in APT's <filename>sources.list</filename> file does not lead to the systematic use of its packages. The line to be added is:"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">Eksperymentalne</emphasis> jest używane głównie przez użytkowników, którym nie przeszkadza ciągłe psucie i naprawianie ich systemu. Taki podział pozwala w razie potrzeby na zaimportowanie pakietu, którego użytkownik chciałby wypróbować lub używać. Jest to również standardowe podejściem Debiana z nim związane, ponieważ dodanie go w pliku APTa <filename>sources.list</filename> nie powoduje systematycznego korzystania z jego pakietów. Linia, którą należy dodać to:"
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
-msgstr ""
+msgstr "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
 
 #. Tag: title
 #, no-c-format
