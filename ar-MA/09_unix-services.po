@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-01-07 11:50-0500\n"
+"PO-Revision-Date: 2015-01-13 12:12-0500\n"
 "Last-Translator: Muhammad Saied <msaied93@gmail.com>\n"
 "Language-Team: Arabic <debian-l10n-arabic@lists.debian.org>\n"
 "Language: ar\n"
@@ -4168,7 +4168,7 @@ msgstr ""
 "<emphasis>التعمق أكثر</emphasis> تحديد حصة تخزينية افتراضية للمستخدمين الجدد"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "To automatically setup a quota for new users, you have to configure a "
 "template user (with <command>edquota</command> or <command>setquota</command>"
@@ -4177,8 +4177,12 @@ msgid ""
 "will then be automatically applied to each new user created with the <command>"
 "adduser</command> command."
 msgstr ""
-"لتحديد حصة تخزينة للمستخدمين الجدد آلياً، عليك إعداد قالب مستخدمين (بالأمر "
-"edquota أو setquota) و***"
+"لتحديد حصة تخزينة للمستخدمين الجدد آلياً، عليك إعداد مستخدم ليخدم كنموذج "
+"للمستخدمين الجدد (بالأمر<command>edquota</command> أو <command>setquota<"
+"/command>) ثم تحديد اسمه في المتغير <varname>QUOTAUSER</varname> في الملف <"
+"filename dir=\"ltr\">/etc/adduser.conf</filename>. بعد ذلك، سوف تُطبَّقُ هذه "
+"الإعدادات تلقائياً كلما أنشأت مستخدماً جديداً بالأمر <command>adduser<"
+"/command>."
 
 #. Tag: para
 #, no-c-format
@@ -4958,9 +4962,9 @@ msgid ""
 "(with operators such as <literal>=</literal>, <literal>+=</literal> or <"
 "literal>:=</literal>)."
 msgstr ""
-"صيغة ملفات القواعد بسيطة جداً: كل سطر يحوي معايير الاختيار وقيم المتغيرات. "
-"تستخدم الأولى لتحديد الأحداث التي يجب الاستجابة لها، وتعرف الأخيرة الأفعال "
-"التي يجب اتخاذها. تفصل كافة المكونات عن بعضها بالفواصل، وتُفَرِّق المعاملات "
+"صيغة ملفات القواعد بسيطة جداً: كل سطر يحوي معايير اختيار وقيم متغيرات. "
+"تستخدم الأولى لتحديد الأحداث التي يجب الاستجابة لها، وتُعرِّف الأخيرة الأفعال "
+"التي يجب اتخاذها. تفصل كافة المكونات عن بعضها بفواصل، وتُفَرِّق المعاملات "
 "ضمنياً بين معايير الاختيار (التي تحوي معاملات مقارنة، مثل <literal>==<"
 "/literal> أو <literal dir=\"ltr\">!=</literal>) وبين توجيهات الإسناد (التي "
 "تستخدم معاملات مثل <literal>=</literal> أو <literal dir=\"ltr\">+=</literal> "
@@ -5019,7 +5023,7 @@ msgstr ""
 "MAC وغيره من المعرفات الخاصة بالناقل؛"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<literal>KERNELS</literal>, <literal>SUBSYSTEMS</literal> and <literal>"
 "ATTRS{<replaceable>attributes</replaceable>}</literal> are variations that "
@@ -5027,7 +5031,8 @@ msgid ""
 "current device;"
 msgstr ""
 "<literal>KERNELS</literal> و<literal>SUBSYSTEMS</literal> و<literal "
-"dir=\"ltr\">ATTRS{<replaceable>attributes</replaceable>}</literal>"
+"dir=\"ltr\">ATTRS{<replaceable>attributes</replaceable>}</literal> هي صيغ "
+"أخرى تُستَخدَمُ لمطابقة الخيارات المختلفة لأحد الأجهزة الآباء للجهاز الحالي؛"
 
 #. Tag: para
 #, no-c-format
@@ -5050,7 +5055,7 @@ msgstr ""
 "استدعاء لـ <literal>PROGRAM</literal>."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The right operands can use pattern expressions to match several values at the "
 "same time. For instance, <literal>*</literal> matches any string (even an "
@@ -5059,11 +5064,14 @@ msgid ""
 "(or the opposite thereof if the first character is an exclamation point, and "
 "contiguous ranges of characters are indicated like <literal>a-z</literal>)."
 msgstr ""
-"يمكن أن تستخدم المعاملات على اليمين* right operands التعابير المنتظمة لمطابقة "
-"عدة قيم في الوقت نفسه. مثلاً، تطابق النجمة * أيَّ سلسلة (وحتى السلسلة "
-"الفارغة)؛ وتطابق علامة الاستفهام ? أي محرف، وتطابق الأقواس المربعة [] مجموعة "
+"يمكن أن تستخدم التعابير المنتظمة لمطابقة "
+"عدة قيم في الوقت نفسه في المعاملات على اليمين. مثلاً، تطابق النجمة <literal>"
+"*</literal> أيَّ سلسلة (وحتى السلسلة "
+"الفارغة)؛ وتطابق علامة الاستفهام <literal>?</literal> أي محرف، وتطابق الأقواس "
+"المربعة <literal dir=\"ltr\">[]<"
+"/literal> مجموعة "
 "من المحارف المذكورة بين القوسين المربعين (أو عكس تلك المحارف إذا كان المحرف "
-"الأول علامة تعجب، وتكتب المجالات المستمرة بالشكل a-z)."
+"الأول علامة تعجب، وتكتب المجالات المستمرة بالشكل <literal>a-z</literal>)."
 
 #. Tag: para
 #, no-c-format
@@ -5345,14 +5353,14 @@ msgstr ""
 "</computeroutput>\n"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "To create a new rule, you can use tests on the device's variables, as well as "
 "those of one of the parent devices. The above case allows us to create two "
 "rules like these:"
 msgstr ""
-"لإنشاء قاعدة جديدة، يمكنك *****use tests$$$$ على متغيرات الجهاز، بالإضافة إلى "
-"متغيرات الأجهزة الآباء. يسمح لنا المثال السابق بإنشاء قاعدتين كما يلي:"
+"لإنشاء قاعدة جديدة، يمكنك عمل اختبارات على متغيرات الجهاز، وعلى متغيرات "
+"الأجهزة الآباء. يسمح لنا المثال السابق بإنشاء قاعدتين كما يلي:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -5503,7 +5511,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Graphics card and standby"
-msgstr "<emphasis>انتبه</emphasis> بطاقات الرسوميات ووضع الاستعداد"
+msgstr "<emphasis>تنبيه</emphasis> بطاقات الرسوميات ووضع الاستعداد"
 
 #. Tag: para
 #, no-c-format
