@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-01 17:43+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
+"PO-Revision-Date: 2015-01-20 19:10+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.10-dev\n"
+"X-Generator: Weblate 2.2-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -1340,16 +1340,41 @@ msgstr "<emphasis>NA PRÁTICA</emphasis> Desvantagens das listas cinzas"
 #, no-c-format
 msgid "Theoretically, greylisting should only delay the first mail from a given sender to a given recipient, and the typical delay is in the order of minutes. Reality, however, can differ slightly. Some large ISPs use clusters of SMTP servers, and when a message is initially rejected, the server that retries the transmission may not be the same as the initial one. When that happens, the second server gets a temporary error message due to greylisting too, and so on; it may take several hours until transmission is attempted by a server that has already been involved, since SMTP servers usually increase the delay between retries at each failure."
 msgstr ""
+"Teoricamente, a lista cinza deve apenas atrasar o primeiro email de um "
+"determinado remetente para um determinado destinatário e o atraso típico é "
+"da ordem de minutos. A realidade, contudo, pode diferir ligeiramente. Alguns "
+"grandes ISPs usam clusters de servidores SMTP e quando uma mensagem é "
+"rejeitada inicialmente, o servidor que repete a transmissão pode não ser o "
+"mesmo que o inicial. Quando isso acontece, o segundo servidor obtém uma "
+"mensagem de erro temporário devido à lista cinza também e assim por diante; "
+"isso pode levar várias horas até transmissão seja tentada por um servidor "
+"que já esteve envolvido, uma vez que servidores SMTP geralmente aumentam o "
+"intervalo entre tentativas em cada falha."
 
 #. Tag: para
 #, no-c-format
 msgid "As a consequence, the incoming IP address may vary in time even for a single sender. But it goes further: even the sender address can change. For instance, many mailing-list servers encode extra information in the sender address so as to be able to handle error messages (known as <emphasis>bounces</emphasis>). Each new message sent to a mailing-list may then need to go through greylisting, which means it has to be stored (temporarily) on the sender's server. For very large mailing-lists (with tens of thousands of subscribers), this can soon become a problem."
 msgstr ""
+"Como consequência, o endereço IP de entrada pode variar no tempo, mesmo para "
+"um único remetente. Porém isso vai mais além: até mesmo o endereço do "
+"remetente pode mudar. Por exemplo, muitos servidores de lista de discussão "
+"(mailing-list) codificam informações extra no endereço do remetente afim de "
+"ser capaz de lidar com mensagens de erro (conhecidas como "
+"<emphasis>bounces</emphasis>). Cada nova mensagem enviada para uma lista de "
+"discussão (mailing-list) pode então precisar passar por uma lista cinza, O "
+"que significa que ela tem que ser armazenada (temporariamente) no servidor "
+"do remetente. Para listas de discussão (mailing-lists) muito grandes (com "
+"dezenas de milhares de assinantes), isso pode em breve tornar-se um problema."
 
 #. Tag: para
 #, no-c-format
 msgid "To mitigate these drawbacks, Postgrey manages a whitelist of such sites, and messages emanating from them are immediately accepted without going through greylisting. This list can easily be adapted to local needs, since it's stored in the <filename>/etc/postgrey/whitelist_clients</filename> file."
 msgstr ""
+"Para atenuar esses inconvenientes, o Postgrey gerencia uma lista branca de "
+"tais sites, e mensagens que são emanadas a partir deles são imediatamente "
+"aceitas sem passar pela lista cinza. Essa lista pode ser facilmente adaptada "
+"às necessidades locais, desde que ela seja armazenada no arquivo "
+"<filename>/etc/postgrey/whitelist_clients</filename>."
 
 #. Tag: title
 #, no-c-format
@@ -1362,16 +1387,34 @@ msgstr ""
 #, no-c-format
 msgid "The drawbacks of greylisting can be mitigated by only using greylisting on the subset of clients that are already considered as probable sources of spam (because they are listed in a DNS black-list). This is not possible with <emphasis role=\"pkg\">postgrey</emphasis> but <emphasis role=\"pkg\">milter-greylist</emphasis> can be used in such a way."
 msgstr ""
+"Os inconvenientes de uma lista cinza podem ser atenuados se a lista cinza só "
+"for usada em um subconjunto de clientes que já são considerados como "
+"prováveis fontes de spam (porque eles são listados em uma lista negra de DNS)"
+". Isso não é possível com o <emphasis role=\"pkg\">postgrey</emphasis> mas o "
+"<emphasis role=\"pkg\">milter-greylist</emphasis> pode ser utilizado para "
+"esse fim."
 
 #. Tag: para
 #, no-c-format
 msgid "In that scenario, since DNS black-lists never triggers a definitive rejection, it becomes reasonable to use aggressive black-lists, including those listing all dynamic IP addresses from ISP clients (such as <literal>pbl.spamhaus.org</literal> or <literal>dul.dnsbl.sorbs.net</literal>)."
 msgstr ""
+"Neste cenário, como a lista negra do DNS nunca desencadeia uma rejeição "
+"definitiva, torna-se razoável usar listas negras agressivas, incluindo "
+"aquelas que listam todos os endereços IP dinâmicos de clientes ISP (tais "
+"como <literal>pbl.spamhaus.org</literal> ou "
+"<literal>dul.dnsbl.sorbs.net</literal>)."
 
 #. Tag: para
 #, no-c-format
 msgid "Since milter-greylist uses Sendmail's milter interface, the postfix side of its configuration is limited to “<literal>smtpd_milters = unix:/var/milter-greylist/milter-greylist.sock</literal>”. The <citerefentry><refentrytitle>greylist.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page documents <filename>/etc/milter-greylist/greylist.conf</filename> and the numerous ways to configure milter-greylist."
 msgstr ""
+"Como a milter-greylist usa interface milter do Sendmail, a configuração do "
+"lado do postfix é limitada a \"<literal>smtpd_milters = unix:/var/milter-"
+"greylist/milter-greylist.sock</literal>”. A página de manual de "
+"<citerefentry><refentrytitle>greylist.conf</refentrytitle> "
+"<manvolnum>5</manvolnum></citerefentry> documenta o <filename>/etc/milter-"
+"greylist/greylist.conf</filename> e as inumeras maneiras de configurar a "
+"milter-greylist."
 
 #. Tag: title
 #, no-c-format
@@ -1382,11 +1425,28 @@ msgstr "Personalização de filtros baseados no destinatário"
 #, no-c-format
 msgid "The last two sections reviewed many of the possible restrictions. They all have their use in limiting the amount of received spam, but they also all have their drawbacks. It is therefore more and more common to customize the set of filters depending on the recipient. At Falcot Corp, greylisting is interesting for most users, but it hinders the work of some users who need low latency in their emails (such as the technical support service). Similarly, the commercial service sometimes has problems receiving emails from some Asian providers who may be listed in black-lists; this service asked for a non-filtered address so as to be able to correspond."
 msgstr ""
+"As duas últimas seções revisaram muitas das restrições possíveis. Todas "
+"objetivam limitar a quantidade de spam recebido, mas todas têm suas "
+"desvantagens. É portanto, mais e mais comum personalizar o conjunto de "
+"filtros dependendo do destinatário. Na Falcot Corp, a lista cinza é "
+"interessante para a maioria dos usuários, mas isso dificulta o trabalho de "
+"alguns usuários que precisam de baixa latência em seus e-mails (como o "
+"serviço de suporte técnico). De maneira similar, o serviço comercial às "
+"vezes tem problemas para receber e-mails de alguns provedores asiáticos que "
+"podem constar em listas negras; este serviço pede um endereço não filtrado "
+"de modo a ser capaz de corresponder."
 
 #. Tag: para
 #, no-c-format
 msgid "Postfix provides such a customization of filters with a “restriction class” concept. The classes are declared in the <literal>smtpd_restriction_classes</literal> parameter, and defined the same way as <literal>smtpd_recipient_restrictions</literal>. The <literal>check_recipient_access</literal> directive then defines a table mapping a given recipient to the appropriate set of restrictions."
 msgstr ""
+"O Postfix fornece tal customização de filtros com o conceito de “classe de "
+"restrição”. As classes são declaradas no parâmetro "
+"<literal>smtpd_restriction_classes</literal>, e definidas da mesma maneira "
+"como <literal>smtpd_recipient_restrictions</literal>. A diretiva "
+"<literal>check_recipient_access</literal> então define uma tabela de "
+"mapeamento de um determinado destinatário para o conjunto apropriado de "
+"restrições."
 
 #. Tag: title
 #, no-c-format
@@ -1470,11 +1530,22 @@ msgstr "<primary>antivírus</primary>"
 #, no-c-format
 msgid "The many viruses circulating as attachments to emails make it important to set up an antivirus at the entry point of the company network, since despite an awareness campaign, some users will still open attachments from obviously shady messages."
 msgstr ""
+"Os muitos vírus circulando como anexos de e-mails fazem importante a "
+"configuração um antivírus no ponto de entrada de rede da empresa, pois mesmo "
+"após uma campanha de conscientização alguns usuários ainda abrirão anexos de "
+"mensagens obviamente obscuras."
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot administrators selected <command>clamav</command> for their free antivirus. The main package is <emphasis role=\"pkg\">clamav</emphasis>, but they also installed a few extra packages such as <emphasis role=\"pkg\">arj</emphasis>, <emphasis role=\"pkg\">unzoo</emphasis>, <emphasis role=\"pkg\">unrar</emphasis> and <emphasis role=\"pkg\">lha</emphasis>, since they are required for the antivirus to analyze attachments archived in one of these formats."
 msgstr ""
+"Os administradores da Falcot selecionaram <command>clamav</command> como seu "
+"antivírus livre. O pacote principal é o <emphasis role=\"pkg\""
+">clamav</emphasis>, mas eles também instalaram alguns pacotes extras como o <"
+"emphasis role=\"pkg\">arj</emphasis>, <emphasis role=\"pkg\">unzoo</emphasis>"
+", <emphasis role=\"pkg\">unrar</emphasis> e <emphasis role=\"pkg\""
+">lha</emphasis>, já que eles são necessários para o antivírus poder analisar "
+"arquivos anexados em um desses formatos."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1490,6 +1561,15 @@ msgstr "<primary><command>clamav-milter</command></primary>"
 #, no-c-format
 msgid "The task of interfacing between antivirus and the email server goes to <command>clamav-milter</command>. A <emphasis>milter</emphasis> (short for <emphasis>mail filter</emphasis>) is a filtering program specially designed to interface with email servers. A milter uses a standard application programming interface (API) that provides much better performance than filters external to the email servers. Milters were initially introduced by <emphasis>Sendmail</emphasis>, but <emphasis>Postfix</emphasis> soon followed suit."
 msgstr ""
+"A tarefa de fazer a interface entre o antivírus e o servidor de email vai "
+"para o <command>clamav-milter</command>. O <emphasis>milter</emphasis> ("
+"abreviação de <emphasis>mail filter</emphasis>) é um programa de filtragem "
+"especialmente projetado para fazer a interface com os servidores de email. O "
+"milter usa uma interface de programação de aplicativo padrão (API) que "
+"fornece uma performace muito melhor que os filtros externos para servidores "
+"de email. Os milters foram inicialmente introduzidos pelo "
+"<emphasis>Sendmail</emphasis>, mas o <emphasis>Postfix</emphasis> o adotou "
+"em seguida."
 
 #. Tag: title
 #, no-c-format
@@ -1505,11 +1585,21 @@ msgstr "<primary><emphasis role=\"pkg\">spamass-milter</emphasis></primary>"
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">spamass-milter</emphasis> package provides a milter based on <emphasis>SpamAssassin</emphasis>, the famous unsolicited email detector. It can be used to flag messages as probable spams (by adding an extra header) and/or to reject the messages altogether if their “spamminess” score goes beyond a given threshold."
 msgstr ""
+"O pacote <emphasis role=\"pkg\">spamass-milter</emphasis> provê um milter "
+"baseado no <emphasis>SpamAssassin</emphasis>, o famoso detector de email não "
+"solicitado. Ele pode ser usado para sinalizar mensagens como prováveis spams "
+"(adicionando um cabeçalho extra) e/ou rejeitar as mensagens por completo se "
+"sua pontuação de “spam” ultrapassar um determinado limiar."
 
 #. Tag: para
 #, no-c-format
 msgid "Once the <emphasis role=\"pkg\">clamav-milter</emphasis> package is installed, the milter should be reconfigured to run on a TCP port rather than on the default named socket. This can be achieved with <command>dpkg-reconfigure clamav-milter</command>. When prompted for the “Communication interface with Sendmail”, answer “<literal>inet:10002@127.0.0.1</literal>”."
 msgstr ""
+"Uma vez que o pacote <emphasis role=\"pkg\">clamav-milter</emphasis> esteja "
+"instalado, o milter deve ser reconfigurado para rodar em uma porta TCP ao "
+"invés de no nomeado socket padrão. Isso pode ser feito com <command>dpkg-"
+"reconfigure clamav-milter</command>. Quando questionado pela “Communication "
+"interface with Sendmail”, responda “<literal>inet:10002@127.0.0.1</literal>”."
 
 #. Tag: title
 #, no-c-format
@@ -1521,16 +1611,28 @@ msgstr "<emphasis>NOTA</emphasis> Porta TCP real versus soquete nomeado"
 #, no-c-format
 msgid "The reason why we use a real TCP port rather than the named socket is that the postfix daemons often run chrooted and do not have access to the directory hosting the named socket. You could also decide to keep using a named socket and pick a location within the chroot (<filename>/var/spool/postfix/</filename>)."
 msgstr ""
+"A razão porque nós usamos uma porta TCP real ao invés de um socket nomeado é "
+"que os daemons do postfix geralmente são executados em um ambiente \""
+"chrooted\" e não têm acesso ao diretório que hospeda o socket nomeado. Você "
+"também poderia decidir continuar usando um socket nomeado e escolher um "
+"local dentro do ambiente \"chroot\" "
+"(<filename>/var/spool/postfix/</filename>)."
 
 #. Tag: para
 #, no-c-format
 msgid "The standard ClamAV configuration fits most situations, but some important parameters can still be customized with <command>dpkg-reconfigure clamav-base</command>."
 msgstr ""
+"A configuração padrão do ClamAV se encaixa na maioria das situações, mas "
+"alguns parâmetros importantes ainda podem ser customizados com <command>dpkg-"
+"reconfigure clamav-base</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "The last step involves telling Postfix to use the recently-configured filter. This is a simple matter of adding the following directive to <filename>/etc/postfix/main.cf</filename>:"
 msgstr ""
+"O último passo envolve informar ao Postfix para usar o filtro recentemente "
+"configurado. Isso é uma simples questão de adicionar a seguinte diretiva ao "
+"<filename>/etc/postfix/main.cf</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1547,6 +1649,9 @@ msgstr ""
 #, no-c-format
 msgid "If the antivirus causes problems, this line can be commented out, and <command>/etc/init.d/postfix reload</command> should be run so that this change is taken into account."
 msgstr ""
+"Se o antivírus causa problemas, essa linha pode ser comentada, e o "
+"<command>/etc/init.d/postfix reload</command> deve ser executado para que "
+"essa alteração seja levada em conta."
 
 #. Tag: title
 #, no-c-format
@@ -1557,16 +1662,26 @@ msgstr "<emphasis>NA PRÁTICA</emphasis> Testando o antivírus"
 #, no-c-format
 msgid "Once the antivirus is set up, its correct behavior should be tested. The simplest way to do that is to send a test email with an attachment containing the <filename>eicar.com</filename> (or <filename>eicar.com.zip</filename>) file, which can be downloaded online: <ulink type=\"block\" url=\"http://www.eicar.org/anti_virus_test_file.htm\" />"
 msgstr ""
+"Uma vez que o antivírus esteja, seu comportamento correto deve ser testado. "
+"A maneira mais simples de fazer isso é enviar um email de teste com um anexo "
+"contendo o arquivo <filename>eicar.com</filename> (ou "
+"<filename>eicar.com.zip</filename>), o qual pode ser baixado online em: <"
+"ulink type=\"block\" url=\"http://www.eicar.org/anti_virus_test_file.htm\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "This file is not a true virus, but a test file that all antivirus software on the market diagnose as a virus to allow checking installations."
 msgstr ""
+"Esse arquivo não é um vírus verdadeiro, mas um arquivo teste que todos os "
+"softwares de antivírus no mercado diagnosticam como um vírus para permitir a "
+"checagem das instalações."
 
 #. Tag: para
 #, no-c-format
 msgid "All messages handled by Postfix now go through the antivirus filter."
 msgstr ""
+"Todas as mensagens manipuladas pelo Postfix agora passam pelo filtro de "
+"antivírus."
 
 #. Tag: title
 #, no-c-format
@@ -1577,11 +1692,35 @@ msgstr "SMTP autenticado"
 #, no-c-format
 msgid "Being able to send emails requires an SMTP server to be reachable; it also requires said SMTP server to send emails through it. For roaming users, that may need regularly changing the configuration of the SMTP client, since Falcot's SMTP server rejects messages coming from IP addresses apparently not belonging to the company. Two solutions exist: either the roaming user installs an SMTP server on their computer, or they still use the company server with some means of authenticating as an employee. The former solution is not recommended since the computer won't be permanently connected, and it won't be able to retry sending messages in case of problems; we will focus on the latter solution."
 msgstr ""
+"Ser capaz de enviar emails requer um servidor SMTP ao alcance; e também "
+"requer que o referido servidor SMTP envie emails por ele. Para usuários "
+"móveis, pode ser preciso que eles alterem, regularmente, a configuração do "
+"cliente SMTP, já que o servidor SMTP da Falcot rejeita mensagens "
+"provenientes de endereços IP aparentemente não pertencentes à companhia. "
+"Existem duas soluções: ou o usuário instala um servidor SMTP em seu "
+"computador, ou ele usa o servidor da companhia com algum meio de "
+"autenticação como empregado. A primeira solução não é recomendada já que o "
+"computador não estará permanentemente conectado, e não será capaz de tentar "
+"enviar mensagens novamente em caso de problemas; nós iremos nos focar na "
+"última solução."
 
 #. Tag: para
 #, no-c-format
 msgid "SMTP authentication in Postfix relies on SASL (<emphasis>Simple Authentication and Security Layer</emphasis>). It requires installing the <emphasis role=\"pkg\">libsasl2-modules</emphasis> and <emphasis role=\"pkg\">sasl2-bin</emphasis> packages, then registering a password in the SASL database for each user that needs authenticating on the SMTP server. This is done with the <command>saslpasswd2</command> command, which takes several parameters. The <literal>-u</literal> option defines the authentication domain, which must match the <literal>smtpd_sasl_local_domain</literal> parameter in the Postfix configuration. The <literal>-c</literal> option allows creating a user, and <literal>-f</literal> allows specifying the file to use if the SASL database needs to be stored at a different location than the default (<filename>/etc/sasldb2</filename>)."
 msgstr ""
+"A autenticação SMTP no  Postfix se apoia no SASL (<emphasis>Simple "
+"Authentication and Security Layer</emphasis>). Isto requer a instalação dos "
+"pacotes <emphasis role=\"pkg\">libsasl2-modules</emphasis> e <emphasis role="
+"\"pkg\">sasl2-bin</emphasis>, e  em seguida o registro de uma senha no banco "
+"de dados do SASL para cada usuário que precise autenticar no servidor SMTP. "
+"Isso é feito com o comando <command>saslpasswd2</command>, o qual recebe "
+"vários parâmetros. A opção <literal>-u</literal> define o domínio de "
+"autenticação, o qual deve corresponder com o parâmetro "
+"<literal>smtpd_sasl_local_domain</literal> na configuração do Postfix. A "
+"opção <literal>-c</literal> permite criar um usuário, e <literal>-f</literal>"
+" permite especificar o arquivo a ser usado se o banco de dados do SASL "
+"precisar ser armazenado em um local diferente do padrão "
+"(<filename>/etc/sasldb2</filename>)."
 
 #. Tag: screen
 #, no-c-format
@@ -1590,16 +1729,32 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>saslpasswd2 -u `postconf -h myhostname` -f /var/spool/postfix/etc/sasldb2 -c jean</userinput>\n"
 "<computeroutput>[... type jean's password twice ...]</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>saslpasswd2 -u `postconf -h "
+"myhostname` -f /var/spool/postfix/etc/sasldb2 -c jean</userinput>\n"
+"<computeroutput>[... type jean's password twice ...]</computeroutput>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the SASL database was created in Postfix's directory. In order to ensure consistency, we also turn <filename>/etc/sasldb2</filename> into a symbolic link pointing at the database used by Postfix, with the <command>ln -sf /var/spool/postfix/etc/sasldb2 /etc/sasldb2</command> command."
 msgstr ""
+"Note que o bando de dados do SASL foi criado no diretório do Postfix. Para "
+"garantir consistência, nós também transformamos o "
+"<filename>/etc/sasldb2</filename> em uma ligação simbólica apontando para o "
+"banco de dados usado pelo Postfix, com o comando <command>ln -sf "
+"/var/spool/postfix/etc/sasldb2 /etc/sasldb2</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Now we need to configure Postfix to use SASL. First the <literal>postfix</literal> user needs to be added to the <literal>sasl</literal> group, so that it can access the SASL account database. A few new parameters are also needed to enable SASL, and the <literal>smtpd_recipient_restrictions</literal> parameter needs to be configured to allow SASL-authenticated clients to send emails freely."
 msgstr ""
+"Agora nós precisamos configurar o Postfix para usar o SASL. Primeiro, o "
+"usuário <literal>postfix</literal> precisa ser adicionado ao grupo "
+"<literal>sasl</literal>, para que ele possa acessar a conta no banco de "
+"dados do SASL. Alguns novos parâmetros também são necessários para habilitar "
+"o SASL, e o parâmetro <literal>smtpd_recipient_restrictions</literal> "
+"precisa ser configurado para permitir que cliente autenticado pelo SASL "
+"possam enviar emails livremente."
 
 #. Tag: title
 #, no-c-format
@@ -1644,6 +1799,13 @@ msgstr "<emphasis>EXTRA</emphasis> Cliente SMTP autenticado"
 #, no-c-format
 msgid "Most email clients are able to authenticate to an SMTP server before sending outgoing messages, and using that feature is a simple matter of configuring the appropriate parameters. If the client in use does not provide that feature, the workaround is to use a local Postfix server and configure it to relay email via the remote SMTP server. In this case, the local Postfix itself will be the client that authenticates with SASL. Here are the required parameters:"
 msgstr ""
+"A maioria dos clientes de e-mail são capazes fazer autenticação em um "
+"servidor de SMTP antes de enviar mensagens de saída e usar esse recurso é "
+"uma simples questão de configurar os parâmetros apropriados. Se o cliente em "
+"uso não oferece esse recurso a solução alternativa é usar um servidor "
+"Postfix local e configurá-lo para fazer o relay do email através de um "
+"servidor SMTP remoto. Neste caso, o próprio Postfix local será o cliente que "
+"autentica com o SASL. Aqui estão os parâmetros necessários:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1662,6 +1824,9 @@ msgstr ""
 #, no-c-format
 msgid "The <filename>/etc/postfix/sasl_passwd</filename> file needs to contain the username and password to use for authenticating on the <literal>mail.falcot.com</literal> server. Here's an example:"
 msgstr ""
+"O arquivo <filename>/etc/postfix/sasl_passwd</filename> precisa conter o "
+"nome de usuário e senha para autenticar no servidor "
+"<literal>mail.falcot.com</literal>r. Aqui está um exemplo:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1676,6 +1841,9 @@ msgstr ""
 #, no-c-format
 msgid "As for all Postfix maps, this file must be turned into <filename>/etc/postfix/sasl_passwd.db</filename> with the <command>postmap</command> command."
 msgstr ""
+"Para todos os mapas do Postfix, esse arquivo tem que ser transformado em "
+"<filename>/etc/postfix/sasl_passwd.db</filename> através do comando "
+"<command>postmap</command>."
 
 #. Tag: title
 #, no-c-format
@@ -1686,6 +1854,9 @@ msgstr "Servidor web (HTTP)"
 #, no-c-format
 msgid "The Falcot Corp administrators decided to use the Apache HTTP server, included in Debian <emphasis role=\"distribution\">Wheezy</emphasis> at version 2.2.22."
 msgstr ""
+"Os administradores da Falcot Corp decidiram usar o servidor HTTP Apache, "
+"incluído no Debian <emphasis role=\"distribution\">Wheezy</emphasis> na "
+"versão 2.2.22."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1722,6 +1893,13 @@ msgstr "<emphasis>ALTERNATIVA</emphasis> Outros servidores web"
 #, no-c-format
 msgid "Apache is merely the most widely-known (and widely-used) web server, but there are others; they can offer better performance under certain workloads, but this has its counterpart in the smaller number of available features and modules. However, when the prospective web server is built to serve static files or to act as a proxy, the alternatives, such as <emphasis role=\"pkg\">nginx</emphasis> and <emphasis role=\"pkg\">lighttpd</emphasis>, are worth investigating."
 msgstr ""
+"O Apache é apenas o mais conhecido (e amplamente utilizado) servidor web, "
+"porém existem outros; eles podem oferecer um melhor desempenho sob certas "
+"cargas de trabalho, mas isso tem em contrapartida um número menor de "
+"funcionalidades e módulos disponíveis. Contudo, quando o servidor web em "
+"perspectiva é feito para servir arquivos estáticos ou agir como um proxy, "
+"alternativas tais como <emphasis role=\"pkg\">nginx</emphasis> e <emphasis "
+"role=\"pkg\">lighttpd</emphasis>, valem a pena serem investigadas."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1742,16 +1920,38 @@ msgstr "Instalação do Apache"
 #, no-c-format
 msgid "By default, installing the <emphasis role=\"pkg\">apache2</emphasis> package causes the <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> version of Apache to be installed too. The <emphasis role=\"pkg\">apache2</emphasis> package is an empty shell, and it only serves to ensure that one of the Apache versions is actually installed."
 msgstr ""
+"Por padrão, a instalação do pacote <emphasis role=\"pkg\">apache2</emphasis> "
+"faz com que a versão do <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> "
+"do Apache seja instalada também. O pacote <emphasis role=\"pkg\""
+">apache2</emphasis> é uma concha vazia, e ele apenas serve para para "
+"garantir que uma das versões do Apache seja realmente instalada."
 
 #. Tag: para
 #, no-c-format
 msgid "The differences between the variants of Apache 2 are concentrated in the policy used to handle parallel processing of many requests; this policy is implemented by an MPM (short for <emphasis>Multi-Processing Module</emphasis>). Among the available MPMs, <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> uses <emphasis>threads</emphasis> (lightweight processes), whereas <emphasis role=\"pkg\">apache2-mpm-prefork</emphasis> uses a pool of processes created in advance (the traditional way, and the only one available in Apache 1.3). <emphasis role=\"pkg\">apache2-mpm-event</emphasis> also uses threads, but they are terminated earlier, when the incoming connection is only kept open by the HTTP <emphasis>keep-alive</emphasis> feature."
 msgstr ""
+"As diferenças entre as variantes do Apache 2 estão  concentradas na política "
+"usada para lidar com processamento paralelo de muitas requisições; essa "
+"política é implementada por um MPM (abreviação de <emphasis>Multi-Processing "
+"Module</emphasis>). Dentre os MPMs disponíveis, o <emphasis role=\"pkg\""
+">apache2-mpm-worker</emphasis> usa <emphasis>threads</emphasis> (processos "
+"leves), enquanto que o <emphasis role=\"pkg\">apache2-mpm-prefork</emphasis> "
+"usa um grupo de processos criados antecipadamente (a maneira tradicional, e "
+"a única disponível no Apache 1.3). <emphasis role=\"pkg\">apache2-mpm-"
+"event</emphasis> também usa threads, porém elas são encerradas antes, quando "
+"a conexão de entrada só é mantida aberta pelo recurso HTTP <emphasis>keep-"
+"alive</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot administrators also install <emphasis role=\"pkg\">libapache2-mod-php5</emphasis> so as to include the PHP support in Apache. This causes <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> to be removed, and <emphasis role=\"pkg\">apache2-mpm-prefork</emphasis> to be installed instead, since PHP only works under that particular MPM."
 msgstr ""
+"Os administradores da Falcot também instalaram o <emphasis role=\"pkg\""
+">libapache2-mod-php5</emphasis> a fim de incluir  suporte a PHP no Apache. "
+"Isso faz com que o <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> seja "
+"removido, e o <emphasis role=\"pkg\">apache2-mpm-prefork</emphasis> seja "
+"instalado noem seu lugar, já que o PHP só funciona sob esse MPM em "
+"particular."
 
 #. Tag: title
 #, no-c-format
@@ -1774,11 +1974,21 @@ msgstr "<primary>suexec</primary>"
 #, no-c-format
 msgid "By default, Apache handles incoming requests under the identity of the <literal>www-data</literal> user. This means that a security vulnerability in a CGI script executed by Apache (for a dynamic page) won't compromise the whole system, but only the files owned by this particular user."
 msgstr ""
+"Por padrão, o Apache lida com as requisições de entrada sob a identidade de "
+"usuário <literal>www-data</literal>. Isso significa que uma vulnerabilidade "
+"em um script CGI executado pelo Apache (para uma página dinâmica) não "
+"comprometa todo o sistema, mas apenas os arquivos pertencentes a esse "
+"usuário em particular."
 
 #. Tag: para
 #, no-c-format
 msgid "Using the <emphasis>suexec</emphasis> modules allows bypassing this rule so that some CGI scripts are executed under the identity of another user. This is configured with a <literal>SuexecUserGroup <replaceable>user</replaceable><replaceable>group</replaceable></literal> directive in the Apache configuration."
 msgstr ""
+"O uso do módulo <emphasis>suexec</emphasis> permite contornar essa regra "
+"para que alguns scripts CGI sejam executados sob a identidade de outro "
+"usuário. Isso é configurado com a diretiva <literal>SuexecUserGroup "
+"<replaceable>user</replaceable><replaceable>group</replaceable></literal> na "
+"configuração do Apache."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1789,6 +1999,12 @@ msgstr "<primary><emphasis role=\"pkg\">apache2-mpm-itk</emphasis></primary>"
 #, no-c-format
 msgid "Another possibility is to use a dedicated MPM, such as the one provided by <emphasis role=\"pkg\">apache2-mpm-itk</emphasis>. This particular one has a slightly different behavior: it allows “isolating” virtual hosts so that they each run as a different user. A vulnerability in one website therefore cannot compromise files belonging to the owner of another website."
 msgstr ""
+"Outra possibilidade é usar um MPM dedicado, como o fornecido pelo <emphasis "
+"role=\"pkg\">apache2-mpm-itk</emphasis>. Esse módulo em particular tem um "
+"comportamento um pouco diferente: ele permite o “isolamento”  de hosts "
+"virtuais para que cada um deles seja executado como um usuário diferente. "
+"Portanto, uma vulnerabilidade em um site web não pode comprometer arquivos "
+"pertencentes ao dono de outro site web."
 
 #. Tag: title
 #, no-c-format
@@ -1799,16 +2015,33 @@ msgstr "<emphasis>OLHADA RÁPIDA</emphasis> Lista de módulos"
 #, no-c-format
 msgid "The full list of Apache standard modules can be found online. <ulink type=\"block\" url=\"http://httpd.apache.org/docs/2.2/mod/index.html\" />"
 msgstr ""
+"Uma lista completa dos módulos padrão do Apache pode ser encontrada online. <"
+"ulink type=\"block\" url=\"http://httpd.apache.org/docs/2.2/mod/index.html\" "
+"/>"
 
 #. Tag: para
 #, no-c-format
 msgid "Apache is a modular server, and many features are implemented by external modules that the main program loads during its initialization. The default configuration only enables the most common modules, but enabling new modules is a simple matter of running <command>a2enmod <replaceable>module</replaceable></command>; to disable a module, the command is <command>a2dismod <replaceable>module</replaceable></command>. These programs actually only create (or delete) symbolic links in <filename>/etc/apache2/mods-enabled/</filename>, pointing at the actual files (stored in <filename>/etc/apache2/mods-available/</filename>)."
 msgstr ""
+"O Apache é um servidor modular, e muitos recursos são implementados através "
+"de módulos externos que o programa principal carrega durante sua "
+"inicialização. A configuração padrão apenas habilita os módulos mais comuns, "
+"porém habilitar módulos novos é uma simples questão de rodar <command>"
+"a2enmod <replaceable>module</replaceable></command>; para desabilitar um "
+"módulo, o comando é <command>a2dismod "
+"<replaceable>module</replaceable></command>. Esses programas na verdade "
+"apenas criam (ou apagam) ligações simbólicas em <filename>/etc/apache2/mods-"
+"enabled/</filename>, que apontam para para os arquivos atuais (armazenados "
+"em <filename>/etc/apache2/mods-available/</filename>)."
 
 #. Tag: para
 #, no-c-format
 msgid "With its default configuration, the web server listens on port 80 (as configured in <filename>/etc/apache2/ports.conf</filename>), and serves pages from the <filename>/var/www/</filename> directory (as configured in <filename>/etc/apache2/sites-enabled/000-default</filename>)."
 msgstr ""
+"Com sua configuração padrão, o servidor web ouve na porta 80 (como "
+"configurado em <filename>/etc/apache2/ports.conf</filename>), e serve "
+"páginas a partir do diretório <filename>/var/www/</filename> (como "
+"configurado em <filename>/etc/apache2/sites-enabled/000-default</filename>)."
 
 #. Tag: title
 #, no-c-format
@@ -1829,11 +2062,25 @@ msgstr "<primary>HTTP</primary><secondary>seguro</secondary>"
 #, no-c-format
 msgid "Apache 2.2 includes the SSL module required for secure HTTP (HTTPS) out of the box. It just needs to be enabled with <command>a2enmod ssl</command>, then the required directives have to be added to the configuration files. A configuration example is provided in <filename>/usr/share/doc/apache2.2-common/examples/apache2/extra/httpd-ssl.conf.gz</filename>. <ulink type=\"block\" url=\"http://httpd.apache.org/docs/2.2/mod/mod_ssl.html\" />"
 msgstr ""
+"O Apache 2.2 include o módulo SSL, necessário para HTTP seguro (HTTPS) \"out "
+"of the box\". Ele apenas precisa ser habilitado com <command>a2enmod "
+"ssl</command>, e então as requeridas diretivas tem que ser adicionadas aos "
+"arquivos de configuração. Um exemplo de configuração é fornecido em "
+"<filename>/usr/share/doc/apache2.2-common/examples/apache2/extra/httpd-"
+"ssl.conf.gz</filename>. <ulink type=\"block\" url=\""
+"http://httpd.apache.org/docs/2.2/mod/mod_ssl.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Some extra care must be taken if you want to favor SSL connections with <emphasis>Perfect Forward Secrecy</emphasis> (those connections use ephemeral session keys ensuring that a compromission of the server's secret key does not result in the compromission of old encrypted traffic that could have been stored while sniffing on the network). Have a look at Mozilla's recommandations in particular: <ulink type=\"block\" url=\"https://wiki.mozilla.org/Security/Server_Side_TLS#Apache\" />"
 msgstr ""
+"Alguns cuidados extras devem ser tomados se você quer fornecer conexões SSL "
+"com <emphasis>Perfect Forward Secrecy</emphasis> (essas conexões usam as "
+"chaves de sessão efêmera, que garantem que um comprometimento da chave "
+"secreta do servidor não resulte no comprometimento de tráfego criptografado "
+"antigo que poderia ter sido armazenado durante um \"sniffing\" na rede). Dê "
+"uma olhada nas recomendações da Mozilla, em particular: <ulink type=\"block\""
+" url=\"https://wiki.mozilla.org/Security/Server_Side_TLS#Apache\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1860,16 +2107,38 @@ msgstr "<primary>host virtual</primary>"
 #, no-c-format
 msgid "Apache considers two different kinds of virtual hosts: those that are based on the IP address (or the port), and those that rely on the domain name of the web server. The first method requires allocating a different IP address (or port) for each site, whereas the second one can work on a single IP address (and port), and the sites are differentiated by the hostname sent by the HTTP client (which only works in version 1.1 of the HTTP protocol — fortunately that version is old enough that all clients use it already)."
 msgstr ""
+"Apache considera dois tipos diferentes de hosts virtuais: aqueles que se "
+"baseiam no endereço IP (ou do portador) e aqueles que contam com o nome de "
+"domínio do servidor web. O primeiro método requer a alocação de um endereço "
+"IP diferente (ou portador) para cada site, enquanto o segundo pode funcionar "
+"em um único IP endereço (e portador), os sites são diferenciados pelo nome "
+"de máquina enviado pelo cliente HTTP (que só funciona na versão 1.1 do "
+"protocolo HTTP — Felizmente essa versão é antiga o bastante, e assim, é "
+"utilizada por todos os clientes)."
 
 #. Tag: para
 #, no-c-format
 msgid "The (increasing) scarcity of IPv4 addresses usually favors the second method; however, it is made more complex if the virtual hosts need to provide HTTPS too, since the SSL protocol hasn't always provided for name-based virtual hosting; the SNI extension (<emphasis>Server Name Indication</emphasis>) that allows such a combination is not handled by all browsers. When several HTTPS sites need to run on the same server, they will usually be differentiated either by running on a different port or on a different IP address (IPv6 can help there)."
 msgstr ""
+"A (crescente) escassez de endereços IPv4 geralmente favorece o segundo "
+"método; contudo, fica mais complexo se os hosts virtuais precisam fornecer "
+"HTTPS também, pois o protocolo SSL nem sempre é fornecido para hospedagem "
+"virtual baseada em nome; a extensão SNI (<emphasis>Server Name "
+"Indication</emphasis>) que permite uma combinação desse tipo não é suportada "
+"por todos os navegadores. Quando vários sites HTTPS precisam ser rodados no "
+"mesmo servidor, eles geralmente irão ser diferenciados ou por rodar em uma "
+"porta diferente ou um endereço IP diferente (IPv6 pode ajudar aqui)."
 
 #. Tag: para
 #, no-c-format
 msgid "The default configuration for Apache 2 enables name-based virtual hosts (with the <literal>NameVirtualHost *:80</literal> directive in the <filename>/etc/apache2/ports.conf</filename> file). In addition, a default virtual host is defined in the <literal>/etc/apache2/sites-enabled/000-default</literal> file; this virtual host will be used if no host matching the request sent by the client is found."
 msgstr ""
+"A configuração padrão do Apache 2 habilita hosts virtuais baseados em nomes ("
+"com a diretiva <literal>NameVirtualHost *:80</literal> no arquivo "
+"<filename>/etc/apache2/ports.conf</filename>). IEm adição, um host virtual é "
+"definido no arquivo <literal>/etc/apache2/sites-"
+"enabled/000-default</literal>; esse host virtual será usado se não for "
+"encontrado nenhum host que corresponda a solicitação enviada pelo cliente."
 
 #. Tag: title
 #, no-c-format
@@ -1880,6 +2149,9 @@ msgstr "<emphasis>ATENÇÃO</emphasis> Primeiro servidor virtual"
 #, no-c-format
 msgid "Requests concerning unknown virtual hosts will always be served by the first defined virtual host, which is why we defined <literal>www.falcot.com</literal> first here."
 msgstr ""
+"Requisições relativas a hosts virtuais desconhecidos sempre serão servidas "
+"pelo primeiro host virtual definido, é por isso que nós definimos "
+"<literal>www.falcot.com</literal> em primeiro lugar aqui."
 
 #. Tag: title
 #, no-c-format
@@ -1895,16 +2167,38 @@ msgstr "<primary>Server Name Indication</primary>"
 #, no-c-format
 msgid "The Apache server supports an SSL protocol extension called <emphasis>Server Name Indication</emphasis> (SNI). This extension allows the browser to send the hostname of the web server during the establishment of the SSL connection, much earlier than the HTTP request itself, which was previously used to identify the requested virtual host among those hosted on the same server (with the same IP address and port). This allows Apache to select the most appropriate SSL certificate for the transaction to proceed."
 msgstr ""
+"O servidor Apache suporta uma extensão do protocolo SSL chamada <emphasis>"
+"Server Name Indication</emphasis> (SNI). Esta extensão permite ao navegador "
+"enviar o nome do nome do host do servidor web durante o estabelecimento da "
+"conexão SSL, muito antes do que o HTTP o solicitaria, que foi usado "
+"anteriormente para identificar o host virtual solicitado entre aqueles "
+"hospedados no mesmo servidor (com o mesmo endereço IP e porta). Isso permite "
+"ao Apache selecionar o certificado SSL mais adequado para a transação a "
+"proceder."
 
 #. Tag: para
 #, no-c-format
 msgid "Before SNI, Apache would always use the certificate defined in the default virtual host. Clients trying to access another virtual host would then display warnings, since the certificate they received didn't match the website they were trying to access. Fortunately, most browsers now work with SNI; this includes Microsoft Internet Explorer starting with version 7.0 (starting on Vista), Mozilla Firefox starting with version 2.0, Apple Safari since version 3.2.1, and all versions of Google Chrome."
 msgstr ""
+"Antes do SNI, o Apache sempre usava o certificado definido no host virtual "
+"padrão. Clientes que tentavam acessar outro host virtual iriam então exibir "
+"avisos (warnings), pois eles recebiam o certificado que não correspondia com "
+"o site que eles estavam tentando acessar. Felizmente, a maioria dos "
+"navegadores agora trabalham com SNI; Isso inclui o Microsoft Internet "
+"Explorer a partir da versão 7.0 (começando no Vista), Mozilla Firefox "
+"começando com a versão 2.0, o Safari da Apple desde a versão 3.2.1 e todas "
+"as versões do Google Chrome."
 
 #. Tag: para
 #, no-c-format
 msgid "The Apache package provided in Debian is built with support for SNI; no particular configuration is therefore needed, apart from enabling name-based virtual hosting on port 443 (SSL) as well as the usual port 80. This is a simple matter of editing <filename>/etc/apache2/ports.conf</filename> so it includes the following:"
 msgstr ""
+"O pacote Apache fornecido pelo Debian é construído com suporte a SNI; "
+"portanto nenhuma configuração em particular é necessária, apenas a "
+"habilitação de hosting virtual baseada em nome na porta 443 (SSL) assim como "
+"na habitual port 80. Isso é uma simples questão de editar o "
+"<filename>/etc/apache2/ports.conf</filename> para que seja incluído o "
+"seguinte:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1925,11 +2219,20 @@ msgstr ""
 #, no-c-format
 msgid "Care should also be taken to ensure that the configuration for the first virtual host (the one used by default) does enable TLSv1, since Apache uses the parameters of this first virtual host to establish secure connections, and they had better allow them!"
 msgstr ""
+"Devemos também ter cuidado para garantir que a configuração do primeiro host "
+"virtual (aquele usado por padrão) habilite TLSv1, pois o Apache utiliza os "
+"parâmetros deste primeiro hospedeiro virtual para estabelecer conexões "
+"seguras e eles tem a melhor permissividade para isso!"
 
 #. Tag: para
 #, no-c-format
 msgid "Each extra virtual host is then described by a file stored in <filename>/etc/apache2/sites-available/</filename>. Setting up a website for the <literal>falcot.org</literal> domain is therefore a simple matter of creating the following file, then enabling the virtual host with <command>a2ensite www.falcot.org</command>."
 msgstr ""
+"Cada host virtual extra é então descrito por um arquivo armazenado em "
+"<filename>/etc/apache2/sites-available/</filename>. Configurar um site web "
+"para o domínio <literal>falcot.org</literal> é portanto uma simples questão "
+"de criar o seguinte arquivo, e então, habilita o host virtual com <command>"
+"a2ensite www.falcot.org</command>."
 
 #. Tag: title
 #, no-c-format
@@ -1958,6 +2261,16 @@ msgstr ""
 #, no-c-format
 msgid "The Apache server, as configured so far, uses the same log files for all virtual hosts (although this could be changed by adding <literal>CustomLog</literal> directives in the definitions of the virtual hosts). It therefore makes good sense to customize the format of this log file to have it include the name of the virtual host. This can be done by creating a <filename>/etc/apache2/conf.d/customlog</filename> file that defines a new format for all log files (with the <literal>LogFormat</literal> directive). The <literal>CustomLog</literal> line must also be removed (or commented out) from the <filename>/etc/apache2/sites-available/default</filename> file."
 msgstr ""
+"O servidor Apache, como configurado até agora, usa os mesmos arquivos de log "
+"para todos os hosts virtuais (embora isso possa ser alterado adicionando as "
+"diretivas <literal>CustomLog</literal> na definição de hosts virtuais). É, "
+"entretanto, boa prática customizar o formato desse arquivo de log para ter "
+"incluído o nome do host virtual. Isso pode ser feito criando o arquivo "
+"<filename>/etc/apache2/conf.d/customlog</filename> que define um novo "
+"formato para todos os arquivos de log (com a diretiva "
+"<literal>LogFormat</literal>). A linha <literal>CustomLog</literal> tem "
+"também que ser removida (ou comentada) do arquivo <filename>/etc/apache2"
+"/sites-available/default</filename>."
 
 #. Tag: title
 #, no-c-format
@@ -1991,6 +2304,8 @@ msgstr "Diretivas comuns"
 #, no-c-format
 msgid "This section briefly reviews some of the commonly-used Apache configuration directives."
 msgstr ""
+"Essa seção revê, brevemente, algumas das diretivas comumente usadas na "
+"configuração do Apache."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2008,6 +2323,11 @@ msgstr "<primary>diretivas Apache</primary>"
 #, no-c-format
 msgid "The main configuration file usually includes several <literal>Directory</literal> blocks; they allow specifying different behaviors for the server depending on the location of the file being served. Such a block commonly includes <literal>Options</literal> and <literal>AllowOverride</literal> directives."
 msgstr ""
+"O principal arquivo de configuração inclui vários blocos "
+"<literal>Directory</literal>; eles permitem especificar diferentes "
+"comportamentos para o servidor dependendo da localização do arquivo que está "
+"sendo servido. Um bloco desse tipo comumente inclui as diretivas  "
+"<literal>Options</literal> e <literal>AllowOverride</literal>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2046,6 +2366,10 @@ msgstr ""
 #, no-c-format
 msgid "The <literal>DirectoryIndex</literal> directive contains a list of files to try when the client request matches a directory. The first existing file in the list is used and sent as a response."
 msgstr ""
+"A diretiva <literal>DirectoryIndex</literal> contém uma lista de arquivos a "
+"serem experimentados quando uma requisição do cliente coincide com um "
+"diretório. O primeiro arquivo existente da lista é usado e enviado como "
+"resposta."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2058,36 +2382,67 @@ msgstr ""
 #, no-c-format
 msgid "The <literal>Options</literal> directive is followed by a list of options to enable. The <literal>None</literal> value disables all options; correspondingly, <literal>All</literal> enables them all except <literal>MultiViews</literal>. Available options include:"
 msgstr ""
+"A diretiva <literal>Options</literal> é seguida de uma lista de opções a "
+"serem habilitadas. O valor <literal>None</literal> desabilita todas as "
+"opções; correspondentemente, <literal>All</literal> habilita todas elas "
+"exceto <literal>MultiViews</literal>. As opções disponíveis incluem:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ExecCGI</literal> indicates that CGI scripts can be executed. <indexterm><primary><literal>ExecCGI</literal>, Apache directive</primary></indexterm>"
 msgstr ""
+"<literal>ExecCGI</literal> indica que scripts CGI podem ser executados. "
+"<indexterm><primary><literal>ExecCGI</literal>, diretiva "
+"Apache</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>FollowSymlinks</literal> tells the server that symbolic links can be followed, and that the response should contain the contents of the target of such links. <indexterm><primary><literal>FollowSymlinks</literal>, Apache directive</primary></indexterm>"
 msgstr ""
+"<literal>FollowSymlinks</literal> diz ao servidor que ligações simbólicas "
+"podem ser seguidas, e que a resposta deve conter o conteúdo do alvo de uma "
+"ligação como essa. <indexterm><primary><literal>FollowSymlinks</literal>, "
+"diretiva Apache</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SymlinksIfOwnerMatch</literal> also tells the server to follow symbolic links, but only when the link and the its target have the same owner. <indexterm><primary><literal>SymlinksIfOwnerMatch</literal>, Apache directive</primary></indexterm>"
 msgstr ""
+"<literal>SymlinksIfOwnerMatch</literal> também diz ao servidor para seguir "
+"ligações simbólicas, mas apenas quando a ligação e seu alvo são do mesmo "
+"dono. <indexterm><primary><literal>SymlinksIfOwnerMatch</literal>, diretiva "
+"Apache</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>Includes</literal> enables <emphasis>Server Side Includes</emphasis> (<emphasis>SSI</emphasis> for short). These are directives embedded in HTML pages and executed on the fly for each request. <indexterm><primary><literal>Includes</literal>, Apache directive</primary></indexterm>"
 msgstr ""
+"<literal>Includes</literal> habilita <emphasis>Server Side "
+"Includes</emphasis> (<emphasis>SSI</emphasis> para abreviar). Essas são "
+"diretivas embutidas nas páginas HTML e executadas em tempo de execução de "
+"cada requisição. <indexterm><primary><literal>Includes</literal>, diretiva "
+"Apache</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>Indexes</literal> tells the server to list the contents of a directory if the HTTP request sent by the client points at a directory without an index file (ie, when no files mentioned by the <literal>DirectoryIndex</literal> directive exists in this directory). <indexterm><primary><literal>Indexes</literal>, Apache directive</primary></indexterm>"
 msgstr ""
+"<literal>Indexes</literal> diz ao servidor para listar o conteúdo de um "
+"diretório se a requisição HTTP enviada pelo cliente aponta para um diretório "
+"sem um arquivo index (ie, quando nenhum arquivo mencionado na diretiva "
+"<literal>DirectoryIndex</literal> existe nesse diretório). "
+"<indexterm><primary><literal>Indexes</literal>, diretiva "
+"Apache</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>MultiViews</literal> enables content negotiation; this can be used by the server to return a web page matching the preferred language as configured in the browser. <indexterm><primary><literal>MultiViews</literal>, Apache directive</primary></indexterm>"
 msgstr ""
+"<literal>MultiViews</literal> habilita a negociação de conteúdo; isso pode "
+"ser usado pelo servidor para retornar uma página web que coincida com a "
+"língua preferida configurada no navegador. "
+"<indexterm><primary><literal>MultiViews</literal>, diretiva Apache "
+"</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -2100,6 +2455,10 @@ msgstr ""
 #, no-c-format
 msgid "The <filename>.htaccess</filename> file contains Apache configuration directives enforced each time a request concerns an element of the directory where it is stored. The scope of these directives also recurses to all the subdirectories within."
 msgstr ""
+"O arquivo <filename>.htaccess</filename> contém as diretivas de configuração "
+"do Apache que são aplicadas cada vez que uma requisição diz respeito a um "
+"elemento do diretório aonde ele é armazenado. O âmbito dessas diretivas "
+"também repercute para todos os subdiretórios dentro desse diretório."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2110,11 +2469,19 @@ msgstr "<primary><filename>.htaccess</filename></primary>"
 #, no-c-format
 msgid "Most of the directives that can occur in a <literal>Directory</literal> block are also legal in a <filename>.htaccess</filename> file."
 msgstr ""
+"A maioria das diretivas que podem ser definidas no bloco "
+"<literal>Directory</literal> também podem ser definidas no arquivo "
+"<filename>.htaccess</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>AllowOverride</literal> directive lists all the options that can be enabled or disabled by way of a <filename>.htaccess</filename> file. A common use of this option is to restrict <literal>ExecCGI</literal>, so that the administrator chooses which users are allowed to run programs under the web server's identity (the <literal>www-data</literal> user)."
 msgstr ""
+"A diretiva <literal>AllowOverride</literal> lista todas as opções que podem "
+"ser habilitadas ou desabilitadas pelo arquivo <filename>.htaccess</filename>"
+". Um uso comum dessa opção é restringir <literal>ExecCGI</literal>, para que "
+"o administrador escolha quais usuários tem permissão para rodar programas "
+"sob a identidade do servidor web (o usuário <literal>www-data</literal>)."
 
 #. Tag: title
 #, no-c-format
@@ -2130,6 +2497,9 @@ msgstr "<primary>autenticação web</primary>"
 #, no-c-format
 msgid "In some circumstances, access to part of a website needs to be restricted, so only legitimate users who provide a username and a password are granted access to the contents."
 msgstr ""
+"Em algumas circunstâncias, o acesso a parte do site web precisa ser "
+"restrita, para que apenas usuários legítimos que fornecerem um nome de "
+"usuário e uma senha tenham acesso ao conteúdo."
 
 #. Tag: title
 #, no-c-format
@@ -2160,11 +2530,23 @@ msgstr "<emphasis>SEGURANÇA</emphasis> Sem segurança"
 #, no-c-format
 msgid "The authentication system used in the above example (<literal>Basic</literal>) has minimal security as the password is sent in clear text (it is only encoded as <emphasis>base64</emphasis>, which is a simple encoding rather than an encryption method). It should also be noted that the documents “protected” by this mechanism also go over the network in the clear. If security is important, the whole HTTP connection should be encrypted with SSL."
 msgstr ""
+"O sistema de autenticação usado no exemplo acima (<literal>Basic</literal>) "
+"tem uma segurança mínima já que a senha é enviada em texto puro (ela apenas "
+"é codificada com <emphasis>base64</emphasis>, o que é uma codificação "
+"simples, ao invés do método criptografado). Também deve ser notado que os "
+"documentos “protegidos” por esse mecanismo também trafegam pela rede em "
+"texto puro. Se segurança é importante, toda a conexão HTTP deve ser "
+"criptografada com SSL."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/apache2/authfiles/htpasswd-private</filename> file contains a list of users and passwords; it is commonly manipulated with the <command>htpasswd</command> command. For example, the following command is used to add a user or change their password: <indexterm><primary><command>htpasswd</command></primary></indexterm>"
 msgstr ""
+"O arquivo <filename>/etc/apache2/authfiles/htpasswd-private</filename> "
+"contém uma lista de usuários e senhas; ele é comumente manipulado com o "
+"comando <command>htpasswd</command>. Por exemplo, o seguinte comando é usado "
+"para adicionar um usuário ou alterar a senha: "
+"<indexterm><primary><command>htpasswd</command></primary></indexterm>"
 
 #. Tag: screen
 #, no-c-format
@@ -2198,6 +2580,9 @@ msgstr "<primary>restrição de acesso web</primary>"
 #, no-c-format
 msgid "The <literal>Allow from</literal> and <literal>Deny from</literal> directives control access restrictions for a directory (and its subdirectories, recursively)."
 msgstr ""
+"As diretivas <literal>Allow from</literal> e <literal>Deny from</literal> "
+"controlam as restrições de acesso em um diretório (e seus sub-diretórios, "
+"recursivamente)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2221,11 +2606,25 @@ msgstr "<primary><literal>Order</literal>, diretivas do Apache</primary>"
 #, no-c-format
 msgid "The <literal>Order</literal> directive tells the server of the order in which the <literal>Allow from</literal> and <literal>Deny from</literal> directives are applied; the last one that matches takes precedence. In concrete terms, <literal>Order deny,allow</literal> allows access if no <literal>Deny from</literal> applies, or if an <literal>Allow from</literal> directive does. Conversely, <literal>Order allow,deny</literal> rejects access if no <literal>Allow from</literal> directive matches (or if a <literal>Deny from</literal> directive applies)."
 msgstr ""
+"A diretiva <literal>Order</literal> informa ao servidor a ordem em que as "
+"diretivas <literal>Allow from</literal> e <literal>Deny from</literal> são "
+"aplicadas; A última que coincidir tem precedência. Em termos concretos, "
+"<literal>Order deny,allow</literal> permite acesso se nenhum <literal>Deny "
+"from</literal> se aplica, ou se uma diretiva <literal>Allow from</literal> "
+"aplica. Por outro lado, <literal>Order allow,deny</literal> rejeita acesso "
+"se nenhuma diretiva <literal>Allow from</literal> coincide (ou se uma "
+"diretiva <literal>Deny from</literal> se aplica)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Allow from</literal> and <literal>Deny from</literal> directives can be followed by an IP address, a network (such as <literal>192.168.0.0/255.255.255.0</literal>, <literal>192.168.0.0/24</literal> or even <literal>192.168.0</literal>), a hostname or a domain name, or the <literal>all</literal> keyword, designating everyone."
 msgstr ""
+"As diretivas <literal>Allow from</literal> e <literal>Deny from</literal> "
+"podem ser seguidas de um endereço IP, uma rede (como "
+"<literal>192.168.0.0/255.255.255.0</literal>, "
+"<literal>192.168.0.0/24</literal> ou mesmo <literal>192.168.0</literal>), um "
+"nome de máquina ou nome de domínio, ou a palavra chave <literal>all</literal>"
+", designando todos."
 
 #. Tag: title
 #, no-c-format
@@ -2254,11 +2653,17 @@ msgstr "Analisadores de Log"
 #, no-c-format
 msgid "A log analyzer is frequently installed on a web server; since the former provides the administrators with a precise idea of the usage patterns of the latter."
 msgstr ""
+"Um analisador de log é frequentemente instalado em um servidor web; já que o "
+"primeiro fornece aos administradores uma ideia precisa do padrão de uso do "
+"último."
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators selected <emphasis>AWStats</emphasis> (<emphasis>Advanced Web Statistics</emphasis>) to analyze their Apache log files."
 msgstr ""
+"Os administradores da Falcot Corp selecionaram o <emphasis>AWStats</emphasis>"
+" (<emphasis>Advanced Web Statistics</emphasis>) para analisar seus arquivos "
+"de log do Apache."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2288,6 +2693,9 @@ msgstr "<primary>analisador de registros web</primary>"
 #, no-c-format
 msgid "The first configuration step is the customization of the <filename>/etc/awstats/awstats.conf</filename> file. The Falcot administrators keep it unchanged apart from the following parameters:"
 msgstr ""
+"O primeiro passo de configuração é a customização do arquivo "
+"<filename>/etc/awstats/awstats.conf</filename>. O administradores da Falcot "
+"o mantiveram inalterado, exceto os seguintes parâmetros:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2324,11 +2732,22 @@ msgstr ""
 #, no-c-format
 msgid "All these parameters are documented by comments in the template file. In particular, the <varname>LogFile</varname> and <varname>LogFormat</varname> parameters describe the location and format of the log file and the information it contains; <varname>SiteDomain</varname> and <varname>HostAliases</varname> list the various names under which the main web site is known."
 msgstr ""
+"Todos esses parâmetros são documentados através de comentários no arquivo de "
+"exemplo. Em particular, os parâmetros <varname>LogFile</varname> e "
+"<varname>LogFormat</varname> que descrevem a localização e o formato do "
+"arquivo de log é a informação que ele contém; <varname>SiteDomain</varname> "
+"e <varname>HostAliases</varname> listam os vários nomes sob o qual o site "
+"web principal é conhecido."
 
 #. Tag: para
 #, no-c-format
 msgid "For high traffic sites, <varname>DNSLookup</varname> should usually not be set to <literal>1</literal>; for smaller sites, such as the Falcot one described above, this setting allows getting more readable reports that include full machine names instead of raw IP addresses."
 msgstr ""
+"Para sites com alto tráfego, <varname>DNSLookup</varname> geralmente não "
+"deveria ser configurado como <literal>1</literal>; para sites menores, como "
+"o da Falcot descrito acima, essa configuração permite ter relatórios mais "
+"legíveis, que incluem o nome completo da máquina ao invés de endereços IP "
+"crus."
 
 #. Tag: title
 #, no-c-format
@@ -2339,11 +2758,19 @@ msgstr "<emphasis>SEGURANÇA</emphasis> Acesso as estatísticas"
 #, no-c-format
 msgid "AWStats makes its statistics available on the website with no restrictions by default, but restrictions can be set up so that only a few (probably internal) IP addresses can access them; the list of allowed IP addresses needs to be defined in the <varname>AllowAccessFromWebToFollowingIPAddresses</varname> parameter"
 msgstr ""
+"O AWStats deixa suas estatísticas disponíveis no site web sem restrições por "
+"padrão, mas restrições podem ser configuradas para que apenas alguns "
+"endereços IP (provavelmente internos) possam ter acesso a elas; a lista de "
+"endereços IP com permissão precisa ser definida no parâmetro "
+"<varname>AllowAccessFromWebToFollowingIPAddresses</varname>"
 
 #. Tag: para
 #, no-c-format
 msgid "AWStats will also be enabled for other virtual hosts; each virtual host needs its own configuration file, such as <filename>/etc/awstats/awstats.www.falcot.org.conf</filename>."
 msgstr ""
+"O AWStats também irá ser habilitado para outros hosts virtuais; cada host "
+"virtual precisa de um arquivo de configuração próprio como "
+"<filename>/etc/awstats/awstats.www.falcot.org.conf</filename>."
 
 #. Tag: title
 #, no-c-format
@@ -2367,6 +2794,10 @@ msgstr ""
 #, no-c-format
 msgid "AWStats uses many icons stored in the <filename>/usr/share/awstats/icon/</filename> directory. In order for these icons to be available on the web site, the Apache configuration needs to be adapted to include the following directive:"
 msgstr ""
+"O AWStats usa muitos ícones que estão armazenados no diretório "
+"<filename>/usr/share/awstats/icon/</filename>. Para que esses ícones fiquem "
+"disponíveis no site web, a configuração do Apache precisa ser adaptada para "
+"incluir as seguintes diretivas:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2381,6 +2812,10 @@ msgstr ""
 #, no-c-format
 msgid "After a few minutes (and once the script has been run a few times), the results are available online: <ulink type=\"block\" url=\"http://www.falcot.com/cgi-bin/awstats.pl\" /><ulink type=\"block\" url=\"http://www.falcot.org/cgi-bin/awstats.pl\" />"
 msgstr ""
+"Após alguns minutos (e uma vez que o script tenha sido rodado algumas vezes)"
+", os resultados estão disponíveis online: <ulink type=\"block\" url=\""
+"http://www.falcot.com/cgi-bin/awstats.pl\" /><ulink type=\"block\" url=\""
+"http://www.falcot.org/cgi-bin/awstats.pl\" />"
 
 #. Tag: title
 #, no-c-format
@@ -2391,6 +2826,14 @@ msgstr "<emphasis>ATENÇÃO</emphasis> Rotação dos arquivos de registro"
 #, no-c-format
 msgid "In order for the statistics to take all the logs into account, <emphasis>AWStats</emphasis> needs to be run right before the Apache log files are rotated. Looking at the <literal>prerotate</literal> directive of <filename>/etc/logrotate.d/apache2</filename> file, this can be solved by putting a symlink to <filename>/usr/share/awstats/tools/update.sh</filename> in <filename>/etc/logrotate.d/httpd-prerotate</filename>:"
 msgstr ""
+"Para que as estatísticas levem em consideração todos os logs, o "
+"<emphasis>AWStats</emphasis> precisa ser executado antes que os arquivos de "
+"log do Apache sejam rotacionados. Olhando a diretiva "
+"<literal>prerotate</literal> do arquivo "
+"<filename>/etc/logrotate.d/apache2</filename>, isso pode ser resolvido "
+"colocando um symlink  em "
+"<filename>/usr/share/awstats/tools/update.sh</filename> no "
+"<filename>/etc/logrotate.d/httpd-prerotate</filename>:"
 
 #. Tag: screen
 #, no-c-format
@@ -2447,6 +2890,10 @@ msgstr ""
 #, no-c-format
 msgid "Note also that the log files created by <command>logrotate</command> need to be readable by everyone, especially AWStats. In the above example, this is ensured by the <literal>create 644 root adm</literal> line (instead of the default <literal>640</literal> permissions)."
 msgstr ""
+"Note também que os arquivos de log criados pelo <command>logrotate</command> "
+"precisam ter permissão de leitura para todos, especialmente o AWStats. No "
+"exemplo acima, isso é garantido pela linha <literal>create 644 root "
+"adm</literal> (ao invés da permissão padrão <literal>640</literal>)."
 
 #. Tag: title
 #, no-c-format
@@ -2462,21 +2909,49 @@ msgstr "<primary>FTP (<emphasis>File Transfer Protocol</emphasis>)</primary>"
 #, no-c-format
 msgid "FTP (<emphasis>File Transfer Protocol</emphasis>) is one of the first protocols of the Internet (RFC 959 was issued in 1985!). It was used to distribute files before the Web was even born (the HTTP protocol was created in 1990, and formally defined in its 1.0 version by RFC 1945, issued in 1996)."
 msgstr ""
+"FTP (<emphasis>File Transfer Protocol</emphasis>) é um dos primeiros "
+"protocolos da internet (RFC 959 foi emitida em 1985!). Ele era usado para "
+"distribuir arquivos antes mesmo que a Web tivesse nascido (o protocolo HTTP "
+"foi criado em 1990, e formalmente definido em sua versão 1.0 pela RFC 1945, "
+"imitida em 1996)."
 
 #. Tag: para
 #, no-c-format
 msgid "This protocol allows both file uploads and file downloads; for this reason, it is still widely used to deploy updates to a website hosted by one's Internet service provider (or any other entity hosting websites). In these cases, secure access is enforced with a user identifier and password; on successful authentication, the FTP server grants read-write access to that user's home directory."
 msgstr ""
+"Esse protocolo permite tanto enviar arquivos quanto baixar arquivos; por "
+"essa razão, ele ainda é amplamente usado para implantar atualizações em um "
+"site web hospedado em um provedor de serviço de internet de alguém (ou "
+"qualquer outra entidade que hospede sites web). Nesses casos, o acesso "
+"seguro é reforçado com a identificação de usuário e uma senha; em caso de "
+"sucesso na autenticação, o servidor FTP dá acesso a leitura-escrita para o "
+"diretório principal (home) do usuário."
 
 #. Tag: para
 #, no-c-format
 msgid "Other FTP servers are mainly used to distribute files for public downloading; Debian packages are a good example. The contents of these servers is fetched from other, geographically remote, servers; it is then made available to less distant users. This means that client authentication is not required; as a consequence, this operating mode is known as “anonymous FTP”. To be perfectly correct, the clients do authenticate with the <literal>anonymous</literal> username; the password is often, by convention, the user's email address, but the server ignores it."
 msgstr ""
+"Outros servidores FTP são principalmente usados para distribuir arquivos "
+"para qualquer um baixar; os pacotes Debian são um bom exemplo. O conteúdo "
+"desses servidores é obtido de outro servidor geograficamente remoto; e então "
+"disponibilizados para usuários menos distantes. Isso significa que a "
+"autenticação do cliente não é necessária; como consequência, esse modo de "
+"operação é conhecido como “anonymous FTP”. Para ser mais correto, os cliente "
+"fazem uma autenticação com nome de usuário <literal>anonymous</literal>; a "
+"senha é, geralmente, por convenção, o endereço de email do usuário, mas o "
+"servidor ignora isso."
 
 #. Tag: para
 #, no-c-format
 msgid "Many FTP servers are available in Debian (<emphasis role=\"pkg\">ftpd</emphasis>, <emphasis role=\"pkg\">proftpd-basic</emphasis>, <emphasis role=\"pkg\">pyftpd</emphasis> and so on). The Falcot Corp administrators picked <emphasis role=\"pkg\">vsftpd</emphasis> because they only use the FTP server to distribute a few files (including a Debian package repository); since they don't need advanced features, they chose to focus on the security aspects."
 msgstr ""
+"Estão disponíveis no Debian muitos servidores FTP (<emphasis role=\"pkg\""
+">ftpd</emphasis>, <emphasis role=\"pkg\">proftpd-basic</emphasis>, <emphasis "
+"role=\"pkg\">pyftpd</emphasis> e mais). Os administradores da Falcot Corp "
+"escolheram o <emphasis role=\"pkg\">vsftpd</emphasis> porque eles apenas "
+"usam o servidor FTP para distribuir alguns arquivos (incluindo um "
+"repositório de pacotes Debian); como eles não precisam de recursos "
+"avançados, eles escolheram focar nos aspectos de segurança."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2487,6 +2962,17 @@ msgstr "<primary><emphasis role=\"pkg\">vsftpd</emphasis></primary>"
 #, no-c-format
 msgid "Installing the package creates an <literal>ftp</literal> system user. This account is always used for anonymous FTP connections, and its home directory (<filename>/srv/ftp/</filename>) is the root of the tree made available to users connecting to this service. The default configuration (in <filename>/etc/vsftpd.conf</filename>) is very restrictive: it only allows read-only anonymous access (since the <literal>write_enable</literal> and <literal>anon_upload_enable</literal> options are disabled), and local users cannot connect with their usual username and password and access their own files (<literal>local_enable</literal> option). However, this default configuration is well-suited to the needs at Falcot Corp."
 msgstr ""
+"A instalação do pacote cria um usuário <literal>ftp</literal> no sistema. "
+"Essa conta é sempre usada para conexões de FTP anônimas, e seu principal "
+"diretório (home) (<filename>/srv/ftp/</filename>) é a raiz da árvore que "
+"está disponível ao usuários que se conectam a esse serviço. A configuração "
+"padrão (em <filename>/etc/vsftpd.conf</filename>) é muito restritiva: ela "
+"apenas permite acesso anônimo a leitura (já que as opções "
+"<literal>write_enable</literal> e <literal>anon_upload_enable</literal> "
+"estão desativadas), e usuários locais não podem fazer a conexão com seus "
+"nome de usuário e senha usuais e acessar seus próprios arquivos (opção "
+"<literal>local_enable</literal>). Contudo, essa configuração padrão serve "
+"bem aos propósitos da Falcot Corp."
 
 #. Tag: title
 #, no-c-format
@@ -2497,6 +2983,10 @@ msgstr "Servidor de Arquivos NFS"
 #, no-c-format
 msgid "NFS (<emphasis>Network File System</emphasis>) is a protocol allowing remote access to a filesystem through the network. All Unix systems can work with this protocol; when Windows systems are involved, Samba must be used instead."
 msgstr ""
+"O NFS (<emphasis>Network File System</emphasis>) é um protocolo que permite "
+"acesso remoto a um sistema de arquivos através da rede. Todos os sistemas "
+"Unix podem trabalhar com esse protocolo; mas quando sistemas Windows estão "
+"envolvidos, o Samba tem que ser usado."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2527,6 +3017,16 @@ msgstr "<primary>servidor</primary><secondary>arquivo</secondary>"
 #, no-c-format
 msgid "NFS is a very useful tool, but its shortcomings must be kept in mind especially where security matters are concerned: all data goes over the network in the clear (a <emphasis>sniffer</emphasis> can intercept it); the server enforces access restrictions based on the client's IP address (which can be spoofed); and finally, when a client machine is granted access to a misconfigured NFS share, the client's root user can access all the files on the share (even those belonging to other users) since the server trusts the username it receives from the client (this is a historical limitation of the protocol)."
 msgstr ""
+"O NFS é uma ferramenta muito útil, mas suas deficiências devem ser levadas "
+"em consideração, especialmente quando questões de segurança são importantes: "
+"todos os dados trafegam pela rede em texto puro (um "
+"<emphasis>sniffer</emphasis> pode interceptá-los); o servidor reforça as "
+"restrições de acesso baseando-se no endereço IP do cliente (o qual pode ser "
+"falsificado); e finalmente, quando uma máquina cliente ganha acesso ao "
+"compartilhamento NFS mal configurado, o usuário root do cliente pode acessar "
+"todos os arquivos do compartilhamento (mesmo aqueles pertencentes a outros "
+"usuários), já que o servidor confia no nome de usuário que recebe do cliente "
+"(essa é uma limitação histórica desse protocolo)."
 
 #. Tag: title
 #, no-c-format
@@ -2537,6 +3037,11 @@ msgstr "<emphasis>DOCUMENTAÇÃO</emphasis> NFS HOWTO"
 #, no-c-format
 msgid "Even though it is relatively old, the NFS HOWTO is full of interesting information, including methods for optimizing performance. It also describes a way to secure NFS transfers with an SSH tunnel; however, that technique precludes the use of <command>lockd</command>. <ulink type=\"block\" url=\"http://nfs.sourceforge.net/nfs-howto/\" />"
 msgstr ""
+"Mesmo que ele seja relativamente antigo, o NFS HOWTO é cheio de informações "
+"interessantes, incluindo métodos para optimizar a performance. ele também "
+"descreve uma maneira segura do NFS fazer transferências com um túnel SSH; "
+"contudo, essa técnica impede o uso do <command>lockd</command>. <ulink type="
+"\"block\" url=\"http://nfs.sourceforge.net/nfs-howto/\" />"
 
 #. Tag: title
 #, no-c-format
@@ -2552,6 +3057,12 @@ msgstr "<primary>NFS</primary><secondary>segurança</secondary>"
 #, no-c-format
 msgid "Since NFS trusts the information it receives from the network, it is vital to ensure that only the machines allowed to use it can connect to the various required RPC servers. The firewall must also block <emphasis>IP spoofing</emphasis> so as to prevent an outside machine from acting as an inside one, and access to the appropriate ports must be restricted to the machines meant to access the NFS shares."
 msgstr ""
+"Como o NFS confia nas informações que recebe da rede, é vital garantir que "
+"apenas máquinas que tem permissão de usá-lo possam se conectar nos vários "
+"servidores RPC requeridos. O firewall tem também que bloquear <emphasis>IP "
+"spoofing</emphasis> para prevenir que uma máquina de fora atue como uma de "
+"dentro, e acesso às portas apropriadas tem que ser restritos às máquinas "
+"destinadas a acessar os compartilhamentos NFS."
 
 #. Tag: title
 #, no-c-format
@@ -2562,6 +3073,8 @@ msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> RPC"
 #, no-c-format
 msgid "RPC (<emphasis>Remote Procedure Call</emphasis>) is a Unix standard for remote services. NFS is one such service."
 msgstr ""
+"RPC (<emphasis>Remote Procedure Call</emphasis>) é um padrão Unix para "
+"serviços remotos. O NFS é um desses serviços."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2577,11 +3090,24 @@ msgstr "<primary><emphasis>Remote Procedure Call</emphasis></primary>"
 #, no-c-format
 msgid "RPC services register to a directory known as the <emphasis>portmapper</emphasis>. A client wishing to perform an NFS query first addresses the <emphasis>portmapper</emphasis> (on port 111, either TCP or UDP), and asks for the NFS server; the reply usually mentions port 2049 (the default for NFS). Not all RPC services necessarily use a fixed port."
 msgstr ""
+"Os serviços RPC se registra em diretório conhecido como "
+"<emphasis>portmapper</emphasis>. Um cliente querendo realizar uma consulta "
+"NFS primeiro aborda o <emphasis>portmapper</emphasis> (na porta 111, seja "
+"TCP ou UDP), e pergunta pelo servidor NFS; a resposta gralmente vem pela "
+"porta 2049 (a padrão para o NFS). Nem todos os serviços RPC necessariamente "
+"usam uma porta fixa."
 
 #. Tag: para
 #, no-c-format
 msgid "Other RPC services may be required for NFS to work optimally, including <command>rpc.mountd</command>, <command>rpc.statd</command> and <command>lockd</command>. However, these services use a random port (assigned by the <emphasis>portmapper</emphasis>) by default, which makes it difficult to filter traffic targeting these services. The Falcot Corp administrators found a work-around for this problem, described below."
 msgstr ""
+"Outros serviços RPC podem ser necessários para o NFS funcionar de forma "
+"otimizada, incluíndo <command>rpc.mountd</command>, "
+"<command>rpc.statd</command> e <command>lockd</command>. Contudo, esses "
+"serviços usam uma porta aleatória (atribuída pelo "
+"<emphasis>portmapper</emphasis>) por padrão, o que torna difícil filtrar o "
+"tráfego que tem como alvo esses serviços. Os administradores da Falcot Corp "
+"encontraram uma solução para esse problema, descrita abaixo."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2607,6 +3133,12 @@ msgstr "<primary><command>portmapper</command></primary>"
 #, no-c-format
 msgid "The first two services mentioned above are implemented by user-space programs, started respectively by <filename>/etc/init.d/nfs-kernel-server</filename> and <filename>/etc/init.d/nfs-common</filename>. They provide configuration options to force ports; the relevant files to modify to always use these options are <filename>/etc/default/nfs-kernel-server</filename> and <filename>/etc/default/nfs-common</filename>."
 msgstr ""
+"Os dois primeiros serviços mencionados acima são implementados por programas "
+"espaço-usuário, começando respectivamente pelo <filename>/etc/init.d/nfs-"
+"kernel-server</filename> e <filename>/etc/init.d/nfs-common</filename>. Eles "
+"fornecem opções de configuração para forçar portas; os arquivos relevantes a "
+"serem modificados para sempre usar essas opções são <filename>/etc/default"
+"/nfs-kernel-server</filename> e <filename>/etc/default/nfs-common</filename>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2736,11 +3268,21 @@ msgstr ""
 #, no-c-format
 msgid "Once these changes are made and the services are restarted, <command>rpc.mountd</command> uses port 2048; <command>rpc.statd</command> listens on port 2046 and uses port 2047 for outgoing connections."
 msgstr ""
+"Uma vez que essas alterações sejam feitas e os serviços sejam reiniciados, o "
+"<command>rpc.mountd</command> usa a porta 2048; <command>rpc.statd</command> "
+"ouve na porta 2046 e usa a porta 2047 para conexões de saída (outgoing)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>lockd</command> service is handled by a kernel <emphasis>thread</emphasis> (lightweight process); this feature is built as a module on Debian kernels. The module has two options allowing to always choose the same port, <literal>nlm_udpport</literal> and <literal>nlm_tcpport</literal>. In order for these options to be systematically used, there needs to be a <filename>/etc/modprobe.d/lockd</filename> file such as the following:"
 msgstr ""
+"O serviço <command>lockd</command> é manipulado por uma "
+"<emphasis>thread</emphasis> do núcleo (processo leve); esse recurso é "
+"construído como módulo nos núcleos Debian. O módulo tem duas opções que "
+"permitem sempre escolher a mesma porta, <literal>nlm_udpport</literal> e "
+"<literal>nlm_tcpport</literal>. Para que essas opções sejam usadas "
+"sistematicamente, é preciso ter um arquivo "
+"<filename>/etc/modprobe.d/lockd</filename> com o seguinte:"
 
 #. Tag: title
 #, no-c-format
@@ -2760,6 +3302,9 @@ msgstr ""
 #, no-c-format
 msgid "Once these parameters are set, it becomes easier to control access to the NFS service from the firewall in a fine-grained way by filtering access to ports 111 and 2045 through 2049 (both UDP and TCP)."
 msgstr ""
+"Uma vez que esses parâmetros estejam configurados, se torna fácil controlar "
+"o acesso ao serviço NFS a partir do firewall de maneira refinada, filtrando "
+"o acesso as portas 111 e de 2045 até 2049 (tanto UDP quanto TCP)."
 
 #. Tag: title
 #, no-c-format
@@ -2770,11 +3315,22 @@ msgstr "Servidor NFS"
 #, no-c-format
 msgid "The NFS server is part of the Linux kernel; in kernels provided by Debian it is built as a kernel module. If the NFS server is to be run automatically on boot, the <emphasis role=\"pkg\">nfs-kernel-server</emphasis> package should be installed; it contains the relevant start-up scripts."
 msgstr ""
+"O servidor NFS é parte do núcleo Linux; nos núcleos fornecidos peloDebian "
+"ele é construído como um módulo do núcleo. Se o servidor NFS tem que ser "
+"rodado automaticamente na inicialização, o pacote <emphasis role=\"pkg\">nfs-"
+"kernel-server</emphasis> deve ser instalado; ele contém os scripts de "
+"inicialização relevantes."
 
 #. Tag: para
 #, no-c-format
 msgid "The NFS server configuration file, <filename>/etc/exports</filename>, lists the directories that are made available over the network (<emphasis>exported</emphasis>). For each NFS share, only the given list of machines is granted access. More fine-grained access control can be obtained with a few options. The syntax for this file is quite simple:"
 msgstr ""
+"O arquivo de configuração do servidor NFS, <filename>/etc/exports</filename>"
+", lista os diretórios que estão disponíveis através da rede "
+"(<emphasis>exported</emphasis>). Para cada compartilhamento NFS, apenas uma "
+"determinada lista de máquinas tem acesso permitido. Um controle mais "
+"refinado de acesso pode ser obtido com algumas opções. A sintaxe para esse "
+"arquivo é bem simples:"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2799,11 +3355,23 @@ msgstr ""
 #, no-c-format
 msgid "Each machine can be identified either by its DNS name or its IP address. Whole sets of machines can also be specified using either a syntax such as <literal>*.falcot.com</literal> or an IP address range such as <literal>192.168.0.0/255.255.255.0</literal> or <literal>192.168.0.0/24</literal>."
 msgstr ""
+"Cada máquina pode ser identificada tanto pelo seu nome DNS quanto seu "
+"endereço IP. Todo um conjunto de máquinas podem também ser especificado "
+"usando tanto uma sintaxe como <literal>*.falcot.com</literal> ou um "
+"intervalo de endereços IP como <literal>192.168.0.0/255.255.255.0</literal> "
+"ou <literal>192.168.0.0/24</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "Directories are made available as read-only by default (or with the <literal>ro</literal> option). The <literal>rw</literal> option allows read-write access. NFS clients typically connect from a port restricted to root (in other words, below 1024); this restriction can be lifted by the <literal>insecure</literal> option (the <literal>secure</literal> option is implicit, but it can be made explicit if needed for clarity)."
 msgstr ""
+"Os diretórios ficam disponíveis apenas para leitura por padrão (ou com a "
+"opção <literal>ro</literal>). A opção <literal>rw</literal> permite o acesso "
+"a leitura-escrita. Os clientes NFS tipicamente fazem a conexão a partir de "
+"uma porta restrita ao root (em outras palavras, abaixo da 1024); essa "
+"restrição pode ser elevada pela opção <literal>insecure</literal> (a opção "
+"<literal>secure</literal> é implícita, mas pode ser explícita para mais "
+"clareza)."
 
 #. Tag: indexterm
 #, no-c-format
