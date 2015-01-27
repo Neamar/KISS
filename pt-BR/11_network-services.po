@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-01-20 19:10+0200\n"
+"PO-Revision-Date: 2015-02-02 21:07+0200\n"
 "Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
@@ -3382,16 +3382,39 @@ msgstr "<primary>NFS</primary><secondary>opções</secondary>"
 #, no-c-format
 msgid "By default, the server only answers an NFS query when the current disk operation is complete (<literal>sync</literal> option); this can be disabled with the <literal>async</literal> option. Asynchronous writes increase performance a bit, but they decrease reliability since there's a data loss risk in case of the server crashing between the acknowledgment of the write and the actual write on disk. Since the default value changed recently (as compared to the historical value of NFS), an explicit setting is recommended."
 msgstr ""
+"Por padrão, o servidor apenas responde a uma consulta NFS quando a operação "
+"de disco corrente é concluída  (<literal>sync</literal> option); isso pode "
+"ser desabilitado com a opção <literal>async</literal>. A escrita assíncrona "
+"aumenta um pouco a performance, mas ela diminui a confiança já que existe o "
+"risco de perda de dados no caso de interrompimento do servidor entre o "
+"conhecimento da escrita e a real escrita no disco. Como o valor padrão foi "
+"alterado recentemente (ao comparado ao valor histórico do NFS), uma "
+"configuração explícita é recomendado."
 
 #. Tag: para
 #, no-c-format
 msgid "In order to not give root access to the filesystem to any NFS client, all queries appearing to come from a root user are considered by the server as coming from the <literal>nobody</literal> user. This behavior corresponds to the <literal>root_squash</literal> option, and is enabled by default. The <literal>no_root_squash</literal> option, which disables this behavior, is risky and should only be used in controlled environments. The <literal>anonuid=<replaceable>uid</replaceable></literal> and <literal>anongid=<replaceable>gid</replaceable></literal> options allow specifying another fake user to be used instead of UID/GID 65534 (which corresponds to user <literal>nobody</literal> and group <literal>nogroup</literal>)."
 msgstr ""
+"Para que não seja dado acesso ao root ao sistema de arquivos a nenhum "
+"cliente NFS, todas as consultas que parecem vir do usuário root são "
+"consideradas pelo servidor como vindo do usuário <literal>nobody</literal>. "
+"Esse comportamento corresponde a opção <literal>root_squash</literal>, e é "
+"habilitado por padrão. A opção <literal>no_root_squash</literal>, a qual "
+"desabilita esse comportamento, é arriscada e só deveria ser usada em "
+"ambientes controlados. As opções "
+"<literal>anonuid=<replaceable>uid</replaceable></literal> e "
+"<literal>anongid=<replaceable>gid</replaceable></literal> permitem "
+"especificar outro usuário falso a ser usado ao invés de UID/GID 65534 (o que "
+"corresponde ao usuário <literal>nobody</literal> e ao grupo "
+"<literal>nogroup</literal>)."
 
 #. Tag: para
 #, no-c-format
 msgid "Other options are available; they are documented in the <citerefentry><refentrytitle>exports</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page."
 msgstr ""
+"Outras opções estão disponíveis; elas estão documentadas na página de manual "
+"<citerefentry><refentrytitle>exports</refentrytitle> "
+"<manvolnum>5</manvolnum></citerefentry>."
 
 #. Tag: title
 #, no-c-format
@@ -3402,6 +3425,11 @@ msgstr "<emphasis>ATENÇÃO</emphasis> Primeira instalação"
 #, no-c-format
 msgid "The <filename>/etc/init.d/nfs-kernel-server</filename> boot script only starts the server if the <filename>/etc/exports</filename> lists one or more valid NFS shares. On initial configuration, once this file has been edited to contain valid entries, the NFS server must therefore be started with the following command:"
 msgstr ""
+"O script de inicialização <filename>/etc/init.d/nfs-kernel-server</filename> "
+"apenas inicia o servidor se o <filename>/etc/exports</filename> lista um ou "
+"mais compartilhamentos NFS válidos. Na configuração inicial, uma vez que "
+"esse arquivo tenha sido editado para conter entradas válidas, o servidor NFS "
+"tem que por seguinte ser iniciado com os seguintes comandos:"
 
 #. Tag: screen
 #, no-c-format
@@ -3431,6 +3459,11 @@ msgstr "<primary>NFS</primary><secondary>cliente</secondary>"
 #, no-c-format
 msgid "As with other filesystems, integrating an NFS share into the system hierarchy requires mounting. Since this filesystem has its peculiarities, a few adjustments were required in the syntaxes of the <command>mount</command> command and the <filename>/etc/fstab</filename> file."
 msgstr ""
+"Como acontece com outros sistemas de arquivos, a integração do "
+"compartilhamento NFS na hierarquia do sistema requer montagem. Já que esse "
+"sistema de arquivos tem suas peculiaridades, alguns ajustes foram "
+"necessários na sintaxe do comando  <command>mount</command> e do arquivo "
+"<filename>/etc/fstab</filename>."
 
 #. Tag: title
 #, no-c-format
@@ -3471,11 +3504,23 @@ msgstr ""
 #, no-c-format
 msgid "The entry described above mounts, at system startup, the <filename>/srv/shared/</filename> NFS directory from the <literal>arrakis</literal> server into the local <filename>/shared/</filename> directory. Read-write access is requested (hence the <literal>rw</literal> parameter). The <literal>nosuid</literal> option is a protection measure that wipes any <literal>setuid</literal> or <literal>setgid</literal> bit from programs stored on the share. If the NFS share is only meant to store documents, another recommended option is <literal>noexec</literal>, which prevents executing programs stored on the share."
 msgstr ""
+"A entrada descrita acima monta, ao levantar o sistema, o diretório NFS "
+"<filename>/srv/shared/</filename> no servidor <literal>arrakis</literal> "
+"dentro do diretório local <filename>/shared/</filename>. O acesso de leitura-"
+"escrita é requisitado (visto o parâmetro <literal>rw</literal>). A opção "
+"<literal>nosuid</literal> é uma medida de proteção que apaga qualquer bit "
+"<literal>setuid</literal> ou <literal>setgid</literal> de programas "
+"armazenados no compartilhamento. Se o compartilhamento NFS é apenas para "
+"armazenar documentos, outra opção recomendada é a <literal>noexec</literal>, "
+"a qual previne a execução de programas armazenados no compartilhamento."
 
 #. Tag: para
 #, no-c-format
 msgid "The <citerefentry><refentrytitle>nfs</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page describes all the options in some detail."
 msgstr ""
+"A página de manual <citerefentry><refentrytitle>nfs</refentrytitle> "
+"<manvolnum>5</manvolnum></citerefentry> descreve todas as opções com alguns "
+"detalhes."
 
 #. Tag: title
 #, no-c-format
@@ -3486,6 +3531,9 @@ msgstr "Configurando um Compartilhamento Windows com o Samba"
 #, no-c-format
 msgid "Samba is a suite of tools handling the SMB protocol (also known as “CIFS”) on Linux. This protocol is used by Windows for network shares and shared printers."
 msgstr ""
+"O Samba é um conjunto de ferramentas para lidar com o protocolo SMB (também "
+"conhecido como “CIFS”) no Linux. Esse protocolo é usado pelo Windows para "
+"compartilhamento de rede e impressoras compartilhadas."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3511,6 +3559,9 @@ msgstr "<primary>CIFS</primary>"
 #, no-c-format
 msgid "Samba can also act as an Windows domain controller. This is an outstanding tool for ensuring seamless integration of Linux servers and the office desktop machines still running Windows."
 msgstr ""
+"Samba também pode atuar como um controlador de domínio Windows. Esta é uma "
+"excelente ferramenta para garantir a perfeita integração de servidores Linux "
+"e as máquinas desktop de escritório ainda com o Windows."
 
 #. Tag: title
 #, no-c-format
@@ -3521,6 +3572,8 @@ msgstr "Servidor Samba"
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">samba</emphasis> package contains the main two servers of Samba 3, <command>smbd</command> and <command>nmbd</command>."
 msgstr ""
+"O pacote <emphasis role=\"pkg\">samba</emphasis> contém os dois principais "
+"servidores do Samba 3, <command>smbd</command> e <command>nmbd</command>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3541,6 +3594,11 @@ msgstr "<emphasis>FERRAMENTA</emphasis> Administrando o Samba com SWAT"
 #, no-c-format
 msgid "SWAT (<emphasis>Samba Web Administration Tool</emphasis>) is a web interface that allows configuring the Samba service. Since the <emphasis role=\"pkg\">swat</emphasis> package does not enable its configuration interface by default, it must be enabled manually with <command>update-inetd --enable swat</command>."
 msgstr ""
+"SWAT (<emphasis>Samba Web Administration Tool</emphasis>) é uma interface "
+"web que permite a configuração do serviço Samba. Como o pacote <emphasis "
+"role=\"pkg\">swat</emphasis> não habilita sua interface de configuração por "
+"padrão, ela deve ser habilitada manualmente com <command>update-inetd --"
+"enable swat</command>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3551,16 +3609,30 @@ msgstr "<primary>SWAT</primary>"
 #, no-c-format
 msgid "<emphasis>SWAT</emphasis> then becomes available at the <literal>http://localhost:901</literal> URL. Accessing it means using the root account (and its usual password). Note that SWAT rewrites the <filename>smb.conf</filename> in its own idiom, so it makes sense to make a backup copy beforehand if you're only interested in testing this tool."
 msgstr ""
+"<emphasis>SWAT</emphasis> então se torna disponível na URL "
+"<literal>http://localhost:901</literal>. Acessá-lo significa usar a conta "
+"root (e sua usual senha). Note que SWAT reescreve o "
+"<filename>smb.conf</filename> em seu próprio idioma, então faz sentido em "
+"fazer uma cópia de segurança antes de usá-lo, caso você esteja apenas "
+"interessado em testar a ferramenta."
 
 #. Tag: para
 #, no-c-format
 msgid "SWAT is very user-friendly; its interface includes an assistant that allows defining the server's role in three questions. All global options can still be configured, as well as those for all the existing shares, and of course new shares can be added. Each option comes with a link to the relevant documentation."
 msgstr ""
+"SWAT é muito amigável; sua interface inclui um assistente que permite "
+"definir todo o servidor em três questões. Todas as opções globais podem "
+"ainda serem configuradas, assim como aquelas para todos os compartilhamentos "
+"existentes, e claro, novos compartilhamentos podem ser adicionados. Cada "
+"opção vem com um link para a documentação relevante."
 
 #. Tag: para
 #, no-c-format
 msgid "Unfortunately SWAT is no longer actively maintained and will be dropped from the next version of Debian, known as <emphasis role=\"distribution\">Jessie</emphasis>."
 msgstr ""
+"Infelizmente o SWAT não é mais mantido ativamente e será retirado da próxima "
+"versão do Debian, conhecida como <emphasis role=\"distribution\""
+">Jessie</emphasis>."
 
 #. Tag: title
 #, no-c-format
@@ -3571,6 +3643,12 @@ msgstr "<emphasis>DOCUMENTAÇÃO</emphasis> Aprofundando"
 #, no-c-format
 msgid "The Samba server is extremely configurable and versatile, and can address a great many different use cases matching very different requirements and network architectures. This book only focuses on the use case where Samba is used as main domain controller, but it can also be a simple server on the domain and delegate authentication to the main controller (which could be a Windows server)."
 msgstr ""
+"O servidor Samba é extremamente configurável e versátil, e pode se adaptar a "
+"um grande número de casos de uso diferentes se encaixando em muitos "
+"requerimentos e arquiteturas de rede diferentes. Esse livro apenas foca no "
+"caso de uso aonde o Samba é usado como controlador de domínio principal, mas "
+"ele também pode ser um servidor simples do domínio e delegar autenticação "
+"para o controlador principal (o qual poderia ser um servidor Windows)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3587,6 +3665,12 @@ msgstr "<primary>Domínio Windows</primary>"
 #, no-c-format
 msgid "The documentation available in the <emphasis role=\"pkg\">samba-doc</emphasis> package is very well written. In particular, the <citetitle><foreignphrase>Samba 3 By Example</foreignphrase></citetitle> document (available as <filename>/usr/share/doc/samba-doc/htmldocs/Samba3-ByExample/index.html</filename>) deals with a concrete use case that evolves alongside the growing company."
 msgstr ""
+"A documentação disponível no pacote <emphasis role=\"pkg\">samba-"
+"doc</emphasis> é muito bem escrita. Em particular, o documento "
+"<citetitle><foreignphrase>Samba 3 By Example</foreignphrase></citetitle>  ("
+"disponível como <filename>/usr/share/doc/samba-"
+"doc/htmldocs/Samba3-ByExample/index.html</filename>) lida com um caso "
+"concreto que evolui junto com o crescimento da empresa."
 
 #. Tag: title
 #, no-c-format
@@ -3597,6 +3681,10 @@ msgstr "<emphasis>FERRAMENTA</emphasis> Autenticando com um Servidor Windows"
 #, no-c-format
 msgid "Winbind gives system administrators the option of using a Windows server as an authentication server. Winbind also integrates cleanly with PAM and NSS. This allows setting up Linux machines where all users of a Windows domain automatically get an account."
 msgstr ""
+"Winbind dá aos administradores de sistema a opção de usar um servidor "
+"Windows como um servidor de autenticação. Winbind também se integra de forma "
+"limpa com PAM e NSS. Isso permite configurar máquinas Linux aonde todos os "
+"usuários de um domínio Windows automaticamente tenham uma conta."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3607,6 +3695,8 @@ msgstr "<primary>Winbind</primary>"
 #, no-c-format
 msgid "More information can be found in the <filename>/usr/share/doc/samba-doc/htmldocs/Samba3-HOWTO/winbind.html</filename> file."
 msgstr ""
+"Mais informações podem ser obtidas no arquivo <filename>/usr/share/doc/samba-"
+"doc/htmldocs/Samba3-HOWTO/winbind.html</filename>."
 
 #. Tag: title
 #, no-c-format
@@ -3617,16 +3707,32 @@ msgstr "Configurando com <command>debconf</command>"
 #, no-c-format
 msgid "The package sets up a minimal configuration based on the answers to a few Debconf questions asked during the initial installation; this configuration step can be replayed later with <command>dpkg-reconfigure samba-common samba</command>."
 msgstr ""
+"O pacote realiza uma configuração mínima baseado nas respostas de poucas "
+"perguntas do Debconf, feitas durante a instalação inicial; essa etapa da "
+"configuração pode ser refeita mais tarde com <command>dpkg-reconfigure samba-"
+"common samba</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "The first piece of required information is the name of the workgroup where the Samba server will belong (the answer is <literal>FALCOTNET</literal> in our case). Another question asks whether passwords should be encrypted. The answer is that they should, because it's a requirement for the most recent Windows clients; besides, this increases security. The counterpart is that this required managing Samba passwords separately from the Unix passwords."
 msgstr ""
+"O primeiro pedaço de informação necessária é o nome do grupo de trabalho ao "
+"qual o servidor Samba irá pertencer (a resposta é "
+"<literal>FALCOTNET</literal> no nosso caso). Outra questão pergunta se as "
+"senhas devem ser criptografadas. A resposta é que elas devem ser, porque "
+"isso é um requerimento para os cliente Windows mais recentes; além do mais, "
+"isso aumenta a segurança. A contraparte é que isso requer que o "
+"gerenciamento de senhas do Samba sejam feitos separadamente das senhas do "
+"Unix."
 
 #. Tag: para
 #, no-c-format
 msgid "The package also proposes identifying the WINS server from the information provided by the DHCP daemon. The Falcot Corp administrators rejected this option, since they intend to use the Samba server itself as the WINS server."
 msgstr ""
+"O pacote também propõe a identificação do servidor WINS a partir da "
+"informação fornecida pelo daemon DHCP. Os administradores da Falcot Corp "
+"rejeitaram essa opção, já que eles tem a intenção de usar o próprio servidor "
+"Samba como um servidor WINS."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3637,6 +3743,10 @@ msgstr "<primary>WINS</primary>"
 #, no-c-format
 msgid "The last question is about whether servers should be started by <command>inetd</command> or as stand-alone daemons. Using <command>inetd</command> is only interesting when Samba is rarely used; the Falcot administrators therefore picked stand-alone daemons."
 msgstr ""
+"A última questão é sobre quando os servidores devem ser iniciados pelo "
+"<command>inetd</command> ou como stand-alone daemons. Usar "
+"<command>inetd</command> só é interessante quando Samba é usado raramente; "
+"os administradores da Falcot então escolheram stand-alone daemons."
 
 #. Tag: title
 #, no-c-format
@@ -3652,6 +3762,10 @@ msgstr "Mudanças no <filename>smb.conf</filename>"
 #, no-c-format
 msgid "The requirements at Falcot require other options to be modified in the <filename>/etc/samba/smb.conf</filename> configuration file. The following excerpts summarize the changes that were effected in the <literal>[global]</literal> section."
 msgstr ""
+"Os requerimentos na Falcot fazem necessário que outras opção sejam "
+"modificadas no arquivo de configuração "
+"<filename>/etc/samba/smb.conf</filename>. O trecho a seguir resumem as "
+"alterações que foram feitas na seção <literal>[global]</literal>."
 
 #. Tag: programlisting
 #, no-c-format
@@ -3765,21 +3879,29 @@ msgstr ""
 #, no-c-format
 msgid "Indicates that Samba should act as a Netbios name server (WINS) for the local network."
 msgstr ""
+"Indica que o Samba deveria atuar como um servidor de nomes Netbios (WINS) "
+"para a rede local."
 
 #. Tag: para
 #, no-c-format
 msgid "This is the default value for this parameter; however, since it is central to the Samba configuration, filling it explicitly is recommended. Each user must authenticate before accessing any share."
 msgstr ""
+"Esse é o valor padrão para esse parâmetro; contudo, como ele é central para "
+"a configuração do Samba, o recomendado é preenchê-lo explicitamente. cada "
+"usuário tem que se autenticar antes de acessar qualquer compartilhamento."
 
 #. Tag: para
 #, no-c-format
 msgid "Tells Samba to automatically share all local printers that exist in the CUPS configuration. Restricting access to these printers is still possible, by adding appropriate sections."
 msgstr ""
+"Diz ao Samba para compartilhar automaticamente todas as impressoras locais "
+"que existem na configuração do CUPS. Restringir o acesso a essas impressoras "
+"também é possível, adicionando as seções apropriadas."
 
 #. Tag: para
 #, no-c-format
 msgid "Specifies the printing system in use; in our case, CUPS."
-msgstr ""
+msgstr "Especifica o sistema de impressão em uso; no nosso caso, CUPS."
 
 #. Tag: title
 #, no-c-format
@@ -3790,16 +3912,29 @@ msgstr "Adicionando Usuários"
 #, no-c-format
 msgid "Each Samba user needs an account on the server; the Unix accounts must be created first, then the user needs to be registered in Samba's database. The Unix step is done quite normally (using <command>adduser</command> for instance)."
 msgstr ""
+"Cada usuário do Samba precisa ter uma conta no servidor; as contas Unix tem "
+"que ser criadas primeiro, depois o usuário precisa ser registrado no banco "
+"de dados do Samba. O passo no Unix é feito bem facilmente (usando o "
+"<command>adduser</command> por exemplo)."
 
 #. Tag: para
 #, no-c-format
 msgid "Adding an existing user to the Samba database is a matter of running the <command>smbpasswd -a <replaceable>user</replaceable></command> command; this command asks for the password interactively."
 msgstr ""
+"Adicionar um usuário existente ao banco de dados do Samba é uma questão de "
+"rodar o comando <command>smbpasswd -a "
+"<replaceable>usuário</replaceable></command>; esse comando pergunta pela "
+"senha interativamente."
 
 #. Tag: para
 #, no-c-format
 msgid "A user can be deleted with the <command>smbpasswd -x <replaceable>user</replaceable></command> command. A Samba account can also be temporarily disabled (with <command>smbpasswd -d <replaceable>user</replaceable></command>) and re-enabled later (with <command>smbpasswd -e <replaceable>user</replaceable></command>)."
 msgstr ""
+"Um usuário pode ser apagado com o comando <command>smbpasswd -x "
+"<replaceable>usuário</replaceable></command>. Uma conta Samba também pode "
+"ser temporariamente desabilitada (com <command>smbpasswd -d "
+"<replaceable>usuário</replaceable></command>) e reabilitada mais tarde (com "
+"<command>smbpasswd -e <replaceable>usuário</replaceable></command>)."
 
 #. Tag: title
 #, no-c-format
@@ -3810,6 +3945,10 @@ msgstr "Trocando a um controlador de domínio"
 #, no-c-format
 msgid "This section documents how the Falcot administrators went even further, by turning the Samba server into a domain controller providing roaming profiles (which allow users to find their desktop no matter what machine they connect to)."
 msgstr ""
+"Essa seção documenta como os administradores da Falcot foram ainda mais "
+"além, tornando o servidor Samba em um controlador de domínio fornecendo "
+"perfis móveis (o que permite aos usuários encontrar seus desktop não "
+"importando qual máquinas eles se conectam)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3825,6 +3964,8 @@ msgstr "<primary>móveis, perfis</primary>"
 #, no-c-format
 msgid "They first added a few extra directives in the <literal>[global]</literal> section of the configuration file:"
 msgstr ""
+"Eles primeiro adicionaram algumas diretivas extras na seção "
+"<literal>[global]</literal> do arquivo de configuração:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -3850,16 +3991,28 @@ msgstr "Ativando a funcionalidade de controle de domínio."
 #, no-c-format
 msgid "Specifies the location of the users' home directories. These are stored on a dedicated share, which allows enabling specific options (in particular, <literal>profile acls</literal>, a requirement for compatibility with Windows 2000, XP and Vista)."
 msgstr ""
+"Especifica a localização dos diretórios \"home\" dos usuários. Estes são "
+"armazenados em um compartilhamento dedicado, o qual permite habilitar opções "
+"específicas (em particular, <literal>profile acls</literal>, um requerimento "
+"para compatibilidade com Windows 2000, XP e Vista)."
 
 #. Tag: para
 #, no-c-format
 msgid "Specifies the <emphasis>batch</emphasis> (non-interactive) script that is to be run on the client Windows machine every time a session is opened. In this case, <filename>/var/lib/samba/netlogon/scripts/logon.bat</filename>. The script needs to be in DOS format, where the lines are separated by a carriage-return character and a line-feed character; if the file was created on Linux, running <command>unix2dos</command> will convert it."
 msgstr ""
+"Especifica o script <emphasis>batch</emphasis> (não-interativo) que é rodado "
+"em uma máquina Windows cliente toda vez que uma sessão é aberta. Neste caso, "
+"<filename>/var/lib/samba/netlogon/scripts/logon.bat</filename>. O script "
+"precisa estar no formato DOS, aonde as linhas são separadas pelo caractere \""
+"carriage-return\" e o caractere \"line-feed\"; se o arquivo foi criado no "
+"Linux, executar <command>unix2dos</command> irá convertê-lo."
 
 #. Tag: para
 #, no-c-format
 msgid "The commands used most widely in these scripts allow the automatic creation of network drives and synchronizing the system time."
 msgstr ""
+"Os comandos usados com mais frequência nesses scripts permitem a criação "
+"automática dos drives de rede e sincronização do horário do sistema."
 
 #. Tag: title
 #, no-c-format
@@ -3919,6 +4072,9 @@ msgstr ""
 #, no-c-format
 msgid "The home directories for all users must also be created (as <filename>/var/lib/samba/profiles/<replaceable>user</replaceable></filename>), and each of them must be owned by the matching user."
 msgstr ""
+"Os diretórios \"home\" para todos os usuários devem também ser criados (como "
+"<filename>/var/lib/samba/profiles/<replaceable>usuário</replaceable></filenam"
+"e>), e cada um deles tem que pertencer ao usuário correspondente."
 
 #. Tag: title
 #, no-c-format
@@ -4025,6 +4181,8 @@ msgstr ""
 #, no-c-format
 msgid "A mount of a Windows share can also be configured in <filename>/etc/fstab</filename>:"
 msgstr ""
+"A montagem de um compartilhamento Windows também pode ser configurada em "
+"<filename>/etc/fstab</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -4056,6 +4214,10 @@ msgstr "Imprimindo com uma Impressora Compartilhada"
 #, no-c-format
 msgid "CUPS is an elegant solution for printing from a Linux workstation to a printer shared by a Windows machine. When the <emphasis role=\"pkg\">smbclient</emphasis> is installed, CUPS allows installing Windows shared printers automatically."
 msgstr ""
+"CUPS é uma solução elegante para impressão a partir de uma estação de "
+"trabalho Linux em uma impressora compartilhada por uma máquina Windows. "
+"Quando o <emphasis role=\"pkg\">smbclient</emphasis> está instalado, o CUPS "
+"permite a instalação de impressoras Windows compartilhadas automaticamente."
 
 #. Tag: indexterm
 #, no-c-format
@@ -4108,11 +4270,17 @@ msgstr ""
 #, no-c-format
 msgid "Enter the name that will uniquely identify this printer. Then enter the description and location of the printer. Those are the strings that will be shown to end users to help them identify the printers."
 msgstr ""
+"Digite o nome que irá identificar de maneira única essa impressora. Em "
+"seguida digite a descrição e localização da impressora. Essas são as cadeias "
+"de caracteres que irão ser mostradas aos usuários finais para ajudá-los a "
+"identificar as impressoras."
 
 #. Tag: para
 #, no-c-format
 msgid "Indicate the manufacturer/model of the printer, or directly provide a working printer description file (PPD)."
 msgstr ""
+"Indicar o fabricante/modelo da impressora, ou forneça diretamente um arquivo "
+"de descrição da impressora de trabalho (PPD)."
 
 #. Tag: para
 #, no-c-format
@@ -4128,11 +4296,15 @@ msgstr "Proxy HTTP/FTP"
 #, no-c-format
 msgid "An HTTP/FTP proxy acts as an intermediary for HTTP and/or FTP connections. Its role is twofold:"
 msgstr ""
+"Um proxy HTTP/FTP atua como um intermediário para conexões HTTP e/ou FTP. "
+"Seu papel é duplo:"
 
 #. Tag: para
 #, no-c-format
 msgid "Caching: recently downloaded documents are copied locally, which avoids multiple downloads."
 msgstr ""
+"Caching: documentos recentemente baixados são copiados localmente, o que "
+"evita baixá-los mais de uma vez."
 
 #. Tag: para
 #, no-c-format
@@ -4168,6 +4340,11 @@ msgstr "Instalando"
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">squid</emphasis> Debian package only contains the modular (caching) proxy. Turning it into a filtering server requires installing the additional <emphasis role=\"pkg\">squidguard</emphasis> package. In addition, <emphasis role=\"pkg\">squid-cgi</emphasis> provides a querying and administration interface for a Squid proxy."
 msgstr ""
+"O pacote Debian <emphasis role=\"pkg\">squid</emphasis> apenas contém o "
+"proxy modular (caching). Fazer dele um servidor de filtragem requer a "
+"instalação do pacote adicional <emphasis role=\"pkg\">squidguard</emphasis>. "
+"Em adição, o <emphasis role=\"pkg\">squid-cgi</emphasis> provê uma interface "
+"de consulta e administração para o proxy Squid."
 
 #. Tag: para
 #, no-c-format
