@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-02-05 20:56+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2015-02-08 16:49+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -1592,7 +1592,7 @@ msgstr ""
 "sua pontuação de “spam” ultrapassar um determinado limiar."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Once the <emphasis role=\"pkg\">clamav-milter</emphasis> package is installed, the milter should be reconfigured to run on a TCP port rather than on the default named socket. This can be achieved with <command>dpkg-reconfigure clamav-milter</command>. When prompted for the “Communication interface with Sendmail”, answer “<literal>inet:10002@127.0.0.1</literal>”."
 msgstr ""
 "Uma vez que o pacote <emphasis role=\"pkg\">clamav-milter</emphasis> esteja "
@@ -4085,6 +4085,10 @@ msgstr "Cliente Samba"
 #, no-c-format
 msgid "The client features in Samba allow a Linux machine to access Windows shares and shared printers. The required programs are available in the <emphasis role=\"pkg\">cifs-utils</emphasis> and <emphasis role=\"pkg\">smbclient</emphasis> packages."
 msgstr ""
+"Os recursos do cliente no Samba permitem que uma máquina Linux acesse "
+"compartilhamentos Windows e impressoras compartilhadas. Os programas "
+"necessários estão disponíveis nos pacotes <emphasis role=\"pkg\">cifs-"
+"utils</emphasis> e <emphasis role=\"pkg\">smbclient</emphasis>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -4106,6 +4110,14 @@ msgstr "O Programa <command>smbclient</command>"
 #, no-c-format
 msgid "The <command>smbclient</command> program queries SMB servers. It accepts a <literal>-U <replaceable>user</replaceable></literal> option, for connecting to the server under a specific identity. <command>smbclient //<replaceable>server</replaceable>/<replaceable>share</replaceable></command> accesses the share in an interactive way similar to the command-line FTP client. <command>smbclient -L <replaceable>server</replaceable></command> lists all available (and visible) shares on a server."
 msgstr ""
+"O programa <command>smbclient</command> consulta servidores SMB. Ele aceita "
+"a opção <literal>-U <replaceable>usuário</replaceable></literal>, para "
+"conectar em um servidor sob uma identidade específica. <command>smbclient //<"
+"replaceable>servidor</replaceable>/<replaceable>compartilhamento</replaceable"
+"></command> acessa o compartilhamento de maneira interativa, similar a linha "
+"de comando de um cliente FTP. <command>smbclient -L "
+"<replaceable>servidor</replaceable></command> lista todos os "
+"compartilhamentos disponíveis (e visíveis) em um servidor."
 
 #. Tag: title
 #, no-c-format
@@ -4176,6 +4188,13 @@ msgstr ""
 #, no-c-format
 msgid "Other options can be specified on the command-line; their full list is available in the <citerefentry><refentrytitle>mount.cifs</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page. Two options in particular can be interesting: <literal>uid</literal> and <literal>gid</literal> allow forcing the owner and group of files available on the mount, so as not to restrict access to root."
 msgstr ""
+"Outras opções podem ser especificadas pela linha de comando; sua lista "
+"completa está disponível na página de manual "
+"<citerefentry><refentrytitle>mount.cifs</refentrytitle> "
+"<manvolnum>1</manvolnum></citerefentry>. Duas opções em particular podem ser "
+"interessantes: <literal>uid</literal> e <literal>gid</literal> permitem "
+"forçar o dono e grupo dos arquivos disponíveis na montagem, de modo a não "
+"restringir o acesso para o root."
 
 #. Tag: para
 #, no-c-format
@@ -4360,6 +4379,11 @@ msgstr "Configurando um Cache"
 #, no-c-format
 msgid "Enabling the caching server feature is a simple matter of editing the <filename>/etc/squid/squid.conf</filename> configuration file and allowing machines from the local network to run queries through the proxy. The following example shows the modifications made by the Falcot Corp administrators:"
 msgstr ""
+"Habilitar o recurso de cache no servidor é uma simples questão de editar o "
+"arquivo  de configuração <filename>/etc/squid/squid.conf</filename> e "
+"permitir que máquinas da rede local executem consultas através do proxy. Os "
+"exemplos a seguir mostram as modificações feitas pelos administradores da "
+"Falcot Corp:"
 
 #. Tag: title
 #, no-c-format
@@ -4402,6 +4426,10 @@ msgstr "Configurando um Filtro"
 #, no-c-format
 msgid "<command>squid</command> itself does not perform the filtering; this action is delegated to <command>squidGuard</command>. The former must then be configured to interact with the latter. This involves adding the following directive to the <filename>/etc/squid/squid.conf</filename> file:"
 msgstr ""
+"<command>squid</command> sozinho não faz a filtragem; essa ação é delegada "
+"ao <command>squidGuard</command>. O primeiro tem então que ser configurado "
+"para interagir com o último. Isso envolve a adição da seguinte diretiva ao "
+"arquivo <filename>/etc/squid/squid.conf</filename>:"
 
 #. Tag: indexterm
 #, no-c-format
