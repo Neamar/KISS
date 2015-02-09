@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-02-11 01:59+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2015-02-17 18:35+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -4628,11 +4628,18 @@ msgstr ""
 #, no-c-format
 msgid "Move old database? This question is only asked when the configuration is attempted while a database already exists. Only answer “yes” if you actually want to start again from a clean database, for instance if you run <command>dpkg-reconfigure slapd</command> right after the initial installation."
 msgstr ""
+"Mover banco de dados antigo? Essa pergunta só é feita enquanto a "
+"configuração é feita e já existe um banco de dados. Só responda “sim” se "
+"você realmente querer iniciar a partir de um banco de dados limpo, por "
+"exemplo, se você rodar <command>dpkg-reconfigure slapd</command> logo após a "
+"instalação inicial."
 
 #. Tag: para
 #, no-c-format
 msgid "Allow LDAPv2 protocol? No, there's no point in that. All the tools we're going to use understand the LDAPv3 protocol."
 msgstr ""
+"Permitir protocolo LDAPv2? Não, isso não faz sentido. Todas as ferramentas "
+"que nós vamos usar entendem o protocolo LDAPv3."
 
 #. Tag: title
 #, no-c-format
@@ -4742,11 +4749,19 @@ msgstr "Preenchendo o Diretório"
 #, no-c-format
 msgid "Since an empty database is not particularly useful, we're going to inject into it all the existing directories; this includes the users, groups, services and hosts databases."
 msgstr ""
+"Como um banco de dados vazio não é particularmente útil, nós vamos injetar "
+"nele todos os diretórios existentes; isso inclui os usuários, grupos, "
+"serviços e bancos de dados hospedados."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">migrationtools</emphasis> package provides a set of scripts dedicated to extract data from the standard Unix directories (<filename>/etc/passwd</filename>, <filename>/etc/group</filename>, <filename>/etc/services</filename>, <filename>/etc/hosts</filename> and so on), convert this data, and inject it into the LDAP database."
 msgstr ""
+"O pacote <emphasis role=\"pkg\">migrationtools</emphasis> provê um conjunto "
+"de scripts dedicados a extrair dados a partir dos diretórios padrões do "
+"Unix  (<filename>/etc/passwd</filename>, <filename>/etc/group</filename>, "
+"<filename>/etc/services</filename>, <filename>/etc/hosts</filename> e mais), "
+"converter seus dados, e injetá-los em um banco de dados LDAP."
 
 #. Tag: indexterm
 #, no-c-format
@@ -4757,11 +4772,20 @@ msgstr "<primary><emphasis role=\"pkg\">migrationtools</emphasis></primary>"
 #, no-c-format
 msgid "Once the package is installed, the <filename>/etc/migrationtools/migrate_common.ph</filename> must be edited; the <varname>IGNORE_UID_BELOW</varname> and <varname>IGNORE_GID_BELOW</varname> options need to be enabled (uncommenting them is enough), and <varname>DEFAULT_MAIL_DOMAIN</varname>/<varname>DEFAULT_BASE</varname> need to be updated."
 msgstr ""
+"Uma vez que o pacote esteja instalado, o "
+"<filename>/etc/migrationtools/migrate_common.ph</filename> tem que ser "
+"editado; as opções <varname>IGNORE_UID_BELOW</varname> e "
+"<varname>IGNORE_GID_BELOW</varname> precisam ser habilitadas (descomentá-las "
+"é suficiente), e "
+"<varname>DEFAULT_MAIL_DOMAIN</varname>/<varname>DEFAULT_BASE</varname> "
+"precisa ser atualizada."
 
 #. Tag: para
 #, no-c-format
 msgid "The actual migration operation is handled by the <command>migrate_all_online.sh</command> command, as follows:"
 msgstr ""
+"A real operação de migração é feita pelo comando "
+"<command>migrate_all_online.sh</command>, como  a seguir:"
 
 #. Tag: screen
 #, no-c-format
@@ -4778,11 +4802,17 @@ msgstr ""
 #, no-c-format
 msgid "The <command>migrate_all_online.sh</command> asks a few questions about the LDAP database into which the data is to be migrated. <xref linkend=\"tab-migrate-all\" xrefstyle=\"select: label nopage\" /> summarizes the answers given in the Falcot use-case."
 msgstr ""
+"<command>migrate_all_online.sh</command> faz algumas perguntas sobre o banco "
+"de dados LDAP para o qual os dados serão migrados. <xref linkend=\"tab-"
+"migrate-all\" xrefstyle=\"select: label nopage\" /> sumariza as respostas "
+"dadas no caso da Falcot."
 
 #. Tag: title
 #, no-c-format
 msgid "Answers to questions asked by the <command>migrate_all_online.sh</command> script"
 msgstr ""
+"Responda as perguntas feitas pelo script "
+"<command>migrate_all_online.sh</command>"
 
 #. Tag: entry
 #, no-c-format
@@ -4848,6 +4878,12 @@ msgstr "não"
 #, no-c-format
 msgid "We deliberately ignore migration of the <filename>/etc/aliases</filename> file, since the standard schema as provided by Debian does not include the structures that this script uses to describe email aliases. Should we want to integrate this data into the directory, the <filename>/etc/ldap/schema/misc.schema</filename> file should be added to the standard schema."
 msgstr ""
+"Nós ignoramos a migração do arquivo <filename>/etc/aliases</filename> "
+"dliberadamente, já que o schema padrão, como o fornecido pelo Debian não "
+"inclui as estruturas que esse script usa para descrever \"email aliases\". "
+"Se quisermos integrar esse dado em um diretório, o arquivo "
+"<filename>/etc/ldap/schema/misc.schema</filename> deve ser adicionado ao "
+"schema padrão."
 
 #. Tag: title
 #, no-c-format
@@ -4858,6 +4894,10 @@ msgstr "<emphasis>FERRAMENTA</emphasis> Navegando em diretório LDAP"
 #, no-c-format
 msgid "The <command>jxplorer</command> command (in the package of the same name) is a graphical tool allowing to browse and edit an LDAP database. It's an interesting tool that provides an administrator with a good overview of the hierarchical structure of the LDAP data."
 msgstr ""
+"O comando <command>jxplorer</command> (do pacote de mesmo nome) é uma "
+"ferramenta gráfica que permite navegar e editar um banco de dados LDAP. Ele "
+"é uma ferramenta interessante que provê ao administrador uma boa "
+"visualização da estrutura hierárquica dos dados LDAP."
 
 #. Tag: indexterm
 #, no-c-format
@@ -4869,6 +4909,11 @@ msgstr "<primary><command>jxplorer</command></primary>"
 #, no-c-format
 msgid "Also note the use of the <literal>-c</literal> option to the <command>ldapadd</command> command; this option requests that processing doesn't stop in case of error. Using this option is required because converting the <filename>/etc/services</filename> often generates a few errors that can safely be ignored."
 msgstr ""
+"Note também o uso da opção <literal>-c</literal> do comando "
+"<command>ldapadd</command>; essa opção faz com que o processamento não pare "
+"em caso de erro. O uso dessa opção é necessário porque a conversão do "
+"<filename>/etc/services</filename> geralmente gera alguns erros que podem "
+"ser ignorados com segurança."
 
 #. Tag: title
 #, no-c-format
@@ -4879,6 +4924,9 @@ msgstr "Gerenciando Contas com LDAP"
 #, no-c-format
 msgid "Now the LDAP database contains some useful information, the time has come to make use of this data. This section focuses on how to configure a Linux system so that the various system directories use the LDAP database."
 msgstr ""
+"Agora o banco de dados LDAP contém algumas informações úteis, chegou a hora "
+"de fazer uso desses dados. Essa sessão foca em como configurar um sistema "
+"Linux para que os vários sistemas de diretórios usem o banco de dados LDAP."
 
 #. Tag: title
 #, no-c-format
@@ -4889,6 +4937,13 @@ msgstr "Configurando o NSS"
 #, no-c-format
 msgid "The NSS system (Name Service Switch, see sidebar <xref linkend=\"sidebar.intro-nss\" />) is a modular system designed to define or fetch information for system directories. Using LDAP as a source of data for NSS requires installing the <emphasis role=\"pkg\">libnss-ldap</emphasis> package. Its installation asks a few questions; the answers are summarized in <xref linkend=\"tab-libnss-ldap\" xrefstyle=\"select: label nopage\" />."
 msgstr ""
+"O sistema NSS (Name Service Switch, see sidebar <xref linkend=\"sidebar"
+".intro-nss\" />) é um sistema modular desenvolvido para definir ou obter "
+"informações para o sistema de diretórios. Para usar o LDAP como fonte de "
+"dados para o NSS requer a instalação do pacote <emphasis role=\"pkg\">libnss-"
+"ldap</emphasis>. Sua instalação faz algumas perguntas; as respostas estão "
+"sumarizadas em <xref linkend=\"tab-libnss-ldap\" xrefstyle=\"select: label "
+"nopage\" />."
 
 #. Tag: indexterm
 #, no-c-format
@@ -4913,7 +4968,7 @@ msgstr "<literal>ldap://ldap.falcot.com</literal>"
 #. Tag: entry
 #, no-c-format
 msgid "Distinguished name of the search base"
-msgstr ""
+msgstr "Nome distinto da base de pesquisa"
 
 #. Tag: entry
 #, no-c-format
@@ -4933,7 +4988,7 @@ msgstr "O banco de dados LDAP precisa de um login?"
 #. Tag: entry
 #, no-c-format
 msgid "Special LDAP privileges for root"
-msgstr ""
+msgstr "Privilégios especiais LDAP para o root"
 
 #. Tag: entry
 #, no-c-format
@@ -4944,6 +4999,8 @@ msgstr "sim"
 #, no-c-format
 msgid "Make the configuration file readable/writeable by its owner only"
 msgstr ""
+"Fazer o arquivo de configuração com permissão de leitura/escrita apenas para "
+"seu proprietário"
 
 #. Tag: entry
 #, no-c-format
@@ -4959,6 +5016,9 @@ msgstr "A senha da conta de root do LDAP"
 #, no-c-format
 msgid "The <filename>/etc/nsswitch.conf</filename> file then needs to be modified, so as to configure NSS to use the freshly-installed <command>ldap</command> module."
 msgstr ""
+"O arquivo <filename>/etc/nsswitch.conf</filename> precisa então ser "
+"modificado, para configurar o NSS  para usar o recém-instalado módulo "
+"<command>ldap</command>."
 
 #. Tag: title
 #, no-c-format
@@ -5014,11 +5074,21 @@ msgstr ""
 #, no-c-format
 msgid "The <command>ldap</command> module is usually inserted before others, and it will therefore be queried first. The notable exception is the <literal>hosts</literal> service since contacting the LDAP server requires consulting DNS first (to resolve <literal>ldap.falcot.com</literal>). Without this exception, a hostname query would try to ask the LDAP server; this would trigger a name resolution for the LDAP server, and so on in an infinite loop."
 msgstr ""
+"O módulo <command>ldap</command> usualmente é inserido antes dos outros, e "
+"ele irá então ser consultado primeiro. A notável exceção é o serviço "
+"<literal>hosts</literal> já que contactar o servidor LDAP requer consultar o "
+"DNS primeiro (para resolver <literal>ldap.falcot.com</literal>). Sem essa "
+"exceção, uma consulta de hostname iria recair ao servidor LDAP; isso iria "
+"disparar uma resolução de nome ao servidor LDAP, e cairia em um loop "
+"infinito."
 
 #. Tag: para
 #, no-c-format
 msgid "If the LDAP server should be considered authoritative (and the local files used by the <command>files</command> module disregarded), services can be configured with the following syntax:"
 msgstr ""
+"Se o servidor LDAP deve ser considerado autoritário (e os arquivos locais "
+"usados pelo módulo <command>files</command> desconsiderados), serviços podem "
+"ser configurados com a seguinte sintaxe:"
 
 #. Tag: para
 #, no-c-format
@@ -5031,6 +5101,10 @@ msgstr ""
 #, no-c-format
 msgid "If the requested entry does not exist in the LDAP database, the query will return a “not existing” reply even if the resource does exist in one of the local files; these local files will only be used when the LDAP service is down."
 msgstr ""
+"Se a entrada requisitada não existir no banco de dados LDAP, a consulta irá "
+"retornar uma resposta “não existe” mesmo que o recurso exista em um dos "
+"arquivos locais; esses arquivos locais irão apenas ser usados quando o "
+"serviço LDAP estiver parado."
 
 #. Tag: title
 #, no-c-format
@@ -5041,6 +5115,9 @@ msgstr "Configurando o PAM"
 #, no-c-format
 msgid "This section describes a PAM configuration (see sidebar <xref linkend=\"sidebar.intro-pam\" />) that will allow applications to perform the required authentications against the LDAP database."
 msgstr ""
+"Essa seção descreve a configuração do PAM (see sidebar <xref linkend=\""
+"sidebar.intro-pam\" />) que irá permitir as aplicações realizarem as "
+"autenticações necessárias no banco de dados LDAP."
 
 #. Tag: title
 #, no-c-format
@@ -5051,6 +5128,11 @@ msgstr "<emphasis>ATENÇÃO</emphasis> Autenticação quebrada"
 #, no-c-format
 msgid "Changing the standard PAM configuration used by various programs is a sensitive operation. A mistake can lead to broken authentication, which could prevent logging in. Keeping a root shell open is therefore a good precaution. If configuration errors occur, they can be then fixed and the services restarted with minimal effort."
 msgstr ""
+"Alterar a configuração padrão do PAM, usada por vários programas, é uma "
+"operação delicada. Um erro pode levar a erros de autenticação, o que pode "
+"impedir um início de sessão. Manter um shell root aberto é então uma boa "
+"precaução. Se acontecerem erros de configuração, eles podem então serem "
+"consertados e os serviços reiniciados com um mínimo de esforço."
 
 #. Tag: para
 #, no-c-format
@@ -5097,17 +5179,25 @@ msgstr "A senha do banco de dados administrativo LDAP"
 #. Tag: entry
 #, no-c-format
 msgid "Local encryption algorithm to use for passwords"
-msgstr ""
+msgstr "Algorítimo de criptografia local para ser usado em senhas"
 
 #. Tag: entry
 #, no-c-format
 msgid "crypt"
-msgstr ""
+msgstr "crypt"
 
 #. Tag: para
 #, no-c-format
 msgid "Installing <emphasis role=\"pkg\">libpam-ldap</emphasis> automatically adapts the default PAM configuration defined in the <filename>/etc/pam.d/common-auth</filename>, <filename>/etc/pam.d/common-password</filename> and <filename>/etc/pam.d/common-account</filename> files. This mechanism uses the dedicated <command>pam-auth-update</command> tool (provided by the <emphasis role=\"pkg\">libpam-runtime</emphasis> package). This tool can also be run by the administrator should they wish to enable or disable PAM modules."
 msgstr ""
+"A instalação do <emphasis role=\"pkg\">libpam-ldap</emphasis> "
+"automaticamente adapta a configuração padrão do PAM definida nos arquivos "
+"<filename>/etc/pam.d/common-auth</filename>, <filename>/etc/pam.d/common-"
+"password</filename> e <filename>/etc/pam.d/common-account</filename>. Esse "
+"mecanismo usa a dedicada ferramenta <command>pam-auth-update</command> ("
+"fornecida pelo pacote <emphasis role=\"pkg\">libpam-runtime</emphasis>). "
+"essa ferramenta pode também ser rodada pelo administrador caso eles queiram "
+"habilitar ou desabilitar módulos PAM."
 
 #. Tag: indexterm
 #, no-c-format
@@ -5142,7 +5232,7 @@ msgstr "<primary><filename>/etc/pam.d/common-account</filename></primary>"
 #. Tag: title
 #, no-c-format
 msgid "Securing LDAP Data Exchanges"
-msgstr ""
+msgstr "Protegendo a Troca de Dados do LDAP"
 
 #. Tag: indexterm
 #, no-c-format
@@ -5153,6 +5243,11 @@ msgstr "<primary>LDAP</primary><secondary>segurança</secondary>"
 #, no-c-format
 msgid "By default, the LDAP protocol transits on the network as cleartext; this includes the (encrypted) passwords. Since the encrypted passwords can be extracted from the network, they can be vulnerable to dictionary-type attacks. This can be avoided by using an extra encryption layer; enabling this layer is the topic of this section."
 msgstr ""
+"Por padrão, o protocolo LDAP transita pela rede em texto puro; isso inclui "
+"as senhas (criptografadas). Como as senhas criptografadas podem ser "
+"extraídas da rede, elas pode ficar vulneráveis a ataques do tipo dicionário. "
+"Isso pode ser evitado usando um camada de criptografia extra; habilitar essa "
+"camada é o tópico desta seção."
 
 #. Tag: title
 #, no-c-format
@@ -5173,16 +5268,31 @@ msgstr "<primary>par de chaves</primary>"
 #, no-c-format
 msgid "The first step is to create a key pair (comprising a public key and a private key) for the LDAP server. The Falcot administrators reuse <emphasis>easy-rsa</emphasis> to generate it (see <xref linkend=\"sect.easy-rsa\" />). Running <command>./build-server-key ldap.falcot.com</command> asks a few mundane questions (location, organization name and so on). The answer to the “common name” question <emphasis>must</emphasis> be the fully-qualified hostname for the LDAP server; in our case, <literal>ldap.falcot.com</literal>."
 msgstr ""
+"O primeiro passp é criar um par de chaves (compreendendo uma chave pública e "
+"uma chave privada) para o servidor LDAP. Os administradores da Falcot usaram "
+"<emphasis>easy-rsa</emphasis> para gerá-las (veja <xref linkend=\"sect.easy-"
+"rsa\" />). Ao executar <command>./build-server-key ldap.falcot.com</command> "
+"são feitas algumas perguntas mundanas (localização, nome da organização e "
+"assim por diante). A resposta para a pergunta “nome comun” "
+"<emphasis>tem</emphasis> que ser um nome de máquina completo (fully-"
+"qualified) para o servidor LDAP; em nosso caso, "
+"<literal>ldap.falcot.com</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "This command creates a certificate in the <filename>keys/ldap.falcot.com.crt</filename> file; the corresponding private key is stored in <filename>keys/ldap.falcot.com.key</filename>."
 msgstr ""
+"Esse comando cria um certificado no arquivo "
+"<filename>keys/ldap.falcot.com.crt</filename>; a chave privada "
+"correspondente é armazenada em <filename>keys/ldap.falcot.com.key</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "Now these keys have to be installed in their standard location, and we must make sure that the private file is readable by the LDAP server which runs under the <literal>openldap</literal> user identity:"
 msgstr ""
+"Agora essas chaves tem que ser instaladas em seu local padrão, e nós temos "
+"garantir que o arquivo privado pode ser lido pelo servidor LDAP, o qual roda "
+"sob a identidade do usuário <literal>openldap</literal>:"
 
 #. Tag: screen
 #, no-c-format
@@ -5279,6 +5389,8 @@ msgstr ""
 #, no-c-format
 msgid "It is thus a convenient way to update the configuration of the LDAP server, simply by editing the <literal>cn=config</literal> hierarchy."
 msgstr ""
+"É, assim, uma maneira coveniente de atualizar a configuração do servidor "
+"LDAP, simplesmente editando a hierarquia <literal>cn=config</literal>."
 
 #. Tag: screen
 #, no-c-format
@@ -5293,6 +5405,10 @@ msgstr ""
 #, no-c-format
 msgid "The last step for enabling encryption involves changing the <varname>SLAPD_SERVICES</varname> variable in the <filename>/etc/default/slapd</filename> file. We'll play it safe and disable unsecured LDAP altogether."
 msgstr ""
+"O último passo para habilitar a criptografia envolve alterar a variável "
+"<varname>SLAPD_SERVICES</varname> no arquivo "
+"<filename>/etc/default/slapd</filename>. Nós vamos torná-lo seguro e "
+"desabilitar o LDAP inseguro de uma vez só."
 
 #. Tag: title
 #, no-c-format
@@ -5406,11 +5522,22 @@ msgstr "Configurando o Cliente"
 #, no-c-format
 msgid "On the client side, the configuration for the <emphasis>libpam-ldap</emphasis> and <emphasis>libnss-ldap</emphasis> modules needs to be modified to use an <literal>ldaps://</literal> URI."
 msgstr ""
+"No lado do cliente, a configuração para os módulos <emphasis>libpam-"
+"ldap</emphasis> e <emphasis>libnss-ldap</emphasis> precisa ser modificada "
+"para usar a URI <literal>ldaps://</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "LDAP clients also need to be able to authenticate the server. In a X.509 public key infrastructure, public certificates are signed by the key of a certificate authority (CA). With <emphasis>easy-rsa</emphasis>, the Falcot administrators have created their own CA and they now need to configure the system to trust the signatures of Falcot's CA. This can be done by putting the CA certificate in <filename>/usr/local/share/ca-certificates</filename> and running <command>update-ca-certificates</command>."
 msgstr ""
+"Clientes LDAP também precisam ser capaz de autenticar no servidor. Em uma "
+"infraestrutura de chave pública X.509, certificados públicos são assinados "
+"pela chave da autoridade certificadora (CA). Com <emphasis>easy-"
+"rsa</emphasis>, os administradores da Falcot criaram seu próprio CA e agora "
+"eles precisam configurar o sistema par confiar nas assinaturas CA da Falcot. "
+"Isso pode ser feito colocando o certificado CA em <filename>/usr/local/share"
+"/ca-certificates</filename> e executar <command>update-ca-"
+"certificates</command>."
 
 #. Tag: screen
 #, no-c-format
