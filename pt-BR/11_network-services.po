@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-02-09 19:13+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2015-02-10 13:49+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/11_network-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -4329,6 +4329,9 @@ msgstr ""
 #, no-c-format
 msgid "Filtering server: if use of the proxy is mandated (and outgoing connections are blocked unless they go through the proxy), then the proxy can determine whether or not the request is to be granted."
 msgstr ""
+"Servidor de filtragem: se o uso do proxy é mandatório (e conexões de saída "
+"são bloqueadas a menos que elas passem através do proxy), então o proxy pode "
+"determinar quando a requisição pode ser concedida."
 
 #. Tag: indexterm
 #, no-c-format
@@ -4369,6 +4372,14 @@ msgstr ""
 #, no-c-format
 msgid "Prior to installing, care should be taken to check that the system can identify its own complete name: the <command>hostname -f</command> must return a fully-qualified name (including a domain). If it does not, then the <filename>/etc/hosts</filename> file should be edited to contain the full name of the system (for instance, <literal>arrakis.falcot.com</literal>). The official computer name should be validated with the network administrator in order to avoid potential name conflicts."
 msgstr ""
+"Antes da instalação, devesse tomar o cuidado de checar que o sistema pode "
+"identificar seu próprio nome completo: o <command>hostname -f</command> tem "
+"que retornar um nome completo qualificado (incluindo o domínio). Se não, "
+"então o arquivo <filename>/etc/hosts</filename> deve ser editado para conter "
+"o nome completo do sistema (por exemplo, "
+"<literal>arrakis.falcot.com</literal>). O nome oficial do computador deve "
+"ser validado pelo administrador de rede para qeu seja evitado potenciais "
+"conflitos de nome."
 
 #. Tag: title
 #, no-c-format
@@ -4449,16 +4460,37 @@ msgstr ""
 #, no-c-format
 msgid "The <filename>/usr/lib/cgi-bin/squidGuard.cgi</filename> CGI program also needs to be installed, using <filename>/usr/share/doc/squidguard/examples/squidGuard.cgi.gz</filename> as a starting point. Required modifications to this script are the <varname>$proxy</varname> and <varname>$proxymaster</varname> variables (the name of the proxy and the administrator's contact e-mail, respectively). The <varname>$image</varname> and <varname>$redirect</varname> variables should point to existing images representing the rejection of a query."
 msgstr ""
+"O programa CGI <filename>/usr/lib/cgi-bin/squidGuard.cgi</filename> também "
+"precisa estar instalado, usando "
+"<filename>/usr/share/doc/squidguard/examples/squidGuard.cgi.gz</filename> "
+"como ponto de partida. As modificações necessárias para esse script são as "
+"variáveis <varname>$proxy</varname> e <varname>$proxymaster</varname> (o "
+"nome do proxy e o email de contato do administrador, respectivamente). As "
+"variáveis <varname>$image</varname> e <varname>$redirect</varname> devem "
+"apontar para imagens existentes que representam a rejeição de uma consulta."
 
 #. Tag: para
 #, no-c-format
 msgid "The filter is enabled with the <command>/etc/init.d/squid reload</command> command. However, since the <emphasis role=\"pkg\">squidguard</emphasis> package does no filtering by default, it is the administrator's task to define the policy. This can be done by creating the <filename>/etc/squid/squidGuard.conf</filename> file (using <filename>/etc/squidguard/squidGuard.conf.default</filename> as template if required)."
 msgstr ""
+"O filtro é habilitado com o comando <command>/etc/init.d/squid "
+"reload</command>. Contudo, como o pacote <emphasis role=\"pkg\""
+">squidguard</emphasis> não faz filtragem por padrão, é tarefa do "
+"administrador definir a política. Isso pode ser feito criando o arquivo "
+"<filename>/etc/squid/squidGuard.conf</filename> (usando o "
+"<filename>/etc/squidguard/squidGuard.conf.default</filename> como referência "
+"se necessário)."
 
 #. Tag: para
 #, no-c-format
 msgid "The working database must be regenerated with <command>update-squidguard</command> after each change of the <command>squidGuard</command> configuration file (or one of the lists of domains or URLs it mentions). The configuration file syntax is documented on the following website: <ulink type=\"block\" url=\"http://www.squidguard.org/Doc/configure.html\" />"
 msgstr ""
+"O banco de dados em uso tem que ser regenerado com <command>update-"
+"squidguard</command> após cada alteração feita no arquivo de configuração "
+"<command>squidGuard</command> (ou em uma das listas de domínios ou URLs que "
+"ele menciona). A sintaxe do arquivo de configuração é documentada no "
+"seguinte site web: <ulink type=\"block\" url=\""
+"http://www.squidguard.org/Doc/configure.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -4484,6 +4516,12 @@ msgstr "<primary>PICS</primary>"
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">dansguardian</emphasis> package is an alternative to <emphasis>squidguard</emphasis>. This software does not simply handle a black-list of forbidden URLs, but it can take advantage of the PICS system (<emphasis>Platform for Internet Content Selection</emphasis>) to decide whether a page is acceptable by dynamic analysis of its contents."
 msgstr ""
+"O pacote <emphasis role=\"pkg\">dansguardian</emphasis> é uma alternativa ao "
+"<emphasis>squidguard</emphasis>. Esse software não apenas lida com uma lista "
+"negra de URLs proibidas, mas pode ter tirar vantagem do sistema PICS "
+"(<emphasis>Platform for Internet Content Selection</emphasis>) para decidir "
+"quando uma página é aceitável através de uma análise dinâmica de seu "
+"conteudo."
 
 #. Tag: title
 #, no-c-format
@@ -4509,16 +4547,32 @@ msgstr "<primary>diretório, LDAP</primary>"
 #, no-c-format
 msgid "OpenLDAP is an implementation of the LDAP protocol; in other words, it's a special-purpose database designed for storing directories. In the most common use case, using an LDAP server allows centralizing management of user accounts and the related permissions. Moreover, an LDAP database is easily replicated, which allows setting up multiple synchronized LDAP servers. When the network and the user base grows quickly, the load can then be balanced across several servers."
 msgstr ""
+"OpenLDAP é uma implementação do protocolo LDAP; em outras palavras, é um "
+"banco de dados com propósito especial desenvolvido para armazenar "
+"diretórios. No caso mais comum de uso, o uso de um servidor LDAP permite o "
+"gerenciamento centralizado de contas de usuários e permissões relacionadas. "
+"Além do mais, um banco de dados LDAP é facilmente replicável, o que permite "
+"configurar múltiplos servidores LDAP sincronizados. Quando a rede e a base "
+"de usuários cresce rapidamente, a carga pode então ser balanceada por entre "
+"vários servidores."
 
 #. Tag: para
 #, no-c-format
 msgid "LDAP data is structured and hierarchical. The structure is defined by “schemas” which describe the kind of objects that the database can store, with a list of all their possible attributes. The syntax used to refer to a particular object in the database is based on this structure, which explains its complexity."
 msgstr ""
+"Os dados LDAP são estruturados e hierarquizados. A estrutura é definida por "
+"“schemas” que descrevem os tipos de objetos que o banco de dados pode "
+"armazenar, com uma lista de todos os seus possíveis atributos. A sintaxe "
+"usada para se referir a um objeto em particular no banco de dados é baseada "
+"em sua estrutura, o que explica sua complexidade."
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">slapd</emphasis> package contains the OpenLDAP server. The <emphasis role=\"pkg\">ldap-utils</emphasis> package includes command-line tools for interacting with LDAP servers."
 msgstr ""
+"O pacote <emphasis role=\"pkg\">slapd</emphasis> contém o servidor OpenLDAP. "
+"O pacote <emphasis role=\"pkg\">ldap-utils</emphasis> inclui ferramentas de "
+"linha de comando para interação com os servidores LDAP."
 
 #. Tag: indexterm
 #, no-c-format
@@ -4529,11 +4583,18 @@ msgstr "<primary><emphasis>slapd</emphasis></primary>"
 #, no-c-format
 msgid "Installing <emphasis role=\"pkg\">slapd</emphasis> is usually non-interactive unless you have configured debconf to display questions with lower priorities. Nevertheless, it is debconf-enabled, and thus a simple <command>dpkg-reconfigure slapd</command> can reconfigure the LDAP database:"
 msgstr ""
+"A instalação do <emphasis role=\"pkg\">slapd</emphasis> geralmente é não "
+"interativa, a menos que você tenha configurado o debconf para exibir "
+"perguntas de baixa prioridade. No entanto, ele é debconf habilitado, e "
+"portanto um simples <command>dpkg-reconfigure slapd</command> pode "
+"reconfigurar o banco de dados LDAP:"
 
 #. Tag: para
 #, no-c-format
 msgid "Omit OpenLDAP server configuration? No, of course, we want to configure this service."
 msgstr ""
+"Omitir a configuração do servidor OpenLDAP? Não, claro que não, nós queremos "
+"configurar esse serviço."
 
 #. Tag: para
 #, no-c-format
@@ -4548,7 +4609,7 @@ msgstr "Nome da organização: “Falcot Corp”."
 #. Tag: para
 #, no-c-format
 msgid "An administrative passwords needs to be typed in."
-msgstr ""
+msgstr "Senhas administrativas precisam ser digitadas."
 
 #. Tag: para
 #, no-c-format
@@ -4559,6 +4620,9 @@ msgstr "Banco de dados para utilizar: \"HDB\"."
 #, no-c-format
 msgid "Do you want the database to be removed when <emphasis role=\"pkg\">slapd</emphasis> is purged? No. No point in risking losing the database in case of a mistake."
 msgstr ""
+"Você quer que o banco de dados seja removido quando o <emphasis role=\"pkg\""
+">slapd</emphasis> é removido (purged)? Não. Não faz sentido em arriscar a "
+"perda do banco de dados em caso de um engano."
 
 #. Tag: para
 #, no-c-format
