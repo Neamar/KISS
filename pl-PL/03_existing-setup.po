@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-01-10 20:26+0100\n"
+"PO-Revision-Date: 2015-01-18 18:00+0100\n"
 "Last-Translator: Mateusz Kacprzak <mateusz.kacprzak@yandex.ru>\n"
 "Language-Team: Polish <http://debian.weblate.org/projects/debian-"
 "handbook/03_existing-setup/pl/>\n"
@@ -409,7 +409,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Backing up the Configuration"
-msgstr ""
+msgstr "Robiąc kopię zapasową konfiguracji"
 
 #. Tag: para
 #, no-c-format
@@ -442,7 +442,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Database backups"
-msgstr ""
+msgstr "Kopie zapasowe bazy danych"
 
 #. Tag: para
 #, no-c-format
@@ -457,22 +457,22 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Taking Over an Existing Debian Server"
-msgstr ""
+msgstr "Przejmując obowiazki aktualnego servera Debiana"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>recovering a Debian machine</primary>"
-msgstr ""
+msgstr "<primary>recovering a Debian machine</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>exploring a Debian machine</primary>"
-msgstr ""
+msgstr "<primary>exploring a Debian machine</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>taking over a Debian server</primary>"
-msgstr ""
+msgstr "<primary>taking over a Debian server</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -480,6 +480,8 @@ msgid ""
 "To effectively take over its maintenance, one may analyze a machine already "
 "running with Debian."
 msgstr ""
+"Aby skutecznie go utrzymać,  jeden może analizować maszynę aktualnie "
+"pracującą z Debianem"
 
 #. Tag: para
 #, no-c-format
@@ -500,6 +502,10 @@ msgid ""
 "available versions. <command>aptitude</command> can also be used for these "
 "tasks, albeit in a less systematic manner."
 msgstr ""
+"Komenda <command>apt-show-versions</command> programu ( z pakietu Debiana o "
+"tej samej nazwie) sprawdza liste zainstalowanych pakietów i identyfikatorów "
+"dostepnych wersji. <command>aptitude</command> może również być użyty do "
+"tych zadań, aczkolwiek w mniej systematyczny sposób."
 
 #. Tag: para
 #, no-c-format
@@ -510,6 +516,10 @@ msgid ""
 "computer's system to ensure optimal compatibility with the software provided "
 "by Debian."
 msgstr ""
+"Spójrzmy na  <filename>/etc/apt/sources.list</filename> plik który pokaże "
+"nam, gdzie zainstalowane są pakiety Debiana. z Wielu nieznanych źródeł, "
+"administrator może wybrać kompletną reinstalacje systemu, żeby zyskać "
+"optymalną kompatybilność z oprogramowaniem dostarczonym przez Debiana."
 
 #. Tag: para
 #, no-c-format
@@ -687,87 +697,87 @@ msgstr "amd64, powerpc, i386, m68k"
 #. Tag: entry
 #, no-c-format
 msgid "z/OS, MVS"
-msgstr ""
+msgstr "z/OS, MVS"
 
 #. Tag: entry
 #, no-c-format
 msgid "s390x, s390"
-msgstr ""
+msgstr "s390x, s390"
 
 #. Tag: entry
 #, no-c-format
 msgid "Solaris, SunOS"
-msgstr ""
+msgstr "Solaris, SunOS"
 
 #. Tag: entry
 #, no-c-format
 msgid "sparc, i386, m68k"
-msgstr ""
+msgstr "sparc, i386, m68k"
 
 #. Tag: entry
 #, no-c-format
 msgid "Ultrix"
-msgstr ""
+msgstr "Ultrix"
 
 #. Tag: entry
 #, no-c-format
 msgid "VMS"
-msgstr ""
+msgstr "VMS"
 
 #. Tag: entry
 #, no-c-format
 msgid "alpha"
-msgstr ""
+msgstr "alpha"
 
 #. Tag: entry
 #, no-c-format
 msgid "Windows 95/98/ME"
-msgstr ""
+msgstr "Windows 95/98/ME"
 
 #. Tag: entry
 #, no-c-format
 msgid "i386"
-msgstr ""
+msgstr "i386"
 
 #. Tag: entry
 #, no-c-format
 msgid "Windows NT/2000"
-msgstr ""
+msgstr "Windows NT/2000"
 
 #. Tag: entry
 #, no-c-format
 msgid "i386, alpha, ia64, mipsel"
-msgstr ""
+msgstr "i386, alpha, ia64, mipsel"
 
 #. Tag: entry
 #, no-c-format
 msgid "Windows XP / Windows Server 2008"
-msgstr ""
+msgstr "Windows XP / Windows Server 2008"
 
 #. Tag: entry
 #, no-c-format
 msgid "i386, amd64, ia64"
-msgstr ""
+msgstr "i386, amd64, ia64"
 
 #. Tag: entry
 #, no-c-format
 msgid "Windows Vista / Windows 7 / Windows 8"
-msgstr ""
+msgstr "Windows Vista / Windows 7 / Windows 8"
 
 #. Tag: entry
 #, no-c-format
 msgid "i386, amd64"
-msgstr ""
+msgstr "i386, amd64"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>HARDWARE</emphasis> 64 bit PC vs 32 bit PC"
-msgstr ""
+msgstr "<emphasis>HARDWARE</emphasis> 64 bit PC vs 32 bit PC"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>amd64</primary>"
-msgstr ""
+msgstr "<primary>amd64</primary>"
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
@@ -786,11 +796,18 @@ msgid ""
 "“em64t” processors (including most of the Core series), which are very "
 "similar to AMD64."
 msgstr ""
+"Najnowsze komputery mają 64 bitowe procesory Intel lub AMD , zgodne ze "
+"starszymi procesorami 32-bitowymi ; programy skompilowane dla architektury\" "
+"i386 \" także działają. Z drugiej strony kompatybilność nie jest w stanie "
+"wykorzystywać najnowszych możliwośći nowych procesorów. To dlatego Debian "
+"dostarcza architekture \"amd64\" , która wspołpracuje z najnowszymi czipami "
+"AMD jak i procesorami  Intel \"em64t\" (zawierając prawie wszystkie z serri "
+"Core), które są bardzo podobne do AMD64"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing and Configuring the Selected Services"
-msgstr ""
+msgstr "Instalowanie i konfigurowanie wybranych usług."
 
 #. Tag: para
 #, no-c-format
@@ -801,11 +818,16 @@ msgid ""
 "the information collected in the first two steps are useful to successfully "
 "complete this part."
 msgstr ""
+"Po instalacji Debiana , musimy zainstalować i skonfigurować usługi jedną po "
+"drugiej, które komputer musi hostować. Nowa konfiguracja musi uwzględniać "
+"wcześniejsze w celu zapewnienia płynnego przejścia . Wszystkie informacje "
+"zebrane w dwóch pierwszych etapach są przydatne, aby poprawnie zakończyć tą "
+"część."
 
 #. Tag: title
 #, no-c-format
 msgid "Install the selected services"
-msgstr ""
+msgstr "Zainstaluj wybrane usługi"
 
 #. Tag: para
 #, no-c-format
@@ -814,3 +836,6 @@ msgid ""
 "recommended that you read the remainder of this book. After that you will "
 "have a more precise understanding of how to configure the expected services."
 msgstr ""
+"Zanim w pełni rozpoczęczniesz ćwiczenia, zalecamy przeczytanie całej "
+"książki. Jak będziesz miał już większe doświadczenie w skonfigurowaniu "
+"oczekiwanych usług."

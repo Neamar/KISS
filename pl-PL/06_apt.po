@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-01-10 21:10+0100\n"
+"PO-Revision-Date: 2015-01-24 22:42+0100\n"
 "Last-Translator: Mateusz Kacprzak <mateusz.kacprzak@yandex.ru>\n"
 "Language-Team: Polish <http://debian.weblate.org/projects/debian-handbook/06_apt/pl/>\n"
 "Language: pl_PL\n"
@@ -13,8 +13,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 1.7.1\n"
-"X-Poedit-Bookmarks: 71,90,103,-1,-1,-1,-1,-1,-1,-1\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-Bookmarks: 71,90,103,116,-1,-1,-1,-1,-1,-1\n"
 
 # mateunho
 #. Tag: keyword
@@ -713,71 +713,84 @@ msgstr "<emphasis role=\"distribution\">Eksperymentalne</emphasis> jest używane
 msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
 msgstr "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Non-Official Resources: <literal>apt-get.org</literal> and <literal>mentors.debian.net</literal>"
-msgstr ""
+msgstr "Non-oficjalne zasoby: <literal>apt-get.org</literal> i <literal>mentors.debian.net</literal>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>apt-get.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>apt-get.org</literal></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>mentors.debian.net</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>mentors.debian.net</literal></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "There are numerous non-official sources of Debian packages set up by advanced users who have recompiled some software, by programmers who make their creation available to all, and even by Debian developers who offer pre-versions of their package online. A web site was set up to find these alternative sources more easily. It contains an impressive amount of Debian package sources which can immediately be integrated into <filename>sources.list</filename> files. However, be careful not to add random packages. Each source is designed for a particular version of Debian (the one used to compile the packages in question); each user should maintain a certain coherence in what they choose to install. <ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
-msgstr ""
+msgstr "Istnieje wiele nieoficjalnych źródeł pakietów Debiana założonych przez zaawansowanych użytkowników, którzy przekompilowali pewne oprogramowanie, przez programistów, którzy udostępniają publicznie swoje dzieła, a nawet przez deweloperów Debiana, którzy oferują dostęp do wczesnych wersji swoich pakietów. Aby łatwiej znajdywać te alternatywne źródła została założona strona internetowa. Zawiera ona znaczna ilość źródeł pakietów Debiana, które mogą być natychmiast włączone do plików <filename>sources.list</filename>. Jednakże należy uważać, aby nie dodawać losowych pakietów. Każde źródło jest bowiem zaprojektowane dla konkretnej wersji Debiana (dla tej, której użyto do kompilacji danego pakietu); każdy użytkownik powinien zachować pewną zgodność odnośnie tego, co wybiera do instalacji. <ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The <literal>mentors.debian.net</literal> site is also interesting, since it gathers source packages created by candidates to the status of official Debian developer or by volunteers who wish to create Debian packages without going through that process of integration. These packages are made available without any guarantee regarding their quality; make sure that you check their origin and integrity and then test them before you consider using them in production."
-msgstr ""
+msgstr "Strona <literal>mentors.debian.net</literal> jest również interesująca, ponieważ zbiera pakiety źródłowe stworzone przez kandydatów do statusu oficjalnego dewelopera Debiana lub przez wolontariuszy, którzy chcą tworzyć pakiety dla Debiana bez przechodzenia przez ten proces integracji. Te pakiety są udostępniane bez żadnej gwarancji odnośnie ich jakości; należy sprawdzać ich pochodzenie i spójność, a także przetestować przed rozważaniem wprowadzenia ich do użytku."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> The <literal>debian.net</literal> sites"
-msgstr ""
+msgstr "<emphasis>Społeczność</emphasis> Strony <literal>debian.net</literal>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>debian.net</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>debian.net</emphasis></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>debian.net</emphasis> domain is not an official resource of the Debian project. Each Debian developer may use that domain name for their own use. These websites can contain unofficial services (sometimes personal sites) hosted on a machine which does not belong to the project and set up by Debian developers, or even prototypes about to be moved on to <emphasis>debian.org</emphasis>. Two reasons can explain why some of these prototypes remain on <emphasis>debian.net</emphasis>: either no one has made the necessary effort to transform it into an official service (hosted on the <emphasis>debian.org</emphasis> domain, and with a certain guarantee of maintenance), or the service is too controversial to be officialized."
-msgstr ""
+msgstr "Domena <emphasis>debian.net</emphasis> nie jest oficjalnym zasobem projektu Debian. Każdy deweloper Debiana może używać nazwy tej domeny dla własnego użytku. Te strony internetowe mogą zawierać nieoficjalne serwisy (czasami osobiste strony) założone przez deweloperów Debiana, hostowane na sprzęcie, który nie należy do projektu lub nawet prototypy do przeniesienia na <emphasis>debian.org</emphasis>. Istnieją dwa powody, które wyjaśniają dlaczego te prototypy pozostają na <emphasis>debian.net</emphasis>: albo nikt nie podjął się wysiłku przekształcenia go w oficjalny serwis (hostowany w domenie <emphasis>debian.org</emphasis> i z odpowiednią gwarancją zarządzania), albo serwis jest zbyt kontrowersyjny, aby uznać go za oficjalny."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Installing a package means giving root rights to its creator, because they decide on the contents of the initialization scripts which are run under that identity. Official Debian packages are created by volunteers who have been co-opted and reviewed and who can seal their packages so that their origin and integrity can be checked."
-msgstr ""
+msgstr "Instalowanie pakietu oznacza przyznanie uprawnień root jego twórcy, ponieważ to on decyduje o zawartości skryptów inicjalizacyjnych, które są uruchamiane pod tą tożsamością. Oficjalne pakiety Debiana są tworzone przez wolontariuszy, z którymi współpracowano i zostali zweryfikowani oraz potrafią zabezpieczyć swój pakiet w taki sposób, aby było możliwe sprawdzenie jego pochodzenia i spójności."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "In general, be wary of a package whose origin you don't know and which isn't hosted on one of the official Debian servers: evaluate the degree to which you can trust the creator, and check the integrity of the package. <ulink type=\"block\" url=\"http://mentors.debian.net/\" />"
-msgstr ""
+msgstr "Generalnie należy być ostrożnym w stosunku do pakietów, których pochodzenie jest niewiadome oraz nie są hostowane na jednym z oficjalnych serwerów Debiana: należy ocenic stopień zaufania do jego twórcy i sprawdzić spójność pakietu. <ulink type=\"block\" url=\"http://mentors.debian.net/\" />"
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Old package versions: <literal>snapshot.debian.org</literal>"
-msgstr ""
+msgstr "<emphasis>IDĄĆ DALEJ</emphasis> Stare wersje pakietów: <literal>snapshot.debian.org</literal>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>snapshot.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>snapshot.debian.org</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A new service (introduced in April 2010) can be used to “go backwards in time” and to find an old version of a package. It can be used for example to identify which version of a package introduced a regression, and more concretely, to come back to the former version while waiting for the regression fix."
-msgstr ""
+msgstr "Nowy serwis (wprowadzony w kwietniu 2010) może być użyty do \"podróży w czasie\" i odnalezienia starej wersji pakietu. Może być przykładowo użyty, aby zidentyfikować która wersja pakietu wprowadziła regresję, a co bardziej znaczące, pozwala wrócić do poprzedniej wersji czekając na naprawienie regresji."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Caching Proxy for Debian Packages"
