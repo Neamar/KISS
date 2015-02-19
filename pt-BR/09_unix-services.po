@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-02-09 16:54+0200\n"
+"PO-Revision-Date: 2015-02-28 20:01+0200\n"
 "Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.2-dev\n"
+"X-Generator: Weblate 2.3-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -1576,6 +1576,10 @@ msgstr "<primary><emphasis>webmin</emphasis></primary>"
 #, no-c-format
 msgid "This is, without a doubt, one of the most successful administration interfaces. It is a modular system managed through a web browser, covering a wide array of areas and tools. Furthermore, it is internationalized and available in many languages."
 msgstr ""
+"Essa é, sem dúvida, uma das mais bem sucedidas interface de administração. "
+"Ela é um sistema modular de gerenciamento através de um navegador web, "
+"cobrindo uma ampla gama de áreas e ferramentas. Além do mais, ela é "
+"internacionalizada e disponível em muitas linguas."
 
 #. Tag: para
 #, no-c-format
@@ -1592,6 +1596,11 @@ msgstr ""
 #, no-c-format
 msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the original Debian packages, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
 msgstr ""
+"Existe, contudo, um pacote não oficial distribuído pelo site web "
+"<literal>webmin.com</literal>. Ao contrário dos pacotes Debian originais, "
+"esse pacote é monolítico; todos os seus módulos de configuração são "
+"instalados e ativados por padrão, mesmo que o serviço correspondente não "
+"esteja instalado na máquina."
 
 #. Tag: title
 #, no-c-format
@@ -1602,16 +1611,30 @@ msgstr "<emphasis>SEGURANÇA</emphasis> Alterando a senha do root"
 #, no-c-format
 msgid "On first login, identification is conduced with the root username and its usual password. It is recommended to change the password used for <command>webmin</command> as soon as possible, so that if it is compromised, the root password for the server will not be involved, even if this confers important administrative rights to the machine."
 msgstr ""
+"No primeiro login, a identificação é conduzida pelo nome de usuário root  e "
+"sua senha usual. É recomendado alterar a senha usada para "
+"<command>webmin</command> assim que possível, para que, caso ela seja "
+"comprometida, a senha root do servidor não seja envolvida, mesmo que isso "
+"confira direitos administrativos importantes à máquina."
 
 #. Tag: para
 #, no-c-format
 msgid "Beware! Since <command>webmin</command> has so many features, a malicious user accessing it could compromise the security of the entire system. In general, interfaces of this kind are not recommended for important systems with strong security constraints (firewall, sensitive servers, etc.)."
 msgstr ""
+"Tenha cuidado! Como o <command>webmin</command> tem tantos recursos, um "
+"usuário malicioso que tenha acesso a ele pode comprometer a segurança de "
+"todo o sistema. De maneira geral, interfaces deste tipo não são recomendadas "
+"para sistemas importantes com fortes restrições de segurança (firewall, "
+"servidores sensíveis, etc.)."
 
 #. Tag: para
 #, no-c-format
 msgid "Webmin is used through a web interface, but it does not require Apache to be installed. Essentially, this software has its own integrated mini web server. This server listens by default on port 10000 and accepts secure HTTP connections."
 msgstr ""
+"Webmin é usado através de uma interface web, mas ele não requer que o Apache "
+"esteja instalado. Essencialmente, esse software tem seu próprio mini "
+"servidor web integrado. Esse servidor ouve, por padrão, na porta 10000 e "
+"aceita conexões HTTP seguras."
 
 #. Tag: para
 #, no-c-format
@@ -1622,6 +1645,8 @@ msgstr "Módulos inclusos cobrem uma grande variedade de serviços, entre eles:"
 #, no-c-format
 msgid "all base services: creation of users and groups, management of <filename>crontab</filename> files, init scripts, viewing of logs, etc."
 msgstr ""
+"Todos os serviços de base: criação de usuários e grupos, gerenciamento dos "
+"arquivos do <filename>crontab</filename>, scripts init, leitura de logs, etc."
 
 #. Tag: para
 #, no-c-format
@@ -1667,6 +1692,13 @@ msgstr "software: instalação ou remoção de programas dos pacotes Debian e at
 #, no-c-format
 msgid "The administration interface is available in a web browser at <literal>https://localhost:10000</literal>. Beware! Not all the modules are directly usable. Sometimes they must be configured by specifying the locations of the corresponding configuration files and some executable files (program). Frequently the system will politely prompt you when it fails to activate a requested module."
 msgstr ""
+"A interface de administração está disponível em um navegador web em "
+"<literal>https://localhost:10000</literal>. Esteja atento! Nem todos os "
+"módulos estão usáveis em um primeiro momento. Às vezes eles precisam ser "
+"configurados especificando a localização dos arquivos de configuração "
+"correspondentes e alguns arquivos executáveis (programa). Frequentemente o "
+"sistema irá, educadamente, fazer perguntas a você quando falhar em ativar um "
+"módulo requisitado."
 
 #. Tag: title
 #, no-c-format
@@ -1685,6 +1717,16 @@ msgstr ""
 #, no-c-format
 msgid "The GNOME project also provides multiple administration interfaces that are usually accessible via the “Settings” entry in the user menu on the top right. <command>gnome-control-center</command> is the main program that brings them all together but many of the system wide configuration tools are effectively provided by other packages (<emphasis role=\"pkg\">accountsservice</emphasis>, <emphasis role=\"pkg\">system-config-printer</emphasis>, etc.). Easy to use, these applications cover only a limited number of base services: user management, time configuration, network configuration, printer configuration, and so on."
 msgstr ""
+"O projeto GNOME também provê múltiplas  interfaces de configuração que "
+"geralmente são acessíveis via a entrada “Configurações” no menu do usuário a "
+"direita no alto. O <command>gnome-control-center</command> é o programa "
+"principal que traz todas elas juntas, mas muitas das ferramentas de "
+"configuração do sistema como um todo são efetivamente fornecidas por outros "
+"pacotes (<emphasis role=\"pkg\">accountsservice</emphasis>, <emphasis role=\""
+"pkg\">system-config-printer</emphasis>, etc.). Fáceis de usar, essas "
+"aplicações cobrem apenas um número limitado de serviços básicos: "
+"gerenciamento de usuário, configuração do horário, configuração da rede, "
+"configuração de impressora, e assim por diante."
 
 #. Tag: title
 #, no-c-format
@@ -1705,21 +1747,45 @@ msgstr "<primary><command>dpkg-reconfigure</command></primary>"
 #, no-c-format
 msgid "Many packages are automatically configured after asking a few questions during installation through the Debconf tool. These packages can be reconfigured by running <command>dpkg-reconfigure <replaceable>package</replaceable></command>."
 msgstr ""
+"Muitos pacotes são configurados automaticamente após algumas perguntas serem "
+"feitas durante a instalação, através da ferramenta Debconf. Esses pacotes "
+"podem ser reconfigurados rodando <command>dpkg-reconfigure "
+"<replaceable>pacote</replaceable></command>."
 
 #. Tag: para
 #, no-c-format
 msgid "For most cases, these settings are very simple; only a few important variables in the configuration file are changed. These variables are often grouped between two “demarcation” lines so that reconfiguration of the package only impacts the enclosed area. In other cases, reconfiguration will not change anything if the script detects a manual modification of the configuration file, in order to preserve these human interventions (because the script can't ensure that its own modifications will not disrupt the existing settings)."
 msgstr ""
+"Na maioria dos casos, essas configurações são bem simples; apenas algumas "
+"variáveis importantes do arquivo de configuração são alteradas. Essas "
+"variáveis são geralmente agrupadas entre duas linhas “demarcadas” para que a "
+"reconfiguração do pacote apenas tenha impacto na área selecionada. Em outros "
+"casos, a reconfiguração não irá alterar nada se o script detectar uma "
+"modificação manual no arquivo de configuração, para preservar essas "
+"intervenções humanas (porque o script não pode garantir que suas próprias "
+"modificações não irão bagunçar as configurações existentes)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> Preserving changes"
-msgstr ""
+msgstr "<emphasis>POLÍTICA DEBIAN</emphasis> Preservando alterações"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian Policy expressly stipulates that everything should be done to preserve manual changes made to a configuration file, so more and more scripts take precautions when editing configuration files. The general principle is simple: the script will only make changes if it knows the status of the configuration file, which is verified by comparing the checksum of the file against that of the last automatically generated file. If they are the same, the script is authorized to change the configuration file. Otherwise, it determines that the file has been changed and asks what action it should take (install the new file, save the old file, or try to integrate the new changes with the existing file). This precautionary principle has long been unique to Debian, but other distributions have gradually begun to embrace it."
 msgstr ""
+"A Política Debian estipula expressamente que tudo deve ser feito para "
+"preservar alterações manuais feitas nos arquivos de configuração, então mais "
+"e mais scripts tomam precauções na edição de arquivos de configuração. O "
+"princípio geral é simples: o script apenas faz alterações se ele sabe o "
+"status do arquivo de configuração, o qual é verificado pela comparação do "
+"checksum do arquivo em relação ao último arquivo automaticamente gerado. Se "
+"eles forem iguais, o script é autorizado a alterar o arquivo de "
+"configuração. Senão, ele determina que o arquivo foi alterado e pergunta que "
+"ação ele deve executar (instalar o novo arquivo, salvar o arquivo antigo, ou "
+"tentar integrar as novas alterações no arquivo existente). Esse princípio de "
+"precaução tem sido exclusivo do Debian, mas outras distribuições tem, "
+"gradualmente, começado a adotá-lo."
 
 #. Tag: para
 #, no-c-format
@@ -1761,71 +1827,91 @@ msgstr "Princípio e Mecanismo"
 #, no-c-format
 msgid "The <command>rsyslogd</command> daemon is responsible for collecting service messages coming from applications and the kernel, then dispatching them into log files (usually stored in the <filename>/var/log/</filename> directory). It obeys the <filename>/etc/rsyslog.conf</filename> configuration file."
 msgstr ""
+"O daemon <command>rsyslogd</command> é responsável por coletar mensagens de "
+"serviço vindas de aplicações e do núcleo, e então despachá-las para arquivos "
+"de log (usualmente armazenados no diretório <filename>/var/log/</filename>). "
+"Ele obedece o arquivo de configuração <filename>/etc/rsyslog.conf</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "Each log message is associated with an application subsystem (called “facility” in the documentation):"
 msgstr ""
+"Cada mensagem de log é associada com um subsistema de aplicação (chamado "
+"“facility” na documentação):"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>auth</literal> and <literal>authpriv</literal>: for authentication;"
 msgstr ""
+"<literal>auth</literal> e <literal>authpriv</literal>: para autenticação;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>cron</literal>: comes from task scheduling services, <command>cron</command> and <command>atd</command>;"
 msgstr ""
+"<literal>cron</literal>: vem de serviços de agendamento de tarefas, "
+"<command>cron</command> e <command>atd</command>;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>daemon</literal>: affects a daemon without any special classification (DNS, NTP, etc.);"
 msgstr ""
+"<literal>daemon</literal>: afeta um daemon sem nenhuma classificação "
+"especial (DNS, NTP, etc.);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ftp</literal>: concerns the FTP server;"
-msgstr ""
+msgstr "<literal>ftp</literal>: relacionado ao servidor FTP;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>kern</literal>: message coming from the kernel;"
-msgstr ""
+msgstr "<literal>kern</literal>: mensagem vinda do núcleo;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>lpr</literal>: comes from the printing subsystem;"
-msgstr ""
+msgstr "<literal>lpr</literal>: vem do subsistema de impressão;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>mail</literal>: comes from the e-mail subsystem;"
-msgstr ""
+msgstr "<literal>mail</literal>: vem do subsistema de e-mail;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>news</literal>: Usenet subsystem message (especially from an NNTP — Network News Transfer Protocol — server that manages newsgroups);"
 msgstr ""
+"<literal>news</literal>: mensagem do subsistema Usenet  (especialmente do "
+"NNTP — Network News Transfer Protocol — servidor que gerencia newsgroups);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>syslog</literal>: messages from the <command>syslogd</command> server, itself;"
 msgstr ""
+"<literal>syslog</literal>: mensagens do próprio servidor "
+"<command>syslogd</command>;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>user</literal>: user messages (generic);"
-msgstr ""
+msgstr "<literal>user</literal>: mensagens do usuário (genérico);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>uucp</literal>: messages from the UUCP server (Unix to Unix Copy Program, an old protocol notably used to distribute e-mail messages);"
 msgstr ""
+"<literal>uucp</literal>: mensagens do servidor UUCP (Unix to Unix Copy "
+"Program, um antigo protocolo notavelmente usado para distribuir mensagens de "
+"e-mail);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>local0</literal> to <literal>local7</literal>: reserved for local use."
 msgstr ""
+"<literal>local0</literal> até <literal>local7</literal>: reservado para uso "
+"local."
 
 #. Tag: para
 #, no-c-format
@@ -1836,31 +1922,37 @@ msgstr "Cada mensagem está associada com um nível de prioridade. Está é a li
 #, no-c-format
 msgid "<literal>emerg</literal>: “Help!” There's an emergency, the system is probably unusable."
 msgstr ""
+"<literal>emerg</literal>: “Help!” Existe uma emergência, o sistema não está "
+"usável provavelmente."
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>alert</literal>: hurry up, any delay can be dangerous, action must be taken immediately;"
 msgstr ""
+"<literal>alert</literal>: se apresse, qualquer atrazo pode ser perigoso, é "
+"preciso agir imediatamente;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>crit</literal>: conditions are critical;"
-msgstr ""
+msgstr "<literal>crit</literal>: as condições são críticas;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>err</literal>: error;"
-msgstr ""
+msgstr "<literal>err</literal>: error;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>warn</literal>: warning (potential error);"
-msgstr ""
+msgstr "<literal>warn</literal>: aviso (erro potencial);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>notice</literal>: conditions are normal, but the message is important;"
 msgstr ""
+"<literal>notice</literal>: as condições estão normais, mas a mensagem é "
+"importante;"
 
 #. Tag: para
 #, no-c-format
@@ -1870,7 +1962,7 @@ msgstr "<literal>info</literal>: mensagem informativa;"
 #. Tag: para
 #, no-c-format
 msgid "<literal>debug</literal>: debugging message."
-msgstr ""
+msgstr "<literal>debug</literal>: mensagem de depuração."
 
 #. Tag: title
 #, no-c-format
@@ -1881,6 +1973,14 @@ msgstr "O Arquivo de Configuração"
 #, no-c-format
 msgid "The syntax of the <filename>/etc/rsyslog.conf</filename> file is detailed in the <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, but there is also HTML documentation available in the <emphasis role=\"pkg\">rsyslog-doc</emphasis> package (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>). The overall principle is to write “selector” and “action” pairs. The selector defines all relevant messages, and the actions describes how to deal with them."
 msgstr ""
+"A sintaxe do arquivo <filename>/etc/rsyslog.conf</filename> é detalhada na "
+"página de manual <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><ma"
+"nvolnum>5</manvolnum></citerefentry>, mas também existe documentação em HTML "
+"disponível no pacote <emphasis role=\"pkg\">rsyslog-doc</emphasis> "
+"(<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>). O "
+"principal princípio e escrever os pares “selector” e “action”. O \"selector\""
+" define todas as mensagens relevantes, e o \"actions\" descreve como lidar "
+"com elas."
 
 #. Tag: title
 #, no-c-format
@@ -1906,21 +2006,29 @@ msgstr "Sintaxe das Ações"
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The named pipe, a persistent pipe"
 msgstr ""
+"<emphasis>DE VOLTA AO BÁSICO</emphasis> O pipe nomeado, um pipe persistente"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>named pipe</primary>"
-msgstr "<primary>named pipe</primary>"
+msgstr "<primary>pipe nomeado</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>pipe, named pipe</primary>"
-msgstr "<primary>pipe, named pipe</primary>"
+msgstr "<primary>pipe, pipe nomeado</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A named pipe is a particular type of file that operates like a traditional pipe (the pipe that you make with the “|” symbol on the command line), but via a file. This mechanism has the advantage of being able to relate two unrelated processes. Anything written to a named pipe blocks the process that writes until another process attempts to read the data written. This second process reads the data written by the first, which can then resume execution."
 msgstr ""
+"Um pipe nomeado é um tipo particular de arquivo que opera como um pipe "
+"tradicional (o pipe que você faz com o símbolo “|” na linha de comando), mas "
+"via um arquivo. Esse mecanismo tem a vantagem de ser capaz de relacionar "
+"dois processos não relacionados. Qualquer coisa escrita em um pipe nomeado "
+"bloqueia o processo que escreve enquanto o outro processo tenta ler os dados "
+"escritos. Esse segundo processo lê os dados escritos pelo primeiro, que pode "
+"então retomar a execução."
 
 #. Tag: para
 #, no-c-format
@@ -1946,11 +2054,15 @@ msgstr "enviar a mensagem para um servidor remoto <command>syslog</command> (exe
 #, no-c-format
 msgid "send the message to an existing named pipe (example: <literal>|/dev/xconsole</literal>);"
 msgstr ""
+"envia a mensagem para um pipe nomeado existente (example: "
+"<literal>|/dev/xconsole</literal>);"
 
 #. Tag: para
 #, no-c-format
 msgid "send the message to one or more users, if they are logged in (example: <literal>root,rhertzog</literal>);"
 msgstr ""
+"envia a mensagem para um ou mais usuários, se eles estiverem logados "
+"(example: <literal>root,rhertzog</literal>);"
 
 #. Tag: para
 #, no-c-format
@@ -1976,11 +2088,23 @@ msgstr "<primary>log</primary><secondary>encaminhamento</secondary>"
 #, no-c-format
 msgid "It is a good idea to record the most important logs on a separate machine (perhaps dedicated for this purpose), since this will prevent any possible intruder from removing traces of their intrusion (unless, of course, they also compromise this other server). Furthermore, in the event of a major problem (such as a kernel crash), you have the logs available on another machine, which increases your chances of determining the sequence of events that caused the crash."
 msgstr ""
+"É uma boa ideia gravar os logs mais importantes em uma máquina separada ("
+"talvez dedicada a esse propósito), já que isso irá prevenir que qualquer "
+"possível invasor remova rastros de sua invasão (a menos, claro, que ele "
+"também comprometa esse outro servidor). Além do mais, caso aconteça um "
+"problema maior (como uma quebra do núcleo), você terá os logs disponíveis na "
+"outra máquina, o que aumenta suas chances de determinar a sequencia de "
+"eventos que causou a quebra."
 
 #. Tag: para
 #, no-c-format
 msgid "To accept log messages sent by other machines, you must reconfigure <emphasis>rsyslog</emphasis>: in practice, it is sufficient to activate the ready-for-use entries in <filename>/etc/rsyslog.conf</filename> (<literal>$ModLoad imudp</literal> and <literal>$UDPServerRun 514</literal>)."
 msgstr ""
+"Para aceitar mensagens de log enviadas por outras máquinas, você tem que "
+"reconfigurar o <emphasis>rsyslog</emphasis>: na prática, é suficiente ativar "
+"as entradas \"ready-for-use entries\" em "
+"<filename>/etc/rsyslog.conf</filename> (<literal>$ModLoad imudp</literal> e "
+"<literal>$UDPServerRun 514</literal>)."
 
 #. Tag: title
 #, no-c-format
@@ -1991,6 +2115,9 @@ msgstr "O super servidor <command>inetd</command>"
 #, no-c-format
 msgid "Inetd (often called “Internet super-server”) is a server of servers. It executes rarely used servers on demand, so that they do not have to run continuously."
 msgstr ""
+"Inetd (geralemente chamado de “Internet super-server”) é um servidor de "
+"servidores. Ele executa servidores, raramente usados, sob demanda, para que "
+"eles não tenham que rodar continuamente."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2006,6 +2133,10 @@ msgstr "<primary>super servidor</primary>"
 #, no-c-format
 msgid "The <filename>/etc/inetd.conf</filename> file lists these servers and their usual ports. The <command>inetd</command> command listens to all of them; when it detects a connection to any such port, it executes the corresponding server program."
 msgstr ""
+"O arquivo <filename>/etc/inetd.conf</filename> lista esses servidores e suas "
+"portas habituais. O comando <command>inetd</command> ouve em todas elas; "
+"quando ele detecta uma conexão em qualquer uma delas, ele executa o programa "
+"servidor correspondente."
 
 #. Tag: title
 #, no-c-format
@@ -2016,6 +2147,13 @@ msgstr "<emphasis>POLÍTICA DEBIAN</emphasis> Registrar um servidor em <filename
 #, no-c-format
 msgid "Packages frequently want to register a new server in the <filename>/etc/inetd.conf</filename> file, but Debian Policy prohibits any package from modifying a configuration file that it doesn't own. This is why the <command>updated-inetd</command> script (in the package with the same name) was created: It manages the configuration file, and other packages can thus use it to register a new server to the super-server's configuration."
 msgstr ""
+"Pacotes frequentemente querem registar um novo servidor no arquivo "
+"<filename>/etc/inetd.conf</filename>, mas a Política Debian proíbe qualquer "
+"pacote de modificar um arquivo de configuração que não lhe pertença. É por "
+"isso que o script <command>updated-inetd</command> (do pacote de mesmo nome) "
+"foi criado: ele gerencia o arquivo de configuração, assim outros pacotes "
+"podem usá-lo para registrar um novo servidor na configuração do super-"
+"servidor."
 
 #. Tag: para
 #, no-c-format
@@ -2034,6 +2172,8 @@ msgstr ""
 #, no-c-format
 msgid "The socket type: <literal>stream</literal> for a TCP connection, <literal>dgram</literal> for UDP datagrams."
 msgstr ""
+"O tipo de soquete: <literal>stream</literal> para conexão TCP, "
+"<literal>dgram</literal> para datagrams UDP."
 
 #. Tag: para
 #, no-c-format
@@ -2059,6 +2199,8 @@ msgstr "O caminho completo para o programa servidor a ser executado."
 #, no-c-format
 msgid "The arguments: this is a complete list of the program's arguments, including its own name (<literal>argv[0]</literal> in C)."
 msgstr ""
+"Os argumentos: esta é uma lista completa dos argumentos do programa, "
+"incluindo seu próprio nome (<literal>argv[0]</literal> em C)."
 
 #. Tag: para
 #, no-c-format
@@ -2124,11 +2266,21 @@ msgstr "<emphasis>ALTERNATIVA</emphasis> Outros comandos <command>inetd</command
 #, no-c-format
 msgid "While Debian installs <emphasis role=\"pkg\">openbsd-inetd</emphasis> by default, there is no lack of alternatives: we can mention <emphasis role=\"pkg\">inetutils-inetd</emphasis>, <emphasis role=\"pkg\">micro-inetd</emphasis>, <emphasis role=\"pkg\">rlinetd</emphasis> and <emphasis role=\"pkg\">xinetd</emphasis>."
 msgstr ""
+"Enquanto o Debian instala o <emphasis role=\"pkg\">openbsd-inetd</emphasis> "
+"por padrão, não existe falta de alternativas: nós podemos mencionar <"
+"emphasis role=\"pkg\">inetutils-inetd</emphasis>, <emphasis role=\"pkg\""
+">micro-inetd</emphasis>, <emphasis role=\"pkg\">rlinetd</emphasis> e <"
+"emphasis role=\"pkg\">xinetd</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "This last incarnation of a super-server offers very interesting possibilities. Most notably, its configuration can be split into several files (stored, of course, in the <filename>/etc/xinetd.d/</filename> directory), which can make an administrator's life easier."
 msgstr ""
+"Essa última encarnação do super-servidor oferece possibilidades muito "
+"interessantes. Mais notavelmente, sua configuração pode ser dividida em "
+"vários arquivos (armazenados, claro, no diretório "
+"<filename>/etc/xinetd.d/</filename>), o que pode tonar a vida do "
+"administrador mais fácil."
 
 #. Tag: title
 #, no-c-format
@@ -2159,6 +2311,10 @@ msgstr "<primary>comando agendamento</primary>"
 #, no-c-format
 msgid "<command>cron</command> is the daemon responsible for executing scheduled and recurring commands (every day, every week, etc.); <command>atd</command> is that which deals with commands to be executed a single time, but at a specific moment in the future."
 msgstr ""
+"O <command>cron</command> é o daemon responsável por executar comandos "
+"agendados e recorrentes (todo dia, toda semana, etc.); o "
+"<command>atd</command> é o que lida com comandos a serem executados uma "
+"única vez, mas em um momento específico no futuro."
 
 #. Tag: para
 #, no-c-format
@@ -2183,7 +2339,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "maintenance scripts (such as cleaning out temporary files)."
-msgstr ""
+msgstr "scripts de manutenção (como os de limpeza de arquivos temporários)."
 
 #. Tag: para
 #, no-c-format
@@ -2191,9 +2347,11 @@ msgid "By default, all users can schedule the execution of tasks. Each user has 
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Restricting <command>cron</command> or <command>atd</command>"
-msgstr "<emphasis>SEGURANÇA</emphasis> Restringindo <command>cron</command> ou <command>atd</command>"
+msgstr ""
+"<emphasis>SEGURANÇA</emphasis> Restringindo <command>cron</command> ou "
+"<command>atd</command>"
 
 #. Tag: para
 #, no-c-format
@@ -2204,6 +2362,12 @@ msgstr ""
 #, no-c-format
 msgid "The root user has their own <emphasis>crontab</emphasis>, but can also use the <filename>/etc/crontab</filename> file, or write additional <emphasis>crontab</emphasis> files in the <filename>/etc/cron.d</filename> directory. These last two solutions have the advantage of being able to specify the user identity to use when executing the command."
 msgstr ""
+"O usuário root tem seu pŕoprio <emphasis>crontab</emphasis>, mas também pode "
+"usar o arquivo <filename>/etc/crontab</filename>, ou escrever arquivos "
+"<emphasis>crontab</emphasis> adicionais no diretório "
+"<filename>/etc/cron.d</filename>. Essas duas últimas soluções tem a vantagem "
+"de ser capaz de especificar a identidade do usuário a usar quando o comando "
+"for executado."
 
 #. Tag: para
 #, no-c-format
@@ -2234,6 +2398,9 @@ msgstr "programas no <filename>/etc/cron.monthly/</filename> uma vez por mês."
 #, no-c-format
 msgid "Many Debian packages rely on this service: by putting maintenance scripts in these directories, they ensure optimal operation of their services."
 msgstr ""
+"Muitos pacotes Debian contam com esse serviço: colocando scripts de "
+"manutenção nesses diretórios, eles garantem a excelente operação de seus "
+"serviços."
 
 #. Tag: title
 #, no-c-format
@@ -2248,37 +2415,42 @@ msgstr "<primary><filename>crontab</filename></primary>"
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Text shortcuts for <command>cron</command>"
-msgstr ""
+msgstr "<emphasis>Dica</emphasis> Abreviações para o <command>cron</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>cron</command> recognizes some abbreviations which replace the first five fields in a <filename>crontab</filename> entry. They correspond to the most classic scheduling options:"
 msgstr ""
+"O <command>cron</command> reconhece algumas abreviações que substituem os "
+"cinco primeiros campos de uma entrada no <filename>crontab</filename>. Elas "
+"correspondem as opções de agendamento mais clássicas:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@yearly</literal>: once per year (January 1, at 00:00);"
-msgstr ""
+msgstr "<literal>@yearly</literal>: uma vez por ano (Janeiro 1, às 00:00);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@monthly</literal>: once per month (the 1st of the month, at 00:00);"
 msgstr ""
+"<literal>@monthly</literal>: um vez por mês (o primeiro dia do mês, às "
+"00:00);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@weekly</literal>: once per week (Sunday at 00:00);"
-msgstr ""
+msgstr "<literal>@weekly</literal>: uma vez por semana (Domingo às 00:00);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@daily</literal>: once per day (at 00:00);"
-msgstr ""
+msgstr "<literal>@daily</literal>: uma vez por dia (às 00:00);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@hourly</literal>: once per hour (at the beginning of each hour)."
-msgstr ""
+msgstr "<literal>@hourly</literal>: uma vez por hora (no início de cada hora)."
 
 #. Tag: title
 #, no-c-format
@@ -2299,6 +2471,8 @@ msgstr ""
 #, no-c-format
 msgid "Each significant line of a <emphasis>crontab</emphasis> describes a scheduled command with the six (or seven) following fields:"
 msgstr ""
+"Cada significante linha de um <emphasis>crontab</emphasis> descreve um "
+"comando agendadocom os seguintes seis (ou sete) campos:"
 
 #. Tag: para
 #, no-c-format
@@ -2339,6 +2513,9 @@ msgstr "o comando a ser executado (quando as condições definidas nas primeiras
 #, no-c-format
 msgid "All these details are documented in the <citerefentry><refentrytitle>crontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> man page."
 msgstr ""
+"Todos esses detalhes estão documentados na página de manual "
+"<citerefentry><refentrytitle>crontab</refentrytitle> "
+"<manvolnum>5</manvolnum></citerefentry>."
 
 #. Tag: para
 #, no-c-format
@@ -2403,7 +2580,7 @@ msgid "The <command>at</command> executes a command at a specified moment in the
 msgstr ""
 
 #. Tag: screen
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid ""
 #| "\n"
 #| "<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>\n"
@@ -2422,9 +2599,12 @@ msgid ""
 "job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.12 &lt;&lt;END</userinput>\n"
-"<computeroutput>&gt; </computeroutput><userinput>echo \"Don't forget to wish a Happy Birthday to Raphaël!\" \\</userinput>\n"
-"<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.14 "
+"&lt;&lt;END</userinput>\n"
+"<computeroutput>&gt; </computeroutput><userinput>echo \"Don't forget to wish "
+"a Happy Birthday to Raphaël!\" \\</userinput>\n"
+"<computeroutput>&gt; </computeroutput><userinput>  | mail "
+"lolando@debian.org</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
 "<computeroutput>warning: commands will be executed using /bin/sh\n"
 "job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
