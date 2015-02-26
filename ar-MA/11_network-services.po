@@ -1,12 +1,12 @@
 #
 #
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Muhammad Saied <msaied93@gmail.com>, 2014.
+# Muhammad Saied <msaied93@gmail.com>, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-11-29 12:44-0500\n"
+"PO-Revision-Date: 2015-02-20 12:38-0500\n"
 "Last-Translator: Muhammad Saied <msaied93@gmail.com>\n"
 "Language-Team: Arabic <debian-l10n-arabic@lists.debian.org>\n"
 "Language: ar\n"
@@ -307,7 +307,8 @@ msgstr ""
 "أحد الأسئلة الإضافية يطلب جميع أسماء النطاقات المرتبطة بهذا الجهاز. تتضمن "
 "القائمة الافتراضية الاسم الكامل بالإضافة لبضعة مرادفات للاسم <literal>"
 "localhost</literal>. لكن يجب إضافة النطاق الرئيسي <literal>falcot.com<"
-"/literal> باليد. بصورة عامة، يجب إجابة هذا السؤال بإعطاءه جميع أسماء النطاقات "
+"/literal> يدوياً. بصورة عامة، يجب إجابة هذا السؤال بإعطاءه جميع أسماء "
+"النطاقات "
 "التي سيعمل هذا المخدم معها كمخدم MX؛ بكلمات أخرى، جميع أسماء النطاقات التي "
 "يبين مخدم DNS أنها تستطيع استقبال البريد الإلكتروني. ينتهي المطاف بهذه "
 "المعلومات في المتغير <literal>mydestination</literal> في الملف  <filename "
@@ -1159,7 +1160,7 @@ msgid ""
 msgstr ""
 "استخدام <literal>permit_mynetworks</literal> كقاعدة أولى له أثر جانبي ملفت: "
 "فالقواعد التالية ستُطبَّق فقط على المضيفات خارج الشبكة المحلية. يسمح هذا بحظر "
-"جميع المضيفات التي تعلن أنها جزء من <literal>falcot.com</literal>، عير إضافة "
+"جميع المضيفات التي تعلن أنها جزء من <literal>falcot.com</literal>، عبر إضافة "
 "السطر <literal>falcot.com REJECT You're not in our network!</literal> مثلاً "
 "إلى الملف <filename dir=\"ltr\">/etc/postfix/access_helo</filename>."
 
@@ -1719,12 +1720,13 @@ msgid ""
 "subscribers), this can soon become a problem."
 msgstr ""
 "نتيجة لذلك، قد يتغير مع الزمن عنوان IP لنفس المخدم المرسل أيضاً. بل وأكثر من "
-"ذلك، قد يتغير عنوان المرسل حتى. مثلاً، تشفر الكثير من مخدمات القوائم البريدية "
+"ذلك، قد يتغير عنوان المرسل حتى. مثلاً، تُشفِّر الكثير من مخدمات القوائم "
+"البريدية "
 "معلومات إضافية في عنوان المرسل بحيث تتمكن من معالجة رسائل الأخطاء (تدعى <"
 "emphasis>bounces</emphasis>). كل رسالة جديدة ترسل إلى القائمة البريدية عليها "
 "عنئذ المرور عبر القوائم الرمادية، وهذا يعني أنه يجب تخزينها (مؤقتاً) على مخدم "
 "المرسل. بالنسبة للقوائم البريدية الكبيرة جداً (التي تحوي عشرات ألوف "
-"المستركين)، سرعان ما يصبح هذا الأمر مشكلة."
+"المشتركين)، سرعان ما يصبح هذا الأمر مشكلة."
 
 #. Tag: para
 #, no-c-format
@@ -6518,7 +6520,7 @@ msgid ""
 "It is thus a convenient way to update the configuration of the LDAP server, "
 "simply by editing the <literal>cn=config</literal> hierarchy."
 msgstr ""
-"هذه الطريقة مريحة حصوصاً عند تحديث إعدادات مخدم LDAP، وذلك بتحرير الشجرة <"
+"هذه الطريقة مريحة خصوصاً عند تحديث إعدادات مخدم LDAP، وذلك بتحرير الشجرة <"
 "literal>cn=config</literal> ببساطة."
 
 #. Tag: screen
