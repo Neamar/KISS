@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-02-28 20:01+0200\n"
+"PO-Revision-Date: 2015-03-17 20:38+0200\n"
 "Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
@@ -1940,7 +1940,7 @@ msgstr "<literal>crit</literal>: as condições são críticas;"
 #. Tag: para
 #, no-c-format
 msgid "<literal>err</literal>: error;"
-msgstr "<literal>err</literal>: error;"
+msgstr "<literal>err</literal>: erro;"
 
 #. Tag: para
 #, no-c-format
@@ -2184,6 +2184,15 @@ msgstr "O protocolo: <literal>tcp</literal> ou <literal>udp</literal>."
 #, no-c-format
 msgid "The options: two possible values: <literal>wait</literal> or <literal>nowait</literal>, to tell <command>inetd</command> whether it should wait or not for the end of the launched process before accepting another connection. For TCP connections, easily multiplexable, you can usually use <literal>nowait</literal>. For programs responding over UDP, you should use <literal>nowait</literal> only if the server is capable of managing several connections in parallel. You can suffix this field with a period, followed by the maximum number of connections authorized per minute (the default limit is 256)."
 msgstr ""
+"As opções: dois valores possíveis: <literal>wait</literal> ou "
+"<literal>nowait</literal>, para dizer ao <command>inetd</command> quando ele "
+"deve esperar ou não pelo fim do processo lançado antes de aceitar outra "
+"conexão. Para conexões TCP, facilmente multiplicáveis (multiplexable) , você "
+"geralmente pode usar <literal>nowait</literal>. Para programas respondendo "
+"sobre UDP, você deve usar <literal>nowait</literal> apenas se o servidor é "
+"capaz de gerenciar várias conexões em paralelo. Você pode usar um ponto como "
+"sufixo nesse campo, seguido pelo número máximo de conexões autorizadas por "
+"minuto (o limite padrão é 256)."
 
 #. Tag: para
 #, no-c-format
@@ -2236,6 +2245,19 @@ msgstr "<primary><command>tcpd</command></primary>"
 #, no-c-format
 msgid "The <command>tcpd</command> program is frequently used in the <filename>/etc/inetd.conf</filename> file. It allows limiting incoming connections by applying access control rules, documented in the <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, and which are configured in the <filename>/etc/hosts.allow</filename> and <filename>/etc/hosts.deny</filename> files. Once it has been determined that the connection is authorized, <command>tcpd</command> executes the real server (like <command>in.fingerd</command> in our example). It is worth noting that <command>tcpd</command> relies on the name under which it was invoked (that is the first argument, <literal>argv[0]</literal>) to identify the real program to run. So you should not start the arguments list with <literal>tcpd</literal> but with the program that must be wrapped."
 msgstr ""
+"O programa <command>tcpd</command> é frequentemente usado no arquivo "
+"<filename>/etc/inetd.conf</filename>. Ele permite limitar conexões de "
+"entrada aplicando regras de controle de acesso, documentadas na página de "
+"manual <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5<"
+"/manvolnum></citerefentry>, e que são configuradas nos arquivos "
+"<filename>/etc/hosts.allow</filename> e <filename>/etc/hosts.deny</filename>"
+". Uma vez que tenha sido determinado que a conexão está autorizada, o "
+"<command>tcpd</command> executa o servidor real (como o "
+"<command>in.fingerd</command> no nosso exemplo). Vale apena notar que o "
+"<command>tcpd</command> conta com o nome sob o qual ele foi invocado (isto "
+"é, o primeiro argumento, <literal>argv[0]</literal>) para identificar o "
+"programa real a rodar. Então você não deveria iniciar a lista de argumentos "
+"com o <literal>tcpd</literal> mas com o programa que tem que ser envolto."
 
 #. Tag: title
 #, no-c-format
@@ -2256,6 +2278,12 @@ msgstr "<primary>Venema, Wietse</primary>"
 #, no-c-format
 msgid "Wietse Venema, whose expertise in security has made him a renowned programmer, is the author of the <command>tcpd</command> program. He is also the main creator of Postfix, the modular e-mail server (SMTP, Simple Mail Transfer Protocol), designed to be safer and more reliable than <command>sendmail</command>, which features a long history of security vulnerabilities."
 msgstr ""
+"Wietse Venema, cuja perícia em segurança fez dele um renomado programador, é "
+"o autor do programa <command>tcpd</command>. Ele também é o principal "
+"criador do Postfix, o servidor de email modular (SMTP, Simple Mail Transfer "
+"Protocol), desenvolvido para ser mais seguro e mais confiável que o "
+"<command>sendmail</command>, que tem uma longa lista de vulnerabilidades de "
+"segurança."
 
 #. Tag: title
 #, no-c-format
@@ -2334,7 +2362,7 @@ msgstr "atualizando o banco de dados para o programa <command>locate</command>;"
 #. Tag: para
 #, no-c-format
 msgid "back-ups;"
-msgstr ""
+msgstr "cópias de segurança;"
 
 #. Tag: para
 #, no-c-format
@@ -2345,6 +2373,11 @@ msgstr "scripts de manutenção (como os de limpeza de arquivos temporários)."
 #, no-c-format
 msgid "By default, all users can schedule the execution of tasks. Each user has thus their own <emphasis>crontab</emphasis> in which they can record scheduled commands. It can be edited by running <command>crontab -e</command> (its content is stored in the <filename>/var/spool/cron/crontabs/<replaceable>user</replaceable></filename> file)."
 msgstr ""
+"Por padrão, todos os usuários podem agendar a execução de tarefas. Cada "
+"usuário tem, assim, seu próprio <emphasis>crontab</emphasis> no qual pode "
+"gravar comandos agendados. Ele pode ser editado rodando <command>crontab "
+"-e</command> (seu conteúdo é armazenado no arquivo <filename>/var/spool/cron/"
+"crontabs/<replaceable>usuário</replaceable></filename>)."
 
 #. Tag: title
 #, no-c-format
@@ -2357,6 +2390,15 @@ msgstr ""
 #, no-c-format
 msgid "You can restrict access to <command>cron</command> by creating an explicit authorization file (whitelist) in <filename>/etc/cron.allow</filename>, in which you indicate the only users authorized to schedule commands. All others will automatically be deprived of this feature. Conversely, to only block one or two troublemakers, you could write their username in the explicit prohibition file (blacklist), <filename>/etc/cron.deny</filename>. This same feature is available for <command>atd</command>, with the <filename>/etc/at.allow</filename> and <filename>/etc/at.deny</filename> files."
 msgstr ""
+"Você pode restringir o acesso ao <command>cron</command> criando um arquivo "
+"explícito para autorização (whitelist) em "
+"<filename>/etc/cron.allow</filename>, no qual você indica apenas usuários "
+"com autorização para agendar comandos. Todos os outros serão automaticamente "
+"privados desse recurso. Reciprocamente, para bloquear apenas um ou dois "
+"encrenceiros, você pode botar seus nomes de usuário em um arquivo explícito "
+"para proibição (blacklist), <filename>/etc/cron.deny</filename>. Esse mesmo "
+"recurso está disponível para o <command>atd</command>, com os arquivos "
+"<filename>/etc/at.allow</filename> e <filename>/etc/at.deny</filename>."
 
 #. Tag: para
 #, no-c-format
@@ -2458,14 +2500,29 @@ msgid "<emphasis>SPECIAL CASE</emphasis> <command>cron</command> and daylight sa
 msgstr "<emphasis>CASO ESPECIAL</emphasis> <command>cron</command> e o horário de verão."
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "In Debian, <command>cron</command> takes the time change (for Daylight Savings Time, or in fact for any significant change in the local time) into account as best as it can. Thus, the commands that should have been executed during an hour that never existed (for example, tasks scheduled at 2:30 am during the Spring time change in France, since at 2:00 am the clock jumps directly to 3:00 am) are executed shortly after the time change (thus around 3:00 am DST). On the other hand, in autumn, when commands would be executed several times (2:30 am DST, then an hour later at 2:30 am standard time, since at 3:00 am DST the clock turns back to 2:00 am) are only executed once."
 msgstr ""
+"No Debian, o <command>cron</command> leva em conta as alterações de horário ("
+"o horário de verão, ou de fato qualquer alteração significante no horário "
+"local) da melhor maneira que ele pode. Assim, os comandos que deveriam ser "
+"executados durante a hora que nunca existiu (por exemplo, tarefas agendadas "
+"para 2:30 am durante a mudança de horário na Primavera na França, já que às "
+"2:00 am o relógio pula direto para às 3:00 am) são executadas logo após a "
+"alteração de horário (sendo então por volta das 3:00 am DST). Por outro "
+"lado, in autumn, quando comandos seriam executados várias vezes (2:30 am "
+"DST, depois uma hora mais tarde às 2:30 am horário padrão, já que às 3:00 am "
+"DST o relógio volta para 2:00 am) são executados apenas uma vez."
 
 #. Tag: para
 #, no-c-format
 msgid "Be careful, however, if the order in which the different scheduled tasks and the delay between their respective executions matters, you should check the compatibility of these constraints with <command>cron</command>'s behavior; if necessary, you can prepare a special schedule for the two problematic nights per year."
 msgstr ""
+"Tenha cuidado, contudo, se a ordem na qual as diferentes tarefas agendadas e "
+"o \"delay\" entre suas respectivas execuções tem que ser levada em conta, "
+"você deve checar a compatibilidade desses constrangimentos com o "
+"comportamento do <command>cron</command>; se necessário, você pode preparar "
+"um agendamento especial para as duas noites problemáticas por ano."
 
 #. Tag: para
 #, no-c-format
@@ -2498,11 +2555,19 @@ msgstr "o valor para o mês (de 1 à 12);"
 #, no-c-format
 msgid "the value for the day of the week (from 0 to 7, 1 corresponding to Monday, Sunday being represented by both 0 and 7; it is also possible to use the first three letters of the name of the day of the week in English, such as <literal>Sun</literal>, <literal>Mon</literal>, etc.);"
 msgstr ""
+"o valor para o dia da semana (a partir de 0 até 7, 1 correspondendo a "
+"Segunda, Domingo sendo representado tanto por 0 quanto por 7; ainda é "
+"possível usar as três primeiras letras do nome do dia da semana em Inglês, "
+"como <literal>Sun</literal>, <literal>Mon</literal>, etc.);"
 
 #. Tag: para
 #, no-c-format
 msgid "the user name under whose identity the command must be executed (in the <filename>/etc/crontab</filename> file and in the fragments located in <filename>/etc/cron.d/</filename>, but not in the users' own crontab files);"
 msgstr ""
+"O nome de usuário sob cuja identidade o comando deve ser executado (no "
+"arquivo <filename>/etc/crontab</filename> e nos fragmentos localizados em "
+"<filename>/etc/cron.d/</filename>, mas não nos arquivos crontab do próprio "
+"usuário);"
 
 #. Tag: para
 #, no-c-format
@@ -2521,6 +2586,14 @@ msgstr ""
 #, no-c-format
 msgid "Each value can be expressed in the form of a list of possible values (separated by commas). The syntax <literal>a-b</literal> describes the interval of all the values between <literal>a</literal> and <literal>b</literal>. The syntax <literal>a-b/c</literal> describes the interval with an increment of <literal>c</literal> (example: <literal>0-10/2</literal> means <literal>0,2,4,6,8,10</literal>). An asterisk <literal>*</literal> is a wildcard, representing all possible values."
 msgstr ""
+"Cada valor pode ser expresso na forma de uma lista de valores possíveis ("
+"separados por vírgulas). A sintaxe <literal>a-b</literal> descreve o "
+"intervalo de todos os valores entre <literal>a</literal> e "
+"<literal>b</literal>. A sintaxe <literal>a-b/c</literal> descreve o "
+"intervalo com um incremento de <literal>c</literal> (exemplo: "
+"<literal>0-10/2</literal> significa <literal>0,2,4,6,8,10</literal>). Um "
+"asterisco <literal>*</literal> é um coringa, representando todos os valores "
+"possíveis."
 
 #. Tag: title
 #, no-c-format
@@ -2563,6 +2636,11 @@ msgstr "<emphasis>DICA</emphasis> Executando um comando na inicialização"
 #, no-c-format
 msgid "To execute a command a single time, just after booting the computer, you can use the <literal>@reboot</literal> macro (a simple restart of <command>cron</command> does not trigger a command scheduled with <literal>@reboot</literal>). This macro replaces the first five fields of an entry in the <emphasis>crontab</emphasis>."
 msgstr ""
+"Para executar um comando apenas um vez, logo após a inicialização do "
+"computador, você pode usar a macro <literal>@reboot</literal> (um simples "
+"reinicio do <command>cron</command> não dispara um comando agendado com "
+"<literal>@reboot</literal>). Essa macro substitui os cinco primeiros campos "
+"de uma entrada em <emphasis>crontab</emphasis>."
 
 #. Tag: title
 #, no-c-format
@@ -2578,6 +2656,25 @@ msgstr "<primary><command>at</command></primary>"
 #, no-c-format
 msgid "The <command>at</command> executes a command at a specified moment in the future. It takes the desired time and date as command-line parameters, and the command to be executed in its standard input. The command will be executed as if it had been entered in the current shell. <command>at</command> even takes care to retain the current environment, in order to reproduce the same conditions when it executes the command. The time is indicated by following the usual conventions: <literal>16:12</literal> or <literal>4:12pm</literal> represents 4:12 pm. The date can be specified in several European and Western formats, including <literal>DD.MM.YY</literal> (<literal>27.07.12</literal> thus representing 27 July 2012), <literal>YYYY-MM-DD</literal> (this same date being expressed as <literal>2012-07-27</literal>), <literal>MM/DD/[CC]YY</literal> (ie., <literal>12/25/12</literal> or <literal>12/25/2012</literal> will be December 25, 2012), or simple <literal>MMDD[CC]YY</literal> (so that <literal>122512</literal> or <literal>12252012</literal> will, likewise, represent December 25, 2012). Without it, the command will be executed as soon as the clock reaches the time indicated (the same day, or tomorrow if that time has already passed on the same day). You can also simply write “today” or “tomorrow”, which is self-explanatory."
 msgstr ""
+"O <command>at</command> executa um comando em um momento específico no "
+"futuro. Ele recebe o horário e data desejados como parâmetros de linha de "
+"comando, e o comando a ser executado em sua saída padrão. O comando será "
+"executado como se estivesse sido feito no shell corrente. O "
+"<command>at</command> até toma o cuidado de reter o ambiente corrente, para "
+"poder reproduzir as mesmas condições quando ele executa o comando. O horário "
+"é indicado pelas seguintes convenções usuais: <literal>16:12</literal> ou "
+"<literal>4:12pm</literal> representa 4:12 pm. A data pode ser especificada "
+"em vários formatos Europeus e Ocidentais, incluindo "
+"<literal>DD.MM.YY</literal> (<literal>27.07.12</literal> assim representando "
+"27 July 2012), <literal>YYYY-MM-DD</literal> (essa mesma data sendo expressa "
+"como <literal>2012-07-27</literal>), <literal>MM/DD/[CC]YY</literal> (ie., "
+"<literal>12/25/12</literal> ou <literal>12/25/2012</literal> será Dezembro "
+"25, 2012), ou simplesmente <literal>MMDD[CC]YY</literal> (logo "
+"<literal>122512</literal> ou <literal>12252012</literal> irá, do mesmo modo, "
+"representar Dezembro 25, 2012). Sem isso, o comando será executado assim que "
+"o relógio alcançar o horário indicado (no mesmo dia, ou amanhã se o horário "
+"já tiver passado no mesmo dia). Você também pode simplesmente escrever "
+"“today” ou “tomorrow”, o que é auto-explicativo."
 
 #. Tag: screen
 #, no-c-format
@@ -2613,11 +2710,27 @@ msgstr ""
 #, no-c-format
 msgid "An alternative syntax postpones the execution for a given duration: <command>at now + <replaceable>number</replaceable> <replaceable>period</replaceable></command>. The <replaceable>period</replaceable> can be <literal>minutes</literal>, <literal>hours</literal>, <literal>days</literal>, or <literal>weeks</literal>. The <replaceable>number</replaceable> simply indicates the number of said units that must elapse before execution of the command."
 msgstr ""
+"Uma sintaxe alternativa adia a execução por uma dada duração: <command>at "
+"now + <replaceable>número</replaceable> "
+"<replaceable>período</replaceable></command>. O "
+"<replaceable>período</replaceable> pode ser <literal>minutos</literal>, "
+"<literal>horas</literal>, <literal>dias</literal>, ou "
+"<literal>semanas</literal>. O <replaceable>número</replaceable> apenas "
+"indica o número de unidades ditas que tem que ocorrer antes da execução do "
+"comando."
 
 #. Tag: para
 #, no-c-format
 msgid "To cancel a task scheduled by <command>cron</command>, simply run <command>crontab -e</command> and delete the corresponding line in the <emphasis>crontab</emphasis> file. For <command>at</command> tasks, it is almost as easy: run <command>atrm <replaceable>task-number</replaceable></command>. The task number is indicated by the <command>at</command> command when you scheduled it, but you can find it again with the <command>atq</command> command, which gives the current list of scheduled tasks."
 msgstr ""
+"Para cancelar um tarefa agendada pelo <command>cron</command>, apenas rode "
+"<command>crontab -e</command> e apague a linha correspondente no arquivo "
+"<emphasis>crontab</emphasis>. Para tarefas do <command>at</command>, também "
+"é fácil: rode <command>atrm <replaceable>número-da-"
+"tarefa</replaceable></command>. O número da tarefa é indicado pelo comando "
+"<command>at</command>no momento que você vez o agendamento, mas você pode "
+"obter ele novamente com o comando <command>atq</command>, o qual retorna a "
+"lista corrente de tarefas agendadas."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2638,6 +2751,12 @@ msgstr "Agendando Tarefas Assíncronas: <command>anacron</command>"
 #, no-c-format
 msgid "<command>anacron</command> is the daemon that completes <command>cron</command> for computers that are not on at all times. Since regular tasks are usually scheduled for the middle of the night, they will never be executed if the computer is off at that time. The purpose of <command>anacron</command> is to execute them, taking into account periods in which the computer is not working."
 msgstr ""
+"O <command>anacron</command> é o daemon que completa o "
+"<command>cron</command> para computadores que não estão ligados o tempo "
+"todo. Como tarefas regulares geralmente são agendadas para o meio da noite, "
+"elas nunca serão executadas se o computador estiver desligado nesse momento. "
+"O propósito do <command>anacron</command> é executá-las, levando em "
+"consideração os períodos nos quais o computador não estiver trabalhando."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2648,6 +2767,16 @@ msgstr "<primary><command>anacron</command></primary>"
 #, no-c-format
 msgid "Please note that <command>anacron</command> will frequently execute such activity a few minutes after booting the machine, which can render the computer less responsive. This is why the tasks in the <filename>/etc/anacrontab</filename> file are started with the <command>nice</command> command, which reduces their execution priority and thus limits their impact on the rest of the system. Beware, the format of this file is not the same as that of <filename>/etc/crontab</filename>; if you have particular needs for <command>anacron</command>, see the <citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page."
 msgstr ""
+"Por favor note que o <command>anacron</command> irá, frequentemente, "
+"executar tais atividades poucos minutos após a inicialização da máquina, o "
+"que pode deixar o computador menos responsivo. É por isso que as tarefas no "
+"arquivo <filename>/etc/anacrontab</filename> são iniciadas com o comando "
+"<command>nice</command>, o qual reduz suas prioridades de execução, e assim, "
+"limita seus impactos no resto do sistema. Cuidado, o formato do seu arquivo "
+"não é o mesmo do <filename>/etc/crontab</filename>; se você tem necessidades "
+"particulares com relação ao <command>anacron</command>, veja a página de "
+"manual <citerefentry><refentrytitle>anacrontab</refentrytitle> "
+"<manvolnum>5</manvolnum></citerefentry>."
 
 #. Tag: title
 #, no-c-format
@@ -2658,21 +2787,52 @@ msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> Prioridades e <command>nice</co
 #, no-c-format
 msgid "Unix systems (and thus Linux) are multi-tasking and multi-user systems. Indeed, several processes can run in parallel, and be owned by different users: the kernel mediates access to the resources between the different processes. As a part of this task, it has a concept of priority, which allows it to favor certain processes over others, as needed. When you know that a process can run in low priority, you can indicate so by running it with <command>nice <replaceable>program</replaceable></command>. The program will then have a smaller share of the CPU, and will have a smaller impact on other running processes. Of course, if no other processes needs to run, the program will not be artificially held back."
 msgstr ""
+"Os sistemas Unix (e portanto o Linux) são sistemas multitarefa e "
+"multiusuário. Realmente, vários processos podem rodar em paralelo, e serem "
+"pertencentes a diferentes usuários: o núcleo faz a mediação do acesso aos "
+"recursos entre diferentes processos. Como parte de sua tarefa, ele tem o "
+"conceito de prioridade, o qual permite a ele favorecer certos processos em "
+"detrimento de outros, de acordo com a necessidade. Quando você sabe que um "
+"processo pode rodar em baixa prioridade, você pode indicar isso rodando ele "
+"com <command>nice <replaceable>programa</replaceable></command>. O programa "
+"irã então ter uma parcela menor da CPU, e irá ter um impacto menor nos "
+"outros processos em andamento. Claro que, se nenhum outro processo precisar "
+"ser executado, o programa não será artificialmente retido."
 
 #. Tag: para
 #, no-c-format
 msgid "<command>nice</command> works with levels of “niceness”: the positive levels (from 1 to 19) progressively lower the priority, while the negative levels (from -1 to -20) will increase it — but only root can use these negative levels. Unless otherwise indicated (see the <citerefentry><refentrytitle>nice</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page), <command>nice</command> increases the current level by 10."
 msgstr ""
+"O <command>nice</command> funciona com níveis de “niceness”: os níveis "
+"positivos (de 1 até 19) progressivamente baixa a prioridade, enquanto que os "
+"níveis negativos (de -1 até -20) irão incrementá-la — mas apenas o root pode "
+"usar esses níveis negativos. Salvo indicado ao contrário (veja a página de "
+"manual <citerefentry><refentrytitle>nice</refentrytitle> "
+"<manvolnum>1</manvolnum></citerefentry>), o <command>nice</command> "
+"incrementa o nível corrente por 10."
 
 #. Tag: para
 #, no-c-format
 msgid "If you discover that an already running task should have been started with <command>nice</command> it is not too late to fix it; the <command>renice</command> command changes the priority of an already running process, in either direction (but reducing the “niceness” of a process is reserved to the root user)."
 msgstr ""
+"Se você descobrir que uma tarefa que esteja em execução deveria ter sido "
+"iniciada com o <command>nice</command>, não é tarde de mais para consertar "
+"isso; o comando <command>renice</command> altera a prioridade de um processo "
+"em andamento, em ambas as direções (porém reduzir o “niceness” de um "
+"processo é reservado ao usuário root)."
 
 #. Tag: para
 #, no-c-format
 msgid "Installation of the <emphasis role=\"pkg\">anacron</emphasis> package deactivates execution by <command>cron</command> of the scripts in the <filename>/etc/cron.hourly/</filename>, <filename>/etc/cron.daily/</filename>, <filename>/etc/cron.weekly/</filename>, and <filename>/etc/cron.monthly/</filename> directories. This avoids their double execution by <command>anacron</command> and <command>cron</command>. The <command>cron</command> command remains active and will continue to handle the other scheduled tasks (especially those scheduled by users)."
 msgstr ""
+"A instalação do pacote <emphasis role=\"pkg\">anacron</emphasis> desativa a "
+"execução pelo <command>cron</command> dos scripts nos diretórios "
+"<filename>/etc/cron.hourly/</filename>, <filename>/etc/cron.daily/</filename>"
+", <filename>/etc/cron.weekly/</filename>, e "
+"<filename>/etc/cron.monthly/</filename>. Isso evita a dupla execução pelo "
+"<command>anacron</command> e <command>cron</command>. O comando "
+"<command>cron</command> continua ativo e continuará a lidar com outras "
+"tarefas agendadas (especialmente as agendadas pelos usuários)."
 
 #. Tag: title
 #, no-c-format
@@ -2688,16 +2848,30 @@ msgstr "<primary>cota</primary>"
 #, no-c-format
 msgid "The quota system allows limiting disk space allocated to a user or group of users. To set it up, you must have a kernel that supports it (compiled with the <varname>CONFIG_QUOTA</varname> option) — as is the case of Debian kernels. The quota management software is found in the <emphasis role=\"pkg\">quota</emphasis> Debian package."
 msgstr ""
+"O sistema de quotas permite limitar o espaço de disco alocado para um "
+"usuário o grupo de usuários. Para configurá-lo, você tem que ter um núcleo "
+"que o suporte (compilado com a opção <varname>CONFIG_QUOTA</varname>) — como "
+"é o caso dos núcleos Debian. O software de gerenciamento de quotas é "
+"encontrado no pacote Debian <emphasis role=\"pkg\">quota</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "To activate them in a filesystem, you have to indicate the <literal>usrquota</literal> and <literal>grpquota</literal> options in <filename>/etc/fstab</filename> for the user and group quotas, respectively. Rebooting the computer will then update the quotas in the absence of disk activity (a necessary condition for proper accounting of already used disk space)."
 msgstr ""
+"Para ativá-las no sistema de arquivo, você tem que indicar as opções "
+"<literal>usrquota</literal> e <literal>grpquota</literal> no "
+"<filename>/etc/fstab</filename> para quotas de usuário e grupo, "
+"respectivamente. Reiniciar o computador irá então atualizar as quotas na "
+"ausência de atividade de disco (uma condição necessária para correta "
+"contabilização de espaço de disco já utilizado)."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>edquota <replaceable>user</replaceable></command> (or <command>edquota -g <replaceable>group</replaceable></command>) command allows you to change the limits while examining current disk space usage."
 msgstr ""
+"O comando <command>edquota <replaceable>usuário</replaceable></command> (ou "
+"<command>edquota -g <replaceable>grupo</replaceable></command>) permite que "
+"você altere os limites enquanto examina o atual uso de espaço do disco."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2707,7 +2881,7 @@ msgstr "<primary><command>edquota</command></primary>"
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Defining quotas with a script"
-msgstr ""
+msgstr "<emphasis>INDO ALÉM</emphasis> Definindo quotas com um script"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2718,6 +2892,10 @@ msgstr "<primary><command>setquota</command></primary>"
 #, no-c-format
 msgid "The <command>setquota</command> program can be used in a script to automatically change many quotas. Its <citerefentry><refentrytitle>setquota</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page details the syntax to use."
 msgstr ""
+"O programa <command>setquota</command> pode ser usado em um script para "
+"alterar automaticamente muitas quotas. Sua página de manual "
+"<citerefentry><refentrytitle>setquota</refentrytitle> "
+"<manvolnum>8</manvolnum></citerefentry> detalha a sintaxe a usar."
 
 #. Tag: para
 #, no-c-format
@@ -2733,11 +2911,20 @@ msgstr ""
 #, no-c-format
 msgid "two limits (soft and hard) refer to the number of inodes used. Each file occupies at least one inode to store information about it (permissions, owner, timestamp of last access, etc.). It is thus a limit on the number of user files."
 msgstr ""
+"dois limites (soft e hard) referem-se ao número de inodes usados. Cada "
+"arquivo ocupa, pelo menos, um inode para armazenar informação sobre ele ("
+"permissões, proprietário, timestamp do último acesso, etc.). Ele é, "
+"portanto, um limite no número de arquivos do usuário."
 
 #. Tag: para
 #, no-c-format
 msgid "A “soft” limit can be temporarily exceeded; the user will simply be warned that they are exceeding the quota by the <command>warnquota</command> command, which is usually invoked by <command>cron</command>. A “hard” limit can never be exceeded: the system will refuse any operation that will cause a hard quota to be exceeded."
 msgstr ""
+"Um limite “soft” pode ser excedido temporariamente; o usuário apenas será "
+"alertado que está excedendo a quota pelo comando <command>warnquota</command>"
+", o qual geralmente é invocado pelo <command>cron</command>. Um limite “hard”"
+" nunca pode ser excedido: o sistema irá recusar qualquer operação que possa "
+"causar que uma quota \"hard\" seja excedida."
 
 #. Tag: title
 #, no-c-format
@@ -2758,11 +2945,24 @@ msgstr "<primary>inode</primary>"
 #, no-c-format
 msgid "The filesystem divides the hard drive into blocks — small contiguous areas. The size of these blocks is defined during creation of the filesystem, and generally varies between 1 and 8 kibibytes."
 msgstr ""
+"O sistema de arquivos divide o disco rígido em blocos — pequenas áreas "
+"contíguas. O tamanho desses blocos é definido durante a criação do sistema "
+"de arquivos, e geralmente varia entre 1 e 8 kibibytes."
 
 #. Tag: para
 #, no-c-format
 msgid "A block can be used either to store the real data of a file, or for meta-data used by the filesystem. Among this meta-data, you will especially find the inodes. An inode uses a block on the hard drive (but this block is not taken into consideration in the block quota, only in the inode quota), and contains both the information on the file to which it corresponds (name, owner, permissions, etc.) and the pointers to the data blocks that are actually used. For very large files that occupy more blocks than it is possible to reference in a single inode, there is an indirect block system; the inode references a list of blocks that do not directly contain data, but another list of blocks."
 msgstr ""
+"Um bloco pode ser usado tanto para armazenar dados reais de um arquivo, "
+"quanto para meta-dados usados pelo sistema de arquivos. Dentre desse meta-"
+"dados, você irá encontrar especialmente os inodes. Um inode usa um bloco no "
+"disco rígido (mas esse bloco não é levado em consideração na quota de bloco, "
+"apenas na quota inode), e contém as informações sobre o arquivo o qual ele "
+"corresponde (nome, proprietário, permissões, etc.) e os ponteiros para os "
+"blocos de dados que eles realmente usam. Para arquivos realmente grandes que "
+"ocupam mais blocos do que é possível referenciar em um único inode, existe "
+"um sistema de bloco indireto; o inode referencia uma lista de blocos que não "
+"contém dados diretamente, mas outra lista de blocos."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2773,11 +2973,18 @@ msgstr "<primary><command>warnquota</command></primary>"
 #, no-c-format
 msgid "With the <command>edquota -t</command> command, you can define a maximum authorized “grace period” within which a soft limit may be exceeded. After this period, the soft limit will be treated like a hard limit, and the user will have to reduce their disk space usage to within this limit in order to be able to write anything to the hard drive."
 msgstr ""
+"Com o comando <command>edquota -t</command>, você pode definir um \"período "
+"de tolerância máxima autorizado no qual um limite \"soft\" pode ser "
+"excedido. Após esse período, o limite \"soft\" será tratado como um limite \""
+"hard\", e o usuário terá que reduzir seu espaço de disco usado para dentro "
+"do limite para que seja possível escrever qualquer coisa no disco rígido."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Setting up a default quota for new users"
 msgstr ""
+"<emphasis>INDO ALÉM</emphasis> Configurando uma quota padrão para novos "
+"usuários"
 
 #. Tag: para
 #, no-c-format
@@ -2810,10 +3017,10 @@ msgid "<primary><command>amanda</command></primary>"
 msgstr "<primary><command>amanda</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary><command>at</command></primary>"
 msgid "<primary><command>bacula</command></primary>"
-msgstr "<primary><command>at</command></primary>"
+msgstr "<primary><command>bacula</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2846,19 +3053,22 @@ msgid "<primary><command>rsync</command></primary>"
 msgstr "<primary><command>rsync</command></primary>"
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The hard link, a second name for the file"
-msgstr "<emphasis>DE VOLTA AO BÁSICO</emphasis> O hard link, um segundo nome para o arquivo"
+msgstr ""
+"<emphasis>DE VOLTA AO BÁSICO</emphasis> A ligação forte (hard link), um "
+"segundo nome para o arquivo"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>link</primary><secondary>hard link</secondary>"
-msgstr "<primary>link</primary><secondary>hard link</secondary>"
+msgstr ""
+"<primary>ligação</primary><secondary>ligação forte (hard link)</secondary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>hard link</primary>"
-msgstr "<primary>hard link</primary>"
+msgstr "<primary>ligação forte (hard link)</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -2906,7 +3116,7 @@ msgid "The <filename>/etc/dirvish/master.conf</filename> file"
 msgstr "O arquivo <filename>/etc/dirvish/master.conf</filename>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "bank:\n"
 "    /backup\n"
@@ -2959,7 +3169,7 @@ msgid "The <filename>/backup/root/dirvish/default.conf</filename> file"
 msgstr "O arquivo <filename>/backup/root/dirvish/default.conf</filename>"
 
 #. Tag: programlisting
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "client: rivendell.falcot.com\n"
 "tree: /\n"
@@ -3021,9 +3231,11 @@ msgid "The Falcot Corp administrators are aware of the limits in their backup po
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Backing up SQL and LDAP services"
-msgstr "<emphasis>APROFUNDANDO</emphasis> Cópia de segurança SQL e serviços LDAP"
+msgstr ""
+"<emphasis>APROFUNDANDO</emphasis> Cópia de segurança de serviços de SQL e "
+"LDAP"
 
 #. Tag: para
 #, no-c-format
@@ -3438,10 +3650,12 @@ msgid "<primary><command>acpid</command></primary>"
 msgstr ""
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>CULTURE</emphasis> SSH compared to RSH"
 msgid "<emphasis>CULTURE</emphasis> Advanced Power Management (APM)"
-msgstr "<emphasis>CULTURA</emphasis> SSH comparado ao RSH"
+msgstr ""
+"<emphasis>CULTURA</emphasis> Gerenciamento Avançado de Energia (Advanced "
+"Power Management - APM)"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3457,17 +3671,26 @@ msgstr ""
 #, no-c-format
 msgid "APM (Advanced Power Management) is the ancestor of ACPI in the power management world. While Debian still provides <command>apmd</command> (the counterpart to <command>acpid</command> for the APM standard), the official Debian kernel no longer supports APM so you'll have to run a custom kernel if you really need it for some old computer."
 msgstr ""
+"APM (Advanced Power Management) é o antepassado do ACPI no mundo do "
+"gerenciamento de energia. Enquanto que o Debian ainda provê o "
+"<command>apmd</command> (a contraparte do <command>acpid</command> para o "
+"padrão APM), o núcleo oficial do Debian não suporta mais o APM, então você "
+"terá que rodar um núcleo customizado se você realmente precisar dele para "
+"algum computador antigo."
 
 #. Tag: title
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<emphasis>VOCABULARY</emphasis> Blocks and inodes"
 msgid "<emphasis>BEWARE</emphasis> Graphics card and standby"
-msgstr "<emphasis>VOCABULÁRIO</emphasis> Blocos e inodes"
+msgstr "<emphasis>ATENÇÃO</emphasis> Placas gráficas e standby"
 
 #. Tag: para
 #, no-c-format
 msgid "The graphics card driver is often the culprit when standby doesn't work properly. In that case, it is a good idea to test the latest version of the X.org graphics server."
 msgstr ""
+"O driver da placa gráfica é, muitas vezes, o culpado quando o standby não "
+"funciona apropriadamente. Neste caso, é uma boa idéia testar a última versão "
+"do servidor gráfico X.org."
 
 #. Tag: para
 #, no-c-format
