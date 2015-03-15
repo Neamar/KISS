@@ -5,15 +5,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-01-11 22:31+0100\n"
+"PO-Revision-Date: 2015-03-11 20:37+0100\n"
 "Last-Translator: Marek Gubiec <mgubiec@gmail.com>\n"
 "Language-Team: \n"
-"Language: pl\n"
+"Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.1\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -496,214 +495,214 @@ msgstr "Na przykład, pakiet <emphasis>apt-howto-fr</emphasis> zawiera francuski
 #. Tag: title
 #, no-c-format
 msgid "Configuring a Program"
-msgstr ""
+msgstr "Konfiguracja Programu"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>program configuration</secondary>"
-msgstr ""
+msgstr "<primary>konfiguracja</primary><secondary>konfiguracja programu</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>program</primary><secondary>configuration</secondary>"
-msgstr ""
+msgstr "<primary>program</primary><secondary>konfiguracja</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When you want to configure an unknown package, you must proceed in stages. First, you should read what the package maintainer has documented. Reading <filename>/usr/share/doc/<replaceable>package</replaceable>/README.Debian</filename> will indeed allow you to learn of specific provisions made to simplify the use of the software. It is sometimes essential in order to understand the differences from the original behavior of the program, as described in the general documentation, such as howtos. Sometimes this file also details the most common errors in order for you to avoid wasting time on common problems."
-msgstr ""
+msgstr "Jeśli chcesz skonfigurować nieznaną paczkę, musisz postępować etapami. Najpierw powinienes przeczytać dokumentacje konserwatora. Przeczytanie <filename>/usr/share/doc/<replaceable>paczka</replaceable>/README.Debian</filename> przybliży Ci konkretne schematy zastosowane do ułatwienia obsługi oprogramowania. Czasami jest to konieczne aby zrozumieć róznice pomiędzy pierwotnym zachowaniem programu, opisanym w głównej dokumentacji, takich jak howtos ( z jęz. ang. - jak to zrobić ). Czasami plik ten zawiera szczegółowy opis najczęściej występujących błędów aby unikąć utraty czasu."
 
 #. Tag: para
 #, no-c-format
 msgid "Then, you should look at the software's official documentation — refer to the previous section to identify the various existing documentation sources. The <command>dpkg -L <replaceable>package</replaceable></command> command gives a list of files included in the package; you can therefore quickly identify the available documentation (as well as the configuration files, located in <filename>/etc/</filename>). <command>dpkg -s <replaceable>package</replaceable></command> displays the package meta-data and shows any possible recommended or suggested packages; in there, you can find documentation or a utility that will ease the configuration of the software."
-msgstr ""
+msgstr "Następnie powinienes przejrzeć oficjalną dokumentacje oprogramowania - sięgnij do poprzedniej sekcji aby wychwycić różne istniejące dokumentacje. Komenda  <command>dpkg -L <replaceable>paczka</replaceable></command> wyświetli Ci liste zawartych plików w paczce. W ten sposób będziesz w stanie szybko zidentyfikować dostępną dokumentacje ( tak jak i pliki konfiguracyjne, zlokalizowane w <filename>/etc/</filename>). <command>dpkg -s <replaceable>paczka</replaceable></command> wyświetla meta-dane paczki i wszystkie zalecane bądź sugerowane paczki. Możesz tam znaleźć dokumentacje lub usługę ułatwiającą konfiguracje oprogramowania."
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the configuration files are often self-documented by many explanatory comments detailing the various possible values for each configuration setting. So much so that it is sometimes enough to just choose a line to activate from among those available. In some cases, examples of configuration files are provided in the <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> directory. They may serve as a basis for your own configuration file."
-msgstr ""
+msgstr "Ostatecznie, pliki konfiguracyjne są często same w sobie udokumentowane poprzez liczne wyjasniające komentarze, przedstawiające możliwe wartości dla każdej opcji ustawień. Do tego stopnia, że czasem wystarczy wybrać i aktywować jedną z dostępnych lini kodu. W niektórych wypadkach dostarczone są również przyklady konfiguracyjne w katalogu <filename>/usr/share/doc/<replaceable>paczka</replaceable>/examples/</filename>. Mogą one służyć jako podstawa pod Twój własny plik konfiguracyjny."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> Location of examples"
-msgstr ""
+msgstr "<emphasis>POLITYKA DEBIANA</emphasis> Lokalizacja przykładów"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>examples, location</primary>"
-msgstr ""
+msgstr "<primary>przykłady, lokalizacja</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All examples must be installed in the <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> directory. This may be a configuration file, program source code (an example of the use of a library), or a data conversion script that the administrator can use in certain cases (such as to initialize a database). If the example is specific to a particular architecture, it should be installed in <filename>/usr/lib/<replaceable>package</replaceable>/examples/</filename> and there should be a link pointing to that file in the <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> directory."
-msgstr ""
+msgstr "Wszystkie przykłady muszą być zainstalowane w katalogu  <filename>/usr/share/doc/<replaceable>paczka</replaceable>/examples/</filename>. Może to być plik konfiguracyjny, kod źródłowy programu ( przykład użycia biblioteki ), albo skrypt konwertujący dane który może być użyty przez administratora w szczególnych wypadkach ( takich jak inicjowanie bazy danych ). Jeśli przykład jest specyficzny dla szczególnej architektury, powinien być zainstalowany w <filename>/usr/lib/<replaceable>paczka</replaceable>/examples/</filename> oraz powienien istnieć link wskazujący do tego pliku w katalogu <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename>."
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring What Daemons Are Doing"
-msgstr ""
+msgstr "Monitorowanie co robią Deamony"
 
 #. Tag: para
 #, no-c-format
 msgid "Understanding what a daemon does is somewhat more complicated, since it does not interact directly with the administrator. To check that a daemon is actually working, you need to test it. For example, to check the Apache (web server) daemon, test it with an HTTP request."
-msgstr ""
+msgstr "Zrozumienie działania deamona jest trochę bardziej skomplikowane, ponieważ nie komunikuje się on bezpośrednio z działaniami administratora. Aby sprawdzić czy deamon faktycznie działa, musisz to przetestować. Dla przykładu : aby sprawdzić czy działa deamon Apache ( serwer WWW ) , sprawdź go zapytaniem HTTP."
 
 #. Tag: para
 #, no-c-format
 msgid "To allow such tests, each daemon generally records everything that it does, as well as any errors that it encounters, in what are called “log files” or “system logs”. Logs are stored in <filename>/var/log/</filename> or one of its subdirectories. To know the precise name of a log file for each daemon, see its documentation. Note: a single test is not always sufficient if it does not cover all the possible usage cases; some problems only occur in particular circumstances."
-msgstr ""
+msgstr "Aby umożliwić takie testy, każdy deamon zapisuje to co robi, tak jak i każdy błąd który napotyka, w tak zwanych \"log files\" albo \"system logs\". Logi są przechowywane w <filename>/var/log/</filename> albo jednym z ich podkatalogów. Aby poznać dokładną nazwę pliku logowego poszczególnego deamona sprawdź jego dokumentacje. Uwaga: pojedyńczy test nie zawsze będzie wystarczający jeśli nie będzie pokrywał wszystkich możliwych zastosowań. Niektóre problemy występują tylko w konkretnych okolicznościach."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> The <command>rsyslogd</command> daemon"
-msgstr ""
+msgstr "<emphasis>NARZĘDZIE</emphasis> <command>rsyslogd</command> daemon"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>syslogd</command></primary>"
-msgstr ""
+msgstr "<primary><command>syslogd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>files</secondary>"
-msgstr ""
+msgstr "<primary>logi</primary><secondary>files</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>files</primary><secondary>logs</secondary>"
-msgstr ""
+msgstr "<primary>pliki</primary><secondary>logi</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>rsyslogd</command> is special: it collects logs (internal system messages) that are sent to it by other programs. Each log entry is associated with a subsystem (e-mail, kernel, authentication, etc.) and a priority; <command>rsyslogd</command> processes these two pieces of information to decide on what to do. The log message may be recorded in various log files, and/or sent to an administration console. The details are defined in the <filename>/etc/rsyslog.conf</filename> configuration file (documented in the manual page of the same name)."
-msgstr ""
+msgstr "<command>rsyslogd</command> jest szczególna: zbiera logi ( wewnętrzne wiadomości systemowe ) które są wysyłane do nich przez inne programy. Każdy wpis w logu jest powiązany z podsystemem ( e-mail, kernel, uwiarygodnienie, itd. ) i priorytetem;  <command>rsyslogd</command>przetwarza te dwie informacje aby zdecydować co zrobić. Wiadomośc logu może być zanotowana w różnych plikach logowych i/albo wysłana do konsoli administrującej. Szczegóły są zdefiniowane w pliku konfiguracyjnym <filename>/etc/rsyslog.conf</filename> ( zdokumentowanym na stronie manualu o tej samej nazwie)."
 
 #. Tag: para
 #, no-c-format
 msgid "Certain C functions, which are specialized in sending logs, simplify the use of the <command>rsyslogd</command> daemon. However some daemons manage their own log files (this is the case, for example, of <command>samba</command>, that implements Windows shares on Linux)."
-msgstr ""
+msgstr "Pewne funkcje C, które są wyspecjalizowane w wysyłaniu logów, ułatwiają używanie deamona <command>rsyslogd</command>. Jednak niektóre deamony sporządzają swoje własne pliki logowe ( jak jest na przykład w przypadku <command>samba</command>, który wdraża Windows shares na Linuxie)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Daemon"
-msgstr ""
+msgstr "<emphasis>POWRÓT DO PODSTAW</emphasis> Daemon"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>daemon</primary>"
-msgstr ""
+msgstr "<primary>daemon</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A daemon is a program that is not explicitly invoked by the user and that stays in the background, waiting for a certain condition to be met before performing a task. Many server programs are daemons, a term that explains that the letter “d” is frequently present at the end of their name (<command>sshd</command>, <command>smtpd</command>, <command>httpd</command>, etc.)."
-msgstr ""
+msgstr "Deamon jest programem który nie jest bezpośrednio wywoływany przez użytkownika, pozostaje w tle oczekując na spotkanie określonego warunku przed wykonaniem zadania. Wiele programów serwerowych jest deamonami, wyjaśnia to dlaczego litera \"d\" jest częstokroć obecna na końcu ich nazwy (<command>sshd</command>, <command>smtpd</command>, <command>httpd</command>, etc.)."
 
 #. Tag: para
 #, no-c-format
 msgid "As a preventive operation, the administrator should regularly read the most relevant server logs. They can thus diagnose problems before they are even reported by disgruntled users. Indeed users may sometimes wait for a problem to occur repeatedly over several days before reporting it. In many cases, there are specific tools to analyze the contents of the larger log files. In particular, such utilities exist for web servers (such as <command>analog</command>, <command>awstats</command>, <command>webalizer</command> for Apache), for FTP servers, for proxy/cache servers, for firewalls, for e-mail servers, for DNS servers, and even for print servers. Some of these utilities operate in a modular manner and allow analysis of several types of log files. This is the case of <command>lire</command> or also <command>modlogan</command>. Other tools, such as <command>logcheck</command> (a software discussed in <xref linkend=\"security\" />), scan these files in search of alerts to be dealt with."
-msgstr ""
+msgstr "Jako operacje zapobiegawczą, administrator powinien regularnie czytać najważniejsze logi serverowe. W ten sposób mogą zdiagnozować problem zanim zostanie on zgłoszony przez niezadowolonych użytkowników. Częstokroć użytkownicy czekają aż problem pojawi się kilkukrotnie w następujących dniach zanim go zgłoszą. W wielu przypadkach istnieją konkretne narzędzia do analizy zawartości dłuższych logów. W szczególności takie narzędzia istnieją dla serwerów www (takie jak <command>analog</command>, <command>awstats</command>, <command>webalizer</command> dla Apache), dla serwerów FTP, serwerów proxy/cache,  firewallów, e-mailów i serwerów DNS a także serwerów drukujących. Niektóre z tych serwerów operują w sposób modularny i umożliwiają analize wielu typów plików logu. Tak jest w przypadku <command>lire</command>albo też <command>modlogan</command>. Inne narzędzia , takie jak <command>logcheck</command> (oprogramowanie omówione na <xref linkend=\"security\" />), skanują te pliki poszukując ostrzerzeń którymi trzeba się zająć."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>analog</command></primary>"
-msgstr ""
+msgstr "<primary><command>analog</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>awtats</command></primary>"
-msgstr ""
+msgstr "<primary><command>awtats</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>webalizer</command></primary>"
-msgstr ""
+msgstr "<primary><command>webalizer</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>logcheck</command></primary>"
-msgstr ""
+msgstr "<primary><command>logcheck</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lire</command></primary>"
-msgstr ""
+msgstr "<primary><command>lire</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>modlogan</command></primary>"
-msgstr ""
+msgstr "<primary><command>modlogan</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Asking for Help on a Mailing List"
-msgstr ""
+msgstr "Pytanie o pomoc poprzez listy mailingowe"
 
 #. Tag: para
 #, no-c-format
 msgid "If your various searches haven't helped you to get to the root of a problem, it is possible to get help from other, perhaps more experienced people. This is indeed the purpose of the <email>debian-user@lists.debian.org</email> mailing list. As with any community, it has rules that need to be followed. Before asking any question, you should check that your problem isn't already covered by recent discussions on the list or by any official documentation. <ulink type=\"block\" url=\"http://wiki.debian.org/DebianMailingLists\" /> <ulink type=\"block\" url=\"http://lists.debian.org/debian-user/\" />"
-msgstr ""
+msgstr "Jeśli Twoje poszukiwania nie pomogły Ci dotrzeć do sedna problemu, możesz otwrzymać pomoc od innych, prawdopodobnie bardziej doświadczonych od Ciebie.  Do tego właśnie służą listy meilingowe <email>debian-user@lists.debian.org</email>. Jak w każdej społeczności, istnieją tu reguły których należy przestrzegać. Zanim zadasz jakieś pytanie, należy sprawdzić czy Twój problem nie został juz omówiony we wcześniejszych dyskusjach lub nie jest gdzies opisany w oficjalnej dokumentacji. <ulink type=\"block\" url=\"http://wiki.debian.org/DebianMailingLists\" /> <ulink type=\"block\" url=\"http://lists.debian.org/debian-user/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><email>debian-user</email></primary>"
-msgstr ""
+msgstr "<primary><email>debian-user</email></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mailing lists</primary>"
-msgstr ""
+msgstr "<primary>mailing lists</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Reading a list on the Web"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> Czytanie listy w sieci"
 
 #. Tag: para
 #, no-c-format
 msgid "For high volume mailing lists, such as <email>debian-user@lists.debian.org</email>, it may be worthwhile to go through them as a discussion forum (or newsgroup). Gmane.org allows consultation of the Debian lists in this format. The list mentioned above is available at: <ulink type=\"block\" url=\"http://dir.gmane.org/gmane.linux.debian.user\" />"
-msgstr ""
+msgstr "Dla obszernych list meilingowych, takich jak <email>debian-user@lists.debian.org</email>, może okazać się wartym trudu aby udać się z nimi na forum dyskusyjne. Gmane.org pozawala na kosultacje list Debiana w ten sposób. Wspomniana wyżej lista jest dostępna na: <ulink type=\"block\" url=\"http://dir.gmane.org/gmane.linux.debian.user\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Netiquette applies"
-msgstr ""
+msgstr "<emphasis>POWRÓT DO PODSTAW</emphasis> Zastosowanie netykiety"
 
 #. Tag: para
 #, no-c-format
 msgid "In general, for all correspondence on e-mail lists, the rules of Netiquette should be followed. This term refers to a set of common sense rules, from common courtesy to mistakes that should be avoided. <ulink type=\"block\" url=\"http://tools.ietf.org/html/rfc1855\" /> <indexterm><primary>Netiquette</primary></indexterm>"
-msgstr ""
+msgstr "Generalnie, w szczególności dla koresponedencji e-mailowych, powinny być przestrzegane zasady netykiety. Określenie to odnosi się do logiki zapytania, form grzecznościowych oraz błędów które powinny być unikane. <ulink type=\"block\" url=\"http://tools.ietf.org/html/rfc1855\" /> <indexterm><primary>Netiquette</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Once those two conditions are met, you can think of describing your problem to the mailing list. Include as much relevant information as possible: various tests conducted, documentation consulted, how you attempted to diagnose the problem, the packages concerned or those that may be involved, etc. Check the Debian Bug Tracking System (BTS, described in sidebar <xref linkend=\"sidebar.bts\" />) for similar problems, and mention the results of that search, providing links to bugs found. BTS starts on: <ulink type=\"block\" url=\"http://www.debian.org/Bugs/index.html\" />"
-msgstr ""
+msgstr "Jeśli te dwa warunki zostaną spełnione, możesz pomyśleć o opisaniu swojego problemu do listy mailingowej. Zawrzyj jak najwięcej odpowiednich informacji jak to możliwe, różne przeprowadzone testy, zaczerpnięte dokumentacje, jak usiłowałeś zdiagnozować zaistniały problem, dotyczące paczki albo te które mogą być zamieszane, itd. Sprawdź System Śledzenia Błędów (BTS - Bug Tracking System, opisany w panelu bocznym <xref linkend=\"sidebar.bts\" />) dla podobnych problemów i wspomnij o wynikach wyszukania, załączając linki do znalezionych problemów. BTS znajduje się na: <ulink type=\"block\" url=\"http://www.debian.org/Bugs/index.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The more courteous and precise you have been, the greater your chances are of getting an answer, or, at least, some elements of response. If you receive relevant information by private e-mail, think of summarizing this information publicly so that others can benefit. This also allows the list's archives, searched through various search engines, to show the resolution for others who may have the same question."
-msgstr ""
+msgstr "Im będziesz bardziej uprzejmy i precyzyjny, tym większe są Twoje szanse na uzyskanie odpowiedzi, albo przynajmniej jej części. Jeśli uzyskasz pełną odpowiedz z właściwymi informacjami poprzez e-mail, pomyśł o upublicznieniu jej aby inni również mogli z niej skorzystać. To wspomoże także archiwum, przeszukiwane przez różne wyszukiwarki, znaleźć rozwiązanie innym posiadającym te same pytanie."
 
 #. Tag: title
 #, no-c-format
 msgid "Reporting a Bug When a Problem Is Too Difficult"
-msgstr ""
+msgstr "Raportowanie błędu jeśli jest zbyt trudny do rozwiązania"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>report a bug</primary>"
-msgstr ""
+msgstr "<primary>zgłoś błąd</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bug report</primary>"
-msgstr ""
+msgstr "<primary>zgłoszenie błędu</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If all of your efforts to resolve a problem fail, it is possible that a resolution is not your responsibility, and that the problem is due to a bug in the program. In this case, the proper procedure is to report the bug to Debian or directly to the upstream developers. To do this, isolate the problem as much as possible and create a minimal test situation in which it can be reproduced. If you know which program is the apparent cause of the problem, you can find its corresponding package using the command, <command>dpkg -S <replaceable>file_in_question</replaceable></command>. Check the Bug Tracking System (<literal>http://bugs.debian.org/<replaceable>package</replaceable></literal>) to ensure that the bug has not already been reported. You can then send your own bug report, using the <command>reportbug</command> command, including as much information as possible, especially a complete description of those minimal test cases that will allow anyone to recreate the bug."
-msgstr ""
+msgstr "Jeśli wszystkie Twoje wysiłki związane z rozwiązaniem problemu zawiodą, istnieje możliwość, że odpowiedzialność za niego nie należy do Ciebie, a wynika z błędu w programie. W tym wypadku prawidłowym postępowaniem jest zgłoszenie błedu do Debiana bądź bezpośrednio do developerów. Aby to zrobić, wyodrebnij jak najmniejszą część programu tak, aby odtworzyć sytuacje w której on występuje. Jeśli wiesz który program jest jawnym powodzem występowania problemu, możesz odnaleźć jego paczke używając komendy , <command>dpkg -S <replaceable>dany_plik</replaceable></command>.  Sprawdź System Śledzenia Błędów  (<literal>http://bugs.debian.org/<replaceable>paczka</replaceable></literal>) aby się upewnić, że dany błąd nie został już zgłoszony. Możesz wtedy zgłosić swój błąd, używając komendy  <command>reportbug</command>, załączając jak najwięcej informacji, w szczególnośći pełny opis wyodrębnionej części programu która umożliwi każdemu odtworzenie błędu."
 
 #. Tag: para
 #, no-c-format
 msgid "The elements of this chapter are a means of effectively resolving issues that the following chapters may bring about. Use them as often as necessary!"
-msgstr ""
+msgstr "Rozdział ten zawiera efektywne rozwiązania problemów które mogą się pojawić w następnych rozdziałach. Używaj ich zawsze kiedy to konieczne!"

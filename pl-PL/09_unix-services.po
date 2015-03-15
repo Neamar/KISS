@@ -5,349 +5,349 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2012-11-22 21:16+0100\n"
-"Last-Translator: Mateusz Kacprzak <mateusz.kacprzak@yandex.ru>\n"
+"PO-Revision-Date: 2015-02-21 22:40+0100\n"
+"Last-Translator: Anna Fałek <annldz@onet.eu>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "System boot"
-msgstr ""
+msgstr "Bootowanie systemu"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Initscripts"
-msgstr ""
+msgstr "Initscripts"
 
 #. Tag: keyword
 #, no-c-format
 msgid "SSH"
-msgstr ""
+msgstr "SSH"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Telnet"
-msgstr ""
+msgstr "Telnet"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Rights"
-msgstr ""
+msgstr "Prawa"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Permissions"
-msgstr ""
+msgstr "Uprawnienia"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Supervision"
-msgstr ""
+msgstr "Nadzór"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Inetd"
-msgstr ""
+msgstr "Inetd"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Cron"
-msgstr ""
+msgstr "Cron"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Backup"
-msgstr ""
+msgstr "Kopia bezpieczeństwa"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Hotplug"
-msgstr ""
+msgstr "Hotplug"
 
 #. Tag: keyword
 #, no-c-format
 msgid "PCMCIA"
-msgstr ""
+msgstr "PCMCIA"
 
 #. Tag: keyword
 #, no-c-format
 msgid "APM"
-msgstr ""
+msgstr "APM"
 
 #. Tag: keyword
 #, no-c-format
 msgid "ACPI"
-msgstr ""
+msgstr "ACPI"
 
 #. Tag: title
 #, no-c-format
 msgid "Unix Services"
-msgstr ""
+msgstr "Usługi Uniksa"
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter covers a number of basic services that are common to many Unix systems. All administrators should be familiar with them."
-msgstr ""
+msgstr "Ten rozdział opisuje kilka podstawowych usług, które są dostępne w wielu systemach Unix. Wszyscy administratorzy powinni je znać."
 
 #. Tag: title
 #, no-c-format
 msgid "System Boot"
-msgstr ""
+msgstr "Bootowanie systemu"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>booting</primary><secondary>the system</secondary>"
-msgstr ""
+msgstr "<primary>bootowanie</primary><secondary>systemu</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When you boot the computer, the many messages scrolling by on the console display many automatic initializations and configurations that are being executed. Sometimes you may wish to slightly alter how this stage works, which means that you need to understand it well. That is the purpose of this section."
-msgstr ""
+msgstr "Kiedy bootujesz komputer, masa wiadomości przewijających się przez konsole ukazuje wykonywane automatyczne inicjalizacje i konfiguracje. Czasami chcesz nieco wpłynąć na działanie tego etapu, co oznacza, ze musisz go dobrze zrozumieć. To jest właśnie celem tej części książki."
 
 #. Tag: para
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
-msgstr ""
+msgstr "Po pierwsze, BIOS kontroluje komputer, wykrywa dyski, ładuje <emphasis>główny sektor rozruchowy</emphasis> i uruchamia bootloader. Bootloader przejmuje kontrole, znajduje jądro systemu na dysku, ładuje i uruchamia je. Jądro systemu jest następnie inicjalizowane i rozpoczyna poszukiwanie i montowanie partycji zawierającej główny system plików i w końcu uruchamia pierwszy program-<command>init</command>. Często, ta główna partycja i <command>init</command> są, tak naprawdę, ulokowane w wirtualnym systemie plików, który istnieje tylko w pamięci RAM(stąd jego nazwa,“initramfs”, dawniej zwany “initrd” lub \"inicjalizacja dysku RAM\").Ten system plików jest ładowany do pamięci przez bootloader, często z pliku na dysku twardym lub z sieci. Zawiera absolutne minimum wymagane przez jądro systemu do wczytania \"prawdziwego\" głównego systemu plików: mogą to być moduły sterowników dla dysku twardego lub inne programy, bez których system nie może się zbootować albo jeszcze częściej skrypty inicjalizacyjne  i moduły do kompletacji RAID, tworzenia zaszyfrowanych partycji, aktywacji LVM itd. Kiedy główna partycja jest już zamontowana, initramfs oddaje kontrolę rzeczywistemu initowi i maszyna wraca do standardowego procesu bootwania. "
 
 #. Tag: para
 #, no-c-format
 msgid "The “real init” is currently provided by <emphasis role=\"pkg\">sysv-rc</emphasis> (“System V”) and this section documents this init system."
-msgstr ""
+msgstr "\"Rzeczywisty init \" jest obecnie dostarczany przez <emphasis role=\"pkg\">sysv-rc</emphasis> (“System V”) i ten fragment stanowi jego dokumentację."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Booting from the network"
-msgstr ""
+msgstr "<emphasis>SPECYFICZNY PRZYPADEK</emphasis> Bootowanie z sieci"
 
 #. Tag: para
 #, no-c-format
 msgid "In some configurations, the BIOS may be configured not to execute the MBR, but to seek its equivalent on the network, making it possible to build computers without a hard drive, or which are completely reinstalled on each boot. This option is not available on all hardware and it generally requires an appropriate combination of BIOS and network card."
-msgstr ""
+msgstr "W niektórych konfiguracjach, BIOS może być ustawiony tak, aby nie uruchamiać głównego sektora rozruchowego, ale szukać jego równoważności w sieci, stwarzając możliwość działania komputerów bez dysków twardych, albo takie, które będą całkowicie reinstalowane po każdej inicjalizacji systemu."
 
 #. Tag: para
 #, no-c-format
 msgid "Booting from the network can be used to launch the <command>debian-installer</command> or FAI (see <xref linkend=\"sect.installation-methods\" />)."
-msgstr ""
+msgstr "Bootowanie z sieci może być używane do uruchomienia <command>debian-installer</command> lub FAI (zobacz <xref linkend=\"sect.installation-methods\" />)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The process, a program instance"
-msgstr ""
+msgstr "<emphasis>POWRÓT DO PODSTAW</emphasis> Proces, instancja programu"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>process</primary>"
-msgstr ""
+msgstr "<primary>proces</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A process is the representation in memory of a running program. It includes all of the information necessary for the proper execution of the software (the code itself, but also the data that it has in memory, the list of files that it has opened, the network connections it has established, etc.). A single program may be instantiated into several processes, not necessarily running under different user IDs."
-msgstr ""
+msgstr "Proces jest reprezentacją uruchomionego programu w pamięci komputera. Zawiera wszystkie informacje niezbędne do poprawnego uruchomienia oprogramowania(kod sam w sobie, ale także dane, które ma w pamięci, listę otwartych plików, ustanowionych połączeń w sieci itd.). Pojedynczy program może zapoczątkować kilka procesów, niekoniecznie uruchamianych po różnymi identyfikatorami użytkowników."
 
 #. Tag: para
 #, no-c-format
 msgid "Init executes several processes, following instructions from the <filename>/etc/inittab</filename> file. The first program that is executed (which corresponds to the <emphasis>sysinit</emphasis> step) is <command>/etc/init.d/rcS</command>, a script that executes all of the programs in the <filename>/etc/rcS.d/</filename> directory. <indexterm><primary><filename>/etc/init.d/rcS</filename></primary></indexterm> <indexterm><primary><filename>rcS</filename></primary></indexterm> <indexterm><primary><filename>/etc/init.d/rcS.d/</filename></primary></indexterm> <indexterm><primary><filename>rcS.d</filename></primary></indexterm>"
-msgstr ""
+msgstr "Init uruchamia kilka procesów, następujące polecenia z pliku <filename>/etc/inittab</filename>. Pierwszy uruchamiany program(który nawiązuje do kroku <emphasis>sysinit</emphasis> ) jest to  <command>/etc/init.d/rcS</command>, skrypt, który uruchamia wszystkie programy w <filename>/etc/rcS.d/</filename>. <indexterm><primary><filename>/etc/init.d/rcS</filename></primary></indexterm> <indexterm><primary><filename>rcS</filename></primary></indexterm> <indexterm><primary><filename>/etc/init.d/rcS.d/</filename></primary></indexterm> <indexterm><primary><filename>rcS.d</filename></primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Among these, you will find successively programs in charge of:"
-msgstr ""
+msgstr "Wśród nich możesz znaleźć kolejno programy odpowiedzialne za:  "
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the console's keyboard;"
-msgstr ""
+msgstr "konfigurowanie klawiatury konsoli; "
 
 #. Tag: para
 #, no-c-format
 msgid "loading drivers: most of the kernel modules are loaded by the kernel itself as the hardware is detected; extra drivers are then loaded automatically when the corresponding modules are listed in <filename>/etc/modules</filename>;"
-msgstr ""
+msgstr "wczytywanie sterowników: większość modułów jądra systemu jest wyczytywana przez nie samodzielnie jak przy wykryciu dysku twardego; następnie automatycznie wczytywane są dodatkowe sterowniki, a lista nawiązujących modułów tworzona jest w <filename>/etc/modules</filename>; "
 
 #. Tag: para
 #, no-c-format
 msgid "checking the integrity of filesystems;"
-msgstr ""
+msgstr "sprawdzanie integralności systemu plików;"
 
 #. Tag: para
 #, no-c-format
 msgid "mounting local partitions;"
-msgstr ""
+msgstr "montowanie lokalnych partycji;"
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the network;"
-msgstr ""
+msgstr "konfigurowanie sieci;"
 
 #. Tag: para
 #, no-c-format
 msgid "mounting network filesystems (NFS)."
-msgstr ""
+msgstr "montowanie sieciowego systemu plików(NFS)."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Using a shell as <command>init</command> to gain root rights"
-msgstr ""
+msgstr "<emphasis>BEZPIECZEŃSTWO</emphasis> Używanie powłoki jako <command>init</command>aby zyskać prawa roota"
 
 #. Tag: para
 #, no-c-format
 msgid "By convention, the first process that is booted is the <command>init</command> program. However, it is possible to pass an <literal>init</literal> option to the kernel indicating a different program."
-msgstr ""
+msgstr "Umownie, pierwszy proces, który jest bootowany to program <command>init</command>. Jednakże, możliwe jest pominąć opcję  <literal>init</literal> w jądrze systemu, wskazując inny program."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>init</command></primary>"
-msgstr ""
+msgstr "<primary><command>init</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Any person who is able to access the computer can press the <keycap>Reset</keycap> button, and thus reboot it. Then, at the bootloader's prompt, it is possible to pass the <literal>init=/bin/sh</literal> option to the kernel to gain root access without knowing the administrator's password."
-msgstr ""
+msgstr "Każdy człowiek, który ma bezpośredni dostęp do komputera może wcisnąć klawisz <keycap>Reset</keycap> i spowodować ponowny rozruch systemu. Następnie przy zgłoszeniu się bootloadera, możliwe jest pominięcie opcji  <literal>init=/bin/sh</literal>w jądrze systemu, aby zdobyć dostęp do roota bez znajomości hasła administratora systemu."
 
 #. Tag: para
 #, no-c-format
 msgid "To prevent this, you can protect the bootloader itself with a password. You might also think about protecting access to the BIOS (a password protection mechanism is almost always available), without which a malicious intruder could still boot the machine on a removable media containing its own Linux system, which they could then use to access data on the computer's hard drives."
-msgstr ""
+msgstr "Aby temu zapobiec, możesz zabezpieczyć sam bootloader hasłem. Możesz także pomyśleć by zabezpieczyć BIOS(prawie zawsze istnieje możliwość utworzenia hasła), bez którego złośliwy intruz może nadal zbootować system na nośniku wymiennym zawierającym swojego własnego Linuxa, którego może użyć by dostać się do danych na Twoim dysku."
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, be aware that most BIOS have a generic password available. Initially intended for troubleshooting for those who have forgotten their password, these passwords are now public and available on the Internet (see for yourself by searching for “generic BIOS passwords” in a search engine). All of these protections will thus impede unauthorized access to the machine without being able to completely prevent it. There's no reliable way to protect a computer if the attacker can physically access it; they could dismount the hard drives to connect them to a computer under their own control anyway, or even steal the entire machine, or erase the BIOS memory to reset the password…"
-msgstr ""
+msgstr "Ostatecznie, bądź świadomy, ze BIOS zazwyczaj ma dostępne standardowe hasło. Początkowo przeznaczone by rozwiązać problem ludzi zapominających hasła, obecnie te hasła są dostępne w Internecie(zobacz swoje poprzez wpisanie “generic BIOS passwords” w wyszukiwarkę). Wszystkie te zabezpieczenia będą więc utrudniać dostęp do komputera nieupoważnionym, jednak nie będą w stanie zabezpieczyć go całkowicie. Nie ma niezawodnego sposobu aby ochronić komputer jeżeli niezaufana osoba ma do niego fizyczny dostęp; może wyjąć dyski i dołączyć je do swojego komputera, lub nawet ukraść cały sprzęt, lub wyczyścić pamięć BIOSa, aby zresetować hasło..."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Kernel modules and options"
-msgstr ""
+msgstr "<emphasis>POWRTÓT DO PODSTAW</emphasis> Moduły i opcje jądra systemu"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modules</primary><secondary>kernel modules</secondary>"
-msgstr ""
+msgstr "<primary>moduły</primary><secondary>moduły jądra systemu</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Kernel modules also have options that can be configured by putting some files in <filename>/etc/modprobe.d/</filename>. These options are defined with directives like this: <literal>options <replaceable>module-name</replaceable> <replaceable>option-name</replaceable>=<replaceable>option-value</replaceable></literal>. Several options can be specified with a single directive if necessary."
-msgstr ""
+msgstr "Moduły jądra systemu maja także opcje, które mogą być konfigurowane poprzez dodanie jakiś plików do <filename>/etc/modprobe.d/</filename>. Te opcje są zdefiniowane dyrektywami takimi jak: <literal>options <replaceable>module-name</replaceable> <replaceable>option-name</replaceable>=<replaceable>option-value</replaceable></literal>. Jeśli zajdzie taka potrzeba kilka opcji może być określonych przez pojedynczą dyrektywę. "
 
 #. Tag: para
 #, no-c-format
 msgid "These configuration files are intended for <command>modprobe</command> — the program that loads a kernel module with its dependencies (modules can indeed call other modules). This program is provided by the <emphasis role=\"pkg\">kmod</emphasis> package."
-msgstr ""
+msgstr "Te pliki konfiguracyjne są przeznaczone dla <command>modprobe</command>-program, który ładuje moduł jądra systemu z jego zależnościami (moduły mogą wszak powoływać inne moduły). Ten program jest dostarczany przez pakiet <emphasis role=\"pkg\">kmod</emphasis>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>modprobe</command></primary>"
-msgstr ""
+msgstr "<primary><command>modprobe</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">kmod</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">kmod</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started, but nowadays the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
-msgstr ""
+msgstr "Po tym etapie, <command>init</command> przejmuje kontrolę i uruchamia programy włączone w domyślny poziom działania(którym jest zazwyczaj poziom 2). Uruchamia  <command>/etc/init.d/rc 2</command>, skrypt, który włącza wszystkie usługi wymienione w <filename>/etc/rc2.d/</filename> i których nazwa zaczyna się na literę \"S\". Dwucyfrowy numer, który wystąpił, był kiedyś używany do definiowania kolejności, w której usługi muszą być uruchomione, ale obecnie domyślny system bootujący używa <command>insserv</command>, który planuje wszystko automatycznie bazując na zależnościach skryptów. Tak więc każdy butujący skrypt deklaruje warunki, które muszą być spełnione aby uruchomić bądź zatrzymać usługę(na przykład, czy musi być uruchamiana przed lub po innej usłudze); następnie <command>init</command> uruchamia je w kolejności, która spełnia podane warunki. Statyczne numerowanie skryptów nie jest już dlatego brane pod uwagę(ale zawsze muszą zaczynać się na literę \"S\", po której następują 2 cyfry i prawdziwa nazwa skryptu używanego do określenia zależności). Ogólnie, podstawowe usługi(takie jak przetwarzanie logów przez <command>rsyslog</command> lub przypisywanie portów przez  <command>portmap</command>) są uruchamiane pierwsze, a po nich włączane są standardowe usługi i środowisko graficzne (<command>gdm</command>)."
 
 #. Tag: para
 #, no-c-format
 msgid "This dependency-based boot system makes it possible to automate re-numbering, which could be rather tedious if it had to be done manually, and it limits the risks of human error, since scheduling is conducted according to the parameters that are indicated. Another benefit is that services can be started in parallel when they are independent from one another, which can accelerate the boot process."
-msgstr ""
+msgstr "System bootowania oparty na zależnościach sprawia, że możliwe jest zautomatyzowanie ponownego numerowania, które potrafi być uciążliwe, jeśli trzeba je przeprowadzić ręcznie, oraz zmniejsza prawdopodobieństwo ludzkiego błędu, ponieważ planowanie odbywa się według wskazanych parametrów. Inną korzyścią jest to, że usługi mogą być uruchomione równolegle, jeśli są od siebie niezależne, co przyśpiesza proces bootowania. "
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Other boot systems"
-msgstr ""
+msgstr "<emphasis>ALTERNATYWA</emphasis> Inne systemy bootujące"
 
 #. Tag: para
 #, no-c-format
 msgid "This book describes the boot system used by default in Debian (as implemented by the <emphasis role=\"pkg\">sysvinit</emphasis> package), which is derived and inherited from <emphasis>System V</emphasis> Unix systems, but there are others. <emphasis role=\"distribution\">Jessie</emphasis> will likely come with another init system by default since the current one is no longer suited to the dynamic nature of computing."
-msgstr ""
+msgstr "Ta książka opisuje system bootujący domyślnie używany przez Debiana(ponieważ jest zaimplementowany przez pakiet <emphasis role=\"pkg\">sysvinit</emphasis>), który zaczerpnął i odziedziczył z  systemów uniksowych <emphasis>System V</emphasis>, istnieją jednak także inne. <emphasis role=\"distribution\">Jessie</emphasis> niedługo przedstawi inny domyślny system init ponieważ obecny nie pasuje do dynamicznej natury informatyki."
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">file-rc</emphasis> is a boot system with a very simple process. It keeps the principle of runlevels, but replaces the directories and symbolic links with a configuration file, which indicates to <command>init</command> the processes that must be started and their launch order."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">file-rc</emphasis> jest systemem bootującym z bardzo prostym procesem. Podtrzymuje zasadę poziomów działania, ale zamienia słownikowe i symboliczne dowiązania do pliku konfiguracyjnego, który wskazuje na procesy  <command>init</command>, które muszą zostać wykonane i ustanawia ich kolejność."
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Wheezy</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
-msgstr ""
+msgstr "System <command>upstart</command> nadal nie jest jeszcze dobrze przetestowany na Debianie. Skrypty inicjujące nie są już uruchamiane po kolei ale w odpowiedzi na zdarzenia, takie jak ukończenie innego skryptu, od którego są zależne. Ten system, zapoczątkowany przez Ubuntu, jest obecny na Debianie  <emphasis role=\"distribution\">Wheezy</emphasis>, ale nie jest domyślny; w rzeczywistości, pojawił się jako zastępstwo dla <emphasis role=\"pkg\">sysvinit</emphasis> i jedno z zadań wykonywanych przez <command>upstart</command>, którym jest uruchomienie skryptów pisanych dla tradycyjnych systemów, w szczególności z pakietu <emphasis role=\"pkg\">sysv-rc</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "Another new option that is gaining a lot of traction is <command>systemd</command>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services. It also provides backwards compatibility to System V init scripts."
-msgstr ""
+msgstr "Inną nową opcją, która zyskała dużą siłę przebicia jest <command>systemd</command>. Jej sposób podejścia jest odwrotny do poprzednich systemów; zamiast zapobiegawczo uruchamiać wszystkie usługi i musieć sobie radzić z rozplanowaniem ich,<command>systemd</command> wybiera uruchamianie usług na żądanie, nieco podobnie do zasady  <command>inetd</command>. Ale to oznacza, że system bootujący musi wiedzieć jak usługi są udostępniane (przez złącze, system plików lub inne), tak więc wymagane są małe modyfikacje tych usług. Zapewniona jest wsteczna spójność ze skryptami inicjującymi Systemu V."
 
 #. Tag: para
 #, no-c-format
 msgid "There are also other systems and other operating modes, such as <command>runit</command>, <command>minit</command>, or <command>initng</command>, but they are relatively specialized and not widespread."
-msgstr ""
+msgstr "Są także inne systemy i tryby pracy, takie jak <command>runit</command>, <command>minit</command>, lub <command>initng</command>, ale są one specjalistyczne i  nierozpowszechnione. "
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>runlevel</primary>"
-msgstr ""
+msgstr "<primary>poziom działania</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>level, runlevel</primary>"
-msgstr ""
+msgstr "<primary>poziom, poziom działania</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>init</command> distinguishes several runlevels, so it can switch from one to another with the <command>telinit <replaceable>new-level</replaceable></command> command. Immediately, <command>init</command> executes <command>/etc/init.d/rc</command> again with the new runlevel. This script will then start the missing services and stop those that are no longer desired. To do this, it refers to the content of the <filename>/etc/rc<replaceable>X</replaceable>.d</filename> (where <replaceable>X</replaceable> represents the new runlevel). Scripts starting with “S” (as in “Start”) are services to be started; those starting with “K” (as in “Kill”) are the services to be stopped. The script does not start any service that was already active in the previous runlevel."
-msgstr ""
+msgstr "<command>init</command> wyróżnia kilka poziomów działania, więc może przełączać się między nimi komendą <command>telinit <replaceable>new-level</replaceable></command>. <command>init</command> natychmiastowo uruchamia<command>/etc/init.d/rc</command> z nowym poziomem działania. Następnie ten skrypt uruchamia brakujące usługi i zatrzymuje te, które nie są już pożądane. Aby to zrobić, wskazuje na zawartość <filename>/etc/rc<replaceable>X</replaceable>.d</filename> (gdzie <replaceable>X</replaceable> reprezentuje nowy poziom działania). Skrypty zaczynające się na \"S\"(jak \"Start\") są usługami do uruchomienia; te zaczynające się na \"K\"(jak \"Kill\") są usługami, które należy zatrzymać. Skrypt nie uruchomi żadnej usługi, która jest już aktywna w poprzednim poziomie działania."
 
 #. Tag: para
 #, no-c-format
 msgid "By default, Debian uses four different runlevels:"
-msgstr ""
+msgstr "Domyślnie, Debian korzysta z czterech różnych poziomów działania:"
 
 #. Tag: para
 #, no-c-format
 msgid "Level 0 is only used temporarily, while the computer is powering down. As such, it only contains many “K” scripts."
-msgstr ""
+msgstr "Poziom 0 jest używanym tylko tymczasowo, podczas wyłączania się komputera. Dlatego zawiera wiele skryptów \"K\"."
 
 #. Tag: para
 #, no-c-format
 msgid "Level 1, also known as single-user mode, corresponds to the system in degraded mode; it includes only basic services, and is intended for maintenance operations where interactions with ordinary users are not desired."
-msgstr ""
+msgstr "Poziom 1, znany także jako tryb dla pojedynczego użytkownika( single-user mode), odpowiada systemowi w trybie awaryjnym; zawiera tylko podstawowe usługi i powstał do wykonywania konserwacji, tak więc interakcje ze zwykłym użytkownikiem nie są pożądane."
 
 #. Tag: para
 #, no-c-format
 msgid "Level 2 is the level for normal operation, which includes networking services, a graphical interface, user logins, etc."
-msgstr ""
+msgstr "Poziom 2 służy do wykonywania zwyczajnych operacji, w skład których wchodzą usługi sieciowe, środowisko graficzne, loginy itd."
 
 #. Tag: para
 #, no-c-format
 msgid "Level 6 is similar to level 0, except that it is used during the shutdown phase that precedes a reboot."
-msgstr ""
+msgstr "Poziom 6 jest podobny do poziomu 0, pomijając to, że jest używany podczas fazy zamykania, która poprzedza ponowne uruchomienie."
 
 #. Tag: para
 #, no-c-format
 msgid "Other levels exist, especially 3 to 5. By default they are configured to operate the same way as level 2, but the administrator can modify them (by adding or deleting scripts in the corresponding <filename>/etc/rc<replaceable>X</replaceable>.d</filename> directories) to adapt them to particular needs."
-msgstr ""
+msgstr "Istnieją inne poziomy, szczególnie od 3 do 5. Domyślnie są skonfigurowane tak, by działać identycznie jak poziom 2, ale administrator może je zmodyfikować(dodając lub usuwając skrypty w <filename>/etc/rc<replaceable>X</replaceable>.d</filename>) aby przystosować je do szczególnych potrzeb."
 
 #. Tag: title
 #, no-c-format
 msgid "Boot sequence of a computer running Linux"
-msgstr ""
+msgstr "Sekwencja ładowania z komputera systemu Linux"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>initialization script</primary>"
-msgstr ""
+msgstr "<primary>skrypt inicjujący</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All the scripts contained in the various <filename>/etc/rc<replaceable>X</replaceable>.d</filename> directories are really only symbolic links — created upon package installation by the <command>update-rc.d</command> program — pointing to the actual scripts which are stored in <filename>/etc/init.d/</filename>. The administrator can fine tune the services available in each runlevel by re-running <command>update-rc.d</command> with adjusted parameters. The <citerefentry><refentrytitle>update-rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> manual page describes the syntax in detail. Please note that removing all symbolic links (with the <literal>remove</literal> parameter) is not a good method to disable a service. Instead you should simply configure it to not start in the desired runlevel (while preserving the corresponding calls to stop it in the event that the service runs in the previous runlevel). Since <command>update-rc.d</command> has a somewhat convoluted interface, you may prefer using <command>rcconf</command> (from the <emphasis role=\"pkg\">rcconf</emphasis> package) which provides a more user-friendly interface."
-msgstr ""
+msgstr "Wszystkie skrypty zawierające się w różnych <filename>/etc/rc<replaceable>X</replaceable>.d</filename> directories are really only symbolic links — created upon package installation by the <command>update-rc.d</command> program — pointing to the actual scripts which are stored in <filename>/etc/init.d/</filename>. The administrator can fine tune the services available in each runlevel by re-running <command>update-rc.d</command> with adjusted parameters. The <citerefentry><refentrytitle>update-rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> manual page describes the syntax in detail. Please note that removing all symbolic links (with the <literal>remove</literal> parameter) is not a good method to disable a service. Instead you should simply configure it to not start in the desired runlevel (while preserving the corresponding calls to stop it in the event that the service runs in the previous runlevel). Since <command>update-rc.d</command> has a somewhat convoluted interface, you may prefer using <command>rcconf</command> (from the <emphasis role=\"pkg\">rcconf</emphasis> package) which provides a more user-friendly interface."
 
 #. Tag: indexterm
 #, no-c-format

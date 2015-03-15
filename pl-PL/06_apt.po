@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-01-24 22:42+0100\n"
+"PO-Revision-Date: 2015-03-15 17:08+0100\n"
 "Last-Translator: Mateusz Kacprzak <mateusz.kacprzak@yandex.ru>\n"
 "Language-Team: Polish <http://debian.weblate.org/projects/debian-handbook/06_apt/pl/>\n"
 "Language: pl_PL\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Poedit 1.7.3\n"
-"X-Poedit-Bookmarks: 71,90,103,116,-1,-1,-1,-1,-1,-1\n"
+"X-Poedit-Bookmarks: 71,90,103,174,231,213,-1,-1,-1,-1\n"
 
 # mateunho
 #. Tag: keyword
@@ -785,6 +785,7 @@ msgstr "<emphasis>IDĄĆ DALEJ</emphasis> Stare wersje pakietów: <literal>snaps
 msgid "<primary><literal>snapshot.debian.org</literal></primary>"
 msgstr "<primary><literal>snapshot.debian.org</literal></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "A new service (introduced in April 2010) can be used to “go backwards in time” and to find an old version of a package. It can be used for example to identify which version of a package introduced a regression, and more concretely, to come back to the former version while waiting for the regression fix."
@@ -794,55 +795,63 @@ msgstr "Nowy serwis (wprowadzony w kwietniu 2010) może być użyty do \"podró�
 #. Tag: title
 #, no-c-format
 msgid "Caching Proxy for Debian Packages"
-msgstr ""
+msgstr "Cache'ujący Serwer Proxy dla Pakietów Debiana"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>source of packages</primary>"
+#, no-c-format
 msgid "<primary>proxy cache</primary>"
-msgstr "<primary>źródło pakietów</primary>"
+msgstr "<primary>proxy cache</primary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>source of packages</primary>"
+#, no-c-format
 msgid "<primary>cache, proxy</primary>"
-msgstr "<primary>źródło pakietów</primary>"
+msgstr "<primary>cache, proxy</primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "When an entire network of machines is configured to use the same remote server to download the same updated packages, any administrator knows that it would be beneficial to have an intermediate proxy acting as a network-local cache (see sidebar <xref linkend=\"sidebar.cache\" />)."
-msgstr ""
+msgstr "Kiedy cała sieć maszyn jest skonfigurowana, aby używać tego samego zdalnego serwera w celu pobierania tych samych zaktualizowanych pakiety, każdy administrator wie, że korzystnie byłoby mieć pośredni serwer proxy działający jako lokalny cache (spójrz na fiszkę <xref linkend=\"sidebar.cache\" />)."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "You can configure APT to use a \"standard\" proxy (see <xref linkend=\"sect.apt-config\" /> for the APT side, and <xref linkend=\"sect.http-ftp-proxy\" /> for the proxy side), but the Debian ecosystem offers better options to solve this problem. The dedicated software presented in this section are smarter than a plain proxy cache because they can rely on the specific structure of APT repositories (for instance they know when individual files are obsolete or not, and thus adjust the time during which they are kept)."
-msgstr ""
+msgstr "Można skonfigurować APT, żeby używał \"standardowego\" proxy (spójrz na fiszkę <xref linkend=\"sect.apt-config\" /> dotyczącą APTa i <xref linkend=\"sect.http-ftp-proxy\" /> dotyczące proxy), ale ekosystem Debiana oferuje lepsze rozwiązania tego problemu. Przeznaczone do tego oprogramowanie, zaprezentowane w tej sekcji, jest lepsze od zwykłego proxy, ponieważ może używać specyficznej struktury repozytorium APTa (np.: wie, czy konkretne pliki są przestarzałe, czy nie i odpowiednio dopasowuje czas ich przetrzymywania)."
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">apt-cacher</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">apt-cacher</emphasis></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">apt-cacher-ng</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">apt-cacher-ng</emphasis></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">apt-cacher</emphasis> and <emphasis role=\"pkg\">apt-cacher-ng</emphasis> work like usual proxy cache servers. APT's <filename>sources.list</filename> is left unchanged, but APT is configured to use them as proxy for outgoing requests."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">apt-cacher</emphasis> i <emphasis role=\"pkg\">apt-cacher-ng</emphasis> działają jak zwykłe cache serwery proxy. Plik <filename>sources.list</filename> nie jest zmieniany, ale APT jest skonfigurowany, aby używać ich jako proxy dla wychodzących zapytań."
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">approx</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">approx</emphasis></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">approx</emphasis>, on the other hand, acts like an HTTP server that “mirrors” any number of remote repositories in its top-level URLs. The mapping between those top-level directories and the remote URLs of the repositories is stored in <filename>/etc/approx/approx.conf</filename>:"
-msgstr ""
+msgstr "Z kolei <emphasis role=\"pkg\">approx</emphasis> działa jako serwer HTTP odzwierciedlając dowolną liczbę zdalnych repozytoriów pod jego adresami URL najwyższego poziomu. Mapowanie pomiędzy tymi katalogami najwyższego poziomu, a zdalnymi URLami repozytoriów jest przechowywane w pliku <filename>/etc/approx/approx.conf</filename>:"
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid ""
@@ -851,12 +860,18 @@ msgid ""
 "debian   http://ftp.debian.org/debian\n"
 "security http://security.debian.org\n"
 msgstr ""
+"\n"
+"# &lt;nazwa&gt; &lt;adres-bazowy-repozytorium&gt;\n"
+"debian   http://ftp.debian.org/debian\n"
+"security http://security.debian.org\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">approx</emphasis> runs by default on port 9999 via inetd (see <xref linkend=\"sect.inetd\" />) and requires the users to adjust their <filename>sources.list</filename> file to point to the approx server:"
-msgstr ""
+msgstr "<emphasis role=\"pkg\">approx</emphasis> domyślnie działa na porcie 9999 przez inetd (spójrz na fiszkę <xref linkend=\"sect.inetd\" />) i wymaga od użytkownika, aby dopasować plik <filename>sources.list</filename>, żeby wskazywał serwer approx:"
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid ""
@@ -865,138 +880,169 @@ msgid ""
 "deb http://apt.falcot.com:9999/debian wheezy main contrib non-free\n"
 "      "
 msgstr ""
+"# Przykładowy plik sources.list wskazujący lokalny serwer approx\n"
+"deb http://apt.falcot.com:9999/security wheezy/updates main contrib non-free\n"
+"deb http://apt.falcot.com:9999/debian wheezy main contrib non-free\n"
+"      "
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<command>aptitude</command> and <command>apt-get</command> Commands"
-msgstr ""
+msgstr "Komendy <command>aptitude</command> i <command>apt-get</command>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude</command></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first front end — command-line based — which was developed within the project."
-msgstr ""
+msgstr "APT jest szeroko zakrojonym projektem, który w swoich planach zakładał interfejs graficzny. Bazuje na bibliotece, która zawiera rdzeń aplikacji, a <command>apt-get</command> jest pierwszym konsolowym front-endem stworzonym w ramach tego projektu."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Numerous other graphical interfaces then appeared as external projects: <command>synaptic</command>, <command>aptitude</command> (which includes both a text mode interface and a graphical one — even if not complete yet), <command>wajig</command>, etc. The most recommended interface, <command>apt-get</command>, is the one used during the installation of Debian, and the one that we will use in the examples given in this section. Note however that <command>aptitude</command>'s command-line syntax is very similar. When there are major differences between <command>apt-get</command> and <command>aptitude</command>, these differences will be detailed."
-msgstr ""
+msgstr "Później pojawiło się wiele innych interfejsów graficznych tworzonych jako zewnętrzne projekty: <command>synaptic</command>, <command>aptitude</command> (który zawiera zarówno interfejs konsolowy i graficzny — nawet jeżeli jeszcze nie w pełni kompletny), <command>wajig</command>, etc. Najczęściej polecanym interfejsem, <command>apt-get</command>, jest ten używany podczas instalacji Debiana, który będzie również używany w przykładach poniższej sekcji. Zauważ jednak, że konsolowa składnia <command>aptitude</command> jest bardzo podobna. Miejsca, gdzie występują znaczące różnice pomiędzy <command>apt-get</command> i <command>aptitude</command>, zostaną szerzej opisane i wyjaśnione."
 
+# mateunho
+# kiepsko brzmi -> czekam na lepsze propozycje
 #. Tag: title
 #, no-c-format
 msgid "Initialization"
-msgstr ""
+msgstr "Inicjalizacja"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "For any work with APT, the list of available packages needs to be updated; this can be done simply through <command>apt-get update</command>. Depending on the speed of your connection, the operation can take a while since it involves downloading a certain number of <filename>Packages</filename>/<filename>Sources</filename>/<filename>Translation-<replaceable>language-code</replaceable></filename> files, which have gradually become bigger and bigger as Debian has developed (at least 10 MB of data for the <literal>main</literal> section). Of course, installing from a CD-ROM set does not require any downloading — in this case, the operation is very fast."
-msgstr ""
+msgstr "Do każdej pracy z APTem trzeba zaktualizować listę dostępnych pakietów; może to zrobić przez wpisanie <command>apt-get update</command>. Zależnie od dostępnej prędkości połączenia, operacja ta może chwilę zająć, ponieważ składa się na nią pobieranie pewnej liczby plików <filename>Pakietów</filename>/<filename>Źródeł</filename>/<filename>Tłumaczenie-<replaceable>kod-języka</replaceable></filename>, które stopniowo stawały się coraz większe razem z rozwojem Debiana (przynajmniej 10MB danych dla sekcji <literal>main</literal>). Oczywiście podczas instalacji z płyt CD-ROM nie jest wymagane żadne pobieranie — w takim przypadku ta operacja jest bardzo szybka."
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get update</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get update</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude update</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude update</command></primary>"
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Installing and Removing"
-msgstr ""
+msgstr "Instalacja i Usuwanie"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>installation</secondary>"
-msgstr ""
+msgstr "<primary>package</primary><secondary>installation</secondary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>removal</secondary>"
-msgstr ""
+msgstr "<primary>package</primary><secondary>removal</secondary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>installation</primary><secondary>package installation</secondary>"
-msgstr "<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>installation</primary><secondary>package installation</secondary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>removal of a package</primary>"
-msgstr ""
+msgstr "<primary>removal of a package</primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "With APT, packages can be added or removed from the system, respectively with <command>apt-get install <replaceable>package</replaceable></command> and <command>apt-get remove <replaceable>package</replaceable></command>. In both cases, APT will automatically install the necessary dependencies or delete the packages which depend on the package that is being removed. The <command>apt-get purge <replaceable>package</replaceable></command> command involves a complete uninstallation — the configuration files are also deleted."
-msgstr ""
+msgstr "Używając APTa pakiety mogą być dodawane i usuwane z systemu, odpowiednio za pomocą <command>apt-get install <replaceable>pakiet</replaceable></command> i <command>apt-get remove <replaceable>pakiet</replaceable></command>. W obu przypadkach APT automatycznie zainstaluje wymagane zależności lub usunie pakiety, które są zależne od usuwanego pakietu. Komenda <command>apt-get purge <replaceable>pakiet</replaceable></command> obejmuje kompletną deinstalację — usuwane są również pliki konfiguracyjne."
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get install</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get install</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get remove</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get remove</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get purge</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get purge</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude install</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude install</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude remove</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude remove</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude purge</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude purge</command></primary>"
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Installing the same selection of packages several times"
-msgstr ""
+msgstr "<emphasis>WSKAZÓWKA</emphasis> Instalowanie tego samego zestawu pakietów kilka razy"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "It can be useful to systematically install the same list of packages on several computers. This can be done quite easily."
-msgstr ""
+msgstr "Może okazać się przydatne, aby systematycznie instalować tą samą listę pakietów na kilku komputerach. Można tego dokonać całkiem łatwo."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "First, retrieve the list of packages installed on the computer which will serve as the “model” to copy."
-msgstr ""
+msgstr "Najpierw należy uzyskać listę pakietów zainstalowanych na komputerze służącym za \"wzór\" do skopiowania."
 
+# mateunho
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The <filename>pkg-list</filename> file then contains the list of installed packages. Next, transfer the <filename>pkg-list</filename> file on the computers you want to update and use the following commands:"
-msgstr ""
+msgstr "Po tej czynności plik <filename>pkg-list</filename> będzie zawierał listę zainstalowanych pakietów. Następnie należy przenieść plik <filename>pkg-list</filename> na komputery przeznaczone do aktualizacji i użyć następujące komendy:"
 
+# mateunho
 #. Tag: screen
 #, no-c-format
 msgid ""
@@ -1010,27 +1056,41 @@ msgid ""
 "## Ask apt-get to install the selected packages\n"
 "# <userinput>apt-get dselect-upgrade</userinput>\n"
 msgstr ""
+"## Aktualizacja bazy danych znanych pakietów programu dpkg\n"
+"# <userinput>avail=`mktemp`</userinput>\n"
+"# <userinput>apt-cache dumpavail &gt; \"$avail\"</userinput>\n"
+"# <userinput>dpkg --merge-avail \"$avail\"</userinput>\n"
+"# <userinput>rm -f \"$avail\"</userinput>\n"
+"## Aktualizacja zaznaczeń programu dpkg\n"
+"# <userinput>dpkg --set-selections &lt; pkg-list</userinput>\n"
+"## Instalacja wybranych pakietów przy użyciu apt-get\n"
+"# <userinput>apt-get dselect-upgrade</userinput>\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The first commands records the list of available packages in the dpkg database, then <command>dpkg --set-selections</command> restores the selection of packages that you wish to install, and the <command>apt-get</command> invocation executes the required operations! <command>aptitude</command> does not have this command."
-msgstr ""
+msgstr "Pierwsza część komend zapisuje listę dostępnych pakietów w bazie danych dpkg, następnie <command>dpkg --set-selections</command> przywraca zaznaczenia pakietów do instalacji, a wywołanie <command>apt-get</command> wykonuje wymagane operacje! <command>aptitude</command> nie posiada tej komendy."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Removing and installing at the same time"
-msgstr ""
+msgstr "<emphasis>WSKAZÓWKA</emphasis> Usuwanie i instalacja w tym samym czasie"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "It is possible to ask <command>apt-get</command> (or <command>aptitude</command>) to install certain packages and remove others on the same command line by adding a suffix. With an <command>apt-get install</command> command, add “<literal>-</literal>” to the names of the packages you wish to remove. With an <command>apt-get remove</command> command, add “<literal>+</literal>” to the names of the packages you wish to install."
-msgstr ""
+msgstr "Możliwe jest użycie <command>apt-get</command>  (lub <command>aptitude</command>), aby jednocześnie zainstalować pewne pakiety i usunąć inne za pomocą jednej komendy, poprzez dodanie przyrostka. W komendzie <command>apt-get install</command> należy dodać “<literal>-</literal>” do nazwy pakietów przeznaczonych do usunięcia. W komendzie <command>apt-get remove</command> należy dodać “<literal>+</literal>” do nazwy pakietów do zainstalowania."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The next example shows two different ways to install <replaceable>package1</replaceable> and to remove <replaceable>package2</replaceable>."
-msgstr ""
+msgstr "Następny przykład ukazuje dwa różne sposoby na zainstalowanie <replaceable>pakiet1</replaceable> i usunięcie <replaceable>pakiet2</replaceable>."
 
+# mateunho
 #. Tag: screen
 #, no-c-format
 msgid ""
@@ -1039,269 +1099,322 @@ msgid ""
 "# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
 "[...]\n"
 msgstr ""
+"# <userinput>apt-get install <replaceable>pakiet1</replaceable> <replaceable>pakiet2-</replaceable></userinput>\n"
+"[...]\n"
+"# <userinput>apt-get remove <replaceable>pakiet1+</replaceable> <replaceable>pakiet2</replaceable></userinput>\n"
+"[...]\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "This can also be used to exclude packages which would otherwise be installed, for example due to a <literal>Recommends</literal>. In general, the dependency solver will use that information as a hint to look for alternative solutions."
-msgstr ""
+msgstr "Tego sposobu można użyć do wykluczenia z instalacji pakietów, które w przeciwnym razie zostałyby zainstalowane, np. jako <literal>Rekomendowane</literal>. W ogólnym przypadku mechanizm rozwiązywania zależności użyje tej informacji jako wskazówki do wyszukania alternatywnych rozwiązań."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <command>apt-get --reinstall</command> and <command>aptitude reinstall</command>"
-msgstr ""
+msgstr "<emphasis>WSKAZÓWKA</emphasis> <command>apt-get --reinstall</command> i <command>aptitude reinstall</command>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>reinstallation</primary>"
-msgstr ""
+msgstr "<primary>reinstallation</primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The system can sometimes be damaged after the removal or modification of files in a package. The easiest way to retrieve these files is to reinstall the affected package. Unfortunately, the packaging system finds that the latter is already installed and politely refuses to reinstall it; to avoid this, use the <literal>--reinstall</literal> option of the <command>apt-get</command> command. The following command reinstalls <emphasis role=\"pkg\">postfix</emphasis> even if it is already present:"
-msgstr ""
+msgstr "Czasami system może zostać uszkodzony po usunięciu lub modyfikacji plików pakietu. Najłatwiejszym sposobem odzyskania tych plików jest reinstalacja danego pakietu. Niestety, system pakietowania informuje, że jest on już zainstalowany i grzecznie odmawia reinstalacji; aby tego uniknąć należy użyć opcji <literal>--reinstall</literal> dla komendy <command>apt-get</command>. Komenda przedstawiona poniżej reinstaluje <emphasis role=\"pkg\">postfix</emphasis> nawet, jeżeli jest już obecny:"
 
+# mateunho
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The <command>aptitude</command> command line is slightly different, but achieves the same result with <command>aptitude reinstall postfix</command>."
-msgstr ""
+msgstr "Składnia komendy <command>aptitude</command> jest nieco inna, ale osiąga ten sam rezultat z pomocą <command>aptitude reinstall postfix</command>."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The problem does not arise with <command>dpkg</command>, but the administrator rarely uses it directly."
-msgstr ""
+msgstr "Problem ten nie występuje w przypadku <command>dpkg</command>, ale administrator rzadko korzysta z niej bezpośrednio."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Be careful, using <command>apt-get --reinstall</command> to restore packages modified during an attack certainly cannot recover the system as it was. <xref linkend=\"sect.dealing-with-compromised-machine\" /> details the necessary steps to take with a compromised system."
-msgstr ""
+msgstr "Należy uważać, używanie <command>apt-get --reinstall</command> w celu przywrócenia pakietów zmodyfikowanych podczas ataku z pewnością nie przywróci systemu do poprzedniego stanu. <xref linkend=\"sect.dealing-with-compromised-machine\" /> szczegółowo opisuje wymagane kroki postępowania w przypadku takiego incydentu."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "If the file <filename>sources.list</filename> mentions several distributions, it is possible to give the version of the package to install. A specific version number can be requested with <command>apt-get install <replaceable>package</replaceable>=<replaceable>version</replaceable></command>, but indicating its distribution of origin (<emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>) — with <command>apt-get install <replaceable>package</replaceable>/<replaceable>distribution</replaceable></command> — is usually preferred. With this command, it is possible to go back to an older version of a package (if for instance you know that it works well), provided that it is still available in one of the sources referenced by the <filename>sources.list</filename> file. Otherwise the <literal>snapshot.debian.org</literal> archive can come to the rescue (see sidebar <xref linkend=\"sidebar.snapshot.debian.org\" />)."
-msgstr ""
+msgstr "Jeżeli w pliku <filename>sources.list</filename> występuje kilka dystrybucji, możliwe jest wskazanie wersji pakietu do instalacji. Można zażądać konkretnej wersji używając <command>apt-get install <replaceable>pakiet</replaceable>=<replaceable>wersja</replaceable></command>, ale zazwyczaj preferowane jest wskazanie dystrybucji jego pochodzenia (<emphasis role=\"distribution\">Stabilna</emphasis>, <emphasis role=\"distribution\">Testowa</emphasis> lub <emphasis role=\"distribution\">Niestabilna</emphasis>) — używając <command>apt-get install <replaceable>pakiet</replaceable>/<replaceable>dystrybucja</replaceable></command>. Za pomocą tej komendy możliwe jest wrócenie do starszej wersji pakietu (jeżeli wiadomo, że działa lepiej), pod warunkiem że jest ciągle dostępna w jednym ze źródeł wskazanych w pliku <filename>sources.list</filename>. W przeciwnym razie z odsieczą przychodzi archiwum <literal>snapshot.debian.org</literal> (spójrz na fiszkę <xref linkend=\"sidebar.snapshot.debian.org\" />)."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Installation of the <emphasis role=\"distribution\">unstable</emphasis> version of <emphasis role=\"pkg\">spamassassin</emphasis>"
-msgstr ""
+msgstr "Instalacja <emphasis role=\"distribution\">niestabilnej</emphasis> wersji <emphasis role=\"pkg\">spamassassin</emphasis>"
 
+# mateunho
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> The cache of <filename>.deb</filename> files"
-msgstr ""
+msgstr "<emphasis>IDĄC DALEJ</emphasis> Mechanizm cache plików <filename>.deb</filename>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "APT keeps a copy of each downloaded <filename>.deb</filename> file in the directory <filename>/var/cache/apt/archives/</filename>. In case of frequent updates, this directory can quickly take a lot of disk space with several versions of each package; you should regularly sort through them. Two commands can be used: <command>apt-get clean</command> entirely empties the directory; <command>apt-get autoclean</command> only removes packages which cannot be downloaded (because they have disappeared from the Debian mirror) and are therefore clearly useless (the configuration parameter <literal>APT::Clean-Installed</literal> can prevent the removal of <filename>.deb</filename> files that are currently installed)."
-msgstr ""
+msgstr "APT przechowuje kopię każdego pobranego pliku <filename>.deb</filename> w katalogu <filename>/var/cache/apt/archives/</filename>. W przypadku częstych aktualizacji, ten katalog może zająć dużo miejsca na dysku, zawierając kilka wersji każdego pakietu; należy go regularnie porządkować. W tym celu można użyć dwóch komend: <command>apt-get clean</command> zupełnie czyści ten katalog; <command>apt-get autoclean</command> usuwa jedynie pakiety, których nie można już pobrać (ponieważ zniknęły w serwera lustrzanego Debiana) i są zwyczajnie bezużyteczne (parametr konfiguracyjny <literal>APT::Clean-Installed</literal> zapobiega usuwaniu plików <filename>.deb</filename>, które są aktualnie zainstalowane)."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "System Upgrade"
-msgstr ""
+msgstr "Modernizacja systemu"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>upgrade</primary><secondary>system upgrade</secondary>"
-msgstr "<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>upgrade</primary><secondary>system upgrade</secondary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get upgrade</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude safe-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude safe-upgrade</command></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Regular upgrades are recommended, because they include the latest security updates. To upgrade, use <command>apt-get upgrade</command> or <command>aptitude safe-upgrade</command> (of course after <command>apt-get update</command>). This command looks for installed packages which can be upgraded without removing any packages. In other words, the goal is to ensure the least intrusive upgrade possible. <command>apt-get</command> is slightly more demanding than <command>aptitude</command> because it will refuse to install packages which were not installed beforehand."
-msgstr ""
+msgstr "Zaleca się regularne modernizacje, ponieważ zawierają one najnowsze aktualizacje dotyczące bezpieczeństwa. W celu modernizacji należy użyć <command>apt-get upgrade</command> lub <command>aptitude safe-upgrade</command> ()oczywiście po <command>apt-get update</command>). Ta komenda wyszukuje pakiety, które mogą zostać zmodernizowane bez usuwania innych pakietów. Innymi słowy, celem jest zapewnienie jak najmniej inwazyjnej modernizacji. <command>apt-get</command> jest nieco bardziej restrykcyjny niż <command>aptitude</command>, ponieważ nie zezwoli na instalację pakietów, które nie były zainstalowane wcześniej."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Incremental upgrade"
-msgstr ""
+msgstr "<emphasis>WSKAZÓWKA</emphasis> Modernizacja przyrostowa"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "As we explained earlier, the aim of the <command>apt-get update</command> command is to download for each package source the corresponding <filename>Packages</filename> (or <filename>Sources</filename>) file. However, even after a <command>bzip2</command> compression, these files can remain rather large (the <filename>Packages.bz2</filename> for the <foreignphrase>main</foreignphrase> section of <emphasis role=\"distribution\">Wheezy</emphasis> takes more than 5 MB). If you wish to upgrade regularly, these downloads can take up a lot of time."
-msgstr ""
+msgstr "Jak zostało wyjaśnione wcześniej, celem komendy <command>apt-get update</command> jest pobranie dla każdego źródła pakietów jego odpowiedniego pliku <filename>Pakiety</filename> (lub <filename>Źródła</filename>). Jednakże nawet po kompresji <command>bzip2</command> te pliki mogą być dość duże (plik <filename>Pakiety.bz2</filename> dla sekcji <foreignphrase>main</foreignphrase> wydania <emphasis role=\"distribution\">Wheezy</emphasis> zajmuje więcej niż 5 MB). Jeżeli chcesz regularnie dokonywać modernizacji, to pobieranie może zabierać dużo czasu."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "To speed up the process APT can download “diff” files containing the changes since the previous update, as opposed to the entire file. To achieve this, official Debian mirrors distribute different files which list the differences between one version of the <filename>Packages</filename> file and the following version. They are generated at each update of the archives and a history of one week is kept. Each of these “diff” files only takes a few dozen kilobytes for <emphasis role=\"distribution\">Unstable</emphasis>, so that the amount of data downloaded by a weekly <command>aptitude update</command> is often divided by 10. For distributions like <emphasis role=\"distribution\">Stable</emphasis> and <emphasis role=\"distribution\">Testing</emphasis>, which change less, the gain is even more noticeable."
-msgstr ""
+msgstr "W celu przyspieszenia tego procesu APT może pobierać pliki \"diff\", zawierające zmiany od poprzedniej aktualizacji, zamiast całego pliku. Aby to osiągnąć, oficjalne serwery lustrzane Debiana rozprowadzają różne pliki zawierające listę różnic pomiędzy jedną wersją pliku <filename>Pakiety</filename> i jej następną wersją. Są one tworzone przy każdej aktualizacji archiwów i przetrzymywane do tygodnia wstecz. Każdy z plików \"diff\" zajmuje tylko kilka kilobajtów dla wersji <emphasis role=\"distribution\">Niestabilnej</emphasis>, więc ilość danych pobieranych podczas cotygodniowego <command>aptitude update</command> jest zazwyczaj 10 razy mniejsza. Dla dystrybucji takich jak <emphasis role=\"distribution\">Stabilna</emphasis> i <emphasis role=\"distribution\">Testowa</emphasis>, które podlegają mniejszym zmianom, ten zysk jest nawet bardziej zauważalny."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "However, it can sometimes be of interest to force the download of the entire <filename>Packages</filename> file, especially when the last upgrade is very old and when the mechanism of incremental differences would not contribute much. This can also be interesting when network access is very fast but when the processor of the machine to upgrade is rather slow, since the time saved on the download is more than lost when the computer calculates the new versions of these files (starting with the older versions and applying the downloaded differences). To do that, you can use the configuration parameter <literal>Acquire::Pdiffs</literal> and set it to <literal>false</literal>."
-msgstr ""
+msgstr "Jednakże czasami pobranie całego pliku <filename>Packages</filename> jest pożądane, zwłaszcza jeżeli ostatnia modernizacja była bardzo dawno temu i mechanizm przyrostów różnicowych niewiele by wniósł. Może być to również interesujące w przypadku posiadania bardzo szybkiego połączenia z siecią w połączeniu ze stosunkowo wolnym procesorem modernizowanej maszyny, ponieważ więcej czasu będzie zaoszczędzone na pobieraniu w porównaniu z obliczaniem nowych wersji tych plików (zaczynając od starszych wersji i aplikując kolejne różnice). W tym celu należy użyć parametru konfiguracyjnego <literal>Acquire::Pdiffs</literal> ustawionego na <literal>false</literal>."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "<command>apt-get</command> will generally select the most recent version number (except for packages from <emphasis role=\"distribution\">Experimental</emphasis> and <emphasis role=\"distribution\">stable-backports</emphasis>, which are ignored by default whatever their version number). If you specified <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> in your <filename>sources.list</filename>, <command>apt-get upgrade</command> will switch most of your <emphasis role=\"distribution\">Stable</emphasis> system to <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, which might not be what you intended."
-msgstr ""
+msgstr "<command>apt-get</command> zazwyczaj wybierze najnowszy numer wersji (z wyjątkiem pakietów z <emphasis role=\"distribution\">Experymentalnego</emphasis> i <emphasis role=\"distribution\">stable-backports</emphasis>, które są domyślnie ignorowane bez względu na numer wersji). Jeżeli plik <filename>sources.list</filename> zawiera wpisy dla <emphasis role=\"distribution\">Testowego</emphasis> lub <emphasis role=\"distribution\">Niestabilnego</emphasis>, to <command>apt-get upgrade</command> zamieni większość Twojego <emphasis role=\"distribution\">Stabilnego</emphasis> systemu na <emphasis role=\"distribution\">Testowego</emphasis> lub <emphasis role=\"distribution\">Niestabilnego</emphasis>, co niekoniecznie było w zamyśle."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "To tell <command>apt-get</command> to use a specific distribution when searching for upgraded packages, you need to use the <literal>-t</literal> or <literal>--target-release</literal> option, followed by the name of the distribution you want (for example: <command>apt-get -t stable upgrade</command>). To avoid specifying this option every time you use <command>apt-get</command>, you can add <literal>APT::Default-Release \"stable\";</literal> in the file <filename>/etc/apt/apt.conf.d/local</filename>."
-msgstr ""
+msgstr "Aby wskazać, żeby <command>apt-get</command> używał konkretnej dystrybucji w czasie wyszukiwania zmodernizowanych pakietów, należy użyć opcji <literal>-t</literal> lub <literal>--target-release</literal>, po której wpisać nazwę danej dystrybucji (na przykład: <command>apt-get -t stable upgrade</command>). Aby oszczędzić sobie wpisywania tej opcji za każdym razem użycia <command>apt-get</command>, można dodać wpis <literal>APT::Default-Release \"stable\";</literal> w pliku <filename>/etc/apt/apt.conf.d/local</filename>."
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get dist-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get dist-upgrade</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude dist-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude dist-upgrade</command></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude full-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude full-upgrade</command></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "For more important upgrades, such as the change from one major Debian version to the next, you need to use <command>apt-get dist-upgrade</command> (“distribution upgrade”). With this instruction, <command>apt-get</command> will complete the upgrade even if it has to remove some obsolete packages or install new dependencies. This is also the command used by users who work daily with the Debian <emphasis role=\"distribution\">Unstable</emphasis> release and follow its evolution day by day. It is so simple that it hardly needs explanation: APT's reputation is based on this great functionality."
-msgstr ""
+msgstr "W celu ważniejszych modernizacji, takich jak zmiana na następną wersję Debiana, należy użyć <command>apt-get dist-upgrade</command> (\"modernizacja dystrybucji\"). Używając tej instrukcji <command>apt-get</command> dokona całkowitej modernizacji, nawet jeżeli będzie musiał usunąć przestarzałe pakiety lub zainstalować nowe zależności. Poza tym jest to komenda stosowana na co dzień przez użytkowników wydania Debiana <emphasis role=\"distribution\">Niestabilnego</emphasis>, która podąża za jego ewolucją z dnia na dzień. To jest tak proste, że mówi samo za siebie: reputacja APTa została zbudowana na tej genialnej funkcjonalności."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "<command>aptitude full-upgrade</command> is <command>aptitude</command>'s corresponding command although <command>dist-upgrade</command> is also recognized (but deprecated)."
-msgstr ""
+msgstr "<command>aptitude full-upgrade</command> jest odpowiednikiem dla <command>aptitude</command>, jednakże <command>dist-upgrade</command> jest również rozpoznawane (ale przestarzałe)."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Configuration Options"
-msgstr ""
+msgstr "Opcje konfiguracyjne"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>configuration</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>configuration</secondary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>apt.conf.d/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>apt.conf.d/</filename></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Besides the configuration elements already mentioned, it is possible to configure certain aspects of APT by adding directives in a file of the <filename>/etc/apt/apt.conf.d/</filename> directory. Remember for instance that it is possible for APT to tell <command>dpkg</command> to ignore file conflict errors by specifying <literal>DPkg::Options { \"--force-overwrite\"; }</literal>."
-msgstr ""
+msgstr "Poza wymienionymi wcześniej elementami konfiguracyjnymi, możliwa jest konfiguracja pewnych aspektów działania APTa poprzez dodanie instrukcji w pliku katalogu <filename>/etc/apt/apt.conf.d/</filename>. Przypomnijmy na przykład, że APT może poinstruować <command>dpkg</command>, aby ignorował błędy kolizji plików przez dodanie instrukcji <literal>DPkg::Options { \"--force-overwrite\"; }</literal>."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "If the Web can only be accessed through a proxy, add a line like <literal>Acquire::http::proxy \"http://<replaceable>yourproxy</replaceable>:3128\"</literal>. For an FTP proxy, write <literal>Acquire::ftp::proxy \"ftp://<replaceable>yourproxy</replaceable>\"</literal>. To discover more configuration options, read the <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page with the <command>man apt.conf</command> command (for details on manual pages, see <xref linkend=\"sect.manual-pages\" />)."
-msgstr ""
+msgstr "Jeżeli dostęp do sieci jest możliwy jedynie przez proxy, należy dodać linię podobną do <literal>Acquire::http::proxy \"http://<replaceable>twojeproxy</replaceable>:3128\"</literal>. Dla proxy FTP należy wpisać <literal>Acquire::ftp::proxy \"ftp://<replaceable>twojeproxy</replaceable>\"</literal>. Więcej opcji konfiguracyjnych można znaleźć na stronach pomocy <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> za pomocą komendy <command>man apt.conf</command> (szczegóły korzystania ze stron pomocy można znaleźć w <xref linkend=\"sect.manual-pages\" />)."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Directories ending in <filename>.d</filename>"
-msgstr ""
+msgstr "<emphasis>WRACAJĄC DO PODSTAW</emphasis> Katalogi zakończone na <filename>.d</filename>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>.d</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>.d</filename></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Directories with a <filename>.d</filename> suffix are used more and more often. Each directory represents a configuration file which is split over multiple files. In this sense, all of the files in <filename>/etc/apt/apt.conf.d/</filename> are instructions for the configuration of APT. APT includes them in alphabetical order, so that the last ones can modify a configuration element defined in one of the first ones."
-msgstr ""
+msgstr "Katalogi zakończone przyrostkiem <filename>.d</filename> są coraz częściej stosowane. Każdy katalog zawiera ustawienia konfiguracyjne podzielone pomiędzy wiele plików. W związku z tym wszystkie pliki w katalogu <filename>/etc/apt/apt.conf.d/</filename> to instrukcje konfiguracji APTa. APT uwzględnia je w kolejności alfabetycznej, tak więc ostatnie z nich mogą modyfikować element konfiguracyjny zdefiniowany w jednym z pierwszych."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "This structure brings some flexibility to the machine administrator and to the package maintainers. Indeed, the administrator can easily modify the configuration of the software by adding a ready-made file in the directory in question without having to change an existing file. Package maintainers use the same approach when they need to adapt the configuration of another software to ensure that it perfectly co-exists with theirs. The Debian policy explicitly forbids modifying configuration files of other packages — only users are allowed to do this. Remember that during a package upgrade, the user gets to choose the version of the configuration file that should be kept when a modification has been detected. Any external modification of the file would trigger that request, which would disturb the administrator, who is sure not to have changed anything."
-msgstr ""
+msgstr "Taka struktura zapewnia pewną elastyczność administratorowi maszyny oraz zarządcom pakietów. Rzeczywiście, administrator może z łatwością zmienić konfigurację oprogramowania dodając w tym katalogu przygotowany wcześniej plik, bez konieczności modyfikacji istniejących. Zarządcy pakietów używają tego samego podejścia kiedy muszą dopasować konfigurację innego oprogramowania, aby zapewnić ich bezproblemowe współistnienie. Polityka Debiana wyraźnie zakazuje modyfikacji plików konfiguracyjnych innych pakietów — tylko użytkownik ma takie prawo. Przypomnijmy, że podczas modernizacji pakietu użytkownik otrzymuje wybór, którą wersję pliku konfiguracyjnego należy zatrzymać w przypadku wykrycia zmian. Wszelkie zewnętrzne zmiany w pliku uruchomiłyby takie zapytanie, które zastanowiłoby administratora przekonanego o tym, że nic nie zmieniał."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Without a <filename>.d</filename> directory, it is impossible for an external package to change the settings of a program without modifying its configuration file. Instead it must invite the user to do it himself and lists the operations to be done in the file <filename>/usr/share/doc/<replaceable>package</replaceable>/README.Debian</filename>."
-msgstr ""
+msgstr "Bez katalogu <filename>.d</filename>, zewnętrzne pakiety nie mają możliwości zmiany ustawień programu bez modyfikacji jego pliku konfiguracyjnego. W takim przypadku musi poprosić użytkownika o zrobienie tego samemu i wylistować możliwe instrukcje w pliku <filename>/usr/share/doc/<replaceable>pakiet</replaceable>/README.Debian</filename>."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Depending on the application, the <filename>.d</filename> directory is used directly or managed by an external script which will concatenate all the files to create the configuration file itself. It is important to execute the script after any change in that directory so that the most recent modifications are taken into account. In the same way, it is important not to work directly in the configuration file created automatically, since everything would be lost at the next execution of the script. The chosen method (<filename>.d</filename> directory used directly or a file generated from that directory) is usually dictated by implementation constraints, but in both cases the gains in terms of configuration flexibility more than make up for the small complications that they entail. The Exim 4 mail server is an example of the generated file method: it can be configured through several files (<filename>/etc/exim4/conf.d/*</filename>) which are concatenated into <filename>/var/lib/exim4/config.autogenerated</filename> by the <command>update-exim4.conf</command> command."
-msgstr ""
+msgstr "W zależności od aplikacji katalog <filename>.d</filename> jest używany bezpośrednio lub zarządzany przez zewnętrzy skrypt, który scali wszystkie pliki w celu stworzenia końcowej konfiguracji. Ważne jest, aby uruchamiać ten skrypt po każdej zmianie w tym katalogu tak, aby najnowsze zmiany były brane pod uwagę. Tak samo ważne jest, aby nie pracować bezpośrednio z plikiem utworzonym automatycznie, ponieważ wszystkie zmiany zostaną utracone po ponownym uruchomieniu skryptu. Wybrana metoda (katalog <filename>.d</filename> używany bezpośrednio lub plik utworzony na jego podstawie) jest zazwyczaj podyktowana przez ograniczenia implementacyjne, ale w obu przypadkach zyski z elastyczności konfiguracji przeważają nad komplikacjami związanymi z jej obsługą. Serwer poczty Exim 4 jest przykładem metody tworzenia pliku: może być skonfigurowany przez kilka plików (<filename>/etc/exim4/conf.d/*</filename>), które są scalone w <filename>/var/lib/exim4/config.autogenerated</filename> przy użyciu komendy <command>update-exim4.conf</command>."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "Managing Package Priorities"
-msgstr ""
+msgstr "Zarządzanie Priorytetami Pakietów"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "One of the most important aspects in the configuration of APT is the management of the priorities associated with each package source. For instance, you might want to extend one distribution with one or two newer packages from <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis>. It is possible to assign a priority to each available package (the same package can have several priorities depending on its version or the distribution providing it). These priorities will influence APT's behavior: for each package, it will always select the version with the highest priority (except if this version is older than the installed one and if its priority is less than 1000)."
-msgstr ""
+msgstr "Jednym z najważniejszych aspektów w konfiguracji APTa jest zarządzanie priorytetami związanymi z każdym ze źródeł pakietów. Przykładowo, chciałbyś rozszerzyć dystrybucję o jeden lub dwa nowsze pakiety z <emphasis role=\"distribution\">Testowego</emphasis>, <emphasis role=\"distribution\">Niestabilnego</emphasis> lub <emphasis role=\"distribution\">Eksperymentalnego</emphasis>. Możliwe jest przypisanie priorytetu do każdego dostępnego pakietu (ten sam pakiet może mieć wiele priorytetów, zależnie od jego wersji lub dystrybucji, z której pochodzi). Priorytety wpływają bowiem na zachowanie APTa: dla każdego pakietu zawsze zostanie wybrana wersja z najwyższym priorytetem (z wyjątkiem przypadku, gdy jego wersja jest starsza niż zainstalowana i jego priorytet jest mniejszy niż 1000)."
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary><foreignphrase>pinning</foreignphrase></secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary><foreignphrase>pinning</foreignphrase></secondary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>source of packages</primary>"
+#, no-c-format
 msgid "<primary>pinning, APT pinning</primary>"
-msgstr "<primary>źródło pakietów</primary>"
+msgstr "<primary>pinning, APT pinning</primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>priority</secondary>"
-msgstr ""
+msgstr "<primary>package</primary><secondary>priority</secondary>"
 
+# mateunho
 #. Tag: indexterm
-#, fuzzy, no-c-format
-#| msgid "<primary>section</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+#, no-c-format
 msgid "<primary>priority</primary><secondary>package priority</secondary>"
-msgstr "<primary>Sekcja</primary><secondary><foreignphrase>main</foreignphrase></secondary>"
+msgstr "<primary>priority</primary><secondary>package priority</secondary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>preferences</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>preferences</secondary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>preferences</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>preferences</filename></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/preferences</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/preferences</filename></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "APT defines several default priorities. Each installed package version has a priority of 100. A non-installed version has a priority of 500 by default, but it can jump to 990 if it is part of the target release (defined with the <literal>-t</literal> command-line option or the <literal>APT::Default-Release</literal> configuration directive)."
-msgstr ""
+msgstr "APT definiuje kilka domyślnych priorytetów. Każda zainstalowana wersja pakietu ma priorytet 100. Niezainstalowana wersja pakietu ma domyślnie priorytet 500, ale może zostać podniesiony do 990 jeżeli jest częścią wydania docelowego (zdefiniowanego opcją <literal>-t</literal> lub instrukcja konfiguracyjną <literal>APT::Default-Release</literal>)."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "You can modify the priorities by adding entries in the <filename>/etc/apt/preferences</filename> file with the names of the affected packages, their version, their origin and their new priority."
-msgstr ""
+msgstr "Można zmodyfikować priorytety dodając w pliku <filename>/etc/apt/preferences</filename> wpisy z nazwami danych pakietów, ich wersją, źródłem i nowym priorytetem."
 
 #. Tag: para
 #, no-c-format
@@ -1318,16 +1431,18 @@ msgstr ""
 msgid "When APT checks <filename>/etc/apt/preferences</filename>, it first takes into account the most specific entries (often those specifying the concerned package), then the more generic ones (including for example all the packages of a distribution). If several generic entries exist, the first match is used. The available selection criteria include the package's name and the source providing it. Every package source is identified by the information contained in a <filename>Release</filename> file that APT downloads together with the <filename>Packages</filename> files. It specifies the origin (usually “Debian” for the packages of official mirrors, but it can also be a person's or an organization's name for third-parties repositories). It also gives the name of the distribution (usually <emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis> for the standard distributions provided by Debian) together with its version (for example 5.0 for Debian <emphasis role=\"distribution\">Lenny</emphasis>). Let's have a look at its syntax through some realistic case studies of this mechanism."
 msgstr ""
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Priority of <emphasis role=\"distribution\">experimental</emphasis>"
-msgstr ""
+msgstr "<emphasis>SZCZEGÓLNY PRZYPADEK</emphasis> Priorytet <emphasis role=\"distribution\">eksperymentalnego</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you listed <emphasis role=\"distribution\">Experimental</emphasis> in your <filename>sources.list</filename> file, the corresponding packages will almost never be installed because their default APT priority is 1. This is of course a specific case, designed to keep users from installing <emphasis role=\"distribution\">Experimental</emphasis> packages by mistake. The packages can only be installed by typing <command>aptitude install <replaceable>package</replaceable>/experimental</command> — users typing this command can only be aware of the risks that they take. It is still possible (though <emphasis>not</emphasis> recommended) to treat packages of <emphasis role=\"distribution\">Experimental</emphasis> like those of other distributions by giving them a priority of 500. This is done with a specific entry in <filename>/etc/apt/preferences</filename>:"
 msgstr ""
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid ""
@@ -1335,12 +1450,17 @@ msgid ""
 "Pin: release a=experimental\n"
 "Pin-Priority: 500\n"
 msgstr ""
+"Package: *\n"
+"Pin: release a=experimental\n"
+"Pin-Priority: 500\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Let's suppose that you only want to use packages from the stable version of Debian. Those provided in other versions should not be installed except if explicitly requested. You could write the following entries in the <filename>/etc/apt/preferences</filename> file:"
-msgstr ""
+msgstr "Załóżmy, że chcesz używać tylko pakietów ze stabilnej wersji Debiana. Te dostarczane w innych wersjach nie powinny być instalowane, chyba że na bezpośrednie żądanie. Mógłbyś dodać następujące wpisy w pliku <filename>/etc/apt/preferences</filename>:"
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid ""
@@ -1352,17 +1472,27 @@ msgid ""
 "Pin: release o=Debian\n"
 "Pin-Priority: -10\n"
 msgstr ""
+"Package: *\n"
+"Pin: release a=stable\n"
+"Pin-Priority: 900\n"
+"\n"
+"Package: *\n"
+"Pin: release o=Debian\n"
+"Pin-Priority: -10\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "<literal>a=stable</literal> defines the name of the selected distribution. <literal>o=Debian</literal> limits the scope to packages whose origin is “Debian”."
-msgstr ""
+msgstr "<literal>a=stable</literal> definiuje nazwę wybranej dystrybucji. <literal>o=Debian</literal> ogranicza zakres pakietów do tych, których źródłem jest \"Debian\"."
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "Let's now assume that you have a server with several local programs depending on the version 5.14 of Perl and that you want to ensure that upgrades will not install another version of it. You could use this entry:"
-msgstr ""
+msgstr "Załóżmy, że masz serwer z kilkoma lokalnymi programami zależnymi od wersji 5.14 Perla i chcesz upewnić się, że modernizacje nie zainstalują innej jego wersji. Możesz użyć takiego wpisu:"
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid ""
@@ -1370,37 +1500,47 @@ msgid ""
 "Pin: version 5.14*\n"
 "Pin-Priority: 1001\n"
 msgstr ""
+"Package: perl\n"
+"Pin: version 5.14*\n"
+"Pin-Priority: 1001\n"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "The reference documentation for this configuration file is available in the manual page <citerefentry><refentrytitle>apt_preferences</refentrytitle><manvolnum>5</manvolnum></citerefentry>, which you can display with <command>man apt_preferences</command>."
-msgstr ""
+msgstr "Referencyjna dokumentacja dla tego pliku konfiguracyjnego jest dostępna na stronach pomocy <citerefentry><refentrytitle>apt_preferences</refentrytitle><manvolnum>5</manvolnum></citerefentry>, które można wyświetlić za pomocą <command>man apt_preferences</command>."
 
+# mateunho
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Comments in <filename>/etc/apt/preferences</filename>"
-msgstr ""
+msgstr "<emphasis>WSKAZÓWKA</emphasis> Komentarze w pliku <filename>/etc/apt/preferences</filename>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Explanation</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>Explanation</literal></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pin</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>Pin</literal></primary>"
 
+# mateunho
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pin-Priority</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>Pin-Priority</literal></primary>"
 
+# mateunho
 #. Tag: para
 #, no-c-format
 msgid "There is no official syntax to put comments in the <filename>/etc/apt/preferences</filename> file, but some textual descriptions can be provided by putting one or more “<literal>Explanation</literal>” fields at the start of each entry:"
-msgstr ""
+msgstr "Nie istnieje oficjalna składnia do umieszczania komentarzy w pliku <filename>/etc/apt/preferences</filename>, ale można wprowadzić pewne opisy tekstowe przez dodanie jednego lub więcej pól “<literal>Explanation</literal>” na początku każdego wpisu."
 
+# mateunho
 #. Tag: programlisting
 #, no-c-format
 msgid ""
@@ -1410,6 +1550,11 @@ msgid ""
 "Pin: release a=experimental\n"
 "Pin-Priority: 500\n"
 msgstr ""
+"Explanation: Pakiet xserver-xorg-video-intel dostarczony\n"
+"Explanation: w eksparymentalnym może być bezpiecznie używany\n"
+"Package: xserver-xorg-video-intel\n"
+"Pin: release a=experimental\n"
+"Pin-Priority: 500\n"
 
 #. Tag: title
 #, no-c-format
