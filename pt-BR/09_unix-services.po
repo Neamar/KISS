@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-03-18 18:29+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2015-03-18 20:37+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -1791,8 +1791,8 @@ msgstr ""
 #, no-c-format
 msgid "The <command>ucf</command> program (from the Debian package of the same name) can be used to implement such a behavior."
 msgstr ""
-"O programa <command>ucf</command> (do pacote Debian do mesmo nome) pode ser "
-"utilizado para iplementar este comportamento."
+"O programa <command>ucf</command> (do pacote Debian de mesmo nome) pode ser "
+"utilizado para implementar este comportamento."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2908,6 +2908,13 @@ msgstr "O sistema de cotas permite você definir quatro limites:"
 #, no-c-format
 msgid "two limits (called “soft” and “hard”) refer to the number of blocks consumed. If the filesystem was created with a block-size of 1 kibibyte, a block contains 1024 bytes from the same file. Unsaturated blocks thus induce losses of disk space. A quota of 100 blocks, which theoretically allows storage of 102,400 bytes, will however be saturated with just 100 files of 500 bytes each, only representing 50,000 bytes in total."
 msgstr ""
+"dois limites (chamados de “soft” e “hard”) referem-se ao número de blocos "
+"consumidos. Se o sistema de arquivos foi criado com um bloco-tamanho de 1 "
+"kibibyte, um bloco contém 1024 bytes a partir do mesmo arquivo. Assim, "
+"blocos não saturados induzem a perdas de espaço em disco. Uma quota de 100 "
+"blocos, o que teoricamente permite a armazenagem de 102,400 bytes, irá "
+"contudo ser saturada com apenas 100 arquivos de 500 bytes cada, apenas "
+"representando 50,000 bytes no total."
 
 #. Tag: para
 #, no-c-format
@@ -2992,11 +2999,21 @@ msgstr ""
 #, no-c-format
 msgid "To automatically setup a quota for new users, you have to configure a template user (with <command>edquota</command> or <command>setquota</command>) and indicate their user name in the <varname>QUOTAUSER</varname> variable in the <filename>/etc/adduser.conf</filename> file. This quota configuration will then be automatically applied to each new user created with the <command>adduser</command> command."
 msgstr ""
+"Para configurar automaticamente uma quota para novos usuários, você tem que "
+"configurar um usuário modelo (com <command>edquota</command> ou "
+"<command>setquota</command>) e indicar seu nome de usuário na variável "
+"<varname>QUOTAUSER</varname> no arquivo "
+"<filename>/etc/adduser.conf</filename>. Essa configuração de quota irá então "
+"ser aplicada automaticamente para cada novo usuário criado com o comando "
+"<command>adduser</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Making backups is one of the main responsibilities of any administrator, but it is a complex subject, involving powerful tools which are often difficult to master."
 msgstr ""
+"Fazer cópias de segurança (backups) é uma das principais responsabilidades "
+"de qualquer administrador, mas é um assunto complexo, envolvendo ferramentas "
+"poderosas que geralmente são difíceis de dominar."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3012,6 +3029,13 @@ msgstr "<primary>restauração</primary>"
 #, no-c-format
 msgid "Many programs exist, such as <command>amanda</command>, <command>bacula</command>, <command>BackupPC</command>. Those are client/server system featuring many options, whose configuration is rather difficult. Some of them provide user-friendly web interfaces to mitigate this. But Debian contains dozens of other backup software covering all possible use cases, as you can easily confirm with <command>apt-cache search backup</command>."
 msgstr ""
+"Existem muitos programas, como <command>amanda</command>, "
+"<command>bacula</command>, <command>BackupPC</command>. Esses são sistemas "
+"cliente/servidor tendo como característica muitas opções, as quais a "
+"configuração é bem difícil. Alguns deles fornecem interfaces web amigáveis "
+"para mitigar isso. Mas o Debian contém dúzias de outros softwares de cópia "
+"de segurança (backup) cobrindo todos os casos de uso, como você pode "
+"facilmente confirmar com <command>apt-cache search backup</command>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3033,11 +3057,17 @@ msgstr "<primary><command>BackupPC</command></primary>"
 #, no-c-format
 msgid "Rather than detailing some of them, this section will present the thoughts of the Falcot Corp administrators when they defined their backup strategy."
 msgstr ""
+"Ao invés de detalhar alguns deles, essa seção irá apresentar os pensamentos "
+"dos administradores da Falcot Corp quando eles definem sua estratégia de "
+"cópia de segurança (backup)."
 
 #. Tag: para
 #, no-c-format
 msgid "At Falcot Corp, backups have two goals: recovering erroneously deleted files, and quickly restoring any computer (server or desktop) whose hard drive has failed."
 msgstr ""
+"Para a Falcot Corp, cópias de segurança (backups) tem dois objetivos: "
+"recuperar arquivos apagados erroneamente, e restaurar rapidamente qualquer "
+"computador (servidor ou desktop) que o disco rígido tenha falhado."
 
 #. Tag: title
 #, no-c-format
@@ -3081,6 +3111,12 @@ msgstr ""
 #, no-c-format
 msgid "A hard link is created with the <command>ln <replaceable>target</replaceable> <replaceable>link</replaceable></command> command. The <replaceable>link</replaceable> file is then a new name for the <replaceable>target</replaceable> file. Hard links can only be created on the same filesystem, while symbolic links are not subject to this limitation."
 msgstr ""
+"Uma ligação forte é criada com o comando <command>ln "
+"<replaceable>alvo</replaceable> <replaceable>ligação</replaceable></command>"
+". O arquivo <replaceable>ligação</replaceable> é então um nome novo para o "
+"arquivo <replaceable>alvo</replaceable>. Ligações fortes apenas podem ser "
+"criadas no mesmo sistema de arquivos, enquanto que ligações simbólicas não "
+"estão sujeitas a essa limitação."
 
 #. Tag: para
 #, no-c-format
@@ -3276,14 +3312,17 @@ msgid "<primary>tape, backup</primary>"
 msgstr ""
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>TAR</primary>"
-msgstr ""
+msgstr "<primary>TAR</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Historically, the simplest means of making a backup on Unix was to store a <emphasis>TAR</emphasis> archive on a tape. The <command>tar</command> command even got its name from “Tape ARchive”."
 msgstr ""
+"Historicamente, a maneira mais simples de fazer uma cópia de segurança "
+"(backup) no Unix era armazenar um arquivo <emphasis>TAR</emphasis> em uma "
+"fita. O comando <command>tar</command> até pegou seu nome de “Tape ARchive”."
 
 #. Tag: title
 #, no-c-format
@@ -3293,12 +3332,19 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Introduction"
-msgstr ""
+msgstr "Introdução"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>hotplug</emphasis> kernel subsystem dynamically handles the addition and removal of devices, by loading the appropriate drivers and by creating the corresponding device files (with the help of <command>udevd</command>). With modern hardware and virtualization, almost everything can be hotplugged: from the usual USB/PCMCIA/IEEE 1394 peripherals to SATA hard drives, but also the CPU and the memory."
 msgstr ""
+"O subsistema do núcleo <emphasis>hotplug</emphasis> dinamicamente lida com a "
+"adição e remoção de dispositivos carregando os drives apropriados e criando "
+"os arquivos de dispositivos correspondentes (com a ajuda do "
+"<command>udevd</command>). Com hardware e virtualização modernos, quase tudo "
+"pode ser adicionado/removido dinamicamente (hotplugged): dos usuais "
+"periféricos 1394 USB/PCMCIA/IEEE até discos rígidos SATA, mas também a CPU e "
+"a memória."
 
 #. Tag: para
 #, no-c-format
