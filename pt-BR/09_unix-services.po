@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-03-20 00:38+0200\n"
-"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
+"PO-Revision-Date: 2015-03-20 00:42+0200\n"
+"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -2502,7 +2502,7 @@ msgid "<emphasis>SPECIAL CASE</emphasis> <command>cron</command> and daylight sa
 msgstr "<emphasis>CASO ESPECIAL</emphasis> <command>cron</command> e o horário de verão."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "In Debian, <command>cron</command> takes the time change (for Daylight Savings Time, or in fact for any significant change in the local time) into account as best as it can. Thus, the commands that should have been executed during an hour that never existed (for example, tasks scheduled at 2:30 am during the Spring time change in France, since at 2:00 am the clock jumps directly to 3:00 am) are executed shortly after the time change (thus around 3:00 am DST). On the other hand, in autumn, when commands would be executed several times (2:30 am DST, then an hour later at 2:30 am standard time, since at 3:00 am DST the clock turns back to 2:00 am) are only executed once."
 msgstr ""
 "No Debian, o <command>cron</command> leva em conta as alterações de horário ("
@@ -2512,7 +2512,7 @@ msgstr ""
 "para 2:30 am durante a mudança de horário na Primavera na França, já que às "
 "2:00 am o relógio pula direto para às 3:00 am) são executadas logo após a "
 "alteração de horário (sendo então por volta das 3:00 am DST). Por outro "
-"lado, in autumn, quando comandos seriam executados várias vezes (2:30 am "
+"lado, no outono, quando comandos seriam executados várias vezes (2:30 am "
 "DST, depois uma hora mais tarde às 2:30 am horário padrão, já que às 3:00 am "
 "DST o relógio volta para 2:00 am) são executados apenas uma vez."
 
@@ -2909,9 +2909,9 @@ msgstr "O sistema de cotas permite você definir quatro limites:"
 msgid "two limits (called “soft” and “hard”) refer to the number of blocks consumed. If the filesystem was created with a block-size of 1 kibibyte, a block contains 1024 bytes from the same file. Unsaturated blocks thus induce losses of disk space. A quota of 100 blocks, which theoretically allows storage of 102,400 bytes, will however be saturated with just 100 files of 500 bytes each, only representing 50,000 bytes in total."
 msgstr ""
 "dois limites (chamados “soft” e “hard”) referem-se ao número de blocos "
-"consumidos. Se o sistema de arquivos foi criado com um bloco-de-tamanho de 1 "
-"kibibyte, um bloco contém 1024 bytes do mesmo arquivo. Logo blocos não "
-"saturados induzem a perda de espaço em disco. Uma quota de 100 bloco, o que "
+"consumidos. Se o sistema de arquivos foi criado com tamanho de bloco de 1 "
+"kibibyte, um bloco contém 1024 bytes do mesmo arquivo. Logo, blocos não "
+"saturados induzem a perda de espaço em disco. Uma quota de 100 blocos, que "
 "teoricamente permite armazenagem de 102,400 bytes, irá contudo ser saturada "
 "com apenas 100 arquivos de 500 bytes cada, apenas representando 50,000 bytes "
 "no total."
@@ -3312,7 +3312,7 @@ msgid "<primary>tape, backup</primary>"
 msgstr ""
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>TAR</primary>"
 msgstr "<primary>TAR</primary>"
 
