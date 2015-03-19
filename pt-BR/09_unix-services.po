@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-03-18 20:37+0200\n"
+"PO-Revision-Date: 2015-03-20 00:38+0200\n"
 "Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
@@ -2908,13 +2908,13 @@ msgstr "O sistema de cotas permite você definir quatro limites:"
 #, no-c-format
 msgid "two limits (called “soft” and “hard”) refer to the number of blocks consumed. If the filesystem was created with a block-size of 1 kibibyte, a block contains 1024 bytes from the same file. Unsaturated blocks thus induce losses of disk space. A quota of 100 blocks, which theoretically allows storage of 102,400 bytes, will however be saturated with just 100 files of 500 bytes each, only representing 50,000 bytes in total."
 msgstr ""
-"dois limites (chamados de “soft” e “hard”) referem-se ao número de blocos "
-"consumidos. Se o sistema de arquivos foi criado com um bloco-tamanho de 1 "
-"kibibyte, um bloco contém 1024 bytes a partir do mesmo arquivo. Assim, "
-"blocos não saturados induzem a perdas de espaço em disco. Uma quota de 100 "
-"blocos, o que teoricamente permite a armazenagem de 102,400 bytes, irá "
-"contudo ser saturada com apenas 100 arquivos de 500 bytes cada, apenas "
-"representando 50,000 bytes no total."
+"dois limites (chamados “soft” e “hard”) referem-se ao número de blocos "
+"consumidos. Se o sistema de arquivos foi criado com um bloco-de-tamanho de 1 "
+"kibibyte, um bloco contém 1024 bytes do mesmo arquivo. Logo blocos não "
+"saturados induzem a perda de espaço em disco. Uma quota de 100 bloco, o que "
+"teoricamente permite armazenagem de 102,400 bytes, irá contudo ser saturada "
+"com apenas 100 arquivos de 500 bytes cada, apenas representando 50,000 bytes "
+"no total."
 
 #. Tag: para
 #, no-c-format
@@ -3670,32 +3670,43 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>management, power management</primary>"
-msgstr ""
+msgstr "<primary>gestão, gerenciamento de energia</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The topic of power management is often problematic. Indeed, properly suspending the computer requires that all the computer's device drivers know how to put them to standby, and that they properly reconfigure the devices upon waking. Unfortunately, there are still a few devices unable to sleep well under Linux, because their manufacturers have not provided the required specifications."
 msgstr ""
+"O tópico de gerenciamento de energia geralmente é problemático. Na verdade, "
+"suspender corretamente o computador requer que todos os drives de "
+"dispositivos do computador saibam como colocá-los em espera (standby), e que "
+"eles reconfigurem corretamente os dispositivos ao acordar. Infelizmente, "
+"ainda existem alguns dispositivos que não são capazes de dormir bem sob o "
+"Linux, porque seus fabricantes não forneceram as especificações necessárias."
 
 #. Tag: para
 #, no-c-format
 msgid "Linux supports ACPI (Advanced Configuration and Power Interface) — the most recent standard in power management. The <emphasis role=\"pkg\">acpid</emphasis> package provides a daemon that looks for power management related events (switching between AC and battery power on a laptop, etc.) and that can execute various commands in response."
 msgstr ""
+"Linux suporta ACPI (Advanced Configuration and Power Interface) — o mais "
+"recente padrão em gerenciamento de energia. O pacote <emphasis role=\"pkg\""
+">acpid</emphasis> fornece um daemon que procura por eventos relacionados a "
+"gerenciamento de energia (alternando entre AC e energia de bateria em um "
+"laptop, etc.) e que pode executar vários comandos em resposta."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ACPI</primary>"
-msgstr ""
+msgstr "<primary>ACPI</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Advanced Configuration and Power Interface</primary>"
-msgstr ""
+msgstr "<primary>Advanced Configuration and Power Interface</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>acpid</command></primary>"
-msgstr ""
+msgstr "<primary><command>acpid</command></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -3708,12 +3719,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APM</primary>"
-msgstr ""
+msgstr "<primary>APM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Advanced Power Management</primary>"
-msgstr ""
+msgstr "<primary>Advanced Power Management</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -3730,15 +3741,15 @@ msgstr ""
 #, no-c-format
 #| msgid "<emphasis>VOCABULARY</emphasis> Blocks and inodes"
 msgid "<emphasis>BEWARE</emphasis> Graphics card and standby"
-msgstr "<emphasis>ATENÇÃO</emphasis> Placas gráficas e standby"
+msgstr "<emphasis>ATENÇÃO</emphasis> Placas gráficas e espera (standby)"
 
 #. Tag: para
 #, no-c-format
 msgid "The graphics card driver is often the culprit when standby doesn't work properly. In that case, it is a good idea to test the latest version of the X.org graphics server."
 msgstr ""
-"O driver da placa gráfica é, muitas vezes, o culpado quando o standby não "
-"funciona apropriadamente. Neste caso, é uma boa idéia testar a última versão "
-"do servidor gráfico X.org."
+"O driver da placa gráfica é, muitas vezes, o culpado quando a espera "
+"(standby) não funciona apropriadamente. Neste caso, é uma boa idéia testar a "
+"última versão do servidor gráfico X.org."
 
 #. Tag: para
 #, no-c-format
