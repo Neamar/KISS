@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-03-19 00:46+0200\n"
+"PO-Revision-Date: 2015-03-20 01:53+0200\n"
 "Last-Translator: yingw <wyxiao15@gmail.com>\n"
 "Language-Team: Chinese (China) <https://hosted.weblate.org/projects/debian-"
 "handbook/06_apt/zh_CN/>\n"
@@ -851,6 +851,9 @@ msgstr ""
 #, no-c-format
 msgid "<emphasis role=\"pkg\">approx</emphasis> runs by default on port 9999 via inetd (see <xref linkend=\"sect.inetd\" />) and requires the users to adjust their <filename>sources.list</filename> file to point to the approx server:"
 msgstr ""
+"<emphasis role=\"pkg\">approx</emphasis> 通过inetd (参见<xref linkend=\"sect."
+"inetd\" />)默认在9999端口运行，并需要用户调整<filename>sources.list</filename> 文件来指向 approx "
+"服务器："
 
 #. Tag: programlisting
 #, no-c-format
@@ -860,26 +863,33 @@ msgid ""
 "deb http://apt.falcot.com:9999/debian wheezy main contrib non-free\n"
 "      "
 msgstr ""
+"# 指向本地 approx 服务器的sources.list 范例 ↵\n"
+"deb http://apt.falcot.com:9999/security wheezy/updates main contrib non-free↵"
+"\n"
+"deb http://apt.falcot.com:9999/debian wheezy main contrib non-free↵\n"
+"      "
 
 #. Tag: title
 #, no-c-format
 msgid "<command>aptitude</command> and <command>apt-get</command> Commands"
-msgstr ""
+msgstr "<command>aptitude</command> 和 <command>apt-get</command> 命令"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first front end — command-line based — which was developed within the project."
 msgstr ""
+"APT 是一个相当大的项目，起初计划包括一个图形界面。它是基于一个包括核心应用的库， <command>apt-get</command> "
+"是在这个项目中开发的第一个命令行基础的前端。"
 
 #. Tag: para
 #, no-c-format
@@ -889,7 +899,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Initialization"
-msgstr ""
+msgstr "开端"
 
 #. Tag: para
 #, no-c-format
@@ -899,37 +909,37 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get update</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get update</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude update</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude update</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing and Removing"
-msgstr ""
+msgstr "安装和卸载"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>installation</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>安装</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>removal</secondary>"
-msgstr ""
+msgstr "<primary>软件包</primary><secondary>卸载</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>package installation</secondary>"
-msgstr ""
+msgstr "<primary>安装</primary><secondary>软件包安装</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>removal of a package</primary>"
-msgstr ""
+msgstr "<primary>卸载一个软件包</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -939,57 +949,61 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get install</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get install </command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get remove</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get remove</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get purge</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get purge</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude install</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude install</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude remove</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude remove</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude purge</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude purge</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Installing the same selection of packages several times"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> 多次安装同一批软件包"
 
 #. Tag: para
 #, no-c-format
 msgid "It can be useful to systematically install the same list of packages on several computers. This can be done quite easily."
-msgstr ""
+msgstr "在几台电脑上安装同一批软件包会很实用。这很容易做到。"
 
 #. Tag: para
 #, no-c-format
 msgid "First, retrieve the list of packages installed on the computer which will serve as the “model” to copy."
-msgstr ""
+msgstr "首先，从电脑中取得所安装软件包的列表作为用于复制的“模板”。"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-"
+"list</userinput>↵\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>pkg-list</filename> file then contains the list of installed packages. Next, transfer the <filename>pkg-list</filename> file on the computers you want to update and use the following commands:"
 msgstr ""
+"<filename>pkg-list</filename>文件包括所安装软件包的列表。接下来，在你要更新的电脑上移植  <filename>pkg-"
+"list</filename> 文件，使用下面这些命令："
 
 #. Tag: screen
 #, no-c-format
@@ -1004,26 +1018,44 @@ msgid ""
 "## Ask apt-get to install the selected packages\n"
 "# <userinput>apt-get dselect-upgrade</userinput>\n"
 msgstr ""
+"## Update dpkg's database of known packages↵\n"
+"# <userinput>avail=`mktemp`</userinput>↵\n"
+"# <userinput>apt-cache dumpavail &gt; \"$avail\"</userinput>↵\n"
+"# <userinput>dpkg --merge-avail \"$avail\"</userinput>↵\n"
+"# <userinput>rm -f \"$avail\"</userinput>↵\n"
+"## Update dpkg's selections↵\n"
+"# <userinput>dpkg --set-selections &lt; pkg-list</userinput>↵\n"
+"## Ask apt-get to install the selected packages↵\n"
+"# <userinput>apt-get dselect-upgrade</userinput>↵\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The first commands records the list of available packages in the dpkg database, then <command>dpkg --set-selections</command> restores the selection of packages that you wish to install, and the <command>apt-get</command> invocation executes the required operations! <command>aptitude</command> does not have this command."
 msgstr ""
+"第一个命令记录在 dpkg 库中可用的软件包列表，然后 <command>dpkg --set-selections</command> "
+"恢复选中你想要安装的包，<command>apt-get</command> "
+"的激活执行所需要的操作！<command>aptitude</command> 没有这样的命令。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Removing and installing at the same time"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> 同时进行卸载和安装"
 
 #. Tag: para
 #, no-c-format
 msgid "It is possible to ask <command>apt-get</command> (or <command>aptitude</command>) to install certain packages and remove others on the same command line by adding a suffix. With an <command>apt-get install</command> command, add “<literal>-</literal>” to the names of the packages you wish to remove. With an <command>apt-get remove</command> command, add “<literal>+</literal>” to the names of the packages you wish to install."
 msgstr ""
+"可以询问<command>apt-get</command>（或<command>aptitude</command>）来安装指定的软件包并卸载在同一个命"
+"令行中的其他包，这通过加上后缀来实现。用一个<command>apt-get "
+"install</command>命令，在要卸载的软件包名字后面加上“<literal>-</literal>” 。用<command>apt-get "
+"remove</command>命令时，在想要安装的包名字后面加上“<literal>+</literal>” 。"
 
 #. Tag: para
 #, no-c-format
 msgid "The next example shows two different ways to install <replaceable>package1</replaceable> and to remove <replaceable>package2</replaceable>."
 msgstr ""
+"下面的例子展示两种不同方法来安装<replaceable>package1</replaceable> "
+"和卸载<replaceable>package2</replaceable>。"
 
 #. Tag: screen
 #, no-c-format
@@ -1033,11 +1065,19 @@ msgid ""
 "# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
 "[...]\n"
 msgstr ""
+"# <userinput>apt-get install <replaceable>package1</replaceable> "
+"<replaceable>package2-</replaceable></userinput>↵\n"
+"[...]↵\n"
+"# <userinput>apt-get remove <replaceable>package1+</replaceable> "
+"<replaceable>package2</replaceable></userinput>↵\n"
+"[...]↵\n"
 
 #. Tag: para
 #, no-c-format
 msgid "This can also be used to exclude packages which would otherwise be installed, for example due to a <literal>Recommends</literal>. In general, the dependency solver will use that information as a hint to look for alternative solutions."
 msgstr ""
+"此方法也可用于把不同的软件包排除在外，比如由于<literal>Recommends</literal>造成的。一般，依赖解决者会用此作为寻找其他办法的线"
+"索。"
 
 #. Tag: title
 #, no-c-format
