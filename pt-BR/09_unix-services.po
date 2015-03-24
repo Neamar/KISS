@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-03-20 00:42+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2015-03-24 21:16+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -3078,6 +3078,15 @@ msgstr "Cópias de segurança com <command>rsync</command>"
 #, no-c-format
 msgid "Backups on tape having been deemed too slow and costly, data will be backed up on hard drives on a dedicated server, on which the use of software RAID (see <xref linkend=\"sect.raid-soft\" />) will protect the data from hard drive failure. Desktop computers are not backed up individually, but users are advised that their personal account on their department's file server will be backed up. The <command>rsync</command> command (from the package of the same name) is used daily to back up these different servers."
 msgstr ""
+"Fazer cópias de segurança (backups) em fita tem sido considerado muito lento "
+"e caro, os dados serão copiados em discos rígidos em um servidor dedicado, "
+"no qual com o uso do software RAID (veja <xref linkend=\"sect.raid-soft\" />)"
+" irá proteger os dados de uma falha do disco rígido. Não são feitas cópias "
+"de segurança individuais para computadores desktop, porém os usuários são "
+"avisados que suas contas pessoais em seu servidor de arquivos do "
+"departamento terão cópias de segurança (backed up). O comando "
+"<command>rsync</command> (de pacote com mesmo nome) é usado diariamente para "
+"fazer cópias de segurança desses diferentes servidores."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3106,6 +3115,14 @@ msgstr "<primary>ligação forte (hard link)</primary>"
 #, no-c-format
 msgid "A hard link, as opposed to a symbolic link, can not be differentiated from the linked file. Creating a hard link is essentially the same as giving an existing file a second name. This is why the deletion of a hard link only removes one of the names associated with the file. As long as another name is still assigned to the file, the data therein remain present on the filesystem. It is interesting to note that, unlike a copy, the hard link does not take up additional space on the hard drive."
 msgstr ""
+"Uma ligação forte, de maneira oposta a ligação simbólica, não pode ser "
+"diferenciada do arquivo original. A criação de uma ligação forte é, "
+"essencialmente, o mesmo que dar a um arquivo existente um segundo nome. É "
+"por isso que apagar uma ligação forte apenas remove um  dos nomes associados "
+"ao arquivo. Enquanto o outro nome continuar referenciando o arquivo, os "
+"dados nele continuaram presentes no sistema de arquivos. É interessante "
+"notar que, diferentemente de uma cópia, a ligação forte não ocupa espaço "
+"adicional no disco rígido."
 
 #. Tag: para
 #, no-c-format
@@ -3122,16 +3139,28 @@ msgstr ""
 #, no-c-format
 msgid "The available hard drive space prohibits implementation of a complete daily backup. As such, the <command>rsync</command> command is preceded by a duplication of the content of the previous backup with hard links, which prevents usage of too much hard drive space. The <command>rsync</command> process then only replaces files that have been modified since the last backup. With this mechanism a great number of backups can be kept in a small amount of space. Since all backups are immediately available and accessible (for example, in different directories of a given share on the network), you can quickly make comparisons between two given dates."
 msgstr ""
+"O espaço disponível no disco rígido proíbe a implementação de uma cópia de "
+"segurança (backup) diária. Sendo assim, o comando <command>rsync</command> é "
+"precedido pela duplicação do conteúdo da cópia de segurança (backup) prévia "
+"com ligações fortes, o que previne o uso de muito espaço no disco rígido. O "
+"processo <command>rsync</command> então apenas substitui arquivos que foram "
+"modificados desde a última cópia de segurança (backup). Com esse mecanismo "
+"um grande número de cópias de segurança (backups) podem ser mantidas em uma "
+"pequena quantidade de espaço. Como todas as cópias de segurança (backups) "
+"ficam imediatamente disponíveis e acessíveis (por exemplo, em diferentes "
+"diretórios de um dado compartilhamento na rede), você pode fazer comparações "
+"entre duas datas determinadas rapidamente."
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>copy, backup copy</primary>"
-msgstr ""
+msgstr "<primary>cópia, cópia de cópia de segurança</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backup</primary><secondary>copy</secondary>"
 msgstr ""
+"<primary>cópia de segurança (backup)</primary><secondary>cópia</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3142,11 +3171,24 @@ msgstr "<primary><emphasis role=\"pkg\">dirvish</emphasis></primary>"
 #, no-c-format
 msgid "This backup mechanism is easily implemented with the <command>dirvish</command> program. It uses a backup storage space (“bank” in its vocabulary) in which it places timestamped copies of sets of backup files (these sets are called “vaults” in the dirvish documentation)."
 msgstr ""
+"Esse mecanismo de cópia de segurança (backup) é facilmente implementado com "
+"o programa <command>dirvish</command>. Ele usa um espaço de armazenamento de "
+"cópia de segurança (backup) (“bank” no seu vocabulário) no qual ele coloca "
+"cópias protocoladas de conjuntos de arquivos de cópias de segurança (backup) "
+"(esses conjuntos são chamados de “vaults” na documentação do dirvish)."
 
 #. Tag: para
 #, no-c-format
 msgid "The main configuration is in the <filename>/etc/dirvish/master.conf</filename> file. It defines the location of the backup storage space, the list of “vaults” to manage, and default values for expiration of the backups. The rest of the configuration is located in the <filename><replaceable>bank</replaceable>/<replaceable>vault</replaceable>/dirvish/default.conf</filename> files and contains the specific configuration for the corresponding set of files."
 msgstr ""
+"A principal configuração está no arquivo "
+"<filename>/etc/dirvish/master.conf</filename>. ele define a localização do "
+"espaço de armazenamento de cópias de segurança (backup), a lista de “vaults” "
+"a gerenciar, e os valores padrão para expiração das cópias de segurança "
+"(backups). O resto da configuração está localizada nos arquivos <filename><re"
+"placeable>bank</replaceable>/<replaceable>vault</replaceable>/dirvish/default"
+".conf</filename> e contém as configurações específicas para os "
+"correspondentes conjuntos de arquivos."
 
 #. Tag: title
 #, no-c-format
@@ -3200,6 +3242,11 @@ msgstr "<emphasis>NA PRÁTICA</emphasis> Agendamento de expiração"
 #, no-c-format
 msgid "The expiration rules are not used by <command>dirvish-expire</command> to do its job. In reality, the expiration rules are applied when creating a new backup copy to define the expiration date associated with that copy. <command>dirvish-expire</command> simply peruses the stored copies and deletes those for which the expiration date has passed."
 msgstr ""
+"As regras de expiração não são usadas pelo <command>dirvish-expire</command> "
+"para fazer seu trabalho. Na realidade, as regras de expiração são aplicadas "
+"ao criar uma nova cópia de backup para definir a data de expiração associada "
+"à essa cópia. <command>dirvish-expire</command> apenas examina as cópias "
+"armazenadas e apaga aquelas que a data de expiração já passou."
 
 #. Tag: title
 #, no-c-format
@@ -3237,11 +3284,30 @@ msgstr ""
 #, no-c-format
 msgid "The above example specifies the set of files to back up: these are files on the machine <emphasis>rivendell.falcot.com</emphasis> (for local data backup, simply specify the name of the local machine as indicated by <command>hostname</command>), especially those in the root tree (<literal>tree: /</literal>), except those listed in <literal>exclude</literal>. The backup will be limited to the contents of one filesystem (<literal>xdev: 1</literal>). It will not include files from other mount points. An index of saved files will be generated (<literal>index: gzip</literal>), and the image will be named according to the current date (<literal>image-default: %Y%m%d</literal>)."
 msgstr ""
+"Os exemplos acima especificam o conjunto de arquivos que terão cópias de "
+"segurança: esses são arquivos da máquina "
+"<emphasis>rivendell.falcot.com</emphasis> (para cópias de segurança local, "
+"simplesmente especifique o nome da máquina local como indicado pelo "
+"<command>hostname</command>), especialmente aqueles na árvore raiz "
+"(<literal>tree: /</literal>), exceto aqueles listados em "
+"<literal>exclude</literal>. A cópia de segurança será limitada ao conteúdo "
+"de um sistema de arquivos (<literal>xdev: 1</literal>). Ela não incluirá "
+"arquivos de outros pontos de montagem. Um índice dos arquivos salvos será "
+"gerado (<literal>index: gzip</literal>), e a imagem será nomeada de acordo "
+"com a data corrente (<literal>image-default: %Y%m%d</literal>)."
 
 #. Tag: para
 #, no-c-format
 msgid "There are many options available, all documented in the <citerefentry><refentrytitle>dirvish.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page. Once these configuration files are setup, you have to initialize each file set with the <command>dirvish --vault <replaceable>vault</replaceable> --init</command> command. From there on the daily invocation of <command>dirvish-runall</command> will automatically create a new backup copy just after having deleted those that expired."
 msgstr ""
+"Existem muitas opções disponíveis, todas documentadas na página de manual <ci"
+"terefentry><refentrytitle>dirvish.conf</refentrytitle><manvolnum>5</manvolnum"
+"></citerefentry>. Uma vez que esses arquivos de configuração estejam "
+"configurados, você tem que inicializar cada conjunto de arquivos com o "
+"comando <command>dirvish --vault <replaceable>vault</replaceable> "
+"--init</command>. A partir daí, cada invocação diária de <command>dirvish-"
+"runall</command> irá automaticamente criar uma nova cópia de segurança logo "
+"após apagar aquelas que expiraram."
 
 #. Tag: title
 #, no-c-format
@@ -3252,6 +3318,12 @@ msgstr "<emphasis>NA PRÁTICA</emphasis> Cópia de segurança remota com SSH"
 #, no-c-format
 msgid "When dirvish needs to save data to a remote machine, it will use <command>ssh</command> to connect to it, and will start <command>rsync</command> as a server. This requires the root user to be able to automatically connect to it. The use of an SSH authentication key allows precisely that (see <xref linkend=\"sect.ssh-key-based-auth\" />)."
 msgstr ""
+"Quando o dirvish precisa salvar dados em uma máquina remota, ele irá usar o "
+"<command>ssh</command> para fazer a conexão, e irá iniciar o "
+"<command>rsync</command> como um servidor. Isso requer que o usuário root "
+"seja capaz de automaticamente conectar a ele. O uso de uma chave de "
+"autenticação SSH permite precisamente isso (veja <xref linkend=\"sect.ssh-"
+"key-based-auth\" />)."
 
 #. Tag: title
 #, no-c-format
@@ -3262,11 +3334,28 @@ msgstr "Restaurando Máquinas sem Cópias de Segurança"
 #, no-c-format
 msgid "Desktop computers, which are not backed up, will be easy to reinstall from custom DVD-ROMs prepared with <emphasis>Simple-CDD</emphasis> (see <xref linkend=\"sect.simple-cdd\" />). Since this performs an installation from scratch, it loses any customization that can have been made after the initial installation. This is fine since the systems are all hooked to a central LDAP directory for accounts and most desktop applications are preconfigured thanks to dconf (see <xref linkend=\"sect.gnome-desktop\" /> for more information about this)."
 msgstr ""
+"Computadores desktop, que não tem cópia de segurança, serão facilmente "
+"reinstalados a partir de DVD-ROMs customizados preparados com o <emphasis"
+">Simple-CDD</emphasis> (see <xref linkend=\"sect.simple-cdd\" />). Como isso "
+"significa uma instalação a partir do zero, ela perde toda customização que "
+"tenha sido feita após a instalação inicial. Isso é aceitável já que os "
+"sistemas são todos ligados a um diretório LDAP central para contas e a "
+"maioria das aplicações desktop são pré-configuradas, obrigado dconf (veja <"
+"xref linkend=\"sect.gnome-desktop\" /> para mais informações sobre isso)."
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators are aware of the limits in their backup policy. Since they can't protect the backup server as well as a tape in a fireproof safe, they have installed it in a separate room so that a disaster such as a fire in the server room won't destroy backups along with everything else. Furthermore, they do an incremental backup on DVD-ROM once per week — only files that have been modified since the last backup are included."
 msgstr ""
+"Os administradores da Falcot Corp estão cientes dos limites de sua política "
+"de cópia de segurança (backup). Como eles não podem proteger o servidor de "
+"cópia de segurança (backup) da mesma maneira que uma fita com relação a "
+"proteção sobre incêndio, eles instalaram o servidor em uma sala separada, "
+"para que um desastre como um incêndio na sala do servidor não irá destruir "
+"as cópias de segurança junto com tudo mais. Além do mais, eles podem fazer "
+"uma cópia de segurança (backup) incremental em DVD-ROM uma vez por semana — "
+"apenas arquivos que tiverem sido modificados desde a última cópia de "
+"segurança são incluídos."
 
 #. Tag: title
 #, no-c-format
@@ -3292,9 +3381,9 @@ msgid "<primary><command>diff</command></primary>"
 msgstr "<primary><command>diff</command></primary>"
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>dump</primary>"
-msgstr ""
+msgstr "<primary>dump</primary>"
 
 #. Tag: title
 #, no-c-format
@@ -3305,11 +3394,12 @@ msgstr "<emphasis>CULTURA</emphasis> <emphasis>TAR</emphasis>, o padrão para c�
 #, no-c-format
 msgid "<primary>backup</primary><secondary>on tape</secondary>"
 msgstr ""
+"<primary>cópia de segurança (backup)</primary><secondary>em fita</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>tape, backup</primary>"
-msgstr ""
+msgstr "<primary>fita, cópia de segurança (backup)</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3325,9 +3415,9 @@ msgstr ""
 "fita. O comando <command>tar</command> até pegou seu nome de “Tape ARchive”."
 
 #. Tag: title
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Hot Plugging: <emphasis>hotplug</emphasis>"
-msgstr ""
+msgstr "Hot Plugging: <emphasis>hotplug</emphasis>"
 
 #. Tag: title
 #, no-c-format
@@ -3350,16 +3440,23 @@ msgstr ""
 #, no-c-format
 msgid "The kernel has a database that associates each device ID with the required driver. This database is used during boot to load all the drivers for the peripheral devices detected on the different buses, but also when an additional hotplug device is connected. Once the device is ready for use, a message is sent to <command>udevd</command> so it will be able to create the corresponding entry in <filename>/dev/</filename>."
 msgstr ""
+"O núcleo tem um banco de dados que associa cada ID de dispositivo com o "
+"driver  necessário. Esse banco de dados é usado durante a inicialização para "
+"carregar todos os drivers para dispositivos detectados nas diferentes \""
+"buses\", mas também quando um dispositivo hotplug adicional é conectado. Uma "
+"vez que o dispositivo esteja pronto para uso, uma mensagem é enviada para o "
+"<command>udevd</command> para que ele seja capaz de criar a entrada "
+"correspondente em <filename>/dev/</filename>."
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary><emphasis>hotplug</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>hotplug</emphasis></primary>"
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>hotplug</primary>"
-msgstr ""
+msgstr "<primary>hotplug</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3374,67 +3471,123 @@ msgstr "<primary>IEEE 1394</primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PCMCIA</primary>"
-msgstr ""
+msgstr "<primary>PCMCIA</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SATA</primary>"
-msgstr ""
+msgstr "<primary>SATA</primary>"
 
 #. Tag: title
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "The Naming Problem"
-msgstr ""
+msgstr "O Nome do Problema"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Before the appearance of hotplug connections, it was easy to assign a fixed name to a device. It was based simply on the position of the devices on their respective bus. But this is not possible when such devices can come and go on the bus. The typical case is the use of a digital camera and a USB key, both of which appear to the computer as disk drives. The first one connected may be <filename>/dev/sdb</filename> and the second <filename>/dev/sdc</filename> (with <filename>/dev/sda</filename> representing the computer's own hard drive). The device name is not fixed; it depends on the order in which devices are connected."
 msgstr ""
+"Antes do aparecimento das conexões hotplug, era fácil determinar um nome "
+"fixo para um dispositivo. Isso era baseado simplesmente na posição dos "
+"dispositivos em sua respectiva \"bus\". Mas isso não é possível quando "
+"dispositivos deste tipo podem ir e vir na \"bus\". O típico caso é o uso de "
+"uma câmera digital e uma chave USB, os dois aparecem para o computador como "
+"discos. O primeiro conectado pode ser <filename>/dev/sdb</filename> e o "
+"segundo <filename>/dev/sdc</filename> (com <filename>/dev/sda</filename> "
+"representando o próprio disco rígido do computador). O nome do dispositivo "
+"não é fixo; ele depende da ordem na qual o dispositivo é conectado."
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Additionally, more and more drivers use dynamic values for devices' major/minor numbers, which makes it impossible to have static entries for the given devices, since these essential characteristics may vary after a reboot."
 msgstr ""
+"Adicionalmente, mais e mais drivers usam valores dinâmicos para números "
+"major/minor de dispositivos, o que torna impossível ter entradas estáticas "
+"para determinados dispositivos, já que essas características essenciais "
+"podem variar após uma reinicialização."
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>udev</emphasis> was created precisely to solve this problem."
 msgstr ""
+"O <emphasis>udev</emphasis> foi criado precisamente para resolver esse "
+"problema."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Network card management"
-msgstr ""
+msgstr "<emphasis>NA PRÁTICA</emphasis> Gestão de placa de rede"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Many computers have multiple network cards (sometimes two wired interfaces and a wifi interface), and with <emphasis>hotplug</emphasis> support on most bus types, the 2.6 kernel no longer guarantees fixed naming of network interfaces. But a user who wants to configure their network in <filename>/etc/network/interfaces</filename> needs a fixed name!"
 msgstr ""
+"Muito computadores tem masi de uma placaa de rede (às vezes duas interfaces "
+"para fio e uma inteface para sem-fio), e com suporte a "
+"<emphasis>hotplug</emphasis> na maioria dos tipos de \"bus\", o núcleo 2.6 "
+"não mais garante nomeação fixa para interfaces de rede. Mas o usuário que "
+"quiser configurar sua rede pelo <filename>/etc/network/interfaces</filename> "
+"precisa de um nome fixo!"
 
 #. Tag: para
 #, no-c-format
 msgid "It would be difficult to ask every user to create their own <emphasis>udev</emphasis> rules to address this problem. This is why <emphasis>udev</emphasis> was configured in a rather peculiar manner; on first boot (and, more generally, each time that a new network card appears) it uses the name of the network interface and its MAC address to create new rules that will reassign the same name on subsequent boots. These rules are stored in <filename>/etc/udev/rules.d/70-persistent-net.rules</filename>."
 msgstr ""
+"Seria difícil pedir a todos os usuários que eles criassem suas próprios "
+"regras <emphasis>udev</emphasis> para resolver esse problema. É por isso que "
+"o <emphasis>udev</emphasis> foi configurado de uma maneira mais peculiar; na "
+"primeira inicialização (e, mais geralmente, cada vez que uma nova placa de "
+"rede apareça) ele usa o nome da interface de rede e seu endereço MAC para "
+"criar novas regras que irão redesignar o mesmo nome nas inicializações "
+"subsequentes. Essas regras são armazenadas em <filename>/etc/udev/rules.d/70"
+"-persistent-net.rules</filename>."
 
 #. Tag: para
 #, no-c-format
 msgid "This mechanism has some side effects that you should know about. Let's consider the case of computer that has only one PCI network card. The network interface is named <literal>eth0</literal>, logically. Now say the card breaks down, and the administrator replaces it; the new card will have a new MAC address. Since the old card was assigned the name, <literal>eth0</literal>, the new one will be assigned <literal>eth1</literal>, even though the <literal>eth0</literal> card is gone for good (and the network will not be functional because <filename>/etc/network/interfaces</filename> likely configures an <literal>eth0</literal> interface). In this case, it is enough to simply delete the <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> file before rebooting the computer. The new card will then be given the expected <literal>eth0</literal> name."
 msgstr ""
+"Esse mecanismo tem alguns efeitos colaterais que você deve ficar sabendo. "
+"Vamos considerar o caso de o computador ter somente uma placa de rede PCI. A "
+"interface de rede tem nome <literal>eth0</literal>, logicamente. Agora, "
+"digamos que a placa quebre, e o administrador a substitua; a nova placa "
+"terá  um novo endereço MAC. Como a antiga placa recebeu o nome "
+"<literal>eth0</literal>, a nova será designada como <literal>eth1</literal>, "
+"mesmo que a placa <literal>eth0</literal> tenha ido embora para sempre (e a "
+"rede não estará funcional porque  "
+"<filename>/etc/network/interfaces</filename> irá configurar uma interface "
+"<literal>eth0</literal>). Neste caso, simplesmente apagar o arquivo "
+"<filename>/etc/udev/rules.d/70-persistent-net.rules</filename> é o "
+"suficiente, antes de reiniciar o computador. A nova placa irá então receber "
+"o esperado nome <literal>eth0</literal> ."
 
 #. Tag: title
 #, no-c-format
 msgid "How <emphasis>udev</emphasis> Works"
-msgstr ""
+msgstr "Como o <emphasis>udev</emphasis> Funciona"
 
 #. Tag: para
 #, no-c-format
 msgid "When <emphasis>udev</emphasis> is notified by the kernel of the appearance of a new device, it collects various information on the given device by consulting the corresponding entries in <filename>/sys/</filename>, especially those that uniquely identify it (MAC address for a network card, serial number for some USB devices, etc.)."
 msgstr ""
+"Quando o <emphasis>udev</emphasis> é notificado pelo núcleo do aparecimento "
+"de um novo dispositivo, ele coleta várias informações do referido "
+"dispositivo consultando as entradas correspondentes em "
+"<filename>/sys/</filename>, especialmente aquelas que o identificam como "
+"único (endereço MAC para uma placa de rede, número serial para alguns "
+"dispositivos USB, etc.)."
 
 #. Tag: para
 #, no-c-format
 msgid "Armed with all of this information, <emphasis>udev</emphasis> then consults all of the rules contained in <filename>/etc/udev/rules.d/</filename> and <filename>/lib/udev/rules.d/</filename>. In this process it decides how to name the device, what symbolic links to create (to give it alternative names), and what commands to execute. All of these files are consulted, and the rules are all evaluated sequentially (except when a file uses “GOTO” directives). Thus, there may be several rules that correspond to a given event."
 msgstr ""
+"Armado com toda essa informação, o <emphasis>udev</emphasis> então consulta "
+"todas as regras contidas em <filename>/etc/udev/rules.d/</filename> e "
+"<filename>/lib/udev/rules.d/</filename>. Neste processo ele decide como "
+"nomear o dispositivo, quais ligações simbólicas criar (para dar nomes "
+"alternativos), e quais comandos executar. Todos esses arquivos são "
+"consultados, e as regras são todas avaliadas sequencialmente (exceto quando "
+"um arquivo usa a diretiva “GOTO”). Assim, pode haver várias regras que "
+"correspondem a um determinado evento."
 
 #. Tag: para
 #, no-c-format
