@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-03-26 12:43+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2015-03-31 15:48+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -1993,11 +1993,38 @@ msgstr "Sintaxe do Seletor"
 #, no-c-format
 msgid "The selector is a semicolon-separated list of <literal><replaceable>subsystem</replaceable>.<replaceable>priority</replaceable></literal> pairs (example: <literal>auth.notice;mail.info</literal>). An asterisk may represent all subsystems or all priorities (examples: <literal>*.alert</literal> or <literal>mail.*</literal>). Several subsystems can be grouped, by separating them with a comma (example: <literal>auth,mail.info</literal>). The priority indicated also covers messages of equal or higher priority; thus <literal>auth.alert</literal> indicates the <literal>auth</literal> subsystem messages of <literal>alert</literal> or <literal>emerg</literal> priority. Prefixed with an exclamation point (!), it indicates the opposite, in other words the strictly lower priorities; <literal>auth.!notice</literal>, thus, indicates messages issued from <literal>auth</literal>, with <literal>info</literal> or <literal>debug</literal> priority. Prefixed with an equal sign (=), it corresponds to precisely and only the priority indicated (<literal>auth.=notice</literal> only concerns messages from <literal>auth</literal> with <literal>notice</literal> priority)."
 msgstr ""
+"O seletor é uma lista separada por ponto e vírgula de pares de <literal><repl"
+"aceable>subsistema</replaceable>.<replaceable>prioridade</replaceable></liter"
+"al> (exemplo: <literal>auth.notice;mail.info</literal>). Um asterisco pode "
+"representar todos os subsistemas ou todas as prioridades (exemplos: "
+"<literal>*.alert</literal> ou <literal>mail.*</literal>). Vários subsistemas "
+"podem ser agrupados, separando-os com uma vígula (exemplo: "
+"<literal>auth,mail.info</literal>). A prioridade indicada também cobre "
+"mensagens de prioridade igual ou mais alta; assim "
+"<literal>auth.alert</literal> indica as mensagens do subsistema "
+"<literal>auth</literal> de prioridade <literal>alert</literal> ou "
+"<literal>emerg</literal>. Prefixado com um ponto de exclamação (!), ele "
+"indica o oposto, em outras palavras as prioridades estritamente baixas; "
+"<literal>auth.!notice</literal>, assim, indica mensagens emitidas a partir "
+"de <literal>auth</literal>, com prioridade <literal>info</literal> ou "
+"<literal>debug</literal>. Prefixada com um sinal de igual (=), ele "
+"corresponde precisamente e apenas a prioridade indicada "
+"(<literal>auth.=notice</literal> apenas se refere a mensagens vindas de "
+"<literal>auth</literal> com prioridade  <literal>notice</literal>)."
 
 #. Tag: para
 #, no-c-format
 msgid "Each element in the list on the selector overrides previous elements. It is thus possible to restrict a set or to exclude certain elements from it. For example, <literal>kern.info;kern.!err</literal> means messages from the kernel with priority between <literal>info</literal> and <literal>warn</literal>. The <literal>none</literal> priority indicates the empty set (no priorities), and may serve to exclude a subsystem from a set of messages. Thus, <literal>*.crit;kern.none</literal> indicates all the messages of priority equal to or higher than <literal>crit</literal> not coming from the kernel."
 msgstr ""
+"Cada elemento da lista no seletor sobrescreve elementos prévios. Assim é "
+"possível restringir um conjunto ou excluir certos elementos dele. Por "
+"exemplo, <literal>kern.info;kern.!err</literal> se refere a mensagens vindas "
+"do núcleo com prioridade entre <literal>info</literal> e "
+"<literal>warn</literal>. A prioridade <literal>none</literal> indica uma "
+"conjunto vazia (sem prioridades), e pode servir para excluir um subsistema "
+"de um conjunto de mensagens. Assim, <literal>*.crit;kern.none</literal> "
+"indica todas as mensagens de prioridade igual ou maior que "
+"<literal>crit</literal> não vindas do núcleo."
 
 #. Tag: title
 #, no-c-format
@@ -3232,6 +3259,25 @@ msgstr ""
 #, no-c-format
 msgid "The <literal>bank</literal> setting indicates the directory in which the backups are stored. The <literal>exclude</literal> setting allows you to indicate files (or file types) to exclude from the backup. The <literal>Runall</literal> is a list of file sets to backup with a time-stamp for each set, which allows you to assign the correct date to the copy, in case the backup is not triggered at precisely the assigned time. You have to indicate a time just before the actual execution time (which is, by default, 10:04 pm in Debian, according to <filename>/etc/cron.d/dirvish</filename>). Finally, the <literal>expire-default</literal> and <literal>expire-rule</literal> settings define the expiration policy for backups. The above example keeps forever backups that are generated on the first Sunday of each quarter, deletes after one year those from the first Sunday of each month, and after 3 months those from other Sundays. Other daily backups are kept for 15 days. The order of the rules does matter, Dirvish uses the last matching rule, or the <literal>expire-default</literal> one if no other <literal>expire-rule</literal> matches."
 msgstr ""
+"A definição <literal>bank</literal> indica o diretório no qual as cópias de "
+"segurança (backup) são armazenadas. A definição <literal>exclude</literal> "
+"permite que você indique os arquivos (ou tipos de arquivo) a excluir da "
+"cópia de segurança (backup). A <literal>Runall</literal> é uma lista de "
+"conjuntos de arquivos a terem cópia de segurança com um protocolo (time-"
+"stamp) para cada conjunto, o que permite a você atribuir a data correta a "
+"cópia, no caso da cópia de segurança (backup) não seja desencadeado no "
+"horário precisamente determinado. Você tem que indicar um horário logo antes "
+"do real horário de execução (que é, por padrão, 10:04 pm no Debian, de "
+"acordo com <filename>/etc/cron.d/dirvish</filename>). Finalmente, as "
+"definições <literal>expire-default</literal> e <literal>expire-rule</literal>"
+" definem a política de expiração para cópias de segurança (backups). O "
+"exemplo acima mantém para sempre cópias de segurança (backups) que são "
+"gerados no primeiro Domingo de cada trimestre, apaga depois de um ano "
+"aqueles do primeiro Domingo de cada mês, e depois de 3 meses aqueles de "
+"outros Domingos. Outras cópias de segurança diárias são mantidas por 15 "
+"dias. A ordem das regras importa, Dirvish usa a última regra que coincide, "
+"ou a <literal>expire-default</literal> se nenhuma outra <literal>expire-"
+"rule</literal> coincida."
 
 #. Tag: title
 #, no-c-format
@@ -3367,6 +3413,20 @@ msgstr ""
 #, no-c-format
 msgid "Many services (such as SQL or LDAP databases) can not be backed up by simply copying their files (unless they are properly interrupted during creation of the backups, which is frequently problematic, since they are intended to be available at all times). As such, it is necessary to use an “export” mechanism to create a “data dump” that can be safely backed up. These are often quite large, but they compress well. To reduce the storage space required, you will only store a complete text file per week, and a <command>diff</command> each day, which is created with a command of the type <command>diff <replaceable>file_from_yesterday</replaceable> <replaceable>file_from_today</replaceable></command>. The <command>xdelta</command> program produces incremental differences from binary dumps."
 msgstr ""
+"Muitos serviços (como bancos de dados SQL ou LDAP) não podem ter cópias de "
+"segurança (backup) fazendo apenas cópias de seus arquivos (a menos que eles "
+"sejam interrompidos de maneira apropiada durante a criação das cópias de "
+"segurança, o que é frequentemente problemático, já que a intenção é que eles "
+"estejam disponíveis o tempo todo). Sendo assim, é necessário usar um "
+"mecanismo “export”  para criar um “data dump” para se ter uma cópia de "
+"segurança segura. Essas são geralmente bem grandes, mas tem boa compressão. "
+"Para reduzir o espaço de  armazenamento necessário, você apenas irá "
+"armazenar um arquivo de texto completo por semana, e um "
+"<command>diff</command> cada dia, que é criado com um comando do tipo "
+"<command>diff<replaceable>arquivo_de_ontem</replaceable> "
+"<replaceable>arquivo_de_hoje</replaceable></command>. O programa "
+"<command>xdelta</command> produz diferenças incrementais a partir de \""
+"dumps\" binários."
 
 #. Tag: indexterm
 #, no-c-format
@@ -3592,141 +3652,222 @@ msgstr ""
 #, no-c-format
 msgid "The syntax of rules files is quite simple: each row contains selection criteria and variable assignments. The former are used to select events for which there is a need to react, and the latter defines the action to take. They are all simply separated with commas, and the operator implicitly differentiates between a selection criterion (with comparison operators, such as <literal>==</literal> or <literal>!=</literal>) or an assignment directive (with operators such as <literal>=</literal>, <literal>+=</literal> or <literal>:=</literal>)."
 msgstr ""
+"A sintaxe dos arquivos de regras é bem simples: cada linha contém critérios "
+"de seleção e atribuições de variáveis. Os primeiros são usados para "
+"selecionar eventos para os quais existe uma necessidade de reagir, e os "
+"últimos definem a ação a ser tomada. Todos são simplesmente separados com "
+"vírgulas, e o operador implicitamente diferencia entre um critério de "
+"seleção (com operadores de comparação, como <literal>==</literal> ou "
+"<literal>!=</literal>) ou uma diretiva de atribuição (com operadores como "
+"<literal>=</literal>, <literal>+=</literal> ou <literal>:=</literal>)."
 
 #. Tag: para
 #, no-c-format
 msgid "Comparison operators are used on the following variables:"
-msgstr ""
+msgstr "Operadores de comparação são usados nas seguintes variáveis:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>KERNEL</literal>: the name that the kernel assigns to the device;"
-msgstr ""
+msgstr "<literal>KERNEL</literal>: o nome  que o núcleo atribui ao dispositivo;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ACTION</literal>: the action corresponding to the event (“add” when a device has been added, “remove” when it has been removed);"
 msgstr ""
+"<literal>ACTION</literal>: a ação correspondente ao evento (“add” quando o "
+"dispositivo tiver sido adicionado, \"remove” quando ele tiver sido removido);"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<literal>DEVPATH</literal>: the path of the device's <filename>/sys/</filename> entry;"
 msgstr ""
+"<literal>DEVPATH</literal>: o caminho em <filename>/sys/</filename> da "
+"entrada do dispositivo;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SUBSYSTEM</literal>: the kernel subsystem which generated the request (there are many, but a few examples are “usb”, “ide”, “net”, “firmware”, etc.);"
 msgstr ""
+"<literal>SUBSYSTEM</literal>: o subsistema do núcleo o qual gerou a "
+"requisição (existem muitos, mas alguns exemplos são “usb”, “ide”, “net”, "
+"“firmware”, etc.);"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<literal>ATTR{<replaceable>attribut</replaceable>}</literal>: file contents of the <replaceable>attribute</replaceable> file in the <filename>/sys/<replaceable>$devpath</replaceable>/</filename> directory of the device. This is where you find the MAC address and other bus specific identifiers;"
 msgstr ""
+"<literal>ATTR{<replaceable>attribut</replaceable>}</literal>: conteúdo do "
+"arquivo de <replaceable>atributos</replaceable> de arquivo no diretório "
+"<filename>/sys/<replaceable>$devpath</replaceable>/</filename> do "
+"dispositivo. É aonde você encontra o endereço MAC  e outros identificadores "
+"específicos de barramento;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>KERNELS</literal>, <literal>SUBSYSTEMS</literal> and <literal>ATTRS{<replaceable>attributes</replaceable>}</literal> are variations that will try to match the different options on one of the parent devices of the current device;"
 msgstr ""
+"<literal>KERNELS</literal>, <literal>SUBSYSTEMS</literal> e "
+"<literal>ATTRS{<replaceable>attributes</replaceable>}</literal> são "
+"variações que irão tentar combinar as diferentes opções sobre um dos "
+"dispositivos pai do atual dispositivo;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>PROGRAM</literal>: delegates the test to the indicated program (true if it returns 0, false if not). The content of the program's standard output is stored so that it can be reused by the <literal>RESULT</literal> test;"
 msgstr ""
+"<literal>PROGRAM</literal>: delega o teste ao programa indicado (verdadeiro "
+"se retorna 0, falso caso não). O conteúdo da saída padrão do programa é "
+"armazenado para que ele possa ser reusado pelo teste "
+"<literal>RESULT</literal>;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>RESULT</literal>: execute tests on the standard output stored during the last call to <literal>PROGRAM</literal>."
 msgstr ""
+"<literal>RESULT</literal>: executa testes na saída padrão armazenada durante "
+"a última chamada ao <literal>PROGRAM</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "The right operands can use pattern expressions to match several values at the same time. For instance, <literal>*</literal> matches any string (even an empty one); <literal>?</literal> matches any character, and <literal>[]</literal> matches the set of characters listed between the square brackets (or the opposite thereof if the first character is an exclamation point, and contiguous ranges of characters are indicated like <literal>a-z</literal>)."
 msgstr ""
+"Os operadores da direita podem usar expressões padrão para casar com vários "
+"valores ao mesmo tempo. Por exemplo, <literal>*</literal> casa com qualquer "
+"cadeia de caracteres (mesmo uma vazia); <literal>?</literal> casa com "
+"qualquer caractere, e <literal>[]</literal> casa com um conjunto de "
+"caracteres listados entre o par de colchetes (ou o oposto do mesmo se o "
+"primeiro caractere for um ponto de exclamação, e intervalos contíguos de "
+"caracteres sejam indicados <literal>a-z</literal>)."
 
 #. Tag: para
 #, no-c-format
 msgid "Regarding the assignment operators, <literal>=</literal> assigns a value (and replaces the current value); in the case of a list, it is emptied and contains only the value assigned. <literal>:=</literal> does the same, but prevents later changes to the same variable. As for <literal>+=</literal>, it adds an item to a list. The following variables can be changed:"
 msgstr ""
+"Em consideração aos operadores de atribuição, <literal>=</literal> atribui "
+"um valor (e substitui o valor corrente); no caso de uma lista, ela é "
+"esvaziada e contém apenas o valor atribuído. <literal>:=</literal> faz o "
+"mesmo, mas previne alterações posteriores a mesma variável. Quanto a "
+"<literal>+=</literal>, ele adiciona um item a lista. As seguintes variáveis "
+"podem ser alteradas:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>NAME</literal>: the device filename to be created in <filename>/dev/</filename>. Only the first assignment counts; the others are ignored;"
 msgstr ""
+"<literal>NAME</literal>: o nome de arquivo do dispositivo a ser criado em "
+"<filename>/dev/</filename>. Apenas a primeira atribuição conta; as outras "
+"são ignoradas;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SYMLINK</literal>: the list of symbolic links that will point to the same device;"
 msgstr ""
+"<literal>SYMLINK</literal>: a lista de ligações simbólicas que irão apontar "
+"para o mesmo dispositivo;"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<literal>OWNER</literal>, <literal>GROUP</literal> and <literal>MODE</literal> define the user and group that owns the device, as well as the associated permission;"
 msgstr ""
+"<literal>OWNER</literal>, <literal>GROUP</literal> e <literal>MODE</literal> "
+"definem o usuário e grupo a quem pertence o dispositivo, assim como as "
+"permissões associadas;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>RUN</literal>: the list of programs to execute in response to this event."
 msgstr ""
+"<literal>RUN</literal>: a lista de programas a executar em resposta a este "
+"evento."
 
 #. Tag: para
 #, no-c-format
 msgid "The values assigned to these variables may use a number of substitutions:"
 msgstr ""
+"Os valores atribuídos a essas variáveis podem usar um número de "
+"substituições:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$kernel</literal> or <literal>%k</literal>: equivalent to <literal>KERNEL</literal>;"
 msgstr ""
+"<literal>$kernel</literal> ou <literal>%k</literal>: equivalente a "
+"<literal>KERNEL</literal>;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$number</literal> or <literal>%n</literal>: the order number of the device, for example, for <literal>sda3</literal>, it would be “3”;"
 msgstr ""
+"<literal>$number</literal> ou <literal>%n</literal>: o número de ordem do "
+"dispositivo, por exemplo, para <literal>sda3</literal>, ele seria “3”;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$devpath</literal> or <literal>%p</literal>: equivalent to <literal>DEVPATH</literal>;"
 msgstr ""
+"<literal>$devpath</literal> ou <literal>%p</literal>: equivalente a "
+"<literal>DEVPATH</literal>;"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<literal>$attr{<replaceable>attribute</replaceable>}</literal> or <literal>%s{<replaceable>attribute</replaceable>}</literal>: equivalent to <literal>ATTRS{<replaceable>attribute</replaceable>}</literal>;"
 msgstr ""
+"<literal>$attr{<replaceable>atributo</replaceable>}</literal> ou "
+"<literal>%s{<replaceable>atributo</replaceable>}</literal>: equivalente a "
+"<literal>ATTRS{<replaceable>atributo</replaceable>}</literal>;"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<literal>$major</literal> or <literal>%M</literal>: the kernel major number of the device;"
 msgstr ""
+"<literal>$major</literal> ou <literal>%M</literal>: o maior número de núcleo "
+"do dispositivo;"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<literal>$minor</literal> or <literal>%m</literal>: the kernel minor number of the device;"
 msgstr ""
+"<literal>$minor</literal> ou <literal>%m</literal>: o menor número do núcleo "
+"do dispositivo ;"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<literal>$result</literal> or <literal>%c</literal>: the string output by the last program invoked by <literal>PROGRAM</literal>;"
 msgstr ""
+"<literal>$result</literal> ou <literal>%c</literal>: a saída de cadeia de "
+"caracteres emitida pelo último programa invocado pelo "
+"<literal>PROGRAM</literal>;"
 
 #. Tag: para
 #, no-c-format
 msgid "and, finally, <literal>%%</literal> and <literal>$$</literal> for the percent and dollar sign, respectively."
 msgstr ""
+"e, finalmente, <literal>%%</literal> e <literal>$$</literal> para os sinais "
+"de porcento e dólar, respectivamente."
 
 #. Tag: para
 #, no-c-format
 msgid "The above lists are not complete (they include only the most important parameters), but the <citerefentry><refentrytitle>udev</refentrytitle><manvolnum>7</manvolnum></citerefentry> manual page should be."
 msgstr ""
+"As listas acima não são completas (elas incluem apenas os parâmetros mais "
+"importantes), mas a página de manual <citerefentry><refentrytitle>udev</refen"
+"trytitle><manvolnum>7</manvolnum></citerefentry> deve ser."
 
 #. Tag: title
 #, no-c-format
 msgid "A concrete example"
-msgstr ""
+msgstr "Um exemplo concreto"
 
 #. Tag: para
 #, no-c-format
 msgid "Let us consider the case of a simple USB key and try to assign it a fixed name. First, you must find the elements that will identify it in a unique manner. For this, plug it in and run <command>udevadm info -a -n /dev/sdc</command> (replacing <replaceable>/dev/sdc</replaceable> with the actual name assigned to the key)."
 msgstr ""
+"Vamos considerar o caso de uma simples chave USB e tentar atribuir um nome "
+"fixo para ela. Primeiro, você tem que encontrar os elementos que iram "
+"identificar ela de uma maneira única. Para isso, conecte ela e rode <command>"
+"udevadm info -a -n /dev/sdc</command> (substituindo "
+"<replaceable>/dev/sdc</replaceable> pelo real nome atribuído a chave)."
 
 #. Tag: screen
 #, no-c-format
@@ -3781,43 +3922,119 @@ msgid ""
 "[...]\n"
 "</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>udevadm info -a -n "
+"/dev/sdc</userinput>\n"
+"<computeroutput>[...]\n"
+"  looking at device '/devices/pci0000:00/0000:00:10.3/usb1/1-2/1-2.2/1-2.2:1."
+"0/host9/target9:0:0/9:0:0:0/block/sdc':\n"
+"    KERNEL==\"sdc\"\n"
+"    SUBSYSTEM==\"block\"\n"
+"    DRIVER==\"\"\n"
+"    ATTR{range}==\"16\"\n"
+"    ATTR{ext_range}==\"256\"\n"
+"    ATTR{removable}==\"1\"\n"
+"    ATTR{ro}==\"0\"\n"
+"    ATTR{size}==\"126976\"\n"
+"    ATTR{alignment_offset}==\"0\"\n"
+"    ATTR{capability}==\"53\"\n"
+"    ATTR{stat}==\"      51      100     1208      256        0        "
+"0        0        0        0      192      25        6\"\n"
+"    ATTR{inflight}==\"       0        0\"\n"
+"[...]\n"
+"  looking at parent device '/devices/pci0000:00/0000:00:10.3/usb1/1-2/1-2.2/1"
+"-2.2:1.0/host9/target9:0:0/9:0:0:0':\n"
+"    KERNELS==\"9:0:0:0\"\n"
+"    SUBSYSTEMS==\"scsi\"\n"
+"    DRIVERS==\"sd\"\n"
+"    ATTRS{device_blocked}==\"0\"\n"
+"    ATTRS{type}==\"0\"\n"
+"    ATTRS{scsi_level}==\"3\"\n"
+"    ATTRS{vendor}==\"I0MEGA  \"\n"
+"    ATTRS{model}==\"UMni64MB*IOM2C4 \"\n"
+"    ATTRS{rev}==\"    \"\n"
+"    ATTRS{state}==\"running\"\n"
+"[...]\n"
+"    ATTRS{max_sectors}==\"240\"\n"
+"[...]\n"
+"  looking at parent device '/devices/pci0000:00/0000:00:10.3/usb1/1-2/1-2.2':"
+"\n"
+"    KERNELS==\"9:0:0:0\"\n"
+"    SUBSYSTEMS==\"usb\"\n"
+"    DRIVERS==\"usb\"\n"
+"    ATTRS{configuration}==\"iCfg\"\n"
+"    ATTRS{bNumInterfaces}==\" 1\"\n"
+"    ATTRS{bConfigurationValue}==\"1\"\n"
+"    ATTRS{bmAttributes}==\"80\"\n"
+"    ATTRS{bMaxPower}==\"100mA\"\n"
+"    ATTRS{urbnum}==\"398\"\n"
+"    ATTRS{idVendor}==\"4146\"\n"
+"    ATTRS{idProduct}==\"4146\"\n"
+"    ATTRS{bcdDevice}==\"0100\"\n"
+"[...]\n"
+"    ATTRS{manufacturer}==\"USB Disk\"\n"
+"    ATTRS{product}==\"USB Mass Storage Device\"\n"
+"    ATTRS{serial}==\"M004021000001\"\n"
+"[...]\n"
+"</computeroutput>\n"
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "To create a new rule, you can use tests on the device's variables, as well as those of one of the parent devices. The above case allows us to create two rules like these:"
 msgstr ""
+"Para criar uma nova regra, você pode usar testes nas variáveis do "
+"dispositivo, bem como aquelas de um dos dispositivos mãe. O caso acima "
+"permite-nos criar duas regras como essa:"
 
 #. Tag: programlisting
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
 "KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\"\n"
 msgstr ""
+"KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", "
+"SYMLINK+=\"usb_key/disk\"\n"
+"KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\""
+", SYMLINK+=\"usb_key/part%n\"\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Once these rules are set in a file, named for example <filename>/etc/udev/rules.d/010_local.rules</filename>, you can simply remove and reconnect the USB key. You can then see that <filename>/dev/usb_key/disk</filename> represents the disk associated with the USB key, and <filename>/dev/usb_key/part1</filename> is its first partition."
 msgstr ""
+"Uma vez que essas regras estejam definidas em um arquivo, nomeado por "
+"exemplo como <filename>/etc/udev/rules.d/010_local.rules</filename>, você "
+"pode simplesmente remover e reconectar uma chave USB. Você pode então ver "
+"que <filename>/dev/usb_key/disk</filename> representa o disco associado a "
+"chave USB, e <filename>/dev/usb_key/part1</filename> é sua primeira partição."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Debugging <emphasis>udev</emphasis>'s configuration"
 msgstr ""
+"<emphasis>INDO ALÉM</emphasis> Depurando a configuração do "
+"<emphasis>udev</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "Like many daemons, <command>udevd</command> stores logs in <filename>/var/log/daemon.log</filename>. But it is not very verbose by default, and it's usually not enough to understand what's happening. The <command>udevadm control --log-priority=info</command> command increases the verbosity level and solves this problem. <command>udevadm control --log-priority=err</command> returns to the default verbosity level."
 msgstr ""
+"Como muitos daemons, o <command>udevd</command> armazena os seus logs em "
+"<filename>/var/log/daemon.log</filename>. Mas ele não é muito detalhado por "
+"padrão, e sendo assim, geralmente não é suficiente para se entender o que "
+"está acontecendo. O comando <command>udevadm control --log-"
+"priority=info</command> incrementa o nível de detalhamento e resolve esse "
+"problema. <command>udevadm control --log-priority=err</command> retorna ao "
+"nível de detalhamento padrão."
 
 #. Tag: title
 #, no-c-format
 msgid "Power Management: Advanced Configuration and Power Interface (ACPI)"
 msgstr ""
+"Gerenciamento de Energia: Advanced Configuration and Power Interface (ACPI)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>power management</primary>"
-msgstr ""
+msgstr "<primary>gerenciamento de energia</primary>"
 
 #. Tag: indexterm
 #, no-c-format
