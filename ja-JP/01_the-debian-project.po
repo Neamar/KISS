@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-05 03:00+0900\n"
+"PO-Revision-Date: 2015-04-05 19:51+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/debian-handbook/01_the-debian-project/ja/>\n"
 "Language: ja-JP\n"
@@ -1002,157 +1002,157 @@ msgstr "<primary><filename>NEWS.Debian.gz</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Documentation for each package is stored in <filename>/usr/share/doc/<replaceable>package</replaceable>/</filename>. This directory often contains a <filename>README.Debian</filename> file describing the Debian specific adjustments made by the package maintainer. It is, thus, wise to read this file prior to any configuration, in order to benefit from their experience. We also find a <filename>changelog.Debian.gz</filename> file describing the changes made from one version to the next by the Debian maintainer. This is not to be confused with the <filename>changelog.gz</filename> file (or equivalent), which describes the changes made by the upstream developers. The <filename>copyright</filename> file includes information about the authors and the license covering the software. Finally, we may also find a file named <filename>NEWS.Debian.gz</filename>, which allows the Debian developer to communicate important information regarding updates; if <emphasis>apt-listchanges</emphasis> is installed, then these messages are automatically displayed. All other files are specific to the software in question. We especially like to point out the <filename>examples</filename> sub-directory, which frequently contains examples of configuration files."
-msgstr ""
+msgstr "それぞれのパッケージに関する文書は <filename>/usr/share/doc/<replaceable>package</replaceable>/</filename> に保存されています。多くの場合このディレクトリには <filename>README.Debian</filename> ファイルが含まれています。このファイルにはパッケージメンテナが行った Debian 特有の修正について説明が書かれています。つまり、メンテナの経験から恩恵を受けるためには、設定の前にこのファイルを読むことが賢明です。また、このディレクトリに含まれる <filename>changelog.Debian.gz</filename> ファイルにはあるバージョンから次のバージョンに更新した際に Debian メンテナが行った変更についての説明が書かれています。このファイルを <filename>changelog.gz</filename> ファイル (または同等のファイル、上流開発者が行った変更に関する説明が書かれたファイル) と混同してはいけません。<filename>copyright</filename> ファイルにはソフトウェアの作者とそのライセンスに関する情報が書かれています。最後に、このディレクトリに含まれる <filename>NEWS.Debian.gz</filename> と名付けられたファイルには Debian 開発者からの更新に関する重要な情報が含まれています; <emphasis>apt-listchanges</emphasis> がインストール済みの場合、これらのメッセージが自動的に表示されます。そのほかのファイルはここで注目しているソフトウェアに固有のファイルです。特に注目すべきは <filename>examples</filename> サブディレクトリで、ここには設定ファイルの例が含まれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Policy covers very well the technical aspects of packaging. The size of the project also raises organizational problems; these are dealt with by the Debian Constitution, which establishes a structure and means for decision making. In other words, a formal governance system."
-msgstr ""
+msgstr "Debian ポリシーはパッケージ化の技術的側面をうまくカバーしています。プロジェクトの大きさは組織の問題を引き起こします; 問題は Debian 憲章にしたがって対処されます。Debian 憲章は組織体制と意思決定の手段を定めています。これは言い換えれば、組織的な管理システムといえます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>constitution</primary>"
-msgstr ""
+msgstr "<primary>憲章</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian Project Leader</primary>"
-msgstr ""
+msgstr "<primary>Debian プロジェクトリーダー</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DPL</primary>"
-msgstr ""
+msgstr "<primary>DPL</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>leader</primary><secondary>role</secondary>"
-msgstr ""
+msgstr "<primary>リーダー</primary><secondary>役割</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>leader</primary><secondary>election</secondary>"
-msgstr ""
+msgstr "<primary>リーダー</primary><secondary>選挙</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This constitution defines a certain number of roles and positions, plus responsibilities and authorities for each. It is particularly worth noting that Debian developers always have ultimate decision making authority by a vote of general resolution, wherein a qualified majority of three quarters (75%) of votes is required for significant alterations to be made (such as those with an impact on the Foundation Documents). However, developers annually elect a “leader” to represent them in meetings, and ensure internal coordination between varying teams. This election is always a period of intense discussions. This leader's role is not formally defined by any document: candidates for this post usually propose their own definition of the position. In practice, the leader's roles include serving as a representative to the media, coordinating between “internal” teams, and providing overall guidance to the project, within which the developers can relate: the views of the DPL are implicitly approved by the majority of project members."
-msgstr ""
+msgstr "Debian 憲章は一定の役割と役職、併せてそれぞれに対する責任と権限を定義しています。特筆すべきは Debian 開発者は一般決議に投票することで最終決定を行う権限を常に持っているということです、重大な変化 (基本文書に影響を与えるようなもの) を起こすには特定多数の 4 分の 3 (75%) が投票すること必要です。しかしながら、開発者は会議で彼らを代表して、様々なチーム間の連携を確保する「リーダー」を毎年選びます。この選挙は常に活発な議論になります。リーダーの役割は何かの文書で正式に定義されたものではありません: 通常、この役職の候補者は役割を自分自身で定義し、それを提案します。実際のところ、リーダーの役割には開発者からの共感を得るように、メディアに対する代表者として働くこと、「内部」チーム間の連携をとること、プロジェクトに対する包括的な指導を提供すること、が含まれています: DPL の見解はプロジェクトメンバーの大多数から暗黙のうちに認められているのです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Specifically, the leader has real authority; his vote resolves tie votes; he can make any decision which is not already under the authority of someone else and can delegate part of his responsibilities."
-msgstr ""
+msgstr "具体的にいえば、リーダーは本当の意味での権力を持っています; 賛否同数の場合にはリーダーの投票が決定票となります; リーダーはまだ誰の権限下にもなっていない決定を下し、自身の権限の一部を委任することができます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Jackson, Ian</primary>"
-msgstr ""
+msgstr "<primary>Jackson, Ian</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Akkerman, Wichert</primary>"
-msgstr ""
+msgstr "<primary>Akkerman, Wichert</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Collins, Ben</primary>"
-msgstr ""
+msgstr "<primary>Collins, Ben</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Garbee, Bdale</primary>"
-msgstr ""
+msgstr "<primary>Garbee, Bdale</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Michlmayr, Martin</primary>"
-msgstr ""
+msgstr "<primary>Michlmayr, Martin</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Robinson, Branden</primary>"
-msgstr ""
+msgstr "<primary>Robinson, Branden</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Towns, Anthony</primary>"
-msgstr ""
+msgstr "<primary>Towns, Anthony</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Hocevar, Sam</primary>"
-msgstr ""
+msgstr "<primary>Hocevar, Sam</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>McIntyre, Steve</primary>"
-msgstr ""
+msgstr "<primary>McIntyre, Steve</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Zacchiroli, Stefano</primary>"
-msgstr ""
+msgstr "<primary>Zacchiroli, Stefano</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Nussbaum, Lucas</primary>"
-msgstr ""
+msgstr "<primary>Nussbaum, Lucas</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Since its inception, the project has been successively led by Ian Murdock, Bruce Perens, Ian Jackson, Wichert Akkerman, Ben Collins, Bdale Garbee, Martin Michlmayr, Branden Robinson, Anthony Towns, Sam Hocevar, Steve McIntyre, Stefano Zacchiroli and Lucas Nussbaum."
-msgstr ""
+msgstr "Debian が始まって以来ずっと、プロジェクトは Ian Murdock さん、Bruce Perens さん、Ian Jackson さん、Wichert Akkerman さん、Ben Collins さん、Bdale Garbee さん、Martin Michlmayr さん、Branden Robinson さん、Anthony Towns さん、Sam Hocevar さん、Steve McIntyre さん、Stefano Zacchiroli さん、Lucas Nussbaum さんに率いられてきました。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>technical committee</primary>"
-msgstr ""
+msgstr "<primary>技術委員会</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The constitution also defines a “technical committee”. This committee's essential role is to decide on technical matters when the developers involved have not reached an agreement between themselves. Otherwise, this committee plays an advisory role for any developer who fails to make a decision for which they are responsible. It is important to note that they only get involved when invited to do so by one of the parties in question."
-msgstr ""
+msgstr "Debian 憲章では「技術委員会」もまた定義されています。技術委員会の本質的な役割とは、関係する開発者の間で合意に達しなかった場合に技術的な事柄を決定することです。技術委員会の他の役割として、責任を負っている決定で間違いを犯す開発者に対する顧問役があります。ただし、技術委員会は問題になっているグループの一員から参加するように求められた場合のみそこに参加するということに注意しなければいけません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>the project secretary</primary>"
-msgstr ""
+msgstr "<primary>プロジェクト秘書</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the constitution defines the position of “project secretary”, who is in charge of the organization of votes related to the various elections and general resolutions."
-msgstr ""
+msgstr "最後に、Debian 憲章では「プロジェクト秘書」の役職も定義しています、この役職はさまざまな選挙と一般決議に関連する投票の運営に責任を負っています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The “general resolution” procedure is fully detailed in the constitution, from the initial discussion period to the final counting of votes. For further details see: <ulink type=\"block\" url=\"http://www.debian.org/devel/constitution.en.html\" />"
-msgstr ""
+msgstr "「一般決議」手続きは Debian 憲章の中で最初の議論期間から最後の開票まで詳細に説明されています。より詳しい情報は: <ulink type=\"block\" url=\"http://www.debian.org/devel/constitution.en.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>general resolution</primary>"
-msgstr ""
+msgstr "<primary>一般決議</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>vote</primary>"
-msgstr ""
+msgstr "<primary>投票</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Flamewar, the discussion that catches fire"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> 罵り合戦、炎上する議論"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>flamewar</primary>"
-msgstr ""
+msgstr "<primary>罵り合戦</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>heated debate</primary>"
-msgstr ""
+msgstr "<primary>白熱した議論</primary>"
 
 #. Tag: para
 #, no-c-format
