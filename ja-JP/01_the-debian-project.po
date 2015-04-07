@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-06 22:41+0900\n"
+"PO-Revision-Date: 2015-04-07 18:54+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/debian-handbook/01_the-debian-project/ja/>\n"
 "Language: ja-JP\n"
@@ -1307,7 +1307,7 @@ msgstr "加えて、Debian の提供するサービスに満足している数�
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> What are i18n and l10n?"
-msgstr "<emphasis>BACK TO BASICS</emphasis> 国際化と地域化とは?"
+msgstr "<emphasis>BACK TO BASICS</emphasis> i18n (国際化) と l10n (地域化) とは?"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1332,237 +1332,237 @@ msgstr "<primary>l10n</primary>"
 #. Tag: para
 #, no-c-format
 msgid "“i18n” and “l10n” are the abbreviations for the words “internationalization” and “localization”, respectively, preserving the initial and last letter of each word, and the number of letters in the middle."
-msgstr ""
+msgstr "「i18n」と「l10n」は「internationalization (国際化)」と「localization (地域化)」の略語です。それぞれの単語の最初と最後の文字を取って、真ん中の文字の数を数字で表しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "To “internationalize” a program consists of modifying it so that it can be translated (localized). This involves partially rewriting a program initially written to work in one language in order to be able to open it to all languages."
-msgstr ""
+msgstr "あるプログラムの「国際化を行う」ということは、そのプログラムを翻訳 (地域化) できるように変更を加えることを含んでいます。これは最初ある言語で動くように書かれたプログラムを一部書き換えて、どんな言語でも動くようにすることを伴います。"
 
 #. Tag: para
 #, no-c-format
 msgid "To “localize” a program consists of translating the original messages (frequently in English) to another language. For this, it must have already been internationalized."
-msgstr ""
+msgstr "あるプログラムの「地域化を行う」ということは、元のメッセージ (英語の場合が多い) を他の言語に翻訳することを含んでいます。地域化を行うには先にプログラムを国際化しておかなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "In summary, internationalization prepares the software for translation, which is then executed by localization."
-msgstr ""
+msgstr "まとめると、国際化とはソフトウェアを翻訳するための準備で、翻訳することにより地域化が行われます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Patch, the way to send a fix"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> パッチ、修正を送る方法"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>patch</command></primary>"
-msgstr ""
+msgstr "<primary><command>patch</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>patch</primary>"
-msgstr ""
+msgstr "<primary>パッチ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>diff</command></primary>"
-msgstr ""
+msgstr "<primary><command>diff</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A patch is a file describing changes to be made to one or more reference files. Specifically, it will contain a list of lines to be removed or added to the code, as well as (sometimes) lines taken from the reference text, replacing the modifications in context (they allow identification of the placement of the changes if the line numbers have been changed)."
-msgstr ""
+msgstr "パッチとは単独または複数のファイルに対する変更内容を記述したファイルです。具体的に言うと、パッチはコードを修正後の内容に置き換えるために、コードから削除された行と追加された行と (ときどき) それらの行位置の目印となるテキストのリスト (これは行番号が変わった場合に変更の場所を特定するためのものです) を含んでいます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The tool used for applying the modifications given in such a file is simply called <command>patch</command>. The tool that creates it is called <command>diff</command>, and is used as follows:"
-msgstr ""
+msgstr "パッチファイルの提供する修正を適用するためのツールは <command>patch</command> と呼ばれています。パッチファイルを作成するためのツールは <command>diff</command> と呼ばれており、以下のように使います:"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new &gt;file.patch</userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new &gt;file.patch</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>file.patch</filename> file contains the instructions for changing the content of <filename>file.old</filename> into <filename>file.new</filename>. We can send it to someone, who can then use it to recreate <filename>file.new</filename> from the two others, like this:"
-msgstr ""
+msgstr "<filename>file.patch</filename> ファイルには <filename>file.old</filename> の内容を <filename>file.new</filename> の内容に変更するための指示が含まれています。我々はこのパッチファイルを送信することができ、受け取った人はパッチファイルを適用して <filename>file.new</filename> を再作成することができます、これを行うには以下のようにします:"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old &lt;file.patch</userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old &lt;file.patch</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The file, <filename>file.old</filename>, is now identical to <filename>file.new</filename>."
-msgstr ""
+msgstr "こうすることで <filename>file.old</filename> ファイルは <filename>file.new</filename> とまったく同じものになります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Report a bug with <command>reportbug</command>"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> <command>reportbug</command> を使ったバグ報告"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>reportbug</command></primary>"
-msgstr ""
+msgstr "<primary><command>reportbug</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bug</primary><secondary>report a bug</secondary>"
-msgstr ""
+msgstr "<primary>バグ</primary><secondary>バグ報告</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>report a bug</primary>"
-msgstr ""
+msgstr "<primary>バグ報告</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>reportbug</command> tool facilitates sending bug reports on a Debian package. It helps making sure the bug in question hasn't already been filed, thus preventing redundancy in the system. It reminds the user of the definitions of the severity levels, for the report to be as accurate as possible (the developer can always fine-tune these parameters later, if needed). It helps writing a complete bug report without the user needing to know the precise syntax, by writing it and allowing the user to edit it. This report will then be sent via an e-mail server (local, by default, but <command>reportbug</command> can also use a remote server)."
-msgstr ""
+msgstr "<command>reportbug</command> ツールは Debian パッケージに対するバグ報告を簡単に送信できるようにするためのものです。このツールは問題になっているバグがすでに報告されていないかを確認する際に役立ち、同じバグがシステムに報告されることを防いでいます。このツールは可能な限り正確に報告するために、ユーザに重要度レベルの定義を思い出させます (開発者は後から必要になればいつでもレベルを微調整することができます)。このツールはバグ報告を適切な書式に整形する機能と内容をユーザが編集できる機能を提供しているので、このツールを使えばユーザはバグ報告の正確な書式を知らなくても完全なバグ報告を書くことができます。その後、この報告は電子メールサーバを経由して送信されます (デフォルトではローカルサーバを使いますが、<command>reportbug</command> はリモートサーバを使うことも可能です)。"
 
 #. Tag: para
 #, no-c-format
 msgid "This tool first targets the development versions, which is where the bugs will be fixed. Effectively, changes are not welcome in a stable version of Debian, with very few exceptions for security updates or other important updates (if, for example, a package is not working at all). A correction of a minor bug in a Debian package must, thus, wait for the next stable version."
-msgstr ""
+msgstr "このツールは最初にバグを修正する場である開発版を対象にします。実際のところ、Debian の安定版では、セキュリティアップデートやその他の重要なアップデート (例えば、あるパッケージが全く動かない) などのごく少数の例外を除いて、修正を歓迎しません。そんなわけで Debian パッケージの深刻でないバグの修正は次の安定版まで待たなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "All of these contribution mechanisms are made more efficient by users' behavior. Far from being a collection of isolated persons, users are a true community within which numerous exchanges take place. We especially note the impressive activity on the user discussion mailing list, <email>debian-user@lists.debian.org</email> (<xref linkend=\"solving-problems\" /> discusses this in greater detail)."
-msgstr ""
+msgstr "ユーザの行動によって、上で述べた全ての貢献の仕組みはさらに効果的なものになります。孤立したユーザの集合体から一歩進んで、ユーザ間の交流が数多くの起こるコミュニティこそが本物のコミュニティなのです。ユーザが議論するメーリングリスト <email>debian-user@lists.debian.org</email> で行われる素晴らしい活動について触れておきます (<xref linkend=\"solving-problems\" /> ではこの件に関する詳細な議論がなされています)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Not only do users help themselves (and others) on technical issues that directly affect them, but they also discuss the best ways to contribute to the Debian project and help it move forward — discussions that frequently result in suggestions for improvements."
-msgstr ""
+msgstr "ユーザ同士が本人に直接影響のある技術的な問題について互いに助け合う (または誰かが助ける) だけでなく、ユーザが Debian プロジェクトに貢献するための最良の方法を話し合い、プロジェクトが前進するための手助け - 高い頻度で改良が提案されるような議論を行います。"
 
 #. Tag: para
 #, no-c-format
 msgid "Since Debian does not expend funds on any self-promoting marketing campaigns, its users play an essential role in its diffusion, ensuring its notoriety via word-of-mouth."
-msgstr ""
+msgstr "Debian は自己アピールによる普及キャンペーンに資金を使わないため、Debian のユーザは Debian の普及に重要な役割を果たし、Debian の評判は口コミで伝わることが保障されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "This method functions quite well, since Debian fans are found at all levels of the free software community: from install parties (workshops where seasoned users assist newcomers to install the system) organized by local LUGs or “Linux User Groups”, to association booths at large tech conventions dealing with Linux, etc."
-msgstr ""
+msgstr "この方法は極めてうまくいきます、なぜならフリーソフトウェアコミュニティのあらゆる層に Debian の支持者がいるからです: 地域の LUG 「Linux ユーザグループ」が企画したインストールパーティ (ベテランユーザが新しいユーザにシステムのインストールの補助を行うワークショップ) から、Linux などについて取り扱う大きな技術会議のアソシエーションブースにも浸透しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Volunteers make posters, brochures, stickers, and other useful promotional materials for the project, which they make available to everyone, and which Debian provides freely on its website: <ulink type=\"block\" url=\"http://www.debian.org/events/material\" />"
-msgstr ""
+msgstr "ボランティアがポスター、パンフレット、ステッカーなどのプロジェクトの宣伝に役立つ資料をを作り、彼らは宣伝資料を誰でも利用できるようにしており、Debian はウェブサイトで宣伝資料を無制限に提供しています:  <ulink type=\"block\" url=\"http://www.debian.org/events/material\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Teams and Sub-Projects"
-msgstr ""
+msgstr "チームとサブプロジェクト"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian has been organized, right from the start, around the concept of source packages, each with its maintainer or group of maintainers. Many work teams have emerged over time, ensuring administration of the infrastructure, management of tasks not specific to any package in particular (quality assurance, Debian Policy, installer, etc.), with the latest series of teams growing up around sub-projects."
-msgstr ""
+msgstr "Debian は最初からずっと、ソースパッケージの概念を中心に組織化され続けており、ソースパッケージにはそのメンテナとメンテナのグループがいます。チームが担当する仕事の多くは長い時間をかけて明らかにされてきました、確実にインフラを運営すること、特定のパッケージに依存しないタスク (品質保証、Debian ポリシー、インストーラなど) を管理すること、そして最近サブプロジェクトの周りで成長している数多くのチームと一緒にそれを行うことです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Existing Debian Sub-Projects"
-msgstr ""
+msgstr "存在する Debian サブプロジェクト"
 
 #. Tag: para
 #, no-c-format
 msgid "To each their own Debian! A sub-project is a group of volunteers interested in adapting Debian to specific needs. Beyond the selection of a sub-group of programs intended for a particular domain (education, medicine, multimedia creation, etc.), sub-projects are also involved in improving existing packages, packaging missing software, adapting the installer, creating specific documentation, and more."
-msgstr ""
+msgstr "人それぞれ好みの Debian があります! サブプロジェクトは Debian を特定のニーズに適応することに興味のあるボランティアのグループです。特定の領域 (教育、医療、マルチメディア制作など) を対象としたプログラム群の選定だけでなく、サブプロジェクトはまた、既存パッケージの改良、不足ソフトウェアのパッケージ化、インストーラの適応作業、特定文書の作成、などに従事しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Sub-project and derivative distribution"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> サブプロジェクトと派生ディストリビューション"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>derivative distribution</primary>"
-msgstr ""
+msgstr "<primary>派生ディストリビューション</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The development process for a derivative distribution consists in starting with a particular version of Debian and making a number of modifications to it. The infrastructure used for this work is completely external to the Debian project. There isn't necessarily a policy for contributing improvements. This difference explains how a derivative distribution may “diverge” from its origins, and why they have to regularly resynchronize with their source in order to benefit from improvements made upstream."
-msgstr ""
+msgstr "派生ディストリビューションの開発プロセスとは、Debian の特定のバージョンを土台としてそれにたくさんの変更を加えることです。派生ディストリビューションを支える基礎構造は Debian プロジェクトとは全く別物です。改良に貢献するポリシーを定める必要はありません。この違いは、どのようにして派生ディストリビューションはオリジナルから「分岐」する可能性があるか、なぜ派生ディストリビューションは開発の上流側でなされた改良の恩恵を受けるために自身のソースを定期的に再同期しなければいけないのか、を説明します。"
 
 #. Tag: para
 #, no-c-format
 msgid "On the other hand, a sub-project can not diverge, since all the work on it consists of directly improving Debian in order to adapt it to a specific goal."
-msgstr ""
+msgstr "一方でサブプロジェクトは分岐できません、なぜなら特定の目的に対して適用するためにサブプロジェクトで行ったすべての仕事は直接的に Debian の改善になるからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The most known distribution derived from Debian is, without a doubt, Ubuntu, but there are many. See <xref linkend=\"derivative-distributions\" /> to learn about their particularities and their positioning in relationship to Debian."
-msgstr ""
+msgstr "Debian から派生したディストリビューションはたくさんありますが、最も知られているものは間違いなく Ubuntu でしょう。派生ディストリビューションの詳細と Debian との関連性における立ち位置について学ぶには <xref linkend=\"derivative-distributions\" /> をご覧ください。"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is a small selection of current sub-projects:"
-msgstr ""
+msgstr "現在のサブプロジェクトを一部抜粋したものが以下です:"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Junior, by Ben Armstrong, offering an appealing and easy to use Debian system for children;"
-msgstr ""
+msgstr "Debian-Junior、Ben Armstrong さん、子供向けに魅力的で使いやすい Debian システムを提供;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Edu, by Petter Reinholdtsen, focused on the creation of a specialized distribution for the academic world;"
-msgstr ""
+msgstr "Debian-Edu、Petter Reinholdtsen さん、学問の世界向けに特化したディストリビューションの作成を重視;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian Med, by Andreas Tille, dedicated to the medical field;"
-msgstr ""
+msgstr "Debian Med、Andreas Tille さん、医療分野に特化;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Multimedia, from the creators of Agnula, which deals with multimedia creation;"
-msgstr ""
+msgstr "Debian-Multimedia、Agnula の作者、マルチメディア制作を取り扱う;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Desktop, by Colin Walters, focuses on the desktop;"
-msgstr ""
+msgstr "Debian-Desktop、Colin Walters さん、デスクトップを重視;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Ham, created by Bruce Perens, targets ham radio enthusiasts;"
-msgstr ""
+msgstr "Debian-Ham、Bruce Perens さん、アマチュア無線が好きな人向け;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-NP (Non-Profit) is for not-for-profit organizations;"
-msgstr ""
+msgstr "Debian-NP (Non-Profit) は非営利組織向けです;"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian-Lex, finally, is intended for work within the legal field."
-msgstr ""
+msgstr "最後に Debian-Lex は法律分野の仕事を対象とします。"
 
 #. Tag: para
 #, no-c-format
 msgid "This list will most likely continue to grow with time and improved perception of the advantages of Debian sub-projects. Fully supported by the existing Debian infrastructure, they can, in effect, focus on work with real added value, without worrying about remaining synchronized with Debian, since they are developed within the project."
-msgstr ""
+msgstr "このリストは時間が経過するに従って増え続け、Debian サブプロジェクト良さに対する認識を改良し続けることは間違いありません。既存の Debian のインフラがサブプロジェクトを完全にサポートしているので、実質的に、サブプロジェクトは真の付加価値を上げるための仕事に集中しています。サブプロジェクトは Debian プロジェクト内で開発しているため Debian との同期について心配することはありません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>PERSPECTIVE</emphasis> Debian in academia"
-msgstr ""
+msgstr "<emphasis>PERSPECTIVE</emphasis> 学術界における Debian"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian-Edu</primary>"
-msgstr ""
+msgstr "<primary>Debian-Edu</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SkoleLinux</primary>"
-msgstr ""
+msgstr "<primary>SkoleLinux</primary>"
 
 #. Tag: para
 #, no-c-format
