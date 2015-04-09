@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-08 20:11+0900\n"
+"PO-Revision-Date: 2015-04-09 21:10+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/debian-handbook/01_the-debian-project/ja/>\n"
 "Language: ja-JP\n"
@@ -1827,187 +1827,187 @@ msgstr "<primary>構成管理</primary>"
 #. Tag: para
 #, no-c-format
 msgid "CVS (Concurrent Versions System) is a tool for collaborative work on multiple files, while maintaining a history of modifications. The files in question are generally text files, such as a program's source code. If several people work together on the same file, <command>cvs</command> can only merge the alterations made if they were made to different portions of the file. Otherwise, these “conflicts” must be resolved by hand. This system manages modifications, line by line, by storing diff patches from one version to another."
-msgstr ""
+msgstr "CVS (並行バージョンシステム) は複数のファイルで共同作業をする際のツールで、変更の歴史を管理するものです。対象となるファイルは通常プログラムのソースコードなどのテキストファイルです。もし数人が同じファイルに対して一緒に仕事を行った場合、<command>cvs</command> がマージできるのは、同じファイルの別の場所に行われた修正だけです。それ以外の場合、手作業で「衝突」を解決しなければいけません。このシステムは、あるバージョンからほかのバージョンになる際の diff パッチを保存することで、行ごとの変更を管理しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "CVS uses a central archive (called a CVS repository) to store files and the history of their modifications (each revision is recorded in the form of a <emphasis>diff</emphasis> patch file, intended to be used on the prior version). Everyone checks out a particular version (working copy) to work on. The tool allows one to view the modifications made to the working copy (<command>cvs diff</command>), to record them in the central repository by creating a new entry in the versions history (<command>cvs commit</command>), to update the working copy to include modifications made in parallel by other uses (<command>cvs update</command>), and to record a particular configuration in the history in order to be able to easily extract it later on (<command>cvs tag</command>)."
-msgstr ""
+msgstr "CVS は中央アーカイブ (CVS リポジトリと呼ばれる) を使い、ファイルと変更履歴を保存します (それぞれのリビジョンはひとつ前のバージョンに対して適用する <emphasis>diff</emphasis> パッチファイルの形で記憶されます)。あるバージョンに対して作業を行うときは、作業コピーにそれをチェックアウトします。このツールを使うことで、作業コピーに対して行われた変更を見たり (<command>cvs diff</command>)、バージョン履歴に新しいエントリを追加することで中央リポジトリに変更を記録したり (<command>cvs commit</command>)、他のユーザが並行して行った変更を適用して作業コピーを更新したり (<command>cvs update</command>)、後から簡単に取り出すことができるように履歴に特別な設定を記録する (<command>cvs tag</command>)、ことができます。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>CVS</command> experts will know how to handle multiple concurrent versions of a project in development without them interfering with each other. These versions are called <emphasis>branches</emphasis>. This metaphor of a tree is fairly accurate, since a program is initially developed on a common trunk. When a milestone has been reached (such as version 1.0), development continues on two branches: the development branch prepares the next major release, and the maintenance branch manages updates and fixes for version 1.0."
-msgstr ""
+msgstr "<command>CVS</command> の達人は、開発中互いに干渉することなく、あるプロジェクトの複数の並行バージョンを操作する方法を知っているでしょう。これは<emphasis>ブランチ (枝)</emphasis> と呼ばれています。このように木で例えることはかなり正確です、なぜならプログラムは同じトランク (幹) に対して開発が始まっているからです。節目 (バージョン 1.0 など) に到達したら、2 つのブランチで開発が続けられます: 開発ブランチでは次のメジャーリリースを準備し、メンテナンスブランチではバージョン 1.0 に対する更新と修正を管理します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>cvs</command>, however, does have some limitations. It is unable to manage symbolic links, changes in file or directory names, the deletion of directories, etc. It has contributed to the appearance of more modern free alternatives which have filled in most of these gaps. These include, especially, <command>subversion</command> (<command>svn</command>), <command>git</command>, <command>bazaar</command> (<command>bzr</command>), and <command>mercurial</command> (<command>hg</command>). <ulink type=\"block\" url=\"http://subversion.apache.org/\" /> <ulink type=\"block\" url=\"http://git-scm.com/\" /> <ulink type=\"block\" url=\"http://bazaar.canonical.com/\" /> <ulink type=\"block\" url=\"http://mercurial.selenic.com/\" />"
-msgstr ""
+msgstr "しかしながら、<command>cvs</command> にはいくつかの制限があります。シンボリックリンク、ファイルまたはディレクトリ名の変更、ディレクトリの削除、などを管理することができません。これらの制限により、さらに現代的なフリーの代替選択肢の出現が促され、代替選択肢ではこれらの制限の多くが解決されました。代替選択肢の中では特に <command>subversion</command> (<command>svn</command>)、<command>git</command>、<command>bazaar</command> (<command>bzr</command>)、<command>mercurial</command> (<command>hg</command>)、が挙げられます。<ulink type=\"block\" url=\"http://subversion.apache.org/\" /> <ulink type=\"block\" url=\"http://git-scm.com/\" /> <ulink type=\"block\" url=\"http://bazaar.canonical.com/\" /> <ulink type=\"block\" url=\"http://mercurial.selenic.com/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>subversion</command></primary>"
-msgstr ""
+msgstr "<primary><command>subversion</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>svn</command></primary>"
-msgstr ""
+msgstr "<primary><command>svn</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>git</command></primary>"
-msgstr ""
+msgstr "<primary><command>git</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bzr</command></primary>"
-msgstr ""
+msgstr "<primary><command>bzr</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>hg</command></primary>"
-msgstr ""
+msgstr "<primary><command>hg</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mercurial</command></primary>"
-msgstr ""
+msgstr "<primary><command>mercurial</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian has developed little software of its own, but certain programs have assumed a starring role, and their fame has spread beyond the scope of the project. Good examples are <command>dpkg</command>, the Debian package management program (it is, in fact, an abbreviation of Debian PacKaGe, and generally pronounced as “dee-package”), and <command>apt</command>, a tool to automatically install any Debian package, and its dependencies, guaranteeing the consistency of the system after an upgrade (its name is an acronym for Advanced Package Tool). Their teams are, however, much smaller, since a rather high level of programming skill is required to gain an overall understanding of the operations of these types of programs."
-msgstr ""
+msgstr "Debian は自分用に小さなソフトウェアを開発し続けてきましたが、一部のプログラムは重要な役割を担っており、そのようなプログラムの名声は Debian プロジェクトよりも大きく広がっています。Debian パッケージ管理プログラムの <command>dpkg</command> (実際のところ、これは Debian PacKaGe の 略称で、「dee-package」と発音されます) と、任意の Debian パッケージとそのパッケージが依存しているパッケージを、更新後のシステムの継続性を保障しながら、自動的にインストールする <command>apt</command> (名前は Advanced Package Tool の頭字語) がそのよい例です。一方で、これらのプログラムの働きを全面的に理解するには極めて高いプログラミング能力が必要であるため、チームの規模は極めて小さなものです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The most important team is probably that for the Debian installation program, <command>debian-installer</command>, which has accomplished a work of momentous proportions since its conception in 2001. Numerous contributors were needed, since it is difficult to write a single program able to install Debian on a dozen different architectures. Each one has its own mechanism for booting and its own bootloader. All of this work is coordinated on the <email>debian-boot@lists.debian.org</email> mailing list, under the direction of Joey Hess and Cyril Brulebois. <ulink type=\"block\" url=\"http://www.debian.org/devel/debian-installer/\" /> <ulink type=\"block\" url=\"http://kitenet.net/~joey/blog/entry/d-i_retrospective/\" />"
-msgstr ""
+msgstr "Debian インストールプログラム <command>debian-installer</command> の開発チームは最も重要なチームです。2001 年の構想以来ずっと、開発チームは極めて重要度の高い仕事を達成し続けています。たくさんの異なるアーキテクチャに Debian をインストールできるたった 1 つのプログラムを書くのは難しいため、数多くの貢献者が必要でした。それぞれのアーキテクチャではそれぞれ異なる起動メカニズムと異なるブートローダを使っています。この仕事のすべては Joey Hess さんと Cyril Brulebois さんの指揮の下 <email>debian-boot@lists.debian.org</email> メーリングリストで組織的に行われています。<ulink type=\"block\" url=\"http://www.debian.org/devel/debian-installer/\" /> <ulink type=\"block\" url=\"http://kitenet.net/~joey/blog/entry/d-i_retrospective/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The (very small) <command>debian-cd</command> program team has an even more modest objective. Many “small” contributors are responsible for their architecture, since the main developer can not know all the subtleties, nor the exact way to start the installer from the CD-ROM."
-msgstr ""
+msgstr "<command>debian-cd</command> プログラム (とても小さい) のチームはさらにいっそう控えめな目的を持っています。数多くの「小」貢献者は彼らのアーキテクチャに対して責任を負います、それは主開発者はすべての細かな差異や CD-ROM からインストーラを起動する正確な方法を知ることはできないからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Many teams must collaborate with others in the activity of packaging: <email>debian-qa@lists.debian.org</email> tries, for example, to ensure quality at all levels of the Debian project. The <email>debian-policy@lists.debian.org</email> list develops Debian Policy according to proposals from all over the place. The teams in charge of each architecture (<email>debian-<replaceable>architecture</replaceable>@lists.debian.org</email>) compile all packages, adapting them to their particular architecture, if needed."
-msgstr ""
+msgstr "多くのチームは他のチームと一緒にパッケージ化を行わなければいけません: たとえば、 <email>debian-qa@lists.debian.org</email> は Debiab プロジェクトのあらゆるレベルで品質を保証しようと試みます。<email>debian-policy@lists.debian.org</email> メーリングリストはあちこちからの提案に従って Debian ポリシーを成長させます。アーキテクチャごとの違いに対して責任を負うチームは (<email>debian-<replaceable>architecture</replaceable>@lists.debian.org</email>) 全てのパッケージをコンパイルし、必要ならばそれらを自分たちのアーキテクチャに適合させます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Other teams manage the most important packages in order to ensure maintenance without placing too heavy a load on a single pair of shoulders; this is the case with the C library and <email>debian-glibc@lists.debian.org</email>, the C compiler on the <email>debian-gcc@lists.debian.org</email> list, or Xorg on the <email>debian-x@lists.debian.org</email> (this group is also known as the X Strike Force, and coordinated by Cyril Brulebois)."
-msgstr ""
+msgstr "メンテナンスを保証する際に 1 チームの負担が大きくなりすぎないよう、他のチームが最も重要なパッケージを管理しています; そのようなケースとして、C ライブラリと <email>debian-glibc@lists.debian.org</email>、C コンパイラと <email>debian-gcc@lists.debian.org</email>、Xorg と <email>debian-x@lists.debian.org</email> (このグループはX Strike Force としても知られており、Cyril Brulebois さんが指揮しています)、の関係が挙げられます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Follow Debian News"
-msgstr ""
+msgstr "Debian ニュースを追いかける"
 
 #. Tag: para
 #, no-c-format
 msgid "As already mentioned, the Debian project evolves in a very distributed, very organic way. As a consequence, it may be difficult at times to stay in touch with what happens within the project without being overwhelmed with a never-ending flood of notifications."
-msgstr ""
+msgstr "すでに述べたとおり、Debian プロジェクトは極めて分散的で有機的な方法で発展しています。その結果、プロジェクトの内部で起きた出来事について絶えず情報を得るようにすると、終わらない洪水のごとく通知が溢れ返ることになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "If you only want the most important news about Debian, you probably should subscribe to the <email>debian-announce@lists.debian.org</email> list. This is a very low-traffic list (around a dozen messages a year), and only gives the most important announcements, such as the availability of a new stable release, the election of a new Project Leader, or the yearly Debian Conference."
-msgstr ""
+msgstr "最も重要なニュースだけを知りたいのなら、<email>debian-announce@lists.debian.org</email> メーリングリストを購読することをお勧めします。このメーリングリストはきわめて流量が少なく (1 年に数通程度)、たとえば新しい安定版のリリース、新しいプロジェクトリーダーの選挙、年 1 回の Debian カンファレンスなど、最重要の発表だけが載せられます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Debian Project News</primary>"
-msgstr ""
+msgstr "<primary>Debian プロジェクトニュース</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "More general (and regular) news about Debian are sent to the <email>debian-news@lists.debian.org</email> list. The traffic on this list is quite reasonable too (usually around a handful of messages a month), and it includes the semi-regular “Debian Project News”, which is a compilation of various small bits of information about what happens in the project. Since all Debian developers can contribute these news when they think they have something noteworthy to make public, the DPN gives a valuable insight while staying rather focused on the project as a whole."
-msgstr ""
+msgstr "Debian に関するより一般的 (定期的) なニュースは <email>debian-news@lists.debian.org</email> を通じて送られます。このメーリングリストの流量もまた極めて合理的 (通常 1 か月に数通) で、準定期的な「Debian プロジェクトニュース (DPN)」はこのメーリングリストを通じて発信されます。プロジェクトニュースには、プロジェクトで起きたことに関するさまざまなちょっとした情報が載せられています。全ての Debian 開発者は、公開するに値する情報があると感じたら、このニュースに寄稿することができます、DPN はプロジェクト全体を俯瞰し続けると同時に、有益な本質を提供しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> The publicity and press teams"
-msgstr ""
+msgstr "<emphasis>COMMUNITY</emphasis> 広報と出版チーム"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian's official communication channels are managed by volunteers of the Debian publicity team and of the press team. Members of the latter are delegates of the Debian Project Leader and handle official press releases. The publicity team is much less formal and welcomes contributions from everybody, be it to write articles for “Debian Project News” or to animate the <emphasis>@debian</emphasis> Identi.ca microblogging account. <ulink type=\"block\" url=\"http://wiki.debian.org/Teams/Press\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/Teams/Publicity\" />"
-msgstr ""
+msgstr "Debian 公式の連絡チャンネルは Debian の広報チームと出版チームのボランティアによって管理されています。チームのメンバーは Debian プロジェクトリーダーの代理人であり、公式プレスリリースを担当しています。広報チームはかなりざっくばらんで、誰からの貢献でも歓迎しています。このチームが「Debian プロジェクトニュース」の記事を書いたり、<emphasis>@debian</emphasis> Identi.ca マイクロブログアカウントを活気づけています。<ulink type=\"block\" url=\"http://wiki.debian.org/Teams/Press\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/Teams/Publicity\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "For more information about the evolution of Debian and what is happening at some point in time in various teams, there's also the <email>debian-devel-announce@lists.debian.org</email> list. As its name implies, the announcements it carries will probably be more interesting to developers, but it also allows interested parties to keep an eye on what happens in more concrete terms than just when a stable version is released. While <email>debian-announce</email> gives news about the user-visible results, <email>debian-devel-announce</email> gives news about how these results are produced. As a side note, “d-d-a” (as it is sometimes referred to) is the only list that Debian developers must be subscribed to."
-msgstr ""
+msgstr "Debian の進化とある時点に個々のチームで何が起きているのかについてより詳しい情報を得るには、<email>debian-devel-announce@lists.debian.org</email> メーリングリストを参照してください。その名前が意味する通り、送られてくる告知は恐らく開発者がより興味を持ちそうなものでしょう、しかしこのメーリングリストを使って、関係者はより具体的なチームで起きていることから、安定版がリリースされたときだけでなく、常に目を離さないでいることも可能です。<email>debian-announce</email> はユーザが見ることができる結果についてニュースを配信するのに対して、<email>debian-devel-announce</email> はその結果がどのようにして引き起こされたかについてニュースを配信します。注釈として、「d-d-a」(このメーリングリストはときどきそう呼ばれます) だけは Debian 開発者ならば誰でも必ず購読しなければいけません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Planet Debian</primary>"
-msgstr ""
+msgstr "<primary>Planet Debian</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A more informal source of information can also be found on Planet Debian, which aggregates articles posted by Debian contributors on their respective blogs. While the contents do not deal exclusively with Debian development, they provide a view into what is happening in the community and what its members are up to. <ulink type=\"block\" url=\"http://planet.debian.org/\" />"
-msgstr ""
+msgstr "より非公式な情報ソースが Planet Debian にあります。これは Debian 貢献者が自分のブログに投稿した記事を収集しています。内容は Debian 開発の話題に限ったものではありませんが、貢献者たちは、コミュニティの中で何が起きているか、メンバーが何をする予定であるか、について見解を示します。<ulink type=\"block\" url=\"http://planet.debian.org/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>microblog</primary>"
-msgstr ""
+msgstr "<primary>microblog</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Identi.ca</primary>"
-msgstr ""
+msgstr "<primary>Identi.ca</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Twitter</primary>"
-msgstr ""
+msgstr "<primary>Twitter</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Facebook</primary>"
-msgstr ""
+msgstr "<primary>Facebook</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Google+</primary>"
-msgstr ""
+msgstr "<primary>Google+</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>social networks</primary>"
-msgstr ""
+msgstr "<primary>ソーシャルネットワーク</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>social networks</secondary>"
-msgstr ""
+msgstr "<primary>ネットワーク</primary><secondary>ソーシャルネットワーク</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The project is also well represented on social networks. While Debian only has an official presence on platforms built with free software (like the Identi.ca microblogging platform, powered by <emphasis>pump.io</emphasis>), there are many Debian contributors who are animating Twitter accounts, Facebook pages, Google+ pages, and more. <ulink type=\"block\" url=\"https://identi.ca/debian\" /> <ulink type=\"block\" url=\"https://twitter.com/debian\" /> <ulink type=\"block\" url=\"https://www.facebook.com/debian\" /> <ulink type=\"block\" url=\"https://plus.google.com/111711190057359692089\" />"
-msgstr ""
+msgstr "ソーシャルネットワーク上では頻繁に Debian プロジェクトを見かけることもあります。Debian が公式に存在するのはフリーソフトウェアで作り上げられたサービス (<emphasis>pump.io</emphasis> で動く Identi.ca マイクロブログサービス) 上だけですが、多くの Debian 貢献者が Twitter アカウント、Facebook ページ、Google+ ページなどを賑わしています。<ulink type=\"block\" url=\"https://identi.ca/debian\" /> <ulink type=\"block\" url=\"https://twitter.com/debian\" /> <ulink type=\"block\" url=\"https://www.facebook.com/debian\" /> <ulink type=\"block\" url=\"https://plus.google.com/111711190057359692089\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "The Role of Distributions"
-msgstr ""
+msgstr "ディストリビューションの役割"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Linux distribution</primary><secondary>role</secondary>"
-msgstr ""
+msgstr "<primary>Linux ディストリビューション</primary><secondary>役割</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A GNU/Linux distribution has two main objectives: install a free operating system on a computer (either with or without an existing system or systems), and provide a range of software covering all of the users' needs."
-msgstr ""
+msgstr "GNU/Linux ディストリビューションには 2 つの目標があります: フリーなオペレーティングシステムをコンピュータにインストールすること (すでにシステムが存在しているか否かにかかわらず)、そしてすべてのユーザからの必要性を満足する広範なソフトウェアを提供すること、です。"
 
 #. Tag: title
 #, no-c-format
 msgid "The Installer: <command>debian-installer</command>"
-msgstr ""
+msgstr "インストーラ: <command>debian-installer</command>"
 
 #. Tag: para
 #, no-c-format
