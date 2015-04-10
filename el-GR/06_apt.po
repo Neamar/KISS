@@ -5,33 +5,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2012-07-29T20:56:35\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2015-04-10 18:35+0200\n"
+"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
+"Language-Team: Greek <https://hosted.weblate.org/projects/debian-"
+"handbook/06_apt/el/>\n"
+"Language: el-GR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.3-dev\n"
 
 #. Tag: keyword
 #, no-c-format
 msgid "apt-get"
-msgstr ""
+msgstr "apt-get"
 
 #. Tag: keyword
 #, no-c-format
 msgid "apt-cache"
-msgstr ""
+msgstr "apt-cache"
 
 #. Tag: keyword
 #, no-c-format
 msgid "aptitude"
-msgstr ""
+msgstr "aptitude"
 
 #. Tag: keyword
 #, no-c-format
 msgid "synaptic"
-msgstr ""
+msgstr "synaptic"
 
 #. Tag: keyword
 #, no-c-format
@@ -41,12 +44,12 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "apt-cdrom"
-msgstr ""
+msgstr "apt-cdrom"
 
 #. Tag: title
 #, no-c-format
 msgid "Maintenance and Updates: The APT Tools"
-msgstr ""
+msgstr "Συντήρηση και ενημερώσεις: Τα εργαλεία APT"
 
 #. Tag: para
 #, no-c-format
@@ -76,12 +79,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Packages.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Packages.gz</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Sources.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Sources.gz</filename></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -91,22 +94,22 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gzip</command></primary>"
-msgstr ""
+msgstr "<primary><command>gzip</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bzip2</command></primary>"
-msgstr ""
+msgstr "<primary><command>bzip2</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lzma</command></primary>"
-msgstr ""
+msgstr "<primary><command>lzma</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>xz</command></primary>"
-msgstr ""
+msgstr "<primary><command>xz</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -121,7 +124,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>sources.list</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>sources.list</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -136,12 +139,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/sources.list</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/sources.list</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Σύνταξη"
 
 #. Tag: para
 #, no-c-format
@@ -156,12 +159,12 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "“<literal>deb</literal>” for binary packages,"
-msgstr ""
+msgstr "“<literal>deb</literal>” για εκτελέσιμα πακέτα,"
 
 #. Tag: para
 #, no-c-format
 msgid "“<literal>deb-src</literal>” for source packages."
-msgstr ""
+msgstr "“<literal>deb-src</literal>” για πηγαία πακέτα."
 
 #. Tag: para
 #, no-c-format
@@ -186,7 +189,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>main</literal>, section</primary>"
-msgstr ""
+msgstr "<primary><literal>κυρίως</literal>, ενότητα</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -241,7 +244,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cdrom</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cdrom</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -252,6 +255,8 @@ msgstr ""
 #, no-c-format
 msgid "Repositories for <emphasis role=\"distribution\">Stable</emphasis> Users"
 msgstr ""
+"Αποθετήρια για χρήστες <emphasis role=\"distribution\">Σταθερής</emphasis> "
+"έκδοσης"
 
 #. Tag: para
 #, no-c-format
@@ -261,7 +266,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian Stable"
-msgstr ""
+msgstr "<filename>/etc/apt/sources.list</filename> για χρήστες σταθερού Debian"
 
 #. Tag: programlisting
 #, no-c-format
@@ -284,6 +289,23 @@ msgid ""
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
 "deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
 msgstr ""
+"# Security updates\n"
+"deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ wheezy/updates main contrib non-free\n"
+"\n"
+"## Debian mirror\n"
+"\n"
+"# Base repository\n"
+"deb http://ftp.debian.org/debian wheezy main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy main contrib non-free\n"
+"\n"
+"# Stable updates\n"
+"deb http://ftp.debian.org/debian wheezy-updates main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-updates main contrib non-free\n"
+"\n"
+"# Stable backports\n"
+"deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
 
 #. Tag: para
 #, no-c-format
@@ -298,7 +320,7 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-spy</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-spy</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -328,22 +350,23 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Security Updates"
-msgstr ""
+msgstr "Ενημερώσεις ασφαλείας"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>security.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>security.debian.org</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>security updates</primary>"
-msgstr ""
+msgstr "<primary>ενημερώσεις ασφαλείας</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>updates</primary><secondary>security updates</secondary>"
 msgstr ""
+"<primary>ενημερώσεις</primary><secondary>ενημερώσεις ασφαλείας</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -358,12 +381,12 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Stable Updates"
-msgstr ""
+msgstr "Ενημερώσεις σταθερής έκδοσης"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>stable updates</primary>"
-msgstr ""
+msgstr "<primary>ενημερώσεις σταθερής έκδοσης</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -393,17 +416,17 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Proposed Updates"
-msgstr ""
+msgstr "Προτεινόμενες ενημερώσεις"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>proposed-updates</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>proposed-updates</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>stable-proposed-updates</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>stable-proposed-updates</literal></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -424,6 +447,8 @@ msgstr ""
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
 msgstr ""
+"deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-"
+"free\n"
 
 #. Tag: title
 #, no-c-format
