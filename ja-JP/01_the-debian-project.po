@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-09 21:10+0900\n"
+"PO-Revision-Date: 2015-04-10 20:23+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/debian-handbook/01_the-debian-project/ja/>\n"
 "Language: ja-JP\n"
@@ -2012,202 +2012,202 @@ msgstr "インストーラ: <command>debian-installer</command>"
 #. Tag: para
 #, no-c-format
 msgid "The <command>debian-installer</command>, designed to be extremely modular in order to be as generic as possible, targets the first objective. It covers a broad range of installation situations and in general, greatly facilitates the creation of a derivative installer corresponding to a particular case."
-msgstr ""
+msgstr "<command>debian-installer</command> は可能な限り一般性を保ちつつモジュール式に設計されており、上で述べた 1 つ目の目標を達成しています。このインストーラは多様なインストール状況に対応しており、一般に、特定の事例向けに作られた派生物がインストーラを作成することを非常に容易にしています。"
 
 #. Tag: para
 #, no-c-format
 msgid "This modularity, which also makes it very complex, may be daunting for the developers discovering this tool; but whether used in graphical or text mode, the user's experience is still similar. Great efforts have been made to reduce the number of questions asked at installation time, in particular thanks to the inclusion of automatic hardware detection software."
-msgstr ""
+msgstr "モジュール性はインストーラをとても複雑にしており、開発者がこのツールの詳細を探ることが難しくなっているかもしれません; しかし、グラフィカルとテキストモードのどちらを使っても、ユーザ体験は同じ状態が保たれています。インストール時に感じる疑問の数を減らすために、多大な努力が費やされました。とくに自動ハードウェア検知ソフトウェアはこれに大きく貢献しました。"
 
 #. Tag: para
 #, no-c-format
 msgid "It is interesting to note that distributions derived from Debian differ greatly on this aspect, and provide a more limited installer (often confined to the i386 or amd64 architectures), but more user-friendly for the uninitiated. On the other hand, they usually refrain from straying too far from package contents in order to benefit as much as possible from the vast range of software offered without causing compatibility problems."
-msgstr ""
+msgstr "ここで興味を持って注目すべき点は、Debian から派生したディストリビューションは一般化と全く違う姿勢を取り、提供するインストーラをさらに制限して (i386 と amd64 アーキテクチャに限定していることが多い)、初心者にとってさらに使いやすくしているという点です。他方で、パッケージの中身については派生ディストリビューションはこれを改変し過ぎないようにしています、これは提供されている様々なソフトウェアから互換性問題を起こさずに可能な限り大きな恩恵を受けるためです。"
 
 #. Tag: title
 #, no-c-format
 msgid "The Software Library"
-msgstr ""
+msgstr "ソフトウェアライブラリ"
 
 #. Tag: para
 #, no-c-format
 msgid "Quantitatively, Debian is undeniably the leader in this respect, with over 17,300 source packages. Qualitatively, Debian’s policy and long testing period prior to releasing a new stable version justify its reputation for stability and consistency. As far as availability, everything is available on-line through many mirrors worldwide, with updates pushed out every six hours."
-msgstr ""
+msgstr "量的な意味で、17,300 を超えるソースパッケージを備える Debian がリーダーなのは間違いありません。質的な意味で、Debian のポリシーと新しい安定版のりリス前に設けられる長いテスト期間は安定度と整合性の評判に嘘がないこと証明しています。入手可能性に関する限り、全ては世界中の多くのミラーを通じてオンライン上で入手可能で、更新は 6 時間ごとに配信されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Many retailers sell CD-ROMs on the Internet at a very low price (often at cost), the “images” for which are freely available for download. There is only one drawback: the low frequency of releases of new stable versions (their development sometimes takes more than two years), which delays the inclusion of new software."
-msgstr ""
+msgstr "多くの小売業者がインターネット上で CD-ROM を極めて低価格 (通常実費のみ) で販売しており、「イメージ」は自由にダウンロードできます。欠点は 1 つしかありません: 新しい安定版のリリース頻度が低いこと (開発には 2 年以上かかる場合もあります) です、この欠点により新しいソフトウェアが導入される時期が後ろにずれます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Most new free software programs quickly find their way into the development version which allows them to be installed. If this requires too many updates due to their dependencies, the program can also be recompiled for the stable version of Debian (see <xref linkend=\"debian-packaging\" /> for more information on this topic)."
-msgstr ""
+msgstr "新しいフリーソフトウェアプログラムの多くは素早く開発版に取り込まれます、開発版では新しいソフトウェアをインストールできます。新しいソフトウェアから依存パッケージに対して要求する更新が多すぎる場合、Debian の安定版用にプログラムを再コンパイルすることもできます。(この話題に関するより詳しい情報は <xref linkend=\"debian-packaging\" /> を参照してください)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Lifecycle of a Release"
-msgstr ""
+msgstr "リリースライフサイクル"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>lifecycle</primary>"
-msgstr ""
+msgstr "<primary>ライフサイクル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"distribution\">Unstable</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"distribution\">不安定版</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"distribution\">Testing</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"distribution\">テスト版</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"distribution\">Stable</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"distribution\">安定版</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"distribution\">Experimental</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"distribution\">実験版</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The project will simultaneously have three or four different versions of each program, named <emphasis role=\"distribution\">Experimental</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, and <emphasis role=\"distribution\">Stable</emphasis>. Each one corresponds to a different phase in development. For a good understanding, let us take a look at a program's journey, from its initial packaging to inclusion in a stable version of Debian."
-msgstr ""
+msgstr "Debian プロジェクトは同時にそれぞれのプログラムの 3 か 4 つの異なるバージョンを持っており、<emphasis role=\"distribution\">実験版</emphasis>、<emphasis role=\"distribution\">不安定版</emphasis>、<emphasis role=\"distribution\">テスト版</emphasis>、<emphasis role=\"distribution\">安定版</emphasis>、のように名づけられています。各バージョンは開発の異なる段階に相当します。違いを十分に理解するために、どのような順序でプログラムが最初のパッケージ化から Debian の安定版に取り込まれるかを見てみましょう。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Release"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> リリース"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>release</primary>"
-msgstr ""
+msgstr "<primary>リリース</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The term “release”, in the Debian project, indicates a particular version of a distribution (e.g., “unstable release” means “the unstable version”). It also indicates the public announcement of the launch of any new version (stable)."
-msgstr ""
+msgstr "Debian プロジェクトにおいて「リリース」という用語はディストリビューションの特定のバージョンを示しています (例:「不安定リリース」は「不安定版」を意味しています)。さらに、新しいバージョン (安定版) の公開を一般に発表することも意味しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <emphasis role=\"distribution\">Experimental</emphasis> Status"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">実験版</emphasis> 状態"
 
 #. Tag: para
 #, no-c-format
 msgid "First let us take a look at the particular case of the <emphasis role=\"distribution\">Experimental</emphasis> distribution: this is a group of Debian packages corresponding to the software currently in development, and not necessarily completed, explaining its name. Not everything passes through this step; some developers add packages here in order to get feedback from more experienced (or braver) users."
-msgstr ""
+msgstr "まず最初に特殊な例である<emphasis role=\"distribution\">実験版</emphasis>ディストリビューションについて見てみましょう: これは現在開発中のソフトウェアに相当する Debian パッケージのグループで、名前の示す通り開発を終えている必要はありません。全てのパッケージがこのステップを踏む必要はありません; 一部の開発者はより経験豊かな (優れた) ユーザからのフィードバックを得るためにパッケージをここに追加します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Otherwise, this distribution frequently houses important modifications to base packages, whose integration into <emphasis role=\"distribution\">Unstable</emphasis> with serious bugs would have critical repercussions. It is, thus, a completely isolated distribution, its packages never migrate to another version (except by direct, express intervention of the maintainer or the ftpmasters). It is also not self-contained: only a subset of the existing packages are present in <emphasis role=\"distribution\">Experimental</emphasis>, and it generally does not include the base system. This distribution is therefore mostly useful in combination with another, self-contained, distribution such as <emphasis role=\"distribution\">Unstable</emphasis>."
-msgstr ""
+msgstr "別の面では、このディストリビューションは、基盤パッケージに対する重要な変更を一時的に取り込む際に、よく使われます。深刻なバグを含む基盤パッケージを<emphasis role=\"distribution\">不安定版</emphasis>に取り込むと深刻な影響があります。そんなわけで、このディストリビューションは完全に隔離されたディストリビューションです、ここに含まれるパッケージは決して他のバージョンに移行することはありません (メンテナまたは ftp 管理者からの介入という例外を除きます)。また、このディストリビューションは自己完結していません: <emphasis role=\"distribution\">実験版</emphasis>の中には既存のパッケージの一部だけが含まれており、基盤システムは含まれません。それゆえこのディストリビューションは通常、<emphasis role=\"distribution\">不安定版</emphasis>などの自己完結している他のディストリビューションと組み合わせて利用されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <emphasis role=\"distribution\">Unstable</emphasis> Status"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">不安定版</emphasis>状態"
 
 #. Tag: para
 #, no-c-format
 msgid "Let us turn back to the case of a typical package. The maintainer creates an initial package, which they compile for the <emphasis role=\"distribution\">Unstable</emphasis> version and place on the <literal>ftp-master.debian.org</literal> server. This first event involves inspection and validation from the ftpmasters. The software is then available in the <emphasis role=\"distribution\">Unstable</emphasis> distribution, which is the “cutting edge” distribution chosen by users who are more concerned with having up to date packages than worried about serious bugs. They discover the program and then test it."
-msgstr ""
+msgstr "典型的なパッケージの場合に戻りましょう。メンテナが<emphasis role=\"distribution\">不安定版</emphasis>用にコンパイルされた最初のパッケージを作成し、<literal>ftp-master.debian.org</literal> サーバに置きます。その後、ftp 管理者がパッケージを検査検証します。そうすると、ソフトウェアは<emphasis role=\"distribution\">不安定版</emphasis>ディストリビューションで利用可能になります。このディストリビューションは深刻なバグを心配するよりも、パッケージを最新にすることに関心があるユーザの選択する、「最先端の」ディストリビューションです。そのようなユーザがプログラムを見つけて、テストします。"
 
 #. Tag: para
 #, no-c-format
 msgid "If they encounter bugs, they report them to the package's maintainer. The maintainer then regularly prepares corrected versions, which they upload to the server."
-msgstr ""
+msgstr "ユーザはバグに遭遇すると、バグをパッケージメンテナに報告します。メンテナは定期的に修正済みバージョンを用意し、サーバにアップロードします。"
 
 #. Tag: para
 #, no-c-format
 msgid "Every newly updated package is updated on all Debian mirrors around the world within six hours. The users then test the corrections and search for other problems resulting from the modifications. Several updates may then occur rapidly. During these times, autobuilder robots come into action. Most frequently, the maintainer has only one traditional PC and has compiled his package on the amd64 (or i386) architecture; the autobuilders take over and automatically compile versions for all the other architectures. Some compilations may fail; the maintainer will then receive a bug report indicating the problem, which is then to be corrected in the next versions. When the bug is discovered by a specialist for the architecture in question, the bug report may come with a patch ready to use."
-msgstr ""
+msgstr "新たに更新されたパッケージは全て、6 時間以内に世界中の全ての Debian ミラーで更新されます。そしてユーザが修正をテストし、変更したことで生じる別の問題を探します。いくつかの更新は素早くなされるかもしれません。これらの間、自動ビルドロボットが活動を始めます。多くの場合、メンテナは古い PC を一台だけ持っており、amd64 (または i386) アーキテクチャでパッケージをコンパイルしています。自動ビルドロボットはコンパイル作業を引き受け、すべての他のアーキテクチャ向けのバージョンを自動的にコンパイルします。いくつかのコンパイルは失敗するかもしれません; メンテナは問題の内容を含んだバグ報告を受け取り、このバグは次のバージョンで修正されます。問題となっているアーキテクチャの専門家がバグを発見した場合、そのバグ報告にはすぐに使えるパッチが添えられているかもしれません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>autobuilder</primary>"
-msgstr ""
+msgstr "<primary>自動ビルドロボット</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Compilation of a package by the autobuilders"
-msgstr ""
+msgstr "自動ビルドロボットによるパッケージのコンパイル"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> <command>buildd</command>, the Debian package recompiler"
-msgstr ""
+msgstr "<emphasis>QUICK LOOK</emphasis> <command>buildd</command>、Debian パッケージ再コンパイルロボット"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>buildd</command></primary>"
-msgstr ""
+msgstr "<primary><command>buildd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>build daemon</primary>"
-msgstr ""
+msgstr "<primary>ビルドデーモン</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>buildd</emphasis> is the abbreviation of “build daemon”. This program automatically recompiles new versions of Debian packages on the architectures on which it is hosted (cross-compiling not always being sufficient) ."
-msgstr ""
+msgstr "<emphasis>buildd</emphasis> は「ビルドデーモン」の略語です。このプログラムは Debian パッケージの新しいバージョンをホストされているアーキテクチャ上で自動的に再コンパイルします (クロスコンパイルは常に十分であるとは限りません)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Thus, to produce binaries for the <literal>sparc</literal> architecture, the project has <literal>sparc</literal> machines available (specifically, Sun brand). The <emphasis>buildd</emphasis> program runs on them continuously and creates binary packages for <literal>sparc</literal> from source packages sent by Debian developers."
-msgstr ""
+msgstr "このため、<literal>sparc</literal> アーキテクチャ用のバイナリを作成するために、プロジェクトはを利用可能な <literal>sparc</literal> マシン (具体的に言うと Sun ブランドのマシン) を持っています。<emphasis>buildd</emphasis> プログラムはマシン上で常に起動しており、Debian 開発者の送信したソースパッケージから <literal>sparc</literal> 用のバイナリパッケージを作成します。"
 
 #. Tag: para
 #, no-c-format
 msgid "This software is used on all the computers serving as autobuilders for Debian. By extension, the term <emphasis>buildd</emphasis> frequently is used to refer to these machines, which are generally reserved solely for this purpose."
-msgstr ""
+msgstr "このソフトウェアは Debian 向けの自動ビルドロボットを提供しているすべてのコンピュータで使われます。転じて、<emphasis>buildd</emphasis> という用語はこれらのマシンを表すために使われることが多く、ほとんどの場合これらマシンは自動ビルド専用機として準備されています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Migration to <emphasis role=\"distribution\">Testing</emphasis>"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">テスト版</emphasis> への移行"
 
 #. Tag: para
 #, no-c-format
 msgid "A bit later, the package will have matured; compiled on all the architectures, it will not have undergone recent modifications. It is then a candidate for inclusion in the <emphasis role=\"distribution\">Testing</emphasis> distribution — a group of <emphasis role=\"distribution\">Unstable</emphasis> packages chosen according to some quantifiable criteria. Every day a program automatically selects the packages to include in <emphasis role=\"distribution\">Testing</emphasis>, according to elements guaranteeing a certain level of quality:"
-msgstr ""
+msgstr "しばらくするとパッケージは成熟するでしょう; すべてのアーキテクチャ上でコンパイルされ、最近行った変更が無くなるでしょう。こうなると、将来<emphasis role=\"distribution\">テスト版</emphasis>ディストリビューションに組み込まれる対象になります - <emphasis role=\"distribution\">不安定版</emphasis>パッケージのグループが定量化可能な基準に従って選ばれます。毎日あるプログラムが、一定の品質水準を保証する要素を基に、<emphasis role=\"distribution\">テスト版</emphasis>に組み込むためのパッケージを自動的に選びます:"
 
 #. Tag: para
 #, no-c-format
 msgid "lack of critical bugs, or, at least fewer than the version currently included in <emphasis role=\"distribution\">Testing</emphasis>;"
-msgstr ""
+msgstr "深刻なバグが無いこと、もしくは現時点で<emphasis role=\"distribution\">テスト版</emphasis>に組み込まれているバージョンよりも少ないこと;"
 
 #. Tag: para
 #, no-c-format
 msgid "at least 10 days spent in <emphasis role=\"distribution\">Unstable</emphasis>, which is sufficient time to find and report any serious problems;"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">不安定版</emphasis>に組み込まれてから少なくとも10日経っていること、これは深刻な問題が発見されて報告されるのに十分な時間です;"
 
 #. Tag: para
 #, no-c-format
 msgid "successful compilation on all officially supported architectures;"
-msgstr ""
+msgstr "公式にサポートされている全てのアーキテクチャ上でコンパイルに成功していること;"
 
 #. Tag: para
 #, no-c-format
 msgid "dependencies that can be satisfied in <emphasis role=\"distribution\">Testing</emphasis>, or that can at least be moved there together with the package in question."
-msgstr ""
+msgstr "<emphasis role=\"distribution\">テスト版</emphasis>で依存関係を満たすことができること、そうでなければ少なくとも問題となっているパッケージの準備ができたら一緒に移動することが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "This system is clearly not infallible; critical bugs are regularly found in packages included in <emphasis role=\"distribution\">Testing</emphasis>. Still, it is generally effective, and <emphasis role=\"distribution\">Testing</emphasis> poses far fewer problems than <emphasis role=\"distribution\">Unstable</emphasis>, being for many, a good compromise between stability and novelty."
-msgstr ""
+msgstr "このシステムは明らかに絶対確実なものではありません; 深刻なバグは通常<emphasis role=\"distribution\">テスト版</emphasis>に組み込まれたパッケージから見つかります。とはいっても、このシステムは有効で、<emphasis role=\"distribution\">テスト版</emphasis>は<emphasis role=\"distribution\">不安定版</emphasis>に比べて問題がはるかに少なく、長い間安定性と新規性の良い妥協案でした。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Limitations of <emphasis role=\"distribution\">Testing</emphasis>"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> <emphasis role=\"distribution\">テスト版</emphasis>の制限"
 
 #. Tag: para
 #, no-c-format
