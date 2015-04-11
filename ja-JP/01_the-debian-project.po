@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-10 20:23+0900\n"
+"PO-Revision-Date: 2015-04-11 20:56+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/debian-handbook/01_the-debian-project/ja/>\n"
 "Language: ja-JP\n"
@@ -2212,94 +2212,94 @@ msgstr "<emphasis>NOTE</emphasis> <emphasis role=\"distribution\">テスト版</
 #. Tag: para
 #, no-c-format
 msgid "While very interesting in principle, <emphasis role=\"distribution\">Testing</emphasis> does have some practical problems: the tangle of cross-dependencies between packages is such that a package can rarely move there completely on its own. With packages all depending upon each other, it is sometimes necessary to migrate a large number of packages simultaneously, which is impossible when some are uploading updates regularly. On the other hand, the script identifying the families of related packages works hard to create them (this would be an NP-complete problem, for which, fortunately, we know some good heuristics). This is why we can manually interact with and guide this script by suggesting groups of packages, or imposing the inclusion of certain packages in a group, even if this temporarily breaks some dependencies. This functionality is accessible to the Release Managers and their assistants."
-msgstr ""
+msgstr "原理的な面白さの一方で、<emphasis role=\"distribution\">テスト版</emphasis>は実用上いくつかの問題を抱えています: パッケージ間の相互依存性のもつれは、完全に独力で移動するのはほぼ不可能なパッケージがあるということを意味しています。パッケージ同士が互いに依存し合っていると、数多くのパッケージを同時に移行することが必要になる場合がありますが、一部のパッケージが定期的に更新されていると、それは不可能です。一方で、関連するパッケージ群を識別するスクリプトはこれを作成しようと熱心に働いています (これは NP 完全問題ですが、ありがたいことに、いくつかの良い経験則が知られています)。これが、このスクリプトと手作業で情報をやり取りしたり、パッケージのグループを示唆するか、これにより一時的に依存関係が壊れることになったとしても特定のパッケージをあるグループ内に含めるよう強要することで、スクリプトを手引きしたりしている理由です。この機能はリリースマネージャとその助手でも利用しやすいです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Recall that an NP-complete problem is of an exponential algorithmic complexity according to the size of the data, here being the length of the code (the number of figures) and the elements involved. The only way to resolve it is frequently to examine all possible configurations, which could require enormous means. A heuristic is an approximate, but satisfying, solution."
-msgstr ""
+msgstr "NP 完全問題はデータのサイズ (コードの長さ (桁数) や関連する要素の数が含まれます) によってはアルゴリズムに指数的複雑性があるということを思い出してください。この問題を解く唯一の方法は全ての可能性を頻繁に検査することですが、そうするには膨大な財力が必要です。経験則で得られるのは近似解ですが十分な解です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> The Release Manager"
-msgstr ""
+msgstr "<emphasis>COMMUNITY</emphasis> リリースマネージャ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Release Manager</primary>"
-msgstr ""
+msgstr "<primary>リリースマネージャ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Stable Release Manager</primary>"
-msgstr ""
+msgstr "<primary>安定版リリースマネージャ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Release Manager is an important title, associated with heavy responsibilities. The bearer of this title must, in effect, manage the release of a new, stable version of Debian, and define the process for development of <emphasis role=\"distribution\">Testing</emphasis> until it meets the quality criteria for <emphasis role=\"distribution\">Stable</emphasis>. They also define a tentative schedule (not always followed)."
-msgstr ""
+msgstr "リリースマネージャは重い責任を伴う重要な役職です。事実上、この役職を持つ人が新しい Debian 安定版のリリースを管理し、<emphasis role=\"distribution\">テスト版</emphasis>が<emphasis role=\"distribution\">安定版</emphasis>の品質基準に達するまでの開発工程を決めます。さらにリリースマネージャは暫定的なスケジュール (必ずしも従う必要はない) も定義します。"
 
 #. Tag: para
 #, no-c-format
 msgid "We also have Stable Release Managers, often abbreviated SRM, who manage and select updates for the current stable version of Debian. They systematically include security patches and examine all other proposals for inclusion, on a case by case basis, sent by Debian developers eager to update their package in the stable version."
-msgstr ""
+msgstr "安定版リリースマネージャ (通常 SRM と略される) は現在の Debian 安定版に対する更新を管理、選別します。彼らはセキュリティパッチを取り込み、個々の場合に応じて、安定版に含まれるパッケージをしきりに更新したがっている Debian 開発者から送られてくる全ての取り込み提案を検査します。"
 
 #. Tag: title
 #, no-c-format
 msgid "The Promotion from <emphasis role=\"distribution\">Testing</emphasis> to <emphasis role=\"distribution\">Stable</emphasis>"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">テスト版</emphasis>から<emphasis role=\"distribution\">安定版</emphasis>への昇格"
 
 #. Tag: para
 #, no-c-format
 msgid "Let us suppose that our package is now included in <emphasis role=\"distribution\">Testing</emphasis>. As long as it has room for improvement, its maintainer must continue to improve it and restart the process from <emphasis role=\"distribution\">Unstable</emphasis> (but its later inclusion in <emphasis role=\"distribution\">Testing</emphasis> is generally faster: unless it changed significantly, all of its dependencies are already available). When it reaches perfection, the maintainer has completed their work. The next step is the inclusion in the <emphasis role=\"distribution\">Stable</emphasis> distribution, which is, in reality, a simple copy of <emphasis role=\"distribution\">Testing</emphasis> at a moment chosen by the Release Manager. Ideally this decision is made when the installer is ready, and when no program in <emphasis role=\"distribution\">Testing</emphasis> has any known critical bugs."
-msgstr ""
+msgstr "我々のパッケージが今現在<emphasis role=\"distribution\">テスト版</emphasis>に組み込まれたと仮定しましょう。改善の余地がある限り、メンテナはパッケージを改善し続け、<emphasis role=\"distribution\">不安定版</emphasis>からの一連の手順を最初からやり直さなければいけません (その後<emphasis role=\"distribution\">テスト版</emphasis>へは素早く取り込まれることが多いです: 大きく修正されておらず、全ての依存関係が既に利用可能な場合に限ります)。パッケージが完成の域に達すると、メンテナの仕事は完了です。次のステップは<emphasis role=\"distribution\">安定版</emphasis>ディストリビューションへの取り込みです、実際のところこれはリリースマネージャが選んだ時点における<emphasis role=\"distribution\">テスト版</emphasis>の単純なコピーです。理想的にはこの決断はインストーラの準備が整った時点、そして全ての<emphasis role=\"distribution\">テスト版</emphasis>に含まれるプログラムで既知の致命的バグが解決された時点に行われます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Since this moment never truly arrives, in practice, Debian must compromise: remove packages whose maintainer has failed to correct bugs on time, or agree to release a distribution with some bugs in the thousands of programs. The Release Manager will have previously announced a freeze period, during which each update to <emphasis role=\"distribution\">Testing</emphasis> must be approved. The goal here is to prevent any new version (and its new bugs), and to only approve updates fixing bugs."
-msgstr ""
+msgstr "このような理想的瞬間は絶対に来ないので、実際問題として Debian は妥協しています: メンテナが時間どおりにバグを修正できなかったパッケージを削除したり、多数のプログラムが数個のバグを抱えた状態でディストリビューションをリリースすることに同意したり、します。リリースマネージャは事前にフリーズ期間をアナウンスし、<emphasis role=\"distribution\">テスト版</emphasis>への更新はこの期間中に承認されなければいけません。フリーズ期間を設ける目的は、バージョンが新しくなる更新 (と新たなバグの混入) を禁止し、現在のバージョンに対するバグ修正の更新だけを受け入れることです。"
 
 #. Tag: title
 #, no-c-format
 msgid "A package's path through the various Debian versions"
-msgstr ""
+msgstr "様々な Debian バージョンの間をパッケージが移行される様子"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Freeze: the home straight"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> フリーズ: 最後の追い込み"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>freeze</primary>"
-msgstr ""
+msgstr "<primary>フリーズ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "During the freeze period, development of the <emphasis role=\"distribution\">Testing</emphasis> distribution is blocked; no more automatic updates are allowed. Only the Release Managers are then authorized to change packages, according to their own criteria. The purpose is to prevent the appearance of new bugs by introducing new versions; only thoroughly examined updates are authorized when they correct significant bugs."
-msgstr ""
+msgstr "フリーズ期間中、<emphasis role=\"distribution\">テスト版</emphasis>ディストリビューションの開発は妨げられます; もはやアップデートは自動的に行われません。リリースマネージャだけが、自身の基準に従って、パッケージを変更する権限を持っています。この目的は新しいバージョンによって新しいバグが混入するのを防ぐことにあります; 更新は完全に検査され、重大なバグの修正を除き変更は認められません。"
 
 #. Tag: para
 #, no-c-format
 msgid "After the release of a new stable version, the Stable Release Manager manages all further development (called “revisions”, ex: 5.0.1, 5.0.2, 5.0.3 for version 5.0). These updates systematically include all security patches. They will also include the most important corrections (the maintainer of a package must prove the gravity of the problem that they wish to correct in order to have their updates included)."
-msgstr ""
+msgstr "新しい安定版のリリース後、安定版リリースマネージャが全ての追加的開発を管理します (「リビジョン」と呼ばれます、例: バージョン 5 のリビジョンは 5.0.1、5.0.2、5.0.3 など)。これらの更新にはすべてのセキュリティパッチが体系的に組み込まれています。更新には最も重要な修正も含まれています (パッケージのメンテナが、更新を含めてもらうためには、修正を望む問題の重大性を証明しなければいけません)。"
 
 #. Tag: para
 #, no-c-format
 msgid "At the end of the journey, our hypothetical package is now included in the stable distribution. This journey, not without its difficulties, explains the significant delays separating the Debian Stable releases. This contributes, over all, to its reputation for quality. Furthermore, the majority of users are satisfied using one of the three distributions simultaneously available. The system administrators, concerned above all about the stability of their servers, don't need the latest and greatest version of GNOME; they can choose Debian <emphasis role=\"distribution\">Stable</emphasis>, and they will be satisfied. End users, more interested in the latest versions of GNOME or KDE than in rock-solid stability, will find Debian <emphasis role=\"distribution\">Testing</emphasis> to be a good compromise between a lack of serious problems and relatively up to date software. Finally, developers and more experienced users may blaze the trail, testing all the latest developments in Debian <emphasis role=\"distribution\">Unstable</emphasis> right out of the gate, at the risk of suffering the headaches and bugs inherent in any new version of a program. To each their own Debian!"
-msgstr ""
+msgstr "最後に、仮想パッケージが安定版ディストリビューションに取り込まれます。ここに到達するまでには大変な苦労があり、Debian 安定版のリリースが極めてゆっくりと進む理由がお分かりになったと思います。この遅さは品質評価に貢献します。しかも、大多数のユーザは同時に利用可能な 3 つのディストリビューションのうち 1 つを使えば満足です。システム管理者は、何よりもまず彼らのサーバの安定性を重要視しており、最新バージョンの GNOME は必要ありません; 彼らは Debian <emphasis role=\"distribution\">安定版</emphasis>を選んで、それに満足するでしょう。エンドユーザは、強固な安定性よりも最新バージョンの GNOME や KDE に興味があり、Debian <emphasis role=\"distribution\">テスト版</emphasis>を選ぶでしょう。このディストリビューションは深刻な問題が少なく、比較的新しいソフトウェアが使えるという意味で両者の良い妥協点です。最後に、開発者と経験豊富なユーザは道を切り開くかもしれません。彼らは Debian <emphasis role=\"distribution\">不安定版</emphasis>になされた全ての最新の開発を真っ先にテストし、面倒事とプログラムの新しいバージョンにつきものであるバグに苦しむという危険を冒します。人それぞれ好みの Debian があるのです!"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> GNOME and KDE, graphical desktop environments"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> GNOME と KDE、グラフィカルデスクトップ環境"
 
 #. Tag: para
 #, no-c-format
 msgid "GNOME (GNU Network Object Model Environment) and KDE (K Desktop Environment) are the two most popular graphical desktop environments in the free software world. A desktop environment is a set of programs grouped together to allow easy management of the most common operations through a graphical interface. They generally include a file manager, office suite, web browser, e-mail program, multimedia accessories, etc. The most visible difference resides in the choice of the graphical library used: GNOME has chosen GTK+ (free software licensed under the LGPL), and KDE has selected Qt (a company-backed project, available nowadays both under the GPL and a commercial license). <ulink type=\"block\" url=\"http://www.gnome.org/\" /> <ulink type=\"block\" url=\"http://www.kde.org/\" />"
-msgstr ""
+msgstr "GNOME (GNU Network Object Model Environment) と KDE (K Desktop Environment) はフリーソフトウェア世界で最も人気のあるグラフィカルデスクトップ環境です。デスクトップ環境とは、グラフィカルインターフェイスに対する最も一般的な操作を簡単に管理できるようにするための、プログラム集です。一般にデスクトップ環境には、ファイルマネージャ、オフィススイート、ウェブブラウザ、電子メールプログラム、マルチメディアアクセサリなどが含まれています。もっとも明らかな違いは使用しているグラフィカルライブラリの違いにあります: GNOME は GTK+ (LGPL のフリーソフトウェア) を使い、KDE は Qt (企業が支援するプロジェクト、現在は GPL と商用ライセンスの両方で利用可能) を使っています。<ulink type=\"block\" url=\"http://www.gnome.org/\" /> <ulink type=\"block\" url=\"http://www.kde.org/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Chronological path of a program packaged by Debian"
-msgstr ""
+msgstr "Debian のパッケージ化するプログラムが時間ごとに辿る経路"
