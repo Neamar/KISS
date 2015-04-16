@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-09-03 14:18+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects"
+"PO-Revision-Date: 2015-04-21 22:27+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/12_advanced-administration/pt_BR/>\n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.10-dev\n"
+"X-Generator: Weblate 2.3-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -158,16 +158,40 @@ msgstr ""
 #, no-c-format
 msgid "RAID can be implemented either by dedicated hardware (RAID modules integrated into SCSI or SATA controller cards) or by software abstraction (the kernel). Whether hardware or software, a RAID system with enough redundancy can transparently stay operational when a disk fails; the upper layers of the stack (applications) can even keep accessing the data in spite of the failure. Of course, this “degraded mode” can have an impact on performance, and redundancy is reduced, so a further disk failure can lead to data loss. In practice, therefore, one will strive to only stay in this degraded mode for as long as it takes to replace the failed disk. Once the new disk is in place, the RAID system can reconstruct the required data so as to return to a safe mode. The applications won't notice anything, apart from potentially reduced access speed, while the array is in degraded mode or during the reconstruction phase."
 msgstr ""
+"O RAID pode ser implementado tanto por hardware dedicado (módulos RAID "
+"integrados em placas controladoras SCSI ou SATA) ou por abstração de "
+"software (o núcleo). Seja por hardware ou software, um sistema RAID com "
+"redundância suficiente pode, de forma transparente, continuar operacional "
+"quando um disco falha; as camadas superiores da pilha (aplicações) podem até "
+"manter o acesso aos dados apesar da falha. Claro que, esse “modo degradado” "
+"pode ter impacto na performance, e a redundância é reduzida, então uma falha "
+"profunda do disco pode levar a perda de dados. Na prática, entretanto, um "
+"irá se esforçar para apenas ficar nesse modo degradado o tempo que for "
+"necessário para que se possa substituir o disco falho. Uma vez que o novo "
+"disco seja colocado, o sistema RAID pode reconstruir os dados necessários e "
+"então retornar ao modo seguro. As aplicações não notarão nada, fora a "
+"potencial redução da velocidade de acesso, enquanto a array estiver no modo "
+"degradado ou durante a fase de reconstrução."
 
 #. Tag: para
 #, no-c-format
 msgid "When RAID is implemented by hardware, its configuration generally happens within the BIOS setup tool, and the kernel will consider a RAID array as a single disk, which will work as a standard physical disk, although the device name may be different. For instance, the kernel in <emphasis role=\"distribution\">Squeeze</emphasis> made some hardware RAID arrays available as <filename>/dev/cciss/c0d0</filename>; the kernel in <emphasis role=\"distribution\">Wheezy</emphasis> changed this name to the more natural <filename>/dev/sda</filename>, but other RAID controllers may still behave differently."
 msgstr ""
+"Quando o RAID é implementado por hardware, sua configuração geralmente "
+"acontece dentro da ferramenta de configuração da BIOS, e o núcleo irá "
+"considerar uma array RAID como um único disco, que irá funcionar como um "
+"disco físico padrão, embora o nome do dispositivo possa ser diferente. Por "
+"exemplo, o núcleo no <emphasis role=\"distribution\">Squeeze</emphasis> "
+"disponibiliza algumas arrays de RAID de hardware como "
+"<filename>/dev/cciss/c0d0</filename>; o núcleo no <emphasis role=\""
+"distribution\">Wheezy</emphasis> alterou esse nome para algo mais natural "
+"como <filename>/dev/sda</filename>, mas outras controladoras RAID podem "
+"ainda se comportar de modo diferente."
 
 #. Tag: para
 #, no-c-format
 msgid "We only focus on software RAID in this book."
-msgstr ""
+msgstr "Nós apenas focamos em RAID de software neste livro."
 
 #. Tag: title
 #, no-c-format
@@ -196,6 +220,14 @@ msgstr "RAID Linear"
 #, no-c-format
 msgid "Even though the kernel's RAID subsystem allows creating “linear RAID”, this is not proper RAID, since this setup doesn't involve any redundancy. The kernel merely aggregates several disks end-to-end and provides the resulting aggregated volume as one virtual disk (one block device). That's about its only function. This setup is rarely used by itself (see later for the exceptions), especially since the lack of redundancy means that one disk failing makes the whole aggregate, and therefore all the data, unavailable."
 msgstr ""
+"Mesmo o que o subsistema de RAID do núcleo permita a criação de um “RAID "
+"linear”, isso não é um RAID propriamente, já que essa configuração não "
+"envolve qualquer redundância. O núcleo apenas agrega vários discos fim-a-fim "
+"e provê o volume agregado resultante como um disco virtual (um dispositivo "
+"de bloco). Essa é sua única função. Essa configuração raramente é usada por "
+"ela própria (veja mais adiante sobre as exceções), especialmente porque a "
+"falta de redundância significa que a falha de um disco faz com que todo o "
+"agregado, e portanto todos os dados, fiquem indisponíveis."
 
 #. Tag: term
 #, no-c-format
@@ -266,6 +298,11 @@ msgstr "RAID-4"
 #, no-c-format
 msgid "This RAID level, not widely used, uses N disks to store useful data, and an extra disk to store redundancy information. If that disk fails, the system can reconstruct its contents from the other N. If one of the N data disks fails, the remaining N-1 combined with the “parity” disk contain enough information to reconstruct the required data."
 msgstr ""
+"Esse nível de RAID, não amplamente usado, usa N discos para armazenar dados "
+"úteis, e um disco extra para armazenar informação redundante. Se esse disco "
+"falhar, o sistema pode reconstruir seu conteúdo a partir do outro N. Se um "
+"dos N discos de dados falhar, O N-1 remanescente combinado com o disco "
+"“paridade” contém informação suficiente para reconstruir os dados requeridos."
 
 #. Tag: para
 #, no-c-format
@@ -301,6 +338,11 @@ msgstr "RAID-6 pode ser considerado uma extensão do RAID-5, onde cada série de
 #, no-c-format
 msgid "This RAID level is slightly more expensive than the previous two, but it brings some extra safety since up to two drives (of the N+2) can fail without compromising data availability. The counterpart is that write operations now involve writing one data block and two redundancy blocks, which makes them even slower."
 msgstr ""
+"Esse nível de RAID é levemente mais caro que os dois anteriores, mas ele "
+"traz alguma segurança extra já que até dois drives (dos N+2) podem falhar "
+"sem comprometer a disponibilidade dos dados. A contraparte é que as "
+"operações de escrita agora envolvem escrever um bloco de dados e dois blocos "
+"de redundância, o que os torna ainda mais lento."
 
 #. Tag: term
 #, no-c-format
@@ -346,6 +388,12 @@ msgstr "Configurando um RAID"
 #, no-c-format
 msgid "Setting up RAID volumes requires the <emphasis role=\"pkg\">mdadm</emphasis> <indexterm><primary><emphasis role=\"pkg\">mdadm</emphasis></primary></indexterm> package; it provides the <command>mdadm</command> command, which allows creating and manipulating RAID arrays, as well as scripts and tools integrating it to the rest of the system, including the monitoring system."
 msgstr ""
+"Configurar volumes RAID requer o pacote <emphasis role=\"pkg\""
+">mdadm</emphasis> <indexterm><primary><emphasis role=\"pkg\""
+">mdadm</emphasis></primary></indexterm>; ele provê o comando "
+"<command>mdadm</command>, que permite a criação e maipulação de arrays RAID, "
+"assim como scripts e ferramentas para integração com o resto do sistema, "
+"incluindo o sistema de monitoração."
 
 #. Tag: para
 #, no-c-format
@@ -664,21 +712,38 @@ msgstr "<emphasis>DICA</emphasis> Configurando um espelho sem sincronização"
 #, no-c-format
 msgid "RAID-1 volumes are often created to be used as a new disk, often considered blank. The actual initial contents of the disk is therefore not very relevant, since one only needs to know that the data written after the creation of the volume, in particular the filesystem, can be accessed later."
 msgstr ""
+"Volumes RAID-1 são geralmente criados para serem usados como disco novo, "
+"geralmente considerados vazios. O conteúdo inicial real do disco portanto "
+"não é muito relevante, já que alguém apenas precisa saber que os dados "
+"escritos após a criação do volume, em particular o sistema de arquivos, "
+"podem ser acessados mais tarde."
 
 #. Tag: para
 #, no-c-format
 msgid "One might therefore wonder about the point of synchronizing both disks at creation time. Why care whether the contents are identical on zones of the volume that we know will only be read after we have written to them?"
 msgstr ""
+"Pode-se portanto querer saber sobre o ponto de sincronização de ambos os "
+"discos no momento da criação. Por que se importar se os conteúdos são "
+"idênticos em zonas do volume que nós sabemos que apenas serão lidas após nós "
+"termos escrito nelas?"
 
 #. Tag: para
 #, no-c-format
 msgid "Fortunately, this synchronization phase can be avoided by passing the <literal>--assume-clean</literal> option to <command>mdadm</command>. However, this option can lead to surprises in cases where the initial data will be read (for instance if a filesystem is already present on the physical disks), which is why it isn't enabled by default."
 msgstr ""
+"Felizmente, essa fase de sincronização pode ser evitada passando a opção "
+"<literal>--assume-clean</literal> para <command>mdadm</command>. Contudo, "
+"essa opção pode levar a surpresas no caso de os dados iniciais serem lidos ("
+"por exemplo se um sistema de arquivos já esteja presente nos discos físicos)"
+", que é o por que dela não ser habilitada por padrão."
 
 #. Tag: para
 #, no-c-format
 msgid "Now let's see what happens when one of the elements of the RAID-1 array fails. <command>mdadm</command>, in particular its <literal>--fail</literal> option, allows simulating such a disk failure:"
 msgstr ""
+"Agora vamos ver o que acontece quando um dos elementos da array RAID-1 "
+"falha. O <command>mdadm</command>, em particular sua opção "
+"<literal>--fail</literal>, permite simular uma falha de disco desse tipo:"
 
 #. Tag: screen
 #, no-c-format
@@ -733,6 +798,11 @@ msgstr ""
 #, no-c-format
 msgid "The contents of the volume are still accessible (and, if it is mounted, the applications don't notice a thing), but the data safety isn't assured anymore: should the <filename>sdd</filename> disk fail in turn, the data would be lost. We want to avoid that risk, so we'll replace the failed disk with a new one, <filename>sdf</filename>:"
 msgstr ""
+"O conteúdo do volume ainda está acessível (e, se montado, as aplicações não  "
+"notarão nada), mas a segurança dos dados não é mais garantida: se, por sua "
+"vez, o disco <filename>sdd</filename> falhar, os dados serão perdidos. Nós "
+"queremos evitar esse risco, então nós vamos substituir o disco falho por um "
+"novo, <filename>sdf</filename>:"
 
 #. Tag: screen
 #, no-c-format
@@ -841,6 +911,12 @@ msgstr ""
 #, no-c-format
 msgid "Here again, the kernel automatically triggers a reconstruction phase during which the volume, although still accessible, is in a degraded mode. Once the reconstruction is over, the RAID array is back to a normal state. One can then tell the system that the <filename>sde</filename> disk is about to be removed from the array, so as to end up with a classical RAID mirror on two disks:"
 msgstr ""
+"Aqui, mais uma vez, o núcleo automaticamente dispara uma fase de "
+"reconstrução, durante a qual o volume, embora ainda acessível, está em um "
+"modo degradado. Uma vez que a reconstrução esteja terminada, a array RAID "
+"está de volta ao estado normal. Pode-se então dizer ao sistema que o disco "
+"<filename>sde</filename> está para ser removido da array, para que se possa "
+"terminar com um espelhamento RAID clássico nos dois discos:"
 
 #. Tag: screen
 #, no-c-format
@@ -884,6 +960,10 @@ msgstr ""
 #, no-c-format
 msgid "Backing up the configuration is therefore important, if only for reference. The standard way to do it is by editing the <filename>/etc/mdadm/mdadm.conf</filename> file, an example of which is listed here:"
 msgstr ""
+"Fazer uma cópia de segurança da configuração é portanto importante, mesmo "
+"que apenas para referência. A maneira padrão de fazer isso é editando o "
+"arquivo <filename>/etc/mdadm/mdadm.conf</filename>, um exemplo do que é "
+"listado aqui:"
 
 #. Tag: title
 #, no-c-format
@@ -952,6 +1032,12 @@ msgstr ""
 #, no-c-format
 msgid "One of the most useful details is the <literal>DEVICE</literal> option, which lists the devices where the system will automatically look for components of RAID volumes at start-up time. In our example, we replaced the default value, <literal>partitions containers</literal>, with an explicit list of device files, since we chose to use entire disks and not only partitions, for some volumes."
 msgstr ""
+"Um dos detalhes mais úteis é a opção <literal>DEVICE</literal>, que lista os "
+"dispositivos aonde o sistema irá automaticamente procurar por componentes "
+"dos volumes RAID no momento da inicialização. No nosso exemplo, nós "
+"substituímos o valor padrão, <literal>partitions containers</literal>, por "
+"uma explícita lista de arquivos de dispositivos, já que nós escolhemos usar "
+"discos inteiros e não apenas partições, para alguns volumes."
 
 #. Tag: para
 #, no-c-format
