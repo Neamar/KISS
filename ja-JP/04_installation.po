@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-15 21:54+0900\n"
+"PO-Revision-Date: 2015-04-20 03:57+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -692,669 +692,669 @@ msgstr "案内付きパーティション分割ツールでは、それぞれ別
 #. Tag: para
 #, no-c-format
 msgid "The first method is called “All files in one partition”. The entire Linux system tree is stored in a single filesystem, corresponding to the root <filename>/</filename> directory. This simple and robust partitioning fits perfectly for personal or single-user systems. In fact, two partitions will be created: the first will house the complete system, the second the virtual memory (swap)."
-msgstr ""
+msgstr "1 番目の方法は「All files in one partition」です。これは、Linux システムツリー全体 (ルート <filename>/</filename> ディレクトリ以下全て) を単一のファイルシステムに保存します。このパーティション分割は単純かつ頑強であり、個人および単一ユーザシステム用途にぴったりです。実際には、2 つのパーティションが作られます: 1 つ目はシステム全体用、2 つ目は仮想メモリ (swap) 用です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The second method, “Separate <filename>/home/</filename> partition”, is similar, but splits the file hierarchy in two: one partition contains the Linux system (<filename>/</filename>), and the second contains “home directories” (meaning user data, in files and subdirectories available under <filename>/home/</filename>)."
-msgstr ""
+msgstr "2 番目の方法は「Separate <filename>/home/</filename> partition」です。これは、1 番目の方法とよく似ていますが、ファイル階層を 2 つに分割します: 片方には Linux システム (<filename>/</filename>) を、もう片方には「ホームディレクトリ」(ユーザデータ、ファイルとサブディレクトリは <filename>/home/</filename> 以下に配置されます) を収めます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The last partitioning method, called “Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions”, is appropriate for servers and multi-user systems. It divides the file tree into many partitions: in addition to the root (<filename>/</filename>) and user accounts (<filename>/home/</filename>) partitions, it also has partitions for applications (<filename>/usr/</filename>), server software data (<filename>/var/</filename>), and temporary files (<filename>/tmp/</filename>). These divisions have several advantages. Users can not lock up the server by consuming all available hard drive space (they can only fill up <filename>/tmp/</filename> and <filename>/home/</filename>). The daemon data (especially logs) can no longer clog up the rest of the system."
-msgstr ""
+msgstr "最後のパーティション分割方法は、「Separate <filename>/home</filename>, <filename>/usr</filename>, <filename>/var</filename>, and <filename>/tmp</filename> partitions」です。これはサーバや複数のユーザが利用するシステムに適しています。これはファイルツリーを多くのパーティションに分割します: ルート (<filename>/</filename>) とユーザアカウント (<filename>/home/</filename>) パーティション、アプリケーション (<filename>/usr/</filename>)、サーバソフトウェアのデータ (<filename>/var/</filename>)、一時ファイル (<filename>/tmp/</filename>) です。このように分割するといくつかの利点があります。ユーザが利用可能なハードドライブ領域を使い切ってしまうこと (<filename>/tmp/</filename> と <filename>/home/</filename> を満杯にすることは可能) でサーバが動かなくなることがなくなります。デーモンのデータ (とくにログ) がシステムの他の領域を圧迫することがなくなります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Choosing a filesystem"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> ファイルシステムの選択"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>system</primary><secondary>filesystem</secondary>"
-msgstr ""
+msgstr "<primary>システム</primary><secondary>ファイルシステム</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>system</secondary>"
-msgstr ""
+msgstr "<primary>ファイル</primary><secondary>システム</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A filesystem defines the way in which data is organized on the hard drive. Each existing filesystem has its merits and limitations. Some are more robust, others more effective: if you know your needs well, choosing the most appropriate filesystem is possible. Various comparisons have already been made; it seems that ReiserFS is particularly efficient for reading many small files; <emphasis>XFS</emphasis>, in turn, works faster with large files. <emphasis>Ext4</emphasis>, the default filesystem for Debian, is a good compromise, based on the three previous versions of filesystems historically used in Linux (<emphasis>ext</emphasis>, <emphasis>ext2</emphasis> and <emphasis>ext3</emphasis>). <emphasis>Ext4</emphasis> overcomes certain limitations of <emphasis>ext3</emphasis> and is particularly appropriate for very large capacity hard drives. Another option would be to experiment with the very promising <emphasis>btrfs</emphasis>, which includes numerous features that require, to this day, the use of LVM and/or RAID."
-msgstr ""
+msgstr "ファイルシステムはハードドライブにデータを格納する方法を定義しています。既存のファイルシステムにはそれぞれ長所と制限があります。頑強なものもあれば、効率のよいものもあります: 自分の必要としていることをよく理解している人は最も適切なファイルシステムを選択することができます。様々なファイルシステムを比較してみましょう; ReiserFS ファイルシステムは、多くの小さなファイルを読む場合は特に効率が良いとされています。また、<emphasis>XFS</emphasis> は巨大なファイルを高速に取り扱えます。Debian のデフォルトファイルシステムである <emphasis>ext4</emphasis> は良い妥協点で、昔から Linux で使われてきた 3 つの古いファイルシステムの (<emphasis>ext</emphasis>、<emphasis>ext2</emphasis>、<emphasis>ext3</emphasis>) を基に開発されました。<emphasis>ext4</emphasis> は <emphasis>ext3</emphasis> にあったいくつかの制限を克服しており、とりわけ大容量ハードドライブに適しています。将来が期待されている <emphasis>btrfs</emphasis> を試すという選択肢もあります。このファイルシステムは最近の LVM または RAID を使用する際に要求される非常に多くの機能を備えています。"
 
 #. Tag: para
 #, no-c-format
 msgid "A journalized filesystem (such as <emphasis>ext3</emphasis>, <emphasis>ext4</emphasis>, <emphasis>btrfs</emphasis>, <emphasis>reiserfs</emphasis>, or <emphasis>xfs</emphasis>) takes special measures to make it possible to return to a prior consistent state after an abrupt interruption without completely analyzing the entire disk (as was the case with the <emphasis>ext2</emphasis> system). This functionality is carried out by filling in a journal that describes the operations to conduct prior to actually executing them. If an operation is interrupted, it will be possible to “replay” it from the journal. Conversely, if an interruption occurs during an update of the journal, the last requested change is simply ignored; the data being written could be lost, but since the data on the disk has not changed, they have remained coherent. This is nothing more nor less than a transactional mechanism applied to the filesystem."
-msgstr ""
+msgstr "ジャーナル化されたファイルシステム (<emphasis>ext3</emphasis>、<emphasis>ext4</emphasis>、<emphasis>btrfs</emphasis>、<emphasis>reiserfs</emphasis>、<emphasis>xfs</emphasis> など) では、突発的な障害が起きた際にディスク全体を完全に解析することなく (<emphasis>ext2</emphasis> システムでは解析が必要でした)、ファイルシステムを以前の整合性の取れた状態に戻せるようにするために、特別な対策が取られています。実際に作業を実行する前に、その作業の内容をジャーナルに書き込むことにより、この機能は実現されています。作業が中断された場合、ジャーナルを使って作業を「再実行」することが可能です。逆に言うと、ジャーナルの更新中に障害が発生した場合、最後の作業は単純に無視されます; ジャーナルに書き込まれたデータは失われるかもしれませんが、ディスク上のデータは変更されていないので、整合性が保たれます。これはまさにファイルシステムに対するトランザクション処理と言えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "After choosing the type of partition, the software calculates a suggestion, and describes it on the screen; the user can then modify it if needed. You can, in particular, choose another filesystem if the standard choice (<emphasis>ext4</emphasis>) isn't appropriate. In most cases, however, the proposed partitioning is reasonable and it can be accepted by selecting the “Finish partitioning and write changes to disk” entry."
-msgstr ""
+msgstr "パーティションの種類を選択した後、インストーラは分割案を算出し、画面に提示します。必要であれば、ユーザは分割案を変更することもできます。特に、標準的なファイルシステム (<emphasis>ext4</emphasis>) が不適切な場合は、別のファイルシステムを選択することができます。しかしながら多くの場合、インストーラの提示したパーティション分割案は妥当です。承諾するには「Finish partitioning and write changes to disk」エントリを選択してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Validating partitioning"
-msgstr ""
+msgstr "パーティション分割の確認"
 
 #. Tag: title
 #, no-c-format
 msgid "Manual Partitioning"
-msgstr ""
+msgstr "手作業のパーティション分割"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partitioning</primary><secondary>manual partitioning</secondary>"
-msgstr ""
+msgstr "<primary>パーティション分割</primary><secondary>手作業のパーティション分割</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Manual partitioning allows greater flexibility, allowing the user to choose the purpose and size of each partition. Furthermore, this mode is unavoidable if you wish to use software RAID."
-msgstr ""
+msgstr "手作業でやればより柔軟にパーティションを分割できます (各パーティションの目的とサイズを選ぶことができます)。また、ソフトウェア RAID を希望する場合、手作業でパーティションを分割しなければいけません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Shrinking a Windows partition."
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> Windows パーティションの縮小"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>resize a partition</primary>"
-msgstr ""
+msgstr "<primary>パーティションサイズの変更</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>shrink a partition</primary>"
-msgstr ""
+msgstr "<primary>パーティションの縮小</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To install Debian alongside an existing operating system (Windows or other), you must have some available hard drive space that is not being used by the other system in order to be able to create the partitions dedicated to Debian. In most cases, this means shrinking a Windows partition and reusing the freed space."
-msgstr ""
+msgstr "Debian を他のオペレーティングシステム (Windows など) と共存させてインストールする場合、Debian 専用のパーティションを作成するために、他のシステムが使わないハードドライブ領域が必要です。多くの場合、Windows パーティションを縮小し、できた空領域を再利用することになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian installer allows this operation when using the manual mode for partitioning. You only need to choose the Windows partition and enter its new size (this works the same with both FAT and NTFS partitions)."
-msgstr ""
+msgstr "Debian インストーラでは、手作業でパーティションを分割すれば、この作業を行えます。Windows パーティションを選択し、新しいサイズを入力するだけです (FAT と NTFS パーティションの両方に対して縮小できます)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The first screen displays the available disks, their partitions, and any possible free space that has not yet been partitioned. You can select each displayed element; pressing the <keycap>Enter</keycap> key then gives a list of possible actions."
-msgstr ""
+msgstr "最初の画面では、利用可能なディスクおよびパーティションと、パーティションを割り当てられていない空き領域が表示されます。表示されたそれぞれの要素を選択できます; <keycap>Enter</keycap> キーを押して、実行できる操作のリストが表示されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "You can erase all partitions on a disk by selecting it."
-msgstr ""
+msgstr "操作を選択すれば、ディスク上のすべてのパーティションを削除することも可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "When selecting free space on a disk, you can manually create a new partition. You can also do this with guided partitioning, which is an interesting solution for a disk that already contains another operating system, but which you may wish to partition for Linux in a standard manner. See the previous section for more details on guided partitioning."
-msgstr ""
+msgstr "ディスク上の空き領域を選択すると、新しいパーティションを作成できます。案内付きパーティション分割を空き領域に適用することも可能です。この方法は、ディスクには別のオペレーティングシステムを含んでいるけれども、標準的なやり方で Linux のパーティションを分割したいという場合に興味深い解決策です。案内付きパーティション分割に関する詳しい情報は前の章をご覧ください。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Mount point"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> マウントポイント"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mount point</primary>"
-msgstr ""
+msgstr "<primary>マウントポイント</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The mount point is the directory tree that will house the contents of the filesystem on the selected partition. Thus, a partition mounted at <filename>/home/</filename> is traditionally intended to contain user data."
-msgstr ""
+msgstr "マウントポイントとは、パーティション上のファイルシステムの内容を格納するディレクトリツリーです。<filename>/home/</filename> にマウントされたパーティションはユーザデータを格納します。"
 
 #. Tag: para
 #, no-c-format
 msgid "When this directory is named “<filename>/</filename>”, it is known as the <emphasis>root</emphasis> of the file tree, and therefore the root of the partition that will actually host the Debian system."
-msgstr ""
+msgstr "マウントポイントが「<filename>/</filename>」の場合、ファイルツリーの<emphasis>ルート</emphasis>を意味し、このパーティションのルートには Debian システムが格納されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Virtual memory, swap"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> 仮想メモリ、スワップ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual memory</primary>"
-msgstr ""
+msgstr "<primary>仮想メモリ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>swap</primary>"
-msgstr ""
+msgstr "<primary>スワップ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>swap partition</secondary>"
-msgstr ""
+msgstr "<primary>パーティション</primary><secondary>スワップパーティション</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>swap partition</primary>"
-msgstr ""
+msgstr "<primary>スワップパーティション</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Virtual memory allows the Linux kernel, when lacking sufficient memory (RAM), to free a bit of storage by storing the parts of the RAM that have been inactive for some time on the swap partition of the hard disk."
-msgstr ""
+msgstr "仮想メモリのおかげでメモリ (RAM) の空き容量が不足した際に、Linux カーネルは、しばらくの間活動していない RAM の内容をハードディスクのスワップパーティションに保存して、RAM の空き領域を少し確保することができます。"
 
 #. Tag: para
 #, no-c-format
 msgid "To simulate the additional memory, Windows uses a swap file that is directly contained in a filesystem. Conversely, Linux uses a partition dedicated to this purpose, hence the term “swap partition”."
-msgstr ""
+msgstr "このような付加的メモリを装うために、Windows ではファイルシステムに直接格納されるスワップファイルが利用されています。逆に、Linux ではこの目的専用のパーティション「スワップパーティション」が利用されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "When choosing a partition, you can indicate the manner in which you are going to use it:"
-msgstr ""
+msgstr "パーティションを選ぶ際に、どのような方法でパーティションを使うかを指定します。"
 
 #. Tag: para
 #, no-c-format
 msgid "format it and include it in the file tree by choosing a mount point;"
-msgstr ""
+msgstr "パーティションをフォーマットし、マウントポイントを指定してパーティションをファイルツリーに含めます;"
 
 #. Tag: para
 #, no-c-format
 msgid "use it as a swap partition;"
-msgstr ""
+msgstr "スワップパーティションとしてパーティションを使います;"
 
 #. Tag: para
 #, no-c-format
 msgid "make it into a “physical volume for encryption” (to protect the confidentiality of data on certain partitions, see below);"
-msgstr ""
+msgstr "パーティションを「暗号化物理ボリューム」にします (パーティションに含まれる秘密のデータを守ります、以下を参照);"
 
 #. Tag: para
 #, no-c-format
 msgid "make it a “physical volume for LVM” (this concept is discussed in greater detail later in this chapter);"
-msgstr ""
+msgstr "パーティションを「LVM 用物理ボリューム」にします (この概念は、この章の後で詳しく議論します);"
 
 #. Tag: para
 #, no-c-format
 msgid "use it as a RAID device (see later in this chapter);"
-msgstr ""
+msgstr "RAID デバイスとして利用します (この章の後半を参照);"
 
 #. Tag: para
 #, no-c-format
 msgid "or the choice not to use it, and therefore leave it unchanged."
-msgstr ""
+msgstr "パーティションを使わないことにして、そのままにしておきます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring Multidisk Devices (Software RAID)"
-msgstr ""
+msgstr "複数ディスクデバイスの設定 (ソフトウェア RAID)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Software RAID</primary>"
-msgstr ""
+msgstr "<primary>ソフトウェア RAID</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>device</primary><secondary>multi-disk device</secondary>"
-msgstr ""
+msgstr "<primary>デバイス</primary><secondary>複数ディスクデバイス</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Some types of RAID allow the duplication of information stored on hard drives to prevent data loss in the event of a hardware problem affecting one of them. Level 1 RAID keeps a simple, identical copy (mirror) of a hard drive on another drive, while level 5 RAID splits redundant data over several disks, thus allowing the complete reconstruction of a failing drive."
-msgstr ""
+msgstr "RAID のいくつかの型では、データに影響を及ぼすハードウェア障害が起きた際にデータの消失を防ぐために、ハードドライブに保存された情報を複製します。レベル 1 RAID は単純で、別のハードドライブにドライブの全く同じ複製をとります。これに対して、レベル 5 RAID は冗長データを複数のディスクに分散します。このため、障害の起きたドライブの完全な復元が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "We will only describe level 1 RAID, which is the simplest to implement. The first step involves creating two partitions of identical size located on two different hard drives, and to label them “physical volume for RAID”."
-msgstr ""
+msgstr "実行が最も単純なレベル 1 RAID だけを説明します。最初に、全く同じサイズのパーティションを 2 つ別々のドライブに作成し、「RAID の物理ボリューム」とラベル付けします。"
 
 #. Tag: para
 #, no-c-format
 msgid "You must then choose “Configure software RAID” in the partitioning tool to combine these two partitions into a new virtual disk and select “Create MD device” in the configuration screen. You then need to answer a series of questions about this new device. The first question asks about the RAID level to use, which in our case will be “RAID1”. The second question asks about the number of active devices — two in our case, which is the number of partitions that needs to be included in this MD device. The third question is about the number of spare devices — 0; we have not planned any additional disk to take over for a possible defective disk. The last question requires you to choose the partitions for the RAID device — these would be the two that we have set aside for this purpose (make sure you only select the partitions that explicitly mention “raid”)."
-msgstr ""
+msgstr "2 つのパーティションを 1 つの仮想ディスクにまとめるためにはパーティション分割ツールで「ソフトウェア RAID を設定」を選び、設定画面で「MD デバイスを作成」を選んでください。新しいデバイスに関する一連の質問に答える必要があります。最初の質問では、使用する RAID レベルを尋ねられます。今回の場合「RAID1」です。2 番目の質問では、アクティブデバイスの数を尋ねられます - 今回の場合 2 台です。これは MD デバイスに含めるパーティションの数です。3 番目の質問では、予備デバイスの数を尋ねられます - 今回の場合 0 台です; ディスク不良が起きた際に機能を代替させるためのディスクを追加する計画はありません。最後の質問では、RAID デバイス用のパーティションを尋ねられます - これは先に用意した 2 つのパーティションです (「raid」と明示されてるパーティション以外は選ばないでください)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Back to the main menu, a new virtual “RAID” disk appears. This disk is presented with a single partition which can not be deleted, but whose use we can choose (just like for any other partition)."
-msgstr ""
+msgstr "メインメニューに戻ると、新しい仮想「RAID」ディスクが表示されます。このディスクは削除できない単一のパーティションとして表示されますが、選択すればこれを使用できます (他のパーティションと同様に)。"
 
 #. Tag: para
 #, no-c-format
 msgid "For further details on RAID functions, please refer to <xref linkend=\"sect.raid-soft\" />."
-msgstr ""
+msgstr "RAID 機能に関するより詳しい情報は<xref linkend=\"sect.raid-soft\" />を参照してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Logical Volume Manager (LVM)"
-msgstr ""
+msgstr "論理ボリュームマネージャ (LVM) の設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LVM</primary><secondary>during installation</secondary>"
-msgstr ""
+msgstr "<primary>LVM</primary><secondary>インストール中</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Logical Volume Manager</primary><secondary>during installation</secondary>"
-msgstr ""
+msgstr "<primary>論理ボリュームマネージャ</primary><secondary>インストール中</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "LVM allows you to create “virtual” partitions that span over several disks. The benefits are twofold: the size of the partitions are no longer limited by individual disks but by their cumulative volume, and you can resize existing partitions at any time, possibly after adding an additional disk when needed."
-msgstr ""
+msgstr "LVM を使うことで、複数のディスクに分散した「仮想」パーティションを作成できます。LVM を使うことの利点は 2 つあります: パーティションのサイズは、もはや個々のディスクによって制限を受けるのではなく、累積ボリュームによって制限を受けます。さらにパーティションのサイズはいつでも (ディスクを追加した後などに) 変更できます。"
 
 #. Tag: para
 #, no-c-format
 msgid "LVM uses a particular terminology: a virtual partition is a “logical volume”, which is part of a “volume group”, or an association of several “physical volumes”. Each of these terms in fact corresponds to a “real” partition (or a software RAID device)."
-msgstr ""
+msgstr "LVM では特有の専門用語を使います: 仮想パーティションは「論理ボリューム」と呼びます。これは「ボリュームグループ」の一部で、複数の「物理ボリューム」群を意味します。実際のところ、それぞれの専門用語は「実」パーティション (またはソフトウェア RAID デバイス) に相当します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>volume</primary><secondary>logical volume</secondary>"
-msgstr ""
+msgstr "<primary>ボリューム</primary><secondary>論理ボリューム</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>volume</primary><secondary>physical volume</secondary>"
-msgstr ""
+msgstr "<primary>ボリューム</primary><secondary>物理ボリューム</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>of volumes</secondary>"
-msgstr ""
+msgstr "<secondary>ボリュームの</secondary><<primary>グループ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>volume</primary><secondary>group</secondary>"
-msgstr ""
+msgstr "<primary>ボリューム</primary><secondary>グループ</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This technique works in a very simple way: each volume, whether physical or logical, is split into blocks of the same size, which are made to correspond by LVM. The addition of a new disk will cause the creation of a new physical volume, and these new blocks can be associated to any volume group. All of the partitions in the volume group that is thus expanded will have additional space into which they can extend."
-msgstr ""
+msgstr "この技法はとても単純な方法で実現されています: それぞれのボリュームは、物理でも論理でも、同じサイズのブロックに分割されます。ブロックは LVM に一致するように作られます。新しいディスクの追加は新しい物理ボリュームの作成に対応し、新しいブロックはいかなるボリュームグループにも関連付けることができます。拡張されたボリュームグループ内の全てのパーティションは、スペースの許す限り拡張することができます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The partitioning tool configures LVM in several steps. First you must create on the existing disks the partitions that will be “physical volumes for LVM”. To activate LVM, you need to choose “Configure the Logical Volume Manager (LVM)”, then on the same configuration screen “Create a volume group”, to which you will associate the existing physical volumes. Finally, you can create logical volumes within this volume group. Note that the automatic partitioning system can perform all these steps automatically."
-msgstr ""
+msgstr "パーティション分割ツールは数段階で LVM を設定します。最初に、存在するディスク上に「LVM 用の物理ボリューム」となるパーティションを作成しなければいけません。LVM を稼働するためには、「論理ボリュームマネージャ (LVM) を設定」を選び、同じ設定画面で「ボリュームグループを作成」から、存在する物理ボリュームを関連付けてください。最後に、このボリュームグループ内に論理ボリュームを作成してください。自動パーティション分割システムは全段階を自動的に実行できます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In the partitioning menu, each physical volume will appear as a disk with a single partition which can not be deleted, but that you can use as desired."
-msgstr ""
+msgstr "パーティション分割メニューでは、それぞれの物理ボリュームは削除できない単一のパーティションをもつディスクとして表示されますが、要望通り使うことができます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The usage of LVM is described in further detail in <xref linkend=\"sect.lvm\" />."
-msgstr ""
+msgstr "LVM の使い方については<xref linkend=\"sect.lvm\" />に詳しく述べられています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Setting Up Encrypted Partitions"
-msgstr ""
+msgstr "暗号化パーティションを設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LUKS</primary>"
-msgstr ""
+msgstr "<primary>LUKS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dm-crypt</primary>"
-msgstr ""
+msgstr "<primary>dm-crypt</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>encrypted</secondary>"
-msgstr ""
+msgstr "<primary>パーティション</primary><secondary>暗号化</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition encryption</primary>"
-msgstr ""
+msgstr "<primary>パーティションの暗号化</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>confidentiality</primary><secondary>files</secondary>"
-msgstr ""
+msgstr "<primary>機密</primary><secondary>ファイル</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>confidentiality</secondary>"
-msgstr ""
+msgstr "<primary>ファイル</primary><secondary>機密</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To guarantee the confidentiality of your data, for instance in the event of the loss or theft of your computer or a hard drive, it is possible to encrypt the data on some partitions. This feature can be added underneath any filesystem, since, as for LVM, Linux (and more particularly the dm-crypt driver) uses the Device Mapper to create a virtual partition (whose content is protected) based on an underlying partition that will store the data in an encrypted form (thanks to LUKS, Linux Unified Key Setup, a standard format that enables the storage of encrypted data as well as meta-information that indicates the encryption algorithms used)."
-msgstr ""
+msgstr "データの機密性を保証するために、例えばコンピュータやバードドライブを紛失したり盗難された時に備えて、一部のパーティションのデータを暗号化しておく必要があります。暗号化の可否はファイルシステムの種類に依存しません。なぜなら、LVM と同様に、Linux (より具体的にいえば dm-crypt ドライバ) は暗号化された形でデータを保存する下層のパーティションに仮想パーティション (この内容が保護されます) を作成するために、デバイスマッパを使っているからです (LUKS、Linux Unified Key Setup、のおかげで標準的なフォーマットが定められ、暗号化されたデータおよび使われている暗号化アルゴリズムを表すメタ情報の保存を可能になりました)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Encrypted swap partition"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> 暗号化されたスワップパーティション"
 
 #. Tag: para
 #, no-c-format
 msgid "When an encrypted partition is used, the encryption key is stored in memory (RAM). Since retrieving this key allows the decryption of the data, it is of utmost importance to avoid leaving a copy of this key that would be accessible to the possible thief of the computer or hard drive, or to a maintenance technician. This is however something that can easily occur with a laptop, since when hibernating the contents of RAM is stored on the swap partition. If this partition isn't encrypted, the thief may access the key and use it to decrypt the data from the encrypted partitions. This is why, when you use encrypted partitions, it is imperative to also encrypt the swap partition!"
-msgstr ""
+msgstr "暗号化されたパーティションを使う場合、暗号化鍵はメモリ (RAM) の中に保存されています。暗号化鍵が入手できればデータの復号化が可能になります。コンピュータやハードドライブの泥棒もしくは保守管理技術者に暗号化鍵の複製を入手できないようにするには、これを残さないようにすることが最も重要です。しかしながらこれはラップトップでは簡単に起こりうることです。なぜなら、ハイバネーションの際に RAM の内容はスワップパーティションに保存されるからです。もしスワップパーティションが暗号化されていなければ、泥棒は鍵を入手して、暗号化されたパーティションのデータを復号化するかもしれません。このため、暗号化パーティションを使うなら、スワップパーティションの暗号化も欠かせません!"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian installer will warn the user if they try to make an encrypted partition while the swap partition isn't encrypted."
-msgstr ""
+msgstr "Debian インストーラはスワップパーティションが暗号化されていないにも関わらず暗号化されたパーティションを作ろうとしたらユーザに警告します。"
 
 #. Tag: para
 #, no-c-format
 msgid "To create an encrypted partition, you must first assign an available partition for this purpose. To do so, select a partition and indicate that it is to be used as a “physical volume for encryption”. After partitioning the disk containing the physical volume to be made, choose “Configure encrypted volumes”. The software will then propose to initialize the physical volume with random data (making the localization of the real data more difficult), and will ask you to enter an “encryption passphrase”, which you will have to enter every time you boot your computer in order to access the content of the encrypted partition. Once this step has been completed, and you have returned to the partitioning tool menu, a new partition will be available in an “encrypted volume”, which you can then configure just like any other partition. In most cases, this partition is used as a physical volume for LVM so as to protect several partitions (LVM logical volumes) with the same encryption key, including the swap partition (see sidebar)."
-msgstr ""
+msgstr "暗号化パーティションを作成するには、最初にあるパーティションを暗号化用に割り当てなければいけません。割り当てを行うには、パーティションを選択し「暗号化用の物理パーティション」として使うように設定してください。物理ボリュームを含むディスクのパーティション分割の後、「暗号化ボリュームを設定」を選んでください。ソフトウェアは (真のデータの位置をより分かりにくくするために) 物理ボリュームをでたらめなデータで初期化することを提案し、「暗号化パスフレーズ」の入力を要求します。暗号化されたパーティションの内容にアクセスする場合、パスフレーズはコンピュータの起動時に毎回入力しなければいけません。この段階が完了しパーティション分割ツールメニューまで戻ったら、新しいパーティションを「暗号化ボリューム」で利用できるはずです、これは他のパーティションと同様に設定できます。多くの場合、複数のパーティション (LVM 論理ボリューム) をスワップパーティションも含めて (傍注参照) 同じ暗号化鍵で保護するために暗号化パーティションは LVM の物理ボリュームとして利用されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the Base System"
-msgstr ""
+msgstr "基本システムのインストール"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>system</primary><secondary>base</secondary>"
-msgstr ""
+msgstr "<secondary>基本</secondary><<primary>システム</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This step, which doesn't require any user interaction, installs the Debian “base system” packages. This includes the <command>dpkg</command> and <command>apt</command> tools, which manage Debian packages, as well as the utilities necessary to boot the system and start using it."
-msgstr ""
+msgstr "この段階ではユーザの入力は不要で、Debian の「基本システム」パッケージをインストールします。基本システムには Debian パッケージを管理する <command>dpkg</command> と <command>apt</command> ツールだけでなく、システムを起動させてシステムを使うのに必要なユーティリティが含まれています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Installation of the base system"
-msgstr ""
+msgstr "基本システムのインストール"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Package Manager (<command>apt</command>)"
-msgstr ""
+msgstr "パッケージマネージャ (<command>apt</command>) の設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>initial configuration of APT</secondary>"
-msgstr ""
+msgstr "<primary>設定</primary><secondary>APT の初期設定</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>initial configuration</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>初期設定</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In order to be able to install additional software, APT needs to be configured and told where to find Debian packages. This step is as automated as possible. It starts with a question asking if it must use a network source for packages, or if it should only look for packages on the CD-ROM."
-msgstr ""
+msgstr "追加ソフトウェアをインストール可能にするためには、APT を設定し、Debian パッケージを探す場所を決めなければいけません。この段階は可能な限り自動化されています。パッケージを探す場所をネットワークソースにするか、CD-ROM だけにするかを尋ねる質問から始まります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Debian CD-ROM in the drive"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> ドライブ中の Debian CD-ROM"
 
 #. Tag: para
 #, no-c-format
 msgid "If the installer detects a Debian installation disk in the CD/DVD reader, it is not necessary to configure APT to go looking for packages on the network: APT is automatically configured to read packages from a removable media drive. If the disk is part of a set, the software will offer to “explore” other disks in order to reference all of the packages stored on them."
-msgstr ""
+msgstr "インストーラが CD/DVD ドライブに Debian のインストールディスクを検出した場合、ネットワーク上のパッケージを探しに行くように APT を設定する必要はありません: APT は自動的にリムーバブルメディアドライブからパッケージを読むように設定します。このディスクがセットの一部だった場合、ソフトウェアは他のディスクに収められている全てパッケージを参照するために他のディスクを「探索」することを提案するでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "If getting packages from the network is requested, the next two questions allow to choose a server from which to download these packages, by choosing first a country, then a mirror available in that country (a mirror is a public server hosting copies of all the files of the Debian master archive)."
-msgstr ""
+msgstr "ネットワークからパッケージを取得することを選んだ場合、次の 2 つの質問で国とその国で利用できるミラーを選択し、パッケージをダウンロードするサーバを選びます (ミラーとは Debian マスターアーカイブにあるファイルのコピーをホストしている公開サーバです)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting a Debian mirror"
-msgstr ""
+msgstr "Debian ミラーの選択"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the program proposes to use an HTTP proxy. If there is no proxy, Internet access will be direct. If you type <literal>http://proxy.falcot.com:3128</literal>, APT will use the Falcot <foreignphrase>proxy/cache</foreignphrase>, a “Squid” program. You can find these settings by checking the configurations of a web browser on another machine connected to the same network."
-msgstr ""
+msgstr "最後にプログラムは HTTP プロキシを使うことを提案します。プロキシを使わなければ、インターネットに直接アクセスします。<literal>http://proxy.falcot.com:3128</literal> と入力した場合、APT は Falcot の<foreignphrase>プロキシ/キャッシュ</foreignphrase>である「Squid」プログラムを使うでしょう。これらの設定を見つけるには、同じネットワークに接続された別のマシンでウェブブラウザの設定を確認してみてください。"
 
 #. Tag: para
 #, no-c-format
 msgid "The files <filename>Packages.gz</filename> and <filename>Sources.gz</filename> are then automatically downloaded to update the list of packages recognized by APT."
-msgstr ""
+msgstr "APT は <filename>Packages.gz</filename> と <filename>Sources.gz</filename> ファイルを自動的にダウンロードし、認識するパッケージのリストを更新します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> HTTP proxy"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> HTTP プロキシ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>proxy</primary>"
-msgstr ""
+msgstr "<primary>プロキシ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>proxy cache</primary>"
-msgstr ""
+msgstr "<primary>プロキシキャッシュ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>cache, proxy</primary>"
-msgstr ""
+msgstr "<primary>キャッシュ、プロキシ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Squid</primary>"
-msgstr ""
+msgstr "<primary>Squid</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "An HTTP proxy is a server that forwards an HTTP request for network users. It sometimes helps to speed up downloads by keeping a copy of files that have been transferred through it (we then speak of proxy/cache). In some cases, it is the only means of accessing an external web server; in such cases it is essential to answer the corresponding question during installation for the program to be able to download the Debian packages through it."
-msgstr ""
+msgstr "HTTP プロキシはネットワークユーザの HTTP 要求を転送するサーバです。プロキシは転送したファイルのコピーを保存することでダウンロードの高速化に寄与する場合があります (そのためこれはプロキシ/キャッシュと呼ばれます)。時として、プロキシは外部のウェブサーバにアクセスする唯一の手段である場合があります; このような場合、必ずインストール中のプロキシ関連の質問に答えてください。そうすれば、プログラムはプロキシを通じて Debian パッケージをダウンロードできるようになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Squid is the name of the server software used by Falcot Corp to offer this service."
-msgstr ""
+msgstr "Squid は Falcot Corp がプロキシサービスを提供するために使っているサーバソフトウェアの名前です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Debian Package Popularity Contest"
-msgstr ""
+msgstr "Debian パッケージ人気コンテスト"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian system contains a package called <emphasis role=\"pkg\">popularity-contest</emphasis>, whose purpose is to compile package usage statistics. Each week, this program collects information on the packages installed and those used recently, and anonymously sends this information to the Debian project servers. The project can then use this information to determine the relative importance of each package, which influences the priority that will be granted to them. In particular, the most “popular” packages will be included in the installation CD-ROM, which will facilitate their access for users who do not wish to download them or to purchase a complete set."
-msgstr ""
+msgstr "Debian システムには <emphasis role=\"pkg\">popularity-contest</emphasis> と呼ばれるパッケージが含まれています。これはパッケージの使用統計を収集するためのパッケージです。毎週、このプログラムはインストールされたパッケージと最近利用されたパッケージの情報を収集し、この情報を匿名で Debian プロジェクトのサーバに送信します。Debian プロジェクトは各パッケージの相対的重要度を決定するためにこの情報を使うことができます。この情報はパッケージの優先度に影響を与えます。特に、完全なセットをダウンロードまたは購入したくないというユーザの利便性を考慮して、最も「人気」のパッケージはインストール CD-ROM に収録されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "This package is only activated on demand, out of respect for the confidentiality of users' usage."
-msgstr ""
+msgstr "このパッケージは、ユーザの利用法の機密性を配慮して、要求されない限りインストールされません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Selecting Packages for Installation"
-msgstr ""
+msgstr "インストールするパッケージの選択"
 
 #. Tag: para
 #, no-c-format
 msgid "The following step allows you to choose the purpose of the machine in very broad terms; the ten suggested tasks correspond to lists of packages to be installed. The list of the packages that will actually be installed will be fine-tuned and completed later on, but this provides a good starting point in a simple manner."
-msgstr ""
+msgstr "以降の段階では、マシンの大まかな目的を選択します; ここで提案されている 10 個のタスクはインストールされるパッケージのリストに対応しています。実際にインストールするパッケージのリストは、後から微調整と仕上げを行います。単純な方法ですがこのリストは良い出発地点になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Some packages are also automatically installed according to the hardware detected (thanks to the program <command>discover-pkginstall</command> from the <emphasis role=\"pkg\">discover</emphasis> package). For instance, if a VirtualBox virtual machine is detected, the program will install the <emphasis role=\"pkg\">virtualbox-ose-guest-dkms</emphasis> package, allowing for better integration of the virtual machine with the host system."
-msgstr ""
+msgstr "検出されたハードウェアに基づき、いくつかのパッケージは自動的にインストールされます (<emphasis role=\"pkg\">discover</emphasis> パッケージの <command>discover-pkginstall</command> プログラムがこれを担当します)。例えば、VirtualBox 仮想マシンが検出されたら、プログラムは <emphasis role=\"pkg\">virtualbox-ose-guest-dkms</emphasis> パッケージをインストールします。このパッケージは仮想マシンをホストシステムとうまく統合するためのものです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Task choices"
-msgstr ""
+msgstr "タスクの選択"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the GRUB Bootloader"
-msgstr ""
+msgstr "GRUB ブートローダのインストール"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB</primary>"
-msgstr ""
+msgstr "<primary>GRUB</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The bootloader is the first program started by the BIOS. This program loads the Linux kernel into memory and then executes it. It often offers a menu that allows the user to choose the kernel to load and/or the operating system to boot."
-msgstr ""
+msgstr "ブートローダは BIOS が起動する最初のプログラムです。ブートローダは Linux カーネルをメモリに読み込み、実行します。通常ブートローダはユーザに対して、読み込むカーネルまたは起動したいオペレーティングシステムを選択できるメニューを表示します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Bootloader and dual boot"
-msgstr ""
+msgstr "<emphasis>BEWARE</emphasis> ブートローダとデュアルブート"
 
 #. Tag: para
 #, no-c-format
 msgid "This phase in the Debian installation process detects the operating systems that are already installed on the computer, and automatically adds corresponding entries in the boot menu, but not all installation programs do this."
-msgstr ""
+msgstr "Debian インストールプロセスでは、この段階でコンピュータにすでにインストールされたオペレーティングシステムを検出し、関連するエントリをブートメニューに自動的に追加します。しかし、中にはこのような作業を行わないインストールプログラムもあります。"
 
 #. Tag: para
 #, no-c-format
 msgid "In particular, if you install (or reinstall) Windows thereafter, the bootloader will be erased. Debian will still be on the hard drive, but will no longer be accessible from the boot menu. You would then have to boot the Debian installation system in <userinput>rescue</userinput> mode to set up a less exclusive bootloader. This operation is described in detail in the installation manual. <ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch08s07.html\" />"
-msgstr ""
+msgstr "特に、後から Windows をインストール (または再インストール) する場合、ブートローダは消去されます。Debian はまだハードドライブに残っていますが、もはやブートメニューに表示されません。排他的でないブートローダをセットアップするには、Debian インストールシステムを <userinput>rescue</userinput> モードで起動してください。この操作はインストールマニュアルに詳しく書かれています。<ulink type=\"block\" url=\"http://www.debian.org/releases/stable/amd64/ch08s07.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "By default, the menu proposed by GRUB contains all the installed Linux kernels, as well as any other operating systems that were detected. This is why you should accept the offer to install it in the Master Boot Record. Since keeping older kernel versions preserves the ability to boot the same system if the most recently installed kernel is defective or poorly adapted to the hardware, it often makes sense to keep a few older kernel versions installed."
-msgstr ""
+msgstr "デフォルトでは、GRUB の提案したメニューにはすべてのインストールされたカーネルおよび検出された他のオペレーティングシステムが含まれています。このため、GRUB をマスターブートレコード内にインストールするべきです。最近インストールされたカーネルが欠陥品かハードウェアと相性が悪い場合に、古いカーネルバージョンを保持しておけば、同じシステムを起動できる状態が保存されるため、インストールされた古いカーネルバージョンを保持しておくことは理にかなっています。"
 
 #. Tag: para
 #, no-c-format
 msgid "GRUB is the default bootloader installed by Debian thanks to its technical superiority: it works with most filesystems and therefore doesn't require an update after each installation of a new kernel, since it reads its configuration during boot and finds the exact position of the new kernel. Version 1 of GRUB (now known as “Grub Legacy”) couldn't handle all combinations of LVM and software RAID; version 2, installed by default, is more complete. There may still be situations where it is more recommendable to install LILO (another bootloader); the installer will suggest it automatically."
-msgstr ""
+msgstr "GRUB はその技術的優位性のおかげで Debian がインストールするデフォルトのブートローダです: GRUB は多くのファイルシステムをサポートしているため、新しいカーネルのインストールの後に毎回更新する必要がありません。なぜなら、起動中に設定を読んで、新しいカーネルの正確な位置を見つけ出すからです。GRUB の バージョン 1 (現在は「Grub Legacy」として知られています) は LVM とソフトウェア RAID の組み合わせを取り扱うことができませんでした。デフォルトでインストールされるバージョン 2 はより完成度が高くなりました。LILO (別のブートローダ) のインストールが推奨される状況もまだあるかもしれません; そのような場合インストーラが自動的に LILO を提案します。"
 
 #. Tag: para
 #, no-c-format
 msgid "For more information on configuring GRUB, please refer to <xref linkend=\"sect.config-grub\" />."
-msgstr ""
+msgstr "GRUB の設定に関する詳しい情報は<xref linkend=\"sect.config-grub\" />を参照してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Bootloaders and architectures"
-msgstr ""
+msgstr "<emphasis>BEWARE</emphasis> ブートローダとアーキテクチャ"
 
 #. Tag: para
 #, no-c-format
 msgid "LILO and GRUB, which are mentioned in this chapter, are bootloaders for <emphasis>i386</emphasis> and <emphasis>amd64</emphasis> architectures. If you install Debian on another architecture, you will need to use another bootloader. Among others, we can cite <command>yaboot</command> or <command>quik</command> for <emphasis>powerpc</emphasis>, <command>silo</command> for <emphasis>sparc</emphasis>, <command>elilo</command> for <emphasis>ia64</emphasis>, <command>aboot</command> for <emphasis>alpha</emphasis>, <command>arcboot</command> for <emphasis>mips</emphasis>, <command>atari-bootstrap</command> or <command>vme-lilo</command> for <emphasis>m68k</emphasis>."
-msgstr ""
+msgstr "この章で紹介した LILO と GRUB は <emphasis>i386</emphasis> と <emphasis>amd64</emphasis> アーキテクチャ用のブートローダです。もし別のアーキテクチャに Debian をインストールするなら、別のブートローダが必要です。とりわけ、<emphasis>powerpc</emphasis> 用には <command>yaboot</command> または <command>quik</command>、<emphasis>sparc</emphasis> 用には <command>silo</command>、<emphasis>ia64</emphasis> 用には <command>elilo</command>、<emphasis>alpha</emphasis> 用には <command>aboot</command>、<emphasis>mips</emphasis> 用には <command>arcboot</command>、<emphasis>m68k</emphasis> 用には <command>atari-bootstrap</command> または <command>vme-lilo</command> が用意されています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Finishing the Installation and Rebooting"
-msgstr ""
+msgstr "インストールの完了と再起動"
 
 #. Tag: para
 #, no-c-format
 msgid "The installation is now complete, the program invites you to remove the CD-ROM from the reader and to restart the computer."
-msgstr ""
+msgstr "これでインストールが完了しました。プログラムは、ドライブから CD-ROM を取り出し、コンピュータを再起動するよう促します。"
 
 #. Tag: title
 #, no-c-format
 msgid "After the First Boot"
-msgstr ""
+msgstr "初回起動の後"
 
 #. Tag: para
 #, no-c-format
 msgid "If you activated the task “Graphical desktop environment”, the computer will display the <command>gdm3</command> login manager."
-msgstr ""
+msgstr "「グラフィカルデスクトップ環境」のタスクを選択していた場合、コンピュータは <command>gdm3</command> ログインマネージャを表示します。"
 
 #. Tag: title
 #, no-c-format
 msgid "First boot"
-msgstr ""
+msgstr "初回起動"
 
 #. Tag: para
 #, no-c-format
 msgid "The user that has already been created can then log in and begin working immediately."
-msgstr ""
+msgstr "作成したユーザを使ってログインし、すぐに仕事を始められます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing Additional Software"
-msgstr ""
+msgstr "追加ソフトウェアのインストール"
 
 #. Tag: para
 #, no-c-format
 msgid "The installed packages correspond to the profiles selected during installation, but not necessarily to the use that will actually be made of the machine. As such, you might want to use a package management tool to refine the selection of installed packages. The two most frequently used tools (which are installed if the “Graphical desktop environment” profile was chosen) are <command>apt</command> (accessible from the command line) and <command>synaptic</command> (“Synaptic Package Manager” in the menus)."
-msgstr ""
+msgstr "インストールされたパッケージはインストール中に選択したタスクに対応しますが、必ずしも実際のマシンの用途には不要かもしれません。そこで、より適したパッケージをインストールするためにパッケージ管理ツールを使いたくなるかもしれません。最も頻繁に利用されるツール (「グラフィカルデスクトップ環境」タスクを選んだ場合にインストールされます) は <command>apt</command> (コマンドラインから利用可能) と <command>synaptic</command> (メニューの「Synaptic パッケージマネージャ」) の 2 種類です。"
 
 #. Tag: para
 #, no-c-format
 msgid "To facilitate the installation of coherent groups of programs, Debian creates “tasks” that are dedicated to specific uses (mail server, file server, etc.). You already had the opportunity to select them during installation, and you can access them again thanks to package management tools such as <command>aptitude</command> (the tasks are listed in a distinct section) and <command>synaptic</command> (through the menu <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Mark Packages by Task…</guimenuitem> </menuchoice>)."
-msgstr ""
+msgstr "一連のプログラムグループのインストールを楽にするために、Debian は特定の用途 (メールサーバ、ファイルサーバ、など) に対応する「タスク」を作りました。これを選択する機会はインストール中にもありましたし、パッケージ管理ツールである <command>aptitude</command> (タスクは異なるセクション内にリストされています) と <command>synaptic</command> (<menuchoice> <guimenu>編集</guimenu> <guimenuitem>タスクにしたがってパッケージをマーク付ける…</guimenuitem> </menuchoice>とメニューを辿る) からもタスクにアクセスすることができます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Aptitude is an interface to APT in full-screen text mode. It allows the user to browse the list of available packages according to various categories (installed or not-installed packages, by task, by section, etc.), and to view all of the information available on each of them (dependencies, conflicts, description, etc.). Each package can be marked “install” (to be installed, <keycap>+</keycap> key) or “remove” (to be removed, <keycap>-</keycap> key). All of these operations will be conducted simultaneously once you've confirmed them by pressing the <keycap>g</keycap> key (“g” for “go!”). If you have forgotten some programs, no worries; you will be able to run <command>aptitude</command> again once the initial installation has been completed."
-msgstr ""
+msgstr "aptitude は全画面のテキストモードで動く APT へのインターフェイスです。aptitude を使えば、さまざまなカテゴリ (インストール済み、未インストールのパッケージ、タスク、セクションなど) に従って利用可能なパッケージのリストを閲覧したり、各パッケージに対して利用可能なすべての情報 (依存パッケージ、衝突、説明など) を確認できます。各パッケージは「インストール」(インストールされます、<keycap>+</keycap> キー) または「削除」(削除されます、<keycap>-</keycap> キー) をマークできます。これらの操作は、<keycap>g</keycap> キー (「go!」の「g」) を押して確認したら、同時に実行されます。いくつかのプログラムをインストールし忘れても、心配ありません; 最初のインストールが完了したら、再度 <command>aptitude</command> を実行できます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>aptitude</primary>"
-msgstr ""
+msgstr "<primary>aptitude</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Debian thinks of speakers of non-English languages"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> Debian は非英語言語話者のことを考えます"
 
 #. Tag: para
 #, no-c-format
 msgid "Several tasks are dedicated to the localization of the system in other languages beyond English. They include translated documentation, dictionaries, and various other packages useful for speakers of different languages. The appropriate task is automatically selected if a non-English language was chosen during installation."
-msgstr ""
+msgstr "いくつかのタスクは英語でない他の言語向けにシステムを地域化するためのものです。その中には、翻訳された文書、辞書、異なる言語の話者に便利な様々な他のパッケージが含まれています。インストール中に非英語言語を選択した場合には、適切なタスクが自動的に選択されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <command>dselect</command>, the old interface to install packages"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> <command>dselect</command>、パッケージをインストールする古いインターフェイス"
 
 #. Tag: para
 #, no-c-format
 msgid "Before <command>aptitude</command>, the standard program to select packages to be installed was <command>dselect</command>, the old graphical interface associated with <command>dpkg</command>. A difficult program for beginners to use, it is not recommended."
-msgstr ""
+msgstr "<command>aptitude</command> 以前、インストールするパッケージを選択するための標準的なプログラムは <command>dselect</command> で、これは <command>dpkg</command> に対する古いグラフィカルインターフェイスでした。これは初心者には使い難いプログラムで、推奨しません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dselect</command></primary>"
-msgstr ""
+msgstr "<primary><command>dselect</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Of course, it is possible not to select any task to be installed. In this case, you can manually install the desired software with the <command>apt-get</command> or <command>aptitude</command> command (which are both accessible from the command line)."
-msgstr ""
+msgstr "もちろん、どのタスクも選択しないことも可能です。その場合、<command>apt-get</command> や <command>aptitude</command> コマンド (両方ともコマンドラインから利用できます) を使って必要なソフトウェアを手作業でインストールします。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Package dependencies, conflicts"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> パッケージの依存関係と衝突"
 
 #. Tag: para
 #, no-c-format
 msgid "In the Debian packaging lingo, a “dependency” is another package necessary for the proper functioning of the package in question. Conversely, a “conflict” is a package that can not be installed side-by-side with another."
-msgstr ""
+msgstr "Debian パッケージの用語として、「依存」は今対象としているパッケージが適切に動作するために必要な他のパッケージを意味しています。逆に、「衝突」は今対象としているパッケージと共存してインストールできない他のパッケージを意味しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "These concepts are discussed in greater detail in <xref linkend=\"packaging-system\" />."
-msgstr ""
+msgstr "これらの概念は<xref linkend=\"packaging-system\" />で詳しく議論されています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Upgrading the System"
-msgstr ""
+msgstr "システムのアップグレード"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>safe-upgrade</primary>"
-msgstr ""
+msgstr "<primary>safe-upgrade</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A first <command>aptitude safe-upgrade</command> (a command used to automatically update installed programs) is generally required, especially for possible security updates issued since the release of the latest Debian stable version. These updates may involve some additional questions through <command>debconf</command>, the standard Debian configuration tool. For further information on these updates conducted by <command>aptitude</command>, please refer to <xref linkend=\"sect.apt-upgrade\" />."
-msgstr ""
+msgstr "一般的に言ってまず最初に <command>aptitude safe-upgrade</command> (インストールされたプログラムを自動的に更新するコマンド) を実行してください、特に最新の Debian 安定版バージョンのリリース以降に発表されたセキュリティアップデートを適用しなければいけません。更新の際に、標準的な Debian 設定ツールである <command>debconf</command> を使ってで追加的な質問をされるかもしれません。<command>aptitude</command> を使った更新関する詳しい情報は、<xref linkend=\"sect.apt-upgrade\" />を参照してください。"
