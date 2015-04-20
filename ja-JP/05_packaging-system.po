@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-20 03:59+0900\n"
+"PO-Revision-Date: 2015-04-21 05:33+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -47,17 +47,17 @@ msgstr "パッケージシステム: ツールと基本原則"
 #. Tag: para
 #, no-c-format
 msgid "As a Debian system administrator, you will routinely handle <filename>.deb</filename> packages, since they contain consistent functional units (applications, documentation, etc.), whose installation and maintenance they facilitate. It is therefore a good idea to know what they are and how to use them."
-msgstr ""
+msgstr "Debian システム管理者は日常的に <filename>.deb</filename> パッケージを取り扱います。なぜなら、パッケージにはそのパッケージを使うために必要な全ての要素 (アプリケーション、文書など) が含まれており、パッケージによってこれらのインストールとメンテナンスが楽になるからです。ゆえに、パッケージとはどのようなもので、パッケージを取り扱う方法を知っておくことは良い考えです。"
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter describes the structure and contents of “binary” and “source” packages. The former are <filename>.deb</filename> files, directly usable by <command>dpkg</command>, while the latter contain the source code, as well as instructions for building binary packages."
-msgstr ""
+msgstr "この章では、「バイナリパッケージ」と「ソースパッケージ」の構造と内容について説明します。バイナリパッケージとは <command>dpkg</command> が直接取り扱う <filename>.deb</filename> ファイルで、ソースパッケージにはソースコードおよびバイナリパッケージをビルドするための説明が含まれています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Structure of a Binary Package"
-msgstr ""
+msgstr "バイナリパッケージの構造"
 
 #. Tag: indexterm
 #, no-c-format
@@ -67,47 +67,47 @@ msgstr "<primary>パッケージ</primary><secondary>バイナリパッケージ
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ar</command></primary>"
-msgstr ""
+msgstr "<primary><command>ar</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command> (sometimes <command>xz</command> or <command>bzip2</command>). This seemingly trivial property is important for portability and disaster recovery."
-msgstr ""
+msgstr "Debian パッケージのフォーマットは古くからのコマンド <command>ar</command>、<command>tar</command>、<command>gzip</command> (<command>xz</command> や <command>bzip2</command> の場合も) を備える Unix システムで内容を展開できるようにデザインされました。この一見些細な特徴は可搬性と障害復旧を考えると重要です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command>/<command>xz</command>/<command>bzip2</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
-msgstr ""
+msgstr "例えば、誤って <command>dpkg</command> プログラムを削除したとしましょう、こうなると Debian パッケージをインストールできなくなります。<command>dpkg</command> は Debian パッケージなので、もはやシステムを回復することは不可能のように見えます...幸いなことに、パッケージの構成を知っていれば、<emphasis role=\"pkg\">dpkg</emphasis> パッケージの <filename>.deb</filename> ファイルをダウンロードし、手作業でパッケージをインストールできます (「TOOLS」傍注参照)。もし不幸にも、<command>ar</command>、<command>tar</command>、<command>gzip</command>/<command>xz</command>/<command>bzip2</command> のうち 1 つでも無かったら、足りないプログラムを別のシステムからコピーするだけで十分です(其々のプログラムは、依存関係が無く、完全に独立して動くため、単純にコピーすれば十分です)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOLS</emphasis> <command>dpkg</command>, <command>APT</command> and <command>ar</command>"
-msgstr ""
+msgstr "<emphasis>TOOLS</emphasis> <command>dpkg</command>、<command>APT</command>、<command>ar</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg</command></primary>"
-msgstr ""
+msgstr "<primary><command>dpkg</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary>"
-msgstr ""
+msgstr "<primary>APT</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is the program that handles <filename>.deb</filename> files, notably extracting, analyzing, and unpacking them."
-msgstr ""
+msgstr "<command>dpkg</command> は <filename>.deb</filename> ファイルを取り扱うプログラムで、抽出、分析、展開を担当しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>APT</command> is a group of programs that allows the execution of higher-level modifications to the system: installing or removing a package (while keeping dependencies satisfied), updating the system, listing the available packages, etc."
-msgstr ""
+msgstr "<command>APT</command> はシステムの高レベル変更を担当するプログラムのグループです: パッケージのインストールや削除 (依存関係を破壊することなく)、システムのアップデート、利用可能なパッケージの表示などを行います。"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents all its other features. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the <filename>data.tar.gz</filename> archive in the system's root (<filename>/</filename>):"
-msgstr ""
+msgstr "<indexterm><primary><command>ar</command></primary></indexterm> <command>ar</command> プログラムについて言えば、これは同じ名前のファイルを取り扱います: <command>ar t <replaceable>archive</replaceable></command> はアーカイブに含まれるファイルのリストを表示、<command>ar x <replaceable>archive</replaceable></command> は現在の作業ディレクトリにアーカイブからファイルを抽出、<command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> はアーカイブからファイルを削除、などです。これ以外の機能は man ページ (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) を参照してください。<command>ar</command> はとても基本的なツールであり、Unix 管理者はめったにこれを使いません。対して、<command>tar</command> は日常的に使われる、進化したアーカイブとファイル管理プログラムです。そんなわけで、<command>dpkg</command> を誤って削除した場合でも、簡単に元の状態に戻すことができます。Debian パッケージをダウンロードして、<filename>data.tar.gz</filename> アーカイブからシステムのルート (<filename>/</filename>) で内容を抽出するだけです:"
 
 #. Tag: screen
 #, no-c-format
@@ -116,31 +116,34 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb</userinput>\n"
 "<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb</userinput>\n"
+"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Man page notation"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> man ページの表記"
 
 #. Tag: para
 #, no-c-format
 msgid "It can be confusing for beginners to find references to “<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>” in the literature. This is generally a convenient means of referring to the man page entitled <literal>ar</literal> in section 1."
-msgstr ""
+msgstr "初心者にとって、文献から <citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry> の資料を探すことは、混乱の元です。これは一般的に、第 1 章の <literal>ar</literal> と標題をつけられた man ページを参照する便利な表記です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes this notation is also used to remove ambiguities, for example to distinguish between the <command>printf</command> command that can also be indicated by <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry> and the <function>printf</function> function in the C programming language, which can also be referred to as <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry>."
-msgstr ""
+msgstr "この表記は曖昧さを無くすために使われる場合があります。例えば、<command>printf</command> コマンドの man ページは <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>1</manvolnum></citerefentry>と表記し、C 言語の<function>printf</function> 関数の man ページは <citerefentry><refentrytitle>printf</refentrytitle><manvolnum>3</manvolnum></citerefentry> と表記することで、両者を区別します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"sect.manual-pages\" />)."
-msgstr ""
+msgstr "詳細は <xref linkend=\"solving-problems\" /> で議論されています (<xref linkend=\"sect.manual-pages\" /> をご覧ください)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Have a look at the content of a <filename>.deb</filename> file:"
-msgstr ""
+msgstr "<filename>.deb</filename> ファイルの内容を見るには:"
 
 #. Tag: screen
 #, no-c-format
@@ -180,61 +183,95 @@ msgid ""
 "$ </computeroutput><userinput>cat debian-binary</userinput>\n"
 "<computeroutput>2.0</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.16.10_amd64.deb</userinput>\n"
+"<computeroutput>debian-binary\n"
+"control.tar.gz\n"
+"data.tar.gz\n"
+"$ </computeroutput><userinput>ar x dpkg_1.16.10_i386.deb</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
+"<computeroutput>control.tar.gz  data.tar.gz  debian-binary  dpkg_1.16.10_i386.deb\n"
+"$ </computeroutput><userinput>tar tzf data.tar.gz | head -n 15</userinput>\n"
+"<computeroutput>./\n"
+"./var/\n"
+"./var/lib/\n"
+"./var/lib/dpkg/\n"
+"./var/lib/dpkg/updates/\n"
+"./var/lib/dpkg/alternatives/\n"
+"./var/lib/dpkg/info/\n"
+"./var/lib/dpkg/parts/\n"
+"./usr/\n"
+"./usr/share/\n"
+"./usr/share/locale/\n"
+"./usr/share/locale/sv/\n"
+"./usr/share/locale/sv/LC_MESSAGES/\n"
+"./usr/share/locale/sv/LC_MESSAGES/dpkg.mo\n"
+"./usr/share/locale/it/\n"
+"$ </computeroutput><userinput>tar tzf control.tar.gz</userinput>\n"
+"<computeroutput>./\n"
+"./conffiles\n"
+"./preinst\n"
+"./md5sums\n"
+"./control\n"
+"./postrm\n"
+"./prerm\n"
+"./postinst\n"
+"$ </computeroutput><userinput>cat debian-binary</userinput>\n"
+"<computeroutput>2.0</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "As you can see, the <command>ar</command> archive of a Debian package is comprised of three files:"
-msgstr ""
+msgstr "御覧の通り、Debian パッケージの <command>ar</command> アーカイブは 3 つのファイルから成り立っています:"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>debian-binary</filename>. This is a text file which simply indicates the version of the <filename>.deb</filename> file used (in 2013: version 2.0)."
-msgstr ""
+msgstr "<filename>debian-binary</filename>。これは使われている <filename>.deb</filename>ファイルのバージョンを示す (2013 年: バージョン 2.0) テキストファイルです。"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information, like the name and version of the package. Some of this meta-information allows package management tools to determine if it is possible to install or uninstall it, for example according to the list of packages already on the machine."
-msgstr ""
+msgstr "<filename>control.tar.gz</filename>。このアーカイブファイルには、パッケージの名前やバージョンなど、利用可能な全てのメタ情報が含まれています。このメタ情報の一部と、例えば、マシンにインストールされているパッケージのリストを照らし合わせて、パッケージ管理ツールはパッケージをインストールまたはアンインストールが可能かを決定します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>data.tar.gz</filename>. This archive contains all of the files to be extracted from the package; this is where the executable files, documentation, etc., are all stored. Some packages may use other compression formats, in which case the file will be named differently (<filename>data.tar.bz2</filename> for bzip2, <filename>data.tar.xz</filename> for XZ, <filename>data.tar.lzma</filename> for LZMA)."
-msgstr ""
+msgstr "<filename>data.tar.gz</filename>。このアーカイブには、パッケージから展開される全てのファイルが含まれています; 実行ファイル、文書など全てが保存されています。一部のパッケージでは異なる圧縮フォーマットが使われているかもしれません、このような場合、ファイルは別の名前がつけられています(bzip2 の場合 <filename>data.tar.bz2</filename>、XZ の場合 <filename>data.tar.xz</filename>、LZMA の場合 <filename>data.tar.lzma</filename>)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Package Meta-Information"
-msgstr ""
+msgstr "パッケージのメタ情報"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package meta-information</primary>"
-msgstr ""
+msgstr "<primary>パッケージのメタ情報</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>meta-information</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>メタ情報</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian package is not only an archive of files intended for installation. It is part of a larger whole, and it describes its relationship with other Debian packages (dependencies, conflicts, suggestions). It also provides scripts that enable the execution of commands at different stages in the package's lifecycle (installation, removal, upgrades). These data used by the package management tools are not part of the packaged software, but are, within the package, what is called its “meta-information” (information about other information)."
-msgstr ""
+msgstr "Debian パッケージはインストールされるファイルのアーカイブというだけではありません。メタ情報はパッケージの一部で、他の Debian パッケージとの関係性 (依存関係、衝突、提案) を記述しています。また、メタ情報にはスクリプトも含まれています。スクリプトはパッケージライフサイクルのある時点 (インストール、削除、アップグレード) にコマンドを実行するためのものです。パッケージ管理ツールが使うこれらのデータは、パッケージ化されたソフトウェアの一部ではありませんが、パッケージの「メタ情報」(他の情報のデータ) と呼ばれて、パッケージに含まれています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Description: the <filename>control</filename> File"
-msgstr ""
+msgstr "説明: <filename>control</filename> ファイル"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>control</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>control</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This file uses a structure similar to email headers (as defined by RFC 2822). For example, for <emphasis role=\"pkg\">apt</emphasis>, the <filename>control</filename> file looks like the following:"
-msgstr ""
+msgstr "このファイルは (RFC 2822 の定義する) 電子メールヘッダとよく似た構造を使っています。例えば、<emphasis role=\"pkg\">apt</emphasis> の <filename>control</filename> ファイルは以下の内容です:"
 
 #. Tag: screen
 #, no-c-format
@@ -278,51 +315,89 @@ msgid ""
 "SHA1: 6a271487ceee6f6d7bc4c47a8a16f49c26e4ca04\n"
 "SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
+"<computeroutput>Package: apt\n"
+"Version: 0.9.7.9\n"
+"Installed-Size: 3271\n"
+"Maintainer: APT Development Team &lt;deity@lists.debian.org&gt;\n"
+"Architecture: amd64\n"
+"Replaces: manpages-pl (&lt;&lt; 20060617-3~)\n"
+"Depends: libapt-pkg4.12 (&gt;= 0.9.7.9), libc6 (&gt;= 2.4), libgcc1 (&gt;= 1:4.1.1), libstdc++6 (&gt;= 4.6), debian-archive-keyring, gnupg\n"
+"Suggests: aptitude | synaptic | wajig, dpkg-dev, apt-doc, xz-utils, python-apt\n"
+"Conflicts: python-apt (&lt;&lt; 0.7.93.2~)\n"
+"Description-en: commandline package manager\n"
+" This package provides commandline tools for searching and\n"
+" managing as well as querying information about packages\n"
+" as a low-level access to all features of the libapt-pkg library.\n"
+" .\n"
+" These include:\n"
+"  * apt-get for retrieval of packages and information about them\n"
+"    from authenticated sources and for installation, upgrade and\n"
+"    removal of packages together with their dependencies\n"
+"  * apt-cache for querying available information about installed\n"
+"    as well as installable packages\n"
+"  * apt-cdrom to use removable media as a source for packages\n"
+"  * apt-config as an interface to the configuration settings\n"
+"  * apt-key as an interface to manage authentication keys\n"
+"Description-md5: 9fb97a88cb7383934ef963352b53b4a7\n"
+"Tag: admin::package-management, hardware::storage, hardware::storage:cd,\n"
+" implemented-in::c++, interface::commandline, network::client,\n"
+" protocol::ftp, protocol::http, protocol::ipv6, role::program,\n"
+" suite::debian, use::downloading, use::searching,\n"
+" works-with::software:package\n"
+"Section: admin\n"
+"Priority: important\n"
+"Filename: pool/main/a/apt/apt_0.9.7.9_amd64.deb\n"
+"Size: 1253524\n"
+"MD5sum: 00a128b2eb2b08f4ecee7fe0d7e3c1c4\n"
+"SHA1: 6a271487ceee6f6d7bc4c47a8a16f49c26e4ca04\n"
+"SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> RFC — Internet standards"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> RFC - インターネット標準"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RFC</primary>"
-msgstr ""
+msgstr "<primary>RFC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Request For Comments</primary>"
-msgstr ""
+msgstr "<primary>Request For Comments</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "RFC is the abbreviation of “Request For Comments”. An RFC is generally a technical document that describes what will become an Internet standard. Before becoming standardized and frozen, these standards are submitted for public review (hence their name). The IETF (Internet Engineering Task Force) decides on the evolution of the status of these documents (proposed standard, draft standard, or standard)."
-msgstr ""
+msgstr "RFC は「Request For Comments」の略称です。RFC は一般的にインターネット標準になり得る技術の仕様を説明した技術文書です。標準化と決定の前に、これらの文書は公開レビューされます (そんなわけでこの名前が付いています)。IETF (インターネット技術タスクフォース) はこれらの文書の状態の進化 (標準化への提唱、標準化への草稿、標準) を決定します。"
 
 #. Tag: para
 #, no-c-format
 msgid "RFC 2026 defines the process for standardization of Internet protocols. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
-msgstr ""
+msgstr "RFC 2026 ではインターネットプロトコル標準化の手続きが定義されています。<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc2026.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Dependencies: the <literal>Depends</literal> Field"
-msgstr ""
+msgstr "依存関係: <literal>Depends</literal> フィールド"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dependency</primary>"
-msgstr ""
+msgstr "<primary>依存</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Depends</literal>、ヘッダフィールド</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>dependency</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>依存関係</secondary>"
 
 #. Tag: para
 #, no-c-format
