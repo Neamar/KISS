@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-21 05:33+0900\n"
+"PO-Revision-Date: 2015-04-22 01:57+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -402,62 +402,62 @@ msgstr "<primary>パッケージ</primary><secondary>依存関係</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The dependencies are defined in the <literal>Depends</literal> field in the package header. This is a list of conditions to be met for the package to work correctly — this information is used by tools such as <command>apt</command> in order to install the required libraries, in their appropriate versions, that the package to be installed depends on. For each dependency, it is possible to restrict the range of versions that meet that condition. In other words, it is possible to express the fact that we need the package <emphasis role=\"pkg\">libc6</emphasis> in a version equal to or greater than “2.3.4” (written “<command>libc6 (&gt;= 2.3.4)</command>”). Version comparison operators are as follows:"
-msgstr ""
+msgstr "依存関係はパッケージヘッダの <literal>Depends</literal> フィールドで定義されています。依存関係はパッケージを正しく動かすために必要な条件を定義しています - <command>apt</command> などのツールは、この情報を使って、インストールしたいパッケージが要求するバージョンで必要なライブラリをインストールします。それぞれの依存パッケージについて、要求を満たすパッケージのバージョン範囲を指定することが可能です。言い換えれば、バージョン「2.3.4」以上の <emphasis role=\"pkg\">libc6</emphasis> パッケージが必要という条件を表現する(「<command>libc6 (&gt;= 2.3.4)</command>」と表記する) ことが可能です。バージョン比較演算子は次の通りです:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;&lt;</command>: less than;"
-msgstr ""
+msgstr "<command>&lt;&lt;</command>: より低い;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&lt;=</command>: less than or equal to;"
-msgstr ""
+msgstr "<command>&lt;=</command>: 以下;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>=</command>: equal to (note that “<literal>2.6.1</literal>” is not equal to “<literal>2.6.1-1</literal>”);"
-msgstr ""
+msgstr "<command>=</command>: 等しい (「<literal>2.6.1</literal>」は「<literal>2.6.1-1</literal>」と等しくありません);"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;=</command>: greater than or equal to;"
-msgstr ""
+msgstr "<command>&gt;=</command>: 以上;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>&gt;&gt;</command>: greater than."
-msgstr ""
+msgstr "<command>&gt;&gt;</command>: より高い;"
 
 #. Tag: para
 #, no-c-format
 msgid "In a list of conditions to be met, the comma serves as a separator. It must be interpreted as a logical “and”. In conditions, the vertical bar (“|”) expresses a logical “or” (it is an inclusive “or”, not an exclusive “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
-msgstr ""
+msgstr "満足すべき条件リストの中で使われるカンマは条件同士の区切りです。このカンマは論理「and」に解釈されます。条件リストの中で、垂直棒 (「|」) は論理「or」に解釈されます (これは「包含的論理和」で、「排他的論理和」ではありません)。or は「and」より大きな優先順位を持っており、必要に応じて何度でも使えます。このため、「(A or B) and C」はn <command>A | B, C</command> のように表記できます。これに対して、「A or (B and C)」は「(A or B) and (A or C)」のように表記してください。なぜなら、<literal>Depends</literal> フィールドでは括弧を使って論理演算子「or」と「and」の優先度の順位を変えることができないからです。このため、これは <command>A | B, A | C</command> のように表記できます。<ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>meta-package</primary>"
-msgstr ""
+msgstr "<primary>meta-package</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The dependencies system is a good mechanism for guaranteeing the operation of a program, but it has another use with “meta-packages”. These are empty packages that only describe dependencies. They facilitate the installation of a consistent group of programs preselected by the meta-package maintainer; as such, <command>apt-get install <replaceable>meta-package</replaceable></command> will automatically install all of these programs using the meta-package's dependencies. The <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde-full</emphasis> and <emphasis role=\"pkg\">linux-image-amd64</emphasis> packages are examples of meta-packages."
-msgstr ""
+msgstr "依存関係システムはプログラムの動作を保証する良いメカニズムですが、「メタパッケージ」を使う手もあります。メタパッケージは依存関係を表記するだけの空のパッケージです。メタパッケージはメンテナが事前に選んだ一連のプログラムグループのインストールを楽にします; <command>apt-get install <replaceable>meta-package</replaceable></command> はメタパッケージが依存する全てのプログラムを自動的にインストールします。<emphasis role=\"pkg\">gnome</emphasis>、<emphasis role=\"pkg\">kde-full</emphasis>、<emphasis role=\"pkg\">linux-image-amd64</emphasis> パッケージはメタパッケージの例です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>, a more demanding <literal>Depends</literal>"
-msgstr ""
+msgstr "<emphasis>DEBIAN POLICY</emphasis> <literal>Pre-Depends</literal>、<literal>Depends</literal> よりも厳しい要求"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pre-Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Pre-Depends</literal> ヘッダフィールド</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>pre-dependency</primary>"
-msgstr ""
+msgstr "<primary>先行依存</primary>"
 
 #. Tag: para
 #, no-c-format
