@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-23 07:22+0900\n"
+"PO-Revision-Date: 2015-04-23 19:43+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -617,162 +617,162 @@ msgstr "「サービス」の提供"
 #. Tag: para
 #, no-c-format
 msgid "Let us discuss the first case in greater detail with an example: all mail servers, such as <emphasis role=\"pkg\">postfix</emphasis> or <emphasis role=\"pkg\">sendmail</emphasis> are said to “provide” the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. Thus, any package that needs this service to be functional (e.g. a mailing list manager, such as <emphasis role=\"pkg\">smartlist</emphasis> or <emphasis role=\"pkg\">sympa</emphasis>) simply states in its dependencies that it requires a <emphasis role=\"pkg\">mail-transport-agent</emphasis> instead of specifying a large yet incomplete list of possible solutions (e.g. <command>postfix | sendmail | exim4 | …</command>). Furthermore, it is useless to install two mail servers on the same machine, which is why each of these packages declares a conflict with the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. The conflict with itself is ignored by the system, but this technique will prohibit the installation of two mail servers side by side."
-msgstr ""
+msgstr "最初の場合について、例を挙げて詳細に議論しましょう: 全てのメールサーバ、例えば <emphasis role=\"pkg\">postfix</emphasis> や <emphasis role=\"pkg\">sendmail</emphasis> などは <emphasis role=\"pkg\">mail-transport-agent</emphasis> 仮想パッケージ「提供」するとされています。このため、動作にメールサービスを必要なパッケージ (例えば <emphasis role=\"pkg\">smartlist</emphasis> や <emphasis role=\"pkg\">sympa</emphasis> などのメーリングリストマネージャ) は、おそらくメールサービスを提供するであろうパッケージ (例えば、<command>postfix | sendmail | exim4 | …</command>の ように) をたくさん依存関係に宣言するのではなく、たった 1 つ <emphasis role=\"pkg\">mail-transport-agent</emphasis> を宣言するだけで十分です。さらに、1 台のマシンに 2 つのメールサーバをインストールすることは無駄なため、メールサーバの機能を提供するパッケージは <emphasis role=\"pkg\">mail-transport-agent</emphasis> 仮想パッケージとの衝突を宣言します。自分自身との衝突はシステムによって無視されます。この手法により、2 つのメールサーバを同時にインストールできなくなります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> List of virtual packages"
-msgstr ""
+msgstr "<emphasis>DEBIAN POLICY</emphasis> 仮想パッケージのリスト"
 
 #. Tag: para
 #, no-c-format
 msgid "For virtual packages to be useful, everyone must agree on their name. This is why they are standardized in the Debian Policy. The list includes among others <emphasis role=\"pkg\">mail-transport-agent</emphasis> for mail servers, <emphasis role=\"pkg\">c-compiler</emphasis> for C programming language compilers, <emphasis role=\"pkg\">www-browser</emphasis> for web browsers, <emphasis role=\"pkg\">httpd</emphasis> for web servers, <emphasis role=\"pkg\">ftp-server</emphasis> for FTP servers, <emphasis role=\"pkg\">x-terminal-emulator</emphasis> for terminal emulators in graphical mode (<command>xterm</command>), and <emphasis role=\"pkg\">x-window-manager</emphasis> for window managers."
-msgstr ""
+msgstr "仮想パッケージを便利なものにするために、全員がその名前に同意しなければいけません。このため、仮想パッケージの名前は Debian ポリシーで標準化されています。メールサーバは <emphasis role=\"pkg\">mail-transport-agent</emphasis>、C 言語コンパイラは <emphasis role=\"pkg\">c-compiler</emphasis>、ウェブブラウザは <emphasis role=\"pkg\">www-browser</emphasis>、ウェブサーバは <emphasis role=\"pkg\">httpd</emphasis>、FTP サーバは <emphasis role=\"pkg\">ftp-server</emphasis>、グラフィカルモードのターミナルエミュレータ (<command>xterm</command>) は <emphasis role=\"pkg\">x-terminal-emulator</emphasis>、ウィンドウマネージャは <emphasis role=\"pkg\">x-window-manager</emphasis> などが定められています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The full list can be found on the Web. <ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt\" />"
-msgstr ""
+msgstr "完全なリストはウェブの情報を参照してください。<ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Interchangeability with Another Package"
-msgstr ""
+msgstr "他のパッケージとの互換性"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Provides</literal> field is again interesting when the content of a package is included in a larger package. For example, the <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> Perl module was an optional module in Perl 5.6, and has been integrated as standard in Perl 5.8 (and later versions, such as 5.14 present in <emphasis role=\"distribution\">Wheezy</emphasis>). As such, the package <emphasis role=\"pkg\">perl</emphasis> has since version 5.8 declared <literal>Provides: libdigest-md5-perl</literal> so that the dependencies on this package are met if the user has Perl 5.8 (or newer). The <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> package itself has eventually been deleted, since it no longer had any purpose when old Perl versions were removed."
-msgstr ""
+msgstr "パッケージの内容が巨大なパッケージに統合された場合に、<literal>Provides</literal> フィールドはさらに興味深い役割を果たします。例えば、<emphasis role=\"pkg\">libdigest-md5-perl</emphasis> Perl モジュールは Perl 5.6 では任意選択モジュールでしたが、Perl 5.8 (と <emphasis role=\"distribution\">Wheezy</emphasis> に含まれる 5.14 などのその後のバージョン) では標準モジュールに組み込まれました。このため、<emphasis role=\"pkg\">perl</emphasis> パッケージはバージョン 5.8 から <literal>Provides: libdigest-md5-perl</literal> を宣言しています。そうすれば、ユーザが Perl 5.8 (とそれより新しいバージョン) を持っている場合、このパッケージの依存関係が満足されるからです。<emphasis role=\"pkg\">libdigest-md5-perl</emphasis> パッケージ自体は、いずれ削除されます。なぜなら、古い Perl バージョンが削除されたらこのパッケージはもはや存在意義が無いからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Use of a <literal>Provides</literal> field in order to not break dependencies"
-msgstr ""
+msgstr "依存関係を壊さない <literal>Provides</literal> フィールドの使い方"
 
 #. Tag: para
 #, no-c-format
 msgid "This feature is very useful, since it is never possible to anticipate the vagaries of development, and it is necessary to be able to adjust to renaming, and other automatic replacement, of obsolete software."
-msgstr ""
+msgstr "この機能はとても便利です、なぜなら、開発方向性の変化を予測することは絶対に不可能ですし、名称を変更できたり、他の時代遅れのソフトウェアを自動に置き換えできるようにすることが必要だからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Perl, a programming language"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> Perl、プログラミング言語"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Perl</primary>"
-msgstr ""
+msgstr "<primary>Perl</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CPAN</primary>"
-msgstr ""
+msgstr "<primary>CPAN</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Perl (Practical Extraction and Report Language) is a very popular programming language. It has many ready-to-use modules that cover a vast spectrum of applications, and that are distributed by the CPAN (Comprehensive Perl Archive Network) servers, an exhaustive network of Perl packages. <ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
-msgstr ""
+msgstr "Perl (Practical Extraction and Report Language) はとても人気があるプログラミング言語です。Perl にはすぐに使えるモジュールが数多くあります。これらのモジュールは非常に広い分野における応用をカバーし、Perl パッケージの包括的ネットワークである CPAN (Comprehensive Perl Archive Network) サーバで配布されています。<ulink type=\"block\" url=\"http://www.perl.org/\" /> <ulink type=\"block\" url=\"http://www.cpan.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Since it is an interpreted language, a program written in Perl does not require compilation prior to execution. This is why they are called “Perl scripts”."
-msgstr ""
+msgstr "Perl はインタプリタ型言語であるため、Perl で書かれたプログラムは実行前にコンパイルする必要がありません。このためプログラムは「Perl スクリプト」と呼ばれています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Current Limitations"
-msgstr ""
+msgstr "現在の制限"
 
 #. Tag: para
 #, no-c-format
 msgid "Virtual packages suffer from some limitations, the most significant of which being the absence of a version number. To return to the previous example, a dependency such as <literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal>, despite the presence of Perl 5.10, will never be considered as satisfied by the packaging system — while in fact it most likely is satisfied. Unaware of this, the package system chooses the least risky option, assuming that the versions do not match."
-msgstr ""
+msgstr "仮想パッケージにはいくつかの制限があります。最も重要な制限はバージョン番号が無いことです。先に挙げた例に戻ると、Perl 5.10 があるなら、<literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal> という依存関係は満足されています (正しく言えば、十中八九満足されています) が、パッケージシステムはこの依存関係が満足されていることに気がつきません。パッケージシステムは依存関係が満足されていることに気がつきませんが、指定されたバージョンが一致しないと仮定して、最もリスクの低いオプションを選びます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Virtual package versions"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 仮想パッケージのバージョン"
 
 #. Tag: para
 #, no-c-format
 msgid "Although today virtual packages can't have versions, this will not necessarily always be the case. Indeed, <command>apt</command> is already able to manage the versions of virtual packages and it is likely that <command>dpkg</command> eventually will too. We will then be able to write fields such as <literal>Provides: libstorable-perl (= 1.7)</literal> to indicate that a package provides the same functionality as <emphasis role=\"pkg\">libstorable-perl</emphasis> in its 1.7 version."
-msgstr ""
+msgstr "今のところ仮想パッケージにはバージョンの概念がありませんが、この状況が常に正しいとは限りません。実際、<command>apt</command> はすでに仮想パッケージのバージョンを取り扱うことが可能で、<command>dpkg</command> も将来的には可能になるでしょう。あるパッケージに <literal>Provides: libstorable-perl (= 1.7)</literal> のようなフィールドを宣言することで、そのパッケージが <emphasis role=\"pkg\">libstorable-perl</emphasis> の バージョン 1.7 と同じ機能を提供していることを表すことができるようになるのです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Replacing Files: The <literal>Replaces</literal> Field"
-msgstr ""
+msgstr "ファイルの置き換え: <literal>Replaces</literal> フィールド"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>replacement</primary>"
-msgstr ""
+msgstr "<primary>置換</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Replaces</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Replaces</literal>、ヘッダフィールド</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>replacement</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>置換</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Replaces</literal> field indicates that the package contains files that are also present in another package, but that the package is legitimately entitled to replace them. Without this specification, <command>dpkg</command> fails, stating that it can not overwrite the files of another package (in fact, it is possible to force it to do so with the <literal>--force-overwrite</literal> option). This allows identification of potential problems and requires the maintainer to study the matter prior to choosing whether to add such a field."
-msgstr ""
+msgstr "<literal>Replaces</literal> フィールドは、そのパッケージが他のパッケージにも含まれるファイルを含んでおり、合法的にそのファイルを置き換える権利を持っていることを示すためのものです。この仕様が無かったとしても、<command>dpkg</command> はそのようなファイルを置き換える事はできません。これは他のパッケージのファイルは上書きできないことを意味しています (実際には、<literal>--force-overwrite</literal> オプションを付ければ強制的に上書き可能です)。このことにより潜在的な問題を識別できるようになりますし、メンテナはこのフィールドを追加する前に問題の原因を追及することができるようになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The use of this field is justified when package names change or when a package is included in another. This also happens when the maintainer decides to distribute files differently among various binary packages produced from the same source package: a replaced file no longer belongs to the old package, but only to the new one."
-msgstr ""
+msgstr "このフィールドは、パッケージ名が変更された時や、パッケージが別のパッケージに統合された時に使われます。これはまた、メンテナが同じソースパッケージから作成されたバイナリパッケージ間で異なるファイルを配布したい場合に使われます: 置き換えられたファイルはもはや古いパッケージではなく新しいパッケージに所属します。"
 
 #. Tag: para
 #, no-c-format
 msgid "If all of the files in an installed package have been replaced, the package is considered to be removed. Finally, this field also encourages <command>dpkg</command> to remove the replaced package where there is a conflict."
-msgstr ""
+msgstr "インストール済みパッケージの全てのファイルが置き換えられたら、このパッケージは削除されたとみなされます。最後に、このフィールドは衝突がある場合に <command>dpkg</command> が置き換えられたパッケージを削除する際に使われます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> The <literal>Tag</literal> field"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> <literal>Tag</literal> フィールド"
 
 #. Tag: para
 #, no-c-format
 msgid "In the <emphasis role=\"pkg\">apt</emphasis> example above, we can see the presence of a field that we have not yet described, the <literal>Tag</literal> field. This field does not describe a relationship between packages, but is simply a way of categorizing a package in a thematic taxonomy. This classification of packages according to several criteria (type of interface, programming language, domain of application, etc.) has been available for a long time. Despite this, not all packages have accurate tags and it is not yet integrated in all Debian tools; <command>aptitude</command> displays these tags, and allows them to be used as search criteria. For those who are repelled by <command>aptitude</command>'s search criteria, the following website allows navigation of the tag database: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
-msgstr ""
+msgstr "上に挙げた <emphasis role=\"pkg\">apt</emphasis> の例にはまだ説明していない <literal>Tag</literal> フィールドがあります。このフィールドはパッケージ間の関連性を説明するものではなく、単純にテーマ分類に基づいてパッケージを分類するものです。昔からパッケージはいくつかの基準 (インターフェイスの種類、プログラミング言語、アプリケーションの分野など) に基づいて分類されていました。これにも関わらず、適切なタグが全てのパッケージに付けられているわけではありませんし、まだ全ての Debian ツールがタグを使えるわけではありません; <command>aptitude</command> はこれらのタグを表示しますし、検索条件としてタグを使うことも可能です。<command>aptitude</command> の検索条件に嫌悪感を抱く人は、以下のウェブサイトを使ってタグのデータベースを見ることができます。<ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuration Scripts"
-msgstr ""
+msgstr "設定スクリプト"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>postinst</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>postinst</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>preinst</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>preinst</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>postrm</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>postrm</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>prerm</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>prerm</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>control.tar.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>control.tar.gz</filename></primary>"
 
 #. Tag: para
 #, no-c-format
