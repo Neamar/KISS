@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-23 19:43+0900\n"
+"PO-Revision-Date: 2015-04-24 22:33+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -777,291 +777,291 @@ msgstr "<primary><filename>control.tar.gz</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "In addition to the <filename>control</filename> file, the <filename>control.tar.gz</filename> archive for each Debian package may contain a number of scripts, called by <command>dpkg</command> at different stages in the processing of a package. The Debian Policy describes the possible cases in detail, specifying the scripts called and the arguments that they receive. These sequences may be complicated, since if one of the scripts fails, <command>dpkg</command> will try to return to a satisfactory state by canceling the installation or removal in progress (insofar as it is possible)."
-msgstr ""
+msgstr "それぞれの Debian パッケージには、<filename>control</filename> ファイルだけでなく <filename>control.tar.gz</filename> アーカイブが含まれており、このアーカイブには、<command>dpkg</command> がパッケージ処理の各段階で呼び出す多数のスクリプトが含まれているかもしれません。Debian ポリシーでは、呼び出されるスクリプトとスクリプトが受け取る引数を明記することで、スクリプトの使われ方が詳しく説明されています。スクリプトが呼び出される順番はわかりにくいかもしれません。なぜなら、スクリプトの内 1 つでも失敗したら、<command>dpkg</command> は進行中のインストールを止めるか(可能ならば)削除することでシステムを一貫性のある状態に戻そうとするからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command>'s database"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command> データベース"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/var/lib/dpkg/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/var/lib/dpkg/</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dpkg</primary><secondary>database</secondary>"
-msgstr ""
+msgstr "<primary>dpkg</primary><secondary>データベース</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All of the configuration scripts for installed packages are stored in the <filename>/var/lib/dpkg/info/</filename> directory, in the form of a file prefixed with the package's name. This directory also includes a file with the <filename>.list</filename> extension for each package, containing the list of files that belong to that package."
-msgstr ""
+msgstr "インストール済みパッケージの設定スクリプトは全て <filename>/var/lib/dpkg/info/</filename> ディレクトリに、ファイル名がパッケージ名から始まるファイルの形で保存されています。このディレクトリには、ファイル名がパッケージ名に <filename>.list</filename> 拡張子を付けたファイルが含まれています。このファイルの内容はパッケージに含まれるファイルのリストです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/var/lib/dpkg/status</filename> file contains a series of data blocks (in the format of the famous mail headers, RFC 2822) describing the status of each package. The information from the <filename>control</filename> file of the installed packages is also replicated there."
-msgstr ""
+msgstr "<filename>/var/lib/dpkg/status</filename> ファイルは (有名なメールヘッダ、RFC 2822、の形で) 一連のデータブロックを含んでおり、各データブロックは各パッケージの状態に対応します。この情報は、インストール済みのパッケージの <filename>control</filename> ファイルから、複製されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "In general, the <filename>preinst</filename> script is executed prior to installation of the package, while the <filename>postinst</filename> follows it. Likewise, <filename>prerm</filename> is invoked before removal of a package and <filename>postrm</filename> afterwards. An update of a package is equivalent to removal of the previous version and installation of the new one. It is not possible to describe in detail all the possible scenarios here, but we will discuss the most common two: an installation/update and a removal."
-msgstr ""
+msgstr "一般的に言って、<filename>preinst</filename> スクリプトはパッケージのインストール前に実行され、<filename>postinst</filename> はインストール後に実行されます。同様に、 <filename>prerm</filename> はパッケージの削除前に実行され、<filename>postrm</filename> は削除後に実行されます。パッケージの更新とは、パッケージの古いバージョンを削除して新しいバージョンをインストールすることと等価です。ここで全ての可能なシナリオを詳細に説明することは不可能なので、最も一般的なケースを 2 つだけ挙げます: インストール/更新と削除です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Symbolic names of the scripts"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> スクリプトのシンボリック名"
 
 #. Tag: para
 #, no-c-format
 msgid "The sequences described in this section call configuration scripts by specific names, such as <command>old-prerm</command> or <command>new-postinst</command>. They are, respectively, the <command>prerm</command> script contained in the old version of the package (installed before the update) and the <command>postinst</command> script contained in the new version (installed by the update)."
-msgstr ""
+msgstr "この章の説明文では、<command>old-prerm</command> や <command>new-postinst</command> などの特定の名前を持つ設定スクリプトが登場します。前者はパッケージの (更新の前にインストールされていた) 古いバージョンに含まれる <command>prerm</command> スクリプト、後者は (更新によってインストールされる) 新しいバージョンに含まれる <command>postinst</command> スクリプトを指します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> State diagrams"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> 状態遷移図"
 
 #. Tag: para
 #, no-c-format
 msgid "Manoj Srivastava made these diagrams explaining how the configuration scripts are called by <command>dpkg</command>. Similar diagrams have also been developed by the Debian Women project; they are a bit simpler to understand, but less complete. <ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
-msgstr ""
+msgstr "Manoj Srivastava さんは <command>dpkg</command> がどのように設定スクリプトを呼び出すかを説明する図を作成しました。Debian Women プロジェクトが同様の図を作成しました; この図は理解しやすいように少し単純化されており、先の図に比べると正確ではありません。<ulink type=\"block\" url=\"http://people.debian.org/~srivasta/MaintainerScripts.html\" /> <ulink type=\"block\" url=\"http://wiki.debian.org/MaintainerScripts\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Installation and Upgrade"
-msgstr ""
+msgstr "パッケージのインストールとアップグレード"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg</command></primary><secondary>internal operation</secondary>"
-msgstr ""
+msgstr "<primary><command>dpkg</command></primary><secondary>インストール操作</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is what happens during an installation (or an update):"
-msgstr ""
+msgstr "ここではパッケージのインストール中 (または更新中) に何が起きるかを説明します:"
 
 #. Tag: para
 #, no-c-format
 msgid "For an update, <command>dpkg</command> calls the <command>old-prerm upgrade <replaceable>new-version</replaceable></command>."
-msgstr ""
+msgstr "更新の際に、<command>dpkg</command> は <command>old-prerm upgrade <replaceable>new-version</replaceable></command> を呼び出します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Still for an update, <command>dpkg</command> then executes <command>new-preinst upgrade <replaceable>old-version</replaceable></command>; for a first installation, it executes <command>new-preinst install</command>. It may add the old version in the last parameter, if the package has already been installed and removed since (but not purged, the configuration files having been retained)."
-msgstr ""
+msgstr "更新する場合、<command>dpkg</command> は <command>new-preinst upgrade <replaceable>old-version</replaceable></command> を実行します; 初めてインストールする場合、<command>new-preinst install</command> を実行します。過去にもしパッケージがインストールされてさらに削除されていた場合 (完全消去されていない場合、古い設定ファイルがまだ残っている場合)、最後の引数に古いバージョンを追加します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The new package files are then unpacked. If a file already exists, it is replaced, but a backup copy is temporarily made."
-msgstr ""
+msgstr "そして新しいパッケージのファイルが解凍されます。あるファイルが既に存在した場合、そのファイルは置換されますが、一時的にバックアップコピーが作られます。"
 
 #. Tag: para
 #, no-c-format
 msgid "For an update, <command>dpkg</command> executes <command>old-postrm upgrade <replaceable>new-version</replaceable></command>."
-msgstr ""
+msgstr "更新の場合、<command>dpkg</command> は <command>old-postrm upgrade <replaceable>new-version</replaceable></command> を実行します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> updates all of the internal data (file list, configuration scripts, etc.) and removes the backups of the replaced files. This is the point of no return: <command>dpkg</command> no longer has access to all of the elements necessary to return to the previous state."
-msgstr ""
+msgstr "<command>dpkg</command> はすべての内部データを (ファイルリスト、設定スクリプトなど) 更新し、置換されたファイルのバックアップを削除します。これ以降はもう後戻りできません: 前の状態に戻るために必要な情報が全て失われたため、<command>dpkg</command> は状態を復元できません。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> will update the configuration files, asking the user to decide if it is unable to automatically manage this task. The details of this procedure are discussed in <xref linkend=\"sect.conffiles\" />."
-msgstr ""
+msgstr "<command>dpkg</command> が設定ファイルを更新します。自動的にこの作業を完了できない場合にはユーザにどうするか尋ねます。この作業の詳細は<xref linkend=\"sect.conffiles\" />をご覧ください。"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, <command>dpkg</command> configures the package by executing <command>new-postinst configure <replaceable>last-version-configured</replaceable></command>."
-msgstr ""
+msgstr "最後に、<command>dpkg</command> は <command>new-postinst configure <replaceable>last-version-configured</replaceable></command> を実行して、パッケージを設定します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Package Removal"
-msgstr ""
+msgstr "パッケージの削除"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is what happens during a package removal:"
-msgstr ""
+msgstr "ここではパッケージの削除中に何が起こるかを説明します:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> calls <command>prerm remove</command>."
-msgstr ""
+msgstr "<command>dpkg</command> は <command>prerm remove</command> を呼び出します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> removes all of the package's files, with the exception of the configuration files and configuration scripts."
-msgstr ""
+msgstr "<command>dpkg</command> は設定ファイルと設定スクリプトを除く全てのパッケージのファイルを削除します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> executes <command>postrm remove</command>. All of the configuration scripts, except <filename>postrm</filename>, are removed. If the user has not used the “purge” option, the process stops here."
-msgstr ""
+msgstr "<command>dpkg</command> は <command>postrm remove</command> を実行します。全ての設定スクリプトは <filename>postrm</filename> を除いて削除されます。ユーザが「purge」オプションを指定しない限り、作業はここで終了します。"
 
 #. Tag: para
 #, no-c-format
 msgid "For a complete purge of the package (command issued with <command>dpkg --purge</command> or <command>dpkg -P</command>), the configuration files are also deleted, as well as a certain number of copies (<filename>*.dpkg-tmp</filename>, <filename>*.dpkg-old</filename>, <filename>*.dpkg-new</filename>) and temporary files; <command>dpkg</command> then executes <command>postrm purge</command>."
-msgstr ""
+msgstr "パッケージを完全消去する (<command>dpkg --purge</command> または <command>dpkg -P</command> を実行した) 場合、設定ファイルおよびそのコピー (<filename>*.dpkg-tmp</filename>、<filename>*.dpkg-old</filename>、<filename>*.dpkg-new</filename>) と一時ファイルも削除されます; <command>dpkg</command> は <command>postrm purge</command> を実行します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Purge, a complete removal"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> Purge、完全消去"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>purge of a package</primary>"
-msgstr ""
+msgstr "<primary>パッケージの完全消去</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When a Debian package is removed, the configuration files are retained in order to facilitate possible re-installation. Likewise, the data generated by a daemon (such as the content of an LDAP server directory, or the content of a database for an SQL server) are usually retained."
-msgstr ""
+msgstr "Debian パッケージが削除されても、パッケージの設定ファイルは後々の再インストールを楽にするために削除されません。同様に、デーモンが作成したデータ (LDAP サーバディレクトリの内容、SQL サーバのデータベースの内容など) も削除されません。"
 
 #. Tag: para
 #, no-c-format
 msgid "To remove all data associated with a package, it is necessary to “purge” the package with the command, <command>dpkg -P <replaceable>package</replaceable></command>, <command>apt-get remove --purge <replaceable>package</replaceable></command> or <command>aptitude purge <replaceable>package</replaceable></command>."
-msgstr ""
+msgstr "パッケージに関連するすべてのデータを削除するには、以下のコマンドを使ってパッケージを「完全消去」する必要があります。<command>dpkg -P <replaceable>package</replaceable></command>、<command>apt-get remove --purge <replaceable>package</replaceable></command>、<command>aptitude purge <replaceable>package</replaceable></command>。"
 
 #. Tag: para
 #, no-c-format
 msgid "Given the definitive nature of such data removal, purge should not be taken lightly."
-msgstr ""
+msgstr "このようなデータに含まれる内容を考慮すると、安易に完全消去を実行するべきではありません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>config</filename>, <command>debconf</command> script</primary>"
-msgstr ""
+msgstr "<primary><filename>config</filename>、<command>debconf</command> スクリプト</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The four scripts detailed above are complemented by a <filename>config</filename> script, provided by packages using <command>debconf</command> to acquire information from the user for configuration. During installation, this script defines in detail the questions asked by <command>debconf</command>. The responses are recorded in the <command>debconf</command> database for future reference. The script is generally executed by <command>apt</command> prior to installing packages one by one in order to group all the questions and ask them all to the user at the beginning of the process. The pre- and post-installation scripts can then use this information to operate according to the user's wishes."
-msgstr ""
+msgstr "上で詳細を述べた 4 つのスクリプトの実行を補助するのが <filename>config</filename> スクリプトです。パッケージが提供するこのスクリプトは <command>debconf</command> を用いて設定に必要な情報をユーザに入力させるためのものです。ユーザからの情報は <command>debconf</command> データベースに保存され、後々利用されます。このスクリプトは通常 <command>apt</command> によって各パッケージインストールの前に実行され、処理が始まると全ての質問をまとめてユーザに尋ねます。インストール前後に実行されるスクリプトは、ユーザの希望を反映させるために、これらの情報を利用します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> <command>debconf</command>"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> <command>debconf</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debconf</command></primary>"
-msgstr ""
+msgstr "<primary><command>debconf</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debconf</command> was created to resolve a recurring problem in Debian. All Debian packages unable to function without a minimum of configuration used to ask questions with calls to the <command>echo</command> and <command>read</command> commands in <filename>postinst</filename> shell scripts (and other similar scripts). But this also means that during a large installation or update the user must stay with their computer to respond to various questions that may arise at any time. These manual interactions have now been almost entirely dispensed with, thanks to the <command>debconf</command> tool."
-msgstr ""
+msgstr "<command>debconf</command> は Debian で繰り返し発生する問題を解決するために作られました。全ての Debian パッケージは最低限の設定無しには機能しません。昔は最低限の設定をするために <filename>postinst</filename> シェルスクリプト (と同様の別のスクリプト) の中で <command>echo</command> や <command>read</command> コマンドを呼び出して質問していました。しかしこの方法では、ユーザは長いインストールや更新の最中、いつあるかわからない様々な質問に答えるために、コンピュータの前に居続けなければいけませんでした。<command>debconf</command> ツールのおかげで、今やほとんどの場合、このような手動設定法を採る必要はなくなりました。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debconf</command> has many interesting features: it requires the developer to specify user interaction; it allows localization of all the strings displayed to users (all translations are stored in the <filename>templates</filename> file describing the interactions); it has different frontends to display the questions to the user (text mode, graphical mode, non-interactive); and it allows creation of a central database of responses to share the same configuration with several computers... but the most important is that it is now possible to present all of the questions in a row to the user, prior to starting a long installation or update process. The user can go about their business while the system handles the installation on its own, without having to stay there staring at the screen waiting for questions."
-msgstr ""
+msgstr "<command>debconf</command> には多くの興味深い機能があります: 開発者はユーザに入力させる内容を規定することができます; ユーザに向けて表示される全ての文字列の地域化が可能です (全ての翻訳は入力内容を説明している <filename>templates</filename> ファイルに保存されます); ユーザに質問を表示するための様々なフロントエンド (テキストモード、グラフィカルモード、非対話モード) があります; 複数のコンピュータで同じ設定を共有するために、ユーザが入力した内容の中央データベースを作成することが可能です...しかし最も重要な機能は、ユーザに対する全ての質問が長時間かかるインストールや更新作業の前に行われる点です。ユーザはシステムがインストールを行っている間に自分の仕事をできます、質問に答えるために画面の前に居続ける必要はありません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Checksums, List of Configuration Files"
-msgstr ""
+msgstr "チェックサム、設定ファイルのリスト"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>md5sums</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>md5sums</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>conffiles</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>conffiles</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>checksums</primary>"
-msgstr ""
+msgstr "<primary>チェックサム</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>files</primary><secondary>configuration files</secondary>"
-msgstr ""
+msgstr "<primary>ファイル</primary><secondary>設定ファイル</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>files</secondary>"
-msgstr ""
+msgstr "<primary>設定</primary><secondary>ファイル</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition to the maintainer scripts and control data already mentioned in the previous sections, the <filename>control.tar.gz</filename> archive of a Debian package may contain other interesting files. The first, <filename>md5sums</filename>, contains the MD5 checksums for all of the package's files. Its main advantage is that it allows a tool such as <command>debsums</command> (which we will study in <xref linkend=\"sect.debsums\" />) to check if these files have been modified since their installation. Note that when this file doesn't exist, <command>dpkg</command> will generate it dynamically at installation time (and store it in the dpkg database just like other control files)."
-msgstr ""
+msgstr "前の節ですでに説明したメンテナスクリプトと管理情報に加えて、Debian パッケージの <filename>control.tar.gz</filename> アーカイブに興味深いファイルが含まれている場合があります。1 つ目は <filename>md5sums</filename> で、このファイルにはパッケージに含まれる全ファイルの MD5 チェックサムが列挙されています。これのおかげで、<command>debsums</command> などのツール (詳しくは<xref linkend=\"sect.debsums\" />を参照) はインストール以降ファイルが変更されたか否かを判断できるようになります。このファイルが存在しなければ、<command>dpkg</command> がインストール時に動的にこのファイルを生成します (そして他の管理情報ファイルと同様に dpkg データベースに内容を保存します)。"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>conffiles</filename> lists package files that must be handled as configuration files. Configuration files can be modified by the administrator, and <command>dpkg</command> will try to preserve those changes during a package update."
-msgstr ""
+msgstr "<filename>conffiles</filename> では、設定ファイルとして取り扱われるべきパッケージファイルが指定されています。管理者は設定ファイルを変更でき、<command>dpkg</command> はパッケージの更新中に設定ファイルの変更を保存しようとします。"
 
 #. Tag: para
 #, no-c-format
 msgid "In effect, in this situation, <command>dpkg</command> behaves as intelligently as possible: if the standard configuration file has not changed between the two versions, it does nothing. If, however, the file has changed, it will try to update this file. Two cases are possible: either the administrator has not touched this configuration file, in which case <command>dpkg</command> automatically installs the new version; or the file has been modified, in which case <command>dpkg</command> asks the administrator which version they wish to use (the old one with modifications, or the new one provided with the package). To assist in making this decision, <command>dpkg</command> offers to display a “<command>diff</command>” that shows the difference between the two versions. If the user chooses to retain the old version, the new one will be stored in the same location in a file with the <filename>.dpkg-dist</filename> suffix. If the user chooses the new version, the old one is retained in a file with the <filename>.dpkg-old</filename> suffix. Another available action consists of momentarily interrupting <command>dpkg</command> to edit the file and attempt to re-instate the relevant modifications (previously identified with <command>diff</command>)."
-msgstr ""
+msgstr "実際のところこの状況では、<command>dpkg</command> はできるだけ賢明に振舞います: パッケージに含まれる標準的な設定ファイルが 2 つのバージョン間で変更されていなければ、何もしません。しかしながら、標準的な設定ファイルが 2 つのバージョン間で変更されていたら、ファイルを更新しようとします。2 つの場合が考えられます: 管理者が設定ファイルに変更を加えていなければ、<command>dpkg</command> は自動的にパッケージに含まれる新しいバージョンをインストールします; 管理者が設定ファイルに変更を加えていれば、<command>dpkg</command> は管理者にどちらのバージョン(変更された古いバージョン、またはパッケージに含まれる新しいバージョン) を使うかを尋ねます。どちらのバージョンを使うかの判断を手助けするために、<command>dpkg</command> は「<command>diff</command>」を使って 2 つのバージョンの違いを表示します。ユーザが古いバージョンを選んだ場合、新しいバージョンは同じ場所にファイル名の末尾に <filename>.dpkg-dist</filename>を追加して保存されます。ユーザが新しいバージョンを選んだ場合、古いバージョンはファイル名の末尾に <filename>.dpkg-old</filename> を追加して保存されます。他の利用可能な操作は、一旦 <command>dpkg</command> の処理を中断してファイルを編集する、または改めてバージョン間の違いを表示する (先と同じ様に <command>diff</command> コマンドを実行する) です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Avoiding the configuration file questions"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 設定ファイルに関連する質問を回避する"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> handles configuration file updates, but, while doing so, regularly interrupts its work to ask for input from the administrator. This makes it less than enjoyable for those who wish to run updates in a non-interactive manner. This is why this program offers options that allow the system to respond automatically according to the same logic: <command>--force-confold</command> retains the old version of the file; <command>--force-confnew</command> will use the new version of the file (these choices are respected, even if the file has not been changed by the administrator, which only rarely has the desired effect). Adding the <command>--force-confdef</command> option tells <command>dpkg</command> to decide by itself when possible (in other words, when the original configuration file has not been touched), and only uses <command>--force-confnew</command> or <command>--force-confold</command> for other cases."
-msgstr ""
+msgstr "<command>dpkg</command> は設定ファイルの更新を担当しますが、更新中に管理者からの入力を要求するため、更新作業は定期的に中断されます。この状況は非対話的に更新作業を行いたいと思う人にとって都合がよいとは言えない。そのため、<command>dpkg</command> にはシステムが同じ基準で自動的に質問に回答するオプションが用意されています: <command>--force-confold</command> を使うとファイルの古いバージョンが保持されます; <command>--force-confnew</command> を使うとファイルの新しいバージョンが使われます (管理者がファイルを変更していた場合さえも、これらの基準が優先されますから、期待通りの結果を得られないことが多いです)。<command>--force-confdef</command> オプションを使うと、<command>dpkg</command> は可能な場合は (言い換えれば、オリジナルの設定ファイルが変更されていなければ) 自動的にデフォルトの動作を選ぶようになり、その他の場合は <command>--force-confnew</command> または <command>--force-confold</command> を使うようになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "These options apply to <command>dpkg</command>, but most of the time the administrator will work directly with the <command>aptitude</command> or <command>apt-get</command> programs. It is, thus, necessary to know the syntax used to indicate the options to pass to the <command>dpkg</command> command (their command line interfaces are very similar)."
-msgstr ""
+msgstr "これらは <command>dpkg</command> ののオプションですが、ほとんどの場合管理者は <command>aptitude</command> または <command>apt-get</command> プログラムを使って作業を行います。そのため、<command>dpkg</command> コマンドにオプションを渡すための構文を知らなければいけません (両者のコマンドラインインターフェイスはとてもよく似ています)。"
 
 #. Tag: screen
 #, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
-msgstr ""
+msgstr "\n<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "These options can be stored directly in <command>apt</command>'s configuration. To do so, simply write the following line in the <filename>/etc/apt/apt.conf.d/local</filename> file:"
-msgstr ""
+msgstr "これらのオプションを直接 <command>apt</command> の設定に保存しておくことも可能です。これを行うには、<filename>/etc/apt/apt.conf.d/local</filename> ファイルに以下の行を追加してください:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "DPkg::options { \"--force-confdef\"; \"--force-confold\"; }\n"
-msgstr ""
+msgstr "\nDPkg::options { \"--force-confdef\"; \"--force-confold\"; }\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Including this option in the configuration file means that it will also be used in a graphical interface such as <command>aptitude</command>."
-msgstr ""
+msgstr "設定ファイルにこのオプションを含めることは、<command>aptitude</command> のようなグラフィカルインターフェイスでもこのオプションを使うことを意味しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Force dpkg to ask configuration file questions"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 設定ファイルに関連する質問を強制する"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>--force-confask</command> option requires <command>dpkg</command> to display the questions about the configuration files, even in cases where they would not normally be necessary. Thus, when reinstalling a package with this option, <command>dpkg</command> will ask the questions again for all of the configuration files modified by the administrator. This is very convenient, especially for reinstalling the original configuration file if it has been deleted and no other copy is available: a normal re-installation won't work, because <command>dpkg</command> considers removal as a form of legitimate modification, and, thus, doesn't install the desired configuration file."
-msgstr ""
+msgstr "<command>--force-confask</command> オプションを使うと、<command>dpkg</command> は通常は質問の必要がない場合でも設定ファイルに関する質問を表示します。このため、このオプションを付けてパッケージを再インストールすると、<command>dpkg</command> は管理者が修正したすべての設定ファイルに関して再度質問します。これはとくに設定ファイルが削除され、コピーも残っていない状態でオリジナルの設定ファイルを再インストールしたい場合にとても便利です: 通常の再インストールではダメな場合にこれを使います。なぜなら、<command>dpkg</command> は削除を合理的な変更の一種と考えており、オリジナルの設定ファイルをインストールしないからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Structure of a Source Package"
-msgstr ""
+msgstr "ソースパッケージの構造"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1076,42 +1076,42 @@ msgstr "<primary>ソース</primary><secondary>パッケージ</secondary>"
 #. Tag: title
 #, no-c-format
 msgid "Format"
-msgstr ""
+msgstr "フォーマット"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DSC file</primary>"
-msgstr ""
+msgstr "<primary>DSC ファイル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>diff.gz</filename> file</primary>"
-msgstr ""
+msgstr "<primary><filename>diff.gz</filename> ファイル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>debian.tar.gz</filename> file</primary>"
-msgstr ""
+msgstr "<primary><filename>debian.tar.gz</filename> ファイル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>orig.tar.gz</filename> file</primary>"
-msgstr ""
+msgstr "<primary><filename>orig.tar.gz</filename> ファイル</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A source package is usually comprised of three files, a <filename>.dsc</filename>, a <filename>.orig.tar.gz</filename>, and a <filename>.debian.tar.gz</filename> (or <filename>.diff.gz</filename>). They allow creation of binary packages (<filename>.deb</filename> files described above) from the source code files of the program, which are written in a programming language."
-msgstr ""
+msgstr "ソースパッケージは通常 <filename>.dsc</filename>、<filename>.orig.tar.gz</filename>、<filename>.debian.tar.gz</filename> (または <filename>.diff.gz</filename>) の 3 つのファイルで構成されています。これらのファイルを使って、プログラミング言語で書かれたプログラムのソースコードファイルからバイナリパッケージ (上で説明した <filename>.deb</filename> ファイル) を作成します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.dsc</filename> (Debian Source Control) file is a short text file containing an RFC 2822 header (just like the <filename>control</filename> file studied in <xref linkend=\"sect.control\" />) which describes the source package and indicates which other files are part thereof. It is signed by its maintainer, which guarantees authenticity. See <xref linkend=\"sect.package-authentication\" /> for further details on this subject."
-msgstr ""
+msgstr "<filename>.dsc</filename> (Debian Source Control) ファイルは RFC 2822 ヘッダを含む短いテキストファイル (<xref linkend=\"sect.control\" />で述べた <filename>control</filename> ファイルと似ています) で、ソースパッケージを説明し、他のどのファイルがパッケージ一部であるかを表明しています。メンテナはこのファイルを署名することで、信頼性を保証しています。より詳しい情報は<xref linkend=\"sect.package-authentication\" />をご覧ください。"
 
 #. Tag: title
 #, no-c-format
 msgid "A <filename>.dsc</filename> file"
-msgstr ""
+msgstr "<filename>.dsc</filename> ファイルの一例"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1155,131 +1155,169 @@ msgid ""
 "=qnbh\n"
 "-----END PGP SIGNATURE-----\n"
 msgstr ""
+"\n"
+"-----BEGIN PGP SIGNED MESSAGE-----\n"
+"Hash: SHA256\n"
+"\n"
+"Format: 3.0 (quilt)\n"
+"Source: zim\n"
+"Binary: zim\n"
+"Architecture: all\n"
+"Version: 0.48-1\n"
+"Maintainer: Emfox Zhou &lt;emfox@debian.org&gt;\n"
+"Uploaders: Raphaël Hertzog &lt;hertzog@debian.org&gt;\n"
+"Homepage: http://zim-wiki.org\n"
+"Standards-Version: 3.9.0\n"
+"Vcs-Browser: http://svn.debian.org/wsvn/collab-maint/deb-maint/zim/trunk?op=log\n"
+"Vcs-Svn: svn://svn.debian.org/collab-maint/deb-maint/zim/trunk\n"
+"Build-Depends: debhelper (&gt;= 7.4.12), python-support (&gt;= 0.8), xdg-utils, python (&gt;= 2.5), libgtk2.0-0 (&gt;= 2.6), python-gtk2, python-xdg, python-simplejson | python (&gt;= 2.6)\n"
+"Checksums-Sha1: \n"
+" bd84fa5104de5ed85a49723d26b350856de93217 966899 zim_0.48.orig.tar.gz\n"
+" 352111ff372a20579664416c9abd4970839835b3 9615 zim_0.48-1.debian.tar.gz\n"
+"Checksums-Sha256: \n"
+" 77d8df7dc89b233fdc3aab1a8ad959c6888881ae160770f50bf880a56e02f895 966899 zim_0.48.orig.tar.gz\n"
+" 0fceab5d3b099075cd38c225fa4002d893c1cdf4bbcc51d1391a34248e1e1a22 9615 zim_0.48-1.debian.tar.gz\n"
+"Files: \n"
+" 88cfc18c0c7339528d5f5f463647bb5f 966899 zim_0.48.orig.tar.gz\n"
+" 608b6e74aa14252dfc6236ab184bdb0c 9615 zim_0.48-1.debian.tar.gz\n"
+"\n"
+"-----BEGIN PGP SIGNATURE-----\n"
+"Version: GnuPG v1.4.10 (GNU/Linux)\n"
+"Comment: Signed by Raphael Hertzog\n"
+"\n"
+"iQEcBAEBCAAGBQJMSUAfAAoJEAOIHavrwpq5qjUIAKmM8p86GcHYTxMmKENoBUoW\n"
+"UPi5R7DzrLMbFrUXKgXWLvEKQTXpmkJhh2aSWq2iY+5piBSHwMiITfaBTpdTRvzU\n"
+"5nT/n9MlF8sJFESet/NgZaMPFDzWUbIy5aYbuG1TXmn/7XiDrBaQGiVqKkVLPrqc\n"
+"yWhsotn3JNKIjbPDW/DjImYyKD5RZpXrbVjuIgDT1E6yxtNYwUyBlK0cx/GITNep\n"
+"uV48hsT8cj0paqVXl5+P9Ww8XIE3clxNpE/45/tvKvkqGOeysc6OPAqsIw6HYFY9\n"
+"0EnvMTfMpeQOA68ZqsNpUjomv5r/EGwdCbAWo5iJDsZzXQ1Feh6iSNrjv3yeRzg=\n"
+"=qnbh\n"
+"-----END PGP SIGNATURE-----\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Build-Depends</literal>, header field</primary>"
-msgstr ""
+msgstr "<primary><literal>Build-Depends</literal>、ヘッダフィールド</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the source package also has dependencies (<literal>Build-Depends</literal>) completely distinct from those of binary packages, since they indicate tools required to compile the software in question and construct its binary package."
-msgstr ""
+msgstr "ソースパッケージはまた依存関係 (<literal>Build-Depends</literal>) を持っていることに注意してください。依存関係の意味は、バイナリパッケージのそれとは全く異なり、このソフトウェアをコンパイルしてバイナリパッケージを作るのに必要なツールを表しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Distinct namespaces"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> 異なる名前空間"
 
 #. Tag: para
 #, no-c-format
 msgid "It is important to note here that there is no required correspondence between the name of the source package and that of the binary package(s) that it generates. It is easy enough to understand if you know that each source package may generate several binary packages. This is why the <filename>.dsc</filename> file has the <literal>Source</literal> and <literal>Binary</literal> fields to explicitly name the source package and store the list of binary packages that it generates."
-msgstr ""
+msgstr "ここで、ソースパッケージの名前とバイナリパッケージの名前を一致させる必要がないという点によく注意してください。単一のソースパッケージが複数のバイナリパッケージを生成していることを知ったら、これは直ぐに理解できるでしょう。このため <filename>.dsc</filename> ファイルはソースパッケージを明確に名付けて、生成されるバイナリパッケージのリストを保存するために <literal>Source</literal> と <literal>Binary</literal> フィールドを持っています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Why divide into several packages"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> 複数のパッケージに分割する理由"
 
 #. Tag: para
 #, no-c-format
 msgid "Quite frequently, a source package (for a given software) can generate several binary packages. The split is justified by the possibility to use (parts of) the software in different contexts. Consider a shared library, it may be installed to make an application work (for example, <emphasis role=\"pkg\">libc6</emphasis>), or it can be installed to develop a new program (<emphasis role=\"pkg\">libc6-dev</emphasis> will then be the correct package). We find the same logic for client/server services where we want to install the server part on one machine and the client part on others (this is the case, for example, of <emphasis role=\"pkg\">openssh-server</emphasis> and <emphasis role=\"pkg\">openssh-client</emphasis>)."
-msgstr ""
+msgstr "(単独のソフトウェアの) ソースパッケージから複数のバイナリパッケージが作られるのは極めてよくあることです。ソフトウェアの分割は、ソフトウェアが異なる状況下で使われる可能性がある場合に、正当化されます。共有ライブラリについて考えてみましょう。これは (例えば、<emphasis role=\"pkg\">libc6</emphasis> は) アプリケーションを動作させるためにインストールされる場合もあれば、新しいプログラムを開発するためにインストールされる場合もあります (開発する場合は <emphasis role=\"pkg\">libc6-dev</emphasis> が適切です)。クライアント/サーバサービスに対しても同じことが言えます。あるマシンにはサーバ部分を、別のマシンにはクライアント部分をインストールしたい (例えば <emphasis role=\"pkg\">openssh-server</emphasis> と <emphasis role=\"pkg\">openssh-client</emphasis> がこの場合に相当します) こともあるでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "Just as frequently, the documentation is provided in a dedicated package: the user may install it independently from the software, and may at any time choose to remove it to save disk space. Additionally, this also saves disk space on the Debian mirrors, since the documentation package will be shared amongst all of the architectures (instead of having the documentation duplicated in the packages for each architecture)."
-msgstr ""
+msgstr "同じくらいの頻度で、文書は専用のパッケージで提供されることが多いです: ユーザは文書とソフトウェアを別々にインストールしたいかもしれませんし、ディスクスペースを節約するために文書を削除したいと考えるかもしれません。加えて、こうすることで Debian ミラーのディスクスペースも節約できます。なぜなら、文書パッケージは全てのアーキテクチャで (各アーキテクチャ向けのパッケージ毎に文書の複製を持つ代わりに) 共有されるからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>PERSPECTIVE</emphasis> Different source package formats"
-msgstr ""
+msgstr "<emphasis>PERSPECTIVE</emphasis> 様々なソースパッケージのフォーマット"
 
 #. Tag: para
 #, no-c-format
 msgid "Originally there was only one source package format. This is the <literal>1.0</literal> format, which associates an <filename>.orig.tar.gz</filename> archive to a <filename>.diff.gz</filename> “debianization” patch (there is also a variant, consisting of a single <filename>.tar.gz</filename> archive, which is automatically used if no <filename>.orig.tar.gz</filename> is available)."
-msgstr ""
+msgstr "もともとソースパッケージのフォーマットは 1 種類だけでした。これが <literal>1.0</literal> フォーマットで、<filename>.orig.tar.gz</filename> アーカイブを <filename>.diff.gz</filename> 「debianization」パッチで結合します (このフォーマットには亜種があります。これは単独の <filename>.tar.gz</filename> アーカイブを含んでおり、<filename>.orig.tar.gz</filename> が無ければこのアーカイブが使われます)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Since Debian <emphasis role=\"distribution\">Squeeze</emphasis>, Debian developers have the option to use new formats that correct many problems of the historical format. Format <literal>3.0 (quilt)</literal> can combine multiple upstream archives in the same source package: in addition to the usual <filename>.orig.tar.gz</filename>, supplementary <filename>.orig-<replaceable>component</replaceable>.tar.gz</filename> archives can be included. This is useful with software that are distributed in several upstream components but for which a single source package is desired. These archives can also be compressed with <command>bzip2</command> or <command>xz</command> rather than <command>gzip</command> (<command>lzma</command> is also supported by <command>dpkg-source</command> but not accepted into the official archive), which saves disk space and network resources. Finally, the monolithic patch, <filename>.diff.gz</filename> is replaced by a <filename>.debian.tar.gz</filename> archive containing the compiling instructions and a set of upstream patches contributed by the package maintainer. These last are recorded in a format compatible with <command>quilt</command> — a tool that facilitates the management of a series of patches."
-msgstr ""
+msgstr "Debian <emphasis role=\"distribution\">Squeeze</emphasis> 以降、Debian 開発者は新しいフォーマットを使うことができるようになりました。このフォーマットは昔使われていたフォーマットにあった多くの問題を修正しています。フォーマット <literal>3.0 (quilt)</literal> は複数の上流開発アーカイブを同じソースパッケージの中に混ぜ合わせることが可能になりました: いつもの <filename>.orig.tar.gz</filename> に加えて、補足用の <filename>.orig-<replaceable>component</replaceable>.tar.gz</filename> アーカイブを含めることが可能です。これは単独のソースパッケージが望まれるソフトウェアが複数の上流開発元によって配布されている場合に便利です。これらのアーカイブは <command>gzip</command> の代わりに <command>bzip2</command> または <command>xz</command> を使って圧縮できます (<command>dpkg-source</command> は <command>lzma</command> もサポートしていますが、公式アーカイブでは認められません)。これらの圧縮方式はディスクスペースとネットワークリソースを節約できます。最後に、単独のパッチ <filename>.diff.gz</filename> はコンパイル方法、パッケージメンテナが作った上流開発に対するパッチ群が納められた <filename>.debian.tar.gz</filename> アーカイブに置き換えられました。最後のファイルはパッチ群を楽に管理するツール <command>quilt</command> と互換性のあるフォーマットで記録されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.orig.tar.gz</filename> file is an archive containing the source code as provided by the original developer. Debian package maintainers are asked to not modify this archive in order to be able to easily check the origin and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
-msgstr ""
+msgstr "<filename>.orig.tar.gz</filename> ファイルはオリジナルの開発者が提供するソースコードを含むアーカイブです。Debian パッケージメンテナは、ファイルの出所と整合性を簡単に (チェックサムによる単純な比較で) 確認できるようにするために、さらに一部の作者からの希望を尊重するために、アーカイブを変更しないことを要求されました。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.debian.tar.gz</filename> contains all of the modifications made by the Debian maintainer, especially the addition of a <filename>debian</filename> directory containing the instructions to execute to construct a Debian package."
-msgstr ""
+msgstr "<filename>.debian.tar.gz</filename> には Debian メンテナが行った全ての変更、特に Debian パッケージを作成する際に実行される命令を収めた <filename>debian</filename> ディレクトリの追加、が含まれています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Decompressing a source package"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> ソースパッケージの展開"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg-source</command></primary>"
-msgstr ""
+msgstr "<primary><command>dpkg-source</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>decompressing, source package</primary>"
-msgstr ""
+msgstr "<primary>展開、ソースパッケージ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>uncompressing, source package</primary>"
-msgstr ""
+msgstr "<primary>解凍、ソースパッケージ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>unpacking</primary><secondary>source package</secondary>"
-msgstr ""
+msgstr "<secondary>ソースパッケージの</secondary><<primary>解凍</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you have a source package, you can use the <command>dpkg-source</command> command (from the <emphasis>dpkg-dev</emphasis> package) to decompress it:"
-msgstr ""
+msgstr "ソースパッケージを持っていれば、(<emphasis>dpkg-dev</emphasis> パッケージに含まれる) <command>dpkg-source</command> コマンドを使ってソースパッケージを展開できます:"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "You can also use <command>apt-get</command> to download a source package and unpack it right away. It requires that the appropriate <emphasis>deb-src</emphasis> lines be present in the <filename>/etc/apt/sources.list</filename> file, however (for further details, see <xref linkend=\"sect.apt-sources.list\" />). These are used to list the “sources” of source packages (meaning the servers on which a group of source packages are hosted)."
-msgstr ""
+msgstr "<command>apt-get</command> を使えば、ソースパッケージをダウンロードして直ぐに解凍することも可能です。しかしながら、これを行うには、適切な <emphasis>deb-src</emphasis> 行が <filename>/etc/apt/sources.list</filename> ファイルに書かれていなければいけません (より詳しい情報は <xref linkend=\"sect.apt-sources.list\" /> を参照してください)。この行はソースパッケージの「ソース」(ソースパッケージがホストされているサーバ群) を表すために使われます。"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Usage within Debian"
-msgstr ""
+msgstr "Debian 内の使い方"
 
 #. Tag: para
 #, no-c-format
 msgid "The source package is the foundation of everything in Debian. All Debian packages come from a source package, and each modification in a Debian package is the consequence of a modification made to the source package. The Debian maintainers work with the source package, knowing, however, the consequences of their actions on the binary packages. The fruits of their labors are thus found in the source packages available from Debian: you can easily go back to them and everything stems from them."
-msgstr ""
+msgstr "ソースパッケージは Debian の全ての基礎です。全ての Debian パッケージはソースパッケージから作られ、Debian パッケージに対する変更はソースパッケージを変更することで行われます。しかしながら、Debian メンテナはバイナリパッケージに対する活動の結果を理解しているため、ソースパッケージを使って作業を行っています。そんなわけで、彼らの労苦の成果は Debian から入手できるソースパッケージの中にあります: 簡単にソースパッケージに戻り、全てをソースパッケージから生成することもできます。"
 
 #. Tag: para
 #, no-c-format
 msgid "When a new version of a package (source package and one or more binary packages) arrives on the Debian server, the source package is the most important. Indeed, it will then be used by a network of machines of different architectures for compilation on the various architectures supported by Debian. The fact that the developer also sends one or more binary packages for a given architecture (usually i386 or amd64) is relatively unimportant, since these could just as well have been automatically generated."
-msgstr ""
+msgstr "パッケージの新バージョン (ソースパッケージと 1 つ以上のバイナリパッケージ) が Debian サーバにアップロードされると、このソースパッケージが最も重要です。実際には、異なるアーキテクチャのマシンのネットワークがソースパッケージを使い、Debian がサポートする様々なアーキテクチャ上でコンパイルを行います。開発者がソースパッケージだけでなく、適当なアーキテクチャ (通常 i386 または amd64) 向けの 1 つ以上のバイナリパッケージを送信するという事実はそれほど重要ではありません。なぜなら、送信されたバイナリパッケージと同じアーキテクチャのマシンでもバイナリパッケージが生成されるからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Manipulating Packages with <command>dpkg</command>"
-msgstr ""
+msgstr "<command>dpkg</command> を用いたパッケージの操作"
 
 #. Tag: para
 #, no-c-format
