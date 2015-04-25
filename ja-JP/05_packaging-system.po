@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-24 22:33+0900\n"
+"PO-Revision-Date: 2015-04-26 01:05+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1322,42 +1322,42 @@ msgstr "<command>dpkg</command> を用いたパッケージの操作"
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is the base command for handling Debian packages on the system. If you have <filename>.deb</filename> packages, it is <command>dpkg</command> that allows installation or analysis of their contents. But this program only has a partial view of the Debian universe: it knows what is installed on the system, and whatever it is given on the command line, but knows nothing of the other available packages. As such, it will fail if a dependency is not met. Tools such as <command>apt-get</command>, on the contrary, will create a list of dependencies to install everything as automatically as possible."
-msgstr ""
+msgstr "<command>dpkg</command> はシステムの Debian パッケージを操作する基礎的なコマンドです。<filename>.deb</filename> パッケージがあれば、<command>dpkg</command> でパッケージ内容をインストールしたり解析したりすることが可能です。しかしこのプログラムは Debian 世界のある一方向だけを見ているに過ぎません: このプログラムは、システムインストール済みのパッケージとコマンドラインで与えられたパッケージについては理解していますが、他の利用可能なパッケージについては理解していません。このため、依存関係が満足されていなければパッケージを操作できません。これに対して、<command>apt-get</command> などのツールは、可能な限り自動的に全てをインストールするために、依存関係のリストを作成します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> <command>dpkg</command> or <command>apt-get</command>?"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> <command>dpkg</command> か <command>apt-get</command> か?"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> should be seen as a system tool (backend), and <command>apt-get</command> as a tool closer to the user, which overcomes the limitations of the former. These tools work together, each one with its particularities, suited to specific tasks."
-msgstr ""
+msgstr "<command>dpkg</command> はシステムツール (バックエンド) と、<command>apt-get</command> はユーザに近いツールととらえるべきです。後者は前者の制限を克服しています。これらのツールは互いに協力して作業を行います。両者は互いに異なる得意分野を持っており、それぞれが特定の作業を担当しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing Packages"
-msgstr ""
+msgstr "パッケージのインストール"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>installation</primary><secondary>package installation</secondary>"
-msgstr ""
+msgstr "<primary>インストール</primary><secondary>パッケージのインストール</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>installation</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>インストール</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> is, above all, the tool for installing an already available Debian package (because it does not download anything). To do this, we use its <literal>-i</literal> or <literal>--install</literal> option."
-msgstr ""
+msgstr "中でも、<command>dpkg</command> は既に利用可能な Debian パッケージのインストールを担当する (ダウンロード機能はありません) ツールです。インストールを行うには、<literal>-i</literal> または <literal>--install</literal> オプションを使ってください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Installation of a package with <command>dpkg</command>"
-msgstr ""
+msgstr "<command>dpkg</command> を使ったパッケージのインストール"
 
 #. Tag: screen
 #, no-c-format
@@ -1370,16 +1370,23 @@ msgid ""
 "Setting up man-db (2.6.2-1) ...\n"
 "Building database of manual pages ... </computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.6.2-1_amd64.deb</userinput>\n"
+"<computeroutput>(Reading database ... 96357 files and directories currently installed.)\n"
+"Preparing to replace man-db 2.6.1-3 (using man-db_2.6.2-1_amd64.deb) ...\n"
+"Unpacking replacement man-db ...\n"
+"Setting up man-db (2.6.2-1) ...\n"
+"Building database of manual pages ... </computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "We can see the different steps performed by <command>dpkg</command>; we know, thus, at what point any error may have occurred. The installation can also be effected in two stages: first unpacking, then configuration. <command>apt-get</command> takes advantage of this, limiting the number of calls to <command>dpkg</command> (since each call is costly, due to loading of the database in memory, especially the list of already installed files)."
-msgstr ""
+msgstr "<command>dpkg</command> の実行する各作業段階が見て取れます; このため、どの時点でエラーが起きたかを識別できます。インストールを 2 段階に分けて実行することも可能です: 最初が解凍、その後設定です。<command>apt-get</command> はこれを上手に利用して、<command>dpkg</command> を呼び出す回数を減らしています (なぜなら呼び出される度にデータベース、特にインストール済みファイルのリスト、をメモリに読み込むため効率が悪いからです)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Separate unpacking and configuration"
-msgstr ""
+msgstr "解凍と設定を分けて実行"
 
 #. Tag: screen
 #, no-c-format
@@ -1393,21 +1400,29 @@ msgid ""
 "<computeroutput>Setting up man-db (2.6.2-1) ...\n"
 "Building database of manual pages ...</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.6.2-1_amd64.deb</userinput>\n"
+"<computeroutput>(Reading database ... 96357 files and directories currently installed.)\n"
+"Preparing to replace man-db 2.6.2-1 (using man-db_2.6.2-1_amd64.deb) ...\n"
+"Unpacking replacement man-db ...\n"
+"# </computeroutput><userinput> dpkg --configure man-db</userinput>\n"
+"<computeroutput>Setting up man-db (2.6.2-1) ...\n"
+"Building database of manual pages ...</computeroutput>\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>unpacking</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>解凍</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>unpacking</primary><secondary>binary package</secondary>"
-msgstr ""
+msgstr "<primary>解凍</primary><secondary>バイナリパッケージ</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes <command>dpkg</command> will fail to install a package and return an error; if the user orders it to ignore this, it will only issue a warning; it is for this reason that we have the different <literal>--force-*</literal> options. The <command>dpkg --force-help</command> command, or documentation of this command, will give a complete list of these options. The most frequent error, which you are bound to encounter sooner or later, is a file collision. When a package contains a file that is already installed by another package, <command>dpkg</command> will refuse to install it. The following messages will then appear:"
-msgstr ""
+msgstr "<command>dpkg</command> がパッケージのインストールに失敗し、エラーを返すことがあります; ユーザが失敗を無視するように命令すれば、警告を表示するでしょう; これが異なる <literal>--force-*</literal> 系オプションがある理由です。このコマンドの文書によれば <command>dpkg --force-help</command> コマンドでこれらのオプションの完全なリストを見ることができます。最もよくあるエラーはファイルの衝突で、遅かれ早かれこのエラーに遭遇するのは避けられません。パッケージが他のパッケージによってインストール済みのファイルを含んでいる場合、<command>dpkg</command> はパッケージのインストールを拒否します。以下のメッセージが表示されます:"
 
 #. Tag: screen
 #, no-c-format
@@ -1417,31 +1432,35 @@ msgid ""
 "dpkg: error processing /var/cache/apt/archives/libgdm_3.8.3-2_amd64.deb (--unpack):\n"
 " trying to overwrite '/usr/bin/gdmflexiserver', which is also in package gdm3 3.4.1-9</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>Unpacking libgdm (from .../libgdm_3.8.3-2_amd64.deb) ...\n"
+"dpkg: error processing /var/cache/apt/archives/libgdm_3.8.3-2_amd64.deb (--unpack):\n"
+" trying to overwrite '/usr/bin/gdmflexiserver', which is also in package gdm3 3.4.1-9</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "In this case, if you think that replacing this file is not a significant risk to the stability of your system (which is usually the case), you can use the option <literal>--force-overwrite</literal>, which tells <command>dpkg</command> to ignore this error and overwrite the file."
-msgstr ""
+msgstr "この場合、ファイルを置き換えることでシステムの安定度が大きく阻害されない (通常は阻害されません) と考えるなら、<literal>--force-overwrite</literal> オプションを使うことで <command>dpkg</command> にこのエラーを無視してファイルを上書きするように伝えられます。"
 
 #. Tag: para
 #, no-c-format
 msgid "While there are many available <literal>--force-*</literal> options, only <literal>--force-overwrite</literal> is likely to be used regularly. These options only exist for exceptional situations, and it is better to leave them alone as much as possible in order to respect the rules imposed by the packaging mechanism. Do not forget, these rules ensure the consistency and stability of your system."
-msgstr ""
+msgstr "<literal>--force-*</literal> 系のオプションはたくさんありますが、日常的に使うのは <literal>--force-overwrite</literal> だけです。これらのオプションは例外的状況のためだけに用意されており、パッケージ化メカニズムの定める標準規則を尊重するためには、これらのオプションを使うことは可能な限り避けるべきです。これらの標準規則はシステムの一貫性と安定性を守るものであることを忘れないでください。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Effective use of <literal>--force-*</literal>"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> <literal>--force-*</literal> の効果的な使い方"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>broken dependency</primary>"
-msgstr ""
+msgstr "<primary>破壊された依存性</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you are not careful, the use of an option <literal>--force-*</literal> can lead to a system where the APT family of commands will refuse to function. In effect, some of these options allow installation of a package when a dependency is not met, or when there is a conflict. The result is an inconsistent system from the point of view of dependencies, and the APT commands will refuse to execute any action except those that will bring the system back to a consistent state (this often consists of installing the missing dependency or removing a problematic package). This often results in a message like this one, obtained after installing a new version of <emphasis role=\"pkg\">rdesktop</emphasis> while ignoring its dependency on a newer version of the <emphasis role=\"pkg\">libc6</emphasis>:"
-msgstr ""
+msgstr "下手をすると <literal>--force-*</literal> オプションを使うことにより、そのシステム上で APT ファミリーのコマンドが動かなくなる場合があります。事実上、これらのオプションを使えば、依存関係が満足されていないくても、衝突していても、パッケージをインストールを出来てしまいます。この結果、システムは依存関係の観点からすると一貫性の無い状況になります。APT コマンドはシステムを一貫性の有る状態に戻せるような操作 (多くの場合、依存関係を満足させるために必要なパッケージのインストール、問題のあるパッケージの削除が含まれています) を除き、その実行を拒否しますから、APT コマンドが実行できなくなります。その場合、例えば以下のようなメッセージが表示されることがあります。これは、<emphasis role=\"pkg\">rdesktop</emphasis> の新しいバージョンが <emphasis role=\"pkg\">libc6</emphasis> のシステムにインストールされているバージョンよりも新しいバージョンに依存しているにも関わらず、その依存関係を無視して <emphasis role=\"pkg\">rdesktop</emphasis> をインストールした結果です。"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1454,46 +1473,53 @@ msgid ""
 "E: missing dependencies. Try to use the option -f.\n"
 "  "
 msgstr ""
+"# apt-get dist-upgrade\n"
+"[...]\n"
+"You can run \"apt-get -f install\" to correct these problems.\n"
+"The following packages contain unmet dependencies:\n"
+"  rdesktop: Depends on: libc6 (&gt;= 2.5) but 2.3.6.ds1-13etch7 is installed\n"
+"E: missing dependencies. Try to use the option -f.\n"
+"  "
 
 #. Tag: para
 #, no-c-format
 msgid "A courageous administrator who is certain of the correctness of their analysis may choose to ignore a dependency or conflict and use the corresponding <literal>--force-*</literal> option. In this case, if they want to be able to continue to use <command>apt-get</command> or <command>aptitude</command>, they must edit <filename>/var/lib/dpkg/status</filename> to delete/modify the dependency, or conflict, that they chose to override."
-msgstr ""
+msgstr "勇気ある管理者が自分の解析の正確さに自信を持っているなら、依存関係や衝突を無視して、対応する <literal>--force-*</literal> 系オプションを使うことを選ぶかもしれません。この場合に、管理者が <command>apt-get</command> や <command>aptitude</command> を使い続けたいと思うなら、管理者は無効にしたい依存関係や衝突を削除/変更するために <filename>/var/lib/dpkg/status</filename> を編集しなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "This manipulation is an ugly hack, and should never be used, except in the most extreme case of necessity. Quite frequently, a more fitting solution is to recompile the package that's causing the problem (see <xref linkend=\"sect.rebuilding-package\" />) or use a new version (potentially corrected) from a repository such as the <literal>stable-backports</literal> one (see <xref linkend=\"sect.backports\" />)."
-msgstr ""
+msgstr "この操作は最悪の対応策であり、本当にどうしても必要な場合を除いて、絶対に使うべきではありません。多くの場合、より適切な解決策は、問題を生じさせているパッケージを再コンパイルするか (<xref linkend=\"sect.rebuilding-package\" /> をご覧ください)、<literal>stable-backports</literal> などのリポジトリから新しい (修正済みの可能性がある) バージョンを使うか (<xref linkend=\"sect.backports\" /> をご覧ください) です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>removing a package</primary>"
-msgstr ""
+msgstr "<primary>パッケージの削除</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>purging a package</primary>"
-msgstr ""
+msgstr "<primary>パッケージの完全消去</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>removal</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>削除</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>purge</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>完全消去</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Invoking <command>dpkg</command> with the <literal>-r</literal> or <literal>--remove</literal> option, followed by the name of a package, removes that package. This removal is, however, not complete: all of the configuration files, maintainer scripts, log files (system logs) and other user data handled by the package remain. That way disabling the program is easily done by uninstalling it, and it's still possible to quickly reinstall it with the same configuration. To completely remove everything associated with a package, use the <literal>-P</literal> or <literal>--purge</literal> option, followed by the package name."
-msgstr ""
+msgstr "<command>dpkg</command> を実行する際に、<literal>-r</literal> または <literal>--remove</literal> オプションを付けてさらにパッケージの名前を続けると、パッケージを削除します。しかしながらこの削除は完璧ではありません: パッケージの取り扱う全ての設定ファイル、メンテナスクリプト、ログファイル (システムログ)、その他のユーザデータは残されたままです。プログラムを無効化するには、この方法でパッケージをアンインストールしてください。そうすれば、そのパッケージを同じ設定で再インストールして素早く利用可能な状態にすることもまだ可能です。パッケージに関連する全てを完全に削除するには、<literal>-P</literal> または <literal>--purge</literal> オプションつけてさらにパッケージの名前を続けてください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Removal and purge of the <emphasis>debian-cd</emphasis> package"
-msgstr ""
+msgstr "<emphasis>debian-cd</emphasis> パッケージの削除と完全消去"
 
 #. Tag: screen
 #, no-c-format
@@ -1506,46 +1532,53 @@ msgid ""
 "Removing debian-cd ...\n"
 "Purging configuration files for debian-cd ...</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
+"<computeroutput>(Reading database ... 97747 files and directories currently installed.)\n"
+"Removing debian-cd ...\n"
+"# </computeroutput><userinput>dpkg -P debian-cd</userinput>\n"
+"<computeroutput>(Reading database ... 97401 files and directories currently installed.)\n"
+"Removing debian-cd ...\n"
+"Purging configuration files for debian-cd ...</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Querying <command>dpkg</command>'s Database and Inspecting <filename>.deb</filename> Files"
-msgstr ""
+msgstr "<command>dpkg</command> のデータベースへの問い合わせと <filename>.deb</filename> ファイルの調査"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>status</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>状態</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>file list</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>ファイルリスト</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>content inspection</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>内容の調査</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Option syntax"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> オプションの構文"
 
 #. Tag: para
 #, no-c-format
 msgid "Most options are available in a “long” version (one or more relevant words, preceded by a double dash) and a “short” version (a single letter, often the initial of one word from the long version, and preceded by a single dash). This convention is so common that it is a POSIX standard."
-msgstr ""
+msgstr "ほとんどのオプションには「長い」もの (1 個以上の関連する単語、二重ダッシュで始まる) と「短い」もの (1 文字、長いオプションの頭文字の場合が多い、単独のダッシュで始まる) があります。これは POSIX 標準のプログラムでよく見られる慣例です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Before concluding this section, we will study <command>dpkg</command> options that query the internal database in order to obtain information. Giving first the long options and then corresponding short options (that will evidently take the same possible arguments) we cite <literal>--listfiles <replaceable>package</replaceable></literal> (or <literal>-L</literal>), which lists the files installed by this package; <literal>--search <replaceable>file</replaceable></literal> (or <literal>-S</literal>), which finds the package(s) containing the file; <literal>--status <replaceable>package</replaceable></literal> (or <literal>-s</literal>), which displays the headers of an installed package; <literal>--list</literal> (or <literal>-l</literal>), which displays the list of packages known to the system and their installation status; <literal>--contents <replaceable>file.deb</replaceable></literal> (or <literal>-c</literal>), which lists the files in the Debian package specified; <literal>--info<replaceable> file.deb </replaceable></literal> (or <literal>-I</literal>), which displays the headers of this Debian package."
-msgstr ""
+msgstr "この節を締めくくる前に、内部データベースに問い合わせて情報を得る際に使う <command>dpkg</command> のオプションについて学びましょう。表記は最初に長いオプション、そのあとに対応する短いオプション (両者は同じ引数を取るのは明らかです) です。<literal>--listfiles <replaceable>package</replaceable></literal> (または <literal>-L</literal>)、与えられたパッケージがインストールするファイルを表示します; <literal>--search <replaceable>file</replaceable></literal> (または <literal>-S</literal>)、ファイルを含むパッケージを探します; <literal>--status <replaceable>package</replaceable></literal> (または <literal>-s</literal>)、インストールされたパッケージのヘッダを表示します; <literal>--list</literal> (または <literal>-l</literal>)、システムが把握しているパッケージのリストとその状態を表示します; <literal>--contents <replaceable>file.deb</replaceable></literal> (または <literal>-c</literal>)、与えられた Debian パッケージに含まれるファイルを表示します; <literal>--info<replaceable> file.deb </replaceable></literal> (または <literal>-I</literal>) Debian パッケージのヘッダを表示します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Various queries with <command>dpkg</command>"
-msgstr ""
+msgstr "<command>dpkg</command> に様々な情報を問い合わせる"
 
 #. Tag: screen
 #, no-c-format
@@ -1665,26 +1698,140 @@ msgid ""
 "  with the proposed OpenPGP Internet standard as described in RFC 4880.\n"
 "[...]</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
+"<computeroutput>/.\n"
+"/usr\n"
+"/usr/sbin\n"
+"/usr/sbin/update-passwd\n"
+"/usr/share\n"
+"/usr/share/man\n"
+"/usr/share/man/ru\n"
+"/usr/share/man/ru/man8\n"
+"/usr/share/man/ru/man8/update-passwd.8.gz\n"
+"/usr/share/man/pl\n"
+"/usr/share/man/pl/man8\n"
+"/usr/share/man/pl/man8/update-passwd.8.gz\n"
+"/usr/share/man/man8\n"
+"/usr/share/man/man8/update-passwd.8.gz\n"
+"/usr/share/man/fr\n"
+"/usr/share/man/fr/man8\n"
+"/usr/share/man/fr/man8/update-passwd.8.gz\n"
+"/usr/share/doc-base\n"
+"/usr/share/doc-base/users-and-groups\n"
+"/usr/share/base-passwd\n"
+"/usr/share/base-passwd/passwd.master\n"
+"/usr/share/base-passwd/group.master\n"
+"/usr/share/lintian\n"
+"/usr/share/lintian/overrides\n"
+"/usr/share/lintian/overrides/base-passwd\n"
+"/usr/share/doc\n"
+"/usr/share/doc/base-passwd\n"
+"/usr/share/doc/base-passwd/copyright\n"
+"/usr/share/doc/base-passwd/users-and-groups.html\n"
+"/usr/share/doc/base-passwd/changelog.gz\n"
+"/usr/share/doc/base-passwd/users-and-groups.txt.gz\n"
+"/usr/share/doc/base-passwd/README\n"
+"$ </computeroutput><userinput>dpkg -S /bin/date</userinput>\n"
+"<computeroutput>coreutils: /bin/date\n"
+"$ </computeroutput><userinput>dpkg -s coreutils</userinput>\n"
+"<computeroutput>Package: coreutils\n"
+"Essential: yes\n"
+"Status: install ok installed\n"
+"Priority: required\n"
+"Section: utils\n"
+"Installed-Size: 13822\n"
+"Maintainer: Michael Stone &lt;mstone@debian.org&gt;\n"
+"Architecture: amd64\n"
+"Multi-Arch: foreign\n"
+"Version: 8.13-3.5\n"
+"Replaces: mktemp, timeout\n"
+"Depends: dpkg (&gt;= 1.15.4) | install-info\n"
+"Pre-Depends: libacl1 (&gt;= 2.2.51-8), libattr1 (&gt;= 1:2.4.46-8), libc6 (&gt;= 2.7), libselinux1 (&gt;= 1.32)\n"
+"Conflicts: timeout\n"
+"Description: GNU core utilities\n"
+" This package contains the basic file, shell and text manipulation\n"
+" utilities which are expected to exist on every operating system.\n"
+" .\n"
+" Specifically, this package includes:\n"
+" arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp\n"
+" csplit cut date dd df dir dircolors dirname du echo env expand expr\n"
+" factor false flock fmt fold groups head hostid id install join link ln\n"
+" logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup nproc od\n"
+" paste pathchk pinky pr printenv printf ptx pwd readlink rm rmdir runcon\n"
+" sha*sum seq shred sleep sort split stat stty sum sync tac tail tee test\n"
+" timeout touch tr true truncate tsort tty uname unexpand uniq unlink\n"
+" users vdir wc who whoami yes\n"
+"Homepage: http://gnu.org/software/coreutils\n"
+"$ </computeroutput><userinput>dpkg -l 'b*'</userinput>\n"
+"<computeroutput>Desired=Unknown/Install/Remove/Purge/Hold\n"
+"| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend\n"
+"|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)\n"
+"||/ Name         Version        Architecture   Description\n"
+"+++-============-==============-==============-================================\n"
+"un  backupninja  &lt;none&gt;                        (no description available)\n"
+"un  base         &lt;none&gt;                        (no description available)\n"
+"un  base-config  &lt;none&gt;                        (no description available)\n"
+"ii  base-files   7.1            amd64          Debian base system miscellaneous\n"
+"ii  base-passwd  3.5.26         amd64          Debian base system master passwo\n"
+"[...]\n"
+"$ </computeroutput><userinput>dpkg -c /var/cache/apt/archives/gnupg_1.4.12-7_amd64.deb</userinput>\n"
+"<computeroutput>drwxr-xr-x root/root         0 2013-01-02 19:28 ./\n"
+"drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/\n"
+"drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/share/\n"
+"drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/share/doc/\n"
+"drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/share/doc/gnupg/\n"
+"-rw-r--r-- root/root      3258 2012-01-20 10:51 ./usr/share/doc/gnupg/TODO\n"
+"-rw-r--r-- root/root       308 2011-12-02 18:34 ./usr/share/doc/gnupg/FAQ\n"
+"-rw-r--r-- root/root      3543 2012-02-20 18:41 ./usr/share/doc/gnupg/Upgrading_From_PGP.txt\n"
+"-rw-r--r-- root/root       690 2012-02-20 18:41 ./usr/share/doc/gnupg/README.Debian\n"
+"-rw-r--r-- root/root      1418 2012-02-20 18:41 ./usr/share/doc/gnupg/TODO.Debian\n"
+"[...]\n"
+"$ </computeroutput><userinput>dpkg -I /var/cache/apt/archives/gnupg_1.4.12-7_amd64.deb</userinput>\n"
+"<computeroutput> new debian package, version 2.0.\n"
+" size 1952176 bytes: control archive=3312 bytes.\n"
+"    1449 bytes,    30 lines      control              \n"
+"    4521 bytes,    65 lines      md5sums              \n"
+"     479 bytes,    13 lines   *  postinst             #!/bin/sh\n"
+"     473 bytes,    13 lines   *  preinst              #!/bin/sh\n"
+" Package: gnupg\n"
+" Version: 1.4.12-7\n"
+" Architecture: amd64\n"
+" Maintainer: Debian GnuPG-Maintainers &lt;pkg-gnupg-maint@lists.alioth.debian.org&gt;\n"
+" Installed-Size: 4627\n"
+" Depends: libbz2-1.0, libc6 (&gt;= 2.4), libreadline6 (&gt;= 6.0), libusb-0.1-4 (&gt;= 2:0.1.12), zlib1g (&gt;= 1:1.1.4), dpkg (&gt;= 1.15.4) | install-info, gpgv\n"
+" Recommends: libldap-2.4-2 (&gt;= 2.4.7), gnupg-curl\n"
+" Suggests: gnupg-doc, xloadimage | imagemagick | eog, libpcsclite1\n"
+" Section: utils\n"
+" Priority: important\n"
+" Multi-Arch: foreign\n"
+" Homepage: http://www.gnupg.org\n"
+" Description: GNU privacy guard - a free PGP replacement\n"
+"  GnuPG is GNU's tool for secure communication and data storage.\n"
+"  It can be used to encrypt data and to create digital signatures.\n"
+"  It includes an advanced key management facility and is compliant\n"
+"  with the proposed OpenPGP Internet standard as described in RFC 4880.\n"
+"[...]</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Comparison of versions"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> バージョンの比較"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>version, comparison</primary>"
-msgstr ""
+msgstr "<primary>バージョン、比較</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>comparison of versions</primary>"
-msgstr ""
+msgstr "<primary>バージョンの比較</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Since <command>dpkg</command> is the program for handling Debian packages, it also provides the reference implementation of the logic of comparing version numbers. This is why it has a <literal>--compare-versions</literal> option, usable by external programs (especially configuration scripts executed by <command>dpkg</command> itself). This option requires three parameters: a version number, a comparison operator, and a second version number. The different possible operators are <literal>lt</literal> (strictly less than), <literal>le</literal> (less than or equal to), <literal>eq</literal> (equal), <literal>ne</literal> (not equal), <literal>ge</literal> (greater than or equal to), and <literal>gt</literal> (strictly greater than). If the comparison is correct, <command>dpkg</command> returns 0 (success); if not, it gives a non-zero return value (indicating failure)."
-msgstr ""
+msgstr "<command>dpkg</command> は Debian パッケージを取り扱うプログラムですから、バージョン番号の比較ロジックのリファレンス実装も提供します。このため、<literal>--compare-versions</literal> オプションがあり、外部プログラム (特に <command>dpkg</command> 自身が呼び出す設定スクリプト) が使いやすいようになっています。このオプションは 3 つのパラメータを要求します: バージョン番号、比較演算子、2 番目のバージョン番号です。使える演算子は <literal>lt</literal> (より小さい)、<literal>le</literal> (以下)、<literal>eq</literal> (等しい)、<literal>ne</literal> (等しくない)、<literal>ge</literal> (以上)、<literal>gt</literal> (より大きい) です。比較が正しければ <command>dpkg</command> は 0 (成功) を返します; 間違っていれば、非ゼロ (失敗) を返します。"
 
 #. Tag: screen
 #, no-c-format
@@ -1700,11 +1847,21 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
 "<computeroutput>1</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 gt 1.1-4</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>0\n"
+"$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 lt 1.1-4</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>1\n"
+"$ </computeroutput><userinput>dpkg --compare-versions 2.6.0pre3-1 lt 2.6.0-1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>1</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Note the unexpected failure of the last comparison: for <command>dpkg</command>, <literal>pre</literal>, usually denoting a pre-release, has no particular meaning, and this program compares the alphabetic characters in the same way as the numbers (a &lt; b &lt; c ...), in alphabetical order. This is why it considers “<literal>0pre3</literal>” to be greater than “<literal>0</literal>”. When we want a package's version number to indicate that it is a pre-release, we use the tilde character, “<literal>~</literal>”:"
-msgstr ""
+msgstr "一見 0 (成功) を返すように思われる最後の比較が 1 (失敗) を返した点に注意しましょう: <command>dpkg</command> にとって、通常は事前リリースを意味する <literal>pre</literal> には特別な意味がありません、このプログラムはアルファベット文字を数字と同じ方法で (a &lt; b &lt; c ...)、アルファベット順に、比較します。このため、「<literal>0pre3</literal>」は「<literal>0</literal>」より大きいというわけです。パッケージのバージョン番号に事前リリースであるという意味を持たせたい場合、チルダ文字「<literal>~</literal」を使ってください。"
 
 #. Tag: screen
 #, no-c-format
@@ -1714,51 +1871,55 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
 "<computeroutput>0</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 2.6.0~pre3-1 lt 2.6.0-1</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
+"<computeroutput>0</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<command>dpkg</command>'s Log File"
-msgstr ""
+msgstr "<command>dpkg</command> のログファイル"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command> keeps a log of all of its actions in <filename>/var/log/dpkg.log</filename>. This log is extremely verbose, since it details every one of the stages through which packages handled by <command>dpkg</command> go. In addition to offering a way to track dpkg's behavior, it helps, above all, to keep a history of the development of the system: one can find the exact moment when each package has been installed or updated, and this information can be extremely useful in understanding a recent change in behavior. Additionally, all versions being recorded, it is easy to cross-check the information with the <filename>changelog.Debian.gz</filename> for packages in question, or even with online bug reports."
-msgstr ""
+msgstr "<command>dpkg</command> は <filename>/var/log/dpkg.log</filename> に作業の全てを記録します。このログは極めて詳細です、なぜなら <command>dpkg</command> がパッケージに対して行った操作の各段階全てを詳しく記録しているからです。dpkg の挙動を追跡する方法を提供することに加えて、これはシステムの変化の歴史を保存するのに役立ちます: パッケージがインストールされたり更新された正確な日時を探すことができますし、この情報は最近の挙動変化を理解するのに極めて便利です。加えて、全てのバージョンが記録されていますから、注目しているパッケージの <filename>changelog.Debian.gz</filename> またはオンラインバグ報告と情報を簡単に照合できます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Multi-Arch Support"
-msgstr ""
+msgstr "マルチアーキテクチャサポート"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Multi-Arch</primary>"
-msgstr ""
+msgstr "<primary>マルチアーキテクチャ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>architecture</primary><secondary>multi-arch support</secondary>"
-msgstr ""
+msgstr "<primary>アーキテクチャ</primary><secondary>マルチアーキテクチャサポート</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All Debian packages have an <literal>Architecture</literal> field in their control information. This field can contain either “<literal>all</literal>” (for packages that are architecture independent) or the name of the architecture that it targets (like “amd64”, “armhf”, …). In the latter case, by default, <command>dpkg</command> will only accept to install the package if its architecture matches the host's architecture as returned by <command>dpkg --print-architecture</command>."
-msgstr ""
+msgstr "全ての Debian パッケージは<literal>Architecture</literal> フィールドがあります。このフィールドでは、「<literal>all</literal>」(アーキテクチャに依存しないパッケージ) または対象のアーキテクチャの名前 (「amd64」、「armhf」、…) のどちらか一方を指定します。後者の場合、初期設定では、<command>dpkg</command> は <command>dpkg --print-architecture</command> で返されるホストのアーキテクチャと一致するアーキテクチャ向けのパッケージのインストールだけを受け入れます。"
 
 #. Tag: para
 #, no-c-format
 msgid "This restriction ensures that users do not end up with binaries compiled for an incorrect architecture. Everything would be perfect except that (some) computers can run binaries for multiple architectures, either natively (an “amd64“ system can run “i386” binaries) or through emulators."
-msgstr ""
+msgstr "この制約は、ユーザが異なるアーキテクチャ向けにコンパイルされたバイナリを使う羽目にならないようにしています。(一部の) コンピュータが複数のアーキテクチャのバイナリを実行できる場合、例えば元から可能な場合(「amd64」システムが「i386」バイナリを実行できる) やエミュレータを介す場合、を除けばこれが理想的です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Enabling Multi-Arch"
-msgstr ""
+msgstr "マルチアーキテクチャの有効化"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command>'s multi-arch support allows users to define “foreign architectures” that can be installed on the current system. This is simply done with <command>dpkg --add-architecture</command> like in the example below. There's a corresponding <command>dpkg --remove-architecture</command> to drop support of a foreign architecture, but it can only be used when no packages of this architecture remain."
-msgstr ""
+msgstr "<command>dpkg</command> のマルチアーキテクチャサポートのおかげで、ユーザは現在のシステムにインストール可能な「外来アーキテクチャ」を定義できます。これを行うには、以下に示す通り <command>dpkg --add-architecture</command> を使ってください。関連して、<command>dpkg --remove-architecture</command> は外来アーキテクチャのサポートを取り止めますが、取り止めたいアーキテクチャのパッケージが残っていた場合には失敗します。"
 
 #. Tag: screen
 #, no-c-format
@@ -1788,51 +1949,75 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
 "<computeroutput>armhf</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>dpkg --print-architecture</userinput>\n"
+"<computeroutput>amd64\n"
+"# </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg -i gcc-4.7-base_4.7.2-5_armhf.deb</userinput>\n"
+"<computeroutput>dpkg: error processing gcc-4.7-base_4.7.2-5_armhf.deb (--install):\n"
+" package architecture (armhf) does not match system (amd64)\n"
+"Errors were encountered while processing:\n"
+" gcc-4.7-base_4.7.2-5_armhf.deb\n"
+"# </computeroutput><userinput>dpkg --add-architecture armhf</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg --add-architecture armel</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
+"<computeroutput>armhf\n"
+"armel\n"
+"# </computeroutput><userinput>dpkg -i gcc-4.7-base_4.7.2-5_armhf.deb</userinput>\n"
+"<computeroutput>Selecting previously unselected package gcc-4.7-base:armhf.\n"
+"(Reading database ... 97399 files and directories currently installed.)\n"
+"Unpacking gcc-4.7-base:armhf (from gcc-4.7-base_4.7.2-5_armhf.deb) ...\n"
+"Setting up gcc-4.7-base:armhf (4.7.2-5) ...\n"
+"# </computeroutput><userinput>dpkg --remove-architecture armhf</userinput>\n"
+"<computeroutput>dpkg: error: cannot remove architecture 'armhf' currently in use by the database\n"
+"# </computeroutput><userinput>dpkg --remove-architecture armel</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
+"<computeroutput>armhf</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> APT's multi-arch support"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> APT のマルチアーキテクチャサポート"
 
 #. Tag: para
 #, no-c-format
 msgid "APT will automatically detect when dpkg has been configured to support foreign architectures and will start downloading the corresponding <filename>Packages</filename> files durings its update process."
-msgstr ""
+msgstr "APT は dpkg が外来アーキテクチャをサポートするように設定されているかを自動的に検出し、更新作業中に対応する <filename>Packages</filename> ファイルをダウンロードします。"
 
 #. Tag: para
 #, no-c-format
 msgid "Foreign packages can then be installed with <command>apt-get install <replaceable>package</replaceable>:<replaceable>architecture</replaceable></command>."
-msgstr ""
+msgstr "外来パッケージをインストールするには <command>apt-get install <replaceable>package</replaceable>:<replaceable>architecture</replaceable></command> を使ってください。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Using proprietary i386 binaries on amd64"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> amd64 上でプロプライエタリな i386 バイナリを使う"
 
 #. Tag: para
 #, no-c-format
 msgid "There are multiple use cases for multi-arch, but the most popular one is the possibility to execute 32 bit binaries (i386) on 64 bit systems (amd64), in particular since several popular proprietary applications (like Skype) are only provided in 32 bit versions."
-msgstr ""
+msgstr "マルチアーキテクチャには複数の使用事例がありますが、特に人気の用例は、32 ビットバイナリ (i386) が 64 ビットシステム (amd64) で実行可能になる例です。その具体的理由は、複数の人気のプロプライエタリアプリケーション (例えば Skype) が 32 ビット版しか提供していないからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Before multi-arch, when you wanted to uses a 32 bit appliction on a 64 bit system, you had to install <emphasis role=\"pkg\">ia32-libs</emphasis> to have 32 bit versions of the most popular libraries. That package was a huge hack that repackaged 32 bit libraries in an “amd64” package."
-msgstr ""
+msgstr "マルチアーキテクチャ以前、32 ビットアプリケーションを 64 ビットシステムで実行したければ、<emphasis role=\"pkg\">ia32-libs</emphasis> をインストールすることで、システム内に人気の高いライブラリの 32 ビット版を持つ必要がありました。このパッケージは amd64 パッケージ内の 32 ビットライブラリを再パッケージ化した大規模なハックでした。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">ia32-libs</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">ia32-libs</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Multi-Arch Related Changes"
-msgstr ""
+msgstr "マルチアーキテクチャ関連の変更"
 
 #. Tag: para
 #, no-c-format
 msgid "To make multi-arch actually useful and usable, libraries had to be repackaged and moved to an architecture-specific directory so that multiple copies (targeting different architectures) can be installed alongside. Such updated packages contain the “<literal>Multi-Arch: same</literal>” header field to tell the packaging system that the various architectures of the package can be safely co-installed (and that those packages can only satisfy dependencies of packages of the same architecture). Since multi-arch made its debut in Debian Wheezy, not all libraries have been converted yet (but all libraries which were embedded in <emphasis role=\"pkg\">ia32-libs</emphasis> do!)."
-msgstr ""
+msgstr "マルチアーキテクチャを実際に便利で使いやすいものにするためには、ライブラリを再パッケージ化しなければいけませんでした。さらに複数のコピー (対象の異なるアーキテクチャ) を同時にインストールできるようにするために、マルチアーキテクチャ専用のディレクトリにライブラリを移動しなければいけませんでした。このようにして更新されたパッケージには、このパッケージはアーキテクチャが違っても安全に同時インストール出来ること (そしてこのパッケージは自分と異なるアーキテクチャのパッケージの依存関係を満足することは出来ないこと) をパッケージ化システムに伝えるための「<literal>Multi-Arch: same</literal>」ヘッダフィールドが含まれていました。マルチアーキテクチャモードは Debian Wheezy で初登場しましたから、まだ全てのライブラリが変換されたわけではありません (<emphasis role=\"pkg\">ia32-libs</emphasis> に組み込まれていたライブラリはすべて変換されました)。"
 
 #. Tag: screen
 #, no-c-format
@@ -1850,61 +2035,73 @@ msgid ""
 "$ <userinput>dpkg -S /usr/share/doc/gcc-4.7-base/copyright</userinput>\n"
 "gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/copyright\n"
 msgstr ""
+"\n"
+"$ <userinput>dpkg -s gcc-4.7-base</userinput>\n"
+"dpkg-query: error: --status needs a valid package name but 'gcc-4.7-base' is not: ambiguous package name 'gcc-4.7-base' with more than one installed instance\n"
+"\n"
+"Use --help for help about querying packages.\n"
+"$ <userinput>dpkg -s gcc-4.7-base:amd64 gcc-4.7-base:armhf | grep ^Multi</userinput>\n"
+"Multi-Arch: same\n"
+"Multi-Arch: same\n"
+"$ <userinput>dpkg -L libgcc1:amd64 |grep .so</userinput>\n"
+"/lib/x86_64-linux-gnu/libgcc_s.so.1\n"
+"$ <userinput>dpkg -S /usr/share/doc/gcc-4.7-base/copyright</userinput>\n"
+"gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/copyright\n"
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that <literal>Multi-Arch: same</literal> packages must have their names qualified with their architecture to be unambiguously identifiable. They also have the possibility to share files with other instances of the same package; <command>dpkg</command> ensures that all packages have bit-for-bit identical files when they are shared. Last but not least, all instances of a package must have the same version. They must thus be upgraded together."
-msgstr ""
+msgstr "<literal>Multi-Arch: same</literal> パッケージの場合、自分の名前にアーキテクチャの限定詞を付けて明確に識別できるようにしなければいけないことは注目に値します。このようなパッケージはアーキテクチャが異なる同じパッケージ間でファイルを共有する可能性を持っています; <command>dpkg</command> は、共有されたファイルはアーキテクチャが異なる同じパッケージ間であってもビット単位で一致する、ことを期待します。最後に大事なことですが、パッケージはアーキテクチャ毎にバージョンが違ってはいけません。アーキテクチャが異なるパッケージも必ず同時にアップグレードされなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Multi-Arch support also brings some interesting challenges in the way dependencies are handled. Satisfying a dependency requires either a package marked “<literal>Multi-Arch: foreign</literal>” or a package whose architecture matches the one of the package declaring the dependency (in this dependency resolution process, architecture-independent packages are assumed to be of the same architecture than the host). A dependency can also be weakened to allow any architecture to fulfill it, with the <literal><replaceable>package</replaceable>:any</literal> syntax, but foreign packages can only satisfy such a dependency if they are marked “<literal>Multi-Arch: allowed</literal>”."
-msgstr ""
+msgstr "マルチアーキテクチャサポートによって、依存関係の取り扱い方法にいくつかの興味深い挑戦がなされました。あるパッケージの依存関係を満足させるためには、必要とされる側のパッケージは「<literal>Multi-Arch: foreign</literal>」と宣言されているか、依存パッケージ群の 1 つのパッケージとアーキテクチャが一致しているかのどちらか一方、を必要とします (依存関係解決プロセス中、アーキテクチャに依存しないパッケージはホストと同じアーキテクチャと仮定されます)。依存関係は <literal><replaceable>package</replaceable>:any</literal> 構文があれば、どんなアーキテクチャでも依存関係を満足できるように弱められましたが、外来パッケージを使ってこの構文で表記された依存関係を満足できるのは「<literal>Multi-Arch: allowed</literal>」と宣言されていた場合のみです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Coexistence with Other Packaging Systems"
-msgstr ""
+msgstr "他のパッケージ化システムとの共存"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RPM</primary>"
-msgstr ""
+msgstr "<primary>RPM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Red Hat Package Manager</primary>"
-msgstr ""
+msgstr "<primary>Red Hat パッケージマネージャ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>alien</command></primary>"
-msgstr ""
+msgstr "<primary><command>alien</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian packages are not the only software packages used in the free software world. The main competitor is the RPM format of the Red Hat Linux distribution and its many derivatives. Red Hat is a very popular, commercial distribution. It is thus common for software provided by third parties to be offered as RPM packages rather than Debian."
-msgstr ""
+msgstr "フリーソフトウェア世界では Debian パッケージ以外のソフトウェアパッケージも使われています。一番の競争相手は Red Hat Linux ディストリビューションとその派生物が使う RPM フォーマットです。Red Hat は非常に人気のある商用ディストリビューションです。そのため一般に、サードパーティが提供するソフトウェアは Debian パッケージではなく RPM パッケージで用意されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In this case, you should know that the program <command>rpm</command>, which handles RPM packages, is available as a Debian package, so it is possible to use this package format on Debian. Care should be taken, however, to limit these manipulations to extract the information from a package or to verify its integrity. It is, in truth, unreasonable to use <command>rpm</command> to install an RPM on a Debian system; RPM uses its own database, separate from those of native software (such as <command>dpkg</command>). This is why it is not possible to ensure a stable coexistence of two packaging systems."
-msgstr ""
+msgstr "この場合、Debian では RPM パッケージを取り扱うプログラム <command>rpm</command> がパッケージとして用意されており、Debian では RPM パッケージフォーマットを使うことができることを知るべきです。しかしながら、パッケージから情報を引き出したり、整合性を検証するための操作は制限されていることに注意してください。実のところ、RPM を Debian システムにインストールするために <command>rpm</command> を使うのは合理的ではありません; RPM はネイティブソフトウェア (<command>dpkg</command> など) とは異なる自分自身のデータベースを使います。このため、2 つのパッケージ化システムを安定に共存させることを保証するのは不可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "On the other hand, the <emphasis role=\"pkg\">alien</emphasis> utility can convert RPM packages into Debian packages, and vice versa."
-msgstr ""
+msgstr "他方で、<emphasis role=\"pkg\">alien</emphasis> ユーティリティは RPM パッケージを Debian パッケージに変換したりその逆を行うことができます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> Encouraging the adoption of <filename>.deb</filename>"
-msgstr ""
+msgstr "<emphasis>COMMUNITY</emphasis> <filename>.deb</filename> の採用を働きかける"
 
 #. Tag: para
 #, no-c-format
 msgid "If you regularly use the <command>alien</command> program to install RPM packages coming from one of your providers, do not hesitate to write to them and amicably express your strong preference for the <filename>.deb</filename> format. Note that the format of the package is not everything: a <filename>.deb</filename> package built with <command>alien</command> or prepared for a version of Debian different than that which you use, or even for a derivative distribution like Ubuntu, would probably not offer the same level of quality and integration as a package specifically developed for Debian <emphasis role=\"distribution\">Wheezy</emphasis>."
-msgstr ""
+msgstr "提供者から受け取った RPM パッケージをインストールするために、日常的に <command>alien</command> プログラムを使っているのなら、提供者に手紙を出して <filename>.deb</filename> フォーマットを強く欲しがっていることを平和的に表現してください。パッケージのフォーマットがすべてではないことに注意してください: <command>alien</command> で作った <filename>.deb</filename> パッケージや、あなたの使っているバージョンと異なる Debian のバージョン用として準備されたパッケージや、Ubuntu などの派生ディストリビューション用として準備されたパッケージは Debian <emphasis role=\"distribution\">Wheezy</emphasis> 専用に開発されたパッケージと比べて品質や整合性が違うかもしれません。"
 
 #. Tag: screen
 #, no-c-format
@@ -1915,18 +2112,23 @@ msgid ""
 "$ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>\n"
 "<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>fakeroot alien --to-deb phpMyAdmin-2.0.5-2.noarch.rpm</userinput> \n"
+"<computeroutput>phpmyadmin_2.0.5-2_all.deb generated\n"
+"$ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>\n"
+"<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "You will find that this process is extremely simple. You must know, however, that the package generated does not have any dependency information, since the dependencies in the two packaging formats don't have systematic correspondence. The administrator must thus manually ensure that the converted package will function correctly, and this is why Debian packages thus generated should be avoided as much as possible. Fortunately, Debian has the largest collection of software packages of all distributions, and it is likely that whatever you seek is already in there."
-msgstr ""
+msgstr "変換作業が極めて単純だということがわかるでしょう。しかしながら、生成されたパッケージには依存関係の情報が含まれないことを知らなければいけません。なぜなら、2 つのパッケージフォーマットの依存関係の間に系統的な対応関係が無いからです。管理者は変換されたパッケージが正しく動くことを手作業で保証しなければいけません。そのため、生成された Debian パッケージを使うのは可能な限り避けるべきです。幸いなことに、Debian が用意しているソフトウェアパッケージの数は全てのディストリビューションの中で最も多く、探しているものは何でも用意されていそうに見えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program handles other packaging formats, especially the one used by the Slackware distribution (it is made of a simple <filename>tar.gz</filename> archive)."
-msgstr ""
+msgstr "<command>alien</command> コマンドの man ページを見ると、このプログラムが他のパッケージフォーマット、特に (単純な <filename>tar.gz</filename> アーカイブで作られている) Slackware ディストリビューションで使われているフォーマット、を取り扱うことも可能なことに気が付くでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "The stability of the software deployed using the <command>dpkg</command> tool contributes to Debian's fame. The APT suite of tools, described in the following chapter, preserves this advantage, while relieving the administrator from managing the status of packages, a necessary but difficult task."
-msgstr ""
+msgstr "<command>dpkg</command> ツールを使って配置されたソフトウェアの安定性は Debian の名声に寄与しています。次の章で説明する APT ツール集はこの長所を引き継いで、さらに、管理者が不可欠だが難しい作業であるパッケージの状態管理をしなくても済むようにしました。"
