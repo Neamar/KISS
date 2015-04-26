@@ -6,10 +6,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-26 01:06+0900\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2015-04-26 20:18+0900\n"
+"Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,217 +52,217 @@ msgstr "保守と更新: APT ツール"
 #. Tag: para
 #, no-c-format
 msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, that Falcot Corp administrators studied with enthusiasm."
-msgstr ""
+msgstr "Debian が管理者に人気がある理由は、ソフトウェアのインストールが簡単で、システム全体の更新が簡単だからです。この比類なき長所は、主として<emphasis>APT</emphasis> プログラムが荷っており、Falcot Corp の管理者はこれについて熱心に学びました。"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary>APT</primary></indexterm> <indexterm><primary>Advanced Package Tool</primary></indexterm> APT is the abbreviation for Advanced Package Tool. What makes this program “advanced” is its approach to packages. It doesn't simply evaluate them individually, but it considers them as a whole and produces the best possible combination of packages depending on what is available and compatible (according to dependencies)."
-msgstr ""
+msgstr "<indexterm><primary>APT</primary></indexterm> <indexterm><primary>Advanced Package Tool</primary></indexterm> APT は Advanced Package Tool の略称です。このプログラムを「先進的」たらしめているものとは、パッケージの取り扱い方です。APT はパッケージを独立なものとして簡単に評価するのではなく、パッケージ全体を考慮し、(依存関係に従って) 利用可能で矛盾のないパッケージを選び出すことで、実現可能で最適なパッケージの組み合わせを作り出します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Package source and source package"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> パッケージソースとソースパッケージ"
 
 #. Tag: para
 #, no-c-format
 msgid "The word <emphasis>source</emphasis> can be ambiguous. A source package — a package containing the source code of a program — should not be confused with a package source — a repository (website, FTP server, CD-ROM, local directory, etc.) which contains packages."
-msgstr ""
+msgstr "<emphasis>ソース</emphasis> という言葉は意味があいまいになる場合があります。ソースパッケージ - プログラムのソースコードを含んだパッケージ - をパッケージソース - パッケージが保存されているリポジトリ (ウェブサイト、FTP サーバ、CD-ROM、ローカルディレクトリなど) - と混同してはいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.{gz,bz2,lzma,xz}</filename> files (in case of a source of binary packages) and <filename>Sources.{gz,bz2,lzma,xz}</filename> (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"sidebar.apt-pdiff\" />)."
-msgstr ""
+msgstr "APT には「パッケージソースのリスト」を与える必要があります: <filename>/etc/apt/sources.list</filename> には Debian パッケージを公開している様々なリポジトリ (または「ソース」) が記載されています。APT はそれぞれのソースが公開しているパッケージのリストを取り込みます。この作業は <filename>Packages.{gz,bz2,lzma,xz}</filename> ファイル (バイナリパッケージのソースの場合) と <filename>Sources.{gz,bz2,lzma,xz}</filename> (ソースパッケージのソースの場合) をダウンロードして、内容を解析することで実現されます。これらのファイルの古いコピーが既にあるのなら、APT は差分だけをダウンロードしてファイルを更新します (傍注 <xref linkend=\"sidebar.apt-pdiff\" />を参照してください)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Packages.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Packages.gz</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Sources.gz</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Sources.gz</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <command>gzip</command>, <command>bzip2</command>, <command>LZMA</command> and <command>XZ</command> Compression"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> <command>gzip</command>、<command>bzip2</command>、<command>LZMA</command>、<command>XZ</command> 圧縮"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gzip</command></primary>"
-msgstr ""
+msgstr "<primary><command>gzip</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bzip2</command></primary>"
-msgstr ""
+msgstr "<primary><command>bzip2</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lzma</command></primary>"
-msgstr ""
+msgstr "<primary><command>lzma</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>xz</command></primary>"
-msgstr ""
+msgstr "<primary><command>xz</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A <filename>.gz</filename> extension refers to a file compressed with the <command>gzip</command> utility. <command>gzip</command> is the fast and efficient traditional Unix utility to compress files. Newer tools achieve better rates of compression but require more resources (computation time and memory) to compress and uncompress a file. Among them, and by order of appearance, there are <command>bzip2</command> (generating files with a <filename>.bz2</filename> extension), <command>lzma</command> (generating <filename>.lzma</filename> files) and <command>xz</command> (generating <filename>.xz</filename> files)."
-msgstr ""
+msgstr "<filename>.gz</filename> 拡張子は <command>gzip</command> ユーティリティで圧縮されたファイルを意味しています。<command>gzip</command> は高速で効果的にファイルを圧縮する伝統的 Unix ユーティリティです。新しいツールは、ファイルを圧縮および展開するために、高い圧縮効率を達成しますが、多くのリソース (計算時間とメモリ) を必要とします。その中でも、登場順に、<command>bzip2</command> (<filename>.bz2</filename> 拡張子のファイルを生成)、<command>lzma</command> (<filename>.lzma</filename> ファイル)、<command>xz</command> (<filename>.xz</filename> ファイル) などがあります。"
 
 #. Tag: title
 #, no-c-format
 msgid "Filling in the <filename>sources.list</filename> File"
-msgstr ""
+msgstr "<filename>sources.list</filename> ファイルの内容"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>sources.list</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>sources.list</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>source</primary><secondary>of packages</secondary>"
-msgstr ""
+msgstr "<secondary>パッケージの</secondary><primary>ソース</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>source of</secondary>"
-msgstr ""
+msgstr "<primary>パッケージの</primary><secondary>ソース</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/sources.list</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/sources.list</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Syntax"
-msgstr ""
+msgstr "構文"
 
 #. Tag: para
 #, no-c-format
 msgid "Each active line of the <filename>/etc/apt/sources.list</filename> file contains the description of a source, made of 3 parts separated by spaces."
-msgstr ""
+msgstr "<filename>/etc/apt/sources.list</filename> ファイルの各有効行には、スペースで分割された 3 つの部分からなる、ソースの説明が含まれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The first field indicates the source type:"
-msgstr ""
+msgstr "1 番目のフィールドはソースタイプです:"
 
 #. Tag: para
 #, no-c-format
 msgid "“<literal>deb</literal>” for binary packages,"
-msgstr ""
+msgstr "「<literal>deb</literal>」はバイナリパッケージ用、"
 
 #. Tag: para
 #, no-c-format
 msgid "“<literal>deb-src</literal>” for source packages."
-msgstr ""
+msgstr "「<literal>deb-src</literal>」はソースパッケージ用です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM/DVD-ROM/Blu-ray disc based installations, although this is less frequent, since network-based installation methods are more and more common."
-msgstr ""
+msgstr "2 番目のフィールドはパッケージソースの基点 URL です (<filename>Packages.gz</filename> ファイル内のファイル名と組み合わせます、これは完全で有効な URL でなければいけません): 起点 URL には Debian ミラーまたはサードパーティが提供する他のパッケージアーカイブを指定できます。URL は、システムのファイル階層構造内にあるローカルソースを表す <literal>file://</literal>、ウェブサーバにあるソースを示す <literal>http://</literal>、FTP サーバにあるソースを示す <literal>ftp://</literal>、で始めることができます。この URL はまた CD-ROM/DVD-ROM/ブルーレイディスクからインストールしたことを表す <literal>cdrom://</literal> で始めることもできます。しかしこれはそれほど多くありません。なぜなら、ネットワークを使ったインストール方法がずっと一般的だからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the last field depends on the structure of the repository. In the simplest cases, you can simply indicate a subdirectory (with a required trailing slash) of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL). But in the most common case, the repositories will be structured like a Debian mirror, with multiple distributions each having multiple components. In those cases, name the chosen distribution (by its “codename” — see the list in sidebar <xref linkend=\"sidebar.bruce-perens\" /> — or by the corresponding “suites” — <literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal>), then the components (or sections) to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal> in a typical Debian mirror)."
-msgstr ""
+msgstr "最後のフィールドの構文はリポジトリの構造に依存します。最も単純な場合、このフィールドにはソースから見たサブディレクトリ (末尾スラッシュ必須) を指定します (サブディレクトリが無い - パッケージが指定された URL の直下に有る - ことを示す単純な「<filename>./</filename>」の場合が多いです)。しかし最も多く見られるのは、リポジトリが Debian ミラーのように構造化されている、つまり、複数のコンポーネントを持つ複数のディストリビューションを配布している場合です。この場合、そのマシンのディストリビューションの名前 (「コードネーム」- 傍注 <xref linkend=\"sidebar.bruce-perens\" /> を参照 - または対応する「スイート」- <literal>stable</literal>、<literal>testing</literal>、<literal>unstable</literal>) を指定し、その後に有効化するコンポーネント (またはセクション) を指定します (典型的な Debian ミラーでは <literal>main</literal>、<literal>contrib</literal>、<literal>non-free</literal> から選びます)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> The <literal>main</literal>, <literal>contrib</literal> and <literal>non-free</literal> archives"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> <literal>main</literal>、<literal>contrib</literal>、<literal>non-free</literal> アーカイブ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>section</primary><secondary><literal>main</literal></secondary>"
-msgstr ""
+msgstr "<primary>セクション</primary><secondary><literal>main</literal></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>main</literal>, section</primary>"
-msgstr ""
+msgstr "<primary><literal>main</literal>、セクション</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>section</primary><secondary><literal>contrib</literal></secondary>"
-msgstr ""
+msgstr "<primary>セクション</primary><secondary><literal>contrib</literal></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>contrib</literal>, section</primary>"
-msgstr ""
+msgstr "<primary><literal>contrib</literal>、セクション</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>section</primary><secondary><literal>non-free</literal></secondary>"
-msgstr ""
+msgstr "<primary>セクション</primary><secondary><literal>non-free</literal></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>non-free</literal>, section</primary>"
-msgstr ""
+msgstr "<primary><literal>non-free</literal>、セクション</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>component (of a repository)</primary>"
-msgstr ""
+msgstr "<primary>(リポジトリの) コンポーネント</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian uses three sections to differentiate packages according to the licenses chosen by the authors of each work. <literal>Main</literal> gathers all packages which fully comply with the Debian Free Software Guidelines."
-msgstr ""
+msgstr "Debian では、パッケージの作者が決めたライセンスを基準に、パッケージを 3 つのセクションに分類しています。<literal>Main</literal> には Debian フリーソフトウェアガイドラインに適合する全てのパッケージが収録されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>non-free</literal> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed without restrictions. This archive, which is not officially part of Debian, is a service for users who could need some of those programs — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
-msgstr ""
+msgstr "これに対して、<literal>non-free</literal> アーカイブには、原則に (完全に) 従うわけではないものの制限なく配布することを許されたソフトウェアが収録されています。このアーカイブは公式には Debian の一部ではなく、これらのプログラムを必要としている - しかし Debian は常にフリーソフトウェアを重点的に使うことを推奨します - ユーザ向けのサービスです。このセクションの存在は Richard M. Stallman さんにとって無視できない問題であり、このセクションがあるためフリーソフトウェア財団は Debian をユーザに推奨し続けています。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>Contrib</literal> (contributions) is a set of open source software which cannot function without some non-free elements. These elements can be software from the <literal>non-free</literal> section, or non-free files such as game ROMs, BIOS of consoles, etc. <literal>Contrib</literal> also includes free software whose compilation requires proprietary elements. This was initially the case for the OpenOffice.org office suite, which used to require a proprietary Java environment."
-msgstr ""
+msgstr "<literal>ontrib</literal> (貢献) には、フリーでない要素を使わないと動かないオープンソースソフトウェアが収録されています。フリーでない要素とは <literal>non-free</literal> セクションからのソフトウェア、または例えばゲーム ROM、コンソールの BIOS、などのフリーでないファイルを指します。また、<literal>contrib</literal> にはコンパイルの際にプロプライエタリな要素を必要とするフリーソフトウェアが収録されています。当初これはプロプライエタリな Java 環境を必要とする OpenOffice.org オフィススイートのためのものでした。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <filename>/etc/apt/sources.list.d/*.list</filename> files"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> <filename>/etc/apt/sources.list.d/*.list</filename> ファイル"
 
 #. Tag: para
 #, no-c-format
 msgid "If many package sources are referenced, it can be useful to split them in multiple files. Each part is then stored in <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> (see sidebar <xref linkend=\"sidebar.directory.d\" />)."
-msgstr ""
+msgstr "多数のパッケージソースを利用する場合、これらを複数のファイルに分割すると便利かもしれません。この場合、各パッケージソースを <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> に保存します (傍注 <xref linkend=\"sidebar.directory.d\" />を参照してください)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cdrom</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cdrom</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>cdrom</literal> entries describe the CD/DVD-ROMs you have. Contrary to other entries, a CD-ROM is not always available since it has to be inserted into the drive and since only one disc can be read at a time. For those reasons, these sources are managed in a slightly different way, and need to be added with the <command>apt-cdrom</command> program, usually executed with the <literal>add</literal> parameter. The latter will then request the disc to be inserted in the drive and will browse its contents looking for <filename>Packages</filename> files. It will use these files to update its database of available packages (this operation is usually done by the <command>apt-get update</command> command). From then on, APT can require the disc to be inserted if it needs one of its packages."
-msgstr ""
+msgstr "<literal>cdrom</literal> エントリはあなたの持っている CD/DVD-ROM を表しています。他のエントリと異なり、CD-ROM は常に利用可能ではありません。なぜなら、ディスクをドライブに挿入しなければいけませんし、一度に 1 つのディスクしか読めないからです。このような理由で、CD-ROM ソースは少し違う方法で管理されます。ソースを追加するには通常 <command>apt-cdrom</command> プログラムに <literal>add</literal> パラメータを付けて実行します。このようにプログラムを実行すると、ドライブにディスクを挿入するよう要求されます。プログラムはディスクの内容を閲覧して <filename>Packages</filename> ファイルを探します。このファイルは利用可能なパッケージデータベースを更新する際に利用されます (更新作業は <command>apt-get update</command> コマンドで実行されます)。そして、APT はディスクに含まれるパッケージが必要になったらディスクを挿入するように要求します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Repositories for <emphasis role=\"distribution\">Stable</emphasis> Users"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">安定版</emphasis> ユーザ用リポジトリ"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is a standard <filename>sources.list</filename> for a system running the <emphasis role=\"distribution\">Stable</emphasis> version of Debian:"
-msgstr ""
+msgstr "下に示すのは、Debian の<emphasis role=\"distribution\">安定版</emphasis>を動かしているシステムで標準的な <filename>sources.list</filename> です:"
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian Stable"
-msgstr ""
+msgstr "Debian 安定版ユーザ向けの <filename>/etc/apt/sources.list</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -285,201 +285,218 @@ msgid ""
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
 "deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
 msgstr ""
+"# Security updates\n"
+"deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ wheezy/updates main contrib non-free\n"
+"\n"
+"## Debian mirror\n"
+"\n"
+"# Base repository\n"
+"deb http://ftp.debian.org/debian wheezy main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy main contrib non-free\n"
+"\n"
+"# Stable updates\n"
+"deb http://ftp.debian.org/debian wheezy-updates main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-updates main contrib non-free\n"
+"\n"
+"# Stable backports\n"
+"deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
 
 #. Tag: para
 #, no-c-format
 msgid "This file lists all sources of packages associated with the <emphasis role=\"distribution\">Wheezy</emphasis> version of Debian (the current <emphasis role=\"distribution\">Stable</emphasis> as of this writing). We opted to name “wheezy” explicitly instead of using the corresponding “stable“ alias (<literal>stable</literal>, <literal>stable-updates</literal>, <literal>stable-backports</literal>) because we don't want to have the underlying distribution changed outside of our control when the next stable release comes out."
-msgstr ""
+msgstr "このファイルは Debian <emphasis role=\"distribution\">Wheezy</emphasis> (これを書いている時点の <emphasis role=\"distribution\">安定版</emphasis>) に関連するパッケージの全ソースをリストしています。ここでディストリビューション名に「wheezy」を使い、対応する「stable」(<literal>stable</literal>、<literal>stable-updates</literal>、<literal>stable-backports</literal>) という別名を使わなかった理由は、新しい安定版が公開されたことで自動的にディストリビューションのバージョンが変わるのを望まないからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> <command>apt-spy</command>"
-msgstr ""
+msgstr "<emphasis>QUICK LOOK</emphasis> <command>apt-spy</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-spy</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-spy</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This software tests the download speed from several Debian mirrors and generates a <filename>sources.list</filename> file which points to the fastest mirror."
-msgstr ""
+msgstr "このソフトウェアはいくつかの Debian ミラーのダウンロード速度をテストして、最も高速なミラーを使うように <filename>sources.list</filename> を生成します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The mirror selected during installation is generally suitable since its selection is based on the country. However, if the download is a little slow, or after a move, you can try running the application available in the <emphasis role=\"pkg\">apt-spy</emphasis> package."
-msgstr ""
+msgstr "一般に、インストール中に選ばれたミラーは、国に基づいて選ばれているため、適切なものです。しかしながら、もしダウンロードが遅かったり引っ越しした場合は、<emphasis role=\"pkg\">apt-spy</emphasis> パッケージから利用できるこのアプリケーションを試しに実行してみることもできます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Most packages will come from the “base repository” which contains all packages but is seldom updated (about once every 2 months for a “point release”). The other repositories are partial (they do not contain all packages) and can host updates (packages with newer version) that APT might install. The following sections will explain the purpose and the rules governing each of those repositories."
-msgstr ""
+msgstr "ほとんどのパッケージは「ベースリポジトリ」から取得されます。「ベースリポジトリ」には全てのパッケージが収録されていますが、めったに更新されません (約 2 ヶ月に 1 度の「ポイントリリース」で更新されます)。他のリポジトリには、一部のパッケージしか収録されていません (全てパッケージが収録されているわけではありません) が、APT がインストールする更新 (パッケージの新しいバージョン) が収録されています。以下の節ではこの目的と、それぞれのリポジトリを支配しているルールについて説明します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that when the desired version of a package is available on several repositories, the first one listed in the <filename>sources.list</filename> file will be used. For this reason, non-official sources are usually added at the end of the file."
-msgstr ""
+msgstr "あるパッケージの希望したバージョンが複数のリポジトリから取得できる場合、<filename>sources.list</filename> ファイルにリストされた最初のリポジトリから取得されることに注意してください。この理由から、非公式ソースは通常最後に追加されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "As a side note, most of what this section says about <emphasis role=\"distribution\">Stable</emphasis> applies equally well to <emphasis role=\"distribution\">Oldstable</emphasis> since the latter is just an older <emphasis role=\"distribution\">Stable</emphasis> that is maintained in parallel."
-msgstr ""
+msgstr "ちなみに、この節で<emphasis role=\"distribution\">安定版</emphasis>に関して述べていることのほとんどは<emphasis role=\"distribution\">旧安定版</emphasis>に関しても同じことが言えます。なぜなら、<emphasis role=\"distribution\">旧安定版</emphasis>とは並行して保守されている古い<emphasis role=\"distribution\">安定版</emphasis>に過ぎないからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Security Updates"
-msgstr ""
+msgstr "セキュリティ更新"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>security.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>security.debian.org</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>security updates</primary>"
-msgstr ""
+msgstr "<primary>セキュリティ更新</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>updates</primary><secondary>security updates</secondary>"
-msgstr ""
+msgstr "<primary>更新</primary><secondary>セキュリティ更新</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The security updates are not hosted on the usual network of Debian mirrors but on <literal>security.debian.org</literal> (on a small set of machines maintained by the <link linkend=\"dsa-team\">Debian System Administrators</link>). This archive contains security updates (prepared by the Debian Security Team and/or by package maintainers) for the <emphasis role=\"distribution\">Stable</emphasis> distribution."
-msgstr ""
+msgstr "セキュリティ更新は Debian ミラーの通常のネットワーク上ではなく、<literal>security.debian.org</literal> (<link linkend=\"dsa-team\">Debian システム管理者</link> が管理する少数のマシン) でホストされています。このアーカイブには、<emphasis role=\"distribution\">安定版</emphasis>ディストリビューション用の (Debian セキュリティチームまたはパッケージメンテナが用意した) セキュリティ更新が含まれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The server can also host security updates for <emphasis role=\"distribution\">Testing</emphasis> but this doesn't happen very often since those updates tend to reach <emphasis role=\"distribution\">Testing</emphasis> via the regular flow of updates coming from <emphasis role=\"distribution\">Unstable</emphasis>."
-msgstr ""
+msgstr "このサーバは<emphasis role=\"distribution\">テスト版</emphasis>用のセキュリティ更新もホストしていますが、実際にこれがホストされることはめったにありません。なぜなら、<emphasis role=\"distribution\">テスト版</emphasis> 対するセキュリティ更新は<emphasis role=\"distribution\">不安定版</emphasis>対する通常の更新手順を通じて行われることが多いからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Stable Updates"
-msgstr ""
+msgstr "安定版更新"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>stable updates</primary>"
-msgstr ""
+msgstr "<primary>安定版更新</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>stable-updates</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>stable-updates</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>updates</primary><secondary>stable updates</secondary>"
-msgstr ""
+msgstr "<primary>更新</primary><secondary>安定版更新</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Stable updates are not security sensitive but are deemed important enough to be pushed to users before the next stable point release."
-msgstr ""
+msgstr "安定版更新はセキュリティに影響を及ぼすものではありませんが、その重要性は次の安定版ポイントリリースよりも前にユーザに提供するに値するとみなされます。"
 
 #. Tag: para
 #, no-c-format
 msgid "This repository will typically contain fixes for critical bugs which could not be fixed before release or which have been introduced by subsequent updates. Depending on the urgency, it can also contain updates for packages that have to evolve over time… like <emphasis role=\"pkg\">spamassassin</emphasis>'s spam detection rules, <emphasis role=\"pkg\">clamav</emphasis>'s virus database, or the daylight-saving rules of all timezones (<emphasis role=\"pkg\">tzdata</emphasis>)."
-msgstr ""
+msgstr "このリポジトリには通常、リリースの前に修正できなかったり、後続のアップデートによって生まれた、重要なバグの修正が含まれています。緊急度に応じて、時間と共に進化させる必要のあるパッケージの更新、例えば <emphasis role=\"pkg\">spamassassin</emphasis> のスパム検出ルール、<emphasis role=\"pkg\">clamav</emphasis> のウィルスデータベース、全てのタイムゾーンの夏時間ルール (<emphasis role=\"pkg\">tzdata</emphasis>) など、を含めることができる。"
 
 #. Tag: para
 #, no-c-format
 msgid "In practice, this repository is a subset of the <literal>proposed-updates</literal> repository, carefully selected by the Stable Release Managers."
-msgstr ""
+msgstr "実際のところ、このリポジトリは内容を <literal>proposed-updates</literal> リポジトリからの一部抜粋したもので、安定版リリースマネージャが内容を注意深く選んでいます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Proposed Updates"
-msgstr ""
+msgstr "提案された更新"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>proposed-updates</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>proposed-updates</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>stable-proposed-updates</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>stable-proposed-updates</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Once published, the <emphasis role=\"distribution\">Stable</emphasis> distribution is only updated about once every 2 months. The <literal>proposed-updates</literal> repository is where the expected updates are prepared (under the supervision of the Stable Release Managers)."
-msgstr ""
+msgstr "一旦公開されたら、 <emphasis role=\"distribution\">安定版</emphasis> ディストリビューションが更新される頻度は約 2 ヶ月に 1 回だけです。<literal>proposed-updates</literal> リポジトリは (安定版リリースマネージャの指揮の下で) 予定された更新を準備する場所です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The security and stable updates documented in the former sections are always included in this repository, but there is more too, because package maintainers also have the opportunity to fix important bugs that do not deserve an immediate release."
-msgstr ""
+msgstr "前の節で説明したセキュリティ更新と安定版更新は、常に <literal>proposed-updates</literal> リポジトリに加えられますが、更新は他にもあります。なぜなら、パッケージメンテナは素早くリリースすることもないけれど重要と思われるバグを修正する機会があるからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Anyone can use this repository to test those updates before their official publication. The extract below uses the <literal>wheezy-proposed-updates</literal> alias which is both more explicit and more consistent since <literal>squeeze-proposed-updates</literal> also exists (for the <emphasis role=\"distribution\">Oldstable</emphasis> updates):"
-msgstr ""
+msgstr "誰でも、正式公開前に更新をテストするために、<literal>proposed-updates</literal> リポジトリを使うことができます。以下で引用した例は <literal>wheezy-proposed-updates</literal> 別名を使っています。このような、より明白でより一貫性のある別名を使っている理由は、(<emphasis role=\"distribution\">旧安定版</emphasis> 用の) <literal>squeeze-proposed-updates</literal> 別名が存在するからです。"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
-msgstr ""
+msgstr "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Stable Backports"
-msgstr ""
+msgstr "安定版バックポート"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>stable-backports</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>stable-backports</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backport</primary>"
-msgstr ""
+msgstr "<primary>バックポート</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>updates</primary><secondary>backports</secondary>"
-msgstr ""
+msgstr "<primary>安定版</primary><secondary>バックポート</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>stable-backports</literal> repository hosts “package backports”. The term refers to a package of some recent software which has been recompiled for an older distribution, generally for <emphasis role=\"distribution\">Stable</emphasis>."
-msgstr ""
+msgstr "<literal>stable-backports</literal> リポジトリは「パッケージのバックポート」をホストしています。この用語は、古いディストリビューション用に、通常は<emphasis role=\"distribution\">安定版</emphasis>用に、再コンパイルした最新ソフトウェアのパッケージを指す言葉です。"
 
 #. Tag: para
 #, no-c-format
 msgid "When the distribution becomes a little dated, numerous software projects have released new versions that are not integrated into the current <emphasis role=\"distribution\">Stable</emphasis> (which is only modified to address the most critical problems, such as security problems). Since the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> distributions can be more risky, package maintainers sometimes offer recompilations of recent software applications for <emphasis role=\"distribution\">Stable</emphasis>, which has the advantage to limit potential instability to a small number of chosen packages. <ulink type=\"block\" url=\"http://backports.debian.org\" />"
-msgstr ""
+msgstr "ディストリビューションがほんの少し時代遅れになっただけで、多くのソフトウェアプロジェクトが新バージョンをリリースしますが、新バージョンは現在の<emphasis role=\"distribution\">安定版</emphasis>に取り込まれません (このディストリビューションは最も重要な問題、例えばセキュリティ問題など、の修正しか取り込みません)。<emphasis role=\"distribution\">テスト版</emphasis>と<emphasis role=\"distribution\">不安定版</emphasis>ディストリビューションはより危険性が高いので、パッケージメンテナはしばしば<emphasis role=\"distribution\">安定版</emphasis>向けに最新のソフトウェアアプリケーションを再コンパイルして提供することがあります。これは潜在的不安定性を少数の選ばれたパッケージだけに制限できるという利点があります。<ulink type=\"block\" url=\"http://backports.debian.org\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>stable-backports</literal> repository is now available on the usual Debian mirrors. But backports for <emphasis role=\"distribution\">Squeeze</emphasis> are still hosted on a dedicated server (<literal>backports.debian.org</literal>), and requires the following <filename>sources.list</filename> entry:"
-msgstr ""
+msgstr "今や、<literal>stable-backports</literal> リポジトリは普通の Debian ミラーから利用可能です。しかし <emphasis role=\"distribution\">Squeeze</emphasis> 用のバックポートはまだ専用サーバ (<literal>backports.debian.org</literal>) でホストされており、以下の <filename>sources.list</filename> エントリが必要です:"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>backports.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>backports.debian.org</literal></primary>"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
-msgstr ""
+msgstr "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Backports from <literal>stable-backports</literal> are always created from packages available in <emphasis role=\"distribution\">Testing</emphasis>. This ensures that all installed backports will be upgradable to the corresponding stable version once the next stable release of Debian is available."
-msgstr ""
+msgstr "<literal>stable-backports</literal> に収録されているバックポートは常に<emphasis role=\"distribution\">テスト版</emphasis>で利用可能なパッケージから作成されます。これは、次の Debian 安定版リリースが利用可能になったら、全てのインストール済みバックポートは対応する安定版にアップグレード可能である、ということを保証します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Even though this repository provides newer versions of packages, APT will not install them unless you give explicit instructions to do so (or unless you have already done so with a former version of the given backport):"
-msgstr ""
+msgstr "このリポジトリはパッケージの新しいバージョンを提供しますが、APT は明確な指示を出さない限り (または以前同じバックポートの古いバージョンをインストールしていない限り) バックポートパッケージをインストールしません:"
 
 #. Tag: screen
 #, no-c-format
@@ -488,21 +505,24 @@ msgid ""
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
 "$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
 msgstr ""
+"\n"
+"$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Repositories for <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis> Users"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">テスト版</emphasis>/<emphasis role=\"distribution\">不安定版</emphasis>ユーザ向けリポジトリ"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is a standard <filename>sources.list</filename> for a system running the <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> version of Debian:"
-msgstr ""
+msgstr "下に示すのは、Debian の<emphasis role=\"distribution\">テスト版</emphasis>や<emphasis role=\"distribution\">不安定版</emphasis>を動かしているシステムで標準的な <filename>sources.list</filename> です:"
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis>"
-msgstr ""
+msgstr "Debian <emphasis role=\"distribution\">テスト版</emphasis>/<emphasis role=\"distribution\">不安定版</emphasis>ユーザ向けの <filename>/etc/apt/sources.list</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -526,6 +546,24 @@ msgid ""
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
 msgstr ""
+"\n"
+"# Unstable\n"
+"deb http://ftp.debian.org/debian unstable main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian unstable main contrib non-free\n"
+"\n"
+"# Testing\n"
+"deb http://ftp.debian.org/debian testing main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian testing main contrib non-free\n"
+"\n"
+"# Stable\n"
+"deb http://ftp.debian.org/debian stable main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian stable main contrib non-free\n"
+"\n"
+"# Security updates\n"
+"deb http://security.debian.org/ stable/updates main contrib non-free\n"
+"deb http://security.debian.org/ testing/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
 
 #. Tag: para
 #, no-c-format
