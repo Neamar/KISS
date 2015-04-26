@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-01-18 18:00+0100\n"
+"PO-Revision-Date: 2015-04-22 12:10+0100\n"
 "Last-Translator: Mateusz Kacprzak <mateusz.kacprzak@yandex.ru>\n"
 "Language-Team: Polish <http://debian.weblate.org/projects/debian-"
 "handbook/03_existing-setup/pl/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -128,22 +128,22 @@ msgid "Integration with Mac OS machines"
 msgstr "Integracja z maszynami Mac OS"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>migration</primary>"
 msgid "<primary>Zeroconf</primary>"
-msgstr "<primary>migracja</primary>"
+msgstr "<primary>Zeroconf</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>migration</primary>"
 msgid "<primary>Bonjour</primary>"
-msgstr "<primary>migracja</primary>"
+msgstr "<primary>Bonjour</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>migration</primary>"
 msgid "<primary>Avahi</primary>"
-msgstr "<primary>migracja</primary>"
+msgstr "<primary>Avahi</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -162,16 +162,16 @@ msgstr ""
 "zawiera inne implementacje, nazywane Avahi, które dostarcza te same funkcje."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>migration</primary>"
 msgid "<primary>AFP</primary>"
-msgstr "<primary>migracja</primary>"
+msgstr "<primary>AFP</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>migration</primary>"
 msgid "<primary>AppleShare</primary>"
-msgstr "<primary>migracja</primary>"
+msgstr "<primary>AppleShare</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -187,10 +187,10 @@ msgstr ""
 "wykrywalny przez użytkowników Mac OSX"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>migration</primary>"
 msgid "<primary>AppleTalk</primary>"
-msgstr "<primary>migracja</primary>"
+msgstr "<primary>AppleTalk</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -258,9 +258,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Survey and Identify Services"
-msgstr ""
-"Usługi badania i identyfikacji      //////////////////     Ankieta i "
-"identyfikacje usług  //////////////////// KTÓRE ????? SPRAWDŹCIE /////////"
+msgstr "Ankieta i identyfikacje usług"
 
 #. Tag: para
 #, no-c-format
@@ -305,11 +303,11 @@ msgid ""
 "without even requiring to log in to it. Simply call the following command on "
 "another machine connected to the same network:"
 msgstr ""
-"<indexterm><primary><command>nmap</command></primary></indexterm>"
-"The <command>nmap</command> Narzędzie (w pakiecie o tej samej nazwie) "
-"będą szybko identyfikować usługi internetowe hostowane przez maszyne "
-"sieciową, nawet bez konieczności logowania się do niego. Wystarczy wywołać "
-"pod następujące polecenie na innym komputerze podłączonym do tej samej sieci:"
+"<indexterm><primary><command>nmap</command></primary></indexterm>The "
+"<command>nmap</command> Narzędzie (w pakiecie o tej samej nazwie) będą "
+"szybko identyfikować usługi internetowe hostowane przez maszyne sieciową, "
+"nawet bez konieczności logowania się do niego. Wystarczy wywołać pod "
+"następujące polecenie na innym komputerze podłączonym do tej samej sieci:"
 
 #. Tag: screen
 #, no-c-format
@@ -357,10 +355,9 @@ msgid ""
 "running programs are listening. This facilitates identification of services "
 "offered on the network."
 msgstr ""
-"Na komputerze z systemem Linux, <command>netstat -tupan</command> "
-"wyświetli listę aktywnych i oczekujących sesji TCP, jak i UDP, na którym "
-"uruchomione programy są słuchane. Ułatwia to identyfikację oferowanych w "
-"sieci usług."
+"Na komputerze z systemem Linux, <command>netstat -tupan</command> wyświetli "
+"listę aktywnych i oczekujących sesji TCP, jak i UDP, na którym uruchomione "
+"programy są słuchane. Ułatwia to identyfikację oferowanych w sieci usług."
 
 #. Tag: title
 #, no-c-format
@@ -378,9 +375,9 @@ msgid ""
 msgstr ""
 "Niektóre komendy sieciowe mogą pracować zarówno z IPv4 (zazwyczaj domyślne) "
 "lub z IPv6. Należą do nich <command>nmap</command> i <command>netstat</"
-"command> polecenia, ale również inne, takie jak <command>route</command> "
-"lub <command>ip</command>.Konwencja opisuje zachowanie jest włączona "
-"przez <parameter>-6</parameter> opcja wiersza polecenia."
+"command> polecenia, ale również inne, takie jak <command>route</command> lub "
+"<command>ip</command>.Konwencja opisuje zachowanie jest włączona przez "
+"<parameter>-6</parameter> opcja wiersza polecenia."
 
 #. Tag: para
 #, no-c-format
@@ -397,6 +394,16 @@ msgid ""
 "complete explanation of <command>cron</command> is available in <xref "
 "linkend=\"sect.task-scheduling-cron-atd\" />)."
 msgstr ""
+"Jeśli serwer jest maszyną Unix oferującą powłokę kont dla użytkowników, "
+"interesujące jest to, aby określić, czy procesy są wykonywane w tle, w "
+"przypadku braku ich właściciela. Polecenie <command> ps auxw </command> "
+"wyświetla listę wszystkich procesów z identyfikatorem użytkownika. Poprzez "
+"sprawdzenie tej informacji przed wyjściem <command>who </command>, która "
+"daje listę zalogowanych użytkowników, możliwe jest zidentyfikowanie "
+"niepożądanych, niezgłoszonych serwerów lub programów działających w tle. "
+"Patrząc w <filename> crontab </filename> (listuje tabele działań "
+"zaplanowanych  przez użytkowników) często zapewnią ciekawe informacje na "
+"temat funkcji pełnionych przez serwer "
 
 #. Tag: para
 #, no-c-format
@@ -405,6 +412,9 @@ msgid ""
 "information after the fact, when users will report specific problems due to "
 "the migration."
 msgstr ""
+"W każdym przypadku konieczne jest tworzenie kopii zapasowych serwerów, "
+"pozwala na odzyskanie danych po fakcie, gdy użytkownicy będą zgłaszać "
+"konkretne problemy związane z migracją."
 
 #. Tag: title
 #, no-c-format
@@ -418,6 +428,9 @@ msgid ""
 "to be able to install the equivalent on the updated server. The bare minimum "
 "is to make a backup copy of the configuration files."
 msgstr ""
+"Dobrze jest, aby utrzymać konfigurację każdej określonej usługi w celu "
+"umożliwienia zainstalowania odpowiednik w zaktualizowanym serwera.Absolutnym "
+"minimum jest zrobić kopię zapasową plików konfiguracyjnych."
 
 #. Tag: para
 #, no-c-format
@@ -428,6 +441,11 @@ msgid ""
 "sources, rather than with a package. In some cases, one may also find them "
 "under <filename>/opt/</filename>."
 msgstr ""
+"Dla systemów Unix, pliki konfiguracyjne są zwykle w <filename> / etc / </"
+"filename>, ale mogą one znajdować się w podkatalogu <filename> / usr / "
+"local / </filename>. Jest to przypadek, gdy program jest instalowany z "
+"innych źródeł, a nie z pakietu. W niektórych przypadkach, można również "
+"znaleźć je w <filename> / opt / </filename>."
 
 #. Tag: para
 #, no-c-format
@@ -438,6 +456,11 @@ msgid ""
 "be, for example, an SQL dump for a database, or an LDIF file for an LDAP "
 "server."
 msgstr ""
+"Dla danych usług zarządzającymi danymi(takimi jak bazy danych), zaleca się, "
+"aby wyeksportować dane do standardowego formatu, który będzie łatwo "
+"importowany przez nowe oprogramowanie. Taki format zazwyczaj jest w trybie "
+"tekstowym i udokumentowanym, może to być dla przykłądu zrzut SQL dla bazy "
+"danych lub plik LDIF dla serwera LDAP."
 
 #. Tag: title
 #, no-c-format
@@ -453,6 +476,11 @@ msgid ""
 "those which will require manual handling. Reading this book will clarify the "
 "configuration of the main Linux server programs."
 msgstr ""
+"Każdy oprogramowanie serwera jest inny, i nie jest możliwe opisanie "
+"wszystkich odmian w szczegółach.  Porównaj dokumentację istniejących oraz "
+"nowych oprogramowań do identyfikowania eksportowanych ( ponownie "
+"importowanych ) części i tych, które wymagają ręcznej obsługi. Czytając tę "
+"książkę dowiesz się o konfiguracji głównych programów serwerowych Linux."
 
 #. Tag: title
 #, no-c-format
@@ -493,6 +521,12 @@ msgid ""
 "the system was updated with packages coming from one of the development "
 "distributions (either testing or unstable)."
 msgstr ""
+"Pierwszym plikiem do sprawdzenia jest <filename>/etc/debian_version</"
+"filename>, który zazwyczaj zawiera numer wersji dla zainstalowanego Debiana "
+"(jest to część <emphasis>base-files</emphasis> pakietu.  Jeśli to wskazuje "
+"na <literal><replaceable>codename</replaceable>/sid</literal>, to oznacza, "
+"że system został zaaktualizowany z pakietem pochodzącym z jednej z "
+"dystrybucji (testowej albo niestabilnej)."
 
 #. Tag: para
 #, no-c-format
@@ -537,6 +571,17 @@ msgid ""
 "from outside the Debian project, such as <literal>ubuntu</literal> or "
 "<literal>lmde</literal>, etc.)"
 msgstr ""
+"The <filename> sources.list </filename> jest często dobrym wskaźnikiem, "
+"większość administratorów zachowuje, przynajmniej w komentarzach, listę APT "
+"źródeł, które były wcześniej używane. Ale nie należy zapominać, że źródła "
+"wykorzystane w przeszłości mogły zostać usunięty, a niektóre losowe pakiety "
+"podpatrzone w internecie mogą być zainstalowane ręcznie (z <command> dpkg </"
+"command>). W tym przypadku, urządzenie wprowadza w błąd w swoim wyglądzie "
+"\"standardowym\" Debiana. Dlatego należy zwrócić uwagę na wskazanie, że da "
+"się obecność opakowaniach zewnętrznych (wygląd <filename> deb </filename> "
+"pliki w nietypowych katalogach, numery wersji pakietu ze specjalną końcówką, "
+"wskazującą, że pochodzi spoza projektu Debian, takich jak <literal> ubuntu </"
+"literal> lub <literal> lmde </literal>, itp)"
 
 #. Tag: para
 #, no-c-format
@@ -581,8 +626,7 @@ msgid ""
 "Be careful to not blindly delete everything that <command>cruft</command> "
 "might list!"
 msgstr ""
-"Uważaj aby nie usunąć wszystkiego <command>śmieci</command> może "
-"wylistować!"
+"Uważaj aby nie usunąć wszystkiego <command>śmieci</command> może wylistować!"
 
 #. Tag: title
 #, no-c-format
@@ -780,10 +824,10 @@ msgid "<primary>amd64</primary>"
 msgstr "<primary>amd64</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 #| msgid "<primary>migration</primary>"
 msgid "<primary>i386</primary>"
-msgstr "<primary>migracja</primary>"
+msgstr "<primary>i386</primary>"
 
 #. Tag: para
 #, no-c-format

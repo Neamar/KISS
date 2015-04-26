@@ -5,14 +5,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-01-11 22:20+0100\n"
+"PO-Revision-Date: 2015-04-05 00:57+0100\n"
 "Last-Translator: Mateusz Kacprzak <mateusz.kacprzak@yandex.ru>\n"
 "Language-Team: \n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -462,12 +462,12 @@ msgstr "Konfiguracja klawiatury"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard layout</primary>"
-msgstr ""
+msgstr "<primary>układ klawiatury</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>layout, keyboard</primary>"
-msgstr ""
+msgstr "<primary>układ, klawiatura</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -479,21 +479,28 @@ msgid ""
 "reconfigure keyboard-configuration</command> command can be used at any time "
 "to reset the keyboard layout."
 msgstr ""
+"Nawet gdy zarządzanie układem klawiatury odbywa się oddzielnie dla trybu "
+"tekstowego (wiersz poleceń) i graficznego, Debian oferuje jeden wspólny "
+"interfejs służący do konfiguracji obu trybów: jest on oparty na narzędziu "
+"debconf i zaimplementowany w pakiecie <emphasis role=\"pkg\">keyboard-"
+"configuration</emphasis>. Dzięki temu polecenie <command>dpkg-reconfigure "
+"keyboard-configuration</command> może zostać w każdej chwili użyte do "
+"zresetowania układu klawiatury."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>console-data</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>console-data</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>console-tools</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>console-tools</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>keyboard-configuration</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>keyboard-configuration</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -510,7 +517,7 @@ msgid ""
 "UTF-8/Compose</filename> file (or another file, determined according to the "
 "current locale indicated by <filename>/usr/share/X11/locale/compose.dir</"
 "filename>)."
-msgstr ""
+msgstr "<indexterm><primary><literal>azerty</literal></primary></indexterm>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -541,11 +548,17 @@ msgid ""
 "have their own configuration. Some additional options regarding the behavior "
 "of some particular keys are also available in these control panels."
 msgstr ""
+"Należy mieć na uwadze, że opisana tutaj konfiguracja klawiatury dla trybu "
+"graficznego dotyczy jedynie domyślnego układu; środowiska GNOME i KDE oraz "
+"inne posiadają w swoich ustawieniach panel sterowania klawiatury "
+"umożliwiający każdemu użytkownikowi na określenie swojej własnej "
+"konfiguracji. W panelach tych są również dostępne różne dodatkowe opcje "
+"dotyczące zachowania niektórych poszczególnych klawiszy."
 
 #. Tag: title
 #, no-c-format
 msgid "Migrating to UTF-8"
-msgstr ""
+msgstr "Migracja do UTF-8"
 
 #. Tag: para
 #, no-c-format
@@ -560,6 +573,18 @@ msgid ""
 "the other on filenames. Fortunately, the bulk of this migration has been "
 "completed and we discuss it largely for reference."
 msgstr ""
+"Ogólność kodowania UTF-8 była długo oczekiwanym rozwiązaniem licznych "
+"trudności związanych ze współpracą systemów o dmiennych konfiguracjach oraz "
+"z komunikacją osób, firm i organizacji posługujących się różnymi językami. "
+"UTF-8 ułatwia międzynarodową wymianę informacji i eliminuje niewygodne "
+"ograniczenia związane z niemożnością użycia pewnych znaków w dokumentach "
+"tekstowych. Niedogodnością związaną z wprowadzeniem UTF-8 była dość "
+"kłopotliwa faza przejściowa, w trakcie której UTF-8 stopniowo zastępowało "
+"lokalne strony kodowe. Proces ten nie mógł nastąpić jednocześnie na całym "
+"świecie, w związku z czym został podzielony na dwie zasadnicze operacje: "
+"przekodowanie zawartości plików oraz przekodowanie nazw plików. Na szczęście "
+"dla czytelnika, ogrom tej pracy został już wykonany i całe zagadnienie jest "
+"tutaj omawiane wyłącznie dla celów poglądowych."
 
 #. Tag: title
 #, no-c-format
@@ -567,6 +592,8 @@ msgid ""
 "<emphasis>CULTURE</emphasis> <foreignphrase>Mojibake</foreignphrase> and "
 "interpretation errors"
 msgstr ""
+"<emphasis>KULTURA</emphasis> <foreignphrase>Mojibake</foreignphrase> oraz "
+"błędy interpretacji."
 
 #. Tag: para
 #, no-c-format
@@ -580,6 +607,16 @@ msgid ""
 "bytes are mis-interpreted, and you get, at best, errors on some characters, "
 "or, at worst, something completely illegible."
 msgstr ""
+"Gdy tekst jest wysyłany bądź przechowywany bez informacji kodowania, "
+"odbiorca nie zawsze jest w stanie stwierdzić z pewnością jakiego kodowania, "
+"konwencji bądź protokołu powinien użyć aby określić znaczenie surowego "
+"zbioru bajtów. Pewne wskazówki można uzyskać tworząc i analizując rozkład "
+"częstości występowania poszczególnych wartości (znaków) w tekście, ale to "
+"nie zawsze daje pewną i ostateczną odpowiedź. Gdy do zapisu i odczytu pliku "
+"zostaną użyte różne systemy kodowania, dochodzi do błędnej interpretacji "
+"bajtów. W najlepszym przypadku prowadzi to do przekłamania niektórych "
+"pojedynczych znaków, a w najgorszym czyni cały tekst kompletnie "
+"niezrozumiałym."
 
 #. Tag: para
 #, no-c-format
@@ -594,6 +631,18 @@ msgid ""
 "letter — it is likely that your installation is already configured for UTF-8 "
 "and that you have been sent a document encoded in Western ISO."
 msgstr ""
+"Zatem, jeśli tekst w języku francuskim wygląda normalnie za wyjątkiem np. "
+"liter z zaznaczonym akcentem i niektórych innych symboli, które zostały "
+"zastąpione przez takie ciągi znaków jak “Ã©” czy Ã¨” bądź “Ã§”, to "
+"najprawdopodobniej mamy do czynienia z plikiem zakodowanym w UTF-8, który "
+"został odczytany jako np. ISO-8859-2 albo ISO-8859-15. Jest to oznaka, że "
+"lokalna instalacja systemu nie została jeszcze przekonfigurowana na UTF-8. "
+"Jeśli zamiast liter z zaznaczonym akcentem widnieją znaki zapytania - nawet "
+"jeśli znaki zapytania zdają się zastępować również litery, które powinny "
+"były pojawić się bezpośrednio po literach zaakcentowanych - wówczas zapewne "
+"zachodzi sytuacja odwrotna, tzn. nasz system jest poprawnie ustawiony na "
+"kodowanie UTF-8, natomiast plik, którego odczytu dokonujemy jest zapisany w "
+"zachodnim ISO."
 
 #. Tag: para
 #, no-c-format
@@ -604,6 +653,11 @@ msgid ""
 "which allows recognition of parts of the text even when some characters are "
 "missing."
 msgstr ""
+"To tyle jeśli chodzi o \"proste\" przypadki. Mamy z nimi do czynienia "
+"jedynie w zachodniej  kulturze, jako, że standard Unicode został "
+"zaprojektowany tak, by maksymalnie pokrywał się ze starszymi kodowaniami "
+"języków zachodnich opartych na łacińskim alfabecie, co umożliwia poprawne "
+"odczytanie części tekstu nawet gdy brakuje pojedynczych znaków."
 
 #. Tag: para
 #, no-c-format
@@ -617,6 +671,15 @@ msgid ""
 "describe this phenomenon. When it appears, diagnosis is more complex and the "
 "simplest solution is often to simply migrate to UTF-8 on both sides."
 msgstr ""
+"W bardziej złożonych sytuacjach, przykładowo przy kontakcie dwóch systemów "
+"bądź środowisk używających języków opartych na różnych alfabetach, rezultaty "
+"często mogą być całkowicie nieczytelne - ciągi abstrakcyjnych symboli nie "
+"powiązanych ze sobą w żaden logiczny sposób. Jest to szczególnie powszechna "
+"sytuacja w przypadku języków azjatyckich, z uwagi na mnogość i zróżnicowanie "
+"ich systemów pisma. W języku japońskim narodziło się nawet specjalne "
+"określenie na to zjawisko - <foreignphrase>mojibake</foreignphrase>. Gdy do "
+"niego dochodzi, najprostszym rozwiązaniem jest zazwyczaj  po prostu migracja "
+"systemu do UTF-8."
 
 #. Tag: para
 #, no-c-format
@@ -629,6 +692,14 @@ msgid ""
 "illustrates a UTF-8 environment containing directory names encoded in "
 "ISO-8859-15, and the use of <command>convmv</command> to rename them."
 msgstr ""
+"Jeśli chodzi o nazwy plików, migracja jest względnie prostym procesem. "
+"Specjalnie do tego zastosowania zostało stworzone narzędzie <command>convmv</"
+"command>, będące częścią pakietu o tej samej nazwie; pozwala ono konwertować "
+"nazwy plików z jednego kodowania na drugie. Użycie tego narzędzia jest "
+"relatywnie proste, ale zalecamy podział całej procedury na dwa etapy w celu "
+"uniknięcia niespodzianek. Następujący przykład ilustruje konwersję nazw "
+"katalogów zakodowanych w ISO-8859-15 przy użyciu narzędzia <command>convmv</"
+"command> w systemie ustawionym na UTF-8."
 
 #. Tag: screen
 #, no-c-format
@@ -662,6 +733,14 @@ msgid ""
 "(ISO-8859-1 or “Western”, or ISO-8859-15 or “Western (Euro)”, according to "
 "the formulations) when opening the file."
 msgstr ""
+"Jeśli chodzi o zawartość plików, procedury konwersji są bardziej złożone z "
+"uwagi na mnogość istniejących formatów plików. Niektóre formaty zawierają "
+"informacje kodowania, co ułatwia zadanie programom odczytującym te pliki; w "
+"przypadku tych formatów wystarczy otworzyć plik w odpowiednim programie i "
+"zapisać go ponownie wybierając UTF-8 jako kodowanie. W pozostałych "
+"przypadkach należy określić oryginalne kodowanie (np. ISO-8859-1 czyli "
+"\"zachodnie\", bądź ISO-8859-15 czyli \"zachodnioeuropejskie\") w chwili "
+"otwierania pliku."
 
 #. Tag: para
 #, no-c-format
@@ -674,11 +753,20 @@ msgid ""
 "<refentrytitle>recode</refentrytitle> </citerefentry> info page (more "
 "complete)."
 msgstr ""
+"W przypadku prostych plików tekstowych można użyć narzędzia <command>recode</"
+"command>, będącego elementem pakietu o tej samej nazwie, które umożliwia "
+"automatyczną konwersję kodowania. Narzędzie to posiada liczne opcje "
+"umozliwiające dostosowanie jego zachowania do potrzeb użytkownika. Zalecamy "
+"zapoznanie się z dokumentacją - stroną <citerefentry> <refentrytitle>recode</"
+"refentrytitle> <manvolnum>1</manvolnum> </citerefentry> linuksowego manuala "
+"<command>man</command>, bądź stroną <citerefentry> <refentrytitle>recode</"
+"refentrytitle> </citerefentry> w manualu <command>info</command> (to drugie "
+"źródło jest bardziej wyczerpujące)."
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Network"
-msgstr ""
+msgstr "Konfiguracja Sieci"
 
 #. Tag: title
 #, no-c-format
@@ -686,41 +774,43 @@ msgid ""
 "<emphasis>BACK TO BASICS</emphasis> Essential network concepts (Ethernet, IP "
 "address, subnet, broadcast)."
 msgstr ""
+"<emphasis>POWRÓT DO PODSTAW</emphasis> Elementarne koncepcje związane z "
+"sieciami (Ethernet, adres IP, podsieć, nadawanie)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Ethernet</primary>"
-msgstr ""
+msgstr "<primary>Ethernet</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>10BASE-T</primary>"
-msgstr ""
+msgstr "<primary>10BASE-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>100BASE-T</primary>"
-msgstr ""
+msgstr "<primary>100BASE-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>1000BASE-T</primary>"
-msgstr ""
+msgstr "<primary>1000BASE-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>10GBASE-T</primary>"
-msgstr ""
+msgstr "<primary>10GBASE-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connector, RJ45</primary>"
-msgstr ""
+msgstr "<primary>złącze, RJ45</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RJ45 connector</primary>"
-msgstr ""
+msgstr "<primary>złącze RJ45</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -734,16 +824,26 @@ msgid ""
 "provide (the T stands for “twisted pair”); those cables end in an RJ45 "
 "connector. There are other cable types, used mostly for speeds above 1 Gb/s."
 msgstr ""
+"Większość nowoczesnych sieci lokalnych używa protokołu Ethernet, w którym "
+"dane są dzielone na małe bloki nazywane ramkami i przesyłane poprzez przewód "
+"jedna po drugiej. Prędkość przesyłu waha się od 10Mb/s dla starszych kart "
+"sieciowych Ethernet do 10Gb/s w przypadku kart nowszych, przy czym "
+"najpowszechniej spotykane prędkości plasują się w przedziale od 100Mb/s do "
+"1Gb/s. Najczęściej używane kable nazywane są 10BASE-T, 100BASE-T, 1000BASE-T "
+"lub 10GBASE-T, w zależności od posiadanej przepustowości (litera T oznacza "
+"\"twisted pair\" czyli typ przewodu po polsku zwany skrętką); kable te "
+"kończą się złączem RJ45. Istnieją również inne typy kabli, używane głównie w "
+"przypadku prędkości powyżej 1Gb/s."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>address, IP address</primary>"
-msgstr ""
+msgstr "<primary>adres, adres IP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IP address</primary>"
-msgstr ""
+msgstr "<primary>adres IP</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -758,21 +858,31 @@ msgid ""
 "hexadecimal numbers separated by colons (e.g., "
 "2001:0db8:13bb:0002:0000:0000:0000:0020, or 2001:db8:13bb:2::20 for short)."
 msgstr ""
+"Adres IP jest liczbą używaną do zidentyfikowania interfejsu sieciowego "
+"komputera w sieci lokalnej bądź Internecie. W IPv4, obecnie najbardziej "
+"rozpowszechnionej wersji protokołu IP, liczba ta jest zapisywana na 32 "
+"bitach i zwykle przedstawiana jako cztery 8-bitowe liczby oddzielone "
+"kropkami, np. <literal>192.168.0.1</literal>. Każda z tych czterech liczb "
+"mieści się w przedziale 0-255. W następnej wersji protokołu, IPv6, "
+"przestrzeń adresowa jest rozszerzona z 32 do 128 bitów, a adres zwykle jest "
+"przedstawiany jako ciąg liczb szesnastkowych oddzielonych dwukropkami, np. "
+"2001:0db8:13bb:0002:0000:0000:0000:0020. Liczby wynoszące zero często pomija "
+"się dla większej zwartości zapisu: 2001:db8:13bb:2::20."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>subnet</primary>"
-msgstr ""
+msgstr "<primary>podsieć</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mask</primary><secondary>subnet mask</secondary>"
-msgstr ""
+msgstr "<primary>maska</primary><secondary>maska podsieci</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>address</secondary>"
-msgstr ""
+msgstr "<primary>sieć</primary><secondary>adres</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -786,6 +896,18 @@ msgid ""
 "machine. In IPv6, for readability, only the number of “1”s is expressed; the "
 "netmask for an IPv6 network could, thus, be <literal>64</literal>."
 msgstr ""
+"Maska podsieci określa która część adresu IP odpowiada sieci, a która "
+"znajdującemu się w niej konkretnemu komputerowi, czyli hostowi. Adres IP "
+"zapisany binarnie stanowi ciąg bitów, składający się zasadniczo z dwóch "
+"nastepujących po sobie fragmentów: adresu sieci oraz liczby identyfikującej "
+"hosta w tej sieci. Maska podsieci, składająca się podobnie jak adres IP z "
+"czterech 8-bitowych liczb, określa długość tego pierwszego fragmentu. W "
+"podanym tutaj przykładzie konfigurowania statycznego adresu IPv4, maska "
+"podsieci wynosi <literal>255.255.255.0</literal>, czyli 24 jedynki i 8 zer w "
+"zapisie binarnym, co znacza, że pierwsze 24 bity adresu IP stanowią adres "
+"sieci, a pozostałe 8 bitów określa komputer w tej sieci. W wersji IPv6 "
+"zamiast pełnej maski zapisuje się tylko ilość jedynek, w celu zwiekszenia "
+"czytelności; w takiej konwencji maska może wynosić przykładowo 64."
 
 #. Tag: para
 #, no-c-format
@@ -799,16 +921,25 @@ msgid ""
 "literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb:2::/64</"
 "literal>."
 msgstr ""
+"Adres sieci to adres IP, w którym część odpowiadająca hostowi wynosi 0. "
+"Zakres adresów IPv4 w konkretnej sieci często podaje się w formie "
+"<emphasis>a.b.c.d/e</emphasis>, gdzie <emphasis>a.b.c.d</emphasis> oznacza "
+"adres sieci, a <emphasis>e</emphasis> to długość maski podsieci, czyli "
+"liczba bitów przypadająca na część sieci w adresie IP. Przykładową sieć "
+"można zatem zapisać następująco: <literal>192.168.0.0/24</literal>, co "
+"znacza, że adresy w tej sieci mieszczą się w zakresie od "
+"<literal>192.168.0.0</literal> do  <literal>192.168.0.255</literal>. Podobny "
+"zapis stosuje się w wersji IPv6: <literal>2001:db8:13bb:2::/64</literal>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>router</primary>"
-msgstr ""
+msgstr "<primary>router</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bridge</primary>"
-msgstr ""
+msgstr "<primary>most</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -820,6 +951,13 @@ msgid ""
 "in this configuration, it works as a machine that helps reach out beyond a "
 "local network (towards an extended network, such as the Internet)."
 msgstr ""
+"Router jest urządzeniem, które łączy ze sobą wiele różnych sieci, "
+"umożliwiając komunikację pomiędzy nimi. Wszystkie dane przechodzące przez "
+"router są przez niego kierowane do właściwej sieci. W tym celu router "
+"analizuje napływające dane i przekierowuje je w zależności od zawartego w "
+"nich docelowego adresu IP. Router jest często nazywany bramą (gateway) - "
+"wówczas służy jako urządzenie poprzez które komputer w sieci lokalnej może "
+"nawiązać komunikację z siecią zewnętrzną. "
 
 #. Tag: indexterm
 #, no-c-format
@@ -834,6 +972,12 @@ msgid ""
 "it means that a data packet addressed to the broadcast never passes through "
 "the router."
 msgstr ""
+"Specjalny adres rozgłoszeniowy (\"broadcast\") łączy wszystkie hosty w "
+"sieci, pozwalając na wysłanie danych do wszystkich komputerów w sieci "
+"poprzez pojedynczą transmisję. Prawie zawsze jest nieroutowalny (tj. nie "
+"podlega routingowi), czyli działa tylko w odniesieniu do sieci z którą jest "
+"związany. W praktyce oznacza to, że pakiet danych opatrzony rozgłoszeniowym "
+"adresem docelowym nigdy nie przejdzie przez router."
 
 #. Tag: para
 #, no-c-format
@@ -842,9 +986,12 @@ msgid ""
 "commonly used. The details of the IPv6 protocol are approached in <xref "
 "linkend=\"sect.ipv6\" />, but the concepts remain the same."
 msgstr ""
+"Ten rozdział skupia się na adresach IPv4, jako, że są obecnie "
+"najpowszechniej stosowanymi. Szczegóły protokołu IPv6 są omówione w <xref "
+"linkend=\"sect.ipv6\" />, aczkolwiek główne koncepcje pozostają takie same."
 
 #. Tag: para
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "Since the network is automatically configured during the initial "
 "installation, the <filename>/etc/network/interfaces</filename> file already "
@@ -854,26 +1001,34 @@ msgid ""
 "networking</filename> init script. This will often be <literal>eth0</"
 "literal>, which refers to the first Ethernet card."
 msgstr ""
+"Jako, że sieć jest automatycznie konfigurowana podczas instalacji, plik "
+"<filename>/etc/network/interfaces</filename> już zawiera poprawne "
+"ustawienia. W wierszu zaczynającym się od <literal>auto</literal> znajduje "
+"się lista interfejsów mających zostać automatycznie skonfigurowanych podczas "
+"rozruchu przez narzędzie <emphasis role=\"pkg\">ifupdown</emphasis> oraz "
+"skrypt startowy <filename>/etc/init.d/networking</filename>. Na liście "
+"interfejsów najczęściej będzie się znajdować pierwsza karta sieciowa "
+"Ethernet oznaczona jako <literal>eth0</literal>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>configuration</secondary>"
-msgstr ""
+msgstr "<primary>sieć</primary><secondary>konfiguracja</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>of the network</secondary>"
-msgstr ""
+msgstr "<primary>konfiguracja</primary><secondary>sieci</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>interface</primary><secondary>network interface</secondary>"
-msgstr ""
+msgstr "<primary>interfejs</primary><secondary>interfejs sieciowy</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>eth0</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>eth0</literal></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -904,7 +1059,7 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Ethernet Interface"
-msgstr ""
+msgstr "Interfejs Ethernet"
 
 #. Tag: para
 #, no-c-format
@@ -916,16 +1071,23 @@ msgid ""
 "<literal>hostname</literal> setting in the example below. The DHCP server "
 "then sends configuration settings for the appropriate network."
 msgstr ""
+"Jeśli komputer jest wyposażony w kartę sieciową Ethernet, należy odpowiednio "
+"skonfigurować powiązaną z nim sieć IP korzystając z jednej z dwóch metod. "
+"Najprostszy sposób to dynamiczna konfiguracja przy użyciu protokołu DHCP; "
+"wymaga ona obecności serwera DHCP w lokalnej sieci. W jej ramach można "
+"określić pożądaną nazwę hosta, odpowiadającą ustawieniu <literal>hostname</"
+"literal> w poniższym przykładzie. Serwer DHCP odpowiada za przesłanie "
+"ustawień sieciowych dla odpowiedniej sieci."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DHCP</primary>"
-msgstr ""
+msgstr "<primary>DHCP</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "DHCP configuration"
-msgstr ""
+msgstr "Konfiguracja DHCP"
 
 #. Tag: programlisting
 #, no-c-format
@@ -935,6 +1097,10 @@ msgid ""
 "iface eth0 inet dhcp\n"
 "  hostname arrakis\n"
 msgstr ""
+"\n"
+"auto eth0\n"
+"iface eth0 inet dhcp\n"
+"  hostname arrakis\n"
 
 #. Tag: para
 #, no-c-format
@@ -944,11 +1110,16 @@ msgid ""
 "addresses are also sometimes listed. A router connecting to the exterior "
 "will be specified as a gateway."
 msgstr ""
+"Konfiguracja statyczna polega na ręcznym zdefiniowaniu wszystkich ustawień "
+"poprzez nadanie im stałych wartości. Przede wszystkim należy określić adres "
+"IP oraz maskę podsieci; czasami również wyznacza się adres sieci oraz adres "
+"rozgłoszeniowy. Podaje się również adres bramy domyślnej czyli routera "
+"łączącego sieć lokalną z siecią zewnętrzną."
 
 #. Tag: title
 #, no-c-format
 msgid "Static configuration"
-msgstr ""
+msgstr "Konfiguracja statyczna"
 
 #. Tag: programlisting
 #, no-c-format
@@ -962,6 +1133,14 @@ msgid ""
 "  network 192.168.0.0\n"
 "  gateway 192.168.0.1\n"
 msgstr ""
+"\n"
+"auto eth0\n"
+"iface eth0 inet static\n"
+"  address 192.168.0.3\n"
+"  netmask 255.255.255.0\n"
+"  broadcast 192.168.0.255\n"
+"  network 192.168.0.0\n"
+"  gateway 192.168.0.1\n"
 
 #. Tag: title
 #, no-c-format
@@ -977,6 +1156,11 @@ msgid ""
 "DNS, and that a name may also correspond to any number of numerical IP "
 "addresses."
 msgstr ""
+"Możliwe jest nie tylko przyporządkowanie wielu interfejsów do jednej "
+"fizycznej karty sieciowej, ale również przyporządkowanie wielu adresów IP do "
+"jednego interfejsu. Należy również pamiętać, że adres IP może odpowiadać "
+"dowolnej liczbie adresów domenowych DNS, podobnie jak nazwa domenowa może "
+"odpowiadać wielu adresom IP."
 
 #. Tag: para
 #, no-c-format
@@ -985,31 +1169,34 @@ msgid ""
 "options are only used in very special cases. The examples cited here are "
 "typical of the usual configurations."
 msgstr ""
+"Jak mozna się domyślić, konfiguracja może byc dość skomplikowana, ale opcje "
+"te są jedynie używane w bardzo szczególnych przypadkach. Przykładu tutaj "
+"podane są typowe dla najczęstszych konfiguracji."
 
 #. Tag: title
 #, no-c-format
 msgid "Connecting with PPP through a PSTN Modem"
-msgstr ""
+msgstr "Połączenie przy użyciu PPP poprzez modem PSTN."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPP</primary>"
-msgstr ""
+msgstr "<primary>PPP</primary>"
 
 #. Tag: indexterm
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "<primary>point to point</primary>"
-msgstr ""
+msgstr "<primary>point to point</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connection</primary><secondary>by PSTN modem</secondary>"
-msgstr ""
+msgstr "<primary>połączenie</primary><secondary>poprzez modem PSTN</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modem</primary><secondary>PSTN</secondary>"
-msgstr ""
+msgstr "<primary>modem</primary><secondary>PSTN</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1019,6 +1206,11 @@ msgid ""
 "(“PSTN modem”, since the connection goes over the public switched telephone "
 "network)."
 msgstr ""
+"Protokół point-to-point (PPP) tworzy tymczasowe połączenie pomiędzy hostami; "
+"jest to najczęściej stosowane rozwiązanie w przypadku połączeń realizowanych "
+"poprzez modem telefoniczny (modem \"PSTN\" - \"public switched telephone "
+"network\" - jako, że połączenie odbywa się przez publiczną komutowaną sieć "
+"telefoniczną)."
 
 #. Tag: para
 #, no-c-format
@@ -1032,16 +1224,25 @@ msgid ""
 "protocol, choose <emphasis>PAP</emphasis>: it is offered by the majority of "
 "Internet service providers."
 msgstr ""
+"Połączenie poprzez modem telefoniczny wymaga posiadania konta u dostawcy "
+"usług, w zakres którego wchodzą numer telefonu, nazwa użytkownika, hasło, "
+"oraz czasami protokół uwierzytelniania który ma zostać użyty. Połączenie "
+"takie jest konfigurowane przy użyciu narzędzia <command>pppconfig</command> "
+"zawartego w pakiecie Debiana o tej samej nazwie. Domyślnie, ustanawiane jest "
+"połączenie o nazwie <literal>provider</literal> (od dostawcy usług "
+"internetowych). W razie wątpliwości co do wyboru protokołu uwierzytelniania, "
+"należy wybrać <emphasis>PAP</emphasis>, jako oferowany przez większość "
+"dostawców internetowych."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pppconfig</command></primary>"
-msgstr ""
+msgstr "<primary><command>pppconfig</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PAP</primary>"
-msgstr ""
+msgstr "<primary>PAP</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1053,16 +1254,23 @@ msgid ""
 "commands can be executed by the root user, or by any other user, provided "
 "they are in the <literal>dip</literal> group."
 msgstr ""
+"Po dokonaniu konfiguracji możliwe jest nawiązanie połączenia przy użyciu "
+"polecenia <command>pon</command>, przyjmującego jako parametr nazwę "
+"połączenia gdy domyślna wartość ustawienia <literal>provider</literal> nie "
+"jest odpowiednia. Połączenie jest kończone poleceniem <command>poff</"
+"command>. Obe te polecenia mogą być wykonane z uprawnieniami roota, bądź "
+"przez jakiegokolwiek użytkownika pod warunkiem, że należy on do grupy "
+"<literal>dip</literal>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pon</command></primary>"
-msgstr ""
+msgstr "<primary><command>pon</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>poff</command></primary>"
-msgstr ""
+msgstr "<primary><command>poff</command></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -1073,12 +1281,12 @@ msgstr ""
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>diald</command></primary>"
-msgstr ""
+msgstr "<primary><command>diald</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connection</primary><secondary>on demand</secondary>"
-msgstr ""
+msgstr "<primary>połączenie</primary><secondary>na żądanie</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1087,26 +1295,29 @@ msgid ""
 "automatically establishes a connection when needed, by detecting an outgoing "
 "IP packet and disconnecting after a period of inactivity."
 msgstr ""
+"Narzędzie <command>diald</command> jest usługą połączenia na żądanie, która "
+"automatycznie ustanawia połączenie gdy wykryje wychodzący pakiet IP, oraz "
+"automatycznie zamyka połączenie po dostatecznie długim okresie nieaktywności."
 
 #. Tag: title
 #, no-c-format
 msgid "Connecting through an ADSL Modem"
-msgstr ""
+msgstr "Nawiązywanie połączenia poprzez modem ADSL."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connection</primary><secondary>by ADSL modem</secondary>"
-msgstr ""
+msgstr "<primary>połączenie</primary><secondary>poprzez modem ADSL</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modem</primary><secondary>ADSL</secondary>"
-msgstr ""
+msgstr "<primary>modem</primary><secondary>ADSL</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ADSL, modem</primary>"
-msgstr ""
+msgstr "<primary>ADSL, modem</primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1118,21 +1329,28 @@ msgid ""
 "“box” with Ethernet interfaces. Depending on the type of modem, the "
 "configuration required can vary widely."
 msgstr ""
+"Ogólna nazwa \"modem ADSL\" odnosi się do wielu urządzeń o różnych "
+"funkcjonalnościach. Modemy najprostsze w użyciu z systemem Linux to te, "
+"które poza interfejsem USB posiadają również interfejs Ethernet. Są one dość "
+"popularne - większość dostawców usług internetowych stosujących technologię "
+"ADSL wynajmuje bądź dzierżawi modem z portem Ethernetowym. Wymagana "
+"konfiguracja może różnić się znacznie w zależności od konkretnego typu "
+"modemu."
 
 #. Tag: title
 #, no-c-format
 msgid "Modems Supporting PPPOE"
-msgstr ""
+msgstr "Modem obsługujące PPPOE"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPPOE</primary>"
-msgstr ""
+msgstr "<primary>PPPOE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pppoeconf</command></primary>"
-msgstr ""
+msgstr "<primary><command>pppoeconf</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1145,6 +1363,13 @@ msgid ""
 "secrets</filename> and <filename>/etc/ppp/chap-secrets</filename> files. It "
 "is recommended to accept all modifications that it proposes."
 msgstr ""
+"Niektóre modemy Ethernetowe współpracują z protokołem PPPIE (Point to Point "
+"over Ethernet). Narzędzie <command>pppoeconf</command> z pakietu o tej samej "
+"nazwie pozwala dokonać konfiguracji takiego połączenia. W tym celu wprowadza "
+"ono otrzymane ustawienia do pliku <filename>/etc/ppp/peers/dsl-provider</"
+"filename>, oraz zapisuje informacje logowania w plikach <filename>/etc/ppp/"
+"pap-secrets</filename> i <filename>/etc/ppp/chap-secrets</filename>. Zaleca "
+"się zaakceptowanie i zatwierdzenie wszystkich proponowanych przez nie zmian."
 
 #. Tag: para
 #, no-c-format
@@ -1153,11 +1378,14 @@ msgid ""
 "the command, <command>pon dsl-provider</command> and disconnect with "
 "<command>poff dsl-provider</command>."
 msgstr ""
+"Gdy konfiguracja jest zakończona, można nawiązać połączenie ADSL poleceniem "
+"<command>pon dsl-provider</command> oraz zakończyć je poleceniem "
+"<command>poff dsl-provider</command>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>dsl-provider</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>dsl-provider</literal></primary>"
 
 #. Tag: title
 #, no-c-format
@@ -1165,11 +1393,13 @@ msgid ""
 "<emphasis>TIP</emphasis> Starting <command>ppp</command> via <command>init</"
 "command>"
 msgstr ""
+"<emphasis>WSKAZÓWKA</emphasis> Uruchamianie <command>ppp</command> poprzez "
+"<command>init</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>init</command></primary>"
-msgstr ""
+msgstr "<primary><command>init</command></primary>"
 
 #. Tag: para
 #, no-c-format
@@ -1182,6 +1412,14 @@ msgid ""
 "etc/inittab</filename> file; then, any time the connection is disconnected, "
 "<command>init</command> will reconnect it."
 msgstr ""
+"Połączenia PPP nawiązywane poprzez ADSL są z definicji tymczasowe. Ponieważ "
+"opłaty naliczane za te połączenia zazwyczaj nie zależą od czasu ich trwania, "
+"dobrym pomysłem może być utrzymywanie ich jako otwartych przez cały czas. "
+"Jednym prostem sposobem na dokonanie tego jest użycie procesu <command>init</"
+"command> w celu kontroli połączenia. Wystarczy dodać na końcu pliku "
+"<filename>/etc/inittab</filename> wiersz podany poniżej. Wówczas, ilekroć "
+"połączenie zostanie rozłączone, <command>init</command> natychmiast je "
+"przywróci."
 
 #. Tag: programlisting
 #, no-c-format
@@ -1189,6 +1427,8 @@ msgid ""
 "\n"
 "adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
 msgstr ""
+"\n"
+"adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
 
 #. Tag: para
 #, no-c-format
