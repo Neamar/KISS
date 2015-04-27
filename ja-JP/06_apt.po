@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-26 20:18+0900\n"
+"PO-Revision-Date: 2015-04-28 02:19+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -568,157 +568,157 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "With this <filename>sources.list</filename> file APT will install packages from <emphasis role=\"distribution\">Unstable</emphasis>. If that is not desired, use the <literal>APT::Default-Release</literal> setting (see <xref linkend=\"sect.apt-upgrade\" />) to instruct APT to pick packages from another distribution (most likely <emphasis role=\"distribution\">Testing</emphasis> in this case)."
-msgstr ""
+msgstr "この <filename>sources.list</filename> ファイルを使う場合、APT は<emphasis role=\"distribution\">不安定版</emphasis>からパッケージをインストールします。これを望まない場合、<literal>APT::Default-Release</literal> 設定を使って (<xref linkend=\"sect.apt-upgrade\" /> をご覧ください) APT に他のディストリビューションから (この場合<emphasis role=\"distribution\">テスト版</emphasis>から) パッケージを取得するよう伝えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "There are good reasons to include all those repositories, even though a single one should be enough. <emphasis role=\"distribution\">Testing</emphasis> users will appreciate the possibility to cherry-pick a fixed package from <emphasis role=\"distribution\">Unstable</emphasis> when the version in <emphasis role=\"distribution\">Testing</emphasis> is affected by an annoying bug. On the opposite, <emphasis role=\"distribution\">Unstable</emphasis> users bitten by unexpected regressions have the possibility to downgrade packages to their (supposedly working) <emphasis role=\"distribution\">Testing</emphasis> version."
-msgstr ""
+msgstr "1 つでも十分なのに、全てのリポジトリを含めるのには正当な理由があります。<emphasis role=\"distribution\">テスト版</emphasis>ユーザは、あるパッケージの<emphasis role=\"distribution\">テスト版</emphasis>に含まれるバージョンが厄介なバグの影響を受けている場合、<emphasis role=\"distribution\">不安定版</emphasis>に含まれる修正されたバージョンを使えると良いと考えるでしょう。逆に、予期しない不具合に悩まされ続けている<emphasis role=\"distribution\">不安定版</emphasis>のユーザは、パッケージを (おそらく動く) <emphasis role=\"distribution\">テスト版</emphasis>に含まれるバージョンにダウングレードできます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The inclusion of <emphasis role=\"distribution\">Stable</emphasis> is more debatable but it often gives access to some packages which have been removed from the development versions. It also ensures that you get the latest updates for packages which have not been modified since the last stable release."
-msgstr ""
+msgstr "ここに<emphasis role=\"distribution\">安定版</emphasis>が含まれている点については異論があるかもしれませんが、こうすることで開発版から削除されたパッケージを入手可能になります。また、最新安定版リリース以降に変更されたパッケージの最新更新を手に入れることも保証されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <emphasis role=\"distribution\">Experimental</emphasis> Repository"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">実験版</emphasis>リポジトリ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"distribution\">Experimental</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"distribution\">実験版</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The archive of <emphasis role=\"distribution\">Experimental</emphasis> packages is present on all Debian mirrors, and contains packages which are not in the <emphasis role=\"distribution\">Unstable</emphasis> version yet because of their substandard quality — they are often software development versions or pre-versions (alpha, beta, release candidate…). A package can also be sent there after undergoing subsequent changes which can generate problems. The maintainer then tries to uncover them thanks to advanced users who can manage important issues. After this first stage, the package is moved into <emphasis role=\"distribution\">Unstable</emphasis>, where it reaches a much larger audience and where it will be tested in much more detail."
-msgstr ""
+msgstr "<emphasis role=\"distribution\">テスト版</emphasis>パッケージは全ての Debian ミラーに存在し、品質基準を満たしていないためにまだ<emphasis role=\"distribution\">不安定版</emphasis>に収録されていないパッケージを含んでいます - このようなパッケージはソフトウェアの開発版バージョンか先行バージョン (アルファ、ベータ、リリース候補) であることが多いです。メンテナは、重要な問題に対処する能力を持つ先進的なユーザに向けて、パッケージを公開しようとします。この最初のステージの後、パッケージは<emphasis role=\"distribution\">不安定版</emphasis>に移動されます。ここで、パッケージはより多くのユーザに配布され、より詳細にテストされます。"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"distribution\">Experimental</emphasis> is generally used by users who do not mind breaking their system and then repairing it. This distribution gives the possibility to import a package which a user wants to try or use as the need arises. That is exactly how Debian approaches it, since adding it in APT's <filename>sources.list</filename> file does not lead to the systematic use of its packages. The line to be added is:"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">実験版</emphasis>を使うのは通常、システムを破壊したり修復することを気にしないユーザです。このディストリビューションでは、ユーザは必要に応じてが試してみたいか使ってみたいと思ったパッケージを取り込むことがきます。これはまさに Debian が<emphasis role=\"distribution\">実験版</emphasis>を使う時の方法です。なぜなら、<emphasis role=\"distribution\">実験版</emphasis>を APT の <filename>sources.list</filename> ファイルに追加することは、パッケージの体系的な利用に結び付かないからです。<emphasis role=\"distribution\">実験版</emphasis>を追加するには以下のようにします:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
-msgstr ""
+msgstr "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Non-Official Resources: <literal>apt-get.org</literal> and <literal>mentors.debian.net</literal>"
-msgstr ""
+msgstr "非公式リソース: <literal>apt-get.org</literal> と <literal>mentors.debian.net</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>apt-get.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>apt-get.org</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>mentors.debian.net</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>mentors.debian.net</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "There are numerous non-official sources of Debian packages set up by advanced users who have recompiled some software, by programmers who make their creation available to all, and even by Debian developers who offer pre-versions of their package online. A web site was set up to find these alternative sources more easily. It contains an impressive amount of Debian package sources which can immediately be integrated into <filename>sources.list</filename> files. However, be careful not to add random packages. Each source is designed for a particular version of Debian (the one used to compile the packages in question); each user should maintain a certain coherence in what they choose to install. <ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
-msgstr ""
+msgstr "Debian パッケージの非公式ソースはたくさんあります。非公式ソースにパッケージを提供しているのは、ソフトウェアを再コンパイルした先進的ユーザ、つまり自分の創作物を誰でも利用可能な状態にするプログラマや自分のパッケージの先行バージョンをオンラインで提供する Debian 開発者です。非公式ソースをより簡単に発見するためのウェブサイトがあります。このウェブサイトには、大量の Debian パッケージソースが含まれ、それらは即座に <filename>sources.list</filename> ファイルに統合できます。しかしながら、当てずっぽうにパッケージソースを追加しないように気を付けてください。それぞれのソースは Debian の特定のバージョン (パッケージのコンパイルを実行したバージョン) 用に設計されいてます; 各ユーザは、追加するパッケージソースが設計されたバージョンが自分が使っているバージョンと一致していることを確認するべきです。<ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>mentors.debian.net</literal> site is also interesting, since it gathers source packages created by candidates to the status of official Debian developer or by volunteers who wish to create Debian packages without going through that process of integration. These packages are made available without any guarantee regarding their quality; make sure that you check their origin and integrity and then test them before you consider using them in production."
-msgstr ""
+msgstr "<literal>mentors.debian.net</literal> サイトもまた興味深いです。なぜならここには、パッケージの統合過程を経ずに、公式 Debian 開発者の候補者や Debian パッケージを作りたいと望むボランティアが作成したソースパッケージをアップロードできるからです。これらのパッケージは、品質保証の無いまま、利用可能になっています; このため、起源と整合性を必ず確認し、稼働中のシステムでパッケージを使う前にパッケージを必ずテストしてください。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> The <literal>debian.net</literal> sites"
-msgstr ""
+msgstr "<emphasis>COMMUNITY</emphasis> <literal>debian.net</literal> サイト"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>debian.net</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>debian.net</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>debian.net</emphasis> domain is not an official resource of the Debian project. Each Debian developer may use that domain name for their own use. These websites can contain unofficial services (sometimes personal sites) hosted on a machine which does not belong to the project and set up by Debian developers, or even prototypes about to be moved on to <emphasis>debian.org</emphasis>. Two reasons can explain why some of these prototypes remain on <emphasis>debian.net</emphasis>: either no one has made the necessary effort to transform it into an official service (hosted on the <emphasis>debian.org</emphasis> domain, and with a certain guarantee of maintenance), or the service is too controversial to be officialized."
-msgstr ""
+msgstr "<emphasis>debian.net</emphasis> ドメインは Debian プロジェクトの公式ではありません。それぞれの Debian 開発者は自分用にこのドメイン名を使うかもしれません。これらのウェブサイトには、Debian プロジェクトに所属せず、Debian 開発者が設けたマシンでホストされている (個人サイト) 非公式サービスや今まさに <emphasis>debian.org</emphasis> に移動されようとしている試作品が含まれています。これらの試作品が <emphasis>debian.net</emphasis> に残されている理由は 2 つあります: 誰もそのサービスを公式化する (<emphasis>debian.org</emphasis> ドメインでホストして、メンテナンスを保証する) のにに変換するのに必要な作業を行わなかったか、そのサービスを公式化するのはあまりに議論の余地がありすぎるかのどちらかです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Installing a package means giving root rights to its creator, because they decide on the contents of the initialization scripts which are run under that identity. Official Debian packages are created by volunteers who have been co-opted and reviewed and who can seal their packages so that their origin and integrity can be checked."
-msgstr ""
+msgstr "あるパッケージをインストールすることは、パッケージの作者に root 権を与えることを意味しています。なぜなら、パッケージ作者は root 権で実行される初期化スクリプトの内容を決定するからです。公式 Debian パッケージは、パッケージの起源と整合性が確認できるように、選出され審査を受けたボランティアとパッケージの内容の責任を請け負うことができるボランティアによって作成されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In general, be wary of a package whose origin you don't know and which isn't hosted on one of the official Debian servers: evaluate the degree to which you can trust the creator, and check the integrity of the package. <ulink type=\"block\" url=\"http://mentors.debian.net/\" />"
-msgstr ""
+msgstr "一般に、出自不明で公式 Debian サーバの 1 つでホストされていないパッケージには警戒してください: 作者の信頼度を評価し、パッケージの整合性を確認してください。<ulink type=\"block\" url=\"http://mentors.debian.net/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Old package versions: <literal>snapshot.debian.org</literal>"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 古いパッケージバージョン: <literal>snapshot.debian.org</literal>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>snapshot.debian.org</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>snapshot.debian.org</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A new service (introduced in April 2010) can be used to “go backwards in time” and to find an old version of a package. It can be used for example to identify which version of a package introduced a regression, and more concretely, to come back to the former version while waiting for the regression fix."
-msgstr ""
+msgstr "新しいサービス (2010 年 4 月に登場) により、「時間を逆行」したり、パッケージの古いバージョンを見つけることが可能になりました。このサービスは、例えばパッケージのどのバージョンで不具合が生じたかを特定するために、より正確に言えば、不具合が修正されるまでの間古いバージョンに戻るために、使えます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Caching Proxy for Debian Packages"
-msgstr ""
+msgstr "Debian パッケージのキャッシュプロキシ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>proxy cache</primary>"
-msgstr ""
+msgstr "<primary>プロキシキャッシュ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>cache, proxy</primary>"
-msgstr ""
+msgstr "<primary>キャッシュ、プロキシ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When an entire network of machines is configured to use the same remote server to download the same updated packages, any administrator knows that it would be beneficial to have an intermediate proxy acting as a network-local cache (see sidebar <xref linkend=\"sidebar.cache\" />)."
-msgstr ""
+msgstr "マシンのネットワーク全体で、同じ更新済みパッケージをダウンロードするために同じリモートサーバを使うよう設定されている場合、管理者はネットワークローカルキャッシュとして振る舞う中間プロキシを持つのは有益であると知っています (傍注<xref linkend=\"sidebar.cache\" />参照)。"
 
 #. Tag: para
 #, no-c-format
 msgid "You can configure APT to use a \"standard\" proxy (see <xref linkend=\"sect.apt-config\" /> for the APT side, and <xref linkend=\"sect.http-ftp-proxy\" /> for the proxy side), but the Debian ecosystem offers better options to solve this problem. The dedicated software presented in this section are smarter than a plain proxy cache because they can rely on the specific structure of APT repositories (for instance they know when individual files are obsolete or not, and thus adjust the time during which they are kept)."
-msgstr ""
+msgstr "APT が「標準的な」プロキシを使うように設定することもできます (APT 側は <xref linkend=\"sect.apt-config\" />、プロキシ側は <xref linkend=\"sect.http-ftp-proxy\" /> を参照) が、Debian にはこの問題に対するより優れた選択肢が準備されています。この節で取り上げる専用ソフトウェアは単純なプロキシキャッシュよりも賢いです。なぜなら、このソフトウェアは APT リポジトリの特定の構造を頼りにすることができるからです (例えば、個々のファイルが時代遅れになるタイミングがわかるので、ファイルを保存しておく時間を調整できます)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">apt-cacher</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">apt-cacher</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">apt-cacher-ng</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">apt-cacher-ng</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">apt-cacher</emphasis> and <emphasis role=\"pkg\">apt-cacher-ng</emphasis> work like usual proxy cache servers. APT's <filename>sources.list</filename> is left unchanged, but APT is configured to use them as proxy for outgoing requests."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">apt-cacher</emphasis> と <emphasis role=\"pkg\">apt-cacher-ng</emphasis> は普通のプロキシキャッシュサーバのように振舞います。APT の <filename>sources.list</filename> を変える必要はありませんが、APT はそれらを外部リクエスト用のプロキシとして設定します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">approx</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">approx</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">approx</emphasis>, on the other hand, acts like an HTTP server that “mirrors” any number of remote repositories in its top-level URLs. The mapping between those top-level directories and the remote URLs of the repositories is stored in <filename>/etc/approx/approx.conf</filename>:"
-msgstr ""
+msgstr "これに対して、<emphasis role=\"pkg\">approx</emphasis> はトップレベル URL の下にある複数のリモートリポジトリを「ミラー」する HTTP サーバのように振舞います。トップレベルディレクトリとリモート URL の対応関係は <filename>/etc/approx/approx.conf</filename> に保存されています:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -728,11 +728,15 @@ msgid ""
 "debian   http://ftp.debian.org/debian\n"
 "security http://security.debian.org\n"
 msgstr ""
+"\n"
+"# &lt;name&gt; &lt;repository-base-url&gt;\n"
+"debian   http://ftp.debian.org/debian\n"
+"security http://security.debian.org\n"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">approx</emphasis> runs by default on port 9999 via inetd (see <xref linkend=\"sect.inetd\" />) and requires the users to adjust their <filename>sources.list</filename> file to point to the approx server:"
-msgstr ""
+msgstr "<emphasis role=\"pkg\">approx</emphasis> のデフォルト設定では、inetd 経由で (<xref linkend=\"sect.inetd\" />参照) 9999 番ポートを使います。ユーザは approx サーバを指すように <filename>sources.list</filename> ファイルを書き換えなければいけません。"
 
 #. Tag: programlisting
 #, no-c-format
@@ -742,26 +746,30 @@ msgid ""
 "deb http://apt.falcot.com:9999/debian wheezy main contrib non-free\n"
 "      "
 msgstr ""
+"# Sample sources.list pointing to a local approx server\n"
+"deb http://apt.falcot.com:9999/security wheezy/updates main contrib non-free\n"
+"deb http://apt.falcot.com:9999/debian wheezy main contrib non-free\n"
+"      "
 
 #. Tag: title
 #, no-c-format
 msgid "<command>aptitude</command> and <command>apt-get</command> Commands"
-msgstr ""
+msgstr "<command>aptitude</command> と <command>apt-get</command> コマンド"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first front end — command-line based — which was developed within the project."
-msgstr ""
+msgstr "APT は巨大なプロジェクトで、当初の予定ではグラフィカルインターフェイスを含んでいました。APT はライブラリに基づいており、ライブラリにはコアアプリケーションが含まれています。<command>apt-get</command> は最初のフロントエンド - コマンドラインベース - で、APT プロジェクト内で開発されました。"
 
 #. Tag: para
 #, no-c-format
