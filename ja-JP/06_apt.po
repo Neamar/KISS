@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-29 01:33+0900\n"
+"PO-Revision-Date: 2015-04-30 02:18+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1025,27 +1025,27 @@ msgstr "<primary><command>aptitude safe-upgrade</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Regular upgrades are recommended, because they include the latest security updates. To upgrade, use <command>apt-get upgrade</command> or <command>aptitude safe-upgrade</command> (of course after <command>apt-get update</command>). This command looks for installed packages which can be upgraded without removing any packages. In other words, the goal is to ensure the least intrusive upgrade possible. <command>apt-get</command> is slightly more demanding than <command>aptitude</command> because it will refuse to install packages which were not installed beforehand."
-msgstr ""
+msgstr "最新のセキュリティアップデートを入手するために、定期的にアップグレードすることをお勧めします。アップグレードするには、(もちろん <command>apt-get update</command> を実行した後で) <command>apt-get upgrade</command> または <command>aptitude safe-upgrade</command> を実行してください。このコマンドは他のパッケージを削除せずにアップグレード可能なインストール済みパッケージを探します。言い換えれば、最低限可能なアップグレードを行います。<command>apt-get</command> のアップグレードパッケージの選択ルールは <command>aptitude</command> よりも少し条件が厳しいです。これは <command>apt-get</command> はすでにインストール済みのパッケージだけをアップグレードするからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Incremental upgrade"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> 増分アップグレード"
 
 #. Tag: para
 #, no-c-format
 msgid "As we explained earlier, the aim of the <command>apt-get update</command> command is to download for each package source the corresponding <filename>Packages</filename> (or <filename>Sources</filename>) file. However, even after a <command>bzip2</command> compression, these files can remain rather large (the <filename>Packages.bz2</filename> for the <foreignphrase>main</foreignphrase> section of <emphasis role=\"distribution\">Wheezy</emphasis> takes more than 5 MB). If you wish to upgrade regularly, these downloads can take up a lot of time."
-msgstr ""
+msgstr "先に説明したとおり、<command>apt-get update</command> コマンドは、複数のパッケージソースから適当な <filename>Packages</filename> (または <filename>Sources</filename>)  ファイルをダウンロードします。しかしながら、これらのファイルのサイズは <command>bzip2</command> 圧縮してもまだ大きいです (<emphasis role=\"distribution\">Wheezy</emphasis> の <foreignphrase>main</foreignphrase> セクションの <filename>Packages.bz2</filename> は 5 MB 以上です)。日常的にアップグレードしたい場合、ダウンロードに時間がかかるということです。"
 
 #. Tag: para
 #, no-c-format
 msgid "To speed up the process APT can download “diff” files containing the changes since the previous update, as opposed to the entire file. To achieve this, official Debian mirrors distribute different files which list the differences between one version of the <filename>Packages</filename> file and the following version. They are generated at each update of the archives and a history of one week is kept. Each of these “diff” files only takes a few dozen kilobytes for <emphasis role=\"distribution\">Unstable</emphasis>, so that the amount of data downloaded by a weekly <command>aptitude update</command> is often divided by 10. For distributions like <emphasis role=\"distribution\">Stable</emphasis> and <emphasis role=\"distribution\">Testing</emphasis>, which change less, the gain is even more noticeable."
-msgstr ""
+msgstr "APT は作業を高速に進めるために、ファイル全体をダウンロードするのではなく、前回の更新以降の変更を含む「差分」をダウンロードします。これを実現するために、公式の Debian ミラーはある時点の <filename>Packages</filename> ファイルとそれ以降の時点の差分を含むファイルを配布します。差分はアーカイブが更新されるたびに生成され、1 週間につき 1 つが残されます。それぞれの「差分」ファイルは<emphasis role=\"distribution\">不安定版</emphasis>の場合でもたった数十キロバイトです。そうすれば毎週 <command>aptitude update</command> を実行する場合にダウンロードされるデータ量は通常 10 分の 1 です。より変更頻度が低い <emphasis role=\"distribution\">安定版</emphasis>や<emphasis role=\"distribution\">テスト版</emphasis>などのディストリビューションについては、その増加はより顕著です。"
 
 #. Tag: para
 #, no-c-format
 msgid "However, it can sometimes be of interest to force the download of the entire <filename>Packages</filename> file, especially when the last upgrade is very old and when the mechanism of incremental differences would not contribute much. This can also be interesting when network access is very fast but when the processor of the machine to upgrade is rather slow, since the time saved on the download is more than lost when the computer calculates the new versions of these files (starting with the older versions and applying the downloaded differences). To do that, you can use the configuration parameter <literal>Acquire::Pdiffs</literal> and set it to <literal>false</literal>."
-msgstr ""
+msgstr "しかしながら、特に最後のアップグレードが長い時間が経っている場合や増分差分の効果が薄い場合、<filename>Packages</filename> ファイルの全体を強制的にダウンロードしたいと思うかもしれません。これはまた、ネットワークがとても高速でマシンの処理がかなり遅い場合に興味深いです。なぜなら、ダウンロードによって節約される時間の方がコンピュータがファイルの新しいバージョンを計算する時間 (古いバージョンにダウンロードされた差分を連結していく時間) のほうが長いからです。こうするには、設定パラメータ <literal>Acquire::Pdiffs</literal> を <literal>false</literal> に設定してください。"
 
 #. Tag: para
 #, no-c-format
