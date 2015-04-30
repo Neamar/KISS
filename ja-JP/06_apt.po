@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-30 02:18+0900\n"
+"PO-Revision-Date: 2015-05-01 01:03+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1050,177 +1050,177 @@ msgstr "しかしながら、特に最後のアップグレードが長い時間
 #. Tag: para
 #, no-c-format
 msgid "<command>apt-get</command> will generally select the most recent version number (except for packages from <emphasis role=\"distribution\">Experimental</emphasis> and <emphasis role=\"distribution\">stable-backports</emphasis>, which are ignored by default whatever their version number). If you specified <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> in your <filename>sources.list</filename>, <command>apt-get upgrade</command> will switch most of your <emphasis role=\"distribution\">Stable</emphasis> system to <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>, which might not be what you intended."
-msgstr ""
+msgstr "通常 <command>apt-get</command> は最新のバージョン (<emphasis role=\"distribution\">実験版</emphasis> と <emphasis role=\"distribution\">安定版バックポート</emphasis> のパッケージは除きます。これらは普通バージョン番号にかかわらず無視されます) を選択します。<filename>sources.list</filename> の中で<emphasis role=\"distribution\">テスト版</emphasis>や<emphasis role=\"distribution\">不安定版</emphasis>を指定した場合、<command>apt-get upgrade</command> は<emphasis role=\"distribution\">安定版</emphasis>システムのほとんどを<emphasis role=\"distribution\">テスト版</emphasis>や<emphasis role=\"distribution\">不安定版</emphasis>に変更します。これはあなたが望んでいないことかもしれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "To tell <command>apt-get</command> to use a specific distribution when searching for upgraded packages, you need to use the <literal>-t</literal> or <literal>--target-release</literal> option, followed by the name of the distribution you want (for example: <command>apt-get -t stable upgrade</command>). To avoid specifying this option every time you use <command>apt-get</command>, you can add <literal>APT::Default-Release \"stable\";</literal> in the file <filename>/etc/apt/apt.conf.d/local</filename>."
-msgstr ""
+msgstr "<command>apt-get</command> がアップグレードされたパッケージを検索する際に特定のディストリビューションを検索させるには、ディストリビューションの名前を後ろにつけて <literal>-t</literal> または <literal>--target-release</literal> オプションを使ってください (例: <command>apt-get -t stable upgrade</command>)。<command>apt-get</command> を使う時に毎回このオプションを指定するのを避けるには、<filename>/etc/apt/apt.conf.d/local</filename> ファイルに <literal>APT::Default-Release \"stable\";</literal> を追加してください。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-get dist-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-get dist-upgrade</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude dist-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude dist-upgrade</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude full-upgrade</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude full-upgrade</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "For more important upgrades, such as the change from one major Debian version to the next, you need to use <command>apt-get dist-upgrade</command> (“distribution upgrade”). With this instruction, <command>apt-get</command> will complete the upgrade even if it has to remove some obsolete packages or install new dependencies. This is also the command used by users who work daily with the Debian <emphasis role=\"distribution\">Unstable</emphasis> release and follow its evolution day by day. It is so simple that it hardly needs explanation: APT's reputation is based on this great functionality."
-msgstr ""
+msgstr "より重要なアップグレード、例えば Debian のメジャーバージョンから次バージョンに変更するなどの場合、<command>apt-get dist-upgrade</command> (「ディストリビューションアップグレード」) を使ってください。この命令で、アップグレード伴う新しい依存関係で時代遅れのパッケージを削除することになったとしても、<command>apt-get</command> はアップグレードを完了します。この命令はまた Debian <emphasis role=\"distribution\">不安定版</emphasis> リリースを日常的に使い、毎日開発進化についていくユーザが使うコマンドです。これは説明がほとんど必要ないくらいとても単純です: APT の評判はこの偉大なる機能性が担っています。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>aptitude full-upgrade</command> is <command>aptitude</command>'s corresponding command although <command>dist-upgrade</command> is also recognized (but deprecated)."
-msgstr ""
+msgstr "<command>aptitude full-upgrade</command> は <command>aptitude</command> で上の命令に対応するコマンドですが、<command>dist-upgrade</command> も認識されます (将来廃止予定です)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuration Options"
-msgstr ""
+msgstr "設定オプション"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>configuration</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>設定n</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>apt.conf.d/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>apt.conf.d/</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Besides the configuration elements already mentioned, it is possible to configure certain aspects of APT by adding directives in a file of the <filename>/etc/apt/apt.conf.d/</filename> directory. Remember for instance that it is possible for APT to tell <command>dpkg</command> to ignore file conflict errors by specifying <literal>DPkg::Options { \"--force-overwrite\"; }</literal>."
-msgstr ""
+msgstr "すでに説明した設定項目に加えて、<filename>/etc/apt/apt.conf.d/</filename> ディレクトリにファイルを追加して APT の特定の機能を設定できます。例えば、APT に <command>dpkg</command> がファイルの衝突によるエラーを無視するよう設定するには、<literal>DPkg::Options { \"--force-overwrite\"; }</literal> を指定してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "If the Web can only be accessed through a proxy, add a line like <literal>Acquire::http::proxy \"http://<replaceable>yourproxy</replaceable>:3128\"</literal>. For an FTP proxy, write <literal>Acquire::ftp::proxy \"ftp://<replaceable>yourproxy</replaceable>\"</literal>. To discover more configuration options, read the <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page with the <command>man apt.conf</command> command (for details on manual pages, see <xref linkend=\"sect.manual-pages\" />)."
-msgstr ""
+msgstr "プロキシを介さないとウェブにアクセスできないのなら、<literal>Acquire::http::proxy \"http://<replaceable>yourproxy</replaceable>:3128\"</literal> の行を追加してください。FTP プロキシは <literal>Acquire::ftp::proxy \"ftp://<replaceable>yourproxy</replaceable>\"</literal> のように追加してください。より多くの設定オプションを確認するには、<command>man apt.conf</command> コマンドで <citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページをご覧ください (マニュアルページの詳細は<xref linkend=\"sect.manual-pages\" />をご覧ください)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Directories ending in <filename>.d</filename>"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> <filename>.d</filename> で終わるディレクトリ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>.d</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>.d</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Directories with a <filename>.d</filename> suffix are used more and more often. Each directory represents a configuration file which is split over multiple files. In this sense, all of the files in <filename>/etc/apt/apt.conf.d/</filename> are instructions for the configuration of APT. APT includes them in alphabetical order, so that the last ones can modify a configuration element defined in one of the first ones."
-msgstr ""
+msgstr "名前に <filename>.d</filename> サフィックスが付けられたディレクトリは頻繁に使われます。それぞれのディレクトリは複数ファイルに渡って分割された設定ファイルを表しています。この意味において、<filename>/etc/apt/apt.conf.d/</filename> 内の全てのファイルには APT に対する設定が含まれています。APT はこれらをアルファベット順に読み込みます。つまり、読み込まれる順番が遅いファイルの設定が早いファイルの設定を上書きするということです。"
 
 #. Tag: para
 #, no-c-format
 msgid "This structure brings some flexibility to the machine administrator and to the package maintainers. Indeed, the administrator can easily modify the configuration of the software by adding a ready-made file in the directory in question without having to change an existing file. Package maintainers use the same approach when they need to adapt the configuration of another software to ensure that it perfectly co-exists with theirs. The Debian policy explicitly forbids modifying configuration files of other packages — only users are allowed to do this. Remember that during a package upgrade, the user gets to choose the version of the configuration file that should be kept when a modification has been detected. Any external modification of the file would trigger that request, which would disturb the administrator, who is sure not to have changed anything."
-msgstr ""
+msgstr "この体制により、マシンの管理者とパッケージメンテナは設定にいくつかの自由度を持つことができます。実際、管理者はソフトウェアの設定を、出来合いのファイルをこのディレクトリに追加することによって、既存のファイルを編集せずに、簡単に修正できます。パッケージメンテナはこれと同じやり方で、自分のパッケージと上手に共存させながら、他のソフトウェアの設定を変更します。他のパッケージが提供する設定ファイルを変更することは Debian ポリシーによって禁止されています - 変更できるのはユーザだけです。パッケージのアップグレード中に設定ファイルの変更が検出されたら、ユーザは設定ファイルのどのバージョンを保存するか聞かれることを忘れないでください。外部から設定ファイルが変更されれば必ず聞かれます。これは何も変えたくない管理者にとって煩わしいでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "Without a <filename>.d</filename> directory, it is impossible for an external package to change the settings of a program without modifying its configuration file. Instead it must invite the user to do it himself and lists the operations to be done in the file <filename>/usr/share/doc/<replaceable>package</replaceable>/README.Debian</filename>."
-msgstr ""
+msgstr "<filename>.d</filename> ディレクトリがない場合、設定ファイルを提供するパッケージ以外が、その設定ファイルを書き換えずにプログラムの設定を変更するのは不可能です。その代わり、ユーザに自分で設定ファイルを書き換えるよう案内し、そのやり方を <filename>/usr/share/doc/<replaceable>package</replaceable>/README.Debian</filename> ファイルに記載しなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Depending on the application, the <filename>.d</filename> directory is used directly or managed by an external script which will concatenate all the files to create the configuration file itself. It is important to execute the script after any change in that directory so that the most recent modifications are taken into account. In the same way, it is important not to work directly in the configuration file created automatically, since everything would be lost at the next execution of the script. The chosen method (<filename>.d</filename> directory used directly or a file generated from that directory) is usually dictated by implementation constraints, but in both cases the gains in terms of configuration flexibility more than make up for the small complications that they entail. The Exim 4 mail server is an example of the generated file method: it can be configured through several files (<filename>/etc/exim4/conf.d/*</filename>) which are concatenated into <filename>/var/lib/exim4/config.autogenerated</filename> by the <command>update-exim4.conf</command> command."
-msgstr ""
+msgstr "アプリケーションに依存しますが、<filename>.d</filename> ディレクトリは直接または全てのファイルを連結して設定ファイルを作成する外部スクリプトを介して使われます。最新の変更を反映させるため、ディレクトリ内のファイルを変更した後にスクリプトを実行することが重要です。同様に、自動的に生成された設定ファイルを直接編集しないことが重要です。なぜなら、スクリプトを実行すれば生成された設定ファイルに行った全ての変更が失われるからです。どちらの方法をとるか (<filename>.d</filename> ディレクトリを直接使うかディレクトリからファイルを生成するか) は通常実装に依存します。しかし、どちらの場合でも設定の柔軟性が増えるのに対して、設定の複雑さは少ししか増加しません。Exim 4 メールサーバはファイルを生成する方針をとるアプリケーションの例です: ファイル (<filename>/etc/exim4/conf.d/*</filename>) に設定を書き込み、<command>update-exim4.conf</command> コマンドがこれらを連結して <filename>/var/lib/exim4/config.autogenerated</filename> を生成します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing Package Priorities"
-msgstr ""
+msgstr "パッケージ優先度の管理"
 
 #. Tag: para
 #, no-c-format
 msgid "One of the most important aspects in the configuration of APT is the management of the priorities associated with each package source. For instance, you might want to extend one distribution with one or two newer packages from <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis>. It is possible to assign a priority to each available package (the same package can have several priorities depending on its version or the distribution providing it). These priorities will influence APT's behavior: for each package, it will always select the version with the highest priority (except if this version is older than the installed one and if its priority is less than 1000)."
-msgstr ""
+msgstr "APT の設定で最も重要な側面の 1 つに各パッケージソースに対する優先度の管理があります。例えば、<emphasis role=\"distribution\">テスト版</emphasis>、<emphasis role=\"distribution\">不安定版</emphasis>、<emphasis role=\"distribution\">実験版</emphasis>から入手できる新しいパッケージを 1 つか 2 つあるディストリビューションにインストールしたいと思うかもしれません。利用可能なパッケージに対して優先度を割り当てることが可能です (同じパッケージに対してバージョンやそれを提供しているディストリビューションに依存する異なる優先度を設定することも可能です)。優先度の設定は APT の挙動に影響を与えます: 各パッケージについて、APT は常に最も優先度の高いバージョンをインストールします (例外は、最も優先度の高いバージョンがインストール済みのバージョンよりも古い場合か 1000 より低い優先順位を持っている場合です)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary><foreignphrase>pinning</foreignphrase></secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary><foreignphrase>pinning</foreignphrase></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>pinning, APT pinning</primary>"
-msgstr ""
+msgstr "<primary>pinning、APT pinning</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>priority</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>優先度</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>priority</primary><secondary>package priority</secondary>"
-msgstr ""
+msgstr "<primary>優先度</primary><secondary>パッケージ優先度</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>preferences</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>設定</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>preferences</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>preferences</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/preferences</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/preferences</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "APT defines several default priorities. Each installed package version has a priority of 100. A non-installed version has a priority of 500 by default, but it can jump to 990 if it is part of the target release (defined with the <literal>-t</literal> command-line option or the <literal>APT::Default-Release</literal> configuration directive)."
-msgstr ""
+msgstr "APT はいくつかのデフォルト優先度を定義しています。インストール済みパッケージのバージョンは優先度 100 です。インストールされていないパッケージのバージョンはデフォルトで優先度 500 ですが、ターゲットリリース (<literal>-t</literal> コマンドラインオプションか <literal>APT::Default-Release</literal> の設定ディレクティブによって定義します) に含まれるバージョンの場合、優先度 990 になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "You can modify the priorities by adding entries in the <filename>/etc/apt/preferences</filename> file with the names of the affected packages, their version, their origin and their new priority."
-msgstr ""
+msgstr "優先度を変更するには、<filename>/etc/apt/preferences</filename> ファイルに、影響を受けるパッケージの名前、バージョン、パッケージの提供者、新しい優先度を指定するエントリを追加してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "APT will never install an older version of a package (that is, a package whose version number is lower than the one of the currently installed package) except if its priority is higher than 1000. APT will always install the highest priority package which follows this constraint. If two packages have the same priority, APT installs the newest one (whose version number is the highest). If two packages of same version have the same priority but differ in their content, APT installs the version that is not installed (this rule has been created to cover the case of a package update without the increment of the revision number, which is usually required)."
-msgstr ""
+msgstr "APT は優先度が 1000 より高い場合を除いて、パッケージの古いバージョン (言い換えれば、現在インストールされているバージョンよりバージョン番号が低いパッケージ) をインストールしません。APT は常にこの制限に基づいて最も高い優先度のパッケージをインストールします。2 つのバージョンが同じ優先度の場合、APT は最新の (バージョン番号が最も高い) バージョンをインストールします。バージョンと優先度が同じで、パッケージの内容が異なる場合、APT はインストールされていないバージョンをインストールします (このルールはあるパッケージがリビジョン番号を変化させずに更新された場合に対応させるために作られました。通常は増加させなければいけません)。"
 
 #. Tag: para
 #, no-c-format
 msgid "In more concrete terms, a package whose priority is less than 0 will never be installed. A package with a priority ranging between 0 and 100 will only be installed if no other version of the package is already installed. With a priority between 100 and 500, the package will only be installed if there is no other newer version installed or available in another distribution. A package of priority between 501 and 990 will only be installed if there is no newer version installed or available in the target distribution. With a priority between 990 and 1000, the package will be installed except if the installed version is newer. A priority greater than 1000 will always lead to the installation of the package even if it forces APT to downgrade to an older version."
-msgstr ""
+msgstr "より具体的に言えば、優先度が 0 より低いパッケージは決してインストールされません。0 から 100 までの優先度を持つパッケージは、パッケージの他のバージョンがインストール済みでない場合にだけ、インストールされます。100 から 500 までの優先度を持つパッケージは、インストール済みのバージョンに新しいものが存在しないか、他のディストリビューションに利用可能なバージョンが存在する場合にだけ、インストールされます。501 から 990 までの優先度を持つパッケージは、インストール済みのバージョンに新しいものが存在しないか、ターゲットディストリビューションに利用可能なバージョンが存在する場合にだけ、インストールされます。990 から1000 までの優先度を持つパッケージは、インストール済みバージョンが古い場合に、インストールされます。1000 より大きい優先度を持つパッケージは、古いバージョンにダウングレードすることになったとしても、常にインストールされます。"
 
 #. Tag: para
 #, no-c-format
 msgid "When APT checks <filename>/etc/apt/preferences</filename>, it first takes into account the most specific entries (often those specifying the concerned package), then the more generic ones (including for example all the packages of a distribution). If several generic entries exist, the first match is used. The available selection criteria include the package's name and the source providing it. Every package source is identified by the information contained in a <filename>Release</filename> file that APT downloads together with the <filename>Packages</filename> files. It specifies the origin (usually “Debian” for the packages of official mirrors, but it can also be a person's or an organization's name for third-parties repositories). It also gives the name of the distribution (usually <emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis> for the standard distributions provided by Debian) together with its version (for example 5.0 for Debian <emphasis role=\"distribution\">Lenny</emphasis>). Let's have a look at its syntax through some realistic case studies of this mechanism."
-msgstr ""
+msgstr "APT が <filename>/etc/apt/preferences</filename> の設定を評価する際、最初に具体的なエントリ (該当するパッケージに関連するエントリ)、その後に一般的なエントリ (例えばあるディストリビューションの全てのパッケージを含めたものなど) を評価します。一般的なエントリが複数存在する場合、最初にマッチしたものを使います。利用可能な選択基準には、パッケージの名前とパッケージを配布しているパッケージソースが含まれます。各パッケージソースは APT が <filename>Packages</filename> と一緒にダウンロードする <filename>Release</filename> ファイルに含まれる情報によって区別されます。このファイルは提供者 (公式ミラーのパッケージの場合、通常「Debian」ですが、人名やサードパーティリポジトリの組織名になる場合もあります) を規定しています。また、このファイルはディストリビューションの名前 (Debian の提供する標準的ディストリビューションの場合、通常 <emphasis role=\"distribution\">安定版</emphasis>、<emphasis role=\"distribution\">テスト版</emphasis>、<emphasis role=\"distribution\">不安定版</emphasis>、<emphasis role=\"distribution\">実験版</emphasis>) とバージョン (例えば Debian <emphasis role=\"distribution\">Lenny</emphasis> なら 5.0) を規定しています。このメカニズムの実際のケーススタディを通じて、構文を見てみましょう。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Priority of <emphasis role=\"distribution\">experimental</emphasis>"
-msgstr ""
+msgstr "<emphasis>SPECIFIC CASE</emphasis> <emphasis role=\"distribution\">実験版</emphasis> の優先度"
 
 #. Tag: para
 #, no-c-format
 msgid "If you listed <emphasis role=\"distribution\">Experimental</emphasis> in your <filename>sources.list</filename> file, the corresponding packages will almost never be installed because their default APT priority is 1. This is of course a specific case, designed to keep users from installing <emphasis role=\"distribution\">Experimental</emphasis> packages by mistake. The packages can only be installed by typing <command>aptitude install <replaceable>package</replaceable>/experimental</command> — users typing this command can only be aware of the risks that they take. It is still possible (though <emphasis>not</emphasis> recommended) to treat packages of <emphasis role=\"distribution\">Experimental</emphasis> like those of other distributions by giving them a priority of 500. This is done with a specific entry in <filename>/etc/apt/preferences</filename>:"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">実験版</emphasis>を <filename>sources.list</filename> ファイルに含めても対応するパッケージは決してインストールされません。なぜなら優先度が 1 だからです。これはもちろん特別な場合で、誤って<emphasis role=\"distribution\">実験版</emphasis>のパッケージをインストールするのを避けるためこうなっています。パッケージをインストールする唯一の方法は <command>aptitude install <replaceable>package</replaceable>/experimental</command> と実行することです - このコマンドを実行するユーザは嫌でもリスクをとることに気付くでしょう。<emphasis role=\"distribution\">実験版</emphasis> のパッケージの優先度を 500 にして他のディストリビューションのパッケージと同列に扱うことも (推奨<emphasis>しません</emphasis>が) 不可能ではありません。こうするには <filename>/etc/apt/preferences</filename> に以下のエントリを含めてください:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1229,11 +1229,14 @@ msgid ""
 "Pin: release a=experimental\n"
 "Pin-Priority: 500\n"
 msgstr ""
+"Package: *\n"
+"Pin: release a=experimental\n"
+"Pin-Priority: 500\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's suppose that you only want to use packages from the stable version of Debian. Those provided in other versions should not be installed except if explicitly requested. You could write the following entries in the <filename>/etc/apt/preferences</filename> file:"
-msgstr ""
+msgstr "Debian の安定版バージョンからのパッケージだけを使いたいと仮定しましょう。他のバージョンから提供されるパッケージは、はっきりと要求されない限り、インストールされるべきではありません。この場合、<filename>/etc/apt/preferences</filename> ファイルに以下のエントリを書きます:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1246,16 +1249,23 @@ msgid ""
 "Pin: release o=Debian\n"
 "Pin-Priority: -10\n"
 msgstr ""
+"Package: *\n"
+"Pin: release a=stable\n"
+"Pin-Priority: 900\n"
+"\n"
+"Package: *\n"
+"Pin: release o=Debian\n"
+"Pin-Priority: -10\n"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>a=stable</literal> defines the name of the selected distribution. <literal>o=Debian</literal> limits the scope to packages whose origin is “Debian”."
-msgstr ""
+msgstr "<literal>a=stable</literal> で選択するディストリビューションの名前を定義します。<literal>o=Debian</literal> で提供者が「Debian」のパッケージに範囲を限定します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's now assume that you have a server with several local programs depending on the version 5.14 of Perl and that you want to ensure that upgrades will not install another version of it. You could use this entry:"
-msgstr ""
+msgstr "さてここで、サーバには Perl バージョン 5.14 に依存するローカルプログラムがあり、アップグレードによって他のバージョンがインストールされないことを保証したいと仮定しましょう。この場合、以下のエントリを使います:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1264,36 +1274,39 @@ msgid ""
 "Pin: version 5.14*\n"
 "Pin-Priority: 1001\n"
 msgstr ""
+"Package: perl\n"
+"Pin: version 5.14*\n"
+"Pin-Priority: 1001\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The reference documentation for this configuration file is available in the manual page <citerefentry><refentrytitle>apt_preferences</refentrytitle><manvolnum>5</manvolnum></citerefentry>, which you can display with <command>man apt_preferences</command>."
-msgstr ""
+msgstr "マニュアルページ <citerefentry><refentrytitle>apt_preferences</refentrytitle><manvolnum>5</manvolnum></citerefentry> にはこの設定ファイルに対する関連文書があり、<command>man apt_preferences</command> で表示できます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Comments in <filename>/etc/apt/preferences</filename>"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> <filename>/etc/apt/preferences</filename> 内のコメント"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Explanation</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>Explanation</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pin</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>Pin</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Pin-Priority</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>Pin-Priority</literal></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "There is no official syntax to put comments in the <filename>/etc/apt/preferences</filename> file, but some textual descriptions can be provided by putting one or more “<literal>Explanation</literal>” fields at the start of each entry:"
-msgstr ""
+msgstr "<filename>/etc/apt/preferences</filename> ファイルにコメントを記入する正しいやり方はありませんが、それぞれのエントリの前の行に「<literal>Explanation</literal>」フィールドをつけるとテキスト説明を記入できます。"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1304,11 +1317,16 @@ msgid ""
 "Pin: release a=experimental\n"
 "Pin-Priority: 500\n"
 msgstr ""
+"Explanation: The package xserver-xorg-video-intel provided\n"
+"Explanation: in experimental can be used safely\n"
+"Package: xserver-xorg-video-intel\n"
+"Pin: release a=experimental\n"
+"Pin-Priority: 500\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Working with Several Distributions"
-msgstr ""
+msgstr "複数ディストリビューションの利用"
 
 #. Tag: para
 #, no-c-format
