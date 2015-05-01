@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-01 01:03+0900\n"
+"PO-Revision-Date: 2015-05-02 03:28+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1331,47 +1331,47 @@ msgstr "複数ディストリビューションの利用"
 #. Tag: para
 #, no-c-format
 msgid "<command>apt-get</command> being such a marvelous tool, it is tempting to pick packages coming from other distributions. For example, after having installed a <emphasis role=\"distribution\">Stable</emphasis> system, you might want to try out a software package available in <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> without diverging too much from the system's initial state."
-msgstr ""
+msgstr "<command>apt-get</command> はこのように素晴らしく、他のディストリビューションからパッケージを選ぶ際に力を発揮するツールです。例えば、<emphasis role=\"distribution\">安定版</emphasis>システムをインストールした後に<emphasis role=\"distribution\">テスト版</emphasis>や<emphasis role=\"distribution\">不安定版</emphasis>に収録されているあるソフトウェアのパッケージを試したいが、システムを最初の状態から大きく変更したくないという場合です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Even if you will occasionally encounter problems while mixing packages from different distributions, <command>apt-get</command> manages such coexistence very well and limits risks very effectively. The best way to proceed is to list all distributions used in <filename>/etc/apt/sources.list</filename> (some people always put the three distributions, but remember that <emphasis role=\"distribution\">Unstable</emphasis> is reserved for experienced users) and to define your reference distribution with the <literal>APT::Default-Release</literal> parameter (see <xref linkend=\"sect.apt-upgrade\" />)."
-msgstr ""
+msgstr "ディストリビューションの異なるパッケージを混在させると、時々問題に遭遇するかもしれませんが、<command>apt-get</command> はパッケージをうまく共存させ、危険の及ぶ範囲をうまく限定します。進むべき最善の道は、<filename>/etc/apt/sources.list</filename> で使われている全てのディストリビューションをリストアップ (常に 3 つのディストリビューションを使う人がいるかもしれませんが、<emphasis role=\"distribution\">不安定版</emphasis>は経験豊かなユーザ向けであることを忘れないでください) して、<literal>APT::Default-Release</literal> パラメータ (<xref linkend=\"sect.apt-upgrade\" />参照) で基準ディストリビューションをを定義することです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's suppose that <emphasis role=\"distribution\">Stable</emphasis> is your reference distribution but that <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> are also listed in your <filename>sources.list</filename> file. In this case, you can use <command>apt-get install <replaceable>package</replaceable>/testing</command> to install a package from <emphasis role=\"distribution\">Testing</emphasis>. If the installation fails due to some unsatisfiable dependencies, let it solve those dependencies within <emphasis role=\"distribution\">Testing</emphasis> by adding the <literal>-t testing</literal> parameter. The same obviously applies to <emphasis role=\"distribution\">Unstable</emphasis>."
-msgstr ""
+msgstr "<emphasis role=\"distribution\">安定版</emphasis>が基準ディストリビューションと仮定しますが、併せて<emphasis role=\"distribution\">テスト版</emphasis>と<emphasis role=\"distribution\">不安定版</emphasis>も <filename>sources.list</filename> ファイルに書かれているとします。この場合、<emphasis role=\"distribution\">テスト版</emphasis> からのパッケージをインストールするには <command>apt-get install <replaceable>package</replaceable>/testing</command> を使います。依存関係の解決に失敗してインストールできなかった場合、<literal>-t testing</literal> パラメータをつけて <emphasis role=\"distribution\">テスト版</emphasis>を使って依存関係を解決させることができます。<emphasis role=\"distribution\">不安定版</emphasis>でも同じことが言えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In this situation, upgrades (<command>upgrade</command> and <command>dist-upgrade</command>) are done within <emphasis role=\"distribution\">Stable</emphasis> except for packages already upgraded to another distribution: those will follow updates available in the other distributions. We'll explain this behavior with the help of the default priorities set by APT below. Do not hesitate to use <command>apt-cache policy</command> (see sidebar) to verify the given priorities."
-msgstr ""
+msgstr "この状況では、アップグレード (<command>upgrade</command> と <command>dist-upgrade</command>) は、他のディストリビューションでパッケージがアップグレードされていない限り、<emphasis role=\"distribution\">安定版</emphasis>のパッケージを使って終了します: 他のディストリビューションに利用可能な更新があれば、アップグレードします。以下では、APT によって設定されたデフォルト優先度の助けを借りてこの挙動を説明します。パッケージの優先度を確認するには、遠慮なく <command>apt-cache policy</command> (傍注参照) を使ってください。"
 
 #. Tag: para
 #, no-c-format
 msgid "Everything centers around the fact that APT only considers packages of higher or equal version than the installed one (assuming that <filename>/etc/apt/preferences</filename> has not been used to force priorities higher than 1000 for some packages)."
-msgstr ""
+msgstr "APT はインストール済みのパッケージに比べてバージョンが高いか同じのパッケージだけを考慮するという事実を知れば、すべてを理解できます (ここでは <filename>/etc/apt/preferences</filename> の中に一部のパッケージに対して 1000より高い優先度を強制する設定が無いと仮定します)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <command>apt-cache policy</command>"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> <command>apt-cache policy</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "To gain a better understanding of the mechanism of priority, do not hesitate to execute <command>apt-cache policy</command> to display the default priority associated with each package source. You can also use <command>apt-cache policy <replaceable>package</replaceable></command> to display the priorities of all available versions of a given package."
-msgstr ""
+msgstr "優先度のメカニズムをさらに良く理解するためには、<command>apt-cache policy</command> を実行し、各パッケージソースに対して設定されているデフォルトの優先度を確認して下さい。また、あるパッケージの利用可能なバージョン全てに対する優先度を表示するために <command>apt-cache policy <replaceable>package</replaceable></command> を使う事も可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's assume that you have installed version 1 of a first package from <emphasis role=\"distribution\">Stable</emphasis> and that version 2 and 3 are available respectively in <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis>. The installed version has a priority of 100 but the version available in <emphasis role=\"distribution\">Stable</emphasis> (the very same) has a priority of 990 (because it is part of the target release). Packages in <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> have a priority of 500 (the default priority of a non-installed version). The winner is thus version 1 with a priority of 990. The package “stays in <emphasis role=\"distribution\">Stable</emphasis>”."
-msgstr ""
+msgstr "あるパッケージの、<emphasis role=\"distribution\">安定版</emphasis>から提供されるバージョン 1 がインストール済みで、<emphasis role=\"distribution\">テスト版</emphasis>と<emphasis role=\"distribution\">不安定版</emphasis>から提供されるバージョン 2 と 3 が利用可能と仮定しましょう。インストール済みバージョンの優先度は 100 ですが、<emphasis role=\"distribution\">安定版</emphasis>から提供されるバージョン (インストール済みと全く同じバージョン) の (ターゲットリリースから提供されるバージョンの) 優先度は 990 です。<emphasis role=\"distribution\">テスト版</emphasis>と<emphasis role=\"distribution\">不安定版</emphasis>から提供されるバージョンの優先度 (インストールされていないバージョンに対するデフォルト優先度) は 500 です。この場合、バージョン 1 が最も高い優先度 990 を持ちます。パッケージは「<emphasis role=\"distribution\">安定版</emphasis>のまま」です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's take the example of another package whose version 2 has been installed from <emphasis role=\"distribution\">Testing</emphasis>. Version 1 is available in <emphasis role=\"distribution\">Stable</emphasis> and version 3 in <emphasis role=\"distribution\">Unstable</emphasis>. Version 1 (of priority 990 — thus lower than 1000) is discarded because it is lower than the installed version. This only leaves version 2 and 3, both of priority 500. Faced with this alternative, APT selects the newest version, the one from <emphasis role=\"distribution\">Unstable</emphasis>.If you don't want a package installed from <emphasis role=\"distribution\">Testing</emphasis> to migrate to <emphasis role=\"distribution\">Unstable</emphasis>, you have to assign a priority lower than 500 (490 for example) to packages coming from <emphasis role=\"distribution\">Unstable</emphasis>. You can modify <filename>/etc/apt/preferences</filename> to this effect:"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">テスト版</emphasis>から提供されるバージョン 2 がインストール済みの場合について見てみましょう。<emphasis role=\"distribution\">安定版</emphasis>から提供されるバージョン 1 と<emphasis role=\"distribution\">不安定版</emphasis>から提供されるバージョン 3 が利用可能です。バージョン 1 (優先度は 1000 より低く 990) は、インストール済みバージョンよりもバージョンが低いため、無視されます。残るのはバージョン 2 か 3 ですが、両方の優先度は 500 です。優先度をが同じ場合、APT は最も新しいバージョン、<emphasis role=\"distribution\">不安定版</emphasis>から提供されるバージョン、を選択します。<emphasis role=\"distribution\">テスト版</emphasis>から提供されたインストール済みバージョンを<emphasis role=\"distribution\">不安定版</emphasis>から提供されるバージョンに移行したくない場合、<emphasis role=\"distribution\">不安定版</emphasis>から提供されるバージョンに 500 よりも低い優先度 (例えば 490 など) を割り当てないといけません。これを行うには、<filename>/etc/apt/preferences</filename> を以下のように修正してください:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1380,56 +1380,59 @@ msgid ""
 "Pin: release a=unstable\n"
 "Pin-Priority: 490\n"
 msgstr ""
+"Package: *\n"
+"Pin: release a=unstable\n"
+"Pin-Priority: 490\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Tracking Automatically Installed Packages"
-msgstr ""
+msgstr "自動的にインストールされたパッケージの追跡"
 
 #. Tag: para
 #, no-c-format
 msgid "One of the essential functionalities of <command>apt-get</command> (which was initially specific to <command>aptitude</command>) is the tracking of packages installed only through dependencies. These packages are called “automatic”, and often include libraries for instance."
-msgstr ""
+msgstr "<command>apt-get</command> の本質的な機能の 1 つに、依存関係によってのみインストールされたパッケージの追跡があります (当初これは <command>aptitude</command> に固有の機能でした)。これらのパッケージは「自動」と呼ばれ、例えばライブラリなどがその一例です。"
 
 #. Tag: para
 #, no-c-format
 msgid "With this information, when packages are removed, the package managers can compute a list of automatic packages that are no longer needed (because there's no “manually installed” packages depending on them). <command>apt-get autoremove</command> will get rid of those packages. <command>aptitude</command> does not have this command because it removes them automatically as soon as they are identified. Both programs include a clear message listing the affected packages."
-msgstr ""
+msgstr "あるパッケージを削除する際に、パッケージマネージャは、この追跡情報を元に、もはや不要になった自動パッケージ (「手作業でインストール」されていないパッケージ) を選び出すことができる。不要になった自動パッケージを削除するには <command>apt-get autoremove</command> を使います。<command>aptitude</command> にはこのコマンドがありませんが、これは不要な自動パッケージは見つかり次第自動的に削除されるからです。どちらのプログラムでも、不要になったパッケージは分かりやすく表示されます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-mark auto</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-mark auto</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-mark manual</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-mark manual</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude markauto</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude markauto</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude unmarkauto</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude unmarkauto</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "It is a good habit to mark as automatic any package that you don't need directly so that they are automatically removed when they aren't necessary anymore. <command>apt-mark auto <replaceable>package</replaceable></command> will mark the given package as automatic whereas <command>apt-mark manual <replaceable>package</replaceable></command> does the opposite. <command>aptitude markauto</command> and <command>aptitude unmarkauto</command> work in the same way although they offer more features for marking many packages at once (see <xref linkend=\"sect.aptitude\" />). The console-based interactive interface of <command>aptitude</command> also makes it easy to review the “automatic flag” on many packages."
-msgstr ""
+msgstr "直接的に使うわけではないパッケージを自動パッケージとしてマークするのは良い癖です。こうすれば、そのパッケージがいらなくなった時に自動的に削除されます。<command>apt-mark auto <replaceable>package</replaceable></command> はパッケージを自動パッケージとしてマークし、逆に <command>apt-mark manual <replaceable>package</replaceable></command> は手動パッケージとしてマークします。<command>aptitude markauto</command> と <command>aptitude unmarkauto</command> は同様に動きますが、多くのパッケージを同時にマークする機能を持っています (<xref linkend=\"sect.aptitude\" />参照)。<command>aptitude</command> のコンソールベース対話型インターフェイスを使うと、多くのパッケージの「自動パッケージフラグ」を容易に確認できます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude why</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude why</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "People might want to know why an automatically installed package is present on the system. To get this information from the command line, you can use <command>aptitude why <replaceable>package</replaceable></command> (<command>apt-get</command> has no similar feature):"
-msgstr ""
+msgstr "自動的にインストールされたパッケージがシステムに存在する理由を知りたい場合があるかもしれません。この情報をコマンドラインから得るには、<command>aptitude why <replaceable>package</replaceable></command> を使ってください (<command>apt-get</command> に同様の機能はありません):"
 
 #. Tag: screen
 #, no-c-format
@@ -1439,76 +1442,80 @@ msgid ""
 "i A apt-xapian-index Depends    python-debian (&gt;= 0.1.15)\n"
 "      "
 msgstr ""
+"$ <userinput>aptitude why python-debian</userinput>\n"
+"i   aptitude         Recommends apt-xapian-index         \n"
+"i A apt-xapian-index Depends    python-debian (&gt;= 0.1.15)\n"
+"      "
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <command>deborphan</command> and <command>debfoster</command>"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> <command>deborphan</command> と <command>debfoster</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>deborphan</command></primary>"
-msgstr ""
+msgstr "<primary><command>deborphan</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debfoster</command></primary>"
-msgstr ""
+msgstr "<primary><command>debfoster</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In days where <command>apt-get</command> and <command>aptitude</command> were not able to track automatic packages, there were two utilities producing lists of unnecessary packages: <command>deborphan</command> and <command>debfoster</command>."
-msgstr ""
+msgstr "<command>apt-get</command> や <command>aptitude</command> にまだ自動パッケージを追跡する機能が無かった時代、不要なパッケージをリストアップするユーティリティが 2 つありました: <command>deborphan</command> と <command>debfoster</command> です。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>deborphan</command> is the most rudimentary of both. It simply scans the <literal>libs</literal> and <literal>oldlibs</literal> sections (in the absence of supplementary instructions) looking for the packages that are currently installed and that no other packages depends on. The resulting list can then serve as a basis to remove unneeded packages."
-msgstr ""
+msgstr "<command>deborphan</command> はもう一方と比べれば基礎的なツールです。これは単純に (他に指示の無い限り) <literal>libs</literal> と <literal>oldlibs</literal> セクションを調べ、現在インストール済みで他のパッケージから必要とされていないパッケージを探します。この結果は必要無いパッケージを削除するための手引になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debfoster</command> has a more elaborate approach, very similar to APT's one: it maintains a list of packages that have been explicitly installed, and remembers what packages are really required between each invocation. If new packages appear on the system and if <command>debfoster</command> doesn't know them as required packages, they will be shown on the screen together with a list of their dependencies. The program then offers a choice: remove the package (possibly together with those that depend on it), mark it as explicitly required, or ignore it temporarily."
-msgstr ""
+msgstr "<command>debfoster</command> は APT とよく似たより複雑なアプローチを取ります: このプログラムは明示的にインストールされたパッケージのパッケージのリストを保存し、毎回起動される度に本当に必要なパッケージを記録します。<command>debfoster</command> が新しいパッケージをシステムに検出し、そのパッケージが必要か判らなかった場合、そのパッケージを依存関係のリストと一緒に画面に表示します。そして、選択肢を表示します: パッケージを削除する (そのパッケージが依存するパッケージも一緒に削除するかもしれません)、明示的に必要とマークする、一時的にこれを無視する。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <command>apt-cache</command> Command"
-msgstr ""
+msgstr "<command>apt-cache</command> コマンド"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cache</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cache</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>package search</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>パッケージ検索</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>header display</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>ヘッダ表示</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>search of packages</primary>"
-msgstr ""
+msgstr "<primary>パッケージの検索</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>search</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>検索</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>apt-cache</command> command can display much of the information stored in APT's internal database. This information is a sort of cache since it is gathered from the different sources listed in the <filename>sources.list</filename> file. This happens during the <command>apt-get update</command> operation."
-msgstr ""
+msgstr "<command>apt-cache</command> コマンドは APT の内部データベースに保存された情報の多くを表示できます。この情報は一種のキャッシュのようなもので、<filename>sources.list</filename> ファイル内の様々なソースから収集されます。収集は <command>apt-get update</command> の実行毎に行われます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Cache"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> キャッシュ"
 
 #. Tag: para
 #, no-c-format
