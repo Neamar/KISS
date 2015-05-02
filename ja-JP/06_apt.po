@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-02 03:28+0900\n"
+"PO-Revision-Date: 2015-05-03 04:48+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1520,62 +1520,62 @@ msgstr "<emphasis>VOCABULARY</emphasis> キャッシュ"
 #. Tag: para
 #, no-c-format
 msgid "A cache is a temporary storage system used to speed up frequent data access when the usual access method is expensive (performance-wise). This concept can be applied in numerous situations and at different scales, from the core of microprocessors up to high-end storage systems."
-msgstr ""
+msgstr "キャッシュとは (パフォーマンスの観点から) 通常のアクセス方法が高くつく場合に、頻繁なデータアクセスを高速化する目的で使われれる一時的な保存システムです。この概念は、数多くの状況と異なる規模に対して、例えばマイクロプロセッサのコアや高性能のストレージシステムにさえも、応用出来ます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In the case of APT, the reference <filename>Packages</filename> files are those located on Debian mirrors. That said, it would be very ineffective to go through the network for every search that we might want to do in the database of available packages. That is why APT stores a copy of those files (in <filename>/var/lib/apt/lists/</filename>) and searches are done within those local files. Similarly, <filename>/var/cache/apt/archives/</filename> contains a cache of already downloaded packages to avoid downloading them again if you need to reinstall them after a removal."
-msgstr ""
+msgstr "APT の場合、基準になる <filename>Packages</filename> ファイルは Debian ミラーから提供されます。ですから、利用可能なパッケージのデータベース内を検索する際に、毎回ネットワークを使うのはとても非効率的です。このため、APT は (<filename>/var/lib/apt/lists/</filename> に) データベースのコピーを保存し、このコピーを使って検索します。同様に、<filename>/var/cache/apt/archives/</filename> にはこれまでにダウンロードしたパッケージのキャッシュを保存しています。これは削除後の再インストール時に同じファイルをダウンロードするのを避けるためです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cache show</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cache show</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cache search</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cache search</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude show</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude show</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>aptitude search</command></primary>"
-msgstr ""
+msgstr "<primary><command>aptitude search</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>apt-cache</command> command can do keyword-based package searches with <command>apt-cache search <replaceable>keyword</replaceable></command>. It can also display the headers of the package's available versions with <command>apt-cache show <replaceable>package</replaceable></command>. This command provides the package's description, its dependencies, the name of its maintainer, etc. Note that <command>aptitude search</command> and <command>aptitude show</command> work in the same way."
-msgstr ""
+msgstr "<command>apt-cache</command> コマンドを <command>apt-cache search <replaceable>keyword</replaceable></command> のように使うことで、キーワードを元にパッケージを検索することが可能です。さらに、<command>apt-cache show <replaceable>package</replaceable></command> のように使うことで、利用可能なバージョンのパッケージヘッダを表示することも可能です。このコマンドで、パッケージの説明、依存関係、メンテナの名前などの情報が表示されます。また、<command>aptitude search</command> と <command>aptitude show</command> は同様の機能を持っている点に注意してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <command>axi-cache</command>"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> <command>axi-cache</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>axi-cache</command></primary>"
-msgstr ""
+msgstr "<primary><command>axi-cache</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">apt-xapian-index</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">apt-xapian-index</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>apt-cache search</command> is a very rudimentary tool, basically implementing <command>grep</command> on package's descriptions. It often returns too many results or none at all when you include too many keywords."
-msgstr ""
+msgstr "<command>apt-cache search</command> はとても基本的なツールで、簡単に言ってしまえばパッケージ説明の <command>grep</command>  実装です。その結果の数は通常多すぎるか、逆にキーワードが多すぎれば全く無いかのどちらかです。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>axi-cache search <replaceable>term</replaceable></command>, on the other hand, provides better results, sorted by relevancy. It uses the <emphasis>Xapian</emphasis> search engine and is part of the <emphasis role=\"pkg\">apt-xapian-index</emphasis> package whichs indexes all package information (and more, like the <filename>.desktop</filename> files from all Debian packages). It knows about tags (see sidebar <xref linkend=\"sidebar.debtags\" />) and returns results in a matter of milliseconds."
-msgstr ""
+msgstr "一方、<command>axi-cache search <replaceable>term</replaceable></command> は関連度順により良い結果を提供します。このコマンドは <emphasis>Xapian</emphasis> 検索エンジンを使い、全パッケージの情報 (と全ての Debian パッケージから提供される <filename>.desktop</filename> ファイル) をインデックス化している <emphasis role=\"pkg\">apt-xapian-index</emphasis> パッケージの一部です。これはタグ (傍注<xref linkend=\"sidebar.debtags\" />参照) に関しても知っており、わずか数ミリ秒で結果を返す。"
 
 #. Tag: screen
 #, no-c-format
@@ -1596,91 +1596,106 @@ msgid ""
 "`axi-cache more' will give more results\n"
 "      "
 msgstr ""
+"$ <userinput>axi-cache search package use::searching</userinput>\n"
+"105 results found.\n"
+"Results 1-20:\n"
+"100% packagesearch - GUI for searching packages and viewing package information\n"
+"98% debtags - Enables support for package tags\n"
+"94% debian-goodies - Small toolbox-style utilities \n"
+"93% dpkg-awk - Gawk script to parse /var/lib/dpkg/{status,available} and Packages\n"
+"93% goplay - games (and more) package browser using DebTags\n"
+"[...]\n"
+"87% apt-xapian-index - maintenance and search tools for a Xapian index of Debian packages\n"
+"[...]\n"
+"More terms: search debian searching strigi debtags bsearch libbsearch\n"
+"More tags: suite::debian works-with::software:package role::program interface::commandline implemented-in::c++ admin::package-management use::analysing\n"
+"`axi-cache more' will give more results\n"
+"      "
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cache policy</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cache policy</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cache dumpavail</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cache dumpavail</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-cache pkgnames</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-cache pkgnames</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Some features are more rarely used. For instance, <command>apt-cache policy</command> displays the priorities of package sources as well as those of individual packages. Another example is <command>apt-cache dumpavail</command> which displays the headers of all available versions of all packages. <command>apt-cache pkgnames</command> displays the list of all the packages which appear at least once in the cache."
-msgstr ""
+msgstr "あまり使われない機能もあります。例えば、<command>apt-cache policy</command> はパッケージソースの優先度や、それぞれのパッケージの優先度を表示します。もう一つの例は <command>apt-cache dumpavail</command> で、これは全パッケージの利用可能なバージョンのヘッダを表示します。<command>apt-cache pkgnames</command> は少なくとも 1 回キャッシュされた全パッケージのリストを表示します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Frontends: <command>aptitude</command>, <command>synaptic</command>"
-msgstr ""
+msgstr "フロントエンド: <command>aptitude</command>、<command>synaptic</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>synaptic</command></primary>"
-msgstr ""
+msgstr "<primary><command>synaptic</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>interfaces</secondary>"
-msgstr ""
+msgstr "<primary>APT</primary><secondary>インターフェイス</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "APT is a C++ program whose code mainly resides in the <command>libapt-pkg</command> shared library. Using a shared library facilitates the creation of user interfaces (front-ends), since the code contained in the library can easily be reused. Historically, <command>apt-get</command> was only designed as a test front-end for <command>libapt-pkg</command> but its success tends to obscure this fact."
-msgstr ""
+msgstr "APT は C++ プログラムで、<command>libapt-pkg</command> 共有ライブラリがその機能の多くを担っています。共有ライブラリを使うとユーザインターフェイス (フロントエンド) の作成が楽になります。なぜなら、ライブラリに含まれるコードは簡単に再利用できるからです。歴史的に言って、<command>apt-get</command> は <command>libapt-pkg</command> のテスト用フロントエンドとして設計されましたが、成功を収めたためにその事実は曖昧にされがちです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<command>aptitude</command>"
-msgstr ""
+msgstr "<command>aptitude</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>aptitude</command> is an interactive program that can be used in semi-graphical mode on the console. You can browse the list of installed and available packages, look up all the available information, and select packages to install or remove. The program is designed specifically to be used by administrators, so that its default behaviors are much more intelligent than <command>apt-get</command>'s, and its interface much easier to understand."
-msgstr ""
+msgstr "<command>aptitude</command> は対話型プログラムで、コンソールの準グラフィカルモードで使うことができます。このプログラムを使うと、インストール済みや利用可能なパッケージのリストを閲覧したり、全ての利用可能な情報を調べたり、インストールや削除するパッケージを選択できます。このプログラムは、特に管理者が使うように設計されました。そのため、デフォルトの挙動は <command>apt-get</command> よりもずっと合理的で、インターフェイスもより理解しやすいです。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <command>aptitude</command> package manager"
-msgstr ""
+msgstr "<command>aptitude</command> パッケージマネージャ"
 
 #. Tag: para
 #, no-c-format
 msgid "When it starts, <command>aptitude</command> shows a list of packages sorted by state (installed, non-installed, or installed but not available on the mirrors — other sections display tasks, virtual packages, and new packages that appeared recently on mirrors). To facilitate thematic browsing, other views are available. In all cases, <command>aptitude</command> displays a list combining categories and packages on the screen. Categories are organized through a tree structure, whose branches can respectively be unfolded or closed with the <keycombo><keycap>Enter</keycap></keycombo>, <keycombo><keycap>[</keycap></keycombo> and <keycombo><keycap>]</keycap></keycombo> keys. <keycombo><keycap>+</keycap></keycombo> should be used to mark a package for installation, <keycombo><keycap>-</keycap></keycombo> to mark it for removal and <keycombo><keycap>_</keycap></keycombo> to purge it (note than these keys can also be used for categories, in which case the corresponding actions will be applied to all the packages of the category). <keycombo><keycap>u</keycap></keycombo> updates the lists of available packages and <keycombo action=\"simul\"><keycap>Shift</keycap><keycap>u</keycap></keycombo> prepares a global system upgrade. <keycombo><keycap>g</keycap></keycombo> switches to a summary view of the requested changes (and typing <keycombo><keycap>g</keycap></keycombo> again will apply the changes), and <keycombo><keycap>q</keycap></keycombo> quits the current view. If you are in the initial view, this will effectively close <command>aptitude</command>."
-msgstr ""
+msgstr "<command>aptitude</command> は起動すると、状態 (インストール済み、未インストール、インストール済みだがミラーから利用不可 - 他のセクションでタスク、仮想パッケージ、最近ミラーに登場した新しいパッケージを表示します。) ごとに分類したパッケージのリストを表示します。テーマ別のパッケージリストを簡便に閲覧できるビューも用意されています。すべての場合について、<command>aptitude</command> はカテゴリとパッケージを併せたリストを画面に表示します。カテゴリは木構造を使って系統付けられ、木構造の枝は <keycombo><keycap>Enter</keycap></keycombo>、<keycombo><keycap>[</keycap></keycombo>、<keycombo><keycap>]</keycap></keycombo> キーで開けたり閉じたりする事ができます。<keycombo><keycap>+</keycap></keycombo> はインストールマーク、<keycombo><keycap>-</keycap></keycombo> は削除マーク、<keycombo><keycap>_</keycap></keycombo> は完全消去マークをパッケージに対して付加するのに使われます (これらのキーはカテゴリに対しても使えることに注意してください。この場合、カテゴリ内の全てのパッケージに対して対応する操作を行います)。<keycombo><keycap>u</keycap></keycombo> は利用可能なパッケージのリストを更新、<keycombo action=\"simul\"><keycap>Shift</keycap><keycap>u</keycap></keycombo> はグローバルシステムのアップグレードを準備します。<keycombo><keycap>g</keycap></keycombo> は要求された変更の要約ビューに切り替えます (再度 <keycombo><keycap>g</keycap></keycombo> を打てば変更を適用します)。<keycombo><keycap>q</keycap></keycombo> は現在のビューを終了します。最初のビューにいるなら、<command>aptitude</command> を閉じます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> <command>aptitude</command>"
-msgstr ""
+msgstr "<emphasis>DOCUMENTATION</emphasis> <command>aptitude</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "This section does not cover the finer details of using <command>aptitude</command>, it rather focuses on giving you a survival kit to use it. <command>aptitude</command> is rather well documented and we advise you to use its complete manual available in the <emphasis role=\"pkg\">aptitude-doc-en</emphasis> package. <ulink type=\"block\" url=\"file:///usr/share/doc/aptitude/html/en/index.html\" />"
-msgstr ""
+msgstr "この節では <command>aptitude</command> の使い方をより詳しく述べません。この節ではこのプログラムを活用して生き残るための知恵を与えることに注力します。<command>aptitude</command> の文書は比較的詳しく書かれており、<emphasis role=\"pkg\">aptitude-doc-en</emphasis> パッケージから利用可能なプログラムの完全なマニュアルを使うことをお勧めします。<ulink type=\"block\" url=\"file:///usr/share/doc/aptitude/html/en/index.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "To search for a package, you can type <keycombo><keycap>/</keycap></keycombo> followed by a search pattern. This pattern matches the name of the package, but can also be applied to the description (if preceded by <literal>~d</literal>), to the section (with <literal>~s</literal>) or to other characteristics detailed in the documentation. The same patterns can filter the list of displayed packages: type the <keycombo><keycap>l</keycap></keycombo> key (as in <foreignphrase>limit</foreignphrase>) and enter the pattern."
-msgstr ""
+msgstr "パッケージを検索するには、<keycombo><keycap>/</keycap></keycombo> を押して、検索パターンを入力してください。このパターンはパッケージの名前にマッチしますが、(<literal>~d</literal>を先頭に付けた場合) 説明、(<literal>~s</literal>) セクション、その他の特性にもマッチします。これは文書中で詳しく説明されています。同じパターンを表示されたパッケージのリストから抽出するためにも使えます: <keycombo><keycap>l</keycap></keycombo> キーを押して (<foreignphrase>limit</foreignphrase> の意味) パターンを入力してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "Managing the “automatic flag” of Debian packages (see <xref linkend=\"sect.automatic-tracking\" />) is a breeze with <command>aptitude</command>. It is possible to browse the list of installed packages and mark packages as automatic with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo> or to remove the mark with the <keycombo><keycap>m</keycap></keycombo> key. “Automatic packages” are tagged with an “A” in the list of packages. This feature also offers a simple way to visualize the packages in use on a machine, without all the libraries and dependencies that you don't really care about. The related pattern that can be used with <keycombo><keycap>l</keycap></keycombo> (to activate the filter mode) is <literal>~i!~M</literal>. It specifies that you only want to see installed packages (<literal>~i</literal>) not marked as automatic (<literal>!~M</literal>)."
-msgstr ""
+msgstr "Debian パッケージの「自動フラグ」の管理 (<xref linkend=\"sect.automatic-tracking\" />参照) は <command>aptitude</command> を使えば簡単にできます。インストール済みパッケージのリストを閲覧し、<keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo> キーでパッケージに自動マークを付けるかまたは <keycombo><keycap>m</keycap></keycombo> キーでそのマークを消すすることが可能です。「自動パッケージ」はパッケージリストでは「A」でタグ付けされています。この機能はまた、全く関心の無いライブラリと依存関係を除外して、マシンで利用されているパッケージを可視化する単純な方法を提供します。<keycombo><keycap>l</keycap></keycombo> (フィルタモードを有効化する) と一緒に使える関連パターンは <literal>~i!~M</literal> です。これは、インストール済みパッケージを (<literal>~i</literal>) 見たいけれど自動パッケージとしてマークされたパッケージを見たくない (<literal>!~M</literal>) ということを意味しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Using <command>aptitude</command> on the command-line interface"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> コマンドラインインターフェースで <command>aptitude</command> を使う"
 
 #. Tag: para
 #, no-c-format
