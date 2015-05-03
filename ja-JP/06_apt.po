@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-03 04:48+0900\n"
+"PO-Revision-Date: 2015-05-03 21:45+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1700,157 +1700,157 @@ msgstr "<emphasis>TOOL</emphasis> コマンドラインインターフェース�
 #. Tag: para
 #, no-c-format
 msgid "Most of <command>aptitude</command>'s features are accessible via the interactive interface as well as via command-lines. These command-lines will seem familiar to regular users of <command>apt-get</command> and <command>apt-cache</command>."
-msgstr ""
+msgstr "<command>aptitude</command> の機能のほとんどは対話型インターフェイスだけでなくコマンドラインインターフェースからも利用出来ます。コマンドラインは <command>apt-get</command> と <command>apt-cache</command> を日常的に使っているユーザにとって身近なものでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "The advanced features of <command>aptitude</command> are also available on the command-line. You can use the same package search patterns as in the interactive version. For example, if you want to cleanup the list of “manually installed” packages, and if you know that none of the locally installed programs require any particular libraries or Perl modules, you can mark the corresponding packages as automatic with a single command:"
-msgstr ""
+msgstr "<command>aptitude</command> の先進的な機能はコマンドラインからも使えます。パッケージ検索パターンは対話的インターフェイスの場合と同じです。例えば、「手作業でインストールされた」パッケージのリストを綺麗に片付けたい場合、インストール済みでパッケージ管理下に無いプログラムが特定のライブラリと Perl モジュールに依存していないと知っていれば、たった 1 つのコマンドで関連するパッケージを自動パッケージとしてマークすることができます:"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
-msgstr ""
+msgstr "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Here, you can clearly see the power of the search pattern system of <command>aptitude</command>, which enables the instant selection of all the packages in the <literal>libs</literal> and <literal>perl</literal> sections."
-msgstr ""
+msgstr "この検索例は、<literal>libs</literal> と <literal>perl</literal> セクションに含まれる全パッケージを簡単に選択しており、<command>aptitude</command> で使える検索パターンシステムの力を明確に表わしています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Beware, if some packages are marked as automatic and if no other package depends on them, they will be removed immediately (after a confirmation request)."
-msgstr ""
+msgstr "あるパッケージが、自動パッケージとしてマークされたパッケージに依存していない場合、そのパッケージはすぐに (削除要求を確認した後に) 削除されます。この点について気を付けてください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing Recommendations, Suggestions and Tasks"
-msgstr ""
+msgstr "推奨パッケージ、提案パッケージ、タスクの管理"
 
 #. Tag: para
 #, no-c-format
 msgid "Another interesting feature of <command>aptitude</command> is the fact that it respects recommendations between packages while still giving users the choice not to install them on a case by case basis. For example, the <emphasis role=\"pkg\">gnome</emphasis> package recommends <emphasis role=\"pkg\">gdebi</emphasis> (among others). When you select the former for installation, the latter will also be selected (and marked as automatic if not already installed on the system). Typing <keycombo><keycap>g</keycap></keycombo> will make it obvious: <emphasis role=\"pkg\">gdebi</emphasis> appears on the summary screen of pending actions in the list of packages installed automatically to satisfy dependencies. However, you can decide not to install it by deselecting it before confirming the operations."
-msgstr ""
+msgstr "<command>aptitude</command> が提供するもう 1 つの興味深い特徴は、パッケージ間の推奨関係を尊重する点です。とは言え、個々の場合に応じて、推奨パッケージをインストールしないようにすることも可能です。例えば、<emphasis role=\"pkg\">gnome</emphasis> パッケージは (数ある中でも特に) <emphasis role=\"pkg\">gdebi</emphasis> のインストールを推奨しています。<emphasis role=\"pkg\">gnome</emphasis> をインストールするよう選んだ場合、同時に <emphasis role=\"pkg\">gdebi</emphasis> も選ばれます (既にシステムにインストール済みでない限り、自動パッケージとしてマークされます)。これを確認するには、<keycombo><keycap>g</keycap></keycombo> とタイプしてください: <emphasis role=\"pkg\">gdebi</emphasis> は、依存関係を満足させる目的で自動的にインストールされたパッケージのリスト中、保留動作の要約画面に現れます。しかしながら、操作確認の前にインストールマークを外すことで、パッケージをインストールしないようにできます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that this recommendation tracking feature does not apply to upgrades. For instance, if a new version of <emphasis role=\"pkg\">gnome</emphasis> recommends a package that it did not recommend formerly, the package won't be marked for installation. However, it will be listed on the upgrade screen so that the administrator can still select it for installation."
-msgstr ""
+msgstr "パッケージをアップグレードする場合、上で述べた推奨関係を追跡してインストールパッケージを自動選択する機能が作動しない点に注意してください。例えば、<emphasis role=\"pkg\">gnome</emphasis> の新バージョンが、以前推奨していなかったパッケージを推奨している場合、このパッケージは選択されません。しかしながら、管理者がインストールの可否を選択できるように、このパッケージはアップグレード画面に表示されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Suggestions between packages are also taken into account, but in a manner adapted to their specific status. For example, since <emphasis role=\"pkg\">gnome</emphasis> suggests <emphasis role=\"pkg\">dia-gnome</emphasis>, the latter will be displayed on the summary screen of pending actions (in the section of packages suggested by other packages). This way, it is visible and the administrator can decide whether to take the suggestion into account or not. Since it is only a suggestion and not a dependency or a recommendation, the package will not be selected automatically — its selection requires a manual intervention from the user (thus, the package will not be marked as automatic)."
-msgstr ""
+msgstr "さらに、パッケージ間の提案関係が考慮されますが、そのやり方はパッケージを特定の表示状態にするだけです。例えば、<emphasis role=\"pkg\">gnome</emphasis> は <emphasis role=\"pkg\">dia-gnome</emphasis> を提案しており、<emphasis role=\"pkg\">dia-gnome</emphasis> は保留動作の要約画面 (他のパッケージによって提案されたパッケージのセクションの中) に表示されるでしょう。このように、提案されたパッケージは一覧に表示され、管理者はこの提案に従ってインストールするか否かを決めます。パッケージ間の提案関係とは依存関係でも推奨関係でもないので、提案されたパッケージは自動的にインストールマークを付けられません - ユーザがインストールするか否かを手作業で選択します (このため、提案されたパッケージは自動パッケージとしてマークされません)。"
 
 #. Tag: para
 #, no-c-format
 msgid "In the same spirit, remember that <command>aptitude</command> makes intelligent use of the concept of task. Since tasks are displayed as categories in the screens of packages lists, you can either select a full task for installation or removal, or browse the list of packages included in the task to select a smaller subset."
-msgstr ""
+msgstr "同様の姿勢で、<command>aptitude</command> はタスクの概念を上手に取り扱うことを思い出してください。タスクはパッケージの画面内にカテゴリとして表示されるため、ユーザはタスクのインストール作業および削除作業を、タスク全体に対して適用するか、タスクのパッケージの一部を選択してそれらに適用するかを選ぶことができます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Better Solver Algorithms"
-msgstr ""
+msgstr "より良いソルバアルゴリズム"
 
 #. Tag: para
 #, no-c-format
 msgid "To conclude this section, let's note that <command>aptitude</command> has more elaborate algorithms compared to <command>apt-get</command> when it comes to resolving difficult situations. When a set of actions is requested and when these combined actions would lead to an incoherent system, <command>aptitude</command> evaluates several possible scenarios and presents them in order of decreasing relevance. However, these algorithms are not failproof. Fortunately there is always the possibility to manually select the actions to perform. When the currently selected actions lead to contradictions, the upper part of the screen indicates a number of “broken” packages (and you can directly navigate to those packages by pressing <keycombo><keycap>b</keycap></keycombo>). It is then possible to manually build a solution for the problems found. In particular, you can get access to the different available versions by simply selecting the package with <keycombo><keycap>Enter</keycap></keycombo>. If the selection of one of these versions solves the problem, you should not hesitate to use the function. When the number of broken packages gets down to zero, you can safely go to the summary screen of pending actions for a last check before you apply them."
-msgstr ""
+msgstr "この節を締め括るために、<command>aptitude</command> は <command>apt-get</command> に比べてより複雑なアルゴリズム使って難しい状況を解決する、という点に注意しましょう。一連の動作が要求され、全ての動作を適用するとシステムの一貫性が失われる場合、<command>aptitude</command> は幾つかの解決策を検討し、適用後の一貫性が高い順に解決策を提示します。しかしながら、このアルゴリズムは単なるケアレスミスの予防策ではありません。幸いなことに、ユーザは常に手作業で適用する動作を選択できます。現在選択された動作によって矛盾が引き起こされる場合、画面の上の方に「壊れた」パッケージの数が表示されます (パッケージの選択を直接操作するには <keycombo><keycap>b</keycap></keycombo> を押してください)。そして、見つかった問題を手作業で解決することも可能です。具体的に言うと、単純に <keycombo><keycap>Enter</keycap></keycombo> でパッケージを選択すれば、利用可能な複数のバージョンを確認できます。複数のバージョンから 1 つ選ぶだけで問題が解決されるなら、迷わずこの機能を使うべきです。壊れたパッケージの数がゼロになったら、動作適用前の最終確認のために、保留動作の要約画面に問題なく移動できるはずです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> <command>aptitude</command>'s log"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> <command>aptitude</command> のログ"
 
 #. Tag: para
 #, no-c-format
 msgid "Like <command>dpkg</command>, <command>aptitude</command> keeps a trace of executed actions in its logfile (<filename>/var/log/aptitude</filename>). However, since both commands work at a very different level, you cannot find the same information in their respective logfiles. While <command>dpkg</command> logs all the operations executed on individual packages step by step, <command>aptitude</command> gives a broader view of high-level operations like a system-wide upgrade."
-msgstr ""
+msgstr "<command>dpkg</command> と同様に、<command>aptitude</command> は実行した動作をログファイル (<filename>/var/log/aptitude</filename>) に記録します。しかしながら、両方のコマンドは全く異なる階層で動いているので、それぞれのログファイルには異なる情報が含まれます。<command>dpkg</command> が各パッケージに対して行った全ての動作を 1 つづつ記録するのに対し、<command>aptitude</command> はシステム全体のアップグレードなどの高レベル動作に対するより俯瞰的な情報を記録します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Beware, this logfile only contains a summary of operations performed by <command>aptitude</command>. If other front-ends (or even <command>dpkg</command> itself) are occasionally used, then <command>aptitude</command>'s log will only contain a partial view of the operations, so you can't rely on it to build a trustworthy history of the system."
-msgstr ""
+msgstr "このログファイルには、<command>aptitude</command> が実行した操作の要約だけが含まれる点に注意してください。途中で他のフロントエンド (または <command>dpkg</command> 自身) が使われた場合、<command>aptitude</command> のログには、操作全体の一部分しか記録されません。このため、信頼できるシステムの履歴を確認したい場合に、このログは頼りになりません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<command>synaptic</command>"
-msgstr ""
+msgstr "<command>synaptic</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>synaptic</command> is a graphical package manager for Debian which features a clean and efficient graphical interface based on GTK+/GNOME. Its many ready-to-use filters give fast access to newly available packages, installed packages, upgradable packages, obsolete packages and so on. If you browse through these lists, you can select the operations to be done on the packages (install, upgrade, remove, purge); these operations are not performed immediately, but put into a task list. A single click on a button then validates the operations, and they are performed in one go."
-msgstr ""
+msgstr "<command>synaptic</command> は Debian 用のグラフィカルパッケージマネージャで、GTK+/GNOME を使った綺麗で効率的なグラフィカルインターフェイスです。数多くのすぐに使えるフィルタのおかげで、新しく利用可能になったパッケージ、インストール済みパッケージ、アップグレード可能なパッケージ、時代遅れのパッケージなどを素早く確認できます。リストを全て閲覧して、パッケージに対して行われる操作 (インストール、アップグレード、削除、完全消去) を選択できます; これらの操作はすぐに実行されるのではなく、まずは操作リストに追加されます。ボタンを一度クリックするだけで、操作の正当性が検証され、操作は一度に実行されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<command>synaptic</command> package manager"
-msgstr ""
+msgstr "<command>synaptic</command> パッケージマネージャ"
 
 #. Tag: title
 #, no-c-format
 msgid "Checking Package Authenticity"
-msgstr ""
+msgstr "パッケージ信頼性の確認"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>authenticity check</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>信頼性確認</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>seal</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>封印</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>package</primary><secondary>signature</secondary>"
-msgstr ""
+msgstr "<primary>パッケージ</primary><secondary>署名</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>signature</primary><secondary>package signature</secondary>"
-msgstr ""
+msgstr "<primary>署名</primary><secondary>パッケージ署名</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>authentication</primary><secondary>package authentication</secondary>"
-msgstr ""
+msgstr "<primary>信頼性</primary><secondary>パッケージ信頼性</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Security is very important for Falcot Corp administrators. Accordingly, they need to ensure that they only install packages which are guaranteed to come from Debian with no tampering on the way. A computer cracker could try to add malicious code to an otherwise legitimate package. Such a package, if installed, could do anything the cracker designed it to do, including for instance disclosing passwords or confidential information. To circumvent this risk, Debian provides a tamper-proof seal to guarantee — at install time — that a package really comes from its official maintainer and hasn't been modified by a third party."
-msgstr ""
+msgstr "Falcot Corp の管理者にとって、セキュリティはとても重要です。つまり管理者は、パッケージが途中で改竄されていないこと、確かに Debian から提供されていることを確認し、確認のとれたパッケージだけをインストールしなければいけません。コンピュータクラッカーは、他の合法的なパッケージに悪意あるコードを追加しようと試みます。そのようなパッケージがインストールされた場合、クラッカーが設計したことは何でも、例えばパスワードや機密情報の漏洩などでも、実行されます。この危険性を回避するために、Debian は不正加工を防ぐ封印を提供し、インストール時にそのパッケージが、公式メンテナから提供されたものと本当に同じこと、第三者によって変更されていないこと、を保証します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The seal works with a chain of cryptographical hashes and a signature. The signed file is the <filename>Release</filename> file, provided by the Debian mirrors. It contains a list of the <filename>Packages</filename> files (including their compressed forms, <filename>Packages.gz</filename> and <filename>Packages.bz2</filename>, and the incremental versions), along with their MD5, SHA1 and SHA256 hashes, which ensures that the files haven't been tampered with. These <filename>Packages</filename> files contain a list of the Debian packages available on the mirror, along with their hashes, which ensures in turn that the contents of the packages themselves haven't been altered either."
-msgstr ""
+msgstr "この封印は一連の暗号学的ハッシュと署名を使って行われます。署名されたファイルは <filename>Release</filename> ファイルで、Debian ミラーから提供されます。このファイルには、<filename>Packages</filename> ファイル (<filename>Packages.gz</filename>、<filename>Packages.bz2</filename>、そして増分バージョンの圧縮形式など) のリストが改竄されていないことを保証するための MD5、SHA1、SHA256 ハッシュと一緒に含まれています。<filename>Packages</filename> ファイルには、ミラーで提供されている Debian パッケージのリストがパッケージの内容が変更されていないことを保証するハッシュと一緒に含まれています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apt-key</command></primary>"
-msgstr ""
+msgstr "<primary><command>apt-key</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">debian-archive-keyring</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">debian-archive-keyring</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/apt/trusted.gpg.d/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/apt/trusted.gpg.d/</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>Release.gpg</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>Release.gpg</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The trusted keys are managed with the <command>apt-key</command> command found in the <emphasis role=\"pkg\">apt</emphasis> package. This program maintains a keyring of GnuPG public keys, which are used to verify signatures in the <filename>Release.gpg</filename> files available on the mirrors. It can be used to add new keys manually (when non-official mirrors are needed). Generally however, only the official Debian keys are needed. These keys are automatically kept up-to-date by the <emphasis role=\"pkg\">debian-archive-keyring</emphasis> package (which puts the corresponding keyrings in <filename>/etc/apt/trusted.gpg.d</filename>). However, the first installation of this particular package requires caution: even if the package is signed like any other, the signature cannot be verified externally. Cautious administrators should therefore check the fingerprints of imported keys before trusting them to install new packages:"
-msgstr ""
+msgstr "信頼された鍵は <emphasis role=\"pkg\">apt</emphasis> パッケージから提供される <command>apt-key</command> コマンドで管理されます。このプログラムは GnuPG 公開鍵の鍵束を保守し、この鍵束はミラーから提供される <filename>Release.gpg</filename> ファイルに含まれる署名を検証するために使われます。新しい鍵を手作業で追加する場合 (非公式ミラーでこれが必要な場合) にも使われます。しかしながら一般的に、公式の Debian 鍵以外は不要です。これらの鍵は <emphasis role=\"pkg\">debian-archive-keyring</emphasis> パッケージによって自動的に最新の状態に維持されます (対応する鍵束を <filename>/etc/apt/trusted.gpg.d</filename> に格納します)。しかしながら、<emphasis role=\"pkg\">debian-archive-keyring</emphasis> パッケージを初めてインストールする際には用心が必要です: たとえ <emphasis role=\"pkg\">debian-archive-keyring</emphasis> パッケージが他のパッケージと同様に署名されていたとしても、その署名を外部から検証できません。そんなわけで、注意深い管理者なら、新しいパッケージをインストールするために取り込まれた鍵を信用する前にその鍵の指紋を確認するべきです:"
 
 #. Tag: screen
 #, no-c-format
@@ -1880,71 +1880,95 @@ msgid ""
 "      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
 "uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
 msgstr ""
+"# <userinput>apt-key fingerprint</userinput>\n"
+"/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
+"------------------------------------------------------------\n"
+"pub   4096R/473041FA 2010-08-27 [expires: 2018-03-05]\n"
+"      Key fingerprint = 9FED 2BCB DCD2 9CDF 7626  78CB AED4 B06F 4730 41FA\n"
+"uid                  Debian Archive Automatic Signing Key (6.0/squeeze) &lt;ftpmaster@debian.org&gt;\n"
+"\n"
+"/etc/apt/trusted.gpg.d//debian-archive-squeeze-stable.gpg\n"
+"---------------------------------------------------------\n"
+"pub   4096R/B98321F9 2010-08-07 [expires: 2017-08-05]\n"
+"      Key fingerprint = 0E4E DE2C 7F3E 1FC0 D033  800E 6448 1591 B983 21F9\n"
+"uid                  Squeeze Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
+"\n"
+"/etc/apt/trusted.gpg.d//debian-archive-wheezy-automatic.gpg\n"
+"-----------------------------------------------------------\n"
+"pub   4096R/46925553 2012-04-27 [expires: 2020-04-25]\n"
+"      Key fingerprint = A1BD 8E9D 78F7 FE5C 3E65  D8AF 8B48 AD62 4692 5553\n"
+"uid                  Debian Archive Automatic Signing Key (7.0/wheezy) &lt;ftpmaster@debian.org&gt;\n"
+"\n"
+"/etc/apt/trusted.gpg.d//debian-archive-wheezy-stable.gpg\n"
+"--------------------------------------------------------\n"
+"pub   4096R/65FFB764 2012-05-08 [expires: 2019-05-07]\n"
+"      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
+"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Adding trusted keys"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> 信頼された鍵の追加"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>trusted key</primary>"
-msgstr ""
+msgstr "<primary>信頼された鍵</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>key</primary><secondary>APT's authentication keys</secondary>"
-msgstr ""
+msgstr "<primary>key</primary><secondary>APT の認証鍵</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When a third-party package source is added to the <filename>sources.list</filename> file, APT needs to be told to trust the corresponding GPG authentication key (otherwise it will keep complaining that it can't ensure the authenticity of the packages coming from that repository). The first step is of course to get the public key. More often than not, the key will be provided as a small text file, which we'll call <filename>key.asc</filename> in the following examples."
-msgstr ""
+msgstr "第三者のパッケージソースを <filename>sources.list</filename> に追加したら、APT にパッケージソースに対応する GPG 認証鍵を信頼することを伝える必要があります (そうでなければ、APT はそのパッケージソースから提供されるパッケージの信頼性を保証できないとエラーを出し続けます)。最初のステップはもちろん公開鍵を手に入れることです。大抵の場合、公開鍵は小さなテキストファイルの形で配布されています。以降の例ではこの公開鍵を <filename>key.asc</filename> と呼びます。"
 
 #. Tag: para
 #, no-c-format
 msgid "To add the key to the trusted keyring, the administrator can run <command>apt-key add &lt; key.asc</command>. Another way is to use the <command>synaptic</command> graphical interface: its “Authentication” tab in the <menuchoice><guimenu>Settings</guimenu> <guisubmenu>Repositories</guisubmenu></menuchoice> menu gives the possibility of importing a key from the <filename>key.asc</filename> file."
-msgstr ""
+msgstr "信頼された鍵束に鍵を追加するために、管理者は <command>apt-key add &lt; key.asc</command> を実行します。また、<command>synaptic</command> グラフィカルインターフェースを利用することもできます: <menuchoice><guimenu>設定</guimenu> <guisubmenu>リポジトリ</guisubmenu></menuchoice>メニューの「認証」タブで <filename>key.asc</filename> から鍵を取り込みます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">gui-apt-key</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">gui-apt-key</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "For people who would want a dedicated application and more details on the trusted keys, it is possible to use <command>gui-apt-key</command> (in the package of the same name), a small graphical user interface which manages the trusted keyring."
-msgstr ""
+msgstr "専用のアプリケーションを使いたくなかったり、信頼された鍵の詳細を知りたい人は <command>gui-apt-key</command> (同じ名前のパッケージに含まれます) を使うことも可能です。これは質素なユーザインタフェースで、信頼された鍵束を管理します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the appropriate keys are in the keyring, APT will check the signatures before any risky operation, so that front-ends will display a warning if asked to install a package whose authenticity can't be ascertained."
-msgstr ""
+msgstr "適切な鍵を鍵束の中に追加すれば、APT は危険性の高い操作の前に署名を確認します。こうすることで、信頼性が確定できないパッケージをインストールするよう要求された場合に、フロントエンドは警告を表示するようになります。"
 
 #. Tag: title
 #, no-c-format
 msgid "Upgrading from One Stable Distribution to the Next"
-msgstr ""
+msgstr "安定版から次のディストリビューションへのアップグレード"
 
 #. Tag: para
 #, no-c-format
 msgid "One of the best-known features of Debian is its ability to upgrade an installed system from one stable release to the next: <foreignphrase>dist-upgrade</foreignphrase> — a well-known phrase — has largely contributed to the project's reputation. With a few precautions, upgrading a computer can take as little as a few minutes, or a few dozen minutes, depending on the download speed from the package repositories."
-msgstr ""
+msgstr "Debian の最もよく知られた特色の 1 つに、インストールされたシステムを安定版から次のリリースにアップグレードできることが挙げられます: <foreignphrase>dist-upgrade</foreignphrase> - よく知られた語句 - はプロジェクトの評判に大きく寄与し続けています。幾つかの予防措置を伴いますが、コンピュータのアップグレードに必要な時間は、パッケージリポジトリからのダウンロード速度に依存して、わずか数分から数十分です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Recommended Procedure"
-msgstr ""
+msgstr "推奨手順"
 
 #. Tag: para
 #, no-c-format
 msgid "Since Debian has quite some time to evolve in-between stable releases, you should read the release notes before upgrading."
-msgstr ""
+msgstr "Debian の安定版が進化してリリースされるまでにはかなり長い時間がかかるので、アップグレードの前にリリースノートを読むべきです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Release notes"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> リリースノート"
 
 #. Tag: para
 #, no-c-format
