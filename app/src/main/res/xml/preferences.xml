@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="Settings" >
+                  android:title="Settings">
 
-    <PreferenceCategory android:title="@string/title_ui" >
+    <PreferenceCategory android:title="@string/title_ui">
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="themeDark"
             android:summary="Use a dark theme for summon instead of the default light one"
-            android:title="Dark Theme" >
+            android:title="Dark Theme">
         </CheckBoxPreference>
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/title_history" >
+    <PreferenceCategory android:title="@string/title_history">
         <fr.neamar.summon.ResetPreference
             android:dialogMessage="Do you really want to reset your history?"
             android:key="reset"
             android:summary="Reset your summon history"
-            android:title="Reset history" >
+            android:title="Reset history">
         </fr.neamar.summon.ResetPreference>
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/title_providers" >
+    <PreferenceCategory android:title="@string/title_providers">
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-apps"
             android:summary="@string/apps_desc"
-            android:title="@string/apps_name" >
+            android:title="@string/apps_name">
         </CheckBoxPreference>
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-contacts"
             android:summary="@string/contacts_desc"
-            android:title="@string/contacts_name" >
+            android:title="@string/contacts_name">
         </CheckBoxPreference>
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-settings"
             android:summary="@string/settings_desc"
-            android:title="@string/settings_name" >
+            android:title="@string/settings_name">
         </CheckBoxPreference>
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-toggles"
             android:summary="@string/toggles_desc"
-            android:title="@string/toggles_name" >
+            android:title="@string/toggles_name">
         </CheckBoxPreference>
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-alias"
             android:summary="@string/aliases_desc"
-            android:title="@string/aliases_name" >
+            android:title="@string/aliases_name">
         </CheckBoxPreference>
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-search"
             android:summary="@string/search_desc"
-            android:title="@string/search_name" >
+            android:title="@string/search_name">
         </CheckBoxPreference>
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-phone"
             android:summary="@string/phone_desc"
-            android:title="@string/phone_name" >
+            android:title="@string/phone_name">
         </CheckBoxPreference>
     </PreferenceCategory>
 

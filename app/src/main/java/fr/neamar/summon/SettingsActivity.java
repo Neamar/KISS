@@ -24,7 +24,7 @@ public class SettingsActivity extends PreferenceActivity implements
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		new BackupManager(this).dataChanged();
-		if (key.equalsIgnoreCase("themeDark") || key.equalsIgnoreCase("small-screen")) {
+		if (key.equalsIgnoreCase("themeDark")) {
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 			prefs.edit().putBoolean("layout-updated", true).commit();
 

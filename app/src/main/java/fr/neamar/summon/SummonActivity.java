@@ -108,12 +108,6 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
 		setContentView(R.layout.main);
 
-		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
-				&& Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
-				&& prefs.getBoolean("small-screen", false)) {
-			getActionBar().hide();
-		}
-
 		// Create adapter for records
 		adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Record>());
 		setListAdapter(adapter);
