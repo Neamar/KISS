@@ -76,9 +76,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 	public void onCreate(Bundle savedInstanceState) {
 		// Initialize UI
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		if (prefs.getBoolean("themeDark", false)) {
-			setTheme(R.style.SummonThemeDark);
-		}
+
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
 

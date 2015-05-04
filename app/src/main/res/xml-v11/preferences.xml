@@ -2,15 +2,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="Settings" >
 
-    <PreferenceCategory android:title="@string/title_ui" >
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="themeDark"
-            android:summary="Use a dark theme for summon instead of the default light one"
-            android:title="Dark Theme" >
-        </CheckBoxPreference>
-    </PreferenceCategory>
-    
     <PreferenceCategory android:title="@string/title_history" >
         <fr.neamar.summon.ResetPreference
             android:key="reset"
