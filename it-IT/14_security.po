@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2014-10-08 17:31+0200\n"
-"Last-Translator: Michal Čihař <michal@cihar.com>\n"
+"PO-Revision-Date: 2015-05-05 23:42+0200\n"
+"Last-Translator: Mario Frasca <mariotomo@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/debian-"
 "handbook/14_security/it/>\n"
 "Language: it-IT\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 1.10-dev\n"
+"X-Generator: Weblate 2.3-dev\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -774,7 +774,7 @@ msgstr ""
 "<command>iptables</command>);"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<literal>SNAT</literal> (only in the <literal>nat</literal> table, therefore "
 "only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis> — NAT "
@@ -782,11 +782,13 @@ msgid ""
 "NAT</emphasis> (extra options describe the exact changes to apply);"
 msgstr ""
 "<literal>SNAT</literal> (solo nella tabella <literal>nat</literal>, quindi "
-"IPv4): applica il <emphasis>Sorgente NAT</emphasis> (opzioni ulteriori "
-"descrivono l'esatta modifica da applicare);"
+"IPv4 in <emphasis role=\"distribution\">Wheezy</emphasis> — supporto NAT per "
+"IPv6 è presente a partire dal kernel Linux 3.7): applica il <emphasis>"
+"Sorgente NAT</emphasis> (opzioni ulteriori descrivono l'esatta modifica da "
+"applicare);"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<literal>DNAT</literal> (only in the <literal>nat</literal> table, therefore "
 "only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis>): apply "
@@ -794,11 +796,12 @@ msgid ""
 "changes to apply);"
 msgstr ""
 "<literal>DNAT</literal> (solo nella tabella <literal>nat</literal>, quindi "
-"IPv4): applica la <emphasis>Destinazione NAT</emphasis> (opzioni ulteriori "
-"descrivono l'esatta modifica da applicare);"
+"solo IPv4 in <emphasis role=\"distribution\">Wheezy</emphasis>): applica la "
+"<emphasis>Destinazione NAT</emphasis> (opzioni ulteriori descrivono l'esatta "
+"modifica da applicare);"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, "
 "therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</"
@@ -806,11 +809,12 @@ msgid ""
 "<emphasis>Source NAT</emphasis>);"
 msgstr ""
 "<literal>MASQUERADE</literal> (solo nella tabella <literal>nat</literal>, "
-"quindi IPv4): applica il <emphasis>mascheramento</emphasis> (caso speciale "
-"di <emphasis>Sorgente NAT</emphasis>);"
+"quindi solo IPv4 in <emphasis role=\"distribution\">Wheezy</emphasis>): "
+"applica il <emphasis>mascheramento</emphasis> (caso speciale di <emphasis>"
+"Sorgente NAT</emphasis>);"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<literal>REDIRECT</literal> (only in the <literal>nat</literal> table, "
 "therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</"
@@ -820,11 +824,12 @@ msgid ""
 "recipient whereas the communications actually go through the proxy."
 msgstr ""
 "<literal>REDIRECT</literal> (solo nella tabella <literal>nat</literal>, "
-"quindi IPv4): reinstrada un pacchetto verso una data porta dello stesso "
-"firewall; può essere usato per creare un proxy trasparente alla rete che "
-"funziona senza necessità di configurazioni lato client, dato che il client "
-"pensa di connettersi al destinatario mentre le comunicazioni in realtà "
-"attraversano il proxy."
+"quindi solo IPv4 in <emphasis role=\"distribution\">Wheezy</emphasis>): "
+"reinstrada un pacchetto verso una data porta dello stesso firewall; può "
+"essere usato per creare un proxy trasparente alla rete che funziona senza "
+"necessità di configurazioni lato client, dato che il client pensa di "
+"connettersi al destinatario mentre le comunicazioni in realtà attraversano "
+"il proxy."
 
 #. Tag: para
 #, no-c-format
