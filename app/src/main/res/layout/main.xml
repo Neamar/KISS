@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+<RelativeLayout android:id="@+id/RelativeLayout1"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#eaeaea"
+                android:orientation="vertical">
 
     <ListView
         android:id="@android:id/list"
@@ -14,44 +15,73 @@
         android:layout_alignParentTop="true"
         android:cacheColorHint="@android:color/transparent"
         android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll" >
+        android:background="#ffffff"
+        android:layout_margin="10dp"
+        android:elevation="2dp"
+        android:transcriptMode="alwaysScroll">
     </ListView>
 
     <FrameLayout
         android:id="@+id/searchEditLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true" >
+        android:layout_alignParentLeft="true"
+        android:padding="5dp"
+        >
 
-        <EditText
-            android:id="@+id/searchEditText"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/ui_search_hint"
-            android:imeOptions="flagNoExtractUi|actionSearch"
-            android:inputType="textVisiblePassword|textNoSuggestions"
-            android:drawableLeft="@drawable/search"
-            android:drawableRight="@drawable/clear_dark"
-            android:singleLine="true" />
+            android:elevation="4dp"
+            android:padding="10dp"
+            android:background="@android:color/white">
 
-        <Button
-            android:id="@+id/clearButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:visibility="gone"
-            android:background="@drawable/clear_dark" />
+            <ImageView
+                android:id="@+id/clearButton"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/clear_dark"/>
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/launcher"
+                android:layout_toRightOf="@+id/clearButton"
+                android:layout_toStartOf="@+id/launcher"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint="@string/ui_search_hint"
+                android:imeOptions="flagNoExtractUi|actionSearch"
+                android:inputType="textVisiblePassword|textNoSuggestions"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:singleLine="true"/>
+
+            <ImageView
+                android:id="@+id/launcher"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_launcher"/>
+        </RelativeLayout>
     </FrameLayout>
 
     <ScrollView
         android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/searchEditLayout" >
+        android:layout_above="@id/searchEditLayout"
+        android:visibility="gone">
 
-        <include layout="@layout/main_empty" />
+        <include layout="@layout/main_empty"/>
     </ScrollView>
 
 </RelativeLayout>
