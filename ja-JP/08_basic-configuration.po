@@ -1,14 +1,15 @@
 #
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Ryuunosuke Ayanokouzi <i38w7i3@yahoo.co.jp>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2012-10-31T14:54:17\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2015-05-06 18:23+0900\n"
+"Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,167 +17,167 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Localization"
-msgstr ""
+msgstr "地域化"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Locales"
-msgstr ""
+msgstr "ロケール"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Network"
-msgstr ""
+msgstr "ネットワーク"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Name resolution"
-msgstr ""
+msgstr "名前解決"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Users"
-msgstr ""
+msgstr "ユーザ"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Groups"
-msgstr ""
+msgstr "グループ"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Accounts"
-msgstr ""
+msgstr "アカウント"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Command-line interpreter"
-msgstr ""
+msgstr "コマンドラインインタプリタ"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Shell"
-msgstr ""
+msgstr "シェル"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Printing"
-msgstr ""
+msgstr "印刷"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Bootloader"
-msgstr ""
+msgstr "ブートローダ"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Kernel compiling"
-msgstr ""
+msgstr "カーネルのコンパイル"
 
 #. Tag: title
 #, no-c-format
 msgid "Basic Configuration: Network, Accounts, Printing..."
-msgstr ""
+msgstr "基本設定: ネットワーク、アカウント、印刷..."
 
 #. Tag: para
 #, no-c-format
 msgid "A computer with a new installation created with <command>debian-installer</command> is intended to be as functional as possible, but many services still have to be configured. Furthermore, it is always good to know how to change certain configuration elements defined during the initial installation process."
-msgstr ""
+msgstr "<command>debian-installer</command> を使って新規にインストールしたコンピュータは、可能な限り実用的に設定されますが、まだ多くのサービスを設定する必要があります。さらに、最初のインストール中に設定された特定の項目の内容を変更する方法を必ず知っておくべきです。"
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter reviews everything included in what we could call the “basic configuration”: networking, language and locales, users and groups, printing, mount points, etc."
-msgstr ""
+msgstr "この章では「基本設定」と呼ばれている内容について全てを見直します: ネットワーク、言語とロケール、ユーザとグループ、印刷、マウントポイント、などです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the System for Another Language"
-msgstr ""
+msgstr "他の言語用にシステムを設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>French localization</primary>"
-msgstr ""
+msgstr "<primary>フランス地域化</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If the system was installed using French, the machine will probably already have French set as the default language. But it is good to know what the installer does to set the language, so that later, if the need arises, you can change it."
-msgstr ""
+msgstr "フランス語を使ってシステムをインストールした場合、既にフランス語がデフォルト言語になっているかもしれません。しかし、インストーラが言語を設定する際にやっていることを知っておくべきです。そうすれば後々必要になれば、言語を変更することができるからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> The <command>locale</command> command to display the current configuration"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> 現在の設定を表示する <command>locale</command> コマンド"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>locale</command> command lists a summary of the current configuration of various locale parameters (date format, numbers format, etc.), presented in the form of a group of standard environment variables dedicated to the dynamic modification of these settings."
-msgstr ""
+msgstr "<command>locale</command> コマンドは、ロケールの設定を動的に変更するために設けられた標準的な環境変数の形で、様々なロケール関連パラメータ (日付フォーマット、番号フォーマットなど) の現在の設定の概要を表示します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Setting the Default Language"
-msgstr ""
+msgstr "デフォルト言語の設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>locales</primary>"
-msgstr ""
+msgstr "<primary>ロケール</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>language</primary>"
-msgstr ""
+msgstr "<primary>言語</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>locale-gen</command></primary>"
-msgstr ""
+msgstr "<primary><command>locale-gen</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A locale is a group of regional settings. This includes not only the language for text, but also the format for displaying numbers, dates, times, and monetary sums, as well as the alphabetical comparison rules (to properly account for accented characters). Although each of these parameters can be specified independently from the others, we generally use a locale, which is a coherent set of values for these parameters corresponding to a “region” in the broadest sense. These locales are usually indicated under the form, <literal><replaceable>language-code</replaceable>_<replaceable>COUNTRY-CODE</replaceable></literal>, sometimes with a suffix to specify the character set and encoding to be used. This enables consideration of idiomatic or typographical differences between different regions with a common language."
-msgstr ""
+msgstr "ロケールとは地域に関する設定項目のグループです。設定内容にはテキストの言語だけではなく、番号の表示書式、日付、時間、通貨、アルファベット比較則 (アクセント付き文字を使う言語では適切な設定が必要) が含まれます。各パラメータは独立に設定できますが、通常は同じロケールを使います。ロケールとは広い意味で「地域」に関連するパラメータの値の組のことです。ロケールは通常 <literal><replaceable>language-code</replaceable>_<replaceable>COUNTRY-CODE</replaceable></literal> の書式で表され、文字セットとエンコーディングを表すためにサフィックスを付けられる場合もあります。こうすることで、共通の言語を異なる地域で使う場合の、慣習や書体の違いを考慮することが可能になります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Character sets"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> 文字セット"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>character set</primary>"
-msgstr ""
+msgstr "<primary>文字セット</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>encoding</primary>"
-msgstr ""
+msgstr "<primary>エンコーディング</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ISO-8859-1</primary>"
-msgstr ""
+msgstr "<primary>ISO-8859-1</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ISO-8859-15</primary>"
-msgstr ""
+msgstr "<primary>ISO-8859-15</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Latin 1</primary>"
-msgstr ""
+msgstr "<primary>Latin 1</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Latin 9</primary>"
-msgstr ""
+msgstr "<primary>Latin 9</primary>"
 
 #. Tag: para
 #, no-c-format

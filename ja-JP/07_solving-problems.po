@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-05 20:23+0900\n"
+"PO-Revision-Date: 2015-05-06 17:17+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -462,234 +462,234 @@ msgstr "<primary>標準的なやり方</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The purpose of this section is to present some general tips on certain operations that an administrator will frequently have to perform. These procedures will of course not cover every possible case in an exhaustive way, but they may serve as starting points for the more difficult cases."
-msgstr ""
+msgstr "この節の目的は、管理者が頻繁に実行する特定の操作に関する、幾つかの一般的な秘訣を示すことです。もちろんこれらの手順は包括的に全ての考え得る場合をカバーするものではありませんが、より困難な状況に直面した際の出発点として機能します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DISCOVERY</emphasis> Documentation in French"
-msgstr ""
+msgstr "<emphasis>DISCOVERY</emphasis> フランス語の文書"
 
 #. Tag: para
 #, no-c-format
 msgid "Often, documentation translated into a non-English language is available in a separate package with the name of the corresponding package, followed by <literal>-<replaceable>lang</replaceable></literal> (where <replaceable>lang</replaceable> is the two-letter ISO code for the language)."
-msgstr ""
+msgstr "多くの場合、非英語に翻訳された文書は対応するパッケージ名の後ろに <literal>-<replaceable>lang</replaceable></literal> を付けた (ここで <replaceable>lang</replaceable> は2文字の ISO 言語コードです) 名前の別パッケージとして提供されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "For instance, the <emphasis>apt-howto-fr</emphasis> package contains the French translation of the howto for <emphasis>APT</emphasis>. Likewise, the <emphasis>quick-reference-fr</emphasis> and <emphasis>debian-reference-fr</emphasis> packages are the French versions of the reference guides for Debian (initially written in English by Osamu Aoki)."
-msgstr ""
+msgstr "例えば、<emphasis>apt-howto-fr</emphasis> パッケージには <emphasis>APT</emphasis> に関する HOWTO のフランス語翻訳が含まれています。同様に、<emphasis>quick-reference-fr</emphasis> と <emphasis>debian-reference-fr</emphasis> パッケージは Debian に関するリファレンスガイド (最初 Osamu Aoki さんが英語で書いた文書) のフランス語版です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring a Program"
-msgstr ""
+msgstr "プログラムの設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>program configuration</secondary>"
-msgstr ""
+msgstr "<primary>設定</primary><secondary>プログラムの設定</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>program</primary><secondary>configuration</secondary>"
-msgstr ""
+msgstr "<primary>プログラム</primary><secondary>設定</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When you want to configure an unknown package, you must proceed in stages. First, you should read what the package maintainer has documented. Reading <filename>/usr/share/doc/<replaceable>package</replaceable>/README.Debian</filename> will indeed allow you to learn of specific provisions made to simplify the use of the software. It is sometimes essential in order to understand the differences from the original behavior of the program, as described in the general documentation, such as howtos. Sometimes this file also details the most common errors in order for you to avoid wasting time on common problems."
-msgstr ""
+msgstr "未知のパッケージを設定する場合、段階を追って進まなければいけません。最初に、パッケージメンテナの書いた文書を読んでください。<filename>/usr/share/doc/<replaceable>package</replaceable>/README.Debian</filename> を読むことで、そのソフトウェアを簡単に使うための詳細な規定を学ぶことができます。このファイルには、プログラムの元の挙動 (HOWTO などの一般的な文書に書かれている挙動) からの違いが書かれているため、必ず読まなければいけない場合があります。またこのファイルには、ありふれた問題で時間を無駄にするのを避けるために、最も一般的なエラーの詳細も書かれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Then, you should look at the software's official documentation — refer to the previous section to identify the various existing documentation sources. The <command>dpkg -L <replaceable>package</replaceable></command> command gives a list of files included in the package; you can therefore quickly identify the available documentation (as well as the configuration files, located in <filename>/etc/</filename>). <command>dpkg -s <replaceable>package</replaceable></command> displays the package meta-data and shows any possible recommended or suggested packages; in there, you can find documentation or a utility that will ease the configuration of the software."
-msgstr ""
+msgstr "その後、ソフトウェアの公式文書を確認して下さい - 既存の様々な文書源を見つける方法は前の節を参照してください。<command>dpkg -L <replaceable>package</replaceable></command> コマンドでパッケージに含まれるファイルのリストが表示されます; このコマンドを使えば、利用可能な文書 (と同時に <filename>/etc/</filename> に格納された設定ファイル) を素早く特定することができます。<command>dpkg -s <replaceable>package</replaceable></command> でパッケージのメタ情報が表示されるので、そこから推奨パッケージや提案パッケージが分かります; そこから、ソフトウェアの設定を簡単に行うための文書またはユーティリティを見つけることができます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the configuration files are often self-documented by many explanatory comments detailing the various possible values for each configuration setting. So much so that it is sometimes enough to just choose a line to activate from among those available. In some cases, examples of configuration files are provided in the <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> directory. They may serve as a basis for your own configuration file."
-msgstr ""
+msgstr "最後に、設定ファイルには通常、各設定項目に関して設定可能な値をそれぞれ詳細に説明した説明用コメントが数多く書かれています。このため、利用可能な行を選んで有効化するだけで十分な場合もあります。また、設定ファイルの例が <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> ディレクトリの中に格納されている場合もあります。設定ファイルの例は、自分の設定ファイルのたたき台になります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> Location of examples"
-msgstr ""
+msgstr "<emphasis>DEBIAN POLICY</emphasis> 例の場所"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>examples, location</primary>"
-msgstr ""
+msgstr "<primary>例、場所</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All examples must be installed in the <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> directory. This may be a configuration file, program source code (an example of the use of a library), or a data conversion script that the administrator can use in certain cases (such as to initialize a database). If the example is specific to a particular architecture, it should be installed in <filename>/usr/lib/<replaceable>package</replaceable>/examples/</filename> and there should be a link pointing to that file in the <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> directory."
-msgstr ""
+msgstr "全ての例は必ず <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> ディレクトリにインストールされます。このディレクトリに格納できる例は、設定ファイル、プログラムのソースコード (ライブラリの使用例)、ある場合に管理者が使うデータ変換スクリプトなどです。例が特定のアーキテクチャに固有なものの場合、例は <filename>/usr/lib/<replaceable>package</replaceable>/examples/</filename> にインストールされ、このディレクトリには <filename>/usr/share/doc/<replaceable>package</replaceable>/examples/</filename> ディレクトリに含まれるファイルを指すリンクが含まれるべきです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring What Daemons Are Doing"
-msgstr ""
+msgstr "デーモンの挙動を監視する"
 
 #. Tag: para
 #, no-c-format
 msgid "Understanding what a daemon does is somewhat more complicated, since it does not interact directly with the administrator. To check that a daemon is actually working, you need to test it. For example, to check the Apache (web server) daemon, test it with an HTTP request."
-msgstr ""
+msgstr "デーモンの挙動を理解するのはやや面倒です。なぜなら、デーモンは管理者と直接的に対話するものではないからです。デーモンが実際どのような仕事をしているかを確認するには、デーモンをテストする必要があります。例えば、Apache (ウェブサーバ) デーモンの挙動を確認するには、HTTP リクエストを使ってテストします。"
 
 #. Tag: para
 #, no-c-format
 msgid "To allow such tests, each daemon generally records everything that it does, as well as any errors that it encounters, in what are called “log files” or “system logs”. Logs are stored in <filename>/var/log/</filename> or one of its subdirectories. To know the precise name of a log file for each daemon, see its documentation. Note: a single test is not always sufficient if it does not cover all the possible usage cases; some problems only occur in particular circumstances."
-msgstr ""
+msgstr "テストを行うために、デーモンは通常、自分のしたことだけでなく発生したエラーも含めて全てを、「ログファイル」や「システムログ」と呼ばれるログに記録します。ログは <filename>/var/log/</filename> の中か、このディレクトリのサブディレクトリの中に保存されます。それぞれのデーモンの正確なログファイル名を知るには、文書を確認して下さい。注意: そのテストによって考え得る使用例の全てが満足されない限り、テストは必ずしも 1 回で十分とは限りません; 幾つかの問題は特定の状況下でしか起こりません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> The <command>rsyslogd</command> daemon"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> <command>rsyslogd</command> デーモン"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>syslogd</command></primary>"
-msgstr ""
+msgstr "<primary><command>syslogd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>files</secondary>"
-msgstr ""
+msgstr "<primary>ログ</primary><secondary>ファイル</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>files</primary><secondary>logs</secondary>"
-msgstr ""
+msgstr "<primary>ファイル</primary><secondary>ログ</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>rsyslogd</command> is special: it collects logs (internal system messages) that are sent to it by other programs. Each log entry is associated with a subsystem (e-mail, kernel, authentication, etc.) and a priority; <command>rsyslogd</command> processes these two pieces of information to decide on what to do. The log message may be recorded in various log files, and/or sent to an administration console. The details are defined in the <filename>/etc/rsyslog.conf</filename> configuration file (documented in the manual page of the same name)."
-msgstr ""
+msgstr "<command>rsyslogd</command> は特別です: このデーモンは他のプログラムが送信したログ (内部的システムメッセージ) を収集します。それぞれのログエントリはサブシステム (電子メール、カーネル、認証など) と優先度が付けられています; <command>rsyslogd</command> はこれら 2 つの情報を使って各エントリをどのように処理するかを決めます。ログメッセージは、複数のログファイルに記録される場合もあれば、管理者のコンソールに送信される場合もあります。設定の詳細は <filename>/etc/rsyslog.conf</filename> 設定ファイル (同じ名前のマニュアルページに文書があります) で定義されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Certain C functions, which are specialized in sending logs, simplify the use of the <command>rsyslogd</command> daemon. However some daemons manage their own log files (this is the case, for example, of <command>samba</command>, that implements Windows shares on Linux)."
-msgstr ""
+msgstr "C 言語にはログ送信専用の関数があるので、これを使うと <command>rsyslogd</command> デーモンを簡単に使えるようになります。しかしながら、幾つかのデーモンは自分でログファイルを管理します (例えば、<command>samba</command>、Linux 上で動く Windows 共有の実装、がその場合に当てはまります)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Daemon"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> デーモン"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>daemon</primary>"
-msgstr ""
+msgstr "<primary>デーモン</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A daemon is a program that is not explicitly invoked by the user and that stays in the background, waiting for a certain condition to be met before performing a task. Many server programs are daemons, a term that explains that the letter “d” is frequently present at the end of their name (<command>sshd</command>, <command>smtpd</command>, <command>httpd</command>, etc.)."
-msgstr ""
+msgstr "デーモンはユーザが明示的に呼び出すプログラムではなく、バックグラウンドで実行され、特定の状態が満足されたら作業を行うプログラムです。多くのサーバプログラムはデーモンです。専門用語の名前の最後に付けられた「d」という文字は通常それがデーモンであることを意味しています (<command>sshd</command>、<command>smtpd</command>、<command>httpd</command>、など)。"
 
 #. Tag: para
 #, no-c-format
 msgid "As a preventive operation, the administrator should regularly read the most relevant server logs. They can thus diagnose problems before they are even reported by disgruntled users. Indeed users may sometimes wait for a problem to occur repeatedly over several days before reporting it. In many cases, there are specific tools to analyze the contents of the larger log files. In particular, such utilities exist for web servers (such as <command>analog</command>, <command>awstats</command>, <command>webalizer</command> for Apache), for FTP servers, for proxy/cache servers, for firewalls, for e-mail servers, for DNS servers, and even for print servers. Some of these utilities operate in a modular manner and allow analysis of several types of log files. This is the case of <command>lire</command> or also <command>modlogan</command>. Other tools, such as <command>logcheck</command> (a software discussed in <xref linkend=\"security\" />), scan these files in search of alerts to be dealt with."
-msgstr ""
+msgstr "予防手段として、管理者は日常的に最重要なサーバログを読むべきです。そうすれば、不満を抱くユーザが報告する前に問題を突き止める事ができます。実際のところ、ユーザは報告の前に、問題が数日間にわたって繰り返して起こるまで待つかもしれません。多くの場合、長いログファイルの内容を分析する特定のツールが有ります。特に、ウェブサーバ (Apache 向けの <command>analog</command>、<command>awstats</command>、<command>webalizer</command>)、FTP サーバ、プロキシ/キャッシュサーバ、ファイヤーウォール、電子メールサーバ、DNS サーバ、プリンタサーバについてはそのログを解析するユーティリティが存在します。幾つかのユーティリティはモジュール式で機能し、複数のログファイルを解析できます。<command>lire</command> や <command>modlogan</command> がこれに相当します。他のツール、例えば<command>logcheck</command> (<xref linkend=\"security\" />で紹介するソフトウェア) など、はログファイルから対処が必要な警告を検索します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>analog</command></primary>"
-msgstr ""
+msgstr "<primary><command>analog</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>awtats</command></primary>"
-msgstr ""
+msgstr "<primary><command>awtats</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>webalizer</command></primary>"
-msgstr ""
+msgstr "<primary><command>webalizer</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>logcheck</command></primary>"
-msgstr ""
+msgstr "<primary><command>logcheck</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lire</command></primary>"
-msgstr ""
+msgstr "<primary><command>lire</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>modlogan</command></primary>"
-msgstr ""
+msgstr "<primary><command>modlogan</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Asking for Help on a Mailing List"
-msgstr ""
+msgstr "メーリングリストで助けを求める"
 
 #. Tag: para
 #, no-c-format
 msgid "If your various searches haven't helped you to get to the root of a problem, it is possible to get help from other, perhaps more experienced people. This is indeed the purpose of the <email>debian-user@lists.debian.org</email> mailing list. As with any community, it has rules that need to be followed. Before asking any question, you should check that your problem isn't already covered by recent discussions on the list or by any official documentation. <ulink type=\"block\" url=\"http://wiki.debian.org/DebianMailingLists\" /> <ulink type=\"block\" url=\"http://lists.debian.org/debian-user/\" />"
-msgstr ""
+msgstr "色々検索しても問題の原因が判らなかった場合、他の人、より経験豊富な人、から助けを受けることもできます。<email>debian-user@lists.debian.org</email> メーリングリストはこのために用意されています。他のコミュニティと同様、このメーリングリストにも従う必要のあるルールがあります。質問の前に、メーリングリストに最近投稿された議論および公式文書の中で、自分の問題がまだ報告されていない点を確認するべきです。<ulink type=\"block\" url=\"http://wiki.debian.org/DebianMailingLists\" /> <ulink type=\"block\" url=\"http://lists.debian.org/debian-user/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><email>debian-user</email></primary>"
-msgstr ""
+msgstr "<primary><email>debian-user</email></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mailing lists</primary>"
-msgstr ""
+msgstr "<primary>メーリングリスト</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Reading a list on the Web"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> ウェブでメーリングリストを読む"
 
 #. Tag: para
 #, no-c-format
 msgid "For high volume mailing lists, such as <email>debian-user@lists.debian.org</email>, it may be worthwhile to go through them as a discussion forum (or newsgroup). Gmane.org allows consultation of the Debian lists in this format. The list mentioned above is available at: <ulink type=\"block\" url=\"http://dir.gmane.org/gmane.linux.debian.user\" />"
-msgstr ""
+msgstr "<email>debian-user@lists.debian.org</email> などの流量の多いメーリングリストは、ディスカッションフォーラム (またはニュースグループ) 的に読むと良いかもしれません。Gmane.org を使うと、この形式で Debian メーリングリストを参照することができます。上に挙げたメーリングリストは以下から閲覧できます: <ulink type=\"block\" url=\"http://dir.gmane.org/gmane.linux.debian.user\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Netiquette applies"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> ネチケット"
 
 #. Tag: para
 #, no-c-format
 msgid "In general, for all correspondence on e-mail lists, the rules of Netiquette should be followed. This term refers to a set of common sense rules, from common courtesy to mistakes that should be avoided. <ulink type=\"block\" url=\"http://tools.ietf.org/html/rfc1855\" /> <indexterm><primary>Netiquette</primary></indexterm>"
-msgstr ""
+msgstr "一般的に言って、電子メーリングリスト上でのやりとりは全てネチケットを守るべきです。ネチケットとは、礼儀作法から避けるべき間違いまで、常識的なルールを指しています。<ulink type=\"block\" url=\"http://tools.ietf.org/html/rfc1855\" /> <indexterm><primary>ネチケット</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Once those two conditions are met, you can think of describing your problem to the mailing list. Include as much relevant information as possible: various tests conducted, documentation consulted, how you attempted to diagnose the problem, the packages concerned or those that may be involved, etc. Check the Debian Bug Tracking System (BTS, described in sidebar <xref linkend=\"sidebar.bts\" />) for similar problems, and mention the results of that search, providing links to bugs found. BTS starts on: <ulink type=\"block\" url=\"http://www.debian.org/Bugs/index.html\" />"
-msgstr ""
+msgstr "以下の 2 条件を満足した時点で、問題をメーリングリストに投稿してみてください。関連する情報を出来る限り含めること: 実施した様々なテスト、参照した文書、その問題を診断する際に使った方法、関連するか関連する可能性のあるパッケージ、など。Debian バグ追跡システム (BTS、傍注<xref linkend=\"sidebar.bts\" />参照) で同様の問題が無いか確認し、検索の結果を挙げ、見つかったバグへのリンクを提供すること。以下から BTS を使い始めることができます: <ulink type=\"block\" url=\"http://www.debian.org/Bugs/index.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The more courteous and precise you have been, the greater your chances are of getting an answer, or, at least, some elements of response. If you receive relevant information by private e-mail, think of summarizing this information publicly so that others can benefit. This also allows the list's archives, searched through various search engines, to show the resolution for others who may have the same question."
-msgstr ""
+msgstr "礼儀正しく正確であればあるほど、答えを得られる (少なくとも多少の反応を得られる) チャンスが大きくなります。私信で関連する情報を受け取った場合、その情報を要約して公にすることを考えてください。そうすれば、他の人がその恩恵を受けられます。またこうすることで、様々な検索エンジンを通じて、同じ疑問を持つ人がメーリングリストのアーカイブからその解決策を得ることができます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Reporting a Bug When a Problem Is Too Difficult"
-msgstr ""
+msgstr "問題が難しすぎる場合のバグ報告"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>report a bug</primary>"
-msgstr ""
+msgstr "<primary>バグを報告</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bug report</primary>"
-msgstr ""
+msgstr "<primary>バグ報告</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If all of your efforts to resolve a problem fail, it is possible that a resolution is not your responsibility, and that the problem is due to a bug in the program. In this case, the proper procedure is to report the bug to Debian or directly to the upstream developers. To do this, isolate the problem as much as possible and create a minimal test situation in which it can be reproduced. If you know which program is the apparent cause of the problem, you can find its corresponding package using the command, <command>dpkg -S <replaceable>file_in_question</replaceable></command>. Check the Bug Tracking System (<literal>http://bugs.debian.org/<replaceable>package</replaceable></literal>) to ensure that the bug has not already been reported. You can then send your own bug report, using the <command>reportbug</command> command, including as much information as possible, especially a complete description of those minimal test cases that will allow anyone to recreate the bug."
-msgstr ""
+msgstr "問題を解決するために行った全ての努力が失敗に終わった場合、問題の原因はあなたの責任の及ぶところになく、プログラムのバグかもしれません。この場合、適切な手続きは Debian にバグを報告するか、上流開発者に直接報告するかです。これを行うには、可能な限り問題を分割し、問題を再現できる最小のテスト環境を作ってください。問題の原因が明らかにプログラムにあるとわかっている場合、<command>dpkg -S <replaceable>file_in_question</replaceable></command> コマンドで関連するパッケージを見つけることができます。バグ追跡システム (<literal>http://bugs.debian.org/<replaceable>package</replaceable></literal>) を使って、そのバグがまだ報告されていないことを確かめてください。その後、<command>reportbug</command> コマンドでバグ報告を送信してください。その際には、可能な限り多くの情報を含め、特に誰もがバグを再現できる最小テストケースの完全な説明を含めてください。"
 
 #. Tag: para
 #, no-c-format
 msgid "The elements of this chapter are a means of effectively resolving issues that the following chapters may bring about. Use them as often as necessary!"
-msgstr ""
+msgstr "この章では、効率的な問題解決の手段を解説しました。以降の章ではこの手段を使う事になるでしょう。必要に応じて何度でも使ってください!"
