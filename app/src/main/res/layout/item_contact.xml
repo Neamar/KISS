@@ -14,6 +14,10 @@
         android:id="@+id/item_contact_icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/icon_margin_left"
+        android:layout_marginRight="@dimen/icon_margin_right"
+        android:layout_marginTop="@dimen/icon_margin_top"
+        android:layout_marginBottom="@dimen/icon_margin_bottom"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_contact"
@@ -37,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/item_contact_icon"
         android:layout_alignLeft="@+id/item_contact_name"
+        android:textColor="#cccccc"
         android:text="+330 12 34 56 78" />
 
     <ImageButton
