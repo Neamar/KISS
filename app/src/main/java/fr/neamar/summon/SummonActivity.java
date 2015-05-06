@@ -301,11 +301,14 @@ public class SummonActivity extends ListActivity implements QueryInterface {
 
     protected boolean displayClearOnInput() {
         final View clearButton = findViewById(R.id.clearButton);
+        final View menuButton = findViewById(R.id.menuButton);
         if (searchEditText.getText().length() > 0) {
             clearButton.setVisibility(View.VISIBLE);
+            menuButton.setVisibility(View.INVISIBLE);
             return true;
         } else {
             clearButton.setVisibility(View.INVISIBLE);
+            menuButton.setVisibility(View.VISIBLE);
             return false;
         }
     }

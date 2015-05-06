@@ -27,23 +27,39 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:padding="5dp"
+        android:clipToPadding="false"
+        android:padding="10dp"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="4dp"
-            android:padding="10dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
             android:background="@android:color/white">
 
             <ImageView
-                android:id="@+id/clearButton"
+                android:id="@+id/menuButton"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/dots"/>
+
+            <ImageView
+                android:id="@+id/clearButton"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:visibility="invisible"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:src="@drawable/clear_dark"/>
 
             <EditText
@@ -59,8 +75,6 @@
                 android:hint="@string/ui_search_hint"
                 android:imeOptions="flagNoExtractUi|actionSearch"
                 android:inputType="textVisiblePassword|textNoSuggestions"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
                 android:singleLine="true"/>
 
             <ImageView
@@ -70,6 +84,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:src="@drawable/ic_launcher"/>
         </RelativeLayout>
     </FrameLayout>
