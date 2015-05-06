@@ -98,7 +98,7 @@ public abstract class Record {
 	 * @return text displayable on a textview
 	 */
 	protected Spanned enrichText(String text) {
-		return Html.fromHtml(text.replaceAll("\\{(.+)\\}", "<font color=#6e73e5>$1</font>"));
+		return Html.fromHtml(text.replaceAll("\\{(.+)\\}", "<font color=#4caf50>$1</font>"));
 	}
 
 	/**
