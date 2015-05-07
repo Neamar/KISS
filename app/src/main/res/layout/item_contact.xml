@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingBottom="2dp"
-    android:paddingTop="2dp" >
+<RelativeLayout android:id="@+id/RelativeLayout1"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp">
 
     <fr.neamar.summon.ui.ImprovedQuickContactBadge
         android:id="@+id/item_contact_icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/icon_margin_bottom"
         android:layout_marginLeft="@dimen/icon_margin_left"
         android:layout_marginRight="@dimen/icon_margin_right"
         android:layout_marginTop="@dimen/icon_margin_top"
-        android:layout_marginBottom="@dimen/icon_margin_bottom"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
         android:src="@drawable/ic_contact"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <TextView
         android:id="@+id/item_contact_name"
@@ -33,7 +33,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:text="Contact name"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
         android:id="@+id/item_contact_phone"
@@ -41,8 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/item_contact_icon"
         android:layout_alignLeft="@+id/item_contact_name"
-        android:textColor="#cccccc"
-        android:text="+330 12 34 56 78" />
+        android:text="+330 12 34 56 78"
+        android:textColor="#cccccc"/>
 
     <ImageButton
         android:id="@+id/item_contact_action_message"
@@ -51,7 +51,7 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/item_contact_action_phone"
         android:contentDescription="@string/ui_item_contact_hint_message"
-        android:src="@drawable/contact_message" />
+        android:src="@drawable/contact_message"/>
 
     <ImageButton
         android:id="@+id/item_contact_action_phone"
@@ -60,6 +60,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/ui_item_contact_hint_call"
-        android:src="@drawable/contact_call" />
+        android:src="@drawable/contact_call"/>
 
 </RelativeLayout>
