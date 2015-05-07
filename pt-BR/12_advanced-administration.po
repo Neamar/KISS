@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-21 22:27+0200\n"
+"PO-Revision-Date: 2015-05-14 21:57+0200\n"
 "Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/12_advanced-administration/pt_BR/>\n"
@@ -238,11 +238,25 @@ msgstr "RAID-0"
 #, no-c-format
 msgid "This level doesn't provide any redundancy either, but disks aren't simply stuck on end one after another: they are divided in <emphasis>stripes</emphasis>, and the blocks on the virtual device are stored on stripes on alternating physical disks. In a two-disk RAID-0 setup, for instance, even-numbered blocks of the virtual device will be stored on the first physical disk, while odd-numbered blocks will end up on the second physical disk."
 msgstr ""
+"Esse nível também não provê nenhuma redundância, mas os discos não são "
+"simplesmente ligados pelo final um após o outro: eles são divididos em "
+"<emphasis>listras (stripes)</emphasis>, e os blocos no dispositivo virtual "
+"são armazenados em listras (stripes) em discos físicos alternados. Em uma "
+"configuração de RAID-0 de dois discos, por exemplo, em blocos de número par "
+"do dispositivo virtual serão armazenados no primeiro disco físico, enquanto "
+"os blocos ímpares ficarão no segundo disco físico."
 
 #. Tag: para
 #, no-c-format
 msgid "This system doesn't aim at increasing reliability, since (as in the linear case) the availability of all the data is jeopardized as soon as one disk fails, but at increasing performance: during sequential access to large amounts of contiguous data, the kernel will be able to read from both disks (or write to them) in parallel, which increases the data transfer rate. However, RAID-0 use is shrinking, its niche being filled by LVM (see later)."
 msgstr ""
+"Esse sistema não tem por objetivo um aumento de credibilidade, já que (como "
+"em um caso linear) a disponibilidade de todos os dados é comprometida assim "
+"que um disco falhar, mas um aumento de desempenho: durante um acesso "
+"sequencial a grandes quantidades de dados contíguos, o núcleo será capaz de "
+"ler a partir dos dois discos (ou escrever neles) em paralelo, o que "
+"incrementa a taxa de transferência de dados. Contudo, o uso do RAID-0 está "
+"murchando, seu nicho está sendo preenchido pelo LVM (veja mais adiante)."
 
 #. Tag: term
 #, no-c-format
@@ -253,6 +267,14 @@ msgstr "RAID-1"
 #, no-c-format
 msgid "This level, also known as “RAID mirroring”, is both the simplest and the most widely used setup. In its standard form, it uses two physical disks of the same size, and provides a logical volume of the same size again. Data are stored identically on both disks, hence the “mirror” nickname. When one disk fails, the data is still available on the other. For really critical data, RAID-1 can of course be set up on more than two disks, with a direct impact on the ratio of hardware cost versus available payload space."
 msgstr ""
+"Esse nível, também conhecido como “espelhamento RAID”, é tanto o mais "
+"simples quanto a mais amplamente usada configuração. Em sua forma padrão, "
+"ele usa dois discos físicos de mesmo tamanho e fornece um volume lógico de "
+"mesmo tamanho mais uma vez. Os dados são armazenados identicamente nos dois "
+"discos, por isso o apelido “espelho”. Quando um disco falha, os dados ainda "
+"estão disponíveis no outro. Para dados realmente críticos, RAID-1 pode, é "
+"claro, ser configurado para mais de dois discos, com impacto direto na "
+"relação de custo de hardware versus espaço de carga disponível."
 
 #. Tag: title
 #, no-c-format
@@ -278,16 +300,40 @@ msgstr "<emphasis>NOTA</emphasis> Discos de reposição"
 #, no-c-format
 msgid "RAID levels that include redundancy allow assigning more disks than required to an array. The extra disks are used as spares when one of the main disks fails. For instance, in a mirror of two disks plus one spare, if one of the first two disks fails, the kernel will automatically (and immediately) reconstruct the mirror using the spare disk, so that redundancy stays assured after the reconstruction time. This can be used as another kind of safeguard for critical data."
 msgstr ""
+"Níveis RAID que incluem redundância permitem atribuir mais discos do que o "
+"necessário para uma array. Os discos extras são usados como reservas quando "
+"um dos principais discos falha. Por exemplo, em um espelho de dois discos e "
+"mais um reserva, se um dos dois primeiros discos falhar, o núcleo irá "
+"automaticamente (e imediatamente) reconstruir o espelho usando o disco "
+"reserva, para que a redundância continue garantida após o momento de "
+"reconstrução. Isso pode ser usado como outro tipo de salva guarda para dados "
+"críticos."
 
 #. Tag: para
 #, no-c-format
 msgid "One would be forgiven for wondering how this is better than simply mirroring on three disks to start with. The advantage of the “spare disk” configuration is that the spare disk can be shared across several RAID volumes. For instance, one can have three mirrored volumes, with redundancy assured even in the event of one disk failure, with only seven disks (three pairs, plus one shared spare), instead of the nine disks that would be required by three triplets."
 msgstr ""
+"Alguém poderia ser perdoado por questionar como isso pode ser melhor do que "
+"simplesmente espelhar três discos como início. A vantagem da configuração de "
+"um “disco reserva” é que o disco reserva pode ser compartilhado entre vários "
+"volumes RAID. Por exemplo, é possível ter três volumes espelhados, com "
+"garantia de redundância mesmo no caso de falha de um disco, com apenas sete "
+"discos (três pares, mais um reserva compartilhado), ao invés dos nove discos "
+"que seriam necessários para três trigêmeos."
 
 #. Tag: para
 #, no-c-format
 msgid "This RAID level, although expensive (since only half of the physical storage space, at best, is useful), is widely used in practice. It is simple to understand, and it allows very simple backups: since both disks have identical contents, one of them can be temporarily extracted with no impact on the working system. Read performance is often increased since the kernel can read half of the data on each disk in parallel, while write performance isn't too severely degraded. In case of a RAID-1 array of N disks, the data stays available even with N-1 disk failures."
 msgstr ""
+"Esse nível de RAID, embora caro (já que apenas metade do espaço físico de "
+"armazenagem, na melhor das hipóteses, é útil), é amplamente usado na "
+"prática. Ele é simples de entender, e ele permite cópias de segurança "
+"(backups) bem simples: como os dois discos tem conteúdos idênticos, um deles "
+"pode ser temporariamente extraído, sem impacto no sistema em funcionamento. "
+"O desempenho de leitura geralmente é incrementado , já que o núcleo pode ler "
+"metade dos dados em cada disco, em paralelo, enquanto o desempenho de "
+"escrita não é muito severamente degradado. No caso de uma array RAID-1 de N "
+"discos, os dados continuam disponíveis mesmo com a falha do disco N-1."
 
 #. Tag: term
 #, no-c-format
@@ -353,6 +399,11 @@ msgstr "RAID-1+0"
 #, no-c-format
 msgid "This isn't strictly speaking, a RAID level, but a stacking of two RAID groupings. Starting from 2×N disks, one first sets them up by pairs into N RAID-1 volumes; these N volumes are then aggregated into one, either by “linear RAID” or (increasingly) by LVM. This last case goes farther than pure RAID, but there's no problem with that."
 msgstr ""
+"Isso não é, estritamente falando, um nível RAID, mas um empilhamento de dois "
+"agrupamentos RAID. A partir de 2×N discos, primeiro se configura eles por "
+"pares em volumes N RAID-1; esses volumes N são então agregados em um só, "
+"seja por “linear RAID” ou (cada vez mais) por LVM. Esse último caso vai além "
+"do puro RAID, mas não existe problema quanto a isso."
 
 #. Tag: para
 #, no-c-format
@@ -368,6 +419,11 @@ msgstr "<emphasis>Aprofundando</emphasis> RAID-10"
 #, no-c-format
 msgid "RAID-10 is generally considered a synonym of RAID-1+0, but a Linux specificity makes it actually a generalization. This setup allows a system where each block is stored on two different disks, even with an odd number of disks, the copies being spread out along a configurable model."
 msgstr ""
+"RAID-10 é ,geralmente , considerado um sinônimo de RAID-1+0, mas uma "
+"especifidade Linux faz com que ele seja realmente uma generalização. Essa "
+"configuração permite um sistema aonde cada bloco seja armazenado em dois "
+"diferentes discos, mesmo com um número impar de discos, sendo as cópias "
+"espalhadas ao longo de um modelo configurável."
 
 #. Tag: para
 #, no-c-format
@@ -574,6 +630,19 @@ msgstr ""
 #, no-c-format
 msgid "The <command>mdadm --create</command> command requires several parameters: the name of the volume to create (<filename>/dev/md*</filename>, with MD standing for <foreignphrase>Multiple Device</foreignphrase>), the RAID level, the number of disks (which is compulsory despite being mostly meaningful only with RAID-1 and above), and the physical drives to use. Once the device is created, we can use it like we'd use a normal partition, create a filesystem on it, mount that filesystem, and so on. Note that our creation of a RAID-0 volume on <filename>md0</filename> is nothing but coincidence, and the numbering of the array doesn't need to be correlated to the chosen amount of redundancy. It's also possible to create named RAID arrays, by giving <command>mdadm</command> parameters such as <filename>/dev/md/linear</filename> instead of <filename>/dev/md0</filename>."
 msgstr ""
+"O comando <command>mdadm --create</command> requer vários parâmetros: o nome "
+"do volume a ser criado (<filename>/dev/md*</filename>, com MD significando "
+"<foreignphrase>Multiple Device</foreignphrase>), o nível RAID, o número de "
+"discos (que é obrigatório, apesar de ser significante apenas com RAID-1 e "
+"acima), e os drives físicos a usar. Uma vez que o dispositivo seja criado, "
+"nós podemos usá-lo como usamos uma partição normal, criando um sistema de "
+"arquivos nela, montando esse sistema de arquivos, e assim por diante. Note "
+"que nossa criação de um volume RAID-0 em <filename>md0</filename> não passa "
+"de coincidência, e a numeração da array não precisa ser correlacionada com a "
+"quantidade escolhida de redundância. Também é possível criar arrays RAID "
+"nomeadas, dando ao <command>mdadm</command> parâmetros como "
+"<filename>/dev/md/linear</filename> ao invés de "
+"<filename>/dev/md0</filename>."
 
 #. Tag: para
 #, no-c-format
@@ -692,6 +761,21 @@ msgstr "Algumas observações em ordem. Primeiro, <command>mdadm</command> nota 
 #, no-c-format
 msgid "More importantly, note the state of the mirror. The normal state of a RAID mirror is that both disks have exactly the same contents. However, nothing guarantees this is the case when the volume is first created. The RAID subsystem will therefore provide that guarantee itself, and there will be a synchronization phase as soon as the RAID device is created. After some time (the exact amount will depend on the actual size of the disks…), the RAID array switches to the “active” state. Note that during this reconstruction phase, the mirror is in a degraded mode, and redundancy isn't assured. A disk failing during that risk window could lead to losing all the data. Large amounts of critical data, however, are rarely stored on a freshly created RAID array before its initial synchronization. Note that even in degraded mode, the <filename>/dev/md1</filename> is usable, and a filesystem can be created on it, as well as some data copied on it."
 msgstr ""
+"Ainda mais importante, note o estado do espelhamento.O estado normal de um "
+"espelho RAID é que os dois discos tenham exatamente o mesmo conteúdo. "
+"Contudo, nada garante que esse é o caso quando o volume é criado pela "
+"primeira vez. O subsistema RAID irá, por conseguinte, prover essa garantia "
+"por si mesmo, e acontecerá uma fase de sincronização assim que o dispositivo "
+"RAID for criado. Após algum tempo (a quantidade exata irá depender do real "
+"tamanho dos discos…), a array RAID alternará para o estado “ativo”. Note que "
+"durante essa fase de reconstrução, o espelho está em modo degradado, e a "
+"redundância não é garantida. Um disco falhando durante essa janela de risco "
+"poderia levar a perda de todos os dados. Grandes quantidades de dados "
+"críticos, contudo, raramente são armazenados em uma array RAID recentemente "
+"criada, antes de sua sincronização inicial. Note que mesmo em modo "
+"degradado, o <filename>/dev/md1</filename> é usável, e um sistema de "
+"arquivos pode ser criado nele, assim como alguns dados podem ser copiados "
+"para ele."
 
 #. Tag: title
 #, no-c-format
@@ -702,6 +786,15 @@ msgstr "<emphasis>DICA</emphasis> Começando um espelho em modo reduzido"
 #, no-c-format
 msgid "Sometimes two disks are not immediately available when one wants to start a RAID-1 mirror, for instance because one of the disks one plans to include is already used to store the data one wants to move to the array. In such circumstances, it is possible to deliberately create a degraded RAID-1 array by passing <filename>missing</filename> instead of a device file as one of the arguments to <command>mdadm</command>. Once the data have been copied to the “mirror”, the old disk can be added to the array. A synchronization will then take place, giving us the redundancy that was wanted in the first place."
 msgstr ""
+"Às vezes, dois discos não estão imediatamente disponíveis quando se quer "
+"iniciar um espelho RAID-1, por exemplo, porque se pretende incluir um dos "
+"discos já usado para armazenar os dados que se quer passar para a array. Em "
+"tais circunstâncias, é possível criar deliberadamente uma degradada array "
+"RAID-1, passando <filename>missing</filename> em vez de um arquivo de "
+"dispositivo como um dos argumentos para <command>mdadm</command>. Uma vez "
+"que os dados tenham sido copiados para o \"espelho\", o disco antigo pode "
+"ser adicionado à array. A sincronização irá então acontecer, dando-nos a "
+"redundância que foi desejada, em primeiro lugar."
 
 #. Tag: title
 #, no-c-format
@@ -945,6 +1038,11 @@ msgstr ""
 #, no-c-format
 msgid "From then on, the drive can be physically removed when the server is next switched off, or even hot-removed when the hardware configuration allows hot-swap. Such configurations include some SCSI controllers, most SATA disks, and external drives operating on USB or Firewire."
 msgstr ""
+"A partir de então, a unidade pode ser fisicamente removida quando o servidor "
+"está para ser desligado, ou até mesmo removida com o sistema ligado (hot-"
+"removed) quando a configuração de hardware permite tal operação (hot-swap). "
+"Tais configurações incluem alguns controladores SCSI, a maioria dos discos "
+"SATA e unidades externas que operam com USB ou Firewire."
 
 #. Tag: title
 #, no-c-format
@@ -955,6 +1053,24 @@ msgstr "Fazendo Backup da Configuração"
 #, no-c-format
 msgid "Most of the meta-data concerning RAID volumes are saved directly on the disks that make up these arrays, so that the kernel can detect the arrays and their components and assemble them automatically when the system starts up. However, backing up this configuration is encouraged, because this detection isn't fail-proof, and it is only expected that it will fail precisely in sensitive circumstances. In our example, if the <filename>sde</filename> disk failure had been real (instead of simulated) and the system had been restarted without removing this <filename>sde</filename> disk, this disk could start working again due to having been probed during the reboot. The kernel would then have three physical elements, each claiming to contain half of the same RAID volume. Another source of confusion can come when RAID volumes from two servers are consolidated onto one server only. If these arrays were running normally before the disks were moved, the kernel would be able to detect and reassemble the pairs properly; but if the moved disks had been aggregated into an <filename>md1</filename> on the old server, and the new server already has an <filename>md1</filename>, one of the mirrors would be renamed."
 msgstr ""
+"A maioria dos meta-dados referentes a volumes RAID são salvos diretamente "
+"nos discos que compoem essas arrays, para que o núcleo possa detectar as "
+"arrays e seus componentes e montá-los automaticamente quando o sistema for "
+"iniciado. Contudo, é encorajado o uso de cópia de segurança dessa "
+"configuração, porque essa detecção não é à prova de falhas, e só se tem a "
+"expectativa de falha dela precisamente em circunstâncias sensíveis. Em nosso "
+"exemplo, se a falha do disco <filename>sde</filename> tivesse sido real (ao "
+"invés de simulada) e o sistema tivesse sido reiniciado sem a remoção desse "
+"disco <filename>sde</filename>, esse disco poderia começar a trabalhar "
+"novamente por ter sido verificado durante a reinicialização. O núcleo iria "
+"ter então três elementos físicos, cada um clamando por conter metade do "
+"mesmo volume RAID. Outra fonte de confusão pode vir quando volumes RAID  de "
+"dois servidores são consolidados em apenas um servidor apenas. Se essas "
+"arrays estavam rodando normalmente antes dos discos serem removidos, o "
+"núcleo seria capaz de detectar e remontar os pares de maneira apropriada; "
+"mas se os discos movidos tiverem sido agregados em um "
+"<filename>md1</filename> no servidor antigo, e o novo servidor já tiver um "
+"<filename>md1</filename>, um dos espelhos seria renomeado."
 
 #. Tag: para
 #, no-c-format
@@ -1043,6 +1159,11 @@ msgstr ""
 #, no-c-format
 msgid "The last two lines in our example are those allowing the kernel to safely pick which volume number to assign to which array. The metadata stored on the disks themselves are enough to re-assemble the volumes, but not to determine the volume number (and the matching <filename>/dev/md*</filename> device name)."
 msgstr ""
+"As duas últimas linhas em nosso exemplo são aquelas que permitem ao núcleo "
+"escolher, com segurança, qual número de volume atribuir a qual array. O "
+"metadado armazenado nos próprios discos são suficientes para remontar (re-"
+"assemble) os volumes, mas não para determinar o número do volume (e o nome "
+"de dispositivo que coincide com <filename>/dev/md*</filename>)."
 
 #. Tag: para
 #, no-c-format
@@ -1067,11 +1188,22 @@ msgstr ""
 #, no-c-format
 msgid "The contents of these last two lines doesn't depend on the list of disks included in the volume. It is therefore not necessary to regenerate these lines when replacing a failed disk with a new one. On the other hand, care must be taken to update the file when creating or deleting a RAID array."
 msgstr ""
+"O conteúdo dessas duas últimas linhas não depende da lista de discos "
+"incluídos no volume. Logo, não é necessário regenerar essas linhas quando se "
+"for substituir um disco falho por um novo. Por outro lado, tem que se tomar "
+"o cuidado de atualizar o arquivo sp se criar ou remover de uma array RAID."
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary>LVM</primary></indexterm> LVM, the <emphasis>Logical Volume Manager</emphasis>, is another approach to abstracting logical volumes from their physical supports, which focuses on increasing flexibility rather than increasing reliability. LVM allows changing a logical volume transparently as far as the applications are concerned; for instance, it is possible to add new disks, migrate the data to them, and remove the old disks, without unmounting the volume."
 msgstr ""
+"<indexterm><primary>LVM</primary></indexterm> LVM, o <emphasis>Logical "
+"Volume Manager</emphasis>, é uma outra abordagem para abstrair volumes "
+"lógicos a partir de seus suportes físicos, que se concentra em aumentar a "
+"flexibilidade em vez de aumentar a confiabilidade. O LVM permite mudar um "
+"volume lógico de forma transparente, até aonde os aplicativos tem interesse ;"
+" por exemplo, é possível adicionar novos discos, migrar os dados para eles, "
+"e remover os discos velhos, sem desmontar o volume."
 
 #. Tag: title
 #, no-c-format
@@ -1087,31 +1219,68 @@ msgstr "Esta flexibilidade é atingida graças ao nível de abstração envolven
 #, no-c-format
 msgid "First, the PV (<emphasis>Physical Volume</emphasis>) is the entity closest to the hardware: it can be partitions on a disk, or a full disk, or even any other block device (including, for instance, a RAID array). Note that when a physical element is set up to be a PV for LVM, it should only be accessed via LVM, otherwise the system will get confused."
 msgstr ""
+"Primeiro, o PV (<emphasis>Physical Volume</emphasis>) é a entidade mais "
+"próxima ao hardware: ele pode ser partições em um disco, ou um disco "
+"inteiro, ou até mesmo qualquer outro dispositivo de bloco (incluindo, por "
+"exemplo, uma array RAID). Note que quando um elemento é configurado para ser "
+"um PV para o LVM, ele deveria ser acessado via LVM apenas, de outra forma o "
+"sistema irá ficar confuso."
 
 #. Tag: para
 #, no-c-format
 msgid "A number of PVs can be clustered in a VG (<emphasis>Volume Group</emphasis>), which can be compared to disks both virtual and extensible. VGs are abstract, and don't appear in a device file in the <filename>/dev</filename> hierarchy, so there's no risk of using them directly."
 msgstr ""
+"Vários PVs podem ser agrupados em um VG (<emphasis>Volume Group</emphasis>), "
+"que pode ser comparado com discos tanto virtual quanto extensível. VGs são "
+"abstratos, e não aparecem em um arquivo de dispositivo na hierarquia "
+"<filename>/dev</filename>, então não a risco em usá-los diretamente."
 
 #. Tag: para
 #, no-c-format
 msgid "The third kind of object is the LV (<emphasis>Logical Volume</emphasis>), which is a chunk of a VG; if we keep the VG-as-disk analogy, the LV compares to a partition. The LV appears as a block device with an entry in <filename>/dev</filename>, and it can be used as any other physical partition can be (most commonly, to host a filesystem or swap space)."
 msgstr ""
+"O terceiro tipo de objeto é o LV (<emphasis>Logical Volume</emphasis>), que "
+"é um pedaço de um VG; se nós mantermos a analogia VG-como-disco, o LV se "
+"compara a uma partição. O LV aparece como um dispositivo de bloco com uma "
+"entrada em <filename>/dev</filename>, e ele pode ser usado como qualquer "
+"outra partição física pode ser (mais comumente, para hospedar um sistema de "
+"arquivos ou espaço swap)."
 
 #. Tag: para
 #, no-c-format
 msgid "The important thing is that the splitting of a VG into LVs is entirely independent of its physical components (the PVs). A VG with only a single physical component (a disk for instance) can be split into a dozen logical volumes; similarly, a VG can use several physical disks and appear as a single large logical volume. The only constraint, obviously, is that the total size allocated to LVs can't be bigger than the total capacity of the PVs in the volume group."
 msgstr ""
+"A coisa importante é que a divisão de um VG em LVs é inteiramente "
+"independente de seus componentes físicos (os PVs). Um VG com apenas um "
+"componente físico (um disco por exemplo) pode ser dividido em uma dúzia de "
+"volumes lógicos; similarmente, um VG pode usar vários discos físicos e "
+"parecer como um único e grande volume lógico. A única restrição, obviamente, "
+"é que o tamanho total alocado aos LVs não podem ser maiores que a capacidade "
+"total dos PVs no grupo de volume."
 
 #. Tag: para
 #, no-c-format
 msgid "It often makes sense, however, to have some kind of homogeneity among the physical components of a VG, and to split the VG into logical volumes that will have similar usage patterns. For instance, if the available hardware includes fast disks and slower disks, the fast ones could be clustered into one VG and the slower ones into another; chunks of the first one can then be assigned to applications requiring fast data access, while the second one will be kept for less demanding tasks."
 msgstr ""
+"Geralmente faz sentido, contudo, ter algum tipo de homogeneidade entre os "
+"componentes físicos de um VG, e dividir o VG em volumes lógicos que irão ter "
+"padrões de uso similares. Por exemplo, se o hardware disponível inclui "
+"discos rápidos e discos lentos, os rápidos poderiam ser agrupados em um VG e "
+"os lentos em outro; pedaços do primeiro podem então se designados para "
+"aplicações que requerem rápido acesso a dados, enquanto o segundo seria "
+"mantido para tarefas de menor demanda."
 
 #. Tag: para
 #, no-c-format
 msgid "In any case, keep in mind that an LV isn't particularly attached to any one PV. It is possible to influence where the data from an LV are physically stored, but this possibility isn't required for day-to-day use. On the contrary: when the set of physical components of a VG evolves, the physical storage locations corresponding to a particular LV can be migrated across disks (while staying within the PVs assigned to the VG, of course)."
 msgstr ""
+"Em todo caso, tenha em mente que um LV não está particularmente anexado a "
+"nenhum PV. É possível influenciar aonde os dados de um LV são fisicamente "
+"armazenados, mas essa possibilidade não é necessária para o uso do dia a "
+"dia. Pelo contrário: quando o conjunto de componentes físicos de um VG "
+"evolui, as localizações de armazenagem física correspondentes a um LV em "
+"particular podem ser migradas entre discos (enquanto se mantém dentro de PVs "
+"atribuídos ao VG, é claro)."
 
 #. Tag: title
 #, no-c-format
@@ -1122,6 +1291,14 @@ msgstr "Configurando um LVM"
 #, no-c-format
 msgid "Let us now follow, step by step, the process of setting up LVM for a typical use case: we want to simplify a complex storage situation. Such a situation usually happens after some long and convoluted history of accumulated temporary measures. For the purposes of illustration, we'll consider a server where the storage needs have changed over time, ending up in a maze of available partitions split over several partially used disks. In more concrete terms, the following partitions are available:"
 msgstr ""
+"Vamos agora seguir, passo a passo, o processo de configurar um LVM para um "
+"caso de uso típico: nós queremos simplificar uma situação complexa de "
+"armazenagem. Uma situação dessas geralmente acontece após alguma longa e "
+"complicada história de  medidas temporárias acumuladas. Para propósitos de "
+"ilustração, nós vamos considerar um servidor aonde a armazenagem precisa ter "
+"alterações com o passar do tempo, terminando em um labirinto de partições "
+"disponíveis, divididas em vários discos parcialmente usados. Em termos mais "
+"concretos, as seguintes partições estão disponíveis:"
 
 #. Tag: para
 #, no-c-format
@@ -1153,6 +1330,14 @@ msgstr "Complementando, vamos assumir que os discos <filename>sdb</filename> e <
 #, no-c-format
 msgid "Our goal is to set up three logical volumes for three different applications: a file server requiring 5 GB of storage space, a database (1 GB) and some space for back-ups (12 GB). The first two need good performance, but back-ups are less critical in terms of access speed. All these constraints prevent the use of partitions on their own; using LVM can abstract the physical size of the devices, so the only limit is the total available space."
 msgstr ""
+"Nosso objetivo é configurar três volumes lógicos para três diferentes "
+"aplicações: um servidor de arquivos necessitando 5 GB de espaço de "
+"armazenagem, um banco de dados (1 GB) e algum espaço para cópias de "
+"segurança (12 GB). Os dois primeiros precisam de bom desempenho, mas cópias "
+"de segurança são menos críticas em termos de velocidade de acesso. Todos "
+"essas limitações impedem o uso de partições propriamente; usando LVM pode-se "
+"abstrair o tamanho físico dos dispositivos, então o único limite é o total "
+"de espaço disponível."
 
 #. Tag: para
 #, no-c-format
@@ -1242,6 +1427,10 @@ msgstr "Até agora tudo bem; note que o PV (volume físico) pode ser configurado
 #, no-c-format
 msgid "Now let's assemble these physical elements into VGs using <command>vgcreate</command>. We'll gather only PVs from the fast disks into a <filename>vg_critical</filename> VG; the other VG, <filename>vg_normal</filename>, will also include slower elements."
 msgstr ""
+"Agora vamos montar esses elementos físicos em VGs usando "
+"<command>vgcreate</command>. Nós vamos reunir apenas PVs dos discos rápidos "
+"em um VG <filename>vg_critical</filename>; o outro VG, "
+"<filename>vg_normal</filename>, irá incluir também elementos mais lentos."
 
 #. Tag: screen
 #, no-c-format
@@ -1318,6 +1507,11 @@ msgstr ""
 #, no-c-format
 msgid "Here again, commands are rather straightforward (and <command>vgdisplay</command> proposes two output formats). Note that it is quite possible to use two partitions of the same physical disk into two different VGs. Note also that we used a <filename>vg_</filename> prefix to name our VGs, but it is nothing more than a convention."
 msgstr ""
+"Aqui novamente, os comandos são bem simples (e <command>vgdisplay</command> "
+"propõem dois formatos de saída). Note que é perfeitamente possível usar duas "
+"partições de um mesmo disco físico em dois VGs diferentes. Note também que "
+"nós usamos um prefixo <filename>vg_</filename> para nomear nossos VGs, mas "
+"isso não é nada mais que uma convenção."
 
 #. Tag: para
 #, no-c-format
@@ -1399,6 +1593,12 @@ msgstr ""
 #, no-c-format
 msgid "Two parameters are required when creating logical volumes; they must be passed to the <command>lvcreate</command> as options. The name of the LV to be created is specified with the <literal>-n</literal> option, and its size is generally given using the <literal>-L</literal> option. We also need to tell the command what VG to operate on, of course, hence the last parameter on the command line."
 msgstr ""
+"São necessários dois parâmetros para a criação de volumes lógicos; eles tem "
+"que ser passados ao <command>lvcreate</command> como opções. O nome do LV a "
+"ser criado é especificado com a opção <literal>-n</literal>, e seu tamanho "
+"geralmente é dado usando a opção <literal>-L</literal>. Nós também "
+"precisamos dizer ao comando qual o VG a ser operado, é claro, sendo portanto "
+"o último parâmetro da linha de comando."
 
 #. Tag: title
 #, no-c-format
@@ -1414,6 +1614,15 @@ msgstr "O comando <command>lvcreate</command> possui diversas opções que permi
 #, no-c-format
 msgid "Let's first describe the <literal>-l</literal> option, with which the LV's size can be given as a number of blocks (as opposed to the “human” units we used above). These blocks (called PEs, <emphasis>physical extents</emphasis>, in LVM terms) are contiguous units of storage space in PVs, and they can't be split across LVs. When one wants to define storage space for an LV with some precision, for instance to use the full available space, the <literal>-l</literal> option will probably be preferred over <literal>-L</literal>."
 msgstr ""
+"Vamos primeiro descrever a opção <literal>-l</literal>, com a qual o tamanho "
+"do LV pode ser dados como um número de blocos (como o oposto das unidades "
+"“humanas” que nós usamos acima). Esses blocos (chamados de PEs, <emphasis>"
+"physical extents</emphasis>, nos termos LVM) são unidades contíguas de "
+"espaço de armazenamento em PVs, e elas não podem ser divididas entre LVs. Se "
+"alguém quiser definir espaço de armazenamento para um LV com alguma "
+"precisão, por exemplo para usar todo o espaço disponível, a opção "
+"<literal>-l</literal> provavelmente será preferida, ao invés da "
+"<literal>-L</literal>."
 
 #. Tag: para
 #, no-c-format
@@ -1464,11 +1673,22 @@ msgstr "<emphasis>NOTA</emphasis> Auto-detectando volumes LVM"
 #, no-c-format
 msgid "When the computer boots, the <filename>/etc/init.d/lvm</filename> script scans the available devices; those that have been initialized as physical volumes for LVM are registered into the LVM subsystem, those that belong to volume groups are assembled, and the relevant logical volumes are started and made available. There is therefore no need to edit configuration files when creating or modifying LVM volumes."
 msgstr ""
+"Quando o computador é inicializado, o script "
+"<filename>/etc/init.d/lvm</filename> faz uma busca nos dispositivos "
+"disponíveis; aqueles que tiverem sido inicializados como volumes físicos "
+"para o LVM são registrados em um subsistema LVM, aqueles que pertencem aos "
+"grupos de volume são montados, e os volumes lógicos relevantes são iniciados "
+"e tornados disponíveis. Não existe, portanto, necessidade de editar arquivos "
+"de configuração quando se cria ou modifica volumes LVM."
 
 #. Tag: para
 #, no-c-format
 msgid "Note, however, that the layout of the LVM elements (physical and logical volumes, and volume groups) is backed up in <filename>/etc/lvm/backup</filename>, which can be useful in case of a problem (or just to sneak a peek under the hood)."
 msgstr ""
+"Note, contudo, que o layout dos elementos LVM (volumes físicos e lógicos, e "
+"grupos de volume) tem cópia de segurança em "
+"<filename>/etc/lvm/backup</filename>, que pode ser útil em caso de um "
+"problema (ou apenas para da uma espiada embaixo do capô)."
 
 #. Tag: para
 #, no-c-format
@@ -1564,6 +1784,17 @@ msgstr "LVM ao longo do tempo"
 #, no-c-format
 msgid "Even though the ability to aggregate partitions or physical disks is convenient, this is not the main advantage brought by LVM. The flexibility it brings is especially noticed as time passes, when needs evolve. In our example, let's assume that new large files must be stored, and that the LV dedicated to the file server is too small to contain them. Since we haven't used the whole space available in <filename>vg_critical</filename>, we can grow <filename>lv_files</filename>. For that purpose, we'll use the <command>lvresize</command> command, then <command>resize2fs</command> to adapt the filesystem accordingly:"
 msgstr ""
+"Mesmo que a habilidade de agregar partições ou discos físicos seja "
+"conveniente, essa não é a principal vantagem trazida pelo LVM. A "
+"flexibilidade que ele trás é especialmente notada com o passar do tempo, "
+"quando as necessidades se desenvolvem. Em nosso exemplo, vamos assumir que "
+"novos e grandes arquivos tem que ser armazenados, e que o LV dedicado ao "
+"servidor de arquivos é muito pequeno para acomodá-los. Como nós não usamos "
+"todo o espaço disponível em <filename>vg_critical</filename>, nós podemos "
+"crescer o <filename>lv_files</filename>. Para esse propósito, nós iremos "
+"usar o comando <command>lvresize</command>, e então o "
+"<command>resize2fs</command> para adaptar o sistema de arquivos em "
+"conformidadde:"
 
 #. Tag: screen
 #, no-c-format
