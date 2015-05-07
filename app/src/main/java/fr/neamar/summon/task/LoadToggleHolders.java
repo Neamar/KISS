@@ -1,16 +1,17 @@
 package fr.neamar.summon.task;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+
+import java.util.ArrayList;
+
 import fr.neamar.summon.R;
 import fr.neamar.summon.holder.ToggleHolder;
 
-public class LoadToogleHolders extends LoadHolders<ToggleHolder> {
+public class LoadToggleHolders extends LoadHolders<ToggleHolder> {
 
-	public LoadToogleHolders(Context context) {
+	public LoadToggleHolders(Context context) {
 		super(context, "app://");
 	}
 
@@ -25,7 +26,6 @@ public class LoadToogleHolders extends LoadHolders<ToggleHolder> {
 			toggles.add(createHolder("Bluetooth", "bluetooth", R.attr.bluetooth));
 		}
 		toggles.add(createHolder("Silent", "silent", R.attr.silent));
-		// toggles.add(createHolder("GPS", "gps", R.drawable.toggle_gps));
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD
 				&& pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
 			toggles.add(createHolder("Mobile network data", "data", R.attr.data));

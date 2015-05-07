@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 import android.content.Context;
 import fr.neamar.summon.holder.Holder;
 import fr.neamar.summon.holder.ToggleHolder;
-import fr.neamar.summon.task.LoadToogleHolders;
+import fr.neamar.summon.task.LoadToggleHolders;
 
 public class ToggleProvider extends Provider<ToggleHolder> {
 
 	public ToggleProvider(Context context) {
-		super(new LoadToogleHolders(context));
+		super(new LoadToggleHolders(context));
 	}
 
 	public ArrayList<Holder> getResults(String query) {
