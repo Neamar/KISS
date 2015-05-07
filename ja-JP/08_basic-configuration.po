@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-06 18:23+0900\n"
+"PO-Revision-Date: 2015-05-08 01:39+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -182,182 +182,182 @@ msgstr "<primary>Latin 9</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Historically, each locale has an associated “character set” (group of known characters) and a preferred “encoding” (internal representation for characters within the computer)."
-msgstr ""
+msgstr "歴史的に言って、各ロケールは関連する「文字セット」(既知の文字のグループ) と推奨される「エンコーディング」(コンピュータにおける文字の内部表現) を持っていました。"
 
 #. Tag: para
 #, no-c-format
 msgid "The most popular encodings for latin-based languages were limited to 256 characters because they opted to use a single byte for each character. Since 256 characters was not enough to cover all European languages, multiple encodings were needed, and that's how we ended up with <emphasis>ISO-8859-1</emphasis> (also known as “Latin 1”) up to <emphasis>ISO-8859-15</emphasis> (also known as “Latin 9”), among others."
-msgstr ""
+msgstr "ラテン語由来の言語で最も人気のあるエンコーディングの文字数は 256 文字に制限されています。なぜなら、それらのエンコーディングでは 1 文字を 1 バイトで表現するよう定めているからです。256 文字では全てのヨーロッパ系言語をカバー出来なかったため、複数のエンコーディングが必要になり、<emphasis>ISO-8859-1</emphasis> (「Latin 1」としても知られる) から <emphasis>ISO-8859-15</emphasis> (「Latin 9」としても知られる) までが定められました。"
 
 #. Tag: para
 #, no-c-format
 msgid "Working with foreign languages often implied regular switches between various encodings and character sets. Furthermore, writing multilingual documents led to further, almost intractable problems. Unicode (a super-catalog of nearly all writing systems from all of the world's languages) was created to work around this problem. One of Unicode's encodings, UTF-8, retains all 128 ASCII symbols (7-bit codes), but handles other characters differently. Those are preceded by a specific escape sequence of a few bits, which implicitly defines the length of the character. This allows encoding all Unicode characters on a sequence of one or more bytes. Its use has been popularized by the fact that it's the default encoding in XML documents."
-msgstr ""
+msgstr "外国語を使って仕事することは、日常的に複数のエンコーディングと文字セットを切り替えること、を意味していました。さらに、多言語文書を書くことは更に難しく、ほとんど処理不可能な問題でした。この問題に対処するために Unicode (全世界の言語のほぼ全ての表記体系の巨大なカタログ) が作られました。Unicode エンコーディングの 1 つである UTF-8 は 128 ASCII 文字 (7 ビットコード) と互換性を保ちつつ、他の文字を別のやり方で取り扱います。非 ASCII 文字は数ビットの特殊なエスケープシーケンスで始まり、このエスケープシーケンスが文字の長さを暗黙のうちに定義します。このことにより、1 バイトから数バイトのシーケンスで全 Unicode 文字の符号化が可能になります。UTF-8 は XML 文書のデフォルトエンコーディングだったため広く使われています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ASCII</primary>"
-msgstr ""
+msgstr "<primary>ASCII</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>UTF-8</primary>"
-msgstr ""
+msgstr "<primary>UTF-8</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Unicode</primary>"
-msgstr ""
+msgstr "<primary>Unicode</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This is the encoding that should generally be used, and is thus the default on Debian systems."
-msgstr ""
+msgstr "通常のエンコーディングは UTF-8 を使うべきで、Debian システムではこれをデフォルトとしています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">locales</emphasis> package includes all the elements required for proper functioning of “localization” of various applications. During installation, this package will ask to select a set of supported languages. This set can be changed at any time by running <command>dpkg-reconfigure locales</command> as root."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">locales</emphasis> パッケージには、様々なアプリケーションの「地域化」を適切に動作させるために必要な全ての要素が含まれます。インストールの最中、<emphasis role=\"pkg\">locales</emphasis> パッケージはシステムでサポートしたい言語を選択するよう求めます。システムでサポートされる言語を変更するには、root で <command>dpkg-reconfigure locales</command> を実行してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "The first question invites you to select “locales” to support. Selecting all English locales (meaning those beginning with “<literal>en_US</literal>”) is a reasonable choice. Do not hesitate to choose other locales if the machine will host foreign users. The list of locales enabled on the system is stored in the <filename>/etc/locale.gen</filename> file. It is possible to edit this file by hand, but you should run <command>locale-gen</command> after any modifications. It will generate the necessary files for the added locales to work, and remove any obsolete files."
-msgstr ""
+msgstr "最初の質問では、サポートしたい「ロケール」を選択します。全ての英語ロケール (つまり「<literal>en_US</literal>」で始まるロケール) を選択するのが合理的です。外国人ユーザがマシンを使う場合、ためらわずに他の言語を選んでください。システムでサポートされるロケールのリストは <filename>/etc/locale.gen</filename> ファイルに保存されています。このファイルを手作業で編集することも可能ですが、変更が終わったら <command>locale-gen</command> を実行するべきです。<command>locale-gen</command> は追加されたロケールを動作させるために必要なファイルを生成し、古いファイルを削除します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The second question, entitled “Default locale for the system environment”, requests a default locale. The recommended choice in the U.S.A. is “<literal>en_US.UTF-8</literal>”. British English speakers will prefer “<literal>en_GB.UTF-8</literal>”, and Canadians will prefer either “<literal>en_CA.UTF-8</literal>” or, for French, “<literal>fr_CA.UTF-8</literal>”. The <filename>/etc/default/locale</filename> file will then be modified to store this choice. From there, it's picked up by all user sessions since PAM will inject its content in the <varname>LANG</varname> environment variable."
-msgstr ""
+msgstr "2 番目の質問は「システム環境のデフォルトロケール」と銘打たれ、ここではデフォルトロケールを選択します。アメリカ合衆国では「<literal>en_US.UTF-8</literal>」を選ぶことを推奨します。イギリス英語話者は「<literal>en_GB.UTF-8</literal>」、カナダ人は「<literal>en_CA.UTF-8</literal>」またはフランス語の「<literal>fr_CA.UTF-8</literal>」のどちらかを好むでしょう。そして、デフォルトロケールを保存する <filename>/etc/default/locale</filename> ファイルが修正されます。これ以降、設定されたデフォルトロケールが全てのユーザセッションに適用されます。なぜなら、PAM が <varname>LANG</varname> 環境変数内に <filename>/etc/default/locale</filename> ファイルの内容を代入するからです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>environment</primary>"
-msgstr ""
+msgstr "<primary>環境</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>locale</primary>"
-msgstr ""
+msgstr "<primary>ロケール</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><varname>LANG</varname></primary>"
-msgstr ""
+msgstr "<primary><varname>LANG</varname></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEHIND THE SCENES</emphasis> <filename>/etc/environment</filename> and <filename>/etc/default/locale</filename>"
-msgstr ""
+msgstr "<emphasis>BEHIND THE SCENES</emphasis> <filename>/etc/environment</filename> と <filename>/etc/default/locale</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/environment</filename> file provides the <command>login</command>, <command>gdm</command>, or even <command>ssh</command> programs with the correct environment variables to be created."
-msgstr ""
+msgstr "<filename>/etc/environment</filename> ファイルは <command>login</command>、<command>gdm</command>、<command>ssh</command> プログラムに設定する正しい環境変数を伝えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "These applications do not create these variables directly, but rather via a PAM (<filename>pam_env.so</filename>) module. PAM (Pluggable Authentication Module) is a modular library centralizing the mechanisms for authentication, session initialization, and password management. See <xref linkend=\"sect.config-pam\" /> for an example of PAM configuration."
-msgstr ""
+msgstr "これらのアプリケーションは環境変数を直接設定しませんが、PAM (<filename>pam_env.so</filename>) モジュール経由でそれを行います。PAM (Pluggable Authentication Module) は認証、セッション初期化、パスワード管理のメカニズムを一元管理化するモジュール式のライブラリです。PAM 設定の例は <xref linkend=\"sect.config-pam\" /> を御覧ください。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/default/locale</filename> file works in a similar manner, but contains only the <varname>LANG</varname> environment variable. Thanks to this split, some PAM users can inherit a complete environment without localization. Indeed, it's generally discouraged to run server programs with localization enabled; on the other hand, localization and regional settings are recommended for programs that open user sessions."
-msgstr ""
+msgstr "<filename>/etc/default/locale</filename> ファイルも同様に働きますが、ファイルには <varname>LANG</varname> 環境変数だけが含まれます。このようにファイルを分離しているお陰で、一部の PAM ユーザは地域化せずに完全な環境を継承できます。実際のところ、サーバプログラムを地域化した状態で実行することは推奨されません; その一方、ユーザセッションを開くプログラムが地域化と地域設定を担うことを推奨します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PAM</primary>"
-msgstr ""
+msgstr "<primary>PAM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>pam_env.so</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>pam_env.so</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Keyboard"
-msgstr ""
+msgstr "キーボードの設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>keyboard layout</primary>"
-msgstr ""
+msgstr "<primary>キーボードレイアウト</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>layout, keyboard</primary>"
-msgstr ""
+msgstr "<primary>レイアウト、キーボード</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Even if the keyboard layout is managed differently in console and graphical mode, Debian offers a single configuration interface that works for both: it's based on debconf and is implemented in the <emphasis role=\"pkg\">keyboard-configuration</emphasis> package. Thus the <command>dpkg-reconfigure keyboard-configuration</command> command can be used at any time to reset the keyboard layout."
-msgstr ""
+msgstr "キーボードレイアウトの管理方法がコンソールとグフラフィカルモードで違っていたとしても、Debian では両方を設定可能な単一の設定インターフェイスが提供されています: そのインターフェイスは debconf に基いており、<emphasis role=\"pkg\">keyboard-configuration</emphasis> パッケージで実装されています。キーボードレイアウトをリセットする際には、<command>dpkg-reconfigure keyboard-configuration</command> を使います。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>console-data</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>console-data</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>console-tools</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>console-tools</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>keyboard-configuration</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>keyboard-configuration</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><literal>azerty</literal></primary></indexterm>The questions are relevant to the physical keyboard layout (a standard PC keyboard in the US will be a “Generic 104 key”), then the layout to choose (generally “US”), and then the position of the AltGr key (right Alt). Finally comes the question of the key to use for the “Compose key”, which allows for entering special characters by combining keystrokes. Type successively <keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> and produce an e-acute (“é”). All these combinations are described in the <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> file (or another file, determined according to the current locale indicated by <filename>/usr/share/X11/locale/compose.dir</filename>)."
-msgstr ""
+msgstr "<indexterm><primary><literal>azerty</literal></primary></indexterm> 質問に関連する要素は、物理キーボードレイアウト (アメリカ合衆国で使われる一般的な PC キーボードの場合「Generic 104 key」)、選択したレイアウト (通常「US」)、AltGr (右 Alt) キーの場所です。最後に「Compose キー」として使うキーが質問されます。このキーはキーストロークを組み合わせて特殊文字を入力する際に使われます。<keycombo action=\"seq\"><keycap>Compose</keycap><keycap>'</keycap><keycap>e</keycap></keycombo> をタイプすると、アクセント付きe「é」が入力できるはずです。キーストロークの組み合わせは <filename>/usr/share/X11/locale/en_US.UTF-8/Compose</filename> ファイル (または、<filename>/usr/share/X11/locale/compose.dir</filename> に書かれた現在のロケールに従って定義された別ファイル) に記述されています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Compose</literal>, key</primary>"
-msgstr ""
+msgstr "<primary><literal>Compose</literal>、キー</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Meta</literal>, key</primary>"
-msgstr ""
+msgstr "<primary><literal>メタ</literal>、キー</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>key</primary><secondary><literal>Meta</literal></secondary>"
-msgstr ""
+msgstr "<primary>キー</primary><secondary><literal>メタ</literal></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>key</primary><secondary><literal>Compose</literal></secondary>"
-msgstr ""
+msgstr "<primary>キー</primary><secondary><literal>Compose</literal></secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the keyboard configuration for graphical mode described here only affects the default layout; the GNOME and KDE environments, among others, provide a keyboard control panel in their preferences allowing each user to have their own configuration. Some additional options regarding the behavior of some particular keys are also available in these control panels."
-msgstr ""
+msgstr "ここで述べたグラフィカルモードのキーボード設定によって影響を受けるのはデフォルトレイアウトだけです; GNOME と KDE 環境では、環境設定の中にキーボードコントロールパネルがあり、これを使うことで各ユーザが固有のキーボードを設定することが出来ます。特別なキーの挙動に関する追加的オプションをこのコントロールパネルから設定できます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Migrating to UTF-8"
-msgstr ""
+msgstr "UTF-8 への移行"
 
 #. Tag: para
 #, no-c-format
 msgid "The generalization of UTF-8 encoding has been a long awaited solution to numerous difficulties with interoperability, since it facilitates international exchange and removes the arbitrary limits on characters that can be used in a document. The one drawback is that it had to go through a rather difficult transition phase. Since it could not be completely transparent (that is, it could not happen at the same time all over the world), two conversion operations were required: one on file contents, and the other on filenames. Fortunately, the bulk of this migration has been completed and we discuss it largely for reference."
-msgstr ""
+msgstr "UTF-8 エンコーディングのような一般化は、相互運用性の多くの困難を解決できるとして、長く待ち望まれていました。なぜなら、一般化することで、国際交流が簡単になり、文書で使うことのできる文字を好き勝手に制限する必要が無くなるからです。こうすることによる欠点の 1 つが、辛い移行期間を切り抜けなければいけない点です。移行期間は完全に透過的に出来ない (つまり、全世界で同時に移行する事はできない) ため、2 つの変換操作が必要です: 1 つがファイル内容で、もう 1 つがファイル名です。幸いなことに、この移行はほとんど完了していますが、参考までに大筋を議論します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Mojibake</foreignphrase> and interpretation errors"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> <foreignphrase>文字化け</foreignphrase>と解釈エラー"
 
 #. Tag: para
 #, no-c-format
 msgid "When a text is sent (or stored) without encoding information, it is not always possible for the recipient to know with certainty what convention to use for determining the meaning of a set of bytes. You can usually get an idea by getting statistics on the distribution of values present in the text, but that doesn't always give a definite answer. When the encoding system chosen for reading differs from that used in writing the file, the bytes are mis-interpreted, and you get, at best, errors on some characters, or, at worst, something completely illegible."
-msgstr ""
+msgstr "エンコーディング情報無しにテキストが送信 (または保存) された場合、受信者にとって、どのような変換を使えばバイトセットの意味を決定できるかを確定することは、常に可能なことではありません。通常、テキスト内に存在する値の分布の統計を取ることで、変換に必要な情報を得る事ができますが、常に確定的な答えを得られるわけではありません。読み出し時に使ったエンコーディングシステムが書き込み時に使ったものと異なる場合、バイトセットは間違って解釈され、良くても幾つかの文字が間違って表示され、悪ければ全く判読できなくなります。"
 
 #. Tag: para
 #, no-c-format
