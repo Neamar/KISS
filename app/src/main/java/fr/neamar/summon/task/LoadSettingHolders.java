@@ -31,7 +31,7 @@ public class LoadSettingHolders extends LoadHolders<SettingHolder> {
 	}
 
 	private SettingHolder createHolder(String name, String settingName) {
-		return createHolder(name, settingName, R.drawable.settings_dark);
+		return createHolder(name, settingName, android.R.drawable.ic_menu_manage);
 	}
 
 	private SettingHolder createHolder(String name, String settingName, int resId) {
