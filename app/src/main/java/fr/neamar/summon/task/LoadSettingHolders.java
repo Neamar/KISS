@@ -1,10 +1,11 @@
 package fr.neamar.summon.task;
 
+import android.content.Context;
+import android.content.Intent;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
-import android.content.Context;
-import android.content.Intent;
 import fr.neamar.summon.R;
 import fr.neamar.summon.holder.SettingHolder;
 
@@ -30,7 +31,7 @@ public class LoadSettingHolders extends LoadHolders<SettingHolder> {
 	}
 
 	private SettingHolder createHolder(String name, String settingName) {
-		return createHolder(name, settingName, R.drawable.settings);
+		return createHolder(name, settingName, R.drawable.settings_dark);
 	}
 
 	private SettingHolder createHolder(String name, String settingName, int resId) {

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingBottom="2dp"
-    android:paddingTop="2dp" >
+<RelativeLayout android:id="@+id/RelativeLayout1"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/result_margin_bottom"
+                android:paddingLeft="@dimen/result_margin_left"
+                android:paddingRight="@dimen/result_margin_right"
+                android:paddingTop="@dimen/result_margin_top">
 
     <ImageView
         android:id="@+id/item_toggle_icon"
@@ -16,9 +18,13 @@
         android:layout_height="48dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/icon_margin_bottom"
+        android:layout_marginLeft="@dimen/icon_margin_left"
+        android:layout_marginRight="@dimen/icon_margin_right"
+        android:layout_marginTop="@dimen/icon_margin_top"
         android:scaleType="centerInside"
         android:src="?attr/silent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <TextView
         android:id="@+id/item_toggle_name"
@@ -30,7 +36,10 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:text="Setting to toggle"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/result_title_size"/>
 
-	<include android:id="@+id/item_toggle_action_toggle" layout="@layout/ui_togglebutton" />
+    <include
+        android:id="@+id/item_toggle_action_toggle"
+        layout="@layout/ui_togglebutton"/>
 </RelativeLayout>
