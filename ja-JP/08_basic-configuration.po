@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-08 01:39+0900\n"
+"PO-Revision-Date: 2015-05-08 17:54+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -362,22 +362,22 @@ msgstr "エンコーディング情報無しにテキストが送信 (または�
 #. Tag: para
 #, no-c-format
 msgid "Thus, if a French text appears normal with the exception of accented letters and certain symbols which appear to be replaced with sequences of characters like “Ã©” or Ã¨” or “Ã§”, it is probably a file encoded as UTF-8 but interpreted as ISO-8859-1 or ISO-8859-15. This is a sign of a local installation that has not yet been migrated to UTF-8. If, instead, you see question marks instead of accented letters — even if these question marks seem to also replace a character that should have followed the accented letter — it is likely that your installation is already configured for UTF-8 and that you have been sent a document encoded in Western ISO."
-msgstr ""
+msgstr "そんなわけで、フランス語テキストが、「Ã©」、「Ã¨」、「Ã§」などの文字列で置き換えられそうな、アクセント付き文字と若干の記号を除いて正常に表示された場合、これはおそらく UTF-8 にエンコードされたファイルを ISO-8859-1 または ISO-8859-15 として解釈した結果かもしれません。この状況は、ローカル設定がまだ UTF-8 に移行されていないことの証です。その代わり、アクセント付き文字ではなく疑問符が表示された場合 - 疑問符がアクセント付き文字を後ろに付けた文字で置き換える事ができそうな場合 - ローカル設定が既に UTF-8 に移行されていて、西欧の ISO でエンコードされてたファイルを受け取った、ということかもしれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "So much for “simple” cases. These cases only appear in Western culture, since Unicode (and UTF-8) was designed to maximize the common points with historical encodings for Western languages based on the Latin alphabet, which allows recognition of parts of the text even when some characters are missing."
-msgstr ""
+msgstr "「単純な」場合はそんなところです。これは西欧言語だけに見られる場合です。なぜなら、Unicode (と UTF-8) はラテンアルファベットに基づく西欧言語向けの歴史的なエンコーディングとの共通点を最大化するように設計されたからです。このため、幾つかの文字が欠落してもテキストの一部を理解できるのです。"
 
 #. Tag: para
 #, no-c-format
 msgid "In more complex configurations, which, for example, involve two environments corresponding to two different languages that do not use the same alphabet, you often get completely illegible results — a series of abstract symbols that have nothing to do with each other. This is especially common with Asian languages due to their numerous languages and writing systems. The Japanese word <foreignphrase>mojibake</foreignphrase> has been adopted to describe this phenomenon. When it appears, diagnosis is more complex and the simplest solution is often to simply migrate to UTF-8 on both sides."
-msgstr ""
+msgstr "より複雑な形態の場合、例えば異なる文字体系を使う 2 つの異なる言語向けの 2 つの環境の間で情報をやり取りする場合、全く判読できない結果 - 互いに関連性のない抽象記号 - が表示されることが多いです。アジア圏では、言語と表記体系が数多くあるために、このような状況が良く起こります。<foreignphrase>文字化け</foreignphrase>という日本の言葉がこの状況を言い表すために使われ続けています。<foreignphrase>文字化け</foreignphrase>した場合、原因分析はさらに複雑で、元も単純な解決策は双方が UTF-8 に移行することです。"
 
 #. Tag: para
 #, no-c-format
 msgid "As far as file names are concerned, the migration can be relatively simple. The <command>convmv</command> tool (in the package with the same name) was created specifically for this purpose; it allows renaming files from one encoding to another. The use of this tool is relatively simple, but we recommend doing it in two steps to avoid surprises. The following example illustrates a UTF-8 environment containing directory names encoded in ISO-8859-15, and the use of <command>convmv</command> to rename them."
-msgstr ""
+msgstr "ファイル名だけについて言えば、移行は比較的単純です。<command>convmv</command> ツール (同名のパッケージに含まれます) はこの目的専用に作られました; これはファイル名をあるエンコーディングから他のエンコーディングに変更します。このツールの使い方は比較的単純ですが、意図しない変換を避けるために 2 段階に分けて行うことを推奨します。以下の例では、ISO-8859-15 でエンコードされたディレクトリ名を含む UTF-8 環境で、<command>convmv</command> を使ってディレクトリ名をリネームする方法を示しています。"
 
 #. Tag: screen
 #, no-c-format
@@ -396,196 +396,209 @@ msgid ""
 "$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
+"<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
+"$ </computeroutput><userinput>convmv -r -f iso-8859-15 -t utf-8 travail/</userinput>\n"
+"<computeroutput>Starting a dry run without changes...\n"
+"mv \"travail/�l�ments graphiques\"        \"travail/Éléments graphiques\"\n"
+"mv \"travail/Ic�nes\"     \"travail/Icônes\"\n"
+"No changes to your files done. Use --notest to finally rename the files.\n"
+"$ </computeroutput><userinput>convmv -r --notest -f iso-8859-15 -t utf-8 travail/</userinput>\n"
+"<computeroutput>mv \"travail/�l�ments graphiques\"        \"travail/Éléments graphiques\"\n"
+"mv \"travail/Ic�nes\"     \"travail/Icônes\"\n"
+"Ready!\n"
+"$ </computeroutput><userinput>ls travail/</userinput>\n"
+"<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "For the file content, conversion procedures are more complex due to the vast variety of existing file formats. Some file formats include encoding information that facilitates the tasks of the software used to treat them; it is sufficient, then, to open these files and re-save them specifying UTF-8 encoding. In other cases, you have to specify the original encoding (ISO-8859-1 or “Western”, or ISO-8859-15 or “Western (Euro)”, according to the formulations) when opening the file."
-msgstr ""
+msgstr "ファイル内容については、既存のファイルフォーマットの多様性のため、変換手順はより複雑です。幾つかのファイルフォーマットはエンコーディング情報を含んでおり、そのフォーマットを取り扱うソフトウェアの仕事を楽にします; この場合、ファイルを開いて UTF-8 エンコーディングを指定して再保存するだけ十分です。その他の場合、そのファイルを開く際に元のエンコーディングを指定 (形式に従って ISO-8859-1 や「西欧」、ISO-8859-15 や 「西欧 (ユーロ)」など) しなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "For simple text files, you can use <command>recode</command> (in the package of the same name) which allows automatic recoding. This tool has numerous options so you can play with its behavior. We recommend you consult the documentation, the <citerefentry> <refentrytitle>recode</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> man page, or the <citerefentry> <refentrytitle>recode</refentrytitle> </citerefentry> info page (more complete)."
-msgstr ""
+msgstr "単純なテキストファイルの場合、<command>recode</command> (同名のパッケージに含まれます) を使えば自動的にエンコーディングを変換出来ます。このツールは数多くのオプションを備えていますので、いろいろ試してみてください。<citerefentry> <refentrytitle>recode</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> man ページ、<citerefentry> <refentrytitle>recode</refentrytitle> </citerefentry> info ページ (より詳しい) などの文書を調べることもお勧めします。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Network"
-msgstr ""
+msgstr "ネットワーク設定"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Essential network concepts (Ethernet, IP address, subnet, broadcast)."
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> ネットワークの本質的概念 (イーサネット、IP アドレス、サブネット、ブロードキャスト)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Ethernet</primary>"
-msgstr ""
+msgstr "<primary>イーサネット</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>10BASE-T</primary>"
-msgstr ""
+msgstr "<primary>10BASE-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>100BASE-T</primary>"
-msgstr ""
+msgstr "<primary>100BASE-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>1000BASE-T</primary>"
-msgstr ""
+msgstr "<primary>1000BASE-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>10GBASE-T</primary>"
-msgstr ""
+msgstr "<primary>10GBASE-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connector, RJ45</primary>"
-msgstr ""
+msgstr "<primary>コネクタ、RJ45</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RJ45 connector</primary>"
-msgstr ""
+msgstr "<primary>RJ45 コネクタ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Most modern local networks use the Ethernet protocol, where data is split into small blocks called frames and transmitted on the wire one frame at a time. Data speeds vary from 10 Mb/s for older Ethernet cards to 10 Gb/s in the newest cards (with the most common rate currently growing from 100 Mb/s to 1 Gb/s). The most widely used cables are called 10BASE-T, 100BASE-T, 1000BASE-T or 10GBASE-T depending on the throughput they can reliably provide (the T stands for “twisted pair”); those cables end in an RJ45 connector. There are other cable types, used mostly for speeds above 1 Gb/s."
-msgstr ""
+msgstr "ほとんどの現代的なローカルネットワークはイーサネットプロトコルを使っています。データはフレームと呼ばれる小さなブロックに分割され、一度に 1 つのフレームをワイヤー上で転送されます。データ転送速度は、古いイーサネットカードの場合 10 Mb/s で新しいカードの場合 10 Gb/s (現在最も一般的な速度は 100 Mb/s から 1 Gb/s) です。最も広く使われているケーブルは、確実に保証される転送速度に依存して 10BASE-T、100BASE-T、1000BASE-T、10GBASE-T (T は「ツイストペア」を意味しています) と呼ばれています。ケーブルの終端には RJ45 コネクタが付いています。他のケーブル型もあり、それらは 1 Gb/s を超える速度で使われています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>address, IP address</primary>"
-msgstr ""
+msgstr "<primary>アドレス、IP アドレス</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IP address</primary>"
-msgstr ""
+msgstr "<primary>IP アドレス</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "An IP address is a number used to identify a network interface on a computer on a local network or the Internet. In the currently most widespread version of IP (IPv4), this number is encoded in 32 bits, and is usually represented as 4 numbers separated by periods (e.g. <literal>192.168.0.1</literal>), each number being between 0 and 255 (inclusive, which corresponds to 8 bits of data). The next version of the protocol, IPv6, extends this addressing space to 128 bits, and the addresses are generally represented as series of hexadecimal numbers separated by colons (e.g., 2001:0db8:13bb:0002:0000:0000:0000:0020, or 2001:db8:13bb:2::20 for short)."
-msgstr ""
+msgstr "IP アドレスは、ローカルネットワークや Internet でコンピュータのネットワークインターフェイスを識別するために使われる番号です。IP の現在最も広く使われているバージョン (IPv4) では、IP アドレスは 32 ビットにエンコードされ、通常ピリオドで区切った 4 個の数字で表現されます (例 <literal>192.168.0.1</literal>)、それぞれの番号は 0 から 255 まで (各数字も含みます、8 ビットのデータに対応します) です。IP の次期バージョン IPv6 では、アドレス空間を 128 ビットに拡張し、IP アドレスは通常コロンで区切られた 16 進数列で表されます (例 2001:0db8:13bb:0002:0000:0000:0000:0020、短縮形では 2001:db8:13bb:2::20)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>subnet</primary>"
-msgstr ""
+msgstr "<primary>サブネット</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mask</primary><secondary>subnet mask</secondary>"
-msgstr ""
+msgstr "<primary>マスク</primary><secondary>サブネットマスク</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>address</secondary>"
-msgstr ""
+msgstr "<primary>ネットワーク</primary><secondary>アドレス</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A subnet mask (netmask) defines in its binary code which portion of an IP address corresponds to the network, the remainder specifying the machine. In the example of configuring a static IPv4 address given here, the subnet mask, <literal>255.255.255.0</literal> (24 “1”s followed by 8 “0”s in binary representation) indicates that the first 24 bits of the IP address correspond to the network address, and the other 8 are specific to the machine. In IPv6, for readability, only the number of “1”s is expressed; the netmask for an IPv6 network could, thus, be <literal>64</literal>."
-msgstr ""
+msgstr "サブネットマスク (ネットマスク) は、あるネットワークに対応する IP アドレス群を分配する 2 進コードを定義します。ここで挙げた静的 IPv4 アドレスの設定例では、サブネットマスク <literal>255.255.255.0</literal> (2 進数表記では 24 個の「1」の後に 8 個の「0」が並ぶ) は IP アドレスの最初の 24 ビット分がネットワークアドレスに対応し、残りの 8 ビット分がマシンに固有のアドレスであることを意味しています。IPv6 では、可読性を高めるために、「1」だけを使います; IPv6 ネットワークでは、ネットマスクは <literal>64</literal> のように書けます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The network address is an IP address in which the part describing the machine's number is 0. The range of IPv4 addresses in a complete network is often indicated by the syntax, <emphasis>a.b.c.d/e</emphasis>, in which <emphasis>a.b.c.d</emphasis> is the network address and <emphasis>e</emphasis> is the number of bits affected to the network part in an IP address. The example network would thus be written: <literal>192.168.0.0/24</literal>. The syntax is similar in IPv6: <literal>2001:db8:13bb:2::/64</literal>."
-msgstr ""
+msgstr "ネットワークアドレスは IP アドレスの一種で、マシン番号を表現する部分は 0 で表されます。完全なネットワークにおける IPv4 アドレスの範囲は通常 <emphasis>a.b.c.d/e</emphasis> という構文で表現されます。ここで、<emphasis>a.b.c.d</emphasis> はネットワークアドレスで <emphasis>e</emphasis> は IP アドレスのネットワーク部分を表すビット数です。つまり例のネットワークではこのように書けます: <literal>192.168.0.0/24</literal>。IPv6 の場合も構文は似ています: <literal>2001:db8:13bb:2::/64</literal>。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>router</primary>"
-msgstr ""
+msgstr "<primary>ルータ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bridge</primary>"
-msgstr ""
+msgstr "<primary>ブリッジ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A router is a machine that connects several networks to each other. All traffic coming through a router is guided to the correct network. To do this, the router analyzes incoming packets and redirects them according to the IP address of their destination. The router is often known as a gateway; in this configuration, it works as a machine that helps reach out beyond a local network (towards an extended network, such as the Internet)."
-msgstr ""
+msgstr "ルータとは、複数のネットワークを相互に接続するマシンです。ルータを通過する全てのトラフィックは接続されたネットワークに誘導されます。これを行うために、ルータは着信パケットを解析し、宛先の IP アドレスに従ってパケットを転送します。ルータは通常ゲートウェイとしても知られています; この設定では、ルータはローカルネットワークを超える (Internet などの外部ネットワークに向かう) ためのマシンとして機能します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>broadcast</primary>"
-msgstr ""
+msgstr "<primary>ブロードキャスト</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The special broadcast address connects all the stations in a network. Almost never “routed”, it only functions on the network in question. Specifically, it means that a data packet addressed to the broadcast never passes through the router."
-msgstr ""
+msgstr "特別なブロードキャストアドレスはネットワークにいる全てのマシンに対応付けられています。ブロードキャストアドレスは、ほとんど「転送され」ませんし、当該のネットワークだけを対象に働きます。具体的に言うと、ブロードキャスト宛のデータパケットはルータを通過しないことを意味しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter focuses on IPv4 addresses, since they are currently the most commonly used. The details of the IPv6 protocol are approached in <xref linkend=\"sect.ipv6\" />, but the concepts remain the same."
-msgstr ""
+msgstr "この章では IPv4 アドレスだけに注目します。なぜなら IPv4 アドレスは最も一般的に利用されているからです。IPv6 プロトコルの詳細は <xref linkend=\"sect.ipv6\" /> で説明されていますが、その概念は IPv4 と同じです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Since the network is automatically configured during the initial installation, the <filename>/etc/network/interfaces</filename> file already contains a valid configuration. A line starting with <literal>auto</literal> gives a list of interfaces to be automatically configured on boot by <emphasis role=\"pkg\">ifupdown</emphasis> and its <filename>/etc/init.d/networking</filename> init script. This will often be <literal>eth0</literal>, which refers to the first Ethernet card."
-msgstr ""
+msgstr "ネットワークは最初のインストール中に自動的に設定されますので、<filename>/etc/network/interfaces</filename> ファイルには既に様々な設定が含まれています。<literal>auto</literal> で始まる行は、起動時に <emphasis role=\"pkg\">ifupdown</emphasis> と <filename>/etc/init.d/networking</filename> init スクリプトで自動的に設定したい、インターフェイスのリストです。通常 <literal>eth0</literal> は自動設定したいインターフェイスで、1 つ目のイーサネットカードを意味しています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>configuration</secondary>"
-msgstr ""
+msgstr "<primary>ネットワーク</primary><secondary>設定</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>of the network</secondary>"
-msgstr ""
+msgstr "<secondary>ネットワークの</secondary><primary>設定</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>interface</primary><secondary>network interface</secondary>"
-msgstr ""
+msgstr "<primary>インターフェイス</primary><secondary>ネットワークインターフェイス</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>eth0</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>eth0</literal></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> NetworkManager"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> NetworkManager"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">network-manager</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">network-manager</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If Network Manager is particularly recommended in roaming setups (see <xref linkend=\"sect.roaming-network-config\" />), it's also perfectly usable as the default network management tool. You can create “System connections” that are used as soon as the computer boots either manually with a <filename>.ini</filename>-like file in <filename>/etc/NetworkManager/system-connections/</filename> or through a graphical tool (<command>nm-connection-editor</command>). Just remember to deactivate all entries in <filename>/etc/network/interfaces</filename> if you want Network Manager to handle them. <ulink type=\"block\" url=\"http://wiki.gnome.org/NetworkManager/SystemSettings\" /> <ulink type=\"block\" url=\"http://projects.gnome.org/NetworkManager/developers/api/09/ref-settings.html\" />"
-msgstr ""
+msgstr "Network Manager はマシンを移動して使う場合に特に推奨され (<xref linkend=\"sect.roaming-network-config\" />参照)、デフォルトのネットワーク管理ツールとして極めて便利です。<filename>/etc/NetworkManager/system-connections/</filename> 内の <filename>.ini</filename> 的ファイルを手作業で編集するか、またはグラフィカルツール (<command>nm-connection-editor</command>) を使うかのどちらか一方で、コンピュータの起動の可能な限り早い段階で使われる「システム接続」を作る事ができます。Network Manager でネットワーク接続を管理する場合、<filename>/etc/network/interfaces</filename> に含まれる全てのエントリを無効化するのを忘れないで下さい。<ulink type=\"block\" url=\"http://wiki.gnome.org/NetworkManager/SystemSettings\" /> <ulink type=\"block\" url=\"http://projects.gnome.org/NetworkManager/developers/api/09/ref-settings.html\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Ethernet Interface"
-msgstr ""
+msgstr "イーサネットインターフェイス"
 
 #. Tag: para
 #, no-c-format
 msgid "If the computer has an Ethernet card, the IP network that is associated with it must be configured by choosing from one of two methods. The simplest method is dynamic configuration with DHCP, and it requires a DHCP server on the local network. It may indicate a desired hostname, corresponding to the <literal>hostname</literal> setting in the example below. The DHCP server then sends configuration settings for the appropriate network."
-msgstr ""
+msgstr "コンピュータにイーサネットカードが付けられている場合、イーサネットカードに関連付けられる IP ネットワークは 1 つか 2 つの方法で必ず設定されなければいけません。最も簡単な方法は DHCP を使う動的設定で、これにはローカルネットワークで DHCP サーバを動かす必要があります。動的設定では、以下の例で <literal>hostname</literal> 設定に対応する、希望ホスト名を示すことが可能です。そして、DHCP サーバは適切なネットワーク設定を送信します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DHCP</primary>"
-msgstr ""
+msgstr "<primary>DHCP</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "DHCP configuration"
-msgstr ""
+msgstr "DHCP 設定"
 
 #. Tag: programlisting
 #, no-c-format
@@ -595,16 +608,20 @@ msgid ""
 "iface eth0 inet dhcp\n"
 "  hostname arrakis\n"
 msgstr ""
+"\n"
+"auto eth0\n"
+"iface eth0 inet dhcp\n"
+"  hostname arrakis\n"
 
 #. Tag: para
 #, no-c-format
 msgid "A “static” configuration must indicate network settings in a fixed manner. This includes at least the IP address and subnet mask; network and broadcast addresses are also sometimes listed. A router connecting to the exterior will be specified as a gateway."
-msgstr ""
+msgstr "「静的」設定の場合、必ず決まった方法でネットワーク設定を定義しなければいけません。この設定には、少なくとも IP アドレスとサブネットマスクが含まれます; 場合によっては、ネットワークとブロードキャストアドレスが含まれることがあります。ゲートウェイには、外部に接続しているルータを指定するでしょう。"
 
 #. Tag: title
 #, no-c-format
 msgid "Static configuration"
-msgstr ""
+msgstr "静的設定"
 
 #. Tag: programlisting
 #, no-c-format
@@ -618,303 +635,311 @@ msgid ""
 "  network 192.168.0.0\n"
 "  gateway 192.168.0.1\n"
 msgstr ""
+"\n"
+"auto eth0\n"
+"iface eth0 inet static\n"
+"  address 192.168.0.3\n"
+"  netmask 255.255.255.0\n"
+"  broadcast 192.168.0.255\n"
+"  network 192.168.0.0\n"
+"  gateway 192.168.0.1\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Multiple addresses"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> 複数アドレス"
 
 #. Tag: para
 #, no-c-format
 msgid "It is possible not only to associate several interfaces to a single, physical network card, but also several IP addresses to a single interface. Remember also that an IP address may correspond to any number of names via DNS, and that a name may also correspond to any number of numerical IP addresses."
-msgstr ""
+msgstr "複数のインターフェイスに 1 つの物理ネットワークカードを関連付けることだけでなく、1 つのインターフェイスに複数の IP アドレスを関連付けることも可能です。ある IP アドレスは DNS 経由で複数の名前に関連付けられているかもしれませんし、ある名前は複数の数値 IP アドレスに関連付けられているかもしれません。この点も忘れないで下さい。"
 
 #. Tag: para
 #, no-c-format
 msgid "As you can guess, the configurations can be rather complex, but these options are only used in very special cases. The examples cited here are typical of the usual configurations."
-msgstr ""
+msgstr "予想通り、この設定はちょっと複雑で、そのような設定が必要になるのはとても特殊な場合だけです。ここで引用しているのは、典型的な通常設定の例です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Connecting with PPP through a PSTN Modem"
-msgstr ""
+msgstr "PSTN モデム経由の PPP 接続"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPP</primary>"
-msgstr ""
+msgstr "<primary>PPP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>point to point</primary>"
-msgstr ""
+msgstr "<primary>2 点間</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connection</primary><secondary>by PSTN modem</secondary>"
-msgstr ""
+msgstr "<secondary>PSTN モデムを使った</secondary><primary>接続</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modem</primary><secondary>PSTN</secondary>"
-msgstr ""
+msgstr "<primary>モデム</primary><secondary>PSTN</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A point to point (PPP) connection establishes an intermittent connection; this is the most common solution for connections made with a telephone modem (“PSTN modem”, since the connection goes over the public switched telephone network)."
-msgstr ""
+msgstr "2 点間 (PPP) 接続は断続的な接続を確立します; これは電話モデムを使って接続する場合の最も一般的な接続方法です (「PSTN モデム」は公衆交換電話網を経由して接続します)。"
 
 #. Tag: para
 #, no-c-format
 msgid "A connection by telephone modem requires an account with an access provider, including a telephone number, username, password, and, sometimes the authentication protocol to be used. Such a connection is configured using the <command>pppconfig</command> tool in the Debian package of the same name. By default, it sets up a connection named <literal>provider</literal> (as in Internet service provider). When in doubt about the authentication protocol, choose <emphasis>PAP</emphasis>: it is offered by the majority of Internet service providers."
-msgstr ""
+msgstr "電話モデムを使って接続する場合、アクセスプロバイダのアカウント (電話番号、ユーザ名、パスワード) が必要で、認証プロトコルを使うこともあります。PPP 接続は、同名の Debian パッケージに含まれる <command>pppconfig</command> ツールを使って設定されます。デフォルトで、このツールは <literal>provider</literal> (Internet サービスプロバイダのように) と名付けられた接続を設定します。認証プロトコルがよく判らなければ、<emphasis>PAP</emphasis> を使ってください: <emphasis>PAP</emphasis> は Internet サービスプロバイダの多くで提供されています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pppconfig</command></primary>"
-msgstr ""
+msgstr "<primary><command>pppconfig</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PAP</primary>"
-msgstr ""
+msgstr "<primary>PAP</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "After configuration, it is possible to connect using the <command>pon</command> command (giving it the name of the connection as a parameter, when the default value of <literal>provider</literal> is not appropriate). The link is disconnected with the <command>poff</command> command. These two commands can be executed by the root user, or by any other user, provided they are in the <literal>dip</literal> group."
-msgstr ""
+msgstr "設定の後、<command>pon</command> コマンドを使って接続することが可能です (デフォルト値の <literal>provider</literal> が適切でない場合、接続名をパラメータとして与えてください)。リンクを切断するには <command>poff</command>  コマンドを使ってください。これら 2 つのコマンドを実行できるのは、root ユーザと <literal>dip</literal> グループに所属するユーザだけです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pon</command></primary>"
-msgstr ""
+msgstr "<primary><command>pon</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>poff</command></primary>"
-msgstr ""
+msgstr "<primary><command>poff</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> On-demand connection with <command>diald</command>"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> <command>diald</command> を使ったオンデマンド接続"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>diald</command></primary>"
-msgstr ""
+msgstr "<primary><command>diald</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connection</primary><secondary>on demand</secondary>"
-msgstr ""
+msgstr "<primary>接続</primary><secondary>オンデマンド</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>diald</command> is an on-demand connection service that automatically establishes a connection when needed, by detecting an outgoing IP packet and disconnecting after a period of inactivity."
-msgstr ""
+msgstr "<command>diald</command> はオンデマンド接続サービスで、外部宛の IP パケットを検出することで必要になったら自動的に接続を確立し、未通信状態で一定時間経過したら接続を切断します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Connecting through an ADSL Modem"
-msgstr ""
+msgstr "ADSL モデム経由の接続"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>connection</primary><secondary>by ADSL modem</secondary>"
-msgstr ""
+msgstr "<secondary>ADSL モデムによる</secondary><primary>接続</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modem</primary><secondary>ADSL</secondary>"
-msgstr ""
+msgstr "<primary>モデム</primary><secondary>ADSL</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ADSL, modem</primary>"
-msgstr ""
+msgstr "<primary>ADSL、モデム</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The generic term “ADSL modem” covers a multitude of devices with very different functions. The modems that are simplest to use with Linux are those that have an Ethernet interface (and not only a USB interface). These tend to be popular; most ADSL Internet service providers lend (or lease) a “box” with Ethernet interfaces. Depending on the type of modem, the configuration required can vary widely."
-msgstr ""
+msgstr "「ADSL モデム」という一般名称の意味には、全く違う機能を持つ数多くの装置が含まれています。Linux で使うのが一番簡単でなモデムはイーサネットインターフェイスを持つものです (USB インターフェイスではなく)。このタイプのモデムが人気になりつつあります; ほとんどの ADSL Internet サービスプロバイダはイーサネットインターフェイス付きの「ボックス」を貸与します (またはリースします)。モデムのタイプに依存して、必要な設定は広範囲に渡ります。"
 
 #. Tag: title
 #, no-c-format
 msgid "Modems Supporting PPPOE"
-msgstr ""
+msgstr "PPPOE をサポートするモデム"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPPOE</primary>"
-msgstr ""
+msgstr "<primary>PPPOE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>pppoeconf</command></primary>"
-msgstr ""
+msgstr "<primary><command>pppoeconf</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Some Ethernet modems work with the PPPOE protocol (Point to Point Protocol over Ethernet). The <command>pppoeconf</command> tool (from the package with the same name) will configure the connection. To do so, it modifies the <filename>/etc/ppp/peers/dsl-provider</filename> file with the settings provided and records the login information in the <filename>/etc/ppp/pap-secrets</filename> and <filename>/etc/ppp/chap-secrets</filename> files. It is recommended to accept all modifications that it proposes."
-msgstr ""
+msgstr "イーサネットモデムは PPPOE プロトコル (Point to Point Protocol over Ethernet) を取り扱います。PPPOE 接続を設定するには、<command>pppoeconf</command> ツール (同名のパッケージから提供されます) を使います。PPPOE 接続を設定するために、<command>pppoeconf</command> ツールは与えられた設定で <filename>/etc/ppp/peers/dsl-provider</filename> ファイルを修正し、ログイン情報を <filename>/etc/ppp/pap-secrets</filename> と <filename>/etc/ppp/chap-secrets</filename> ファイルに記録します。<command>pppoeconf</command> ツールが提案した全ての変更を受け入れることが望ましいです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once this configuration is complete, you can open the ADSL connection with the command, <command>pon dsl-provider</command> and disconnect with <command>poff dsl-provider</command>."
-msgstr ""
+msgstr "この設定が完了したら、<command>pon dsl-provider</command> で ADSL 接続を開始、<command>poff dsl-provider</command> で切断できます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>dsl-provider</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>dsl-provider</literal></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Starting <command>ppp</command> via <command>init</command>"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> <command>init</command> 経由で <command>ppp</command> を開始"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>init</command></primary>"
-msgstr ""
+msgstr "<primary><command>init</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "PPP connections over ADSL are, by definition, intermittent. Since they are usually not billed according to time, there are few downsides to the temptation of keeping them always open; one simple means to do so is to use the <command>init</command> process to control the connection. All that's needed is to add a line such as the following at the end of the <filename>/etc/inittab</filename> file; then, any time the connection is disconnected, <command>init</command> will reconnect it."
-msgstr ""
+msgstr "定義上、ADSL 上の PPP 接続は断続的なものです。通常、サービスプロバイダは時間に依存して従量課金しないので、常に接続状態を保つという誘惑に対して、ほとんど不利な点はありません。これを行う簡単な手段は <command>init</command> プロセスを使って接続を制御することです。必要なのは <filename>/etc/inittab</filename> ファイルの最後に以下の 1 行を追加するだけです。こうすると、接続が切断されたらいつでも、<command>init</command> が再接続を試行するでしょう。"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
-msgstr ""
+msgstr "\nadsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Most ADSL connections disconnect on a daily basis, but this method reduces the duration of the interruption."
-msgstr ""
+msgstr "ほとんどの ADSL 接続は 1 日に 1 回切断されますが、この方法を取ることで、通信が遮断される期間を短くすることが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Modems Supporting PPTP"
-msgstr ""
+msgstr "PPTP をサポートするモデム"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPTP</primary>"
-msgstr ""
+msgstr "<primary>PPTP</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The PPTP (Point-to-Point Tunneling Protocol) protocol was created by Microsoft. Deployed at the beginning of ADSL, it was quickly replaced by PPPOE. If this protocol is forced on you, see <xref linkend=\"network-infrastructure\" /> in the section about virtual private networks detailing PPTP."
-msgstr ""
+msgstr "PPTP (Point-to-Point Tunneling Protocol) プロトコルは Microsoft によって作られました。PPTP は 初期の ADSL で使われましたが、すぐに PPPOE によって置き換えられました。PPTP を使わなければいけない場合は、<xref linkend=\"network-infrastructure\" />の仮想プライベートネットワークに関する節で PPTP の詳細を御覧ください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Modems Supporting DHCP"
-msgstr ""
+msgstr "DHCP をサポートするモデム"
 
 #. Tag: para
 #, no-c-format
 msgid "When a modem is connected to the computer by an Ethernet cable (crossover cable) you typically configure a network connection by DHCP on the computer; the modem automatically acts as a gateway by default and takes care of routing (meaning that it manages the network traffic between the computer and the Internet)."
-msgstr ""
+msgstr "モデムとコンピュータがイーサネットケーブル (クロスケーブル) で接続されている場合、通常は DHCP でコンピュータのネットワーク接続を設定します; そのようなモデムは自動的にデフォルトでゲートウェイとして働き、ルーティングを処理します (これは、モデムがコンピュータと Internet の間のネットワークトラフィックを管理することを意味しています)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Crossover cable for a direct Ethernet connection"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> 直接イーサネット接続用のクロスケーブル"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>crossover cable</primary>"
-msgstr ""
+msgstr "<primary>クロスケーブル</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Computer network cards expect to receive data on specific wires in the cable, and send their data on others. When you connect a computer to a local network, you usually connect a cable (straight or crossover) between the network card and a repeater or switch. However, if you want to connect two computers directly (without an intermediary switch or repeater), you must route the signal sent by one card to the receiving side of the other card, and vice-versa. This is the purpose of a crossover cable, and the reason it is used."
-msgstr ""
+msgstr "コンピュータネットワークカードはケーブルの特定のワイヤからデータを受信し、別のワイヤからデータを送信します。コンピュータをローカルネットワークに接続する場合、通常ネットワークカードとリピータまたはスイッチの間をケーブル (ストレートまたはクロスケーブル) で接続します。しかしながら、2 台のコンピュータを直接 (中間にスイッチやリピータを介さずに) 接続したい場合、必ず送信側カードからみた送信ワイヤに伝わる信号を受信側カードからみた受信ワイヤに (その逆も) 伝送させなければいけません。これがクロスケーブルの目的で、使われる理由です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that this distinction is becoming less relevant over time, as modern network cards are able do detect the type of cable present and adapt accordingly, so it won't be unusual that both kinds of cable will work in a given location."
-msgstr ""
+msgstr "ケーブルを用途に合わせて区別することは、時間と共にだんだん重要性が低くなっています。なぜなら、最近のネットワークカードはケーブルの種別を検出して適切に適用できるからです。従って、ある場所で両方の種類のケーブルが使えるというのは異常ではありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Most “ADSL routers” on the market can be used like this, as do most of the ADSL modems provided by Internet services providers."
-msgstr ""
+msgstr "市場に出ている多くの「ADSL ルータ」と Internet サービスプロバイダによって提供されるほとんどの ADSL モデムはこのように使えます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Automatic Network Configuration for Roaming Users"
-msgstr ""
+msgstr "ローミングユーザ向けの自動ネットワーク設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>roaming configuration</secondary>"
-msgstr ""
+msgstr "<primary>ネットワーク</primary><secondary>ローミング設定</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Many Falcot engineers have a laptop computer that, for professional purposes, they also use at home. The network configuration to use differs according to location. At home, it may be a wifi network (protected by a WEP key), while the workplace uses a wired network for greater security and more bandwidth."
-msgstr ""
+msgstr "Falcot の多くのエンジニアは専門用途でラップトップコンピュータを持っており、自宅でもそれを使います。使用するネットワーク設定は場所によって異なります。自宅では wifi ネットワーク (WEP 鍵で保護されている) かもしれません、一方職場では、セキュリティと帯域幅を向上させるために有線ネットワークを使います。"
 
 #. Tag: para
 #, no-c-format
 msgid "To avoid having to manually connect or disconnect the corresponding network interfaces, administrators installed the <emphasis role=\"pkg\">network-manager</emphasis> package on these roaming machines. This software enables a user to easily switch from one network to another using a small icon displayed in the notification area of their graphical desktop. Clicking on this icon displays a list of available networks (both wired and wireless), so they can simply choose the network they wish to use. The program saves the configuration for the networks to which the user has already connected, and automatically switches to the best available network when the current connection drops."
-msgstr ""
+msgstr "対応するネットワークインターフェイスを手作業で接続したり切断するのを避けるために、管理者はローミングマシンに <emphasis role=\"pkg\">network-manager</emphasis> パッケージをインストールしました。このソフトウェアを使うと、ユーザはグラフィカルデスクトップの通知エリアに表示された小さなアイコンを使って、あるネットワークから別のネットワークに簡単に切り替えることが出来ます。このアイコンをクリックすると、利用可能なネットワーク (有線と無線の両方) のリストが表示されます。このためユーザは単純に使いたいネットワークを選ぶだけです。プログラムはユーザが既に接続されているネットワークの設定を保存します。そして現在の接続が切断された場合、利用可能なネットワークから最適なものを選んで、自動的に切り替えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In order to do this, the program is structured in two parts: a daemon running as root handles activation and configuration of network interfaces and a user interface controls this daemon. PolicyKit handles the required authorizations to control this program and Debian configured PolicyKit in such a way so that members of the netdev group can add or change Network Manager connections."
-msgstr ""
+msgstr "これを行うために、Network Manager プログラムは 2 つに分割されています: ネットワークインターフェイスの有効化と設定を担当する root として動くデーモンと、このデーモンを操作するユーザインターフェイスです。PolicyKit は Network Manager プログラムを操作する際に要求される認証を取り扱います。Debian は PolicyKit を設定して、netdev グループが Network Manager の接続を追加したり、変える事ができるようにしています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Network Manager knows how to handle various types of connections (DHCP, manual configuration, local network), but only if the configuration is set with the program itself. This is why it will systematically ignore all network interfaces in <filename>/etc/network/interfaces</filename> for which it is not suited. Since Network Manager doesn't give details when no network connections are shown, the easy way is to delete from <filename>/etc/network/interfaces</filename> any configuration for all interfaces that must be managed by Network Manager."
-msgstr ""
+msgstr "Network Manager は様々なタイプの接続 (DHCP、手作業設定、ローカルネットワーク) の取り扱い方法を知っていますが、それは Network Manager プログラム自身を使って設定を行った場合に限ります。このため、Network Manager は <filename>/etc/network/interfaces</filename> に含まれる全てのネットワークインターフェイスの内、不適切なものを系統的に無視します。Network Manager はネットワーク接続が見つからない場合その詳細を与えないので、<filename>/etc/network/interfaces</filename> から Network Manager で管理される全てのインターフェイスに関する設定を削除するのが簡単です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that this program is installed by default when the “Desktop Environment” task is chosen during initial installation."
-msgstr ""
+msgstr "このプログラムは最初のインストール中に「デスクトップ環境」タスクを選んだ場合にデフォルトでインストールされることに注意してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Configuration by “network profile”"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> 「network profile」を使った設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">guessnet</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">guessnet</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "More advanced users may want to try the <emphasis role=\"pkg\">guessnet</emphasis> package for automatic network configuration. A group of test scripts determine which network profile should be activated and configure it on the fly."
-msgstr ""
+msgstr "更に先進的なユーザは、自動的にネットワークを設定するために <emphasis role=\"pkg\">guessnet</emphasis> パッケージを試したくなるかもしれません。テストスクリプト群が有効化するべきそして臨機応変に設定するべきネットワークプロファイルがどれかを判断します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Users who prefer to manually select a network profile will prefer the <emphasis role=\"pkg\">netenv</emphasis> program, found in the package of the same name."
-msgstr ""
+msgstr "ネットワークプロファイルを手作業で選択するのを好むユーザは <emphasis role=\"pkg\">netenv</emphasis> プログラムを好むかもしれません。このプログラムは同名のパッケージから提供されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Setting the Hostname and Configuring the Name Service"
-msgstr ""
+msgstr "ホスト名と名前解決サービスの設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>name</primary><secondary>attribution and resolution</secondary>"
-msgstr ""
+msgstr "<primary>名前</primary><secondary>特定と解決</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>assignment of names</primary>"
-msgstr ""
+msgstr "<primary>名前割り当て</primary>"
 
 #. Tag: para
 #, no-c-format
