@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-09 19:11+0900\n"
+"PO-Revision-Date: 2015-05-10 18:05+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1583,487 +1583,487 @@ msgstr "<secondary>ユーザアカウントの</secondary><primary>作成</prima
 #. Tag: para
 #, no-c-format
 msgid "One of the first actions an administrator needs to do when setting up a new machine is to create user accounts. This is typically done using the <command>adduser</command> command which takes a user-name for the new user to be created, as an argument."
-msgstr ""
+msgstr "新しいマシンをセットアップする際に、管理者が最初にする作業の 1 つにユーザアカウントの作成作業があります。典型的に、ユーザアカウントの作成作業は <command>adduser</command> コマンドを使って行われます。このコマンドは作成する新しいユーザのユーザ名を引数に取ります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>adduser</command></primary>"
-msgstr ""
+msgstr "<primary><command>adduser</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>adduser</command> command asks a few questions before creating the account, but its usage is fairly straightforward. Its configuration file, <filename>/etc/adduser.conf</filename>, includes all the interesting settings: it can be used to automatically set a quota for each new user by creating a user template, or to change the location of user accounts; the latter is rarely useful, but it comes in handy when you have a large number of users and want to divide their accounts over several disks, for instance. You can also choose a different default shell."
-msgstr ""
+msgstr "<command>adduser</command> コマンドはアカウントを作成する前に幾つかの質問を尋ねますが、その使い方はかなり簡単です。<command>adduser</command> コマンドの設定ファイル <filename>/etc/adduser.conf</filename> には興味深い設定が含まれます: この設定ファイルは、ユーザテンプレートを作成することで自動的に新しいユーザにクォータを課したり、ユーザアカウントの場所を変更するために使われます; 後者が役に立つ場面は少ないですが、例えば多くのユーザを管理していて、各アカウントを複数のディスクに分散させたい場合には、役立ちます。また、異なるデフォルトシェルを変えることも可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Quota"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> クォータ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quota</primary>"
-msgstr ""
+msgstr "<primary>クォータ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The term “quota” refers to a limit on machine resources that a user is allowed to use. This frequently refers to disk space."
-msgstr ""
+msgstr "「クォータ」という用語はユーザが使えるマシンリソースの制限値を意味しています。マシンリソースとは通常ディスクスペースを指します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The creation of an account populates the user's home directory with the contents of the <filename>/etc/skel/</filename> template. This provides the user with a set of standard directories and configuration files."
-msgstr ""
+msgstr "アカウントが作成されると、<filename>/etc/skel/</filename> テンプレートの内容がユーザのホームディレクトリにコピーされます。<filename>/etc/skel/</filename> テンプレートには標準的なディレクトリと設定ファイルが含まれます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>add a user</secondary>"
-msgstr ""
+msgstr "<primary>グループ</primary><secondary>ユーザの追加</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>add a user to a group</primary>"
-msgstr ""
+msgstr "<primary>グループにユーザを追加する</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In some cases, it will be useful to add a user to a group (other than their default “main” group) in order to grant them additional permissions. For example, a user who is included in the <emphasis>audio</emphasis> group can access audio devices (see sidebar “Device access permissions”). This can be achieved with a command such as <command>adduser <replaceable>user</replaceable> <replaceable>group</replaceable></command>."
-msgstr ""
+msgstr "あるユーザに追加のパーミッションを与える目的で、そのユーザを (デフォルトの「メイン」グループ以外の) あるグループに所属させることは、便利な事があります。例えば、<emphasis>audio</emphasis> グループに属するユーザは音声デバイスにアクセスできます (傍注「デバイスアクセスパーミッション」参照)。これは <command>adduser <replaceable>user</replaceable> <replaceable>group</replaceable></command> コマンドで達成されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Device access permissions"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> デバイスアクセスパーミッション"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>device</primary><secondary>access permissions</secondary>"
-msgstr ""
+msgstr "<primary>デバイス</primary><secondary>アクセスパーミッション</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>special</secondary>"
-msgstr ""
+msgstr "<primary>ファイル</primary><secondary>スペシャル</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mode</primary><secondary>character</secondary>"
-msgstr ""
+msgstr "<primary>モード</primary><secondary>キャラクタ</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mode</primary><secondary>block</secondary>"
-msgstr ""
+msgstr "<primary>モード</primary><secondary>ブロック</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>block, mode</primary>"
-msgstr ""
+msgstr "<primary>ブロック、モード</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>character, mode</primary>"
-msgstr ""
+msgstr "<primary>キャラクタ、モード</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>special, file</primary>"
-msgstr ""
+msgstr "<primary>スペシャル、ファイル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mknod</command></primary>"
-msgstr ""
+msgstr "<primary><command>mknod</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Each hardware peripheral device is represented under Unix with a special file, usually stored in the file tree under <filename>/dev/</filename> (DEVices). Two types of special files exist according to the nature of the device: “character mode” and “block mode” files, each mode allowing for only a limited number of operations. While character mode limits interaction with read/write operations, block mode also allows seeking within the available data. Finally, each special file is associated with two numbers (“major” and “minor”) that identify the device to the kernel in a unique manner. Such a file, created by the <command>mknod</command> command, simply contains a symbolic (and more human-friendly) name."
-msgstr ""
+msgstr "Unix では、ハードウェア周辺機器デバイスをスペシャルファイルとして表します。スペシャルファイルは通常 <filename>/dev/</filename> (DEVices) ツリーの下に格納されます。デバイスの性質に依存して、2 種類のスペシャルファイルが存在します: 「キャラクタモード」と「ブロックモード」ファイルです、それぞれのモードでは行える操作が限定されています。キャラクタモードでは、読み/書き操作を連動させることが制限されています。これに対してブロックモードでは、利用可能なデータを探索することを許可されています。最後に、それぞれのスペシャルファイルは (「メジャー」と「マイナー」の) 2 つの番号に関連付けられており、カーネルはこの番号を使って一意的な方法でデバイスを識別します。スペシャルファイルは <command>mknod</command> コマンドで作成され、シンボリック名 (より人間の使いやすい名前) を付けられます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The permissions of a special file map to the permissions necessary to access the device itself. Thus, a file such as <filename>/dev/mixer</filename>, representing the audio mixer, only has read/write permissions for the root user and members of the <literal>audio</literal> group. Only these users can operate the audio mixer."
-msgstr ""
+msgstr "スペシャルファイルのパーミッションはそのデバイスへのアクセスに必要なパーミッションを意味します。そのため、音声ミキサを表す <filename>/dev/mixer</filename> 等のファイルには、root と <literal>audio</literal> グループに所属するユーザの読み/書きを許可するパーミッションが与えられています。音声ミキサを操作できるのは、これらのユーザだけです。"
 
 #. Tag: para
 #, no-c-format
 msgid "It should be noted that the combination of <emphasis role=\"pkg\">udev</emphasis>, <emphasis role=\"pkg\">consolekit</emphasis> and <emphasis role=\"pkg\">policykit</emphasis> can add additional permissions to allow users physically connected to the console (and not through the network) to access to certain devices."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">udev</emphasis>、<emphasis role=\"pkg\">consolekit</emphasis>、<emphasis role=\"pkg\">policykit</emphasis> を組み合わせて使うことで、コンソールに物理的に接続された (ネットワーク経由でない) ユーザに対して一部のデバイスへのアクセスを許可する追加的なパーミッションを設定できる。という点に注意してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Shell Environment"
-msgstr ""
+msgstr "シェル環境"
 
 #. Tag: para
 #, no-c-format
 msgid "Command interpreters (or shells) are frequently a user's first point of contact with the computer, and they must therefore be rather friendly. Most of them use initialization scripts that allow configuration of their behavior (automatic completion, prompt text, etc.)."
-msgstr ""
+msgstr "コマンドインタプリタ (シェル) はユーザが最初にコンピュータに触れるものですから、かなり使いやすくなければいけません。多くのシェルは、挙動 (自動補完、プロンプトテキスト、など) を設定する初期化スクリプトを使います。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>command line interface</primary>"
-msgstr ""
+msgstr "<primary>コマンドラインインターフェイス</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>command interpreter</primary>"
-msgstr ""
+msgstr "<primary>コマンドインタプリタ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>shell</primary>"
-msgstr ""
+msgstr "<primary>シェル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bash</command></primary>"
-msgstr ""
+msgstr "<primary><command>bash</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>bash</command>, the standard shell, uses the <filename>/etc/bash.bashrc</filename> initialization script for “interactive” shells, and <filename>/etc/profile</filename> for “login” shells."
-msgstr ""
+msgstr "標準的なシェルの <command>bash</command> は「対話的」シェル用に <filename>/etc/bash.bashrc</filename> 初期化スクリプトを使い、「ログイン」シェル用にd <filename>/etc/profile</filename>を使います。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Login shell and (non) interactive shell"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> ログインシェルと (非) 対話的シェル"
 
 #. Tag: para
 #, no-c-format
 msgid "In simple terms, a login shell is invoked when you log in to the console either locally or remotely via <command>ssh</command>, or when you run an explicit <command>bash --login</command> command. Regardless of whether it's a login shell or not, a shell can be interactive (in an <command>xterm</command>-type terminal for instance); or non-interactive (when executing a script)."
-msgstr ""
+msgstr "単純な用語として、ログインシェルとは、ローカルおよびリモートの <command>ssh</command> 経由でコンソールにログインするか、明確に <command>bash --login</command> コマンドを実行してログインする際に実行されるシェルのことです。ログインシェルかどうかに関わらず、シェルは対話的 (例えば <command>xterm</command> 系ターミナルの中で実行される場合) にもなれば; 非対話的 (スクリプトとして実行される場合) にもなります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DISCOVERY</emphasis> Other shells, other scripts"
-msgstr ""
+msgstr "<emphasis>DISCOVERY</emphasis> 他のシェル、他のスクリプト"
 
 #. Tag: para
 #, no-c-format
 msgid "Each command interpreter has a specific syntax and its own configuration files. Thus, <command>zsh</command> uses <filename>/etc/zshrc</filename> and <filename>/etc/zshenv</filename>; <command>csh</command> uses <filename>/etc/csh.cshrc</filename>, <filename>/etc/csh.login</filename> and <filename>/etc/csh.logout</filename>. The man pages for these programs document which files they use."
-msgstr ""
+msgstr "各コマンドラインインタプリタには、特別な構文が決められており、専用の設定ファイルがあります。例えば <command>zsh</command> は <filename>/etc/zshrc</filename> と <filename>/etc/zshenv</filename> を使います; <command>csh</command> は <filename>/etc/csh.cshrc</filename>、<filename>/etc/csh.login</filename>、<filename>/etc/csh.logout</filename> を使います。それぞれのプログラム用の man ページには、そのプログラムでどのファイルを使うかが書かれています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>zsh</command></primary>"
-msgstr ""
+msgstr "<primary><command>zsh</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>csh</command></primary>"
-msgstr ""
+msgstr "<primary><command>csh</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "For <command>bash</command>, it is useful to activate “automatic completion” in the <filename>/etc/bash.bashrc</filename> file (simply uncomment a few lines)."
-msgstr ""
+msgstr "<command>bash</command> では、<filename>/etc/bash.bashrc</filename> ファイルを使って「自動補完」を有効化する (通常いくつかの行のコメントを外す) と便利です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Automatic completion"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> 自動補完"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>automatic completion</primary>"
-msgstr ""
+msgstr "<primary>自動補完</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Many command interpreters provide a completion feature, which allows the shell to automatically complete a partially typed command name or argument when the user hits the <keycap>Tab</keycap> key. This lets users work more efficiently and be less error-prone."
-msgstr ""
+msgstr "多くのコマンドラインインタプリタには補完機能があります。補完機能を使うと、コマンド名や引数の一部を入力した後に <keycap>Tab</keycap> キーを押すことで、残りの部分が自動的に入力されます。補完機能のお陰で、ユーザはより効率的に作業を行い、より間違いを起こしにくくなります。"
 
 #. Tag: para
 #, no-c-format
 msgid "This function is very powerful and flexible. It is possible to configure its behavior according to each command. Thus, the first argument following <command>apt-get</command> will be proposed according to the syntax of this command, even if it does not match any file (in this case, the possible choices are <literal>install</literal>, <literal>remove</literal>, <literal>upgrade</literal>, etc.)."
-msgstr ""
+msgstr "補完機能はとても強力で柔軟です。補完機能の挙動をそれぞれのコマンドに対して設定することが可能です。そんなわけで、<command>apt-get</command> に続く 1 番目の引数は <command>apt-get</command> コマンドの構文に従って提案されます (この場合、<literal>install</literal>、<literal>remove</literal>、<literal>upgrade</literal> などが候補として挙げられます)。コマンドが引数にファイル名を受け取るかは関係ありません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The tilde, a shortcut to HOME"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> チルダ記号、ホームディレクトリへのショートカット"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>~</primary>"
-msgstr ""
+msgstr "<primary>~</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>tilde</primary>"
-msgstr ""
+msgstr "<primary>チルダ記号</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The tilde is often used to indicate the directory to which the environment variable, <varname>HOME</varname>, points (being the user's home directory, such as <filename>/home/rhertzog/</filename>). Command interpreters automatically make the substitution: <filename>~/hello.txt</filename> becomes <filename>/home/rhertzog/hello.txt</filename>."
-msgstr ""
+msgstr "チルダ記号は通常、環境変数 <varname>HOME</varname> の指すディレクトリ (ユーザのホームディレクトリ、例えば <filename>/home/rhertzog/</filename>) を表すために使われます。コマンドインタプリタはチルダ記号を以下のように自動的に置換します: <filename>~/hello.txt</filename> は <filename>/home/rhertzog/hello.txt</filename> の様に置換されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The tilde also allows access to another user's home directory. Thus, <filename>~rmas/bonjour.txt</filename> is synonymous with <filename>/home/rmas/bonjour.txt</filename>."
-msgstr ""
+msgstr "チルダ記号は他のユーザのホームディレクトリを表す場合にも使えます。そんなわけで、<filename>~rmas/bonjour.txt</filename> は <filename>/home/rmas/bonjour.txt</filename> と同じ意味になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition to these common scripts, each user can create their own <filename>~/.bashrc</filename> and <filename>~/.bash_profile</filename> to configure their shell. The most common changes are the addition of aliases; these are words that are automatically replaced with the execution of a command, which makes it faster to invoke that command. For instance, you could create the <literal>la</literal> alias for the command <command>ls -la | less</command> command; then you only have to type <command>la</command> to inspect the contents of a directory in detail."
-msgstr ""
+msgstr "これらの共用スクリプトに加えて、各ユーザは自分のシェルを設定するために <filename>~/.bashrc</filename> と <filename>~/.bash_profile</filename> を作ることが出来ます。最もよくある変更は、別名の追加です; コマンドの実行時に自動的に置換される単語を登録することで、コマンドを素早く実行できます。例えば、<command>ls -la | less</command> コマンドの別名として <literal>la</literal> を作成することが出来ます; ディレクトリの内容を細かく調査する場合、<command>la</command> をタイプするだけです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Environment variables"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> 環境変数"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>environment</primary><secondary>environment variable</secondary>"
-msgstr ""
+msgstr "<primary>環境</primary><secondary>環境変数</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>variable, environment</primary>"
-msgstr ""
+msgstr "<primary>変数、環境</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Environment variables allow storage of global settings for the shell or various other programs called. They are contextual (each process has its own set of environment variables) but inheritable. This last characteristic offers the possibility for a login shell to declare variables which will be passed down to all programs it executes."
-msgstr ""
+msgstr "環境変数を使うことで、呼び出されたシェルや他のプログラムに対して大域的な設定を行うことが出来ます。環境変数はその場限りのものです (それぞれのプロセスは自身の環境変数を持っています) が継承可能です。この最後の性質のお陰で、全てのプログラムの実行時に伝えられる変数をログインシェルで宣言する事ができます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Setting default environment variables is an important element of shell configuration. Leaving aside the variables specific to a shell, it is preferable to place them in the <filename>/etc/environment</filename> file, since it is used by the various programs likely to initiate a shell session. Variables typically defined there include <varname>ORGANIZATION</varname>, which usually contains the name of the company or organization, and <varname>HTTP_PROXY</varname>, which indicates the existence and location of an HTTP proxy."
-msgstr ""
+msgstr "デフォルト環境変数の設定はシェルを設定する上で重要な要素です。あるシェル固有の変数はさておき、デフォルト環境変数は <filename>/etc/environment</filename> ファイルに設定を置くことが好まれます。なぜなら、シェルセッションを起動する様々なプログラムがこのファイルを使うからです。典型的に設定される変数には、会社か組織の名前を設定する <varname>ORGANIZATION</varname>、HTTP プロキシの存在とその場所を設定する <varname>HTTP_PROXY</varname> などがあります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> All shells configured identically"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> 全てのシェルを同じように設定する"
 
 #. Tag: para
 #, no-c-format
 msgid "Users often want to configure their login and interactive shells in the same way. To do this, they choose to interpret (or “source”) the content from <filename>~/.bashrc</filename> in the <filename>~/.bash_profile</filename> file. It is possible to do the same with files common to all users (by calling <filename>/etc/bash.bashrc</filename> from <filename>/etc/profile</filename>)."
-msgstr ""
+msgstr "多くの場合、ユーザはログインシェルと対話的シェルを同じ様に設定したいと思うでしょう。これを行うには、<filename>~/.bashrc</filename> の内容を <filename>~/.bash_profile</filename> ファイルで実行 (または「source」) します。全てのユーザに共通のファイルで同じこと (<filename>/etc/profile</filename>から<filename>/etc/bash.bashrc</filename> を呼び出す) をするのも可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Printer Configuration"
-msgstr ""
+msgstr "プリンタ設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>configuration</primary><secondary>printing</secondary>"
-msgstr ""
+msgstr "<primary>設定</primary><secondary>印刷</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>printing</primary><secondary>configuration</secondary>"
-msgstr ""
+msgstr "<primary>印刷</primary><secondary>設定</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Printer configuration used to cause a great many headaches for administrators and users alike. These headaches are now mostly a thing of the past, thanks to <emphasis role=\"pkg\">cups</emphasis>, the free print server using the IPP protocol (Internet Printing Protocol)."
-msgstr ""
+msgstr "以前はプリンタ設定が管理者およびユーザにとっても大きな悩みの種でした。IPP プロトコル (Internet Printing Protocol) を使うフリーの印刷サーバである <emphasis role=\"pkg\">cups</emphasis>のお陰で、これらの悩みの種のほとんどは今や過去の物です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IPP</primary>"
-msgstr ""
+msgstr "<primary>IPP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Internet Printing Protocol</primary>"
-msgstr ""
+msgstr "<primary>Internet Printing Protocol</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>cups</command></primary>"
-msgstr ""
+msgstr "<primary><command>cups</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This program is divided over several Debian packages: <emphasis role=\"pkg\">cups</emphasis> is the central print server; <emphasis role=\"pkg\">cups-bsd</emphasis> is a compatibility layer allowing use of commands from the traditional BSD printing system (<command>lpd</command> daemon, <command>lpr</command> and <command>lpq</command> commands, etc.); <emphasis role=\"pkg\">cups-client</emphasis> contains a group of programs to interact with the server (block or unblock a printer, view or delete print jobs in progress, etc.); and finally, <emphasis role=\"pkg\">cups-driver-gutenprint</emphasis> contains a collection of additional printer drivers for <command>cups</command>."
-msgstr ""
+msgstr "cups プログラムは複数の Debian パッケージに分割されています: <emphasis role=\"pkg\">cups</emphasis> は主要な印刷サーバです; <emphasis role=\"pkg\">cups-bsd</emphasis> は、古典的な BSD 印刷システム (<command>lpd</command> デーモン、<command>lpr</command>、<command>lpq</command> コマンドなど) からのコマンドを使えるようにするための、互換性レイヤです; <emphasis role=\"pkg\">cups-client</emphasis> には、サーバと通信する (プリンタをブロックしたりブロック解除する、進行中の印刷ジョブを表示したり削除する) ための一連のプログラムが含まれます。そして最後に、<emphasis role=\"pkg\">cups-driver-gutenprint</emphasis> には <command>cups</command> 用の追加的なプリンタドライバが含まれます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lpr</command></primary>"
-msgstr ""
+msgstr "<primary><command>lpr</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lpd</command></primary>"
-msgstr ""
+msgstr "<primary><command>lpd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lpq</command></primary>"
-msgstr ""
+msgstr "<primary><command>lpq</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> CUPS"
-msgstr ""
+msgstr "<emphasis>COMMUNITY</emphasis> CUPS"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CUPS</primary>"
-msgstr ""
+msgstr "<primary>CUPS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Common Unix Printing System</primary>"
-msgstr ""
+msgstr "<primary>Common Unix Printing System</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "CUPS (Common Unix Printing System) is a project (and a trademark) managed by Apple, Inc. <ulink type=\"block\" url=\"http://www.cups.org/\" />"
-msgstr ""
+msgstr "CUPS (Common Unix Printing System) は Apple, Inc. の管理するプロジェクト (商標) です。<ulink type=\"block\" url=\"http://www.cups.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "After installation of these different packages, <command>cups</command> is administered easily through a web interface accessible at the local address: <literal>http://localhost:631/</literal>. There you can add printers (including network printers), remove, and administer them. You can also administer <command>cups</command> with the <command>system-config-printer</command> graphical interface (from the Debian package of the same name), which is installed by default if the “Desktop environment” task is chosen."
-msgstr ""
+msgstr "様々なパッケージをインストールした後、ローカルアドレスからアクセスできるウェブインターフェースを通じて <command>cups</command> を簡単に管理することが可能です: <literal>http://localhost:631/</literal>。このインターフェイスを通じてプリンタ (ネットワークプリンタを含む) を追加、削除、管理することができます。また、(同名のパッケージから提供される) <command>system-config-printer</command> グラフィカルインターフェイスを使っても、<command>cups</command> を管理することが可能です。<command>system-config-printer</command> は「デスクトップ環境」タスクを選択すればデフォルトでインストールされます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>cups</command></primary><secondary>administration</secondary>"
-msgstr ""
+msgstr "<primary><command>cups</command></primary><secondary>管理</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Obsolescence of <filename>/etc/printcap</filename>"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> <filename>/etc/printcap</filename> の陳腐化"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>cups</emphasis> no longer uses the <filename>/etc/printcap</filename> file, which is now obsolete. Programs that rely upon this file to get a list of available printers will, thus, fail. To avoid this problem, delete this file and make it a symbolic link (see sidebar <xref linkend=\"sidebar.symbolic-link\" />) to <filename>/var/run/cups/printcap</filename>, which is maintained by <emphasis>cups</emphasis> to ensure compatibility."
-msgstr ""
+msgstr "<emphasis>cups</emphasis> は今や時代遅れになった <filename>/etc/printcap</filename> ファイルを使っていません。利用可能なプリンタのリストを得る目的でこのファイルを利用するプログラムは機能しません。この問題を避けるため、<filename>/etc/printcap</filename> ファイルを削除し、<filename>/var/run/cups/printcap</filename> へのシンボリックリンク (傍注<xref linkend=\"sidebar.symbolic-link\" />参照) を作ってください。<emphasis>cups</emphasis> は互換性を保つために<filename>/var/run/cups/printcap</filename> を保守しています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>printcap</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>printcap</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Bootloader"
-msgstr ""
+msgstr "ブートローダの設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>loader</primary><secondary>bootloader</secondary>"
-msgstr ""
+msgstr "<primary>ローダ</primary><secondary>ブートローダ</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>bootloader</primary>"
-msgstr ""
+msgstr "<primary>ブートローダ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "It is probably already functional, but it is always good to know how to configure and install the bootloader in case it disappears from the Master Boot Record. This can occur after installation of another operating system, such as Windows. The following information can also help you to modify the bootloader configuration if needed."
-msgstr ""
+msgstr "ブートローダは既に機能しているかもしれませんが、ブートローダがマスターブートレコードから消えてしまった状況に備えて、ブートローダの設定方法とイントール方法を知っておくのは常に良い考えです。この状況は、他のオペレーティングシステム、例えば Windows などをインストールした後に、起こる場合があります。以下の情報はブートローダ設定の変更が必要になった際にそれを変更するための助けになるでしょう。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Master boot record"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> マスターブートレコード"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MBR</primary>"
-msgstr ""
+msgstr "<primary>MBR</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Master Boot Record</primary>"
-msgstr ""
+msgstr "<primary>マスターブートレコード</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Master Boot Record (MBR) occupies the first 512 bytes of the first hard disk, and is the first thing loaded by the BIOS to hand over control to a program capable of booting the desired operating system. In general, a bootloader gets installed in the MBR, removing its previous content."
-msgstr ""
+msgstr "マスターブートレコード (MBR) は最初のハードディスクの最初の 512 バイトを専有し、 BIOS は対象のオペレーティングシステムを起動できるプログラムに操作を受け渡すために真っ先に MBR を読み込みます。一般にブートローダは MBR にインストールされ、その前に MBR にあった情報は削除されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Identifying the Disks"
-msgstr ""
+msgstr "ディスクの識別"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis> and <filename>/dev/</filename>"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> <emphasis>udev</emphasis> と <filename>/dev/</filename>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/dev/</filename> directory traditionally houses so-called “special” files, intended to represent system peripherals (see sidebar <xref linkend=\"sidebar.special-files\" />). Once upon a time, it used to contain all special files that could potentially be used. This approach had a number of drawbacks among which the fact that it restricted the number of devices that one could use (due to the hardcoded list of names), and that it was impossible to know which special files were actually useful."
-msgstr ""
+msgstr "伝統的に、<filename>/dev/</filename> ディレクトリは、システムの周辺機器 (傍注<xref linkend=\"sidebar.special-files\" />参照) を表す目的で、いわゆる「スペシャル」ファイルを保存する場所でした。昔 <filename>/dev/</filename> ディレクトリには、潜在的に利用する可能性のある全てのスペシャルファイルが含まれていました。このやり方には多くの欠点がありました。特に、使うことのできるデバイスの数が制限されていた (ハードコードされた名前リストのために) 点、実際に使えるスペシャルファイルがどれなのか判らない点、です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Nowadays, the management of special files is entirely dynamic and matches better the nature of hot-swappable computer devices. The kernel cooperates with <emphasis>udev</emphasis> to create and delete them as needed when the corresponding devices appear and disappear. For this reason, <filename>/dev/</filename> doesn't need to be persistent and is thus a RAM-based filesystem that starts empty and contains only the relevant entries."
-msgstr ""
+msgstr "今日、スペシャルファイルの管理は完全に動的で、これはホットスワップ可能なコンピュータデバイスの性質と上手く合っています。カーネルは <emphasis>udev</emphasis> と協力し、対応するデバイスが取り付けられたり取り外され際に、スペシャルファイルを作成したり削除したりします。この理由により <filename>/dev/</filename> が永続的である必要は無くなり、RAM ベースのファイルシステムでは、最初このディレクトリを空にしておき、関連するエントリだけを含めるようにしています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The kernel communicates lots of information about any newly added device and hands out a pair of major/minor numbers to identify it. With this <command>udevd</command> can create the special file under the name and with the permissions that it wants. It can also create aliases and do additional actions (initialization or registration tasks for example). <command>udevd</command>'s behavior is driven by a large set of (customizable) rules."
-msgstr ""
+msgstr "カーネルは新たに追加されたデバイスに関する多くの情報をやりとりして、そのデバイスを識別するメジャー/マイナー番号の組を配布します。<command>udevd</command> はデバイスに必要なパーミッション設定と名前を付けたスペシャルファイルを作成します。さらに <command>udevd</command> は別名を作成し、追加的操作を行うことも可能です (例えばデバイスの初期化や登録作業)。<command>udevd</command> の挙動は (カスタマイズ可能な) 巨大ルール群によって決定されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "With dynamically assigned names, you can thus keep the same name for a given device, regardless of the connector used or the connection order, which is especially useful when you use various USB peripherals. The first partition on the first hard drive can then be called <filename>/dev/sda1</filename> for backwards compatibility, or <filename>/dev/root-partition</filename> if you prefer, or even both at the same time since <command>udevd</command> can be configured to automatically create a symbolic link."
-msgstr ""
+msgstr "動的に名前を付けることで、あるデバイスに常に同じ名前を持たせることが可能になります。名前は接続するコネクタや接続順に依存しないので、特に複数の USB 周辺機器を使う場合に便利です。1 台目のハードドライブの最初のパーティションは後方互換性を保つために <filename>/dev/sda1</filename> と呼ばれます。しかしあなたがそう望むなら <filename>/dev/root-partition</filename> と呼ぶことも可能ですし、両方の名前を同時に使うことも出来ます。なぜなら自動的にシンボリックリンクを作成するように <command>udevd</command> を設定できるからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Previously, some kernel modules did automatically load when you tried to access the corresponding device file; henceforth, the peripheral's special file no longer exists prior to loading the module, which is no big deal, since most modules are loaded on boot thanks to automatic hardware detection. But for undetectable peripherals (such as older disk drives or PS/2 mice), this doesn't work. Consider adding the modules, <literal>floppy</literal>, <literal>psmouse</literal> and <literal>mousedev</literal> to <filename>/etc/modules</filename> in order to force loading them on boot."
-msgstr ""
+msgstr "以前、幾つかのカーネルモジュールは関連するデバイスファイルにアクセスを試みた時点で自動的に読み込まれていました; 最近は、モジュールを読み込む前に周辺機器のスペシャルファイルが存在することはありません。これは大きな問題ではありません。なぜなら、自動ハードウェア検出のお陰でほとんどのモジュールはブート時に読み込まれるからです。しかし、検出できない周辺機器 (古いディスクドライブや PS/2 マウスなど) ではこの挙動が問題になります。<literal>floppy</literal>、<literal>psmouse</literal>、<literal>mousedev</literal> モジュールを <filename>/etc/modules</filename> に追加して、ブート時に強制的にこれらのモジュールを読み込むことを検討してください。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>hard drive, names</primary>"
-msgstr ""
+msgstr "<primary>ハードドライブ、名前</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>names</primary><secondary>of hard drives</secondary>"
-msgstr ""
+msgstr "<secondary>ハードドライブの</secondary><primary>名前</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Configuration of the bootloader must identify the different hard drives and their partitions. Linux uses “block” special files stored in the <filename>/dev/</filename> directory, for this purpose. Historically, <filename>/dev/hda</filename> was the master disk on the first IDE controller, and <filename>/dev/hdb</filename> its first slave, <filename>/dev/hdc</filename> and <filename>/dev/hdd</filename> being, respectively, the master and slave disks on the second IDE controller, and so on down for any others. <filename>/dev/sda</filename> corresponded to the first SCSI drive, <filename>/dev/sdb</filename> being the second, etc. Since Debian <emphasis role=\"distribution\">Squeeze</emphasis>, this naming scheme has been unified by the Linux kernel, and all hard drives (IDE/PATA, SATA, SCSI, USB, IEEE 1394) are now represented by <filename>/dev/sd*</filename>."
-msgstr ""
+msgstr "ブートローダを設定するには、必ず様々なハードドライブとそのパーティションを識別しなければいけません。Linux はこの目的のために <filename>/dev/</filename> ディレクトリ内で「ブロック」スペシャルファイルを使います。歴史的に言って、<filename>/dev/hda</filename> は最初の IDE コントローラのマスターディスク、<filename>/dev/hdb</filename> はスレーブディスク、<filename>/dev/hdc</filename> と <filename>/dev/hdd</filename> は 2 番目の IDE コントローラのそれぞれマスターとスレーブディスクに対応していました。また、他のディスクについても同様です。<filename>/dev/sda</filename> は最初の SCSI ドライブに対応し、<filename>/dev/sdb</filename> は 2 番目のものでした。Debian <emphasis role=\"distribution\">Squeeze</emphasis> 以降、この命名規則は Linux カーネルによって統一化されました。現在、全てのハードドライブ (IDE/PATA、SATA、SCSI、USB、IEEE 1394) は <filename>/dev/sd*</filename> と表されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each partition is represented by its number on the disk on which it resides: for instance, <filename>/dev/sda1</filename> is the first partition on the first disk, and <filename>/dev/sdb3</filename> is the third partition on the second disk."
-msgstr ""
+msgstr "それぞれのパーティションは自分が存在するディスク上の番号で表されます: 例えば、<filename>/dev/sda1</filename> は 1 台目のディスクの最初のパーティションで、<filename>/dev/sdb3</filename> は 2 台目のディスクの 3 番目のパーティションです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The PC architecture (or “i386”) is limited to four “primary” partitions per disk. To go beyond this limitation, one of them must be created as an “extended” partition, and it can then contain additional “secondary” partitions. These secondary partitions must be numbered from 5. Thus the first secondary partition could be <filename>/dev/sda5</filename>, followed by <filename>/dev/sda6</filename>, etc."
-msgstr ""
+msgstr "PC アーキテクチャ (つまり「i386」) では、1 台あたりに作れる「プライマリ」パーティションの数は 4 つに制限されています。この制限を超えるためには、プライマリパーティションの 1 つを「拡張」パーティションとして作成します。拡張パーティションには追加的な「セカンダリ」パーティションを含めることが可能です。このようなセカンダリパーティションの番号は必ず 5 が割り振られます。最初のセカンダリパーティションは <filename>/dev/sda5</filename>、2 番目は <filename>/dev/sda6</filename> などのように割り振られるでしょう。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>primary</secondary>"
-msgstr ""
+msgstr "<primary>パーティション</primary><secondary>プライマリ</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>extended</secondary>"
-msgstr ""
+msgstr "<primary>パーティション</primary><secondary>拡張</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>partition</primary><secondary>secondary</secondary>"
-msgstr ""
+msgstr "<primary>パーティション</primary><secondary>セカンダリ</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "It is not always easy to remember what disk is connected to which SATA controller, or in third position in the SCSI chain, especially since the naming of hotplugged hard drives (which includes among others most SATA disks and external disks) can change from one boot to another. Fortunately, <command>udev</command> creates, in addition to <filename>/dev/sd*</filename>, symbolic links with a fixed name, which you could then use if you wished to identify a hard drive in a non-ambiguous manner. These symbolic links are stored in <filename>/dev/disk/by-id</filename>. On a machine with two physical disks, for example, one could find the following:"
-msgstr ""
+msgstr "どのディスクがどの SATA コントローラに接続されているかを記憶するのは常に簡単というわけではありません。なぜなら、特にホットプラグ対応のハードドライブ (これにはほとんどの SATA ディスクや外部ディスクが含まれます) の名前はブートの度に変わるからです。幸いなことに、<command>udev</command> は <filename>/dev/sd*</filename> に加えて、固有名のシンボリックリンクを作成します。曖昧でない方法でハードドライブを識別したい場合にはこのシンボリックリンクを使うことが出来ます。これらのシンボリックリンクは <filename>/dev/disk/by-id</filename> に保存されています。例えば 2 台の物理ディスクを備えるマシンでは以下のようなシンボリックリンクが見つかります:"
 
 #. Tag: screen
 #, no-c-format
@@ -2095,46 +2095,72 @@ msgid ""
 "[...]\n"
 "mirexpress:/dev/disk/by-id# </computeroutput>\n"
 msgstr ""
+"mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
+"total 0\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP -&gt; ../../sda\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP-part1 -&gt; ../../sda1\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-STM3500418AS_9VM3L3KP-part2 -&gt; ../../sda2\n"
+"[...]\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 08:58 ata-WDC_WD5001AALS-00L3B2_WD-WCAT00241697 -&gt; ../../sdb\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-WDC_WD5001AALS-00L3B2_WD-WCAT00241697-part1 -&gt; ../../sdb1\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 ata-WDC_WD5001AALS-00L3B2_WD-WCAT00241697-part2 -&gt; ../../sdb2\n"
+"[...]\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 08:58 scsi-SATA_STM3500418AS_9VM3L3KP -&gt; ../../sda\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_STM3500418AS_9VM3L3KP-part1 -&gt; ../../sda1\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_STM3500418AS_9VM3L3KP-part2 -&gt; ../../sda2\n"
+"[...]\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 08:58 scsi-SATA_WDC_WD5001AALS-_WD-WCAT00241697 -&gt; ../../sdb\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_WDC_WD5001AALS-_WD-WCAT00241697-part1 -&gt; ../../sdb1\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 scsi-SATA_WDC_WD5001AALS-_WD-WCAT00241697-part2 -&gt; ../../sdb2\n"
+"[...]\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 16:48 usb-LaCie_iamaKey_3ed00e26ccc11a-0:0 -&gt; ../../sdc\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 16:48 usb-LaCie_iamaKey_3ed00e26ccc11a-0:0-part1 -&gt; ../../sdc1\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 16:48 usb-LaCie_iamaKey_3ed00e26ccc11a-0:0-part2 -&gt; ../../sdc2\n"
+"[...]\n"
+"lrwxrwxrwx 1 root root  9 23 jul. 08:58 wwn-0x5000c50015c4842f -&gt; ../../sda\n"
+"lrwxrwxrwx 1 root root 10 23 jul. 08:58 wwn-0x5000c50015c4842f-part1 -&gt; ../../sda1\n"
+"[...]\n"
+"mirexpress:/dev/disk/by-id# </computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that some disks are listed several times (because they behave simultaneously as ATA disks and SCSI disks), but the relevant information is mainly in the model and serial numbers of the disks, from which you can find the peripheral file."
-msgstr ""
+msgstr "幾つかのディスクは複数回リストされています (なぜなら、それらは ATA ディスクであり同時に SCSI ディスクとしても振る舞うからです) が、ディスクに固有の情報は主にディスクの製品番号とシリアル番号であるという点に注意してください。ここから、目的の周辺機器のシンボリックリンクを見つけることが出来ます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The example configuration files given in the following sections are based on the same setup: a single SATA disk, where the first partition is an old Windows installation and the second contains Debian GNU/Linux."
-msgstr ""
+msgstr "以下の節で挙げる設定ファイルの例は、同じセットアップに基いています: 1 台の SATA ディスクがあり、最初のパーティションに古い Windows がインストールされており、2 番目のパーティションに Debian GNU/Linux がインストールされている状態です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring LILO"
-msgstr ""
+msgstr "LILO の設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LILO</primary>"
-msgstr ""
+msgstr "<primary>LILO</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Linux Loader</primary>"
-msgstr ""
+msgstr "<primary>Linux Loader</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>LILO</emphasis> (LInux LOader) is the oldest bootloader — solid but rustic. It writes the physical address of the kernel to boot on the MBR, which is why each update to LILO (or its configuration file) must be followed by the command <command>lilo</command>. Forgetting to do so will render a system unable to boot if the old kernel was removed or replaced as the new one will not be in the same location on the disk."
-msgstr ""
+msgstr "<emphasis>LILO</emphasis> (LInux LOader) は最も古い - 実直だが素朴な - ブートローダです。<emphasis>LILO</emphasis> は MBR にブートするカーネルの物理アドレスを書くため、LILO を更新した際にはその後に必ず <command>lilo</command> コマンドを使わなければいけません。このルールを忘れて、古いカーネルを削除したり、置き換えた新しいカーネルを古いカーネルがあった場所と同じディスクの場所に置かなかったりすると、システムがブートできないと表示されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "LILO's configuration file is <filename>/etc/lilo.conf</filename>; a simple file for standard configuration is illustrated in the example below."
-msgstr ""
+msgstr "LILO の設定ファイルは <filename>/etc/lilo.conf</filename> です; 標準的な設定を行う単純なファイルは以下の例のように書けます。"
 
 #. Tag: title
 #, no-c-format
 msgid "LILO configuration file"
-msgstr ""
+msgstr "LILO 設定ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2166,21 +2192,47 @@ msgid ""
 "other=/dev/sda1\n"
 "  label=Windows\n"
 msgstr ""
+"\n"
+"# The disk on which LILO should be installed.\n"
+"# By indicating the disk and not a partition.\n"
+"# you order LILO to be installed on the MBR.\n"
+"boot=/dev/sda\n"
+"# the partition that contains Debian\n"
+"root=/dev/sda2\n"
+"# the item to be loaded by default\n"
+"default=Linux\n"
+"\n"
+"# the most recent kernel image\n"
+"image=/vmlinuz\n"
+"  label=Linux\n"
+"  initrd=/initrd.img\n"
+"  read-only\n"
+"\n"
+"# Old kernel (if the newly installed kernel doesn't boot)\n"
+"image=/vmlinuz.old\n"
+"  label=LinuxOLD\n"
+"  initrd=/initrd.img.old\n"
+"  read-only\n"
+"  optional\n"
+"\n"
+"# only for Linux/Windows dual boot\n"
+"other=/dev/sda1\n"
+"  label=Windows\n"
 
 #. Tag: title
 #, no-c-format
 msgid "GRUB 2 Configuration"
-msgstr ""
+msgstr "GRUB 2 の設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB</primary>"
-msgstr ""
+msgstr "<primary>GRUB</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRUB 2</primary>"
-msgstr ""
+msgstr "<primary>GRUB 2</primary>"
 
 #. Tag: para
 #, no-c-format
