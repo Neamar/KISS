@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-10 18:05+0900\n"
+"PO-Revision-Date: 2015-05-11 20:12+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2237,52 +2237,52 @@ msgstr "<primary>GRUB 2</primary>"
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>GRUB</emphasis> (GRand Unified Bootloader) is more recent. It is not necessary to invoke it after each update of the kernel; <emphasis>GRUB</emphasis> knows how to read the filesystems and find the position of the kernel on the disk by itself. To install it on the MBR of the first disk, simply type <command>grub-install /dev/sda</command>. <indexterm><primary><command>grub-install</command></primary></indexterm>"
-msgstr ""
+msgstr "<emphasis>GRUB</emphasis> (GRand Unified Bootloader) はより新しいブートローダです。カーネルアップデートの後に GRUB を実行する必要はありません; <emphasis>GRUB</emphasis> はファイルシステムを読む方法と自分でディスク上でカーネルの位置を見つける方法を知っています。GRUB を最初のディスクの MBR にインストールするためには、<command>grub-install /dev/sda</command> を実行してください。<indexterm><primary><command>grub-install</command></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Disk names for GRUB"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> GRUB のディスク名"
 
 #. Tag: para
 #, no-c-format
 msgid "GRUB can only identify hard drives based on information provided by the BIOS. <literal>(hd0)</literal> corresponds to the first disk thus detected, <literal>(hd1)</literal> the second, etc. In most cases, this order corresponds exactly to the usual order of disks under Linux, but problems can occur when you associate SCSI and IDE disks. GRUB stores correspondences that it detects in the file <filename>/boot/grub/device.map</filename>. If you find errors there (because you know that your BIOS detects drives in a different order), correct them manually and run <command>grub-install</command> again."
-msgstr ""
+msgstr "GRUB は BIOS から提供される情報に従ってハードドライブを識別します。<literal>(hd0)</literal> は最初に検出されたディスクに対応し、<literal>(hd1)</literal> は 2 番目に対応します。多くの場合、この順番は Linux 上でディスクが検出される普通の順番と完全に一致しますが、SCSI や IDE ディスクを使っている場合、問題が起きるかもしれません。GRUB は検出した対応関係を <filename>/boot/grub/device.map</filename> ファイルの中に保存します。この点について何か間違いを見つけた場合 (BIOS がドライブを違う順番で検出するということを知っている場合)、対応関係を修正して、再度 <command>grub-install</command> を実行してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "Partitions also have a specific name in GRUB. When you use “classical” partitions in MS-DOS format, the first partition on the first disk is labeled, <literal>(hd0,msdos1)</literal>, the second <literal>(hd0,msdos2)</literal>, etc."
-msgstr ""
+msgstr "GRUB はパーティションを識別する名前も使います。MS-DOS フォーマットの「標準的な」パーティションを使っている場合、最初のディスクの最初のパーティションは <literal>(hd0,msdos1)</literal>、2 番目のパーティションは <literal>(hd0,msdos2)</literal> です。"
 
 #. Tag: para
 #, no-c-format
 msgid "GRUB 2 configuration is stored in <filename>/boot/grub/grub.cfg</filename>, but this file (in Debian) is generated from others. Be careful not to modify it by hand, since such local modifications will be lost the next time <command>update-grub</command> is run (which may occur upon update of various packages). The most common modifications of the <filename>/boot/grub/grub.cfg</filename> file (to add command line parameters to the kernel or change the duration that the menu is displayed, for example) are made through the variables in <filename>/etc/default/grub</filename>. To add entries to the menu, you can either create a <filename>/boot/grub/custom.cfg</filename> file or modify the <filename>/etc/grub.d/50_custom</filename> file. For more complex configurations, you can modify other files in <filename>/etc/grub.d</filename>, or add to them; these scripts should return configuration snippets, possibly by making use of external programs. These scripts are the ones that will update the list of kernels to boot: <filename>10_linux</filename> takes into consideration the installed Linux kernels; <filename>20_linux_xen</filename> takes into account Xen virtual systems, and <filename>30_os-prober</filename> lists other operating systems (Windows, Mac OSX, Hurd)."
-msgstr ""
+msgstr "GRUB 2 の設定は <filename>/boot/grub/grub.cfg</filename> に保存されていますが、このファイルは (Debian の場合) 別のファイルから生成されます。<filename>/boot/grub/grub.cfg</filename> を直接変更しないでください。なぜなら、<command>update-grub</command> が実行されたら (様々なパッケージの更新時に実行されることがあります) そのような部分的な変更は失われるからです。<filename>/boot/grub/grub.cfg</filename> ファイルに対して、最も一般的な変更 (例えば、カーネルに渡すコマンドラインパラメータを追加したり、メニューの表示される時間を変える) を加えるには、<filename>/etc/default/grub</filename> に含まれる変数を使います。メニューにエントリを追加するには、<filename>/boot/grub/custom.cfg</filename> ファイルを作成するか、<filename>/etc/grub.d/50_custom</filename> ファイルを変更してください。より複雑な設定をするには、<filename>/etc/grub.d</filename> にある他のファイルを変更するか、このディレクトリにファイルを追加してください; このディレクトリに含まれるスクリプトは設定スニペットを返します。場合によっては外部プログラムを使用することもあるかもしれません。このスクリプトはブートしたいカーネルのリストを更新するものです: <filename>10_linux</filename> はインストール済み Linux カーネルを考慮します; <filename>20_linux_xen</filename> は Xen 仮想システムを考慮し、<filename>30_os-prober</filename> は他のオペレーティングシステム(Windows、Mac OSX、Hurd) をリストアップします。"
 
 #. Tag: title
 #, no-c-format
 msgid "For Macintosh Computers (PowerPC): Configuring Yaboot"
-msgstr ""
+msgstr "Macintosh コンピュータ (PowerPC) の場合: Yaboot の設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>yaboot</command></primary>"
-msgstr ""
+msgstr "<primary><command>yaboot</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Yaboot is the bootloader used by old Macintosh computers using PowerPC processors. They do not boot like PCs, but rely on a “bootstrap” partition, from which the BIOS (or OpenFirmware) executes the loader, and on which the <command>ybin</command> program installs <command>yaboot</command> and its configuration file. You will only need to run this command again if the <filename>/etc/yaboot.conf</filename> is modified (it is duplicated on the bootstrap partition, and <command>yaboot</command> knows how to find the position of the kernels on the disks)."
-msgstr ""
+msgstr "Yaboot は PowerPC プロセッサを使う古い Macintosh コンピュータで使われるブートローダです。古い Macintosh コンピュータは PC のように起動せず、bootstrap パーティションを使って起動します。BIOS (または OpenFirmware) が bootstrap パーティションからローダを実行し、<command>ybin</command> プログラムが bootstrap パーティションに <command>yaboot</command> と設定ファイルをインストールします。設定ファイル <filename>/etc/yaboot.conf</filename> (このファイルは bootstrap パーティションにコピーされ、<command>yaboot</command> がディスク上からカーネルのパーティションを見つける方法を知っています) が変更されたら、<command>ybin</command> コマンドを再度実行する必要があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Before executing <command>ybin</command>, you must first have a valid <filename>/etc/yaboot.conf</filename>. The following is an example of a minimal configuration. <indexterm><primary><command>ybin</command></primary></indexterm>"
-msgstr ""
+msgstr "<command>ybin</command> を実行する前に、適切な <filename>/etc/yaboot.conf</filename> を作らなければいけません。以下は最低限の設定例です。<indexterm><primary><command>ybin</command></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Yaboot configuration file"
-msgstr ""
+msgstr "Yaboot 設定ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2321,106 +2321,139 @@ msgid ""
 "# bsd=/dev/sdaX and macos=/dev/sdaX\n"
 "# are also possible\n"
 msgstr ""
+"\n"
+"# bootstrap partition\n"
+"boot=/dev/sda2\n"
+"# the disk\n"
+"device=hd:\n"
+"# the Linux partition\n"
+"partition=3\n"
+"root=/dev/sda3\n"
+"# boot after 3 seconds of inactivity\n"
+"# (timeout is in tenths of seconds)\n"
+"timeout=30\n"
+"\n"
+"install=/usr/lib/yaboot/yaboot\n"
+"magicboot=/usr/lib/yaboot/ofboot\n"
+"enablecdboot\n"
+"\n"
+"# last kernel installed\n"
+"image=/vmlinux\n"
+"        label=linux\n"
+"        initrd=/initrd.img\n"
+"        read-only\n"
+"\n"
+"# old kernel\n"
+"image=/vmlinux.old\n"
+"        label=old\n"
+"        initrd=/initrd.img.old\n"
+"        read-only\n"
+"\n"
+"# only for Linux/Mac OSX dual-boot\n"
+"macosx=/dev/sda5\n"
+"\n"
+"# bsd=/dev/sdaX and macos=/dev/sdaX\n"
+"# are also possible\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Other Configurations: Time Synchronization, Logs, Sharing Access…"
-msgstr ""
+msgstr "その他の設定: 時刻同期、ログ、共有アクセス…"
 
 #. Tag: para
 #, no-c-format
 msgid "The many elements listed in this section are good to know for anyone who wants to master all aspects of configuration of the GNU/Linux system. They are, however, treated briefly and frequently refer to the documentation."
-msgstr ""
+msgstr "この節にリストされている多くの要素は、 GNU/Linux システムの設定のあらゆる側面を極めたいと思う人なら誰でも、知っておくと良い知識です。しかしながらここでは、各要素を簡単に紹介し、頻繁に文書を参照するだけにとどめます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Timezone"
-msgstr ""
+msgstr "タイムゾーン"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>timezone</primary>"
-msgstr ""
+msgstr "<primary>タイムゾーン</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Symbolic links"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> シンボリックリンク"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>link</primary><secondary>symbolic</secondary>"
-msgstr ""
+msgstr "<primary>りんく</primary><secondary>シンボリック</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>symbolic link</primary>"
-msgstr ""
+msgstr "<primary>シンボリックリンク</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ln</command></primary>"
-msgstr ""
+msgstr "<primary><command>ln</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A symbolic link is a pointer to another file. When you access it, the file to which it points is opened. Removal of the link will not cause deletion of the file to which it points. Likewise, it does not have its own set of permissions, but rather retains the permissions of its target. Finally, it can point to any type of file: directories, special files (sockets, named pipes, device files, etc.), even other symbolic links."
-msgstr ""
+msgstr "シンボリックリンクは他のファイルへのポインタです。シンボリックリンクにアクセスすると、シンボリックリンクの指すファイルが開かれます。シンボリックリンクを削除しても、シンボリックリンクの指すファイルは削除されません。同様に、シンボリックリンクはパーミッションを設定できませんが、シンボリックリンクの指すファイルのパーティションが適用されます。最後に、シンボリックリンクはいかなる種類のファイルを指すことも可能です: ディレクトリ、スペシャルファイル (ソケット、名前付きパイプ、デバイスファイル、など)、他のシンボリックリンクでさえ可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>ln -s <replaceable>target</replaceable> <replaceable>link-name</replaceable></command> command creates a symbolic link, named <replaceable>link-name</replaceable>, pointing to <replaceable>target</replaceable>."
-msgstr ""
+msgstr "<command>ln -s <replaceable>target</replaceable> <replaceable>link-name</replaceable></command> コマンドは <replaceable>link-name</replaceable> と名付けられ <replaceable>target</replaceable> を指すシンボリックリンクを作成します。"
 
 #. Tag: para
 #, no-c-format
 msgid "If the target does not exist, then the link is “broken” and accessing it will result in an error indicating that the target file does not exist. If the link points to another link, you will have a “chain” of links that turns into a “cycle” if one of the targets points to one of its predecessors. In this case, accessing one of the links in the cycle will result in a specific error (“too many levels of symbolic links”); this means the kernel gave up after several rounds of the cycle."
-msgstr ""
+msgstr "ターゲットが存在しない場合、リンクは「壊れて」おり、壊れたシンボリックリンクにアクセスするとターゲットファイルが存在しないことを示すエラーが返されます。別のシンボリックリンクにシンボリックリンクを張るとシンボリックリンクが「連鎖」し、リンク先がリンク元を指していた場合にはリンクの「循環」状態になります。この状態で、循環鎖に含まれるリンクの 1 つにアクセスした場合、特定のエラー (「シンボリックリンクの階層が多すぎます」) が返されます; これは、カーネルが、何回か循環鎖を辿った後に、それを諦めたことを意味します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The timezone, configured during initial installation, is a configuration item for the <emphasis role=\"pkg\">tzdata</emphasis> package. To modify it, use the <command>dpkg-reconfigure tzdata</command> command, which allows you to choose the timezone to be used in an interactive manner. Its configuration is stored in the <filename>/etc/timezone</filename> file. Additionally, the corresponding file in the <filename>/usr/share/zoneinfo</filename> directory is copied in <filename>/etc/localtime</filename>; this file contains the rules governing the dates where daylight saving time is active, for countries that use it."
-msgstr ""
+msgstr "タイムゾーンは最初のインストール時に設定され、<emphasis role=\"pkg\">tzdata</emphasis> パッケージでタイムゾーンを設定します。タイムゾーンを変更するには、<command>dpkg-reconfigure tzdata</command> コマンドを使ってください。このコマンドを使えば、対話的に変更したいタイムゾーンを選ぶことが可能です。タイムゾーンの設定は <filename>/etc/timezone</filename> ファイルに保存されます。さらに、<filename>/usr/share/zoneinfo</filename> ディレクトリに含まれるタイムゾーンに対応するファイルが <filename>/etc/localtime</filename> にコピーされます; <filename>/etc/localtime</filename> には、夏時間を使う国向けに夏時間が有効な場所で日付を左右するルールが含まれています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>timezone</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>timezone</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/timezone</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/timezone</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>zoneinfo</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>zoneinfo</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/usr/share/zoneinfo/</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/usr/share/zoneinfo/</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DST</primary>"
-msgstr ""
+msgstr "<primary>DST</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>daylight saving time</primary>"
-msgstr ""
+msgstr "<primary>夏時間</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When you need to temporarily change the timezone, use the <varname>TZ</varname> environment variable, which takes priority over the configured system default:"
-msgstr ""
+msgstr "一時的にタイムゾーンを変更したい場合、<varname>TZ</varname> 環境変数を使ってください。この変数に設定した値はシステムデフォルトで設定された値よりも優先されます:"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><varname>TZ</varname></primary>"
-msgstr ""
+msgstr "<primary><varname>TZ</varname></primary>"
 
 #. Tag: screen
 #, no-c-format
@@ -2431,346 +2464,351 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>TZ=\"Pacific/Honolulu\" date</userinput>\n"
 "<computeroutput>Wed Mar 28 03:51:21 HST 2012</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>date</userinput>\n"
+"<computeroutput>Wed Mar 28 15:51:19 CEST 2012</computeroutput>\n"
+"<computeroutput>$ </computeroutput><userinput>TZ=\"Pacific/Honolulu\" date</userinput>\n"
+"<computeroutput>Wed Mar 28 03:51:21 HST 2012</computeroutput>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> System clock, hardware clock"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> システムクロック、ハードウェアクロック"
 
 #. Tag: para
 #, no-c-format
 msgid "There are two time sources in a computer. A computer's motherboard has a hardware clock, called the “CMOS clock”. This clock is not very precise, and provides rather slow access times. The operating system kernel has its own, the software clock, which it keeps up to date with its own means (possibly with the help of time servers, see the “Time Synchronization” section). This system clock is generally more accurate, especially since it doesn't need access to hardware variables. However, since it only exists in live memory, it is zeroed out every time the machine is booted, contrary to the CMOS clock, which has a battery and therefore “survives” rebooting or halting of the machine. The system clock is, thus, set from the CMOS clock during boot, and the CMOS clock is updated on shutdown (to take into account possible changes or corrections if it has been improperly adjusted)."
-msgstr ""
+msgstr "コンピュータには 2 種類の時間ソースがあります。コンピュータのマザーボードは「CMOS クロック」と呼ばれるハードウェアクロックを持っています。このクロックはとても正確というわけではありませんし、比較的アクセスに時間がかかります。オペレーティングシステムカーネルには、自分のクロック、ソフトウェアクロック、があります。ソフトウェアクロックは独自の方法 (タイムサーバの助けを借りているかもしれません、「時刻同期」節を御覧ください) を使って最新の状態に保たれています。システムクロックはハードウェアクロックにアクセスする必要がないため、システムクロックはより正確です。しかしながら、システムクロックは揮発性メモリの中にあるため、マシンが起動する際に毎回ゼロに設定されます。それに対して、CMOS クロックは電池を持っているので、マシンを再起動や停止しても値を「残す」ことができます。そんなわけで、システムクロックは起動中に CMOS クロックの値を使って設定され、CMOS クロックはシャットダウンの際に更新されます (CMOS クロックが不適切に調整されていた場合、変更または訂正された場合を考慮して)。"
 
 #. Tag: para
 #, no-c-format
 msgid "In practice, there is a problem, since the CMOS clock is nothing more than a counter and contains no information regarding the time zone. There is a choice to make regarding its interpretation: either the system considers it runs in universal time (UTC, formerly GMT), or in local time. This choice could be a simple shift, but things are actually more complicated: as a result of daylight saving time, this offset is not constant. The result is that the system has no way to determine whether the offset is correct, especially around periods of time change. Since it is always possible to reconstruct local time from universal time and the timezone information, we strongly recommend using the CMOS clock in universal time."
-msgstr ""
+msgstr "実際は問題があります。なぜなら、CMOS クロックはただのカウンタで、タイムゾーンに関する情報を持たないからです。CMOS クロックの値を解釈する際には選ばなければいけない点があります: システムは CMOS クロックを協定世界時 (UTC、以前は GMT) かローカル時間のどちらで解釈するかを選ばなければいけません。両者は単純な補正定数の違いに過ぎないように見えますが、しかし実際はより複雑な違いがあります: 夏時間がある場合、この補正量は定数ではありません。その結果、システムは、特に夏時間が適用される期間中に、補正量の正しさを決定出来ません。協定世界時とタイムゾーン情報からローカル時間を再構成することは常に可能ですから、CMOS クロックを協定世界時として扱うことを推奨します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Unfortunately, Windows systems in their default configuration ignore this recommendation; they keep the CMOS clock on local time, applying time changes when booting the computer by trying to guess during time changes if the change has already been applied or not. This works relatively well, as long as the system has only Windows running on it. But when a computer has several systems (whether it be a “dual-boot” configuration or running other systems via virtual machine), chaos ensues, with no means to determine if the time is correct. If you absolutely must retain Windows on a computer, you should either configure it to keep the CMOS clock as UTC (setting the registry key <literal>HKLM\\SYSTEM\\CurrentControlSet\\Control\\TimeZoneInformation\\RealTimeIsUniversal</literal> to “1” as a DWORD), or use <command>hwclock --localtime --set</command> on the Debian system to set the hardware clock and mark it as tracking the local time (and make sure to manually check your clock in spring and autumn)."
-msgstr ""
+msgstr "不幸なことに、Windows システムのデフォルト設定はこの推奨に従いません; Windows システムは CMOS クロックをローカル時間に保ちます。コンピュータの起動時に、夏時間中の時間変更が既に適用されているか否かを推測して、時間変更を適用します。マシン上で Windows だけが動いている場合、このやり方は比較的上手く動作します。しかし、コンピュータに複数のシステムがある場合 (「デュアルブート」設定や仮想マシンを通じて他のシステムを動かす場合)、カオスです。時間が正確か決定することは意味を成しません。どうしてもコンピュータに Windows を残さなければいけない場合、Windows を設定して CMOS クロックを UTC に保つ (<literal>HKLM\\SYSTEM\\CurrentControlSet\\Control\\TimeZoneInformation\\RealTimeIsUniversal</literal> レジストリキーをDWORD の「1」に設定する) か、Debian システムで <command>hwclock --localtime --set</command> を使いハードウェアクロックをローカル時間に保つ (そして春と秋に手作業で時計を確認) かのどちらか一方を設定してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Time Synchronization"
-msgstr ""
+msgstr "時刻同期"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>time synchronization</primary>"
-msgstr ""
+msgstr "<primary>時刻同期</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>clock</primary><secondary>synchronization</secondary>"
-msgstr ""
+msgstr "<primary>時計</primary><secondary>同期</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Time synchronization, which may seem superfluous on a computer, is very important on a network. Since users do not have permissions allowing them to modify the date and time, it is important for this information to be precise to prevent confusion. Furthermore, having all of the computers on a network synchronized allows better cross-referencing of information from logs on different machines. Thus, in the event of an attack, it is easier to reconstruct the chronological sequence of actions on the various machines involved in the compromise. Data collected on several machines for statistical purposes won't make a great deal of sense if they are not synchronized."
-msgstr ""
+msgstr "時刻同期は、コンピュータ上で不必要のように見えますが、ネットワーク上でとても重要です。ユーザは日付と時間を変更することを許可されていないので、混乱を防ぐためには時刻情報を正確に保つことがとても重要です。さらに、ネットワーク上の全てのコンピュータの時刻を同期させておけば、異なるマシン間でログから情報を相互参照しやすくなります。攻撃を受けた際に、不正アクセスを受けた複数のマシンで時系列順に操作を再構成することが簡単になります。時刻が同期されていなかった場合、統計的目的で複数のマシンからデータを集めても、意味を成しません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> NTP"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> NTP"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NTP</primary>"
-msgstr ""
+msgstr "<primary>NTP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Network</primary><secondary>Time Protocol</secondary>"
-msgstr ""
+msgstr "<primary>Network</primary><secondary>Time Protocol</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "NTP (Network Time Protocol) allows a machine to synchronize with others fairly accurately, taking into consideration the delays induced by the transfer of information over the network and other possible offsets."
-msgstr ""
+msgstr "NTP (Network Time Protocol) を使うことで、あるマシンが他のマシンとかなり正確に時刻同期することが可能になります。このプロトコルは、ネットワーク上で情報を移動することで起こる遅延および予想される補正をを考慮しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "While there are numerous NTP servers on the Internet, the more popular ones may be overloaded. This is why we recommend using the <emphasis>pool.ntp.org</emphasis> NTP server, which is, in reality, a group of machines that have agreed to serve as public NTP servers. You could even limit use to a sub-group specific to a country, with, for example, <emphasis>us.pool.ntp.org</emphasis> for the United States, or <emphasis>ca.pool.ntp.org</emphasis> for Canada, etc."
-msgstr ""
+msgstr "Internet 上には数多くの NTP サーバがありますが、よく知られている NTP サーバは混んでいるかもしれません。このため、NTP サーバは <emphasis>pool.ntp.org</emphasis> を使うことを推奨します。実際のところ、これは公開 NTP サーバとしての機能を果たすことに同意したマシン群です。また、国を限定したサブグループに制限することが可能です。例えば、アメリカ合衆国は <emphasis>us.pool.ntp.org</emphasis>、カナダは <emphasis>ca.pool.ntp.org</emphasis> などです。"
 
 #. Tag: para
 #, no-c-format
 msgid "However, if you manage a large network, it is recommended that you install your own NTP server, which will synchronize with the public servers. In this case, all the other machines on your network can use your internal NTP server instead of increasing the load on the public servers. You will also increase homogeneity with your clocks, since all the machines will be synchronized on the same source, and this source is very close in terms of network transfer times."
-msgstr ""
+msgstr "しかしながら、巨大なネットワークを管理する場合、公開サーバに同期している自分の NTP サーバをインストールすることを推奨します。この場合、自分のネットワークに所属する他のマシンは全て、公開サーバの負荷を増やす代わりに、内部の NTP サーバを使うことが可能です。これはさらに、時刻同期の均一性を高めるでしょう。なぜなら、全てのマシンは同じ NTP サーバを使って時刻同期し、その NTP サーバはネットワーク転送時間的に言えば近い場所にいるからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "For Workstations"
-msgstr ""
+msgstr "ワークステーション向けの設定"
 
 #. Tag: para
 #, no-c-format
 msgid "Since work stations are regularly rebooted (even if only to save energy), synchronizing them by NTP at boot is enough. To do so, simply install the <emphasis role=\"pkg\">ntpdate</emphasis> package. You can change the NTP server used if needed by modifying the <filename>/etc/default/ntpdate</filename> file."
-msgstr ""
+msgstr "ワークステーションは (エネルギーを節約するためだけだったとしても) 日常的に再起動されますから、NTP と同期するのは起動時だけで十分です。これを行うには、<emphasis role=\"pkg\">ntpdate</emphasis> パッケージをインストールします。必要なら <filename>/etc/default/ntpdate</filename> ファイルを変更して NTP サーバを変更することも可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>ntpdate</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>ntpdate</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/default/ntpdate</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/default/ntpdate</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "For Servers"
-msgstr ""
+msgstr "サーバ向けの設定"
 
 #. Tag: para
 #, no-c-format
 msgid "Servers are only rarely rebooted, and it is very important for their system time to be correct. To permanently maintain correct time, you would install a local NTP server, a service offered in the <emphasis role=\"pkg\">ntp</emphasis> package. In its default configuration, the server will synchronize with <emphasis>pool.ntp.org</emphasis> and provide time in response to requests coming from the local network. You can configure it by editing the <filename>/etc/ntp.conf</filename> file, the most significant alteration being the NTP server to which it refers. If the network has a lot of servers, it may be interesting to have one local time server which synchronizes with the public servers and is used as a time source by the other servers of the network."
-msgstr ""
+msgstr "サーバはほとんど再起動されません。サーバのシステム時間を正確にすることはとても重要です。恒久的にに正確な時間を保つためには、<emphasis role=\"pkg\">ntp</emphasis> パッケージの提供する NTP サーバをインストールするべきです。デフォルトの設定では、このサーバは <emphasis>pool.ntp.org</emphasis> と同期し、ローカルネットワークからの要求に対して時刻を提供します。<filename>/etc/ntp.conf</filename> ファイルを編集して NTP サーバを設定できます。最も大きな変更は、この NTP サーバがどの NTP サーバを参照するかです。ネットワークに多くのサーバがある場合、公開サーバと同期している 1 台のローカルタイムサーバを、そのネットワークの他のサーバに対する時間ソースとして使うことは興味深いかもしれません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">ntp</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">ntp</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>NTP</secondary>"
-msgstr ""
+msgstr "<primary>サーバ</primary><secondary>NTP</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NTP</primary><secondary>server</secondary>"
-msgstr ""
+msgstr "<primary>NTP</primary><secondary>サーバ</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> GPS modules and other time sources"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> GPS モジュールと他の時刻ソース"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GPS</primary>"
-msgstr ""
+msgstr "<primary>GPS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DCF-77</primary>"
-msgstr ""
+msgstr "<primary>DCF-77</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If time synchronization is particularly crucial to your network, it is possible to equip a server with a GPS module (which will use the time from GPS satellites) or a DCF-77 module (which will sync time with the atomic clock near Frankfurt, Germany). In this case, the configuration of the NTP server is a little more complicated, and prior consultation of the documentation is an absolute necessity."
-msgstr ""
+msgstr "時刻同期がネットワークで極めて重要な要素の場合、GPS モジュール (GPS 衛星からの時刻を使う) または DCF-77 モジュール (ドイツのフランクフルト近郊の原子時計と時刻を同期する) をサーバに装備することも可能です。この場合、NTP サーバの設定はもう少し複雑で、必ず事前に文書を調査してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Rotating Log Files"
-msgstr ""
+msgstr "ログファイルの循環"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>logs, rotation</secondary>"
-msgstr ""
+msgstr "<primary>ファイル</primary><secondary>ログ、循環</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>files, rotation</secondary>"
-msgstr ""
+msgstr "<primary>ログ</primary><secondary>ファイル、循環</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>rotation of log files</primary>"
-msgstr ""
+msgstr "<primary>ログファイルの循環</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>logrotate</command></primary>"
-msgstr ""
+msgstr "<primary><command>logrotate</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Log files can grow, fast, and it is necessary to archive them. The most common scheme is a rotating archive: the log file is regularly archived, and only the latest <replaceable>X</replaceable> archives are retained. <command>logrotate</command>, the program responsible for these rotations, follows directives given in the <filename>/etc/logrotate.conf</filename> file and all of the files in the <filename>/etc/logrotate.d/</filename> directory. The administrator may modify these files, if they wish to adapt the log rotation policy defined by Debian. The <citerefentry><refentrytitle>logrotate</refentrytitle> <manvolnum>1</manvolnum></citerefentry> man page describes all of the options available in these configuration files. You may want to increase the number of files retained in log rotation, or move the log files to a specific directory dedicated to archiving them rather than delete them. You could also send them by e-mail to archive them elsewhere."
-msgstr ""
+msgstr "ログファイルのサイズは素早く増加しますから、ログファイルをアーカイブに保管する事が必要です。最も一般的なやり方はアーカイブを循環させることです: ログファイルは日常的にアーカイブに保管され、最新の <replaceable>X</replaceable> 個のアーカイブが保存されます。<command>logrotate</command> は、<filename>/etc/logrotate.conf</filename> ファイルと <filename>/etc/logrotate.d/</filename> ディレクトリ内に含まれる全てのファイルに書かれた指示に従って、ログファイルの循環を担当するプログラムです。管理者が Debian の定義するログ循環ポリシーを適用したい場合、これらの設定ファイルを変更するかもしれません。<citerefentry><refentrytitle>logrotate</refentrytitle> <manvolnum>1</manvolnum></citerefentry> man ページでは、これらの設定ファイルで利用可能な全てのオプションが説明されています。ログ循環で保存されるファイルの数を増加させたかったり、削除せずにアーカイブ専用の特定のディレクトリにログファイルを移動させたいと思うかもしれません。また、電子メールを送信してログを別の場所にアーカイブすることも可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>logrotate</command> program is executed daily by the <command>cron</command> scheduling program (described in <xref linkend=\"sect.task-scheduling-cron-atd\" />)."
-msgstr ""
+msgstr "<command>logrotate</command> プログラムは <command>cron</command> スケジューリングプログラム (<xref linkend=\"sect.task-scheduling-cron-atd\" /> で説明されています) によって毎日実行されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Sharing Administrator Rights"
-msgstr ""
+msgstr "管理者権限の共有"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>account</primary><secondary>administrator account</secondary>"
-msgstr ""
+msgstr "<primary>アカウント</primary><secondary>管理者アカウント</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>root</primary>"
-msgstr ""
+msgstr "<primary>root</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>sudo</command></primary>"
-msgstr ""
+msgstr "<primary><command>sudo</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Frequently, several administrators work on the same network. Sharing the root passwords is not very elegant, and opens the door for abuse due to the anonymity such sharing creates. The solution to this problem is the <command>sudo</command> program, which allows certain users to execute certain commands with special rights. In the most common use case, <command>sudo</command> allows a trusted user to execute any command as root. To do so, the user simply executes <command>sudo <replaceable>command</replaceable></command> and authenticates using their personal password."
-msgstr ""
+msgstr "しばしば、複数の管理者が同じネットワーク上で仕事をする場合があります。root パスワードの共有は的確なやり方ではありません。共有することで生まれる匿名性により、root 権の乱用が可能になります。この問題の解決策が <command>sudo</command> プログラムです。このプログラムは特定のユーザに特別な権限で特定のコマンドを実行することを可能にします。最も一般的な用途は、<command>sudo</command> を使うことで、信頼できるユーザが root としてコマンドを実行できる様になります。これを行うには、ユーザは単純に <command>sudo <replaceable>command</replaceable></command> を実行し、自分のパスワードを使って認証するだけです。"
 
 #. Tag: para
 #, no-c-format
 msgid "When installed, the <emphasis role=\"pkg\">sudo</emphasis> package gives full root rights to members of the <literal>sudo</literal> Unix group. To delegate other rights, the administrator must use the <command>visudo</command> command, which allows them to modify the <filename>/etc/sudoers</filename> configuration file (here again, this will invoke the <command>vi</command> editor, or any other editor indicated in the <varname>EDITOR</varname> environment variable). Adding a line with <literal><replaceable>username</replaceable> ALL=(ALL) ALL</literal> allows the user in question to execute any command as root."
-msgstr ""
+msgstr "インストールされると、<emphasis role=\"pkg\">sudo</emphasis> パッケージは <literal>sudo</literal> Unix グループのメンバーに完全な root 権を与えます。他の権利を委譲するには、管理者は <command>visudo</command> コマンドを用いなければいけません。このコマンドを使うことで、管理者は <filename>/etc/sudoers</filename> 設定ファイルを変更することができます (繰り返しになりますが、これは  <command>vi</command> エディタまたは<varname>EDITOR</varname> 環境変数で表される他のエディタを実行します)。<literal><replaceable>username</replaceable> ALL=(ALL) ALL</literal> のような行を追加することで、対象のユーザは root としてコマンドを実行することが可能になります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>visudo</command></primary>"
-msgstr ""
+msgstr "<primary><command>visudo</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>sudoers</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>sudoers</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/sudoers</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/sudoers</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "More sophisticated configurations allow authorization of only specific commands to specific users. All the details of the various possibilities are given in the <citerefentry><refentrytitle>sudoers</refentrytitle> <manvolnum>5</manvolnum></citerefentry> man page."
-msgstr ""
+msgstr "より洗練された設定を使うことで、特定のコマンドに必要な権限を特定のユーザに与えることも出来ます。設定可能な要素の全ての詳細を確認するには <citerefentry><refentrytitle>sudoers</refentrytitle> <manvolnum>5</manvolnum></citerefentry> man ページを御覧ください。"
 
 #. Tag: title
 #, no-c-format
 msgid "List of Mount Points"
-msgstr ""
+msgstr "マウントポイントのリスト"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>point, mount</primary>"
-msgstr ""
+msgstr "<primary>ポイント、マウント</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mount point</primary>"
-msgstr ""
+msgstr "<primary>マウントポイント</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Mounting and unmounting"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> マウントとアンマウント"
 
 #. Tag: para
 #, no-c-format
 msgid "In a Unix-like system such as Debian, files are organized in a single tree-like hierarchy of directories. The <filename>/</filename> directory is called the “root directory”; all additional directories are sub-directories within this root. “Mounting” is the action of including the content of a peripheral device (often a hard drive) into the system's general file tree. As a consequence, if you use a separate hard drive to store users' personal data, this disk will have to be “mounted” in the <filename>/home/</filename> directory. The root filesystem is always mounted at boot by the kernel; other devices are often mounted later during the startup sequence or manually with the <command>mount</command> command."
-msgstr ""
+msgstr "Debian などの Unix 系システムでは、ファイルはディレクトリの単一樹状階層構造でまとめられています。<filename>/</filename> ディレクトリは「root ディレクトリ」と呼ばれています; 全ての追加的なディレクトリはこの root の中のサブディレクトリです。「マウント」とは、周辺機器デバイス (通常はハードドライブ) の内容をシステムの一般的なファイルツリーに含める操作です。結果として、ユーザの個人データを保存するために別のハードドライブを使う場合、このディスクは <filename>/home/</filename> ディレクトリに「マウント」されなければいけません。root ファイルシステムはカーネルによって起動時に常にマウントされます; 他のデバイスはしばしばその後に続くスタートアップシーケンス中か <command>mount</command> コマンドを使って手作業でマウントされます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mount</command></primary>"
-msgstr ""
+msgstr "<primary><command>mount</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Some removable devices are automatically mounted when connected, especially when using the GNOME, KDE or other graphical desktop environments. Others have to be mounted manually by the user. Likewise, they must be unmounted (removed from the file tree). Normal users do not usually have permission to execute the <command>mount</command> and <command>umount</command> commands. The administrator can, however, authorize these operations (independently for each mount point) by including the <literal>user</literal> option in the <filename>/etc/fstab</filename> file."
-msgstr ""
+msgstr "幾つかのリムーバブルデバイスは接続時に自動的にマウントされます。特に GNOME、KDE、その他のグラフィカルデスクトップ環境を使っている場合にはマウントされます。他のデバイスについては、ユーザが手作業でマウントしなければいけません。同様に、アンマウント (ファイルツリーから削除) しなければいけません。普通のユーザは通常 <command>mount</command> や <command>umount</command> コマンドを実行する権限を持っていません。しかしながら、<literal>user</literal> オプションを <filename>/etc/fstab</filename> ファイルに含める事で、管理者はユーザに (マウントポイント別に) これらの操作を行う権限を与えることも出来ます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>mount</command> command can be used without arguments (it then lists all mounted filesystems). The following parameters are required to mount or unmount a device. For the complete list, please refer to the corresponding man pages, <citerefentry><refentrytitle>mount</refentrytitle> <manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>umount</refentrytitle> <manvolnum>8</manvolnum></citerefentry>. For simple cases, the syntax is simple too: for example, to mount the <filename>/dev/sdc1</filename> partition, which has an ext3 filesystem, into the <filename>/mnt/tmp/</filename> directory, you would simply run <command>mount -t ext3 /dev/sdc1 /mnt/tmp/</command>."
-msgstr ""
+msgstr "<command>mount</command> コマンドは引数無しで使うことも出来ます (全てのマウントされたファイルシステムを表示します)。デバイスをマウントおよびアンマウントする場合、以下のパラメータが要求されます。全てのパラメータを見るには、対応する man ページを参照してください。<citerefentry><refentrytitle>mount</refentrytitle> <manvolnum>8</manvolnum></citerefentry> と <citerefentry><refentrytitle>umount</refentrytitle> <manvolnum>8</manvolnum></citerefentry> です。単純な場合、以下の構文もまた単純です: 例えば、ext3 ファイルシステムの <filename>/dev/sdc1</filename> パーティションを <filename>/mnt/tmp/</filename> ディレクトリにマウントするには、<command>mount -t ext3 /dev/sdc1 /mnt/tmp/</command> のように実行してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/fstab</filename> file gives a list of all possible mounts that happen either automatically on boot or manually for removable storage devices. Each mount point is described by a line with several space-separated fields: <indexterm><primary><filename>fstab</filename></primary></indexterm> <indexterm><primary><filename>/etc/fstab</filename></primary></indexterm>"
-msgstr ""
+msgstr "<filename>/etc/fstab</filename> ファイルには、起動時に自動マウントされるものやリムーバブルストレージデバイス用の手作業でマウントするものを含めて、全ての考え得るマウントポイントがリストされています。それぞれのマウントポイントは空白区切りフィールドを持つ各行によって表現されます: <indexterm><primary><filename>fstab</filename></primary></indexterm> <indexterm><primary><filename>/etc/fstab</filename></primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "device to mount: this can be a local partition (hard drive, CD-ROM) or a remote filesystem (such as NFS)."
-msgstr ""
+msgstr "マウントするデバイス: ローカルパーティション (ハードドライブ、CD-ROM) またはリモートファイルシステム (NFS など) を指定できます。"
 
 #. Tag: para
 #, no-c-format
 msgid "This field is frequently replaced with the unique ID of the filesystem (which you can determine with <command>blkid <userinput>device</userinput></command>) prefixed with <literal>UUID=</literal>. This guards against a change in the name of the device in the event of addition or removal of disks, or if disks are detected in a different order."
-msgstr ""
+msgstr "このフィールドではしばしば、<literal>UUID=</literal> を前に付けたファイルシステムの一意的な ID (この値は <command>blkid <userinput>device</userinput></command> を使えばわかります) が使われることがあります。これを使うことで、ディスクを取り付けたり取り外した事や異なる順番でディスクが検出された事によりデバイスの名前が変わっても問題が無くなります。"
 
 #. Tag: para
 #, no-c-format
 msgid "mount point: this is the location on the local filesystem where the device, remote system, or partition will be mounted."
-msgstr ""
+msgstr "マウントポイント: これはデバイス、リモートシステム、パーティションがマウントされるローカルファイルシステムの場所です。"
 
 #. Tag: para
 #, no-c-format
 msgid "type: this field defines the filesystem used on the mounted device. <literal>ext4</literal>, <literal>ext3</literal>, <literal>vfat</literal>, <literal>ntfs</literal>, <literal>btrfs</literal>, <literal>xfs</literal> are a few examples."
-msgstr ""
+msgstr "ファイルシステムタイプ: このフィールドは、マウントされたデバイスで使われているファイルシステムを定義します。<literal>ext4</literal>、<literal>ext3</literal>、<literal>vfat</literal>、<literal>ntfs</literal>、<literal>btrfs</literal>、<literal>xfs</literal> が例です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> NFS, a network filesystem"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> NFS、ネットワークファイルシステム"
 
 #. Tag: para
 #, no-c-format
 msgid "NFS is a network filesystem; under Linux, it allows transparent access to remote files by including them in the local filesystem."
-msgstr ""
+msgstr "NFS はネットワークファイルシステムです; Linux の下では、NFS はローカルファイルシステムにリモートファイルを含めることにより、リモートファイルへの透過的なアクセスを可能にします。"
 
 #. Tag: para
 #, no-c-format
 msgid "A complete list of known filesystems is available in the <citerefentry><refentrytitle>mount</refentrytitle> <manvolnum>8</manvolnum></citerefentry> man page. The <literal>swap</literal> special value is for swap partitions; the <literal>auto</literal> special value tells the <command>mount</command> program to automatically detect the filesystem (which is especially useful for disk readers and USB keys, since each one might have a different filesystem);"
-msgstr ""
+msgstr "既知のファイルシステムの完全なリストは <citerefentry><refentrytitle>mount</refentrytitle> <manvolnum>8</manvolnum></citerefentry> man ページからに書かれています。<literal>swap</literal> は swap パーティション専用の特殊値です; <literal>auto</literal> は <command>mount</command> プログラムに自動的にファイルシステムを検出させるための特殊値です (この値はディスクリーダと USB メモリで特に便利です。なぜなら、機器毎に異なるファイルシステムを使っている可能性があるからです)。"
 
 #. Tag: para
 #, no-c-format
 msgid "options: there are many of them, depending on the filesystem, and they are documented in the <command>mount</command> man page. The most common are"
-msgstr ""
+msgstr "オプション: ファイルシステム毎に多くのオプションがあり、これらの値は <command>mount</command> man ページに書かれています。最もよく使われるものは"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>rw</literal> or <literal>ro</literal>, meaning, respectively, that the device will be mounted with read/write or read-only permissions."
-msgstr ""
+msgstr "<literal>rw</literal> または <literal>ro</literal>、デバイスが読み書き可能状態または読み取り専用でマウントされる、ことを意味しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>noauto</literal> deactivates automatic mounting on boot."
-msgstr ""
+msgstr "<literal>noauto</literal> は起動時の自動マウントを無効化します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>user</literal> authorizes all users to mount this filesystem (an operation which would otherwise be restricted to the root user)."
-msgstr ""
+msgstr "<literal>user</literal> は全てのユーザにこのファイルシステムをマウントする許可を与えます (このオプションを指定しなければ、マウントおよびアンマウント操作をできるのは root ユーザだけに限られます)。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>defaults</literal> means the group of default options: <literal>rw</literal>, <literal>suid</literal>, <literal>dev</literal>, <literal>exec</literal>, <literal>auto</literal>, <literal>nouser</literal> and <literal>async</literal>, each of which can be individually disabled after <literal>defaults</literal> by adding <literal>nosuid</literal>, <literal>nodev</literal> and so on to block <literal>suid</literal>, <literal>dev</literal> and so on. Adding the <literal>user</literal> option reactivates it, since <literal>defaults</literal> includes <literal>nouser</literal>."
-msgstr ""
+msgstr "<literal>defaults</literal> はデフォルトオプション群を意味します: <literal>rw</literal>、<literal>suid</literal>、<literal>dev</literal>、<literal>exec</literal>、<literal>auto</literal>、<literal>nouser</literal>、<literal>async</literal>。 <literal>defaults</literal> の後に <literal>nosuid</literal>、<literal>nodev</literal> などを付ければ、<literal>suid</literal>、<literal>dev</literal> をブロックし、これらのオプションを無効化することも可能です。<literal>user</literal> オプションを追加すればこれが再有効化されます。なぜなら <literal>defaults</literal> は <literal>nouser</literal> を含むからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "backup: this field is almost always set to <literal>0</literal>. When it is <literal>1</literal>, it tells the <command>dump</command> tool that the partition contains data that is to be backed up."
-msgstr ""
+msgstr "バックアップ: このフィールドはほぼ常に<literal>0</literal> を設定します。<literal>1</literal> を設定した場合、<command>dump</command> ツールに、このパーティションにはバックアップされるデータが含まれること、を伝えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "check order: this last field indicates whether the integrity of the filesystem should be checked on boot, and in which order this check should be executed. If it is <literal>0</literal>, no check is conducted. The root filesystem should have the value <literal>1</literal>, while other permanent filesystems get the value <literal>2</literal>."
-msgstr ""
+msgstr "ファイルシステムのチェック順: 最後のフィールドは、起動時にファイルシステムの完全性がチェックされるか否かと、チェックが実行される順番を意味します。<literal>0</literal> の場合、チェックされません。root ファイルシステムに対しては <literal>1</literal> を設定するべきです。他の恒久的なファイルシステムに対しては <literal>2</literal> を設定するべきです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Example <filename>/etc/fstab</filename> file:"
-msgstr ""
+msgstr "<filename>/etc/fstab</filename> ファイルの例:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2788,101 +2826,113 @@ msgid ""
 "/dev/fd0        /media/floppy   auto    rw,user,noauto  0       0\n"
 "arrakis:/shared /shared         nfs     defaults        0       0\n"
 msgstr ""
+"\n"
+"# /etc/fstab: static file system information.\n"
+"#\n"
+"# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;\n"
+"proc            /proc           proc    defaults        0       0\n"
+"# / was on /dev/sda1 during installation\n"
+"UUID=c964222e-6af1-4985-be04-19d7c764d0a7 / ext3 errors=remount-ro 0 1\n"
+"# swap was on /dev/sda5 during installation\n"
+"UUID=ee880013-0f63-4251-b5c6-b771f53bd90e none swap sw  0       0\n"
+"/dev/scd0       /media/cdrom0   udf,iso9660 user,noauto 0       0\n"
+"/dev/fd0        /media/floppy   auto    rw,user,noauto  0       0\n"
+"arrakis:/shared /shared         nfs     defaults        0       0\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The last entry in this example corresponds to a network filesystem (NFS): the <filename>/shared/</filename> directory on the <emphasis>arrakis</emphasis> server is mounted at <filename>/shared/</filename> on the local machine. The format of the <filename>/etc/fstab</filename> file is documented on the <citerefentry><refentrytitle>fstab</refentrytitle><manvolnum>5</manvolnum></citerefentry> man page."
-msgstr ""
+msgstr "この例の最後のエントリはネットワークファイルシステム (NFS) に対応します: <emphasis>arrakis</emphasis> サーバの <filename>/shared/</filename> ディレクトリがローカルマシンの <filename>/shared/</filename> にマウントされます。<filename>/etc/fstab</filename> ファイルのフォーマットは <citerefentry><refentrytitle>fstab</refentrytitle><manvolnum>5</manvolnum></citerefentry> man ページに書かれています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Auto-mounting"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 自動マウント"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>am-utils</emphasis> package provides the <command>amd</command> auto-mounting utility, able to mount removable media on demand when a user attempts to access their usual mount point. It will unmount these devices when no process is accessing them any longer."
-msgstr ""
+msgstr "<emphasis>am-utils</emphasis> パッケージは <command>amd</command> 自動マウントユーティリティを提供します。このユーティリティを使うと、通常のマウントポイントを通じてリムーバブルメディアにアクセスすれば、リムーバブルメディアをマウントできます。<command>amd</command> はリムーバブルメディアにアクセスしているプロセスが無くなればそのメディアをアンマウントします。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>am-utils</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>am-utils</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>amd</command></primary>"
-msgstr ""
+msgstr "<primary><command>amd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>automount</command></primary>"
-msgstr ""
+msgstr "<primary><command>automount</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>autofs</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>autofs</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>automounter</primary>"
-msgstr ""
+msgstr "<primary>自動マウントユーティリティ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Other auto-mounting utilities exist, such as <command>automount</command> in the <emphasis>autofs</emphasis> package."
-msgstr ""
+msgstr "他の自動マウントユーティリティも存在します。例えば <emphasis>autofs</emphasis> パッケージに含まれる <command>automount</command> です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Note also that GNOME, KDE, and other graphical desktop environments work together with <emphasis>udisks</emphasis>, and can automatically mount removable media when they are connected."
-msgstr ""
+msgstr "GNOME、KDE、その他のグラフィカルデスクトップ環境は <emphasis>udisks</emphasis> と協調して、リムーバブルメディアが接続されたらそれを自動的にマウントします。"
 
 #. Tag: title
 #, no-c-format
 msgid "<command>locate</command> and <command>updatedb</command>"
-msgstr ""
+msgstr "<command>locate</command> と <command>updatedb</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>locate</command></primary>"
-msgstr ""
+msgstr "<primary><command>locate</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>updatedb</command></primary>"
-msgstr ""
+msgstr "<primary><command>updatedb</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mlocate</command></primary>"
-msgstr ""
+msgstr "<primary><command>mlocate</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>locate</command> command can find the location of a file when you only know part of the name. It sends a result almost instantaneously, since it consults a database that stores the location of all the files on the system; this database is updated daily by the <command>updatedb</command> command. There are multiple implementations of the <command>locate</command> command and Debian picked <emphasis role=\"pkg\">mlocate</emphasis> for its standard system."
-msgstr ""
+msgstr "<command>locate</command> コマンドを使うと、名前の一部を知っているだけのファイルの場所を見つけ出すことが可能です。結果はぼほ一瞬で返されます。なぜならシステムのファイルの全ての場所を保存するデータベースを持っているからです; このデータベースは <command>updatedb</command> コマンドを使って毎日更新されます。<command>locate</command> コマンドには複数の実装があり、Debian は標準的なシステム向けに <emphasis role=\"pkg\">mlocate</emphasis> を選んでいます。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>mlocate</command> is smart enough to only return files which are accessible to the user running the command even though it uses a database that knows about all files on the system (since its <command>updatedb</command> implementation runs with root rights). For extra safety, the administrator can use <varname>PRUNEDPATHS</varname> in <filename>/etc/updatedb.conf</filename> to exclude some directories from being indexed."
-msgstr ""
+msgstr "<command>mlocate</command> は賢明なので、システムの全てのファイルについて知っているデータベースを使っている (なぜなら、<command>mlocate</command> の <command>updatedb</command> 実装は root 権で実行されるからです) にも関わらず、コマンドを実行したユーザがアクセスできるファイルだけを返します。さらなる安全性のために、管理者は <filename>/etc/updatedb.conf</filename> の中で <varname>PRUNEDPATHS</varname> を使って、幾つかのディレクトリのインデックス化を避ける事が可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Compiling a Kernel"
-msgstr ""
+msgstr "カーネルのコンパイル"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>compilation</primary><secondary>of a kernel</secondary>"
-msgstr ""
+msgstr "<secondary>カーネルの</secondary><primary>コンパイル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>kernel</primary><secondary>compilation</secondary>"
-msgstr ""
+msgstr "<primary>カーネル</primary><secondary>コンパイル</secondary>"
 
 #. Tag: para
 #, no-c-format
