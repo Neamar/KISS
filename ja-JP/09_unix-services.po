@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-12 18:18+0900\n"
+"PO-Revision-Date: 2015-05-13 20:06+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -112,307 +112,307 @@ msgstr "コンピュータを起動する際、コンソール画面にスクロ
 #. Tag: para
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
-msgstr ""
+msgstr "最初に BIOS がコンピュータを制御し、ディスクを検出し、<emphasis>Master Boot Record</emphasis> を読み込み、ブートローダを実行します。以降、ブートローダが引き継ぎ、ディスクからカーネルを見つけ、カーネルを読み込んで実行します。そして、カーネルが初期化され、root ファイルシステムを含むパーティションの検索とマウントを開始し、最後に最初のプログラム - <command>init</command> - を実行します。実際には、「root パーティション」と <command>init</command> は RAM の中にだけ存在する仮想ファイルシステム (そのためこの名前は「initramfs」、以前は「初期化 RAM ディスク」という意味で「initrd」と呼ばれていました) 上に置かれていることが多いです。このファイルシステムは、多くの場合ハードドライブのファイルかネットワークから、ブートローダによってメモリに読み込まれます。このファイルシステムには、カーネルが「真の」root ファイルシステムを読み込むために必要な最低限の要素が含まれています: ハードドライブやそれなしではシステムが起動できないその他のデバイスのドライバモジュール、より頻繁にあるのが、RAID アレイを組み立て、暗号化パーティションを開き、LVM ボリュームを有効化するなどの初期化スクリプトとモジュールです。一度 root パーティションがマウントされたら、initramfs は制御を真の init に渡し、マシンは標準的な起動プロセスに戻ります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The “real init” is currently provided by <emphasis role=\"pkg\">sysv-rc</emphasis> (“System V”) and this section documents this init system."
-msgstr ""
+msgstr "「真の init」は現在 <emphasis role=\"pkg\">sysv-rc</emphasis> (「System V」) によって提供されています。この節ではこの init システムに付いて説明します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Booting from the network"
-msgstr ""
+msgstr "<emphasis>SPECIFIC CASE</emphasis> ネットワークからの起動"
 
 #. Tag: para
 #, no-c-format
 msgid "In some configurations, the BIOS may be configured not to execute the MBR, but to seek its equivalent on the network, making it possible to build computers without a hard drive, or which are completely reinstalled on each boot. This option is not available on all hardware and it generally requires an appropriate combination of BIOS and network card."
-msgstr ""
+msgstr "一部の設定では、BIOS が MBR を実行しないように設定され、その代わり同じものをネットワークから探すように設定されているかもしれません。こうすることで、ハードドライブ無しでコンピュータを組み立てたり、起動時に毎回完全に再インストールすることが可能になります。このオプションは、全てのハードウェアで利用可能というわけではありませんし、通常 BIOS とネットワークカードの適切な組み合わせが必要です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Booting from the network can be used to launch the <command>debian-installer</command> or FAI (see <xref linkend=\"sect.installation-methods\" />)."
-msgstr ""
+msgstr "ネットワークからの起動は <command>debian-installer</command> や FAI (<xref linkend=\"sect.installation-methods\" />参照) を起動するために使われます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The process, a program instance"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> プロセス、プログラムインスタンス"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>process</primary>"
-msgstr ""
+msgstr "<primary>プロセス</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A process is the representation in memory of a running program. It includes all of the information necessary for the proper execution of the software (the code itself, but also the data that it has in memory, the list of files that it has opened, the network connections it has established, etc.). A single program may be instantiated into several processes, not necessarily running under different user IDs."
-msgstr ""
+msgstr "プロセスとは、実行中のプログラムのメモリ内表現です。プロセスには、ソフトウェアを適切に実行するために必要な全ての情報が含まれます (ソフトウェアのコードだけでなく、ソフトウェアが所有するメモリ内のデータ、ソフトウェアが開いたファイルのリスト、ソフトウェアが確立したネットワーク接続など)。単独のプログラムは複数のプロセスにインスタンス化されるかもしれませんし、異なるユーザ ID の下で実行される必要はありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Init executes several processes, following instructions from the <filename>/etc/inittab</filename> file. The first program that is executed (which corresponds to the <emphasis>sysinit</emphasis> step) is <command>/etc/init.d/rcS</command>, a script that executes all of the programs in the <filename>/etc/rcS.d/</filename> directory. <indexterm><primary><filename>/etc/init.d/rcS</filename></primary></indexterm> <indexterm><primary><filename>rcS</filename></primary></indexterm> <indexterm><primary><filename>/etc/init.d/rcS.d/</filename></primary></indexterm> <indexterm><primary><filename>rcS.d</filename></primary></indexterm>"
-msgstr ""
+msgstr "init は、<filename>/etc/inittab</filename> ファイルの指示に従って、複数のプロセスを起動します。実行される最初のプログラム (<emphasis>sysinit</emphasis> 段階に相当します) は <command>/etc/init.d/rcS</command> で、これは <filename>/etc/rcS.d/</filename> ディレクトリに含まれるすべてのプログラムを起動するスクリプトです。<indexterm><primary><filename>/etc/init.d/rcS</filename></primary></indexterm> <indexterm><primary><filename>rcS</filename></primary></indexterm> <indexterm><primary><filename>/etc/init.d/rcS.d/</filename></primary></indexterm> <indexterm><primary><filename>rcS.d</filename></primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "Among these, you will find successively programs in charge of:"
-msgstr ""
+msgstr "これらのスクリプトは特に以下の点を担当します:"
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the console's keyboard;"
-msgstr ""
+msgstr "コンソールキーボードの設定;"
 
 #. Tag: para
 #, no-c-format
 msgid "loading drivers: most of the kernel modules are loaded by the kernel itself as the hardware is detected; extra drivers are then loaded automatically when the corresponding modules are listed in <filename>/etc/modules</filename>;"
-msgstr ""
+msgstr "ドライバの読み込み: カーネルはほとんどのカーネルモジュールを読み込み、ハードウェアを検出します; 追加のドライバは、それに対応するモジュールが <filename>/etc/modules</filename> にリストされている場合に、読み込まれます。"
 
 #. Tag: para
 #, no-c-format
 msgid "checking the integrity of filesystems;"
-msgstr ""
+msgstr "ファイルシステムの整合性確認;"
 
 #. Tag: para
 #, no-c-format
 msgid "mounting local partitions;"
-msgstr ""
+msgstr "ローカルパーティションのマウント;"
 
 #. Tag: para
 #, no-c-format
 msgid "configuring the network;"
-msgstr ""
+msgstr "ネットワークの設定;"
 
 #. Tag: para
 #, no-c-format
 msgid "mounting network filesystems (NFS)."
-msgstr ""
+msgstr "ネットワークファイルシステム (NFS) のマウント。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Using a shell as <command>init</command> to gain root rights"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> root 権を獲得するために <command>init</command> としてシェルを使う"
 
 #. Tag: para
 #, no-c-format
 msgid "By convention, the first process that is booted is the <command>init</command> program. However, it is possible to pass an <literal>init</literal> option to the kernel indicating a different program."
-msgstr ""
+msgstr "慣例により、起動される最初のプロセスは <command>init</command> プログラムです。しかしながら、カーネルに異なるプログラムを示す <literal>init</literal> オプションを渡すことが可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>init</command></primary>"
-msgstr ""
+msgstr "<primary><command>init</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Any person who is able to access the computer can press the <keycap>Reset</keycap> button, and thus reboot it. Then, at the bootloader's prompt, it is possible to pass the <literal>init=/bin/sh</literal> option to the kernel to gain root access without knowing the administrator's password."
-msgstr ""
+msgstr "コンピュータに触ることができる人は誰でも、<keycap>Reset</keycap> ボタンを押して、コンピュータを再起動することが可能です。そして、ブートローダプロンプトでカーネルに <literal>init=/bin/sh</literal> オプションを渡せば、管理者パスワードを知らなくても root 権を取得できます。"
 
 #. Tag: para
 #, no-c-format
 msgid "To prevent this, you can protect the bootloader itself with a password. You might also think about protecting access to the BIOS (a password protection mechanism is almost always available), without which a malicious intruder could still boot the machine on a removable media containing its own Linux system, which they could then use to access data on the computer's hard drives."
-msgstr ""
+msgstr "これを避けるため、パスワードでブートローダを保護することが可能です。さらに BIOS へのアクセスも保護したいと考えるかもしれません (パスワード保護機能はほぼ必ず付いています)。パスワードが無ければ、悪意ある侵入者が、自分の Linux システムを含むリムーバブルメディアからマシンを起動して、コンピュータのハードドライブのデータにアクセスするかもしれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, be aware that most BIOS have a generic password available. Initially intended for troubleshooting for those who have forgotten their password, these passwords are now public and available on the Internet (see for yourself by searching for “generic BIOS passwords” in a search engine). All of these protections will thus impede unauthorized access to the machine without being able to completely prevent it. There's no reliable way to protect a computer if the attacker can physically access it; they could dismount the hard drives to connect them to a computer under their own control anyway, or even steal the entire machine, or erase the BIOS memory to reset the password…"
-msgstr ""
+msgstr "最後に、ほとんどの BIOS では、汎用的なパスワードが使えることに注意してください。当初、汎用パスワードはパスワードを忘れた人向けのトラブルシューティングを意図していましたが、今や汎用パスワードは公開され Internet から入手できます (ご自分の手で、検索エンジンで「generic BIOS passwords」を検索してみてください)。これらの保護により、マシンへの不正アクセスを完全に防ぐことは出来ないにせよ、それを遅らせる事になるでしょう。攻撃者が物理的にコンピュータにアクセスできる場合、確実にコンピュータを保護する方法はありません; 攻撃者はハードドライブを取り外して自分の制御下にあるコンピュータに接続したり、マシン本体ごと盗んだり、パスワードをリセットするために BIOS メモリを消去することも可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Kernel modules and options"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> カーネルモジュールとオプション"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modules</primary><secondary>kernel modules</secondary>"
-msgstr ""
+msgstr "<primary>モジュール</primary><secondary>カーネルモジュール</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Kernel modules also have options that can be configured by putting some files in <filename>/etc/modprobe.d/</filename>. These options are defined with directives like this: <literal>options <replaceable>module-name</replaceable> <replaceable>option-name</replaceable>=<replaceable>option-value</replaceable></literal>. Several options can be specified with a single directive if necessary."
-msgstr ""
+msgstr "カーネルモジュールにオプションを指定するには、<filename>/etc/modprobe.d/</filename> にファイルを追加してください。これらのオプションは次のような指示文を使って定義します。<literal>options <replaceable>module-name</replaceable> <replaceable>option-name</replaceable>=<replaceable>option-value</replaceable></literal>。場合によっては、幾つかのオプションは単独の指示文で指定できます。"
 
 #. Tag: para
 #, no-c-format
 msgid "These configuration files are intended for <command>modprobe</command> — the program that loads a kernel module with its dependencies (modules can indeed call other modules). This program is provided by the <emphasis role=\"pkg\">kmod</emphasis> package."
-msgstr ""
+msgstr "<command>modprobe</command> がこれらの設定ファイルを使います。このプログラムは依存関係に従ってカーネルモジュールを読み込みます (モジュールは他のモジュールを呼ぶ事ができます)。<command>modprobe</command> は <emphasis role=\"pkg\">kmod</emphasis> パッケージによって提供されます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>modprobe</command></primary>"
-msgstr ""
+msgstr "<primary><command>modprobe</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">kmod</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">kmod</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started, but nowadays the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
-msgstr ""
+msgstr "この段階の後、<command>init</command> が引き継ぎ、デフォルトランレベル (通常ランレベル 2) で有効化されたプログラムを起動します。<command>init</command> は <command>/etc/init.d/rc 2</command> を実行します。これは <filename>/etc/rc2.d/</filename> 置かれて、「S」で始まる名前の全てのサービスを開始するスクリプトです。「S」の後に続く 2 桁の数字は、歴史的言って、起動するサービスの順番を定義するために使われていました。しかし今やデフォルトの起動システムは <command>insserv</command> を使って、スクリプト同士の依存関係に従った起動順を自動的に決定します。このため、各起動スクリプトはサービスを起動または終了させる時に満足しなければいけない条件を宣言します (例えば、あるサービスは他のサービスの前または後に起動しなければいけないなど); そして、<command>init</command> は条件を満足するようにサービスを起動します。このため、スクリプトの静的な番号付けはもはや考慮されません (しかしスクリプトの名前は必ず「S」で始まり、その後ろに 2 桁の番号を付け、依存関係に使われる実際のスクリプトの名前を続けなければいけません)。一般に、基本システム (ログ記録を担当する <command>rsyslog</command> やポート割り当てを担当する <command>portmap</command>) が最初に起動され、その後に標準的なサービスとグラフィカルインターフェイス (<command>gdm</command>) が起動されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "This dependency-based boot system makes it possible to automate re-numbering, which could be rather tedious if it had to be done manually, and it limits the risks of human error, since scheduling is conducted according to the parameters that are indicated. Another benefit is that services can be started in parallel when they are independent from one another, which can accelerate the boot process."
-msgstr ""
+msgstr "この依存関係に基づく起動システムのお陰で、自動的な起動順の再定義が可能になります。これは手作業でやるにはちょっと退屈な作業で、人的ミスの危険性があります。なぜなら、起動順は宣言された依存関係に従って定義されるからです。別の利益として、他のサービスに依存しないサービスは並列して開始できるという点があります。この事により、起動プロセスを加速する事ができます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Other boot systems"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> 他の起動システム"
 
 #. Tag: para
 #, no-c-format
 msgid "This book describes the boot system used by default in Debian (as implemented by the <emphasis role=\"pkg\">sysvinit</emphasis> package), which is derived and inherited from <emphasis>System V</emphasis> Unix systems, but there are others. <emphasis role=\"distribution\">Jessie</emphasis> will likely come with another init system by default since the current one is no longer suited to the dynamic nature of computing."
-msgstr ""
+msgstr "この本は Debian のデフォルトで使われる起動システム (<emphasis role=\"pkg\">sysvinit</emphasis> パッケージによる実装) を説明します。このシステムは <emphasis>System V</emphasis> Unix システムから生まれて受け継がれましたが、他の起動システムも存在します。<emphasis role=\"distribution\">Jessie</emphasis> はデフォルトで他の init システムを搭載するでしょう。なぜなら、現在の init システムはもはやコンピュータの動的性質には適さないからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">file-rc</emphasis> is a boot system with a very simple process. It keeps the principle of runlevels, but replaces the directories and symbolic links with a configuration file, which indicates to <command>init</command> the processes that must be started and their launch order."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">file-rc</emphasis> は極めて単純なやり方を使う起動システムです。<emphasis role=\"pkg\">file-rc</emphasis> はランレベルの原則を守りますが、ディレクトリとシンボリックリンクを設定ファイルで置換します。この設定ファイルを使っては <command>init</command> に対して起動するプロセスとその起動順を伝えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>upstart</command> system is still not perfectly tested on Debian. It is event based: init scripts are no longer executed in a sequential order but in response to events such as the completion of another script upon which they are dependent. This system, started by Ubuntu, is present in Debian <emphasis role=\"distribution\">Wheezy</emphasis>, but is not the default; it comes, in fact, as a replacement for <emphasis role=\"pkg\">sysvinit</emphasis>, and one of the tasks launched by <command>upstart</command> is to launch the scripts written for traditional systems, especially those from the <emphasis role=\"pkg\">sysv-rc</emphasis> package."
-msgstr ""
+msgstr "Debian は <command>upstart</command> システムをまだ完全に試していません。<command>upstart</command> はイベントに基づく起動システムです: init スクリプトはもはや逐次的順序でなく、あるスクリプトが依存する他のスクリプトの完了等のイベントに応じて起動されます。Ubuntu の始めたこのシステムは Debian <emphasis role=\"distribution\">Wheezy</emphasis> に含まれますが、デフォルトではありません; 実際のところ、<command>upstart</command> は <emphasis role=\"pkg\">sysvinit</emphasis> の代替として始まりました。<command>upstart</command> の起動するタスクの 1 つが <emphasis role=\"pkg\">sysv-rc</emphasis> パッケージの提供する伝統的なシステム向けに書かれたスクリプトを起動します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Another new option that is gaining a lot of traction is <command>systemd</command>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services. It also provides backwards compatibility to System V init scripts."
-msgstr ""
+msgstr "別の新しい選択肢は <command>systemd</command> で、多くの注目を集めています。<command>systemd</command> は前に挙げたシステムと対極のやり方を取ります; 事前に全てのサービスを起動して、起動順の問題を解決する代わりに、<command>systemd</command> は要求に応じてサービスを起動します。これは若干 <command>inetd</command> の原則と似ています。しかしこれは、起動システムは必ずサービスを利用可能にする方法を知らなければいけない (ソケット、ファイルシステム、その他を介すことで可能です) こと、を意味しており、サービスはこれに合わせて挙動を少し変更しなければいけません。さらに <command>systemd</command> は System V init スクリプトに対する後方互換性を提供します。"
 
 #. Tag: para
 #, no-c-format
 msgid "There are also other systems and other operating modes, such as <command>runit</command>, <command>minit</command>, or <command>initng</command>, but they are relatively specialized and not widespread."
-msgstr ""
+msgstr "他の起動システムや他の動作モードも存在します。例えば <command>runit</command>、<command>minit</command>、<command>initng</command> 等です。しかしこれらは比較的特殊で広く使われていません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>runlevel</primary>"
-msgstr ""
+msgstr "<primary>ランレベル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>level, runlevel</primary>"
-msgstr ""
+msgstr "<primary>レベル、ランレベル</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>init</command> distinguishes several runlevels, so it can switch from one to another with the <command>telinit <replaceable>new-level</replaceable></command> command. Immediately, <command>init</command> executes <command>/etc/init.d/rc</command> again with the new runlevel. This script will then start the missing services and stop those that are no longer desired. To do this, it refers to the content of the <filename>/etc/rc<replaceable>X</replaceable>.d</filename> (where <replaceable>X</replaceable> represents the new runlevel). Scripts starting with “S” (as in “Start”) are services to be started; those starting with “K” (as in “Kill”) are the services to be stopped. The script does not start any service that was already active in the previous runlevel."
-msgstr ""
+msgstr "<command>init</command> は幾つかのランレベルを区別します。そうすることで、<command>telinit <replaceable>new-level</replaceable></command> コマンドを使ってあるランレベルから別のランレベルに切り替える事ができます。即座に <command>init</command> は新しいランレベルで <command>/etc/init.d/rc</command> を再実行します。このスクリプトは欠けているサービスを開始し、もはや不要なサービスを停止します。これを行うために、<command>init</command> は <filename>/etc/rc<replaceable>X</replaceable>.d</filename> の内容を参照します (ここで <replaceable>X</replaceable> は新しいランレベルです)。(「Start」の)「S」で始まるスクリプトは開始されるサービスです; (「Kill」の)「K」で始まるスクリプトは停止されるサービスです。このスクリプトは前のランレベルですでに起動されているサービスは開始しません。"
 
 #. Tag: para
 #, no-c-format
 msgid "By default, Debian uses four different runlevels:"
-msgstr ""
+msgstr "デフォルトで、Debian は 4 つのランレベルを使います:"
 
 #. Tag: para
 #, no-c-format
 msgid "Level 0 is only used temporarily, while the computer is powering down. As such, it only contains many “K” scripts."
-msgstr ""
+msgstr "レベル 0 はコンピュータの電源を切る祭に一時的に使われるだけです。このため「K」スクリプトしか含まれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Level 1, also known as single-user mode, corresponds to the system in degraded mode; it includes only basic services, and is intended for maintenance operations where interactions with ordinary users are not desired."
-msgstr ""
+msgstr "シングルユーザモードとしても知られるレベル 1 はシステムの機能抑制モードに相当します; このモードでは基本的なサービスだけが提供され、一般ユーザにマシンを使わせないメンテナンス作業を対象としています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Level 2 is the level for normal operation, which includes networking services, a graphical interface, user logins, etc."
-msgstr ""
+msgstr "レベル 2 は通常動作用のモードで、ネットワークサービス、グラフィカルインターフェイス、ユーザログイン等の機能を使うことが出来ます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Level 6 is similar to level 0, except that it is used during the shutdown phase that precedes a reboot."
-msgstr ""
+msgstr "レベル 6 はレベル 0 と似ていますが、再起動前のシャットダウン段階中に使われる点が異なります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Other levels exist, especially 3 to 5. By default they are configured to operate the same way as level 2, but the administrator can modify them (by adding or deleting scripts in the corresponding <filename>/etc/rc<replaceable>X</replaceable>.d</filename> directories) to adapt them to particular needs."
-msgstr ""
+msgstr "他のレベル、特に 3 から 5 まで、も存在します。デフォルトでこれらのランレベルはレベル 2 と同じ様に動作しますが、管理者はこれを変えて (ランレベルに対応する <filename>/etc/rc<replaceable>X</replaceable>.d</filename> ディレクトリにスクリプトを追加したりおよび削除したりすることで) 特定の要求に順応させる事が可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Boot sequence of a computer running Linux"
-msgstr ""
+msgstr "Linux の動くコンピュータの起動シーケンス"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>initialization script</primary>"
-msgstr ""
+msgstr "<primary>初期化スクリプト</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All the scripts contained in the various <filename>/etc/rc<replaceable>X</replaceable>.d</filename> directories are really only symbolic links — created upon package installation by the <command>update-rc.d</command> program — pointing to the actual scripts which are stored in <filename>/etc/init.d/</filename>. The administrator can fine tune the services available in each runlevel by re-running <command>update-rc.d</command> with adjusted parameters. The <citerefentry><refentrytitle>update-rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> manual page describes the syntax in detail. Please note that removing all symbolic links (with the <literal>remove</literal> parameter) is not a good method to disable a service. Instead you should simply configure it to not start in the desired runlevel (while preserving the corresponding calls to stop it in the event that the service runs in the previous runlevel). Since <command>update-rc.d</command> has a somewhat convoluted interface, you may prefer using <command>rcconf</command> (from the <emphasis role=\"pkg\">rcconf</emphasis> package) which provides a more user-friendly interface."
-msgstr ""
+msgstr "様々な <filename>/etc/rc<replaceable>X</replaceable>.d</filename> ディレクトリに含まれる全てのスクリプトは <filename>/etc/init.d/</filename> に格納されたスクリプトの実体を指すシンボリックリンク - パッケージのインストール時に <command>update-rc.d</command> プログラムによって作られます - に過ぎません。管理者は、調整したパラメータを与えて <command>update-rc.d</command> を再実行して、各ランレベルで利用可能なサービスを微調整する事が可能です。<command>update-rc.d</command> の構文は <citerefentry><refentrytitle>update-rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> マニュアルページに詳しく説明されています。サービスを無効化する目的で、(<literal>remove</literal> パラメータを付けて) 全てのシンボリックリンクを削除するのは悪い方法であるという点に注意してください。その代わりに、単純に希望するランレベルでそのサービスを起動しないよう設定するべきです (一方で、万が一、前のランレベルでそのサービスが実行されている場合に備えて、そのランレベルでもサービスを停止するために必要なシンボリックリンクを確保しておくべきです)。<command>update-rc.d</command> は複雑なインターフェイスを持っているため、(<emphasis role=\"pkg\">rcconf</emphasis> パッケージの提供する) <command>rcconf</command> を使いたいと思うかもしれません。<command>rcconf</command> はよりユーザにとって使い勝手の良いインターフェイスを提供します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>update-rc.d</command></primary>"
-msgstr ""
+msgstr "<primary><command>update-rc.d</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> Restarting services"
-msgstr ""
+msgstr "<emphasis>DEBIAN POLICY</emphasis> サービスの再起動"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>invoke-rc.d</command></primary>"
-msgstr ""
+msgstr "<primary><command>invoke-rc.d</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>service</primary><secondary>restart</secondary>"
-msgstr ""
+msgstr "<primary>サービス</primary><secondary>再起動</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>restarting services</primary>"
-msgstr ""
+msgstr "<primary>サービスの再起動</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The maintainer scripts for Debian packages will sometimes restart certain services to ensure their availability or get them to take certain options into account. The command that controls a service — <command>/etc/init.d/<replaceable>service</replaceable> <replaceable>operation</replaceable></command> — doesn't take runlevel into consideration, assumes (wrongly) that the service is currently being used, and may thus initiate incorrect operations (starting a service that was deliberately stopped, or stopping a service that is already stopped, etc.). Debian therefore introduced the <command>invoke-rc.d</command> program: this program must be used by maintainer scripts to run services initialization scripts and it will only execute the necessary commands. Note that, contrary to common usage, the <filename>.d</filename> suffix is used here in a program name, and not in a directory."
-msgstr ""
+msgstr "Debian のメンテナスクリプトは、サービスを利用可能にするためか、特定のオプションを考慮するために、特定のサービスを再起動することがあります。サービスを操作するコマンド - <command>/etc/init.d/<replaceable>service</replaceable> <replaceable>operation</replaceable></command> - はランレベルを考慮しません。サービスが現在使用中であると (間違って) 仮定し、間違った操作 (故意に停止されたサービスの開始や既に停止されたサービスの停止など) を開始するかもしれません。このため Debian は <command>invoke-rc.d</command> プログラムを導入しました: メンテナスクリプト内でサービス初期化スクリプトを実行する場合は、必ずこのプログラムを使わなければいけません。このプログラムは必要なコマンドを実行するだけです。通常の使い方と異なり、ディレクトリではなくプログラム名に <filename>.d</filename> サフィックスが使われている点に注意してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, <command>init</command> starts control programs for various virtual consoles (<command>getty</command>). It displays a prompt, waiting for a username, then executes <command>login <replaceable>user</replaceable></command> to initiate a session."
-msgstr ""
+msgstr "最後に、<command>init</command> は様々な仮想コンソール (<command>getty</command>) 用の制御プログラムを開始します。この制御プログラムがプロンプトを表示し、ユーザ名の入力を待ち、セッションを開始するために <command>login <replaceable>user</replaceable></command> を実行します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>getty</command></primary>"
-msgstr ""
+msgstr "<primary><command>getty</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Console and terminal"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> コンソールと端末"
 
 #. Tag: para
 #, no-c-format
 msgid "The first computers were usually separated into several, very large parts: the storage enclosure and the central processing unit were separate from the peripheral devices used by the operators to control them. These were part of a separate furniture, the “console”. This term was retained, but its meaning has changed. It has become more or less synonymous with “terminal”, being a keyboard and a screen."
-msgstr ""
+msgstr "最初のコンピュータは通常、複数のとても大きな部品に分かれていました: ストレージ筐体と中央処理装置は、それらを操作するオペレータが使う周辺装置と分けられていました。分離された周辺装置、これが「コンソール」です。この用語は残りましたが、意味が変わりました。「コンソール」は「端末」と大体同義語になり、キーボードと画面を備えるようになりました。"
 
 #. Tag: para
 #, no-c-format
 msgid "With the development of computers, operating systems have offered several virtual consoles to allow for several independent sessions at the same time, even if there is only one keyboard and screen. Most GNU/Linux systems offer six virtual consoles (in text mode), accessible by typing the key combinations <keycombo action=\"simul\"> <keycap>Control</keycap> <keycap>Alt</keycap> <keycap>F1</keycap> </keycombo> through <keycombo action=\"simul\"> <keycap>Control</keycap> <keycap>Alt</keycap> <keycap>F6</keycap> </keycombo>."
-msgstr ""
+msgstr "コンピュータの開発と共に、オペレーティングシステムは、たとえもしマシンに 1 台のキーボードと画面しか接続されていなかったとしても、複数の独立したセッションを同時に取り扱う目的で、複数の仮想コンソールを提供するようになりました。多くの GNU/Linux システムでは、<keycombo action=\"simul\"> <keycap>Control</keycap> <keycap>Alt</keycap> <keycap>F1</keycap> </keycombo> から <keycombo action=\"simul\"> <keycap>Control</keycap> <keycap>Alt</keycap> <keycap>F6</keycap> </keycombo> までのキーの組み合わせをタイプすることで 6 つの仮想コンソールを切り替えられます (テキストモード)。"
 
 #. Tag: para
 #, no-c-format
 msgid "By extension, the terms “console” and “terminal” can also refer to a terminal emulator in a graphical X11 session (such as <command>xterm</command>, <command>gnome-terminal</command> or <command>konsole</command>)."
-msgstr ""
+msgstr "転じて、「コンソール」と「端末」という用語はグラフィカル X11 セッションで使われる端末エミュレータ (<command>xterm</command>、<command>gnome-terminal</command>、<command>konsole</command> など) でも使われています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Remote Login"
-msgstr ""
+msgstr "リモートログイン"
 
 #. Tag: para
 #, no-c-format
