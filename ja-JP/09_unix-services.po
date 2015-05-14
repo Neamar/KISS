@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-13 20:06+0900\n"
+"PO-Revision-Date: 2015-05-15 01:02+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -417,157 +417,157 @@ msgstr "リモートログイン"
 #. Tag: para
 #, no-c-format
 msgid "It is essential for an administrator to be able to connect to a computer remotely. Servers, confined in their own room, are rarely equipped with permanent keyboards and monitors — but they are connected to the network."
-msgstr ""
+msgstr "管理者にとってコンピュータにリモートから接続できることは不可欠な要素です。専用の部屋に閉じ込められているサーバに、キーボードとモニタが常設されていることはめったにありません - しかしサーバはネットワークに繋がっています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Client, server"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> クライアント、サーバ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>client</primary><secondary>client/server architecture</secondary>"
-msgstr ""
+msgstr "<primary>クライアント</primary><secondary>クライアント/サーバアーキテクチャ</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>client/server architecture</secondary>"
-msgstr ""
+msgstr "<primary>サーバ</primary><secondary>クライアント/サーバアーキテクチャ</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A system where several processes communicate with each other is often described with the “client/server” metaphor. The server is the program that takes requests coming from a client and executes them. It is the client that controls operations, the server doesn't take any initiative of its own."
-msgstr ""
+msgstr "複数のプロセスが互いに通信しているシステムはよく「クライアント/サーバ」に例えられます。サーバはクライアントからの要求に応じて、その要求を実行するプログラムです。操作を制御するのがクライアントで、サーバは制御の主導権を握りません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>login</primary><secondary>remote login</secondary>"
-msgstr ""
+msgstr "<primary>ログイン</primary><secondary>リモートログイン</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>remote login</primary>"
-msgstr ""
+msgstr "<primary>リモートログイン</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Secure Remote Login: SSH"
-msgstr ""
+msgstr "安全なリモートログイン: SSH"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSH</primary>"
-msgstr ""
+msgstr "<primary>SSH</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Secure Shell</primary>"
-msgstr ""
+msgstr "<primary>Secure Shell</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
-msgstr ""
+msgstr "<emphasis>SSH</emphasis> (Secure SHell) プロトコルは安全性と信頼性を念頭に置いて設計されました。SSH を使う接続は安全です: 通信相手は認証され、交換されるデータは全て暗号化されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Telnet and RSH are obsolete"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> Telnet と RSH は時代遅れです"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>telnet</command></primary>"
-msgstr ""
+msgstr "<primary><command>telnet</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>rsh</command></primary>"
-msgstr ""
+msgstr "<primary><command>rsh</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Before SSH, <emphasis>Telnet</emphasis> and <emphasis>RSH</emphasis> were the main tools used to login remotely. They are now largely obsolete and should no longer be used even if Debian still provides them."
-msgstr ""
+msgstr "SSH 以前、<emphasis>Telnet</emphasis> と <emphasis>RSH</emphasis> がリモートからログインするために使われる主なツールでした。両者は今や大幅に時代遅れです。両者がまだ Debian から配布されているとしても、もはやそれを使うべきではありません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Authentication, encryption"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> 認証、暗号化"
 
 #. Tag: para
 #, no-c-format
 msgid "When you need to give a client the ability to conduct or trigger actions on a server, security is important. You must ensure the identity of the client; this is authentication. This identity usually consists of a password that must be kept secret, or any other client could get the password. This is the purpose of encryption, which is a form of encoding that allows two systems to communicate confidential information on a public channel while protecting it from being readable to others."
-msgstr ""
+msgstr "サーバ上でクライアントが活動を行ったり始めることを許可する必要がある場合、安全性が重要です。必ずクライアントの本人確認を必要とします; これが認証です。通常、本人確認はパスワードを使って行います。パスワードは人目に触れさせてはいけません。さもなくば、他のクライアントがパスワードを取得できてしまいます。これが暗号化の目的です。暗号化は符号化の形をしています。暗号化することで、2 つのシステムが公衆回線を使って秘密の情報を他人に読まれないように保護した状態でやり取りすることが可能になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Authentication and encryption are often mentioned together, both because they are frequently used together, and because they are usually implemented with similar mathematical concepts."
-msgstr ""
+msgstr "認証と暗号化はしばしば一緒に言及されます。なぜなら両者は同時に使われる事が多く、よく似たの数学的概念を基に実行される事が多いからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "SSH also offers two file transfer services. <command>scp</command> is a command line tool that can be used like <command>cp</command>, except that any path to another machine is prefixed with the machine's name, followed by a colon."
-msgstr ""
+msgstr "さらに SSH は 2 種類のファイル転送サービスを提供します。<command>scp</command> は <command>cp</command> のように使えるコマンドラインツールです。ただし、他のマシンへのパスを表記するには、パスの前にそのマシンの名前とコロンを付ける点が異なります。"
 
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>\n"
-msgstr ""
+msgstr "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>sftp</command> is an interactive command, similar to <command>ftp</command>. In a single session, <command>sftp</command> can transfer several files, and it is possible to manipulate remote files with it (delete, rename, change permissions, etc.)."
-msgstr ""
+msgstr "<command>sftp</command> は対話的コマンドで <command>ftp</command> に似ています。<command>sftp</command> は単一のセッションの中で、複数のファイルを転送したり、リモートのファイルを操作 (削除、リネーム、パーミッション変更など) することが可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>scp</command></primary>"
-msgstr ""
+msgstr "<primary><command>scp</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>sftp</command></primary>"
-msgstr ""
+msgstr "<primary><command>sftp</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Debian uses OpenSSH, a free version of SSH maintained by the <command>OpenBSD</command> project (a free operating system based on the BSD kernel, focused on security) and fork of the original SSH software developed by the SSH Communications Security Corp company, of Finland. This company initially developed SSH as free software, but eventually decided to continue its development under a proprietary license. The OpenBSD project then created OpenSSH to maintain a free version of SSH."
-msgstr ""
+msgstr "Debian は OpenSSH を使います。OpenSSH は SSH のフリー版で <command>OpenBSD</command> (BSD カーネルに基づき、安全性を重要視するフリーオペレーティングシステム) によって保守されており、フィンランドの SSH Communications Security Corp 社が開発した元祖 SSH ソフトウェアのフォークです。SSH Communications Security Corp 社は当初 SSH をフリーソフトウェアとして開発していましたが、結局プロプライエタリライセンスで開発を続けることを決定しました。そして OpenBSD プロジェクトが SSH のフリー版として保守するために OpenSSH を作成しました。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>OpenSSH</primary>"
-msgstr ""
+msgstr "<primary>OpenSSH</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <foreignphrase>Fork</foreignphrase>"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> <foreignphrase>フォーク</foreignphrase>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>fork</primary>"
-msgstr ""
+msgstr "<primary>フォーク</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A “fork”, in the software field, means a new project that starts as a clone of an existing project, and that will compete with it. From there on, both software will usually quickly diverge in terms of new developments. A fork is often the result of disagreements within the development team."
-msgstr ""
+msgstr "ソフトウェアの分野で「フォーク」とは、既存のプロジェクトのクローンとして始まった新しいプロジェクトを意味しており、既存のプロジェクトの対抗馬です。通常、両方のソフトウェアは新しい開発という観点ですぐに別のものになっていきます。フォークは開発チーム内の意見の不一致によって起こる事が多いです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The option to fork a project is a direct result of the very nature of free software; a fork is a healthy event when it enables the continuation of a project as free software (for example in case of license changes). A fork arising from technical or personal disagreements is often a waste of human resources; another resolution would be preferable. Mergers of two projects that previously went through a prior fork are not unheard of."
-msgstr ""
+msgstr "プロジェクトをフォークするという選択肢は、フリーソフトウェアの本質そのものから生じた、直接的な結果です; フリーソフトウェアとしてのプロジェクトの存続を可能にするための (例えばライセンスが変更された場合などの) フォークは健全な出来事です。技術的および個人的な意見の不一致によって起こるフォークは通常人的資源の無駄です; 別の解決策が望まれます。以前にフォークした 2 つのプロジェクトの合併は未だ前例がありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "OpenSSH is split into two packages: the client part is in the <emphasis role=\"pkg\">openssh-client</emphasis> package, and the server is in the <emphasis role=\"pkg\">openssh-server</emphasis> package. The <emphasis role=\"pkg\">ssh</emphasis> meta-package depends on both parts and facilitates installation of both (<command>apt-get install ssh</command>)."
-msgstr ""
+msgstr "OpenSSH は 2 つのパッケージに分解されています: クライアント部分は <emphasis role=\"pkg\">openssh-client</emphasis> パッケージ、サーバ部分は <emphasis role=\"pkg\">openssh-server</emphasis> パッケージです。<emphasis role=\"pkg\">ssh</emphasis> メタパッケージは両方のパッケージに依存し、両方のインストールが簡単に (<command>apt-get install ssh</command>) なります。"
 
 #. Tag: title
 #, no-c-format
 msgid "Key-Based Authentication"
-msgstr ""
+msgstr "鍵認証方式"
 
 #. Tag: para
 #, no-c-format
@@ -577,292 +577,292 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The user generates a key pair on the client machine with <command>ssh-keygen -t rsa</command>; the public key is stored in <filename>~/.ssh/id_rsa.pub</filename>, while the corresponding private key is stored in <filename>~/.ssh/id_rsa</filename>. The user then uses <command>ssh-copy-id <replaceable>server</replaceable></command> to add their public key to the <filename>~/.ssh/authorized_keys</filename> file on the server. If the private key was not protected with a “passphrase” at the time of its creation, all subsequent logins on the server will work without a password. Otherwise, the private key must be decrypted each time by entering the passphrase. Fortunately, <command>ssh-agent</command> allows us to keep private keys in memory to not have to regularly re-enter the password. For this, you simply use <command>ssh-add</command> (once per work session) provided that the session is already associated with a functional instance of <command>ssh-agent</command>. Debian activates it by default in graphical sessions, but this can be deactivated by changing <filename>/etc/X11/Xsession.options</filename>. For a console session, you can manually start it with <command>eval $(ssh-agent)</command>."
-msgstr ""
+msgstr "ユーザはクライアントマシンで <command>ssh-keygen -t rsa</command> を使って鍵ペアを生成します; 公開鍵は <filename>~/.ssh/id_rsa.pub</filename> に保存され、一方で対応する秘密鍵は <filename>~/.ssh/id_rsa</filename> に保存されます。その後ユーザは <command>ssh-copy-id <replaceable>server</replaceable></command> を使って、自分の公開鍵をサーバの <filename>~/.ssh/authorized_keys</filename> ファイルに追加します。秘密鍵を生成した際に「パスフレーズ」で保護しなかった場合、公開鍵を登録したサーバに対する以降全てのログインでパスワードは不要です。そうでなければ、秘密鍵を使う際は毎回パスフレーズを入力して復号化しなければいけません。幸いなことに、<command>ssh-agent</command> を使えば秘密鍵がメモリ内に保存され、パスワードを日常的に再入力しなくても良くなります。これを実現するには、セッションが既に機能する<command>ssh-agent</command> のインスタンスに関連付けられている条件下で、単純に (作業セッション毎に 1 回) <command>ssh-add</command> を使ってください。Debian はグラフィカルセッションではデフォルトでこれを有効化しますが、<filename>/etc/X11/Xsession.options</filename> を変更すれば無効化することも可能です。コンソールセッションでは、<command>eval $(ssh-agent)</command> を使って手作業で開始できます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Protection of the private key"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> 秘密鍵の保護"
 
 #. Tag: para
 #, no-c-format
 msgid "Whoever has the private key can login on the account thus configured. This is why access to the private key is protected by a “passphrase”. Someone who acquires a copy of a private key file (for example, <filename>~/.ssh/id_rsa</filename>) still has to know this phrase in order to be able to use it. This additional protection is not, however, impregnable, and if you think that this file has been compromised, it is best to disable that key on the computers in which it has been installed (by removing it from the <filename>authorized_keys</filename> files) and replacing it with a newly generated key."
-msgstr ""
+msgstr "秘密鍵を持つものは誰でも、対応する公開鍵を登録したアカウントにログインすることが可能です。このため、秘密鍵の利用は「パスフレーズ」で保護されています。秘密鍵ファイル (例えば <filename>~/.ssh/id_rsa</filename>) のコピーを不正に入手した人が秘密鍵を使うためには、パスフレーズを知らなければいけません。しかしながら、この追加的な保護は堅固ではありません。秘密鍵ファイルが不正に使われていると感じた場合、その秘密鍵に対応する公開鍵をインストールしたコンピュータでその公開鍵を使わないで (<filename>authorized_keys</filename> ファイルから公開鍵を削除して)、新しく生成した鍵で公開鍵を置き換えるのが最良です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> OpenSSL flaw in Debian <emphasis role=\"distribution\">Etch</emphasis>"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> Debian <emphasis role=\"distribution\">Etch</emphasis> における OpenSSL の脆弱性"
 
 #. Tag: para
 #, no-c-format
 msgid "The OpenSSL library, as initially provided in Debian <emphasis role=\"distribution\">Etch</emphasis>, had a serious problem in its random number generator (RNG). Indeed, the Debian maintainer had made a change so that applications using it would no longer generate warnings when analyzed by memory testing tools like <command>valgrind</command>. Unfortunately, this change also meant that the RNG was employing only one source of entropy corresponding to the process number (PID) whose 32,000 possible values do not offer enough randomness. <ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
-msgstr ""
+msgstr "当初 Debian <emphasis role=\"distribution\">Etch</emphasis> から配布されていた OpenSSL ライブラリは乱数発生器 (RNG) に深刻な問題がありました。具体的には、Debian メンテナによって、メモリテストツール <command>valgrind</command> で OpenSSL ライブラリを使うアプリケーションを解析した際に警告を出さなくなるような、変更が行われました。不幸なことに、この変更により RNG はエントロピーのソースを 1 つしか使わなくなりました。ここで使われたエントロピーソースはプロセス番号 (PID) に相当するもので、PID の取りうる値は 32,000 程度しかないため PID をソースとして用いても十分な乱数度は得られません。<ulink type=\"block\" url=\"http://www.debian.org/security/2008/dsa-1571\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Specifically, whenever OpenSSL was used to generate a key, it always produced a key within a known set of hundreds of thousands of keys (32,000 multiplied by a small number of key lengths). This affected SSH keys, SSL keys, and X.509 certificates used by numerous applications, such as OpenVPN. A cracker had only to try all of the keys to gain unauthorized access. To reduce the impact of the problem, the SSH daemon was modified to refuse problematic keys that are listed in the <emphasis role=\"pkg\">openssh-blacklist</emphasis> and <emphasis role=\"pkg\">openssh-blacklist-extra</emphasis> packages. Additionally, the <command>ssh-vulnkey</command> command allows identification of possibly compromised keys in the system."
-msgstr ""
+msgstr "具体的に言えば、OpenSSL を使って鍵を生成した場合、生成された鍵は常に数十万 (32,000 かける鍵長種数) の既知の範囲内に有る鍵の内の 1 つになります。この脆弱性は、例えば OpenVPN など数多くのアプリケーションが使う SSH 鍵、SSL 鍵、X.509 証明書に、影響を与えました。クラッカーは、鍵を全種類試すだけで、不正にアクセスすることが可能でした。この問題の影響を減らす目的で、SSH デーモンは <emphasis role=\"pkg\">openssh-blacklist</emphasis> と <emphasis role=\"pkg\">openssh-blacklist-extra</emphasis> パッケージにリストされている問題の有る鍵を拒否するように変更されました。更に、<command>ssh-vulnkey</command> コマンドを使えば、システム内からこの脆弱性の影響を受けているかもしれない鍵を識別することが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "A more thorough analysis of this incident brings to light that it is the result of multiple (small) problems, both at the OpenSSL project, as well as with the Debian package maintainer. A widely used library like OpenSSL should — without modifications — not generate warnings when tested by <command>valgrind</command>. Furthermore, the code (especially the parts as sensitive as the RNG) should be better commented to prevent such errors. The Debian maintainer, for his part, wanting to validate his modifications with the OpenSSL developers, simply explained his modifications without providing them the corresponding patch to review. He also did not clearly identify himself as the maintainer of the corresponding Debian package. Finally, in his maintenance choices, the maintainer did not clearly document the changes made to the original code; all the modifications are effectively stored in a Subversion repository, but they ended up all lumped into one single patch during creation of the source package."
-msgstr ""
+msgstr "この出来事をいっそう詳しく調べると、これは OpenSSL プロジェクトおよび Debian パッケージメンテナ双方の持つ多数の (小さな) 問題の結果であるということが、明らかになります。OpenSSL のように広く使われるライブラリは - 修正せずとも - <command>valgrind</command> でテストした時に警告を出すべきではありません。更に、コード (特に RNG と同様に慎重な箇所) はこのような誤解を避ける目的で詳しい注釈を付けられるべきです。Debian メンテナについて言えば、彼は OpenSSL 開発者から自分の修正に対する検証を受けることを望んでいながら、自分の修正について詳しく説明せず、修正の検証に必要なパッチを OpenSSL 開発者に提供することもしませんでした。さらに、彼は自分が OpenSSL に対応する Debian パッケージのメンテナであることを明らかにしませんでした。最終的に、彼のメンテナンス上の方針で、メンテナは文書の中で元のコードに対して行った修正を明らかにしませんでした; 全ての修正は Subversion リポジトリに効果的に保存されますが、最終的に全ての修正はソースパッケージの作成中に 1 つのパッチにまとめられました。"
 
 #. Tag: para
 #, no-c-format
 msgid "It is difficult under such conditions to find the corrective measures to prevent such incidents from recurring. The lesson to be learned here is that every divergence Debian introduces to upstream software must be justified, documented, submitted to the upstream project when possible, and widely publicized. It is from this perspective that the new source package format (“3.0 (quilt)”) and the Debian patch tracker were developed. <ulink type=\"block\" url=\"http://patch-tracker.debian.org\" />"
-msgstr ""
+msgstr "このような状況下で、これと同様の出来事が繰り返されることを避けるための適切な矯正措置を見つけるのは難しいです。ここで覚えておくべき教訓は、Debian が上流開発ソフトウェアに対して導入した全ての変更は、正当化され、文書化され、可能であれば上流プロジェクトに提出され、広く公開されなければいけない、ということです。この視点から、新しいソースパッケージフォーマット (「3.0 (quilt)」) と Debian パッチ追跡システムが開発されました。<ulink type=\"block\" url=\"http://patch-tracker.debian.org\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Using Remote X11 Applications"
-msgstr ""
+msgstr "リモートの X11 アプリケーションを使う"
 
 #. Tag: para
 #, no-c-format
 msgid "The SSH protocol allows forwarding of graphical data (“X11” session, from the name of the most widespread graphical system in Unix); the server then keeps a dedicated channel for those data. Specifically, a graphical program executed remotely can be displayed on the X.org server of the local screen, and the whole session (input and display) will be secure. Since this feature allows remote applications to interfere with the local system, it is disabled by default. You can enable it by specifying <literal>X11Forwarding yes</literal> in the server configuration file (<filename>/etc/ssh/sshd_config</filename>). Finally, the user must also request it by adding the <literal>-X</literal> option to the <command>ssh</command> command-line."
-msgstr ""
+msgstr "SSH プロトコルを使うと、グラフィカルデータ (「X11」セッション、Unix で最も広く使われているグラフィカルシステム) を転送することが可能です; そして、サーバはこれらのデータ専用の経路を開いたままにします。具体的に言うと、リモートで実行されたグラフィカルプログラムはローカル画面の X.org サーバ上に表示され、全てのセッション (入力と表示) は安全です。この機能により、リモートアプリケーションがローカルシステムに干渉することになるため、この機能はデフォルトで無効化されています。この機能を有効化するには、サーバ設定ファイル (<filename>/etc/ssh/sshd_config</filename>) で <literal>X11Forwarding yes</literal> と指定してください。最後に、ユーザは <command>ssh</command> コマンドラインに <literal>-X</literal> オプションを追加して、転送を要求しなければいけません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Creating Encrypted Tunnels with Port Forwarding"
-msgstr ""
+msgstr "ポート転送を使った暗号化トンネルの作成"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>port forwarding</primary>"
-msgstr ""
+msgstr "<primary>ポート転送</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Its <literal>-R</literal> and <literal>-L</literal> options allow <command>ssh</command> to create “encrypted tunnels” between two machines, securely forwarding a local TCP port (see sidebar <xref linkend=\"sidebar.tcp-udp\" />) to a remote machine or vice versa."
-msgstr ""
+msgstr "<literal>-R</literal> と <literal>-L</literal> オプションを使うと、<command>ssh</command> が 2 台のマシン間で「暗号化トンネル」を作成することが可能です。ローカル TCP ポート (傍注<xref linkend=\"sidebar.tcp-udp\" />参照) をリモートのマシンに安全に転送したりその逆も可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Tunnel"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> トンネル"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>tunnel (SSH)</primary><seealso>VPN</seealso>"
-msgstr ""
+msgstr "<primary>トンネル (SSH)</primary><seealso>VPN</seealso>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSH tunnel</primary><seealso>VPN</seealso>"
-msgstr ""
+msgstr "<primary>SSH トンネル</primary><seealso>VPN</seealso>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Internet, and most LANs that are connected to it, operate in packet mode and not in connected mode, meaning that a packet issued from one computer to another is going to be stopped at several intermediary routers to find its way to its destination. You can still simulate a connected operation where the stream is encapsulated in normal IP packets. These packets follow their usual route, but the stream is reconstructed unchanged at the destination. We call this a “tunnel”, analogous to a road tunnel in which vehicles drive directly from the entrance (input) to the exit (output) without encountering any intersections, as opposed to a path on the surface that would involve intersections and changing direction."
-msgstr ""
+msgstr "インターネットとインターネットに接続されているほとんどの LAN はパケットモードで動作しており、接続モードで動作していません。これは、一方のコンピュータから他方のコンピュータに向かって送信されたパケットは、宛先への経路を見つけるために複数の中間ルータで止められることを意味しています。とは言っても、接続モードを模倣することも可能です。接続モードではストリームを普通の IP パケットの中にカプセル化します。これらのパケットは通常の経路を通過しますが、ストリームの宛先を変わりません。我々はこれを道路のトンネルにかけて「トンネル」と読んでいます。トンネルでは車両が入り口 (入力) から出口 (出力) まで交差点に遭遇すること無くまっすぐ進むのに対し、見かけ上の経路は交差点や方向の変化を伴います。"
 
 #. Tag: para
 #, no-c-format
 msgid "You can use this opportunity to add encryption to the tunnel: the stream that flows through it is then unrecognizable from the outside, but it is returned in decrypted form at the exit of the tunnel."
-msgstr ""
+msgstr "トンネルに暗号化機能を追加することが可能です: トンネルの中を流れるストリームは外から認識できませんが、トンネルの出口で復号化された形で返されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>ssh -L 8000:server:25 intermediary</command> establishes an SSH session with the <replaceable>intermediary</replaceable> host and listens to local port 8000 (see <xref linkend=\"figure.ssh-L\" />). For any connection established on this port, <command>ssh</command> will initiate a connection from the <replaceable>intermediary</replaceable> computer to port 25 on the <replaceable>server</replaceable>, and will bind both connections together."
-msgstr ""
+msgstr "<command>ssh -L 8000:server:25 intermediary</command> は <replaceable>intermediary</replaceable> ホストと SSH セッションを確立し、ローカルの <command>ssh</command> がローカルのポート 8000 番をリッスンします (<xref linkend=\"figure.ssh-L\" />参照)。 <replaceable>intermediary</replaceable> の <command>ssh</command> は、ローカルのポート 8000 番を経由して接続が開始されたら、<replaceable>intermediary</replaceable> コンピュータから <replaceable>server</replaceable> のポート 25 番に接続し、ローカルから <replaceable>server</replaceable> への接続を中継します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>ssh -R 8000:server:25 intermediary</command> also establishes an SSH session to the <replaceable>intermediary</replaceable> computer, but it is on this machine that <command>ssh</command> listens to port 8000 (see <xref linkend=\"figure.ssh-R\" />). Any connection established on this port will cause <command>ssh</command> to open a connection from the local machine on to port 25 of the <replaceable>server</replaceable>, and to bind both connections together."
-msgstr ""
+msgstr "<command>ssh -R 8000:server:25 intermediary</command> は <replaceable>intermediary</replaceable> コンピュータとの SSH セッションを確立し、<replaceable>intermediary</replaceable> の <command>ssh</command> が <replaceable>intermediary</replaceable> のポート 8000 番をリッスンします (<xref linkend=\"figure.ssh-R\" />参照)。ローカルの <command>ssh</command> は、<replaceable>intermediary</replaceable> のポート 8000 番を経由して接続が開始されたら、ローカルマシンから <replaceable>server</replaceable> のポート 25 番に接続し、<replaceable>intermediary</replaceable> から <replaceable>server</replaceable> への接続を中継します。"
 
 #. Tag: para
 #, no-c-format
 msgid "In both cases, connections are made to port 25 on the <replaceable>server</replaceable> host, which pass through the SSH tunnel established between the local machine and the <replaceable>intermediary</replaceable> machine. In the first case, the entrance to the tunnel is local port 8000, and the data move towards the <replaceable>intermediary</replaceable> machine before being directed to the <replaceable>server</replaceable> on the “public” network. In the second case, the input and output in the tunnel are reversed; the entrance is port 8000 on the <replaceable>intermediary</replaceable> machine, the output is on the local host, and the data are then directed to the <replaceable>server</replaceable>. In practice, the server is usually either the local machine or the intermediary. That way SSH secures the connection from one end to the other."
-msgstr ""
+msgstr "どちらの場合も <replaceable>server</replaceable> ホストのポート 25 番に対して、ローカルマシンと <replaceable>intermediary</replaceable> マシンの間に確立した SSH トンネルを通り抜けて、接続します。最初の例の場合、トンネルの入口はローカルのポート 8000 番で、データはまず<replaceable>intermediary</replaceable> マシンを目指し、その後に「公開」ネットワークを経由して <replaceable>server</replaceable> に向かいます。2 番目の例の場合、トンネルの入口と出口が逆になります; トンネルの入口は <replaceable>intermediary</replaceable> マシンのポート 8000 番で、出口はローカルホストにあります。出口から出たデータは <replaceable>server</replaceable> に向かいます。現実的な話をすると、ここで言うサーバは通常、ローカルマシンまたは  <replaceable>intermediary</replaceable> です。このようにして SSH は端から端までの接続を保護します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Forwarding a local port with SSH"
-msgstr ""
+msgstr "SSH を使ったローカルポートの転送"
 
 #. Tag: title
 #, no-c-format
 msgid "Forwarding a remote port with SSH"
-msgstr ""
+msgstr "SSH を使ったリモートポートの転送"
 
 #. Tag: title
 #, no-c-format
 msgid "Using Remote Graphical Desktops"
-msgstr ""
+msgstr "リモートグラフィカルデスクトップのりよう"
 
 #. Tag: para
 #, no-c-format
 msgid "VNC (Virtual Network Computing) allows remote access to graphical desktops."
-msgstr ""
+msgstr "VNC (Virtual Network Computing) を使うとグラフィカルデスクトップにリモートからアクセスすることが可能になります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>VNC</primary>"
-msgstr ""
+msgstr "<primary>VNC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Virtual Network Computing</primary>"
-msgstr ""
+msgstr "<primary>Virtual Network Computing</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>graphical desktop</primary><secondary>remote</secondary>"
-msgstr ""
+msgstr "<primary>グラフィカルデスクトップ</primary><secondary>リモート</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>remote graphical desktop</primary>"
-msgstr ""
+msgstr "<primary>リモートグラフィカルデスクトップ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>desktop, remote graphical desktop</primary>"
-msgstr ""
+msgstr "<primary>デスクトップ、リモートグラフィカルデスクトップ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This tool is mostly used for technical assistance; the administrator can see the errors that the user is facing, and show them the correct course of action without having to stand by them."
-msgstr ""
+msgstr "このツールは技術支援に使われることが多いです: 管理者はユーザが直面しているエラーを見ることが可能で、ユーザの側にいなくても正しい行動の仕方をユーザに示すことが可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">vino</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">vino</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">krfb</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">krfb</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "First, the user must authorize sharing their session. The GNOME and KDE graphical desktop environments include, respectively, <command>vino</command> and <command>krfb</command>, which provide a graphical interface that allows sharing an existing session over VNC (both are identified as <emphasis>Desktop Sharing</emphasis> either in the GNOME application list or in the KDE menu). For other graphical desktop environments, the <command>x11vnc</command> command (from the Debian package of the same name) serves the same purpose; you can make it available to the user with an explicit icon."
-msgstr ""
+msgstr "最初に、ユーザは自分のセッションの権限を共有しなければいけません。GNOME と KDE グラフィカルデスクトップ環境には、それぞれ <command>vino</command> と <command>krfb</command> が含まれています。これらは VNC を通じて既存のセッションを共有する事が可能になるグラフィカルインターフェイス提供します (GNOME アプリケーションリストか KDE メニューの中にある<emphasis>デスクトップ共有</emphasis>がこのプログラムです)。他のグラフィカルデスクトップ環境に対しては、(同名の Debian パッケージの提供する) <command>x11vnc</command> コマンドがその代わりになります; 明確なアイコンを使って、ユーザがこれを使えるようにすることが可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">vinagre</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">vinagre</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">tsclient</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">tsclient</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">krdc</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">krdc</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">xvnc4viewer</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">xvnc4viewer</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When the graphical session is made available by VNC, the administrator must connect to it with a VNC client. GNOME has <command>vinagre</command> and <command>remmina</command> for that, while KDE includes <command>krdc</command> (in the menu at <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Remote Desktop Client</guimenuitem></menuchoice>). There are other VNC clients that use the command line, such as <command>xvnc4viewer</command> in the Debian package of the same name. Once connected, the administrator can see what's going on, work on the machine remotely, and show the user how to proceed."
-msgstr ""
+msgstr "VNC がグラフィカルセッションを利用可能にしたら、管理者は VNC クライアントでセッションに接続しなければいけません。VNC クライアントとして、GNOME には <command>vinagre</command> と <command>remmina</command> が、KDE には <command>krdc</command> (<menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>リモートデスクトップクライアント</guimenuitem></menuchoice>) が用意されています。コマンドラインを使う他の VNC クライアントもあります。例えば、同名の Debian パッケージが提供する<command>xvnc4viewer</command> などです。一旦セッションに接続したら、管理者は、何が起きているか見て、リモートでマシンの作業を行い、ユーザにその様子を見せることが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> VNC over SSH"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> VNC over SSH"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSH tunnel</primary><secondary>VNC</secondary>"
-msgstr ""
+msgstr "<primary>SSH トンネル</primary><secondary>VNC</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"sect.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
-msgstr ""
+msgstr "VNC で接続したいけれども、データを平文でネットワークに流したくない場合、SSH トンネルでデータをカプセル化することが可能です (<xref linkend=\"sect.ssh-port-forwarding\" />参照)。知っておかなければいけない点は、VNC がデフォルトで最初の画面 (「localhost:0」と呼ばれる) にポート 5900 番、2 番目の画面に (「localhost:1」と呼ばれる) 5901 番を使うという点だけです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>ssh -L localhost:5901:localhost:5900 -N -T <replaceable>machine</replaceable></command> command creates a tunnel between local port 5901 in the localhost interface and port 5900 of the <replaceable>machine</replaceable> host. The first “localhost” restricts SSH to listening to only that interface on the local machine. The second “localhost” indicates the interface on the remote machine which will receive the network traffic entering in “localhost:5901”. Thus <command>vncviewer localhost:1</command> will connect the VNC client to the remote screen, even though you indicate the name of the local machine."
-msgstr ""
+msgstr "<command>ssh -L localhost:5901:localhost:5900 -N -T <replaceable>machine</replaceable></command> コマンドは localhost インターフェイスのポート 5901 番と<replaceable>machine</replaceable> ホストのポート 5900 番の間にトンネルを作成します。最初の「localhost」はローカルマシンのインターフェイスのみをリッスンするように SSH を制限します。2 番目の「localhost」は「localhost:5901」に入ってきたネットワークトラフィックを受け取るリモートマシンのインターフェイスを表します。そんな訳で、<command>vncviewer localhost:1</command> はローカルマシンの名前を使っているにも関わらず VNC クライアントをリモートのスクリーンに接続します。"
 
 #. Tag: para
 #, no-c-format
 msgid "When the VNC session is closed, remember to close the tunnel by also quitting the corresponding SSH session."
-msgstr ""
+msgstr "VNC セッションを閉じたら、対応する SSH セッションを終了してトンネルを閉じることも忘れないで下さい。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Display manager"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> ディスプレイマネージャ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gdm</command></primary>"
-msgstr ""
+msgstr "<primary><command>gdm</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>kdm</command></primary>"
-msgstr ""
+msgstr "<primary><command>kdm</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>xdm</command></primary>"
-msgstr ""
+msgstr "<primary><command>xdm</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lightdm</command></primary>"
-msgstr ""
+msgstr "<primary><command>lightdm</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>manager</primary><secondary>display manager</secondary>"
-msgstr ""
+msgstr "<primary>マネージャ</primary><secondary>ディスプレイマネージャ</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>display manager</primary>"
-msgstr ""
+msgstr "<primary>ディスプレイマネージャ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>gdm</command>, <command>kdm</command>, <command>lightdm</command>, and <command>xdm</command> are Display Managers. They take control of the graphical interface shortly after boot in order to provide the user a login screen. Once the user has logged in, they execute the programs needed to start a graphical work session."
-msgstr ""
+msgstr "<command>gdm</command>、<command>kdm</command>、<command>lightdm</command>、<command>xdm</command> はディスプレイマネージャです。ディスプレイマネージャは起動直後にログイン画面をユーザに提供する目的でグラフィカルインターフェイスを制御します。ユーザがログインしたら、ディスプレイマネージャはグラフィカル作業セッションを始めるために必要なプログラムを実行します。"
 
 #. Tag: para
 #, no-c-format
 msgid "VNC also works for mobile users, or company executives, who occasionally need to login from their home to access a remote desktop similar to the one they use at work. The configuration of such a service is more complicated: you first install the <emphasis role=\"pkg\">vnc4server</emphasis> package, change the configuration of the display manager to accept <literal>XDMCP Query</literal> requests (for <command>gdm3</command>, this can be done by adding <literal>Enable=true</literal> in the “xdmcp” section of <filename>/etc/gdm3/daemon.conf</filename>), and finally, start the VNC server with <command>inetd</command> so that a session is automatically started when a user tries to login. For example, you may add this line to <filename>/etc/inetd.conf</filename>:"
-msgstr ""
+msgstr "また VNC は、モバイルユーザや会社幹部のような、自分が仕事場で使っているのとよく似たリモートデスクトップにアクセスするために時々自分の家からログインする必要があるユーザにとって、都合が良いものです。そのようなサービス用の設定はより複雑です: ユーザは、最初に <emphasis role=\"pkg\">vnc4server</emphasis> パッケージをインストールし、<literal>XDMCP Query</literal> 要求を受け入れるようにディスプレイマネージャの設定を変更 (<command>gdm3</command> の場合、<filename>/etc/gdm3/daemon.conf</filename> の「xdmcp」セクションに <literal>Enable=true</literal> を追加) し、そして最後に <command>inetd</command> を使って VNC サーバを起動します。こうすることで、ユーザがログインを試行したらセッションが自動的に開始されるようになります。例えば、以下の行を <filename>/etc/inetd.conf</filename> に追加します:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none\n"
-msgstr ""
+msgstr "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Redirecting incoming connections to the display manager solves the problem of authentication, because only users with local accounts will pass the <command>gdm</command> login screen (or equivalent <command>kdm</command>, <command>xdm</command>, etc.). As this operation allows multiple simultaneous logins without any problem (provided the server is powerful enough), it can even be used to provide complete desktops for mobile users (or for less powerful desktop systems, configured as thin clients). Users simply login to the server's screen with <command>vncviewer <replaceable>server</replaceable>:50</command>, because the port used is 5950."
-msgstr ""
+msgstr "入ってくる接続をディスプレイマネージャに転送することにより、認証の問題が解決されます。なぜなら、ローカルアカウントを持つユーザだけが <command>gdm</command> (または同等の <command>kdm</command>、<command>xdm</command> など) のログイン画面を突破できるからです。このやり方は (サーバの性能が十分高いなら) なんの問題も無く複数の同時ログインを許すため、完全なデスクトップをモバイルユーザに対して (またはシンクライアントとして設定された非力なデスクトップシステムに対して) 提供するという用途にも応用できます。ユーザは単純に <command>vncviewer <replaceable>server</replaceable>:50</command> でサーバの画面にログインするだけです。なぜなら、使われているポートは 5950 番だからです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">vnc4server</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">vnc4server</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing Rights"
-msgstr ""
+msgstr "権限の管理"
 
 #. Tag: para
 #, no-c-format
