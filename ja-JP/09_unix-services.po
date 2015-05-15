@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-15 01:02+0900\n"
+"PO-Revision-Date: 2015-05-15 23:24+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -572,7 +572,7 @@ msgstr "鍵認証方式"
 #. Tag: para
 #, no-c-format
 msgid "Each time someone logs in over SSH, the remote server asks for a password to authenticate the user. This can be problematic if you want to automate a connection, or if you use a tool that requires frequent connections over SSH. This is why SSH offers a key-based authentication system."
-msgstr ""
+msgstr "リモートサーバはユーザを認証するために SSH でログインする人に対して毎回パスワードを尋ねます。これは、接続を自動化したい場合や SSH 経由で頻繁に接続を行うツールを使う場合に問題です。このため、SSH は鍵認証システムを提供しています。"
 
 #. Tag: para
 #, no-c-format
@@ -867,497 +867,497 @@ msgstr "権限の管理"
 #. Tag: para
 #, no-c-format
 msgid "Linux is definitely a multi-user system, so it is necessary to provide a permission system to control the set of authorized operations on files and directories, which includes all the system resources and devices (on a Unix system, any device is represented by a file or directory). This principle is common to all Unix systems, but a reminder is always useful, especially as there are some interesting and relatively unknown advanced uses."
-msgstr ""
+msgstr "Linux は完全なマルチユーザシステムです。このため、ユーザの権限に基いてファイルやディレクトリに対する操作を制御するために、パーミッションシステムを提供する事が必要です。このパーミッションシステムは、全てのシステムリソースとデバイス (Unix システムでは全てのデバイスはファイルまたはディレクトリとして表現されます) を対象とします。この原理は全ての Unix システムで共通ですが、特に興味深く比較的知られていない上級の使い方があるので、注意は常に必要です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>rights</primary>"
-msgstr ""
+msgstr "<primary>権限</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>permissions</primary>"
-msgstr ""
+msgstr "<primary>パーミッション</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>user</primary><secondary>owner</secondary>"
-msgstr ""
+msgstr "<primary>ユーザ</primary><secondary>所有者</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>group</primary><secondary>owner</secondary>"
-msgstr ""
+msgstr "<primary>グループ</primary><secondary>所有者</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>owner</primary><secondary>user</secondary>"
-msgstr ""
+msgstr "<primary>所有者</primary><secondary>ユーザ</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>owner</primary><secondary>group</secondary>"
-msgstr ""
+msgstr "<primary>所有者</primary><secondary>グループ</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Each file or directory has specific permissions for three categories of users:"
-msgstr ""
+msgstr "ファイルとディレクトリには、ユーザの種類別に 3 種類の特定のパーミッションが付けられます:"
 
 #. Tag: para
 #, no-c-format
 msgid "its owner (symbolized by <literal>u</literal> as in “user”);"
-msgstr ""
+msgstr "所有者 (「user」の <literal>u</literal> で表記されます);"
 
 #. Tag: para
 #, no-c-format
 msgid "its owner group (symbolized by <literal>g</literal> as in “group”), representing all the members of the group;"
-msgstr ""
+msgstr "所有者グループ (「group」の <literal>g</literal> で表記されます)、グループに所属する全ユーザを意味します;"
 
 #. Tag: para
 #, no-c-format
 msgid "the others (symbolized by <literal>o</literal> as in “other”)."
-msgstr ""
+msgstr "その他 (「other」の <literal>o</literal> で表記されます)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Three types of rights can be combined:"
-msgstr ""
+msgstr "3 種類の権限は組み合わせて使うことが可能です:"
 
 #. Tag: para
 #, no-c-format
 msgid "reading (symbolized by <literal>r</literal> as in “read”);"
-msgstr ""
+msgstr "読み込み (「read」の <literal>r</literal> で表記されます);"
 
 #. Tag: para
 #, no-c-format
 msgid "writing (or modifying, symbolized by <literal>w</literal> as in “write”);"
-msgstr ""
+msgstr "書き込み (または変更、「write」の <literal>w</literal> で表記されます);"
 
 #. Tag: para
 #, no-c-format
 msgid "executing (symbolized by <literal>x</literal> as in “eXecute”)."
-msgstr ""
+msgstr "実行 (「eXecute」の <literal>x</literal> で表記されます)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>read, right</primary>"
-msgstr ""
+msgstr "<primary>読み込み、権限</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>write, right</primary>"
-msgstr ""
+msgstr "<primary>書き込み、権限</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>modification, right</primary>"
-msgstr ""
+msgstr "<primary>変更、権限</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>execution, right</primary>"
-msgstr ""
+msgstr "<primary>実行、権限</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In the case of a file, these rights are easily understood: read access allows reading the content (including copying), write access allows changing it, and execute access allows you to run it (which will only work if it's a program)."
-msgstr ""
+msgstr "ファイルの場合、これらの権限は簡単に理解できます: 読み込み権限があれば、内容を読む (コピーを含めて) ことが可能です。書き込み権限があれば、内容を変更する事が可能です。実行権限があれば、内容を実行することが可能です (プログラムの場合のみ有効)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <literal>setuid</literal> and <literal>setgid</literal> executables"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> <literal>setuid</literal> と <literal>setgid</literal> 実行ファイル"
 
 #. Tag: para
 #, no-c-format
 msgid "Two particular rights are relevant to executable files: <literal>setuid</literal> and <literal>setgid</literal> (symbolized with the letter “s”). Note that we frequently speak of “bit”, since each of these boolean values can be represented by a 0 or a 1. These two rights allow any user to execute the program with the rights of the owner or the group, respectively. This mechanism grants access to features requiring higher level permissions than those you would usually have."
-msgstr ""
+msgstr "実行ファイルに関係する 2 種類の特別な権限があります: <literal>setuid</literal> と <literal>setgid</literal> (「s」で表記されます) です。これらは「ビット」と呼ばれることが多い点に注意してください。なぜなら、これらは 0 か 1 で表されるブール値だからです。これら 2 種類の権限を使うと、実行されたプログラムは、所有者か所有グループの権限で動くことになります。このメカニズムを使うと、プログラムはプログラムを実行したユーザが通常持っているよりも高位のパーミッションを要求する機能にアクセスできるようになります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>setuid</literal>, right</primary>"
-msgstr ""
+msgstr "<primary><literal>setuid</literal>、権限</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>setgid</literal>, right</primary>"
-msgstr ""
+msgstr "<primary><literal>setgid</literal>、権限</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Since a <literal>setuid</literal> root program is systematically run under the super-user identity, it is very important to ensure it is secure and reliable. Indeed, a user who would manage to subvert it to call a command of their choice could then impersonate the root user and have all rights on the system."
-msgstr ""
+msgstr "<literal>setuid</literal> root プログラムは一貫してスーパーユーザとして実行されるため、安全で信頼できるプログラムか否かはとても重要です。実際、好きなコマンドを呼び出すために何とかしてシステムを破壊したいと思うユーザは root ユーザになりすまし、システムの全ての権限を持つ事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "A directory is handled differently. Read access gives the right to consult the list of its entries (files and directories), write access allows creating or deleting files, and execute access allows crossing through it (especially to go there with the <command>cd</command> command). Being able to cross through a directory without being able to read it gives permission to access the entries therein that are known by name, but not to find them if you do not know their existence or their exact name."
-msgstr ""
+msgstr "ディレクトリは別のやり方で取り扱われます。読み込み権限があれば、そのエントリ (ファイルとディレクトリ) のリストを閲覧することが可能です。書き込み権限があれば、ファイルを作成および削除することが可能です。実行権限があれば、そのディレクトリを横断することが可能です (<command>cd</command> コマンドでそのディレクトリに移動できます)。ディレクトリの読み込み権限が無くてもディレクトリを横断する事ができるならば、ディレクトリ内の名前を知っているエントリにアクセスすることが可能です。ただし、エントリの存在を知らないか、エントリの完全な名前を知らない場合、そのエントリを見つけることは出来ません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <literal>setgid</literal> directory and <emphasis>sticky bit</emphasis>"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> <literal>setgid</literal> ディレクトリと<emphasis>スティッキービット</emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>setgid</literal> directory</primary>"
-msgstr ""
+msgstr "<primary><literal>setgid</literal> ディレクトリ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>setgid</literal> bit also applies to directories. Any newly-created item in such directories is automatically assigned the owner group of the parent directory, instead of inheriting the creator's main group as usual. This setup avoids the user having to change its main group (with the <command>newgrp</command> command) when working in a file tree shared between several users of the same dedicated group."
-msgstr ""
+msgstr "<literal>setgid</literal> ビットはディレクトリにも適用されます。<literal>setgid</literal> ビットが適用されたディレクトリの中に新しく作成されたアイテムは、作成者のメイングループを継承するのではなく、自動的に親ディレクトリの所有者グループを割り当てられます。こうすることで、ユーザが同じ専用グループに所属する複数のユーザの間で共有されているファイルツリーの中で作業をしている場合、自分の (<command>newgrp</command> コマンドを使って) メイングループを変更しなくてもよくなります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>sticky bit</primary>"
-msgstr ""
+msgstr "<primary>スティッキービット</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The “sticky” bit (symbolized by the letter “t”) is a permission that is only useful in directories. It is especially used for temporary directories where everybody has write access (such as <filename>/tmp/</filename>): it restricts deletion of files so that only their owner (or the owner of the parent directory) can do it. Lacking this, everyone could delete other users' files in <filename>/tmp/</filename>."
-msgstr ""
+msgstr "「スティッキー」ビット (「t」で表記されます) とはディレクトリだけに有効なパーミッションです。これは特に、誰でも書き込み権限を持つ一時ディレクトリ (<filename>/tmp/</filename> など) に使われます: スティッキービットを付けられたディレクトリ以下に含まれるファイルの削除が制限されます。ファイルは所有者 (または親ディレクトリの所有者) だけが削除できるようになります。<filename>/tmp/</filename> にスティッキービットが無ければ、そのディレクトリ以下にある他のユーザのファイルを誰でも削除できる事になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Three commands control the permissions associated with a file:"
-msgstr ""
+msgstr "ファイルのパーミッションを制御する 3 種類のコマンド:"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>chown <replaceable>user</replaceable> <replaceable>file</replaceable></command> changes the owner of the file;"
-msgstr ""
+msgstr "<command>chown <replaceable>user</replaceable> <replaceable>file</replaceable></command> ファイルの所有者を変更します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>chgrp <replaceable>group</replaceable> <replaceable>file</replaceable></command> alters the owner group;"
-msgstr ""
+msgstr "<command>chgrp <replaceable>group</replaceable> <replaceable>file</replaceable></command> ファイルの所有グループを変更します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>chmod <replaceable>rights</replaceable> <replaceable>file</replaceable></command> changes the permissions for the file."
-msgstr ""
+msgstr "<command>chmod <replaceable>rights</replaceable> <replaceable>file</replaceable></command> ファイルのパーミッションを変更します。"
 
 #. Tag: para
 #, no-c-format
 msgid "There are two ways of presenting rights. Among them, the symbolic representation is probably the easiest to understand and remember. It involves the letter symbols mentioned above. You can define rights for each category of users (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>), by setting them explicitly (with <literal>=</literal>), by adding (<literal>+</literal>), or subtracting (<literal>-</literal>). Thus the <literal>u=rwx,g+rw,o-r</literal> formula gives the owner read, write, and execute rights, adds read and write rights for the owner group, and removes read rights for other users. Rights not altered by the addition or subtraction in such a command remain unmodified. The letter <literal>a</literal>, for “all”, covers all three categories of users, so that <literal>a=rx</literal> grants all three categories the same rights (read and execute, but not write)."
-msgstr ""
+msgstr "権限の指定方法には 2 種類あります。それらの中でも、記号指定が最もわかりやすく覚えやすいでしょう。これは上で述べた文字記号を使います。ユーザのカテゴリ (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>) に対する権限を (<literal>=</literal> で) 明示するか、(<literal>+</literal> で) 追加するか、(<literal>-</literal> で) 取り除く事ができます。そんな訳で、<literal>u=rwx,g+rw,o-r</literal> 式は、所有者に読み込み、書き込み、実行権限を与え、所有グループに読み込み、書き込み権限を追加し、その他のユーザから読み込み権限を奪います。追加と削除によって変更されない権限はそのままです。「all」を意味する文字 <literal>a</literal> は 3 つのユーザカテゴリ全てを表現します。このため、<literal>a=rx</literal> は全てのカテゴリのユーザに対して同じ権限 (読み込みと実行権限を与えますが、書き込み権限は与えません) を与えます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>chmod</command></primary>"
-msgstr ""
+msgstr "<primary><command>chmod</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>chown</command></primary>"
-msgstr ""
+msgstr "<primary><command>chown</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>chgrp</command></primary>"
-msgstr ""
+msgstr "<primary><command>chgrp</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>octal representation of rights</primary>"
-msgstr ""
+msgstr "<primary>権限の 8 進数表記</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>rights</primary><secondary>octal representation</secondary>"
-msgstr ""
+msgstr "<primary>権限</primary><secondary>8 進数表記</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The (octal) numeric representation associates each right with a value: 4 for read, 2 for write, and 1 for execute. We associate each combination of rights with the sum of the figures. Each value is then assigned to different categories of users by putting them end to end in the usual order (owner, group, others)."
-msgstr ""
+msgstr "(8 進数) 数値表記は各権限を値で表現します: 読み込みは 4、書き込みは 2、実行権限は 1 です。権限を組み合わせるには組み合わせたい権限に対応する数字を合計します。ユーザの各カテゴリ (所有者、グループ、その他) に対して与える権限を同じ順番で連結して、それぞれの権限を割り当てます。"
 
 #. Tag: para
 #, no-c-format
 msgid "For instance, the <command>chmod 754 <replaceable>file</replaceable></command> command will set the following rights: read, write and execute for the owner (since 7 = 4 + 2 + 1); read and execute for the group (since 5 = 4 + 1); read-only for others. The <literal>0</literal> means no rights; thus <command>chmod 600 <replaceable>file</replaceable></command> allows for read/write rights for the owner, and no rights for anyone else. The most frequent right combinations are <literal>755</literal> for executable files and directories, and <literal>644</literal> for data files."
-msgstr ""
+msgstr "例えば、<command>chmod 754 <replaceable>file</replaceable></command> コマンドは以下の権限を設定します: 所有者に書き込み、読み込み、実行権限 (7 = 4 + 2 + 1 なので) を設定し; 所有グループに読み込み、実行権限 (5 = 4 + 1 なので) を設定し; その他のユーザに読み込み権限を設定します。<literal>0</literal> は権限が無いことを意味します; このため <command>chmod 600 <replaceable>file</replaceable></command> は所有者に読み込み、書き込み権限を設定し、所有者以外のユーザにはいかなる権限も与えません。最もよく使われる権限の組み合わせは、実行ファイルやディレクトリの場合 <literal>755</literal> で、データファイルの場合 <literal>644</literal> です。"
 
 #. Tag: para
 #, no-c-format
 msgid "To represent special rights, you can prefix a fourth digit to this number according to the same principle, where the <literal>setuid</literal>, <literal>setgid</literal> and <literal>sticky</literal> bits are 4, 2 and 1, respectively. <command>chmod 4754</command> will associate the <literal>setuid</literal> bit with the previously described rights."
-msgstr ""
+msgstr "同じ原則に従って特別な権限を表す 4 番目の桁は先に説明した 3 桁の権限表記の前に付けます。<literal>setuid</literal>、<literal>setgid</literal>、<literal>sticky</literal> ビットがそれぞれ 4、2、1 に対応します。<command>chmod 4754</command> は前に説明した権限に加えて、<literal>setuid</literal> ビットを設定します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the use of octal notation only allows to set all the rights at once on a file; you can not use it to simply add a new right, such as read access for the group owner, since you must take into account the existing rights and compute the new corresponding numerical value."
-msgstr ""
+msgstr "8 進数表記の権限設定が使えるのは、あるファイルに対する全ての権限を一度に設定する場合だけです; 例えば、所有グループに読み込み権限を与えるなどの、新しい権限を追加したい場合は使えません。なぜなら、既に設定されている権限を考慮して、新しい権限を数値表記に直さなければいけないからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Recursive operation"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> 再帰操作"
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes we have to change rights for an entire file tree. All the commands above have a <literal>-R</literal> option to operate recursively in sub-directories."
-msgstr ""
+msgstr "しばしばファイルツリー全体の権限を変更しなければいけない場合があります。上に挙げた 3 種類のコマンドには、サブディレクトリを再帰的に辿って操作を行うための <literal>-R</literal> オプションがあります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The distinction between directories and files sometimes causes problems with recursive operations. That's why the “X” letter has been introduced in the symbolic representation of rights. It represents a right to execute which applies only to directories (and not to files lacking this right). Thus, <command>chmod -R a+X <replaceable>directory</replaceable></command> will only add execute rights for all categories of users (<literal>a</literal>) for all of the sub-directories and files for which at least one category of user (even if their sole owner) already has execute rights."
-msgstr ""
+msgstr "再帰操作を行った時に、ディレクトリとファイルの間の違いが原因で、時々問題が起こります。このため、「X」文字が権限の記号表記に導入されました。「X」文字はディレクトリだけに適用される (そして実行権限の無いファイルには適用されない) 実行権限を表します。このため、<command>chmod -R a+X <replaceable>directory</replaceable></command> は、少なくとも 1 つのカテゴリのユーザ (所有者が一人しかいなくても) が既に対象の実行権限を持っている場合に、全てのカテゴリのユーザ (<literal>a</literal>) に対して全てのサブディレクトリとファイルへの実行権限を追加します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Changing the user and group"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> ユーザとグループの変更"
 
 #. Tag: para
 #, no-c-format
 msgid "Frequently you want to change the group of a file at the same time that you change the owner. The <command>chown</command> command has a special syntax for that: <command>chown <replaceable>user</replaceable>:<replaceable>group</replaceable></command>"
-msgstr ""
+msgstr "しばしば、ファイルのグループと所有者を同時に変更したい場合があります。この用途向けに <command>chown</command> コマンドには特別な構文があります: <command>chown <replaceable>user</replaceable>:<replaceable>group</replaceable></command>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> <command>umask</command>"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> <command>umask</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "When an application creates a file, it assigns indicative permissions, knowing that the system automatically removes certain rights, given by the command <command>umask</command>. Enter <command>umask</command> in a shell; you will see a mask such as <computeroutput>0022</computeroutput>. This is simply an octal representation of the rights to be systematically removed (in this case, the write right for the group and other users)."
-msgstr ""
+msgstr "アプリケーションがファイルを作成する際、ファイルには目安となるパーミッションが割り当てられます。このパーミッションは <command>umask</command> コマンドで表示される特定の権限が自動的に削除されたものです。シェルで <command>umask</command> を実行すると; <computeroutput>0022</computeroutput> 等のマスクが表示されます。これは権限の単純な 8 進数表記で、これで表される権限は体系的に削除されます (上の場合、グループとその他のユーザに対する書き込み権限が削除されます)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>umask</primary>"
-msgstr ""
+msgstr "<primary>umask</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>rights</primary><secondary>mask</secondary>"
-msgstr ""
+msgstr "<primary>権限</primary><secondary>マスク</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mask</primary><secondary>rights mask</secondary>"
-msgstr ""
+msgstr "<primary>マスク</primary><secondary>権限マスク</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "If you give it a new octal value, the <command>umask</command> command modifies the mask. Used in a shell initialization file (for example, <filename>~/.bash_profile</filename>), it will effectively change the default mask for your work sessions."
-msgstr ""
+msgstr "新しい 8 進数値でマスクを再設定したければ、<command>umask</command> コマンドでマスクを変更できます。シェル初期化ファイル (例えば、<filename>~/.bash_profile</filename>) の中で <command>umask</command> コマンドを使った場合、作業セッション内で有効なデフォルトのマスクを変更します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Administration Interfaces"
-msgstr ""
+msgstr "管理インターフェイス"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>interface</primary><secondary>administration interface</secondary>"
-msgstr ""
+msgstr "<primary>インターフェイス</primary><secondary>管理インターフェイス</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>administration, interfaces</primary>"
-msgstr ""
+msgstr "<primary>管理、インターフェイス</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Using a graphical interface for administration is interesting in various circumstances. An administrator does not necessarily know all the configuration details for all their services, and doesn't always have the time to go seeking out the documentation on the matter. A graphical interface for administration can thus accelerate the deployment of a new service. It can also simplify the setup of services which are hard to configure."
-msgstr ""
+msgstr "管理にグラフィカルインターフェイスを使うことは様々な状況で興味深いです。管理者は全てのサービスの全ての設定の詳細を知る必要はありませんし、常に問題に関連する文書を探し出すための時間があるというわけでもありません。管理用のグラフィカルインターフェイスを使うと、新しいサービスを素早く配置できるようになります。さらに、設定の難しいサービスのセットアップを単純に行うことが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Such an interface is only an aid, and not an end in itself. In all cases, the administrator must master its behavior in order to understand and work around any potential problem."
-msgstr ""
+msgstr "グラフィカルインターフェイスは補助でしかなく、インターフェイス自身は目的ではありません。どんな場合でも管理者は、様々な潜在的問題を理解してに対処するために、サービスの挙動に精通しなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Since no interface is perfect, you may be tempted to try several solutions. This is to be avoided as much as possible, since different tools are sometimes incompatible in their work methods. Even if they all target to be very flexible and try to adopt the configuration file as a single reference, they are not always able to integrate external changes."
-msgstr ""
+msgstr "どんなインターフェイスも完璧ではありませんから、様々なインターフェイスを試したくなるかもしれません。これは可能な限り避けるべきです。なぜなら、ツールが違えばそのやり方に互換性がないこともあるからです。ツールが、全ての目標をとても柔軟性の高い方法で取り扱い、基準としてその設定ファイルを採用しようとしていたとしても、ツールは外部からの変更を必ず統合出来るわけではありません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Administrating on a Web Interface: <command>webmin</command>"
-msgstr ""
+msgstr "ウェブインターフェイスを使った管理: <command>webmin</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>webmin</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>webmin</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This is, without a doubt, one of the most successful administration interfaces. It is a modular system managed through a web browser, covering a wide array of areas and tools. Furthermore, it is internationalized and available in many languages."
-msgstr ""
+msgstr "<command>webmin</command> が最も成功した管理インターフェイスの 1 つであることは間違いないでしょう。<command>webmin</command> はモジュールシステムで、ウェブブラウザから管理され、幅広い領域とツールをカバーしています。更に、<command>webmin</command> は国際化されており、多くの言語で利用可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Sadly, <command>webmin</command> is no longer part of Debian. Its Debian maintainer — Jaldhar H. Vyas — removed the packages he created because he no longer had the time required to maintain them at an acceptable quality level. Nobody has officially taken over, so <emphasis role=\"distribution\">Wheezy</emphasis> does not have the <command>webmin</command> package."
-msgstr ""
+msgstr "残念なことに、Debian はもはや <command>webmin</command> を配布していません。<command>webmin</command> の Debian メンテナ - Jaldhar H. Vyas さん - は自分の作ったこのパッケージを削除しました。なぜなら、彼にはもはや合格基準に達するだけの品質でメンテナンス作業を行うのに必要な時間が無かったからです。公式にパッケージを引き継ぐ人がいなかったため、<emphasis role=\"distribution\">Wheezy</emphasis> には <command>webmin</command> パッケージがありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the original Debian packages, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
-msgstr ""
+msgstr "しかしながら、非公式パッケージが <literal>webmin.com</literal> ウェブサイトから配布されています。元の Debian パッケージと異なり、このパッケージは柔軟性に欠けています; 対応するサービスがマシンがインストールされているか否かに関わらず、全ての設定モジュールがインストールされ、デフォルトで有効化されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Changing the root password"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> root パスワードの変更"
 
 #. Tag: para
 #, no-c-format
 msgid "On first login, identification is conduced with the root username and its usual password. It is recommended to change the password used for <command>webmin</command> as soon as possible, so that if it is compromised, the root password for the server will not be involved, even if this confers important administrative rights to the machine."
-msgstr ""
+msgstr "最初のログインでは、root というユーザ名と root のパスワードを使って身分証明します。可能な限り早く、<command>webmin</command> 用のパスワードを変更することを推奨します。<command>webmin</command> を使えばマシンに対する重要な管理上の権限が必要な操作が可能とは言っても、こうしておけば、<command>webmin</command> が不正アクセスを受けた場合でも、サーバの root パスワードは守られます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Beware! Since <command>webmin</command> has so many features, a malicious user accessing it could compromise the security of the entire system. In general, interfaces of this kind are not recommended for important systems with strong security constraints (firewall, sensitive servers, etc.)."
-msgstr ""
+msgstr "注意してください! <command>webmin</command> は多くの機能を持っていますから、悪意あるユーザが <command>webmin</command> を使って全システムのセキュリティを侵害する事が可能です。一般に、この種のインターフェイスを強固なセキュリティを要求される重要なシステム (ファイヤーウォール、外部向けサーバなど) で使うのは推奨されません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Webmin is used through a web interface, but it does not require Apache to be installed. Essentially, this software has its own integrated mini web server. This server listens by default on port 10000 and accepts secure HTTP connections."
-msgstr ""
+msgstr "Webmin はウェブインターフェイスを通じて使われますが、Apache をインストールする必要はありません。元から Webmin には統合された小さなウェブサーバが含まれています。このサーバはデフォルトでポート 10000 番をリッスンし、安全な HTTP 接続を受け入れます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Included modules cover a wide variety of services, among which:"
-msgstr ""
+msgstr "導入されたモジュールは多種多様なサービスをカバーしています、例えば:"
 
 #. Tag: para
 #, no-c-format
 msgid "all base services: creation of users and groups, management of <filename>crontab</filename> files, init scripts, viewing of logs, etc."
-msgstr ""
+msgstr "全ての基本的サービス: ユーザとグループの作成、<filename>crontab</filename> ファイルの管理、init スクリプト、ログの閲覧など。"
 
 #. Tag: para
 #, no-c-format
 msgid "bind: DNS server configuration (name service);"
-msgstr ""
+msgstr "bind: DNS サーバ設定 (ネームサービス);"
 
 #. Tag: para
 #, no-c-format
 msgid "postfix: SMTP server configuration (e-mail);"
-msgstr ""
+msgstr "postfix: SMTP サーバ設定 (電子メール);"
 
 #. Tag: para
 #, no-c-format
 msgid "inetd: configuration of the <command>inetd</command> super-server;"
-msgstr ""
+msgstr "inetd: <command>inetd</command> スーパーサーバの設定;"
 
 #. Tag: para
 #, no-c-format
 msgid "quota: user quota management;"
-msgstr ""
+msgstr "quota: ユーザクォータの管理;"
 
 #. Tag: para
 #, no-c-format
 msgid "dhcpd: DHCP server configuration;"
-msgstr ""
+msgstr "dhcpd: DHCP サーバの設定;"
 
 #. Tag: para
 #, no-c-format
 msgid "proftpd: FTP server configuration;"
-msgstr ""
+msgstr "proftpd: FTP サーバの設定;"
 
 #. Tag: para
 #, no-c-format
 msgid "samba: Samba file server configuration;"
-msgstr ""
+msgstr "samba: Samba ファイルサーバの設定;"
 
 #. Tag: para
 #, no-c-format
 msgid "software: installation or removal of software from Debian packages and system updates."
-msgstr ""
+msgstr "ソフトウェア: Debian パッケージを使ったソフトウェアのインストールと削除、システム更新。"
 
 #. Tag: para
 #, no-c-format
 msgid "The administration interface is available in a web browser at <literal>https://localhost:10000</literal>. Beware! Not all the modules are directly usable. Sometimes they must be configured by specifying the locations of the corresponding configuration files and some executable files (program). Frequently the system will politely prompt you when it fails to activate a requested module."
-msgstr ""
+msgstr "ウェブブラウザで <literal>https://localhost:10000</literal> にアクセスすれば管理インターフェイスを使えます。注意してください! 全てのモジュールがすぐに使えるわけではありません。対応する設定ファイルと一部の実行ファイル (プログラム) の場所を指定して、モジュールを設定しなければいけない場合もあります。要求されたモジュールの有効化に失敗した場合、Webmin システムから丁寧な指示をもらうでしょう。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> GNOME control center"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> GNOME コントロールセンター"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">gnome-control-center</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">gnome-control-center</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The GNOME project also provides multiple administration interfaces that are usually accessible via the “Settings” entry in the user menu on the top right. <command>gnome-control-center</command> is the main program that brings them all together but many of the system wide configuration tools are effectively provided by other packages (<emphasis role=\"pkg\">accountsservice</emphasis>, <emphasis role=\"pkg\">system-config-printer</emphasis>, etc.). Easy to use, these applications cover only a limited number of base services: user management, time configuration, network configuration, printer configuration, and so on."
-msgstr ""
+msgstr "GNOME プロジェクトは、通常右上に位置するユーザメニューの「設定」エントリから利用可能な、複数の管理インターフェイスを提供します。<command>gnome-control-center</command> は複数の管理インターフェイスを一纏めにしたメインプログラムですが、システム共通設定ツールの多くは他のパッケージによって提供されています (<emphasis role=\"pkg\">accountsservice</emphasis>、<emphasis role=\"pkg\">system-config-printer</emphasis> など)。それらのアプリケーションは使いやすく、基本サービスの一部だけをカバーします: ユーザ管理、時間設定、ネットワーク設定、プリンタ設定、など。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring Packages: <command>debconf</command>"
-msgstr ""
+msgstr "パッケージの設定: <command>debconf</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debconf</command></primary>"
-msgstr ""
+msgstr "<primary><command>debconf</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>dpkg-reconfigure</command></primary>"
-msgstr ""
+msgstr "<primary><command>dpkg-reconfigure</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Many packages are automatically configured after asking a few questions during installation through the Debconf tool. These packages can be reconfigured by running <command>dpkg-reconfigure <replaceable>package</replaceable></command>."
-msgstr ""
+msgstr "多くのパッケージが、インストール中 Debconf ツールを使って僅かな質問をした後に、自動的に設定されるようになっています。そのようなパッケージは <command>dpkg-reconfigure <replaceable>package</replaceable></command> を実行すれば再設定可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "For most cases, these settings are very simple; only a few important variables in the configuration file are changed. These variables are often grouped between two “demarcation” lines so that reconfiguration of the package only impacts the enclosed area. In other cases, reconfiguration will not change anything if the script detects a manual modification of the configuration file, in order to preserve these human interventions (because the script can't ensure that its own modifications will not disrupt the existing settings)."
-msgstr ""
+msgstr "殆どの場合、これらの設定はとても簡素です; 設定ファイル中の僅かな重要変数だけが変更されます。これらの重要変数は多くの場合 2 つの「境界」線で挟まれています。そうすれば、パッケージを再設定しても影響を受けるのは境界線で挟まれた範囲だけに限定されるからです。「境界」線で挟まれていない場合、スクリプトが手作業で設定ファイルが変更されたことを検出したら、人間による設定変更を上書きしないよう、再設定しても何も変更されません (なぜなら、スクリプトは自分の修正が既存の設定を破壊しないことを保証できないからです)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> Preserving changes"
-msgstr ""
+msgstr "<emphasis>DEBIAN POLICY</emphasis> 変更の保存"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian Policy expressly stipulates that everything should be done to preserve manual changes made to a configuration file, so more and more scripts take precautions when editing configuration files. The general principle is simple: the script will only make changes if it knows the status of the configuration file, which is verified by comparing the checksum of the file against that of the last automatically generated file. If they are the same, the script is authorized to change the configuration file. Otherwise, it determines that the file has been changed and asks what action it should take (install the new file, save the old file, or try to integrate the new changes with the existing file). This precautionary principle has long been unique to Debian, but other distributions have gradually begun to embrace it."
-msgstr ""
+msgstr "Debian ポリシーには、スクリプトは設定ファイルに対して行われた手作業の変更を保護するように作業を実行しなければいけないことが、明確に規定されています。このため、ますます多くのスクリプトが設定ファイルを編集する際に事前注意を出します。一般的な原則は単純です: スクリプトが修正を行うのは、設定ファイルの状態を検証して、修正しても問題ないと判断した場合だけです。設定ファイルの状態検証は、最後に自動的に生成された設定ファイルのチェックサムと現在の設定ファイルのチェックサムを比較することで行います。両者のチェックサムが同じ場合、スクリプトは設定ファイルを変更する権限を与えられます。チェックサムが違った場合、設定ファイルが変更されたと判断し、対応 (新しいファイルをインストールする、古いファイルを保存する、新しい変更を既存のファイルと統合しようとする) を尋ねます。この事前注意の原則は長きに渡り Debian に固有のものでしたが、他のディストリビューションもこの原則を採用し始めています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>ucf</command> program (from the Debian package of the same name) can be used to implement such a behavior."
-msgstr ""
+msgstr "(同名の Debian パッケージの提供する) <command>ucf</command> プログラムはこの原則を実行に移すために使われます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ucf</command></primary>"
-msgstr ""
+msgstr "<primary><command>ucf</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<command>syslog</command> System Events"
-msgstr ""
+msgstr "<command>syslog</command> システムイベント"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>rsyslogd</command></primary>"
-msgstr ""
+msgstr "<primary><command>rsyslogd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>files</primary><secondary>log files</secondary>"
-msgstr ""
+msgstr "<primary>ファイル</primary><secondary>ログファイル</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>dispatching</secondary>"
-msgstr ""
+msgstr "<primary>ログ</primary><secondary>配送</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Principle and Mechanism"
-msgstr ""
+msgstr "原理とメカニズム"
 
 #. Tag: para
 #, no-c-format
