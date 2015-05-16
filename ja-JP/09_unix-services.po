@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-15 23:24+0900\n"
+"PO-Revision-Date: 2015-05-17 00:56+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1362,312 +1362,315 @@ msgstr "原理とメカニズム"
 #. Tag: para
 #, no-c-format
 msgid "The <command>rsyslogd</command> daemon is responsible for collecting service messages coming from applications and the kernel, then dispatching them into log files (usually stored in the <filename>/var/log/</filename> directory). It obeys the <filename>/etc/rsyslog.conf</filename> configuration file."
-msgstr ""
+msgstr "<command>rsyslogd</command> デーモンはアプリケーションおよびカーネルからのサービスメッセージを収集を担当し、サービスメッセージをログファイル (通常 <filename>/var/log/</filename> ディレクトリに保存されます) に配送します。<command>rsyslogd</command> デーモンは <filename>/etc/rsyslog.conf</filename> ファイルの設定に従います。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each log message is associated with an application subsystem (called “facility” in the documentation):"
-msgstr ""
+msgstr "各ログメッセージはアプリケーションサブシステム (文書中では「facility」と呼ばれます) に関連付けられます:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>auth</literal> and <literal>authpriv</literal>: for authentication;"
-msgstr ""
+msgstr "<literal>auth</literal> と <literal>authpriv</literal>: 認証;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>cron</literal>: comes from task scheduling services, <command>cron</command> and <command>atd</command>;"
-msgstr ""
+msgstr "<literal>cron</literal>: タスクスケジューリングサービスからのメッセージ、<command>cron</command> と <command>atd</command>;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>daemon</literal>: affects a daemon without any special classification (DNS, NTP, etc.);"
 msgstr ""
+"<literal>daemon</literal>: affects a daemon without any special classification (DNS, NTP, etc.);<\n"
+"\n"
+"<literal>daemon</literal>: 特別な分類の無いデーモン (DNS、NTP、など);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ftp</literal>: concerns the FTP server;"
-msgstr ""
+msgstr "<literal>ftp</literal>: FTP サーバ関連;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>kern</literal>: message coming from the kernel;"
-msgstr ""
+msgstr "<literal>kern</literal>: カーネルからのメッセージ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>lpr</literal>: comes from the printing subsystem;"
-msgstr ""
+msgstr "<literal>lpr</literal>: 印刷サブシステムからのメッセージ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>mail</literal>: comes from the e-mail subsystem;"
-msgstr ""
+msgstr "<literal>mail</literal>: 電子メールサブシステムからのメッセージ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>news</literal>: Usenet subsystem message (especially from an NNTP — Network News Transfer Protocol — server that manages newsgroups);"
-msgstr ""
+msgstr "<literal>news</literal>: Usenet サブシステムからのメッセージ (特にニュースグループを管理する NNTP - Network News Transfer Protocol - サーバ);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>syslog</literal>: messages from the <command>syslogd</command> server, itself;"
-msgstr ""
+msgstr "<literal>syslog</literal>: <command>syslogd</command> サーバ (自分) からのメッセージ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>user</literal>: user messages (generic);"
-msgstr ""
+msgstr "<literal>user</literal>: ユーザメッセージ (一般);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>uucp</literal>: messages from the UUCP server (Unix to Unix Copy Program, an old protocol notably used to distribute e-mail messages);"
-msgstr ""
+msgstr "<literal>uucp</literal>: UUCP サーバからのメッセージ (Unix to Unix Copy Program、とりわけ昔は電子メールメッセージの配送に使われていた古いプロトコル);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>local0</literal> to <literal>local7</literal>: reserved for local use."
-msgstr ""
+msgstr "<literal>local0</literal> から <literal>local7</literal>: ローカル利用向けに予約されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each message is also associated with a priority level. Here is the list in decreasing order:"
-msgstr ""
+msgstr "さらに各メッセージは優先順位と関連付けられます。以下は優先度の高い順に挙げたリストです:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>emerg</literal>: “Help!” There's an emergency, the system is probably unusable."
-msgstr ""
+msgstr "<literal>emerg</literal>: 「助けて!」非常事態です。おそらくシステムが不安定になっています。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>alert</literal>: hurry up, any delay can be dangerous, action must be taken immediately;"
-msgstr ""
+msgstr "<literal>alert</literal>: 急いで下さい、遅れると危険な状態になります。すぐに何らかの措置が必要です;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>crit</literal>: conditions are critical;"
-msgstr ""
+msgstr "<literal>crit</literal>: 危機的状態です;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>err</literal>: error;"
-msgstr ""
+msgstr "<literal>err</literal>: エラー;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>warn</literal>: warning (potential error);"
-msgstr ""
+msgstr "<literal>warn</literal>: 警告 (潜在的エラー);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>notice</literal>: conditions are normal, but the message is important;"
-msgstr ""
+msgstr "<literal>notice</literal>: 正常な状態ですが、このメッセージは重要です;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>info</literal>: informative message;"
-msgstr ""
+msgstr "<literal>info</literal>: 有益なメッセージ;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>debug</literal>: debugging message."
-msgstr ""
+msgstr "<literal>debug</literal>: デバッグメッセージ。"
 
 #. Tag: title
 #, no-c-format
 msgid "The Configuration File"
-msgstr ""
+msgstr "設定ファイル"
 
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the <filename>/etc/rsyslog.conf</filename> file is detailed in the <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, but there is also HTML documentation available in the <emphasis role=\"pkg\">rsyslog-doc</emphasis> package (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>). The overall principle is to write “selector” and “action” pairs. The selector defines all relevant messages, and the actions describes how to deal with them."
-msgstr ""
+msgstr "<filename>/etc/rsyslog.conf</filename> ファイルの構文は <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページで詳しく説明されています。しかし、<emphasis role=\"pkg\">rsyslog-doc</emphasis> パッケージから提供される HTML 文書 (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>) も利用可能です。全般的な原則は「セレクタ」と「アクション」の組を書くことです。セレクタは全ての関連するメッセージを定義し、アクションはそれらのメッセージをどのように取り扱うかを定義します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Syntax of the Selector"
-msgstr ""
+msgstr "セレクタの構文"
 
 #. Tag: para
 #, no-c-format
 msgid "The selector is a semicolon-separated list of <literal><replaceable>subsystem</replaceable>.<replaceable>priority</replaceable></literal> pairs (example: <literal>auth.notice;mail.info</literal>). An asterisk may represent all subsystems or all priorities (examples: <literal>*.alert</literal> or <literal>mail.*</literal>). Several subsystems can be grouped, by separating them with a comma (example: <literal>auth,mail.info</literal>). The priority indicated also covers messages of equal or higher priority; thus <literal>auth.alert</literal> indicates the <literal>auth</literal> subsystem messages of <literal>alert</literal> or <literal>emerg</literal> priority. Prefixed with an exclamation point (!), it indicates the opposite, in other words the strictly lower priorities; <literal>auth.!notice</literal>, thus, indicates messages issued from <literal>auth</literal>, with <literal>info</literal> or <literal>debug</literal> priority. Prefixed with an equal sign (=), it corresponds to precisely and only the priority indicated (<literal>auth.=notice</literal> only concerns messages from <literal>auth</literal> with <literal>notice</literal> priority)."
-msgstr ""
+msgstr "セレクタは <literal><replaceable>subsystem</replaceable>.<replaceable>priority</replaceable></literal> の組からなるセミコロン区切りリストです (例: <literal>auth.notice;mail.info</literal>)。アスタリスクは全てのサブシステムまたは全ての優先順位を表します (例: <literal>*.alert</literal>、<literal>mail.*</literal>)。コンマで区切れば複数のサブシステムをグループ化することが可能です (例: <literal>auth,mail.info</literal>)。優先度は同じかより高い優先度を持つメッセージを意味します; このため <literal>auth.alert</literal> は <literal>alert</literal> および <literal>emerg</literal> 優先度を持つ <literal>auth</literal> サブシステムメッセージを表現します。優先度の前に感嘆符 (!) を付けると否定を表します。言い換えれば、その優先度より低い優先度です; このため <literal>auth.!notice</literal> は <literal>auth</literal> から発行された <literal>info</literal> および <literal>debug</literal> 優先度を持つメッセージを表現します。優先度の前に等号 (=) をつけると、その優先度だけを表します (<literal>auth.=notice</literal> は <literal>auth</literal> から発行された <literal>notice</literal> 優先度を持つメッセージを表現します)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each element in the list on the selector overrides previous elements. It is thus possible to restrict a set or to exclude certain elements from it. For example, <literal>kern.info;kern.!err</literal> means messages from the kernel with priority between <literal>info</literal> and <literal>warn</literal>. The <literal>none</literal> priority indicates the empty set (no priorities), and may serve to exclude a subsystem from a set of messages. Thus, <literal>*.crit;kern.none</literal> indicates all the messages of priority equal to or higher than <literal>crit</literal> not coming from the kernel."
-msgstr ""
+msgstr "セレクタリスト内の各要素は前の要素を上書きします。このため、セレクタリストからある組を制限したり、ある要素を除外することが可能です。例えば、<literal>kern.info;kern.!err</literal> はカーネルの発行した <literal>info</literal> と <literal>warn</literal> の間の優先度を持つメッセージを意味します。<literal>none</literal> 優先度は空の組 (優先度を持たない) を意味します。これはあるサブシステムをメッセージの組から除外するのに役立つかもしれません。そんなわけで、<literal>*.crit;kern.none</literal> はカーネルの発行した <literal>crit</literal> 以上の優先度を持つメッセージを意味します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Syntax of Actions"
-msgstr ""
+msgstr "アクションの構文"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The named pipe, a persistent pipe"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> 名前付きパイプ、永続的パイプ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>named pipe</primary>"
-msgstr ""
+msgstr "<primary>名前付きパイプ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>pipe, named pipe</primary>"
-msgstr ""
+msgstr "<primary>パイプ、名前付きパイプ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A named pipe is a particular type of file that operates like a traditional pipe (the pipe that you make with the “|” symbol on the command line), but via a file. This mechanism has the advantage of being able to relate two unrelated processes. Anything written to a named pipe blocks the process that writes until another process attempts to read the data written. This second process reads the data written by the first, which can then resume execution."
-msgstr ""
+msgstr "名前付きパイプは特殊なファイル型で、古典的なパイプ (コマンドラインで「|」文字を使って表すパイプ) のように振る舞いますが、ファイルを経由します。名前付きパイプのメカニズムは 2 つの別々のプロセスを関連付けることが可能という利点を持っています。別のプロセスが名前付きパイプに書き込まれたデータを読む準備を整えるまで、名前付きパイプに書き込むプロセスはブロックされます。読み込み側のプロセスが書き込み側のプロセスの書き込んだデータを読み込むと、書き込み側のプロセスのブロックが解除されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Such a file is created with the <command>mkfifo</command> command."
-msgstr ""
+msgstr "名前付きパイプは <command>mkfifo</command> コマンドで作成します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The various possible actions are:"
-msgstr ""
+msgstr "様々なアクションが利用可能です:"
 
 #. Tag: para
 #, no-c-format
 msgid "add the message to a file (example: <filename>/var/log/messages</filename>);"
-msgstr ""
+msgstr "ファイルにメッセージを追記する (例: <filename>/var/log/messages</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "send the message to a remote <command>syslog</command> server (example: <literal>@log.falcot.com</literal>);"
-msgstr ""
+msgstr "メッセージをリモートの <command>syslog</command> サーバに送信する (例: <literal>@log.falcot.com</literal>);"
 
 #. Tag: para
 #, no-c-format
 msgid "send the message to an existing named pipe (example: <literal>|/dev/xconsole</literal>);"
-msgstr ""
+msgstr "既存の名前付きパイプにメッセージを送信する (例: <literal>|/dev/xconsole</literal>);"
 
 #. Tag: para
 #, no-c-format
 msgid "send the message to one or more users, if they are logged in (example: <literal>root,rhertzog</literal>);"
-msgstr ""
+msgstr "ログイン中の 1 人かそれ以上のユーザにメッセージを送信する (例: <literal>root,rhertzog</literal>);"
 
 #. Tag: para
 #, no-c-format
 msgid "send the message to all logged in users (example: <literal>*</literal>);"
-msgstr ""
+msgstr "ログイン中の全ユーザにメッセージを送信する (例: <literal>*</literal>);"
 
 #. Tag: para
 #, no-c-format
 msgid "write the message in a text console (example: <literal>/dev/tty8</literal>)."
-msgstr ""
+msgstr "テキストコンソールにメッセージを書き込む (例: <literal>/dev/tty8</literal>)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Forwarding logs"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> ログの転送"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>log</primary><secondary>forwarding</secondary>"
-msgstr ""
+msgstr "<primary>ログ</primary><secondary>転送</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "It is a good idea to record the most important logs on a separate machine (perhaps dedicated for this purpose), since this will prevent any possible intruder from removing traces of their intrusion (unless, of course, they also compromise this other server). Furthermore, in the event of a major problem (such as a kernel crash), you have the logs available on another machine, which increases your chances of determining the sequence of events that caused the crash."
-msgstr ""
+msgstr "最重要のログを別のマシン (ログ記録専用マシン) に記録することをは良い考えです。なぜなら、そうすることで侵入者に不正侵入の形跡を削除されないようにすることが可能だからです (これを削除するにはもちろん、ログを記録させた別のマシンに不正アクセスするしかありません)。更に、深刻な問題 (カーネルクラッシュなど) が起きた場合に、他のマシンにログを記録しておけば、クラッシュを引き起こす一連の出来事を決定できる可能性を増やす事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "To accept log messages sent by other machines, you must reconfigure <emphasis>rsyslog</emphasis>: in practice, it is sufficient to activate the ready-for-use entries in <filename>/etc/rsyslog.conf</filename> (<literal>$ModLoad imudp</literal> and <literal>$UDPServerRun 514</literal>)."
-msgstr ""
+msgstr "他のマシンから送信されたログメッセージを受け入れるには、<emphasis>rsyslog</emphasis> を再設定しなければいけません: 具体的に言えば、<filename>/etc/rsyslog.conf</filename> の中ですぐに利用できる状態になっているエントリ (<literal>$ModLoad imudp</literal> と <literal>$UDPServerRun 514</literal>) を有効化するだけで十分です。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <command>inetd</command> Super-Server"
-msgstr ""
+msgstr "<command>inetd</command> スーパーサーバ"
 
 #. Tag: para
 #, no-c-format
 msgid "Inetd (often called “Internet super-server”) is a server of servers. It executes rarely used servers on demand, so that they do not have to run continuously."
-msgstr ""
+msgstr "Inetd (通常「Internet スーパーサーバ」と呼ばれます) はサーバのサーバです。Inetd は要求に応じてまれに使われるサーバを実行します。そうすれば、まれにしか使われないサーバを常に実行しておく必要が無くなります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>inetd</command></primary>"
-msgstr ""
+msgstr "<primary><command>inetd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>super-server</primary>"
-msgstr ""
+msgstr "<primary>スーパーサーバ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/inetd.conf</filename> file lists these servers and their usual ports. The <command>inetd</command> command listens to all of them; when it detects a connection to any such port, it executes the corresponding server program."
-msgstr ""
+msgstr "<filename>/etc/inetd.conf</filename> ファイルには、そのようなサーバとサーバの使うポート番号が書かれています。<command>inetd</command> コマンドはここで書かれた全てのポートをリッスンします; そのポートに対する接続を検出したら、<command>inetd</command> は対応するサーバプログラムを実行します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DEBIAN POLICY</emphasis> Register a server in <filename>inetd.conf</filename>"
-msgstr ""
+msgstr "<emphasis>DEBIAN POLICY</emphasis> <filename>inetd.conf</filename> へのサーバの登録"
 
 #. Tag: para
 #, no-c-format
 msgid "Packages frequently want to register a new server in the <filename>/etc/inetd.conf</filename> file, but Debian Policy prohibits any package from modifying a configuration file that it doesn't own. This is why the <command>updated-inetd</command> script (in the package with the same name) was created: It manages the configuration file, and other packages can thus use it to register a new server to the super-server's configuration."
-msgstr ""
+msgstr "多くの場合 inetd を使うサーバのパッケージは <filename>/etc/inetd.conf</filename> ファイルに自分を登録することを望むのですが、Debian ポリシーはあるパッケージが提供する設定ファイルを他のパッケージが修正することを禁止しています。このため、<command>updated-inetd</command> スクリプト (同名のパッケージに含まれる) が作成されました: <command>updated-inetd</command> スクリプトは設定ファイルを管理し、他のパッケージはこれを使って、スーパーサーバの設定に新しいサーバを登録します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each significant line of the <filename>/etc/inetd.conf</filename> file describes a server through seven fields (separated by spaces):"
-msgstr ""
+msgstr "<filename>/etc/inetd.conf</filename> ファイルの有効な各行は (スペースで区切られた) 7 つのフィールドで 1 つのサーバを表現します:"
 
 #. Tag: para
 #, no-c-format
 msgid "The TCP or UDP port number, or the service name (which is mapped to a standard port number with the information contained in the <filename>/etc/services</filename> file)."
-msgstr ""
+msgstr "TCP か UDP のポート番号、またはサービス名 (この場合、<filename>/etc/services</filename> ファイルに含まれる情報を使って標準的なポート番号に置換されます)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The socket type: <literal>stream</literal> for a TCP connection, <literal>dgram</literal> for UDP datagrams."
-msgstr ""
+msgstr "ソケットタイプ: TCP 接続の場合 <literal>stream</literal>、 UDP データグラムの場合 <literal>dgram</literal>。"
 
 #. Tag: para
 #, no-c-format
 msgid "The protocol: <literal>tcp</literal> or <literal>udp</literal>."
-msgstr ""
+msgstr "プロトコル: <literal>tcp</literal> または <literal>udp</literal>。"
 
 #. Tag: para
 #, no-c-format
 msgid "The options: two possible values: <literal>wait</literal> or <literal>nowait</literal>, to tell <command>inetd</command> whether it should wait or not for the end of the launched process before accepting another connection. For TCP connections, easily multiplexable, you can usually use <literal>nowait</literal>. For programs responding over UDP, you should use <literal>nowait</literal> only if the server is capable of managing several connections in parallel. You can suffix this field with a period, followed by the maximum number of connections authorized per minute (the default limit is 256)."
-msgstr ""
+msgstr "オプション: 設定できる値は 2 種類です: <literal>wait</literal> または <literal>nowait</literal> です。これは <command>inetd</command> に他の接続を受け入れる前に、起動されたプロセスの終了を待つか否かを伝えます。簡単に多重送信対応できる TCP 接続の場合、通常 <literal>nowait</literal> を使います。UDP を使って応答するプログラムに対しては、サーバが複数接続の並列化を管理する機能を持っている場合に限り <literal>nowait</literal> を使うべきです。この後に子プロセスの最大数、さらに 1 分間に認められる接続の最大数 (デフォルトの値は 256) を指定することが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The user name of the user under whose identity the server will run."
-msgstr ""
+msgstr "ユーザ名、サーバはこのユーザの権限で実行されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The full path to the server program to execute."
-msgstr ""
+msgstr "実行するサーバプログラムのフルパス。"
 
 #. Tag: para
 #, no-c-format
 msgid "The arguments: this is a complete list of the program's arguments, including its own name (<literal>argv[0]</literal> in C)."
-msgstr ""
+msgstr "引数: これはプログラムの引数の完全なリストで、サーバプログラムの名前 (C 言語で言えば <literal>argv[0]</literal>) を含みます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The following example illustrates the most common cases:"
-msgstr ""
+msgstr "最も一般的な場合、以下の例のようになります:"
 
 #. Tag: title
 #, no-c-format
 msgid "Excerpt from <filename>/etc/inetd.conf</filename>"
-msgstr ""
+msgstr "<filename>/etc/inetd.conf</filename> からの抜粋"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1676,271 +1679,274 @@ msgid ""
 "finger stream tcp nowait  nobody     /usr/sbin/tcpd     in.fingerd\n"
 "ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
 msgstr ""
+"talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
+"finger stream tcp nowait  nobody     /usr/sbin/tcpd     in.fingerd\n"
+"ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tcpd</command></primary>"
-msgstr ""
+msgstr "<primary><command>tcpd</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>tcpd</command> program is frequently used in the <filename>/etc/inetd.conf</filename> file. It allows limiting incoming connections by applying access control rules, documented in the <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, and which are configured in the <filename>/etc/hosts.allow</filename> and <filename>/etc/hosts.deny</filename> files. Once it has been determined that the connection is authorized, <command>tcpd</command> executes the real server (like <command>in.fingerd</command> in our example). It is worth noting that <command>tcpd</command> relies on the name under which it was invoked (that is the first argument, <literal>argv[0]</literal>) to identify the real program to run. So you should not start the arguments list with <literal>tcpd</literal> but with the program that must be wrapped."
-msgstr ""
+msgstr "<filename>/etc/inetd.conf</filename> ファイルの中では <command>tcpd</command> プログラムを使うことが多いです。<command>tcpd</command> プログラムを使うと、アクセス制御ルールを適用して新たな接続を制限することが可能です。アクセス制御ルール <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページで説明されており、<filename>/etc/hosts.allow</filename> と <filename>/etc/hosts.deny</filename> ファイルを使います。一旦その接続が認証されたら、<command>tcpd</command> は実際のサーバを実行します (以下の例では <command>in.fingerd</command> など)。<command>tcpd</command> はそれが実行されたときの名前 (1 番目の引数 <literal>argv[0]</literal>) を頼りに、実際に実行するプログラムを識別します。この点に注意してください。そのため、引数リストは <literal>tcpd</literal> で始めるのではなく、ラップされなければいけないプログラムで始めるべきです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMMUNITY</emphasis> Wietse Venema"
-msgstr ""
+msgstr "<emphasis>COMMUNITY</emphasis> Wietse Venema さん"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Wietse Venema</primary>"
-msgstr ""
+msgstr "<primary>Wietse Venema</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Venema, Wietse</primary>"
-msgstr ""
+msgstr "<primary>Venema, Wietse</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Wietse Venema, whose expertise in security has made him a renowned programmer, is the author of the <command>tcpd</command> program. He is also the main creator of Postfix, the modular e-mail server (SMTP, Simple Mail Transfer Protocol), designed to be safer and more reliable than <command>sendmail</command>, which features a long history of security vulnerabilities."
-msgstr ""
+msgstr "Wietse Venema さんは <command>tcpd</command> プログラムの作者で、セキュリティ分野における専門知識によって名を挙げたプログラマです。彼はまた Postfix の主な考案者です。Postfix はモジュール式電子メールサーバ (SMTP、Simple Mail Transfer Protocol)で、セキュリティ脆弱性の長い歴史を特徴付ける <command>sendmail</command> よりも安全で信頼性が高くなるように設計されました。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Other <command>inetd</command> commands"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> 他の <command>inetd</command> コマンド"
 
 #. Tag: para
 #, no-c-format
 msgid "While Debian installs <emphasis role=\"pkg\">openbsd-inetd</emphasis> by default, there is no lack of alternatives: we can mention <emphasis role=\"pkg\">inetutils-inetd</emphasis>, <emphasis role=\"pkg\">micro-inetd</emphasis>, <emphasis role=\"pkg\">rlinetd</emphasis> and <emphasis role=\"pkg\">xinetd</emphasis>."
-msgstr ""
+msgstr "Debian はデフォルトで <emphasis role=\"pkg\">openbsd-inetd</emphasis> をインストールしますが、他にも沢山の代替品があります: <emphasis role=\"pkg\">inetutils-inetd</emphasis>、<emphasis role=\"pkg\">micro-inetd</emphasis>、<emphasis role=\"pkg\">rlinetd</emphasis>、<emphasis role=\"pkg\">xinetd</emphasis> などです。"
 
 #. Tag: para
 #, no-c-format
 msgid "This last incarnation of a super-server offers very interesting possibilities. Most notably, its configuration can be split into several files (stored, of course, in the <filename>/etc/xinetd.d/</filename> directory), which can make an administrator's life easier."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">xinetd</emphasis> は大変興味深い機能を持っています。中でも注目すべきは、<emphasis role=\"pkg\">xinetd</emphasis> の設定を複数のファイル (これはもちろん <filename>/etc/xinetd.d/</filename> ディレクトリの中に保存されています) に分割できるという点です。このお陰で、管理がもっと楽になります。"
 
 #. Tag: title
 #, no-c-format
 msgid "Scheduling Tasks with <command>cron</command> and <command>atd</command>"
-msgstr ""
+msgstr "<command>cron</command> と <command>atd</command> を使ったスケジューリングタスク"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>cron</command></primary>"
-msgstr ""
+msgstr "<primary><command>cron</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>atd</command></primary>"
-msgstr ""
+msgstr "<primary><command>atd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>scheduled commands</primary>"
-msgstr ""
+msgstr "<primary>スケジュールされたコマンド</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>command scheduling</primary>"
-msgstr ""
+msgstr "<primary>コマンドスケジューリング</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>cron</command> is the daemon responsible for executing scheduled and recurring commands (every day, every week, etc.); <command>atd</command> is that which deals with commands to be executed a single time, but at a specific moment in the future."
-msgstr ""
+msgstr "<command>cron</command> は定期的に (毎日、毎週、など) 実行するよう予定されたコマンドの実行を担当するデーモンです; <command>atd</command> は未来の特定の時間に 1 回だけ実行するよう予定されたコマンドの実行を担当するデーモンです。"
 
 #. Tag: para
 #, no-c-format
 msgid "In a Unix system, many tasks are scheduled for regular execution:"
-msgstr ""
+msgstr "Unix システムでは、多くのタスクがは定期的に実行されるよう予定されています:"
 
 #. Tag: para
 #, no-c-format
 msgid "rotating the logs;"
-msgstr ""
+msgstr "ログの循環;"
 
 #. Tag: para
 #, no-c-format
 msgid "updating the database for the <command>locate</command> program;"
-msgstr ""
+msgstr "<command>locate</command> プログラムの使うデータベースの更新;"
 
 #. Tag: para
 #, no-c-format
 msgid "back-ups;"
-msgstr ""
+msgstr "バックアップ;"
 
 #. Tag: para
 #, no-c-format
 msgid "maintenance scripts (such as cleaning out temporary files)."
-msgstr ""
+msgstr "メンテナンススクリプト (一時ファイルの掃除など)。"
 
 #. Tag: para
 #, no-c-format
 msgid "By default, all users can schedule the execution of tasks. Each user has thus their own <emphasis>crontab</emphasis> in which they can record scheduled commands. It can be edited by running <command>crontab -e</command> (its content is stored in the <filename>/var/spool/cron/crontabs/<replaceable>user</replaceable></filename> file)."
-msgstr ""
+msgstr "デフォルトで、全てのユーザはタスク実行の予定を入れることが可能です。各ユーザは自分専用の <emphasis>crontab</emphasis> を持っており、これを使ってコマンド実行の予定を登録することが可能です。<emphasis>crontab</emphasis> を編集するには <command>crontab -e</command>を実行します (<filename>/var/spool/cron/crontabs/<replaceable>user</replaceable></filename> ファイルに保存されます)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Restricting <command>cron</command> or <command>atd</command>"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> <command>cron</command> または <command>atd</command> の使用制限"
 
 #. Tag: para
 #, no-c-format
 msgid "You can restrict access to <command>cron</command> by creating an explicit authorization file (whitelist) in <filename>/etc/cron.allow</filename>, in which you indicate the only users authorized to schedule commands. All others will automatically be deprived of this feature. Conversely, to only block one or two troublemakers, you could write their username in the explicit prohibition file (blacklist), <filename>/etc/cron.deny</filename>. This same feature is available for <command>atd</command>, with the <filename>/etc/at.allow</filename> and <filename>/etc/at.deny</filename> files."
-msgstr ""
+msgstr "実行を許可するユーザを明示するファイル (ホワイトリスト) <filename>/etc/cron.allow</filename> の中にコマンドの予定を入れることを許可するユーザを書けば、<command>cron</command> へのアクセスを制限することが可能です。その他のユーザは自動的にこの機能を使えなくなります。反対に、実行を禁止するユーザを明示するファイル (ブラックリスト) <filename>/etc/cron.deny</filename> の中にユーザ名を書けば、1 人か 2 人の問題児だけをブロックすることが可能です。<command>atd</command> に対しても <filename>/etc/at.allow</filename> と <filename>/etc/at.deny</filename> ファイルを使って同等の機能が利用可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The root user has their own <emphasis>crontab</emphasis>, but can also use the <filename>/etc/crontab</filename> file, or write additional <emphasis>crontab</emphasis> files in the <filename>/etc/cron.d</filename> directory. These last two solutions have the advantage of being able to specify the user identity to use when executing the command."
-msgstr ""
+msgstr "root ユーザは自分専用の <emphasis>crontab</emphasis> を持っていますが、<filename>/etc/crontab</filename> ファイルを使ったり、追加的な <emphasis>crontab</emphasis> ファイルを <filename>/etc/cron.d</filename> ディレクトリに置くことが可能です。最後の 2 つの解決策には、コマンドを実行する際に実行するユーザを明示できるという利点があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>cron</emphasis> package includes by default some scheduled commands that execute:"
-msgstr ""
+msgstr "デフォルトで <emphasis>cron</emphasis> パッケージには、幾つかのスケジュールされたコマンドが含まれています:"
 
 #. Tag: para
 #, no-c-format
 msgid "programs in the <filename>/etc/cron.hourly/</filename> directory once per hour;"
-msgstr ""
+msgstr "<filename>/etc/cron.hourly/</filename> ディレクトリ内のプログラムは 1 時間に 1 回実行されます;"
 
 #. Tag: para
 #, no-c-format
 msgid "programs in <filename>/etc/cron.daily/</filename> once per day;"
-msgstr ""
+msgstr "<filename>/etc/cron.daily/</filename> ディレクトリ内のプログラムは 1 日に 1 回実行されます;"
 
 #. Tag: para
 #, no-c-format
 msgid "programs in <filename>/etc/cron.weekly/</filename> once per week;"
-msgstr ""
+msgstr "<filename>/etc/cron.weekly/</filename> ディレクトリ内のプログラムは 1 週間に 1 回実行されます;"
 
 #. Tag: para
 #, no-c-format
 msgid "programs in <filename>/etc/cron.monthly/</filename> once per month."
-msgstr ""
+msgstr "<filename>/etc/cron.monthly/</filename> ディレクトリ内のプログラムは 1 ヶ月に 1 回実行されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Many Debian packages rely on this service: by putting maintenance scripts in these directories, they ensure optimal operation of their services."
-msgstr ""
+msgstr "多くの Debian パッケージはこのサービスに頼っています: メンテナンススクリプトをこれらのディレクトリに入れて、サービスの最適な動作を保証しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Format of a <filename>crontab</filename> File"
-msgstr ""
+msgstr "<filename>crontab</filename> ファイルの書式"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>crontab</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>crontab</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Text shortcuts for <command>cron</command>"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> <command>cron</command> のテキストショートカット"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>cron</command> recognizes some abbreviations which replace the first five fields in a <filename>crontab</filename> entry. They correspond to the most classic scheduling options:"
-msgstr ""
+msgstr "<command>cron</command> は幾つかの略語を認識します。略語は <filename>crontab</filename> エントリの最初の 5 つのフィールドを置き換えます。略語は最も古典的なスケジュール化オプションに対応します:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@yearly</literal>: once per year (January 1, at 00:00);"
-msgstr ""
+msgstr "<literal>@yearly</literal>: 1 年に 1 回 (1 月 1 日の 00:00);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@monthly</literal>: once per month (the 1st of the month, at 00:00);"
-msgstr ""
+msgstr "<literal>@monthly</literal>: 1 ヶ月に 1 回 (毎月 1 日の 00:00);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@weekly</literal>: once per week (Sunday at 00:00);"
-msgstr ""
+msgstr "<literal>@weekly</literal>: 1 週間に 1 回 (日曜日の 00:00);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@daily</literal>: once per day (at 00:00);"
-msgstr ""
+msgstr "<literal>@daily</literal>: 1 日 1 回 (00:00);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>@hourly</literal>: once per hour (at the beginning of each hour)."
-msgstr ""
+msgstr "<literal>@hourly</literal>: 1 時間に 1 回 (毎時 0 分)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIAL CASE</emphasis> <command>cron</command> and daylight savings time."
-msgstr ""
+msgstr "<emphasis>SPECIAL CASE</emphasis> <command>cron</command> と夏時間。"
 
 #. Tag: para
 #, no-c-format
 msgid "In Debian, <command>cron</command> takes the time change (for Daylight Savings Time, or in fact for any significant change in the local time) into account as best as it can. Thus, the commands that should have been executed during an hour that never existed (for example, tasks scheduled at 2:30 am during the Spring time change in France, since at 2:00 am the clock jumps directly to 3:00 am) are executed shortly after the time change (thus around 3:00 am DST). On the other hand, in autumn, when commands would be executed several times (2:30 am DST, then an hour later at 2:30 am standard time, since at 3:00 am DST the clock turns back to 2:00 am) are only executed once."
-msgstr ""
+msgstr "Debian では、<command>cron</command> は可能な限り正確に時刻変化 (夏時間、もっと言えば、ローカル時間の大幅な変更) に追従します。このため、決して存在しない 1 時間内に実行されるべきコマンド (例えば、フランスで春に午前 2:30 に予定されているタスクです。夏時間に切り替わると標準時の午前 2:00 は夏時間の午後 3:00 になります) は時刻が変わった後すぐに実行されます (つまり夏時間で午前 3:00 頃)。一方で、秋に複数回実行されると思われるコマンド (夏時間の午前 2:30 とその 1 時間後の標準時の午前 2:30。標準時に戻ると夏時間の午前 3:00 は標準時の午前 2:00 になります) は 1 回だけ実行されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Be careful, however, if the order in which the different scheduled tasks and the delay between their respective executions matters, you should check the compatibility of these constraints with <command>cron</command>'s behavior; if necessary, you can prepare a special schedule for the two problematic nights per year."
-msgstr ""
+msgstr "しかしながら気を付けてください、別にスケジュールされたタスクとの順番とそれぞれの実行間の遅延が重要な問題の場合、それらの制約の互換性と <command>cron</command> の挙動を照合するべきです。必要ならは、1 年に 2 回の問題の夜用に特別なスケジュールを用意することも可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each significant line of a <emphasis>crontab</emphasis> describes a scheduled command with the six (or seven) following fields:"
-msgstr ""
+msgstr "<emphasis>crontab</emphasis> の有効な各行は以下の 6 つ (または 7 つ) のフィールドを含むスケジュールされたコマンド表します:"
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the minute (number from 0 to 59);"
-msgstr ""
+msgstr "分 (0 から 59 までの数字)"
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the hour (from 0 to 23);"
-msgstr ""
+msgstr "時間 (0 から 23 までの数字);"
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the day of the month (from 1 to 31);"
-msgstr ""
+msgstr "月の日付 (1 から 31 までの数字);"
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the month (from 1 to 12);"
-msgstr ""
+msgstr "月 (1 から 12 までの数字);"
 
 #. Tag: para
 #, no-c-format
 msgid "the value for the day of the week (from 0 to 7, 1 corresponding to Monday, Sunday being represented by both 0 and 7; it is also possible to use the first three letters of the name of the day of the week in English, such as <literal>Sun</literal>, <literal>Mon</literal>, etc.);"
-msgstr ""
+msgstr "曜日 (0 から 7 までの数字、月曜日は 1、日曜日は 0 と 7 の両方; 英語で書いた曜日の最初の 3 文字 <literal>Sun</literal>、<literal>Mon</literal> などを使うことも可能です);"
 
 #. Tag: para
 #, no-c-format
 msgid "the user name under whose identity the command must be executed (in the <filename>/etc/crontab</filename> file and in the fragments located in <filename>/etc/cron.d/</filename>, but not in the users' own crontab files);"
-msgstr ""
+msgstr "コマンドを実行するユーザ名 (<filename>/etc/crontab</filename> ファイルと <filename>/etc/cron.d/</filename> にある分割されたファイルでは必要。各ユーザ専用のファイルでは不要);"
 
 #. Tag: para
 #, no-c-format
 msgid "the command to execute (when the conditions defined by the first five columns are met)."
-msgstr ""
+msgstr "実行するコマンド (最初の 5 つのフィールドで定義された条件が満足されたら実行します)。"
 
 #. Tag: para
 #, no-c-format
 msgid "All these details are documented in the <citerefentry><refentrytitle>crontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> man page."
-msgstr ""
+msgstr "全ての詳細は <citerefentry><refentrytitle>crontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> man ページに書かれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each value can be expressed in the form of a list of possible values (separated by commas). The syntax <literal>a-b</literal> describes the interval of all the values between <literal>a</literal> and <literal>b</literal>. The syntax <literal>a-b/c</literal> describes the interval with an increment of <literal>c</literal> (example: <literal>0-10/2</literal> means <literal>0,2,4,6,8,10</literal>). An asterisk <literal>*</literal> is a wildcard, representing all possible values."
-msgstr ""
+msgstr "各値は設定可能な値の (コンマ区切り) リストの形で表現することが可能です。<literal>a-b</literal> 構文は <literal>a</literal> と <literal>b</literal> の間にある全ての値を表現します。<literal>a-b/c</literal> 構文は <literal>a</literal> から <literal>c</literal> づつ増加させて <literal>b</literal> までの全ての値を表現します (例: <literal>0-10/2</literal> は <literal>0,2,4,6,8,10</literal> を意味します)。アスタリスク <literal>*</literal> はワイルドカードで、とり得るすべての値を意味します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Sample <filename>crontab</filename> file"
-msgstr ""
+msgstr "単純な <filename>crontab</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1957,31 +1963,42 @@ msgid ""
 "# Restart the IRC proxy after each reboot\n"
 "@reboot /usr/bin/dircproxy\n"
 msgstr ""
+"#Format\n"
+"#min hour day mon dow  command\n"
+"\n"
+"# Download data every night at 7:25 pm\n"
+" 25  19   *   *   *    $HOME/bin/get.pl\n"
+"\n"
+"# 8:00 am, on weekdays (Monday through Friday)\n"
+" 00  08   *   *   1-5  $HOME/bin/dosomething\n"
+"\n"
+"# Restart the IRC proxy after each reboot\n"
+"@reboot /usr/bin/dircproxy\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Executing a command on boot"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> 起動時のコマンド実行"
 
 #. Tag: para
 #, no-c-format
 msgid "To execute a command a single time, just after booting the computer, you can use the <literal>@reboot</literal> macro (a simple restart of <command>cron</command> does not trigger a command scheduled with <literal>@reboot</literal>). This macro replaces the first five fields of an entry in the <emphasis>crontab</emphasis>."
-msgstr ""
+msgstr "コンピュータを起動した後に、毎回コマンドを実行するためには、<literal>@reboot</literal> マクロを使ってください (<command>cron</command> を単純に再起動しただけでは <literal>@reboot</literal> でスケジュールされたコマンドは実行されません)。このマクロを使うには <emphasis>crontab</emphasis> 内の最初の 5 つのフィールドを置換してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Using the <command>at</command> Command"
-msgstr ""
+msgstr "<command>at</command> コマンドの利用"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>at</command></primary>"
-msgstr ""
+msgstr "<primary><command>at</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>at</command> executes a command at a specified moment in the future. It takes the desired time and date as command-line parameters, and the command to be executed in its standard input. The command will be executed as if it had been entered in the current shell. <command>at</command> even takes care to retain the current environment, in order to reproduce the same conditions when it executes the command. The time is indicated by following the usual conventions: <literal>16:12</literal> or <literal>4:12pm</literal> represents 4:12 pm. The date can be specified in several European and Western formats, including <literal>DD.MM.YY</literal> (<literal>27.07.12</literal> thus representing 27 July 2012), <literal>YYYY-MM-DD</literal> (this same date being expressed as <literal>2012-07-27</literal>), <literal>MM/DD/[CC]YY</literal> (ie., <literal>12/25/12</literal> or <literal>12/25/2012</literal> will be December 25, 2012), or simple <literal>MMDD[CC]YY</literal> (so that <literal>122512</literal> or <literal>12252012</literal> will, likewise, represent December 25, 2012). Without it, the command will be executed as soon as the clock reaches the time indicated (the same day, or tomorrow if that time has already passed on the same day). You can also simply write “today” or “tomorrow”, which is self-explanatory."
-msgstr ""
+msgstr "<command>at</command> は未来の特定の時点にコマンドを実行します。<command>at</command> は時刻と日付をコマンドラインパラメータで受け取り、実行するコマンドを標準入力で受け取ります。このコマンドは、あたかも現在のシェルで実行されたかの如く実行されます。<command>at</command> はコマンドを実行する際に現在と同じ状況を再現するために、現在の環境を保存するように気を付けます。時刻は以下のように普通の慣例に従って表現されます: <literal>16:12</literal> または <literal>4:12pm</literal> は午後 4:12 を意味します。日付はヨーロッパと西洋で使われる幾つかの書式で指定します。<literal>DD.MM.YY</literal> (<literal>27.07.12</literal> は 2012 年 7 月 27 日を意味します)、<literal>YYYY-MM-DD</literal> (<literal>2012-07-27</literal> は上と同じ日付を意味します)、<literal>MM/DD/[CC]YY</literal> (<literal>12/25/12</literal> や <literal>12/25/2012</literal> は 2012 年 12 月 25 日を意味します)、または単純な <literal>MMDD[CC]YY</literal> (<literal>122512</literal> や <literal>12252012</literal> は同様に 2012 年 12 月 25 日を意味します) などです。日付の指定がなければ、コマンドは最も早く到達した指定時刻に実行されます (当日中、または、指定時刻が既に過ぎていれば明日)。読んで字の通り「today」、「tomorrow」などと簡単に書くことも可能です。"
 
 #. Tag: screen
 #, no-c-format
@@ -1994,31 +2011,38 @@ msgid ""
 "<computeroutput>warning: commands will be executed using /bin/sh\n"
 "job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.14 &lt;&lt;END</userinput>\n"
+"<computeroutput>&gt; </computeroutput><userinput>echo \"Don't forget to wish a Happy Birthday to Raphaël!\" \\</userinput>\n"
+"<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
+"<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
+"<computeroutput>warning: commands will be executed using /bin/sh\n"
+"job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "An alternative syntax postpones the execution for a given duration: <command>at now + <replaceable>number</replaceable> <replaceable>period</replaceable></command>. The <replaceable>period</replaceable> can be <literal>minutes</literal>, <literal>hours</literal>, <literal>days</literal>, or <literal>weeks</literal>. The <replaceable>number</replaceable> simply indicates the number of said units that must elapse before execution of the command."
-msgstr ""
+msgstr "与えられた期間だけ実行を延期する構文もあります: <command>at now + <replaceable>number</replaceable> <replaceable>period</replaceable></command> です。<replaceable>period</replaceable> には <literal>minutes</literal>、<literal>hours</literal>、<literal>days</literal>、<literal>weeks</literal> を指定することが可能です。<replaceable>number</replaceable> は単純に <replaceable>period</replaceable> で指定した単位の量を表し、この量だけコマンドの実行が延期されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "To cancel a task scheduled by <command>cron</command>, simply run <command>crontab -e</command> and delete the corresponding line in the <emphasis>crontab</emphasis> file. For <command>at</command> tasks, it is almost as easy: run <command>atrm <replaceable>task-number</replaceable></command>. The task number is indicated by the <command>at</command> command when you scheduled it, but you can find it again with the <command>atq</command> command, which gives the current list of scheduled tasks."
-msgstr ""
+msgstr "<command>cron</command> でスケジュールされたタスクを中止するには、単純に <command>crontab -e</command>を実行し、<emphasis>crontab</emphasis> ファイルから対応する行を削除してください。<command>at</command> タスクの場合、削除はとても簡単です: <command>atrm <replaceable>task-number</replaceable></command> を実行してください。タスク番号は <command>at</command> コマンドで予定を登録した際に表示されたものです。改めて確認するには <command>atq</command> コマンドを実行してください。これはスケジュールされたタスクの現在のリストを表示します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>atrm</command></primary>"
-msgstr ""
+msgstr "<primary><command>atrm</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>atq</command></primary>"
-msgstr ""
+msgstr "<primary><command>atq</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Scheduling Asynchronous Tasks: <command>anacron</command>"
-msgstr ""
+msgstr "非同期タスクのスケジューリング: <command>anacron</command>"
 
 #. Tag: para
 #, no-c-format
