@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/RelativeLayout1"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="#eaeaea"
-                android:orientation="vertical">
+<RelativeLayout
+    android:id="@+id/RelativeLayout1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eaeaea"
+    android:orientation="vertical">
 
     <ListView
         android:id="@android:id/list"
@@ -13,13 +14,13 @@
         android:layout_above="@+id/searchEditLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:cacheColorHint="@android:color/transparent"
-        android:stackFromBottom="true"
-        android:background="#ffffff"
         android:layout_margin="10dp"
-        android:elevation="2dp"
+        android:background="#ffffff"
+        android:cacheColorHint="@android:color/transparent"
         android:divider="@drawable/list_separator"
         android:dividerHeight="1dp"
+        android:elevation="2dp"
+        android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll">
     </ListView>
 
@@ -36,10 +37,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
             android:elevation="2dp"
-            android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:background="@android:color/white">
+            android:paddingTop="8dp">
 
             <ImageView
                 android:id="@+id/menuButton"
@@ -50,19 +51,21 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:focusable="true"
                 android:src="@drawable/dots"/>
 
             <ImageView
                 android:id="@+id/clearButton"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:visibility="invisible"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/clear_dark"/>
+                android:focusable="true"
+                android:src="@drawable/clear_dark"
+                android:visibility="invisible"/>
 
             <EditText
                 android:id="@+id/searchEditText"
@@ -73,11 +76,11 @@
                 android:layout_toRightOf="@+id/clearButton"
                 android:layout_toStartOf="@+id/launcher"
                 android:background="@android:color/white"
-                android:textSize="16sp"
                 android:hint="@string/ui_search_hint"
                 android:imeOptions="flagNoExtractUi|actionSearch"
                 android:inputType="textVisiblePassword|textNoSuggestions"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:textSize="16sp"/>
 
             <ImageView
                 android:id="@+id/launcher"
@@ -88,6 +91,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:focusable="true"
                 android:src="@drawable/ic_launcher"/>
         </RelativeLayout>
     </FrameLayout>

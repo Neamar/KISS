@@ -7,15 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -166,7 +165,31 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        // Hide the "X" before the text field, instead displaying the menu button
         displayClearOnInput();
+
+        // Apply effects depending on current Android version
+        applyDesignTweaks();
+    }
+
+    /**
+     * Apply some tweaks to the design, depending on the current SDK version
+     */
+    public void applyDesignTweaks() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            final View menuButton = findViewById(R.id.menuButton);
+            final View clearButton = findViewById(R.id.clearButton);
+            final View launcherButton = findViewById(R.id.clearButton);
+            TypedValue outValue = new TypedValue();
+            getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+
+            // Clicking on menu button should display a focused rectangle
+            menuButton.setBackgroundResource(outValue.resourceId);
+            // Barely visible on the backbutton, since it disappears instant. Can be seen on long click though
+            clearButton.setBackgroundResource(outValue.resourceId);
+            // Also adding it to the launcher button, although it will be enhanced for future android versions (Lollipop)
+            launcherButton.setBackgroundResource(outValue.resourceId);
+        }
     }
 
     @Override
@@ -257,16 +280,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent();
-        i.setAction(Intent.ACTION_MAIN);
-        i.addCategory(Intent.CATEGORY_HOME);
-        PackageManager pm = this.getPackageManager();
-        ResolveInfo ri = pm.resolveActivity(i, 0);
-        ActivityInfo ai = ri.activityInfo;
         searchEditText.setText("");
-        if (!ai.packageName.equalsIgnoreCase(this.getPackageName())) {
-            super.onBackPressed();
-        }
     }
 
     @Override
