@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-06 13:29+0200\n"
+"PO-Revision-Date: 2015-05-15 19:43+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/09_unix-services/pt_BR/>\n"
@@ -1924,14 +1924,14 @@ msgstr "Cada mensagem está associada com um nível de prioridade. Está é a li
 #, no-c-format
 msgid "<literal>emerg</literal>: “Help!” There's an emergency, the system is probably unusable."
 msgstr ""
-"<literal>emerg</literal>: “Help!” Existe uma emergência, o sistema não está "
-"usável provavelmente."
+"<literal>emerg</literal>: “Socorro!” Existe uma emergência, o sistema "
+"provavelmente não está usável."
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>alert</literal>: hurry up, any delay can be dangerous, action must be taken immediately;"
 msgstr ""
-"<literal>alert</literal>: se apresse, qualquer atrazo pode ser perigoso, é "
+"<literal>alert</literal>: se apresse, qualquer atraso pode ser perigoso, é "
 "preciso agir imediatamente;"
 
 #. Tag: para
@@ -3179,15 +3179,16 @@ msgstr ""
 "comparações entre duas datas determinadas rapidamente."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>copy, backup copy</primary>"
-msgstr "<primary>cópia, cópia de cópia de segurança</primary>"
+msgstr "<primary>cópia, cópia de backup</primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>backup</primary><secondary>copy</secondary>"
 msgstr ""
-"<primary>cópia de segurança (backup)</primary><secondary>cópia</secondary>"
+"<secondary>cópia</secondary> do <primary>backup (cópia de "
+"segurança)</primary>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -3440,7 +3441,7 @@ msgid "<primary><command>diff</command></primary>"
 msgstr "<primary><command>diff</command></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>dump</primary>"
 msgstr "<primary>dump</primary>"
 
@@ -3508,12 +3509,12 @@ msgstr ""
 "correspondente em <filename>/dev/</filename>."
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary><emphasis>hotplug</emphasis></primary>"
 msgstr "<primary><emphasis>hotplug</emphasis></primary>"
 
 #. Tag: indexterm
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<primary>hotplug</primary>"
 msgstr "<primary>hotplug</primary>"
 
@@ -3557,13 +3558,13 @@ msgstr ""
 "não é fixo; ele depende da ordem na qual o dispositivo é conectado."
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Additionally, more and more drivers use dynamic values for devices' major/minor numbers, which makes it impossible to have static entries for the given devices, since these essential characteristics may vary after a reboot."
 msgstr ""
-"Adicionalmente, mais e mais drivers usam valores dinâmicos para números "
-"major/minor de dispositivos, o que torna impossível ter entradas estáticas "
-"para determinados dispositivos, já que essas características essenciais "
-"podem variar após uma reinicialização."
+"Adicionalmente, mais e mais drivers usam valores dinâmicos para os números "
+"principal/secundário de dispositivos, o que torna impossível ter entradas "
+"estáticas para determinados dispositivos, já que essas características "
+"essenciais podem variar após uma reinicialização."
 
 #. Tag: para
 #, no-c-format
@@ -3679,28 +3680,28 @@ msgstr ""
 "dispositivo tiver sido adicionado, \"remove” quando ele tiver sido removido);"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<literal>DEVPATH</literal>: the path of the device's <filename>/sys/</filename> entry;"
 msgstr ""
-"<literal>DEVPATH</literal>: o caminho em <filename>/sys/</filename> da "
-"entrada do dispositivo;"
+"<literal>DEVPATH</literal>: o caminho da entrada <filename>/sys/</filename> "
+"do dispositivo;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SUBSYSTEM</literal>: the kernel subsystem which generated the request (there are many, but a few examples are “usb”, “ide”, “net”, “firmware”, etc.);"
 msgstr ""
-"<literal>SUBSYSTEM</literal>: o subsistema do núcleo o qual gerou a "
-"requisição (existem muitos, mas alguns exemplos são “usb”, “ide”, “net”, "
-"“firmware”, etc.);"
+"<literal>SUBSYSTEM</literal>: o subsistema do núcleo que gerou a requisição ("
+"existem muitos, mas alguns exemplos são “usb”, “ide”, “net”, “firmware”, "
+"etc.);"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<literal>ATTR{<replaceable>attribut</replaceable>}</literal>: file contents of the <replaceable>attribute</replaceable> file in the <filename>/sys/<replaceable>$devpath</replaceable>/</filename> directory of the device. This is where you find the MAC address and other bus specific identifiers;"
 msgstr ""
 "<literal>ATTR{<replaceable>attribut</replaceable>}</literal>: conteúdo do "
-"arquivo de <replaceable>atributos</replaceable> de arquivo no diretório "
+"arquivo <replaceable>attribute</replaceable> no diretório "
 "<filename>/sys/<replaceable>$devpath</replaceable>/</filename> do "
-"dispositivo. É aonde você encontra o endereço MAC  e outros identificadores "
+"dispositivo. É onde você encontra o endereço MAC  e outros identificadores "
 "específicos de barramento;"
 
 #. Tag: para
@@ -3767,7 +3768,7 @@ msgstr ""
 "para o mesmo dispositivo;"
 
 #. Tag: para
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "<literal>OWNER</literal>, <literal>GROUP</literal> and <literal>MODE</literal> define the user and group that owns the device, as well as the associated permission;"
 msgstr ""
 "<literal>OWNER</literal>, <literal>GROUP</literal> e <literal>MODE</literal> "
@@ -4002,9 +4003,10 @@ msgid "Once these rules are set in a file, named for example <filename>/etc/udev
 msgstr ""
 "Uma vez que essas regras estejam definidas em um arquivo, nomeado por "
 "exemplo como <filename>/etc/udev/rules.d/010_local.rules</filename>, você "
-"pode simplesmente remover e reconectar uma chave USB. Você pode então ver "
-"que <filename>/dev/usb_key/disk</filename> representa o disco associado a "
-"chave USB, e <filename>/dev/usb_key/part1</filename> é sua primeira partição."
+"pode simplesmente remover e reconectar o dispositivo USB. Você pode então "
+"ver que <filename>/dev/usb_key/disk</filename> representa o disco associado "
+"ao dispositivo USB, e <filename>/dev/usb_key/part1</filename> é sua primeira "
+"partição."
 
 #. Tag: title
 #, no-c-format
