@@ -3,8 +3,8 @@ package fr.neamar.kiss.task;
 import java.util.ArrayList;
 
 import android.os.AsyncTask;
-import fr.neamar.kiss.SummonActivity;
-import fr.neamar.kiss.SummonApplication;
+import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.holder.Holder;
 import fr.neamar.kiss.record.Record;
 
@@ -17,9 +17,9 @@ import fr.neamar.kiss.record.Record;
 public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 
 	private final int MAX_RECORDS = 15;
-	private SummonActivity activity;
+	private MainActivity activity;
 
-	public UpdateRecords(SummonActivity activity) {
+	public UpdateRecords(MainActivity activity) {
 		super();
 		this.activity = activity;
 	}
@@ -29,7 +29,7 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 		String workingOnQuery = queries[0];
 
 		// Ask for records
-		final ArrayList<Holder> holders = SummonApplication.getDataHandler(activity).getResults(
+		final ArrayList<Holder> holders = KissApplication.getDataHandler(activity).getResults(
 				activity, workingOnQuery);
 
 		return holders;

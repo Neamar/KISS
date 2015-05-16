@@ -17,7 +17,7 @@ public class UpdateHandler extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context ctx, Intent intent) {
-		SummonApplication.resetDataHandler(ctx);
+		KissApplication.resetDataHandler(ctx);
 	}
 
 }

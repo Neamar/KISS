@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import fr.neamar.kiss.SummonActivity;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.dataprovider.Provider;
 
 public abstract class LoadHolders<T> extends AsyncTask<Void, Void, ArrayList<T>> {
@@ -32,7 +32,7 @@ public abstract class LoadHolders<T> extends AsyncTask<Void, Void, ArrayList<T>>
 	protected void onPostExecute(ArrayList<T> result) {
 		super.onPostExecute(result);
 		provider.loadOver(result);
-		Intent i = new Intent(SummonActivity.LOAD_OVER);
+		Intent i = new Intent(MainActivity.LOAD_OVER);
 		context.sendBroadcast(i);
 	}
 

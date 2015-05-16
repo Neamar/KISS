@@ -1,20 +1,21 @@
 package fr.neamar.kiss;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
 import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactProvider;
+import fr.neamar.kiss.dataprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
-import fr.neamar.kiss.dataprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.SettingProvider;
 import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
@@ -36,10 +37,10 @@ public class DataHandler extends BroadcastReceiver {
 	 * Initialize all providers
 	 */
 	public DataHandler(Context context) {
-		IntentFilter intentFilter = new IntentFilter(SummonActivity.LOAD_OVER);
+		IntentFilter intentFilter = new IntentFilter(MainActivity.LOAD_OVER);
 		context.getApplicationContext().registerReceiver(this, intentFilter);
 
-		Intent i = new Intent(SummonActivity.START_LOAD);
+		Intent i = new Intent(MainActivity.START_LOAD);
 		context.sendBroadcast(i);
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -180,7 +181,7 @@ public class DataHandler extends BroadcastReceiver {
 		if (providersLoaded == providers.size()) {
 			try {
 				context.unregisterReceiver(this);
-				Intent i = new Intent(SummonActivity.FULL_LOAD_OVER);
+				Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
 				context.sendBroadcast(i);
 				providersLoaded = 0;
 			} catch (IllegalArgumentException e) {

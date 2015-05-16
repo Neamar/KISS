@@ -29,18 +29,18 @@
 
     <application
         android:allowBackup="true"
-        android:backupAgent="fr.neamar.kiss.SummonBackupHelper"
+        android:backupAgent=".BackupHelper"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/SummonTheme" >
+        android:theme="@style/AppTheme" >
         
         <meta-data
             android:name="com.google.android.backup.api_key"
             android:value="AEdPqrEAAAAIOBp8BxUcEpydwuuDzrWBdL-C-wonsUMpX4PIBA" />
 
         <activity
-            android:name="fr.neamar.kiss.SummonActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:stateNotNeeded="true"
             android:screenOrientation="portrait"

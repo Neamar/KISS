@@ -3,7 +3,7 @@ package fr.neamar.kiss;
 import android.app.Application;
 import android.content.Context;
 
-public class SummonApplication extends Application {
+public class KissApplication extends Application {
 	private static DataHandler dataHandler;
 
 	public static DataHandler getDataHandler(Context ctx) {

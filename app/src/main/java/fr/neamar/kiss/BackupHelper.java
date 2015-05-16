@@ -10,7 +10,7 @@ import android.app.backup.SharedPreferencesBackupHelper;
 import android.os.ParcelFileDescriptor;
 import fr.neamar.kiss.db.DBHelper;
 
-public class SummonBackupHelper extends BackupAgentHelper {
+public class BackupHelper extends BackupAgentHelper {
 
 	// The name of the SharedPreferences file
 	static final String PREFS = "fr.neamar.summon_preferences";

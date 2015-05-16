@@ -36,12 +36,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import fr.neamar.kiss.R;
 import fr.neamar.kiss.holder.Holder;
 import fr.neamar.kiss.record.Record;
 import fr.neamar.kiss.task.UpdateRecords;
 
-public class SummonActivity extends ListActivity implements QueryInterface {
+public class MainActivity extends ListActivity implements QueryInterface {
 
     public static String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -99,7 +98,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
         this.registerReceiver(mReceiver, intentFilter);
         this.registerReceiver(mReceiver, intentFilterBis);
         this.registerReceiver(mReceiver, intentFilterTer);
-        SummonApplication.initDataHandler(this);
+        KissApplication.initDataHandler(this);
 
         // Initialize preferences
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -249,7 +248,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle favorites
         if (item.getItemId() < 5) {
-            Holder holder = SummonApplication.getDataHandler(this).getFavorites(this)
+            Holder holder = KissApplication.getDataHandler(this).getFavorites(this)
                     .get(item.getItemId());
             Record record = Record.fromHolder(this, holder);
             record.fastLaunch(this);
@@ -261,7 +260,7 @@ public class SummonActivity extends ListActivity implements QueryInterface {
                 // Favorites button
                 SubMenu favorites = item.getSubMenu();
                 favorites.clear();
-                ArrayList<Holder> favorites_holder = SummonApplication.getDataHandler(this)
+                ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(this)
                         .getFavorites(this);
                 for (int i = 0; i < favorites_holder.size(); i++) {
                     Holder holder = favorites_holder.get(i);

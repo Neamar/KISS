@@ -39,7 +39,7 @@ public class ToggleRecord extends Record {
 
 		ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_toggle_icon);
 		if (toggleHolder.icon != -1) {
-			TypedArray a = context.obtainStyledAttributes(R.style.SummonTheme,
+			TypedArray a = context.obtainStyledAttributes(R.style.AppTheme,
 					new int[] { toggleHolder.icon });
 			int attributeResourceId = a.getResourceId(0, -1);
 			if (attributeResourceId != -1) {

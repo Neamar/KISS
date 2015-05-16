@@ -22,6 +22,6 @@ public class SettingsActivity extends PreferenceActivity implements
 		new BackupManager(this).dataChanged();
 
 		// Reload the DataHandler since Providers preferences have changed
-		SummonApplication.resetDataHandler(this);
+		KissApplication.resetDataHandler(this);
 	}
 }

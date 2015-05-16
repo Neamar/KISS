@@ -35,7 +35,7 @@ public class SettingRecord extends Record {
 	@Override
 	public Drawable getDrawable(Context context) {
 		if (settingHolder.icon != -1) {
-			TypedArray a = context.obtainStyledAttributes(R.style.SummonTheme,
+			TypedArray a = context.obtainStyledAttributes(R.style.AppTheme,
 					new int[] { settingHolder.icon });
 			int attributeResourceId = a.getResourceId(0, -1);
 			if (attributeResourceId != -1) {

@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import fr.neamar.kiss.QueryInterface;
-import fr.neamar.kiss.SummonApplication;
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.holder.AppHolder;
 import fr.neamar.kiss.holder.ContactHolder;
@@ -109,7 +109,7 @@ public abstract class Record {
 	protected void recordLaunch(Context context) {
 		// Save in history
 		// TODO: move to datahandler
-		DBHelper.insertHistory(context, SummonApplication.getDataHandler(context).currentQuery,
+		DBHelper.insertHistory(context, KissApplication.getDataHandler(context).currentQuery,
 				holder.id);
 	}
 
