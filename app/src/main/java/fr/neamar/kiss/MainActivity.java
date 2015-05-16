@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -143,6 +144,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        // Clear text content when touching the cross button
         ImageView clearButton = (ImageView) findViewById(R.id.clearButton);
         clearButton.setOnClickListener(new View.OnClickListener() {
 
@@ -153,6 +155,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        // Clear text content when touching the cross button
+        ImageView menuButton = (ImageView) findViewById(R.id.menuButton);
+        registerForContextMenu(menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                v.showContextMenu();
+            }
+        });
+
         displayClearOnInput();
     }
 
@@ -160,6 +173,18 @@ public class MainActivity extends ListActivity implements QueryInterface {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         adapter.onClick(position, v);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_settings, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        return onOptionsItemSelected(item);
     }
 
     /**
