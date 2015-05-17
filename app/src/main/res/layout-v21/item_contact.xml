@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/RelativeLayout1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/result_margin_bottom"
+    android:paddingLeft="@dimen/result_margin_left"
+    android:paddingRight="@dimen/result_margin_right"
+    android:paddingTop="@dimen/result_margin_top">
+
+    <fr.neamar.kiss.ui.ImprovedQuickContactBadge
+        android:id="@+id/item_contact_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/icon_margin_bottom"
+        android:layout_marginLeft="@dimen/icon_margin_left"
+        android:layout_marginRight="@dimen/icon_margin_right"
+        android:layout_marginTop="@dimen/icon_margin_top"
+        android:src="@drawable/ic_contact"
+        tools:ignore="ContentDescription"/>
+
+    <TextView
+        android:id="@+id/item_contact_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/item_contact_icon"
+        android:layout_toLeftOf="@+id/item_contact_action_message"
+        android:layout_toRightOf="@+id/item_contact_icon"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="Contact name"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/result_title_size"/>
+
+    <TextView
+        android:id="@+id/item_contact_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_contact_icon"
+        android:layout_alignLeft="@+id/item_contact_name"
+        android:text="+330 12 34 56 78"
+        android:textColor="#cccccc"/>
+
+    <ImageButton
+        android:id="@+id/item_contact_action_message"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/item_contact_action_phone"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/ui_item_contact_hint_message"
+        android:src="@drawable/ic_message"/>
+
+    <ImageButton
+        android:id="@+id/item_contact_action_phone"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/ui_item_contact_hint_call"
+        android:src="@drawable/ic_phone"/>
+
+</RelativeLayout>
