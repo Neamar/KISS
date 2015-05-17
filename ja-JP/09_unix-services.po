@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-17 00:56+0900\n"
+"PO-Revision-Date: 2015-05-18 00:39+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2047,272 +2047,272 @@ msgstr "非同期タスクのスケジューリング: <command>anacron</command
 #. Tag: para
 #, no-c-format
 msgid "<command>anacron</command> is the daemon that completes <command>cron</command> for computers that are not on at all times. Since regular tasks are usually scheduled for the middle of the night, they will never be executed if the computer is off at that time. The purpose of <command>anacron</command> is to execute them, taking into account periods in which the computer is not working."
-msgstr ""
+msgstr "<command>anacron</command> はデーモンで、常に起動されていないコンピュータの <command>cron</command> を完成するものです。定期的なタスクは通常真夜中に予定されているため、その時間にコンピュータの電源が切れていればタスクは決して実行されません。<command>anacron</command> の目的は、コンピュータの電源が切れている期間を考慮して、OFF 期間中のタスクを実行することです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>anacron</command></primary>"
-msgstr ""
+msgstr "<primary><command>anacron</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Please note that <command>anacron</command> will frequently execute such activity a few minutes after booting the machine, which can render the computer less responsive. This is why the tasks in the <filename>/etc/anacrontab</filename> file are started with the <command>nice</command> command, which reduces their execution priority and thus limits their impact on the rest of the system. Beware, the format of this file is not the same as that of <filename>/etc/crontab</filename>; if you have particular needs for <command>anacron</command>, see the <citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page."
-msgstr ""
+msgstr "<command>anacron</command> は通常そのようなタスクをマシンの起動数分後に実行します。この事により、コンピュータの反応が遅くなります。このため、<filename>/etc/anacrontab</filename> ファイルに載せられたタスクは <command>nice</command> コマンドと一緒に開始されます。こうすることで、タスクの優先度を低くして実行できるので、システムの残りの部分に対する影響を減らすことが可能です。<filename>/etc/anacrontab</filename> ファイルの書式は <filename>/etc/crontab</filename> と異なる点に注意してください; <command>anacron</command> を使う特定の必要性がある場合、<citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> マニュアルページを御覧ください。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Priorities and <command>nice</command>"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> 実行優先度と <command>nice</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "Unix systems (and thus Linux) are multi-tasking and multi-user systems. Indeed, several processes can run in parallel, and be owned by different users: the kernel mediates access to the resources between the different processes. As a part of this task, it has a concept of priority, which allows it to favor certain processes over others, as needed. When you know that a process can run in low priority, you can indicate so by running it with <command>nice <replaceable>program</replaceable></command>. The program will then have a smaller share of the CPU, and will have a smaller impact on other running processes. Of course, if no other processes needs to run, the program will not be artificially held back."
-msgstr ""
+msgstr "Unix システム (および Linux) はマルチタスクのマルチユーザシステムです。実際、複数のプロセスは平行して実行され、別のユーザに所有されます: カーネルは異なるプロセス間でリソースへのアクセスを仲介します。このタスクの一部として、カーネルは実行優先度という概念を持ちます。実行優先度に基づき、カーネルは必要に応じてあるプロセスを特別扱いします。あるプログラムを低い優先度で実行しても構わないと判っている場合、そのプログラムに低い優先度を与えて実行を開始するには <command>nice <replaceable>program</replaceable></command> を使います。<command>nice</command> を使って実行を開始されたプログラムは CPU への負担を低く設定され、他の実行中プロセスに対するを影響を低く抑えられるでしょう。もちろん、他に実行中のプロセスがない場合、このプログラムの実行は妨げられません。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>nice</command> works with levels of “niceness”: the positive levels (from 1 to 19) progressively lower the priority, while the negative levels (from -1 to -20) will increase it — but only root can use these negative levels. Unless otherwise indicated (see the <citerefentry><refentrytitle>nice</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page), <command>nice</command> increases the current level by 10."
-msgstr ""
+msgstr "<command>nice</command> は「niceness」と呼ばれる優先度と連動します: 正の優先度 (1 から 19) は低い優先度、これに対して、負の優先度 (-1 から-20) は高い優先度です。負の (高い) 優先度を使えるのは root だけです。「niceness」を与えなければ (<citerefentry><refentrytitle>nice</refentrytitle> <manvolnum>1</manvolnum></citerefentry> マニュアルページ参照)、<command>nice</command> は現在の優先度を正方向に 10 だけ増加します。"
 
 #. Tag: para
 #, no-c-format
 msgid "If you discover that an already running task should have been started with <command>nice</command> it is not too late to fix it; the <command>renice</command> command changes the priority of an already running process, in either direction (but reducing the “niceness” of a process is reserved to the root user)."
-msgstr ""
+msgstr "既に実行中のタスクの中に <command>nice</command> で開始するべきプロセスを発見した場合、今からでも優先度を修正することが可能です; <command>renice</command> コマンドは実行中のプロセスの優先度を変更します。優先度を低くすることも高くすることも可能です (ただし、「niceness」を減らす (優先度を高くする) 事ができるのは root だけです)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Installation of the <emphasis role=\"pkg\">anacron</emphasis> package deactivates execution by <command>cron</command> of the scripts in the <filename>/etc/cron.hourly/</filename>, <filename>/etc/cron.daily/</filename>, <filename>/etc/cron.weekly/</filename>, and <filename>/etc/cron.monthly/</filename> directories. This avoids their double execution by <command>anacron</command> and <command>cron</command>. The <command>cron</command> command remains active and will continue to handle the other scheduled tasks (especially those scheduled by users)."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">anacron</emphasis> パッケージをインストールすることにより、<command>cron</command> は <filename>/etc/cron.hourly/</filename>、<filename>/etc/cron.daily/</filename>、<filename>/etc/cron.weekly/</filename>、<filename>/etc/cron.monthly/</filename> ディレクトリに含まれるスクリプトを実行しなくなります。これは <command>anacron</command> と <command>cron</command> がスクリプトを二重に実行することを避けるためです。<command>cron</command> コマンドはまだ有効で、他のスケジュールされたタスク (特にユーザがスケジュールしたタスク) を取り扱う事が可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Quotas"
-msgstr ""
+msgstr "クォータ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quota</primary>"
-msgstr ""
+msgstr "<primary>quota</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The quota system allows limiting disk space allocated to a user or group of users. To set it up, you must have a kernel that supports it (compiled with the <varname>CONFIG_QUOTA</varname> option) — as is the case of Debian kernels. The quota management software is found in the <emphasis role=\"pkg\">quota</emphasis> Debian package."
-msgstr ""
+msgstr "クォータシステムを使うことで、ユーザまたはユーザグループに割り当てられたディスクスペースを制限することが可能です。クォータを設定するには、クォータをサポートする (<varname>CONFIG_QUOTA</varname> オプションを有効化してコンパイルされた) カーネルを使わなければいけません - Debian カーネルはクォータをサポートします。クォータ管理ソフトウェアは <emphasis role=\"pkg\">quota</emphasis> Debian パッケージに含まれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "To activate them in a filesystem, you have to indicate the <literal>usrquota</literal> and <literal>grpquota</literal> options in <filename>/etc/fstab</filename> for the user and group quotas, respectively. Rebooting the computer will then update the quotas in the absence of disk activity (a necessary condition for proper accounting of already used disk space)."
-msgstr ""
+msgstr "あるファイルシステムでクォータを有効化するには、<filename>/etc/fstab</filename> の中でそれぞれユーザやグループクォータに対応する <literal>usrquota</literal> や <literal>grpquota</literal> オプションを使います。この後コンピュータを再起動すると、ディスク活動の無いときに (これは既に利用されているディスクスペースを適切に計量する必要条件です)、クォータが更新されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>edquota <replaceable>user</replaceable></command> (or <command>edquota -g <replaceable>group</replaceable></command>) command allows you to change the limits while examining current disk space usage."
-msgstr ""
+msgstr "<command>edquota <replaceable>user</replaceable></command> (または <command>edquota -g <replaceable>group</replaceable></command>) コマンドを使うと、現在のディスクスペース使用量を検査している最中に、制限を変更することが可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>edquota</command></primary>"
-msgstr ""
+msgstr "<primary><command>edquota</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Defining quotas with a script"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> スクリプトを使ったクォータの定義"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>setquota</command></primary>"
-msgstr ""
+msgstr "<primary><command>setquota</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>setquota</command> program can be used in a script to automatically change many quotas. Its <citerefentry><refentrytitle>setquota</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page details the syntax to use."
-msgstr ""
+msgstr "<command>setquota</command> プログラムはスクリプトの中で自動的に多くのクォータを変更する目的で使うことが可能です。構文の使い方は <citerefentry><refentrytitle>setquota</refentrytitle> <manvolnum>8</manvolnum></citerefentry> マニュアルページを御覧ください。"
 
 #. Tag: para
 #, no-c-format
 msgid "The quota system allows you to set four limits:"
-msgstr ""
+msgstr "クォータシステムを使うと 4 種類の制限を設定することが可能です:"
 
 #. Tag: para
 #, no-c-format
 msgid "two limits (called “soft” and “hard”) refer to the number of blocks consumed. If the filesystem was created with a block-size of 1 kibibyte, a block contains 1024 bytes from the same file. Unsaturated blocks thus induce losses of disk space. A quota of 100 blocks, which theoretically allows storage of 102,400 bytes, will however be saturated with just 100 files of 500 bytes each, only representing 50,000 bytes in total."
-msgstr ""
+msgstr "消費ブロック数に対する 2 種類の制限 (「ソフト」と「ハード」と呼ばれます) があります。もしファイルシステムが 1 キロバイトのブロックサイズで作られた場合、1 ブロックには、あるファイルの 1024 バイト分を入れることが可能です。飽和していないブロックにより、ディスクスペースの損失が生じます。100 ブロックのクォータは理論的には 102,400 バイト保存できることを意味しますが、500 バイトのファイル 100 個、合計 50,000 バイト、で上限に達することになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "two limits (soft and hard) refer to the number of inodes used. Each file occupies at least one inode to store information about it (permissions, owner, timestamp of last access, etc.). It is thus a limit on the number of user files."
-msgstr ""
+msgstr "i ノードに対して 2 種類の制限 (ソフトとハード) があります。各ファイルはファイルの情報 (パーミッション、所有者、最後にアクセスされた時間、など) を保存するために少なくとも 1 つの i ノードを専有します。この性質を使うことで、ユーザファイルの数を制限することが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "A “soft” limit can be temporarily exceeded; the user will simply be warned that they are exceeding the quota by the <command>warnquota</command> command, which is usually invoked by <command>cron</command>. A “hard” limit can never be exceeded: the system will refuse any operation that will cause a hard quota to be exceeded."
-msgstr ""
+msgstr "「ソフト」リミットは一時的に超過できます; ユーザは単純に <command>warnquota</command> コマンドからクォータを超過していることに対する警告を受けるだけです。 <command>warnquota</command> コマンドは通常 <command>cron</command> コマンドによって呼び出されます。「ハード」リミットは決して超過できません: システムはハードクォータを超過するような操作を全て拒否します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Blocks and inodes"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> ブロックと i ノード"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>block (disk)</primary>"
-msgstr ""
+msgstr "<primary>ブロック (ディスク)</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>inode</primary>"
-msgstr ""
+msgstr "<primary>i ノード</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The filesystem divides the hard drive into blocks — small contiguous areas. The size of these blocks is defined during creation of the filesystem, and generally varies between 1 and 8 kibibytes."
-msgstr ""
+msgstr "ファイルシステムはハードドライブをブロック - 小さく連続した領域 - に分割します。ブロックのサイズはファイルシステムの作成時に定義され、一般的に 1 から 8 キロバイトまでの範囲を取ります。"
 
 #. Tag: para
 #, no-c-format
 msgid "A block can be used either to store the real data of a file, or for meta-data used by the filesystem. Among this meta-data, you will especially find the inodes. An inode uses a block on the hard drive (but this block is not taken into consideration in the block quota, only in the inode quota), and contains both the information on the file to which it corresponds (name, owner, permissions, etc.) and the pointers to the data blocks that are actually used. For very large files that occupy more blocks than it is possible to reference in a single inode, there is an indirect block system; the inode references a list of blocks that do not directly contain data, but another list of blocks."
-msgstr ""
+msgstr "ブロックはファイルの実データまたはファイルシステムの使うメタデータのどちらか一方を保存するために使われます。メタデータの中でも特に、i ノードについて説明します。1 つの i ノードはハードドライブ上の 1 ブロックを使い (しかし、このブロックはブロッククォータに考慮されず、i ノードクォータだけに考慮されます)、その i ノードに対応するファイルの情報 (名前、所有者、パーミッション、など) と実際に使われるデータブロックへのポインタ情報の両方を含みます。単一の i ノードで対応出来ないくらい多くのブロックを専有するとても大きなファイルのために、間接ブロックシステムがあります; i ノードは、実データではなく別のブロックのリストを保存しているブロックのリストを参照します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>warnquota</command></primary>"
-msgstr ""
+msgstr "<primary><command>warnquota</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "With the <command>edquota -t</command> command, you can define a maximum authorized “grace period” within which a soft limit may be exceeded. After this period, the soft limit will be treated like a hard limit, and the user will have to reduce their disk space usage to within this limit in order to be able to write anything to the hard drive."
-msgstr ""
+msgstr "<command>edquota -t</command> コマンドを使って、ソフトリミットの超過を許す「猶予期間」の最長値を定義することが可能です。この期間の後、ソフトリミットはハードリミットと同じ様に扱われます。ユーザがハードドライブに何かを書き込むには、ディスクスペースの使用量を減らしてクォータの制限内に収めなければいけません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Setting up a default quota for new users"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 新しいユーザのデフォルトクォータを設定する"
 
 #. Tag: para
 #, no-c-format
 msgid "To automatically setup a quota for new users, you have to configure a template user (with <command>edquota</command> or <command>setquota</command>) and indicate their user name in the <varname>QUOTAUSER</varname> variable in the <filename>/etc/adduser.conf</filename> file. This quota configuration will then be automatically applied to each new user created with the <command>adduser</command> command."
-msgstr ""
+msgstr "新規ユーザ向けにクォータを自動設定するには、(<command>edquota</command> または <command>setquota</command> を使って) テンプレートユーザを設定し、<filename>/etc/adduser.conf</filename> ファイルの <varname>QUOTAUSER</varname> 変数にテンプレートユーザの名前をいれなければいけません。このクォータ設定は、<command>adduser</command> コマンドを使って新規ユーザを作成した際に、自動的に適用されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Making backups is one of the main responsibilities of any administrator, but it is a complex subject, involving powerful tools which are often difficult to master."
-msgstr ""
+msgstr "バックアップを取ることは管理者の主要な責任の 1 つです。しかし、これは通常極めるのが難しい強力なツールを使う複雑な問題です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backup</primary>"
-msgstr ""
+msgstr "<primary>バックアップ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>restoration</primary>"
-msgstr ""
+msgstr "<primary>復元</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Many programs exist, such as <command>amanda</command>, <command>bacula</command>, <command>BackupPC</command>. Those are client/server system featuring many options, whose configuration is rather difficult. Some of them provide user-friendly web interfaces to mitigate this. But Debian contains dozens of other backup software covering all possible use cases, as you can easily confirm with <command>apt-cache search backup</command>."
-msgstr ""
+msgstr "<command>amanda</command>、<command>bacula</command>、<command>BackupPC</command> 等の多くのプログラムが存在します。これらはクライアント/サーバシステムに適した多くの選択肢で、設定はかなり難しいです。幾つかは難しさを和らげるためのユーザフレンドリーなウェブインターフェイスを提供しています。しかし Debian には、全ての考え得る使用事例に対応できる、他の数多くのバックアップソフトウェアが含まれています。ソフトウェアを確認するには <command>apt-cache search backup</command> を使ってください。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>amanda</command></primary>"
-msgstr ""
+msgstr "<primary><command>amanda</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bacula</command></primary>"
-msgstr ""
+msgstr "<primary><command>bacula</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>BackupPC</command></primary>"
-msgstr ""
+msgstr "<primary><command>BackupPC</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Rather than detailing some of them, this section will present the thoughts of the Falcot Corp administrators when they defined their backup strategy."
-msgstr ""
+msgstr "これらのうちの幾つかを詳細に説明するのではなく、この節では、Falcot Corp 管理者がバックアップ戦略を定義する際にどのように考えたかを説明します。"
 
 #. Tag: para
 #, no-c-format
 msgid "At Falcot Corp, backups have two goals: recovering erroneously deleted files, and quickly restoring any computer (server or desktop) whose hard drive has failed."
-msgstr ""
+msgstr "Falcot Corp では、バックアップには 2 つの目標があります: 誤って削除したファイルを回復することと、ハードドライブに障害が起きた際にコンピュータ (サーバおよびデスクトップ) を素早く復元することです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Backing Up with <command>rsync</command>"
-msgstr ""
+msgstr "<command>rsync</command> を使ったバックアップ"
 
 #. Tag: para
 #, no-c-format
 msgid "Backups on tape having been deemed too slow and costly, data will be backed up on hard drives on a dedicated server, on which the use of software RAID (see <xref linkend=\"sect.raid-soft\" />) will protect the data from hard drive failure. Desktop computers are not backed up individually, but users are advised that their personal account on their department's file server will be backed up. The <command>rsync</command> command (from the package of the same name) is used daily to back up these different servers."
-msgstr ""
+msgstr "テープへのバックアップは遅くて費用がかかりすぎるとみなされ、データは専用サーバのハードドライブにバックアップされる事になりました。専用サーバはソフトウェア RAID (<xref linkend=\"sect.raid-soft\" />参照) を使ってデータをハードウェア障害から守っています。デスクトップコンピュータは個別にバックアップされませんが、ユーザは部署のファイルサーバの個人アカウントはバックアップされると忠告されています。毎日 <command>rsync</command> コマンド (同名のパッケージに含まれる) を使って、異なるサーバにバックアップを行います。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>rsync</command></primary>"
-msgstr ""
+msgstr "<primary><command>rsync</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> The hard link, a second name for the file"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> ハードリンク、ファイルの別名"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>link</primary><secondary>hard link</secondary>"
-msgstr ""
+msgstr "<primary>リンク</primary><secondary>ハードリンク</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>hard link</primary>"
-msgstr ""
+msgstr "<primary>ハードリンク</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A hard link, as opposed to a symbolic link, can not be differentiated from the linked file. Creating a hard link is essentially the same as giving an existing file a second name. This is why the deletion of a hard link only removes one of the names associated with the file. As long as another name is still assigned to the file, the data therein remain present on the filesystem. It is interesting to note that, unlike a copy, the hard link does not take up additional space on the hard drive."
-msgstr ""
+msgstr "ハードリンクはシンボリックリンクと異なり、リンクされたファイルと区別することができません。本質的に、ハードリンクの作成は既存のファイルに別名を与えることと同義です。そのため、ハードリンクの削除はそのファイルに関連する名前を削除するに過ぎません。他の名前がまだそのファイルに関連付けられている場合、データの実体ファイルシステムから削除されません。コピーと異なり、ハードリンクはハードドライブ上に追加的なスペースを必要としない点について注意することは興味深いです。"
 
 #. Tag: para
 #, no-c-format
 msgid "A hard link is created with the <command>ln <replaceable>target</replaceable> <replaceable>link</replaceable></command> command. The <replaceable>link</replaceable> file is then a new name for the <replaceable>target</replaceable> file. Hard links can only be created on the same filesystem, while symbolic links are not subject to this limitation."
-msgstr ""
+msgstr "ハードリンクは <command>ln <replaceable>target</replaceable> <replaceable>link</replaceable></command> コマンドで作成されます。ここで <replaceable>link</replaceable> ファイルは <replaceable>target</replaceable> ファイルの新しい名前です。ハードリンクは <replaceable>target</replaceable> と <replaceable>link</replaceable> が同じファイルシステム上にあるときのみ作成可能です。対してシンボリックリンクはこの制限を受けません。"
 
 #. Tag: para
 #, no-c-format
 msgid "The available hard drive space prohibits implementation of a complete daily backup. As such, the <command>rsync</command> command is preceded by a duplication of the content of the previous backup with hard links, which prevents usage of too much hard drive space. The <command>rsync</command> process then only replaces files that have been modified since the last backup. With this mechanism a great number of backups can be kept in a small amount of space. Since all backups are immediately available and accessible (for example, in different directories of a given share on the network), you can quickly make comparisons between two given dates."
-msgstr ""
+msgstr "利用可能なハードドライブの空き領域によっては、完全な日次バックアップが出来ない場合があります。このため、まず <command>rsync</command> コマンドはバックアップの内容をハードリンクで複製します。このお陰で、ハードドライブ領域を無駄に消費する事がなくなります。そして <command>rsync</command> プロセスは最後のバックアップ以降に変更されたファイルだけを置き換えます。このメカニズムにより、多くのバックアップを少ない領域に保存することが可能です。全てのバックアップは素早く利用可能でアクセス可能 (例えば、ネットワーク共有されたディレクトリの中) なので、ある日付同士の違いを素早く比較できます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>copy, backup copy</primary>"
-msgstr ""
+msgstr "<primary>コピー、バックアップコピー</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backup</primary><secondary>copy</secondary>"
-msgstr ""
+msgstr "<primary>バックアップ</primary><secondary>コピー</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">dirvish</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">dirvish</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "This backup mechanism is easily implemented with the <command>dirvish</command> program. It uses a backup storage space (“bank” in its vocabulary) in which it places timestamped copies of sets of backup files (these sets are called “vaults” in the dirvish documentation)."
-msgstr ""
+msgstr "<command>dirvish</command> プログラムを使えば、このバックアップメカニズムを簡単に実現できます。<command>dirvish</command> プログラムはバックアップストレージ領域 (dirvish 用語で「bank」) を使い、「bank」の中に一連のバックアップファイルのタイムスタンプを付けたコピー (dirvish の文書ではこれらを「vaults」と呼びます) を置きます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The main configuration is in the <filename>/etc/dirvish/master.conf</filename> file. It defines the location of the backup storage space, the list of “vaults” to manage, and default values for expiration of the backups. The rest of the configuration is located in the <filename><replaceable>bank</replaceable>/<replaceable>vault</replaceable>/dirvish/default.conf</filename> files and contains the specific configuration for the corresponding set of files."
-msgstr ""
+msgstr "主要な設定は <filename>/etc/dirvish/master.conf</filename> ファイルに含まれます。<filename>/etc/dirvish/master.conf</filename> ファイルでは、バックアップストレージスペースの場所、管理する「vaults」のリスト、バックアップの保存期限のデフォルト値を定義します。残りの設定は <filename><replaceable>bank</replaceable>/<replaceable>vault</replaceable>/dirvish/default.conf</filename> ファイルの中に書き、このファイルには対応するファイルセットに対する特定の設定が含まれます。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/dirvish/master.conf</filename> file"
-msgstr ""
+msgstr "<filename>/etc/dirvish/master.conf</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2332,26 +2332,40 @@ msgid ""
 "    *   *     1-7 *         1    +1 year\n"
 "    *   *     1-7 1,4,7,10  1\n"
 msgstr ""
+"bank:\n"
+"    /backup\n"
+"exclude:\n"
+"    lost+found/\n"
+"    core\n"
+"    *~\n"
+"Runall:\n"
+"    root    22:00\n"
+"expire-default: +15 days\n"
+"expire-rule:\n"
+"#   MIN HR    DOM MON       DOW  STRFTIME_FMT\n"
+"    *   *     *   *         1    +3 months\n"
+"    *   *     1-7 *         1    +1 year\n"
+"    *   *     1-7 1,4,7,10  1\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>bank</literal> setting indicates the directory in which the backups are stored. The <literal>exclude</literal> setting allows you to indicate files (or file types) to exclude from the backup. The <literal>Runall</literal> is a list of file sets to backup with a time-stamp for each set, which allows you to assign the correct date to the copy, in case the backup is not triggered at precisely the assigned time. You have to indicate a time just before the actual execution time (which is, by default, 10:04 pm in Debian, according to <filename>/etc/cron.d/dirvish</filename>). Finally, the <literal>expire-default</literal> and <literal>expire-rule</literal> settings define the expiration policy for backups. The above example keeps forever backups that are generated on the first Sunday of each quarter, deletes after one year those from the first Sunday of each month, and after 3 months those from other Sundays. Other daily backups are kept for 15 days. The order of the rules does matter, Dirvish uses the last matching rule, or the <literal>expire-default</literal> one if no other <literal>expire-rule</literal> matches."
-msgstr ""
+msgstr "<literal>bank</literal> 設定はバックアップが保存されるディレクトリを表します。<literal>exclude</literal> 設定を使うと、バックアップからファイル (またはファイルタイプ) を除外することが可能です。<literal>Runall</literal> はタイムスタンプを付けてバックアップするファイルセットのリストです。これにより、万が一割り当てられた時間に正確にバックアップが実行されない場合、コピーする正確な時刻を割り当てることが可能です。ここで指定する時刻は実際の実行時間の直前の時刻でなければいけません (<filename>/etc/cron.d/dirvish</filename> によれば、Debian では実際の実行時間はデフォルトで午後 10:04です)。最後に <literal>expire-default</literal> と <literal>expire-rule</literal> 設定でバックアップ保存期限ポリシーを定義します。上の例は、各四半期の最初の日曜日に作成されたバックアップを永久に保存し、それに当てはまらない各月の最初の日曜日作成されたバックアップを 1 年経過後に削除し、それに当てはまらない日曜日に作成されたバックアップを 3 ヶ月経過後に削除します。その他の日次バックアップは 15 日間保存されます。ルールが適用される順番が問題です。Dirvish は最後にマッチしたルールを使い、<literal>expire-rule</literal> にマッチするものがなければ <literal>expire-default</literal> を使います。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Scheduled expiration"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> 削除スケジュール"
 
 #. Tag: para
 #, no-c-format
 msgid "The expiration rules are not used by <command>dirvish-expire</command> to do its job. In reality, the expiration rules are applied when creating a new backup copy to define the expiration date associated with that copy. <command>dirvish-expire</command> simply peruses the stored copies and deletes those for which the expiration date has passed."
-msgstr ""
+msgstr "削除ルールは削除を担当する <command>dirvish-expire</command> によって使われます。実際には、新しいバックアップコピーの作成時に削除ルールが適用され、そのバックアップコピーに関連付けられた期限の切れる日が定義されます。<command>dirvish-expire</command> は保存されたコピーを単純に調べて、期限の過ぎているコピーを削除します。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/backup/root/dirvish/default.conf</filename> file"
-msgstr ""
+msgstr "<filename>/backup/root/dirvish/default.conf</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2368,101 +2382,112 @@ msgid ""
 "    /var/tmp/**\n"
 "    *.bak\n"
 msgstr ""
+"client: rivendell.falcot.com\n"
+"tree: /\n"
+"xdev: 1\n"
+"index: gzip\n"
+"image-default: %Y%m%d\n"
+"exclude:\n"
+"    /var/cache/apt/archives/*.deb\n"
+"    /var/cache/man/**\n"
+"    /tmp/**\n"
+"    /var/tmp/**\n"
+"    *.bak\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The above example specifies the set of files to back up: these are files on the machine <emphasis>rivendell.falcot.com</emphasis> (for local data backup, simply specify the name of the local machine as indicated by <command>hostname</command>), especially those in the root tree (<literal>tree: /</literal>), except those listed in <literal>exclude</literal>. The backup will be limited to the contents of one filesystem (<literal>xdev: 1</literal>). It will not include files from other mount points. An index of saved files will be generated (<literal>index: gzip</literal>), and the image will be named according to the current date (<literal>image-default: %Y%m%d</literal>)."
-msgstr ""
+msgstr "上の例は、バックアップするファイルセットを指定します: バックアップ対象は <emphasis>rivendell.falcot.com</emphasis> マシン (ローカルデータをバックアップするには、単純に <command>hostname</command> の出力するローカルマシンの名前を指定します) にあり、特にルートツリーの内容 (<literal>tree: /</literal>) から、<literal>exclude</literal> に含まれるものを除外したファイルです。さらに、バックアップは <literal>tree</literal> と同一のファイルシステムの内容に制限されます (<literal>xdev: 1</literal>)。他のマウントポイントのファイルはバックアップされません。保存されたファイルのインデックスが生成され (<literal>index: gzip</literal>)、イメージには現在の日付に関連する名前が付けられます (<literal>image-default: %Y%m%d</literal>)。"
 
 #. Tag: para
 #, no-c-format
 msgid "There are many options available, all documented in the <citerefentry><refentrytitle>dirvish.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page. Once these configuration files are setup, you have to initialize each file set with the <command>dirvish --vault <replaceable>vault</replaceable> --init</command> command. From there on the daily invocation of <command>dirvish-runall</command> will automatically create a new backup copy just after having deleted those that expired."
-msgstr ""
+msgstr "多くのオプションがあり、全ては <citerefentry><refentrytitle>dirvish.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページに書かれています。一度これらの設定ファイルを作ったら、<command>dirvish --vault <replaceable>vault</replaceable> --init</command> コマンドを使って、各ファイルセットを初期化します。毎日の <command>dirvish-runall</command> 実行時に、期限切れになったバックアップコピーが削除され、その直後に自動的に新しいバックアップコピーが作成されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Remote backup over SSH"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> SSH を使ったリモートバックアップ"
 
 #. Tag: para
 #, no-c-format
 msgid "When dirvish needs to save data to a remote machine, it will use <command>ssh</command> to connect to it, and will start <command>rsync</command> as a server. This requires the root user to be able to automatically connect to it. The use of an SSH authentication key allows precisely that (see <xref linkend=\"sect.ssh-key-based-auth\" />)."
-msgstr ""
+msgstr "dirvish がリモートマシンのデータをバックアップする場合、<command>ssh</command> を使ってリモートマシンに接続し、<command>rsync</command> をサーバとして開始します。この場合、root ユーザは自動的にリモートマシンに接続できなければいけません。これを実現するには、SSH 認証鍵を使ってください (<xref linkend=\"sect.ssh-key-based-auth\" />参照)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Restoring Machines without Backups"
-msgstr ""
+msgstr "バックアップ無しのマシンの復元"
 
 #. Tag: para
 #, no-c-format
 msgid "Desktop computers, which are not backed up, will be easy to reinstall from custom DVD-ROMs prepared with <emphasis>Simple-CDD</emphasis> (see <xref linkend=\"sect.simple-cdd\" />). Since this performs an installation from scratch, it loses any customization that can have been made after the initial installation. This is fine since the systems are all hooked to a central LDAP directory for accounts and most desktop applications are preconfigured thanks to dconf (see <xref linkend=\"sect.gnome-desktop\" /> for more information about this)."
-msgstr ""
+msgstr "バックアップされていないデスクトップコンピュータに対しては <emphasis>Simple-CDD</emphasis> でカスタマイズされた DVD-ROM からシステムを再インストールするのが簡単でしょう (see <xref linkend=\"sect.simple-cdd\" />)。インストールを最初からやり直すので、初回インストール後に行われた全ての設定は失われます。これは問題ではありません。なぜなら、アカウントについてはシステムは全て中央 LDAP ディレクトリに接続されており、ほとんどのデスクトップアプリケーションについては dconf のお陰で事前設定されている (詳しい情報は<xref linkend=\"sect.gnome-desktop\" />参照) からです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators are aware of the limits in their backup policy. Since they can't protect the backup server as well as a tape in a fireproof safe, they have installed it in a separate room so that a disaster such as a fire in the server room won't destroy backups along with everything else. Furthermore, they do an incremental backup on DVD-ROM once per week — only files that have been modified since the last backup are included."
-msgstr ""
+msgstr "Falcot Corp の管理者は自分達のバックアップポリシーの限界を理解しています。バックアップサーバを、テープを耐火金庫に入れるかの如く、保護することが出来ないため、管理者はバックアップサーバを他のサーバと別の部屋に設置しました。そうすれば災害、例えばサーバルームの火事、が起きてもその他全てと一緒にバックアップも破壊されることを避けられるからです。更に、管理者は 1 週間に 1 回 DVD-ROM に増分バックアップ - 最後のバックアップ以降に修正されたファイルだけのバックアップ - をとります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Backing up SQL and LDAP services"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> SQL と LDAP サービスのバックアップ"
 
 #. Tag: para
 #, no-c-format
 msgid "Many services (such as SQL or LDAP databases) can not be backed up by simply copying their files (unless they are properly interrupted during creation of the backups, which is frequently problematic, since they are intended to be available at all times). As such, it is necessary to use an “export” mechanism to create a “data dump” that can be safely backed up. These are often quite large, but they compress well. To reduce the storage space required, you will only store a complete text file per week, and a <command>diff</command> each day, which is created with a command of the type <command>diff <replaceable>file_from_yesterday</replaceable> <replaceable>file_from_today</replaceable></command>. The <command>xdelta</command> program produces incremental differences from binary dumps."
-msgstr ""
+msgstr "多くのサービス (SQL や LDAP データベースなど) は単純にファイルをコピーするだけではバックアップできません (それらのサービスをバックアップの作成中に適切に中断しない限りバックアップできません。サービスの中断は通常問題です。なぜなら、サービスは常に利用可能であることを意図されているからです)。そのような場合、安全にバックアップ可能な「データダンプ」を作るために「エクスポート」メカニズムを使う事が必要です。データダンプは通常サイズのとても大きいファイルですが、よく圧縮できます。要求されるストレージ領域を減らすために、完全なテキストファイルを保存するのは 1 週間に 1 回、<command>diff</command> を保存するのは毎日にするでしょう。差分は <command>diff <replaceable>file_from_yesterday</replaceable> <replaceable>file_from_today</replaceable></command> で生成されます。バイナリダンプから増分差分を作成するには <command>xdelta</command> プログラムを使ってください。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>xdelta</command></primary>"
-msgstr ""
+msgstr "<primary><command>xdelta</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>diff</command></primary>"
-msgstr ""
+msgstr "<primary><command>diff</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>dump</primary>"
-msgstr ""
+msgstr "<primary>ダンプ</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <emphasis>TAR</emphasis>, the standard for tape backups"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> <emphasis>TAR</emphasis>、テープバックアップ用の標準規格"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backup</primary><secondary>on tape</secondary>"
-msgstr ""
+msgstr "<secondary>テープへの</secondary><primary>バックアップ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>tape, backup</primary>"
-msgstr ""
+msgstr "<primary>テープ、バックアップ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>TAR</primary>"
-msgstr ""
+msgstr "<primary>TAR</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Historically, the simplest means of making a backup on Unix was to store a <emphasis>TAR</emphasis> archive on a tape. The <command>tar</command> command even got its name from “Tape ARchive”."
-msgstr ""
+msgstr "歴史的に言って、Unix で最も簡単にバックアップを作成する手段は <emphasis>TAR</emphasis> アーカイブをテープに保存する方法でした。<command>tar</command> コマンドは「Tape ARchive」から命名されています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Hot Plugging: <emphasis>hotplug</emphasis>"
-msgstr ""
+msgstr "ホットプラグ機能: <emphasis>hotplug</emphasis>"
 
 #. Tag: title
 #, no-c-format
 msgid "Introduction"
-msgstr ""
+msgstr "前書き"
 
 #. Tag: para
 #, no-c-format
