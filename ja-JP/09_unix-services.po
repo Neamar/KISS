@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-18 00:39+0900\n"
+"PO-Revision-Date: 2015-05-18 16:58+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2487,242 +2487,242 @@ msgstr "ホットプラグ機能: <emphasis>hotplug</emphasis>"
 #. Tag: title
 #, no-c-format
 msgid "Introduction"
-msgstr "前書き"
+msgstr "はじめに"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>hotplug</emphasis> kernel subsystem dynamically handles the addition and removal of devices, by loading the appropriate drivers and by creating the corresponding device files (with the help of <command>udevd</command>). With modern hardware and virtualization, almost everything can be hotplugged: from the usual USB/PCMCIA/IEEE 1394 peripherals to SATA hard drives, but also the CPU and the memory."
-msgstr ""
+msgstr "<emphasis>hotplug</emphasis> カーネルサブシステムはデバイスの追加と削除を、適切なドライバを読み込んだり関連するデバイスファイルを作成する (<command>udevd</command> の助けを借りて) ことで、動的に取り扱います。現代的なハードウェアと仮想化を使えば、ほとんど全てはホットプラグ対応です: USB/PCMCIA/IEEE 1394 周辺機器から SATA ハードドライブ、さらには CPU やメモリに至るまで。"
 
 #. Tag: para
 #, no-c-format
 msgid "The kernel has a database that associates each device ID with the required driver. This database is used during boot to load all the drivers for the peripheral devices detected on the different buses, but also when an additional hotplug device is connected. Once the device is ready for use, a message is sent to <command>udevd</command> so it will be able to create the corresponding entry in <filename>/dev/</filename>."
-msgstr ""
+msgstr "カーネルは必要なドライバとデバイス ID を関連付けるデータベースを持っています。このデータベースは、起動中に様々なバスで検出された周辺機器用の全てのドライバを読み込んだり、追加的なホットプラグデバイスが接続された時に、使われます。デバイスの使用準備が整ったら、メッセージが <command>udevd</command> に送信され、<command>udevd</command> は対応するエントリを <filename>/dev/</filename> 内に作成します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>hotplug</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>ホットプラグ</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>hotplug</primary>"
-msgstr ""
+msgstr "<primary>ホットプラグ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>USB</primary>"
-msgstr ""
+msgstr "<primary>USB</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IEEE 1394</primary>"
-msgstr ""
+msgstr "<primary>IEEE 1394</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PCMCIA</primary>"
-msgstr ""
+msgstr "<primary>PCMCIA</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SATA</primary>"
-msgstr ""
+msgstr "<primary>SATA</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "The Naming Problem"
-msgstr ""
+msgstr "命名問題"
 
 #. Tag: para
 #, no-c-format
 msgid "Before the appearance of hotplug connections, it was easy to assign a fixed name to a device. It was based simply on the position of the devices on their respective bus. But this is not possible when such devices can come and go on the bus. The typical case is the use of a digital camera and a USB key, both of which appear to the computer as disk drives. The first one connected may be <filename>/dev/sdb</filename> and the second <filename>/dev/sdc</filename> (with <filename>/dev/sda</filename> representing the computer's own hard drive). The device name is not fixed; it depends on the order in which devices are connected."
-msgstr ""
+msgstr "ホットプラグ接続の出現前、デバイスに固定された名前を割り当てることは簡単でした。名前は単純にデバイスが接続されたバスの位置を基にしていました。しかしこのやり方では、デバイスが接続されるバスの位置が決まっていない場合に、問題です。典型的な例は、コンピュータがディスクドライブとして認識するデジタルカメラや USB メモリを使う場合です。最初に接続されたデバイスは <filename>/dev/sdb</filename> 、2 番目に接続されたデバイスは <filename>/dev/sdc</filename> と名付けられるかもしれません (<filename>/dev/sda</filename> はコンピュータのハードドライブを表します)。デバイスに対するデバイス名は固定されていません; デバイス名はデバイスが接続された順番に依存します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Additionally, more and more drivers use dynamic values for devices' major/minor numbers, which makes it impossible to have static entries for the given devices, since these essential characteristics may vary after a reboot."
-msgstr ""
+msgstr "さらに、ますます多くのドライバがデバイスのメジャー/マイナー番号に動的な値を使うことで、あるデバイスに対する静的なエントリを持つことが不可能になります。なぜなら、これらのエントリは再起動の後に変化するかもしれないからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>udev</emphasis> was created precisely to solve this problem."
-msgstr ""
+msgstr "<emphasis>udev</emphasis> はまさにこの問題を解決するために作られました。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Network card management"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> ネットワークカード管理"
 
 #. Tag: para
 #, no-c-format
 msgid "Many computers have multiple network cards (sometimes two wired interfaces and a wifi interface), and with <emphasis>hotplug</emphasis> support on most bus types, the 2.6 kernel no longer guarantees fixed naming of network interfaces. But a user who wants to configure their network in <filename>/etc/network/interfaces</filename> needs a fixed name!"
-msgstr ""
+msgstr "多くのコンピュータは複数のネットワークカードを持っており (2 つの有線インターフェイスと 1 つの wifi インターフェイス)、<emphasis>hotplug</emphasis> はほとんどのバスタイプをサポートするので 2.6 カーネルはもはや名前の固定されたネットワークインターフェイスを生成しません。しかし <filename>/etc/network/interfaces</filename> の中で自分のネットワークを設定したいユーザは名前を固定しなければいけません!"
 
 #. Tag: para
 #, no-c-format
 msgid "It would be difficult to ask every user to create their own <emphasis>udev</emphasis> rules to address this problem. This is why <emphasis>udev</emphasis> was configured in a rather peculiar manner; on first boot (and, more generally, each time that a new network card appears) it uses the name of the network interface and its MAC address to create new rules that will reassign the same name on subsequent boots. These rules are stored in <filename>/etc/udev/rules.d/70-persistent-net.rules</filename>."
-msgstr ""
+msgstr "この問題を解決する目的で、各ユーザに自分の <emphasis>udev</emphasis> ルールを作るようにお願いするのは難しいでしょう。そのため <emphasis>udev</emphasis> は比較的独特なやり方で設定されました; 最初の起動時 (より一般的に言えば、新しいネットワークカードが初めて見つかった時) に、<emphasis>udev</emphasis> はネットワークインターフェイスの名前と MAC アドレスを基にして、2 度目の起動から同じ名前を割り当てられるような新しいルールを作ります。これらのルールは <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> に保存されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "This mechanism has some side effects that you should know about. Let's consider the case of computer that has only one PCI network card. The network interface is named <literal>eth0</literal>, logically. Now say the card breaks down, and the administrator replaces it; the new card will have a new MAC address. Since the old card was assigned the name, <literal>eth0</literal>, the new one will be assigned <literal>eth1</literal>, even though the <literal>eth0</literal> card is gone for good (and the network will not be functional because <filename>/etc/network/interfaces</filename> likely configures an <literal>eth0</literal> interface). In this case, it is enough to simply delete the <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> file before rebooting the computer. The new card will then be given the expected <literal>eth0</literal> name."
-msgstr ""
+msgstr "このメカニズムには幾つかの副作用がありますので、それについて知っておくべきです。コンピュータが PCI ネットワークカードを 1 つだけ持っている場合について考えましょう。このネットワークインターフェイスは必然的に <literal>eth0</literal> と名付けられます。カードが壊れて、管理者がそれを交換したとしましょう; 新しいカードは新しい MAC アドレスを持っています。古いカードには <literal>eth0</literal> という名前が割り当てられていたため、<literal>eth0</literal> カードが完全に消え去っているにも関わらず、新しいカードには <literal>eth1</literal> という名前が割り当てられます (ネットワークは機能しません。なぜなら、<filename>/etc/network/interfaces</filename> で <literal>eth0</literal> インターフェイスを設定しているからです)。この場合、コンピュータの再起動前に単純に <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> ファイルを削除すれば十分です。新しいカードはおそらく <literal>eth0</literal> という名前を与えられるでしょう。"
 
 #. Tag: title
 #, no-c-format
 msgid "How <emphasis>udev</emphasis> Works"
-msgstr ""
+msgstr "<emphasis>udev</emphasis> の動作原理"
 
 #. Tag: para
 #, no-c-format
 msgid "When <emphasis>udev</emphasis> is notified by the kernel of the appearance of a new device, it collects various information on the given device by consulting the corresponding entries in <filename>/sys/</filename>, especially those that uniquely identify it (MAC address for a network card, serial number for some USB devices, etc.)."
-msgstr ""
+msgstr "<emphasis>udev</emphasis> が新しいデバイスの出現についてカーネルから通知を受けると、<filename>/sys/</filename> 内の対応するエントリを調べて与えられたデバイスに関する様々な情報、特にデバイスを一意に識別する情報 (ネットワークカードの MAC アドレス、USB デバイスのシリアル番号など) を収集します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Armed with all of this information, <emphasis>udev</emphasis> then consults all of the rules contained in <filename>/etc/udev/rules.d/</filename> and <filename>/lib/udev/rules.d/</filename>. In this process it decides how to name the device, what symbolic links to create (to give it alternative names), and what commands to execute. All of these files are consulted, and the rules are all evaluated sequentially (except when a file uses “GOTO” directives). Thus, there may be several rules that correspond to a given event."
-msgstr ""
+msgstr "この情報を武器にして、<emphasis>udev</emphasis> は <filename>/etc/udev/rules.d/</filename> と <filename>/lib/udev/rules.d/</filename> に含まれる全てのルールを調査します。この過程で <emphasis>udev</emphasis> は、どのような名前をデバイスに割り当てるか、どのような名前でシンボリックリンクを作成するか (別名を与えるために)、どのようなコマンドを実行するか、を決定します。これらのファイルすべてが調査され、ルールが全て順番に評価されます (「GOTO」ディレクティブを使う場合を除いて)。そのため、与えられたイベントに対応する複数のルールが有るかもしれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "The syntax of rules files is quite simple: each row contains selection criteria and variable assignments. The former are used to select events for which there is a need to react, and the latter defines the action to take. They are all simply separated with commas, and the operator implicitly differentiates between a selection criterion (with comparison operators, such as <literal>==</literal> or <literal>!=</literal>) or an assignment directive (with operators such as <literal>=</literal>, <literal>+=</literal> or <literal>:=</literal>)."
-msgstr ""
+msgstr "ルールの構文はとても単純です: 各行には、選択基準と変数代入命令が含まれます。選択基準は反応を必要とするイベントを選ぶのに使われ、変数代入命令はイベントに対して行う動作を定義します。選択基準と変数代入命令は単純にコンマで区切られており、演算子を使って選択基準 (<literal>==</literal> または <literal>!=</literal> などの比較演算子を付ける) と変数代入命令 (<literal>=</literal>、<literal>+=</literal>、<literal>:=</literal> などの演算子を付ける) を暗黙のうちに区別します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Comparison operators are used on the following variables:"
-msgstr ""
+msgstr "比較演算子は以下の変数に使われます:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>KERNEL</literal>: the name that the kernel assigns to the device;"
-msgstr ""
+msgstr "<literal>KERNEL</literal>: カーネルがデバイスに割り当てた名前;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ACTION</literal>: the action corresponding to the event (“add” when a device has been added, “remove” when it has been removed);"
-msgstr ""
+msgstr "<literal>ACTION</literal>: イベントに対する動作 (デバイスが追加されたら「add」、デバイスが取り外されたら「remove」);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>DEVPATH</literal>: the path of the device's <filename>/sys/</filename> entry;"
-msgstr ""
+msgstr "<literal>DEVPATH</literal>: デバイスの <filename>/sys/</filename> エントリのパス;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SUBSYSTEM</literal>: the kernel subsystem which generated the request (there are many, but a few examples are “usb”, “ide”, “net”, “firmware”, etc.);"
-msgstr ""
+msgstr "<literal>SUBSYSTEM</literal>: 要求を生成したカーネルサブシステム (種類は沢山ありますが、「usb」、「ide」、「net」、「firmware」などがその例です);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ATTR{<replaceable>attribut</replaceable>}</literal>: file contents of the <replaceable>attribute</replaceable> file in the <filename>/sys/<replaceable>$devpath</replaceable>/</filename> directory of the device. This is where you find the MAC address and other bus specific identifiers;"
-msgstr ""
+msgstr "<literal>ATTR{<replaceable>attribut</replaceable>}</literal>: デバイスの <filename>/sys/<replaceable>$devpath</replaceable>/</filename> ディレクトリ内の <replaceable>attribute</replaceable> ファイルの内容。これで MAC アドレスやその他のバス固有識別子が判ります。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>KERNELS</literal>, <literal>SUBSYSTEMS</literal> and <literal>ATTRS{<replaceable>attributes</replaceable>}</literal> are variations that will try to match the different options on one of the parent devices of the current device;"
-msgstr ""
+msgstr "<literal>KERNELS</literal>、<literal>SUBSYSTEMS</literal>、<literal>ATTRS{<replaceable>attributes</replaceable>}</literal> は対象のデバイスの親デバイスの 1 つに対する様々なオプションに対して一致を検査します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>PROGRAM</literal>: delegates the test to the indicated program (true if it returns 0, false if not). The content of the program's standard output is stored so that it can be reused by the <literal>RESULT</literal> test;"
-msgstr ""
+msgstr "<literal>PROGRAM</literal>: 指定されたプログラムを使ってテストを実行します (0 が返されたら真、それ以外は偽)。プログラムの標準出力の内容は保存され、<literal>RESULT</literal> テストによって再利用されます;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>RESULT</literal>: execute tests on the standard output stored during the last call to <literal>PROGRAM</literal>."
-msgstr ""
+msgstr "<literal>RESULT</literal>: <literal>PROGRAM</literal> が最後に呼び出された時に保存された標準出力に対してテストを実行。"
 
 #. Tag: para
 #, no-c-format
 msgid "The right operands can use pattern expressions to match several values at the same time. For instance, <literal>*</literal> matches any string (even an empty one); <literal>?</literal> matches any character, and <literal>[]</literal> matches the set of characters listed between the square brackets (or the opposite thereof if the first character is an exclamation point, and contiguous ranges of characters are indicated like <literal>a-z</literal>)."
-msgstr ""
+msgstr "演算子の右側引数には、複数の値に同時にマッチするようなパターン式を使うことが可能です。例えば、<literal>*</literal> は任意の文字列に (空文字列にも) マッチします; <literal>?</literal> は任意の文字にマッチし、<literal>[]</literal> は角括弧の間にリストされた文字セットにマッチします (最初の文字が感嘆符の場合は、その否定にマッチします。また、文字の連続範囲は <literal>a-z</literal> のように表記します)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Regarding the assignment operators, <literal>=</literal> assigns a value (and replaces the current value); in the case of a list, it is emptied and contains only the value assigned. <literal>:=</literal> does the same, but prevents later changes to the same variable. As for <literal>+=</literal>, it adds an item to a list. The following variables can be changed:"
-msgstr ""
+msgstr "代入演算子に関して、<literal>=</literal> は値を代入します (そして現在の値を入れ替えます); リストに代入する場合、リストを空にした後、割り当てた値だけを代入します。<literal>:=</literal> は同じことをしますが、後から値を変更できなくなります。<literal>+=</literal> はリストにアイテムを追加します。代入演算子を使って変更できる変数は以下です:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>NAME</literal>: the device filename to be created in <filename>/dev/</filename>. Only the first assignment counts; the others are ignored;"
-msgstr ""
+msgstr "<literal>NAME</literal>: <filename>/dev/</filename> 内に作成するデバイスファイル名。最初に代入された値だけが考慮されます; 他は無視されます;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SYMLINK</literal>: the list of symbolic links that will point to the same device;"
-msgstr ""
+msgstr "<literal>SYMLINK</literal>: 同じデバイスを指すシンボリックリンクのリスト;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>OWNER</literal>, <literal>GROUP</literal> and <literal>MODE</literal> define the user and group that owns the device, as well as the associated permission;"
-msgstr ""
+msgstr "<literal>OWNER</literal>、<literal>GROUP</literal>、<literal>MODE</literal> はデバイスを所有するユーザとグループおよびパーミッション定義します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>RUN</literal>: the list of programs to execute in response to this event."
-msgstr ""
+msgstr "<literal>RUN</literal>: イベントに応答する際に実行するプログラムのリスト。"
 
 #. Tag: para
 #, no-c-format
 msgid "The values assigned to these variables may use a number of substitutions:"
-msgstr ""
+msgstr "これらの変数に割り当てる値に、以下の置換変数を使う事が可能な場合があります:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$kernel</literal> or <literal>%k</literal>: equivalent to <literal>KERNEL</literal>;"
-msgstr ""
+msgstr "<literal>$kernel</literal> または <literal>%k</literal>: <literal>KERNEL</literal> と同じです;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$number</literal> or <literal>%n</literal>: the order number of the device, for example, for <literal>sda3</literal>, it would be “3”;"
-msgstr ""
+msgstr "<literal>$number</literal> または <literal>%n</literal>: デバイスの割り当て番号、例えば、<literal>sda3</literal> の場合「3」です;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$devpath</literal> or <literal>%p</literal>: equivalent to <literal>DEVPATH</literal>;"
-msgstr ""
+msgstr "<literal>$devpath</literal> または <literal>%p</literal>: <literal>DEVPATH</literal> と同じです;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$attr{<replaceable>attribute</replaceable>}</literal> or <literal>%s{<replaceable>attribute</replaceable>}</literal>: equivalent to <literal>ATTRS{<replaceable>attribute</replaceable>}</literal>;"
-msgstr ""
+msgstr "<literal>$attr{<replaceable>attribute</replaceable>}</literal> または <literal>%s{<replaceable>attribute</replaceable>}</literal>: <literal>ATTRS{<replaceable>attribute</replaceable>}</literal> と同じです;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$major</literal> or <literal>%M</literal>: the kernel major number of the device;"
-msgstr ""
+msgstr "<literal>$major</literal> または <literal>%M</literal>: デバイスのカーネルメジャー番号;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$minor</literal> or <literal>%m</literal>: the kernel minor number of the device;"
-msgstr ""
+msgstr "<literal>$minor</literal> または <literal>%m</literal>: デバイスのカーネルのマイナー番号;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>$result</literal> or <literal>%c</literal>: the string output by the last program invoked by <literal>PROGRAM</literal>;"
-msgstr ""
+msgstr "<literal>$result</literal> または <literal>%c</literal>: <literal>PROGRAM</literal> によって起動された最後のプログラムの出力文字列;"
 
 #. Tag: para
 #, no-c-format
 msgid "and, finally, <literal>%%</literal> and <literal>$$</literal> for the percent and dollar sign, respectively."
-msgstr ""
+msgstr "そして最後に、<literal>%%</literal> と <literal>$$</literal> はそれぞれパーセントとドル記号を意味します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The above lists are not complete (they include only the most important parameters), but the <citerefentry><refentrytitle>udev</refentrytitle><manvolnum>7</manvolnum></citerefentry> manual page should be."
-msgstr ""
+msgstr "上のリストは完全なものではありません (最も重要なパラメータの抜粋です)。完全なリストは <citerefentry><refentrytitle>udev</refentrytitle><manvolnum>7</manvolnum></citerefentry> マニュアルページを御覧ください。"
 
 #. Tag: title
 #, no-c-format
 msgid "A concrete example"
-msgstr ""
+msgstr "具体例"
 
 #. Tag: para
 #, no-c-format
 msgid "Let us consider the case of a simple USB key and try to assign it a fixed name. First, you must find the elements that will identify it in a unique manner. For this, plug it in and run <command>udevadm info -a -n /dev/sdc</command> (replacing <replaceable>/dev/sdc</replaceable> with the actual name assigned to the key)."
-msgstr ""
+msgstr "単純な USB メモリに固定された名前を割り当てる場合を考えましょう。最初に、一意的な方法で USB メモリを識別するために必要な要素を見つけなければいけません。このために、USB メモリを取り付け、<command>udevadm info -a -n /dev/sdc</command> を実行してください (ここで、<replaceable>/dev/sdc</replaceable> は USB メモリに割り当てられた実際のデバイス名で置き換えてください)。"
 
 #. Tag: screen
 #, no-c-format
@@ -2777,11 +2777,60 @@ msgid ""
 "[...]\n"
 "</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>udevadm info -a -n /dev/sdc</userinput>\n"
+"<computeroutput>[...]\n"
+"  looking at device '/devices/pci0000:00/0000:00:10.3/usb1/1-2/1-2.2/1-2.2:1.0/host9/target9:0:0/9:0:0:0/block/sdc':\n"
+"    KERNEL==\"sdc\"\n"
+"    SUBSYSTEM==\"block\"\n"
+"    DRIVER==\"\"\n"
+"    ATTR{range}==\"16\"\n"
+"    ATTR{ext_range}==\"256\"\n"
+"    ATTR{removable}==\"1\"\n"
+"    ATTR{ro}==\"0\"\n"
+"    ATTR{size}==\"126976\"\n"
+"    ATTR{alignment_offset}==\"0\"\n"
+"    ATTR{capability}==\"53\"\n"
+"    ATTR{stat}==\"      51      100     1208      256        0        0        0        0        0      192      25        6\"\n"
+"    ATTR{inflight}==\"       0        0\"\n"
+"[...]\n"
+"  looking at parent device '/devices/pci0000:00/0000:00:10.3/usb1/1-2/1-2.2/1-2.2:1.0/host9/target9:0:0/9:0:0:0':\n"
+"    KERNELS==\"9:0:0:0\"\n"
+"    SUBSYSTEMS==\"scsi\"\n"
+"    DRIVERS==\"sd\"\n"
+"    ATTRS{device_blocked}==\"0\"\n"
+"    ATTRS{type}==\"0\"\n"
+"    ATTRS{scsi_level}==\"3\"\n"
+"    ATTRS{vendor}==\"I0MEGA  \"\n"
+"    ATTRS{model}==\"UMni64MB*IOM2C4 \"\n"
+"    ATTRS{rev}==\"    \"\n"
+"    ATTRS{state}==\"running\"\n"
+"[...]\n"
+"    ATTRS{max_sectors}==\"240\"\n"
+"[...]\n"
+"  looking at parent device '/devices/pci0000:00/0000:00:10.3/usb1/1-2/1-2.2':\n"
+"    KERNELS==\"9:0:0:0\"\n"
+"    SUBSYSTEMS==\"usb\"\n"
+"    DRIVERS==\"usb\"\n"
+"    ATTRS{configuration}==\"iCfg\"\n"
+"    ATTRS{bNumInterfaces}==\" 1\"\n"
+"    ATTRS{bConfigurationValue}==\"1\"\n"
+"    ATTRS{bmAttributes}==\"80\"\n"
+"    ATTRS{bMaxPower}==\"100mA\"\n"
+"    ATTRS{urbnum}==\"398\"\n"
+"    ATTRS{idVendor}==\"4146\"\n"
+"    ATTRS{idProduct}==\"4146\"\n"
+"    ATTRS{bcdDevice}==\"0100\"\n"
+"[...]\n"
+"    ATTRS{manufacturer}==\"USB Disk\"\n"
+"    ATTRS{product}==\"USB Mass Storage Device\"\n"
+"    ATTRS{serial}==\"M004021000001\"\n"
+"[...]\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "To create a new rule, you can use tests on the device's variables, as well as those of one of the parent devices. The above case allows us to create two rules like these:"
-msgstr ""
+msgstr "新しいルールを作るために、デバイスの変数および親デバイスの変数に対するテストを行います。上の例から、以下の様な 2 つのルールを作成します:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2789,93 +2838,95 @@ msgid ""
 "KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
 "KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\"\n"
 msgstr ""
+"KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
+"KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\"\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Once these rules are set in a file, named for example <filename>/etc/udev/rules.d/010_local.rules</filename>, you can simply remove and reconnect the USB key. You can then see that <filename>/dev/usb_key/disk</filename> represents the disk associated with the USB key, and <filename>/dev/usb_key/part1</filename> is its first partition."
-msgstr ""
+msgstr "これらのルールを例えば <filename>/etc/udev/rules.d/010_local.rules</filename> という 1 つのファイルに書き込んだら、USB メモリを取り外し、再度取り付けてください。この USB キーに関連付けられたディスクを表す <filename>/dev/usb_key/disk</filename> と第 1 パーティションを表す <filename>/dev/usb_key/part1</filename> が生成されたことと思います。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Debugging <emphasis>udev</emphasis>'s configuration"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> <emphasis>udev</emphasis> 設定のデバッグ"
 
 #. Tag: para
 #, no-c-format
 msgid "Like many daemons, <command>udevd</command> stores logs in <filename>/var/log/daemon.log</filename>. But it is not very verbose by default, and it's usually not enough to understand what's happening. The <command>udevadm control --log-priority=info</command> command increases the verbosity level and solves this problem. <command>udevadm control --log-priority=err</command> returns to the default verbosity level."
-msgstr ""
+msgstr "多くのデーモンと同様に、<command>udevd</command> は <filename>/var/log/daemon.log</filename> にログを保存します。しかしデフォルトの状態だとログはそれほど詳細でなく、何が起きているかを理解するには不十分な場合が多いです。<command>udevadm control --log-priority=info</command> コマンドを使ってログの詳細度を上げることで、この問題は解決されます。デフォルトの詳細度に戻すには、<command>udevadm control --log-priority=err</command> を使ってください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Power Management: Advanced Configuration and Power Interface (ACPI)"
-msgstr ""
+msgstr "電源管理: Advanced Configuration and Power Interface (ACPI)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>power management</primary>"
-msgstr ""
+msgstr "<primary>電源管理</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>management, power management</primary>"
-msgstr ""
+msgstr "<primary>管理、電源管理</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The topic of power management is often problematic. Indeed, properly suspending the computer requires that all the computer's device drivers know how to put them to standby, and that they properly reconfigure the devices upon waking. Unfortunately, there are still a few devices unable to sleep well under Linux, because their manufacturers have not provided the required specifications."
-msgstr ""
+msgstr "電源管理は問題のある場合が多いです。実際、適切にコンピュータを一時停止するには、コンピュータの全てのデバイスドライバがデバイスをスタンバイ状態にする方法を知り、デバイスドライバがデバイスを再始動する際に適切に再設定できなければいけません。不幸なことに、Linux の下では上手くスタンバイ状態に出来ないデバイスが多いです。なぜなら、デバイスの製造業者が必要な仕様を公開しないからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Linux supports ACPI (Advanced Configuration and Power Interface) — the most recent standard in power management. The <emphasis role=\"pkg\">acpid</emphasis> package provides a daemon that looks for power management related events (switching between AC and battery power on a laptop, etc.) and that can execute various commands in response."
-msgstr ""
+msgstr "Linux は ACPI (Advanced Configuration and Power Interface) - 最新の標準的な電源管理規格 - をサポートします。<emphasis role=\"pkg\">acpid</emphasis> パッケージは、電源管理に関するイベント (ラップトップで交流電源とバッテリ電源の切り替えに対するイベントなど) を司り、イベントに応答して様々なコマンドを実行する、デーモンを提供します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ACPI</primary>"
-msgstr ""
+msgstr "<primary>ACPI</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Advanced Configuration and Power Interface</primary>"
-msgstr ""
+msgstr "<primary>Advanced Configuration and Power Interface</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>acpid</command></primary>"
-msgstr ""
+msgstr "<primary><command>acpid</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Advanced Power Management (APM)"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> Advanced Power Management (APM)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APM</primary>"
-msgstr ""
+msgstr "<primary>APM</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Advanced Power Management</primary>"
-msgstr ""
+msgstr "<primary>Advanced Power Management</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "APM (Advanced Power Management) is the ancestor of ACPI in the power management world. While Debian still provides <command>apmd</command> (the counterpart to <command>acpid</command> for the APM standard), the official Debian kernel no longer supports APM so you'll have to run a custom kernel if you really need it for some old computer."
-msgstr ""
+msgstr "APM (Advanced Power Management) は電源管理分野における ACPI の先祖です。Debian ではまだ <command>apmd</command> (APM 規格用の <command>acpid</command> に対応するもの) を配布していますが、公式の Debian カーネルはもはや APM をサポートしません。このため、一部の古いコンピュータで本当に APM が必要ならば、カスタムカーネルを実行しなければいけません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BEWARE</emphasis> Graphics card and standby"
-msgstr ""
+msgstr "<emphasis>BEWARE</emphasis> グラフィックカードとスタンバイ"
 
 #. Tag: para
 #, no-c-format
 msgid "The graphics card driver is often the culprit when standby doesn't work properly. In that case, it is a good idea to test the latest version of the X.org graphics server."
-msgstr ""
+msgstr "グラフィックカードドライバはスタンバイが上手くできない問題の原因になることが多いです。この場合、X.org グラフィックサーバの最新版を試してみるのが良いアイディアです。"
 
 #. Tag: para
 #, no-c-format
 msgid "After this overview of basic services common to many Unix systems, we will focus on the environment of the administered machines: the network. Many services are required for the network to work properly. They will be discussed in the next chapter."
-msgstr ""
+msgstr "多くの Unix システムで共通の基本的サービスの概要の後、管理されているマシンの環境に焦点を合わせます: ネットワークです。多くのサービスはネットワークを正しく動作させることを必要とします。次の章ではこれについて議論します。"
