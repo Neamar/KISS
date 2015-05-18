@@ -176,12 +176,25 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Apply some tweaks to the design, depending on the current SDK version
      */
     public void applyDesignTweaks() {
+        final View menuButton = findViewById(R.id.menuButton);
+        final View clearButton = findViewById(R.id.clearButton);
+        final View launcherButton = findViewById(R.id.clearButton);
+
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            final View menuButton = findViewById(R.id.menuButton);
-            final View clearButton = findViewById(R.id.clearButton);
-            final View launcherButton = findViewById(R.id.clearButton);
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+
+            // Clicking on menu button should display a focused rectangle
+            menuButton.setBackgroundResource(outValue.resourceId);
+            // Barely visible on the backbutton, since it disappears instant. Can be seen on long click though
+            clearButton.setBackgroundResource(outValue.resourceId);
+            // Also adding it to the launcher button, although it will be enhanced for future android versions (Lollipop)
+            launcherButton.setBackgroundResource(outValue.resourceId);
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TypedValue outValue = new TypedValue();
+            getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
 
             // Clicking on menu button should display a focused rectangle
             menuButton.setBackgroundResource(outValue.resourceId);
