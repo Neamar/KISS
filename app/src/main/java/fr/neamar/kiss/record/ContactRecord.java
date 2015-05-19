@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -139,23 +140,39 @@ public class ContactRecord extends Record {
 		launchMessaging(context);
 	}
 	
-	protected void launchMessaging(Context context)
+	protected void launchMessaging(final Context context)
 	{
-		recordLaunch(context);
-		queryInterface.launchOccured();
 		String url = "sms:" + contactHolder.phone;
 		Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(i);
+
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				recordLaunch(context);
+				queryInterface.launchOccured();
+			}
+		}, 75);
+
 	}
 	
-	protected void launchCall(Context context)
+	protected void launchCall(final Context context)
 	{
-		recordLaunch(context);
-		queryInterface.launchOccured();
 		String url = "tel:" + contactHolder.phone;
 		Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(i);
+		
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				recordLaunch(context);
+				queryInterface.launchOccured();
+			}
+		}, 75);
+
 	}
 }

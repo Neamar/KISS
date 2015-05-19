@@ -146,11 +146,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // Clear text content when touching the cross button
         ImageView clearButton = (ImageView) findViewById(R.id.clearButton);
         clearButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 searchEditText.setText("");
-
             }
         });
 
@@ -158,7 +156,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
         ImageView menuButton = (ImageView) findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
         menuButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 v.showContextMenu();
