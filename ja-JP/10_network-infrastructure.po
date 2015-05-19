@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-18 17:16+0900\n"
+"PO-Revision-Date: 2015-05-19 23:34+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -127,124 +127,124 @@ msgstr "<primary>UDP、ポート</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Many programs do not handle the individual packets themselves, even though the data they transmit does travel over IP; they often use TCP (<emphasis>Transmission Control Protocol</emphasis>). TCP is a layer over IP allowing the establishment of connections dedicated to data streams between two points. The programs then only see an entry point into which data can be fed with the guarantee that the same data exits without loss (and in the same sequence) at the exit point at the other end of the connection. Although many kinds of errors can happen in the lower layers, they are compensated by TCP: lost packets are retransmitted, and packets arriving out of order (for example, if they used different paths) are re-ordered appropriately."
-msgstr ""
+msgstr "多くのプログラムは、送信するデータが IP 経由で伝わる場合でさえ、個々のパケットそれ自体を取り扱いません。多くのプログラムは TCP (<emphasis>Transmission Control Protocol</emphasis>) を使います。TCP は IP 上のレイヤで、2 点間のデータストリーム専用の接続の確立することが可能です。プログラムは、接続の別の側にある出口から損失なく同じデータ (同じ順番で) が出てくると保証される、データを送り込むための入口を見るだけです。低レイヤで起きる様々なエラーは TCP で補正されます: 損失したパケットは再度転送され、順番が狂って到着したパケット (例えば、異なる経路で到着したために) は適切な順番に揃えられます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Another protocol relying on IP is UDP (<emphasis>User Datagram Protocol</emphasis>). In contrast to TCP, it is packet-oriented. Its goals are different: the purpose of UDP is only to transmit one packet from an application to another. The protocol does not try to compensate for possible packet loss on the way, nor does it ensure that packets are received in the same order as were sent. The main advantage to this protocol is that the latency is greatly improved, since the loss of a single packet does not delay the receiving of all following packets until the lost one is retransmitted."
-msgstr ""
+msgstr "IP に依存する別のプロトコルが UDP (<emphasis>User Datagram Protocol</emphasis>) です。TCP と対照的に、UDP はパケット重視です。UDP の目標は TCP と異なります: UDP の目的は 1 つのパケットをあるアプリケーションから別のアプリケーションに転送するだけです。UDP を使った場合、転送中のパケット損失は補償されませんし、パケットが送信順と同じ順番で受信されることも保証されません。UDP の主な利点は、遅延が大きく改善される点です。なぜなら、1 パケットを損失しても、損失したパケットが再転送されるまで、損失したパケット以降に続くパケットの受信は遅延しないからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "TCP and UDP both involve ports, which are “extension numbers” for establishing communication with a given application on a machine. This concept allows keeping several different communications in parallel with the same correspondent, since these communications can be distinguished by the port number."
-msgstr ""
+msgstr "TCP と UDP は両方ポート番号を使います。ポート番号とは、マシン上で動くあるアプリケーションと通信を確立するための「内線番号」といえます。この概念を使うことで、同一のマシンに対して、復数の異なる通信を並列して保つことが可能になります。なぜなら、通信はポート番号で区別されるからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Some of these port numbers — standardized by the IANA (<emphasis>Internet Assigned Numbers Authority</emphasis>) — are “well-known” for being associated with network services. For instance, TCP port 25 is generally used by the email server. <ulink type=\"block\" url=\"http://www.iana.org/assignments/port-numbers\" />"
-msgstr ""
+msgstr "IANA (<emphasis>Internet Assigned Numbers Authority</emphasis>) が標準化した幾つかのポート番号は「well-known」とされ、ネットワークサービスに関連付けられています。例えば、TCP ポート 25 番は一般に電子メールサーバが使うポート番号です。<ulink type=\"block\" url=\"http://www.iana.org/assignments/port-numbers\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "When a local network uses a private address range (not routable on the Internet), the gateway needs to implement <emphasis>address masquerading</emphasis> so that the machines on the network can communicate with the outside world. The masquerading operation is a kind of proxy operating on the network level: each outgoing connection from an internal machine is replaced with a connection from the gateway itself (since the gateway does have an external, routable address), the data going through the masqueraded connection is sent to the new one, and the data coming back in reply is sent through to the masqueraded connection to the internal machine. The gateway uses a range of dedicated TCP ports for this purpose, usually with very high numbers (over 60000). Each connection coming from an internal machine then appears to the outside world as a connection coming from one of these reserved ports."
-msgstr ""
+msgstr "ローカルネットワークがプライベートアドレス (Internet にルーティングされないアドレス) 範囲を使う場合、ゲートウェイは<emphasis>アドレスマスカレード</emphasis>を実行する必要があります。<emphasis>アドレスマスカレード</emphasis>を使うことで、ローカルネットワーク上のマシンが外部と通信することが可能になります。マスカレード動作とはネットワークレベルのプロキシ動作のようなものです: 内部のマシンからの外部宛接続はゲートウェイ自身からの接続に置き替えられます (なぜなら、ゲートウェイは外部にルーティング可能なアドレスを持っているからです)。マスカレード接続を通過するデータは外部に送信され、応答として戻ってくるデータはマスカレード接続を通過して内部のマシンに送信されます。ゲートウェイはこの目的に専用の TCP ポート範囲を使います。この範囲は通常とても大きな番号 (60000 番より大きい番号) です。内部マシンからの接続はこれらの予約されたポート番号の 1 つから送信された接続として外部に送信されます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>masquerading</primary>"
-msgstr ""
+msgstr "<primary>マスカレード</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Private address range"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> プライベートアドレス範囲"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IP address</primary><secondary>private</secondary>"
-msgstr ""
+msgstr "<primary>IP アドレス</primary><secondary>プライベート</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>private IP address</primary>"
-msgstr ""
+msgstr "<primary>プライベート IP アドレス</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "RFC 1918 defines three ranges of IPv4 addresses not meant to be routed on the Internet but only used in local networks. The first one, <literal>10.0.0.0/8</literal> (see sidebar <xref linkend=\"sidebar.networking-basics\" />), is a class-A range (with 2<superscript>24</superscript> IP addresses). The second one, <literal>172.16.0.0/12</literal>, gathers 16 class-B ranges (<literal>172.16.0.0/16</literal> to <literal>172.31.0.0/16</literal>), each containing 2<superscript>16</superscript> IP addresses. Finally, <literal>192.168.0.0/16</literal> is a class-B range (grouping 256 class-C ranges, <literal>192.168.0.0/24</literal> to <literal>192.168.255.0/24</literal>, with 256 IP addresses each). <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
-msgstr ""
+msgstr "RFC 1918 では、Internet にルーティングされずローカルネットワークにのみ使うことができる、IPv4 アドレスの範囲が定義されています。1 番目が <literal>10.0.0.0/8</literal> で (傍注<xref linkend=\"sidebar.networking-basics\" />参照)、クラス A 範囲です (2<superscript>24</superscript> 個の IP アドレス)。2 番目が <literal>172.16.0.0/12</literal> で、16 個 (<literal>172.16.0.0/16</literal> から <literal>172.31.0.0/16</literal> まで) のクラス B 範囲です。各範囲に 2<superscript>16</superscript> 個の IP アドレスが含まれます。3 番目が <literal>192.168.0.0/16</literal> で、クラス B 範囲です (256 個のクラス C 範囲、<literal>192.168.0.0/24</literal> から <literal>192.168.255.0/24</literal> まで、各範囲に 256 個の IP アドレス)。<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The gateway can also perform two kinds of <emphasis>network address translation</emphasis> (or NAT for short). The first kind, <emphasis>Destination NAT</emphasis> (DNAT) is a technique to alter the destination IP address (and/or the TCP or UDP port) for a (generally) incoming connection. The connection tracking mechanism also alters the following packets in the same connection to ensure continuity in the communication. The second kind of NAT is <emphasis>Source NAT</emphasis> (SNAT), of which <emphasis>masquerading</emphasis> is a particular case; SNAT alters the source IP address (and/or the TCP or UDP port) of a (generally) outgoing connection. As for DNAT, all the packets in the connection are appropriately handled by the connection tracking mechanism. Note that NAT is only relevant for IPv4 and its limited address space; in IPv6, the wide availability of addresses greatly reduces the usefulness of NAT by allowing all “internal” addresses to be directly routable on the Internet (this does not imply that internal machines are accessible, since intermediary firewalls can filter traffic)."
-msgstr ""
+msgstr "ゲートウェイでは 2 種類の<emphasis>ネットワークアドレス変換</emphasis> (略して NAT) が実行されます。1 種類目は<emphasis>Destination NAT</emphasis> (DNAT) で、(通常は) 到着した接続の宛先 IP アドレス (および TCP や UDP ポート) を書き換える手法です。接続追跡メカニズムによって、通信の継続性を保証するために同じ接続でそれ以降に使われるパケットの宛先が書き換えられます。NAT の 2 種類目は <emphasis>Source NAT</emphasis> (SNAT) で、<emphasis>マスカレード</emphasis> は SNAT の特別な場合です; SNAT は (通常は) 出て行く接続のソース IP アドレス (および TCP や UDP ポート) を書き換えます。DNAT に関しては、出て行く接続の全パケットが接続追跡メカニズムによって適切に取り扱われます。NAT は IPv4 と IPv4 の制限されたアドレス空間だけに関連します; IPv6 では、アドレス空間が広くなったことにより、全ての「内部」アドレスは直接インターネットにルーティングできるようになるため、NAT の有用性が減ります (これは内部マシンをアクセス可能にすること意味しているのではありません。なぜなら、中間ファイヤーウォールがトラフィックをフィルタするからです)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NAT</primary>"
-msgstr ""
+msgstr "<primary>NAT</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Network</primary><secondary>Address Translation</secondary>"
-msgstr ""
+msgstr "<primary>ネットワーク</primary><secondary>アドレス変換</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SNAT</primary>"
-msgstr ""
+msgstr "<primary>SNAT</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNAT</primary>"
-msgstr ""
+msgstr "<primary>DNAT</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Destination NAT</primary>"
-msgstr ""
+msgstr "<primary>Destination NAT</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Source NAT</primary>"
-msgstr ""
+msgstr "<primary>Source NAT</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Port forwarding"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> ポート転送"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>port forwarding</primary>"
-msgstr ""
+msgstr "<primary>ポート転送</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A concrete application of DNAT is <emphasis>port forwarding</emphasis>. Incoming connections to a given port of a machine are forwarded to a port on another machine. Other solutions may exist for achieving a similar effect, though, especially at the application level with <command>ssh</command> (see <xref linkend=\"sect.ssh-port-forwarding\" />) or <command>redir</command>."
-msgstr ""
+msgstr "DNAT の具体的な応用例が<emphasis>ポート転送</emphasis>です。マシンのあるポートに到着する接続が他のマシンのあるポートに転送されます。特に <command>ssh</command> (<xref linkend=\"sect.ssh-port-forwarding\" /> 参照) や <command>redir</command> を使ったアプリケーションレベルでは、同じ効果を果たす他の解決策が存在するかもしれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Enough theory, let's get practical. Turning a Debian system into a gateway is a simple matter of enabling the appropriate option in the Linux kernel, by way of the <filename>/proc/</filename> virtual filesystem:"
-msgstr ""
+msgstr "理論はここまでにして、具体的な例を説明します。Debian システムをゲートウェイに構成するのは <filename>/proc/</filename> 仮想ファイルシステムを使って、Linux カーネルの適切なオプションを有効化するだけです。"
 
 #. Tag: screen
 #, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>\n"
-msgstr ""
+msgstr "\n<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "This option can also be automatically enabled on boot if <filename>/etc/sysctl.conf</filename> sets the <literal>net.ipv4.conf.default.forwarding</literal> option to <literal>1</literal>."
-msgstr ""
+msgstr "このオプションを起動時に自動的に有効化するには、<filename>/etc/sysctl.conf</filename> の <literal>net.ipv4.conf.default.forwarding</literal> オプションを <literal>1</literal> に設定してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/sysctl.conf</filename> file"
-msgstr ""
+msgstr "<filename>/etc/sysctl.conf</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -254,151 +254,155 @@ msgid ""
 "net.ipv4.conf.default.rp_filter = 1\n"
 "net.ipv4.tcp_syncookies = 1\n"
 msgstr ""
+"\n"
+"net.ipv4.conf.default.forwarding = 1\n"
+"net.ipv4.conf.default.rp_filter = 1\n"
+"net.ipv4.tcp_syncookies = 1\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The same effect can be obtained for IPv6 by simply replacing <literal>ipv4</literal> with <literal>ipv6</literal> in the manual command and using the <literal>net.ipv6.conf.all.forwarding</literal> line in <filename>/etc/sysctl.conf</filename>."
-msgstr ""
+msgstr "IPv6 に対して同様の効果を与えるには、手作業で行うコマンドで単純に <literal>ipv4</literal> を <literal>ipv6</literal> で置換して実行するか、<filename>/etc/sysctl.conf</filename> の中で <literal>net.ipv6.conf.all.forwarding</literal> を使ってください。"
 
 #. Tag: para
 #, no-c-format
 msgid "Enabling IPv4 masquerading is a slightly more complex operation that involves configuring the <emphasis>netfilter</emphasis> firewall."
-msgstr ""
+msgstr "IPv4 マスカレードを設定するには少し複雑な作業で、<emphasis>netfilter</emphasis> ファイヤーウォールを設定する必要があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Similarly, using NAT (for IPv4) requires configuring <emphasis>netfilter</emphasis>. Since the primary purpose of this component is packet filtering, the details are listed in <xref linkend=\"security\" xrefstyle=\"select: label quotedtitle nopage\" /> (see <xref linkend=\"sect.firewall-packet-filtering\" />)."
-msgstr ""
+msgstr "同様に、(IPv4 で) NAT を使うには <emphasis>netfilter</emphasis> の設定が必要です。このコンポーネントの基本目的はパケットフィルタリングですから、詳細は <xref linkend=\"security\" xrefstyle=\"select: label quotedtitle nopage\" /> に書かれています (<xref linkend=\"sect.firewall-packet-filtering\" />参照)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Virtual Private Network"
-msgstr ""
+msgstr "仮想プライベートネットワーク"
 
 #. Tag: para
 #, no-c-format
 msgid "A <emphasis>Virtual Private Network</emphasis> (VPN for short) is a way to link two different local networks through the Internet by way of a tunnel; the tunnel is usually encrypted for confidentiality. VPNs are often used to integrate a remote machine within a company's local network."
-msgstr ""
+msgstr "<emphasis>仮想プライベートネットワーク</emphasis> (略して VPN) は 2 つの異なるローカルネットワークを Internet に作ったトンネルを経由して繋げる方法です; トンネルは通常機密を守るために暗号化されます。VPN はリモートマシンを会社のローカルネットワークの中に参加させるために使われます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>virtual private</secondary>"
-msgstr ""
+msgstr "<primary>ネットワーク</primary><secondary>仮想プライベート</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>VPN</primary>"
-msgstr ""
+msgstr "<primary>VPN</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual private network</primary>"
-msgstr ""
+msgstr "<primary>仮想プライベートネットワーク</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Several tools provide this. OpenVPN is an efficient solution, easy to deploy and maintain, based on SSL/TLS. Another possibility is using IPsec to encrypt IP traffic between two machines; this encryption is transparent, which means that applications running on these hosts need not be modified to take the VPN into account. SSH can also be used to provide a VPN, in addition to its more conventional features. Finally, a VPN can be established using Microsoft's PPTP protocol. Other solutions exist, but are beyond the focus of this book."
-msgstr ""
+msgstr "この機能を提供するツールには様々なものがあります。OpenVPN は効果的な解決策で、設置と保守が簡単で、SSL/TLS に基いています。別の可能性は IPsec を使って 2 台のマシン間の IP トラフィックを暗号化することです; この暗号化は透過的です。つまり、ホスト上で実行されているアプリケーションは VPN の存在を気にする必要がありません。SSH は伝統的な機能に加えて、VPN を提供するために使われる場合もあります。最後に、Microsoft の PPTP プロトコルを使って VPN を作ることも可能です。他にも解決策は存在しますが、この本の主題を超えます。"
 
 #. Tag: title
 #, no-c-format
 msgid "OpenVPN"
-msgstr ""
+msgstr "OpenVPN"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>OpenVPN</primary>"
-msgstr ""
+msgstr "<primary>OpenVPN</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN is a piece of software dedicated to creating virtual private networks. Its setup involves creating virtual network interfaces on the VPN server and on the client(s); both <literal>tun</literal> (for IP-level tunnels) and <literal>tap</literal> (for Ethernet-level tunnels) interfaces are supported. In practice, <literal>tun</literal> interfaces will most often be used except when the VPN clients are meant to be integrated into the server's local network by way of an Ethernet bridge."
-msgstr ""
+msgstr "OpenVPN は仮想プライベートネットワーク作成専用ソフトウェアの一種です。OpenVPN をセットアップするには VPN サーバ上とクライアント上に仮想ネットワークインターフェイスの作成が必要です; <literal>tun</literal> (IP レベルトンネル) と <literal>tap</literal> (イーサネットレベルトンネル) インターフェイスをサポートします。具体的には、VPN クライアントをイーサネットブリッジ経由でサーバのローカルネットワークに参加させる場合を除いて、<literal>tun</literal> インターフェイスが最もよく使われます。"
 
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN relies on OpenSSL for all the SSL/TLS cryptography and associated features (confidentiality, authentication, integrity, non-repudiation). It can be configured either with a shared private key or using X.509 certificates based on a public key infrastructure. The latter configuration is strongly preferred since it allows greater flexibility when faced with a growing number of roaming users accessing the VPN."
-msgstr ""
+msgstr "OpenVPN は、SSL/TLS 暗号化と関連する機能 (機密性、認証、整合性、否認防止) を使うために、OpenSSL に依存しています。OpenVPN は共有秘密鍵または公開鍵基盤に基づく X.509 証明書を使うように設定できます。設定は後者を使うことをお勧めします。なぜなら、VPN にアクセスするローミングユーザの数が増えた場合も、大きな自由度があるからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> SSL and TLS"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> SSL と TLS"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSL</primary>"
-msgstr ""
+msgstr "<primary>SSL</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>TLS</primary>"
-msgstr ""
+msgstr "<primary>TLS</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The SSL protocol (<emphasis>Secure Socket Layer</emphasis>) was invented by Netscape to secure connections to web servers. It was later standardized by IETF under the acronym TLS (<emphasis>Transport Layer Security</emphasis>); TLS is very similar to SSLv3 with only a few fixes and improvements."
-msgstr ""
+msgstr "SSL (<emphasis>Secure Socket Layer</emphasis>) プロトコルは、ウェブサーバとの安全な接続を確立する目的で、Netscape によって考案されました。SSL は後に TLS (<emphasis>Transport Layer Security</emphasis>) の下で IETF によって標準化されました; TLS は SSLv3 とよく似ており、違いは SSLv3 に幾つかの修正と改善を加えた点です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Public Key Infrastructure: <emphasis>easy-rsa</emphasis>"
-msgstr ""
+msgstr "公開鍵基盤: <emphasis>easy-rsa</emphasis>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PKI (Public Key Infrastructure)</primary>"
-msgstr ""
+msgstr "<primary>PKI (公開鍵基盤)</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Public Key Infrastructure</primary>"
-msgstr ""
+msgstr "<primary>公開鍵基盤</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>X.509, certificate</primary>"
-msgstr ""
+msgstr "<primary>X.509、証明書</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>certificate</primary><secondary>X.509</secondary>"
-msgstr ""
+msgstr "<primary>証明書</primary><secondary>X.509</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>easy-rsa</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>easy-rsa</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RSA (algorithm)</primary>"
-msgstr ""
+msgstr "<primary>RSA (アルゴリズム)</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>key pair</primary>"
-msgstr ""
+msgstr "<primary>鍵ペア</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The RSA algorithm is widely used in public-key cryptography. It involves a “key pair”, comprised of a private and a public key. The two keys are closely linked to each other, and their mathematical properties are such that a message encrypted with the public key can only be decrypted by someone knowing the private key, which ensures confidentiality. In the opposite direction, a message encrypted with the private key can be decrypted by anyone knowing the public key, which allows authenticating the origin of a message since only someone with access to the private key could generate it. When associated with a digital hash function (MD5, SHA1, or a more recent variant), this leads to a signature mechanism that can be applied to any message."
-msgstr ""
+msgstr "公開鍵暗号では RSA アルゴリズムが広く使われています。公開鍵暗号は秘密鍵と公開鍵からなる「鍵ペア」を使います。2 種類の鍵は互いに密接な関係を持っており、公開鍵で暗号化されたメッセージは秘密鍵を知っている人だけが復号化できるという数学的特徴によって機密性が保証されます。逆に、秘密鍵を使って暗号化されたメッセージは公開鍵を持っている人なら誰でも復号化できます。この特徴を使うことで、メッセージの出自が本物であることを確認することができます。なぜなら、秘密鍵を持つものだけがその暗号化メッセージを生成できるからです。デジタルハッシュ関数 (MD5、SHA1、最近の亜種など) を関連させる場合、いかなるメッセージにも適用できる署名メカニズムになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "However, anyone can create a key pair, store any identity on it, and pretend to be the identity of their choice. One solution involves the concept of a <emphasis>Certification Authority</emphasis> (CA), formalized by the X.509 standard. This term covers an entity that holds a trusted key pair known as a <emphasis>root certificate</emphasis>. This certificate is only used to sign other certificates (key pairs), after proper steps have been undertaken to check the identity stored on the key pair. Applications using X.509 can then check the certificates presented to them, if they know about the trusted root certificates."
-msgstr ""
+msgstr "しかしながら、鍵ペアを作り、鍵ペアに任意の識別情報を保存し、自由に識別情報を偽る事は誰でも可能です。これに対する 1 つの解決策が X.509 標準によって形式化された<emphasis>認証局</emphasis> (CA) の概念です。この用語には、<emphasis>ルート証明書</emphasis>として知られる信頼された鍵ペアに保存された識別情報の実体の意味も含まれています。ルート証明書は他の証明書 (鍵ペア) を署名するためにのみ使われ、署名は署名したい鍵ペアに保存される識別情報を確認するために適切な手順を経た後に行われます。こうすることで X.509 を使うアプリケーションは自分に提示された証明書の識別情報を確認し、提示された証明書が信頼されたルート証明書によって署名されたかを判断できます。"
 
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN follows this rule. Since public CAs only emit certificates in exchange for a (hefty) fee, it is also possible to create a private certification authority within the company. For that purpose, OpenVPN provides the <emphasis>easy-rsa</emphasis> tool which serves as an X.509 certification infrastructure. Its implementation is a set of scripts using the <command>openssl</command> command; these scripts can be found under <filename>/usr/share/doc/openvpn/examples/easy-rsa/2.0/</filename>."
-msgstr ""
+msgstr "OpenVPN はこのルールに従います。なぜなら、パブリック認証局は (高額な) 料金と引き換えに証明書を発行するだけなので、OpenVPN を使えば会社内のプライベート認証局を作成することが可能です。この目的で、OpenVPN には <emphasis>easy-rsa</emphasis> ツールが含まれ、これを使って X.509 証明書基盤の機能が提供されます。<emphasis>easy-rsa</emphasis> ツールは <command>openssl</command> コマンドを使うスクリプト群です; スクリプトは <filename>/usr/share/doc/openvpn/examples/easy-rsa/2.0/</filename> 以下に含まれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators use this tool to create the required certificates, both for the server and the clients. This allows the configuration of all clients to be similar since they will only have to be set up so as to trust certificates coming from Falcot's local CA. This CA is the first certificate to create; to this end, the administrators copy the directory containing <emphasis>easy-rsa</emphasis> into a more appropriate location, preferably on a machine not connected to the network in order to mitigate the risk of the CA's private key being stolen."
-msgstr ""
+msgstr "Falcot Corp の管理者は <emphasis>easy-rsa</emphasis> ツールを使い、サーバおよびクライアントに必要な証明書を作ります。<emphasis>easy-rsa</emphasis> ツールを使うことで、全てのクライアントの設定を同じ様にすることが可能です。クライアントは Falcot のプライベート認証局から来た証明書を信頼するようにセットアップしなければいけません。Falcot のプライベート認証局が最初に作成する証明書です; この目的を達成するために、管理者は <emphasis>easy-rsa</emphasis> を含むディレクトリをより適切な場所にコピーします。コピーする場所は、認証局の秘密鍵が盗まれる危険性を和らげるために、ネットワークに繋がれていないマシンが好ましいです。"
 
 #. Tag: screen
 #, no-c-format
@@ -407,11 +411,14 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 pki-falcot\n"
 "</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 pki-falcot\n"
+"</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "They then store the required parameters into the <filename>vars</filename> file, especially those named with a <literal>KEY_</literal> prefix; these variables are then integrated into the environment:"
-msgstr ""
+msgstr "<emphasis>easy-rsa</emphasis> ツールは必要なパラメータを <filename>vars</filename> ファイルに保存します。パラメータには特に <literal>KEY_</literal> 接頭辞が付けられています。これらの変数は環境変数に組み込まれます:"
 
 #. Tag: screen
 #, no-c-format
@@ -434,11 +441,28 @@ msgid ""
 "$ </computeroutput><userinput>./clean-all\n"
 "</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>vim vars\n"
+"</userinput><computeroutput>$ </computeroutput><userinput>grep KEY_ vars\n"
+"</userinput><computeroutput>export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`\n"
+"export KEY_DIR=\"$EASY_RSA/keys\"\n"
+"echo NOTE: If you run ./clean-all, I will be doing a rm -rf on $KEY_DIR\n"
+"export KEY_SIZE=2048\n"
+"export KEY_EXPIRE=3650\n"
+"export KEY_COUNTRY=\"FR\"\n"
+"export KEY_PROVINCE=\"Loire\"\n"
+"export KEY_CITY=\"Saint-Étienne\"\n"
+"export KEY_ORG=\"Falcot Corp\"\n"
+"export KEY_EMAIL=\"admin@falcot.com\"\n"
+"$ </computeroutput><userinput>. ./vars\n"
+"</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a rm -rf on /home/rhertzog/pki-falcot/keys\n"
+"$ </computeroutput><userinput>./clean-all\n"
+"</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The next step is the creation of the CA's key pair itself (the two parts of the key pair will be stored under <filename>keys/ca.crt</filename> and <filename>keys/ca.key</filename> during this step):"
-msgstr ""
+msgstr "次に認証局の鍵ペアを作成します (この最中に、鍵ペアの 2 つの部分が <filename>keys/ca.crt</filename> と <filename>keys/ca.key</filename> に保存されます):"
 
 #. Tag: screen
 #, no-c-format
@@ -467,11 +491,34 @@ msgid ""
 "Email Address [admin@falcot.com]:\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>./build-ca</userinput>\n"
+"<computeroutput>Generating a 2048 bit RSA private key\n"
+"..............................................++++++\n"
+".......................++++++\n"
+"writing new private key to 'ca.key'\n"
+"-----\n"
+"You are about to be asked to enter information that will be incorporated\n"
+"into your certificate request.\n"
+"What you are about to enter is what is called a Distinguished Name or a DN.\n"
+"There are quite a few fields but you can leave some blank\n"
+"For some fields there will be a default value,\n"
+"If you enter '.', the field will be left blank.\n"
+"-----\n"
+"Country Name (2 letter code) [FR]:\n"
+"State or Province Name (full name) [Loire]:\n"
+"Locality Name (eg, city) [Saint-Étienne]:\n"
+"Organization Name (eg, company) [Falcot Corp]:\n"
+"Organizational Unit Name (eg, section) []:\n"
+"Common Name (eg, your name or your server's hostname) [Falcot Corp CA]:\n"
+"Name []:\n"
+"Email Address [admin@falcot.com]:\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The certificate for the VPN server can now be created, as well as the Diffie-Hellman parameters required for the server side of an SSL/TLS connection. The VPN server is identified by its DNS name <literal>vpn.falcot.com</literal>; this name is re-used for the generated key files (<filename>keys/vpn.falcot.com.crt</filename> for the public certificate, <filename>keys/vpn.falcot.com.key</filename>for the private key):"
-msgstr ""
+msgstr "今や VPN サーバの証明書を作ることが可能です。同様に SSL/TLS 接続のサーバ側には Diffie-Hellman パラメータが必要です。VPN サーバは DNS 名 <literal>vpn.falcot.com</literal> で識別されます; 作成された鍵ファイルの名前に、ここで与えた DNS 名が使われます (<filename>keys/vpn.falcot.com.crt</filename> は公開鍵証明書、<filename>keys/vpn.falcot.com.key</filename> は秘密鍵):"
 
 #. Tag: screen
 #, no-c-format
@@ -526,11 +573,60 @@ msgid ""
 "..............+.......+.................................++*++*++*\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>./build-key-server vpn.falcot.com\n"
+"</userinput><computeroutput>Generating a 2048 bit RSA private key\n"
+"...............++++++\n"
+"...........++++++\n"
+"writing new private key to 'vpn.falcot.com.key'\n"
+"-----\n"
+"You are about to be asked to enter information that will be incorporated\n"
+"into your certificate request.\n"
+"What you are about to enter is what is called a Distinguished Name or a DN.\n"
+"There are quite a few fields but you can leave some blank\n"
+"For some fields there will be a default value,\n"
+"If you enter '.', the field will be left blank.\n"
+"-----\n"
+"Country Name (2 letter code) [FR]:\n"
+"State or Province Name (full name) [Loire]:\n"
+"Locality Name (eg, city) [Saint-Étienne]:\n"
+"Organization Name (eg, company) [Falcot Corp]:\n"
+"Organizational Unit Name (eg, section) []:\n"
+"Common Name (eg, your name or your server's hostname) [vpn.falcot.com]:\n"
+"Name []:\n"
+"Email Address [admin@falcot.com]:\n"
+"\n"
+"Please enter the following 'extra' attributes\n"
+"to be sent with your certificate request\n"
+"A challenge password []:\n"
+"An optional company name []:\n"
+"Using configuration from /home/rhertzog/pki-falcot/openssl.cnf\n"
+"Check that the request matches the signature\n"
+"Signature ok\n"
+"The Subject's Distinguished Name is as follows\n"
+"countryName           :PRINTABLE:'FR'\n"
+"stateOrProvinceName   :PRINTABLE:'Loire'\n"
+"localityName          :T61STRING:'Saint-\\0xFFFFFFC3\\0xFFFFFF89tienne'\n"
+"organizationName      :PRINTABLE:'Falcot Corp'\n"
+"commonName            :PRINTABLE:'vpn.falcot.com'\n"
+"emailAddress          :IA5STRING:'admin@falcot.com'\n"
+"Certificate is to be certified until Oct  9 13:57:42 2020 GMT (3650 days)\n"
+"Sign the certificate? [y/n]:</computeroutput><userinput>y\n"
+"</userinput><computeroutput>\n"
+"\n"
+"1 out of 1 certificate requests certified, commit? [y/n]</computeroutput><userinput>y\n"
+"</userinput><computeroutput>Write out database with 1 new entries\n"
+"Data Base Updated\n"
+"$ </computeroutput><userinput>./build-dh\n"
+"</userinput><computeroutput>Generating DH parameters, 2048 bit long safe prime, generator 2\n"
+"This is going to take a long time\n"
+"..............+.......+.................................++*++*++*\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The following step creates certificates for the VPN clients; one certificate is required for each computer or person allowed to use the VPN:"
-msgstr ""
+msgstr "以下では、VPN クライアント用の証明書を作成します; VPN を利用するコンピュータ 1 台ごとおよび人間 1 人づつに 1 つの証明書が必要です:"
 
 #. Tag: screen
 #, no-c-format
@@ -559,16 +655,39 @@ msgid ""
 "Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com\n"
 "</userinput><computeroutput>[…]</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>./build-key JoeSmith\n"
+"</userinput><computeroutput>Generating a 2048 bit RSA private key\n"
+"................++++++\n"
+".............................++++++\n"
+"writing new private key to 'JoeSmith.key'\n"
+"-----\n"
+"You are about to be asked to enter information that will be incorporated\n"
+"into your certificate request.\n"
+"What you are about to enter is what is called a Distinguished Name or a DN.\n"
+"There are quite a few fields but you can leave some blank\n"
+"For some fields there will be a default value,\n"
+"If you enter '.', the field will be left blank.\n"
+"-----\n"
+"Country Name (2 letter code) [FR]:\n"
+"State or Province Name (full name) [Loire]:\n"
+"Locality Name (eg, city) [Saint-Étienne]:\n"
+"Organization Name (eg, company) [Falcot Corp]:\n"
+"Organizational Unit Name (eg, section) []:\n"
+"Common Name (eg, your name or your server's hostname) [JoeSmith]:</computeroutput><userinput>Joe Smith\n"
+"</userinput><computeroutput>Name []:\n"
+"Email Address [admin@falcot.com]:</computeroutput><userinput>joe@falcot.com\n"
+"</userinput><computeroutput>[…]</computeroutput>"
 
 #. Tag: para
 #, no-c-format
 msgid "Now all certificates have been created, they need to be copied where appropriate: the root certificate's public key (<filename>keys/ca.crt</filename>) will be stored on all machines (both server and clients) as <filename>/etc/ssl/certs/Falcot_CA.crt</filename>. The server's certificate is installed only on the server (<filename>keys/vpn.falcot.com.crt</filename> goes to <filename>/etc/ssl/vpn.falcot.com.crt</filename>, and <filename>keys/vpn.falcot.com.key</filename> goes to <filename>/etc/ssl/private/vpn.falcot.com.key</filename> with restricted permissions so that only the administrator can read it), with the corresponding Diffie-Hellman parameters (<filename>keys/dh2048.pem</filename>) installed to <filename>/etc/openvpn/dh2048.pem</filename>. Client certificates are installed on the corresponding VPN client in a similar fashion."
-msgstr ""
+msgstr "全ての証明書を作ったら、証明書を適切な場所にコピーする必要があります: ルート証明書の公開鍵 (<filename>keys/ca.crt</filename>) は全てのマシン (サーバもクライアントも) に <filename>/etc/ssl/certs/Falcot_CA.crt</filename> という名前で保存されます。サーバの証明書はサーバにだけインストールされます (<filename>keys/vpn.falcot.com.crt</filename> は <filename>/etc/ssl/vpn.falcot.com.crt</filename> に、<filename>keys/vpn.falcot.com.key</filename> は管理者だけが読めるようなパーミッション制限を掛けるために <filename>/etc/ssl/private/vpn.falcot.com.key</filename> に、インストールされます)。同時に、対応する Diffie-Hellman パラメータ (<filename>keys/dh2048.pem</filename>) は <filename>/etc/openvpn/dh2048.pem</filename> にインストールされます。クライアント証明書は対応する VPN クライアントに同様の方法でインストールされます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the OpenVPN Server"
-msgstr ""
+msgstr "OpenVPN サーバの設定"
 
 #. Tag: para
 #, no-c-format
