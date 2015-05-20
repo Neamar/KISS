@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-19 23:34+0900\n"
+"PO-Revision-Date: 2015-05-20 23:15+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -692,177 +692,177 @@ msgstr "OpenVPN サーバの設定"
 #. Tag: para
 #, no-c-format
 msgid "By default, the OpenVPN initialization script tries starting all virtual private networks defined in <filename>/etc/openvpn/*.conf</filename>. Setting up a VPN server is therefore a matter of storing a corresponding configuration file in this directory. A good starting point is <filename>/usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz</filename>, which leads to a rather standard server. Of course, some parameters need to be adapted: <literal>ca</literal>, <literal>cert</literal>, <literal>key</literal> and <literal>dh</literal> need to describe the selected locations (respectively, <literal>/etc/ssl/certs/Falcot_CA.crt</literal>, <literal>/etc/ssl/vpn.falcot.com.crt</literal>, <literal>/etc/ssl/private/vpn.falcot.com.key</literal> and <literal>/etc/openvpn/dh2048.pem</literal>). The <literal>server 10.8.0.0 255.255.255.0</literal> directive defines the subnet to be used by the VPN; the server uses the first IP address in that range (<literal>10.8.0.1</literal>) and the rest of the addresses are allocated to clients."
-msgstr ""
+msgstr "デフォルトで、OpenVPN 初期化スクリプトは <filename>/etc/openvpn/*.conf</filename> で定義された全ての仮想プライベートネットワークを開始します。このため、VPN サーバをセットアップする場合、このディレクトリ内に対応する設定ファイルを配置する事になります。設定ファイルの良い足掛かりとして <filename>/usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz</filename> が用意されています。これは比較的標準的なサーバを作るためのものです。もちろん、一部のパラメータを適切に設定しなければいけません: <literal>ca</literal>、<literal>cert</literal>、<literal>key</literal>、<literal>dh</literal> をファイルを設置した場所に設定する必要があります (それぞれ、<literal>/etc/ssl/certs/Falcot_CA.crt</literal>、<literal>/etc/ssl/vpn.falcot.com.crt</literal>、<literal>/etc/ssl/private/vpn.falcot.com.key</literal>、<literal>/etc/openvpn/dh2048.pem</literal>)。<literal>server 10.8.0.0 255.255.255.0</literal> ディレクティブは VPN によって使われるサブネットを定義します; サーバにはこの範囲に含まれる最初の IP アドレス (<literal>10.8.0.1</literal>) が割り当てられ、クライアントには残りの IP アドレスが割り当てられます。"
 
 #. Tag: para
 #, no-c-format
 msgid "With this configuration, starting OpenVPN creates the virtual network interface, usually under the <literal>tun0</literal> name. However, firewalls are often configured at the same time as the real network interfaces, which happens before OpenVPN starts. Good practice therefore recommends creating a persistent virtual network interface, and configuring OpenVPN to use this pre-existing interface. This further allows choosing the name for this interface. To this end, <command>openvpn --mktun --dev vpn --dev-type tun</command> creates a virtual network interface named <literal>vpn</literal> with type <literal>tun</literal>; this command can easily be integrated in the firewall configuration script, or in an <literal>up</literal> directive of the <filename>/etc/network/interfaces</filename> file. The OpenVPN configuration file must also be updated accordingly, with the <literal>dev vpn</literal> and <literal>dev-type tun</literal> directives."
-msgstr ""
+msgstr "この設定で OpenVPN を開始すると、通常 <literal>tun0</literal> という名前の仮想ネットワークインターフェイスが作成されます。しかしながら、ファイヤーウォールは OpenVPN の開始前に実ネットワークインターフェイスと同時に設定される場合が多いです。このため、永続的に仮想ネットワークインターフェイスを作成すると良いでしょう。OpenVPN は事前に作成された仮想インターフェイスを使うように設定することを推奨します。この追加的設定により、インターフェイスの名前を選ぶことが可能になります。この目的を達成するには、<command>openvpn --mktun --dev vpn --dev-type tun</command> を使って <literal>tun</literal> タイプの <literal>vpn</literal> と名付けられた仮想ネットワークインターフェイスを作成します; このコマンドをファイヤーウォール設定スクリプトの中で使えば、簡単に設定を統合できます。つまり <filename>/etc/network/interfaces</filename> ファイルの <literal>up</literal> 指示文を使います。OpenVPN 設定ファイルをファイヤーウォール設定に対応させるために、<literal>dev vpn</literal> と <literal>dev-type tun</literal> 指示文を使って、更新します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Barring further action, VPN clients can only access the VPN server itself by way of the <literal>10.8.0.1</literal> address. Granting the clients access to the local network (192.168.0.0/24), requires adding a <literal>push route 192.168.0.0 255.255.255.0</literal> directive to the OpenVPN configuration so that VPN clients automatically get a network route telling them that this network is reachable by way of the VPN. Furthermore, machines on the local network also need to be informed that the route to the VPN goes through the VPN server (this automatically works when the VPN server is installed on the gateway). Alternatively, the VPN server can be configured to perform IP masquerading so that connections coming from VPN clients appear as if they are coming from the VPN server instead (see <xref linkend=\"sect.gateway\" />)."
-msgstr ""
+msgstr "これ以上の動作が無ければ、VPN クライアントは <literal>10.8.0.1</literal> アドレスの VPN サーバにアクセス出来るだけです。クライアントをローカルネットワーク (192.168.0.0/24) にアクセス可能な状態にするには、<literal>push route 192.168.0.0 255.255.255.0</literal> 指示文を OpenVPN 設定に追加します。こうすることで、VPN クライアントは自動的にネットワーク経路を取得し、VPN を経由でローカルネットワークに到達できるようになります。更に、ローカルネットワークにいるマシンに対して VPN サーバを通じて VPN への経路を知らせる必要もあります (VPN サーバがゲートウェイにインストールされている場合、これは自動的に動きます)。別の方法として、VPN サーバは IP マスカレードを動かすように設定されなければいけません。そうすれば、VPN クライアントからの接続はあたかもクライアントが VPN サーバからアクセスしたかのように見えます (<xref linkend=\"sect.gateway\" /> 参照)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the OpenVPN Client"
-msgstr ""
+msgstr "OpenVPN クライアントの設定"
 
 #. Tag: para
 #, no-c-format
 msgid "Setting up an OpenVPN client also requires creating a configuration file in <filename>/etc/openvpn/</filename>. A standard configuration can be obtained by using <filename>/usr/share/doc/openvpn/examples/sample-config-files/client.conf</filename> as a starting point. The <literal>remote vpn.falcot.com 1194</literal> directive describes the address and port of the OpenVPN server; the <literal>ca</literal>, <literal>cert</literal> and <literal>key</literal> also need to be adapted to describe the locations of the key files."
-msgstr ""
+msgstr "OpenVPN クライアントを設定する場合にも、<filename>/etc/openvpn/</filename> に設定ファイルを置きます。標準的な設定の良い足掛かりとして <filename>/usr/share/doc/openvpn/examples/sample-config-files/client.conf</filename> が用意されています。<literal>remote vpn.falcot.com 1194</literal> 指示文は OpenVPN サーバのアドレスとポート番号を表します; <literal>ca</literal>、<literal>cert</literal>、<literal>key</literal> も鍵ファイルの場所に合わせて設定が必要です。"
 
 #. Tag: para
 #, no-c-format
 msgid "If the VPN should not be started automatically on boot, set the <literal>AUTOSTART</literal> directive to <literal>none</literal> in the <filename>/etc/default/openvpn</filename> file. Starting or stopping a given VPN connection is always possible with the commands <command>/etc/init.d/openpvn start <replaceable>name</replaceable></command> and <command>/etc/init.d/openpvn stop <replaceable>name</replaceable></command> (where the connection <replaceable>name</replaceable> matches the one defined in <filename>/etc/openvpn/<replaceable>name</replaceable>.conf</filename>)."
-msgstr ""
+msgstr "起動時に VPN を自動的に開始したくない場合、<filename>/etc/default/openvpn</filename> ファイルの <literal>AUTOSTART</literal> 指示文に <literal>none</literal> を設定してください。VPN 接続の開始と停止は <command>/etc/init.d/openpvn start <replaceable>name</replaceable></command> と <command>/etc/init.d/openpvn stop <replaceable>name</replaceable></command> コマンドを使えばいつでも可能です (ここで、接続名 <replaceable>name</replaceable> は <filename>/etc/openvpn/<replaceable>name</replaceable>.conf</filename> で定義したたものにマッチします)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> package contains an extension to Network Manager (see <xref linkend=\"sect.roaming-network-config\" />) that allows managing OpenVPN virtual private networks. This allows every user to configure OpenVPN connections graphically and to control them from the network management icon. <indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
-msgstr ""
+msgstr "<emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> パッケージには、Network Manager の拡張 (<xref linkend=\"sect.roaming-network-config\" /> 参照) が含まれ、これを使うことで OpenVPN 仮想プライベートネットワークを管理することが可能です。誰もがグラフィカルに OpenVPN 接続を設定し、ネットワーク管理アイコンからこれを制御することが可能です。<indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Virtual Private Network with SSH"
-msgstr ""
+msgstr "SSH を使った仮想プライベートネットワーク"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SSH</primary>"
-msgstr ""
+msgstr "<primary>SSH</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPP</primary>"
-msgstr ""
+msgstr "<primary>PPP</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "There are actually two ways of creating a virtual private network with SSH. The historic one involves establishing a PPP layer over the SSH link. This method is described in a HOWTO document: <ulink type=\"block\" url=\"http://www.tldp.org/HOWTO/ppp-ssh/\" />"
-msgstr ""
+msgstr "SSH を使った仮想プライベートネットワークの作成法には、2 種類の方法があります。歴史上重要な方法が SSH リンクの上で PPP レイヤを確立する方法です。この方法は HOWTO 文書で説明されています: <ulink type=\"block\" url=\"http://www.tldp.org/HOWTO/ppp-ssh/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The second method is more recent, and was introduced with OpenSSH 4.3; it is now possible for OpenSSH to create virtual network interfaces (<literal>tun*</literal>) on both sides of an SSH connection, and these virtual interfaces can be configured exactly as if they were physical interfaces. The tunneling system must first be enabled by setting <literal>PermitTunnel</literal> to “yes” in the SSH server configuration file (<filename>/etc/ssh/sshd_config</filename>). When establishing the SSH connection, the creation of a tunnel must be explicitly requested with the <literal>-w any:any</literal> option (<literal>any</literal> can be replaced with the desired <literal>tun</literal> device number). This requires the user to have administrator privilege on both sides, so as to be able to create the network device (in other words, the connection must be established as root)."
-msgstr ""
+msgstr "2 番目の方法はより最近の方法で、OpenSSH 4.3 で導入されました; 今や、OpenSSH は SSH 接続のサーバおよびクライアント側に仮想ネットワークインターフェイス (<literal>tun*</literal>) を作り、仮想インターフェイスをあたかも物理インターフェイスの如く設定することが可能です。このトンネルシステムを有効化するにはまず、SSH サーバ設定ファイル (<filename>/etc/ssh/sshd_config</filename>) の中で <literal>PermitTunnel</literal> を「yes」に設定しなければいけません。SSH 接続を確立する際には、<literal>-w any:any</literal> オプションを使って明示的にトンネルの作成を要求しなければいけません (ここで <literal>any</literal> は必要な <literal>tun</literal> デバイス番号で置き替えます)。トンネルを作成するには、サーバおよびクライアント側でそのユーザが管理者権限を持っていることが必要です。そうすればネットワークデバイスを作成することが可能です (言い換えれば、接続は root で確立されなければいけません)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Both methods for creating a virtual private network over SSH are quite straightforward. However, the VPN they provide is not the most efficient available; in particular, it does not handle high levels of traffic very well."
-msgstr ""
+msgstr "SSH を使って仮想プライベートネットワークを作成する方法は、どうちらもかなり直接的なものです。しかしながら、SSH の提供する VPN は最も効率のよい方法ではありません。特に、高レベルのトラフィックを上手に取り扱うことができません。"
 
 #. Tag: para
 #, no-c-format
 msgid "The explanation is that when a TCP/IP stack is encapsulated within a TCP/IP connection (for SSH), the TCP protocol is used twice, once for the SSH connection and once within the tunnel. This leads to problems, especially due to the way TCP adapts to network conditions by altering timeout delays. The following site describes the problem in more detail: <ulink type=\"block\" url=\"http://sites.inka.de/sites/bigred/devel/tcp-tcp.html\" /> VPNs over SSH should therefore be restricted to one-off tunnels with no performance constraints."
-msgstr ""
+msgstr "つまり、TCP/IP スタックが TCP/IP 接続 (SSH) の中にカプセル化される場合、TCP プロトコルは 2 回使われるという点です。1 回は SSH 接続で、もう 1 回がトンネル内です。これは特に、TCP はタイムアウト遅延を変更することでネットワークの状態に接続状態を適合させる機能があることで、問題になります。以下のサイトがこの問題についてより詳しく説明しています: <ulink type=\"block\" url=\"http://sites.inka.de/sites/bigred/devel/tcp-tcp.html\" /> このため、VPN over SSH はパフォーマンスに制約の無い単発のトンネルに留めるべきです。"
 
 #. Tag: title
 #, no-c-format
 msgid "IPsec"
-msgstr ""
+msgstr "IPsec"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IPsec</primary>"
-msgstr ""
+msgstr "<primary>IPsec</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>openswan</command></primary>"
-msgstr ""
+msgstr "<primary><command>openswan</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>strongswan</command></primary>"
-msgstr ""
+msgstr "<primary><command>strongswan</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>racoon</command></primary>"
-msgstr ""
+msgstr "<primary><command>racoon</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "IPsec, despite being the standard in IP VPNs, is rather more involved in its implementation. The IPsec engine itself is integrated in the Linux kernel; the required user-space parts, the control and configuration tools, are provided by the <emphasis role=\"pkg\">ipsec-tools</emphasis> package. In concrete terms, each host's <filename>/etc/ipsec-tools.conf</filename> contains the parameters for <emphasis>IPsec tunnels</emphasis> (or <emphasis>Security Associations</emphasis>, in the IPsec terminology) that the host is concerned with; the <command>/etc/init.d/setkey</command> script provides a way to start and stop a tunnel (each tunnel is a secure link to another host connected to the virtual private network). This file can be built by hand from the documentation provided by the <citerefentry><refentrytitle>setkey</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page. However, explicitly writing the parameters for all hosts in a non-trivial set of machines quickly becomes an arduous task, since the number of tunnels grows fast. Installing an IKE daemon (for <emphasis>IPsec Key Exchange</emphasis>) such as <emphasis role=\"pkg\">racoon</emphasis>, <emphasis role=\"pkg\">strongswan</emphasis> or <emphasis role=\"pkg\">openswan</emphasis> makes the process much simpler by bringing administration together at a central point, and more secure by rotating the keys periodically."
-msgstr ""
+msgstr "IPsec は標準的な IP VPN の中にありますが、更に詳しく実装を説明します。IPsec エンジンそれ自身は Linux カーネルに統合されています; 要求されるユーザ空間部分、制御と設定ツール、は <emphasis role=\"pkg\">ipsec-tools</emphasis> パッケージによって提供されます。具体的には、それぞれのホストの <filename>/etc/ipsec-tools.conf</filename> には、ホストが接続する <emphasis>IPsec トンネル</emphasis> (IPsec 用語で <emphasis>Security Associations</emphasis>) のパラメータが含まれます; <command>/etc/init.d/setkey</command> スクリプトを使うことで、トンネルを開始したり停止することが可能です (それぞれのトンネルは、仮想ネットワークに接続された他のホストと、安全なリンクを確立しています)。このファイルは <citerefentry><refentrytitle>setkey</refentrytitle> <manvolnum>8</manvolnum></citerefentry> マニュアルページの提供する文書を使って手作業で作ることも可能です。しかしながら、多数のマシン群に全てのホスト用のパラメータを明示的に書くことはすぐに難しい作業になります。なぜなら、トンネルの数はすぐに増えるからです。この作業をより簡単にする、例えば <emphasis role=\"pkg\">racoon</emphasis>、<emphasis role=\"pkg\">strongswan</emphasis>、<emphasis role=\"pkg\">openswan</emphasis> 等の (<emphasis>IPsec Key Exchange</emphasis> 用の) IKE デーモンがあります。これを使えば、一元管理による作業の簡素化と、鍵を定期的に循環することによる作業の安全化が可能になります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IKE</primary>"
-msgstr ""
+msgstr "<primary>IKE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IPsec</primary><secondary>IPsec Key Exchange</secondary>"
-msgstr ""
+msgstr "<primary>IPsec</primary><secondary>IPsec Key Exchange</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>setkey</command></primary>"
-msgstr ""
+msgstr "<primary><command>setkey</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In spite of its status as the reference, the complexity of setting up IPsec restricts its usage in practice. OpenVPN-based solutions will generally be preferred when the required tunnels are neither too many nor too dynamic."
-msgstr ""
+msgstr "IPsec は標準規格という地位があるにも関わらず、その設定が複雑なことが原因で、具体的に使われることが少ないです。必要なトンネルが多くなく動的でもない場合は、OpenVPN に基づく解決策が通常好まれます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> IPsec and NAT"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> IPsec と NAT"
 
 #. Tag: para
 #, no-c-format
 msgid "NATing firewalls and IPsec do not work well together: since IPsec signs the packets, any change on these packets that the firewall might perform will void the signature, and the packets will be rejected at their destination. Various IPsec implementations now include the <emphasis>NAT-T</emphasis> technique (for <emphasis>NAT Traversal</emphasis>), which basically encapsulates the IPsec packet within a standard UDP packet."
-msgstr ""
+msgstr "ファイヤーウォールの NAT は IPsec と上手く共存しません: なぜなら、IPsec はパケットを署名し、ファイヤーウォールがパケットを書き換ることで署名が無効化されるからです。このようなパケットは受け取り側で拒否されます。今や様々な IPsec 実装が <emphasis>NAT-T</emphasis> 技術 (<emphasis>NAT Traversal</emphasis>) を含んでいます。これは基本的に IPsec パケットを標準的な UDP パケットにカプセル化するものです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NAT-T</primary>"
-msgstr ""
+msgstr "<primary>NAT-T</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NAT Traversal</primary>"
-msgstr ""
+msgstr "<primary>NAT Traversal</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> IPsec and firewalls"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> IPsec とファイヤーウォール"
 
 #. Tag: para
 #, no-c-format
 msgid "The standard mode of operation of IPsec involves data exchanges on UDP port 500 for key exchanges (also on UDP port 4500 in case NAT-T is in use). Moreover, IPsec packets use two dedicated IP protocols that the firewall must let through; reception of these packets is based on their protocol numbers, 50 (ESP) and 51 (AH)."
-msgstr ""
+msgstr "IPsec の動作の標準的モードは鍵交換に UDP ポート 500 番 (NAT-T の使用中は UDP ポート 4500 番) を使います。さらに、IPsec パケットは 2 種類の専用 IP プロトコルを使います。ファイヤーウォールはこのプロトコルを通過させなければいけません; これらのパケットの受け入れるポート番号はプロトコル、ESP は 50 番、AH は 51 番、に基づきます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ESP, protocol</primary>"
-msgstr ""
+msgstr "<primary>ESP、プロトコル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>AH, protocol</primary>"
-msgstr ""
+msgstr "<primary>AH、プロトコル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>protocol</primary><secondary>AH</secondary>"
-msgstr ""
+msgstr "<primary>プロトコル</primary><secondary>AH</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>protocol</primary><secondary>ESP</secondary>"
-msgstr ""
+msgstr "<primary>プロトコル</primary><secondary>ESP</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "PPTP"
-msgstr ""
+msgstr "PPTP"
 
 #. Tag: para
 #, no-c-format
