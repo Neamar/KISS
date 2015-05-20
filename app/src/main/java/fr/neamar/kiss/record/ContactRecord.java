@@ -164,7 +164,7 @@ public class ContactRecord extends Record {
 		Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(i);
-		
+
 		Handler handler = new Handler();
 		handler.postDelayed(new Runnable() {
 			@Override
