@@ -90,7 +90,7 @@
                 android:textSize="16sp"/>
 
             <ImageView
-                android:id="@+id/launcher"
+                android:id="@+id/launcherButton"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
@@ -115,10 +115,12 @@
 
     <include
         layout="@layout/main_kissbar"
+        android:id="@+id/main_kissbar"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_below="@android:id/list"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>

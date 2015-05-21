@@ -162,6 +162,16 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        // Clear text content when touching the cross button
+        ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+        launcherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View kissMenu = findViewById(R.id.main_kissbar);
+                kissMenu.setVisibility(View.VISIBLE);
+            }
+        });
+
         // Hide the "X" before the text field, instead displaying the menu button
         displayClearOnInput();
 
@@ -175,9 +185,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public void applyDesignTweaks() {
         final View menuButton = findViewById(R.id.menuButton);
         final View clearButton = findViewById(R.id.clearButton);
-        final View launcherButton = findViewById(R.id.clearButton);
+        final View launcherButton = findViewById(R.id.launcherButton);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TypedValue outValue = new TypedValue();
+            getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
+
+            menuButton.setBackgroundResource(outValue.resourceId);
+            clearButton.setBackgroundResource(outValue.resourceId);
+            launcherButton.setBackgroundResource(outValue.resourceId);
+        }
+        else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
 
@@ -185,19 +203,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             menuButton.setBackgroundResource(outValue.resourceId);
             // Barely visible on the backbutton, since it disappears instant. Can be seen on long click though
             clearButton.setBackgroundResource(outValue.resourceId);
-            // Also adding it to the launcher button, although it will be enhanced for future android versions (Lollipop)
-            launcherButton.setBackgroundResource(outValue.resourceId);
-        }
-
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            TypedValue outValue = new TypedValue();
-            getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
-
-            // Clicking on menu button should display a focused rectangle
-            menuButton.setBackgroundResource(outValue.resourceId);
-            // Barely visible on the backbutton, since it disappears instant. Can be seen on long click though
-            clearButton.setBackgroundResource(outValue.resourceId);
-            // Also adding it to the launcher button, although it will be enhanced for future android versions (Lollipop)
             launcherButton.setBackgroundResource(outValue.resourceId);
         }
     }
@@ -290,7 +295,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     @Override
     public void onBackPressed() {
-        searchEditText.setText("");
+        // Is the kiss menu visible?
+        View kissMenu = findViewById(R.id.main_kissbar);
+        if(kissMenu.getVisibility() == View.VISIBLE) {
+            kissMenu.setVisibility(View.GONE);
+        }
+        else {
+            // If no kissmenu, empty the search bar
+            searchEditText.setText("");
+        }
     }
 
     @Override
