@@ -50,11 +50,11 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:paddingTop="4dp"
+                android:focusable="true"
                 android:paddingBottom="4dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:focusable="true"
+                android:paddingTop="4dp"
                 android:src="@drawable/dots"
                 />
 
@@ -65,11 +65,11 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:paddingTop="4dp"
+                android:focusable="true"
                 android:paddingBottom="4dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:focusable="true"
+                android:paddingTop="4dp"
                 android:src="@drawable/clear_dark"
                 android:visibility="visible"/>
 
@@ -112,5 +112,13 @@
 
         <include layout="@layout/main_empty"/>
     </ScrollView>
+
+    <include
+        layout="@layout/main_kissbar"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@android:id/list"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>
