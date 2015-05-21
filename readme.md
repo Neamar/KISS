@@ -1,34 +1,33 @@
-Summon
+KISS
 ======
-Summon is a *blazingly* fast launcher for android requiring nearly no memory to run.
+KISS is a *blazingly* fast launcher for android requiring nearly no memory to run.
 
-Download for free: [https://play.google.com/store/apps/details?id=fr.neamar.summon.lite](Play Store).
+Download for free: [Play Store](https://play.google.com/store/apps/details?id=fr.neamar.kiss).
+Join the [G+ community](https://plus.google.com/communities/116489528310489783081) to get download instruction for the beta version.
+
 What is it?
 ------------
-Summon is a fast launcher for your Android.
+KISS is a fast launcher for your Android.
 
 Search through you app, contacts and settings lightning fast.
 No more time spent trying to find the app you need to launch : enter a few characters from the name and press enter.
 Need to phone someone ? Don't meddle with the call log, juste give three letters of his name and push the "phone" button.
 
-Summon becomes smarter and smarter as you uses it, pushing forward results you're more likely to select.
-
-You can use this app as a widget on your default launcher, or replace your launcher with Summon for an even faster experience.
+KISS becomes smarter and smarter as you uses it, pushing forward results you're more likely to select.
 
 Get ready to be amazed.
 
 Previews
 ---------------------
 
-
-![Preview](https://lh5.ggpht.com/ncNrAB5Z3-sY8nk6KyEaX71aS5hJtbqrgKu5_ovaBEAizmJa-x78dzsE43gmQD8tmA)
-![Preview](https://lh6.ggpht.com/ai8ByZXcGLV62lAiskbcUaW27fOD4dprqtkvn6BwVs-50bR6BvzWgXiqdIK65a6Xruhv)
-![Preview](https://lh6.ggpht.com/XG1p9WAmjnvxsYLQIXPvJMbzPVVydBlOCi20nzMCwGEIJ1Ft_otrts5uCXGwy-582w)
+![Preview](https://lh3.googleusercontent.com/1B-Vc9Tqh6bfGCVyKXkYSZycwY9Z4g6NxX3ULAKdCPgi9pmGHoyIelC4nsVbQK8d5l0i)
+![Preview](https://lh3.googleusercontent.com/ADlhgu6JBVOJRn_XS-BbFbw6HtGopVABpBSdBMfANXpGpicFY3jxVLcuBhnJ9QkSshTp)
+![Preview](https://lh3.googleusercontent.com/17JTZKi0wh8ReNTMmhEzoR1Iu_mirK867_H2GbMwDhFf8QwpqhxzccpBLAFo5DbFdg)
 
 
 How does it works?
 -------------------
-Different data types can be aggregated via Summon simple interface : apps, contacts, settings...
+Different data types can be aggregated via KISS simple interface : apps, contacts, settings...
 
 Each data types uses three classes :
 
