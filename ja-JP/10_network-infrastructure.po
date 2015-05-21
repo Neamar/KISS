@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-20 23:15+0900\n"
+"PO-Revision-Date: 2015-05-21 22:06+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -837,7 +837,7 @@ msgstr "<emphasis>SECURITY</emphasis> IPsec とファイヤーウォール"
 #. Tag: para
 #, no-c-format
 msgid "The standard mode of operation of IPsec involves data exchanges on UDP port 500 for key exchanges (also on UDP port 4500 in case NAT-T is in use). Moreover, IPsec packets use two dedicated IP protocols that the firewall must let through; reception of these packets is based on their protocol numbers, 50 (ESP) and 51 (AH)."
-msgstr "IPsec の動作の標準的モードは鍵交換に UDP ポート 500 番 (NAT-T の使用中は UDP ポート 4500 番) を使います。さらに、IPsec パケットは 2 種類の専用 IP プロトコルを使います。ファイヤーウォールはこのプロトコルを通過させなければいけません; これらのパケットの受け入れるポート番号はプロトコル、ESP は 50 番、AH は 51 番、に基づきます。"
+msgstr "IPsec の動作の標準的モードは鍵交換に UDP ポート 500 番 (NAT-T の使用中は UDP ポート 4500 番) を使います。さらに、IPsec パケットは 2 種類の専用 IP プロトコルを使います。ファイヤーウォールはこのプロトコルを通過させなければいけません; これらのパケットの受け入れ可否はプロトコル番号、ESP は 50 番、AH は 51 番、に基づきます。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -867,52 +867,52 @@ msgstr "PPTP"
 #. Tag: para
 #, no-c-format
 msgid "PPTP (for <emphasis>Point-to-Point Tunneling Protocol</emphasis>) uses two communication channels, one for control data and one for payload data; the latter uses the GRE protocol (<emphasis>Generic Routing Encapsulation</emphasis>). A standard PPP link is then set up over the data exchange channel."
-msgstr ""
+msgstr "PPTP (<emphasis>Point-to-Point Tunneling Protocol</emphasis>) は 2 種類の通信チャンネルを使います。1 つは制御データで、もう 1 つがペイロードデータ用です。後者は GRE プロトコル (<emphasis>Generic Routing Encapsulation</emphasis>) を使います。標準的な PPP リンクはデータ交換チャンネル上に確立されます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PPTP</primary>"
-msgstr ""
+msgstr "<primary>PPTP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Point-to-Point Tunneling Protocol</primary>"
-msgstr ""
+msgstr "<primary>Point-to-Point Tunneling Protocol</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>GRE, protocol</primary>"
-msgstr ""
+msgstr "<primary>GRE、プロトコル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>protocol</primary><secondary>GRE</secondary>"
-msgstr ""
+msgstr "<primary>プロトコル</primary><secondary>GRE</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Client"
-msgstr ""
+msgstr "クライアントの設定"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">pptp-linux</emphasis> package contains an easily-configured PPTP client for Linux. The following instructions take their inspiration from the official documentation: <ulink type=\"block\" url=\"http://pptpclient.sourceforge.net/howto-debian.phtml\" />"
-msgstr ""
+msgstr "<emphasis role=\"pkg\">pptp-linux</emphasis> パッケージには、Linux 用に簡単に設定できる PPTP クライアントが含まれています。以下の説明は公式文書からヒントを得て作ったものです: <ulink type=\"block\" url=\"http://pptpclient.sourceforge.net/howto-debian.phtml\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">pptp-linux</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">pptp-linux</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot administrators created several files: <filename>/etc/ppp/options.pptp</filename>, <filename>/etc/ppp/peers/falcot</filename>, <filename>/etc/ppp/ip-up.d/falcot</filename>, and <filename>/etc/ppp/ip-down.d/falcot</filename>."
-msgstr ""
+msgstr "Falcot 管理者は幾つかのファイルを作成しました: <filename>/etc/ppp/options.pptp</filename>、<filename>/etc/ppp/peers/falcot</filename>、<filename>/etc/ppp/ip-up.d/falcot</filename>、<filename>/etc/ppp/ip-down.d/falcot</filename>。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/options.pptp</filename> file"
-msgstr ""
+msgstr "<filename>/etc/ppp/options.pptp</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -924,11 +924,17 @@ msgid ""
 "nobsdcomp\n"
 "nodeflate\n"
 msgstr ""
+"\n"
+"# PPP options used for a PPTP connection\n"
+"lock\n"
+"noauth\n"
+"nobsdcomp\n"
+"nodeflate\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/peers/falcot</filename> file"
-msgstr ""
+msgstr "<filename>/etc/ppp/peers/falcot</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -944,11 +950,21 @@ msgid ""
 "file /etc/ppp/options.pptp\n"
 "ipparam falcot\n"
 msgstr ""
+"\n"
+"# vpn.falcot.com is the PPTP server\n"
+"pty \"pptp vpn.falcot.com --nolaunchpppd\"\n"
+"# the connection will identify as the \"vpn\" user\n"
+"user vpn\n"
+"remotename pptp\n"
+"# encryption is needed\n"
+"require-mppe-128\n"
+"file /etc/ppp/options.pptp\n"
+"ipparam falcot\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/ip-up.d/falcot</filename> file"
-msgstr ""
+msgstr "<filename>/etc/ppp/ip-up.d/falcot</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -960,11 +976,17 @@ msgid ""
 "  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
 "fi\n"
 msgstr ""
+"\n"
+"# Create the route to the Falcot network\n"
+"if [ \"$6\" = \"falcot\" ]; then\n"
+"  # 192.168.0.0/24 is the (remote) Falcot network\n"
+"  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
+"fi\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/ip-down.d/falcot</filename> file"
-msgstr ""
+msgstr "<filename>/etc/ppp/ip-down.d/falcot</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -976,51 +998,57 @@ msgid ""
 "  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
 "fi\n"
 msgstr ""
+"\n"
+"# Delete the route to the Falcot network\n"
+"if [ \"$6\" = \"falcot\" ]; then\n"
+"  # 192.168.0.0/24 is the (remote) Falcot network\n"
+"  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
+"fi\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> MPPE"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> MPPE"
 
 #. Tag: para
 #, no-c-format
 msgid "Securing PPTP involves using the MPPE feature (<emphasis>Microsoft Point-to-Point Encryption</emphasis>), which is available in official Debian kernels as a module."
-msgstr ""
+msgstr "PPTP の安全性を高めるには、MPPE 機能 (<emphasis>Microsoft Point-to-Point Encryption</emphasis>) を使います。MPPE はモジュールとして公式の Debian カーネルで利用可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MPPE</primary>"
-msgstr ""
+msgstr "<primary>MPPE</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Microsoft</primary><secondary>Point-to-Point Encryption</secondary>"
-msgstr ""
+msgstr "<primary>Microsoft</primary><secondary>Point-to-Point Encryption</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Server"
-msgstr ""
+msgstr "サーバの設定"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> PPTP and firewalls"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> PPTP とファイヤーウォール"
 
 #. Tag: para
 #, no-c-format
 msgid "Intermediate firewalls need to be configured to let through IP packets using protocol 47 (GRE). Moreover, the PPTP server's port 1723 needs to be open so that the communication channel can happen."
-msgstr ""
+msgstr "中間ファイヤーウォールはプロトコル 47 番 (GRE) を使っているIP パケットを通過させるように設定されなければいけません。さらに、PPTP サーバのポート 1723 番を開け、通信チャンネルを開けることが必要です。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>pptpd</command> is the PPTP server for Linux. Its main configuration file, <filename>/etc/pptpd.conf</filename>, requires very few changes: <emphasis>localip</emphasis> (local IP address) and <emphasis>remoteip</emphasis> (remote IP address). In the example below, the PPTP server always uses the <literal>192.168.0.199</literal> address, and PPTP clients receive IP addresses from <literal>192.168.0.200</literal> to <literal>192.168.0.250</literal>."
-msgstr ""
+msgstr "<command>pptpd</command> は Linux 用の PPTP サーバです。主設定ファイルは <filename>/etc/pptpd.conf</filename> で、幾つかの変更が必要です: <emphasis>localip</emphasis> (ローカル IP アドレス) と <emphasis>remoteip</emphasis> (リモート IP アドレス) です。以下の例では、PPTP サーバは常に <literal>192.168.0.199</literal> アドレスを使い、PPTP クライアントは <literal>192.168.0.200</literal> から <literal>192.168.0.250</literal> までの IP アドレスを受け取ります。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/pptpd.conf</filename> file"
-msgstr ""
+msgstr "<filename>/etc/pptpd.conf</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1077,16 +1105,67 @@ msgid ""
 "localip 192.168.0.199\n"
 "remoteip 192.168.0.200-250\n"
 msgstr ""
+"\n"
+"# TAG: speed\n"
+"#\n"
+"#       Specifies the speed for the PPP daemon to talk at.\n"
+"#\n"
+"speed 115200\n"
+"\n"
+"# TAG: option\n"
+"#\n"
+"#       Specifies the location of the PPP options file.\n"
+"#       By default PPP looks in '/etc/ppp/options'\n"
+"#\n"
+"option /etc/ppp/pptpd-options\n"
+"\n"
+"# TAG: debug\n"
+"#\n"
+"#       Turns on (more) debugging to syslog\n"
+"#\n"
+"# debug\n"
+"\n"
+"# TAG: localip\n"
+"# TAG: remoteip\n"
+"#\n"
+"#       Specifies the local and remote IP address ranges.\n"
+"#\n"
+"#       You can specify single IP addresses separated by commas or you can\n"
+"#       specify ranges, or both. For example:\n"
+"#\n"
+"#               192.168.0.234,192.168.0.245-249,192.168.0.254\n"
+"#\n"
+"#       IMPORTANT RESTRICTIONS:\n"
+"#\n"
+"#       1. No spaces are permitted between commas or within addresses.\n"
+"#\n"
+"#       2. If you give more IP addresses than MAX_CONNECTIONS, it will\n"
+"#          start at the beginning of the list and go until it gets\n"
+"#          MAX_CONNECTIONS IPs. Others will be ignored.\n"
+"#\n"
+"#       3. No shortcuts in ranges! ie. 234-8 does not mean 234 to 238,\n"
+"#          you must type 234-238 if you mean this.\n"
+"#\n"
+"#       4. If you give a single localIP, that's ok - all local IPs will\n"
+"#          be set to the given one. You MUST still give at least one remote\n"
+"#          IP for each simultaneous client.\n"
+"#\n"
+"#localip 192.168.0.234-238,192.168.0.245\n"
+"#remoteip 192.168.1.234-238,192.168.1.245\n"
+"#localip 10.0.1.1\n"
+"#remoteip 10.0.1.2-100\n"
+"localip 192.168.0.199\n"
+"remoteip 192.168.0.200-250\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The PPP configuration used by the PPTP server also requires a few changes in <filename>/etc/ppp/pptpd-options</filename>. The important parameters are the server name (<literal>pptp</literal>), the domain name (<literal>falcot.com</literal>), and the IP addresses for DNS and WINS servers."
-msgstr ""
+msgstr "<filename>/etc/ppp/pptpd-options</filename> を編集して、PPTP サーバの使う PPP 設定を変更します。重要なパラメータはサーバ名 (<literal>pptp</literal>)、ドメイン名 (<literal>falcot.com</literal>)、DNS と WINS サーバの IP アドレスです。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/pptpd-options</filename> file"
-msgstr ""
+msgstr "<filename>/etc/ppp/pptpd-options</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1122,16 +1201,46 @@ msgid ""
 "proxyarp\n"
 "lock\n"
 msgstr ""
+"\n"
+"## turn pppd syslog debugging on\n"
+"#debug\n"
+"\n"
+"## change 'servername' to whatever you specify as your server name in chap-secrets\n"
+"name pptp\n"
+"## change the domainname to your local domain\n"
+"domain falcot.com\n"
+"\n"
+"## these are reasonable defaults for WinXXXX clients\n"
+"## for the security related settings\n"
+"# The Debian pppd package now supports both MSCHAP and MPPE, so enable them\n"
+"# here. Please note that the kernel support for MPPE must also be present!\n"
+"auth\n"
+"require-chap\n"
+"require-mschap\n"
+"require-mschap-v2\n"
+"require-mppe-128\n"
+"\n"
+"## Fill in your addresses\n"
+"ms-dns 192.168.0.1\n"
+"ms-wins 192.168.0.1\n"
+"\n"
+"## Fill in your netmask\n"
+"netmask 255.255.255.0\n"
+"\n"
+"## some defaults\n"
+"nodefaultroute\n"
+"proxyarp\n"
+"lock\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The last step involves registering the <literal>vpn</literal> user (and the associated password) in the <filename>/etc/ppp/chap-secrets</filename> file. Contrary to other instances where an asterisk (<literal>*</literal>) would work, the server name must be filled explicitly here. Furthermore, Windows PPTP clients identify themselves under the <literal><replaceable>DOMAIN</replaceable>\\\\<replaceable>USER</replaceable></literal> form, instead of only providing a user name. This explains why the file also mentions the <literal>FALCOT\\\\vpn</literal> user. It is also possible to specify individual IP addresses for users; an asterisk in this field specifies that dynamic addressing should be used."
-msgstr ""
+msgstr "最後に、<literal>vpn</literal> ユーザ (と対応するパスワード) を <filename>/etc/ppp/chap-secrets</filename> ファイルに登録します。サーバ名だけは、アスタリスク (<literal>*</literal>) を使える他のインスタンスと異なり、明示的に指定しなければいけません。さらに、Windows PPTP クライアントはユーザ名ではなく <literal><replaceable>DOMAIN</replaceable>\\\\<replaceable>USER</replaceable></literal> という形で身元を語ります。このため、以下のファイルに <literal>FALCOT\\\\vpn</literal> ユーザが追加されています。ユーザに割り当てる IP アドレスを明記することも可能です; IP アドレスフィールドのアスタリスクは動的にアドレスを割り当てることを意味します。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ppp/chap-secrets</filename> file"
-msgstr ""
+msgstr "<filename>/etc/ppp/chap-secrets</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1142,51 +1251,56 @@ msgid ""
 "vpn             pptp    f@Lc3au     *\n"
 "FALCOT\\\\vpn     pptp    f@Lc3au     *\n"
 msgstr ""
+"\n"
+"# Secrets for authentication using CHAP\n"
+"# client        server  secret      IP addresses\n"
+"vpn             pptp    f@Lc3au     *\n"
+"FALCOT\\\\vpn     pptp    f@Lc3au     *\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> PPTP vulnerabilities"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> PPTP 脆弱性"
 
 #. Tag: para
 #, no-c-format
 msgid "Microsoft's first PPTP implementation drew severe criticism because it had many security vulnerabilities; most have since then been fixed in more recent versions. The configuration documented in this section uses the latest version of the protocol. Be aware though that removing some options (such as <literal>require-mppe-128</literal> and <literal>require-mschap-v2</literal>) would make the service vulnerable again."
-msgstr ""
+msgstr "Microsoft の最初の PPTP 実装は、多くのセキュリティ脆弱性を残していたため、様々な非難を浴びました; 最近のバージョンでは、そのほとんどが修正されています。この節で説明されている設定は PPTP プロトコルの最新のバージョンを使っています。サービスを脆弱にする幾つかのオプション (<literal>require-mppe-128</literal> や <literal>require-mschap-v2</literal> など) を無効化しておくことに注意してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Quality of Service"
-msgstr ""
+msgstr "Quality of Service"
 
 #. Tag: title
 #, no-c-format
 msgid "Principle and Mechanism"
-msgstr ""
+msgstr "原理とメカニズム"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>Quality of Service</emphasis> (or <emphasis>QoS</emphasis> for short) refers to a set of techniques that guarantee or improve the quality of the service provided to applications. The most popular such technique involves classifying the network traffic into categories, and differentiating the handling of traffic according to which category it belongs to. The main application of this differentiated services concept is <emphasis>traffic shaping</emphasis>, which limits the data transmission rates for connections related to some services and/or hosts so as not to saturate the available bandwidth and starve important other services. Traffic shaping is a particularly good fit for TCP traffic, since this protocol automatically adapts to available bandwidth."
-msgstr ""
+msgstr "<emphasis>Quality of Service (サービスの品質)</emphasis> (略して <emphasis>QoS</emphasis>) はアプリケーションに提供されるサービスの品質を向上させる技術群を指します。最も人気の技術は、ネットワークトラフィックをカテゴリ分けして、トラフィックの所属するカテゴリ別にその取り扱いに違いを付けることです。サービスを差別化するという概念の主な用途が<emphasis>トラフィックシェーピング</emphasis>です。これは一部のサービスおよびホストに関連する接続のデータの転送率を制限します。これを使うことで、利用可能な帯域幅が飽和することを避け、重要な他のサービスに支障が出ないようにします。トラフィックシェーピングは TCP トラフィックに対して特に有効です。なぜなら、TCP は自動的に利用可能な帯域幅に適応するからです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>QoS</primary>"
-msgstr ""
+msgstr "<primary>QoS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quality of service</primary>"
-msgstr ""
+msgstr "<primary>サービスの品質</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>quality</primary><secondary>of service</secondary>"
-msgstr ""
+msgstr "<primary>品質</primary><secondary>サービスの</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>service</primary><secondary>quality</secondary>"
-msgstr ""
+msgstr "<primary>サービス</primary><secondary>品質</secondary>"
 
 #. Tag: para
 #, no-c-format
