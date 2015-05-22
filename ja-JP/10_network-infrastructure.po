@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-21 22:06+0900\n"
+"PO-Revision-Date: 2015-05-22 19:29+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1305,97 +1305,97 @@ msgstr "<primary>サービス</primary><secondary>品質</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "It is also possible to alter the priorities on traffic, which allows prioritizing packets related to interactive services (such as <command>ssh</command> and <command>telnet</command>) or to services that only deal with small blocks of data."
-msgstr ""
+msgstr "これを使うことで、トラフィックの優先度を変更し、対話的サービス(<command>ssh</command> や <command>telnet</command> など) や小さなブロックのデータだけを取り扱うサービスに関連するパケットに高い優先順位を付けることが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Debian kernels include the features required for QoS along with their associated modules. These modules are many, and each of them provides a different service, most notably by way of special schedulers for the queues of IP packets; the wide range of available scheduler behaviors spans the whole range of possible requirements."
-msgstr ""
+msgstr "Debian カーネルには、 QoS 関連モジュールと一緒に QoS に必要な機能が含まれています。多くのモジュールが存在し、各モジュールが異なるサービスを提供します。中でも注目すべきは IP パケットの待ち行列用の特別なスケジューラです。このスケジューラは様々な用途に利用可能なため、考え得る様々な要求に対応できます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> LARTC — <emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis>"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> LARTC - <emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis> HOWTO is the reference document covering everything there is to know about network quality of service. <ulink type=\"block\" url=\"http://www.lartc.org/howto/\" />"
-msgstr ""
+msgstr "<emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis> HOWTO はネットワークのサービス品質に関して知っておくべき全ての内容をカバーする基礎的な文書です。<ulink type=\"block\" url=\"http://www.lartc.org/howto/\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>routing</primary><secondary>advanced</secondary>"
-msgstr ""
+msgstr "<primary>ルーティング</primary><secondary>上級</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>traffic</primary><secondary>control</secondary>"
-msgstr ""
+msgstr "<primary>トラフィック</primary><secondary>制御</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>control of traffic</primary>"
-msgstr ""
+msgstr "<primary>トラフィックの制御</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring and Implementing"
-msgstr ""
+msgstr "設定と実践"
 
 #. Tag: para
 #, no-c-format
 msgid "QoS parameters are set through the <command>tc</command> command (provided by the <emphasis role=\"pkg\">iproute</emphasis> package). Since its interface is quite complex, using higher-level tools is recommended."
-msgstr ""
+msgstr "QoS パラメータは <command>tc</command> コマンド (<emphasis role=\"pkg\">iproute</emphasis> パッケージの提供する) を使って設定します。このコマンドはインターフェイスがかなり複雑なので、高レベルツールを使うことをおすすめします。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>iproute</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>iproute</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tc</command></primary>"
-msgstr ""
+msgstr "<primary><command>tc</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Reducing Latencies: <command>wondershaper</command>"
-msgstr ""
+msgstr "待ち時間の低減: <command>wondershaper</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "The main purpose of <command>wondershaper</command> (in the similarly-named package) is to minimize latencies independent of network load. This is achieved by limiting total traffic to a value that falls just short of the link saturation value."
-msgstr ""
+msgstr "<command>wondershaper</command> (同名のパッケージに含まれる) の主目的はネットワーク負荷とは無関係に待ち時間を最小化することです。このコマンドを使うことで、全トラフィックがある値に制限されます。この値には帯域を飽和させるよりほんの少しだけ小さな値を設定します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>wondershaper</command></primary>"
-msgstr ""
+msgstr "<primary><command>wondershaper</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>limitation of traffic</primary>"
-msgstr ""
+msgstr "<primary>トラフィックの制限</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>traffic</primary><secondary>limitation</secondary>"
-msgstr ""
+msgstr "<primary>トラフィック</primary><secondary>制限</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Once a network interface is configured, setting up this traffic limitation is achieved by running <command>wondershaper <replaceable>interface</replaceable> <replaceable>download_rate</replaceable> <replaceable>upload_rate</replaceable></command>. The interface can be <literal>eth0</literal> or <literal>ppp0</literal> for example, and both rates are expressed in kilobits per second. The <command>wondershaper remove <replaceable>interface</replaceable></command> command disables traffic control on the specified interface."
-msgstr ""
+msgstr "ネットワークインターフェイスを設定した後、<command>wondershaper <replaceable>interface</replaceable> <replaceable>download_rate</replaceable> <replaceable>upload_rate</replaceable></command> を実行することでトラフィックが制限されます。インターフェイスは例えば <literal>eth0</literal> または <literal>ppp0</literal> などで、各制限値はキロビット毎秒単位です。特定のインターフェイスで実施されているトラフィック制限を無効化するには <command>wondershaper remove <replaceable>interface</replaceable></command> コマンドを使います。"
 
 #. Tag: para
 #, no-c-format
 msgid "For an Ethernet connection, this script is best called right after the interface is configured. This is done by adding <literal>up</literal> and <literal>down</literal> directives to the <filename>/etc/network/interfaces</filename> file allowing declared commands to be run, respectively, after the interface is configured and before it is deconfigured. For example:"
-msgstr ""
+msgstr "イーサネット接続の場合、このスクリプトをインターフェイスが設定された直後に呼び出すのが最良です。これを行うには、<filename>/etc/network/interfaces</filename> ファイルに <literal>up</literal> と <literal>down</literal> 指示文を追加して、それぞれインターフェイスが開始された後と停止される前に実行するコマンドを宣言します。例えば:"
 
 #. Tag: title
 #, no-c-format
 msgid "Changes in the <filename>/etc/network/interfaces</filename> file"
-msgstr ""
+msgstr "<filename>/etc/network/interfaces</filename> ファイルの修正"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1405,71 +1405,75 @@ msgid ""
 "    up /sbin/wondershaper eth0 500 100\n"
 "    down /sbin/wondershaper remove eth0\n"
 msgstr ""
+"\n"
+"iface eth0 inet dhcp\n"
+"    up /sbin/wondershaper eth0 500 100\n"
+"    down /sbin/wondershaper remove eth0\n"
 
 #. Tag: para
 #, no-c-format
 msgid "In the PPP case, creating a script that calls <command>wondershaper</command> in <filename>/etc/ppp/ip-up.d/</filename> will enable traffic control as soon as the connection is up."
-msgstr ""
+msgstr "PPP の場合、<filename>/etc/ppp/ip-up.d/</filename> 内に <command>wondershaper</command> を呼び出すスクリプトを作成することで、接続が開始された後可能な限り早い時期にトラフィック制御を行うように設定できます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Optimal configuration"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 最適な設定"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/usr/share/doc/wondershaper/README.Debian.gz</filename> file describes, in some detail, the configuration method recommended by the package maintainer. In particular, it advises measuring the download and upload speeds so as to best evaluate real limits."
-msgstr ""
+msgstr "<filename>/usr/share/doc/wondershaper/README.Debian.gz</filename> ファイルでは、パッケージメンテナの推奨する設定方法が少し詳しく説明されています。特に、ダウンロードとアップロード速度を計測することを勧めています。実際の速度を計測することで、制限を適切に見積もることが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Standard Configuration"
-msgstr ""
+msgstr "標準的な設定"
 
 #. Tag: para
 #, no-c-format
 msgid "Barring a specific QoS configuration, the Linux kernel uses the <literal>pfifo_fast</literal> queue scheduler, which provides a few interesting features by itself. The priority of each processed IP packet is based on the ToS field (<emphasis>Type of Service</emphasis>) of this packet; modifying this field is enough to take advantage of the scheduling features. There are five possible values:"
-msgstr ""
+msgstr "明示的に QoS 設定を行わない場合、Linux カーネルは <literal>pfifo_fast</literal> キュースケジューラを使います。これは興味深い機能を提供します。各 IP パケットの優先度はパケットの ToS フィールド (<emphasis>Type of Service</emphasis>) によって決まります; スケジューリング機能を活用するには、このフィールドを修正するだけで十分です。ToS フィールドの取り得る値は 5 種類です:"
 
 #. Tag: para
 #, no-c-format
 msgid "Normal-Service (0);"
-msgstr ""
+msgstr "通常のサービス (0);"
 
 #. Tag: para
 #, no-c-format
 msgid "Minimize-Cost (2);"
-msgstr ""
+msgstr "コストの最小化 (2);"
 
 #. Tag: para
 #, no-c-format
 msgid "Maximize-Reliability (4);"
-msgstr ""
+msgstr "信頼度の最大化 (4);"
 
 #. Tag: para
 #, no-c-format
 msgid "Maximize-Throughput (8);"
-msgstr ""
+msgstr "速度の最大化 (8);"
 
 #. Tag: para
 #, no-c-format
 msgid "Minimize-Delay (16)."
-msgstr ""
+msgstr "遅延の最小化 (16)."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ToS</primary>"
-msgstr ""
+msgstr "<primary>ToS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Type of Service</primary>"
-msgstr ""
+msgstr "<primary>Type of Service</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The ToS field can be set by applications that generate IP packets, or modified on the fly by <emphasis>netfilter</emphasis>. The following rules are sufficient to increase responsiveness for a server's SSH service:"
-msgstr ""
+msgstr "ToS フィールドは IP パケットを生成するアプリケーションによって設定されるか、<emphasis>netfilter</emphasis> によってその場で修正されます。以下のルールを使うだけで、サーバの SSH サービスに対する応答性を増加させることが可能です:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1478,141 +1482,144 @@ msgid ""
 "iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos Minimize-Delay\n"
 "iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay\n"
 msgstr ""
+"\n"
+"iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos Minimize-Delay\n"
+"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Dynamic Routing"
-msgstr ""
+msgstr "動的ルーティング"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>routing</primary><secondary>dynamic</secondary>"
-msgstr ""
+msgstr "<primary>ルーティング</primary><secondary>動的</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>quagga</command></primary>"
-msgstr ""
+msgstr "<primary><command>quagga</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>zebra</command></primary>"
-msgstr ""
+msgstr "<primary><command>zebra</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The reference tool for dynamic routing is currently <command>quagga</command>, from the similarly-named package; it used to be <command>zebra</command> until development of the latter stopped. However, <command>quagga</command> kept the names of the programs for compatibility reasons which explains the <command>zebra</command> commands below."
-msgstr ""
+msgstr "現在の動的ルーティングの標準ツールは <command>quagga</command> です。これは同名のパッケージによって提供されます。以前は <command>zebra</command> でしたが、開発が中止されたため  <command>quagga</command> に取って代わられました。しかしながら、<command>quagga</command> は互換性の理由から、プログラムの名前に <command>zebra</command> を使っています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Dynamic routing"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> 動的ルーティング"
 
 #. Tag: para
 #, no-c-format
 msgid "Dynamic routing allows routers to adjust, in real time, the paths used for transmitting IP packets. Each protocol involves its own method of defining routes (shortest path, use routes advertised by peers, and so on)."
-msgstr ""
+msgstr "動的ルーティングを使うことで、ルータは IP パケットの送信経路をリアルタイムで調整することが可能になります。プロトコルごとに経路を定義する方法 (最短経路、各装置が希望する経路、など) は違います。"
 
 #. Tag: para
 #, no-c-format
 msgid "In the Linux kernel, a route links a network device to a set of machines that can be reached through this device. The <command>route</command> command defines new routes and displays existing ones."
-msgstr ""
+msgstr "Linux カーネルでは、ネットワークデバイスとそのデバイスを通過して到達できるマシン群を関係付けることで経路を定義します。<command>route</command> コマンドは新しい経路を定義したり、既存の経路を表示するために使われます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>route</command></primary>"
-msgstr ""
+msgstr "<primary><command>route</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Quagga is a set of daemons cooperating to define the routing tables to be used by the Linux kernel; each routing protocol (most notably BGP, OSPF and RIP) provides its own daemon. The <command>zebra</command> daemon collects information from other daemons and handles static routing tables accordingly. The other daemons are known as <command>bgpd</command>, <command>ospfd</command>, <command>ospf6d</command>, <command>ripd</command>, <command>ripngd</command>, <command>isisd</command>, and <command>babeld</command>."
-msgstr ""
+msgstr "Quagga は復数のデーモンで、これらが協力して Linux カーネルの使うルーティングテーブルを定義します; 各ルーティングプロトコル (中でも注目すべきは BGP、OSPF、RIP) に対してデーモンがあります。<command>zebra</command> デーモンは他のデーモンから情報を収集し、その情報に基づき静的ルーティングテーブルを操作します。ここで他のデーモンとは、<command>bgpd</command>、<command>ospfd</command>、<command>ospf6d</command>、<command>ripd</command>、<command>ripngd</command>、<command>isisd</command>、<command>babeld</command> として知られています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>OSPF</primary>"
-msgstr ""
+msgstr "<primary>OSPF</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>BGP</primary>"
-msgstr ""
+msgstr "<primary>BGP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RIP</primary>"
-msgstr ""
+msgstr "<primary>RIP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IS-IS</primary>"
-msgstr ""
+msgstr "<primary>IS-IS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>BABEL wireless mesh routing</primary>"
-msgstr ""
+msgstr "<primary>BABEL wireless mesh routing</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>bgpd</command></primary>"
-msgstr ""
+msgstr "<primary><command>bgpd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ospfd</command></primary>"
-msgstr ""
+msgstr "<primary><command>ospfd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ospf6d</command></primary>"
-msgstr ""
+msgstr "<primary><command>ospf6d</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ripd</command></primary>"
-msgstr ""
+msgstr "<primary><command>ripd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ripngd</command></primary>"
-msgstr ""
+msgstr "<primary><command>ripngd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>isisd</command></primary>"
-msgstr ""
+msgstr "<primary><command>isisd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>babeld</command></primary>"
-msgstr ""
+msgstr "<primary><command>babeld</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Daemons are enabled by editing the <filename>/etc/quagga/daemons</filename> file and creating the appropriate configuration file in <filename>/etc/quagga/</filename>; this configuration file must be named after the daemon, with a <filename>.conf</filename> extension, and belong to the <literal>quagga</literal> user and the <literal>quaggavty</literal> group, in order for the <filename>/etc/init.d/quagga</filename> script to invoke the daemon."
-msgstr ""
+msgstr "これらのデーモンを有効化するには、<filename>/etc/quagga/daemons</filename> ファイルを編集し、適切な設定ファイルを <filename>/etc/quagga/</filename> の中に作成してください; この設定ファイルは、デーモンにちなんで命名され、<filename>.conf</filename> 拡張子を付けられ、<literal>quagga</literal> ユーザと <literal>quaggavty</literal> グループに所有されなければいけません。これは <filename>/etc/init.d/quagga</filename> スクリプトが対象のデーモンを呼び出せるようにするためです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The configuration of each of these daemons requires knowledge of the routing protocol in question. These protocols cannot be described in detail here, but the <emphasis role=\"pkg\">quagga-doc</emphasis> provides ample explanation in the form of an <command>info</command> file. The same contents may be more easily browsed as HTML on the Quagga website: <ulink type=\"block\" url=\"http://www.quagga.net/docs/docs-info.php\" /> In addition, the syntax is very close to a standard router's configuration interface, and network administrators will adapt quickly to <command>quagga</command>."
-msgstr ""
+msgstr "デーモンを設定するには、対象のルーティングプロトコルに関する知識が必要です。ここではそれぞれのプロトコルの詳細を説明できませんが、<emphasis role=\"pkg\">quagga-doc</emphasis> パッケージに含まれる <command>info</command> ファイルで、十分な説明が行われています。また、同じ内容を Quagga のウェブサイト上で HTML として閲覧するほうが簡単かもしれません: <ulink type=\"block\" url=\"http://www.quagga.net/docs/docs-info.php\" /> 加えて、設定構文は標準的なルータの設定インターフェイスととても似ているため、ネットワーク管理者は <command>quagga</command> に素早く順応するでしょう。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> OSPF, BGP or RIP?"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> OSPF、BGP、RIP?"
 
 #. Tag: para
 #, no-c-format
 msgid "OSPF is generally the best protocol to use for dynamic routing on private networks, but BGP is more common for Internet-wide routing. RIP is rather ancient, and hardly used anymore."
-msgstr ""
+msgstr "一般に、OSPF はプライベートネットワークの動的ルーティングに使われる最良のプロトコルです。BGP はInternet 全体のルーティング使われることが多いプロトコルです。RIP は比較的古典的で、ほとんど使われません。"
 
 #. Tag: para
 #, no-c-format
 msgid "IPv6, successor to IPv4, is a new version of the IP protocol designed to fix its flaws, most notably the scarcity of available IP addresses. This protocol handles the network layer; its purpose is to provide a way to address machines, to convey data to their intended destination, and to handle data fragmentation if needed (in other words, to split packets into chunks with a size that depends on the network links to be used on the path and to reassemble the chunks in their proper order on arrival)."
-msgstr ""
+msgstr "IPv6 は IPv4 の後継で、IP プロトコルの新しいバージョンで、IPv4 の欠点、中でも注目すべきは利用可能な IP アドレスの不足、を修正するために設計されました。IPv6 プロトコルはネットワーク層で動きます; IPv6 の目的は、マシンをアドレス指定する方法を提供すること、目標の宛先にデータを伝達すること、必要ならばデータの断片化をを取り扱うこと、です (言い換えれば、経路で使われるネットワークリンクに従ってパケットをあるサイズのチャンクに分割し、到着した時に適切な順番にチャンクを再構築することです)。"
 
 #. Tag: para
 #, no-c-format
