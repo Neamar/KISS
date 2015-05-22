@@ -164,7 +164,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
-        final int[] favsIds = new int[] { R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3 };
+        final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
 
         View.OnClickListener favoriteListener = new View.OnClickListener() {
             @Override
@@ -177,7 +177,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         };
 
         // Register the listener for each buttons
-        for(int favid: favsIds) {
+        for (int favid : favsIds) {
             findViewById(favid).setOnClickListener(favoriteListener);
         }
 
@@ -195,11 +195,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 int finalRadius = Math.max(kissMenu.getWidth(), kissMenu.getHeight());
 
                 // Reveal the bar
-                Animator anim =
-                        ViewAnimationUtils.createCircularReveal(kissMenu, cx, cy, 0, finalRadius);
-                kissMenu.setVisibility(View.VISIBLE);
-                anim.start();
-
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Animator anim =
+                            ViewAnimationUtils.createCircularReveal(kissMenu, cx, cy, 0, finalRadius);
+                    kissMenu.setVisibility(View.VISIBLE);
+                    anim.start();
+                } else {
+                    // No animation before Lollipop
+                    kissMenu.setVisibility(View.VISIBLE);
+                }
                 ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
                         .getFavorites(MainActivity.this);
 
@@ -223,7 +227,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 hideKeyboard();
             }
         });
-
 
 
         // Hide the "X" before the text field, instead displaying the menu button
