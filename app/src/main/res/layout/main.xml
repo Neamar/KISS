@@ -78,9 +78,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/launcher"
+                android:layout_toLeftOf="@+id/launcherButton"
                 android:layout_toRightOf="@+id/clearButton"
-                android:layout_toStartOf="@+id/launcher"
+                android:layout_toStartOf="@+id/launcherButton"
                 android:background="@android:color/white"
                 android:hint="@string/ui_search_hint"
                 android:imeOptions="flagNoExtractUi|actionSearch"
@@ -114,13 +114,14 @@
     </ScrollView>
 
     <include
-        layout="@layout/main_kissbar"
         android:id="@+id/main_kissbar"
+        layout="@layout/main_kissbar"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_below="@android:id/list"
         android:layout_alignParentBottom="true"
-        android:visibility="gone"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        android:layout_below="@android:id/list"
+        android:layout_margin="10dp"
+        android:visibility="visible"/>
 
 </RelativeLayout>

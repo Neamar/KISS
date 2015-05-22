@@ -183,7 +183,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 kissMenu.setVisibility(View.VISIBLE);
                 anim.start();
 
-                int[] favsIds = new int[] { R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4 };
+                int[] favsIds = new int[] { R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3 };
 
                 ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
                         .getFavorites(MainActivity.this);
@@ -205,7 +205,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                         image.setImageDrawable(drawable);
                 }
 
-
+                hideKeyboard();
             }
         });
 
@@ -437,4 +437,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
         searchEditText.setText("");
     }
 
+    private void hideKeyboard() {
+        // Check if no view has focus:
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
 }
