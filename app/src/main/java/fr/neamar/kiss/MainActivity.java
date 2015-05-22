@@ -164,6 +164,23 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        final int[] favsIds = new int[] { R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3 };
+
+        View.OnClickListener favoriteListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Holder holder = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this)
+                        .get(Integer.parseInt((String) view.getTag()));
+                Record record = Record.fromHolder(MainActivity.this, holder);
+                record.fastLaunch(MainActivity.this);
+            }
+        };
+
+        // Register the listener for each buttons
+        for(int favid: favsIds) {
+            findViewById(favid).setOnClickListener(favoriteListener);
+        }
+
         // Clear text content when touching the cross button
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
         launcherButton.setOnClickListener(new View.OnClickListener() {
@@ -182,8 +199,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
                         ViewAnimationUtils.createCircularReveal(kissMenu, cx, cy, 0, finalRadius);
                 kissMenu.setVisibility(View.VISIBLE);
                 anim.start();
-
-                int[] favsIds = new int[] { R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3 };
 
                 ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
                         .getFavorites(MainActivity.this);
@@ -208,6 +223,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 hideKeyboard();
             }
         });
+
+
 
         // Hide the "X" before the text field, instead displaying the menu button
         displayClearOnInput();
