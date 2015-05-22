@@ -46,7 +46,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
             Field field = QuickContactBadge.class.getDeclaredField("mOverlay");
             field.setAccessible(true);
 
-            //Using a drawable that draws a white circle. This could be set as null to not draw anything at all
+            //Using null to not draw anything at all
             field.set(this, null);
 
         } catch (Exception e) {
