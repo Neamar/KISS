@@ -40,8 +40,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:elevation="2dp"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp">
+            android:padding="4dp">
 
             <ImageView
                 android:id="@+id/menuButton"
@@ -50,11 +49,11 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
                 android:focusable="true"
+                android:paddingBottom="4dp"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:paddingTop="4dp"
                 android:src="@drawable/dots"
                 />
 
@@ -65,11 +64,11 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
                 android:focusable="true"
+                android:paddingBottom="4dp"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:paddingTop="4dp"
                 android:src="@drawable/clear_dark"
                 android:visibility="visible"/>
 
@@ -78,9 +77,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/launcher"
+                android:layout_toLeftOf="@+id/launcherButton"
                 android:layout_toRightOf="@+id/clearButton"
-                android:layout_toStartOf="@+id/launcher"
+                android:layout_toStartOf="@+id/launcherButton"
                 android:background="@android:color/white"
                 android:hint="@string/ui_search_hint"
                 android:imeOptions="flagNoExtractUi|actionSearch"
@@ -90,14 +89,14 @@
                 android:textSize="16sp"/>
 
             <ImageView
-                android:id="@+id/launcher"
+                android:id="@+id/launcherButton"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="6dp"
                 android:focusable="true"
                 android:src="@drawable/ic_launcher"/>
         </RelativeLayout>
@@ -112,5 +111,16 @@
 
         <include layout="@layout/main_empty"/>
     </ScrollView>
+
+    <include
+        android:id="@+id/main_kissbar"
+        layout="@layout/main_kissbar"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@android:id/list"
+        android:layout_margin="10dp"
+        android:visibility="gone"/>
 
 </RelativeLayout>

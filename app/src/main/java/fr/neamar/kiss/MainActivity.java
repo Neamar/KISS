@@ -1,5 +1,6 @@
 package fr.neamar.kiss;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
@@ -23,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -162,6 +164,71 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
+
+        View.OnClickListener favoriteListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Holder holder = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this)
+                        .get(Integer.parseInt((String) view.getTag()));
+                Record record = Record.fromHolder(MainActivity.this, holder);
+                record.fastLaunch(MainActivity.this);
+            }
+        };
+
+        // Register the listener for each buttons
+        for (int favid : favsIds) {
+            findViewById(favid).setOnClickListener(favoriteListener);
+        }
+
+        // Clear text content when touching the cross button
+        final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+        launcherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View kissMenu = findViewById(R.id.main_kissbar);
+                // get the center for the clipping circle
+                int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
+                int cy = (launcherButton.getTop() + launcherButton.getBottom()) / 2;
+
+                // get the final radius for the clipping circle
+                int finalRadius = Math.max(kissMenu.getWidth(), kissMenu.getHeight());
+
+                // Reveal the bar
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Animator anim =
+                            ViewAnimationUtils.createCircularReveal(kissMenu, cx, cy, 0, finalRadius);
+                    kissMenu.setVisibility(View.VISIBLE);
+                    anim.start();
+                } else {
+                    // No animation before Lollipop
+                    kissMenu.setVisibility(View.VISIBLE);
+                }
+                ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
+                        .getFavorites(MainActivity.this);
+
+                if (favorites_holder.size() == 0) {
+                    Toast toast = Toast.makeText(MainActivity.this, getString(R.string.menu_favorites_empty), Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP, 0, 20);
+                    toast.show();
+                    return;
+                }
+
+                for (int i = 0; i < favorites_holder.size(); i++) {
+                    Holder holder = favorites_holder.get(i);
+                    ImageView image = (ImageView) findViewById(favsIds[i]);
+
+                    Record record = Record.fromHolder(MainActivity.this, holder);
+                    Drawable drawable = record.getDrawable(MainActivity.this);
+                    if (drawable != null)
+                        image.setImageDrawable(drawable);
+                }
+
+                hideKeyboard();
+            }
+        });
+
+
         // Hide the "X" before the text field, instead displaying the menu button
         displayClearOnInput();
 
@@ -175,9 +242,16 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public void applyDesignTweaks() {
         final View menuButton = findViewById(R.id.menuButton);
         final View clearButton = findViewById(R.id.clearButton);
-        final View launcherButton = findViewById(R.id.clearButton);
+        final View launcherButton = findViewById(R.id.launcherButton);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TypedValue outValue = new TypedValue();
+            getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
+
+            menuButton.setBackgroundResource(outValue.resourceId);
+            clearButton.setBackgroundResource(outValue.resourceId);
+            launcherButton.setBackgroundResource(outValue.resourceId);
+        } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
 
@@ -185,19 +259,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             menuButton.setBackgroundResource(outValue.resourceId);
             // Barely visible on the backbutton, since it disappears instant. Can be seen on long click though
             clearButton.setBackgroundResource(outValue.resourceId);
-            // Also adding it to the launcher button, although it will be enhanced for future android versions (Lollipop)
-            launcherButton.setBackgroundResource(outValue.resourceId);
-        }
-
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            TypedValue outValue = new TypedValue();
-            getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
-
-            // Clicking on menu button should display a focused rectangle
-            menuButton.setBackgroundResource(outValue.resourceId);
-            // Barely visible on the backbutton, since it disappears instant. Can be seen on long click though
-            clearButton.setBackgroundResource(outValue.resourceId);
-            // Also adding it to the launcher button, although it will be enhanced for future android versions (Lollipop)
             launcherButton.setBackgroundResource(outValue.resourceId);
         }
     }
@@ -290,7 +351,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     @Override
     public void onBackPressed() {
-        searchEditText.setText("");
+        // Is the kiss menu visible?
+        View kissMenu = findViewById(R.id.main_kissbar);
+        if (kissMenu.getVisibility() == View.VISIBLE) {
+            kissMenu.setVisibility(View.GONE);
+        } else {
+            // If no kissmenu, empty the search bar
+            searchEditText.setText("");
+        }
     }
 
     @Override
@@ -389,4 +457,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
         searchEditText.setText("");
     }
 
+    private void hideKeyboard() {
+        // Check if no view has focus:
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
 }
