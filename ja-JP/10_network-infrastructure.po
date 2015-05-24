@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-23 23:43+0900\n"
+"PO-Revision-Date: 2015-05-24 16:26+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2196,42 +2196,42 @@ msgstr "プレゼンテーション"
 #. Tag: para
 #, no-c-format
 msgid "DHCP (for <emphasis>Dynamic Host Configuration Protocol</emphasis>) is a protocol by which a machine can automatically get its network configuration when it boots. This allows centralizing the management of network configurations, and ensuring that all desktop machines get similar settings."
-msgstr ""
+msgstr "DHCP (for <emphasis>Dynamic Host Configuration Protocol</emphasis>) とは、マシンが起動時にネットワーク設定を自動的に取得することを可能にするプロトコルです。DHCP のお陰で、ネットワーク設定の管理を中央集権化し、全てのデスクトップマシンに類似した設定を行う、ことが可能になります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DHCP</primary>"
-msgstr ""
+msgstr "<primary>DHCP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Dynamic Host Configuration Protocol</primary>"
-msgstr ""
+msgstr "<primary>Dynamic Host Configuration Protocol</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>network</primary><secondary>DHCP configuration</secondary>"
-msgstr ""
+msgstr "<primary>ネットワーク</primary><secondary>DHCP 設定</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A DHCP server provides many network-related parameters. The most common of these is an IP address and the network where the machine belongs, but it can also provide other information, such as DNS servers, WINS servers, NTP servers, and so on."
-msgstr ""
+msgstr "DHCP サーバは多くのネットワーク関連パラメータを提供します。DHCP サーバが提供する最も一般的なパラメータは IP アドレスとマシンの所属するネットワークですが、他にも DNS サーバ、WINS サーバ、NTP サーバなどの情報を提供することも可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Internet Software Consortium (also involved in developing <command>bind</command>) is the main author of the DHCP server. The matching Debian package is <emphasis role=\"pkg\">isc-dhcp-server</emphasis>."
-msgstr ""
+msgstr "(<command>bind</command> の開発にも参加している) Internet Software Consortium が DHCP サーバの主開発者です。対応する Debian パッケージは <emphasis role=\"pkg\">isc-dhcp-server</emphasis> です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The first elements that need to be edited in the DHCP server configuration file (<filename>/etc/dhcp/dhcpd.conf</filename>) are the domain name and the DNS servers. If this server is alone on the local network (as defined by the broadcast propagation), the <literal>authoritative</literal> directive must also be enabled (or uncommented). One also needs to create a <literal>subnet</literal> section describing the local network and the configuration information to be provided. The following example fits a <literal>192.168.0.0/24</literal> local network with a router at <literal>192.168.0.1</literal> serving as the gateway. Available IP addresses are in the range <literal>192.168.0.128</literal> to <literal>192.168.0.254</literal>."
-msgstr ""
+msgstr "DHCP サーバ設定ファイル (<filename>/etc/dhcp/dhcpd.conf</filename>) で最初に編集する必要がある箇所はドメイン名と DNC サーバです。DHCP サーバがローカルネットワークに 1 台しかない (ブロードキャスト送信が定義するように) 場合、<literal>authoritative</literal> 指示文を有効化しなければいけません (コメントを外さなければいけません)。また、<literal>subnet</literal> セクションを作成し、そこに提供先のローカルネットワークと設定情報を記述します。以下の例は、<literal>192.168.0.1</literal> を持つゲートウェイ担当のルータが存在する <literal>192.168.0.0/24</literal> ローカルネットワークに適合します。配布される IP アドレスは <literal>192.168.0.128</literal> から <literal>192.168.0.254</literal> までの範囲です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Excerpt of <filename>/etc/dhcp/dhcpd.conf</filename>"
-msgstr ""
+msgstr "<filename>/etc/dhcp/dhcpd.conf</filename> の抜粋"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2270,108 +2270,141 @@ msgid ""
 "    ddns-domainname \"internal.falcot.com\";\n"
 "}\n"
 msgstr ""
+"\n"
+"#\n"
+"# Sample configuration file for ISC dhcpd for Debian\n"
+"#\n"
+"\n"
+"# The ddns-updates-style parameter controls whether or not the server will\n"
+"# attempt to do a DNS update when a lease is confirmed. We default to the\n"
+"# behavior of the version 2 packages ('none', since DHCP v2 didn't\n"
+"# have support for DDNS.)\n"
+"ddns-update-style interim;\n"
+"\n"
+"# option definitions common to all supported networks...\n"
+"option domain-name \"internal.falcot.com\";\n"
+"option domain-name-servers ns.internal.falcot.com;\n"
+"\n"
+"default-lease-time 600;\n"
+"max-lease-time 7200;\n"
+"\n"
+"# If this DHCP server is the official DHCP server for the local\n"
+"# network, the authoritative directive should be uncommented.\n"
+"authoritative;\n"
+"\n"
+"# Use this to send dhcp log messages to a different log file (you also\n"
+"# have to hack syslog.conf to complete the redirection).\n"
+"log-facility local7;\n"
+"\n"
+"# My subnet\n"
+"subnet 192.168.0.0 netmask 255.255.255.0 {\n"
+"    option routers 192.168.0.1;\n"
+"    option broadcast-address 192.168.0.255;\n"
+"    range 192.168.0.128 192.168.0.254;\n"
+"    ddns-domainname \"internal.falcot.com\";\n"
+"}\n"
 
 #. Tag: title
 #, no-c-format
 msgid "DHCP and DNS"
-msgstr ""
+msgstr "DHCP と DNS"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>DNS</primary><secondary>automated updates</secondary>"
-msgstr ""
+msgstr "<primary>DNS</primary><secondary>自動更新</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A nice feature is the automated registering of DHCP clients in the DNS zone, so that each machine gets a significant name (rather than something impersonal such as <literal>machine-192-168-0-131.internal.falcot.com</literal>). Using this feature requires configuring the DNS server to accept updates to the <literal>internal.falcot.com</literal> DNS zone from the DHCP server, and configuring the latter to submit updates for each registration."
-msgstr ""
+msgstr "DNS ゾーン内に DHCP クライアントを自動登録するという、便利な機能があります。この機能を使うことで、各マシンの意味のある名前を使ってアクセス可能になります (この機能を使わなければ <literal>machine-192-168-0-131.internal.falcot.com</literal> などの匿名性のある名前)。この機能を使うには、DNS サーバを設定して DHCP サーバから <literal>internal.falcot.com</literal> DNS ゾーンの更新を受け入れるようにして、DHCP サーバを設定して各クライアント登録情報の更新を DNS サーバに送信するようにします。"
 
 #. Tag: para
 #, no-c-format
 msgid "In the <command>bind</command> case, the <literal>allow-update</literal> directive needs to be added to each of the zones that the DHCP server is to edit (the one for the <literal>internal.falcot.com</literal> domain, and the reverse zone). This directive lists the IP addresses allowed to perform these updates; it should therefore contain the possible addresses of the DHCP server (both the local address and the public address, if appropriate)."
-msgstr ""
+msgstr "<command>bind</command> の場合、DHCP サーバからの更新を受け入れる各ゾーンに <literal>allow-update</literal> 指示文を追加する必要があります (<literal>internal.falcot.com</literal> ドメインの 1 つと逆引きゾーンの両方に追加する)。この指示文は更新要求を受け入れる IP アドレスをリストします; 考え得る DHCP サーバの全アドレスを列挙します (そうすることが適切なら、ローカルアドレスと公開アドレスの両方)。"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
-msgstr ""
+msgstr "\nallow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Beware! A zone that can be modified <emphasis>will</emphasis> be changed by <command>bind</command>, and the latter will overwrite its configuration files at regular intervals. Since this automated procedure produces files that are less human-readable than manually-written ones, the Falcot administrators handle the <literal>internal.falcot.com</literal> domain with a delegated DNS server; this means the <literal>falcot.com</literal> zone file stays firmly under their manual control."
-msgstr ""
+msgstr "注意してください! <command>bind</command> は変更可能なゾーンに変更を加え、設定ファイルを定期的に上書きします。この自動手続きにより作成されるファイルは手作業で書かれたものよりも人間にとって読みづらいため、Falcot 管理者は権限委譲された DNS サーバを備える <literal>internal.falcot.com</literal> ドメインを用意しています; これは <literal>falcot.com</literal> ゾーンファイルは手作業で制御することを意味します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The DHCP server configuration excerpt above already includes the directives required for DNS zone updates: they are the <literal>ddns-update-style interim;</literal> and <literal>ddns-domain-name \"internal.falcot.com\";</literal> lines in the block describing the subnet."
-msgstr ""
+msgstr "上で引用した DHCP サーバ設定には、既に DNS ゾーン更新に必要な指示文が含まれています: 指示文はサブネットを表すブロック中の <literal>ddns-update-style interim;</literal> と <literal>ddns-domain-name \"internal.falcot.com\";</literal> です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Network Diagnosis Tools"
-msgstr ""
+msgstr "ネットワーク診断ツール"
 
 #. Tag: para
 #, no-c-format
 msgid "When a network application does not run as expected, it is important to be able to look under the hood. Even when everything seems to run smoothly, running a network diagnosis can help ensure everything is working as it should. Several diagnosis tools exists for this purpose; each one operates on a different level."
-msgstr ""
+msgstr "ネットワークアプリケーションが思った通りに動かない場合、中身を確かめる事が重要です。全てが問題なく動いているように見える場合でも、ネットワーク診断を実行すれば全てがあるべき姿で動いていることを確かめる手助けになります。この目的で復数の診断ツールが存在します; 各ツールは異なるレベルを診断します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Local Diagnosis: <command>netstat</command>"
-msgstr ""
+msgstr "ローカルの診断: <command>netstat</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>netstat</command></primary>"
-msgstr ""
+msgstr "<primary><command>netstat</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's first mention the <command>netstat</command> command (in the <emphasis role=\"pkg\">net-tools</emphasis> package); it displays an instant summary of a machine's network activity. When invoked with no argument, this command lists all open connections; this list can be very verbose since it includes many Unix-domain sockets (widely used by daemons) which do not involve the network at all (for example, <literal>dbus</literal> communication, <literal>X11</literal> traffic, and communications between virtual filesystems and the desktop)."
-msgstr ""
+msgstr "最初に (<emphasis role=\"pkg\">net-tools</emphasis> パッケージに含まれる) <command>netstat</command> コマンドを紹介します; これはマシンのその瞬間のネットワーク活動に関する要約を表示します。何も引数を渡さずに実行した場合、このコマンドは開けられた接続をリストします;このリストはとても長くなる場合があります。なぜなら、このリストには多くの Unix ドメインソケット (デーモンによって広く使われている) が含まれるからです。Unix ドメインソケットはネットワークに関与しません (例えば、<literal>dbus</literal> 通信、<literal>X11</literal> トラフィック、仮想ファイルシステムとデスクトップ間の通信などです)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Common invocations therefore use options that alter <command>netstat</command>'s behavior. The most frequently used options include:"
-msgstr ""
+msgstr "<command>netstat</command> を実行する際には一般的に標準の挙動を変更するオプションを使います。最も頻繁に使われるオプションを以下に挙げます:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-t</literal>, which filters the results to only include TCP connections;"
-msgstr ""
+msgstr "<literal>-t</literal>、TCP 接続のみを表示します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-u</literal>, which works similarly for UDP connections; these options are not mutually exclusive, and one of them is enough to stop displaying Unix-domain connections;"
-msgstr ""
+msgstr "<literal>-u</literal>、UDP 接続のみを表示します; これらのオプションは同時に使えます、Unix ドメインソケットの表示を抑制するにはどちらか一方を使うだけで十分です;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-a</literal>, to also list listening sockets (waiting for incoming connections);"
-msgstr ""
+msgstr "<literal>-a</literal>、リッスンしている (入って来る接続を待っている) ソケットも表示します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-n</literal>, to display the results numerically: IP addresses (no DNS resolution), port numbers (no aliases as defined in <filename>/etc/services</filename>) and user ids (no login names);"
-msgstr ""
+msgstr "<literal>-n</literal>、結果を数値的に表示します: IP アドレス (DNS で名前解決しない)、ポート番号 (<filename>/etc/services</filename> の定義する別名を使わない)、ユーザ id (ログイン名無し) を使います;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-p</literal>, to list the processes involved; this option is only useful when <command>netstat</command> is run as root, since normal users will only see their own processes;"
-msgstr ""
+msgstr "<literal>-p</literal>、関係付けられたプロセスを表示します; <command>netstat</command>をroot 権限で実行した場合にのみ、このオプションは便利です。なぜなら、普通のユーザは自分のプロセス以外を見ることができないからです;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>-c</literal>, to continuously refresh the list of connections."
-msgstr ""
+msgstr "<literal>-c</literal>、継続的に接続リストを更新します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Other options, documented in the <citerefentry><refentrytitle>netstat</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page, provide an even finer control over the displayed results. In practice, the first five options are so often used together that systems and network administrators practically acquired <command>netstat -tupan</command> as a reflex. Typical results, on a lightly loaded machine, may look like the following:"
-msgstr ""
+msgstr "<citerefentry><refentrytitle>netstat</refentrytitle> <manvolnum>8</manvolnum></citerefentry> マニュアルページに書かれている他のオプションを使えば、表示される結果をさらに細かく制御することが可能です。具体的にいえば、上に挙げたオプションの内最初の 5 種類を組み合わせて使うことが多いため、結果としてシステムとネットワークの管理者は事実上 <command>netstat -tupan</command> を習得します。負荷の高くないマシンでは、以下の様な典型的な結果を返します:"
 
 #. Tag: screen
 #, no-c-format
@@ -2396,31 +2429,50 @@ msgid ""
 "udp6       0      0 :::123                  :::*                                764/ntpd        \n"
 "</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>netstat -tupan</userinput>\n"
+"<computeroutput>Active Internet connections (servers and established)\n"
+"Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name\n"
+"tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2224/sshd       \n"
+"tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      994/exim4       \n"
+"tcp        0      0 192.168.1.241:22        192.168.1.128:47372     ESTABLISHED 2944/sshd: roland [\n"
+"tcp        0      0 192.168.1.241:22        192.168.1.128:32970     ESTABLISHED 2232/sshd: roland [\n"
+"tcp6       0      0 :::22                   :::*                    LISTEN      2224/sshd       \n"
+"tcp6       0      0 ::1:25                  :::*                    LISTEN      994/exim4       \n"
+"udp        0      0 0.0.0.0:68              0.0.0.0:*                           633/dhclient    \n"
+"udp        0      0 192.168.1.241:123       0.0.0.0:*                           764/ntpd        \n"
+"udp        0      0 127.0.0.1:123           0.0.0.0:*                           764/ntpd        \n"
+"udp        0      0 0.0.0.0:123             0.0.0.0:*                           764/ntpd        \n"
+"udp6       0      0 fe80::a00:27ff:fe6c:123 :::*                                764/ntpd        \n"
+"udp6       0      0 2002:52e0:87e4:0:a0:123 :::*                                764/ntpd        \n"
+"udp6       0      0 ::1:123                 :::*                                764/ntpd        \n"
+"udp6       0      0 :::123                  :::*                                764/ntpd        \n"
+"</computeroutput>"
 
 #. Tag: para
 #, no-c-format
 msgid "As expected, this lists established connections, two SSH connections in this case, and applications waiting for incoming connections (listed as <literal>LISTEN</literal>), notably the Exim4 email server listening on port 25."
-msgstr ""
+msgstr "予想通り、確立された接続、この場合 2 つの SSH 接続と、入って来る接続を待つアプリケーション (<literal>LISTEN</literal> と記載)、特に 25 番をリッスンしている Exim4 電子メールサーバが表示されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Remote Diagnosis: <command>nmap</command>"
-msgstr ""
+msgstr "リモートの診断: <command>nmap</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>nmap</command></primary>"
-msgstr ""
+msgstr "<primary><command>nmap</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>nmap</command> (in the similarly-named package) is, in a way, the remote equivalent for <command>netstat</command>. It can scan a set of “well-known” ports for one or several remote servers, and list the ports where an application is found to answer to incoming connections. Furthermore, <command>nmap</command> is able to identify some of these applications, sometimes even their version number. The counterpart of this tool is that, since it runs remotely, it cannot provide information on processes or users; however, it can operate on several targets at once."
-msgstr ""
+msgstr "<command>nmap</command> (同名のパッケージから提供される) は、ある意味で、リモートに対する <command>netstat</command> に相当します。これは 1 台または数台のリモートサーバに対して「well-known」ポート群をスキャンし、入ってきた接続に応答したアプリケーションの見つかったポートをリストします。更に、<command>nmap</command> は一部のアプリケーションを識別することが可能です。場合によってはアプリケーションのバージョン番号さえも識別することが可能です。<command>nmap</command> に対する問題点として、<command>nmap</command> はリモートから実行されるため、プロセスやユーザの情報を提供することができないという点が挙げられます; しかしながら、<command>nmap</command> は復数のターゲットに一気に実行できます。"
 
 #. Tag: para
 #, no-c-format
 msgid "A typical <command>nmap</command> invocation only uses the <literal>-A</literal> option (so that <command>nmap</command> attempts to identify the versions of the server software it finds) followed by one or more IP addresses or DNS names of machines to scan. Again, many more options exist to finely control the behavior of <command>nmap</command>; please refer to the documentation in the <citerefentry> <refentrytitle>nmap</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> manual page."
-msgstr ""
+msgstr "<command>nmap</command> を実行する際の典型例は、<literal>-A</literal> オプション (<command>nmap</command> は見つかったサーバソフトウェアのバージョンを識別しようとします) だけを使い、その後ろにスキャンする 1 つか復数の IP アドレスまたは DNS 名を渡すことです。繰り返しになりますが、さらに多くのオプションが存在し、<command>nmap</command> の挙動をさらに細かく制御することが可能です。<citerefentry> <refentrytitle>nmap</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> マニュアルページを参照してください。"
 
 #. Tag: screen
 #, no-c-format
@@ -2486,83 +2538,143 @@ msgid ""
 "Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>nmap mirwiz</userinput>\n"
+"<computeroutput>\n"
+"nmap 192.168.1.30\n"
+"\n"
+"Starting Nmap 6.00 ( http://nmap.org ) at 2013-11-13 11:00 CET\n"
+"Nmap scan report for mirwiz (192.168.1.30)\n"
+"Host is up (0.000015s latency).\n"
+"Not shown: 997 closed ports\n"
+"PORT      STATE SERVICE\n"
+"22/tcp    open  ssh\n"
+"111/tcp   open  rpcbind\n"
+"10000/tcp open  snet-sensor-mgmt\n"
+"\n"
+"Nmap done: 1 IP address (1 host up) scanned in 0.12 seconds\n"
+"# </computeroutput><userinput>nmap -A localhost</userinput>\n"
+"<computeroutput>\n"
+"Starting Nmap 6.00 ( http://nmap.org ) at 2013-11-13 10:54 CET\n"
+"Nmap scan report for localhost (127.0.0.1)\n"
+"Host is up (0.000084s latency).\n"
+"Other addresses for localhost (not scanned): 127.0.0.1\n"
+"Not shown: 996 closed ports\n"
+"PORT      STATE SERVICE VERSION\n"
+"22/tcp    open  ssh     OpenSSH 6.0p1 Debian 4 (protocol 2.0)\n"
+"| ssh-hostkey: 1024 ea:47:e5:04:a0:b8:70:29:c2:94:3d:fe:a8:b8:b4:02 (DSA)\n"
+"|_2048 81:5c:a4:56:ff:c0:bf:0d:cd:e6:cc:48:2f:15:78:ea (RSA)\n"
+"25/tcp    open  smtp    Exim smtpd 4.80\n"
+"| smtp-commands: mirwiz.internal.placard.fr.eu.org Hello localhost [127.0.0.1], SIZE 52428800, 8BITMIME, PIPELINING, HELP, \n"
+"|_ Commands supported: AUTH HELO EHLO MAIL RCPT DATA NOOP QUIT RSET HELP \n"
+"111/tcp   open  rpcbind\n"
+"| rpcinfo: \n"
+"|   program version   port/proto  service\n"
+"|   100000  2,3,4        111/tcp  rpcbind\n"
+"|   100000  2,3,4        111/udp  rpcbind\n"
+"|   100024  1          40114/tcp  status\n"
+"|_  100024  1          55628/udp  status\n"
+"10000/tcp open  http    MiniServ 1.660 (Webmin httpd)\n"
+"| ndmp-version: \n"
+"|_  ERROR: Failed to get host information from server\n"
+"|_http-methods: No Allow or Public header in OPTIONS response (status code 200)\n"
+"|_http-title: Site doesn't have a title (text/html; Charset=iso-8859-1).\n"
+"No exact OS matches for host (If you know what OS is running on it, see http://nmap.org/submit/ ).\n"
+"TCP/IP fingerprint:\n"
+"OS:SCAN(V=6.00%E=4%D=11/13%OT=22%CT=1%CU=40107%PV=N%DS=0%DC=L%G=Y%TM=52834C\n"
+"OS:9E%P=x86_64-unknown-linux-gnu)SEQ(SP=102%GCD=1%ISR=105%TI=Z%CI=Z%II=I%TS\n"
+"OS:=8)OPS(O1=M400CST11NW5%O2=M400CST11NW5%O3=M400CNNT11NW5%O4=M400CST11NW5%\n"
+"OS:O5=M400CST11NW5%O6=M400CST11)WIN(W1=8000%W2=8000%W3=8000%W4=8000%W5=8000\n"
+"OS:%W6=8000)ECN(R=Y%DF=Y%T=41%W=8018%O=M400CNNSNW5%CC=Y%Q=)T1(R=Y%DF=Y%T=41\n"
+"OS:%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=41%W=0%S=A%A=Z%F=R%O=\n"
+"OS:%RD=0%Q=)T5(R=Y%DF=Y%T=41%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=41%\n"
+"OS:W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=41%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=\n"
+"OS:)U1(R=Y%DF=N%T=41%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%\n"
+"OS:DFI=N%T=41%CD=S)\n"
+"\n"
+"Network Distance: 0 hops\n"
+"Service Info: Host: mirwiz.internal.placard.fr.eu.org; OS: Linux; CPE: cpe:/o:linux:kernel\n"
+"\n"
+"OS and Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .\n"
+"Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "As expected, the SSH and Exim4 applications are listed. Note that not all applications listen on all IP addresses; since Exim4 is only accessible on the <literal>lo</literal> loopback interface, it only appears during an analysis of <literal>localhost</literal> and not when scanning <literal>mirwiz</literal> (which maps to the <literal>eth0</literal> interface on the same machine)."
-msgstr ""
+msgstr "予想通り、SSH と Exim4 アプリケーションが表示されます。全てのアプリケーションが全ての IP アドレスをリッスンしているわけではない点に注意してください; Exim4 は <literal>lo</literal> ループバックインターフェイスからのみアクセス可能ですから、<literal>localhost</literal> の解析にのみ表示され、<literal>mirwiz</literal> (これは同じマシンの <literal>eth0</literal> インターフェイスに対応付けられています) をスキャンした時には表示されません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Sniffers: <command>tcpdump</command> and <command>wireshark</command>"
-msgstr ""
+msgstr "スニファ: <command>tcpdump</command> と <command>wireshark</command>"
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes, one needs to look at what actually goes on the wire, packet by packet. These cases call for a “frame analyzer”, more widely known as a <emphasis>sniffer</emphasis>. Such a tool observes all the packets that reach a given network interface, and displays them in a user-friendly way."
-msgstr ""
+msgstr "しばしば実際にワイヤを行き来する情報をパケット毎に見る必要がある場合があります。この際に使われるツールは「フレームアナライザ」と呼ばれ、<emphasis>スニファ</emphasis> としても広く知られています。これらのツールはあるネットワークに到達した全てのパケットを観察し、ユーザにわかりやすい方法でパケットを表示します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tcpdump</command></primary>"
-msgstr ""
+msgstr "<primary><command>tcpdump</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The venerable tool in this domain is <command>tcpdump</command>, available as a standard tool on a wide range of platforms. It allows many kinds of network traffic capture, but the representation of this traffic stays rather obscure. We will therefore not describe it in further detail."
-msgstr ""
+msgstr "この分野における由緒あるツールが <command>tcpdump</command> で、これは広範囲のプラットフォームで利用可能な標準的なツールです。<command>tcpdump</command> を使うと、多くの種類のネットワークトラフィックをキャプチャできますが、トラフィックの表現は比較的分かりにくいです。このため <command>tcpdump</command> について詳しく説明しません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>wireshark</command></primary>"
-msgstr ""
+msgstr "<primary><command>wireshark</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A more recent (and more modern) tool, <command>wireshark</command> (in the <emphasis role=\"pkg\">wireshark</emphasis> package), is slowly becoming the new reference in network traffic analysis due to its many decoding modules that allow for a simplified analysis of the captured packets. The packets are displayed graphically with an organization based on the protocol layers. This allows a user to visualize all protocols involved in a packet. For example, given a packet containing an HTTP request, <command>wireshark</command> displays, separately, the information concerning the physical layer, the Ethernet layer, the IP packet information, the TCP connection parameters, and finally the HTTP request itself."
-msgstr ""
+msgstr "より最近の (そしてより現代的な) ツールである <command>wireshark</command> (<emphasis role=\"pkg\">wireshark</emphasis> パッケージの提供する) は、キャプチャされたパケットの解析を単純化する多くのデコーディングモジュールのお陰で、ゆっくりとネットワークトラフィック解析分野における新しい標準的なツールになりつつあります。パケットはプロトコルの層に基いてグラフィカルに表示されます。<command>wireshark</command> を使うと、ユーザはあるパケットに関わる全てのプロトコルを可視化することが可能です。例えば、HTTP リクエストを含むパケットに対して、<command>wireshark</command> は物理層、イーサネット層、IP パケット情報、TCP 接続パラメータ、最後に HTTP リクエスト自身に関連する情報を別々に表示します。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <command>wireshark</command> network traffic analyzer"
-msgstr ""
+msgstr "<command>wireshark</command> ネットワークトラフィックアナライザ"
 
 #. Tag: para
 #, no-c-format
 msgid "In our example, the packets traveling over SSH are filtered out (with the <literal>!tcp.port == 22</literal> filter). The packet currently displayed was developed at the HTTP layer."
-msgstr ""
+msgstr "上の例では、SSH を通じて移動するパケットを (<literal>!tcp.port == 22</literal> フィルタを使って) 除去しています。現在詳細を表示されているパケットは HTTP 層で作られたものです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <command>wireshark</command> with no graphical interface: <command>tshark</command>"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> グラフィカルインターフェイスを持たない <command>wireshark</command>: <command>tshark</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tshark</command></primary>"
-msgstr ""
+msgstr "<primary><command>tshark</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When one cannot run a graphical interface, or does not wish to do so for whatever reason, a text-only version of <command>wireshark</command> also exists under the name <command>tshark</command> (in a separate <emphasis role=\"pkg\">tshark</emphasis> package). Most of the capture and decoding features are still available, but the lack of a graphical interface necessarily limits the interactions with the program (filtering packets after they've been captured, tracking of a given TCP connection, and so on). It can still be used as a first approach. If further manipulations are intended and require the graphical interface, the packets can be saved to a file and this file can be loaded into a graphical <command>wireshark</command> running on another machine."
-msgstr ""
+msgstr "グラフィカルインターフェイスを実行できない場合や何らかの理由で実行したくない場合に備えて、<command>wireshark</command> のテキスト版 <command>tshark</command> (<emphasis role=\"pkg\">tshark</emphasis> パッケージに分割されています) が存在します。キャプチャとデコード機能のほとんどを利用可能ですが、グラフィカルインターフェイスが無いことでプログラムとのやり取りが制限されます (例えば、パケットがキャプチャされた後にフィルタをかけたり、ある TCP 接続を追跡することができません)。しかし <command>tshark</command> を足掛かりとして使うことが可能です。さらなる操作が必要だったり、グラフィカルインターフェイスが必要な操作をを行う場合、パケットをファイルに保存して、そのファイルを別のマシンで実行されているグラフィカルな <command>wireshark</command> で読み込むことが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <command>ethereal</command> and <command>wireshark</command>"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> <command>ethereal</command> と <command>wireshark</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ethereal</command></primary>"
-msgstr ""
+msgstr "<primary><command>ethereal</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>tethereal</command></primary>"
-msgstr ""
+msgstr "<primary><command>tethereal</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>wireshark</command> seems to be relatively young; however, it is only the new name for a software application previously known as <command>ethereal</command>. When its main developer left the company where he was employed, he was not able to arrange for the transfer of the registered trademark. As an alternative he went for a name change; only the name and the icons for the software actually changed."
-msgstr ""
+msgstr "<command>wireshark</command> は比較的若いように見えます; しかしながら、<command>wireshark</command> は <command>ethereal</command> として知られていたソフトウェアの新しい名前に過ぎません。<command>ethereal</command> の主開発者は雇用されていた会社を離れた時、登録済みの商標の移動を手配できませんでした。代案として、彼は名前を変えました; 実際のところ、<command>wireshark</command> は <command>ethereal</command> の名前とアイコンだけを変えたものに過ぎません。"
