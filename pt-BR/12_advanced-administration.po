@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-16 04:29+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2015-05-24 20:58+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/12_advanced-administration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.3-dev\n"
+"X-Generator: Weblate 2.3\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -354,6 +354,13 @@ msgstr ""
 #, no-c-format
 msgid "RAID-4 isn't too expensive since it only involves a one-in-N increase in costs and has no noticeable impact on read performance, but writes are slowed down. Furthermore, since a write to any of the N disks also involves a write to the parity disk, the latter sees many more writes than the former, and its lifespan can shorten dramatically as a consequence. Data on a RAID-4 array is safe only up to one failed disk (of the N+1)."
 msgstr ""
+"RAID-4 não é muito caro já que ele apenas envolve um incremento de um-em-N "
+"nos custos e não se tem notícia de impacto no desempenho de leitura, mas a "
+"escrita é mais devagar. Além disso, como uma escrita em qualquer um dos N "
+"discos também envolve a escrita no disco de paridade, esse último tem muito "
+"mais escritas que o anterior, e sua vida útil pode ser dramaticamente "
+"diminuída como consequência. Os dados na array RAID-4 só está segura até um "
+"disco falhar (dos N+1)."
 
 #. Tag: term
 #, no-c-format
@@ -1628,6 +1635,18 @@ msgstr ""
 #, no-c-format
 msgid "It's also possible to hint at the physical location of an LV, so that its extents are stored on a particular PV (while staying within the ones assigned to the VG, of course). Since we know that <filename>sdb</filename> is faster than <filename>sdf</filename>, we may want to store the <filename>lv_base</filename> there if we want to give an advantage to the database server compared to the file server. The command line becomes: <command>lvcreate -n lv_base -L 1G vg_critical /dev/sdb2</command>. Note that this command can fail if the PV doesn't have enough free extents. In our example, we would probably have to create <filename>lv_base</filename> before <filename>lv_files</filename> to avoid this situation – or free up some space on <filename>sdb2</filename> with the <command>pvmove</command> command."
 msgstr ""
+"Também é possível sugerir uma localização física de um LV, para que suas "
+"extensões sejam armazenadas em um PV em particular (enquanto se mantém "
+"dentro de um atribuído ao VG, é claro). Como nós sabemos que o "
+"<filename>sdb</filename> é mais rápido que o <filename>sdf</filename>, nós "
+"talvez queiramos armazenar o <filename>lv_base</filename> lá, caso nós "
+"queiramos dar vantagem ao servidor de banco de dados, em comparação com o "
+"servidor de arquivos. A linha de comando se torna: <command>lvcreate -n "
+"lv_base -L 1G vg_critical /dev/sdb2</command>. Note que esse comando pode "
+"falhar se o PV não tiver extensões livres suficientes. Em nosso exemplo, nós "
+"provavelmente teríamos que criar <filename>lv_base</filename> antes de "
+"<filename>lv_files</filename> para evitar essa situação – ou liberar algum "
+"espaço em <filename>sdb2</filename> com o comando <command>pvmove</command>."
 
 #. Tag: para
 #, no-c-format
@@ -1869,16 +1888,32 @@ msgstr "<emphasis>ATENÇÃO</emphasis> Redimensionando sistemas de arquivos"
 #, no-c-format
 msgid "Not all filesystems can be resized online; resizing a volume can therefore require unmounting the filesystem first and remounting it afterwards. Of course, if one wants to shrink the space allocated to an LV, the filesystem must be shrunk first; the order is reversed when the resizing goes in the other direction: the logical volume must be grown before the filesystem on it. It's rather straightforward, since at no time must the filesystem size be larger than the block device where it resides (whether that device is a physical partition or a logical volume)."
 msgstr ""
+"Nem todos os sistemas de arquivos podem ser redimensionados em tempo real; "
+"redimensionar um volume podem portanto requere primeiro desmontar o sistema "
+"de arquivos e remontá-lo depois. Claro que, se alguém quiser diminuir o "
+"espaço alocado para um LV, o sistema de arquivos tem que ser diminuído "
+"primeiro; a ordem é revertida quando o redimensionamento segue na outra "
+"direção: o volume lógico tem que ser cultivado antes do sistema de arquivos "
+"existente nele. Isso é bastante simples, já que em nenhum momento o tamanho "
+"do sistema de  arquivos tem que ser maior que o dispositivo de bloco aonde "
+"ele reside (seja esse dispositivo uma partição física ou um volume lógico)."
 
 #. Tag: para
 #, no-c-format
 msgid "The ext3, ext4 and xfs filesystems can be grown online, without unmounting; shrinking requires an unmount. The reiserfs filesystem allows online resizing in both directions. The venerable ext2 allows neither, and always requires unmounting."
 msgstr ""
+"Os sistemas de arquivo ext3, ext4 and xfs podem ser cultivados em tempo "
+"real, sem serem desmontados; encolhé-los requer uma desmontagem. O sistema "
+"de arquivos reiserfs permite o redimensionamento em tempo real nas duas "
+"direções. O venerável ext2 não permite, e sempre requer o desmonte."
 
 #. Tag: para
 #, no-c-format
 msgid "We could proceed in a similar fashion to extend the volume hosting the database, only we've reached the VG's available space limit:"
 msgstr ""
+"Nós poderíamos proceder de maneira similar para estender o volume que "
+"hospeda o banco de dados, apenas se nós tivermos alcançado o limite de "
+"espaço disponível do VG:"
 
 #. Tag: screen
 #, no-c-format
@@ -1901,6 +1936,16 @@ msgstr ""
 #, no-c-format
 msgid "No matter, since LVM allows adding physical volumes to existing volume groups. For instance, maybe we've noticed that the <filename>sdb1</filename> partition, which was so far used outside of LVM, only contained archives that could be moved to <filename>lv_backups</filename>. We can now recycle it and integrate it to the volume group, and thereby reclaim some available space. This is the purpose of the <command>vgextend</command> command. Of course, the partition must be prepared as a physical volume beforehand. Once the VG has been extended, we can use similar commands as previously to grow the logical volume then the filesystem:"
 msgstr ""
+"Não importa, já que o LVM permite a adição de volumes físico em grupos de "
+"volumes existentes. Por exemplo, talvez nós percebamos que a partição "
+"<filename>sdb1</filename>, que era até agora usada fora do LVM, apenas "
+"contém arquivos que poderiam ser movidos para <filename>lv_backups</filename>"
+". Nós podemos agora reciclá-la e integrá-la ao grupo de volume, e assim "
+"recuperar algum espaço disponível. Esse é o propósito do comando "
+"<command>vgextend</command>. Claro que, a partição tem que ser preparada "
+"antes como um volume físico. Uma vez que o VG tenha sido estendido, nós "
+"podemos usar comandos similares aos anteriores para cultivar o volume lógico "
+"e então o sistema de arquivos:"
 
 #. Tag: screen
 #, no-c-format
@@ -1959,6 +2004,17 @@ msgstr "<emphasis>Aprofundamento</emphasis> LVM avançado"
 #, no-c-format
 msgid "LVM also caters for more advanced uses, where many details can be specified by hand. For instance, an administrator can tweak the size of the blocks that make up physical and logical volumes, as well as their physical layout. It is also possible to move blocks across PVs, for instance to fine-tune performance or, in a more mundane way, to free a PV when one needs to extract the corresponding physical disk from the VG (whether to affect it to another VG or to remove it from LVM altogether). The manual pages describing the commands are generally clear and detailed. A good entry point is the <citerefentry><refentrytitle>lvm</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page."
 msgstr ""
+"O LVM também serve para usos mais avançados, aonde muitos detalhes podem ser "
+"especificados manualmente. Por exemplo, um administrador pode ajustar o "
+"tamanho dos blocos que compõem os volumes físicos e lógicos, assim como seu "
+"layout físico. Também é possível mover os blocos entre PVs, por exemplo, "
+"para afinar o desempenho ou, de maneira mais mundana, para liberar um PV "
+"quando se precisa extrair o disco físico correspondente de um VG (seja para "
+"atribuí-lo a outro VG ou para removê-lo do LVM de uma vez). As páginas de "
+"manual que descrevem os comandos geralmente são claras e detalhadas. Um bom "
+"ponto de partida é a página de manual "
+"<citerefentry><refentrytitle>lvm</refentrytitle> "
+"<manvolnum>8</manvolnum></citerefentry>."
 
 #. Tag: title
 #, no-c-format
@@ -1969,42 +2025,115 @@ msgstr "RAID ou LVM?"
 #, no-c-format
 msgid "RAID and LVM both bring indisputable advantages as soon as one leaves the simple case of a desktop computer with a single hard disk where the usage pattern doesn't change over time. However, RAID and LVM go in two different directions, with diverging goals, and it is legitimate to wonder which one should be adopted. The most appropriate answer will of course depend on current and foreseeable requirements."
 msgstr ""
+"Tanto o RAID quanto o LVM irão trazer vantagens indiscutíveis assim que se "
+"deixar o simples caso de um computador de mesa com um único disco rígido, "
+"aonde o padrão de uso não muda com o tempo. Contudo, RAID e LVM vão em "
+"direções diferentes, com objetivos divergentes, e é legítimo questionar qual "
+"deles deve ser adotado. A resposta mais apropriada irá. é claro, depender "
+"das necessidades atuais e previsíveis."
 
 #. Tag: para
 #, no-c-format
 msgid "There are a few simple cases where the question doesn't really arise. If the requirement is to safeguard data against hardware failures, then obviously RAID will be set up on a redundant array of disks, since LVM doesn't really address this problem. If, on the other hand, the need is for a flexible storage scheme where the volumes are made independent of the physical layout of the disks, RAID doesn't help much and LVM will be the natural choice."
 msgstr ""
+"Existem alguns casos simples aonde a questão realmente não é difícil. Se a "
+"necessidade é salvaguardar dados contra falhas de hardware, então, "
+"obviamente, o RAID será configurado em uma array redundante de discos, já "
+"que o LVM realmente não é designado para esse problema. Se, por outro lado, "
+"a necessidade é por um esquema de armazenamento flexível aonde os volumes "
+"são feitos independente do layout físico dos disco, o RAID não ajuda muito e "
+"o LVM será a escolha natural."
 
 #. Tag: title
 #, no-c-format
 #| msgid "<emphasis>NOTE</emphasis> Spare disks"
 msgid "<emphasis>NOTE</emphasis> If performance matters…"
-msgstr "<emphasis>NOTA</emphasis> Se o rendimento importa…"
+msgstr "<emphasis>NOTA</emphasis> Se o desempenho importa…"
 
 #. Tag: para
 #, no-c-format
 msgid "If input/output speed is of the essence, especially in terms of access times, using LVM and/or RAID in one of the many combinations may have some impact on performances, and this may influence decisions as to which to pick. However, these differences in performance are really minor, and will only be measurable in a few use cases. If performance matters, the best gain to be obtained would be to use non-rotating storage media (<indexterm><primary>SSD</primary></indexterm><emphasis>solid-state drives</emphasis> or SSDs); their cost per megabyte is higher than that of standard hard disk drives, and their capacity is usually smaller, but they provide excellent performance for random accesses. If the usage pattern includes many input/output operations scattered all around the filesystem, for instance for databases where complex queries are routinely being run, then the advantage of running them on an SSD far outweigh whatever could be gained by picking LVM over RAID or the reverse. In these situations, the choice should be determined by other considerations than pure speed, since the performance aspect is most easily handled by using SSDs."
 msgstr ""
+"Se a velocidade de entrada/saída é essencial, especialmente em termos de "
+"tempo de acesso, o uso do LVM e/ou RAID em uma das muitas combinações pode "
+"ter algum impacto no desempenho, e isso pode influenciar nas decisões sobre "
+"qual escolher. Contudo, essas diferenças de desempenho são realmente "
+"pequenas, e só serão mensuráveis  em alguns casos de uso. Se desempenho "
+"importa, o melhor ganho a ser obtido seria no uso de mídia não rotativa "
+"(<indexterm><primary>SSD</primary></indexterm><emphasis>solid-state "
+"drives</emphasis> ou SSDs); seu custo por megabyte é maior que os discos "
+"rígidos padrão, e sua capacidade geralmente é menor, mas ele fornece "
+"desempenho excelente para acessos aleatórios. Se o padrão de uso inclui "
+"muitas operações de entrada/saída espalhadas por todo o sistema de arquivos, "
+"por exemplo, para bancos de dados aonde consultas complexas são executadas "
+"rotineiramente, então a vantagem de executá-las em um SSD de longe superam "
+"tudo o que pode ser ganho escolhendo LVM sobre RAID ou o contrário. Nessas "
+"situações, a escolha deveria ser determinada por outras considerações ao "
+"invés de velocidade pura, já que o aspecto desempenho é mais facilmente "
+"lidado usando SSDs."
 
 #. Tag: para
 #, no-c-format
 msgid "The third notable use case is when one just wants to aggregate two disks into one volume, either for performance reasons or to have a single filesystem that is larger than any of the available disks. This case can be addressed both by a RAID-0 (or even linear-RAID) and by an LVM volume. When in this situation, and barring extra constraints (for instance, keeping in line with the rest of the computers if they only use RAID), the configuration of choice will often be LVM. The initial set up is barely more complex, and that slight increase in complexity more than makes up for the extra flexibility that LVM brings if the requirements change or if new disks need to be added."
 msgstr ""
+"O terceiro caso de uso notável é quando alguém apenas quer agregar dois "
+"discos em um volume, seja por questões de desempenho, ou para ter um único "
+"sistema de arquivos que seja maior que qualquer dos discos disponíveis. Esse "
+"caso pode ser resolvido pelo RAID-0 (ou mesmo um linear-RAID) e por um "
+"volume LVM. Quando nesta situação, e salvo restrições extras (por exemplo, "
+"manter em sintonia com o resto dos computadores se eles usam apenas RAID), a "
+"configuração de escolha irá geralmente ser LVM. A configuração inicial é um "
+"pouco mais complexa, mas esse incremento na complexidade mais do que "
+"compensado pela flexibilidade extra que o LVM trás caso as necessidades "
+"mudem ou se novos discos precisem ser adicionados."
 
 #. Tag: para
 #, no-c-format
 msgid "Then of course, there is the really interesting use case, where the storage system needs to be made both resistant to hardware failure and flexible when it comes to volume allocation. Neither RAID nor LVM can address both requirements on their own; no matter, this is where we use both at the same time — or rather, one on top of the other. The scheme that has all but become a standard since RAID and LVM have reached maturity is to ensure data redundancy first by grouping disks in a small number of large RAID arrays, and to use these RAID arrays as LVM physical volumes; logical partitions will then be carved from these LVs for filesystems. The selling point of this setup is that when a disk fails, only a small number of RAID arrays will need to be reconstructed, thereby limiting the time spent by the administrator for recovery."
 msgstr ""
+"Então, é claro, temos uma caso de uso realmente interessante, aonde o "
+"sistema de armazenamento precisa ser feito tanto para resistência de falha "
+"de hardware quanto flexível quando se trata de alocação de volume. Nem RAID "
+"nem LVM podem atender esses dois requisitos por conta própria; não tem "
+"problema, é aqui que nós usamos os dois ao mesmo tempo — ou melhor, um em "
+"cima do outro. O esquema que tem tudo, mas só se tornou um padrão quando o "
+"RAID e o LVM alcançaram a maturidade, é para garantir a redundância de "
+"dados, primeiro pelo agrupamento de discos em um pequeno número de grandes "
+"arrays RAID, e para usar essas arrays RAID como volumes físicos LVM; "
+"partições lógicas serão então esculpidas a partir desses LVs para sistemas "
+"de arquivos. O ponto forte dessa configuração é que, quando um disco falha, "
+"apenas um pequeno número das arrays RAID precisará ser reconstru[ida, "
+"limitando assim o tempo gasto pelo administrador para recuperação."
 
 #. Tag: para
 #, no-c-format
 msgid "Let's take a concrete example: the public relations department at Falcot Corp needs a workstation for video editing, but the department's budget doesn't allow investing in high-end hardware from the bottom up. A decision is made to favor the hardware that is specific to the graphic nature of the work (monitor and video card), and to stay with generic hardware for storage. However, as is widely known, digital video does have some particular requirements for its storage: the amount of data to store is large, and the throughput rate for reading and writing this data is important for the overall system performance (more than typical access time, for instance). These constraints need to be fulfilled with generic hardware, in this case two 300 GB SATA hard disk drives; the system data must also be made resistant to hardware failure, as well as some of the user data. Edited videoclips must indeed be safe, but video rushes pending editing are less critical, since they're still on the videotapes."
 msgstr ""
+"Vamos ver um exemplo concreto: o departamento de relações públicas da Falcot "
+"Corp precisa de uma estação de trabalho para edição de vídeo, mas o "
+"orçamento do departamento não permite investir em hardware de ponta para a "
+"finalidade. Uma decisão é tomada para favorecer o hardware que é específico "
+"para a natureza gráfica do trabalho (monitor e placa de vídeo), e ficar com "
+"o hardware genérico para armazenamento. No entanto, como é amplamente "
+"conhecido, o vídeo digital tem sim alguns requisitos especiais para seu "
+"armazenamento: a quantidade de dados a ser armazenado é grande, e a taxa de "
+"transferência para leitura e escrita desses dados é importante para o "
+"desempenho geral do sistema (mais que o tempo de acesso típico, por exemplo)"
+". Essas restrições precisam ser preenchidas com hardware genérico, neste "
+"caso com dois discos rígidos SATA de 300 GB; os dados do sistema também tem "
+"que ser resistentes a falha de hardware, assim como alguns dos dados do "
+"usuário. Videoclipes editados tem que realmente estar seguros, mas vídeo com "
+"edição pendente é menos critico, já que eles ainda estão nas fitas de vídeo."
 
 #. Tag: para
 #, no-c-format
 msgid "RAID-1 and LVM are combined to satisfy these constraints. The disks are attached to two different SATA controllers to optimize parallel access and reduce the risk of a simultaneous failure, and they therefore appear as <filename>sda</filename> and <filename>sdc</filename>. They are partitioned identically along the following scheme:"
 msgstr ""
+"O RAID-1 e o LVM são combinados para satisfazer essas restrições. Os discos "
+"são anexados a duas controladoras SATA diferentes, para otimizar acesso "
+"paralelo e reduzir o risco de falhas simultâneas, e eles portanto aparecem "
+"como <filename>sda</filename> e <filename>sdc</filename>. Eles são "
+"particionados de forma idêntica, seguindo o seguinte esquema:"
 
 #. Tag: screen
 #, no-c-format
@@ -2046,17 +2175,31 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The first partitions of both disks (about 1 GB) are assembled into a RAID-1 volume, <filename>md0</filename>. This mirror is directly used to store the root filesystem."
-msgstr "As primeiras partições em ambos os discos (por volta de 1 GB) são juntas em um volume RAID-1, <filename>md0</filename>. Este espelho é diretamente usado para armazenar o sistema de arquivos raiz."
+msgstr ""
+"As primeiras partições em ambos os discos (por volta de 1 GB) são montadas "
+"em um volume RAID-1, <filename>md0</filename>. Este espelho é diretamente "
+"usado para armazenar o sistema de arquivos raiz."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sda2</filename> and <filename>sdc2</filename> partitions are used as swap partitions, providing a total 2 GB of swap space. With 1 GB of RAM, the workstation has a comfortable amount of available memory."
-msgstr "As partições <filename>sda2</filename> e <filename>sdc2</filename> são usadas como swap, provendo um total de 2 GB de swap. Com 1 GB de RAM, a estação de trabalho encontra uma quantidade confortável de memoria disponível."
+msgstr ""
+"As partições <filename>sda2</filename> e <filename>sdc2</filename> são "
+"usadas como partição swap, provendo um total de 2 GB de espaço swap. Com 1 "
+"GB de RAM, a estação de trabalho encontra uma quantidade confortável de "
+"memoria disponível."
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sda5</filename> and <filename>sdc5</filename> partitions, as well as <filename>sda6</filename> and <filename>sdc6</filename>, are assembled into two new RAID-1 volumes of about 100 GB each, <filename>md1</filename> and <filename>md2</filename>. Both these mirrors are initialized as physical volumes for LVM, and assigned to the <filename>vg_raid</filename> volume group. This VG thus contains about 200 GB of safe space."
 msgstr ""
+"As partições <filename>sda5</filename> e <filename>sdc5</filename>, assim "
+"como a <filename>sda6</filename> e <filename>sdc6</filename>, são montadas "
+"em dois novos volumes RAID-1 de 100 GB cada, <filename>md1</filename> e "
+"<filename>md2</filename>. Os dois espelhos são iniciados como volumes "
+"físicos para o LVM, eatribuídos para o grupo de volume "
+"<filename>vg_raid</filename>. Esse VG , portanto, contém 200 GB de espaço "
+"seguro."
 
 #. Tag: para
 #, no-c-format
@@ -2067,16 +2210,40 @@ msgstr "As partições que sobraram, <filename>sda7</filename> e <filename>sdc7<
 #, no-c-format
 msgid "Once the VGs are created, they can be partitioned in a very flexible way. One must keep in mind that LVs created in <filename>vg_raid</filename> will be preserved even if one of the disks fails, which will not be the case for LVs created in <filename>vg_bulk</filename>; on the other hand, the latter will be allocated in parallel on both disks, which allows higher read or write speeds for large files."
 msgstr ""
+"Uma vez que os VGs sejam criados, eles podem ser particionados de maneira "
+"bem flexível. É preciso ter em mente que os LVs criados em "
+"<filename>vg_raid</filename> serão preservados mesmo que um dos discos "
+"falhe, o que não será o caso para LVs criados em "
+"<filename>vg_bulk</filename>; por outro lado, o último será alocado em "
+"paralelo nos dois discos, o que permite altas velocidades de leitura ou "
+"escrita para arquivos grandes."
 
 #. Tag: para
 #, no-c-format
 msgid "We'll therefore create the <filename>lv_usr</filename>, <filename>lv_var</filename> and <filename>lv_home</filename> LVs on <filename>vg_raid</filename>, to host the matching filesystems; another large LV, <filename>lv_movies</filename>, will be used to host the definitive versions of movies after editing. The other VG will be split into a large <filename>lv_rushes</filename>, for data straight out of the digital video cameras, and a <filename>lv_tmp</filename> for temporary files. The location of the work area is a less straightforward choice to make: while good performance is needed for that volume, is it worth risking losing work if a disk fails during an editing session? Depending on the answer to that question, the relevant LV will be created on one VG or the other."
 msgstr ""
+"Portanto nós iremos criar os LVs <filename>lv_usr</filename>, "
+"<filename>lv_var</filename> e <filename>lv_home</filename> no "
+"<filename>vg_raid</filename>, para hospedar os sistemas de arquivos "
+"correspondentes; outro grande LV, <filename>lv_movies</filename>, será usado "
+"para hospedar as versões definitivas dos filmes após a edição. O outro VG "
+"será dividido em um grande <filename>lv_rushes</filename>, para dados "
+"tirados de câmeras digitais de vídeo, e um <filename>lv_tmp</filename> para "
+"arquivos temporários. A localização da área de trabalho é uma escolha menos "
+"simples de fazer: enquanto bom desempenho é necessário para esse volume, "
+"vale o risco de perda de trabalho se uma falha de disco ocorrer durante uma "
+"sessão de edição? Dependendo da resposta  essa pergunta, o LV relevante será "
+"criado em um VG ou em outro."
 
 #. Tag: para
 #, no-c-format
 msgid "We now have both some redundancy for important data and much flexibility in how the available space is split across the applications. Should new software be installed later on (for editing audio clips, for instance), the LV hosting <filename>/usr/</filename> can be grown painlessly."
 msgstr ""
+"Nós agora temos tanto alguma redundância para dados importantes quanto muita "
+"flexibilidade no modo como o espaço disponível é dividido entre as "
+"aplicações. Para novo software que for instalado mais tarde (para edição de "
+"clips de áudio, por exemplo), o LV que hospeda <filename>/usr/</filename> "
+"pode ser cultivado sem dor."
 
 #. Tag: title
 #, no-c-format
@@ -2086,12 +2253,24 @@ msgstr "<emphasis>NOTA</emphasis> Por que três volumes RAID-1?"
 #. Tag: para
 #, no-c-format
 msgid "We could have set up one RAID-1 volume only, to serve as a physical volume for <filename>vg_raid</filename>. Why create three of them, then?"
-msgstr "Poderíamos configurar um volume RAID-1 somente para servir como volume físico para <filename>vg_raid</filename>. Por que criar três deles, então?"
+msgstr ""
+"Nós poderíamos ter configurado somente um volume RAID-1, para servir como "
+"volume físico para <filename>vg_raid</filename>. Por que criar três deles, "
+"então?"
 
 #. Tag: para
 #, no-c-format
 msgid "The rationale for the first split (<filename>md0</filename> vs. the others) is about data safety: data written to both elements of a RAID-1 mirror are exactly the same, and it is therefore possible to bypass the RAID layer and mount one of the disks directly. In case of a kernel bug, for instance, or if the LVM metadata become corrupted, it is still possible to boot a minimal system to access critical data such as the layout of disks in the RAID and LVM volumes; the metadata can then be reconstructed and the files can be accessed again, so that the system can be brought back to its nominal state."
 msgstr ""
+"A razão para a primeira divisão (<filename>md0</filename> vs. os outros) é "
+"para segurança de dados: dados escritos nos dois elementos de um espelho "
+"RAID-1 são exatamente os mesmos, e é portanto possível ignorar a camada RAID "
+"e montar um dos discos diretamente. No caso de um bug no núcleo, por "
+"exemplo, ou se o metadado do LVM se for corrompido, ainda é possível "
+"inicializar um sistema mínimo para acessar dados críticos como o layout de "
+"discos nos volumes RAID e LVM; o metadado pode então ser reconstruído e os "
+"arquivos podem ser acessados novamente, de modo que o sistema pode ser "
+"trazido de volta ao seu estado nominal."
 
 #. Tag: para
 #, no-c-format
@@ -2102,11 +2281,22 @@ msgstr ""
 #, no-c-format
 msgid "Virtualization <indexterm><primary>virtualization</primary></indexterm> is one of the most major advances in the recent years of computing. The term covers various abstractions and techniques simulating virtual computers with a variable degree of independence on the actual hardware. One physical server can then host several systems working at the same time and in isolation. Applications are many, and often derive from this isolation: test environments with varying configurations for instance, or separation of hosted services across different virtual machines for security."
 msgstr ""
+"Virtualização <indexterm><primary>virtualização</primary></indexterm> é um "
+"dos maiores avanços nos anos recentes da computação. O termo cobre várias "
+"abstrações e técnicas de simulação de computadores virtuais com um grau de "
+"variabilidade de independência do hardware real. Um servidor físico pode "
+"então hospedar vários sistemas que trabalham ao mesmo tempo e em isolamento. "
+"As aplicações são muitas, e geralmente derivam a partir desse isolamento: "
+"ambientes de teste com configurações variáveis por exemplo, ou separação de "
+"serviços hospedados entre diferentes máquinas virtuais para segurança."
 
 #. Tag: para
 #, no-c-format
 msgid "There are multiple virtualization solutions, each with its own pros and cons. This book will focus on Xen, LXC, and KVM, but other noteworthy implementations include the following:"
-msgstr "Existem múltiplas soluções de virtualização, cada uma com seus prós e contras. Este livro focará no Xen, LXC e KVM, mas outras implementações dignas de nora incluem as seguintes:"
+msgstr ""
+"Existem múltiplas soluções de virtualização, cada uma com seus prós e "
+"contras. Este livro focará no Xen, LXC e KVM, mas outras implementações "
+"dignas de nota incluem as seguintes:"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2147,6 +2337,13 @@ msgstr "<primary><emphasis>LXC</emphasis></primary>"
 #, no-c-format
 msgid "QEMU is a software emulator for a full computer; performances are far from the speed one could achieve running natively, but this allows running unmodified or experimental operating systems on the emulated hardware. It also allows emulating a different hardware architecture: for instance, an <emphasis>amd64</emphasis> system can emulate an <emphasis>arm</emphasis> computer. QEMU is free software. <ulink type=\"block\" url=\"http://www.qemu.org/\" />"
 msgstr ""
+"O QEMU é um emulador de software para um computador completo; o desempenho "
+"está longe da velocidade que se poderia alcançar rodando nativamente, mas "
+"ele permite rodar sistemas operacionais não modificados ou experimentais no "
+"hardware emulado. Ele também permite a emulação de uma arquitetura de "
+"hardware diferente: por exemplo, um sistema <emphasis>amd64</emphasis> pode "
+"emular um computador <emphasis>arm</emphasis>. O QEMU é software livre. <"
+"ulink type=\"block\" url=\"http://www.qemu.org/\" />"
 
 #. Tag: para
 #, no-c-format
@@ -2160,21 +2357,54 @@ msgstr ""
 #, no-c-format
 msgid "VMWare is a proprietary virtual machine; being one of the oldest out there, it is also one of the most widely-known. It works on principles similar to QEMU. VMWare proposes advanced features such as snapshotting a running virtual machine. <ulink type=\"block\" url=\"http://www.vmware.com/\" />"
 msgstr ""
+"VMWare é uma máquina virtual proprietária; sendo uma das mais antigas que se "
+"tem por ai, também é uma das mais amplamente conhecidas. Ela funciona com "
+"princípios similar ao QEMU. VMWare propõe recursos avançados tais como \""
+"snapshotting\" de uma máquina virtual em execução. <ulink type=\"block\" url="
+"\"http://www.vmware.com/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "VirtualBox is a virtual machine that is mostly free software (although some extra components are available under a proprietary license). It's younger than VMWare and restricted to the i386 and amd64 architectures, but it still includes some snapshotting and other interesting features. VirtualBox has been part of Debian since <emphasis role=\"distribution\">Lenny</emphasis>. <ulink type=\"block\" url=\"http://www.virtualbox.org/\" />"
 msgstr ""
+"VirtualBox é uma máquina virtual que é quase toda software livre (alguns "
+"componentes extra estão disponíveis sob licença proprietária). Ela é mais "
+"jovem que a VMWare e restrita as arquiteturas i386 e amd64, mas ele ainda "
+"inclui alguns \"snapshotting\" e outras características interessantes. "
+"VirtualBox tem sido parte do Debian desde o <emphasis role=\"distribution\""
+">Lenny</emphasis>. <ulink type=\"block\" url=\"http://www.virtualbox.org/\" "
+"/>"
 
 #. Tag: para
 #, no-c-format
 msgid "Xen <indexterm><primary>Xen</primary></indexterm> is a “paravirtualization” solution. It introduces a thin abstraction layer, called a “hypervisor”, between the hardware and the upper systems; this acts as a referee that controls access to hardware from the virtual machines. However, it only handles a few of the instructions, the rest is directly executed by the hardware on behalf of the systems. The main advantage is that performances are not degraded, and systems run close to native speed; the drawback is that the kernels of the operating systems one wishes to use on a Xen hypervisor need to be adapted to run on Xen."
 msgstr ""
+"Xen <indexterm><primary>Xen</primary></indexterm> é uma solução de "
+"“paravirtualização”. Ele introduz uma fina camada de abstração, chamada de "
+"“hypervisor”, entre o hardware e os sistemas superiores; Isso age como um "
+"árbitro que controla o acesso ao hardware feito pelas máquinas virtuais. "
+"Entretanto, ele apenas lida com algumas das instruções, o resto é executado "
+"diretamente pelo hardware em nome dos sistemas. A principal vantagem é que o "
+"desempenho não são degradadas, e os sistemas rodam perto da velocidade "
+"nativa; a desvantagem é que os núcleos dos sistemas operacionais que alguém "
+"deseja usar em um \"hypervisor\" Xen precisam ser adaptados para rodar o Xen."
 
 #. Tag: para
 #, no-c-format
 msgid "Let's spend some time on terms. The hypervisor is the lowest layer, that runs directly on the hardware, even below the kernel. This hypervisor can split the rest of the software across several <emphasis>domains</emphasis>, which can be seen as so many virtual machines. One of these domains (the first one that gets started) is known as <emphasis>dom0</emphasis>, and has a special role, since only this domain can control the hypervisor and the execution of other domains. These other domains are known as <emphasis>domU</emphasis>. In other words, and from a user point of view, the <emphasis>dom0</emphasis> matches the “host” of other virtualization systems, while a <emphasis>domU</emphasis> can be seen as a “guest”."
 msgstr ""
+"Vamos gastar algum tempo com termos. O \"hypervisor\" é a camada mais baixa, "
+"que roda diretamente no hardware, até mesmo abaixo do núcleo. Esse \""
+"hypervisor\" pode dividir o resto do software entre vários "
+"<emphasis>domínios</emphasis>, que podem ser vistos como muitas máquinas "
+"virtuais. Um desses domínios (o primeiro que for iniciado) é conhecido como "
+"<emphasis>dom0</emphasis>, e tem um papel especial, já que apenas esse "
+"domínio pode controlar o \"hypervisor\" e a execução de outros domínios. "
+"Esses outros domínios são conhecidos como <emphasis>domU</emphasis>. Em "
+"outras palavras, e a partir do ponto de vista do usuário, o "
+"<emphasis>dom0</emphasis> coincide com o “hospedeiro” de outros sistemas de "
+"virtualização, enquanto que o <emphasis>domU</emphasis> pode ser visto como "
+"um \"convidado\" (“guest”)."
 
 #. Tag: title
 #, no-c-format
@@ -2190,11 +2420,25 @@ msgstr ""
 #, no-c-format
 msgid "Xensource, the company behind Xen, therefore had to port Xen to this new framework, so that the Xen patches could be merged into the official Linux kernel. That meant a lot of code rewrite, and although Xensource soon had a working version based on the paravirt_ops interface, the patches were only progressively merged into the official kernel. The merge was completed in Linux 3.0. <ulink type=\"block\" url=\"http://wiki.xenproject.org/wiki/XenParavirtOps\" />"
 msgstr ""
+"A Xensource, a companhia por trás do Xen, portanto, tinha que portar o Xen "
+"para esse novo \"framework\", para que os patches do Xen pudessem ser "
+"incorporados ao núcleo Linux oficial. Isso significa um monte de códigos "
+"reescritos, e embora a  Xensource logo tivesse uma versão em funcionamento "
+"com base na interface paravirt_ops, os patches eram apenas progressivamente "
+"incorporados no núcleo oficial. A fusão foi concluída no Linux 3.0. <ulink "
+"type=\"block\" url=\"http://wiki.xenproject.org/wiki/XenParavirtOps\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Since <emphasis role=\"distribution\">Wheezy</emphasis> is based on version 3.2 of the Linux kernel, the standard <emphasis role=\"pkg\">linux-image-686-pae</emphasis> and <emphasis role=\"pkg\">linux-image-amd64</emphasis> packages include the necessary code, and the distribution-specific patching that was required for <emphasis role=\"distribution\">Squeeze</emphasis> and earlier versions of Debian is no more. <ulink type=\"block\" url=\"http://wiki.xenproject.org/wiki/Xen_Kernel_Feature_Matrix\" />"
 msgstr ""
+"Como o <emphasis role=\"distribution\">Wheezy</emphasis> é baseado na versão "
+"3.2 do núcleo Linux, os pacotes padrão <emphasis role=\"pkg\">linux-"
+"image-686-pae</emphasis> e <emphasis role=\"pkg\">linux-image-"
+"amd64</emphasis> incluem o código necessário, os patches específicos para <"
+"emphasis role=\"distribution\">Squeeze</emphasis> e versões anteriores do "
+"Debian não são mais necessários. <ulink type=\"block\" url=\""
+"http://wiki.xenproject.org/wiki/Xen_Kernel_Feature_Matrix\" />"
 
 #. Tag: para
 #, no-c-format
@@ -2210,6 +2454,11 @@ msgstr "<emphasis>NOTA</emphasis> Arquiteturas compatíveis com Xen"
 #, no-c-format
 msgid "Xen is currently only available for the i386 and amd64 architectures. Moreover, it uses processor instructions that haven't always been provided in all i386-class computers. Note that most of the Pentium-class (or better) processors made after 2001 will work, so this restriction won't apply to very many situations."
 msgstr ""
+"O Xen está atualmente disponível apenas para as arquiteturas i386 e amd64. "
+"Além disso, ele usa instruções do processador que nem sempre foram "
+"fornecidas em todos os computadores classe i386. Note que a maioria dos "
+"processadores classe Pentium (ou melhor) feitos após 2001 irão funcionar, "
+"então essa restrição não irá aplicar em muitas situações."
 
 #. Tag: title
 #, no-c-format
@@ -2220,31 +2469,62 @@ msgstr "<emphasis>CULTURA</emphasis> Xen e núcleos não-Linux"
 #, no-c-format
 msgid "Xen requires modifications to all the operating systems one wants to run on it; not all kernels have the same level of maturity in this regard. Many are fully-functional, both as dom0 and domU: Linux 3.0 and later, NetBSD 4.0 and later, and OpenSolaris. Others, such as OpenBSD 4.0, FreeBSD 8 and Plan 9, only work as a domU."
 msgstr ""
+"O Xen requer modificações em todos os sistemas operacionais em que alguém "
+"queira rodá-lo; nem todos os núcleos tem o mesmo nível de maturidade sobre "
+"esse assunto. Muitos são totalmente funcionais, tanto como dom0 quanto domU: "
+"Linux 3.0 e posteriores, NetBSD 4.0 e posteriores, e OpenSolaris. Outros, "
+"como OpenBSD 4.0, FreeBSD 8 e Plan 9, apenas funcionam como domU."
 
 #. Tag: para
 #, no-c-format
 msgid "However, if Xen can rely on the hardware functions dedicated to virtualization (which are only present in more recent processors), even non-modified operating systems can run as domU (including Windows)."
 msgstr ""
+"Contudo, se o Xen puder contar com funções de hardware dedicadas a "
+"virtualização (as quais apenas estão presente em processadores mais recentes)"
+", até mesmo sistemas operacionais não modificados podem rodar como domU ("
+"incluindo o Windows)."
 
 #. Tag: para
 #, no-c-format
 msgid "The hypervisor itself. According to the available hardware, the appropriate package will be either <emphasis role=\"pkg\">xen-hypervisor-4.1-i386</emphasis> or <emphasis role=\"pkg\">xen-hypervisor-4.1-amd64</emphasis>."
 msgstr ""
+"O \"hypervisor\" ele próprio. De acordo com o hardware disponível, o pacote "
+"apropriado será ou <emphasis role=\"pkg\">xen-hypervisor-4.1-i386</emphasis> "
+"ou <emphasis role=\"pkg\">xen-hypervisor-4.1-amd64</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "A kernel that runs on that hypervisor. Any kernel more recent than 3.0 will do, including the 3.2 version present in <emphasis role=\"distribution\">Wheezy</emphasis>."
 msgstr ""
+"Um núcleo que rode nesse \"hypervisor\". Qualquer núcleo mais recente que o "
+"3.0 irá servir, incluindo a versão 3.2 presente no <emphasis role=\""
+"distribution\">Wheezy</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "The i386 architecture also requires a standard library with the appropriate patches taking advantage of Xen; this is in the <emphasis role=\"pkg\">libc6-xen</emphasis> package."
 msgstr ""
+"A arquitetura i386 também requer uma biblioteca padrão com os patches "
+"apropriados para aproveitar o Xen; ela está no pacote <emphasis role=\"pkg\""
+">libc6-xen</emphasis>."
 
 #. Tag: para
 #, no-c-format
 msgid "In order to avoid the hassle of selecting these components by hand, a few convenience packages (such as <emphasis role=\"pkg\">xen-linux-system-686-pae</emphasis> and <emphasis role=\"pkg\">xen-linux-system-amd64</emphasis>) have been made available; they all pull in a known-good combination of the appropriate hypervisor and kernel packages. The hypervisor also brings <emphasis role=\"pkg\">xen-utils-4.1</emphasis>, which contains tools to control the hypervisor from the dom0. This in turn brings the appropriate standard library. During the installation of all that, configuration scripts also create a new entry in the Grub bootloader menu, so as to start the chosen kernel in a Xen dom0. Note however that this entry is not usually set to be the first one in the list, and will therefore not be selected by default. If that is not the desired behavior, the following commands will change it:"
 msgstr ""
+"Para evitar o aborrecimento de selecionar esses componentes manualmente, a "
+"conveniência de alguns pacotes (tais com o <emphasis role=\"pkg\">xen-linux-"
+"system-686-pae</emphasis> e o <emphasis role=\"pkg\">xen-linux-system-"
+"amd64</emphasis>) foram colocados a disposição; todos eles puxam, em uma boa "
+"combinação, os pacotes \"hypervisor\" e núcleo apropriados. O \"hypervisor\" "
+"também trás o <emphasis role=\"pkg\">xen-utils-4.1</emphasis>, que contém "
+"ferramentas para controlar o \"hypervisor\" a partir do dom0. Este, por sua "
+"vez, trás a biblioteca padrão apropriada. Durante a instalação de tudo isso, "
+"scripts de configuração também criam uma nova entrada no menu do carregador "
+"de inicialização Grub, a fim de iniciar o núcleo escolhido em um dom0 Xen. "
+"Note, contudo, que essa entrada geralmente não é definida para ser a "
+"primeira da lista, e portanto, não será selecionada por padrão. Se esse não "
+"é o comportamento desejado, os comandos a seguir irão mudar isso:"
 
 #. Tag: screen
 #, no-c-format
@@ -2261,11 +2541,27 @@ msgstr ""
 #, no-c-format
 msgid "Once these prerequisites are installed, the next step is to test the behavior of the dom0 by itself; this involves a reboot to the hypervisor and the Xen kernel. The system should boot in its standard fashion, with a few extra messages on the console during the early initialization steps."
 msgstr ""
+"Uma vez que esses pré-requisitos estejam instalados, o próximo passo é "
+"testar o comportamento do próprio dom0; isso envolve uma reinicialização do "
+"\"hypervisor\" e do núcleo Xen. O sistema deverá inicializar da maneira "
+"usual, com algumas mensagens extras no console, durante os passo iniciais da "
+"inicialização."
 
 #. Tag: para
 #, no-c-format
 msgid "Now is the time to actually install useful systems on the domU systems, using the tools from <emphasis role=\"pkg\">xen-tools</emphasis>. This package provides the <command>xen-create-image</command> command, which largely automates the task. The only mandatory parameter is <literal>--hostname</literal>, giving a name to the domU; other options are important, but they can be stored in the <filename>/etc/xen-tools/xen-tools.conf</filename> configuration file, and their absence from the command line doesn't trigger an error. It is therefore important to either check the contents of this file before creating images, or to use extra parameters in the <command>xen-create-image</command> invocation. Important parameters of note include the following:"
 msgstr ""
+"Agora é o momento de realmente instalar sistemas úteis nos sistemas domU, "
+"usando as ferramentas do <emphasis role=\"pkg\">xen-tools</emphasis>. esse "
+"pacote provê o comando <command>xen-create-image</command>, que automatiza a "
+"tarefa em grande parte. O único parâmetro mandatório é o "
+"<literal>--hostname</literal>, dando um nome ao domU; outras opções são "
+"importantes, mas podem ser armazenadas no arquivo de configuração "
+"<filename>/etc/xen-tools/xen-tools.conf</filename>, e assim, a ausência "
+"dessas opções na linha de comando não dispara um error. É, portanto, "
+"importante ou checar o conteúdo desse arquivo antes de criar imagens, ou "
+"usar parâmetros extras na invocação do <command>xen-create-image</command>. "
+"Parâmetros que são importantes de notar são os seguintes:"
 
 #. Tag: para
 #, no-c-format
@@ -2281,6 +2577,10 @@ msgstr "<literal>--size</literal> e <literal>--swap</literal>, para definir o ta
 #, no-c-format
 msgid "<literal>--debootstrap</literal>, to cause the new system to be installed with <command>debootstrap</command>; in that case, the <literal>--dist</literal> option will also most often be used (with a distribution name such as <emphasis role=\"distribution\">wheezy</emphasis>)."
 msgstr ""
+"<literal>--debootstrap</literal>, para fazer com que o novo sistema seja "
+"instalado com o <command>debootstrap</command>; neste caso, a opção "
+"<literal>--dist</literal> irá também ser usada mais geralmente (com um nome "
+"de distribuição como o <emphasis role=\"distribution\">wheezy</emphasis>)."
 
 #. Tag: title
 #, no-c-format
@@ -2301,6 +2601,15 @@ msgstr "<literal>--dhcp</literal> define que a configuração de rede do domU de
 #, no-c-format
 msgid "Lastly, a storage method must be chosen for the images to be created (those that will be seen as hard disk drives from the domU). The simplest method, corresponding to the <literal>--dir</literal> option, is to create one file on the dom0 for each device the domU should be provided. For systems using LVM, the alternative is to use the <literal>--lvm</literal> option, followed by the name of a volume group; <command>xen-create-image</command> will then create a new logical volume inside that group, and this logical volume will be made available to the domU as a hard disk drive."
 msgstr ""
+"Por fim, um método de armazenamento tem que ser escolhido para as imagens a "
+"serem criadas (aquelas que serão vistas como unidades de disco rígido a "
+"partir do domU). O método mais simples, que corresponde a opção "
+"<literal>--dir</literal>, é criar um um arquivo no dom0 para cada "
+"dispositivo que o domU deveria fornecer. Para sistemas que usam o LVM, a "
+"alternativa é usar a opção <literal>--lvm</literal>, seguida pelo nome do "
+"grupo de volume; <command>xen-create-image</command> irá então criar um novo "
+"volume lógico dentro desse grupo, e esse volume lógico se tornará disponível "
+"para o domU como uma unidade de disco rígido."
 
 #. Tag: title
 #, no-c-format
@@ -2411,6 +2720,16 @@ msgstr "Agora temos uma máquina virtual, mas atualmente não está sendo execut
 #, no-c-format
 msgid "Before turning these virtual machines on, we need to define how they'll be accessed. They can of course be considered as isolated machines, only accessed through their system console, but this rarely matches the usage pattern. Most of the time, a domU will be considered as a remote server, and accessed only through a network. However, it would be quite inconvenient to add a network card for each domU; which is why Xen allows creating virtual interfaces, that each domain can see and use in a standard way. Note that these cards, even though they're virtual, will only be useful once connected to a network, even a virtual one. Xen has several network models for that:"
 msgstr ""
+"Antes de ligarmos essas máquinas virtuais, nós precisamos definir como elas "
+"serão acessadas. Elas podem, é claro, serem consideradas como máquinas "
+"isoladas, apenas acessadas através de seus consoles de sistema, mas isso "
+"raramente coincide com o padrão de uso. Na maioria das vezes, um domU será "
+"considerado um servidor remoto, e apenas acessado através de uma rede. No "
+"entanto, seria bem inconveniente adicionar uma placa de rede para cada; e "
+"por isso é que o Xen permite a criação de interfaces virtuais, que cada "
+"domínio possa ver e usar da forma padrão. Note que essas interfaces, mesmo "
+"que elas sejam virtuais, só serão úteis uma vez conectadas a uma rede, mesmo "
+"que virtual. O Xen tem vários modelos de rede para isso:"
 
 #. Tag: para
 #, no-c-format
@@ -2431,11 +2750,27 @@ msgstr "Finalmente, no modelo <emphasis>NAT</emphasis>, o dom0 novamente está e
 #, no-c-format
 msgid "These three networking nodes involve a number of interfaces with unusual names, such as <filename>vif*</filename>, <filename>veth*</filename>, <filename>peth*</filename> and <filename>xenbr0</filename>. The Xen hypervisor arranges them in whichever layout has been defined, under the control of the user-space tools. Since the NAT and routing models are only adapted to particular cases, we will only address the bridging model."
 msgstr ""
+"Estes três nós de rede envolvem várias interfaces com nome incomuns, tais "
+"como <filename>vif*</filename>, <filename>veth*</filename>, "
+"<filename>peth*</filename> e <filename>xenbr0</filename>. O \"hypervisor\" "
+"Xen organiza-os de acordo com qualquer que seja o layout definido, sob o "
+"controle das ferramentas de espaço do usuário. Como o NAT e os modelos de "
+"roteamento adaptam-se apenas a casos particulares, nós só iremos abordar o "
+"modelo de \"bridging\"."
 
 #. Tag: para
 #, no-c-format
 msgid "The standard configuration of the Xen packages does not change the system-wide network configuration. However, the <command>xend</command> daemon is configured to integrate virtual network interfaces into any pre-existing network bridge (with <filename>xenbr0</filename> taking precedence if several such bridges exist). We must therefore set up a bridge in <filename>/etc/network/interfaces</filename> (which requires installing the <emphasis role=\"pkg\">bridge-utils</emphasis> package, which is why the <emphasis role=\"pkg\">xen-utils-4.1</emphasis> package recommends it) to replace the existing eth0 entry:"
 msgstr ""
+"A configuração padrão dos pacotes Xen não altera a configuração de rede de "
+"todo o sistema. No entanto, o daemon  <command>xend</command> é configurado "
+"para integrar interfaces de rede virtual com qualquer bridge de rede pré-"
+"existente (com <filename>xenbr0</filename> tendo precedência se várias "
+"dessas bridges existirem). Nós temos, portanto, de definir uma bridge em "
+"<filename>/etc/network/interfaces</filename> (o que requer a instalação do "
+"pacote <emphasis role=\"pkg\">bridge-utils</emphasis>, o que explica porque "
+"o pacote <emphasis role=\"pkg\">xen-utils-4.1</emphasis> o recomenda) para "
+"substituir a entrada eth0 existente:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2456,6 +2791,11 @@ msgstr ""
 #, no-c-format
 msgid "After rebooting to make sure the bridge is automatically created, we can now start the domU with the Xen control tools, in particular the <command>xm</command> command. This command allows different manipulations on the domains, including listing them and, starting/stopping them."
 msgstr ""
+"Depois de reinicializar o computador, para termos certeza que a bridge é "
+"criada automaticamente, nós podemos agora iniciar o domU com as ferramentas "
+"de controle do Xen, em particular o comando <command>xm</command>. Esse "
+"comando permite diferentes manipulações nos domínios, incluindo listando-os "
+"e, iniciando/parando eles."
 
 #. Tag: screen
 #, no-c-format
@@ -2507,6 +2847,15 @@ msgstr "<emphasis>ATENÇÃO</emphasis> Somente utilize um domU por imagem!"
 #, no-c-format
 msgid "While it is of course possible to have several domU systems running in parallel, they will all need to use their own image, since each domU is made to believe it runs on its own hardware (apart from the small slice of the kernel that talks to the hypervisor). In particular, it isn't possible for two domU systems running simultaneously to share storage space. If the domU systems are not run at the same time, it is however quite possible to reuse a single swap partition, or the partition hosting the <filename>/home</filename> filesystem."
 msgstr ""
+"Enquanto é claro que é possível ter vários sistemas domU rodando em "
+"paralelo, eles todos precisarão usar suas próprias imagens, já que cada domU "
+"é feito para acreditar que ele roda em sue próprio hardware (fora a pequena "
+"parte do núcleo que conversa com o \"hypervisor\"). Em particular, não é "
+"possível para dois sistemas domU rodando simultaneamente, compartilhar "
+"espaço de armazenamento. Se os sistemas domU não estiverem rodando ao mesmo "
+"tempo, é, no entanto, bem possível reutilizar uma única partição de troca "
+"(swap), ou a partição de hospeda o sistema de arquivos "
+"<filename>/home</filename>."
 
 #. Tag: para
 #, no-c-format
