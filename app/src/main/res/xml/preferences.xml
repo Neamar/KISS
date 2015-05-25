@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   android:title="Settings">
-
     <PreferenceCategory android:title="@string/title_history">
         <fr.neamar.kiss.ResetPreference
             android:dialogMessage="Do you really want to reset your history?"
@@ -9,6 +8,14 @@
             android:summary="Reset your KISS history"
             android:title="Reset history">
         </fr.neamar.kiss.ResetPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/title_ui">
+        <CheckBoxPreference
+            android:key="display-keyboard"
+            android:defaultValue="false"
+            android:summary="Always display keyboard at startup"
+            android:title="Display keyboard">
+        </CheckBoxPreference>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_providers">
         <CheckBoxPreference

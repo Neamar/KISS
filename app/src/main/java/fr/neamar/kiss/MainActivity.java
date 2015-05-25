@@ -28,7 +28,6 @@ import android.view.ViewAnimationUtils;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -228,6 +227,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        getListView().setLongClickable(true);
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View arg1, int pos, long id) {
+                ((RecordAdapter) parent.getAdapter()).onLongClick(pos);
+                return true;
+            }
+        });
 
         // Hide the "X" before the text field, instead displaying the menu button
         displayClearOnInput();
@@ -288,7 +296,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         if (prefs.getBoolean("layout-updated", false)) {
             // Restart current activity to refresh view, since some preferences
-            // might require using a new UI
+            // may require using a new UI
             prefs.edit().putBoolean("layout-updated", false).commit();
             Intent i = getApplicationContext().getPackageManager().getLaunchIntentForPackage(
                     getApplicationContext().getPackageName());
@@ -312,32 +320,34 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 }
             }
         };
-        getListView().setLongClickable(true);
-        getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
-
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View arg1, int pos, long id) {
-                ((RecordAdapter) parent.getAdapter()).onLongClick(pos);
-                return true;
-            }
-        });
 
         // registering our receiver
         this.registerReceiver(mReceiver, intentFilter);
         this.registerReceiver(mReceiver, intentFilterBis);
         this.registerReceiver(mReceiver, intentFilterTer);
-        // Display keyboard
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                searchEditText.requestFocus();
-                InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
-            }
-        }, 50);
 
         updateRecords(searchEditText.getText().toString());
         displayClearOnInput();
+        if (prefs.getBoolean("display-keyboard", false)) {
+            // Display keyboard
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    searchEditText.requestFocus();
+                    InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+                }
+            }, 10);
+        } else {
+            // Display keyboard
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    hideKeyboard();
+                    searchEditText.clearFocus();
+                }
+            }, 10);
+        }
 
         super.onResume();
     }
