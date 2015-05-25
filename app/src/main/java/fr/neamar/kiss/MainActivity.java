@@ -1,7 +1,9 @@
 package fr.neamar.kiss;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -412,14 +414,36 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
     protected void displayLoader(Boolean loaded) {
         final View loaderBar = findViewById(R.id.loaderBar);
         final View launcherButton = findViewById(R.id.launcherButton);
+
+        int animationDuration = getResources().getInteger(
+                android.R.integer.config_longAnimTime);
+
         if (loaded) {
             launcherButton.setVisibility(View.VISIBLE);
-            loaderBar.setVisibility(View.INVISIBLE);
+
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                launcherButton.setAlpha(0);
+                launcherButton.animate()
+                        .alpha(1f)
+                        .setDuration(animationDuration)
+                        .setListener(null);
+                loaderBar.animate()
+                        .alpha(0f)
+                        .setDuration(animationDuration)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                loaderBar.setVisibility(View.GONE);
+                                loaderBar.setAlpha(1);
+                            }
+                        });
+            }
         } else {
-            launcherButton.setVisibility(View.INVISIBLE);
+            launcherButton.setVisibility(View.GONE);
             loaderBar.setVisibility(View.VISIBLE);
         }
     }
@@ -430,6 +454,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
      *
      * @param query
      */
+
     public void updateRecords(String query) {
         if (updateRecords != null) {
             updateRecords.cancel(true);
