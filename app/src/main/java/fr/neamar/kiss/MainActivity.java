@@ -25,7 +25,6 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -79,7 +78,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         super.onCreate(savedInstanceState);
 
         IntentFilter intentFilter = new IntentFilter(START_LOAD);
@@ -91,12 +89,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateRecords(searchEditText.getText().toString());
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
-                    setProgressBarIndeterminateVisibility(false);
+                    displayLoader(true);
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
-                    setProgressBarIndeterminateVisibility(true);
+                    displayLoader(false);
                 }
             }
         };
+
         this.registerReceiver(mReceiver, intentFilter);
         this.registerReceiver(mReceiver, intentFilterBis);
         this.registerReceiver(mReceiver, intentFilterTer);
@@ -107,6 +106,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         setContentView(R.layout.main);
+
+        // For now, display indeterminate loader
+        displayLoader(false);
 
         // Create adapter for records
         adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Record>());
@@ -297,21 +299,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             startActivity(i);
         }
 
-        IntentFilter intentFilter = new IntentFilter(START_LOAD);
-        IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
-        IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
-        mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
-                    updateRecords(searchEditText.getText().toString());
-                } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
-                    setProgressBarIndeterminateVisibility(false);
-                } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
-                    setProgressBarIndeterminateVisibility(true);
-                }
-            }
-        };
         getListView().setLongClickable(true);
         getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
 
@@ -322,10 +309,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
-        // registering our receiver
-        this.registerReceiver(mReceiver, intentFilter);
-        this.registerReceiver(mReceiver, intentFilterBis);
-        this.registerReceiver(mReceiver, intentFilterTer);
         // Display keyboard
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -426,6 +409,18 @@ public class MainActivity extends ListActivity implements QueryInterface {
             clearButton.setVisibility(View.INVISIBLE);
             menuButton.setVisibility(View.VISIBLE);
             return false;
+        }
+    }
+
+    protected void displayLoader(Boolean loaded) {
+        final View loaderBar = findViewById(R.id.loaderBar);
+        final View launcherButton = findViewById(R.id.launcherButton);
+        if (loaded) {
+            launcherButton.setVisibility(View.VISIBLE);
+            loaderBar.setVisibility(View.INVISIBLE);
+        } else {
+            launcherButton.setVisibility(View.INVISIBLE);
+            loaderBar.setVisibility(View.VISIBLE);
         }
     }
 
