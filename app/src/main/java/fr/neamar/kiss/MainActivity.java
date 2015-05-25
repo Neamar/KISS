@@ -108,9 +108,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         setContentView(R.layout.main);
 
-        // For now, display indeterminate loader
-        displayLoader(false);
-
         // Create adapter for records
         adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Record>());
         setListAdapter(adapter);
