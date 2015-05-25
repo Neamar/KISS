@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-24 17:11+0900\n"
+"PO-Revision-Date: 2015-05-25 19:23+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -147,92 +147,92 @@ msgstr "Debconf はパッケージのインストール中に幾つかの質問�
 #. Tag: para
 #, no-c-format
 msgid "The first question deals with the type of setup. Only two of the proposed answers are relevant in case of an Internet-connected server, “Internet site” and “Internet with smarthost”. The former is appropriate for a server that receives incoming email and sends outgoing email directly to its recipients, and is therefore well-adapted to the Falcot Corp case. The latter is appropriate for a server receiving incoming email normally, but that sends outgoing email through an intermediate SMTP server — the “smarthost” — rather than directly to the recipient's server. This is mostly useful for individuals with a dynamic IP address, since many email servers reject messages coming straight from such an IP address. In this case, the smarthost will usually be the ISP's SMTP server, which is always configured to accept email coming from the ISP's customers and forward it appropriately. This setup (with a smarthost) is also relevant for servers that are not permanently connected to the internet, since it avoids having to manage a queue of undeliverable messages that need to be retried later."
-msgstr ""
+msgstr "最初の質問はセットアップのタイプに関するものです。Internet に接続されたサーバに関連するのは提案された選択肢の内の 2 種類だけです。「Internet site」と「Internet with smarthost」です。「Internet site」は、入って来る電子メールを受け取り、外に出る電子メールを直接受信者に送信するサーバに適します。つまり Falcot Corp の場合にうまく適合します。「Internet with smarthost」は、外に出る電子メールを直接受信者のサーバに送信するのではなく、中間 SMTP サーバ -「smarthost」- を介して送信するサーバに適します。この選択肢は主に動的 IP アドレスを持つマシンに便利です。なぜなら、多くの電子メールサーバは動的 IP アドレスを持つホストから配送されたメッセージを拒否するからです。この場合、スマートホストに通常 ISP の SMTP サーバを設定します。この SMTP サーバはは常に ISP の顧客からの電子メールを受け入れ、それを適切に転送するように設定されています。この (スマートホストを使う) 選択肢はさらに、永久に internet に接続され続けないサーバにも適しています。なぜなら、後から再試行する必要のある未配送メッセージのキューを管理しなくても良くなるからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> ISP"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> ISP"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ISP, Internet Service Provider</primary>"
-msgstr ""
+msgstr "<primary>ISP、インターネットサービスプロバイダ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "ISP is the acronym for “Internet Service Provider”. It covers an entity, often a commercial company, that provides Internet connections and the associated basic services (email, news and so on)."
-msgstr ""
+msgstr "ISP とは「Internet Service Provider」の頭字語です。ISP は通常営利企業で、Internet 接続と関連する基本的サービス (電子メール、ニュースなど) を提供します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The second question deals with the full name of the machine, used to generate email addresses from a local user name; the full name of the machine ends up as the part after the at-sign (“@”). In the case of Falcot, the answer should be <literal>mail.falcot.com</literal>. This is the only question asked by default, but the configuration it leads to is not complete enough for the needs of Falcot, which is why the administrators run <command>dpkg-reconfigure postfix</command> so as to be able to customize more parameters."
-msgstr ""
+msgstr "2 番目の質問はマシンのフルネームに関するもので、これはローカルユーザの電子メールアドレスを生成するために使われます; マシンのフルネームとはアットマーク (「@」) のすぐ後ろに付けられるものです。Falcot の場合、この質問には <literal>mail.falcot.com</literal> と答えるべきです。デフォルトで聞かれる質問は以上ですが、Falcot にとってこの状態の Postfix はまだ十分に設定されていません。このため、管理者は <command>dpkg-reconfigure postfix</command> を実行してさらに多くのパラメータをカスタマイズします。"
 
 #. Tag: para
 #, no-c-format
 msgid "One of the extra questions asks for all the domain names related to this machine. The default list includes its full name as well as a few synonyms for <literal>localhost</literal>, but the main <literal>falcot.com</literal> domain needs to be added by hand. More generally, this question should usually be answered with all the domain names for which this machine should serve as an MX server; in other words, all the domain names for which the DNS says that this machine will accept email. This information ends up in the <literal>mydestination</literal> variable of the main Postfix configuration file — <filename>/etc/postfix/main.cf</filename>."
-msgstr ""
+msgstr "追加で行われる質問の 1 つに、このマシンに関連する全てのドメイン名に関するものがあります。デフォルトで挙げられるドメイン名のリストには、マシンのフルネームと幾つかの <literal>localhost</literal> の同義語が含まれていますが、主要なドメイン名である <literal>falcot.com</literal> を手作業で追加する必要があります。より一般的に言えば、この質問の回答には、通常 MX サーバを担当するマシンに割り当てた全てのドメイン名を含めるべきです; 言い換えれば、DNS から電子メールを受け入れると回答される全てのドメイン名を含めるべきです。この情報の最後に主要な Postfix 設定ファイル - <filename>/etc/postfix/main.cf</filename> - の <literal>mydestination</literal> 変数を設定します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>MX</secondary>"
-msgstr ""
+msgstr "<primary>サーバ</primary><secondary>MX</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MX</primary><secondary>server</secondary>"
-msgstr ""
+msgstr "<primary>MX</primary><secondary>サーバ</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Role of the DNS <emphasis>MX</emphasis> record while sending a mail"
-msgstr ""
+msgstr "メール送信中の DNS <emphasis>MX</emphasis> レコードの役割"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Querying the MX records"
-msgstr ""
+msgstr "<emphasis>EXTRA</emphasis> MX レコードの問い合わせ"
 
 #. Tag: para
 #, no-c-format
 msgid "When the DNS does not have an MX record for a domain, the email server will try sending the messages to the host itself, by using the matching A record (or AAAA in IPv6)."
-msgstr ""
+msgstr "宛先アドレスの DNS 応答に MX レコードが含まれない場合、電子メールサーバはの宛先アドレスの A レコード (IPv6 の場合 AAAA レコード) に送信することを試みます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In some cases, the installation can also ask what networks should be allowed to send email via the machine. In its default configuration, Postfix only accepts emails coming from the machine itself; the local network will usually be added. The Falcot Corp administrators added <literal>192.168.0.0/16</literal> to the default answer. If the question is not asked, the relevant variable in the configuration file is <literal>mynetworks</literal>, as seen in the example below."
-msgstr ""
+msgstr "インストール中に、このサーバが電子メールの送信要求を受け入れるネットワークを尋ねられる場合があります。デフォルトの設定で、Postfix はマシン自身からの電子メールの送信要求だけを受け入れます; 通常はローカルネットワークからの送信要求も受け入れるように設定します。Falcot Corp 管理者はデフォルトの回答に <literal>192.168.0.0/16</literal> を追加しました。この質問が尋ねられなければ、以下の例に示す通り、設定ファイル中の関連する変数 <literal>mynetworks</literal> にローカルネットワークを追加します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Local email can also be delivered through <command>procmail</command>. This tool allows users to sort their incoming email according to rules stored in their <filename>~/.procmailrc</filename> file."
-msgstr ""
+msgstr "ローカル電子メールを <command>procmail</command> を使って配送することも可能です。<command>procmail</command> を使うことで、ユーザは <filename>~/.procmailrc</filename> ファイルに書かれたルールに従って入って来る電子メールを仕分けすることが可能になります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>procmail</command></primary>"
-msgstr ""
+msgstr "<primary><command>procmail</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>email</primary><secondary>filtering</secondary>"
-msgstr ""
+msgstr "<primary>電子メール</primary><secondary>フィルタ</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>filtering email</primary>"
-msgstr ""
+msgstr "<primary>電子メールフィルタ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "After this first step, the administrators got the following configuration file; it will be used as a starting point for adding some extra functionality in the next sections."
-msgstr ""
+msgstr "最初のステップの後、以下の設定ファイルが得られます; 次の節では、幾つかの追加的な機能を追加するための足掛かりとしてこれを使います。"
 
 #. Tag: title
 #, no-c-format
 msgid "Initial <filename>/etc/postfix/main.cf</filename> file"
-msgstr ""
+msgstr "最初の <filename>/etc/postfix/main.cf</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -280,76 +280,118 @@ msgid ""
 "inet_interfaces = all\n"
 "inet_protocols = all\n"
 msgstr ""
+"\n"
+"# See /usr/share/postfix/main.cf.dist for a commented, more complete version\n"
+"\n"
+"\n"
+"# Debian specific:  Specifying a file name will cause the first\n"
+"# line of that file to be used as the name.  The Debian default\n"
+"# is /etc/mailname.\n"
+"#myorigin = /etc/mailname\n"
+"\n"
+"smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)\n"
+"biff = no\n"
+"\n"
+"# appending .domain is the MUA's job.\n"
+"append_dot_mydomain = no\n"
+"\n"
+"# Uncomment the next line to generate \"delayed mail\" warnings\n"
+"#delay_warning_time = 4h\n"
+"\n"
+"readme_directory = no\n"
+"\n"
+"# TLS parameters\n"
+"smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem\n"
+"smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key\n"
+"smtpd_use_tls=yes\n"
+"smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache\n"
+"smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache\n"
+"\n"
+"# See /usr/share/doc/postfix/TLS_README.gz in the postfix-doc package for\n"
+"# information on enabling SSL in the smtp client.\n"
+"\n"
+"myhostname = mail.falcot.com\n"
+"alias_maps = hash:/etc/aliases\n"
+"alias_database = hash:/etc/aliases\n"
+"myorigin = /etc/mailname\n"
+"mydestination = mail.falcot.com, falcot.com, localhost.localdomain, localhost\n"
+"relayhost = \n"
+"mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 192.168.0.0/16\n"
+"mailbox_command = procmail -a \"$EXTENSION\"\n"
+"mailbox_size_limit = 0\n"
+"recipient_delimiter = +\n"
+"inet_interfaces = all\n"
+"inet_protocols = all\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <emphasis>Snake oil</emphasis> SSL certificates"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> <emphasis>Snake oil</emphasis> SSL 証明書"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>snake oil</emphasis> certificates, like the <emphasis>snake oil</emphasis> “medicine” sold by unscrupulous quacks in old times, have absolutely no value, since they are generated similarly on all Debian systems, with the same “private” part. They should only be used for testing purposes, and normal service must use real certificates; these can be generated with the procedure described in <xref linkend=\"sect.easy-rsa\" />."
-msgstr ""
+msgstr "<emphasis>snake oil</emphasis> 証明書、昔に悪徳医者によって販売された<emphasis>いんちき</emphasis>「薬」のようなもの、には全く価値がありません。なぜなら、全ての Debian システムで同じ「秘密」部分を使って同じようなものが生成されるからです。<emphasis>snake oil</emphasis> 証明書はテスト目的でのみ使われ、通常のサービスでは真の証明書を使うべきです; 証明書の作成手順は<xref linkend=\"sect.easy-rsa\" />で説明されています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring Virtual Domains"
-msgstr ""
+msgstr "仮想ドメインの設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>domain</primary><secondary>virtual</secondary>"
-msgstr ""
+msgstr "<primary>ドメイン</primary><secondary>仮想</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual domain</primary>"
-msgstr ""
+msgstr "<primary>仮想ドメイン</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The mail server can receive emails addressed to other domains besides the main domain; these are then known as virtual domains. In most cases where this happens, the emails are not ultimately destined to local users. Postfix provides two interesting features for handling virtual domains."
-msgstr ""
+msgstr "メールサーバは主要ドメインに加えて他のドメイン宛の電子メールを受け取ることが可能です。これらは仮想ドメインとして知られています。これを使う場合の殆どは、電子メールが永久的にローカルユーザに配送されない場合です。Postfix は仮想ドメインを取り扱う 2 種類の興味深い機能を提供します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Virtual domains and canonical domains"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> 仮想ドメインとカノニカルドメイン"
 
 #. Tag: para
 #, no-c-format
 msgid "None of the virtual domains must be referenced in the <literal>mydestination</literal> variable; this variable only contains the names of the “canonical” domains directly associated to the machine and its local users."
-msgstr ""
+msgstr "いかなる仮想ドメインも <literal>mydestination</literal> 変数の中で参照していはいけません; <literal>mydestination</literal> 変数では、マシンとローカルユーザに直接的に関連付けられた「カノニカル」ドメインの名前だけが含まれます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Virtual Alias Domains"
-msgstr ""
+msgstr "仮想エイリアスドメイン"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>alias</primary><secondary>virtual alias domain</secondary>"
-msgstr ""
+msgstr "<primary>別名</primary><secondary>仮想エイリアスドメイン</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual domain</primary><secondary>virtual alias domain</secondary>"
-msgstr ""
+msgstr "<primary>仮想ドメイン</primary><secondary>仮想エイリアスドメイン</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A virtual alias domain only contains aliases, i.e. addresses that only forward emails to other addresses."
-msgstr ""
+msgstr "仮想エイリアスドメインには、エイリアスだけが含まれます。例えば、電子メールを他のアドレスに転送するだけのアドレスがこれに当たります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Such a domain is enabled by adding its name to the <literal>virtual_alias_domains</literal> variable, and referencing an address mapping file in the <literal>virtual_alias_maps</literal> variable."
-msgstr ""
+msgstr "ドメインを有効化するには、<literal>virtual_alias_domains</literal> 変数にその名前を追加し、<literal>virtual_alias_maps</literal> 変数でアドレスマッピングファイルを参照します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Directives to add in the <filename>/etc/postfix/main.cf</filename> file"
-msgstr ""
+msgstr "<filename>/etc/postfix/main.cf</filename> ファイルに追加する指示文"
 
 #. Tag: programlisting
 #, no-c-format
@@ -358,16 +400,19 @@ msgid ""
 "virtual_alias_domains = falcotsbrand.com\n"
 "virtual_alias_maps = hash:/etc/postfix/virtual\n"
 msgstr ""
+"\n"
+"virtual_alias_domains = falcotsbrand.com\n"
+"virtual_alias_maps = hash:/etc/postfix/virtual\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/postfix/virtual</filename> file describes mapping with a rather straightforward syntax: each line contains two fields separated by whitespace; the first field is the alias name, the second field is a list of email addresses where it redirects. The special <literal>@domain.com</literal> syntax covers all remaining aliases in a domain."
-msgstr ""
+msgstr "<filename>/etc/postfix/virtual</filename> ファイルは、かなり直接的な構文で、対応付けを記述します: 各行には空白で分割された 2 つのフィールドが含まれます; 最初のフィールドは別名、2 番目のフィールドはリダイレクトする電子メールアドレスのリストです。<literal>@domain.com</literal> 特殊構文を使うことで、そのドメインに含まれる全ての残りの別名をカバーすることも可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Example <filename>/etc/postfix/virtual</filename> file"
-msgstr ""
+msgstr "<filename>/etc/postfix/virtual</filename> ファイルの例"
 
 #. Tag: programlisting
 #, no-c-format
@@ -381,46 +426,54 @@ msgid ""
 "# falcot.com domain.\n"
 "@falcotsbrand.com           @falcot.com\n"
 msgstr ""
+"\n"
+"webmaster@falcotsbrand.com  jean@falcot.com\n"
+"contact@falcotsbrand.com    laure@falcot.com, sophie@falcot.com\n"
+"# The alias below is generic and covers all addresses within \n"
+"# the falcotsbrand.com domain not otherwise covered by this file.\n"
+"# These addresses forward email to the same user name in the\n"
+"# falcot.com domain.\n"
+"@falcotsbrand.com           @falcot.com\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Virtual Mailbox Domains"
-msgstr ""
+msgstr "仮想メールボックスドメイン"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Combined virtual domain?"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> 統合された仮想ドメイン?"
 
 #. Tag: para
 #, no-c-format
 msgid "Postfix does not allow using the same domain in both <literal>virtual_alias_domains</literal> and <literal>virtual_mailbox_domains</literal>. However, every domain of <literal>virtual_mailbox_domains</literal> is implicitly included in <literal>virtual_alias_domains</literal>, which makes it possible to mix aliases and mailboxes within a virtual domain."
-msgstr ""
+msgstr "Postfix は <literal>virtual_alias_domains</literal> と <literal>virtual_mailbox_domains</literal> で同じドメインを使うことを許しません。しかしながら、<literal>virtual_mailbox_domains</literal> の各ドメインは明らかに <literal>virtual_alias_domains</literal> に含まれます。そのお陰で、仮想ドメインの中でエイリアスとメールボックスを混在させることが可能になります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>mailbox, virtual domain</primary>"
-msgstr ""
+msgstr "<primary>メールボックス、仮想ドメイン</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual domain</primary><secondary>virtual mailbox domain</secondary>"
-msgstr ""
+msgstr "<primary>仮想ドメイン</primary><secondary>仮想メールボックスドメイン</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Messages addressed to a virtual mailbox domain are stored in mailboxes not assigned to a local system user."
-msgstr ""
+msgstr "仮想メールボックスドメイン宛のメッセージはローカルシステムユーザに割り当てられていないメールボックスに保存されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Enabling a virtual mailbox domain requires naming this domain in the <literal>virtual_mailbox_domains</literal> variable, and referencing a mailbox mapping file in <literal>virtual_mailbox_maps</literal>. The <literal>virtual_mailbox_base</literal> parameter contains the directory under which the mailboxes will be stored."
-msgstr ""
+msgstr "仮想メールボックスドメインを有効化するには、そのドメインを <literal>virtual_mailbox_domains</literal> 変数の中に含め、<literal>virtual_mailbox_maps</literal> で指定したメールボックスマッピングファイルで参照します。<literal>virtual_mailbox_base</literal> パラメータには、メールボックスが保存されるディレクトリが含まれます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>virtual_uid_maps</literal> parameter (respectively <literal>virtual_gid_maps</literal>) references the file containing the mapping between the email address and the system user (respectively group) that “owns” the corresponding mailbox. To get all mailboxes owned by the same owner/group, the <literal>static:5000</literal> syntax assigns a fixed UID/GID (of value 5000 here)."
-msgstr ""
+msgstr "<literal>virtual_uid_maps</literal> (および <literal>virtual_gid_maps</literal>) パラメータは電子メールアドレスとそれに対応するメールボックスを「所有する」システムユーザ (およびグループ) の対応関係を含むファイルを参照します。全てのメールボックスを同じ所有者とグループによって所有されるようにするには <literal>static:5000</literal> 構文はを使って固定された UID/GID (ここでは 5000)を割り当てるようにします。"
 
 #. Tag: programlisting
 #, no-c-format
@@ -430,16 +483,20 @@ msgid ""
 "virtual_mailbox_maps = hash:/etc/postfix/vmailbox\n"
 "virtual_mailbox_base = /var/mail/vhosts\n"
 msgstr ""
+"\n"
+"virtual_mailbox_domains = falcot.org\n"
+"virtual_mailbox_maps = hash:/etc/postfix/vmailbox\n"
+"virtual_mailbox_base = /var/mail/vhosts\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Again, the syntax of the <filename>/etc/postfix/vmailbox</filename> file is quite straightforward: two fields separated with whitespace. The first field is an email address within one of the virtual domains, and the second field is the location of the associated mailbox (relative to the directory specified in <emphasis>virtual_mailbox_base</emphasis>). If the mailbox name ends with a slash (<literal>/</literal>), the emails will be stored in the <emphasis>maildir</emphasis> format; otherwise, the traditional <emphasis>mbox</emphasis> format will be used. The <emphasis>maildir</emphasis> format uses a whole directory to store a mailbox, each individual message being stored in a separate file. In the <emphasis>mbox</emphasis> format, on the other hand, the whole mailbox is stored in one file, and each line starting with “<literal>From </literal>” (<literal>From</literal> followed by a space) signals the start of a new message."
-msgstr ""
+msgstr "繰り返しになりますが、<filename>/etc/postfix/vmailbox</filename> ファイルの構文はかなり直接的です: 空白で分けられた 2 種類のフィールドです。最初のフィールドは仮想ドメインの 1 つに属する電子メールアドレスで、2 番目のフィールドは関連するメールボックスの場所です (<emphasis>virtual_mailbox_base</emphasis> 以下のディレクトリパス)。メールボックスの名前がスラッシュ (<literal>/</literal>) で終わっていた場合、電子メールは <emphasis>maildir</emphasis> フォーマットで保存されます; そうでなければ伝統的な  <emphasis>mbox</emphasis> フォーマットで保存されます。<emphasis>maildir</emphasis> フォーマットはメールボックスを保存するためにディレクトリ全体を使い、それぞれのメッセージは 1 つのファイルとして保存されます。これに対して、<emphasis>mbox</emphasis> フォーマットでは、メールボックス全体が 1 つのファイルに保存されます。「<literal>From </literal>」(<literal>From</literal> の後に1つの空白) で始まる行が新しいメッセージの始まる目印です。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/postfix/vmailbox</filename> file"
-msgstr ""
+msgstr "<filename>/etc/postfix/vmailbox</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -452,51 +509,58 @@ msgid ""
 "# with all mails concatenated into one single file\n"
 "sophie@falcot.org falcot.org/sophie\n"
 msgstr ""
+"\n"
+"# Jean's email is stored as maildir, with\n"
+"# one file per email in a dedicated directory\n"
+"jean@falcot.org falcot.org/jean/\n"
+"# Sophie's email is stored in a traditional \"mbox\" file,\n"
+"# with all mails concatenated into one single file\n"
+"sophie@falcot.org falcot.org/sophie\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Restrictions for Receiving and Sending"
-msgstr ""
+msgstr "受信と送信の制限"
 
 #. Tag: para
 #, no-c-format
 msgid "The growing number of unsolicited bulk emails (<emphasis>spam</emphasis>) requires being increasingly strict when deciding which emails a server should accept. This section presents some of the strategies included in Postfix."
-msgstr ""
+msgstr "迷惑メール (<emphasis>スパム</emphasis>) の数が増加したことにより、サーバが受け入れる電子メールの判断基準をますます厳しくすることが要求されるようになっています。この節では Postfix に含まれる幾つかの戦略を紹介します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> The spam problem"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> スパム問題"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>spam</primary>"
-msgstr ""
+msgstr "<primary>スパム</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "“Spam” is a generic term used to designate all the unsolicited commercial emails (also known as UCEs) that flood our electronic mailboxes; the unscrupulous individuals sending them are known as spammers. They care little about the nuisance they cause, since sending an email costs very little, and only a very small percentage of recipients need to be attracted by the offers for the spamming operation to make more money than it costs. The process is mostly automated, and any email address made public (for instance, on a web forum, or on the archives of a mailing list, or on a blog, and so on) will be discovered by the spammers' robots, and subjected to a never-ending stream of unsolicited messages."
-msgstr ""
+msgstr "「スパム」は一般的な用語で、電子メールボックスを溢れさせる全ての迷惑メール (UCE としても知られる) を指す場合に使われます; スパムを送信する悪人はスパマーとして知られています。スパマーは自分のやっている迷惑行為にほとんど関心がありません。なぜなら、電子メールを送信する費用はとても小さく、受信者の内とても少ない割合がスパム行為の提供物により惹きつけられ、そのコストより多くのお金を生むからです。スパム行為はほとんど自動化されています。公開している電子メールアドレス (例えば、ウェブフォーラム、メーリングリストのアーカイブ、ブログ、など) はスパマーのロボットによって発見され、迷惑メッセージを絶えず送りつけられます。"
 
 #. Tag: para
 #, no-c-format
 msgid "All system administrators try to face this nuisance with spam filters, but of course spammers keep adjusting to try to work around these filters. Some even rent networks of machines compromised by a worm from various crime syndicates. Recent statistics estimate that up to 95% of all emails circulating on the Internet are spam!"
-msgstr ""
+msgstr "全てのシステム管理者はスパムフィルタを使ってこの迷惑行為に立ち向かうことを試みます。しかし、もちろんスパマーはスパムフィルタを対処するように調整を続けます。一部のスパマーは様々な犯罪組織によりワームに感染させられたマシンのネットワークを借りるかもしれません。最近の統計によれば Internet 上を流れる全ての電子メールの 95% 超がスパムであると推定されています!"
 
 #. Tag: title
 #, no-c-format
 msgid "IP-Based Access Restrictions"
-msgstr ""
+msgstr "IP に基づくアクセス制限"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>smtpd_client_restrictions</literal> directive controls which machines are allowed to communicate with the email server."
-msgstr ""
+msgstr "<literal>smtpd_client_restrictions</literal> 指示文を使うことで、電子メールサーバと通信することを許すマシンを制御することが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Restrictions Based on Client Address"
-msgstr ""
+msgstr "クライアントアドレスに基づく制限"
 
 #. Tag: programlisting
 #, no-c-format
@@ -508,11 +572,17 @@ msgid ""
 "    reject_rbl_client sbl-xbl.spamhaus.org,\n"
 "    reject_rbl_client list.dsbl.org\n"
 msgstr ""
+"\n"
+"smtpd_client_restrictions = permit_mynetworks,\n"
+"    warn_if_reject reject_unknown_client,\n"
+"    check_client_access hash:/etc/postfix/access_clientip,\n"
+"    reject_rbl_client sbl-xbl.spamhaus.org,\n"
+"    reject_rbl_client list.dsbl.org\n"
 
 #. Tag: para
 #, no-c-format
 msgid "When a variable contains a list of rules, as in the example above, these rules are evaluated in order, from the first to the last. Each rule can accept the message, reject it, or leave the decision to a following rule. As a consequence, order matters, and simply switching two rules can lead to a widely different behavior."
-msgstr ""
+msgstr "上に挙げた例のように、変数に復数のルールのリストを設定する場合、これらのルールは最初から最後まで順番に評価されます。それぞれのルールはメッセージを受け入れ、拒否し、次のルールに決定を任せることができます。その結果、順番が重要になります。単純に 2 つのルールを入れ替えることで、挙動が全く違うものになる場合があります。"
 
 #. Tag: para
 #, no-c-format
