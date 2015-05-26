@@ -333,8 +333,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         // unregister our receiver
         this.unregisterReceiver(this.mReceiver);
     }
