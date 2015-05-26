@@ -24,7 +24,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -208,7 +207,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                         .getFavorites(MainActivity.this);
 
                 if (favorites_holder.size() == 0) {
-                    Toast toast = Toast.makeText(MainActivity.this, getString(R.string.menu_favorites_empty), Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.TOP, 0, 20);
                     toast.show();
                     return;
@@ -222,6 +221,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
                     Drawable drawable = record.getDrawable(MainActivity.this);
                     if (drawable != null)
                         image.setImageDrawable(drawable);
+                    image.setVisibility(View.VISIBLE);
+                }
+
+                // Hide empty favorites holder (not enough favorites yet)
+                for(int i = favorites_holder.size(); i < favsIds.length; i++) {
+                    findViewById(favsIds[i]).setVisibility(View.GONE);
                 }
 
                 hideKeyboard();
@@ -353,38 +358,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle favorites
-        if (item.getItemId() < 5) {
-            Holder holder = KissApplication.getDataHandler(this).getFavorites(this)
-                    .get(item.getItemId());
-            Record record = Record.fromHolder(this, holder);
-            record.fastLaunch(this);
-        }
-
         switch (item.getItemId()) {
-            case R.id.favorites:
-                // Populate option menu
-                // Favorites button
-                SubMenu favorites = item.getSubMenu();
-                favorites.clear();
-                ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(this)
-                        .getFavorites(this);
-                for (int i = 0; i < favorites_holder.size(); i++) {
-                    Holder holder = favorites_holder.get(i);
-                    MenuItem favorite = favorites.add(Menu.NONE, i, i, holder.name);
-
-                    Record record = Record.fromHolder(this, holder);
-                    Drawable drawable = record.getDrawable(this);
-                    if (drawable != null)
-                        favorite.setIcon(drawable);
-                }
-
-                if (favorites_holder.size() == 0) {
-                    Toast toast = Toast.makeText(this, getString(R.string.menu_favorites_empty), Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.TOP, 0, 20);
-                    toast.show();
-                }
-                return true;
             case R.id.settings:
                 startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
                 return true;
