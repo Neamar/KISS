@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-25 19:23+0900\n"
+"PO-Revision-Date: 2015-05-26 21:47+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -587,87 +587,87 @@ msgstr "上に挙げた例のように、変数に復数のルールのリスト
 #. Tag: para
 #, no-c-format
 msgid "The <literal>permit_mynetworks</literal> directive, used as the first rule, accepts all emails coming from a machine in the local network (as defined by the <emphasis>mynetworks</emphasis> configuration variable)."
-msgstr ""
+msgstr "最初のルールとして使われている <literal>permit_mynetworks</literal> 指示文により、ローカルネットワーク (<emphasis>mynetworks</emphasis> 設定変数によって定義された) 内のマシンからの全ての電子メールを受け入れるようになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The second directive would normally reject emails coming from machines without a completely valid DNS configuration. Such a valid configuration means that the IP address can be resolved to a name, and that this name, in turn, resolves to the IP address. This restriction is often too strict, since many email servers do not have a reverse DNS for their IP address. This explains why the Falcot administrators prepended the <literal>warn_if_reject</literal> modifier to the <literal>reject_unknown_client</literal> directive: this modifier turns the rejection into a simple warning recorded in the logs. The administrators can then keep an eye on the number of messages that would be rejected if the rule were actually enforced, and make an informed decision later if they wish to enable such enforcement."
-msgstr ""
+msgstr "2 番目の指示文により、完全に適切な DNS 設定の無いマシンからの電子メールを通常拒否するようになります。ここで適切な設定とは、IP アドレスが名前に解決でき、その名前が IP アドレスに解決できることを意味しています。この基準は厳しすぎる場合が多いでしょう。なぜなら、多くの電子メールサーバは IP アドレスに対応する逆引き DNS を持っていないからです。このため、Falcot 管理者は <literal>warn_if_reject</literal> 修飾子を <literal>reject_unknown_client</literal> 指示文の前に起きました。<literal>warn_if_reject</literal> 修飾子を付けることで、拒否するのではなく警告をログに記録するようになります。管理者は、このルールが実際強制された場合に拒否されるかもしれないメッセージの数に目を光らせ、後から十分な情報に基づいてこのルールを強制するか否かを決断することが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <emphasis>access</emphasis> tables"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> <emphasis>access</emphasis> テーブル"
 
 #. Tag: para
 #, no-c-format
 msgid "The restriction criteria include administrator-modifiable tables listing combinations of senders, IP addresses, and allowed or forbidden hostnames. These tables can be created from an uncompressed copy of the <filename>/usr/share/doc/postfix-doc/examples/access.gz</filename> file. This model is self-documented in its comments, which means each table describes its own syntax."
-msgstr ""
+msgstr "管理者は送信者、IP アドレス、許可および拒否ホスト名を組み合わせたテーブルを作成し、制限基準としてこれを使うことが可能です。これらのテーブルは <filename>/usr/share/doc/postfix-doc/examples/access.gz</filename> ファイルを展開したコピーを使って作成することも可能です。このひな形には、説明がコメントとして書かれており、それぞれのテーブルがその構文を説明しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/postfix/access_clientip</filename> table lists IP addresses and networks; <filename>/etc/postfix/access_helo</filename> lists domain names; <filename>/etc/postfix/access_sender</filename> contains sender email addresses. All these files need to be turned into hash-tables (a format optimized for fast access) after each change, with the <command>postmap /etc/postfix/<replaceable>file</replaceable></command> command."
-msgstr ""
+msgstr "<filename>/etc/postfix/access_clientip</filename> テーブルは IP アドレスとネットワークをリストしています; <filename>/etc/postfix/access_helo</filename> はドメイン名をリストしています; <filename>/etc/postfix/access_sender</filename> は送信者の電子メールアドレスを含みます。これらのファイルを変更した場合、その後に必ず <command>postmap /etc/postfix/<replaceable>file</replaceable></command> コマンドを使ってファイルをハッシュテーブル (高速アクセスに最適化されたフォーマット) に変換する必要があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The third directive allows the administrator to set up a black list and a white list of email servers, stored in the <filename>/etc/postfix/access_clientip</filename> file. Servers in the white list are considered as trusted, and the emails coming from there therefore do not go through the following filtering rules."
-msgstr ""
+msgstr "3 番目の指示文を使うことで、管理者は <filename>/etc/postfix/access_clientip</filename> ファイルに保存された電子メールサーバのブラックリストとホワイトリストを設定することが可能になります。ホワイトリストに含まれるサーバは信頼され、このサーバから来る電子メールは以降のフィルタリングルールを適用されません。"
 
 #. Tag: para
 #, no-c-format
 msgid "The last two rules reject any message coming from a server listed in one of the indicated black lists. RBL is an acronym for <emphasis>Remote Black List</emphasis>; there are several such lists, but they all list badly configured servers that spammers use to relay their emails, as well as unexpected mail relays such as machines infected with worms or viruses."
-msgstr ""
+msgstr "最後の 2 つのルールにより、ブラックリストに含まれるサーバからのメッセージを拒否するようになります。RBL は <emphasis>Remote Black List</emphasis> の頭字語です; ブラックリストは復数存在しますが、どれも、スパマーが電子メールを中継するために使う下手に設定されたサーバ、ワームやウィルスに感染したマシンのような本来の意図と異なりメール中継させられているサーバ、がリストされています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RBL</primary>"
-msgstr ""
+msgstr "<primary>RBL</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Remote Black List</primary>"
-msgstr ""
+msgstr "<primary>Remote Black List</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> White list and RBLs"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> ホワイトリストと RBL"
 
 #. Tag: para
 #, no-c-format
 msgid "Black lists sometimes include a legitimate server that has been suffering an incident. In these situations, all emails coming from one of these servers would be rejected unless the server is listed in a whitelist defined by <filename>/etc/postfix/access_clientip</filename>."
-msgstr ""
+msgstr "ブラックリストには、過去に異常が発生した正当なサーバも含まれます。この場合、そのようなサーバからの全ての電子メールは拒否されます。これを受け入れるには <filename>/etc/postfix/access_clientip</filename> によって定義されたホワイトリストの中にそのサーバをリストするしかありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Prudence therefore recommends including in the white list all the trusted servers from which many emails are usually received."
-msgstr ""
+msgstr "このため、よく考えた上で、通常電子メールを受け取るような信頼できるサーバは全てホワイトリストの中に含めることを推奨します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Checking the Validity of the <literal>EHLO</literal> or <literal>HELO</literal> Commands"
-msgstr ""
+msgstr "<literal>EHLO</literal> または <literal>HELO</literal> コマンドの妥当性確認"
 
 #. Tag: para
 #, no-c-format
 msgid "Each SMTP exchange starts with a <literal>HELO</literal> (or <literal>EHLO</literal>) command, followed by the name of the sending email server; checking the validity of this name can be interesting."
-msgstr ""
+msgstr "SMTP でメールを送信するには、サーバに <literal>HELO</literal> (または <literal>EHLO</literal>) の後に送信元の名前をつけたコマンドを送ります。送信元の名前の妥当性を確認することは興味深いです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>HELO</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>HELO</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>EHLO</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>EHLO</literal></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Restrictions on the name announced in <literal>EHLO</literal>"
-msgstr ""
+msgstr "<literal>EHLO</literal> の引数に与えられる名前の制限"
 
 #. Tag: programlisting
 #, no-c-format
@@ -679,46 +679,52 @@ msgid ""
 "    reject_non_fqdn_hostname,\n"
 "    warn_if_reject reject_unknown_hostname\n"
 msgstr ""
+"\n"
+"smtpd_helo_restrictions = permit_mynetworks,\n"
+"    reject_invalid_hostname,\n"
+"    check_helo_access hash:/etc/postfix/access_helo,\n"
+"    reject_non_fqdn_hostname,\n"
+"    warn_if_reject reject_unknown_hostname\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The first <literal>permit_mynetworks</literal> directive allows all machines on the local network to introduce themselves freely. This is important, because some email programs do not respect this part of the SMTP protocol adequately enough, and they can introduce themselves with nonsensical names."
-msgstr ""
+msgstr "最初の <literal>permit_mynetworks</literal> 指示文を使うことで、ローカルネットワーク上の全てのマシンならば、HELO コマンドの引数にどのような名前を使っても良いことになります。これは重要です。なぜなら、一部の電子メールプログラムは SMTP プロトコルのこの部分を十分適切に尊重せず、HELO の引数に無意味な名前を使います。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>reject_invalid_hostname</literal> rule rejects emails when the <literal>EHLO</literal> announce lists a syntactically incorrect hostname. The <literal>reject_non_fqdn_hostname</literal> rule rejects messages when the announced hostname is not a fully-qualified domain name (including a domain name as well as a host name). The <literal>reject_unknown_hostname</literal> rule rejects messages if the announced name does not exist in the DNS. Since this last rule unfortunately leads to too many rejections, the administrators turned its effect to a simple warning with the <literal>warn_if_reject</literal> modifier as a first step; they may decide to remove this modifier at a later stage, after auditing the results of this rule."
-msgstr ""
+msgstr "<literal>reject_invalid_hostname</literal> ルールを使うことで、<literal>EHLO</literal> で申告されたホスト名が構文的に不正な電子メールを拒否するようになります。<literal>reject_non_fqdn_hostname</literal> ルールを使うことで、申告されたホスト名が完全修飾ドメイン名 (ホスト名まで含むドメイン名) でないメッセージを拒否するようになります。<literal>reject_unknown_hostname</literal> ルールを使うことで、申告された名前が DNS に存在しないメッセージを拒否するようになります。最後のルールを適用すると、数多くの電子メールが拒否されることになるため、管理者は <literal>warn_if_reject</literal> 修飾子を付けて警告するだけにしています。管理者は <literal>reject_unknown_hostname</literal> ルールの結果を調査した後に、最後の段階で <literal>warn_if_reject</literal> 修飾子を削除するか判断します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Using <literal>permit_mynetworks</literal> as the first rule has an interesting side effect: the following rules only apply to hosts outside the local network. This allows blacklisting all hosts that announce themselves as part of the <literal>falcot.com</literal>, for instance by adding a <literal>falcot.com REJECT You're not in our network!</literal> line to the <filename>/etc/postfix/access_helo</filename> file."
-msgstr ""
+msgstr "最初のルールに <literal>permit_mynetworks</literal> を使うと、面白い副作用があります: それ以降のルールがローカルネットワークの外のホストにのみ適用されるようになります。これを使うことで、自分を <literal>falcot.com</literal> の一部と申告する全てのホストをブラックリスト化できます。これを行うには、例えば <literal>falcot.com REJECT You're not in our network!</literal> 行を <filename>/etc/postfix/access_helo</filename> ファイルに追加します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Accepting or Refusing Based on the Announced Sender"
-msgstr ""
+msgstr "申告された送信者に基づく受け入れおよび拒否"
 
 #. Tag: para
 #, no-c-format
 msgid "Every message has a sender, announced by the <literal>MAIL FROM</literal> command of the SMTP protocol; again, this information can be validated in several different ways."
-msgstr ""
+msgstr "各メッセージには送信者があり、これは SMTP プロトコルの <literal>MAIL FROM</literal> コマンドで申告されます; 繰り返しになりますが、様々な異なる方法でこの情報の有効性を判断します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>MAIL FROM</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>MAIL FROM</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>email</primary><secondary>filtering on the sender</secondary>"
-msgstr ""
+msgstr "<primary>email</primary><secondary>送信者に基づくフィルタリング</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Sender checks"
-msgstr ""
+msgstr "送信者確認"
 
 #. Tag: programlisting
 #, no-c-format
@@ -729,46 +735,51 @@ msgid ""
 "    reject_unknown_sender_domain, reject_unlisted_sender,\n"
 "    reject_non_fqdn_sender\n"
 msgstr ""
+"\n"
+"smtpd_sender_restrictions = \n"
+"    check_sender_access hash:/etc/postfix/access_sender,\n"
+"    reject_unknown_sender_domain, reject_unlisted_sender,\n"
+"    reject_non_fqdn_sender\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/postfix/access_sender</filename> table maps some special treatment to some senders. This usually means listing some senders into a white list or a black list."
-msgstr ""
+msgstr "<filename>/etc/postfix/access_sender</filename> テーブルを使うことで、一部の送信者を特別扱いすることが可能です。このテーブルは一部の送信者をホワイトリストやブラックリストに入れることを意味します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>reject_unknown_sender_domain</literal> rule requires a valid sender domain, since it is needed for a valid address. The <literal>reject_unlisted_sender</literal> rule rejects local senders if the address does not exist; this prevents emails from being sent from an invalid address in the <literal>falcot.com</literal> domain, and messages emanating from <literal>joe.bloggs@falcot.com</literal> are only accepted if such an address really exists."
-msgstr ""
+msgstr "<literal>reject_unknown_sender_domain</literal> ルールを使うことで、送信者アドレスに適切なドメインが含まれることを強制することが可能です。なぜなら、適切なアドレスならば必ず適切なドメインを含むからです。<literal>reject_unlisted_sender</literal> ルールを使うことで、アドレスが存在しないローカル送信者を拒否します; <literal>reject_unlisted_sender</literal> ルールを使うことで、<literal>falcot.com</literal> ドメイン内の不正なアドレスから電子メールが送信されること避けることが可能で、<literal>joe.bloggs@falcot.com</literal> というアドレスが本当に存在するならば、そのアドレスから放出されるメッセージは受け入れられるようになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, the <literal>reject_non_fqdn_sender</literal> rule rejects emails purporting to come from addresses without a fully-qualified domain name. In practice, this means rejecting emails coming from <literal>user@machine</literal>: the address must be announced as either <literal>user@machine.example.com</literal> or <literal>user@example.com</literal>."
-msgstr ""
+msgstr "最後に、<literal>reject_non_fqdn_sender</literal> ルールを使うことで、完全修飾ドメイン名を持たないアドレスから送信されたと称する電子メールを拒否します。具体的には、<literal>user@machine</literal> からの電子メールを拒否します: このアドレスは必ず <literal>user@machine.example.com</literal> または <literal>user@example.com</literal> の形で申告されなければいけません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Accepting or Refusing Based on the Recipient"
-msgstr ""
+msgstr "受信アドレスに基づく受け入れまたは拒否"
 
 #. Tag: para
 #, no-c-format
 msgid "Each email has at least one recipient, announced with the <literal>RCPT TO</literal> command in the SMTP protocol. These addresses also warrant validation, even if that may be less relevant than the checks made on the sender address."
-msgstr ""
+msgstr "各電子メールには少なくとも 1 つの受信アドレスが必要です。SMTP プロトコルではこれを <literal>RCPT TO</literal> コマンドで申告します。送信アドレスに対して行った確認よりも関係性は低いとはいえ、受信アドレスの正当性を確認することは当然です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RCPT TO</primary>"
-msgstr ""
+msgstr "<primary>RCPT TO</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>email</primary><secondary>filtering on the recipient</secondary>"
-msgstr ""
+msgstr "<primary>電子メール</primary><secondary>受信アドレスに基づくフィルタリング</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Recipient checks"
-msgstr ""
+msgstr "受信アドレスの確認"
 
 #. Tag: programlisting
 #, no-c-format
@@ -778,6 +789,10 @@ msgid ""
 "    reject_unauth_destination, reject_unlisted_recipient, \n"
 "    reject_non_fqdn_recipient\n"
 msgstr ""
+"\n"
+"smtpd_recipient_restrictions = permit_mynetworks, \n"
+"    reject_unauth_destination, reject_unlisted_recipient, \n"
+"    reject_non_fqdn_recipient\n"
 
 #. Tag: para
 #, no-c-format
