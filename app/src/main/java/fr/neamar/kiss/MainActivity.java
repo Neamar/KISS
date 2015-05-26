@@ -1,7 +1,9 @@
 package fr.neamar.kiss;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,7 +27,6 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -78,7 +79,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         super.onCreate(savedInstanceState);
 
         IntentFilter intentFilter = new IntentFilter(START_LOAD);
@@ -90,12 +90,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateRecords(searchEditText.getText().toString());
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
-                    setProgressBarIndeterminateVisibility(false);
+                    displayLoader(true);
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
-                    setProgressBarIndeterminateVisibility(true);
+                    displayLoader(false);
                 }
             }
         };
+
         this.registerReceiver(mReceiver, intentFilter);
         this.registerReceiver(mReceiver, intentFilterBis);
         this.registerReceiver(mReceiver, intentFilterTer);
@@ -293,7 +294,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Empty text field on resume and show keyboard
      */
     protected void onResume() {
-
         if (prefs.getBoolean("layout-updated", false)) {
             // Restart current activity to refresh view, since some preferences
             // may require using a new UI
@@ -305,29 +305,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
             startActivity(i);
         }
 
-        IntentFilter intentFilter = new IntentFilter(START_LOAD);
-        IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
-        IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
-        mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
-                    updateRecords(searchEditText.getText().toString());
-                } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
-                    setProgressBarIndeterminateVisibility(false);
-                } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
-                    setProgressBarIndeterminateVisibility(true);
-                }
-            }
-        };
-
-        // registering our receiver
-        this.registerReceiver(mReceiver, intentFilter);
-        this.registerReceiver(mReceiver, intentFilterBis);
-        this.registerReceiver(mReceiver, intentFilterTer);
-
         updateRecords(searchEditText.getText().toString());
         displayClearOnInput();
+
         if (prefs.getBoolean("display-keyboard", false)) {
             // Display keyboard
             new Handler().postDelayed(new Runnable() {
@@ -439,12 +419,48 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
+    protected void displayLoader(Boolean loaded) {
+        final View loaderBar = findViewById(R.id.loaderBar);
+        final View launcherButton = findViewById(R.id.launcherButton);
+
+        int animationDuration = getResources().getInteger(
+                android.R.integer.config_longAnimTime);
+
+        if (loaded) {
+            launcherButton.setVisibility(View.VISIBLE);
+
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                // Animate transition from loader to launch button
+                launcherButton.setAlpha(0);
+                launcherButton.animate()
+                        .alpha(1f)
+                        .setDuration(animationDuration)
+                        .setListener(null);
+                loaderBar.animate()
+                        .alpha(0f)
+                        .setDuration(animationDuration)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                loaderBar.setVisibility(View.GONE);
+                                loaderBar.setAlpha(1);
+                            }
+                        });
+            }
+        } else {
+            launcherButton.setVisibility(View.GONE);
+            loaderBar.setVisibility(View.VISIBLE);
+        }
+    }
+
     /**
      * This function gets called on changes. It will ask all the providers for
      * datas
      *
      * @param query
      */
+
     public void updateRecords(String query) {
         if (updateRecords != null) {
             updateRecords.cancel(true);
